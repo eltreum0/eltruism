@@ -1184,6 +1184,8 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["bar6"]["alpha"] = 0.75
 		E.db["actionbar"]["bar6"]["buttonHeight"] = 24
 		E.db["actionbar"]["bar6"]["buttonSize"] = 33
+		E.db["actionbar"]["bar6"]["buttons"] = 12
+		E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
 		E.db["actionbar"]["bar6"]["countFont"] = "Kimberley"
 		E.db["actionbar"]["bar6"]["countFontOutline"] = "THICKOUTLINE"
 		E.db["actionbar"]["bar6"]["enabled"] = true
@@ -2077,6 +2079,8 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [petbattle] hide; show[combat][@target, exists]show;hide"
 		E.db["actionbar"]["bar6"]["buttonHeight"] = 25
 		E.db["actionbar"]["bar6"]["buttonSize"] = 33
+		E.db["actionbar"]["bar6"]["buttons"] = 12
+		E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
 		E.db["actionbar"]["bar6"]["countFont"] = "Kimberley"
 		E.db["actionbar"]["bar6"]["enabled"] = true
 		E.db["actionbar"]["bar6"]["hotkeyFont"] = "Kimberley"
