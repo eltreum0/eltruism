@@ -1,0 +1,17 @@
+## Interface: 90005
+## Author: Eltreum
+## Version: 1.0
+## Title: |cff1784d1ElvUI|r Eltruism
+## Notes: Eltreum's ElvUI Profile and minor Plugin
+## Dependencies: ElvUI, ElvUI_SLE, ElvUI_WindTools, AddOnSkins
+## OptionalDeps: ProjectAzilroka
+## DefaultState: enabled
+
+
+Init.lua
+Core\load_core.xml
+Media\load_media.xml
+Modules\load_modules.xml
+Profiles\load_profiles.xml
+Settings\load_settings.xml
+
