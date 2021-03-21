@@ -341,10 +341,6 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["sle"]["unitframes"]["unit"]["raid40"]["offline"]["enable"] = true
 	E.db["sle"]["unitframes"]["unit"]["raid40"]["offline"]["size"] = 15
 
-
-
-
-
 	-- Setup Windtools
 	E.private["WT"]["combat"]["talentManager"]["pvpTalent"] = true
 	E.private["WT"]["core"]["loginMessage"] = false
@@ -915,6 +911,28 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	["size"] = 10,
 	["text_format"] = "||cffFFFF00[absorbs]||r",
 	["xOffset"] = 45,
+	["yOffset"] = 0
+	}
+	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]= {
+	["attachTextTo"] = "InfoPanel",
+	["enable"] = true,
+	["font"] = "Kimberley",
+	["fontOutline"] = "OUTLINE",
+	["justifyH"] = "RIGHT",
+	["size"] = 10,
+	["text_format"] = "[health:current:shortvalue]",
+	["xOffset"] = 0,
+	["yOffset"] = -1
+	}
+	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidName"] = {
+	["attachTextTo"] = "InfoPanel",
+	["enable"] = true,
+	["font"] = "Kimberley",
+	["fontOutline"] = "OUTLINE",
+	["justifyH"] = "LEFT",
+	["size"] = 10,
+	["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+	["xOffset"] = 0,
 	["yOffset"] = 0
 	}
 	-- Custom Text: Raid 40
@@ -2002,7 +2020,11 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 
 	elseif layout == 'healer' then
 
-		
+		-- Change sle y offsets for healer frames
+		E.db["sle"]["unitframes"]["unit"]["raid"]["dead"]["yOffset"] = 10
+		E.db["sle"]["unitframes"]["unit"]["raid"]["offline"]["yOffset"] = 10
+		E.db["sle"]["unitframes"]["unit"]["raid40"]["dead"]["yOffset"] = 10
+		E.db["sle"]["unitframes"]["unit"]["raid40"]["offline"]["yOffset"] = 10
 		-- Healer Action bars
 		E.db["actionbar"]["addNewSpells"] = true
 		E.db["actionbar"]["bar1"]["buttonSize"] = 40
