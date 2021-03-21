@@ -21,22 +21,22 @@ end
 		
 	 
 
+-- Stealth Overlay Frame Creation
+local StealthOptionsFrame = CreateFrame("Frame", "ShadowBackground", E.UIParent)
+StealthOptionsFrame:Point("TOPLEFT")
+StealthOptionsFrame:Point("BOTTOMRIGHT")
+StealthOptionsFrame:SetFrameLevel(0)
+StealthOptionsFrame:SetFrameStrata("BACKGROUND")
+-- Texture from Shadowmeld, public domain
+StealthOptionsFrame.tex = StealthOptionsFrame:CreateTexture()
+StealthOptionsFrame.tex:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\StealthOverlay.tga")
+StealthOptionsFrame.tex:SetAllPoints(frame)
+-- set to hide so it doesnt show on characters that dont have stealth
+StealthOptionsFrame:Hide()
+
 -- Stealth Overlay Options
 function ElvUI_EltreumUI:StealthOptions()
-
 	if E.private.ElvUI_EltreumUI.stealthOptions.stealtheffect then
-		-- Create frame
-		local StealthOptionsFrame = CreateFrame("Frame", "ShadowBackground", E.UIParent)
-		StealthOptionsFrame:Point("TOPLEFT")
-		StealthOptionsFrame:Point("BOTTOMRIGHT")
-		StealthOptionsFrame:SetFrameLevel(0)
-		StealthOptionsFrame:SetFrameStrata("BACKGROUND")
-		-- Texture from Shadowmeld, public domain
-		StealthOptionsFrame.tex = StealthOptionsFrame:CreateTexture()
-		StealthOptionsFrame.tex:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\StealthOverlay.tga")
-		StealthOptionsFrame.tex:SetAllPoints(frame)
-		-- set to hide so it doesnt show on characters that dont have stealth
-		StealthOptionsFrame:Hide()
 		--Script the frame, ty wowpedia for examples
 		StealthOptionsFrame:HookScript("OnEvent", function(__, event)
 		  if (event == "PLAYER_ENTERING_WORLD") then
@@ -55,7 +55,6 @@ function ElvUI_EltreumUI:StealthOptions()
 		StealthOptionsFrame:RegisterEvent("UPDATE_STEALTH");
 	end
 end
-
 -- Nameplate options for Border and Glow
 function ElvUI_EltreumUI:NamePlateOptions()
 	local nameplateclasscolors
