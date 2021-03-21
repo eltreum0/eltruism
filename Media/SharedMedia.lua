@@ -21,7 +21,7 @@ LSM:Register("sound", "Todd Horward - Again it just works", [[Interface\Addons\E
 LSM:Register("sound", "Will Smith - Ah ahaha", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WillSmith-Ahaha.mp3]]) 
 LSM:Register("sound", "Will Smith - Rewind", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WillSmith-Rewind-Long.mp3]]) 
 LSM:Register("sound", "Will Smith - That's Hot", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WillSmith-Thats-hot.mp3]]) 
-LSM:Register("sound", "bruh", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\bruh.mp3]]) 
+LSM:Register("sound", "bruh", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\bruh.mp3]])
 LSM:Register("sound", "We are too late", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\Weretoolate.mp3]]) 
 
 
@@ -43,3 +43,8 @@ LSM:Register("statusbar", "Eltreum9pixel", [[Interface\Addons\ElvUI_EltreumUI\Me
 LSM:Register("statusbar", "Eltreum10pixel", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum10pixel.tga]])
 LSM:Register("statusbar", "Eltreum-Blank", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Blank.tga]])
 LSM:Register("statusbar", "Eltreum-Elvui-Norm", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Elvui-Norm.tga]])
+
+
+
+-- Background
+LSM:Register("background", "Eltreum-StealthOverlay", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\StealthOverlay.tga]]) 

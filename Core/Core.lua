@@ -2,11 +2,61 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
+
+
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
 	print('|c4682B4ffEltruism|r: '..msg)
 end
--- Nameplate options for glow
+
+
+
+
+-- Trying to convert Bruh sound on player death
+--function ElvUI_EltreumUI:Bruh()
+--	if (event == "UNIT_DIED") then
+--		PlaySoundFile("Interface\\Addons\\ElvUI_EltreumUI\\Media\\sound\\You_Died.ogg", "Master");	
+--	end
+--end
+		
+	 
+
+-- Stealth Overlay Options
+function ElvUI_EltreumUI:StealthOptions()
+
+	if E.private.ElvUI_EltreumUI.stealthOptions.stealtheffect then
+		-- Create frame
+		local StealthOptionsFrame = CreateFrame("Frame", "ShadowBackground", E.UIParent)
+		StealthOptionsFrame:Point("TOPLEFT")
+		StealthOptionsFrame:Point("BOTTOMRIGHT")
+		StealthOptionsFrame:SetFrameLevel(0)
+		StealthOptionsFrame:SetFrameStrata("BACKGROUND")
+		-- Texture from Shadowmeld, public domain
+		StealthOptionsFrame.tex = StealthOptionsFrame:CreateTexture()
+		StealthOptionsFrame.tex:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\StealthOverlay.tga")
+		StealthOptionsFrame.tex:SetAllPoints(frame)
+		-- set to hide so it doesnt show on characters that dont have stealth
+		StealthOptionsFrame:Hide()
+		--Script the frame, ty wowpedia for examples
+		StealthOptionsFrame:HookScript("OnEvent", function(__, event)
+		  if (event == "PLAYER_ENTERING_WORLD") then
+			if IsStealthed() then
+				StealthOptionsFrame:Show();
+			end
+		  elseif (event == "UPDATE_STEALTH") then
+			if IsStealthed() then
+				UIFrameFadeIn(StealthOptionsFrame, 0.125, 0, 1);
+			else
+				UIFrameFadeOut(StealthOptionsFrame, 0.1, 1, 0);
+			end
+		  end
+		end);
+		StealthOptionsFrame:RegisterEvent("PLAYER_ENTERING_WORLD");
+		StealthOptionsFrame:RegisterEvent("UPDATE_STEALTH");
+	end
+end
+
+-- Nameplate options for Border and Glow
 function ElvUI_EltreumUI:NamePlateOptions()
 	local nameplateclasscolors
 	nameplateclasscolors = E:ClassColor(E.myclass, true)

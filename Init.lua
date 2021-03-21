@@ -26,14 +26,29 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:LoadCommands()
 end
 
+
 function ElvUI_EltreumUI:Initialize()
 	if E.private.install_complete and E.private.ElvUI_EltreumUI.install_version == nil then
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 	end
-
+		
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD')
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD', 'UPDATE_STEALTH') 
 end
+
+
+function ElvUI_EltreumUI:UPDATE_STEALTH()
+    ElvUI_EltreumUI:StealthOptions()
+end
+
+--function ElvUI_EltreumUI:UNIT_DIED()
+--    ElvUI_EltreumUI:Bruh()
+--end
+
+
+
+
+
 
 local function CallbackInitialize()
 	ElvUI_EltreumUI:Initialize()

@@ -125,6 +125,31 @@ function ElvUI_EltreumUI:Configtable()
 						},
 					},
 				},
+			},			
+			stealthOptionssetting = {
+				type = 'group',
+				name = 'Stealth',
+				order = 85,
+				args = {
+					stealthOptions = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Toggle a Stealth Effect',
+						get = function(info) return E.private.ElvUI_EltreumUI.stealthOptions[info[#info]] end,
+						set = function(info, value) E.private.ElvUI_EltreumUI.stealthOptions[info[#info]] = value; E:StaticPopup_Show('PRIVATE_RL') end,
+						args = {
+							classhover = {
+								order = 1,
+								type = 'toggle',
+								name = 'Turn the effect on',
+								desc = 'Change the blahblah',
+								get = function(info) return E.private.ElvUI_EltreumUI.stealthOptions.stealtheffect end,
+								set = function(info, value) E.private.ElvUI_EltreumUI.stealthOptions.stealtheffect = value; E:StaticPopup_Show('PRIVATE_RL') end,
+							},
+						},
+					},
+				},
 			},
 			cvars = {
 				order = 5,

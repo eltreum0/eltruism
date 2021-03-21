@@ -10,4 +10,9 @@ V.ElvUI_EltreumUI = {
 	ClassColorGlow = true,
 	ClassBorderNameplate	= true,
 	},
+	
+	stealthOptions = {
+	stealtheffect = true,
+	},
+	
 }
