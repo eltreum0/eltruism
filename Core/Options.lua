@@ -59,8 +59,6 @@ function ElvUI_EltreumUI:Configtable()
 
 	-- Add EltreumUI version on top of the ElvUI config
 	E.Options.name = E.Options.name .. " + " .. ElvUI_EltreumUI.Name .. " ".. ElvUI_EltreumUI.Version
-	
-	
 	E.Options.args.ElvUI_EltreumUI = {
 		order = 1,
 		type = 'group',
@@ -93,64 +91,79 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
-			nameplatescolors = {
+			procglow = {
 				type = 'group',
-				name = 'Nameplate',
-				order = 7,
+				name = 'Custom Glow',
+				order = 4,
 				args = {
-					nameplateOptions = {
-						order = 1,
+					glow = {
 						type = 'group',
-						inline = true,
-						name = 'Toggle Colored Class Borders & Glow',
-						get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions[info[#info]] end,
-						set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions[info[#info]] = value; E:StaticPopup_Show('PRIVATE_RL') end,
+						name = 'Toggle a Custom Glow',
+						guiInline = true,
+						order = 10,
 						args = {
-							classhover = {
-								order = 1,
-								type = 'toggle',
-								name = 'Class color hover color',
-								desc = 'Change the color of the hover to be class colored',
-								get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow end,
-								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow = value; E:StaticPopup_Show('PRIVATE_RL') end,
+							enable = {
+							type = 'toggle',
+							name = 'Enable',
+							order = 1,
+							get = function() return E.private.ElvUI_EltreumUI.glow.enable end,
+							set = function(_, value) E.private.ElvUI_EltreumUI.glow.enable = value; E:StaticPopup_Show('PRIVATE_RL') end,
 							},
-							classborder = {
-								order = 2,
-								type = 'toggle',
-								name = 'Class color border color',
-								desc = 'Change the color of the border glow to be class bordered in nameplates',
-								get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate end,
-								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate = value; E:StaticPopup_Show('PRIVATE_RL') end,
+							addagaphere = {
+							order = 2,
+							type = "description",
+							name = "",
 							},
-						},
-					},
-				},
-			},			
-			stealthOptionssetting = {
-				type = 'group',
-				name = 'Stealth',
-				order = 85,
-				args = {
-					stealthOptions = {
-						order = 1,
-						type = 'group',
-						inline = true,
-						name = 'Stealth Effect',
-						get = function(info) return E.private.ElvUI_EltreumUI.stealthOptions[info[#info]] end,
-						set = function(info, value) E.private.ElvUI_EltreumUI.stealthOptions[info[#info]] = value; E:StaticPopup_Show('PRIVATE_RL') end,
-						args = {
-							classhover = {
-								order = 1,
-								type = 'toggle',
-								name = 'Add a Stealth Effect',
-								desc = 'Vignette style effect while character is in stealth',
-								get = function(info) return E.private.ElvUI_EltreumUI.stealthOptions.stealtheffect end,
-								set = function(info, value) E.private.ElvUI_EltreumUI.stealthOptions.stealtheffect = value; E:StaticPopup_Show('PRIVATE_RL') end,
+							addanothergapforfun = {
+							order = 2,
+							type = "description",
+							name = "",
+							},
+							procselection = {
+							order = 2,
+							type = 'group',
+							name = 'Select a Type',
+								args = {
+									yetanothergap = {
+									order = 2,
+									type = "description",
+									name = "",
+									},
+									autocast = {
+										type = 'toggle',
+										name = 'Autocast',
+										order = 10,
+										desc = 'Adds an autocast style glow using class color',
+										disabled = function() return not E.private.ElvUI_EltreumUI.glow.enable or E.private.ElvUI_EltreumUI.glow.pixel or E.private.ElvUI_EltreumUI.glow.blizzard end,
+										get = function(info) return E.private.ElvUI_EltreumUI.glow.autocast end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.glow.autocast = value; E:StaticPopup_Show('PRIVATE_RL') end,
+									},
+									pixel = {
+										type = 'toggle',
+										name = 'Pixel',
+										order = 12,
+										desc = 'Adds a pixel style glow using class color',
+										disabled = function() return not E.private.ElvUI_EltreumUI.glow.enable or E.private.ElvUI_EltreumUI.glow.autocast or E.private.ElvUI_EltreumUI.glow.blizzard end,
+										get = function(info) return E.private.ElvUI_EltreumUI.glow.pixel end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.glow.pixel = value; E:StaticPopup_Show('PRIVATE_RL') end,
+									},
+									blizzard = {
+										type = 'toggle',
+										name = 'Blizzard',
+										order = 11,
+										desc = 'Adds a Blizzard style glow using class color',
+										disabled = function() return not E.private.ElvUI_EltreumUI.glow.enable or E.private.ElvUI_EltreumUI.glow.autocast or E.private.ElvUI_EltreumUI.glow.pixel end,
+										get = function(info) return E.private.ElvUI_EltreumUI.glow.blizzard end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.glow.blizzard = value; E:StaticPopup_Show('PRIVATE_RL') end,
+									},
+								},
 							},
 						},
 					},
 				},
 			},
+			
+			
 			cvars = {
 				order = 5,
 				type = 'group',
@@ -190,7 +203,7 @@ function ElvUI_EltreumUI:Configtable()
 			media = {
 				type = 'group',
 				name = 'Media',
-				order = 6,
+				order = 82,
 				args = {
 					defaults = {
 						order = 1,
@@ -210,10 +223,43 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
+			nameplatescolors = {
+				type = 'group',
+				name = 'Nameplate',
+				order = 83,
+				args = {
+					nameplateOptions = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Toggle Colored Class Borders & Glow',
+						get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions[info[#info]] end,
+						set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions[info[#info]] = value; E:StaticPopup_Show('PRIVATE_RL') end,
+						args = {
+							classhover = {
+								order = 1,
+								type = 'toggle',
+								name = 'Class color hover color',
+								desc = 'Change the color of the hover to be class colored',
+								get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow end,
+								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow = value; E:StaticPopup_Show('PRIVATE_RL') end,
+							},
+							classborder = {
+								order = 2,
+								type = 'toggle',
+								name = 'Class color border color',
+								desc = 'Change the color of the border glow to be class bordered in nameplates',
+								get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate end,
+								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate = value; E:StaticPopup_Show('PRIVATE_RL') end,
+							},
+						},
+					},
+				},
+			},
 			profiles = {
 				type = 'group',
 				name = 'Addon Profiles',
-				order = 3,
+				order = 84,
 				args = {
 					plugins = {
 						order = 1,
@@ -329,10 +375,35 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
+			stealthOptionssetting = {
+				type = 'group',
+				name = 'Stealth Vignette',
+				order = 85,
+				args = {
+					stealthOptions = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Toggle a Stealth Effect',
+						get = function(info) return E.private.ElvUI_EltreumUI.stealthOptions[info[#info]] end,
+						set = function(info, value) E.private.ElvUI_EltreumUI.stealthOptions[info[#info]] = value; E:StaticPopup_Show('PRIVATE_RL') end,
+						args = {
+							classhover = {
+								order = 1,
+								type = 'toggle',
+								name = 'Enable',
+								desc = 'Add a vignette while in stealth',
+								get = function(info) return E.private.ElvUI_EltreumUI.stealthOptions.stealtheffect end,
+								set = function(info, value) E.private.ElvUI_EltreumUI.stealthOptions.stealtheffect = value; E:StaticPopup_Show('PRIVATE_RL') end,
+							},
+						},
+					},
+				},
+			},
 			weakauras = {
 				type = 'group',
 				name = 'WeakAuras',
-				order = 8,
+				order = 96,
 				args = {
 					header1 = {
 						order = 1,
@@ -370,7 +441,7 @@ function ElvUI_EltreumUI:Configtable()
 			credits = {
 				type = 'group',
 				name = 'Credits',
-				order = 9,
+				order = 98,
 				args = {
 					author = {
 						order = 1,
@@ -405,7 +476,7 @@ function ElvUI_EltreumUI:Configtable()
 			support = {
 				type = 'group',
 				name = 'Support',
-				order = 10,
+				order = 99,
 				args = {
 					changelog = {
 						order = 1,

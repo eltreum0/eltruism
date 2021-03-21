@@ -11,17 +11,15 @@ end
 
 
 
-
 -- Trying to convert Bruh sound on player death
 --function ElvUI_EltreumUI:Bruh()
 --	if (event == "UNIT_DIED") then
 --		PlaySoundFile("Interface\\Addons\\ElvUI_EltreumUI\\Media\\sound\\You_Died.ogg", "Master");	
 --	end
 --end
-		
-	 
 
--- Create frame
+
+-- Create Stealth Overlay Frame
 local StealthOptionsFrame = CreateFrame("Frame", "StealthOverlay", E.UIParent)
 StealthOptionsFrame:Point("TOPLEFT")
 StealthOptionsFrame:Point("BOTTOMRIGHT")
@@ -33,7 +31,6 @@ StealthOptionsFrame.tex:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\T
 StealthOptionsFrame.tex:SetAllPoints(frame)
 -- set to hide so it doesnt show on characters that dont have stealth
 StealthOptionsFrame:Hide()
-
 -- Stealth Overlay Options
 function ElvUI_EltreumUI:StealthOptions()
 	if E.private.ElvUI_EltreumUI.stealthOptions.stealtheffect then
@@ -55,6 +52,7 @@ function ElvUI_EltreumUI:StealthOptions()
 		StealthOptionsFrame:RegisterEvent("UPDATE_STEALTH");
 	end
 end
+
 -- Nameplate options for Border and Glow
 function ElvUI_EltreumUI:NamePlateOptions()
 	local nameplateclasscolors
@@ -71,6 +69,63 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = true
 	end
 end
+
+-- Skill Glow
+local LCG = LibStub('LibCustomGlow-1.0')
+function ElvUI_EltreumUI:SkillGlow()
+	-- using the same method as nameplate doesnt work, returns black color instead of classcolor
+	--local skillglowcolor
+	--skillglowcolor = E:ClassColor(E.myclass, true)
+	--skillglowcolor = E:GetColor(classColor.r, classColor.g, classColor.b)
+	
+	--ty Azilroka but it didnt work :(
+	---local skillglowcolor:SetVertexColor(unpack(E.media.rgbvaluecolor))
+
+	-- this worked for some reason
+	local r, g, b = unpack(E.media.rgbvaluecolor)
+	local skillglowcolor = {r, g, b, 1}
+	local customglow = LibStub("LibButtonGlow-1.0")
+	if E.private.ElvUI_EltreumUI.glow.enable then
+		if E.private.ElvUI_EltreumUI.glow.pixel then
+			function customglow.ShowOverlayGlow(button)
+				if button:GetAttribute("type") == "action" then
+					local actionType, actionID = GetActionInfo(button:GetAttribute("action"))
+					----PixelGlow_Start(frame[, color[, N[, frequency[, length[, th[, xOffset[, yOffset[, border[ ,key]]]]]]]])
+					LCG.PixelGlow_Start(button, skillglowcolor, 9, 1, 3, 5, 5, 5, false, nil, high)
+				end
+			end
+			function customglow.HideOverlayGlow(button)
+				LCG.PixelGlow_Stop(button)
+			end
+		end
+		if E.private.ElvUI_EltreumUI.glow.autocast then
+			function customglow.ShowOverlayGlow(button)
+				if button:GetAttribute("type") == "action" then
+					local actionType, actionID = GetActionInfo(button:GetAttribute("action"))
+					----AutoCastGlow_Start(frame[, color[, N[, frequency[, scale[, xOffset[, yOffset[, key]]]]]]])
+					----N - number of particle groups. Each group contains 4 particles. Defaul value is 4;
+					LCG.AutoCastGlow_Start(button, skillglowcolor, 8, 0.8, 2, 5, 5)
+				end
+			end
+			function customglow.HideOverlayGlow(button)
+				LCG.AutoCastGlow_Stop(button)
+			end
+		end
+		if E.private.ElvUI_EltreumUI.glow.blizzard then
+			function customglow.ShowOverlayGlow(button)
+				if button:GetAttribute("type") == "action" then
+					local actionType, actionID = GetActionInfo(button:GetAttribute("action"))
+					----ButtonGlow_Start(frame[, color[, frequency]]])
+					LCG.ButtonGlow_Start(button, skillglowcolor, 0.5)
+				end
+			end
+			function customglow.HideOverlayGlow(button)
+				LCG.ButtonGlow_Stop(button)
+			end
+		end
+	end	
+end
+
 -- AddOnSkins Profile
 function ElvUI_EltreumUI:AddonSetupAS()
 	if IsAddOnLoaded('AddOnSkins') then

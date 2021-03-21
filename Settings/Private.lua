@@ -8,11 +8,21 @@ V.ElvUI_EltreumUI = {
 	
 	nameplateOptions = {
 	ClassColorGlow = true,
-	ClassBorderNameplate	= true,
+	ClassBorderNameplate = true,
 	},
 	
 	stealthOptions = {
 	stealtheffect = true,
 	},
 	
+	pixelGlow = {
+	IsEnabled = true,
+	},
+	
+	glow = {
+		enable = true,
+		blizzard = false,
+		pixel = true,
+		autocast = false,
+	},
 }
