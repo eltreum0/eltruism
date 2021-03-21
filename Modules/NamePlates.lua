@@ -113,11 +113,11 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["fontOutline"] = "NONE"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["fontSize"] = 10
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["fontOutline"] = "THICKOUTLINE"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["fontSize"] = 14
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["fontOutline"] = "OUTLINE"
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["fontSize"] = 15
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["size"] = 25
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["textPosition"] = "RIGHT"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["xOffset"] = 2
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["textPosition"] = "TOPRIGHT"
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["xOffset"] = 4
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["raidTargetIndicator"]["size"] = 32
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["raidTargetIndicator"]["xOffset"] = -26
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Kimberley"

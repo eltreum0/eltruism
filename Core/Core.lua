@@ -21,8 +21,8 @@ end
 		
 	 
 
--- Stealth Overlay Frame Creation
-local StealthOptionsFrame = CreateFrame("Frame", "ShadowBackground", E.UIParent)
+-- Create frame
+local StealthOptionsFrame = CreateFrame("Frame", "StealthOverlay", E.UIParent)
 StealthOptionsFrame:Point("TOPLEFT")
 StealthOptionsFrame:Point("BOTTOMRIGHT")
 StealthOptionsFrame:SetFrameLevel(0)
