@@ -33,7 +33,8 @@ function ElvUI_EltreumUI:Initialize()
 	end
 		
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD', 'UPDATE_STEALTH') 
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD') 
+	ElvUI_EltreumUI:RegisterEvent('UPDATE_STEALTH') 
 end
 
 
