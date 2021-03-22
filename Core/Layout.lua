@@ -2140,7 +2140,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["desaturateOnCooldown"] = true
 		E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "Kimberley"
 		E.db["actionbar"]["font"] = "Kimberley"
-		E.db["actionbar"]["fontOutline"] = "THICKOUTLINE"
+		E.db["actionbar"]["fontOutline"] = "OUTLINE"
 		E.db["actionbar"]["noPowerColor"]["b"] = 0.43921568627451
 		E.db["actionbar"]["noPowerColor"]["g"] = 0.21960784313725
 		E.db["actionbar"]["noPowerColor"]["r"] = 0.21960784313725
@@ -2215,12 +2215,12 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		-- Movers Healing
 		E.db["movers"]["ArenaHeaderMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,239"
 		E.db["movers"]["AzeriteBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-421,0"
-		E.db["movers"]["BNETMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-259"
+		E.db["movers"]["BNETMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-259"
 		E.db["movers"]["BelowMinimapContainerMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,79,-155"
 		E.db["movers"]["BigButtonsFarmBar"] = "TOPLEFT,ElvUIParent,TOPLEFT,433,-134"
 		E.db["movers"]["BigButtonsSeedBarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,281,-186"
 		E.db["movers"]["BossButton"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-458,126"
-		E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-20,-384"
+		E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-27,-384"
 		E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-211,-6"
 		E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-211,-103"
 		E.db["movers"]["DurabilityFrameMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,498,366"
@@ -2252,7 +2252,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["movers"]["ElvUIBagMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,24"
 		E.db["movers"]["ElvUIBankMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,24"
 		E.db["movers"]["EnhancedVehicleBar_Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
-		E.db["movers"]["ExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,412,0"
+		E.db["movers"]["ExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,421,0"
 		E.db["movers"]["GMMover"] = "TOP,ElvUIParent,TOP,239,-3"
 		E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-412,0"
 		E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,0"
@@ -2262,11 +2262,11 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["movers"]["MinimapButtonAnchor"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,1,-223"
 		E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-6"
 		E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96"
-		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-64,-329"
+		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-64,-326"
 		E.db["movers"]["PetAB"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,255"
 		E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,455,1"
 		E.db["movers"]["RaidUtility_Mover"] = "TOP,ElvUIParent,TOP,-220,1"
-		E.db["movers"]["ReputationBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,421,0"
+		E.db["movers"]["ReputationBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,412,0"
 		E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
 		E.db["movers"]["SLE_DataPanel_1_Mover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,202"
 		E.db["movers"]["SLE_FarmSeedMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,278"
@@ -2290,7 +2290,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["movers"]["WTExtraItemsBar5Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-115"
 		E.db["movers"]["WTParagonReputationToastFrameMover"] = "TOP,ElvUIParent,TOP,0,-222"
 		E.db["movers"]["ZoneAbility"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-458,73"
-
+		
 		-- UnitFrames Healing
 		E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = 0.86666476726532
 		E.db["unitframe"]["colors"]["auraBarBuff"]["g"] = 0.4392147064209
