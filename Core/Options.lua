@@ -482,7 +482,7 @@ function ElvUI_EltreumUI:Configtable()
 						order = 1,
 						type = 'input',
 						width = 'full',
-						name = 'New commits',
+						name = 'New commits, basically a preview of fixes or upcoming features',
 						get = function() return 'https://git.tukui.org/eltreum/eltruism/-/commits/master' end,
 					},
 					issues = {
@@ -497,7 +497,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'input',
 						width = 'full',
 						name = 'Addon on tukui:',
-						get = function() return 'https://www.tukui.org/addons.php?id=???' end,
+						get = function() return 'https://www.tukui.org/addons.php?id=209' end,
 					},
 					curse = {
 						order = 4,
