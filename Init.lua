@@ -27,24 +27,29 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:SkillGlow()
 end
 
-
 function ElvUI_EltreumUI:Initialize()
 	if E.private.install_complete and E.private.ElvUI_EltreumUI.install_version == nil then
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 	end
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD') 
+	ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
 	ElvUI_EltreumUI:RegisterEvent('UPDATE_STEALTH') 
+	--prep future stuff
+	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
+	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
+	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
+	--ElvUI_EltreumUI:RegisterEvent('AREA_POIS_UPDATED')
+	--ElvUI_EltreumUI:RegisterEvent('FOG_OF_WAR_UPDATED')
 end
-
 
 function ElvUI_EltreumUI:UPDATE_STEALTH()
     ElvUI_EltreumUI:StealthOptions()
 end
 
---function ElvUI_EltreumUI:UNIT_DIED()
---    ElvUI_EltreumUI:Bruh()
---end
+function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
+    ElvUI_EltreumUI:RaidDeath()
+end
 
 local function CallbackInitialize()
 	ElvUI_EltreumUI:Initialize()

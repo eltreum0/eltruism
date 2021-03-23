@@ -22,6 +22,7 @@ LSM:Register("sound", "Will Smith - Ah ahaha", [[Interface\Addons\ElvUI_EltreumU
 LSM:Register("sound", "Will Smith - Rewind", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WillSmith-Rewind-Long.mp3]]) 
 LSM:Register("sound", "Will Smith - That's Hot", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WillSmith-Thats-hot.mp3]]) 
 LSM:Register("sound", "bruh", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\bruh.mp3]])
+LSM:Register("sound", "Oof", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\oof.mp3]])
 LSM:Register("sound", "This is no time for caution", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\caution.mp3]])
 LSM:Register("sound", "Its not Possible", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\necessary.mp3]])
 LSM:Register("sound", "All of this just works", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\error.mp3]])

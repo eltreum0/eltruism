@@ -3,21 +3,33 @@ local _G = _G
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
 
-
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
 	print('|c4682B4ffEltruism|r: '..msg)
 end
 
 
-
--- Trying to convert Bruh sound on player death
---function ElvUI_EltreumUI:Bruh()
---	if (event == "UNIT_DIED") then
---		PlaySoundFile("Interface\\Addons\\ElvUI_EltreumUI\\Media\\sound\\You_Died.ogg", "Master");	
---	end
---end
-
+-- Conversion of the party/raid death weakaura into an addon option
+function ElvUI_EltreumUI:RaidDeath()
+	if E.private.ElvUI_EltreumUI.partyraiddeath.enable then
+		local _, eventType, _, srcGUID, srcName, srcFlags, srcRaidFlags, destGUID, destName, destFlags, destRaidFlags = CombatLogGetCurrentEventInfo()
+		if eventType == "UNIT_DIED" then
+			if IsInGroup() then
+				for ii=1, GetNumGroupMembers() do
+					local name = GetRaidRosterInfo(ii)
+					if destName == name then
+						if E.private.ElvUI_EltreumUI.partyraiddeath.bruh then
+						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3");
+						end
+						if E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof then
+						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3");
+						end
+					end
+				end
+			end
+		end
+	end
+end
 
 -- Create Stealth Overlay Frame
 local StealthOptionsFrame = CreateFrame("Frame", "StealthOverlay", E.UIParent)

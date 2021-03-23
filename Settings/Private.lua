@@ -25,4 +25,11 @@ V.ElvUI_EltreumUI = {
 		pixel = true,
 		autocast = false,
 	},
+	
+	partyraiddeath = {
+		enable = true,
+		bruh = true,
+		robloxoof = false,
+	},
+	
 }
