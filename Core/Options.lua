@@ -451,7 +451,28 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						},
 					},
+					addsomegap = {
+							order = 2,
+							type = "description",
+							name = "",
+					},
+					friendlynameplate = {
+						order = 2,
+						type = 'group',
+						inline = true,
+						name = 'Show Friendly Nameplates Outside Instances, hide inside instances',
+						args = {
+							desc = {
+								order = 1,
+								type = 'toggle',
+								name = 'Enable',
+								desc = 'Toogle On and Off',
+								get = function() return E.private.ElvUI_EltreumUI.friendlynameplatetoggle.enable end,
+								set = function(_, value) E.private.ElvUI_EltreumUI.friendlynameplatetoggle.enable = value end,
+							},
+					}
 				},
+			},
 			},
 			stealthOptionssetting = {
 				type = 'group',

@@ -9,20 +9,45 @@ function ElvUI_EltreumUI:Print(msg)
 end
 
 
+
+--- Friendly Nameplate Control
+function ElvUI_EltreumUI:FriendlyNameplates()
+	if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.enable then
+		local inInstance, instanceType = IsInInstance()
+		if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
+		E:SetupCVars(noDisplayMsg)
+			SetCVar("nameplateShowFriends", 0)
+		end
+		if instanceType == "none" then
+		E:SetupCVars(noDisplayMsg)
+			SetCVar("nameplateShowFriends", 1)
+		end
+	end
+end
+
+
+
+
+--simpy:
+--it would be far more efficient if you managed the group list table outside 
+--of the combat calling function (using GROUP_ROSTER_UPDATE), 
+--emptied it when you aren't in a group, 
+--and only looked for names on that list when the combat event fires
+
 -- Conversion of the party/raid death weakaura into an addon option
 function ElvUI_EltreumUI:RaidDeath()
 	if E.private.ElvUI_EltreumUI.partyraiddeath.enable then
-		local _, eventType, _, srcGUID, srcName, srcFlags, srcRaidFlags, destGUID, destName, destFlags, destRaidFlags = CombatLogGetCurrentEventInfo()
+		local _, eventType, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
 		if eventType == "UNIT_DIED" then
 			if IsInGroup() then
 				for ii=1, GetNumGroupMembers() do
 					local name = GetRaidRosterInfo(ii)
 					if destName == name then
 						if E.private.ElvUI_EltreumUI.partyraiddeath.bruh then
-						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3");
+						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Dialog");
 						end
 						if E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof then
-						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3");
+						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3", "Dialog");
 						end
 					end
 				end

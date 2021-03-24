@@ -32,4 +32,9 @@ V.ElvUI_EltreumUI = {
 		robloxoof = false,
 	},
 	
+	friendlynameplatetoggle = {
+		enable = true,
+	},
+	
+	
 }
