@@ -36,5 +36,9 @@ V.ElvUI_EltreumUI = {
 		enable = true,
 	},
 	
+	afkmusic = {
+		enable = true,
+	},
+	
 	
 }

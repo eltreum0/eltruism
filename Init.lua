@@ -26,6 +26,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:LoadCommands()
 	ElvUI_EltreumUI:SkillGlow()
 	ElvUI_EltreumUI:FriendlyNameplates()
+	ElvUI_EltreumUI:RacialAFKmusic()
 end
 
 function ElvUI_EltreumUI:Initialize()
@@ -36,6 +37,8 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD') 
 	ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
 	ElvUI_EltreumUI:RegisterEvent('UPDATE_STEALTH') 
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED')
+	
 	--prep future stuff
 	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
@@ -55,6 +58,13 @@ end
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
     ElvUI_EltreumUI:RaidDeath()
 end
+
+function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
+    ElvUI_EltreumUI:RacialAFKmusic()
+end
+
+
+
 
 local function CallbackInitialize()
 	ElvUI_EltreumUI:Initialize()

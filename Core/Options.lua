@@ -499,6 +499,31 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
+			racialafkmusic = {
+				type = 'group',
+				name = 'AFK (Alpha Test)',
+				order = 85,
+				args = {
+					afkmusic = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Play a Racial Music while AFK',
+						get = function(info) return E.private.ElvUI_EltreumUI.afkmusic[info[#info]] end,
+						set = function(info, value) E.private.ElvUI_EltreumUI.afkmusic[info[#info]] = value;end,
+						args = {
+							classhover = {
+								order = 1,
+								type = 'toggle',
+								name = 'Enable',
+								desc = 'Play Racial Theme while AFK',
+								get = function(info) return E.private.ElvUI_EltreumUI.afkmusic.enable end,
+								set = function(info, value) E.private.ElvUI_EltreumUI.afkmusic.enable = value; end,
+							},
+						},
+					},
+				},
+			},
 			weakauras = {
 				type = 'group',
 				name = 'WeakAuras',

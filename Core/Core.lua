@@ -26,6 +26,110 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 end
 
 
+-- AFK racial music (ALPHA TEST CANT STOP MUSIC YET)
+function ElvUI_EltreumUI:RacialAFKmusic()
+	if E.private.ElvUI_EltreumUI.afkmusic.enable then
+		local _ , race, _ = UnitRace("player")
+		--local _, soundHandle = PlaySoundFile("Path\\To\\File.mp3")
+		if UnitIsAFK("player") then 
+			if race == "Human" then
+					_, soundHandle = PlaySound(49517, "Dialog")
+			end
+			if race == "Gnome" then
+					_, soundHandle = PlaySound(22756, "Dialog")
+			end
+			if race == "NightElf" then
+					_, soundHandle = PlaySound(49521, "Dialog")
+			end
+			if race == "KulTiran" then
+					_, soundHandle = PlaySound(129710, "Dialog")
+			end
+			if race == "Dwarf" then
+					_, soundHandle = PlaySound(15873, "Dialog")
+			end
+			if race == "Draenei" then
+					_, soundHandle = PlaySound(9972, "Dialog")
+			end
+			if race == "Worgen" then
+					_, soundHandle = PlaySound(23077, "Dialog")
+			end
+			if race == "VoidElf" then
+					_, soundHandle = PlaySound(97311, "Dialog")
+			end
+			if race == "LightforgedDraenei" then
+					_, soundHandle = PlaySound(97314, "Dialog")
+			end
+			if race == "DarkIronDwarf" then
+					_, soundHandle = PlaySound(22160, "Dialog")
+			end
+			if race == "Mechagnome" then
+					_, soundHandle = PlaySound(138271, "Dialog")
+			end
+			if race == "Orc" then
+					_, soundHandle = PlaySound(22193, "Dialog")
+			end
+			if race == "Undead" then
+					_, soundHandle = PlaySound(115014, "Dialog")
+			end
+			if race == "Tauren" then
+					_, soundHandle = PlaySound(22210, "Dialog")
+			end
+			if race == "Troll" then
+					_, soundHandle = PlaySound(23034, "Dialog")
+			end
+			if race == "Goblin" then
+					_, soundHandle = PlaySound(48887, "Dialog")
+			end
+			if race == "BloodElf" then
+					_, soundHandle = PlaySound(9801, "Dialog")
+			end
+			if race == "Pandaren" then
+					_, soundHandle = PlaySound(30229, "Dialog")
+			end
+			if race == "Nightborne" then
+					_, soundHandle = PlaySound(76666, "Dialog")
+			end
+			if race == "HighmountainTauren" then
+					_, soundHandle = PlaySound(76577, "Dialog")
+			end
+			if race == "ZandalariTroll" then
+					_, soundHandle = PlaySound(129774, "Dialog")
+			end
+			if race == "Vulpera" then
+					_, soundHandle = PlaySound(147882, "Dialog")
+			end
+			if race == "MagharOrc" then
+					_, soundHandle = PlaySound(117436, "Dialog")
+			end
+		end
+	--gotta figure out how to stopsound at some point
+	--	StopSound(soundHandle)
+
+	end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 --simpy:
