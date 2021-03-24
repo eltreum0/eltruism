@@ -38,13 +38,12 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
 	ElvUI_EltreumUI:RegisterEvent('UPDATE_STEALTH') 
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED')
-	
+	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
 	--prep future stuff
 	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
-	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
 	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
 	--ElvUI_EltreumUI:RegisterEvent('AREA_POIS_UPDATED')
-	--ElvUI_EltreumUI:RegisterEvent('FOG_OF_WAR_UPDATED')
+	--ElvUI_EltreumUI:RegisterEvent('PLAYER_STARTED_MOVING')
 end
 
 function ElvUI_EltreumUI:UPDATE_STEALTH()
@@ -62,9 +61,6 @@ end
 function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
     ElvUI_EltreumUI:RacialAFKmusic()
 end
-
-
-
 
 local function CallbackInitialize()
 	ElvUI_EltreumUI:Initialize()

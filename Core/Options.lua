@@ -501,14 +501,14 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			racialafkmusic = {
 				type = 'group',
-				name = 'AFK (Alpha Test)',
-				order = 85,
+				name = 'AFK',
+				order = 3,
 				args = {
 					afkmusic = {
 						order = 1,
 						type = 'group',
 						inline = true,
-						name = 'Play a Racial Music while AFK',
+						name = 'Play a music themed around your character race while afk',
 						get = function(info) return E.private.ElvUI_EltreumUI.afkmusic[info[#info]] end,
 						set = function(info, value) E.private.ElvUI_EltreumUI.afkmusic[info[#info]] = value;end,
 						args = {
@@ -516,7 +516,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 1,
 								type = 'toggle',
 								name = 'Enable',
-								desc = 'Play Racial Theme while AFK',
+								desc = 'Play music while AFK',
 								get = function(info) return E.private.ElvUI_EltreumUI.afkmusic.enable end,
 								set = function(info, value) E.private.ElvUI_EltreumUI.afkmusic.enable = value; end,
 							},

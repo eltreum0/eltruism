@@ -8,8 +8,6 @@ function ElvUI_EltreumUI:Print(msg)
 	print('|c4682B4ffEltruism|r: '..msg)
 end
 
-
-
 --- Friendly Nameplate Control
 function ElvUI_EltreumUI:FriendlyNameplates()
 	if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.enable then
@@ -24,7 +22,6 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 		end
 	end
 end
-
 
 -- AFK racial music (ALPHA TEST CANT STOP MUSIC YET)
 function ElvUI_EltreumUI:RacialAFKmusic()
@@ -45,7 +42,8 @@ function ElvUI_EltreumUI:RacialAFKmusic()
 					_, soundHandle = PlaySound(129710, "Dialog")
 			end
 			if race == "Dwarf" then
-					_, soundHandle = PlaySound(15873, "Dialog")
+					willPlay, soundHandle = PlaySound(15873, "Dialog", true)
+					--ElvUI_EltreumUI:Print('Playing music')
 			end
 			if race == "Draenei" then
 					_, soundHandle = PlaySound(9972, "Dialog")
@@ -102,35 +100,16 @@ function ElvUI_EltreumUI:RacialAFKmusic()
 					_, soundHandle = PlaySound(117436, "Dialog")
 			end
 		end
+		--if not UnitIsAFK("player") then
+			--if soundHandle then
+			--ElvUI_EltreumUI:Print('Tried to stop music')
+			--StopSound(soundHandle, 1)
+				--end
+			--end
 	--gotta figure out how to stopsound at some point
 	--	StopSound(soundHandle)
-
 	end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 --simpy:
 --it would be far more efficient if you managed the group list table outside 
