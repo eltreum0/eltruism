@@ -52,3 +52,5 @@ LSM:Register("statusbar", "Eltreum-Elvui-Norm", [[Interface\Addons\ElvUI_Eltreum
 
 -- Background
 LSM:Register("background", "Eltreum-StealthOverlay", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\StealthOverlay.tga]]) 
+LSM:Register("background", "Details-FlatClassIcons", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\class_icons_flat.blp]]) 
+LSM:Register("background", "Details-XIV-Databar-Spec-Icons", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\spec_icons_xivdatabar.tga]]) 

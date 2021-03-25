@@ -54,15 +54,15 @@ function ElvUI_EltreumUI:RacialAFKmusic()
 			end
 			if race == "Worgen" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySound(441525, "Dialog", true)
+					_, soundHandle = PlaySoundFile(441525, "Dialog", true)
 			end
 			if race == "VoidElf" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySound(1864282, "Dialog", true)
+					_, soundHandle = PlaySoundFile(1864282, "Dialog", true)
 			end
 			if race == "LightforgedDraenei" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySound(1864285, "Dialog", true)
+					_, soundHandle = PlaySoundFile(1864285, "Dialog", true)
 			end
 			if race == "DarkIronDwarf" then
 					SetCVar("Sound_EnableMusic", 0)

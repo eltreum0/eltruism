@@ -38,7 +38,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
 	ElvUI_EltreumUI:RegisterEvent('UPDATE_STEALTH') 
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED')
-	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
+	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE')
 	
 	--prep future stuff
@@ -52,9 +52,9 @@ function ElvUI_EltreumUI:UPDATE_STEALTH()
     ElvUI_EltreumUI:StealthOptions()
 end
 
-function ElvUI_EltreumUI:ZONE_CHANGED()
-	ElvUI_EltreumUI:FriendlyNameplates()
-end
+--function ElvUI_EltreumUI:ZONE_CHANGED()
+--	ElvUI_EltreumUI:WaypointTimeToArrive()
+--end
 
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
     ElvUI_EltreumUI:RaidDeath()
