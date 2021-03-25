@@ -39,6 +39,8 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('UPDATE_STEALTH') 
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
+	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE')
+	
 	--prep future stuff
 	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
 	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
@@ -55,6 +57,10 @@ function ElvUI_EltreumUI:ZONE_CHANGED()
 end
 
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
+    ElvUI_EltreumUI:RaidDeath()
+end
+
+function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
     ElvUI_EltreumUI:RaidDeath()
 end
 

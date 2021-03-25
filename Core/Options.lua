@@ -508,7 +508,7 @@ function ElvUI_EltreumUI:Configtable()
 						order = 1,
 						type = 'group',
 						inline = true,
-						name = 'Play a music themed around your character race while afk',
+						name = 'Play a music of your character race while AFK',
 						get = function(info) return E.private.ElvUI_EltreumUI.afkmusic[info[#info]] end,
 						set = function(info, value) E.private.ElvUI_EltreumUI.afkmusic[info[#info]] = value;end,
 						args = {

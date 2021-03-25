@@ -13,101 +13,121 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 	if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.enable then
 		local inInstance, instanceType = IsInInstance()
 		if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
-		E:SetupCVars(noDisplayMsg)
+		--E:SetupCVars(noDisplayMsg)
 			SetCVar("nameplateShowFriends", 0)
 		end
 		if instanceType == "none" then
-		E:SetupCVars(noDisplayMsg)
+		--E:SetupCVars(noDisplayMsg)
 			SetCVar("nameplateShowFriends", 1)
 		end
 	end
 end
 
--- AFK racial music (ALPHA TEST CANT STOP MUSIC YET)
+-- AFK racial music
 function ElvUI_EltreumUI:RacialAFKmusic()
 	if E.private.ElvUI_EltreumUI.afkmusic.enable then
 		local _ , race, _ = UnitRace("player")
-		--local _, soundHandle = PlaySoundFile("Path\\To\\File.mp3")
 		if UnitIsAFK("player") then 
 			if race == "Human" then
-					_, soundHandle = PlaySound(49517, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(53210, "Dialog", true)
 			end
 			if race == "Gnome" then
-					_, soundHandle = PlaySound(22756, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(369055, "Dialog", true)
 			end
 			if race == "NightElf" then
-					_, soundHandle = PlaySound(49521, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(441709, "Dialog", true)
 			end
 			if race == "KulTiran" then
-					_, soundHandle = PlaySound(129710, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(1781897, "Dialog")
 			end
 			if race == "Dwarf" then
-					willPlay, soundHandle = PlaySound(15873, "Dialog", true)
-					--ElvUI_EltreumUI:Print('Playing music')
+					SetCVar("Sound_EnableMusic", 0)
+					willPlay, soundHandle = PlaySoundFile(298910, "Dialog", true)
 			end
 			if race == "Draenei" then
-					_, soundHandle = PlaySound(9972, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(53284, "Dialog", true)
 			end
 			if race == "Worgen" then
-					_, soundHandle = PlaySound(23077, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySound(441525, "Dialog", true)
 			end
 			if race == "VoidElf" then
-					_, soundHandle = PlaySound(97311, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySound(1864282, "Dialog", true)
 			end
 			if race == "LightforgedDraenei" then
-					_, soundHandle = PlaySound(97314, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySound(1864285, "Dialog", true)
 			end
 			if race == "DarkIronDwarf" then
-					_, soundHandle = PlaySound(22160, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(441566, "Dialog", true)
 			end
 			if race == "Mechagnome" then
-					_, soundHandle = PlaySound(138271, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(3028751, "Dialog", true)
 			end
 			if race == "Orc" then
-					_, soundHandle = PlaySound(22193, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(441713, "Dialog", true)
 			end
 			if race == "Undead" then
-					_, soundHandle = PlaySound(115014, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(53217, "Dialog", true)
 			end
 			if race == "Tauren" then
-					_, soundHandle = PlaySound(22210, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(441788, "Dialog", true)
 			end
 			if race == "Troll" then
-					_, soundHandle = PlaySound(23034, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(371378, "Dialog", true)
 			end
 			if race == "Goblin" then
-					_, soundHandle = PlaySound(48887, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(441627, "Dialog", true)
 			end
 			if race == "BloodElf" then
-					_, soundHandle = PlaySound(9801, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(53473, "Dialog", true)
 			end
 			if race == "Pandaren" then
-					_, soundHandle = PlaySound(30229, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(642246, "Dialog", true)
 			end
 			if race == "Nightborne" then
-					_, soundHandle = PlaySound(76666, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(1477339, "Dialog", true)
 			end
 			if race == "HighmountainTauren" then
-					_, soundHandle = PlaySound(76577, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(1417319, "Dialog", true)
 			end
 			if race == "ZandalariTroll" then
-					_, soundHandle = PlaySound(129774, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(2844635, "Dialog", true)
 			end
 			if race == "Vulpera" then
-					_, soundHandle = PlaySound(147882, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(3260632, "Dialog", true)
 			end
 			if race == "MagharOrc" then
-					_, soundHandle = PlaySound(117436, "Dialog")
+					SetCVar("Sound_EnableMusic", 0)
+					_, soundHandle = PlaySoundFile(2146630, "Dialog", true)
 			end
 		end
-		--if not UnitIsAFK("player") then
-			--if soundHandle then
-			--ElvUI_EltreumUI:Print('Tried to stop music')
-			--StopSound(soundHandle, 1)
-				--end
-			--end
-	--gotta figure out how to stopsound at some point
-	--	StopSound(soundHandle)
+		--stop music when not afk
+		if not UnitIsAFK("player") then
+			if soundHandle then
+			StopSound(soundHandle, 500)
+			SetCVar("Sound_EnableMusic", 1)
+				end
+		end
 	end
 end
 
@@ -120,6 +140,12 @@ end
 -- Conversion of the party/raid death weakaura into an addon option
 function ElvUI_EltreumUI:RaidDeath()
 	if E.private.ElvUI_EltreumUI.partyraiddeath.enable then
+	
+	-- prep for simpys suggestion
+	--if (event == "GROUP_ROSTER_UPDATE") then
+		--for ii=1, GetNumGroupMembers() do
+			--local name = GetRaidRosterInfo(ii)
+
 		local _, eventType, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
 		if eventType == "UNIT_DIED" then
 			if IsInGroup() then
