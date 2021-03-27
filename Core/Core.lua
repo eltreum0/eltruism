@@ -8,6 +8,67 @@ function ElvUI_EltreumUI:Print(msg)
 	print('|c4682B4ffEltruism|r: '..msg)
 end
 
+
+--Conversion of Time to Arrive weakaura
+local WaypointTimeToArriveFrame = _G["SuperTrackedFrame"]
+WaypointTimeToArriveFrame.TimeText = WaypointTimeToArriveFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
+WaypointTimeToArriveFrame.TimeText:SetJustifyV("TOP")
+WaypointTimeToArriveFrame.TimeText:SetSize(0, 26)
+WaypointTimeToArriveFrame.TimeText:SetPoint("TOP", WaypointTimeToArriveFrame.Icon, "BOTTOM", 0, -25)
+WaypointTimeToArriveFrame.TimeText:SetTextColor(1, 1, 1)
+WaypointTimeToArriveFrame.TimeText:SetFont("Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\Kimberley.otf", 12, "OUTLINE")
+-- create the function which calculates the time
+function ElvUI_EltreumUI:WaypointTimeToArrive()
+	local speed = GetUnitSpeed("player")
+	local distance = C_Navigation.GetDistance()
+	local seconds = 0
+	local minutes = 0
+		--if speed is greater than zero then player is moving
+		if speed > 0 then
+			--real basic physics here
+			local eta= math.abs(distance / speed)
+		-- converting seconds into more readable time segments
+		if eta > 600 then
+			minutes = string.format("%02.f", math.floor(eta/60 ));
+			seconds = string.format("%02.f", math.floor(eta - minutes *60));
+			else if eta < 600 and eta > 10 then
+				minutes = string.format("%01.f", math.floor(eta/60));
+				seconds = string.format("%02.f", math.floor(eta - minutes *60));
+				else if eta < 10 then
+						minutes = string.format("%01.f", math.floor(eta/60));
+						seconds = string.format("%1.d", math.floor(eta - minutes *60));
+					else
+						minutes = string.format("%02.f", math.floor(eta/60));
+						seconds = string.format("%02.f", math.floor(eta - minutes *60));
+				end 
+			end
+		end
+		end
+	--restore the distance text
+	WaypointTimeToArriveFrame.DistanceText:SetText(IN_GAME_NAVIGATION_RANGE:format(Round(distance)))
+	local timetoarrive = "***"
+	--format the time so it shows according to values
+	if  minutes == 0 and seconds == 0 then
+		WaypointTimeToArriveFrame.TimeText:SetText(timetoarrive)
+	else if minutes < "01" and seconds > "0" then
+		WaypointTimeToArriveFrame.TimeText:SetText(seconds.."s")
+		else
+		WaypointTimeToArriveFrame.TimeText:SetText(minutes.."m"..":"..seconds.."s")
+		end
+	end
+end
+-- OnUpdate from dekallo
+local function OnUpdateTimer(self, elapsed)
+	if self.navFrame then
+		self:UpdateClampedState()
+		self:UpdatePosition()
+		self:UpdateArrow()
+		ElvUI_EltreumUI:WaypointTimeToArrive(self, elapsed)
+		self:UpdateAlpha()
+	end
+end
+WaypointTimeToArriveFrame:SetScript("OnUpdate", OnUpdateTimer)
+
 --- Friendly Nameplate Control
 function ElvUI_EltreumUI:FriendlyNameplates()
 	if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.enable then
@@ -46,7 +107,7 @@ function ElvUI_EltreumUI:RacialAFKmusic()
 			end
 			if race == "Dwarf" then
 					SetCVar("Sound_EnableMusic", 0)
-					willPlay, soundHandle = PlaySoundFile(298910, "Dialog", true)
+					_, soundHandle = PlaySoundFile(298910, "Dialog", true)
 			end
 			if race == "Draenei" then
 					SetCVar("Sound_EnableMusic", 0)
@@ -126,7 +187,7 @@ function ElvUI_EltreumUI:RacialAFKmusic()
 			if soundHandle then
 			StopSound(soundHandle, 500)
 			SetCVar("Sound_EnableMusic", 1)
-				end
+			end
 		end
 	end
 end
@@ -140,25 +201,24 @@ end
 -- Conversion of the party/raid death weakaura into an addon option
 function ElvUI_EltreumUI:RaidDeath()
 	if E.private.ElvUI_EltreumUI.partyraiddeath.enable then
-	
-	-- prep for simpys suggestion
-	--if (event == "GROUP_ROSTER_UPDATE") then
-		--for ii=1, GetNumGroupMembers() do
-			--local name = GetRaidRosterInfo(ii)
-
 		local _, eventType, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
+		local name = name
+		
+		if IsInGroup() then
+			for ii=1, GetNumGroupMembers() do
+				name = GetRaidRosterInfo(ii)
+			end
+		end
 		if eventType == "UNIT_DIED" then
-			if IsInGroup() then
-				for ii=1, GetNumGroupMembers() do
-					local name = GetRaidRosterInfo(ii)
-					if destName == name then
-						if E.private.ElvUI_EltreumUI.partyraiddeath.bruh then
-						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Dialog");
-						end
-						if E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof then
-						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3", "Dialog");
-						end
-					end
+			if destName == name then
+				if E.private.ElvUI_EltreumUI.partyraiddeath.bruh then
+				PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Dialog");
+				end
+				if E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof then
+				PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3", "Dialog");
+				end
+				if E.private.ElvUI_EltreumUI.partyraiddeath.shame then
+				PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.mp3", "Dialog");
 				end
 			end
 		end

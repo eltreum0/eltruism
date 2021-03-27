@@ -30,6 +30,7 @@ V.ElvUI_EltreumUI = {
 		enable = true,
 		bruh = true,
 		robloxoof = false,
+		shame = false,
 	},
 	
 	friendlynameplatetoggle = {
@@ -39,6 +40,7 @@ V.ElvUI_EltreumUI = {
 	afkmusic = {
 		enable = true,
 	},
+	
 	
 	
 }

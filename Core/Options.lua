@@ -378,7 +378,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'toggle',
 										name = 'Bruh',
 										order = 10,
-										disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof end,
+										disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame end,
 										get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.bruh end,
 										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.bruh = value end,
 									},
@@ -386,9 +386,17 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'toggle',
 										name = 'Oof',
 										order = 12,
-										disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh end,
+										disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.shame end,
 										get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof end,
 										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof = value end,
+									},
+									shame = {
+										type = 'toggle',
+										name = 'Shame',
+										order = 13,
+										disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof end,
+										get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.shame end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.shame = value end,
 									},
 									
 								},
@@ -397,6 +405,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
+			
 			media = {
 				type = 'group',
 				name = 'Media',

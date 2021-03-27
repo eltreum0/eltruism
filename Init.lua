@@ -6,7 +6,7 @@ local _G = _G
 
 local ElvUI_EltreumUI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0');
 
--- This whole plugin uses LuckyoneUI as a base, full credits to him for it!
+-- This whole plugin uses LuckyoneUI as a base, full credits to him for it and allowing its use!
 
 Engine[1] = ElvUI_EltreumUI
 Engine[2] = E
@@ -27,6 +27,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:SkillGlow()
 	ElvUI_EltreumUI:FriendlyNameplates()
 	ElvUI_EltreumUI:RacialAFKmusic()
+	ElvUI_EltreumUI:WaypointTimeToArrive()
 end
 
 function ElvUI_EltreumUI:Initialize()
@@ -38,23 +39,29 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
 	ElvUI_EltreumUI:RegisterEvent('UPDATE_STEALTH') 
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED')
-	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE')
-	
-	--prep future stuff
+	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
 	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
 	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
-	--ElvUI_EltreumUI:RegisterEvent('AREA_POIS_UPDATED')
-	--ElvUI_EltreumUI:RegisterEvent('PLAYER_STARTED_MOVING')
+	ElvUI_EltreumUI:RegisterEvent("SUPER_TRACKING_CHANGED")
+	ElvUI_EltreumUI:RegisterEvent("NAVIGATION_FRAME_CREATED")
+	ElvUI_EltreumUI:RegisterEvent("NAVIGATION_FRAME_DESTROYED")
 end
+
+function ElvUI_EltreumUI:SUPER_TRACKING_CHANGED()
+	ElvUI_EltreumUI:WaypointTimeToArrive()
+end
+function ElvUI_EltreumUI:NAVIGATION_FRAME_CREATED()
+	ElvUI_EltreumUI:WaypointTimeToArrive()
+end
+function ElvUI_EltreumUI:NAVIGATION_FRAME_DESTROYED()
+	ElvUI_EltreumUI:WaypointTimeToArrive()
+end
+
 
 function ElvUI_EltreumUI:UPDATE_STEALTH()
     ElvUI_EltreumUI:StealthOptions()
 end
-
---function ElvUI_EltreumUI:ZONE_CHANGED()
---	ElvUI_EltreumUI:WaypointTimeToArrive()
---end
 
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
     ElvUI_EltreumUI:RaidDeath()
