@@ -435,14 +435,13 @@ end
 function ElvUI_EltreumUI:SetupPrivate()
 	-- ElvUI Private DB
 	E.private["general"]["chatBubbleFont"] = "Kimberley"
-	E.private["general"]["chatBubbleFontOutline"] = "THICK"
-	E.private["general"]["chatBubbleFontSize"] = 12
+	E.private["general"]["chatBubbleFontOutline"] = "OUTLINE"
+	E.private["general"]["chatBubbleFontSize"] = 10
 	E.private["general"]["chatBubbleName"] = true
 	E.private["general"]["dmgfont"] = "Kimberley"
 	E.private["general"]["glossTex"] = "Eltreum-Blank"
 	E.private["general"]["namefont"] = "Kimberley"
 	E.private["general"]["normTex"] = "Eltreum-Blank"
-	E.private["general"]["totemBar"] = true
 	E.private["install_complete"] = "12.23"
 	E.private["skins"]["parchmentRemoverEnable"] = true
 end
