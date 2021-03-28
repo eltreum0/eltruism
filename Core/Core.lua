@@ -20,6 +20,10 @@ WaypointTimeToArriveFrame.TimeText:SetFont("Interface\\addons\\ElvUI_EltreumUI\\
 --Create the function which calculates the time
 function ElvUI_EltreumUI:WaypointTimeToArrive()
 	if E.private.ElvUI_EltreumUI.waypointetasetting.enable then
+	
+	 
+	 
+	 
 	local speed = GetUnitSpeed("player")
 	local distance = C_Navigation.GetDistance()
 	local seconds = 0
@@ -54,12 +58,14 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 end
 -- Function to update the frame from dekallo
 local function OnUpdateTimer(self, elapsed)
+	self:CheckInitializeNavigationFrame(false)
 	if self.navFrame then
 		self:UpdateClampedState()
 		self:UpdatePosition()
 		self:UpdateArrow()
 		--restore the distance text
 		local waypointdistance = C_Navigation.GetDistance()
+		self.DistanceText:SetShown(not self.isClamped)
 		WaypointTimeToArriveFrame.DistanceText:SetText(IN_GAME_NAVIGATION_RANGE:format(Round(waypointdistance)))
 		ElvUI_EltreumUI:WaypointTimeToArrive(self, elapsed)
 		self:UpdateAlpha()
