@@ -406,10 +406,55 @@ function ElvUI_EltreumUI:Configtable()
 				},
 			},
 			
+			waypointsetting = {
+				type = 'group',
+				name = 'Maps',
+				order = 82,
+				args = {
+					waypointetasetting = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Add a time to arrive below the waypoint',
+						get = function(info) return E.private.ElvUI_EltreumUI.waypointetasetting[info[#info]] end,
+						set = function(info, value) E.private.ElvUI_EltreumUI.waypointetasetting[info[#info]] = value; E:StaticPopup_Show('PRIVATE_RL') end,
+						args = {
+							explainer = {
+								order = 1,
+								type = "description",
+								name = 'The memory usage of Eltruism will appear to increase but this is just a reflection of the memory usage of the SuperTrackedFrame.',
+							},
+							explainer2 = {
+								order = 2,
+								type = "description",
+								name = '',
+							},
+							explainer3 = {
+								order = 3,
+								type = "description",
+								name = 'The memory value will automatically reset since that is how Blizzard coded it. And the memory usage of Eltruism includes the memory usage of Blizzards SuperTrackedFrame',
+							},
+							explainer4 = {
+								order = 4,
+								type = "description",
+								name = '',
+							},
+							
+							enable = {
+								order = 5,
+								type = 'toggle',
+								name = 'Enable',
+								desc = 'Add an ETA to waypoints',
+							},
+						},
+					},
+				},
+			},
+			
 			media = {
 				type = 'group',
 				name = 'Media',
-				order = 82,
+				order = 83,
 				args = {
 					defaults = {
 						order = 1,
@@ -496,7 +541,7 @@ function ElvUI_EltreumUI:Configtable()
 						get = function(info) return E.private.ElvUI_EltreumUI.stealthOptions[info[#info]] end,
 						set = function(info, value) E.private.ElvUI_EltreumUI.stealthOptions[info[#info]] = value; E:StaticPopup_Show('PRIVATE_RL') end,
 						args = {
-							classhover = {
+							stealthoptions = {
 								order = 1,
 								type = 'toggle',
 								name = 'Enable',
@@ -521,7 +566,7 @@ function ElvUI_EltreumUI:Configtable()
 						get = function(info) return E.private.ElvUI_EltreumUI.afkmusic[info[#info]] end,
 						set = function(info, value) E.private.ElvUI_EltreumUI.afkmusic[info[#info]] = value;end,
 						args = {
-							classhover = {
+							afktoggle = {
 								order = 1,
 								type = 'toggle',
 								name = 'Enable',

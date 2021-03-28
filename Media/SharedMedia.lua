@@ -8,6 +8,7 @@ LSM:Register("font", "OptimusPrinceps", [[Interface\Addons\ElvUI_EltreumUI\Media
 LSM:Register("font", "GothamNarrow Black", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GothamNarrow Black.ttf]]) 
 LSM:Register("font", "GothamXNarrow Black", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GothamXNarrow Black.ttf]]) 
 LSM:Register("font", "GothamXNarrow Ultra", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GothamXNarrow Ultra.ttf]]) 
+LSM:Register("font", "Exo2 Extra Bold", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Exo2-ExtraBold.otf]]) 
 
 -- Sound
 LSM:Register("sound", "You_Died", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\You_Died.ogg]]) 

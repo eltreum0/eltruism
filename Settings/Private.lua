@@ -41,6 +41,8 @@ V.ElvUI_EltreumUI = {
 		enable = true,
 	},
 	
-	
+	waypointetasetting = {
+		enable = true,
+	},
 	
 }

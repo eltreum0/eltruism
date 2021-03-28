@@ -8,8 +8,8 @@ function ElvUI_EltreumUI:Print(msg)
 	print('|c4682B4ffEltruism|r: '..msg)
 end
 
-
 --Conversion of Time to Arrive weakaura
+	--Create the frame to display the text by hooking into the SuperTrackedFrame and replacing stuff
 local WaypointTimeToArriveFrame = _G["SuperTrackedFrame"]
 WaypointTimeToArriveFrame.TimeText = WaypointTimeToArriveFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 WaypointTimeToArriveFrame.TimeText:SetJustifyV("TOP")
@@ -17,57 +17,56 @@ WaypointTimeToArriveFrame.TimeText:SetSize(0, 26)
 WaypointTimeToArriveFrame.TimeText:SetPoint("TOP", WaypointTimeToArriveFrame.Icon, "BOTTOM", 0, -25)
 WaypointTimeToArriveFrame.TimeText:SetTextColor(1, 1, 1)
 WaypointTimeToArriveFrame.TimeText:SetFont("Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\Kimberley.otf", 12, "OUTLINE")
--- create the function which calculates the time
+--Create the function which calculates the time
 function ElvUI_EltreumUI:WaypointTimeToArrive()
+	if E.private.ElvUI_EltreumUI.waypointetasetting.enable then
 	local speed = GetUnitSpeed("player")
 	local distance = C_Navigation.GetDistance()
 	local seconds = 0
 	local minutes = 0
-		--if speed is greater than zero then player is moving
 		if speed > 0 then
-			--real basic physics here
 			local eta= math.abs(distance / speed)
-		-- converting seconds into more readable time segments
-		if eta > 600 then
-			minutes = string.format("%02.f", math.floor(eta/60 ));
-			seconds = string.format("%02.f", math.floor(eta - minutes *60));
-			else if eta < 600 and eta > 10 then
-				minutes = string.format("%01.f", math.floor(eta/60));
+			if eta > 600 then
+				minutes = string.format("%02.f", math.floor(eta/60 ));
 				seconds = string.format("%02.f", math.floor(eta - minutes *60));
-				else if eta < 10 then
+				else if eta < 600 and eta > 10 then
+					minutes = string.format("%01.f", math.floor(eta/60));
+					seconds = string.format("%02.f", math.floor(eta - minutes *60));
+					else if eta < 10 then
 						minutes = string.format("%01.f", math.floor(eta/60));
 						seconds = string.format("%1.d", math.floor(eta - minutes *60));
-					else
+						else
 						minutes = string.format("%02.f", math.floor(eta/60));
 						seconds = string.format("%02.f", math.floor(eta - minutes *60));
-				end 
+					end 
+				end
 			end
 		end
-		end
-	--restore the distance text
-	WaypointTimeToArriveFrame.DistanceText:SetText(IN_GAME_NAVIGATION_RANGE:format(Round(distance)))
-	local timetoarrive = "***"
-	--format the time so it shows according to values
-	if  minutes == 0 and seconds == 0 then
-		WaypointTimeToArriveFrame.TimeText:SetText(timetoarrive)
-	else if minutes < "01" and seconds > "0" then
-		WaypointTimeToArriveFrame.TimeText:SetText(seconds.."s")
-		else
-		WaypointTimeToArriveFrame.TimeText:SetText(minutes.."m"..":"..seconds.."s")
+		if  minutes == 0 and seconds == 0 then
+			WaypointTimeToArriveFrame.TimeText:SetText("***")
+		else if minutes < "01" and seconds > "0" then
+			WaypointTimeToArriveFrame.TimeText:SetText(seconds.."s")
+			else
+			WaypointTimeToArriveFrame.TimeText:SetText(minutes.."m"..":"..seconds.."s")
+			end
 		end
 	end
 end
--- OnUpdate from dekallo
+-- Function to update the frame from dekallo
 local function OnUpdateTimer(self, elapsed)
 	if self.navFrame then
 		self:UpdateClampedState()
 		self:UpdatePosition()
 		self:UpdateArrow()
+		--restore the distance text
+		local waypointdistance = C_Navigation.GetDistance()
+		WaypointTimeToArriveFrame.DistanceText:SetText(IN_GAME_NAVIGATION_RANGE:format(Round(waypointdistance)))
 		ElvUI_EltreumUI:WaypointTimeToArrive(self, elapsed)
 		self:UpdateAlpha()
 	end
 end
 WaypointTimeToArriveFrame:SetScript("OnUpdate", OnUpdateTimer)
+
 
 --- Friendly Nameplate Control
 function ElvUI_EltreumUI:FriendlyNameplates()
@@ -192,7 +191,8 @@ function ElvUI_EltreumUI:RacialAFKmusic()
 	end
 end
 
---simpy:
+
+--Simpy:
 --it would be far more efficient if you managed the group list table outside 
 --of the combat calling function (using GROUP_ROSTER_UPDATE), 
 --emptied it when you aren't in a group, 
@@ -203,22 +203,21 @@ function ElvUI_EltreumUI:RaidDeath()
 	if E.private.ElvUI_EltreumUI.partyraiddeath.enable then
 		local _, eventType, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
 		local name = name
-		
-		if IsInGroup() then
-			for ii=1, GetNumGroupMembers() do
-				name = GetRaidRosterInfo(ii)
-			end
-		end
 		if eventType == "UNIT_DIED" then
-			if destName == name then
-				if E.private.ElvUI_EltreumUI.partyraiddeath.bruh then
-				PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Dialog");
+			if IsInGroup() then
+				for ii=1, GetNumGroupMembers() do
+					name = GetRaidRosterInfo(ii)
 				end
-				if E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof then
-				PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3", "Dialog");
-				end
-				if E.private.ElvUI_EltreumUI.partyraiddeath.shame then
-				PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.mp3", "Dialog");
+				if destName == name then
+					if E.private.ElvUI_EltreumUI.partyraiddeath.bruh then
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Dialog");
+					end
+					if E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof then
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3", "Dialog");
+					end
+					if E.private.ElvUI_EltreumUI.partyraiddeath.shame then
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.mp3", "Dialog");
+					end
 				end
 			end
 		end
@@ -279,15 +278,6 @@ end
 -- Skill Glow
 local LCG = LibStub('LibCustomGlow-1.0')
 function ElvUI_EltreumUI:SkillGlow()
-	-- using the same method as nameplate doesnt work, returns black color instead of classcolor
-	--local skillglowcolor
-	--skillglowcolor = E:ClassColor(E.myclass, true)
-	--skillglowcolor = E:GetColor(classColor.r, classColor.g, classColor.b)
-	
-	--ty Azilroka but it didnt work :(
-	---local skillglowcolor:SetVertexColor(unpack(E.media.rgbvaluecolor))
-
-	-- this worked for some reason
 	local r, g, b = unpack(E.media.rgbvaluecolor)
 	local skillglowcolor = {r, g, b, 1}
 	local customglow = LibStub("LibButtonGlow-1.0")

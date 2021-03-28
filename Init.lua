@@ -43,9 +43,9 @@ function ElvUI_EltreumUI:Initialize()
 	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
 	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
 	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
-	ElvUI_EltreumUI:RegisterEvent("SUPER_TRACKING_CHANGED")
-	ElvUI_EltreumUI:RegisterEvent("NAVIGATION_FRAME_CREATED")
-	ElvUI_EltreumUI:RegisterEvent("NAVIGATION_FRAME_DESTROYED")
+	ElvUI_EltreumUI:RegisterEvent('SUPER_TRACKING_CHANGED')
+	ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_CREATED')
+	ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_DESTROYED')
 end
 
 function ElvUI_EltreumUI:SUPER_TRACKING_CHANGED()
@@ -58,21 +58,20 @@ function ElvUI_EltreumUI:NAVIGATION_FRAME_DESTROYED()
 	ElvUI_EltreumUI:WaypointTimeToArrive()
 end
 
-
 function ElvUI_EltreumUI:UPDATE_STEALTH()
-    ElvUI_EltreumUI:StealthOptions()
+	ElvUI_EltreumUI:StealthOptions()
 end
 
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
-    ElvUI_EltreumUI:RaidDeath()
+	ElvUI_EltreumUI:RaidDeath()
 end
 
 function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
-    ElvUI_EltreumUI:RaidDeath()
+	ElvUI_EltreumUI:RaidDeath()
 end
 
 function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
-    ElvUI_EltreumUI:RacialAFKmusic()
+	ElvUI_EltreumUI:RacialAFKmusic()
 end
 
 local function CallbackInitialize()
