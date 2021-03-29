@@ -9,15 +9,18 @@ function ElvUI_EltreumUI:Print(msg)
 end
 
 
+
+
 -- Change classpower background, ty Benik for the great help
+local NP = E:GetModule('NamePlates')
 local function ClassPowerColor()
-	local NP = E:GetModule('NamePlates')
-	NP.multiplier = 0
+    NP.multiplier = 0
 end
-hooksecurefunc(E:GetModule('NamePlates'), 'Initialize', ClassPowerColor)
+hooksecurefunc(NP, 'Initialize', ClassPowerColor)
+
 
 --Conversion of Time to Arrive weakaura
-	--Create the frame to display the text by hooking into the SuperTrackedFrame and replacing stuff
+--Create the frame to display the text by hooking into the SuperTrackedFrame and replacing stuff
 local WaypointTimeToArriveFrame = _G["SuperTrackedFrame"]
 WaypointTimeToArriveFrame.TimeText = WaypointTimeToArriveFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 WaypointTimeToArriveFrame.TimeText:SetJustifyV("TOP")
@@ -94,9 +97,11 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 end
 
 -- AFK racial music
+local soundHandle
 function ElvUI_EltreumUI:RacialAFKmusic()
 	if E.private.ElvUI_EltreumUI.afkmusic.enable then
 		local _ , race, _ = UnitRace("player")
+		
 		if UnitIsAFK("player") then 
 			if race == "Human" then
 					SetCVar("Sound_EnableMusic", 0)
