@@ -8,6 +8,17 @@ function ElvUI_EltreumUI:Print(msg)
 	print('|c4682B4ffEltruism|r: '..msg)
 end
 
+
+
+
+
+
+
+
+
+
+
+
 --Conversion of Time to Arrive weakaura
 	--Create the frame to display the text by hooking into the SuperTrackedFrame and replacing stuff
 local WaypointTimeToArriveFrame = _G["SuperTrackedFrame"]
@@ -20,10 +31,6 @@ WaypointTimeToArriveFrame.TimeText:SetFont("Interface\\addons\\ElvUI_EltreumUI\\
 --Create the function which calculates the time
 function ElvUI_EltreumUI:WaypointTimeToArrive()
 	if E.private.ElvUI_EltreumUI.waypointetasetting.enable then
-	
-	 
-	 
-	 
 	local speed = GetUnitSpeed("player")
 	local distance = C_Navigation.GetDistance()
 	local seconds = 0

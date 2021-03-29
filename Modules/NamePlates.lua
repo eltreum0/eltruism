@@ -326,7 +326,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["TARGET"]["classpower"]["enable"] = true
 		E.db["nameplates"]["units"]["TARGET"]["classpower"]["sortDirection"] = "asc"
 		E.db["nameplates"]["units"]["TARGET"]["classpower"]["width"] = 150
-		E.db["nameplates"]["units"]["TARGET"]["classpower"]["yOffset"] = -25
+		E.db["nameplates"]["units"]["TARGET"]["classpower"]["yOffset"] = 26
 		E.db["nameplates"]["visibility"]["enemy"]["totems"] = true
 		
 		-- Set CVars
