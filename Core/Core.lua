@@ -9,15 +9,12 @@ function ElvUI_EltreumUI:Print(msg)
 end
 
 
-
-
-
-
-
-
-
-
-
+-- Change classpower background, ty Benik for the great help
+local function ClassPowerColor()
+	local NP = E:GetModule('NamePlates')
+	NP.multiplier = 0
+end
+hooksecurefunc(E:GetModule('NamePlates'), 'Initialize', ClassPowerColor)
 
 --Conversion of Time to Arrive weakaura
 	--Create the frame to display the text by hooking into the SuperTrackedFrame and replacing stuff
