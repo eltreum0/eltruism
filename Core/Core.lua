@@ -27,7 +27,7 @@ WaypointTimeToArriveFrame.TimeText:SetJustifyV("TOP")
 WaypointTimeToArriveFrame.TimeText:SetSize(0, 26)
 WaypointTimeToArriveFrame.TimeText:SetPoint("TOP", WaypointTimeToArriveFrame.Icon, "BOTTOM", 0, -25)
 WaypointTimeToArriveFrame.TimeText:SetTextColor(1, 1, 1)
-WaypointTimeToArriveFrame.TimeText:SetFont("Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\Kimberley.otf", 12, "OUTLINE")
+WaypointTimeToArriveFrame.TimeText:SetFont("Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\Kimberley.otf", 12)
 --Create the function which calculates the time
 function ElvUI_EltreumUI:WaypointTimeToArrive()
 	if E.private.ElvUI_EltreumUI.waypointetasetting.enable then
@@ -101,7 +101,6 @@ local soundHandle
 function ElvUI_EltreumUI:RacialAFKmusic()
 	if E.private.ElvUI_EltreumUI.afkmusic.enable then
 		local _ , race, _ = UnitRace("player")
-		
 		if UnitIsAFK("player") then 
 			if race == "Human" then
 					SetCVar("Sound_EnableMusic", 0)
