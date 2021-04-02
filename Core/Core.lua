@@ -116,7 +116,7 @@ function ElvUI_EltreumUI:RacialAFKmusic()
 			end
 			if race == "KulTiran" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(1781897, "Dialog")
+					_, soundHandle = PlaySoundFile(1781897, "Dialog", true)
 			end
 			if race == "Dwarf" then
 					SetCVar("Sound_EnableMusic", 0)
@@ -231,6 +231,9 @@ function ElvUI_EltreumUI:RaidDeath()
 					end
 					if E.private.ElvUI_EltreumUI.partyraiddeath.shame then
 					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.mp3", "Dialog");
+					end
+					if E.private.ElvUI_EltreumUI.partyraiddeath.wow then
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.mp3", "Dialog");
 					end
 				end
 			end

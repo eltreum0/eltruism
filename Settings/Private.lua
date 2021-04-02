@@ -31,6 +31,7 @@ V.ElvUI_EltreumUI = {
 		bruh = true,
 		robloxoof = false,
 		shame = false,
+		wow = false,
 	},
 	
 	friendlynameplatetoggle = {
