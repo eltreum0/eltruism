@@ -26,9 +26,8 @@ LSM:Register("sound", "We are too late", [[Interface\Addons\ElvUI_EltreumUI\Medi
 LSM:Register("sound", "Shame", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\shame.mp3]])
 LSM:Register("sound", "Queen Azshara - What a shame", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\QueenAzsharaWhatAShame.ogg]])
 LSM:Register("sound", "Queen Azshara - How disappointing", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\QueenAzsharaDissapointing.ogg]])
+LSM:Register("sound", "! - Metal Gear Solid", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\metalgear.ogg]])
 LSM:Register("sound", "Wow", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\wow.mp3]])
-
-
 
 -- Statusbar
 LSM:Register("statusbar", "Eltreum-bottom", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-bottom.tga]])
@@ -47,8 +46,6 @@ LSM:Register("statusbar", "Eltreum9pixel", [[Interface\Addons\ElvUI_EltreumUI\Me
 LSM:Register("statusbar", "Eltreum10pixel", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum10pixel.tga]])
 LSM:Register("statusbar", "Eltreum-Blank", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Blank.tga]])
 LSM:Register("statusbar", "Eltreum-Elvui-Norm", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Elvui-Norm.tga]])
-
-
 
 -- Background
 LSM:Register("background", "Eltreum-StealthOverlay", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\StealthOverlay.tga]])

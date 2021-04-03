@@ -7,10 +7,10 @@ local SetCVar = SetCVar
 function ElvUI_EltreumUI:SetupNamePlates(addon)
 
 	if addon == 'ElvUI' then
-	
+
 		-- Toggle on
 		E.private["nameplates"]["enable"] = true
-		
+
 		-- Style Filters & CVars
 		ElvUI_EltreumUI:SetupStyleFilters()
 
@@ -125,28 +125,48 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["raidTargetIndicator"]["size"] = 32
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["raidTargetIndicator"]["xOffset"] = -26
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Kimberley"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["anchorPoint"] = "TOPRIGHT"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFontOutline"] = "NONE"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 37
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFontSize"] = 10
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["durationPosition"] = "TOPLEFT"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["growthX"] = "LEFT"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["numAuras"] = 6
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["size"] = 25
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["spacing"] = 0
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 43
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["castTimeFormat"] = "REMAINING"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["channelTimeFormat"] = "REMAINING"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["fontOutline"] = "NONE"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["fontOutline"] = "THICKOUTLINE"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["fontSize"] = 10
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["height"] = 12
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconPosition"] = "LEFT"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 12
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["showIcon"] = false
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["textPosition"] = "ONBAR"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["timeToHold"] = 0.4
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["yOffset"] = -15
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countFont"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countFontOutline"] = "NONE"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countFontSize"] = 10
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["numAuras"] = 8
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["durationPosition"] = "TOPLEFT"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["numAuras"] = 6
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["size"] = 25
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["spacing"] = 0
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 7
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["height"] = 14
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["fontOutline"] = "NONE"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["yOffset"] = 1
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["fontOutline"] = "THICKOUTLINE"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["fontSize"] = 12
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["parent"] = "Health"
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["xOffset"] = 4
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["yOffset"] = -1
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["enable"] = false
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["fontOutline"] = "THICKOUTLINE"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["fontSize"] = 10
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["yOffset"] = -9
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["fontSize"] = 12
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["fontOutline"] = "THICKOUTLINE"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["format"] = "[namecolor][name][realm:dash]"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["position"] = "CENTER"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["yOffset"] = 15
@@ -158,10 +178,8 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["pvpindicator"]["position"] = "CENTER"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["pvpindicator"]["size"] = 24
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["pvpindicator"]["yOffset"] = 32
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["raidTargetIndicator"]["position"] = "CENTER"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["raidTargetIndicator"]["size"] = 39
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["raidTargetIndicator"]["xOffset"] = 0
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["raidTargetIndicator"]["yOffset"] = 30
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["raidTargetIndicator"]["size"] = 32
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["raidTargetIndicator"]["xOffset"] = -26
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["fontSize"] = 10
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
@@ -328,10 +346,10 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["TARGET"]["classpower"]["width"] = 150
 		E.db["nameplates"]["units"]["TARGET"]["classpower"]["yOffset"] = 26
 		E.db["nameplates"]["visibility"]["enemy"]["totems"] = true
-		
+
 		-- Set CVars
 		ElvUI_EltreumUI:NameplateCVars()
-		
+
 		end
 end
 
@@ -344,7 +362,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
 	end
 
-	
+
 	-- Explosives
 	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["health"] = false
 	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
@@ -409,12 +427,12 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["ExecuteRange"]["triggers"]["isTarget"] = true
 	E.global["nameplate"]["filters"]["ExecuteRange"]["triggers"]["priority"] = 10
 	E.global["nameplate"]["filters"]["ExecuteRange"]["triggers"]["underHealthThreshold"] = 0.2
-	
+
 	E:StaggeredUpdateAll(nil, true)
 
-	
-	
-	
+
+
+
 
 
 

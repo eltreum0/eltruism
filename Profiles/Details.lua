@@ -3,10 +3,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 -- Details profile setup
 function ElvUI_EltreumUI:GetDetailsProfile()
 
-
 	local key = "Eltreum Dual"
-
-
 
 	_detalhes_global = {
 		["npcid_pool"] = {

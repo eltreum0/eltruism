@@ -1,13 +1,8 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
---[[
-	Copy Paste stuff
-	[E.mynameRealm] = {
-]]
 
 -- DBM profile setup
 function ElvUI_EltreumUI:GetDBMProfile()
-
 	DBM:CreateProfile("Eltreum")
 
 	DBM_AllSavedOptions = {

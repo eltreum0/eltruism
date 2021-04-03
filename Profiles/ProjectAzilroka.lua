@@ -1,10 +1,8 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-
 local _G = _G
 
 -- ProjectAzilroka profile setup
 function ElvUI_EltreumUI:GetPAProfile()
-
 	local PA = _G.ProjectAzilroka
 	PA.data:SetProfile('Eltreum')
 
@@ -32,8 +30,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["TorghastBuffs"]["size"] = 26
 	PA.db["EnhancedFriendsList"] = false
 	PA.db["TargetSounds"]["Enable"] = true
-	
-	
+
 	PA.db["stAddonManager"]["Enable"] = true
 	PA.db["stAddonManager"]["FontSize"] = 15
 	PA.db["stAddonManager"]["NumAddOns"] = 20
@@ -44,10 +41,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["stAddonManager"]["Font"] = "Kimberley"
 	PA.db["stAddonManager"]["FrameWidth"] = 470
 	PA.db["stAddonManager"]["CheckTexture"] = "Eltreum-Elvui-Norm"
-	
-	
-	
-	
+
 	PA.db["SquareMinimapButtons"]["Enable"] = true
 	PA.db["SquareMinimapButtons"]["Shadows"] = false
 	PA.db["SquareMinimapButtons"]["MoveQueue"] = false
@@ -59,5 +53,4 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["SquareMinimapButtons"]["Visibility"] = "[petbattle][combat]hide; show"
 	PA.db["SquareMinimapButtons"]["MoveTracker"] = false
 	-- Movers
-	
 end

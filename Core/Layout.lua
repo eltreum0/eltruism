@@ -1,9 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-
 local IsAddOnLoaded = IsAddOnLoaded
 
 function ElvUI_EltreumUI:SetupLayout(layout)
-
 	if not E.db.movers then E.db.movers = {} end
 
 	-- Setup UI Scale
@@ -20,9 +18,6 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		ElvUI_EltreumUI:GetASProfile()
 	end
 
-	
-	
-
 	-- Load Shadow & Light profile
 	E.global["sle"]["advanced"]["confirmed"] = true
 	E.global["sle"]["advanced"]["gameMenu"]["enable"] = false
@@ -37,6 +32,8 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.private["sle"]["professions"]["enchant"]["enchScroll"] = true
 	E.private["sle"]["professions"]["fishing"]["EasyCast"] = true
 	E.private["sle"]["professions"]["fishing"]["FromMount"] = true
+	E.private["sle"]["skins"]["merchant"]["enable"] = true
+	E.private["sle"]["skins"]["merchant"]["style"] = "List"
 	E.private["sle"]["skins"]["objectiveTracker"]["class"] = true
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["b"] = 0
 	E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
@@ -49,19 +46,14 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.private["sle"]["skins"]["petbattles"]["enable"] = false
 	E.private["skins"]["parchmentRemoverEnable"] = true
 	E.private["sle"]["pvp"]["KBbanner"]["enable"] = true
-	E.private["sle"]["skins"]["merchant"]["enable"] = true
-	E.private["sle"]["skins"]["merchant"]["style"] = "List"
 	E.private["sle"]["uibuttons"]["style"] = "dropdown"
 	E.private["sle"]["unitframe"]["statusbarTextures"]["aura"] = true
 	E.private["sle"]["actionbars"]["checkedColor"]["a"] = 1
 	E.private["sle"]["actionbars"]["checkedColor"]["g"] = 0
-	
-	
 	E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-226"
 	-- Actionbars
 	E.db["sle"]["actionbars"]["vehicle"]["buttonspacing"] = 1
 	-- Armory
-	E.db["sle"]["armory"]["character"]["background"]["overlay"] = false
 	E.db["sle"]["armory"]["character"]["background"]["selectedBG"] = "CLASS"
 	E.db["sle"]["armory"]["character"]["durability"]["display"] = "Hide"
 	E.db["sle"]["armory"]["character"]["durability"]["font"] = "Kimberley"
@@ -175,7 +167,6 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["sle"]["quests"]["visibility"]["arena"] = "HIDE"
 	E.db["sle"]["quests"]["visibility"]["bg"] = "HIDE"
 	E.db["sle"]["quests"]["visibility"]["combat"] = "COLLAPSED"
-	E.db["sle"]["quests"]["visibility"]["dungeon"] = "HIDE"
 	E.db["sle"]["quests"]["visibility"]["enable"] = true
 	-- Raidmanager
 	E.db["sle"]["raidmanager"]["roles"] = true
@@ -468,7 +459,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.private["WT"]["tooltips"]["objectiveProgress"] = false
 	E.private["WT"]["tooltips"]["progression"]["enable"] = false
 	E.private["WT"]["unitFrames"]["roleIcon"]["roleIconStyle"] = "DEFAULT"
-	
+
 	E.db["WT"]["announcement"]["combatResurrection"]["onlySourceIsPlayer"] = true
 	E.db["WT"]["announcement"]["combatResurrection"]["text"] = "Casting %spell% on %target%"
 	E.db["WT"]["announcement"]["goodbye"]["enable"] = false
@@ -595,15 +586,6 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["WT"]["tooltips"]["groupInfo"]["title"] = false
 
 
-
-
-
-
-
-
-
-
-
 	-- AB Conversion
 	E.db["convertPages"] = true
 
@@ -659,7 +641,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["general"]["valuecolor"]["r"] = 0
 	E.db["general"]["vehicleSeatIndicatorSize"] = 76
 
-	-- Bags	
+	-- Bags
 	E.db["bags"]["bagSize"] = 35
 	E.db["bags"]["bagWidth"] = 412
 	E.db["bags"]["bankSize"] = 35
@@ -677,7 +659,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["bags"]["showBindType"] = true
 	E.db["bags"]["split"]["bagSpacing"] = 7
 	E.db["bags"]["vendorGrays"]["enable"] = true
-	
+
 
 	-- Chat
 	E.db["chat"]["chatHistory"] = false
@@ -785,17 +767,17 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["tooltip"]["modifierID"] = "SHIFT"
 	E.db["tooltip"]["showElvUIUsers"] = true
 	E.db["tooltip"]["visibility"]["combatOverride"] = "CTRL"
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
 
 	-- Custom Text: Party
 	E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
@@ -891,7 +873,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		["xOffset"] = 2,
 		["yOffset"] = 0
 	}
-	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] = {	
+	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] = {
 		["attachTextTo"] = "Power",
 		["enable"] = true,
 		["font"] = "Kimberley",
@@ -1381,12 +1363,12 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["auras"]["debuffs"]["timeFontSize"] = 12
 		E.db["auras"]["debuffs"]["verticalSpacing"] = 14
 		E.db["auras"]["debuffs"]["wrapAfter"] = 10
-		
+
 		-- Growth Directions DPS/TANK
 		E.db["unitframe"]["units"]["party"]["growthDirection"] = "DOWN_RIGHT"
 		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "DOWN_RIGHT"
 		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "DOWN_RIGHT"
-		
+
 		-- Movers DPS/TANK
 		E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-32,-354"
 		E.db["movers"]["AzeriteBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,430,-1"
@@ -1549,14 +1531,14 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["colors"]["transparentCastbar"] = true
 		E.db["unitframe"]["colors"]["transparentHealth"] = true
 		E.db["unitframe"]["colors"]["transparentPower"] = true
-		
+
 		--dps options
 		E.db["unitframe"]["font"] = "Kimberley"
 		E.db["unitframe"]["fontOutline"] = "OUTLINE"
 		E.db["unitframe"]["smartRaidFilter"] = false
 		E.db["unitframe"]["smoothbars"] = true
 		E.db["unitframe"]["targetSound"] = true
-		
+
 		--Dps units
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["arena"]["colorOverride"] = "FORCE_OFF"
@@ -2034,9 +2016,9 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["targettargettarget"]["power"]["enable"] = false
 		E.db["unitframe"]["units"]["targettargettarget"]["power"]["text_format"] = "[power:current:shortvalue]"
-		
-		
-		
+
+
+
 
 
 
@@ -2181,14 +2163,14 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["transparent"] = true
 		E.db["actionbar"]["useDrawSwipeOnCharges"] = true
 		E.db["actionbar"]["vehicleExitButton"]["hotkeyFont"] = "Kimberley"
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
 		-- Healer Auras
-		
+
 		E.db["auras"]["buffs"]["barColor"]["b"] = 0.86666476726532
 		E.db["auras"]["buffs"]["barColor"]["g"] = 0.4392147064209
 		E.db["auras"]["buffs"]["barNoDuration"] = false
@@ -2315,7 +2297,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["movers"]["WTExtraItemsBar5Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-115"
 		E.db["movers"]["WTParagonReputationToastFrameMover"] = "TOP,ElvUIParent,TOP,0,-222"
 		E.db["movers"]["ZoneAbility"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-458,73"
-		
+
 		-- UnitFrames Healing
 		E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = 0.86666476726532
 		E.db["unitframe"]["colors"]["auraBarBuff"]["g"] = 0.4392147064209
@@ -2383,15 +2365,15 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["colors"]["transparentCastbar"] = true
 		E.db["unitframe"]["colors"]["transparentHealth"] = true
 		E.db["unitframe"]["colors"]["transparentPower"] = true
-		
+
 		E.db["unitframe"]["debuffHighlighting"] = "GLOW"
-		E.db["unitframe"]["statusbar"] = "Eltreum-Blank"		
+		E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
 		E.db["unitframe"]["font"] = "Kimberley"
 		E.db["unitframe"]["fontOutline"] = "OUTLINE"
 		E.db["unitframe"]["smartRaidFilter"] = false
 		E.db["unitframe"]["smoothbars"] = true
-		E.db["unitframe"]["targetSound"] = true		
-		
+		E.db["unitframe"]["targetSound"] = true
+
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["arena"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "Kimberley"

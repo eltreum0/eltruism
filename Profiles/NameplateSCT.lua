@@ -1,15 +1,9 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-
 local unpack = unpack
-
 
 -- NameplateSCT profile setup
 function ElvUI_EltreumUI:GetNameplateSCTProfile()
 
-	
-	
-	
-	
 	NameplateSCTDB = {
 	["global"] = {
 		["iconScale"] = 0.8,
@@ -34,5 +28,4 @@ function ElvUI_EltreumUI:GetNameplateSCTProfile()
 		["textShadow"] = false,
 	},
 }
-	
 end

@@ -377,7 +377,7 @@ function ElvUI_EltreumUI:Configtable()
 									bruh = {
 										type = 'toggle',
 										name = 'Bruh',
-										order = 10,
+										order = 5,
 										disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow end,
 										get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.bruh end,
 										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.bruh = value end,
@@ -385,10 +385,15 @@ function ElvUI_EltreumUI:Configtable()
 									robloxoof = {
 										type = 'toggle',
 										name = 'Oof',
-										order = 12,
+										order = 6,
 										disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow end,
 										get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof end,
 										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof = value end,
+									},
+									yetanothergap2 = {
+									order = 8,
+									type = "description",
+									name = "",
 									},
 									shame = {
 										type = 'toggle',
@@ -398,7 +403,7 @@ function ElvUI_EltreumUI:Configtable()
 										get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.shame end,
 										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.shame = value end,
 									},
-									shame = {
+									wowsound = {
 										type = 'toggle',
 										name = 'Wow',
 										order = 14,
@@ -600,7 +605,7 @@ function ElvUI_EltreumUI:Configtable()
 						order = 19,
 						type = 'input',
 						width = 'normal',
-						name = 'Check my Weakauras at',
+						name = 'My Weakauras are available here, but they are mostly upcoming features',
 						get = function() return 'wago.io/p/Eltreum' end,
 					},
 				},

@@ -2,7 +2,6 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 local unpack = unpack
 
-
 -- Immersion profile setup
 function ElvUI_EltreumUI:GetImmersionProfile()
 	ImmersionSetup = {

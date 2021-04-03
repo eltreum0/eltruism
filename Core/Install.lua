@@ -136,7 +136,8 @@ ElvUI_EltreumUI.InstallerData = {
 		end,
 		[12] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('WeakAuras')
-			PluginInstallFrame.Desc1:SetText('I dont really make class based Weakauras, but you can check the ones I make there.')
+			PluginInstallFrame.Desc1:SetText('I dont really make class based Weakauras, but you can check the ones I make here')
+			PluginInstallFrame.Desc2:SetText('You can consider most of them to be upcoming features')
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://wago.io/p/Eltreum') 	end)
 			PluginInstallFrame.Option1:SetText('Wago.io')
