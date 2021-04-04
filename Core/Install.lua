@@ -1,5 +1,4 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-
 local ReloadUI = ReloadUI
 local format = string.format
 
@@ -9,16 +8,15 @@ local function InstallComplete()
 	ReloadUI()
 end
 
-
 -- Installer Steps
 ElvUI_EltreumUI.InstallerData = {
 	Title =  ElvUI_EltreumUI.Name,
 	Name = ElvUI_EltreumUI.Name,
 	tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 	Pages = {
-		[1] = function()	
+		[1] = function()
 			 -- Welcome Page or SLE/WT warning
-                if (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ElvUI_SLE")) then  
+                if (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ElvUI_SLE")) then
                     PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
                     PluginInstallFrame.Desc1:SetText("Make sure to install Shadow and Light and Windtools before starting this installation process")
                     PluginInstallFrame.Next:Disable()
@@ -81,7 +79,8 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.SubTitle:SetFormattedText('Boss Mods')
 			PluginInstallFrame.Desc1:SetText('Choose between DBM and BigWigs')
 			PluginInstallFrame.Desc2:SetText('I recommend using DBM VEM or BigWigs Voice along with these profiles')
-			PluginInstallFrame.Desc3:SetText('Importance: |c4682B4ffOptional|r')
+			PluginInstallFrame.Desc3:SetText('You might need to swap my profile in the addon settings')
+			PluginInstallFrame.Desc4:SetText('Importance: |c4682B4ffOptional|r')
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDBM() end)
 			PluginInstallFrame.Option1:SetText('DBM')
@@ -92,7 +91,7 @@ ElvUI_EltreumUI.InstallerData = {
 		[8] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('Exorsus Raid Tools')
 			PluginInstallFrame.Desc1:SetText('This will import my ExRT profile with Raid CDs and Note positions')
-			PluginInstallFrame.Desc2:SetText('Overwrite will erase settings, while Copy will open a Dialog.')
+			PluginInstallFrame.Desc2:SetText('You will need to swap to my profile in ExRT')
 			PluginInstallFrame.Desc3:SetText('|cffff0000Your current settings will be lost with overwrite, please back them up|r')
 			PluginInstallFrame.Desc4:SetText('Importance: |c4682B4ffOptional|r')
 			PluginInstallFrame.Option1:Show()
@@ -124,7 +123,7 @@ ElvUI_EltreumUI.InstallerData = {
 		[11] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('Dynamic Cam')
 			PluginInstallFrame.Desc1:SetText('This will import my DynamicCam profile')
-			PluginInstallFrame.Desc2:SetText('Overwrite will erase settings, while Copy will open a Dialog which you can import tinto DynamicCam settings')
+			PluginInstallFrame.Desc2:SetText('You will need to swap profiles in DynamicCam settings')
 			PluginInstallFrame.Desc3:SetText('|cffff0000Your current settings will be lost with overwrite, please back them up|r')
 			PluginInstallFrame.Desc4:SetText('Importance: |c4682B4ffOptional|r')
 			PluginInstallFrame.Option1:Show()

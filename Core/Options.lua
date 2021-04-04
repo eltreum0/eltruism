@@ -1,10 +1,8 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-
 local sort = sort
 local pairs = pairs
 local tinsert = table.insert
 local tconcat = table.concat
-
 local ReloadUI = ReloadUI
 
 -- Author list
@@ -411,14 +409,14 @@ function ElvUI_EltreumUI:Configtable()
 										get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.wow end,
 										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.wow = value end,
 									},
-									
+
 								},
 							},
 						},
 					},
 				},
 			},
-			
+
 			waypointsetting = {
 				type = 'group',
 				name = 'Maps',
@@ -452,7 +450,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "description",
 								name = '',
 							},
-							
+
 							enable = {
 								order = 5,
 								type = 'toggle',
@@ -463,7 +461,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
-			
+
 			media = {
 				type = 'group',
 				name = 'Media',
@@ -610,7 +608,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
-			
+
 			credits = {
 				type = 'group',
 				name = 'Credits',

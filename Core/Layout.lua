@@ -673,6 +673,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["chat"]["panelColor"]["g"] = 0
 	E.db["chat"]["panelColor"]["r"] = 0
 	E.db["chat"]["panelTabTransparency"] = true
+	E.db["chat"]["panelHeight"] = 180
 	E.db["chat"]["panelWidthRight"] = 400
 	E.db["chat"]["tabFont"] = "Kimberley"
 	E.db["chat"]["tabFontSize"] = 14

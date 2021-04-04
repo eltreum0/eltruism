@@ -8,16 +8,12 @@ function ElvUI_EltreumUI:Print(msg)
 	print('|c4682B4ffEltruism|r: '..msg)
 end
 
-
-
-
 -- Change classpower background, ty Benik for the great help
 local NP = E:GetModule('NamePlates')
 local function ClassPowerColor()
     NP.multiplier = 0
 end
 hooksecurefunc(NP, 'Initialize', ClassPowerColor)
-
 
 --Conversion of Time to Arrive weakaura
 --Create the frame to display the text by hooking into the SuperTrackedFrame and replacing stuff
@@ -49,7 +45,7 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 						else
 						minutes = string.format("%02.f", math.floor(eta/60));
 						seconds = string.format("%02.f", math.floor(eta - minutes *60));
-					end 
+					end
 				end
 			end
 		end
@@ -101,7 +97,7 @@ local soundHandle
 function ElvUI_EltreumUI:RacialAFKmusic()
 	if E.private.ElvUI_EltreumUI.afkmusic.enable then
 		local _ , race, _ = UnitRace("player")
-		if UnitIsAFK("player") then 
+		if UnitIsAFK("player") then
 			if race == "Human" then
 					SetCVar("Sound_EnableMusic", 0)
 					_, soundHandle = PlaySoundFile(53210, "Dialog", true)
@@ -207,9 +203,9 @@ end
 
 
 --Simpy:
---it would be far more efficient if you managed the group list table outside 
---of the combat calling function (using GROUP_ROSTER_UPDATE), 
---emptied it when you aren't in a group, 
+--it would be far more efficient if you managed the group list table outside
+--of the combat calling function (using GROUP_ROSTER_UPDATE),
+--emptied it when you aren't in a group,
 --and only looked for names on that list when the combat event fires
 
 -- Conversion of the party/raid death weakaura into an addon option
@@ -282,7 +278,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 	if E.private.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow then
 		E.db["nameplates"]["colors"]["glowColor"]["b"] = nameplateclasscolors.b
 		E.db["nameplates"]["colors"]["glowColor"]["r"] = nameplateclasscolors.r
-		E.db["nameplates"]["colors"]["glowColor"]["g"] = nameplateclasscolors.g 
+		E.db["nameplates"]["colors"]["glowColor"]["g"] = nameplateclasscolors.g
 	end
 	if E.private.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate then
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
@@ -336,7 +332,7 @@ function ElvUI_EltreumUI:SkillGlow()
 				LCG.ButtonGlow_Stop(button)
 			end
 		end
-	end	
+	end
 end
 
 -- AddOnSkins Profile

@@ -3,12 +3,17 @@ local LSM = LibStub("LibSharedMedia-3.0")
 if LSM == nil then return end
 
 -- Fonts
-LSM:Register('font','Kimberley', [[Interface\AddOns\ElvUI_EltreumUI\Media\Fonts\Kimberley.otf]])
+LSM:Register('font', "Kimberley", [[Interface\AddOns\ElvUI_EltreumUI\Media\Fonts\Kimberley.otf]])
 LSM:Register("font", "OptimusPrinceps", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\OptimusPrinceps.ttf]])
 LSM:Register("font", "GothamNarrow Black", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GothamNarrow Black.ttf]])
 LSM:Register("font", "GothamXNarrow Black", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GothamXNarrow Black.ttf]])
 LSM:Register("font", "GothamXNarrow Ultra", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GothamXNarrow Ultra.ttf]])
 LSM:Register("font", "Exo2 Extra Bold", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Exo2-ExtraBold.otf]])
+LSM:Register("font", "Candara", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Candara.ttf]])
+LSM:Register("font", "JosefinSans-Regular", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\JosefinSans-Regular.ttf]])
+LSM:Register("font", "JosefinSans-Medium", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\JosefinSans-Medium.ttf]])
+LSM:Register("font", "JosefinSans-SemiBold", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\JosefinSans-SemiBold.ttf]])
+LSM:Register("font", "JosefinSans-Bold", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\JosefinSans-Bold.ttf]])
 
 -- Sound
 LSM:Register("sound", "You_Died", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\You_Died.ogg]])
