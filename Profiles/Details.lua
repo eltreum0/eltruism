@@ -22,10 +22,9 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 		["npcid_ignored"] = {
 		},
 		["report_where"] = "GUILD",
-
 		["auto_open_news_window"] = false,
 		["got_first_run"] = true,
-		["always_use_profile"] = false,
+		["always_use_profile"] = true,
 		["plater"] = {
 			["realtime_dps_enabled"] = false,
 			["damage_taken_shadow"] = true,
@@ -691,7 +690,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 							["shadow"] = true,
 						},
 						["desaturated_menu"] = true,
-						["micro_displays_side"] = 1,
+						["micro_displays_side"] = 2,
 						["window_scale"] = 1,
 						["hide_icon"] = false,
 						["toolbar_side"] = 1,
@@ -801,8 +800,8 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 						["__snapV"] = false,
 						["__snapH"] = false,
 						["StatusBarSaved"] = {
-							["center"] = "DETAILS_STATUSBAR_PLUGIN_CLOCK",
-							["right"] = "DETAILS_STATUSBAR_PLUGIN_PDPS",
+							["center"] = "",
+							["right"] = "",
 							["options"] = {
 								["DETAILS_STATUSBAR_PLUGIN_PDPS"] = {
 									["isHidden"] = true,
@@ -850,7 +849,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 									["textYMod"] = 1,
 								},
 							},
-							["left"] = "DETAILS_STATUSBAR_PLUGIN_PSEGMENT",
+							["left"] = "",
 						},
 						["grab_on_top"] = false,
 						["__was_opened"] = true,
@@ -1138,7 +1137,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 							["shadow"] = true,
 						},
 						["desaturated_menu"] = true,
-						["micro_displays_side"] = 1,
+						["micro_displays_side"] = 2,
 						["window_scale"] = 1,
 						["hide_icon"] = false,
 						["toolbar_side"] = 1,
@@ -1248,8 +1247,8 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 						["__snapV"] = false,
 						["__snapH"] = false,
 						["StatusBarSaved"] = {
-							["center"] = "DETAILS_STATUSBAR_PLUGIN_CLOCK",
-							["right"] = "DETAILS_STATUSBAR_PLUGIN_PDPS",
+							["center"] = "",
+							["right"] = "",
 							["options"] = {
 								["DETAILS_STATUSBAR_PLUGIN_PDPS"] = {
 									["isHidden"] = true,
@@ -1300,7 +1299,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 									},
 								},
 							},
-							["left"] = "DETAILS_STATUSBAR_PLUGIN_PSEGMENT",
+							["left"] = "",
 						},
 						["grab_on_top"] = false,
 						["__was_opened"] = true,
@@ -7608,9 +7607,6 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 			["mythic_raid_data"] = {
 			},
 		},
-
-			
-			
 		["switchSaved"] = {
 			["slots"] = 32,
 			["table"] = {
@@ -7688,7 +7684,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 				}, -- [32]
 			},
 		},
-		["always_use_profile_name"] = "DPS",
+		["always_use_profile_name"] = "Eltreum Dual",
 		["profile_by_spec"] = {
 		},
 		["always_use_profile_exception"] = {

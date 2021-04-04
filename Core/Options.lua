@@ -599,11 +599,21 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'header',
 						name = 'WeakAuras',
 					},
-					affixes = {
+					explainer7 = {
+						order = 2,
+						type = "description",
+						name = 'My WeakAuras are available here, but are not focused on one class. Consider them more like upcoming features.',
+					},
+					addaspacehere = {
+						order = 3,
+						type = "description",
+						name = '',
+					},
+					wago = {
 						order = 19,
 						type = 'input',
 						width = 'normal',
-						name = 'My Weakauras are available here, but they are mostly upcoming features',
+						name = '',
 						get = function() return 'wago.io/p/Eltreum' end,
 					},
 				},
