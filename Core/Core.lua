@@ -8,6 +8,9 @@ function ElvUI_EltreumUI:Print(msg)
 	print('|c4682B4ffEltruism|r: '..msg)
 end
 
+-- general alliance walk (legion)
+--/script PlaySoundFile(1417250, "Dialog", true)
+
 -- Change classpower background, ty Benik for the great help
 local NP = E:GetModule('NamePlates')
 local function ClassPowerColor()
@@ -253,6 +256,8 @@ StealthOptionsFrame:Hide()
 function ElvUI_EltreumUI:StealthOptions()
 	if E.private.ElvUI_EltreumUI.stealthOptions.stealtheffect then
 		--Script the frame, ty wowpedia for examples
+		StealthOptionsFrame:RegisterEvent("PLAYER_ENTERING_WORLD");
+		StealthOptionsFrame:RegisterEvent("UPDATE_STEALTH");
 		StealthOptionsFrame:HookScript("OnEvent", function(__, event)
 		  if (event == "PLAYER_ENTERING_WORLD") then
 			if IsStealthed() then
@@ -266,8 +271,6 @@ function ElvUI_EltreumUI:StealthOptions()
 			end
 		  end
 		end);
-		StealthOptionsFrame:RegisterEvent("PLAYER_ENTERING_WORLD");
-		StealthOptionsFrame:RegisterEvent("UPDATE_STEALTH");
 	end
 end
 

@@ -14,6 +14,7 @@ LSM:Register("font", "JosefinSans-Regular", [[Interface\Addons\ElvUI_EltreumUI\M
 LSM:Register("font", "JosefinSans-Medium", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\JosefinSans-Medium.ttf]])
 LSM:Register("font", "JosefinSans-SemiBold", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\JosefinSans-SemiBold.ttf]])
 LSM:Register("font", "JosefinSans-Bold", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\JosefinSans-Bold.ttf]])
+LSM:Register("font", "Pricedown", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\pricedown.ttf]])
 
 -- Sound
 LSM:Register("sound", "You_Died", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\You_Died.ogg]])
@@ -33,6 +34,8 @@ LSM:Register("sound", "Queen Azshara - What a shame", [[Interface\Addons\ElvUI_E
 LSM:Register("sound", "Queen Azshara - How disappointing", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\QueenAzsharaDissapointing.ogg]])
 LSM:Register("sound", "! - Metal Gear Solid", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\metalgear.ogg]])
 LSM:Register("sound", "Wow", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\wow.mp3]])
+LSM:Register("sound", "GTA - Wasted", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\wasted.mp3]])
+LSM:Register("sound", "Mario Game Over", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\mariodeath.mp3]])
 
 -- Statusbar
 LSM:Register("statusbar", "Eltreum-bottom", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-bottom.tga]])

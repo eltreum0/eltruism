@@ -135,12 +135,11 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option2:SetText('Copy')
 		end,
 		[12] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText('WeakAuras')
-			PluginInstallFrame.Desc1:SetText('I dont really make class based Weakauras, but you can check the ones I make here')
-			PluginInstallFrame.Desc2:SetText('You can consider most of them to be upcoming features')
+			PluginInstallFrame.SubTitle:SetFormattedText('Discord')
+			PluginInstallFrame.Desc1:SetText('Join the Discord if you have any questions or issues')
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://wago.io/p/Eltreum') 	end)
-			PluginInstallFrame.Option1:SetText('Wago.io')
+			PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/cXfA56gmYW') 	end)
+			PluginInstallFrame.Option1:SetText('Discord')
 		end,
 		[13] = function()
 			PluginInstallFrame.SubTitle:SetText('Installation Complete')
@@ -163,7 +162,7 @@ ElvUI_EltreumUI.InstallerData = {
 		[9] = 'Combat Text',
 		[10] = 'Immersion',
 		[11] = 'Dynamic Cam',
-		[12] = 'WeakAuras',
+		[12] = 'Discord',
 		[13] = 'Installation Complete',
 	},
 	StepTitlesColor = {1, 1, 1},

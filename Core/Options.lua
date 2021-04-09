@@ -378,7 +378,7 @@ function ElvUI_EltreumUI:Configtable()
 										order = 5,
 										disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow end,
 										get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.bruh end,
-										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.bruh = value end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.bruh = value; PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Dialog") end,
 									},
 									robloxoof = {
 										type = 'toggle',
@@ -386,7 +386,7 @@ function ElvUI_EltreumUI:Configtable()
 										order = 6,
 										disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow end,
 										get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof end,
-										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof = value end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof = value; PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3", "Dialog") end,
 									},
 									yetanothergap2 = {
 									order = 8,
@@ -399,7 +399,7 @@ function ElvUI_EltreumUI:Configtable()
 										order = 13,
 										disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.wow end,
 										get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.shame end,
-										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.shame = value end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.shame = value; PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.mp3", "Dialog") end,
 									},
 									wowsound = {
 										type = 'toggle',
@@ -407,7 +407,7 @@ function ElvUI_EltreumUI:Configtable()
 										order = 14,
 										disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame  end,
 										get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.wow end,
-										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.wow = value end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.wow = value; PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.mp3", "Dialog") end,
 									},
 
 								},
@@ -416,7 +416,6 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
-
 			waypointsetting = {
 				type = 'group',
 				name = 'Maps',
@@ -461,7 +460,6 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
-
 			media = {
 				type = 'group',
 				name = 'Media',
@@ -535,9 +533,9 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.private.ElvUI_EltreumUI.friendlynameplatetoggle.enable end,
 								set = function(_, value) E.private.ElvUI_EltreumUI.friendlynameplatetoggle.enable = value end,
 							},
-					}
+						}
+					},
 				},
-			},
 			},
 			stealthOptionssetting = {
 				type = 'group',
@@ -618,11 +616,40 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
-
+			discord = {
+				type = 'group',
+				name = 'Discord',
+				order = 8,
+				args = {
+					logodiscord = {
+						type = 'description',
+						name = "",
+						order = 1,
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\disc', 256, 128 end,
+					},
+					explainer8 = {
+						order = 2,
+						type = "description",
+						name = 'Join the Discord if you have any questions or issues',
+					},
+					addaspacehere4 = {
+						order = 3,
+						type = "description",
+						name = '',
+					},
+					discordinvitelink = {
+						order = 19,
+						type = 'input',
+						width = 'normal',
+						name = '',
+						get = function() return 'https://discord.gg/cXfA56gmYW' end,
+					},
+				},
+			},
 			credits = {
 				type = 'group',
 				name = 'Credits',
-				order = 98,
+				order = 97,
 				args = {
 					author = {
 						order = 1,
@@ -657,7 +684,7 @@ function ElvUI_EltreumUI:Configtable()
 			support = {
 				type = 'group',
 				name = 'Support',
-				order = 99,
+				order = 98,
 				args = {
 					changelog = {
 						order = 1,
