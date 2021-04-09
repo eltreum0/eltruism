@@ -769,15 +769,20 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["tooltip"]["showElvUIUsers"] = true
 	E.db["tooltip"]["visibility"]["combatOverride"] = "CTRL"
 
-
-
-
-
-
-
-
-
-
+	-- ActionBars general
+	E.db["actionbar"]["bar1"]["inheritGlobalFade"] = true
+	E.db["actionbar"]["bar2"]["inheritGlobalFade"] = true
+	E.db["actionbar"]["bar3"]["inheritGlobalFade"] = true
+	E.db["actionbar"]["bar4"]["inheritGlobalFade"] = true
+	E.db["actionbar"]["bar5"]["inheritGlobalFade"] = true
+	E.db["actionbar"]["bar6"]["inheritGlobalFade"] = false
+	E.db["actionbar"]["bar7"]["inheritGlobalFade"] = false
+	E.db["actionbar"]["bar8"]["inheritGlobalFade"] = false
+	E.db["actionbar"]["bar9"]["inheritGlobalFade"] = false
+	E.db["actionbar"]["bar10"]["inheritGlobalFade"] = false
+	E.db["actionbar"]["extraActionButton"]["inheritGlobalFade"] = false
+	E.db["actionbar"]["zoneActionButton"]["inheritGlobalFade"] = false
+	E.db["actionbar"]["stanceBar"]["inheritGlobalFade"] = false
 
 
 	-- Custom Text: Party
@@ -1284,7 +1289,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["extraActionButton"]["clean"] = true
 		E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "Kimberley"
 		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
-		E.db["actionbar"]["extraActionButton"]["inheritGlobalFade"] = false
+
 		E.db["actionbar"]["extraActionButton"]["scale"] = 0.7
 		E.db["actionbar"]["font"] = "Kimberley"
 		E.db["actionbar"]["fontOutline"] = "THICKOUTLINE"
@@ -1307,7 +1312,6 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["stanceBar"]["buttonsPerRow"] = 8
 		E.db["actionbar"]["stanceBar"]["hotkeyFont"] = "Kimberley"
 		E.db["actionbar"]["stanceBar"]["hotkeyFontOutline"] = "THICKOUTLINE"
-		E.db["actionbar"]["stanceBar"]["inheritGlobalFade"] = true
 		E.db["actionbar"]["stanceBar"]["keepSizeRatio"] = false
 		E.db["actionbar"]["stanceBar"]["mouseover"] = true
 		E.db["actionbar"]["stanceBar"]["style"] = "classic"
@@ -1319,7 +1323,6 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["vehicleExitButton"]["size"] = 24
 		E.db["actionbar"]["zoneActionButton"]["alpha"] = 0.7
 		E.db["actionbar"]["zoneActionButton"]["clean"] = true
-		E.db["actionbar"]["zoneActionButton"]["inheritGlobalFade"] = false
 		E.db["actionbar"]["zoneActionButton"]["scale"] = 0.7
 
 		-- Auras
@@ -2041,7 +2044,6 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["bar1"]["buttons"] = 7
 		E.db["actionbar"]["bar1"]["countFont"] = "Kimberley"
 		E.db["actionbar"]["bar1"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar1"]["inheritGlobalFade"] = true
 		E.db["actionbar"]["bar1"]["keepSizeRatio"] = false
 		E.db["actionbar"]["bar1"]["macroFont"] = "Kimberley"
 		E.db["actionbar"]["bar1"]["paging"]["DRUID"] = ""
@@ -2049,7 +2051,6 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["bar1"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 		E.db["actionbar"]["bar10"]["countFont"] = "Kimberley"
 		E.db["actionbar"]["bar10"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar10"]["inheritGlobalFade"] = true
 		E.db["actionbar"]["bar10"]["macroFont"] = "Kimberley"
 		E.db["actionbar"]["bar10"]["point"] = "TOPLEFT"
 		E.db["actionbar"]["bar10"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [petbattle] hide; show[combat][@target, exists]show;hide"
@@ -2059,7 +2060,6 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["bar2"]["countFont"] = "Kimberley"
 		E.db["actionbar"]["bar2"]["enabled"] = true
 		E.db["actionbar"]["bar2"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar2"]["inheritGlobalFade"] = true
 		E.db["actionbar"]["bar2"]["keepSizeRatio"] = false
 		E.db["actionbar"]["bar2"]["macroFont"] = "Kimberley"
 		E.db["actionbar"]["bar2"]["point"] = "TOPLEFT"
@@ -2071,7 +2071,6 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["bar3"]["buttons"] = 12
 		E.db["actionbar"]["bar3"]["countFont"] = "Kimberley"
 		E.db["actionbar"]["bar3"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar3"]["inheritGlobalFade"] = true
 		E.db["actionbar"]["bar3"]["keepSizeRatio"] = false
 		E.db["actionbar"]["bar3"]["macroFont"] = "Kimberley"
 		E.db["actionbar"]["bar3"]["point"] = "TOPLEFT"
@@ -2083,7 +2082,6 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["bar4"]["buttonsPerRow"] = 12
 		E.db["actionbar"]["bar4"]["countFont"] = "Kimberley"
 		E.db["actionbar"]["bar4"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar4"]["inheritGlobalFade"] = true
 		E.db["actionbar"]["bar4"]["keepSizeRatio"] = false
 		E.db["actionbar"]["bar4"]["macroFont"] = "Kimberley"
 		E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 12; [overridebar] 14;"
@@ -2102,7 +2100,6 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["bar5"]["buttons"] = 12
 		E.db["actionbar"]["bar5"]["countFont"] = "Kimberley"
 		E.db["actionbar"]["bar5"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar5"]["inheritGlobalFade"] = true
 		E.db["actionbar"]["bar5"]["keepSizeRatio"] = false
 		E.db["actionbar"]["bar5"]["enabled"] = true
 		E.db["actionbar"]["bar5"]["macroFont"] = "Kimberley"
@@ -2115,26 +2112,22 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["bar6"]["countFont"] = "Kimberley"
 		E.db["actionbar"]["bar6"]["enabled"] = true
 		E.db["actionbar"]["bar6"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar6"]["inheritGlobalFade"] = true
 		E.db["actionbar"]["bar6"]["keepSizeRatio"] = false
 		E.db["actionbar"]["bar6"]["macroFont"] = "Kimberley"
 		E.db["actionbar"]["bar6"]["mouseover"] = true
 		E.db["actionbar"]["bar6"]["point"] = "TOPLEFT"
 		E.db["actionbar"]["bar7"]["countFont"] = "Kimberley"
 		E.db["actionbar"]["bar7"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar7"]["inheritGlobalFade"] = true
 		E.db["actionbar"]["bar7"]["macroFont"] = "Kimberley"
 		E.db["actionbar"]["bar7"]["point"] = "TOPLEFT"
 		E.db["actionbar"]["bar7"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [petbattle] hide; show[combat][@target, exists]show;hide"
 		E.db["actionbar"]["bar8"]["countFont"] = "Kimberley"
 		E.db["actionbar"]["bar8"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar8"]["inheritGlobalFade"] = true
 		E.db["actionbar"]["bar8"]["macroFont"] = "Kimberley"
 		E.db["actionbar"]["bar8"]["point"] = "TOPLEFT"
 		E.db["actionbar"]["bar8"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [petbattle] hide; show[combat][@target, exists]show;hide"
 		E.db["actionbar"]["bar9"]["countFont"] = "Kimberley"
 		E.db["actionbar"]["bar9"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar9"]["inheritGlobalFade"] = true
 		E.db["actionbar"]["bar9"]["macroFont"] = "Kimberley"
 		E.db["actionbar"]["bar9"]["point"] = "TOPLEFT"
 		E.db["actionbar"]["bar9"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [petbattle] hide; show[combat][@target, exists]show;hide"
