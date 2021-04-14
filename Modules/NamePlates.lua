@@ -200,20 +200,21 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["fontSize"] = 12
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["position"] = "CENTER"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["yOffset"] = 13
+		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["yOffset"] = 7
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["nameOnly"] = false
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "THICKOUTLINE"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["xOffset"] = 2
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["position"] = "CENTER"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["size"] = 36
+		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["size"] = 64
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["xOffset"] = 0
+		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["yOffset"] = 100
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["enable"] = true
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["format"] = "[namecolor][npctitle:brackets]"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["position"] = "CENTER"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["yOffset"] = 0
+		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["yOffset"] = -5
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFontOutline"] = "NONE"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["enable"] = false
@@ -308,7 +309,11 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["PLAYER"]["name"]["xOffset"] = 2
 		E.db["nameplates"]["units"]["PLAYER"]["name"]["yOffset"] = -15
 		E.db["nameplates"]["units"]["PLAYER"]["portrait"]["classicon"] = false
-		E.db["nameplates"]["units"]["PLAYER"]["power"]["height"] = 12
+		E.db["nameplates"]["units"]["PLAYER"]["power"]["height"] = 20
+		E.db["nameplates"]["units"]["PLAYER"]["portrait"]["position"] = "CENTER"
+		E.db["nameplates"]["units"]["PLAYER"]["portrait"]["width"] = 20
+		E.db["nameplates"]["units"]["PLAYER"]["portrait"]["xOffset"] = 18
+		E.db["nameplates"]["units"]["PLAYER"]["portrait"]["yOffset"] = 0
 		E.db["nameplates"]["units"]["PLAYER"]["power"]["text"]["enable"] = true
 		E.db["nameplates"]["units"]["PLAYER"]["power"]["text"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["PLAYER"]["power"]["text"]["fontOutline"] = "THICKOUTLINE"
@@ -336,6 +341,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["PLAYER"]["title"]["fontOutline"] = "NONE"
 		E.db["nameplates"]["units"]["PLAYER"]["title"]["format"] = ""
 		E.db["nameplates"]["units"]["PLAYER"]["visibility"]["hideDelay"] = 0
+		E.db["nameplates"]["units"]["PLAYER"]["visibility"]["showInCombat"] = false
 		E.db["nameplates"]["units"]["PLAYER"]["visibility"]["showWithTarget"] = true
 		E.db["nameplates"]["units"]["TARGET"]["arrow"] = "Arrow21"
 		E.db["nameplates"]["units"]["TARGET"]["arrowScale"] = 0.4
@@ -355,13 +361,11 @@ end
 
 -- Style Filter Setup
 function ElvUI_EltreumUI:SetupStyleFilters()
-
 	for _, filterName in pairs({'ElvUI_Explosives', 'ElvUI_NonTarget', 'ElvUI_Target', 'EnemyCasting', 'ExecuteRange', 'Pandemic', 'StealThisBuff'}) do
 		E.global["nameplate"]["filters"][filterName] = {}
 		E.NamePlates:StyleFilterCopyDefaults(E.global["nameplate"]["filters"][filterName])
 		E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
 	end
-
 
 	-- Explosives
 	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["health"] = false
@@ -429,16 +433,6 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["ExecuteRange"]["triggers"]["underHealthThreshold"] = 0.2
 
 	E:StaggeredUpdateAll(nil, true)
-
-
-
-
-
-
-
-
-
-
 
 
 	ElvUI_EltreumUI:Print('NamePlates have been setup.')

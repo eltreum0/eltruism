@@ -22,6 +22,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.global["sle"]["advanced"]["confirmed"] = true
 	E.global["sle"]["advanced"]["gameMenu"]["enable"] = false
 	E.global["sle"]["advanced"]["general"] = true
+	E.global["sle"]["advanced"]["optionsLimits"] = true
 	E.private["sle"]["install_complete"] = "4.20"
 	-- Private DB
 	E.private["install_complete"] = "12.23"
@@ -166,7 +167,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["sle"]["quests"]["autoReward"] = true
 	E.db["sle"]["quests"]["visibility"]["arena"] = "HIDE"
 	E.db["sle"]["quests"]["visibility"]["bg"] = "HIDE"
-	E.db["sle"]["quests"]["visibility"]["combat"] = "COLLAPSED"
+	E.db["sle"]["quests"]["visibility"]["combat"] = "FULL"
 	E.db["sle"]["quests"]["visibility"]["enable"] = true
 	-- Raidmanager
 	E.db["sle"]["raidmanager"]["roles"] = true
@@ -335,6 +336,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["sle"]["skins"]["objectiveTracker"]["underlineClass"] = true
 	E.db["sle"]["skins"]["talkinghead"]["hide"] = true
 	--Unitframes
+	E.db["sle"]["unitframes"]["roleicons"] = "Eltruism"
 	E.db["sle"]["unitframes"]["statusTextures"]["auraTexture"] = "Eltreum-Blank"
 	E.db["sle"]["unitframes"]["statusTextures"]["castTexture"] = "Eltreum-Blank"
 	E.db["sle"]["unitframes"]["unit"]["party"]["dead"]["enable"] = true
@@ -369,6 +371,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.private["WT"]["maps"]["minimapButtons"]["spacing"] = 1
 	E.private["WT"]["maps"]["superTracker"]["noLimit"] = true
 	E.private["WT"]["maps"]["worldMap"]["scale"]["enable"] = false
+	E.private["WT"]["misc"]["autoScreenshot"] = false
 	E.private["WT"]["misc"]["lfgList"]["enable"] = false
 	E.private["WT"]["misc"]["lfgList"]["icon"]["pack"] = "DEFAULT"
 	E.private["WT"]["misc"]["moveBlizzardFrames"] = false
@@ -460,7 +463,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.private["WT"]["tooltips"]["objectiveProgress"] = false
 	E.private["WT"]["tooltips"]["progression"]["enable"] = false
 	E.private["WT"]["unitFrames"]["roleIcon"]["roleIconStyle"] = "DEFAULT"
-	
+	E.db["WT"]["social"]["contextMenu"]["enable"] = true
 	E.db["WT"]["announcement"]["combatResurrection"]["onlySourceIsPlayer"] = true
 	E.db["WT"]["announcement"]["combatResurrection"]["text"] = "Casting %spell% on %target%"
 	E.db["WT"]["announcement"]["goodbye"]["enable"] = false
@@ -629,6 +632,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["general"]["minimap"]["resetZoom"]["enable"] = true
 	E.db["general"]["minimap"]["resetZoom"]["time"] = 10
 	E.db["general"]["minimap"]["size"] = 200
+	E.db["general"]["objectiveFrameAutoHideInKeystone"] = false
 	E.db["general"]["objectiveFrameHeight"] = 550
 	E.db["general"]["resurrectSound"] = true
 	E.db["general"]["talkingHeadFrameScale"] = 0.5
@@ -649,8 +653,10 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["bags"]["clearSearchOnClose"] = true
 	E.db["bags"]["countFont"] = "Kimberley"
 	E.db["bags"]["countFontOutline"] = "OUTLINE"
+	E.db["bags"]["countFontSize"] = 12
 	E.db["bags"]["itemInfoFont"] = "Kimberley"
 	E.db["bags"]["itemInfoFontOutline"] = "OUTLINE"
+	E.db["bags"]["itemLevelFontSize"] = 12
 	E.db["bags"]["itemLevelFont"] = "Kimberley"
 	E.db["bags"]["itemLevelFontOutline"] = "OUTLINE"
 	E.db["bags"]["junkDesaturate"] = true
@@ -658,6 +664,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["bags"]["scrapIcon"] = true
 	E.db["bags"]["showBindType"] = true
 	E.db["bags"]["split"]["bagSpacing"] = 7
+	E.db["bags"]["transparent"] = true
 	E.db["bags"]["vendorGrays"]["enable"] = true
 
 
@@ -775,6 +782,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["actionbar"]["bar3"]["inheritGlobalFade"] = true
 	E.db["actionbar"]["bar4"]["inheritGlobalFade"] = true
 	E.db["actionbar"]["bar5"]["inheritGlobalFade"] = true
+	E.db["actionbar"]["barPet"]["inheritGlobalFade"] = true
 	E.db["actionbar"]["bar6"]["inheritGlobalFade"] = false
 	E.db["actionbar"]["bar7"]["inheritGlobalFade"] = false
 	E.db["actionbar"]["bar8"]["inheritGlobalFade"] = false
@@ -1279,7 +1287,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["barPet"]["hotkeyFont"] = "Kimberley"
 		E.db["actionbar"]["barPet"]["hotkeyFontOutline"] = "THICKOUTLINE"
 		E.db["actionbar"]["barPet"]["keepSizeRatio"] = false
-		E.db["actionbar"]["barPet"]["visibility"] = "[vehicleui] hide; [possessbar] hide; [overridebar] hide; [petbattle] hide; [pet,combat][pet,@target, exists]show; hide"
+		E.db["actionbar"]["barPet"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; [@pet,exists] show; hide"
 		E.db["actionbar"]["chargeCooldown"] = true
 		E.db["actionbar"]["colorSwipeNormal"]["a"] = 1
 		E.db["actionbar"]["cooldown"]["mmssThreshold"] = 60
@@ -1289,7 +1297,6 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["extraActionButton"]["clean"] = true
 		E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "Kimberley"
 		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
-
 		E.db["actionbar"]["extraActionButton"]["scale"] = 0.7
 		E.db["actionbar"]["font"] = "Kimberley"
 		E.db["actionbar"]["fontOutline"] = "THICKOUTLINE"
@@ -1375,7 +1382,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "DOWN_RIGHT"
 
 		-- Movers DPS/TANK
-		E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-32,-354"
+		E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-70,-311"
 		E.db["movers"]["AzeriteBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,430,-1"
 		E.db["movers"]["BNETMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-254"
 		E.db["movers"]["BelowMinimapContainerMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-516,157"
@@ -1408,7 +1415,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
 		E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
 		E.db["movers"]["ElvUF_RaidpetMover"] = "TOPLEFT,ElvUIParent,BOTTOMLEFT,4,736"
-		E.db["movers"]["ElvUF_TankMover"] = "BOTTOM,ElvUIParent,BOTTOM,-155,-1"
+		E.db["movers"]["ElvUF_TankMover"] = "BOTTOM,ElvUIParent,BOTTOM,-155,-4"
 		E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,269"
 		E.db["movers"]["ElvUF_TargetMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,299"
 		E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-457,299"
@@ -1421,8 +1428,8 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-411,0"
 		E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,0"
 		E.db["movers"]["LocationMover"] = "TOP,ElvUIParent,TOP,0,-2"
-		E.db["movers"]["LootFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-152"
-		E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-336"
+		E.db["movers"]["LootFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-156"
+		E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-317"
 		E.db["movers"]["MasterExperienceMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,515,-79"
 		E.db["movers"]["MicrobarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-422,0"
 		E.db["movers"]["MinimapButtonAnchor"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-223"
@@ -1434,20 +1441,20 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["movers"]["PetBattleStatusMover"] = "TOP,ElvUIParent,TOP,0,1"
 		E.db["movers"]["PowerWidgetMover"] = "TOP,ElvUIParent,TOP,0,-102"
 		E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,277,1"
-		E.db["movers"]["RaidUtility_Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,540,0"
+		E.db["movers"]["RaidUtility_Mover"] = "TOP,ElvUIParent,TOP,-219,1"
 		E.db["movers"]["ReputationBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,412,-1"
 		E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
 		E.db["movers"]["SLE_DataPanel_1_Mover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,199"
-		E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,109"
+		E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,108"
 		E.db["movers"]["SocialMenuMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-411"
 		E.db["movers"]["SquareMinimapBar"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-198"
 		E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-225"
-		E.db["movers"]["TalkingHeadFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-97"
+		E.db["movers"]["TalkingHeadFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
 		E.db["movers"]["ThreatBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,359"
 		E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
 		E.db["movers"]["TorghastBuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-346"
 		E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,256"
-		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,277,-30"
+		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
 		E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-182,-179"
 		E.db["movers"]["VehicleSeatMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-210,-150"
 		E.db["movers"]["WTCustomEmoteFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,272,-448"
@@ -1458,7 +1465,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["movers"]["WTExtraItemsBar5Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-176"
 		E.db["movers"]["WTMinimapButtonBarAnchor"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-222"
 		E.db["movers"]["WTParagonReputationToastFrameMover"] = "TOP,ElvUIParent,TOP,0,-204"
-		E.db["movers"]["WTRaidMarkersBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,482,-59"
+		E.db["movers"]["WTRaidMarkersBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
 		E.db["movers"]["WTSwitchButtonBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,266,390"
 		E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,0,34"
 		E.db["movers"]["iFilger_CooldownsMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,575,428"
@@ -1571,7 +1578,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["boss"]["fader"]["minAlpha"] = 0.3
 		E.db["unitframe"]["units"]["boss"]["fader"]["playertarget"] = true
 		E.db["unitframe"]["units"]["boss"]["fader"]["range"] = false
-		E.db["unitframe"]["units"]["boss"]["fader"]["smooth"] = 0
+		E.db["unitframe"]["units"]["boss"]["fader"]["smooth"] = 0.25
 		E.db["unitframe"]["units"]["boss"]["health"]["attachTextTo"] = "InfoPanel"
 		E.db["unitframe"]["units"]["boss"]["health"]["position"] = "RIGHT"
 		E.db["unitframe"]["units"]["boss"]["health"]["text_format"] = "[healthcolor][health:current-percent:shortvalue]"
@@ -1688,8 +1695,8 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["party"]["roleIcon"]["attachTo"] = "Frame"
 		E.db["unitframe"]["units"]["party"]["roleIcon"]["position"] = "TOPRIGHT"
 		E.db["unitframe"]["units"]["party"]["roleIcon"]["size"] = 12
-		E.db["unitframe"]["units"]["party"]["roleIcon"]["xOffset"] = 0
-		E.db["unitframe"]["units"]["party"]["roleIcon"]["yOffset"] = 0
+		E.db["unitframe"]["units"]["party"]["roleIcon"]["xOffset"] = -1
+		E.db["unitframe"]["units"]["party"]["roleIcon"]["yOffset"] = -1
 		E.db["unitframe"]["units"]["party"]["summonIcon"]["size"] = 40
 		E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 20
 		E.db["unitframe"]["units"]["party"]["width"] = 200
@@ -1783,7 +1790,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["player"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["player"]["fader"]["enable"] = true
 		E.db["unitframe"]["units"]["player"]["fader"]["minAlpha"] = 0
-		E.db["unitframe"]["units"]["player"]["fader"]["smooth"] = 0
+		E.db["unitframe"]["units"]["player"]["fader"]["smooth"] = 0.25
 		E.db["unitframe"]["units"]["player"]["healPrediction"]["absorbStyle"] = "REVERSED"
 		E.db["unitframe"]["units"]["player"]["healPrediction"]["anchorPoint"] = "CENTER"
 		E.db["unitframe"]["units"]["player"]["health"]["position"] = "RIGHT"
@@ -1793,7 +1800,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["player"]["name"]["xOffset"] = 2
 		E.db["unitframe"]["units"]["player"]["partyIndicator"]["anchorPoint"] = "TOPLEFT"
 		E.db["unitframe"]["units"]["player"]["partyIndicator"]["xOffset"] = 0
-		E.db["unitframe"]["units"]["player"]["partyIndicator"]["yOffset"] = 0
+		E.db["unitframe"]["units"]["player"]["partyIndicator"]["yOffset"] = 5
 		E.db["unitframe"]["units"]["player"]["portrait"]["camDistanceScale"] = 4.2
 		E.db["unitframe"]["units"]["player"]["portrait"]["enable"] = true
 		E.db["unitframe"]["units"]["player"]["portrait"]["fullOverlay"] = true
@@ -1858,8 +1865,8 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["raid"]["resurrectIcon"]["yOffset"] = 2
 		E.db["unitframe"]["units"]["raid"]["roleIcon"]["position"] = "TOPRIGHT"
 		E.db["unitframe"]["units"]["raid"]["roleIcon"]["size"] = 12
-		E.db["unitframe"]["units"]["raid"]["roleIcon"]["xOffset"] = 0
-		E.db["unitframe"]["units"]["raid"]["roleIcon"]["yOffset"] = 0
+		E.db["unitframe"]["units"]["raid"]["roleIcon"]["xOffset"] = -1
+		E.db["unitframe"]["units"]["raid"]["roleIcon"]["yOffset"] = -1
 		E.db["unitframe"]["units"]["raid"]["summonIcon"]["attachToObject"] = "Health"
 		E.db["unitframe"]["units"]["raid"]["summonIcon"]["yOffset"] = -5
 		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 0
@@ -1899,8 +1906,8 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["raid40"]["roleIcon"]["enable"] = true
 		E.db["unitframe"]["units"]["raid40"]["roleIcon"]["position"] = "TOPRIGHT"
 		E.db["unitframe"]["units"]["raid40"]["roleIcon"]["size"] = 12
-		E.db["unitframe"]["units"]["raid40"]["roleIcon"]["xOffset"] = 0
-		E.db["unitframe"]["units"]["raid40"]["roleIcon"]["yOffset"] = 0
+		E.db["unitframe"]["units"]["raid40"]["roleIcon"]["xOffset"] = -1
+		E.db["unitframe"]["units"]["raid40"]["roleIcon"]["yOffset"] = -1
 		E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 0
 		E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid21,noexists] hide;show"
 		E.db["unitframe"]["units"]["raid40"]["width"] = 120
@@ -1965,7 +1972,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["target"]["debuffs"]["enable"] = false
 		E.db["unitframe"]["units"]["target"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["target"]["fader"]["minAlpha"] = 0.25
-		E.db["unitframe"]["units"]["target"]["fader"]["smooth"] = 0
+		E.db["unitframe"]["units"]["target"]["fader"]["smooth"] = 0.25
 		E.db["unitframe"]["units"]["target"]["healPrediction"]["absorbStyle"] = "REVERSED"
 		E.db["unitframe"]["units"]["target"]["healPrediction"]["anchorPoint"] = "CENTER"
 		E.db["unitframe"]["units"]["target"]["health"]["text_format"] = ""
@@ -2558,8 +2565,8 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["raid"]["resurrectIcon"]["attachToObject"] = "Health"
 		E.db["unitframe"]["units"]["raid"]["resurrectIcon"]["size"] = 20
 		E.db["unitframe"]["units"]["raid"]["roleIcon"]["size"] = 12
-		E.db["unitframe"]["units"]["raid"]["roleIcon"]["xOffset"] = 0
-		E.db["unitframe"]["units"]["raid"]["roleIcon"]["yOffset"] = 0
+		E.db["unitframe"]["units"]["raid"]["roleIcon"]["xOffset"] = -1
+		E.db["unitframe"]["units"]["raid"]["roleIcon"]["yOffset"] = -1
 		E.db["unitframe"]["units"]["raid"]["summonIcon"]["attachToObject"] = "Health"
 		E.db["unitframe"]["units"]["raid"]["summonIcon"]["size"] = 20
 		E.db["unitframe"]["units"]["raid"]["threatStyle"] = "HEALTHBORDER"

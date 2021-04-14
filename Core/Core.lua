@@ -11,6 +11,14 @@ end
 -- general alliance walk (legion)
 --/script PlaySoundFile(1417250, "Dialog", true)
 
+-- Role icons, ty a lot Darth Predator for the help!
+local SLE, T, E, L, V, P, G = unpack(ElvUI_SLE)
+SLE.rolePaths["Eltruism"] = {
+	TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga",
+	HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga",
+	DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga"
+}
+
 -- Change classpower background, ty Benik for the great help
 local NP = E:GetModule('NamePlates')
 local function ClassPowerColor()
@@ -19,14 +27,15 @@ end
 hooksecurefunc(NP, 'Initialize', ClassPowerColor)
 
 --Conversion of Time to Arrive weakaura
---Create the frame to display the text by hooking into the SuperTrackedFrame and replacing stuff
-local WaypointTimeToArriveFrame = _G["SuperTrackedFrame"]
+--Create the frame to display the text
+local WaypointTimeToArriveFrame = CreateFrame("Frame", "WaypointTimeToArriveText", UIParent)
 WaypointTimeToArriveFrame.TimeText = WaypointTimeToArriveFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 WaypointTimeToArriveFrame.TimeText:SetJustifyV("TOP")
 WaypointTimeToArriveFrame.TimeText:SetSize(0, 26)
-WaypointTimeToArriveFrame.TimeText:SetPoint("TOP", WaypointTimeToArriveFrame.Icon, "BOTTOM", 0, -25)
+WaypointTimeToArriveFrame.TimeText:SetPoint("TOP", "SuperTrackedFrame", "BOTTOM", 0, -40)
 WaypointTimeToArriveFrame.TimeText:SetTextColor(1, 1, 1)
 WaypointTimeToArriveFrame.TimeText:SetFont("Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\Kimberley.otf", 12)
+WaypointTimeToArriveFrame.TimeText:SetParent("SuperTrackedFrame")
 --Create the function which calculates the time
 function ElvUI_EltreumUI:WaypointTimeToArrive()
 	if E.private.ElvUI_EltreumUI.waypointetasetting.enable then
@@ -62,23 +71,11 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 		end
 	end
 end
--- Function to update the frame from dekallo
+-- Partial Function to update the frame from dekallo
 local function OnUpdateTimer(self, elapsed)
-	self:CheckInitializeNavigationFrame(false)
-	if self.navFrame then
-		self:UpdateClampedState()
-		self:UpdatePosition()
-		self:UpdateArrow()
-		--restore the distance text
-		local waypointdistance = C_Navigation.GetDistance()
-		self.DistanceText:SetShown(not self.isClamped)
-		WaypointTimeToArriveFrame.DistanceText:SetText(IN_GAME_NAVIGATION_RANGE:format(Round(waypointdistance)))
 		ElvUI_EltreumUI:WaypointTimeToArrive(self, elapsed)
-		self:UpdateAlpha()
-	end
 end
 WaypointTimeToArriveFrame:SetScript("OnUpdate", OnUpdateTimer)
-
 
 --- Friendly Nameplate Control
 function ElvUI_EltreumUI:FriendlyNameplates()
@@ -103,95 +100,95 @@ function ElvUI_EltreumUI:RacialAFKmusic()
 		if UnitIsAFK("player") then
 			if race == "Human" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(53210, "Dialog", true)
+					_, soundHandle = PlaySoundFile(53210, "Dialog")
 			end
 			if race == "Gnome" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(369055, "Dialog", true)
+					_, soundHandle = PlaySoundFile(369055, "Dialog")
 			end
 			if race == "NightElf" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(441709, "Dialog", true)
+					_, soundHandle = PlaySoundFile(441709, "Dialog")
 			end
 			if race == "KulTiran" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(1781897, "Dialog", true)
+					_, soundHandle = PlaySoundFile(1781897, "Dialog")
 			end
 			if race == "Dwarf" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(298910, "Dialog", true)
+					_, soundHandle = PlaySoundFile(298910, "Dialog")
 			end
 			if race == "Draenei" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(53284, "Dialog", true)
+					_, soundHandle = PlaySoundFile(53284, "Dialog")
 			end
 			if race == "Worgen" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(441525, "Dialog", true)
+					_, soundHandle = PlaySoundFile(441525, "Dialog")
 			end
 			if race == "VoidElf" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(1864282, "Dialog", true)
+					_, soundHandle = PlaySoundFile(1864282, "Dialog")
 			end
 			if race == "LightforgedDraenei" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(1864285, "Dialog", true)
+					_, soundHandle = PlaySoundFile(1864285, "Dialog")
 			end
 			if race == "DarkIronDwarf" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(441566, "Dialog", true)
+					_, soundHandle = PlaySoundFile(441566, "Dialog")
 			end
 			if race == "Mechagnome" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(3028751, "Dialog", true)
+					_, soundHandle = PlaySoundFile(3028751, "Dialog")
 			end
 			if race == "Orc" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(441713, "Dialog", true)
+					_, soundHandle = PlaySoundFile(441713, "Dialog")
 			end
 			if race == "Undead" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(53217, "Dialog", true)
+					_, soundHandle = PlaySoundFile(53217, "Dialog")
 			end
 			if race == "Tauren" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(441788, "Dialog", true)
+					_, soundHandle = PlaySoundFile(441788, "Dialog")
 			end
 			if race == "Troll" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(371378, "Dialog", true)
+					_, soundHandle = PlaySoundFile(371378, "Dialog")
 			end
 			if race == "Goblin" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(441627, "Dialog", true)
+					_, soundHandle = PlaySoundFile(441627, "Dialog")
 			end
 			if race == "BloodElf" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(53473, "Dialog", true)
+					_, soundHandle = PlaySoundFile(53473, "Dialog")
 			end
 			if race == "Pandaren" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(642246, "Dialog", true)
+					_, soundHandle = PlaySoundFile(642246, "Dialog")
 			end
 			if race == "Nightborne" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(1477339, "Dialog", true)
+					_, soundHandle = PlaySoundFile(1477339, "Dialog")
 			end
 			if race == "HighmountainTauren" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(1417319, "Dialog", true)
+					_, soundHandle = PlaySoundFile(1417319, "Dialog")
 			end
 			if race == "ZandalariTroll" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(2844635, "Dialog", true)
+					_, soundHandle = PlaySoundFile(2844635, "Dialog")
 			end
 			if race == "Vulpera" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(3260632, "Dialog", true)
+					_, soundHandle = PlaySoundFile(3260632, "Dialog")
 			end
 			if race == "MagharOrc" then
 					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(2146630, "Dialog", true)
+					_, soundHandle = PlaySoundFile(2146630, "Dialog")
 			end
 		end
 		--stop music when not afk
@@ -203,7 +200,6 @@ function ElvUI_EltreumUI:RacialAFKmusic()
 		end
 	end
 end
-
 
 --Simpy:
 --it would be far more efficient if you managed the group list table outside
@@ -422,6 +418,7 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('nameplateOccludedAlphaMult', 0)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('autoLootDefault', true)
+	SetCVar('autoQuestWatch', 1)
 	SetCVar('nameplateShowFriendlyMinions', 0)
 	SetCVar('removeChatDelay', 1)
 	SetCVar('nameplateMinAlpha',1)
@@ -434,6 +431,7 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('nameplateOverlapV', 1.1)
 	SetCVar('nameplateSelectedScale', 1)
 	SetCVar('nameplateSelfAlpha', 1)
+	SetCVar('nameplateOtherBottomInset', 0.01)
 	SetCVar('UnitNameEnemyGuardianName', 0)
 	SetCVar('UnitNameEnemyMinionName', 0)
 	SetCVar('UnitNameEnemyPetName', 0)
@@ -458,13 +456,13 @@ function ElvUI_EltreumUI:SetupPrivate()
 	E.private["general"]["glossTex"] = "Eltreum-Blank"
 	E.private["general"]["namefont"] = "Kimberley"
 	E.private["general"]["normTex"] = "Eltreum-Blank"
-	E.private["install_complete"] = "12.23"
+	E.private["install_complete"] = "12.24"
 	E.private["skins"]["parchmentRemoverEnable"] = true
 end
 -- Global DB
 function ElvUI_EltreumUI:SetupGlobal()
 	-- ElvUI Global DB
-	E.global["general"]["WorldMapCoordinates"]["position"] = "BOTTOM"
+	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
 	E.global["general"]["commandBarSetting"] = "DISABLED"
 	E.global["general"]["fadeMapDuration"] = 0.1
 	E.global["general"]["mapAlphaWhenMoving"] = 0.35

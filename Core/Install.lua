@@ -16,7 +16,7 @@ ElvUI_EltreumUI.InstallerData = {
 	Pages = {
 		[1] = function()
 			 -- Welcome Page or SLE/WT warning
-                if (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ElvUI_SLE")) then
+                if (not IsAddOnLoaded("ElvUI_WindTools")) or (not IsAddOnLoaded("ElvUI_SLE")) then
                     PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
                     PluginInstallFrame.Desc1:SetText("Make sure to install Shadow and Light and Windtools before starting this installation process")
                     PluginInstallFrame.Next:Disable()
@@ -135,13 +135,22 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option2:SetText('Copy')
 		end,
 		[12] = function()
+			PluginInstallFrame.SubTitle:SetFormattedText('WeakAuras')
+			PluginInstallFrame.Desc1:SetText('I recommend the following WeakAuras with this UI:')
+			PluginInstallFrame.Desc2:SetText('Nameplate Power Bar and Execute next to Nameplates')
+			PluginInstallFrame.Desc3:SetText('Direct links on the Eltruism options or go here')
+			PluginInstallFrame.Option1:Show()
+			PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://wago.io/p/Eltreum') 	end)
+			PluginInstallFrame.Option1:SetText('Wago.io')
+		end,
+		[13] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('Discord')
 			PluginInstallFrame.Desc1:SetText('Join the Discord if you have any questions or issues')
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/cXfA56gmYW') 	end)
 			PluginInstallFrame.Option1:SetText('Discord')
 		end,
-		[13] = function()
+		[14] = function()
 			PluginInstallFrame.SubTitle:SetText('Installation Complete')
 			PluginInstallFrame.Desc1:SetText('You have completed the installation process, please click "Finished" to reload the UI')
 			PluginInstallFrame.Desc2:SetText('Importance: |c4682B4ffVery High|r')
@@ -162,8 +171,9 @@ ElvUI_EltreumUI.InstallerData = {
 		[9] = 'Combat Text',
 		[10] = 'Immersion',
 		[11] = 'Dynamic Cam',
-		[12] = 'Discord',
-		[13] = 'Installation Complete',
+		[12] = 'Weakauras',
+		[13] = 'Discord',
+		[14] = 'Installation Complete',
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {70/255, 130/255, 180/255},

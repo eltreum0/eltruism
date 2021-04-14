@@ -24,7 +24,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["QuestSounds"]["ObjectiveCompleteID"] = 7194
 	PA.db["QuestSounds"]["ObjectiveProgress"] = "None"
 	PA.db["ReputationReward"]["Enable"] = false
-	PA.db["TorghastBuffs"]["Enable"] = true
+	PA.db["TorghastBuffs"]["Enable"] = false
 	PA.db["TorghastBuffs"]["horizontalSpacing"] = 1
 	PA.db["TorghastBuffs"]["verticalSpacing"] = 1
 	PA.db["TorghastBuffs"]["size"] = 26
