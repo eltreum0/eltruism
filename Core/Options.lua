@@ -432,17 +432,17 @@ function ElvUI_EltreumUI:Configtable()
 							explainer = {
 								order = 1,
 								type = "description",
-								name = 'The memory usage of Eltruism will appear to increase but this is just a reflection of the memory usage of the SuperTrackedFrame.',
+								name = 'The time will be calculated based on player speed and distance',
 							},
 							explainer2 = {
 								order = 2,
 								type = "description",
-								name = '',
+								name = 'If the player is not moving then *** will show up since time cannot be calculated',
 							},
 							explainer3 = {
 								order = 3,
 								type = "description",
-								name = 'The memory value will automatically reset since that is how Blizzard coded it. And the memory usage of Eltruism includes the memory usage of Blizzards SuperTrackedFrame',
+								name = 'If you move away from the waypoint the time will just increase',
 							},
 							explainer4 = {
 								order = 4,
