@@ -535,6 +535,22 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						}
 					},
+					verywidenameplate = {
+						order = 99,
+						type = 'group',
+						inline = true,
+						name = 'Wide nameplate debuffs and buffs',
+						args = {
+							desc = {
+								order = 1,
+								type = 'toggle',
+								name = 'Enable',
+								desc = 'Toogle On and Off',
+								get = function() return E.private.ElvUI_EltreumUI.widenameplate.enable end,
+								set = function(_, value) E.private.ElvUI_EltreumUI.widenameplate.enable = value end,
+							},
+						}
+					},
 				},
 			},
 			stealthOptionssetting = {

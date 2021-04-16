@@ -1,15 +1,42 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
+
+local NP = E:GetModule('NamePlates')
+local UF = E:GetModule('UnitFrames')
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
 	print('|c4682B4ffEltruism|r: '..msg)
 end
 
--- general alliance walk (legion)
+-- general alliance walk (legion) maybe human music idk
 --/script PlaySoundFile(1417250, "Dialog", true)
+
+-- Attempt at non aspect ratio nameplate debuffs similar to plater
+function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
+	if E.private.ElvUI_EltreumUI.widenameplate.enable then
+		if button and button.spellID then
+			if not string.find(unit, "nameplate") then
+				return
+			end
+			local width =  25
+			local height =  18
+			-- this is the worst number of /reload of all time for me
+			button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
+			button:SetWidth(25)
+			button:SetHeight(18)
+			button.count:Point('BOTTOMRIGHT', 0, -3)
+		end
+		UF:PostUpdateAura(unit, button)
+	end
+end
+
+function ElvUI_EltreumUI:Construct_Auras(nameplate)
+	nameplate.Buffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIcon
+	nameplate.Debuffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIcon
+end
+hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
 
 -- Role icons, ty a lot Darth Predator for the help!
 local SLE, T, E, L, V, P, G = unpack(ElvUI_SLE)
@@ -20,7 +47,6 @@ SLE.rolePaths["Eltruism"] = {
 }
 
 -- Change classpower background, ty Benik for the great help
-local NP = E:GetModule('NamePlates')
 local function ClassPowerColor()
     NP.multiplier = 0
 end
@@ -219,16 +245,16 @@ function ElvUI_EltreumUI:RaidDeath()
 				end
 				if destName == name then
 					if E.private.ElvUI_EltreumUI.partyraiddeath.bruh then
-					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Dialog");
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Master");
 					end
 					if E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof then
-					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3", "Dialog");
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3", "Master");
 					end
 					if E.private.ElvUI_EltreumUI.partyraiddeath.shame then
-					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.mp3", "Dialog");
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.mp3", "Master");
 					end
 					if E.private.ElvUI_EltreumUI.partyraiddeath.wow then
-					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.mp3", "Dialog");
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.mp3", "Master");
 					end
 				end
 			end
