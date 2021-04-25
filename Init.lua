@@ -43,6 +43,9 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('SUPER_TRACKING_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_CREATED')
 	ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_DESTROYED')
+	SetCVar('nameplateOtherBottomInset', 0.02)
+	SetCVar('nameplateOtherTopInset', 0.1)
+	SetCVar("cameraDistanceMaxZoomFactor", 2.6)
 end
 
 function ElvUI_EltreumUI:SUPER_TRACKING_CHANGED()

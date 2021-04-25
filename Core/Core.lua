@@ -16,6 +16,8 @@ end
 -- Attempt at non aspect ratio nameplate debuffs similar to plater
 function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
 	if E.private.ElvUI_EltreumUI.widenameplate.enable then
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
 		if button and button.spellID then
 			if not string.find(unit, "nameplate") then
 				return
@@ -29,6 +31,9 @@ function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
 			button.count:Point('BOTTOMRIGHT', 0, -3)
 		end
 		UF:PostUpdateAura(unit, button)
+	else
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 43
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 43
 	end
 end
 
@@ -51,6 +56,12 @@ local function ClassPowerColor()
     NP.multiplier = 0
 end
 hooksecurefunc(NP, 'Initialize', ClassPowerColor)
+
+local function RuneBackground()
+	NP.multiplier = 0
+end
+hooksecurefunc(NP, 'Construct_Runes', RuneBackground)
+
 
 --Conversion of Time to Arrive weakaura
 --Create the frame to display the text
@@ -256,6 +267,9 @@ function ElvUI_EltreumUI:RaidDeath()
 					if E.private.ElvUI_EltreumUI.partyraiddeath.wow then
 					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.mp3", "Master");
 					end
+					if E.private.ElvUI_EltreumUI.partyraiddeath.mario then
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\mariodeath.mp3", "Master");
+					end
 				end
 			end
 		end
@@ -457,7 +471,8 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('nameplateOverlapV', 1.1)
 	SetCVar('nameplateSelectedScale', 1)
 	SetCVar('nameplateSelfAlpha', 1)
-	SetCVar('nameplateOtherBottomInset', 0.01)
+	SetCVar('nameplateOtherBottomInset', 0.02)
+	SetCVar('nameplateOtherTopInset', 0.1)
 	SetCVar('UnitNameEnemyGuardianName', 0)
 	SetCVar('UnitNameEnemyMinionName', 0)
 	SetCVar('UnitNameEnemyPetName', 0)

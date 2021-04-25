@@ -768,7 +768,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["tooltip"]["cursorAnchor"] = true
 	E.db["tooltip"]["font"] = "Kimberley"
 	E.db["tooltip"]["healthBar"]["font"] = "Kimberley"
-	E.db["tooltip"]["healthBar"]["fontOutline"] = "THICKOUTLINE"
+	E.db["tooltip"]["healthBar"]["fontOutline"] = "OUTLINE"
 	E.db["tooltip"]["healthBar"]["height"] = 15
 	E.db["tooltip"]["healthBar"]["statusPosition"] = "TOP"
 	E.db["tooltip"]["itemCount"] = "NONE"
@@ -1172,7 +1172,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["bar3"]["macroTextYOffset"] = 2
 		E.db["actionbar"]["bar3"]["macrotext"] = true
 		E.db["actionbar"]["bar3"]["paging"]["DRUID"] = ""
-		E.db["actionbar"]["bar2"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+		E.db["actionbar"]["bar3"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 		E.db["actionbar"]["bar4"]["alpha"] = 0.75
 		E.db["actionbar"]["bar4"]["backdrop"] = false
 		E.db["actionbar"]["bar4"]["buttonHeight"] = 30

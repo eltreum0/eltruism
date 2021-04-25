@@ -28,19 +28,18 @@ function ElvUI_EltreumUI:GetASProfile(Eltreum_Single)
 		0.4, -- [2]
 		0.4, -- [3]
 		1, -- [4]
-	}	
+	}
 	AS.db["SelectedColor"] = {
 		1, -- [1]
 		1, -- [2]
 		1, -- [3]
 		1, -- [4]
-	}	
+	}
 	AS.db["DBMSkinHalf"] = true
 	AS.db["DBMFontFlag"] = "THICKOUTLINE"
 	AS.db["DBMFont"] = "Kimberley"
 	AS.db["DBMRadarTrans"] = true
 	AS.db["HideChatFrame"] = "ChatFrame3"
 	AS.db["TransparentEmbed"] = true
-	AS.db["EmbedSystemDual"] = false
 	AS.db["EmbedSystemDual"] = true
 end

@@ -19,7 +19,8 @@ function ElvUI_EltreumUI:GetNameplateSCTProfile()
 		["fontFlag"] = "THICKOUTLINE",
 		["font"] = "Kimberley",
 		["strata"] = {
-			["offTarget"] = "LOW",
+			["target"] = "BACKGROUND",
+			["offTarget"] = "BACKGROUND",
 		},
 		["yOffsetIcon"] = 2,
 		["animations"] = {
