@@ -249,11 +249,11 @@ function ElvUI_EltreumUI:RaidDeath()
 	if E.private.ElvUI_EltreumUI.partyraiddeath.enable then
 		local _, eventType, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
 		local name = name
-		if eventType == "UNIT_DIED" then
-			if IsInGroup() then
+		if IsInGroup() then
 				for ii=1, GetNumGroupMembers() do
 					name = GetRaidRosterInfo(ii)
 				end
+		if eventType == "UNIT_DIED" then
 				if destName == name then
 					if E.private.ElvUI_EltreumUI.partyraiddeath.bruh then
 					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Master");

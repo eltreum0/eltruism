@@ -1440,6 +1440,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["movers"]["PetBattleABMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
 		E.db["movers"]["PetBattleStatusMover"] = "TOP,ElvUIParent,TOP,0,1"
 		E.db["movers"]["PowerWidgetMover"] = "TOP,ElvUIParent,TOP,0,-102"
+		E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-50"
 		E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,277,1"
 		E.db["movers"]["RaidUtility_Mover"] = "TOP,ElvUIParent,TOP,-219,1"
 		E.db["movers"]["ReputationBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,412,-1"
