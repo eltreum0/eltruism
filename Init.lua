@@ -45,7 +45,8 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_DESTROYED')
 	SetCVar('nameplateOtherBottomInset', 0.02)
 	SetCVar('nameplateOtherTopInset', 0.1)
-	SetCVar("cameraDistanceMaxZoomFactor", 2.6)
+	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
+	SetCVar('nameplateTargetRadialPosition', 1)
 end
 
 function ElvUI_EltreumUI:SUPER_TRACKING_CHANGED()

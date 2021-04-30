@@ -440,8 +440,8 @@ function ElvUI_EltreumUI:GetDBMProfile()
 	DBM_MinimapIcon = {
 		["hide"] = true,
 	}
-	
-	
+
+
 
 	DBT_AllPersistentOptions = {
 	["Eltreum"] = {
@@ -468,7 +468,7 @@ function ElvUI_EltreumUI:GetDBMProfile()
 			["StartColorUIG"] = 1,
 			["FillUpLargeBars"] = false,
 			["HugeScale"] = 0.899999976158142,
-			["BarYOffset"] = 19,
+			["BarYOffset"] = 3,
 			["StartColorDG"] = 0.301960784313726,
 			["StartColorAR"] = 0.376470588235294,
 			["TextColorR"] = 1,
@@ -516,7 +516,7 @@ function ElvUI_EltreumUI:GetDBMProfile()
 			["KeepBars"] = true,
 			["HugeAlpha"] = 0.800000011920929,
 			["HugeTimerY"] = -229.8011779785156,
-			["HugeBarYOffset"] = 13,
+			["HugeBarYOffset"] = 3,
 			["ClickThrough"] = true,
 			["ColorByType"] = true,
 			["IconLeft"] = true,
@@ -548,12 +548,12 @@ function ElvUI_EltreumUI:GetDBMProfile()
 		},
 	},
 }
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	DBMCastleNathria_AllSavedVars = {
 		[E.mynameRealm] = {
 			["2426"] = {
@@ -4144,14 +4144,14 @@ function ElvUI_EltreumUI:GetDBMProfile()
 		},
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
 	DBM:ApplyProfile("Eltreum")
 end

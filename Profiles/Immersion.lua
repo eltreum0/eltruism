@@ -34,7 +34,4 @@ function ElvUI_EltreumUI:GetImmersionProfile()
 	["onthefly"] = false,
 	["reset"] = "TAB",
 }
-	
-	
-	
 end

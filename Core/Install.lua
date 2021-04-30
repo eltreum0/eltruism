@@ -31,14 +31,6 @@ ElvUI_EltreumUI.InstallerData = {
                 end
 		end,
 		[2] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText('CVars')
-			PluginInstallFrame.Desc1:SetText('Apply Eltruism CVars, which are listed in the Eltruism menu')
-			PluginInstallFrame.Desc2:SetText('Importance: |c4682B4ffOptional|r')
-			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:SetupCVars() end)
-			PluginInstallFrame.Option1:SetText('Setup CVars')
-		end,
-		[3] = function()
 			PluginInstallFrame.SubTitle:SetText('Project Azilroka')
 			PluginInstallFrame.Desc1:SetText('Import settings for Project Azilroka')
 			PluginInstallFrame.Desc2:SetText('Importance: |c4682B4ffOptional|r')
@@ -46,16 +38,31 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() end)
 			PluginInstallFrame.Option1:SetText('Setup Project Azilroka')
 		end,
-		[4] = function()
+		[3] = function()
 			PluginInstallFrame.SubTitle:SetText('Layouts')
 			PluginInstallFrame.Desc1:SetText('Please select the role for your character, which will create a new profile')
 			PluginInstallFrame.Desc2:SetText('Importance: |c4682B4ffVery High|r')
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupStyleFilters() end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupStyleFilters() ElvUI_EltreumUI:SetupCVars() end)
+
 			PluginInstallFrame.Option1:SetText('DPS/Tank')
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupStyleFilters() end)
+			PluginInstallFrame.Option2:SetScript('OnClick', function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupStyleFilters() ElvUI_EltreumUI:SetupCVars() end)
 			PluginInstallFrame.Option2:SetText('Healing')
+		end,
+		[4] = function()
+			PluginInstallFrame.SubTitle:SetText('Fonts')
+			PluginInstallFrame.Desc1:SetText('Please select a font you want to use')
+			PluginInstallFrame.Desc2:SetText('Importance: |c4682B4ffOptional|r')
+			PluginInstallFrame.Option1:Show()
+			PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsKimberley() end)
+			PluginInstallFrame.Option1:SetText('|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\kimberley:14:112:0:1:128:64:0:128:0:16|t')
+			PluginInstallFrame.Option2:Show()
+			PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsExo2() end)
+			PluginInstallFrame.Option2:SetText('|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\exo2:14:112:0:1:128:64:0:128:0:16|t')
+			PluginInstallFrame.Option3:Show()
+			PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsGotham() end)
+			PluginInstallFrame.Option3:SetText('|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\gotham:14:112:0:1:128:64:0:128:0:16|t')
 		end,
 		[5] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('GladiusEx')
@@ -161,9 +168,9 @@ ElvUI_EltreumUI.InstallerData = {
 	},
 	StepTitles = {
 		[1] = 'Welcome',
-		[2] = 'CVars',
-		[3] = 'ProjectAzilroka',
-		[4] = 'Layouts',
+		[2] = 'ProjectAzilroka',
+		[3] = 'Layouts',
+		[4] = 'Fonts',
 		[5] = 'GladiusEx',
 		[6] = 'Details',
 		[7] = 'Boss Mods',

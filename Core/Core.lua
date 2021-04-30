@@ -56,12 +56,10 @@ local function ClassPowerColor()
     NP.multiplier = 0
 end
 hooksecurefunc(NP, 'Initialize', ClassPowerColor)
-
 local function RuneBackground()
 	NP.multiplier = 0
 end
 hooksecurefunc(NP, 'Construct_Runes', RuneBackground)
-
 
 --Conversion of Time to Arrive weakaura
 --Create the frame to display the text
@@ -108,7 +106,7 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 		end
 	end
 end
--- Partial Function to update the frame from dekallo
+
 local function OnUpdateTimer(self, elapsed)
 		ElvUI_EltreumUI:WaypointTimeToArrive(self, elapsed)
 end
@@ -134,98 +132,126 @@ local soundHandle
 function ElvUI_EltreumUI:RacialAFKmusic()
 	if E.private.ElvUI_EltreumUI.afkmusic.enable then
 		local _ , race, _ = UnitRace("player")
+		local alreadyafk = false
 		if UnitIsAFK("player") then
-			if race == "Human" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(53210, "Dialog")
-			end
-			if race == "Gnome" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(369055, "Dialog")
-			end
-			if race == "NightElf" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(441709, "Dialog")
-			end
-			if race == "KulTiran" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(1781897, "Dialog")
-			end
-			if race == "Dwarf" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(298910, "Dialog")
-			end
-			if race == "Draenei" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(53284, "Dialog")
-			end
-			if race == "Worgen" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(441525, "Dialog")
-			end
-			if race == "VoidElf" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(1864282, "Dialog")
-			end
-			if race == "LightforgedDraenei" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(1864285, "Dialog")
-			end
-			if race == "DarkIronDwarf" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(441566, "Dialog")
-			end
-			if race == "Mechagnome" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(3028751, "Dialog")
-			end
-			if race == "Orc" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(441713, "Dialog")
-			end
-			if race == "Undead" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(53217, "Dialog")
-			end
-			if race == "Tauren" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(441788, "Dialog")
-			end
-			if race == "Troll" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(371378, "Dialog")
-			end
-			if race == "Goblin" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(441627, "Dialog")
-			end
-			if race == "BloodElf" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(53473, "Dialog")
-			end
-			if race == "Pandaren" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(642246, "Dialog")
-			end
-			if race == "Nightborne" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(1477339, "Dialog")
-			end
-			if race == "HighmountainTauren" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(1417319, "Dialog")
-			end
-			if race == "ZandalariTroll" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(2844635, "Dialog")
-			end
-			if race == "Vulpera" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(3260632, "Dialog")
-			end
-			if race == "MagharOrc" then
-					SetCVar("Sound_EnableMusic", 0)
-					_, soundHandle = PlaySoundFile(2146630, "Dialog")
+			if alreadyafk == true then
+				return
+			else
+				if race == "Human" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(53210, "Dialog")
+						alreadyafk = true
+				end
+				if race == "Gnome" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(369055, "Dialog")
+						alreadyafk = true
+				end
+				if race == "NightElf" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(441709, "Dialog")
+						alreadyafk = true
+				end
+				if race == "KulTiran" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(1781897, "Dialog")
+						alreadyafk = true
+				end
+				if race == "Dwarf" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(298910, "Dialog")
+						alreadyafk = true
+				end
+				if race == "Draenei" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(53284, "Dialog")
+						alreadyafk = true
+				end
+				if race == "Worgen" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(441525, "Dialog")
+						alreadyafk = true
+				end
+				if race == "VoidElf" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(1864282, "Dialog")
+						alreadyafk = true
+				end
+				if race == "LightforgedDraenei" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(1864285, "Dialog")
+						alreadyafk = true
+				end
+				if race == "DarkIronDwarf" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(441566, "Dialog")
+						alreadyafk = true
+				end
+				if race == "Mechagnome" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(3028751, "Dialog")
+						alreadyafk = true
+				end
+				if race == "Orc" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(441713, "Dialog")
+						alreadyafk = true
+				end
+				if race == "Undead" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(53217, "Dialog")
+						alreadyafk = true
+				end
+				if race == "Tauren" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(441788, "Dialog")
+						alreadyafk = true
+				end
+				if race == "Troll" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(371378, "Dialog")
+						alreadyafk = true
+				end
+				if race == "Goblin" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(441627, "Dialog")
+						alreadyafk = true
+				end
+				if race == "BloodElf" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(53473, "Dialog")
+						alreadyafk = true
+				end
+				if race == "Pandaren" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(642246, "Dialog")
+						alreadyafk = true
+				end
+				if race == "Nightborne" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(1477339, "Dialog")
+						alreadyafk = true
+				end
+				if race == "HighmountainTauren" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(1417319, "Dialog")
+						alreadyafk = true
+				end
+				if race == "ZandalariTroll" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(2844635, "Dialog")
+						alreadyafk = true
+				end
+				if race == "Vulpera" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(3260632, "Dialog")
+						alreadyafk = true
+				end
+				if race == "MagharOrc" then
+						SetCVar("Sound_EnableMusic", 0)
+						_, soundHandle = PlaySoundFile(2146630, "Dialog")
+						alreadyafk = true
+				end
 			end
 		end
 		--stop music when not afk
@@ -233,6 +259,7 @@ function ElvUI_EltreumUI:RacialAFKmusic()
 			if soundHandle then
 			StopSound(soundHandle, 500)
 			SetCVar("Sound_EnableMusic", 1)
+
 			end
 		end
 	end
@@ -249,11 +276,11 @@ function ElvUI_EltreumUI:RaidDeath()
 	if E.private.ElvUI_EltreumUI.partyraiddeath.enable then
 		local _, eventType, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
 		local name = name
-		if IsInGroup() then
-				for ii=1, GetNumGroupMembers() do
-					name = GetRaidRosterInfo(ii)
-				end
 		if eventType == "UNIT_DIED" then
+			if IsInGroup() then
+					for ii=1, GetNumGroupMembers() do
+						name = GetRaidRosterInfo(ii)
+					end
 				if destName == name then
 					if E.private.ElvUI_EltreumUI.partyraiddeath.bruh then
 					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Master");
@@ -335,6 +362,8 @@ function ElvUI_EltreumUI:SkillGlow()
 	local customglow = LibStub("LibButtonGlow-1.0")
 	if E.private.ElvUI_EltreumUI.glow.enable then
 		if E.private.ElvUI_EltreumUI.glow.pixel then
+			--local actionType, actionID = GetPetActionInfo(button:GetAttribute("pet"))
+			-- need to figure out pet AutoCastable, PetActionButton
 			function customglow.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
 					local actionType, actionID = GetActionInfo(button:GetAttribute("action"))
@@ -461,7 +490,7 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('autoQuestWatch', 1)
 	SetCVar('nameplateShowFriendlyMinions', 0)
 	SetCVar('removeChatDelay', 1)
-	SetCVar('nameplateMinAlpha',1)
+	SetCVar('nameplateMinAlpha',0.6)
 	SetCVar('nameplateLargerScale', 1.2)
 	SetCVar('nameplateMaxDistance', 60)
 	SetCVar('nameplateMinScale', 1)
@@ -477,6 +506,7 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('UnitNameEnemyMinionName', 0)
 	SetCVar('UnitNameEnemyPetName', 0)
 	SetCVar('UnitNameEnemyPlayerName', 1)
+	SetCVar('nameplateTargetRadialPosition', 1)
 	SetCVar('UnitNameEnemyTotem', 1)
 
 	ElvUI_EltreumUI:Print('CVars have been set.')
@@ -484,6 +514,9 @@ end
 -- CVars NamePlates
 function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('UnitNameEnemyPlayerName', 1)
+	SetCVar('nameplateOtherBottomInset', 0.02)
+	SetCVar('nameplateOtherTopInset', 0.1)
+	SetCVar('nameplateTargetRadialPosition', 1)
 	ElvUI_EltreumUI:Print('NamePlate CVars have been set.')
 end
 -- Private DB

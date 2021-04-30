@@ -56,7 +56,7 @@ local THANKYOU_STRING = tconcat(THANKYOU, '|n')
 function ElvUI_EltreumUI:Configtable()
 
 	-- Add EltreumUI version on top of the ElvUI config
-	E.Options.name = E.Options.name .. " + " .. ElvUI_EltreumUI.Name .. " ".. ElvUI_EltreumUI.Version
+	E.Options.name = E.Options.name .. " + " .. ElvUI_EltreumUI.Name .. format(" |cffffffff%s|r", ElvUI_EltreumUI.Version)
 	E.Options.args.ElvUI_EltreumUI = {
 		order = 1,
 		type = 'group',
@@ -482,7 +482,7 @@ function ElvUI_EltreumUI:Configtable()
 						order = 1,
 						type = 'group',
 						inline = true,
-						name = 'Fonts, Textures & Skins',
+						name = 'Reset Fonts, Textures & Skins',
 						args = {
 							private = {
 								order = 1,
@@ -490,6 +490,35 @@ function ElvUI_EltreumUI:Configtable()
 								name = 'Reset Media',
 								desc = 'Reset Fonts, Textures, Skins to Eltreum UI defaults.',
 								func = function() ElvUI_EltreumUI:SetupPrivate(); E:StaggeredUpdateAll(nil, true) end,
+								confirm = true,
+							},
+							addagaphereforfonts = {
+							order = 2,
+							type = "description",
+							name = "",
+							},
+							kimberley = {
+								order = 3,
+								type = 'execute',
+								name = 'Set Kimberley as Font',
+								desc = 'Sets the fonts to be Kimberley',
+								func = function() ElvUI_EltreumUI:SetupFontsKimberley(); E:StaggeredUpdateAll(nil, true) end,
+								confirm = true,
+							},
+							exo2 = {
+								order = 4,
+								type = 'execute',
+								name = 'Set Exo2 as Font',
+								desc = 'Sets the fonts to be Exo2',
+								func = function() ElvUI_EltreumUI:SetupFontsExo2(); E:StaggeredUpdateAll(nil, true) end,
+								confirm = true,
+							},
+							gotham = {
+								order = 5,
+								type = 'execute',
+								name = 'Set Gotham as Font',
+								desc = 'Sets the fonts to be Gotham',
+								func = function() ElvUI_EltreumUI:SetupFontsGotham(); E:StaggeredUpdateAll(nil, true) end,
 								confirm = true,
 							},
 						},
