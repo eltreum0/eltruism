@@ -41,7 +41,8 @@ ElvUI_EltreumUI.InstallerData = {
 		[3] = function()
 			PluginInstallFrame.SubTitle:SetText('Layouts')
 			PluginInstallFrame.Desc1:SetText('Please select the role for your character, which will create a new profile')
-			PluginInstallFrame.Desc2:SetText('Importance: |c4682B4ffVery High|r')
+			PluginInstallFrame.Desc2:SetText('This process can take a few seconds')
+			PluginInstallFrame.Desc3:SetText('Importance: |c4682B4ffVery High|r')
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupStyleFilters() ElvUI_EltreumUI:SetupCVars() end)
 
