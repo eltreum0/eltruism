@@ -1836,7 +1836,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 4
 		E.db["unitframe"]["units"]["raid"]["health"]["attachTextTo"] = "InfoPanel"
 		E.db["unitframe"]["units"]["raid"]["health"]["position"] = "TOPRIGHT"
-		E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = "[health:current:shortvalue]"
+		E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["raid"]["health"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["raid"]["height"] = 32
@@ -1845,11 +1845,11 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["raid"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["raid"]["name"]["attachTextTo"] = "InfoPanel"
 		E.db["unitframe"]["units"]["raid"]["name"]["position"] = "LEFT"
-		E.db["unitframe"]["units"]["raid"]["name"]["text_format"] = "[namecolor][name]"
+		E.db["unitframe"]["units"]["raid"]["name"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid"]["name"]["xOffset"] = 2
 		E.db["unitframe"]["units"]["raid"]["numGroups"] = 4
 		E.db["unitframe"]["units"]["raid"]["power"]["enable"] = false
-		E.db["unitframe"]["units"]["raid"]["power"]["text_format"] = "[power:current:shortvalue]"
+		E.db["unitframe"]["units"]["raid"]["power"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid"]["raidRoleIcons"]["yOffset"] = -3
 		E.db["unitframe"]["units"]["raid"]["raidicon"]["attachTo"] = "CENTER"
 		E.db["unitframe"]["units"]["raid"]["raidicon"]["attachToObject"] = "Health"
@@ -2558,6 +2558,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["raid"]["power"]["height"] = 8
 		E.db["unitframe"]["units"]["raid"]["power"]["powerPrediction"] = true
 		E.db["unitframe"]["units"]["raid"]["power"]["yOffset"] = 4
+		E.db["unitframe"]["units"]["raid"]["power"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid"]["raidicon"]["attachTo"] = "TOPRIGHT"
 		E.db["unitframe"]["units"]["raid"]["raidicon"]["attachToObject"] = "Health"
 		E.db["unitframe"]["units"]["raid"]["raidicon"]["size"] = 12
