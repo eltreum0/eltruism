@@ -2,7 +2,6 @@ The sounds used in this addon are under fair use (not the original purpose of th
 
 bruh.mp3 attributed to Headgraphix
 caution.mp3 attributed to Paramount Pictures & Warner Bros Pictures
-error.mp3 attributed to Todd Howard
 itjustworks.mp3 attributed to Todd Howard
 mariodeath.mp3 attributed to Nintendo
 metalgear.ogg attributed to Konami

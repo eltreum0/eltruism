@@ -6,14 +6,10 @@ LSM:Register('font', "Kimberley", [[Interface\AddOns\ElvUI_EltreumUI\Media\Fonts
 LSM:Register("font", "OptimusPrinceps", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\OptimusPrinceps.ttf]])
 LSM:Register("font", "GothamNarrow Black", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GothamNarrow Black.ttf]])
 LSM:Register("font", "GothamXNarrow Black", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GothamXNarrow Black.ttf]])
-LSM:Register("font", "GothamXNarrow Ultra", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GothamXNarrow Ultra.ttf]])
 LSM:Register("font", "Exo2 Extra Bold", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Exo2-ExtraBold.otf]])
-LSM:Register("font", "Candara", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Candara.ttf]])
-LSM:Register("font", "JosefinSans-Regular", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\JosefinSans-Regular.ttf]])
-LSM:Register("font", "JosefinSans-Medium", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\JosefinSans-Medium.ttf]])
-LSM:Register("font", "JosefinSans-SemiBold", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\JosefinSans-SemiBold.ttf]])
 LSM:Register("font", "JosefinSans-Bold", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\JosefinSans-Bold.ttf]])
 LSM:Register("font", "Pricedown", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\pricedown.ttf]])
+LSM:Register("font", "Roboto", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Roboto-Bold.ttf]])
 
 -- Sound
 LSM:Register("sound", "You_Died", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\You_Died.ogg]])
@@ -54,7 +50,19 @@ LSM:Register("statusbar", "Eltreum9pixel", [[Interface\Addons\ElvUI_EltreumUI\Me
 LSM:Register("statusbar", "Eltreum10pixel", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum10pixel.tga]])
 LSM:Register("statusbar", "Eltreum-Blank", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Blank.tga]])
 LSM:Register("statusbar", "Eltreum-Elvui-Norm", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Elvui-Norm.tga]])
-LSM:Register("statusbar", "Eltreum-Diagonal", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Diagonal.tga]])
+LSM:Register("statusbar", "Eltreum-Class-DemonHunter", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-DH.tga]])
+LSM:Register("statusbar", "Eltreum-Class-DeathKnight", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-DK.tga]])
+LSM:Register("statusbar", "Eltreum-Class-Druid", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-DR.tga]])
+LSM:Register("statusbar", "Eltreum-Class-Hunter", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-HT.tga]])
+LSM:Register("statusbar", "Eltreum-Class-Mage", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-MG.tga]])
+LSM:Register("statusbar", "Eltreum-Class-Monk", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-MK.tga]])
+LSM:Register("statusbar", "Eltreum-Class-Paladin", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-PL.tga]])
+LSM:Register("statusbar", "Eltreum-Class-Rogue", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-RG.tga]])
+LSM:Register("statusbar", "Eltreum-Class-Shaman", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-SH.tga]])
+LSM:Register("statusbar", "Eltreum-Class-Warrior", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-WA.tga]])
+LSM:Register("statusbar", "Eltreum-Class-Warlock", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-WL.tga]])
+LSM:Register("statusbar", "Eltreum-Class-Priest", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Blank.tga]])
+
 
 -- Background
 LSM:Register("background", "Eltreum-StealthOverlay", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\StealthOverlay.tga]])

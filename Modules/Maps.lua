@@ -3,8 +3,8 @@ local pairs = pairs
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
 
-
 --Conversion of Time to Arrive weakaura
+
 --Create the frame to display the text
 local WaypointTimeToArriveFrame = CreateFrame("Frame", "WaypointTimeToArriveText", UIParent)
 WaypointTimeToArriveFrame.TimeText = WaypointTimeToArriveFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
@@ -12,8 +12,10 @@ WaypointTimeToArriveFrame.TimeText:SetJustifyV("TOP")
 WaypointTimeToArriveFrame.TimeText:SetSize(0, 26)
 WaypointTimeToArriveFrame.TimeText:SetPoint("TOP", "SuperTrackedFrame", "BOTTOM", 0, -40)
 WaypointTimeToArriveFrame.TimeText:SetTextColor(1, 1, 1)
-WaypointTimeToArriveFrame.TimeText:SetFont("Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\Kimberley.otf", 12)
+--WaypointTimeToArriveFrame.TimeText:SetFont(E.LSM:Fetch('font', db.font), db.size, db.outline)
+--WaypointTimeToArriveFrame.TimeText:SetFont("Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\Kimberley.otf", 12)
 WaypointTimeToArriveFrame.TimeText:SetParent("SuperTrackedFrame")
+
 --Create the function which calculates the time
 function ElvUI_EltreumUI:WaypointTimeToArrive()
 	if E.private.ElvUI_EltreumUI.waypointetasetting.enable then

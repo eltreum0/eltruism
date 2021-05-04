@@ -16,7 +16,7 @@ _G[addon] = Engine;
 ElvUI_EltreumUI.Version = GetAddOnMetadata(addon, 'Version')
 ElvUI_EltreumUI.CreditsList = {}
 ElvUI_EltreumUI.Config = {}
-ElvUI_EltreumUI.Name = '|c4682B4ffEltruism|r'
+ElvUI_EltreumUI.Name = '|cff82B4ffEltruism|r'
 
 function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:NamePlateOptions()

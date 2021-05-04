@@ -1,5 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local IsAddOnLoaded = IsAddOnLoaded
+local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 
 function ElvUI_EltreumUI:SetupLayout(layout)
 	if not E.db.movers then E.db.movers = {} end
@@ -25,7 +26,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.global["sle"]["advanced"]["optionsLimits"] = true
 	E.private["sle"]["install_complete"] = "4.20"
 	-- Private DB
-	E.private["install_complete"] = "12.23"
+	E.private["install_complete"] = "12.24"
 	E.private["sle"]["module"]["blizzmove"]["enable"] = true
 	E.private["sle"]["module"]["screensaver"] = true
 	E.private["sle"]["professions"]["deconButton"]["enable"] = true
@@ -238,28 +239,122 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["sle"]["loot"]["looticons"]["enable"] = true
 	E.db["sle"]["loot"]["looticons"]["size"] = 13
 	--AFK Screensaver
-	E.private["sle"]["module"]["screensaver"] = false
-	E.db["sle"]["screensaver"]["animBounce"] = false
-	E.db["sle"]["screensaver"]["animTime"] = 2
-	E.db["sle"]["screensaver"]["crest"]["size"] = 84
-	E.db["sle"]["screensaver"]["crest"]["yOffset_faction"] = 975
-	E.db["sle"]["screensaver"]["crest"]["yOffset_race"] = 975
-	E.db["sle"]["screensaver"]["date"]["font"] = "Kimberley"
-	E.db["sle"]["screensaver"]["height"] = 120
-	E.db["sle"]["screensaver"]["keydown"] = true
-	E.db["sle"]["screensaver"]["player"]["font"] = "Kimberley"
-	E.db["sle"]["screensaver"]["playermodel"]["anim"] = 47
-	E.db["sle"]["screensaver"]["playermodel"]["distance"] = 5
-	E.db["sle"]["screensaver"]["playermodel"]["enable"] = false
-	E.db["sle"]["screensaver"]["subtitle"]["font"] = "Kimberley"
-	E.db["sle"]["screensaver"]["subtitle"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["screensaver"]["tipThrottle"] = 5
-	E.db["sle"]["screensaver"]["tips"]["font"] = "Kimberley"
-	E.db["sle"]["screensaver"]["tips"]["size"] = 32
-	E.db["sle"]["screensaver"]["title"]["font"] = "Kimberley"
-	E.db["sle"]["screensaver"]["title"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["screensaver"]["title"]["size"] = 32
-	E.db["sle"]["screensaver"]["xpack"] = 100
+
+
+	if sleversioncheck > "4.21" then
+		E.db["sle"]["afk"]["animTime"] = 2
+		E.db["sle"]["afk"]["animType"] = "FadeIn"
+		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["anchorPoint"] = "CENTER"
+		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["attachTo"] = "SL_TopPanel"
+		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["styleOptions"] = "benikui"
+		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["xOffset"] = 184
+		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["anchorPoint"] = "LEFT"
+		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["attachTo"] = "SL_TopPanel"
+		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["height"] = 128
+		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["styleOptions"] = "releaf-flat"
+		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["width"] = 256
+		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["xOffset"] = 0
+		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["yOffset"] = 0
+		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["anchorPoint"] = "BOTTOM"
+		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["inversePoint"] = true
+		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["styleOptions"] = "blizzard"
+		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["yOffset"] = 196
+		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["anchorPoint"] = "TOPLEFT"
+		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["attachTo"] = "SL_BottomPanel"
+		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["styleOptions"] = "releaf-flat"
+		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["xOffset"] = 0
+		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["yOffset"] = 0
+		E.db["sle"]["afk"]["defaultGraphics"]["factionLogo"]["enable"] = false
+		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["anchorPoint"] = "CENTER"
+		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["styleOptions"] = "releaf-flat"
+		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["xOffset"] = -184
+		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["yOffset"] = 0
+		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["anchorPoint"] = "RIGHT"
+		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["attachTo"] = "SL_TopPanel"
+		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["height"] = 128
+		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["width"] = 256
+		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["xOffset"] = 0
+		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["yOffset"] = 0
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "BOTTOM"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_GuildName"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Kimberley"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["inversePoint"] = true
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 76
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "Kimberley"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["size"] = 20
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["xOffset"] = 4
+		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["anchorPoint"] = "TOPRIGHT"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["attachTo"] = "SL_BottomPanel"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["enable"] = false
+		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["font"] = "Kimberley"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["xOffset"] = 20
+		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["yOffset"] = 50
+		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["anchorPoint"] = "BOTTOMLEFT"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["attachTo"] = "SL_PlayerName"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["font"] = "Kimberley"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["size"] = 20
+		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["anchorPoint"] = "RIGHT"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["attachTo"] = "SL_GuildName"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["font"] = "Kimberley"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["size"] = 20
+		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["anchorPoint"] = "TOPRIGHT"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["attachTo"] = "SL_TopPanel"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["enable"] = false
+		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["font"] = "Kimberley"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerLevel"]["enable"] = false
+		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["anchorPoint"] = "TOPLEFT"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["attachTo"] = "SL_BottomPanel"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["font"] = "Kimberley"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["size"] = 20
+		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["xOffset"] = 128
+		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["yOffset"] = -30
+		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["enable"] = false
+		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["size"] = 16
+		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["xOffset"] = 0
+		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["anchorPoint"] = "CENTER"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["attachTo"] = "SL_BottomPanel"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["font"] = "Kimberley"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["size"] = 32
+		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["yOffset"] = 40
+		E.db["sle"]["afk"]["enable"] = true
+		E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
+		E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
+		E.db["sle"]["afk"]["playermodel"]["anim"] = 47
+		E.db["sle"]["afk"]["racialMusic"] = false
+	else
+		E.private["sle"]["module"]["screensaver"] = false
+		E.db["sle"]["screensaver"]["animBounce"] = false
+		E.db["sle"]["screensaver"]["animTime"] = 2
+		E.db["sle"]["screensaver"]["crest"]["size"] = 84
+		E.db["sle"]["screensaver"]["crest"]["yOffset_faction"] = 975
+		E.db["sle"]["screensaver"]["crest"]["yOffset_race"] = 975
+		E.db["sle"]["screensaver"]["date"]["font"] = "Kimberley"
+		E.db["sle"]["screensaver"]["height"] = 120
+		E.db["sle"]["screensaver"]["keydown"] = true
+		E.db["sle"]["screensaver"]["player"]["font"] = "Kimberley"
+		E.db["sle"]["screensaver"]["playermodel"]["anim"] = 47
+		E.db["sle"]["screensaver"]["playermodel"]["distance"] = 5
+		E.db["sle"]["screensaver"]["playermodel"]["enable"] = false
+		E.db["sle"]["screensaver"]["subtitle"]["font"] = "Kimberley"
+		E.db["sle"]["screensaver"]["subtitle"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["screensaver"]["tipThrottle"] = 5
+		E.db["sle"]["screensaver"]["tips"]["font"] = "Kimberley"
+		E.db["sle"]["screensaver"]["tips"]["size"] = 32
+		E.db["sle"]["screensaver"]["title"]["font"] = "Kimberley"
+		E.db["sle"]["screensaver"]["title"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["screensaver"]["title"]["size"] = 32
+		E.db["sle"]["screensaver"]["xpack"] = 100
+	end
+
+
+
+
+
+
+
+
 	-- Shadows
 	E.db["sle"]["shadows"]["actionbars"]["bar1"]["buttons"] = true
 	E.db["sle"]["shadows"]["actionbars"]["bar1"]["size"] = 2

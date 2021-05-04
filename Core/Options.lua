@@ -7,7 +7,7 @@ local ReloadUI = ReloadUI
 
 -- Author list
 local AUTHORS = {
-	'|c4682B4ffEltreum|r',
+	'|cff82B4ffEltreum|r',
 }
 
 -- Credits and Thank yous list
@@ -55,7 +55,6 @@ local THANKYOU_STRING = tconcat(THANKYOU, '|n')
 
 -- EltreumUI ingame options
 function ElvUI_EltreumUI:Configtable()
-
 	-- Add EltreumUI version on top of the ElvUI config
 	E.Options.name = E.Options.name .. " + " .. ElvUI_EltreumUI.Name .. format(" |cffffffff%s|r", ElvUI_EltreumUI.Version)
 	E.Options.args.ElvUI_EltreumUI = {
@@ -79,7 +78,7 @@ function ElvUI_EltreumUI:Configtable()
 						order = 1,
 						type = 'group',
 						inline = true,
-						name = 'Reinstall the plugin',
+						name = 'Reinstall the plugin to reset settings',
 						args = {
 							generalVars = {
 								order = 1,
@@ -231,7 +230,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
-			procglow = {
+			actionbars = {
 				type = 'group',
 				name = 'Custom Glow',
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\customglow',
@@ -239,7 +238,7 @@ function ElvUI_EltreumUI:Configtable()
 				args = {
 					glow = {
 						type = 'group',
-						name = 'Toggle a Custom Glow',
+						name = 'Replace Blizzards Default Glow with a Custom class colored Glow',
 						guiInline = true,
 						order = 10,
 						args = {
@@ -328,7 +327,7 @@ function ElvUI_EltreumUI:Configtable()
 						order = 2,
 						type = 'group',
 						inline = true,
-						name = 'General CVars',
+						name = 'It will set these CVars:',
 						args = {
 							cvars = {
 								order = 1,
@@ -460,7 +459,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
-			waypointsetting = {
+			maps = {
 				type = 'group',
 				name = 'Maps',
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\map',
@@ -534,31 +533,39 @@ function ElvUI_EltreumUI:Configtable()
 								order = 3,
 								type = 'execute',
 								name = 'Set Kimberley as Font',
-								desc = 'Sets the fonts to be Kimberley',
+								desc = 'This will set all ElvUI fonts as Kimberley',
 								func = function() ElvUI_EltreumUI:SetupFontsKimberley(); E:StaggeredUpdateAll(nil, true) end,
 								confirm = true,
 							},
 							exo2 = {
-								order = 4,
+								order = 3,
 								type = 'execute',
 								name = 'Set Exo2 as Font',
-								desc = 'Sets the fonts to be Exo2',
+								desc = 'This will set all ElvUI fonts as Exo2',
 								func = function() ElvUI_EltreumUI:SetupFontsExo2(); E:StaggeredUpdateAll(nil, true) end,
 								confirm = true,
 							},
 							gotham = {
-								order = 5,
+								order = 3,
 								type = 'execute',
 								name = 'Set Gotham as Font',
-								desc = 'Sets the fonts to be Gotham',
+								desc = 'This will set all ElvUI fonts as Gotham',
 								func = function() ElvUI_EltreumUI:SetupFontsGotham(); E:StaggeredUpdateAll(nil, true) end,
+								confirm = true,
+							},
+							roboto = {
+								order = 3,
+								type = 'execute',
+								name = 'Set Roboto as Font',
+								desc = 'This will set all ElvUI fonts as Roboto',
+								func = function() ElvUI_EltreumUI:SetupFontsRoboto(); E:StaggeredUpdateAll(nil, true) end,
 								confirm = true,
 							},
 						},
 					},
 				},
 			},
-			nameplatescolors = {
+			nameplates = {
 				type = 'group',
 				name = 'Nameplate',
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\nameplate',
@@ -629,7 +636,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
-			stealthOptionssetting = {
+			stealth = {
 				type = 'group',
 				name = 'Stealth Vignette',
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\stealth',
@@ -655,7 +662,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
-			racialafkmusic = {
+			afk = {
 				type = 'group',
 				name = 'AFK',
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\afk',
