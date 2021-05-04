@@ -6,4 +6,5 @@
 	<Script file='Nameplates.lua'/>
 	<Script file='Stealth.lua'/>
 	<Script file='partyraid.lua'/>
+	<Script file='Quests.lua'/>
 </Ui>

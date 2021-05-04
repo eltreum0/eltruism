@@ -137,6 +137,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["plateSize"]["friendlyHeight"] = 10
 		E.db["nameplates"]["plateSize"]["friendlyWidth"] = 140
 		E.db["nameplates"]["smoothbars"] = true
+		E.db["nameplates"]["statusbar"] = "Eltreum-Blank"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["anchorPoint"] = "TOPRIGHT"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFontSize"] = 10

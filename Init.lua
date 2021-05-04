@@ -41,6 +41,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('SUPER_TRACKING_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_CREATED')
 	ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_DESTROYED')
+	--ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_DISABLED')
 	SetCVar('nameplateOtherBottomInset', 0.02)
 	SetCVar('nameplateOtherTopInset', 0.1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
@@ -48,6 +49,10 @@ function ElvUI_EltreumUI:Initialize()
 end
 
 function ElvUI_EltreumUI:ENCOUNTER_START()
+	ElvUI_EltreumUI:QuestEncounter()
+end
+
+function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED()
 	ElvUI_EltreumUI:QuestEncounter()
 end
 

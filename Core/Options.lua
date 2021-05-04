@@ -445,7 +445,7 @@ function ElvUI_EltreumUI:Configtable()
 						order = 1,
 						type = 'group',
 						inline = true,
-						name = 'Collapse Quests during Raid Encounters',
+						name = 'Collapse Quests during Encounters/Boss Fights',
 						get = function(info) return E.private.ElvUI_EltreumUI.questsettings[info[#info]] end,
 						set = function(info, value) E.private.ElvUI_EltreumUI.questsettings[info[#info]] = value end,
 						args = {

@@ -241,7 +241,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	--AFK Screensaver
 
 
-	if sleversioncheck > "4.21" then
+	if sleversioncheck >= "4.22" then
 		E.db["sle"]["afk"]["animTime"] = 2
 		E.db["sle"]["afk"]["animType"] = "FadeIn"
 		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["anchorPoint"] = "CENTER"
@@ -1645,6 +1645,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["fontOutline"] = "OUTLINE"
 		E.db["unitframe"]["smartRaidFilter"] = false
 		E.db["unitframe"]["smoothbars"] = true
+		E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
 		E.db["unitframe"]["targetSound"] = true
 
 		--Dps units
@@ -2099,6 +2100,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["target"]["raidicon"]["xOffset"] = -25
 		E.db["unitframe"]["units"]["target"]["raidicon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["target"]["smartAuraPosition"] = "DEBUFFS_ON_BUFFS"
+		E.db["unitframe"]["units"]["target"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["targettarget"]["debuffs"]["enable"] = false
 		E.db["unitframe"]["units"]["targettarget"]["health"]["position"] = "LEFT"

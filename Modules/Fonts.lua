@@ -74,7 +74,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.db["sle"]["nameplates"]["targetcount"]["font"] = "Kimberley"
 		E.db["sle"]["nameplates"]["threat"]["font"] = "Kimberley"
 
-	if sleversioncheck > "4.21" then
+	if sleversioncheck >= "4.22" then
 		E.db["sle"]["afk"]["animTime"] = 2
 		E.db["sle"]["afk"]["animType"] = "FadeIn"
 		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["anchorPoint"] = "CENTER"
@@ -632,7 +632,7 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.db["sle"]["nameplates"]["targetcount"]["font"] = "Exo2 Extra Bold"
 		E.db["sle"]["nameplates"]["threat"]["font"] = "Exo2 Extra Bold"
 
-	if sleversioncheck > "4.21" then
+	if sleversioncheck >= "4.22" then
 		E.db["sle"]["afk"]["animTime"] = 2
 		E.db["sle"]["afk"]["animType"] = "FadeIn"
 		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["anchorPoint"] = "CENTER"
@@ -1187,7 +1187,7 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		E.db["sle"]["nameplates"]["targetcount"]["font"] = "GothamNarrow Black"
 		E.db["sle"]["nameplates"]["threat"]["font"] = "GothamNarrow Black"
 
-	if sleversioncheck > "4.21" then
+	if sleversioncheck >= "4.22" then
 		E.db["sle"]["afk"]["animTime"] = 2
 		E.db["sle"]["afk"]["animType"] = "FadeIn"
 		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["anchorPoint"] = "CENTER"
@@ -1743,7 +1743,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		E.db["sle"]["nameplates"]["targetcount"]["font"] = "Roboto"
 		E.db["sle"]["nameplates"]["threat"]["font"] = "Roboto"
 
-	if sleversioncheck > "4.21" then
+	if sleversioncheck >= "4.22" then
 		E.db["sle"]["afk"]["animTime"] = 2
 		E.db["sle"]["afk"]["animType"] = "FadeIn"
 		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["anchorPoint"] = "CENTER"

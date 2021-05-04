@@ -1,17 +1,10 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
+
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
 	print('|cff82B4ffEltruism|r: '..msg)
-end
-
---attempt at collapsing objective frame during encounters
-function ElvUI_EltreumUI:QuestEncounter()
-	local inInstance, instanceType = IsInInstance()
-	if instanceType == "raid" or instanceType == "party" then
-		ObjectiveTracker_Collapse()
-	end
 end
 
 -- Role icons, ty a lot Darth Predator for the help!
