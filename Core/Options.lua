@@ -575,14 +575,14 @@ function ElvUI_EltreumUI:Configtable()
 						order = 1,
 						type = 'group',
 						inline = true,
-						name = 'Toggle Colored Class Borders & Glow',
+						name = 'Class Colored Nameplate Options',
 						get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions[info[#info]] end,
 						set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions[info[#info]] = value; E:StaticPopup_Show('PRIVATE_RL') end,
 						args = {
 							classhover = {
 								order = 1,
 								type = 'toggle',
-								name = 'Class color hover',
+								name = 'Hover',
 								desc = 'Change the color of the hover to be class colored',
 								get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow end,
 								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow = value; E:StaticPopup_Show('PRIVATE_RL') end,
@@ -590,7 +590,7 @@ function ElvUI_EltreumUI:Configtable()
 							classborder = {
 								order = 2,
 								type = 'toggle',
-								name = 'Class color border',
+								name = 'Border',
 								desc = 'Change the color of the border glow to be class bordered in nameplates',
 								get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate end,
 								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate = value; E:StaticPopup_Show('PRIVATE_RL') end,
@@ -598,7 +598,7 @@ function ElvUI_EltreumUI:Configtable()
 							classtexture = {
 								order = 2,
 								type = 'toggle',
-								name = 'Class Texture for Target',
+								name = 'Target Texture',
 								desc = 'Change the texture of the nameplate to be a class gradient',
 								get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture end,
 								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = value; E:StaticPopup_Show('PRIVATE_RL') end,
