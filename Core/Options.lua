@@ -84,7 +84,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 1,
 								type = 'execute',
 								name = 'Install',
-								func = function() E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData); E:ToggleOptionsUI(); end,
+								func = function() E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData) E:ToggleOptionsUI() end,
 							},
 						},
 					},
@@ -127,7 +127,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = '|cff16C3F2AddOn|r|cFFFFFFFFSkins|r',
 								desc = 'Reset to Eltreum UI defaults.',
-								func = function() ElvUI_EltreumUI:AddonSetupAS(); ReloadUI(); end,
+								func = function() ElvUI_EltreumUI:AddonSetupAS() ReloadUI() end,
 								confirm = true,
 							},
 							projectazilroka = {
@@ -135,7 +135,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = '|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r',
 								desc = 'Reset to Eltreum UI defaults.',
-								func = function() ElvUI_EltreumUI:AddonSetupPA(); ReloadUI(); end,
+								func = function() ElvUI_EltreumUI:AddonSetupPA() ReloadUI() end,
 								confirm = true,
 							},
 						},
@@ -151,7 +151,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'BigWigs',
 								desc = 'Reset to Eltreum UI defaults.',
-								func = function() ElvUI_EltreumUI:AddonSetupBW(); ReloadUI(); end,
+								func = function() ElvUI_EltreumUI:AddonSetupBW() ReloadUI() end,
 								confirm = true,
 							},
 							dbm = {
@@ -159,7 +159,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'DBM',
 								desc = 'Reset to Eltreum UI defaults.',
-								func = function() ElvUI_EltreumUI:AddonSetupDBM(); ReloadUI(); end,
+								func = function() ElvUI_EltreumUI:AddonSetupDBM() ReloadUI() end,
 								confirm = true,
 							},
 						},
@@ -175,7 +175,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Dynamic Cam',
 								desc = 'Reset to Eltreum UI defaults.',
-								func = function() ElvUI_EltreumUI:AddonSetupDynamicCam(); ReloadUI(); end,
+								func = function() ElvUI_EltreumUI:AddonSetupDynamicCam() ReloadUI() end,
 								confirm = true,
 							},
 							immersion = {
@@ -183,7 +183,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Immersion',
 								desc = 'Reset to Eltreum UI defaults.',
-								func = function() ElvUI_EltreumUI:AddonSetupImmersion(); ReloadUI(); end,
+								func = function() ElvUI_EltreumUI:AddonSetupImmersion() ReloadUI() end,
 								confirm = true,
 							},
 							gladiusex = {
@@ -191,7 +191,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Gladius Ex',
 								desc = 'Reset to Eltreum UI defaults.',
-								func = function() ElvUI_EltreumUI:AddonSetupGladiusEx(); ReloadUI(); end,
+								func = function() ElvUI_EltreumUI:AddonSetupGladiusEx() ReloadUI() end,
 								confirm = true,
 							},
 							exorsus = {
@@ -199,7 +199,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Exorsus Raid Tools',
 								desc = 'Reset to Eltreum UI defaults.',
-								func = function() ElvUI_EltreumUI:AddonSetupExRT(); ReloadUI(); end,
+								func = function() ElvUI_EltreumUI:AddonSetupExRT() ReloadUI() end,
 								confirm = true,
 							},
 							nameplatesct = {
@@ -207,7 +207,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Nameplate Scrolling Combat Text',
 								desc = 'Reset to Eltreum UI defaults.',
-								func = function() ElvUI_EltreumUI:AddonSetupNameplateSCT(); ReloadUI(); end,
+								func = function() ElvUI_EltreumUI:AddonSetupNameplateSCT() ReloadUI() end,
 								confirm = true,
 							},
 							fct = {
@@ -215,7 +215,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Floating Combat Text',
 								desc = 'Reset to Eltreum UI defaults.',
-								func = function() ElvUI_EltreumUI:AddonSetupFCT(); ReloadUI(); end,
+								func = function() ElvUI_EltreumUI:AddonSetupFCT() ReloadUI() end,
 								confirm = true,
 							},
 							details = {
@@ -223,7 +223,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Details',
 								desc = 'Reset to Eltreum UI defaults.',
-								func = function() ElvUI_EltreumUI:AddonSetupDT(); ReloadUI(); end,
+								func = function() ElvUI_EltreumUI:AddonSetupDT() ReloadUI() end,
 								confirm = true,
 							},
 						},
@@ -247,7 +247,7 @@ function ElvUI_EltreumUI:Configtable()
 							name = 'Enable',
 							order = 1,
 							get = function() return E.private.ElvUI_EltreumUI.glow.enable end,
-							set = function(_, value) E.private.ElvUI_EltreumUI.glow.enable = value; E:StaticPopup_Show('PRIVATE_RL') end,
+							set = function(_, value) E.private.ElvUI_EltreumUI.glow.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},
 							addagaphere = {
 							order = 2,
@@ -276,7 +276,7 @@ function ElvUI_EltreumUI:Configtable()
 										desc = 'Adds an autocast style glow using class color',
 										disabled = function() return not E.private.ElvUI_EltreumUI.glow.enable or E.private.ElvUI_EltreumUI.glow.pixel or E.private.ElvUI_EltreumUI.glow.blizzard end,
 										get = function(info) return E.private.ElvUI_EltreumUI.glow.autocast end,
-										set = function(info, value) E.private.ElvUI_EltreumUI.glow.autocast = value; E:StaticPopup_Show('PRIVATE_RL') end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.glow.autocast = value E:StaticPopup_Show('PRIVATE_RL') end,
 									},
 									pixel = {
 										type = 'toggle',
@@ -285,7 +285,7 @@ function ElvUI_EltreumUI:Configtable()
 										desc = 'Adds a pixel style glow using class color',
 										disabled = function() return not E.private.ElvUI_EltreumUI.glow.enable or E.private.ElvUI_EltreumUI.glow.autocast or E.private.ElvUI_EltreumUI.glow.blizzard end,
 										get = function(info) return E.private.ElvUI_EltreumUI.glow.pixel end,
-										set = function(info, value) E.private.ElvUI_EltreumUI.glow.pixel = value; E:StaticPopup_Show('PRIVATE_RL') end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.glow.pixel = value E:StaticPopup_Show('PRIVATE_RL') end,
 									},
 									blizzard = {
 										type = 'toggle',
@@ -294,7 +294,7 @@ function ElvUI_EltreumUI:Configtable()
 										desc = 'Adds a Blizzard style glow using class color',
 										disabled = function() return not E.private.ElvUI_EltreumUI.glow.enable or E.private.ElvUI_EltreumUI.glow.autocast or E.private.ElvUI_EltreumUI.glow.pixel end,
 										get = function(info) return E.private.ElvUI_EltreumUI.glow.blizzard end,
-										set = function(info, value) E.private.ElvUI_EltreumUI.glow.blizzard = value; E:StaticPopup_Show('PRIVATE_RL') end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.glow.blizzard = value E:StaticPopup_Show('PRIVATE_RL') end,
 									},
 								},
 							},
@@ -318,7 +318,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 1,
 								type = 'execute',
 								name = 'General CVars',
-								func = function() ElvUI_EltreumUI:SetupCVars(); end,
+								func = function() ElvUI_EltreumUI:SetupCVars() end,
 								confirm = true,
 							},
 						},
@@ -384,7 +384,7 @@ function ElvUI_EltreumUI:Configtable()
 										order = 5,
 										disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
 										get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.bruh end,
-										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.bruh = value; PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Dialog") end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.bruh = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Dialog") end,
 									},
 									robloxoof = {
 										type = 'toggle',
@@ -392,7 +392,7 @@ function ElvUI_EltreumUI:Configtable()
 										order = 6,
 										disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
 										get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof end,
-										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof = value; PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3", "Dialog") end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3", "Dialog") end,
 									},
 									yetanothergap2 = {
 									order = 8,
@@ -405,7 +405,7 @@ function ElvUI_EltreumUI:Configtable()
 										order = 13,
 										disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
 										get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.shame end,
-										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.shame = value; PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.mp3", "Dialog") end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.shame = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.mp3", "Dialog") end,
 									},
 									wowsound = {
 										type = 'toggle',
@@ -413,7 +413,7 @@ function ElvUI_EltreumUI:Configtable()
 										order = 14,
 										disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
 										get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.wow end,
-										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.wow = value; PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.mp3", "Dialog") end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.wow = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.mp3", "Dialog") end,
 									},
 									yetanothergap3 = {
 									order = 15,
@@ -426,7 +426,7 @@ function ElvUI_EltreumUI:Configtable()
 										order = 14,
 										disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow end,
 										get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
-										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.mario = value; PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\mariodeath.mp3", "Dialog") end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.mario = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\mariodeath.mp3", "Dialog") end,
 									},
 
 								},
@@ -471,7 +471,7 @@ function ElvUI_EltreumUI:Configtable()
 						inline = true,
 						name = 'Add a time to arrive below the waypoint',
 						get = function(info) return E.private.ElvUI_EltreumUI.waypointetasetting[info[#info]] end,
-						set = function(info, value) E.private.ElvUI_EltreumUI.waypointetasetting[info[#info]] = value; E:StaticPopup_Show('PRIVATE_RL') end,
+						set = function(info, value) E.private.ElvUI_EltreumUI.waypointetasetting[info[#info]] = value E:StaticPopup_Show('PRIVATE_RL') end,
 						args = {
 							explainer = {
 								order = 1,
@@ -521,7 +521,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Reset Media',
 								desc = 'Reset Fonts, Textures, Skins to Eltreum UI defaults.',
-								func = function() ElvUI_EltreumUI:SetupPrivate(); E:StaggeredUpdateAll(nil, true) end,
+								func = function() ElvUI_EltreumUI:SetupPrivate() E:StaggeredUpdateAll(nil, true) end,
 								confirm = true,
 							},
 							addagaphereforfonts = {
@@ -534,7 +534,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Set Kimberley as Font',
 								desc = 'This will set all ElvUI fonts as Kimberley',
-								func = function() ElvUI_EltreumUI:SetupFontsKimberley(); E:StaggeredUpdateAll(nil, true) end,
+								func = function() ElvUI_EltreumUI:SetupFontsKimberley() E:StaggeredUpdateAll(nil, true) end,
 								confirm = true,
 							},
 							exo2 = {
@@ -542,7 +542,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Set Exo2 as Font',
 								desc = 'This will set all ElvUI fonts as Exo2',
-								func = function() ElvUI_EltreumUI:SetupFontsExo2(); E:StaggeredUpdateAll(nil, true) end,
+								func = function() ElvUI_EltreumUI:SetupFontsExo2() E:StaggeredUpdateAll(nil, true) end,
 								confirm = true,
 							},
 							gotham = {
@@ -550,7 +550,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Set Gotham as Font',
 								desc = 'This will set all ElvUI fonts as Gotham',
-								func = function() ElvUI_EltreumUI:SetupFontsGotham(); E:StaggeredUpdateAll(nil, true) end,
+								func = function() ElvUI_EltreumUI:SetupFontsGotham() E:StaggeredUpdateAll(nil, true) end,
 								confirm = true,
 							},
 							roboto = {
@@ -558,7 +558,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Set Roboto as Font',
 								desc = 'This will set all ElvUI fonts as Roboto',
-								func = function() ElvUI_EltreumUI:SetupFontsRoboto(); E:StaggeredUpdateAll(nil, true) end,
+								func = function() ElvUI_EltreumUI:SetupFontsRoboto() E:StaggeredUpdateAll(nil, true) end,
 								confirm = true,
 							},
 						},
@@ -577,7 +577,7 @@ function ElvUI_EltreumUI:Configtable()
 						inline = true,
 						name = 'Class Colored Nameplate Options',
 						get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions[info[#info]] end,
-						set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions[info[#info]] = value; E:StaticPopup_Show('PRIVATE_RL') end,
+						set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions[info[#info]] = value E:StaticPopup_Show('PRIVATE_RL') end,
 						args = {
 							classhover = {
 								order = 1,
@@ -585,7 +585,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = 'Hover',
 								desc = 'Change the color of the hover to be class colored',
 								get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow end,
-								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow = value; E:StaticPopup_Show('PRIVATE_RL') end,
+								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},
 							classborder = {
 								order = 2,
@@ -593,7 +593,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = 'Border',
 								desc = 'Change the color of the border glow to be class bordered in nameplates',
 								get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate end,
-								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate = value; E:StaticPopup_Show('PRIVATE_RL') end,
+								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},
 							classtexture = {
 								order = 2,
@@ -601,7 +601,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = 'Target Texture',
 								desc = 'Change the texture of the nameplate to be a class gradient',
 								get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture end,
-								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = value; E:StaticPopup_Show('PRIVATE_RL') end,
+								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},
 						},
 					},
@@ -638,7 +638,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = 'Enable',
 								desc = 'Toogle On and Off',
 								get = function() return E.private.ElvUI_EltreumUI.widenameplate.enable end,
-								set = function(_, value) E.private.ElvUI_EltreumUI.widenameplate.enable = value; E:StaticPopup_Show('PRIVATE_RL') end,
+								set = function(_, value) E.private.ElvUI_EltreumUI.widenameplate.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},
 						}
 					},
@@ -656,7 +656,7 @@ function ElvUI_EltreumUI:Configtable()
 						inline = true,
 						name = 'Toggle a Stealth Effect',
 						get = function(info) return E.private.ElvUI_EltreumUI.stealthOptions[info[#info]] end,
-						set = function(info, value) E.private.ElvUI_EltreumUI.stealthOptions[info[#info]] = value; E:StaticPopup_Show('PRIVATE_RL') end,
+						set = function(info, value) E.private.ElvUI_EltreumUI.stealthOptions[info[#info]] = value E:StaticPopup_Show('PRIVATE_RL') end,
 						args = {
 							stealthoptions = {
 								order = 1,
@@ -664,7 +664,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = 'Enable',
 								desc = 'Add a vignette while in stealth',
 								get = function(info) return E.private.ElvUI_EltreumUI.stealthOptions.stealtheffect end,
-								set = function(info, value) E.private.ElvUI_EltreumUI.stealthOptions.stealtheffect = value; E:StaticPopup_Show('PRIVATE_RL') end,
+								set = function(info, value) E.private.ElvUI_EltreumUI.stealthOptions.stealtheffect = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},
 						},
 					},

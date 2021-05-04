@@ -26,17 +26,17 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 		if speed > 0 then
 			local eta= math.abs(distance / speed)
 			if eta > 600 then
-				minutes = string.format("%02.f", math.floor(eta/60 ));
-				seconds = string.format("%02.f", math.floor(eta - minutes *60));
+				minutes = string.format("%02.f", math.floor(eta/60 ))
+				seconds = string.format("%02.f", math.floor(eta - minutes *60))
 				else if eta < 600 and eta > 10 then
-					minutes = string.format("%01.f", math.floor(eta/60));
-					seconds = string.format("%02.f", math.floor(eta - minutes *60));
+					minutes = string.format("%01.f", math.floor(eta/60))
+					seconds = string.format("%02.f", math.floor(eta - minutes *60))
 					else if eta < 10 then
-						minutes = string.format("%01.f", math.floor(eta/60));
-						seconds = string.format("%1.d", math.floor(eta - minutes *60));
+						minutes = string.format("%01.f", math.floor(eta/60))
+						seconds = string.format("%1.d", math.floor(eta - minutes *60))
 						else
-						minutes = string.format("%02.f", math.floor(eta/60));
-						seconds = string.format("%02.f", math.floor(eta - minutes *60));
+						minutes = string.format("%02.f", math.floor(eta/60))
+						seconds = string.format("%02.f", math.floor(eta - minutes *60))
 					end
 				end
 			end

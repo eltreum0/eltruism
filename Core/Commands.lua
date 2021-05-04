@@ -7,7 +7,7 @@ function ElvUI_EltreumUI:RerunInstaller()
 	if not List.REINSTALLER then
 		_G.SLASH_REINSTALLER1 = '/eltruism'
 		List.REINSTALLER = function()
-			E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData);
+			E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 		end
 	end
 end

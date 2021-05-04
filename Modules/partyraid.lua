@@ -21,19 +21,19 @@ function ElvUI_EltreumUI:RaidDeath()
 					end
 				if destName == name then
 					if E.private.ElvUI_EltreumUI.partyraiddeath.bruh then
-					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Master");
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Master")
 					end
 					if E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof then
-					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3", "Master");
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3", "Master")
 					end
 					if E.private.ElvUI_EltreumUI.partyraiddeath.shame then
-					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.mp3", "Master");
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.mp3", "Master")
 					end
 					if E.private.ElvUI_EltreumUI.partyraiddeath.wow then
-					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.mp3", "Master");
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.mp3", "Master")
 					end
 					if E.private.ElvUI_EltreumUI.partyraiddeath.mario then
-					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\mariodeath.mp3", "Master");
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\mariodeath.mp3", "Master")
 					end
 				end
 			end
