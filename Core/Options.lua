@@ -30,6 +30,7 @@ local THANKYOU = {
 	'|TInterface/AddOns/ElvUI/Media/ChatLogos/FoxWarlock:15:15:0:0:64:64:5:59:5:59|t |cffff2020NihilisticPandemonium|r',
 	'|TInterface/AddOns/ElvUI/Media/ChatLogos/Clover:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0ALuckyone|r  -- Especially for allowing the usage of his installer/plugin as a base',
 	'AcidWeb |TInterface/AddOns/ElvUI/Media/ChatLogos/Gem:15:15:-1:2:64:64:6:60:8:60|t',
+	'Icons8 (www.icons8.com) for some of the icons. List in license.txt'
 }
 
 -- SortList
@@ -58,20 +59,21 @@ function ElvUI_EltreumUI:Configtable()
 	-- Add EltreumUI version on top of the ElvUI config
 	E.Options.name = E.Options.name .. " + " .. ElvUI_EltreumUI.Name .. format(" |cffffffff%s|r", ElvUI_EltreumUI.Version)
 	E.Options.args.ElvUI_EltreumUI = {
-		order = 1,
+		order = 6,
 		type = 'group',
 		name = ElvUI_EltreumUI.Name,
 		args = {
 			logo = {
 				type = 'description',
 				name = "",
-				order = 1,
+				order = 6,
 				image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohq', 512, 128 end,
 			},
 			installer = {
-				order = 2,
+				order = 7,
 				type = 'group',
 				name = 'Installer',
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\install',
 				args = {
 					install = {
 						order = 1,
@@ -92,7 +94,8 @@ function ElvUI_EltreumUI:Configtable()
 			aurafilters = {
 				type = 'group',
 				name = 'Aura Filters',
-				order = 3,
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\aurafilter',
+				order = 85,
 				args = {
 					header1 = {
 						order = 1,
@@ -111,7 +114,8 @@ function ElvUI_EltreumUI:Configtable()
 			profiles = {
 				type = 'group',
 				name = 'Addon Profiles',
-				order = 4,
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\addon',
+				order = 85,
 				args = {
 					plugins = {
 						order = 1,
@@ -230,7 +234,8 @@ function ElvUI_EltreumUI:Configtable()
 			procglow = {
 				type = 'group',
 				name = 'Custom Glow',
-				order = 5,
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\customglow',
+				order = 85,
 				args = {
 					glow = {
 						type = 'group',
@@ -299,9 +304,10 @@ function ElvUI_EltreumUI:Configtable()
 				},
 			},
 			cvars = {
-				order = 6,
+				order = 85,
 				type = 'group',
 				name = 'CVars',
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cvar',
 				args = {
 					setup = {
 						order = 1,
@@ -337,7 +343,8 @@ function ElvUI_EltreumUI:Configtable()
 			partyraidsettings = {
 				type = 'group',
 				name = 'Party/Raid',
-				order = 84,
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\party',
+				order = 85,
 				args = {
 					partyraiddeath = {
 						type = 'group',
@@ -429,10 +436,35 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
+			quests = {
+				type = 'group',
+				name = 'Quests',
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\quest',
+				order = 85,
+				args = {
+					questsettings = {
+						order = 1,
+						type = 'group',
+						inline = true,
+						name = 'Collapse Quests during Raid Encounters',
+						get = function(info) return E.private.ElvUI_EltreumUI.questsettings[info[#info]] end,
+						set = function(info, value) E.private.ElvUI_EltreumUI.questsettings[info[#info]] = value end,
+						args = {
+							enable = {
+								order = 5,
+								type = 'toggle',
+								name = 'Enable',
+								desc = 'Add an ETA to waypoints',
+							},
+						},
+					},
+				},
+			},
 			waypointsetting = {
 				type = 'group',
 				name = 'Maps',
-				order = 82,
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\map',
+				order = 85,
 				args = {
 					waypointetasetting = {
 						order = 1,
@@ -476,7 +508,8 @@ function ElvUI_EltreumUI:Configtable()
 			media = {
 				type = 'group',
 				name = 'Media',
-				order = 83,
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\media',
+				order = 85,
 				args = {
 					defaults = {
 						order = 1,
@@ -528,7 +561,8 @@ function ElvUI_EltreumUI:Configtable()
 			nameplatescolors = {
 				type = 'group',
 				name = 'Nameplate',
-				order = 83,
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\nameplate',
+				order = 85,
 				args = {
 					nameplateOptions = {
 						order = 1,
@@ -598,6 +632,7 @@ function ElvUI_EltreumUI:Configtable()
 			stealthOptionssetting = {
 				type = 'group',
 				name = 'Stealth Vignette',
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\stealth',
 				order = 85,
 				args = {
 					stealthOptions = {
@@ -623,7 +658,8 @@ function ElvUI_EltreumUI:Configtable()
 			racialafkmusic = {
 				type = 'group',
 				name = 'AFK',
-				order = 3,
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\afk',
+				order = 85,
 				args = {
 					afkmusic = {
 						order = 1,
@@ -647,8 +683,9 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			weakauras = {
 				type = 'group',
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras',
 				name = 'WeakAuras',
-				order = 96,
+				order = 95,
 				args = {
 					header1 = {
 						order = 1,
@@ -713,7 +750,8 @@ function ElvUI_EltreumUI:Configtable()
 			discord = {
 				type = 'group',
 				name = 'Discord',
-				order = 8,
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\discord',
+				order = 96,
 				args = {
 					logodiscord = {
 						type = 'description',
@@ -743,6 +781,7 @@ function ElvUI_EltreumUI:Configtable()
 			credits = {
 				type = 'group',
 				name = 'Credits',
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\credits',
 				order = 97,
 				args = {
 					author = {
@@ -778,6 +817,7 @@ function ElvUI_EltreumUI:Configtable()
 			support = {
 				type = 'group',
 				name = 'Support',
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support',
 				order = 98,
 				args = {
 					changelog = {

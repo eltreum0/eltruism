@@ -37,9 +37,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('UPDATE_STEALTH')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE')
-	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
-	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
-	--ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
+	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_START')
 	ElvUI_EltreumUI:RegisterEvent('SUPER_TRACKING_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_CREATED')
 	ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_DESTROYED')
@@ -47,6 +45,10 @@ function ElvUI_EltreumUI:Initialize()
 	SetCVar('nameplateOtherTopInset', 0.1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('nameplateTargetRadialPosition', 1)
+end
+
+function ElvUI_EltreumUI:ENCOUNTER_START()
+	ElvUI_EltreumUI:QuestEncounter()
 end
 
 function ElvUI_EltreumUI:SUPER_TRACKING_CHANGED()

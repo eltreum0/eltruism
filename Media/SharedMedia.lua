@@ -1,7 +1,6 @@
 local LSM = LibStub("LibSharedMedia-3.0")
 
 if LSM == nil then return end
-
 -- Fonts
 LSM:Register('font', "Kimberley", [[Interface\AddOns\ElvUI_EltreumUI\Media\Fonts\Kimberley.otf]])
 LSM:Register("font", "OptimusPrinceps", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\OptimusPrinceps.ttf]])

@@ -1610,7 +1610,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0.50196078431373
 		E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0.50196078431373
 		E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["enable"] = true
-		E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["invertColors"] = true
+		E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["invertColors"] = false
 		E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["useClassColor"] = true
 		E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["useCustomBackdrop"] = true
 		E.db["unitframe"]["units"]["focus"]["castbar"]["height"] = 14
@@ -1709,7 +1709,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0.50196078431373
 		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0.50196078431373
 		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["enable"] = true
-		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["invertColors"] = true
+		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["invertColors"] = false
 		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["transparent"] = true
 		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["useClassColor"] = true
 		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["useCustomBackdrop"] = true
@@ -1764,7 +1764,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0
 		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0
 		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["enable"] = true
-		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["invertColors"] = true
+		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["invertColors"] = false
 		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["transparent"] = true
 		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["useClassColor"] = true
 		E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["useCustomBackdrop"] = true
@@ -1954,7 +1954,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["enable"] = true
-		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["invertColors"] = true
+		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["invertColors"] = false
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["transparent"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useClassColor"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useCustomBackdrop"] = true

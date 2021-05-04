@@ -51,4 +51,8 @@ V.ElvUI_EltreumUI = {
 		enable = true,
 	},
 
+	questsettings = {
+		enable = true,
+	},
+
 }

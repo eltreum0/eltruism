@@ -2,6 +2,84 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 local pairs = pairs
 local SetCVar = SetCVar
+local IsAddOnLoaded = IsAddOnLoaded
+local NP = E:GetModule('NamePlates')
+local UF = E:GetModule('UnitFrames')
+
+
+-- Attempt at non aspect ratio nameplate debuffs similar to plater
+function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
+	if E.private.ElvUI_EltreumUI.widenameplate.enable then
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
+		if button and button.spellID then
+			if not string.find(unit, "nameplate") then
+				return
+			end
+			local width =  25
+			local height =  18
+			-- this is the worst number of /reload of all time for me
+			button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
+			button:SetWidth(25)
+			button:SetHeight(18)
+			button.count:Point('BOTTOMRIGHT', 0, -3)
+		end
+		UF:PostUpdateAura(unit, button)
+	else
+		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 43
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 43
+	end
+end
+
+function ElvUI_EltreumUI:Construct_Auras(nameplate)
+	nameplate.Buffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIcon
+	nameplate.Debuffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIcon
+end
+hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
+
+-- Change classpower background, ty Benik for the great help
+local function ClassPowerColor()
+    NP.multiplier = 0
+end
+hooksecurefunc(NP, 'Initialize', ClassPowerColor)
+local function RuneBackground()
+	NP.multiplier = 0
+end
+hooksecurefunc(NP, 'Construct_Runes', RuneBackground)
+
+--- Friendly Nameplate Control
+function ElvUI_EltreumUI:FriendlyNameplates()
+	if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.enable then
+		local inInstance, instanceType = IsInInstance()
+		if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
+		--E:SetupCVars(noDisplayMsg)
+			SetCVar("nameplateShowFriends", 0)
+		end
+		if instanceType == "none" then
+		--E:SetupCVars(noDisplayMsg)
+			SetCVar("nameplateShowFriends", 1)
+		end
+	end
+end
+
+-- Nameplate options for Border and Glow
+function ElvUI_EltreumUI:NamePlateOptions()
+	local nameplateclasscolors
+	nameplateclasscolors = E:ClassColor(E.myclass, true)
+	if E.private.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow then
+		E.db["nameplates"]["colors"]["glowColor"]["b"] = nameplateclasscolors.b
+		E.db["nameplates"]["colors"]["glowColor"]["r"] = nameplateclasscolors.r
+		E.db["nameplates"]["colors"]["glowColor"]["g"] = nameplateclasscolors.g
+	end
+	if E.private.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate then
+		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
+		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
+		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
+		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = true
+	end
+end
+
+
 
 -- NamePlate Setup
 function ElvUI_EltreumUI:SetupNamePlates(addon)
