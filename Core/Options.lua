@@ -595,6 +595,14 @@ function ElvUI_EltreumUI:Configtable()
 								get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate end,
 								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate = value; E:StaticPopup_Show('PRIVATE_RL') end,
 							},
+							classtexture = {
+								order = 2,
+								type = 'toggle',
+								name = 'Class Texture for Target',
+								desc = 'Change the texture of the nameplate to be a class gradient',
+								get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture end,
+								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = value; E:StaticPopup_Show('PRIVATE_RL') end,
+							},
 						},
 					},
 					addsomegap = {

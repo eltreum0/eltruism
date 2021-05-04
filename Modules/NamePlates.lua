@@ -62,6 +62,20 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 	end
 end
 
+local playerclass = {
+    ['WARRIOR'] = "Eltreum-Class-Warrior",
+    ['PALADIN'] = "Eltreum-Class-Paladin",
+    ['HUNTER'] = "Eltreum-Class-Hunter",
+    ['ROGUE'] = "Eltreum-Class-Rogue",
+    ['PRIEST'] = "Eltreum-Class-Priest",
+    ['DEATHKNIGHT'] = "Eltreum-Class-DeathKnight",
+    ['SHAMAN'] = "Eltreum-Class-Shaman",
+    ['MAGE'] = "Eltreum-Class-Mage",
+    ['WARLOCK'] = "Eltreum-Class-Warlock",
+    ['MONK'] = "Eltreum-Class-Monk",
+    ['DRUID'] = "Eltreum-Class-Druid",
+    ['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
+}
 -- Nameplate options for Border and Glow
 function ElvUI_EltreumUI:NamePlateOptions()
 	local nameplateclasscolors
@@ -77,15 +91,16 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = true
 	end
+	if E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
+		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
+	else
+		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "Eltreum-Blank"
+	end
 end
-
-
 
 -- NamePlate Setup
 function ElvUI_EltreumUI:SetupNamePlates(addon)
-
 	if addon == 'ElvUI' then
-
 		-- Toggle on
 		E.private["nameplates"]["enable"] = true
 
