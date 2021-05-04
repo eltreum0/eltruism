@@ -6,7 +6,9 @@ local IsAddOnLoaded = IsAddOnLoaded
 
 -- general alliance walk (legion) maybe human music idk
 --/script PlaySoundFile(1417250, "Dialog", true)
--- AFK racial music (modified with the help of Repooc!)
+
+
+-- AFK music (modified with the help of Repooc!)
 local racialMusic = {
     ['Human'] = 53210,
     ['Gnome'] = 369055,
@@ -32,12 +34,38 @@ local racialMusic = {
     ['Vulpera'] = 3260632,
     ['MagharOrc'] = 2146630,
 }
+local classMusic = {
+    ['WARRIOR'] = 1417334,
+    ['PALADIN'] = 1417342, --443289
+    ['HUNTER'] = 1417326,
+    ['ROGUE'] = 1417273,
+    ['PRIEST'] = 1417367,
+    ['DEATHKNIGHT'] = 229831,
+    ['SHAMAN'] = 528163,
+    ['MAGE'] = 1417264,
+    ['WARLOCK'] = 1417356,
+    ['MONK'] = 642138,
+    ['DRUID'] = 1417312,
+    ['DEMONHUNTER'] = 1417290,
+}
+
+-- with the help of Repooc, Simpy, Nihilistzsche and Acidweb (not in order :P)
+local music = 1
 function ElvUI_EltreumUI:RacialAFKmusic()
 	if E.private.ElvUI_EltreumUI.afkmusic.enable then
 		if UnitIsAFK("player") then
-			PlayMusic(racialMusic[E.myrace])
+            music = GetCVar('Sound_EnableMusic')
+            if music == '0' then SetCVar("Sound_EnableMusic", 1) end
+
+            if E.private.ElvUI_EltreumUI.afkmusic.racial then
+                PlayMusic(racialMusic[E.myrace])
+            end
+            if E.private.ElvUI_EltreumUI.afkmusic.playerclass then
+                PlayMusic(classMusic[E.myclass])
+            end
 		else
 			StopMusic()
+            SetCVar("Sound_EnableMusic", music)
 		end
 	end
 end

@@ -672,19 +672,54 @@ function ElvUI_EltreumUI:Configtable()
 						order = 1,
 						type = 'group',
 						inline = true,
-						name = 'Play a music of your character race while AFK',
-						get = function(info) return E.private.ElvUI_EltreumUI.afkmusic[info[#info]] end,
-						set = function(info, value) E.private.ElvUI_EltreumUI.afkmusic[info[#info]] = value;end,
+						name = 'Play music while you are AFK',
 						args = {
-							afktoggle = {
-								order = 1,
-								type = 'toggle',
-								name = 'Enable',
-								desc = 'Play music while AFK',
-								get = function(info) return E.private.ElvUI_EltreumUI.afkmusic.enable end,
-								set = function(info, value) E.private.ElvUI_EltreumUI.afkmusic.enable = value; end,
+							enable = {
+							type = 'toggle',
+							name = 'Enable',
+							order = 1,
+							get = function() return E.private.ElvUI_EltreumUI.afkmusic.enable end,
+							set = function(_, value) E.private.ElvUI_EltreumUI.afkmusic.enable = value end,
 							},
-						},
+							addagaphere = {
+							order = 2,
+							type = "description",
+							name = "",
+							},
+							addanothergapforfun = {
+							order = 2,
+							type = "description",
+							name = "",
+							},
+							afksoundtype = {
+							order = 2,
+							type = 'group',
+							name = 'Select a type of music',
+								args = {
+									yetanothergap = {
+									order = 2,
+									type = "description",
+									name = "",
+									},
+									racial = {
+										type = 'toggle',
+										name = 'Racial Music',
+										order = 5,
+										disabled = function() return not E.private.ElvUI_EltreumUI.afkmusic.enable or E.private.ElvUI_EltreumUI.afkmusic.playerclass end,
+										get = function(info) return E.private.ElvUI_EltreumUI.afkmusic.racial end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.afkmusic.racial = value end,
+									},
+									playerclass = {
+										type = 'toggle',
+										name = 'Class Music',
+										order = 5,
+										disabled = function() return not E.private.ElvUI_EltreumUI.afkmusic.enable or E.private.ElvUI_EltreumUI.afkmusic.racial end,
+										get = function(info) return E.private.ElvUI_EltreumUI.afkmusic.playerclass end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.afkmusic.playerclass = value end,
+									},
+								}
+							}
+						}
 					},
 				},
 			},

@@ -3,7 +3,6 @@ local pairs = pairs
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
 
-
 --Collapse Quests during boss fights
 function ElvUI_EltreumUI:QuestEncounter()
 	if E.private.ElvUI_EltreumUI.questsettings.enable then

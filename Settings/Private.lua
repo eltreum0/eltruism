@@ -41,6 +41,8 @@ V.ElvUI_EltreumUI = {
 
 	afkmusic = {
 		enable = true,
+		racial = true,
+		playerclass = false,
 	},
 
 	waypointetasetting = {
