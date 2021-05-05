@@ -50,11 +50,10 @@ local classMusic = {
 }
 
 -- with the help of Repooc, Simpy, Nihilistzsche and Acidweb (not in order :P)
-local music = 1
 function ElvUI_EltreumUI:RacialAFKmusic()
 	if E.private.ElvUI_EltreumUI.afkmusic.enable then
-		if UnitIsAFK("player") then
-            music = GetCVar('Sound_EnableMusic')
+		local music = GetCVar('Sound_EnableMusic')
+        if UnitIsAFK("player") then
             if music == '0' then SetCVar("Sound_EnableMusic", 1) end
 
             if E.private.ElvUI_EltreumUI.afkmusic.racial then
