@@ -2,6 +2,13 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+
+    v1.8.1
+    -------
+Added Changelog to options
+Tweaked Quests during encounters
+Fixed AFK music muting music on login
+
     v1.8
     -------
 Version check for Shadow & Light
