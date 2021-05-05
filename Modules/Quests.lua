@@ -9,7 +9,7 @@ function ElvUI_EltreumUI:QuestEncounter()
 		local inInstance, instanceType = IsInInstance()
 		if instanceType == "raid" or instanceType == "party" then  --and event == "PLAYER_REGEN_DISABLED"
 			ObjectiveTracker_Collapse()
-			if ObjectiveTrackerFrame:IsVisible() then
+			if ObjectiveTrackerFrame:IsVisible() or ObjectiveTracker_Expand() then
 				ObjectiveTracker_Collapse()
 			end
 

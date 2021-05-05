@@ -2054,6 +2054,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["transparent"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useClassColor"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useCustomBackdrop"] = true
+		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useReactionColor"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["fontSize"] = 11
 		E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["fontStyle"] = "NONE"
 		E.db["unitframe"]["units"]["target"]["castbar"]["height"] = 30

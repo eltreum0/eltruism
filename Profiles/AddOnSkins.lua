@@ -3,7 +3,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local unpack = unpack
 
 -- AddonSkins profile setup
-function ElvUI_EltreumUI:GetASProfile(Eltreum_Single)
+function ElvUI_EltreumUI:GetASProfile()
 	local AS = unpack(AddOnSkins)
 	AS.data:SetProfile("Eltreum Dual")
 	AS.db['EmbedBackdrop'] = false
