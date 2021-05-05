@@ -23,7 +23,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:LoadCommands()
 	ElvUI_EltreumUI:SkillGlow()
 	ElvUI_EltreumUI:FriendlyNameplates()
-	ElvUI_EltreumUI:RacialAFKmusic()
+	ElvUI_EltreumUI:AFKmusic()
 	ElvUI_EltreumUI:WaypointTimeToArrive()
 end
 
@@ -79,7 +79,7 @@ function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
 end
 
 function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
-	ElvUI_EltreumUI:RacialAFKmusic()
+	ElvUI_EltreumUI:AFKmusic()
 end
 
 local function CallbackInitialize()

@@ -12,7 +12,6 @@ function ElvUI_EltreumUI:QuestEncounter()
 			if ObjectiveTrackerFrame:IsVisible() or ObjectiveTracker_Expand() then
 				ObjectiveTracker_Collapse()
 			end
-
 		end
 	end
 end
