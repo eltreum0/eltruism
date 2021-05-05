@@ -828,6 +828,20 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
+			changelog = {
+				type = 'group',
+				name = 'Changelog',
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\changelog',
+				order = 97,
+				args = {
+					changelogtext = {
+						order = 19,
+						type = 'description',
+						width = 'full',
+						name = ElvUI_EltreumUI:Changelog(),
+					},
+				},
+			},
 			credits = {
 				type = 'group',
 				name = 'Credits',
