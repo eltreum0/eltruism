@@ -30,7 +30,6 @@ local THANKYOU = {
 	'|TInterface/AddOns/ElvUI/Media/ChatLogos/FoxWarlock:15:15:0:0:64:64:5:59:5:59|t |cffff2020NihilisticPandemonium|r',
 	'|TInterface/AddOns/ElvUI/Media/ChatLogos/Clover:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0ALuckyone|r  -- Especially for allowing the usage of his installer/plugin as a base',
 	'AcidWeb |TInterface/AddOns/ElvUI/Media/ChatLogos/Gem:15:15:-1:2:64:64:6:60:8:60|t',
-	'Icons8 (www.icons8.com) for some of the icons. List in license.txt'
 }
 
 -- SortList
@@ -601,7 +600,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = 'Target Texture',
 								desc = 'Change the texture of the nameplate to be a class gradient',
 								get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture end,
-								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = value E:StaticPopup_Show('PRIVATE_RL') end,
+								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = value ElvUI_EltreumUI:SetupStyleFilters() E:StaticPopup_Show('PRIVATE_RL') end,
 							},
 						},
 					},
@@ -639,6 +638,30 @@ function ElvUI_EltreumUI:Configtable()
 								desc = 'Toogle On and Off',
 								get = function() return E.private.ElvUI_EltreumUI.widenameplate.enable end,
 								set = function(_, value) E.private.ElvUI_EltreumUI.widenameplate.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
+							},
+						}
+					},
+				},
+			},
+			loottext = {
+				type = 'group',
+				name = 'Loot',
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\loot',
+				order = 85,
+				args = {
+						lootsetting = {
+						order = 2,
+						type = 'group',
+						inline = true,
+						name = 'Show a floating loot text',
+						args = {
+							desc = {
+								order = 1,
+								type = 'toggle',
+								name = 'Enable',
+								desc = 'Toogle On and Off',
+								get = function() return E.private.ElvUI_EltreumUI.loottext.enable end,
+								set = function(_, value) E.private.ElvUI_EltreumUI.loottext.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},
 						}
 					},
@@ -873,6 +896,20 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'description',
 								fontSize = 'medium',
 								name = THANKYOU_STRING,
+							},
+						},
+					},
+					licensewarning = {
+						order = 99,
+						type = 'group',
+						inline = true,
+						name = 'License',
+						args = {
+							desc = {
+								order = 1,
+								type = 'description',
+								fontSize = 'medium',
+								name = 'Icons8 (www.icons8.com) for some of the icons. List in license.txt\nLootText is licensed under GNU GPLv3 and is a fork of SLoTe from xavjer',
 							},
 						},
 					},

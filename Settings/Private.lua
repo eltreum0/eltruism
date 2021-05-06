@@ -57,4 +57,8 @@ V.ElvUI_EltreumUI = {
 		enable = true,
 	},
 
+	loottext = {
+		enable = true,
+	},
+
 }

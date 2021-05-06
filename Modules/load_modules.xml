@@ -7,4 +7,5 @@
 	<Script file='Stealth.lua'/>
 	<Script file='partyraid.lua'/>
 	<Script file='Quests.lua'/>
+	<Script file='LootText.lua'/>
 </Ui>

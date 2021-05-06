@@ -4,6 +4,7 @@
 ## Title: |cff1784d1ElvUI|r Eltruism
 ## Notes: Eltreum's ElvUI Profile and Plugin
 ## Dependencies: ElvUI, ElvUI_SLE, ElvUI_WindTools, AddOnSkins, ProjectAzilroka
+## RequiredDeps: Blizzard_CombatText
 ## OptionalDeps: NameplateSCT, Immersion, DynamicCam, GladiusEx,
 ## DefaultState: enabled
 

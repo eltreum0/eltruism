@@ -96,6 +96,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
 		E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
 		E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
+		E.db["nameplates"]["statusbar"] = (playerclass[E.myclass])
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = true
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthColor"]["b"] = 1
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthColor"]["g"] = 1
@@ -103,6 +104,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 	else
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "Eltreum-Blank"
 		E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = false
+		E.db["nameplates"]["statusbar"] = "Eltreum-Blank"
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = false
 	end
 end

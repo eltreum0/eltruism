@@ -2,7 +2,7 @@ local E, L, V, P, G = unpack(ElvUI)
 local EP = LibStub('LibElvUIPlugin-1.0')
 local addon, Engine = ...
 local _G = _G
-local ElvUI_EltreumUI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0')
+local ElvUI_EltreumUI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0', 'AceConsole-3.0')
 
 -- This whole plugin uses LuckyoneUI as a base, full credits to him for it and allowing its use!
 Engine[1] = ElvUI_EltreumUI
@@ -25,6 +25,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:FriendlyNameplates()
 	ElvUI_EltreumUI:AFKmusic()
 	ElvUI_EltreumUI:WaypointTimeToArrive()
+	ElvUI_EltreumUI:LootText()
 end
 
 function ElvUI_EltreumUI:Initialize()
