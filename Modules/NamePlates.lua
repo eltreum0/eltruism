@@ -7,7 +7,7 @@ local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
 
 
--- Attempt at non aspect ratio nameplate debuffs similar to plater
+-- Non aspect ratio nameplate debuffs similar to plater
 function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
 	if E.private.ElvUI_EltreumUI.widenameplate.enable then
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
@@ -90,11 +90,20 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = true
+
 	end
 	if E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
+		E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
+		E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
+		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = true
+		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthColor"]["b"] = 1
+		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthColor"]["g"] = 1
+		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthColor"]["r"] = 1
 	else
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "Eltreum-Blank"
+		E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = false
+		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = false
 	end
 end
 
@@ -147,6 +156,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["filters"]["ExecuteRange"]["triggers"]["enable"] = true
 		E.db["nameplates"]["filters"]["Pandemic"]["triggers"]["enable"] = false
 		E.db["nameplates"]["filters"]["StealThisBuff"]["triggers"]["enable"] = true
+		E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = false
 		E.db["nameplates"]["highlight"] = false
 		E.db["nameplates"]["lowHealthThreshold"] = 0.2
 		E.db["nameplates"]["plateSize"]["friendlyHeight"] = 10
@@ -455,7 +465,7 @@ end
 
 -- Style Filter Setup
 function ElvUI_EltreumUI:SetupStyleFilters()
-	for _, filterName in pairs({'ElvUI_Explosives', 'ElvUI_NonTarget', 'ElvUI_Target', 'EnemyCasting', 'ExecuteRange', 'Pandemic', 'StealThisBuff'}) do
+	for _, filterName in pairs({'ElvUI_Explosives', 'ElvUI_NonTarget', 'ElvUI_Target', 'EnemyCasting', 'ExecuteRange', 'Pandemic', 'StealThisBuff', 'EltreumRare'}) do
 		E.global["nameplate"]["filters"][filterName] = {}
 		E.NamePlates:StyleFilterCopyDefaults(E.global["nameplate"]["filters"][filterName])
 		E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
@@ -525,6 +535,20 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["ExecuteRange"]["triggers"]["isTarget"] = true
 	E.global["nameplate"]["filters"]["ExecuteRange"]["triggers"]["priority"] = 10
 	E.global["nameplate"]["filters"]["ExecuteRange"]["triggers"]["underHealthThreshold"] = 0.2
+	--fancy rares
+	E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["health"] = true
+	E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["b"] = 1
+	E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["g"] = 1
+	E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["r"] = 1
+	E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["enable"] = true
+	E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = "Eltreum-Blank"
+	E.global["nameplate"]["filters"]["EltreumRare"]["triggers"]["classification"]["rare"] = true
+	E.global["nameplate"]["filters"]["EltreumRare"]["triggers"]["classification"]["rareelite"] = true
+	E.global["nameplate"]["filters"]["EltreumRare"]["triggers"]["classification"]["worldboss"] = true
+	E.global["nameplate"]["filters"]["EltreumRare"]["triggers"]["isNotTapDenied"] = true
+	E.global["nameplate"]["filters"]["EltreumRare"]["triggers"]["priority"] = 10
+
+
 
 	E:StaggeredUpdateAll(nil, true)
 

@@ -112,7 +112,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			profiles = {
 				type = 'group',
-				name = 'Addon Profiles',
+				name = 'Addons',
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\addon',
 				order = 85,
 				args = {
@@ -567,7 +567,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			nameplates = {
 				type = 'group',
-				name = 'Nameplate',
+				name = 'Nameplates',
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\nameplate',
 				order = 85,
 				args = {
@@ -672,7 +672,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			afk = {
 				type = 'group',
-				name = 'AFK',
+				name = 'A.F.K',
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\afk',
 				order = 85,
 				args = {
