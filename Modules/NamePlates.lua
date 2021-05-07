@@ -11,6 +11,17 @@ local IsInInstance = _G.IsInInstance
 local hooksecurefunc = _G.hooksecurefunc
 local string = _G.string
 
+
+-- Change classpower background, ty Benik for the great help
+local function ClassPowerColor()
+    NP.multiplier = 0
+end
+hooksecurefunc(NP, 'Initialize', ClassPowerColor)
+local function RuneBackground()
+	NP.multiplier = 0
+end
+hooksecurefunc(NP, 'Construct_Runes', RuneBackground)
+
 -- Non aspect ratio nameplate debuffs similar to plater
 function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
 	if E.private.ElvUI_EltreumUI.widenameplate.enable then
@@ -41,15 +52,10 @@ function ElvUI_EltreumUI:Construct_Auras(nameplate)
 end
 hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
 
--- Change classpower background, ty Benik for the great help
-local function ClassPowerColor()
-    NP.multiplier = 0
-end
-hooksecurefunc(NP, 'Initialize', ClassPowerColor)
-local function RuneBackground()
-	NP.multiplier = 0
-end
-hooksecurefunc(NP, 'Construct_Runes', RuneBackground)
+--local function NameplatePowerTexture()
+--	local texture = 'Eltreum-Blank'
+--end
+--hooksecurefunc(NP, 'Construct_ClassPower', NameplatePowerTexture)
 
 --- Friendly Nameplate Control
 function ElvUI_EltreumUI:FriendlyNameplates()
@@ -94,13 +100,14 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = true
-
 	end
 	if E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
 		E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
 		E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
-		E.db["nameplates"]["statusbar"] = (playerclass[E.myclass])
+		E.global["nameplate"]["filters"]["EltreumClassColor"]["actions"]["texture"]["enable"] = true
+		E.global["nameplate"]["filters"]["EltreumClassColor"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
+		--E.db["nameplates"]["statusbar"] = (playerclass[E.myclass])
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = true
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthColor"]["b"] = 1
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthColor"]["g"] = 1
@@ -108,7 +115,8 @@ function ElvUI_EltreumUI:NamePlateOptions()
 	else
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "Eltreum-Blank"
 		E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = false
-		E.db["nameplates"]["statusbar"] = "Eltreum-Blank"
+		E.global["nameplate"]["filters"]["EltreumClassColor"]["actions"]["texture"]["enable"] = false
+		--E.db["nameplates"]["statusbar"] = "Eltreum-Blank"
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = false
 	end
 end
@@ -163,6 +171,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["filters"]["Pandemic"]["triggers"]["enable"] = false
 		E.db["nameplates"]["filters"]["StealThisBuff"]["triggers"]["enable"] = true
 		E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = false
+		E.global["nameplate"]["filters"]["EltreumClassColor"]["actions"]["texture"]["enable"] = false
 		E.db["nameplates"]["highlight"] = false
 		E.db["nameplates"]["lowHealthThreshold"] = 0.2
 		E.db["nameplates"]["plateSize"]["friendlyHeight"] = 10
@@ -462,21 +471,18 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["TARGET"]["classpower"]["width"] = 150
 		E.db["nameplates"]["units"]["TARGET"]["classpower"]["yOffset"] = 26
 		E.db["nameplates"]["visibility"]["enemy"]["totems"] = true
-
 		-- Set CVars
 		ElvUI_EltreumUI:NameplateCVars()
-
 		end
 end
 
 -- Style Filter Setup
 function ElvUI_EltreumUI:SetupStyleFilters()
-	for _, filterName in pairs({'ElvUI_Explosives', 'ElvUI_NonTarget', 'ElvUI_Target', 'EnemyCasting', 'ExecuteRange', 'Pandemic', 'StealThisBuff', 'EltreumRare'}) do
+	for _, filterName in pairs({'ElvUI_Explosives', 'ElvUI_NonTarget', 'ElvUI_Target', 'EnemyCasting', 'ExecuteRange', 'Pandemic', 'StealThisBuff', 'EltreumRare', 'EltreumClassColor'}) do
 		E.global["nameplate"]["filters"][filterName] = {}
 		E.NamePlates:StyleFilterCopyDefaults(E.global["nameplate"]["filters"][filterName])
 		E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
 	end
-
 	-- Explosives
 	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["health"] = false
 	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
@@ -553,11 +559,13 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["EltreumRare"]["triggers"]["classification"]["worldboss"] = true
 	E.global["nameplate"]["filters"]["EltreumRare"]["triggers"]["isNotTapDenied"] = true
 	E.global["nameplate"]["filters"]["EltreumRare"]["triggers"]["priority"] = 10
-
-
+	-- class colors
+	E.global["nameplate"]["filters"]["EltreumClassColor"]["actions"]["texture"]["enable"] = false
+	E.global["nameplate"]["filters"]["EltreumClassColor"]["actions"]["texture"]["texture"] = "Eltreum-Blank"
+	E.global["nameplate"]["filters"]["EltreumClassColor"]["triggers"]["isTarget"] = true
+	E.global["nameplate"]["filters"]["EltreumClassColor"]["triggers"]["notTarget"] = true
 
 	E:StaggeredUpdateAll(nil, true)
-
 
 	ElvUI_EltreumUI:Print('NamePlates have been setup.')
 end

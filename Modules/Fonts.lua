@@ -13,8 +13,6 @@ local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 
 function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 	if not E.db.movers then E.db.movers = {} end
-		--nameplates
-		--WaypointTimeToArriveFrame.TimeText:SetFont("Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\Kimberley.otf", 12)
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["font"] = "Kimberley"
@@ -117,12 +115,12 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["width"] = 256
 		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["xOffset"] = 0
 		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "BOTTOM"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_GuildName"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Kimberley"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["inversePoint"] = true
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 76
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "Kimberley"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["size"] = 20
@@ -675,12 +673,12 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["width"] = 256
 		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["xOffset"] = 0
 		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "BOTTOM"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_GuildName"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Exo2 Extra Bold"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["inversePoint"] = true
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 76
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "Exo2 Extra Bold"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["size"] = 20
@@ -1230,12 +1228,12 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["width"] = 256
 		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["xOffset"] = 0
 		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "BOTTOM"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_GuildName"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "GothamNarrow Black"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["inversePoint"] = true
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 76
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "GothamNarrow Black"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["size"] = 20
@@ -1786,12 +1784,12 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["width"] = 256
 		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["xOffset"] = 0
 		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "BOTTOM"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_GuildName"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Roboto"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["inversePoint"] = true
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 76
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "Roboto"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["size"] = 20

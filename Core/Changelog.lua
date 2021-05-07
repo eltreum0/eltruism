@@ -6,6 +6,13 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 function ElvUI_EltreumUI:Changelog()
 	return[[
 
+    v1.9
+    -------
+Changed Class Gradient on Nameplates, now defaults to on
+Included a nameplate filter for rares
+Added Loot Text, a fork of SLoTE (This part of Eltruism is GNU GPLv3)
+Added a version check which will automatically update settings if the user is out of date
+
     v1.8.1
     -------
 Added Changelog to options

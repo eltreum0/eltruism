@@ -278,12 +278,12 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["width"] = 256
 		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["xOffset"] = 0
 		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "BOTTOM"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_GuildName"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Kimberley"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["inversePoint"] = true
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 76
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "Kimberley"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["size"] = 20
