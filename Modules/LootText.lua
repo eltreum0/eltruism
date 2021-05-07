@@ -88,7 +88,16 @@ function ElvUI_EltreumUI:LootText()
 			if (event == "CHAT_MSG_MONEY") then
 				local moneystring = Deformat(arg1, LOOT_MONEY_SPLIT) or Deformat(arg1, YOU_LOOT_MONEY)
 				local aImage = GetCoinIcon(9999999999)
-				CombatText_AddMessage("|T ".. aImage ..":22:22:0:0|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
+				if moneystring:match("Silver") and not moneystring:match("Gold") then
+						CombatText_AddMessage("|T ".. 133786 ..":22:22:-11:-11|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
+				end
+				if moneystring:match("Copper") and not moneystring:match("Silver") then
+						CombatText_AddMessage("|T ".. 133788 ..":22:22:-11:-11|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
+				end
+				if moneystring:match("Gold") then
+						CombatText_AddMessage("|T ".. 133784 ..":22:22:-11:-11|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
+				end
+
 			end
 			if (event == "CHAT_MSG_CURRENCY") then
 				itemLink, amount =  Deformat(arg1, CURRENCY_GAINED_MULTIPLE_BONUS)

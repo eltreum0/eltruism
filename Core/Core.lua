@@ -114,7 +114,7 @@ function ElvUI_EltreumUI:SetupCVars()
 
 	SetCVar('removeChatDelay', 1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
-	SetCVar('autoLootDefault', true)
+	SetCVar('autoLootDefault', 1)
 	SetCVar('autoQuestWatch', 1)
 	SetCVar('nameplateLargerScale', 1.2)
 	SetCVar('nameplateMinScale', 1)
