@@ -605,7 +605,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = 'Target Texture',
 								desc = 'Change the texture of the nameplate to be a class gradient',
 								get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture end,
-								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = value ElvUI_EltreumUI:SetupStyleFilters() E:StaticPopup_Show('PRIVATE_RL') end,
+								set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},
 						},
 					},

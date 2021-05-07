@@ -7,10 +7,19 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 local ElvUI_SLE = _G.ElvUI_SLE
 local print = _G.print
 local noDisplayMsg = _G.noDisplayMsg
+local GetAddOnMetadata = _G.GetAddOnMetadata
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
 	print('|cff82B4ffEltruism|r: '..msg)
+end
+
+function ElvUI_EltreumUI:VersionCheck()
+	local EltruismVersionCheck = GetAddOnMetadata('ElvUI_EltreumUI', 'Version')
+		if EltruismVersionCheck < "1.9" then
+			print('|cff82B4ffEltruism|r: '..'Updating Filters for 1.9. Please /reload')
+			ElvUI_EltreumUI:SetupStyleFilters()
+		end
 end
 
 -- Role icons, ty a lot Darth Predator for the help!

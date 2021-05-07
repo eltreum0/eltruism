@@ -33,6 +33,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:AFKmusic()
 	ElvUI_EltreumUI:WaypointTimeToArrive()
 	ElvUI_EltreumUI:LootText()
+	ElvUI_EltreumUI:VersionCheck()
 end
 
 function ElvUI_EltreumUI:Initialize()
