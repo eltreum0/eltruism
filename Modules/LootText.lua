@@ -3,7 +3,7 @@ local pairs = pairs
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
 local Deformat = LibStub("LibDeformat-3.0")
-
+local _G = _G
 
 -- LootText is a fork of Scrolling Loot Text (SLoTe) by xavjer using fixes by Eltreum for pet caging and other things
 -- SLoTE uses GNU GPLv3 and as such this part of Eltruism also uses GNU GPLv3
@@ -23,6 +23,10 @@ function ElvUI_EltreumUI:LootText()
 	CombatText:SetScale(0.65)
 	local itemLink = nil
 	local amount = nil
+	local rarity = nil
+	local lootTexture = nil
+	local lootName = nil
+	local lootQuantity = nil
 	local YOU_LOOT_MONEY = _G.YOU_LOOT_MONEY
 	local LOOT_MONEY_SPLIT = _G.LOOT_MONEY_SPLIT
 	local LOOT_ITEM_SELF_MULTIPLE = _G.LOOT_ITEM_SELF_MULTIPLE
