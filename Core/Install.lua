@@ -1,6 +1,11 @@
+local _G = _G
+local unpack = _G.unpack
+local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local ReloadUI = ReloadUI
-local format = string.format
+local ReloadUI = _G.ReloadUI
+local format = _G.string.format
+local PluginInstallFrame = _G.PluginInstallFrame
+local IsAddOnLoaded = _G.IsAddOnLoaded
 
 -- Set version & reload on "Skip" and "Finished"
 local function InstallComplete()

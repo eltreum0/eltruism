@@ -1,7 +1,13 @@
+local _G = _G
+local unpack = _G.unpack
+local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local pairs = pairs
-local SetCVar = SetCVar
-local IsAddOnLoaded = IsAddOnLoaded
+local pairs = _G.pairs
+local SetCVar = _G.SetCVar
+local IsAddOnLoaded = _G.IsAddOnLoaded
+local LibStub = _G.LibStub
+local GetActionInfo = _G.GetActionInfo
+local high = _G.high
 
 
 -- Skill Glow

@@ -1,5 +1,14 @@
+local _G = _G
+local unpack = _G.unpack
+local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local IsAddOnLoaded = IsAddOnLoaded
+local pairs = _G.pairs
+local SetCVar = _G.SetCVar
+local IsAddOnLoaded = _G.IsAddOnLoaded
+local GetAddOnMetadata = _G.GetAddOnMetadata
+
+
+
 local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 
 function ElvUI_EltreumUI:SetupFontsKimberley(addon)

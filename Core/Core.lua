@@ -1,6 +1,12 @@
+local _G = _G
+local unpack = _G.unpack
+local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local SetCVar = SetCVar
-local IsAddOnLoaded = IsAddOnLoaded
+local SetCVar = _G.SetCVar
+local IsAddOnLoaded = _G.IsAddOnLoaded
+local ElvUI_SLE = _G.ElvUI_SLE
+local print = _G.print
+local noDisplayMsg = _G.noDisplayMsg
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)

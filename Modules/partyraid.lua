@@ -1,7 +1,17 @@
+local _G = _G
+local unpack = _G.unpack
+local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local pairs = pairs
-local SetCVar = SetCVar
-local IsAddOnLoaded = IsAddOnLoaded
+local pairs = _G.pairs
+local SetCVar = _G.SetCVar
+local IsAddOnLoaded = _G.IsAddOnLoaded
+
+local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
+local name = _G.name
+local IsInGroup = _G.IsInGroup
+local GetNumGroupMembers = _G.GetNumGroupMembers
+local GetRaidRosterInfo = _G.GetRaidRosterInfo
+local PlaySoundFile = _G.PlaySoundFile
 
 --Simpy:
 --it would be far more efficient if you managed the group list table outside

@@ -1,7 +1,16 @@
+local _G = _G
+local unpack = _G.unpack
+local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local pairs = pairs
-local SetCVar = SetCVar
-local IsAddOnLoaded = IsAddOnLoaded
+local pairs = _G.pairs
+local SetCVar = _G.SetCVar
+local IsAddOnLoaded = _G.IsAddOnLoaded
+local CreateFrame = _G.CreateFrame
+local UIParent = _G.UIParent
+local math = _G.math
+local string = _G.string
+local GetUnitSpeed = _G.GetUnitSpeed
+local C_Navigation = _G.C_Navigation
 
 --Conversion of Time to Arrive weakaura
 

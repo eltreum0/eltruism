@@ -1,3 +1,6 @@
+local _G = _G
+local unpack = _G.unpack
+local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 -- Eltreum UI Private DB
@@ -59,6 +62,8 @@ V.ElvUI_EltreumUI = {
 
 	loottext = {
 		enable = true,
+		honor = true,
+		currency = true,
+		pet = true,
 	},
-
 }

@@ -1,9 +1,14 @@
+local _G = _G
+local unpack = _G.unpack
+local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local sort = sort
-local pairs = pairs
-local tinsert = table.insert
-local tconcat = table.concat
-local ReloadUI = ReloadUI
+local sort = _G.sort
+local pairs = _G.pairs
+local tinsert = _G.table.insert
+local tconcat = _G.table.concat
+local ReloadUI = _G.ReloadUI
+local format = _G.format
+local PlaySoundFile = _G.PlaySoundFile
 
 -- Author list
 local AUTHORS = {
@@ -649,20 +654,66 @@ function ElvUI_EltreumUI:Configtable()
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\loot',
 				order = 85,
 				args = {
-						lootsetting = {
-						order = 2,
+					lootsetting = {
+						order = 1,
 						type = 'group',
 						inline = true,
 						name = 'Show a floating loot text',
 						args = {
 							desc = {
-								order = 1,
-								type = 'toggle',
-								name = 'Enable',
-								desc = 'Toogle On and Off',
-								get = function() return E.private.ElvUI_EltreumUI.loottext.enable end,
-								set = function(_, value) E.private.ElvUI_EltreumUI.loottext.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
+							type = 'toggle',
+							name = 'Enable',
+							desc = 'Toggle On and Off',
+							order = 1,
+							get = function() return E.private.ElvUI_EltreumUI.loottext.enable end,
+							set = function(_, value) E.private.ElvUI_EltreumUI.loottext.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},
+							addagaphere = {
+							order = 2,
+							type = "description",
+							name = "",
+							},
+							addanothergapforfun = {
+							order = 2,
+							type = "description",
+							name = "",
+							},
+							suboptions = {
+							order = 2,
+							type = 'group',
+							name = 'Choose which types of text:',
+								args = {
+									yetanothergap = {
+									order = 2,
+									type = "description",
+									name = "",
+									},
+									honor = {
+										type = 'toggle',
+										name = 'Honor',
+										order = 5,
+										disabled = function() return not E.private.ElvUI_EltreumUI.loottext.enable end,
+										get = function(info) return E.private.ElvUI_EltreumUI.loottext.honor end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.loottext.honor = value E:StaticPopup_Show('PRIVATE_RL') end,
+									},
+									currency = {
+										type = 'toggle',
+										name = 'Currency',
+										order = 5,
+										disabled = function() return not E.private.ElvUI_EltreumUI.loottext.enable end,
+										get = function(info) return E.private.ElvUI_EltreumUI.loottext.currency end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.loottext.currency = value E:StaticPopup_Show('PRIVATE_RL') end,
+									},
+									pet = {
+										type = 'toggle',
+										name = 'Pets',
+										order = 5,
+										disabled = function() return not E.private.ElvUI_EltreumUI.loottext.enable end,
+										get = function(info) return E.private.ElvUI_EltreumUI.loottext.pet end,
+										set = function(info, value) E.private.ElvUI_EltreumUI.loottext.pet = value E:StaticPopup_Show('PRIVATE_RL') end,
+									},
+								}
+							}
 						}
 					},
 				},

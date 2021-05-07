@@ -1,11 +1,15 @@
+local _G = _G
+local unpack = _G.unpack
+local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-
-local pairs = pairs
-local SetCVar = SetCVar
-local IsAddOnLoaded = IsAddOnLoaded
+local pairs = _G.pairs
+local SetCVar = _G.SetCVar
+local IsAddOnLoaded = _G.IsAddOnLoaded
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
-
+local IsInInstance = _G.IsInInstance
+local hooksecurefunc = _G.hooksecurefunc
+local string = _G.string
 
 -- Non aspect ratio nameplate debuffs similar to plater
 function ElvUI_EltreumUI:PostUpdateIcon(unit, button)

@@ -1,3 +1,5 @@
+local _G = _G
+local LibStub = _G.LibStub
 local LSM = LibStub("LibSharedMedia-3.0")
 
 if LSM == nil then return end
