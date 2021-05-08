@@ -64,6 +64,7 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 	end
 end
 
+--for general nameplates
 local playerclass = {
     ['WARRIOR'] = "Eltreum-Class-Warrior",
     ['PALADIN'] = "Eltreum-Class-Paladin",
@@ -78,6 +79,22 @@ local playerclass = {
     ['DRUID'] = "Eltreum-Class-Druid",
     ['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
 }
+-- for rare nameplates
+local rareclass = {
+    ['WARRIOR'] = "Eltreum-Class-Warrior",
+    ['PALADIN'] = "Eltreum-Class-Paladin",
+    ['HUNTER'] = "Eltreum-Class-Hunter",
+    ['ROGUE'] = "Eltreum-Class-Rogue",
+    ['PRIEST'] = "Eltreum-Class-Priest",
+    ['DEATHKNIGHT'] = "Eltreum-Class-DeathKnight",
+    ['SHAMAN'] = "Eltreum-Class-Shaman",
+    ['MAGE'] = "Eltreum-Class-Mage",
+    ['WARLOCK'] = "Eltreum-Class-Warlock",
+    ['MONK'] = "Eltreum-Class-Monk",
+    ['DRUID'] = "Eltreum-Class-Druid",
+    ['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
+}
+
 -- Nameplate options for Border and Glow and Texture
 function ElvUI_EltreumUI:NamePlateOptions()
 	local nameplateclasscolors
@@ -95,11 +112,8 @@ function ElvUI_EltreumUI:NamePlateOptions()
 	end
 	if E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
-		E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
 		E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
-		--E.global["nameplate"]["filters"]["EltreumClassColor"]["actions"]["texture"]["enable"] = true
-		--E.global["nameplate"]["filters"]["EltreumClassColor"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
-		--E.db["nameplates"]["statusbar"] = (playerclass[E.myclass])
+		--E.global["nameplate"]["filters"]["EltreumClassColor"]["triggers"]["enable"] = true
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = true
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthColor"]["b"] = 1
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthColor"]["g"] = 1
@@ -107,7 +121,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 	else
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "Eltreum-Blank"
 		E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = false
-		--E.db["nameplates"]["statusbar"] = "Eltreum-Blank"
+		--E.global["nameplate"]["filters"]["EltreumClassColor"]["triggers"]["enable"] = false
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = false
 	end
 end
@@ -185,10 +199,12 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
 		E.db["nameplates"]["filters"]["EnemyCasting"]["triggers"]["enable"] = true
 		E.db["nameplates"]["filters"]["ExecuteRange"]["triggers"]["enable"] = true
-		E.db["nameplates"]["filters"]["Pandemic"]["triggers"]["enable"] = false
 		E.db["nameplates"]["filters"]["StealThisBuff"]["triggers"]["enable"] = true
 		E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = false
-		E.global["nameplate"]["filters"]["EltreumClassColor"]["actions"]["texture"]["enable"] = false
+		E.db["nameplates"]["filters"]["HideThis"]["triggers"]["enable"] = true
+		E.db["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["enable"] = true
+		E.db["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["enable"] = true
+		E.db["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["enable"] = true
 		E.db["nameplates"]["highlight"] = false
 		E.db["nameplates"]["lowHealthThreshold"] = 0.2
 		E.db["nameplates"]["plateSize"]["friendlyHeight"] = 10
@@ -498,7 +514,7 @@ end
 
 -- Style Filter Setup
 function ElvUI_EltreumUI:SetupStyleFilters()
-	for _, filterName in pairs({'ElvUI_Explosives', 'ElvUI_NonTarget', 'ElvUI_Target', 'EnemyCasting', 'ExecuteRange', 'Pandemic', 'StealThisBuff', 'EltreumRare', 'EltreumClassColor'}) do
+	for _, filterName in pairs({'ElvUI_Explosives', 'ElvUI_NonTarget', 'ElvUI_Target', 'EnemyCasting', 'ExecuteRange', 'StealThisBuff', 'EltreumRare', 'HideThis'}) do
 		E.global["nameplate"]["filters"][filterName] = {}
 		E.NamePlates:StyleFilterCopyDefaults(E.global["nameplate"]["filters"][filterName])
 		E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
@@ -573,17 +589,29 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["g"] = 1
 	E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["r"] = 1
 	E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["enable"] = true
-	E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = "Eltreum-Blank"
+	E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 	E.global["nameplate"]["filters"]["EltreumRare"]["triggers"]["classification"]["rare"] = true
 	E.global["nameplate"]["filters"]["EltreumRare"]["triggers"]["classification"]["rareelite"] = true
 	E.global["nameplate"]["filters"]["EltreumRare"]["triggers"]["classification"]["worldboss"] = true
 	E.global["nameplate"]["filters"]["EltreumRare"]["triggers"]["isNotTapDenied"] = true
 	E.global["nameplate"]["filters"]["EltreumRare"]["triggers"]["priority"] = 10
-	-- class colors on everything
-	E.global["nameplate"]["filters"]["EltreumClassColor"]["actions"]["texture"]["enable"] = false
-	E.global["nameplate"]["filters"]["EltreumClassColor"]["actions"]["texture"]["texture"] = "Eltreum-Blank"
-	E.global["nameplate"]["filters"]["EltreumClassColor"]["triggers"]["isTarget"] = true
-	E.global["nameplate"]["filters"]["EltreumClassColor"]["triggers"]["notTarget"] = true
+	--mainly for mages to steal buffs
+	E.global["nameplate"]["filters"]["StealThisBuff"]["actions"]["alpha"] = 100
+	E.global["nameplate"]["filters"]["StealThisBuff"]["actions"]["flash"]["enable"] = true
+	E.global["nameplate"]["filters"]["StealThisBuff"]["actions"]["scale"] = 1.25
+	E.global["nameplate"]["filters"]["StealThisBuff"]["triggers"]["buffs"]["hasStealable"] = true
+	E.global["nameplate"]["filters"]["StealThisBuff"]["triggers"]["isTarget"] = true
+	E.global["nameplate"]["filters"]["StealThisBuff"]["triggers"]["notTarget"] = true
+	E.global["nameplate"]["filters"]["StealThisBuff"]["triggers"]["priority"] = 13
+	--hide nameplates for unattackable npcs
+	E.global["nameplate"]["filters"]["HideThis"]["actions"]["nameOnly"] = true
+	E.global["nameplate"]["filters"]["HideThis"]["actions"]["tags"]["name"] = "[namecolor][name]"
+	E.global["nameplate"]["filters"]["HideThis"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets]"
+	E.global["nameplate"]["filters"]["HideThis"]["triggers"]["nameplateType"]["enable"] = true
+	E.global["nameplate"]["filters"]["HideThis"]["triggers"]["nameplateType"]["enemyNPC"] = true
+	E.global["nameplate"]["filters"]["HideThis"]["triggers"]["playerCanNotAttack"] = true
+	E.global["nameplate"]["filters"]["HideThis"]["triggers"]["priority"] = 15
+
 
 	E:StaggeredUpdateAll(nil, true)
 
