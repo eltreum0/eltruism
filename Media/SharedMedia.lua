@@ -65,6 +65,7 @@ LSM:Register("statusbar", "Eltreum-Class-Warrior", [[Interface\Addons\ElvUI_Eltr
 LSM:Register("statusbar", "Eltreum-Class-Warlock", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-WL.tga]])
 LSM:Register("statusbar", "Eltreum-Class-Priest", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Blank.tga]])
 LSM:Register("statusbar", "Eltreum-Dark", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Dark.tga]])
+LSM:Register("statusbar", "Eltreum-Alpha", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Alpha.tga]])
 
 
 -- Background

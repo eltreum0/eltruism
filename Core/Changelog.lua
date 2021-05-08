@@ -127,6 +127,7 @@ Initial version
 Added Layout for DPS and Healer
 Added Options Menu
 Added Media
+Added Class Glow to Action Bars
 
 
 ]] end

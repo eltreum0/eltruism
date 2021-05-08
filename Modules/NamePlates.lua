@@ -79,8 +79,8 @@ local playerclass = {
     ['ROGUE'] = "Eltreum-Class-Rogue",
     ['PRIEST'] = "Eltreum-Class-Priest",
     ['DEATHKNIGHT'] = "Eltreum-Class-DeathKnight",
-    ['SHAMAN'] = "Eltreum-Class-Shaman",
-    ['MAGE'] = "Eltreum-Class-Mage",
+    ['SHAMAN'] = "Eltreum-Class-Druid",     -- issues becoming green due to color mixing so color changed to druid from "Eltreum-Class-Shaman"
+    ['MAGE'] = "Eltreum-Class-Druid",         --  issues becoming green due to color mixing so color changed to druid from "Eltreum-Class-Mage"
     ['WARLOCK'] = "Eltreum-Class-Warlock",
     ['MONK'] = "Eltreum-Class-Monk",
     ['DRUID'] = "Eltreum-Class-Druid",
@@ -105,8 +105,8 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
 		E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
 		E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
-		E.global["nameplate"]["filters"]["EltreumClassColor"]["actions"]["texture"]["enable"] = true
-		E.global["nameplate"]["filters"]["EltreumClassColor"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
+		--E.global["nameplate"]["filters"]["EltreumClassColor"]["actions"]["texture"]["enable"] = true
+		--E.global["nameplate"]["filters"]["EltreumClassColor"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
 		--E.db["nameplates"]["statusbar"] = (playerclass[E.myclass])
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = true
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthColor"]["b"] = 1
@@ -115,7 +115,6 @@ function ElvUI_EltreumUI:NamePlateOptions()
 	else
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "Eltreum-Blank"
 		E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = false
-		E.global["nameplate"]["filters"]["EltreumClassColor"]["actions"]["texture"]["enable"] = false
 		--E.db["nameplates"]["statusbar"] = "Eltreum-Blank"
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = false
 	end
