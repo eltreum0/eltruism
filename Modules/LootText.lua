@@ -13,25 +13,12 @@ local GetCoinIcon = _G.GetCoinIcon
 
 function ElvUI_EltreumUI:LootText()
 	if E.private.ElvUI_EltreumUI.loottext.enable then
-	local LootText = {}
-	local LootText = LootText
 	local itemLink = nil
 	local amount = nil
-	local rarity = nil
-	local lootTexture = nil
-	local lootName = nil
-	local lootQuantity = nil
 	local YOU_LOOT_MONEY = _G.YOU_LOOT_MONEY
 	local LOOT_MONEY_SPLIT = _G.LOOT_MONEY_SPLIT
 	local LOOT_ITEM_SELF_MULTIPLE = _G.LOOT_ITEM_SELF_MULTIPLE
 	local LOOT_ITEM_SELF = _G.LOOT_ITEM_SELF
-	local LOOT_ITEM_CREATED_SELF = _G.LOOT_ITEM_CREATED_SELF
-	local GOLD_AMOUNT = _G.GOLD_AMOUNT
-	local SILVER_AMOUNT = _G.SILVER_AMOUNT
-	local COPPER_AMOUNT = _G.COPPER_AMOUNT
-	local COMBATLOG_HONORAWARD = _G.COMBATLOG_HONORAWARD
-	local COMBATLOG_HONORGAIN = _G.COMBATLOG_HONORGAIN
-	local COMBATLOG_HONORGAIN_NO_RANK = _G.COMBATLOG_HONORGAIN_NO_RANK
 	local CURRENCY_GAINED_MULTIPLE = _G.CURRENCY_GAINED_MULTIPLE
 	local CURRENCY_GAINED_MULTIPLE_BONUS = _G.CURRENCY_GAINED_MULTIPLE_BONUS
 	local CURRENCY_GAINED = _G.CURRENCY_GAINED
@@ -39,7 +26,6 @@ function ElvUI_EltreumUI:LootText()
 	local CombatText_StandardScroll = _G.CombatText_StandardScroll
 	local GetItemInfo = _G.GetItemInfo
 	local GetItemQualityColor = _G.GetItemQualityColor
-	local GetAchievementInfo = _G.GetAchievementInfo
 	local CombatText = _G.CombatText
 	local C_CurrencyInfo = _G.C_CurrencyInfo
 	local CreateFrame = _G.CreateFrame
@@ -57,8 +43,6 @@ function ElvUI_EltreumUI:LootText()
 	LootTextframe:RegisterEvent("LOOT_OPENED")
 	CombatText:SetScale(0.65)
 
-
-
 	function LootTextframe.OnEvent(self, event, arg1, arg2, arg3)
 		if event == "UI_ERROR_MESSAGE" and arg1 == ERR_INV_FULL then
 				CombatText_AddMessage("INVENTORY IS FULL", CombatText_StandardScroll, 1, 0, 0)
@@ -72,10 +56,10 @@ function ElvUI_EltreumUI:LootText()
 			end
 			if itemLink and not itemLink:match("|Hbattlepet:") then
 				local sName, sLink, iRarity, iLevel, iMinLevel, sType, sSubType, iStackCount, iEqLoc, iTexture, iSellPrice, _, _, _, _, _, _ = GetItemInfo(itemLink)
-				lootTexture = iTexture
-				lootName = sName
-				lootQuantity = amount
-				rarity = iRarity
+				local lootTexture = iTexture
+				local lootName = sName
+				local lootQuantity = amount
+				local rarity = iRarity
 				local r, g, b, hex = GetItemQualityColor(rarity)
 				if lootQuantity >= 2 then
 					CombatText_AddMessage("|T ".. lootTexture ..":22:22:0:0|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, r, g, b)
@@ -110,9 +94,9 @@ function ElvUI_EltreumUI:LootText()
 				end
 				if itemLink then
 					local info = C_CurrencyInfo.GetCurrencyInfoFromLink(itemLink)
-					lootTexture = info["iconFileID"]
-					lootName = info["name"]
-					lootQuantity = amount
+					local lootTexture = info["iconFileID"]
+					local lootName = info["name"]
+					local lootQuantity = amount
 					if itemLink:match("Soul Ash") then
 						CombatText_AddMessage("|T ".. 3743738 ..":22:22:-11:-11|t  "..itemLink, CombatText_StandardScroll, 255, 255, 255)
 					end
@@ -141,9 +125,9 @@ function ElvUI_EltreumUI:LootText()
 					amount = 1
 					end
 					local info = C_CurrencyInfo.GetCurrencyInfoFromLink(itemLink)
-					lootTexture = info["iconFileID"]
-					lootName = info["name"]
-					lootQuantity = amount
+					local lootTexture = info["iconFileID"]
+					local lootName = info["name"]
+					local lootQuantity = amount
 					if lootQuantity >= 2 then
 						CombatText_AddMessage("|T ".. lootTexture ..":22:22:0:0|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, 255, 255, 255)
 					else
