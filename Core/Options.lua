@@ -1,14 +1,9 @@
-local _G = _G
-local unpack = _G.unpack
-local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local sort = _G.sort
-local pairs = _G.pairs
-local tinsert = _G.table.insert
-local tconcat = _G.table.concat
-local ReloadUI = _G.ReloadUI
-local format = _G.format
-local PlaySoundFile = _G.PlaySoundFile
+local sort = sort
+local pairs = pairs
+local tinsert = table.insert
+local tconcat = table.concat
+local ReloadUI = ReloadUI
 
 -- Author list
 local AUTHORS = {

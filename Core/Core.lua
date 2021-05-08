@@ -1,13 +1,6 @@
-local _G = _G
-local unpack = _G.unpack
-local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local SetCVar = _G.SetCVar
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local ElvUI_SLE = _G.ElvUI_SLE
-local print = _G.print
-local noDisplayMsg = _G.noDisplayMsg
-local GetAddOnMetadata = _G.GetAddOnMetadata
+local SetCVar = SetCVar
+local IsAddOnLoaded = IsAddOnLoaded
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
@@ -17,10 +10,11 @@ end
 function ElvUI_EltreumUI:VersionCheck()
 	local EltruismVersionCheck = GetAddOnMetadata('ElvUI_EltreumUI', 'Version')
 		if EltruismVersionCheck < "1.9" then
-			print('|cff82B4ffEltruism|r: '..'Updating settings for 1.9. Please reload to avoid issues!')
 			ElvUI_EltreumUI:SetupStyleFilters()
 			ElvUI_EltreumUI:SetupCVars()
 			ElvUI_EltreumUI:NameplateCVars()
+			E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = true
+			print('|cff82B4ffEltruism|r: '..'Updating settings for 1.9. Please reload to avoid issues!')
 		end
 end
 

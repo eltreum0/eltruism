@@ -7,6 +7,8 @@ local SetCVar = _G.SetCVar
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local Deformat = _G.LibStub("LibDeformat-3.0")
 local GetCoinIcon = _G.GetCoinIcon
+local CreateFrame = _G.CreateFrame
+local CombatText = _G.CombatText
 
 -- LootText is a fork of Scrolling Loot Text (SLoTe) by xavjer using fixes by Eltreum for pet caging and other things
 -- SLoTE uses GNU GPLv3 and as such this part of Eltruism also uses GNU GPLv3
@@ -44,7 +46,6 @@ function ElvUI_EltreumUI:LootText()
 		local LOOT_ITEM_PUSHED_SELF_MULTIPLE = _G.LOOT_ITEM_PUSHED_SELF_MULTIPLE
 		local LOOT_ITEM_PUSHED_SELF = _G.LOOT_ITEM_PUSHED_SELF
 		local ERR_INV_FULL = _G.ERR_INV_FULL
-
 
 		function LootTextframe.OnEvent(self, event, arg1, arg2, arg3)
 			if event == "UI_ERROR_MESSAGE" and arg1 == ERR_INV_FULL then

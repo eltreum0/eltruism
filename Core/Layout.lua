@@ -1,9 +1,6 @@
-local _G = _G
-local unpack = _G.unpack
-local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local sleversioncheck = _G.GetAddOnMetadata('ElvUI_SLE', 'Version')
+local IsAddOnLoaded = IsAddOnLoaded
+local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 
 function ElvUI_EltreumUI:SetupLayout(layout)
 	if not E.db.movers then E.db.movers = {} end

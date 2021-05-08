@@ -8,10 +8,13 @@ function ElvUI_EltreumUI:Changelog()
 
     v1.9
     -------
-Changed Class Gradient on Nameplates, now defaults to on
-Included a nameplate filter for rares
-Added Loot Text, a fork of SLoTE (This part of Eltruism is GNU GPLv3)
+Changed Class Texture on Nameplates, Mage and Shaman use a different texture to avoid the green color
+Included a nameplate filter for rares that is active with Class Textures on Nameplates
+Added Loot Text, a fork of SLoTE. You can test this with '/eltruism loot' (This module of Eltruism is GNU GPLv3)
 Added a version check which will automatically update settings if the user is out of date
+Fixed a missing friendly nameplate that was not exported before
+Tweaked CVars for nameplates
+
 
     v1.8.1
     -------

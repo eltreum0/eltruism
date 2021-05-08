@@ -1,14 +1,5 @@
-local _G = _G
-local unpack = _G.unpack
-local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local pairs = _G.pairs
-local SetCVar = _G.SetCVar
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local GetAddOnMetadata = _G.GetAddOnMetadata
-
-
-
+local IsAddOnLoaded = IsAddOnLoaded
 local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 
 function ElvUI_EltreumUI:SetupFontsKimberley(addon)
@@ -564,7 +555,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 
 		E:StaggeredUpdateAll(nil, true)
 
-	ElvUI_EltreumUI:Print('Font has been set.')
+	ElvUI_EltreumUI:Print('Kimberley Font has been set.')
 end
 
 function ElvUI_EltreumUI:SetupFontsExo2(addon)
@@ -1119,7 +1110,7 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 
 
 	E:StaggeredUpdateAll(nil, true)
-	ElvUI_EltreumUI:Print('Font has been set.')
+	ElvUI_EltreumUI:Print('Exo2 Font has been set.')
 end
 
 function ElvUI_EltreumUI:SetupFontsGotham(addon)
@@ -1672,7 +1663,7 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 
 		E:StaggeredUpdateAll(nil, true)
 
-	ElvUI_EltreumUI:Print('Font has been set.')
+	ElvUI_EltreumUI:Print('GothamNarrow Black Font has been set.')
 end
 
 function ElvUI_EltreumUI:SetupFontsRoboto(addon)
@@ -2229,5 +2220,5 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 
 		E:StaggeredUpdateAll(nil, true)
 
-	ElvUI_EltreumUI:Print('Font has been set.')
+	ElvUI_EltreumUI:Print('Roboto Font has been set.')
 end

@@ -1,11 +1,7 @@
-local _G = _G
-local unpack = _G.unpack
-local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local ReloadUI = _G.ReloadUI
-local format = _G.string.format
-local PluginInstallFrame = _G.PluginInstallFrame
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local ReloadUI = ReloadUI
+local format = string.format
+
 
 -- Set version & reload on "Skip" and "Finished"
 local function InstallComplete()
@@ -49,11 +45,10 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Desc2:SetText('This process can take a few seconds')
 			PluginInstallFrame.Desc3:SetText('Importance: |cFFFF0000Very High|r')
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupStyleFilters() ElvUI_EltreumUI:SetupCVars() end)
-
+			PluginInstallFrame.Option1:SetScript('OnClick', function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() end)
 			PluginInstallFrame.Option1:SetText('DPS/Tank')
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupStyleFilters() ElvUI_EltreumUI:SetupCVars() end)
+			PluginInstallFrame.Option2:SetScript('OnClick', function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() end)
 			PluginInstallFrame.Option2:SetText('Healing')
 		end,
 		[4] = function()

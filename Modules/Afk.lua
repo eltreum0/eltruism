@@ -1,14 +1,7 @@
-local _G = _G
-local unpack = _G.unpack
-local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local pairs = _G.pairs
-local SetCVar = _G.SetCVar
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local GetCVar = _G.GetCVar
-local UnitIsAFK = _G.UnitIsAFK
-local PlayMusic = _G.PlayMusic
-local StopMusic = _G.StopMusic
+local pairs = pairs
+local SetCVar = SetCVar
+local IsAddOnLoaded = IsAddOnLoaded
 
 -- general alliance walk (legion) maybe human music idk
 --/script PlaySoundFile(1417250, "Dialog", true)

@@ -1,6 +1,3 @@
-local _G = _G
-local unpack = _G.unpack
-local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local LoadAddOn = _G.LoadAddOn
 local GetCoinIcon = _G.GetCoinIcon
@@ -13,7 +10,7 @@ function ElvUI_EltreumUI:LoadCommands()
 end
 
 function ElvUI_EltreumUI:RunCommands(message)
-	if message == '' or message == 'install' then
+	if message == '' or message == 'install' or message == 'setup' then
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 	elseif message == 'loot' then
 		if E.private.ElvUI_EltreumUI.loottext.enable then
@@ -22,13 +19,8 @@ function ElvUI_EltreumUI:RunCommands(message)
 		else
 				CombatText_AddMessage("|T ".. 237555 ..":22:22:-11:-11|t  ".."Eltruism Loot is currently disabled!", CombatText_StandardScroll, 255, 255, 255)
 		end
-	elseif message == 'config' or message == 'setup' then
+	elseif message == 'config' or message == 'options' then
 		E:ToggleOptionsUI()
 		E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
 	end
 end
-
-
-
-
-

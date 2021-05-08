@@ -1,15 +1,8 @@
-local _G = _G
-local unpack = _G.unpack
-local select = _G.select
-local ElvUI = _G.ElvUI
-local LibStub = _G.LibStub
 local E, L, V, P, G = unpack(ElvUI)
 local EP = LibStub('LibElvUIPlugin-1.0')
 local addon, Engine = ...
 local _G = _G
 local ElvUI_EltreumUI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0', 'AceConsole-3.0')
-local GetAddOnMetadata = _G.GetAddOnMetadata
-local SetCVar = _G.SetCVar
 
 -- This whole plugin uses LuckyoneUI as a base, full credits to him for it and allowing its use!
 Engine[1] = ElvUI_EltreumUI
