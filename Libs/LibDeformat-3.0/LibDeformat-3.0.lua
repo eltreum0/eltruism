@@ -5,6 +5,16 @@ Website: http://www.wowace.com/projects/libdeformat-3-0/
 Description: A library to convert a post-formatted string back to its original arguments given its format string.
 License: MIT
 ]]
+local _G = _G
+local LibStub = _G.LibStub
+local setmetatable = _G.setmetatable
+local pairs = _G.pairs
+local table = _G.table
+local assert = _G.assert
+local loadstring = _G.loadstring
+local tonumber = _G.tonumber
+local type = _G.type
+local error = _G.error
 
 local LibDeformat = LibStub:NewLibrary("LibDeformat-3.0", 1)
 
@@ -18,7 +28,7 @@ end
 
 -- a dictionary of format to match entity
 local FORMAT_SEQUENCES = {
-    ["s"] = ".+",    
+    ["s"] = ".+",
     ["c"] = ".",
     ["%d*d"] = "%%-?%%d+",
     ["[fg]"] = "%%-?%%d+%%.?%%d*",
@@ -38,21 +48,21 @@ local function get_deformat_function(pattern)
     if func then
         return func
     end
-    
+
     -- escape the pattern, so that string.match can use it properly
     local unpattern = '^' .. pattern:gsub("([%(%)%.%*%+%-%[%]%?%^%$%%])", "%%%1") .. '$'
-    
+
     -- a dictionary of index-to-boolean representing whether the index is a number rather than a string.
     local number_indexes = {}
-    
+
     -- (if the pattern is a numbered format,) a dictionary of index-to-real index.
     local index_translation = nil
-    
+
     -- the highest found index, also the number of indexes found.
 	local highest_index
     if not pattern:find("%%1%$") then
         -- not a numbered format
-        
+
         local i = 0
         while true do
             i = i + 1
@@ -71,11 +81,11 @@ local function get_deformat_function(pattern)
             unpattern = unpattern:gsub("%%%%" .. first_sequence, "(" .. FORMAT_SEQUENCES[first_sequence] .. ")", 1)
             number_indexes[i] = not STRING_BASED_SEQUENCES[first_sequence]
         end
-        
+
         highest_index = i - 1
     else
         -- a numbered format
-        
+
         local i = 0
 		while true do
 		    i = i + 1
@@ -93,7 +103,7 @@ local function get_deformat_function(pattern)
 			number_indexes[i] = not STRING_BASED_SEQUENCES[found_sequence]
 		end
         highest_index = i - 1
-		
+
 		i = 0
 		index_translation = {}
 		pattern:gsub("%%(%d)%$", function(w)
@@ -101,7 +111,7 @@ local function get_deformat_function(pattern)
 		    index_translation[i] = tonumber(w)
 		end)
     end
-    
+
     if highest_index == 0 then
         cache[pattern] = do_nothing
     else
@@ -115,7 +125,7 @@ local function get_deformat_function(pattern)
                 end
                 return a1+0, a2
             end
-            
+
             -- or if it were a numbered pattern,
             local unpattern = ...
             return function(text)
@@ -126,12 +136,12 @@ local function get_deformat_function(pattern)
                 return a1+0, a2
             end
         ]=]
-        
+
         local t = {}
         t[#t+1] = [=[
             return function(text)
                 local ]=]
-        
+
         for i = 1, highest_index do
             if i ~= 1 then
                 t[#t+1] = ", "
@@ -143,25 +153,25 @@ local function get_deformat_function(pattern)
                 t[#t+1] = index_translation[i]
             end
         end
-        
+
         t[#t+1] = [=[ = text:match(]=]
         t[#t+1] = ("%q"):format(unpattern)
         t[#t+1] = [=[)
                 if not a1 then
                     return ]=]
-        
+
         for i = 1, highest_index do
             if i ~= 1 then
                 t[#t+1] = ", "
             end
             t[#t+1] = "nil"
         end
-        
+
         t[#t+1] = "\n"
         t[#t+1] = [=[
                 end
                 ]=]
-        
+
         t[#t+1] = "return "
         for i = 1, highest_index do
             if i ~= 1 then
@@ -177,14 +187,14 @@ local function get_deformat_function(pattern)
         t[#t+1] = [=[
             end
         ]=]
-        
+
         t = table.concat(t, "")
-        
+
         -- print(t)
-        
+
         cache[pattern] = assert(loadstring(t))()
     end
-    
+
     return cache[pattern]
 end
 
@@ -207,7 +217,7 @@ function LibDeformat.Deformat(text, pattern)
     elseif type(pattern) ~= "string" then
         error(("Argument #2 to `Deformat' must be a string, got %s (%s)."):format(type(pattern), pattern), 2)
     end
-    
+
     return get_deformat_function(pattern)(text)
 end
 
@@ -220,17 +230,17 @@ function LibDeformat.Test()
             return false, ...
         end
     end
-    
+
     local function check(text, pattern, ...)
         local success, results = tuple(pcall(LibDeformat.Deformat, text, pattern))
         if not success then
             return false, results
         end
-        
+
         if select('#', ...) ~= results.n then
             return false, ("Differing number of return values. Expected: %d. Actual: %d."):format(select('#', ...), results.n)
         end
-        
+
         for i = 1, results.n do
             local expected = select(i, ...)
             local actual = results[i]
@@ -240,17 +250,17 @@ function LibDeformat.Test()
                 return false, ("Return #%d differs. Expected: %s. Actual: %s"):format(expected, actual)
             end
         end
-        
+
         return true
     end
-    
+
     local function test(text, pattern, ...)
         local success, problem = check(text, pattern, ...)
         if not success then
             print(("Problem with (%q, %q): %s"):format(text, pattern, problem or ""))
         end
     end
-    
+
     test("Hello, friend", "Hello, %s", "friend")
     test("Hello, friend", "Hello, %1$s", "friend")
     test("Cost: $100", "Cost: $%d", 100)
