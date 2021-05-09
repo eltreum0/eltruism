@@ -8,13 +8,16 @@ function ElvUI_EltreumUI:Changelog()
 
     v1.9
     -------
-Changed Class Texture on Nameplates, Mage and Shaman use a different texture to avoid the green color
-Included a nameplate filter for rares that is active with Class Textures on Nameplates
 Added Loot Text, a fork of SLoTE. You can test this with '/eltruism loot' (This module of Eltruism is GNU GPLv3)
 Added a version check which will automatically update settings if the user is out of date
-Fixed a missing friendly nameplate that was not exported before
-Tweaked CVars for nameplates
-
+Changed Class Texture on Nameplates, Mage and Shaman use a different texture to avoid the green color
+Included a nameplate filter for rares that is active with Class Textures on Nameplates
+Changed the Friendly Nameplate option, now it will show friendly names inside instances also, with the previous setting being a separate option
+Fixed a missing friendly nameplate setting that was not exported
+Changed a few CVar values for nameplates
+Moved dependencies, added checks on the installer for missing addons
+Turned minimap bar into mouse over
+Fixed pet on healer profile
 
     v1.8.1
     -------

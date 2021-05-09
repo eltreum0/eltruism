@@ -50,7 +50,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["SquareMinimapButtons"]["IconSize"] = 24
 	PA.db["SquareMinimapButtons"]["MoveMail"] = false
 	PA.db["SquareMinimapButtons"]["ButtonsPerRow"] = 8
-	PA.db["SquareMinimapButtons"]["Visibility"] = "[petbattle][combat]hide; show"
+	PA.db["SquareMinimapButtons"]["Visibility"] = "show" --"[petbattle][combat]hide; show"
 	PA.db["SquareMinimapButtons"]["MoveTracker"] = false
-	-- Movers
+	PA.db["SquareMinimapButtons"]["BarMouseOver"] = true
 end

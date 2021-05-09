@@ -51,18 +51,41 @@ hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
 --end
 --hooksecurefunc(NP, 'Construct_ClassPower', NameplatePowerTexture)
 
+
+-- customize friendly nameplate inside instance
+--/run C_NamePlate.SetNamePlateFriendlySize(21, 5)
+
 --- Friendly Nameplate Control
 function ElvUI_EltreumUI:FriendlyNameplates()
-	if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.enable then
 		local inInstance, instanceType = IsInInstance()
-		if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
-			SetCVar("nameplateShowFriends", 0)
+		local mapID = WorldMapFrame:GetMapID()
+		if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames then
+			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
+				SetCVar("nameplateShowFriends", 1)
+				SetCVar("nameplateShowOnlyNames", 1)
+				SetCVar("nameplateShowOnlyNames", 1)
+			end
+			if instanceType == "none" or mapID == 1662 then
+				SetCVar("nameplateShowFriends", 1);
+				SetCVar("nameplateShowOnlyNames", 1)
+				SetCVar("nameplateShowOnlyNames", 1)
+			end
+			if mapID == 582 then
+				SetCVar("nameplateShowFriends", 0)
+			end
 		end
-		if instanceType == "none" then
-			SetCVar("nameplateShowFriends", 1)
+		if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly then
+			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
+				SetCVar("nameplateShowFriends", 0);
+				SetCVar("nameplateShowOnlyNames", 0)
+			end
+			if instanceType == "none" or mapID == 1662 then
+				SetCVar("nameplateShowFriends", 1);
+				SetCVar("nameplateShowOnlyNames", 0)
+			end
 		end
-	end
 end
+
 
 --for general nameplates
 local playerclass = {

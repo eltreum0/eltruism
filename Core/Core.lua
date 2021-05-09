@@ -106,8 +106,6 @@ end
 -- CVars General
 function ElvUI_EltreumUI:SetupCVars()
 	-- ElvUI CVars
-	E:SetupCVars(noDisplayMsg)
-
 	SetCVar('removeChatDelay', 1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('autoLootDefault', 1)
@@ -115,8 +113,11 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('UnitNameEnemyGuardianName', 0)
 	SetCVar('UnitNameEnemyMinionName', 0)
 	SetCVar('UnitNameEnemyPetName', 0)
+	SetCVar('UnitNameFriendlyPetName', 0)
 	SetCVar('UnitNameEnemyPlayerName', 1)
-	SetCVar('UnitNameEnemyTotem', 1)
+	SetCVar('UnitNameEnemyTotemName', 1)
+	SetCVar('UnitNameNPC', 1)
+	SetCVar("ShowClassColorInFriendlyNameplate", 1)
 
 	ElvUI_EltreumUI:Print('CVars have been set.')
 end

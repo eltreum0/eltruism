@@ -43,11 +43,26 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('SUPER_TRACKING_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_CREATED')
 	ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_DESTROYED')
+	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
+	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
+	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
 	--ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_DISABLED')
 	SetCVar('nameplateOtherBottomInset', 0.02)
 	SetCVar('nameplateOtherTopInset', 0.1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('nameplateTargetRadialPosition', 1)
+end
+
+function ElvUI_EltreumUI:ZONE_CHANGED()
+	ElvUI_EltreumUI:FriendlyNameplates()
+end
+
+function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
+	ElvUI_EltreumUI:FriendlyNameplates()
+end
+
+function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
+	ElvUI_EltreumUI:FriendlyNameplates()
 end
 
 function ElvUI_EltreumUI:ENCOUNTER_START()

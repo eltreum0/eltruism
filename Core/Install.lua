@@ -16,10 +16,58 @@ ElvUI_EltreumUI.InstallerData = {
 	tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 	Pages = {
 		[1] = function()
-			 -- Welcome Page or SLE/WT warning
-                if (not IsAddOnLoaded("ElvUI_WindTools")) or (not IsAddOnLoaded("ElvUI_SLE")) then
+			 -- Welcome Page and addon installed check
+                if (not IsAddOnLoaded("ElvUI_WindTools")) then
                     PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-                    PluginInstallFrame.Desc1:SetText("Make sure to install Shadow and Light and Windtools before starting this installation process")
+                    PluginInstallFrame.Desc1:SetText("Make sure to install Windtools before starting this installation process")
+                    PluginInstallFrame.Next:Disable()
+                elseif (not IsAddOnLoaded("ElvUI_SLE")) then
+                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+                    PluginInstallFrame.Desc1:SetText("Make sure to install Shadow & Light before starting this installation process")
+                    PluginInstallFrame.Next:Disable()
+                elseif (not IsAddOnLoaded("AddOnSkins")) then
+                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+                    PluginInstallFrame.Desc1:SetText("Make sure to install AddOnSkins before starting this installation process")
+                    PluginInstallFrame.Next:Disable()
+                elseif (not IsAddOnLoaded("ProjectAzilroka")) then
+                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+                    PluginInstallFrame.Desc1:SetText("Make sure to install ProjectAzilroka before starting this installation process")
+                    PluginInstallFrame.Next:Disable()
+                elseif (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ElvUI_WindTools")) then
+                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+                    PluginInstallFrame.Desc1:SetText("Make sure to install Shadow & Light and Windtools before starting this installation process")
+                    PluginInstallFrame.Next:Disable()
+                elseif (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("AddOnSkins")) then
+                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+                    PluginInstallFrame.Desc1:SetText("Make sure to install Shadow & Light and AddOnSkins before starting this installation process")
+                    PluginInstallFrame.Next:Disable()
+                elseif (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ProjectAzilroka")) then
+                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+                    PluginInstallFrame.Desc1:SetText("Make sure to install Shadow & Light and ProjectAzilroka before starting this installation process")
+                    PluginInstallFrame.Next:Disable()
+                elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("AddOnSkins")) then
+                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+                    PluginInstallFrame.Desc1:SetText("Make sure to install Windtools and AddOnSkins before starting this installation process")
+                    PluginInstallFrame.Next:Disable()
+                elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ProjectAzilroka")) then
+                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+                    PluginInstallFrame.Desc1:SetText("Make sure to install Windtools and ProjectAzilroka before starting this installation process")
+                    PluginInstallFrame.Next:Disable()
+                elseif (not IsAddOnLoaded("AddOnSkins")) and (not IsAddOnLoaded("ProjectAzilroka")) then
+                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+                    PluginInstallFrame.Desc1:SetText("Make sure to install AddOnSkins and ProjectAzilroka before starting this installation process")
+                    PluginInstallFrame.Next:Disable()
+                elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("AddOnSkins")) then
+                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+                    PluginInstallFrame.Desc1:SetText("Make sure to install Shadow & Light, Windtools and AddOnSkins before starting this installation process")
+                    PluginInstallFrame.Next:Disable()
+                elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ProjectAzilroka")) then
+                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+                    PluginInstallFrame.Desc1:SetText("Make sure to install Shadow & Light, Windtools and ProjectAzilroka before starting this installation process")
+                    PluginInstallFrame.Next:Disable()
+                elseif (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ProjectAzilroka")) and (not IsAddOnLoaded("AddOnSkins")) then
+                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+                    PluginInstallFrame.Desc1:SetText("Make sure to install Shadow & Light, ProjectAzilroka and AddOnSkins before starting this installation process")
                     PluginInstallFrame.Next:Disable()
                 else
 					PluginInstallFrame.Next:Enable()
@@ -34,7 +82,7 @@ ElvUI_EltreumUI.InstallerData = {
 		[2] = function()
 			PluginInstallFrame.SubTitle:SetText('Project Azilroka')
 			PluginInstallFrame.Desc1:SetText('Import settings for Project Azilroka')
-			PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffOptional|r')
+			PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffVery High|r')
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() end)
 			PluginInstallFrame.Option1:SetText('Setup Project Azilroka')
@@ -45,10 +93,10 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Desc2:SetText('This process can take a few seconds')
 			PluginInstallFrame.Desc3:SetText('Importance: |cFFFF0000Very High|r')
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() end)
+			PluginInstallFrame.Option1:SetScript('OnClick', function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() end)
 			PluginInstallFrame.Option1:SetText('DPS/Tank')
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() end)
+			PluginInstallFrame.Option2:SetScript('OnClick', function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() end)
 			PluginInstallFrame.Option2:SetText('Healing')
 		end,
 		[4] = function()
