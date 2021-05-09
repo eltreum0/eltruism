@@ -1,9 +1,14 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local IsAddOnLoaded = IsAddOnLoaded
 local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
+local _G = _G
+local PA = _G.ProjectAzilroka
+
+
 
 function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 	if not E.db.movers then E.db.movers = {} end
+		PA.db["stAddonManager"]["Font"] = "Kimberley"
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["font"] = "Kimberley"
@@ -69,8 +74,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.db["sle"]["minimap"]["coords"]["font"] = "Kimberley"
 		E.db["sle"]["minimap"]["instance"]["font"] = "Kimberley"
 		E.db["sle"]["minimap"]["locPanel"]["font"] = "Kimberley"
-		E.db["sle"]["nameplates"]["targetcount"]["font"] = "Kimberley"
-		E.db["sle"]["nameplates"]["threat"]["font"] = "Kimberley"
+
 
 	if sleversioncheck >= "4.22" then
 		E.db["sle"]["afk"]["animTime"] = 2
@@ -553,6 +557,7 @@ end
 
 function ElvUI_EltreumUI:SetupFontsExo2(addon)
 	if not E.db.movers then E.db.movers = {} end
+		PA.db["stAddonManager"]["Font"] = "Exo2 Extra Bold"
 		--nameplates
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Exo2 Extra Bold"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Exo2 Extra Bold"
@@ -619,8 +624,7 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.db["sle"]["minimap"]["coords"]["font"] = "Exo2 Extra Bold"
 		E.db["sle"]["minimap"]["instance"]["font"] = "Exo2 Extra Bold"
 		E.db["sle"]["minimap"]["locPanel"]["font"] = "Exo2 Extra Bold"
-		E.db["sle"]["nameplates"]["targetcount"]["font"] = "Exo2 Extra Bold"
-		E.db["sle"]["nameplates"]["threat"]["font"] = "Exo2 Extra Bold"
+
 
 	if sleversioncheck >= "4.22" then
 		E.db["sle"]["afk"]["animTime"] = 2
@@ -1102,6 +1106,7 @@ end
 
 function ElvUI_EltreumUI:SetupFontsGotham(addon)
 	if not E.db.movers then E.db.movers = {} end
+		PA.db["stAddonManager"]["Font"] = "GothamNarrow Black"
 		--nameplates
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "GothamNarrow Black"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "GothamNarrow Black"
@@ -1168,8 +1173,7 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		E.db["sle"]["minimap"]["coords"]["font"] = "GothamNarrow Black"
 		E.db["sle"]["minimap"]["instance"]["font"] = "GothamNarrow Black"
 		E.db["sle"]["minimap"]["locPanel"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["nameplates"]["targetcount"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["nameplates"]["threat"]["font"] = "GothamNarrow Black"
+
 
 	if sleversioncheck >= "4.22" then
 		E.db["sle"]["afk"]["animTime"] = 2
@@ -1652,7 +1656,7 @@ end
 
 function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 	if not E.db.movers then E.db.movers = {} end
-
+		PA.db["stAddonManager"]["Font"] = "Roboto"
 		--nameplates
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Roboto"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Roboto"
@@ -1719,8 +1723,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		E.db["sle"]["minimap"]["coords"]["font"] = "Roboto"
 		E.db["sle"]["minimap"]["instance"]["font"] = "Roboto"
 		E.db["sle"]["minimap"]["locPanel"]["font"] = "Roboto"
-		E.db["sle"]["nameplates"]["targetcount"]["font"] = "Roboto"
-		E.db["sle"]["nameplates"]["threat"]["font"] = "Roboto"
+
 
 	if sleversioncheck >= "4.22" then
 		E.db["sle"]["afk"]["animTime"] = 2

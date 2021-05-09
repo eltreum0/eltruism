@@ -5,6 +5,10 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v1.9.3
+    -------
+Fixed missing Sepsis paging for Night Fae Rogues (thanks to Naifu)
+
     v1.9.2
     -------
 Fixed a CVar bug to to triggering in combat
