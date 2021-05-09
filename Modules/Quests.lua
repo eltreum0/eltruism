@@ -11,7 +11,6 @@ function ElvUI_EltreumUI:QuestEncounter()
 			ObjectiveTracker_Collapse()
 			if ObjectiveTrackerFrame:IsVisible() or ObjectiveTracker_Expand() then
 				ObjectiveTracker_Collapse()
-				print('|cff82B4ffEltruism|r: '..'tried to collapse quest!')
 			end
 		end
 	end
