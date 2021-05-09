@@ -5,6 +5,14 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v1.9.2
+    -------
+Fixed a CVar bug to to triggering in combat
+Fixed full inventory in LootText
+
+    v1.9.1
+    -------
+Removed test print
 
     v1.9
     -------

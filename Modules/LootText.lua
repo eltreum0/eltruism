@@ -48,7 +48,7 @@ function ElvUI_EltreumUI:LootText()
 		local ERR_INV_FULL = _G.ERR_INV_FULL
 
 		function LootTextframe.OnEvent(self, event, arg1, arg2, arg3)
-			if event == "UI_ERROR_MESSAGE" and arg1 == ERR_INV_FULL then
+			if event == "UI_ERROR_MESSAGE" and arg2 == "Inventory is full." then
 					CombatText_AddMessage("INVENTORY IS FULL", CombatText_StandardScroll, 1, 0, 0)
 			end
 			if (event == "CHAT_MSG_LOOT") then

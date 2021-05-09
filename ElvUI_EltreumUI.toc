@@ -1,6 +1,6 @@
 ## Interface: 90005
 ## Author: Eltreum
-## Version: 1.9
+## Version: 1.9.2
 ## Title: |cff1784d1ElvUI|r Eltruism
 ## Notes: Eltreum's ElvUI Profile and Plugin
 ## Dependencies: ElvUI, ElvUI_SLE, ElvUI_WindTools, AddOnSkins, ProjectAzilroka

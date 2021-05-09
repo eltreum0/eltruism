@@ -52,6 +52,7 @@ function ElvUI_EltreumUI:Initialize()
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('nameplateTargetRadialPosition', 1)
 	SetCVar('nameplateShowEnemies', 1)
+	SetCVar("nameplateShowFriends", 1)
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED()

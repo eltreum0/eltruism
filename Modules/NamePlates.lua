@@ -45,6 +45,7 @@ function ElvUI_EltreumUI:Construct_Auras(nameplate)
 end
 hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
 
+
 -- need to learn more about scopes before doing this
 --local function NameplatePowerTexture()
 --	local texture = 'Eltreum-Blank'
@@ -52,7 +53,7 @@ hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
 --hooksecurefunc(NP, 'Construct_ClassPower', NameplatePowerTexture)
 
 
--- customize friendly nameplate inside instance
+-- customize friendly nameplate health width inside instance
 --/run C_NamePlate.SetNamePlateFriendlySize(21, 5)
 
 --- Friendly Nameplate Control
@@ -61,13 +62,11 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 		local mapID = WorldMapFrame:GetMapID()
 		if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames then
 			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
-				SetCVar("nameplateShowFriends", 1)
-				SetCVar("nameplateShowOnlyNames", 1)
+				--SetCVar("nameplateShowFriends", 1);
 				SetCVar("nameplateShowOnlyNames", 1)
 			end
 			if instanceType == "none" or mapID == 1662 then
-				SetCVar("nameplateShowFriends", 1);
-				SetCVar("nameplateShowOnlyNames", 1)
+				--SetCVar("nameplateShowFriends", 1);
 				SetCVar("nameplateShowOnlyNames", 1)
 			end
 			if mapID == 582 then
@@ -76,16 +75,13 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 		end
 		if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly then
 			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
-				SetCVar("nameplateShowFriends", 0);
-				SetCVar("nameplateShowOnlyNames", 0)
+				SetCVar("nameplateShowFriends", 0)
 			end
 			if instanceType == "none" or mapID == 1662 then
-				SetCVar("nameplateShowFriends", 1);
-				SetCVar("nameplateShowOnlyNames", 0)
+				SetCVar("nameplateShowFriends", 1)
 			end
 		end
 end
-
 
 --for general nameplates
 local playerclass = {
