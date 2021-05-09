@@ -138,7 +138,7 @@ ElvUI_EltreumUI.InstallerData = {
 		[7] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('Boss Mods')
 			PluginInstallFrame.Desc1:SetText('Import DBM or Bigwigs profiles')
-			PluginInstallFrame.Desc2:SetText('These profiles are setup with DBM-VEM or Caladon and Bigwigs Voice')
+			PluginInstallFrame.Desc2:SetText('These profiles are setup with DBM English Calanon and Bigwigs Voice')
 			PluginInstallFrame.Desc3:SetText('|cffff0000Your current settings will be lost with overwrite, please back them up|r')
 			PluginInstallFrame.Desc4:SetText('Importance: |cff82B4ffOptional|r')
 			PluginInstallFrame.Option1:Show()

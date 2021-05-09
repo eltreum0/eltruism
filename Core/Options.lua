@@ -445,8 +445,8 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						inline = true,
 						name = 'Collapse Quests during Encounters/Boss Fights',
-						get = function(info) return E.private.ElvUI_EltreumUI.questsettings[info[#info]] end,
-						set = function(info, value) E.private.ElvUI_EltreumUI.questsettings[info[#info]] = value end,
+						get = function(info) return E.private.ElvUI_EltreumUI.questsettings.enable end,
+						set = function(info, value) E.private.ElvUI_EltreumUI.questsettings.enable = value end,
 						args = {
 							enable = {
 								order = 5,
@@ -469,8 +469,8 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						inline = true,
 						name = 'Add a time to arrive below the waypoint',
-						get = function(info) return E.private.ElvUI_EltreumUI.waypointetasetting[info[#info]] end,
-						set = function(info, value) E.private.ElvUI_EltreumUI.waypointetasetting[info[#info]] = value E:StaticPopup_Show('PRIVATE_RL') end,
+						get = function(info) return E.private.ElvUI_EltreumUI.waypointetasetting.enable end,
+						set = function(info, value) E.private.ElvUI_EltreumUI.waypointetasetting.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 						args = {
 							explainer = {
 								order = 1,
@@ -575,8 +575,6 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						inline = true,
 						name = 'Class Colored Nameplate Options',
-						get = function(info) return E.private.ElvUI_EltreumUI.nameplateOptions[info[#info]] end,
-						set = function(info, value) E.private.ElvUI_EltreumUI.nameplateOptions[info[#info]] = value E:StaticPopup_Show('PRIVATE_RL') end,
 						args = {
 							classhover = {
 								order = 1,
@@ -736,14 +734,13 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						inline = true,
 						name = 'Toggle a Stealth Effect',
-						get = function(info) return E.private.ElvUI_EltreumUI.stealthOptions[info[#info]] end,
-						set = function(info, value) E.private.ElvUI_EltreumUI.stealthOptions[info[#info]] = value E:StaticPopup_Show('PRIVATE_RL') end,
 						args = {
-							stealthoptions = {
+							stealthframeoptions = {
 								order = 1,
 								type = 'toggle',
-								name = 'Enable',
-								desc = 'Add a vignette while in stealth',
+								name = 'Add a vignette effect while in stealth',
+								width = 'full',
+								desc = 'Turn the effect on',
 								get = function(info) return E.private.ElvUI_EltreumUI.stealthOptions.stealtheffect end,
 								set = function(info, value) E.private.ElvUI_EltreumUI.stealthOptions.stealtheffect = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},

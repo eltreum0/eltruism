@@ -240,7 +240,6 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["sle"]["loot"]["looticons"]["size"] = 13
 	--AFK Screensaver
 
-
 	if sleversioncheck >= "4.22" then
 		E.db["sle"]["afk"]["animTime"] = 2
 		E.db["sle"]["afk"]["animType"] = "FadeIn"
@@ -278,7 +277,6 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Kimberley"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["inversePoint"] = true
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
@@ -322,7 +320,6 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
 		E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
 		E.db["sle"]["afk"]["playermodel"]["anim"] = 47
-		E.db["sle"]["afk"]["racialMusic"] = false
 	else
 		E.private["sle"]["module"]["screensaver"] = false
 		E.db["sle"]["screensaver"]["animBounce"] = false
@@ -391,8 +388,6 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["sle"]["shadows"]["databars"]["experience"]["size"] = 2
 	E.db["sle"]["shadows"]["databars"]["honor"]["size"] = 2
 	E.db["sle"]["shadows"]["databars"]["reputation"]["size"] = 2
-	E.db["sle"]["shadows"]["databars"]["threat"]["backdrop"] = true
-	E.db["sle"]["shadows"]["databars"]["threat"]["size"] = 2
 	E.db["sle"]["shadows"]["datatexts"]["panels"]["LeftChatDataPanel"]["backdrop"] = true
 	E.db["sle"]["shadows"]["datatexts"]["panels"]["LeftChatDataPanel"]["size"] = 2
 	E.db["sle"]["shadows"]["datatexts"]["panels"]["MinimapPanel"]["size"] = 2

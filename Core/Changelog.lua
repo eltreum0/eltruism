@@ -8,7 +8,8 @@ function ElvUI_EltreumUI:Changelog()
 
     v1.9
     -------
-Added Loot Text, a fork of SLoTE. You can test this with '/eltruism loot' (This module of Eltruism is GNU GPLv3)
+Added LootText, a fork of SLoTE. (This module of Eltruism is GNU GPLv3)
+You can test LootText by typing '/eltruism loot'
 Added a version check which will automatically update settings if the user is out of date
 Changed Class Texture on Nameplates, Mage and Shaman use a different texture to avoid the green color
 Included a nameplate filter for rares that is active with Class Textures on Nameplates
@@ -18,6 +19,12 @@ Changed a few CVar values for nameplates
 Moved dependencies, added checks on the installer for missing addons
 Turned minimap bar into mouse over
 Fixed pet on healer profile
+Added a few commands:
+/eltruism config - open Eltruism plugin settings
+/eltruism options - open Eltruism plugin settings
+/eltruism install - prompt the installer
+/eltruism setup - prompt the installer
+/eltruism loot - Display a test message for LootText
 
     v1.8.1
     -------

@@ -109,7 +109,6 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Kimberley"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["inversePoint"] = true
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
@@ -153,15 +152,13 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
 		E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
 		E.db["sle"]["afk"]["playermodel"]["anim"] = 47
-		E.db["sle"]["afk"]["racialMusic"] = false
 	else
-		E.db["sle"]["screensaver"]["date"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["screensaver"]["player"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["screensaver"]["subtitle"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["screensaver"]["tips"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["screensaver"]["title"]["font"] = "GothamNarrow Black"
+		E.db["sle"]["screensaver"]["date"]["font"] = "Kimberley"
+		E.db["sle"]["screensaver"]["player"]["font"] = "Kimberley"
+		E.db["sle"]["screensaver"]["subtitle"]["font"] = "Kimberley"
+		E.db["sle"]["screensaver"]["tips"]["font"] = "Kimberley"
+		E.db["sle"]["screensaver"]["title"]["font"] = "Kimberley"
 	end
-
 
 		E.db["sle"]["skins"]["merchant"]["list"]["nameFont"] = "Kimberley"
 		E.db["sle"]["skins"]["merchant"]["list"]["subFont"] = "Kimberley"
@@ -189,7 +186,6 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.db["datatexts"]["font"] = "Kimberley"
 		E.db["tooltip"]["font"] = "Kimberley"
 		E.db["tooltip"]["healthBar"]["font"] = "Kimberley"
-
 
 		-- Custom Text: Party
 		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
@@ -481,7 +477,6 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		["yOffset"] = -1
 		}
 
-
 		--ActionBars
 		E.db["actionbar"]["bar1"]["countFont"] = "Kimberley"
 		E.db["actionbar"]["bar1"]["hotkeyFont"] = "Kimberley"
@@ -551,8 +546,6 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.db["unitframe"]["units"]["targettargettarget"]["buffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "Kimberley"
 
-
-
 		E:StaggeredUpdateAll(nil, true)
 
 	ElvUI_EltreumUI:Print('Kimberley Font has been set.')
@@ -560,7 +553,6 @@ end
 
 function ElvUI_EltreumUI:SetupFontsExo2(addon)
 	if not E.db.movers then E.db.movers = {} end
-		--WaypointTimeToArriveFrame.TimeText:SetFont("Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\Exo2-ExtraBold.otf", 12)
 		--nameplates
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Exo2 Extra Bold"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Exo2 Extra Bold"
@@ -667,7 +659,6 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Exo2 Extra Bold"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["inversePoint"] = true
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
@@ -711,13 +702,12 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
 		E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
 		E.db["sle"]["afk"]["playermodel"]["anim"] = 47
-		E.db["sle"]["afk"]["racialMusic"] = false
 	else
-		E.db["sle"]["screensaver"]["date"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["screensaver"]["player"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["screensaver"]["subtitle"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["screensaver"]["tips"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["screensaver"]["title"]["font"] = "GothamNarrow Black"
+		E.db["sle"]["screensaver"]["date"]["font"] = "Exo2 Extra Bold"
+		E.db["sle"]["screensaver"]["player"]["font"] = "Exo2 Extra Bold"
+		E.db["sle"]["screensaver"]["subtitle"]["font"] = "Exo2 Extra Bold"
+		E.db["sle"]["screensaver"]["tips"]["font"] = "Exo2 Extra Bold"
+		E.db["sle"]["screensaver"]["title"]["font"] = "Exo2 Extra Bold"
 	end
 
 		E.db["sle"]["skins"]["merchant"]["list"]["nameFont"] = "Exo2 Extra Bold"
@@ -746,7 +736,6 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.db["datatexts"]["font"] = "Exo2 Extra Bold"
 		E.db["tooltip"]["font"] = "Exo2 Extra Bold"
 		E.db["tooltip"]["healthBar"]["font"] = "Exo2 Extra Bold"
-
 
 		-- Custom Text: Party
 		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
@@ -1107,15 +1096,12 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.db["unitframe"]["units"]["targettargettarget"]["buffs"]["countFont"] = "Exo2 Extra Bold"
 		E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "Exo2 Extra Bold"
 
-
-
 	E:StaggeredUpdateAll(nil, true)
 	ElvUI_EltreumUI:Print('Exo2 Font has been set.')
 end
 
 function ElvUI_EltreumUI:SetupFontsGotham(addon)
 	if not E.db.movers then E.db.movers = {} end
-		--WaypointTimeToArriveFrame.TimeText:SetFont("Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\GothamNarrow Black.ttf", 12)
 		--nameplates
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "GothamNarrow Black"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "GothamNarrow Black"
@@ -1222,7 +1208,6 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["inversePoint"] = true
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
@@ -1266,7 +1251,6 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
 		E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
 		E.db["sle"]["afk"]["playermodel"]["anim"] = 47
-		E.db["sle"]["afk"]["racialMusic"] = false
 	else
 		E.db["sle"]["screensaver"]["date"]["font"] = "GothamNarrow Black"
 		E.db["sle"]["screensaver"]["player"]["font"] = "GothamNarrow Black"
@@ -1669,9 +1653,6 @@ end
 function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 	if not E.db.movers then E.db.movers = {} end
 
-
-
-		--WaypointTimeToArriveFrame.TimeText:SetFont("Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\Roboto-Bold.ttf", 12)
 		--nameplates
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Roboto"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Roboto"
@@ -1778,7 +1759,6 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Roboto"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["inversePoint"] = true
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
@@ -1822,13 +1802,12 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
 		E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
 		E.db["sle"]["afk"]["playermodel"]["anim"] = 47
-		E.db["sle"]["afk"]["racialMusic"] = false
 	else
-		E.db["sle"]["screensaver"]["date"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["screensaver"]["player"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["screensaver"]["subtitle"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["screensaver"]["tips"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["screensaver"]["title"]["font"] = "GothamNarrow Black"
+		E.db["sle"]["screensaver"]["date"]["font"] = "Roboto"
+		E.db["sle"]["screensaver"]["player"]["font"] = "Roboto"
+		E.db["sle"]["screensaver"]["subtitle"]["font"] = "Roboto"
+		E.db["sle"]["screensaver"]["tips"]["font"] = "Roboto"
+		E.db["sle"]["screensaver"]["title"]["font"] = "Roboto"
 	end
 
 		E.db["sle"]["skins"]["merchant"]["list"]["nameFont"] = "Roboto"

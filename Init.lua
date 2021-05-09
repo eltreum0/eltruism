@@ -51,6 +51,7 @@ function ElvUI_EltreumUI:Initialize()
 	SetCVar('nameplateOtherTopInset', 0.1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('nameplateTargetRadialPosition', 1)
+	SetCVar('nameplateShowEnemies', 1)
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED()
@@ -69,9 +70,9 @@ function ElvUI_EltreumUI:ENCOUNTER_START()
 	ElvUI_EltreumUI:QuestEncounter()
 end
 
-function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED()
-	ElvUI_EltreumUI:QuestEncounter()
-end
+--function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED()
+--	ElvUI_EltreumUI:QuestEncounter()
+--end
 
 function ElvUI_EltreumUI:SUPER_TRACKING_CHANGED()
 	ElvUI_EltreumUI:WaypointTimeToArrive()

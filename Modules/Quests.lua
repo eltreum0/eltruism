@@ -7,10 +7,11 @@ local IsAddOnLoaded = IsAddOnLoaded
 function ElvUI_EltreumUI:QuestEncounter()
 	if E.private.ElvUI_EltreumUI.questsettings.enable then
 		local inInstance, instanceType = IsInInstance()
-		if instanceType == "raid" or instanceType == "party" then  --and event == "PLAYER_REGEN_DISABLED"
+		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then  --and event == "PLAYER_REGEN_DISABLED"
 			ObjectiveTracker_Collapse()
 			if ObjectiveTrackerFrame:IsVisible() or ObjectiveTracker_Expand() then
 				ObjectiveTracker_Collapse()
+				print('|cff82B4ffEltruism|r: '..'tried to collapse quest!')
 			end
 		end
 	end
