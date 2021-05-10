@@ -543,7 +543,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = 'Reset all Media',
 								desc = 'Reset Fonts, Textures, Skins to Eltreum UI defaults.',
 								width = 'full',
-								func = function() ElvUI_EltreumUI:SetupPrivate() E:StaggeredUpdateAll(nil, true) end,
+								func = function() ElvUI_EltreumUI:SetupPrivate() E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('PRIVATE_RL') end,
 								confirm = true,
 							},
 							header1 = {
@@ -563,7 +563,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Kimberley',
 								desc = 'This will set all ElvUI fonts as Kimberley',
-								func = function() ElvUI_EltreumUI:SetupFontsKimberley() E:StaggeredUpdateAll(nil, true) end,
+								func = function() ElvUI_EltreumUI:SetupFontsKimberley() E:StaggeredUpdateAll(nil, true)  end,
 								confirm = true,
 							},
 							exo2 = {
@@ -625,7 +625,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Defaults',
 								desc = 'This will set fonts to Eltruism defaults',
-								func = function() ElvUI_EltreumUI:SetupFontsOutlineDefault() E:StaggeredUpdateAll(nil, true) end,
+								func = function() ElvUI_EltreumUI:SetupFontsOutlineDefault() E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('PRIVATE_RL') end,
 								confirm = true,
 							},
 							none = {
@@ -633,7 +633,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'None',
 								desc = 'This will set fonts to no outline',
-								func = function() ElvUI_EltreumUI:SetupFontsOutlineNone() E:StaggeredUpdateAll(nil, true) end,
+								func = function() ElvUI_EltreumUI:SetupFontsOutlineNone() E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('PRIVATE_RL') end,
 								confirm = true,
 							},
 							outlinegap = {
@@ -646,7 +646,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Outline',
 								desc = 'This will set fonts to use outline',
-								func = function() ElvUI_EltreumUI:SetupFontsOutlineOutline() E:StaggeredUpdateAll(nil, true) end,
+								func = function() ElvUI_EltreumUI:SetupFontsOutlineOutline() E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('PRIVATE_RL') end,
 								confirm = true,
 							},
 							thick = {
@@ -654,7 +654,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Thick Outline',
 								desc = 'This will set fonts to use thick outline',
-								func = function() ElvUI_EltreumUI:SetupFontsOutlineThick() E:StaggeredUpdateAll(nil, true) end,
+								func = function() ElvUI_EltreumUI:SetupFontsOutlineThick() E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('PRIVATE_RL') end,
 								confirm = true,
 							},
 						},
@@ -1094,7 +1094,7 @@ function ElvUI_EltreumUI:Configtable()
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support',
 				order = 98,
 				args = {
-					changelog = {
+					gitlink = {
 						order = 1,
 						type = 'input',
 						width = 'full',

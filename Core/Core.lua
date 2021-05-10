@@ -14,7 +14,7 @@ function ElvUI_EltreumUI:VersionCheck()
 			ElvUI_EltreumUI:SetupCVars()
 			ElvUI_EltreumUI:NameplateCVars()
 			E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = true
-			print('|cff82B4ffEltruism|r: '..'Updating settings for 1.9. Please reload to avoid issues!')
+			print('|cff82B4ffEltruism|r: '..'Settings were updated for the newest version. Please reload to avoid issues!')
 		end
 end
 

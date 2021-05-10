@@ -131,17 +131,9 @@ function ElvUI_EltreumUI:NamePlateOptions()
 	end
 	if E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
-		--E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
-		--E.global["nameplate"]["filters"]["EltreumClassColor"]["triggers"]["enable"] = true
-		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = true
-		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthColor"]["b"] = 1
-		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthColor"]["g"] = 1
-		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthColor"]["r"] = 1
+		E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 	else
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "Eltreum-Blank"
-		--E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = false
-		--E.global["nameplate"]["filters"]["EltreumClassColor"]["triggers"]["enable"] = false
-		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = false
 	end
 end
 

@@ -9,6 +9,7 @@ local CombatText_StandardScroll = _G.CombatText_StandardScroll
 function ElvUI_EltreumUI:LoadCommands()
 	self:RegisterChatCommand('eltruism', 'RunCommands')
 	self:RegisterChatCommand('way', 'WaypointTexttoCoordinate')
+    self:RegisterChatCommand('waypoint', 'WaypointTexttoCoordinate')
 end
 
 function ElvUI_EltreumUI:RunCommands(message)
@@ -35,7 +36,7 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 	-- translate the message numbers
   	local translatemsg = message:gsub("(%d)[%.,] (%d)", "%1 %2"):gsub(separator1, separator2)
     local coords = {}
-    --put the nubmers into the table
+    --put the numbers into the table
     for numbers in translatemsg:gmatch("%S+") do
         table.insert(coords, numbers)
     end
