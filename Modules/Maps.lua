@@ -1,7 +1,12 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local _G = _G
 local pairs = pairs
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
+local GetUnitSpeed = _G.GetUnitSpeed
+local C_Navigation = _G.C_Navigation
+local math = _G.math
+local string = _G.string
 
 --Conversion of Time to Arrive weakaura
 
@@ -56,4 +61,3 @@ local function OnUpdateTimer(self, elapsed)
 		ElvUI_EltreumUI:WaypointTimeToArrive(self, elapsed)
 end
 WaypointTimeToArriveFrame:SetScript("OnUpdate", OnUpdateTimer)
-

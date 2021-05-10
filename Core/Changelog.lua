@@ -9,6 +9,13 @@ function ElvUI_EltreumUI:Changelog()
     -------
 Fixed missing Sepsis paging for Night Fae Rogues (thanks to Naifu)
 Added Font Outline options to Media
+Added /way command, usage:
+    /way XX YY
+    /way XXX YYY
+    /way XX.XX YY.YY
+    /way XX,XX YY,XX
+It will only work in places where waypoints work
+Any other types of inputs may result in an error
 
     v1.9.2
     -------
