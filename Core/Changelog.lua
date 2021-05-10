@@ -8,10 +8,11 @@ function ElvUI_EltreumUI:Changelog()
     v1.9.3
     -------
 Fixed missing Sepsis paging for Night Fae Rogues (thanks to Naifu)
+Added Font Outline options to Media
 
     v1.9.2
     -------
-Fixed a CVar bug to to triggering in combat
+Fixed a CVar bug due to triggering in combat
 Fixed full inventory in LootText
 
     v1.9.1

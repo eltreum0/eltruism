@@ -131,7 +131,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 	end
 	if E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
-		E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
+		--E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
 		--E.global["nameplate"]["filters"]["EltreumClassColor"]["triggers"]["enable"] = true
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = true
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthColor"]["b"] = 1
@@ -139,7 +139,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthColor"]["r"] = 1
 	else
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "Eltreum-Blank"
-		E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = false
+		--E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = false
 		--E.global["nameplate"]["filters"]["EltreumClassColor"]["triggers"]["enable"] = false
 		--E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = false
 	end
@@ -219,7 +219,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["filters"]["EnemyCasting"]["triggers"]["enable"] = true
 		E.db["nameplates"]["filters"]["ExecuteRange"]["triggers"]["enable"] = true
 		E.db["nameplates"]["filters"]["StealThisBuff"]["triggers"]["enable"] = true
-		E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = false
+		E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
 		E.db["nameplates"]["filters"]["HideThis"]["triggers"]["enable"] = true
 		E.db["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["enable"] = true
 		E.db["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["enable"] = true
