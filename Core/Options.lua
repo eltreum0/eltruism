@@ -473,7 +473,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 5,
 								type = 'toggle',
 								name = 'Enable',
-								desc = 'Add an ETA to waypoints',
+								desc = 'Collapse Quests when the boss fight starts',
 							},
 						},
 					},
@@ -490,8 +490,6 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						inline = true,
 						name = 'Add a time to arrive below the waypoint',
-						get = function(info) return E.private.ElvUI_EltreumUI.waypointetasetting.enable end,
-						set = function(info, value) E.private.ElvUI_EltreumUI.waypointetasetting.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 						args = {
 							explainer = {
 								order = 1,
@@ -513,12 +511,49 @@ function ElvUI_EltreumUI:Configtable()
 								type = "description",
 								name = '',
 							},
-
 							enable = {
 								order = 5,
 								type = 'toggle',
 								name = 'Enable',
 								desc = 'Add an ETA to waypoints',
+								get = function(info) return E.private.ElvUI_EltreumUI.waypointetasetting.enable end,
+								set = function(info, value) E.private.ElvUI_EltreumUI.waypointetasetting.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
+							},
+						},
+					},
+					waytext = {
+						order = 2,
+						type = 'group',
+						inline = true,
+						name = 'Enable the /way and /waypoint commands',
+						args = {
+							explainer = {
+								order = 1,
+								type = "description",
+								name = 'You can type /way or /waypoint',
+							},
+							explainer2 = {
+								order = 2,
+								type = "description",
+								name = 'Use formats such as:',
+							},
+							explainer3 = {
+								order = 3,
+								type = "description",
+								name = 'XX YY, XX.XX YY.YY, XX,XX YY,YY and XXX YYY',
+							},
+							explainer4 = {
+								order = 4,
+								type = "description",
+								name = 'Other Formats can end cause errors',
+							},
+							enable = {
+								order = 5,
+								type = 'toggle',
+								name = 'Enable',
+								desc = 'Enable the /way and /waypoint commands',
+								get = function(info) return E.private.ElvUI_EltreumUI.waytext.enable end,
+								set = function(info, value) E.private.ElvUI_EltreumUI.waytext.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},
 						},
 					},

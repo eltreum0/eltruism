@@ -46,6 +46,10 @@ V.ElvUI_EltreumUI = {
 		enable = true,
 	},
 
+	waytext = {
+		enable = true,
+	},
+
 	widenameplate = {
 		enable = true,
 	},
