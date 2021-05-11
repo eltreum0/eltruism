@@ -28,44 +28,65 @@ function ElvUI_EltreumUI:RunCommands(message)
 	end
 end
 
--- translate text to coordinates that are then put into the Waypoint system, inspired by the Wayfinder weakaura
+-- translate text to coordinates that are then put into the Waypoint system, inspired by the Wayfinder weakaura by Khanibrawl
 function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
-	-- add the separators ty stack overflow users
-  	local separator1 = "(%d)" .. (tonumber("1.1") and "," or ".") .. "(%d)"
-	local separator2 =   "%1" .. (tonumber("1.1") and "." or ",") .. "%2"
-	-- translate the message numbers
-  	local translatemsg = message:gsub("(%d)[%.,] (%d)", "%1 %2"):gsub(separator1, separator2)
+	--if(message:match("%A+")) then
+	--	 print('|cff82B4ffEltruism|r: '..'Unsupported Coordinate System')
+	--end
+
+	-- still learning gsub and string matching, most of this was done with the help of stack overflow and lua-users.org
+	-- need to figure out how to prevent errors when not using the patterns
+
+	-- translate the message into numbers
+  	local translatemsg = message:gsub("(%d)[%.,] (%d)", "%1 %2"):gsub("(%d)" .. (tonumber("1.1") and "," or ".") .. "(%d)", "%1" .. (tonumber("1.1") and "." or ",") .. "%2")
     local coords = {}
     --put the numbers into the table
-    for numbers in translatemsg:gmatch("%S+") do
-        table.insert(coords, numbers)
+    for pattern in translatemsg:gmatch("%S+") do
+        table.insert(coords, pattern)
     end
 
     --core of the function
+    if #coords < 2 then
+    	print('|cff82B4ffEltruism|r: '..'Unsupported format')
+    end
+
     if #coords >=2 then
         local x, y = 0,0
         -- setup x coordinate
-        if string.len(coords[1]) == 3 then
-        	x = (tonumber(coords[1])/1000)
-        elseif string.len(coords[1]) == 2 then
-        	x = (tonumber(coords[1])/100)
-        elseif string.len(coords[1]) == 4 then
-        	x = (tonumber(coords[1])/100)
-        elseif string.len(coords[1]) == 5 then
-        	x = (tonumber(coords[1])/100)
-        end
+        if string.match(coords[1], "%d+") then
+	        if string.len(coords[1]) == 3 then
+	        	x = (tonumber(coords[1])/1000)
+	        elseif string.len(coords[1]) == 2 then
+	        	x = (tonumber(coords[1])/100)
+	        elseif string.len(coords[1]) == 4 then
+	        	x = (tonumber(coords[1])/100)
+	        elseif string.len(coords[1]) == 5 then
+	        	x = (tonumber(coords[1])/100)
+	        elseif string.len(coords[1]) > 5 then
+	        	coords[1] = "a"
+	        end
+	    end
         -- setup y coordinate
-        if string.len(coords[2]) == 3 then
-        	y = (tonumber(coords[2])/1000)
-        elseif string.len(coords[2]) == 2 then
-        	y = (tonumber(coords[2])/100)
-        elseif string.len(coords[2]) == 4 then
-        	y = (tonumber(coords[2])/100)
-        elseif string.len(coords[2]) == 5 then
-        	y = (tonumber(coords[2])/100)
-        end
-        -- set the waypoint and print it
-        C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(C_Map.GetBestMapForUnit('player'),x,y))
-        print('|cff82B4ffEltruism|r: '..C_Map.GetUserWaypointHyperlink())
+        if string.match(coords[2], "%d+") then
+		    if string.len(coords[2]) == 3 then
+		    	y = (tonumber(coords[2])/1000)
+		    elseif string.len(coords[2]) == 2 then
+		    	y = (tonumber(coords[2])/100)
+		    elseif string.len(coords[2]) == 4 then
+		    	y = (tonumber(coords[2])/100)
+		    elseif string.len(coords[2]) == 5 then
+		    	y = (tonumber(coords[2])/100)
+		    elseif string.len(coords[2]) > 5 then
+	        	coords[1] = "a"
+		    end
+		end
+        -- check if its numbers set the waypoint and print it otherwise error message
+        if string.match(coords[1], "%a+") or string.match(coords[2], "%a+") then
+        	print('|cff82B4ffEltruism|r: '..'Unsupported format or Area does not support coordinates')
+        else
+	        C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(C_Map.GetBestMapForUnit('player'),x,y))
+	        print('|cff82B4ffEltruism|r: '..C_Map.GetUserWaypointHyperlink())
+    	end
     end
 end
+
