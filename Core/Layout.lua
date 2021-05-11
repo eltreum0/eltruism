@@ -156,6 +156,8 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 	E.db["sle"]["nameplates"]["targetcount"]["size"] = 10
 	E.db["sle"]["nameplates"]["targetcount"]["xoffset"] = 0
 	E.db["sle"]["nameplates"]["targetcount"]["yoffset"] = 1
+	E.db["sle"]["nameplates"]["threat"]["enable"] = false
+	E.db["sle"]["nameplates"]["targetcount"]["enable"] = false
 	-- PvP
 	E.db["sle"]["pvp"]["autorelease"] = true
 	E.db["sle"]["pvp"]["duels"]["announce"] = true
@@ -2188,7 +2190,7 @@ function ElvUI_EltreumUI:SetupLayout(layout)
 		E.db["actionbar"]["bar4"]["paging"]["MONK"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;"
 		E.db["actionbar"]["bar4"]["paging"]["PALADIN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;"
 		E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;"
-		E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [vehicleui] 12; [overridebar] 14; [possessbar] 12;"
+		E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [vehicleui] 12; [overridebar] 14; [possessbar] 12; [bonusbar:1] 7;"
 		E.db["actionbar"]["bar4"]["paging"]["SHAMAN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;"
 		E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
 		E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"

@@ -8,12 +8,12 @@ function ElvUI_EltreumUI:Print(msg)
 end
 
 function ElvUI_EltreumUI:VersionCheck()
-	local EltruismVersionCheck = GetAddOnMetadata('ElvUI_EltreumUI', 'Version')
-		if EltruismVersionCheck < "1.9" then
+		if E.db.ElvUI_EltreumUI.install_version < "1.9.3" then
 			ElvUI_EltreumUI:SetupStyleFilters()
 			ElvUI_EltreumUI:SetupCVars()
 			ElvUI_EltreumUI:NameplateCVars()
 			E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = true
+			E.db.ElvUI_EltreumUI.install_version = "1.9.3"
 			print('|cff82B4ffEltruism|r: '..'Settings were updated for the newest version. Please reload to avoid issues!')
 		end
 end

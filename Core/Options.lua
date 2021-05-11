@@ -65,7 +65,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'description',
 				name = "",
 				order = 6,
-				image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohq', 512, 128 end,
+				image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohq', 320, 80 end,
 			},
 			installer = {
 				order = 7,
@@ -225,7 +225,7 @@ function ElvUI_EltreumUI:Configtable()
 							nameplatesct = {
 								order = 5,
 								type = 'execute',
-								name = 'Nameplate Scrolling Combat Text',
+								name = 'NameplateSCT',
 								desc = 'Reset to Eltreum UI defaults.',
 								func = function() ElvUI_EltreumUI:AddonSetupNameplateSCT() ReloadUI() end,
 								confirm = true,
@@ -764,6 +764,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'toggle',
 								name = 'Make Buffs and Debuffs Wide on Nameplates',
 								desc = 'Toogle On and Off',
+								width = 'full',
 								get = function() return E.private.ElvUI_EltreumUI.widenameplate.enable end,
 								set = function(_, value) E.private.ElvUI_EltreumUI.widenameplate.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},

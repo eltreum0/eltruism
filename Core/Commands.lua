@@ -30,10 +30,6 @@ end
 
 -- translate text to coordinates that are then put into the Waypoint system, inspired by the Wayfinder weakaura by Khanibrawl
 function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
-	--if(message:match("%A+")) then
-	--	 print('|cff82B4ffEltruism|r: '..'Unsupported Coordinate System')
-	--end
-
 	-- still learning gsub and string matching, most of this was done with the help of stack overflow and lua-users.org
 	-- need to figure out how to prevent errors when not using the patterns
 
