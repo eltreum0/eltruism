@@ -5,9 +5,16 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v2.0.0
+    -------
+Style Filter StealThisBuff fixed to be mage only
+Changed the size of the Gladius Ex profile
+Added class colored level up by Aftermathh
+TBC/Classic Support
+
     v1.9.3
     -------
-Added /way and /wayppoint command, usage:
+Added /way and /waypoint command, usage:
     /way XX YY or /waypoint XX YY
     /way XXX YYY or /waypoint XXX YYY
     /way XX.XX YY.YY or /waypoint XX.XX YY.YY
@@ -163,6 +170,4 @@ Added Layout for DPS and Healer
 Added Options Menu
 Added Media
 Added Class Glow to Action Bars
-
-
 ]] end

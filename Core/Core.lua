@@ -1,6 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
+local LoadAddOn = LoadAddOn
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
@@ -16,15 +17,24 @@ function ElvUI_EltreumUI:VersionCheck()
 			E.db.ElvUI_EltreumUI.install_version = "1.9.3"
 			print('|cff82B4ffEltruism|r: '..'Settings were updated for the newest version. Please reload to avoid issues!')
 		end
+		--if E.db.ElvUI_EltreumUI.install_version < "1.9.4" then
+			--ElvUI_EltreumUI:SetupStyleFilters()
+			--ElvUI_EltreumUI:AddonSetupPA()
+			--E.db.ElvUI_EltreumUI.install_version = "1.9.4"
+			--print('|cff82B4ffEltruism|r: '..'Settings were updated for the newest version. Please reload to avoid issues!')
+		--end
 end
 
+
 -- Role icons, ty a lot Darth Predator for the help!
-local SLE, T, E, L, V, P, G = unpack(ElvUI_SLE)
-SLE.rolePaths["Eltruism"] = {
-	TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga",
-	HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga",
-	DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga"
-}
+if ElvUI_EltreumUI.Retail then
+	local SLE, T, E, L, V, P, G = unpack(ElvUI_SLE)
+	SLE.rolePaths["Eltruism"] = {
+		TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga",
+		HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga",
+		DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga"
+	}
+end
 
 -- AddOnSkins Profile
 function ElvUI_EltreumUI:AddonSetupAS()
@@ -33,6 +43,7 @@ function ElvUI_EltreumUI:AddonSetupAS()
 		ElvUI_EltreumUI:Print('AddOnSkins profile has been set.')
 	end
 end
+
 -- Immersion Profile
 function ElvUI_EltreumUI:AddonSetupImmersion()
 	if IsAddOnLoaded('Immersion') then
@@ -40,6 +51,7 @@ function ElvUI_EltreumUI:AddonSetupImmersion()
 		ElvUI_EltreumUI:Print('Immersion profile has been set.')
 	end
 end
+
 -- BigWigs Profile
 function ElvUI_EltreumUI:AddonSetupBW()
 	if IsAddOnLoaded('BigWigs') then
@@ -47,6 +59,7 @@ function ElvUI_EltreumUI:AddonSetupBW()
 		ElvUI_EltreumUI:Print('BigWigs profile has been set.')
 	end
 end
+
 -- DBM Profile
 function ElvUI_EltreumUI:AddonSetupDBM()
 	if IsAddOnLoaded('DBM-Core') then
@@ -54,6 +67,7 @@ function ElvUI_EltreumUI:AddonSetupDBM()
 		ElvUI_EltreumUI:Print('DBM profile has been set.')
 	end
 end
+
 -- Details Profile
 function ElvUI_EltreumUI:AddonSetupDT()
 	if IsAddOnLoaded('Details') then
@@ -61,6 +75,7 @@ function ElvUI_EltreumUI:AddonSetupDT()
 		ElvUI_EltreumUI:Print('Details profile has been set.')
 	end
 end
+
 -- DynamicCam Profile
 function ElvUI_EltreumUI:AddonSetupDynamicCam()
 	if IsAddOnLoaded('DynamicCam') then
@@ -68,6 +83,7 @@ function ElvUI_EltreumUI:AddonSetupDynamicCam()
 		ElvUI_EltreumUI:Print('Dynamic Cam profile has been set.')
 	end
 end
+
 -- GladiusEx Profile
 function ElvUI_EltreumUI:AddonSetupGladiusEx()
 	if IsAddOnLoaded('GladiusEx') then
@@ -75,6 +91,7 @@ function ElvUI_EltreumUI:AddonSetupGladiusEx()
 		ElvUI_EltreumUI:Print('GladiusEx profile has been set.')
 	end
 end
+
 -- EXRT Profile
 function ElvUI_EltreumUI:AddonSetupExRT()
 	if IsAddOnLoaded('ExRT') then
@@ -82,6 +99,7 @@ function ElvUI_EltreumUI:AddonSetupExRT()
 		ElvUI_EltreumUI:Print('Exorsus Raid Tools profile has been set.')
 	end
 end
+
 -- ProjectAzilroka Profile
 function ElvUI_EltreumUI:AddonSetupPA()
 	if IsAddOnLoaded('ProjectAzilroka') then
@@ -89,6 +107,7 @@ function ElvUI_EltreumUI:AddonSetupPA()
 		ElvUI_EltreumUI:Print('ProjectAzilroka profile has been set.')
 	end
 end
+
 -- NameplateSCT Profile
 function ElvUI_EltreumUI:AddonSetupNameplateSCT()
 	if IsAddOnLoaded('NameplateSCT') then
@@ -96,6 +115,7 @@ function ElvUI_EltreumUI:AddonSetupNameplateSCT()
 		ElvUI_EltreumUI:Print('NameplateSCT profile has been set.')
 	end
 end
+
 -- FCT Profile
 function ElvUI_EltreumUI:AddonSetupFCT()
 	if IsAddOnLoaded('ElvUI_FCT') then
@@ -103,6 +123,7 @@ function ElvUI_EltreumUI:AddonSetupFCT()
 		ElvUI_EltreumUI:Print('Floating Combat Text profile has been set.')
 	end
 end
+
 -- CVars General
 function ElvUI_EltreumUI:SetupCVars()
 	-- ElvUI CVars
@@ -118,9 +139,9 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('UnitNameEnemyTotemName', 1)
 	SetCVar('UnitNameNPC', 1)
 	SetCVar("ShowClassColorInFriendlyNameplate", 1)
-
 	ElvUI_EltreumUI:Print('CVars have been set.')
 end
+
 -- CVars NamePlates
 function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('nameplateOtherBottomInset', 0.02)
@@ -140,6 +161,7 @@ function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('nameplateTargetBehindMaxDistance', 40)
 	ElvUI_EltreumUI:Print('NamePlate CVars have been set.')
 end
+
 -- Private DB
 function ElvUI_EltreumUI:SetupPrivate()
 	-- ElvUI Private DB
@@ -151,26 +173,52 @@ function ElvUI_EltreumUI:SetupPrivate()
 	E.private["general"]["glossTex"] = "Eltreum-Blank"
 	E.private["general"]["namefont"] = "Kimberley"
 	E.private["general"]["normTex"] = "Eltreum-Blank"
-	E.private["install_complete"] = "12.24"
+
 	E.private["skins"]["parchmentRemoverEnable"] = true
+
+	if ElvUI_EltreumUI.Retail then
+		E.private["install_complete"] = "12.24"
+		E.private["general"]["totemBar"] = false
+	elseif ElvUI_EltreumUI.TBC then
+		E.private["install_complete"] = "0.19"
+		E.private["general"]["totemBar"] = true
+	elseif ElvUI_EltreumUI.Classic then
+		E.private["install_complete"] = "1.42"
+	end
+
+
 end
+
 -- Global DB
 function ElvUI_EltreumUI:SetupGlobal()
 	-- ElvUI Global DB
+	if ElvUI_EltreumUI.Retail then
+		E.global["general"]["commandBarSetting"] = "DISABLED"
+		E.global["general"]["smallerWorldMap"] = false
+		E.global["general"]["smallerWorldMapScale"] = 1
+		E.global["general"]["mapAlphaWhenMoving"] = 0.35
+	end
+
+	if ElvUI_EltreumUI.Classic then
+		E.global["general"]["smallerWorldMapScale"] = 0.5
+		E.global["general"]["mapAlphaWhenMoving"] = 0.5
+		E.global["general"]["smallerWorldMap"] = true
+	end
+
 	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
-	E.global["general"]["commandBarSetting"] = "DISABLED"
 	E.global["general"]["fadeMapDuration"] = 0.1
-	E.global["general"]["mapAlphaWhenMoving"] = 0.35
-	E.global["general"]["smallerWorldMap"] = false
-	E.global["general"]["smallerWorldMapScale"] = 1
+
 		-- Custom DataText
 	E.global["datatexts"]["settings"]["Experience"]["textFormat"] = "PERCENT"
 	E.global["datatexts"]["settings"]["Friends"]["hideAFK"] = true
 	E.global["datatexts"]["settings"]["Friends"]["hideApp"] = true
 	E.global["datatexts"]["settings"]["Gold"]["goldCoins"] = false
-	E.global["datatexts"]["settings"]["MovementSpeed"]["NoLabel"] = true
+	if ElvUI_EltreumUI.Retail then
+		E.global["datatexts"]["settings"]["MovementSpeed"]["NoLabel"] = true
+	end
 	E.global["datatexts"]["settings"]["Time"]["time24"] = true
 end
+
 -- UI Scale
 function ElvUI_EltreumUI:SetupScale()
 	E.global["general"]["UIScale"] = 0.7

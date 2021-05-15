@@ -6,7 +6,7 @@ local PA = _G.ProjectAzilroka
 
 function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 	if not E.db.movers then E.db.movers = {} end
-		PA.db["stAddonManager"]["Font"] = "Kimberley"
+
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["font"] = "Kimberley"
@@ -53,6 +53,8 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.private["general"]["chatBubbleFont"] = "Kimberley"
 		E.private["general"]["dmgfont"] = "Kimberley"
 		E.private["general"]["namefont"] = "Kimberley"
+	if ElvUI_EltreumUI.Retail then
+		PA.db["stAddonManager"]["Font"] = "Kimberley"
 		E.db["sle"]["armory"]["character"]["durability"]["font"] = "Kimberley"
 		E.db["sle"]["armory"]["character"]["enchant"]["font"] = "Kimberley"
 		E.db["sle"]["armory"]["character"]["ilvl"]["font"] = "Kimberley"
@@ -72,96 +74,93 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.db["sle"]["minimap"]["coords"]["font"] = "Kimberley"
 		E.db["sle"]["minimap"]["instance"]["font"] = "Kimberley"
 		E.db["sle"]["minimap"]["locPanel"]["font"] = "Kimberley"
-
-
-	if sleversioncheck >= "4.22" then
-		E.db["sle"]["afk"]["animTime"] = 2
-		E.db["sle"]["afk"]["animType"] = "FadeIn"
-		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["anchorPoint"] = "CENTER"
-		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["attachTo"] = "SL_TopPanel"
-		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["styleOptions"] = "benikui"
-		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["xOffset"] = 184
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["anchorPoint"] = "LEFT"
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["attachTo"] = "SL_TopPanel"
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["height"] = 128
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["styleOptions"] = "releaf-flat"
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["width"] = 256
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["xOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["anchorPoint"] = "BOTTOM"
-		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["inversePoint"] = true
-		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["styleOptions"] = "blizzard"
-		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["yOffset"] = 196
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["anchorPoint"] = "TOPLEFT"
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["styleOptions"] = "releaf-flat"
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["xOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["factionLogo"]["enable"] = false
-		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["anchorPoint"] = "CENTER"
-		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["styleOptions"] = "releaf-flat"
-		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["xOffset"] = -184
-		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["anchorPoint"] = "RIGHT"
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["attachTo"] = "SL_TopPanel"
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["height"] = 128
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["width"] = 256
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["xOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Kimberley"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "Kimberley"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["xOffset"] = 4
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["anchorPoint"] = "TOPRIGHT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["enable"] = false
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["font"] = "Kimberley"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["xOffset"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["yOffset"] = 50
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["anchorPoint"] = "BOTTOMLEFT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["attachTo"] = "SL_PlayerName"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["font"] = "Kimberley"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["anchorPoint"] = "RIGHT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["attachTo"] = "SL_GuildName"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["font"] = "Kimberley"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["anchorPoint"] = "TOPRIGHT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["attachTo"] = "SL_TopPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["enable"] = false
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["font"] = "Kimberley"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerLevel"]["enable"] = false
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["anchorPoint"] = "TOPLEFT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["font"] = "Kimberley"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["xOffset"] = 128
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["yOffset"] = -30
-		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["enable"] = false
-		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["size"] = 16
-		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["xOffset"] = 0
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["anchorPoint"] = "CENTER"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["font"] = "Kimberley"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["size"] = 32
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["yOffset"] = 40
-		E.db["sle"]["afk"]["enable"] = true
-		E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
-		E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
-		E.db["sle"]["afk"]["playermodel"]["anim"] = 47
-	else
-		E.db["sle"]["screensaver"]["date"]["font"] = "Kimberley"
-		E.db["sle"]["screensaver"]["player"]["font"] = "Kimberley"
-		E.db["sle"]["screensaver"]["subtitle"]["font"] = "Kimberley"
-		E.db["sle"]["screensaver"]["tips"]["font"] = "Kimberley"
-		E.db["sle"]["screensaver"]["title"]["font"] = "Kimberley"
-	end
-
+		if sleversioncheck >= "4.22" then
+			E.db["sle"]["afk"]["animTime"] = 2
+			E.db["sle"]["afk"]["animType"] = "FadeIn"
+			E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["anchorPoint"] = "CENTER"
+			E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["attachTo"] = "SL_TopPanel"
+			E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["styleOptions"] = "benikui"
+			E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["xOffset"] = 184
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["anchorPoint"] = "LEFT"
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["attachTo"] = "SL_TopPanel"
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["height"] = 128
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["styleOptions"] = "releaf-flat"
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["width"] = 256
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["xOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["anchorPoint"] = "BOTTOM"
+			E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["inversePoint"] = true
+			E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["styleOptions"] = "blizzard"
+			E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["yOffset"] = 196
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["anchorPoint"] = "TOPLEFT"
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["styleOptions"] = "releaf-flat"
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["xOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["factionLogo"]["enable"] = false
+			E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["anchorPoint"] = "CENTER"
+			E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["styleOptions"] = "releaf-flat"
+			E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["xOffset"] = -184
+			E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["anchorPoint"] = "RIGHT"
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["attachTo"] = "SL_TopPanel"
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["height"] = 128
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["width"] = 256
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["xOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Kimberley"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "Kimberley"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["xOffset"] = 4
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["anchorPoint"] = "TOPRIGHT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["enable"] = false
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["font"] = "Kimberley"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["xOffset"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["yOffset"] = 50
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["anchorPoint"] = "BOTTOMLEFT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["attachTo"] = "SL_PlayerName"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["font"] = "Kimberley"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["anchorPoint"] = "RIGHT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["attachTo"] = "SL_GuildName"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["font"] = "Kimberley"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["anchorPoint"] = "TOPRIGHT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["attachTo"] = "SL_TopPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["enable"] = false
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["font"] = "Kimberley"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerLevel"]["enable"] = false
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["anchorPoint"] = "TOPLEFT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["font"] = "Kimberley"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["xOffset"] = 128
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["yOffset"] = -30
+			E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["enable"] = false
+			E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["size"] = 16
+			E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["xOffset"] = 0
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["anchorPoint"] = "CENTER"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["font"] = "Kimberley"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["size"] = 32
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["yOffset"] = 40
+			E.db["sle"]["afk"]["enable"] = true
+			E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
+			E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
+			E.db["sle"]["afk"]["playermodel"]["anim"] = 47
+		else
+			E.db["sle"]["screensaver"]["date"]["font"] = "Kimberley"
+			E.db["sle"]["screensaver"]["player"]["font"] = "Kimberley"
+			E.db["sle"]["screensaver"]["subtitle"]["font"] = "Kimberley"
+			E.db["sle"]["screensaver"]["tips"]["font"] = "Kimberley"
+			E.db["sle"]["screensaver"]["title"]["font"] = "Kimberley"
+		end
 		E.db["sle"]["skins"]["merchant"]["list"]["nameFont"] = "Kimberley"
 		E.db["sle"]["skins"]["merchant"]["list"]["subFont"] = "Kimberley"
 		E.private["WT"]["skins"]["ime"]["label"]["name"] = "Kimberley"
@@ -170,6 +169,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.db["WT"]["item"]["inspect"]["levelText"]["name"] = "Kimberley"
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["name"] = "Kimberley"
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["name"] = "Kimberley"
+	end
 		E.db["general"]["altPowerBar"]["font"] = "Kimberley"
 		E.db["general"]["font"] = "Kimberley"
 		E.db["general"]["itemLevel"]["itemLevelFont"] = "Kimberley"
@@ -180,9 +180,12 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.db["chat"]["font"] = "Kimberley"
 		E.db["chat"]["tabFont"] = "Kimberley"
 		E.db["cooldown"]["fonts"]["font"] = "Kimberley"
-		E.db["databars"]["azerite"]["font"] = "Kimberley"
+		if ElvUI_EltreumUI.Retail then
+			E.db["databars"]["azerite"]["font"] = "Kimberley"
+			E.db["databars"]["honor"]["font"] = "Kimberley"
+		end
 		E.db["databars"]["experience"]["font"] = "Kimberley"
-		E.db["databars"]["honor"]["font"] = "Kimberley"
+
 		E.db["databars"]["reputation"]["font"] = "Kimberley"
 		E.db["databars"]["threat"]["font"] = "Kimberley"
 		E.db["datatexts"]["font"] = "Kimberley"
@@ -512,7 +515,9 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.db["actionbar"]["bar9"]["macroFont"] = "Kimberley"
 		E.db["actionbar"]["barPet"]["countFont"] = "Kimberley"
 		E.db["actionbar"]["barPet"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "Kimberley"
+		if ElvUI_EltreumUI.Retail then
+			E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "Kimberley"
+		end
 		E.db["actionbar"]["font"] = "Kimberley"
 		E.db["actionbar"]["stanceBar"]["hotkeyFont"] = "Kimberley"
 		E.db["actionbar"]["vehicleExitButton"]["hotkeyFont"] = "Kimberley"
@@ -521,20 +526,22 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.db["auras"]["debuffs"]["countFont"] = "Kimberley"
 		E.db["auras"]["debuffs"]["timeFont"] = "Kimberley"
 		E.db["unitframe"]["font"] = "Kimberley"
-		E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["assist"]["buffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["assist"]["debuffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["assist"]["rdebuffs"]["font"] = "Kimberley"
-		E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["focus"]["debuffs"]["countFont"] = "Kimberley"
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Kimberley"
+			E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "Kimberley"
+			E.db["unitframe"]["units"]["assist"]["buffs"]["countFont"] = "Kimberley"
+			E.db["unitframe"]["units"]["assist"]["debuffs"]["countFont"] = "Kimberley"
+			E.db["unitframe"]["units"]["assist"]["rdebuffs"]["font"] = "Kimberley"
+			E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "Kimberley"
+			E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "Kimberley"
+			E.db["unitframe"]["units"]["focus"]["debuffs"]["countFont"] = "Kimberley"
+			E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["font"] = "Kimberley"
+			E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["font"] = "Kimberley"
+		end
 		E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["font"] = "Kimberley"
 		E.db["unitframe"]["units"]["party"]["debuffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["party"]["rdebuffs"]["font"] = "Kimberley"
 		E.db["unitframe"]["units"]["player"]["buffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["font"] = "Kimberley"
 		E.db["unitframe"]["units"]["player"]["debuffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["raid"]["buffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["raid"]["debuffs"]["countFont"] = "Kimberley"
@@ -555,7 +562,7 @@ end
 
 function ElvUI_EltreumUI:SetupFontsExo2(addon)
 	if not E.db.movers then E.db.movers = {} end
-		PA.db["stAddonManager"]["Font"] = "Exo2 Extra Bold"
+
 		--nameplates
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Exo2 Extra Bold"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Exo2 Extra Bold"
@@ -603,6 +610,8 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.private["general"]["chatBubbleFont"] = "Exo2 Extra Bold"
 		E.private["general"]["dmgfont"] = "Exo2 Extra Bold"
 		E.private["general"]["namefont"] = "Exo2 Extra Bold"
+	if ElvUI_EltreumUI.Retail then
+		PA.db["stAddonManager"]["Font"] = "Exo2 Extra Bold"
 		E.db["sle"]["armory"]["character"]["durability"]["font"] = "Exo2 Extra Bold"
 		E.db["sle"]["armory"]["character"]["enchant"]["font"] = "Exo2 Extra Bold"
 		E.db["sle"]["armory"]["character"]["ilvl"]["font"] = "Exo2 Extra Bold"
@@ -622,95 +631,93 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.db["sle"]["minimap"]["coords"]["font"] = "Exo2 Extra Bold"
 		E.db["sle"]["minimap"]["instance"]["font"] = "Exo2 Extra Bold"
 		E.db["sle"]["minimap"]["locPanel"]["font"] = "Exo2 Extra Bold"
-
-
-	if sleversioncheck >= "4.22" then
-		E.db["sle"]["afk"]["animTime"] = 2
-		E.db["sle"]["afk"]["animType"] = "FadeIn"
-		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["anchorPoint"] = "CENTER"
-		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["attachTo"] = "SL_TopPanel"
-		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["styleOptions"] = "benikui"
-		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["xOffset"] = 184
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["anchorPoint"] = "LEFT"
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["attachTo"] = "SL_TopPanel"
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["height"] = 128
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["styleOptions"] = "releaf-flat"
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["width"] = 256
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["xOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["anchorPoint"] = "BOTTOM"
-		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["inversePoint"] = true
-		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["styleOptions"] = "blizzard"
-		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["yOffset"] = 196
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["anchorPoint"] = "TOPLEFT"
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["styleOptions"] = "releaf-flat"
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["xOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["factionLogo"]["enable"] = false
-		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["anchorPoint"] = "CENTER"
-		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["styleOptions"] = "releaf-flat"
-		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["xOffset"] = -184
-		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["anchorPoint"] = "RIGHT"
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["attachTo"] = "SL_TopPanel"
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["height"] = 128
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["width"] = 256
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["xOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Exo2 Extra Bold"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "Exo2 Extra Bold"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["xOffset"] = 4
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["anchorPoint"] = "TOPRIGHT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["enable"] = false
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["font"] = "Exo2 Extra Bold"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["xOffset"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["yOffset"] = 50
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["anchorPoint"] = "BOTTOMLEFT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["attachTo"] = "SL_PlayerName"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["font"] = "Exo2 Extra Bold"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["anchorPoint"] = "RIGHT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["attachTo"] = "SL_GuildName"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["font"] = "Exo2 Extra Bold"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["anchorPoint"] = "TOPRIGHT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["attachTo"] = "SL_TopPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["enable"] = false
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["font"] = "Exo2 Extra Bold"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerLevel"]["enable"] = false
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["anchorPoint"] = "TOPLEFT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["font"] = "Exo2 Extra Bold"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["xOffset"] = 128
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["yOffset"] = -30
-		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["enable"] = false
-		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["size"] = 16
-		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["xOffset"] = 0
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["anchorPoint"] = "CENTER"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["font"] = "Exo2 Extra Bold"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["size"] = 32
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["yOffset"] = 40
-		E.db["sle"]["afk"]["enable"] = true
-		E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
-		E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
-		E.db["sle"]["afk"]["playermodel"]["anim"] = 47
-	else
-		E.db["sle"]["screensaver"]["date"]["font"] = "Exo2 Extra Bold"
-		E.db["sle"]["screensaver"]["player"]["font"] = "Exo2 Extra Bold"
-		E.db["sle"]["screensaver"]["subtitle"]["font"] = "Exo2 Extra Bold"
-		E.db["sle"]["screensaver"]["tips"]["font"] = "Exo2 Extra Bold"
-		E.db["sle"]["screensaver"]["title"]["font"] = "Exo2 Extra Bold"
-	end
+		if sleversioncheck >= "4.22" then
+			E.db["sle"]["afk"]["animTime"] = 2
+			E.db["sle"]["afk"]["animType"] = "FadeIn"
+			E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["anchorPoint"] = "CENTER"
+			E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["attachTo"] = "SL_TopPanel"
+			E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["styleOptions"] = "benikui"
+			E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["xOffset"] = 184
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["anchorPoint"] = "LEFT"
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["attachTo"] = "SL_TopPanel"
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["height"] = 128
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["styleOptions"] = "releaf-flat"
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["width"] = 256
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["xOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["anchorPoint"] = "BOTTOM"
+			E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["inversePoint"] = true
+			E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["styleOptions"] = "blizzard"
+			E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["yOffset"] = 196
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["anchorPoint"] = "TOPLEFT"
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["styleOptions"] = "releaf-flat"
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["xOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["factionLogo"]["enable"] = false
+			E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["anchorPoint"] = "CENTER"
+			E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["styleOptions"] = "releaf-flat"
+			E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["xOffset"] = -184
+			E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["anchorPoint"] = "RIGHT"
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["attachTo"] = "SL_TopPanel"
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["height"] = 128
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["width"] = 256
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["xOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Exo2 Extra Bold"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "Exo2 Extra Bold"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["xOffset"] = 4
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["anchorPoint"] = "TOPRIGHT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["enable"] = false
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["font"] = "Exo2 Extra Bold"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["xOffset"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["yOffset"] = 50
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["anchorPoint"] = "BOTTOMLEFT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["attachTo"] = "SL_PlayerName"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["font"] = "Exo2 Extra Bold"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["anchorPoint"] = "RIGHT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["attachTo"] = "SL_GuildName"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["font"] = "Exo2 Extra Bold"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["anchorPoint"] = "TOPRIGHT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["attachTo"] = "SL_TopPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["enable"] = false
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["font"] = "Exo2 Extra Bold"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerLevel"]["enable"] = false
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["anchorPoint"] = "TOPLEFT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["font"] = "Exo2 Extra Bold"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["xOffset"] = 128
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["yOffset"] = -30
+			E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["enable"] = false
+			E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["size"] = 16
+			E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["xOffset"] = 0
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["anchorPoint"] = "CENTER"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["font"] = "Exo2 Extra Bold"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["size"] = 32
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["yOffset"] = 40
+			E.db["sle"]["afk"]["enable"] = true
+			E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
+			E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
+			E.db["sle"]["afk"]["playermodel"]["anim"] = 47
+		else
+			E.db["sle"]["screensaver"]["date"]["font"] = "Exo2 Extra Bold"
+			E.db["sle"]["screensaver"]["player"]["font"] = "Exo2 Extra Bold"
+			E.db["sle"]["screensaver"]["subtitle"]["font"] = "Exo2 Extra Bold"
+			E.db["sle"]["screensaver"]["tips"]["font"] = "Exo2 Extra Bold"
+			E.db["sle"]["screensaver"]["title"]["font"] = "Exo2 Extra Bold"
+		end
 
 		E.db["sle"]["skins"]["merchant"]["list"]["nameFont"] = "Exo2 Extra Bold"
 		E.db["sle"]["skins"]["merchant"]["list"]["subFont"] = "Exo2 Extra Bold"
@@ -720,6 +727,7 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.db["WT"]["item"]["inspect"]["levelText"]["name"] = "Exo2 Extra Bold"
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["name"] = "Exo2 Extra Bold"
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["name"] = "Exo2 Extra Bold"
+	end
 		E.db["general"]["altPowerBar"]["font"] = "Exo2 Extra Bold"
 		E.db["general"]["font"] = "Exo2 Extra Bold"
 		E.db["general"]["itemLevel"]["itemLevelFont"] = "Exo2 Extra Bold"
@@ -730,9 +738,11 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.db["chat"]["font"] = "Exo2 Extra Bold"
 		E.db["chat"]["tabFont"] = "Exo2 Extra Bold"
 		E.db["cooldown"]["fonts"]["font"] = "Exo2 Extra Bold"
-		E.db["databars"]["azerite"]["font"] = "Exo2 Extra Bold"
+		if ElvUI_EltreumUI.Retail then
+			E.db["databars"]["honor"]["font"] = "Exo2 Extra Bold"
+			E.db["databars"]["azerite"]["font"] = "Exo2 Extra Bold"
+		end
 		E.db["databars"]["experience"]["font"] = "Exo2 Extra Bold"
-		E.db["databars"]["honor"]["font"] = "Exo2 Extra Bold"
 		E.db["databars"]["reputation"]["font"] = "Exo2 Extra Bold"
 		E.db["databars"]["threat"]["font"] = "Exo2 Extra Bold"
 		E.db["datatexts"]["font"] = "Exo2 Extra Bold"
@@ -1062,7 +1072,9 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.db["actionbar"]["bar9"]["macroFont"] = "Exo2 Extra Bold"
 		E.db["actionbar"]["barPet"]["countFont"] = "Exo2 Extra Bold"
 		E.db["actionbar"]["barPet"]["hotkeyFont"] = "Exo2 Extra Bold"
-		E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "Exo2 Extra Bold"
+		if ElvUI_EltreumUI.Retail then
+			E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "Exo2 Extra Bold"
+		end
 		E.db["actionbar"]["font"] = "Exo2 Extra Bold"
 		E.db["actionbar"]["stanceBar"]["hotkeyFont"] = "Exo2 Extra Bold"
 		E.db["actionbar"]["vehicleExitButton"]["hotkeyFont"] = "Exo2 Extra Bold"
@@ -1071,20 +1083,22 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.db["auras"]["debuffs"]["countFont"] = "Exo2 Extra Bold"
 		E.db["auras"]["debuffs"]["timeFont"] = "Exo2 Extra Bold"
 		E.db["unitframe"]["font"] = "Exo2 Extra Bold"
-		E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Exo2 Extra Bold"
-		E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "Exo2 Extra Bold"
-		E.db["unitframe"]["units"]["assist"]["buffs"]["countFont"] = "Exo2 Extra Bold"
-		E.db["unitframe"]["units"]["assist"]["debuffs"]["countFont"] = "Exo2 Extra Bold"
-		E.db["unitframe"]["units"]["assist"]["rdebuffs"]["font"] = "Exo2 Extra Bold"
-		E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "Exo2 Extra Bold"
-		E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "Exo2 Extra Bold"
-		E.db["unitframe"]["units"]["focus"]["debuffs"]["countFont"] = "Exo2 Extra Bold"
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Exo2 Extra Bold"
+			E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "Exo2 Extra Bold"
+			E.db["unitframe"]["units"]["assist"]["buffs"]["countFont"] = "Exo2 Extra Bold"
+			E.db["unitframe"]["units"]["assist"]["debuffs"]["countFont"] = "Exo2 Extra Bold"
+			E.db["unitframe"]["units"]["assist"]["rdebuffs"]["font"] = "Exo2 Extra Bold"
+			E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "Exo2 Extra Bold"
+			E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "Exo2 Extra Bold"
+			E.db["unitframe"]["units"]["focus"]["debuffs"]["countFont"] = "Exo2 Extra Bold"
+			E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["font"] = "Exo2 Extra Bold"
+			E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["font"] = "Exo2 Extra Bold"
+		end
 		E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Exo2 Extra Bold"
-		E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["font"] = "Exo2 Extra Bold"
 		E.db["unitframe"]["units"]["party"]["debuffs"]["countFont"] = "Exo2 Extra Bold"
 		E.db["unitframe"]["units"]["party"]["rdebuffs"]["font"] = "Exo2 Extra Bold"
 		E.db["unitframe"]["units"]["player"]["buffs"]["countFont"] = "Exo2 Extra Bold"
-		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["font"] = "Exo2 Extra Bold"
 		E.db["unitframe"]["units"]["player"]["debuffs"]["countFont"] = "Exo2 Extra Bold"
 		E.db["unitframe"]["units"]["raid"]["buffs"]["countFont"] = "Exo2 Extra Bold"
 		E.db["unitframe"]["units"]["raid"]["debuffs"]["countFont"] = "Exo2 Extra Bold"
@@ -1104,7 +1118,7 @@ end
 
 function ElvUI_EltreumUI:SetupFontsGotham(addon)
 	if not E.db.movers then E.db.movers = {} end
-		PA.db["stAddonManager"]["Font"] = "GothamNarrow Black"
+
 		--nameplates
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "GothamNarrow Black"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "GothamNarrow Black"
@@ -1152,6 +1166,8 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		E.private["general"]["chatBubbleFont"] = "GothamNarrow Black"
 		E.private["general"]["dmgfont"] = "GothamNarrow Black"
 		E.private["general"]["namefont"] = "GothamNarrow Black"
+	if ElvUI_EltreumUI.Retail then
+		PA.db["stAddonManager"]["Font"] = "GothamNarrow Black"
 		E.db["sle"]["armory"]["character"]["durability"]["font"] = "GothamNarrow Black"
 		E.db["sle"]["armory"]["character"]["enchant"]["font"] = "GothamNarrow Black"
 		E.db["sle"]["armory"]["character"]["ilvl"]["font"] = "GothamNarrow Black"
@@ -1171,95 +1187,93 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		E.db["sle"]["minimap"]["coords"]["font"] = "GothamNarrow Black"
 		E.db["sle"]["minimap"]["instance"]["font"] = "GothamNarrow Black"
 		E.db["sle"]["minimap"]["locPanel"]["font"] = "GothamNarrow Black"
-
-
-	if sleversioncheck >= "4.22" then
-		E.db["sle"]["afk"]["animTime"] = 2
-		E.db["sle"]["afk"]["animType"] = "FadeIn"
-		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["anchorPoint"] = "CENTER"
-		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["attachTo"] = "SL_TopPanel"
-		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["styleOptions"] = "benikui"
-		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["xOffset"] = 184
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["anchorPoint"] = "LEFT"
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["attachTo"] = "SL_TopPanel"
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["height"] = 128
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["styleOptions"] = "releaf-flat"
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["width"] = 256
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["xOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["anchorPoint"] = "BOTTOM"
-		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["inversePoint"] = true
-		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["styleOptions"] = "blizzard"
-		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["yOffset"] = 196
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["anchorPoint"] = "TOPLEFT"
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["styleOptions"] = "releaf-flat"
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["xOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["factionLogo"]["enable"] = false
-		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["anchorPoint"] = "CENTER"
-		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["styleOptions"] = "releaf-flat"
-		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["xOffset"] = -184
-		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["anchorPoint"] = "RIGHT"
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["attachTo"] = "SL_TopPanel"
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["height"] = 128
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["width"] = 256
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["xOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["xOffset"] = 4
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["anchorPoint"] = "TOPRIGHT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["enable"] = false
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["xOffset"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["yOffset"] = 50
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["anchorPoint"] = "BOTTOMLEFT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["attachTo"] = "SL_PlayerName"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["anchorPoint"] = "RIGHT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["attachTo"] = "SL_GuildName"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["anchorPoint"] = "TOPRIGHT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["attachTo"] = "SL_TopPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["enable"] = false
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerLevel"]["enable"] = false
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["anchorPoint"] = "TOPLEFT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["xOffset"] = 128
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["yOffset"] = -30
-		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["enable"] = false
-		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["size"] = 16
-		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["xOffset"] = 0
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["anchorPoint"] = "CENTER"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["size"] = 32
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["yOffset"] = 40
-		E.db["sle"]["afk"]["enable"] = true
-		E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
-		E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
-		E.db["sle"]["afk"]["playermodel"]["anim"] = 47
-	else
-		E.db["sle"]["screensaver"]["date"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["screensaver"]["player"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["screensaver"]["subtitle"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["screensaver"]["tips"]["font"] = "GothamNarrow Black"
-		E.db["sle"]["screensaver"]["title"]["font"] = "GothamNarrow Black"
-	end
+		if sleversioncheck >= "4.22" then
+			E.db["sle"]["afk"]["animTime"] = 2
+			E.db["sle"]["afk"]["animType"] = "FadeIn"
+			E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["anchorPoint"] = "CENTER"
+			E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["attachTo"] = "SL_TopPanel"
+			E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["styleOptions"] = "benikui"
+			E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["xOffset"] = 184
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["anchorPoint"] = "LEFT"
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["attachTo"] = "SL_TopPanel"
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["height"] = 128
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["styleOptions"] = "releaf-flat"
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["width"] = 256
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["xOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["anchorPoint"] = "BOTTOM"
+			E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["inversePoint"] = true
+			E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["styleOptions"] = "blizzard"
+			E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["yOffset"] = 196
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["anchorPoint"] = "TOPLEFT"
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["styleOptions"] = "releaf-flat"
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["xOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["factionLogo"]["enable"] = false
+			E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["anchorPoint"] = "CENTER"
+			E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["styleOptions"] = "releaf-flat"
+			E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["xOffset"] = -184
+			E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["anchorPoint"] = "RIGHT"
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["attachTo"] = "SL_TopPanel"
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["height"] = 128
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["width"] = 256
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["xOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "GothamNarrow Black"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "GothamNarrow Black"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["xOffset"] = 4
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["anchorPoint"] = "TOPRIGHT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["enable"] = false
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["font"] = "GothamNarrow Black"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["xOffset"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["yOffset"] = 50
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["anchorPoint"] = "BOTTOMLEFT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["attachTo"] = "SL_PlayerName"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["font"] = "GothamNarrow Black"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["anchorPoint"] = "RIGHT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["attachTo"] = "SL_GuildName"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["font"] = "GothamNarrow Black"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["anchorPoint"] = "TOPRIGHT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["attachTo"] = "SL_TopPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["enable"] = false
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["font"] = "GothamNarrow Black"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerLevel"]["enable"] = false
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["anchorPoint"] = "TOPLEFT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["font"] = "GothamNarrow Black"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["xOffset"] = 128
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["yOffset"] = -30
+			E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["enable"] = false
+			E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["size"] = 16
+			E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["xOffset"] = 0
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["anchorPoint"] = "CENTER"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["font"] = "GothamNarrow Black"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["size"] = 32
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["yOffset"] = 40
+			E.db["sle"]["afk"]["enable"] = true
+			E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
+			E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
+			E.db["sle"]["afk"]["playermodel"]["anim"] = 47
+		else
+			E.db["sle"]["screensaver"]["date"]["font"] = "GothamNarrow Black"
+			E.db["sle"]["screensaver"]["player"]["font"] = "GothamNarrow Black"
+			E.db["sle"]["screensaver"]["subtitle"]["font"] = "GothamNarrow Black"
+			E.db["sle"]["screensaver"]["tips"]["font"] = "GothamNarrow Black"
+			E.db["sle"]["screensaver"]["title"]["font"] = "GothamNarrow Black"
+		end
 		E.db["sle"]["skins"]["merchant"]["list"]["nameFont"] = "GothamNarrow Black"
 		E.db["sle"]["skins"]["merchant"]["list"]["subFont"] = "GothamNarrow Black"
 		E.private["WT"]["skins"]["ime"]["label"]["name"] = "GothamNarrow Black"
@@ -1268,6 +1282,7 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		E.db["WT"]["item"]["inspect"]["levelText"]["name"] = "GothamNarrow Black"
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["name"] = "GothamNarrow Black"
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["name"] = "GothamNarrow Black"
+	end
 		E.db["general"]["altPowerBar"]["font"] = "GothamNarrow Black"
 		E.db["general"]["font"] = "GothamNarrow Black"
 		E.db["general"]["itemLevel"]["itemLevelFont"] = "GothamNarrow Black"
@@ -1278,9 +1293,11 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		E.db["chat"]["font"] = "GothamNarrow Black"
 		E.db["chat"]["tabFont"] = "GothamNarrow Black"
 		E.db["cooldown"]["fonts"]["font"] = "GothamNarrow Black"
-		E.db["databars"]["azerite"]["font"] = "GothamNarrow Black"
+		if ElvUI_EltreumUI.Retail then
+			E.db["databars"]["honor"]["font"] = "GothamNarrow Black"
+			E.db["databars"]["azerite"]["font"] = "GothamNarrow Black"
+		end
 		E.db["databars"]["experience"]["font"] = "GothamNarrow Black"
-		E.db["databars"]["honor"]["font"] = "GothamNarrow Black"
 		E.db["databars"]["reputation"]["font"] = "GothamNarrow Black"
 		E.db["databars"]["threat"]["font"] = "GothamNarrow Black"
 		E.db["datatexts"]["font"] = "GothamNarrow Black"
@@ -1610,7 +1627,9 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		E.db["actionbar"]["bar9"]["macroFont"] = "GothamNarrow Black"
 		E.db["actionbar"]["barPet"]["countFont"] = "GothamNarrow Black"
 		E.db["actionbar"]["barPet"]["hotkeyFont"] = "GothamNarrow Black"
-		E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "GothamNarrow Black"
+		if ElvUI_EltreumUI.Retail then
+			E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "GothamNarrow Black"
+		end
 		E.db["actionbar"]["font"] = "GothamNarrow Black"
 		E.db["actionbar"]["stanceBar"]["hotkeyFont"] = "GothamNarrow Black"
 		E.db["actionbar"]["vehicleExitButton"]["hotkeyFont"] = "GothamNarrow Black"
@@ -1619,20 +1638,22 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		E.db["auras"]["debuffs"]["countFont"] = "GothamNarrow Black"
 		E.db["auras"]["debuffs"]["timeFont"] = "GothamNarrow Black"
 		E.db["unitframe"]["font"] = "GothamNarrow Black"
-		E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "GothamNarrow Black"
-		E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "GothamNarrow Black"
-		E.db["unitframe"]["units"]["assist"]["buffs"]["countFont"] = "GothamNarrow Black"
-		E.db["unitframe"]["units"]["assist"]["debuffs"]["countFont"] = "GothamNarrow Black"
-		E.db["unitframe"]["units"]["assist"]["rdebuffs"]["font"] = "GothamNarrow Black"
-		E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "GothamNarrow Black"
-		E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "GothamNarrow Black"
-		E.db["unitframe"]["units"]["focus"]["debuffs"]["countFont"] = "GothamNarrow Black"
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "GothamNarrow Black"
+			E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "GothamNarrow Black"
+			E.db["unitframe"]["units"]["assist"]["buffs"]["countFont"] = "GothamNarrow Black"
+			E.db["unitframe"]["units"]["assist"]["debuffs"]["countFont"] = "GothamNarrow Black"
+			E.db["unitframe"]["units"]["assist"]["rdebuffs"]["font"] = "GothamNarrow Black"
+			E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "GothamNarrow Black"
+			E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "GothamNarrow Black"
+			E.db["unitframe"]["units"]["focus"]["debuffs"]["countFont"] = "GothamNarrow Black"
+			E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["font"] = "GothamNarrow Black"
+			E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["font"] = "GothamNarrow Black"
+		end
 		E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "GothamNarrow Black"
-		E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["font"] = "GothamNarrow Black"
 		E.db["unitframe"]["units"]["party"]["debuffs"]["countFont"] = "GothamNarrow Black"
 		E.db["unitframe"]["units"]["party"]["rdebuffs"]["font"] = "GothamNarrow Black"
 		E.db["unitframe"]["units"]["player"]["buffs"]["countFont"] = "GothamNarrow Black"
-		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["font"] = "GothamNarrow Black"
 		E.db["unitframe"]["units"]["player"]["debuffs"]["countFont"] = "GothamNarrow Black"
 		E.db["unitframe"]["units"]["raid"]["buffs"]["countFont"] = "GothamNarrow Black"
 		E.db["unitframe"]["units"]["raid"]["debuffs"]["countFont"] = "GothamNarrow Black"
@@ -1654,7 +1675,7 @@ end
 
 function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 	if not E.db.movers then E.db.movers = {} end
-		PA.db["stAddonManager"]["Font"] = "Roboto"
+
 		--nameplates
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Roboto"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Roboto"
@@ -1702,6 +1723,8 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		E.private["general"]["chatBubbleFont"] = "Roboto"
 		E.private["general"]["dmgfont"] = "Roboto"
 		E.private["general"]["namefont"] = "Roboto"
+	if ElvUI_EltreumUI.Retail then
+		PA.db["stAddonManager"]["Font"] = "Roboto"
 		E.db["sle"]["armory"]["character"]["durability"]["font"] = "Roboto"
 		E.db["sle"]["armory"]["character"]["enchant"]["font"] = "Roboto"
 		E.db["sle"]["armory"]["character"]["ilvl"]["font"] = "Roboto"
@@ -1721,96 +1744,93 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		E.db["sle"]["minimap"]["coords"]["font"] = "Roboto"
 		E.db["sle"]["minimap"]["instance"]["font"] = "Roboto"
 		E.db["sle"]["minimap"]["locPanel"]["font"] = "Roboto"
-
-
-	if sleversioncheck >= "4.22" then
-		E.db["sle"]["afk"]["animTime"] = 2
-		E.db["sle"]["afk"]["animType"] = "FadeIn"
-		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["anchorPoint"] = "CENTER"
-		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["attachTo"] = "SL_TopPanel"
-		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["styleOptions"] = "benikui"
-		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["xOffset"] = 184
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["anchorPoint"] = "LEFT"
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["attachTo"] = "SL_TopPanel"
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["height"] = 128
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["styleOptions"] = "releaf-flat"
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["width"] = 256
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["xOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["anchorPoint"] = "BOTTOM"
-		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["inversePoint"] = true
-		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["styleOptions"] = "blizzard"
-		E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["yOffset"] = 196
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["anchorPoint"] = "TOPLEFT"
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["styleOptions"] = "releaf-flat"
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["xOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["factionLogo"]["enable"] = false
-		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["anchorPoint"] = "CENTER"
-		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["styleOptions"] = "releaf-flat"
-		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["xOffset"] = -184
-		E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["anchorPoint"] = "RIGHT"
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["attachTo"] = "SL_TopPanel"
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["height"] = 128
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["width"] = 256
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["xOffset"] = 0
-		E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Roboto"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "Roboto"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["xOffset"] = 4
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["anchorPoint"] = "TOPRIGHT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["enable"] = false
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["font"] = "Roboto"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["xOffset"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["yOffset"] = 50
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["anchorPoint"] = "BOTTOMLEFT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["attachTo"] = "SL_PlayerName"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["font"] = "Roboto"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["anchorPoint"] = "RIGHT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["attachTo"] = "SL_GuildName"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["font"] = "Roboto"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["anchorPoint"] = "TOPRIGHT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["attachTo"] = "SL_TopPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["enable"] = false
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["font"] = "Roboto"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerLevel"]["enable"] = false
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["anchorPoint"] = "TOPLEFT"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["font"] = "Roboto"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["xOffset"] = 128
-		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["yOffset"] = -30
-		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["enable"] = false
-		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["size"] = 16
-		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["xOffset"] = 0
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["anchorPoint"] = "CENTER"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["attachTo"] = "SL_BottomPanel"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["font"] = "Roboto"
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["size"] = 32
-		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["yOffset"] = 40
-		E.db["sle"]["afk"]["enable"] = true
-		E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
-		E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
-		E.db["sle"]["afk"]["playermodel"]["anim"] = 47
-	else
-		E.db["sle"]["screensaver"]["date"]["font"] = "Roboto"
-		E.db["sle"]["screensaver"]["player"]["font"] = "Roboto"
-		E.db["sle"]["screensaver"]["subtitle"]["font"] = "Roboto"
-		E.db["sle"]["screensaver"]["tips"]["font"] = "Roboto"
-		E.db["sle"]["screensaver"]["title"]["font"] = "Roboto"
-	end
-
+		if sleversioncheck >= "4.22" then
+			E.db["sle"]["afk"]["animTime"] = 2
+			E.db["sle"]["afk"]["animType"] = "FadeIn"
+			E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["anchorPoint"] = "CENTER"
+			E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["attachTo"] = "SL_TopPanel"
+			E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["styleOptions"] = "benikui"
+			E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["xOffset"] = 184
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["anchorPoint"] = "LEFT"
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["attachTo"] = "SL_TopPanel"
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["height"] = 128
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["styleOptions"] = "releaf-flat"
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["width"] = 256
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["xOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["elvuiLogo"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["anchorPoint"] = "BOTTOM"
+			E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["inversePoint"] = true
+			E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["styleOptions"] = "blizzard"
+			E.db["sle"]["afk"]["defaultGraphics"]["exPack"]["yOffset"] = 196
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["anchorPoint"] = "TOPLEFT"
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["styleOptions"] = "releaf-flat"
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["xOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["factionCrest"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["factionLogo"]["enable"] = false
+			E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["anchorPoint"] = "CENTER"
+			E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["styleOptions"] = "releaf-flat"
+			E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["xOffset"] = -184
+			E.db["sle"]["afk"]["defaultGraphics"]["raceCrest"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["anchorPoint"] = "RIGHT"
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["attachTo"] = "SL_TopPanel"
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["height"] = 128
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["width"] = 256
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["xOffset"] = 0
+			E.db["sle"]["afk"]["defaultGraphics"]["slLogo"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["anchorPoint"] = "LEFT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = "Roboto"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["xOffset"] = 127
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "Roboto"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["xOffset"] = 4
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["anchorPoint"] = "TOPRIGHT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["enable"] = false
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["font"] = "Roboto"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["xOffset"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["yOffset"] = 50
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["anchorPoint"] = "BOTTOMLEFT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["attachTo"] = "SL_PlayerName"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["font"] = "Roboto"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["anchorPoint"] = "RIGHT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["attachTo"] = "SL_GuildName"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["font"] = "Roboto"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["anchorPoint"] = "TOPRIGHT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["attachTo"] = "SL_TopPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["enable"] = false
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["font"] = "Roboto"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerLevel"]["enable"] = false
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["anchorPoint"] = "TOPLEFT"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["font"] = "Roboto"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["size"] = 20
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["xOffset"] = 128
+			E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["yOffset"] = -30
+			E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["enable"] = false
+			E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["size"] = 16
+			E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["xOffset"] = 0
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["anchorPoint"] = "CENTER"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["attachTo"] = "SL_BottomPanel"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["font"] = "Roboto"
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["size"] = 32
+			E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["yOffset"] = 40
+			E.db["sle"]["afk"]["enable"] = true
+			E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
+			E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
+			E.db["sle"]["afk"]["playermodel"]["anim"] = 47
+		else
+			E.db["sle"]["screensaver"]["date"]["font"] = "Roboto"
+			E.db["sle"]["screensaver"]["player"]["font"] = "Roboto"
+			E.db["sle"]["screensaver"]["subtitle"]["font"] = "Roboto"
+			E.db["sle"]["screensaver"]["tips"]["font"] = "Roboto"
+			E.db["sle"]["screensaver"]["title"]["font"] = "Roboto"
+		end
 		E.db["sle"]["skins"]["merchant"]["list"]["nameFont"] = "Roboto"
 		E.db["sle"]["skins"]["merchant"]["list"]["subFont"] = "Roboto"
 		E.private["WT"]["skins"]["ime"]["label"]["name"] = "Roboto"
@@ -1819,6 +1839,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		E.db["WT"]["item"]["inspect"]["levelText"]["name"] = "Roboto"
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["name"] = "Roboto"
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["name"] = "Roboto"
+	end
 		E.db["general"]["altPowerBar"]["font"] = "Roboto"
 		E.db["general"]["font"] = "Roboto"
 		E.db["general"]["itemLevel"]["itemLevelFont"] = "Roboto"
@@ -1829,9 +1850,11 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		E.db["chat"]["font"] = "Roboto"
 		E.db["chat"]["tabFont"] = "Roboto"
 		E.db["cooldown"]["fonts"]["font"] = "Roboto"
-		E.db["databars"]["azerite"]["font"] = "Roboto"
+		if ElvUI_EltreumUI.Retail then
+			E.db["databars"]["azerite"]["font"] = "Roboto"
+			E.db["databars"]["honor"]["font"] = "Roboto"
+		end
 		E.db["databars"]["experience"]["font"] = "Roboto"
-		E.db["databars"]["honor"]["font"] = "Roboto"
 		E.db["databars"]["reputation"]["font"] = "Roboto"
 		E.db["databars"]["threat"]["font"] = "Roboto"
 		E.db["datatexts"]["font"] = "Roboto"
@@ -2162,7 +2185,9 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		E.db["actionbar"]["bar9"]["macroFont"] = "Roboto"
 		E.db["actionbar"]["barPet"]["countFont"] = "Roboto"
 		E.db["actionbar"]["barPet"]["hotkeyFont"] = "Roboto"
-		E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "Roboto"
+		if ElvUI_EltreumUI.Retail then
+			E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "Roboto"
+		end
 		E.db["actionbar"]["font"] = "Roboto"
 		E.db["actionbar"]["stanceBar"]["hotkeyFont"] = "Roboto"
 		E.db["actionbar"]["vehicleExitButton"]["hotkeyFont"] = "Roboto"
@@ -2171,20 +2196,22 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		E.db["auras"]["debuffs"]["countFont"] = "Roboto"
 		E.db["auras"]["debuffs"]["timeFont"] = "Roboto"
 		E.db["unitframe"]["font"] = "Roboto"
-		E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Roboto"
-		E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "Roboto"
-		E.db["unitframe"]["units"]["assist"]["buffs"]["countFont"] = "Roboto"
-		E.db["unitframe"]["units"]["assist"]["debuffs"]["countFont"] = "Roboto"
-		E.db["unitframe"]["units"]["assist"]["rdebuffs"]["font"] = "Roboto"
-		E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "Roboto"
-		E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "Roboto"
-		E.db["unitframe"]["units"]["focus"]["debuffs"]["countFont"] = "Roboto"
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Roboto"
+			E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "Roboto"
+			E.db["unitframe"]["units"]["assist"]["buffs"]["countFont"] = "Roboto"
+			E.db["unitframe"]["units"]["assist"]["debuffs"]["countFont"] = "Roboto"
+			E.db["unitframe"]["units"]["assist"]["rdebuffs"]["font"] = "Roboto"
+			E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "Roboto"
+			E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "Roboto"
+			E.db["unitframe"]["units"]["focus"]["debuffs"]["countFont"] = "Roboto"
+			E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["font"] = "Roboto"
+			E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["font"] = "Roboto"
+		end
 		E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Roboto"
-		E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["font"] = "Roboto"
 		E.db["unitframe"]["units"]["party"]["debuffs"]["countFont"] = "Roboto"
 		E.db["unitframe"]["units"]["party"]["rdebuffs"]["font"] = "Roboto"
 		E.db["unitframe"]["units"]["player"]["buffs"]["countFont"] = "Roboto"
-		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["font"] = "Roboto"
 		E.db["unitframe"]["units"]["player"]["debuffs"]["countFont"] = "Roboto"
 		E.db["unitframe"]["units"]["raid"]["buffs"]["countFont"] = "Roboto"
 		E.db["unitframe"]["units"]["raid"]["debuffs"]["countFont"] = "Roboto"
@@ -2205,33 +2232,35 @@ end
 
 function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
 	if not E.db.movers then E.db.movers = {} end
-	PA.db["stAddonManager"]["FontFlag"] = "THICKOUTLINE"
-	E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["media"]["fonts"]["mail"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["media"]["fonts"]["objective"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["media"]["fonts"]["objectiveHeader"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["media"]["fonts"]["pvp"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["media"]["fonts"]["subzone"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["media"]["fonts"]["zone"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["minimap"]["coords"]["fontOutline"] = "THICKOUTLINE"
-	E.db["sle"]["minimap"]["instance"]["fontOutline"] = "THICKOUTLINE"
-	E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = "THICKOUTLINE"
-	E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = "THICKOUTLINE"
-	if sleversioncheck <= "4.21" then
-		E.db["sle"]["screensaver"]["subtitle"]["outline"] = "THICKOUTLINE"
-		E.db["sle"]["screensaver"]["title"]["outline"] = "THICKOUTLINE"
+	if ElvUI_EltreumUI.Retail then
+		PA.db["stAddonManager"]["FontFlag"] = "THICKOUTLINE"
+		E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["mail"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["objective"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["pvp"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["subzone"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["zone"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["minimap"]["coords"]["fontOutline"] = "THICKOUTLINE"
+		E.db["sle"]["minimap"]["instance"]["fontOutline"] = "THICKOUTLINE"
+		E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = "THICKOUTLINE"
+		E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = "THICKOUTLINE"
+		if sleversioncheck <= "4.21" then
+			E.db["sle"]["screensaver"]["subtitle"]["outline"] = "THICKOUTLINE"
+			E.db["sle"]["screensaver"]["title"]["outline"] = "THICKOUTLINE"
+		end
+		E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "THICKOUTLINE"
+		E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = "THICKOUTLINE"
+		E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = "THICKOUTLINE"
+		E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = "THICKOUTLINE"
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = "THICKOUTLINE"
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "THICKOUTLINE"
+		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "THICKOUTLINE"
+		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "THICKOUTLINE"
 	end
-	E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "THICKOUTLINE"
-	E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = "THICKOUTLINE"
-	E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = "THICKOUTLINE"
-	E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = "THICKOUTLINE"
-	E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = "THICKOUTLINE"
-	E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "THICKOUTLINE"
-	E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "THICKOUTLINE"
-	E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "THICKOUTLINE"
 	E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
 	E.db["general"]["fontStyle"] = "THICKOUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE"
@@ -2240,7 +2269,9 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
 	E.db["bags"]["itemLevelFontOutline"] = "OUTLINE"
 	E.db["chat"]["fontOutline"] = "OUTLINE"
 	E.db["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
-	E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
+	if ElvUI_EltreumUI.Retail then
+		E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
+	end
 	E.db["databars"]["experience"]["fontOutline"] = "THICKOUTLINE"
 	E.db["databars"]["reputation"]["fontOutline"] = "THICKOUTLINE"
 	E.db["databars"]["threat"]["fontOutline"] = "THICKOUTLINE"
@@ -2303,7 +2334,10 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
 	E.db["actionbar"]["bar9"]["macroFontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["barPet"]["countFontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["barPet"]["hotkeyFontOutline"] = "THICKOUTLINE"
-	E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
+	if ElvUI_EltreumUI.Retail then
+		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "MONOCHROMEOUTLINE"
+	end
 	E.db["actionbar"]["fontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["stanceBar"]["hotkeyFontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["vehicleExitButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
@@ -2315,7 +2349,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
 	E.db["unitframe"]["units"]["assist"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["party"]["debuffs"]["countFontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["party"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
-	E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "MONOCHROMEOUTLINE"
 	E.db["unitframe"]["units"]["raid"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
@@ -2349,33 +2382,35 @@ end
 
 function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
 	if not E.db.movers then E.db.movers = {} end
-	PA.db["stAddonManager"]["FontFlag"] = "NONE"
-	E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "NONE"
-	E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "NONE"
-	E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = "NONE"
-	E.db["sle"]["media"]["fonts"]["mail"]["outline"] = "NONE"
-	E.db["sle"]["media"]["fonts"]["objective"]["outline"] = "NONE"
-	E.db["sle"]["media"]["fonts"]["objectiveHeader"]["outline"] = "NONE"
-	E.db["sle"]["media"]["fonts"]["pvp"]["outline"] = "NONE"
-	E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["outline"] = "NONE"
-	E.db["sle"]["media"]["fonts"]["subzone"]["outline"] = "NONE"
-	E.db["sle"]["media"]["fonts"]["zone"]["outline"] = "NONE"
-	E.db["sle"]["minimap"]["coords"]["fontOutline"] = "NONE"
-	E.db["sle"]["minimap"]["instance"]["fontOutline"] = "NONE"
-	E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = "NONE"
-	E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = "NONE"
-	if sleversioncheck <= "4.21" then
-		E.db["sle"]["screensaver"]["subtitle"]["outline"] = "NONE"
-		E.db["sle"]["screensaver"]["title"]["outline"] = "NONE"
+	if ElvUI_EltreumUI.Retail then
+		PA.db["stAddonManager"]["FontFlag"] = "NONE"
+		E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "NONE"
+		E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "NONE"
+		E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = "NONE"
+		E.db["sle"]["media"]["fonts"]["mail"]["outline"] = "NONE"
+		E.db["sle"]["media"]["fonts"]["objective"]["outline"] = "NONE"
+		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["outline"] = "NONE"
+		E.db["sle"]["media"]["fonts"]["pvp"]["outline"] = "NONE"
+		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["outline"] = "NONE"
+		E.db["sle"]["media"]["fonts"]["subzone"]["outline"] = "NONE"
+		E.db["sle"]["media"]["fonts"]["zone"]["outline"] = "NONE"
+		E.db["sle"]["minimap"]["coords"]["fontOutline"] = "NONE"
+		E.db["sle"]["minimap"]["instance"]["fontOutline"] = "NONE"
+		E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = "NONE"
+		E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = "NONE"
+		if sleversioncheck <= "4.21" then
+			E.db["sle"]["screensaver"]["subtitle"]["outline"] = "NONE"
+			E.db["sle"]["screensaver"]["title"]["outline"] = "NONE"
+		end
+		E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "NONE"
+		E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = "NONE"
+		E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = "NONE"
+		E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = "NONE"
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = "NONE"
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "NONE"
+		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "NONE"
+		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "NONE"
 	end
-	E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "NONE"
-	E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = "NONE"
-	E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = "NONE"
-	E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = "NONE"
-	E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = "NONE"
-	E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "NONE"
-	E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "NONE"
-	E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "NONE"
 	E.db["general"]["altPowerBar"]["fontOutline"] = "NONE"
 	E.db["general"]["fontStyle"] = "NONE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "NONE"
@@ -2384,7 +2419,9 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
 	E.db["bags"]["itemLevelFontOutline"] = "NONE"
 	E.db["chat"]["fontOutline"] = "NONE"
 	E.db["cooldown"]["fonts"]["fontOutline"] = "NONE"
-	E.db["databars"]["azerite"]["fontOutline"] = "NONE"
+	if ElvUI_EltreumUI.Retail then
+		E.db["databars"]["azerite"]["fontOutline"] = "NONE"
+	end
 	E.db["databars"]["experience"]["fontOutline"] = "NONE"
 	E.db["databars"]["reputation"]["fontOutline"] = "NONE"
 	E.db["databars"]["threat"]["fontOutline"] = "NONE"
@@ -2447,7 +2484,10 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
 	E.db["actionbar"]["bar9"]["macroFontOutline"] = "NONE"
 	E.db["actionbar"]["barPet"]["countFontOutline"] = "NONE"
 	E.db["actionbar"]["barPet"]["hotkeyFontOutline"] = "NONE"
-	E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "NONE"
+	if ElvUI_EltreumUI.Retail then
+		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "NONE"
+		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "NONE"
+	end
 	E.db["actionbar"]["fontOutline"] = "NONE"
 	E.db["actionbar"]["stanceBar"]["hotkeyFontOutline"] = "NONE"
 	E.db["actionbar"]["vehicleExitButton"]["hotkeyFontOutline"] = "NONE"
@@ -2459,7 +2499,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
 	E.db["unitframe"]["units"]["assist"]["rdebuffs"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["party"]["debuffs"]["countFontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["party"]["rdebuffs"]["fontOutline"] = "NONE"
-	E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "NONE"
 	E.db["unitframe"]["units"]["raid"]["rdebuffs"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["fontOutline"] = "NONE"
@@ -2493,33 +2532,36 @@ end
 
 function ElvUI_EltreumUI:SetupFontsOutlineThick(addon)
 	if not E.db.movers then E.db.movers = {} end
+
+	if ElvUI_EltreumUI.Retail then
 		PA.db["stAddonManager"]["FontFlag"] = "THICKOUTLINE"
-	E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["media"]["fonts"]["mail"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["media"]["fonts"]["objective"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["media"]["fonts"]["objectiveHeader"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["media"]["fonts"]["pvp"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["media"]["fonts"]["subzone"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["media"]["fonts"]["zone"]["outline"] = "THICKOUTLINE"
-	E.db["sle"]["minimap"]["coords"]["fontOutline"] = "THICKOUTLINE"
-	E.db["sle"]["minimap"]["instance"]["fontOutline"] = "THICKOUTLINE"
-	E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = "THICKOUTLINE"
-	E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = "THICKOUTLINE"
-	if sleversioncheck <= "4.21" then
-		E.db["sle"]["screensaver"]["subtitle"]["outline"] = "THICKOUTLINE"
-		E.db["sle"]["screensaver"]["title"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["mail"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["objective"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["pvp"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["subzone"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["zone"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["minimap"]["coords"]["fontOutline"] = "THICKOUTLINE"
+		E.db["sle"]["minimap"]["instance"]["fontOutline"] = "THICKOUTLINE"
+		E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = "THICKOUTLINE"
+		E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = "THICKOUTLINE"
+		if sleversioncheck <= "4.21" then
+			E.db["sle"]["screensaver"]["subtitle"]["outline"] = "THICKOUTLINE"
+			E.db["sle"]["screensaver"]["title"]["outline"] = "THICKOUTLINE"
+		end
+		E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "THICKOUTLINE"
+		E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = "THICKOUTLINE"
+		E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = "THICKOUTLINE"
+		E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = "THICKOUTLINE"
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = "THICKOUTLINE"
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "THICKOUTLINE"
+		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "THICKOUTLINE"
+		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "THICKOUTLINE"
 	end
-	E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "THICKOUTLINE"
-	E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = "THICKOUTLINE"
-	E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = "THICKOUTLINE"
-	E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = "THICKOUTLINE"
-	E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = "THICKOUTLINE"
-	E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "THICKOUTLINE"
-	E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "THICKOUTLINE"
-	E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "THICKOUTLINE"
 	E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
 	E.db["general"]["fontStyle"] = "THICKOUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE"
@@ -2528,7 +2570,9 @@ function ElvUI_EltreumUI:SetupFontsOutlineThick(addon)
 	E.db["bags"]["itemLevelFontOutline"] = "THICKOUTLINE"
 	E.db["chat"]["fontOutline"] = "THICKOUTLINE"
 	E.db["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
-	E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
+	if ElvUI_EltreumUI.Retail then
+		E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
+	end
 	E.db["databars"]["experience"]["fontOutline"] = "THICKOUTLINE"
 	E.db["databars"]["reputation"]["fontOutline"] = "THICKOUTLINE"
 	E.db["databars"]["threat"]["fontOutline"] = "THICKOUTLINE"
@@ -2591,7 +2635,10 @@ function ElvUI_EltreumUI:SetupFontsOutlineThick(addon)
 	E.db["actionbar"]["bar9"]["macroFontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["barPet"]["countFontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["barPet"]["hotkeyFontOutline"] = "THICKOUTLINE"
-	E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
+	if ElvUI_EltreumUI.Retail then
+		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "THICKOUTLINE"
+	end
 	E.db["actionbar"]["fontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["stanceBar"]["hotkeyFontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["vehicleExitButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
@@ -2603,7 +2650,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineThick(addon)
 	E.db["unitframe"]["units"]["assist"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["party"]["debuffs"]["countFontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["party"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
-	E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["raid"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
@@ -2637,33 +2683,38 @@ end
 
 function ElvUI_EltreumUI:SetupFontsOutlineOutline(addon)
 	if not E.db.movers then E.db.movers = {} end
+
+
+
+	if ElvUI_EltreumUI.Retail then
 		PA.db["stAddonManager"]["FontFlag"] = "OUTLINE"
-	E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "OUTLINE"
-	E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "OUTLINE"
-	E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = "OUTLINE"
-	E.db["sle"]["media"]["fonts"]["mail"]["outline"] = "OUTLINE"
-	E.db["sle"]["media"]["fonts"]["objective"]["outline"] = "OUTLINE"
-	E.db["sle"]["media"]["fonts"]["objectiveHeader"]["outline"] = "OUTLINE"
-	E.db["sle"]["media"]["fonts"]["pvp"]["outline"] = "OUTLINE"
-	E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["outline"] = "OUTLINE"
-	E.db["sle"]["media"]["fonts"]["subzone"]["outline"] = "OUTLINE"
-	E.db["sle"]["media"]["fonts"]["zone"]["outline"] = "OUTLINE"
-	E.db["sle"]["minimap"]["coords"]["fontOutline"] = "OUTLINE"
-	E.db["sle"]["minimap"]["instance"]["fontOutline"] = "OUTLINE"
-	E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = "OUTLINE"
-	E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = "OUTLINE"
-	if sleversioncheck <= "4.21" then
-		E.db["sle"]["screensaver"]["subtitle"]["outline"] = "OUTLINE"
-		E.db["sle"]["screensaver"]["title"]["outline"] = "OUTLINE"
+		E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "OUTLINE"
+		E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "OUTLINE"
+		E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = "OUTLINE"
+		E.db["sle"]["media"]["fonts"]["mail"]["outline"] = "OUTLINE"
+		E.db["sle"]["media"]["fonts"]["objective"]["outline"] = "OUTLINE"
+		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["outline"] = "OUTLINE"
+		E.db["sle"]["media"]["fonts"]["pvp"]["outline"] = "OUTLINE"
+		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["outline"] = "OUTLINE"
+		E.db["sle"]["media"]["fonts"]["subzone"]["outline"] = "OUTLINE"
+		E.db["sle"]["media"]["fonts"]["zone"]["outline"] = "OUTLINE"
+		E.db["sle"]["minimap"]["coords"]["fontOutline"] = "OUTLINE"
+		E.db["sle"]["minimap"]["instance"]["fontOutline"] = "OUTLINE"
+		E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = "OUTLINE"
+		E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = "OUTLINE"
+		if sleversioncheck <= "4.21" then
+			E.db["sle"]["screensaver"]["subtitle"]["outline"] = "OUTLINE"
+			E.db["sle"]["screensaver"]["title"]["outline"] = "OUTLINE"
+		end
+		E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "OUTLINE"
+		E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = "OUTLINE"
+		E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = "OUTLINE"
+		E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = "OUTLINE"
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = "OUTLINE"
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "OUTLINE"
+		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "OUTLINE"
+		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "OUTLINE"
 	end
-	E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "OUTLINE"
-	E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = "OUTLINE"
-	E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = "OUTLINE"
-	E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = "OUTLINE"
-	E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = "OUTLINE"
-	E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "OUTLINE"
-	E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "OUTLINE"
-	E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "OUTLINE"
 	E.db["general"]["altPowerBar"]["fontOutline"] = "OUTLINE"
 	E.db["general"]["fontStyle"] = "OUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "OUTLINE"
@@ -2672,7 +2723,9 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline(addon)
 	E.db["bags"]["itemLevelFontOutline"] = "OUTLINE"
 	E.db["chat"]["fontOutline"] = "OUTLINE"
 	E.db["cooldown"]["fonts"]["fontOutline"] = "OUTLINE"
-	E.db["databars"]["azerite"]["fontOutline"] = "OUTLINE"
+	if ElvUI_EltreumUI.Retail then
+		E.db["databars"]["azerite"]["fontOutline"] = "OUTLINE"
+	end
 	E.db["databars"]["experience"]["fontOutline"] = "OUTLINE"
 	E.db["databars"]["reputation"]["fontOutline"] = "OUTLINE"
 	E.db["databars"]["threat"]["fontOutline"] = "OUTLINE"
@@ -2735,7 +2788,10 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline(addon)
 	E.db["actionbar"]["bar9"]["macroFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["barPet"]["countFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["barPet"]["hotkeyFontOutline"] = "OUTLINE"
-	E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "OUTLINE"
+	if ElvUI_EltreumUI.Retail then
+		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "OUTLINE"
+		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "OUTLINE"
+	end
 	E.db["actionbar"]["fontOutline"] = "OUTLINE"
 	E.db["actionbar"]["stanceBar"]["hotkeyFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["vehicleExitButton"]["hotkeyFontOutline"] = "OUTLINE"
@@ -2747,7 +2803,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline(addon)
 	E.db["unitframe"]["units"]["assist"]["rdebuffs"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["party"]["debuffs"]["countFontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["party"]["rdebuffs"]["fontOutline"] = "OUTLINE"
-	E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "OUTLINE"
 	E.db["unitframe"]["units"]["raid"]["rdebuffs"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["fontOutline"] = "OUTLINE"

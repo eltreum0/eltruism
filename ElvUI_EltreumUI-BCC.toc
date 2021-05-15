@@ -1,9 +1,9 @@
-## Interface: 90005
+## Interface: 20501
 ## Author: Eltreum
 ## Version: 2.0.0
-## Title: |cff1784d1ElvUI|r Eltruism
+## Title: |cff1784d1ElvUI|r Eltruism BC
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
-## Dependencies: ElvUI, ElvUI_SLE, ElvUI_WindTools, AddOnSkins, ProjectAzilroka
+## Dependencies: ElvUI, AddOnSkins, ProjectAzilroka
 ## RequiredDeps: Blizzard_CombatText
 ## OptionalDeps: NameplateSCT, Immersion, DynamicCam, GladiusEx
 ## DefaultState: enabled

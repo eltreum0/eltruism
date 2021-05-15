@@ -8,7 +8,20 @@ function ElvUI_EltreumUI:GetPAProfile()
 
 	-- Module toggles
 	PA.db["AuraReminder"]["Enable"] = false
-	PA.db["BigButtons"]["Enable"] = false
+	PA.db["QuestSounds"]["Enable"] = false
+	if ElvUI_EltreumUI.Retail then
+		PA.db["BigButtons"]["Enable"] = false
+		PA.db["QuestSounds"]["Enable"] = true
+		PA.db["QuestSounds"]["ObjectiveCompleteID"] = "None"
+		PA.db["QuestSounds"]["ObjectiveProgressID"] = "None"
+		PA.db["QuestSounds"]["ObjectiveComplete"] = "None"
+		PA.db["QuestSounds"]["QuestCompleteID"] = "None"
+		PA.db["QuestSounds"]["ObjectiveProgress"] = "None"
+		PA.db["ReputationReward"]["Enable"] = false
+		PA.db["TorghastBuffs"]["horizontalSpacing"] = 1
+		PA.db["TorghastBuffs"]["verticalSpacing"] = 1
+		PA.db["TorghastBuffs"]["size"] = 26
+	end
 	PA.db["Cooldown"]["Enable"] = false
 	PA.db["DragonOverlay"]["Enable"] = false
 	PA.db["EnhancedShadows"]["Enable"] = true
@@ -16,21 +29,16 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["EnhancedShadows"]["Size"] = 10
 	PA.db["MasterExperience"]["Enable"] = false
 	PA.db["MouseoverAuras"]["Enable"] = false
-	PA.db["MovableFrames"]["Enable"] = false
+	PA.db["MovableFrames"]["Enable"] = true
 	PA.db["OzCooldowns"]["Enable"] = false
-	PA.db["QuestSounds"]["Enable"] = true
-	PA.db["QuestSounds"]["ObjectiveProgressID"] = 6196
-	PA.db["QuestSounds"]["QuestCompleteID"] = 6199
-	PA.db["QuestSounds"]["ObjectiveCompleteID"] = 7194
-	PA.db["QuestSounds"]["ObjectiveProgress"] = "None"
-	PA.db["ReputationReward"]["Enable"] = false
 	PA.db["TorghastBuffs"]["Enable"] = false
-	PA.db["TorghastBuffs"]["horizontalSpacing"] = 1
-	PA.db["TorghastBuffs"]["verticalSpacing"] = 1
-	PA.db["TorghastBuffs"]["size"] = 26
-	PA.db["EnhancedFriendsList"] = false
+	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+		PA.db["TorghastBuffs"]["Enable"] = false
+		PA.db["QuestSounds"]["Enable"] = false
+	else
+		PA.db["EnhancedFriendsList"] = false
+	end
 	PA.db["TargetSounds"]["Enable"] = true
-
 	PA.db["stAddonManager"]["Enable"] = true
 	PA.db["stAddonManager"]["FontSize"] = 15
 	PA.db["stAddonManager"]["NumAddOns"] = 20
@@ -41,7 +49,6 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["stAddonManager"]["Font"] = "Kimberley"
 	PA.db["stAddonManager"]["FrameWidth"] = 470
 	PA.db["stAddonManager"]["CheckTexture"] = "Eltreum-Elvui-Norm"
-
 	PA.db["SquareMinimapButtons"]["Enable"] = true
 	PA.db["SquareMinimapButtons"]["Shadows"] = false
 	PA.db["SquareMinimapButtons"]["MoveQueue"] = false

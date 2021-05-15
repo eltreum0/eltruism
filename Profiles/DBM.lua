@@ -432,7 +432,7 @@ function ElvUI_EltreumUI:GetDBMProfile()
 		["HPFrameX"] = 341.999877929688,
 		["NPAuraSize"] = 40,
 		["InfoFrameLocked"] = false,
-		["HideBossEmoteFrame2"] = false,
+		["HideBossEmoteFrame2"] = true,
 		["HPFrameMaxEntries"] = 5,
 	},
 
