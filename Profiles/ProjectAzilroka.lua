@@ -29,12 +29,13 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["EnhancedShadows"]["Size"] = 10
 	PA.db["MasterExperience"]["Enable"] = false
 	PA.db["MouseoverAuras"]["Enable"] = false
-	PA.db["MovableFrames"]["Enable"] = true
+	PA.db["MovableFrames"]["Enable"] = false
 	PA.db["OzCooldowns"]["Enable"] = false
 	PA.db["TorghastBuffs"]["Enable"] = false
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		PA.db["TorghastBuffs"]["Enable"] = false
 		PA.db["QuestSounds"]["Enable"] = false
+		PA.db["MovableFrames"]["Enable"] = true
 	else
 		PA.db["EnhancedFriendsList"] = false
 	end

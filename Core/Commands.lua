@@ -30,7 +30,12 @@ function ElvUI_EltreumUI:RunCommands(message)
 	elseif message == 'loot' then
 		if E.private.ElvUI_EltreumUI.loottext.enable then
 				local aImage = GetCoinIcon(9999999999)
-				CombatText_AddMessage("|T ".. aImage ..":22:22:-11:-11|t  ".."9.999.999 Gold", CombatText_StandardScroll, 255, 255, 255)
+				if ElvUI_EltreumUI.Retail then
+					CombatText_AddMessage("|T ".. aImage ..":22:22:-11:-11|t  ".."9.999.999 Gold", CombatText_StandardScroll, 255, 255, 255)
+				elseif ElvUI_EltreumUI.Classic then
+					CombatText_AddMessage("|T ".. aImage ..":22:22:-11:-11|t  ".."999.999 Gold", CombatText_StandardScroll, 255, 255, 255)
+				end
+
 		else
 				CombatText_AddMessage("|T ".. 237555 ..":22:22:-11:-11|t  ".."Eltruism Loot is currently disabled!", CombatText_StandardScroll, 255, 255, 255)
 		end

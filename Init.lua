@@ -48,6 +48,8 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE')
 	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_START')
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_ENABLED')
+    ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_DISABLED')
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:RegisterEvent('SUPER_TRACKING_CHANGED')
 		ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_CREATED')
@@ -67,14 +69,14 @@ function ElvUI_EltreumUI:Initialize()
 		SetCVar("nameplateOtherBottomInset", 0.01)
 	end
 
-
 	if ElvUI_EltreumUI.Retail then
-			-- Color level up display by Aftermathh
+		local R, G, B = unpack(E.media.rgbvaluecolor)
 		local LevelUpDisplay = _G.LevelUpDisplay
+		local BossBanner = _G.BossBanner
+		-- Color level up display by Aftermathh
 		if LevelUpDisplay then
 			_G.LevelUpDisplayGLine:Kill()
 			_G.LevelUpDisplayGLine2:Kill()
-			local R, G, B = unpack(E.media.rgbvaluecolor)
 			LevelUpDisplay.StatusLine = CreateFrame("StatusBar", nil, LevelUpDisplay)
 			LevelUpDisplay.StatusLine:Size(418, 2)
 			LevelUpDisplay.StatusLine:Point("TOP", LevelUpDisplay, 0, -5)
@@ -85,43 +87,52 @@ function ElvUI_EltreumUI:Initialize()
 			LevelUpDisplay.StatusLine2:Point("BOTTOM", LevelUpDisplay, 0, -3)
 			LevelUpDisplay.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
 			LevelUpDisplay.StatusLine2:SetStatusBarColor(R, G, B, 0.7)
+			_G.LevelUpDisplay.challengeModeBits:Kill()
+    		_G.LevelUpDisplay.scenarioBits:Kill()
+    		_G.LevelUpDisplay.scenarioFiligree:Kill()
+    		_G.LevelUpDisplay.SpellBucketFrame:Kill()
 			--/script LevelUpDisplay:Show()
 		end
-
-		local R, G, B = unpack(E.media.rgbvaluecolor)
-		-- LevelUp / Scenario / Display
-		local StatusLineTop = CreateFrame("StatusBar", nil, _G.BossBanner)
-		StatusLineTop:Size(418, 2)
-		StatusLineTop:Point("TOP", _G.BossBanner, 0, -7)
-		StatusLineTop:SetStatusBarTexture(E.Media.Textures.Highlight)
-		StatusLineTop:SetStatusBarColor(R, G, B, 0.7)
-
-		local StatusLineBottom = CreateFrame("StatusBar", nil, _G.BossBanner)
-		StatusLineBottom:Size(418, 2)
-		StatusLineBottom:Point("BOTTOM", _G.BossBanner, 0, -2)
-		StatusLineBottom:SetStatusBarTexture(E.Media.Textures.Highlight)
-		StatusLineBottom:SetStatusBarColor(R, G, B, 0.7)
-
-		_G.BossBanner.BannerTop:Kill()
-		_G.BossBanner.BannerTopGlow:Kill()
-		_G.BossBanner.BannerBottom:Kill()
-		_G.BossBanner.BannerBottomGlow:Kill()
-		_G.BossBanner.BannerMiddle:Kill()
-		_G.BossBanner.BannerMiddle:SetTexture(E.Media.Textures.Highlight)
-		_G.BossBanner.BannerMiddle:SetColorTexture(0, 0, 0, 0.20)
-		_G.BossBanner.BannerMiddleGlow:Kill()
-		_G.BossBanner.LootCircle:Kill()
-		_G.BossBanner.SkullCircle:Kill()
-		_G.BossBanner.RightFillagree:Kill()
-		_G.BossBanner.LeftFillagree:Kill()
-		_G.BossBanner.BottomFillagree:Kill()
-		_G.BossBanner.SkullSpikes:Kill()
+		-- BossBanner / Scenario / Display by Aftermathh
+		if BossBanner then
+			local StatusLineTop = CreateFrame("StatusBar", nil, _G.BossBanner)
+			StatusLineTop:Size(418, 2)
+			StatusLineTop:Point("TOP", _G.BossBanner, 0, -7)
+			StatusLineTop:SetStatusBarTexture(E.Media.Textures.Highlight)
+			StatusLineTop:SetStatusBarColor(R, G, B, 0.7)
+			local StatusLineBottom = CreateFrame("StatusBar", nil, _G.BossBanner)
+			StatusLineBottom:Size(418, 2)
+			StatusLineBottom:Point("BOTTOM", _G.BossBanner, 0, -2)
+			StatusLineBottom:SetStatusBarTexture(E.Media.Textures.Highlight)
+			StatusLineBottom:SetStatusBarColor(R, G, B, 0.7)
+			_G.BossBanner.BannerTop:Kill()
+			_G.BossBanner.BannerTopGlow:Kill()
+			_G.BossBanner.BannerBottom:Kill()
+			_G.BossBanner.BannerBottomGlow:Kill()
+			_G.BossBanner.BannerMiddle:Kill()
+			--_G.BossBanner.BannerMiddle:SetTexture(E.Media.Textures.Highlight)
+			--_G.BossBanner.BannerMiddle:SetColorTexture(0, 0, 0, 0.20)
+			_G.BossBanner.BannerMiddleGlow:Kill()
+			_G.BossBanner.LootCircle:Kill()
+			_G.BossBanner.SkullCircle:Kill()
+			_G.BossBanner.RightFillagree:Kill()
+			_G.BossBanner.LeftFillagree:Kill()
+			_G.BossBanner.BottomFillagree:Kill()
+			_G.BossBanner.SkullSpikes:Kill()
+			--/script BossBanner:Show()
+		end
 	end
-
-
-
-
 end
+
+
+function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED()
+	ElvUI_EltreumUI:StopCombatMusic()
+end
+
+function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED()
+	ElvUI_EltreumUI:CombatMusic()
+end
+
 
 function ElvUI_EltreumUI:ZONE_CHANGED()
 	ElvUI_EltreumUI:FriendlyNameplates()

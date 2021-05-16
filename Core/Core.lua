@@ -7,7 +7,6 @@ local LoadAddOn = LoadAddOn
 function ElvUI_EltreumUI:Print(msg)
 	print('|cff82B4ffEltruism|r: '..msg)
 end
-
 function ElvUI_EltreumUI:VersionCheck()
 		if E.db.ElvUI_EltreumUI.install_version < "1.9.3" then
 			ElvUI_EltreumUI:SetupStyleFilters()
@@ -17,14 +16,27 @@ function ElvUI_EltreumUI:VersionCheck()
 			E.db.ElvUI_EltreumUI.install_version = "1.9.3"
 			print('|cff82B4ffEltruism|r: '..'Settings were updated for the newest version. Please reload to avoid issues!')
 		end
-		--if E.db.ElvUI_EltreumUI.install_version < "1.9.4" then
+		--if E.db.ElvUI_EltreumUI.install_version < "2.0.0" then
 			--ElvUI_EltreumUI:SetupStyleFilters()
 			--ElvUI_EltreumUI:AddonSetupPA()
-			--E.db.ElvUI_EltreumUI.install_version = "1.9.4"
+			--E.db.ElvUI_EltreumUI.install_version = "2.0.0"
 			--print('|cff82B4ffEltruism|r: '..'Settings were updated for the newest version. Please reload to avoid issues!')
 		--end
 end
 
+function ElvUI_EltreumUI:CombatMusic()
+	if E.private.ElvUI_EltreumUI.combatmusic.enable then
+			local soundfile = E.private.ElvUI_EltreumUI.combatmusic.musicfile
+            PlayMusic(soundfile)
+            --print('|cff82B4ffEltruism|r: '..'tried to play music!')
+	end
+end
+function ElvUI_EltreumUI:StopCombatMusic()
+	if E.private.ElvUI_EltreumUI.combatmusic.enable then
+   			StopMusic()
+            --print('|cff82B4ffEltruism|r: '..'tried to stop music!')
+	end
+end
 
 -- Role icons, ty a lot Darth Predator for the help!
 if ElvUI_EltreumUI.Retail then
@@ -178,7 +190,7 @@ function ElvUI_EltreumUI:SetupPrivate()
 
 	if ElvUI_EltreumUI.Retail then
 		E.private["install_complete"] = "12.24"
-		E.private["general"]["totemBar"] = false
+		E.private["general"]["totemBar"] = true
 	elseif ElvUI_EltreumUI.TBC then
 		E.private["install_complete"] = "0.19"
 		E.private["general"]["totemBar"] = true

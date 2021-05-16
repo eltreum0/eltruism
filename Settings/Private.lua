@@ -42,6 +42,11 @@ V.ElvUI_EltreumUI = {
 		playerclass = false,
 	},
 
+	combatmusic = {
+		enable = true,
+		musicfile = "None",
+	},
+
 	waypointetasetting = {
 		enable = true,
 	},

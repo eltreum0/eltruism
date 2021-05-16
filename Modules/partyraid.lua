@@ -3,6 +3,9 @@ local pairs = pairs
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
 
+
+local PlaySoundFile = PlaySoundFile
+
 --Simpy:
 --it would be far more efficient if you managed the group list table outside
 --of the combat calling function (using GROUP_ROSTER_UPDATE),

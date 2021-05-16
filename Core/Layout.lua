@@ -4849,7 +4849,7 @@ elseif ElvUI_EltreumUI.TBC then
 		E.db["databars"]["experience"]["fontOutline"] = "THICKOUTLINE"
 		E.db["databars"]["experience"]["height"] = 203
 		E.db["databars"]["experience"]["hideInCombat"] = true
-		E.db["databars"]["experience"]["mouseover"] = true
+		E.db["databars"]["experience"]["mouseover"] = false
 		E.db["databars"]["experience"]["questCompletedOnly"] = true
 		E.db["databars"]["experience"]["questCurrentZoneOnly"] = true
 		E.db["databars"]["experience"]["questTrackedOnly"] = true
@@ -4859,7 +4859,7 @@ elseif ElvUI_EltreumUI.TBC then
 		E.db["databars"]["reputation"]["fontOutline"] = "THICKOUTLINE"
 		E.db["databars"]["reputation"]["height"] = 203
 		E.db["databars"]["reputation"]["hideInCombat"] = true
-		E.db["databars"]["reputation"]["mouseover"] = true
+		E.db["databars"]["reputation"]["mouseover"] = false
 		E.db["databars"]["reputation"]["width"] = 10
 		E.db["databars"]["threat"]["enable"] = true
 		E.db["databars"]["threat"]["font"] = "Kimberley"

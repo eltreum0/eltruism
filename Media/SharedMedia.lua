@@ -16,7 +16,6 @@ LSM:Register("font", "Roboto", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Ro
 -- Sound
 LSM:Register("sound", "You_Died", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\You_Died.ogg]])
 LSM:Register("sound", "Todd Horward - It just works", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\Itjustworks.mp3]])
-LSM:Register("sound", "Todd Horward - Again it just works", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\Todd-Again-it-just-works.mp3]])
 LSM:Register("sound", "Will Smith - Ah ahaha", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WillSmith-Ahaha.mp3]])
 LSM:Register("sound", "Will Smith - Rewind", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WillSmith-Rewind-Long.mp3]])
 LSM:Register("sound", "Will Smith - That's Hot", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WillSmith-Thats-hot.mp3]])
@@ -34,6 +33,7 @@ LSM:Register("sound", "Wow", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\wow.
 LSM:Register("sound", "GTA - Wasted", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\wasted.mp3]])
 LSM:Register("sound", "Mario Game Over", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\mariodeath.mp3]])
 LSM:Register("sound", "Xera", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\xera.mp3]])
+LSM:Register("sound", "Mission Failed", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\codmissionfailed.mp3]])
 
 -- Statusbar
 LSM:Register("statusbar", "Eltreum-bottom", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-bottom.tga]])

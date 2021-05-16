@@ -7,10 +7,12 @@ function ElvUI_EltreumUI:Changelog()
 	return[[
     v2.0.0
     -------
+Initial Classic/TBC Support! Report any bugs in the Discord
+Added combat music! Type the path to your file in the settings
+Added class colored level up and boss loot by Aftermathh
 Style Filter StealThisBuff fixed to be mage only
 Changed the size of the Gladius Ex profile
-Added class colored level up by Aftermathh
-TBC/Classic Support
+Enabled Class Totems
 
     v1.9.3
     -------

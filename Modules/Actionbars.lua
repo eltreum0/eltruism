@@ -4,6 +4,10 @@ local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
 
 
+local GetActionInfo = GetActionInfo
+
+
+
 -- Skill Glow
 local LCG = LibStub('LibCustomGlow-1.0')
 function ElvUI_EltreumUI:SkillGlow()

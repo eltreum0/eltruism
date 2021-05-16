@@ -5,6 +5,9 @@ local tinsert = table.insert
 local tconcat = table.concat
 local ReloadUI = ReloadUI
 
+local PlaySoundFile = PlaySoundFile
+
+
 -- Author list
 local AUTHORS = {
 	'|cff82B4ffEltreum|r',
@@ -476,6 +479,63 @@ if ElvUI_EltreumUI.Retail then
 									type = 'toggle',
 									name = 'Enable',
 									desc = 'Collapse Quests when the boss fight starts',
+								},
+							},
+						},
+					},
+				},
+				combatmusic = {
+					type = 'group',
+					name = 'Combat Music',
+					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
+					order = 85,
+					args = {
+						combatsettings = {
+							order = 1,
+							type = 'group',
+							inline = true,
+							name = 'Play music during combat',
+							args = {
+								enable = {
+									order = 1,
+									type = 'toggle',
+									name = 'Enable',
+									desc = 'Enable music during combat',
+									get = function(info) return E.private.ElvUI_EltreumUI.combatmusic.enable end,
+									set = function(info, value) E.private.ElvUI_EltreumUI.combatmusic.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
+								},
+								somegap = {
+									order = 2,
+									type = "description",
+									name = "",
+								},
+								pathtofile = {
+									order = 6,
+									type = 'group',
+									inline = true,
+									name = "Path to file",
+									args = {
+										howtomusic = {
+										order = 2,
+										type = "description",
+										name = "Example: Interface\\addons\\mymusic.mp3",
+										},
+										somegap = {
+											order = 3,
+											type = "description",
+											name = "",
+										},
+										soundpath = {
+											order = 6,
+											icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
+											type = 'input',
+											name = '',
+											desc = '',
+											width = 'full',
+											get = function() return E.private.ElvUI_EltreumUI.combatmusic.musicfile end,
+											set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.musicfile = value E:StaticPopup_Show('PRIVATE_RL') end,
+										}
+									}
 								},
 							},
 						},
@@ -1327,73 +1387,58 @@ if ElvUI_EltreumUI.Classic then
 						},
 					},
 				},
-				actionbars = {
+				combatmusic = {
 					type = 'group',
-					name = 'Custom Glow',
-					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\customglow',
+					name = 'Combat Music',
+					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
 					order = 85,
 					args = {
-						glow = {
+						combatsettings = {
+							order = 1,
 							type = 'group',
-							name = 'Replace Blizzards Default Glow with a Custom class colored Glow',
-							guiInline = true,
-							order = 10,
+							inline = true,
+							name = 'Play music during combat',
 							args = {
 								enable = {
-								type = 'toggle',
-								name = 'Enable',
-								order = 1,
-								get = function() return E.private.ElvUI_EltreumUI.glow.enable end,
-								set = function(_, value) E.private.ElvUI_EltreumUI.glow.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
+									order = 1,
+									type = 'toggle',
+									name = 'Enable',
+									desc = 'Enable music during combat',
+									get = function(info) return E.private.ElvUI_EltreumUI.combatmusic.enable end,
+									set = function(info, value) E.private.ElvUI_EltreumUI.combatmusic.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 								},
-								addagaphere = {
-								order = 2,
-								type = "description",
-								name = "",
+								somegap = {
+									order = 2,
+									type = "description",
+									name = "",
 								},
-								addanothergapforfun = {
-								order = 2,
-								type = "description",
-								name = "",
-								},
-								procselection = {
-								order = 2,
-								type = 'group',
-								name = 'Select a Type',
+								pathtofile = {
+									order = 6,
+									type = 'group',
+									inline = true,
+									name = "Path to file",
 									args = {
-										yetanothergap = {
+										howtomusic = {
 										order = 2,
 										type = "description",
-										name = "",
+										name = "Example: Interface\\addons\\mymusic.mp3",
 										},
-										autocast = {
-											type = 'toggle',
-											name = 'Autocast',
-											order = 10,
-											desc = 'Adds an autocast style glow using class color',
-											disabled = function() return not E.private.ElvUI_EltreumUI.glow.enable or E.private.ElvUI_EltreumUI.glow.pixel or E.private.ElvUI_EltreumUI.glow.blizzard end,
-											get = function(info) return E.private.ElvUI_EltreumUI.glow.autocast end,
-											set = function(info, value) E.private.ElvUI_EltreumUI.glow.autocast = value E:StaticPopup_Show('PRIVATE_RL') end,
+										somegap = {
+											order = 3,
+											type = "description",
+											name = "",
 										},
-										pixel = {
-											type = 'toggle',
-											name = 'Pixel',
-											order = 12,
-											desc = 'Adds a pixel style glow using class color',
-											disabled = function() return not E.private.ElvUI_EltreumUI.glow.enable or E.private.ElvUI_EltreumUI.glow.autocast or E.private.ElvUI_EltreumUI.glow.blizzard end,
-											get = function(info) return E.private.ElvUI_EltreumUI.glow.pixel end,
-											set = function(info, value) E.private.ElvUI_EltreumUI.glow.pixel = value E:StaticPopup_Show('PRIVATE_RL') end,
-										},
-										blizzard = {
-											type = 'toggle',
-											name = 'Blizzard',
-											order = 11,
-											desc = 'Adds a Blizzard style glow using class color',
-											disabled = function() return not E.private.ElvUI_EltreumUI.glow.enable or E.private.ElvUI_EltreumUI.glow.autocast or E.private.ElvUI_EltreumUI.glow.pixel end,
-											get = function(info) return E.private.ElvUI_EltreumUI.glow.blizzard end,
-											set = function(info, value) E.private.ElvUI_EltreumUI.glow.blizzard = value E:StaticPopup_Show('PRIVATE_RL') end,
-										},
-									},
+										soundpath = {
+											order = 6,
+											icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
+											type = 'input',
+											name = '',
+											desc = '',
+											width = 'full',
+											get = function() return E.private.ElvUI_EltreumUI.combatmusic.musicfile end,
+											set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.musicfile = value E:StaticPopup_Show('PRIVATE_RL') end,
+										}
+									}
 								},
 							},
 						},
