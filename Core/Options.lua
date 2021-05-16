@@ -31,7 +31,7 @@ local THANKYOU = {
 	'Pat',
 	'|cff00c0faBenik|r',
 	'|T136012:15:15:0:0:64:64:5:59:5:59|t |cff006fdcRubgrsch|r |T656558:15:15:0:0:64:64:5:59:5:59|t',
-	'|TInterface/AddOns/ElvUI/Media/ChatLogos/FoxWarlock:15:15:0:0:64:64:5:59:5:59|t |cffff2020Nihilistzsche|r',
+	'|TInterface/AddOns/ElvUI/Media/ChatLogos/FoxWarlock:15:15:0:0:64:64:5:59:5:59|t |cff8788EENihilistzsche|r',
 	'|TInterface/AddOns/ElvUI/Media/ChatLogos/Clover:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0ALuckyone|r  -- Especially for allowing the usage of his installer/plugin as a base',
 	'AcidWeb |TInterface/AddOns/ElvUI/Media/ChatLogos/Gem:15:15:-1:2:64:64:6:60:8:60|t',
 }
@@ -490,7 +490,7 @@ if ElvUI_EltreumUI.Retail then
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
 					order = 85,
 					args = {
-						combatsettings = {
+						moremusicsettings = {
 							order = 1,
 							type = 'group',
 							inline = true,
@@ -501,14 +501,28 @@ if ElvUI_EltreumUI.Retail then
 									type = 'toggle',
 									name = 'Enable',
 									desc = 'Enable music during combat',
+									width = 'full',
 									get = function(info) return E.private.ElvUI_EltreumUI.combatmusic.enable end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.combatmusic.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 								},
-								somegap = {
+								instancemusic = {
 									order = 2,
-									type = "description",
-									name = "",
+									type = 'toggle',
+									name = 'Disable in Instances',
+									desc = 'Disable music during combat in instances',
+									width = 'full',
+									disabled = function() return not E.private.ElvUI_EltreumUI.combatmusic.enable end,
+									get = function(info) return E.private.ElvUI_EltreumUI.combatmusic.disableinstance end,
+									set = function(info, value) E.private.ElvUI_EltreumUI.combatmusic.disableinstance = value E:StaticPopup_Show('PRIVATE_RL') end,
 								},
+								--sharedmedia = {
+								--type = 'select', dialogControl = 'LSM30_Sound',
+								--order = 1,
+								--name = "Use SharedMedia Music",
+								--values = AceGUIWidgetLSMlists.sound,
+								--get = function() return E.private.ElvUI_EltreumUI.combatmusic.musicfile end,
+								--set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.musicfile = value E:StaticPopup_Show('PRIVATE_RL') end,
+								--},
 								pathtofile = {
 									order = 6,
 									type = 'group',
@@ -1224,12 +1238,10 @@ if ElvUI_EltreumUI.Retail then
 				},
 			},
 		}
-
 		for _, func in pairs(ElvUI_EltreumUI.Config) do
 			func()
 		end
 	end
-
 end
 
 -- EltreumUI ingame options Classic
@@ -2082,5 +2094,4 @@ if ElvUI_EltreumUI.Classic then
 			func()
 		end
 	end
-
 end

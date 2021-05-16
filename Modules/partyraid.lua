@@ -2,8 +2,6 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local pairs = pairs
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
-
-
 local PlaySoundFile = PlaySoundFile
 
 --Simpy:
@@ -42,4 +40,15 @@ function ElvUI_EltreumUI:RaidDeath()
 			end
 		end
 	end
+end
+
+
+-- Role icons, ty a lot Darth Predator for the help!
+if ElvUI_EltreumUI.Retail then
+	local SLE, T, E, L, V, P, G = unpack(ElvUI_SLE)
+	SLE.rolePaths["Eltruism"] = {
+		TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga",
+		HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga",
+		DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga"
+	}
 end

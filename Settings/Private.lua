@@ -45,6 +45,7 @@ V.ElvUI_EltreumUI = {
 	combatmusic = {
 		enable = true,
 		musicfile = "None",
+		disableinstance = true,
 	},
 
 	waypointetasetting = {

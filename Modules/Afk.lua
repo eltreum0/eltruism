@@ -48,7 +48,7 @@ local classMusic = {
     ['DEMONHUNTER'] = 1417290,
 }
 
--- with the help of Repooc, Simpy, Nihilistzsche and Acidweb (not in order :P)
+-- with the help of Repooc, Simpy, Nihilistzsche and Acidweb (not in order :D)
 local musicSetting = GetCVar('Sound_EnableMusic')
 function ElvUI_EltreumUI:AFKmusic()
     if E.private.ElvUI_EltreumUI.afkmusic.enable then

@@ -42,6 +42,9 @@ function ElvUI_EltreumUI:Initialize()
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 	end
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
+
+
+	--Register Events
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD')
 	ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
 	ElvUI_EltreumUI:RegisterEvent('UPDATE_STEALTH')
@@ -58,6 +61,9 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
+
+
+	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', 0.02)
 	SetCVar('nameplateOtherTopInset', 0.1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
@@ -69,11 +75,13 @@ function ElvUI_EltreumUI:Initialize()
 		SetCVar("nameplateOtherBottomInset", 0.01)
 	end
 
+
+
+	-- Color level up display and boss banner by Aftermathh
 	if ElvUI_EltreumUI.Retail then
 		local R, G, B = unpack(E.media.rgbvaluecolor)
 		local LevelUpDisplay = _G.LevelUpDisplay
 		local BossBanner = _G.BossBanner
-		-- Color level up display by Aftermathh
 		if LevelUpDisplay then
 			_G.LevelUpDisplayGLine:Kill()
 			_G.LevelUpDisplayGLine2:Kill()
@@ -93,7 +101,6 @@ function ElvUI_EltreumUI:Initialize()
     		_G.LevelUpDisplay.SpellBucketFrame:Kill()
 			--/script LevelUpDisplay:Show()
 		end
-		-- BossBanner / Scenario / Display by Aftermathh
 		if BossBanner then
 			local StatusLineTop = CreateFrame("StatusBar", nil, _G.BossBanner)
 			StatusLineTop:Size(418, 2)
@@ -133,13 +140,13 @@ function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED()
 	ElvUI_EltreumUI:CombatMusic()
 end
 
-
 function ElvUI_EltreumUI:ZONE_CHANGED()
 	ElvUI_EltreumUI:FriendlyNameplates()
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
 	ElvUI_EltreumUI:FriendlyNameplates()
+
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
@@ -148,6 +155,7 @@ end
 
 function ElvUI_EltreumUI:ENCOUNTER_START()
 	ElvUI_EltreumUI:QuestEncounter()
+	ElvUI_EltreumUI:CombatMusic()
 end
 
 function ElvUI_EltreumUI:SUPER_TRACKING_CHANGED()

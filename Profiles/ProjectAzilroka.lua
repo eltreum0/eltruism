@@ -7,6 +7,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.data:SetProfile('Eltreum')
 
 	-- Module toggles
+	PA.db["AuraReminder"] = {}
 	PA.db["AuraReminder"]["Enable"] = false
 	PA.db["QuestSounds"]["Enable"] = false
 	if ElvUI_EltreumUI.Retail then
@@ -17,10 +18,11 @@ function ElvUI_EltreumUI:GetPAProfile()
 		PA.db["QuestSounds"]["ObjectiveComplete"] = "None"
 		PA.db["QuestSounds"]["QuestCompleteID"] = "None"
 		PA.db["QuestSounds"]["ObjectiveProgress"] = "None"
-		PA.db["ReputationReward"]["Enable"] = false
+		PA.db["ReputationReward"]["Enable"] = true
 		PA.db["TorghastBuffs"]["horizontalSpacing"] = 1
 		PA.db["TorghastBuffs"]["verticalSpacing"] = 1
 		PA.db["TorghastBuffs"]["size"] = 26
+		PA.db["EnhancedFriendsList"] = false
 	end
 	PA.db["Cooldown"]["Enable"] = false
 	PA.db["DragonOverlay"]["Enable"] = false
@@ -36,8 +38,8 @@ function ElvUI_EltreumUI:GetPAProfile()
 		PA.db["TorghastBuffs"]["Enable"] = false
 		PA.db["QuestSounds"]["Enable"] = false
 		PA.db["MovableFrames"]["Enable"] = true
-	else
-		PA.db["EnhancedFriendsList"] = false
+		PA.db["ReputationReward"]["Enable"] = false
+		PA.db["EnhancedFriendsList"] = true
 	end
 	PA.db["TargetSounds"]["Enable"] = true
 	PA.db["stAddonManager"]["Enable"] = true

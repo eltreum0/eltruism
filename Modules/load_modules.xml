@@ -1,11 +1,12 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file='Actionbars.lua'/>
-	<Script file='Afk.lua'/>
+	<Script file='AFK.lua'/>
 	<Script file='Fonts.lua'/>
 	<Script file='Maps.lua'/>
 	<Script file='Nameplates.lua'/>
 	<Script file='Stealth.lua'/>
-	<Script file='partyraid.lua'/>
+	<Script file='PartyRaid.lua'/>
 	<Script file='Quests.lua'/>
 	<Script file='LootText.lua'/>
+	<Script file='CombatMusic.lua'/>
 </Ui>

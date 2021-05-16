@@ -148,7 +148,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 	end
 	if E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
-		if E.db.ElvUI_EltreumUI.install_version > "1.9.3" then
+		if E.db.ElvUI_EltreumUI.install_version >= "1.9.3" then
 			E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 		end
 	else

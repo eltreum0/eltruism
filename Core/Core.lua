@@ -8,44 +8,15 @@ function ElvUI_EltreumUI:Print(msg)
 	print('|cff82B4ffEltruism|r: '..msg)
 end
 function ElvUI_EltreumUI:VersionCheck()
-		if E.db.ElvUI_EltreumUI.install_version < "1.9.3" then
+		if E.db.ElvUI_EltreumUI.install_version < "2.0.0" then
 			ElvUI_EltreumUI:SetupStyleFilters()
 			ElvUI_EltreumUI:SetupCVars()
 			ElvUI_EltreumUI:NameplateCVars()
+			ElvUI_EltreumUI:AddonSetupPA()
 			E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = true
-			E.db.ElvUI_EltreumUI.install_version = "1.9.3"
+			E.db.ElvUI_EltreumUI.install_version = "2.0.0"
 			print('|cff82B4ffEltruism|r: '..'Settings were updated for the newest version. Please reload to avoid issues!')
 		end
-		--if E.db.ElvUI_EltreumUI.install_version < "2.0.0" then
-			--ElvUI_EltreumUI:SetupStyleFilters()
-			--ElvUI_EltreumUI:AddonSetupPA()
-			--E.db.ElvUI_EltreumUI.install_version = "2.0.0"
-			--print('|cff82B4ffEltruism|r: '..'Settings were updated for the newest version. Please reload to avoid issues!')
-		--end
-end
-
-function ElvUI_EltreumUI:CombatMusic()
-	if E.private.ElvUI_EltreumUI.combatmusic.enable then
-			local soundfile = E.private.ElvUI_EltreumUI.combatmusic.musicfile
-            PlayMusic(soundfile)
-            --print('|cff82B4ffEltruism|r: '..'tried to play music!')
-	end
-end
-function ElvUI_EltreumUI:StopCombatMusic()
-	if E.private.ElvUI_EltreumUI.combatmusic.enable then
-   			StopMusic()
-            --print('|cff82B4ffEltruism|r: '..'tried to stop music!')
-	end
-end
-
--- Role icons, ty a lot Darth Predator for the help!
-if ElvUI_EltreumUI.Retail then
-	local SLE, T, E, L, V, P, G = unpack(ElvUI_SLE)
-	SLE.rolePaths["Eltruism"] = {
-		TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga",
-		HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga",
-		DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga"
-	}
 end
 
 -- AddOnSkins Profile
