@@ -1282,6 +1282,29 @@ if ElvUI_EltreumUI.Classic then
 						},
 					},
 				},
+				--[[afk = {
+					type = 'group',
+					name = 'A.F.K',
+					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\afk',
+					order = 85,
+					args = {
+						afkmusic = {
+							order = 1,
+							type = 'group',
+							inline = true,
+							name = 'Play music while you are AFK',
+							args = {
+								enable = {
+								type = 'toggle',
+								name = 'Enable',
+								order = 1,
+								get = function() return E.private.ElvUI_EltreumUI.afkmusic.enable end,
+								set = function(_, value) E.private.ElvUI_EltreumUI.afkmusic.enable = value end,
+								},
+							}
+						},
+					},
+				},]]--
 				profiles = {
 					type = 'group',
 					name = 'Addons',

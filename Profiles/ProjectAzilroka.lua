@@ -38,6 +38,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 		PA.db["TorghastBuffs"]["Enable"] = false
 		PA.db["QuestSounds"]["Enable"] = false
 		PA.db["MovableFrames"]["Enable"] = true
+		PA.db["ReputationReward"] = {}
 		PA.db["ReputationReward"]["Enable"] = false
 		PA.db["EnhancedFriendsList"] = true
 	end

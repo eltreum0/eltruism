@@ -48,21 +48,92 @@ local classMusic = {
     ['DEMONHUNTER'] = 1417290,
 }
 
+local vanillaMusic = {
+    ['Human'] = 6794,
+    ['Gnome'] = 7341,
+    ['NightElf'] = 3920,
+    ['Dwarf'] = 7319,
+    ['Orc'] = 2902,
+    ['Undead'] = 5074,
+    ['Tauren'] = 7077,
+    ['Troll'] = 8452,
+}
+
 -- with the help of Repooc, Simpy, Nihilistzsche and Acidweb (not in order :D)
 local musicSetting = GetCVar('Sound_EnableMusic')
 function ElvUI_EltreumUI:AFKmusic()
     if E.private.ElvUI_EltreumUI.afkmusic.enable then
-        if UnitIsAFK("player") then
-            if musicSetting == '0' then SetCVar("Sound_EnableMusic", 1) end
-            if E.private.ElvUI_EltreumUI.afkmusic.racial then
-                PlayMusic(racialMusic[E.myrace])
+        if ElvUI_EltreumUI.Retail then
+            if UnitIsAFK("player") then
+                if musicSetting == '0' then SetCVar("Sound_EnableMusic", 1) end
+                if E.private.ElvUI_EltreumUI.afkmusic.racial then
+                    if ElvUI_EltreumUI.Retail then
+                        PlayMusic(racialMusic[E.myrace])
+                    end
+                end
+                if E.private.ElvUI_EltreumUI.afkmusic.playerclass then
+                    PlayMusic(classMusic[E.myclass])
+                end
+            else
+                StopMusic()
+                SetCVar("Sound_EnableMusic", musicSetting)
             end
-            if E.private.ElvUI_EltreumUI.afkmusic.playerclass then
-                PlayMusic(classMusic[E.myclass])
-            end
-        else
-            StopMusic()
-            SetCVar("Sound_EnableMusic", musicSetting)
         end
+
+        --[[if ElvUI_EltreumUI.Classic then
+            local _ , race, _ = UnitRace("player")
+            if UnitIsAFK("player") then
+                if race == "Human" then
+                    PlayMusic(6794)
+                end
+                if race == "Gnome" then
+                    PlayMusic(7341)
+                end
+                if race == "NightElf" then
+                    PlayMusic(3920)
+                end
+                if race == "Dwarf" then
+                    PlayMusic(7319)
+                end
+                if race == "Draenei" then
+                    PlayMusic(53284)
+                end
+                if race == "Orc" then
+                    PlayMusic(2902)
+                end
+                if race == "Undead" then
+                    PlayMusic(5074)
+                end
+                if race == "Tauren" then
+                    PlayMusic(7077)
+                end
+                if race == "Troll" then
+                    PlaySoundFile(8452)
+                end
+                if race == "BloodElf" then
+                    PlaySoundFile(53473)
+                end
+            end
+            --stop music when not afk
+            if not UnitIsAFK("player") then
+                StopMusic()
+            end
+        end]]--
     end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -24,17 +24,14 @@ ElvUI_EltreumUI.Retail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 ElvUI_EltreumUI.Classic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 ElvUI_EltreumUI.TBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 
---compare functions for classic/tbc
---https://wowpedia.fandom.com/wiki/Global_functions/Classic
-
 function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:NamePlateOptions()
 	ElvUI_EltreumUI:LoadCommands()
-	ElvUI_EltreumUI:SkillGlow()
 	ElvUI_EltreumUI:FriendlyNameplates()
 	ElvUI_EltreumUI:AFKmusic()
 	if ElvUI_EltreumUI.Retail then
-	ElvUI_EltreumUI:WaypointTimeToArrive()
+		ElvUI_EltreumUI:WaypointTimeToArrive()
+		ElvUI_EltreumUI:SkillGlow()
 	end
 	ElvUI_EltreumUI:LootText()
 	ElvUI_EltreumUI:VersionCheck()
@@ -45,7 +42,6 @@ function ElvUI_EltreumUI:Initialize()
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 	end
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
-
 
 	--Register Events
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD')
@@ -65,7 +61,6 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
 
-
 	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', 0.02)
 	SetCVar('nameplateOtherTopInset', 0.1)
@@ -77,8 +72,6 @@ function ElvUI_EltreumUI:Initialize()
 		SetCVar("clampTargetNameplateToScreen", 1)
 		SetCVar("nameplateOtherBottomInset", 0.01)
 	end
-
-
 
 	-- Color level up display and boss banner by Aftermathh
 	if ElvUI_EltreumUI.Retail then

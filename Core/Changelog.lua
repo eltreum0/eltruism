@@ -7,7 +7,7 @@ function ElvUI_EltreumUI:Changelog()
 	return[[
     v2.0.0
     -------
-Initial Classic/TBC Support! Report any bugs in the Discord
+Classic/TBC Support! Report any bugs in the Discord
 Added combat music! Type the path to your file in the settings
 Added class colored level up and boss loot by Aftermathh
 Style Filter StealThisBuff fixed to be mage only
