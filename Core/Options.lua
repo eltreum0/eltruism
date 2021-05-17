@@ -1405,7 +1405,7 @@ if ElvUI_EltreumUI.Classic then
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
 					order = 85,
 					args = {
-						combatsettings = {
+						moremusicsettings = {
 							order = 1,
 							type = 'group',
 							inline = true,
@@ -1416,14 +1416,28 @@ if ElvUI_EltreumUI.Classic then
 									type = 'toggle',
 									name = 'Enable',
 									desc = 'Enable music during combat',
+									width = 'full',
 									get = function(info) return E.private.ElvUI_EltreumUI.combatmusic.enable end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.combatmusic.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 								},
-								somegap = {
+								instancemusic = {
 									order = 2,
-									type = "description",
-									name = "",
+									type = 'toggle',
+									name = 'Disable in Instances',
+									desc = 'Disable music during combat in instances',
+									width = 'full',
+									disabled = function() return not E.private.ElvUI_EltreumUI.combatmusic.enable end,
+									get = function(info) return E.private.ElvUI_EltreumUI.combatmusic.disableinstance end,
+									set = function(info, value) E.private.ElvUI_EltreumUI.combatmusic.disableinstance = value E:StaticPopup_Show('PRIVATE_RL') end,
 								},
+								--sharedmedia = {
+								--type = 'select', dialogControl = 'LSM30_Sound',
+								--order = 1,
+								--name = "Use SharedMedia Music",
+								--values = AceGUIWidgetLSMlists.sound,
+								--get = function() return E.private.ElvUI_EltreumUI.combatmusic.musicfile end,
+								--set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.musicfile = value E:StaticPopup_Show('PRIVATE_RL') end,
+								--},
 								pathtofile = {
 									order = 6,
 									type = 'group',

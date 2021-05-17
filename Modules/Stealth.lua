@@ -26,9 +26,11 @@ function ElvUI_EltreumUI:StealthOptions()
 		  if (event == "PLAYER_ENTERING_WORLD") then
 			if IsStealthed() then
 				StealthOptionsFrame:Show()
+				UIFrameFadeIn(StealthOptionsFrame, 0.125, 0, 1)
 			end
 		  elseif (event == "UPDATE_STEALTH") then
 			if IsStealthed() then
+				StealthOptionsFrame:Show()
 				UIFrameFadeIn(StealthOptionsFrame, 0.125, 0, 1)
 			else
 				UIFrameFadeOut(StealthOptionsFrame, 0.1, 1, 0)

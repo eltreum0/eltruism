@@ -24,6 +24,9 @@ ElvUI_EltreumUI.Retail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 ElvUI_EltreumUI.Classic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 ElvUI_EltreumUI.TBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 
+--compare functions for classic/tbc
+--https://wowpedia.fandom.com/wiki/Global_functions/Classic
+
 function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:NamePlateOptions()
 	ElvUI_EltreumUI:LoadCommands()
