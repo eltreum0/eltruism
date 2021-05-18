@@ -13,5 +13,20 @@ function ElvUI_EltreumUI:QuestEncounter()
 				ObjectiveTracker_Collapse()
 			end
 		end
+
+	end
+end
+
+function ElvUI_EltreumUI:ArenaQuest()
+	if ElvUI_EltreumUI.Retail then
+		if E.private.ElvUI_EltreumUI.questsettings.enable then
+			local inInstance, instanceType = IsInInstance()
+			if instanceType == "arena" then  --and event == "PLAYER_REGEN_DISABLED"
+				ObjectiveTrackerFrame:Hide()
+				if ObjectiveTrackerFrame:IsVisible() or ObjectiveTracker_Expand() then
+					ObjectiveTrackerFrame:Hide()
+				end
+			end
+		end
 	end
 end

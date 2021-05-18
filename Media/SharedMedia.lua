@@ -68,7 +68,20 @@ LSM:Register("statusbar", "Eltreum-Dark", [[Interface\Addons\ElvUI_EltreumUI\Med
 LSM:Register("statusbar", "Eltreum-20%", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-20pc.tga]])
 LSM:Register("statusbar", "Eltreum-30%", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-30pc.tga]])
 
-
 -- Background
 LSM:Register("background", "Eltreum-StealthOverlay", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\StealthOverlay.tga]])
 LSM:Register("background", "Details-FlatClassIcons", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\wow_flat_class_icons.tga]])
+
+--Class Textures
+LSM:Register("texture", "Eltreum-Death Knight", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Classes\DeathKnight.tga]])
+LSM:Register("texture", "Eltreum-Demon Hunter", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Classes\DemonHunter.tga]])
+LSM:Register("texture", "Eltreum-Druid", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Classes\Druid.tga]])
+LSM:Register("texture", "Eltreum-Hunter", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Classes\Hunter.tga]])
+LSM:Register("texture", "Eltreum-Mage", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Classes\Mage.tga]])
+LSM:Register("texture", "Eltreum-Monk", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Classes\Monk.tga]])
+LSM:Register("texture", "Eltreum-Paladin", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Classes\Paladin.tga]])
+LSM:Register("texture", "Eltreum-Priest", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Classes\Priest.tga]])
+LSM:Register("texture", "Eltreum-Rogue", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Classes\Rogue.tga]])
+LSM:Register("texture", "Eltreum-Shaman", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Classes\Shaman.tga]])
+LSM:Register("texture", "Eltreum-Warlock", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Classes\Warlock.tga]])
+LSM:Register("texture", "Eltreum-Warrior", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Classes\Warrior.tga]])

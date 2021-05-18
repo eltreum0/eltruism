@@ -80,6 +80,21 @@ function ElvUI_EltreumUI:AFKmusic()
             end
         end
 
+        --[[if ElvUI_EltreumUI.TBC then
+            if UnitIsAFK("player") then
+                if musicSetting == '0' then
+                    SetCVar("Sound_EnableMusic", 1)
+                end
+                if ElvUI_EltreumUI.Retail then
+                    PlayMusic(vanillaMusic[E.myrace])
+                end
+            else
+                StopMusic()
+                SetCVar("Sound_EnableMusic", musicSetting)
+            end
+        end]]--
+
+
         --[[if ElvUI_EltreumUI.Classic then
             local _ , race, _ = UnitRace("player")
             if UnitIsAFK("player") then

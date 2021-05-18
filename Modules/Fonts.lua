@@ -15,7 +15,9 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Kimberley"
+		if ElvUI_EltreumUI.Retail then
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Kimberley"
+		end
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["font"] = "Kimberley"
@@ -32,7 +34,9 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Kimberley"
+		if ElvUI_EltreumUI.Retail then
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Kimberley"
+		end
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["font"] = "Kimberley"
@@ -169,10 +173,10 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.db["WT"]["item"]["inspect"]["levelText"]["name"] = "Kimberley"
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["name"] = "Kimberley"
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["name"] = "Kimberley"
-	end
 		E.db["general"]["altPowerBar"]["font"] = "Kimberley"
-		E.db["general"]["font"] = "Kimberley"
 		E.db["general"]["itemLevel"]["itemLevelFont"] = "Kimberley"
+	end
+		E.db["general"]["font"] = "Kimberley"
 		E.db["general"]["minimap"]["locationFont"] = "Kimberley"
 		E.db["bags"]["countFont"] = "Kimberley"
 		E.db["bags"]["itemInfoFont"] = "Kimberley"
@@ -572,7 +576,9 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "Exo2 Extra Bold"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "Exo2 Extra Bold"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "Exo2 Extra Bold"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Exo2 Extra Bold"
+		if ElvUI_EltreumUI.Retail then
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Exo2 Extra Bold"
+		end
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Exo2 Extra Bold"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFont"] = "Exo2 Extra Bold"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["font"] = "Exo2 Extra Bold"
@@ -589,7 +595,9 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["font"] = "Exo2 Extra Bold"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = "Exo2 Extra Bold"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "Exo2 Extra Bold"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Exo2 Extra Bold"
+		if ElvUI_EltreumUI.Retail then
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Exo2 Extra Bold"
+		end
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["font"] = "Exo2 Extra Bold"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFont"] = "Exo2 Extra Bold"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["font"] = "Exo2 Extra Bold"
@@ -727,10 +735,10 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.db["WT"]["item"]["inspect"]["levelText"]["name"] = "Exo2 Extra Bold"
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["name"] = "Exo2 Extra Bold"
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["name"] = "Exo2 Extra Bold"
-	end
 		E.db["general"]["altPowerBar"]["font"] = "Exo2 Extra Bold"
-		E.db["general"]["font"] = "Exo2 Extra Bold"
 		E.db["general"]["itemLevel"]["itemLevelFont"] = "Exo2 Extra Bold"
+	end
+		E.db["general"]["font"] = "Exo2 Extra Bold"
 		E.db["general"]["minimap"]["locationFont"] = "Exo2 Extra Bold"
 		E.db["bags"]["countFont"] = "Exo2 Extra Bold"
 		E.db["bags"]["itemInfoFont"] = "Exo2 Extra Bold"
@@ -1128,7 +1136,9 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "GothamNarrow Black"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "GothamNarrow Black"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "GothamNarrow Black"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "GothamNarrow Black"
+		if ElvUI_EltreumUI.Retail then
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "GothamNarrow Black"
+		end
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "GothamNarrow Black"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFont"] = "GothamNarrow Black"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["font"] = "GothamNarrow Black"
@@ -1145,7 +1155,9 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["font"] = "GothamNarrow Black"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = "GothamNarrow Black"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "GothamNarrow Black"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "GothamNarrow Black"
+		if ElvUI_EltreumUI.Retail then
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "GothamNarrow Black"
+		end
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["font"] = "GothamNarrow Black"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFont"] = "GothamNarrow Black"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["font"] = "GothamNarrow Black"
@@ -1282,10 +1294,10 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		E.db["WT"]["item"]["inspect"]["levelText"]["name"] = "GothamNarrow Black"
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["name"] = "GothamNarrow Black"
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["name"] = "GothamNarrow Black"
-	end
 		E.db["general"]["altPowerBar"]["font"] = "GothamNarrow Black"
-		E.db["general"]["font"] = "GothamNarrow Black"
 		E.db["general"]["itemLevel"]["itemLevelFont"] = "GothamNarrow Black"
+	end
+		E.db["general"]["font"] = "GothamNarrow Black"
 		E.db["general"]["minimap"]["locationFont"] = "GothamNarrow Black"
 		E.db["bags"]["countFont"] = "GothamNarrow Black"
 		E.db["bags"]["itemInfoFont"] = "GothamNarrow Black"
@@ -1685,7 +1697,9 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "Roboto"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "Roboto"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "Roboto"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Roboto"
+		if ElvUI_EltreumUI.Retail then
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Roboto"
+		end
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Roboto"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFont"] = "Roboto"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["font"] = "Roboto"
@@ -1702,7 +1716,9 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["font"] = "Roboto"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = "Roboto"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "Roboto"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Roboto"
+		if ElvUI_EltreumUI.Retail then
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Roboto"
+		end
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["font"] = "Roboto"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFont"] = "Roboto"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["font"] = "Roboto"
@@ -1839,10 +1855,10 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		E.db["WT"]["item"]["inspect"]["levelText"]["name"] = "Roboto"
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["name"] = "Roboto"
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["name"] = "Roboto"
-	end
 		E.db["general"]["altPowerBar"]["font"] = "Roboto"
-		E.db["general"]["font"] = "Roboto"
 		E.db["general"]["itemLevel"]["itemLevelFont"] = "Roboto"
+	end
+		E.db["general"]["font"] = "Roboto"
 		E.db["general"]["minimap"]["locationFont"] = "Roboto"
 		E.db["bags"]["countFont"] = "Roboto"
 		E.db["bags"]["itemInfoFont"] = "Roboto"
@@ -2260,8 +2276,9 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "THICKOUTLINE"
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "THICKOUTLINE"
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "THICKOUTLINE"
+		E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
 	end
-	E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
+
 	E.db["general"]["fontStyle"] = "THICKOUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE"
 	E.db["bags"]["countFontOutline"] = "OUTLINE"
@@ -2363,7 +2380,9 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["fontOutline"] = "THICKOUTLINE"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["fontOutline"] = "THICKOUTLINE"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["power"]["text"]["fontOutline"] = "NONE"
-	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "THICKOUTLINE"
+	if ElvUI_EltreumUI.Retail then
+		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "THICKOUTLINE"
+	end
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFontOutline"] = "NONE"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["fontOutline"] = "NONE"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countFontOutline"] = "NONE"
@@ -2410,8 +2429,9 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "NONE"
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "NONE"
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "NONE"
+		E.db["general"]["altPowerBar"]["fontOutline"] = "NONE"
 	end
-	E.db["general"]["altPowerBar"]["fontOutline"] = "NONE"
+
 	E.db["general"]["fontStyle"] = "NONE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "NONE"
 	E.db["bags"]["countFontOutline"] = "NONE"
@@ -2513,7 +2533,9 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["fontOutline"] = "NONE"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["fontOutline"] = "NONE"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["power"]["text"]["fontOutline"] = "NONE"
-	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "NONE"
+	if ElvUI_EltreumUI.Retail then
+		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "NONE"
+	end
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFontOutline"] = "NONE"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["fontOutline"] = "NONE"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countFontOutline"] = "NONE"
@@ -2561,8 +2583,9 @@ function ElvUI_EltreumUI:SetupFontsOutlineThick(addon)
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "THICKOUTLINE"
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "THICKOUTLINE"
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "THICKOUTLINE"
+		E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
 	end
-	E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
+
 	E.db["general"]["fontStyle"] = "THICKOUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE"
 	E.db["bags"]["countFontOutline"] = "THICKOUTLINE"
@@ -2664,7 +2687,9 @@ function ElvUI_EltreumUI:SetupFontsOutlineThick(addon)
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["fontOutline"] = "THICKOUTLINE"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["fontOutline"] = "THICKOUTLINE"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["power"]["text"]["fontOutline"] = "THICKOUTLINE"
-	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "THICKOUTLINE"
+	if ElvUI_EltreumUI.Retail then
+		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "THICKOUTLINE"
+	end
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFontOutline"] = "THICKOUTLINE"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["fontOutline"] = "THICKOUTLINE"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countFontOutline"] = "THICKOUTLINE"
@@ -2715,7 +2740,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline(addon)
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "OUTLINE"
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "OUTLINE"
 	end
-	E.db["general"]["altPowerBar"]["fontOutline"] = "OUTLINE"
+
 	E.db["general"]["fontStyle"] = "OUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "OUTLINE"
 	E.db["bags"]["countFontOutline"] = "OUTLINE"
@@ -2725,6 +2750,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline(addon)
 	E.db["cooldown"]["fonts"]["fontOutline"] = "OUTLINE"
 	if ElvUI_EltreumUI.Retail then
 		E.db["databars"]["azerite"]["fontOutline"] = "OUTLINE"
+		E.db["general"]["altPowerBar"]["fontOutline"] = "OUTLINE"
 	end
 	E.db["databars"]["experience"]["fontOutline"] = "OUTLINE"
 	E.db["databars"]["reputation"]["fontOutline"] = "OUTLINE"
@@ -2817,7 +2843,9 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline(addon)
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["fontOutline"] = "OUTLINE"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["fontOutline"] = "OUTLINE"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["power"]["text"]["fontOutline"] = "OUTLINE"
-	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "OUTLINE"
+	if ElvUI_EltreumUI.Retail then
+		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "OUTLINE"
+	end
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFontOutline"] = "OUTLINE"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["fontOutline"] = "OUTLINE"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countFontOutline"] = "OUTLINE"

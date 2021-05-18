@@ -20,18 +20,50 @@ local UF = E:GetModule('UnitFrames')
 --EltreumPowerBar.Text:SetText("test test test test test test test test test ")
 
 
+-- customize friendly nameplate health width inside instance
+--/run C_NamePlate.SetNamePlateFriendlySize(21, 5)
 
+--- Friendly Nameplate Control
+function ElvUI_EltreumUI:FriendlyNameplates()
+		local inInstance, instanceType = IsInInstance()
+		local mapID = WorldMapFrame:GetMapID()
+		if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames then
+			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
+				--SetCVar("nameplateShowFriends", 1);
+				SetCVar("nameplateShowOnlyNames", 1)
+			end
+			if instanceType == "none" or mapID == 1662 then
+				--SetCVar("nameplateShowFriends", 1);
+				SetCVar("nameplateShowOnlyNames", 1)
+			end
+			if mapID == 582 then
+				SetCVar("nameplateShowFriends", 1)
+			end
+		end
+		if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly then
+			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
+				SetCVar("nameplateShowFriends", 0)
+			end
+			if instanceType == "none" or mapID == 1662 then
+				SetCVar("nameplateShowFriends", 1)
+			end
+		end
+end
 
 -- Change classpower background, ty Benik for the great help
+
 local function ClassPowerColor()
     NP.multiplier = 0
 end
 hooksecurefunc(NP, 'Initialize', ClassPowerColor)
-local function RuneBackground()
-	NP.multiplier = 0
-end
-hooksecurefunc(NP, 'Construct_Runes', RuneBackground)
 
+
+if ElvUI_EltreumUI.Retail then
+	local function RuneBackground()
+		NP.multiplier = 0
+	end
+	hooksecurefunc(NP, 'Construct_Runes', RuneBackground)
+end
 -- Non aspect ratio nameplate debuffs similar to plater
 function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
 	if E.private.ElvUI_EltreumUI.widenameplate.enable then
@@ -62,43 +94,11 @@ function ElvUI_EltreumUI:Construct_Auras(nameplate)
 end
 hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
 
-
 -- need to learn more about scopes before doing this
 --local function NameplatePowerTexture()
 --	local texture = 'Eltreum-Blank'
 --end
 --hooksecurefunc(NP, 'Construct_ClassPower', NameplatePowerTexture)
-
-
--- customize friendly nameplate health width inside instance
---/run C_NamePlate.SetNamePlateFriendlySize(21, 5)
-
---- Friendly Nameplate Control
-function ElvUI_EltreumUI:FriendlyNameplates()
-		local inInstance, instanceType = IsInInstance()
-		local mapID = WorldMapFrame:GetMapID()
-		if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames then
-			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
-				--SetCVar("nameplateShowFriends", 1);
-				SetCVar("nameplateShowOnlyNames", 1)
-			end
-			if instanceType == "none" or mapID == 1662 then
-				--SetCVar("nameplateShowFriends", 1);
-				SetCVar("nameplateShowOnlyNames", 1)
-			end
-			if mapID == 582 then
-				SetCVar("nameplateShowFriends", 0)
-			end
-		end
-		if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly then
-			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
-				SetCVar("nameplateShowFriends", 0)
-			end
-			if instanceType == "none" or mapID == 1662 then
-				SetCVar("nameplateShowFriends", 1)
-			end
-		end
-end
 
 --for general nameplates
 local playerclass = {
@@ -145,6 +145,13 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = true
+			if E.db.ElvUI_EltreumUI.install_version >= "1.9.3" then
+				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
+				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
+				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
+				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["border"] = true
+			end
+
 	end
 	if E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
@@ -167,38 +174,16 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 
 		--Nameplates
 		E.db["nameplates"]["clampToScreen"] = true
-		E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["b"] = 1
-		E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["g"] = 1
-		E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["r"] = 0
-		E.db["nameplates"]["colors"]["classResources"]["WARLOCK"]["r"] = 0.58039215686275
+
 		E.db["nameplates"]["colors"]["glowColor"]["b"] = 0.86666476726532
 		E.db["nameplates"]["colors"]["glowColor"]["g"] = 0.4392147064209
 		E.db["nameplates"]["colors"]["glowColor"]["r"] = 0
 		E.db["nameplates"]["colors"]["power"]["ENERGY"]["b"] = 0.53725490196078
 		E.db["nameplates"]["colors"]["power"]["ENERGY"]["g"] = 0.96862745098039
 		E.db["nameplates"]["colors"]["power"]["ENERGY"]["r"] = 1
-		E.db["nameplates"]["colors"]["power"]["FOCUS"]["b"] = 0.38039215686275
-		E.db["nameplates"]["colors"]["power"]["FOCUS"]["g"] = 0.6078431372549
-		E.db["nameplates"]["colors"]["power"]["FOCUS"]["r"] = 1
-		E.db["nameplates"]["colors"]["power"]["FURY"]["b"] = 0.17254901960784
-		E.db["nameplates"]["colors"]["power"]["FURY"]["g"] = 0.55686274509804
-		E.db["nameplates"]["colors"]["power"]["FURY"]["r"] = 1
-		E.db["nameplates"]["colors"]["power"]["INSANITY"]["b"] = 1
-		E.db["nameplates"]["colors"]["power"]["INSANITY"]["g"] = 0.20392156862745
-		E.db["nameplates"]["colors"]["power"]["INSANITY"]["r"] = 0.79607843137255
-		E.db["nameplates"]["colors"]["power"]["LUNAR_POWER"]["b"] = 0.13333333333333
-		E.db["nameplates"]["colors"]["power"]["LUNAR_POWER"]["g"] = 0.95294117647059
-		E.db["nameplates"]["colors"]["power"]["LUNAR_POWER"]["r"] = 1
-		E.db["nameplates"]["colors"]["power"]["MAELSTROM"]["g"] = 0.50196078431373
 		E.db["nameplates"]["colors"]["power"]["MANA"]["b"] = 1
 		E.db["nameplates"]["colors"]["power"]["MANA"]["g"] = 0.71372549019608
 		E.db["nameplates"]["colors"]["power"]["MANA"]["r"] = 0.49019607843137
-		E.db["nameplates"]["colors"]["power"]["PAIN"]["b"] = 1
-		E.db["nameplates"]["colors"]["power"]["PAIN"]["g"] = 1
-		E.db["nameplates"]["colors"]["power"]["PAIN"]["r"] = 1
-		E.db["nameplates"]["colors"]["power"]["RAGE"]["b"] = 0.32156862745098
-		E.db["nameplates"]["colors"]["power"]["RAGE"]["g"] = 0.32156862745098
-		E.db["nameplates"]["colors"]["power"]["RAGE"]["r"] = 1
 		E.db["nameplates"]["colors"]["reactions"]["bad"]["b"] = 0.32156862745098
 		E.db["nameplates"]["colors"]["reactions"]["bad"]["g"] = 0.32156862745098
 		E.db["nameplates"]["colors"]["reactions"]["bad"]["r"] = 1
@@ -229,6 +214,10 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
 
 		if ElvUI_EltreumUI.Retail then
+			E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["b"] = 1
+			E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["g"] = 1
+			E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["r"] = 0
+			E.db["nameplates"]["colors"]["classResources"]["WARLOCK"]["r"] = 0.58039215686275
 			E.db["nameplates"]["filters"]["StealThisBuff"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["HideThis"]["triggers"]["enable"] = true
@@ -237,6 +226,25 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EnemyCasting"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ExecuteRange"]["triggers"]["enable"] = true
+			E.db["nameplates"]["colors"]["power"]["PAIN"]["b"] = 1
+			E.db["nameplates"]["colors"]["power"]["PAIN"]["g"] = 1
+			E.db["nameplates"]["colors"]["power"]["PAIN"]["r"] = 1
+			E.db["nameplates"]["colors"]["power"]["RAGE"]["b"] = 0.32156862745098
+			E.db["nameplates"]["colors"]["power"]["RAGE"]["g"] = 0.32156862745098
+			E.db["nameplates"]["colors"]["power"]["RAGE"]["r"] = 1
+			E.db["nameplates"]["colors"]["power"]["FOCUS"]["b"] = 0.38039215686275
+			E.db["nameplates"]["colors"]["power"]["FOCUS"]["g"] = 0.6078431372549
+			E.db["nameplates"]["colors"]["power"]["FOCUS"]["r"] = 1
+			E.db["nameplates"]["colors"]["power"]["FURY"]["b"] = 0.17254901960784
+			E.db["nameplates"]["colors"]["power"]["FURY"]["g"] = 0.55686274509804
+			E.db["nameplates"]["colors"]["power"]["FURY"]["r"] = 1
+			E.db["nameplates"]["colors"]["power"]["INSANITY"]["b"] = 1
+			E.db["nameplates"]["colors"]["power"]["INSANITY"]["g"] = 0.20392156862745
+			E.db["nameplates"]["colors"]["power"]["INSANITY"]["r"] = 0.79607843137255
+			E.db["nameplates"]["colors"]["power"]["LUNAR_POWER"]["b"] = 0.13333333333333
+			E.db["nameplates"]["colors"]["power"]["LUNAR_POWER"]["g"] = 0.95294117647059
+			E.db["nameplates"]["colors"]["power"]["LUNAR_POWER"]["r"] = 1
+			E.db["nameplates"]["colors"]["power"]["MAELSTROM"]["g"] = 0.50196078431373
 		elseif ElvUI_EltreumUI.Classic then
 			E.db["nameplates"]["filters"]["StealThisBuff"]["triggers"]["enable"] = false
 			E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
@@ -247,7 +255,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["filters"]["EnemyCasting"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ExecuteRange"]["triggers"]["enable"] = true
 		elseif ElvUI_EltreumUI.TBC then
-			E.db["nameplates"]["filters"]["StealThisBuff"]["triggers"]["enable"] = false
+			E.db["nameplates"]["filters"]["StealThisBuff"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["HideThis"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["enable"] = true
@@ -321,11 +329,13 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["fontOutline"] = "NONE"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["fontSize"] = 10
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["fontSize"] = 15
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["size"] = 25
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["textPosition"] = "TOPRIGHT"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["xOffset"] = 4
+		if ElvUI_EltreumUI.Retail then
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Kimberley"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["fontSize"] = 15
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["size"] = 25
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["textPosition"] = "TOPRIGHT"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["xOffset"] = 4
+		end
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["raidTargetIndicator"]["size"] = 32
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["raidTargetIndicator"]["xOffset"] = -26
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Kimberley"
@@ -409,9 +419,11 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["yOffset"] = 7
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["nameOnly"] = false
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "THICKOUTLINE"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["xOffset"] = 2
+		if ElvUI_EltreumUI.Retail then
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Kimberley"
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "THICKOUTLINE"
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["xOffset"] = 2
+		end
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["position"] = "CENTER"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["size"] = 64
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["xOffset"] = 0
@@ -452,9 +464,9 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["power"]["text"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["power"]["text"]["fontOutline"] = "NONE"
 		if ElvUI_EltreumUI.Retail then
-		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["pvpclassificationindicator"]["position"] = "CENTER"
-		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["pvpclassificationindicator"]["size"] = 100
-		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["pvpclassificationindicator"]["yOffset"] = 100
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["pvpclassificationindicator"]["position"] = "CENTER"
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["pvpclassificationindicator"]["size"] = 100
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["pvpclassificationindicator"]["yOffset"] = 100
 		end
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["pvpindicator"]["position"] = "CENTER"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["pvpindicator"]["size"] = 25
@@ -613,6 +625,12 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["scale"] = 1.25
 	E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["enable"] = true
 	E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "ElvUI Blank"
+    --activate only on non rare enemies due to EltreuRare working on them
+	E.global["nameplate"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["elite"] = true
+	E.global["nameplate"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["minus"] = true
+	E.global["nameplate"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["normal"] = true
+	E.global["nameplate"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["trivial"] = true
+
 	-- Enemy is casting, draw attention to interrupt
 	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["color"]["border"] = true
 	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["color"]["borderColor"]["b"] = 0.22745098039216
@@ -658,6 +676,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["EltreumRare"]["triggers"]["classification"]["worldboss"] = true
 	E.global["nameplate"]["filters"]["EltreumRare"]["triggers"]["isNotTapDenied"] = true
 	E.global["nameplate"]["filters"]["EltreumRare"]["triggers"]["priority"] = 10
+	E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["scale"] = 1.25
 	--mainly for mages to steal buffs
 
 	if ElvUI_EltreumUI.Retail then

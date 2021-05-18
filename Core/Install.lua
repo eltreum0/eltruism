@@ -39,8 +39,6 @@ if ElvUI_EltreumUI.Retail then
 					--end)
 
 
-
-
 				 -- Welcome Page and addon installed check
 	                if (not IsAddOnLoaded("ElvUI_WindTools")) then
 	                    PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
@@ -119,10 +117,10 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Desc2:SetText('This process can take a few seconds')
 				PluginInstallFrame.Desc3:SetText('Importance: |cFFFF0000Very High|r')
 				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() end)
+				PluginInstallFrame.Option1:SetScript('OnClick', function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option1:SetText('DPS/Tank')
 				PluginInstallFrame.Option2:Show()
-				PluginInstallFrame.Option2:SetScript('OnClick', function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() end)
+				PluginInstallFrame.Option2:SetScript('OnClick', function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars()  ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option2:SetText('Healing')
 			end,
 			[4] = function()
@@ -412,10 +410,10 @@ elseif ElvUI_EltreumUI.Classic then
 				PluginInstallFrame.Desc2:SetText('This process can take a few seconds')
 				PluginInstallFrame.Desc3:SetText('Importance: |cFFFF0000Very High|r')
 				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() end)
+				PluginInstallFrame.Option1:SetScript('OnClick', function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option1:SetText('DPS/Tank')
 				PluginInstallFrame.Option2:Show()
-				PluginInstallFrame.Option2:SetScript('OnClick', function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() end)
+				PluginInstallFrame.Option2:SetScript('OnClick', function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option2:SetText('Healing')
 			end,
 			[4] = function()
@@ -614,18 +612,27 @@ elseif ElvUI_EltreumUI.TBC then
 	                end
 			end,
 			[2] = function()
+				PluginInstallFrame.SubTitle:SetText('Project Azilroka')
+				PluginInstallFrame.Desc1:SetText('Import settings for Project Azilroka')
+				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffVery High|r')
+				PluginInstallFrame.Option1:Enable()
+				PluginInstallFrame.Option1:Show()
+				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() end)
+				PluginInstallFrame.Option1:SetText('Setup Project Azilroka')
+			end,
+			[3] = function()
 				PluginInstallFrame.SubTitle:SetText('Layouts')
 				PluginInstallFrame.Desc1:SetText('Please select the role for your character, which will create a new profile')
 				PluginInstallFrame.Desc2:SetText('This process can take a few seconds')
 				PluginInstallFrame.Desc3:SetText('Importance: |cFFFF0000Very High|r')
 				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() end)
+				PluginInstallFrame.Option1:SetScript('OnClick', function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option1:SetText('DPS/Tank')
 				PluginInstallFrame.Option2:Show()
-				PluginInstallFrame.Option2:SetScript('OnClick', function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() end)
+				PluginInstallFrame.Option2:SetScript('OnClick', function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option2:SetText('Healing')
 			end,
-			[3] = function()
+			[4] = function()
 				PluginInstallFrame.SubTitle:SetText('Fonts')
 				PluginInstallFrame.Desc1:SetText('Eltruism uses Kimberley as a font')
 				PluginInstallFrame.Desc2:SetText('You can replace it with one of the following:')
@@ -641,7 +648,7 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsGotham() end)
 				PluginInstallFrame.Option3:SetText('|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\gotham:14:112:0:1:128:64:0:128:0:16|t')
 			end,
-			[4] = function()
+			[5] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Details')
 				PluginInstallFrame.Desc1:SetText('Import Details! profile with dual panels')
 				PluginInstallFrame.Desc2:SetText('You can right click the bottom right arrow to toggle the Details! Window')
@@ -660,7 +667,7 @@ elseif ElvUI_EltreumUI.TBC then
 	                PluginInstallFrame.Option1:Disable()
 	           	end
 			end,
-			[5] = function()
+			[6] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Boss Mods')
 				PluginInstallFrame.Desc1:SetText('Import DBM or Bigwigs profiles')
 				PluginInstallFrame.Desc2:SetText('These profiles are setup with DBM English Calanon and Bigwigs Voice')
@@ -700,7 +707,7 @@ elseif ElvUI_EltreumUI.TBC then
 	                PluginInstallFrame.Option2:Disable()
 	           	end
 			end,
-			[6] = function()
+			[7] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Combat Text')
 				PluginInstallFrame.Desc1:SetText('Import profiles for NameplateSCT or ElvUI Floating Combat Text')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffOptional|r')
@@ -739,7 +746,7 @@ elseif ElvUI_EltreumUI.TBC then
 	                PluginInstallFrame.Option2:Disable()
 	           	end
 			end,
-			[7] = function()
+			[8] = function()
 				PluginInstallFrame.SubTitle:SetText('Immersion')
 				PluginInstallFrame.Desc1:SetText('Import Immersion settings configured for Eltruism')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffOptional|r')
@@ -756,7 +763,7 @@ elseif ElvUI_EltreumUI.TBC then
 	                PluginInstallFrame.Option1:Disable()
 	           	end
 			end,
-			[8] = function()
+			[9] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Dynamic Cam')
 				PluginInstallFrame.Desc1:SetText('Import Dynamic Cam profile')
 				PluginInstallFrame.Desc2:SetText('You will need to swap profiles in DynamicCam settings')
@@ -780,17 +787,6 @@ elseif ElvUI_EltreumUI.TBC then
 	                PluginInstallFrame.Option2:Disable()
 	           	end
 			end,
-			[9] = function()
-				PluginInstallFrame.SubTitle:SetFormattedText('WeakAuras')
-				PluginInstallFrame.Desc1:SetText('I recommend the following WeakAuras with this UI:')
-				PluginInstallFrame.Desc2:SetText('Nameplate Power Bar')
-				PluginInstallFrame.Desc3:SetText('Direct links can be found in the Eltruism menu')
-				PluginInstallFrame.Desc4:SetText('or you can click the button for a link to my profile')
-				PluginInstallFrame.Option1:Enable()
-				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://wago.io/p/Eltreum') 	end)
-				PluginInstallFrame.Option1:SetText('Wago.io')
-			end,
 			[10] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Discord')
 				PluginInstallFrame.Desc1:SetText('Join the Discord if you have any questions or issues')
@@ -811,14 +807,14 @@ elseif ElvUI_EltreumUI.TBC then
 		},
 		StepTitles = {
 			[1] = 'Welcome',
-			[2] = 'Layouts',
-			[3] = 'Fonts',
-			[4] = 'Details',
-			[5] = 'Boss Mods',
-			[6] = 'Combat Text',
-			[7] = 'Immersion',
-			[8] = 'Dynamic Cam',
-			[9] = 'Weakauras',
+			[2] = 'ProjectAzilroka',
+			[3] = 'Layouts',
+			[4] = 'Fonts',
+			[5] = 'Details',
+			[6] = 'Boss Mods',
+			[7] = 'Combat Text',
+			[8] = 'Immersion',
+			[9] = 'Dynamic Cam',
 			[10] = 'Discord',
 			[11] = 'Installation Complete',
 		},

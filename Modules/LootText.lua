@@ -99,7 +99,7 @@ function ElvUI_EltreumUI:LootText()
 						local lootName = info["name"]
 						local lootQuantity = amount
 						if itemLink:match("Soul Ash") then
-							CombatText_AddMessage("|T ".. 3743738 ..":22:22:-11:-11|t  "..itemLink, CombatText_StandardScroll, 255, 255, 255)
+							CombatText_AddMessage("|T ".. 3743738 ..":22:22:-11:-11|t  "..lootQuantity.." x "..itemLink, CombatText_StandardScroll, 255, 255, 255)
 						end
 						if not itemLink:match("Soul Ash") then
 							if lootQuantity >= 2 then

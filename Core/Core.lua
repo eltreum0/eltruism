@@ -19,6 +19,20 @@ function ElvUI_EltreumUI:VersionCheck()
 		end
 end
 
+--Resolution check for font outline
+function ElvUI_EltreumUI:ResolutionOutline()
+	local resolutionisok = 0
+	if GetCVar('gxFullscreenResolution') == "3140x2160" then
+		resolutionisok = 1
+	elseif GetCVar('gxFullscreenResolution') == "2560x1440" then
+		ElvUI_EltreumUI:SetupFontsOutlineOutline()
+	elseif GetCVar('gxFullscreenResolution') == "1920x1080" then
+		ElvUI_EltreumUI:SetupFontsOutlineOutline()
+	end
+
+end
+
+
 -- AddOnSkins Profile
 function ElvUI_EltreumUI:AddonSetupAS()
 	if IsAddOnLoaded('AddOnSkins') then
@@ -95,6 +109,7 @@ end
 function ElvUI_EltreumUI:AddonSetupNameplateSCT()
 	if IsAddOnLoaded('NameplateSCT') then
 		ElvUI_EltreumUI:GetNameplateSCTProfile()
+		SetCVar("enableFloatingCombatText", 0)
 		ElvUI_EltreumUI:Print('NameplateSCT profile has been set.')
 	end
 end
@@ -103,6 +118,7 @@ end
 function ElvUI_EltreumUI:AddonSetupFCT()
 	if IsAddOnLoaded('ElvUI_FCT') then
 		ElvUI_EltreumUI:GetFCTProfile()
+		SetCVar("enableFloatingCombatText", 0)
 		ElvUI_EltreumUI:Print('Floating Combat Text profile has been set.')
 	end
 end
@@ -122,6 +138,9 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('UnitNameEnemyTotemName', 1)
 	SetCVar('UnitNameNPC', 1)
 	SetCVar("ShowClassColorInFriendlyNameplate", 1)
+	if ElvUI_EltreumUI.TBC then
+		SetCVar("lootUnderMouse", 1)
+	end
 	ElvUI_EltreumUI:Print('CVars have been set.')
 end
 
