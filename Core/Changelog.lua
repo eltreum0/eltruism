@@ -5,6 +5,13 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v2.0.1
+    -------
+Fixed absorb tags in Classic/TBC
+Fixed nameplate clamping to screen in TBC
+Fixed LootText test command in TBC
+Fixed datatext height
+
     v2.0.0
     -------
 Added combat music! Type the path to your file in the settings

@@ -2113,7 +2113,7 @@ if ElvUI_EltreumUI.Classic then
 							type = 'input',
 							width = 'full',
 							name = 'Addon on tukui:',
-							get = function() return 'https://www.tukui.org/addons.php?id=209' end,
+							get = function() return 'https://www.tukui.org/addons.php?id=49' end,
 						},
 						curse = {
 							order = 4,
@@ -3095,7 +3095,7 @@ if ElvUI_EltreumUI.TBC then
 							type = 'input',
 							width = 'full',
 							name = 'Addon on tukui:',
-							get = function() return 'https://www.tukui.org/addons.php?id=209' end,
+							get = function() return 'https://www.tukui.org/addons.php?id=10' end,
 						},
 						curse = {
 							order = 4,

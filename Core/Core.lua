@@ -182,7 +182,7 @@ function ElvUI_EltreumUI:SetupPrivate()
 		E.private["install_complete"] = "12.24"
 		E.private["general"]["totemBar"] = true
 	elseif ElvUI_EltreumUI.TBC then
-		E.private["install_complete"] = "0.19"
+		E.private["install_complete"] = "1.00"
 		E.private["general"]["totemBar"] = true
 	elseif ElvUI_EltreumUI.Classic then
 		E.private["install_complete"] = "1.42"
@@ -202,6 +202,12 @@ function ElvUI_EltreumUI:SetupGlobal()
 	end
 
 	if ElvUI_EltreumUI.Classic then
+		E.global["general"]["smallerWorldMapScale"] = 0.5
+		E.global["general"]["mapAlphaWhenMoving"] = 0.5
+		E.global["general"]["smallerWorldMap"] = true
+	end
+
+	if ElvUI_EltreumUI.TBC then
 		E.global["general"]["smallerWorldMapScale"] = 0.5
 		E.global["general"]["mapAlphaWhenMoving"] = 0.5
 		E.global["general"]["smallerWorldMap"] = true

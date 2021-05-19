@@ -3005,7 +3005,7 @@ elseif ElvUI_EltreumUI.Classic then
 		E.db["databars"]["reputation"]["width"] = 10
 		E.db["databars"]["experience"]["font"] = "Kimberley"
 		E.db["databars"]["experience"]["fontOutline"] = "THICKOUTLINE"
-		E.db["databars"]["experience"]["height"] = 204
+		E.db["databars"]["experience"]["height"] = 203
 		E.db["databars"]["reputation"]["height"] = 203
 		--[[if GetCVar('gxFullscreenResolution') == "3140x2160" then
 			E.db["databars"]["experience"]["height"] = 203
@@ -3106,17 +3106,6 @@ elseif ElvUI_EltreumUI.Classic then
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = false,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 11,
-		["text_format"] = "||cffFFFF00[absorbs]||r ",
-		["xOffset"] = 6,
-		["yOffset"] = 0
-		}
 		-- Custom Text: Pet
 		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
@@ -3131,18 +3120,6 @@ elseif ElvUI_EltreumUI.Classic then
 			["yOffset"] = 0
 		}
 		-- Custom Text: Player
-		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = false,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 12,
-		["text_format"] = "||cffFFFF00[absorbs]||r ",
-		["xOffset"] = 6,
-		["yOffset"] = 15
-		}
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -3200,17 +3177,6 @@ elseif ElvUI_EltreumUI.Classic then
 			["xOffset"] = 37,
 			["yOffset"] = 10
 		}
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = false,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "CENTER",
-		["size"] = 10,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 45,
-		["yOffset"] = 0
-		}
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]= {
 		["attachTextTo"] = "InfoPanel",
 		["enable"] = true,
@@ -3235,17 +3201,6 @@ elseif ElvUI_EltreumUI.Classic then
 		}
 		-- Custom Text: Raid 40
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = false,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "CENTER",
-		["size"] = 10,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 37,
-		["yOffset"] = 12
-		}
 		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Group"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -3270,17 +3225,6 @@ elseif ElvUI_EltreumUI.Classic then
 		}
 		-- Custom Text: Target
 		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = false,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 12,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 0,
-		["yOffset"] = 15
-		}
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -3363,26 +3307,6 @@ elseif ElvUI_EltreumUI.Classic then
 
 
 		if layout == 'dps' then
-			E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
-			["enable"] = false
-			}
-			E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
-			["enable"] = false
-			}
-			E.db["unitframe"]["units"]["raid"]["customTexts"] = E.db["unitframe"]["units"]["raid"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
-			["enable"] = false
-			}
-			E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
-			["enable"] = false
-			}
-			E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
-			["enable"] = false
-			}
 			-- ActionBars
 			E.db["actionbar"]["addNewSpells"] = true
 			E.db["actionbar"]["bar1"]["alpha"] = 0.75
@@ -4983,17 +4907,6 @@ elseif ElvUI_EltreumUI.TBC then
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = false,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 11,
-		["text_format"] = "||cffFFFF00[absorbs]||r ",
-		["xOffset"] = 6,
-		["yOffset"] = 0
-		}
 		-- Custom Text: Pet
 		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
@@ -5009,17 +4922,6 @@ elseif ElvUI_EltreumUI.TBC then
 		}
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = false,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 12,
-		["text_format"] = "||cffFFFF00[absorbs]||r ",
-		["xOffset"] = 6,
-		["yOffset"] = 15
-		}
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -5077,17 +4979,6 @@ elseif ElvUI_EltreumUI.TBC then
 			["xOffset"] = 37,
 			["yOffset"] = 10
 		}
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = false,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "CENTER",
-		["size"] = 10,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 45,
-		["yOffset"] = 0
-		}
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]= {
 		["attachTextTo"] = "InfoPanel",
 		["enable"] = true,
@@ -5112,17 +5003,6 @@ elseif ElvUI_EltreumUI.TBC then
 		}
 		-- Custom Text: Raid 40
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = false,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "CENTER",
-		["size"] = 10,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 37,
-		["yOffset"] = 12
-		}
 		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Group"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -5147,17 +5027,6 @@ elseif ElvUI_EltreumUI.TBC then
 		}
 		-- Custom Text: Target
 		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = false,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 12,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 0,
-		["yOffset"] = 15
-		}
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -5240,26 +5109,6 @@ elseif ElvUI_EltreumUI.TBC then
 
 
 		if layout == 'dps' then
-			E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
-			["enable"] = false
-			}
-			E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
-			["enable"] = false
-			}
-			E.db["unitframe"]["units"]["raid"]["customTexts"] = E.db["unitframe"]["units"]["raid"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
-			["enable"] = false
-			}
-			E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
-			["enable"] = false
-			}
-			E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
-			["enable"] = false
-			}
 			-- ActionBars
 			E.db["actionbar"]["addNewSpells"] = true
 			E.db["actionbar"]["bar1"]["alpha"] = 0.75
@@ -6034,27 +5883,6 @@ elseif ElvUI_EltreumUI.TBC then
 
 
 		elseif layout == 'healer' then
-			E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
-			["enable"] = false
-			}
-			E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
-			["enable"] = false
-			}
-			E.db["unitframe"]["units"]["raid"]["customTexts"] = E.db["unitframe"]["units"]["raid"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
-			["enable"] = false
-			}
-			E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
-			["enable"] = false
-			}
-			E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
-			["enable"] = false
-			}
-			-- Change sle y offsets for healer frames
 			-- Healer Action bars
 			E.db["actionbar"]["addNewSpells"] = true
 			E.db["actionbar"]["bar1"]["buttonSize"] = 40

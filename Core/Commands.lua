@@ -32,7 +32,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 				local aImage = GetCoinIcon(9999999999)
 				if ElvUI_EltreumUI.Retail then
 					CombatText_AddMessage("|T ".. aImage ..":22:22:-11:-11|t  ".."9.999.999 Gold", CombatText_StandardScroll, 255, 255, 255)
-				elseif ElvUI_EltreumUI.Classic then
+				elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 					CombatText_AddMessage("|T ".. aImage ..":22:22:-11:-11|t  ".."999.999 Gold", CombatText_StandardScroll, 255, 255, 255)
 				end
 
