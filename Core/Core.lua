@@ -29,7 +29,6 @@ function ElvUI_EltreumUI:ResolutionOutline()
 	elseif GetCVar('gxFullscreenResolution') == "1920x1080" then
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
 	end
-
 end
 
 
@@ -175,8 +174,31 @@ function ElvUI_EltreumUI:SetupPrivate()
 	E.private["general"]["glossTex"] = "Eltreum-Blank"
 	E.private["general"]["namefont"] = "Kimberley"
 	E.private["general"]["normTex"] = "Eltreum-Blank"
-
 	E.private["skins"]["parchmentRemoverEnable"] = true
+	E.db["unitframe"]["colors"]["colorhealthbyvalue"] = false
+	E.db["unitframe"]["colors"]["classbackdrop"] = true
+	E.db["unitframe"]["colors"]["healthclass"] = false
+	E.db["unitframe"]["colors"]["customhealthbackdrop"] = true
+	E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0
+	E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0
+	E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0
+	E.db["unitframe"]["units"]["player"]["colorOverride"] = "USE_DEFAULT"
+	E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
+	E.db["unitframe"]["units"]["party"]["colorOverride"] = "USE_DEFAULT"
+	E.db["unitframe"]["units"]["pet"]["colorOverride"] = "USE_DEFAULT"
+	E.db["unitframe"]["units"]["raid"]["colorOverride"] = "USE_DEFAULT"
+	E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "USE_DEFAULT"
+	E.db["unitframe"]["units"]["tank"]["colorOverride"] = "USE_DEFAULT"
+	E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
+	E.db["unitframe"]["units"]["target"]["colorOverride"] = "USE_DEFAULT"
+	E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "USE_DEFAULT"
+	E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
+	E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
+	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name]"
+	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:azilroka:abbreviate]"
+	E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
+	E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
+	E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
 
 	if ElvUI_EltreumUI.Retail then
 		E.private["install_complete"] = "12.24"

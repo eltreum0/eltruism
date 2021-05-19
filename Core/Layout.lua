@@ -346,13 +346,6 @@ if ElvUI_EltreumUI.Retail then
 			E.db["sle"]["screensaver"]["xpack"] = 100
 		end
 
-
-
-
-
-
-
-
 		-- Shadows
 		E.db["sle"]["shadows"]["actionbars"]["bar1"]["buttons"] = true
 		E.db["sle"]["shadows"]["actionbars"]["bar1"]["size"] = 2
@@ -449,7 +442,6 @@ if ElvUI_EltreumUI.Retail then
 		E.db["sle"]["unitframes"]["unit"]["raid40"]["offline"]["size"] = 15
 
 		-- Setup Windtools
-
 		E.private["WT"]["combat"]["talentManager"]["pvpTalent"] = true
 		E.private["WT"]["core"]["loginMessage"] = false
 		E.private["WT"]["maps"]["minimapButtons"]["backdrop"] = false
@@ -757,7 +749,6 @@ if ElvUI_EltreumUI.Retail then
 		E.db["bags"]["split"]["bagSpacing"] = 7
 		E.db["bags"]["transparent"] = true
 		E.db["bags"]["vendorGrays"]["enable"] = true
-
 
 		-- Chat
 		E.db["chat"]["chatHistory"] = false

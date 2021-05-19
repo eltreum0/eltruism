@@ -5,6 +5,11 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v2.0.2
+    -------
+Added Dark Mode and Light Mode
+Can be found in Eltruism > Media
+
     v2.0.1
     -------
 Fixed absorb tags in Classic/TBC
@@ -21,11 +26,11 @@ Added class colored level up and boss loot by Aftermathh
 Style Filter StealThisBuff fixed to be mage only
 Enabled Class Totems
 Changed the size and position of the Gladius Ex profile
-Implemented automatic switching of font outlines
 Recommended settings for font outline:
     - 4K resolution: Use profile default
     - 1440p resolution: Eltruism > Media > Outline
     - 1080p resolution: Eltruism > Media > Outline
+Implemented automatic switching of font outlines
 
     v1.9.3
     -------
