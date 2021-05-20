@@ -9,20 +9,20 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db["unitframe"]["colors"]["colorhealthbyvalue"] = false
 		E.db["unitframe"]["colors"]["classbackdrop"] = true
 		E.db["unitframe"]["colors"]["healthclass"] = false
-		E.db["unitframe"]["colors"]["customhealthbackdrop"] = true
+		E.db["unitframe"]["colors"]["customhealthbackdrop"] = false
 		E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0
 		E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0
 		E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0
-		E.db["unitframe"]["units"]["player"]["colorOverride"] = "USE_DEFAULT"
-		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
-		E.db["unitframe"]["units"]["party"]["colorOverride"] = "USE_DEFAULT"
-		E.db["unitframe"]["units"]["pet"]["colorOverride"] = "USE_DEFAULT"
-		E.db["unitframe"]["units"]["raid"]["colorOverride"] = "USE_DEFAULT"
-		E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "USE_DEFAULT"
-		E.db["unitframe"]["units"]["tank"]["colorOverride"] = "USE_DEFAULT"
-		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
-		E.db["unitframe"]["units"]["target"]["colorOverride"] = "USE_DEFAULT"
-		E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["player"]["colorOverride"] = "FORCE_OFF"
+		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "FORCE_OFF"
+		E.db["unitframe"]["units"]["party"]["colorOverride"] = "FORCE_OFF"
+		E.db["unitframe"]["units"]["pet"]["colorOverride"] = "FORCE_OFF"
+		E.db["unitframe"]["units"]["raid"]["colorOverride"] = "FORCE_OFF"
+		E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "FORCE_OFF"
+		E.db["unitframe"]["units"]["tank"]["colorOverride"] = "FORCE_OFF"
+		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "FORCE_OFF"
+		E.db["unitframe"]["units"]["target"]["colorOverride"] = "FORCE_OFF"
+		E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "FORCE_OFF"
 
 		--setup namecolors
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
