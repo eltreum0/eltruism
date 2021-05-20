@@ -31,7 +31,6 @@ function ElvUI_EltreumUI:ResolutionOutline()
 	end
 end
 
-
 -- AddOnSkins Profile
 function ElvUI_EltreumUI:AddonSetupAS()
 	if IsAddOnLoaded('AddOnSkins') then
@@ -175,31 +174,6 @@ function ElvUI_EltreumUI:SetupPrivate()
 	E.private["general"]["namefont"] = "Kimberley"
 	E.private["general"]["normTex"] = "Eltreum-Blank"
 	E.private["skins"]["parchmentRemoverEnable"] = true
-	E.db["unitframe"]["colors"]["colorhealthbyvalue"] = false
-	E.db["unitframe"]["colors"]["classbackdrop"] = true
-	E.db["unitframe"]["colors"]["healthclass"] = false
-	E.db["unitframe"]["colors"]["customhealthbackdrop"] = true
-	E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0
-	E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0
-	E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0
-	E.db["unitframe"]["units"]["player"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["party"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["pet"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["raid"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["tank"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["target"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
-	E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
-	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name]"
-	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:azilroka:abbreviate]"
-	E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
-	E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
-	E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
-
 	if ElvUI_EltreumUI.Retail then
 		E.private["install_complete"] = "12.24"
 		E.private["general"]["totemBar"] = true
@@ -209,8 +183,6 @@ function ElvUI_EltreumUI:SetupPrivate()
 	elseif ElvUI_EltreumUI.Classic then
 		E.private["install_complete"] = "1.42"
 	end
-
-
 end
 
 -- Global DB
@@ -222,22 +194,18 @@ function ElvUI_EltreumUI:SetupGlobal()
 		E.global["general"]["smallerWorldMapScale"] = 1
 		E.global["general"]["mapAlphaWhenMoving"] = 0.35
 	end
-
 	if ElvUI_EltreumUI.Classic then
 		E.global["general"]["smallerWorldMapScale"] = 0.5
 		E.global["general"]["mapAlphaWhenMoving"] = 0.5
 		E.global["general"]["smallerWorldMap"] = true
 	end
-
 	if ElvUI_EltreumUI.TBC then
 		E.global["general"]["smallerWorldMapScale"] = 0.5
 		E.global["general"]["mapAlphaWhenMoving"] = 0.5
 		E.global["general"]["smallerWorldMap"] = true
 	end
-
 	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
 	E.global["general"]["fadeMapDuration"] = 0.1
-
 		-- Custom DataText
 	E.global["datatexts"]["settings"]["Experience"]["textFormat"] = "PERCENT"
 	E.global["datatexts"]["settings"]["Friends"]["hideAFK"] = true

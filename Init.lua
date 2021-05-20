@@ -128,7 +128,6 @@ function ElvUI_EltreumUI:Initialize()
 	end
 end
 
-
 function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED()
 	ElvUI_EltreumUI:StopCombatMusic()
 end

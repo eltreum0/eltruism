@@ -5,7 +5,6 @@ local _G = _G
 function ElvUI_EltreumUI:GetPAProfile()
 	local PA = _G.ProjectAzilroka
 	PA.data:SetProfile('Eltreum')
-
 	-- Module toggles
 	PA.db["AuraReminder"] = {}
 	PA.db["AuraReminder"]["Enable"] = false
@@ -27,8 +26,8 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["Cooldown"]["Enable"] = false
 	PA.db["DragonOverlay"]["Enable"] = false
 	PA.db["EnhancedShadows"]["Enable"] = true
-	PA.db["EnhancedShadows"]["ColorByClass"] = true
-	PA.db["EnhancedShadows"]["Size"] = 10
+	PA.db["EnhancedShadows"]["ColorByClass"] = false
+	PA.db["EnhancedShadows"]["Size"] = 1
 	PA.db["MasterExperience"]["Enable"] = false
 	PA.db["MouseoverAuras"]["Enable"] = false
 	PA.db["MovableFrames"]["Enable"] = false

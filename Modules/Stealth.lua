@@ -3,7 +3,6 @@ local pairs = pairs
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
 
-
 -- Create Stealth Overlay Frame
 local StealthOptionsFrame = CreateFrame("Frame", "StealthOverlay", E.UIParent)
 StealthOptionsFrame:Point("TOPLEFT")

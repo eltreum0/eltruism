@@ -6,7 +6,6 @@ local PA = _G.ProjectAzilroka
 
 function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 	if not E.db.movers then E.db.movers = {} end
-
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["font"] = "Kimberley"
@@ -189,7 +188,6 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 			E.db["databars"]["honor"]["font"] = "Kimberley"
 		end
 		E.db["databars"]["experience"]["font"] = "Kimberley"
-
 		E.db["databars"]["reputation"]["font"] = "Kimberley"
 		E.db["databars"]["threat"]["font"] = "Kimberley"
 		E.db["datatexts"]["font"] = "Kimberley"
@@ -231,17 +229,19 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 11,
-		["text_format"] = "||cffFFFF00[absorbs]||r ",
-		["xOffset"] = 6,
-		["yOffset"] = 0
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 11,
+			["text_format"] = "||cffFFFF00[absorbs]||r ",
+			["xOffset"] = 6,
+			["yOffset"] = 0
+			}
+		end
 		-- Custom Text: Pet
 		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
@@ -257,17 +257,19 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		}
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 12,
-		["text_format"] = "||cffFFFF00[absorbs]||r ",
-		["xOffset"] = 6,
-		["yOffset"] = 15
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 12,
+			["text_format"] = "||cffFFFF00[absorbs]||r ",
+			["xOffset"] = 6,
+			["yOffset"] = 15
+			}
+		end
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -325,17 +327,19 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 			["xOffset"] = 37,
 			["yOffset"] = 10
 		}
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "CENTER",
-		["size"] = 10,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 45,
-		["yOffset"] = 0
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "CENTER",
+			["size"] = 10,
+			["text_format"] = "||cffFFFF00[absorbs]||r",
+			["xOffset"] = 45,
+			["yOffset"] = 0
+			}
+		end
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]= {
 		["attachTextTo"] = "InfoPanel",
 		["enable"] = true,
@@ -360,17 +364,19 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		}
 		-- Custom Text: Raid 40
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "CENTER",
-		["size"] = 10,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 37,
-		["yOffset"] = 12
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "CENTER",
+			["size"] = 10,
+			["text_format"] = "||cffFFFF00[absorbs]||r",
+			["xOffset"] = 37,
+			["yOffset"] = 12
+			}
+		end
 		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Group"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -395,17 +401,19 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		}
 		-- Custom Text: Target
 		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 12,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 0,
-		["yOffset"] = 15
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 12,
+			["text_format"] = "||cffFFFF00[absorbs]||r",
+			["xOffset"] = 0,
+			["yOffset"] = 15
+			}
+		end
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -560,8 +568,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "Kimberley"
 
 		E:StaggeredUpdateAll(nil, true)
-
-	ElvUI_EltreumUI:Print('Kimberley Font has been set.')
+		ElvUI_EltreumUI:Print('Kimberley Font has been set.')
 end
 
 function ElvUI_EltreumUI:SetupFontsExo2(addon)
@@ -792,17 +799,19 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "Exo2 Extra Bold",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 11,
-		["text_format"] = "||cffFFFF00[absorbs]||r ",
-		["xOffset"] = 6,
-		["yOffset"] = 0
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Exo2 Extra Bold",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 11,
+			["text_format"] = "||cffFFFF00[absorbs]||r ",
+			["xOffset"] = 6,
+			["yOffset"] = 0
+			}
+		end
 		-- Custom Text: Pet
 		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
@@ -818,17 +827,19 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		}
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "Exo2 Extra Bold",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 12,
-		["text_format"] = "||cffFFFF00[absorbs]||r ",
-		["xOffset"] = 6,
-		["yOffset"] = 15
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Exo2 Extra Bold",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 12,
+			["text_format"] = "||cffFFFF00[absorbs]||r ",
+			["xOffset"] = 6,
+			["yOffset"] = 15
+			}
+		end
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -886,17 +897,19 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 			["xOffset"] = 37,
 			["yOffset"] = 10
 		}
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "Exo2 Extra Bold",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "CENTER",
-		["size"] = 10,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 45,
-		["yOffset"] = 0
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Exo2 Extra Bold",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "CENTER",
+			["size"] = 10,
+			["text_format"] = "||cffFFFF00[absorbs]||r",
+			["xOffset"] = 45,
+			["yOffset"] = 0
+			}
+		end
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]= {
 		["attachTextTo"] = "InfoPanel",
 		["enable"] = true,
@@ -921,17 +934,19 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		}
 		-- Custom Text: Raid 40
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "Exo2 Extra Bold",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "CENTER",
-		["size"] = 10,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 37,
-		["yOffset"] = 12
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Exo2 Extra Bold",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "CENTER",
+			["size"] = 10,
+			["text_format"] = "||cffFFFF00[absorbs]||r",
+			["xOffset"] = 37,
+			["yOffset"] = 12
+			}
+		end
 		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Group"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -956,17 +971,19 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		}
 		-- Custom Text: Target
 		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "Exo2 Extra Bold",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 12,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 0,
-		["yOffset"] = 15
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Exo2 Extra Bold",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 12,
+			["text_format"] = "||cffFFFF00[absorbs]||r",
+			["xOffset"] = 0,
+			["yOffset"] = 15
+			}
+		end
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -1126,7 +1143,6 @@ end
 
 function ElvUI_EltreumUI:SetupFontsGotham(addon)
 	if not E.db.movers then E.db.movers = {} end
-
 		--nameplates
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "GothamNarrow Black"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "GothamNarrow Black"
@@ -1351,17 +1367,19 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "GothamNarrow Black",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 11,
-		["text_format"] = "||cffFFFF00[absorbs]||r ",
-		["xOffset"] = 6,
-		["yOffset"] = 0
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "GothamNarrow Black",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 11,
+			["text_format"] = "||cffFFFF00[absorbs]||r ",
+			["xOffset"] = 6,
+			["yOffset"] = 0
+			}
+		end
 		-- Custom Text: Pet
 		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
@@ -1377,17 +1395,19 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		}
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "GothamNarrow Black",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 12,
-		["text_format"] = "||cffFFFF00[absorbs]||r ",
-		["xOffset"] = 6,
-		["yOffset"] = 15
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "GothamNarrow Black",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 12,
+			["text_format"] = "||cffFFFF00[absorbs]||r ",
+			["xOffset"] = 6,
+			["yOffset"] = 15
+			}
+		end
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -1445,17 +1465,19 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 			["xOffset"] = 37,
 			["yOffset"] = 10
 		}
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "GothamNarrow Black",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "CENTER",
-		["size"] = 10,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 45,
-		["yOffset"] = 0
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "GothamNarrow Black",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "CENTER",
+			["size"] = 10,
+			["text_format"] = "||cffFFFF00[absorbs]||r",
+			["xOffset"] = 45,
+			["yOffset"] = 0
+			}
+		end
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]= {
 		["attachTextTo"] = "InfoPanel",
 		["enable"] = true,
@@ -1480,17 +1502,19 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		}
 		-- Custom Text: Raid 40
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "GothamNarrow Black",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "CENTER",
-		["size"] = 10,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 37,
-		["yOffset"] = 12
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "GothamNarrow Black",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "CENTER",
+			["size"] = 10,
+			["text_format"] = "||cffFFFF00[absorbs]||r",
+			["xOffset"] = 37,
+			["yOffset"] = 12
+			}
+		end
 		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Group"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -1515,17 +1539,19 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		}
 		-- Custom Text: Target
 		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "GothamNarrow Black",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 12,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 0,
-		["yOffset"] = 15
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "GothamNarrow Black",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 12,
+			["text_format"] = "||cffFFFF00[absorbs]||r",
+			["xOffset"] = 0,
+			["yOffset"] = 15
+			}
+		end
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -1679,15 +1705,12 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		E.db["unitframe"]["units"]["targettargettarget"]["buffs"]["countFont"] = "GothamNarrow Black"
 		E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "GothamNarrow Black"
 
-
 		E:StaggeredUpdateAll(nil, true)
-
-	ElvUI_EltreumUI:Print('GothamNarrow Black Font has been set.')
+		ElvUI_EltreumUI:Print('GothamNarrow Black Font has been set.')
 end
 
 function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 	if not E.db.movers then E.db.movers = {} end
-
 		--nameplates
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Roboto"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Roboto"
@@ -1913,17 +1936,19 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "Roboto",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 11,
-		["text_format"] = "||cffFFFF00[absorbs]||r ",
-		["xOffset"] = 6,
-		["yOffset"] = 0
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Roboto",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 11,
+			["text_format"] = "||cffFFFF00[absorbs]||r ",
+			["xOffset"] = 6,
+			["yOffset"] = 0
+			}
+		end
 		-- Custom Text: Pet
 		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
@@ -1939,17 +1964,19 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		}
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "Roboto",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 12,
-		["text_format"] = "||cffFFFF00[absorbs]||r ",
-		["xOffset"] = 6,
-		["yOffset"] = 15
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Roboto",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 12,
+			["text_format"] = "||cffFFFF00[absorbs]||r ",
+			["xOffset"] = 6,
+			["yOffset"] = 15
+			}
+		end
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -2007,17 +2034,19 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 			["xOffset"] = 37,
 			["yOffset"] = 10
 		}
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "Roboto",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "CENTER",
-		["size"] = 10,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 45,
-		["yOffset"] = 0
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Roboto",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "CENTER",
+			["size"] = 10,
+			["text_format"] = "||cffFFFF00[absorbs]||r",
+			["xOffset"] = 45,
+			["yOffset"] = 0
+			}
+		end
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]= {
 		["attachTextTo"] = "InfoPanel",
 		["enable"] = true,
@@ -2042,17 +2071,19 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		}
 		-- Custom Text: Raid 40
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "Roboto",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "CENTER",
-		["size"] = 10,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 37,
-		["yOffset"] = 12
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Roboto",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "CENTER",
+			["size"] = 10,
+			["text_format"] = "||cffFFFF00[absorbs]||r",
+			["xOffset"] = 37,
+			["yOffset"] = 12
+			}
+		end
 		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Group"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -2077,17 +2108,19 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		}
 		-- Custom Text: Target
 		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "Roboto",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 12,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 0,
-		["yOffset"] = 15
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Roboto",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 12,
+			["text_format"] = "||cffFFFF00[absorbs]||r",
+			["xOffset"] = 0,
+			["yOffset"] = 15
+			}
+		end
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -2278,7 +2311,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "THICKOUTLINE"
 		E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
 	end
-
 	E.db["general"]["fontStyle"] = "THICKOUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE"
 	E.db["bags"]["countFontOutline"] = "OUTLINE"
@@ -2297,21 +2329,23 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"]["fontOutline"] = "THICKOUTLINE"
-	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "THICKOUTLINE"
+	if ElvUI_EltreumUI.Retail then
+		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"]["fontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"]["fontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "THICKOUTLINE"
+	end
 	E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["fontOutline"] = "THICKOUTLINE"
-	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPvP"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumGroup"]["fontOutline"] = "NONE"
-	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidName"]["fontOutline"] = "OUTLINE"
-	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Group"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Health"]["fontOutline"] = "OUTLINE"
-	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["fontOutline"] = "THICKOUTLINE"
@@ -2431,7 +2465,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "NONE"
 		E.db["general"]["altPowerBar"]["fontOutline"] = "NONE"
 	end
-
 	E.db["general"]["fontStyle"] = "NONE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "NONE"
 	E.db["bags"]["countFontOutline"] = "NONE"
@@ -2450,21 +2483,23 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"]["fontOutline"] = "NONE"
-	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "NONE"
+	if ElvUI_EltreumUI.Retail then
+		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "NONE"
+		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "NONE"
+		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"]["fontOutline"] = "NONE"
+		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"]["fontOutline"] = "NONE"
+		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "NONE"
+	end
 	E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["fontOutline"] = "NONE"
-	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPvP"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumGroup"]["fontOutline"] = "NONE"
-	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidName"]["fontOutline"] = "NONE"
-	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Group"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Health"]["fontOutline"] = "NONE"
-	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["fontOutline"] = "NONE"
@@ -2554,7 +2589,6 @@ end
 
 function ElvUI_EltreumUI:SetupFontsOutlineThick(addon)
 	if not E.db.movers then E.db.movers = {} end
-
 	if ElvUI_EltreumUI.Retail then
 		PA.db["stAddonManager"]["FontFlag"] = "THICKOUTLINE"
 		E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "THICKOUTLINE"
@@ -2585,7 +2619,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineThick(addon)
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "THICKOUTLINE"
 		E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
 	end
-
 	E.db["general"]["fontStyle"] = "THICKOUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE"
 	E.db["bags"]["countFontOutline"] = "THICKOUTLINE"
@@ -2604,21 +2637,23 @@ function ElvUI_EltreumUI:SetupFontsOutlineThick(addon)
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"]["fontOutline"] = "THICKOUTLINE"
+	if ElvUI_EltreumUI.Retail then
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "THICKOUTLINE"
-	E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "THICKOUTLINE"
+	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "THICKOUTLINE"
+	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"]["fontOutline"] = "THICKOUTLINE"
+	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"]["fontOutline"] = "THICKOUTLINE"
+end
+	E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPvP"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumGroup"]["fontOutline"] = "THICKOUTLINE"
-	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidName"]["fontOutline"] = "THICKOUTLINE"
-	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Group"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Health"]["fontOutline"] = "THICKOUTLINE"
-	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["fontOutline"] = "THICKOUTLINE"
@@ -2708,9 +2743,6 @@ end
 
 function ElvUI_EltreumUI:SetupFontsOutlineOutline(addon)
 	if not E.db.movers then E.db.movers = {} end
-
-
-
 	if ElvUI_EltreumUI.Retail then
 		PA.db["stAddonManager"]["FontFlag"] = "OUTLINE"
 		E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "OUTLINE"
@@ -2740,7 +2772,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline(addon)
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "OUTLINE"
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "OUTLINE"
 	end
-
 	E.db["general"]["fontStyle"] = "OUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "OUTLINE"
 	E.db["bags"]["countFontOutline"] = "OUTLINE"
@@ -2760,21 +2791,23 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline(addon)
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"]["fontOutline"] = "OUTLINE"
-	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "OUTLINE"
+	if ElvUI_EltreumUI.Retail then
+		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "OUTLINE"
+		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "OUTLINE"
+		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "OUTLINE"
+		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"]["fontOutline"] = "OUTLINE"
+		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"]["fontOutline"] = "OUTLINE"
+	end
 	E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["fontOutline"] = "OUTLINE"
-	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPvP"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumGroup"]["fontOutline"] = "OUTLINE"
-	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidName"]["fontOutline"] = "OUTLINE"
-	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Group"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Health"]["fontOutline"] = "OUTLINE"
-	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["fontOutline"] = "OUTLINE"

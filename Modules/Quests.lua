@@ -13,7 +13,6 @@ function ElvUI_EltreumUI:QuestEncounter()
 				ObjectiveTracker_Collapse()
 			end
 		end
-
 	end
 end
 

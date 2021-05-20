@@ -1,10 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 -- Details profile setup
-
-
 function ElvUI_EltreumUI:GetDetailsProfile()
-
 	if ElvUI_EltreumUI.Retail then
 		local key = "Eltreum Dual"
 		_detalhes_global = {
@@ -10018,7 +10015,6 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 		_detalhes:ApplyProfile(key)
 	end
 
-
 	if ElvUI_EltreumUI.TBC then
 		local key = "Eltreum Dual"
 		_detalhes_global = {
@@ -17822,5 +17818,4 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 		}
 		_detalhes:ApplyProfile(key)
 	end
-
 end

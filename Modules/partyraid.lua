@@ -17,9 +17,9 @@ function ElvUI_EltreumUI:RaidDeath()
 		local name = name
 		if eventType == "UNIT_DIED" then
 			if IsInGroup() then
-					for ii=1, GetNumGroupMembers() do
-						name = GetRaidRosterInfo(ii)
-					end
+				for ii=1, GetNumGroupMembers() do
+					name = GetRaidRosterInfo(ii)
+				end
 				if destName == name then
 					if E.private.ElvUI_EltreumUI.partyraiddeath.bruh then
 					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Master")
@@ -41,7 +41,6 @@ function ElvUI_EltreumUI:RaidDeath()
 		end
 	end
 end
-
 
 -- Role icons, ty a lot Darth Predator for the help!
 if ElvUI_EltreumUI.Retail then

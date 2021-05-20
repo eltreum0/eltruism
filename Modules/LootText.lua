@@ -11,7 +11,7 @@ local CreateFrame = _G.CreateFrame
 local CombatText = _G.CombatText
 
 -- LootText is a fork of Scrolling Loot Text (SLoTe) by xavjer using fixes by Eltreum for pet caging and other things
--- SLoTE uses GNU GPLv3 and as such this part of Eltruism also uses GNU GPLv3
+-- SLoTE uses GNU GPLv3 and as such this module of Eltruism also uses GNU GPLv3
 
 --create the loottext frame
 local LootTextframe = CreateFrame("Frame")

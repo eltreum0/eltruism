@@ -5,9 +5,6 @@ local IsAddOnLoaded = IsAddOnLoaded
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
 
-
-
-
 -- cant parent to UIParent, need to look into https://git.tukui.org/Nihilistzsche/ElvUI_NihilistUI/-/blob/development/ElvUI_NihilistUI/modules/warlockdemons/warlockdemons.lua
 -- ty Nihilistzsche
 --local EltreumPowerBar = CreateFrame("Frame", "EltreumPower", UIParent)
@@ -19,44 +16,41 @@ local UF = E:GetModule('UnitFrames')
 --EltreumPowerBar.Text:SetParent("ElvUF_Target")
 --EltreumPowerBar.Text:SetText("test test test test test test test test test ")
 
-
 -- customize friendly nameplate health width inside instance
 --/run C_NamePlate.SetNamePlateFriendlySize(21, 5)
 
 --- Friendly Nameplate Control
 function ElvUI_EltreumUI:FriendlyNameplates()
-		local inInstance, instanceType = IsInInstance()
-		local mapID = WorldMapFrame:GetMapID()
-		if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames then
-			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
-				--SetCVar("nameplateShowFriends", 1);
-				SetCVar("nameplateShowOnlyNames", 1)
-			end
-			if instanceType == "none" or mapID == 1662 then
-				--SetCVar("nameplateShowFriends", 1);
-				SetCVar("nameplateShowOnlyNames", 1)
-			end
-			if mapID == 582 then
-				SetCVar("nameplateShowFriends", 1)
-			end
+	local inInstance, instanceType = IsInInstance()
+	local mapID = WorldMapFrame:GetMapID()
+	if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames then
+		if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
+			--SetCVar("nameplateShowFriends", 1);
+			SetCVar("nameplateShowOnlyNames", 1)
 		end
-		if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly then
-			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
-				SetCVar("nameplateShowFriends", 0)
-			end
-			if instanceType == "none" or mapID == 1662 then
-				SetCVar("nameplateShowFriends", 1)
-			end
+		if instanceType == "none" or mapID == 1662 then
+			--SetCVar("nameplateShowFriends", 1);
+			SetCVar("nameplateShowOnlyNames", 1)
 		end
+		if mapID == 582 then
+			SetCVar("nameplateShowFriends", 1)
+		end
+	end
+	if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly then
+		if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
+			SetCVar("nameplateShowFriends", 0)
+		end
+		if instanceType == "none" or mapID == 1662 then
+			SetCVar("nameplateShowFriends", 1)
+		end
+	end
 end
 
 -- Change classpower background, ty Benik for the great help
-
 local function ClassPowerColor()
     NP.multiplier = 0
 end
 hooksecurefunc(NP, 'Initialize', ClassPowerColor)
-
 
 if ElvUI_EltreumUI.Retail then
 	local function RuneBackground()
@@ -64,6 +58,7 @@ if ElvUI_EltreumUI.Retail then
 	end
 	hooksecurefunc(NP, 'Construct_Runes', RuneBackground)
 end
+
 -- Non aspect ratio nameplate debuffs similar to plater
 function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
 	if E.private.ElvUI_EltreumUI.widenameplate.enable then
@@ -151,7 +146,6 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
 				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["border"] = true
 			end
-
 	end
 	if E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
@@ -223,7 +217,6 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["filters"]["HideThis"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["enable"] = true
-			E.db["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EnemyCasting"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ExecuteRange"]["triggers"]["enable"] = true
 			E.db["nameplates"]["colors"]["power"]["PAIN"]["b"] = 1
@@ -251,7 +244,6 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["filters"]["HideThis"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["enable"] = true
-			E.db["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["enable"] = false
 			E.db["nameplates"]["filters"]["EnemyCasting"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ExecuteRange"]["triggers"]["enable"] = true
 		elseif ElvUI_EltreumUI.TBC then
@@ -260,7 +252,6 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["filters"]["HideThis"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["enable"] = true
-			E.db["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["enable"] = false
 			E.db["nameplates"]["filters"]["EnemyCasting"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ExecuteRange"]["triggers"]["enable"] = true
 		end
@@ -589,21 +580,11 @@ end
 
 -- Style Filter Setup
 function ElvUI_EltreumUI:SetupStyleFilters()
-	for _, filterName in pairs({'ElvUI_Explosives', 'ElvUI_NonTarget', 'ElvUI_Target', 'EnemyCasting', 'ExecuteRange', 'StealThisBuff', 'EltreumRare', 'HideThis'}) do
+	for _, filterName in pairs({'ElvUI_NonTarget', 'ElvUI_Target', 'EnemyCasting', 'ExecuteRange', 'StealThisBuff', 'EltreumRare', 'HideThis'}) do
 		E.global["nameplate"]["filters"][filterName] = {}
 		E.NamePlates:StyleFilterCopyDefaults(E.global["nameplate"]["filters"][filterName])
 		E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
 	end
-	-- Explosives
-	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["health"] = false
-	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
-	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["g"] = 1
-	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["r"] = 1
-	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["scale"] = 1
-	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["actions"]["usePortrait"] = true
-	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["triggers"]["nameplateType"]["enable"] = false
-	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["triggers"]["nameplateType"]["enemyNPC"] = false
-	E.global["nameplate"]["filters"]["ElvUI_Explosives"]["triggers"]["priority"] = 3
 	-- Non targeted enemies
 	E.global["nameplate"]["filters"]["ElvUI_NonTarget"]["actions"]["alpha"] = 20
 	E.global["nameplate"]["filters"]["ElvUI_NonTarget"]["actions"]["scale"] = 0.75
@@ -700,8 +681,6 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["HideThis"]["triggers"]["playerCanNotAttack"] = true
 	E.global["nameplate"]["filters"]["HideThis"]["triggers"]["priority"] = 15
 
-
 	E:StaggeredUpdateAll(nil, true)
-
 	ElvUI_EltreumUI:Print('NamePlate Style Filters have been setup.')
 end

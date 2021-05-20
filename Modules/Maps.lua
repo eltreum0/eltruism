@@ -9,7 +9,6 @@ local math = _G.math
 local string = _G.string
 
 --Conversion of Time to Arrive weakaura
-
 --Create the frame to display the text
 if ElvUI_EltreumUI.Retail then
 	local WaypointTimeToArriveFrame = CreateFrame("Frame", "WaypointTimeToArriveText", UIParent)
@@ -57,10 +56,8 @@ if ElvUI_EltreumUI.Retail then
 			end
 		end
 	end
-
 	local function OnUpdateTimer(self, elapsed)
 			ElvUI_EltreumUI:WaypointTimeToArrive(self, elapsed)
 	end
 	WaypointTimeToArriveFrame:SetScript("OnUpdate", OnUpdateTimer)
-
 end

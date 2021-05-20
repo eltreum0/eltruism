@@ -6,7 +6,6 @@ local IsAddOnLoaded = IsAddOnLoaded
 -- general alliance walk (legion) maybe human music idk
 --/script PlaySoundFile(1417250, "Dialog", true)
 
-
 -- AFK music (modified with the help of Repooc!)
 local racialMusic = {
     ['Human'] = 53210,
@@ -47,7 +46,6 @@ local classMusic = {
     ['DRUID'] = 1417312,
     ['DEMONHUNTER'] = 1417290,
 }
-
 local vanillaMusic = {
     ['Human'] = 6794,
     ['Gnome'] = 7341,
@@ -58,7 +56,6 @@ local vanillaMusic = {
     ['Tauren'] = 7077,
     ['Troll'] = 8452,
 }
-
 -- with the help of Repooc, Simpy, Nihilistzsche and Acidweb (not in order :D)
 local musicSetting = GetCVar('Sound_EnableMusic')
 function ElvUI_EltreumUI:AFKmusic()
@@ -79,7 +76,6 @@ function ElvUI_EltreumUI:AFKmusic()
                 SetCVar("Sound_EnableMusic", musicSetting)
             end
         end
-
         --[[if ElvUI_EltreumUI.TBC then
             if UnitIsAFK("player") then
                 if musicSetting == '0' then
@@ -93,8 +89,6 @@ function ElvUI_EltreumUI:AFKmusic()
                 SetCVar("Sound_EnableMusic", musicSetting)
             end
         end]]--
-
-
         --[[if ElvUI_EltreumUI.Classic then
             local _ , race, _ = UnitRace("player")
             if UnitIsAFK("player") then
@@ -136,19 +130,3 @@ function ElvUI_EltreumUI:AFKmusic()
         end]]--
     end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

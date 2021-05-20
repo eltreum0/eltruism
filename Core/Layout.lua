@@ -1,7 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local IsAddOnLoaded = IsAddOnLoaded
 local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
-
 local valuecolors
 valuecolors = E:ClassColor(E.myclass, true)
 
@@ -240,7 +239,6 @@ if ElvUI_EltreumUI.Retail then
 		E.db["sle"]["loot"]["looticons"]["enable"] = true
 		E.db["sle"]["loot"]["looticons"]["size"] = 13
 		--AFK Screensaver
-
 		if sleversioncheck >= "4.22" then
 			E.db["sle"]["afk"]["animTime"] = 2
 			E.db["sle"]["afk"]["animType"] = "FadeIn"
@@ -884,7 +882,6 @@ if ElvUI_EltreumUI.Retail then
 		E.db["actionbar"]["zoneActionButton"]["inheritGlobalFade"] = false
 		E.db["actionbar"]["stanceBar"]["inheritGlobalFade"] = true
 
-
 		-- Custom Text: Party
 		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"] = {
@@ -1174,7 +1171,6 @@ if ElvUI_EltreumUI.Retail then
 		["xOffset"] = 0,
 		["yOffset"] = -1
 		}
-
 
 		if layout == 'dps' then
 			E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
@@ -2126,7 +2122,6 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["targettargettarget"]["power"]["text_format"] = "[power:current:shortvalue]"
 
 		elseif layout == 'healer' then
-
 			-- Change sle y offsets for healer frames
 			E.db["sle"]["unitframes"]["unit"]["raid"]["dead"]["yOffset"] = 10
 			E.db["sle"]["unitframes"]["unit"]["raid"]["offline"]["yOffset"] = 10
@@ -2310,12 +2305,10 @@ if ElvUI_EltreumUI.Retail then
 			E.db["auras"]["debuffs"]["timeFontSize"] = 12
 			E.db["auras"]["debuffs"]["verticalSpacing"] = 14
 			E.db["auras"]["debuffs"]["wrapAfter"] = 10
-
 			-- Growth Directions Healing
 			E.db["unitframe"]["units"]["party"]["growthDirection"] = "RIGHT_UP"
 			E.db["unitframe"]["units"]["raid"]["growthDirection"] = "DOWN_RIGHT"
 			E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "DOWN_RIGHT"
-
 			-- Movers Healing
 			E.db["movers"]["ArenaHeaderMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,239"
 			E.db["movers"]["AzeriteBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-421,0"
@@ -2466,7 +2459,6 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["colors"]["transparentCastbar"] = true
 			E.db["unitframe"]["colors"]["transparentHealth"] = true
 			E.db["unitframe"]["colors"]["transparentPower"] = true
-
 			E.db["unitframe"]["debuffHighlighting"] = "GLOW"
 			E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
 			E.db["unitframe"]["font"] = "Kimberley"
@@ -2474,7 +2466,6 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["smartRaidFilter"] = false
 			E.db["unitframe"]["smoothbars"] = true
 			E.db["unitframe"]["targetSound"] = true
-
 			E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["arena"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "Kimberley"
@@ -2550,10 +2541,6 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["party"]["summonIcon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 9
 			E.db["unitframe"]["units"]["party"]["width"] = 150
-
-
-
-
 			E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
 			E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "NONE"
@@ -2852,7 +2839,6 @@ if ElvUI_EltreumUI.Retail then
 		end
 
 		E:StaggeredUpdateAll(nil, true)
-
 		ElvUI_EltreumUI:Print('Layout has been set.')
 	end
 elseif ElvUI_EltreumUI.Classic then
@@ -2903,7 +2889,6 @@ elseif ElvUI_EltreumUI.Classic then
 		E.db["general"]["fontStyle"] = "THICKOUTLINE"
 		E.db["general"]["interruptAnnounce"] = "RAID"
 		E.db["general"]["itemLevel"]["itemLevelFont"] = "Kimberley"
-
 		E.db["general"]["valuecolor"]["r"] = valuecolors.r
 		E.db["general"]["valuecolor"]["g"] = valuecolors.g
 		E.db["general"]["valuecolor"]["b"] = valuecolors.b
@@ -2952,7 +2937,6 @@ elseif ElvUI_EltreumUI.Classic then
 		E.db["bags"]["transparent"] = true
 		E.db["bags"]["vendorGrays"]["enable"] = true
 
-
 		-- Chat
 		E.db["chat"]["chatHistory"] = false
 		E.db["chat"]["fadeTabsNoBackdrop"] = false
@@ -2998,16 +2982,6 @@ elseif ElvUI_EltreumUI.Classic then
 		E.db["databars"]["experience"]["fontOutline"] = "THICKOUTLINE"
 		E.db["databars"]["experience"]["height"] = 203
 		E.db["databars"]["reputation"]["height"] = 203
-		--[[if GetCVar('gxFullscreenResolution') == "3140x2160" then
-			E.db["databars"]["experience"]["height"] = 203
-			E.db["databars"]["reputation"]["height"] = 203
-		elseif GetCVar('gxFullscreenResolution') == "2560x1440" then
-			E.db["databars"]["experience"]["height"] = 204
-			E.db["databars"]["reputation"]["height"] = 204
-		elseif GetCVar('gxFullscreenResolution') == "1920x1080" then
-			E.db["databars"]["experience"]["height"] = 204
-			E.db["databars"]["reputation"]["height"] = 204
-		end]]--
 		E.db["databars"]["experience"]["hideInCombat"] = true
 		E.db["databars"]["experience"]["width"] = 10
 
@@ -3061,7 +3035,6 @@ elseif ElvUI_EltreumUI.Classic then
 		E.db["actionbar"]["bar10"]["inheritGlobalFade"] = false
 		E.db["actionbar"]["stanceBar"]["inheritGlobalFade"] = true
 
-
 		-- Custom Text: Party
 		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"] = {
@@ -3097,6 +3070,7 @@ elseif ElvUI_EltreumUI.Classic then
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
+
 		-- Custom Text: Pet
 		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
@@ -3111,6 +3085,7 @@ elseif ElvUI_EltreumUI.Classic then
 			["yOffset"] = 0
 		}
 		-- Custom Text: Player
+		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -3155,6 +3130,7 @@ elseif ElvUI_EltreumUI.Classic then
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
+
 		-- Custom Text: Raid
 		E.db["unitframe"]["units"]["raid"]["customTexts"] = E.db["unitframe"]["units"]["raid"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumGroup"] = {
@@ -3169,27 +3145,28 @@ elseif ElvUI_EltreumUI.Classic then
 			["yOffset"] = 10
 		}
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]= {
-		["attachTextTo"] = "InfoPanel",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "OUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 10,
-		["text_format"] = "[health:current:shortvalue]",
-		["xOffset"] = 0,
-		["yOffset"] = -1
+			["attachTextTo"] = "InfoPanel",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 10,
+			["text_format"] = "[health:current:shortvalue]",
+			["xOffset"] = 0,
+			["yOffset"] = -1
 		}
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidName"] = {
-		["attachTextTo"] = "InfoPanel",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "OUTLINE",
-		["justifyH"] = "LEFT",
-		["size"] = 10,
-		["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
-		["xOffset"] = 0,
-		["yOffset"] = 0
+			["attachTextTo"] = "InfoPanel",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "LEFT",
+			["size"] = 10,
+			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
 		}
+
 		-- Custom Text: Raid 40
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Group"] = {
@@ -3239,26 +3216,26 @@ elseif ElvUI_EltreumUI.Classic then
 			["yOffset"] = 0
 		}
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] = {
-		["attachTextTo"] = "Power",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "LEFT",
-		["size"] = 10,
-		["text_format"] = "[powercolor][power:current:shortvalue]",
-		["xOffset"] = 2,
-		["yOffset"] = -1
+			["attachTextTo"] = "Power",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "LEFT",
+			["size"] = 10,
+			["text_format"] = "[powercolor][power:current:shortvalue]",
+			["xOffset"] = 2,
+			["yOffset"] = -1
 		}
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetofTarget"] = {
-		["attachTextTo"] = "Frame",
-		["enable"] = false,
-		["font"] = "Kimberley",
-		["fontOutline"] = "OUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 10,
-		["text_format"] = "Target: [target]",
-		["xOffset"] = -5,
-		["yOffset"] = -14
+			["attachTextTo"] = "Frame",
+			["enable"] = false,
+			["font"] = "Kimberley",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 10,
+			["text_format"] = "Target: [target]",
+			["xOffset"] = -5,
+			["yOffset"] = -14
 		}
 		-- Custom Text: TargetTarget
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"] = E.db["unitframe"]["units"]["targettarget"]["customTexts"] or {}
@@ -3285,17 +3262,16 @@ elseif ElvUI_EltreumUI.Classic then
 			["yOffset"] = 3
 		}
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Powercustom"] = {
-		["attachTextTo"] = "Power",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 9,
-		["text_format"] = "[powercolor][power:current:shortvalue]",
-		["xOffset"] = 0,
-		["yOffset"] = -1
+			["attachTextTo"] = "Power",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 9,
+			["text_format"] = "[powercolor][power:current:shortvalue]",
+			["xOffset"] = 0,
+			["yOffset"] = -1
 		}
-
 
 		if layout == 'dps' then
 			-- ActionBars
@@ -4049,7 +4025,6 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["targettargettarget"]["power"]["text_format"] = "[power:current:shortvalue]"
 
 		elseif layout == 'healer' then
-
 			-- Healer Action bars
 			E.db["actionbar"]["addNewSpells"] = true
 			E.db["actionbar"]["bar1"]["buttonSize"] = 40
@@ -4404,10 +4379,6 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["party"]["summonIcon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 9
 			E.db["unitframe"]["units"]["party"]["width"] = 150
-
-
-
-
 			E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
 			E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "NONE"
@@ -4653,7 +4624,6 @@ elseif ElvUI_EltreumUI.Classic then
 		end
 
 		E:StaggeredUpdateAll(nil, true)
-
 		ElvUI_EltreumUI:Print('Layout has been set.')
 	end
 elseif ElvUI_EltreumUI.TBC then
@@ -4746,7 +4716,6 @@ elseif ElvUI_EltreumUI.TBC then
 		E.db["bags"]["split"]["bagSpacing"] = 7
 		E.db["bags"]["transparent"] = true
 		E.db["bags"]["vendorGrays"]["enable"] = true
-
 
 		-- Chat
 		E.db["chat"]["chatHistory"] = false
@@ -5288,7 +5257,6 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["actionbar"]["cooldown"]["mmssThreshold"] = 60
 			E.db["actionbar"]["cooldown"]["threshold"] = 5
 			E.db["actionbar"]["desaturateOnCooldown"] = true
-
 			E.db["actionbar"]["font"] = "Kimberley"
 			E.db["actionbar"]["fontOutline"] = "THICKOUTLINE"
 			E.db["actionbar"]["lockActionBars"] = false
@@ -5872,7 +5840,6 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["targettargettarget"]["power"]["enable"] = false
 			E.db["unitframe"]["units"]["targettargettarget"]["power"]["text_format"] = "[power:current:shortvalue]"
 
-
 		elseif layout == 'healer' then
 			-- Healer Action bars
 			E.db["actionbar"]["addNewSpells"] = true
@@ -6159,7 +6126,6 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["colors"]["transparentCastbar"] = true
 			E.db["unitframe"]["colors"]["transparentHealth"] = true
 			E.db["unitframe"]["colors"]["transparentPower"] = true
-
 			E.db["unitframe"]["debuffHighlighting"] = "GLOW"
 			E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
 			E.db["unitframe"]["font"] = "Kimberley"
@@ -6167,7 +6133,6 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["smartRaidFilter"] = false
 			E.db["unitframe"]["smoothbars"] = true
 			E.db["unitframe"]["targetSound"] = true
-
 			E.db["unitframe"]["units"]["assist"]["rdebuffs"]["yOffset"] = 7
 			E.db["unitframe"]["units"]["party"]["buffIndicator"]["size"] = 16
 			E.db["unitframe"]["units"]["party"]["buffs"]["anchorPoint"] = "TOPRIGHT"
@@ -6223,10 +6188,6 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["party"]["summonIcon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 9
 			E.db["unitframe"]["units"]["party"]["width"] = 150
-
-
-
-
 			E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
 			E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "NONE"
@@ -6518,7 +6479,6 @@ elseif ElvUI_EltreumUI.TBC then
 		end
 
 		E:StaggeredUpdateAll(nil, true)
-
 		ElvUI_EltreumUI:Print('Layout has been set.')
 	end
 end

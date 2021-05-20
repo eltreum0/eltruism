@@ -1,12 +1,10 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-
 local LoadAddOn = LoadAddOn
 
 -- BigWigs profile setup
 function ElvUI_EltreumUI:GetBigWigsProfile()
 	LoadAddOn("BigWigs")
 	LoadAddOn("BigWigs_Options")
-
 	if ElvUI_EltreumUI.Retail then
 		BigWigs3DB = {
 			["global"] = {
@@ -304,7 +302,6 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		BigWigsStatsDB = {
 		}
 	end
-
 	if ElvUI_EltreumUI.Classic then
 		BigWigsClassicDB = {
 			["namespaces"] = {
@@ -723,5 +720,146 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		BigWigsStatsDB = {
 		}
 	end
-
+	if ElvUI_EltreumUI.TBC then
+		BigWigsClassicDB = {
+			["namespaces"] = {
+				["BigWigs_Plugins_Victory"] = {
+					["profiles"] = {
+						["Eltreum"] = {
+							["soundName"] = "BigWigs: Victory Classic",
+						},
+					},
+				},
+				["BigWigs_Plugins_BossBlock"] = {
+				},
+				["BigWigs_Bosses_Illidan Stormrage"] = {
+				},
+				["BigWigs_Plugins_Sounds"] = {
+				},
+				["BigWigs_Plugins_AutoReply"] = {
+					["profiles"] = {
+						["Eltreum"] = {
+							["disabled"] = false,
+							["exitCombat"] = 4,
+							["mode"] = 3,
+						},
+					},
+				},
+				["BigWigs_Bosses_High Warlord Naj'entus"] = {
+				},
+				["BigWigs_Plugins_Countdown"] = {
+					["profiles"] = {
+						["Eltreum"] = {
+							["fontSize"] = 100,
+							["fontName"] = "Kimberley",
+						},
+					},
+				},
+				["BigWigs_Plugins_Colors"] = {
+				},
+				["BigWigs_Plugins_Wipe"] = {
+				},
+				["BigWigs_Plugins_InfoBox"] = {
+					["profiles"] = {
+						["Eltreum"] = {
+							["posx"] = 179.7010284338503,
+							["posy"] = 753.3776360958364,
+						},
+					},
+				},
+				["BigWigs_Plugins_Bars"] = {
+					["profiles"] = {
+						["Eltreum"] = {
+							["outline"] = "OUTLINE",
+							["BigWigsAnchor_width"] = 378,
+							["BigWigsEmphasizeAnchor_height"] = 9,
+							["growup"] = true,
+							["fontName"] = "Kimberley",
+							["BigWigsAnchor_height"] = 12.0000057220459,
+							["BigWigsAnchor_y"] = 152,
+							["spacing"] = 13,
+							["BigWigsEmphasizeAnchor_y"] = 610.26668882597,
+							["texture"] = "Eltreum-Blank",
+							["barStyle"] = "AddOnSkins Half-Bar",
+							["BigWigsAnchor_x"] = 1100,
+							["fontSizeEmph"] = 11,
+							["BigWigsEmphasizeAnchor_x"] = 818.0444929047226,
+							["BigWigsEmphasizeAnchor_width"] = 161.7144317626953,
+						},
+					},
+				},
+				["BigWigs_Plugins_Super Emphasize"] = {
+				},
+				["BigWigs_Bosses_Al'ar"] = {
+				},
+				["BigWigs_Bosses_Rage Winterchill"] = {
+				},
+				["BigWigs_Plugins_Statistics"] = {
+					["profiles"] = {
+						["Eltreum"] = {
+							["showBar"] = true,
+						},
+					},
+				},
+				["BigWigs_Plugins_Proximity"] = {
+					["profiles"] = {
+						["Eltreum"] = {
+							["fontSize"] = 16,
+							["fontName"] = "Kimberley",
+							["width"] = 139.9999847412109,
+							["posy"] = 740,
+							["posx"] = 296,
+						},
+					},
+				},
+				["BigWigs_Plugins_Raid Icons"] = {
+				},
+				["BigWigs_Plugins_Pull"] = {
+					["profiles"] = {
+						["Eltreum"] = {
+							["combatLog"] = true,
+						},
+					},
+				},
+				["BigWigs_Plugins_Messages"] = {
+					["profiles"] = {
+						["Eltreum"] = {
+							["outline"] = "OUTLINE",
+							["emphFontName"] = "Kimberley",
+							["emphPosition"] = {
+								"TOP", -- [1]
+								"TOP", -- [2]
+								nil, -- [3]
+								-6, -- [4]
+							},
+							["fontName"] = "Kimberley",
+							["growUpwards"] = false,
+							["emphOutline"] = "OUTLINE",
+							["normalPosition"] = {
+								nil, -- [1]
+								nil, -- [2]
+								nil, -- [3]
+								-100, -- [4]
+							},
+						},
+					},
+				},
+			},
+			["profileKeys"] = {
+				["Eltruism - Deviate Delight"] = "Eltreum",
+			},
+			["profiles"] = {
+				["Eltreum"] = {
+				},
+			},
+		}
+		BigWigsIconClassicDB = {
+			["hide"] = true,
+		}
+		BigWigsStatsClassicDB = {
+		}
+		BigWigs3DB = nil
+		BigWigsIconDB = nil
+		BigWigsStatsDB = nil
+	end
 end

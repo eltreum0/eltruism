@@ -2,11 +2,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local pairs = pairs
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
-
-
 local GetActionInfo = GetActionInfo
-
-
 
 -- Skill Glow
 local LCG = LibStub('LibCustomGlow-1.0')
