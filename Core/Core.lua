@@ -22,11 +22,11 @@ end
 --Resolution check for font outline
 function ElvUI_EltreumUI:ResolutionOutline()
 	local resolutionisok = 0
-	if GetCVar('gxFullscreenResolution') == "3140x2160" then
+	if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
 		resolutionisok = 1
-	elseif GetCVar('gxFullscreenResolution') == "2560x1440" then
+	elseif GetCVar('gxFullscreenResolution') == '2560x1440' or GetCVar('gxWindowedResolution') == "2560x1440"  then
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
-	elseif GetCVar('gxFullscreenResolution') == "1920x1080" then
+	elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
 	end
 end

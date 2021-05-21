@@ -2280,7 +2280,6 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 end
 
 function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
-	if not E.db.movers then E.db.movers = {} end
 	if ElvUI_EltreumUI.Retail then
 		PA.db["stAddonManager"]["FontFlag"] = "THICKOUTLINE"
 		E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "THICKOUTLINE"
@@ -2310,6 +2309,14 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "THICKOUTLINE"
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "THICKOUTLINE"
 		E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
+		E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"]["fontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"]["fontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "THICKOUTLINE"
+		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "MONOCHROMEOUTLINE"
 	end
 	E.db["general"]["fontStyle"] = "THICKOUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE"
@@ -2318,9 +2325,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
 	E.db["bags"]["itemLevelFontOutline"] = "OUTLINE"
 	E.db["chat"]["fontOutline"] = "OUTLINE"
 	E.db["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
-	if ElvUI_EltreumUI.Retail then
-		E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
-	end
 	E.db["databars"]["experience"]["fontOutline"] = "THICKOUTLINE"
 	E.db["databars"]["reputation"]["fontOutline"] = "THICKOUTLINE"
 	E.db["databars"]["threat"]["fontOutline"] = "THICKOUTLINE"
@@ -2329,13 +2333,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"]["fontOutline"] = "THICKOUTLINE"
-	if ElvUI_EltreumUI.Retail then
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "THICKOUTLINE"
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "THICKOUTLINE"
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"]["fontOutline"] = "THICKOUTLINE"
-		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"]["fontOutline"] = "THICKOUTLINE"
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "THICKOUTLINE"
-	end
 	E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["fontOutline"] = "THICKOUTLINE"
@@ -2385,10 +2382,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
 	E.db["actionbar"]["bar9"]["macroFontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["barPet"]["countFontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["barPet"]["hotkeyFontOutline"] = "THICKOUTLINE"
-	if ElvUI_EltreumUI.Retail then
-		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
-		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "MONOCHROMEOUTLINE"
-	end
 	E.db["actionbar"]["fontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["stanceBar"]["hotkeyFontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["vehicleExitButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
@@ -2414,9 +2407,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["fontOutline"] = "THICKOUTLINE"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["fontOutline"] = "THICKOUTLINE"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["power"]["text"]["fontOutline"] = "NONE"
-	if ElvUI_EltreumUI.Retail then
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "THICKOUTLINE"
-	end
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFontOutline"] = "NONE"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["fontOutline"] = "NONE"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countFontOutline"] = "NONE"
@@ -2434,7 +2424,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
 end
 
 function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
-	if not E.db.movers then E.db.movers = {} end
 	if ElvUI_EltreumUI.Retail then
 		PA.db["stAddonManager"]["FontFlag"] = "NONE"
 		E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "NONE"
@@ -2464,6 +2453,15 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "NONE"
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "NONE"
 		E.db["general"]["altPowerBar"]["fontOutline"] = "NONE"
+		E.db["databars"]["azerite"]["fontOutline"] = "NONE"
+		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "NONE"
+		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "NONE"
+		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"]["fontOutline"] = "NONE"
+		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"]["fontOutline"] = "NONE"
+		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "NONE"
+		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "NONE"
+		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "NONE"
+		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "NONE"
 	end
 	E.db["general"]["fontStyle"] = "NONE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "NONE"
@@ -2472,9 +2470,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
 	E.db["bags"]["itemLevelFontOutline"] = "NONE"
 	E.db["chat"]["fontOutline"] = "NONE"
 	E.db["cooldown"]["fonts"]["fontOutline"] = "NONE"
-	if ElvUI_EltreumUI.Retail then
-		E.db["databars"]["azerite"]["fontOutline"] = "NONE"
-	end
 	E.db["databars"]["experience"]["fontOutline"] = "NONE"
 	E.db["databars"]["reputation"]["fontOutline"] = "NONE"
 	E.db["databars"]["threat"]["fontOutline"] = "NONE"
@@ -2483,13 +2478,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"]["fontOutline"] = "NONE"
-	if ElvUI_EltreumUI.Retail then
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "NONE"
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "NONE"
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"]["fontOutline"] = "NONE"
-		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"]["fontOutline"] = "NONE"
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "NONE"
-	end
 	E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["fontOutline"] = "NONE"
@@ -2539,10 +2527,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
 	E.db["actionbar"]["bar9"]["macroFontOutline"] = "NONE"
 	E.db["actionbar"]["barPet"]["countFontOutline"] = "NONE"
 	E.db["actionbar"]["barPet"]["hotkeyFontOutline"] = "NONE"
-	if ElvUI_EltreumUI.Retail then
-		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "NONE"
-		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "NONE"
-	end
 	E.db["actionbar"]["fontOutline"] = "NONE"
 	E.db["actionbar"]["stanceBar"]["hotkeyFontOutline"] = "NONE"
 	E.db["actionbar"]["vehicleExitButton"]["hotkeyFontOutline"] = "NONE"
@@ -2568,9 +2552,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["fontOutline"] = "NONE"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["fontOutline"] = "NONE"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["power"]["text"]["fontOutline"] = "NONE"
-	if ElvUI_EltreumUI.Retail then
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "NONE"
-	end
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFontOutline"] = "NONE"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["fontOutline"] = "NONE"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countFontOutline"] = "NONE"
@@ -2588,7 +2569,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
 end
 
 function ElvUI_EltreumUI:SetupFontsOutlineThick(addon)
-	if not E.db.movers then E.db.movers = {} end
 	if ElvUI_EltreumUI.Retail then
 		PA.db["stAddonManager"]["FontFlag"] = "THICKOUTLINE"
 		E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "THICKOUTLINE"
@@ -2618,6 +2598,15 @@ function ElvUI_EltreumUI:SetupFontsOutlineThick(addon)
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "THICKOUTLINE"
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "THICKOUTLINE"
 		E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
+		E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"]["fontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"]["fontOutline"] = "THICKOUTLINE"
+		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
+		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "THICKOUTLINE"
+		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "THICKOUTLINE"
 	end
 	E.db["general"]["fontStyle"] = "THICKOUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE"
@@ -2626,9 +2615,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineThick(addon)
 	E.db["bags"]["itemLevelFontOutline"] = "THICKOUTLINE"
 	E.db["chat"]["fontOutline"] = "THICKOUTLINE"
 	E.db["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
-	if ElvUI_EltreumUI.Retail then
-		E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
-	end
 	E.db["databars"]["experience"]["fontOutline"] = "THICKOUTLINE"
 	E.db["databars"]["reputation"]["fontOutline"] = "THICKOUTLINE"
 	E.db["databars"]["threat"]["fontOutline"] = "THICKOUTLINE"
@@ -2637,13 +2623,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineThick(addon)
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"]["fontOutline"] = "THICKOUTLINE"
-	if ElvUI_EltreumUI.Retail then
-	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "THICKOUTLINE"
-	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "THICKOUTLINE"
-	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "THICKOUTLINE"
-	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"]["fontOutline"] = "THICKOUTLINE"
-	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"]["fontOutline"] = "THICKOUTLINE"
-end
 	E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["fontOutline"] = "THICKOUTLINE"
@@ -2693,10 +2672,6 @@ end
 	E.db["actionbar"]["bar9"]["macroFontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["barPet"]["countFontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["barPet"]["hotkeyFontOutline"] = "THICKOUTLINE"
-	if ElvUI_EltreumUI.Retail then
-		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
-		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "THICKOUTLINE"
-	end
 	E.db["actionbar"]["fontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["stanceBar"]["hotkeyFontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["vehicleExitButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
@@ -2722,9 +2697,6 @@ end
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["fontOutline"] = "THICKOUTLINE"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["fontOutline"] = "THICKOUTLINE"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["power"]["text"]["fontOutline"] = "THICKOUTLINE"
-	if ElvUI_EltreumUI.Retail then
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "THICKOUTLINE"
-	end
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFontOutline"] = "THICKOUTLINE"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["fontOutline"] = "THICKOUTLINE"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countFontOutline"] = "THICKOUTLINE"
@@ -2742,7 +2714,6 @@ end
 end
 
 function ElvUI_EltreumUI:SetupFontsOutlineOutline(addon)
-	if not E.db.movers then E.db.movers = {} end
 	if ElvUI_EltreumUI.Retail then
 		PA.db["stAddonManager"]["FontFlag"] = "OUTLINE"
 		E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "OUTLINE"
@@ -2771,6 +2742,16 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline(addon)
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "OUTLINE"
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "OUTLINE"
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "OUTLINE"
+		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "OUTLINE"
+		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "OUTLINE"
+		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "OUTLINE"
+		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"]["fontOutline"] = "OUTLINE"
+		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"]["fontOutline"] = "OUTLINE"
+		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "OUTLINE"
+		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "OUTLINE"
+		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "OUTLINE"
+		E.db["databars"]["azerite"]["fontOutline"] = "OUTLINE"
+		E.db["general"]["altPowerBar"]["fontOutline"] = "OUTLINE"
 	end
 	E.db["general"]["fontStyle"] = "OUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "OUTLINE"
@@ -2779,10 +2760,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline(addon)
 	E.db["bags"]["itemLevelFontOutline"] = "OUTLINE"
 	E.db["chat"]["fontOutline"] = "OUTLINE"
 	E.db["cooldown"]["fonts"]["fontOutline"] = "OUTLINE"
-	if ElvUI_EltreumUI.Retail then
-		E.db["databars"]["azerite"]["fontOutline"] = "OUTLINE"
-		E.db["general"]["altPowerBar"]["fontOutline"] = "OUTLINE"
-	end
 	E.db["databars"]["experience"]["fontOutline"] = "OUTLINE"
 	E.db["databars"]["reputation"]["fontOutline"] = "OUTLINE"
 	E.db["databars"]["threat"]["fontOutline"] = "OUTLINE"
@@ -2791,13 +2768,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline(addon)
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"]["fontOutline"] = "OUTLINE"
-	if ElvUI_EltreumUI.Retail then
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "OUTLINE"
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "OUTLINE"
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "OUTLINE"
-		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"]["fontOutline"] = "OUTLINE"
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"]["fontOutline"] = "OUTLINE"
-	end
 	E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["fontOutline"] = "OUTLINE"
@@ -2847,10 +2817,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline(addon)
 	E.db["actionbar"]["bar9"]["macroFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["barPet"]["countFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["barPet"]["hotkeyFontOutline"] = "OUTLINE"
-	if ElvUI_EltreumUI.Retail then
-		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "OUTLINE"
-		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "OUTLINE"
-	end
 	E.db["actionbar"]["fontOutline"] = "OUTLINE"
 	E.db["actionbar"]["stanceBar"]["hotkeyFontOutline"] = "OUTLINE"
 	E.db["actionbar"]["vehicleExitButton"]["hotkeyFontOutline"] = "OUTLINE"
@@ -2876,9 +2842,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline(addon)
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["fontOutline"] = "OUTLINE"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["fontOutline"] = "OUTLINE"
 	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["power"]["text"]["fontOutline"] = "OUTLINE"
-	if ElvUI_EltreumUI.Retail then
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "OUTLINE"
-	end
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFontOutline"] = "OUTLINE"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["fontOutline"] = "OUTLINE"
 	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countFontOutline"] = "OUTLINE"

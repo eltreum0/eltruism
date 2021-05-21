@@ -721,9 +721,9 @@ if ElvUI_EltreumUI.Retail then
 		E.db["general"]["totems"]["size"] = 30
 		E.db["general"]["totems"]["sortDirection"] = "DESCENDING"
 		E.db["general"]["totems"]["spacing"] = 3
-		E.db["general"]["valuecolor"]["b"] = 0.86666476726532
-		E.db["general"]["valuecolor"]["g"] = 0.4392147064209
-		E.db["general"]["valuecolor"]["r"] = 0
+		E.db["general"]["valuecolor"]["b"] = valuecolors.b
+		E.db["general"]["valuecolor"]["g"] = valuecolors.g
+		E.db["general"]["valuecolor"]["r"] = valuecolors.r
 		E.db["general"]["vehicleSeatIndicatorSize"] = 76
 
 		-- Bags
@@ -764,9 +764,9 @@ if ElvUI_EltreumUI.Retail then
 		E.db["chat"]["panelWidthRight"] = 400
 		E.db["chat"]["tabFont"] = "Kimberley"
 		E.db["chat"]["tabFontSize"] = 14
-		E.db["chat"]["tabSelectorColor"]["b"] = 0.86666476726532
-		E.db["chat"]["tabSelectorColor"]["g"] = 0.4392147064209
-		E.db["chat"]["tabSelectorColor"]["r"] = 0
+		E.db["chat"]["tabSelectorColor"]["b"] = valuecolors.b
+		E.db["chat"]["tabSelectorColor"]["g"] = valuecolors.g
+		E.db["chat"]["tabSelectorColor"]["r"] = valuecolors.r
 		E.db["chat"]["throttleInterval"] = 20
 
 		-- Cooldown Text
@@ -4733,9 +4733,9 @@ elseif ElvUI_EltreumUI.TBC then
 		E.db["chat"]["panelWidthRight"] = 400
 		E.db["chat"]["tabFont"] = "Kimberley"
 		E.db["chat"]["tabFontSize"] = 14
-		E.db["chat"]["tabSelectorColor"]["b"] = 0.86666476726532
-		E.db["chat"]["tabSelectorColor"]["g"] = 0.4392147064209
-		E.db["chat"]["tabSelectorColor"]["r"] = 0
+		E.db["chat"]["tabSelectorColor"]["b"] = valuecolors.b
+		E.db["chat"]["tabSelectorColor"]["g"] = valuecolors.g
+		E.db["chat"]["tabSelectorColor"]["r"] = valuecolors.r
 		E.db["chat"]["throttleInterval"] = 20
 
 		-- Cooldown Text
