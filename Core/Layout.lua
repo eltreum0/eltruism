@@ -1110,7 +1110,7 @@ if ElvUI_EltreumUI.Retail then
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 16,
-			["text_format"] = "[namecolor][name:azilroka:abbreviate]",
+			["text_format"] = "[namecolor][name:eltruism:abbreviate]",
 			["xOffset"] = -2,
 			["yOffset"] = 0
 		}
@@ -1491,12 +1491,12 @@ if ElvUI_EltreumUI.Retail then
 			E.db["movers"]["ElvAB_8"] = "BOTTOM,ElvUIParent,BOTTOM,0,35"
 			E.db["movers"]["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,230"
 			E.db["movers"]["ElvNP_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,334"
-			E.db["movers"]["ElvUF_AssistMover"] = "BOTTOM,ElvUIParent,BOTTOM,158,46"
+			E.db["movers"]["ElvUF_AssistMover"] = "BOTTOM,ElvUIParent,BOTTOM,155,45"
 			E.db["movers"]["ElvUF_BodyGuardMover"] = "TOP,ElvUIParent,TOP,0,-440"
 			E.db["movers"]["ElvUF_FocusMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-420,522"
 			E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-247"
 			E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,563,283"
-			E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,591,183"
+			E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,560,183"
 			E.db["movers"]["ElvUF_PlayerAuraMover"] = "BOTTOM,ElvUIParent,BOTTOM,-276,239"
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,269"
 			E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,299"
@@ -1804,7 +1804,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["useCustomBackdrop"] = true
 			E.db["unitframe"]["units"]["pet"]["castbar"]["height"] = 15
 			E.db["unitframe"]["units"]["pet"]["castbar"]["overlayOnFrame"] = "Health"
-			E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 100
+			E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 161
 			E.db["unitframe"]["units"]["pet"]["debuffs"]["countFontOutline"] = "NONE"
 			E.db["unitframe"]["units"]["pet"]["disableTargetGlow"] = false
 			E.db["unitframe"]["units"]["pet"]["fader"]["casting"] = true
@@ -2377,7 +2377,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["movers"]["TorghastBuffsMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,206"
 			E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,376"
 			E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,-1"
-			E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-176,-171"
+			E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-183,-180"
 			E.db["movers"]["VehicleSeatMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-210,-150"
 			E.db["movers"]["WTCustomEmoteFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-24"
 			E.db["movers"]["WTExtraItemsBar1Mover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-239,231"
@@ -3211,7 +3211,7 @@ elseif ElvUI_EltreumUI.Classic then
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 16,
-			["text_format"] = "[namecolor][name:azilroka:abbreviate]",
+			["text_format"] = "[namecolor][name:eltruism:abbreviate]",
 			["xOffset"] = -2,
 			["yOffset"] = 0
 		}
@@ -3551,8 +3551,6 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "DOWN_RIGHT"
 
 			-- Movers DPS/TANK
-
-
 			E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-70,-311"
 			E.db["movers"]["BNETMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-253"
 			E.db["movers"]["BelowMinimapContainerMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-516,157"
@@ -3572,12 +3570,12 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["movers"]["ElvAB_8"] = "BOTTOM,ElvUIParent,BOTTOM,0,35"
 			E.db["movers"]["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,230"
 			E.db["movers"]["ElvNP_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,334"
-			E.db["movers"]["ElvUF_AssistMover"] = "BOTTOM,ElvUIParent,BOTTOM,158,46"
+			E.db["movers"]["ElvUF_AssistMover"] = "BOTTOM,ElvUIParent,BOTTOM,155,45"
 			E.db["movers"]["ElvUF_BodyGuardMover"] = "TOP,ElvUIParent,TOP,0,-440"
 			E.db["movers"]["ElvUF_FocusMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-420,522"
 			E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-247"
 			E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,563,283"
-			E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,591,183"
+			E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,560,183"
 			E.db["movers"]["ElvUF_PlayerAuraMover"] = "BOTTOM,ElvUIParent,BOTTOM,-276,239"
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,269"
 			E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,299"
@@ -3624,7 +3622,7 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
 			E.db["movers"]["TorghastBuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-346"
 			E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,256"
-			E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-184,-180"
+			E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-183,-180"
 			E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,0,34"
 			-- DPS unit colors
 			E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = valuecolors.b
@@ -5005,7 +5003,7 @@ elseif ElvUI_EltreumUI.TBC then
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 16,
-			["text_format"] = "[namecolor][name:azilroka:abbreviate]",
+			["text_format"] = "[namecolor][name:eltruism:abbreviate]",
 			["xOffset"] = -2,
 			["yOffset"] = 0
 		}
@@ -5357,12 +5355,12 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["movers"]["ElvAB_8"] = "BOTTOM,ElvUIParent,BOTTOM,0,35"
 			E.db["movers"]["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,230"
 			E.db["movers"]["ElvNP_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,334"
-			E.db["movers"]["ElvUF_AssistMover"] = "BOTTOM,ElvUIParent,BOTTOM,158,46"
+			E.db["movers"]["ElvUF_AssistMover"] = "BOTTOM,ElvUIParent,BOTTOM,155,45"
 			E.db["movers"]["ElvUF_BodyGuardMover"] = "TOP,ElvUIParent,TOP,0,-440"
 			E.db["movers"]["ElvUF_FocusMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-420,522"
 			E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-247"
 			E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,563,283"
-			E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,591,183"
+			E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,560,183"
 			E.db["movers"]["ElvUF_PlayerAuraMover"] = "BOTTOM,ElvUIParent,BOTTOM,-276,239"
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,269"
 			E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,299"
@@ -5407,7 +5405,7 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
 			E.db["movers"]["TorghastBuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-346"
 			E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,256"
-			E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-176,-171"
+			E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-183,-180"
 			E.db["movers"]["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,0,34"
 			-- DPS unit colors
 			E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = valuecolors.b
@@ -5533,7 +5531,7 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["useCustomBackdrop"] = true
 			E.db["unitframe"]["units"]["pet"]["castbar"]["height"] = 15
 			E.db["unitframe"]["units"]["pet"]["castbar"]["overlayOnFrame"] = "Health"
-			E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 100
+			E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 161
 			E.db["unitframe"]["units"]["pet"]["debuffs"]["countFontOutline"] = "NONE"
 			E.db["unitframe"]["units"]["pet"]["disableTargetGlow"] = false
 			E.db["unitframe"]["units"]["pet"]["fader"]["casting"] = true

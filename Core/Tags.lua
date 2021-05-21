@@ -11,4 +11,4 @@ ElvUF.Tags.Methods['name:azilroka:abbreviate'] = function(unit)
 	return name
 	end
 
-E:AddTagInfo('name:azilroka:abbreviate', ElvUI_EltreumUI.Name, "Abbreviates the unit name once it goes over 16 characters, made by Azilroka")
+E:AddTagInfo('name:eltruism:abbreviate', ElvUI_EltreumUI.Name, "Abbreviates the unit name once it goes over 16 characters, made by Azilroka")

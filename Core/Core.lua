@@ -8,13 +8,9 @@ function ElvUI_EltreumUI:Print(msg)
 	print('|cff82B4ffEltruism|r: '..msg)
 end
 function ElvUI_EltreumUI:VersionCheck()
-		if E.db.ElvUI_EltreumUI.install_version < "2.0.0" then
-			ElvUI_EltreumUI:SetupStyleFilters()
-			ElvUI_EltreumUI:SetupCVars()
-			ElvUI_EltreumUI:NameplateCVars()
-			ElvUI_EltreumUI:AddonSetupPA()
-			E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = true
-			E.db.ElvUI_EltreumUI.install_version = "2.0.0"
+		if E.db.ElvUI_EltreumUI.install_version <= "2.0.2" then
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
+			E.db.ElvUI_EltreumUI.install_version = "2.0.2"
 			print('|cff82B4ffEltruism|r: '..'Settings were updated for the newest version. Please reload to avoid issues!')
 		end
 end
