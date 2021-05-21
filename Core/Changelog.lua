@@ -5,6 +5,13 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v2.0.3
+    -------
+Improved Font Outline detection
+Pet bar change to accomodate name length and happiness
+Other minor changes to profile
+Questie profile for Classic/TBC
+
     v2.0.2
     -------
 Added Dark Mode and Light Mode
