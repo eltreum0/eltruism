@@ -14,7 +14,7 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 				["trackerbindSetTomTom"] = "left",
 				["DBMHUDZoom"] = 200,
 				["questObjectiveColors"] = true,
-				["dbmHUDRadius"] = 1,
+				["dbmHUDRadius"] = 4,
 				["trackerFontObjective"] = "Kimberley",
 				["mapCoordinatesEnabled"] = false,
 				["professionTrainers"] = {
@@ -2021,7 +2021,7 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 				["trackerbindSetTomTom"] = "left",
 				["DBMHUDZoom"] = 200,
 				["questObjectiveColors"] = true,
-				["dbmHUDRadius"] = 1,
+				["dbmHUDRadius"] = 4,
 				["trackerColorObjectives"] = "whiteAndGreen",
 				["mapCoordinatesEnabled"] = false,
 				["trackerFontZone"] = "Kimberley",

@@ -84,32 +84,37 @@ function ElvUI_EltreumUI:LootText()
 					end
 
 				end
-				if (event == "CHAT_MSG_CURRENCY") then
-					itemLink, amount =  Deformat(arg1, CURRENCY_GAINED_MULTIPLE_BONUS)
-					if not amount then
-						itemLink, amount =  Deformat(arg1, CURRENCY_GAINED_MULTIPLE)
-					end
-					if not amount then
-						itemLink = Deformat(arg1, CURRENCY_GAINED)
-						amount = 1
-					end
-					if itemLink then
-						local info = C_CurrencyInfo.GetCurrencyInfoFromLink(itemLink)
-						local lootTexture = info["iconFileID"]
-						local lootName = info["name"]
-						local lootQuantity = amount
-						if itemLink:match("Soul Ash") then
-							CombatText_AddMessage("|T ".. 3743738 ..":22:22:-11:-11|t  "..lootQuantity.." x "..itemLink, CombatText_StandardScroll, 255, 255, 255)
+
+				if ElvUI_EltreumUI.Retail then
+					if (event == "CHAT_MSG_CURRENCY") then
+						itemLink, amount =  Deformat(arg1, CURRENCY_GAINED_MULTIPLE_BONUS)
+						if not amount then
+							itemLink, amount =  Deformat(arg1, CURRENCY_GAINED_MULTIPLE)
 						end
-						if not itemLink:match("Soul Ash") then
-							if lootQuantity >= 2 then
-								CombatText_AddMessage("|T ".. lootTexture ..":22:22:0:0|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, 255, 255, 255)
-							else
-								CombatText_AddMessage("|T ".. lootTexture ..":22:22:0:0|t".."  "..lootName, CombatText_StandardScroll, 255, 255, 255)
+						if not amount then
+							itemLink = Deformat(arg1, CURRENCY_GAINED)
+							amount = 1
+						end
+						if itemLink then
+							local info = C_CurrencyInfo.GetCurrencyInfoFromLink(itemLink)
+							local lootTexture = info["iconFileID"]
+							local lootName = info["name"]
+							local lootQuantity = amount
+							if itemLink:match("Soul Ash") then
+								CombatText_AddMessage("|T ".. 3743738 ..":22:22:-11:-11|t  "..lootQuantity.." x "..itemLink, CombatText_StandardScroll, 255, 255, 255)
+							end
+							if not itemLink:match("Soul Ash") then
+								if lootQuantity >= 2 then
+									CombatText_AddMessage("|T ".. lootTexture ..":22:22:0:0|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, 255, 255, 255)
+								else
+									CombatText_AddMessage("|T ".. lootTexture ..":22:22:0:0|t".."  "..lootName, CombatText_StandardScroll, 255, 255, 255)
+								end
 							end
 						end
 					end
 				end
+
+
 			end
 			if E.private.ElvUI_EltreumUI.loottext.honor then
 				if (event == "CHAT_MSG_COMBAT_HONOR_GAIN") then

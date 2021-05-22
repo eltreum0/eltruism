@@ -5,6 +5,13 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v2.0.4
+    -------
+Fixed a bug with LootText when awarded honor in Classic and Burning Crusade Classic
+More pet unitframe changes to accomodate name length and happiness tracking
+Changed the DBM HUD size in Questie profile
+Warning: DBM HUD will cause bugs in bgs due to not being supported in instances
+
     v2.0.3
     -------
 Improved Font Outline detection

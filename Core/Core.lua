@@ -13,7 +13,7 @@ function ElvUI_EltreumUI:VersionCheck()
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
 
 			ElvUI_EltreumUI:ResolutionOutline()
-			E.db.ElvUI_EltreumUI.install_version = "2.0.3"
+			E.db.ElvUI_EltreumUI.install_version = "2.0.4"
 			print('|cff82B4ffEltruism|r: '..'Settings were updated for the newest version. Please reload to avoid issues!')
 		end
 end

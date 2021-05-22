@@ -25,7 +25,11 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "FORCE_OFF"
 
 		--setup namecolors
+		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
+		elseif ElvUI_EltreumUI.Retail then
+		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name]"
+		end
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name]"
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
 		E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
@@ -58,8 +62,12 @@ function ElvUI_EltreumUI:LightMode()
 		E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "USE_DEFAULT"
 
 		--setup namecolors
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
+		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
+		elseif ElvUI_EltreumUI.Retail then
+		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
+		end
+		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name]"
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[name:eltruism:abbreviate]"
 		E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"

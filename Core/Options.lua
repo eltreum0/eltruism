@@ -2024,14 +2024,6 @@ if ElvUI_EltreumUI.Classic then
 										type = "description",
 										name = "",
 										},
-										honor = {
-											type = 'toggle',
-											name = 'Honor',
-											order = 5,
-											disabled = function() return not E.private.ElvUI_EltreumUI.loottext.enable end,
-											get = function(info) return E.private.ElvUI_EltreumUI.loottext.honor end,
-											set = function(info, value) E.private.ElvUI_EltreumUI.loottext.honor = value E:StaticPopup_Show('PRIVATE_RL') end,
-										},
 										currency = {
 											type = 'toggle',
 											name = 'Currency',
@@ -3052,14 +3044,6 @@ if ElvUI_EltreumUI.TBC then
 										order = 2,
 										type = "description",
 										name = "",
-										},
-										honor = {
-											type = 'toggle',
-											name = 'Honor',
-											order = 5,
-											disabled = function() return not E.private.ElvUI_EltreumUI.loottext.enable end,
-											get = function(info) return E.private.ElvUI_EltreumUI.loottext.honor end,
-											set = function(info, value) E.private.ElvUI_EltreumUI.loottext.honor = value E:StaticPopup_Show('PRIVATE_RL') end,
 										},
 										currency = {
 											type = 'toggle',

@@ -1822,7 +1822,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = "[power:current:shortvalue]"
 			E.db["unitframe"]["units"]["pet"]["power"]["width"] = "spaced"
 			E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
-			E.db["unitframe"]["units"]["pet"]["width"] = 100
+			E.db["unitframe"]["units"]["pet"]["width"] = 161
 			E.db["unitframe"]["units"]["pettarget"]["buffs"]["countFontOutline"] = "NONE"
 			E.db["unitframe"]["units"]["pettarget"]["debuffs"]["countFontOutline"] = "NONE"
 			E.db["unitframe"]["units"]["pettarget"]["power"]["enable"] = false
@@ -3763,7 +3763,7 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = "[power:current:shortvalue]"
 			E.db["unitframe"]["units"]["pet"]["power"]["width"] = "spaced"
 			E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
-			E.db["unitframe"]["units"]["pet"]["width"] = 100
+			E.db["unitframe"]["units"]["pet"]["width"] = 161
 			E.db["unitframe"]["units"]["pettarget"]["buffs"]["countFontOutline"] = "NONE"
 			E.db["unitframe"]["units"]["pettarget"]["debuffs"]["countFontOutline"] = "NONE"
 			E.db["unitframe"]["units"]["pettarget"]["power"]["enable"] = false
@@ -4311,7 +4311,6 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["colors"]["transparentCastbar"] = true
 			E.db["unitframe"]["colors"]["transparentHealth"] = true
 			E.db["unitframe"]["colors"]["transparentPower"] = true
-
 			E.db["unitframe"]["debuffHighlighting"] = "GLOW"
 			E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
 			E.db["unitframe"]["font"] = "Kimberley"
@@ -4319,7 +4318,6 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["smartRaidFilter"] = false
 			E.db["unitframe"]["smoothbars"] = true
 			E.db["unitframe"]["targetSound"] = true
-
 			E.db["unitframe"]["units"]["assist"]["rdebuffs"]["yOffset"] = 7
 			E.db["unitframe"]["units"]["party"]["buffIndicator"]["size"] = 16
 			E.db["unitframe"]["units"]["party"]["buffs"]["anchorPoint"] = "TOPRIGHT"
@@ -5549,7 +5547,7 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = "[power:current:shortvalue]"
 			E.db["unitframe"]["units"]["pet"]["power"]["width"] = "spaced"
 			E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
-			E.db["unitframe"]["units"]["pet"]["width"] = 100
+			E.db["unitframe"]["units"]["pet"]["width"] = 161
 			E.db["unitframe"]["units"]["pettarget"]["buffs"]["countFontOutline"] = "NONE"
 			E.db["unitframe"]["units"]["pettarget"]["debuffs"]["countFontOutline"] = "NONE"
 			E.db["unitframe"]["units"]["pettarget"]["power"]["enable"] = false
