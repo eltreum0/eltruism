@@ -1082,15 +1082,15 @@ if ElvUI_EltreumUI.Retail then
 		-- Custom Text: Target
 		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 12,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 0,
-		["yOffset"] = 15
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 12,
+			["text_format"] = "||cffFFFF00[absorbs]||r",
+			["xOffset"] = 0,
+			["yOffset"] = 15
 		}
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] = {
 			["attachTextTo"] = "Health",

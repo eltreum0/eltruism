@@ -21,7 +21,6 @@ Added Dark Mode and Light Mode
 Can be found in Eltruism > Media
 Fixed Bigwigs profile for TBC due to new version
 
-
     v2.0.1
     -------
 Fixed absorb tags in Classic/TBC

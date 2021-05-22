@@ -25,10 +25,9 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "FORCE_OFF"
 
 		--setup namecolors
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
 		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name]"
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:azilroka:abbreviate]"
+		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
 		E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
 		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
@@ -62,7 +61,7 @@ function ElvUI_EltreumUI:LightMode()
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
 		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name]"
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[name:azilroka:abbreviate]"
+		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[name:eltruism:abbreviate]"
 		E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
 		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then

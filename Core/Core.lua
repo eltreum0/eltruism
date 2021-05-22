@@ -9,11 +9,9 @@ function ElvUI_EltreumUI:Print(msg)
 end
 function ElvUI_EltreumUI:VersionCheck()
 		if E.db.ElvUI_EltreumUI.install_version < "2.0.3" then
-			function ElvUI_EltreumUI:UpdateLayout(layout)
-				if not E.db.movers then E.db.movers = {} end
-				E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
-				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
-			end
+			if not E.db.movers then E.db.movers = {} end
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
+
 			ElvUI_EltreumUI:ResolutionOutline()
 			E.db.ElvUI_EltreumUI.install_version = "2.0.3"
 			print('|cff82B4ffEltruism|r: '..'Settings were updated for the newest version. Please reload to avoid issues!')
