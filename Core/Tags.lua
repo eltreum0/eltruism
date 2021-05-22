@@ -2,8 +2,8 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local ElvUF = E.oUF
 
 -- Name custom abbreviation by Azilroka
-ElvUF.Tags.Events['name:azilroka:abbreviate'] = 'UNIT_NAME_UPDATE'
-ElvUF.Tags.Methods['name:azilroka:abbreviate'] = function(unit)
+ElvUF.Tags.Events['name:eltruism:abbreviate'] = 'UNIT_NAME_UPDATE'
+ElvUF.Tags.Methods['name:eltruism:abbreviate'] = function(unit)
 	local name = UnitName(unit)
 	if name and string.len(name) > 16 then
         name = name:gsub('(%S+) ', function(t) return t:sub(1,1)..'. ' end)

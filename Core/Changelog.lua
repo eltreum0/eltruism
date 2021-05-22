@@ -8,9 +8,12 @@ function ElvUI_EltreumUI:Changelog()
     v2.0.3
     -------
 Improved Font Outline detection
+Friendly Nameplate disable option added
 Pet bar change to accomodate name length and happiness
 Other minor changes to profile
-Questie profile for Classic/TBC
+Questie profile for Classic and Burning Crusade Classic
+You will need to reload after questie builds the database and reload again after setting the profile
+Classic Questie has some issues at the moment and you might need several reloads due to a known bug with townsfolk
 
     v2.0.2
     -------

@@ -33,6 +33,7 @@ V.ElvUI_EltreumUI = {
 	friendlynameplatetoggle = {
 		disablefriendly = false,
 		friendlynames = true,
+		hidefriendly = false,
 	},
 
 	afkmusic = {

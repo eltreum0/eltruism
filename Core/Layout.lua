@@ -1470,7 +1470,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "DOWN_RIGHT"
 
 			-- Movers DPS/TANK
-			E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-70,-311"
+			E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-172,-381"
 			E.db["movers"]["AzeriteBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,430,-1"
 			E.db["movers"]["BNETMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-254"
 			E.db["movers"]["BelowMinimapContainerMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-516,157"
@@ -2359,7 +2359,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["movers"]["MinimapButtonAnchor"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-223"
 			E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
 			E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96"
-			E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-64,-326"
+			E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-65,-319"
 			E.db["movers"]["PetAB"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,255"
 			E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,343,1"
 			E.db["movers"]["RaidUtility_Mover"] = "TOP,ElvUIParent,TOP,-220,1"
@@ -3551,7 +3551,7 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "DOWN_RIGHT"
 
 			-- Movers DPS/TANK
-			E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-70,-311"
+			E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-172,-381"
 			E.db["movers"]["BNETMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-253"
 			E.db["movers"]["BelowMinimapContainerMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-516,157"
 			E.db["movers"]["BossButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,72"
@@ -3592,7 +3592,6 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["movers"]["GMMover"] = "TOP,ElvUIParent,TOP,239,-3"
 			E.db["movers"]["GhostFrameMover"] = "TOP,ElvUIParent,TOP,0,-280"
 			E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,0"
-			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-132,-392"
 			E.db["movers"]["LocationMover"] = "TOP,ElvUIParent,TOP,0,-2"
 			E.db["movers"]["LootFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-156"
 			E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-317"
@@ -3618,7 +3617,8 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-5,-226"
 			E.db["movers"]["TalkingHeadFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
 			E.db["movers"]["ThreatBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,78"
-			E.db["movers"]["QuestTimerFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-50,-318"
+			E.db["movers"]["QuestTimerFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-258,-231"
+			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-205,-306"
 			E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
 			E.db["movers"]["TorghastBuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-346"
 			E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,256"
@@ -4243,7 +4243,7 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["movers"]["MinimapButtonAnchor"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-223"
 			E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
 			E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96"
-			E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-64,-326"
+			E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-65,-319"
 			E.db["movers"]["PetAB"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,255"
 			E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,343,1"
 			E.db["movers"]["RaidUtility_Mover"] = "TOP,ElvUIParent,TOP,-220,1"
@@ -5336,7 +5336,7 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "DOWN_RIGHT"
 
 			-- Movers DPS/TANK
-			E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-70,-311"
+			E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-172,-381"
 			E.db["movers"]["BNETMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-254"
 			E.db["movers"]["BelowMinimapContainerMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-516,157"
 			E.db["movers"]["BossButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,72"
@@ -6059,7 +6059,7 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["movers"]["MinimapButtonAnchor"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-223"
 			E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
 			E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96"
-			E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-64,-326"
+			E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-65,-319"
 			E.db["movers"]["PetAB"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,255"
 			E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,343,1"
 			E.db["movers"]["RaidUtility_Mover"] = "TOP,ElvUIParent,TOP,-220,1"

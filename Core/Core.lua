@@ -8,9 +8,13 @@ function ElvUI_EltreumUI:Print(msg)
 	print('|cff82B4ffEltruism|r: '..msg)
 end
 function ElvUI_EltreumUI:VersionCheck()
-		if E.db.ElvUI_EltreumUI.install_version <= "2.0.2" then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
-			E.db.ElvUI_EltreumUI.install_version = "2.0.2"
+		if E.db.ElvUI_EltreumUI.install_version < "2.0.3" then
+			function ElvUI_EltreumUI:UpdateLayout(layout)
+				if not E.db.movers then E.db.movers = {} end
+				E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
+			end
+			E.db.ElvUI_EltreumUI.install_version = "2.0.3"
 			print('|cff82B4ffEltruism|r: '..'Settings were updated for the newest version. Please reload to avoid issues!')
 		end
 end
@@ -96,6 +100,14 @@ function ElvUI_EltreumUI:AddonSetupPA()
 	if IsAddOnLoaded('ProjectAzilroka') then
 		ElvUI_EltreumUI:GetPAProfile()
 		ElvUI_EltreumUI:Print('ProjectAzilroka profile has been set.')
+	end
+end
+
+-- Questie Profile
+function ElvUI_EltreumUI:AddonSetupQuestie()
+	if IsAddOnLoaded('Questie') then
+		ElvUI_EltreumUI:GetQuestieProfile()
+		ElvUI_EltreumUI:Print('Questie profile has been set.')
 	end
 end
 

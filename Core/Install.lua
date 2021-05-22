@@ -1,9 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local ReloadUI = ReloadUI
 local format = string.format
-
-
-
 local IsAddOnLoaded = IsAddOnLoaded
 
 -- Set version & reload on "Skip" and "Finished"
@@ -11,8 +8,6 @@ local function InstallComplete()
 	E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
 	ReloadUI()
 end
-
-
 
 if ElvUI_EltreumUI.Retail then
 	-- Installer Steps Retail
@@ -373,7 +368,6 @@ if ElvUI_EltreumUI.Retail then
 		StepTitleTextJustification = 'CENTER',
 	}
 elseif ElvUI_EltreumUI.Classic then
-
 	-- Installer Steps Classic
 	ElvUI_EltreumUI.InstallerData = {
 		Title =  ElvUI_EltreumUI.Name,
@@ -551,6 +545,25 @@ elseif ElvUI_EltreumUI.Classic then
 	           	end
 			end,
 			[10] = function()
+				PluginInstallFrame.SubTitle:SetFormattedText('Questie')
+				PluginInstallFrame.Desc1:SetText('Import Questie profile')
+				PluginInstallFrame.Desc2:SetText('You will need to reload and wait for questie to rebuild the database')
+				PluginInstallFrame.Desc3:SetText('|cffff0000Questie for Classic has a few bugs for now, you might run into issues|r')
+				PluginInstallFrame.Desc4:SetText('Importance: |cff82B4ffOptional|r')
+				PluginInstallFrame.Option1:Enable()
+				PluginInstallFrame.Option1:Show()
+				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupQuestie() end)
+				PluginInstallFrame.Option1:SetText('Import')
+				if (not IsAddOnLoaded("Questie")) then
+					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
+	                PluginInstallFrame.Desc1:SetText("Questie is not installed or enabled")
+	                PluginInstallFrame.Desc2:SetText('Questie is addon that modifies the objective tracker')
+					PluginInstallFrame.Desc3:SetText('Adding a lot of features to it not available by default')
+					PluginInstallFrame.Desc4:SetText('Including TomTom support')
+	                PluginInstallFrame.Option1:Disable()
+	           	end
+			end,
+			[11] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Discord')
 				PluginInstallFrame.Desc1:SetText('Join the Discord if you have any questions or issues')
 				PluginInstallFrame.Option1:Enable()
@@ -558,7 +571,7 @@ elseif ElvUI_EltreumUI.Classic then
 				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/cXfA56gmYW') 	end)
 				PluginInstallFrame.Option1:SetText('Discord')
 			end,
-			[11] = function()
+			[12] = function()
 				PluginInstallFrame.SubTitle:SetText('Installation Complete')
 				PluginInstallFrame.Desc1:SetText('You have completed the installation process, please click "Finished" to reload the UI')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffVery High|r')
@@ -578,8 +591,9 @@ elseif ElvUI_EltreumUI.Classic then
 			[7] = 'Combat Text',
 			[8] = 'Immersion',
 			[9] = 'Dynamic Cam',
-			[10] = 'Discord',
-			[11] = 'Installation Complete',
+			[10] = 'Questie',
+			[11] = 'Discord',
+			[12] = 'Installation Complete',
 		},
 		StepTitlesColor = {1, 1, 1},
 		StepTitlesColorSelected = {70/255, 130/255, 180/255},
@@ -788,6 +802,25 @@ elseif ElvUI_EltreumUI.TBC then
 	           	end
 			end,
 			[10] = function()
+				PluginInstallFrame.SubTitle:SetFormattedText('Questie')
+				PluginInstallFrame.Desc1:SetText('Import Questie profile')
+				PluginInstallFrame.Desc2:SetText('You will need to reload and wait for questie to rebuild the database')
+				PluginInstallFrame.Desc3:SetText('|cffff0000Your current settings will be lost, please back them up|r')
+				PluginInstallFrame.Desc4:SetText('Importance: |cff82B4ffOptional|r')
+				PluginInstallFrame.Option1:Enable()
+				PluginInstallFrame.Option1:Show()
+				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupQuestie() end)
+				PluginInstallFrame.Option1:SetText('Import')
+				if (not IsAddOnLoaded("Questie")) then
+					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
+	                PluginInstallFrame.Desc1:SetText("Questie is not installed or enabled")
+	                PluginInstallFrame.Desc2:SetText('Questie is addon that modifies the objective tracker')
+					PluginInstallFrame.Desc3:SetText('Adding a lot of features to it not available by default')
+					PluginInstallFrame.Desc4:SetText('Including TomTom support')
+	                PluginInstallFrame.Option1:Disable()
+	           	end
+			end,
+			[11] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Discord')
 				PluginInstallFrame.Desc1:SetText('Join the Discord if you have any questions or issues')
 				PluginInstallFrame.Option1:Enable()
@@ -795,7 +828,7 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/cXfA56gmYW') 	end)
 				PluginInstallFrame.Option1:SetText('Discord')
 			end,
-			[11] = function()
+			[12] = function()
 				PluginInstallFrame.SubTitle:SetText('Installation Complete')
 				PluginInstallFrame.Desc1:SetText('You have completed the installation process, please click "Finished" to reload the UI')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffVery High|r')
@@ -815,8 +848,9 @@ elseif ElvUI_EltreumUI.TBC then
 			[7] = 'Combat Text',
 			[8] = 'Immersion',
 			[9] = 'Dynamic Cam',
-			[10] = 'Discord',
-			[11] = 'Installation Complete',
+			[10] = 'Questie',
+			[11] = 'Discord',
+			[12] = 'Installation Complete',
 		},
 		StepTitlesColor = {1, 1, 1},
 		StepTitlesColorSelected = {70/255, 130/255, 180/255},
@@ -824,9 +858,4 @@ elseif ElvUI_EltreumUI.TBC then
 		StepTitleButtonWidth = 180,
 		StepTitleTextJustification = 'CENTER',
 	}
-
-
-
 end
-
-

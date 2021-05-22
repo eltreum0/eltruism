@@ -44,6 +44,9 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 			SetCVar("nameplateShowFriends", 1)
 		end
 	end
+	if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly then
+		SetCVar("nameplateShowFriends", 0)
+	end
 end
 
 -- Change classpower background, ty Benik for the great help

@@ -10,4 +10,5 @@
 	<Script file='Immersion.lua'/>
 	<Script file='NameplateSCT.lua'/>
 	<Script file='ProjectAzilroka.lua'/>
+	<Script file='Questie.lua'/>
 </Ui>
