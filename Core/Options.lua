@@ -862,7 +862,7 @@ if ElvUI_EltreumUI.Retail then
 							order = 5,
 							type = 'group',
 							inline = true,
-							name = 'Control how Nameplates behave inside instances',
+							name = 'Control how Nameplates behave',
 							args = {
 								hidehealthinsideinstances = {
 									order = 1,
@@ -1673,30 +1673,6 @@ if ElvUI_EltreumUI.Classic then
 						},
 					},
 				},
-				quests = {
-					type = 'group',
-					name = 'Quests',
-					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\quest',
-					order = 85,
-					args = {
-						questsettings = {
-							order = 1,
-							type = 'group',
-							inline = true,
-							name = 'Collapse Quests during Encounters/Boss Fights',
-							get = function(info) return E.private.ElvUI_EltreumUI.questsettings.enable end,
-							set = function(info, value) E.private.ElvUI_EltreumUI.questsettings.enable = value end,
-							args = {
-								enable = {
-									order = 5,
-									type = 'toggle',
-									name = 'Enable',
-									desc = 'Collapse Quests when the boss fight starts',
-								},
-							},
-						},
-					},
-				},
 				media = {
 					type = 'group',
 					name = 'Media',
@@ -1924,7 +1900,7 @@ if ElvUI_EltreumUI.Classic then
 							order = 5,
 							type = 'group',
 							inline = true,
-							name = 'Control how Nameplates behave inside instances',
+							name = 'Control how Nameplates behave',
 							args = {
 								showfriendlynameonly = {
 									order = 1,
@@ -2623,30 +2599,6 @@ if ElvUI_EltreumUI.TBC then
 						},
 					},
 				},
-				quests = {
-					type = 'group',
-					name = 'Quests',
-					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\quest',
-					order = 85,
-					args = {
-						questsettings = {
-							order = 1,
-							type = 'group',
-							inline = true,
-							name = 'Collapse Quests during Encounters/Boss Fights',
-							get = function(info) return E.private.ElvUI_EltreumUI.questsettings.enable end,
-							set = function(info, value) E.private.ElvUI_EltreumUI.questsettings.enable = value end,
-							args = {
-								enable = {
-									order = 5,
-									type = 'toggle',
-									name = 'Enable',
-									desc = 'Collapse Quests when the boss fight starts',
-								},
-							},
-						},
-					},
-				},
 				combatmusic = {
 					type = 'group',
 					name = 'Combat Music',
@@ -2945,7 +2897,7 @@ if ElvUI_EltreumUI.TBC then
 							order = 5,
 							type = 'group',
 							inline = true,
-							name = 'Control how Nameplates behave inside instances',
+							name = 'Control how Nameplates behave',
 							args = {
 								showfriendlynameonly = {
 									order = 1,

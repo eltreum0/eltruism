@@ -5,10 +5,14 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v2.0.5
+    -------
+Removed Quest options in Classic/TBC due to those versions not supporting the function
+
     v2.0.4
     -------
 Fixed a bug with LootText when awarded honor in Classic and Burning Crusade Classic
-More pet unitframe changes to accomodate name length and happiness tracking
+More pet unitframe changes to accommodate name length and happiness tracking
 Changed the DBM HUD size in Questie profile
 Warning: DBM HUD will cause bugs in bgs due to not being supported in instances
 
@@ -16,7 +20,7 @@ Warning: DBM HUD will cause bugs in bgs due to not being supported in instances
     -------
 Improved Font Outline detection
 Friendly Nameplate disable option added
-Pet bar change to accomodate name length and happiness
+Pet bar change to accommodate name length and happiness
 Other minor changes to profile
 Questie profile for Classic and Burning Crusade Classic
 You will need to reload after questie builds the database and reload again after setting the profile
