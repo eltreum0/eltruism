@@ -5,6 +5,10 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v2.0.6
+    -------
+Tweaked init function for quests
+
     v2.0.5
     -------
 Removed Quest options in Classic/TBC due to those versions not supporting the function

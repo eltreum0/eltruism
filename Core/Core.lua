@@ -115,6 +115,9 @@ function ElvUI_EltreumUI:AddonSetupNameplateSCT()
 	if IsAddOnLoaded('NameplateSCT') then
 		ElvUI_EltreumUI:GetNameplateSCTProfile()
 		SetCVar("enableFloatingCombatText", 0)
+		if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			SetCVar("floatingCombatTextCombatDamage", 0)
+		end
 		ElvUI_EltreumUI:Print('NameplateSCT profile has been set.')
 	end
 end
@@ -124,6 +127,9 @@ function ElvUI_EltreumUI:AddonSetupFCT()
 	if IsAddOnLoaded('ElvUI_FCT') then
 		ElvUI_EltreumUI:GetFCTProfile()
 		SetCVar("enableFloatingCombatText", 0)
+		if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			SetCVar("floatingCombatTextCombatDamage", 0)
+		end
 		ElvUI_EltreumUI:Print('Floating Combat Text profile has been set.')
 	end
 end

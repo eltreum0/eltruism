@@ -138,7 +138,9 @@ end
 
 function ElvUI_EltreumUI:ZONE_CHANGED()
 	ElvUI_EltreumUI:FriendlyNameplates()
-	ElvUI_EltreumUI:ArenaQuest()
+	if ElvUI_EltreumUI.Retail then
+		ElvUI_EltreumUI:ArenaQuest()
+	end
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
@@ -151,7 +153,9 @@ function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
 end
 
 function ElvUI_EltreumUI:ENCOUNTER_START()
-	ElvUI_EltreumUI:QuestEncounter()
+	if ElvUI_EltreumUI.Retail then
+		ElvUI_EltreumUI:QuestEncounter()
+	end
 	ElvUI_EltreumUI:CombatMusic()
 end
 
