@@ -627,7 +627,8 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["flash"]["speed"] = 1
 	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["scale"] = 1.2
 	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["texture"]["enable"] = true
-	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["texture"]["texture"] = "Ohi MetalPlate"
+	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["texture"]["texture"] = "Eltreum-Dark"
+	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["alpha"] = 100
 	E.global["nameplate"]["filters"]["EnemyCasting"]["triggers"]["casting"]["interruptible"] = true
 	E.global["nameplate"]["filters"]["EnemyCasting"]["triggers"]["inCombat"] = true
 	E.global["nameplate"]["filters"]["EnemyCasting"]["triggers"]["notTarget"] = true

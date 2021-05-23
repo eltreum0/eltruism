@@ -1,5 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
+local pacheck = GetAddOnMetadata('ProjectAzilroka', 'Version')
+
 
 -- ProjectAzilroka profile setup
 function ElvUI_EltreumUI:GetPAProfile()
@@ -10,7 +12,11 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["AuraReminder"]["Enable"] = false
 	PA.db["QuestSounds"]["Enable"] = false
 	if ElvUI_EltreumUI.Retail then
-		PA.db["BigButtons"]["Enable"] = false
+		if pacheck >= '1.77' then
+			PA.db["SunsongRanchFarmer"]["Enable"] = false
+		elseif pacheck < '1.77' then
+			PA.db["BigButtons"]["Enable"] = false
+		end
 		PA.db["QuestSounds"]["Enable"] = true
 		PA.db["QuestSounds"]["ObjectiveCompleteID"] = "None"
 		PA.db["QuestSounds"]["ObjectiveProgressID"] = "None"

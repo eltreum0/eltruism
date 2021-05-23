@@ -17,22 +17,20 @@ if ElvUI_EltreumUI.Retail then
 		tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 		Pages = {
 			[1] = function()
+					-- need to figure out how to hide the warning screens when first installing eltruism for those users that never used the other addons
 					--E:StaticPopup_Hide("INCOMPATIBLE_ADDON")
 					--E:StaticPopup_Hide('DISABLE_INCOMPATIBLE_ADDON')
 					--local W = unpack(ElvUI_Windtools)
 					--W:CompatibiltyFrame(Hide)
-
 					--local function HideWindtoolsCompatibilityFrame()
 					--	WTCompatibiltyFrame:Kill()
 					--end
 					--hooksecurefunc(W, 'W:Initialize', HideWindtoolsCompatibilityFrame)
-
 					--local W = unpack(ElvUI_Windtools)
 					--local W = W:GetModule('NamePlates')
 					--hooksecurefunc(W:ConstructCompatibiltyFrame(), function (frame)
 					--  ConstructCompatibiltyFrame(CompatibiltyFrame):Hide()
 					--end)
-
 
 				 -- Welcome Page and addon installed check
 	                if (not IsAddOnLoaded("ElvUI_WindTools")) then
@@ -98,27 +96,18 @@ if ElvUI_EltreumUI.Retail then
 	                end
 			end,
 			[2] = function()
-				PluginInstallFrame.SubTitle:SetText('Project Azilroka')
-				PluginInstallFrame.Desc1:SetText('Import settings for Project Azilroka')
-				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffVery High|r')
-				PluginInstallFrame.Option1:Enable()
-				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() end)
-				PluginInstallFrame.Option1:SetText('Setup Project Azilroka')
-			end,
-			[3] = function()
 				PluginInstallFrame.SubTitle:SetText('Layouts')
 				PluginInstallFrame.Desc1:SetText('Please select the role for your character, which will create a new profile')
 				PluginInstallFrame.Desc2:SetText('This process can take a few seconds')
 				PluginInstallFrame.Desc3:SetText('Importance: |cFFFF0000Very High|r')
 				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
+				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option1:SetText('DPS/Tank')
 				PluginInstallFrame.Option2:Show()
-				PluginInstallFrame.Option2:SetScript('OnClick', function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars()  ElvUI_EltreumUI:ResolutionOutline() end)
+				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars()  ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option2:SetText('Healing')
 			end,
-			[4] = function()
+			[3] = function()
 				PluginInstallFrame.SubTitle:SetText('Fonts')
 				PluginInstallFrame.Desc1:SetText('Eltruism uses Kimberley as a font')
 				PluginInstallFrame.Desc2:SetText('You can replace it with one of the following:')
@@ -134,7 +123,7 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsGotham() end)
 				PluginInstallFrame.Option3:SetText('|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\gotham:14:112:0:1:128:64:0:128:0:16|t')
 			end,
-			[5] = function()
+			[4] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('GladiusEx')
 				PluginInstallFrame.Desc1:SetText('Import GladiusEx profile, remember to disable ElvUI Arena Frames')
 				PluginInstallFrame.Desc2:SetText('You will need to change the profile in /gex profile options')
@@ -153,7 +142,7 @@ if ElvUI_EltreumUI.Retail then
 	                PluginInstallFrame.Option1:Disable()
 	           	end
 			end,
-			[6] = function()
+			[5] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Details')
 				PluginInstallFrame.Desc1:SetText('Import Details! profile with dual panels')
 				PluginInstallFrame.Desc2:SetText('You can right click the bottom right arrow to toggle the Details! Window')
@@ -172,7 +161,7 @@ if ElvUI_EltreumUI.Retail then
 	                PluginInstallFrame.Option1:Disable()
 	           	end
 			end,
-			[7] = function()
+			[6] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Boss Mods')
 				PluginInstallFrame.Desc1:SetText('Import DBM or Bigwigs profiles')
 				PluginInstallFrame.Desc2:SetText('These profiles are setup with DBM English Calanon and Bigwigs Voice')
@@ -212,7 +201,7 @@ if ElvUI_EltreumUI.Retail then
 	                PluginInstallFrame.Option2:Disable()
 	           	end
 			end,
-			[8] = function()
+			[7] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Exorsus Raid Tools')
 				PluginInstallFrame.Desc1:SetText('Import EXRT profile with raid cooldowns and other settings')
 				PluginInstallFrame.Desc2:SetText('You will need to swap to this profile in ExRT')
@@ -236,7 +225,7 @@ if ElvUI_EltreumUI.Retail then
 	                PluginInstallFrame.Option2:Disable()
 	           	end
 			end,
-			[9] = function()
+			[8] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Combat Text')
 				PluginInstallFrame.Desc1:SetText('Import profiles for NameplateSCT or ElvUI Floating Combat Text')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffOptional|r')
@@ -275,7 +264,7 @@ if ElvUI_EltreumUI.Retail then
 	                PluginInstallFrame.Option2:Disable()
 	           	end
 			end,
-			[10] = function()
+			[9] = function()
 				PluginInstallFrame.SubTitle:SetText('Immersion')
 				PluginInstallFrame.Desc1:SetText('Import Immersion settings configured for Eltruism')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffOptional|r')
@@ -292,7 +281,7 @@ if ElvUI_EltreumUI.Retail then
 	                PluginInstallFrame.Option1:Disable()
 	           	end
 			end,
-			[11] = function()
+			[10] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Dynamic Cam')
 				PluginInstallFrame.Desc1:SetText('Import Dynamic Cam profile')
 				PluginInstallFrame.Desc2:SetText('You will need to swap profiles in DynamicCam settings')
@@ -316,9 +305,9 @@ if ElvUI_EltreumUI.Retail then
 	                PluginInstallFrame.Option2:Disable()
 	           	end
 			end,
-			[12] = function()
+			[11] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('WeakAuras')
-				PluginInstallFrame.Desc1:SetText('I recommend the following WeakAuras with this UI:')
+				PluginInstallFrame.Desc1:SetText('I recommend the following WeakAura with this UI:')
 				PluginInstallFrame.Desc2:SetText('Nameplate Power Bar')
 				PluginInstallFrame.Desc3:SetText('Direct links can be found in the Eltruism menu')
 				PluginInstallFrame.Desc4:SetText('or you can click the button for a link to my profile')
@@ -327,7 +316,7 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://wago.io/p/Eltreum') 	end)
 				PluginInstallFrame.Option1:SetText('Wago.io')
 			end,
-			[13] = function()
+			[12] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Discord')
 				PluginInstallFrame.Desc1:SetText('Join the Discord if you have any questions or issues')
 				PluginInstallFrame.Option1:Enable()
@@ -335,7 +324,7 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/cXfA56gmYW') 	end)
 				PluginInstallFrame.Option1:SetText('Discord')
 			end,
-			[14] = function()
+			[13] = function()
 				PluginInstallFrame.SubTitle:SetText('Installation Complete')
 				PluginInstallFrame.Desc1:SetText('You have completed the installation process, please click "Finished" to reload the UI')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffVery High|r')
@@ -347,19 +336,18 @@ if ElvUI_EltreumUI.Retail then
 		},
 		StepTitles = {
 			[1] = 'Welcome',
-			[2] = 'ProjectAzilroka',
-			[3] = 'Layouts',
-			[4] = 'Fonts',
-			[5] = 'GladiusEx',
-			[6] = 'Details',
-			[7] = 'Boss Mods',
-			[8] = 'Exorsus Raid Tools',
-			[9] = 'Combat Text',
-			[10] = 'Immersion',
-			[11] = 'Dynamic Cam',
-			[12] = 'Weakauras',
-			[13] = 'Discord',
-			[14] = 'Installation Complete',
+			[2] = 'Layouts',
+			[3] = 'Fonts',
+			[4] = 'GladiusEx',
+			[5] = 'Details',
+			[6] = 'Boss Mods',
+			[7] = 'Exorsus Raid Tools',
+			[8] = 'Combat Text',
+			[9] = 'Immersion',
+			[10] = 'Dynamic Cam',
+			[11] = 'Weakauras',
+			[12] = 'Discord',
+			[13] = 'Installation Complete',
 		},
 		StepTitlesColor = {1, 1, 1},
 		StepTitlesColorSelected = {70/255, 130/255, 180/255},
@@ -375,9 +363,9 @@ elseif ElvUI_EltreumUI.Classic then
 		tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 		Pages = {
 			[1] = function()
-	                if (not IsAddOnLoaded("AddOnSkins")) then
+	                if (not IsAddOnLoaded("AddOnSkins")) or (not IsAddOnLoaded("ProjectAzilroka")) then
 	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install AddOnSkins before starting this installation process")
+	                    PluginInstallFrame.Desc1:SetText("Make sure to install AddOnSkins and Project Azilroka before starting this installation process")
 	                    PluginInstallFrame.Next:Disable()
 	                else
 						PluginInstallFrame.Next:Enable()
@@ -390,27 +378,18 @@ elseif ElvUI_EltreumUI.Classic then
 	                end
 			end,
 			[2] = function()
-				PluginInstallFrame.SubTitle:SetText('Project Azilroka')
-				PluginInstallFrame.Desc1:SetText('Import settings for Project Azilroka')
-				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffVery High|r')
-				PluginInstallFrame.Option1:Enable()
-				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() end)
-				PluginInstallFrame.Option1:SetText('Setup Project Azilroka')
-			end,
-			[3] = function()
 				PluginInstallFrame.SubTitle:SetText('Layouts')
 				PluginInstallFrame.Desc1:SetText('Please select the role for your character, which will create a new profile')
 				PluginInstallFrame.Desc2:SetText('This process can take a few seconds')
 				PluginInstallFrame.Desc3:SetText('Importance: |cFFFF0000Very High|r')
 				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
+				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option1:SetText('DPS/Tank')
 				PluginInstallFrame.Option2:Show()
-				PluginInstallFrame.Option2:SetScript('OnClick', function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
+				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option2:SetText('Healing')
 			end,
-			[4] = function()
+			[3] = function()
 				PluginInstallFrame.SubTitle:SetText('Fonts')
 				PluginInstallFrame.Desc1:SetText('Eltruism uses Kimberley as a font')
 				PluginInstallFrame.Desc2:SetText('You can replace it with one of the following:')
@@ -426,7 +405,7 @@ elseif ElvUI_EltreumUI.Classic then
 				PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsGotham() end)
 				PluginInstallFrame.Option3:SetText('|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\gotham:14:112:0:1:128:64:0:128:0:16|t')
 			end,
-			[5] = function()
+			[4] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Details')
 				PluginInstallFrame.Desc1:SetText('Import Details! profile with dual panels')
 				PluginInstallFrame.Desc2:SetText('You can right click the bottom right arrow to toggle the Details! Window')
@@ -445,7 +424,7 @@ elseif ElvUI_EltreumUI.Classic then
 	                PluginInstallFrame.Option1:Disable()
 	           	end
 			end,
-			[6] = function()
+			[5] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Boss Mods')
 				PluginInstallFrame.Desc1:SetText('Import DBM or Bigwigs profiles')
 				PluginInstallFrame.Desc2:SetText('These profiles are setup with DBM English Calanon and Bigwigs Voice')
@@ -485,7 +464,7 @@ elseif ElvUI_EltreumUI.Classic then
 	                PluginInstallFrame.Option2:Disable()
 	           	end
 			end,
-			[7] = function()
+			[6] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Combat Text')
 				PluginInstallFrame.Desc1:SetText('Import settings for NameplateSCT')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffOptional|r')
@@ -503,7 +482,7 @@ elseif ElvUI_EltreumUI.Classic then
 	                PluginInstallFrame.Option1:Disable()
 	           	end
 			end,
-			[8] = function()
+			[7] = function()
 				PluginInstallFrame.SubTitle:SetText('Immersion')
 				PluginInstallFrame.Desc1:SetText('Import Immersion settings configured for Eltruism')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffOptional|r')
@@ -520,7 +499,7 @@ elseif ElvUI_EltreumUI.Classic then
 	                PluginInstallFrame.Option1:Disable()
 	           	end
 			end,
-			[9] = function()
+			[8] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Dynamic Cam')
 				PluginInstallFrame.Desc1:SetText('Import Dynamic Cam profile')
 				PluginInstallFrame.Desc2:SetText('You will need to swap profiles in DynamicCam settings')
@@ -544,7 +523,7 @@ elseif ElvUI_EltreumUI.Classic then
 	                PluginInstallFrame.Option2:Disable()
 	           	end
 			end,
-			[10] = function()
+			[9] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Questie')
 				PluginInstallFrame.Desc1:SetText('Import Questie profile')
 				PluginInstallFrame.Desc2:SetText('You will need to reload and wait for questie to rebuild the database')
@@ -563,7 +542,7 @@ elseif ElvUI_EltreumUI.Classic then
 	                PluginInstallFrame.Option1:Disable()
 	           	end
 			end,
-			[11] = function()
+			[10] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Discord')
 				PluginInstallFrame.Desc1:SetText('Join the Discord if you have any questions or issues')
 				PluginInstallFrame.Option1:Enable()
@@ -571,7 +550,7 @@ elseif ElvUI_EltreumUI.Classic then
 				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/cXfA56gmYW') 	end)
 				PluginInstallFrame.Option1:SetText('Discord')
 			end,
-			[12] = function()
+			[11] = function()
 				PluginInstallFrame.SubTitle:SetText('Installation Complete')
 				PluginInstallFrame.Desc1:SetText('You have completed the installation process, please click "Finished" to reload the UI')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffVery High|r')
@@ -583,7 +562,6 @@ elseif ElvUI_EltreumUI.Classic then
 		},
 		StepTitles = {
 			[1] = 'Welcome',
-			[2] = 'ProjectAzilroka',
 			[3] = 'Layouts',
 			[4] = 'Fonts',
 			[5] = 'Details',
@@ -611,9 +589,9 @@ elseif ElvUI_EltreumUI.TBC then
 		tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 		Pages = {
 			[1] = function()
-	                if (not IsAddOnLoaded("AddOnSkins")) then
+	                if (not IsAddOnLoaded("AddOnSkins")) or (not IsAddOnLoaded("ProjectAzilroka")) then
 	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install AddOnSkins before starting this installation process")
+	                    PluginInstallFrame.Desc1:SetText("Make sure to install AddOnSkins and Project Azilroka before starting this installation process")
 	                    PluginInstallFrame.Next:Disable()
 	                else
 						PluginInstallFrame.Next:Enable()
@@ -625,7 +603,7 @@ elseif ElvUI_EltreumUI.TBC then
 	                    PluginInstallFrame.Option1:SetText('Skip Process')
 	                end
 			end,
-			[2] = function()
+			--[[[2] = function()
 				PluginInstallFrame.SubTitle:SetText('Project Azilroka')
 				PluginInstallFrame.Desc1:SetText('Import settings for Project Azilroka')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffVery High|r')
@@ -633,8 +611,8 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Option1:Show()
 				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() end)
 				PluginInstallFrame.Option1:SetText('Setup Project Azilroka')
-			end,
-			[3] = function()
+			end,]]--
+			[2] = function()
 				PluginInstallFrame.SubTitle:SetText('Layouts')
 				PluginInstallFrame.Desc1:SetText('Please select the role for your character, which will create a new profile')
 				PluginInstallFrame.Desc2:SetText('This process can take a few seconds')
@@ -646,7 +624,7 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Option2:SetScript('OnClick', function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option2:SetText('Healing')
 			end,
-			[4] = function()
+			[3] = function()
 				PluginInstallFrame.SubTitle:SetText('Fonts')
 				PluginInstallFrame.Desc1:SetText('Eltruism uses Kimberley as a font')
 				PluginInstallFrame.Desc2:SetText('You can replace it with one of the following:')
@@ -662,7 +640,7 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsGotham() end)
 				PluginInstallFrame.Option3:SetText('|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\gotham:14:112:0:1:128:64:0:128:0:16|t')
 			end,
-			[5] = function()
+			[4] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Details')
 				PluginInstallFrame.Desc1:SetText('Import Details! profile with dual panels')
 				PluginInstallFrame.Desc2:SetText('You can right click the bottom right arrow to toggle the Details! Window')
@@ -681,7 +659,7 @@ elseif ElvUI_EltreumUI.TBC then
 	                PluginInstallFrame.Option1:Disable()
 	           	end
 			end,
-			[6] = function()
+			[5] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Boss Mods')
 				PluginInstallFrame.Desc1:SetText('Import DBM or Bigwigs profiles')
 				PluginInstallFrame.Desc2:SetText('These profiles are setup with DBM English Calanon and Bigwigs Voice')
@@ -721,7 +699,7 @@ elseif ElvUI_EltreumUI.TBC then
 	                PluginInstallFrame.Option2:Disable()
 	           	end
 			end,
-			[7] = function()
+			[6] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Combat Text')
 				PluginInstallFrame.Desc1:SetText('Import profiles for NameplateSCT or ElvUI Floating Combat Text')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffOptional|r')
@@ -760,7 +738,7 @@ elseif ElvUI_EltreumUI.TBC then
 	                PluginInstallFrame.Option2:Disable()
 	           	end
 			end,
-			[8] = function()
+			[7] = function()
 				PluginInstallFrame.SubTitle:SetText('Immersion')
 				PluginInstallFrame.Desc1:SetText('Import Immersion settings configured for Eltruism')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffOptional|r')
@@ -777,7 +755,7 @@ elseif ElvUI_EltreumUI.TBC then
 	                PluginInstallFrame.Option1:Disable()
 	           	end
 			end,
-			[9] = function()
+			[8] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Dynamic Cam')
 				PluginInstallFrame.Desc1:SetText('Import Dynamic Cam profile')
 				PluginInstallFrame.Desc2:SetText('You will need to swap profiles in DynamicCam settings')
@@ -801,7 +779,7 @@ elseif ElvUI_EltreumUI.TBC then
 	                PluginInstallFrame.Option2:Disable()
 	           	end
 			end,
-			[10] = function()
+			[9] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Questie')
 				PluginInstallFrame.Desc1:SetText('Import Questie profile')
 				PluginInstallFrame.Desc2:SetText('You will need to reload and wait for questie to rebuild the database')
@@ -820,7 +798,7 @@ elseif ElvUI_EltreumUI.TBC then
 	                PluginInstallFrame.Option1:Disable()
 	           	end
 			end,
-			[11] = function()
+			[10] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Discord')
 				PluginInstallFrame.Desc1:SetText('Join the Discord if you have any questions or issues')
 				PluginInstallFrame.Option1:Enable()
@@ -828,7 +806,7 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/cXfA56gmYW') 	end)
 				PluginInstallFrame.Option1:SetText('Discord')
 			end,
-			[12] = function()
+			[11] = function()
 				PluginInstallFrame.SubTitle:SetText('Installation Complete')
 				PluginInstallFrame.Desc1:SetText('You have completed the installation process, please click "Finished" to reload the UI')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffVery High|r')
@@ -840,17 +818,17 @@ elseif ElvUI_EltreumUI.TBC then
 		},
 		StepTitles = {
 			[1] = 'Welcome',
-			[2] = 'ProjectAzilroka',
-			[3] = 'Layouts',
-			[4] = 'Fonts',
-			[5] = 'Details',
-			[6] = 'Boss Mods',
-			[7] = 'Combat Text',
-			[8] = 'Immersion',
-			[9] = 'Dynamic Cam',
-			[10] = 'Questie',
-			[11] = 'Discord',
-			[12] = 'Installation Complete',
+			--[[[2] = 'ProjectAzilroka',]]--
+			[2] = 'Layouts',
+			[3] = 'Fonts',
+			[4] = 'Details',
+			[5] = 'Boss Mods',
+			[6] = 'Combat Text',
+			[7] = 'Immersion',
+			[8] = 'Dynamic Cam',
+			[9] = 'Questie',
+			[10] = 'Discord',
+			[11] = 'Installation Complete',
 		},
 		StepTitlesColor = {1, 1, 1},
 		StepTitlesColorSelected = {70/255, 130/255, 180/255},

@@ -828,11 +828,11 @@ if ElvUI_EltreumUI.Retail then
 		E.db["databars"]["reputation"]["width"] = 10
 		E.db["databars"]["threat"]["enable"] = false
 		E.db["databars"]["threat"]["font"] = "Kimberley"
-		E.db["databars"]["threat"]["fontOutline"] = "THICKOUTLINE"
+		E.db["databars"]["threat"]["fontOutline"] = "OUTLINE"
 		E.db["databars"]["threat"]["fontSize"] = 12
-		E.db["databars"]["threat"]["height"] = 30
+		E.db["databars"]["threat"]["height"] = 22
 		E.db["databars"]["threat"]["orientation"] = "HORIZONTAL"
-		E.db["databars"]["threat"]["width"] = 176
+		E.db["databars"]["threat"]["width"] = 412
 
 		-- DataTexts
 		E.db["datatexts"]["font"] = "Kimberley"
@@ -1539,7 +1539,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["movers"]["SquareMinimapBar"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-198"
 			E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-5,-226"
 			E.db["movers"]["TalkingHeadFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
-			E.db["movers"]["ThreatBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,359"
+			E.db["movers"]["ThreatBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,-1"
 			E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
 			E.db["movers"]["TorghastBuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-346"
 			E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,256"
@@ -2372,7 +2372,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["movers"]["SquareMinimapBar"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-197"
 			E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-5,-226"
 			E.db["movers"]["TalkingHeadFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-77"
-			E.db["movers"]["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
+			E.db["movers"]["ThreatBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,-1"
 			E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-134"
 			E.db["movers"]["TorghastBuffsMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,206"
 			E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,376"
@@ -2964,12 +2964,13 @@ elseif ElvUI_EltreumUI.Classic then
 		E.db["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
 
 		-- DataBars
+		E.db["databars"]["threat"]["enable"] = true
 		E.db["databars"]["threat"]["font"] = "Kimberley"
-		E.db["databars"]["threat"]["fontOutline"] = "THICKOUTLINE"
-		E.db["databars"]["threat"]["orientation"] = "HORIZONTAL"
-		E.db["databars"]["threat"]["height"] = 30
+		E.db["databars"]["threat"]["fontOutline"] = "OUTLINE"
 		E.db["databars"]["threat"]["fontSize"] = 12
-		E.db["databars"]["threat"]["width"] = 180
+		E.db["databars"]["threat"]["height"] = 22
+		E.db["databars"]["threat"]["orientation"] = "HORIZONTAL"
+		E.db["databars"]["threat"]["width"] = 412
 		E.db["databars"]["colors"]["experience"]["a"] = 0.5
 		E.db["databars"]["colors"]["rested"]["a"] = 0.20000004768372
 		E.db["databars"]["customTexture"] = true
@@ -3616,7 +3617,7 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["movers"]["SquareMinimapBar"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-198"
 			E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-5,-226"
 			E.db["movers"]["TalkingHeadFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
-			E.db["movers"]["ThreatBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,78"
+			E.db["movers"]["ThreatBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,-1"
 			E.db["movers"]["QuestTimerFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-258,-231"
 			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-205,-306"
 			E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
@@ -4254,7 +4255,7 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["movers"]["SquareMinimapBar"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-197"
 			E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-5,-226"
 			E.db["movers"]["TalkingHeadFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-77"
-			E.db["movers"]["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
+			E.db["movers"]["ThreatBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,-1"
 			E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-134"
 			E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,376"
 			E.db["movers"]["ZoneAbility"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-458,73"
@@ -4771,11 +4772,11 @@ elseif ElvUI_EltreumUI.TBC then
 		E.db["databars"]["reputation"]["width"] = 10
 		E.db["databars"]["threat"]["enable"] = true
 		E.db["databars"]["threat"]["font"] = "Kimberley"
-		E.db["databars"]["threat"]["fontOutline"] = "THICKOUTLINE"
+		E.db["databars"]["threat"]["fontOutline"] = "OUTLINE"
 		E.db["databars"]["threat"]["fontSize"] = 12
-		E.db["databars"]["threat"]["height"] = 30
+		E.db["databars"]["threat"]["height"] = 22
 		E.db["databars"]["threat"]["orientation"] = "HORIZONTAL"
-		E.db["databars"]["threat"]["width"] = 176
+		E.db["databars"]["threat"]["width"] = 412
 
 		-- DataTexts
 		E.db["datatexts"]["font"] = "Kimberley"
@@ -5399,7 +5400,7 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["movers"]["SquareMinimapBar"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-198"
 			E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-5,-226"
 			E.db["movers"]["TalkingHeadFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
-			E.db["movers"]["ThreatBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,294"
+			E.db["movers"]["ThreatBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,-1"
 			E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
 			E.db["movers"]["TorghastBuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-346"
 			E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,256"
@@ -6068,7 +6069,7 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["movers"]["SquareMinimapBar"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-197"
 			E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-5,-226"
 			E.db["movers"]["TalkingHeadFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-77"
-			E.db["movers"]["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
+			E.db["movers"]["ThreatBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,-1"
 			E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-134"
 			E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,376"
 			E.db["movers"]["ZoneAbility"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-458,73"

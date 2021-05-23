@@ -5,6 +5,12 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v2.0.7
+    -------
+Condensed the install screen to be faster
+Fixed ProjectAzilroka install due to its internal change
+Revamped Threat bar in Classic/TBC to be in the Left Chat Datatext
+
     v2.0.6
     -------
 Tweaked init function for quests
