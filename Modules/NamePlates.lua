@@ -304,12 +304,17 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["parent"] = "Health"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["xOffset"] = 4
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["yOffset"] = -1
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["enable"] = false
+		if ElvUI_EltreumUI.Retail then
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["enable"] = false
+		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["enable"] = true
+		end
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["fontOutline"] = "THICKOUTLINE"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["fontSize"] = 10
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["xOffset"] = 3
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -8
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["parent"] = "Health"
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["xOffset"] = -6
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -13
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["fontOutline"] = "THICKOUTLINE"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[classification:icon][name]"

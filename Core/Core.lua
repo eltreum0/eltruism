@@ -8,14 +8,77 @@ function ElvUI_EltreumUI:Print(msg)
 	print('|cff82B4ffEltruism|r: '..msg)
 end
 function ElvUI_EltreumUI:VersionCheck()
-		if E.db.ElvUI_EltreumUI.install_version < "2.0.3" then
-			if not E.db.movers then E.db.movers = {} end
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
-
-			ElvUI_EltreumUI:ResolutionOutline()
-			E.db.ElvUI_EltreumUI.install_version = "2.0.4"
-			print('|cff82B4ffEltruism|r: '..'Settings were updated for the newest version. Please reload to avoid issues!')
+		if E.db.ElvUI_EltreumUI.install_version == "0" then
+			print('|cff82B4ffEltruism|r: '..'Installation of Eltruism was not found, running installer now')
+			E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 		end
+		if E.db.ElvUI_EltreumUI.install_version > "0" and E.db.ElvUI_EltreumUI.install_version < "2.0.8" then
+			if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" or ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
+				if not E.db.movers then E.db.movers = {} end
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
+				ElvUI_EltreumUI:ResolutionOutline()
+				E.db.ElvUI_EltreumUI.install_version = "2.0.8"
+				print('|cff82B4ffEltruism|r: '..'Settings were updated for the newest version. Please reload to avoid issues!')
+			else
+				print('|cff82B4ffEltruism|r: '..'Not using an Eltruism profile, please switch to it and reload in order to update it')
+			end
+		end
+end
+
+-- Private DB
+function ElvUI_EltreumUI:SetupPrivate()
+	-- ElvUI Private DB
+	E.private["general"]["chatBubbleFont"] = "Kimberley"
+	E.private["general"]["chatBubbleFontOutline"] = "OUTLINE"
+	E.private["general"]["chatBubbleFontSize"] = 10
+	E.private["general"]["chatBubbleName"] = true
+	E.private["general"]["dmgfont"] = "Kimberley"
+	E.private["general"]["glossTex"] = "Eltreum-Blank"
+	E.private["general"]["namefont"] = "Kimberley"
+	E.private["general"]["normTex"] = "Eltreum-Blank"
+	E.private["skins"]["parchmentRemoverEnable"] = true
+	if ElvUI_EltreumUI.Retail then
+		E.private["install_complete"] = "12.24"
+		E.private["general"]["totemBar"] = true
+	elseif ElvUI_EltreumUI.TBC then
+		E.private["install_complete"] = "2.06"
+		E.private["general"]["totemBar"] = true
+	elseif ElvUI_EltreumUI.Classic then
+		E.private["install_complete"] = "1.42"
+	end
+	E.db.ElvUI_EltreumUI.install_version = "2.0.8"
+end
+
+-- Global DB
+function ElvUI_EltreumUI:SetupGlobal()
+	-- ElvUI Global DB
+	if ElvUI_EltreumUI.Retail then
+		E.global["general"]["commandBarSetting"] = "DISABLED"
+		E.global["general"]["smallerWorldMap"] = false
+		E.global["general"]["smallerWorldMapScale"] = 1
+		E.global["general"]["mapAlphaWhenMoving"] = 0.35
+	end
+	if ElvUI_EltreumUI.Classic then
+		E.global["general"]["smallerWorldMapScale"] = 0.5
+		E.global["general"]["mapAlphaWhenMoving"] = 0.5
+		E.global["general"]["smallerWorldMap"] = true
+	end
+	if ElvUI_EltreumUI.TBC then
+		E.global["general"]["smallerWorldMapScale"] = 0.5
+		E.global["general"]["mapAlphaWhenMoving"] = 0.5
+		E.global["general"]["smallerWorldMap"] = true
+	end
+	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
+	E.global["general"]["fadeMapDuration"] = 0.1
+		-- Custom DataText
+	E.global["datatexts"]["settings"]["Experience"]["textFormat"] = "PERCENT"
+	E.global["datatexts"]["settings"]["Friends"]["hideAFK"] = true
+	E.global["datatexts"]["settings"]["Friends"]["hideApp"] = true
+	E.global["datatexts"]["settings"]["Gold"]["goldCoins"] = false
+	if ElvUI_EltreumUI.Retail then
+		E.global["datatexts"]["settings"]["MovementSpeed"]["NoLabel"] = true
+	end
+	E.global["datatexts"]["settings"]["Time"]["time24"] = true
 end
 
 --Resolution check for font outline
@@ -28,6 +91,53 @@ function ElvUI_EltreumUI:ResolutionOutline()
 	elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
 	end
+end
+
+-- UI Scale
+function ElvUI_EltreumUI:SetupScale()
+	E.global["general"]["UIScale"] = 0.7
+	SetCVar('uiScale', 0.7)
+end
+
+-- CVars General
+function ElvUI_EltreumUI:SetupCVars()
+	-- ElvUI CVars
+	SetCVar('removeChatDelay', 1)
+	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
+	SetCVar('autoLootDefault', 1)
+	SetCVar('autoQuestWatch', 1)
+	SetCVar('UnitNameEnemyGuardianName', 0)
+	SetCVar('UnitNameEnemyMinionName', 0)
+	SetCVar('UnitNameEnemyPetName', 0)
+	SetCVar('UnitNameFriendlyPetName', 0)
+	SetCVar('UnitNameEnemyPlayerName', 1)
+	SetCVar('UnitNameEnemyTotemName', 1)
+	SetCVar('UnitNameNPC', 1)
+	SetCVar("ShowClassColorInFriendlyNameplate", 1)
+	if ElvUI_EltreumUI.TBC then
+		SetCVar("lootUnderMouse", 1)
+	end
+	ElvUI_EltreumUI:Print('CVars have been set.')
+end
+
+-- CVars NamePlates
+function ElvUI_EltreumUI:NameplateCVars()
+	SetCVar('nameplateOtherBottomInset', 0.02)
+	SetCVar('nameplateOtherTopInset', 0.1)
+	SetCVar('nameplateTargetRadialPosition', 1)
+	SetCVar('nameplateLargerScale', 1.2)
+	SetCVar('nameplateMinScale', 1)
+	SetCVar('nameplateMinAlpha',1)
+	SetCVar('nameplateMaxDistance', 60)
+	SetCVar('nameplateMotion', 1)
+	SetCVar('nameplateOccludedAlphaMult', 0)
+	SetCVar('nameplateOverlapH', 0.8)
+	SetCVar('nameplateOverlapV', 1.1)
+	SetCVar('nameplateSelectedScale', 1)
+	SetCVar('nameplateSelfAlpha', 1)
+	SetCVar('nameplateShowFriendlyMinions', 0)
+	SetCVar('nameplateTargetBehindMaxDistance', 40)
+	ElvUI_EltreumUI:Print('NamePlate CVars have been set.')
 end
 
 -- AddOnSkins Profile
@@ -132,106 +242,4 @@ function ElvUI_EltreumUI:AddonSetupFCT()
 		end
 		ElvUI_EltreumUI:Print('Floating Combat Text profile has been set.')
 	end
-end
-
--- CVars General
-function ElvUI_EltreumUI:SetupCVars()
-	-- ElvUI CVars
-	SetCVar('removeChatDelay', 1)
-	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
-	SetCVar('autoLootDefault', 1)
-	SetCVar('autoQuestWatch', 1)
-	SetCVar('UnitNameEnemyGuardianName', 0)
-	SetCVar('UnitNameEnemyMinionName', 0)
-	SetCVar('UnitNameEnemyPetName', 0)
-	SetCVar('UnitNameFriendlyPetName', 0)
-	SetCVar('UnitNameEnemyPlayerName', 1)
-	SetCVar('UnitNameEnemyTotemName', 1)
-	SetCVar('UnitNameNPC', 1)
-	SetCVar("ShowClassColorInFriendlyNameplate", 1)
-	if ElvUI_EltreumUI.TBC then
-		SetCVar("lootUnderMouse", 1)
-	end
-	ElvUI_EltreumUI:Print('CVars have been set.')
-end
-
--- CVars NamePlates
-function ElvUI_EltreumUI:NameplateCVars()
-	SetCVar('nameplateOtherBottomInset', 0.02)
-	SetCVar('nameplateOtherTopInset', 0.1)
-	SetCVar('nameplateTargetRadialPosition', 1)
-	SetCVar('nameplateLargerScale', 1.2)
-	SetCVar('nameplateMinScale', 1)
-	SetCVar('nameplateMinAlpha',1)
-	SetCVar('nameplateMaxDistance', 60)
-	SetCVar('nameplateMotion', 1)
-	SetCVar('nameplateOccludedAlphaMult', 0)
-	SetCVar('nameplateOverlapH', 0.8)
-	SetCVar('nameplateOverlapV', 1.1)
-	SetCVar('nameplateSelectedScale', 1)
-	SetCVar('nameplateSelfAlpha', 1)
-	SetCVar('nameplateShowFriendlyMinions', 0)
-	SetCVar('nameplateTargetBehindMaxDistance', 40)
-	ElvUI_EltreumUI:Print('NamePlate CVars have been set.')
-end
-
--- Private DB
-function ElvUI_EltreumUI:SetupPrivate()
-	-- ElvUI Private DB
-	E.private["general"]["chatBubbleFont"] = "Kimberley"
-	E.private["general"]["chatBubbleFontOutline"] = "OUTLINE"
-	E.private["general"]["chatBubbleFontSize"] = 10
-	E.private["general"]["chatBubbleName"] = true
-	E.private["general"]["dmgfont"] = "Kimberley"
-	E.private["general"]["glossTex"] = "Eltreum-Blank"
-	E.private["general"]["namefont"] = "Kimberley"
-	E.private["general"]["normTex"] = "Eltreum-Blank"
-	E.private["skins"]["parchmentRemoverEnable"] = true
-	if ElvUI_EltreumUI.Retail then
-		E.private["install_complete"] = "12.24"
-		E.private["general"]["totemBar"] = true
-	elseif ElvUI_EltreumUI.TBC then
-		E.private["install_complete"] = "1.00"
-		E.private["general"]["totemBar"] = true
-	elseif ElvUI_EltreumUI.Classic then
-		E.private["install_complete"] = "1.42"
-	end
-end
-
--- Global DB
-function ElvUI_EltreumUI:SetupGlobal()
-	-- ElvUI Global DB
-	if ElvUI_EltreumUI.Retail then
-		E.global["general"]["commandBarSetting"] = "DISABLED"
-		E.global["general"]["smallerWorldMap"] = false
-		E.global["general"]["smallerWorldMapScale"] = 1
-		E.global["general"]["mapAlphaWhenMoving"] = 0.35
-	end
-	if ElvUI_EltreumUI.Classic then
-		E.global["general"]["smallerWorldMapScale"] = 0.5
-		E.global["general"]["mapAlphaWhenMoving"] = 0.5
-		E.global["general"]["smallerWorldMap"] = true
-	end
-	if ElvUI_EltreumUI.TBC then
-		E.global["general"]["smallerWorldMapScale"] = 0.5
-		E.global["general"]["mapAlphaWhenMoving"] = 0.5
-		E.global["general"]["smallerWorldMap"] = true
-	end
-	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
-	E.global["general"]["fadeMapDuration"] = 0.1
-		-- Custom DataText
-	E.global["datatexts"]["settings"]["Experience"]["textFormat"] = "PERCENT"
-	E.global["datatexts"]["settings"]["Friends"]["hideAFK"] = true
-	E.global["datatexts"]["settings"]["Friends"]["hideApp"] = true
-	E.global["datatexts"]["settings"]["Gold"]["goldCoins"] = false
-	if ElvUI_EltreumUI.Retail then
-		E.global["datatexts"]["settings"]["MovementSpeed"]["NoLabel"] = true
-	end
-	E.global["datatexts"]["settings"]["Time"]["time24"] = true
-end
-
--- UI Scale
-function ElvUI_EltreumUI:SetupScale()
-	E.global["general"]["UIScale"] = 0.7
-	SetCVar('uiScale', 0.7)
 end

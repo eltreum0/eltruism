@@ -5,6 +5,13 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v2.0.8
+    -------
+Added power bar to pets
+Update function has been changed
+Added level to enemy nameplates in Classic/TBC
+Fixed .toc versions
+
     v2.0.7
     -------
 Condensed the install screen to be faster
