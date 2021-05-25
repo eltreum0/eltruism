@@ -5,6 +5,14 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v2.0.9
+    -------
+Streamlined install process
+Updated ProjectAzilroka profile
+Added missing Party Castbar to Retail Healer profile and TBC profiles
+Added new death sound (Ion's - Frankly that's a skill issue)
+Added custom fonts option (Eltruism > Media)
+
     v2.0.8
     -------
 Added power bar to pets

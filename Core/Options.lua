@@ -4,9 +4,7 @@ local pairs = pairs
 local tinsert = table.insert
 local tconcat = table.concat
 local ReloadUI = ReloadUI
-
 local PlaySoundFile = PlaySoundFile
-
 
 -- Author list
 local AUTHORS = {
@@ -378,9 +376,10 @@ if ElvUI_EltreumUI.Retail then
 							args = {
 								enable = {
 								type = 'toggle',
-								name = 'Enable',
+								name = 'Enable Sound',
 								order = 1,
 								get = function() return E.private.ElvUI_EltreumUI.partyraiddeath.enable end,
+								--disabled = function() return E.private.ElvUI_EltreumUI.partyraiddeath.customenable end,
 								set = function(_, value) E.private.ElvUI_EltreumUI.partyraiddeath.enable = value end,
 								},
 								addagaphere = {
@@ -407,7 +406,7 @@ if ElvUI_EltreumUI.Retail then
 											type = 'toggle',
 											name = 'Bruh',
 											order = 5,
-											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario or E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.bruh end,
 											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.bruh = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Dialog") end,
 										},
@@ -415,20 +414,15 @@ if ElvUI_EltreumUI.Retail then
 											type = 'toggle',
 											name = 'Oof',
 											order = 6,
-											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario or E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof end,
 											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3", "Dialog") end,
-										},
-										yetanothergap2 = {
-										order = 8,
-										type = "description",
-										name = "",
 										},
 										shame = {
 											type = 'toggle',
 											name = 'Shame',
 											order = 13,
-											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario or E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.shame end,
 											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.shame = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.mp3", "Dialog") end,
 										},
@@ -436,26 +430,64 @@ if ElvUI_EltreumUI.Retail then
 											type = 'toggle',
 											name = 'Wow',
 											order = 14,
-											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.mario or E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.wow end,
 											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.wow = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.mp3", "Dialog") end,
-										},
-										yetanothergap3 = {
-										order = 15,
-										type = "description",
-										name = "",
 										},
 										mariosound = {
 											type = 'toggle',
 											name = 'Mario',
 											order = 14,
-											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow end,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
 											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.mario = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\mariodeath.mp3", "Dialog") end,
 										},
-
+										ionsound = {
+											type = 'toggle',
+											name = 'Ion',
+											order = 14,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
+											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
+											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.ion = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\ionskillissue.mp3", "Dialog") end,
+										},
 									},
 								},
+								--[[addagaphere = {
+								order = 3,
+								type = "description",
+								name = "",
+								},
+								enablecustom = {
+								type = 'toggle',
+								name = 'Enable Custom Sound',
+								order = 4,
+								disabled = function() return E.private.ElvUI_EltreumUI.partyraiddeath.enable end,
+								get = function() return E.private.ElvUI_EltreumUI.partyraiddeath.customenable end,
+								set = function(_, value) E.private.ElvUI_EltreumUI.partyraiddeath.customenable = value end,
+								},
+								addagaphere = {
+								order = 5,
+								type = "description",
+								name = "",
+								},
+								sharedmediadeath = {
+								     order = 15,
+								     type = 'select',
+								     width = "double",
+								     dialogControl = 'LSM30_Sound',
+								     name = "Choose a sound:",
+								     desc = 'Choose a different sound from the preselected ones',
+								     values = AceGUIWidgetLSMlists.sound,
+								     disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.customenable or E.private.ElvUI_EltreumUI.partyraiddeath.enable end,
+								     get = function() return E.private.ElvUI_EltreumUI.partyraiddeath.playerdeathsound end,
+								     set = function(self,soundvalue)
+								          E.private.ElvUI_EltreumUI.partyraiddeath.playerdeathsound = soundvalue E:StaticPopup_Show('PRIVATE_RL')
+								          --ElvUI_EltreumUI:RaidDeath(soundvalue)
+								          --PlaySoundFile(soundvalue)
+								          --confirm = true
+								     end,
+								     confirm = true,
+								},]]--
 							},
 						},
 					},
@@ -515,14 +547,6 @@ if ElvUI_EltreumUI.Retail then
 									get = function(info) return E.private.ElvUI_EltreumUI.combatmusic.disableinstance end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.combatmusic.disableinstance = value E:StaticPopup_Show('PRIVATE_RL') end,
 								},
-								--sharedmedia = {
-								--type = 'select', dialogControl = 'LSM30_Sound',
-								--order = 1,
-								--name = "Use SharedMedia Music",
-								--values = AceGUIWidgetLSMlists.sound,
-								--get = function() return E.private.ElvUI_EltreumUI.combatmusic.musicfile end,
-								--set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.musicfile = value E:StaticPopup_Show('PRIVATE_RL') end,
-								--},
 								pathtofile = {
 									order = 6,
 									type = 'group',
@@ -641,7 +665,7 @@ if ElvUI_EltreumUI.Retail then
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\media',
 					order = 85,
 					args = {
-						defaults = {
+						mediaoptions = {
 							order = 1,
 							type = 'group',
 							inline = true,
@@ -708,31 +732,52 @@ if ElvUI_EltreumUI.Retail then
 									func = function() ElvUI_EltreumUI:SetupFontsRoboto() E:StaggeredUpdateAll(nil, true) end,
 									confirm = true,
 								},
+								addagaphereforcustom = {
+								order = 8,
+								type = "description",
+								name = "",
+								},
+								sharedmediafont = {
+								     order = 8,
+								     type = 'select',
+								     width = "double",
+								     dialogControl = 'LSM30_Font',
+								     name = "Or choose a custom font",
+								     desc = 'Choose a different font from the preselected ones',
+								     values = AceGUIWidgetLSMlists.font,
+								     get = function()
+								          return E.private.ElvUI_EltreumUI.fonts.playerfont
+								     end,
+								     set = function(self,fontvalue)
+								          E.private.ElvUI_EltreumUI.fonts.playerfont = fontvalue
+								          ElvUI_EltreumUI:SetupCustomFont(fontvalue)
+								     end,
+								},
 								addagaphereforoutlines = {
-								order = 7,
+								order = 9,
 								type = "description",
 								name = "",
 								},
 								addagaphereagain = {
-								order = 7,
+								order = 9,
 								type = "description",
 								name = "",
 								},
 								header3 = {
-								order = 8,
+								order = 10,
 								type = "description",
 								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								fontoutline = {
-								order = 8,
+								order = 11,
 								type = "description",
 								name = "Set the Font Outlines everywhere. Use Default to return to Eltruism default settings",
 								width = "full",
 								},
 								default = {
-									order = 9,
+									order = 12,
 									type = 'execute',
 									name = 'Defaults',
 									desc = 'This will set fonts to Eltruism defaults, recommended for 4K',
@@ -740,7 +785,7 @@ if ElvUI_EltreumUI.Retail then
 									confirm = true,
 								},
 								none = {
-									order = 9,
+									order = 12,
 									type = 'execute',
 									name = 'None',
 									desc = 'This will set fonts to no outline',
@@ -748,12 +793,12 @@ if ElvUI_EltreumUI.Retail then
 									confirm = true,
 								},
 								outlinegap = {
-								order = 10,
+								order = 13,
 								type = "description",
 								name = "",
 								},
 								outline = {
-									order = 11,
+									order = 13,
 									type = 'execute',
 									name = 'Outline',
 									desc = 'This will set fonts to use outline, recommended for 1440p and 1080p',
@@ -761,7 +806,7 @@ if ElvUI_EltreumUI.Retail then
 									confirm = true,
 								},
 								thick = {
-									order = 11,
+									order = 13,
 									type = 'execute',
 									name = 'Thick Outline',
 									desc = 'This will set fonts to use thick outline, similar to Eltruism defaults',
@@ -769,20 +814,20 @@ if ElvUI_EltreumUI.Retail then
 									confirm = true,
 								},
 								header4 = {
-								order = 12,
+								order = 14,
 								type = "description",
 								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								darklightmode = {
-								order = 13,
+								order = 15,
 								type = "description",
 								name = "Change the look of frames to Dark or Light mode",
 								width = "full",
 								},
 								dark = {
-									order = 14,
+									order = 16,
 									type = 'execute',
 									name = 'Dark Mode',
 									desc = 'This will set colors to black with class colors when losing health',
@@ -790,7 +835,7 @@ if ElvUI_EltreumUI.Retail then
 									confirm = true,
 								},
 								light = {
-									order = 14,
+									order = 16,
 									type = 'execute',
 									name = 'Light Mode',
 									desc = 'This will set colors to class based with black backgrounds when losing health',
@@ -1620,7 +1665,7 @@ if ElvUI_EltreumUI.Classic then
 											type = 'toggle',
 											name = 'Bruh',
 											order = 5,
-											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario or E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.bruh end,
 											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.bruh = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Dialog") end,
 										},
@@ -1628,20 +1673,15 @@ if ElvUI_EltreumUI.Classic then
 											type = 'toggle',
 											name = 'Oof',
 											order = 6,
-											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario or E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof end,
 											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3", "Dialog") end,
-										},
-										yetanothergap2 = {
-										order = 8,
-										type = "description",
-										name = "",
 										},
 										shame = {
 											type = 'toggle',
 											name = 'Shame',
 											order = 13,
-											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario or E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.shame end,
 											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.shame = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.mp3", "Dialog") end,
 										},
@@ -1649,24 +1689,26 @@ if ElvUI_EltreumUI.Classic then
 											type = 'toggle',
 											name = 'Wow',
 											order = 14,
-											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.mario or E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.wow end,
 											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.wow = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.mp3", "Dialog") end,
-										},
-										yetanothergap3 = {
-										order = 15,
-										type = "description",
-										name = "",
 										},
 										mariosound = {
 											type = 'toggle',
 											name = 'Mario',
 											order = 14,
-											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow end,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
 											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.mario = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\mariodeath.mp3", "Dialog") end,
 										},
-
+										ionsound = {
+											type = 'toggle',
+											name = 'Ion',
+											order = 14,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
+											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
+											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.ion = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\ionskillissue.mp3", "Dialog") end,
+										},
 									},
 								},
 							},
@@ -1679,7 +1721,7 @@ if ElvUI_EltreumUI.Classic then
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\media',
 					order = 85,
 					args = {
-						defaults = {
+						mediaoptions = {
 							order = 1,
 							type = 'group',
 							inline = true,
@@ -1746,39 +1788,60 @@ if ElvUI_EltreumUI.Classic then
 									func = function() ElvUI_EltreumUI:SetupFontsRoboto() E:StaggeredUpdateAll(nil, true) end,
 									confirm = true,
 								},
+								addagaphereforcustom = {
+								order = 8,
+								type = "description",
+								name = "",
+								},
+								sharedmediafont = {
+								     order = 8,
+								     type = 'select',
+								     width = "double",
+								     dialogControl = 'LSM30_Font',
+								     name = "Or choose a custom font",
+								     desc = 'Choose a different font from the preselected ones',
+								     values = AceGUIWidgetLSMlists.font,
+								     get = function()
+								          return E.private.ElvUI_EltreumUI.fonts.playerfont
+								     end,
+								     set = function(self,fontvalue)
+								          E.private.ElvUI_EltreumUI.fonts.playerfont = fontvalue
+								          ElvUI_EltreumUI:SetupCustomFont(fontvalue)
+								     end,
+								},
 								addagaphereforoutlines = {
-								order = 7,
+								order = 9,
 								type = "description",
 								name = "",
 								},
 								addagaphereagain = {
-								order = 7,
+								order = 9,
 								type = "description",
 								name = "",
 								},
 								header3 = {
-								order = 8,
+								order = 10,
 								type = "description",
 								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								fontoutline = {
-								order = 8,
+								order = 11,
 								type = "description",
 								name = "Set the Font Outlines everywhere. Use Default to return to Eltruism default settings",
 								width = "full",
 								},
 								default = {
-									order = 9,
+									order = 12,
 									type = 'execute',
 									name = 'Defaults',
-									desc = 'This will set fonts to Eltruism defaults',
+									desc = 'This will set fonts to Eltruism defaults, recommended for 4K',
 									func = function() ElvUI_EltreumUI:SetupFontsOutlineDefault() E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('PRIVATE_RL') end,
 									confirm = true,
 								},
 								none = {
-									order = 9,
+									order = 12,
 									type = 'execute',
 									name = 'None',
 									desc = 'This will set fonts to no outline',
@@ -1786,41 +1849,41 @@ if ElvUI_EltreumUI.Classic then
 									confirm = true,
 								},
 								outlinegap = {
-								order = 10,
+								order = 13,
 								type = "description",
 								name = "",
 								},
 								outline = {
-									order = 11,
+									order = 13,
 									type = 'execute',
 									name = 'Outline',
-									desc = 'This will set fonts to use outline',
+									desc = 'This will set fonts to use outline, recommended for 1440p and 1080p',
 									func = function() ElvUI_EltreumUI:SetupFontsOutlineOutline() E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('PRIVATE_RL') end,
 									confirm = true,
 								},
 								thick = {
-									order = 11,
+									order = 13,
 									type = 'execute',
 									name = 'Thick Outline',
-									desc = 'This will set fonts to use thick outline',
+									desc = 'This will set fonts to use thick outline, similar to Eltruism defaults',
 									func = function() ElvUI_EltreumUI:SetupFontsOutlineThick() E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('PRIVATE_RL') end,
 									confirm = true,
 								},
 								header4 = {
-								order = 12,
+								order = 14,
 								type = "description",
 								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								darklightmode = {
-								order = 13,
+								order = 15,
 								type = "description",
 								name = "Change the look of frames to Dark or Light mode",
 								width = "full",
 								},
 								dark = {
-									order = 14,
+									order = 16,
 									type = 'execute',
 									name = 'Dark Mode',
 									desc = 'This will set colors to black with class colors when losing health',
@@ -1828,7 +1891,7 @@ if ElvUI_EltreumUI.Classic then
 									confirm = true,
 								},
 								light = {
-									order = 14,
+									order = 16,
 									type = 'execute',
 									name = 'Light Mode',
 									desc = 'This will set colors to class based with black backgrounds when losing health',
@@ -2187,7 +2250,7 @@ if ElvUI_EltreumUI.Classic then
 	end
 end
 
--- EltreumUI ingame options Retail
+-- EltreumUI ingame options TBC
 if ElvUI_EltreumUI.TBC then
 	function ElvUI_EltreumUI:Configtable()
 		-- Add EltreumUI version on top of the ElvUI config
@@ -2334,7 +2397,7 @@ if ElvUI_EltreumUI.TBC then
 									func = function() ElvUI_EltreumUI:AddonSetupImmersion() ReloadUI() end,
 									confirm = true,
 								},
-								--[[dynamiccam = {
+								dynamiccam = {
 									order = 1,
 									type = 'execute',
 									name = 'Dynamic Cam',
@@ -2342,7 +2405,7 @@ if ElvUI_EltreumUI.TBC then
 									func = function() ElvUI_EltreumUI:AddonSetupDynamicCam() ReloadUI() end,
 									confirm = true,
 								},
-								gladiusex = {
+								--[[gladiusex = {
 									order = 3,
 									type = 'execute',
 									name = 'Gladius Ex',
@@ -2546,7 +2609,7 @@ if ElvUI_EltreumUI.TBC then
 											type = 'toggle',
 											name = 'Bruh',
 											order = 5,
-											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario or E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.bruh end,
 											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.bruh = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Dialog") end,
 										},
@@ -2554,20 +2617,15 @@ if ElvUI_EltreumUI.TBC then
 											type = 'toggle',
 											name = 'Oof',
 											order = 6,
-											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario or E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof end,
 											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3", "Dialog") end,
-										},
-										yetanothergap2 = {
-										order = 8,
-										type = "description",
-										name = "",
 										},
 										shame = {
 											type = 'toggle',
 											name = 'Shame',
 											order = 13,
-											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario or E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.shame end,
 											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.shame = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.mp3", "Dialog") end,
 										},
@@ -2575,24 +2633,26 @@ if ElvUI_EltreumUI.TBC then
 											type = 'toggle',
 											name = 'Wow',
 											order = 14,
-											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.mario or E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.wow end,
 											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.wow = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.mp3", "Dialog") end,
-										},
-										yetanothergap3 = {
-										order = 15,
-										type = "description",
-										name = "",
 										},
 										mariosound = {
 											type = 'toggle',
 											name = 'Mario',
 											order = 14,
-											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow end,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
 											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.mario = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\mariodeath.mp3", "Dialog") end,
 										},
-
+										ionsound = {
+											type = 'toggle',
+											name = 'Ion',
+											order = 14,
+											disabled = function() return not E.private.ElvUI_EltreumUI.partyraiddeath.enable or E.private.ElvUI_EltreumUI.partyraiddeath.bruh or E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.private.ElvUI_EltreumUI.partyraiddeath.shame or E.private.ElvUI_EltreumUI.partyraiddeath.wow or E.private.ElvUI_EltreumUI.partyraiddeath.mario end,
+											get = function(info) return E.private.ElvUI_EltreumUI.partyraiddeath.ion end,
+											set = function(info, value) E.private.ElvUI_EltreumUI.partyraiddeath.ion = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\ionskillissue.mp3", "Dialog") end,
+										},
 									},
 								},
 							},
@@ -2676,7 +2736,7 @@ if ElvUI_EltreumUI.TBC then
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\media',
 					order = 85,
 					args = {
-						defaults = {
+						mediaoptions = {
 							order = 1,
 							type = 'group',
 							inline = true,
@@ -2743,31 +2803,52 @@ if ElvUI_EltreumUI.TBC then
 									func = function() ElvUI_EltreumUI:SetupFontsRoboto() E:StaggeredUpdateAll(nil, true) end,
 									confirm = true,
 								},
+								addagaphereforcustom = {
+								order = 8,
+								type = "description",
+								name = "",
+								},
+								sharedmediafont = {
+								     order = 8,
+								     type = 'select',
+								     width = "double",
+								     dialogControl = 'LSM30_Font',
+								     name = "Or choose a custom font",
+								     desc = 'Choose a different font from the preselected ones',
+								     values = AceGUIWidgetLSMlists.font,
+								     get = function()
+								          return E.private.ElvUI_EltreumUI.fonts.playerfont
+								     end,
+								     set = function(self,fontvalue)
+								          E.private.ElvUI_EltreumUI.fonts.playerfont = fontvalue
+								          ElvUI_EltreumUI:SetupCustomFont(fontvalue)
+								     end,
+								},
 								addagaphereforoutlines = {
-								order = 7,
+								order = 9,
 								type = "description",
 								name = "",
 								},
 								addagaphereagain = {
-								order = 7,
+								order = 9,
 								type = "description",
 								name = "",
 								},
 								header3 = {
-								order = 8,
+								order = 10,
 								type = "description",
 								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								fontoutline = {
-								order = 8,
+								order = 11,
 								type = "description",
 								name = "Set the Font Outlines everywhere. Use Default to return to Eltruism default settings",
 								width = "full",
 								},
 								default = {
-									order = 9,
+									order = 12,
 									type = 'execute',
 									name = 'Defaults',
 									desc = 'This will set fonts to Eltruism defaults, recommended for 4K',
@@ -2775,7 +2856,7 @@ if ElvUI_EltreumUI.TBC then
 									confirm = true,
 								},
 								none = {
-									order = 9,
+									order = 12,
 									type = 'execute',
 									name = 'None',
 									desc = 'This will set fonts to no outline',
@@ -2783,12 +2864,12 @@ if ElvUI_EltreumUI.TBC then
 									confirm = true,
 								},
 								outlinegap = {
-								order = 10,
+								order = 13,
 								type = "description",
 								name = "",
 								},
 								outline = {
-									order = 11,
+									order = 13,
 									type = 'execute',
 									name = 'Outline',
 									desc = 'This will set fonts to use outline, recommended for 1440p and 1080p',
@@ -2796,7 +2877,7 @@ if ElvUI_EltreumUI.TBC then
 									confirm = true,
 								},
 								thick = {
-									order = 11,
+									order = 13,
 									type = 'execute',
 									name = 'Thick Outline',
 									desc = 'This will set fonts to use thick outline, similar to Eltruism defaults',
@@ -2804,20 +2885,20 @@ if ElvUI_EltreumUI.TBC then
 									confirm = true,
 								},
 								header4 = {
-								order = 12,
+								order = 14,
 								type = "description",
 								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								darklightmode = {
-								order = 13,
+								order = 15,
 								type = "description",
 								name = "Change the look of frames to Dark or Light mode",
 								width = "full",
 								},
 								dark = {
-									order = 14,
+									order = 16,
 									type = 'execute',
 									name = 'Dark Mode',
 									desc = 'This will set colors to black with class colors when losing health',
@@ -2825,7 +2906,7 @@ if ElvUI_EltreumUI.TBC then
 									confirm = true,
 								},
 								light = {
-									order = 14,
+									order = 16,
 									type = 'execute',
 									name = 'Light Mode',
 									desc = 'This will set colors to class based with black backgrounds when losing health',

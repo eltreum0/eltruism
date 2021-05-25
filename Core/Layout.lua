@@ -919,7 +919,7 @@ if ElvUI_EltreumUI.Retail then
 		}
 		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
 		["attachTextTo"] = "Health",
-		["enable"] = true,
+		["enable"] = false,
 		["font"] = "Kimberley",
 		["fontOutline"] = "THICKOUTLINE",
 		["justifyH"] = "RIGHT",
@@ -2122,6 +2122,9 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["targettargettarget"]["power"]["text_format"] = "[power:current:shortvalue]"
 
 		elseif layout == 'healer' then
+			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
+			["enable"] = true
+			}
 			-- Change sle y offsets for healer frames
 			E.db["sle"]["unitframes"]["unit"]["raid"]["dead"]["yOffset"] = 10
 			E.db["sle"]["unitframes"]["unit"]["raid"]["offline"]["yOffset"] = 10
@@ -2541,6 +2544,24 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["party"]["summonIcon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 9
 			E.db["unitframe"]["units"]["party"]["width"] = 150
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["enable"] = true
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["useClassColor"] = true
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["useCustomBackdrop"] = true
+			E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["enable"] = true
+			E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["font"] = "Kimberley"
+			E.db["unitframe"]["units"]["party"]["castbar"]["enable"] = true
+			E.db["unitframe"]["units"]["party"]["castbar"]["height"] = 15
+			E.db["unitframe"]["units"]["party"]["castbar"]["overlayOnFrame"] = "InfoPanel"
+			E.db["unitframe"]["units"]["party"]["castbar"]["positionsGroup"]["anchorPoint"] = "LEFT"
+			E.db["unitframe"]["units"]["party"]["castbar"]["textColor"]["b"] = 1
+			E.db["unitframe"]["units"]["party"]["castbar"]["textColor"]["g"] = 1
+			E.db["unitframe"]["units"]["party"]["castbar"]["textColor"]["r"] = 1
+			E.db["unitframe"]["units"]["party"]["castbar"]["timeToHold"] = 1
+			E.db["unitframe"]["units"]["party"]["castbar"]["width"] = 200
+			E.db["unitframe"]["units"]["party"]["castbar"]["xOffsetText"] = 2
 			E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
 			E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "NONE"
@@ -5530,6 +5551,24 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["party"]["summonIcon"]["size"] = 40
 			E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 20
 			E.db["unitframe"]["units"]["party"]["width"] = 200
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["enable"] = true
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["useClassColor"] = true
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["useCustomBackdrop"] = true
+			E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["enable"] = true
+			E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["font"] = "Kimberley"
+			E.db["unitframe"]["units"]["party"]["castbar"]["enable"] = true
+			E.db["unitframe"]["units"]["party"]["castbar"]["height"] = 15
+			E.db["unitframe"]["units"]["party"]["castbar"]["overlayOnFrame"] = "InfoPanel"
+			E.db["unitframe"]["units"]["party"]["castbar"]["positionsGroup"]["anchorPoint"] = "LEFT"
+			E.db["unitframe"]["units"]["party"]["castbar"]["textColor"]["b"] = 1
+			E.db["unitframe"]["units"]["party"]["castbar"]["textColor"]["g"] = 1
+			E.db["unitframe"]["units"]["party"]["castbar"]["textColor"]["r"] = 1
+			E.db["unitframe"]["units"]["party"]["castbar"]["timeToHold"] = 1
+			E.db["unitframe"]["units"]["party"]["castbar"]["width"] = 200
+			E.db["unitframe"]["units"]["party"]["castbar"]["xOffsetText"] = 2
 			E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
 			E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "NONE"
@@ -6206,6 +6245,24 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["party"]["summonIcon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 9
 			E.db["unitframe"]["units"]["party"]["width"] = 150
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["enable"] = true
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["useClassColor"] = true
+			E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["useCustomBackdrop"] = true
+			E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["enable"] = true
+			E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["font"] = "Kimberley"
+			E.db["unitframe"]["units"]["party"]["castbar"]["enable"] = true
+			E.db["unitframe"]["units"]["party"]["castbar"]["height"] = 15
+			E.db["unitframe"]["units"]["party"]["castbar"]["overlayOnFrame"] = "InfoPanel"
+			E.db["unitframe"]["units"]["party"]["castbar"]["positionsGroup"]["anchorPoint"] = "LEFT"
+			E.db["unitframe"]["units"]["party"]["castbar"]["textColor"]["b"] = 1
+			E.db["unitframe"]["units"]["party"]["castbar"]["textColor"]["g"] = 1
+			E.db["unitframe"]["units"]["party"]["castbar"]["textColor"]["r"] = 1
+			E.db["unitframe"]["units"]["party"]["castbar"]["timeToHold"] = 1
+			E.db["unitframe"]["units"]["party"]["castbar"]["width"] = 200
+			E.db["unitframe"]["units"]["party"]["castbar"]["xOffsetText"] = 2
 			E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
 			E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "NONE"

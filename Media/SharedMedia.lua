@@ -23,7 +23,6 @@ LSM:Register("sound", "bruh", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\bru
 LSM:Register("sound", "Oof", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\oof.mp3]])
 LSM:Register("sound", "This is no time for caution", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\caution.mp3]])
 LSM:Register("sound", "Its not Possible", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\necessary.mp3]])
-LSM:Register("sound", "All of this just works", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\error.mp3]])
 LSM:Register("sound", "We are too late", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\Weretoolate.mp3]])
 LSM:Register("sound", "Shame", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\shame.mp3]])
 LSM:Register("sound", "Queen Azshara - What a shame", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\QueenAzsharaWhatAShame.ogg]])
@@ -34,6 +33,7 @@ LSM:Register("sound", "GTA - Wasted", [[Interface\Addons\ElvUI_EltreumUI\Media\S
 LSM:Register("sound", "Mario Game Over", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\mariodeath.mp3]])
 LSM:Register("sound", "Xera", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\xera.mp3]])
 LSM:Register("sound", "Mission Failed", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\codmissionfailed.mp3]])
+LSM:Register("sound", "Frankly thats a skill issue", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\ionskillissue.mp3]])
 
 -- Statusbar
 LSM:Register("statusbar", "Eltreum-bottom", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-bottom.tga]])

@@ -12,12 +12,12 @@ function ElvUI_EltreumUI:VersionCheck()
 			print('|cff82B4ffEltruism|r: '..'Installation of Eltruism was not found, running installer now')
 			E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 		end
-		if E.db.ElvUI_EltreumUI.install_version > "0" and E.db.ElvUI_EltreumUI.install_version < "2.0.8" then
+		if E.db.ElvUI_EltreumUI.install_version > "0" and E.db.ElvUI_EltreumUI.install_version < "2.0.9" then
 			if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" or ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				if not E.db.movers then E.db.movers = {} end
 				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
 				ElvUI_EltreumUI:ResolutionOutline()
-				E.db.ElvUI_EltreumUI.install_version = "2.0.8"
+				E.db.ElvUI_EltreumUI.install_version = "2.0.9"
 				print('|cff82B4ffEltruism|r: '..'Settings were updated for the newest version. Please reload to avoid issues!')
 			else
 				print('|cff82B4ffEltruism|r: '..'Not using an Eltruism profile, please switch to it and reload in order to update it')
@@ -46,7 +46,7 @@ function ElvUI_EltreumUI:SetupPrivate()
 	elseif ElvUI_EltreumUI.Classic then
 		E.private["install_complete"] = "1.42"
 	end
-	E.db.ElvUI_EltreumUI.install_version = "2.0.8"
+	E.db.ElvUI_EltreumUI.install_version = "2.0.9"
 end
 
 -- Global DB
@@ -114,8 +114,10 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('UnitNameEnemyTotemName', 1)
 	SetCVar('UnitNameNPC', 1)
 	SetCVar("ShowClassColorInFriendlyNameplate", 1)
-	if ElvUI_EltreumUI.TBC then
+	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		SetCVar("lootUnderMouse", 1)
+		SetCVar("chatBubbles", 1)
+		SetCVar("chatBubblesParty", 1)
 	end
 	ElvUI_EltreumUI:Print('CVars have been set.')
 end

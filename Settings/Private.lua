@@ -28,6 +28,9 @@ V.ElvUI_EltreumUI = {
 		shame = false,
 		wow = false,
 		mario = false,
+		ion = false,
+		--playerdeathsound = "None",
+		--customenable = false,
 	},
 
 	friendlynameplatetoggle = {
@@ -46,6 +49,10 @@ V.ElvUI_EltreumUI = {
 		enable = true,
 		musicfile = "None",
 		disableinstance = true,
+	},
+
+	fonts = {
+		playerfont = "Kimberley"
 	},
 
 	waypointetasetting = {
