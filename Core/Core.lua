@@ -9,7 +9,7 @@ function ElvUI_EltreumUI:Print(msg)
 end
 function ElvUI_EltreumUI:VersionCheck()
 		if E.db.ElvUI_EltreumUI.install_version == "0" then
-			print('|cff82B4ffEltruism|r: '..'Installation of Eltruism was not found, running installer now')
+			ElvUI_EltreumUI:Print('Installation of Eltruism was not found, running installer now')
 			E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 		end
 		if E.db.ElvUI_EltreumUI.install_version > "0" and E.db.ElvUI_EltreumUI.install_version < "2.0.9" then
@@ -18,9 +18,9 @@ function ElvUI_EltreumUI:VersionCheck()
 				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
 				ElvUI_EltreumUI:ResolutionOutline()
 				E.db.ElvUI_EltreumUI.install_version = "2.0.9"
-				print('|cff82B4ffEltruism|r: '..'Settings were updated for the newest version. Please reload to avoid issues!')
+				ElvUI_EltreumUI:Print('Settings were updated for the newest version. |cffff0000Please reload to avoid issues!|r')
 			else
-				print('|cff82B4ffEltruism|r: '..'Not using an Eltruism profile, please switch to it and reload in order to update it')
+				ElvUI_EltreumUI:Print('Not using an Eltruism profile, please switch to it and reload in order to update it')
 			end
 		end
 end

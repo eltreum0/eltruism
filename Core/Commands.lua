@@ -98,15 +98,15 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 					end
 			        -- check if its numbers set the waypoint and print it otherwise error message
 			        if string.match(coords[1], "%a+") or string.match(coords[2], "%a+") then
-			        	print('|cff82B4ffEltruism|r: '..'Unsupported format or Area does not support waypoints')
+			        	ElvUI_EltreumUI:Print('Unsupported format or Area does not support waypoints')
 			        elseif x == nil or y == nil then
-			        	print('|cff82B4ffEltruism|r: '..'Area does not support waypoints')
+			        	ElvUI_EltreumUI:Print('Area does not support waypoints')
 			        else
 				        C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(C_Map.GetBestMapForUnit('player'),x,y))
 				        if C_Map.GetBestMapForUnit('player') == nil then
-				        	print('|cff82B4ffEltruism|r: '..'Area does not support waypoints')
+				        	ElvUI_EltreumUI:Print('Area does not support waypoints')
 				        else
-				        	print('|cff82B4ffEltruism|r: '..C_Map.GetUserWaypointHyperlink())
+				        	ElvUI_EltreumUI:Print(C_Map.GetUserWaypointHyperlink())
 				    	end
 			   		end
 				end

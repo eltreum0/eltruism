@@ -12,6 +12,7 @@ Updated ProjectAzilroka profile
 Added missing Party Castbar to Retail Healer profile and TBC profiles
 Added new death sound (Ion's - Frankly that's a skill issue)
 Added custom fonts option (Eltruism > Media)
+Fixed a rare issue with Shadow and Light viewport on profile install
 
     v2.0.8
     -------
