@@ -9,6 +9,9 @@ function ElvUI_EltreumUI:Changelog()
     -------
 Converted database to profile from private
 Renamed Nameplate Stylefilters to avoid confusion
+Fixed Details! TBC profile due to Details! changes
+Fixed Pet Unitframe happiness missing when using Custom Fonts
+Reworked absorb logic for Retail profiles (disabled for DPS, enabled for Healer)
 
     v2.0.9
     -------

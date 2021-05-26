@@ -951,7 +951,7 @@ if ElvUI_EltreumUI.Retail then
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
 		["attachTextTo"] = "Health",
-		["enable"] = true,
+		["enable"] = false,
 		["font"] = "Kimberley",
 		["fontOutline"] = "THICKOUTLINE",
 		["justifyH"] = "RIGHT",
@@ -1019,7 +1019,7 @@ if ElvUI_EltreumUI.Retail then
 		}
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
 		["attachTextTo"] = "Health",
-		["enable"] = true,
+		["enable"] = false,
 		["font"] = "Kimberley",
 		["fontOutline"] = "THICKOUTLINE",
 		["justifyH"] = "CENTER",
@@ -1054,7 +1054,7 @@ if ElvUI_EltreumUI.Retail then
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
 		["attachTextTo"] = "Health",
-		["enable"] = true,
+		["enable"] = false,
 		["font"] = "Kimberley",
 		["fontOutline"] = "THICKOUTLINE",
 		["justifyH"] = "CENTER",
@@ -1089,7 +1089,7 @@ if ElvUI_EltreumUI.Retail then
 		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
 			["attachTextTo"] = "Health",
-			["enable"] = true,
+			["enable"] = false,
 			["font"] = "Kimberley",
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "RIGHT",
@@ -2128,7 +2128,24 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["targettargettarget"]["power"]["text_format"] = "[power:current:shortvalue]"
 
 		elseif layout == 'healer' then
+			E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
+			["enable"] = true
+			}
+			E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
 			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
+			["enable"] = true
+			}
+			E.db["unitframe"]["units"]["raid"]["customTexts"] = E.db["unitframe"]["units"]["raid"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
+			["enable"] = true
+			}
+			E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
+			["enable"] = true
+			}
+			E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
 			["enable"] = true
 			}
 			-- Change sle y offsets for healer frames

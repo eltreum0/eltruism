@@ -117,6 +117,8 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('UnitNameEnemyTotemName', 1)
 	SetCVar('UnitNameNPC', 1)
 	SetCVar("ShowClassColorInFriendlyNameplate", 1)
+	SetCVar("nameplateOverlapH", 0.4)
+	SetCVar("nameplateOverlapV", 0.6)
 	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		SetCVar("lootUnderMouse", 1)
 		SetCVar("chatBubbles", 1)

@@ -42,7 +42,6 @@ function ElvUI_EltreumUI:Initialize()
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 	end
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
-
 	--Register Events
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD')
 	ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
@@ -61,7 +60,6 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED')
-
 	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', 0.02)
 	SetCVar('nameplateOtherTopInset', 0.1)
@@ -69,8 +67,6 @@ function ElvUI_EltreumUI:Initialize()
 	SetCVar('nameplateTargetRadialPosition', 1)
 	SetCVar('nameplateShowEnemies', 1)
 	SetCVar("nameplateShowFriends", 1)
-	SetCVar("nameplateOverlapH", 0.4)
-	SetCVar("nameplateOverlapV", 0.6)
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		SetCVar("clampTargetNameplateToScreen", 1)
 		SetCVar("nameplateOtherBottomInset", 0.01)
