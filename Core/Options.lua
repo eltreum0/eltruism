@@ -985,7 +985,7 @@ if ElvUI_EltreumUI.Retail then
 								desc = 'Toggle On and Off',
 								order = 1,
 								get = function() return E.db.ElvUI_EltreumUI.loottext.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.loottext.enable = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.loottext.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 								},
 								addagaphere = {
 								order = 2,
@@ -2033,7 +2033,7 @@ if ElvUI_EltreumUI.Classic then
 								desc = 'Toggle On and Off',
 								order = 1,
 								get = function() return E.db.ElvUI_EltreumUI.loottext.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.loottext.enable = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.loottext.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 								},
 								addagaphere = {
 								order = 2,
@@ -3040,7 +3040,7 @@ if ElvUI_EltreumUI.TBC then
 								desc = 'Toggle On and Off',
 								order = 1,
 								get = function() return E.db.ElvUI_EltreumUI.loottext.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.loottext.enable = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.loottext.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 								},
 								addagaphere = {
 								order = 2,

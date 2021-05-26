@@ -8,7 +8,7 @@ function ElvUI_EltreumUI:Changelog()
     v2.1.0
     -------
 Converted database to profile from private
-Renamed Nameplate Stylefilters to avoid confusion
+Renamed Nameplate Stylefilters to avoid confusion, please remove the |cffff0000EnemyCasting, ExecuteRange, StealThisBuff and HideThis namepalte filters|r
 Fixed Details! TBC profile due to Details! changes
 Fixed Pet Unitframe happiness missing when using Custom Fonts
 Reworked absorb logic for Retail profiles (disabled for DPS, enabled for Healer)
