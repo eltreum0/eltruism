@@ -8,17 +8,19 @@ function ElvUI_EltreumUI:Print(msg)
 	print('|cff82B4ffEltruism|r: '..msg)
 end
 function ElvUI_EltreumUI:VersionCheck()
-		if E.db.ElvUI_EltreumUI.install_version == "0" then
-			ElvUI_EltreumUI:Print('Installation of Eltruism was not found, running installer now')
-			E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
-		end
-		if E.db.ElvUI_EltreumUI.install_version > "0" and E.db.ElvUI_EltreumUI.install_version < "2.0.9" then
+		--if E.db.ElvUI_EltreumUI.install_version == "0" then
+		--	ElvUI_EltreumUI:Print('Installation of Eltruism was not found, running installer now')
+		--	E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
+		--end
+		if E.db.ElvUI_EltreumUI.install_version > "0" and E.db.ElvUI_EltreumUI.install_version < "2.1.0" then
+
 			if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" or ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				if not E.db.movers then E.db.movers = {} end
 				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
 				ElvUI_EltreumUI:ResolutionOutline()
-				E.db.ElvUI_EltreumUI.install_version = "2.0.9"
-				ElvUI_EltreumUI:Print('Settings were updated for the newest version. |cffff0000Please reload to avoid issues!|r')
+				ElvUI_EltreumUI:SetupStyleFilters()
+				E.db.ElvUI_EltreumUI.install_version = "2.1.0"
+				ElvUI_EltreumUI:Print('Nameplate Filters were changed, please remove |cffff0000EnemyCasting, ExecuteRange, StealThisBuff and HideThis filters|r')
 			else
 				ElvUI_EltreumUI:Print('Not using an Eltruism profile, please switch to it and reload in order to update it')
 			end
@@ -46,7 +48,7 @@ function ElvUI_EltreumUI:SetupPrivate()
 	elseif ElvUI_EltreumUI.Classic then
 		E.private["install_complete"] = "1.42"
 	end
-	E.db.ElvUI_EltreumUI.install_version = "2.0.9"
+	E.db.ElvUI_EltreumUI.install_version = "2.1.0"
 end
 
 -- Global DB
@@ -83,13 +85,14 @@ end
 
 --Resolution check for font outline
 function ElvUI_EltreumUI:ResolutionOutline()
-	local resolutionisok = 0
 	if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
-		resolutionisok = 1
+		ElvUI_EltreumUI:Print('4K resolution detected, setting fonts to default mode.')
 	elseif GetCVar('gxFullscreenResolution') == '2560x1440' or GetCVar('gxWindowedResolution') == "2560x1440"  then
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
+		ElvUI_EltreumUI:Print('1440p resolution detected, setting fonts to outline mode.')
 	elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
+		ElvUI_EltreumUI:Print('1080p resolution detected, setting fonts to outline mode.')
 	end
 end
 

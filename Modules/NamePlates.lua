@@ -5,19 +5,19 @@ local IsAddOnLoaded = IsAddOnLoaded
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
 
--- cant parent to UIParent, need to look into https://git.tukui.org/Nihilistzsche/ElvUI_NihilistUI/-/blob/development/ElvUI_NihilistUI/modules/warlockdemons/warlockdemons.lua
--- ty Nihilistzsche
---local EltreumPowerBar = CreateFrame("Frame", "EltreumPower", UIParent)
---EltreumPowerBar.Text = EltreumPowerBar:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
---EltreumPowerBar.Text:SetJustifyV("TOP")
---EltreumPowerBar.Text:SetSize(0, 26)
---EltreumPowerBar.Text:SetPoint("TOP", "ElvUF_Target", "BOTTOM", 0, -40)
---EltreumPowerBar.Text:SetTextColor(1, 1, 1)
---EltreumPowerBar.Text:SetParent("ElvUF_Target")
---EltreumPowerBar.Text:SetText("test test test test test test test test test ")
-
--- customize friendly nameplate health width inside instance
---/run C_NamePlate.SetNamePlateFriendlySize(21, 5)
+--[[
+cant parent to UIParent, need to look into https://git.tukui.org/Nihilistzsche/ElvUI_NihilistUI/-/blob/development/ElvUI_NihilistUI/modules/warlockdemons/warlockdemons.lua
+ty Nihilistzsche
+local EltreumPowerBar = CreateFrame("Frame", "EltreumPower", UIParent)
+EltreumPowerBar.Text = EltreumPowerBar:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
+EltreumPowerBar.Text:SetJustifyV("TOP")
+EltreumPowerBar.Text:SetSize(0, 26)
+EltreumPowerBar.Text:SetPoint("TOP", "ElvUF_Target", "BOTTOM", 0, -40)
+EltreumPowerBar.Text:SetTextColor(1, 1, 1)
+EltreumPowerBar.Text:SetParent("ElvUF_Target")
+EltreumPowerBar.Text:SetText("test test test test test test test test test ")
+customize friendly nameplate health width inside instance
+/run C_NamePlate.SetNamePlateFriendlySize(21, 5)]]--
 
 --- Friendly Nameplate Control
 function ElvUI_EltreumUI:FriendlyNameplates()
@@ -139,20 +139,20 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		E.db["nameplates"]["colors"]["glowColor"]["g"] = nameplateclasscolors.g
 	end
 	if E.private.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate then
+		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = true
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
-		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = true
-			if E.db.ElvUI_EltreumUI.install_version >= "1.9.3" then
+			if E.db.ElvUI_EltreumUI.install_version > "0" then
+				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["border"] = true
 				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
 				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
 				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
-				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["border"] = true
 			end
 	end
 	if E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
-		if E.db.ElvUI_EltreumUI.install_version >= "1.9.3" then
+		if E.db.ElvUI_EltreumUI.install_version > "0" then
 			E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 		end
 	else
@@ -171,7 +171,6 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 
 		--Nameplates
 		E.db["nameplates"]["clampToScreen"] = true
-
 		E.db["nameplates"]["colors"]["glowColor"]["b"] = 0.86666476726532
 		E.db["nameplates"]["colors"]["glowColor"]["g"] = 0.4392147064209
 		E.db["nameplates"]["colors"]["glowColor"]["r"] = 0
@@ -209,19 +208,19 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["colors"]["selection"][13]["r"] = 0.16862745098039
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Kimberley"
 		E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
-
 		if ElvUI_EltreumUI.Retail then
 			E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["b"] = 1
 			E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["g"] = 1
 			E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["r"] = 0
 			E.db["nameplates"]["colors"]["classResources"]["WARLOCK"]["r"] = 0.58039215686275
-			E.db["nameplates"]["filters"]["StealThisBuff"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
-			E.db["nameplates"]["filters"]["HideThis"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["enable"] = true
-			E.db["nameplates"]["filters"]["EnemyCasting"]["triggers"]["enable"] = true
-			E.db["nameplates"]["filters"]["ExecuteRange"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["enable"] = true
 			E.db["nameplates"]["colors"]["power"]["PAIN"]["b"] = 1
 			E.db["nameplates"]["colors"]["power"]["PAIN"]["g"] = 1
 			E.db["nameplates"]["colors"]["power"]["PAIN"]["r"] = 1
@@ -242,21 +241,23 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["colors"]["power"]["LUNAR_POWER"]["r"] = 1
 			E.db["nameplates"]["colors"]["power"]["MAELSTROM"]["g"] = 0.50196078431373
 		elseif ElvUI_EltreumUI.Classic then
-			E.db["nameplates"]["filters"]["StealThisBuff"]["triggers"]["enable"] = false
+			E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
 			E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
-			E.db["nameplates"]["filters"]["HideThis"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["enable"] = true
-			E.db["nameplates"]["filters"]["EnemyCasting"]["triggers"]["enable"] = true
-			E.db["nameplates"]["filters"]["ExecuteRange"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["enable"] = true
 		elseif ElvUI_EltreumUI.TBC then
-			E.db["nameplates"]["filters"]["StealThisBuff"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
-			E.db["nameplates"]["filters"]["HideThis"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["enable"] = true
-			E.db["nameplates"]["filters"]["EnemyCasting"]["triggers"]["enable"] = true
-			E.db["nameplates"]["filters"]["ExecuteRange"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["enable"] = true
 		end
 
 		E.db["nameplates"]["highlight"] = false
@@ -588,7 +589,7 @@ end
 
 -- Style Filter Setup
 function ElvUI_EltreumUI:SetupStyleFilters()
-	for _, filterName in pairs({'ElvUI_NonTarget', 'ElvUI_Target', 'EnemyCasting', 'ExecuteRange', 'StealThisBuff', 'EltreumRare', 'HideThis'}) do
+	for _, filterName in pairs({'ElvUI_NonTarget', 'ElvUI_Target', 'EltreumInterrupt', 'EltreumExecute', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP'}) do
 		E.global["nameplate"]["filters"][filterName] = {}
 		E.NamePlates:StyleFilterCopyDefaults(E.global["nameplate"]["filters"][filterName])
 		E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
@@ -606,8 +607,8 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["ElvUI_NonTarget"]["triggers"]["priority"] = 4
 	-- Target enemy
 	E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = true
-	E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["b"] = 0.86666476726532
-	E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["g"] = 0.4392147064209
+	E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["b"] = 0
+	E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["g"] = 0
 	E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["r"] = 0
 	E.global["nameplate"]["filters"]["ElvUI_Target"]["triggers"]["isTarget"] = true
 	E.global["nameplate"]["filters"]["ElvUI_Target"]["triggers"]["requireTarget"] = true
@@ -621,39 +622,39 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["trivial"] = true
 
 	-- Enemy is casting, draw attention to interrupt
-	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["color"]["border"] = true
-	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["color"]["borderColor"]["b"] = 0.22745098039216
-	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["color"]["borderColor"]["g"] = 0.11764705882353
-	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["color"]["borderColor"]["r"] = 0.76862745098039
-	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["flash"]["color"]["b"] = 0
-	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["flash"]["color"]["g"] = 0
-	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["flash"]["color"]["r"] = 0
-	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["flash"]["enable"] = true
-	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["flash"]["speed"] = 1
-	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["scale"] = 1.2
-	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["texture"]["enable"] = true
-	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["texture"]["texture"] = "Eltreum-Dark"
-	E.global["nameplate"]["filters"]["EnemyCasting"]["actions"]["alpha"] = 100
-	E.global["nameplate"]["filters"]["EnemyCasting"]["triggers"]["casting"]["interruptible"] = true
-	E.global["nameplate"]["filters"]["EnemyCasting"]["triggers"]["inCombat"] = true
-	E.global["nameplate"]["filters"]["EnemyCasting"]["triggers"]["notTarget"] = true
-	E.global["nameplate"]["filters"]["EnemyCasting"]["triggers"]["priority"] = 12
+	E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["color"]["border"] = true
+	E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["b"] = 0.22745098039216
+	E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["g"] = 0.11764705882353
+	E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["r"] = 0.76862745098039
+	E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["color"]["b"] = 0
+	E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["color"]["g"] = 0
+	E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["color"]["r"] = 0
+	E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["enable"] = true
+	E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["speed"] = 1
+	E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["scale"] = 1.2
+	E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["enable"] = true
+	E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["texture"] = "Eltreum-Dark"
+	E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["alpha"] = 100
+	E.global["nameplate"]["filters"]["EltreumInterrupt"]["triggers"]["casting"]["interruptible"] = true
+	E.global["nameplate"]["filters"]["EltreumInterrupt"]["triggers"]["inCombat"] = true
+	E.global["nameplate"]["filters"]["EltreumInterrupt"]["triggers"]["notTarget"] = true
+	E.global["nameplate"]["filters"]["EltreumInterrupt"]["triggers"]["priority"] = 1
 	-- Enemy at execute range, general range bc different classes have different hp% executes
-	E.global["nameplate"]["filters"]["ExecuteRange"]["actions"]["color"]["borderColor"]["b"] = 0
-	E.global["nameplate"]["filters"]["ExecuteRange"]["actions"]["color"]["borderColor"]["g"] = 0
-	E.global["nameplate"]["filters"]["ExecuteRange"]["actions"]["color"]["healthColor"]["b"] = 0.011764705882353
-	E.global["nameplate"]["filters"]["ExecuteRange"]["actions"]["color"]["healthColor"]["g"] = 0
-	E.global["nameplate"]["filters"]["ExecuteRange"]["actions"]["flash"]["color"]["b"] = 0
-	E.global["nameplate"]["filters"]["ExecuteRange"]["actions"]["flash"]["color"]["g"] = 0
-	E.global["nameplate"]["filters"]["ExecuteRange"]["actions"]["flash"]["color"]["r"] = 0
-	E.global["nameplate"]["filters"]["ExecuteRange"]["actions"]["flash"]["enable"] = true
-	E.global["nameplate"]["filters"]["ExecuteRange"]["actions"]["flash"]["speed"] = 2
-	E.global["nameplate"]["filters"]["ExecuteRange"]["actions"]["scale"] = 1.25
-	E.global["nameplate"]["filters"]["ExecuteRange"]["actions"]["texture"]["texture"] = "Ohi MetalPlate"
-	E.global["nameplate"]["filters"]["ExecuteRange"]["triggers"]["healthThreshold"] = true
-	E.global["nameplate"]["filters"]["ExecuteRange"]["triggers"]["isTarget"] = true
-	E.global["nameplate"]["filters"]["ExecuteRange"]["triggers"]["priority"] = 10
-	E.global["nameplate"]["filters"]["ExecuteRange"]["triggers"]["underHealthThreshold"] = 0.2
+	E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["b"] = 0
+	E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["g"] = 0
+	E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["b"] = 0.011764705882353
+	E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["g"] = 0
+	E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["flash"]["color"]["b"] = 0
+	E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["flash"]["color"]["g"] = 0
+	E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["flash"]["color"]["r"] = 0
+	E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["flash"]["enable"] = true
+	E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["flash"]["speed"] = 2
+	E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["scale"] = 1.25
+	E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["texture"]["texture"] = "Ohi MetalPlate"
+	E.global["nameplate"]["filters"]["EltreumExecute"]["triggers"]["healthThreshold"] = true
+	E.global["nameplate"]["filters"]["EltreumExecute"]["triggers"]["isTarget"] = true
+	E.global["nameplate"]["filters"]["EltreumExecute"]["triggers"]["priority"] = 10
+	E.global["nameplate"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.2
 	--fancy rares
 	E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["health"] = true
 	E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["b"] = 1
@@ -668,27 +669,31 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["EltreumRare"]["triggers"]["priority"] = 10
 	E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["scale"] = 1.25
 	--mainly for mages to steal buffs
-
-	if ElvUI_EltreumUI.Retail then
-	E.global["nameplate"]["filters"]["StealThisBuff"]["triggers"]["class"]["MAGE"] = {}
-	E.global["nameplate"]["filters"]["StealThisBuff"]["triggers"]["class"]["MAGE"]["enabled"] = true
-	E.global["nameplate"]["filters"]["StealThisBuff"]["triggers"]["buffs"]["hasStealable"] = true
-	E.global["nameplate"]["filters"]["StealThisBuff"]["triggers"]["isTarget"] = true
-	E.global["nameplate"]["filters"]["StealThisBuff"]["triggers"]["notTarget"] = true
-	E.global["nameplate"]["filters"]["StealThisBuff"]["triggers"]["priority"] = 13
-	E.global["nameplate"]["filters"]["StealThisBuff"]["actions"]["alpha"] = 100
-	E.global["nameplate"]["filters"]["StealThisBuff"]["actions"]["flash"]["enable"] = true
-	E.global["nameplate"]["filters"]["StealThisBuff"]["actions"]["scale"] = 1.25
-	end
+	E.global["nameplate"]["filters"]["EltreumSpellsteal"]["triggers"]["class"]["MAGE"] = {}
+	E.global["nameplate"]["filters"]["EltreumSpellsteal"]["triggers"]["class"]["MAGE"]["enabled"] = true
+	E.global["nameplate"]["filters"]["EltreumSpellsteal"]["triggers"]["buffs"]["hasStealable"] = true
+	E.global["nameplate"]["filters"]["EltreumSpellsteal"]["triggers"]["isTarget"] = true
+	E.global["nameplate"]["filters"]["EltreumSpellsteal"]["triggers"]["notTarget"] = true
+	E.global["nameplate"]["filters"]["EltreumSpellsteal"]["triggers"]["priority"] = 13
+	E.global["nameplate"]["filters"]["EltreumSpellsteal"]["actions"]["alpha"] = 100
+	E.global["nameplate"]["filters"]["EltreumSpellsteal"]["actions"]["flash"]["enable"] = true
+	E.global["nameplate"]["filters"]["EltreumSpellsteal"]["actions"]["scale"] = 1.25
 
 	--hide nameplates for unattackable npcs
-	E.global["nameplate"]["filters"]["HideThis"]["actions"]["nameOnly"] = true
-	E.global["nameplate"]["filters"]["HideThis"]["actions"]["tags"]["name"] = "[namecolor][name]"
-	E.global["nameplate"]["filters"]["HideThis"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets]"
-	E.global["nameplate"]["filters"]["HideThis"]["triggers"]["nameplateType"]["enable"] = true
-	E.global["nameplate"]["filters"]["HideThis"]["triggers"]["nameplateType"]["enemyNPC"] = true
-	E.global["nameplate"]["filters"]["HideThis"]["triggers"]["playerCanNotAttack"] = true
-	E.global["nameplate"]["filters"]["HideThis"]["triggers"]["priority"] = 15
+	E.global["nameplate"]["filters"]["EltreumHideNP"]["actions"]["nameOnly"] = true
+	E.global["nameplate"]["filters"]["EltreumHideNP"]["actions"]["tags"]["name"] = "[namecolor][name]"
+	E.global["nameplate"]["filters"]["EltreumHideNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets]"
+	E.global["nameplate"]["filters"]["EltreumHideNP"]["triggers"]["nameplateType"]["enable"] = true
+	E.global["nameplate"]["filters"]["EltreumHideNP"]["triggers"]["nameplateType"]["enemyNPC"] = true
+	E.global["nameplate"]["filters"]["EltreumHideNP"]["triggers"]["playerCanNotAttack"] = true
+	E.global["nameplate"]["filters"]["EltreumHideNP"]["triggers"]["priority"] = 15
+
+	--non target full alpha when resting and not in combat
+	E.global["nameplate"]["filters"]["EltreumRestedNP"]["actions"]["alpha"] = 100
+	E.global["nameplate"]["filters"]["EltreumRestedNP"]["triggers"]["isResting"] = true
+	E.global["nameplate"]["filters"]["EltreumRestedNP"]["triggers"]["isTarget"] = true
+	E.global["nameplate"]["filters"]["EltreumRestedNP"]["triggers"]["notTarget"] = true
+	E.global["nameplate"]["filters"]["EltreumRestedNP"]["triggers"]["outOfCombat"] = true
 
 	E:StaggeredUpdateAll(nil, true)
 	ElvUI_EltreumUI:Print('NamePlate Style Filters have been setup.')

@@ -4,10 +4,8 @@ local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 local _G = _G
 local PA = _G.ProjectAzilroka
 
-
 function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 	if not E.db.movers then E.db.movers = {} end
-
 		--nameplates
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = fontvalue
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = fontvalue
@@ -247,18 +245,33 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 			}
 		end
 		-- Custom Text: Pet
-		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 12,
-			["text_format"] = "[namecolor][name]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 12,
+				["text_format"] = "[namecolor][name]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 12,
+				["text_format"] = "[namecolor][name][happiness:discord]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		end
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
 		if ElvUI_EltreumUI.Retail then
@@ -814,18 +827,33 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 			}
 		end
 		-- Custom Text: Pet
-		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = "Kimberley",
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 12,
-			["text_format"] = "[namecolor][name]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = "Kimberley",
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 12,
+				["text_format"] = "[namecolor][name]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = "Kimberley",
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 12,
+				["text_format"] = "[namecolor][name][happiness:discord]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		end
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
 		if ElvUI_EltreumUI.Retail then
@@ -1384,18 +1412,33 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 			}
 		end
 		-- Custom Text: Pet
-		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = "Exo2 Extra Bold",
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 12,
-			["text_format"] = "[namecolor][name]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = "Exo2 Extra Bold",
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 12,
+				["text_format"] = "[namecolor][name]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = "Exo2 Extra Bold",
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 12,
+				["text_format"] = "[namecolor][name][happiness:discord]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		end
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
 		if ElvUI_EltreumUI.Retail then
@@ -1952,18 +1995,33 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 			}
 		end
 		-- Custom Text: Pet
-		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = "GothamNarrow Black",
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 12,
-			["text_format"] = "[namecolor][name]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = "GothamNarrow Black",
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 12,
+				["text_format"] = "[namecolor][name]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = "GothamNarrow Black",
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 12,
+				["text_format"] = "[namecolor][name][happiness:discord]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		end
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
 		if ElvUI_EltreumUI.Retail then
@@ -2521,18 +2579,33 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 			}
 		end
 		-- Custom Text: Pet
-		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = "Roboto",
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 12,
-			["text_format"] = "[namecolor][name]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = "Roboto",
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 12,
+				["text_format"] = "[namecolor][name]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = "Roboto",
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 12,
+				["text_format"] = "[namecolor][name][happiness:discord]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		end
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
 		if ElvUI_EltreumUI.Retail then

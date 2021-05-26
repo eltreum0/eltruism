@@ -5,6 +5,11 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v2.1.0
+    -------
+Converted database to profile from private
+Renamed Nameplate Stylefilters to avoid confusion
+
     v2.0.9
     -------
 Streamlined install process

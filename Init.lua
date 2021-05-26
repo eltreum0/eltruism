@@ -68,6 +68,8 @@ function ElvUI_EltreumUI:Initialize()
 	SetCVar('nameplateTargetRadialPosition', 1)
 	SetCVar('nameplateShowEnemies', 1)
 	SetCVar("nameplateShowFriends", 1)
+	SetCVar("nameplateOverlapH", 0.4)
+	SetCVar("nameplateOverlapV", 0.6)
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		SetCVar("clampTargetNameplateToScreen", 1)
 		SetCVar("nameplateOtherBottomInset", 0.01)
