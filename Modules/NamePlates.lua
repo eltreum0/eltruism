@@ -23,7 +23,7 @@ customize friendly nameplate health width inside instance
 function ElvUI_EltreumUI:FriendlyNameplates()
 	local inInstance, instanceType = IsInInstance()
 	local mapID = WorldMapFrame:GetMapID()
-	if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames then
+	if E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames then
 		if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
 			--SetCVar("nameplateShowFriends", 1);
 			SetCVar("nameplateShowOnlyNames", 1)
@@ -36,7 +36,7 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 			SetCVar("nameplateShowFriends", 1)
 		end
 	end
-	if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly then
+	if E.db.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly then
 		if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
 			SetCVar("nameplateShowFriends", 0)
 		end
@@ -44,7 +44,7 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 			SetCVar("nameplateShowFriends", 1)
 		end
 	end
-	if E.private.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly then
+	if E.db.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly then
 		SetCVar("nameplateShowFriends", 0)
 	end
 end
@@ -64,7 +64,7 @@ end
 
 -- Non aspect ratio nameplate debuffs similar to plater
 function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
-	if E.private.ElvUI_EltreumUI.widenameplate.enable then
+	if E.db.ElvUI_EltreumUI.widenameplate.enable then
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
 		if button and button.spellID then
@@ -133,12 +133,16 @@ local rareclass = {
 function ElvUI_EltreumUI:NamePlateOptions()
 	local nameplateclasscolors
 	nameplateclasscolors = E:ClassColor(E.myclass, true)
-	if E.private.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow then
+	if E.db.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow then
 		E.db["nameplates"]["colors"]["glowColor"]["b"] = nameplateclasscolors.b
 		E.db["nameplates"]["colors"]["glowColor"]["r"] = nameplateclasscolors.r
 		E.db["nameplates"]["colors"]["glowColor"]["g"] = nameplateclasscolors.g
+	else
+		E.db["nameplates"]["colors"]["glowColor"]["b"] = 0
+		E.db["nameplates"]["colors"]["glowColor"]["r"] = 0
+		E.db["nameplates"]["colors"]["glowColor"]["g"] = 0
 	end
-	if E.private.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate then
+	if E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate then
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = true
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
@@ -149,8 +153,19 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
 				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
 			end
+	else
+		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = true
+		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["b"] = 0
+		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["g"] = 0
+		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["r"] = 0
+			if E.db.ElvUI_EltreumUI.install_version > "0" then
+				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["border"] = true
+				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["b"] = 0
+				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["g"] = 0
+				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["r"] = 0
+			end
 	end
-	if E.private.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
+	if E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
 		if E.db.ElvUI_EltreumUI.install_version > "0" then
 			E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])

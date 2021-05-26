@@ -59,16 +59,16 @@ local vanillaMusic = {
 -- with the help of Repooc, Simpy, Nihilistzsche and Acidweb (not in order :D)
 local musicSetting = GetCVar('Sound_EnableMusic')
 function ElvUI_EltreumUI:AFKmusic()
-    if E.private.ElvUI_EltreumUI.afkmusic.enable then
+    if E.db.ElvUI_EltreumUI.afkmusic.enable then
         if ElvUI_EltreumUI.Retail then
             if UnitIsAFK("player") then
                 if musicSetting == '0' then SetCVar("Sound_EnableMusic", 1) end
-                if E.private.ElvUI_EltreumUI.afkmusic.racial then
+                if E.db.ElvUI_EltreumUI.afkmusic.racial then
                     if ElvUI_EltreumUI.Retail then
                         PlayMusic(racialMusic[E.myrace])
                     end
                 end
-                if E.private.ElvUI_EltreumUI.afkmusic.playerclass then
+                if E.db.ElvUI_EltreumUI.afkmusic.playerclass then
                     PlayMusic(classMusic[E.myclass])
                 end
             else

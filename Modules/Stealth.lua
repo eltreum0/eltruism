@@ -17,7 +17,7 @@ StealthOptionsFrame:Hide()
 
 -- Setup the Stealth Overlay Options
 function ElvUI_EltreumUI:StealthOptions()
-	if E.private.ElvUI_EltreumUI.stealthOptions.stealtheffect then
+	if E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect then
 		--Script the frame, ty wowpedia for examples
 		StealthOptionsFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 		StealthOptionsFrame:RegisterEvent("UPDATE_STEALTH")

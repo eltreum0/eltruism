@@ -13,7 +13,7 @@ local LSM = E.Libs.LSM
 
 -- Conversion of the party/raid death weakaura into an addon option
 function ElvUI_EltreumUI:RaidDeath()
-	if E.private.ElvUI_EltreumUI.partyraiddeath.enable then --or E.private.ElvUI_EltreumUI.partyraiddeath.customenable then
+	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then --or E.db.ElvUI_EltreumUI.partyraiddeath.customenable then
 		local _, eventType, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
 		local name = name
 		if eventType == "UNIT_DIED" then
@@ -22,28 +22,28 @@ function ElvUI_EltreumUI:RaidDeath()
 					name = GetRaidRosterInfo(ii)
 				end
 				if destName == name then
-					if E.private.ElvUI_EltreumUI.partyraiddeath.enable then
-						if E.private.ElvUI_EltreumUI.partyraiddeath.bruh then
+					if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
+						if E.db.ElvUI_EltreumUI.partyraiddeath.bruh then
 						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Master")
 						end
-						if E.private.ElvUI_EltreumUI.partyraiddeath.robloxoof then
+						if E.db.ElvUI_EltreumUI.partyraiddeath.robloxoof then
 						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3", "Master")
 						end
-						if E.private.ElvUI_EltreumUI.partyraiddeath.shame then
+						if E.db.ElvUI_EltreumUI.partyraiddeath.shame then
 						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.mp3", "Master")
 						end
-						if E.private.ElvUI_EltreumUI.partyraiddeath.wow then
+						if E.db.ElvUI_EltreumUI.partyraiddeath.wow then
 						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.mp3", "Master")
 						end
-						if E.private.ElvUI_EltreumUI.partyraiddeath.mario then
+						if E.db.ElvUI_EltreumUI.partyraiddeath.mario then
 						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\mariodeath.mp3", "Master")
 						end
-						if E.private.ElvUI_EltreumUI.partyraiddeath.ion then
+						if E.db.ElvUI_EltreumUI.partyraiddeath.ion then
 						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\ionskillissue.mp3", "Master")
 						end
 					end
-					--[[if E.private.ElvUI_EltreumUI.partyraiddeath.customenable then
-						local soundvalue = E.private.ElvUI_EltreumUI.partyraiddeath.playerdeathsound
+					--[[if E.db.ElvUI_EltreumUI.partyraiddeath.customenable then
+						local soundvalue = E.db.ElvUI_EltreumUI.partyraiddeath.playerdeathsound
 						PlaySoundFile(soundvalue)
 					end]]--
 				end

@@ -23,7 +23,7 @@ if ElvUI_EltreumUI.Retail then
 
 	--Create the function which calculates the time
 	function ElvUI_EltreumUI:WaypointTimeToArrive()
-		if E.private.ElvUI_EltreumUI.waypointetasetting.enable then
+		if E.db.ElvUI_EltreumUI.waypointetasetting.enable then
 		local speed = GetUnitSpeed("player")
 		local distance = C_Navigation.GetDistance()
 		local seconds = 0

@@ -24,7 +24,7 @@ LootTextframe:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
 LootTextframe:RegisterEvent("LOOT_OPENED")
 
 function ElvUI_EltreumUI:LootText()
-	if E.private.ElvUI_EltreumUI.loottext.enable then
+	if E.db.ElvUI_EltreumUI.loottext.enable then
 		CombatText:SetScale(0.65)
 		local itemLink = nil
 		local amount = 0
@@ -53,7 +53,7 @@ function ElvUI_EltreumUI:LootText()
 			end
 			if (event == "CHAT_MSG_LOOT") then
 				itemLink, amount = getLoot(arg1)
-				if E.private.ElvUI_EltreumUI.loottext.pet then
+				if E.db.ElvUI_EltreumUI.loottext.pet then
 					if itemLink and itemLink:match("|Hbattlepet:") then
 						CombatText_AddMessage("|T ".. 132599 ..":22:22:-11:-11|t  "..itemLink, CombatText_StandardScroll, 255, 255, 255)
 					end
@@ -69,7 +69,7 @@ function ElvUI_EltreumUI:LootText()
 					end
 				end
 			end
-			if E.private.ElvUI_EltreumUI.loottext.currency then
+			if E.db.ElvUI_EltreumUI.loottext.currency then
 				if (event == "CHAT_MSG_MONEY") then
 					local moneystring = Deformat(arg1, LOOT_MONEY_SPLIT) or Deformat(arg1, YOU_LOOT_MONEY)
 					local aImage = GetCoinIcon(9999999999)
@@ -116,7 +116,7 @@ function ElvUI_EltreumUI:LootText()
 
 
 			end
-			if E.private.ElvUI_EltreumUI.loottext.honor then
+			if E.db.ElvUI_EltreumUI.loottext.honor then
 				if (event == "CHAT_MSG_COMBAT_HONOR_GAIN") then
 					itemLink, amount =  Deformat(arg1, CURRENCY_GAINED_MULTIPLE_BONUS)
 					if not amount then

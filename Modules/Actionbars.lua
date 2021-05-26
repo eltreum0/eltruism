@@ -10,8 +10,8 @@ function ElvUI_EltreumUI:SkillGlow()
 	local r, g, b = unpack(E.media.rgbvaluecolor)
 	local skillglowcolor = {r, g, b, 1}
 	local customglow = LibStub("LibButtonGlow-1.0")
-	if E.private.ElvUI_EltreumUI.glow.enable then
-		if E.private.ElvUI_EltreumUI.glow.pixel then
+	if E.db.ElvUI_EltreumUI.glow.enable then
+		if E.db.ElvUI_EltreumUI.glow.pixel then
 			--local actionType, actionID = GetPetActionInfo(button:GetAttribute("pet"))
 			-- need to figure out pet AutoCastable, PetActionButton
 			function customglow.ShowOverlayGlow(button)
@@ -25,7 +25,7 @@ function ElvUI_EltreumUI:SkillGlow()
 				LCG.PixelGlow_Stop(button)
 			end
 		end
-		if E.private.ElvUI_EltreumUI.glow.autocast then
+		if E.db.ElvUI_EltreumUI.glow.autocast then
 			function customglow.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
 					local actionType, actionID = GetActionInfo(button:GetAttribute("action"))
@@ -38,7 +38,7 @@ function ElvUI_EltreumUI:SkillGlow()
 				LCG.AutoCastGlow_Stop(button)
 			end
 		end
-		if E.private.ElvUI_EltreumUI.glow.blizzard then
+		if E.db.ElvUI_EltreumUI.glow.blizzard then
 			function customglow.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
 					local actionType, actionID = GetActionInfo(button:GetAttribute("action"))

@@ -17,7 +17,7 @@ local CombatText_StandardScroll = _G.CombatText_StandardScroll
 function ElvUI_EltreumUI:LoadCommands()
 	self:RegisterChatCommand('eltruism', 'RunCommands')
 	if ElvUI_EltreumUI.Retail then
-		if E.private.ElvUI_EltreumUI.waytext.enable then
+		if E.db.ElvUI_EltreumUI.waytext.enable then
 			self:RegisterChatCommand('way', 'WaypointTexttoCoordinate')
 	    	self:RegisterChatCommand('waypoint', 'WaypointTexttoCoordinate')
     	end
@@ -28,7 +28,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 	if message == '' or message == 'install' or message == 'setup' then
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 	elseif message == 'loot' then
-		if E.private.ElvUI_EltreumUI.loottext.enable then
+		if E.db.ElvUI_EltreumUI.loottext.enable then
 				local aImage = GetCoinIcon(9999999999)
 				if ElvUI_EltreumUI.Retail then
 					CombatText_AddMessage("|T ".. aImage ..":22:22:-11:-11|t  ".."9.999.999 Gold", CombatText_StandardScroll, 255, 255, 255)
@@ -50,7 +50,7 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 	-- still learning gsub and string matching, most of this was done with the help of stack overflow and lua-users.org
 	-- need to figure out how to prevent errors when not using the patterns
 	if ElvUI_EltreumUI.Retail then
-		if E.private.ElvUI_EltreumUI.waytext.enable then
+		if E.db.ElvUI_EltreumUI.waytext.enable then
 			-- translate the message into numbers
 		  	local translatemsg = message:gsub("(%d)[%.,] (%d)", "%1 %2"):gsub("(%d)" .. (tonumber("1.1") and "," or ".") .. "(%d)", "%1" .. (tonumber("1.1") and "." or ",") .. "%2")
 		    local coords = {}

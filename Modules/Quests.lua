@@ -8,7 +8,7 @@ if ElvUI_EltreumUI.Retail then
 
 	--Collapse Quests during boss fights
 	function ElvUI_EltreumUI:QuestEncounter()
-		if E.private.ElvUI_EltreumUI.questsettings.enable then
+		if E.db.ElvUI_EltreumUI.questsettings.enable then
 			local inInstance, instanceType = IsInInstance()
 			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then  --and event == "PLAYER_REGEN_DISABLED"
 				ObjectiveTracker_Collapse()
@@ -21,7 +21,7 @@ if ElvUI_EltreumUI.Retail then
 
 	function ElvUI_EltreumUI:ArenaQuest()
 		if ElvUI_EltreumUI.Retail then
-			if E.private.ElvUI_EltreumUI.questsettings.enable then
+			if E.db.ElvUI_EltreumUI.questsettings.enable then
 				local inInstance, instanceType = IsInInstance()
 				if instanceType == "arena" then  --and event == "PLAYER_REGEN_DISABLED"
 					ObjectiveTrackerFrame:Hide()

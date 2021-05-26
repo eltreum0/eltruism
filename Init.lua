@@ -38,7 +38,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 end
 
 function ElvUI_EltreumUI:Initialize()
-	if E.private.install_complete and E.private.ElvUI_EltreumUI.install_version == nil then
+	if E.private.install_complete and E.db.ElvUI_EltreumUI.install_version == nil then
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 	end
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
@@ -60,6 +60,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED')
 
 	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', 0.02)
@@ -187,6 +188,10 @@ end
 
 function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
 	ElvUI_EltreumUI:AFKmusic()
+end
+
+function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
+	ElvUI_EltreumUI:NamePlateOptions()
 end
 
 local function CallbackInitialize()
