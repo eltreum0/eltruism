@@ -2102,6 +2102,72 @@ if ElvUI_EltreumUI.Classic then
 						},
 					},
 				},
+				weakauras = {
+					type = 'group',
+					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras',
+					name = 'WeakAuras',
+					order = 95,
+					args = {
+						header1 = {
+							order = 1,
+							type = 'header',
+							name = 'WeakAuras',
+						},
+						explainer7 = {
+							order = 2,
+							type = "description",
+							name = 'My WeakAuras are available here, but are not focused on one class. Consider them more like upcoming features.',
+						},
+						addaspacehere = {
+							order = 3,
+							type = "description",
+							name = '',
+						},
+						wago = {
+							order = 4,
+							type = 'input',
+							width = 'normal',
+							name = 'All weakauras',
+							get = function() return 'wago.io/p/Eltreum' end,
+						},
+						addsomegap = {
+								order = 5,
+								type = "description",
+								name = "",
+						},
+						nameplatepowerbar = {
+							order = 6,
+							type = 'input',
+							width = 'full',
+							name = 'Nameplate Power Bar',
+							get = function() return 'https://wago.io/HJ7YjUVgo' end,
+						},
+						addsomegap2 = {
+								order = 7,
+								type = "description",
+								name = "",
+						},
+						bossnameplate = {
+							order = 8,
+							type = 'input',
+							width = 'full',
+							name = 'Boss nameplate at base',
+							get = function() return 'https://wago.io/M7yrCgMnE' end,
+						},
+						addsomegap3 = {
+								order = 9,
+								type = "description",
+								name = "",
+						},
+						--[[executenameplate = {
+							order = 10,
+							type = 'input',
+							width = 'full',
+							name = 'Executes next to nameplates',
+							get = function() return 'https://wago.io/afJKwFwAX' end,
+						},]]--
+					},
+				},
 				discord = {
 					type = 'group',
 					name = 'Discord',
@@ -3107,6 +3173,72 @@ if ElvUI_EltreumUI.TBC then
 								},
 							},
 						},
+					},
+				},
+				weakauras = {
+					type = 'group',
+					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras',
+					name = 'WeakAuras',
+					order = 95,
+					args = {
+						header1 = {
+							order = 1,
+							type = 'header',
+							name = 'WeakAuras',
+						},
+						explainer7 = {
+							order = 2,
+							type = "description",
+							name = 'My WeakAuras are available here, but are not focused on one class. Consider them more like upcoming features.',
+						},
+						addaspacehere = {
+							order = 3,
+							type = "description",
+							name = '',
+						},
+						wago = {
+							order = 4,
+							type = 'input',
+							width = 'normal',
+							name = 'All weakauras',
+							get = function() return 'wago.io/p/Eltreum' end,
+						},
+						addsomegap = {
+								order = 5,
+								type = "description",
+								name = "",
+						},
+						nameplatepowerbar = {
+							order = 6,
+							type = 'input',
+							width = 'full',
+							name = 'Nameplate Power Bar',
+							get = function() return 'https://wago.io/HJ7YjUVgo' end,
+						},
+						addsomegap2 = {
+								order = 7,
+								type = "description",
+								name = "",
+						},
+						bossnameplate = {
+							order = 8,
+							type = 'input',
+							width = 'full',
+							name = 'Boss nameplate at base',
+							get = function() return 'https://wago.io/M7yrCgMnE' end,
+						},
+						addsomegap3 = {
+								order = 9,
+								type = "description",
+								name = "",
+						},
+						--[[executenameplate = {
+							order = 10,
+							type = 'input',
+							width = 'full',
+							name = 'Executes next to nameplates',
+							get = function() return 'https://wago.io/afJKwFwAX' end,
+						},]]--
 					},
 				},
 				discord = {

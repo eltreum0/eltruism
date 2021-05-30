@@ -8,12 +8,13 @@ function ElvUI_EltreumUI:Print(msg)
 	print('|cff82B4ffEltruism|r: '..msg)
 end
 function ElvUI_EltreumUI:VersionCheck()
-		--if E.db.ElvUI_EltreumUI.install_version == "0" then
+		if E.db.ElvUI_EltreumUI.install_version == "0" or E.db.ElvUI_EltreumUI.install_version == nil then
 		--	ElvUI_EltreumUI:Print('Installation of Eltruism was not found, running installer now')
 		--	E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
-		--end
+			E.db.ElvUI_EltreumUI.install_version = "2.1.0"
+			ElvUI_EltreumUI:Print('Marking current profile as up to date to Eltruism, no changes were done to it.')
+		end
 		if E.db.ElvUI_EltreumUI.install_version > "0" and E.db.ElvUI_EltreumUI.install_version < "2.1.0" then
-
 			if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" or ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				if not E.db.movers then E.db.movers = {} end
 				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
@@ -23,7 +24,11 @@ function ElvUI_EltreumUI:VersionCheck()
 				ElvUI_EltreumUI:Print('Nameplate Filters were changed, please remove |cffff0000EnemyCasting, ExecuteRange, StealThisBuff and HideThis filters|r')
 			else
 				ElvUI_EltreumUI:Print('Not using an Eltruism profile, please switch to it and reload in order to update it')
+				--E.db.ElvUI_EltreumUI.install_version = "2.1.0"
 			end
+		end
+		if E.db.ElvUI_EltreumUI.install_version > "2.0.9" and E.db.ElvUI_EltreumUI.install_version < "2.1.1" then
+			--ElvUI_EltreumUI:Print('Put new update message here')
 		end
 end
 
@@ -117,8 +122,6 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('UnitNameEnemyTotemName', 1)
 	SetCVar('UnitNameNPC', 1)
 	SetCVar("ShowClassColorInFriendlyNameplate", 1)
-	SetCVar("nameplateOverlapH", 0.4)
-	SetCVar("nameplateOverlapV", 0.6)
 	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		SetCVar("lootUnderMouse", 1)
 		SetCVar("chatBubbles", 1)
@@ -138,8 +141,8 @@ function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('nameplateMaxDistance', 60)
 	SetCVar('nameplateMotion', 1)
 	SetCVar('nameplateOccludedAlphaMult', 0)
-	SetCVar('nameplateOverlapH', 0.8)
-	SetCVar('nameplateOverlapV', 1.1)
+	SetCVar("nameplateOverlapH", 0.8)
+	SetCVar("nameplateOverlapV", 1.1)
 	SetCVar('nameplateSelectedScale', 1)
 	SetCVar('nameplateSelfAlpha', 1)
 	SetCVar('nameplateShowFriendlyMinions', 0)
