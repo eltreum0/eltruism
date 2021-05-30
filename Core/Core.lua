@@ -147,6 +147,8 @@ function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('nameplateSelfAlpha', 1)
 	SetCVar('nameplateShowFriendlyMinions', 0)
 	SetCVar('nameplateTargetBehindMaxDistance', 40)
+	SetCVar('nameplateShowEnemies', 1)
+	SetCVar("nameplateShowFriends", 1)
 	ElvUI_EltreumUI:Print('NamePlate CVars have been set.')
 end
 

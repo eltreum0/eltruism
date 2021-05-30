@@ -65,8 +65,7 @@ function ElvUI_EltreumUI:Initialize()
 	SetCVar('nameplateOtherTopInset', 0.1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('nameplateTargetRadialPosition', 1)
-	SetCVar('nameplateShowEnemies', 1)
-	SetCVar("nameplateShowFriends", 1)
+
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		SetCVar("clampTargetNameplateToScreen", 1)
 		SetCVar("nameplateOtherBottomInset", 0.01)
