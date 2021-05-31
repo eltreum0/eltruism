@@ -150,7 +150,7 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Desc4:SetText('|cffff0000Make sure to run Details! install before importing|r')
 				PluginInstallFrame.Option1:Enable()
 				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT() end)
+				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT() ElvUI_EltreumUI:GetASProfile() end)
 				PluginInstallFrame.Option1:SetText('Setup Details')
 				if (not IsAddOnLoaded("Details")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
@@ -413,7 +413,7 @@ elseif ElvUI_EltreumUI.Classic then
 				PluginInstallFrame.Desc4:SetText('|cffff0000Make sure to run Details! install before importing|r')
 				PluginInstallFrame.Option1:Enable()
 				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT() end)
+				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT() ElvUI_EltreumUI:GetASProfile() end)
 				PluginInstallFrame.Option1:SetText('Setup Details')
 				if (not IsAddOnLoaded("Details")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
@@ -648,7 +648,7 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Desc4:SetText('|cffff0000Make sure to run Details! install before importing|r')
 				PluginInstallFrame.Option1:Enable()
 				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT() end)
+				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT() ElvUI_EltreumUI:GetASProfile() end)
 				PluginInstallFrame.Option1:SetText('Setup Details')
 				if (not IsAddOnLoaded("Details")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")

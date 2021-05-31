@@ -90,6 +90,20 @@ if ElvUI_EltreumUI.Retail then
 								},
 							},
 						},
+						resetnameplates = {
+							order = 2,
+							type = 'group',
+							inline = true,
+							name = 'Reset nameplates to Eltruism settings',
+							args = {
+								generalVars = {
+									order = 1,
+									type = 'execute',
+									name = 'Install',
+									func = function() ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end,
+								},
+							},
+						},
 					},
 				},
 				aurafilters = {
@@ -1364,6 +1378,20 @@ if ElvUI_EltreumUI.Classic then
 								},
 							},
 						},
+						resetnameplates = {
+							order = 2,
+							type = 'group',
+							inline = true,
+							name = 'Reset nameplates to Eltruism settings',
+							args = {
+								generalVars = {
+									order = 1,
+									type = 'execute',
+									name = 'Install',
+									func = function() ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end,
+								},
+							},
+						},
 					},
 				},
 				--[[afk = {
@@ -2341,6 +2369,20 @@ if ElvUI_EltreumUI.TBC then
 									type = 'execute',
 									name = 'Install',
 									func = function() E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData) E:ToggleOptionsUI() end,
+								},
+							},
+						},
+						resetnameplates = {
+							order = 2,
+							type = 'group',
+							inline = true,
+							name = 'Reset nameplates to Eltruism settings',
+							args = {
+								generalVars = {
+									order = 1,
+									type = 'execute',
+									name = 'Install',
+									func = function() ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end,
 								},
 							},
 						},

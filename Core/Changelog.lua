@@ -5,6 +5,15 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v2.1.2
+    -------
+Added option to reset nameplates to Eltruism defaults
+Tweaked nameplate class borders, colors and textures when option is off
+
+    v2.1.1
+    -------
+Fixed friendly nameplates being forced on during login
+
     v2.1.0
     -------
 Converted database to profile from private
