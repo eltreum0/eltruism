@@ -9,8 +9,6 @@ function ElvUI_EltreumUI:Print(msg)
 end
 function ElvUI_EltreumUI:VersionCheck()
 		if E.db.ElvUI_EltreumUI.install_version == "0" or E.db.ElvUI_EltreumUI.install_version == nil then
-		--	ElvUI_EltreumUI:Print('Installation of Eltruism was not found, running installer now')
-		--	E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 			E.db.ElvUI_EltreumUI.install_version = "2.1.0"
 			ElvUI_EltreumUI:Print('Marking current profile as up to date to Eltruism, no changes were done to it.')
 		end
@@ -27,13 +25,25 @@ function ElvUI_EltreumUI:VersionCheck()
 				--E.db.ElvUI_EltreumUI.install_version = "2.1.0"
 			end
 		end
-		if E.db.ElvUI_EltreumUI.install_version > "2.0.9" and E.db.ElvUI_EltreumUI.install_version < "2.1.1" then
-			--ElvUI_EltreumUI:Print('Put new update message here')
+		if E.db.ElvUI_EltreumUI.install_version > "2.1.0" and E.db.ElvUI_EltreumUI.install_version < "2.1.3" then
+			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" or ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
+					if not E.db.movers then E.db.movers = {} end
+					E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
+					E.db.ElvUI_EltreumUI.install_version = "2.1.3"
+					ElvUI_EltreumUI:Print('profile has been automatically updated to enable mana and energy ticks')
+				end
+			end
+			if ElvUI_EltreumUI.Retail then
+				E.db.ElvUI_EltreumUI.install_version = "2.1.3"
+				ElvUI_EltreumUI:Print('has been updated to the newest version')
+			end
 		end
 end
 
 -- Private DB
 function ElvUI_EltreumUI:SetupPrivate()
+	E.db.ElvUI_EltreumUI.install_version = "2.1.3"
 	-- ElvUI Private DB
 	E.private["general"]["chatBubbleFont"] = "Kimberley"
 	E.private["general"]["chatBubbleFontOutline"] = "OUTLINE"
@@ -53,7 +63,6 @@ function ElvUI_EltreumUI:SetupPrivate()
 	elseif ElvUI_EltreumUI.Classic then
 		E.private["install_complete"] = "1.42"
 	end
-	E.db.ElvUI_EltreumUI.install_version = "2.1.0"
 end
 
 -- Global DB

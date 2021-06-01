@@ -7,9 +7,8 @@ function ElvUI_EltreumUI:Changelog()
 	return[[
     v2.1.3
     -------
+Updated settings to ElvUI's newest version
 Changed TBC/Classic profiles to show mana/energy regen
-
-
 
     v2.1.2
     -------
