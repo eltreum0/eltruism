@@ -3876,6 +3876,7 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["player"]["power"]["text_format"] = ""
 			E.db["unitframe"]["units"]["player"]["power"]["width"] = "spaced"
 			E.db["unitframe"]["units"]["player"]["power"]["xOffset"] = 0
+			E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
 			E.db["unitframe"]["units"]["player"]["pvp"]["position"] = "CENTER"
 			E.db["unitframe"]["units"]["player"]["pvp"]["text_format"] = ""
 			E.db["unitframe"]["units"]["player"]["raidRoleIcons"]["xOffset"] = -1
@@ -4493,6 +4494,7 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["player"]["power"]["text_format"] = ""
 			E.db["unitframe"]["units"]["player"]["power"]["width"] = "spaced"
 			E.db["unitframe"]["units"]["player"]["power"]["xOffset"] = 0
+			E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
 			E.db["unitframe"]["units"]["player"]["raidicon"]["attachTo"] = "CENTER"
 			E.db["unitframe"]["units"]["player"]["raidicon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["player"]["raidicon"]["yOffset"] = 0
@@ -5714,6 +5716,7 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["player"]["power"]["text_format"] = ""
 			E.db["unitframe"]["units"]["player"]["power"]["width"] = "spaced"
 			E.db["unitframe"]["units"]["player"]["power"]["xOffset"] = 0
+			E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
 			E.db["unitframe"]["units"]["player"]["pvp"]["position"] = "CENTER"
 			E.db["unitframe"]["units"]["player"]["pvp"]["text_format"] = ""
 			E.db["unitframe"]["units"]["player"]["raidRoleIcons"]["xOffset"] = -1
@@ -6384,6 +6387,7 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["player"]["power"]["text_format"] = ""
 			E.db["unitframe"]["units"]["player"]["power"]["width"] = "spaced"
 			E.db["unitframe"]["units"]["player"]["power"]["xOffset"] = 0
+			E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
 			E.db["unitframe"]["units"]["player"]["raidicon"]["attachTo"] = "CENTER"
 			E.db["unitframe"]["units"]["player"]["raidicon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["player"]["raidicon"]["yOffset"] = 0

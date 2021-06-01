@@ -5,6 +5,12 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v2.1.3
+    -------
+Changed TBC/Classic profiles to show mana/energy regen
+
+
+
     v2.1.2
     -------
 Added option to reset nameplates to Eltruism defaults
