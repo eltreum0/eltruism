@@ -143,10 +143,10 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
-			if E.db.ElvUI_EltreumUI.install_version == nil then
+			if E.private.ElvUI_EltreumUI.install_version == nil then
 				return
 			end
-			if E.db.ElvUI_EltreumUI.install_version > "0" then
+			if E.private.ElvUI_EltreumUI.install_version > "0" then
 				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["border"] = true
 				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
 				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
@@ -155,10 +155,10 @@ function ElvUI_EltreumUI:NamePlateOptions()
 	end
 	if E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
-		if E.db.ElvUI_EltreumUI.install_version == nil then
+		if E.private.ElvUI_EltreumUI.install_version == nil then
 			return
 		end
-		if E.db.ElvUI_EltreumUI.install_version > "0" then
+		if E.private.ElvUI_EltreumUI.install_version > "0" then
 			E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 		end
 	end

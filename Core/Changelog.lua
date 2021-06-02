@@ -10,6 +10,7 @@ function ElvUI_EltreumUI:Changelog()
 Added Cursor, a fork of CastCursor by michaelsp (this module is GNU GPLv3)
 Changed how version checking works
 Added alternative layouts for party/raid/raid40 for the DPS/Tank profiles
+Tweaked install process to offer alternative layouts for certain classes
 The original layouts for those frames were made with pure dps classes in mind,
 if your class has off heals or raid cooldowns you might want to use the alternative layout
 Check it in Eltruism > Party/Raid

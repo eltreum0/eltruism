@@ -5,9 +5,11 @@ local IsAddOnLoaded = IsAddOnLoaded
 
 -- Set version & reload on "Skip" and "Finished"
 local function InstallComplete()
-	E.db.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
+	E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
 	ReloadUI()
 end
+
+local myclass = E.myclass
 
 if ElvUI_EltreumUI.Retail then
 	-- Installer Steps Retail
@@ -99,13 +101,21 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.SubTitle:SetText('Layouts')
 				PluginInstallFrame.Desc1:SetText('Please select the role for your character, which will create a new profile')
 				PluginInstallFrame.Desc2:SetText('This process can take a few seconds')
-				PluginInstallFrame.Desc3:SetText('Importance: |cFFFF0000Very High|r')
+				if myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'MONK' or myclass == 'SHAMAN' or myclass == 'PALADIN' then
+					PluginInstallFrame.Desc3:SetText('|cff82B4ffYou are playing a hybrid class that can support the group, if you select Eltreum DPS/Tank then its recommended to click Alternative after clicking Eltreum DPS/Tank|r')
+				end
+				PluginInstallFrame.Desc4:SetText('Importance: |cFFFF0000Very High|r')
 				PluginInstallFrame.Option1:Show()
 				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option1:SetText('DPS/Tank')
 				PluginInstallFrame.Option2:Show()
 				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars()  ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option2:SetText('Healing')
+				if myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'MONK' or myclass == 'SHAMAN' or myclass == 'PALADIN' then
+					PluginInstallFrame.Option3:SetText('Alternative')
+					PluginInstallFrame.Option3:Show()
+					PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AlternativeGroupsDPS() end)
+				end
 			end,
 			[3] = function()
 				PluginInstallFrame.SubTitle:SetText('Fonts')
@@ -381,13 +391,21 @@ elseif ElvUI_EltreumUI.Classic then
 				PluginInstallFrame.SubTitle:SetText('Layouts')
 				PluginInstallFrame.Desc1:SetText('Please select the role for your character, which will create a new profile')
 				PluginInstallFrame.Desc2:SetText('This process can take a few seconds')
-				PluginInstallFrame.Desc3:SetText('Importance: |cFFFF0000Very High|r')
+				if myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'MONK' or myclass == 'SHAMAN' or myclass == 'PALADIN' then
+					PluginInstallFrame.Desc3:SetText('|cff82B4ffYou are playing a hybrid class that can support the group, if you select Eltreum DPS/Tank then its recommended to click Alternative after clicking Eltreum DPS/Tank|r')
+				end
+				PluginInstallFrame.Desc4:SetText('Importance: |cFFFF0000Very High|r')
 				PluginInstallFrame.Option1:Show()
 				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option1:SetText('DPS/Tank')
 				PluginInstallFrame.Option2:Show()
-				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
+				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars()  ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option2:SetText('Healing')
+				if myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'MONK' or myclass == 'SHAMAN' or myclass == 'PALADIN' then
+					PluginInstallFrame.Option3:SetText('Alternative')
+					PluginInstallFrame.Option3:Show()
+					PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AlternativeGroupsDPS() end)
+				end
 			end,
 			[3] = function()
 				PluginInstallFrame.SubTitle:SetText('Fonts')
@@ -616,13 +634,21 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.SubTitle:SetText('Layouts')
 				PluginInstallFrame.Desc1:SetText('Please select the role for your character, which will create a new profile')
 				PluginInstallFrame.Desc2:SetText('This process can take a few seconds')
-				PluginInstallFrame.Desc3:SetText('Importance: |cFFFF0000Very High|r')
+				if myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'MONK' or myclass == 'SHAMAN' or myclass == 'PALADIN' then
+					PluginInstallFrame.Desc3:SetText('|cff82B4ffYou are playing a hybrid class that can support the group, if you select Eltreum DPS/Tank then its recommended to click Alternative after clicking Eltreum DPS/Tank|r')
+				end
+				PluginInstallFrame.Desc4:SetText('Importance: |cFFFF0000Very High|r')
 				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
+				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option1:SetText('DPS/Tank')
 				PluginInstallFrame.Option2:Show()
-				PluginInstallFrame.Option2:SetScript('OnClick', function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
+				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars()  ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option2:SetText('Healing')
+				if myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'MONK' or myclass == 'SHAMAN' or myclass == 'PALADIN' then
+					PluginInstallFrame.Option3:SetText('Alternative')
+					PluginInstallFrame.Option3:Show()
+					PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AlternativeGroupsDPS() end)
+				end
 			end,
 			[3] = function()
 				PluginInstallFrame.SubTitle:SetText('Fonts')

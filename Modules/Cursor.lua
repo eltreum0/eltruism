@@ -1,72 +1,68 @@
+local _G = _G
+
+
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local pairs = pairs
-local SetCVar = SetCVar
-local IsAddOnLoaded = IsAddOnLoaded
+local pairs = _G.pairs
+local SetCVar = _G.SetCVar
+local IsAddOnLoaded = _G.IsAddOnLoaded
 
 --This module is a direct merge of CastCursor by michaelsp and as such is available under GNU GPL v3 like the original
 --all credits of this module go to michaelsp
 
-local cursorframe = CreateFrame("Frame", "EltreumCastCursor", UIParent, "UIDropDownMenuTemplate")
-local UIParent = UIParent
-local GetTime = GetTime
-local UnitCastingInfo = UnitCastingInfo or CastingInfo
-local UnitChannelInfo = UnitChannelInfo or ChannelInfo
-local GetSpellCooldown = GetSpellCooldown
-local GetCursorPosition = GetCursorPosition
-local next, unpack, floor, cos, sin, max, min = next, unpack, floor, cos, sin, max, min
-local isRetail = select(4, GetBuildInfo())>=30000
+local cursorframe = _G.CreateFrame("Frame", "EltreumCastCursor", _G.UIParent, "UIDropDownMenuTemplate")
+local UIParent = _G.UIParent
+local GetTime = _G.GetTime
+local UnitCastingInfo = _G.UnitCastingInfo or _G.CastingInfo
+local UnitChannelInfo = _G.UnitChannelInfo or _G.ChannelInfo
+local GetSpellCooldown = _G.GetSpellCooldown
+local GetCursorPosition = _G.GetCursorPosition
+local next, unpack, floor, cos, sin, max, min = _G.next, _G.unpack, _G.floor, _G.cos, _G.sin, _G.max, _G.min
+local isRetail = _G.select(4, _G.GetBuildInfo())>=30000
+
 
 function ElvUI_EltreumUI:CastCursor()
 	if E.db.ElvUI_EltreumUI.cursor.enable then
+		local ring
+		ring = E.db.ElvUI_EltreumUI.cursor.ring
+
 		local classcolors
 		classcolors = E:ClassColor(E.myclass, true)
-
-
 		local Defaults = {
 			cast = {
-				visible = true,
 				radius = 25,
 				sublayer = 1,
 				thickness = 5,
 				color = { classcolors.r, classcolors.g, classcolors.b, 1 },
-				texture = [[Interface\addons\ElvUI_EltreumUI\Media\Textures\ring2]],
+				texture = ring,
 			},
 			gcd = {
-				visible = true,
 				radius = 20,
 				sublayer = 0,
 				thickness = 5,
-				color = { 0, 0, 0, 1 },
-				texture = [[Interface\addons\ElvUI_EltreumUI\Media\Textures\ring2]],
+				color = { 1, 1, 1, 1 },
+				texture = ring,
 			},
 			cursor = {
-				visible = true,
 				radius = 15,
 				sublayer = 0,
 				thickness = 5,
 				combat = true,
-				color = { 1, 1, 1, 1 },
-				texture = [[Interface\addons\ElvUI_EltreumUI\Media\Textures\ring2]],
+				color = { 0.5, 0.5, 0.5, 1 },
+				texture = ring,
 			},
-			minimapIcon = { hide = false },
 		}
-
-		--====================================================================
-
 		local QUAD_POINTS = {
 			{ 'TOPLEFT',     'TOP'    },
 			{ 'TOPRIGHT',    'RIGHT'  },
 			{ 'BOTTOMRIGHT', 'BOTTOM' },
 			{ 'BOTTOMLEFT',  'LEFT'   },
 		}
-
 		local QUAD_COORD_FULL = {
 			{ 0,0, 0,1, 1,0, 1,1 },
 			{ 0,1, 1,1, 0,0, 1,0 },
 			{ 1,1, 1,0, 0,1, 0,0 },
 			{ 1,0, 0,0, 1,1, 0,1 },
 		}
-
 		local QUAD_COORD_FUNC = {
 			function(t, r, x1, x2, y1, y2) -- Quadrant1: TOPRIGHT
 				t:SetTexCoord(x1,1-y2, x1,1-y1, x2,1-y2, x2,1-y1)
@@ -85,15 +81,10 @@ function ElvUI_EltreumUI:CastCursor()
 				t:SetSize((1-y1)*r, x2*r)
 			end,
 		}
-
-		--====================================================================
-		-- Utils
-		--====================================================================
-
 		function CopyDefaults(src, dst)
-			if type(dst)~="table" then dst = {} end
+			if _G.type(dst)~="table" then dst = {} end
 			for k,v in pairs(src) do
-				if type(v)=="table" then
+				if _G.type(v)=="table" then
 					dst[k] = CopyDefaults(v,dst[k])
 				elseif dst[k]==nil then
 					dst[k] = v
@@ -101,12 +92,8 @@ function ElvUI_EltreumUI:CastCursor()
 			end
 			return dst
 		end
-
-		--====================================================================
 		-- Root Frame
-		--====================================================================
-
-		local rootFrame = CreateFrame("Frame", nil, UIParent)
+		local rootFrame = _G.CreateFrame("Frame", nil, UIParent)
 		rootFrame:SetSize(8,8)
 		rootFrame:SetScript("OnUpdate", function(self)
 			local x, y = GetCursorPosition()
@@ -131,15 +118,10 @@ function ElvUI_EltreumUI:CastCursor()
 				self:Hide()
 			end
 		end
-
-		--====================================================================
 		-- Shared functions
-		--====================================================================
-
 		local function OnEvent(self,event,...)
 			self[event](self,event,...)
 		end
-
 		local function Start(self, d, m)
 			local textures = self.textures
 			local quad = min( floor( 4 * (self.reverse and m-d or d)/m ) + 1, 4)
@@ -159,12 +141,10 @@ function ElvUI_EltreumUI:CastCursor()
 			self.max  = m
 			RingSetShown(self, true)
 		end
-
 		local function Update(self, elapsed)
 			local dur = self.dur + elapsed
 			if dur>=self.max then RingSetShown(self,false); return end
 			self.dur = dur
-
 			local rev    = self.reverse
 			local maxdur = self.max
 			local radius = self.radius
@@ -192,7 +172,6 @@ function ElvUI_EltreumUI:CastCursor()
 				QUAD_COORD_FUNC[quad]( tex, radius, 0, sin(qangle)*f, cos(qangle)*f, 1 )
 			end
 		end
-
 		local function Setup(frame)
 			local cfg     = frame.db
 			local radius  = cfg.radius
@@ -204,12 +183,12 @@ function ElvUI_EltreumUI:CastCursor()
 			frame:SetPoint('CENTER', rootFrame, 'CENTER', 0, 0)
 			frame:SetSize(radius*2, radius*2)
 			frame.textures = frame.textures or {}
-			local hide = ( not cursorframe.testmode or not cfg.visible ) and not frame.IsCursor
+			local hide = not frame.IsCursor
 			for i=1,4 do
 				local tex = frame.textures[i] or frame:CreateTexture(nil, "OVERLAY")
 				tex:ClearAllPoints()
 				tex:SetDrawLayer("OVERLAY", cfg.sublayer or 0)
-				tex:SetTexture(cfg.texture or [[Interface\addons\ElvUI_EltreumUI\Media\Textures\ring1.tga]])
+				tex:SetTexture(cfg.texture)
 				tex:SetVertexColor(r, g, b)
 				tex:SetTexCoord(unpack(QUAD_COORD_FULL[i]))
 				tex:SetSize(radius, radius)
@@ -222,30 +201,21 @@ function ElvUI_EltreumUI:CastCursor()
 			frame.factor = (radius-cfg.thickness)/radius
 			frame.reverse = cfg.reverse
 			if frame.IsCursor then
-				if cfg.visible and cfg.combat then
+				if cfg.combat then
 					frame:RegisterEvent('PLAYER_REGEN_ENABLED')
 					frame:RegisterEvent('PLAYER_REGEN_DISABLED')
 					frame:SetScript("OnEvent", function(self, event) RingSetShown(self,event=='PLAYER_REGEN_DISABLED'); end)
-					RingSetShown( frame, InCombatLockdown() )
-				else
-					frame:UnregisterAllEvents()
-					frame:SetScript("OnEvent", nil)
-					RingSetShown( frame, cfg.visible )
+					RingSetShown( frame, _G.InCombatLockdown() )
 				end
-			elseif not cursorframe.testmode then
-				frame:SetScript("OnEvent", cfg.visible and OnEvent or nil)
+			else
+				frame:SetScript("OnEvent", OnEvent or nil)
 				frame:SetScript("OnUpdate", Update)
 				RingSetShown( frame, false )
 			end
 			return frame
 		end
-
-		--====================================================================
 		-- Casting/Channeling Ring
-		--====================================================================
-
-		local Cast = CreateFrame("Frame", nil, rootFrame)
-
+		local Cast = _G.CreateFrame("Frame", nil, rootFrame)
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_DELAYED", "player")
 		function Cast:UNIT_SPELLCAST_START(event, unit)
@@ -258,7 +228,6 @@ function ElvUI_EltreumUI:CastCursor()
 			end
 		end
 		Cast.UNIT_SPELLCAST_DELAYED = Cast.UNIT_SPELLCAST_START
-
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_FAILED", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", "player")
@@ -271,7 +240,6 @@ function ElvUI_EltreumUI:CastCursor()
 		Cast.UNIT_SPELLCAST_FAILED = Cast.UNIT_SPELLCAST_STOP
 		Cast.UNIT_SPELLCAST_INTERRUPTED = Cast.UNIT_SPELLCAST_STOP
 		Cast.UNIT_SPELLCAST_CHANNEL_STOP = Cast.UNIT_SPELLCAST_STOP
-
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_START", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_UPDATE", "player")
 		function Cast:UNIT_SPELLCAST_CHANNEL_START(event, unit)
@@ -284,13 +252,8 @@ function ElvUI_EltreumUI:CastCursor()
 			end
 		end
 		Cast.UNIT_SPELLCAST_CHANNEL_UPDATE = Cast.UNIT_SPELLCAST_CHANNEL_START
-
-		--====================================================================
 		-- GCD Ring
-		--====================================================================
-
-		local GCD = CreateFrame("Frame", nil, rootFrame)
-
+		local GCD = _G.CreateFrame("Frame", nil, rootFrame)
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
 		function GCD:UNIT_SPELLCAST_START(event, unit, guid, spellID)
@@ -300,26 +263,17 @@ function ElvUI_EltreumUI:CastCursor()
 			end
 		end
 		GCD.UNIT_SPELLCAST_SUCCEEDED = GCD.UNIT_SPELLCAST_START
-
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", "player")
 		function GCD:UNIT_SPELLCAST_STOP(event, unit, castID)
 			RingSetShown( self, false )
 		end
 		GCD.UNIT_SPELLCAST_INTERRUPTED = GCD.UNIT_SPELLCAST_STOP
-
-		--====================================================================
 		-- Cursor Ring
-		--====================================================================
-
-		local Cursor = CreateFrame("Frame", nil, rootFrame)
+		local Cursor = _G.CreateFrame("Frame", nil, rootFrame)
 		Cursor.IsCursor = true
 		Cursor:Hide()
-
-		--====================================================================
 		-- Run
-		--====================================================================
-
 		cursorframe:RegisterEvent("ADDON_LOADED")
 		cursorframe:SetScript("OnEvent", function(self, event, name)
 			CastCursorDB = CopyDefaults(Defaults, CastCursorDB)

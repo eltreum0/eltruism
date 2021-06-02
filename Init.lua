@@ -40,7 +40,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 end
 
 function ElvUI_EltreumUI:Initialize()
-	if E.private.install_complete and E.db.ElvUI_EltreumUI.install_version == nil then
+	if E.private.install_complete and E.private.ElvUI_EltreumUI.install_version == nil then
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 	end
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
