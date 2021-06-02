@@ -5,6 +5,14 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v2.1.4
+    -------
+Changed how version checking works
+Added alternative layouts for party/raid/raid40 for the DPS/Tank profiles
+The original layouts for those frames were made with pure dps classes in mind,
+if your class has off heals or raid cooldowns you might want to use the alternative layout
+Check it in Eltruism > Party/Raid
+
     v2.1.3
     -------
 Updated settings to ElvUI's newest version

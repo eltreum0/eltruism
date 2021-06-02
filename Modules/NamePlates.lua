@@ -467,14 +467,6 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["yOffset"] = 15
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["power"]["text"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["power"]["text"]["fontOutline"] = "NONE"
-		--[[if ElvUI_EltreumUI.Retail then
-			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["pvpclassificationindicator"]["position"] = "CENTER"
-			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["pvpclassificationindicator"]["size"] = 100
-			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["pvpclassificationindicator"]["yOffset"] = 100
-		end
-		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["pvpindicator"]["position"] = "CENTER"
-		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["pvpindicator"]["size"] = 25
-		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["pvpindicator"]["yOffset"] = 35]]--
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["raidTargetIndicator"]["position"] = "CENTER"
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["raidTargetIndicator"]["size"] = 39
 		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["raidTargetIndicator"]["xOffset"] = 0
@@ -548,16 +540,6 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["PLAYER"]["power"]["text"]["xOffset"] = 1
 		E.db["nameplates"]["units"]["PLAYER"]["power"]["text"]["yOffset"] = -11
 		E.db["nameplates"]["units"]["PLAYER"]["power"]["yOffset"] = -17
-		--[[if ElvUI_EltreumUI.Retail then
-		E.db["nameplates"]["units"]["PLAYER"]["pvpclassificationindicator"]["position"] = "CENTER"
-		E.db["nameplates"]["units"]["PLAYER"]["pvpclassificationindicator"]["size"] = 100
-		E.db["nameplates"]["units"]["PLAYER"]["pvpclassificationindicator"]["xOffset"] = 25
-		E.db["nameplates"]["units"]["PLAYER"]["pvpclassificationindicator"]["yOffset"] = 7
-		end
-		E.db["nameplates"]["units"]["PLAYER"]["pvpindicator"]["position"] = "CENTER"
-		E.db["nameplates"]["units"]["PLAYER"]["pvpindicator"]["showBadge"] = false
-		E.db["nameplates"]["units"]["PLAYER"]["pvpindicator"]["size"] = 64
-		E.db["nameplates"]["units"]["PLAYER"]["pvpindicator"]["yOffset"] = 54]]--
 		E.db["nameplates"]["units"]["PLAYER"]["raidTargetIndicator"]["enable"] = false
 		E.db["nameplates"]["units"]["PLAYER"]["raidTargetIndicator"]["position"] = "CENTER"
 		E.db["nameplates"]["units"]["PLAYER"]["raidTargetIndicator"]["xOffset"] = 0

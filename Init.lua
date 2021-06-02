@@ -34,7 +34,8 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:SkillGlow()
 	end
 	ElvUI_EltreumUI:LootText()
-	ElvUI_EltreumUI:VersionCheck()
+	ElvUI_EltreumUI:OldVersionCheck()
+	ElvUI_EltreumUI:NewVersionCheck()
 end
 
 function ElvUI_EltreumUI:Initialize()
