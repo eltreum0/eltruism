@@ -10,4 +10,5 @@
 	<Script file='LootText.lua'/>
 	<Script file='CombatMusic.lua'/>
 	<Script file='DarkLightColors.lua'/>
+	<Script file='Cursor.lua'/>
 </Ui>

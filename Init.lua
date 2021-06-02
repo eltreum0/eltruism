@@ -36,6 +36,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:LootText()
 	ElvUI_EltreumUI:OldVersionCheck()
 	ElvUI_EltreumUI:NewVersionCheck()
+	ElvUI_EltreumUI:CastCursor()
 end
 
 function ElvUI_EltreumUI:Initialize()

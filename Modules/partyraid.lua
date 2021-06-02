@@ -80,6 +80,8 @@ function ElvUI_EltreumUI:AlternativeGroupsDPS()
 		E.db["unitframe"]["units"]["raid40"]["height"] = 30
 		E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 2
 		E.db["unitframe"]["units"]["raid40"]["width"] = 120
+
+		ReloadUI()
 	else
 		ElvUI_EltreumUI:Print('The alternative layout was made for the Eltruism DPS/Tank profile, please switch to it to use it')
 	end
@@ -103,6 +105,8 @@ function ElvUI_EltreumUI:OriginalGroupsDPS()
 		E.db["unitframe"]["units"]["raid40"]["height"] = 32
 		E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 2
 		E.db["unitframe"]["units"]["raid40"]["width"] = 120
+
+		ReloadUI()
 	else
 		ElvUI_EltreumUI:Print('The original layout was made for the Eltruism DPS/Tank profile, please switch to it to use it')
 	end

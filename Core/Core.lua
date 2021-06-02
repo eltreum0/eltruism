@@ -10,15 +10,15 @@ end
 
 
 function ElvUI_EltreumUI:NewVersionCheck()
-	if E.private.ElvUI_EltreumUI.install_version < "2.1.4" then
-		E.private.ElvUI_EltreumUI.install_version = "2.1.4"
+	if E.private.ElvUI_EltreumUI.install_version == "2.1.3" then
+	E.private.ElvUI_EltreumUI.install_version = "2.1.4"
 		--ElvUI_EltreumUI:Print('version check working')
 	end
 end
 
 function ElvUI_EltreumUI:OldVersionCheck()
-	if E.private.ElvUI_EltreumUI.install_version == "0" or E.private.ElvUI_EltreumUI.install_version == nil then
-		E.private.ElvUI_EltreumUI.install_version = "2.1.0"
+	if E.private.ElvUI_EltreumUI.install_version == nil or E.private.ElvUI_EltreumUI.install_version == "0" then
+		E.private.ElvUI_EltreumUI.install_version = "1.0.0"
 	end
 	if E.private.ElvUI_EltreumUI.install_version > "0" and E.private.ElvUI_EltreumUI.install_version < "2.1.0" then
 		if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" or ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
