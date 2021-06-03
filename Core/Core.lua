@@ -8,12 +8,11 @@ function ElvUI_EltreumUI:Print(msg)
 	print('|cff82B4ffEltruism|r: '..msg)
 end
 
-
 function ElvUI_EltreumUI:NewVersionCheck()
-	if E.private.ElvUI_EltreumUI.install_version == "2.1.3" then
-	E.private.ElvUI_EltreumUI.install_version = "2.1.4"
-		--ElvUI_EltreumUI:Print('version check working')
+	if E.private.ElvUI_EltreumUI.install_version == "2.1.4" or E.private.ElvUI_EltreumUI.install_version == "2.1.3" then
+		E.private.ElvUI_EltreumUI.install_version = "2.1.5"
 	end
+	--ElvUI_EltreumUI:Print('add any needed warning here')
 end
 
 function ElvUI_EltreumUI:OldVersionCheck()

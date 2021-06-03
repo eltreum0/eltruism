@@ -1,6 +1,4 @@
 local _G = _G
-
-
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local pairs = _G.pairs
 local SetCVar = _G.SetCVar
@@ -142,7 +140,18 @@ function ElvUI_EltreumUI:CastCursor()
 			RingSetShown(self, true)
 		end
 		local function Update(self, elapsed)
-			local dur = self.dur + elapsed
+			--originally
+			--local dur = self.dur + elapsed
+
+			--attempted fix
+			local dur
+			if elapsed then
+				dur = self.dur + elapsed
+			else
+				dur = 0
+			end
+			--end of fix
+
 			if dur>=self.max then RingSetShown(self,false); return end
 			self.dur = dur
 			local rev    = self.reverse
@@ -294,5 +303,29 @@ function ElvUI_EltreumUI:CastCursor()
 			Setup(Cast)
 			Setup(GCD)
 		end )
+	end
+end
+
+
+-- Change cursor size based on user input
+function ElvUI_EltreumUI:CursorSize(value)
+	if value == '-1' then
+		SetCVar("cursorSizePreferred", -1)
+		E.db.ElvUI_EltreumUI.cursor.size = '-1'
+	elseif value == '0' then
+		SetCVar("cursorSizePreferred", 0)
+		E.db.ElvUI_EltreumUI.cursor.size = '0'
+	elseif value == '1' then
+		SetCVar("cursorSizePreferred", 1)
+		E.db.ElvUI_EltreumUI.cursor.size = '1'
+	elseif value == '2' then
+		SetCVar("cursorSizePreferred", 2)
+		E.db.ElvUI_EltreumUI.cursor.size = '2'
+	elseif value == '3' then
+		SetCVar("cursorSizePreferred", 3)
+		E.db.ElvUI_EltreumUI.cursor.size = '3'
+	elseif value == '4' then
+		SetCVar("cursorSizePreferred", 4)
+		E.db.ElvUI_EltreumUI.cursor.size = '4'
 	end
 end

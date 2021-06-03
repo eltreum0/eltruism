@@ -5,6 +5,10 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v2.1.5
+    -------
+Added an option to change the size of the cursor
+
     v2.1.4
     -------
 Added Cursor, a fork of CastCursor by michaelsp (this module is GNU GPLv3)

@@ -6,6 +6,7 @@ P.ElvUI_EltreumUI = {
 	cursor = {
 		enable = true,
 		ring = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\ring2.tga',
+		size = '-1',
 	},
 
 	nameplateOptions = {
