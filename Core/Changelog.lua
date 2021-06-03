@@ -5,9 +5,15 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v2.1.6
+    -------
+Fixed Cursor error related to instances
+
     v2.1.5
     -------
 Added an option to change the size of the cursor
+Added images showing the rings for the cursor
+Fixed abbreviation when using cyrillic letters
 
     v2.1.4
     -------

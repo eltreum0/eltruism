@@ -140,19 +140,18 @@ function ElvUI_EltreumUI:CastCursor()
 			RingSetShown(self, true)
 		end
 		local function Update(self, elapsed)
-			--originally
-			--local dur = self.dur + elapsed
-
-			--attempted fix
 			local dur
-			if elapsed then
-				dur = self.dur + elapsed
-			else
+			if self.dur == nil then
+				self.dur = 0
+			end
+			dur = self.dur + elapsed
+			if dur == nil then
 				dur = 0
 			end
-			--end of fix
-
-			if dur>=self.max then RingSetShown(self,false); return end
+			if self.max == nil then
+				self.max = 0
+			end
+			if dur >= self.max then RingSetShown(self,false); return end
 			self.dur = dur
 			local rev    = self.reverse
 			local maxdur = self.max

@@ -42,7 +42,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		end
 		if ElvUI_EltreumUI.Retail then
 			E.private.ElvUI_EltreumUI.install_version = "2.1.3"
-			ElvUI_EltreumUI:Print('has been updated to the newest version')
+			--ElvUI_EltreumUI:Print('has been updated to the newest version')
 		end
 	end
 end
