@@ -4,9 +4,6 @@ local pairs = _G.pairs
 local SetCVar = _G.SetCVar
 local IsAddOnLoaded = _G.IsAddOnLoaded
 
---This module is a direct merge of CastCursor by michaelsp and as such is available under GNU GPL v3 like the original
---all credits of this module go to michaelsp
-
 local cursorframe = _G.CreateFrame("Frame", "EltreumCastCursor", _G.UIParent, "UIDropDownMenuTemplate")
 local UIParent = _G.UIParent
 local GetTime = _G.GetTime
@@ -17,6 +14,49 @@ local GetCursorPosition = _G.GetCursorPosition
 local next, unpack, floor, cos, sin, max, min = _G.next, _G.unpack, _G.floor, _G.cos, _G.sin, _G.max, _G.min
 local isRetail = _G.select(4, _G.GetBuildInfo())>=30000
 
+
+
+
+
+function ElvUI_EltreumUI:ListofCursors()
+	local cursortable = {
+	    ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring1.tga'] = 'Type 1',
+        ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring2.tga'] = 'Type 2',
+        ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga'] = 'Type 3',
+        ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring4.tga'] = 'Type 4',
+        ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring5.tga'] = 'Type 5',
+        ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring6.tga'] = 'Type 6',
+        ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring7.tga'] = 'Type 7',
+        ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring8.tga'] = 'Type 8',
+	}
+	return cursortable
+end
+
+-- Change cursor size based on user input
+function ElvUI_EltreumUI:CursorSize(value)
+	if value == '-1' then
+		SetCVar("cursorSizePreferred", -1)
+		E.db.ElvUI_EltreumUI.cursor.size = '-1'
+	elseif value == '0' then
+		SetCVar("cursorSizePreferred", 0)
+		E.db.ElvUI_EltreumUI.cursor.size = '0'
+	elseif value == '1' then
+		SetCVar("cursorSizePreferred", 1)
+		E.db.ElvUI_EltreumUI.cursor.size = '1'
+	elseif value == '2' then
+		SetCVar("cursorSizePreferred", 2)
+		E.db.ElvUI_EltreumUI.cursor.size = '2'
+	elseif value == '3' then
+		SetCVar("cursorSizePreferred", 3)
+		E.db.ElvUI_EltreumUI.cursor.size = '3'
+	elseif value == '4' then
+		SetCVar("cursorSizePreferred", 4)
+		E.db.ElvUI_EltreumUI.cursor.size = '4'
+	end
+end
+
+--This module is a direct merge of CastCursor by michaelsp and as such is available under GNU GPL v3 like the original
+--all credits of this module go to michaelsp
 
 function ElvUI_EltreumUI:CastCursor()
 	if E.db.ElvUI_EltreumUI.cursor.enable then
@@ -302,29 +342,5 @@ function ElvUI_EltreumUI:CastCursor()
 			Setup(Cast)
 			Setup(GCD)
 		end )
-	end
-end
-
-
--- Change cursor size based on user input
-function ElvUI_EltreumUI:CursorSize(value)
-	if value == '-1' then
-		SetCVar("cursorSizePreferred", -1)
-		E.db.ElvUI_EltreumUI.cursor.size = '-1'
-	elseif value == '0' then
-		SetCVar("cursorSizePreferred", 0)
-		E.db.ElvUI_EltreumUI.cursor.size = '0'
-	elseif value == '1' then
-		SetCVar("cursorSizePreferred", 1)
-		E.db.ElvUI_EltreumUI.cursor.size = '1'
-	elseif value == '2' then
-		SetCVar("cursorSizePreferred", 2)
-		E.db.ElvUI_EltreumUI.cursor.size = '2'
-	elseif value == '3' then
-		SetCVar("cursorSizePreferred", 3)
-		E.db.ElvUI_EltreumUI.cursor.size = '3'
-	elseif value == '4' then
-		SetCVar("cursorSizePreferred", 4)
-		E.db.ElvUI_EltreumUI.cursor.size = '4'
 	end
 end
