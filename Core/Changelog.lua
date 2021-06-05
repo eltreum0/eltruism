@@ -10,6 +10,7 @@ function ElvUI_EltreumUI:Changelog()
 Added new Cursors, changed their file path
 Revamped Cursor options
 Changed some internal code
+Improved Party/Raid death according to Simpy's suggestion
 
     v2.1.6
     -------

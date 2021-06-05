@@ -63,6 +63,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED')
+	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE')
 	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', 0.02)
 	SetCVar('nameplateOtherTopInset', 0.1)
@@ -181,8 +182,9 @@ function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
 end
 
 function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
-	ElvUI_EltreumUI:RaidDeath()
+	ElvUI_EltreumUI:GroupRoster()
 end
+
 
 function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
 	ElvUI_EltreumUI:AFKmusic()

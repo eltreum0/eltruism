@@ -14,21 +14,8 @@ local GetCursorPosition = _G.GetCursorPosition
 local next, unpack, floor, cos, sin, max, min = _G.next, _G.unpack, _G.floor, _G.cos, _G.sin, _G.max, _G.min
 local isRetail = _G.select(4, _G.GetBuildInfo())>=30000
 
---[[function ElvUI_EltreumUI:ListofCursors()
-	local cursortable = {
-	    ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring1.tga'] = 'Type 1',
-        ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring2.tga'] = 'Type 2',
-        ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga'] = 'Type 3',
-        ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring4.tga'] = 'Type 4',
-        ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring5.tga'] = 'Type 5',
-        ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring6.tga'] = 'Type 6',
-        ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring7.tga'] = 'Type 7',
-        ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring8.tga'] = 'Type 8',
-	}
-	return cursortable
-end]]
 
-
+--Detect the current cursor for options
 function ElvUI_EltreumUI:CurrentTypeofCursor()
 	local currentring = E.db.ElvUI_EltreumUI.cursor.ring
 	if currentring:match("ring1") then
@@ -47,6 +34,10 @@ function ElvUI_EltreumUI:CurrentTypeofCursor()
 		currentring = '|cff82B4ffType 7|r'
 	elseif currentring:match("ring8") then
 		currentring = '|cff82B4ffType 8|r'
+	elseif currentring:match("ring9") then
+		currentring = '|cff82B4ffType 9|r'
+	elseif currentring:match("ring10") then
+		currentring = '|cff82B4ffType 10|r'
 	end
 	return currentring
 end
