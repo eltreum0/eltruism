@@ -4,7 +4,7 @@ local pairs = _G.pairs
 local SetCVar = _G.SetCVar
 local IsAddOnLoaded = _G.IsAddOnLoaded
 
-local cursorframe = _G.CreateFrame("Frame", "EltreumCastCursor", _G.UIParent, "UIDropDownMenuTemplate")
+local cursorframe = _G.CreateFrame("Frame", "EltreumCastCursor") --, _G.UIParent, "UIDropDownMenuTemplate")
 local UIParent = _G.UIParent
 local GetTime = _G.GetTime
 local UnitCastingInfo = _G.UnitCastingInfo or _G.CastingInfo
@@ -14,11 +14,7 @@ local GetCursorPosition = _G.GetCursorPosition
 local next, unpack, floor, cos, sin, max, min = _G.next, _G.unpack, _G.floor, _G.cos, _G.sin, _G.max, _G.min
 local isRetail = _G.select(4, _G.GetBuildInfo())>=30000
 
-
-
-
-
-function ElvUI_EltreumUI:ListofCursors()
+--[[function ElvUI_EltreumUI:ListofCursors()
 	local cursortable = {
 	    ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring1.tga'] = 'Type 1',
         ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring2.tga'] = 'Type 2',
@@ -30,6 +26,29 @@ function ElvUI_EltreumUI:ListofCursors()
         ['Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring8.tga'] = 'Type 8',
 	}
 	return cursortable
+end]]
+
+
+function ElvUI_EltreumUI:CurrentTypeofCursor()
+	local currentring = E.db.ElvUI_EltreumUI.cursor.ring
+	if currentring:match("ring1") then
+		currentring = '|cff82B4ffType 1|r'
+	elseif currentring:match("ring2") then
+		currentring = '|cff82B4ffType 2|r'
+	elseif currentring:match("ring3") then
+		currentring = '|cff82B4ffType 3|r'
+	elseif currentring:match("ring4") then
+		currentring = '|cff82B4ffType 4|r'
+	elseif currentring:match("ring5") then
+		currentring = '|cff82B4ffType 5|r'
+	elseif currentring:match("ring6") then
+		currentring = '|cff82B4ffType 6|r'
+	elseif currentring:match("ring7") then
+		currentring = '|cff82B4ffType 7|r'
+	elseif currentring:match("ring8") then
+		currentring = '|cff82B4ffType 8|r'
+	end
+	return currentring
 end
 
 -- Change cursor size based on user input
@@ -60,11 +79,8 @@ end
 
 function ElvUI_EltreumUI:CastCursor()
 	if E.db.ElvUI_EltreumUI.cursor.enable then
-		local ring
-		ring = E.db.ElvUI_EltreumUI.cursor.ring
-
-		local classcolors
-		classcolors = E:ClassColor(E.myclass, true)
+		local ring = E.db.ElvUI_EltreumUI.cursor.ring
+		local classcolors = E:ClassColor(E.myclass, true)
 		local Defaults = {
 			cast = {
 				radius = 25,
@@ -119,7 +135,7 @@ function ElvUI_EltreumUI:CastCursor()
 				t:SetSize((1-y1)*r, x2*r)
 			end,
 		}
-		function CopyDefaults(src, dst)
+		local function CopyDefaults(src, dst)
 			if _G.type(dst)~="table" then dst = {} end
 			for k,v in pairs(src) do
 				if _G.type(v)=="table" then
@@ -324,12 +340,12 @@ function ElvUI_EltreumUI:CastCursor()
 		-- Run
 		cursorframe:RegisterEvent("ADDON_LOADED")
 		cursorframe:SetScript("OnEvent", function(self, event, name)
-			CastCursorDB = CopyDefaults(Defaults, CastCursorDB)
+			EltreumCursorDB = CopyDefaults(Defaults, EltreumCursorDB)
 			self:UnregisterEvent("ADDON_LOADED")
 			self:SetScript("OnEvent", nil)
 			self:SetPoint("Center", UIParent, "Center")
 			self:Hide()
-			self.db       = CastCursorDB
+			self.db       = EltreumCursorDB
 			Cursor.db     = self.db.cursor
 			Cast.db       = self.db.cast
 			GCD.db        = self.db.gcd

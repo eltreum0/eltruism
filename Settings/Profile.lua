@@ -5,7 +5,7 @@ P.ElvUI_EltreumUI = {
 
 	cursor = {
 		enable = true,
-		ring = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\ring2.tga',
+		ring = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring2.tga',
 		size = '-1',
 	},
 

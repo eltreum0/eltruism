@@ -7,6 +7,9 @@ local GetUnitSpeed = _G.GetUnitSpeed
 local C_Navigation = _G.C_Navigation
 local math = _G.math
 local string = _G.string
+local CreateFrame = _G.CreateFrame
+local UIParent = _G.UIParent
+
 
 --Conversion of Time to Arrive weakaura
 --Create the frame to display the text

@@ -5,6 +5,12 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog()
 	return[[
+    v2.1.7
+    -------
+Added new Cursors, changed their file path
+Revamped Cursor options
+Changed some internal code
+
     v2.1.6
     -------
 Fixed Cursor error related to instances
