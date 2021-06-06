@@ -38,10 +38,13 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:NewVersionCheck()
 	ElvUI_EltreumUI:CastCursor()
 	ElvUI_EltreumUI:CurrentTypeofCursor()
+	--if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+	--	ElvUI_EltreumUI:RoleIcons()
+	--end
 end
 
 function ElvUI_EltreumUI:Initialize()
-	if E.private.install_complete and E.private.ElvUI_EltreumUI.install_version == nil then
+	if E.private.install_complete or E.private.ElvUI_EltreumUI.install_version < "2.0.0" or E.private.ElvUI_EltreumUI.install_version == nil then
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 	end
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)

@@ -58,6 +58,20 @@ if ElvUI_EltreumUI.Retail then
 	}
 end
 
+--[[if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+	local UF = E:GetModule("UnitFrames")
+	local RoleIconTextures = {
+	    ELTRUISM = {
+	      	TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga",
+			HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga",
+			DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga"
+	    }
+	}
+	function ElvUI_EltreumUI:RoleIcons()
+	    UF.RoleIconTextures = RoleIconTextures["ELTRUISM"]
+	end
+end]]--
+
 function ElvUI_EltreumUI:AlternativeGroupsDPS()
 	if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
 		if not E.db.movers then E.db.movers = {} end

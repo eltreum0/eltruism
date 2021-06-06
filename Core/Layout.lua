@@ -3,6 +3,7 @@ local IsAddOnLoaded = IsAddOnLoaded
 local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 local valuecolors
 valuecolors = E:ClassColor(E.myclass, true)
+local myclass = E.myclass
 
 if ElvUI_EltreumUI.Retail then
 	function ElvUI_EltreumUI:SetupLayout(layout)
@@ -16,6 +17,9 @@ if ElvUI_EltreumUI.Retail then
 
 		-- Setup Private DB
 		ElvUI_EltreumUI:SetupPrivate()
+
+		--Setup CVars
+		ElvUI_EltreumUI:SetupCVars()
 
 		-- AddOnSkins Profile
 		if IsAddOnLoaded('AddOnSkins') then
@@ -55,12 +59,16 @@ if ElvUI_EltreumUI.Retail then
 		E.private["sle"]["unitframe"]["statusbarTextures"]["aura"] = true
 		E.private["sle"]["actionbars"]["checkedColor"]["a"] = 1
 		E.private["sle"]["actionbars"]["checkedColor"]["g"] = 0
-		if ElvUI_EltreumUI.Retail then
+		--[[if ElvUI_EltreumUI.Retail then
+			E.db["sle"]["misc"]["viewport"]["left"] = {}
 			E.db["sle"]["misc"]["viewport"]["left"] = 0
+			E.db["sle"]["misc"]["viewport"]["right"] = {}
 			E.db["sle"]["misc"]["viewport"]["right"] = 0
+			E.db["sle"]["misc"]["viewport"]["top"] = {}
 			E.db["sle"]["misc"]["viewport"]["top"] = 0
+			E.db["sle"]["misc"]["viewport"]["bottom"] = {}
 			E.db["sle"]["misc"]["viewport"]["bottom"] = 0
-		end
+		end]]--
 		E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-5,-226"
 		-- Actionbars
 		E.db["sle"]["actionbars"]["vehicle"]["buttonspacing"] = 1
@@ -1315,7 +1323,19 @@ if ElvUI_EltreumUI.Retail then
 			E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 			E.db["actionbar"]["bar6"]["alpha"] = 0.75
 			E.db["actionbar"]["bar6"]["buttonHeight"] = 24
-			E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
+				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+			elseif GetCVar('gxFullscreenResolution') == "2560x1440" or GetCVar('gxWindowedResolution') == "2560x1440"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			else
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
+				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+			end
 			E.db["actionbar"]["bar6"]["buttons"] = 12
 			E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
 			E.db["actionbar"]["bar6"]["countFont"] = "Kimberley"
@@ -1492,7 +1512,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,159"
 			E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,128"
 			E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,0,97"
-			E.db["movers"]["ElvAB_6"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,203"
+			E.db["movers"]["ElvAB_6"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,203"
 			E.db["movers"]["ElvAB_7"] = "BOTTOM,ElvUIParent,BOTTOM,0,66"
 			E.db["movers"]["ElvAB_8"] = "BOTTOM,ElvUIParent,BOTTOM,0,35"
 			E.db["movers"]["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,230"
@@ -1535,7 +1555,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["movers"]["PetBattleStatusMover"] = "TOP,ElvUIParent,TOP,0,1"
 			E.db["movers"]["PowerWidgetMover"] = "TOP,ElvUIParent,TOP,0,-102"
 			E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-50"
-			E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,277,1"
+			E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
 			E.db["movers"]["RaidUtility_Mover"] = "TOP,ElvUIParent,TOP,-219,1"
 			E.db["movers"]["ReputationBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,412,-1"
 			E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
@@ -1927,14 +1947,33 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["raid"]["disableMouseoverGlow"] = true
 			E.db["unitframe"]["units"]["raid"]["fader"]["minAlpha"] = 0.5
 			E.db["unitframe"]["units"]["raid"]["groupBy"] = "ROLE"
-			E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
 			E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 4
 			E.db["unitframe"]["units"]["raid"]["health"]["attachTextTo"] = "InfoPanel"
 			E.db["unitframe"]["units"]["raid"]["health"]["position"] = "TOPRIGHT"
 			E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid"]["health"]["xOffset"] = 0
 			E.db["unitframe"]["units"]["raid"]["health"]["yOffset"] = 0
-			E.db["unitframe"]["units"]["raid"]["height"] = 32
+			if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
+				E.db["unitframe"]["units"]["raid"]["height"] = 32
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
+				E.db["unitframe"]["units"]["raid40"]["height"] = 32
+			elseif GetCVar('gxFullscreenResolution') == "2560x1440" or GetCVar('gxWindowedResolution') == "2560x1440"  then
+				E.db["unitframe"]["units"]["raid"]["height"] = 31
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["height"] = 31
+			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
+				E.db["unitframe"]["units"]["raid"]["height"] = 31
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["height"] = 31
+			else
+				E.db["unitframe"]["units"]["raid"]["height"] = 32
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
+				E.db["unitframe"]["units"]["raid40"]["height"] = 32
+			end
 			E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 0
 			E.db["unitframe"]["units"]["raid"]["infoPanel"]["enable"] = true
 			E.db["unitframe"]["units"]["raid"]["infoPanel"]["transparent"] = true
@@ -1972,12 +2011,12 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["raid40"]["disableMouseoverGlow"] = true
 			E.db["unitframe"]["units"]["raid40"]["fader"]["minAlpha"] = 0.5
-			E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
+
 			E.db["unitframe"]["units"]["raid40"]["groupsPerRowCol"] = 4
 			E.db["unitframe"]["units"]["raid40"]["health"]["position"] = "BOTTOMRIGHT"
 			E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid40"]["health"]["xOffset"] = 0
-			E.db["unitframe"]["units"]["raid40"]["height"] = 32
+
 			E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 2
 			E.db["unitframe"]["units"]["raid40"]["infoPanel"]["enable"] = true
 			E.db["unitframe"]["units"]["raid40"]["infoPanel"]["transparent"] = true
@@ -2226,17 +2265,36 @@ if ElvUI_EltreumUI.Retail then
 			E.db["actionbar"]["bar5"]["macroFont"] = "Kimberley"
 			E.db["actionbar"]["bar5"]["point"] = "TOPLEFT"
 			E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-			E.db["actionbar"]["bar6"]["buttonHeight"] = 25
-			E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			E.db["actionbar"]["bar6"]["alpha"] = 0.75
+			E.db["actionbar"]["bar6"]["buttonHeight"] = 24
+			if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
+				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+			elseif GetCVar('gxFullscreenResolution') == "2560x1440" or GetCVar('gxWindowedResolution') == "2560x1440"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			else
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
+				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+			end
 			E.db["actionbar"]["bar6"]["buttons"] = 12
 			E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
 			E.db["actionbar"]["bar6"]["countFont"] = "Kimberley"
+			E.db["actionbar"]["bar6"]["countFontOutline"] = "THICKOUTLINE"
 			E.db["actionbar"]["bar6"]["enabled"] = true
+			E.db["actionbar"]["bar6"]["flyoutDirection"] = "UP"
 			E.db["actionbar"]["bar6"]["hotkeyFont"] = "Kimberley"
+			E.db["actionbar"]["bar6"]["hotkeyFontOutline"] = "THICKOUTLINE"
 			E.db["actionbar"]["bar6"]["keepSizeRatio"] = false
 			E.db["actionbar"]["bar6"]["macroFont"] = "Kimberley"
+			E.db["actionbar"]["bar6"]["macroFontOutline"] = "THICKOUTLINE"
+			E.db["actionbar"]["bar6"]["macroTextPosition"] = "BOTTOM"
+			E.db["actionbar"]["bar6"]["macroTextYOffset"] = 2
+			E.db["actionbar"]["bar6"]["macrotext"] = true
 			E.db["actionbar"]["bar6"]["mouseover"] = true
-			E.db["actionbar"]["bar6"]["point"] = "TOPLEFT"
 			E.db["actionbar"]["bar7"]["countFont"] = "Kimberley"
 			E.db["actionbar"]["bar7"]["hotkeyFont"] = "Kimberley"
 			E.db["actionbar"]["bar7"]["macroFont"] = "Kimberley"
@@ -2346,14 +2404,14 @@ if ElvUI_EltreumUI.Retail then
 			E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-27,-384"
 			E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-210,-3"
 			E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-210,-101"
-			E.db["movers"]["DurabilityFrameMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,498,366"
+			E.db["movers"]["DurabilityFrameMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,498,376"
 			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,307"
 			E.db["movers"]["ElvAB_10"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,344"
 			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,280"
 			E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,308,253"
 			E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,253"
 			E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,-308,253"
-			E.db["movers"]["ElvAB_6"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,205"
+			E.db["movers"]["ElvAB_6"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,205"
 			E.db["movers"]["ElvAB_7"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,240"
 			E.db["movers"]["ElvAB_8"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,275"
 			E.db["movers"]["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,310"
@@ -2387,7 +2445,8 @@ if ElvUI_EltreumUI.Retail then
 			E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96"
 			E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-65,-319"
 			E.db["movers"]["PetAB"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,255"
-			E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,343,1"
+			E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
+			E.db["movers"]["WTRaidMarkersBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
 			E.db["movers"]["RaidUtility_Mover"] = "TOP,ElvUIParent,TOP,-220,1"
 			E.db["movers"]["ReputationBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,412,0"
 			E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
@@ -2898,6 +2957,9 @@ elseif ElvUI_EltreumUI.Classic then
 		-- Setup Private DB
 		ElvUI_EltreumUI:SetupPrivate()
 
+		--Setup CVars
+		ElvUI_EltreumUI:SetupCVars()
+
 		-- AddOnSkins Profile
 		if IsAddOnLoaded('AddOnSkins') then
 			ElvUI_EltreumUI:GetASProfile()
@@ -3039,7 +3101,11 @@ elseif ElvUI_EltreumUI.Classic then
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["left"] = "ElvUI Config"
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"][2] = "Durability"
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["middle"] = "Durability"
-		E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Friends"
+		if myclass == 'HUNTER' or myclass == 'WARLOCK' then
+			E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Ammo"
+		else
+			E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Friends"
+		end
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["border"] = false
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["right"] = "Guild"
@@ -3433,22 +3499,35 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["actionbar"]["bar5"]["macroTextYOffset"] = 2
 			E.db["actionbar"]["bar5"]["macrotext"] = true
 			E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-			E.db["actionbar"]["bar6"]["flyoutDirection"] = "UP"
+			E.db["actionbar"]["bar6"]["alpha"] = 0.75
 			E.db["actionbar"]["bar6"]["buttonHeight"] = 24
-			E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
-			E.db["actionbar"]["bar6"]["macroFontOutline"] = "THICKOUTLINE"
+			if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
+				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+			elseif GetCVar('gxFullscreenResolution') == "2560x1440" or GetCVar('gxWindowedResolution') == "2560x1440"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			else
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
+				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+			end
+			E.db["actionbar"]["bar6"]["buttons"] = 12
+			E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
+			E.db["actionbar"]["bar6"]["countFont"] = "Kimberley"
+			E.db["actionbar"]["bar6"]["countFontOutline"] = "THICKOUTLINE"
+			E.db["actionbar"]["bar6"]["enabled"] = true
+			E.db["actionbar"]["bar6"]["flyoutDirection"] = "UP"
+			E.db["actionbar"]["bar6"]["hotkeyFont"] = "Kimberley"
 			E.db["actionbar"]["bar6"]["hotkeyFontOutline"] = "THICKOUTLINE"
 			E.db["actionbar"]["bar6"]["keepSizeRatio"] = false
-			E.db["actionbar"]["bar6"]["enabled"] = true
-			E.db["actionbar"]["bar6"]["countFont"] = "Kimberley"
-			E.db["actionbar"]["bar6"]["alpha"] = 0.75
-			E.db["actionbar"]["bar6"]["countFontOutline"] = "THICKOUTLINE"
-			E.db["actionbar"]["bar6"]["macroTextPosition"] = "BOTTOM"
-			E.db["actionbar"]["bar6"]["buttonSize"] = 33
-			E.db["actionbar"]["bar6"]["macrotext"] = true
-			E.db["actionbar"]["bar6"]["macroTextYOffset"] = 2
 			E.db["actionbar"]["bar6"]["macroFont"] = "Kimberley"
-			E.db["actionbar"]["bar6"]["hotkeyFont"] = "Kimberley"
+			E.db["actionbar"]["bar6"]["macroFontOutline"] = "THICKOUTLINE"
+			E.db["actionbar"]["bar6"]["macroTextPosition"] = "BOTTOM"
+			E.db["actionbar"]["bar6"]["macroTextYOffset"] = 2
+			E.db["actionbar"]["bar6"]["macrotext"] = true
 			E.db["actionbar"]["bar6"]["mouseover"] = true
 			E.db["actionbar"]["bar7"]["alpha"] = 0.75
 			E.db["actionbar"]["bar7"]["buttonHeight"] = 30
@@ -3610,7 +3689,7 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,159"
 			E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,128"
 			E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,0,97"
-			E.db["movers"]["ElvAB_6"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,203"
+			E.db["movers"]["ElvAB_6"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,203"
 			E.db["movers"]["ElvAB_7"] = "BOTTOM,ElvUIParent,BOTTOM,0,66"
 			E.db["movers"]["ElvAB_8"] = "BOTTOM,ElvUIParent,BOTTOM,0,35"
 			E.db["movers"]["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,230"
@@ -3893,14 +3972,33 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["raid"]["disableMouseoverGlow"] = true
 			E.db["unitframe"]["units"]["raid"]["fader"]["minAlpha"] = 0.5
 			E.db["unitframe"]["units"]["raid"]["groupBy"] = "ROLE"
-			E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 4
 			E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 4
 			E.db["unitframe"]["units"]["raid"]["health"]["attachTextTo"] = "InfoPanel"
 			E.db["unitframe"]["units"]["raid"]["health"]["position"] = "TOPRIGHT"
 			E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid"]["health"]["xOffset"] = 0
 			E.db["unitframe"]["units"]["raid"]["health"]["yOffset"] = 0
-			E.db["unitframe"]["units"]["raid"]["height"] = 32
+			if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
+				E.db["unitframe"]["units"]["raid"]["height"] = 32
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
+				E.db["unitframe"]["units"]["raid40"]["height"] = 32
+			elseif GetCVar('gxFullscreenResolution') == "2560x1440" or GetCVar('gxWindowedResolution') == "2560x1440"  then
+				E.db["unitframe"]["units"]["raid"]["height"] = 31
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["height"] = 31
+			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
+				E.db["unitframe"]["units"]["raid"]["height"] = 31
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["height"] = 31
+			else
+				E.db["unitframe"]["units"]["raid"]["height"] = 32
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
+				E.db["unitframe"]["units"]["raid40"]["height"] = 32
+			end
 			E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 0
 			E.db["unitframe"]["units"]["raid"]["infoPanel"]["enable"] = true
 			E.db["unitframe"]["units"]["raid"]["infoPanel"]["transparent"] = true
@@ -3938,12 +4036,10 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["raid40"]["disableMouseoverGlow"] = true
 			E.db["unitframe"]["units"]["raid40"]["fader"]["minAlpha"] = 0.5
-			E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 4
 			E.db["unitframe"]["units"]["raid40"]["groupsPerRowCol"] = 4
 			E.db["unitframe"]["units"]["raid40"]["health"]["position"] = "BOTTOMRIGHT"
 			E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid40"]["health"]["xOffset"] = 0
-			E.db["unitframe"]["units"]["raid40"]["height"] = 32
 			E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 2
 			E.db["unitframe"]["units"]["raid40"]["infoPanel"]["enable"] = true
 			E.db["unitframe"]["units"]["raid40"]["infoPanel"]["transparent"] = true
@@ -4149,17 +4245,36 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["actionbar"]["bar5"]["macroFont"] = "Kimberley"
 			E.db["actionbar"]["bar5"]["point"] = "TOPLEFT"
 			E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-			E.db["actionbar"]["bar6"]["buttonHeight"] = 25
-			E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			E.db["actionbar"]["bar6"]["alpha"] = 0.75
+			E.db["actionbar"]["bar6"]["buttonHeight"] = 24
+			if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
+				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+			elseif GetCVar('gxFullscreenResolution') == "2560x1440" or GetCVar('gxWindowedResolution') == "2560x1440"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			else
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
+				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+			end
 			E.db["actionbar"]["bar6"]["buttons"] = 12
 			E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
 			E.db["actionbar"]["bar6"]["countFont"] = "Kimberley"
+			E.db["actionbar"]["bar6"]["countFontOutline"] = "THICKOUTLINE"
 			E.db["actionbar"]["bar6"]["enabled"] = true
+			E.db["actionbar"]["bar6"]["flyoutDirection"] = "UP"
 			E.db["actionbar"]["bar6"]["hotkeyFont"] = "Kimberley"
+			E.db["actionbar"]["bar6"]["hotkeyFontOutline"] = "THICKOUTLINE"
 			E.db["actionbar"]["bar6"]["keepSizeRatio"] = false
 			E.db["actionbar"]["bar6"]["macroFont"] = "Kimberley"
+			E.db["actionbar"]["bar6"]["macroFontOutline"] = "THICKOUTLINE"
+			E.db["actionbar"]["bar6"]["macroTextPosition"] = "BOTTOM"
+			E.db["actionbar"]["bar6"]["macroTextYOffset"] = 2
+			E.db["actionbar"]["bar6"]["macrotext"] = true
 			E.db["actionbar"]["bar6"]["mouseover"] = true
-			E.db["actionbar"]["bar6"]["point"] = "TOPLEFT"
 			E.db["actionbar"]["bar7"]["countFont"] = "Kimberley"
 			E.db["actionbar"]["bar7"]["hotkeyFont"] = "Kimberley"
 			E.db["actionbar"]["bar7"]["macroFont"] = "Kimberley"
@@ -4259,14 +4374,14 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-27,-384"
 			E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-210,-3"
 			E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-210,-101"
-			E.db["movers"]["DurabilityFrameMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,498,366"
+			E.db["movers"]["DurabilityFrameMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,498,376"
 			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,307"
 			E.db["movers"]["ElvAB_10"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,344"
 			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,280"
 			E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,308,253"
 			E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,253"
 			E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,-308,253"
-			E.db["movers"]["ElvAB_6"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,203"
+			E.db["movers"]["ElvAB_6"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,203"
 			E.db["movers"]["ElvAB_7"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,240"
 			E.db["movers"]["ElvAB_8"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,275"
 			E.db["movers"]["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,310"
@@ -4696,6 +4811,9 @@ elseif ElvUI_EltreumUI.TBC then
 		-- Setup Private DB
 		ElvUI_EltreumUI:SetupPrivate()
 
+		--Setup CVars
+		ElvUI_EltreumUI:SetupCVars()
+
 		-- AddOnSkins Profile
 		if IsAddOnLoaded('AddOnSkins') then
 			ElvUI_EltreumUI:GetASProfile()
@@ -4847,7 +4965,11 @@ elseif ElvUI_EltreumUI.TBC then
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["left"] = "ElvUI Config"
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"][2] = "Durability"
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["middle"] = "Durability"
-		E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Friends"
+		if myclass == 'HUNTER' or myclass == 'WARLOCK' then
+			E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Ammo"
+		else
+			E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Friends"
+		end
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["border"] = false
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["right"] = "Guild"
@@ -5242,7 +5364,19 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 			E.db["actionbar"]["bar6"]["alpha"] = 0.75
 			E.db["actionbar"]["bar6"]["buttonHeight"] = 24
-			E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
+				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+			elseif GetCVar('gxFullscreenResolution') == "2560x1440" or GetCVar('gxWindowedResolution') == "2560x1440"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			else
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
+				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+			end
 			E.db["actionbar"]["bar6"]["buttons"] = 12
 			E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
 			E.db["actionbar"]["bar6"]["countFont"] = "Kimberley"
@@ -5409,7 +5543,7 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,159"
 			E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,128"
 			E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,0,97"
-			E.db["movers"]["ElvAB_6"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,203"
+			E.db["movers"]["ElvAB_6"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,203"
 			E.db["movers"]["ElvAB_7"] = "BOTTOM,ElvUIParent,BOTTOM,0,66"
 			E.db["movers"]["ElvAB_8"] = "BOTTOM,ElvUIParent,BOTTOM,0,35"
 			E.db["movers"]["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,230"
@@ -5733,14 +5867,33 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raid"]["disableMouseoverGlow"] = true
 			E.db["unitframe"]["units"]["raid"]["fader"]["minAlpha"] = 0.5
 			E.db["unitframe"]["units"]["raid"]["groupBy"] = "ROLE"
-			E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 0
 			E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 4
 			E.db["unitframe"]["units"]["raid"]["health"]["attachTextTo"] = "InfoPanel"
 			E.db["unitframe"]["units"]["raid"]["health"]["position"] = "TOPRIGHT"
 			E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid"]["health"]["xOffset"] = 0
 			E.db["unitframe"]["units"]["raid"]["health"]["yOffset"] = 0
-			E.db["unitframe"]["units"]["raid"]["height"] = 32
+			if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
+				E.db["unitframe"]["units"]["raid"]["height"] = 32
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
+				E.db["unitframe"]["units"]["raid40"]["height"] = 32
+			elseif GetCVar('gxFullscreenResolution') == "2560x1440" or GetCVar('gxWindowedResolution') == "2560x1440"  then
+				E.db["unitframe"]["units"]["raid"]["height"] = 31
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["height"] = 31
+			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
+				E.db["unitframe"]["units"]["raid"]["height"] = 31
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["height"] = 31
+			else
+				E.db["unitframe"]["units"]["raid"]["height"] = 32
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
+				E.db["unitframe"]["units"]["raid40"]["height"] = 32
+			end
 			E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 0
 			E.db["unitframe"]["units"]["raid"]["infoPanel"]["enable"] = true
 			E.db["unitframe"]["units"]["raid"]["infoPanel"]["transparent"] = true
@@ -5774,12 +5927,10 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["raid40"]["disableMouseoverGlow"] = true
 			E.db["unitframe"]["units"]["raid40"]["fader"]["minAlpha"] = 0.5
-			E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
 			E.db["unitframe"]["units"]["raid40"]["groupsPerRowCol"] = 4
 			E.db["unitframe"]["units"]["raid40"]["health"]["position"] = "BOTTOMRIGHT"
 			E.db["unitframe"]["units"]["raid40"]["health"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid40"]["health"]["xOffset"] = 0
-			E.db["unitframe"]["units"]["raid40"]["height"] = 32
 			E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 2
 			E.db["unitframe"]["units"]["raid40"]["infoPanel"]["enable"] = true
 			E.db["unitframe"]["units"]["raid40"]["infoPanel"]["transparent"] = true
@@ -5998,7 +6149,19 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["actionbar"]["bar5"]["point"] = "TOPLEFT"
 			E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 			E.db["actionbar"]["bar6"]["buttonHeight"] = 25
-			E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
+				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+			elseif GetCVar('gxFullscreenResolution') == "2560x1440" or GetCVar('gxWindowedResolution') == "2560x1440"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			else
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
+				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+			end
 			E.db["actionbar"]["bar6"]["buttons"] = 12
 			E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
 			E.db["actionbar"]["bar6"]["countFont"] = "Kimberley"
@@ -6107,14 +6270,14 @@ elseif ElvUI_EltreumUI.TBC then
 			E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-27,-384"
 			E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-210,-3"
 			E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-210,-101"
-			E.db["movers"]["DurabilityFrameMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,498,366"
+			E.db["movers"]["DurabilityFrameMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,498,376"
 			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,307"
 			E.db["movers"]["ElvAB_10"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,344"
 			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,280"
 			E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,308,253"
 			E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,253"
 			E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,-308,253"
-			E.db["movers"]["ElvAB_6"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-2,203"
+			E.db["movers"]["ElvAB_6"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,203"
 			E.db["movers"]["ElvAB_7"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,240"
 			E.db["movers"]["ElvAB_8"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,275"
 			E.db["movers"]["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,310"

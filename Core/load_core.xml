@@ -6,4 +6,6 @@
 	<Script file='Options.lua'/>
 	<Script file='Tags.lua'/>
 	<Script file='Changelog.lua'/>
+	<Script file='Changelog/1.00.lua'/>
+	<Script file='Changelog/2.00.lua'/>
 </Ui>

@@ -106,10 +106,10 @@ if ElvUI_EltreumUI.Retail then
 				end
 				PluginInstallFrame.Desc4:SetText('Importance: |cFFFF0000Very High|r')
 				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
+				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option1:SetText('DPS/Tank')
 				PluginInstallFrame.Option2:Show()
-				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars()  ElvUI_EltreumUI:ResolutionOutline() end)
+				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option2:SetText('Healing')
 				if myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'MONK' or myclass == 'SHAMAN' or myclass == 'PALADIN' then
 					PluginInstallFrame.Option3:SetText('Alternative')
@@ -396,10 +396,10 @@ elseif ElvUI_EltreumUI.Classic then
 				end
 				PluginInstallFrame.Desc4:SetText('Importance: |cFFFF0000Very High|r')
 				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
+				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option1:SetText('DPS/Tank')
 				PluginInstallFrame.Option2:Show()
-				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars()  ElvUI_EltreumUI:ResolutionOutline() end)
+				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option2:SetText('Healing')
 				if myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'MONK' or myclass == 'SHAMAN' or myclass == 'PALADIN' then
 					PluginInstallFrame.Option3:SetText('Alternative')
@@ -621,15 +621,6 @@ elseif ElvUI_EltreumUI.TBC then
 	                    PluginInstallFrame.Option1:SetText('Skip Process')
 	                end
 			end,
-			--[[[2] = function()
-				PluginInstallFrame.SubTitle:SetText('Project Azilroka')
-				PluginInstallFrame.Desc1:SetText('Import settings for Project Azilroka')
-				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffVery High|r')
-				PluginInstallFrame.Option1:Enable()
-				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() end)
-				PluginInstallFrame.Option1:SetText('Setup Project Azilroka')
-			end,]]--
 			[2] = function()
 				PluginInstallFrame.SubTitle:SetText('Layouts')
 				PluginInstallFrame.Desc1:SetText('Please select the role for your character, which will create a new profile')
@@ -639,10 +630,10 @@ elseif ElvUI_EltreumUI.TBC then
 				end
 				PluginInstallFrame.Desc4:SetText('Importance: |cFFFF0000Very High|r')
 				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() ElvUI_EltreumUI:ResolutionOutline() end)
+				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option1:SetText('DPS/Tank')
 				PluginInstallFrame.Option2:Show()
-				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars()  ElvUI_EltreumUI:ResolutionOutline() end)
+				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end)
 				PluginInstallFrame.Option2:SetText('Healing')
 				if myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'MONK' or myclass == 'SHAMAN' or myclass == 'PALADIN' then
 					PluginInstallFrame.Option3:SetText('Alternative')

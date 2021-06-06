@@ -9,8 +9,8 @@ function ElvUI_EltreumUI:Print(msg)
 end
 
 function ElvUI_EltreumUI:NewVersionCheck()
-	if E.private.ElvUI_EltreumUI.install_version == "2.1.4" or E.private.ElvUI_EltreumUI.install_version == "2.1.3" then
-		E.private.ElvUI_EltreumUI.install_version = "2.1.5"
+	if E.private.ElvUI_EltreumUI.install_version >= "2.1.4" and  E.private.ElvUI_EltreumUI.install_version < "2.1.8" then
+		E.private.ElvUI_EltreumUI.install_version = "2.1.8"
 	end
 	--ElvUI_EltreumUI:Print('add any needed warning here')
 end
@@ -59,6 +59,7 @@ function ElvUI_EltreumUI:SetupPrivate()
 	E.private["general"]["glossTex"] = "Eltreum-Blank"
 	E.private["general"]["namefont"] = "Kimberley"
 	E.private["general"]["normTex"] = "Eltreum-Blank"
+	E.private["theme"] = "class"
 	E.private["skins"]["parchmentRemoverEnable"] = true
 	if ElvUI_EltreumUI.Retail then
 		E.private["install_complete"] = "12.24"
@@ -75,7 +76,7 @@ end
 function ElvUI_EltreumUI:SetupGlobal()
 	-- ElvUI Global DB
 	if ElvUI_EltreumUI.Retail then
-		E.global["general"]["commandBarSetting"] = "DISABLED"
+		E.global["general"]["commandBarSetting"] = "ENABLED_RESIZEPARENT"
 		E.global["general"]["smallerWorldMap"] = false
 		E.global["general"]["smallerWorldMapScale"] = 1
 		E.global["general"]["mapAlphaWhenMoving"] = 0.35
@@ -142,7 +143,7 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar("chatBubbles", 1)
 		SetCVar("chatBubblesParty", 1)
 	end
-	ElvUI_EltreumUI:Print('CVars have been set.')
+	ElvUI_EltreumUI:Print('General CVars have been set.')
 end
 
 -- CVars NamePlates
