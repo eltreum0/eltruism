@@ -22,11 +22,15 @@ function ElvUI_EltreumUI:DynamicLevelStyleFilter()
 		local level = UnitLevel("player")
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.Retail then
 			if level == 60 then
-				E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
+				if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
+					E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
+				end
 			end
 		elseif ElvUI_EltreumUI.TBC then
 			if level == 70 then
-				E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
+				if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
+					E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
+				end
 			end
 		end
 	else

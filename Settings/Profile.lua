@@ -7,7 +7,6 @@ P.ElvUI_EltreumUI = {
 		enable = true,
 	},
 
-
 	changelog = {
 		version = "2.0.0",
 	},
