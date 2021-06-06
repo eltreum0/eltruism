@@ -11,7 +11,7 @@ function ElvUI_EltreumUI:DynamicClassicDatatext()
 	if not E.db.movers then E.db.movers = {} end
 	if myclass == 'HUNTER' or myclass == 'WARLOCK' then
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Ammo"
-	else
+	elseif myclass == 'PALADIN' or myclass == 'MAGE' or myclass == 'PRIEST' or myclass == 'WARRIOR' or myclass == 'DRUID' or myclass == 'SHAMAN' or myclass == 'ROGUE' then
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Friends"
 	end
 end
@@ -25,11 +25,19 @@ function ElvUI_EltreumUI:DynamicLevelStyleFilter()
 				if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
 					E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
 				end
+			else
+				if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
+					E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
+				end
 			end
 		elseif ElvUI_EltreumUI.TBC then
 			if level == 70 then
 				if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
 					E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
+				end
+			else
+				if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
+					E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
 				end
 			end
 		end
