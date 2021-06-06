@@ -44,7 +44,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 end
 
 function ElvUI_EltreumUI:Initialize()
-	if E.private.install_complete or E.private.ElvUI_EltreumUI.install_version < "2.0.0" or E.private.ElvUI_EltreumUI.install_version == nil then
+	if E.private.install_complete and E.private.ElvUI_EltreumUI.install_version == nil then
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 	end
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
@@ -75,7 +75,7 @@ function ElvUI_EltreumUI:Initialize()
 
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		SetCVar("clampTargetNameplateToScreen", 1)
-		SetCVar("nameplateOtherBottomInset", 0.01)
+		SetCVar("nameplateOtherBottomInset", 0.02)
 	end
 
 	-- Color level up display and boss banner by Aftermathh

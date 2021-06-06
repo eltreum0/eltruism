@@ -198,7 +198,10 @@ function ElvUI_EltreumUI:CastCursor()
 			if self.max == nil then
 				self.max = 0
 			end
-			if dur >= self.max then RingSetShown(self,false); return end
+			if dur >= self.max then 
+				RingSetShown(self,false)
+				return 
+			end
 			self.dur = dur
 			local rev    = self.reverse
 			local maxdur = self.max
@@ -259,7 +262,7 @@ function ElvUI_EltreumUI:CastCursor()
 				if cfg.combat then
 					frame:RegisterEvent('PLAYER_REGEN_ENABLED')
 					frame:RegisterEvent('PLAYER_REGEN_DISABLED')
-					frame:SetScript("OnEvent", function(self, event) RingSetShown(self,event=='PLAYER_REGEN_DISABLED'); end)
+					frame:SetScript("OnEvent", function(self, event) RingSetShown(self,event=='PLAYER_REGEN_DISABLED') end)
 					RingSetShown( frame, _G.InCombatLockdown() )
 				end
 			else

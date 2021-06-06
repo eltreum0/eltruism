@@ -8,4 +8,5 @@
 	<Script file='Changelog.lua'/>
 	<Script file='Changelog/1.00.lua'/>
 	<Script file='Changelog/2.00.lua'/>
+	<Script file='VersionCheck.lua'/>
 </Ui>

@@ -6,11 +6,15 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelogv2()
 	return[[
+    v2.1.9
+    -------
+Fixed repeating install process prompt due to a database change
+
     v2.1.8
     -------
 Revamped Changelog in order to fit more versions
 Layout now has additional checks for resolution
-Added class check to change left chat datatext panel to count Ammo/Soul Shards if playing Hunter or Warlock
+Added class check to change left chat datatext panel to count Ammo/Soul Shards if playing Hunter or Warlock in Classic/TBC
 Do note that the datatext will not dynamically swap if you change characters
 Further streamlined the install process code
 

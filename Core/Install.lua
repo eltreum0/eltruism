@@ -9,8 +9,8 @@ local function InstallComplete()
 	ReloadUI()
 end
 
-local myclass = E.myclass
 
+local myclass = E.myclass
 if ElvUI_EltreumUI.Retail then
 	-- Installer Steps Retail
 	ElvUI_EltreumUI.InstallerData = {
@@ -554,8 +554,8 @@ elseif ElvUI_EltreumUI.Classic then
 				if (not IsAddOnLoaded("Questie")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
 	                PluginInstallFrame.Desc1:SetText("Questie is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('Questie is addon that modifies the objective tracker')
-					PluginInstallFrame.Desc3:SetText('Adding a lot of features to it not available by default')
+	                PluginInstallFrame.Desc2:SetText('Questie is an addon that modifies the objective tracker')
+					PluginInstallFrame.Desc3:SetText('As such Questie adds a lot of features to it not available by default')
 					PluginInstallFrame.Desc4:SetText('Including TomTom support')
 	                PluginInstallFrame.Option1:Disable()
 	           	end
@@ -809,8 +809,8 @@ elseif ElvUI_EltreumUI.TBC then
 				if (not IsAddOnLoaded("Questie")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
 	                PluginInstallFrame.Desc1:SetText("Questie is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('Questie is addon that modifies the objective tracker')
-					PluginInstallFrame.Desc3:SetText('Adding a lot of features to it not available by default')
+	                PluginInstallFrame.Desc2:SetText('Questie is an addon that modifies the objective tracker')
+					PluginInstallFrame.Desc3:SetText('As such Questie adds a lot of features to it not available by default')
 					PluginInstallFrame.Desc4:SetText('Including TomTom support')
 	                PluginInstallFrame.Option1:Disable()
 	           	end
