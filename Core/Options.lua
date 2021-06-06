@@ -1186,7 +1186,7 @@ if ElvUI_EltreumUI.Retail then
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
 						verywidenameplate = {
-							order = 99,
+							order = 7,
 							type = 'group',
 							inline = true,
 							name = 'Wide nameplate debuffs and buffs',
@@ -1199,6 +1199,30 @@ if ElvUI_EltreumUI.Retail then
 									width = 'full',
 									get = function() return E.db.ElvUI_EltreumUI.widenameplate.enable end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.widenameplate.enable = value end,
+								},
+							}
+						},
+						header4 = {
+									order = 8,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						dynamiclevel = {
+							order = 9,
+							type = 'group',
+							inline = true,
+							name = 'Enemy Nameplate Level',
+							args = {
+								desc = {
+									order = 1,
+									type = 'toggle',
+									name = 'Hide level on enemy nameplates when you are max level',
+									desc = 'Toogle On and Off',
+									width = 'full',
+									get = function() return E.db.ElvUI_EltreumUI.nameplatelevel.enable end,
+									set = function(_, value) E.db.ElvUI_EltreumUI.nameplatelevel.enable = value end,
 								},
 							}
 						},
@@ -2445,7 +2469,7 @@ if ElvUI_EltreumUI.Classic then
 							inline = true,
 							name = 'Control how Nameplates behave',
 							args = {
-								showfriendlynameonly = {
+								hidehealthinsideinstances = {
 									order = 1,
 									type = 'toggle',
 									name = 'Show Friendly Nameplates but Hide Healthbar',
@@ -2455,7 +2479,7 @@ if ElvUI_EltreumUI.Classic then
 									get = function(info) return E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames = value E:StaticPopup_Show('PRIVATE_RL') end,
 								},
-								dontshowfriendly = {
+								nofriendlyinstances = {
 									order = 1,
 									type = 'toggle',
 									name = 'Hide Friendly Nameplates inside Instances',
@@ -2485,7 +2509,7 @@ if ElvUI_EltreumUI.Classic then
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
 						verywidenameplate = {
-							order = 99,
+							order = 7,
 							type = 'group',
 							inline = true,
 							name = 'Wide nameplate debuffs and buffs',
@@ -2498,6 +2522,30 @@ if ElvUI_EltreumUI.Classic then
 									width = 'full',
 									get = function() return E.db.ElvUI_EltreumUI.widenameplate.enable end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.widenameplate.enable = value end,
+								},
+							}
+						},
+						header4 = {
+									order = 8,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						dynamiclevel = {
+							order = 9,
+							type = 'group',
+							inline = true,
+							name = 'Enemy Nameplate Level',
+							args = {
+								desc = {
+									order = 1,
+									type = 'toggle',
+									name = 'Hide level on enemy nameplates when you are max level',
+									desc = 'Toogle On and Off',
+									width = 'full',
+									get = function() return E.db.ElvUI_EltreumUI.nameplatelevel.enable end,
+									set = function(_, value) E.db.ElvUI_EltreumUI.nameplatelevel.enable = value end,
 								},
 							}
 						},
@@ -3769,7 +3817,7 @@ if ElvUI_EltreumUI.TBC then
 							inline = true,
 							name = 'Control how Nameplates behave',
 							args = {
-								showfriendlynameonly = {
+								hidehealthinsideinstances = {
 									order = 1,
 									type = 'toggle',
 									name = 'Show Friendly Nameplates but Hide Healthbar',
@@ -3779,7 +3827,7 @@ if ElvUI_EltreumUI.TBC then
 									get = function(info) return E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames = value E:StaticPopup_Show('PRIVATE_RL') end,
 								},
-								dontshowfriendly = {
+								nofriendlyinstances = {
 									order = 1,
 									type = 'toggle',
 									name = 'Hide Friendly Nameplates inside Instances',
@@ -3809,7 +3857,7 @@ if ElvUI_EltreumUI.TBC then
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
 						verywidenameplate = {
-							order = 99,
+							order = 7,
 							type = 'group',
 							inline = true,
 							name = 'Wide nameplate debuffs and buffs',
@@ -3822,6 +3870,30 @@ if ElvUI_EltreumUI.TBC then
 									width = 'full',
 									get = function() return E.db.ElvUI_EltreumUI.widenameplate.enable end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.widenameplate.enable = value end,
+								},
+							}
+						},
+						header4 = {
+									order = 8,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						dynamiclevel = {
+							order = 9,
+							type = 'group',
+							inline = true,
+							name = 'Enemy Nameplate Level',
+							args = {
+								desc = {
+									order = 1,
+									type = 'toggle',
+									name = 'Hide level on enemy nameplates when you are max level',
+									desc = 'Toogle On and Off',
+									width = 'full',
+									get = function() return E.db.ElvUI_EltreumUI.nameplatelevel.enable end,
+									set = function(_, value) E.db.ElvUI_EltreumUI.nameplatelevel.enable = value end,
 								},
 							}
 						},

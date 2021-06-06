@@ -33,11 +33,15 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:WaypointTimeToArrive()
 		ElvUI_EltreumUI:SkillGlow()
 	end
+	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+		ElvUI_EltreumUI:DynamicClassicDatatext()
+	end
 	ElvUI_EltreumUI:LootText()
 	ElvUI_EltreumUI:OldVersionCheck()
 	ElvUI_EltreumUI:NewVersionCheck()
 	ElvUI_EltreumUI:CastCursor()
 	ElvUI_EltreumUI:CurrentTypeofCursor()
+	ElvUI_EltreumUI:DynamicLevelStyleFilter()
 	--if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 	--	ElvUI_EltreumUI:RoleIcons()
 	--end
@@ -67,6 +71,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE')
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEVEL_UP')
 	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', 0.02)
 	SetCVar('nameplateOtherTopInset', 0.1)
@@ -132,6 +137,14 @@ function ElvUI_EltreumUI:Initialize()
 		end
 	end
 end
+
+
+
+function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
+	ElvUI_EltreumUI:DynamicLevelStyleFilter()
+end
+
+
 
 function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED()
 	ElvUI_EltreumUI:StopCombatMusic()

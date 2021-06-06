@@ -6,6 +6,12 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelogv2()
 	return[[
+    v2.2.0
+    -------
+Added dynamic datatexts that change according to player class, showing Ammo/Soul Shards for Hunters and warlocks, and Friends for other classes
+Fixed heal prediction being gray in TBC/Classic due to a low alpha value
+Dynamic Level tags on enemy nameplates that will show only when the player is below max level
+
     v2.1.9
     -------
 Fixed repeating install process prompt due to a database change

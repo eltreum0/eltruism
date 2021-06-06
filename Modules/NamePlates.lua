@@ -225,6 +225,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
 			E.db["nameplates"]["colors"]["power"]["PAIN"]["b"] = 1
 			E.db["nameplates"]["colors"]["power"]["PAIN"]["g"] = 1
 			E.db["nameplates"]["colors"]["power"]["PAIN"]["r"] = 1
@@ -253,6 +254,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
 		elseif ElvUI_EltreumUI.TBC then
 			E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
@@ -262,6 +264,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
 		end
 
 		E.db["nameplates"]["highlight"] = false
@@ -309,17 +312,14 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["parent"] = "Health"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["xOffset"] = 4
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["yOffset"] = -1
-		if ElvUI_EltreumUI.Retail then
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["enable"] = false
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["enable"] = true
-		end
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["enable"] = true
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["fontOutline"] = "THICKOUTLINE"
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["fontOutline"] = "OUTLINE"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["fontSize"] = 10
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["parent"] = "Health"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["xOffset"] = -6
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -13
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = ""
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["fontOutline"] = "THICKOUTLINE"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[classification:icon][name]"
@@ -575,7 +575,7 @@ end
 
 -- Style Filter Setup
 function ElvUI_EltreumUI:SetupStyleFilters()
-	for _, filterName in pairs({'ElvUI_NonTarget', 'ElvUI_Target', 'EltreumInterrupt', 'EltreumExecute', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP'}) do
+	for _, filterName in pairs({'ElvUI_NonTarget', 'ElvUI_Target', 'EltreumInterrupt', 'EltreumExecute', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel'}) do
 		E.global["nameplate"]["filters"][filterName] = {}
 		E.NamePlates:StyleFilterCopyDefaults(E.global["nameplate"]["filters"][filterName])
 		E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
@@ -680,6 +680,14 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 	E.global["nameplate"]["filters"]["EltreumRestedNP"]["triggers"]["isTarget"] = true
 	E.global["nameplate"]["filters"]["EltreumRestedNP"]["triggers"]["notTarget"] = true
 	E.global["nameplate"]["filters"]["EltreumRestedNP"]["triggers"]["outOfCombat"] = true
+
+	--show enemy level
+	E.global["nameplate"]["filters"]["EltreumLevel"]["actions"]["tags"]["level"] = "[difficultycolor][smartlevel]"
+	E.global["nameplate"]["filters"]["EltreumLevel"]["triggers"]["isTarget"] = true
+	E.global["nameplate"]["filters"]["EltreumLevel"]["triggers"]["mylevel"] = false
+	E.global["nameplate"]["filters"]["EltreumLevel"]["triggers"]["notTarget"] = true
+	E.global["nameplate"]["filters"]["EltreumLevel"]["triggers"]["notTargetMe"] = false
+	E.global["nameplate"]["filters"]["EltreumLevel"]["triggers"]["playerCanAttack"] = true
 
 	E:StaggeredUpdateAll(nil, true)
 	ElvUI_EltreumUI:Print('NamePlate Style Filters have been setup.')

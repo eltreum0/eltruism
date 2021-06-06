@@ -11,4 +11,5 @@
 	<Script file='CombatMusic.lua'/>
 	<Script file='DarkLightColors.lua'/>
 	<Script file='Cursor.lua'/>
+	<Script file='DynamicFunctions.lua'/>
 </Ui>
