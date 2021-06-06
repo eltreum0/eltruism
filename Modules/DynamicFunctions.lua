@@ -25,7 +25,7 @@ function ElvUI_EltreumUI:DynamicLevelStyleFilter()
 				if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
 					E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
 				end
-			else
+			elseif level < 60 then
 				if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
 					E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
 				end
@@ -35,13 +35,11 @@ function ElvUI_EltreumUI:DynamicLevelStyleFilter()
 				if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
 					E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
 				end
-			else
+			elseif level < 70 then
 				if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
 					E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
 				end
 			end
 		end
-	else
-		return
 	end
 end
