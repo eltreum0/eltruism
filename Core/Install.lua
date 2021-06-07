@@ -1,6 +1,8 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local ReloadUI = ReloadUI
-local format = string.format
+
+local _G = _G
+local ReloadUI = _G.ReloadUI
+--local format = string.format
 local IsAddOnLoaded = IsAddOnLoaded
 
 -- Set version & reload on "Skip" and "Finished"

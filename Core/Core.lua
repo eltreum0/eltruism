@@ -1,7 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
-local LoadAddOn = LoadAddOn
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
@@ -10,7 +9,6 @@ end
 
 -- Private DB
 function ElvUI_EltreumUI:SetupPrivate()
-	E.private.ElvUI_EltreumUI.install_version = "2.1.4"
 	-- ElvUI Private DB
 	E.private["general"]["chatBubbleFont"] = "Kimberley"
 	E.private["general"]["chatBubbleFontOutline"] = "OUTLINE"

@@ -1,9 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local pairs = pairs
-local SetCVar = SetCVar
-local IsAddOnLoaded = IsAddOnLoaded
 local PlaySoundFile = PlaySoundFile
-local LSM = E.Libs.LSM
 
 -- Conversion of the party/raid death weakaura into an addon option
 local name = name

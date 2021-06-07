@@ -1,13 +1,13 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local SetCVar = SetCVar
-local IsAddOnLoaded = IsAddOnLoaded
-local LoadAddOn = LoadAddOn
 
 function ElvUI_EltreumUI:NewVersionCheck()
 	if E.private.ElvUI_EltreumUI.install_version >= "2.1.3" and E.private.ElvUI_EltreumUI.install_version < "2.2.0" then
 		E.private.ElvUI_EltreumUI.install_version = "2.2.0"
 		ElvUI_EltreumUI:SetupNamePlates('ElvUI')
 		ElvUI_EltreumUI:Print('has been updated to 2.2.0')
+	end
+	if E.private.ElvUI_EltreumUI.install_version > "2.1.9" then
+		ElvUI_EltreumUI:Print('working')
 	end
 end
 

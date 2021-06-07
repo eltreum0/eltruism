@@ -1,7 +1,4 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local pairs = pairs
-local SetCVar = SetCVar
-local IsAddOnLoaded = IsAddOnLoaded
 
 function ElvUI_EltreumUI:DarkMode()
 	if not E.db.movers then E.db.movers = {} end

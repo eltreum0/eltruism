@@ -1,9 +1,10 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local pairs = pairs
 local SetCVar = SetCVar
-local IsAddOnLoaded = IsAddOnLoaded
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
+local _G = _G
+local IsInInstance = _G.IsInInstance
 
 --[[
 cant parent to UIParent, need to look into https://git.tukui.org/Nihilistzsche/ElvUI_NihilistUI/-/blob/development/ElvUI_NihilistUI/modules/warlockdemons/warlockdemons.lua
@@ -21,7 +22,7 @@ customize friendly nameplate health width inside instance
 
 --- Friendly Nameplate Control
 function ElvUI_EltreumUI:FriendlyNameplates()
-	local inInstance, instanceType = IsInInstance()
+	local _, instanceType = IsInInstance()
 	local mapID = WorldMapFrame:GetMapID()
 	if E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames then
 		if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
@@ -71,8 +72,6 @@ function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
 			if not string.find(unit, "nameplate") then
 				return
 			end
-			local width =  25
-			local height =  18
 			-- this is the worst number of /reload of all time for me
 			button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 			button:SetWidth(25)

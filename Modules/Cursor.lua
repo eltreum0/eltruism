@@ -2,7 +2,6 @@ local _G = _G
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local pairs = _G.pairs
 local SetCVar = _G.SetCVar
-local IsAddOnLoaded = _G.IsAddOnLoaded
 
 local cursorframe = _G.CreateFrame("Frame", "EltreumCastCursor") --, _G.UIParent, "UIDropDownMenuTemplate")
 local UIParent = _G.UIParent

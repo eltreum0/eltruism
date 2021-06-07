@@ -2,11 +2,7 @@ local _G = _G
 local unpack = _G.unpack
 local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local pairs = _G.pairs
-local SetCVar = _G.SetCVar
-local IsAddOnLoaded = _G.IsAddOnLoaded
 local Deformat = _G.LibStub("LibDeformat-3.0")
-local GetCoinIcon = _G.GetCoinIcon
 local CreateFrame = _G.CreateFrame
 local CombatText = _G.CombatText
 
@@ -39,13 +35,10 @@ function ElvUI_EltreumUI:LootText()
 		local CombatText_StandardScroll = _G.CombatText_StandardScroll
 		local GetItemInfo = _G.GetItemInfo
 		local GetItemQualityColor = _G.GetItemQualityColor
-		local CombatText = _G.CombatText
 		local C_CurrencyInfo = _G.C_CurrencyInfo
-		local CreateFrame = _G.CreateFrame
 		local getLoot = _G.getLoot
 		local LOOT_ITEM_PUSHED_SELF_MULTIPLE = _G.LOOT_ITEM_PUSHED_SELF_MULTIPLE
 		local LOOT_ITEM_PUSHED_SELF = _G.LOOT_ITEM_PUSHED_SELF
-		local ERR_INV_FULL = _G.ERR_INV_FULL
 
 		function LootTextframe.OnEvent(self, event, arg1, arg2, arg3)
 			if event == "UI_ERROR_MESSAGE" and arg2 == "Inventory is full." then
@@ -61,7 +54,7 @@ function ElvUI_EltreumUI:LootText()
 				if itemLink and not itemLink:match("|Hbattlepet:") then
 					local lootName, _, rarity, _, _, _, _, _, _, lootTexture, _, _, _, _, _, _, _ = GetItemInfo(itemLink)
 					local lootQuantity = amount
-					local r, g, b, hex = GetItemQualityColor(rarity)
+					local r, g, b, _ = GetItemQualityColor(rarity)
 					if lootQuantity >= 2 then
 						CombatText_AddMessage("|T ".. lootTexture ..":22:22:0:0|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, r, g, b)
 					else
@@ -72,7 +65,6 @@ function ElvUI_EltreumUI:LootText()
 			if E.db.ElvUI_EltreumUI.loottext.currency then
 				if (event == "CHAT_MSG_MONEY") then
 					local moneystring = Deformat(arg1, LOOT_MONEY_SPLIT) or Deformat(arg1, YOU_LOOT_MONEY)
-					local aImage = GetCoinIcon(9999999999)
 					if moneystring:match("Silver") and not moneystring:match("Gold") then
 							CombatText_AddMessage("|T ".. 133786 ..":22:22:-11:-11|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
 					end

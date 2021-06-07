@@ -1,5 +1,4 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local IsAddOnLoaded = IsAddOnLoaded
 local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 local _G = _G
 local PA = _G.ProjectAzilroka

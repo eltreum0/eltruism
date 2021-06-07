@@ -1,7 +1,4 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local pairs = pairs
-local SetCVar = SetCVar
-local IsAddOnLoaded = IsAddOnLoaded
 
 -- Create Stealth Overlay Frame
 local StealthOptionsFrame = CreateFrame("Frame", "StealthOverlay", E.UIParent)
