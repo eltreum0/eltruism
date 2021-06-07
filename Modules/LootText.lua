@@ -22,7 +22,10 @@ LootTextframe:RegisterEvent("LOOT_OPENED")
 function ElvUI_EltreumUI:LootText()
 	if E.db.ElvUI_EltreumUI.loottext.enable then
 		local scale = E.db.ElvUI_EltreumUI.loottext.scale
+		local strata = E.db.ElvUI_EltreumUI.loottext.strata
 		CombatText:SetScale(scale)
+		CombatText:SetFrameStrata(strata)
+		--CombatText:SetPoint("CENTER", 0, 500)
 		--CombatText:SetScale(0.65)
 		local itemLink = nil
 		local amount = 0

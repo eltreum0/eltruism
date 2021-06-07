@@ -88,5 +88,6 @@ P.ElvUI_EltreumUI = {
 		currency = true,
 		pet = true,
 		scale = 0.65,
+		strata = "BACKGROUND",
 	},
 }
