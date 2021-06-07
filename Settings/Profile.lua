@@ -87,5 +87,6 @@ P.ElvUI_EltreumUI = {
 		honor = true,
 		currency = true,
 		pet = true,
+		scale = 0.65,
 	},
 }

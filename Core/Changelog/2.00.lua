@@ -8,9 +8,12 @@ function ElvUI_EltreumUI:Changelogv2()
 	return[[
     v2.2.0
     -------
+Added scale option to LootText
+Optimization/Cleaning Pass
 Added dynamic datatexts that change according to player class, showing Ammo/Soul Shards for Hunters and warlocks, and Friends for other classes
-Fixed heal prediction being gray in TBC/Classic due to a low alpha value
+Fixed heal prediction being gray for some classes in TBC/Classic due to a low alpha value
 Dynamic Level tags on enemy nameplates that will show only when the player is below max level
+Due to how aura filters work in ElvUI it's recommended to go to |cffff0000ElvUI > Unitframes > Group Units > Party/Raid/Raid40 > Aura Indicator > Set them to Textured Icon with Display Timer|r
 
     v2.1.9
     -------

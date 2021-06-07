@@ -26,7 +26,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 				end
 			end
 		else
-			ElvUI_EltreumUI:Print('Not using an Eltruism profile, please switch to it and reload in order to update it')
+			ElvUI_EltreumUI:Print('Not using an Eltruism profile currently, please switch to it and reload in order to update its tags')
 		end
 	end
 end

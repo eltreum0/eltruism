@@ -9,7 +9,7 @@ local CombatText = _G.CombatText
 -- LootText is a fork of Scrolling Loot Text (SLoTe) by xavjer using fixes by Eltreum for pet caging and other things
 -- SLoTE uses GNU GPLv3 and as such this module of Eltruism also uses GNU GPLv3
 
---create the loottext frame
+--Create the loottext frame
 local LootTextframe = CreateFrame("Frame")
 LootTextframe:RegisterEvent("ADDON_LOADED")
 LootTextframe:RegisterEvent("UI_ERROR_MESSAGE")
@@ -21,7 +21,9 @@ LootTextframe:RegisterEvent("LOOT_OPENED")
 
 function ElvUI_EltreumUI:LootText()
 	if E.db.ElvUI_EltreumUI.loottext.enable then
-		CombatText:SetScale(0.65)
+		local scale = E.db.ElvUI_EltreumUI.loottext.scale
+		CombatText:SetScale(scale)
+		--CombatText:SetScale(0.65)
 		local itemLink = nil
 		local amount = 0
 		local YOU_LOOT_MONEY = _G.YOU_LOOT_MONEY
@@ -76,7 +78,6 @@ function ElvUI_EltreumUI:LootText()
 					end
 
 				end
-
 				if ElvUI_EltreumUI.Retail then
 					if (event == "CHAT_MSG_CURRENCY") then
 						itemLink, amount =  Deformat(arg1, CURRENCY_GAINED_MULTIPLE_BONUS)
@@ -105,8 +106,6 @@ function ElvUI_EltreumUI:LootText()
 						end
 					end
 				end
-
-
 			end
 			if E.db.ElvUI_EltreumUI.loottext.honor then
 				if (event == "CHAT_MSG_COMBAT_HONOR_GAIN") then
@@ -158,5 +157,5 @@ function ElvUI_EltreumUI:LootText()
 			end
 		end
 		LootTextframe:SetScript("OnEvent", LootTextframe.OnEvent)
-		end
+	end
 end
