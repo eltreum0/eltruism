@@ -4,6 +4,7 @@
 	<Script file='Fonts.lua'/>
 	<Script file='Maps.lua'/>
 	<Script file='Nameplates.lua'/>
+	<Script file='SetupNameplates.lua'/>
 	<Script file='Stealth.lua'/>
 	<Script file='PartyRaid.lua'/>
 	<Script file='Quests.lua'/>

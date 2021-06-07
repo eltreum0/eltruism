@@ -4,10 +4,8 @@ function ElvUI_EltreumUI:NewVersionCheck()
 	if E.private.ElvUI_EltreumUI.install_version >= "2.1.3" and E.private.ElvUI_EltreumUI.install_version < "2.2.0" then
 		E.private.ElvUI_EltreumUI.install_version = "2.2.0"
 		ElvUI_EltreumUI:SetupNamePlates('ElvUI')
-		ElvUI_EltreumUI:Print('has been updated to 2.2.0')
-	end
-	if E.private.ElvUI_EltreumUI.install_version > "2.1.9" then
-		ElvUI_EltreumUI:Print('working')
+		ElvUI_EltreumUI:Print('Please go to: |cffff0000ElvUI > Unitframes > Group Units > Party/Raid/Raid40 > Aura Indicator > Set them to Textured Icon with Display Timer|r')
+		ElvUI_EltreumUI:Print('Since this setting cannot be set through the plugin without causing errors, and it will improve your experience making it easier to see which buffs/debuffs your party/raid/raid40 has')
 	end
 end
 
