@@ -25,7 +25,10 @@ ElvUI_EltreumUI.Classic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 ElvUI_EltreumUI.TBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 
 function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
-	ElvUI_EltreumUI:NamePlateOptions()
+	if E.private["nameplates"]["enable"] == true then
+		ElvUI_EltreumUI:NamePlateOptions()
+		ElvUI_EltreumUI:DynamicLevelStyleFilter()
+	end
 	ElvUI_EltreumUI:LoadCommands()
 	ElvUI_EltreumUI:FriendlyNameplates()
 	ElvUI_EltreumUI:AFKmusic()
@@ -41,7 +44,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:NewVersionCheck()
 	ElvUI_EltreumUI:CastCursor()
 	ElvUI_EltreumUI:CurrentTypeofCursor()
-	ElvUI_EltreumUI:DynamicLevelStyleFilter()
 	--if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 	--	ElvUI_EltreumUI:RoleIcons()
 	--end
@@ -138,13 +140,9 @@ function ElvUI_EltreumUI:Initialize()
 	end
 end
 
-
-
 function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
 	ElvUI_EltreumUI:DynamicLevelStyleFilter()
 end
-
-
 
 function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED()
 	ElvUI_EltreumUI:StopCombatMusic()
