@@ -19,6 +19,13 @@ EltreumPowerBar.Text:SetText("test test test test test test test test test ")
 customize friendly nameplate health width inside instance
 /run C_NamePlate.SetNamePlateFriendlySize(21, 5)]]--
 
+-- need to learn more about scopes before doing this
+--local function NameplatePowerTexture()
+--	local texture = 'Eltreum-Blank'
+--end
+--hooksecurefunc(NP, 'Construct_ClassPower', NameplatePowerTexture)
+
+
 --- Friendly Nameplate Control
 function ElvUI_EltreumUI:FriendlyNameplates()
 	local _, instanceType = IsInInstance()
@@ -89,12 +96,6 @@ function ElvUI_EltreumUI:Construct_Auras(nameplate)
 	nameplate.Debuffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIcon
 end
 hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
-
--- need to learn more about scopes before doing this
---local function NameplatePowerTexture()
---	local texture = 'Eltreum-Blank'
---end
---hooksecurefunc(NP, 'Construct_ClassPower', NameplatePowerTexture)
 
 --for general nameplates
 local playerclass = {
