@@ -32,9 +32,8 @@ function ElvUI_EltreumUI:RunCommands(message)
 				elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 					CombatText_AddMessage("|T ".. aImage ..":22:22:-11:-11|t  ".."999.999 Gold", CombatText_StandardScroll, 255, 255, 255)
 				end
-
 		else
-				CombatText_AddMessage("|T ".. 237555 ..":22:22:-11:-11|t  ".."Eltruism Loot is currently disabled!", CombatText_StandardScroll, 255, 255, 255)
+			CombatText_AddMessage("|T ".. 136176 ..":22:22:-11:-11|t  ".."Eltruism Loot is currently disabled!", CombatText_StandardScroll, 255, 255, 255)
 		end
 	elseif message == 'config' or message == 'options' then
 		E:ToggleOptionsUI()

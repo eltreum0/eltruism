@@ -1,7 +1,8 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local _G = _G
 
 function ElvUI_EltreumUI:Skins()
---Reskin Blizzard Talent frame for TBC
+	--Reskin Blizzard Talent frame for TBC
 	if ElvUI_EltreumUI.TBC then
 		if E.db.ElvUI_EltreumUI.tbctalents.enable then
 			local PlayerTalentFrame = _G.PlayerTalentFrame
@@ -12,20 +13,34 @@ function ElvUI_EltreumUI:Skins()
 			local PlayerTalentFrameBackgroundBottomLeft = _G.PlayerTalentFrameBackgroundBottomLeft
 			local PlayerTalentFrameBackgroundBottomRight = _G.PlayerTalentFrameBackgroundBottomRight
 			--hide the scroll
-			PlayerTalentFrameScrollFrameScrollBar:Kill()
+			if PlayerTalentFrameScrollFrameScrollBar then
+				PlayerTalentFrameScrollFrameScrollBar:Kill()
+			end
 			--increase the size of the whole frame
-			PlayerTalentFrame:SetSize(376, 770)
-			--increase the size of the actuall frame that has the talent buttons
-			PlayerTalentFrameScrollFrame:SetSize( 280 , 570)
-			--set the position
-			PlayerTalentFrameScrollFrame:ClearAllPoints()
-			PlayerTalentFrameScrollFrame:SetPoint("CENTER", PlayerTalentFrame, 0, 20)
+			if PlayerTalentFrame then
+				PlayerTalentFrame:SetSize(376, 770)
+			end
+			if PlayerTalentFrameScrollFrame then
+				--increase the size of the actual frame that has the talent buttons
+				PlayerTalentFrameScrollFrame:SetSize( 280 , 570)
+				--set the position
+				PlayerTalentFrameScrollFrame:ClearAllPoints()
+				PlayerTalentFrameScrollFrame:SetPoint("CENTER", PlayerTalentFrame, 0, 20)
+			end
 			--kill stuff
-			PlayerTalentFrameBackgroundTopRight:Kill()
-			PlayerTalentFrameBackgroundBottomLeft:Kill()
-			PlayerTalentFrameBackgroundBottomRight:Kill()
+			if PlayerTalentFrameBackgroundTopRight then
+				PlayerTalentFrameBackgroundTopRight:Kill()
+			end
+			if PlayerTalentFrameBackgroundBottomLeft then
+				PlayerTalentFrameBackgroundBottomLeft:Kill()
+			end
+			if PlayerTalentFrameBackgroundBottomRight then
+				PlayerTalentFrameBackgroundBottomRight:Kill()
+			end
 			--increase the size of the background
-			PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 590)
+			if PlayerTalentFrameBackgroundTopLeft then
+				PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 590)
+			end
 		end
 	end
 

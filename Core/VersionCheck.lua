@@ -3,9 +3,9 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 function ElvUI_EltreumUI:NewVersionCheck()
 	if E.private.ElvUI_EltreumUI.install_version == nil then
 		return
-	elseif E.private.ElvUI_EltreumUI.install_version < "2.2.3" then
-		E.private.ElvUI_EltreumUI.install_version = "2.2.3"
-		ElvUI_EltreumUI:Print('has been updated to 2.2.3')
+	elseif E.private.ElvUI_EltreumUI.install_version < "2.2.4" then
+		E.private.ElvUI_EltreumUI.install_version = "2.2.4"
+		ElvUI_EltreumUI:Print('has been updated to 2.2.4')
 	end
 end
 

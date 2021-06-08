@@ -3,7 +3,6 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 -- Eltreum UI Profile DB
 P.ElvUI_EltreumUI = {
 
-
 	skins = {
 		enable = true,
 	},
@@ -98,5 +97,7 @@ P.ElvUI_EltreumUI = {
 		pet = true,
 		scale = 0.65,
 		strata = "BACKGROUND",
+		xOffset = 0,
+		yOffset = 200,
 	},
 }

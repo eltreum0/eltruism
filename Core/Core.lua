@@ -2,6 +2,15 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
 
+
+--todo
+
+--maybe add a function for WorldTextScale
+
+--maybe one for floatingcombattextRepChanges also
+
+
+
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
 	print('|cff82B4ffEltruism|r: '..msg)

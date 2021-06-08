@@ -25,13 +25,15 @@ ElvUI_EltreumUI.Classic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 ElvUI_EltreumUI.TBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 
 function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
-	if E.private["nameplates"]["enable"] == true then
-		ElvUI_EltreumUI:NamePlateOptions()
-		ElvUI_EltreumUI:DynamicLevelStyleFilter()
-	end
 	ElvUI_EltreumUI:LoadCommands()
 	ElvUI_EltreumUI:FriendlyNameplates()
 	ElvUI_EltreumUI:AFKmusic()
+	ElvUI_EltreumUI:LootText()
+	ElvUI_EltreumUI:OldVersionCheck()
+	ElvUI_EltreumUI:NewVersionCheck()
+	ElvUI_EltreumUI:CastCursor()
+	ElvUI_EltreumUI:CurrentTypeofCursor()
+	ElvUI_EltreumUI:Skins()
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive()
 		ElvUI_EltreumUI:SkillGlow()
@@ -39,15 +41,15 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		ElvUI_EltreumUI:DynamicClassicDatatext()
 	end
-	ElvUI_EltreumUI:LootText()
-	ElvUI_EltreumUI:OldVersionCheck()
-	ElvUI_EltreumUI:NewVersionCheck()
-	ElvUI_EltreumUI:CastCursor()
-	ElvUI_EltreumUI:CurrentTypeofCursor()
-	ElvUI_EltreumUI:Skins()
-	--if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-	--	ElvUI_EltreumUI:RoleIcons()
-	--end
+	if E.private["nameplates"]["enable"] == true then
+		ElvUI_EltreumUI:NamePlateOptions()
+		ElvUI_EltreumUI:DynamicLevelStyleFilter()
+	end
+	if not IsAddOnLoaded('NameplateSCT') and not IsAddOnLoaded('ElvUI_FCT') then
+		SetCVar("floatingCombatTextCombatDamage", 1)
+	else
+		SetCVar("floatingCombatTextCombatDamage", 0)
+	end
 end
 
 function ElvUI_EltreumUI:Initialize()
@@ -75,6 +77,14 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEVEL_UP')
+	--LootText things
+	ElvUI_EltreumUI:RegisterEvent("UI_ERROR_MESSAGE")
+	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_LOOT")
+	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_MONEY")
+	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_CURRENCY")
+	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
+	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED")
+
 	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', 0.02)
 	SetCVar('nameplateOtherTopInset', 0.1)
@@ -108,7 +118,6 @@ end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
 	ElvUI_EltreumUI:FriendlyNameplates()
-
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
@@ -146,6 +155,29 @@ function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
 	ElvUI_EltreumUI:GroupRoster()
 end
 
+function ElvUI_EltreumUI:UI_ERROR_MESSAGE()
+	ElvUI_EltreumUI:LootText()
+end
+
+function ElvUI_EltreumUI:CHAT_MSG_LOOT()
+	ElvUI_EltreumUI:LootText()
+end
+
+function ElvUI_EltreumUI:CHAT_MSG_MONEY()
+	ElvUI_EltreumUI:LootText()
+end
+
+function ElvUI_EltreumUI:CHAT_MSG_CURRENCY()
+	ElvUI_EltreumUI:LootText()
+end
+
+function ElvUI_EltreumUI:CHAT_MSG_COMBAT_HONOR_GAIN()
+	ElvUI_EltreumUI:LootText()
+end
+
+function ElvUI_EltreumUI:LOOT_OPENED()
+	ElvUI_EltreumUI:LootText()
+end
 
 function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
 	ElvUI_EltreumUI:AFKmusic()

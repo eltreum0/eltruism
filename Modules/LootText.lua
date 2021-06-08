@@ -25,8 +25,109 @@ function ElvUI_EltreumUI:LootText()
 		local strata = E.db.ElvUI_EltreumUI.loottext.strata
 		CombatText:SetScale(scale)
 		CombatText:SetFrameStrata(strata)
-		--CombatText:SetPoint("CENTER", 0, 500)
-		--CombatText:SetScale(0.65)
+
+		--moving the combat text
+		local xOffset = E.db.ElvUI_EltreumUI.loottext.xOffset
+		local yOffset = E.db.ElvUI_EltreumUI.loottext.yOffset
+
+		--have to hook the function to move it, pretty much a whole copy just adding the offsets
+		_G.CombatText_AddMessage = function (message, scrollFunction, r, g, b, displayType, isStaggered)
+			local string, noStringsAvailable = _G.CombatText_GetAvailableString();
+			if ( noStringsAvailable ) then
+				return;
+			end
+
+			string:SetText(message);
+			string:SetTextColor(r, g, b);
+			string.scrollTime = 0;
+			if ( displayType == "crit" ) then
+				string.scrollFunction = _G.CombatText_StandardScroll;
+			else
+				string.scrollFunction = scrollFunction;
+			end
+
+			-- See which direction the message should flow
+			local yDir;
+			local lowestMessage;
+			local useXadjustment = 0;
+			if ( _G.COMBAT_TEXT_LOCATIONS.startY < _G.COMBAT_TEXT_LOCATIONS.endY ) then
+				-- Flowing up
+				lowestMessage = string:GetBottom();
+				-- Find lowest message to anchor to
+				for index, value in _G.pairs(_G.COMBAT_TEXT_TO_ANIMATE) do
+					if ( lowestMessage >= value.yPos - 16 - _G.COMBAT_TEXT_SPACING) then
+						lowestMessage = value.yPos - 16 - _G.COMBAT_TEXT_SPACING;
+					end
+				end
+				if ( lowestMessage < (_G.COMBAT_TEXT_LOCATIONS.startY - _G.COMBAT_TEXT_MAX_OFFSET) ) then
+					if ( displayType == "crit" ) then
+						lowestMessage = string:GetBottom();
+					else
+						_G.COMBAT_TEXT_X_ADJUSTMENT = _G.COMBAT_TEXT_X_ADJUSTMENT * -1;
+						useXadjustment = 1;
+						lowestMessage = _G.COMBAT_TEXT_LOCATIONS.startY - _G.COMBAT_TEXT_MAX_OFFSET;
+					end
+				end
+			else
+				-- Flowing down
+				lowestMessage = string:GetTop();
+				-- Find lowest message to anchor to
+				for index, value in _G.pairs(_G.COMBAT_TEXT_TO_ANIMATE) do
+					if ( lowestMessage <= value.yPos + 16 + _G.COMBAT_TEXT_SPACING) then
+						lowestMessage = value.yPos + 16 + _G.COMBAT_TEXT_SPACING;
+					end
+				end
+				if ( lowestMessage > (_G.COMBAT_TEXT_LOCATIONS.startY + _G.COMBAT_TEXT_MAX_OFFSET) ) then
+					if ( displayType == "crit" ) then
+						lowestMessage = string:GetTop();
+					else
+						_G.COMBAT_TEXT_X_ADJUSTMENT = _G.COMBAT_TEXT_X_ADJUSTMENT * -1;
+						useXadjustment = 1;
+						lowestMessage = _G.COMBAT_TEXT_LOCATIONS.startY + _G.COMBAT_TEXT_MAX_OFFSET;
+					end
+				end
+			end
+
+			-- Handle crits
+			if ( displayType == "crit" ) then
+				string.endY = _G.COMBAT_TEXT_LOCATIONS.startY;
+				string.isCrit = 1;
+				string:SetTextHeight(_G.COMBAT_TEXT_CRIT_MINHEIGHT);
+			elseif ( displayType == "sticky" ) then
+				string.endY = _G.COMBAT_TEXT_LOCATIONS.startY;
+				string:SetTextHeight(_G.COMBAT_TEXT_HEIGHT);
+			else
+				string.endY = _G.COMBAT_TEXT_LOCATIONS.endY;
+				string:SetTextHeight(_G.COMBAT_TEXT_HEIGHT);
+			end
+
+			-- Stagger the text if flagged
+			local staggerAmount = 0;
+			if ( isStaggered ) then
+				staggerAmount = _G.fastrandom(0, _G.COMBAT_TEXT_STAGGER_RANGE) - _G.COMBAT_TEXT_STAGGER_RANGE/2;
+			end
+
+			-- Alternate x direction
+			CombatText.xDir = CombatText.xDir * -1;
+			if ( useXadjustment == 1 ) then
+				if ( _G.COMBAT_TEXT_X_ADJUSTMENT > 0 ) then
+					CombatText.xDir = -1;
+				else
+					CombatText.xDir = 1;
+				end
+			end
+			string.xDir = CombatText.xDir;
+			string.startX = _G.COMBAT_TEXT_LOCATIONS.startX + staggerAmount + (useXadjustment * _G.COMBAT_TEXT_X_ADJUSTMENT) + xOffset;
+			string.startY = lowestMessage + yOffset;
+			string.yPos = lowestMessage;
+			string:ClearAllPoints();
+			string:SetPoint("TOP", _G.WorldFrame, "BOTTOM", string.startX, lowestMessage);
+			string:SetAlpha(1);
+			string:Show();
+			_G.tinsert(_G.COMBAT_TEXT_TO_ANIMATE, string);
+		end
+		--end of CombatText_AddMessage hook
+
 		local itemLink = nil
 		local amount = 0
 		local YOU_LOOT_MONEY = _G.YOU_LOOT_MONEY

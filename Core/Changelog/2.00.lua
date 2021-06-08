@@ -3,9 +3,31 @@ local unpack = _G.unpack
 local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
-
 function ElvUI_EltreumUI:Changelogv2()
 	return[[
+    v2.2.4
+    -------
+Added option to change the position of LootText
+TBC Expanded Talents fixes
+
+    v2.2.3
+    -------
+Added Expanded Talents for TBC
+Added options in Media for the Expanded Talents, Level Up skin and Boss Loot Frames depending on game version
+Added threat to Enemy NPC nameplates
+Fixed errors when user first installing Eltruism
+Fixed missing possesion bar on Death Knights
+Fixed the Healer Layout Tank and Assist Frames
+
+    v2.2.2
+    -------
+Fixed error when ElvUI nameplates were turned off
+
+    v2.2.1
+    -------
+Added option to change the strata of LootText
+Fixed an error due to a missing table for Rare Style Filter
+
     v2.2.0
     -------
 Added scale option to LootText
