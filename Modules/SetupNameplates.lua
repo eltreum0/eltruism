@@ -199,6 +199,8 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["position"] = "CENTER"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["yOffset"] = 0
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["xOffset"] = -55
+		elseif ElvUI_EltreumUI.Retail then
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["format"] = ""
 		end
 
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["anchorPoint"] = "TOPRIGHT"

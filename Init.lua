@@ -85,6 +85,62 @@ function ElvUI_EltreumUI:Initialize()
 		SetCVar("nameplateOtherBottomInset", 0.02)
 	end
 
+
+	--Reskin Blizzard Talent frame for TBC
+	if ElvUI_EltreumUI.TBC then
+		if E.db.ElvUI_EltreumUI.tbctalents.enable then
+			local PlayerTalentFrame = _G.PlayerTalentFrame
+			local PlayerTalentFrameScrollFrame = _G.PlayerTalentFrameScrollFrame
+			local PlayerTalentFrameScrollFrameScrollBar = _G.PlayerTalentFrameScrollFrameScrollBar
+			local PlayerTalentFrameBackgroundTopLeft = _G.PlayerTalentFrameBackgroundTopLeft
+			local PlayerTalentFrameBackgroundTopRight = _G.PlayerTalentFrameBackgroundTopRight
+			local PlayerTalentFrameBackgroundBottomLeft = _G.PlayerTalentFrameBackgroundBottomLeft
+			local PlayerTalentFrameBackgroundBottomRight = _G.PlayerTalentFrameBackgroundBottomRight
+			--hide the scroll
+			PlayerTalentFrameScrollFrameScrollBar:Kill()
+			--increase the size of the whole frame
+			PlayerTalentFrame:SetSize(376, 760)
+			--increase the size of the actuall frame that has the talent buttons
+			PlayerTalentFrameScrollFrame:SetSize( 280 , 580)
+			--set the position
+			PlayerTalentFrameScrollFrame:ClearAllPoints()
+			PlayerTalentFrameScrollFrame:SetPoint("CENTER", PlayerTalentFrame, 0, 0)
+			--kill stuff
+			PlayerTalentFrameBackgroundTopRight:Kill()
+			PlayerTalentFrameBackgroundBottomLeft:Kill()
+			PlayerTalentFrameBackgroundBottomRight:Kill()
+			--increase the size of the background
+			PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 580)
+		end
+	end
+
+	--Reskin Blizzard Talent frame for Classic
+	--[[if ElvUI_EltreumUI.Classic then
+		--local TalentFrame = _G.TalentFrame
+		local TalentFrameScrollFrame = _G.TalentFrameScrollFrame
+		local TalentFrameScrollFrameScrollBar = _G.TalentFrameScrollFrameScrollBar
+		local TalentFrameBackgroundTopLeft = _G.TalentFrameBackgroundTopLeft
+		local TalentFrameBackgroundTopRight = _G.TalentFrameBackgroundTopRight
+		local TalentFrameBackgroundBottomLeft = _G.TalentFrameBackgroundBottomLeft
+		local TalentFrameBackgroundBottomRight = _G.TalentFrameBackgroundBottomRight
+		--hide the scroll
+		--TalentFrameScrollFrameScrollBar:Kill()
+		--increase the size of the whole frame
+		TalentFrame:SetSize(376, 760)
+		--increase the size of the actuall frame that has the talent buttons
+		--TalentFrameScrollFrame:SetSize( 280 , 580)
+		--set the position
+		--TalentFrameScrollFrame:SetPoint("CENTER", PlayerTalentFrame, 0, 0)
+		--kill stuff
+		--TalentFrameBackgroundTopRight:Kill()
+		--TalentFrameBackgroundBottomLeft:Kill()
+		--TalentFrameBackgroundBottomRight:Kill()
+		--increase the size of the background
+		--TalentFrameBackgroundTopLeft:SetSize(310 , 580)
+	end ]]--
+
+
+
 	-- Color level up display and boss banner by Aftermathh
 	if ElvUI_EltreumUI.Retail then
 		local R, G, B = unpack(E.media.rgbvaluecolor)
