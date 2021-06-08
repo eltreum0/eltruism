@@ -82,7 +82,7 @@ if ElvUI_EltreumUI.Retail then
 							inline = true,
 							name = 'Reinstall the plugin to reset settings',
 							args = {
-								generalVars = {
+								pluginagain = {
 									order = 1,
 									type = 'execute',
 									name = 'Install',
@@ -96,7 +96,7 @@ if ElvUI_EltreumUI.Retail then
 							inline = true,
 							name = 'Reset nameplates to Eltruism settings',
 							args = {
-								generalVars = {
+								nameplatesagain = {
 									order = 1,
 									type = 'execute',
 									name = 'Install',
@@ -1712,7 +1712,7 @@ if ElvUI_EltreumUI.Classic then
 							inline = true,
 							name = 'Reinstall the plugin to reset settings',
 							args = {
-								generalVars = {
+								pluginagain = {
 									order = 1,
 									type = 'execute',
 									name = 'Install',
@@ -1726,7 +1726,7 @@ if ElvUI_EltreumUI.Classic then
 							inline = true,
 							name = 'Reset nameplates to Eltruism settings',
 							args = {
-								generalVars = {
+								nameplateagain = {
 									order = 1,
 									type = 'execute',
 									name = 'Install',
@@ -2651,6 +2651,27 @@ if ElvUI_EltreumUI.Classic then
 								},
 							}
 						},
+						header5 = {
+							order = 10,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						threatdescription = {
+							order = 11,
+							type = "description",
+							name = "Add Threat to Enemy Nameplates",
+							width = 'full',
+						},
+						threatplates = {
+							type = 'execute',
+							name = 'Add Threat',
+							desc = 'Display Threat in Enemy Nameplates using the enemy title',
+							order = 12,
+							func = function() ElvUI_EltreumUI:ClassicThreatNP() ReloadUI() end,
+							confirm = true,
+						},
 					},
 				},
 				loottext = {
@@ -3056,7 +3077,7 @@ if ElvUI_EltreumUI.TBC then
 							inline = true,
 							name = 'Reinstall the plugin to reset settings',
 							args = {
-								generalVars = {
+								pluginagain = {
 									order = 1,
 									type = 'execute',
 									name = 'Install',
@@ -3070,7 +3091,7 @@ if ElvUI_EltreumUI.TBC then
 							inline = true,
 							name = 'Reset nameplates to Eltruism settings',
 							args = {
-								generalVars = {
+								nameplateagain = {
 									order = 1,
 									type = 'execute',
 									name = 'Install',
@@ -4087,6 +4108,27 @@ if ElvUI_EltreumUI.TBC then
 									set = function(_, value) E.db.ElvUI_EltreumUI.nameplatelevel.enable = value end,
 								},
 							}
+						},
+						header5 = {
+							order = 10,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						threatdescription = {
+							order = 11,
+							type = "description",
+							name = "Add Threat to Enemy Nameplates",
+							width = 'full',
+						},
+						threatplates = {
+							type = 'execute',
+							name = 'Add Threat',
+							desc = 'Display Threat in Enemy Nameplates using the enemy title',
+							order = 12,
+							func = function() ElvUI_EltreumUI:ClassicThreatNP() ReloadUI() end,
+							confirm = true,
 						},
 					},
 				},

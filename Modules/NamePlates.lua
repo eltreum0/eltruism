@@ -25,6 +25,21 @@ customize friendly nameplate health width inside instance
 --end
 --hooksecurefunc(NP, 'Construct_ClassPower', NameplatePowerTexture)
 
+function ElvUI_EltreumUI:ClassicThreatNP()
+	if E.private["nameplates"]["enable"] == true then
+		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Kimberley"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["fontOutline"] = "OUTLINE"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = true
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["parent"] = "Health"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["fontSize"] = 10
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["format"] = "[threat:percent]"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["position"] = "CENTER"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["yOffset"] = 0
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["xOffset"] = -55
+		end
+	end
+end
 
 --- Friendly Nameplate Control
 function ElvUI_EltreumUI:FriendlyNameplates()
@@ -144,8 +159,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
 			if E.private.ElvUI_EltreumUI.install_version == nil then
 				return
-			end
-			if E.private.ElvUI_EltreumUI.install_version > "2.0.0" then
+			elseif E.private.ElvUI_EltreumUI.install_version > "2.0.0" then
 				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["border"] = true
 				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
 				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
@@ -156,8 +170,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
 		if E.private.ElvUI_EltreumUI.install_version == nil then
 			return
-		end
-		if E.private.ElvUI_EltreumUI.install_version > "2.0.0" then
+		elseif E.private.ElvUI_EltreumUI.install_version > "2.0.0" then
 			E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 		end
 	end

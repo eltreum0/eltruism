@@ -18,25 +18,29 @@ end
 --Dynamic Level Nameplate Style Filter
 function ElvUI_EltreumUI:DynamicLevelStyleFilter()
 	if E.db.ElvUI_EltreumUI.nameplatelevel.enable then
-		local level = UnitLevel("player")
-		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.Retail then
-			if level == 60 then
-				if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
-					E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
+		if E.private.ElvUI_EltreumUI.install_version == nil then
+			return
+		else
+			local level = UnitLevel("player")
+			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.Retail then
+				if level == 60 then
+					if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
+						E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
+					end
+				elseif level < 60 then
+					if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
+						E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
+					end
 				end
-			elseif level < 60 then
-				if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
-					E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
-				end
-			end
-		elseif ElvUI_EltreumUI.TBC then
-			if level == 70 then
-				if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
-					E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
-				end
-			elseif level < 70 then
-				if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
-					E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
+			elseif ElvUI_EltreumUI.TBC then
+				if level == 70 then
+					if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
+						E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
+					end
+				elseif level < 70 then
+					if E.private.ElvUI_EltreumUI.install_version >= "2.2.0" then
+						E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
+					end
 				end
 			end
 		end
