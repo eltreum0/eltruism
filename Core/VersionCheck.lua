@@ -5,8 +5,7 @@ function ElvUI_EltreumUI:NewVersionCheck()
 		return
 	elseif E.private.ElvUI_EltreumUI.install_version < "2.2.3" then
 		E.private.ElvUI_EltreumUI.install_version = "2.2.3"
-		ElvUI_EltreumUI:Print('Please go to: |cffff0000ElvUI > Unitframes > Group Units > Party/Raid/Raid40 > Aura Indicator >|r Set them to |cffff0000Textured Icon with Display Timer|r')
-		ElvUI_EltreumUI:Print('This setting cannot be set through the plugin without causing errors. It will improve your experience making it easier to see which buffs/debuffs your party/raid/raid40 has. This message will only be displayed once.')
+		ElvUI_EltreumUI:Print('has been updated to 2.2.3')
 	end
 end
 
@@ -35,6 +34,8 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.private.ElvUI_EltreumUI.install_version = "2.2.2"
 		if E.private["nameplates"]["enable"] == true then
 			ElvUI_EltreumUI:SetupNamePlates('ElvUI')
+			ElvUI_EltreumUI:Print('Please go to: |cffff0000ElvUI > Unitframes > Group Units > Party/Raid/Raid40 > Aura Indicator >|r Set them to |cffff0000Textured Icon with Display Timer|r')
+			ElvUI_EltreumUI:Print('This setting cannot be set through the plugin without causing errors. It will improve your experience making it easier to see which buffs/debuffs your party/raid/raid40 has. This message will only be displayed once.')
 		end
 	end
 end

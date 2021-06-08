@@ -1086,19 +1086,20 @@ if ElvUI_EltreumUI.Retail then
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
-								dynamicdatatext = {
+								levelbossskins = {
 									order = 18,
 									type = "description",
-									name = "Dynamic Datatext that changes according to class to show Ammo or Soul Shards when playing Hunter or Warlock",
+									name = "Skin Level Up, Boss Loot and Instance Entrance frames to be class colored",
 									width = "full",
 								},
-								dynamicenable = {
+								skinenable = {
 									order = 19,
 									type = 'toggle',
 									name = 'Enable',
-									desc = 'Enable the Dynamic Datatext',
-									get = function(info) return E.db.ElvUI_EltreumUI.dynamicdatatext.enable end,
-									set = function(info, value) E.db.ElvUI_EltreumUI.dynamicdatatext.enable = value end,
+									desc = 'Enable the Skins',
+									get = function(info) return E.db.ElvUI_EltreumUI.skins.enable end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.skins.enable = value ReloadUI() end,
+									confirm = true,
 								},
 							},
 						},
