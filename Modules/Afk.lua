@@ -44,7 +44,21 @@ local classMusic = {
     ['DRUID'] = 1417312,
     ['DEMONHUNTER'] = 1417290,
 }
-local vanillaMusic = {
+
+local tbcMusic = {
+    ['Human'] = 53202,
+    ['Gnome'] = 53190,
+    ['NightElf'] = 53187,
+    ['Dwarf'] = 53193,
+    ['Orc'] = 53201,
+    ['Undead'] = 53217,
+    ['Tauren'] = 53215,
+    ['Troll'] = 53825,
+    ['Draenei'] = 53284,
+    ['BloodElf'] = 53473,
+}
+
+local classicMusic = {
     ['Human'] = 6794,
     ['Gnome'] = 7341,
     ['NightElf'] = 3920,
@@ -54,8 +68,13 @@ local vanillaMusic = {
     ['Tauren'] = 7077,
     ['Troll'] = 8452,
 }
+
 -- with the help of Repooc, Simpy, Nihilistzsche and Acidweb (not in order :D)
 local musicSetting = GetCVar('Sound_EnableMusic')
+
+local classicmusicstopper = nil
+local willplay = nil
+
 function ElvUI_EltreumUI:AFKmusic()
     if E.db.ElvUI_EltreumUI.afkmusic.enable then
         if ElvUI_EltreumUI.Retail then
@@ -74,57 +93,26 @@ function ElvUI_EltreumUI:AFKmusic()
                 SetCVar("Sound_EnableMusic", musicSetting)
             end
         end
-        --[[if ElvUI_EltreumUI.TBC then
+        if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
             if UnitIsAFK("player") then
-                if musicSetting == '0' then
-                    SetCVar("Sound_EnableMusic", 1)
-                end
-                if ElvUI_EltreumUI.Retail then
-                    PlayMusic(vanillaMusic[E.myrace])
+                if musicSetting == '0' then SetCVar("Sound_EnableMusic", 1) end
+                if ElvUI_EltreumUI.TBC then
+                    PlayMusic(tbcMusic[E.myrace])
+                elseif ElvUI_EltreumUI.Classic then
+                    willplay, classicmusicstopper = PlaySound(classicMusic[E.myrace])
                 end
             else
-                StopMusic()
-                SetCVar("Sound_EnableMusic", musicSetting)
-            end
-        end]]--
-        --[[if ElvUI_EltreumUI.Classic then
-            local _ , race, _ = UnitRace("player")
-            if UnitIsAFK("player") then
-                if race == "Human" then
-                    PlayMusic(6794)
+                if ElvUI_EltreumUI.TBC then
+                    StopMusic()
+                    SetCVar("Sound_EnableMusic", musicSetting)
                 end
-                if race == "Gnome" then
-                    PlayMusic(7341)
-                end
-                if race == "NightElf" then
-                    PlayMusic(3920)
-                end
-                if race == "Dwarf" then
-                    PlayMusic(7319)
-                end
-                if race == "Draenei" then
-                    PlayMusic(53284)
-                end
-                if race == "Orc" then
-                    PlayMusic(2902)
-                end
-                if race == "Undead" then
-                    PlayMusic(5074)
-                end
-                if race == "Tauren" then
-                    PlayMusic(7077)
-                end
-                if race == "Troll" then
-                    PlaySoundFile(8452)
-                end
-                if race == "BloodElf" then
-                    PlaySoundFile(53473)
+                if ElvUI_EltreumUI.Classic then
+                    if willplay then
+                        StopSound(classicmusicstopper,3000)
+                    end
+                    SetCVar("Sound_EnableMusic", musicSetting)
                 end
             end
-            --stop music when not afk
-            if not UnitIsAFK("player") then
-                StopMusic()
-            end
-        end]]--
+        end
     end
 end

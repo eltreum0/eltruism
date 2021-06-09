@@ -5,6 +5,12 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelogv2()
 	return[[
+    v2.2.6
+    -------
+Added expanded talents to Classic
+Added AFK music to TBC and Classic
+
+
     v2.2.5
     -------
 Fixed TBC Expanded Talents --Thanks Gregory!

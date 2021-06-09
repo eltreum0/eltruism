@@ -1685,7 +1685,7 @@ if ElvUI_EltreumUI.Retail then
 							type = 'input',
 							width = 'full',
 							name = 'New commits, basically a preview of fixes or upcoming features',
-							get = function() return 'https://git.tukui.org/eltreum/eltruism/-/commits/master' end,
+							get = function() return 'https://git.tukui.org/eltreum/eltruism/-/commits/main' end,
 						},
 						issues = {
 							order = 2,
@@ -1770,7 +1770,7 @@ if ElvUI_EltreumUI.Classic then
 						},
 					},
 				},
-				--[[afk = {
+				afk = {
 					type = 'group',
 					name = 'A.F.K',
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\afk',
@@ -1789,10 +1789,10 @@ if ElvUI_EltreumUI.Classic then
 								get = function() return E.db.ElvUI_EltreumUI.afkmusic.enable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.afkmusic.enable = value end,
 								},
-							}
+							},
 						},
 					},
-				},]]--
+				},
 				cursor = {
 					type = 'group',
 					name = 'Cursor',
@@ -2538,6 +2538,28 @@ if ElvUI_EltreumUI.Classic then
 									get = function(info) return E.db.ElvUI_EltreumUI.dynamicdatatext.enable end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.dynamicdatatext.enable = value end,
 								},
+								header6 = {
+									order = 20,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								tbctalentinfo = {
+									order = 21,
+									type = "description",
+									name = "Expand the Talents to show the entire tree",
+									width = "full",
+								},
+								tbctalents = {
+									order = 22,
+									type = 'toggle',
+									name = 'Expanded Talents',
+									desc = 'Expand Talents to cover the full tree',
+									get = function(info) return E.db.ElvUI_EltreumUI.tbctalents.enable end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.tbctalents.enable = value ReloadUI() end,
+									confirm = true,
+								},
 							},
 						},
 					},
@@ -3082,7 +3104,7 @@ if ElvUI_EltreumUI.Classic then
 							type = 'input',
 							width = 'full',
 							name = 'New commits, basically a preview of fixes or upcoming features',
-							get = function() return 'https://git.tukui.org/eltreum/eltruism/-/commits/master' end,
+							get = function() return 'https://git.tukui.org/eltreum/eltruism/-/commits/main' end,
 						},
 						issues = {
 							order = 2,
@@ -3163,6 +3185,29 @@ if ElvUI_EltreumUI.TBC then
 									type = 'execute',
 									name = 'Install',
 									func = function() ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end,
+								},
+							},
+						},
+					},
+				},
+				afk = {
+					type = 'group',
+					name = 'A.F.K',
+					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\afk',
+					order = 85,
+					args = {
+						afkmusic = {
+							order = 1,
+							type = 'group',
+							inline = true,
+							name = 'Play music while you are AFK',
+							args = {
+								enable = {
+								type = 'toggle',
+								name = 'Enable',
+								order = 1,
+								get = function() return E.db.ElvUI_EltreumUI.afkmusic.enable end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.afkmusic.enable = value end,
 								},
 							},
 						},
@@ -4595,7 +4640,7 @@ if ElvUI_EltreumUI.TBC then
 							type = 'input',
 							width = 'full',
 							name = 'New commits, basically a preview of fixes or upcoming features',
-							get = function() return 'https://git.tukui.org/eltreum/eltruism/-/commits/master' end,
+							get = function() return 'https://git.tukui.org/eltreum/eltruism/-/commits/main' end,
 						},
 						issues = {
 							order = 2,

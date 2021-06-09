@@ -42,6 +42,46 @@ function ElvUI_EltreumUI:Skins()
 		end
 	end
 
+	--Reskin Blizzard Talent frame for Classic
+	if ElvUI_EltreumUI.Classic then
+		if E.db.ElvUI_EltreumUI.tbctalents.enable then
+			if not IsAddOnLoaded("Blizzard_TalentUI") then
+				LoadAddOn("Blizzard_TalentUI")
+			end
+            --assert(IsAddOnLoaded("Blizzard_TalentUI"), "Talent UI not loaded")
+
+			--hide the scroll
+			if _G.TalentFrameScrollFrameScrollBar then
+				_G.TalentFrameScrollFrameScrollBar:Kill()
+			end
+			--increase the size of the whole frame
+			if _G.TalentFrame then
+				_G.TalentFrame:SetSize(376, 670)
+			end
+			if _G.TalentFrameScrollFrame then
+				--increase the size of the actual frame that has the talent buttons
+				_G.TalentFrameScrollFrame:SetSize( 280 , 470)
+				--set the position
+				_G.TalentFrameScrollFrame:ClearAllPoints()
+				_G.TalentFrameScrollFrame:SetPoint("CENTER", _G.TalentFrame, 0, 20)
+			end
+			--kill stuff
+			if _G.TalentFrameBackgroundTopRight then
+				_G.TalentFrameBackgroundTopRight:Kill()
+			end
+			if _G.TalentFrameBackgroundBottomLeft then
+				_G.TalentFrameBackgroundBottomLeft:Kill()
+			end
+			if _G.TalentFrameBackgroundBottomRight then
+				_G.TalentFrameBackgroundBottomRight:Kill()
+			end
+			--increase the size of the background
+			if _G.TalentFrameBackgroundTopLeft then
+				_G.TalentFrameBackgroundTopLeft:SetSize(310 , 490)
+			end
+		end
+	end
+
 	-- Color level up display and boss banner by Aftermathh
 	if ElvUI_EltreumUI.Retail then
 		if E.db.ElvUI_EltreumUI.skins.enable then
