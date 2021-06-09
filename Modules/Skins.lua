@@ -5,69 +5,42 @@ function ElvUI_EltreumUI:Skins()
 	--Reskin Blizzard Talent frame for TBC
 	if ElvUI_EltreumUI.TBC then
 		if E.db.ElvUI_EltreumUI.tbctalents.enable then
-			local PlayerTalentFrame = _G.PlayerTalentFrame
-			local PlayerTalentFrameScrollFrame = _G.PlayerTalentFrameScrollFrame
-			local PlayerTalentFrameScrollFrameScrollBar = _G.PlayerTalentFrameScrollFrameScrollBar
-			local PlayerTalentFrameBackgroundTopLeft = _G.PlayerTalentFrameBackgroundTopLeft
-			local PlayerTalentFrameBackgroundTopRight = _G.PlayerTalentFrameBackgroundTopRight
-			local PlayerTalentFrameBackgroundBottomLeft = _G.PlayerTalentFrameBackgroundBottomLeft
-			local PlayerTalentFrameBackgroundBottomRight = _G.PlayerTalentFrameBackgroundBottomRight
+			if not IsAddOnLoaded("Blizzard_TalentUI") then
+				LoadAddOn("Blizzard_TalentUI")
+			end
+            --assert(IsAddOnLoaded("Blizzard_TalentUI"), "Talent UI not loaded")
+
 			--hide the scroll
-			if PlayerTalentFrameScrollFrameScrollBar then
-				PlayerTalentFrameScrollFrameScrollBar:Kill()
+			if _G.PlayerTalentFrameScrollFrameScrollBar then
+				_G.PlayerTalentFrameScrollFrameScrollBar:Kill()
 			end
 			--increase the size of the whole frame
-			if PlayerTalentFrame then
-				PlayerTalentFrame:SetSize(376, 770)
+			if _G.PlayerTalentFrame then
+				_G.PlayerTalentFrame:SetSize(376, 770)
 			end
-			if PlayerTalentFrameScrollFrame then
+			if _G.PlayerTalentFrameScrollFrame then
 				--increase the size of the actual frame that has the talent buttons
-				PlayerTalentFrameScrollFrame:SetSize( 280 , 570)
+				_G.PlayerTalentFrameScrollFrame:SetSize( 280 , 570)
 				--set the position
-				PlayerTalentFrameScrollFrame:ClearAllPoints()
-				PlayerTalentFrameScrollFrame:SetPoint("CENTER", PlayerTalentFrame, 0, 20)
+				_G.PlayerTalentFrameScrollFrame:ClearAllPoints()
+				_G.PlayerTalentFrameScrollFrame:SetPoint("CENTER", _G.PlayerTalentFrame, 0, 20)
 			end
 			--kill stuff
-			if PlayerTalentFrameBackgroundTopRight then
-				PlayerTalentFrameBackgroundTopRight:Kill()
+			if _G.PlayerTalentFrameBackgroundTopRight then
+				_G.PlayerTalentFrameBackgroundTopRight:Kill()
 			end
-			if PlayerTalentFrameBackgroundBottomLeft then
-				PlayerTalentFrameBackgroundBottomLeft:Kill()
+			if _G.PlayerTalentFrameBackgroundBottomLeft then
+				_G.PlayerTalentFrameBackgroundBottomLeft:Kill()
 			end
-			if PlayerTalentFrameBackgroundBottomRight then
-				PlayerTalentFrameBackgroundBottomRight:Kill()
+			if _G.PlayerTalentFrameBackgroundBottomRight then
+				_G.PlayerTalentFrameBackgroundBottomRight:Kill()
 			end
 			--increase the size of the background
-			if PlayerTalentFrameBackgroundTopLeft then
-				PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 590)
+			if _G.PlayerTalentFrameBackgroundTopLeft then
+				_G.PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 590)
 			end
 		end
 	end
-
-	--Reskin Blizzard Talent frame for Classic
-	--[[if ElvUI_EltreumUI.Classic then
-		--local TalentFrame = _G.TalentFrame
-		local TalentFrameScrollFrame = _G.TalentFrameScrollFrame
-		local TalentFrameScrollFrameScrollBar = _G.TalentFrameScrollFrameScrollBar
-		local TalentFrameBackgroundTopLeft = _G.TalentFrameBackgroundTopLeft
-		local TalentFrameBackgroundTopRight = _G.TalentFrameBackgroundTopRight
-		local TalentFrameBackgroundBottomLeft = _G.TalentFrameBackgroundBottomLeft
-		local TalentFrameBackgroundBottomRight = _G.TalentFrameBackgroundBottomRight
-		--hide the scroll
-		--TalentFrameScrollFrameScrollBar:Kill()
-		--increase the size of the whole frame
-		TalentFrame:SetSize(376, 760)
-		--increase the size of the actuall frame that has the talent buttons
-		--TalentFrameScrollFrame:SetSize( 280 , 580)
-		--set the position
-		--TalentFrameScrollFrame:SetPoint("CENTER", PlayerTalentFrame, 0, 0)
-		--kill stuff
-		--TalentFrameBackgroundTopRight:Kill()
-		--TalentFrameBackgroundBottomLeft:Kill()
-		--TalentFrameBackgroundBottomRight:Kill()
-		--increase the size of the background
-		--TalentFrameBackgroundTopLeft:SetSize(310 , 580)
-	end ]]--
 
 	-- Color level up display and boss banner by Aftermathh
 	if ElvUI_EltreumUI.Retail then

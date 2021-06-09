@@ -5,10 +5,15 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelogv2()
 	return[[
+    v2.2.5
+    -------
+Fixed TBC Expanded Talents --Thanks Gregory!
+Reworked Version Checks to have less errors
+
     v2.2.4
     -------
 Added option to change the position of LootText
-TBC Expanded Talents fixes
+Fixes for TBC Expanded Talents
 
     v2.2.3
     -------
