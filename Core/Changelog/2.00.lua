@@ -10,6 +10,7 @@ function ElvUI_EltreumUI:Changelogv2()
 Added expanded talents to Classic
 Added AFK music to TBC and Classic
 Added Class Icons to Character Panel
+Added tags to show Class Icons on unitframes/nameplates
 
     v2.2.5
     -------

@@ -84,22 +84,58 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_CURRENCY")
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED")
-
 	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', 0.02)
 	SetCVar('nameplateOtherTopInset', 0.1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('nameplateTargetRadialPosition', 1)
-
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		SetCVar("clampTargetNameplateToScreen", 1)
 		SetCVar("nameplateOtherBottomInset", 0.02)
 	end
+
+	--[[
+	ElvUI_EltreumUI:RegisterEvent("NAME_PLATE_UNIT_ADDED")
+	ElvUI_EltreumUI:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
+	ElvUI_EltreumUI:RegisterEvent("UNIT_POWER_FREQUENT")
+	ElvUI_EltreumUI:RegisterEvent("UNIT_SPELLCAST_START")
+	ElvUI_EltreumUI:RegisterEvent("UNIT_SPELLCAST_STOP")
+	ElvUI_EltreumUI:RegisterEvent("UNIT_DISPLAYPOWER")
+	ElvUI_EltreumUI:RegisterEvent("UNIT_MAXPOWER")
+	ElvUI_EltreumUI:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+	ElvUI_EltreumUI:RegisterEvent("LOAD")
+]]--
 end
 
-function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
-	ElvUI_EltreumUI:DynamicLevelStyleFilter()
+function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
+	ElvUI_EltreumUI:NamePlateOptions()
+	--ElvUI_EltreumUI:NameplatePower()
 end
+
+--[[
+function ElvUI_EltreumUI:NAME_PLATE_UNIT_ADDED()
+	ElvUI_EltreumUI:NameplatePower()
+end
+function ElvUI_EltreumUI:NAME_PLATE_UNIT_REMOVED()
+	ElvUI_EltreumUI:NameplatePower()
+end
+function ElvUI_EltreumUI:UNIT_POWER_FREQUENT()
+ElvUI_EltreumUI:NameplatePower()
+end
+function ElvUI_EltreumUI:UNIT_SPELLCAST_START()
+	ElvUI_EltreumUI:NameplatePower()
+end
+function ElvUI_EltreumUI:UNIT_SPELLCAST_STOP()
+	ElvUI_EltreumUI:NameplatePower()
+end
+function ElvUI_EltreumUI:UNIT_DISPLAYPOWER()
+	ElvUI_EltreumUI:NameplatePower()
+end
+function ElvUI_EltreumUI:UNIT_MAXPOWER()
+	ElvUI_EltreumUI:NameplatePower()
+end
+]]--
+
 
 function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED()
 	ElvUI_EltreumUI:StopCombatMusic()
@@ -107,6 +143,10 @@ end
 
 function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED()
 	ElvUI_EltreumUI:CombatMusic()
+end
+
+function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
+	ElvUI_EltreumUI:DynamicLevelStyleFilter()
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED()
@@ -181,10 +221,6 @@ end
 
 function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
 	ElvUI_EltreumUI:AFKmusic()
-end
-
-function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
-	ElvUI_EltreumUI:NamePlateOptions()
 end
 
 local function CallbackInitialize()
