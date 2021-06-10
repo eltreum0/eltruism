@@ -1,7 +1,43 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
+local CreateFrame = _G.CreateFrame
+local UIParent = _G.UIParent
+
+local classIcons = {
+    ['WARRIOR'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Warrior",
+    ['PALADIN'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Paladin",
+    ['HUNTER'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Hunter",
+    ['ROGUE'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Rogue",
+    ['PRIEST'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Priest",
+    ['DEATHKNIGHT'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DeathKnight",
+    ['SHAMAN'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Shaman",
+    ['MAGE'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Mage",
+    ['WARLOCK'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Warlock",
+    ['MONK'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Monk",
+    ['DRUID'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Druid",
+    ['DEMONHUNTER'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunter",
+}
 
 function ElvUI_EltreumUI:Skins()
+
+	--add class icon to class in character panel
+	local CharacterLevelText = _G.CharacterLevelText
+	local levelwidth = CharacterLevelText:GetWidth()
+	local classFrame = CreateFrame("Frame", nil, UIParent)
+	classFrame:ClearAllPoints()
+	if ElvUI_EltreumUI.Retail then
+		classFrame:SetPoint("CENTER", "CharacterLevelText", (levelwidth/2)+5, 0)
+	end
+	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		classFrame:SetPoint("CENTER", "CharacterLevelText", (levelwidth/2)+25, 0)
+	end
+	classFrame:SetSize(20, 20)
+	classFrame:SetParent("PaperDollFrame")
+	local classTexture = classFrame:CreateTexture()
+	classTexture:SetAllPoints(classFrame)
+	classTexture:SetTexture(classIcons[E.myclass])
+
+
 	--Reskin Blizzard Talent frame for TBC
 	if ElvUI_EltreumUI.TBC then
 		if E.db.ElvUI_EltreumUI.tbctalents.enable then

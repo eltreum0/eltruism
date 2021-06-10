@@ -3751,7 +3751,7 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["movers"]["TalkingHeadFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
 			E.db["movers"]["ThreatBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,-1"
 			E.db["movers"]["QuestTimerFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-258,-231"
-			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-205,-306"
+			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-208,-357"
 			E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
 			E.db["movers"]["TorghastBuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-346"
 			E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,256"

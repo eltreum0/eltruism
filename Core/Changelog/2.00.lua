@@ -9,7 +9,7 @@ function ElvUI_EltreumUI:Changelogv2()
     -------
 Added expanded talents to Classic
 Added AFK music to TBC and Classic
-
+Added Class Icons to Character Panel
 
     v2.2.5
     -------
