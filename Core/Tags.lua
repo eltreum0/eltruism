@@ -29,8 +29,8 @@ local classIcons = {
     ['DRUID'] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Druid.tga:0:0:0:0|t",
     ['DEMONHUNTER'] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunter.tga:0:0:0:0|t",
 }
-ElvUF.Tags.Events['name:eltruism:class'] = 'UNIT_NAME_UPDATE'
-ElvUF.Tags.Methods['name:eltruism:class'] = function(unit)
+ElvUF.Tags.Events['eltruism:class:all'] = 'UNIT_NAME_UPDATE'
+ElvUF.Tags.Methods['eltruism:class:all'] = function(unit)
 	local icon
 	local _ , classes = UnitClass(unit)
 	icon = classIcons[classes]
@@ -39,8 +39,8 @@ end
 E:AddTagInfo('eltruism:class:all', ElvUI_EltreumUI.Name, "Shows Class Icons by Blizzard on all targets")
 
 --ty repooc!
-ElvUF.Tags.Events['name:eltruism:class'] = 'UNIT_NAME_UPDATE'
-ElvUF.Tags.Methods['name:eltruism:class'] = function(unit)
+ElvUF.Tags.Events['eltruism:class:player'] = 'UNIT_NAME_UPDATE'
+ElvUF.Tags.Methods['eltruism:class:player'] = function(unit)
     if not UnitIsPlayer(unit) then return end
     local icon
     local _ , classes = UnitClass(unit)
