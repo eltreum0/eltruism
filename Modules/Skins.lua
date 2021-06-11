@@ -18,26 +18,30 @@ local classIcons = {
     ['DEMONHUNTER'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunter",
 }
 
-function ElvUI_EltreumUI:Skins()
+local classFrame = CreateFrame("Frame", nil, UIParent)
+classFrame:ClearAllPoints()
+classFrame:SetSize(20, 20)
+classFrame:SetParent("PaperDollFrame")
+local classTexture = classFrame:CreateTexture()
+classTexture:SetAllPoints(classFrame)
+classTexture:SetTexture(classIcons[E.myclass])
 
-	--add class icon to class in character panel
+--add class icon to class in character panel
+function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	local CharacterLevelText = _G.CharacterLevelText
+	local textwidth = CharacterLevelText:GetUnboundedStringWidth()
 	local levelwidth = CharacterLevelText:GetWidth()
-	local classFrame = CreateFrame("Frame", nil, UIParent)
-	classFrame:ClearAllPoints()
+	local totalgap = levelwidth - textwidth
+	local gap = totalgap/8
 	if ElvUI_EltreumUI.Retail then
-		classFrame:SetPoint("CENTER", "CharacterLevelText", (levelwidth/2)+5, 0)
+		classFrame:SetPoint("LEFT", "CharacterLevelText", levelwidth-gap, 0)
 	end
 	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		classFrame:SetPoint("CENTER", "CharacterLevelText", (levelwidth/2)+25, 0)
 	end
-	classFrame:SetSize(20, 20)
-	classFrame:SetParent("PaperDollFrame")
-	local classTexture = classFrame:CreateTexture()
-	classTexture:SetAllPoints(classFrame)
-	classTexture:SetTexture(classIcons[E.myclass])
+end
 
-
+function ElvUI_EltreumUI:Skins()
 	--Reskin Blizzard Talent frame for TBC
 	if ElvUI_EltreumUI.TBC then
 		if E.db.ElvUI_EltreumUI.tbctalents.enable then

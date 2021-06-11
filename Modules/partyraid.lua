@@ -1,8 +1,21 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local PlaySoundFile = PlaySoundFile
+local _G = _G
+local PlaySoundFile = _G.PlaySoundFile
+local format = _G.format
+local hooksecurefunc = _G.hooksecurefunc
+local GetNumGroupMembers = _G.GetNumGroupMembers
+local IsInGroup = _G.IsInGroup
+local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
+local UnitGroupRolesAssigned = _G.UnitGroupRolesAssigned
+local IsInRaid = _G.IsInRaid
+local UnitExists = _G.UnitExists
+local UnitIsUnit = _G.UnitIsUnit
+local UnitName = _G.UnitName
+local UF = E:GetModule("UnitFrames")
+local CH = E:GetModule('Chat')
 
 -- Conversion of the party/raid death weakaura into an addon option
-local name = name
+local name
 function ElvUI_EltreumUI:GroupRoster()
 	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
 			for ii=1, GetNumGroupMembers() do
@@ -54,19 +67,90 @@ if ElvUI_EltreumUI.Retail then
 	}
 end
 
---[[if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-	local UF = E:GetModule("UnitFrames")
-	local RoleIconTextures = {
-	    ELTRUISM = {
+--[[
+--unitframe role icons
+function ElvUI_EltreumUI:RoleIcons()
+		if ElvUI_EltreumUI.Retail then
+	UF.RoleIconTextures = {
 	      	TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga",
 			HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga",
 			DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga"
 	    }
-	}
-	function ElvUI_EltreumUI:RoleIcons()
-	    UF.RoleIconTextures = RoleIconTextures["ELTRUISM"]
+	UF.RoleIconTextures = UF.RoleIconTextures
 	end
-end]]--
+end
+hooksecurefunc(UF, "UpdateRoleIcon", ElvUI_EltreumUI.RoleIcons)
+
+-- chat role icons
+function ElvUI_EltreumUI:ChatIcons()
+	local rolePaths = {
+		TANK = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga'),
+		HEALER = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga'),
+		DAMAGER = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga')
+	}
+
+end
+hooksecurefunc(CH, "AddPluginIcons", ElvUI_EltreumUI.ChatIcons)
+
+local PLAYER_REALM = E:ShortenRealm(E.myrealm)
+local PLAYER_NAME = format('%s-%s', E.myname, PLAYER_REALM)
+function ElvUI_EltreumUI:CheckLFGRoles()
+	local lfgRoles = {}
+	local rolePaths = {
+	  	TANK = E:TextureString("Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga", ':15:15:0:0:64:64:2:56:2:56'),
+		HEALER = E:TextureString("Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga", ':15:15:0:0:64:64:2:56:2:56'),
+		DAMAGER = E:TextureString("Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga", ':15:15')
+	}
+
+	local playerRole = UnitGroupRolesAssigned('player')
+	if playerRole then
+		lfgRoles[PLAYER_NAME] = rolePaths[playerRole]
+	end
+
+	local unit = (IsInRaid() and 'raid' or 'party')
+	for i = 1, GetNumGroupMembers() do
+		if UnitExists(unit..i) and not UnitIsUnit(unit..i, 'player') then
+			local role = UnitGroupRolesAssigned(unit..i)
+			local name, realm = UnitName(unit..i)
+
+			if role and name then
+				name = (realm and realm ~= '' and name..'-'..realm) or name..'-'..PLAYER_REALM
+				lfgRoles[name] = rolePaths[role]
+			end
+		end
+	end
+end
+hooksecurefunc(CH, "CheckLFGRoles", ElvUI_EltreumUI.CheckLFGRoles)
+
+function ElvUI_EltreumUI:UpdateRoleIcon()
+	UF.RoleIconTextures = {
+	        TANK = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga'),
+			HEALER = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga'),
+			DAMAGER = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga')
+	 }
+end
+hooksecurefunc(UF, "UpdateRoleIcon", ElvUI_EltreumUI.UpdateRoleIcon)
+
+
+]]--
+
+
+
+
+
+
+--icons in chat when party member swaps roles
+function ElvUI_EltreumUI:ChatRoleSwapIcons()
+    local sizeString = ":12:12"
+    local roleIcons = {
+        TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga', sizeString),
+		HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga', sizeString),
+		DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga', sizeString),
+    }
+    _G.INLINE_TANK_ICON = roleIcons.TANK
+    _G.INLINE_HEALER_ICON = roleIcons.HEALER
+    _G.INLINE_DAMAGER_ICON = roleIcons.DAMAGER
+end
 
 function ElvUI_EltreumUI:AlternativeGroupsDPS()
 	if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then

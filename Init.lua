@@ -31,9 +31,15 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:LootText()
 	ElvUI_EltreumUI:OldVersionCheck()
 	ElvUI_EltreumUI:NewVersionCheck()
+	--[[ElvUI_EltreumUI:RoleIcons()  --unit frame role icons
+	ElvUI_EltreumUI:ChatIcons()  --chat role icons
+	ElvUI_EltreumUI:CheckLFGRoles() --lfg role icons
+	ElvUI_EltreumUI:UpdateRoleIcon()]]--
+	ElvUI_EltreumUI:ChatRoleSwapIcons() --icons on role swap
 	ElvUI_EltreumUI:CastCursor()
 	ElvUI_EltreumUI:CurrentTypeofCursor()
 	ElvUI_EltreumUI:Skins()
+	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive()
 		ElvUI_EltreumUI:SkillGlow()
@@ -70,6 +76,7 @@ function ElvUI_EltreumUI:Initialize()
 		ElvUI_EltreumUI:RegisterEvent('SUPER_TRACKING_CHANGED')
 		ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_CREATED')
 		ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_DESTROYED')
+		ElvUI_EltreumUI:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
 	end
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
@@ -84,6 +91,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_CURRENCY")
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED")
+
 	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', 0.02)
 	SetCVar('nameplateOtherTopInset', 0.1)
@@ -102,10 +110,14 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("UNIT_SPELLCAST_STOP")
 	ElvUI_EltreumUI:RegisterEvent("UNIT_DISPLAYPOWER")
 	ElvUI_EltreumUI:RegisterEvent("UNIT_MAXPOWER")
-	ElvUI_EltreumUI:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+
 	ElvUI_EltreumUI:RegisterEvent("LOAD")
 ]]--
 end
+
+
+
+
 
 function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	ElvUI_EltreumUI:NamePlateOptions()
@@ -135,6 +147,10 @@ function ElvUI_EltreumUI:UNIT_MAXPOWER()
 	ElvUI_EltreumUI:NameplatePower()
 end
 ]]--
+
+function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
+	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+end
 
 
 function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED()
