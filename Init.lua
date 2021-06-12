@@ -6,20 +6,20 @@ local _G = _G
 local ElvUI_EltreumUI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0', 'AceConsole-3.0')
 
 Engine[1] = ElvUI_EltreumUI
-Engine[2] = E -- ElvUI Engine
-Engine[3] = L -- ElvUI Locales
-Engine[4] = V -- ElvUI PrivateDB
-Engine[5] = P -- ElvUI ProfileDB
-Engine[6] = G -- ElvUI GlobalDB
+Engine[2] = E --ElvUI Engine
+Engine[3] = L --ElvUI Locales
+Engine[4] = V --ElvUI PrivateDB
+Engine[5] = P --ElvUI ProfileDB
+Engine[6] = G --ElvUI GlobalDB
 _G[addon] = Engine
 
--- Constants
+--Constants
 ElvUI_EltreumUI.Version = GetAddOnMetadata(addon, 'Version')
 ElvUI_EltreumUI.CreditsList = {}
 ElvUI_EltreumUI.Config = {}
 ElvUI_EltreumUI.Name = '|cff82B4ffEltruism|r'
 
--- Check WoW Project ID
+--Check WoW Project ID
 ElvUI_EltreumUI.Retail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 ElvUI_EltreumUI.Classic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 ElvUI_EltreumUI.TBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
@@ -54,8 +54,8 @@ end
 
 function ElvUI_EltreumUI:Initialize()
 	if E.private.install_complete and not E.private.ElvUI_EltreumUI.install_version then
-        E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
-    end
+		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
+	end
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
 	--Register Events
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD')
@@ -65,7 +65,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE')
 	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_START')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_ENABLED')
-    ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_DISABLED')
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_DISABLED')
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:RegisterEvent('SUPER_TRACKING_CHANGED')
 		ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_CREATED')
@@ -87,14 +87,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED")
 
 	--nameplate power bar things
-		--[[
-	ElvUI_EltreumUI:RegisterEvent("NAME_PLATE_UNIT_ADDED")
-	ElvUI_EltreumUI:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
-	ElvUI_EltreumUI:RegisterEvent("UNIT_DISPLAYPOWER")
-	ElvUI_EltreumUI:RegisterEvent("UNIT_SPELLCAST_START")
-	ElvUI_EltreumUI:RegisterEvent("UNIT_SPELLCAST_STOP")]]--
 	ElvUI_EltreumUI:RegisterEvent("UNIT_POWER_FREQUENT")
-	--ElvUI_EltreumUI:RegisterEvent("UNIT_MAXPOWER")
 	ElvUI_EltreumUI:RegisterEvent("UNIT_DISPLAYPOWER")
 
 	--SetCVars at start
