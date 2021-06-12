@@ -18,7 +18,7 @@ end
 --Dynamic Level Nameplate Style Filter
 function ElvUI_EltreumUI:DynamicLevelStyleFilter()
 	if E.db.ElvUI_EltreumUI.nameplatelevel.enable then
-		if E.private.ElvUI_EltreumUI.install_version == nil then
+		if not E.private.ElvUI_EltreumUI.install_version then
 			return
 		else
 			local level = UnitLevel("player")

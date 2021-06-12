@@ -6,7 +6,7 @@ local tconcat = table.concat
 local ReloadUI = ReloadUI
 local PlaySoundFile = PlaySoundFile
 
--- Author list
+--Author list
 local AUTHORS = {
 	'|cff82B4ffEltreum|r',
 }
@@ -16,7 +16,7 @@ local THANKYOU = {
 	'|cff0070DEAzilroka|r',
 	'|cffC41F3BKringel|r',
 	'|cFF99CCFFAftermathh|r',
-	'|cffF58CBARepooc|r',
+	'|cffF58CBARepooc|r Especially for the huge helps',
 	'Blazeflack',
 	'Botanica',
 	'|T134297:15:15:0:0:64:64:5:59:5:59|t |cffff7d0aMerathilis|r',
@@ -30,7 +30,7 @@ local THANKYOU = {
 	'|cff00c0faBenik|r',
 	'|T136012:15:15:0:0:64:64:5:59:5:59|t |cff006fdcRubgrsch|r |T656558:15:15:0:0:64:64:5:59:5:59|t',
 	'|TInterface/AddOns/ElvUI/Media/ChatLogos/FoxWarlock:15:15:0:0:64:64:5:59:5:59|t |cff8788EENihilistzsche|r',
-	'|TInterface/AddOns/ElvUI/Media/ChatLogos/Clover:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0ALuckyone|r  -- Especially for allowing the usage of his installer/plugin as a base',
+	'|TInterface/AddOns/ElvUI/Media/ChatLogos/Clover:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0ALuckyone|r Especially for allowing the usage of his installer/plugin as a model',
 	'AcidWeb |TInterface/AddOns/ElvUI/Media/ChatLogos/Gem:15:15:-1:2:64:64:6:60:8:60|t',
 }
 

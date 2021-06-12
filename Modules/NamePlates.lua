@@ -41,7 +41,7 @@ local powerMax = UnitPowerMax("player")
 EltreumPowerBar:Hide() --hide at the start before events
 
 function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
-	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
+	if E.private.ElvUI_EltreumUI.nameplatepower.enable == true then
 		if not nameplate then
 			--ElvUI_EltreumUI:Print('not nameplate')
 			return
@@ -248,33 +248,33 @@ hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
 
 --for general nameplates
 local playerclass = {
-    ['WARRIOR'] = "Eltreum-Class-Warrior",
-    ['PALADIN'] = "Eltreum-Class-Paladin",
-    ['HUNTER'] = "Eltreum-Class-Hunter",
-    ['ROGUE'] = "Eltreum-Class-Rogue",
-    ['PRIEST'] = "Eltreum-Class-Priest",
-    ['DEATHKNIGHT'] = "Eltreum-Class-DeathKnight",
-    ['SHAMAN'] = "Eltreum-Class-Druid",     -- issues becoming green due to color mixing so color changed to druid from "Eltreum-Class-Shaman"
-    ['MAGE'] = "Eltreum-Class-Druid",         --  issues becoming green due to color mixing so color changed to druid from "Eltreum-Class-Mage"
-    ['WARLOCK'] = "Eltreum-Class-Warlock",
-    ['MONK'] = "Eltreum-Class-Monk",
-    ['DRUID'] = "Eltreum-Class-Druid",
-    ['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
+	['WARRIOR'] = "Eltreum-Class-Warrior",
+	['PALADIN'] = "Eltreum-Class-Paladin",
+	['HUNTER'] = "Eltreum-Class-Hunter",
+	['ROGUE'] = "Eltreum-Class-Rogue",
+	['PRIEST'] = "Eltreum-Class-Priest",
+	['DEATHKNIGHT'] = "Eltreum-Class-DeathKnight",
+	['SHAMAN'] = "Eltreum-Class-Druid",     -- issues becoming green due to color mixing so color changed to druid from "Eltreum-Class-Shaman"
+	['MAGE'] = "Eltreum-Class-Druid",         --  issues becoming green due to color mixing so color changed to druid from "Eltreum-Class-Mage"
+	['WARLOCK'] = "Eltreum-Class-Warlock",
+	['MONK'] = "Eltreum-Class-Monk",
+	['DRUID'] = "Eltreum-Class-Druid",
+	['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
 }
 -- for rare nameplates
 local rareclass = {
-    ['WARRIOR'] = "Eltreum-Class-Warrior",
-    ['PALADIN'] = "Eltreum-Class-Paladin",
-    ['HUNTER'] = "Eltreum-Class-Hunter",
-    ['ROGUE'] = "Eltreum-Class-Rogue",
-    ['PRIEST'] = "Eltreum-Class-Priest",
-    ['DEATHKNIGHT'] = "Eltreum-Class-DeathKnight",
-    ['SHAMAN'] = "Eltreum-Class-Shaman",
-    ['MAGE'] = "Eltreum-Class-Mage",
-    ['WARLOCK'] = "Eltreum-Class-Warlock",
-    ['MONK'] = "Eltreum-Class-Monk",
-    ['DRUID'] = "Eltreum-Class-Druid",
-    ['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
+	['WARRIOR'] = "Eltreum-Class-Warrior",
+	['PALADIN'] = "Eltreum-Class-Paladin",
+	['HUNTER'] = "Eltreum-Class-Hunter",
+	['ROGUE'] = "Eltreum-Class-Rogue",
+	['PRIEST'] = "Eltreum-Class-Priest",
+	['DEATHKNIGHT'] = "Eltreum-Class-DeathKnight",
+	['SHAMAN'] = "Eltreum-Class-Shaman",
+	['MAGE'] = "Eltreum-Class-Mage",
+	['WARLOCK'] = "Eltreum-Class-Warlock",
+	['MONK'] = "Eltreum-Class-Monk",
+	['DRUID'] = "Eltreum-Class-Druid",
+	['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
 }
 
 -- Nameplate options for Border and Glow and Texture
@@ -291,7 +291,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
-			if E.private.ElvUI_EltreumUI.install_version == nil then
+			if not E.private.ElvUI_EltreumUI.install_version then
 				return
 			elseif E.private.ElvUI_EltreumUI.install_version > "2.0.0" then
 				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["border"] = true
@@ -302,7 +302,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 	end
 	if E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
-		if E.private.ElvUI_EltreumUI.install_version == nil then
+		if not E.private.ElvUI_EltreumUI.install_version then
 			return
 		elseif E.private.ElvUI_EltreumUI.install_version > "2.0.0" then
 			E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
@@ -356,9 +356,9 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 	end
 end
 
--- Change classpower background, ty Benik for the great help
+--Change classpower background, ty Benik for the great help
 local function ClassPowerColor()
-    NP.multiplier = 0
+	NP.multiplier = 0
 end
 hooksecurefunc(NP, 'Initialize', ClassPowerColor)
 
