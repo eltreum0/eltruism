@@ -1261,24 +1261,63 @@ if ElvUI_EltreumUI.Retail then
 							inline = true,
 							name = 'Nameplate Power Bar',
 							args = {
-								enable = {
+								enablepowerbar = {
 									order = 1,
 									type = 'toggle',
-									name = 'Enable',
-									desc = 'Enable a Power Bar on Nameplates',
+									name = 'Enable Nameplate Power Bar',
+									desc = 'Enable an extra Power Bar on Nameplates for missing powers',
 									width = 'full',
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 								},
-								describethis = {
+								enableadjust = {
 									order = 2,
+									type = 'toggle',
+									name = 'Enable Autoadjusting Buffs/Debuffs',
+									desc = 'Enable autoadjusting the position of Buffs/Debuffs',
+									width = 'full',
+									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.adjust end,
+									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.adjust = value E:StaticPopup_Show('PRIVATE_RL') end,
+								},
+								addagapforspace4 = {
+									order = 3,
+									type = "description",
+									name = "",
+								},
+								addagapforspace5 = {
+									order = 3,
+									type = "description",
+									name = "",
+								},
+								addagapforspace6 = {
+									order = 3,
+									type = "description",
+									name = "",
+								},
+								describethis = {
+									order = 4,
 									type = "description",
 									name = "Select the power types to be displayed:",
+								},
+								addagapforspace7 = {
+									order = 5,
+									type = "description",
+									name = "",
+								},
+								addagapforspace8 = {
+									order = 5,
+									type = "description",
+									name = "",
+								},
+								addagapforspace9 = {
+									order = 5,
+									type = "description",
+									name = "",
 								},
 								mana = {
 									type = 'toggle',
 									name = 'Mana',
-									order = 3,
+									order = 6,
 									disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.mana end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.mana = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -1286,7 +1325,7 @@ if ElvUI_EltreumUI.Retail then
 								rage = {
 									type = 'toggle',
 									name = 'Rage',
-									order = 3,
+									order = 6,
 									disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.rage end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.rage = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -1294,7 +1333,7 @@ if ElvUI_EltreumUI.Retail then
 								energy = {
 									type = 'toggle',
 									name = 'Energy',
-									order = 3,
+									order = 6,
 									disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.energy end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.energy = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -1302,7 +1341,7 @@ if ElvUI_EltreumUI.Retail then
 								astral = {
 									type = 'toggle',
 									name = 'Astral power',
-									order = 3,
+									order = 6,
 									disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.astral end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.astral = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -1310,7 +1349,7 @@ if ElvUI_EltreumUI.Retail then
 								runic = {
 									type = 'toggle',
 									name = 'Runic power',
-									order = 3,
+									order = 6,
 									disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.runic end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.runic = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -1318,7 +1357,7 @@ if ElvUI_EltreumUI.Retail then
 								insanity = {
 									type = 'toggle',
 									name = 'Insanity',
-									order = 3,
+									order = 6,
 									disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.insanity end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.insanity = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -1326,7 +1365,7 @@ if ElvUI_EltreumUI.Retail then
 								maelstrom = {
 									type = 'toggle',
 									name = 'Maelstrom',
-									order = 3,
+									order = 6,
 									disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.maelstrom end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.maelstrom = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -1334,7 +1373,7 @@ if ElvUI_EltreumUI.Retail then
 								fury = {
 									type = 'toggle',
 									name = 'Fury',
-									order = 3,
+									order = 6,
 									disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.fury end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.fury = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -1342,7 +1381,7 @@ if ElvUI_EltreumUI.Retail then
 								focus = {
 									type = 'toggle',
 									name = 'Focus',
-									order = 3,
+									order = 6,
 									disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.focus end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.focus = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -2821,24 +2860,63 @@ if ElvUI_EltreumUI.Classic then
 							inline = true,
 							name = 'Nameplate Power Bar',
 							args = {
-								enable = {
+								enablepowerbar = {
 									order = 1,
 									type = 'toggle',
-									name = 'Enable',
-									desc = 'Enable a Power Bar on Nameplates',
+									name = 'Enable Nameplate Power Bar',
+									desc = 'Enable an extra Power Bar on Nameplates for missing powers',
 									width = 'full',
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 								},
-								describethis = {
+								enableadjust = {
 									order = 2,
+									type = 'toggle',
+									name = 'Enable Autoadjusting Buffs/Debuffs',
+									desc = 'Enable autoadjusting the position of Buffs/Debuffs',
+									width = 'full',
+									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.adjust end,
+									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.adjust = value E:StaticPopup_Show('PRIVATE_RL') end,
+								},
+								addagapforspace4 = {
+									order = 3,
+									type = "description",
+									name = "",
+								},
+								addagapforspace5 = {
+									order = 3,
+									type = "description",
+									name = "",
+								},
+								addagapforspace6 = {
+									order = 3,
+									type = "description",
+									name = "",
+								},
+								describethis = {
+									order = 4,
 									type = "description",
 									name = "Select the power types to be displayed:",
+								},
+								addagapforspace7 = {
+									order = 5,
+									type = "description",
+									name = "",
+								},
+								addagapforspace8 = {
+									order = 5,
+									type = "description",
+									name = "",
+								},
+								addagapforspace9 = {
+									order = 5,
+									type = "description",
+									name = "",
 								},
 								mana = {
 									type = 'toggle',
 									name = 'Mana',
-									order = 3,
+									order = 6,
 									disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.mana end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.mana = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -2846,7 +2924,7 @@ if ElvUI_EltreumUI.Classic then
 								rage = {
 									type = 'toggle',
 									name = 'Rage',
-									order = 3,
+									order = 6,
 									disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.rage end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.rage = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -2854,7 +2932,7 @@ if ElvUI_EltreumUI.Classic then
 								energy = {
 									type = 'toggle',
 									name = 'Energy',
-									order = 3,
+									order = 6,
 									disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.energy end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.energy = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -4389,24 +4467,63 @@ if ElvUI_EltreumUI.TBC then
 							inline = true,
 							name = 'Nameplate Power Bar',
 							args = {
-								enable = {
+								enablepowerbar = {
 									order = 1,
 									type = 'toggle',
-									name = 'Enable',
-									desc = 'Enable a Power Bar on Nameplates',
+									name = 'Enable Nameplate Power Bar',
+									desc = 'Enable an extra Power Bar on Nameplates for missing powers',
 									width = 'full',
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 								},
-								describethis = {
+								enableadjust = {
 									order = 2,
+									type = 'toggle',
+									name = 'Enable Autoadjusting Buffs/Debuffs',
+									desc = 'Enable autoadjusting the position of Buffs/Debuffs',
+									width = 'full',
+									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.adjust end,
+									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.adjust = value E:StaticPopup_Show('PRIVATE_RL') end,
+								},
+								addagapforspace4 = {
+									order = 3,
+									type = "description",
+									name = "",
+								},
+								addagapforspace5 = {
+									order = 3,
+									type = "description",
+									name = "",
+								},
+								addagapforspace6 = {
+									order = 3,
+									type = "description",
+									name = "",
+								},
+								describethis = {
+									order = 4,
 									type = "description",
 									name = "Select the power types to be displayed:",
+								},
+								addagapforspace7 = {
+									order = 5,
+									type = "description",
+									name = "",
+								},
+								addagapforspace8 = {
+									order = 5,
+									type = "description",
+									name = "",
+								},
+								addagapforspace9 = {
+									order = 5,
+									type = "description",
+									name = "",
 								},
 								mana = {
 									type = 'toggle',
 									name = 'Mana',
-									order = 3,
+									order = 6,
 									disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.mana end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.mana = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -4414,7 +4531,7 @@ if ElvUI_EltreumUI.TBC then
 								rage = {
 									type = 'toggle',
 									name = 'Rage',
-									order = 3,
+									order = 6,
 									disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.rage end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.rage = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -4422,7 +4539,7 @@ if ElvUI_EltreumUI.TBC then
 								energy = {
 									type = 'toggle',
 									name = 'Energy',
-									order = 3,
+									order = 6,
 									disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									get = function(info) return E.private.ElvUI_EltreumUI.nameplatepower.energy end,
 									set = function(info, value) E.private.ElvUI_EltreumUI.nameplatepower.energy = value E:StaticPopup_Show('PRIVATE_RL') end,

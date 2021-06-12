@@ -4,6 +4,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 V.ElvUI_EltreumUI = {
 	nameplatepower = {
 		enable = true,
+		adjust = true,
 		mana = true,
 		insanity = true,
 		maelstrom = true,

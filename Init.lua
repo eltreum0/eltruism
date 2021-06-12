@@ -105,12 +105,16 @@ function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
 	ElvUI_EltreumUI:NameplatePower()
 end
 
-function ElvUI_EltreumUI:UNIT_DISPLAYPOWER()
+function ElvUI_EltreumUI:UNIT_DISPLAYPOWER(unit)
+	if not unit == 'player' then return end
 	ElvUI_EltreumUI:NameplatePower()
 end
 
 function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	ElvUI_EltreumUI:NameplatePower()
+	if E.private["nameplates"]["enable"] == true then
+		ElvUI_EltreumUI:NamePlateOptions()
+	end
 end
 
 function ElvUI_EltreumUI:UNIT_POWER_FREQUENT(unit)
@@ -126,6 +130,7 @@ end
 function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	if ElvUI_EltreumUI.Retail then
+		ElvUI_EltreumUI:GetSpec()
 		if E.private["nameplates"]["enable"] == true then
 			ElvUI_EltreumUI:UpdateNPwithoutBar('ElvUI')
 		end

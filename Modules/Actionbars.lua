@@ -13,6 +13,7 @@ function ElvUI_EltreumUI:SkillGlow()
 			-- need to figure out pet AutoCastable, PetActionButton
 			function customglow.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
+					--PixelGlow_Start(frame[, color[, N[, frequency[, length[, th[, xOffset[, yOffset[, border[ ,key]]]]]]]])
 					LCG.PixelGlow_Start(button, skillglowcolor, 9, 1, 3, 5, 5, 5, false, nil, high)
 				end
 			end
@@ -23,6 +24,7 @@ function ElvUI_EltreumUI:SkillGlow()
 		if E.db.ElvUI_EltreumUI.glow.autocast then
 			function customglow.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
+					--AutoCastGlow_Start(frame[, color[, N[, frequency[, scale[, xOffset[, yOffset[, key]]]]]]])
 					LCG.AutoCastGlow_Start(button, skillglowcolor, 8, 0.8, 2, 5, 5)
 				end
 			end
@@ -33,6 +35,7 @@ function ElvUI_EltreumUI:SkillGlow()
 		if E.db.ElvUI_EltreumUI.glow.blizzard then
 			function customglow.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
+					--ButtonGlow_Start(frame[, color[, frequency]]])
 					LCG.ButtonGlow_Start(button, skillglowcolor, 0.5)
 				end
 			end

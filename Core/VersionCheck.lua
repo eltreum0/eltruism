@@ -10,7 +10,7 @@ function ElvUI_EltreumUI:NewVersionCheck()
 		return
 	elseif E.private.ElvUI_EltreumUI.install_version >= "2.2.2" and E.private.ElvUI_EltreumUI.install_version < "2.2.6" then
 		E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
-		ElvUI_EltreumUI:Print('has been updated to '..ElvUI_EltreumUI.Version)
+		ElvUI_EltreumUI:Print('has been updated to '..ElvUI_EltreumUI.Version..' in this version Nameplate Power Bars were added, check Eltruism > Nameplates for settings and if you are using my nameplate weakaura I recommend removing it')
 	end
 end
 
