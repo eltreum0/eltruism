@@ -2,8 +2,6 @@ local _G = _G
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local pairs = _G.pairs
 local SetCVar = _G.SetCVar
-
-local cursorframe = _G.CreateFrame("Frame", "EltreumCastCursor") --, _G.UIParent, "UIDropDownMenuTemplate")
 local UIParent = _G.UIParent
 local GetTime = _G.GetTime
 local UnitCastingInfo = _G.UnitCastingInfo or _G.CastingInfo
@@ -12,7 +10,13 @@ local GetSpellCooldown = _G.GetSpellCooldown
 local GetCursorPosition = _G.GetCursorPosition
 local next, unpack, floor, cos, sin, max, min = _G.next, _G.unpack, _G.floor, _G.cos, _G.sin, _G.max, _G.min
 local isRetail = _G.select(4, _G.GetBuildInfo())>=30000
+--create frame
+local cursorframe = _G.CreateFrame("Frame", "EltreumCastCursor") --, _G.UIParent, "UIDropDownMenuTemplate")
 
+function ElvUI_EltreumUI:CursorInit()
+	ElvUI_EltreumUI:CastCursor()
+	ElvUI_EltreumUI:CurrentTypeofCursor()
+end
 
 --Detect the current cursor for options
 function ElvUI_EltreumUI:CurrentTypeofCursor()

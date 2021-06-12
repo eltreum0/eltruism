@@ -26,20 +26,13 @@ ElvUI_EltreumUI.TBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 
 function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:LoadCommands()
-	ElvUI_EltreumUI:FriendlyNameplates()
 	ElvUI_EltreumUI:AFKmusic()
 	ElvUI_EltreumUI:LootText()
-	ElvUI_EltreumUI:OldVersionCheck()
-	ElvUI_EltreumUI:NewVersionCheck()
-	--[[ElvUI_EltreumUI:RoleIcons()  --unit frame role icons
-	ElvUI_EltreumUI:ChatIcons()  --chat role icons
-	ElvUI_EltreumUI:CheckLFGRoles() --lfg role icons
-	ElvUI_EltreumUI:UpdateRoleIcon()]]--
-	ElvUI_EltreumUI:ChatRoleSwapIcons() --icons on role swap
-	ElvUI_EltreumUI:CastCursor()
-	ElvUI_EltreumUI:CurrentTypeofCursor()
-	ElvUI_EltreumUI:Skins()
-	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+	ElvUI_EltreumUI:VersionCheckInit()
+	ElvUI_EltreumUI:CursorInit()
+	ElvUI_EltreumUI:FriendlyNameplates()
+	ElvUI_EltreumUI:SkinsInit()
+	ElvUI_EltreumUI:PartyRaidInit()
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive()
 		ElvUI_EltreumUI:SkillGlow()
@@ -99,59 +92,44 @@ function ElvUI_EltreumUI:Initialize()
 	SetCVar('nameplateTargetRadialPosition', 1)
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		SetCVar("clampTargetNameplateToScreen", 1)
-		SetCVar("nameplateOtherBottomInset", 0.02)
 	end
-
 	--[[
 	ElvUI_EltreumUI:RegisterEvent("NAME_PLATE_UNIT_ADDED")
 	ElvUI_EltreumUI:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
-	ElvUI_EltreumUI:RegisterEvent("UNIT_POWER_FREQUENT")
-	ElvUI_EltreumUI:RegisterEvent("UNIT_SPELLCAST_START")
-	ElvUI_EltreumUI:RegisterEvent("UNIT_SPELLCAST_STOP")
 	ElvUI_EltreumUI:RegisterEvent("UNIT_DISPLAYPOWER")
-	ElvUI_EltreumUI:RegisterEvent("UNIT_MAXPOWER")
-
-	ElvUI_EltreumUI:RegisterEvent("LOAD")
-]]--
+	ElvUI_EltreumUI:RegisterEvent("UNIT_SPELLCAST_START")
+	ElvUI_EltreumUI:RegisterEvent("UNIT_SPELLCAST_STOP")]]--
+	ElvUI_EltreumUI:RegisterEvent("UNIT_POWER_FREQUENT")
+	--ElvUI_EltreumUI:RegisterEvent("UNIT_MAXPOWER")
+	ElvUI_EltreumUI:RegisterEvent("UNIT_DISPLAYPOWER")
 end
 
-
-
-
-
-function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
-	ElvUI_EltreumUI:NamePlateOptions()
-	--ElvUI_EltreumUI:NameplatePower()
-end
-
---[[
-function ElvUI_EltreumUI:NAME_PLATE_UNIT_ADDED()
+function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
+	ElvUI_EltreumUI:RaidDeath()
 	ElvUI_EltreumUI:NameplatePower()
 end
-function ElvUI_EltreumUI:NAME_PLATE_UNIT_REMOVED()
-	ElvUI_EltreumUI:NameplatePower()
-end
-function ElvUI_EltreumUI:UNIT_POWER_FREQUENT()
-ElvUI_EltreumUI:NameplatePower()
-end
-function ElvUI_EltreumUI:UNIT_SPELLCAST_START()
-	ElvUI_EltreumUI:NameplatePower()
-end
-function ElvUI_EltreumUI:UNIT_SPELLCAST_STOP()
-	ElvUI_EltreumUI:NameplatePower()
-end
+
 function ElvUI_EltreumUI:UNIT_DISPLAYPOWER()
 	ElvUI_EltreumUI:NameplatePower()
 end
-function ElvUI_EltreumUI:UNIT_MAXPOWER()
+
+function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	ElvUI_EltreumUI:NameplatePower()
 end
-]]--
+
+function ElvUI_EltreumUI:UNIT_POWER_FREQUENT(unit)
+	if not unit == 'player' then return end
+	ElvUI_EltreumUI:NameplatePower()
+end
+
+function ElvUI_EltreumUI:UNIT_POWER_UPDATE(unit)
+	if not unit == 'player' then return end
+	ElvUI_EltreumUI:NameplatePower()
+end
 
 function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 end
-
 
 function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED()
 	ElvUI_EltreumUI:StopCombatMusic()
@@ -201,10 +179,6 @@ end
 
 function ElvUI_EltreumUI:UPDATE_STEALTH()
 	ElvUI_EltreumUI:StealthOptions()
-end
-
-function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
-	ElvUI_EltreumUI:RaidDeath()
 end
 
 function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()

@@ -14,6 +14,9 @@ ElvUF.Tags.Methods['name:eltruism:abbreviate'] = function(unit)
 end
 E:AddTagInfo('name:eltruism:abbreviate', ElvUI_EltreumUI.Name, "Abbreviates the unit name once it goes over 16 characters, made by Azilroka")
 
+
+--https://wowpedia.fandom.com/wiki/UI_escape_sequences
+
 -- Class Icons
 local classIcons = {
     ['WARRIOR'] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warrior.tga:0:0:0:0|t",

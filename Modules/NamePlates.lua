@@ -1,107 +1,175 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local SetCVar = SetCVar
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
 local _G = _G
 local IsInInstance = _G.IsInInstance
+local myclass = E.myclass
+
+
+
+local C_NamePlate = _G.C_NamePlate
+local UnitName = _G.UnitName
+local UnitExists = _G.UnitExists
+local WorldMapFrame = _G.WorldMapFrame
+local string = _G.string
+
+
+local GetNamePlates = C_NamePlate.GetNamePlates
+local UnitName, UnitExists = UnitName, UnitExists
+local CreateFrame = _G.CreateFrame
+local GetShapeshiftForm = _G.GetShapeshiftForm
+local UnitPower = _G.UnitPower
+local UnitReaction = _G.UnitReaction
+local GetSpecialization = _G.GetSpecialization
+local GetSpecializationInfo = _G.GetSpecializationInfo
+local UnitPowerMax = _G.UnitPowerMax
+local hooksecurefunc = _G.hooksecurefunc
+local SetCVar = _G.SetCVar
+
+
 
 --customize friendly nameplate health width inside instance
 --/run C_NamePlate.SetNamePlateFriendlySize(21, 5)
 
---[[
-local myclass = E.myclass
---https://us.forums.blizzard.com/en/wow/t/custom-health-resource-bar/236455
-
-function ElvUI_EltreumUI:NameplatePower(nameplate)
-	if not nameplate then return end
-
-	local EltreumPower = _G[nameplate:GetDebugName()..'Health']
-
-	local f = CreateFrame("StatusBar")
-	f:SetSize(150, 7)
-	f:SetPoint("TOP", EltreumPower, "TOP", 0, 22)
-	f:SetStatusBarTexture(E.media.normTex)
-	f:SetValue(0) --try to make it not be full always at the start
-	f:SetParent(EltreumPower)
-	--f:Hide()   ---hide in the start
-	f:SetFillStyle("STANDARD")
-	--f:SetFrameLevel("MEDIUM")
-	f.Text = f:CreateFontString()
-	f.Text:SetTextColor(1, 1, 1)
-	f.Text:SetFontObject(GameFontNormal)
-	f.Text:SetPoint("CENTER")
-	f.Text:SetJustifyH("CENTER")
-	f.Text:SetJustifyV("CENTER")
-	f.Text:Show()
-	f.bg = f:CreateTexture(nil, "BACKGROUND")
-	f.bg:SetTexture(E.media.normTex)
-	f.bg:SetAllPoints()
-	f.bg:SetVertexColor(0, 0, 0)
 
 
+--setup nameplate power frame
+local EltreumPowerBar = CreateFrame("StatusBar")
+EltreumPowerBar:SetValue(0)
+EltreumPowerBar:SetSize(132, 6)
+EltreumPowerBar:SetStatusBarTexture(E.media.normTex)
+EltreumPowerBar:SetFillStyle("STANDARD")
 
-	function ElvUI_EltreumUI:HookElvUINameplateTarget(nameplate)
-		f:Show()
-		f:SetValue(0)
+EltreumPowerBar.Text = EltreumPowerBar:CreateFontString(nil, "MEDIUM", "GameFontNormal")
+EltreumPowerBar.Text:SetTextColor(1, 1, 1)
+EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 10, "OUTLINE")
+EltreumPowerBar.Text:SetPoint("CENTER")
+EltreumPowerBar.Text:SetJustifyH("CENTER")
+EltreumPowerBar.Text:SetJustifyV("CENTER")
+EltreumPowerBar.bg = EltreumPowerBar:CreateTexture(nil, "BACKGROUND")
+EltreumPowerBar.bg:SetTexture(E.media.normTex)
+EltreumPowerBar.bg:SetSize(133, 7)
+EltreumPowerBar.bg:SetVertexColor(0, 0, 0)
+local powerMax = UnitPowerMax("player")
+EltreumPowerBar:SetMinMaxValues(0, powerMax)
+
+EltreumPowerBar:RegisterEvent("UNIT_POWER_FREQUENT")
+EltreumPowerBar:RegisterEvent("PLAYER_TARGET_CHANGED")
+EltreumPowerBar:RegisterEvent("UNIT_DISPLAYPOWER")
+EltreumPowerBar:Hide() --hide at the start before events
+
+function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
+	if not nameplate then
+		ElvUI_EltreumUI:Print('not nameplate')
+		return
+	elseif not unit == 'player' then
+		ElvUI_EltreumUI:Print(' not player')
+		return
+	elseif E.private["nameplates"]["enable"] == false then
+		ElvUI_EltreumUI:Print(' elvui np off')
+		return
 	end
-	hooksecurefunc(NP, "SetupTarget", ElvUI_EltreumUI.HookElvUINameplateTarget)
-
-	function ElvUI_EltreumUI:HookElvUINameplateTarget(nameplate)
-		f:Show()
-		f:SetValue(0)
+	if unit == 'player' then
+		ElvUI_EltreumUI:RegisterEvent('UNIT_TARGET', 'NameplatePower')
+		ElvUI_EltreumUI:Print('register UNIT_TARGET')
 	end
-	hooksecurefunc(NP, "StyleTargetPlate", ElvUI_EltreumUI.HookElvUINameplateTarget)
 
-	function ElvUI_EltreumUI:HookElvUINameplateTarget(nameplate)
-		f:Show()
-		f:SetValue(0)
+	local reaction = UnitReaction("player", 'target')
+	if reaction == nil then
+		EltreumPowerBar:Hide()
 	end
-	hooksecurefunc(NP, "UpdateTargetPlate", ElvUI_EltreumUI.HookElvUINameplateTarget)
-
-	function ElvUI_EltreumUI:HookElvUINameplateTarget(nameplate)
-		f:Hide()
-		f:SetValue(0)
-	end
-	hooksecurefunc(NP, "PlateFade", ElvUI_EltreumUI.HookElvUINameplateTarget)
-
-	if myclass == 'PALADIN' or myclass == 'MAGE' or myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'SHAMAN' then
-		f:SetStatusBarColor(0.49019607843137, 0.71372549019608, 1) -- COLOR THE BAR
-	elseif myclass == 'WARRIOR' then
-		f:SetStatusBarColor(1, 0.32156862745098, 0.32156862745098) -- COLOR THE BAR
-	elseif myclass == 'HUNTER' then
-		f:SetStatusBarColor(1, 0.6078431372549, 0.38039215686275) -- COLOR THE BAR
-	end
-	local power, powerMax
-	f:RegisterEvent("UNIT_POWER_FREQUENT")
-	f:RegisterEvent("UNIT_MAXPOWER")
-	f:SetScript("OnEvent", function(self, event, ...)
-		if event == "UNIT_POWER_FREQUENT" then -- Fired when power changes
-			power = UnitPower("player")
-			powerMax = UnitPowerMax("player")
-			f:SetMinMaxValues(0, powerMax)
-			if power == 0 then
-				f:SetValue(0)
-			else
-				f:SetValue(power)
+	if reaction == 1 or reaction == 2 or reaction == 3 or reaction == 4 then
+		EltreumPowerBar:Show()
+		local stance = GetShapeshiftForm()
+		local startpower = UnitPower("player")
+		local EltreumPowerAnchor = C_NamePlate.GetNamePlateForUnit("target")
+		EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
+		EltreumPowerBar:SetValue(startpower) --try to make it not be full always at the start
+		EltreumPowerBar:SetParent(EltreumPowerAnchor)
+		EltreumPowerBar.Text:SetText(startpower)
+		EltreumPowerBar.bg:SetPoint("CENTER", EltreumPowerBar, "CENTER", 0, 0)
+		if myclass == 'PALADIN' or myclass == 'MAGE'  then
+			EltreumPowerBar:SetStatusBarColor(0.49019607843137, 0.71372549019608, 1) --its mana so color like mana
+		elseif myclass == 'DRUID' then
+			if stance == 0 then --humanoid
+				EltreumPowerBar:SetStatusBarColor(0.49019607843137, 0.71372549019608, 1) --its mana so color like mana
+			elseif stance == 1 then --bear
+				EltreumPowerBar:SetStatusBarColor(1, 0.32156862745098, 0.32156862745098) --its rage so color it like rage
+			elseif stance == 2 then --cat
+				EltreumPowerBar:SetStatusBarColor(1, 0.96862745098039, 0.53725490196078) --its energy so color it like energy
+			elseif stance == 3 then --travel
+				EltreumPowerBar:SetStatusBarColor(0.49019607843137, 0.71372549019608, 1) --its mana so color like mana
+			elseif stance == 4 or stance == 5 or stance == 6 then --moonkin maybe
+				EltreumPowerBar:SetStatusBarColor(0.30196078431373, 0.52156862745098, 0.90196078431373) --its astral power maybe so astral power color
 			end
-			f.Text:SetText(power)
-		elseif event == "UNIT_MAXPOWER" then -- Fired when max. power changes
-			powerMax = UnitPowerMax("player")
-			f:SetMinMaxValues(0, powerMax)
-			f.Text:SetText(powerMax)
-
-			power = UnitPower("player")
-			if power == 0 then
-				f:SetValue(0)
-			else
-				f:SetValue(powerMax)
+		elseif myclass == 'WARRIOR' then
+			EltreumPowerBar:SetStatusBarColor(1, 0.32156862745098, 0.32156862745098) --its rage so color it like rage
+		elseif myclass == 'ROGUE' then
+			EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
+			EltreumPowerBar:SetStatusBarColor(1, 0.96862745098039, 0.53725490196078) --its energy so color it like energy
+		elseif myclass == 'DEATHKNIGHT' then
+			EltreumPowerBar:SetStatusBarColor(0, 0.81960784313725, 1) --its runic power
+		elseif myclass == 'HUNTER' then
+			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				EltreumPowerBar:SetStatusBarColor(0.49019607843137, 0.71372549019608, 1) --its mana so color like mana
+			elseif ElvUI_EltreumUI.Retail then
+				EltreumPowerBar:SetStatusBarColor(1, 0.6078431372549, 0.38039215686275) --its focus so color it like focus
 			end
-			f:SetMinMaxValues(0, powerMax)
+		elseif myclass == 'DEMONHUNTER' then
+			EltreumPowerBar:SetStatusBarColor(1, 0.55686274509804, 0.17254901960784) --its fury
+		elseif myclass == 'PRIEST' then
+			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				EltreumPowerBar:SetStatusBarColor(0.49019607843137, 0.71372549019608, 1) --its mana so color like mana
+			elseif ElvUI_EltreumUI.Retail then
+				local currentSpec = GetSpecialization()
+				local _, currentSpecName
+				if currentSpec then
+				   _, currentSpecName = GetSpecializationInfo(currentSpec)
+				   if currentSpecName == 'Shadow' then
+				   	EltreumPowerBar:SetStatusBarColor(0.79607843137255, 0.20392156862745, 1) --its insanity
+				   end
+				else
+					EltreumPowerBar:SetStatusBarColor(0.49019607843137, 0.71372549019608, 1) --its mana so color like mana
+				end
+			end
+		elseif myclass == 'SHAMAN' then
+			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				EltreumPowerBar:SetStatusBarColor(0.49019607843137, 0.71372549019608, 1) --its mana so color like mana
+			elseif ElvUI_EltreumUI.Retail then
+				local currentSpec = GetSpecialization()
+				local _, currentSpecName
+				if currentSpec then
+				   _, currentSpecName = GetSpecializationInfo(currentSpec)
+				   if currentSpecName == 'Enhancement' or currentSpecName == 'Elemental' then
+				   	EltreumPowerBar:SetStatusBarColor(0, 0.50196078431373, 1) --its maelstrom
+				   end
+				else
+					EltreumPowerBar:SetStatusBarColor(0.49019607843137, 0.71372549019608, 1) --its mana so color like mana
+				end
+			end
 		end
-	end)
+
+		local power
+		EltreumPowerBar:SetScript("OnEvent", function(self, event, ...)
+			if event == "UNIT_POWER_FREQUENT" or event == "UNIT_DISPLAYPOWER" then -- Fired when power changes
+				--if not (unit == 'player') then return end
+				power = UnitPower("player")
+				ElvUI_EltreumUI:Print('power frequent')
+				EltreumPowerBar:SetValue(power)
+				EltreumPowerBar.Text:SetText(power)
+			end
+		end)
+	end
+
+
+
+
+
 end
-hooksecurefunc(NP, "Construct_Health", ElvUI_EltreumUI.NameplatePower)
-]]--
+hooksecurefunc(NP, 'Style', ElvUI_EltreumUI.NameplatePower)
+hooksecurefunc(NP, 'UpdatePlate', ElvUI_EltreumUI.NameplatePower)
+hooksecurefunc(NP, 'NamePlateCallBack', ElvUI_EltreumUI.NameplatePower)
+
 
 
 

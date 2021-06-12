@@ -14,6 +14,24 @@ local UnitName = _G.UnitName
 local UF = E:GetModule("UnitFrames")
 local CH = E:GetModule('Chat')
 
+
+
+function ElvUI_EltreumUI:PartyRaidInit()
+	ElvUI_EltreumUI:ChatRoleSwapIcons() --icons on role swap
+	--[[ElvUI_EltreumUI:RoleIcons()  --unit frame role icons
+	ElvUI_EltreumUI:ChatIcons()  --chat role icons
+	ElvUI_EltreumUI:CheckLFGRoles() --lfg role icons
+	ElvUI_EltreumUI:UpdateRoleIcon()]]--
+
+
+end
+
+
+
+
+
+
+
 -- Conversion of the party/raid death weakaura into an addon option
 local name
 function ElvUI_EltreumUI:GroupRoster()

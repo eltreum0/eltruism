@@ -11,7 +11,6 @@ local function InstallComplete()
 	ReloadUI()
 end
 
-
 local myclass = E.myclass
 if ElvUI_EltreumUI.Retail then
 	-- Installer Steps Retail

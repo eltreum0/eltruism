@@ -7,10 +7,13 @@ function ElvUI_EltreumUI:Changelogv2()
 	return[[
     v2.2.6
     -------
+Added Nameplate Power Bars - Based on the Weakaura
 Added expanded talents to Classic
 Added AFK music to TBC and Classic
 Added Class Icons to Character Panel
 Added tags to show Class Icons on unitframes/nameplates
+Added Role Icons to Role Swap message
+
 
     v2.2.5
     -------

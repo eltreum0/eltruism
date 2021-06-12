@@ -178,3 +178,8 @@ function ElvUI_EltreumUI:Skins()
 		end
 	end
 end
+
+function ElvUI_EltreumUI:SkinsInit()
+	ElvUI_EltreumUI:Skins()
+	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+end
