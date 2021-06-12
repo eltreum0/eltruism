@@ -37,7 +37,7 @@ EltreumPowerBar.bg = EltreumPowerBar:CreateTexture(nil, "BACKGROUND")
 EltreumPowerBar.bg:SetTexture(E.media.normTex)
 EltreumPowerBar.bg:SetSize(133, 7)
 EltreumPowerBar.bg:SetVertexColor(0, 0, 0)
-local powerMax = UnitPowerMax("player")
+
 EltreumPowerBar:Hide() --hide at the start before events
 
 function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
@@ -62,6 +62,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
 			EltreumPowerBar:Hide()
 		end
 		if reaction == 1 or reaction == 2 or reaction == 3 or reaction == 4 then
+			local powerMax = UnitPowerMax("player")
 			EltreumPowerBar:SetMinMaxValues(0, powerMax)
 			local stance = GetShapeshiftForm()
 			local startpower = UnitPower("player")
@@ -112,18 +113,19 @@ function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
 			elseif myclass == 'ROGUE' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.energy then
 					EltreumPowerBar:Show()
-					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
+					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
 					EltreumPowerBar:SetStatusBarColor(1, 0.96862745098039, 0.53725490196078) --its energy so color it like energy
 				end
 			elseif myclass == 'MONK' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.energy then
 					EltreumPowerBar:Show()
-					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
+					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
 					EltreumPowerBar:SetStatusBarColor(1, 0.96862745098039, 0.53725490196078) --its energy so color it like energy
 				end
 			elseif myclass == 'DEATHKNIGHT' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.runic then
 					EltreumPowerBar:Show()
+					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
 					EltreumPowerBar:SetStatusBarColor(0, 0.81960784313725, 1) --its runic power
 				end
 			elseif myclass == 'HUNTER' then
@@ -215,7 +217,12 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
-
+			if myclass == 'MONK' or myclass == 'ROGUE' or myclass == 'DEATHKNIGHT' then
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 47
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 47
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
+			end
 		else
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
