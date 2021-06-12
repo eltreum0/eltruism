@@ -13,6 +13,7 @@ Added AFK music to TBC and Classic
 Added Class Icons to Character Panel
 Added tags to show Class Icons on unitframes/nameplates
 Added Role Icons to Role Swap message
+Modified Dynamic Datatext to Show Icon for Ammo/Soul Shards
 
 
     v2.2.5

@@ -70,7 +70,7 @@ function ElvUI_EltreumUI:Initialize()
 		ElvUI_EltreumUI:RegisterEvent('SUPER_TRACKING_CHANGED')
 		ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_CREATED')
 		ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_DESTROYED')
-		ElvUI_EltreumUI:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+		ElvUI_EltreumUI:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
 	end
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
@@ -79,7 +79,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEVEL_UP')
 	--LootText things
-	ElvUI_EltreumUI:RegisterEvent("UI_ERROR_MESSAGE")
+	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE')
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_LOOT")
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_MONEY")
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_CURRENCY")
@@ -87,8 +87,8 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED")
 
 	--nameplate power bar things
-	ElvUI_EltreumUI:RegisterEvent("UNIT_POWER_FREQUENT")
-	ElvUI_EltreumUI:RegisterEvent("UNIT_DISPLAYPOWER")
+	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_FREQUENT')
+	ElvUI_EltreumUI:RegisterEvent('UNIT_DISPLAYPOWER')
 
 	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', 0.02)
@@ -96,7 +96,7 @@ function ElvUI_EltreumUI:Initialize()
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('nameplateTargetRadialPosition', 1)
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-		SetCVar("clampTargetNameplateToScreen", 1)
+		SetCVar('clampTargetNameplateToScreen', 1)
 	end
 end
 

@@ -113,8 +113,12 @@ function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
 			elseif myclass == 'ROGUE' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.energy then
 					EltreumPowerBar:Show()
-					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
 					EltreumPowerBar:SetStatusBarColor(1, 0.96862745098039, 0.53725490196078) --its energy so color it like energy
+					if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
+					elseif ElvUI_EltreumUI.Retail then
+						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
+					end
 				end
 			elseif myclass == 'MONK' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.energy then
