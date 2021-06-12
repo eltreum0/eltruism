@@ -8,11 +8,10 @@
 ## OptionalDeps: NameplateSCT, Immersion, DynamicCam
 ## DefaultState: enabled
 
-
 Init.lua
 Core\load_core.xml
 Libs\Load_Libs.xml
 Media\load_media.xml
+Settings\load_settings.xml
 Modules\load_modules.xml
 Profiles\load_profiles.xml
-Settings\load_settings.xml
