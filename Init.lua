@@ -125,6 +125,11 @@ end
 
 function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+	if ElvUI_EltreumUI.Retail then
+		if E.private["nameplates"]["enable"] == true then
+			ElvUI_EltreumUI:UpdateNPwithoutBar('ElvUI')
+		end
+	end
 end
 
 function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED()

@@ -18,6 +18,8 @@ local GetSpecializationInfo = _G.GetSpecializationInfo
 local UnitPowerMax = _G.UnitPowerMax
 local hooksecurefunc = _G.hooksecurefunc
 local SetCVar = _G.SetCVar
+
+
 --customize friendly nameplate health width inside instance
 --/run C_NamePlate.SetNamePlateFriendlySize(21, 5)
 
@@ -76,6 +78,9 @@ function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
 				if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 					EltreumPowerBar:Show()
 					EltreumPowerBar:SetStatusBarColor(0.49019607843137, 0.71372549019608, 1) --its mana so color like mana
+					if ElvUI_EltreumUI.Retail and myclass == 'PALADIN' then
+						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
+					end
 				end
 			elseif myclass == 'DRUID' then
 				if stance == 0 then --humanoid
@@ -157,10 +162,10 @@ function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
 					end
 				elseif ElvUI_EltreumUI.Retail then
 					local currentSpec = GetSpecialization()
-					local _, currentSpecName
+					local id, _
 					if currentSpec then
-						_, currentSpecName = GetSpecializationInfo(currentSpec)
-						if currentSpecName == 'Shadow' then
+						id, _ = GetSpecializationInfo(currentSpec)
+						if id == '258' then
 							if E.private.ElvUI_EltreumUI.nameplatepower.insanity then
 								EltreumPowerBar:Show()
 								EltreumPowerBar:SetStatusBarColor(0.79607843137255, 0.20392156862745, 1) --its insanity
@@ -181,10 +186,10 @@ function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
 					end
 				elseif ElvUI_EltreumUI.Retail then
 					local currentSpec = GetSpecialization()
-					local _, currentSpecName
+					local id, _
 					if currentSpec then
-						_, currentSpecName = GetSpecializationInfo(currentSpec)
-						if currentSpecName == 'Enhancement' or currentSpecName == 'Elemental' then
+						id, _ = GetSpecializationInfo(currentSpec)
+						if id == '262' or id == '263' then
 						   	if E.private.ElvUI_EltreumUI.nameplatepower.maelstrom then
 								EltreumPowerBar:Show()
 								EltreumPowerBar:SetStatusBarColor(0, 0.50196078431373, 1) --its maelstrom
@@ -226,6 +231,100 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar(addon)
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 47
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
+			end
+			if not E.private.ElvUI_EltreumUI.nameplatepower.energy then
+				if myclass == 'MONK' or myclass == 'ROGUE' then
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
+				end
+			end
+			if not E.private.ElvUI_EltreumUI.nameplatepower.runic then
+				if myclass == 'DEATHKNIGHT' then
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
+				end
+			end
+			if not E.private.ElvUI_EltreumUI.nameplatepower.mana then
+				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+					if myclass == 'MAGE' or myclass == 'HUNTER' or myclass == 'PRIEST' or myclass == 'SHAMAN' or myclass == 'PALADIN' then
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
+					end
+				end
+				if ElvUI_EltreumUI.Retail then
+					local currentSpec = GetSpecialization()
+					local id, _
+					if currentSpec then
+						id, _ = GetSpecializationInfo(currentSpec)
+						if id == '64' or id == '105' or id == '63' or id == '64' or id == '270' or id == '256' or id == '257' or id == '264' then
+							E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
+							E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
+							E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
+							E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
+						end
+					end
+
+				end
+			end
+			if not E.private.ElvUI_EltreumUI.nameplatepower.focus then
+				if myclass == 'HUNTER' then
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
+				end
+			end
+			if not E.private.ElvUI_EltreumUI.nameplatepower.fury then
+				if myclass == 'DEMONHUTNER' then
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
+				end
+			end
+			if not E.private.ElvUI_EltreumUI.nameplatepower.rage then
+				if myclass == 'WARRIOR' then
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
+				end
+			end
+			if not E.private.ElvUI_EltreumUI.nameplatepower.insanity then
+				if ElvUI_EltreumUI.Retail then
+					local currentSpec = GetSpecialization()
+					local id, _
+					if currentSpec then
+						id, _ = GetSpecializationInfo(currentSpec)
+						if id == '258' then
+						   	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
+							E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
+							E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
+							E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
+						end
+					end
+				end
+			end
+			if not E.private.ElvUI_EltreumUI.nameplatepower.maelstrom then
+				if ElvUI_EltreumUI.Retail then
+					local currentSpec = GetSpecialization()
+					local id, _
+					if currentSpec then
+						id, _ = GetSpecializationInfo(currentSpec)
+						if id == '262' or id == '263' then
+						   	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
+							E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
+							E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
+							E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
+						end
+					end
+				end
 			end
 		else
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
