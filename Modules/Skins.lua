@@ -52,15 +52,15 @@ function ElvUI_EltreumUI:Skins()
 
 			--hide the scroll
 			if _G.PlayerTalentFrameScrollFrameScrollBar then
-				_G.PlayerTalentFrameScrollFrameScrollBar:Kill()
+				_G.PlayerTalentFrameScrollFrameScrollBar:Hide()
 			end
 			--increase the size of the whole frame
 			if _G.PlayerTalentFrame then
-				_G.PlayerTalentFrame:SetSize(376, 770)
+				_G.PlayerTalentFrame:SetSize(376, 780)
 			end
 			if _G.PlayerTalentFrameScrollFrame then
 				--increase the size of the actual frame that has the talent buttons
-				_G.PlayerTalentFrameScrollFrame:SetSize( 280 , 570)
+				_G.PlayerTalentFrameScrollFrame:SetSize( 280 , 580)
 				--set the position
 				_G.PlayerTalentFrameScrollFrame:ClearAllPoints()
 				_G.PlayerTalentFrameScrollFrame:SetPoint("CENTER", _G.PlayerTalentFrame, 0, 20)
@@ -77,7 +77,7 @@ function ElvUI_EltreumUI:Skins()
 			end
 			--increase the size of the background
 			if _G.PlayerTalentFrameBackgroundTopLeft then
-				_G.PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 590)
+				_G.PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 600)
 			end
 		end
 	end
@@ -92,7 +92,7 @@ function ElvUI_EltreumUI:Skins()
 
 			--hide the scroll
 			if _G.TalentFrameScrollFrameScrollBar then
-				_G.TalentFrameScrollFrameScrollBar:Kill()
+				_G.TalentFrameScrollFrameScrollBar:Hide()
 			end
 			--increase the size of the whole frame
 			if _G.TalentFrame then
