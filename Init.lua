@@ -1,10 +1,10 @@
+-- This whole plugin uses LuckyoneUI as a base, full credits to him for it and allowing its use!
 local E, L, V, P, G = unpack(ElvUI)
 local EP = LibStub('LibElvUIPlugin-1.0')
 local addon, Engine = ...
 local _G = _G
 local ElvUI_EltreumUI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0', 'AceConsole-3.0')
 
--- This whole plugin uses LuckyoneUI as a base, full credits to him for it and allowing its use!
 Engine[1] = ElvUI_EltreumUI
 Engine[2] = E -- ElvUI Engine
 Engine[3] = L -- ElvUI Locales
@@ -43,6 +43,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if E.private["nameplates"]["enable"] == true then
 		ElvUI_EltreumUI:NamePlateOptions()
 		ElvUI_EltreumUI:DynamicLevelStyleFilter()
+		ElvUI_EltreumUI:UpdateNPwithoutBar('ElvUI')
 	end
 	if not IsAddOnLoaded('NameplateSCT') and not IsAddOnLoaded('ElvUI_FCT') then
 		SetCVar("floatingCombatTextCombatDamage", 1)
@@ -85,15 +86,8 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED")
 
-	--SetCVars at start
-	SetCVar('nameplateOtherBottomInset', 0.02)
-	SetCVar('nameplateOtherTopInset', 0.1)
-	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
-	SetCVar('nameplateTargetRadialPosition', 1)
-	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-		SetCVar("clampTargetNameplateToScreen", 1)
-	end
-	--[[
+	--nameplate power bar things
+		--[[
 	ElvUI_EltreumUI:RegisterEvent("NAME_PLATE_UNIT_ADDED")
 	ElvUI_EltreumUI:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
 	ElvUI_EltreumUI:RegisterEvent("UNIT_DISPLAYPOWER")
@@ -102,6 +96,15 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("UNIT_POWER_FREQUENT")
 	--ElvUI_EltreumUI:RegisterEvent("UNIT_MAXPOWER")
 	ElvUI_EltreumUI:RegisterEvent("UNIT_DISPLAYPOWER")
+
+	--SetCVars at start
+	SetCVar('nameplateOtherBottomInset', 0.02)
+	SetCVar('nameplateOtherTopInset', 0.1)
+	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
+	SetCVar('nameplateTargetRadialPosition', 1)
+	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+		SetCVar("clampTargetNameplateToScreen", 1)
+	end
 end
 
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
