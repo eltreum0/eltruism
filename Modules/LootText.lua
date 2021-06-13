@@ -19,13 +19,13 @@ LootTextframe:RegisterEvent("CHAT_MSG_CURRENCY")
 LootTextframe:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
 LootTextframe:RegisterEvent("LOOT_OPENED")
 
+
 function ElvUI_EltreumUI:LootText()
 	if E.db.ElvUI_EltreumUI.loottext.enable then
 		local scale = E.db.ElvUI_EltreumUI.loottext.scale
 		local strata = E.db.ElvUI_EltreumUI.loottext.strata
 		CombatText:SetScale(scale)
 		CombatText:SetFrameStrata(strata)
-
 		--moving the combat text
 		local xOffset = E.db.ElvUI_EltreumUI.loottext.xOffset
 		local yOffset = E.db.ElvUI_EltreumUI.loottext.yOffset
@@ -36,7 +36,9 @@ function ElvUI_EltreumUI:LootText()
 			if ( noStringsAvailable ) then
 				return;
 			end
-
+			if E.db.ElvUI_EltreumUI.loottext.fontsetting then
+				string:SetFont(E.media.normFont, 26, "OUTLINE")
+		 	end
 			string:SetText(message);
 			string:SetTextColor(r, g, b);
 			string.scrollTime = 0;
@@ -222,7 +224,7 @@ function ElvUI_EltreumUI:LootText()
 						amount = 1
 					end
 					if itemLink then
-			  			if not amount then
+						if not amount then
 						amount = 1
 						end
 						local info = C_CurrencyInfo.GetCurrencyInfoFromLink(itemLink)

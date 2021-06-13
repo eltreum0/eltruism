@@ -342,15 +342,15 @@ function ElvUI_EltreumUI:CastCursor()
 			self:SetScript("OnEvent", nil)
 			self:SetPoint("Center", UIParent, "Center")
 			self:Hide()
-			self.db       = EltreumCursorDB
-			Cursor.db     = self.db.cursor
-			Cast.db       = self.db.cast
-			GCD.db        = self.db.gcd
-			self.Start    = Start
-			self.Update   = Update
-			self.Setup    = Setup
+			self.db = EltreumCursorDB
+			Cursor.db = self.db.cursor
+			Cast.db = self.db.cast
+			GCD.db = self.db.gcd
+			self.Start = Start
+			self.Update = Update
+			self.Setup = Setup
 			self.Defaults = Defaults
-			self.rings    = { cast = Cast, gcd = GCD, cursor = Cursor }
+			self.rings = { cast = Cast, gcd = GCD, cursor = Cursor }
 			Setup(Cursor)
 			Setup(Cast)
 			Setup(GCD)
