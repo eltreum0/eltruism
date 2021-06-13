@@ -5,6 +5,12 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelogv2()
 	return[[
+    v2.2.8
+    -------
+Added aura filter optiosn to show more buffs/debuffs
+Changed the changelog
+Added more options to Cursor
+
     v2.2.7
     -------
 Added option for LootText to use ElvUI General Font (Found in ElvUI > General > Media)
