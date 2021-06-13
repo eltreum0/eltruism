@@ -36,8 +36,10 @@ function ElvUI_EltreumUI:LootText()
 			if ( noStringsAvailable ) then
 				return;
 			end
+
+			--use elvui general font
 			if E.db.ElvUI_EltreumUI.loottext.fontsetting then
-				string:SetFont(E.media.normFont, 26, "OUTLINE")
+				string:SetFont(E.media.normFont, 24, "OUTLINE")
 		 	end
 			string:SetText(message);
 			string:SetTextColor(r, g, b);
@@ -156,7 +158,7 @@ function ElvUI_EltreumUI:LootText()
 				itemLink, amount = getLoot(arg1)
 				if E.db.ElvUI_EltreumUI.loottext.pet then
 					if itemLink and itemLink:match("|Hbattlepet:") then
-						CombatText_AddMessage("|T ".. 132599 ..":22:22:-11:-11|t  "..itemLink, CombatText_StandardScroll, 255, 255, 255)
+						CombatText_AddMessage("|T ".. 132599 ..":18:18:0:0|t  "..itemLink, CombatText_StandardScroll, 255, 255, 255)
 					end
 				end
 				if itemLink and not itemLink:match("|Hbattlepet:") then
@@ -164,23 +166,25 @@ function ElvUI_EltreumUI:LootText()
 					local lootQuantity = amount
 					local r, g, b, _ = GetItemQualityColor(rarity)
 					if lootQuantity >= 2 then
-						CombatText_AddMessage("|T ".. lootTexture ..":22:22:0:0|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, r, g, b)
+						--originally CombatText_AddMessage("|T ".. lootTexture ..":22:22:0:0|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, r, g, b)
+						CombatText_AddMessage("|T ".. lootTexture ..":18:18:0:0|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, r, g, b)
 					else
-						CombatText_AddMessage("|T ".. lootTexture ..":22:22:0:0|t".."  "..lootName, CombatText_StandardScroll, r, g, b)
+						CombatText_AddMessage("|T ".. lootTexture ..":18:18:0:0|t".."  "..lootName, CombatText_StandardScroll, r, g, b)
 					end
 				end
 			end
 			if E.db.ElvUI_EltreumUI.loottext.currency then
 				if (event == "CHAT_MSG_MONEY") then
+					--originally CombatText_AddMessage("|T ".. 133788 ..":22:22:-11:-11|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
 					local moneystring = Deformat(arg1, LOOT_MONEY_SPLIT) or Deformat(arg1, YOU_LOOT_MONEY)
 					if moneystring:match("Silver") and not moneystring:match("Gold") then
-							CombatText_AddMessage("|T ".. 133786 ..":22:22:-11:-11|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
+							CombatText_AddMessage("|T ".. 133786 ..":18:18:0:0|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
 					end
 					if moneystring:match("Copper") and not moneystring:match("Silver") then
-							CombatText_AddMessage("|T ".. 133788 ..":22:22:-11:-11|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
+							CombatText_AddMessage("|T ".. 133788 ..":18:18:0:0|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
 					end
 					if moneystring:match("Gold") then
-							CombatText_AddMessage("|T ".. 133784 ..":22:22:-11:-11|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
+							CombatText_AddMessage("|T ".. 133784 ..":18:18:0:0|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
 					end
 
 				end
@@ -200,13 +204,13 @@ function ElvUI_EltreumUI:LootText()
 							local lootName = info["name"]
 							local lootQuantity = amount
 							if itemLink:match("Soul Ash") then
-								CombatText_AddMessage("|T ".. 3743738 ..":22:22:-11:-11|t  "..lootQuantity.." x "..itemLink, CombatText_StandardScroll, 255, 255, 255)
+								CombatText_AddMessage("|T ".. 3743738 ..":18:18:0:0|t  "..lootQuantity.." x "..itemLink, CombatText_StandardScroll, 255, 255, 255)
 							end
 							if not itemLink:match("Soul Ash") then
 								if lootQuantity >= 2 then
-									CombatText_AddMessage("|T ".. lootTexture ..":22:22:0:0|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, 255, 255, 255)
+									CombatText_AddMessage("|T ".. lootTexture ..":18:18:0:0|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, 255, 255, 255)
 								else
-									CombatText_AddMessage("|T ".. lootTexture ..":22:22:0:0|t".."  "..lootName, CombatText_StandardScroll, 255, 255, 255)
+									CombatText_AddMessage("|T ".. lootTexture ..":18:18:0:0|t".."  "..lootName, CombatText_StandardScroll, 255, 255, 255)
 								end
 							end
 						end
@@ -232,9 +236,9 @@ function ElvUI_EltreumUI:LootText()
 						local lootName = info["name"]
 						local lootQuantity = amount
 						if lootQuantity >= 2 then
-							CombatText_AddMessage("|T ".. lootTexture ..":22:22:0:0|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, 255, 255, 255)
+							CombatText_AddMessage("|T ".. lootTexture ..":18:18:0:0|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, 255, 255, 255)
 						else
-							CombatText_AddMessage("|T ".. lootTexture ..":22:22:0:0|t".."  "..lootName, CombatText_StandardScroll, 255, 255, 255)
+							CombatText_AddMessage("|T ".. lootTexture ..":18:18:0:0|t".."  "..lootName, CombatText_StandardScroll, 255, 255, 255)
 						end
 					end
 				end

@@ -5,6 +5,12 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelogv2()
 	return[[
+    v2.2.7
+    -------
+Added option for LootText to use ElvUI General Font (Found in ElvUI > General > Media)
+Changed LootText icon scaling to be more inline with the font
+Removed Weakauras page from install since most of them are now options in the plugin
+
     v2.2.6
     -------
 Added Nameplate Power Bars - Based on the Weakaura

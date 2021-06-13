@@ -316,7 +316,7 @@ if ElvUI_EltreumUI.Retail then
 	                PluginInstallFrame.Option2:Disable()
 	           	end
 			end,
-			[11] = function()
+			--[[[11] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('WeakAuras')
 				PluginInstallFrame.Desc1:SetText('I recommend the following WeakAura with this UI:')
 				PluginInstallFrame.Desc2:SetText('Nameplate Power Bar')
@@ -326,8 +326,8 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Option1:Show()
 				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://wago.io/p/Eltreum') 	end)
 				PluginInstallFrame.Option1:SetText('Wago.io')
-			end,
-			[12] = function()
+			end,]]--
+			[11] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Discord')
 				PluginInstallFrame.Desc1:SetText('Join the Discord if you have any questions or issues')
 				PluginInstallFrame.Option1:Enable()
@@ -335,7 +335,7 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/cXfA56gmYW') 	end)
 				PluginInstallFrame.Option1:SetText('Discord')
 			end,
-			[13] = function()
+			[12] = function()
 				PluginInstallFrame.SubTitle:SetText('Installation Complete')
 				PluginInstallFrame.Desc1:SetText('You have completed the installation process, please click "Finished" to reload the UI')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffVery High|r')
@@ -356,9 +356,9 @@ if ElvUI_EltreumUI.Retail then
 			[8] = 'Combat Text',
 			[9] = 'Immersion',
 			[10] = 'Dynamic Cam',
-			[11] = 'Weakauras',
-			[12] = 'Discord',
-			[13] = 'Installation Complete',
+			--[11] = 'Weakauras',
+			[11] = 'Discord',
+			[12] = 'Installation Complete',
 		},
 		StepTitlesColor = {1, 1, 1},
 		StepTitlesColorSelected = {70/255, 130/255, 180/255},
