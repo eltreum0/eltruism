@@ -14,7 +14,8 @@ Added Class Icons to Character Panel
 Added tags to show Class Icons on unitframes/nameplates
 Added Role Icons to Role Swap message
 Modified Dynamic Datatext to Show Icon for Ammo/Soul Shards
-
+Fixed an error due to scroll wheel being killed on talent window
+Tweaked the Healing Profile Tank and Assist Frames
 
     v2.2.5
     -------
@@ -32,7 +33,7 @@ Added Expanded Talents for TBC
 Added options in Media for the Expanded Talents, Level Up skin and Boss Loot Frames depending on game version
 Added threat to Enemy NPC nameplates
 Fixed errors when user first installing Eltruism
-Fixed missing possesion bar on Death Knights
+Fixed missing possession bar on Death Knights
 Fixed the Healer Layout Tank and Assist Frames
 
     v2.2.2
