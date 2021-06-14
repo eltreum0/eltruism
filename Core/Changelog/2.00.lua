@@ -7,10 +7,10 @@ function ElvUI_EltreumUI:Changelogv2()
 	return[[
     v2.2.8
     -------
-Added aura filter optiosn to show more buffs/debuffs
-Changed the changelog
+Added aura filter options to show more buffs/debuffs
 Added more options to Cursor
 Added more options to Action Bars Glow
+Reworked Shadow and Light and Windtools dependencies: Eltruism still requires them for Shadowlands, but not on Curse due to TBC/Classic issues
 
     v2.2.7
     -------

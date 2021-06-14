@@ -1,9 +1,11 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-
 local _G = _G
 local ReloadUI = _G.ReloadUI
---local format = string.format
 local IsAddOnLoaded = IsAddOnLoaded
+
+
+
+
 
 -- Set version & reload on "Skip" and "Finished"
 local function InstallComplete()
@@ -20,32 +22,26 @@ if ElvUI_EltreumUI.Retail then
 		tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 		Pages = {
 			[1] = function()
-					-- need to figure out how to hide the warning screens when first installing eltruism for those users that never used the other addons
-					--E:StaticPopup_Hide("INCOMPATIBLE_ADDON")
-					--E:StaticPopup_Hide('DISABLE_INCOMPATIBLE_ADDON')
-					--local W = unpack(ElvUI_Windtools)
-					--W:CompatibiltyFrame(Hide)
-					--local function HideWindtoolsCompatibilityFrame()
-					--	WTCompatibiltyFrame:Kill()
-					--end
-					--hooksecurefunc(W, 'W:Initialize', HideWindtoolsCompatibilityFrame)
-					--local W = unpack(ElvUI_Windtools)
-					--local W = W:GetModule('NamePlates')
-					--hooksecurefunc(W:ConstructCompatibiltyFrame(), function (frame)
-					--  ConstructCompatibiltyFrame(CompatibiltyFrame):Hide()
-					--end)
-
+					E:StaticPopup_Hide("INCOMPATIBLE_ADDON")
+					E:StaticPopup_Hide('DISABLE_INCOMPATIBLE_ADDON')
+					if E:IsAddOnEnabled("ElvUI_WindTools") then
+						local W = unpack(WindTools)
+						local function WindtoolsCompatHideWhileInstall()
+							WTCompatibiltyFrame:Kill()
+						end
+						hooksecurefunc(W, "ConstructCompatibiltyFrame", WindtoolsCompatHideWhileInstall)
+					end
 				 -- Welcome Page and addon installed check
 				 	if (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ElvUI_WindTools")) then
 	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install Shadow & Light and Windtools before starting this installation process")
+	                    PluginInstallFrame.Desc1:SetText("Make sure to install "..E:TextGradient('Shadow and Light', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).." and "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).. " before starting this installation process")
 	                    PluginInstallFrame.Desc2:SetText("Curse doesn't allow selective dependencies for addons when it comes to World of Warcraft versions")
-	                    PluginInstallFrame.Desc3:SetText("Shadow and Light and Windtools are required for Retail but not Classic that's why you are seeing this screen")
+	                    PluginInstallFrame.Desc3:SetText(E:TextGradient('Shadow and Light', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).." and "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." are required for Retail but not Classic that's why you are seeing this screen")
 	                    PluginInstallFrame.Desc4:SetText("Download them before continuing")
 	                    PluginInstallFrame.Next:Disable()
 	                elseif (not IsAddOnLoaded("ElvUI_SLE")) then
 	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install Shadow & Light before starting this installation process")
+	                    PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light ', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).."before starting this installation process")
 	                    PluginInstallFrame.Next:Disable()
 	                elseif (not IsAddOnLoaded("AddOnSkins")) then
 	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
@@ -57,23 +53,23 @@ if ElvUI_EltreumUI.Retail then
 	                    PluginInstallFrame.Next:Disable()
 	                elseif (not IsAddOnLoaded("ElvUI_WindTools")) then
 	                    PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install Windtools before starting this installation process")
+	                    PluginInstallFrame.Desc1:SetText("Make sure to install "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." before starting this installation process")
 	                    PluginInstallFrame.Next:Disable()
 	                elseif (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("AddOnSkins")) then
 	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install Shadow & Light and AddOnSkins before starting this installation process")
+	                    PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light ', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).."and AddOnSkins before starting this installation process")
 	                    PluginInstallFrame.Next:Disable()
 	                elseif (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ProjectAzilroka")) then
 	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install Shadow & Light and ProjectAzilroka before starting this installation process")
+	                    PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light ', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).."and ProjectAzilroka before starting this installation process")
 	                    PluginInstallFrame.Next:Disable()
 	                elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("AddOnSkins")) then
 	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install Windtools and AddOnSkins before starting this installation process")
+	                    PluginInstallFrame.Desc1:SetText("Make sure to install "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." and AddOnSkins before starting this installation process")
 	                    PluginInstallFrame.Next:Disable()
 	                elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ProjectAzilroka")) then
 	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install Windtools and ProjectAzilroka before starting this installation process")
+	                    PluginInstallFrame.Desc1:SetText("Make sure to install "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." and ProjectAzilroka before starting this installation process")
 	                    PluginInstallFrame.Next:Disable()
 	                elseif (not IsAddOnLoaded("AddOnSkins")) and (not IsAddOnLoaded("ProjectAzilroka")) then
 	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
@@ -81,15 +77,15 @@ if ElvUI_EltreumUI.Retail then
 	                    PluginInstallFrame.Next:Disable()
 	                elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("AddOnSkins")) then
 	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install Shadow & Light, Windtools and AddOnSkins before starting this installation process")
+	                    PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..", "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." and AddOnSkins before starting this installation process")
 	                    PluginInstallFrame.Next:Disable()
 	                elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ProjectAzilroka")) then
 	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install Shadow & Light, Windtools and ProjectAzilroka before starting this installation process")
+	                    PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..", "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." and ProjectAzilroka before starting this installation process")
 	                    PluginInstallFrame.Next:Disable()
 	                elseif (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ProjectAzilroka")) and (not IsAddOnLoaded("AddOnSkins")) then
 	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install Shadow & Light, ProjectAzilroka and AddOnSkins before starting this installation process")
+	                    PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..", ProjectAzilroka and AddOnSkins before starting this installation process")
 	                    PluginInstallFrame.Next:Disable()
 	                else
 						PluginInstallFrame.Next:Enable()

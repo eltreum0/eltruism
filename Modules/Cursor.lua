@@ -376,11 +376,11 @@ function ElvUI_EltreumUI:CastCursor()
 		Cursor:Hide()
 
 		-- Run
-		cursorframe:RegisterEvent("UNIT_SPELLCAST_START")
+		cursorframe:RegisterEvent("PLAYER_STARTED_MOVING")
 		cursorframe:SetScript("OnEvent", function(self, event, name)
 			EltreumCursorDB = CopyDefaults(Defaults, EltreumCursorDB)
 			--print('cursorframe loaded')
-			self:UnregisterEvent("UNIT_SPELLCAST_START")
+			self:UnregisterEvent("PLAYER_STARTED_MOVING")
 			self:SetScript("OnEvent", nil)
 			self:SetPoint("Center", UIParent, "Center")
 			self:Hide()

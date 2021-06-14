@@ -38,6 +38,7 @@ P.ElvUI_EltreumUI = {
 		r = 0.27,
 		g = 0.50,
 		b = 0.70,
+		a = 1,
 	},
 
 	cursorgcd = {
@@ -48,6 +49,7 @@ P.ElvUI_EltreumUI = {
 		r = 1,
 		g = 1,
 		b = 1,
+		a = 1,
 	},
 
 	cursorcursor = {
@@ -59,6 +61,7 @@ P.ElvUI_EltreumUI = {
 		r = 0.5,
 		g = 0.5,
 		b = 0.5,
+		a = 1,
 	},
 
 	nameplateOptions = {
@@ -93,9 +96,9 @@ P.ElvUI_EltreumUI = {
 	},
 
 	glowcustomcolor = {
-		r = 1,
-		b = 1,
-		g = 1,
+		r = 0.27,
+		g = 0.50,
+		b = 0.70,
 	},
 
 	partyraiddeath = {

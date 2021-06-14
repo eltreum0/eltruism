@@ -96,7 +96,9 @@ function ElvUI_EltreumUI:Initialize()
 	SetCVar('nameplateOtherTopInset', 0.1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('nameplateTargetRadialPosition', 1)
-	SetCVar('showInGameNavigation', 1)
+	if ElvUI_EltreumUI.Retail then
+		SetCVar('showInGameNavigation', 1)
+	end
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		SetCVar('clampTargetNameplateToScreen', 1)
 	end
