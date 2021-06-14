@@ -10,6 +10,7 @@ function ElvUI_EltreumUI:Changelogv2()
 Added aura filter optiosn to show more buffs/debuffs
 Changed the changelog
 Added more options to Cursor
+Added more options to Action Bars Glow
 
     v2.2.7
     -------

@@ -70,32 +70,72 @@ end
 
 --This module is a direct merge of CastCursor by michaelsp and as such is available under GNU GPL v3 like the original
 --all credits of this module go to michaelsp
-
 function ElvUI_EltreumUI:CastCursor()
 	if E.db.ElvUI_EltreumUI.cursor.enable then
 		local ring = E.db.ElvUI_EltreumUI.cursor.ring
-		local classcolors = E:ClassColor(E.myclass, true)
+		local castradius = E.db.ElvUI_EltreumUI.cursorcast.radius
+		local castthickness = E.db.ElvUI_EltreumUI.cursorcast.thickness
+		local gcdradius = E.db.ElvUI_EltreumUI.cursorgcd.radius
+		local gcdthickness = E.db.ElvUI_EltreumUI.cursorgcd.thickness
+		local cursorradius = E.db.ElvUI_EltreumUI.cursorcursor.radius
+		local cursorthickness = E.db.ElvUI_EltreumUI.cursorcursor.thickness
+		local colorcast
+		local colorgcd
+		local colorcursor
+
+		if E.db.ElvUI_EltreumUI.cursorcast.classcolor then
+			colorcast = E:ClassColor(E.myclass, true)
+		end
+		if not E.db.ElvUI_EltreumUI.cursorcast.classcolor then
+			colorcast = {
+				r = E.db.ElvUI_EltreumUI.cursorcast.r,
+				g = E.db.ElvUI_EltreumUI.cursorcast.g,
+				b = E.db.ElvUI_EltreumUI.cursorcast.b
+			}
+		end
+		if E.db.ElvUI_EltreumUI.cursorgcd.classcolor then
+			colorgcd = E:ClassColor(E.myclass, true)
+		end
+		if not E.db.ElvUI_EltreumUI.cursorgcd.classcolor then
+			colorgcd = {
+				r = E.db.ElvUI_EltreumUI.cursorgcd.r,
+				g = E.db.ElvUI_EltreumUI.cursorgcd.g,
+				b = E.db.ElvUI_EltreumUI.cursorgcd.b
+			}
+		end
+		if E.db.ElvUI_EltreumUI.cursorcursor.classcolor then
+			colorcursor = E:ClassColor(E.myclass, true)
+		end
+		if not E.db.ElvUI_EltreumUI.cursorcursor.classcolor then
+			colorcursor = {
+				r = E.db.ElvUI_EltreumUI.cursorcursor.r,
+				g = E.db.ElvUI_EltreumUI.cursorcursor.g,
+				b = E.db.ElvUI_EltreumUI.cursorcursor.b
+			}
+		end
+
+
 		local Defaults = {
 			cast = {
-				radius = 25,
+				radius = castradius,
 				sublayer = 1,
-				thickness = 5,
-				color = { classcolors.r, classcolors.g, classcolors.b, 1 },
+				thickness = castthickness,
+				color = { colorcast.r, colorcast.g, colorcast.b },
 				texture = ring,
 			},
 			gcd = {
-				radius = 20,
+				radius = gcdradius,
 				sublayer = 0,
-				thickness = 5,
-				color = { 1, 1, 1, 1 },
+				thickness = gcdthickness,
+				color = { colorgcd.r, colorgcd.g, colorgcd.b },
 				texture = ring,
 			},
 			cursor = {
-				radius = 15,
+				radius = cursorradius,
 				sublayer = 0,
-				thickness = 5,
+				thickness = cursorthickness,
 				combat = true,
-				color = { 0.5, 0.5, 0.5, 1 },
+				color = { colorcursor.r, colorcursor.g, colorcursor.b },
 				texture = ring,
 			},
 		}
@@ -334,11 +374,13 @@ function ElvUI_EltreumUI:CastCursor()
 		local Cursor = _G.CreateFrame("Frame", nil, rootFrame)
 		Cursor.IsCursor = true
 		Cursor:Hide()
+
 		-- Run
-		cursorframe:RegisterEvent("ADDON_LOADED")
+		cursorframe:RegisterEvent("UNIT_SPELLCAST_START")
 		cursorframe:SetScript("OnEvent", function(self, event, name)
 			EltreumCursorDB = CopyDefaults(Defaults, EltreumCursorDB)
-			self:UnregisterEvent("ADDON_LOADED")
+			--print('cursorframe loaded')
+			self:UnregisterEvent("UNIT_SPELLCAST_START")
 			self:SetScript("OnEvent", nil)
 			self:SetPoint("Center", UIParent, "Center")
 			self:Hide()

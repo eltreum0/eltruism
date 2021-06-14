@@ -50,7 +50,13 @@ function ElvUI_EltreumUI:GetSpec()
 end
 
 function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
-    if not E.private.ElvUI_EltreumUI.nameplatepower then return end
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then
+		return
+	elseif not E.private.ElvUI_EltreumUI then
+		return
+    elseif not E.private.ElvUI_EltreumUI.nameplatepower then
+    	return
+    end
     if E.private.ElvUI_EltreumUI.nameplatepower.enable then
         if not nameplate then
 			--ElvUI_EltreumUI:Print('not nameplate')

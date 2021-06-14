@@ -1,5 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
+
 -- Eltreum UI Profile DB
 P.ElvUI_EltreumUI = {
 
@@ -29,14 +30,45 @@ P.ElvUI_EltreumUI = {
 		size = '-1',
 	},
 
+	cursorcast = {
+		radius = 25,
+		sublayer = 1,
+		thickness = 5,
+		classcolor = true,
+		r = 0.27,
+		g = 0.50,
+		b = 0.70,
+	},
+
+	cursorgcd = {
+		radius = 20,
+		sublayer = 0,
+		thickness = 5,
+		classcolor = false,
+		r = 1,
+		g = 1,
+		b = 1,
+	},
+
+	cursorcursor = {
+		radius = 15,
+		sublayer = 0,
+		thickness = 5,
+		combat = true,
+		classcolor = false,
+		r = 0.5,
+		g = 0.5,
+		b = 0.5,
+	},
+
 	nameplateOptions = {
-	ClassColorGlow = true,
-	ClassBorderNameplate = true,
-	nameplatetexture = true,
+		ClassColorGlow = true,
+		ClassBorderNameplate = true,
+		nameplatetexture = true,
 	},
 
 	stealthOptions = {
-	stealtheffect = true,
+		stealtheffect = true,
 	},
 
 	glow = {
@@ -44,6 +76,26 @@ P.ElvUI_EltreumUI = {
 		blizzard = false,
 		pixel = true,
 		autocast = false,
+		colorclass = true,
+		numberpixel = 9,
+		frequencypixel = 1,
+		lengthpixel = 3,
+		thicknesspixel = 5,
+		pixelxOffset = 5,
+		pixelyOffset = 5,
+		borderpixel = false,
+		numberauto = 8,
+		frequencyauto = 0.8,
+		autoscale = 2,
+		autoxOffset = 5,
+		autoyOffset = 5,
+		frequencyblizz = 0.5,
+	},
+
+	glowcustomcolor = {
+		r = 1,
+		b = 1,
+		g = 1,
 	},
 
 	partyraiddeath = {
@@ -99,5 +151,7 @@ P.ElvUI_EltreumUI = {
 		strata = "BACKGROUND",
 		xOffset = 0,
 		yOffset = 200,
+		fontsetting = true,
+		--font = "Kimberley",
 	},
 }

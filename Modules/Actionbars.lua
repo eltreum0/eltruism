@@ -3,8 +3,17 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 -- Skill Glow
 local LCG = LibStub('LibCustomGlow-1.0')
 function ElvUI_EltreumUI:SkillGlow()
-	local r, g, b = unpack(E.media.rgbvaluecolor)
-	local skillglowcolor = {r, g, b, 1}
+
+	local skillglowcolor
+	if not E.db.ElvUI_EltreumUI.glow.colorclass then
+		local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolor
+		local r, g, b = glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b
+		skillglowcolor = {r, g, b, 1}
+	end
+	if E.db.ElvUI_EltreumUI.glow.colorclass then
+		local r, g, b = unpack(E.media.rgbvaluecolor)
+		skillglowcolor = {r, g, b, 1}
+	end
 	local customglow = LibStub("LibButtonGlow-1.0")
 	if E.db.ElvUI_EltreumUI.glow.enable then
 		if E.db.ElvUI_EltreumUI.glow.pixel then
@@ -14,7 +23,7 @@ function ElvUI_EltreumUI:SkillGlow()
 			function customglow.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
 					--PixelGlow_Start(frame[, color[, N[, frequency[, length[, th[, xOffset[, yOffset[, border[ ,key]]]]]]]])
-					LCG.PixelGlow_Start(button, skillglowcolor, 9, 1, 3, 5, 5, 5, false, nil, high)
+					LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
 				end
 			end
 			function customglow.HideOverlayGlow(button)
@@ -25,7 +34,7 @@ function ElvUI_EltreumUI:SkillGlow()
 			function customglow.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
 					--AutoCastGlow_Start(frame[, color[, N[, frequency[, scale[, xOffset[, yOffset[, key]]]]]]])
-					LCG.AutoCastGlow_Start(button, skillglowcolor, 8, 0.8, 2, 5, 5)
+					LCG.AutoCastGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 				end
 			end
 			function customglow.HideOverlayGlow(button)
@@ -36,7 +45,7 @@ function ElvUI_EltreumUI:SkillGlow()
 			function customglow.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
 					--ButtonGlow_Start(frame[, color[, frequency]]])
-					LCG.ButtonGlow_Start(button, skillglowcolor, 0.5)
+					LCG.ButtonGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
 				end
 			end
 			function customglow.HideOverlayGlow(button)

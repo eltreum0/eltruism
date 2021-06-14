@@ -7,7 +7,6 @@ local string = _G.string
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
 
-
 --Conversion of Time to Arrive weakaura
 --Create the frame to display the text
 if ElvUI_EltreumUI.Retail then

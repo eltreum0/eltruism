@@ -14,23 +14,13 @@ local UnitName = _G.UnitName
 local UF = E:GetModule("UnitFrames")
 local CH = E:GetModule('Chat')
 
-
-
 function ElvUI_EltreumUI:PartyRaidInit()
 	ElvUI_EltreumUI:ChatRoleSwapIcons() --icons on role swap
 	--[[ElvUI_EltreumUI:RoleIcons()  --unit frame role icons
 	ElvUI_EltreumUI:ChatIcons()  --chat role icons
 	ElvUI_EltreumUI:CheckLFGRoles() --lfg role icons
 	ElvUI_EltreumUI:UpdateRoleIcon()]]--
-
-
 end
-
-
-
-
-
-
 
 -- Conversion of the party/raid death weakaura into an addon option
 local name
@@ -77,12 +67,14 @@ end
 
 -- Role icons, ty a lot Darth Predator for the help!
 if ElvUI_EltreumUI.Retail then
-	local SLE, T, E, L, V, P, G = unpack(ElvUI_SLE)
-	SLE.rolePaths["Eltruism"] = {
-		TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga",
-		HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga",
-		DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga"
-	}
+	if IsAddOnLoaded("ElvUI_SLE") then
+		local SLE, T, E, L, V, P, G = unpack(ElvUI_SLE)
+		SLE.rolePaths["Eltruism"] = {
+			TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga",
+			HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga",
+			DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga"
+		}
+	end
 end
 
 --[[
@@ -148,12 +140,7 @@ function ElvUI_EltreumUI:UpdateRoleIcon()
 	 }
 end
 hooksecurefunc(UF, "UpdateRoleIcon", ElvUI_EltreumUI.UpdateRoleIcon)
-
-
 ]]--
-
-
-
 
 
 
