@@ -1341,8 +1341,8 @@ if ElvUI_EltreumUI.Retail then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			else
-				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
-				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			end
 			E.db["actionbar"]["bar6"]["buttons"] = 12
 			E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
@@ -2296,8 +2296,8 @@ if ElvUI_EltreumUI.Retail then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			else
-				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
-				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			end
 			E.db["actionbar"]["bar6"]["buttons"] = 12
 			E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
@@ -3554,8 +3554,8 @@ elseif ElvUI_EltreumUI.Classic then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			else
-				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
-				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			end
 			E.db["actionbar"]["bar6"]["buttons"] = 12
 			E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
@@ -3921,6 +3921,7 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "NONE"
 			E.db["unitframe"]["units"]["pet"]["debuffs"]["countFontOutline"] = "NONE"
+			E.db["unitframe"]["units"]["pet"]["castbar"]["overlayOnFrame"] = "Health"
 			E.db["unitframe"]["units"]["pet"]["disableTargetGlow"] = false
 			E.db["unitframe"]["units"]["pet"]["fader"]["casting"] = true
 			E.db["unitframe"]["units"]["pet"]["fader"]["combat"] = true
@@ -4015,6 +4016,7 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["player"]["raidicon"]["size"] = 20
 			E.db["unitframe"]["units"]["player"]["raidicon"]["xOffset"] = 30
 			E.db["unitframe"]["units"]["player"]["raidicon"]["yOffset"] = 2
+			E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 30
 			E.db["unitframe"]["units"]["raid"]["buffIndicator"]["size"] = 20
 			E.db["unitframe"]["units"]["raid"]["buffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["raid"]["colorOverride"] = "FORCE_OFF"
@@ -4196,6 +4198,7 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["target"]["raidicon"]["yOffset"] = 0
 			E.db["unitframe"]["units"]["target"]["smartAuraPosition"] = "DEBUFFS_ON_BUFFS"
 			E.db["unitframe"]["units"]["target"]["colorOverride"] = "FORCE_OFF"
+			E.db["unitframe"]["units"]["target"]["castbar"]["height"] = 30
 			E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["targettarget"]["debuffs"]["enable"] = false
 			E.db["unitframe"]["units"]["targettarget"]["health"]["position"] = "LEFT"
@@ -4308,8 +4311,8 @@ elseif ElvUI_EltreumUI.Classic then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			else
-				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
-				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			end
 			E.db["actionbar"]["bar6"]["buttons"] = 12
 			E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
@@ -4425,7 +4428,7 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-27,-384"
 			E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-210,-3"
 			E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-210,-101"
-			E.db["movers"]["DurabilityFrameMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,498,376"
+			E.db["movers"]["DurabilityFrameMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,498,366"
 			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,307"
 			E.db["movers"]["ElvAB_10"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,344"
 			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,280"
@@ -4440,7 +4443,7 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["movers"]["ElvUF_FocusMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,358,-531"
 			E.db["movers"]["ElvUF_PartyMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,87"
 			E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,311,352"
-			E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,336"
+			E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,326"
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,345"
 			E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,387"
 			E.db["movers"]["ElvUF_Raid40Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
@@ -4631,6 +4634,7 @@ elseif ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
 			E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "NONE"
+			E.db["unitframe"]["units"]["pet"]["castbar"]["overlayOnFrame"] = "Health"
 			E.db["unitframe"]["units"]["pet"]["debuffs"]["countFontOutline"] = "NONE"
 			E.db["unitframe"]["units"]["pet"]["disableTargetGlow"] = false
 			E.db["unitframe"]["units"]["pet"]["fader"]["casting"] = true
@@ -5445,8 +5449,8 @@ elseif ElvUI_EltreumUI.TBC then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			else
-				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
-				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			end
 			E.db["actionbar"]["bar6"]["buttons"] = 12
 			E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
@@ -6236,8 +6240,8 @@ elseif ElvUI_EltreumUI.TBC then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			else
-				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
-				E.db["actionbar"]["bar6"]["buttonSize"] = 35
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			end
 			E.db["actionbar"]["bar6"]["buttons"] = 12
 			E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12

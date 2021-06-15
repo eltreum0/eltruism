@@ -16,6 +16,8 @@ local CH = E:GetModule('Chat')
 
 function ElvUI_EltreumUI:PartyRaidInit()
 	ElvUI_EltreumUI:ChatRoleSwapIcons() --icons on role swap
+
+
 	--[[ElvUI_EltreumUI:RoleIcons()  --unit frame role icons
 	ElvUI_EltreumUI:ChatIcons()  --chat role icons
 	ElvUI_EltreumUI:CheckLFGRoles() --lfg role icons
@@ -77,30 +79,30 @@ if ElvUI_EltreumUI.Retail then
 	end
 end
 
+
 --[[
---unitframe role icons
-function ElvUI_EltreumUI:RoleIcons()
-		if ElvUI_EltreumUI.Retail then
-	UF.RoleIconTextures = {
-	      	TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga",
-			HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga",
-			DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga"
-	    }
-	UF.RoleIconTextures = UF.RoleIconTextures
-	end
-end
-hooksecurefunc(UF, "UpdateRoleIcon", ElvUI_EltreumUI.RoleIcons)
+local W = E.Libs.AceAddon:GetAddon("ElvUI_WindTools", true)
+local CT = W:GetModule("ChatText")
 
--- chat role icons
-function ElvUI_EltreumUI:ChatIcons()
+function ElvUI_EltreumUI:CheckLFGRoles()
 	local rolePaths = {
-		TANK = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga'),
-		HEALER = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga'),
-		DAMAGER = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga')
+		TANK = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga:15:15:0:0:64:64:2:56:2:56'),
+		HEALER = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga:15:15:0:0:64:64:2:56:2:56'),
+		DAMAGER = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga:15:15'),
 	}
-
+	hooksecurefunc(rolePaths, "CH", ElvUI_EltreumUI.CheckLFGRoles)
 end
-hooksecurefunc(CH, "AddPluginIcons", ElvUI_EltreumUI.ChatIcons)
+
+function ElvUI_EltreumUI:ChatIcons()
+    CT.cache.blizzardRoleIcons.Tank = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga:15:15:0:0:64:64:2:56:2:56')
+    CT.cache.blizzardRoleIcons.Healer = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga:15:15:0:0:64:64:2:56:2:56')
+    CT.cache.blizzardRoleIcons.DPS = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga:15:15')
+    CT.cache.elvuiRoleIconsPath.Tank = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga:15:15:0:0:64:64:2:56:2:56')
+    CT.cache.elvuiRoleIconsPath.Healer = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga:15:15:0:0:64:64:2:56:2:56')
+    CT.cache.elvuiRoleIconsPath.DPS = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga:15:15')
+
+    hooksecurefunc(CT, "UpdateRoleIcons", ElvUI_EltreumUI.ChatIcons)
+end
 
 local PLAYER_REALM = E:ShortenRealm(E.myrealm)
 local PLAYER_NAME = format('%s-%s', E.myname, PLAYER_REALM)
@@ -139,9 +141,7 @@ function ElvUI_EltreumUI:UpdateRoleIcon()
 			DAMAGER = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga')
 	 }
 end
-hooksecurefunc(UF, "UpdateRoleIcon", ElvUI_EltreumUI.UpdateRoleIcon)
-]]--
-
+hooksecurefunc(UF, "UpdateRoleIcon", ElvUI_EltreumUI.UpdateRoleIcon)]]--
 
 
 --icons in chat when party member swaps roles

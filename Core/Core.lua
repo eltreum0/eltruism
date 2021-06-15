@@ -1,15 +1,14 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local SetCVar = SetCVar
 local IsAddOnLoaded = IsAddOnLoaded
-
+local _G = _G
+local CreateFrame = _G.CreateFrame
+local print = _G.print
+local GetCVar = _G.GetCVar
 
 --todo
-
 --maybe add a function for WorldTextScale
-
 --maybe one for floatingcombattextRepChanges also
-
-
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
@@ -82,8 +81,50 @@ function ElvUI_EltreumUI:ResolutionOutline()
 	elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
 		ElvUI_EltreumUI:Print('1080p resolution detected, setting fonts to outline mode.')
+	elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto"  then
+		ElvUI_EltreumUI:SetupFontsOutlineOutline()
+		ElvUI_EltreumUI:Print('Fonts were set to Outline due to your resolution.')
+	else
+		ElvUI_EltreumUI:SetupFontsOutlineOutline()
+		ElvUI_EltreumUI:Print('Fonts were set to Outline due to your resolution.')
 	end
 end
+
+-- Ghost frame for Automatic Weakauras Positioning
+function ElvUI_EltreumUI:WAAnchor()
+
+	--Anchor for general weakauras, like those that replace actionbars
+    local EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", E.UIParent)
+    EltreumWAAnchor:SetParent("ElvUF_Player")
+    EltreumWAAnchor:SetFrameStrata("BACKGROUND")
+    --position the anchor around the place where the action bars would be
+    if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
+    	EltreumWAAnchor:Point("CENTER", E.UIParent, "CENTER", 0, -380)
+    elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
+    	EltreumWAAnchor:Point("CENTER", E.UIParent, "CENTER", 0, -250)
+    else
+    	EltreumWAAnchor:Point("CENTER", E.UIParent, "CENTER", 0, -380)
+    end
+    EltreumWAAnchor:Size(250, 70)
+    --E:CreateMover(parent, name, textString, overlay, snapoffset, postdrag, types, shouldDisable, configString, ignoreSizeChanged)
+    E:CreateMover(EltreumWAAnchor, "MoverEltruismWA", "EltruismWA", nil, nil, nil, "ALL")
+
+    --consumable weakauras, usually placed near player unitframe
+    local EltruismWAConsumablesAnchor = CreateFrame("Frame", "EltruismConsumables", ElvUF_Player)
+    EltruismWAConsumablesAnchor:SetParent("ElvUF_Player")
+    EltruismWAConsumablesAnchor:SetFrameStrata("BACKGROUND")
+    --postion the anchor right below the player unitframe
+    if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
+    	EltruismWAConsumablesAnchor:Point("LEFT", ElvUF_Player, 0, -75)
+    elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
+    	EltruismWAConsumablesAnchor:Point("LEFT", ElvUF_Player, 0, -42)
+    else
+    	EltruismWAConsumablesAnchor:Point("LEFT", ElvUF_Player, 0, -75)
+    end
+    EltruismWAConsumablesAnchor:Size(270, 30)
+    E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", "EltruismConsumables", nil, nil, nil, "ALL")
+end
+
 
 -- UI Scale
 function ElvUI_EltreumUI:SetupScale()

@@ -5,6 +5,12 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelogv2()
 	return[[
+    v2.2.9
+    -------
+Added ElvUI movers that can be used as Weakauras anchors: EltruismWA and ELtruismConsumables
+Simply open your weakaura group and in Display > Anchored To > Select Frame > Type either EltruismWA or EltruismConsumables
+The Weakauras will anchor to the mover and now you can use /moveui to move them.
+
     v2.2.8
     -------
 Added aura filter options to show more buffs/debuffs
