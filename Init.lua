@@ -4,6 +4,7 @@ local EP = LibStub('LibElvUIPlugin-1.0')
 local addon, Engine = ...
 local _G = _G
 local ElvUI_EltreumUI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0', 'AceConsole-3.0')
+local myclass = E.myclass
 
 Engine[1] = ElvUI_EltreumUI
 Engine[2] = E --ElvUI Engine
@@ -98,6 +99,16 @@ function ElvUI_EltreumUI:Initialize()
 	end
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		SetCVar('clampTargetNameplateToScreen', 1)
+		if myclass == 'DRUID' then --classic druid things
+			ElvUI_EltreumUI:RegisterEvent('UNIT_SPELLCAST_SUCCEEDED')
+		end
+	end
+end
+
+function ElvUI_EltreumUI:UNIT_SPELLCAST_SUCCEEDED(unit)
+	if not unit == 'player' then return end
+	if myclass == 'DRUID' then
+		ElvUI_EltreumUI:GetDruidForm()
 	end
 end
 

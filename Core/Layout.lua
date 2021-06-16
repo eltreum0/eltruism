@@ -818,16 +818,22 @@ if ElvUI_EltreumUI.Retail then
 		E.db["databars"]["experience"]["fontOutline"] = "THICKOUTLINE"
 		E.db["databars"]["experience"]["height"] = 203
 		E.db["databars"]["reputation"]["height"] = 203
-		--[[if GetCVar('gxFullscreenResolution') == "3140x2160" then
+		if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
 			E.db["databars"]["experience"]["height"] = 203
 			E.db["databars"]["reputation"]["height"] = 203
-		elseif GetCVar('gxFullscreenResolution') == "2560x1440" then
+		elseif GetCVar('gxFullscreenResolution') == "2560x1440" or GetCVar('gxWindowedResolution') == "2560x1440"  then
 			E.db["databars"]["experience"]["height"] = 204
 			E.db["databars"]["reputation"]["height"] = 204
-		elseif GetCVar('gxFullscreenResolution') == "1920x1080" then
+		elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
 			E.db["databars"]["experience"]["height"] = 204
 			E.db["databars"]["reputation"]["height"] = 204
-		end]]--
+		elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto"  then
+			E.db["databars"]["experience"]["height"] = 204
+			E.db["databars"]["reputation"]["height"] = 204
+		else
+			E.db["databars"]["experience"]["height"] = 204
+			E.db["databars"]["reputation"]["height"] = 204
+		end
 		E.db["databars"]["experience"]["hideInCombat"] = true
 		E.db["databars"]["experience"]["mouseover"] = true
 		E.db["databars"]["experience"]["questCompletedOnly"] = true
@@ -1338,6 +1344,9 @@ if ElvUI_EltreumUI.Retail then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto"  then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			else
@@ -1985,11 +1994,16 @@ if ElvUI_EltreumUI.Retail then
 				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
 				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
 				E.db["unitframe"]["units"]["raid40"]["height"] = 31
+			elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto"  then
+				E.db["unitframe"]["units"]["raid"]["height"] = 31
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["height"] = 31
 			else
-				E.db["unitframe"]["units"]["raid"]["height"] = 32
-				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
-				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
-				E.db["unitframe"]["units"]["raid40"]["height"] = 32
+				E.db["unitframe"]["units"]["raid"]["height"] = 31
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["height"] = 31
 			end
 			E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 0
 			E.db["unitframe"]["units"]["raid"]["infoPanel"]["enable"] = true
@@ -2293,6 +2307,9 @@ if ElvUI_EltreumUI.Retail then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto"  then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			else
@@ -3553,6 +3570,9 @@ elseif ElvUI_EltreumUI.Classic then
 			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			else
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
@@ -4045,11 +4065,16 @@ elseif ElvUI_EltreumUI.Classic then
 				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
 				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
 				E.db["unitframe"]["units"]["raid40"]["height"] = 31
+			elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto"  then
+				E.db["unitframe"]["units"]["raid"]["height"] = 31
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["height"] = 31
 			else
-				E.db["unitframe"]["units"]["raid"]["height"] = 32
-				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
-				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
-				E.db["unitframe"]["units"]["raid40"]["height"] = 32
+				E.db["unitframe"]["units"]["raid"]["height"] = 31
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["height"] = 31
 			end
 			E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 0
 			E.db["unitframe"]["units"]["raid"]["infoPanel"]["enable"] = true
@@ -4308,6 +4333,9 @@ elseif ElvUI_EltreumUI.Classic then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto"  then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			else
@@ -4999,18 +5027,22 @@ elseif ElvUI_EltreumUI.TBC then
 		E.db["databars"]["customTexture"] = true
 		E.db["databars"]["experience"]["font"] = "Kimberley"
 		E.db["databars"]["experience"]["fontOutline"] = "THICKOUTLINE"
-		E.db["databars"]["experience"]["height"] = 203
-		E.db["databars"]["reputation"]["height"] = 203
-		--[[if GetCVar('gxFullscreenResolution') == "3140x2160" then
+		if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
 			E.db["databars"]["experience"]["height"] = 203
 			E.db["databars"]["reputation"]["height"] = 203
-		elseif GetCVar('gxFullscreenResolution') == "2560x1440" then
+		elseif GetCVar('gxFullscreenResolution') == '2560x1440' or GetCVar('gxWindowedResolution') == "2560x1440"  then
 			E.db["databars"]["experience"]["height"] = 204
 			E.db["databars"]["reputation"]["height"] = 204
-		elseif GetCVar('gxFullscreenResolution') == "1920x1080" then
+		elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
 			E.db["databars"]["experience"]["height"] = 204
 			E.db["databars"]["reputation"]["height"] = 204
-		end]]--
+		elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto"  then
+			E.db["databars"]["experience"]["height"] = 204
+			E.db["databars"]["reputation"]["height"] = 204
+		else
+			E.db["databars"]["experience"]["height"] = 204
+			E.db["databars"]["reputation"]["height"] = 204
+		end
 		E.db["databars"]["experience"]["hideInCombat"] = true
 		E.db["databars"]["experience"]["mouseover"] = false
 		E.db["databars"]["experience"]["questCompletedOnly"] = true
@@ -5446,6 +5478,9 @@ elseif ElvUI_EltreumUI.TBC then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto"  then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			else
@@ -5969,11 +6004,16 @@ elseif ElvUI_EltreumUI.TBC then
 				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
 				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
 				E.db["unitframe"]["units"]["raid40"]["height"] = 31
+			elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto"  then
+				E.db["unitframe"]["units"]["raid"]["height"] = 31
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["height"] = 31
 			else
-				E.db["unitframe"]["units"]["raid"]["height"] = 32
-				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
-				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
-				E.db["unitframe"]["units"]["raid40"]["height"] = 32
+				E.db["unitframe"]["units"]["raid"]["height"] = 31
+				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
+				E.db["unitframe"]["units"]["raid40"]["height"] = 31
 			end
 			E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 0
 			E.db["unitframe"]["units"]["raid"]["infoPanel"]["enable"] = true
@@ -6237,6 +6277,9 @@ elseif ElvUI_EltreumUI.TBC then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
+				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+				E.db["actionbar"]["bar6"]["buttonSize"] = 33
+			elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto"  then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			else

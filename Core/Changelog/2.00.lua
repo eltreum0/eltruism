@@ -7,6 +7,7 @@ function ElvUI_EltreumUI:Changelogv2()
 	return[[
     v2.2.9
     -------
+Fixed Classic/TBC feral druid power bar overlapping combo points
 Added ElvUI movers that can be used as Weakauras anchors: EltruismWA and ELtruismConsumables
 Simply open your weakaura group and in Display > Anchored To > Select Frame > Type either EltruismWA or EltruismConsumables
 The Weakauras will anchor to the mover and now you can use /moveui to move them.
