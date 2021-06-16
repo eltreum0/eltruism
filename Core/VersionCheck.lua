@@ -8,9 +8,9 @@ end
 function ElvUI_EltreumUI:NewVersionCheck()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
-	elseif E.private.ElvUI_EltreumUI.install_version >= "2.2.2" and E.private.ElvUI_EltreumUI.install_version < "2.2.8" then
+	elseif E.private.ElvUI_EltreumUI.install_version >= "2.2.2" and E.private.ElvUI_EltreumUI.install_version < "2.2.9" then
 		E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
-		ElvUI_EltreumUI:Print('has been updated to '..ElvUI_EltreumUI.Version..' in this version Nameplate Power Bars were added, check Eltruism > Nameplates for settings and if you are using my nameplate weakaura I recommend removing it')
+		ElvUI_EltreumUI:Print('updated to '..ElvUI_EltreumUI.Version..' with WeakAura anchors added. You can set WeakAuras Frame anchor to either EltruismWA or EltruismConsumables to make it easier to place and move them')
 	end
 end
 
