@@ -79,9 +79,9 @@ function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
 		end
 		if unit == 'player' then
 			ElvUI_EltreumUI:RegisterEvent('UNIT_TARGET', 'NameplatePower')
-			EltreumPowerBar:RegisterEvent("UNIT_POWER_FREQUENT")
+			EltreumPowerBar:RegisterEvent("UNIT_POWER_FREQUENT", "player")
+			EltreumPowerBar:RegisterEvent("UNIT_DISPLAYPOWER", "player")
 			EltreumPowerBar:RegisterEvent("PLAYER_TARGET_CHANGED")
-			EltreumPowerBar:RegisterEvent("UNIT_DISPLAYPOWER")
 			--EltreumPowerBar:RegisterEvent("UNIT_SPELLCAST_START", "player")
 			--ElvUI_EltreumUI:Print('register UNIT_TARGET')
 		end

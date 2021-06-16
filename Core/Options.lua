@@ -2208,58 +2208,86 @@ if ElvUI_EltreumUI.Retail then
 							type = 'header',
 							name = 'WeakAuras',
 						},
-						explainer7 = {
+						explain1 = {
 							order = 2,
 							type = "description",
-							name = 'My WeakAuras are available here, but are not focused on one class. Consider them more like upcoming features.',
+							name = "You can set your Weakauras to anchor to custom locations making it easier to move them",
 						},
-						addaspacehere = {
+						explain2 = {
 							order = 3,
 							type = "description",
-							name = '',
+							name = "In order to use this feature, simply go to your Weakaura, and go to its Group options, scroll down to Position Settings and set the Anchored To Select Frame, then type either |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumables|r to anchor the weakaura to the preset location",
 						},
-						wago = {
+						explain3 = {
 							order = 4,
-							type = 'input',
-							width = 'normal',
-							name = 'All weakauras',
-							get = function() return 'wago.io/p/Eltreum' end,
+							type = "description",
+							name = "Setting |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumables|r as the anchor will move them to the locations, keep in mind you might need to chang ethe X and Y offset of the weakaura to zero",
 						},
-						addsomegap = {
-								order = 5,
-								type = "description",
-								name = "",
-						},
-						nameplatepowerbar = {
-							order = 6,
-							type = 'input',
-							width = 'full',
-							name = 'Nameplate Power Bar',
-							get = function() return 'https://wago.io/MHkYMit7S' end,
-						},
-						addsomegap2 = {
-								order = 7,
-								type = "description",
-								name = "",
-						},
-						bossnameplate = {
-							order = 8,
-							type = 'input',
-							width = 'full',
-							name = 'Boss nameplate at base',
-							get = function() return 'https://wago.io/M7yrCgMnE' end,
-						},
-						addsomegap3 = {
-								order = 9,
-								type = "description",
-								name = "",
-						},
-						executenameplate = {
-							order = 10,
-							type = 'input',
-							width = 'full',
-							name = 'Executes next to nameplates',
-							get = function() return 'https://wago.io/afJKwFwAX' end,
+						explainer1 = {
+							order = 5,
+							type = "group",
+							name = 'WeakAuras',
+							inline = true,
+							args = {
+								addaspaceher544e = {
+									order = 86,
+									type = "description",
+									name = '',
+								},
+								explainer7 = {
+									order = 87,
+									type = "description",
+									name = 'My WeakAuras are available here, but are not focused on one class. Consider them more like upcoming features.',
+								},
+								addaspacehere = {
+									order = 88,
+									type = "description",
+									name = '',
+								},
+								wago = {
+									order = 89,
+									type = 'input',
+									width = 'normal',
+									name = 'All weakauras',
+									get = function() return 'wago.io/p/Eltreum' end,
+								},
+								addsomegap = {
+										order = 90,
+										type = "description",
+										name = "",
+								},
+								nameplatepowerbar = {
+									order = 91,
+									type = 'input',
+									width = 'full',
+									name = 'Nameplate Power Bar',
+									get = function() return 'https://wago.io/MHkYMit7S' end,
+								},
+								addsomegap2 = {
+										order = 92,
+										type = "description",
+										name = "",
+								},
+								bossnameplate = {
+									order = 93,
+									type = 'input',
+									width = 'full',
+									name = 'Boss nameplate at base',
+									get = function() return 'https://wago.io/M7yrCgMnE' end,
+								},
+								addsomegap3 = {
+										order = 94,
+										type = "description",
+										name = "",
+								},
+								executenameplate = {
+									order = 95,
+									type = 'input',
+									width = 'full',
+									name = 'Executes next to nameplates',
+									get = function() return 'https://wago.io/afJKwFwAX' end,
+								},
+							},
 						},
 					},
 				},
@@ -4079,59 +4107,87 @@ if ElvUI_EltreumUI.Classic then
 							type = 'header',
 							name = 'WeakAuras',
 						},
-						explainer7 = {
+						explain1 = {
 							order = 2,
 							type = "description",
-							name = 'My WeakAuras are available here, but are not focused on one class. Consider them more like upcoming features.',
+							name = "You can set your Weakauras to anchor to custom locations making it easier to move them",
 						},
-						addaspacehere = {
+						explain2 = {
 							order = 3,
 							type = "description",
-							name = '',
+							name = "In order to use this feature, simply go to your Weakaura, and go to its Group options, scroll down to Position Settings and set the Anchored To Select Frame, then type either |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumables|r to anchor the weakaura to the preset location",
 						},
-						wago = {
+						explain3 = {
 							order = 4,
-							type = 'input',
-							width = 'normal',
-							name = 'All weakauras',
-							get = function() return 'wago.io/p/Eltreum' end,
+							type = "description",
+							name = "Setting |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumables|r as the anchor will move them to the locations, keep in mind you might need to chang ethe X and Y offset of the weakaura to zero",
 						},
-						addsomegap = {
-								order = 5,
-								type = "description",
-								name = "",
+						explainer1 = {
+							order = 5,
+							type = "group",
+							name = 'WeakAuras',
+							inline = true,
+							args = {
+								addaspaceher544e = {
+									order = 86,
+									type = "description",
+									name = '',
+								},
+								explainer7 = {
+									order = 87,
+									type = "description",
+									name = 'My WeakAuras are available here, but are not focused on one class. Consider them more like upcoming features.',
+								},
+								addaspacehere = {
+									order = 88,
+									type = "description",
+									name = '',
+								},
+								wago = {
+									order = 89,
+									type = 'input',
+									width = 'normal',
+									name = 'All weakauras',
+									get = function() return 'wago.io/p/Eltreum' end,
+								},
+								addsomegap = {
+										order = 90,
+										type = "description",
+										name = "",
+								},
+								nameplatepowerbar = {
+									order = 91,
+									type = 'input',
+									width = 'full',
+									name = 'Nameplate Power Bar',
+									get = function() return 'https://wago.io/HJ7YjUVgo' end,
+								},
+								addsomegap2 = {
+										order = 92,
+										type = "description",
+										name = "",
+								},
+								bossnameplate = {
+									order = 93,
+									type = 'input',
+									width = 'full',
+									name = 'Boss nameplate at base',
+									get = function() return 'https://wago.io/M7yrCgMnE' end,
+								},
+								addsomegap3 = {
+										order = 94,
+										type = "description",
+										name = "",
+								},
+								executenameplate = {
+									order = 95,
+									type = 'input',
+									width = 'full',
+									name = 'Executes next to nameplates',
+									get = function() return 'https://wago.io/afJKwFwAX' end,
+								},
+							},
 						},
-						nameplatepowerbar = {
-							order = 6,
-							type = 'input',
-							width = 'full',
-							name = 'Nameplate Power Bar',
-							get = function() return 'https://wago.io/HJ7YjUVgo' end,
-						},
-						addsomegap2 = {
-								order = 7,
-								type = "description",
-								name = "",
-						},
-						bossnameplate = {
-							order = 8,
-							type = 'input',
-							width = 'full',
-							name = 'Boss nameplate at base',
-							get = function() return 'https://wago.io/M7yrCgMnE' end,
-						},
-						addsomegap3 = {
-								order = 9,
-								type = "description",
-								name = "",
-						},
-						--[[executenameplate = {
-							order = 10,
-							type = 'input',
-							width = 'full',
-							name = 'Executes next to nameplates',
-							get = function() return 'https://wago.io/afJKwFwAX' end,
-						},]]--
 					},
 				},
 				discord = {
@@ -6036,59 +6092,87 @@ if ElvUI_EltreumUI.TBC then
 							type = 'header',
 							name = 'WeakAuras',
 						},
-						explainer7 = {
+						explain1 = {
 							order = 2,
 							type = "description",
-							name = 'My WeakAuras are available here, but are not focused on one class. Consider them more like upcoming features.',
+							name = "You can set your Weakauras to anchor to custom locations making it easier to move them",
 						},
-						addaspacehere = {
+						explain2 = {
 							order = 3,
 							type = "description",
-							name = '',
+							name = "In order to use this feature, simply go to your Weakaura, and go to its Group options, scroll down to Position Settings and set the Anchored To Select Frame, then type either |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumables|r to anchor the weakaura to the preset location",
 						},
-						wago = {
+						explain3 = {
 							order = 4,
-							type = 'input',
-							width = 'normal',
-							name = 'All weakauras',
-							get = function() return 'wago.io/p/Eltreum' end,
+							type = "description",
+							name = "Setting |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumables|r as the anchor will move them to the locations, keep in mind you might need to chang ethe X and Y offset of the weakaura to zero",
 						},
-						addsomegap = {
-								order = 5,
-								type = "description",
-								name = "",
+						explainer1 = {
+							order = 5,
+							type = "group",
+							name = 'WeakAuras',
+							inline = true,
+							args = {
+								addaspacehere123 = {
+									order = 86,
+									type = "description",
+									name = '',
+								},
+								explainer7 = {
+									order = 87,
+									type = "description",
+									name = 'My WeakAuras are available here, but are not focused on one class. Consider them more like upcoming features.',
+								},
+								addaspacehere = {
+									order = 88,
+									type = "description",
+									name = '',
+								},
+								wago = {
+									order = 89,
+									type = 'input',
+									width = 'normal',
+									name = 'All weakauras',
+									get = function() return 'wago.io/p/Eltreum' end,
+								},
+								addsomegap = {
+										order = 90,
+										type = "description",
+										name = "",
+								},
+								nameplatepowerbar = {
+									order = 91,
+									type = 'input',
+									width = 'full',
+									name = 'Nameplate Power Bar',
+									get = function() return 'https://wago.io/HJ7YjUVgo' end,
+								},
+								addsomegap2 = {
+										order = 92,
+										type = "description",
+										name = "",
+								},
+								bossnameplate = {
+									order = 93,
+									type = 'input',
+									width = 'full',
+									name = 'Boss nameplate at base',
+									get = function() return 'https://wago.io/M7yrCgMnE' end,
+								},
+								addsomegap3 = {
+										order = 94,
+										type = "description",
+										name = "",
+								},
+								executenameplate = {
+									order = 95,
+									type = 'input',
+									width = 'full',
+									name = 'Executes next to nameplates',
+									get = function() return 'https://wago.io/afJKwFwAX' end,
+								},
+							},
 						},
-						nameplatepowerbar = {
-							order = 6,
-							type = 'input',
-							width = 'full',
-							name = 'Nameplate Power Bar',
-							get = function() return 'https://wago.io/HJ7YjUVgo' end,
-						},
-						addsomegap2 = {
-								order = 7,
-								type = "description",
-								name = "",
-						},
-						bossnameplate = {
-							order = 8,
-							type = 'input',
-							width = 'full',
-							name = 'Boss nameplate at base',
-							get = function() return 'https://wago.io/M7yrCgMnE' end,
-						},
-						addsomegap3 = {
-								order = 9,
-								type = "description",
-								name = "",
-						},
-						--[[executenameplate = {
-							order = 10,
-							type = 'input',
-							width = 'full',
-							name = 'Executes next to nameplates',
-							get = function() return 'https://wago.io/afJKwFwAX' end,
-						},]]--
 					},
 				},
 				discord = {
