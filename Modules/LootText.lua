@@ -180,7 +180,7 @@ function ElvUI_EltreumUI:LootText()
 					if moneystring:match("Silver") and not moneystring:match("Gold") then
 							CombatText_AddMessage("|T ".. 133786 ..":18:18:0:0|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
 					end
-					if moneystring:match("Copper") and not moneystring:match("Silver") then
+					if moneystring:match("Copper") and not moneystring:match("Silver") and not moneystring:match("Gold") then
 							CombatText_AddMessage("|T ".. 133788 ..":18:18:0:0|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
 					end
 					if moneystring:match("Gold") then

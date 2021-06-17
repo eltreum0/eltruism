@@ -36,6 +36,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:SkinsInit()
 	ElvUI_EltreumUI:WAAnchor()
 	ElvUI_EltreumUI:PartyRaidInit()
+	ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive()
 		ElvUI_EltreumUI:SkillGlow()
@@ -114,7 +115,7 @@ end
 
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
 	ElvUI_EltreumUI:RaidDeath()
-	ElvUI_EltreumUI:NameplatePower()
+	--ElvUI_EltreumUI:NameplatePower()
 end
 
 function ElvUI_EltreumUI:UNIT_DISPLAYPOWER(unit)
@@ -123,9 +124,9 @@ function ElvUI_EltreumUI:UNIT_DISPLAYPOWER(unit)
 end
 
 function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
-	ElvUI_EltreumUI:NameplatePower()
 	if E.private["nameplates"]["enable"] == true then
 		ElvUI_EltreumUI:NamePlateOptions()
+		ElvUI_EltreumUI:NameplatePower()
 	end
 end
 

@@ -81,15 +81,7 @@ if ElvUI_EltreumUI.Retail then
 end
 
 --[[
-	function ElvUI_EltreumUI:ChatIcons()
-	    CT.cache.blizzardRoleIcons.Tank = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga:15:15:0:0:64:64:2:56:2:56')
-	    CT.cache.blizzardRoleIcons.Healer = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga:15:15:0:0:64:64:2:56:2:56')
-	    CT.cache.blizzardRoleIcons.DPS = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga:15:15')
-	    CT.cache.elvuiRoleIconsPath.Tank = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga:15:15:0:0:64:64:2:56:2:56')
-	    CT.cache.elvuiRoleIconsPath.Healer = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga:15:15:0:0:64:64:2:56:2:56')
-	    CT.cache.elvuiRoleIconsPath.DPS = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga:15:15')
-	    hooksecurefunc(CT, "UpdateRoleIcons", ElvUI_EltreumUI.ChatIcons)
-	end
+
 
 	local PLAYER_REALM = E:ShortenRealm(E.myrealm)
 	local PLAYER_NAME = format('%s-%s', E.myname, PLAYER_REALM)
@@ -152,6 +144,15 @@ end
 		hooksecurefunc(rolePaths, "CH", ElvUI_EltreumUI.CheckLFGRoles)
 	end
 
+	function ElvUI_EltreumUI:ChatIcons()
+	    CT.cache.blizzardRoleIcons.Tank = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga:15:15:0:0:64:64:2:56:2:56')
+	    CT.cache.blizzardRoleIcons.Healer = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga:15:15:0:0:64:64:2:56:2:56')
+	    CT.cache.blizzardRoleIcons.DPS = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga:15:15')
+	    CT.cache.elvuiRoleIconsPath.Tank = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga:15:15:0:0:64:64:2:56:2:56')
+	    CT.cache.elvuiRoleIconsPath.Healer = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga:15:15:0:0:64:64:2:56:2:56')
+	    CT.cache.elvuiRoleIconsPath.DPS = ('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga:15:15')
+	    hooksecurefunc(CT, "UpdateRoleIcons", ElvUI_EltreumUI.ChatIcons)
+	end
 
 	/run LFGListSearchPanelScrollFrameButton1.DataDisplay.RoleCount.DamagerIcon:Hide()
 ]]--

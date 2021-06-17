@@ -8,9 +8,9 @@ end
 function ElvUI_EltreumUI:NewVersionCheck()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
-	elseif E.private.ElvUI_EltreumUI.install_version >= "2.2.2" and E.private.ElvUI_EltreumUI.install_version < "2.2.9" then
+	elseif E.private.ElvUI_EltreumUI.install_version >= "2.2.2" and E.private.ElvUI_EltreumUI.install_version < "2.3.0" then
 		E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
-		ElvUI_EltreumUI:Print('updated to '..ElvUI_EltreumUI.Version..' with WeakAura anchors added. You can set WeakAuras Frame anchor to either EltruismWA or EltruismConsumables to make it easier to place and move them')
+		ElvUI_EltreumUI:Print('updated to '..ElvUI_EltreumUI.Version..' version')
 	end
 end
 

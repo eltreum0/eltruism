@@ -78,12 +78,12 @@ function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
 			return
 		end
 		if unit == 'player' then
-			ElvUI_EltreumUI:RegisterEvent('UNIT_TARGET', 'NameplatePower')
+			--ElvUI_EltreumUI:RegisterEvent('UNIT_TARGET', 'NameplatePower')
 			EltreumPowerBar:RegisterEvent("UNIT_POWER_FREQUENT", "player")
 			EltreumPowerBar:RegisterEvent("UNIT_DISPLAYPOWER", "player")
 			EltreumPowerBar:RegisterEvent("PLAYER_TARGET_CHANGED")
 			--EltreumPowerBar:RegisterEvent("UNIT_SPELLCAST_START", "player")
-			--ElvUI_EltreumUI:Print('register UNIT_TARGET')
+			--ElvUI_EltreumUI:Print('register player target changed')
 		end
 		local reaction = UnitReaction("player", 'target')
 		if reaction == nil then
