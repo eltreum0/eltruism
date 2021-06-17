@@ -89,7 +89,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
 		if reaction == nil then
 			EltreumPowerBar:Hide()
 		end
-		if reaction == 1 or reaction == 2 or reaction == 3 or reaction == 4 then
+		if reaction == 1 or reaction == 2 or reaction == 3 or reaction == 4 and UnitCanAttack("player", "target") then
 			local powerMax = UnitPowerMax("player")
 			EltreumPowerBar:SetMinMaxValues(0, powerMax)
 			local stance = GetShapeshiftForm()

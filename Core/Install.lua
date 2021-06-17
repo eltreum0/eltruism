@@ -3,10 +3,6 @@ local _G = _G
 local ReloadUI = _G.ReloadUI
 local IsAddOnLoaded = IsAddOnLoaded
 
-
-
-
-
 -- Set version & reload on "Skip" and "Finished"
 local function InstallComplete()
 	E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
