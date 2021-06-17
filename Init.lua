@@ -36,6 +36,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:SkinsInit()
 	ElvUI_EltreumUI:WAAnchor()
 	ElvUI_EltreumUI:PartyRaidInit()
+	ElvUI_EltreumUI:StealthOptions()
 	ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive()
