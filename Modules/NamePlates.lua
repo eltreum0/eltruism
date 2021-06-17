@@ -89,7 +89,9 @@ function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
 		if reaction == nil then
 			EltreumPowerBar:Hide()
 		end
-		if reaction == 1 or reaction == 2 or reaction == 3 or reaction == 4 and UnitCanAttack("player", "target") then
+		local canattack = UnitCanAttack("player", "target")
+		-- /script if ( UnitCanAttack("player", "target") ) then DEFAULT_CHAT_FRAME:AddMessage("You can attack " .. UnitName("target") .. ".") else DEFAULT_CHAT_FRAME:AddMessage("You cant attack " .. UnitName("target") .. ".");end
+		if canattack then
 			local powerMax = UnitPowerMax("player")
 			EltreumPowerBar:SetMinMaxValues(0, powerMax)
 			local stance = GetShapeshiftForm()
