@@ -2221,7 +2221,7 @@ if ElvUI_EltreumUI.Retail then
 						explain3 = {
 							order = 4,
 							type = "description",
-							name = "Setting |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumables|r as the anchor will move them to the locations, keep in mind you might need to chang ethe X and Y offset of the weakaura to zero",
+							name = "Setting |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumables|r as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero",
 						},
 						explainer1 = {
 							order = 5,
@@ -4120,7 +4120,7 @@ if ElvUI_EltreumUI.Classic then
 						explain3 = {
 							order = 4,
 							type = "description",
-							name = "Setting |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumables|r as the anchor will move them to the locations, keep in mind you might need to chang ethe X and Y offset of the weakaura to zero",
+							name = "Setting |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumables|r as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero",
 						},
 						explainer1 = {
 							order = 5,
@@ -6105,7 +6105,7 @@ if ElvUI_EltreumUI.TBC then
 						explain3 = {
 							order = 4,
 							type = "description",
-							name = "Setting |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumables|r as the anchor will move them to the locations, keep in mind you might need to chang ethe X and Y offset of the weakaura to zero",
+							name = "Setting |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumables|r as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero",
 						},
 						explainer1 = {
 							order = 5,

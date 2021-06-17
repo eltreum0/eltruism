@@ -11,7 +11,7 @@ local CombatText = _G.CombatText
 
 --Create the loottext frame
 local LootTextframe = CreateFrame("Frame")
-LootTextframe:RegisterEvent("ADDON_LOADED")
+--LootTextframe:RegisterEvent("ADDON_LOADED")
 LootTextframe:RegisterEvent("UI_ERROR_MESSAGE")
 LootTextframe:RegisterEvent("CHAT_MSG_LOOT")
 LootTextframe:RegisterEvent("CHAT_MSG_MONEY")
@@ -135,6 +135,7 @@ function ElvUI_EltreumUI:LootText()
 		local itemLink = nil
 		local amount = 0
 		local YOU_LOOT_MONEY = _G.YOU_LOOT_MONEY
+		--local ERR_AUTOLOOT_MONEY_S = _G.ERR_AUTOLOOT_MONEY_S
 		local LOOT_MONEY_SPLIT = _G.LOOT_MONEY_SPLIT
 		local LOOT_ITEM_SELF_MULTIPLE = _G.LOOT_ITEM_SELF_MULTIPLE
 		local LOOT_ITEM_SELF = _G.LOOT_ITEM_SELF
@@ -166,7 +167,6 @@ function ElvUI_EltreumUI:LootText()
 					local lootQuantity = amount
 					local r, g, b, _ = GetItemQualityColor(rarity)
 					if lootQuantity >= 2 then
-						--originally CombatText_AddMessage("|T ".. lootTexture ..":22:22:0:0|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, r, g, b)
 						CombatText_AddMessage("|T ".. lootTexture ..":18:18:0:0|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, r, g, b)
 					else
 						CombatText_AddMessage("|T ".. lootTexture ..":18:18:0:0|t".."  "..lootName, CombatText_StandardScroll, r, g, b)
@@ -175,18 +175,16 @@ function ElvUI_EltreumUI:LootText()
 			end
 			if E.db.ElvUI_EltreumUI.loottext.currency then
 				if (event == "CHAT_MSG_MONEY") then
-					--originally CombatText_AddMessage("|T ".. 133788 ..":22:22:-11:-11|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
 					local moneystring = Deformat(arg1, LOOT_MONEY_SPLIT) or Deformat(arg1, YOU_LOOT_MONEY)
 					if moneystring:match("Silver") and not moneystring:match("Gold") then
 							CombatText_AddMessage("|T ".. 133786 ..":18:18:0:0|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
-					end
-					if moneystring:match("Copper") and not moneystring:match("Silver") and not moneystring:match("Gold") then
+					elseif moneystring:match("Copper") and not moneystring:match("Silver") and not moneystring:match("Gold") then
 							CombatText_AddMessage("|T ".. 133788 ..":18:18:0:0|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
-					end
-					if moneystring:match("Gold") then
+					elseif moneystring:match("Gold") then
 							CombatText_AddMessage("|T ".. 133784 ..":18:18:0:0|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
+					else
+						CombatText_AddMessage("|T ".. 133784 ..":18:18:0:0|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
 					end
-
 				end
 				if ElvUI_EltreumUI.Retail then
 					if (event == "CHAT_MSG_CURRENCY") then

@@ -370,6 +370,33 @@ function ElvUI_EltreumUI:CastCursor()
 			RingSetShown( self, false )
 		end
 		GCD.UNIT_SPELLCAST_INTERRUPTED = GCD.UNIT_SPELLCAST_STOP
+
+
+		--weapon swing timer (concept phase)
+		--[[
+			if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+				local weaponswing = _G.CreateFrame("Frame", nil, rootFrame)
+				weaponswing:RegisterUnitEvent("SWING_DAMAGE")
+				weaponswing:RegisterUnitEvent("COMBAT_LOG_EVENT_UNFILTERED")
+				weaponswing:RegisterUnitEvent("SWING_MISSED")
+				function weaponswing:UNIT_SPELLCAST_START(event, unit, guid, spellID)
+					local start, duration = GetSpellCooldown( isRetail and 61304 or spellID )
+					if duration>0 and (isRetail or duration<=1.51) then
+						Start(self, GetTime() - start, duration )
+					end
+				end
+				weaponswing.UNIT_SPELLCAST_SUCCEEDED = weaponswing.UNIT_SPELLCAST_START
+				weaponswing:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
+				weaponswing:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", "player")
+				function weaponswing:UNIT_SPELLCAST_STOP(event, unit, castID)
+					RingSetShown( self, false )
+				end
+				weaponswing.UNIT_SPELLCAST_INTERRUPTED = weaponswing.UNIT_SPELLCAST_STOP
+			end
+		]]--
+
+
+
 		-- Cursor Ring
 		local Cursor = _G.CreateFrame("Frame", nil, rootFrame)
 		Cursor.IsCursor = true

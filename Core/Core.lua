@@ -92,7 +92,6 @@ end
 
 -- Ghost frame for Automatic Weakauras Positioning
 function ElvUI_EltreumUI:WAAnchor()
-
 	--Anchor for general weakauras, like those that replace actionbars
     local EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", E.UIParent)
     EltreumWAAnchor:SetParent("ElvUF_Player")
@@ -105,6 +104,7 @@ function ElvUI_EltreumUI:WAAnchor()
     else
     	EltreumWAAnchor:Point("CENTER", E.UIParent, "CENTER", 0, -380)
     end
+    --EltreumWAAnchor:Hide()
     EltreumWAAnchor:Size(250, 70)
     --E:CreateMover(parent, name, textString, overlay, snapoffset, postdrag, types, shouldDisable, configString, ignoreSizeChanged)
     E:CreateMover(EltreumWAAnchor, "MoverEltruismWA", "EltruismWA", nil, nil, nil, "ALL")
@@ -122,6 +122,7 @@ function ElvUI_EltreumUI:WAAnchor()
     	EltruismWAConsumablesAnchor:Point("LEFT", ElvUF_Player, 0, -75)
     end
     EltruismWAConsumablesAnchor:Size(270, 30)
+    --EltruismWAConsumablesAnchor:Hide()
     E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", "EltruismConsumables", nil, nil, nil, "ALL")
 end
 
