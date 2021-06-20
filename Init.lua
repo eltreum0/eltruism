@@ -36,6 +36,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:SkinsInit()
 	ElvUI_EltreumUI:WAAnchor()
 	ElvUI_EltreumUI:PartyRaidInit()
+	ElvUI_EltreumUI:DynamicChatFade()
 	ElvUI_EltreumUI:StealthOptions()
 	ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 	if ElvUI_EltreumUI.Retail then
@@ -151,12 +152,14 @@ function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 	end
 end
 
-function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED()
+function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED(event)
 	ElvUI_EltreumUI:StopCombatMusic()
+	ElvUI_EltreumUI:DynamicChatFade()
 end
 
-function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED()
+function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED(event)
 	ElvUI_EltreumUI:CombatMusic()
+	ElvUI_EltreumUI:DynamicChatFade()
 end
 
 function ElvUI_EltreumUI:PLAYER_LEVEL_UP()

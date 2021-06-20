@@ -22,7 +22,7 @@ if ElvUI_EltreumUI.Retail then
 				local _, instanceType = IsInInstance()
 				if instanceType == "arena" then  --and event == "PLAYER_REGEN_DISABLED"
 					ObjectiveTrackerFrame:Hide()
-					if ObjectiveTrackerFrame:IsVisible() or ObjectiveTracker_Expand() then
+					if ObjectiveTrackerFrame:IsVisible() or ObjectiveTracker_Expand() or ObjectiveTrackerFrame:IsShown() then
 						ObjectiveTrackerFrame:Hide()
 					end
 				end

@@ -215,7 +215,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["sle"]["backgrounds"]["bg4"]["template"] = "Transparent"
 			E.db["sle"]["backgrounds"]["bg4"]["width"] = 2290
 			-- Chat
-			E.db["sle"]["chat"]["combathide"] = "LEFT"
+			--E.db["sle"]["chat"]["combathide"] = "LEFT"
 			E.db["sle"]["chat"]["dpsSpam"] = true
 			E.db["sle"]["chat"]["guildmaster"] = true
 			E.db["sle"]["chat"]["invite"]["altInv"] = true

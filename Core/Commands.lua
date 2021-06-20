@@ -56,11 +56,11 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 		    end
 		    local canSet = C_Map.CanSetUserWaypointOnMap(C_Map.GetBestMapForUnit("player"))
 		    if canSet == false then
-				print('|cff82B4ffEltruism|r: '..'Area does not support waypoints')
+		    	ElvUI_EltreumUI:Print('Area does not support waypoints')
 			else
 			    --core of the function
 			    if #coords < 2 then
-			    	print('|cff82B4ffEltruism|r: '..'Unsupported format')
+			    	ElvUI_EltreumUI:Print('Unsupported format')
 			    end
 			    if #coords >=2 then
 			        local x, y = 0,0
