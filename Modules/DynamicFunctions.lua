@@ -148,10 +148,9 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 		RightChatPanel:RegisterEvent("CHAT_MSG_WHISPER")
 		RightChatPanel:RegisterEvent("CHAT_MSG_YELL")
 
-
+		--timer things
 		local hidetime = E.db.chat.inactivityTimer
 		local timeractive
-
 		function ElvUI_EltreumUI:TimerHide()
 			if E.db.ElvUI_EltreumUI.chat.leftfader then
 				UIFrameFadeOut(LeftChatPanel, 0.5, 1, 0)
@@ -160,7 +159,7 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 				UIFrameFadeOut(RightChatPanel, 0.5, 1, 0)
 			end
 		end
-
+		--Left Chat Panel
 		if E.db.ElvUI_EltreumUI.chat.leftmouseover then
 			LeftChatPanel:SetScript('OnEnter', function(self)
 				if not InCombatLockdown() then
@@ -171,7 +170,6 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 				UIFrameFadeOut(LeftChatPanel, 0.5, 1, 0)
 			end)
 		end
-
 		if E.db.ElvUI_EltreumUI.chat.leftfader then
 			LeftChatPanel:HookScript("OnEvent", function(__, event)
 				if (event == 'PLAYER_REGEN_DISABLED') then
@@ -186,12 +184,12 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 					self:CancelTimer(timeractive)
 					if not InCombatLockdown() then
 						timeractive = self:ScheduleTimer("TimerHide", hidetime)
+						LeftChatPanel:SetAlpha(1)
 					end
-					LeftChatPanel:SetAlpha(1)
 				end
 			end)
 		end
-
+		--Right Chat Panel
 		if E.db.ElvUI_EltreumUI.chat.rightmouseover then
 			RightChatPanel:SetScript('OnEnter', function(self)
 				if not InCombatLockdown() then
@@ -204,7 +202,6 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 				end
 			end)
 		end
-
 		if E.db.ElvUI_EltreumUI.chat.rightfader then
 			RightChatPanel:HookScript("OnEvent", function(__, event)
 				if E.db.ElvUI_EltreumUI.chat.rightcombathide then
