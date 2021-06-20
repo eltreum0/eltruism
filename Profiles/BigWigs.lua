@@ -14,7 +14,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["namespaces"] = {
 				["BigWigs_Plugins_Victory"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["bigwigsMsg"] = true,
 							["blizzMsg"] = false,
 						},
@@ -22,7 +22,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Sun King's Salvation"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["custom_off_-21952"] = true,
 							[325877] = 3130103,
 							["custom_off_-22090"] = true,
@@ -36,7 +36,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Artificer Xy'mox"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							[329107] = 3130103,
 							["custom_off_328437"] = true,
 							[328789] = 3130103,
@@ -53,7 +53,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Lady Inerva Darkvein"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							[331550] = 3064567,
 							["custom_off_324983"] = true,
 							["custom_off_332664"] = true,
@@ -62,7 +62,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_AutoReply"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["disabled"] = false,
 							["exitCombat"] = 4,
 							["mode"] = 4,
@@ -71,7 +71,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Hungering Destroyer"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["custom_off_329298"] = true,
 							["custom_off_334266"] = true,
 							[334266] = 4178167,
@@ -80,7 +80,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Shriekwing"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							[342863] = 3129591,
 							["stages"] = 3130103,
 							[342074] = 4178167,
@@ -90,7 +90,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_BossBlock"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["blockTalkingHeads"] = {
 								true, -- [1]
 								nil, -- [2]
@@ -102,7 +102,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Countdown"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["fontSize"] = 100,
 							["fontName"] = "Kimberley",
 						},
@@ -110,7 +110,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_AltPower"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["outline"] = "OUTLINE",
 							["fontName"] = "Kimberley",
 							["barTextColor"] = {
@@ -141,14 +141,14 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Wipe"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["wipeSound"] = "bruh",
 						},
 					},
 				},
 				["BigWigs_Plugins_InfoBox"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["posx"] = 1072.500811813545,
 							["posy"] = 499.0887122036947,
 						},
@@ -157,11 +157,6 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				["BigWigs_Plugins_Bars"] = {
 					["profiles"] = {
 						["Default"] = {
-							["BigWigsAnchor_width"] = 220.0000610351563,
-							["BigWigsEmphasizeAnchor_height"] = 21.99996376037598,
-							["BigWigsAnchor_height"] = 15.99998664855957,
-						},
-						["Eltreum"] = {
 							["BigWigsEmphasizeAnchor_y"] = 541.4666533765339,
 							["visibleBarLimit"] = 15,
 							["BigWigsAnchor_width"] = 382.0000305175781,
@@ -185,7 +180,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_The Council of Blood"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["custom_off_-22948"] = true,
 							["custom_off_-22653"] = true,
 							["custom_off_-22433"] = true,
@@ -196,7 +191,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Sire Denathrius"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["custom_off_332794"] = true,
 							[329951] = 4178167,
 							[326707] = 3130103,
@@ -209,7 +204,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Proximity"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["fontSize"] = 16,
 							["fontName"] = "Kimberley",
 							["width"] = 135.2697906494141,
@@ -224,21 +219,21 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Sludgefist"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							[331314] = 3130103,
 						},
 					},
 				},
 				["BigWigs_Plugins_Statistics"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["showBar"] = true,
 						},
 					},
 				},
 				["BigWigs_Plugins_Messages"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["emphFontName"] = "Kimberley",
 							["emphPosition"] = {
 								"TOP", -- [1]
@@ -258,7 +253,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Stone Legion Generals"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["custom_off_334765"] = true,
 							[342733] = 4112631,
 							[333387] = 4112631,
@@ -278,7 +273,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Huntsman Altimor"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["custom_off_334757"] = true,
 							["custom_off_335114"] = true,
 							[334757] = 3130103,
@@ -287,12 +282,10 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 			},
 			["profileKeys"] = {
-				[E.mynameRealm] = "Eltreum",
+				[E.mynameRealm] = "Default",
 			},
 			["profiles"] = {
 				["Default"] = {
-				},
-				["Eltreum"] = {
 				},
 			},
 		}
@@ -428,7 +421,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["namespaces"] = {
 				["BigWigs_Plugins_Victory"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["bigwigsMsg"] = true,
 							["blizzMsg"] = false,
 						},
@@ -436,7 +429,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Sun King's Salvation"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["custom_off_-22232"] = true,
 							["custom_off_-21952"] = true,
 							[325877] = 3130103,
@@ -450,7 +443,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Artificer Xy'mox"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							[329107] = 3130103,
 							["custom_off_328437"] = true,
 							[328789] = 3130103,
@@ -459,7 +452,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_BossBlock"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["blockTalkingHeads"] = {
 								true, -- [1]
 								nil, -- [2]
@@ -477,7 +470,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Lady Inerva Darkvein"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							[331550] = 3064567,
 							["custom_off_324983"] = true,
 							["custom_off_332664"] = true,
@@ -486,7 +479,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_AutoReply"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["exitCombat"] = 4,
 							["mode"] = 4,
 							["disabled"] = false,
@@ -495,7 +488,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Hungering Destroyer"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["custom_off_334266"] = true,
 							[334266] = 4178167,
 							["custom_off_329298"] = true,
@@ -504,7 +497,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Shriekwing"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							[342074] = 4178167,
 							[342863] = 3129591,
 							[345936] = 3130103,
@@ -516,7 +509,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Countdown"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["fontName"] = "Kimberley",
 							["fontSize"] = 100,
 						},
@@ -524,7 +517,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_AltPower"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["outline"] = "OUTLINE",
 							["barTextColor"] = {
 								nil, -- [1]
@@ -549,7 +542,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Wipe"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["wipeSound"] = "bruh",
 						},
 					},
@@ -562,7 +555,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_InfoBox"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["posx"] = 1072.50081181355,
 							["posy"] = 499.088712203695,
 						},
@@ -571,11 +564,6 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				["BigWigs_Plugins_Bars"] = {
 					["profiles"] = {
 						["Default"] = {
-							["BigWigsAnchor_width"] = 220.000061035156,
-							["BigWigsEmphasizeAnchor_height"] = 21.999963760376,
-							["BigWigsAnchor_height"] = 15.9999866485596,
-						},
-						["Eltreum"] = {
 							["BigWigsEmphasizeAnchor_y"] = 541.466653376534,
 							["visibleBarLimit"] = 15,
 							["BigWigsAnchor_width"] = 382.000030517578,
@@ -599,7 +587,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Stone Legion Generals"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["custom_off_334765"] = true,
 							[339690] = 4178167,
 							[342544] = 3130103,
@@ -617,7 +605,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Proximity"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["objects"] = {
 								["background"] = false,
 							},
@@ -632,14 +620,14 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Sludgefist"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							[331314] = 3130103,
 						},
 					},
 				},
 				["BigWigs_Bosses_Sire Denathrius"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							[326707] = 3130103,
 							["custom_off_332794"] = true,
 							[327796] = 4178167,
@@ -652,14 +640,14 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Statistics"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["showBar"] = true,
 						},
 					},
 				},
 				["BigWigs_Plugins_Messages"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["emphPosition"] = {
 								"TOP", -- [1]
 								"TOP", -- [2]
@@ -679,7 +667,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_The Council of Blood"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["custom_off_-22948"] = true,
 							["custom_off_-22653"] = true,
 							["custom_off_-22433"] = true,
@@ -692,7 +680,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Bosses_Huntsman Altimor"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							[334757] = 3130103,
 							["custom_off_335114"] = true,
 							["custom_off_334757"] = true,
@@ -710,8 +698,6 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["profiles"] = {
 				["Default"] = {
 				},
-				["Eltreum"] = {
-				},
 			},
 		}
 		BigWigsIconDB = {
@@ -725,7 +711,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["namespaces"] = {
 				["BigWigs_Plugins_Victory"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["soundName"] = "BigWigs: Victory Classic",
 						},
 					},
@@ -738,7 +724,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_AutoReply"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["disabled"] = false,
 							["exitCombat"] = 4,
 							["mode"] = 3,
@@ -749,7 +735,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Countdown"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["fontSize"] = 100,
 							["fontName"] = "Kimberley",
 						},
@@ -761,7 +747,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_InfoBox"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["posx"] = 179.7010284338503,
 							["posy"] = 753.3776360958364,
 						},
@@ -769,7 +755,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Bars"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["outline"] = "OUTLINE",
 							["BigWigsAnchor_width"] = 378,
 							["BigWigsEmphasizeAnchor_height"] = 9,
@@ -796,14 +782,14 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Statistics"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["showBar"] = true,
 						},
 					},
 				},
 				["BigWigs_Plugins_Proximity"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["fontSize"] = 16,
 							["fontName"] = "Kimberley",
 							["width"] = 139.9999847412109,
@@ -816,14 +802,14 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Pull"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["combatLog"] = true,
 						},
 					},
 				},
 				["BigWigs_Plugins_Messages"] = {
 					["profiles"] = {
-						["Eltreum"] = {
+						["Default"] = {
 							["outline"] = "OUTLINE",
 							["emphFontName"] = "Kimberley",
 							["emphPosition"] = {
@@ -849,7 +835,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				["Eltruism - Deviate Delight"] = "Eltreum",
 			},
 			["profiles"] = {
-				["Eltreum"] = {
+				["Default"] = {
 				},
 			},
 		}
