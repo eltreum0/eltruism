@@ -5,6 +5,16 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelogv2()
 	return[[
+    v2.3.0
+    -------
+Spellsteal filter will now check for player class
+Added Expanded Transmog Window to Shadowlands
+Waypoint Timer will now follow ElvUI general font
+Optimized Nameplate Power Bar
+Fixed Nameplate Power Bar showing on neutral or unattackable NPCs
+Fixed LootText not showing Gold earned when in other locales
+Fixed Stealth when entering world or the first time stealth was used
+
     v2.2.9
     -------
 Fixed Classic/TBC feral druid power bar overlapping combo points

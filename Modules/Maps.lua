@@ -16,8 +16,10 @@ if ElvUI_EltreumUI.Retail then
 	WaypointTimeToArriveFrame.TimeText:SetSize(0, 26)
 	WaypointTimeToArriveFrame.TimeText:SetPoint("TOP", "SuperTrackedFrame", "BOTTOM", 0, -40)
 	WaypointTimeToArriveFrame.TimeText:SetTextColor(1, 1, 1)
-	--WaypointTimeToArriveFrame.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, "OUTLINE")
+	--font test
+	WaypointTimeToArriveFrame.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, "OUTLINE")
 	WaypointTimeToArriveFrame.TimeText:SetParent("SuperTrackedFrame")
+	WaypointTimeToArriveFrame:SetParent("SuperTrackedFrame")
 
 	--Create the function which calculates the time
 	function ElvUI_EltreumUI:WaypointTimeToArrive()

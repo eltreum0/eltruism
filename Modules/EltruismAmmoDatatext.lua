@@ -5,7 +5,6 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 --just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
 local DT = E:GetModule("DataTexts")
-local EP = LibStub("LibElvUIPlugin-1.0")
 
 if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 	if E.myclass ~= 'HUNTER' and E.myclass ~= 'ROGUE' and E.myclass ~= 'WARLOCK' and E.myclass ~= 'WARRIOR' then return end
@@ -46,6 +45,7 @@ if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 			self:UnregisterEvent('GET_ITEM_INFO_RECEIVED')
 		end
 		if E.myclass == 'WARLOCK' then
+			local namewarlock
 			local name, _, quality, _, _, _, _, _, _, texture = GetItemInfo(6265)
 			count = GetItemCount(6265)
 			if texture == nil then

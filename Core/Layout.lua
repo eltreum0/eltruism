@@ -1,11 +1,18 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local IsAddOnLoaded = IsAddOnLoaded
+local _G = _G
+local IsAddOnLoaded = _G.IsAddOnLoaded
+local GetAddOnMetadata = _G.GetAddOnMetadata
+local sleversioncheck
 if IsAddOnLoaded("ElvUI_SLE") then
-	local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
+	sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 end
 local valuecolors
 valuecolors = E:ClassColor(E.myclass, true)
 local myclass = E.myclass
+
+local GetCVar = _G.GetCVar
+
+
 
 if ElvUI_EltreumUI.Retail then
 	function ElvUI_EltreumUI:SetupLayout(layout)

@@ -3,29 +3,58 @@ local unpack = unpack
 
 -- NameplateSCT profile setup
 function ElvUI_EltreumUI:GetNameplateSCTProfile()
-	NameplateSCTDB = {
-		["global"] = {
-			["iconScale"] = 0.8,
-			["sizing"] = {
-				["critsScale"] = 3,
-				["smallHitsScale"] = 0.5,
+	if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.Classic then
+		NameplateSCTDB = {
+			["global"] = {
+				["iconScale"] = 0.8,
+				["sizing"] = {
+					["critsScale"] = 3,
+					["smallHitsScale"] = 0.5,
+				},
+				["personal"] = false,
+				["yOffset"] = 75,
+				["enableMSQ"] = false,
+				["truncate"] = false,
+				["modOffTargetStrata"] = true,
+				["fontFlag"] = "THICKOUTLINE",
+				["font"] = "Kimberley",
+				["strata"] = {
+					["target"] = "BACKGROUND",
+					["offTarget"] = "BACKGROUND",
+				},
+				["yOffsetIcon"] = 2,
+				["animations"] = {
+					["miss"] = "rainfall",
+				},
+				["textShadow"] = false,
 			},
-			["personal"] = false,
-			["yOffset"] = 75,
-			["enableMSQ"] = false,
-			["truncate"] = false,
-			["modOffTargetStrata"] = true,
-			["fontFlag"] = "THICKOUTLINE",
-			["font"] = "Kimberley",
-			["strata"] = {
-				["target"] = "BACKGROUND",
-				["offTarget"] = "BACKGROUND",
+		}
+	elseif ElvUI_EltreumUI.TBC then
+		NameplateSCTDB = {
+			["global"] = {
+				["iconScale"] = 0.8,
+				["sizing"] = {
+					["critsScale"] = 3,
+					["smallHitsScale"] = 0.5,
+				},
+				["personal"] = false,
+				["shouldDisplayOverkill"] = true,
+				["yOffset"] = 75,
+				["enableMSQ"] = false,
+				["truncate"] = false,
+				["modOffTargetStrata"] = true,
+				["fontFlag"] = "THICKOUTLINE",
+				["font"] = "Kimberley",
+				["strata"] = {
+					["target"] = "BACKGROUND",
+					["offTarget"] = "BACKGROUND",
+				},
+				["yOffsetIcon"] = 2,
+				["animations"] = {
+					["miss"] = "rainfall",
+				},
+				["textShadow"] = false,
 			},
-			["yOffsetIcon"] = 2,
-			["animations"] = {
-				["miss"] = "rainfall",
-			},
-			["textShadow"] = false,
-		},
-	}
+		}
+	end
 end
