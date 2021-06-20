@@ -86,8 +86,6 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED")
 	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE')
-	--ElvUI_EltreumUI:RegisterEvent('PLAYER_MONEY')
-
 	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', 0.02)
 	SetCVar('nameplateOtherTopInset', 0.1)

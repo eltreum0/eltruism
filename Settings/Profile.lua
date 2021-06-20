@@ -4,6 +4,17 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 -- Eltreum UI Profile DB
 P.ElvUI_EltreumUI = {
 
+	chat = {
+		enable = true,
+		leftmouseover = true,
+		rightmouseover = true,
+		leftfader = true,
+		rightfader = true,
+		leftcombathide = true,
+		rightcombathide = false,
+	},
+
+
 	skins = {
 		enable = true,
 	},
