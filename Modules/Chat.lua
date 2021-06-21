@@ -6,6 +6,8 @@ local C_Timer =_G.C_Timer
 local InCombatLockdown = _G.InCombatLockdown
 
 --chat fading/mouseover/combathide
+local leftfaderbutton = 1  -- when 1 it can fade, when 0 it cannot
+local rightfaderbutton = 1 -- same as above
 function ElvUI_EltreumUI:DynamicChatFade(event)
 	if E.db.ElvUI_EltreumUI.chat.enable then
 		--register events left chat panel
@@ -70,17 +72,20 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 		--timer things
 		local hidetime = E.db.chat.inactivityTimer
 		local timeractive
+
 		function ElvUI_EltreumUI:TimerHide()
 			if E.db.ElvUI_EltreumUI.chat.leftfader then
-				UIFrameFadeOut(LeftChatPanel, 0.5, 1, 0)
+				if leftfaderbutton == 1 then
+					UIFrameFadeOut(LeftChatPanel, 0.5, 1, 0)
+				end
 			end
 			if E.db.ElvUI_EltreumUI.chat.rightfader then
-				UIFrameFadeOut(RightChatPanel, 0.5, 1, 0)
+				if rightfaderbutton == 1 then
+					UIFrameFadeOut(RightChatPanel, 0.5, 1, 0)
+				end
 			end
 		end
 
-		local leftfaderbutton = 1  -- when 1 it can fade, when 0 it cannot
-		local rightfaderbutton = 1 -- same as above
 		--left chat toggle the fade on and off
 		LeftChatPanel:SetScript('OnMouseDown', function(self, button)
 			 if button=='LeftButton' then
@@ -105,11 +110,10 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 		--Left Chat Panel
 		if E.db.ElvUI_EltreumUI.chat.leftmouseover then
 			LeftChatPanel:SetScript('OnEnter', function(self)
-				if not InCombatLockdown() and leftfaderbutton == 1 then
-					UIFrameFadeIn(LeftChatPanel, 0.5, 0, 1)
-					--LeftChatPanel.backdrop:Show()
-					--LeftChatDataPanel:Show()
-					--LeftChatToggleButton:Show()
+				if not InCombatLockdown() then
+					if leftfaderbutton == 1 then
+						UIFrameFadeIn(LeftChatPanel, 0.5, 0, 1)
+					end
 				end
 			end)
 			LeftChatPanel:SetScript('OnLeave', function(self)
@@ -117,10 +121,6 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 				if leftfaderbutton == 1 then
 					UIFrameFadeOut(LeftChatPanel, 0.5, 1, 0)
 				end
-				--LeftChatPanel:Hide()
-				--LeftChatPanel.backdrop:Hide()
-				--LeftChatDataPanel:Hide()
-				--LeftChatToggleButton:Hide()
 			end)
 		end
 		if E.db.ElvUI_EltreumUI.chat.leftfader then
