@@ -7,6 +7,7 @@ function ElvUI_EltreumUI:Changelogv2()
 	return[[
     v2.3.1
     -------
+Chat Fade/Hide can now be toggled off by a simple Left click on either chat, clicking again will enable the Fade/hide again
 Added Expanded Stables to Shadowlands Hunters, merged from Improved Stable Frame by Cybeloras and licensed under GNU GPLv3
 Quests will now expand when the boss encounter ends
 Rogue Order Hall will automatically open following Rogue Door Opener by Burzolog licensed under GNU GPLv3
