@@ -159,15 +159,41 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 				UIFrameFadeOut(RightChatPanel, 0.5, 1, 0)
 			end
 		end
+
+		--[[function ElvUI_EltreumUI:TimerHideInstantLeft()
+			LeftChatPanel:Hide()
+			LeftChatPanel.backdrop:Hide()
+			--lchat:Hide()
+			LeftChatDataPanel:Hide()
+			LeftChatToggleButton:Hide()
+		end
+
+		function ElvUI_EltreumUI:TimerHideInstantRight()
+			RightChatPanel:Hide()
+			RightChatPanel.backdrop:Hide()
+			rchat:Hide()
+			--RightChatDataPanel:Hide()
+			RightChatToggleButton:Hide()
+		end
+		]]--
+
 		--Left Chat Panel
 		if E.db.ElvUI_EltreumUI.chat.leftmouseover then
 			LeftChatPanel:SetScript('OnEnter', function(self)
 				if not InCombatLockdown() then
 					UIFrameFadeIn(LeftChatPanel, 0.5, 0, 1)
+					--LeftChatPanel.backdrop:Show()
+					--LeftChatDataPanel:Show()
+					--LeftChatToggleButton:Show()
 				end
 			end)
 			LeftChatPanel:SetScript('OnLeave', function(self)
+				--local function hideleft() self.ScheduleTimer("TimerHideInstantLeft", 0.5) end
 				UIFrameFadeOut(LeftChatPanel, 0.5, 1, 0)
+				--LeftChatPanel:Hide()
+				--LeftChatPanel.backdrop:Hide()
+				--LeftChatDataPanel:Hide()
+				--LeftChatToggleButton:Hide()
 			end)
 		end
 		if E.db.ElvUI_EltreumUI.chat.leftfader then
