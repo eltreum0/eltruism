@@ -40,36 +40,38 @@ if ElvUI_EltreumUI.Retail then
 
 	--based on Rogue Door Opener by Burzolog
 	if myclass == "ROGUE" then
-		local RogueOrderHallAutoOpen = CreateFrame("Frame")
-		RogueOrderHallAutoOpen:RegisterEvent("GOSSIP_SHOW")
+		if E.db.ElvUI_EltreumUI.skins.rogueopen then
+			local RogueOrderHallAutoOpen = CreateFrame("Frame")
+			RogueOrderHallAutoOpen:RegisterEvent("GOSSIP_SHOW")
 
-		local function GetCurrentNPC_ID()
-			local guid = UnitGUID("npc")
-			if not guid then
-				return nil
-			end
-			return tonumber(string.match(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
-		end
-
-		local function handle_NPC_Interaction(self, event)
-			if C_GossipInfo.GetNumOptions() ~= 2 then
-				return
-			end
-			local gossipInfoTable = C_GossipInfo.GetOptions()
-			if gossipInfoTable[1].type ~= "gossip" then
-				return
+			local function GetCurrentNPC_ID()
+				local guid = UnitGUID("npc")
+				if not guid then
+					return nil
+				end
+				return tonumber(string.match(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
 			end
 
-			local NPC_ID = GetCurrentNPC_ID()
-			if NPC_ID == 97004 or NPC_ID == 96782 or NPC_ID == 93188 then
-				if IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown() then
+			local function handle_NPC_Interaction(self, event)
+				if C_GossipInfo.GetNumOptions() ~= 2 then
 					return
-				else
-					C_GossipInfo.SelectOption(1)
+				end
+				local gossipInfoTable = C_GossipInfo.GetOptions()
+				if gossipInfoTable[1].type ~= "gossip" then
+					return
+				end
+
+				local NPC_ID = GetCurrentNPC_ID()
+				if NPC_ID == 97004 or NPC_ID == 96782 or NPC_ID == 93188 then
+					if IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown() then
+						return
+					else
+						C_GossipInfo.SelectOption(1)
+					end
 				end
 			end
+			RogueOrderHallAutoOpen:SetScript("OnEvent", handle_NPC_Interaction)
 		end
-		RogueOrderHallAutoOpen:SetScript("OnEvent", handle_NPC_Interaction)
 	end
 
 end

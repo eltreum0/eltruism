@@ -18,6 +18,7 @@ P.ElvUI_EltreumUI = {
 		enable = true,
 		widertransmog = true,
 		expandedstable = true,
+		rogueopen = true,
 	},
 
 	tbctalents = {
