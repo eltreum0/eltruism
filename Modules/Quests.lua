@@ -23,6 +23,15 @@ if ElvUI_EltreumUI.Retail then
 			end
 		end
 	end
+	--expand after encounter is over
+	function ElvUI_EltreumUI:QuestEncounterEnd()
+		if E.db.ElvUI_EltreumUI.questsettings.enable then
+			local _, instanceType = IsInInstance()
+			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then  --and event == "PLAYER_REGEN_DISABLED"
+				ObjectiveTracker_Expand()
+			end
+		end
+	end
 
 	function ElvUI_EltreumUI:ArenaQuest()
 		if ElvUI_EltreumUI.Retail then

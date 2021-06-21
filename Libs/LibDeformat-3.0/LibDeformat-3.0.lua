@@ -4,7 +4,22 @@ Author(s): ckknight (ckknight@gmail.com)
 Website: http://www.wowace.com/projects/libdeformat-3-0/
 Description: A library to convert a post-formatted string back to its original arguments given its format string.
 License: MIT
+
+
+## Interface: 90005
+## Title: Lib: Deformat-3.1
+## Notes: A library to convert a post-formatted string back to its original arguments given its format string.
+## Author: ckknight, libstub and globals updated by Eltreum
+## X-eMail: ckknight@gmail.com
+## X-Category: Library
+## X-License: MIT
+## LoadOnDemand: 1
+## X-Curse-Packaged-Version: v1
+## X-Curse-Project-Name: LibDeformat-3.0
+## X-Curse-Project-ID: libdeformat-3-0
+## X-Curse-Repository-ID: wow/libdeformat-3-0/mainline
 ]]
+
 local _G = _G
 local LibStub = _G.LibStub
 local setmetatable = _G.setmetatable
@@ -59,7 +74,7 @@ local function get_deformat_function(pattern)
     local index_translation = nil
 
     -- the highest found index, also the number of indexes found.
-	local highest_index
+    local highest_index
     if not pattern:find("%%1%$") then
         -- not a numbered format
 
@@ -87,29 +102,29 @@ local function get_deformat_function(pattern)
         -- a numbered format
 
         local i = 0
-		while true do
-		    i = i + 1
-			local found_sequence
+        while true do
+            i = i + 1
+            local found_sequence
             for sequence in pairs(FORMAT_SEQUENCES) do
-				if unpattern:find("%%%%" .. i .. "%%%$" .. sequence) then
-					found_sequence = sequence
-					break
-				end
-			end
-			if not found_sequence then
-				break
-			end
-			unpattern = unpattern:gsub("%%%%" .. i .. "%%%$" .. found_sequence, "(" .. FORMAT_SEQUENCES[found_sequence] .. ")", 1)
-			number_indexes[i] = not STRING_BASED_SEQUENCES[found_sequence]
-		end
+                if unpattern:find("%%%%" .. i .. "%%%$" .. sequence) then
+                    found_sequence = sequence
+                    break
+                end
+            end
+            if not found_sequence then
+                break
+            end
+            unpattern = unpattern:gsub("%%%%" .. i .. "%%%$" .. found_sequence, "(" .. FORMAT_SEQUENCES[found_sequence] .. ")", 1)
+            number_indexes[i] = not STRING_BASED_SEQUENCES[found_sequence]
+        end
         highest_index = i - 1
 
-		i = 0
-		index_translation = {}
-		pattern:gsub("%%(%d)%$", function(w)
-		    i = i + 1
-		    index_translation[i] = tonumber(w)
-		end)
+        i = 0
+        index_translation = {}
+        pattern:gsub("%%(%d)%$", function(w)
+            i = i + 1
+            index_translation[i] = tonumber(w)
+        end)
     end
 
     if highest_index == 0 then

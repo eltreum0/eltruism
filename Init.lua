@@ -69,6 +69,7 @@ function ElvUI_EltreumUI:Initialize()
 	--Register Events
 	ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
 	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_START')
+	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_END')
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED')
@@ -188,6 +189,14 @@ function ElvUI_EltreumUI:ENCOUNTER_START()
 	end
 	ElvUI_EltreumUI:CombatMusic()
 end
+
+function ElvUI_EltreumUI:ENCOUNTER_END()
+	if ElvUI_EltreumUI.Retail then
+		ElvUI_EltreumUI:QuestEncounterEnd()
+	end
+end
+
+
 
 function ElvUI_EltreumUI:SUPER_TRACKING_CHANGED()
 	ElvUI_EltreumUI:WaypointTimeToArrive()

@@ -241,8 +241,8 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 						RightChatPanel:SetAlpha(1)
 					end
 				end
+				self:CancelTimer(timeractive)
 				if not InCombatLockdown() then
-					self:CancelTimer(timeractive)
 					timeractive = self:ScheduleTimer("TimerHide", hidetime)
 					RightChatPanel:SetAlpha(1)
 				end

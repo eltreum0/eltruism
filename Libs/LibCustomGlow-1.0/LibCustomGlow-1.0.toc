@@ -7,6 +7,4 @@
 ## Version: 1.0.3-1-g6261295
 ## OptionalDeps: Masque
 
-LibStub\LibStub.lua
-
 LibCustomGlow-1.0.xml
