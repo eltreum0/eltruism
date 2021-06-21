@@ -3,6 +3,7 @@
 	<Script file='Commands.lua'/>
 	<Script file='Install.lua'/>
 	<Script file='Layout.lua'/>
+	<Script file='SetupNameplates.lua'/>
 	<Script file='Options.lua'/>
 	<Script file='Tags.lua'/>
 	<Script file='Changelog.lua'/>

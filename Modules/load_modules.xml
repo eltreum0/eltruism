@@ -10,10 +10,11 @@
 	<Script file='Fonts.lua'/>
 	<Script file='LootText.lua'/>
 	<Script file='Maps.lua'/>
-	<Script file='Nameplates.lua'/>
+	<Script file='Nameplates/Nameplates.lua'/>
+	<Script file='Nameplates/PowerBar.lua'/>
+	<Script file='Nameplates/SetupNameplates.lua'/>
 	<Script file='PartyRaid.lua'/>
 	<Script file='Quests.lua'/>
-	<Script file='SetupNameplates.lua'/>
 	<Script file='Skins.lua'/>
 	<Script file='Stealth.lua'/>
 </Ui>
