@@ -1,13 +1,13 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file='Core.lua'/>
-	<Script file='Commands.lua'/>
-	<Script file='Install.lua'/>
-	<Script file='Layout.lua'/>
-	<Script file='SetupNameplates.lua'/>
-	<Script file='Options.lua'/>
-	<Script file='Tags.lua'/>
 	<Script file='Changelog.lua'/>
 	<Script file='Changelog/1.00.lua'/>
 	<Script file='Changelog/2.00.lua'/>
+	<Script file='Commands.lua'/>
+	<Script file='Core.lua'/>
+	<Script file='Install.lua'/>
+	<Script file='Layout.lua'/>
+	<Script file='Options.lua'/>
+	<Script file='SetupNameplates.lua'/>
+	<Script file='Tags.lua'/>
 	<Script file='VersionCheck.lua'/>
 </Ui>

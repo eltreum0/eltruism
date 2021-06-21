@@ -1,7 +1,10 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file='Nameplates/Nameplates.lua'/>
+	<Script file='Nameplates/PowerBar.lua'/>
 	<Script file='Actionbars.lua'/>
 	<Script file='AFK.lua'/>
 	<Script file='Auras.lua'/>
+	<Script file='Chat.lua'/>
 	<Script file='CombatMusic.lua'/>
 	<Script file='Cursor.lua'/>
 	<Script file='DarkLightColors.lua'/>
@@ -10,9 +13,6 @@
 	<Script file='Fonts.lua'/>
 	<Script file='LootText.lua'/>
 	<Script file='Maps.lua'/>
-	<Script file='Nameplates/Nameplates.lua'/>
-	<Script file='Nameplates/PowerBar.lua'/>
-	<Script file='Nameplates/SetupNameplates.lua'/>
 	<Script file='PartyRaid.lua'/>
 	<Script file='Quests.lua'/>
 	<Script file='Skins.lua'/>
