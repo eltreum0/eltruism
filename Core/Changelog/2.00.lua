@@ -10,6 +10,8 @@ function ElvUI_EltreumUI:Changelogv2()
 Chat Fade/Hide can now be toggled off by Left clicking on either chat, clicking again will enable the Fade/hide again
 Quests will now expand when the boss encounter ends
 Reworked Classic/TBC Druid logic for Nameplate Power Bar
+Changed BigWigs profile name to Default so that it doesn't get reset with a reload
+Fixed missing Enemy Player Buffs/Debuffs on Aura Filters
 Added Expanded Stables to Shadowlands Hunters, merged from Improved Stable Frame by Cybeloras and licensed under GNU GPLv3
 Rogue Order Hall will automatically open following Rogue Door Opener by Burzolog licensed under GNU GPLv3
 
