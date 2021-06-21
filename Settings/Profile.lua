@@ -14,9 +14,10 @@ P.ElvUI_EltreumUI = {
 		rightcombathide = false,
 	},
 
-
 	skins = {
 		enable = true,
+		widertransmog = true,
+		expandedstable = true,
 	},
 
 	tbctalents = {
