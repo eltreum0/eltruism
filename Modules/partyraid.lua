@@ -1,18 +1,18 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local PlaySoundFile = _G.PlaySoundFile
-local format = _G.format
-local hooksecurefunc = _G.hooksecurefunc
 local GetNumGroupMembers = _G.GetNumGroupMembers
 local IsInGroup = _G.IsInGroup
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
-local UnitGroupRolesAssigned = _G.UnitGroupRolesAssigned
-local IsInRaid = _G.IsInRaid
-local UnitExists = _G.UnitExists
-local UnitIsUnit = _G.UnitIsUnit
-local UnitName = _G.UnitName
-local UF = E:GetModule("UnitFrames")
-local CH = E:GetModule('Chat')
+--local format = _G.format
+--local hooksecurefunc = _G.hooksecurefunc
+--local UnitGroupRolesAssigned = _G.UnitGroupRolesAssigned
+--local IsInRaid = _G.IsInRaid
+--local UnitExists = _G.UnitExists
+--local UnitIsUnit = _G.UnitIsUnit
+--local UnitName = _G.UnitName
+--local UF = E:GetModule("UnitFrames")
+--local CH = E:GetModule('Chat')
 
 function ElvUI_EltreumUI:PartyRaidInit()
 	ElvUI_EltreumUI:ChatRoleSwapIcons() --icons on role swap

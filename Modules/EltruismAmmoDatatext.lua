@@ -46,7 +46,7 @@ if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		end
 		if E.myclass == 'WARLOCK' then
 			local namewarlock
-			local name, _, quality, _, _, _, _, _, _, texture = GetItemInfo(6265)
+			local name, _, _, _, _, _, _, _, _, texture = GetItemInfo(6265)
 			count = GetItemCount(6265)
 			if texture == nil then
 				namewarlock = itemName[6265]
@@ -71,7 +71,7 @@ if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 			if (itemID and itemID > 0) and (count > 0) then
 				if itemID then
 					--name = itemName[itemID] or GetItemInfo(itemID)
-					local _, _, quality, _, _, _, _, _, _, texture = GetItemInfo(itemID)
+					local _, _, _, _, _, _, _, _, _, texture = GetItemInfo(itemID)
 					if texture == nil then
 						name = itemName[itemID] or GetItemInfo(itemID)
 					else

@@ -2,7 +2,6 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local UIFrameFadeOut = _G.UIFrameFadeOut
 local UIFrameFadeIn = _G. UIFrameFadeIn
-local C_Timer =_G.C_Timer
 local InCombatLockdown = _G.InCombatLockdown
 
 --chat fading/mouseover/combathide

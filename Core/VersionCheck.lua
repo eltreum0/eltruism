@@ -10,7 +10,7 @@ function ElvUI_EltreumUI:NewVersionCheck()
 		return
 	elseif E.private.ElvUI_EltreumUI.install_version >= "2.2.2" and E.private.ElvUI_EltreumUI.install_version < "2.3.0" then
 		E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
-		ElvUI_EltreumUI:Print('updated to '..ElvUI_EltreumUI.Version..'. Chat modifications were added with this update, please check Eltruism > Chat if you want to turn them off')
+		ElvUI_EltreumUI:Print('updated to '..ElvUI_EltreumUI.Version..'. Chat modifications were recently added, please check Eltruism > Chat if you want to turn them off. You can also Left click on a Chat Panel to make it not fade away (reloading will reset this)')
 	end
 end
 

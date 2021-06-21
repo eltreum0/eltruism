@@ -1486,7 +1486,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["auras"]["buffs"]["horizontalSpacing"] = 7
 			E.db["auras"]["buffs"]["maxWraps"] = 2
 			E.db["auras"]["buffs"]["seperateOwn"] = -1
-			E.db["auras"]["buffs"]["size"] = 34
+			E.db["auras"]["buffs"]["size"] = 32
 			E.db["auras"]["buffs"]["sortDir"] = "+"
 			E.db["auras"]["buffs"]["timeFont"] = "Kimberley"
 			E.db["auras"]["buffs"]["timeFontOutline"] = "THICKOUTLINE"
@@ -1506,7 +1506,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["auras"]["debuffs"]["countFontSize"] = 12
 			E.db["auras"]["debuffs"]["fadeThreshold"] = 5
 			E.db["auras"]["debuffs"]["horizontalSpacing"] = 7
-			E.db["auras"]["debuffs"]["size"] = 34
+			E.db["auras"]["debuffs"]["size"] = 32
 			E.db["auras"]["debuffs"]["sortDir"] = "+"
 			E.db["auras"]["debuffs"]["timeFont"] = "Kimberley"
 			E.db["auras"]["debuffs"]["timeFontOutline"] = "THICKOUTLINE"

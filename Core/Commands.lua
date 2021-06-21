@@ -3,7 +3,6 @@ local _G = _G
 local string = _G.string
 local tonumber = _G.tonumber
 local C_Map = _G.C_Map
-local print = _G.print
 local table = _G.table
 local UiMapPoint = _G.UiMapPoint
 local GetCoinIcon = _G.GetCoinIcon

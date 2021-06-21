@@ -51,7 +51,7 @@ function ElvUI_EltreumUI:LootText()
 			end
 
 			-- See which direction the message should flow
-			local yDir;
+			--local yDir;
 			local lowestMessage;
 			local useXadjustment = 0;
 			if ( _G.COMBAT_TEXT_LOCATIONS.startY < _G.COMBAT_TEXT_LOCATIONS.endY ) then
@@ -151,7 +151,7 @@ function ElvUI_EltreumUI:LootText()
 		local LOOT_ITEM_PUSHED_SELF_MULTIPLE = _G.LOOT_ITEM_PUSHED_SELF_MULTIPLE
 		local LOOT_ITEM_PUSHED_SELF = _G.LOOT_ITEM_PUSHED_SELF
 
-		function LootTextframe.OnEvent(self, event, arg1, arg2, arg3)
+		function LootTextframe.OnEvent(self, event, arg1, arg2)
 			if event == "UI_ERROR_MESSAGE" and arg2 == "Inventory is full." then
 					CombatText_AddMessage("INVENTORY IS FULL", CombatText_StandardScroll, 1, 0, 0)
 			end
