@@ -15,8 +15,8 @@ local Eltruismhealertargetbuffs = "Blacklist,Personal,nonPersonal,Dispellable"
 local Eltruismhealertargetdebuffs = "Blacklist,Personal,RaidDebuffs,CCDebuffs,Friendly:Dispellable"
 local Eltruismhealerplayerdebuffs = "Blacklist,blockNoDuration,Personal,nonPersonal"
 local Eltruismhealerplayerbuffs = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal"
-local Eltruismhealerraid40debuffs = "Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist"
-local Eltruismhealerraiddebuffs = "Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist"
+--local Eltruismhealerraid40debuffs = "Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist"
+--local Eltruismhealerraiddebuffs = "Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist"
 local Eltruismhealerfocusbuffs = "Blacklist,Personal,PlayerBuffs,CastByUnit,Dispellable,RaidBuffsElvUI"
 local Eltruismhealerfocusdebuffs = "Blacklist,Personal,Boss,RaidDebuffs,Dispellable,Whitelist"
 local Eltruismhealerbossbuffs =  "Blacklist,CastByUnit,Dispellable,Whitelist,RaidBuffsElvUI"
@@ -42,8 +42,8 @@ local allhealertargetbuffs = "Blacklist,Personal,nonPersonal,Dispellable"
 local allhealertargetdebuffs = "Blacklist,Personal,RaidDebuffs,CCDebuffs,Friendly:Dispellable,nonPersonal"
 local allhealerplayerdebuffs = "Blacklist,blockNoDuration,Personal,nonPersonal"
 local allhealerplayerbuffs = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal"
-local allhealerraid40debuffs = "Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist,nonPersonal"
-local allhealerraiddebuffs = "Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist,nonPersonal"
+--local allhealerraid40debuffs = "Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist,nonPersonal"
+--local allhealerraiddebuffs = "Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist,nonPersonal"
 local allhealerfocusbuffs = "Blacklist,Personal,PlayerBuffs,CastByUnit,Dispellable,RaidBuffsElvUI"
 local allhealerfocusdebuffs = "Blacklist,Personal,Boss,RaidDebuffs,Dispellable,Whitelist"
 local allhealerbossbuffs =  "Blacklist,CastByUnit,Dispellable,Whitelist,RaidBuffsElvUI"
@@ -131,10 +131,10 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 	elseif frame == 'nameplate' then
 		if type == 'Everything' then
 			if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = allnpenemynpcbuffs
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = allnpenemyplayerbuffs
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = allnpenemynpcbuffs
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = allnpenemynpcbuffs
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = allnpenemyplayerbuffs
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = allnpenemynpcbuffs
 			else
 				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
@@ -231,10 +231,10 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 	elseif frame == 'nameplate' then
 		if type == 'Everything' then
 			if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = allnpenemynpcdebuffs
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = allnpenemyplayerdebuffs
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = allnpenemynpcdebuffs
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = allnpenemynpcdebuffs
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = allnpenemyplayerdebuffs
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = allnpenemynpcdebuffs
 			else
 				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
