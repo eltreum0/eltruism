@@ -42,12 +42,16 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive()
 		ElvUI_EltreumUI:SkillGlow()
+		ElvUI_EltreumUI:GetSpec()
 		if myclass == 'HUNTER' then
 			ElvUI_EltreumUI:ExpandedStable()
 		end
 	end
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		ElvUI_EltreumUI:DynamicClassicDatatext()
+		if myclass == 'DRUID' then
+			ElvUI_EltreumUI:GetDruidForm()
+		end
 	end
 	if E.private["nameplates"]["enable"] == true then
 		ElvUI_EltreumUI:NamePlateOptions()

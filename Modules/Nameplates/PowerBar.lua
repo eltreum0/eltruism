@@ -28,7 +28,6 @@ EltreumPowerBar.Text:SetJustifyH("CENTER")
 EltreumPowerBar.Text:SetJustifyV("CENTER")
 EltreumPowerBar.bg = EltreumPowerBar:CreateTexture(nil, "BACKGROUND")
 EltreumPowerBar.bg:SetTexture(E.media.normTex)
-
 EltreumPowerBar.bg:SetVertexColor(0, 0, 0)
 EltreumPowerBar:Hide() --hide at the start before events
 
@@ -60,6 +59,16 @@ function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
 		return
     elseif not E.private.ElvUI_EltreumUI.nameplatepower then
     	return
+    end
+
+    if E.db.ElvUI_EltreumUI.nameplatepower == nil then
+    	E.db.ElvUI_EltreumUI.nameplatepower = {
+			autoadjustposition = true,
+			sizex = 132,
+			sizey = 6,
+			posy = 16,
+			texture = "Eltreum-Elvui-Norm",
+		}
     end
 
 	if E.db.ElvUI_EltreumUI.nameplatepower.sizex == nil then

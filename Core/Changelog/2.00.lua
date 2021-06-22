@@ -5,6 +5,13 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelogv2()
 	return[[
+    v2.3.2
+    -------
+Added more options to Nameplate Power Bar, such as changing its size, position and texture
+Fixed Nameplate Power Bar not appearing for retail Shamans until they swapped specs
+Bundled ElvUI Chat and CVArs setup with Eltruism Install
+ElvUI Install prompt will now be skipped since Eltruism sets the same things or overwrites things
+
     v2.3.1
     -------
 Chat Fade/Hide can now be toggled off by Left clicking on either chat, clicking again will enable the Fade/hide again
