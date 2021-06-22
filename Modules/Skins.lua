@@ -239,8 +239,6 @@ function ElvUI_EltreumUI:WiderTransmog()
 	end
 end
 
-
-
 --based on Improved Stable Frame by Cybeloras
 function ElvUI_EltreumUI:ExpandedStable()
 	if E.db.ElvUI_EltreumUI.skins.expandedstable then

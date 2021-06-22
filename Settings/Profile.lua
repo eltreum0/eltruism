@@ -4,6 +4,15 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 -- Eltreum UI Profile DB
 P.ElvUI_EltreumUI = {
 
+
+	nameplatepower = {
+		autoadjustposition = true,
+		sizex = 132,
+		sizey = 6,
+		posy = 16,
+		texture = "Eltreum-Elvui-Norm",
+	},
+
 	chat = {
 		enable = true,
 		leftmouseover = true,

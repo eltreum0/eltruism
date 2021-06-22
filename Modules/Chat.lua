@@ -317,5 +317,5 @@ function ElvUI_EltreumUI:SetupChat()
 		_G.LeftChatToggleButton:Click()
 	end
 
-	ElvUI_EltreumUI:Print('Chat has been setup')
+	ElvUI_EltreumUI:Print('ElvUI Chat has been Set')
 end
