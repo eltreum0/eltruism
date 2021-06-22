@@ -1,6 +1,6 @@
 ## Interface: 11307
 ## Author: Eltreum
-## Version: 2.3.2
+## Version: 2.3.3
 ## Title: |cff1784d1ElvUI|r Eltruism Classic
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
 ## Dependencies: ElvUI, AddOnSkins, ProjectAzilroka
@@ -9,6 +9,8 @@
 ## DefaultState: enabled
 
 Init.lua
+Layouts\load_layoutsclassic.xml
+Options\load_optionsclassic.xml
 Core\load_core.xml
 Libs\Load_Libs.xml
 Media\load_media.xml

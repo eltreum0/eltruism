@@ -5,6 +5,10 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelogv2()
 	return[[
+    v2.3.3
+    -------
+Improved module loading between TBC/Classic/Retail
+
     v2.3.2
     -------
 Added more options to Nameplate Power Bar, such as changing its size, position and texture
