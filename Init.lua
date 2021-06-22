@@ -79,10 +79,9 @@ function ElvUI_EltreumUI:DelayedInstall()
 end
 
 function ElvUI_EltreumUI:Initialize()
-
 	--since now Eltruism has both ElvUI Cvars and ElvUI Chat setup builtin we can skip elvui setup
 	E.private.install_complete = E.version
-
+	--register the plugin config
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
 	--Register Events
 	ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
@@ -116,6 +115,7 @@ function ElvUI_EltreumUI:Initialize()
 	SetCVar('nameplateOtherTopInset', 0.1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('nameplateTargetRadialPosition', 1)
+	--depending on game version sets cvars or register events
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:RegisterEvent('SUPER_TRACKING_CHANGED')
 		ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_CREATED')

@@ -11,6 +11,7 @@ Added more options to Nameplate Power Bar, such as changing its size, position a
 Fixed Nameplate Power Bar not appearing for retail Shamans until they swapped specs
 Bundled ElvUI Chat and CVArs setup with Eltruism Install
 ElvUI Install prompt will now be skipped since Eltruism sets the same things or overwrites things
+Swapped Chat functions: Now it starts disabled and after a left click it can fade
 
     v2.3.1
     -------

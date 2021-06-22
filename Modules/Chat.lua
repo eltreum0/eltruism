@@ -4,13 +4,7 @@ local UIFrameFadeOut = _G.UIFrameFadeOut
 local UIFrameFadeIn = _G. UIFrameFadeIn
 local InCombatLockdown = _G.InCombatLockdown
 local CH = E:GetModule('Chat')
-
-
 local ipairs = ipairs
-
-
-
-
 local ChatFrame_AddMessageGroup = ChatFrame_AddMessageGroup
 local ChatFrame_RemoveAllMessageGroups = ChatFrame_RemoveAllMessageGroups
 local FCF_OpenNewWindow = FCF_OpenNewWindow
@@ -29,12 +23,9 @@ local LOOT, GENERAL, TRADE = LOOT, GENERAL, TRADE
 local GUILD_EVENT_LOG = GUILD_EVENT_LOG
 
 
-
-
-
 --chat fading/mouseover/combathide
-local leftfaderbutton = 1  -- when 1 it can fade, when 0 it cannot
-local rightfaderbutton = 1 -- same as above
+local leftfaderbutton = 0  -- when 1 it can fade, when 0 it cannot
+local rightfaderbutton = 0 -- same as above
 function ElvUI_EltreumUI:DynamicChatFade(event)
 	if E.db.ElvUI_EltreumUI.chat.enable then
 		--register events left chat panel

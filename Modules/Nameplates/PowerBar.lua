@@ -14,8 +14,6 @@ local hooksecurefunc = _G.hooksecurefunc
 local myclass = E.myclass
 local id, _
 
-
-
 --setup nameplate power frame
 local EltreumPowerBar = CreateFrame("StatusBar")
 EltreumPowerBar:SetValue(0)
@@ -31,7 +29,8 @@ EltreumPowerBar.bg:SetTexture(E.media.normTex)
 EltreumPowerBar.bg:SetVertexColor(0, 0, 0)
 EltreumPowerBar:Hide() --hide at the start before events
 
-function ElvUI_EltreumUI:GetSpec() --so that the power updates when spec changes
+--so that the power updates when spec changes
+function ElvUI_EltreumUI:GetSpec()
 	if ElvUI_EltreumUI.Retail then
 		local currentSpec = GetSpecialization()
 		if currentSpec then
@@ -40,8 +39,9 @@ function ElvUI_EltreumUI:GetSpec() --so that the power updates when spec changes
 	end
 end
 
+--classic druid things ofc it can't use GetShapeshiftForm :(
 local form
-function ElvUI_EltreumUI:GetDruidForm() --classic druid things ofc it can't use GetShapeshiftForm :(
+function ElvUI_EltreumUI:GetDruidForm()
 	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		for i = 1, 40 do
 			local _, _, _, _, _, _, _, _, _, spellId, _, _, _, _, _ = UnitBuff("player", i)
@@ -52,6 +52,7 @@ function ElvUI_EltreumUI:GetDruidForm() --classic druid things ofc it can't use 
 	end
 end
 
+--Eltreum Nameplate Power Bar
 function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
@@ -467,4 +468,3 @@ end
 hooksecurefunc(NP, 'Style', ElvUI_EltreumUI.NameplatePower)
 hooksecurefunc(NP, 'UpdatePlate', ElvUI_EltreumUI.NameplatePower)
 hooksecurefunc(NP, 'NamePlateCallBack', ElvUI_EltreumUI.NameplatePower)
-
