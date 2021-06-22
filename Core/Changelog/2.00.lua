@@ -9,6 +9,7 @@ function ElvUI_EltreumUI:Changelogv2()
     -------
 Improved module loading between TBC/Classic/Retail
 Fixed missing Demon Hunter Power Bar due to the position being behind the nameplate
+Added Gladius and Gladdy profiles for TBC
 
     v2.3.2
     -------

@@ -2,7 +2,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local unpack = unpack
 
 -- Gladdy profile setup
-function ElvUI_EltreumUI:SetupGladdy()
+function ElvUI_EltreumUI:GetGladdyProfile()
 	GladdyXZ = {
 		["profileKeys"] = {
 		},

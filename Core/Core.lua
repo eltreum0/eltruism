@@ -305,3 +305,19 @@ function ElvUI_EltreumUI:AddonSetupFCT()
 		ElvUI_EltreumUI:Print('Floating Combat Text profile has been set.')
 	end
 end
+
+-- Gladius Profile
+function ElvUI_EltreumUI:SetupGladius()
+	if IsAddOnLoaded('Gladius') then
+		ElvUI_EltreumUI:GetGladiusProfile()
+		ElvUI_EltreumUI:Print('Gladius profile has been set.')
+	end
+end
+
+-- Gladdy Profile
+function ElvUI_EltreumUI:SetupGladdy()
+	if IsAddOnLoaded('Gladdy') then
+		ElvUI_EltreumUI:GetGladdyProfile()
+		ElvUI_EltreumUI:Print('Gladdy profile has been set.')
+	end
+end
