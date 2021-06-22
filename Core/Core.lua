@@ -148,7 +148,31 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('UnitNameEnemyTotemName', 1)
 	SetCVar('UnitNameNPC', 1)
 	SetCVar("ShowClassColorInFriendlyNameplate", 1)
-	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+	SetCVar('statusTextDisplay', 'BOTH')
+	SetCVar('screenshotQuality', 10)
+	SetCVar('chatMouseScroll', 1)
+	SetCVar('wholeChatWindowClickable', 0)
+	SetCVar('showTutorials', 0)
+	SetCVar('UberTooltips', 1)
+	SetCVar('threatWarning', 3)
+	SetCVar('alwaysShowActionBars', 1)
+	SetCVar('lockActionBars', 1)
+	SetCVar('spamFilter', 0)
+	SetCVar('showQuestTrackingTooltips', 1)
+	SetCVar('fstack_preferParentKeys', 0) --Add back the frame names via fstack!
+
+	--Chat CVars
+	SetCVar('chatStyle', 'classic')
+	SetCVar('whisperMode', 'inline')
+	SetCVar('colorChatNamesByClass', 1)
+	SetCVar('chatClassColorOverride', 0)
+
+	_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:SetValue('SHIFT')
+	_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:RefreshValue()
+
+	if ElvUI_EltreumUI.Retail then
+		SetCVar('showNPETutorials', 0)
+	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		SetCVar("lootUnderMouse", 1)
 		SetCVar("chatBubbles", 1)
 		SetCVar("chatBubblesParty", 1)

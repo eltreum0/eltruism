@@ -61,10 +61,24 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	end
 end
 
-function ElvUI_EltreumUI:Initialize()
-	if E.private.install_complete and not E.private.ElvUI_EltreumUI.install_version then
-		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
+--gotta make use of ElvUI's delay system because for some reason if it the install appears instantly then the list of steps doesnt appear (although the install works)
+local finishedloading = 0
+function ElvUI_EltreumUI:DelayedInstall()
+	if finishedloading ~= 1 then
+		E:Delay(5, self.DelayedInstall, self)
+		finishedloading = 1
+	else
+		if not E.private.ElvUI_EltreumUI.install_version then
+			E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
+		end
 	end
+end
+
+function ElvUI_EltreumUI:Initialize()
+
+	--since now Eltruism has both ElvUI Cvars and ElvUI Chat setup builtin we can skip elvui setup
+	E.private.install_complete = E.version
+
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
 	--Register Events
 	ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
@@ -72,6 +86,9 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_END')
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD')
+	if not E.private.ElvUI_EltreumUI.install_version then
+		ElvUI_EltreumUI:RegisterEvent("PLAYER_ENTERING_WORLD", "DelayedInstall")
+	end
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEVEL_UP')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_ENABLED')
