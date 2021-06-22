@@ -3,18 +3,18 @@ local pairs = pairs
 
 -- for rare nameplates
 local rareclass = {
-    ['WARRIOR'] = "Eltreum-Class-Warrior",
-    ['PALADIN'] = "Eltreum-Class-Paladin",
-    ['HUNTER'] = "Eltreum-Class-Hunter",
-    ['ROGUE'] = "Eltreum-Class-Rogue",
-    ['PRIEST'] = "Eltreum-Class-Priest",
-    ['DEATHKNIGHT'] = "Eltreum-Class-DeathKnight",
-    ['SHAMAN'] = "Eltreum-Class-Shaman",
-    ['MAGE'] = "Eltreum-Class-Mage",
-    ['WARLOCK'] = "Eltreum-Class-Warlock",
-    ['MONK'] = "Eltreum-Class-Monk",
-    ['DRUID'] = "Eltreum-Class-Druid",
-    ['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
+	['WARRIOR'] = "Eltreum-Class-Warrior",
+	['PALADIN'] = "Eltreum-Class-Paladin",
+	['HUNTER'] = "Eltreum-Class-Hunter",
+	['ROGUE'] = "Eltreum-Class-Rogue",
+	['PRIEST'] = "Eltreum-Class-Priest",
+	['DEATHKNIGHT'] = "Eltreum-Class-DeathKnight",
+	['SHAMAN'] = "Eltreum-Class-Shaman",
+	['MAGE'] = "Eltreum-Class-Mage",
+	['WARLOCK'] = "Eltreum-Class-Warlock",
+	['MONK'] = "Eltreum-Class-Monk",
+	['DRUID'] = "Eltreum-Class-Druid",
+	['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
 }
 
 -- NamePlate Setup
@@ -463,7 +463,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["scale"] = 1.25
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["enable"] = true
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "ElvUI Blank"
-	    --activate only on non rare enemies due to EltreuRare working on them
+		--activate only on non rare enemies due to EltreuRare working on them
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["elite"] = true
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["minus"] = true
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["normal"] = true

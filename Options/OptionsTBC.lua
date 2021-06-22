@@ -153,7 +153,7 @@ if ElvUI_EltreumUI.TBC then
 										['2'] = '64x64',
 										['3'] = '128x128',
 									},
-					                style = 'radio',
+									style = 'radio',
 									get = function(info) return E.db.ElvUI_EltreumUI.cursor.size end,
   									set = function(info,value) ElvUI_EltreumUI:CursorSize(value) end,
 								},
@@ -1177,20 +1177,20 @@ if ElvUI_EltreumUI.TBC then
 								name = "",
 								},
 								sharedmediafont = {
-								     order = 8,
-								     type = 'select',
-								     width = "double",
-								     dialogControl = 'LSM30_Font',
-								     name = "Or choose a custom font",
-								     desc = 'Choose a different font from the preselected ones',
-								     values = AceGUIWidgetLSMlists.font,
-								     get = function()
-								          return E.db.ElvUI_EltreumUI.fonts.playerfont
-								     end,
-								     set = function(self,fontvalue)
-								          E.db.ElvUI_EltreumUI.fonts.playerfont = fontvalue
-								          ElvUI_EltreumUI:SetupCustomFont(fontvalue)
-								     end,
+									 order = 8,
+									 type = 'select',
+									 width = "double",
+									 dialogControl = 'LSM30_Font',
+									 name = "Or choose a custom font",
+									 desc = 'Choose a different font from the preselected ones',
+									 values = AceGUIWidgetLSMlists.font,
+									 get = function()
+										  return E.db.ElvUI_EltreumUI.fonts.playerfont
+									 end,
+									 set = function(self,fontvalue)
+										  E.db.ElvUI_EltreumUI.fonts.playerfont = fontvalue
+										  ElvUI_EltreumUI:SetupCustomFont(fontvalue)
+									 end,
 								},
 								addagaphereforoutlines = {
 								order = 9,
@@ -1733,12 +1733,12 @@ if ElvUI_EltreumUI.TBC then
 									desc = 'Set the level that LootText will be drawn to this',
 									order = 11,
 									values = {
-					                    ['BACKGROUND'] = 'Background',
-					                    ['LOW'] = 'Low',
-					                    ['MEDIUM'] = 'Medium',
-					                    ['HIGH'] = 'High',
-					                    ['DIALOG'] = 'Dialog',
-					                },
+										['BACKGROUND'] = 'Background',
+										['LOW'] = 'Low',
+										['MEDIUM'] = 'Medium',
+										['HIGH'] = 'High',
+										['DIALOG'] = 'Dialog',
+									},
 									style = 'radio',
 									disabled = function() return not E.db.ElvUI_EltreumUI.loottext.enable end,
 									get = function(info) return E.db.ElvUI_EltreumUI.loottext.strata end,
@@ -2113,18 +2113,18 @@ if ElvUI_EltreumUI.TBC then
 					order = 97,
 					args = {
 						changelogchoice = {
-						     order = 18,
-						     type = 'select',
-						     width = "double",
-						     style = 'dropdown',
-						     name = "Select a version:",
-						     desc = 'Choose a version to see its changelog',
-						     values = {
+							 order = 18,
+							 type = 'select',
+							 width = "double",
+							 style = 'dropdown',
+							 name = "Select a version:",
+							 desc = 'Choose a version to see its changelog',
+							 values = {
 								["2.0.0"] = "2.0.0",
 								["1.0.0"] = "1.0.0",
 							},
-						     get = function() return E.db.ElvUI_EltreumUI.changelog.version end,
-						     set = function(self,value) E.db.ElvUI_EltreumUI.changelog.version = value end,
+							 get = function() return E.db.ElvUI_EltreumUI.changelog.version end,
+							 set = function(self,value) E.db.ElvUI_EltreumUI.changelog.version = value end,
 						},
 						changelogtext = {
 							order = 19,

@@ -26,6 +26,7 @@ ElvUI_EltreumUI.Classic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 ElvUI_EltreumUI.TBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 
 function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
+	if not E.private.ElvUI_EltreumUI.install_version then return end
 	ElvUI_EltreumUI:LoadCommands()
 	ElvUI_EltreumUI:AFKmusic()
 	ElvUI_EltreumUI:LootText()
@@ -121,6 +122,7 @@ function ElvUI_EltreumUI:Initialize()
 		ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_CREATED')
 		ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_DESTROYED')
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
+		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW')
 		SetCVar('showInGameNavigation', 1)
 	end
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
@@ -130,6 +132,13 @@ function ElvUI_EltreumUI:Initialize()
 		end
 	end
 end
+
+function ElvUI_EltreumUI:GOSSIP_SHOW()
+	if myclass == 'ROGUE' then
+		ElvUI_EltreumUI:RogueAutoOpen()
+	end
+end
+
 
 function ElvUI_EltreumUI:UNIT_SPELLCAST_SUCCEEDED(unit)
 	if not unit == 'player' then return end

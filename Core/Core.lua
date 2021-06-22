@@ -93,37 +93,37 @@ end
 -- Ghost frame for Automatic Weakauras Positioning
 function ElvUI_EltreumUI:WAAnchor()
 	--Anchor for general weakauras, like those that replace actionbars
-    local EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", E.UIParent)
-    EltreumWAAnchor:SetParent("ElvUF_Player")
-    EltreumWAAnchor:SetFrameStrata("BACKGROUND")
-    --position the anchor around the place where the action bars would be
-    if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
-    	EltreumWAAnchor:Point("CENTER", E.UIParent, "CENTER", 0, -380)
-    elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
-    	EltreumWAAnchor:Point("CENTER", E.UIParent, "CENTER", 0, -250)
-    else
-    	EltreumWAAnchor:Point("CENTER", E.UIParent, "CENTER", 0, -380)
-    end
-    --EltreumWAAnchor:Hide()
-    EltreumWAAnchor:Size(250, 70)
-    --E:CreateMover(parent, name, textString, overlay, snapoffset, postdrag, types, shouldDisable, configString, ignoreSizeChanged)
-    E:CreateMover(EltreumWAAnchor, "MoverEltruismWA", "EltruismWA", nil, nil, nil, "ALL")
+	local EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", E.UIParent)
+	EltreumWAAnchor:SetParent("ElvUF_Player")
+	EltreumWAAnchor:SetFrameStrata("BACKGROUND")
+	--position the anchor around the place where the action bars would be
+	if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
+		EltreumWAAnchor:Point("CENTER", E.UIParent, "CENTER", 0, -380)
+	elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
+		EltreumWAAnchor:Point("CENTER", E.UIParent, "CENTER", 0, -250)
+	else
+		EltreumWAAnchor:Point("CENTER", E.UIParent, "CENTER", 0, -380)
+	end
+	--EltreumWAAnchor:Hide()
+	EltreumWAAnchor:Size(250, 70)
+	--E:CreateMover(parent, name, textString, overlay, snapoffset, postdrag, types, shouldDisable, configString, ignoreSizeChanged)
+	E:CreateMover(EltreumWAAnchor, "MoverEltruismWA", "EltruismWA", nil, nil, nil, "ALL")
 
-    --consumable weakauras, usually placed near player unitframe
-    local EltruismWAConsumablesAnchor = CreateFrame("Frame", "EltruismConsumables", ElvUF_Player)
-    EltruismWAConsumablesAnchor:SetParent("ElvUF_Player")
-    EltruismWAConsumablesAnchor:SetFrameStrata("BACKGROUND")
-    --postion the anchor right below the player unitframe
-    if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
-    	EltruismWAConsumablesAnchor:Point("LEFT", ElvUF_Player, 0, -75)
-    elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
-    	EltruismWAConsumablesAnchor:Point("LEFT", ElvUF_Player, 0, -42)
-    else
-    	EltruismWAConsumablesAnchor:Point("LEFT", ElvUF_Player, 0, -75)
-    end
-    EltruismWAConsumablesAnchor:Size(270, 30)
-    --EltruismWAConsumablesAnchor:Hide()
-    E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", "EltruismConsumables", nil, nil, nil, "ALL")
+	--consumable weakauras, usually placed near player unitframe
+	local EltruismWAConsumablesAnchor = CreateFrame("Frame", "EltruismConsumables", ElvUF_Player)
+	EltruismWAConsumablesAnchor:SetParent("ElvUF_Player")
+	EltruismWAConsumablesAnchor:SetFrameStrata("BACKGROUND")
+	--postion the anchor right below the player unitframe
+	if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
+		EltruismWAConsumablesAnchor:Point("LEFT", ElvUF_Player, 0, -75)
+	elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
+		EltruismWAConsumablesAnchor:Point("LEFT", ElvUF_Player, 0, -42)
+	else
+		EltruismWAConsumablesAnchor:Point("LEFT", ElvUF_Player, 0, -75)
+	end
+	EltruismWAConsumablesAnchor:Size(270, 30)
+	--EltruismWAConsumablesAnchor:Hide()
+	E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", "EltruismConsumables", nil, nil, nil, "ALL")
 end
 
 
@@ -154,12 +154,9 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('wholeChatWindowClickable', 0)
 	SetCVar('showTutorials', 0)
 	SetCVar('UberTooltips', 1)
-	SetCVar('threatWarning', 3)
 	SetCVar('alwaysShowActionBars', 1)
 	SetCVar('lockActionBars', 1)
 	SetCVar('spamFilter', 0)
-	SetCVar('showQuestTrackingTooltips', 1)
-	SetCVar('fstack_preferParentKeys', 0) --Add back the frame names via fstack!
 
 	--Chat CVars
 	SetCVar('chatStyle', 'classic')
@@ -172,6 +169,9 @@ function ElvUI_EltreumUI:SetupCVars()
 
 	if ElvUI_EltreumUI.Retail then
 		SetCVar('showNPETutorials', 0)
+		SetCVar('threatWarning', 3)
+		SetCVar('showQuestTrackingTooltips', 1)
+		SetCVar('fstack_preferParentKeys', 0) --Add back the frame names via fstack!
 	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		SetCVar("lootUnderMouse", 1)
 		SetCVar("chatBubbles", 1)

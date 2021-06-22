@@ -26,7 +26,6 @@ P.ElvUI_EltreumUI = {
 		enable = true,
 		widertransmog = true,
 		expandedstable = true,
-		rogueopen = true,
 	},
 
 	tbctalents = {
@@ -164,6 +163,7 @@ P.ElvUI_EltreumUI = {
 
 	questsettings = {
 		enable = true,
+		rogueopen = true,
 	},
 
 	loottext = {
@@ -176,6 +176,5 @@ P.ElvUI_EltreumUI = {
 		xOffset = 0,
 		yOffset = 200,
 		fontsetting = true,
-		--font = "Kimberley",
 	},
 }

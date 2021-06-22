@@ -23,8 +23,8 @@ end
 
 function ElvUI_EltreumUI:StopCombatMusic()
 	if E.private.ElvUI_EltreumUI.combatmusic.enable then
-			if dontstop == 1 then
-   				StopMusic()
-        	end
+		if dontstop == 1 then
+			StopMusic()
+		end
 	end
 end

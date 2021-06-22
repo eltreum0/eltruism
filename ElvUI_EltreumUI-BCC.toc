@@ -9,11 +9,11 @@
 ## DefaultState: enabled
 
 Init.lua
-Layouts\load_layoutstbc.xml
-Options\load_optionstbc.xml
 Core\load_core.xml
 Libs\Load_Libs.xml
 Media\load_media.xml
 Settings\load_settings.xml
 Modules\load_modules.xml
 Profiles\load_profiles.xml
+Layouts\load_layoutstbc.xml
+Options\load_optionstbc.xml

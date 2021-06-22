@@ -8,6 +8,7 @@ function ElvUI_EltreumUI:Changelogv2()
     v2.3.3
     -------
 Improved module loading between TBC/Classic/Retail
+Fixed missing Demon Hunter Power Bar due to the position being behind the nameplate
 
     v2.3.2
     -------

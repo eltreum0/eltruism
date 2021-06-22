@@ -29,69 +29,69 @@ if ElvUI_EltreumUI.Retail then
 					end
 				 -- Welcome Page and addon installed check
 				 	if (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ElvUI_WindTools")) then
-	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install "..E:TextGradient('Shadow and Light', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).." and "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).. " before starting this installation process")
-	                    PluginInstallFrame.Desc2:SetText("Curse doesn't allow selective dependencies for addons when it comes to World of Warcraft versions")
-	                    PluginInstallFrame.Desc3:SetText(E:TextGradient('Shadow and Light', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).." and "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." are required for Retail but not Classic that's why you are seeing this screen")
-	                    PluginInstallFrame.Desc4:SetText("Download them before continuing")
-	                    PluginInstallFrame.Next:Disable()
-	                elseif (not IsAddOnLoaded("ElvUI_SLE")) then
-	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light ', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).."before starting this installation process")
-	                    PluginInstallFrame.Next:Disable()
-	                elseif (not IsAddOnLoaded("AddOnSkins")) then
-	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install AddOnSkins before starting this installation process")
-	                    PluginInstallFrame.Next:Disable()
-	                elseif (not IsAddOnLoaded("ProjectAzilroka")) then
-	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install ProjectAzilroka before starting this installation process")
-	                    PluginInstallFrame.Next:Disable()
-	                elseif (not IsAddOnLoaded("ElvUI_WindTools")) then
-	                    PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." before starting this installation process")
-	                    PluginInstallFrame.Next:Disable()
-	                elseif (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("AddOnSkins")) then
-	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light ', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).."and AddOnSkins before starting this installation process")
-	                    PluginInstallFrame.Next:Disable()
-	                elseif (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ProjectAzilroka")) then
-	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light ', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).."and ProjectAzilroka before starting this installation process")
-	                    PluginInstallFrame.Next:Disable()
-	                elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("AddOnSkins")) then
-	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." and AddOnSkins before starting this installation process")
-	                    PluginInstallFrame.Next:Disable()
-	                elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ProjectAzilroka")) then
-	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." and ProjectAzilroka before starting this installation process")
-	                    PluginInstallFrame.Next:Disable()
-	                elseif (not IsAddOnLoaded("AddOnSkins")) and (not IsAddOnLoaded("ProjectAzilroka")) then
-	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install AddOnSkins and ProjectAzilroka before starting this installation process")
-	                    PluginInstallFrame.Next:Disable()
-	                elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("AddOnSkins")) then
-	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..", "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." and AddOnSkins before starting this installation process")
-	                    PluginInstallFrame.Next:Disable()
-	                elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ProjectAzilroka")) then
-	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..", "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." and ProjectAzilroka before starting this installation process")
-	                    PluginInstallFrame.Next:Disable()
-	                elseif (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ProjectAzilroka")) and (not IsAddOnLoaded("AddOnSkins")) then
-	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..", ProjectAzilroka and AddOnSkins before starting this installation process")
-	                    PluginInstallFrame.Next:Disable()
-	                else
+						PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+						PluginInstallFrame.Desc1:SetText("Make sure to install "..E:TextGradient('Shadow and Light', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).." and "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).. " before starting this installation process")
+						PluginInstallFrame.Desc2:SetText("Curse doesn't allow selective dependencies for addons when it comes to World of Warcraft versions")
+						PluginInstallFrame.Desc3:SetText(E:TextGradient('Shadow and Light', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).." and "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." are required for Retail but not Classic that's why you are seeing this screen")
+						PluginInstallFrame.Desc4:SetText("Download them before continuing")
+						PluginInstallFrame.Next:Disable()
+					elseif (not IsAddOnLoaded("ElvUI_SLE")) then
+						PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+						PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light ', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).."before starting this installation process")
+						PluginInstallFrame.Next:Disable()
+					elseif (not IsAddOnLoaded("AddOnSkins")) then
+						PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+						PluginInstallFrame.Desc1:SetText("Make sure to install AddOnSkins before starting this installation process")
+						PluginInstallFrame.Next:Disable()
+					elseif (not IsAddOnLoaded("ProjectAzilroka")) then
+						PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+						PluginInstallFrame.Desc1:SetText("Make sure to install ProjectAzilroka before starting this installation process")
+						PluginInstallFrame.Next:Disable()
+					elseif (not IsAddOnLoaded("ElvUI_WindTools")) then
+						PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+						PluginInstallFrame.Desc1:SetText("Make sure to install "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." before starting this installation process")
+						PluginInstallFrame.Next:Disable()
+					elseif (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("AddOnSkins")) then
+						PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+						PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light ', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).."and AddOnSkins before starting this installation process")
+						PluginInstallFrame.Next:Disable()
+					elseif (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ProjectAzilroka")) then
+						PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+						PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light ', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).."and ProjectAzilroka before starting this installation process")
+						PluginInstallFrame.Next:Disable()
+					elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("AddOnSkins")) then
+						PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+						PluginInstallFrame.Desc1:SetText("Make sure to install "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." and AddOnSkins before starting this installation process")
+						PluginInstallFrame.Next:Disable()
+					elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ProjectAzilroka")) then
+						PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+						PluginInstallFrame.Desc1:SetText("Make sure to install "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." and ProjectAzilroka before starting this installation process")
+						PluginInstallFrame.Next:Disable()
+					elseif (not IsAddOnLoaded("AddOnSkins")) and (not IsAddOnLoaded("ProjectAzilroka")) then
+						PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+						PluginInstallFrame.Desc1:SetText("Make sure to install AddOnSkins and ProjectAzilroka before starting this installation process")
+						PluginInstallFrame.Next:Disable()
+					elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("AddOnSkins")) then
+						PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+						PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..", "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." and AddOnSkins before starting this installation process")
+						PluginInstallFrame.Next:Disable()
+					elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ProjectAzilroka")) then
+						PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+						PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..", "..E:TextGradient('WindTools', 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." and ProjectAzilroka before starting this installation process")
+						PluginInstallFrame.Next:Disable()
+					elseif (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ProjectAzilroka")) and (not IsAddOnLoaded("AddOnSkins")) then
+						PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+						PluginInstallFrame.Desc1:SetText("Make sure to install"..E:TextGradient(' Shadow and Light', 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..", ProjectAzilroka and AddOnSkins before starting this installation process")
+						PluginInstallFrame.Next:Disable()
+					else
 						PluginInstallFrame.Next:Enable()
-	                    PluginInstallFrame.SubTitle:SetFormattedText("Welcome")
-	                    PluginInstallFrame.Desc1:SetText('This prompt will help you install ' ..ElvUI_EltreumUI.Name.. ' and import its settings')
-	                    PluginInstallFrame.Desc2:SetText('Please read the instructions to avoid issues')
-	                    PluginInstallFrame.Option1:Show()
-	                    PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
-	                    PluginInstallFrame.Option1:SetText('Skip Process')
-	                end
+						PluginInstallFrame.SubTitle:SetFormattedText("Welcome")
+						PluginInstallFrame.Desc1:SetText('This prompt will help you install ' ..ElvUI_EltreumUI.Name.. ' and import its settings')
+						PluginInstallFrame.Desc2:SetText('Please read the instructions to avoid issues')
+						PluginInstallFrame.Option1:Show()
+						PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
+						PluginInstallFrame.Option1:SetText('Skip Process')
+					end
 			end,
 			[2] = function()
 				PluginInstallFrame.SubTitle:SetText('Layouts')
@@ -141,12 +141,12 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Option1:SetText('Import GladiusEx')
 				if (not IsAddOnLoaded("GladiusEx")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("GladiusEx is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('GladiusEx adds many features not available on Elvui Arena frames')
+					PluginInstallFrame.Desc1:SetText("GladiusEx is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('GladiusEx adds many features not available on Elvui Arena frames')
 					PluginInstallFrame.Desc3:SetText('Such as diminishing cooldowns, enemy cast tracker, cooldown tracker')
 					PluginInstallFrame.Desc4:SetText('')
-	                PluginInstallFrame.Option1:Disable()
-	           	end
+					PluginInstallFrame.Option1:Disable()
+			   	end
 			end,
 			[5] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Details')
@@ -160,12 +160,12 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Option1:SetText('Setup Details')
 				if (not IsAddOnLoaded("Details")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("Details is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('Details is an advanced combat parser')
+					PluginInstallFrame.Desc1:SetText("Details is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('Details is an advanced combat parser')
 					PluginInstallFrame.Desc3:SetText('It uses less memory and is more efficient than alternatives')
 					PluginInstallFrame.Desc4:SetText('And has many plugins to choose from')
-	                PluginInstallFrame.Option1:Disable()
-	           	end
+					PluginInstallFrame.Option1:Disable()
+			   	end
 			end,
 			[6] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Boss Mods')
@@ -183,29 +183,29 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Option2:SetText('BigWigs')
 				if (not IsAddOnLoaded("DBM-Core")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("DBM is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('BigWigs uses BigWigs voice in its profile')
+					PluginInstallFrame.Desc1:SetText("DBM is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('BigWigs uses BigWigs voice in its profile')
 					PluginInstallFrame.Desc3:SetText('|cffff0000Your current settings will be lost, please back them up|r')
 					PluginInstallFrame.Desc4:SetText('Importance: |cff82B4ffOptional|r')
-	                PluginInstallFrame.Option1:Disable()
-	           	end
-	           	if (not IsAddOnLoaded("BigWigs")) then
+					PluginInstallFrame.Option1:Disable()
+			   	end
+			   	if (not IsAddOnLoaded("BigWigs")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("BigWigs is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('DBM uses DBM English by Calanon as a voice pack')
+					PluginInstallFrame.Desc1:SetText("BigWigs is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('DBM uses DBM English by Calanon as a voice pack')
 					PluginInstallFrame.Desc3:SetText('|cffff0000Your current settings will be lost, please back them up|r')
 					PluginInstallFrame.Desc4:SetText('Importance: |cff82B4ffOptional|r')
-	                PluginInstallFrame.Option2:Disable()
-	           	end
-	           	if (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) then
+					PluginInstallFrame.Option2:Disable()
+			   	end
+			   	if (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("Both DBM and BigWigs are not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('No boss mods found')
+					PluginInstallFrame.Desc1:SetText("Both DBM and BigWigs are not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('No boss mods found')
 					PluginInstallFrame.Desc3:SetText('Boss mods are highly recommended for modern encounters')
 					PluginInstallFrame.Desc4:SetText('')
 					PluginInstallFrame.Option1:Disable()
-	                PluginInstallFrame.Option2:Disable()
-	           	end
+					PluginInstallFrame.Option2:Disable()
+			   	end
 			end,
 			[7] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Exorsus Raid Tools')
@@ -223,13 +223,13 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Option2:SetText('Copy')
 				if (not IsAddOnLoaded("ExRT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("Exorsus Raid Tools is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('ExRT is a suite of tools for raiding')
+					PluginInstallFrame.Desc1:SetText("Exorsus Raid Tools is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('ExRT is a suite of tools for raiding')
 					PluginInstallFrame.Desc3:SetText('Includes tracking raid cooldowns and creating notes')
 					PluginInstallFrame.Desc4:SetText('Alongside attendance and other features')
-	                PluginInstallFrame.Option1:Disable()
-	                PluginInstallFrame.Option2:Disable()
-	           	end
+					PluginInstallFrame.Option1:Disable()
+					PluginInstallFrame.Option2:Disable()
+			   	end
 			end,
 			[8] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Combat Text')
@@ -246,29 +246,29 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Option2:SetText('FCT')
 				if (not IsAddOnLoaded("NameplateSCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("NameplateSCT is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('FCT profile will be used')
+					PluginInstallFrame.Desc1:SetText("NameplateSCT is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('FCT profile will be used')
 					PluginInstallFrame.Desc3:SetText('|cffff0000Your current settings will be lost, please back them up|r')
 					PluginInstallFrame.Desc4:SetText('Importance: |cff82B4ffOptional|r')
-	                PluginInstallFrame.Option1:Disable()
-	           	end
-	           	if (not IsAddOnLoaded("ElvUI_FCT")) then
+					PluginInstallFrame.Option1:Disable()
+			   	end
+			   	if (not IsAddOnLoaded("ElvUI_FCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("FCT is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('NameplateSCT profile will be used')
+					PluginInstallFrame.Desc1:SetText("FCT is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('NameplateSCT profile will be used')
 					PluginInstallFrame.Desc3:SetText('|cffff0000Your current settings will be lost, please back them up|r')
 					PluginInstallFrame.Desc4:SetText('Importance: |cff82B4ffOptional|r')
-	                PluginInstallFrame.Option2:Disable()
-	           	end
-	           	if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
+					PluginInstallFrame.Option2:Disable()
+			   	end
+			   	if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("NameplateSCT and FCT are not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('Combat text addons enhance the default Blizzard Combat Text')
+					PluginInstallFrame.Desc1:SetText("NameplateSCT and FCT are not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('Combat text addons enhance the default Blizzard Combat Text')
 					PluginInstallFrame.Desc3:SetText('NameplateSCT and FCT make the combat text float from the nameplate/frame')
 					PluginInstallFrame.Desc4:SetText('And add effects to them with minimal memory usage')
 					PluginInstallFrame.Option1:Disable()
-	                PluginInstallFrame.Option2:Disable()
-	           	end
+					PluginInstallFrame.Option2:Disable()
+			   	end
 			end,
 			[9] = function()
 				PluginInstallFrame.SubTitle:SetText('Immersion')
@@ -280,12 +280,12 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Option1:SetText('Import Immersion')
 				if (not IsAddOnLoaded("Immersion")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("Immersion is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('Immersion is an addon that changes the quest dialog with npcs')
+					PluginInstallFrame.Desc1:SetText("Immersion is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('Immersion is an addon that changes the quest dialog with npcs')
 					PluginInstallFrame.Desc3:SetText('It transforms them into a talking head with dialog options on the side')
 					PluginInstallFrame.Desc4:SetText('Including the ability to press number keys to select an option')
-	                PluginInstallFrame.Option1:Disable()
-	           	end
+					PluginInstallFrame.Option1:Disable()
+			   	end
 			end,
 			[10] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Dynamic Cam')
@@ -303,13 +303,13 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Option2:SetText('Copy')
 				if (not IsAddOnLoaded("DynamicCam")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("Dynamic Cam is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('DynamicCam is addon that modifies the behavior of the camera')
+					PluginInstallFrame.Desc1:SetText("Dynamic Cam is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('DynamicCam is addon that modifies the behavior of the camera')
 					PluginInstallFrame.Desc3:SetText('The profile uses some effects while questing')
 					PluginInstallFrame.Desc4:SetText('But in instances the effects are disabled')
-	                PluginInstallFrame.Option1:Disable()
-	                PluginInstallFrame.Option2:Disable()
-	           	end
+					PluginInstallFrame.Option1:Disable()
+					PluginInstallFrame.Option2:Disable()
+			   	end
 			end,
 			--[[[11] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('WeakAuras')
@@ -369,19 +369,19 @@ elseif ElvUI_EltreumUI.Classic then
 		tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 		Pages = {
 			[1] = function()
-	                if (not IsAddOnLoaded("AddOnSkins")) or (not IsAddOnLoaded("ProjectAzilroka")) then
-	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install AddOnSkins and Project Azilroka before starting this installation process")
-	                    PluginInstallFrame.Next:Disable()
-	                else
+					if (not IsAddOnLoaded("AddOnSkins")) or (not IsAddOnLoaded("ProjectAzilroka")) then
+						PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+						PluginInstallFrame.Desc1:SetText("Make sure to install AddOnSkins and Project Azilroka before starting this installation process")
+						PluginInstallFrame.Next:Disable()
+					else
 						PluginInstallFrame.Next:Enable()
-	                    PluginInstallFrame.SubTitle:SetFormattedText("Welcome")
-	                    PluginInstallFrame.Desc1:SetText('This prompt will help you install ' ..ElvUI_EltreumUI.Name.. ' and import its settings')
-	                    PluginInstallFrame.Desc2:SetText('Please read the instructions to avoid issues')
-	                    PluginInstallFrame.Option1:Show()
-	                    PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
-	                    PluginInstallFrame.Option1:SetText('Skip Process')
-	                end
+						PluginInstallFrame.SubTitle:SetFormattedText("Welcome")
+						PluginInstallFrame.Desc1:SetText('This prompt will help you install ' ..ElvUI_EltreumUI.Name.. ' and import its settings')
+						PluginInstallFrame.Desc2:SetText('Please read the instructions to avoid issues')
+						PluginInstallFrame.Option1:Show()
+						PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
+						PluginInstallFrame.Option1:SetText('Skip Process')
+					end
 			end,
 			[2] = function()
 				PluginInstallFrame.SubTitle:SetText('Layouts')
@@ -431,12 +431,12 @@ elseif ElvUI_EltreumUI.Classic then
 				PluginInstallFrame.Option1:SetText('Setup Details')
 				if (not IsAddOnLoaded("Details")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("Details is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('Details is an advanced combat parser')
+					PluginInstallFrame.Desc1:SetText("Details is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('Details is an advanced combat parser')
 					PluginInstallFrame.Desc3:SetText('It uses less memory and is more efficient than alternatives')
 					PluginInstallFrame.Desc4:SetText('And has many plugins to choose from')
-	                PluginInstallFrame.Option1:Disable()
-	           	end
+					PluginInstallFrame.Option1:Disable()
+			   	end
 			end,
 			[5] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Boss Mods')
@@ -454,29 +454,29 @@ elseif ElvUI_EltreumUI.Classic then
 				PluginInstallFrame.Option2:SetText('BigWigs')
 				if (not IsAddOnLoaded("DBM-Core")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("DBM is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('BigWigs uses BigWigs voice in its profile')
+					PluginInstallFrame.Desc1:SetText("DBM is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('BigWigs uses BigWigs voice in its profile')
 					PluginInstallFrame.Desc3:SetText('|cffff0000Your current settings will be lost, please back them up|r')
 					PluginInstallFrame.Desc4:SetText('Importance: |cff82B4ffOptional|r')
-	                PluginInstallFrame.Option1:Disable()
-	           	end
-	           	if (not IsAddOnLoaded("BigWigs")) then
+					PluginInstallFrame.Option1:Disable()
+			   	end
+			   	if (not IsAddOnLoaded("BigWigs")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("BigWigs is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('DBM uses DBM English by Calanon as a voice pack')
+					PluginInstallFrame.Desc1:SetText("BigWigs is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('DBM uses DBM English by Calanon as a voice pack')
 					PluginInstallFrame.Desc3:SetText('|cffff0000Your current settings will be lost, please back them up|r')
 					PluginInstallFrame.Desc4:SetText('Importance: |cff82B4ffOptional|r')
-	                PluginInstallFrame.Option2:Disable()
-	           	end
-	           	if (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) then
+					PluginInstallFrame.Option2:Disable()
+			   	end
+			   	if (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("Both DBM and BigWigs are not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('No boss mods found')
+					PluginInstallFrame.Desc1:SetText("Both DBM and BigWigs are not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('No boss mods found')
 					PluginInstallFrame.Desc3:SetText('Boss mods are highly recommended for modern encounters')
 					PluginInstallFrame.Desc4:SetText('')
 					PluginInstallFrame.Option1:Disable()
-	                PluginInstallFrame.Option2:Disable()
-	           	end
+					PluginInstallFrame.Option2:Disable()
+			   	end
 			end,
 			[6] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Combat Text')
@@ -489,12 +489,12 @@ elseif ElvUI_EltreumUI.Classic then
 				PluginInstallFrame.Option1:SetText('NameplateSCT')
 				if (not IsAddOnLoaded("NameplateSCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("NameplateSCT is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('Combat text addons enhance the default Blizzard Combat Text')
+					PluginInstallFrame.Desc1:SetText("NameplateSCT is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('Combat text addons enhance the default Blizzard Combat Text')
 					PluginInstallFrame.Desc3:SetText('NameplateSCT makes the combat text float from the nameplate')
 					PluginInstallFrame.Desc4:SetText('And add effects to them with minimal memory usage')
-	                PluginInstallFrame.Option1:Disable()
-	           	end
+					PluginInstallFrame.Option1:Disable()
+			   	end
 			end,
 			[7] = function()
 				PluginInstallFrame.SubTitle:SetText('Immersion')
@@ -506,12 +506,12 @@ elseif ElvUI_EltreumUI.Classic then
 				PluginInstallFrame.Option1:SetText('Import Immersion')
 				if (not IsAddOnLoaded("Immersion")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("Immersion is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('Immersion is an addon that changes the quest dialog with npcs')
+					PluginInstallFrame.Desc1:SetText("Immersion is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('Immersion is an addon that changes the quest dialog with npcs')
 					PluginInstallFrame.Desc3:SetText('It transforms them into a talking head with dialog options on the side')
 					PluginInstallFrame.Desc4:SetText('Including the ability to press number keys to select an option')
-	                PluginInstallFrame.Option1:Disable()
-	           	end
+					PluginInstallFrame.Option1:Disable()
+			   	end
 			end,
 			[8] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Dynamic Cam')
@@ -529,13 +529,13 @@ elseif ElvUI_EltreumUI.Classic then
 				PluginInstallFrame.Option2:SetText('Copy')
 				if (not IsAddOnLoaded("DynamicCam")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("Dynamic Cam is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('DynamicCam is addon that modifies the behavior of the camera')
+					PluginInstallFrame.Desc1:SetText("Dynamic Cam is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('DynamicCam is addon that modifies the behavior of the camera')
 					PluginInstallFrame.Desc3:SetText('The profile uses some effects while questing')
 					PluginInstallFrame.Desc4:SetText('But in instances the effects are disabled')
-	                PluginInstallFrame.Option1:Disable()
-	                PluginInstallFrame.Option2:Disable()
-	           	end
+					PluginInstallFrame.Option1:Disable()
+					PluginInstallFrame.Option2:Disable()
+			   	end
 			end,
 			[9] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Questie')
@@ -549,12 +549,12 @@ elseif ElvUI_EltreumUI.Classic then
 				PluginInstallFrame.Option1:SetText('Import')
 				if (not IsAddOnLoaded("Questie")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("Questie is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('Questie is an addon that modifies the objective tracker')
+					PluginInstallFrame.Desc1:SetText("Questie is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('Questie is an addon that modifies the objective tracker')
 					PluginInstallFrame.Desc3:SetText('As such Questie adds a lot of features to it not available by default')
 					PluginInstallFrame.Desc4:SetText('Including TomTom support')
-	                PluginInstallFrame.Option1:Disable()
-	           	end
+					PluginInstallFrame.Option1:Disable()
+			   	end
 			end,
 			[10] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Discord')
@@ -603,19 +603,19 @@ elseif ElvUI_EltreumUI.TBC then
 		tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 		Pages = {
 			[1] = function()
-	                if (not IsAddOnLoaded("AddOnSkins")) or (not IsAddOnLoaded("ProjectAzilroka")) then
-	                	PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
-	                    PluginInstallFrame.Desc1:SetText("Make sure to install AddOnSkins and Project Azilroka before starting this installation process")
-	                    PluginInstallFrame.Next:Disable()
-	                else
+					if (not IsAddOnLoaded("AddOnSkins")) or (not IsAddOnLoaded("ProjectAzilroka")) then
+						PluginInstallFrame.SubTitle:SetFormattedText("WARNING")
+						PluginInstallFrame.Desc1:SetText("Make sure to install AddOnSkins and Project Azilroka before starting this installation process")
+						PluginInstallFrame.Next:Disable()
+					else
 						PluginInstallFrame.Next:Enable()
-	                    PluginInstallFrame.SubTitle:SetFormattedText("Welcome")
-	                    PluginInstallFrame.Desc1:SetText('This prompt will help you install ' ..ElvUI_EltreumUI.Name.. ' and import its settings')
-	                    PluginInstallFrame.Desc2:SetText('Please read the instructions to avoid issues')
-	                    PluginInstallFrame.Option1:Show()
-	                    PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
-	                    PluginInstallFrame.Option1:SetText('Skip Process')
-	                end
+						PluginInstallFrame.SubTitle:SetFormattedText("Welcome")
+						PluginInstallFrame.Desc1:SetText('This prompt will help you install ' ..ElvUI_EltreumUI.Name.. ' and import its settings')
+						PluginInstallFrame.Desc2:SetText('Please read the instructions to avoid issues')
+						PluginInstallFrame.Option1:Show()
+						PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
+						PluginInstallFrame.Option1:SetText('Skip Process')
+					end
 			end,
 			[2] = function()
 				PluginInstallFrame.SubTitle:SetText('Layouts')
@@ -665,12 +665,12 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Option1:SetText('Setup Details')
 				if (not IsAddOnLoaded("Details")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("Details is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('Details is an advanced combat parser')
+					PluginInstallFrame.Desc1:SetText("Details is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('Details is an advanced combat parser')
 					PluginInstallFrame.Desc3:SetText('It uses less memory and is more efficient than alternatives')
 					PluginInstallFrame.Desc4:SetText('And has many plugins to choose from')
-	                PluginInstallFrame.Option1:Disable()
-	           	end
+					PluginInstallFrame.Option1:Disable()
+			   	end
 			end,
 			[5] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Boss Mods')
@@ -688,31 +688,71 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Option2:SetText('BigWigs')
 				if (not IsAddOnLoaded("DBM-Core")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("DBM is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('BigWigs uses BigWigs voice in its profile')
+					PluginInstallFrame.Desc1:SetText("DBM is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('BigWigs uses BigWigs voice in its profile')
 					PluginInstallFrame.Desc3:SetText('|cffff0000Your current settings will be lost, please back them up|r')
 					PluginInstallFrame.Desc4:SetText('Importance: |cff82B4ffOptional|r')
-	                PluginInstallFrame.Option1:Disable()
-	           	end
-	           	if (not IsAddOnLoaded("BigWigs")) then
+					PluginInstallFrame.Option1:Disable()
+			   	end
+			   	if (not IsAddOnLoaded("BigWigs")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("BigWigs is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('DBM uses DBM English by Calanon as a voice pack')
+					PluginInstallFrame.Desc1:SetText("BigWigs is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('DBM uses DBM English by Calanon as a voice pack')
 					PluginInstallFrame.Desc3:SetText('|cffff0000Your current settings will be lost, please back them up|r')
 					PluginInstallFrame.Desc4:SetText('Importance: |cff82B4ffOptional|r')
-	                PluginInstallFrame.Option2:Disable()
-	           	end
-	           	if (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) then
+					PluginInstallFrame.Option2:Disable()
+			   	end
+			   	if (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("Both DBM and BigWigs are not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('No boss mods found')
+					PluginInstallFrame.Desc1:SetText("Both DBM and BigWigs are not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('No boss mods found')
 					PluginInstallFrame.Desc3:SetText('Boss mods are highly recommended for modern encounters')
 					PluginInstallFrame.Desc4:SetText('')
 					PluginInstallFrame.Option1:Disable()
-	                PluginInstallFrame.Option2:Disable()
-	           	end
+					PluginInstallFrame.Option2:Disable()
+			   	end
 			end,
 			[6] = function()
+				PluginInstallFrame.SubTitle:SetFormattedText('Arenas')
+				PluginInstallFrame.Desc1:SetText('Import profiles for Gladius or Gladdy')
+				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffOptional|r')
+				PluginInstallFrame.Desc3:SetText('|cffff0000You might need to swap profiles to Eltreum in their settings|r')
+				PluginInstallFrame.Desc4:SetText('|cffff0000Your current settings will be lost, please back them up|r')
+				PluginInstallFrame.Option1:Enable()
+				PluginInstallFrame.Option1:Show()
+				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladius() end)
+				PluginInstallFrame.Option1:SetText('Gladius')
+				PluginInstallFrame.Option2:Enable()
+				PluginInstallFrame.Option2:Show()
+				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
+				PluginInstallFrame.Option2:SetText('Gladdy')
+				if (not IsAddOnLoaded("Gladius")) then
+					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
+					PluginInstallFrame.Desc1:SetText("Gladius is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('Gladdy profile will be used')
+					PluginInstallFrame.Desc3:SetText('|cffff0000You might need to swap profiles to Eltreum in their settings|r')
+					PluginInstallFrame.Desc4:SetText('|cffff0000Your current settings will be lost, please back them up|r')
+					PluginInstallFrame.Option1:Disable()
+				end
+				if (not IsAddOnLoaded("Gladdy")) then
+					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
+					PluginInstallFrame.Desc1:SetText("Gladdy is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('Gladius profile will be used')
+					PluginInstallFrame.Desc3:SetText('|cffff0000You might need to swap profiles to Eltreum in their settings|r')
+					PluginInstallFrame.Desc4:SetText('|cffff0000Your current settings will be lost, please back them up|r')
+					PluginInstallFrame.Option2:Disable()
+				end
+				if (not IsAddOnLoaded("Gladius")) and (not IsAddOnLoaded("Gladdy")) then
+					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
+					PluginInstallFrame.Desc1:SetText("Gladdy and Gladius are not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('Arena unitframes enhance the default Blizzard unitframes')
+					PluginInstallFrame.Desc3:SetText('Giving them additional features like DR tracking, trinket tracking, buffs and cooldowns')
+					PluginInstallFrame.Desc4:SetText('Being used by players for many years since 2008')
+					PluginInstallFrame.Option1:Disable()
+					PluginInstallFrame.Option2:Disable()
+				end
+			end,
+			[7] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Combat Text')
 				PluginInstallFrame.Desc1:SetText('Import profiles for NameplateSCT or ElvUI Floating Combat Text')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffOptional|r')
@@ -727,31 +767,31 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Option2:SetText('FCT')
 				if (not IsAddOnLoaded("NameplateSCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("NameplateSCT is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('FCT profile will be used')
+					PluginInstallFrame.Desc1:SetText("NameplateSCT is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('FCT profile will be used')
 					PluginInstallFrame.Desc3:SetText('|cffff0000Your current settings will be lost, please back them up|r')
 					PluginInstallFrame.Desc4:SetText('Importance: |cff82B4ffOptional|r')
-	                PluginInstallFrame.Option1:Disable()
-	           	end
-	           	if (not IsAddOnLoaded("ElvUI_FCT")) then
+					PluginInstallFrame.Option1:Disable()
+			   	end
+			   	if (not IsAddOnLoaded("ElvUI_FCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("FCT is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('NameplateSCT profile will be used')
+					PluginInstallFrame.Desc1:SetText("FCT is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('NameplateSCT profile will be used')
 					PluginInstallFrame.Desc3:SetText('|cffff0000Your current settings will be lost, please back them up|r')
 					PluginInstallFrame.Desc4:SetText('Importance: |cff82B4ffOptional|r')
-	                PluginInstallFrame.Option2:Disable()
-	           	end
-	           	if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
+					PluginInstallFrame.Option2:Disable()
+			   	end
+			   	if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("NameplateSCT and FCT are not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('Combat text addons enhance the default Blizzard Combat Text')
+					PluginInstallFrame.Desc1:SetText("NameplateSCT and FCT are not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('Combat text addons enhance the default Blizzard Combat Text')
 					PluginInstallFrame.Desc3:SetText('NameplateSCT and FCT make the combat text float from the nameplate/frame')
 					PluginInstallFrame.Desc4:SetText('And add effects to them with minimal memory usage')
 					PluginInstallFrame.Option1:Disable()
-	                PluginInstallFrame.Option2:Disable()
-	           	end
+					PluginInstallFrame.Option2:Disable()
+			   	end
 			end,
-			[7] = function()
+			[8] = function()
 				PluginInstallFrame.SubTitle:SetText('Immersion')
 				PluginInstallFrame.Desc1:SetText('Import Immersion settings configured for Eltruism')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffOptional|r')
@@ -761,14 +801,14 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Option1:SetText('Import Immersion')
 				if (not IsAddOnLoaded("Immersion")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("Immersion is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('Immersion is an addon that changes the quest dialog with npcs')
+					PluginInstallFrame.Desc1:SetText("Immersion is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('Immersion is an addon that changes the quest dialog with npcs')
 					PluginInstallFrame.Desc3:SetText('It transforms them into a talking head with dialog options on the side')
 					PluginInstallFrame.Desc4:SetText('Including the ability to press number keys to select an option')
-	                PluginInstallFrame.Option1:Disable()
-	           	end
+					PluginInstallFrame.Option1:Disable()
+			   	end
 			end,
-			[8] = function()
+			[9] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Dynamic Cam')
 				PluginInstallFrame.Desc1:SetText('Import Dynamic Cam profile')
 				PluginInstallFrame.Desc2:SetText('You might need to swap profiles in DynamicCam settings')
@@ -784,15 +824,15 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Option2:SetText('Copy')
 				if (not IsAddOnLoaded("DynamicCam")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("Dynamic Cam is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('DynamicCam is addon that modifies the behavior of the camera')
+					PluginInstallFrame.Desc1:SetText("Dynamic Cam is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('DynamicCam is addon that modifies the behavior of the camera')
 					PluginInstallFrame.Desc3:SetText('The profile uses some effects while questing')
 					PluginInstallFrame.Desc4:SetText('But in instances the effects are disabled')
-	                PluginInstallFrame.Option1:Disable()
-	                PluginInstallFrame.Option2:Disable()
-	           	end
+					PluginInstallFrame.Option1:Disable()
+					PluginInstallFrame.Option2:Disable()
+			   	end
 			end,
-			[9] = function()
+			[10] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Questie')
 				PluginInstallFrame.Desc1:SetText('Import Questie profile')
 				PluginInstallFrame.Desc2:SetText('You will need to reload and wait for questie to rebuild the database')
@@ -804,14 +844,14 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Option1:SetText('Import')
 				if (not IsAddOnLoaded("Questie")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000WARNING")
-	                PluginInstallFrame.Desc1:SetText("Questie is not installed or enabled")
-	                PluginInstallFrame.Desc2:SetText('Questie is an addon that modifies the objective tracker')
+					PluginInstallFrame.Desc1:SetText("Questie is not installed or enabled")
+					PluginInstallFrame.Desc2:SetText('Questie is an addon that modifies the objective tracker')
 					PluginInstallFrame.Desc3:SetText('As such Questie adds a lot of features to it not available by default')
 					PluginInstallFrame.Desc4:SetText('Including TomTom support')
-	                PluginInstallFrame.Option1:Disable()
-	           	end
+					PluginInstallFrame.Option1:Disable()
+			   	end
 			end,
-			[10] = function()
+			[11] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Discord')
 				PluginInstallFrame.Desc1:SetText('Join the Discord if you have any questions or issues')
 				PluginInstallFrame.Option1:Enable()
@@ -819,7 +859,7 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/cXfA56gmYW') 	end)
 				PluginInstallFrame.Option1:SetText('Discord')
 			end,
-			[11] = function()
+			[12] = function()
 				PluginInstallFrame.SubTitle:SetText('Installation Complete')
 				PluginInstallFrame.Desc1:SetText('You have completed the installation process, please click "Finished" to reload the UI')
 				PluginInstallFrame.Desc2:SetText('Importance: |cff82B4ffVery High|r')
@@ -836,12 +876,13 @@ elseif ElvUI_EltreumUI.TBC then
 			[3] = 'Fonts',
 			[4] = 'Details',
 			[5] = 'Boss Mods',
-			[6] = 'Combat Text',
-			[7] = 'Immersion',
-			[8] = 'Dynamic Cam',
-			[9] = 'Questie',
-			[10] = 'Discord',
-			[11] = 'Installation Complete',
+			[6] = 'Arenas',
+			[7] = 'Combat Text',
+			[8] = 'Immersion',
+			[9] = 'Dynamic Cam',
+			[10] = 'Questie',
+			[11] = 'Discord',
+			[12] = 'Installation Complete',
 		},
 		StepTitlesColor = {1, 1, 1},
 		StepTitlesColorSelected = {70/255, 130/255, 180/255},

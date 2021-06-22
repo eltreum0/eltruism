@@ -58,19 +58,19 @@ function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
 		return
 	elseif not E.private.ElvUI_EltreumUI then
 		return
-    elseif not E.private.ElvUI_EltreumUI.nameplatepower then
-    	return
-    end
+	elseif not E.private.ElvUI_EltreumUI.nameplatepower then
+		return
+	end
 
-    if E.db.ElvUI_EltreumUI.nameplatepower == nil then
-    	E.db.ElvUI_EltreumUI.nameplatepower = {
+	if E.db.ElvUI_EltreumUI.nameplatepower == nil then
+		E.db.ElvUI_EltreumUI.nameplatepower = {
 			autoadjustposition = true,
 			sizex = 132,
 			sizey = 6,
 			posy = 16,
 			texture = "Eltreum-Elvui-Norm",
 		}
-    end
+	end
 
 	if E.db.ElvUI_EltreumUI.nameplatepower.sizex == nil then
 		E.db.ElvUI_EltreumUI.nameplatepower.sizex = 132
@@ -128,8 +128,8 @@ function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
 	EltreumPowerBar.bg:SetSize(bgx, bgy)
 
 
-    if E.private.ElvUI_EltreumUI.nameplatepower.enable then
-        if not nameplate then
+	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
+		if not nameplate then
 			EltreumPowerBar:Hide()
 		elseif not unit == 'player' then
 			return
@@ -263,6 +263,11 @@ function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
 				if E.private.ElvUI_EltreumUI.nameplatepower.fury then
 					EltreumPowerBar:Show()
 					EltreumPowerBar:SetStatusBarColor(0.78823529, 0.254901960784, 0.99215686) --its fury
+					if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
+						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
+					else
+						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
+					end
 				end
 			elseif myclass == 'PRIEST' then
 				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then

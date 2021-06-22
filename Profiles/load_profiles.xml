@@ -7,6 +7,8 @@
 	<Script file='ExRT.lua'/>
 	<Script file='FCT.lua'/>
 	<Script file='GladiusEx.lua'/>
+	<Script file='Gladdy.lua'/>
+	<Script file='Gladius.lua'/>
 	<Script file='Immersion.lua'/>
 	<Script file='NameplateSCT.lua'/>
 	<Script file='ProjectAzilroka.lua'/>

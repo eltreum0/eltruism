@@ -853,22 +853,22 @@ if ElvUI_EltreumUI.Retail then
 									name = "",
 									},
 									sharedmediadeath = {
-									     order = 15,
-									     type = 'select',
-									     width = "double",
-									     dialogControl = 'LSM30_Sound',
-									     name = "Choose a sound:",
-									     desc = 'Choose a different sound from the preselected ones',
-									     values = AceGUIWidgetLSMlists.sound,
-									     disabled = function() return not E.db.ElvUI_EltreumUI.partyraiddeath.customenable or E.db.ElvUI_EltreumUI.partyraiddeath.enable end,
-									     get = function() return E.db.ElvUI_EltreumUI.partyraiddeath.playerdeathsound end,
-									     set = function(self,soundvalue)
-									          E.db.ElvUI_EltreumUI.partyraiddeath.playerdeathsound = soundvalue E:StaticPopup_Show('profile_RL')
-									          --ElvUI_EltreumUI:RaidDeath(soundvalue)
-									          --PlaySoundFile(soundvalue)
-									          --confirm = true
-									     end,
-									     confirm = true,
+										 order = 15,
+										 type = 'select',
+										 width = "double",
+										 dialogControl = 'LSM30_Sound',
+										 name = "Choose a sound:",
+										 desc = 'Choose a different sound from the preselected ones',
+										 values = AceGUIWidgetLSMlists.sound,
+										 disabled = function() return not E.db.ElvUI_EltreumUI.partyraiddeath.customenable or E.db.ElvUI_EltreumUI.partyraiddeath.enable end,
+										 get = function() return E.db.ElvUI_EltreumUI.partyraiddeath.playerdeathsound end,
+										 set = function(self,soundvalue)
+											  E.db.ElvUI_EltreumUI.partyraiddeath.playerdeathsound = soundvalue E:StaticPopup_Show('profile_RL')
+											  --ElvUI_EltreumUI:RaidDeath(soundvalue)
+											  --PlaySoundFile(soundvalue)
+											  --confirm = true
+										 end,
+										 confirm = true,
 									},]]--
 							},
 						},
@@ -956,7 +956,7 @@ if ElvUI_EltreumUI.Retail then
 										['2'] = '64x64',
 										['3'] = '128x128',
 									},
-					                style = 'radio',
+									style = 'radio',
 									get = function(info) return E.db.ElvUI_EltreumUI.cursor.size end,
   									set = function(info,value) ElvUI_EltreumUI:CursorSize(value) end,
 								},
@@ -1495,20 +1495,20 @@ if ElvUI_EltreumUI.Retail then
 								name = "",
 								},
 								sharedmediafont = {
-								     order = 8,
-								     type = 'select',
-								     width = "double",
-								     dialogControl = 'LSM30_Font',
-								     name = "Or choose a custom font",
-								     desc = 'Choose a different font from the preselected ones',
-								     values = AceGUIWidgetLSMlists.font,
-								     get = function()
-								          return E.db.ElvUI_EltreumUI.fonts.playerfont
-								     end,
-								     set = function(self,fontvalue)
-								          E.db.ElvUI_EltreumUI.fonts.playerfont = fontvalue
-								          ElvUI_EltreumUI:SetupCustomFont(fontvalue)
-								     end,
+									 order = 8,
+									 type = 'select',
+									 width = "double",
+									 dialogControl = 'LSM30_Font',
+									 name = "Or choose a custom font",
+									 desc = 'Choose a different font from the preselected ones',
+									 values = AceGUIWidgetLSMlists.font,
+									 get = function()
+										  return E.db.ElvUI_EltreumUI.fonts.playerfont
+									 end,
+									 set = function(self,fontvalue)
+										  E.db.ElvUI_EltreumUI.fonts.playerfont = fontvalue
+										  ElvUI_EltreumUI:SetupCustomFont(fontvalue)
+									 end,
 								},
 								addagaphereforoutlines = {
 									order = 9,
@@ -1680,8 +1680,8 @@ if ElvUI_EltreumUI.Retail then
 									type = 'toggle',
 									name = 'Enable',
 									desc = 'Enable the Rogue Order Hall Auto Open',
-									get = function(info) return E.db.ElvUI_EltreumUI.skins.rogueopen end,
-									set = function(info, value) E.db.ElvUI_EltreumUI.skins.rogueopen = value E:StaticPopup_Show('CONFIG_RL') end,
+									get = function(info) return E.db.ElvUI_EltreumUI.questsettings.rogueopen end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.questsettings.rogueopen = value end,
 								},
 							},
 						},
@@ -2141,12 +2141,12 @@ if ElvUI_EltreumUI.Retail then
 									desc = 'Set the level that LootText will be drawn to this',
 									order = 11,
 									values = {
-					                    ['BACKGROUND'] = 'Background',
-					                    ['LOW'] = 'Low',
-					                    ['MEDIUM'] = 'Medium',
-					                    ['HIGH'] = 'High',
-					                    ['DIALOG'] = 'Dialog',
-					                },
+										['BACKGROUND'] = 'Background',
+										['LOW'] = 'Low',
+										['MEDIUM'] = 'Medium',
+										['HIGH'] = 'High',
+										['DIALOG'] = 'Dialog',
+									},
 									style = 'radio',
 									disabled = function() return not E.db.ElvUI_EltreumUI.loottext.enable end,
 									get = function(info) return E.db.ElvUI_EltreumUI.loottext.strata end,
@@ -2215,16 +2215,16 @@ if ElvUI_EltreumUI.Retail then
 									set = function(_, value) E.db.ElvUI_EltreumUI.loottext.fontsetting = value E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								--[[loottextlsmfont = {
-								     order = 17,
-								     type = 'select',
-								     width = "double",
-								     dialogControl = 'LSM30_Font',
-								     name = "Choose a Custom Font",
-								     desc = 'Choose one of the fonts available111:',
-								     values = AceGUIWidgetLSMlists.font,
-								     --disabled = function() return E.db.ElvUI_EltreumUI.loottext.fontsetting == false end,
-								     get = function() return E.db.ElvUI_EltreumUI.loottext.font end,
-								     set = function(self,fontvalue) E.db.ElvUI_EltreumUI.loottext.font = fontvalue end,
+									 order = 17,
+									 type = 'select',
+									 width = "double",
+									 dialogControl = 'LSM30_Font',
+									 name = "Choose a Custom Font",
+									 desc = 'Choose one of the fonts available111:',
+									 values = AceGUIWidgetLSMlists.font,
+									 --disabled = function() return E.db.ElvUI_EltreumUI.loottext.fontsetting == false end,
+									 get = function() return E.db.ElvUI_EltreumUI.loottext.font end,
+									 set = function(self,fontvalue) E.db.ElvUI_EltreumUI.loottext.font = fontvalue end,
 								},]]--
 							},
 						},
@@ -2594,18 +2594,18 @@ if ElvUI_EltreumUI.Retail then
 					order = 97,
 					args = {
 						changelogchoice = {
-						     order = 18,
-						     type = 'select',
-						     width = "double",
-						     style = 'dropdown',
-						     name = "Select a version:",
-						     desc = 'Choose a version to see its changelog',
-						     values = {
+							 order = 18,
+							 type = 'select',
+							 width = "double",
+							 style = 'dropdown',
+							 name = "Select a version:",
+							 desc = 'Choose a version to see its changelog',
+							 values = {
 								["2.0.0"] = "2.0.0",
 								["1.0.0"] = "1.0.0",
 							},
-						     get = function() return E.db.ElvUI_EltreumUI.changelog.version end,
-						     set = function(self,value) E.db.ElvUI_EltreumUI.changelog.version = value end,
+							 get = function() return E.db.ElvUI_EltreumUI.changelog.version end,
+							 set = function(self,value) E.db.ElvUI_EltreumUI.changelog.version = value end,
 						},
 						changelogtext = {
 							order = 19,

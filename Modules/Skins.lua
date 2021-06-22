@@ -26,18 +26,18 @@ function ElvUI_EltreumUI:SkinsInit()
 end
 
 local classIcons = {
-    ['WARRIOR'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Warrior",
-    ['PALADIN'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Paladin",
-    ['HUNTER'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Hunter",
-    ['ROGUE'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Rogue",
-    ['PRIEST'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Priest",
-    ['DEATHKNIGHT'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DeathKnight",
-    ['SHAMAN'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Shaman",
-    ['MAGE'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Mage",
-    ['WARLOCK'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Warlock",
-    ['MONK'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Monk",
-    ['DRUID'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Druid",
-    ['DEMONHUNTER'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunter",
+	['WARRIOR'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Warrior",
+	['PALADIN'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Paladin",
+	['HUNTER'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Hunter",
+	['ROGUE'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Rogue",
+	['PRIEST'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Priest",
+	['DEATHKNIGHT'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DeathKnight",
+	['SHAMAN'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Shaman",
+	['MAGE'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Mage",
+	['WARLOCK'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Warlock",
+	['MONK'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Monk",
+	['DRUID'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Druid",
+	['DEMONHUNTER'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunter",
 }
 
 local classFrame = CreateFrame("Frame", nil, UIParent)
@@ -70,7 +70,7 @@ function ElvUI_EltreumUI:Skins()
 			if not IsAddOnLoaded("Blizzard_TalentUI") then
 				LoadAddOn("Blizzard_TalentUI")
 			end
-            --assert(IsAddOnLoaded("Blizzard_TalentUI"), "Talent UI not loaded")
+			--assert(IsAddOnLoaded("Blizzard_TalentUI"), "Talent UI not loaded")
 
 			--hide the scroll
 			if _G.PlayerTalentFrameScrollFrameScrollBar then
@@ -110,7 +110,7 @@ function ElvUI_EltreumUI:Skins()
 			if not IsAddOnLoaded("Blizzard_TalentUI") then
 				LoadAddOn("Blizzard_TalentUI")
 			end
-            --assert(IsAddOnLoaded("Blizzard_TalentUI"), "Talent UI not loaded")
+			--assert(IsAddOnLoaded("Blizzard_TalentUI"), "Talent UI not loaded")
 
 			--hide the scroll
 			if _G.TalentFrameScrollFrameScrollBar then
@@ -164,9 +164,9 @@ function ElvUI_EltreumUI:Skins()
 				LevelUpDisplay.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
 				LevelUpDisplay.StatusLine2:SetStatusBarColor(R, G, B, 0.7)
 				_G.LevelUpDisplay.challengeModeBits:Kill()
-	    		_G.LevelUpDisplay.scenarioBits:Kill()
-	    		_G.LevelUpDisplay.scenarioFiligree:Kill()
-	    		_G.LevelUpDisplay.SpellBucketFrame:Kill()
+				_G.LevelUpDisplay.scenarioBits:Kill()
+				_G.LevelUpDisplay.scenarioFiligree:Kill()
+				_G.LevelUpDisplay.SpellBucketFrame:Kill()
 				--/script LevelUpDisplay:Show()
 			end
 			if BossBanner then

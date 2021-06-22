@@ -140,8 +140,8 @@ function ElvUI_EltreumUI:CastCursor()
 			},
 		}
 		local QUAD_POINTS = {
-			{ 'TOPLEFT',     'TOP'    },
-			{ 'TOPRIGHT',    'RIGHT'  },
+			{ 'TOPLEFT',	 'TOP'	},
+			{ 'TOPRIGHT',	'RIGHT'  },
 			{ 'BOTTOMRIGHT', 'BOTTOM' },
 			{ 'BOTTOMLEFT',  'LEFT'   },
 		}
@@ -246,13 +246,13 @@ function ElvUI_EltreumUI:CastCursor()
 				return 
 			end
 			self.dur = dur
-			local rev    = self.reverse
+			local rev	= self.reverse
 			local maxdur = self.max
 			local radius = self.radius
 			local angle  = 360 * ( rev and maxdur-dur or dur ) / maxdur
 			local qangle = angle % 90
 			local quad   = floor(angle/90) + 1
-			local tex    = self.textures[quad]
+			local tex	= self.textures[quad]
 			local pquad  = self.quad
 			if quad~=pquad then
 				if pquad>0 and pquad<5 then
@@ -274,7 +274,7 @@ function ElvUI_EltreumUI:CastCursor()
 			end
 		end
 		local function Setup(frame)
-			local cfg     = frame.db
+			local cfg	 = frame.db
 			local radius  = cfg.radius
 			local r,g,b,a = unpack(cfg.color)
 			frame:SetScale(1)

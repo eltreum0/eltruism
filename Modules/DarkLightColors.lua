@@ -20,6 +20,13 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["target"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "FORCE_OFF"
+		E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
+		E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
+		E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
+		E.db["unitframe"]["colors"]["transparentAurabars"] = false
+		E.db["unitframe"]["colors"]["transparentCastbar"] = false
+		E.db["unitframe"]["colors"]["transparentHealth"] = false
+		E.db["unitframe"]["colors"]["transparentPower"] = false
 
 		--setup namecolors
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
@@ -36,6 +43,22 @@ function ElvUI_EltreumUI:DarkMode()
 		end
 		--E:StaggeredUpdateAll(nil, true)
 end
+
+local unitframeclass = {
+	['WARRIOR'] = "Eltreum-Class-Warrior",
+	['PALADIN'] = "Eltreum-Class-Paladin",
+	['HUNTER'] = "Eltreum-Class-Hunter",
+	['ROGUE'] = "Eltreum-Class-Rogue",
+	['PRIEST'] = "Eltreum-Class-Priest",
+	['DEATHKNIGHT'] = "Eltreum-Class-DeathKnight",
+	['SHAMAN'] = "Eltreum-Class-Shaman",
+	['MAGE'] = "Eltreum-Class-Mage",
+	['WARLOCK'] = "Eltreum-Class-Warlock",
+	['MONK'] = "Eltreum-Class-Monk",
+	['DRUID'] = "Eltreum-Class-Druid",
+	['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
+}
+
 
 function ElvUI_EltreumUI:LightMode()
 	if not E.db.movers then E.db.movers = {} end
@@ -57,6 +80,13 @@ function ElvUI_EltreumUI:LightMode()
 		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
 		E.db["unitframe"]["units"]["target"]["colorOverride"] = "USE_DEFAULT"
 		E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "USE_DEFAULT"
+		E.db["auras"]["buffs"]["barTexture"] = (unitframeclass[E.myclass])
+		E.db["auras"]["debuffs"]["barTexture"] = (unitframeclass[E.myclass])
+		E.db["unitframe"]["statusbar"] = (unitframeclass[E.myclass])
+		E.db["unitframe"]["colors"]["transparentAurabars"] = false
+		E.db["unitframe"]["colors"]["transparentCastbar"] = false
+		E.db["unitframe"]["colors"]["transparentHealth"] = false
+		E.db["unitframe"]["colors"]["transparentPower"] = false
 
 		--setup namecolors
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
