@@ -86,7 +86,7 @@ if ElvUI_EltreumUI.Retail then
 					else
 						PluginInstallFrame.Next:Enable()
 						PluginInstallFrame.SubTitle:SetFormattedText(L["Welcome"])
-						PluginInstallFrame.Desc1:SetText(L["This prompt will help you install "]..ElvUI_EltreumUI.Name..L["and import its settings"])
+						PluginInstallFrame.Desc1:SetText(L["This prompt will help you install "]..ElvUI_EltreumUI.Name..L[" and import its settings"])
 						PluginInstallFrame.Desc2:SetText(L["Please read the instructions to avoid issues"])
 						PluginInstallFrame.Option1:Show()
 						PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
@@ -376,7 +376,7 @@ elseif ElvUI_EltreumUI.Classic then
 					else
 						PluginInstallFrame.Next:Enable()
 						PluginInstallFrame.SubTitle:SetFormattedText(L["Welcome"])
-						PluginInstallFrame.Desc1:SetText(L["This prompt will help you install "]..ElvUI_EltreumUI.Name..L["and import its settings"])
+						PluginInstallFrame.Desc1:SetText(L["This prompt will help you install "]..ElvUI_EltreumUI.Name..L[" and import its settings"])
 						PluginInstallFrame.Desc2:SetText(L["Please read the instructions to avoid issues"])
 						PluginInstallFrame.Option1:Show()
 						PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
@@ -628,7 +628,7 @@ elseif ElvUI_EltreumUI.TBC then
 					else
 						PluginInstallFrame.Next:Enable()
 						PluginInstallFrame.SubTitle:SetFormattedText(L["Welcome"])
-						PluginInstallFrame.Desc1:SetText(L["This prompt will help you install "]..ElvUI_EltreumUI.Name..L["and import its settings"])
+						PluginInstallFrame.Desc1:SetText(L["This prompt will help you install "]..ElvUI_EltreumUI.Name..L[" and import its settings"])
 						PluginInstallFrame.Desc2:SetText(L["Please read the instructions to avoid issues"])
 						PluginInstallFrame.Option1:Show()
 						PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)

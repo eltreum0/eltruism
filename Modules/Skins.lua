@@ -143,6 +143,9 @@ function ElvUI_EltreumUI:Skins()
 			end
 		end
 	end
+	--Levelupdisplay becomes EventToastManager
+	--seems to still use gline and gline2
+	--need to investigate eventtoastmanager.lua
 
 	-- Color level up display and boss banner by Aftermathh
 	if ElvUI_EltreumUI.Retail then
@@ -218,6 +221,8 @@ function ElvUI_EltreumUI:WiderTransmog()
 			_G.WardrobeTransmogFrame.ModelScene:SetWidth(450)
 			_G.WardrobeTransmogFrame.ModelScene:SetHeight(450)
 			--left side
+
+			--for 9.1 remove modelscene
 			_G.WardrobeTransmogFrame.ModelScene.HeadButton:ClearAllPoints()
 			_G.WardrobeTransmogFrame.ModelScene.HeadButton:SetPoint("TOP", _G.WardrobeTransmogFrame.ModelScene, "TOP", -260, -60)
 			--right side
