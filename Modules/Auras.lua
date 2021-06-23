@@ -63,7 +63,7 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = allhealerplayerbuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		elseif type == 'Eltruism' then
 			if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
@@ -71,7 +71,7 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = Eltruismhealerplayerbuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		end
 	elseif frame == 'target' then
@@ -81,7 +81,7 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = allhealertargetbuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		elseif type == 'Eltruism' then
 			if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
@@ -89,7 +89,7 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = Eltruismhealertargetbuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		end
 	elseif frame == 'focus' then
@@ -99,7 +99,7 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = allhealerfocusbuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		elseif type == 'Eltruism' then
 			if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
@@ -107,7 +107,7 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = Eltruismhealerfocusbuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		end
 	elseif frame == 'boss' then
@@ -117,7 +117,7 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = allhealerbossbuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		elseif type == 'Eltruism' then
 			if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
@@ -125,7 +125,7 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = Eltruismhealerbossbuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		end
 	elseif frame == 'nameplate' then
@@ -137,7 +137,7 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = allnpenemyplayerbuffs
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = allnpenemynpcbuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		elseif type == 'Eltruism' then
 			if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
@@ -147,12 +147,12 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = Eltruismnpenemyplayerbuffs
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = Eltruismnpenemynpcbuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		end
 	end
 	E:StaggeredUpdateAll(nil, true)
-	ElvUI_EltreumUI:Print('Buff filters were setup')
+	ElvUI_EltreumUI:Print(L["Buff filters were setup"])
 end
 
 function ElvUI_EltreumUI:SetupDebuffs(frame, type)
@@ -163,7 +163,7 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = allhealerplayerdebuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		elseif type == 'Eltruism' then
 			if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
@@ -171,7 +171,7 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = Eltruismhealerplayerdebuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		end
 	elseif frame == 'target' then
@@ -181,7 +181,7 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = allhealertargetdebuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		elseif type == 'Eltruism' then
 			if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
@@ -189,7 +189,7 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = Eltruismhealertargetdebuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		end
 	elseif frame == 'focus' then
@@ -199,7 +199,7 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = allhealerfocusdebuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		elseif type == 'Eltruism' then
 			if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
@@ -207,7 +207,7 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = Eltruismhealerfocusdebuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		end
 	elseif frame == 'boss' then
@@ -217,7 +217,7 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = allhealerbossdebuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		elseif type == 'Eltruism' then
 			if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
@@ -225,7 +225,7 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 			elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 				E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = Eltruismhealerbossdebuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		end
 	elseif frame == 'nameplate' then
@@ -237,7 +237,7 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = allnpenemyplayerdebuffs
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = allnpenemynpcdebuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		elseif type == 'Eltruism' then
 			if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
@@ -247,10 +247,10 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = Eltruismnpenemyplayerdebuffs
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = Eltruismnpenemynpcdebuffs
 			else
-				ElvUI_EltreumUI:Print('You need to be using an Eltruism profile in order to use this function')
+				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
 		end
 	end
 	E:StaggeredUpdateAll(nil, true)
-	ElvUI_EltreumUI:Print('Debuff filters were setup')
+	ElvUI_EltreumUI:Print(L["Debuff filters were setup"])
 end

@@ -26,7 +26,19 @@ local GUILD_EVENT_LOG = GUILD_EVENT_LOG
 --chat fading/mouseover/combathide
 local leftfaderbutton = 0  -- when 1 it can fade, when 0 it cannot
 local rightfaderbutton = 0 -- same as above
+
 function ElvUI_EltreumUI:DynamicChatFade(event)
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then
+		return
+	elseif not E.db.ElvUI_EltreumUI then
+		return
+	elseif not E.db.ElvUI_EltreumUI.chat then
+		return
+	end
+	if E.db.ElvUI_EltreumUI.chat.invertclick then
+		leftfaderbutton = 1
+		rightfaderbutton = 1
+	end
 	if E.db.ElvUI_EltreumUI.chat.enable then
 		--register events left chat panel
 		LeftChatPanel:RegisterEvent("PLAYER_REGEN_DISABLED")
@@ -308,5 +320,5 @@ function ElvUI_EltreumUI:SetupChat()
 		_G.LeftChatToggleButton:Click()
 	end
 
-	ElvUI_EltreumUI:Print('ElvUI Chat has been Set')
+	ElvUI_EltreumUI:Print(L["ElvUI Chat has been Set"])
 end

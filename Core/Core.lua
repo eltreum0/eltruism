@@ -5,7 +5,7 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local print = _G.print
 local GetCVar = _G.GetCVar
-
+--local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 --todo
 --maybe add a function for WorldTextScale
 --maybe one for floatingcombattextRepChanges also
@@ -74,19 +74,19 @@ end
 --Resolution check for font outline
 function ElvUI_EltreumUI:ResolutionOutline()
 	if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
-		ElvUI_EltreumUI:Print('4K resolution detected, setting fonts to default mode.')
+		ElvUI_EltreumUI:Print(L["4K resolution detected, setting fonts to default mode."])
 	elseif GetCVar('gxFullscreenResolution') == '2560x1440' or GetCVar('gxWindowedResolution') == "2560x1440"  then
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
-		ElvUI_EltreumUI:Print('1440p resolution detected, setting fonts to outline mode.')
+		ElvUI_EltreumUI:Print(L["1440p resolution detected, setting fonts to outline mode."])
 	elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
-		ElvUI_EltreumUI:Print('1080p resolution detected, setting fonts to outline mode.')
+		ElvUI_EltreumUI:Print(L["1080p resolution detected, setting fonts to outline mode."])
 	elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto"  then
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
-		ElvUI_EltreumUI:Print('Fonts were set to Outline due to your resolution.')
+		ElvUI_EltreumUI:Print(L["Fonts were set to Outline due to your resolution."])
 	else
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
-		ElvUI_EltreumUI:Print('Fonts were set to Outline due to your resolution.')
+		ElvUI_EltreumUI:Print(L["Fonts were set to Outline due to your resolution."])
 	end
 end
 
@@ -123,7 +123,7 @@ function ElvUI_EltreumUI:WAAnchor()
 	end
 	EltruismWAConsumablesAnchor:Size(270, 30)
 	--EltruismWAConsumablesAnchor:Hide()
-	E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", "EltruismConsumables", nil, nil, nil, "ALL")
+	E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", L["EltruismConsumables"], nil, nil, nil, "ALL")
 end
 
 
@@ -177,7 +177,7 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar("chatBubbles", 1)
 		SetCVar("chatBubblesParty", 1)
 	end
-	ElvUI_EltreumUI:Print('General CVars have been set.')
+	ElvUI_EltreumUI:Print(L["General CVars have been set."])
 end
 
 -- CVars NamePlates
@@ -199,14 +199,14 @@ function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('nameplateTargetBehindMaxDistance', 40)
 	SetCVar('nameplateShowEnemies', 1)
 	SetCVar("nameplateShowFriends", 1)
-	ElvUI_EltreumUI:Print('NamePlate CVars have been set.')
+	ElvUI_EltreumUI:Print(L["NamePlate CVars have been set."])
 end
 
 -- AddOnSkins Profile
 function ElvUI_EltreumUI:AddonSetupAS()
 	if IsAddOnLoaded('AddOnSkins') then
 		ElvUI_EltreumUI:GetASProfile()
-		ElvUI_EltreumUI:Print('AddOnSkins profile has been set.')
+		ElvUI_EltreumUI:Print(L["AddOnSkins profile has been set."])
 	end
 end
 
@@ -214,7 +214,7 @@ end
 function ElvUI_EltreumUI:AddonSetupImmersion()
 	if IsAddOnLoaded('Immersion') then
 		ElvUI_EltreumUI:GetImmersionProfile()
-		ElvUI_EltreumUI:Print('Immersion profile has been set.')
+		ElvUI_EltreumUI:Print(L["Immersion profile has been set."])
 	end
 end
 
@@ -222,7 +222,7 @@ end
 function ElvUI_EltreumUI:AddonSetupBW()
 	if IsAddOnLoaded('BigWigs') then
 		ElvUI_EltreumUI:GetBigWigsProfile()
-		ElvUI_EltreumUI:Print('BigWigs profile has been set.')
+		ElvUI_EltreumUI:Print(L["BigWigs profile has been set."])
 	end
 end
 
@@ -230,7 +230,7 @@ end
 function ElvUI_EltreumUI:AddonSetupDBM()
 	if IsAddOnLoaded('DBM-Core') then
 		ElvUI_EltreumUI:GetDBMProfile()
-		ElvUI_EltreumUI:Print('DBM profile has been set.')
+		ElvUI_EltreumUI:Print(L["DBM profile has been set."])
 	end
 end
 
@@ -238,7 +238,7 @@ end
 function ElvUI_EltreumUI:AddonSetupDT()
 	if IsAddOnLoaded('Details') then
 		ElvUI_EltreumUI:GetDetailsProfile()
-		ElvUI_EltreumUI:Print('Details profile has been set.')
+		ElvUI_EltreumUI:Print(L["Details profile has been set."])
 	end
 end
 
@@ -246,7 +246,7 @@ end
 function ElvUI_EltreumUI:AddonSetupDynamicCam()
 	if IsAddOnLoaded('DynamicCam') then
 		ElvUI_EltreumUI:GetDynamicCamProfile()
-		ElvUI_EltreumUI:Print('Dynamic Cam profile has been set.')
+		ElvUI_EltreumUI:Print(L["Dynamic Cam profile has been set."])
 	end
 end
 
@@ -254,7 +254,7 @@ end
 function ElvUI_EltreumUI:AddonSetupGladiusEx()
 	if IsAddOnLoaded('GladiusEx') then
 		ElvUI_EltreumUI:GetGladiusExProfile()
-		ElvUI_EltreumUI:Print('GladiusEx profile has been set.')
+		ElvUI_EltreumUI:Print(L["GladiusEx profile has been set."])
 	end
 end
 
@@ -262,7 +262,7 @@ end
 function ElvUI_EltreumUI:AddonSetupExRT()
 	if IsAddOnLoaded('ExRT') then
 		ElvUI_EltreumUI:GetExRTProfile()
-		ElvUI_EltreumUI:Print('Exorsus Raid Tools profile has been set.')
+		ElvUI_EltreumUI:Print(L["Exorsus Raid Tools profile has been set."])
 	end
 end
 
@@ -270,7 +270,7 @@ end
 function ElvUI_EltreumUI:AddonSetupPA()
 	if IsAddOnLoaded('ProjectAzilroka') then
 		ElvUI_EltreumUI:GetPAProfile()
-		ElvUI_EltreumUI:Print('ProjectAzilroka profile has been set.')
+		ElvUI_EltreumUI:Print(L["ProjectAzilroka profile has been set."])
 	end
 end
 
@@ -278,7 +278,7 @@ end
 function ElvUI_EltreumUI:AddonSetupQuestie()
 	if IsAddOnLoaded('Questie') then
 		ElvUI_EltreumUI:GetQuestieProfile()
-		ElvUI_EltreumUI:Print('Questie profile has been set.')
+		ElvUI_EltreumUI:Print(L["Questie profile has been set."])
 	end
 end
 
@@ -290,7 +290,7 @@ function ElvUI_EltreumUI:AddonSetupNameplateSCT()
 		if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			SetCVar("floatingCombatTextCombatDamage", 0)
 		end
-		ElvUI_EltreumUI:Print('NameplateSCT profile has been set.')
+		ElvUI_EltreumUI:Print(L["NameplateSCT profile has been set."])
 	end
 end
 
@@ -302,7 +302,7 @@ function ElvUI_EltreumUI:AddonSetupFCT()
 		if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			SetCVar("floatingCombatTextCombatDamage", 0)
 		end
-		ElvUI_EltreumUI:Print('Floating Combat Text profile has been set.')
+		ElvUI_EltreumUI:Print(L["Floating Combat Text profile has been set."])
 	end
 end
 
@@ -310,7 +310,7 @@ end
 function ElvUI_EltreumUI:SetupGladius()
 	if IsAddOnLoaded('Gladius') then
 		ElvUI_EltreumUI:GetGladiusProfile()
-		ElvUI_EltreumUI:Print('Gladius profile has been set.')
+		ElvUI_EltreumUI:Print(L["Gladius profile has been set."])
 	end
 end
 
@@ -318,6 +318,6 @@ end
 function ElvUI_EltreumUI:SetupGladdy()
 	if IsAddOnLoaded('Gladdy') then
 		ElvUI_EltreumUI:GetGladdyProfile()
-		ElvUI_EltreumUI:Print('Gladdy profile has been set.')
+		ElvUI_EltreumUI:Print(L["Gladdy profile has been set."])
 	end
 end

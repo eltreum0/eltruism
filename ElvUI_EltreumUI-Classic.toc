@@ -9,6 +9,7 @@
 ## DefaultState: enabled
 
 Init.lua
+Localization\Load_localization.xml
 Core\load_core.xml
 Libs\Load_Libs.xml
 Media\load_media.xml

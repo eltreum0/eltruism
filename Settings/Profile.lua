@@ -20,6 +20,7 @@ P.ElvUI_EltreumUI = {
 		rightfader = true,
 		leftcombathide = true,
 		rightcombathide = false,
+		invertclick = false,
 	},
 
 	skins = {

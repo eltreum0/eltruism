@@ -12,7 +12,7 @@ ElvUF.Tags.Methods['name:eltruism:abbreviate'] = function(unit)
 	end
 	return name
 end
-E:AddTagInfo('name:eltruism:abbreviate', ElvUI_EltreumUI.Name, "Abbreviates the unit name once it goes over 16 characters, made by Azilroka")
+E:AddTagInfo('name:eltruism:abbreviate', ElvUI_EltreumUI.Name, L["Abbreviates the unit name once it goes over 16 characters, made by Azilroka"])
 
 
 --https://wowpedia.fandom.com/wiki/UI_escape_sequences
@@ -39,7 +39,7 @@ ElvUF.Tags.Methods['eltruism:class:all'] = function(unit)
 	icon = classIcons[classes]
 	return icon
 end
-E:AddTagInfo('eltruism:class:all', ElvUI_EltreumUI.Name, "Shows Class Icons by Blizzard on all targets")
+E:AddTagInfo('eltruism:class:all', ElvUI_EltreumUI.Name, L["Shows Class Icons by Blizzard on all targets"])
 
 --ty repooc!
 ElvUF.Tags.Events['eltruism:class:player'] = 'UNIT_NAME_UPDATE'
@@ -50,4 +50,4 @@ ElvUF.Tags.Methods['eltruism:class:player'] = function(unit)
 	icon = classIcons[classes]
 	return icon
 end
-E:AddTagInfo('eltruism:class:player', ElvUI_EltreumUI.Name, "Shows Class Icons by Blizzard only on Player targets")
+E:AddTagInfo('eltruism:class:player', ElvUI_EltreumUI.Name, L["Shows Class Icons by Blizzard only on Player targets"])

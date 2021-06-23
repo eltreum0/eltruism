@@ -152,8 +152,8 @@ function ElvUI_EltreumUI:LootText()
 		local LOOT_ITEM_PUSHED_SELF = _G.LOOT_ITEM_PUSHED_SELF
 
 		function LootTextframe.OnEvent(self, event, arg1, arg2)
-			if event == "UI_ERROR_MESSAGE" and arg2 == "Inventory is full." then
-					CombatText_AddMessage("INVENTORY IS FULL", CombatText_StandardScroll, 1, 0, 0)
+			if event == "UI_ERROR_MESSAGE" and arg2 == L["Inventory is full."] then
+					CombatText_AddMessage(L["INVENTORY IS FULL"], CombatText_StandardScroll, 1, 0, 0)
 			end
 			if (event == "CHAT_MSG_LOOT") then
 				itemLink, amount = getLoot(arg1)
@@ -176,11 +176,11 @@ function ElvUI_EltreumUI:LootText()
 			if E.db.ElvUI_EltreumUI.loottext.currency then
 				if (event == "CHAT_MSG_MONEY") then
 					local moneystring = Deformat(arg1, LOOT_MONEY_SPLIT) or Deformat(arg1, YOU_LOOT_MONEY)
-					if moneystring:match("Silver") and not moneystring:match("Gold") then
+					if moneystring:match(L["Silver"]) and not moneystring:match(L["Gold"]) then
 							CombatText_AddMessage("|T ".. 133786 ..":18:18:0:0|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
-					elseif moneystring:match("Copper") and not moneystring:match("Silver") and not moneystring:match("Gold") then
+					elseif moneystring:match(L["Copper"]) and not moneystring:match("Silver") and not moneystring:match(L["Gold"]) then
 							CombatText_AddMessage("|T ".. 133788 ..":18:18:0:0|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
-					elseif moneystring:match("Gold") then
+					elseif moneystring:match(L["Gold"]) then
 							CombatText_AddMessage("|T ".. 133784 ..":18:18:0:0|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
 					else
 						CombatText_AddMessage("|T ".. 133784 ..":18:18:0:0|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
@@ -201,10 +201,10 @@ function ElvUI_EltreumUI:LootText()
 							local lootTexture = info["iconFileID"]
 							local lootName = info["name"]
 							local lootQuantity = amount
-							if itemLink:match("Soul Ash") then
+							if itemLink:match(L["Soul Ash"]) then
 								CombatText_AddMessage("|T ".. 3743738 ..":18:18:0:0|t  "..lootQuantity.." x "..itemLink, CombatText_StandardScroll, 255, 255, 255)
 							end
-							if not itemLink:match("Soul Ash") then
+							if not itemLink:match(L["Soul Ash"]) then
 								if lootQuantity >= 2 then
 									CombatText_AddMessage("|T ".. lootTexture ..":18:18:0:0|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, 255, 255, 255)
 								else

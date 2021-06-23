@@ -3005,7 +3005,7 @@ if ElvUI_EltreumUI.Retail then
 		end
 
 		E:StaggeredUpdateAll(nil, true)
-		ElvUI_EltreumUI:Print('Layout has been set.')
+		ElvUI_EltreumUI:Print(L["Layout has been set."])
 	end
 end
 
@@ -3030,7 +3030,7 @@ function ElvUI_EltreumUI:AlternativeGroupsDPS()
 		ElvUI_EltreumUI:Print('Alternative Group, Raid and Raid40 layout has been set')
 		--ReloadUI()
 	else
-		ElvUI_EltreumUI:Print('The alternative layout was made for the Eltruism DPS/Tank profile, please switch to it to use it')
+		ElvUI_EltreumUI:Print(L["The alternative layout was made for the Eltruism DPS/Tank profile, please switch to it to use it"])
 	end
 end
 
@@ -3055,6 +3055,6 @@ function ElvUI_EltreumUI:OriginalGroupsDPS()
 		ElvUI_EltreumUI:Print('Alternative Group, Raid and Raid40 layout has been set')
 		--ReloadUI()
 	else
-		ElvUI_EltreumUI:Print('The original layout was made for the Eltruism DPS/Tank profile, please switch to it to use it')
+		ElvUI_EltreumUI:Print(L["The original layout was made for the Eltruism DPS/Tank profile, please switch to it to use it"])
 	end
 end

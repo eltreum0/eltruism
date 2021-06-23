@@ -431,7 +431,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			-- Set CVars
 			ElvUI_EltreumUI:NameplateCVars()
 			end
-			ElvUI_EltreumUI:Print('NamePlates have been setup.')
+			ElvUI_EltreumUI:Print(L["NamePlates have been setup."])
 	end
 end
 -- Style Filter Setup
@@ -552,6 +552,6 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplate"]["filters"]["EltreumLevel"]["triggers"]["playerCanAttack"] = true
 
 		E:StaggeredUpdateAll(nil, true)
-		ElvUI_EltreumUI:Print('NamePlate Style Filters have been setup.')
+		ElvUI_EltreumUI:Print(L["NamePlate Style Filters have been setup."])
 	end
 end

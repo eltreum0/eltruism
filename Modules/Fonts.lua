@@ -588,7 +588,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 		E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = fontvalue
 
 	E:StaggeredUpdateAll(nil, true)
-	ElvUI_EltreumUI:Print('Your custom font has been set.')
+	ElvUI_EltreumUI:Print(L["Your custom font has been set."])
 end
 
 function ElvUI_EltreumUI:SetupFontsKimberley(addon)
@@ -1177,7 +1177,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "Kimberley"
 
 		E:StaggeredUpdateAll(nil, true)
-		ElvUI_EltreumUI:Print('Kimberley Font has been set.')
+		ElvUI_EltreumUI:Print(L["Kimberley Font has been set."])
 end
 
 function ElvUI_EltreumUI:SetupFontsExo2(addon)
@@ -1766,7 +1766,7 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "Exo2 Extra Bold"
 
 	E:StaggeredUpdateAll(nil, true)
-	ElvUI_EltreumUI:Print('Exo2 Font has been set.')
+	ElvUI_EltreumUI:Print(L["Exo2 Font has been set."])
 end
 
 function ElvUI_EltreumUI:SetupFontsGotham(addon)
@@ -2353,7 +2353,7 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "GothamNarrow Black"
 
 		E:StaggeredUpdateAll(nil, true)
-		ElvUI_EltreumUI:Print('GothamNarrow Black Font has been set.')
+		ElvUI_EltreumUI:Print(L["GothamNarrow Black Font has been set."])
 end
 
 function ElvUI_EltreumUI:SetupFontsRoboto(addon)
@@ -2942,7 +2942,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 
 		E:StaggeredUpdateAll(nil, true)
 
-	ElvUI_EltreumUI:Print('Roboto Font has been set.')
+	ElvUI_EltreumUI:Print(L["Roboto Font has been set."])
 end
 
 function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
