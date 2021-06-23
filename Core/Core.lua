@@ -5,10 +5,6 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local print = _G.print
 local GetCVar = _G.GetCVar
---local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
---todo
---maybe add a function for WorldTextScale
---maybe one for floatingcombattextRepChanges also
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
@@ -132,6 +128,25 @@ function ElvUI_EltreumUI:SetupScale()
 	E.global["general"]["UIScale"] = 0.7
 	SetCVar('uiScale', 0.7)
 end
+
+--World text Scale
+function ElvUI_EltreumUI:WorldTextScale(value)
+	E.db.ElvUI_EltreumUI.otherstuff.worldtextscale = value
+	SetCVar('WorldTextScale', value)
+end
+
+--[[function ElvUI_EltreumUI:floatingrep(value)
+	E.db.ElvUI_EltreumUI.otherstuff.floatingrep = value
+	local rep = value
+	local floatrep
+	if rep == false then
+		floatrep = 0
+	elseif rep == true then
+		floatrep = 1
+	end
+	SetCVar('floatingCombatTextRepChanges', floatrep)
+end]]--
+
 
 -- CVars General
 function ElvUI_EltreumUI:SetupCVars()

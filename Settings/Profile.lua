@@ -178,4 +178,10 @@ P.ElvUI_EltreumUI = {
 		yOffset = 200,
 		fontsetting = true,
 	},
+
+	otherstuff ={
+		worldtextscale = 1,
+		--floatingrep = false,
+	},
+
 }

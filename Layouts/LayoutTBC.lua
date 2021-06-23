@@ -710,7 +710,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["auras"]["buffs"]["horizontalSpacing"] = 7
 			E.db["auras"]["buffs"]["maxWraps"] = 2
 			E.db["auras"]["buffs"]["seperateOwn"] = -1
-			E.db["auras"]["buffs"]["size"] = 34
+			E.db["auras"]["buffs"]["size"] = 32
 			E.db["auras"]["buffs"]["sortDir"] = "+"
 			E.db["auras"]["buffs"]["timeFont"] = "Kimberley"
 			E.db["auras"]["buffs"]["timeFontOutline"] = "THICKOUTLINE"
@@ -730,7 +730,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["auras"]["debuffs"]["countFontSize"] = 12
 			E.db["auras"]["debuffs"]["fadeThreshold"] = 5
 			E.db["auras"]["debuffs"]["horizontalSpacing"] = 7
-			E.db["auras"]["debuffs"]["size"] = 34
+			E.db["auras"]["debuffs"]["size"] = 32
 			E.db["auras"]["debuffs"]["sortDir"] = "+"
 			E.db["auras"]["debuffs"]["timeFont"] = "Kimberley"
 			E.db["auras"]["debuffs"]["timeFontOutline"] = "THICKOUTLINE"
@@ -765,7 +765,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["movers"]["ElvNP_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,334"
 			E.db["movers"]["ElvUF_AssistMover"] = "BOTTOM,ElvUIParent,BOTTOM,155,45"
 			E.db["movers"]["ElvUF_BodyGuardMover"] = "TOP,ElvUIParent,TOP,0,-440"
-			E.db["movers"]["ElvUF_FocusMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-420,522"
+			E.db["movers"]["ElvUF_FocusMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,424,-204"
 			E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-247"
 			E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,563,283"
 			E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,560,183"
@@ -1459,7 +1459,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["auras"]["buffs"]["fadeThreshold"] = 10
 			E.db["auras"]["buffs"]["horizontalSpacing"] = 7
 			E.db["auras"]["buffs"]["maxWraps"] = 2
-			E.db["auras"]["buffs"]["size"] = 34
+			E.db["auras"]["buffs"]["size"] = 32
 			E.db["auras"]["buffs"]["sortDir"] = "+"
 			E.db["auras"]["buffs"]["timeFont"] = "Kimberley"
 			E.db["auras"]["buffs"]["timeFontOutline"] = "THICKOUTLINE"
@@ -1479,7 +1479,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["auras"]["debuffs"]["countFontSize"] = 12
 			E.db["auras"]["debuffs"]["fadeThreshold"] = 5
 			E.db["auras"]["debuffs"]["horizontalSpacing"] = 7
-			E.db["auras"]["debuffs"]["size"] = 34
+			E.db["auras"]["debuffs"]["size"] = 32
 			E.db["auras"]["debuffs"]["sortDir"] = "+"
 			E.db["auras"]["debuffs"]["timeFont"] = "Kimberley"
 			E.db["auras"]["debuffs"]["timeFontOutline"] = "THICKOUTLINE"
@@ -1511,7 +1511,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["movers"]["ElvAB_8"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,275"
 			E.db["movers"]["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,310"
 			E.db["movers"]["ElvUF_AssistMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,130,-523"
-			E.db["movers"]["ElvUF_FocusMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,358,-531"
+			E.db["movers"]["ElvUF_FocusMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,424,-204"
 			E.db["movers"]["ElvUF_PartyMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,87"
 			E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,311,352"
 			E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,336"

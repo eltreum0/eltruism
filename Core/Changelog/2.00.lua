@@ -7,8 +7,10 @@ function ElvUI_EltreumUI:Changelogv2()
 	return[[
     v2.3.4
     -------
-
-
+Added Localization Support (only English is live at the moment)
+Added World Text Scale option
+Fixed overlapping debuffs on nameplates due to Nameplate Power Bar
+Moved the Focus to the top left side since on the right side there are boss frames and Arena frames and it should not overlap the Alternate Unitframes
 
     v2.3.3
     -------
