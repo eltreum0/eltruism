@@ -324,7 +324,7 @@ if ElvUI_EltreumUI.Retail then
 			end,]]--
 			[11] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Discord')
-				PluginInstallFrame.Desc1:SetText(L["'Join the Discord if you have any questions or issues (English Support)"])
+				PluginInstallFrame.Desc1:SetText(L["Join the Discord if you have any questions or issues (English Support)"])
 				PluginInstallFrame.Option1:Enable()
 				PluginInstallFrame.Option1:Show()
 				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/cXfA56gmYW') 	end)
@@ -578,7 +578,7 @@ elseif ElvUI_EltreumUI.Classic then
 			end,
 			[10] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Discord')
-				PluginInstallFrame.Desc1:SetText(L["'Join the Discord if you have any questions or issues (English Support)"])
+				PluginInstallFrame.Desc1:SetText(L["Join the Discord if you have any questions or issues (English Support)"])
 				PluginInstallFrame.Option1:Enable()
 				PluginInstallFrame.Option1:Show()
 				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/cXfA56gmYW') 	end)
@@ -870,7 +870,7 @@ elseif ElvUI_EltreumUI.TBC then
 			end,
 			[11] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Discord')
-				PluginInstallFrame.Desc1:SetText(L["'Join the Discord if you have any questions or issues (English Support)"])
+				PluginInstallFrame.Desc1:SetText(L["Join the Discord if you have any questions or issues (English Support)"])
 				PluginInstallFrame.Option1:Enable()
 				PluginInstallFrame.Option1:Show()
 				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/cXfA56gmYW') 	end)
@@ -887,19 +887,19 @@ elseif ElvUI_EltreumUI.TBC then
 			end,
 		},
 		StepTitles = {
-			[1] = 'Welcome',
+			[1] = L["Welcome"],
 			--[[[2] = 'ProjectAzilroka',]]--
-			[2] = 'Layouts',
-			[3] = 'Fonts',
+			[2] = L["Layouts"],
+			[3] = L["Fonts"],
 			[4] = 'Details',
-			[5] = 'Boss Mods',
-			[6] = 'Arenas',
-			[7] = 'Combat Text',
+			[6] = L["Boss Mods"],
+			[6] = L["Arenas"],
+			[7] = L["Combat Text"],
 			[8] = 'Immersion',
 			[9] = 'Dynamic Cam',
 			[10] = 'Questie',
 			[11] = 'Discord',
-			[12] = 'Installation Complete',
+			[12] = L["Installation Complete"],
 		},
 		StepTitlesColor = {1, 1, 1},
 		StepTitlesColorSelected = {70/255, 130/255, 180/255},
