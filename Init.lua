@@ -142,6 +142,7 @@ function ElvUI_EltreumUI:Initialize()
 		ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_DESTROYED')
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
 		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW')
+		ElvUI_EltreumUI:RegisterEvent('TRANSMOGRIFY_OPEN')
 		SetCVar('showInGameNavigation', 1)
 	end
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
@@ -158,6 +159,12 @@ function ElvUI_EltreumUI:GOSSIP_SHOW()
 	end
 end
 
+
+function ElvUI_EltreumUI:TRANSMOGRIFY_OPEN()
+	if ElvUI_EltreumUI.Retail then
+		ElvUI_EltreumUI:WiderTransmog()
+	end
+end
 
 function ElvUI_EltreumUI:UNIT_SPELLCAST_SUCCEEDED(unit)
 	if not unit == 'player' then return end

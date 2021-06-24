@@ -260,8 +260,6 @@ function ElvUI_EltreumUI:WiderTransmog()
 			_G.WardrobeTransmogFrame.Inset.BG:SetAllPoints(_G.WardrobeTransmogFrame)
 			--_G.WardrobeTransmogFrame.Inset.BG:Hide()
 
-
-
 			--right side
 
 			--hands button
@@ -304,6 +302,11 @@ function ElvUI_EltreumUI:WiderTransmog()
 			_G.WardrobeTransmogFrame.ModelScene:SetHeight(450)
 			--left side
 
+			--dropdown
+			_G.WardrobeOutfitDropDown:ClearAllPoints()
+			_G.WardrobeOutfitDropDown:SetPoint("TOPLEFT", _G.WardrobeFrame, 0, -30)
+			--_G.WardrobeFrame.WardrobeOutfitDropDown:SetPoint("TOPLEFT",_G.WardrobeFrame -10, -60)
+
 			--for 9.1 remove modelscene
 			_G.WardrobeTransmogFrame.ModelScene.HeadButton:ClearAllPoints()
 			_G.WardrobeTransmogFrame.ModelScene.HeadButton:SetPoint("TOP", _G.WardrobeTransmogFrame.ModelScene, "TOP", -260, -60)
@@ -325,9 +328,6 @@ function ElvUI_EltreumUI:WiderTransmog()
 		end
 	end
 end
-
-
-
 
 --based on Improved Stable Frame by Cybeloras
 function ElvUI_EltreumUI:ExpandedStable()
