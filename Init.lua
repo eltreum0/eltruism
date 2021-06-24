@@ -65,6 +65,9 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	else
 		SetCVar("floatingCombatTextCombatDamage", 0)
 	end
+	--test functions
+	ElvUI_EltreumUI:BorderTests()
+	--end of tests
 end
 
 --gotta make use of ElvUI's delay system because for some reason if it the install appears instantly then the list of steps doesnt appear (although the install works)
@@ -187,6 +190,7 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	if E.private["nameplates"]["enable"] == true then
 		ElvUI_EltreumUI:NamePlateOptions()
 		ElvUI_EltreumUI:NameplatePower()
+		--ElvUI_EltreumUI:BorderTests()
 	end
 end
 
