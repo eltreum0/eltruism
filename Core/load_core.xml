@@ -5,7 +5,6 @@
 	<Script file='Commands.lua'/>
 	<Script file='Core.lua'/>
 	<Script file='Install.lua'/>
-	<Script file='SetupNameplates.lua'/>
 	<Script file='Tags.lua'/>
 	<Script file='VersionCheck.lua'/>
 </Ui>
