@@ -5,6 +5,13 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelogv2()
 	return[[
+    v2.3.5
+    -------
+Tweak chat hide so that it will hide without a mouse click
+Prepared for 9.1
+Changed classpower on nameplates that was defaulting to class color when it was meant not to
+LootText will now have trimmed icons without the grey border
+
     v2.3.4
     -------
 Added Localization Support (only English is live at the moment)
