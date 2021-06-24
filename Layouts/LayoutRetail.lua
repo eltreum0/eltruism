@@ -68,7 +68,7 @@ if ElvUI_EltreumUI.Retail then
 			E.private["sle"]["unitframe"]["statusbarTextures"]["aura"] = true
 			E.private["sle"]["actionbars"]["checkedColor"]["a"] = 1
 			E.private["sle"]["actionbars"]["checkedColor"]["g"] = 0
-			--[[if ElvUI_EltreumUI.Retail then
+			--[[  --viewport sometimes errors idk why
 				E.db["sle"]["misc"]["viewport"]["left"] = {}
 				E.db["sle"]["misc"]["viewport"]["left"] = 0
 				E.db["sle"]["misc"]["viewport"]["right"] = {}
@@ -77,7 +77,7 @@ if ElvUI_EltreumUI.Retail then
 				E.db["sle"]["misc"]["viewport"]["top"] = 0
 				E.db["sle"]["misc"]["viewport"]["bottom"] = {}
 				E.db["sle"]["misc"]["viewport"]["bottom"] = 0
-			end]]--
+			]]--
 
 			-- Actionbars
 			E.db["sle"]["actionbars"]["vehicle"]["buttonspacing"] = 1

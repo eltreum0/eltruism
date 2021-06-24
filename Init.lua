@@ -68,21 +68,39 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 end
 
 --gotta make use of ElvUI's delay system because for some reason if it the install appears instantly then the list of steps doesnt appear (although the install works)
-local finishedloading = 0
+--[[local finishedloading = 0
 function ElvUI_EltreumUI:DelayedInstall()
 	if finishedloading ~= 1 then
-		E:Delay(5, self.DelayedInstall, self)
+		E:Delay(1, self.DelayedInstall, self)
 		finishedloading = 1
+		--print("delayed install")
 	else
 		if not E.private.ElvUI_EltreumUI.install_version then
 			E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
+			--print("prompted install")
 		end
+	end
+end]]--
+
+function ElvUI_EltreumUI:HidePopups()
+	E:StaticPopup_Hide("INCOMPATIBLE_ADDON")
+	E:StaticPopup_Hide('DISABLE_INCOMPATIBLE_ADDON')
+	if E:IsAddOnEnabled("ElvUI_WindTools") then
+		local W = unpack(WindTools)
+		local function WindtoolsCompatHideWhileInstall()
+			WTCompatibiltyFrame:Kill()
+		end
+		hooksecurefunc(W, "ConstructCompatibiltyFrame", WindtoolsCompatHideWhileInstall)
 	end
 end
 
 function ElvUI_EltreumUI:Initialize()
 	--since now Eltruism has both ElvUI Cvars and ElvUI Chat setup builtin we can skip elvui setup
 	E.private.install_complete = E.version
+	if not E.private.ElvUI_EltreumUI.install_version then
+		ElvUI_EltreumUI:HidePopups()
+		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
+	end
 	--register the plugin config
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
 	--Register Events
@@ -91,9 +109,9 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_END')
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD')
-	if not E.private.ElvUI_EltreumUI.install_version then
+	--[[if not E.private.ElvUI_EltreumUI.install_version then
 		ElvUI_EltreumUI:RegisterEvent("PLAYER_ENTERING_WORLD", "DelayedInstall")
-	end
+	end]]--
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEVEL_UP')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_ENABLED')

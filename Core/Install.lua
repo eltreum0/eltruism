@@ -18,15 +18,6 @@ if ElvUI_EltreumUI.Retail then
 		tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 		Pages = {
 			[1] = function()
-					E:StaticPopup_Hide("INCOMPATIBLE_ADDON")
-					E:StaticPopup_Hide('DISABLE_INCOMPATIBLE_ADDON')
-					if E:IsAddOnEnabled("ElvUI_WindTools") then
-						local W = unpack(WindTools)
-						local function WindtoolsCompatHideWhileInstall()
-							WTCompatibiltyFrame:Kill()
-						end
-						hooksecurefunc(W, "ConstructCompatibiltyFrame", WindtoolsCompatHideWhileInstall)
-					end
 				 -- Welcome Page and addon installed check
 				 	if (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ElvUI_WindTools")) then
 						PluginInstallFrame.SubTitle:SetFormattedText(L["WARNING"])

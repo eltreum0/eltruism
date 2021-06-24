@@ -103,7 +103,7 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 						else
 							ElvUI_EltreumUI:Print(C_Map.GetUserWaypointHyperlink())
 						end
-			   		end
+					end
 				end
 			end
 		end
