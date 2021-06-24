@@ -301,6 +301,14 @@ function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
 							end
 						end
+					else --its a low level priest
+						EltreumPowerBar:Show()
+						EltreumPowerBar:SetStatusBarColor(0.309803921, 0.450980392, 0.631372549) --its mana so color like mana
+						if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
+							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
+						else
+							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
+						end
 					end
 				end
 			elseif myclass == 'SHAMAN' then
@@ -331,6 +339,17 @@ function ElvUI_EltreumUI:NameplatePower(nameplate, unit)
 						end
 					elseif id == 264 then
 						--ElvUI_EltreumUI:Print('before spec setting detected')
+						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
+							--ElvUI_EltreumUI:Print('after spec setting detected')
+							EltreumPowerBar:Show()
+							EltreumPowerBar:SetStatusBarColor(0.309803921, 0.450980392, 0.631372549) --its mana so color like mana
+							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
+								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
+							else
+								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
+							end
+						end
+					else --its a low level shaman
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 							--ElvUI_EltreumUI:Print('after spec setting detected')
 							EltreumPowerBar:Show()
