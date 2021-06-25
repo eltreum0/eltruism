@@ -1,6 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local NP = E:GetModule('NamePlates')
-local UF = E:GetModule('UnitFrames')
 local _G = _G
 local GetShapeshiftForm = _G.GetShapeshiftForm
 local UnitPower = _G.UnitPower

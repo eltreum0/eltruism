@@ -75,7 +75,7 @@ end
 -- Role icons, ty a lot Darth Predator for the help!
 if ElvUI_EltreumUI.Retail then
 	if IsAddOnLoaded("ElvUI_SLE") then
-		local SLE, T, E, L, V, P, G = unpack(ElvUI_SLE)
+		local SLE = unpack(ElvUI_SLE)
 		SLE.rolePaths["Eltruism"] = {
 			TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga",
 			HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga",
