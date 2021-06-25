@@ -1,1 +1,3 @@
-../../../World of Warcraft/_retail_/Interface/addons/ElvUI_EltreumUI/Options/load_optionsretail.xml
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file='OptionsRetail.lua'/>
+</Ui>

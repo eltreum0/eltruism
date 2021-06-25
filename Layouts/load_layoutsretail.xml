@@ -1,1 +1,4 @@
-../../../World of Warcraft/_retail_/Interface/addons/ElvUI_EltreumUI/Layouts/load_layoutsretail.xml
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file='LayoutRetail.lua'/>
+	<Script file='SetupNameplates.lua'/>
+</Ui>

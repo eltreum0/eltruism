@@ -1,1 +1,33 @@
-../../../World of Warcraft/_retail_/Interface/addons/ElvUI_EltreumUI/Licenses/Icons License.txt
+Icons that belong to Icons8, linked below:
+
+<a target="_blank" href="undefined/icons/set/installing-updates--v1">Installing Updates icon</a> icon by <a target="_blank" href="">Icons8</a>
+
+<a target="_blank" href="undefined/icons/set/map-marker">Map Marker icon</a> icon by <a target="_blank" href="">Icons8</a>
+
+<a target="_blank" href="undefined/icons/set/media">Media icon</a> icon by <a target="_blank" href="">Icons8</a>
+
+<a target="_blank" href="undefined/icons/set/dancing-party">Party icon</a> icon by <a target="_blank" href="">Icons8</a>
+
+<a target="_blank" href="undefined/icons/set/magical-scroll">Parchment icon</a> icon by <a target="_blank" href="">Icons8</a>
+
+<a target="_blank" href="undefined/icons/set/ninja">Ninja icon</a> icon by <a target="_blank" href="">Icons8</a>
+
+<a target="_blank" href="undefined/icons/set/plugin">Plugin icon</a> icon by <a target="_blank" href="">Icons8</a>
+
+<a target="_blank" href="undefined/icons/set/keyboard">Keyboard icon</a> icon by <a target="_blank" href="">Icons8</a>
+
+<a target="_blank" href="undefined/icons/set/filter--v1">Filter icon</a> icon by <a target="_blank" href="">Icons8</a>
+
+<a target="_blank" href="undefined/icons/set/empty-hourglass">Sand Clock icon</a> icon by <a target="_blank" href="">Icons8</a>
+
+<a target="_blank" href="undefined/icons/set/creative-commons-by">Creative Commons By icon</a> icon by <a target="_blank" href="">Icons8</a>
+
+<a target="_blank" href="undefined/icons/set/variable">Variable icon</a> icon by <a target="_blank" href="">Icons8</a>
+
+<a target="_blank" href="undefined/icons/set/licence-plate">Licence Plate icon</a> icon by <a target="_blank" href="">Icons8</a>
+
+<a target="_blank" href="undefined/icons/set/money-bag">Money Bag icon</a> icon by <a target="_blank" href="">Icons8</a>
+
+<a target="_blank" href="https://icons8.com/icon/7859/chat">Chat</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+
+<a target="_blank" href="https://icons8.com/icon/123951/square-border">Square Border</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>

@@ -1,1 +1,20 @@
-../../World of Warcraft/_retail_/Interface/addons/ElvUI_EltreumUI/ElvUI_EltreumUI-BCC.toc
+## Interface: 20501
+## Author: Eltreum
+## Version: 2.3.6
+## Title: |cff1784d1ElvUI|r Eltruism TBC
+## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
+## Dependencies: ElvUI, AddOnSkins, ProjectAzilroka
+## RequiredDeps: Blizzard_CombatText
+## OptionalDeps: NameplateSCT, Immersion, DynamicCam, Gladius, Gladdy
+## DefaultState: enabled
+
+Init.lua
+Localization\Load_localization.xml
+Core\load_core.xml
+Libs\Load_Libs.xml
+Media\load_media.xml
+Settings\load_settings.xml
+Modules\load_modules.xml
+Profiles\load_profiles.xml
+Layouts\load_layoutstbc.xml
+Options\load_optionstbc.xml
