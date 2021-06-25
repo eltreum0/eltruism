@@ -1,4 +1,1 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file="LibCustomGlow-1.0\LibCustomGlow-1.0.lua"/>
-	<Script file="LibDeformat-3.0\LibDeformat-3.0.lua"/>
-</Ui>
+../../../World of Warcraft/_retail_/Interface/addons/ElvUI_EltreumUI/Libs/Load_Libs.xml

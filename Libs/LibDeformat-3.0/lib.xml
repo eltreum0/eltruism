@@ -1,4 +1,1 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
-..\FrameXML\UI.xsd">
-	<Script file="LibDeformat-3.0.lua" />
-</Ui>
+../../../../World of Warcraft/_retail_/Interface/addons/ElvUI_EltreumUI/Libs/LibDeformat-3.0/lib.xml
