@@ -8,6 +8,7 @@ function ElvUI_EltreumUI:Changelogv2()
     v2.3.6
     -------
 Added Borders (Beta), disabled by default
+You will need to adjust the borders if using them with profile or setting outside of the defaults for Eltruism DPS/Tank
 Added Border media, credits in the License folder
 Fixed AFK music error for Undead players since the race code is Scourge
 

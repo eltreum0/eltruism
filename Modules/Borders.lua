@@ -1,12 +1,8 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local CreateFrame = _G.CreateFrame
-
-
 local table = _G.table
 local pairs = _G.pairs
-
-
 
 --Beta borders on frames
 function ElvUI_EltreumUI:Borders()
@@ -19,26 +15,18 @@ function ElvUI_EltreumUI:Borders()
 	local classcolor = E:ClassColor(E.myclass, true)
 	local playertargetsize = E.db.ElvUI_EltreumUI.borders.playertargetsize
 	local baredgesize = E.db.ElvUI_EltreumUI.borders.baredgesize
-
 	local xbar = E.db.ElvUI_EltreumUI.borders.bar1xborder
 	local ybar = E.db.ElvUI_EltreumUI.borders.bar1yborder
-
 	local xbar2 = E.db.ElvUI_EltreumUI.borders.bar2xborder
 	local ybar2 = E.db.ElvUI_EltreumUI.borders.bar2yborder
-
 	local xbar3 = E.db.ElvUI_EltreumUI.borders.bar3xborder
 	local ybar3 = E.db.ElvUI_EltreumUI.borders.bar3yborder
-
 	local xbar4 = E.db.ElvUI_EltreumUI.borders.bar4xborder
 	local ybar4 = E.db.ElvUI_EltreumUI.borders.bar4yborder
-
 	local xbar5 = E.db.ElvUI_EltreumUI.borders.bar5xborder
 	local ybar5 = E.db.ElvUI_EltreumUI.borders.bar5yborder
-
 	local xbar6 = E.db.ElvUI_EltreumUI.borders.bar6xborder
 	local ybar6 = E.db.ElvUI_EltreumUI.borders.bar6yborder
-
-
 
 	if E.db.ElvUI_EltreumUI.borders.borders then
 		if E.db.ElvUI_EltreumUI.borders.playerborder then
