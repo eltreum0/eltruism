@@ -66,7 +66,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		SetCVar("floatingCombatTextCombatDamage", 0)
 	end
 	--test functions
-	ElvUI_EltreumUI:BorderTests()
+	ElvUI_EltreumUI:Borders()
 	--end of tests
 end
 
@@ -190,7 +190,7 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	if E.private["nameplates"]["enable"] == true then
 		ElvUI_EltreumUI:NamePlateOptions()
 		ElvUI_EltreumUI:NameplatePower()
-		--ElvUI_EltreumUI:BorderTests()
+		--ElvUI_EltreumUI:Borders()
 	end
 end
 

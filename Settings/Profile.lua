@@ -184,4 +184,69 @@ P.ElvUI_EltreumUI = {
 		--floatingrep = false,
 	},
 
+	borders = {
+		borders = false,
+		texture = "better-blizzard-border-small-alternate",
+
+		playertargetsize = 20,
+
+		playerborder = true,
+		xplayer = 200,
+		yplayer = 50,
+
+		playercastborder = true,
+		xplayercast = 200,
+		yplayercast = 50,
+
+		targetborder = true,
+		xtarget = 200,
+		ytarget = 50,
+
+		targetcastborder = true,
+		xcasttarget = 150,
+		ycasttarget = 20,
+
+		bar1borders = true,
+		bar1xborder = 65,
+		bar1yborder = 56,
+
+		bar2borders = true,
+		bar2xborder = 54,
+		bar2yborder = 47,
+
+		bar3borders = true,
+		bar3xborder = 54,
+		bar3yborder = 47,
+
+		bar4borders = true,
+		bar4xborder = 54,
+		bar4yborder = 47,
+
+		bar5borders = true,
+		bar5xborder = 54,
+		bar5yborder = 47,
+
+		bar6borders = true,
+		bar6xborder = 54,
+		bar6yborder = 47,
+
+		bar7borders = true,
+		bar7xborder = 54,
+		bar7yborder = 47,
+
+		bar8borders = true,
+		bar8xborder = 54,
+		bar8yborder = 47,
+
+		bar9borders = true,
+		bar9xborder = 54,
+		bar9yborder = 47,
+
+		bar10borders = true,
+		bar10xborder = 54,
+		bar10yborder = 47,
+
+		baredgesize = 13,
+	},
+
 }
