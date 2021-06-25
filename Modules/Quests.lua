@@ -10,6 +10,7 @@ local C_GossipInfo = _G.C_GossipInfo
 local IsControlKeyDown = _G.IsControlKeyDown
 local IsShiftKeyDown = _G.IsShiftKeyDown
 local IsAltKeyDown = _G.IsAltKeyDown
+local IsAddOnLoaded = _G.IsAddOnLoaded
 
 if ElvUI_EltreumUI.Retail then
 	--Collapse Quests during boss fights

@@ -5,6 +5,12 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelogv2()
 	return[[
+    v2.3.6
+    -------
+Added Borders (Beta), disabled by default
+Added Border media, credits in the License folder
+
+
     v2.3.5
     -------
 Tweak chat hide so that it will hide without a mouse click

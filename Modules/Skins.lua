@@ -364,7 +364,7 @@ function ElvUI_EltreumUI:ExpandedStable()
 		PetStablePrevPageButton:Hide()
 		local widthDelta = 315
 		local heightDelta = 204
-		local f = CreateFrame("Frame", "ImprovedStableFrameSlots", PetStableFrame, "InsetFrameTemplate")
+		local f = CreateFrame("Frame", "ExpandedStable", PetStableFrame, "InsetFrameTemplate")
 		f:ClearAllPoints()
 		f:SetSize(widthDelta, PetStableFrame:GetHeight() + heightDelta - 28)
 		f:SetPoint(PetStableFrame.Inset:GetPoint(1))
@@ -378,13 +378,14 @@ function ElvUI_EltreumUI:ExpandedStable()
 		PetStableStabledPet1:ClearAllPoints()
 		PetStableStabledPet1:SetPoint("TOPLEFT", f, 8, -36)
 
-		local searchInput = CreateFrame("EditBox", "ISF_SearchInput", f, "SearchBoxTemplate")
+		local searchInput = CreateFrame("EditBox", "ES_SearchInput", f, "SearchBoxTemplate")
 		searchInput:SetPoint("TOPLEFT", 9, 0)
 		searchInput:SetPoint("RIGHT", -3, 0)
 		searchInput:SetHeight(20)
 
-		local function ImprovedStableFrame_Update()
-			local input = ISF_SearchInput:GetText()
+		local function ExpandedStable_Update()
+			--local input = ES_SearchInput:GetText()
+			local input = searchInput:GetText()
 			if not input or input:trim() == "" then
 				for i = 1, maxSlots do
 					local button = _G["PetStableStabledPet"..i];
@@ -417,15 +418,15 @@ function ElvUI_EltreumUI:ExpandedStable()
 				end
 			end
 		end
-		searchInput:HookScript("OnTextChanged", ImprovedStableFrame_Update)
+		searchInput:HookScript("OnTextChanged", ExpandedStable_Update)
 		searchInput.Instructions:SetText(SEARCH .. " (" .. NAME .. ", " .. PET_FAMILIES .. ", " .. PET_TALENTS  .. ")")
-		hooksecurefunc("PetStable_Update", ImprovedStableFrame_Update)
+		hooksecurefunc("PetStable_Update", ExpandedStable_Update)
 		NUM_PET_STABLE_SLOTS = maxSlots
 		NUM_PET_STABLE_PAGES = 1
 		PetStableFrame.page = 1
 		PetStableFrame:HookScript("OnShow", function()
-			if not IsAddOnLoaded("ImprovedStableFrame") then
-				LoadAddOn("ImprovedStableFrame")
+			if not IsAddOnLoaded("ExpandedStable") then
+				LoadAddOn("ExpandedStable")
 			end
 		end)
 	end

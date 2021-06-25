@@ -1,8 +1,16 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+
+local _G = _G
 local IsInInstance = _G.IsInInstance
-local dontstop = 0
+local PlayMusic = _G.PlayMusic
+local StopMusic = _G.StopMusic
+
+
+
+
 
 --play music during combat
+local dontstop = 0
 function ElvUI_EltreumUI:CombatMusic(event)
 	if E.private.ElvUI_EltreumUI.combatmusic.enable then
 		local _, instanceType = IsInInstance()

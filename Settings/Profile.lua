@@ -186,67 +186,67 @@ P.ElvUI_EltreumUI = {
 
 	borders = {
 		borders = false,
-		texture = "better-blizzard-border-small-alternate",
+		texture = "RenaitreBeveled10x",
 
 		playertargetsize = 20,
 
-		playerborder = true,
-		xplayer = 200,
-		yplayer = 50,
+		playerborder = false,
+		xplayer = 285,
+		yplayer = 55,
 
 		playercastborder = true,
-		xplayercast = 200,
-		yplayercast = 50,
+		xplayercast = 250,
+		yplayercast = 40,
 
-		targetborder = true,
-		xtarget = 200,
-		ytarget = 50,
+		targetborder = false,
+		xtarget = 285,
+		ytarget = 55,
 
 		targetcastborder = true,
 		xcasttarget = 150,
 		ycasttarget = 20,
 
 		bar1borders = true,
-		bar1xborder = 65,
-		bar1yborder = 56,
+		bar1xborder = 52,
+		bar1yborder = 44,
 
 		bar2borders = true,
-		bar2xborder = 54,
-		bar2yborder = 47,
+		bar2xborder = 42,
+		bar2yborder = 37,
 
 		bar3borders = true,
-		bar3xborder = 54,
-		bar3yborder = 47,
+		bar3xborder = 42,
+		bar3yborder = 37,
 
 		bar4borders = true,
-		bar4xborder = 54,
-		bar4yborder = 47,
+		bar4xborder = 42,
+		bar4yborder = 37,
 
 		bar5borders = true,
-		bar5xborder = 54,
-		bar5yborder = 47,
+		bar5xborder = 42,
+		bar5yborder = 37,
 
 		bar6borders = true,
-		bar6xborder = 54,
-		bar6yborder = 47,
+		bar6xborder = 40,
+		bar6yborder = 32,
 
 		bar7borders = true,
-		bar7xborder = 54,
-		bar7yborder = 47,
+		bar7xborder = 42,
+		bar7yborder = 37,
 
 		bar8borders = true,
-		bar8xborder = 54,
-		bar8yborder = 47,
+		bar8xborder = 42,
+		bar8yborder = 37,
 
 		bar9borders = true,
-		bar9xborder = 54,
-		bar9yborder = 47,
+		bar9xborder = 42,
+		bar9yborder = 37,
 
 		bar10borders = true,
-		bar10xborder = 54,
-		bar10yborder = 47,
+		bar10xborder = 42,
+		bar10yborder = 37,
 
-		baredgesize = 13,
+		baredgesize = 15,
 	},
 
 }

@@ -1,6 +1,14 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local ElvUF = E.oUF
+
+
+local _G = _G
+local UnitName = _G.UnitName
+local UnitClass =  _G.UnitClass
+local UnitIsPlayer = _G.UnitIsPlayer
+local string = _G.string
 local utf8sub = string.utf8sub
+
 
 -- Name custom abbreviation by Azilroka
 ElvUF.Tags.Events['name:eltruism:abbreviate'] = 'UNIT_NAME_UPDATE'

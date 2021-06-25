@@ -7,6 +7,12 @@ local ElvUI_EltreumUI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTi
 local myclass = E.myclass
 local L = E.Libs.ACL:GetLocale("ElvUI", E.global.general.locale)
 
+
+local SetCVar = _G.SetCVar
+local GetAddOnMetadata = _G.GetAddOnMetadata
+local IsAddOnLoaded =  _G.IsAddOnLoaded
+local hooksecurefunc = _G.hooksecurefunc
+
 Engine[1] = ElvUI_EltreumUI
 Engine[2] = E --ElvUI Engine
 Engine[3] = L --ElvUI Locales

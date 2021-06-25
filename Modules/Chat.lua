@@ -4,23 +4,28 @@ local UIFrameFadeOut = _G.UIFrameFadeOut
 local UIFrameFadeIn = _G. UIFrameFadeIn
 local InCombatLockdown = _G.InCombatLockdown
 local CH = E:GetModule('Chat')
-local ipairs = ipairs
-local ChatFrame_AddMessageGroup = ChatFrame_AddMessageGroup
-local ChatFrame_RemoveAllMessageGroups = ChatFrame_RemoveAllMessageGroups
-local FCF_OpenNewWindow = FCF_OpenNewWindow
-local FCF_ResetChatWindows = FCF_ResetChatWindows
-local FCF_SetChatWindowFontSize = FCF_SetChatWindowFontSize
-local FCF_SetWindowName = FCF_SetWindowName
-local FCFTab_UpdateColors = FCFTab_UpdateColors
-local ChatFrame_AddChannel = ChatFrame_AddChannel
-local ChatFrame_RemoveChannel = ChatFrame_RemoveChannel
-local ChangeChatColor = ChangeChatColor
-local ToggleChatColorNamesByClassGroup = ToggleChatColorNamesByClassGroup
-local FCF_UnDockFrame = FCF_UnDockFrame
-local FCF_SavePositionAndDimensions = FCF_SavePositionAndDimensions
-local FCF_StopDragging = FCF_StopDragging
+
+
+local ipairs = _G.ipairs
+local ChatFrame_AddMessageGroup = _G.ChatFrame_AddMessageGroup
+local ChatFrame_RemoveAllMessageGroups = _G.ChatFrame_RemoveAllMessageGroups
+local FCF_OpenNewWindow = _G.CF_OpenNewWindow
+local FCF_ResetChatWindows = _G.FCF_ResetChatWindows
+local FCF_SetChatWindowFontSize = _G.FCF_SetChatWindowFontSize
+local FCF_SetWindowName = _G.FCF_SetWindowName
+local FCFTab_UpdateColors = _G.FCFTab_UpdateColors
+local ChatFrame_AddChannel = _G.ChatFrame_AddChannel
+local ChatFrame_RemoveChannel = _G.ChatFrame_RemoveChannel
+local ChangeChatColor = _G.ChangeChatColor
+local ToggleChatColorNamesByClassGroup = _G.ToggleChatColorNamesByClassGroup
+local FCF_UnDockFrame = _G.FCF_UnDockFrame
+local FCF_SavePositionAndDimensions = _G.FCF_SavePositionAndDimensions
+local FCF_StopDragging = _G.FCF_StopDragging
 local LOOT, GENERAL, TRADE = LOOT, GENERAL, TRADE
 local GUILD_EVENT_LOG = GUILD_EVENT_LOG
+
+local IsAddOnLoaded = _G.IsAddOnLoaded
+local tinsert = _G.tinsert
 
 
 --chat fading/mouseover/combathide

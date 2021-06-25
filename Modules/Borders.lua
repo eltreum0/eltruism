@@ -2,6 +2,12 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local CreateFrame = _G.CreateFrame
 
+
+local table = _G.table
+local pairs = _G.pairs
+
+
+
 --Beta borders on frames
 function ElvUI_EltreumUI:Borders()
 	local bordertexture
@@ -44,7 +50,7 @@ function ElvUI_EltreumUI:Borders()
 				edgeSize = playertargetsize,
 			})
 			playerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			playerborder:SetFrameStrata("HIGH")
+			playerborder:SetFrameStrata("LOW")
 		end
 
 		if E.db.ElvUI_EltreumUI.borders.playercastborder then
@@ -62,13 +68,13 @@ function ElvUI_EltreumUI:Borders()
 		if E.db.ElvUI_EltreumUI.borders.targetborder then
 			local targetborder = CreateFrame("Frame", nil, _G.ElvUF_Target, "BackdropTemplate")
 			targetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xtarget, E.db.ElvUI_EltreumUI.borders.ytarget)
-			targetborder:SetPoint("CENTER", _G.ElvUF_Target, "CENTER", 0, 0)
+			targetborder:SetPoint("CENTER", _G.ElvUF_Target)
 			targetborder:SetBackdrop( {
 				edgeFile = bordertexture,
 				edgeSize = playertargetsize,
 			})
 			targetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			targetborder:SetFrameStrata("HIGH")
+			targetborder:SetFrameStrata("LOW")
 		end
 
 		if E.db.ElvUI_EltreumUI.borders.targetcastborder then

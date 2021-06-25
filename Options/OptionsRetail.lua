@@ -760,9 +760,9 @@ if ElvUI_EltreumUI.Retail then
 							inline = true,
 							name = "",
 							args = {
-								baredgesize = {
+								borderABsize = {
 									type = 'range',
-									name = "Bar Thickness",
+									name = "ActionBar Thickness",
 									order = 1,
 									min = 1,
 									max = 200,
@@ -771,6 +771,18 @@ if ElvUI_EltreumUI.Retail then
 									disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
 									get = function() return E.db.ElvUI_EltreumUI.borders.baredgesize end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.borders.baredgesize = value end,
+								},
+								borderUFsize = {
+									type = 'range',
+									name = "Unitframe Thickness",
+									order = 4,
+									min = 1,
+									max = 200,
+									step = 1,
+									width = "full",
+									disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+									get = function() return E.db.ElvUI_EltreumUI.borders.playertargetsize end,
+									set = function(_, value) E.db.ElvUI_EltreumUI.borders.playertargetsize = value end,
 								},
 								gap1 = {
 									order = 5,

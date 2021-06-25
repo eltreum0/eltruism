@@ -14,6 +14,13 @@ local hooksecurefunc = _G.hooksecurefunc
 local myclass = E.myclass
 local id, _
 
+
+
+
+local UnitBuff = _G.UnitBuff
+local IsAddOnLoaded = _G.IsAddOnLoaded
+local UnitCanAttack = _G.UnitCanAttack
+
 --setup nameplate power frame
 local EltreumPowerBar = CreateFrame("StatusBar")
 EltreumPowerBar:SetValue(0)

@@ -1,7 +1,12 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
+
+
 local _G = _G
+local IsAddOnLoaded = _G.IsAddOnLoaded
+local GetAddOnMetadata = _G.GetAddOnMetadata
+local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 local PA = _G.ProjectAzilroka
+
 
 function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 	if not E.db.movers then E.db.movers = {} end
