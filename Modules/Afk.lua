@@ -1,5 +1,4 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-
 local _G = _G
 local select = _G.select
 local SetCVar = _G.SetCVar
@@ -9,7 +8,6 @@ local StopMusic = _G.StopMusic
 local PlaySound = _G.PlaySound
 local StopSound = _G.StopSound
 local GetCVar = _G.GetCVar
-
 
 -- general alliance walk (legion) maybe human music idk
 --/script PlaySoundFile(1417250, "Dialog", true)
@@ -28,7 +26,7 @@ local racialMusic = {
 	['DarkIronDwarf'] = 441566,
 	['Mechagnome'] = 3028751,
 	['Orc'] = 441713,
-	['Undead'] = 53217,
+	['Scourge'] = 53217,
 	['Tauren'] = 441788,
 	['Troll'] = 371378,
 	['Goblin'] = 441627,
@@ -61,7 +59,7 @@ local tbcMusic = {
 	['NightElf'] = 53187,
 	['Dwarf'] = 53193,
 	['Orc'] = 53201,
-	['Undead'] = 53217,
+	['Scourge'] = 53217,
 	['Tauren'] = 53215,
 	['Troll'] = 53825,
 	['Draenei'] = 53284,
@@ -74,7 +72,7 @@ local classicMusic = {
 	['NightElf'] = 3920,
 	['Dwarf'] = 7319,
 	['Orc'] = 2902,
-	['Undead'] = 5074,
+	['Scourge'] = 5074,
 	['Tauren'] = 7077,
 	['Troll'] = 8452,
 }
@@ -92,6 +90,7 @@ function ElvUI_EltreumUI:AFKmusic()
 				if musicSetting == '0' then SetCVar("Sound_EnableMusic", 1) end
 				if E.db.ElvUI_EltreumUI.afkmusic.racial then
 					if ElvUI_EltreumUI.Retail then
+						--print(E.myrace)
 						PlayMusic(racialMusic[E.myrace])
 					end
 				end

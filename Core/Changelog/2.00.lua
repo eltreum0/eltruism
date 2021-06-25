@@ -9,7 +9,7 @@ function ElvUI_EltreumUI:Changelogv2()
     -------
 Added Borders (Beta), disabled by default
 Added Border media, credits in the License folder
-
+Fixed AFK music error for Undead players since the race code is Scourge
 
     v2.3.5
     -------
