@@ -6,8 +6,6 @@ local _G = _G
 local ElvUI_EltreumUI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0', 'AceConsole-3.0')
 local myclass = E.myclass
 local L = E.Libs.ACL:GetLocale("ElvUI", E.global.general.locale)
-
-
 local SetCVar = _G.SetCVar
 local GetAddOnMetadata = _G.GetAddOnMetadata
 local IsAddOnLoaded =  _G.IsAddOnLoaded
@@ -35,6 +33,7 @@ ElvUI_EltreumUI.TBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if not E.private.ElvUI_EltreumUI.install_version then return end
 	ElvUI_EltreumUI:LoadCommands()
+	ElvUI_EltreumUI:Borders()
 	ElvUI_EltreumUI:AFKmusic()
 	ElvUI_EltreumUI:LootText()
 	ElvUI_EltreumUI:VersionCheckInit()
@@ -71,25 +70,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	else
 		SetCVar("floatingCombatTextCombatDamage", 0)
 	end
-	--test functions
-	ElvUI_EltreumUI:Borders()
-	--end of tests
 end
-
---gotta make use of ElvUI's delay system because for some reason if it the install appears instantly then the list of steps doesnt appear (although the install works)
---[[local finishedloading = 0
-function ElvUI_EltreumUI:DelayedInstall()
-	if finishedloading ~= 1 then
-		E:Delay(1, self.DelayedInstall, self)
-		finishedloading = 1
-		--print("delayed install")
-	else
-		if not E.private.ElvUI_EltreumUI.install_version then
-			E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
-			--print("prompted install")
-		end
-	end
-end]]--
 
 function ElvUI_EltreumUI:HidePopups()
 	E:StaticPopup_Hide("INCOMPATIBLE_ADDON")
@@ -118,9 +99,6 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_END')
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD')
-	--[[if not E.private.ElvUI_EltreumUI.install_version then
-		ElvUI_EltreumUI:RegisterEvent("PLAYER_ENTERING_WORLD", "DelayedInstall")
-	end]]--
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEVEL_UP')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_ENABLED')
@@ -128,10 +106,13 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_FREQUENT')
 	ElvUI_EltreumUI:RegisterEvent('UNIT_DISPLAYPOWER')
+	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_UPDATE')
+
 	ElvUI_EltreumUI:RegisterEvent('UPDATE_STEALTH')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
+
 	--LootText things
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_LOOT")
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_MONEY")
@@ -139,11 +120,13 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED")
 	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE')
+
 	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', 0.02)
 	SetCVar('nameplateOtherTopInset', 0.1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('nameplateTargetRadialPosition', 1)
+
 	--depending on game version sets cvars or register events
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:RegisterEvent('SUPER_TRACKING_CHANGED')
@@ -162,52 +145,48 @@ function ElvUI_EltreumUI:Initialize()
 	end
 end
 
-function ElvUI_EltreumUI:GOSSIP_SHOW()
-	if myclass == 'ROGUE' then
-		ElvUI_EltreumUI:RogueAutoOpen()
-	end
-end
 
 
-function ElvUI_EltreumUI:TRANSMOGRIFY_OPEN()
-	if ElvUI_EltreumUI.Retail then
-		ElvUI_EltreumUI:WiderTransmog()
-	end
-end
 
 function ElvUI_EltreumUI:UNIT_SPELLCAST_SUCCEEDED(unit)
 	if not unit == 'player' then return end
-	if myclass == 'DRUID' then
-		ElvUI_EltreumUI:GetDruidForm()
+	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+		if myclass == 'DRUID' then
+			ElvUI_EltreumUI:GetDruidForm()
+		end
 	end
-end
-
-function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
-	ElvUI_EltreumUI:RaidDeath()
-	--ElvUI_EltreumUI:NameplatePower()
-end
-
-function ElvUI_EltreumUI:UNIT_DISPLAYPOWER(unit)
-	if not unit == 'player' then return end
-	ElvUI_EltreumUI:NameplatePower()
 end
 
 function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	if E.private["nameplates"]["enable"] == true then
 		ElvUI_EltreumUI:NamePlateOptions()
 		ElvUI_EltreumUI:NameplatePower()
-		--ElvUI_EltreumUI:Borders()
+	end
+end
+
+function ElvUI_EltreumUI:UNIT_DISPLAYPOWER(unit)
+	if not unit == 'player' then
+		return
+	else
+		ElvUI_EltreumUI:NameplatePower()
 	end
 end
 
 function ElvUI_EltreumUI:UNIT_POWER_FREQUENT(unit)
-	if not unit == 'player' then return end
-	ElvUI_EltreumUI:NameplatePower()
+	if not unit == 'player' then
+		return
+	else
+		ElvUI_EltreumUI:NameplatePower()
+	end
+
 end
 
 function ElvUI_EltreumUI:UNIT_POWER_UPDATE(unit)
-	if not unit == 'player' then return end
-	ElvUI_EltreumUI:NameplatePower()
+	if not unit == 'player' then
+		return
+	else
+		ElvUI_EltreumUI:NameplatePower()
+	end
 end
 
 function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
@@ -262,8 +241,6 @@ function ElvUI_EltreumUI:ENCOUNTER_END()
 	end
 end
 
-
-
 function ElvUI_EltreumUI:SUPER_TRACKING_CHANGED()
 	ElvUI_EltreumUI:WaypointTimeToArrive()
 end
@@ -308,8 +285,24 @@ function ElvUI_EltreumUI:LOOT_OPENED()
 	ElvUI_EltreumUI:LootText()
 end
 
+function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
+	ElvUI_EltreumUI:RaidDeath()
+end
+
 function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
 	ElvUI_EltreumUI:AFKmusic()
+end
+
+function ElvUI_EltreumUI:GOSSIP_SHOW()
+	if myclass == 'ROGUE' then
+		ElvUI_EltreumUI:RogueAutoOpen()
+	end
+end
+
+function ElvUI_EltreumUI:TRANSMOGRIFY_OPEN()
+	if ElvUI_EltreumUI.Retail then
+		ElvUI_EltreumUI:WiderTransmog()
+	end
 end
 
 local function CallbackInitialize()

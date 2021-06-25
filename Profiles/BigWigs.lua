@@ -7,10 +7,6 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 	LoadAddOn("BigWigs_Options")
 	if ElvUI_EltreumUI.Retail then
 		BigWigs3DB = {
-			["global"] = {
-				["watchedMovies"] = {
-				},
-			},
 			["namespaces"] = {
 				["BigWigs_Plugins_Victory"] = {
 					["profiles"] = {
@@ -20,71 +16,12 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Bosses_Sun King's Salvation"] = {
-					["profiles"] = {
-						["Default"] = {
-							["custom_off_-21952"] = true,
-							[325877] = 3130103,
-							["custom_off_-22090"] = true,
-							["custom_off_-22232"] = true,
-						},
-					},
-				},
-				["BigWigs_Plugins_Alt Power"] = {
-				},
-				["LibDualSpec-1.0"] = {
-				},
-				["BigWigs_Bosses_Artificer Xy'mox"] = {
-					["profiles"] = {
-						["Default"] = {
-							[329107] = 3130103,
-							["custom_off_328437"] = true,
-							[328789] = 3130103,
-						},
-					},
-				},
-				["BigWigs_Bosses_Mortanis"] = {
-				},
-				["BigWigs_Plugins_Sounds"] = {
-				},
-				["BigWigs_Bosses_N'Zoth, the Corruptor"] = {
-					["profiles"] = {
-					},
-				},
-				["BigWigs_Bosses_Lady Inerva Darkvein"] = {
-					["profiles"] = {
-						["Default"] = {
-							[331550] = 3064567,
-							["custom_off_324983"] = true,
-							["custom_off_332664"] = true,
-						},
-					},
-				},
 				["BigWigs_Plugins_AutoReply"] = {
 					["profiles"] = {
 						["Default"] = {
 							["disabled"] = false,
 							["exitCombat"] = 4,
 							["mode"] = 4,
-						},
-					},
-				},
-				["BigWigs_Bosses_Hungering Destroyer"] = {
-					["profiles"] = {
-						["Default"] = {
-							["custom_off_329298"] = true,
-							["custom_off_334266"] = true,
-							[334266] = 4178167,
-						},
-					},
-				},
-				["BigWigs_Bosses_Shriekwing"] = {
-					["profiles"] = {
-						["Default"] = {
-							[342863] = 3129591,
-							["stages"] = 3130103,
-							[342074] = 4178167,
-							[345936] = 3130103,
 						},
 					},
 				},
@@ -178,29 +115,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Bosses_The Council of Blood"] = {
-					["profiles"] = {
-						["Default"] = {
-							["custom_off_-22948"] = true,
-							["custom_off_-22653"] = true,
-							["custom_off_-22433"] = true,
-						},
-					},
-				},
 				["BigWigs_Plugins_Super Emphasize"] = {
-				},
-				["BigWigs_Bosses_Sire Denathrius"] = {
-					["profiles"] = {
-						["Default"] = {
-							["custom_off_332794"] = true,
-							[329951] = 4178167,
-							[326707] = 3130103,
-							["custom_off_329951"] = true,
-							[336162] = 3130103,
-							["custom_off_327796"] = true,
-							[327796] = 4178167,
-						},
-					},
 				},
 				["BigWigs_Plugins_Proximity"] = {
 					["profiles"] = {
@@ -214,13 +129,6 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 							["posy"] = 590,
 							["height"] = 93.07933044433594,
 							["posx"] = 1080,
-						},
-					},
-				},
-				["BigWigs_Bosses_Sludgefist"] = {
-					["profiles"] = {
-						["Default"] = {
-							[331314] = 3130103,
 						},
 					},
 				},
@@ -251,33 +159,8 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Bosses_Stone Legion Generals"] = {
-					["profiles"] = {
-						["Default"] = {
-							["custom_off_334765"] = true,
-							[342733] = 4112631,
-							[333387] = 4112631,
-							["custom_off_-22761"] = true,
-							[339690] = 4178167,
-							[342544] = 3130103,
-							["custom_off_339690"] = true,
-							[344496] = 4178167,
-							["custom_off_333387"] = true,
-							["custom_off_-22772"] = true,
-						},
-					},
-				},
 				["BigWigs_Plugins_Pull"] = {
 					["profiles"] = {
-					},
-				},
-				["BigWigs_Bosses_Huntsman Altimor"] = {
-					["profiles"] = {
-						["Default"] = {
-							["custom_off_334757"] = true,
-							["custom_off_335114"] = true,
-							[334757] = 3130103,
-						},
 					},
 				},
 			},
@@ -427,28 +310,9 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Bosses_Sun King's Salvation"] = {
-					["profiles"] = {
-						["Default"] = {
-							["custom_off_-22232"] = true,
-							["custom_off_-21952"] = true,
-							[325877] = 3130103,
-							["custom_off_-22090"] = true,
-						},
-					},
-				},
 				["BigWigs_Plugins_Alt Power"] = {
 				},
 				["LibDualSpec-1.0"] = {
-				},
-				["BigWigs_Bosses_Artificer Xy'mox"] = {
-					["profiles"] = {
-						["Default"] = {
-							[329107] = 3130103,
-							["custom_off_328437"] = true,
-							[328789] = 3130103,
-						},
-					},
 				},
 				["BigWigs_Plugins_BossBlock"] = {
 					["profiles"] = {
@@ -464,44 +328,12 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_Sounds"] = {
 				},
-				["BigWigs_Bosses_N'Zoth, the Corruptor"] = {
-					["profiles"] = {
-					},
-				},
-				["BigWigs_Bosses_Lady Inerva Darkvein"] = {
-					["profiles"] = {
-						["Default"] = {
-							[331550] = 3064567,
-							["custom_off_324983"] = true,
-							["custom_off_332664"] = true,
-						},
-					},
-				},
 				["BigWigs_Plugins_AutoReply"] = {
 					["profiles"] = {
 						["Default"] = {
 							["exitCombat"] = 4,
 							["mode"] = 4,
 							["disabled"] = false,
-						},
-					},
-				},
-				["BigWigs_Bosses_Hungering Destroyer"] = {
-					["profiles"] = {
-						["Default"] = {
-							["custom_off_334266"] = true,
-							[334266] = 4178167,
-							["custom_off_329298"] = true,
-						},
-					},
-				},
-				["BigWigs_Bosses_Shriekwing"] = {
-					["profiles"] = {
-						["Default"] = {
-							[342074] = 4178167,
-							[342863] = 3129591,
-							[345936] = 3130103,
-							["stages"] = 3130103,
 						},
 					},
 				},
@@ -585,22 +417,6 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Bosses_Stone Legion Generals"] = {
-					["profiles"] = {
-						["Default"] = {
-							["custom_off_334765"] = true,
-							[339690] = 4178167,
-							[342544] = 3130103,
-							[333387] = 4112631,
-							["custom_off_339690"] = true,
-							["custom_off_-22761"] = true,
-							[342733] = 4112631,
-							["custom_off_333387"] = true,
-							[344496] = 4178167,
-							["custom_off_-22772"] = true,
-						},
-					},
-				},
 				["BigWigs_Plugins_Super Emphasize"] = {
 				},
 				["BigWigs_Plugins_Proximity"] = {
@@ -615,26 +431,6 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 							["posy"] = 590,
 							["fontName"] = "Kimberley",
 							["width"] = 135.269790649414,
-						},
-					},
-				},
-				["BigWigs_Bosses_Sludgefist"] = {
-					["profiles"] = {
-						["Default"] = {
-							[331314] = 3130103,
-						},
-					},
-				},
-				["BigWigs_Bosses_Sire Denathrius"] = {
-					["profiles"] = {
-						["Default"] = {
-							[326707] = 3130103,
-							["custom_off_332794"] = true,
-							[327796] = 4178167,
-							["custom_off_327796"] = true,
-							[329951] = 4178167,
-							[336162] = 3130103,
-							["custom_off_329951"] = true,
 						},
 					},
 				},
@@ -665,26 +461,8 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 						},
 					},
 				},
-				["BigWigs_Bosses_The Council of Blood"] = {
-					["profiles"] = {
-						["Default"] = {
-							["custom_off_-22948"] = true,
-							["custom_off_-22653"] = true,
-							["custom_off_-22433"] = true,
-						},
-					},
-				},
 				["BigWigs_Plugins_Pull"] = {
 					["profiles"] = {
-					},
-				},
-				["BigWigs_Bosses_Huntsman Altimor"] = {
-					["profiles"] = {
-						["Default"] = {
-							[334757] = 3130103,
-							["custom_off_335114"] = true,
-							["custom_off_334757"] = true,
-						},
 					},
 				},
 			},
@@ -718,8 +496,6 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				},
 				["BigWigs_Plugins_BossBlock"] = {
 				},
-				["BigWigs_Bosses_Illidan Stormrage"] = {
-				},
 				["BigWigs_Plugins_Sounds"] = {
 				},
 				["BigWigs_Plugins_AutoReply"] = {
@@ -730,8 +506,6 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 							["mode"] = 3,
 						},
 					},
-				},
-				["BigWigs_Bosses_High Warlord Naj'entus"] = {
 				},
 				["BigWigs_Plugins_Countdown"] = {
 					["profiles"] = {
@@ -775,10 +549,6 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 					},
 				},
 				["BigWigs_Plugins_Super Emphasize"] = {
-				},
-				["BigWigs_Bosses_Al'ar"] = {
-				},
-				["BigWigs_Bosses_Rage Winterchill"] = {
 				},
 				["BigWigs_Plugins_Statistics"] = {
 					["profiles"] = {
