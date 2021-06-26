@@ -11,6 +11,9 @@ Added Borders (Beta), disabled by default
 You will need to adjust the borders if using them with profile or setting outside of the defaults for Eltruism DPS/Tank
 Added Border media, credits in the License folder
 Fixed AFK music error for Undead players since the race code is Scourge
+Changed code for Nameplate Power Bar
+Nameplate Power Bar colors will now follow Unitframe Power Colors so they can be changed by the user over there
+Changed BigWigs and Details import logic
 
     v2.3.5
     -------

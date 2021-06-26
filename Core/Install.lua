@@ -885,7 +885,7 @@ elseif ElvUI_EltreumUI.TBC then
 			[2] = L["Layouts"],
 			[3] = L["Fonts"],
 			[4] = 'Details',
-			[6] = L["Boss Mods"],
+			[5] = L["Boss Mods"],
 			[6] = L["Arenas"],
 			[7] = L["Combat Text"],
 			[8] = 'Immersion',
