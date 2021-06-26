@@ -35,6 +35,7 @@ EltreumPowerBar:RegisterEvent("UNIT_POWER_FREQUENT")
 EltreumPowerBar:RegisterEvent("PLAYER_TARGET_CHANGED")
 EltreumPowerBar:RegisterEvent("UNIT_DISPLAYPOWER")
 EltreumPowerBar:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
+EltreumPowerBar:RegisterEvent("UNIT_MODEL_CHANGED")
 
 --so that the power updates when spec changes
 function ElvUI_EltreumUI:GetSpec()
@@ -46,19 +47,8 @@ function ElvUI_EltreumUI:GetSpec()
 	end
 end
 
---classic druid things ofc it can't use GetShapeshiftForm :(
-local form
-function ElvUI_EltreumUI:GetDruidForm()
-	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-		for i = 1, 40 do
-			local _, _, _, _, _, _, _, _, _, spellId, _, _, _, _, _ = UnitBuff("player", i)
-			if spellId == 768 or spellId == 9634 or spellId == 24907 or spellId == 33891 or spellId == 783 or spellId == 1066 then
-				form = spellId
-			end
-		end
-	end
-end
 
+--Main function
 function ElvUI_EltreumUI:NameplatePower(nameplate)
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
@@ -128,66 +118,84 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 		powertexture = E.media.norm
 	end
 
-	local energyb = E.db.unitframe.colors.power.ENERGY.b
-	local energyg = E.db.unitframe.colors.power.ENERGY.g
-	local energyr = E.db.unitframe.colors.power.ENERGY.r
-	local focusb = E.db.unitframe.colors.power.FOCUS.b
-	local focusg = E.db.unitframe.colors.power.FOCUS.g
-	local focusr = E.db.unitframe.colors.power.FOCUS.r
-	local furyb = E.db.unitframe.colors.power.FURY.b
-	local furyg = E.db.unitframe.colors.power.FURY.g
-	local furyr = E.db.unitframe.colors.power.FURY.r
-	local insanityb = E.db.unitframe.colors.power.INSANITY.b
-	local insanityg = E.db.unitframe.colors.power.INSANITY.g
-	local insanityr = E.db.unitframe.colors.power.INSANITY.r
-	local lunarb = E.db.unitframe.colors.power.LUNAR_POWER.b
-	local lunarg = E.db.unitframe.colors.power.LUNAR_POWER.g
-	local lunarr = E.db.unitframe.colors.power.LUNAR_POWER.r
-	local maelb
-	if E.db.unitframe.colors.power.MAELSTROM.b == nil then
-		maelb = 1
-	else
-		maelb = E.db.unitframe.colors.power.MAELSTROM.b
-	end
-	local maelr
-	if E.db.unitframe.colors.power.MAELSTROM.r == nil then
-		maelr = 0
-	else
-		maelr = E.db.unitframe.colors.power.MAELSTROM.r
-	end
-	local maelg = E.db.unitframe.colors.power.MAELSTROM.g
+
 	local manab = E.db.unitframe.colors.power.MANA.b
 	local manag = E.db.unitframe.colors.power.MANA.g
 	local manar = E.db.unitframe.colors.power.MANA.r
 	local rageb = E.db.unitframe.colors.power.RAGE.b
 	local rageg = E.db.unitframe.colors.power.RAGE.g
 	local rager = E.db.unitframe.colors.power.RAGE.r
+	local energyb = E.db.unitframe.colors.power.ENERGY.b
+	local energyg = E.db.unitframe.colors.power.ENERGY.g
+	local energyr = E.db.unitframe.colors.power.ENERGY.r
 
 
+	local focusb
+	local focusg
+	local focusr
+	local furyb
+	local furyg
+	local furyr
+	local insanityb
+	local insanityg
+	local insanityr
+	local lunarb
+	local lunarg
+	local lunarr
+	local maelb
+	local maelr
+	local maelg
 	local runicr
-	if E.db.unitframe.colors.power.RUNIC_POWER.r == nil then
-		runicr = 0
-	else
-		runicr = E.db.unitframe.colors.power.RUNIC_POWER.r
-	end
-
-	local runicr = E.db.unitframe.colors.power.RUNIC_POWER.r
-
+	local runicr
 	local runicg
-	if E.db.unitframe.colors.power.RUNIC_POWER.g == nil then
-		runicg = 0
-	else
-		runicg = E.db.unitframe.colors.power.RUNIC_POWER.g
-	end
-
 	local runicb
-	if E.db.unitframe.colors.power.RUNIC_POWER.b == nil then
-		runicb = 1
-	else
-		runicb = E.db.unitframe.colors.power.RUNIC_POWER.b
+	if ElvUI_EltreumUI.Retail then
+		focusb = E.db.unitframe.colors.power.FOCUS.b
+		focusg = E.db.unitframe.colors.power.FOCUS.g
+		focusr = E.db.unitframe.colors.power.FOCUS.r
+		furyb = E.db.unitframe.colors.power.FURY.b
+		furyg = E.db.unitframe.colors.power.FURY.g
+		furyr = E.db.unitframe.colors.power.FURY.r
+		insanityb = E.db.unitframe.colors.power.INSANITY.b
+		insanityg = E.db.unitframe.colors.power.INSANITY.g
+		insanityr = E.db.unitframe.colors.power.INSANITY.r
+		lunarb = E.db.unitframe.colors.power.LUNAR_POWER.b
+		lunarg = E.db.unitframe.colors.power.LUNAR_POWER.g
+		lunarr = E.db.unitframe.colors.power.LUNAR_POWER.r
+		if E.db.unitframe.colors.power.MAELSTROM.b == nil then
+			maelb = 1
+		else
+			maelb = E.db.unitframe.colors.power.MAELSTROM.b
+		end
+
+		if E.db.unitframe.colors.power.MAELSTROM.r == nil then
+			maelr = 0
+		else
+			maelr = E.db.unitframe.colors.power.MAELSTROM.r
+		end
+
+		maelg = E.db.unitframe.colors.power.MAELSTROM.g
+
+		if E.db.unitframe.colors.power.RUNIC_POWER.r == nil then
+			runicr = 0
+		else
+			runicr = E.db.unitframe.colors.power.RUNIC_POWER.r
+		end
+
+		runicr = E.db.unitframe.colors.power.RUNIC_POWER.r
+
+		if E.db.unitframe.colors.power.RUNIC_POWER.g == nil then
+			runicg = 0
+		else
+			runicg = E.db.unitframe.colors.power.RUNIC_POWER.g
+		end
+
+		if E.db.unitframe.colors.power.RUNIC_POWER.b == nil then
+			runicb = 1
+		else
+			runicb = E.db.unitframe.colors.power.RUNIC_POWER.b
+		end
 	end
-
-
 
     if E.private.ElvUI_EltreumUI.nameplatepower.enable then
 
@@ -226,7 +234,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				end
 			end
 
-
 			if myclass == 'PALADIN' or myclass == 'MAGE' or myclass == 'WARLOCK' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 					EltreumPowerBar:Show()
@@ -258,53 +265,98 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				end
 			elseif myclass == 'DRUID' then
 				local stance = GetShapeshiftForm()
-				if stance == 0 then --humanoid
-					if E.private.ElvUI_EltreumUI.nameplatepower.mana then
-						EltreumPowerBar:Show()
-						EltreumPowerBar:SetStatusBarColor(manar, manag, manab) --its mana so color like mana
-						if ElvUI_EltreumUI.Retail then
+				--print(stance)
+				--[[
+					-- FOR BALANCE
+					--retail
+					-- 0 is human
+					-- 1 is bear
+					-- 2 is cat
+					-- 3 is bird
+					-- 4 is moonkin
+					-- 5 is tree (if known)
+					-- 6 is mount form (if known)
+
+					--for resto
+					-- 0 is human
+					-- 1 is bear
+					-- 2 is cat
+					-- 3 is bird
+					-- 4 is moonkin  (if known)
+					-- 4 is tree (if known and moonkin not known)
+					--5  = tree of life (talent)
+				]]--
+				if ElvUI_EltreumUI.Retail then
+					local tree = IsSpellKnown(114282)
+					local moonkin = IsSpellKnown(197625)
+					local stag = IsSpellKnown(210053)
+					if stance == 0 then --humanoid
+						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
+							EltreumPowerBar:Show()
+							EltreumPowerBar:SetStatusBarColor(manar, manag, manab) --its mana so color like mana
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
 							else
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
 							end
-						elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-							else
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
-							end
 						end
-					end
-				elseif stance == 1 or form == 9634 then --bear
-					if E.private.ElvUI_EltreumUI.nameplatepower.rage then
-						EltreumPowerBar:Show()
-						EltreumPowerBar:SetStatusBarColor(rager, rageg, rageb) --its rage so color it like rage
-						if ElvUI_EltreumUI.Retail then
+					elseif stance == 1 then --bear
+						if E.private.ElvUI_EltreumUI.nameplatepower.rage then
+							EltreumPowerBar:Show()
+							EltreumPowerBar:SetStatusBarColor(rager, rageg, rageb) --its rage so color it like rage
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
 							else
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
 							end
-						elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-							else
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-							end
 						end
-					end
-				elseif stance == 2 or form == 768 then --cat
-					if E.private.ElvUI_EltreumUI.nameplatepower.energy then
-						EltreumPowerBar:Show()
-						EltreumPowerBar:SetStatusBarColor(energyr, energyg, energyb) --its energy so color it like energy
-						if ElvUI_EltreumUI.Retail then
+					elseif stance == 2 then --cat
+						if E.private.ElvUI_EltreumUI.nameplatepower.energy then
+							EltreumPowerBar:Show()
+							EltreumPowerBar:SetStatusBarColor(energyr, energyg, energyb) --its energy so color it like energy
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 22)
 							else
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
 							end
-						elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						end
+					elseif stance == 3 then --3 is travel
+						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
+							EltreumPowerBar:Show()
+							EltreumPowerBar:SetStatusBarColor(manar, manag, manab) --its mana so color like mana
+							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
+								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
+							else
+								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
+							end
+						end
+					--this is where it gets tricky due to talents and specs 4 is either moonkin OR tree of life if resto and not talented into moonkin affinity
+					elseif stance == 4 then
+						if id == 103 then --moonkin
+							if E.private.ElvUI_EltreumUI.nameplatepower.astral then
+								EltreumPowerBar:Show()
+								EltreumPowerBar:SetStatusBarColor(lunarr, lunarg, lunarb) --its astral/lunar power
+								if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
+									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
+								else
+									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
+								end
+							end
+						else --resto druid or other druid
+							if E.private.ElvUI_EltreumUI.nameplatepower.mana then
+								EltreumPowerBar:Show()
+								EltreumPowerBar:SetStatusBarColor(manar, manag, manab) --its mana so color like mana
+								if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
+									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
+								else
+									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
+								end
+							end
+						end
+					elseif stance == 5 or stance == 6 then
+						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
+							EltreumPowerBar:Show()
+							EltreumPowerBar:SetStatusBarColor(manar, manag, manab) --its mana so color like mana
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
 							else
@@ -312,35 +364,53 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 							end
 						end
 					end
-				elseif stance == 3 or form == 24858 or form == 33891 or form == 783 or form == 1066 then --travel or for classic its moonkin and tree also
-					if E.private.ElvUI_EltreumUI.nameplatepower.mana then
-						EltreumPowerBar:Show()
-						EltreumPowerBar:SetStatusBarColor(manar, manag, manab) --its mana so color like mana
-						if ElvUI_EltreumUI.Retail then
-							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-							else
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
-							end
-						elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				end
+				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+					if stance == 0 then --humanoid
+						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
+							EltreumPowerBar:Show()
+							EltreumPowerBar:SetStatusBarColor(manar, manag, manab) --its mana so color like mana
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
 							else
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
 							end
 						end
-					end
-				elseif stance == 4 or stance == 5 or stance == 6 then --moonkin maybe
-					if E.private.ElvUI_EltreumUI.nameplatepower.astral then
-						EltreumPowerBar:Show()
-						EltreumPowerBar:SetStatusBarColor(lunarr, lunarg, lunarb) --its astral/lunar power
-						if ElvUI_EltreumUI.Retail then
+					elseif stance == 1 then --bear
+						if E.private.ElvUI_EltreumUI.nameplatepower.rage then
+							EltreumPowerBar:Show()
+							EltreumPowerBar:SetStatusBarColor(rager, rageg, rageb) --its rage so color it like rage
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
-								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
+								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
 							else
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
 							end
-						elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+
+						end
+					elseif stance == 2 then --aquatic
+						if E.private.ElvUI_EltreumUI.nameplatepower.energy then
+							EltreumPowerBar:Show()
+							EltreumPowerBar:SetStatusBarColor(manar, manag, manab) --its mana so color like mana
+							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
+								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
+							else
+								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
+							end
+						end
+					elseif stance == 3 then --3 cat in classic
+						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
+							EltreumPowerBar:Show()
+							EltreumPowerBar:SetStatusBarColor(energyr, energyg, energyb) --its energy so color it like energy
+							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
+								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 17)
+							else
+								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
+							end
+						end
+					elseif stance == 4 or stance == 5 then --4 is travel in classic and 5 is moonkin/resto tree i classic
+						if E.private.ElvUI_EltreumUI.nameplatepower.astral then
+							EltreumPowerBar:Show()
+							EltreumPowerBar:SetStatusBarColor(manar, manag, manab) --its mana so color like mana
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
 							else
@@ -409,7 +479,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 					if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 						EltreumPowerBar:Show()
-						EltreumPowerBar:SetStatusBarColor(0.309803921, 0.450980392, 0.631372549) --its mana so color like mana
+						EltreumPowerBar:SetStatusBarColor(manar, manag, manab) --its mana so color like mana
 						if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
 						else
@@ -419,7 +489,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				elseif ElvUI_EltreumUI.Retail then
 					if E.private.ElvUI_EltreumUI.nameplatepower.focus then
 						EltreumPowerBar:Show()
-						EltreumPowerBar:SetStatusBarColor(1, 0.5019607, 0.25098039) --its focus so color it like focus
+						EltreumPowerBar:SetStatusBarColor(focusr, focusg, focusb) --its focus so color it like focus
 						if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
 						else
@@ -452,7 +522,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					if id == 258 then
 						if E.private.ElvUI_EltreumUI.nameplatepower.insanity then
 							EltreumPowerBar:Show()
-							EltreumPowerBar:SetStatusBarColor(0.4, 0, 0.8) --its insanity
+							EltreumPowerBar:SetStatusBarColor(insanityr, insanityg, insanityb) --its insanity
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
 							else
@@ -481,7 +551,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				end
 			elseif myclass == 'SHAMAN' then
 				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-					--ElvUI_EltreumUI:Print('Class detected classic')
 					if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 						EltreumPowerBar:Show()
 						EltreumPowerBar:SetStatusBarColor(manar, manag, manab) --its mana so color like mana
@@ -492,11 +561,8 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						end
 					end
 				elseif ElvUI_EltreumUI.Retail then
-					--ElvUI_EltreumUI:Print('class detected retail')
 					if id == 262 or id == 263 then
-						--ElvUI_EltreumUI:Print('before spec setting detected')
 					   	if E.private.ElvUI_EltreumUI.nameplatepower.maelstrom then
-					   		--ElvUI_EltreumUI:Print('after spec setting detected')
 							EltreumPowerBar:Show()
 							EltreumPowerBar:SetStatusBarColor(maelr, maelg, maelb) --its maelstrom
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
@@ -506,9 +572,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 							end
 						end
 					elseif id == 264 then
-						--ElvUI_EltreumUI:Print('before spec setting detected')
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
-							--ElvUI_EltreumUI:Print('after spec setting detected')
 							EltreumPowerBar:Show()
 							EltreumPowerBar:SetStatusBarColor(manar, manag, manab) --its mana so color like mana
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
@@ -519,7 +583,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						end
 					else --its a low level shaman
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
-							--ElvUI_EltreumUI:Print('after spec setting detected')
 							EltreumPowerBar:Show()
 							EltreumPowerBar:SetStatusBarColor(manar, manag, manab) --its mana so color like mana
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
@@ -531,20 +594,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					end
 				end
 			end
-
-
-			EltreumPowerBar:SetScript("OnEvent", function(event, unit)
-				if event == "UNIT_POWER_FREQUENT" or event == "UNIT_DISPLAYPOWER" or event == "PLAYER_TARGET_CHANGED" or event == "UPDATE_SHAPESHIFT_FORM" then
-					if not unit == 'player' then
-						return
-					else
-						local power = UnitPower("player")
-						--ElvUI_EltreumUI:Print('power frequent')
-						EltreumPowerBar:SetValue(power)
-						EltreumPowerBar.Text:SetText(power)
-					end
-				end
-			end)
 		else
 			EltreumPowerBar:Hide()
 		end
@@ -554,6 +603,23 @@ end
 --hooksecurefunc(NP, 'Style', ElvUI_EltreumUI.NameplatePower)
 --hooksecurefunc(NP, 'UpdatePlate', ElvUI_EltreumUI.NameplatePower)
 --hooksecurefunc(NP, 'NamePlateCallBack', ElvUI_EltreumUI.NameplatePower)
+
+--update the values of nameplate power bar
+function ElvUI_EltreumUI:NameplatePowerTextUpdate(unit)
+	EltreumPowerBar:SetScript("OnEvent", function(event, unit)
+		if event == "UNIT_POWER_FREQUENT" or event == "UNIT_MODEL_CHANGED" then
+			if unit and unit ~= 'player' then
+				return
+			elseif unit and unit == 'player' then
+				local power = UnitPower("player")
+				--ElvUI_EltreumUI:Print('power frequent')
+				EltreumPowerBar:SetValue(power)
+				EltreumPowerBar.Text:SetText(power)
+			end
+		end
+	end)
+end
+
 
 function ElvUI_EltreumUI:UpdateNPwithoutBar(addon)
 	if addon == 'ElvUI' then

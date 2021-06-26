@@ -5,6 +5,10 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelogv2()
 	return[[
+    v2.3.7
+    -------
+Improved event detection for Nameplate Power Bar (Thanks Repooc!)
+
     v2.3.6
     -------
 Added Borders (Beta), disabled by default
@@ -13,7 +17,7 @@ Added Border media, credits in the License folder
 Fixed AFK music error for Undead players since the race code is Scourge
 Changed code for Nameplate Power Bar
 Nameplate Power Bar colors will now follow Unitframe Power Colors so they can be changed by the user over there
-Changed BigWigs and Details import logic
+Changed BigWigs and Details import logic (thanks Luckyone!)
 
     v2.3.5
     -------

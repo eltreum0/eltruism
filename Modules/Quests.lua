@@ -19,9 +19,6 @@ if ElvUI_EltreumUI.Retail then
 			local _, instanceType = IsInInstance()
 			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then  --and event == "PLAYER_REGEN_DISABLED"
 				ObjectiveTracker_Collapse()
-				if ObjectiveTrackerFrame:IsVisible() or ObjectiveTracker_Expand() then
-					ObjectiveTracker_Collapse()
-				end
 			end
 		end
 	end

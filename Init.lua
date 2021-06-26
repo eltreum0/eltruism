@@ -56,9 +56,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	end
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		ElvUI_EltreumUI:DynamicClassicDatatext()
-		if myclass == 'DRUID' then
-			ElvUI_EltreumUI:GetDruidForm()
-		end
 	end
 	if E.private["nameplates"]["enable"] == true then
 		ElvUI_EltreumUI:NamePlateOptions()
@@ -103,15 +100,17 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEVEL_UP')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_ENABLED')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_DISABLED')
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED')
-	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_FREQUENT')
-	ElvUI_EltreumUI:RegisterEvent('UNIT_DISPLAYPOWER')
-	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_UPDATE')
-
 	ElvUI_EltreumUI:RegisterEvent('UPDATE_STEALTH')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
+
+	--power bar
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED')
+	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_FREQUENT') --power update real time
+	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_UPDATE')  --power type changes
+	ElvUI_EltreumUI:RegisterEvent("UNIT_MODEL_CHANGED")  --druid things
+	--ElvUI_EltreumUI:RegisterEvent('UNIT_DISPLAYPOWER') --not needed anymore but leaving here just in case
 
 	--LootText things
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_LOOT")
@@ -139,21 +138,6 @@ function ElvUI_EltreumUI:Initialize()
 	end
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		SetCVar('clampTargetNameplateToScreen', 1)
-		if myclass == 'DRUID' then --classic druid things
-			ElvUI_EltreumUI:RegisterEvent('UNIT_SPELLCAST_SUCCEEDED')
-		end
-	end
-end
-
-
-
-
-function ElvUI_EltreumUI:UNIT_SPELLCAST_SUCCEEDED(unit)
-	if not unit == 'player' then return end
-	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-		if myclass == 'DRUID' then
-			ElvUI_EltreumUI:GetDruidForm()
-		end
 	end
 end
 
@@ -164,30 +148,43 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	end
 end
 
-function ElvUI_EltreumUI:UNIT_DISPLAYPOWER(unit)
+--[[function ElvUI_EltreumUI:UNIT_DISPLAYPOWER(unit)
 	if not unit == 'player' then
 		return
 	else
 		ElvUI_EltreumUI:NameplatePower()
 	end
-end
+end]]--
 
-function ElvUI_EltreumUI:UNIT_POWER_FREQUENT(unit)
-	if not unit == 'player' then
+function ElvUI_EltreumUI:UNIT_MODEL_CHANGED(event,unit)
+	if unit and unit ~= 'player' then
 		return
-	else
-		ElvUI_EltreumUI:NameplatePower()
-	end
-
-end
-
-function ElvUI_EltreumUI:UNIT_POWER_UPDATE(unit)
-	if not unit == 'player' then
-		return
-	else
+	elseif unit and unit == 'player' then
+		--print(event,unit)
+		ElvUI_EltreumUI:NameplatePowerTextUpdate()
 		ElvUI_EltreumUI:NameplatePower()
 	end
 end
+
+function ElvUI_EltreumUI:UNIT_POWER_FREQUENT(event,unit)
+	if unit and unit ~= 'player' then
+		return
+	elseif unit and unit == 'player' then
+		--print(event,unit)
+		ElvUI_EltreumUI:NameplatePowerTextUpdate()
+		ElvUI_EltreumUI:NameplatePower()
+	end
+end
+
+function ElvUI_EltreumUI:UNIT_POWER_UPDATE(event,unit)
+	if unit and unit ~= 'player' then
+		return
+	elseif unit and unit == 'player' then
+		--print(event,unit)
+		ElvUI_EltreumUI:NameplatePowerTextUpdate()
+	end
+end
+
 
 function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
