@@ -189,10 +189,10 @@ if ElvUI_EltreumUI.Retail then
 			E.db["sle"]["pvp"]["duels"]["announce"] = true
 			-- Quests
 			E.db["sle"]["quests"]["autoReward"] = true
-			E.db["sle"]["quests"]["visibility"]["arena"] = "HIDE"
-			E.db["sle"]["quests"]["visibility"]["bg"] = "HIDE"
-			E.db["sle"]["quests"]["visibility"]["combat"] = "FULL"
-			E.db["sle"]["quests"]["visibility"]["enable"] = true
+			--E.db["sle"]["quests"]["visibility"]["arena"] = "HIDE"
+			--E.db["sle"]["quests"]["visibility"]["bg"] = "HIDE"
+			--E.db["sle"]["quests"]["visibility"]["combat"] = "FULL"
+			--E.db["sle"]["quests"]["visibility"]["enable"] = true
 			-- Raidmanager
 			E.db["sle"]["raidmanager"]["roles"] = true
 			E.db["sle"]["raidmarkers"]["backdrop"] = true
@@ -342,29 +342,6 @@ if ElvUI_EltreumUI.Retail then
 				E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
 				E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
 				E.db["sle"]["afk"]["playermodel"]["anim"] = 47
-			else
-				E.private["sle"]["module"]["screensaver"] = false
-				E.db["sle"]["screensaver"]["animBounce"] = false
-				E.db["sle"]["screensaver"]["animTime"] = 2
-				E.db["sle"]["screensaver"]["crest"]["size"] = 84
-				E.db["sle"]["screensaver"]["crest"]["yOffset_faction"] = 975
-				E.db["sle"]["screensaver"]["crest"]["yOffset_race"] = 975
-				E.db["sle"]["screensaver"]["date"]["font"] = "Kimberley"
-				E.db["sle"]["screensaver"]["height"] = 120
-				E.db["sle"]["screensaver"]["keydown"] = true
-				E.db["sle"]["screensaver"]["player"]["font"] = "Kimberley"
-				E.db["sle"]["screensaver"]["playermodel"]["anim"] = 47
-				E.db["sle"]["screensaver"]["playermodel"]["distance"] = 5
-				E.db["sle"]["screensaver"]["playermodel"]["enable"] = false
-				E.db["sle"]["screensaver"]["subtitle"]["font"] = "Kimberley"
-				E.db["sle"]["screensaver"]["subtitle"]["outline"] = "THICKOUTLINE"
-				E.db["sle"]["screensaver"]["tipThrottle"] = 5
-				E.db["sle"]["screensaver"]["tips"]["font"] = "Kimberley"
-				E.db["sle"]["screensaver"]["tips"]["size"] = 32
-				E.db["sle"]["screensaver"]["title"]["font"] = "Kimberley"
-				E.db["sle"]["screensaver"]["title"]["outline"] = "THICKOUTLINE"
-				E.db["sle"]["screensaver"]["title"]["size"] = 32
-				E.db["sle"]["screensaver"]["xpack"] = 100
 			end
 
 			-- Shadows
@@ -807,6 +784,7 @@ if ElvUI_EltreumUI.Retail then
 		E.db["databars"]["azerite"]["hideInCombat"] = true
 		E.db["databars"]["azerite"]["mouseover"] = true
 		E.db["databars"]["azerite"]["width"] = 10
+		E.db["databars"]["azerite"]["enable"] = false
 		E.db["databars"]["colors"]["azerite"]["a"] = 0.5
 		E.db["databars"]["colors"]["azerite"]["b"] = 0.6
 		E.db["databars"]["colors"]["azerite"]["r"] = 0.90196078431373
@@ -817,6 +795,9 @@ if ElvUI_EltreumUI.Retail then
 		E.db["databars"]["colors"]["honor"]["r"] = 0.94117647058824
 		E.db["databars"]["colors"]["rested"]["a"] = 0.20000004768372
 		E.db["databars"]["customTexture"] = true
+
+		--[[
+		--Experience databar
 		E.db["databars"]["experience"]["font"] = "Kimberley"
 		E.db["databars"]["experience"]["fontOutline"] = "THICKOUTLINE"
 		E.db["databars"]["experience"]["height"] = 203
@@ -843,6 +824,42 @@ if ElvUI_EltreumUI.Retail then
 		E.db["databars"]["experience"]["questCurrentZoneOnly"] = true
 		E.db["databars"]["experience"]["questTrackedOnly"] = true
 		E.db["databars"]["experience"]["width"] = 10
+
+
+		--reputation databar
+		E.db["databars"]["reputation"]["enable"] = true
+		E.db["databars"]["reputation"]["font"] = "Kimberley"
+		E.db["databars"]["reputation"]["fontOutline"] = "THICKOUTLINE"
+		E.db["databars"]["reputation"]["hideInCombat"] = true
+		E.db["databars"]["reputation"]["mouseover"] = true
+		E.db["databars"]["reputation"]["width"] = 10
+		]]--
+
+		--new experience
+		E.db["databars"]["experience"]["font"] = "Kimberley"
+		E.db["databars"]["experience"]["fontOutline"] = "OUTLINE"
+		E.db["databars"]["experience"]["fontSize"] = 10
+		E.db["databars"]["experience"]["height"] = 12
+		E.db["databars"]["experience"]["mouseover"] = true
+		E.db["databars"]["experience"]["questCompletedOnly"] = true
+		E.db["databars"]["experience"]["questCurrentZoneOnly"] = true
+		E.db["databars"]["experience"]["questTrackedOnly"] = true
+		E.db["databars"]["experience"]["showBubbles"] = true
+		E.db["databars"]["experience"]["showLevel"] = true
+		E.db["databars"]["experience"]["textFormat"] = "CUR"
+		E.db["databars"]["experience"]["width"] = 500
+		--new reputation
+		E.db["databars"]["reputation"]["enable"] = true
+		E.db["databars"]["reputation"]["font"] = "Kimberley"
+		E.db["databars"]["reputation"]["fontOutline"] = "OUTLINE"
+		E.db["databars"]["reputation"]["fontSize"] = 10
+		E.db["databars"]["reputation"]["height"] = 12
+		E.db["databars"]["reputation"]["mouseover"] = true
+		E.db["databars"]["reputation"]["showBubbles"] = true
+		E.db["databars"]["reputation"]["textFormat"] = "REM"
+		E.db["databars"]["reputation"]["width"] = 500
+
+		E.db["databars"]["honor"]["enable"] = false
 		E.db["databars"]["honor"]["font"] = "Kimberley"
 		E.db["databars"]["honor"]["height"] = 203
 		E.db["databars"]["honor"]["hideBelowMaxLevel"] = true
@@ -851,12 +868,6 @@ if ElvUI_EltreumUI.Retail then
 		E.db["databars"]["honor"]["mouseover"] = true
 		E.db["databars"]["honor"]["orientation"] = "VERTICAL"
 		E.db["databars"]["honor"]["width"] = 10
-		E.db["databars"]["reputation"]["enable"] = true
-		E.db["databars"]["reputation"]["font"] = "Kimberley"
-		E.db["databars"]["reputation"]["fontOutline"] = "THICKOUTLINE"
-		E.db["databars"]["reputation"]["hideInCombat"] = true
-		E.db["databars"]["reputation"]["mouseover"] = true
-		E.db["databars"]["reputation"]["width"] = 10
 		E.db["databars"]["threat"]["enable"] = false
 		E.db["databars"]["threat"]["font"] = "Kimberley"
 		E.db["databars"]["threat"]["fontOutline"] = "OUTLINE"
@@ -1540,6 +1551,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["movers"]["ElvUF_AssistMover"] = "BOTTOM,ElvUIParent,BOTTOM,155,45"
 			E.db["movers"]["ElvUF_BodyGuardMover"] = "TOP,ElvUIParent,TOP,0,-440"
 			E.db["movers"]["ElvUF_FocusMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,424,-204"
+			E.db["movers"]["ElvUF_FocusCastbarMover"] = "TOP,ElvUIParent,TOP,0,-168"
 			E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-247"
 			E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,563,283"
 			E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,560,183"
@@ -1556,7 +1568,9 @@ if ElvUI_EltreumUI.Retail then
 			E.db["movers"]["ElvUIBagMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,23"
 			E.db["movers"]["ElvUIBankMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,23"
 			E.db["movers"]["EnhancedVehicleBar_Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
-			E.db["movers"]["ExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,421,-1"
+			--E.db["movers"]["ExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,421,-1"
+			E.db["movers"]["ReputationBarMover"] = "TOP,ElvUIParent,TOP,0,0"
+			E.db["movers"]["ExperienceBarMover"] = "TOP,ElvUIParent,TOP,0,-13"
 			E.db["movers"]["GMMover"] = "TOP,ElvUIParent,TOP,239,-3"
 			E.db["movers"]["GhostFrameMover"] = "TOP,ElvUIParent,TOP,0,-280"
 			E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-412,0"
@@ -1577,7 +1591,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-50"
 			E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
 			E.db["movers"]["RaidUtility_Mover"] = "TOP,ElvUIParent,TOP,-219,1"
-			E.db["movers"]["ReputationBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,412,-1"
+			--E.db["movers"]["ReputationBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,412,-1"
 			E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
 			if IsAddOnLoaded("ElvUI_SLE") then
 				E.db["movers"]["SLE_DataPanel_1_Mover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,199"
@@ -1746,6 +1760,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["boss"]["raidicon"]["size"] = 24
 			E.db["unitframe"]["units"]["boss"]["raidicon"]["yOffset"] = 12
 			E.db["unitframe"]["units"]["boss"]["threatStyle"] = "BORDERS"
+
 			E.db["unitframe"]["units"]["focus"]["CombatIcon"]["xOffset"] = -87
 			E.db["unitframe"]["units"]["focus"]["CombatIcon"]["yOffset"] = 10
 			E.db["unitframe"]["units"]["focus"]["buffIndicator"]["size"] = 20
@@ -1757,8 +1772,11 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["invertColors"] = false
 			E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["useClassColor"] = true
 			E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["useCustomBackdrop"] = true
-			E.db["unitframe"]["units"]["focus"]["castbar"]["height"] = 14
-			E.db["unitframe"]["units"]["focus"]["castbar"]["overlayOnFrame"] = "Power"
+			E.db["unitframe"]["units"]["focus"]["castbar"]["height"] = 30
+			E.db["unitframe"]["units"]["focus"]["castbar"]["width"] = 333
+			E.db["unitframe"]["units"]["focus"]["disableMouseoverGlow"] = true
+			E.db["unitframe"]["units"]["focus"]["disableTargetGlow"] = true
+			--E.db["unitframe"]["units"]["focus"]["castbar"]["overlayOnFrame"] = "Power"
 			E.db["unitframe"]["units"]["focus"]["castbar"]["strataAndLevel"]["frameStrata"] = "DIALOG"
 			E.db["unitframe"]["units"]["focus"]["castbar"]["timeToHold"] = 1
 			E.db["unitframe"]["units"]["focus"]["debuffs"]["countFont"] = "Kimberley"
@@ -1774,6 +1792,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["focus"]["power"]["xOffset"] = -7
 			E.db["unitframe"]["units"]["focustarget"]["power"]["enable"] = false
 			E.db["unitframe"]["units"]["focustarget"]["power"]["text_format"] = "[power:current:shortvalue]"
+
 			E.db["unitframe"]["units"]["party"]["buffIndicator"]["size"] = 20
 			E.db["unitframe"]["units"]["party"]["buffs"]["anchorPoint"] = "TOP"
 			E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Kimberley"
@@ -2456,6 +2475,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["movers"]["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,310"
 			E.db["movers"]["ElvUF_AssistMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,130,-523"
 			E.db["movers"]["ElvUF_FocusMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,424,-204"
+			E.db["movers"]["ElvUF_FocusCastbarMover"] = "TOP,ElvUIParent,TOP,0,-168"
 			E.db["movers"]["ElvUF_PartyMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,87"
 			E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,311,352"
 			E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,336"
@@ -2472,7 +2492,10 @@ if ElvUI_EltreumUI.Retail then
 			E.db["movers"]["ElvUIBagMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,24"
 			E.db["movers"]["ElvUIBankMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,24"
 			E.db["movers"]["EnhancedVehicleBar_Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
-			E.db["movers"]["ExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,421,0"
+			E.db["movers"]["ReputationBarMover"] = "TOP,ElvUIParent,TOP,0,0"
+			E.db["movers"]["ExperienceBarMover"] = "TOP,ElvUIParent,TOP,0,-13"
+			--E.db["movers"]["ReputationBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,412,0"
+			--E.db["movers"]["ExperienceBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,421,0"
 			E.db["movers"]["GMMover"] = "TOP,ElvUIParent,TOP,239,-3"
 			E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-412,0"
 			E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,0"
@@ -2486,7 +2509,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["movers"]["PetAB"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,255"
 			E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
 			E.db["movers"]["RaidUtility_Mover"] = "TOP,ElvUIParent,TOP,-220,1"
-			E.db["movers"]["ReputationBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,412,0"
+
 			E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
 			if IsAddOnLoaded("ElvUI_SLE") then
 				E.db["movers"]["SLE_DataPanel_1_Mover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,202"

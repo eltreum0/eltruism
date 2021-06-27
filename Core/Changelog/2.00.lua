@@ -8,6 +8,10 @@ function ElvUI_EltreumUI:Changelogv2()
     v2.3.7
     -------
 Improved event detection for Nameplate Power Bar (Thanks Repooc!)
+Hunter and Demon Hunter power bars will now follow Unitframe Power Colors like other classes
+Left Chat hide will now behave the same as Right Chat hide
+Moved the Focus Castbar into an easier to see position
+Changed Experience and Reputation databars, disabled honor and azerite databars
 
     v2.3.6
     -------

@@ -202,14 +202,11 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 		local canattack = UnitCanAttack("player", "target")
 		if UnitExists("target") and canattack then
 
-
 			local EltreumPowerAnchor = C_NamePlate.GetNamePlateForUnit("target")
 			EltreumPowerBar:SetParent(EltreumPowerAnchor)
 
-
 			local powerMax = UnitPowerMax("player")
 			EltreumPowerBar:SetMinMaxValues(0, powerMax)
-
 
 			local startpower = UnitPower("player")
 			EltreumPowerBar:SetValue(startpower) --try to make it not be full always at the start
@@ -407,7 +404,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
 							end
 						end
-					elseif stance == 4 or stance == 5 then --4 is travel in classic and 5 is moonkin/resto tree i classic
+					elseif stance == 4 or stance == 5 then --4 is travel in classic and 5 is moonkin/resto tree in classic
 						if E.private.ElvUI_EltreumUI.nameplatepower.astral then
 							EltreumPowerBar:Show()
 							EltreumPowerBar:SetStatusBarColor(manar, manag, manab) --its mana so color like mana

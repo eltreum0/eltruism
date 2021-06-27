@@ -1,15 +1,25 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local LoadAddOn = LoadAddOn
+local _G = _G
 
 -- BigWigs profile setup
 function ElvUI_EltreumUI:GetBigWigsProfile()
-	LoadAddOn("BigWigs")
-	LoadAddOn("BigWigs_Options")
+
+	--until a solution is found to import the profile,
+	--in order to not confuse users and overload the bigwigs discord the message is cleared.
+	--If users have issues they'll contact me and ill help sort it out, id rather carry the weight
+	if not IsAddOnLoaded("BigWigs_Options") then
+		local chatframe = _G.DEFAULT_CHAT_FRAME:GetName()
+		LoadAddOn("BigWigs")
+		LoadAddOn("BigWigs_Options")
+		--_G[format("ChatFrame%d", 1)]:Clear()
+		_G[chatframe]:Clear()
+	end
 
 	if ElvUI_EltreumUI.Retail then
 
-		BigWigs3DB["profiles"] = {}
 		--create profile
+		BigWigs3DB["profiles"] = BigWigs3DB["profiles"] or {}
 		BigWigs3DB["profiles"]["Eltreum"] = BigWigs3DB["profiles"]["Eltreum"] or {}
 		BigWigsIconDB["hide"] = true
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] or {}
@@ -130,7 +140,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 	end
 	if ElvUI_EltreumUI.Classic then
 		BigWigsClassicDB = {}
-		BigWigsClassicDB["profiles"] = {}
+		BigWigsClassicDB["profiles"] = BigWigsClassicDB["profiles"] or {}
 		BigWigsClassicDB["namespaces"] = {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"] = {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"] = {}
@@ -217,6 +227,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 	end
 	if ElvUI_EltreumUI.TBC then
 		--create profile
+		BigWigsClassicDB["profiles"] = BigWigsClassicDB["profiles"] or {}
 		BigWigsClassicDB["profiles"]["Eltreum"] = BigWigsClassicDB["profiles"]["Eltreum"] or {}
 		BigWigsIconClassicDB["hide"] = true
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] or {}
@@ -299,7 +310,4 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 
 		BigWigs.db:SetProfile("Eltreum")
 	end
-
-	--until a solution is found to import the profile, in order to not confuse users and overload the bigwigs discord the message is cleared. If users have issues they'll contact me and ill help sort it out, id rather carry the weight
-	_G[format("ChatFrame%d", 1)]:Clear()
 end

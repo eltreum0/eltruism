@@ -5,7 +5,7 @@ Renaitre textures belong to Limb0 (https://www.wowinterface.com/downloads/info19
 
 
 Aura border/Better Blizzard is by Goldpawn (https://www.curseforge.com/wow/addons/sharedmedia_goldpaw)
-License from Goldpawn below:
+License from Goldpawn below refers to the artwork and none of ELtruism's code:
 
 ## Custom License
 

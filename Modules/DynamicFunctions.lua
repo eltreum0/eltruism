@@ -3,6 +3,97 @@ local _G = _G
 local UnitLevel = _G.UnitLevel
 local myclass = E.myclass
 
+
+
+--enforce correct spec profiles after loading if they are not the ones loaded in
+--[[
+function ElvUI_EltreumUI:EnforceProfiles()
+	ElvDB
+	["namespaces"]
+		["LibDualSpec-1.0"] = {
+			["char"] = {
+				["Auramaster - Stormrage"] = {
+					"Eltreum Healer", -- [1]
+					"Eltreum DPS/Tank", -- [2]
+					"Eltreum DPS/Tank", -- [3]
+					["enabled"] = true,
+				},
+			}.
+		}
+
+local isdualspec = ElvDB[namespaces]["LibDualSpec-1.0"]["char"][E.mynameRealm]["enabled"]
+print (isdualspec)
+
+end
+
+ElvDB = {
+	["namespaces"] = {
+		["LibDualSpec-1.0"] = {
+			["char"] = {
+				["Auramaster - Stormrage"] = {
+					"Eltreum Healer", -- [1]
+					"Eltreum DPS/Tank", -- [2]
+					"Eltreum DPS/Tank", -- [3]
+					["enabled"] = true,
+				},
+			},
+		},
+	},
+}
+
+local profileKey = ElvDB.profileKeys
+	local mynamerealm = ElvDB.profileKeys[E.mynameRealm]  --returns current profile?
+	local data2 = ElvDB.profiles[profileKey] --returns nil
+
+	print(profileKey)
+	print(mynamerealm)
+
+
+
+	local function tprint (tbl, indent)
+	  if not indent then indent = 0 end
+	  local toprint = string.rep(" ", indent) .. "{\r\n"
+	  indent = indent + 2
+	  for k, v in pairs(tbl) do
+	    toprint = toprint .. string.rep(" ", indent)
+	    if (type(k) == "number") then
+	      toprint = toprint .. "[" .. k .. "] = "
+	    elseif (type(k) == "string") then
+	      toprint = toprint  .. k ..  "= "
+	    end
+	    if (type(v) == "number") then
+	      toprint = toprint .. v .. ",\r\n"
+	    elseif (type(v) == "string") then
+	      toprint = toprint .. "\"" .. v .. "\",\r\n"
+	    elseif (type(v) == "table") then
+	      toprint = toprint .. tprint(v, indent + 2) .. ",\r\n"
+	    else
+	      toprint = toprint .. "\"" .. tostring(v) .. "\",\r\n"
+	    end
+	  end
+	  toprint = toprint .. string.rep(" ", indent-2) .. "}"
+	  return toprint
+	end
+	print (tprint(profileKey))
+
+
+
+
+
+]]--
+
+
+
+
+
+
+
+
+
+
+
+
+
 --Dynamically datatext swap based on player class
 function ElvUI_EltreumUI:DynamicClassicDatatext()
 	if E.db.ElvUI_EltreumUI.dynamicdatatext.enable then
