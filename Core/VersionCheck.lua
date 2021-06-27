@@ -8,11 +8,10 @@ end
 function ElvUI_EltreumUI:NewVersionCheck()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
-	elseif E.private.ElvUI_EltreumUI.install_version >= "2.2.2" and E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version then
+	elseif E.private.ElvUI_EltreumUI.install_version >= "2.3.0" and E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version then
 		E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
-		ElvUI_EltreumUI:Print(L["updated to "]..ElvUI_EltreumUI.Version..'')
-		ElvUI_EltreumUI:Print('Chat modifications were recently added, please check Eltruism > Chat if you want to turn them off. You can Left click on a Chat Panel enable them (reloading will reset this)')
-		ElvUI_EltreumUI:Print('More options were added to Nameplate Power Bar, such as the ability to change its size, position and texture. Configure it in Eltruism > Nameplates')
+		ElvUI_EltreumUI:Print(L["updated to "]..ElvUI_EltreumUI.Version..' version')
+		ElvUI_EltreumUI:Print('Borders is in beta, you can test this feature in Eltruism > Borders. You might need to adjust settings to fit your action bars')
 	end
 end
 
@@ -40,5 +39,9 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			ElvUI_EltreumUI:Print('Please go to: |cffff0000ElvUI > Unitframes > Group Units > Party/Raid/Raid40 > Aura Indicator >|r Set them to |cffff0000Textured Icon with Display Timer|r')
 			ElvUI_EltreumUI:Print('This setting cannot be set through the plugin without causing errors. It will improve your experience making it easier to see which buffs/debuffs your party/raid/raid40 has. This message will only be displayed once.')
 		end
+	elseif E.private.ElvUI_EltreumUI.install_version < "2.3.0" then
+		E.private.ElvUI_EltreumUI.install_version = "2.3.0"
+		ElvUI_EltreumUI:Print('Chat modifications were recently added, please check Eltruism > Chat if you want to turn them off. You can Left click on a Chat Panel enable them (reloading will reset this)')
+		ElvUI_EltreumUI:Print('More options were added to Nameplate Power Bar, such as the ability to change its size, position and texture. Configure it in Eltruism > Nameplates')
 	end
 end
