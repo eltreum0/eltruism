@@ -5,16 +5,14 @@ local _G = _G
 -- BigWigs profile setup
 function ElvUI_EltreumUI:GetBigWigsProfile()
 
-	--until a solution is found to import the profile,
-	--in order to not confuse users and overload the bigwigs discord the message is cleared.
-	--If users have issues they'll contact me and ill help sort it out, id rather carry the weight
-	if not IsAddOnLoaded("BigWigs_Options") then
-		local chatframe = _G.DEFAULT_CHAT_FRAME:GetName()
-		LoadAddOn("BigWigs")
-		LoadAddOn("BigWigs_Options")
-		--_G[format("ChatFrame%d", 1)]:Clear()
-		_G[chatframe]:Clear()
+	if not IsAddOnLoaded("BigWigs_Core") then
+		LoadAddOn("BigWigs_Core")
 	end
+
+	if not IsAddOnLoaded("BigWigs_Plugins") then
+		LoadAddOn("BigWigs_Plugins")
+	end
+
 
 	if ElvUI_EltreumUI.Retail then
 
