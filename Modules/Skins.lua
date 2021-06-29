@@ -220,18 +220,19 @@ function ElvUI_EltreumUI:WiderTransmog()
 			_G.WardrobeOutfitDropDown:SetPoint("TOPLEFT", _G.WardrobeTransmogFrame, "TOPLEFT", 0, 50)
 
    			--head button (with the help of gregory)
-			WardrobeTransmogFrame:HookScript("OnShow",
+   			WardrobeTransmogFrame:RegisterEvent('TRANSMOGRIFY_OPEN')
+			WardrobeTransmogFrame:SetScript("OnEvent",
                 function()
                     _G.WardrobeTransmogFrame.HeadButton:ClearAllPoints()
-                    _G.WardrobeTransmogFrame.HeadButton:SetPoint("TOPLEFT", _G.WardrobeTransmogFrame, "TOPLEFT", 20, -35)
+                    _G.WardrobeTransmogFrame.HeadButton:SetPoint("TOPLEFT", _G.WardrobeTransmogFrame, "TOPLEFT", 20, 0)
                 end
             )
 
             ---shoulder button
 			_G.WardrobeTransmogFrame.ShoulderButton:ClearAllPoints()
-			_G.WardrobeTransmogFrame.ShoulderButton:SetPoint("TOP", _G.  _G.WardrobeTransmogFrame.HeadButton, "TOP", 0, -55)
+			_G.WardrobeTransmogFrame.ShoulderButton:SetPoint("TOP", _G.WardrobeTransmogFrame.HeadButton, "TOP", 0, -55)
 
-			--should toggle for offshoulder
+			--shoulder toggle for offshoulder
 			_G.WardrobeTransmogFrame.ToggleSecondaryAppearanceCheckbox:ClearAllPoints()
 			_G.WardrobeTransmogFrame.ToggleSecondaryAppearanceCheckbox:SetPoint("BOTTOM", _G.WardrobeCollectionFrame, "BOTTOM", -240, 40)
 
