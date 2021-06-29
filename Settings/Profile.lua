@@ -1,6 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
-
 -- Eltreum UI Profile DB
 P.ElvUI_EltreumUI = {
 
@@ -42,7 +41,7 @@ P.ElvUI_EltreumUI = {
 	},
 
 	changelog = {
-		version = "2.0.0",
+		version = "2.2.0",
 	},
 
 	cursor = {
@@ -251,6 +250,4 @@ P.ElvUI_EltreumUI = {
 		arenaunitframes = false,
 		--floatingrep = false,
 	},
-
-
 }

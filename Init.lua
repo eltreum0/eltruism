@@ -79,7 +79,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	end
 end
 
-
 function ElvUI_EltreumUI:HidePopups()
 	E:StaticPopup_Hide("INCOMPATIBLE_ADDON")
 	E:StaticPopup_Hide('DISABLE_INCOMPATIBLE_ADDON')

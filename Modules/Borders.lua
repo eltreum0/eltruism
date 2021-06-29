@@ -4,7 +4,6 @@ local CreateFrame = _G.CreateFrame
 local table = _G.table
 local pairs = _G.pairs
 
-
 --Beta borders on frames
 function ElvUI_EltreumUI:Borders()
 	local bordertexture

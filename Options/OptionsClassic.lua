@@ -2630,6 +2630,7 @@ if ElvUI_EltreumUI.Classic then
 							 name = L["Select a version:"],
 							 desc = L["Choose a version to see its changelog"],
 							 values = {
+								["2.2.0"] = "2.2.0",
 								["2.0.0"] = "2.0.0",
 								["1.0.0"] = "1.0.0",
 							},

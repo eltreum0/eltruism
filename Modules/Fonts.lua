@@ -163,12 +163,6 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 				E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
 				E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
 				E.db["sle"]["afk"]["playermodel"]["anim"] = 47
-			else
-				E.db["sle"]["screensaver"]["date"]["font"] = fontvalue
-				E.db["sle"]["screensaver"]["player"]["font"] = fontvalue
-				E.db["sle"]["screensaver"]["subtitle"]["font"] = fontvalue
-				E.db["sle"]["screensaver"]["tips"]["font"] = fontvalue
-				E.db["sle"]["screensaver"]["title"]["font"] = fontvalue
 			end
 
 			E.db["sle"]["skins"]["merchant"]["list"]["nameFont"] = fontvalue
@@ -753,12 +747,6 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 				E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
 				E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
 				E.db["sle"]["afk"]["playermodel"]["anim"] = 47
-			else
-				E.db["sle"]["screensaver"]["date"]["font"] = "Kimberley"
-				E.db["sle"]["screensaver"]["player"]["font"] = "Kimberley"
-				E.db["sle"]["screensaver"]["subtitle"]["font"] = "Kimberley"
-				E.db["sle"]["screensaver"]["tips"]["font"] = "Kimberley"
-				E.db["sle"]["screensaver"]["title"]["font"] = "Kimberley"
 			end
 			E.db["sle"]["skins"]["merchant"]["list"]["nameFont"] = "Kimberley"
 			E.db["sle"]["skins"]["merchant"]["list"]["subFont"] = "Kimberley"
@@ -1341,12 +1329,6 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 				E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
 				E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
 				E.db["sle"]["afk"]["playermodel"]["anim"] = 47
-			else
-				E.db["sle"]["screensaver"]["date"]["font"] = "Exo2 Extra Bold"
-				E.db["sle"]["screensaver"]["player"]["font"] = "Exo2 Extra Bold"
-				E.db["sle"]["screensaver"]["subtitle"]["font"] = "Exo2 Extra Bold"
-				E.db["sle"]["screensaver"]["tips"]["font"] = "Exo2 Extra Bold"
-				E.db["sle"]["screensaver"]["title"]["font"] = "Exo2 Extra Bold"
 			end
 
 			E.db["sle"]["skins"]["merchant"]["list"]["nameFont"] = "Exo2 Extra Bold"
@@ -1929,12 +1911,6 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 				E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
 				E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
 				E.db["sle"]["afk"]["playermodel"]["anim"] = 47
-			else
-				E.db["sle"]["screensaver"]["date"]["font"] = "GothamNarrow Black"
-				E.db["sle"]["screensaver"]["player"]["font"] = "GothamNarrow Black"
-				E.db["sle"]["screensaver"]["subtitle"]["font"] = "GothamNarrow Black"
-				E.db["sle"]["screensaver"]["tips"]["font"] = "GothamNarrow Black"
-				E.db["sle"]["screensaver"]["title"]["font"] = "GothamNarrow Black"
 			end
 			E.db["sle"]["skins"]["merchant"]["list"]["nameFont"] = "GothamNarrow Black"
 			E.db["sle"]["skins"]["merchant"]["list"]["subFont"] = "GothamNarrow Black"
@@ -2516,12 +2492,6 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 				E.db["sle"]["afk"]["panels"]["bottom"]["height"] = 120
 				E.db["sle"]["afk"]["panels"]["top"]["height"] = 120
 				E.db["sle"]["afk"]["playermodel"]["anim"] = 47
-			else
-				E.db["sle"]["screensaver"]["date"]["font"] = "Roboto"
-				E.db["sle"]["screensaver"]["player"]["font"] = "Roboto"
-				E.db["sle"]["screensaver"]["subtitle"]["font"] = "Roboto"
-				E.db["sle"]["screensaver"]["tips"]["font"] = "Roboto"
-				E.db["sle"]["screensaver"]["title"]["font"] = "Roboto"
 			end
 			E.db["sle"]["skins"]["merchant"]["list"]["nameFont"] = "Roboto"
 			E.db["sle"]["skins"]["merchant"]["list"]["subFont"] = "Roboto"
@@ -2968,10 +2938,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
 			E.db["sle"]["minimap"]["instance"]["fontOutline"] = "THICKOUTLINE"
 			E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = "THICKOUTLINE"
 			E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = "THICKOUTLINE"
-			if sleversioncheck <= "4.21" then
-				E.db["sle"]["screensaver"]["subtitle"]["outline"] = "THICKOUTLINE"
-				E.db["sle"]["screensaver"]["title"]["outline"] = "THICKOUTLINE"
-			end
 			E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "THICKOUTLINE"
 		end
 		if IsAddOnLoaded("ElvUI_WindTools") then
@@ -3122,10 +3088,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
 			E.db["sle"]["minimap"]["instance"]["fontOutline"] = "NONE"
 			E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = "NONE"
 			E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = "NONE"
-			if sleversioncheck <= "4.21" then
-				E.db["sle"]["screensaver"]["subtitle"]["outline"] = "NONE"
-				E.db["sle"]["screensaver"]["title"]["outline"] = "NONE"
-			end
 			E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "NONE"
 		end
 		if IsAddOnLoaded("ElvUI_WindTools") then
@@ -3276,10 +3238,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineThick(addon)
 			E.db["sle"]["minimap"]["instance"]["fontOutline"] = "THICKOUTLINE"
 			E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = "THICKOUTLINE"
 			E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = "THICKOUTLINE"
-			if sleversioncheck <= "4.21" then
-				E.db["sle"]["screensaver"]["subtitle"]["outline"] = "THICKOUTLINE"
-				E.db["sle"]["screensaver"]["title"]["outline"] = "THICKOUTLINE"
-			end
 			E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "THICKOUTLINE"
 		end
 		if IsAddOnLoaded("ElvUI_WindTools") then
@@ -3430,10 +3388,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline(addon)
 			E.db["sle"]["minimap"]["instance"]["fontOutline"] = "OUTLINE"
 			E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = "OUTLINE"
 			E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = "OUTLINE"
-			if sleversioncheck <= "4.21" then
-				E.db["sle"]["screensaver"]["subtitle"]["outline"] = "OUTLINE"
-				E.db["sle"]["screensaver"]["title"]["outline"] = "OUTLINE"
-			end
 			E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "OUTLINE"
 		end
 		if IsAddOnLoaded("ElvUI_WindTools") then

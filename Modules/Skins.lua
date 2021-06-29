@@ -149,31 +149,8 @@ function ElvUI_EltreumUI:Skins()
 		if E.db.ElvUI_EltreumUI.skins.enable then
 			local R, G, B = unpack(E.media.rgbvaluecolor)
 			local BossBanner = _G.BossBanner
-
-			--9.0
-			local LevelUpDisplay = _G.LevelUpDisplay
-			if LevelUpDisplay then
-				_G.LevelUpDisplayGLine:Kill()
-				_G.LevelUpDisplayGLine2:Kill()
-				LevelUpDisplay.StatusLine = CreateFrame("StatusBar", nil, LevelUpDisplay)
-				LevelUpDisplay.StatusLine:SetSize(418, 2)
-				LevelUpDisplay.StatusLine:SetPoint("TOP", LevelUpDisplay, 0, -5)
-				LevelUpDisplay.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-				LevelUpDisplay.StatusLine:SetStatusBarColor(R, G, B, 0.7)
-				LevelUpDisplay.StatusLine2 = CreateFrame("StatusBar", nil, LevelUpDisplay)
-				LevelUpDisplay.StatusLine2:SetSize(418, 2)
-				LevelUpDisplay.StatusLine2:SetPoint("BOTTOM", LevelUpDisplay, 0, -3)
-				LevelUpDisplay.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
-				LevelUpDisplay.StatusLine2:SetStatusBarColor(R, G, B, 0.7)
-				_G.LevelUpDisplay.challengeModeBits:Kill()
-				_G.LevelUpDisplay.scenarioBits:Kill()
-				_G.LevelUpDisplay.scenarioFiligree:Kill()
-				_G.LevelUpDisplay.SpellBucketFrame:Kill()
-				--/script LevelUpDisplay:Show()
-			end
-			--9.1
-			--[[
 			local EventToastManagerFrame = _G.EventToastManagerFrame
+
 			if EventToastManagerFrame then
 				_G.EventToastManagerFrame.GLine:SetVertexColor(R, G, B)
 				_G.EventToastManagerFrame.GLine2:SetVertexColor(R, G, B)
@@ -187,9 +164,9 @@ function ElvUI_EltreumUI:Skins()
 				EventToastManagerFrame.StatusLine2:SetPoint("BOTTOM", EventToastManagerFrame, 0, 0)
 				EventToastManagerFrame.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
 				EventToastManagerFrame.StatusLine2:SetStatusBarColor(R, G, B, 1)
-				/script EventToastManagerFrame:Show()
+				--/script EventToastManagerFrame:Show()
 			end
-			]]--
+
 			if BossBanner then
 				local StatusLineTop = CreateFrame("StatusBar", nil, _G.BossBanner)
 				StatusLineTop:SetSize(418, 2)
@@ -222,31 +199,6 @@ function ElvUI_EltreumUI:Skins()
 	end
 end
 
-
---gregory's work
---[[
-local f = CreateFrame("Frame")
-f:RegisterEvent("ADDON_LOADED")
-f:SetScript("OnEvent",
-    function(_, _, arg)
-        if (arg == "Blizzard_Collections") then
-            WardrobeTransmogFrame:HookScript("OnShow",
-                function()
-                    _G.WardrobeTransmogFrame.HeadButton:ClearAllPoints()
-                    _G.WardrobeTransmogFrame.HeadButton:SetPoint("TOPLEFT", _G.WardrobeTransmogFrame, "TOPLEFT")
-                end
-            )
-        end
-    end
-)
-
-
-]]--
-
-
-
---[[
---9.1
 function ElvUI_EltreumUI:WiderTransmog()
 	if ElvUI_EltreumUI.Retail then
 		if E.db.ElvUI_EltreumUI.skins.widertransmog then
@@ -256,24 +208,28 @@ function ElvUI_EltreumUI:WiderTransmog()
 			--whole window
 			_G.WardrobeFrame:SetWidth(1200)
 			--player model frame
-			_G.WardrobeTransmogFrame:SetWidth(600)
-			_G.WardrobeTransmogFrame:SetHeight(_G.WardrobeFrame:GetHeight() -100);
-			_G.WardrobeTransmogFrame:SetPoint("TOPLEFT", _G.WardrobeFrame, -10, -60)
+			_G.WardrobeTransmogFrame:SetWidth(500)
+			_G.WardrobeTransmogFrame:SetHeight(_G.WardrobeFrame:GetHeight() -130);
+			_G.WardrobeTransmogFrame:SetPoint("TOP", _G.WardrobeFrame, 0, 0)
 			_G.WardrobeTransmogFrame.ModelScene:ClearAllPoints()
-			_G.WardrobeTransmogFrame.ModelScene:SetPoint("TOP", _G.WardrobeTransmogFrame, "TOP", 0, 0)
+			_G.WardrobeTransmogFrame.ModelScene:SetPoint("TOP", _G.WardrobeTransmogFrame, "TOP", 20, 0)
 			_G.WardrobeTransmogFrame.ModelScene:SetAllPoints(_G.WardrobeTransmogFrame)
-			_G.WardrobeTransmogFrame.ModelScene:SetWidth(450)
-			_G.WardrobeTransmogFrame.ModelScene:SetHeight(450)
-			--left side
+			_G.WardrobeTransmogFrame.ModelScene:SetWidth(400)
+			_G.WardrobeTransmogFrame.ModelScene:SetHeight(400)
+			_G.WardrobeOutfitDropDown:ClearAllPoints()
+			_G.WardrobeOutfitDropDown:SetPoint("TOPLEFT", _G.WardrobeTransmogFrame, "TOPLEFT", 0, 50)
 
-			---shoulder button
+   			--head button (with the help of gregory)
+			WardrobeTransmogFrame:HookScript("OnShow",
+                function()
+                    _G.WardrobeTransmogFrame.HeadButton:ClearAllPoints()
+                    _G.WardrobeTransmogFrame.HeadButton:SetPoint("TOPLEFT", _G.WardrobeTransmogFrame, "TOPLEFT", 20, -35)
+                end
+            )
+
+            ---shoulder button
 			_G.WardrobeTransmogFrame.ShoulderButton:ClearAllPoints()
-			_G.WardrobeTransmogFrame.ShoulderButton:SetPoint("TOP", _G.WardrobeTransmogFrame, "TOP", -260, -90)
-
-			--head button
-			_G.WardrobeTransmogFrame.HeadButton:ClearAllPoints()
-			_G.WardrobeTransmogFrame.HeadButton:SetParent(_G.WardrobeTransmogFrame)
-			_G.WardrobeTransmogFrame.HeadButton:SetPoint("TOP", _G.WardrobeTransmogFrame, "TOP", -860, -60)
+			_G.WardrobeTransmogFrame.ShoulderButton:SetPoint("TOP", _G.  _G.WardrobeTransmogFrame.HeadButton, "TOP", 0, -55)
 
 			--should toggle for offshoulder
 			_G.WardrobeTransmogFrame.ToggleSecondaryAppearanceCheckbox:ClearAllPoints()
@@ -281,9 +237,6 @@ function ElvUI_EltreumUI:WiderTransmog()
 
 			--background
 			_G.WardrobeTransmogFrame.Inset.BG:SetAllPoints(_G.WardrobeTransmogFrame)
-			--_G.WardrobeTransmogFrame.Inset.BG:Hide()
-
-			--right side
 
 			--hands button
 			_G.WardrobeTransmogFrame.HandsButton:ClearAllPoints()
@@ -299,54 +252,6 @@ function ElvUI_EltreumUI:WiderTransmog()
 			_G.WardrobeTransmogFrame.MainHandEnchantButton:SetPoint("BOTTOM", _G.WardrobeTransmogFrame.MainHandButton, "BOTTOM", 0, -28)
 			_G.WardrobeTransmogFrame.SecondaryHandEnchantButton:ClearAllPoints()
 			_G.WardrobeTransmogFrame.SecondaryHandEnchantButton:SetPoint("BOTTOM", _G.WardrobeTransmogFrame.SecondaryHandButton, "BOTTOM", 0, -28)
-			_G.UIPanelWindows["WardrobeFrame"].width = 1200
-		end
-	end
-end
-]]--
-
-
---9.0.5
-function ElvUI_EltreumUI:WiderTransmog()
-	if ElvUI_EltreumUI.Retail then
-		if E.db.ElvUI_EltreumUI.skins.widertransmog then
-			if not IsAddOnLoaded("Blizzard_Collections") then
-				LoadAddOn("Blizzard_Collections")
-			end
-			--whole window
-			_G.WardrobeFrame:SetWidth(1200)
-			--player model frame
-			_G.WardrobeTransmogFrame:SetWidth(600)
-			_G.WardrobeTransmogFrame:SetHeight(_G.WardrobeFrame:GetHeight() -100);
-			_G.WardrobeTransmogFrame:SetPoint("TOPLEFT", _G.WardrobeFrame, -10, -60)
-			_G.WardrobeTransmogFrame.ModelScene:ClearAllPoints()
-			_G.WardrobeTransmogFrame.ModelScene:SetPoint("TOP", _G.WardrobeTransmogFrame, "TOP", 0, 0)
-			_G.WardrobeTransmogFrame.ModelScene:SetWidth(450)
-			_G.WardrobeTransmogFrame.ModelScene:SetHeight(450)
-			--left side
-
-			--dropdown
-			_G.WardrobeOutfitDropDown:ClearAllPoints()
-			_G.WardrobeOutfitDropDown:SetPoint("TOPLEFT", _G.WardrobeFrame, 0, -30)
-			--_G.WardrobeFrame.WardrobeOutfitDropDown:SetPoint("TOPLEFT",_G.WardrobeFrame -10, -60)
-
-			--for 9.1 remove modelscene
-			_G.WardrobeTransmogFrame.ModelScene.HeadButton:ClearAllPoints()
-			_G.WardrobeTransmogFrame.ModelScene.HeadButton:SetPoint("TOP", _G.WardrobeTransmogFrame.ModelScene, "TOP", -260, -60)
-			--right side
-			_G.WardrobeTransmogFrame.ModelScene.HandsButton:ClearAllPoints()
-			_G.WardrobeTransmogFrame.ModelScene.HandsButton:SetPoint("TOP", _G.WardrobeTransmogFrame.ModelScene, "TOP", 250, -120)
-			--main weapon
-			_G.WardrobeTransmogFrame.ModelScene.MainHandButton:ClearAllPoints()
-			_G.WardrobeTransmogFrame.ModelScene.MainHandButton:SetPoint("TOP", _G.WardrobeTransmogFrame.ModelScene, "BOTTOM", -50, 0)
-			--offhand
-			_G.WardrobeTransmogFrame.ModelScene.SecondaryHandButton:ClearAllPoints()
-			_G.WardrobeTransmogFrame.ModelScene.SecondaryHandButton:SetPoint("TOP", _G.WardrobeTransmogFrame.ModelScene, "BOTTOM", 50, 0)
-			--and their enchants
-			_G.WardrobeTransmogFrame.ModelScene.MainHandEnchantButton:ClearAllPoints()
-			_G.WardrobeTransmogFrame.ModelScene.MainHandEnchantButton:SetPoint("BOTTOM", _G.WardrobeTransmogFrame.ModelScene.MainHandButton, "BOTTOM", 0, -28)
-			_G.WardrobeTransmogFrame.ModelScene.SecondaryHandEnchantButton:ClearAllPoints()
-			_G.WardrobeTransmogFrame.ModelScene.SecondaryHandEnchantButton:SetPoint("BOTTOM", _G.WardrobeTransmogFrame.ModelScene.SecondaryHandButton, "BOTTOM", 0, -28)
 			_G.UIPanelWindows["WardrobeFrame"].width = 1200
 		end
 	end

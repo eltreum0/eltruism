@@ -2,6 +2,7 @@
 	<Script file='Changelog.lua'/>
 	<Script file='Changelog/1.00.lua'/>
 	<Script file='Changelog/2.00.lua'/>
+	<Script file='Changelog/2.20.lua'/>
 	<Script file='Commands.lua'/>
 	<Script file='Core.lua'/>
 	<Script file='Install.lua'/>

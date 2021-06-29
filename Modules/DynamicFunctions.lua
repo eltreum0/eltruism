@@ -4,7 +4,6 @@ local UnitLevel = _G.UnitLevel
 local myclass = E.myclass
 local IsInInstance = _G.IsInInstance
 
-
 --enforce correct spec profiles after loading if they are not the ones loaded in
 --[[
 
@@ -122,9 +121,6 @@ function  ElvUI_EltreumUI:DynamicBuffs()
 		--E.db["unitframe"]["units"]["player"]["buffs"]["enable"] = false
 	end
 end
-
-
-
 
 --Dynamically datatext swap based on player class
 function ElvUI_EltreumUI:DynamicClassicDatatext()

@@ -59,7 +59,6 @@ local unitframeclass = {
 	['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
 }
 
-
 function ElvUI_EltreumUI:LightMode()
 	if not E.db.movers then E.db.movers = {} end
 		--setup colors

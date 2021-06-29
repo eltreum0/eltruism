@@ -38,8 +38,6 @@ if ElvUI_EltreumUI.Retail then
 				local _, instanceType = IsInInstance()
 				if instanceType == "arena" or instanceType == "pvp" then
 					ObjectiveTrackerFrame:Hide()
-
-
 				elseif instanceType == "none" then
 					ObjectiveTrackerFrame:Show()
 				end
@@ -48,11 +46,9 @@ if ElvUI_EltreumUI.Retail then
 	end
 end
 
-
+--based on Rogue Door Opener by Burzolog
 local RogueOrderHallAutoOpen = CreateFrame("Frame")
 RogueOrderHallAutoOpen:RegisterEvent("GOSSIP_SHOW")
-
---based on Rogue Door Opener by Burzolog
 function ElvUI_EltreumUI:RogueAutoOpen()
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return

@@ -20,6 +20,14 @@ LootTextframe:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
 LootTextframe:RegisterEvent("LOOT_OPENED")
 
 
+--'T  PATH TO TEXTURE :12:12:0:0:width_of_texture_file:height_of_texture_file:0:0:0:0|t' the last 4 0's will be
+--pixels from the left of the texture to where the bit you want starts
+--pixels from the left to where the bit you wants ends
+--pixels from top to your bit start
+--pixels from top to your bit ends
+
+
+
 function ElvUI_EltreumUI:LootText()
 	if E.db.ElvUI_EltreumUI.loottext.enable then
 		local scale = E.db.ElvUI_EltreumUI.loottext.scale

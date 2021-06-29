@@ -4,7 +4,9 @@ local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelog(value)
-	if E.db.ElvUI_EltreumUI.changelog.version == "2.0.0" then
+	if E.db.ElvUI_EltreumUI.changelog.version == "2.2.0" then
+		return ElvUI_EltreumUI:Changelogv220()
+	elseif E.db.ElvUI_EltreumUI.changelog.version == "2.0.0" then
 		return ElvUI_EltreumUI:Changelogv2()
 	elseif E.db.ElvUI_EltreumUI.changelog.version == "1.0.0" then
 		return ElvUI_EltreumUI:Changelogv1()
