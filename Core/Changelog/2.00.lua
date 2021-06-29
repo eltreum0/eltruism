@@ -5,6 +5,17 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelogv2()
 	return[[
+    v2.3.8
+    -------
+9.1 Compatibility
+New Misc option that includes some options that didnt fit into other places
+Quests can now be hidden in Arenas and Battlegrounds
+The following can be found under misc, and are defaulted to off:
+Added Arena Buffs, show target and enemy player buffs in arena but hide them elsewhere.
+Added option to hide arena unitframes in arena (in case you are using an addon like Gladius/Gladdy/sArena/GladiusEX)
+Added option to hide raid frames in battlegrounds (in case you are using an addon like Battleground Enemies)
+Rogue Order Hall Auto Open has been moved to Misc
+
     v2.3.7
     -------
 Improved event detection for Nameplate Power Bar (Thanks Repooc!)

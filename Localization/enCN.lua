@@ -480,3 +480,5 @@ L["Auto open the Rogue Order Hall, to avoid opening hold CTRL or SHIFT or ALT wh
 L["Enable the Rogue Order Hall Auto Open"] = true
 L["Enable Floating Reputation Changes"] = true
 L["Enable the Floating Rep Text"] = true
+L["Buffs have been updated for Open World"] = true
+L["Buffs have been updated for Arenas"] = true

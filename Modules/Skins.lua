@@ -222,6 +222,29 @@ function ElvUI_EltreumUI:Skins()
 	end
 end
 
+
+--gregory's work
+--[[
+local f = CreateFrame("Frame")
+f:RegisterEvent("ADDON_LOADED")
+f:SetScript("OnEvent",
+    function(_, _, arg)
+        if (arg == "Blizzard_Collections") then
+            WardrobeTransmogFrame:HookScript("OnShow",
+                function()
+                    _G.WardrobeTransmogFrame.HeadButton:ClearAllPoints()
+                    _G.WardrobeTransmogFrame.HeadButton:SetPoint("TOPLEFT", _G.WardrobeTransmogFrame, "TOPLEFT")
+                end
+            )
+        end
+    end
+)
+
+
+]]--
+
+
+
 --[[
 --9.1
 function ElvUI_EltreumUI:WiderTransmog()

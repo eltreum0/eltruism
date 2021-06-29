@@ -165,6 +165,7 @@ P.ElvUI_EltreumUI = {
 	questsettings = {
 		enable = true,
 		rogueopen = true,
+		arena = true,
 	},
 
 	loottext = {
@@ -177,11 +178,6 @@ P.ElvUI_EltreumUI = {
 		xOffset = 0,
 		yOffset = 200,
 		fontsetting = true,
-	},
-
-	otherstuff ={
-		worldtextscale = 1,
-		--floatingrep = false,
 	},
 
 	borders = {
@@ -246,8 +242,15 @@ P.ElvUI_EltreumUI = {
 		bar10borders = false,
 		bar10xborder = 42,
 		bar10yborder = 37,
-
-
 	},
+
+	otherstuff ={
+		worldtextscale = 1,
+		arenabuffs = false,
+		bgunitframes = false,
+		arenaunitframes = false,
+		--floatingrep = false,
+	},
+
 
 }

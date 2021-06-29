@@ -31,3 +31,5 @@ Icons that belong to Icons8, linked below:
 <a target="_blank" href="https://icons8.com/icon/7859/chat">Chat</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 
 <a target="_blank" href="https://icons8.com/icon/123951/square-border">Square Border</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+
+<a target="_blank" href="https://icons8.com/icon/12616/categorize">Categorize</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>

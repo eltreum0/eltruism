@@ -7,6 +7,14 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 		-- Create profile if it doesn't exist yet
 		_detalhes_global["__profiles"][key] = _detalhes_global["__profiles"][key] or {}
 
+		-- Clear Cache
+		_detalhes_global["encounter_spell_pool"] = {}
+		_detalhes_global["npcid_pool"] = {}
+		_detalhes_global["spell_pool"] = {}
+		_detalhes_global["spell_school_cache"] = {}
+
+		--setup profile
+		_detalhes_global["__profiles"][key] = _detalhes_global["__profiles"][key] or {}
 		_detalhes_global["__profiles"][key] = {
 					["show_arena_role_icon"] = false,
 					["capture_real"] = {
@@ -1322,8 +1330,8 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 		}
 
 		-- General db
-		_detalhes_global["always_use_profile"] = true
-		_detalhes_global["always_use_profile_name"] = key
+		_detalhes["always_use_profile"] = true
+		_detalhes["always_use_profile_name"] = key
 
 		-- Load the profile
 		_detalhes:ApplyProfile(key)
@@ -1332,6 +1340,14 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 		-- Create profile if it doesn't exist yet
 		_detalhes_global["__profiles"][key] = _detalhes_global["__profiles"][key] or {}
 
+		-- Clear Cache
+		_detalhes_global["encounter_spell_pool"] = {}
+		_detalhes_global["npcid_pool"] = {}
+		_detalhes_global["spell_pool"] = {}
+		_detalhes_global["spell_school_cache"] = {}
+
+		--setup profile
+		_detalhes_global["__profiles"][key] = _detalhes_global["__profiles"][key] or {}
 		_detalhes_global["__profiles"][key] = {
 			["show_arena_role_icon"] = false,
 			["capture_real"] = {
@@ -3064,8 +3080,8 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 
 
 		-- General db
-		_detalhes_global["always_use_profile"] = true
-		_detalhes_global["always_use_profile_name"] = key
+		_detalhes["always_use_profile"] = true
+		_detalhes["always_use_profile_name"] = key
 
 		-- Load the profile
 		_detalhes:ApplyProfile(key)
@@ -3078,7 +3094,15 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 		local key = "Eltreum Dual"
 		-- Create profile if it doesn't exist yet
 		_detalhes_global["__profiles"][key] = _detalhes_global["__profiles"][key] or {}
-		-- Profile db
+
+		-- Clear Cache
+		_detalhes_global["encounter_spell_pool"] = {}
+		_detalhes_global["npcid_pool"] = {}
+		_detalhes_global["spell_pool"] = {}
+		_detalhes_global["spell_school_cache"] = {}
+
+		--setup profile
+		_detalhes_global["__profiles"][key] = _detalhes_global["__profiles"][key] or {}
 		_detalhes_global["__profiles"][key] = {
 			["show_arena_role_icon"] = false,
 			["capture_real"] = {
@@ -4721,8 +4745,8 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 			["instances_segments_locked"] = true,
 		}
 		-- General db
-		_detalhes_global["always_use_profile"] = true
-		_detalhes_global["always_use_profile_name"] = key
+		_detalhes["always_use_profile"] = true
+		_detalhes["always_use_profile_name"] = key
 		-- Load the profile
 		_detalhes:ApplyProfile(key)
 	end

@@ -50,12 +50,22 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:WaypointTimeToArrive()
 		ElvUI_EltreumUI:SkillGlow()
 		ElvUI_EltreumUI:GetSpec()
+		ElvUI_EltreumUI:ArenaQuest()
+		ElvUI_EltreumUI:ArenaUnitframes()
+		ElvUI_EltreumUI:BattlegroundGroupUnitframes()
+		ElvUI_EltreumUI:DynamicBuffs()
 		if myclass == 'HUNTER' then
 			ElvUI_EltreumUI:ExpandedStable()
 		end
 	end
-	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+	if ElvUI_EltreumUI.Classic then
 		ElvUI_EltreumUI:DynamicClassicDatatext()
+	end
+	if ElvUI_EltreumUI.TBC then
+		ElvUI_EltreumUI:DynamicClassicDatatext()
+		ElvUI_EltreumUI:ArenaUnitframes()
+		ElvUI_EltreumUI:BattlegroundGroupUnitframes()
+		ElvUI_EltreumUI:DynamicBuffs()
 	end
 	if E.private["nameplates"]["enable"] == true then
 		ElvUI_EltreumUI:NamePlateOptions()
@@ -68,6 +78,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		SetCVar("floatingCombatTextCombatDamage", 0)
 	end
 end
+
 
 function ElvUI_EltreumUI:HidePopups()
 	E:StaticPopup_Hide("INCOMPATIBLE_ADDON")
@@ -112,7 +123,6 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_FREQUENT') --power update real time
 	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_UPDATE')  --power type changes
 	ElvUI_EltreumUI:RegisterEvent("UNIT_MODEL_CHANGED")  --druid things
-	--ElvUI_EltreumUI:RegisterEvent('UNIT_DISPLAYPOWER') --not needed anymore but leaving here just in case
 
 	--LootText things
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_LOOT")
@@ -149,14 +159,6 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 		ElvUI_EltreumUI:NameplatePower()
 	end
 end
-
---[[function ElvUI_EltreumUI:UNIT_DISPLAYPOWER(unit)
-	if not unit == 'player' then
-		return
-	else
-		ElvUI_EltreumUI:NameplatePower()
-	end
-end]]--
 
 function ElvUI_EltreumUI:UNIT_MODEL_CHANGED(event,unit)
 	if unit and unit ~= 'player' then
@@ -200,11 +202,13 @@ end
 function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED(event)
 	ElvUI_EltreumUI:StopCombatMusic()
 	ElvUI_EltreumUI:DynamicChatFade()
+	--ElvUI_EltreumUI:ArenaUnitframes()
 end
 
 function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED(event)
 	ElvUI_EltreumUI:CombatMusic()
 	ElvUI_EltreumUI:DynamicChatFade()
+	ElvUI_EltreumUI:ArenaUnitframes()
 end
 
 function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
@@ -213,9 +217,6 @@ end
 
 function ElvUI_EltreumUI:ZONE_CHANGED()
 	ElvUI_EltreumUI:FriendlyNameplates()
-	if ElvUI_EltreumUI.Retail then
-		ElvUI_EltreumUI:ArenaQuest()
-	end
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()

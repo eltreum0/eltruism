@@ -34,13 +34,14 @@ if ElvUI_EltreumUI.Retail then
 
 	function ElvUI_EltreumUI:ArenaQuest()
 		if ElvUI_EltreumUI.Retail then
-			if E.db.ElvUI_EltreumUI.questsettings.enable then
+			if E.db.ElvUI_EltreumUI.questsettings.arena then
 				local _, instanceType = IsInInstance()
-				if instanceType == "arena" then  --and event == "PLAYER_REGEN_DISABLED"
+				if instanceType == "arena" or instanceType == "pvp" then
 					ObjectiveTrackerFrame:Hide()
-					if ObjectiveTrackerFrame:IsVisible() or ObjectiveTracker_Expand() or ObjectiveTrackerFrame:IsShown() then
-						ObjectiveTrackerFrame:Hide()
-					end
+
+
+				elseif instanceType == "none" then
+					ObjectiveTrackerFrame:Show()
 				end
 			end
 		end
