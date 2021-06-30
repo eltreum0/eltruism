@@ -17,6 +17,7 @@ function ElvUI_EltreumUI:GetNameplateSCTProfile()
 				["truncate"] = false,
 				["modOffTargetStrata"] = true,
 				["fontFlag"] = "THICKOUTLINE",
+				["shouldDisplayOverkill"] = true,
 				["font"] = "Kimberley",
 				["strata"] = {
 					["target"] = "BACKGROUND",
