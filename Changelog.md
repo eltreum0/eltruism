@@ -2,62 +2,62 @@
 -- Add new things!
 ___
 ### v2.3.9
-Fixed Transmog Window
-Exorsus Raid Tools was renamed to Mythic Dungeon Tools and the references were updated for it
-BigWigs profile is now working according to Funkeh's suggestions
-Fixed .toc interface version
+Fixed Transmog Window\
+Exorsus Raid Tools was renamed to Mythic Dungeon Tools and the references were updated for it\
+BigWigs profile is now working according to Funkeh's suggestions\
+Fixed .toc interface version\
 ___
 ### v2.3.8
-9.1 Compatibility
-Wide Transmog updated to support transmogrifying each shoulder separately
-Level Up and Event Toast updated to new system
-New Misc option that includes some options that didnt fit into other places
-Quests can now be hidden in Arenas and Battlegrounds
-The following can be found under misc, and are defaulted to off:
-Added Arena Buffs, show target and enemy player buffs in arena but hide them elsewhere.
-Added option to hide arena unitframes in arena (in case you are using an addon like Gladius/Gladdy/sArena/GladiusEX)
-Added option to hide raid frames in battlegrounds (in case you are using an addon like Battleground Enemies)
-Rogue Order Hall Auto Open has been moved to Misc
+9.1 Compatibility\
+Wide Transmog updated to support transmogrifying each shoulder separately\
+Level Up and Event Toast updated to new system\
+New Misc option that includes some options that didnt fit into other places\
+Quests can now be hidden in Arenas and Battlegrounds\
+The following can be found under misc, and are defaulted to off:\
+Added Arena Buffs, show target and enemy player buffs in arena but hide them elsewhere.\
+Added option to hide arena unitframes in arena (in case you are using an addon like Gladius/Gladdy/sArena/GladiusEX)\
+Added option to hide raid frames in battlegrounds (in case you are using an addon like Battleground Enemies)\
+Rogue Order Hall Auto Open has been moved to Misc\
 ___
 ### v2.3.7
-Improved event detection for Nameplate Power Bar (Thanks Repooc!)
-Hunter and Demon Hunter power bars will now follow Unitframe Power Colors like other classes
-Left Chat hide will now behave the same as Right Chat hide
-Moved the Focus Castbar into an easier to see position
-Changed Experience and Reputation databars to on the top of the screen, disabled honor and azerite databars
+Improved event detection for Nameplate Power Bar (Thanks Repooc!)\
+Hunter and Demon Hunter power bars will now follow Unitframe Power Colors like other classes\
+Left Chat hide will now behave the same as Right Chat hide\
+Moved the Focus Castbar into an easier to see position\
+Changed Experience and Reputation databars to on the top of the screen, disabled honor and azerite databars\
 ___
 ### v2.3.6
-Added Borders (Beta), disabled by default
-You will need to adjust the borders if using them with profile or setting outside of the defaults for Eltruism DPS/Tank
-Added Border media, credits in the License folder
-Fixed AFK music error for Undead players since the race code is Scourge
-Changed code for Nameplate Power Bar
-Nameplate Power Bar colors will now follow Unitframe Power Colors so they can be changed by the user over there
-Changed BigWigs and Details import logic (thanks Luckyone!)
+Added Borders (Beta), disabled by default\
+You will need to adjust the borders if using them with profile or setting outside of the defaults for Eltruism DPS/Tank\
+Added Border media, credits in the License folder\
+Fixed AFK music error for Undead players since the race code is Scourge\
+Changed code for Nameplate Power Bar\
+Nameplate Power Bar colors will now follow Unitframe Power Colors so they can be changed by the user over there\
+Changed BigWigs and Details import logic (thanks Luckyone!)\
 ___
 ### v2.3.5
-Tweak chat hide so that it will hide without a mouse click
-Prepared for 9.1
-Changed classpower on nameplates that was defaulting to class color when it was meant not to
-LootText will now have trimmed icons without the grey border
+Tweak chat hide so that it will hide without a mouse click\
+Prepared for 9.1\
+Changed classpower on nameplates that was defaulting to class color when it was meant not to\
+LootText will now have trimmed icons without the grey border\
 ___
 ### v2.3.4
-Added Localization Support (only English is live at the moment)
-Added World Text Scale option
-Fixed overlapping debuffs on nameplates due to Nameplate Power Bar
-Moved the Focus to the top left side since on the right side there are boss frames and Arena frames and it should not overlap the Alternate Unitframes
+Added Localization Support (only English is live at the moment)\
+Added World Text Scale option\
+Fixed overlapping debuffs on nameplates due to Nameplate Power Bar\
+Moved the Focus to the top left side since on the right side there are boss frames and Arena frames and it should not overlap the Alternate Unitframes\
 ___
 ### v2.3.3
-Improved module loading between TBC/Classic/Retail
-Fixed missing Demon Hunter Power Bar due to the position being behind the nameplate
-Added Gladius and Gladdy profiles for TBC
+Improved module loading between TBC/Classic/Retail\
+Fixed missing Demon Hunter Power Bar due to the position being behind the nameplate\
+Added Gladius and Gladdy profiles for TBC\
 ___
 ### v2.3.2
-Added more options to Nameplate Power Bar, such as changing its size, position and texture
-Fixed Nameplate Power Bar not appearing for retail Shamans until they swapped specs
-Bundled ElvUI Chat and CVArs setup with Eltruism Install
-ElvUI Install prompt will now be skipped since Eltruism sets the same things or overwrites things
-Swapped Chat functions: Now it starts disabled and after a left click it can fade
+Added more options to Nameplate Power Bar, such as changing its size, position and texture\
+Fixed Nameplate Power Bar not appearing for retail Shamans until they swapped specs\
+Bundled ElvUI Chat and CVArs setup with Eltruism Install\
+ElvUI Install prompt will now be skipped since Eltruism sets the same things or overwrites things\
+Swapped Chat functions: Now it starts disabled and after a left click it can fade\
 ___
 ### v2.3.1
 Chat Fade/Hide can now be toggled off by Left clicking on either chat, clicking again will enable the Fade/hide again
