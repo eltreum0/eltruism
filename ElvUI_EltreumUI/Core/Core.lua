@@ -275,11 +275,11 @@ function ElvUI_EltreumUI:AddonSetupGladiusEx()
 	end
 end
 
--- EXRT Profile
-function ElvUI_EltreumUI:AddonSetupExRT()
-	if IsAddOnLoaded('ExRT') then
-		ElvUI_EltreumUI:GetExRTProfile()
-		ElvUI_EltreumUI:Print(L["Exorsus Raid Tools profile has been set."])
+-- MRT Profile
+function ElvUI_EltreumUI:AddonSetupMRT()
+	if IsAddOnLoaded('MRT') then
+		ElvUI_EltreumUI:GetMRTProfile()
+		ElvUI_EltreumUI:Print(L["Method Raid Tools profile has been set."])
 	end
 end
 
