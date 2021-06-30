@@ -1,0 +1,21 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file='Nameplates/Nameplates.lua'/>
+	<Script file='Nameplates/PowerBar.lua'/>
+	<Script file='Actionbars.lua'/>
+	<Script file='AFK.lua'/>
+	<Script file='Auras.lua'/>
+	<Script file='Borders.lua'/>
+	<Script file='Chat.lua'/>
+	<Script file='CombatMusic.lua'/>
+	<Script file='Cursor.lua'/>
+	<Script file='DarkLightColors.lua'/>
+	<Script file='DynamicFunctions.lua'/>
+	<Script file='EltruismAmmoDatatext.lua'/>
+	<Script file='Fonts.lua'/>
+	<Script file='LootText.lua'/>
+	<Script file='Maps.lua'/>
+	<Script file='PartyRaid.lua'/>
+	<Script file='Quests.lua'/>
+	<Script file='Skins.lua'/>
+	<Script file='Stealth.lua'/>
+</Ui>
