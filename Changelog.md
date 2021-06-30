@@ -3,7 +3,7 @@
 ___
 ### v2.3.9
 Fixed Transmog Window\
-Exorsus Raid Tools was renamed to Mythic Dungeon Tools and the references were updated for it\
+Exorsus Raid Tools was renamed to Method Raid Tools and the references were updated for it\
 BigWigs profile is now working according to Funkeh's suggestions\
 Fixed .toc interface version
 ___
