@@ -1,7 +1,5 @@
 ### 🌌 Next Version 
-
-
-
+___
 ###v2.3.9
 ___
 Fixed Transmog Window
