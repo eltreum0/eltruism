@@ -5,6 +5,13 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:Changelogv220()
 	return[[
+    v2.3.9
+    -------
+Fixed Transmog Window
+Exorsus Raid Tools was renamed to Mythic Dungeon Tools and the references were updated for it
+BigWigs profile is now working according to Funkeh's suggestions
+Fixed .toc interface version
+
     v2.3.8
     -------
 9.1 Compatibility

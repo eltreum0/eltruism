@@ -3,6 +3,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 function ElvUI_EltreumUI:VersionCheckInit()
 	ElvUI_EltreumUI:NewVersionCheck()
 	ElvUI_EltreumUI:OldVersionCheck()
+	ElvUI_EltreumUI:ElvUIVersionCheck()
 end
 
 function ElvUI_EltreumUI:NewVersionCheck()
@@ -12,6 +13,25 @@ function ElvUI_EltreumUI:NewVersionCheck()
 		E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
 		ElvUI_EltreumUI:Print(L["updated to "]..ElvUI_EltreumUI.Version..' version')
 		ElvUI_EltreumUI:Print('Borders is in beta, you can test this feature in Eltruism > Borders. You might need to adjust settings to fit your action bars')
+	end
+end
+
+
+function ElvUI_EltreumUI:ElvUIVersionCheck()
+	if ElvUI_EltreumUI.Retail then
+		if E.version < 12.29 then
+			ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
+		end
+	end
+	if ElvUI_EltreumUI.TBC then
+		if E.version < 2.10 then
+			ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
+		end
+	end
+	if ElvUI_EltreumUI.Classic then
+		if E.version < 1.44 then
+			ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
+		end
 	end
 end
 

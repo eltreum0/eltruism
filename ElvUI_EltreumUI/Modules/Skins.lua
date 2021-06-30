@@ -200,7 +200,8 @@ end
 --Wider Transmog Window
 local EltruismWiderTransmog = CreateFrame("Frame")
 EltruismWiderTransmog:RegisterEvent("ADDON_LOADED")
-EltruismWiderTransmog:SetScript("OnEvent", function(_, _, arg)
+EltruismWiderTransmog:SetScript("OnEvent",
+	function(_, _, arg)
 		if (arg == "Blizzard_Collections") then
 			WardrobeTransmogFrame:HookScript("OnShow",
 				function()
