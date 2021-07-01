@@ -48,6 +48,7 @@ P.ElvUI_EltreumUI = {
 		enable = true,
 		ring = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga',
 		size = '-1',
+		cooldown = true,
 	},
 
 	cursorcast = {
