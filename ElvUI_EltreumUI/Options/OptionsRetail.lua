@@ -1529,7 +1529,7 @@ if ElvUI_EltreumUI.Retail then
 							order = 3,
 							type = 'group',
 							inline = true,
-							name = L["Add a gcd and cast ring to the cursor"],
+							name = L["Add GCD, Cast and Combat indicator rings to the cursor"],
 							args = {
 								enable = {
 									order = 1,
@@ -1541,8 +1541,19 @@ if ElvUI_EltreumUI.Retail then
 									get = function(info) return E.db.ElvUI_EltreumUI.cursor.enable end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.cursor.enable = value end,
 								},
-								header1 = {
+								enablecd = {
 									order = 2,
+									type = 'toggle',
+									name = L["Enable cooldown tracking"],
+									desc = L["Add a cooldown icon when trying to use skills that are on cooldown, and a cooldown flash when they are ready"],
+									width = 'full',
+									confirm = true,
+									disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
+									get = function(info) return E.db.ElvUI_EltreumUI.cursor.cooldown end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.cursor.cooldown = value end,
+								},
+								header1 = {
+									order = 3,
 									type = "description",
 									name = "",
 									width = 'full',
@@ -1836,7 +1847,6 @@ if ElvUI_EltreumUI.Retail then
 								},
 							},
 						},
-
 					},
 				},
 				combatmusic = {
