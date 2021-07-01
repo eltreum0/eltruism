@@ -85,8 +85,8 @@ function ElvUI_EltreumUI:updateLayout()
 	self.icon:ClearAllPoints()
 	self.icon:SetPoint("CENTER")
 	self:SetupCDSize()
-	self.icon:SetHeight(cooldownsize)
-	self.icon:SetWidth(cooldownsize)
+	self.icon:SetHeight(cooldownsize +2)
+	self.icon:SetWidth(cooldownsize +2)
 end
 
 local mask
@@ -98,13 +98,13 @@ function ElvUI_EltreumUI:createFrame()
 	frame:SetHeight(cooldownsize)
 	frame:SetJustifyH("CENTER")
 	self.frame = frame
-
 	mask = frame:CreateMaskTexture()
 	mask:SetTexture([[Interface\CHARACTERFRAME\TempPortraitAlphaMask]], "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
 	mask:SetAllPoints(frame)
 
 	local text = frame:CreateFontString("EltruismCoooldownText", "OVERLAY", "GameFontNormal")
-	text:SetFont(E.media.normFont, 15, "OUTLINE")
+	local textsize = ( (cooldownsize / 2) + 1)
+	text:SetFont(E.media.normFont, textsize, "OUTLINE")
 	text:SetTextColor(1, 1, 1)
 	text:SetPoint("CENTER")
 	self.text = text

@@ -1,5 +1,6 @@
 ### 🌌 Next Version 
--- Add new things!
+Add new things maybe
+Fix any issues found
 ___
 ### v2.4.0
 Added Cooldown to Cursor
