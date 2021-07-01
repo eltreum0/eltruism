@@ -9,10 +9,8 @@ local C_NamePlate = _G.C_NamePlate
 local UnitExists = _G.UnitExists
 local CreateFrame = _G.CreateFrame
 local UnitPowerMax = _G.UnitPowerMax
-local hooksecurefunc = _G.hooksecurefunc
 local myclass = E.myclass
 local id, _
-local UnitBuff = _G.UnitBuff
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local UnitCanAttack = _G.UnitCanAttack
 
@@ -145,7 +143,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 	local maelb
 	local maelr
 	local maelg
-	local runicr
 	local runicr
 	local runicg
 	local runicb
@@ -284,9 +281,9 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					--5  = tree of life (talent)
 				]]--
 				if ElvUI_EltreumUI.Retail then
-					local tree = IsSpellKnown(114282)
-					local moonkin = IsSpellKnown(197625)
-					local stag = IsSpellKnown(210053)
+					--local tree = IsSpellKnown(114282)
+					--local moonkin = IsSpellKnown(197625)
+					--local stag = IsSpellKnown(210053)
 					if stance == 0 then --humanoid
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 							EltreumPowerBar:Show()

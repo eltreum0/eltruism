@@ -125,7 +125,7 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 	local mapID = WorldMapFrame:GetMapID()
 	if E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames then
 		if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" or instanceType == "none" or mapID == 1662 or mapID == 582 then
-			--SetCVar("nameplateShowFriends", 1);
+			--SetCVar("nameplateShowFriends", 1)
 			SetCVar("nameplateShowOnlyNames", 1)
 		end
 	end

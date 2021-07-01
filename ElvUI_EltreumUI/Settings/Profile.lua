@@ -40,10 +40,6 @@ P.ElvUI_EltreumUI = {
 		enable = true,
 	},
 
-	changelog = {
-		version = "2.2.0",
-	},
-
 	cursor = {
 		enable = true,
 		ring = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga',

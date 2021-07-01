@@ -2674,21 +2674,6 @@ if ElvUI_EltreumUI.TBC then
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\changelog',
 					order = 97,
 					args = {
-						changelogchoice = {
-							 order = 18,
-							 type = 'select',
-							 width = "double",
-							 style = 'dropdown',
-							 name = L["Select a version:"],
-							 desc = L["Choose a version to see its changelog"],
-							 values = {
-							 	["2.2.0"] = "2.2.0",
-								["2.0.0"] = "2.0.0",
-								["1.0.0"] = "1.0.0",
-							},
-							 get = function() return E.db.ElvUI_EltreumUI.changelog.version end,
-							 set = function(self,value) E.db.ElvUI_EltreumUI.changelog.version = value end,
-						},
 						changelogtext = {
 							order = 19,
 							type = 'description',

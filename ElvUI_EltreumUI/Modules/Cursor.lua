@@ -11,7 +11,7 @@ local GetCursorPosition = _G.GetCursorPosition
 local next, unpack, floor, cos, sin, max, min = _G.next, _G.unpack, _G.floor, _G.cos, _G.sin, _G.max, _G.min
 local isRetail = _G.select(4, _G.GetBuildInfo())>=30000
 --create frame
-local cursorframe = _G.CreateFrame("Frame", "EltreumCastCursor") --, _G.UIParent, "UIDropDownMenuTemplate")
+local cursorframe = _G.CreateFrame("Frame", "EltruismCursor") --, _G.UIParent, "UIDropDownMenuTemplate")
 
 function ElvUI_EltreumUI:CursorInit()
 	ElvUI_EltreumUI:CastCursor()
@@ -369,7 +369,8 @@ function ElvUI_EltreumUI:CastCursor()
 		local GCD = _G.CreateFrame("Frame", nil, rootFrame)
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
-		function GCD:UNIT_SPELLCAST_START(event, unit, guid, spellID)
+		function GCD:UNIT_SPELLCAST_START(event, unit, _, spellID)
+		--function GCD:UNIT_SPELLCAST_START(event, unit, guid, spellID)
 			if unit and unit ~= 'player' then
 				return
 			elseif unit and unit == 'player' then
@@ -382,7 +383,8 @@ function ElvUI_EltreumUI:CastCursor()
 		GCD.UNIT_SPELLCAST_SUCCEEDED = GCD.UNIT_SPELLCAST_START
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", "player")
-		function GCD:UNIT_SPELLCAST_STOP(event, unit, castID)
+		--function GCD:UNIT_SPELLCAST_STOP(event, unit, castID)
+		function GCD:UNIT_SPELLCAST_STOP(event, unit)
 			if unit and unit ~= 'player' then
 				return
 			elseif unit and unit == 'player' then
@@ -391,32 +393,6 @@ function ElvUI_EltreumUI:CastCursor()
 		end
 		GCD.UNIT_SPELLCAST_INTERRUPTED = GCD.UNIT_SPELLCAST_STOP
 
-
-		--weapon swing timer (concept phase)
-		--[[
-			if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-				local weaponswing = _G.CreateFrame("Frame", nil, rootFrame)
-				weaponswing:RegisterUnitEvent("SWING_DAMAGE")
-				weaponswing:RegisterUnitEvent("COMBAT_LOG_EVENT_UNFILTERED")
-				weaponswing:RegisterUnitEvent("SWING_MISSED")
-				function weaponswing:UNIT_SPELLCAST_START(event, unit, guid, spellID)
-					local start, duration = GetSpellCooldown( isRetail and 61304 or spellID )
-					if duration>0 and (isRetail or duration<=1.51) then
-						Start(self, GetTime() - start, duration )
-					end
-				end
-				weaponswing.UNIT_SPELLCAST_SUCCEEDED = weaponswing.UNIT_SPELLCAST_START
-				weaponswing:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
-				weaponswing:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", "player")
-				function weaponswing:UNIT_SPELLCAST_STOP(event, unit, castID)
-					RingSetShown( self, false )
-				end
-				weaponswing.UNIT_SPELLCAST_INTERRUPTED = weaponswing.UNIT_SPELLCAST_STOP
-			end
-		]]--
-
-
-
 		-- Cursor Ring
 		local Cursor = _G.CreateFrame("Frame", nil, rootFrame)
 		Cursor.IsCursor = true
@@ -424,7 +400,8 @@ function ElvUI_EltreumUI:CastCursor()
 
 		-- Run
 		cursorframe:RegisterEvent("PLAYER_STARTED_MOVING")
-		cursorframe:SetScript("OnEvent", function(self, event, name)
+		cursorframe:SetScript("OnEvent", function(self, event, _)
+		--cursorframe:SetScript("OnEvent", function(self, event, name)
 			EltreumCursorDB = CopyDefaults(Defaults, EltreumCursorDB)
 			--print('cursorframe loaded')
 			self:UnregisterEvent("PLAYER_STARTED_MOVING")

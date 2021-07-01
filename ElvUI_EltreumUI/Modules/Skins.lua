@@ -210,7 +210,7 @@ EltruismWiderTransmog:SetScript("OnEvent",
 						_G.WardrobeFrame:SetWidth(1200)
 						--player model frame
 						_G.WardrobeTransmogFrame:SetWidth(530)
-						_G.WardrobeTransmogFrame:SetHeight(_G.WardrobeFrame:GetHeight() -130);
+						_G.WardrobeTransmogFrame:SetHeight(_G.WardrobeFrame:GetHeight() -130)
 						_G.WardrobeTransmogFrame:SetPoint("TOP", _G.WardrobeFrame, 0, 0)
 						_G.WardrobeTransmogFrame.ModelScene:ClearAllPoints()
 						_G.WardrobeTransmogFrame.ModelScene:SetPoint("TOP", _G.WardrobeTransmogFrame, "TOP", 20, 10)
@@ -277,10 +277,10 @@ function ElvUI_EltreumUI:ExpandedStable()
 			end
 			frame:SetFrameLevel(PetStableFrame:GetFrameLevel() + 1)
 			frame:SetScale(7/NUM_PER_ROW)
-			frame.dimOverlay = frame:CreateTexture(nil, "OVERLAY");
-			frame.dimOverlay:SetColorTexture(0, 0, 0, 0.8);
-			frame.dimOverlay:SetAllPoints();
-			frame.dimOverlay:Hide();
+			frame.dimOverlay = frame:CreateTexture(nil, "OVERLAY")
+			frame.dimOverlay:SetColorTexture(0, 0, 0, 0.8)
+			frame.dimOverlay:SetAllPoints()
+			frame.dimOverlay:Hide()
 		end
 
 		for i = NUM_PER_ROW+1, maxSlots, NUM_PER_ROW do
@@ -316,17 +316,18 @@ function ElvUI_EltreumUI:ExpandedStable()
 			local input = searchInput:GetText()
 			if not input or input:trim() == "" then
 				for i = 1, maxSlots do
-					local button = _G["PetStableStabledPet"..i];
-					button.dimOverlay:Hide();
+					local button = _G["PetStableStabledPet"..i]
+					button.dimOverlay:Hide()
 				end
 				return
 			end
 
 			for i = 1, maxSlots do
-				local icon, name, level, family, talent = GetStablePetInfo(NUM_PET_ACTIVE_SLOTS + i);
-				local button = _G["PetStableStabledPet"..i];
+				local icon, name, _, family, talent = GetStablePetInfo(NUM_PET_ACTIVE_SLOTS + i)
+				--local icon, name, level, family, talent = GetStablePetInfo(NUM_PET_ACTIVE_SLOTS + i)
+				local button = _G["PetStableStabledPet"..i]
 
-				button.dimOverlay:Show();
+				button.dimOverlay:Show()
 				if icon then
 					local matched, expected = 0, 0
 					for str in input:gmatch("([^%s]+)") do
@@ -341,7 +342,7 @@ function ElvUI_EltreumUI:ExpandedStable()
 						end
 					end
 					if matched == expected then
-						button.dimOverlay:Hide();
+						button.dimOverlay:Hide()
 					end
 				end
 			end

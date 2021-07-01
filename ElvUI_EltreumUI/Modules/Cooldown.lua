@@ -2,15 +2,11 @@
 
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local tostring = _G.tostring
 local tonumber = _G.tonumber
-local pairs = _G.pairs
 local GetTime = _G.GetTime
 local GetActionInfo = _G.GetActionInfo
 local GetPetActionCooldown = _G.GetPetActionCooldown
 local GetPetActionInfo = _G.GetPetActionInfo
-local GetSpellBookItemName = _G.GetSpellBookItemName
-local GetSpellLink = _G.GetSpellLink
 local GetSpellInfo = _G.GetSpellInfo
 local GetSpellCooldown = _G.GetSpellCooldown
 local GetSpellBaseCooldown = _G.GetSpellBaseCooldown
@@ -19,23 +15,18 @@ local GetContainerItemLink = _G.GetContainerItemLink
 local GetItemInfo = _G.GetItemInfo
 local GetItemCooldown = _G.GetItemCooldown
 local NUM_PET_ACTION_SLOTS = NUM_PET_ACTION_SLOTS
-local GameFontNormal = _G.GameFontNormal
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
-local LSM = _G.LSM
 local GetCursorPosition = _G.GetCursorPosition
 local LibStub = _G.LibStub
 local math = _G.math
 local NormalUpdateDelay = 1.0/10 -- update frequency == 1/NormalUpdateDelay
 local FadingUpdateDelay = 1.0/25 -- update frequency while fading == 1/FadingUpdateDelay, must be <= NormalUpdateDelay
-local DefaultFontName = E.media.normFont
-local DefaultFontPath = GameFontNormal:GetFont()
 local Icon = [[Interface\AddOns\ElvUI_EltreumUI\Media\Textures\logo.tga]]
 local db
 local lastUpdate = 0 -- time since last real update
 local updateDelay = NormalUpdateDelay
 local fadeStamp -- the timestamp when we should start fading the display
-local hideStamp -- the timestamp when we should hide the display
 local endStamp -- the timestamp when the cooldown will be over
 local finishStamp -- the timestamp when the we are finished with this cooldown
 local currGetCooldown
@@ -62,7 +53,7 @@ local defaults = {
 	profile = {
 		holdTime = 1.0,
 		fadeTime = 1.0,
-		readyTime = 2.0,
+		readyTime = 4.0,
 		gracePeriod = 0.5,
 	},
 }
@@ -70,18 +61,6 @@ local defaults = {
 local function itemIdFromLink(link)
 	if not link then return nil end
 	local id = link:match("item:(%d+)")
-	return tonumber(id)
-end
-
-local function spellIdFromLink(link)
-	if not link then return nil end
-	local id = link:match("spell:(%d+)")
-	return tonumber(id)
-end
-
-local function petActionIndexFromLink(link)
-	if not link then return nil end
-	local id = link:match("petbar:(%d+)")
 	return tonumber(id)
 end
 
@@ -100,7 +79,6 @@ function ElvUI_EltreumUI:SetupCDSize()
 			end
 		end
 	end
-	-- cooldownsize = ( (E.db.ElvUI_EltreumUI.cursorcursor.radius * 2 ) - 2 )
 end
 
 function ElvUI_EltreumUI:updateLayout()
@@ -113,15 +91,11 @@ end
 
 local mask
 function ElvUI_EltreumUI:createFrame()
-	local frame = CreateFrame("MessageFrame", "ElvUI_EltreumUIFrame", UIParent)
+	local frame = CreateFrame("MessageFrame", "EltruismCooldown", UIParent)
 	frame:Hide()
 	self:SetupCDSize()
-	--frame:SetFrameStrata(defaults.profile.strata)
-	--frame:SetClampedToScreen()
-	--frame:SetMovable(true)
 	frame:SetWidth(cooldownsize)
 	frame:SetHeight(cooldownsize)
-	--frame:SetFont(E.media.normFont, 72, "OUTLINE")
 	frame:SetJustifyH("CENTER")
 	self.frame = frame
 
@@ -131,7 +105,6 @@ function ElvUI_EltreumUI:createFrame()
 
 	local text = frame:CreateFontString("EltruismCoooldownText", "OVERLAY", "GameFontNormal")
 	text:SetFont(E.media.normFont, 15, "OUTLINE")
-	--text:SetText("EltruismCooldown")
 	text:SetTextColor(1, 1, 1)
 	text:SetPoint("CENTER")
 	self.text = text
@@ -141,7 +114,6 @@ function ElvUI_EltreumUI:createFrame()
 	self.iconTexture = icon
 	self.iconTexture:SetTexture(Icon)
 	self:updateLayout()
-	--self.icon:SetDrawSwipe(Icon)
 
 	frame:SetScript("OnUpdate", function(frame, elapsed)
 		local x, y = GetCursorPosition()
@@ -163,7 +135,7 @@ function ElvUI_EltreumUI:OnInitialize()
 	end
 end
 
-function ElvUI_EltreumUI:OnEnable(first)
+function ElvUI_EltreumUI:OnEnable()
 	self:SecureHook("UseAction", "checkActionCooldown")
 	self:SecureHook("UseContainerItem", "checkContainerItemCooldown")
 	self:SecureHook("UseInventoryItem", "checkInventoryItemCooldown")
@@ -174,10 +146,10 @@ function ElvUI_EltreumUI:OnEnable(first)
 	self:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN", "updateCooldown")
 	self:RegisterEvent("BAG_UPDATE_COOLDOWN", "updateCooldown")
 	self:RegisterEvent("PET_BAR_UPDATE_COOLDOWN", "updateCooldown")
-	self:RegisterEvent("UNIT_SPELLCAST_FAILED") -- FIXME: RegisterUnitEvent("UNIT_SPELLCAST_FAILED", "player", "pet")
+	self:RegisterEvent("UNIT_SPELLCAST_FAILED")
 end
 
-function ElvUI_EltreumUI:OnUpdate(elapsed)
+function ElvUI_EltreumUI:OnUpdate()
 	if not isActive then
 		return
 	end
@@ -249,7 +221,6 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 		fadeStamp = now + db.holdTime
 	end
 	finishStamp = endStamp + db.fadeTime
-	hideStamp = fadeStamp + db.fadeTime
 	lastUpdate = NormalUpdateDelay -- to force update in next frame
 	isAlmostReady = false
 	isHidden = false
@@ -283,15 +254,12 @@ function ElvUI_EltreumUI:showCooldown(texture, getCooldownFunc, arg, hasCooldown
 	isReady = false
 	isAlmostReady = false
 	self.iconTexture:SetTexture(texture)
-	--self.iconTexture:SetTexCoord(0.07, 0.93, 0.07, 0.93)
-	--SetPortraitToTexture(self.iconTexture, texture)
 	self.iconTexture:AddMaskTexture(mask)
 	self:updateStamps(start, duration, true)
 end
 
 function ElvUI_EltreumUI:checkActionCooldown(slot)
-	local type, id, subtype = GetActionInfo(slot)
-	-- printf("### action: %s, type=%s, id=%s, subtype=%s", tostring(slot), tostring(type), tostring(id), tostring(subtype))
+	local type, id, _ = GetActionInfo(slot)
 	if type == 'spell' then
 		self:checkSpellCooldown(id)
 	elseif type == 'item' then
@@ -301,11 +269,9 @@ end
 
 local function findPetActionIndexForSpell(spell)
 	if not spell then return end
-	-- printf("### findPetActionIndexForSpell(%s)", tostring(spell))
 	for i = 1, NUM_PET_ACTION_SLOTS do
-		local name, sub, _, isToken = GetPetActionInfo(i)
+		local name, _, _, isToken = GetPetActionInfo(i)
 		if isToken then name = _G[name] end
-		-- printf("### %s: name: %s, sub: %s, isToken: %s", tostring(i), tostring(name), tostring(sub), tostring(isToken))
 		if name == spell then
 			return i
 		end
@@ -313,7 +279,6 @@ local function findPetActionIndexForSpell(spell)
 end
 
 function ElvUI_EltreumUI:checkSpellCooldown(spell)
-	-- print("### spell: " .. tostring(spell))
 	if not spell then return end
 	local name, _, texture = GetSpellInfo(spell)
 	if not name then
@@ -324,19 +289,16 @@ function ElvUI_EltreumUI:checkSpellCooldown(spell)
 end
 
 function ElvUI_EltreumUI:checkInventoryItemCooldown(invSlot)
-	-- print("### invItem: " .. tostring(invSlot))
 	local itemLink = GetInventoryItemLink("player", invSlot)
 	self:checkItemCooldown(itemLink)
 end
 
 function ElvUI_EltreumUI:checkContainerItemCooldown(bagId, bagSlot)
-	-- print("### containerItem: " .. tostring(bagId) .. ", " .. tostring(bagSlot))
 	local itemLink = GetContainerItemLink(bagId, bagSlot)
 	self:checkItemCooldown(itemLink)
 end
 
 function ElvUI_EltreumUI:checkItemCooldown(item)
-	-- print("### item: " .. tostring(item))
 	if not item then return end
 	local _, itemLink, _, _, _, _, _, _, _, texture = GetItemInfo(item)
 	local itemId = itemIdFromLink(itemLink)
@@ -345,7 +307,6 @@ function ElvUI_EltreumUI:checkItemCooldown(item)
 end
 
 function ElvUI_EltreumUI:checkPetActionCooldown(index)
-	-- print("### checkPetActionCooldown: " .. tostring(index))
 	if not index then return end
 	local _, _, texture, _, _, _, _, spellId = GetPetActionInfo(index)
 	if spellId then
@@ -355,15 +316,18 @@ function ElvUI_EltreumUI:checkPetActionCooldown(index)
 	end
 end
 
-function ElvUI_EltreumUI:UNIT_SPELLCAST_FAILED(event, unit, name, rank, seq, id)
-	-- print("### unit: " .. tostring(unit) .. ", name: " .. tostring(name) .. ", rank: " .. tostring(rank) .. ", seq: " .. tostring(seq) .. ", id: " .. tostring(id))
-	if unit == 'player' or unit == 'pet' then
-		self:checkSpellCooldown(id)
+
+function ElvUI_EltreumUI:UNIT_SPELLCAST_FAILED(event, unit, _, _, _, id)
+	if unit and unit ~= 'player' then
+        return
+    elseif unit then
+        if unit == 'player' or unit == 'pet' then
+		  self:checkSpellCooldown(id)
+        end
 	end
 end
 
 function ElvUI_EltreumUI:updateCooldown(event)
-	-- printf("### updateCooldown: %s", tostring(event))
 	if not isActive then
 		if lastGetCooldown then
 			local start, duration, enabled = lastGetCooldown(lastArg)

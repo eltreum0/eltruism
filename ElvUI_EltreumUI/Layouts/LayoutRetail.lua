@@ -7,7 +7,6 @@ if IsAddOnLoaded("ElvUI_SLE") then
 	sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 end
 local valuecolors = E:ClassColor(E.myclass, true)
-local myclass = E.myclass
 local GetCVar = _G.GetCVar
 
 if ElvUI_EltreumUI.Retail then
