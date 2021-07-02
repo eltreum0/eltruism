@@ -52,9 +52,9 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 		return
 	elseif not E.private.ElvUI_EltreumUI then
 		return
-    elseif not E.private.ElvUI_EltreumUI.nameplatepower then
-    	return
-    elseif not nameplate then
+	elseif not E.private.ElvUI_EltreumUI.nameplatepower then
+		return
+	elseif not nameplate then
 		EltreumPowerBar:Hide()
 	end
 
@@ -194,7 +194,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 		end
 	end
 
-    if E.private.ElvUI_EltreumUI.nameplatepower.enable then
+	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
 
 		local canattack = UnitCanAttack("player", "target")
 		if UnitExists("target") and canattack then

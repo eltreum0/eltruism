@@ -4,5 +4,5 @@ commit 62612955401de40bd23698302be9e1843e793b65
 Author: Infus <infus@squorn.de>
 Date:   Fri May 1 16:30:35 2020 +0200
 
-    Fix PixelGlow being in the wrong place for one frame
+	Fix PixelGlow being in the wrong place for one frame
 
