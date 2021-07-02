@@ -130,7 +130,7 @@ Fixed missing possession bar on Death Knights\
 Fixed the Healer Layout Tank and Assist Frames
 ___
 ### v2.2.2
-Fixed error when ElvUI nameplates were turned off\
+Fixed error when ElvUI nameplates were turned off
 ___
 ### v2.2.1
 Added option to change the strata of LootText\
@@ -255,9 +255,9 @@ Added class colored level up and boss loot by Aftermathh\
 Style Filter StealThisBuff fixed to be mage only\
 Enabled Class Totems\
 Changed the size and position of the Gladius Ex profile\
-Recommended settings for font outline:\
-- 4K resolution: Use profile default\
-- 1440p resolution: Eltruism > Media > Outline\
+Recommended settings for font outline:
+- 4K resolution: Use profile default
+- 1440p resolution: Eltruism > Media > Outline
 - 1080p resolution: Eltruism > Media > Outline\
 Implemented automatic switching of font outlines
 ___
@@ -279,7 +279,7 @@ Fixed a CVar bug due to triggering in combat\
 Fixed full inventory in LootText
 ___
 ### v1.9.1
-Removed test print\
+Removed test print
 ___
 ### v1.9
 Added LootText, a fork of SLoTE. (This module of Eltruism is GNU GPLv3)\
