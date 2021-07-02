@@ -52,7 +52,7 @@ ___
 Added Localization Support (only English is live at the moment)\
 Added World Text Scale option\
 Fixed overlapping debuffs on nameplates due to Nameplate Power Bar\
-Moved the Focus to the top left side since on the right side there are boss frames and Arena frames and it should not overlap the Alternate Unitframes\
+Moved the Focus to the top left side since on the right side there are boss frames and Arena frames and it should not overlap the Alternate Unitframes
 ___
 ### v2.3.3
 Improved module loading between TBC/Classic/Retail\
