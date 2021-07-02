@@ -425,6 +425,20 @@ if ElvUI_EltreumUI.Retail then
 									desc = L["Reset to Eltruism defaults."],
 									func = function() ElvUI_EltreumUI:AddonSetupPA() E:StaticPopup_Show('CONFIG_RL') end,
 								},
+								shadowandlight = {
+									order = 3,
+									type = 'execute',
+									name = E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0),
+									desc = L["Reset to Eltruism defaults."],
+									func = function() ElvUI_EltreumUI:GetSLEProfile() E:StaticPopup_Show('CONFIG_RL') end,
+								},
+								windtools = {
+									order = 4,
+									type = 'execute',
+									name = E:TextGradient(L["WindTools"], 0.000, 0.592, 0.902, 0.000, 0.659, 1.000),
+									desc = L["Reset to Eltruism defaults."],
+									func = function() ElvUI_EltreumUI:GetWindToolsProfile() E:StaticPopup_Show('CONFIG_RL') end,
+								},
 							},
 						},
 						header2 = {
