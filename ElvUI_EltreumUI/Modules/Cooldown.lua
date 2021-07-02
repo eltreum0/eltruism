@@ -113,6 +113,7 @@ function ElvUI_EltreumUI:createFrame()
 	self.icon = icon
 	self.iconTexture = icon
 	self.iconTexture:SetTexture(Icon)
+	self.iconTexture:AddMaskTexture(mask)
 	self:updateLayout()
 
 	frame:SetScript("OnUpdate", function(frame, elapsed)
