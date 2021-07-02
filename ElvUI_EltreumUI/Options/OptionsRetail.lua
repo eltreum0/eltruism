@@ -1366,7 +1366,7 @@ if ElvUI_EltreumUI.Retail then
 											order = 5,
 											disabled = function() return not E.db.ElvUI_EltreumUI.partyraiddeath.enable or E.db.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.db.ElvUI_EltreumUI.partyraiddeath.shame or E.db.ElvUI_EltreumUI.partyraiddeath.wow or E.db.ElvUI_EltreumUI.partyraiddeath.mario or E.db.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.db.ElvUI_EltreumUI.partyraiddeath.bruh end,
-											set = function(info, value) E.db.ElvUI_EltreumUI.partyraiddeath.bruh = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.mp3", "Dialog") end,
+											set = function(info, value) E.db.ElvUI_EltreumUI.partyraiddeath.bruh = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.ogg", "Dialog") end,
 										},
 										robloxoof = {
 											type = 'toggle',
@@ -1374,7 +1374,7 @@ if ElvUI_EltreumUI.Retail then
 											order = 6,
 											disabled = function() return not E.db.ElvUI_EltreumUI.partyraiddeath.enable or E.db.ElvUI_EltreumUI.partyraiddeath.bruh or E.db.ElvUI_EltreumUI.partyraiddeath.shame or E.db.ElvUI_EltreumUI.partyraiddeath.wow or E.db.ElvUI_EltreumUI.partyraiddeath.mario or E.db.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.db.ElvUI_EltreumUI.partyraiddeath.robloxoof end,
-											set = function(info, value) E.db.ElvUI_EltreumUI.partyraiddeath.robloxoof = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.mp3", "Dialog") end,
+											set = function(info, value) E.db.ElvUI_EltreumUI.partyraiddeath.robloxoof = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.ogg", "Dialog") end,
 										},
 										shame = {
 											type = 'toggle',
@@ -1382,7 +1382,7 @@ if ElvUI_EltreumUI.Retail then
 											order = 13,
 											disabled = function() return not E.db.ElvUI_EltreumUI.partyraiddeath.enable or E.db.ElvUI_EltreumUI.partyraiddeath.bruh or E.db.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.db.ElvUI_EltreumUI.partyraiddeath.wow or E.db.ElvUI_EltreumUI.partyraiddeath.mario or E.db.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.db.ElvUI_EltreumUI.partyraiddeath.shame end,
-											set = function(info, value) E.db.ElvUI_EltreumUI.partyraiddeath.shame = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.mp3", "Dialog") end,
+											set = function(info, value) E.db.ElvUI_EltreumUI.partyraiddeath.shame = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.ogg", "Dialog") end,
 										},
 										wowsound = {
 											type = 'toggle',
@@ -1390,7 +1390,7 @@ if ElvUI_EltreumUI.Retail then
 											order = 14,
 											disabled = function() return not E.db.ElvUI_EltreumUI.partyraiddeath.enable or E.db.ElvUI_EltreumUI.partyraiddeath.bruh or E.db.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.db.ElvUI_EltreumUI.partyraiddeath.shame or E.db.ElvUI_EltreumUI.partyraiddeath.mario or E.db.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.db.ElvUI_EltreumUI.partyraiddeath.wow end,
-											set = function(info, value) E.db.ElvUI_EltreumUI.partyraiddeath.wow = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.mp3", "Dialog") end,
+											set = function(info, value) E.db.ElvUI_EltreumUI.partyraiddeath.wow = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.ogg", "Dialog") end,
 										},
 										mariosound = {
 											type = 'toggle',
@@ -1398,7 +1398,7 @@ if ElvUI_EltreumUI.Retail then
 											order = 14,
 											disabled = function() return not E.db.ElvUI_EltreumUI.partyraiddeath.enable or E.db.ElvUI_EltreumUI.partyraiddeath.bruh or E.db.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.db.ElvUI_EltreumUI.partyraiddeath.shame or E.db.ElvUI_EltreumUI.partyraiddeath.wow or E.db.ElvUI_EltreumUI.partyraiddeath.ion end,
 											get = function(info) return E.db.ElvUI_EltreumUI.partyraiddeath.mario end,
-											set = function(info, value) E.db.ElvUI_EltreumUI.partyraiddeath.mario = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\mariodeath.mp3", "Dialog") end,
+											set = function(info, value) E.db.ElvUI_EltreumUI.partyraiddeath.mario = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\mariodeath.ogg", "Dialog") end,
 										},
 										ionsound = {
 											type = 'toggle',
@@ -1406,7 +1406,7 @@ if ElvUI_EltreumUI.Retail then
 											order = 14,
 											disabled = function() return not E.db.ElvUI_EltreumUI.partyraiddeath.enable or E.db.ElvUI_EltreumUI.partyraiddeath.bruh or E.db.ElvUI_EltreumUI.partyraiddeath.robloxoof or E.db.ElvUI_EltreumUI.partyraiddeath.shame or E.db.ElvUI_EltreumUI.partyraiddeath.wow or E.db.ElvUI_EltreumUI.partyraiddeath.mario end,
 											get = function(info) return E.db.ElvUI_EltreumUI.partyraiddeath.ion end,
-											set = function(info, value) E.db.ElvUI_EltreumUI.partyraiddeath.ion = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\ionskillissue.mp3", "Dialog") end,
+											set = function(info, value) E.db.ElvUI_EltreumUI.partyraiddeath.ion = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\ionskillissue.ogg", "Dialog") end,
 										},
 									},
 								},
