@@ -2626,20 +2626,6 @@ if ElvUI_EltreumUI.Classic then
 						},
 					},
 				},
-				changelog = {
-					type = 'group',
-					name = L["Changelog"],
-					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\changelog',
-					order = 97,
-					args = {
-						changelogtext = {
-							order = 19,
-							type = 'description',
-							width = 'full',
-							name = function() return ElvUI_EltreumUI:Changelog() end,
-						},
-					},
-				},
 				credits = {
 					type = 'group',
 					name = L["Credits"],
@@ -2700,8 +2686,8 @@ if ElvUI_EltreumUI.Classic then
 							order = 1,
 							type = 'input',
 							width = 'full',
-							name = L["New commits, basically a preview of fixes or upcoming features"],
-							get = function() return 'https://git.tukui.org/eltreum/eltruism/-/commits/main' end,
+							name = L["Changelog"],
+							get = function() return 'https://git.tukui.org/eltreum/eltruism/-/blob/main/Changelog.md' end,
 						},
 						issues = {
 							order = 2,

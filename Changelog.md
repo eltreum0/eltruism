@@ -1,12 +1,12 @@
 ### 🌌 Next Version 
-Add new things maybe
+Add new things maybe\
 Fix any issues found
 ___
 ### v2.4.0
 Added Cooldown to Cursor
 When you try to use your cooldowns again their icon will show up inside Cursor, alongside a timer
 The icon will show again when the skill becomes usable
-Removed most of the changelog due to it getting too big, its still available in the Changelog.md file included with the addon
+Revamped changelog into a markdown file linked in the Support options menu
 ___
 ### v2.3.9
 Fixed Transmog Window\
