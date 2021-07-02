@@ -3267,19 +3267,6 @@ if ElvUI_EltreumUI.Retail then
 				},
 			},
 		}
-		E.Options.args.KnownIssues = {
-			order = 6,
-			type = 'group',
-			name = "Known Issues",
-			args = {
-				issuelist = {
-					type = 'description',
-					width = 'full',
-					order = 97,
-					name = function() return ElvUI_EltreumUI:KnownIssues() end,
-				},
-			},
-		}
 		for _, func in pairs(ElvUI_EltreumUI.Config) do
 			func()
 		end
