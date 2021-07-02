@@ -12,7 +12,15 @@
 	<Script file='DarkLightColors.lua'/>
 	<Script file='DynamicFunctions.lua'/>
 	<Script file='EltruismAmmoDatatext.lua'/>
-	<Script file='Fonts.lua'/>
+	<Script file='Fonts/CustomFont.lua'/>
+	<Script file='Fonts/Exo2.lua'/>
+	<Script file='Fonts/Gotham.lua'/>
+	<Script file='Fonts/Kimberley.lua'/>
+	<Script file='Fonts/OutlineDefault.lua'/>
+	<Script file='Fonts/OutlineNone.lua'/>
+	<Script file='Fonts/OutlineOutline.lua'/>
+	<Script file='Fonts/OutlineThick.lua'/>
+	<Script file='Fonts/Roboto.lua'/>
 	<Script file='LootText.lua'/>
 	<Script file='Maps.lua'/>
 	<Script file='PartyRaid.lua'/>
