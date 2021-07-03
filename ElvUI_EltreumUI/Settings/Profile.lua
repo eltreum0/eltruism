@@ -26,6 +26,9 @@ P.ElvUI_EltreumUI = {
 		enable = true,
 		widertransmog = true,
 		expandedstable = true,
+		classiconsoncharacterpanel = true,
+		classiconsblizz = false,
+		classiconsreleaf = true,
 	},
 
 	tbctalents = {

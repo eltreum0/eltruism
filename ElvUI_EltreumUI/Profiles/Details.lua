@@ -2,7 +2,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 -- Details profile setup
 function ElvUI_EltreumUI:GetDetailsProfile()
-	local key = "Eltreum Dual"
+	local key = "Eltreum Dual v1"
 	if ElvUI_EltreumUI.Retail then
 		-- Create profile if it doesn't exist yet
 		_detalhes_global["__profiles"][key] = _detalhes_global["__profiles"][key] or {}
@@ -14,7 +14,6 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 		_detalhes_global["spell_school_cache"] = {}
 
 		--setup profile
-		_detalhes_global["__profiles"][key] = _detalhes_global["__profiles"][key] or {}
 		_detalhes_global["__profiles"][key] = {
 					["show_arena_role_icon"] = false,
 					["capture_real"] = {
@@ -270,7 +269,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 							["clickthrough_toolbaricons"] = false,
 							["row_info"] = {
 								["textR_outline"] = true,
-								["spec_file"] = "Interface\\AddOns\\Details\\images\\spec_icons_normal",
+								["icon_file"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Details\\eltruism_bars.tga",
 								["textL_outline"] = true,
 								["texture_highlight"] = "Interface\\FriendsFrame\\UI-FriendsList-Highlight",
 								["textR_show_data"] = {

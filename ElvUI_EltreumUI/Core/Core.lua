@@ -259,9 +259,9 @@ function ElvUI_EltreumUI:AddonSetupDT()
 	end
 end
 
-function ElvUI_EltreumUI:AddonSetupDT2()
+function ElvUI_EltreumUI:AddonSetupDTReleaf()
 	if IsAddOnLoaded('Details') then
-		ElvUI_EltreumUI:GetDetailsProfile2()
+		ElvUI_EltreumUI:GetDetailsProfileReleaf()
 		ElvUI_EltreumUI:Print("Details profile using Releaf icons has been set.")
 	end
 end

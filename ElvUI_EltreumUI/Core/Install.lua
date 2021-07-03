@@ -151,7 +151,7 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Option1:SetText(L["Import "]..'Details v1')
 				PluginInstallFrame.Option2:Enable()
 				PluginInstallFrame.Option2:Show()
-				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT2() ElvUI_EltreumUI:GetASProfile() end)
+				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDTReleaf() ElvUI_EltreumUI:GetASProfile() end)
 				PluginInstallFrame.Option2:SetText(L["Import "]..'Details v2')
 				if (not IsAddOnLoaded("Details")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
@@ -426,7 +426,7 @@ elseif ElvUI_EltreumUI.Classic then
 				PluginInstallFrame.Option1:SetText(L["Import "]..'Details v1')
 				PluginInstallFrame.Option2:Enable()
 				PluginInstallFrame.Option2:Show()
-				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT2() ElvUI_EltreumUI:GetASProfile() end)
+				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDTReleaf() ElvUI_EltreumUI:GetASProfile() end)
 				PluginInstallFrame.Option2:SetText(L["Import "]..'Details v2')
 				if (not IsAddOnLoaded("Details")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
@@ -682,7 +682,7 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Option1:SetText(L["Import "]..'Details v1')
 				PluginInstallFrame.Option2:Enable()
 				PluginInstallFrame.Option2:Show()
-				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT2() ElvUI_EltreumUI:GetASProfile() end)
+				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDTReleaf() ElvUI_EltreumUI:GetASProfile() end)
 				PluginInstallFrame.Option2:SetText(L["Import "]..'Details v2')
 				if (not IsAddOnLoaded("Details")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])

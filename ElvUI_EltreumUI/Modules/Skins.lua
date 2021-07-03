@@ -19,7 +19,9 @@ local GetStablePetInfo = _G.GetStablePetInfo
 
 function ElvUI_EltreumUI:SkinsInit()
 	ElvUI_EltreumUI:Skins()
-	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
+		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+	end
 end
 
 local classIcons = {
@@ -37,16 +39,42 @@ local classIcons = {
 	['DEMONHUNTER'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunter",
 }
 
+-- Alternate Class Icons by Releaf with borders
+local classIconsReleafborder = {
+	['WARRIOR'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/WarriorIconReleaf",
+	['PALADIN'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/PaladinIconReleaf",
+	['HUNTER'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/HunterIconReleaf",
+	['ROGUE'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/RogueIconReleaf",
+	['PRIEST'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/PriestIconReleaf",
+	['DEATHKNIGHT'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DeathKnightIconReleaf",
+	['SHAMAN'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/ShamanIconReleaf",
+	['MAGE'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/MageIconReleaf",
+	['WARLOCK'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/WarlockIconReleaf",
+	['MONK'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/MonkIconReleaf",
+	['DRUID'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DruidIconReleaf",
+	['DEMONHUNTER'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunterIconReleaf",
+}
+
 local classFrame = CreateFrame("Frame", nil, UIParent)
-classFrame:ClearAllPoints()
-classFrame:SetSize(20, 20)
-classFrame:SetParent("PaperDollFrame")
-local classTexture = classFrame:CreateTexture()
-classTexture:SetAllPoints(classFrame)
-classTexture:SetTexture(classIcons[E.myclass])
 
 --add class icon to class in character panel
 function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+	classFrame:ClearAllPoints()
+	classFrame:SetSize(20, 20)
+	classFrame:SetParent("PaperDollFrame")
+	local classTexture = classFrame:CreateTexture()
+	classTexture:SetAllPoints(classFrame)
+
+	--type of icon
+	if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
+		classTexture:SetTexture(classIcons[E.myclass])
+	elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
+		classTexture:SetTexture(classIconsReleafborder[E.myclass])
+	else
+		classTexture:SetTexture(classIcons[E.myclass])
+	end
+
+
 	local CharacterLevelText = _G.CharacterLevelText
 	local textwidth = CharacterLevelText:GetUnboundedStringWidth()
 	local levelwidth = CharacterLevelText:GetWidth()
