@@ -12,7 +12,7 @@ function ElvUI_EltreumUI:NewVersionCheck()
 	elseif E.private.ElvUI_EltreumUI.install_version >= "2.3.0" and E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version then
 		E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
 		ElvUI_EltreumUI:Print(L["updated to "]..ElvUI_EltreumUI.Version..' version')
-		ElvUI_EltreumUI:Print('Borders is in beta, you can test this feature in Eltruism > Borders. You might need to adjust settings to fit your action bars')
+		ElvUI_EltreumUI:Print('Borders released, you can test this feature in Eltruism > Borders. You might need to adjust settings to fit your action bars')
 		ElvUI_EltreumUI:Print('Cooldowns were added to Cursor with this version, thats why you see icons when you try to use a skill again')
 	end
 end

@@ -916,7 +916,7 @@ if ElvUI_EltreumUI.Classic then
 				},
 				borders = {
 					type = 'group',
-					name = "Borders (Beta)",
+					name = "Borders",
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\border',
 					order = 85,
 					args = {

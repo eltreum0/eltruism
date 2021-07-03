@@ -3,10 +3,13 @@ Add new things maybe\
 Fix any issues found
 ___
 ### v2.4.0
+Added Class Icons to Player and Target unitframe Name
+Borders is now released
 Added Cooldown to Cursor
 When you try to use your cooldowns again their icon will show up inside Cursor, alongside a timer
 The icon will show again when the skill becomes usable
 Revamped changelog into a markdown file linked in the Support options menu
+
 ___
 ### v2.3.9
 Fixed Transmog Window\
