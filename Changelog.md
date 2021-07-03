@@ -6,7 +6,7 @@ ___
 Added Class Icons to Player and Target unitframe Name\
 Borders is now released\
 Added Cooldown to Cursor\
-When you try to use your cooldowns again their icon will show up inside Cursor, alongside a timer
+When you try to use your cooldowns again their icon will show up inside Cursor, alongside a timer\
 The icon will show again when the skill becomes usable\
 Revamped changelog into a markdown file linked in the Support options menu\
 Added support for Dynamic Status Icons when importing profile
