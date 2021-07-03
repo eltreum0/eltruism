@@ -1,14 +1,11 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local ElvUF = E.oUF
-
-
 local _G = _G
 local UnitName = _G.UnitName
 local UnitClass =  _G.UnitClass
 local UnitIsPlayer = _G.UnitIsPlayer
 local string = _G.string
 local utf8sub = string.utf8sub
-
 
 -- Name custom abbreviation by Azilroka
 ElvUF.Tags.Events['name:eltruism:abbreviate'] = 'UNIT_NAME_UPDATE'
@@ -21,9 +18,6 @@ ElvUF.Tags.Methods['name:eltruism:abbreviate'] = function(unit)
 	return name
 end
 E:AddTagInfo('name:eltruism:abbreviate', ElvUI_EltreumUI.Name, L["Abbreviates the unit name once it goes over 16 characters, made by Azilroka"])
-
-
---https://wowpedia.fandom.com/wiki/UI_escape_sequences
 
 -- Class Icons
 local classIcons = {

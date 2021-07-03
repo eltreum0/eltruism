@@ -74,7 +74,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	end
 	if not IsAddOnLoaded('NameplateSCT') and not IsAddOnLoaded('ElvUI_FCT') then
 		SetCVar("floatingCombatTextCombatDamage", 1)
-	else
+	elseif IsAddOnLoaded('NameplateSCT') or IsAddOnLoaded('ElvUI_FCT') then
 		SetCVar("floatingCombatTextCombatDamage", 0)
 	end
 end
@@ -93,13 +93,11 @@ end
 
 function ElvUI_EltreumUI:Initialize()
 	--since now Eltruism has both ElvUI Cvars and ElvUI Chat setup builtin we can skip elvui setup
-	E.private.install_complete = E.version
-	--if IsAddOnLoaded("ElvUI") then
 	if not E.private.ElvUI_EltreumUI.install_version then
+		E.private.install_complete = E.version
 		ElvUI_EltreumUI:HidePopups()
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 	end
-	--end
 	--register the plugin config
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
 	--Register Events
@@ -116,13 +114,11 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
-
 	--power bar
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_FREQUENT') --power update real time
 	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_UPDATE')  --power type changes
 	ElvUI_EltreumUI:RegisterEvent("UNIT_MODEL_CHANGED")  --druid things
-
 	--LootText things
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_LOOT")
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_MONEY")
@@ -130,13 +126,11 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED")
 	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE')
-
 	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', 0.02)
 	SetCVar('nameplateOtherTopInset', 0.1)
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('nameplateTargetRadialPosition', 1)
-
 	--depending on game version sets cvars or register events
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:RegisterEvent('SUPER_TRACKING_CHANGED')
