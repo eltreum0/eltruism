@@ -305,7 +305,7 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 16,
-			["text_format"] = "[namecolor][name]",
+			["text_format"] = "[namecolor][name] [eltruism:class:player]",
 			["xOffset"] = 2,
 			["yOffset"] = 0
 		}
@@ -449,7 +449,7 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 16,
-			["text_format"] = "[namecolor][name:eltruism:abbreviate]",
+			["text_format"] = "[eltruism:class:player] [namecolor][name:eltruism:abbreviate]",
 			["xOffset"] = -2,
 			["yOffset"] = 0
 		}

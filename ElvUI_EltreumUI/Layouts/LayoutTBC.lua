@@ -27,6 +27,26 @@ if ElvUI_EltreumUI.TBC then
 			ElvUI_EltreumUI:GetASProfile()
 		end
 
+		if IsAddOnLoaded("ElvUI_DynamicStatusIcons") then
+			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["anchorPoint"] = "BOTTOMRIGHT"
+			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["color"]["b"] = 0.4274500310421
+			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["color"]["g"] = 0.60784178972244
+			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["color"]["r"] = 0.77646887302399
+			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["faceright"] = true
+			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["iconpack"] = "Default - Pepe - Traveler"
+			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["scale"] = 0.8
+			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["xOffset"] = -75
+			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["yOffset"] = -83
+			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["anchorPoint"] = "BOTTOMLEFT"
+			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["color"]["b"] = 0.4274500310421
+			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["color"]["g"] = 0.60784178972244
+			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["color"]["r"] = 0.77646887302399
+			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["iconpack"] = "Default - Pepe - Clockwork"
+			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["scale"] = 0.8
+			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["xOffset"] = 75
+			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["yOffset"] = -83
+		end
+
 		-- Private DB
 		E.private["install_complete"] = "12.24"
 		E.private["skins"]["parchmentRemoverEnable"] = true
