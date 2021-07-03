@@ -227,7 +227,7 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 	isHidden = false
 	if show then
 		updateDelay = NormalUpdateDelay
-		if E.db.ElvUI_EltreumUI.cursor.cooldown then
+		if E.db.ElvUI_EltreumUI.cursor.enable and E.db.ElvUI_EltreumUI.cursor.cooldown then
 			self.frame:Show()
 		end
 		if startHidden then

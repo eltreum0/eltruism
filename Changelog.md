@@ -2,6 +2,12 @@
 Add new things maybe\
 Fix any issues found
 ___
+### v2.4.1
+Added Class Icons by Releaf\
+Added a second Details profile that includes class icons by Releaf
+Fixed switching Dark Mode > Light Mode > Dark mode\
+Fixed cooldown being enabled when cursor was disabled
+___
 ### v2.4.0
 Added Class Icons to Player and Target unitframe Name\
 Borders is now released\
@@ -10,7 +16,6 @@ When you try to use your cooldowns again their icon will show up inside Cursor, 
 The icon will show again when the skill becomes usable\
 Revamped changelog into a markdown file linked in the Support options menu\
 Added support for Dynamic Status Icons when importing profile
-
 ___
 ### v2.3.9
 Fixed Transmog Window\

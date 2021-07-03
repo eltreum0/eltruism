@@ -30,6 +30,7 @@ local THANKYOU = {
 	'|T136012:15:15:0:0:64:64:5:59:5:59|t |cff006fdcRubgrsch|r |T656558:15:15:0:0:64:64:5:59:5:59|t',
 	'|TInterface/AddOns/ElvUI/Media/ChatLogos/FoxWarlock:15:15:0:0:64:64:5:59:5:59|t |cff8788EENihilistzsche|r',
 	'|TInterface/AddOns/ElvUI/Media/ChatLogos/Clover:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0ALuckyone|r Especially for allowing the usage of his installer/plugin as a model',
+	'|TInterface/AddOns/ElvUI_EltreumUI/Media/Textures/releaf:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0AReleaf|r for the alternate class icons',
 	'AcidWeb |TInterface/AddOns/ElvUI/Media/ChatLogos/Gem:15:15:-1:2:64:64:6:60:8:60|t',
 }
 
@@ -528,9 +529,16 @@ if ElvUI_EltreumUI.Retail then
 								details = {
 									order = 7,
 									type = 'execute',
-									name = 'Details',
+									name = 'Details v1',
 									desc = L["Reset to Eltruism defaults."],
 									func = function() ElvUI_EltreumUI:AddonSetupDT() E:StaticPopup_Show('CONFIG_RL') end,
+								},
+								details = {
+									order = 8,
+									type = 'execute',
+									name = 'Details v2',
+									desc = L["Reset to Eltruism defaults."],
+									func = function() ElvUI_EltreumUI:AddonSetupDT2() E:StaticPopup_Show('CONFIG_RL') end,
 								},
 							},
 						},

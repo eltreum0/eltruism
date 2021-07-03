@@ -71,7 +71,6 @@ LSM:Register("statusbar", "Eltreum-30%", [[Interface\Addons\ElvUI_EltreumUI\Medi
 
 -- Background
 LSM:Register("background", "Eltreum-StealthOverlay", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\StealthOverlay.tga]])
-LSM:Register("background", "Details-FlatClassIcons", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\wow_flat_class_icons.tga]])
 
 --Class Textures
 LSM:Register("texture", "Eltreum-Death Knight", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Classes\DeathKnight.tga]])

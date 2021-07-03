@@ -232,4 +232,6 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 	E.db["WT"]["social"]["smartTab"]["enable"] = false
 	E.db["WT"]["tooltips"]["groupInfo"]["enable"] = false
 	E.db["WT"]["tooltips"]["groupInfo"]["title"] = false
+
+	ElvUI_EltreumUI:Print("WindTools profile has been set")
 end

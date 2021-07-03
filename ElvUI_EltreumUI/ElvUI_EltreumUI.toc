@@ -1,6 +1,6 @@
 ## Interface: 90100
 ## Author: Eltreum
-## Version: 2.4.0
+## Version: 2.4.1
 ## Title: |cff1784d1ElvUI|r Eltruism
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
 ## Dependencies: ElvUI, AddOnSkins, ProjectAzilroka
@@ -17,4 +17,8 @@ Settings\load_settings.xml
 Modules\load_modules.xml
 Profiles\load_profiles.xml
 Layouts\load_layoutsretail.xml
-Options\load_optionsretail.xml
+Layouts\load_layoutsclassic.xml
+Layouts\load_layoutstbc.xml
+Options\load_optionsRetail.xml
+Options\load_optionsClassic.xml
+Options\load_optionsTBC.xml

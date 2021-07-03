@@ -403,4 +403,6 @@ function ElvUI_EltreumUI:GetSLEProfile()
 	E.db["sle"]["unitframes"]["unit"]["raid40"]["dead"]["texture"] = "SKULL4"
 	E.db["sle"]["unitframes"]["unit"]["raid40"]["offline"]["enable"] = true
 	E.db["sle"]["unitframes"]["unit"]["raid40"]["offline"]["size"] = 15
+
+	ElvUI_EltreumUI:Print("Shadow and Light profile has been set")
 end

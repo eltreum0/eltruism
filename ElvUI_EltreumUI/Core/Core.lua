@@ -259,6 +259,13 @@ function ElvUI_EltreumUI:AddonSetupDT()
 	end
 end
 
+function ElvUI_EltreumUI:AddonSetupDT2()
+	if IsAddOnLoaded('Details') then
+		ElvUI_EltreumUI:GetDetailsProfile2()
+		ElvUI_EltreumUI:Print("Details profile using Releaf icons has been set.")
+	end
+end
+
 -- DynamicCam Profile
 function ElvUI_EltreumUI:AddonSetupDynamicCam()
 	if IsAddOnLoaded('DynamicCam') then
