@@ -14,6 +14,9 @@ local FCF_SetWindowName = _G.FCF_SetWindowName
 local FCFTab_UpdateColors = _G.FCFTab_UpdateColors
 local ChatFrame_AddChannel = _G.ChatFrame_AddChannel
 local ChatFrame_RemoveChannel = _G.ChatFrame_RemoveChannel
+local VoiceTranscriptionFrame_UpdateEditBox = _G.VoiceTranscriptionFrame_UpdateEditBox
+local VoiceTranscriptionFrame_UpdateVisibility = _G.VoiceTranscriptionFrame_UpdateVisibility
+local VoiceTranscriptionFrame_UpdateVoiceTab = _G.VoiceTranscriptionFrame_UpdateVoiceTab
 local ChangeChatColor = _G.ChangeChatColor
 local ToggleChatColorNamesByClassGroup = _G.ToggleChatColorNamesByClassGroup
 local FCF_UnDockFrame = _G.FCF_UnDockFrame
@@ -251,7 +254,7 @@ function ElvUI_EltreumUI:SetupChat()
 	--Reset chat
 	FCF_ResetChatWindows()
 	FCF_OpenNewWindow(LOOT)
-	FCF_UnDockFrame(_G.ChatFrame3)
+	FCF_UnDockFrame(_G.ChatFrame4)
 
 	--Do ElvUI setup thing
 	for _, name in ipairs(_G.CHAT_FRAMES) do
@@ -267,6 +270,10 @@ function ElvUI_EltreumUI:SetupChat()
 			frame:ClearAllPoints()
 			frame:Point('BOTTOMLEFT', _G.LeftChatToggleButton, 'TOPLEFT', 1, 3)
 		elseif id == 3 then
+			VoiceTranscriptionFrame_UpdateVisibility(frame)
+			VoiceTranscriptionFrame_UpdateVoiceTab(frame)
+			VoiceTranscriptionFrame_UpdateEditBox(frame)
+		elseif id == 4 then
 			frame:ClearAllPoints()
 			frame:Point('BOTTOMLEFT', _G.RightChatDataPanel, 'TOPLEFT', 1, 3)
 		end
@@ -281,7 +288,7 @@ function ElvUI_EltreumUI:SetupChat()
 			FCF_SetWindowName(frame, GENERAL)
 		elseif id == 2 then
 			FCF_SetWindowName(frame, GUILD_EVENT_LOG)
-		elseif id == 3 then
+		elseif id == 4 then
 			FCF_SetWindowName(frame, LOOT..' / '..TRADE)
 		end
 	end
@@ -295,14 +302,14 @@ function ElvUI_EltreumUI:SetupChat()
 
 	-- keys taken from `ChatTypeGroup` which weren't added above to ChatFrame1
 	chatGroup = { 'COMBAT_XP_GAIN', 'COMBAT_HONOR_GAIN', 'COMBAT_FACTION_CHANGE', 'SKILL', 'LOOT', 'CURRENCY', 'MONEY' }
-	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame3)
+	ChatFrame_RemoveAllMessageGroups(_G.ChatFrame4)
 	for _, v in ipairs(chatGroup) do
-		ChatFrame_AddMessageGroup(_G.ChatFrame3, v)
+		ChatFrame_AddMessageGroup(_G.ChatFrame4, v)
 	end
 
 	ChatFrame_AddChannel(_G.ChatFrame1, GENERAL)
 	ChatFrame_RemoveChannel(_G.ChatFrame1, TRADE)
-	ChatFrame_AddChannel(_G.ChatFrame3, TRADE)
+	ChatFrame_AddChannel(_G.ChatFrame4, TRADE)
 
 	-- set the chat groups names in class color to enabled for all chat groups which players names appear
 	chatGroup = { 'SAY', 'EMOTE', 'YELL', 'WHISPER', 'PARTY', 'PARTY_LEADER', 'RAID', 'RAID_LEADER', 'RAID_WARNING', 'INSTANCE_CHAT', 'INSTANCE_CHAT_LEADER', 'GUILD', 'OFFICER', 'ACHIEVEMENT', 'GUILD_ACHIEVEMENT', 'COMMUNITIES_CHANNEL' }

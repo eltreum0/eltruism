@@ -5,6 +5,7 @@ ___
 ### v2.4.1
 Added Class Icons by Releaf\
 Added a second Details profile that includes class icons by Releaf
+Added an option to switch icon types on character profile
 Fixed switching Dark Mode > Light Mode > Dark mode\
 Fixed cooldown being enabled when cursor was disabled
 ___
