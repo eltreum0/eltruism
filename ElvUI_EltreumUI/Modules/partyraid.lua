@@ -59,9 +59,9 @@ if ElvUI_EltreumUI.Retail then
 	if IsAddOnLoaded("ElvUI_SLE") then
 		local SLE = unpack(ElvUI_SLE)
 		SLE.rolePaths["Eltruism"] = {
-			TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga",
-			HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga",
-			DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga"
+			TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga",
+			HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga",
+			DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga"
 		}
 	end
 end
@@ -70,9 +70,9 @@ end
 function ElvUI_EltreumUI:ChatRoleSwapIcons()
 	local sizeString = ":12:12"
 	local roleIcons = {
-		TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\shield.tga', sizeString),
-		HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\pharmacy.tga', sizeString),
-		DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\RoleIcons\\sword.tga', sizeString),
+		TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
+		HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
+		DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', sizeString),
 	}
 	_G.INLINE_TANK_ICON = roleIcons.TANK
 	_G.INLINE_HEALER_ICON = roleIcons.HEALER
