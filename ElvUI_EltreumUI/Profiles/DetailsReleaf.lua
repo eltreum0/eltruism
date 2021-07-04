@@ -579,7 +579,8 @@ function ElvUI_EltreumUI:GetDetailsProfileReleaf()
 						},
 						["textL_class_colors"] = true,
 						["texture_background"] = "ElvUI Blank",
-						["alpha"] = 1,
+						--["alpha"] = 1, -- was this
+						["alpha"] = 0,
 						["no_icon"] = false,
 						["icon_offset"] = {
 							0, -- [1]
@@ -3861,7 +3862,8 @@ function ElvUI_EltreumUI:GetDetailsProfileReleaf()
 				["scale"] = 1,
 			},
 			["animation_speed_maxtravel"] = 3,
-			["default_bg_alpha"] = 0.5,
+			--["default_bg_alpha"] = 0.5, was this
+			["default_bg_alpha"] = 0,
 			["time_type_original"] = 2,
 			["font_faces"] = {
 				["menus"] = "Kimberley",
@@ -4208,7 +4210,8 @@ function ElvUI_EltreumUI:GetDetailsProfileReleaf()
 						["shadow"] = false,
 					},
 					["hide_in_combat_alpha"] = 0,
-					["bg_alpha"] = 0.183960914611816,
+					--["bg_alpha"] = 0.183960914611816, -- was this
+					["bg_alpha"] = 0,
 					["show_statusbar"] = false,
 					["libwindow"] = {
 						["y"] = 22.85706329345703,
@@ -4659,7 +4662,8 @@ function ElvUI_EltreumUI:GetDetailsProfileReleaf()
 					["switch_damager_in_combat"] = false,
 					["__was_opened"] = true,
 					["switch_tank_in_combat"] = false,
-					["bg_alpha"] = 0.183960914611816,
+					--["bg_alpha"] = 0.183960914611816, --was this
+					["bg_alpha"] = 0,
 					["fontstrings_text4_anchor"] = 0,
 					["__locked"] = true,
 					["menu_alpha"] = {
