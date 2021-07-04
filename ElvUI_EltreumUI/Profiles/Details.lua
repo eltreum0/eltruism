@@ -1962,6 +1962,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 						["right"] = "DETAILS_STATUSBAR_PLUGIN_PDPS",
 						["options"] = {
 							["DETAILS_STATUSBAR_PLUGIN_PDPS"] = {
+								["isHidden"] = true,
 								["textYMod"] = 1,
 								["textXMod"] = 0,
 								["textFace"] = "Accidental Presidency",
@@ -1976,6 +1977,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 								},
 							},
 							["DETAILS_STATUSBAR_PLUGIN_PSEGMENT"] = {
+								["isHidden"] = true,
 								["textColor"] = {
 									1, -- [1]
 									1, -- [2]
@@ -1991,6 +1993,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 								["textYMod"] = 1,
 							},
 							["DETAILS_STATUSBAR_PLUGIN_CLOCK"] = {
+								["isHidden"] = true,
 								["textColor"] = {
 									1, -- [1]
 									1, -- [2]
@@ -2403,6 +2406,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 						["right"] = "DETAILS_STATUSBAR_PLUGIN_PDPS",
 						["options"] = {
 							["DETAILS_STATUSBAR_PLUGIN_PDPS"] = {
+								["isHidden"] = true,
 								["textYMod"] = 1,
 								["textXMod"] = 0,
 								["textFace"] = "Accidental Presidency",
@@ -2417,6 +2421,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 								},
 							},
 							["DETAILS_STATUSBAR_PLUGIN_PSEGMENT"] = {
+								["isHidden"] = true,
 								["textColor"] = {
 									1, -- [1]
 									1, -- [2]
@@ -2432,6 +2437,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 								["textYMod"] = 1,
 							},
 							["DETAILS_STATUSBAR_PLUGIN_CLOCK"] = {
+								["isHidden"] = true,
 								["textColor"] = {
 									1, -- [1]
 									1, -- [2]
@@ -3410,7 +3416,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 				["anchor_relative"] = "top",
 				["abbreviation"] = 2,
 				["anchored_to"] = 1,
-				["show_amount"] = true,
+				["show_amount"] = false,
 				["header_text_color"] = {
 					1, -- [1]
 					0.9176, -- [2]
@@ -3809,6 +3815,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 						["right"] = "DETAILS_STATUSBAR_PLUGIN_PDPS",
 						["options"] = {
 							["DETAILS_STATUSBAR_PLUGIN_PDPS"] = {
+								["isHidden"] = true,
 								["segmentType"] = 2,
 								["textFace"] = "Accidental Presidency",
 								["textYMod"] = 1,
@@ -3823,6 +3830,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 								},
 							},
 							["DETAILS_STATUSBAR_PLUGIN_PSEGMENT"] = {
+								["isHidden"] = true,
 								["segmentType"] = 2,
 								["textFace"] = "Accidental Presidency",
 								["textYMod"] = 1,
@@ -3837,6 +3845,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 								},
 							},
 							["DETAILS_STATUSBAR_PLUGIN_CLOCK"] = {
+								["isHidden"] = true,
 								["segmentType"] = 2,
 								["textFace"] = "Accidental Presidency",
 								["textYMod"] = 1,

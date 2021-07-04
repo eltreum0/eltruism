@@ -2307,6 +2307,7 @@ function ElvUI_EltreumUI:GetDetailsProfileReleaf()
 						["right"] = "DETAILS_STATUSBAR_PLUGIN_PDPS",
 						["options"] = {
 							["DETAILS_STATUSBAR_PLUGIN_PDPS"] = {
+								["isHidden"] = true,
 								["textColor"] = {
 									1, -- [1]
 									1, -- [2]
@@ -2321,6 +2322,7 @@ function ElvUI_EltreumUI:GetDetailsProfileReleaf()
 								["textYMod"] = 1,
 							},
 							["DETAILS_STATUSBAR_PLUGIN_PSEGMENT"] = {
+								["isHidden"] = true,
 								["textColor"] = {
 									1, -- [1]
 									1, -- [2]
@@ -2336,6 +2338,7 @@ function ElvUI_EltreumUI:GetDetailsProfileReleaf()
 								["textYMod"] = 1,
 							},
 							["DETAILS_STATUSBAR_PLUGIN_CLOCK"] = {
+								["isHidden"] = true,
 								["textColor"] = {
 									1, -- [1]
 									1, -- [2]
@@ -2748,6 +2751,7 @@ function ElvUI_EltreumUI:GetDetailsProfileReleaf()
 						["right"] = "DETAILS_STATUSBAR_PLUGIN_PDPS",
 						["options"] = {
 							["DETAILS_STATUSBAR_PLUGIN_PDPS"] = {
+								["isHidden"] = true,
 								["textColor"] = {
 									1, -- [1]
 									1, -- [2]
@@ -2762,6 +2766,7 @@ function ElvUI_EltreumUI:GetDetailsProfileReleaf()
 								["textYMod"] = 1,
 							},
 							["DETAILS_STATUSBAR_PLUGIN_PSEGMENT"] = {
+								["isHidden"] = true,
 								["textColor"] = {
 									1, -- [1]
 									1, -- [2]
@@ -2777,6 +2782,7 @@ function ElvUI_EltreumUI:GetDetailsProfileReleaf()
 								["textYMod"] = 1,
 							},
 							["DETAILS_STATUSBAR_PLUGIN_CLOCK"] = {
+								["isHidden"] = true,
 								["textColor"] = {
 									1, -- [1]
 									1, -- [2]
