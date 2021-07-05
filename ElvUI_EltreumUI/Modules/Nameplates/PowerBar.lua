@@ -45,7 +45,6 @@ function ElvUI_EltreumUI:GetSpec()
 	end
 end
 
-
 --Main function
 function ElvUI_EltreumUI:NameplatePower(nameplate)
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
@@ -116,7 +115,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 		powertexture = E.media.norm
 	end
 
-
 	local manab = E.db.unitframe.colors.power.MANA.b
 	local manag = E.db.unitframe.colors.power.MANA.g
 	local manar = E.db.unitframe.colors.power.MANA.r
@@ -126,8 +124,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 	local energyb = E.db.unitframe.colors.power.ENERGY.b
 	local energyg = E.db.unitframe.colors.power.ENERGY.g
 	local energyr = E.db.unitframe.colors.power.ENERGY.r
-
-
 	local focusb
 	local focusg
 	local focusr
@@ -195,10 +191,8 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 	end
 
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
-
 		local canattack = UnitCanAttack("player", "target")
 		if UnitExists("target") and canattack then
-
 			local EltreumPowerAnchor = C_NamePlate.GetNamePlateForUnit("target")
 			EltreumPowerBar:SetParent(EltreumPowerAnchor)
 
@@ -208,8 +202,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			local startpower = UnitPower("player")
 			EltreumPowerBar:SetValue(startpower) --try to make it not be full always at the start
 			EltreumPowerBar.Text:SetText(startpower)
-
-
 			EltreumPowerBar:SetSize(sizex, sizey)
 			EltreumPowerBar:SetStatusBarTexture(powertexture)
 			EltreumPowerBar.bg:SetSize(bgx, bgy)
@@ -613,7 +605,6 @@ function ElvUI_EltreumUI:NameplatePowerTextUpdate(unit)
 		end
 	end)
 end
-
 
 function ElvUI_EltreumUI:UpdateNPwithoutBar(addon)
 	if addon == 'ElvUI' then
