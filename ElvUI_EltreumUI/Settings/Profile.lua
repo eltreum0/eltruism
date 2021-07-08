@@ -243,6 +243,8 @@ P.ElvUI_EltreumUI = {
 		bar10yborder = 37,
 	},
 
+	lightmode = false,
+
 	otherstuff ={
 		worldtextscale = 1,
 		arenabuffs = false,

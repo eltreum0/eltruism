@@ -56,15 +56,15 @@ local classIconsReleafborder = {
 }
 
 local classFrame = CreateFrame("Frame", nil, UIParent)
+classFrame:SetSize(20, 20)
+classFrame:SetParent("PaperDollFrame")
+local classTexture = classFrame:CreateTexture()
+classTexture:SetAllPoints(classFrame)
+
 
 --add class icon to class in character panel
 function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	classFrame:ClearAllPoints()
-	classFrame:SetSize(20, 20)
-	classFrame:SetParent("PaperDollFrame")
-	local classTexture = classFrame:CreateTexture()
-	classTexture:SetAllPoints(classFrame)
-
 	--type of icon
 	if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
 		classTexture:SetTexture(classIcons[E.myclass])
@@ -73,8 +73,6 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	else
 		classTexture:SetTexture(classIcons[E.myclass])
 	end
-
-
 	local CharacterLevelText = _G.CharacterLevelText
 	local textwidth = CharacterLevelText:GetUnboundedStringWidth()
 	local levelwidth = CharacterLevelText:GetWidth()

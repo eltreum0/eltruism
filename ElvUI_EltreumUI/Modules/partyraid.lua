@@ -12,14 +12,17 @@ function ElvUI_EltreumUI:PartyRaidInit()
 end
 
 -- Conversion of the party/raid death weakaura into an addon option
-local name
+local name = {}
+local _
+local deadname
 function ElvUI_EltreumUI:GroupRoster()
 	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
-			for ii=1, GetNumGroupMembers() do
-				name = GetRaidRosterInfo(ii)
+			for i=1, GetNumGroupMembers() do
+				name[i], _, _, _, _, _, _, _, _, _, _, _ = GetRaidRosterInfo(i)
 			end
 		if not IsInGroup() then
-			name = name
+			name = {}
+			--name = {E.myname}
 		end
 	end
 end
@@ -27,7 +30,43 @@ end
 function ElvUI_EltreumUI:RaidDeath()
 	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
 		local _, eventType, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
-		if eventType == "UNIT_DIED" then
+		if not eventType == "UNIT_DIED" then
+			return
+		elseif eventType == "UNIT_DIED" then
+			for i=1,#name do
+				if name[i] == destName then
+					if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
+						if E.db.ElvUI_EltreumUI.partyraiddeath.bruh then
+							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.ogg", "Master")
+						end
+						if E.db.ElvUI_EltreumUI.partyraiddeath.robloxoof then
+							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.ogg", "Master")
+						end
+						if E.db.ElvUI_EltreumUI.partyraiddeath.shame then
+							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.ogg", "Master")
+						end
+						if E.db.ElvUI_EltreumUI.partyraiddeath.wow then
+							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.ogg", "Master")
+						end
+						if E.db.ElvUI_EltreumUI.partyraiddeath.mario then
+							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\mariodeath.ogg", "Master")
+						end
+						if E.db.ElvUI_EltreumUI.partyraiddeath.ion then
+							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\ionskillissue.ogg", "Master")
+						end
+					end
+				end
+			end
+		end
+	end
+end
+
+--[[function ElvUI_EltreumUI:RaidDeath()
+	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
+		local _, eventType, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
+		if not eventType == "UNIT_DIED" then
+			return
+		elseif eventType == "UNIT_DIED" then
 			if destName == name then
 				if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
 					if E.db.ElvUI_EltreumUI.partyraiddeath.bruh then
@@ -52,7 +91,7 @@ function ElvUI_EltreumUI:RaidDeath()
 			end
 		end
 	end
-end
+end]]--
 
 -- Role icons, ty a lot Darth Predator for the help!
 if ElvUI_EltreumUI.Retail then

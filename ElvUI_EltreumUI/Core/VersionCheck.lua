@@ -9,11 +9,10 @@ end
 function ElvUI_EltreumUI:NewVersionCheck()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
-	elseif E.private.ElvUI_EltreumUI.install_version >= "2.3.0" and E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version then
+	elseif E.private.ElvUI_EltreumUI.install_version >= "2.4.0" and E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version then
 		E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
 		ElvUI_EltreumUI:Print(L["updated to "]..ElvUI_EltreumUI.Version..' version')
-		ElvUI_EltreumUI:Print('Borders released, you can test this feature in Eltruism > Borders. You might need to adjust settings to fit your action bars')
-		ElvUI_EltreumUI:Print('Cooldowns were added to Cursor with this version, thats why you see icons when you try to use a skill again')
+		ElvUI_EltreumUI:Print("If you have any issues please join the |TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinydisc.tga:0:0:0:0|t Discord for help")
 	end
 end
 
@@ -63,5 +62,9 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.private.ElvUI_EltreumUI.install_version = "2.3.0"
 		ElvUI_EltreumUI:Print('Chat modifications were recently added, please check Eltruism > Chat if you want to turn them off. You can Left click on a Chat Panel enable them (reloading will reset this)')
 		ElvUI_EltreumUI:Print('More options were added to Nameplate Power Bar, such as the ability to change its size, position and texture. Configure it in Eltruism > Nameplates')
+	elseif E.private.ElvUI_EltreumUI.install_version >= "2.3.0" and E.private.ElvUI_EltreumUI.install_version < "2.4.0" then
+		E.private.ElvUI_EltreumUI.install_version = "2.4.0"
+		ElvUI_EltreumUI:Print('Borders released, you can test this feature in Eltruism > Borders. You might need to adjust settings to fit your action bars')
+		ElvUI_EltreumUI:Print('Cooldowns were added to Cursor with this version, thats why you see icons when you try to use a skill again')
 	end
 end

@@ -2,6 +2,12 @@
 Add new things maybe\
 Fix any issues found
 ___
+### v2.4.2
+Improved Party/Raid death detection\
+Split Cooldown from Cursor, now you can enable one without needing the other\
+Fixed Light Mode not having gradient unitframes\
+Fixed Class Icon on Armory being blurry sometimes
+___
 ### v2.4.1
 Added Class Icons by Releaf\
 Added a second Details profile that includes class icons by Releaf

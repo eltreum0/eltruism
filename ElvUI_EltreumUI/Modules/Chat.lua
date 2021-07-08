@@ -340,9 +340,6 @@ function ElvUI_EltreumUI:SetupChat()
 	ElvUI_EltreumUI:Print(L["ElvUI Chat has been Set"])
 end
 
-
-
-
 -- ElvUI Chat Setup pretty much
 function ElvUI_EltreumUI:SetupChatClassic()
 

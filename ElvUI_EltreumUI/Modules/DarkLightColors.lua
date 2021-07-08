@@ -79,14 +79,13 @@ function ElvUI_EltreumUI:LightMode()
 		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
 		E.db["unitframe"]["units"]["target"]["colorOverride"] = "USE_DEFAULT"
 		E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "USE_DEFAULT"
-		E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
-		E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
-		E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
+		E.db["auras"]["buffs"]["barTexture"] = unitframeclass[E.myclass]
+		E.db["auras"]["debuffs"]["barTexture"] = unitframeclass[E.myclass]
+		E.db["unitframe"]["statusbar"] = unitframeclass[E.myclass]
 		E.db["unitframe"]["colors"]["transparentAurabars"] = false
 		E.db["unitframe"]["colors"]["transparentCastbar"] = false
 		E.db["unitframe"]["colors"]["transparentHealth"] = false
 		E.db["unitframe"]["colors"]["transparentPower"] = false
-
 		--setup namecolors
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
@@ -101,5 +100,11 @@ function ElvUI_EltreumUI:LightMode()
 		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
 		end
-		--E:StaggeredUpdateAll(nil, true)
+		E.db.ElvUI_EltreumUI.lightmode = true
+end
+
+function ElvUI_EltreumUI:LightModeGradient()
+	if E.db.ElvUI_EltreumUI.lightmode == true then
+		E.db["unitframe"]["statusbar"] = unitframeclass[E.myclass]
+	end
 end

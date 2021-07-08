@@ -190,7 +190,6 @@ if ElvUI_EltreumUI.Classic then
 									desc = L["Add a cooldown icon when trying to use skills that are on cooldown, and a cooldown flash when they are ready"],
 									width = 'full',
 									confirm = true,
-									disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 									get = function(info) return E.db.ElvUI_EltreumUI.cursor.cooldown end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.cursor.cooldown = value end,
 								},
