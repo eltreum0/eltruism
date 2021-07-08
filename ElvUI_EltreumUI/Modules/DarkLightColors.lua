@@ -42,6 +42,7 @@ function ElvUI_EltreumUI:DarkMode()
 			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
 		end
 		--E:StaggeredUpdateAll(nil, true)
+		E.db.ElvUI_EltreumUI.lightmode = false
 end
 
 local unitframeclass = {
