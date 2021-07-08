@@ -692,7 +692,7 @@ if ElvUI_EltreumUI.Retail then
 											type = 'toggle',
 											name = L["Pixel Border"],
 											desc = L["Enable a border for the Pixel Glow"],
-											order = 7,
+											order = 6,
 											width = "full",
 											get = function() return E.db.ElvUI_EltreumUI.glow.borderpixel end,
 											set = function(_, value) E.db.ElvUI_EltreumUI.glow.borderpixel = value end,
