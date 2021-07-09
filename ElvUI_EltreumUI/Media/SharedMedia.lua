@@ -13,6 +13,8 @@ LSM:Register("font", "JosefinSans-Bold", [[Interface\Addons\ElvUI_EltreumUI\Medi
 LSM:Register("font", "Pricedown", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\pricedown.ttf]])
 LSM:Register("font", "Roboto", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Roboto-Bold.ttf]])
 LSM:Register("font", "Neuropol", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\neuropolxrg.ttf]])
+LSM:Register("font", "Good Brush", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GoodBrush.ttf]])
+LSM:Register("font", "BIG NOODLE TITLING", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\big_noodle_titling.ttf]])
 
 -- Sound
 LSM:Register("sound", "You_Died", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\You_Died.ogg]])
