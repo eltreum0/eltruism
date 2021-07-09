@@ -1,6 +1,5 @@
 ### 🌌 Next Version 
-Add new things maybe\
-Fix any issues found
+TBD
 ___
 ### v2.4.2
 Improved Party/Raid death detection\
