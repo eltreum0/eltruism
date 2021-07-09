@@ -192,16 +192,12 @@ function ElvUI_EltreumUI:Skins()
 			end
 
 			--test
-			local RaidBossEmoteFrame = _G.RaidBossEmoteFrame
-			RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_EMOTE")
-			RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_WHISPER")
-			RaidBossEmoteFrame:UnregisterEvent("CLEAR_BOSS_EMOTES")
-
-			--[[if InCombatLockdown() then
-				if RaidBossEmoteFrame then
-					RaidBossEmoteFrame:SetAlpha(0)
-				end
-			]]--end
+			if E.db.ElvUI_EltreumUI.skins.bossemote then
+				local RaidBossEmoteFrame = _G.RaidBossEmoteFrame
+				RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_EMOTE")
+				RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_WHISPER")
+				RaidBossEmoteFrame:UnregisterEvent("CLEAR_BOSS_EMOTES")
+			end
 
 			if BossBanner then
 				local StatusLineTop = CreateFrame("StatusBar", nil, _G.BossBanner)

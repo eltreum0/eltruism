@@ -2281,14 +2281,35 @@ if ElvUI_EltreumUI.Retail then
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
-								widertransmog = {
+								raidbossemoteframe = {
 									order = 24,
+									type = "description",
+									name = "Remove Blizzard's Boss Emote Frame",
+									width = "full",
+								},
+								removebossemote = {
+									order = 25,
+									type = 'toggle',
+									name = 'Enable',
+									desc = "Enable removing the Alert Frame that can show up in the middle of the screen",
+									get = function(info) return E.db.ElvUI_EltreumUI.skins.bossemote end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.skins.bossemote = value E:StaticPopup_Show('CONFIG_RL') end,
+								},
+								header8 = {
+									order = 26,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								widertransmog = {
+									order = 27,
 									type = "description",
 									name = L["Expand Transmog Window to better show your character"],
 									width = "full",
 								},
 								widetransmogenable = {
-									order = 25,
+									order = 28,
 									type = 'toggle',
 									name = 'Enable',
 									desc = L["Enable the Wider Transmog Window"],
