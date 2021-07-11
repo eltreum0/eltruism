@@ -245,6 +245,7 @@ P.ElvUI_EltreumUI = {
 	},
 
 	lightmode = false,
+	modetexture = true,
 
 	otherstuff ={
 		worldtextscale = 1,

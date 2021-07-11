@@ -28,12 +28,22 @@ function ElvUI_EltreumUI:Borders()
 	local xbar6 = E.db.ElvUI_EltreumUI.borders.bar6xborder
 	local ybar6 = E.db.ElvUI_EltreumUI.borders.bar6yborder
 
+
+	--[[SetBackdrop({
+		bgFile = "file",
+		edgeFile = "file",
+		tile = true,
+		tileSize = size,
+		edgeSize = size,
+		insets = { left = X, right = X, top = X, bottom = X }
+	})]]--
+
 	if E.db.ElvUI_EltreumUI.borders.borders then
 		if E.db.ElvUI_EltreumUI.borders.playerborder then
 			local playerborder = CreateFrame("Frame", nil, _G.ElvUF_Player, BackdropTemplateMixin and "BackdropTemplate")
 			playerborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayer, E.db.ElvUI_EltreumUI.borders.yplayer)
 			playerborder:SetPoint("CENTER", _G.ElvUF_Player, "CENTER", 0, 0)
-			playerborder:SetBackdrop( {
+			playerborder:SetBackdrop({
 				edgeFile = bordertexture,
 				edgeSize = playertargetsize,
 			})
@@ -45,7 +55,7 @@ function ElvUI_EltreumUI:Borders()
 			local playercastbarborder = CreateFrame("Frame", nil, _G.ElvUF_Player_CastBar, BackdropTemplateMixin and "BackdropTemplate")
 			playercastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayercast, E.db.ElvUI_EltreumUI.borders.yplayercast)
 			playercastbarborder:SetPoint("CENTER", _G.ElvUF_Player_CastBar, "CENTER", 0, 0)
-			playercastbarborder:SetBackdrop( {
+			playercastbarborder:SetBackdrop({
 				edgeFile = bordertexture,
 				edgeSize = playertargetsize,
 			})
@@ -57,7 +67,7 @@ function ElvUI_EltreumUI:Borders()
 			local targetborder = CreateFrame("Frame", nil, _G.ElvUF_Target, BackdropTemplateMixin and "BackdropTemplate")
 			targetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xtarget, E.db.ElvUI_EltreumUI.borders.ytarget)
 			targetborder:SetPoint("CENTER", _G.ElvUF_Target)
-			targetborder:SetBackdrop( {
+			targetborder:SetBackdrop({
 				edgeFile = bordertexture,
 				edgeSize = playertargetsize,
 			})
@@ -69,7 +79,7 @@ function ElvUI_EltreumUI:Borders()
 			local targetcastbarborder = CreateFrame("Frame", nil, _G.ElvUF_Target_CastBar, BackdropTemplateMixin and "BackdropTemplate")
 			targetcastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcasttarget, E.db.ElvUI_EltreumUI.borders.ycasttarget)
 			targetcastbarborder:SetPoint("CENTER", _G.ElvUF_Target_CastBar, "CENTER", 0, 0)
-			targetcastbarborder:SetBackdrop( {
+			targetcastbarborder:SetBackdrop({
 				edgeFile = bordertexture,
 				edgeSize = playertargetsize,
 			})
@@ -88,7 +98,7 @@ function ElvUI_EltreumUI:Borders()
 					local barborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
 					barborder:SetSize(xbar, ybar)
 					barborder:SetPoint("CENTER", v, "CENTER")
-					barborder:SetBackdrop( {
+					barborder:SetBackdrop({
 					edgeFile = bordertexture,
 					edgeSize = baredgesize,
 					})
@@ -109,7 +119,7 @@ function ElvUI_EltreumUI:Borders()
 					local barborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
 					barborder:SetSize(xbar2, ybar2)
 					barborder:SetPoint("CENTER", v, "CENTER")
-					barborder:SetBackdrop( {
+					barborder:SetBackdrop({
 					edgeFile = bordertexture,
 					edgeSize = baredgesize,
 					})
@@ -130,7 +140,7 @@ function ElvUI_EltreumUI:Borders()
 					local barborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
 					barborder:SetSize(xbar3, ybar3)
 					barborder:SetPoint("CENTER", v, "CENTER")
-					barborder:SetBackdrop( {
+					barborder:SetBackdrop({
 					edgeFile = bordertexture,
 					edgeSize = baredgesize,
 					})
@@ -151,7 +161,7 @@ function ElvUI_EltreumUI:Borders()
 					local barborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
 					barborder:SetSize(xbar4, ybar4)
 					barborder:SetPoint("CENTER", v, "CENTER")
-					barborder:SetBackdrop( {
+					barborder:SetBackdrop({
 					edgeFile = bordertexture,
 					edgeSize = baredgesize,
 					})
@@ -172,7 +182,7 @@ function ElvUI_EltreumUI:Borders()
 					local barborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
 					barborder:SetSize(xbar5, ybar5)
 					barborder:SetPoint("CENTER", v, "CENTER")
-					barborder:SetBackdrop( {
+					barborder:SetBackdrop({
 					edgeFile = bordertexture,
 					edgeSize = baredgesize,
 					})
@@ -193,7 +203,7 @@ function ElvUI_EltreumUI:Borders()
 					local barborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
 					barborder:SetSize(xbar6, ybar6)
 					barborder:SetPoint("CENTER", v, "CENTER")
-					barborder:SetBackdrop( {
+					barborder:SetBackdrop({
 					edgeFile = bordertexture,
 					edgeSize = baredgesize,
 					})

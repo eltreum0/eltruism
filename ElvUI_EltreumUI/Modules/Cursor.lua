@@ -404,6 +404,7 @@ function ElvUI_EltreumUI:CastCursor()
 		Cursor:Hide()
 
 		-- Run
+		--this is kinda of a roundabout way of getting this to working here
 		cursorframe:RegisterEvent("PLAYER_STARTED_MOVING")
 		cursorframe:SetScript("OnEvent", function(self, event, _)
 		--cursorframe:SetScript("OnEvent", function(self, event, name)
