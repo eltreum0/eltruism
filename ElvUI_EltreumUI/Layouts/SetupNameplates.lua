@@ -478,10 +478,10 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["color"]["g"] = 0
 		E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["color"]["r"] = 0
 		E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["enable"] = true
-		E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["speed"] = 1
+		E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["speed"] = 7
 		E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["scale"] = 1.2
 		E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["enable"] = true
-		E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["texture"] = "Eltreum-Dark"
+		E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["texture"] = "Asphyxia-Norm"
 		E.global["nameplate"]["filters"]["EltreumInterrupt"]["actions"]["alpha"] = 100
 		E.global["nameplate"]["filters"]["EltreumInterrupt"]["triggers"]["casting"]["interruptible"] = true
 		E.global["nameplate"]["filters"]["EltreumInterrupt"]["triggers"]["inCombat"] = true
@@ -496,12 +496,12 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["flash"]["color"]["g"] = 0
 		E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["flash"]["color"]["r"] = 0
 		E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["flash"]["enable"] = true
-		E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["flash"]["speed"] = 2
+		E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["flash"]["speed"] = 7
 		E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["scale"] = 1.25
-		E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["texture"]["texture"] = "Ohi MetalPlate"
+		E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["texture"]["texture"] = "Eltreum-Stripes"
 		E.global["nameplate"]["filters"]["EltreumExecute"]["triggers"]["healthThreshold"] = true
 		E.global["nameplate"]["filters"]["EltreumExecute"]["triggers"]["isTarget"] = true
-		E.global["nameplate"]["filters"]["EltreumExecute"]["triggers"]["priority"] = 10
+		E.global["nameplate"]["filters"]["EltreumExecute"]["triggers"]["priority"] = 1
 		E.global["nameplate"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.2
 		--fancy rares
 		E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["health"] = true

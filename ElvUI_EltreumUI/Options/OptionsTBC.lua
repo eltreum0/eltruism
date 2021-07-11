@@ -34,6 +34,11 @@ local THANKYOU = {
 	'AcidWeb |TInterface/AddOns/ElvUI/Media/ChatLogos/Gem:15:15:-1:2:64:64:6:60:8:60|t',
 }
 
+local SUPPORTER = {
+	'|cffB50909Morthart|r',
+	'|cffB50909Dreandor|r',
+}
+
 -- SortList
 local function SortList(a, b)
 	return E:StripString(a) < E:StripString(b)
@@ -41,6 +46,7 @@ end
 
 sort(AUTHORS, SortList)
 sort(THANKYOU, SortList)
+sort(SUPPORTER, SortList)
 
 -- Author table
 for _, name in pairs(AUTHORS) do
@@ -53,6 +59,12 @@ for _, name in pairs(THANKYOU) do
 	tinsert(ElvUI_EltreumUI.CreditsList, name)
 end
 local THANKYOU_STRING = tconcat(THANKYOU, '|n')
+
+-- Supporter table
+for _, name in pairs(SUPPORTER) do
+	tinsert(ElvUI_EltreumUI.CreditsList, name)
+end
+local SUPPORTER_STRING = tconcat(SUPPORTER, '|n')
 
 -- EltreumUI ingame options TBC
 if ElvUI_EltreumUI.TBC then
@@ -2742,6 +2754,20 @@ if ElvUI_EltreumUI.TBC then
 									type = 'description',
 									fontSize = 'medium',
 									name = THANKYOU_STRING,
+								},
+							},
+						},
+						supporters = {
+							order = 3,
+							type = 'group',
+							inline = true,
+							name = "Supporters",
+							args = {
+								desc = {
+									order = 1,
+									type = 'description',
+									fontSize = 'medium',
+									name = SUPPORTER_STRING,
 								},
 							},
 						},
