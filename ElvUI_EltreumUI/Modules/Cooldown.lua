@@ -1,5 +1,4 @@
 --CursorCooldown is a fork of CooldownToGo by mitchnull, which is licensed under Public Domain. My thanks to mitchnull for making it!
-
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local tonumber = _G.tonumber
@@ -90,9 +89,9 @@ function ElvUI_EltreumUI:updateLayout()
 end
 
 local mask
+local frame = CreateFrame("MessageFrame", "EltruismCooldown", UIParent)
+frame:Hide()
 function ElvUI_EltreumUI:createFrame()
-	local frame = CreateFrame("MessageFrame", "EltruismCooldown", UIParent)
-	frame:Hide()
 	self:SetupCDSize()
 	frame:SetWidth(cooldownsize)
 	frame:SetHeight(cooldownsize)

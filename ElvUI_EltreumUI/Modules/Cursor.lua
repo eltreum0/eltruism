@@ -18,6 +18,11 @@ function ElvUI_EltreumUI:CursorInit()
 	ElvUI_EltreumUI:CurrentTypeofCursor()
 end
 
+local rootFrame = _G.CreateFrame("Frame", nil, UIParent)
+local Cast = _G.CreateFrame("Frame", nil, rootFrame)
+local GCD = _G.CreateFrame("Frame", nil, rootFrame)
+local Cursor = _G.CreateFrame("Frame", nil, rootFrame)
+
 --Detect the current cursor for options
 function ElvUI_EltreumUI:CurrentTypeofCursor()
 	local currentring = E.db.ElvUI_EltreumUI.cursor.ring
@@ -181,7 +186,7 @@ function ElvUI_EltreumUI:CastCursor()
 			return dst
 		end
 		-- Root Frame
-		local rootFrame = _G.CreateFrame("Frame", nil, UIParent)
+
 		rootFrame:SetSize(8,8)
 		rootFrame:SetScript("OnUpdate", function(self)
 			local x, y = GetCursorPosition()
@@ -316,7 +321,7 @@ function ElvUI_EltreumUI:CastCursor()
 			return frame
 		end
 		-- Casting/Channeling Ring
-		local Cast = _G.CreateFrame("Frame", nil, rootFrame)
+
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_DELAYED", "player")
 		function Cast:UNIT_SPELLCAST_START(event, unit)
@@ -366,7 +371,7 @@ function ElvUI_EltreumUI:CastCursor()
 		end
 		Cast.UNIT_SPELLCAST_CHANNEL_UPDATE = Cast.UNIT_SPELLCAST_CHANNEL_START
 		-- GCD Ring
-		local GCD = _G.CreateFrame("Frame", nil, rootFrame)
+
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
 		function GCD:UNIT_SPELLCAST_START(event, unit, _, spellID)
@@ -394,7 +399,7 @@ function ElvUI_EltreumUI:CastCursor()
 		GCD.UNIT_SPELLCAST_INTERRUPTED = GCD.UNIT_SPELLCAST_STOP
 
 		-- Cursor Ring
-		local Cursor = _G.CreateFrame("Frame", nil, rootFrame)
+
 		Cursor.IsCursor = true
 		Cursor:Hide()
 
