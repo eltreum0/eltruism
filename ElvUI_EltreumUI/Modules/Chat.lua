@@ -266,8 +266,8 @@ local classcolorsescape = {
 local function ColorRolls(self, event, message, ...)
 	if message:find("rolls") or message:find("tira") or message:find("掷出") or message:find("würfelt. Ergebnis:") or message:find("obtient un") or message:find("님이 주사위를 굴려") or message:find("tira los dados y obtiene") or message:find("выбрасывает") or message:find("擲出") then
 		local msg = (string.format("|cff"..classcolorsescape[E.myclass]..message.."|r"))
-    	return false, msg, ...
-  	end
+		return false, msg, ...
+	end
 end
 ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", ColorRolls)
 
