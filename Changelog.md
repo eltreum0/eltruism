@@ -1,6 +1,13 @@
 ### 🌌 Next Version 
 TBD
 ___
+### v2.4.3
+Added an option to hide Blizzard Boss Alerts (default on)\
+Added more fonts and textures\
+Changed textures and flash on EltreumExecute and EltreumInterrupt nameplate filters\
+Split Textures on Unitframes from Light Mode and Dark Mode\
+Updated AddOnSkins hide chat to current ElvUI chat frames, this might only work on the alpha version of AddOnSkins for now
+___
 ### v2.4.2
 Improved Party/Raid death detection\
 Split Cooldown from Cursor, now you can enable one without needing the other\

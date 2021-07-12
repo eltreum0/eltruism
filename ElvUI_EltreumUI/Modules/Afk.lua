@@ -1,6 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local select = _G.select
 local SetCVar = _G.SetCVar
 local UnitIsAFK = _G.UnitIsAFK
 local PlayMusic = _G.PlayMusic

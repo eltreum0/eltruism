@@ -248,6 +248,29 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 	end
 end
 
+--color chat rolls
+local classcolorsescape = {
+	['DEATHKNIGHT']	= "C41E3A",
+	['DEMONHUNTER']	= "A330C9",
+	['DRUID'] = "FF7C0A",
+	['HUNTER'] = "AAD372",
+	['MAGE'] = "3FC7EB",
+	['MONK'] = "00FF98",
+	['PALADIN']	= "F48CBA",
+	['PRIEST'] = "FFFFFF",
+	['ROGUE'] = "FFF468",
+	['SHAMAN'] = "0070DD",
+	['WARLOCK'] = "8788EE",
+	['WARRIOR'] = "C69B6D",
+}
+local function ColorRolls(self, event, message, ...)
+	if message:find("rolls") or message:find("tira") or message:find("掷出") or message:find("würfelt. Ergebnis:") or message:find("obtient un") or message:find("님이 주사위를 굴려") or message:find("tira los dados y obtiene") or message:find("выбрасывает") or message:find("擲出") then
+		local msg = (string.format("|cff"..classcolorsescape[E.myclass]..message.."|r"))
+    	return false, msg, ...
+  	end
+end
+ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", ColorRolls)
+
 -- ElvUI Chat Setup pretty much
 function ElvUI_EltreumUI:SetupChat()
 
