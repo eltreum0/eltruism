@@ -1,6 +1,8 @@
 ### 🌌 Next Version 
 TBD
 ___
+### v2.4.4
+Added Class Colored Chat Rolls
 ### v2.4.3
 Added an option to hide Blizzard Boss Alerts (default on)\
 Added more fonts and textures\
