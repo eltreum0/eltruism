@@ -10,7 +10,6 @@ function ElvUI_EltreumUI:BattlegroundGroupUnitframes()
 		if instanceType == "pvp" then
 			E.db["unitframe"]["units"]["raid"]["visibility"] = "hide"
 			E.db["unitframe"]["units"]["raid40"]["visibility"] = "hide"
-
 		else
 			E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
 			E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid21,noexists] hide;show"
@@ -58,7 +57,6 @@ end
 --Dynamically datatext swap based on player class
 function ElvUI_EltreumUI:DynamicClassicDatatext()
 	if E.db.ElvUI_EltreumUI.dynamicdatatext.enable then
-
 		if not E.db.movers then E.db.movers = {} end
 		if myclass == 'HUNTER' or myclass == 'WARLOCK' or myclass == 'WARRIOR' or myclass == 'ROGUE' then
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Eltruism Ammo"

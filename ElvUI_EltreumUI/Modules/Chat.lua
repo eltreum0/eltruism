@@ -263,13 +263,20 @@ local classcolorsescape = {
 	['WARLOCK'] = "8788EE",
 	['WARRIOR'] = "C69B6D",
 }
-local function ColorRolls(self, event, message, ...)
+local function ColorSysMsgs(self, event, message, ...)
 	if message:find("rolls") or message:find("tira") or message:find("掷出") or message:find("würfelt. Ergebnis:") or message:find("obtient un") or message:find("님이 주사위를 굴려") or message:find("tira los dados y obtiene") or message:find("выбрасывает") or message:find("擲出") then
 		local msg = (string.format("|cff"..classcolorsescape[E.myclass]..message.."|r"))
 		return false, msg, ...
 	end
+	if message:find("online") then
+		return false, gsub(message, "online", "|cff00FF00online|r"), ...
+	end
+	if message:find("offline") then
+		return false, gsub(message, "offline", "|cffFF0000offline|r"), ...
+	end
 end
-ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", ColorRolls)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", ColorSysMsgs)
+--ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", ColorSysMsgs) --this is for testing purposes
 
 -- ElvUI Chat Setup pretty much
 function ElvUI_EltreumUI:SetupChat()
