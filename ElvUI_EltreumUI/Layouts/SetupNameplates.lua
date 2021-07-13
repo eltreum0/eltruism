@@ -495,7 +495,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["flash"]["color"]["b"] = 0
 		E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["flash"]["color"]["g"] = 0
 		E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["flash"]["color"]["r"] = 0
-		E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["flash"]["enable"] = true
+		E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["flash"]["enable"] = false
 		E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["flash"]["speed"] = 7
 		E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["scale"] = 1.25
 		E.global["nameplate"]["filters"]["EltreumExecute"]["actions"]["texture"]["texture"] = "Eltreum-Stripes"
