@@ -1,8 +1,11 @@
 ### 🌌 Next Version 
-TBD
+To be Determined:
+Add Raid Consumables Bar similar to Weakauras
 ___
 ### v2.4.4
-Added Class Colored Chat Rolls
+Added Colors to some events in Chat\
+Disabled Flash on EltreumExecute Nameplate Style Filter\
+
 ### v2.4.3
 Added an option to hide Blizzard Boss Alerts (default on)\
 Added more fonts and textures\
