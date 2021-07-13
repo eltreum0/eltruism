@@ -230,7 +230,7 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 	end
 end
 
---Color System messages like roll and online/offline
+--Color System messages
 local classcolorsescape = {
 	['DEATHKNIGHT']	= "C41E3A",
 	['DEMONHUNTER']	= "A330C9",
@@ -248,7 +248,13 @@ local classcolorsescape = {
 local function ColorSysMsgs(self, event, message, ...)
 	if message:find("rolls") or message:find("tira") or message:find("掷出") or message:find("würfelt. Ergebnis:") or message:find("obtient un") or message:find("님이 주사위를 굴려") or message:find("tira los dados y obtiene") or message:find("выбрасывает") or message:find("擲出") then
 		local msg = (string.format("|cff"..classcolorsescape[E.myclass]..message.."|r"))
-		return false, msg, ...
+		if msg:find("1 (1-100)") then
+			return false, gsub(msg, "1 (1-100)", "|cffFF00001|r (1-100)"), ...
+		elseif msg:find("100 (1-100)") then
+			return false, gsub(msg, "100 (1-100)", "|cff0000FF100|r (1-100"), ...
+		else
+			return false, msg, ...
+		end
 	end
 	if message:find("online") then  --german, english, italian all use the same online/offline
 		return false, gsub(message, "online", "|cff00FF00online|r"), ...
@@ -256,7 +262,49 @@ local function ColorSysMsgs(self, event, message, ...)
 	if message:find("offline") then
 		return false, gsub(message, "offline", "|cffFF0000offline|r"), ...
 	end
+	if message:find("joins the") then
+		return false, gsub(message, "joins", "|cff82B4ffjoins|r"), ...
+	end
+	if message:find("join the") then
+		return false, gsub(message, "joins", "|cff82B4ffjoin|r"), ...
+	end
+	if message:find("joined the") then
+		return false, gsub(message, "joined", "|cff82B4ffjoined|r"), ...
+	end
+	if message:find("has left the") then
+		return false, gsub(message, "left", "|cffB50909left|r"), ...
+	end
+	if message:find("leaves the") then
+		return false, gsub(message, "leaves", "|cffB50909leaves|r"), ...
+	end
+	if message:find("leave the") then
+		return false, gsub(message, "leave", "|cffB50909leave|r"), ...
+	end
+	local sizeString = ":12:12"
+	local roleIcons = {
+		TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
+		HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
+		DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', sizeString),
+	}
+	_G.INLINE_TANK_ICON = roleIcons.TANK
+	_G.INLINE_HEALER_ICON = roleIcons.HEALER
+	_G.INLINE_DAMAGER_ICON = roleIcons.DAMAGER
 end
 ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", ColorSysMsgs)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_INLINE_TOAST_ALERT", ColorSysMsgs)
+ChatFrame_AddMessageEventFilter("ROLE_CHANGED_INFORM", ColorSysMsgs)
 --ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", ColorSysMsgs) --this is for testing purposes
+
+
+--icons in chat when party member swaps roles
+function ElvUI_EltreumUI:ChatRoleSwapIcons()
+	local sizeString = ":12:12"
+	local roleIcons = {
+		TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
+		HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
+		DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', sizeString),
+	}
+	_G.INLINE_TANK_ICON = roleIcons.TANK
+	_G.INLINE_HEALER_ICON = roleIcons.HEALER
+	_G.INLINE_DAMAGER_ICON = roleIcons.DAMAGER
+end

@@ -71,16 +71,3 @@ if ElvUI_EltreumUI.Retail then
 		}
 	end
 end
-
---icons in chat when party member swaps roles
-function ElvUI_EltreumUI:ChatRoleSwapIcons()
-	local sizeString = ":12:12"
-	local roleIcons = {
-		TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
-		HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
-		DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', sizeString),
-	}
-	_G.INLINE_TANK_ICON = roleIcons.TANK
-	_G.INLINE_HEALER_ICON = roleIcons.HEALER
-	_G.INLINE_DAMAGER_ICON = roleIcons.DAMAGER
-end
