@@ -4,6 +4,7 @@ local UIFrameFadeOut = _G.UIFrameFadeOut
 local UIFrameFadeIn = _G. UIFrameFadeIn
 local InCombatLockdown = _G.InCombatLockdown
 local IsAddOnLoaded = _G.IsAddOnLoaded
+local PlaySoundFile = _G.PlaySoundFile
 local gsub = _G.gsub
 local string = _G.string
 
@@ -246,39 +247,47 @@ local classcolorsescape = {
 	['WARRIOR'] = "C69B6D",
 }
 local function ColorSysMsgs(self, event, message, ...)
-	if message:find("rolls") or message:find("tira") or message:find("掷出") or message:find("würfelt. Ergebnis:") or message:find("obtient un") or message:find("님이 주사위를 굴려") or message:find("tira los dados y obtiene") or message:find("выбрасывает") or message:find("擲出") then
-		local msg = (string.format("|cff"..classcolorsescape[E.myclass]..message.."|r"))
-		if msg:find("rolls 1 ") then
-			return false, gsub(msg, "rolls 1", "rolls |cffFF00001|r"), ...
-		elseif msg:find("rolls 100 ") then
-			return false, gsub(msg, "rolls 100", "rolls |cff0000FF100|r"), ...
-		else
-			return false, msg, ...
+	if E.db.ElvUI_EltreumUI.chat.colorsysmsg then
+		if message:find("rolls") or message:find("tira") or message:find("掷出") or message:find("würfelt. Ergebnis:") or message:find("obtient un") or message:find("님이 주사위를 굴려") or message:find("tira los dados y obtiene") or message:find("выбрасывает") or message:find("擲出") then
+			local msg = (string.format("|cff"..classcolorsescape[E.myclass]..message.."|r"))
+			if msg:find("rolls 1 ") then
+				if E.db.ElvUI_EltreumUI.chat.rollsound then
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.ogg", "Master")
+				end
+				return false, gsub(msg, "rolls 1", "rolls |cffFF00001|r"), ...
+			elseif msg:find("rolls 100 ") then
+				if E.db.ElvUI_EltreumUI.chat.rollsound then
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\WillSmith-Ahaha.ogg", "Master")
+				end
+				return false, gsub(msg, "rolls 100", "rolls |cffFFFF00100|r"), ...
+			else
+				return false, msg, ...
+			end
 		end
-	end
-	if message:find("online") then  --german, english, italian all use the same online/offline
-		return false, gsub(message, "online", "|cff00FF00online|r"), ...
-	end
-	if message:find("offline") then
-		return false, gsub(message, "offline", "|cffFF0000offline|r"), ...
-	end
-	if message:find("joins the") then
-		return false, gsub(message, "joins", "|cff82B4ffjoins|r"), ...
-	end
-	if message:find("join the") then
-		return false, gsub(message, "joins", "|cff82B4ffjoin|r"), ...
-	end
-	if message:find("joined the") then
-		return false, gsub(message, "joined", "|cff82B4ffjoined|r"), ...
-	end
-	if message:find("has left the") then
-		return false, gsub(message, "left", "|cffB50909left|r"), ...
-	end
-	if message:find("leaves the") then
-		return false, gsub(message, "leaves", "|cffB50909leaves|r"), ...
-	end
-	if message:find("leave the") then
-		return false, gsub(message, "leave", "|cffB50909leave|r"), ...
+		if message:find("online") then  --german, english, italian all use the same online/offline
+			return false, gsub(message, "online", "|cff00FF00online|r"), ...
+		end
+		if message:find("offline") then
+			return false, gsub(message, "offline", "|cffFF0000offline|r"), ...
+		end
+		if message:find("joins the") then
+			return false, gsub(message, "joins", "|cff82B4ffjoins|r"), ...
+		end
+		if message:find("join the") then
+			return false, gsub(message, "joins", "|cff82B4ffjoin|r"), ...
+		end
+		if message:find("joined the") then
+			return false, gsub(message, "joined", "|cff82B4ffjoined|r"), ...
+		end
+		if message:find("has left the") then
+			return false, gsub(message, "left", "|cffB50909left|r"), ...
+		end
+		if message:find("leaves the") then
+			return false, gsub(message, "leaves", "|cffB50909leaves|r"), ...
+		end
+		if message:find("leave the") then
+			return false, gsub(message, "leave", "|cffB50909leave|r"), ...
+		end
 	end
 	local sizeString = ":12:12"
 	local roleIcons = {

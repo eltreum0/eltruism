@@ -20,6 +20,8 @@ P.ElvUI_EltreumUI = {
 		leftcombathide = true,
 		rightcombathide = false,
 		invertclick = false,
+		colorsysmsg = true,
+		rollsound = false,
 	},
 
 	skins = {
@@ -178,6 +180,7 @@ P.ElvUI_EltreumUI = {
 		xOffset = 0,
 		yOffset = 200,
 		fontsetting = true,
+		combatindicator = true,
 	},
 
 	borders = {

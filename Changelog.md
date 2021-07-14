@@ -4,7 +4,9 @@ Add Raid Consumables Bar similar to Weakauras
 ___
 ### v2.4.4
 Added Colors to some events in Chat\
+Added Combat indicator Floating Text, +Combat when entering combat and -Combat when leaving combat, this setting uses LootText settings\
 Disabled Flash on EltreumExecute Nameplate Style Filter\
+
 
 ### v2.4.3
 Added an option to hide Blizzard Boss Alerts (default on)\

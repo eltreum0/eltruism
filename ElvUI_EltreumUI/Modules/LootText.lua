@@ -18,6 +18,8 @@ LootTextframe:RegisterEvent("CHAT_MSG_MONEY")
 LootTextframe:RegisterEvent("CHAT_MSG_CURRENCY")
 LootTextframe:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
 LootTextframe:RegisterEvent("LOOT_OPENED")
+LootTextframe:RegisterEvent("PLAYER_REGEN_ENABLED")
+LootTextframe:RegisterEvent("PLAYER_REGEN_DISABLED")
 
 --'T  PATH TO TEXTURE :12:12:0:0:width_of_texture_file:height_of_texture_file:0:0:0:0|t' the last 4 0's will be
 --pixels from the left of the texture to where the bit you want starts
@@ -157,6 +159,14 @@ function ElvUI_EltreumUI:LootText()
 		local LOOT_ITEM_PUSHED_SELF = _G.LOOT_ITEM_PUSHED_SELF
 
 		function LootTextframe.OnEvent(self, event, arg1, arg2)
+			if E.db.ElvUI_EltreumUI.loottext.combatindicator then
+				if event == "PLAYER_REGEN_ENABLED" then
+						CombatText_AddMessage("|cffFFFFFF-COMBAT|r", CombatText_StandardScroll, 1, 0, 0)
+				end
+				if event == "PLAYER_REGEN_DISABLED" then
+						CombatText_AddMessage("|cffFF0000+COMBAT|r", CombatText_StandardScroll, 1, 0, 0)
+				end
+			end
 			if event == "UI_ERROR_MESSAGE" and arg2 == L["Inventory is full."] then
 					CombatText_AddMessage(L["INVENTORY IS FULL"], CombatText_StandardScroll, 1, 0, 0)
 			end
