@@ -55,14 +55,21 @@ local classIconsReleafborder = {
 	['DEMONHUNTER'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunterIconReleaf",
 }
 
+
+
+--add class icon to class in character panel
 local classFrame = CreateFrame("Frame", nil, UIParent)
 classFrame:SetSize(20, 20)
 classFrame:SetParent("PaperDollFrame")
 local classTexture = classFrame:CreateTexture()
 classTexture:SetAllPoints(classFrame)
+local CharacterLevelText = _G.CharacterLevelText
+if ElvUI_EltreumUI.Retail then
+	CharacterLevelText:SetWidth(300) --new
+elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+	CharacterLevelText:SetWidth(280) --new
+end
 
-
---add class icon to class in character panel
 function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	classFrame:ClearAllPoints()
 	--type of icon
@@ -73,16 +80,25 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	else
 		classTexture:SetTexture(classIcons[E.myclass])
 	end
-	local CharacterLevelText = _G.CharacterLevelText
 	local textwidth = CharacterLevelText:GetUnboundedStringWidth()
 	local levelwidth = CharacterLevelText:GetWidth()
 	local totalgap = levelwidth - textwidth
-	local gap = totalgap/8
+	local gapclassic = totalgap/4
+	local gapretail = totalgap/4
 	if ElvUI_EltreumUI.Retail then
-		classFrame:SetPoint("LEFT", "CharacterLevelText", levelwidth-gap, 0)
+		print(gapretail)
+		if gapretail <= 20 then
+			classFrame:SetPoint("RIGHT", "CharacterLevelText", -15, 0)
+		elseif gapretail > 20 and gapretail <=30 then
+			classFrame:SetPoint("RIGHT", "CharacterLevelText", -15, 0)
+		elseif gapretail > 30 and gapretail < 40 then
+			classFrame:SetPoint("RIGHT", "CharacterLevelText", (0-gapretail)/2, 0)
+		elseif gapretail >= 40 then
+			classFrame:SetPoint("RIGHT", "CharacterLevelText", (0-gapretail), 0)
+		end
 	end
 	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-		classFrame:SetPoint("CENTER", "CharacterLevelText", (levelwidth/2)+25, 0)
+		classFrame:SetPoint("RIGHT", "CharacterLevelText", -gapclassic, 0)
 	end
 end
 
