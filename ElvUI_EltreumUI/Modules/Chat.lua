@@ -247,7 +247,13 @@ local classcolorsescape = {
 	['WARRIOR'] = "C69B6D",
 }
 local function ColorSysMsgs(self, event, message, ...)
-	if E.db.ElvUI_EltreumUI.chat.colorsysmsg then
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then
+		return
+	elseif not E.db.ElvUI_EltreumUI then
+		return
+	elseif not E.db.ElvUI_EltreumUI.chat then
+		return
+	elseif E.db.ElvUI_EltreumUI.chat.colorsysmsg then
 		if message:find("rolls") or message:find("tira") or message:find("掷出") or message:find("würfelt. Ergebnis:") or message:find("obtient un") or message:find("님이 주사위를 굴려") or message:find("tira los dados y obtiene") or message:find("выбрасывает") or message:find("擲出") then
 			local msg = (string.format("|cff"..classcolorsescape[E.myclass]..message.."|r"))
 			if msg:find("rolls 1 ") then
