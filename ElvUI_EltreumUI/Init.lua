@@ -71,7 +71,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if E.private["nameplates"]["enable"] == true then
 		ElvUI_EltreumUI:NamePlateOptions()
 		ElvUI_EltreumUI:DynamicLevelStyleFilter()
-		ElvUI_EltreumUI:UpdateNPwithoutBar('ElvUI')
+		ElvUI_EltreumUI:UpdateNPwithoutBar()
 	end
 	if not IsAddOnLoaded('NameplateSCT') and not IsAddOnLoaded('ElvUI_FCT') then
 		SetCVar("floatingCombatTextCombatDamage", 1)
@@ -188,7 +188,7 @@ function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:GetSpec()
 		if E.private["nameplates"]["enable"] == true then
-			ElvUI_EltreumUI:UpdateNPwithoutBar('ElvUI')
+			ElvUI_EltreumUI:UpdateNPwithoutBar()
 		end
 	end
 end

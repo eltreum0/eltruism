@@ -14,8 +14,10 @@ local SetCVar = _G.SetCVar
 -- Non aspect ratio nameplate debuffs similar to plater
 function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
 	if E.db.ElvUI_EltreumUI.widenameplate.enable then
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
+		if not E.private.ElvUI_EltreumUI.nameplatepower.adjust then
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
+		end
 		if button and button.spellID then
 			if not string.find(unit, "nameplate") then
 				return
@@ -28,8 +30,10 @@ function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
 		end
 		UF:PostUpdateAura(unit, button)
 	else
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 43
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 43
+		if not E.private.ElvUI_EltreumUI.nameplatepower.adjust then
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 43
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 43
+		end
 	end
 end
 
