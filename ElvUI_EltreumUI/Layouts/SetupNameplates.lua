@@ -134,12 +134,13 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["fontOutline"] = "THICKOUTLINE"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["fontSize"] = 10
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["height"] = 12
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetX"] = -1
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconPosition"] = "LEFT"
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 12
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["showIcon"] = false
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 27
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["showIcon"] = true
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["textPosition"] = "ONBAR"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["timeToHold"] = 0.4
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["yOffset"] = -15
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["yOffset"] = -14
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countFont"] = "Kimberley"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countFontSize"] = 10
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["durationPosition"] = "TOPLEFT"
@@ -190,20 +191,20 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["raidTargetIndicator"]["xOffset"] = -26
 
 			--using enemy npc title for threat display in classic/tbc
-			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Kimberley"
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["fontOutline"] = "OUTLINE"
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = true
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["parent"] = "Health"
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["fontSize"] = 10
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["format"] = "[threat:percent]"
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["position"] = "CENTER"
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["yOffset"] = 0
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["xOffset"] = -55
+			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = true
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["format"] = "[threat:percent]"
 			elseif ElvUI_EltreumUI.Retail then
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["format"] = ""
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = false
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["format"] = "[threat:percent]"
 			end
-
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["anchorPoint"] = "TOPRIGHT"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFontSize"] = 10
@@ -220,11 +221,12 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["fontSize"] = 10
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["height"] = 12
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconPosition"] = "LEFT"
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 12
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 27
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconOffsetX"] = -1
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["showIcon"] = false
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["textPosition"] = "ONBAR"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["timeToHold"] = 0.4
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["yOffset"] = -15
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["yOffset"] = -14
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countFont"] = "Kimberley"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countFontSize"] = 10
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["durationPosition"] = "TOPLEFT"

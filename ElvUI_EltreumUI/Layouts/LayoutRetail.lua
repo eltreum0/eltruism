@@ -870,7 +870,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["auras"]["buffs"]["barNoDuration"] = false
 			E.db["auras"]["buffs"]["barPosition"] = "LEFT"
 			E.db["auras"]["buffs"]["barShow"] = true
-			E.db["auras"]["buffs"]["barSize"] = 5
+			E.db["auras"]["buffs"]["barSize"] = 6
 			E.db["auras"]["buffs"]["barSpacing"] = 0
 			E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
 			E.db["auras"]["buffs"]["countFont"] = "Kimberley"
@@ -892,7 +892,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["auras"]["debuffs"]["barNoDuration"] = false
 			E.db["auras"]["debuffs"]["barPosition"] = "LEFT"
 			E.db["auras"]["debuffs"]["barShow"] = true
-			E.db["auras"]["debuffs"]["barSize"] = 5
+			E.db["auras"]["debuffs"]["barSize"] = 6
 			E.db["auras"]["debuffs"]["barSpacing"] = 0
 			E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
 			E.db["auras"]["debuffs"]["countFont"] = "Kimberley"
@@ -1819,7 +1819,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["auras"]["buffs"]["barNoDuration"] = false
 			E.db["auras"]["buffs"]["barPosition"] = "LEFT"
 			E.db["auras"]["buffs"]["barShow"] = true
-			E.db["auras"]["buffs"]["barSize"] = 5
+			E.db["auras"]["buffs"]["barSize"] = 6
 			E.db["auras"]["buffs"]["barSpacing"] = 0
 			E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
 			E.db["auras"]["buffs"]["countFont"] = "Kimberley"
@@ -1840,7 +1840,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["auras"]["debuffs"]["barNoDuration"] = false
 			E.db["auras"]["debuffs"]["barPosition"] = "LEFT"
 			E.db["auras"]["debuffs"]["barShow"] = true
-			E.db["auras"]["debuffs"]["barSize"] = 5
+			E.db["auras"]["debuffs"]["barSize"] = 6
 			E.db["auras"]["debuffs"]["barSpacing"] = 0
 			E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
 			E.db["auras"]["debuffs"]["countFont"] = "Kimberley"

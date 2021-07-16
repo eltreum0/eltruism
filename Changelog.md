@@ -1,12 +1,14 @@
 ### 🌌 Next Version 
-To be Determined:
-Add Raid Consumables Bar similar to Weakauras
+To be Determined/Ideas:
+Maybe Add Raid Consumables Bar similar to Weakauras (although bar6 serves that purpose)
 ___
 ### v2.4.4
 Added Colors to some events in Chat\
+Added an option to play a sound when someone rolls a 1 or a 100 (default off)\
 Added Combat indicator Floating Text, +Combat when entering combat and -Combat when leaving combat, this setting uses LootText settings\
 Fixed missing Arcane Mage Debuff mover when using Nameplate Power Bar\
 Disabled Flash on EltreumExecute Nameplate Style Filter\
+Readded Cast Icons on Nameplates and changed their position/size\
 
 ### v2.4.3
 Added an option to hide Blizzard Boss Alerts (default on)\
