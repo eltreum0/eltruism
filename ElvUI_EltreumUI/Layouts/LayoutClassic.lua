@@ -484,7 +484,7 @@ if ElvUI_EltreumUI.Classic then
 
 			-- ActionBars
 			E.db["actionbar"]["addNewSpells"] = true
-			E.db["actionbar"]["bar1"]["alpha"] = 0.75
+			E.db["actionbar"]["bar1"]["alpha"] = 1
 			E.db["actionbar"]["bar1"]["backdropSpacing"] = 0
 			E.db["actionbar"]["bar1"]["buttonHeight"] = 35
 			E.db["actionbar"]["bar1"]["buttonSize"] = 45
@@ -506,7 +506,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["actionbar"]["bar1"]["paging"]["PRIEST"] = ""
 			E.db["actionbar"]["bar1"]["paging"]["ROGUE"] = ""
 			E.db["actionbar"]["bar1"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-			E.db["actionbar"]["bar10"]["alpha"] = 0.75
+			E.db["actionbar"]["bar10"]["alpha"] = 1
 			E.db["actionbar"]["bar10"]["countFont"] = "Kimberley"
 			E.db["actionbar"]["bar10"]["countFontOutline"] = "THICKOUTLINE"
 			E.db["actionbar"]["bar10"]["hotkeyFont"] = "Kimberley"
@@ -517,7 +517,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["actionbar"]["bar10"]["macroTextYOffset"] = 2
 			E.db["actionbar"]["bar10"]["macrotext"] = true
 			E.db["actionbar"]["bar10"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [petbattle] hide; show[combat][@target, exists]show;hide"
-			E.db["actionbar"]["bar2"]["alpha"] = 0.75
+			E.db["actionbar"]["bar2"]["alpha"] = 1
 			E.db["actionbar"]["bar2"]["buttonHeight"] = 30
 			E.db["actionbar"]["bar2"]["buttonSize"] = 35
 			E.db["actionbar"]["bar2"]["countFont"] = "Kimberley"
@@ -533,7 +533,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["actionbar"]["bar2"]["macrotext"] = true
 			E.db["actionbar"]["bar2"]["paging"]["DRUID"] = ""
 			E.db["actionbar"]["bar2"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-			E.db["actionbar"]["bar3"]["alpha"] = 0.75
+			E.db["actionbar"]["bar3"]["alpha"] = 1
 			E.db["actionbar"]["bar3"]["buttonHeight"] = 30
 			E.db["actionbar"]["bar3"]["buttonSize"] = 35
 			E.db["actionbar"]["bar3"]["buttons"] = 12
@@ -550,7 +550,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["actionbar"]["bar3"]["macrotext"] = true
 			E.db["actionbar"]["bar3"]["paging"]["DRUID"] = ""
 			E.db["actionbar"]["bar3"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-			E.db["actionbar"]["bar4"]["alpha"] = 0.75
+			E.db["actionbar"]["bar4"]["alpha"] = 1
 			E.db["actionbar"]["bar4"]["backdrop"] = false
 			E.db["actionbar"]["bar4"]["buttonHeight"] = 30
 			E.db["actionbar"]["bar4"]["buttonSize"] = 35
@@ -579,7 +579,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
 			E.db["actionbar"]["bar4"]["point"] = "BOTTOMLEFT"
 			E.db["actionbar"]["bar4"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; show;"
-			E.db["actionbar"]["bar5"]["alpha"] = 0.75
+			E.db["actionbar"]["bar5"]["alpha"] = 1
 			E.db["actionbar"]["bar5"]["buttonHeight"] = 30
 			E.db["actionbar"]["bar5"]["buttonSize"] = 35
 			E.db["actionbar"]["bar5"]["buttons"] = 12
@@ -596,7 +596,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["actionbar"]["bar5"]["macroTextYOffset"] = 2
 			E.db["actionbar"]["bar5"]["macrotext"] = true
 			E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-			E.db["actionbar"]["bar6"]["alpha"] = 0.75
+			E.db["actionbar"]["bar6"]["alpha"] = 1
 			E.db["actionbar"]["bar6"]["buttonHeight"] = 24
 			if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
@@ -629,7 +629,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["actionbar"]["bar6"]["macroTextYOffset"] = 2
 			E.db["actionbar"]["bar6"]["macrotext"] = true
 			E.db["actionbar"]["bar6"]["mouseover"] = true
-			E.db["actionbar"]["bar7"]["alpha"] = 0.75
+			E.db["actionbar"]["bar7"]["alpha"] = 1
 			E.db["actionbar"]["bar7"]["buttonHeight"] = 30
 			E.db["actionbar"]["bar7"]["buttonSize"] = 35
 			E.db["actionbar"]["bar7"]["countFont"] = "Kimberley"
@@ -643,7 +643,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["actionbar"]["bar7"]["macroTextYOffset"] = 2
 			E.db["actionbar"]["bar7"]["macrotext"] = true
 			E.db["actionbar"]["bar7"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-			E.db["actionbar"]["bar8"]["alpha"] = 0.75
+			E.db["actionbar"]["bar8"]["alpha"] = 1
 			E.db["actionbar"]["bar8"]["buttonHeight"] = 30
 			E.db["actionbar"]["bar8"]["buttonSize"] = 35
 			E.db["actionbar"]["bar8"]["countFont"] = "Kimberley"
@@ -657,7 +657,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["actionbar"]["bar8"]["macroTextYOffset"] = 2
 			E.db["actionbar"]["bar8"]["macrotext"] = true
 			E.db["actionbar"]["bar8"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-			E.db["actionbar"]["bar9"]["alpha"] = 0.75
+			E.db["actionbar"]["bar9"]["alpha"] = 1
 			E.db["actionbar"]["bar9"]["countFont"] = "Kimberley"
 			E.db["actionbar"]["bar9"]["countFontOutline"] = "THICKOUTLINE"
 			E.db["actionbar"]["bar9"]["hotkeyFont"] = "Kimberley"
@@ -1301,16 +1301,16 @@ if ElvUI_EltreumUI.Classic then
 				E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["faceright"] = true
 				E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["iconpack"] = "Default - Pepe - Traveler"
 				E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["scale"] = 0.8
-				E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["xOffset"] = 10
-				E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["yOffset"] = -45
+				E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["xOffset"] = -49
+				E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["yOffset"] = -88
 				E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["anchorPoint"] = "BOTTOMLEFT"
 				E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["color"]["b"] = 0.4274500310421
 				E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["color"]["g"] = 0.60784178972244
 				E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["color"]["r"] = 0.77646887302399
 				E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["iconpack"] = "Default - Pepe - Clockwork"
 				E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["scale"] = 0.8
-				E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["xOffset"] = -10
-				E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["yOffset"] = -45
+				E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["xOffset"] = 49
+				E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["yOffset"] = -88
 			end
 			-- Healer Action bars
 			E.db["actionbar"]["addNewSpells"] = true
@@ -1385,7 +1385,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["actionbar"]["bar5"]["macroFont"] = "Kimberley"
 			E.db["actionbar"]["bar5"]["point"] = "TOPLEFT"
 			E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-			E.db["actionbar"]["bar6"]["alpha"] = 0.75
+			E.db["actionbar"]["bar6"]["alpha"] = 1
 			E.db["actionbar"]["bar6"]["buttonHeight"] = 24
 			if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0

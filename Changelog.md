@@ -6,6 +6,7 @@ ___
 Added Colors to some events in Chat\
 Added an option to play a sound when someone rolls a 1 or a 100 (default off)\
 Added Combat indicator Floating Text, +Combat when entering combat and -Combat when leaving combat, this setting uses LootText settings\
+Removed the 75% alpha from action bars for DPS/Tank profiles\
 Fixed missing Arcane Mage Debuff mover when using Nameplate Power Bar\
 Disabled Flash on EltreumExecute Nameplate Style Filter\
 Readded Cast Icons on Nameplates and changed their position/size\
