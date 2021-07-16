@@ -24,12 +24,11 @@ function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
 			end
 			-- this is the worst number of /reload of all time for me
 			--could this be better?
-			button.icon:SetTexCoord(unpack(E.TexCoords))
-			--before it was this
-			--button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
+			--button.icon:SetTexCoord(unpack(E.TexCoords))
+			button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 
-			--test
-			button:SetBackdropBorderColor(0, 0, 0)
+			--not working
+			--button:SetBackdropBorderColor(0,0,0,0)
 
 			button:SetWidth(25)
 			button:SetHeight(18)
