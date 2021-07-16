@@ -1,6 +1,6 @@
 ### 🌌 Next Version 
 To be Determined/Ideas:
-Maybe Add Raid Consumables Bar similar to Weakauras (although bar6 serves that purpose)
+Maybe Add Weakauras look alike Raid Consumables Bar (although bar6 serves that purpose)
 ___
 ### v2.4.4
 Added Colors to some events in Chat\
@@ -9,7 +9,7 @@ Added Combat indicator Floating Text, +Combat when entering combat and -Combat w
 Fixed missing Arcane Mage Debuff mover when using Nameplate Power Bar\
 Disabled Flash on EltreumExecute Nameplate Style Filter\
 Readded Cast Icons on Nameplates and changed their position/size\
-Retail can now have threat on nameplates just like Classic/TBC if you enable Namplate titles on Enemy NPC and/or Enemy Player
+Retail can now have threat on nameplates just like Classic/TBC if you enable Nameplate titles on Enemy NPC and/or Enemy Player
 ___
 ### v2.4.3
 Added an option to hide Blizzard Boss Alerts (default on)\
@@ -268,7 +268,7 @@ Pet bar change to accommodate name length and happiness\
 Other minor changes to profile\
 Questie profile for Classic and Burning Crusade Classic\
 You will need to reload after questie builds the database and reload again after setting the profile\
-Classic Questie has some issues at the moment and you might need several reloads due to a known bug with townsfolk
+Classic Questie has some issues at the moment, and you might need several reloads due to a known bug with townsfolk
 ___
 ### v2.0.2
 Added Dark Mode and Light Mode\
