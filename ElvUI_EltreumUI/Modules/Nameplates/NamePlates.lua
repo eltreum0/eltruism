@@ -24,34 +24,24 @@ function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
 				return
 			end
 			-- this is the worst number of /reload of all time for me
-			--could this be better?
-			--button.icon:SetTexCoord(unpack(E.TexCoords))
 			button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
+			button.cd.timer.text:ClearAllPoints()
+			button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
+			--well you could hook the cooldown's .text's SetTextColor then check what color is matching it's  .timeColors (for expiring) then do something
+			local r, g, b, a = button.cd.timer.text:GetTextColor()
+			--print(r.." r "..g.." g "..b.." b"..a.." a ".."colors")
 
-			--not working
-			--button:SetBackdropBorderColor(0,0,0,0)
-			--button.icon:SetSwipeColor(0, 0, 0, 0)  --doesnt work
-
-			--local glowcolor = {1, 0, 0, 1}
-			--PixelGlow_Start(frame[, color[, N[, frequency[, length[, th[, xOffset[, yOffset[, border[ ,key]]]]]]]])
-			--LCG.PixelGlow_Start(button, glowcolor, 4, 2, 1, 1, 2, 2, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
-
-
-
-
-			--button.cd.timer.text:Point('TOP', 0, 50) --seems to do nothing
-			--button.cd.timer:Point('TOP', 0, 50) --seems to do nothing
-			--button.cd:Point('TOP', 0, 50) --seems to do nothing
-
-
-
-
-
-
+			--if r == 0.99999779462814 then
+			if g == 0 and b == 0 then
+				local glowcolor = {1, 0, 0, 1}
+				--PixelGlow_Start(frame[, color[, N[, frequency[, length[, th[, xOffset[, yOffset[, border[ ,key]]]]]]]])
+				LCG.PixelGlow_Start(button, glowcolor, 4, 1, 3, 2, 0, 0, false, nil, high)
+			else
+				LCG.PixelGlow_Stop(button)
+			end
 			button:SetWidth(25)
 			button:SetHeight(18)
 			button.count:Point('BOTTOMRIGHT', 2, -3)
-
 		end
 		UF:PostUpdateAura(unit, button)
 	else

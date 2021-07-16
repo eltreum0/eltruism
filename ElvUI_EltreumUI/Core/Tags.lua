@@ -131,3 +131,41 @@ ElvUF.Tags.Methods['eltruism:ReleafBorder:player'] = function(unit)
 	return icon
 end
 E:AddTagInfo('eltruism:ReleafBorder:player', ElvUI_EltreumUI.Name, L["Shows Class Icons with borders recolored by Releaf on Player targets"])
+
+
+-- Class Icons by Blizz with borders
+local classIconsOutline = {
+	['WARRIOR'] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorShadow.tga:0:0:0:0|t",
+	['PALADIN'] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinShadow.tga:0:0:0:0|t",
+	['HUNTER'] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterShadow.tga:0:0:0:0|t",
+	['ROGUE'] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\RogueShadow.tga:0:0:0:0|t",
+	['PRIEST'] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PriestShadow.tga:0:0:0:0|t",
+	['DEATHKNIGHT'] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnightShadow.tga:0:0:0:0|t",
+	['SHAMAN'] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanShadow.tga:0:0:0:0|t",
+	['MAGE'] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MageShadow.tga:0:0:0:0|t",
+	['WARLOCK'] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarlockShadow.tga:0:0:0:0|t",
+	['MONK'] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MonkShadow.tga:0:0:0:0|t",
+	['DRUID'] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DruidShadow.tga:0:0:0:0|t",
+	['DEMONHUNTER'] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunterShadow.tga:0:0:0:0|t",
+}
+
+--class icons with outlines on all targets
+ElvUF.Tags.Events['eltruism:IconOutline:all'] = 'UNIT_NAME_UPDATE'
+ElvUF.Tags.Methods['eltruism:IconOutline:all'] = function(unit)
+	local icon
+	local _ , classes = UnitClass(unit)
+	icon = classIconsOutline[classes]
+	return icon
+end
+E:AddTagInfo('eltruism:IconOutline:all', ElvUI_EltreumUI.Name, "Shows Class Icons with Outlines all targets")
+
+--class icons with otlines on players
+ElvUF.Tags.Events['eltruism:IconOutline:player'] = 'UNIT_NAME_UPDATE'
+ElvUF.Tags.Methods['eltruism:IconOutline:player'] = function(unit)
+	if not UnitIsPlayer(unit) then return end
+	local icon
+	local _ , classes = UnitClass(unit)
+	icon = classIconsOutline[classes]
+	return icon
+end
+E:AddTagInfo('eltruism:IconOutline:player', ElvUI_EltreumUI.Name, "Shows Class Icons with Outlines on Player targets")

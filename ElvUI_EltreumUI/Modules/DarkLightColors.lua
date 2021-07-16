@@ -34,8 +34,8 @@ function ElvUI_EltreumUI:DarkMode()
 		elseif ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name]"
 		end
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name]"
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:class:player]"
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:class:player] [namecolor][name:eltruism:abbreviate]"
 			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
 			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
 		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
@@ -94,8 +94,8 @@ function ElvUI_EltreumUI:LightMode()
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
 		end
 			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name]"
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[name:eltruism:abbreviate]"
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player]"
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:IconOutline:player] [name:eltruism:abbreviate]"
 			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
 			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
 		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
