@@ -9,8 +9,7 @@ Added Combat indicator Floating Text, +Combat when entering combat and -Combat w
 Fixed missing Arcane Mage Debuff mover when using Nameplate Power Bar\
 Disabled Flash on EltreumExecute Nameplate Style Filter\
 Readded Cast Icons on Nameplates and changed their position/size\
-By default Retail will not have threat on enemy nameplates, this can be turned on by enabling Enemy NPC Titles, Classic and TBC have Threat enabled by default\
-This setting just like before uses titles to display threat\
+Retail can now have threat on nameplates just like Classic/TBC if you enable Namplate titles on Enemy NPC and/or Enemy Player
 ___
 ### v2.4.3
 Added an option to hide Blizzard Boss Alerts (default on)\
