@@ -7,6 +7,7 @@ local WorldMapFrame = _G.WorldMapFrame
 local string = _G.string
 local hooksecurefunc = _G.hooksecurefunc
 local SetCVar = _G.SetCVar
+local LCG = LibStub('LibCustomGlow-1.0')
 
 --customize friendly nameplate health width inside instance
 --/run C_NamePlate.SetNamePlateFriendlySize(21, 5)
@@ -29,10 +30,28 @@ function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
 
 			--not working
 			--button:SetBackdropBorderColor(0,0,0,0)
+			--button.icon:SetSwipeColor(0, 0, 0, 0)  --doesnt work
+
+			--local glowcolor = {1, 0, 0, 1}
+			--PixelGlow_Start(frame[, color[, N[, frequency[, length[, th[, xOffset[, yOffset[, border[ ,key]]]]]]]])
+			--LCG.PixelGlow_Start(button, glowcolor, 4, 2, 1, 1, 2, 2, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+
+
+
+
+			--button.cd.timer.text:Point('TOP', 0, 50) --seems to do nothing
+			--button.cd.timer:Point('TOP', 0, 50) --seems to do nothing
+			--button.cd:Point('TOP', 0, 50) --seems to do nothing
+
+
+
+
+
 
 			button:SetWidth(25)
 			button:SetHeight(18)
 			button.count:Point('BOTTOMRIGHT', 2, -3)
+
 		end
 		UF:PostUpdateAura(unit, button)
 	else
