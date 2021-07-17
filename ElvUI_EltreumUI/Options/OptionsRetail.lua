@@ -631,10 +631,17 @@ if ElvUI_EltreumUI.Retail then
 							args = {
 								enable = {
 									type = 'toggle',
-									name = L["Enable"],
+									name = "Enable Action Bars",
 									order = 1,
 									get = function() return E.db.ElvUI_EltreumUI.glow.enable end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.glow.enable = value end,
+								},
+								enablepet = {
+									type = 'toggle',
+									name = "Enable Pet Bar",
+									order = 1,
+									get = function() return E.db.ElvUI_EltreumUI.glow.enablepet end,
+									set = function(_, value) E.db.ElvUI_EltreumUI.glow.enablepet = value end,
 								},
 								headerline1 = {
 									order = 2,

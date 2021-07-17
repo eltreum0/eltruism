@@ -1000,6 +1000,108 @@ if ElvUI_EltreumUI.TBC then
 						},
 					},
 				},
+				actionbars = {
+					type = 'group',
+					name = L["Custom Glow"],
+					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\customglow',
+					order = 85,
+					args = {
+						glow = {
+							type = 'group',
+							name = L["Replace Blizzards Default Glow with a Custom Glow"],
+							guiInline = true,
+							order = 1,
+							args = {
+								enablepet = {
+									type = 'toggle',
+									name = "Enable Pet Bar",
+									order = 1,
+									get = function() return E.db.ElvUI_EltreumUI.glow.enablepet end,
+									set = function(_, value) E.db.ElvUI_EltreumUI.glow.enablepet = value end,
+								},
+								headerline1 = {
+									order = 2,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								procselection = {
+									order = 2,
+									type = 'group',
+									name = L["Select a Type"],
+										args = {
+											autocast = {
+												type = 'toggle',
+												name = L["Autocast"],
+												order = 10,
+												desc = 'Adds an autocast style glow using class color',
+												disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.glow.pixel or E.db.ElvUI_EltreumUI.glow.blizzard end,
+												get = function(info) return E.db.ElvUI_EltreumUI.glow.autocast end,
+												set = function(info, value) E.db.ElvUI_EltreumUI.glow.autocast = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											pixel = {
+												type = 'toggle',
+												name = L["Pixel"],
+												order = 10,
+												desc = 'Adds a pixel style glow using class color',
+												disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.blizzard end,
+												get = function(info) return E.db.ElvUI_EltreumUI.glow.pixel end,
+												set = function(info, value) E.db.ElvUI_EltreumUI.glow.pixel = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											blizzard = {
+												type = 'toggle',
+												name = 'Blizzard',
+												order = 10,
+												desc = L["Adds a Blizzard style glow using class color"],
+												disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.pixel end,
+												get = function(info) return E.db.ElvUI_EltreumUI.glow.blizzard end,
+												set = function(info, value) E.db.ElvUI_EltreumUI.glow.blizzard = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+										},
+								},
+								headerline2 = {
+									order = 3,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								customoptionsglow = {
+									order = 5,
+									type = 'group',
+									name = L["Glow Colors"],
+									args = {
+										classcolor = {
+											type = 'toggle',
+											name = L["Use Class Colors"],
+											order = 3,
+											desc = L["Toggle Class Colored glows"],
+											get = function() return E.db.ElvUI_EltreumUI.glow.colorclass end,
+											set = function(_, value) E.db.ElvUI_EltreumUI.glow.colorclass = value E:StaticPopup_Show('CONFIG_RL') end,
+										},
+										color = {
+											order = 4,
+											type = 'color',
+											name = L["Custom Color"],
+											hasAlpha = false,
+											disabled = function() return E.db.ElvUI_EltreumUI.glow.colorclass end,
+											get = function()
+												local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolor
+												local d = P.ElvUI_EltreumUI.glowcustomcolor
+												return glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b, glowcustomcolor.a, d.r, d.g, d.b, d.a
+											end,
+											set = function(_, r, g, b, a)
+												local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolor
+												glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+											end,
+										},
+									},
+								},
+							},
+						},
+					},
+				},
 				borders = {
 					type = 'group',
 					name = "Borders",

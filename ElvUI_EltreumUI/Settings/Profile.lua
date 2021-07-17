@@ -99,6 +99,7 @@ P.ElvUI_EltreumUI = {
 
 	glow = {
 		enable = true,
+		enablepet = true,
 		blizzard = false,
 		pixel = true,
 		autocast = false,
