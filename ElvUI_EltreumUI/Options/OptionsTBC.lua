@@ -2075,6 +2075,15 @@ if ElvUI_EltreumUI.TBC then
 									get = function() return E.db.ElvUI_EltreumUI.widenameplate.enable end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.widenameplate.enable = value end,
 								},
+								descglow = {
+									order = 2,
+									type = 'toggle',
+									name = "Enable Glow on expiring Debuffs and Buffs",
+									desc = "Add a glow when buffs or debuffs are expiring on nameplates",
+									width = 'full',
+									get = function() return E.db.ElvUI_EltreumUI.widenameplate.npglow end,
+									set = function(_, value) E.db.ElvUI_EltreumUI.widenameplate.npglow = value end,
+								},
 							}
 						},
 						header4 = {
