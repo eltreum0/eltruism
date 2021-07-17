@@ -1215,7 +1215,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raid"]["name"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid"]["name"]["xOffset"] = 2
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 4
-			E.db["unitframe"]["units"]["raid"]["power"]["enable"] = false
+			E.db["unitframe"]["units"]["raid"]["power"]["enable"] = true
 			E.db["unitframe"]["units"]["raid"]["power"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid"]["raidRoleIcons"]["yOffset"] = -3
 			E.db["unitframe"]["units"]["raid"]["raidicon"]["attachTo"] = "CENTER"
@@ -1251,6 +1251,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raid40"]["name"]["position"] = "LEFT"
 			E.db["unitframe"]["units"]["raid40"]["name"]["text_format"] = "[namecolor][name]"
 			E.db["unitframe"]["units"]["raid40"]["name"]["xOffset"] = 2
+			E.db["unitframe"]["units"]["raid40"]["power"]["enable"] = true  --dps raid 40
 			E.db["unitframe"]["units"]["raid40"]["power"]["text_format"] = "[power:current:shortvalue]"
 			E.db["unitframe"]["units"]["raid40"]["raidRoleIcons"]["yOffset"] = -3
 			E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachTo"] = "CENTER"
@@ -1955,6 +1956,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raid"]["portrait"]["desaturation"] = 1
 			E.db["unitframe"]["units"]["raid"]["portrait"]["fullOverlay"] = true
 			E.db["unitframe"]["units"]["raid"]["portrait"]["overlayAlpha"] = 0.2
+			E.db["unitframe"]["units"]["raid"]["power"]["enable"] = true
 			E.db["unitframe"]["units"]["raid"]["power"]["height"] = 8
 			E.db["unitframe"]["units"]["raid"]["power"]["powerPrediction"] = true
 			E.db["unitframe"]["units"]["raid"]["power"]["yOffset"] = 4
@@ -2004,7 +2006,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raid40"]["name"]["attachTextTo"] = "InfoPanel"
 			E.db["unitframe"]["units"]["raid40"]["name"]["position"] = "BOTTOMLEFT"
 			E.db["unitframe"]["units"]["raid40"]["power"]["attachTextTo"] = "Power"
-			E.db["unitframe"]["units"]["raid40"]["power"]["enable"] = true
+			E.db["unitframe"]["units"]["raid40"]["power"]["enable"] = true   --healer raid40
 			E.db["unitframe"]["units"]["raid40"]["power"]["height"] = 8
 			E.db["unitframe"]["units"]["raid40"]["power"]["width"] = "inset"
 			E.db["unitframe"]["units"]["raid40"]["power"]["xOffset"] = 0

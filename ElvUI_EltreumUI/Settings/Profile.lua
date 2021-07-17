@@ -162,7 +162,7 @@ P.ElvUI_EltreumUI = {
 
 	widenameplate = {
 		enable = true,
-		npglow = true,
+		npglow = false,
 	},
 
 	questsettings = {

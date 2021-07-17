@@ -30,6 +30,7 @@ function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
 				button.cd.timer.text:SetDrawLayer('OVERLAY',1)
 				button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
 
+					--if self.type == 'debuffs' ?
 
 				if E.db.ElvUI_EltreumUI.widenameplate.npglow then
 					--well you could hook the cooldown's .text's SetTextColor then check what color is matching it's  .timeColors (for expiring) then do something
@@ -37,6 +38,7 @@ function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
 					--print(r.." r "..g.." g "..b.." b"..a.." a ".."colors")
 
 					--if r == 0.99999779462814 then
+						--if button:GetAttribute("type") == "debuff" then
 					if g == 0 and b == 0 then
 						local glowcolor = {1, 1, 0, 1}
 						--PixelGlow_Start(frame[, color[, N[, frequency[, length[, th[, xOffset[, yOffset[, border[ ,key]]]]]]]])
@@ -45,9 +47,6 @@ function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
 						LCG.PixelGlow_Stop(button)
 					end
 				end
-
-
-
 
 			end
 			button:SetWidth(25)
