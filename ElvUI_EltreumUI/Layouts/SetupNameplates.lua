@@ -66,7 +66,22 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["colors"]["selection"][13]["r"] = 0.16862745098039
 			E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Kimberley"
 			E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
+
 			if ElvUI_EltreumUI.Retail then
+
+				--remove the by type border colors
+				E.db["nameplates"]["colors"]["auraByType"] = false
+
+				--boss mods
+				E.db["nameplates"]["bossMods"]["enable"] = true
+				E.db["nameplates"]["bossMods"]["anchorPoint"] = 'BOTTOM'
+				E.db["nameplates"]["bossMods"]["growthX"] = 'RIGHT'
+				E.db["nameplates"]["bossMods"]["growthY"] = 'DOWN'
+				E.db["nameplates"]["bossMods"]["size"] = 34
+				E.db["nameplates"]["bossMods"]["spacing"] = 1
+				E.db["nameplates"]["bossMods"]["yOffset"] = -10
+				E.db["nameplates"]["bossMods"]["xOffset"] = 0
+
 				E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["b"] = 1
 				E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["g"] = 1
 				E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["r"] = 0
