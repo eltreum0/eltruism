@@ -12,8 +12,37 @@ local LCG = LibStub('LibCustomGlow-1.0')
 --customize friendly nameplate health width inside instance
 --/run C_NamePlate.SetNamePlateFriendlySize(21, 5)
 
--- Non aspect ratio nameplate debuffs similar to plater
-function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
+-- Fancier Debuffs/Buffs on nameplates
+function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
+	if E.db.ElvUI_EltreumUI.widenameplate.enable then
+		if button and button.spellID then
+			if not string.find(unit, "nameplate") then
+				return
+			end
+			button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
+			button.cd:SetFrameStrata('DIALOG')
+			if button.cd.timer then
+				button.cd.timer.text:ClearAllPoints()
+				button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
+				if E.db.ElvUI_EltreumUI.widenameplate.npglow then
+					local _, g, b, _ = button.cd.timer.text:GetTextColor()
+					if g == 0 and b == 0 then
+						local glowcolor = {1, 1, 0, 1}
+						LCG.PixelGlow_Start(button, glowcolor, 6, 1, 4, 2, 0, 0, false, nil)
+					elseif g ~= 0 and b ~= 0 then
+						LCG.PixelGlow_Stop(button)
+					end
+				end
+			end
+			button:SetWidth(25)
+			button:SetHeight(18)
+			button.count:Point('BOTTOMRIGHT', 2, -3)
+		end
+		UF.PostUpdateAura(self, unit, button)
+	end
+end
+
+function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 	if E.db.ElvUI_EltreumUI.widenameplate.enable then
 		if not E.private.ElvUI_EltreumUI.nameplatepower.adjust then
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
@@ -23,31 +52,11 @@ function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
 			if not string.find(unit, "nameplate") then
 				return
 			end
-			-- this is the worst number of /reload of all time for me
 			button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 			if button.cd.timer then
 				button.cd.timer.text:ClearAllPoints()
 				button.cd.timer.text:SetDrawLayer('OVERLAY',1)
 				button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
-
-					--if self.type == 'debuffs' ?
-
-				if E.db.ElvUI_EltreumUI.widenameplate.npglow then
-					--well you could hook the cooldown's .text's SetTextColor then check what color is matching it's  .timeColors (for expiring) then do something
-					local r, g, b, a = button.cd.timer.text:GetTextColor()
-					--print(r.." r "..g.." g "..b.." b"..a.." a ".."colors")
-
-					--if r == 0.99999779462814 then
-						--if button:GetAttribute("type") == "debuff" then
-					if g == 0 and b == 0 then
-						local glowcolor = {1, 1, 0, 1}
-						--PixelGlow_Start(frame[, color[, N[, frequency[, length[, th[, xOffset[, yOffset[, border[ ,key]]]]]]]])
-						LCG.PixelGlow_Start(button, glowcolor, 6, 1, 4, 2, 0, 0, false, nil)
-					elseif g ~= 0 and b ~= 0 then
-						LCG.PixelGlow_Stop(button)
-					end
-				end
-
 			end
 			button:SetWidth(25)
 			button:SetHeight(18)
@@ -63,8 +72,8 @@ function ElvUI_EltreumUI:PostUpdateIcon(unit, button)
 end
 
 function ElvUI_EltreumUI:Construct_Auras(nameplate)
-	nameplate.Buffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIcon
-	nameplate.Debuffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIcon
+	nameplate.Buffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIconBuff
+	nameplate.Debuffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIconDebuff
 end
 hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
 hooksecurefunc(NP, "Update_Auras", ElvUI_EltreumUI.Construct_Auras)
