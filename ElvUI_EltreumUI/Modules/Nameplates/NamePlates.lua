@@ -93,9 +93,6 @@ hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
 hooksecurefunc(NP, "Update_Auras", ElvUI_EltreumUI.Construct_Auras)
 hooksecurefunc(NP, "UpdatePlate", ElvUI_EltreumUI.Construct_Auras)
 
-
-
-
 -- tried all these, didnt help
 --hooksecurefunc(UF, "PostUpdateAura", ElvUI_EltreumUI.Construct_Auras)
 --hooksecurefunc(NP, "ConfigurePlates", ElvUI_EltreumUI.Construct_Auras)
@@ -116,8 +113,8 @@ local playerclass = {
 	['ROGUE'] = "Eltreum-Class-Rogue",
 	['PRIEST'] = "Eltreum-Class-Priest",
 	['DEATHKNIGHT'] = "Eltreum-Class-DeathKnight",
-	['SHAMAN'] = "Eltreum-Class-Paladin",	 -- issues becoming green due to color mixing so color changed to druid from "Eltreum-Class-Shaman"
-	['MAGE'] = "Eltreum-Class-Paladin",		 --  issues becoming green due to color mixing so color changed to druid from "Eltreum-Class-Mage"
+	['SHAMAN'] = "Eltreum-Class-Paladin",	 -- issues becoming green due to color mixing so color changed to paladin from "Eltreum-Class-Shaman"
+	['MAGE'] = "Eltreum-Class-Paladin",		 --  issues becoming green due to color mixing so color changed to paladin from "Eltreum-Class-Mage"
 	['WARLOCK'] = "Eltreum-Class-Warlock",
 	['MONK'] = "Eltreum-Class-Monk",
 	['DRUID'] = "Eltreum-Class-Druid",
