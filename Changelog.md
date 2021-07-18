@@ -3,9 +3,9 @@ To be Determined/Ideas:
 Maybe Add Weakauras look alike Raid Consumables Bar (although bar6 serves that purpose)
 ___
 ### v2.4.4
-Added glow to expiring debuffs on nameplates, this can be turned off in Eltruism > Nameplates\
-Moved the timer text for Buffs & Debuffs on Nameplates to a more readable position (top)\
 Added glow to pet action bars, this setting is also available for TBC/Classic in Eltruism > Custom Glow\
+Added glow to expiring debuffs on nameplates, this can be turned off in Eltruism > Custom Glow\
+Moved the timer text for Buffs & Debuffs on Nameplates to a more readable position (top)\
 Added Colors to some events in Chat\
 Added an option to play a sound when someone rolls a 1 or a 100 (default off)\
 Added Combat indicator Floating Text, +Combat when entering combat and -Combat when leaving combat, this setting can be toggled off in Eltruism > Misc\
