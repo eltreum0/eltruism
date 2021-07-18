@@ -13,6 +13,7 @@ local LCG = LibStub('LibCustomGlow-1.0')
 --/run C_NamePlate.SetNamePlateFriendlySize(21, 5)
 
 -- Different Debuffs/Buffs on nameplates
+local ONUPDATE_INTERVAL = 0.1
 function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 	if E.db.ElvUI_EltreumUI.widenameplate.enable then
 		local glowcolor
@@ -32,23 +33,27 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 			button.cd:SetFrameStrata('DIALOG')
 			--button.cd:SetDrawSwipe(false)  --works to erase it
-			--button:SetScript('OnUpdate', ElvUI_EltreumUI.PostUpdateIconDebuff)
-			--if button.cd.timer then
-			button.cd.timer.text:ClearAllPoints()
-			button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
-			local _, g, b, _ = button.cd.timer.text:GetTextColor()
-			local r = math.random(1,10)
-			print(r)
-			print(g.." green and "..b.." blue")
-			if E.db.ElvUI_EltreumUI.widenameplate.npglow then
-				if g == 0 or b == 0 then
-					--PixelGlow_Start(frame[, color[, N[, frequency[, length[, th[, xOffset[, yOffset[, border[ ,key]]]]]]]])
-					LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
-				else
-					LCG.PixelGlow_Stop(button)
+			local TimeSinceLastUpdate = 0
+			button.cd:SetScript('OnUpdate', function(self, elapsed)
+				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+					TimeSinceLastUpdate = 0
+
+					button.cd.timer.text:ClearAllPoints()
+					button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
+					local _, g, b, _ = button.cd.timer.text:GetTextColor()
+					--local r = math.random(1,10)
+					--print(r)
+					--print(g.." green and "..b.." blue")
+					if E.db.ElvUI_EltreumUI.widenameplate.npglow then
+						if g == 0 or b == 0 then
+							LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
+						else
+							LCG.PixelGlow_Stop(button)
+						end
+					end
 				end
-			end
-			-- end
+			end)
 			button:SetWidth(25)
 			button:SetHeight(18)
 			button.count:Point('BOTTOMRIGHT', 2, -3)
@@ -68,11 +73,17 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 				return
 			end
 			button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
-			if button.cd.timer then
-				button.cd.timer.text:ClearAllPoints()
-				button.cd.timer.text:SetDrawLayer('OVERLAY',1)
-				button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
-			end
+			local TimeSinceLastUpdate = 0
+			button.cd:SetScript('OnUpdate', function(self, elapsed)
+			TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+					TimeSinceLastUpdate = 0
+
+					button.cd.timer.text:ClearAllPoints()
+					button.cd.timer.text:SetDrawLayer('OVERLAY',1)
+					button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
+				end
+			end)
 			button:SetWidth(25)
 			button:SetHeight(18)
 			button.count:Point('BOTTOMRIGHT', 2, -3)
@@ -90,24 +101,7 @@ function ElvUI_EltreumUI:Construct_Auras(nameplate)
 	nameplate.Buffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIconBuff
 	nameplate.Debuffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIconDebuff
 end
-
 hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
---hooksecurefunc(NP, "Update_Auras", ElvUI_EltreumUI.Construct_Auras)
---hooksecurefunc(NP, "UpdatePlate", ElvUI_EltreumUI.Construct_Auras)
-
-
--- tried all these, didnt help
---hooksecurefunc(NP, "UpdateAuraSettings", ElvUI_EltreumUI.Construct_Auras)
---hooksecurefunc(UF, "PostUpdateAura", ElvUI_EltreumUI.Construct_Auras)
---hooksecurefunc(NP, "ConfigurePlates", ElvUI_EltreumUI.Construct_Auras)
---hooksecurefunc(NP, "StyleFilterEventWatch", ElvUI_EltreumUI.Construct_Auras)
---hooksecurefunc(NP, "StylePlate", ElvUI_EltreumUI.Construct_Auras)
---hooksecurefunc(NP, "Update_StatusBars", ElvUI_EltreumUI.Construct_Auras)
---hooksecurefunc(NP, "Update_TagText", ElvUI_EltreumUI.Construct_Auras)
-
---hooksecurefunc(NP, "UpdateTargetPlate", ElvUI_EltreumUI.Construct_Auras)
---hooksecurefunc(NP, "NamePlateCallBack", ElvUI_EltreumUI.Construct_Auras)
---hooksecurefunc(NP, 'PostUpdateAllElements', ElvUI_EltreumUI.Construct_Auras)
 
 --for general nameplates
 local playerclass = {
