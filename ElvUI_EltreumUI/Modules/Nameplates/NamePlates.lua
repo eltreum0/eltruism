@@ -11,6 +11,7 @@ local LCG = LibStub('LibCustomGlow-1.0')
 
 --customize friendly nameplate health width inside instance
 --/run C_NamePlate.SetNamePlateFriendlySize(21, 5)
+--throttle by https://gist.github.com/Choonster/eb07bbd750776d1254fc
 
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1
@@ -38,18 +39,19 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 					TimeSinceLastUpdate = 0
-
-					button.cd.timer.text:ClearAllPoints()
-					button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
-					local _, g, b, _ = button.cd.timer.text:GetTextColor()
-					--local r = math.random(1,10)
-					--print(r)
-					--print(g.." green and "..b.." blue")
-					if E.db.ElvUI_EltreumUI.widenameplate.npglow then
-						if g == 0 or b == 0 then
-							LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
-						else
-							LCG.PixelGlow_Stop(button)
+					if button.cd.timer then
+						button.cd.timer.text:ClearAllPoints()
+						button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
+						local _, g, b, _ = button.cd.timer.text:GetTextColor()
+						--local r = math.random(1,10)
+						--print(r)
+						--print(g.." green and "..b.." blue")
+						if E.db.ElvUI_EltreumUI.widenameplate.npglow then
+							if g == 0 or b == 0 then
+								LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
+							else
+								LCG.PixelGlow_Stop(button)
+							end
 						end
 					end
 				end
@@ -78,10 +80,11 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 			TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 					TimeSinceLastUpdate = 0
-
-					button.cd.timer.text:ClearAllPoints()
-					button.cd.timer.text:SetDrawLayer('OVERLAY',1)
-					button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
+					if button.cd.timer then
+						button.cd.timer.text:ClearAllPoints()
+						button.cd.timer.text:SetDrawLayer('OVERLAY',1)
+						button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
+					end
 				end
 			end)
 			button:SetWidth(25)
