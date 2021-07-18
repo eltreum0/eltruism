@@ -11,8 +11,8 @@ function ElvUI_EltreumUI:NewVersionCheck()
 		return
 	elseif E.private.ElvUI_EltreumUI.install_version >= "2.4.0" and E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version then
 		E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
-		ElvUI_EltreumUI:Print(L["updated to version "]..ElvUI_EltreumUI.Version)
-		ElvUI_EltreumUI:Print("If you have any issues please join the |TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinydisc.tga:0:0:0:0|t Discord for help")
+		local version = (string.format("|cff82B4ff"..ElvUI_EltreumUI.Version.."|r"))
+		ElvUI_EltreumUI:Print("Welcome to version "..version..". If you have any issues please join the |TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinydisc.tga:0:0:0:0|t Discord for help")
 	end
 end
 
