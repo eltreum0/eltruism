@@ -1014,10 +1014,19 @@ if ElvUI_EltreumUI.TBC then
 							args = {
 								enablepet = {
 									type = 'toggle',
-									name = "Enable Pet Bar",
+									name = "Enable on Pet Bar",
 									order = 1,
 									get = function() return E.db.ElvUI_EltreumUI.glow.enablepet end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.glow.enablepet = value end,
+								},
+								enablenp = {
+									order = 1,
+									type = 'toggle',
+									name = "Enable on Nameplate",
+									desc = "Add a glow when buffs or debuffs are expiring on nameplates",
+									width = 'full',
+									get = function() return E.db.ElvUI_EltreumUI.widenameplate.npglow end,
+									set = function(_, value) E.db.ElvUI_EltreumUI.widenameplate.npglow = value end,
 								},
 								headerline1 = {
 									order = 2,
@@ -1072,7 +1081,14 @@ if ElvUI_EltreumUI.TBC then
 									type = 'group',
 									name = L["Glow Colors"],
 									args = {
-										classcolor = {
+										headerline1 = {
+											order = 1,
+											type = "description",
+											name = "Action Bars",
+											width = 'full',
+											image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										},
+										classcolorab = {
 											type = 'toggle',
 											name = L["Use Class Colors"],
 											order = 3,
@@ -1080,7 +1096,7 @@ if ElvUI_EltreumUI.TBC then
 											get = function() return E.db.ElvUI_EltreumUI.glow.colorclass end,
 											set = function(_, value) E.db.ElvUI_EltreumUI.glow.colorclass = value E:StaticPopup_Show('CONFIG_RL') end,
 										},
-										color = {
+										colorab = {
 											order = 4,
 											type = 'color',
 											name = L["Custom Color"],
@@ -1094,6 +1110,68 @@ if ElvUI_EltreumUI.TBC then
 											set = function(_, r, g, b, a)
 												local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolor
 												glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+											end,
+										},
+										headerline2 = {
+											order = 5,
+											type = "description",
+											name = "Pet Bar",
+											width = 'full',
+											image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										},
+										classcolorpet = {
+											type = 'toggle',
+											name = L["Use Class Colors"],
+											order = 6,
+											desc = L["Toggle Class Colored glows"],
+											get = function() return E.db.ElvUI_EltreumUI.glow.colorclasspet end,
+											set = function(_, value) E.db.ElvUI_EltreumUI.glow.colorclasspet = value E:StaticPopup_Show('CONFIG_RL') end,
+										},
+										colorpet = {
+											order = 7,
+											type = 'color',
+											name = L["Custom Color"],
+											hasAlpha = false,
+											disabled = function() return E.db.ElvUI_EltreumUI.glow.colorclasspet end,
+											get = function()
+												local glowcustomcolorpet = E.db.ElvUI_EltreumUI.glowcustomcolorpet
+												local d = P.ElvUI_EltreumUI.glowcustomcolorpet
+												return glowcustomcolorpet.r, glowcustomcolorpet.g, glowcustomcolorpet.b, glowcustomcolorpet.a, d.r, d.g, d.b, d.a
+											end,
+											set = function(_, r, g, b, a)
+												local glowcustomcolorpet = E.db.ElvUI_EltreumUI.glowcustomcolorpet
+												glowcustomcolorpet.r, glowcustomcolorpet.g, glowcustomcolorpet.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+											end,
+										},
+										headerline3 = {
+											order = 8,
+											type = "description",
+											name = "Nameplate Buff/Debuff",
+											width = 'full',
+											image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										},
+										classcolornp = {
+											type = 'toggle',
+											name = L["Use Class Colors"],
+											order = 9,
+											desc = L["Toggle Class Colored glows"],
+											get = function() return E.db.ElvUI_EltreumUI.glow.colorclassnp end,
+											set = function(_, value) E.db.ElvUI_EltreumUI.glow.colorclassnp = value E:StaticPopup_Show('CONFIG_RL') end,
+										},
+										colornp = {
+											order = 10,
+											type = 'color',
+											name = L["Custom Color"],
+											hasAlpha = false,
+											disabled = function() return E.db.ElvUI_EltreumUI.glow.colorclassnp end,
+											get = function()
+												local glowcustomcolornp = E.db.ElvUI_EltreumUI.glowcustomcolornp
+												local d = P.ElvUI_EltreumUI.glowcustomcolornp
+												return glowcustomcolornp.r, glowcustomcolornp.g, glowcustomcolornp.b, glowcustomcolornp.a, d.r, d.g, d.b, d.a
+											end,
+											set = function(_, r, g, b, a)
+												local glowcustomcolornp = E.db.ElvUI_EltreumUI.glowcustomcolornp
+												glowcustomcolornp.r, glowcustomcolornp.g, glowcustomcolornp.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
 											end,
 										},
 									},
@@ -2176,15 +2254,6 @@ if ElvUI_EltreumUI.TBC then
 									width = 'full',
 									get = function() return E.db.ElvUI_EltreumUI.widenameplate.enable end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.widenameplate.enable = value end,
-								},
-								descglow = {
-									order = 2,
-									type = 'toggle',
-									name = "Enable Glow on expiring Debuffs and Buffs",
-									desc = "Add a glow when buffs or debuffs are expiring on nameplates",
-									width = 'full',
-									get = function() return E.db.ElvUI_EltreumUI.widenameplate.npglow end,
-									set = function(_, value) E.db.ElvUI_EltreumUI.widenameplate.npglow = value end,
 								},
 							}
 						},

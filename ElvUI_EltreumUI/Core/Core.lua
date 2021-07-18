@@ -174,6 +174,7 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('alwaysShowActionBars', 1)
 	SetCVar('lockActionBars', 1)
 	SetCVar('spamFilter', 0)
+	SetCVar('Sound_EnableErrorSpeech', 1)
 
 	--Chat CVars
 	SetCVar('chatStyle', 'classic')

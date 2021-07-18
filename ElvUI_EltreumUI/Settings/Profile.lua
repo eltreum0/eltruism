@@ -104,6 +104,8 @@ P.ElvUI_EltreumUI = {
 		pixel = true,
 		autocast = false,
 		colorclass = true,
+		colorclasspet = true,
+		colorclassnp = true,
 		numberpixel = 9,
 		frequencypixel = 1,
 		lengthpixel = 3,
@@ -120,6 +122,18 @@ P.ElvUI_EltreumUI = {
 	},
 
 	glowcustomcolor = {
+		r = 0.27,
+		g = 0.50,
+		b = 0.70,
+	},
+
+	glowcustomcolorpet = {
+		r = 0.27,
+		g = 0.50,
+		b = 0.70,
+	},
+
+	glowcustomcolornp = {
 		r = 0.27,
 		g = 0.50,
 		b = 0.70,

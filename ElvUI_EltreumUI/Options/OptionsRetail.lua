@@ -631,17 +631,26 @@ if ElvUI_EltreumUI.Retail then
 							args = {
 								enable = {
 									type = 'toggle',
-									name = "Enable Action Bars",
+									name = "Enable on Action Bars",
 									order = 1,
 									get = function() return E.db.ElvUI_EltreumUI.glow.enable end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.glow.enable = value end,
 								},
 								enablepet = {
 									type = 'toggle',
-									name = "Enable Pet Bar",
+									name = "Enable on Pet Bar",
 									order = 1,
 									get = function() return E.db.ElvUI_EltreumUI.glow.enablepet end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.glow.enablepet = value end,
+								},
+								enablenp = {
+									order = 1,
+									type = 'toggle',
+									name = "Enable on Nameplate",
+									desc = "Add a glow when buffs or debuffs are expiring on nameplates",
+									width = 'full',
+									get = function() return E.db.ElvUI_EltreumUI.widenameplate.npglow end,
+									set = function(_, value) E.db.ElvUI_EltreumUI.widenameplate.npglow = value end,
 								},
 								headerline1 = {
 									order = 2,
@@ -696,7 +705,14 @@ if ElvUI_EltreumUI.Retail then
 									type = 'group',
 									name = L["Glow Colors"],
 									args = {
-										classcolor = {
+										headerline1 = {
+											order = 1,
+											type = "description",
+											name = "Action Bars",
+											width = 'full',
+											--image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										},
+										classcolorab = {
 											type = 'toggle',
 											name = L["Use Class Colors"],
 											order = 3,
@@ -704,7 +720,7 @@ if ElvUI_EltreumUI.Retail then
 											get = function() return E.db.ElvUI_EltreumUI.glow.colorclass end,
 											set = function(_, value) E.db.ElvUI_EltreumUI.glow.colorclass = value E:StaticPopup_Show('CONFIG_RL') end,
 										},
-										color = {
+										colorab = {
 											order = 4,
 											type = 'color',
 											name = L["Custom Color"],
@@ -720,15 +736,77 @@ if ElvUI_EltreumUI.Retail then
 												glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
 											end,
 										},
-										headerline24 = {
+										headerline2 = {
 											order = 5,
+											type = "description",
+											name = "Pet Bar",
+											width = 'full',
+											--image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										},
+										classcolorpet = {
+											type = 'toggle',
+											name = L["Use Class Colors"],
+											order = 6,
+											desc = L["Toggle Class Colored glows"],
+											get = function() return E.db.ElvUI_EltreumUI.glow.colorclasspet end,
+											set = function(_, value) E.db.ElvUI_EltreumUI.glow.colorclasspet = value E:StaticPopup_Show('CONFIG_RL') end,
+										},
+										colorpet = {
+											order = 7,
+											type = 'color',
+											name = L["Custom Color"],
+											hasAlpha = false,
+											disabled = function() return E.db.ElvUI_EltreumUI.glow.colorclasspet end,
+											get = function()
+												local glowcustomcolorpet = E.db.ElvUI_EltreumUI.glowcustomcolorpet
+												local d = P.ElvUI_EltreumUI.glowcustomcolorpet
+												return glowcustomcolorpet.r, glowcustomcolorpet.g, glowcustomcolorpet.b, glowcustomcolorpet.a, d.r, d.g, d.b, d.a
+											end,
+											set = function(_, r, g, b, a)
+												local glowcustomcolorpet = E.db.ElvUI_EltreumUI.glowcustomcolorpet
+												glowcustomcolorpet.r, glowcustomcolorpet.g, glowcustomcolorpet.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+											end,
+										},
+										headerline3 = {
+											order = 8,
+											type = "description",
+											name = "Nameplate Buff/Debuff",
+											width = 'full',
+											--image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										},
+										classcolornp = {
+											type = 'toggle',
+											name = L["Use Class Colors"],
+											order = 9,
+											desc = L["Toggle Class Colored glows"],
+											get = function() return E.db.ElvUI_EltreumUI.glow.colorclassnp end,
+											set = function(_, value) E.db.ElvUI_EltreumUI.glow.colorclassnp = value E:StaticPopup_Show('CONFIG_RL') end,
+										},
+										colornp = {
+											order = 10,
+											type = 'color',
+											name = L["Custom Color"],
+											hasAlpha = false,
+											disabled = function() return E.db.ElvUI_EltreumUI.glow.colorclassnp end,
+											get = function()
+												local glowcustomcolornp = E.db.ElvUI_EltreumUI.glowcustomcolornp
+												local d = P.ElvUI_EltreumUI.glowcustomcolornp
+												return glowcustomcolornp.r, glowcustomcolornp.g, glowcustomcolornp.b, glowcustomcolornp.a, d.r, d.g, d.b, d.a
+											end,
+											set = function(_, r, g, b, a)
+												local glowcustomcolornp = E.db.ElvUI_EltreumUI.glowcustomcolornp
+												glowcustomcolornp.r, glowcustomcolornp.g, glowcustomcolornp.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+											end,
+										},
+										headerline24 = {
+											order = 81,
 											type = "description",
 											name = L["Pixel Glow"],
 											width = 'full',
 											image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 										},
 										addagapherepixel = {
-											order = 6,
+											order = 82,
 											type = "description",
 											name = "",
 										},
@@ -736,16 +814,22 @@ if ElvUI_EltreumUI.Retail then
 											type = 'toggle',
 											name = L["Pixel Border"],
 											desc = L["Enable a border for the Pixel Glow"],
-											order = 6,
+											order = 83,
 											width = "full",
 											get = function() return E.db.ElvUI_EltreumUI.glow.borderpixel end,
 											set = function(_, value) E.db.ElvUI_EltreumUI.glow.borderpixel = value end,
+										},
+										addagapherepixel2 = {
+											order = 84,
+											type = "description",
+											width = "full",
+											name = "",
 										},
 										numberpixel = {
 											type = 'range',
 											name = L["Number of Pixels (Default is 9)"],
 											desc = L["Set the number of pixels in pixel glow"],
-											order = 7,
+											order = 85,
 											min = 1,
 											max = 10,
 											step = 1,
@@ -757,7 +841,7 @@ if ElvUI_EltreumUI.Retail then
 											type = 'range',
 											name = L["Pixel Frequency (Default is 1)"],
 											desc = L["Set the frequency pixel glow"],
-											order = 7,
+											order = 86,
 											min = 1,
 											max = 10,
 											step = 1,
@@ -769,7 +853,7 @@ if ElvUI_EltreumUI.Retail then
 											type = 'range',
 											name = L["Pixel Length (Default is 3)"],
 											desc = L["Set the length of pixels"],
-											order = 7,
+											order = 87,
 											min = 1,
 											max = 10,
 											step = 1,
@@ -781,7 +865,7 @@ if ElvUI_EltreumUI.Retail then
 											type = 'range',
 											name = L["Pixel Thickness (Default is 5)"],
 											desc = L["Set the thickness of pixels"],
-											order = 7,
+											order = 88,
 											min = 1,
 											max = 10,
 											step = 1,
@@ -793,7 +877,7 @@ if ElvUI_EltreumUI.Retail then
 											type = 'range',
 											name = L["Pixel Horizontal Offset (Default is 5)"],
 											desc = L["Set the horizontal offset of pixels"],
-											order = 8,
+											order = 89,
 											min = 1,
 											max = 10,
 											step = 1,
@@ -805,7 +889,7 @@ if ElvUI_EltreumUI.Retail then
 											type = 'range',
 											name = L["Pixel Vertical Offset (Default is 5)"],
 											desc = L["Set the vertical offset of pixels"],
-											order = 8,
+											order = 90,
 											min = 1,
 											max = 10,
 											step = 1,
@@ -814,7 +898,7 @@ if ElvUI_EltreumUI.Retail then
 											set = function(_, value) E.db.ElvUI_EltreumUI.glow.pixelyOffset = value end,
 										},
 										headerline32 = {
-											order = 9,
+											order = 91,
 											type = "description",
 											name = L["Autocast Glow"],
 											width = 'full',
@@ -824,7 +908,7 @@ if ElvUI_EltreumUI.Retail then
 											type = 'range',
 											name = L["Autocast Particle Groups (Default is 8)"],
 											desc = L["'Set the number of groups for autocast, for each group you get 4 particles"],
-											order = 10,
+											order = 92,
 											min = 1,
 											max = 10,
 											step = 1,
@@ -836,7 +920,7 @@ if ElvUI_EltreumUI.Retail then
 											type = 'range',
 											name = L["Autocast Frequency (Default is 0.8)"],
 											desc = L["Speed for Autocast, set to negative to inverse direction of rotation"],
-											order = 10,
+											order = 93,
 											min = -3,
 											max = 3,
 											step = 0.1,
@@ -848,7 +932,7 @@ if ElvUI_EltreumUI.Retail then
 											type = 'range',
 											name = L["Autocast Scale (Default is 2)"],
 											desc = L["Change the size of Autocast"],
-											order = 10,
+											order = 94,
 											min = -3,
 											max = 3,
 											step = 0.1,
@@ -860,7 +944,7 @@ if ElvUI_EltreumUI.Retail then
 											type = 'range',
 											name = L["Autocast Horizontal Offset (Default is 5)"],
 											desc = L["Set the horizontal offset of autocast"],
-											order = 11,
+											order = 96,
 											min = 1,
 											max = 10,
 											step = 1,
@@ -872,7 +956,7 @@ if ElvUI_EltreumUI.Retail then
 											type = 'range',
 											name = L["Autocast Vertical Offset (Default is 5)"],
 											desc = L["Set the vertical offset of autocast"],
-											order = 11,
+											order = 97,
 											min = 1,
 											max = 10,
 											step = 1,
@@ -881,7 +965,7 @@ if ElvUI_EltreumUI.Retail then
 											set = function(_, value) E.db.ElvUI_EltreumUI.glow.autoyOffset = value end,
 										},
 										headerline39 = {
-											order = 12,
+											order = 98,
 											type = "description",
 											name = L["Blizzard Glow"],
 											width = 'full',
@@ -891,7 +975,7 @@ if ElvUI_EltreumUI.Retail then
 											type = 'range',
 											name = L["Blizzard Frequency (Default is 0.5)"],
 											desc = L["Speed for Blizzard glow"],
-											order = 13,
+											order = 99,
 											min = 0.1,
 											max = 3,
 											step = 0.1,
@@ -2504,15 +2588,6 @@ if ElvUI_EltreumUI.Retail then
 									width = 'full',
 									get = function() return E.db.ElvUI_EltreumUI.widenameplate.enable end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.widenameplate.enable = value end,
-								},
-								descglow = {
-									order = 2,
-									type = 'toggle',
-									name = "Enable Glow on expiring Debuffs and Buffs",
-									desc = "Add a glow when buffs or debuffs are expiring on nameplates",
-									width = 'full',
-									get = function() return E.db.ElvUI_EltreumUI.widenameplate.npglow end,
-									set = function(_, value) E.db.ElvUI_EltreumUI.widenameplate.npglow = value end,
 								},
 							}
 						},

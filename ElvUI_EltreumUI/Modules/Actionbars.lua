@@ -53,7 +53,7 @@ end
 function ElvUI_EltreumUI:SkillGlowPet(event, unit)
 	local skillglowcolor
 	if not E.db.ElvUI_EltreumUI.glow.colorclass then
-		local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolor
+		local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolorpet
 		local r, g, b = glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b
 		skillglowcolor = {r, g, b, 1}
 	end
