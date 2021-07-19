@@ -2,6 +2,10 @@
 To be Determined/Ideas:
 Maybe Add Weakauras look alike Raid Consumables Bar (although bar6 serves that purpose)
 ___
+### v2.4.5
+Added a Preview for Custom Glow, you will need to toggle it on and off in order to update the glow options\
+Fixed Buffs being moved when autoadjust was turned off\
+___
 ### v2.4.4
 Added glow to pet action bars, this setting is also available for TBC/Classic in Eltruism > Custom Glow\
 Added glow to expiring debuffs on nameplates, this can be turned off in Eltruism > Custom Glow\

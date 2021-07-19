@@ -93,11 +93,6 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 			button.count:Point('BOTTOMRIGHT', 2, -3)
 		end
 		UF.PostUpdateAura(self, unit, button)
-	else
-		if not E.private.ElvUI_EltreumUI.nameplatepower.adjust then
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 43
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 43
-		end
 	end
 end
 

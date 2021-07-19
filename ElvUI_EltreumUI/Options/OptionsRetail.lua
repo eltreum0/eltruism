@@ -652,15 +652,29 @@ if ElvUI_EltreumUI.Retail then
 									get = function() return E.db.ElvUI_EltreumUI.widenameplate.npglow end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.widenameplate.npglow = value end,
 								},
-								headerline1 = {
+								previewgap = {
 									order = 2,
+									type = "description",
+									name = "",
+									width = 'full',
+									--image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								preview ={
+									order = 4,
+									type = "execute",
+									name = "Preview",
+									desc = "Preview the Glow, you will need to toggle it off and on to update the glow",
+									func = function() ElvUI_EltreumUI:PreviewGlow() end,
+								},
+								headerline1 = {
+									order = 96,
 									type = "description",
 									name = "",
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								procselection = {
-									order = 2,
+									order = 97,
 									type = 'group',
 									name = L["Select a Type"],
 										args = {
@@ -671,7 +685,7 @@ if ElvUI_EltreumUI.Retail then
 												desc = 'Adds an autocast style glow using class color',
 												disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.glow.pixel or E.db.ElvUI_EltreumUI.glow.blizzard end,
 												get = function(info) return E.db.ElvUI_EltreumUI.glow.autocast end,
-												set = function(info, value) E.db.ElvUI_EltreumUI.glow.autocast = value E:StaticPopup_Show('CONFIG_RL') end,
+												set = function(info, value) E.db.ElvUI_EltreumUI.glow.autocast = value end,
 											},
 											pixel = {
 												type = 'toggle',
@@ -680,7 +694,7 @@ if ElvUI_EltreumUI.Retail then
 												desc = 'Adds a pixel style glow using class color',
 												disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.blizzard end,
 												get = function(info) return E.db.ElvUI_EltreumUI.glow.pixel end,
-												set = function(info, value) E.db.ElvUI_EltreumUI.glow.pixel = value E:StaticPopup_Show('CONFIG_RL') end,
+												set = function(info, value) E.db.ElvUI_EltreumUI.glow.pixel = value end,
 											},
 											blizzard = {
 												type = 'toggle',
@@ -689,19 +703,19 @@ if ElvUI_EltreumUI.Retail then
 												desc = L["Adds a Blizzard style glow using class color"],
 												disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.pixel end,
 												get = function(info) return E.db.ElvUI_EltreumUI.glow.blizzard end,
-												set = function(info, value) E.db.ElvUI_EltreumUI.glow.blizzard = value E:StaticPopup_Show('CONFIG_RL') end,
+												set = function(info, value) E.db.ElvUI_EltreumUI.glow.blizzard = value end,
 											},
 										},
 								},
 								headerline2 = {
-									order = 3,
+									order = 98,
 									type = "description",
 									name = "",
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								customoptionsglow = {
-									order = 5,
+									order = 99,
 									type = 'group',
 									name = L["Glow Colors"],
 									args = {

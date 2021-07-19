@@ -98,3 +98,44 @@ function ElvUI_EltreumUI:SkillGlowPet(event, unit)
 	end
 end
 hooksecurefunc(AB, "UpdatePet", ElvUI_EltreumUI.SkillGlowPet)
+
+
+
+--Preview the Glow as asked by Releaf
+local GlowPreview = CreateFrame("Frame")
+GlowPreview:Hide()
+function ElvUI_EltreumUI:PreviewGlow()
+	local skillglowcolor
+	if not E.db.ElvUI_EltreumUI.glow.colorclass then
+		local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolor
+		local r, g, b = glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b
+		skillglowcolor = {r, g, b, 1}
+	end
+	if E.db.ElvUI_EltreumUI.glow.colorclass then
+		local r, g, b = unpack(E.media.rgbvaluecolor)
+		skillglowcolor = {r, g, b, 1}
+	end
+    if GlowPreview:IsShown() then
+		if E.db.ElvUI_EltreumUI.glow.pixel then
+			LCG.PixelGlow_Stop(ElvUI_Bar1Button1)
+		end
+		if E.db.ElvUI_EltreumUI.glow.autocast then
+			LCG.AutoCastGlow_Stop(ElvUI_Bar1Button1)
+		end
+		if E.db.ElvUI_EltreumUI.glow.blizzard then
+			LCG.ButtonGlow_Stop(ElvUI_Bar1Button1)
+		end
+		GlowPreview:Hide()
+    else
+    	GlowPreview:Show()
+    	if E.db.ElvUI_EltreumUI.glow.pixel then
+			LCG.PixelGlow_Start(ElvUI_Bar1Button1, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+		end
+		if E.db.ElvUI_EltreumUI.glow.autocast then
+			LCG.AutoCastGlow_Start(ElvUI_Bar1Button1, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+		end
+		if E.db.ElvUI_EltreumUI.glow.blizzard then
+			LCG.ButtonGlow_Start(ElvUI_Bar1Button1, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
+		end
+    end
+end
