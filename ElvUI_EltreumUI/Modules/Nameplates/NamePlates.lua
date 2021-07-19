@@ -11,7 +11,6 @@ local LCG = LibStub('LibCustomGlow-1.0')
 
 --customize friendly nameplate health width inside instance
 --/run C_NamePlate.SetNamePlateFriendlySize(21, 5)
---throttle by https://gist.github.com/Choonster/eb07bbd750776d1254fc
 
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1
@@ -58,6 +57,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			end)
 			button:SetWidth(25)
 			button:SetHeight(18)
+			button.count:SetParent(button.cd)
 			button.count:Point('BOTTOMRIGHT', 2, -3)
 		end
 		UF.PostUpdateAura(self, unit, button)
@@ -89,6 +89,7 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 			end)
 			button:SetWidth(25)
 			button:SetHeight(18)
+			button.count:SetParent(button.cd)
 			button.count:Point('BOTTOMRIGHT', 2, -3)
 		end
 		UF.PostUpdateAura(self, unit, button)
