@@ -1,4 +1,4 @@
-### Eltruism [![](https://img.shields.io/badge/Eltruism-Join-steelblue.svg?longCache=true?style=flat-square&logo=discord)](https://discord.gg/cXfA56gmYW)
+### [![](https://img.shields.io/badge/Eltruism-Join-steelblue.svg?longCache=true?style=flat-square&logo=discord)](https://discord.gg/cXfA56gmYW)
 ___
 ### About
 > Eltruism is an ElvUI plugin that offers a DPSTank Profile along with a Healer profile. Both are designed for 169 displays, and were tested in 4K and 1080p. This plugin requires the following addons\
@@ -40,10 +40,15 @@ ___
 ___
 ### Pictures
 [![](https://i.imgur.com/xEG4b4D.png)](https://i.imgur.com/xEG4b4D.png)
+\
 [![](https://i.imgur.com/5gXTAox.png)](https://i.imgur.com/5gXTAox.png)
+\
 [![](https://i.imgur.com/DQsDaYi.png)](https://i.imgur.com/DQsDaYi.png)
+\
 [![](https://i.imgur.com/NYwCfhG.png)](https://i.imgur.com/NYwCfhG.png)
+\
 [![](https://i.imgur.com/GDKdRmf.png)](https://i.imgur.com/GDKdRmf.png)
+\
 [![](https://i.imgur.com/eOt6YGU.png)](https://i.imgur.com/eOt6YGU.png)
 ___
 ### Credits
