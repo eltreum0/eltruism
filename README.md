@@ -1,7 +1,8 @@
 ### [![](https://img.shields.io/badge/Eltruism-Join-steelblue.svg?longCache=true?style=flat-square&logo=discord)](https://discord.gg/cXfA56gmYW)
 ___
 ### About
-> Eltruism is an ElvUI plugin that offers a DPSTank Profile along with a Healer profile. Both are designed for 169 displays, and were tested in 4K and 1080p. This plugin requires the following addons\
+> Eltruism is an ElvUI plugin that offers a DPSTank Profile along with a Healer profile. Both are designed for 169 displays, and were tested in 4K and 1080p. This plugin requires the following addons\
+ \
   **[ElvUI](https://www.tukui.org/download.php/ui=elvui)** \
   **[Shadow & Light](https://www.tukui.orgaddons.php?id=38)** \
   **[Windtools](https://www.curseforge.com/wow/addons/elvui-windtools)** \
@@ -11,6 +12,7 @@ ___
 ___
 ### Addon Profiles
 > The installation will offer profiles for the following addons\
+ \
 **[Bigwigs](https://www.curseforge.com/wow/addons/big-wigs)** \
 **[DBM](https://www.curseforge.com/wow/addons/deadly-boss-mods)** \
 **[Details](https://www.curseforge.com/wow/addons/details)** \
@@ -23,6 +25,7 @@ ___
 ___
 ### Features
 > Included features in this plugin\
+ \
  Nameplate Border & Glow\
  Stealth Vignette Effect\
  Class Glows for procs on action bar, using LibCustomGlow\
