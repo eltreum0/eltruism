@@ -19,7 +19,6 @@ ElvUF.Tags.Methods['name:eltruism:abbreviate'] = function(unit)
 end
 E:AddTagInfo('name:eltruism:abbreviate', ElvUI_EltreumUI.Name, L["Abbreviates the unit name once it goes over 16 characters, made by Azilroka"])
 
-
 -- Alternate Class Icons by Releaf
 local classIcons = {
 	['WARRIOR'] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorReleaf.tga:0:0:0:0|t",
@@ -132,7 +131,6 @@ ElvUF.Tags.Methods['eltruism:ReleafBorder:player'] = function(unit)
 end
 E:AddTagInfo('eltruism:ReleafBorder:player', ElvUI_EltreumUI.Name, L["Shows Class Icons with borders recolored by Releaf on Player targets"])
 
-
 -- Class Icons by Blizz with borders
 local classIconsOutline = {
 	['WARRIOR'] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorShadow.tga:0:0:0:0|t",
@@ -169,8 +167,6 @@ ElvUF.Tags.Methods['eltruism:IconOutline:player'] = function(unit)
 	return icon
 end
 E:AddTagInfo('eltruism:IconOutline:player', ElvUI_EltreumUI.Name, "Shows Class Icons with Outlines on Player targets")
-
-
 
 -- Class Icons by Releaf with borders
 local classIconsOutlineReleaf = {

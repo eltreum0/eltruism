@@ -129,16 +129,10 @@ function ElvUI_EltreumUI:PreviewGlow()
 		skillglowcolor = {r, g, b, 1}
 	end
     if GlowPreview:IsShown() then
-		if E.db.ElvUI_EltreumUI.glow.pixel then
-			--LCG.PixelGlow_Stop(ElvUI_Bar1Button1)
-			LCG.PixelGlow_Stop(GlowPreview)
-		end
-		if E.db.ElvUI_EltreumUI.glow.autocast then
-			LCG.AutoCastGlow_Stop(GlowPreview)
-		end
-		if E.db.ElvUI_EltreumUI.glow.blizzard then
-			LCG.ButtonGlow_Stop(GlowPreview)
-		end
+		--LCG.PixelGlow_Stop(ElvUI_Bar1Button1)
+		LCG.PixelGlow_Stop(GlowPreview)
+		LCG.AutoCastGlow_Stop(GlowPreview)
+		LCG.ButtonGlow_Stop(GlowPreview)
 		GlowPreview:Hide()
     else
     	GlowPreview:Show()
