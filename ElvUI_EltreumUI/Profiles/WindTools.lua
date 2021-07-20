@@ -221,7 +221,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 	E.db["WT"]["social"]["chatBar"]["enable"] = false
 	E.db["WT"]["social"]["chatLink"]["icon"] = false
 	E.db["WT"]["social"]["chatText"]["enable"] = false
-	E.db["WT"]["social"]["chatText"]["roleIconStyle"] = "DEFAULT"
+	E.db["WT"]["social"]["chatText"]["roleIconStyle"] = "BLIZZARD"
 	E.db["WT"]["social"]["contextMenu"]["enable"] = false
 	E.db["WT"]["social"]["emote"]["enable"] = false
 	E.db["WT"]["social"]["emote"]["panel"] = false
