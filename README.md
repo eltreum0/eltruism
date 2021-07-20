@@ -46,7 +46,7 @@ Wider Transmog Window for Retail\
 Expanded Talent Tree for Classic and TBC\
 Custom Buff/Debuff filters for Classic and TBC, with premade settings to show all debuffs if the user wants to\
 Expanded Stables, showing all hunter pets in one window. This module is merged from Improved Stable Frame by Cybeloras and licensed under GNU GPLv3\
-Rogue Order Hall, which will automatically open the Rogue Class Hall Door. This moduleis a fork of Rogue Door Opener by Burzolog and licensed under GNU GPLv3\
+Rogue Order Hall, which will automatically open the Rogue Class Hall Door. This module is a fork of Rogue Door Opener by Burzolog and licensed under GNU GPLv3\
 Stealth, which adds a vignette effect while your character is in stealth\
 Play a sound when someone in your Party or Raid dies\
 Show Friendly Nameplates inside instances with only names or hide them\
