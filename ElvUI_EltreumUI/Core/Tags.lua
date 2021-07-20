@@ -206,14 +206,14 @@ end
 E:AddTagInfo('eltruism:ReleafIconOutline:player', ElvUI_EltreumUI.Name, "Shows Class Icons with Outlines by Releaf on Player targets")
 
 -- Releaf Logo
---local color = E:ClassColor(E.myclass, true)
---local red = math.floor(color.r*255)
---local blue = math.floor(color.b*255)
---local green = math.floor(color.g*255)
 ElvUF.Tags.Events['releaf'] = 'UNIT_NAME_UPDATE'
 ElvUF.Tags.Methods['releaf'] = function(unit)
-	local releaf = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Releaf-Orange.tga:0:0:0:0|t"
-	--local releaf = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\releaf.tga:14:14:0:0:0:0:0:0:0:0:"..red..":"..green..":"..blue.."|t"
+	local color = E:ClassColor(E.myclass, true)
+	local red = math.floor(color.r*255)
+	local blue = math.floor(color.b*255)
+	local green = math.floor(color.g*255)
+	local releaf  = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\releaftag.tga:0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+	--local releaf = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Releaf-Orange.tga:0:0:0:0|t"
 	return releaf
 end
 E:AddTagInfo('releaf', ElvUI_EltreumUI.Name, "Shows Releaf's Icon")
