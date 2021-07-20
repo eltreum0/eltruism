@@ -1,24 +1,22 @@
-p align=centerimg src=httpsi.imgur.comv2ClPQu.pngp
+### Eltruism
+___
+```
+> About
 
+Eltruism is an ElvUI plugin that offers a DPSTank Profile along with a Healer profile. Both are designed for 169 displays, and were tested in 4K and 1080p. This plugin requires the following addons
+  _**[ElvUI](https://www.tukui.org/download.php/ui=elvui):**
+  _**[Shadow & Light](https://www.tukui.orgaddons.php?id=38):**
+  _**[Windtools](https://www.curseforge.com/wow/addons/elvui-windtools):**
+  _**[AddOnSkins](https://www.tukui.org/addons.php?id=3):**
+  _**[ProjectAzilroka](https://www.curseforge.com/wow/addons/projectazilroka):**
+  
+ [![](https://img.shields.io/badge/Eltruism-Join-steelblue.svg?longCache=true?style=flat-square&logo=discord)](https://discord.gg/cXfA56gmYW)
+
+```
 ___
 
-div align=centerp style='colorsteelblue'Aboutppdiv
-p align=centerEltruism is an ElvUI plugin that offers a DPSTank Profile along with a Healer profile. Both are designed for 169 displays, and were tested in 4K and 1080p. This plugin requires the following addonsbr
-  a href=httpswww.tukui.orgdownload.phpui=elvuiElvUIabr
-  a href=httpswww.tukui.orgaddons.phpid=38ElvUI Shadow & Lightabr
-  a href=httpswww.curseforge.comwowaddonselvui-windtoolsElvUI Windtoolsabr
-a href=httpswww.tukui.orgaddons.phpid=3AddOnSkinsabr
-a href=httpswww.curseforge.comwowaddonsprojectazilrokaProjectAzilrokaabr
-br
-a href=httpsdiscord.ggcXfA56gmYWNeed help Join the Discord!abr
-p
-
-___
-
-div align=centerp style='colorsteelblue'Addon Profilesppdiv
-
+>Addon Profiles
 The installation will offer profiles for the following addons
-
 a href=httpswww.curseforge.comwowaddonsbig-wigsBigwigsa
 a href=httpswww.curseforge.comwowaddonsdeadly-boss-modsDBMa
 a href=httpswww.curseforge.comwowaddonsdetailsDetailsa
@@ -28,13 +26,9 @@ a href=httpswww.curseforge.comwowaddonsgladiusexGladiusExa
 a href=httpswww.curseforge.comwowaddonsimmersionImmersiona
 a href=httpswww.curseforge.comwowaddonsnameplate-scrolling-combat-textNameplate Scrolling Combat Texta
 a href=httpswww.tukui.orgaddons.phpid=137ElvUI Floating Combat Texta
-
 ___
-
-div align=centerp style='colorsteelblue'Featuresppdiv
-
+>Features
 Included features in this plugin
-
  Nameplate Border & Glow
  Stealth Vignette Effect
  Class Glows for procs on action bar, using LibCustomGlow
@@ -46,25 +40,18 @@ Included features in this plugin
  Nameplate class gradients on target
  LootText a fork of SLoTe (this module is GNU GPLv3), that shows scrolling loot text 
  More features incoming!
-
 ___
+>Installation
 
-div align=centerp style='colorsteelblue'Installationppdiv
-
-p align=centerThe first time you load into the game with Eltruism enabled the install prompt that will guide you will appear. It is recommended to backup your settings (WTF folder inside World of Warcraft_retail_) regularly, the installation will warn you of any options that might overwrite your settings.p
-
+The first time you load into the game with Eltruism enabled the install prompt that will guide you will appear. It is recommended to backup your settings (WTF folder inside World of Warcraft_retail_) regularly, the installation will warn you of any options that might overwrite your settings
 ___
-
-div align=centerp style='colorsteelblue'Picturespp
-img src=httpsi.imgur.comxEG4b4D.png width=800
-img src=httpsi.imgur.com5gXTAox.jpg width=800
-img src=httpsi.imgur.comDQsDaYi.png width=800
-img src=httpsi.imgur.comNYwCfhG.jpg width=800
-img src=httpsi.imgur.comGDKdRmf.jpg width=800
-img src=httpsi.imgur.comeOt6YGU.jpg width=800div
-
+>Pictures
+[![](https://https/i.imgur.com/xEG4b4D.png)](https/i.imgur.com/xEG4b4D.png "Click to Open Image 1")  
+[![](https://https/i.imgur.com/5gXTAox.png)](https/i.imgur.com/5gXTAox.png "Click to Open Image 2")  
+[![](https://https/i.imgur.com/DQsDaYi.png)](https/i.imgur.com/DQsDaYi.png "Click to Open Image 3")  
+[![](https://https/i.imgur.com/NYwCfhG.png)](https/i.imgur.com/NYwCfhG.png "Click to Open Image 4")  
+[![](https://https/i.imgur.com/GDKdRmf.png)](https/i.imgur.com/GDKdRmf.png "Click to Open Image 5")  
+[![](https://https/i.imgur.com/eOt6YGU.png)](https/i.imgur.com/eOt6YGU.png "Click to Open Image 6")  
 ___
-
-div align=centerp style='colorsteelblue'Creditsppdiv
-
-p align=centerThis plugin was based in a href=httpswww.tukui.orgaddons.phpid=154LuckyoneUIa and credits go to him for allowing its use.p
+>Credits
+This plugin was based in _**[LuckyoneUI](httpswww.tukui.orgaddons.php?id=154):** and credits go to him for allowing its use
