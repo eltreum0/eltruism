@@ -1,4 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file='Cursor/Cooldown.lua'/>
+	<Script file='Cursor/Cursor.lua'/>
 	<Script file='Nameplates/Nameplates.lua'/>
 	<Script file='Nameplates/PowerBar.lua'/>
 	<Script file='Actionbars.lua'/>
@@ -7,8 +9,6 @@
 	<Script file='Borders.lua'/>
 	<Script file='Chat.lua'/>
 	<Script file='CombatMusic.lua'/>
-	<Script file='Cooldown.lua'/>
-	<Script file='Cursor.lua'/>
 	<Script file='DarkLightColors.lua'/>
 	<Script file='DynamicFunctions.lua'/>
 	<Script file='EltruismAmmoDatatext.lua'/>
