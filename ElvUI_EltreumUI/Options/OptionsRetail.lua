@@ -3468,7 +3468,7 @@ if ElvUI_EltreumUI.Retail then
 									order = 1,
 									type = 'description',
 									fontSize = 'medium',
-									name = 'Icons8 (www.icons8.com) for some of the icons. List in license.txt\nLootText is licensed under GNU GPLv3 and is a fork of SLoTe from xavjer\nCursor is licensed under GNU GPLv3 and is a fork of CastCursor by michaelsp',
+									name = 'Cursor is licensed under GNU GPLv3 and is a fork of CastCursor by michaelsp\nCursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain\nExpand Hunter Stables is merged from Improved Stable Frame by Cybeloras and licensed under GNU GPLv3\nIcons8 (www.icons8.com) for some of the icons. List in license.txt\nLootText is licensed under GNU GPLv3 and is a fork of SLoTe from xavjer\nRogue Door Opener is a fork of Rogue Door Opener by Burzolog and licensed under GNU GPLv3',
 								},
 							},
 						},
