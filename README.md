@@ -39,17 +39,12 @@ ___
 > The first time you load into the game with Eltruism enabled the install prompt that will guide you will appear. It is recommended to backup your settings (WTF folder inside World of Warcraft_retail_) regularly, the installation will warn you of any options that might overwrite your settings
 ___
 ### Pictures
-
-![](https://https/i.imgur.com/xEG4b4D.png)
-
-
-
-[![](https://https/i.imgur.com/xEG4b4D.png)](https://i.imgur.com/xEG4b4D.png)
-[![](https://https/i.imgur.com/5gXTAox.png)](https://i.imgur.com/5gXTAox.png)
-[![](https://https/i.imgur.com/DQsDaYi.png)](https://i.imgur.com/DQsDaYi.png)
-[![](https://https/i.imgur.com/NYwCfhG.png)](https://i.imgur.com/NYwCfhG.png)
-[![](https://https/i.imgur.com/GDKdRmf.png)](https://i.imgur.com/GDKdRmf.png)
-[![](https://https/i.imgur.com/eOt6YGU.png)](https://i.imgur.com/eOt6YGU.png)
+[![](https://i.imgur.com/xEG4b4D.png)](https://i.imgur.com/xEG4b4D.png)
+[![](https://i.imgur.com/5gXTAox.png)](https://i.imgur.com/5gXTAox.png)
+[![](https://i.imgur.com/DQsDaYi.png)](https://i.imgur.com/DQsDaYi.png)
+[![](https://i.imgur.com/NYwCfhG.png)](https://i.imgur.com/NYwCfhG.png)
+[![](https://i.imgur.com/GDKdRmf.png)](https://i.imgur.com/GDKdRmf.png)
+[![](https://i.imgur.com/eOt6YGU.png)](https://i.imgur.com/eOt6YGU.png)
 ___
 ### Credits
 > This plugin was based in **[LuckyoneUI](httpswww.tukui.orgaddons.php?id=154)** and credits go to him for allowing its use
