@@ -9,9 +9,6 @@ local hooksecurefunc = _G.hooksecurefunc
 local SetCVar = _G.SetCVar
 local LCG = LibStub('LibCustomGlow-1.0')
 
---customize friendly nameplate health width inside instance
---/run C_NamePlate.SetNamePlateFriendlySize(21, 5)
-
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1
 function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)

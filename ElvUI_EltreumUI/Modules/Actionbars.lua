@@ -99,12 +99,25 @@ function ElvUI_EltreumUI:SkillGlowPet(event, unit)
 end
 hooksecurefunc(AB, "UpdatePet", ElvUI_EltreumUI.SkillGlowPet)
 
-
-
 --Preview the Glow as asked by Releaf
 local GlowPreview = CreateFrame("Frame")
+GlowPreview:SetSize(40, 40)
+GlowPreview:ClearAllPoints()
+GlowPreview:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 50)
+GlowPreview:SetFrameStrata("DIALOG")
+local GlowTexture = GlowPreview:CreateTexture()
 GlowPreview:Hide()
 function ElvUI_EltreumUI:PreviewGlow()
+
+	local _, _, glowicontexture = GetSpellInfo(19750)
+	GlowTexture:SetTexture(glowicontexture)
+	GlowTexture:SetAllPoints(GlowPreview)
+	GlowPreview:SetMovable(true)
+	GlowPreview:EnableMouse(true)
+	GlowPreview:RegisterForDrag("LeftButton")
+	GlowPreview:SetScript("OnDragStart", GlowPreview.StartMoving)
+	GlowPreview:SetScript("OnDragStop",GlowPreview.StopMovingOrSizing)
+
 	local skillglowcolor
 	if not E.db.ElvUI_EltreumUI.glow.colorclass then
 		local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolor
@@ -117,25 +130,26 @@ function ElvUI_EltreumUI:PreviewGlow()
 	end
     if GlowPreview:IsShown() then
 		if E.db.ElvUI_EltreumUI.glow.pixel then
-			LCG.PixelGlow_Stop(ElvUI_Bar1Button1)
+			--LCG.PixelGlow_Stop(ElvUI_Bar1Button1)
+			LCG.PixelGlow_Stop(GlowPreview)
 		end
 		if E.db.ElvUI_EltreumUI.glow.autocast then
-			LCG.AutoCastGlow_Stop(ElvUI_Bar1Button1)
+			LCG.AutoCastGlow_Stop(GlowPreview)
 		end
 		if E.db.ElvUI_EltreumUI.glow.blizzard then
-			LCG.ButtonGlow_Stop(ElvUI_Bar1Button1)
+			LCG.ButtonGlow_Stop(GlowPreview)
 		end
 		GlowPreview:Hide()
     else
     	GlowPreview:Show()
     	if E.db.ElvUI_EltreumUI.glow.pixel then
-			LCG.PixelGlow_Start(ElvUI_Bar1Button1, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+			LCG.PixelGlow_Start(GlowPreview, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
 		end
 		if E.db.ElvUI_EltreumUI.glow.autocast then
-			LCG.AutoCastGlow_Start(ElvUI_Bar1Button1, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+			LCG.AutoCastGlow_Start(GlowPreview, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 		end
 		if E.db.ElvUI_EltreumUI.glow.blizzard then
-			LCG.ButtonGlow_Start(ElvUI_Bar1Button1, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
+			LCG.ButtonGlow_Start(GlowPreview, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
 		end
     end
 end
