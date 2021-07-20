@@ -208,3 +208,11 @@ ElvUF.Tags.Methods['eltruism:ReleafIconOutline:player'] = function(unit)
 	return icon
 end
 E:AddTagInfo('eltruism:ReleafIconOutline:player', ElvUI_EltreumUI.Name, "Shows Class Icons with Outlines by Releaf on Player targets")
+
+-- Releaf Logo
+ElvUF.Tags.Events['releaf'] = 'UNIT_NAME_UPDATE'
+ElvUF.Tags.Methods['releaf'] = function(unit)
+	local releaf = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\releaf.tga:0:0:0:0|t"
+	return releaf
+end
+E:AddTagInfo('releaf', ElvUI_EltreumUI.Name, "Shows Releaf's Icon")
