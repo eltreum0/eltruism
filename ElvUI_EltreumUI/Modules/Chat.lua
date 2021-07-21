@@ -8,7 +8,6 @@ local PlaySoundFile = _G.PlaySoundFile
 local gsub = _G.gsub
 local string = _G.string
 local WT = E.Libs.AceAddon:GetAddon("ElvUI_WindTools", true)
-local CT = WT:GetModule("ChatText")
 
 --chat fading/mouseover/combathide
 local leftfaderbutton = 0  -- when 1 it can fade, when 0 it cannot
@@ -313,18 +312,21 @@ ChatFrame_AddMessageEventFilter("ROLE_CHANGED_INFORM", ColorSysMsgs)
 --ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", ColorSysMsgs) --this is for testing purposes
 
 --party/raid role icons
-function ElvUI_EltreumUI:RoleIcons(_)
-	local sizeString = ":12:12"
-	local roleIcons = {
-		TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
-		HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
-		DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', sizeString),
-	}
-    CT.cache.blizzardRoleIcons.Tank = roleIcons.TANK
-    CT.cache.blizzardRoleIcons.Healer = roleIcons.HEALER
-    CT.cache.blizzardRoleIcons.DPS = roleIcons.DAMAGER
+if IsAddOnLoaded("ElvUI_WindTools") then
+	local CT = WT:GetModule("ChatText")
+	function ElvUI_EltreumUI:RoleIcons(_)
+		local sizeString = ":12:12"
+		local roleIcons = {
+			TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
+			HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
+			DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', sizeString),
+		}
+	    CT.cache.blizzardRoleIcons.Tank = roleIcons.TANK
+	    CT.cache.blizzardRoleIcons.Healer = roleIcons.HEALER
+	    CT.cache.blizzardRoleIcons.DPS = roleIcons.DAMAGER
+	end
+	hooksecurefunc(CT, "UpdateRoleIcons", ElvUI_EltreumUI.RoleIcons)
 end
-hooksecurefunc(CT, "UpdateRoleIcons", ElvUI_EltreumUI.RoleIcons)
 
 --icons in chat when party member swaps roles
 function ElvUI_EltreumUI:ChatRoleSwapIcons()
