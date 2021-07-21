@@ -68,7 +68,7 @@ end
 
 --Dynamic Level Nameplate Style Filter
 function ElvUI_EltreumUI:DynamicLevelStyleFilter()
-	if E.db.ElvUI_EltreumUI.nameplatelevel.enable then
+	if E.db.ElvUI_EltreumUI.nameplatelevel.enable and E.db.nameplates.filters.EltreumLevel then
 		if not E.private.ElvUI_EltreumUI.install_version then
 			return
 		else
@@ -103,7 +103,7 @@ function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
 	else
-		if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" then
+		if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" and E.db.nameplates.filters.EltreumSpellsteal then
 			if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Retail then
 				if myclass == 'MAGE' then
 					local level = UnitLevel("player")

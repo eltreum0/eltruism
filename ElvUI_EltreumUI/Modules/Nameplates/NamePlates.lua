@@ -146,7 +146,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
 			if not E.private.ElvUI_EltreumUI.install_version then
 				return
-			elseif E.private.ElvUI_EltreumUI.install_version > "2.0.0" then
+			elseif E.private.ElvUI_EltreumUI.install_version > "2.0.0" and E.global.nameplate.filters.EltreumRare then
 				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["border"] = true
 				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
 				E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
@@ -157,7 +157,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		E.global["nameplate"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
 		if not E.private.ElvUI_EltreumUI.install_version then
 			return
-		elseif E.private.ElvUI_EltreumUI.install_version > "2.0.0" then
+		elseif E.private.ElvUI_EltreumUI.install_version > "2.0.0" and E.global.nameplate.filters.EltreumRare then
 			E.global["nameplate"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 		end
 	end
