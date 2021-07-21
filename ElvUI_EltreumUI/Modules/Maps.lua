@@ -76,7 +76,6 @@ if ElvUI_EltreumUI.Retail then
 	end
 end
 
-
 --original version
 --[[
 --Conversion of Time to Arrive weakaura

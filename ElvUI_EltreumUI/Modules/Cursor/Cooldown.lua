@@ -182,10 +182,13 @@ function ElvUI_EltreumUI:OnUpdate()
 		end
 		if cd > 60 then
 			self.text:SetFormattedText("%01.f".."m", cd / 60, cd % 60)
+			self.text:SetTextColor(1, 1, 1)
 		elseif cd > 1 and cd < 60 then
 			self.text:SetFormattedText("%01.f", math.floor(cd))
+			self.text:SetTextColor(1, 1, 1)
 		else
 			self.text:SetFormattedText("%.1f", cd)
+			self.text:SetTextColor(1, 0, 0)
 		end
 	end
 	if isHidden then
