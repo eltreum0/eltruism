@@ -7,10 +7,6 @@ local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local GetRaidRosterInfo = _G.GetRaidRosterInfo
 
-function ElvUI_EltreumUI:PartyRaidInit()
-	ElvUI_EltreumUI:ChatRoleSwapIcons() --icons on role swap
-end
-
 -- Conversion of the party/raid death weakaura into an addon option
 local name = {}
 local _
@@ -65,6 +61,13 @@ if ElvUI_EltreumUI.Retail then
 	if IsAddOnLoaded("ElvUI_SLE") then
 		local SLE = unpack(ElvUI_SLE)
 		SLE.rolePaths["Eltruism"] = {
+			TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga",
+			HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga",
+			DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga"
+		}
+	else
+		local UF = E:GetModule('UnitFrames')
+			UF.RoleIconTextures = {
 			TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga",
 			HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga",
 			DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga"
