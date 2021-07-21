@@ -7,6 +7,78 @@ local string = _G.string
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
 
+--Conversion of Time to Arrive weakaura (new version)
+if ElvUI_EltreumUI.Retail then
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then
+		return
+	elseif not E.db.ElvUI_EltreumUI then
+		return
+	elseif E.db.ElvUI_EltreumUI.waypointetasetting == nil or E.db.ElvUI_EltreumUI.waypointetasetting.enable == nil or E.db.ElvUI_EltreumUI.waypointetasetting.enable then
+		--force nil to true because lua is weird and when values are equal they dont get saved
+		E.db.ElvUI_EltreumUI.waypointetasetting = {
+			enable = true,
+		}
+		E.db.ElvUI_EltreumUI.waypointetasetting.enable = true
+
+		--set the throttle
+		local ONUPDATE_INTERVAL = 1
+		local TimeSinceLastUpdate = 0
+
+		--create frame
+		local EltruismTimeToArrive = CreateFrame("Frame", "WaypointTimeToArriveText", UIParent)
+		EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
+		EltruismTimeToArrive.TimeText:SetJustifyV("TOP")
+		EltruismTimeToArrive.TimeText:SetSize(0, 26)
+		EltruismTimeToArrive.TimeText:SetPoint("TOP", "SuperTrackedFrame", "BOTTOM", 0, -40)
+		EltruismTimeToArrive.TimeText:SetTextColor(1, 1, 1)
+		--set font to be elvui's
+		EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, "OUTLINE")
+		EltruismTimeToArrive.TimeText:SetParent("SuperTrackedFrame")
+		EltruismTimeToArrive:SetParent("SuperTrackedFrame")
+
+		--use throttled onupdate to udpate the text (once per second)
+		EltruismTimeToArrive:SetScript("OnUpdate", function(self, elapsed)
+			TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+			if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+				TimeSinceLastUpdate = 0
+				local speed = GetUnitSpeed("player")
+				local distance = C_Navigation.GetDistance()
+				local seconds = 0
+				local minutes = 0
+				if speed > 0 then
+					local eta= math.abs(distance / speed)
+					if eta > 600 then
+						minutes = string.format("%02.f", math.floor(eta/60 ))
+						seconds = string.format("%02.f", math.floor(eta - minutes *60))
+					elseif eta < 600 and eta > 10 then
+						minutes = string.format("%01.f", math.floor(eta/60))
+						seconds = string.format("%02.f", math.floor(eta - minutes *60))
+					elseif eta < 10 then
+						minutes = string.format("%01.f", math.floor(eta/60))
+						seconds = string.format("%1.d", math.floor(eta - minutes *60))
+					else
+						minutes = string.format("%02.f", math.floor(eta/60))
+						seconds = string.format("%02.f", math.floor(eta - minutes *60))
+					end
+				end
+
+				if  minutes == 0 and seconds == 0 then
+					EltruismTimeToArrive.TimeText:SetText("***")
+				elseif minutes < "01" and seconds > "0" then
+					EltruismTimeToArrive.TimeText:SetText(seconds.."s")
+				else
+					EltruismTimeToArrive.TimeText:SetText(minutes.."m"..":"..seconds.."s")
+				end
+			end
+		end)
+	elseif E.db.ElvUI_EltreumUI.waypointetasetting.enable == false then
+		return
+	end
+end
+
+
+--original version
+--[[
 --Conversion of Time to Arrive weakaura
 --Create the frame to display the text
 if ElvUI_EltreumUI.Retail then
@@ -61,3 +133,4 @@ if ElvUI_EltreumUI.Retail then
 	end
 	WaypointTimeToArriveFrame:SetScript("OnUpdate", OnUpdateTimer)
 end
+]]--

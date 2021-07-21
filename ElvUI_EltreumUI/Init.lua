@@ -48,7 +48,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:StealthOptions()
 	ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 	if ElvUI_EltreumUI.Retail then
-		ElvUI_EltreumUI:WaypointTimeToArrive()
+		--ElvUI_EltreumUI:WaypointTimeToArrive()
 		ElvUI_EltreumUI:SkillGlow()
 		ElvUI_EltreumUI:GetSpec()
 		ElvUI_EltreumUI:ArenaQuest()
@@ -134,9 +134,9 @@ function ElvUI_EltreumUI:Initialize()
 	SetCVar('nameplateTargetRadialPosition', 1)
 	--depending on game version sets cvars or register events
 	if ElvUI_EltreumUI.Retail then
-		ElvUI_EltreumUI:RegisterEvent('SUPER_TRACKING_CHANGED')
-		ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_CREATED')
-		ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_DESTROYED')
+		--ElvUI_EltreumUI:RegisterEvent('SUPER_TRACKING_CHANGED')
+		--ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_CREATED')
+		--ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_DESTROYED')
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
 		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW')
 		--ElvUI_EltreumUI:RegisterEvent('TRANSMOGRIFY_OPEN')
@@ -234,6 +234,7 @@ function ElvUI_EltreumUI:ENCOUNTER_END()
 	end
 end
 
+--[[
 function ElvUI_EltreumUI:SUPER_TRACKING_CHANGED()
 	ElvUI_EltreumUI:WaypointTimeToArrive()
 end
@@ -245,6 +246,7 @@ end
 function ElvUI_EltreumUI:NAVIGATION_FRAME_DESTROYED()
 	ElvUI_EltreumUI:WaypointTimeToArrive()
 end
+]]--
 
 function ElvUI_EltreumUI:UPDATE_STEALTH()
 	ElvUI_EltreumUI:StealthOptions()
