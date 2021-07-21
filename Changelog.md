@@ -4,7 +4,9 @@ Maybe Add Weakauras look alike Raid Consumables Bar (although bar6 serves that p
 ___
 ### v2.4.5
 Added a Preview for Custom Glow, you will need to toggle it on and off in order to update the glow options\
+Updated Time to Arrive to use less CPU\
 Fixed Buffs being moved when autoadjust was turned off\
+Cooldown will now color the text red when below 1 second
 ___
 ### v2.4.4
 Added glow to pet action bars, this setting is also available for TBC/Classic in Eltruism > Custom Glow\
