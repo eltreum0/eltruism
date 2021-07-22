@@ -9,7 +9,7 @@ local UIParent = _G.UIParent
 
 --Conversion of Time to Arrive weakaura (new version)
 if ElvUI_EltreumUI.Retail then
-	local EltruismTimeToArrive = CreateFrame("Frame", "WaypointTimeToArriveText", UIParent)
+	local EltruismTimeToArrive = CreateFrame("Frame", "EltruismTimeToArrive", UIParent)
 	EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 	function ElvUI_EltreumUI:WaypointTimeToArrive()
 		if E.db.ElvUI_EltreumUI.waypointetasetting.enable then
