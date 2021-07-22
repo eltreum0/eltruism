@@ -7,7 +7,7 @@ local UIFrameFadeIn = _G.UIFrameFadeIn
 local UIFrameFadeOut = _G.UIFrameFadeOut
 
 -- Create Stealth Overlay Frame
-local StealthOptionsFrame = CreateFrame("Frame", "StealthOverlay", E.UIParent)
+local StealthOptionsFrame = CreateFrame("Frame", "EltruismStealthOverlay", E.UIParent)
 StealthOptionsFrame:Point("TOPLEFT")
 StealthOptionsFrame:Point("BOTTOMRIGHT")
 StealthOptionsFrame:SetFrameLevel(0)

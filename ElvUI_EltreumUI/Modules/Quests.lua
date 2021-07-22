@@ -47,7 +47,7 @@ if ElvUI_EltreumUI.Retail then
 end
 
 --based on Rogue Door Opener by Burzolog
-local RogueOrderHallAutoOpen = CreateFrame("Frame")
+local RogueOrderHallAutoOpen = CreateFrame("Frame", "EltruismRogueOrderHallAutoOpen")
 RogueOrderHallAutoOpen:RegisterEvent("GOSSIP_SHOW")
 function ElvUI_EltreumUI:RogueAutoOpen()
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then

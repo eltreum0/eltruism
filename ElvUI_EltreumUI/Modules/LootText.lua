@@ -10,7 +10,7 @@ local CombatText = _G.CombatText
 -- SLoTE uses GNU GPLv3 and as such this module of Eltruism also uses GNU GPLv3
 
 --Create the loottext frame
-local LootTextframe = CreateFrame("Frame")
+local LootTextframe = CreateFrame("Frame", "EltruismLoot")
 --LootTextframe:RegisterEvent("ADDON_LOADED")
 LootTextframe:RegisterEvent("UI_ERROR_MESSAGE")
 LootTextframe:RegisterEvent("CHAT_MSG_LOOT")

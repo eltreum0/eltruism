@@ -15,7 +15,7 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 local UnitCanAttack = _G.UnitCanAttack
 
 --setup nameplate power frame
-local EltreumPowerBar = CreateFrame("StatusBar")
+local EltreumPowerBar = CreateFrame("StatusBar","EltruismPowerBar")
 EltreumPowerBar:SetValue(0)
 EltreumPowerBar:SetFillStyle("STANDARD")
 EltreumPowerBar.Text = EltreumPowerBar:CreateFontString(nil, "OVERLAY", "GameFontNormal")

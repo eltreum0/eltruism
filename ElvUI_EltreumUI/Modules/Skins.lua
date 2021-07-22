@@ -58,7 +58,7 @@ local classIconsReleafborder = {
 
 
 --add class icon to class in character panel
-local classFrame = CreateFrame("Frame", nil, UIParent)
+local classFrame = CreateFrame("Frame", "EltruismClassIcon", UIParent)
 classFrame:SetSize(20, 20)
 classFrame:SetParent("PaperDollFrame")
 local classTexture = classFrame:CreateTexture()
@@ -193,12 +193,12 @@ function ElvUI_EltreumUI:Skins()
 			if EventToastManagerFrame then
 				_G.EventToastManagerFrame.GLine:SetVertexColor(R, G, B)
 				_G.EventToastManagerFrame.GLine2:SetVertexColor(R, G, B)
-				EventToastManagerFrame.StatusLine = CreateFrame("StatusBar", nil, EventToastManagerFrame)
+				EventToastManagerFrame.StatusLine = CreateFrame("StatusBar", "EltruismEventToastLine", EventToastManagerFrame)
 				EventToastManagerFrame.StatusLine:SetSize(418, 3)
 				EventToastManagerFrame.StatusLine:SetPoint("TOP", EventToastManagerFrame, 0, -5)
 				EventToastManagerFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 				EventToastManagerFrame.StatusLine:SetStatusBarColor(R, G, B, 1)
-				EventToastManagerFrame.StatusLine2 = CreateFrame("StatusBar", nil, EventToastManagerFrame)
+				EventToastManagerFrame.StatusLine2 = CreateFrame("StatusBar", "EltruismEventToastLine2", EventToastManagerFrame)
 				EventToastManagerFrame.StatusLine2:SetSize(418, 3)
 				EventToastManagerFrame.StatusLine2:SetPoint("BOTTOM", EventToastManagerFrame, 0, 0)
 				EventToastManagerFrame.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
@@ -248,7 +248,7 @@ function ElvUI_EltreumUI:Skins()
 end
 
 --Wider Transmog Window
-local EltruismWiderTransmog = CreateFrame("Frame")
+local EltruismWiderTransmog = CreateFrame("Frame", "EltruismWiderTransmog")
 EltruismWiderTransmog:RegisterEvent("ADDON_LOADED")
 EltruismWiderTransmog:SetScript("OnEvent",
 	function(_, _, arg)
