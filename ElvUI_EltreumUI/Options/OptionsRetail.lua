@@ -491,6 +491,7 @@ if ElvUI_EltreumUI.Retail then
 									type = 'execute',
 									name = '|cff16C3F2AddOn|r|cFFFFFFFFSkins|r',
 									desc = L["Reset to Eltruism defaults."],
+									confirm = true,
 									func = function() ElvUI_EltreumUI:AddonSetupAS() E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								projectazilroka = {
@@ -498,6 +499,7 @@ if ElvUI_EltreumUI.Retail then
 									type = 'execute',
 									name = '|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r',
 									desc = L["Reset to Eltruism defaults."],
+									confirm = true,
 									func = function() ElvUI_EltreumUI:AddonSetupPA() E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								shadowandlight = {
@@ -505,6 +507,7 @@ if ElvUI_EltreumUI.Retail then
 									type = 'execute',
 									name = E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0),
 									desc = L["Reset to Eltruism defaults."],
+									confirm = true,
 									func = function() ElvUI_EltreumUI:GetSLEProfile() E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								windtools = {
@@ -512,6 +515,7 @@ if ElvUI_EltreumUI.Retail then
 									type = 'execute',
 									name = E:TextGradient(L["WindTools"], 0.000, 0.592, 0.902, 0.000, 0.659, 1.000),
 									desc = L["Reset to Eltruism defaults."],
+									confirm = true,
 									func = function() ElvUI_EltreumUI:GetWindToolsProfile() E:StaticPopup_Show('CONFIG_RL') end,
 								},
 							},
