@@ -1,6 +1,12 @@
 ### 🌌 Next Version 
-To be Determined/Ideas:
-Maybe Add Weakauras look alike Raid Consumables Bar (although bar6 serves that purpose)
+The future is uncertain
+___
+### v2.4.6
+Added loot icons, adapted from Stanzilla's Chat Loot Icons which is Public Domain
+Added InstantLoot, yet another fast looter
+Hid the copy chat and Voice Buttons 
+Waypoint Time to Arrive now has unlimited range and the font follows ElvUI General Font
+Skinned Objective Tracker if Shadow and Light and Windtools are not loaded in Retail
 ___
 ### v2.4.5
 Added a Preview for Custom Glow, you will need to toggle it on and off in order to update the glow options\

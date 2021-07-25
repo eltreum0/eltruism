@@ -42,6 +42,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:FriendlyNameplates()
 	ElvUI_EltreumUI:SkinsInit()
 	ElvUI_EltreumUI:TextureMode()
+	ElvUI_EltreumUI:SkinQuests() --quest skins
 	ElvUI_EltreumUI:WAAnchor()
 	ElvUI_EltreumUI:ChatRoleSwapIcons()
 	ElvUI_EltreumUI:DynamicChatFade()
