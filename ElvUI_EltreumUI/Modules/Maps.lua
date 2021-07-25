@@ -36,9 +36,7 @@ if ElvUI_EltreumUI.Retail then
 
 					--new pins get automatically tracked
 					if C_Map.HasUserWaypoint() == true then
-					    C_Timer.After(0, function()
-					    	C_SuperTrack.SetSuperTrackedUserWaypoint(true)
-					    end)
+					    C_SuperTrack.SetSuperTrackedUserWaypoint(true)
 					end
 
 					--remove max distance
@@ -46,11 +44,7 @@ if ElvUI_EltreumUI.Retail then
 						function SuperTrackedFrame:GetTargetAlphaBaseValue()
 							local d = C_Navigation.GetDistance()
 							if (d >= 40 ) then
-								if SuperTrackedFrame.isClamped then
-									return 1
-								else
-									return 1
-								end
+								return 1
 							else
 								return 0
 							end
