@@ -13,32 +13,6 @@ if ElvUI_EltreumUI.Retail then
 	EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 	function ElvUI_EltreumUI:WaypointTimeToArrive()
 		if E.db.ElvUI_EltreumUI.waypointetasetting.enable then
-
-			--remove max distance
-			do
-				function SuperTrackedFrame:GetTargetAlphaBaseValue()
-					local d = C_Navigation.GetDistance()
-					if (d >= 40 ) then
-						if SuperTrackedFrame.isClamped then
-							return 1
-						else
-							return 1
-						end
-					else
-						return 0
-					end
-				end
-			end
-
-			--new pins get automatically tracked
-			local autopin = CreateFrame("Frame")
-			autopin:SetScript("OnEvent", function(self, event, ...)
-				if event == "USER_WAYPOINT_UPDATED" and C_Map.HasUserWaypoint() == true then
-					C_SuperTrack.SetSuperTrackedUserWaypoint(true)
-				end
-			end)
-			autopin:RegisterEvent("USER_WAYPOINT_UPDATED")
-
 			--set the throttle
 			local ONUPDATE_INTERVAL = 1
 			local TimeSinceLastUpdate = 0
@@ -59,6 +33,30 @@ if ElvUI_EltreumUI.Retail then
 				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 					TimeSinceLastUpdate = 0
+
+					--new pins get automatically tracked
+					if C_Map.HasUserWaypoint() == true then
+					    C_Timer.After(0, function()
+					    	C_SuperTrack.SetSuperTrackedUserWaypoint(true)
+					    end)
+					end
+
+					--remove max distance
+					do
+						function SuperTrackedFrame:GetTargetAlphaBaseValue()
+							local d = C_Navigation.GetDistance()
+							if (d >= 40 ) then
+								if SuperTrackedFrame.isClamped then
+									return 1
+								else
+									return 1
+								end
+							else
+								return 0
+							end
+						end
+					end
+
 					local speed = GetUnitSpeed("player")
 					local distance = C_Navigation.GetDistance()
 					local seconds = 0
