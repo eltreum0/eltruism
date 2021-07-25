@@ -42,4 +42,5 @@ function ElvUI_EltreumUI:GetASProfile()
 	--AS.db["HideChatFrame"] = "ChatFrame3"
 	AS.db["TransparentEmbed"] = true
 	AS.db["EmbedSystemDual"] = true
+	AS.db["Immersion"] = true
 end
