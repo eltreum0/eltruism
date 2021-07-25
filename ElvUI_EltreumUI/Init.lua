@@ -34,6 +34,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if not E.private.ElvUI_EltreumUI.install_version then return end
 	ElvUI_EltreumUI:LoadCommands()
 	ElvUI_EltreumUI:Borders()
+	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	ElvUI_EltreumUI:AFKmusic()
 	ElvUI_EltreumUI:LootText()
 	ElvUI_EltreumUI:VersionCheckInit()
