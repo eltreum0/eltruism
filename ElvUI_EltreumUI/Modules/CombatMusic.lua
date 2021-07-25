@@ -1,13 +1,8 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-
 local _G = _G
 local IsInInstance = _G.IsInInstance
 local PlayMusic = _G.PlayMusic
 local StopMusic = _G.StopMusic
-
-
-
-
 
 --play music during combat
 local dontstop = 0

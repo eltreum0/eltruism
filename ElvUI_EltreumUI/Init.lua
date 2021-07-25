@@ -40,9 +40,8 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:CursorInit()
 	ElvUI_EltreumUI:CastCursor()
 	ElvUI_EltreumUI:FriendlyNameplates()
-	ElvUI_EltreumUI:SkinsInit()
 	ElvUI_EltreumUI:TextureMode()
-	ElvUI_EltreumUI:SkinQuests() --quest skins
+
 	ElvUI_EltreumUI:WAAnchor()
 	ElvUI_EltreumUI:ChatRoleSwapIcons()
 	ElvUI_EltreumUI:DynamicChatFade()
@@ -52,6 +51,8 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:WaypointTimeToArrive()
 		ElvUI_EltreumUI:SkillGlow()
 		ElvUI_EltreumUI:GetSpec()
+		ElvUI_EltreumUI:SkinQuests()
+		ElvUI_EltreumUI:SkinLevelUp()
 		ElvUI_EltreumUI:ArenaQuest()
 		ElvUI_EltreumUI:ArenaUnitframes()
 		ElvUI_EltreumUI:BattlegroundGroupUnitframes()
@@ -62,9 +63,11 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	end
 	if ElvUI_EltreumUI.Classic then
 		ElvUI_EltreumUI:DynamicClassicDatatext()
+		ElvUI_EltreumUI:ExpandedTalents()
 	end
 	if ElvUI_EltreumUI.TBC then
 		ElvUI_EltreumUI:DynamicClassicDatatext()
+		ElvUI_EltreumUI:ExpandedTalents()
 		ElvUI_EltreumUI:ArenaUnitframes()
 		ElvUI_EltreumUI:BattlegroundGroupUnitframes()
 		ElvUI_EltreumUI:DynamicBuffs()
