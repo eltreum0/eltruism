@@ -13,7 +13,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 	E.private["WT"]["maps"]["minimapButtons"]["garrison"] = true
 	E.private["WT"]["maps"]["minimapButtons"]["inverseDirection"] = true
 	E.private["WT"]["maps"]["minimapButtons"]["spacing"] = 1
-	E.private["WT"]["maps"]["superTracker"]["noLimit"] = true
+	--E.private["WT"]["maps"]["superTracker"]["noLimit"] = true
 	E.private["WT"]["maps"]["worldMap"]["scale"]["enable"] = false
 	E.private["WT"]["misc"]["autoScreenshot"] = false
 	E.private["WT"]["misc"]["lfgList"]["enable"] = false

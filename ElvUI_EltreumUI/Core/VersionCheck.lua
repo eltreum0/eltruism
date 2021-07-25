@@ -84,5 +84,9 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		if ElvUI_EltreumUI.Retail then
 			E.db["WT"]["social"]["chatText"]["roleIconStyle"] = "BLIZZARD" --update role icons
 		end
+	elseif E.private.ElvUI_EltreumUI.install_version >= "2.4.5" and E.private.ElvUI_EltreumUI.install_version < "2.4.6" then
+		if ElvUI_EltreumUI.Retail then
+			E.db["sle"]["loot"]["looticons"]["enable"] = false
+		end
 	end
 end

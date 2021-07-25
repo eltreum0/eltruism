@@ -22,6 +22,7 @@ P.ElvUI_EltreumUI = {
 		invertclick = false,
 		colorsysmsg = true,
 		rollsound = false,
+		looticons = true,
 	},
 
 	skins = {

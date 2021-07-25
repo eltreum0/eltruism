@@ -122,7 +122,6 @@ function ElvUI_EltreumUI:WAAnchor()
 	E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", L["EltruismConsumables"], nil, nil, nil, "ALL")
 end
 
-
 -- UI Scale
 function ElvUI_EltreumUI:SetupScale()
 	E.global["general"]["UIScale"] = 0.7
@@ -136,19 +135,6 @@ function ElvUI_EltreumUI:WorldTextScale(value)
 	E.db.ElvUI_EltreumUI.otherstuff.worldtextscale = value
 	SetCVar('WorldTextScale', value)
 end
-
---[[function ElvUI_EltreumUI:floatingrep(value)
-	E.db.ElvUI_EltreumUI.otherstuff.floatingrep = value
-	local rep = value
-	local floatrep
-	if rep == false then
-		floatrep = 0
-	elseif rep == true then
-		floatrep = 1
-	end
-	SetCVar('floatingCombatTextRepChanges', floatrep)
-end]]--
-
 
 -- CVars General
 function ElvUI_EltreumUI:SetupCVars()
@@ -175,6 +161,9 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('lockActionBars', 1)
 	SetCVar('spamFilter', 0)
 	SetCVar('Sound_EnableErrorSpeech', 1)
+
+	-- fast loot
+	SetCVar("autoLootRate", 1)
 
 	--Chat CVars
 	SetCVar('chatStyle', 'classic')

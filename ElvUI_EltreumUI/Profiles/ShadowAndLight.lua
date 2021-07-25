@@ -8,7 +8,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 	E.global["sle"]["advanced"]["gameMenu"]["enable"] = false
 	E.global["sle"]["advanced"]["general"] = true
 	E.global["sle"]["advanced"]["optionsLimits"] = true
-	E.private["sle"]["install_complete"] = "4.23"
+	E.private["sle"]["install_complete"] = "4.25"
 	-- Private DB
 	E.private["sle"]["module"]["blizzmove"]["enable"] = true
 	E.private["sle"]["module"]["screensaver"] = true
@@ -29,7 +29,6 @@ function ElvUI_EltreumUI:GetSLEProfile()
 	E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "Minimalist"
 	E.private["sle"]["skins"]["objectiveTracker"]["underlineHeight"] = 2
 	E.private["sle"]["skins"]["petbattles"]["enable"] = false
-	E.private["skins"]["parchmentRemoverEnable"] = true
 	E.private["sle"]["pvp"]["KBbanner"]["enable"] = true
 	E.private["sle"]["uibuttons"]["style"] = "dropdown"
 	E.private["sle"]["unitframe"]["statusbarTextures"]["aura"] = true
@@ -226,7 +225,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 	E.db["sle"]["loot"]["looticons"]["channels"]["CHAT_MSG_WHISPER"] = true
 	E.db["sle"]["loot"]["looticons"]["channels"]["CHAT_MSG_WHISPER_INFORM"] = true
 	E.db["sle"]["loot"]["looticons"]["channels"]["CHAT_MSG_YELL"] = true
-	E.db["sle"]["loot"]["looticons"]["enable"] = true
+	E.db["sle"]["loot"]["looticons"]["enable"] = false
 	E.db["sle"]["loot"]["looticons"]["size"] = 13
 	--AFK Screensaver
 	E.db["sle"]["afk"]["animTime"] = 2

@@ -18,71 +18,12 @@ if ElvUI_EltreumUI.Retail then
 		tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 		Pages = {
 			[1] = function()
-				 -- Welcome Page and addon installed check
-				 	if (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ElvUI_WindTools")) then
-						PluginInstallFrame.SubTitle:SetFormattedText(L["WARNING"])
-						PluginInstallFrame.Desc1:SetText(L["Make sure to install "]..E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..L[" and "]..E:TextGradient(L["WindTools"], 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).. L[" before starting this installation process"])
-						PluginInstallFrame.Desc2:SetText(L["Curse doesn't allow selective dependencies for addons when it comes to World of Warcraft versions"])
-						PluginInstallFrame.Desc3:SetText(E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..L[" and "]..E:TextGradient(L["WindTools"], 0.000, 0.592, 0.902, 0.000, 0.659, 1.000)..L[" are required for Retail but not Classic that's why you are seeing this screen"])
-						PluginInstallFrame.Desc4:SetText(L["Download them before continuing"])
-						PluginInstallFrame.Next:Disable()
-					elseif (not IsAddOnLoaded("ElvUI_SLE")) then
-						PluginInstallFrame.SubTitle:SetFormattedText(L["WARNING"])
-						PluginInstallFrame.Desc1:SetText(L["Make sure to install "]..E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..L[" before starting this installation process"])
-						PluginInstallFrame.Next:Disable()
-					elseif (not IsAddOnLoaded("AddOnSkins")) then
-						PluginInstallFrame.SubTitle:SetFormattedText(L["WARNING"])
-						PluginInstallFrame.Desc1:SetText(L["Make sure to install "]..L["AddOnSkins"]..L[" before starting this installation process"])
-						PluginInstallFrame.Next:Disable()
-					elseif (not IsAddOnLoaded("ProjectAzilroka")) then
-						PluginInstallFrame.SubTitle:SetFormattedText(L["WARNING"])
-						PluginInstallFrame.Desc1:SetText(L["Make sure to install "]..L["ProjectAzilroka"]..L[" before starting this installation process"])
-						PluginInstallFrame.Next:Disable()
-					elseif (not IsAddOnLoaded("ElvUI_WindTools")) then
-						PluginInstallFrame.SubTitle:SetFormattedText(L["WARNING"])
-						PluginInstallFrame.Desc1:SetText(L["Make sure to install "]..E:TextGradient(L["WindTools"], 0.000, 0.592, 0.902, 0.000, 0.659, 1.000)..L[" before starting this installation process"])
-						PluginInstallFrame.Next:Disable()
-					elseif (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("AddOnSkins")) then
-						PluginInstallFrame.SubTitle:SetFormattedText(L["WARNING"])
-						PluginInstallFrame.Desc1:SetText(L["Make sure to install "]..E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..L[" and "]..L["AddOnSkins"]..L[" before starting this installation process"])
-						PluginInstallFrame.Next:Disable()
-					elseif (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ProjectAzilroka")) then
-						PluginInstallFrame.SubTitle:SetFormattedText(L["WARNING"])
-						PluginInstallFrame.Desc1:SetText(L["Make sure to install "]..E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..L[" and "]..L["ProjectAzilroka"]..L[" before starting this installation process"])
-						PluginInstallFrame.Next:Disable()
-					elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("AddOnSkins")) then
-						PluginInstallFrame.SubTitle:SetFormattedText(L["WARNING"])
-						PluginInstallFrame.Desc1:SetText(L["Make sure to install "]..E:TextGradient(L["WindTools"], 0.000, 0.592, 0.902, 0.000, 0.659, 1.000)..L[" and "]..L["AddOnSkins"]..L[" before starting this installation process"])
-						PluginInstallFrame.Next:Disable()
-					elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ProjectAzilroka")) then
-						PluginInstallFrame.SubTitle:SetFormattedText(L["WARNING"])
-						PluginInstallFrame.Desc1:SetText(L["Make sure to install "]..E:TextGradient(L["WindTools"], 0.000, 0.592, 0.902, 0.000, 0.659, 1.000)..L[" and "]..L["ProjectAzilroka"]..L[" before starting this installation process"])
-						PluginInstallFrame.Next:Disable()
-					elseif (not IsAddOnLoaded("AddOnSkins")) and (not IsAddOnLoaded("ProjectAzilroka")) then
-						PluginInstallFrame.SubTitle:SetFormattedText(L["WARNING"])
-						PluginInstallFrame.Desc1:SetText(L["Make sure to install "]..L["AddOnSkins"]..L[" and "]..L["ProjectAzilroka"]..L[" before starting this installation process"])
-						PluginInstallFrame.Next:Disable()
-					elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("AddOnSkins")) then
-						PluginInstallFrame.SubTitle:SetFormattedText(L["WARNING"])
-						PluginInstallFrame.Desc1:SetText(L["Make sure to install "]..E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..", "..E:TextGradient(L["WindTools"], 0.000, 0.592, 0.902, 0.000, 0.659, 1.000)..L[" and "]..L["AddOnSkins"]..L[" before starting this installation process"])
-						PluginInstallFrame.Next:Disable()
-					elseif (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ProjectAzilroka")) then
-						PluginInstallFrame.SubTitle:SetFormattedText(L["WARNING"])
-						PluginInstallFrame.Desc1:SetText(L["Make sure to install "]..E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..", "..E:TextGradient(L["WindTools"], 0.000, 0.592, 0.902, 0.000, 0.659, 1.000)..L[" and "]..L["ProjectAzilroka"]..L[" before starting this installation process"])
-						PluginInstallFrame.Next:Disable()
-					elseif (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ProjectAzilroka")) and (not IsAddOnLoaded("AddOnSkins")) then
-						PluginInstallFrame.SubTitle:SetFormattedText(L["WARNING"])
-						PluginInstallFrame.Desc1:SetText(L["Make sure to install "]..E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..", "..L["ProjectAzilroka"]..L[" and "]..L["AddOnSkins"]..L[" before starting this installation process"])
-						PluginInstallFrame.Next:Disable()
-					else
-						PluginInstallFrame.Next:Enable()
-						PluginInstallFrame.SubTitle:SetFormattedText(L["Welcome"])
-						PluginInstallFrame.Desc1:SetText(L["This prompt will help you install "]..ElvUI_EltreumUI.Name..L[" and import its settings"])
-						PluginInstallFrame.Desc2:SetText(L["Please read the instructions to avoid issues"])
-						PluginInstallFrame.Option1:Show()
-						PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
-						PluginInstallFrame.Option1:SetText(L["Skip Install"])
-					end
+					PluginInstallFrame.SubTitle:SetFormattedText(L["Welcome"])
+					PluginInstallFrame.Desc1:SetText(L["This prompt will help you install "]..ElvUI_EltreumUI.Name..L[" and import its settings"])
+					PluginInstallFrame.Desc2:SetText(L["Please read the instructions to avoid issues"])
+					PluginInstallFrame.Option1:Show()
+					PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
+					PluginInstallFrame.Option1:SetText(L["Skip Install"])
 			end,
 			[2] = function()
 				PluginInstallFrame.SubTitle:SetText(L["Layouts"])
@@ -366,19 +307,12 @@ elseif ElvUI_EltreumUI.Classic then
 		tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 		Pages = {
 			[1] = function()
-					if (not IsAddOnLoaded("AddOnSkins")) and (not IsAddOnLoaded("ProjectAzilroka")) then
-						PluginInstallFrame.SubTitle:SetFormattedText(L["WARNING"])
-						PluginInstallFrame.Desc1:SetText(L["Make sure to install "]..L["AddOnSkins"]..L[" and "]..L["ProjectAzilroka"]..L[" before starting this installation process"])
-						PluginInstallFrame.Next:Disable()
-					else
-						PluginInstallFrame.Next:Enable()
-						PluginInstallFrame.SubTitle:SetFormattedText(L["Welcome"])
-						PluginInstallFrame.Desc1:SetText(L["This prompt will help you install "]..ElvUI_EltreumUI.Name..L[" and import its settings"])
-						PluginInstallFrame.Desc2:SetText(L["Please read the instructions to avoid issues"])
-						PluginInstallFrame.Option1:Show()
-						PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
-						PluginInstallFrame.Option1:SetText(L["Skip Install"])
-					end
+					PluginInstallFrame.SubTitle:SetFormattedText(L["Welcome"])
+					PluginInstallFrame.Desc1:SetText(L["This prompt will help you install "]..ElvUI_EltreumUI.Name..L[" and import its settings"])
+					PluginInstallFrame.Desc2:SetText(L["Please read the instructions to avoid issues"])
+					PluginInstallFrame.Option1:Show()
+					PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
+					PluginInstallFrame.Option1:SetText(L["Skip Install"])
 			end,
 			[2] = function()
 				PluginInstallFrame.SubTitle:SetText(L["Layouts"])
@@ -624,19 +558,13 @@ elseif ElvUI_EltreumUI.TBC then
 		tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 		Pages = {
 			[1] = function()
-					if (not IsAddOnLoaded("AddOnSkins")) and (not IsAddOnLoaded("ProjectAzilroka")) then
-						PluginInstallFrame.SubTitle:SetFormattedText(L["WARNING"])
-						PluginInstallFrame.Desc1:SetText(L["Make sure to install "]..L["AddOnSkins"]..L[" and "]..L["ProjectAzilroka"]..L[" before starting this installation process"])
-						PluginInstallFrame.Next:Disable()
-					else
-						PluginInstallFrame.Next:Enable()
-						PluginInstallFrame.SubTitle:SetFormattedText(L["Welcome"])
-						PluginInstallFrame.Desc1:SetText(L["This prompt will help you install "]..ElvUI_EltreumUI.Name..L[" and import its settings"])
-						PluginInstallFrame.Desc2:SetText(L["Please read the instructions to avoid issues"])
-						PluginInstallFrame.Option1:Show()
-						PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
-						PluginInstallFrame.Option1:SetText(L["Skip Install"])
-					end
+				PluginInstallFrame.Next:Enable()
+				PluginInstallFrame.SubTitle:SetFormattedText(L["Welcome"])
+				PluginInstallFrame.Desc1:SetText(L["This prompt will help you install "]..ElvUI_EltreumUI.Name..L[" and import its settings"])
+				PluginInstallFrame.Desc2:SetText(L["Please read the instructions to avoid issues"])
+				PluginInstallFrame.Option1:Show()
+				PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
+				PluginInstallFrame.Option1:SetText(L["Skip Install"])
 			end,
 			[2] = function()
 				PluginInstallFrame.SubTitle:SetText(L["Layouts"])
