@@ -8,6 +8,7 @@ local r, g, b = unpack(E.media.rgbvaluecolor)
 function ElvUI_EltreumUI:SkinQuests()
 	if ElvUI_EltreumUI.Retail then
 		if (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ElvUI_WindTools")) then
+			--this thing was causing A LOT OF MEMORY USAGE so i removed it
 			--[[
 			OBJECTIVE_TRACKER_COLOR = {
 				["Normal"] = { r = 1, g = 1, b = 1 },
@@ -80,7 +81,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				_G.QuestFont:SetTextColor(r, g, b)
 			end)
 			hooksecurefunc("SetZoneText", function()
-				_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 48, "OUTLINE")
+				_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 36, "OUTLINE")
 				_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, "OUTLINE")
 				_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, "OUTLINE")
 				_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, "OUTLINE")
