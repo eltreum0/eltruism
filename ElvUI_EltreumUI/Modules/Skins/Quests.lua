@@ -82,21 +82,18 @@ function ElvUI_EltreumUI:SkinQuests()
 			end)
 			hooksecurefunc("SetZoneText", function()
 				_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 36, "OUTLINE")
+				_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, "OUTLINE")
 				_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, "OUTLINE")
 				_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, "OUTLINE")
-				_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, "OUTLINE")
 			end)
 			_G.OpenMailBodyText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
 			_G.SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-
 			_G.QuestFont_Large:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize)
 			_G.QuestFont_Super_Huge:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
 			_G.QuestFont_Enormous:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-
 			_G.OBJECTIVE_TRACKER_COLOR["Header"].r = r
             _G.OBJECTIVE_TRACKER_COLOR["Header"].g = g
             _G.OBJECTIVE_TRACKER_COLOR["Header"].b = b
-
 		end
 	end
 end
