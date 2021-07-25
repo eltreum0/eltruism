@@ -2,10 +2,10 @@
 The future is uncertain
 ___
 ### v2.4.6
-Added loot icons, adapted from Stanzilla's Chat Loot Icons which is Public Domain
-Added InstantLoot, yet another fast looter
-Hid the copy chat and Voice Buttons 
-Waypoint Time to Arrive now has unlimited range and the font follows ElvUI General Font
+Added loot icons, adapted from Stanzilla's Chat Loot Icons which is Public Domain\
+Added InstantLoot, yet another fast looter\
+Hid the copy chat and Voice Buttons\
+Waypoint Time to Arrive now has unlimited range and the font follows ElvUI General Font\
 Skinned Objective Tracker if Shadow and Light and Windtools are not loaded in Retail
 ___
 ### v2.4.5
