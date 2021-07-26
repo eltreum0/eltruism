@@ -4,6 +4,7 @@ ___
 ### v2.4.6
 Added loot icons, merged from Stanzilla's Chat Loot Icons which is Public Domain\
 Added InstantLoot, yet another fast looter\
+Added Shadows\
 Hid the copy chat and Voice Buttons\
 Waypoint Time to Arrive now has unlimited range, automatically tracks new waypoints and the font follows ElvUI General Font\
 Skinned Objective Frame/Quest Log, for Retail this loads only if Shadow and Light and Windtools are not loaded

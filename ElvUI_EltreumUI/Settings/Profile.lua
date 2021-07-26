@@ -35,6 +35,7 @@ P.ElvUI_EltreumUI = {
 		bossemote = true,
 		quests = true,
 		zones = true,
+		shadows = true,
 	},
 
 	tbctalents = {

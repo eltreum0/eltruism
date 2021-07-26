@@ -10,6 +10,7 @@
 	<Script file='Skins/ExpandedStable.lua'/>
 	<Script file='Skins/ExpandedTalents.lua'/>
 	<Script file='Skins/LevelUp.lua'/>
+	<Script file='Skins/Shadows.lua'/>
 	<Script file='Skins/Quests.lua'/>
 	<Script file='Skins/WiderTransmog.lua'/>
 	<Script file='Actionbars.lua'/>
