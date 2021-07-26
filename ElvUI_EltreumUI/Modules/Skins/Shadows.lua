@@ -91,6 +91,29 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 
+		for i = 1, 20 do
+			local bossmembers = {_G['ElvUIPlayerDebuffsAuraButton'..i]}
+			for _, frame in pairs(bossmembers) do
+				for _, button in pairs(bossmembers) do
+					button.shadow = button:CreateShadow(nil, true)
+					button.shadow:SetParent(button)
+					button.shadow.size = 2
+				end
+			end
+		end
+
+
+		for i = 1, 20 do
+			local bossmembers = {_G['ElvUIPlayerBuffsAuraButton'..i]}
+			for _, frame in pairs(bossmembers) do
+				for _, button in pairs(bossmembers) do
+					button.shadow = button:CreateShadow(nil, true)
+					button.shadow:SetParent(button)
+					button.shadow.size = 2
+				end
+			end
+		end
+
 
 		--power?
 		--[[ElvUF_Player_ClassBar:CreateShadow()
