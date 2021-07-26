@@ -64,6 +64,9 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		local gapretail = totalgap/4
 		if ElvUI_EltreumUI.Retail then
 			--print(gapretail)
+			if not IsAddOnLoaded("ElvUI_SLE") then
+				CharacterLevelText:SetPoint("TOPLEFT", "PaperDollFrame", 0 , - 30)
+			end
 			if gapretail <= 20 then
 				classFrame:SetPoint("RIGHT", "CharacterLevelText", -15, 0)
 			elseif gapretail > 20 and gapretail <=30 then
