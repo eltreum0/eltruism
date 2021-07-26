@@ -12,6 +12,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["AuraReminder"] = {}
 	PA.db["AuraReminder"]["Enable"] = false
 	PA.db["QuestSounds"]["Enable"] = false
+	PA.db["FasterLoot"]["Enable"] = false
 	if ElvUI_EltreumUI.Retail then
 		if pacheck >= '1.77' then
 			PA.db["SunsongRanchFarmer"]["Enable"] = false

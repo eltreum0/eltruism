@@ -3,13 +3,11 @@ The future is uncertain
 ___
 ### v2.4.6
 Added loot icons which is merged from Stanzilla's Chat Loot Icons which is Public Domain\
+Added Shadows to frames\
 Added InstantLoot, yet another fast looter\
 Hid the copy chat and Voice Buttons\
 Waypoint Time to Arrive now has unlimited range, automatically tracks new waypoints and the font follows ElvUI General Font\
-The following functions only work when not using Shadow and Light and/or Windtools due to compatibility (they provide similar functions):\
-Added Shadows to frames\
-Added Skins to the Objective Frame/Quest Log\
-Since Classic/TBC does not have Shadow and Light/Windtools at the moment, they will activate by default and can be disabled in Eltruism > Misc
+Added Skins to the default Objective Frame/Quest Log\
 ___
 ### v2.4.5
 Added a Preview for Custom Glow, you will need to toggle it on and off in order to update the glow options\

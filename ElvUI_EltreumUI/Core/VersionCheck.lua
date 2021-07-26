@@ -86,9 +86,45 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		if ElvUI_EltreumUI.Retail then
 			E.db["WT"]["social"]["chatText"]["roleIconStyle"] = "BLIZZARD" --update role icons
 		end
-	elseif E.private.ElvUI_EltreumUI.install_version >= "2.4.5" and E.private.ElvUI_EltreumUI.install_version < "2.4.6" then
+	elseif E.private.ElvUI_EltreumUI.install_version < "2.4.6" then
 		if ElvUI_EltreumUI.Retail then
 			E.db["sle"]["loot"]["looticons"]["enable"] = false
+			E.db["sle"]["shadows"]["actionbars"]["bar1"]["buttons"] = false
+			E.db["sle"]["shadows"]["actionbars"]["bar10"]["buttons"] = false
+			E.db["sle"]["shadows"]["actionbars"]["bar2"]["buttons"] = false
+			E.db["sle"]["shadows"]["actionbars"]["bar3"]["buttons"] = false
+			E.db["sle"]["shadows"]["actionbars"]["bar4"]["buttons"] = false
+			E.db["sle"]["shadows"]["actionbars"]["bar5"]["buttons"] = false
+			E.db["sle"]["shadows"]["actionbars"]["bar6"]["buttons"] = false
+			E.db["sle"]["shadows"]["actionbars"]["bar7"]["buttons"] = false
+			E.db["sle"]["shadows"]["actionbars"]["bar8"]["buttons"] = false
+			E.db["sle"]["shadows"]["actionbars"]["bar9"]["buttons"] = false
+			E.db["sle"]["shadows"]["actionbars"]["microbar"]["buttons"] = false
+			E.db["sle"]["shadows"]["actionbars"]["petbar"]["backdrop"] = false
+			E.db["sle"]["shadows"]["actionbars"]["petbar"]["buttons"] = false
+			E.db["sle"]["shadows"]["actionbars"]["stancebar"]["buttons"] = false
+			E.db["sle"]["shadows"]["chat"]["LeftChatPanel"]["backdrop"] = false
+			E.db["sle"]["shadows"]["chat"]["RightChatPanel"]["backdrop"] = false
+			E.db["sle"]["shadows"]["datatexts"]["panels"]["LeftChatDataPanel"]["backdrop"] = false
+			E.db["sle"]["shadows"]["datatexts"]["panels"]["RightChatDataPanel"]["backdrop"] = false
+			E.db["sle"]["shadows"]["minimap"]["backdrop"] = false
+			E.db["sle"]["shadows"]["unitframes"]["arena"]["health"] = false
+			E.db["sle"]["shadows"]["unitframes"]["arena"]["power"] = true
+			E.db["sle"]["shadows"]["unitframes"]["boss"]["health"] = false
+			E.db["sle"]["shadows"]["unitframes"]["boss"]["power"] = false
+			E.db["sle"]["shadows"]["unitframes"]["focus"]["health"] = false
+			E.db["sle"]["shadows"]["unitframes"]["focus"]["power"] = false
+			E.db["sle"]["shadows"]["unitframes"]["party"]["health"] = false
+			E.db["sle"]["shadows"]["unitframes"]["party"]["power"] = false
+			E.db["sle"]["shadows"]["unitframes"]["pet"]["health"] = false
+			E.db["sle"]["shadows"]["unitframes"]["pet"]["power"] = false
+			E.db["sle"]["shadows"]["unitframes"]["player"]["classbar"] = false
+			E.db["sle"]["shadows"]["unitframes"]["player"]["health"] = false
+			E.db["sle"]["shadows"]["unitframes"]["player"]["power"] = false
+			E.db["sle"]["shadows"]["unitframes"]["target"]["health"] = false
+			E.db["sle"]["shadows"]["unitframes"]["target"]["power"] = false
+			E.db["sle"]["shadows"]["unitframes"]["targettarget"]["health"] = false
+			E.db["sle"]["shadows"]["unitframes"]["targettarget"]["power"] = false
 		end
 	end
 end
