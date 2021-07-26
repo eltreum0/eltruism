@@ -33,6 +33,8 @@ P.ElvUI_EltreumUI = {
 		classiconsblizz = false,
 		classiconsreleaf = true,
 		bossemote = true,
+		quests = true,
+		zones = true,
 	},
 
 	tbctalents = {
@@ -272,6 +274,7 @@ P.ElvUI_EltreumUI = {
 		arenabuffs = false,
 		bgunitframes = false,
 		arenaunitframes = false,
+		fastloot = true,
 		--floatingrep = false,
 	},
 }
