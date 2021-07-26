@@ -414,6 +414,8 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["unitframes"]["unit"]["raid40"]["offline"]["texture"] = "CUSTOM"
 
 		ElvUI_EltreumUI:Print("Shadow and Light profile has been set")
+
+		E.private.ElvUI_EltreumUI.isInstalled.sle = true
 	else
 		ElvUI_EltreumUI:Print("Shadow and Light is not loaded")
 	end

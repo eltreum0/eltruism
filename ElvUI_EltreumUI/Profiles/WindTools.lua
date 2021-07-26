@@ -235,6 +235,8 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["tooltips"]["groupInfo"]["title"] = false
 
 		ElvUI_EltreumUI:Print("WindTools profile has been set")
+
+		E.private.ElvUI_EltreumUI.isInstalled.windtools = true
 	else
 		ElvUI_EltreumUI:Print("WindTools is not loaded")
 	end

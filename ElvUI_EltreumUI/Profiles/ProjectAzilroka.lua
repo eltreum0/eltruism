@@ -155,4 +155,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["SquareMinimapButtons"]["Visibility"] = "show" --"[petbattle][combat]hide; show"
 	PA.db["SquareMinimapButtons"]["MoveTracker"] = false
 	PA.db["SquareMinimapButtons"]["BarMouseOver"] = true
+
+
+	E.private.ElvUI_EltreumUI.isInstalled.projectazilroka = true
 end

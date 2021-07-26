@@ -23,4 +23,10 @@ V.ElvUI_EltreumUI = {
 		disableinstance = true,
 	},
 
+	isInstalled ={
+		sle = false,
+		windtools = false,
+		projectazilroka = false,
+	}
+
 }
