@@ -10,6 +10,8 @@ local UIParent = _G.UIParent
 --Conversion of Time to Arrive weakaura (new version)
 if ElvUI_EltreumUI.Retail then
 	local EltruismTimeToArrive = CreateFrame("Frame", "EltruismTimeToArrive", UIParent)
+	local autopin = CreateFrame("Frame")
+	autopin:RegisterEvent("USER_WAYPOINT_UPDATED")
 	EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 	function ElvUI_EltreumUI:WaypointTimeToArrive()
 		if E.db.ElvUI_EltreumUI.waypointetasetting.enable then
@@ -28,16 +30,17 @@ if ElvUI_EltreumUI.Retail then
 			EltruismTimeToArrive.TimeText:SetParent("SuperTrackedFrame")
 			EltruismTimeToArrive:SetParent("SuperTrackedFrame")
 
+			autopin:SetScript("OnEvent", function(self, event, ...)
+				if event == "USER_WAYPOINT_UPDATED" and C_Map.HasUserWaypoint() == true then
+					C_Timer.After(0, function() C_SuperTrack.SetSuperTrackedUserWaypoint(true) end)
+				end
+			end)
+
 			--use throttled onupdate to udpate the text (once per second)
 			EltruismTimeToArrive:SetScript("OnUpdate", function(self, elapsed)
 				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 					TimeSinceLastUpdate = 0
-
-					--new pins get automatically tracked, only works if the user manually sets the waypoint at least once
-					if C_Map.HasUserWaypoint() == true then
-					    C_SuperTrack.SetSuperTrackedUserWaypoint(true)
-					end
 
 					--remove max distance
 					do
