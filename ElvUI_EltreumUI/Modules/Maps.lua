@@ -34,7 +34,7 @@ if ElvUI_EltreumUI.Retail then
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 					TimeSinceLastUpdate = 0
 
-					--new pins get automatically tracked
+					--new pins get automatically tracked, only works if the user manually sets the waypoint at least once
 					if C_Map.HasUserWaypoint() == true then
 					    C_SuperTrack.SetSuperTrackedUserWaypoint(true)
 					end
