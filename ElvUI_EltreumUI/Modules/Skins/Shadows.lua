@@ -16,7 +16,7 @@ local CreateFrame = _G.CreateFrame
 --turns out elvui includes shadows! Ty azilroka
 function ElvUI_EltreumUI:Shadows()
 	--Very simple shadows from elvui, SLE likely does it way better
-	if E.db.ElvUI_EltreumUI.skins.quests then
+	if E.db.ElvUI_EltreumUI.skins.shadows then
 	    ElvUF_Player_HealthBar:CreateShadow()
 	    ElvUF_Player_PowerBar:CreateShadow()
 	    ElvUF_TargetTarget_HealthBar:CreateShadow()
