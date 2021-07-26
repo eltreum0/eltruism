@@ -1,8 +1,8 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:VersionCheckInit()
-	ElvUI_EltreumUI:NewVersionCheck()
 	ElvUI_EltreumUI:OldVersionCheck()
+	ElvUI_EltreumUI:NewVersionCheck()
 	ElvUI_EltreumUI:ElvUIVersionCheck()
 end
 
@@ -18,7 +18,7 @@ end
 
 function ElvUI_EltreumUI:ElvUIVersionCheck()
 	if ElvUI_EltreumUI.Retail then
-		if E.version < 12.35 then
+		if E.version < 12.37 then
 			ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
 		end
 	end

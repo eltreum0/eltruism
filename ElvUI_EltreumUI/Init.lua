@@ -139,10 +139,6 @@ function ElvUI_EltreumUI:Initialize()
 	SetCVar('nameplateTargetRadialPosition', 1)
 	--depending on game version sets cvars or register events
 	if ElvUI_EltreumUI.Retail then
-		--ElvUI_EltreumUI:RegisterEvent('SUPER_TRACKING_CHANGED')
-		--ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_CREATED')
-		--ElvUI_EltreumUI:RegisterEvent('NAVIGATION_FRAME_DESTROYED')
-		--ElvUI_EltreumUI:RegisterEvent('TRANSMOGRIFY_OPEN')
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
 		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW')
 		SetCVar('showInGameNavigation', 1)
@@ -284,25 +280,6 @@ function ElvUI_EltreumUI:GOSSIP_SHOW()
 		ElvUI_EltreumUI:RogueAutoOpen()
 	end
 end
-
---[[function ElvUI_EltreumUI:TRANSMOGRIFY_OPEN()
-	if ElvUI_EltreumUI.Retail then
-		ElvUI_EltreumUI:WiderTransmog()
-	end
-end
-
-function ElvUI_EltreumUI:SUPER_TRACKING_CHANGED()
-	ElvUI_EltreumUI:WaypointTimeToArrive()
-end
-
-function ElvUI_EltreumUI:NAVIGATION_FRAME_CREATED()
-	ElvUI_EltreumUI:WaypointTimeToArrive()
-end
-
-function ElvUI_EltreumUI:NAVIGATION_FRAME_DESTROYED()
-	ElvUI_EltreumUI:WaypointTimeToArrive()
-end
-]]--
 
 local function CallbackInitialize()
 	ElvUI_EltreumUI:Initialize()
