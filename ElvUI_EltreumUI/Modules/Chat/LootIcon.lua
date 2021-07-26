@@ -1,7 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
-local gsub = _G.gsub
 
 --From Chat Loot Icons by Stanzilla which is Public Domain
 local function AddLootIcons(self, event, message, ...)

@@ -2,7 +2,6 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local GetCVarBool = GetCVarBool
 local GetNumLootItems = GetNumLootItems
-local GetTime = GetTime
 local IsModifiedClick = IsModifiedClick
 local LootSlot = LootSlot
 
