@@ -36,6 +36,40 @@ function ElvUI_EltreumUI:SkinQuests()
 					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetStatusBarColor(r, g, b, 1)
 				end
+					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
+					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetTextColor(r, g, b)
+
+					_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*1.5, "OUTLINE")
+					_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.Text:SetTextColor(r, g, b)
+
+					_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*1.5, "OUTLINE")
+					_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetTextColor(r, g, b)
+
+					_G.ObjectiveTrackerBlocksFrame.AchievementHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*1.5, "OUTLINE")
+					_G.ObjectiveTrackerBlocksFrame.AchievementHeader.Text:SetTextColor(r, g, b)
+
+					_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*1.5, "OUTLINE")
+					_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.Text:SetTextColor(r, g, b)
+
+					_G.WORLD_QUEST_TRACKER_MODULE.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
+					_G.WORLD_QUEST_TRACKER_MODULE.Header.Text:SetTextColor(r, g, b)
+
+					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
+					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetTextColor(r, g, b)
+
+					_G.OBJECTIVE_TRACKER_COLOR["Header"].r = r
+					_G.OBJECTIVE_TRACKER_COLOR["Header"].g = g
+					_G.OBJECTIVE_TRACKER_COLOR["Header"].b = b
+
+					_G.ObjectiveFont:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
+					_G.ObjectiveFont:SetTextColor(r, g, b)
+
+					_G.QuestFont:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize)
+					_G.QuestFont:SetTextColor(r, g, b)
+
+					_G.QuestFont_Large:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize)
+					_G.QuestFont_Super_Huge:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
+					_G.QuestFont_Enormous:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
 				hooksecurefunc("ObjectiveTracker_Update", function()
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetTextColor(r, g, b)
