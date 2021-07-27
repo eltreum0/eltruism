@@ -23,6 +23,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			local r, g, b = unpack(E.media.rgbvaluecolor)
 			glowcolor = {r, g, b, 1}
 		end
+		--changing the texture and the size will likely not be needed in 12.38, but the cooldown will be
 		if button and button.spellID then
 			if not string.find(unit, "nameplate") then
 				return
@@ -56,7 +57,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			button:SetHeight(18)
 			button.count:SetParent(button.cd)
 			if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-				button.count:Point('BOTTOMRIGHT', 2, -3)   --elvui added a setting for it in retail but not classic/tbc yet
+				button.count:Point('BOTTOMRIGHT', 2, -3) --elvui added a setting for it in retail but not classic/tbc yet
 			end
 		end
 		UF.PostUpdateAura(self, unit, button)

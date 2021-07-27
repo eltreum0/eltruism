@@ -9,6 +9,8 @@ local ElvUF_Target_HealthBar = _G['ElvUF_Target_HealthBar']
 local ElvUF_Target_PowerBar = _G['ElvUF_Target_PowerBar']
 local ElvUF_Focus_HealthBar = _G['ElvUF_Focus_HealthBar']
 local ElvUF_Focus_PowerBar = _G['ElvUF_Focus_PowerBar']
+local ElvUF_Player_CastBar = _G['ElvUF_Player_CastBar']
+local ElvUF_Target_CastBar = _G['ElvUF_Target_CastBar']
 local ElvUF_Pet = _G['ElvUF_Pet']
 local pairs = _G.pairs
 local CreateFrame = _G.CreateFrame
@@ -90,11 +92,11 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-
+		--buffs
 		for i = 1, 20 do
-			local bossmembers = {_G['ElvUIPlayerDebuffsAuraButton'..i]}
-			for _, frame in pairs(bossmembers) do
-				for _, button in pairs(bossmembers) do
+			local debuffaura = {_G['ElvUIPlayerBuffsAuraButton'..i]}
+			for _, frame in pairs(debuffaura) do
+				for _, button in pairs(debuffaura) do
 					button.shadow = button:CreateShadow(nil, true)
 					button.shadow:SetParent(button)
 					button.shadow.size = 2
@@ -102,11 +104,11 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-
+		--debuffs
 		for i = 1, 20 do
-			local bossmembers = {_G['ElvUIPlayerBuffsAuraButton'..i]}
-			for _, frame in pairs(bossmembers) do
-				for _, button in pairs(bossmembers) do
+			local buffaura = {_G['ElvUIPlayerDebuffsAuraButton'..i]}
+			for _, frame in pairs(buffaura) do
+				for _, button in pairs(buffaura) do
 					button.shadow = button:CreateShadow(nil, true)
 					button.shadow:SetParent(button)
 					button.shadow.size = 2
@@ -114,23 +116,63 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-
-		--power?
-		--[[ElvUF_Player_ClassBar:CreateShadow()
-		ElvUF_Player_ClassIconButton1:CreateShadow()
-		ElvUF_Player_ClassIconButton2:CreateShadow()
-		ElvUF_Player_ClassIconButton3:CreateShadow()
-		ElvUF_Player_ClassIconButton4:CreateShadow()
-		for i = 1, 12 do
-			local classpowerbutton = {_G['ElvUF_PlayerClassIconButton'..i]}
-			for _, frame in pairs(classpowerbutton) do
-				for _, button in pairs(classpowerbutton) do
-					button.shadow = button:CreateShadow(nil, true)
-					button.shadow:SetParent(button)
-					button.shadow.size = 2
+		--[[
+			--power?
+			ElvUF_Player_ClassBar:CreateShadow()
+			ElvUF_Player_ClassIconButton1:CreateShadow()
+			ElvUF_Player_ClassIconButton2:CreateShadow()
+			ElvUF_Player_ClassIconButton3:CreateShadow()
+			ElvUF_Player_ClassIconButton4:CreateShadow()
+			for i = 1, 12 do
+				local classpowerbutton = {_G['ElvUF_PlayerClassIconButton'..i]}
+				for _, frame in pairs(classpowerbutton) do
+					for _, button in pairs(classpowerbutton) do
+						button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2
+					end
 				end
 			end
-		end]]--
+		]]--
+
+    	--[[
+			local PlayerCastbar = CreateFrame("Frame")
+			local PlayerCastbarx = E.db.unitframe.units.player.castbar.width - 1
+			local PlayerCastbary = E.db.unitframe.units.player.castbar.height - 1
+			PlayerCastbar:SetSize(PlayerCastbarx, PlayerCastbary)
+			PlayerCastbar:SetParent(_G.ElvUF_Player_CastBar)
+			PlayerCastbar.shadow = PlayerCastbar:CreateShadow(nil, true)
+			PlayerCastbar:SetPoint("CENTER", _G.ElvUF_Player_CastBar, "CENTER", -15, 0)
+			PlayerCastbar:Show()
+			local TargetCastbar = CreateFrame("Frame")
+			local TargetCastbarx = E.db.unitframe.units.target.castbar.width - 1
+			local TargetCastbary = E.db.unitframe.units.target.castbar.height - 1
+			TargetCastbar:SetSize(TargetCastbarx, TargetCastbary)
+			TargetCastbar:SetParent(_G.ElvUF_Target_CastBar)
+			TargetCastbar.shadow = TargetCastbar:CreateShadow(nil, true)
+			TargetCastbar:SetPoint("CENTER", _G.ElvUF_Target_CastBar, "CENTER", -15, 0)
+			TargetCastbar:Show()
+		]]--
+
+		local PlayerCastbar = CreateFrame("Frame")
+		local PlayerCastbarx = E.db.unitframe.units.player.castbar.width + E.db.unitframe.units.player.castbar.iconSize -3
+		local PlayerCastbary = E.db.unitframe.units.player.castbar.height -1
+		PlayerCastbar:SetSize(PlayerCastbarx, PlayerCastbary)
+		PlayerCastbar:SetParent(_G.ElvUF_Player_CastBar)
+		PlayerCastbar.shadow = PlayerCastbar:CreateShadow(nil, true)
+		PlayerCastbar:SetPoint("CENTER", _G.ElvUF_Player_CastBar, "CENTER", -14, 0)
+		PlayerCastbar:Show()
+
+		if not E.db.unitframe.units.target.castbar.overlayOnFrame == "Power" then
+			local TargetCastbar = CreateFrame("Frame")
+			local TargetCastbarx = E.db.unitframe.units.target.castbar.width + E.db.unitframe.units.target.castbar.iconSize -2
+			local TargetCastbary = E.db.unitframe.units.target.castbar.height - 1
+			TargetCastbar:SetSize(TargetCastbarx, TargetCastbary)
+			TargetCastbar:SetParent(_G.ElvUF_Target_CastBar)
+			TargetCastbar.shadow = TargetCastbar:CreateShadow(nil, true)
+			TargetCastbar:SetPoint("CENTER", _G.ElvUF_Target_CastBar, "CENTER", -14, 0)
+			TargetCastbar:Show()
+		end
 
 	    local RightChatShadow = CreateFrame("Frame")
 	    local rightsizex, rightsizey = _G['RightChatMover']:GetSize()
@@ -149,7 +191,6 @@ function ElvUI_EltreumUI:Shadows()
 	    LeftChatShadow:SetPoint("TOPLEFT", _G['LeftChatPanel'] ,"TOPLEFT", 0, 0)
 		LeftChatShadow:SetPoint("BOTTOMRIGHT", _G['LeftChatDataPanel'] ,"BOTTOMRIGHT", 0, 0)
 	    LeftChatShadow:Show()
-
 
 	    local MinimapShadow = CreateFrame("Frame")
 	    local Minimapsizex, Minimapsizey = _G['Minimap']:GetSize()

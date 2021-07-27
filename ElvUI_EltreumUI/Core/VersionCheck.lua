@@ -37,7 +37,7 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 end
 
 function ElvUI_EltreumUI:PluginCheck()
-	if E.private.ElvUI_EltreumUI.install_version < "2.4.5" then
+	if E.private.ElvUI_EltreumUI.install_version < "2.4.6" then
 		E.private.ElvUI_EltreumUI.isInstalled.sle = true
 		E.private.ElvUI_EltreumUI.isInstalled.windtools = true
 		E.private.ElvUI_EltreumUI.isInstalled.projectazilroka = true

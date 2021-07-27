@@ -732,7 +732,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["auras"]["buffs"]["barColor"]["g"] = 0.4392147064209
 			E.db["auras"]["buffs"]["barNoDuration"] = false
 			E.db["auras"]["buffs"]["barPosition"] = "LEFT"
-			E.db["auras"]["buffs"]["barShow"] = true
+			E.db["auras"]["buffs"]["barShow"] = false
 			E.db["auras"]["buffs"]["barSize"] = 6
 			E.db["auras"]["buffs"]["barSpacing"] = 0
 			E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
@@ -754,7 +754,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["auras"]["debuffs"]["barColor"]["g"] = 0.4392147064209
 			E.db["auras"]["debuffs"]["barNoDuration"] = false
 			E.db["auras"]["debuffs"]["barPosition"] = "LEFT"
-			E.db["auras"]["debuffs"]["barShow"] = true
+			E.db["auras"]["debuffs"]["barShow"] = false
 			E.db["auras"]["debuffs"]["barSize"] = 6
 			E.db["auras"]["debuffs"]["barSpacing"] = 0
 			E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
@@ -805,18 +805,19 @@ if ElvUI_EltreumUI.Classic then
 			E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,563,283"
 			E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,560,183"
 			E.db["movers"]["ElvUF_PlayerAuraMover"] = "BOTTOM,ElvUIParent,BOTTOM,-276,239"
-			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,269"
+			--E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,269"
+			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-266,268"
 			E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,299"
 			E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
 			E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
 			E.db["movers"]["ElvUF_RaidpetMover"] = "TOPLEFT,ElvUIParent,BOTTOMLEFT,4,736"
 			E.db["movers"]["ElvUF_TankMover"] = "BOTTOM,ElvUIParent,BOTTOM,-155,-4"
-			E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,269"
+			--E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,269"
+			E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,295,268"
 			E.db["movers"]["ElvUF_TargetMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,299"
 			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-457,299"
 			E.db["movers"]["ElvUIBagMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,23"
 			E.db["movers"]["ElvUIBankMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,23"
-
 			E.db["movers"]["ReputationBarMover"] = "TOP,ElvUIParent,TOP,0,0"
 			E.db["movers"]["ExperienceBarMover"] = "TOP,ElvUIParent,TOP,0,-13"
 			--E.db["movers"]["ReputationBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,412,-1"
@@ -1082,6 +1083,11 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["player"]["raidicon"]["xOffset"] = 30
 			E.db["unitframe"]["units"]["player"]["raidicon"]["yOffset"] = 2
 			E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 30
+			E.db["unitframe"]["units"]["player"]["castbar"]["iconAttached"] = false
+			E.db["unitframe"]["units"]["player"]["castbar"]["iconAttachedTo"] = "Castbar"
+			E.db["unitframe"]["units"]["player"]["castbar"]["iconSize"] = 29
+			E.db["unitframe"]["units"]["player"]["castbar"]["iconXOffset"] = 0
+			E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 243
 			E.db["unitframe"]["units"]["raid"]["buffIndicator"]["size"] = 20
 			E.db["unitframe"]["units"]["raid"]["buffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["raid"]["colorOverride"] = "FORCE_OFF"
@@ -1270,6 +1276,11 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["target"]["smartAuraPosition"] = "DEBUFFS_ON_BUFFS"
 			E.db["unitframe"]["units"]["target"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["target"]["castbar"]["height"] = 30
+			E.db["unitframe"]["units"]["target"]["castbar"]["iconAttachedTo"] = "Castbar"
+			E.db["unitframe"]["units"]["target"]["castbar"]["iconAttached"] = false
+			E.db["unitframe"]["units"]["target"]["castbar"]["iconSize"] = 29
+			E.db["unitframe"]["units"]["target"]["castbar"]["iconXOffset"] = 0
+			E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 243
 			E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["targettarget"]["debuffs"]["enable"] = false
 			E.db["unitframe"]["units"]["targettarget"]["health"]["position"] = "LEFT"
@@ -1472,7 +1483,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["auras"]["buffs"]["barColor"]["g"] = 0.4392147064209
 			E.db["auras"]["buffs"]["barNoDuration"] = false
 			E.db["auras"]["buffs"]["barPosition"] = "LEFT"
-			E.db["auras"]["buffs"]["barShow"] = true
+			E.db["auras"]["buffs"]["barShow"] = false
 			E.db["auras"]["buffs"]["barSize"] = 6
 			E.db["auras"]["buffs"]["barSpacing"] = 0
 			E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
@@ -1493,7 +1504,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["auras"]["debuffs"]["barColor"]["g"] = 0.4392147064209
 			E.db["auras"]["debuffs"]["barNoDuration"] = false
 			E.db["auras"]["debuffs"]["barPosition"] = "LEFT"
-			E.db["auras"]["debuffs"]["barShow"] = true
+			E.db["auras"]["debuffs"]["barShow"] = false
 			E.db["auras"]["debuffs"]["barSize"] = 6
 			E.db["auras"]["debuffs"]["barSpacing"] = 0
 			E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
@@ -1540,7 +1551,8 @@ if ElvUI_EltreumUI.Classic then
 			E.db["movers"]["ElvUF_PartyMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,87"
 			E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,311,352"
 			E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,326"
-			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,345"
+			--E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,345"
+			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,13,345"
 			E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,387"
 			E.db["movers"]["ElvUF_Raid40Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
 			E.db["movers"]["ElvUF_RaidMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
