@@ -212,5 +212,22 @@ function ElvUI_EltreumUI:AuraShadows()
 			end
 		end
 
+
+		--target buffs UF
+		--nvm doesnt look good
+		--[[
+		for i = 1, 20 do
+			local targetbuffaura = {_G['ElvUF_TargetBuffsButton'..i]}
+			for _, frame in pairs(targetbuffaura) do
+				for _, button in pairs(targetbuffaura) do
+					if not button.shadow then
+						button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2
+					end
+				end
+			end
+		end]]--
+
 	end
 end

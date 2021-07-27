@@ -134,6 +134,7 @@ if ElvUI_EltreumUI.Retail then
 		E.db["chat"]["panelWidthRight"] = 400
 		E.db["chat"]["tabFont"] = "Kimberley"
 		E.db["chat"]["tabFontSize"] = 14
+		E.db["chat"]["tabFontOutline"] = "OUTLINE"
 		E.db["chat"]["tabSelectorColor"]["b"] = valuecolors.b
 		E.db["chat"]["tabSelectorColor"]["g"] = valuecolors.g
 		E.db["chat"]["tabSelectorColor"]["r"] = valuecolors.r
