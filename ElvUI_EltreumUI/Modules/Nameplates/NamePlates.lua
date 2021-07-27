@@ -55,7 +55,9 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			button:SetWidth(25)
 			button:SetHeight(18)
 			button.count:SetParent(button.cd)
-			button.count:Point('BOTTOMRIGHT', 2, -3)
+			if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+				button.count:Point('BOTTOMRIGHT', 2, -3)   --elvui added a setting for it in retail but not classic/tbc yet
+			end
 		end
 		UF.PostUpdateAura(self, unit, button)
 	end
