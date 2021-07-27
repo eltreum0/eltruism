@@ -92,29 +92,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		--buffs
-		for i = 1, 20 do
-			local debuffaura = {_G['ElvUIPlayerBuffsAuraButton'..i]}
-			for _, frame in pairs(debuffaura) do
-				for _, button in pairs(debuffaura) do
-					button.shadow = button:CreateShadow(nil, true)
-					button.shadow:SetParent(button)
-					button.shadow.size = 2
-				end
-			end
-		end
 
-		--debuffs
-		for i = 1, 20 do
-			local buffaura = {_G['ElvUIPlayerDebuffsAuraButton'..i]}
-			for _, frame in pairs(buffaura) do
-				for _, button in pairs(buffaura) do
-					button.shadow = button:CreateShadow(nil, true)
-					button.shadow:SetParent(button)
-					button.shadow.size = 2
-				end
-			end
-		end
 
 		--[[
 			--power?
@@ -135,7 +113,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		]]--
 
-    	--[[
+		--[[
 			local PlayerCastbar = CreateFrame("Frame")
 			local PlayerCastbarx = E.db.unitframe.units.player.castbar.width - 1
 			local PlayerCastbary = E.db.unitframe.units.player.castbar.height - 1
@@ -200,5 +178,39 @@ function ElvUI_EltreumUI:Shadows()
 	    MinimapShadow:SetPoint("TOPRIGHT", _G['Minimap'] ,"TOPRIGHT", 0, 0)
 		MinimapShadow:SetPoint("BOTTOMLEFT", _G['MinimapPanel'] ,"BOTTOMLEFT", 0, 0)
 	    MinimapShadow:Show()
+	end
+end
+
+
+function ElvUI_EltreumUI:AuraShadows()
+	if E.db.ElvUI_EltreumUI.skins.shadows then
+		--buffs
+		for i = 1, 20 do
+			local buffaura = {_G['ElvUIPlayerBuffsAuraButton'..i]}
+			for _, frame in pairs(buffaura) do
+				for _, button in pairs(buffaura) do
+					if not button.shadow then
+						button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2
+					end
+				end
+			end
+		end
+
+		--debuffs
+		for i = 1, 20 do
+			local debuffaura = {_G['ElvUIPlayerDebuffsAuraButton'..i]}
+			for _, frame in pairs(debuffaura) do
+				for _, button in pairs(debuffaura) do
+					if not button.shadow then
+						button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2
+					end
+				end
+			end
+		end
+
 	end
 end

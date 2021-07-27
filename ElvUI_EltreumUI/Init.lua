@@ -42,6 +42,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:CastCursor()
 	ElvUI_EltreumUI:SkinMailZone()
 	ElvUI_EltreumUI:Shadows()
+	ElvUI_EltreumUI:AuraShadows()
 	ElvUI_EltreumUI:SkinQuests()
 	ElvUI_EltreumUI:FriendlyNameplates()
 	ElvUI_EltreumUI:TextureMode()
@@ -121,6 +122,8 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
+
+	ElvUI_EltreumUI:RegisterEvent('UNIT_AURA')
 	--power bar
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_FREQUENT') --power update real time
@@ -163,6 +166,15 @@ function ElvUI_EltreumUI:UNIT_MODEL_CHANGED(event,unit)
 		--print(event,unit)
 		ElvUI_EltreumUI:NameplatePowerTextUpdate()
 		ElvUI_EltreumUI:NameplatePower()
+	end
+end
+
+function ElvUI_EltreumUI:UNIT_AURA(event,unit)
+	if unit and unit ~= 'player' then
+		return
+	elseif unit and unit == 'player' then
+		--print(event,unit)
+		ElvUI_EltreumUI:AuraShadows()
 	end
 end
 
