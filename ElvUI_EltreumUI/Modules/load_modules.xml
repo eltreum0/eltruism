@@ -35,5 +35,6 @@
 	<Script file='Maps.lua'/>
 	<Script file='PartyRaid.lua'/>
 	<Script file='Quests.lua'/>
+	<Script file='Screenshot.lua'/>
 	<Script file='Stealth.lua'/>
 </Ui>
