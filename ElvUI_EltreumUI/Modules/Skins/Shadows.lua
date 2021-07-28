@@ -57,8 +57,6 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-
-
 		if not ElvUF_Pet.shadow then
 			ElvUF_Pet:CreateShadow()
 		end
@@ -157,35 +155,18 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		]]--
 
-		--[[
-			local PlayerCastbar = CreateFrame("Frame")
-			local PlayerCastbarx = E.db.unitframe.units.player.castbar.width - 1
-			local PlayerCastbary = E.db.unitframe.units.player.castbar.height - 1
-			PlayerCastbar:SetSize(PlayerCastbarx, PlayerCastbary)
-			PlayerCastbar:SetParent(_G.ElvUF_Player_CastBar)
-			PlayerCastbar.shadow = PlayerCastbar:CreateShadow(nil, true)
-			PlayerCastbar:SetPoint("CENTER", _G.ElvUF_Player_CastBar, "CENTER", -15, 0)
-			PlayerCastbar:Show()
-			local TargetCastbar = CreateFrame("Frame")
-			local TargetCastbarx = E.db.unitframe.units.target.castbar.width - 1
-			local TargetCastbary = E.db.unitframe.units.target.castbar.height - 1
-			TargetCastbar:SetSize(TargetCastbarx, TargetCastbary)
-			TargetCastbar:SetParent(_G.ElvUF_Target_CastBar)
-			TargetCastbar.shadow = TargetCastbar:CreateShadow(nil, true)
-			TargetCastbar:SetPoint("CENTER", _G.ElvUF_Target_CastBar, "CENTER", -15, 0)
-			TargetCastbar:Show()
-		]]--
-
 		local PlayerCastbar = CreateFrame("Frame", "EltruismPlayerCastBarShadowFrame")
 		local PlayerCastbarx = E.db.unitframe.units.player.castbar.width + E.db.unitframe.units.player.castbar.iconSize -3
 		local PlayerCastbary = E.db.unitframe.units.player.castbar.height -1
 		PlayerCastbar:SetSize(PlayerCastbarx, PlayerCastbary)
 		PlayerCastbar:SetParent(_G.ElvUF_Player_CastBar)
-		if not PlayerCastbar.shadow then
-			PlayerCastbar.shadow = PlayerCastbar:CreateShadow(nil, true)
+		if not (self.PlayerCastBarIsSkinned) then
+        	PlayerCastbar.shadow = PlayerCastbar:CreateShadow(nil, true)
 			PlayerCastbar:SetPoint("CENTER", _G.ElvUF_Player_CastBar, "CENTER", -14, 0)
 			PlayerCastbar:Show()
-		end
+
+        	self.PlayerCastBarIsSkinned = true
+    	end
 
 		if not E.db.unitframe.units.target.castbar.overlayOnFrame == "Power" then
 			local TargetCastbar = CreateFrame("Frame", "EltruismTargetCastBarShadowFrame")
@@ -193,10 +174,10 @@ function ElvUI_EltreumUI:Shadows()
 			local TargetCastbary = E.db.unitframe.units.target.castbar.height - 1
 			TargetCastbar:SetSize(TargetCastbarx, TargetCastbary)
 			TargetCastbar:SetParent(_G.ElvUF_Target_CastBar)
-			if not TargetCastbar.shadow then
+			if not (self.TargetCastBarIsSkinned) then
 				TargetCastbar.shadow = TargetCastbar:CreateShadow(nil, true)
 				TargetCastbar:SetPoint("CENTER", _G.ElvUF_Target_CastBar, "CENTER", -14, 0)
-				TargetCastbar:Show()
+				self.TargetCastBarIsSkinned = true
 			end
 		end
 
@@ -204,37 +185,39 @@ function ElvUI_EltreumUI:Shadows()
 		local rightsizex, rightsizey = _G['RightChatMover']:GetSize()
 		RightChatShadow:SetSize(rightsizex, rightsizey)
 		RightChatShadow:SetParent(_G['RightChatPanel'])
-		if not RightChatShadow.shadow then
+		if not (self.RightChatIsSkinned) then
 			RightChatShadow.shadow = RightChatShadow:CreateShadow(nil, true)
 			RightChatShadow:SetPoint("TOPRIGHT", _G['RightChatPanel'] ,"TOPRIGHT", 0, 0)
 			RightChatShadow:SetPoint("BOTTOMLEFT", _G['RightChatDataPanel'] ,"BOTTOMLEFT", 0, 0)
 			RightChatShadow:Show()
+			self.RightChatIsSkinned = true
 		end
 
 		local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
 		local leftsizex, leftsizey = _G['LeftChatMover']:GetSize()
 		LeftChatShadow:SetSize(leftsizex, leftsizey)
 		LeftChatShadow:SetParent(_G['LeftChatPanel'])
-		if not LeftChatShadow.shadow then
+		if not (self.LeftChatIsSkinned) then
 			LeftChatShadow.shadow = LeftChatShadow:CreateShadow(nil, true)
 			LeftChatShadow:SetPoint("TOPLEFT", _G['LeftChatPanel'] ,"TOPLEFT", 0, 0)
 			LeftChatShadow:SetPoint("BOTTOMRIGHT", _G['LeftChatDataPanel'] ,"BOTTOMRIGHT", 0, 0)
 			LeftChatShadow:Show()
+			self.LeftChatIsSkinned = true
 		end
 
 		local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
 		local Minimapsizex, Minimapsizey = _G['Minimap']:GetSize()
 		MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
 		MinimapShadow:SetParent(_G['RightChatPanel'])
-		if not MinimapShadow.shadow then
+		if not (self.minimapIsSkinned) then
 			MinimapShadow.shadow = MinimapShadow:CreateShadow(nil, true)
 			MinimapShadow:SetPoint("TOPRIGHT", _G['Minimap'] ,"TOPRIGHT", 0, 0)
 			MinimapShadow:SetPoint("BOTTOMLEFT", _G['MinimapPanel'] ,"BOTTOMLEFT", 0, 0)
 			MinimapShadow:Show()
+			self.minimapIsSkinned = true
 		end
 	end
 end
-
 
 function ElvUI_EltreumUI:AuraShadows()
 	if E.db.ElvUI_EltreumUI.skins.shadows then
