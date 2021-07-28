@@ -18,10 +18,10 @@ function ElvUI_EltreumUI:CursorInit()
 	ElvUI_EltreumUI:CurrentTypeofCursor()
 end
 
-local rootFrame = _G.CreateFrame("Frame", nil, UIParent)
-local Cast = _G.CreateFrame("Frame", nil, rootFrame)
-local GCD = _G.CreateFrame("Frame", nil, rootFrame)
-local Cursor = _G.CreateFrame("Frame", nil, rootFrame)
+local rootFrame = _G.CreateFrame("Frame", "EltruismCursorRoot", UIParent)
+local Cast = _G.CreateFrame("Frame", "EltruismCursorCast", rootFrame)
+local GCD = _G.CreateFrame("Frame", "EltruismCursorGCD", rootFrame)
+local Cursor = _G.CreateFrame("Frame", "EltruismCursorCursor", rootFrame)
 
 --Detect the current cursor for options
 function ElvUI_EltreumUI:CurrentTypeofCursor()

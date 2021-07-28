@@ -10,7 +10,7 @@ local UIParent = _G.UIParent
 --Conversion of Time to Arrive weakaura (new version)
 if ElvUI_EltreumUI.Retail then
 	local EltruismTimeToArrive = CreateFrame("Frame", "EltruismTimeToArrive", UIParent)
-	local autopin = CreateFrame("Frame")
+	local autopin = CreateFrame("Frame", "EltruismAutoPin")
 	autopin:RegisterEvent("USER_WAYPOINT_UPDATED")
 	EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 	function ElvUI_EltreumUI:WaypointTimeToArrive()

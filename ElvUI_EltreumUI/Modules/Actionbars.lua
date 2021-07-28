@@ -100,7 +100,7 @@ end
 hooksecurefunc(AB, "UpdatePet", ElvUI_EltreumUI.SkillGlowPet)
 
 --Preview the Glow as asked by Releaf
-local EltruismGlowPreview = CreateFrame("Frame")
+local EltruismGlowPreview = CreateFrame("Frame", "EltruismGlowPreview")
 EltruismGlowPreview:SetSize(40, 40)
 EltruismGlowPreview:ClearAllPoints()
 EltruismGlowPreview:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 50)

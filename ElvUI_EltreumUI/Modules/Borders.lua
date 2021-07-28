@@ -40,7 +40,7 @@ function ElvUI_EltreumUI:Borders()
 
 	if E.db.ElvUI_EltreumUI.borders.borders then
 		if E.db.ElvUI_EltreumUI.borders.playerborder then
-			local playerborder = CreateFrame("Frame", nil, _G.ElvUF_Player, BackdropTemplateMixin and "BackdropTemplate")
+			local playerborder = CreateFrame("Frame", "EltruismPlayerBorder", _G.ElvUF_Player, BackdropTemplateMixin and "BackdropTemplate")
 			playerborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayer, E.db.ElvUI_EltreumUI.borders.yplayer)
 			playerborder:SetPoint("CENTER", _G.ElvUF_Player, "CENTER", 0, 0)
 			playerborder:SetBackdrop({
@@ -52,7 +52,7 @@ function ElvUI_EltreumUI:Borders()
 		end
 
 		if E.db.ElvUI_EltreumUI.borders.playercastborder then
-			local playercastbarborder = CreateFrame("Frame", nil, _G.ElvUF_Player_CastBar, BackdropTemplateMixin and "BackdropTemplate")
+			local playercastbarborder = CreateFrame("Frame", "EltruismPlayerCastBarBorder", _G.ElvUF_Player_CastBar, BackdropTemplateMixin and "BackdropTemplate")
 			playercastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayercast, E.db.ElvUI_EltreumUI.borders.yplayercast)
 			playercastbarborder:SetPoint("CENTER", _G.ElvUF_Player_CastBar, "CENTER", 0, 0)
 			playercastbarborder:SetBackdrop({
@@ -64,7 +64,7 @@ function ElvUI_EltreumUI:Borders()
 		end
 
 		if E.db.ElvUI_EltreumUI.borders.targetborder then
-			local targetborder = CreateFrame("Frame", nil, _G.ElvUF_Target, BackdropTemplateMixin and "BackdropTemplate")
+			local targetborder = CreateFrame("Frame", "EltruismTargetBorder", _G.ElvUF_Target, BackdropTemplateMixin and "BackdropTemplate")
 			targetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xtarget, E.db.ElvUI_EltreumUI.borders.ytarget)
 			targetborder:SetPoint("CENTER", _G.ElvUF_Target)
 			targetborder:SetBackdrop({
@@ -76,7 +76,7 @@ function ElvUI_EltreumUI:Borders()
 		end
 
 		if E.db.ElvUI_EltreumUI.borders.targetcastborder then
-			local targetcastbarborder = CreateFrame("Frame", nil, _G.ElvUF_Target_CastBar, BackdropTemplateMixin and "BackdropTemplate")
+			local targetcastbarborder = CreateFrame("Frame", "EltruismTargetCastBarBorder", _G.ElvUF_Target_CastBar, BackdropTemplateMixin and "BackdropTemplate")
 			targetcastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcasttarget, E.db.ElvUI_EltreumUI.borders.ycasttarget)
 			targetcastbarborder:SetPoint("CENTER", _G.ElvUF_Target_CastBar, "CENTER", 0, 0)
 			targetcastbarborder:SetBackdrop({

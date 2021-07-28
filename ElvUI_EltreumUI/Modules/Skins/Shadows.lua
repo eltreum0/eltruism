@@ -176,7 +176,7 @@ function ElvUI_EltreumUI:Shadows()
 			TargetCastbar:Show()
 		]]--
 
-		local PlayerCastbar = CreateFrame("Frame")
+		local PlayerCastbar = CreateFrame("Frame", "EltruismPlayerCastBarShadowFrame")
 		local PlayerCastbarx = E.db.unitframe.units.player.castbar.width + E.db.unitframe.units.player.castbar.iconSize -3
 		local PlayerCastbary = E.db.unitframe.units.player.castbar.height -1
 		PlayerCastbar:SetSize(PlayerCastbarx, PlayerCastbary)
@@ -188,7 +188,7 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		if not E.db.unitframe.units.target.castbar.overlayOnFrame == "Power" then
-			local TargetCastbar = CreateFrame("Frame")
+			local TargetCastbar = CreateFrame("Frame", "EltruismTargetCastBarShadowFrame")
 			local TargetCastbarx = E.db.unitframe.units.target.castbar.width + E.db.unitframe.units.target.castbar.iconSize -2
 			local TargetCastbary = E.db.unitframe.units.target.castbar.height - 1
 			TargetCastbar:SetSize(TargetCastbarx, TargetCastbary)
@@ -200,7 +200,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		local RightChatShadow = CreateFrame("Frame")
+		local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
 		local rightsizex, rightsizey = _G['RightChatMover']:GetSize()
 		RightChatShadow:SetSize(rightsizex, rightsizey)
 		RightChatShadow:SetParent(_G['RightChatPanel'])
@@ -211,7 +211,7 @@ function ElvUI_EltreumUI:Shadows()
 			RightChatShadow:Show()
 		end
 
-		local LeftChatShadow = CreateFrame("Frame")
+		local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
 		local leftsizex, leftsizey = _G['LeftChatMover']:GetSize()
 		LeftChatShadow:SetSize(leftsizex, leftsizey)
 		LeftChatShadow:SetParent(_G['LeftChatPanel'])
@@ -222,7 +222,7 @@ function ElvUI_EltreumUI:Shadows()
 			LeftChatShadow:Show()
 		end
 
-		local MinimapShadow = CreateFrame("Frame")
+		local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
 		local Minimapsizex, Minimapsizey = _G['Minimap']:GetSize()
 		MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
 		MinimapShadow:SetParent(_G['RightChatPanel'])
