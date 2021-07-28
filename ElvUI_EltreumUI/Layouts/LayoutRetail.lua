@@ -1754,12 +1754,10 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["target"]["smartAuraPosition"] = "DEBUFFS_ON_BUFFS"
 			E.db["unitframe"]["units"]["target"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "FORCE_OFF"
-
 			E.db["unitframe"]["units"]["targettarget"]["buffs"]["height"] = 25
 			E.db["unitframe"]["units"]["targettarget"]["buffs"]["keepSizeRatio"] = false
 			E.db["unitframe"]["units"]["targettarget"]["buffs"]["perrow"] = 6
 			E.db["unitframe"]["units"]["targettarget"]["buffs"]["sizeOverride"] = 30
-
 			E.db["unitframe"]["units"]["targettarget"]["debuffs"]["enable"] = false
 			E.db["unitframe"]["units"]["targettarget"]["health"]["position"] = "LEFT"
 			E.db["unitframe"]["units"]["targettarget"]["health"]["xOffset"] = 2

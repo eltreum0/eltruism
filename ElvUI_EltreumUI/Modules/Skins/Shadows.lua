@@ -266,6 +266,20 @@ function ElvUI_EltreumUI:AuraShadows()
 			end
 		end
 
+		--weapon enchant thing
+		for i = 1, 20 do
+			local weaponenchant = {_G['ElvUIPlayerBuffsTempEnchant'..i]}
+			for _, frame in pairs(weaponenchant) do
+				for _, button in pairs(weaponenchant) do
+					if not button.shadow then
+						button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2
+					end
+				end
+			end
+		end
+
 
 		--target buffs UF
 		--nvm doesnt look good

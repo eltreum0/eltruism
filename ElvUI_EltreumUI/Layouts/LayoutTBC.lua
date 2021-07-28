@@ -981,16 +981,8 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["arena"]["power"]["text_format"] = ""
 			E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["size"] = 55
 			E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["xOffset"] = 0
-			E.db["unitframe"]["units"]["arena"]["pvpclassificationindicator"]["size"] = 30
 			E.db["unitframe"]["units"]["arena"]["spacing"] = 20
 			E.db["unitframe"]["units"]["arena"]["width"] = 250
-
-
-
-
-
-
-
 
 			E.db["unitframe"]["units"]["focus"]["CombatIcon"]["xOffset"] = -87
 			E.db["unitframe"]["units"]["focus"]["CombatIcon"]["yOffset"] = 10
