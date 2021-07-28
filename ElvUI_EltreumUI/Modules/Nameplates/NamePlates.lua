@@ -34,27 +34,31 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			button.cd:SetFrameStrata('DIALOG')
 			--button.cd:SetDrawSwipe(false)  --works to erase it
 			local TimeSinceLastUpdate = 0
-			button.cd:SetScript('OnUpdate', function(self, elapsed)
-				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
-				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
-					TimeSinceLastUpdate = 0
-					if button.cd.timer then
-						button.cd.timer.text:ClearAllPoints()
-						button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
-						local _, g, b, a = button.cd.timer.text:GetTextColor()
-						--local r = math.random(1,10)
-						--print(r)
-						--print(g.." green and "..b.." blue")
-						if E.db.ElvUI_EltreumUI.widenameplate.npglow then
-							if (g == 0 or b == 0) and a > 0.5 then
-								LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
-							else
-								LCG.PixelGlow_Stop(button)
+			if not button.cd then
+				return
+			else
+				button.cd:SetScript('OnUpdate', function(self, elapsed)
+					TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+					if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+						TimeSinceLastUpdate = 0
+						if button.cd.timer then
+							button.cd.timer.text:ClearAllPoints()
+							button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
+							local _, g, b, a = button.cd.timer.text:GetTextColor()
+							--local r = math.random(1,10)
+							--print(r)
+							--print(g.." green and "..b.." blue")
+							if E.db.ElvUI_EltreumUI.widenameplate.npglow then
+								if (g == 0 or b == 0) and a > 0.5 then
+									LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
+								else
+									LCG.PixelGlow_Stop(button)
+								end
 							end
 						end
 					end
-				end
-			end)
+				end)
+			end
 			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 				button:SetWidth(25)
 				button:SetHeight(18)
