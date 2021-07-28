@@ -10,10 +10,12 @@ local GetRaidRosterInfo = _G.GetRaidRosterInfo
 -- Conversion of the party/raid death weakaura into an addon option
 local name = {}
 local _
+local deaththrottle = 0
 function ElvUI_EltreumUI:GroupRoster()
 	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
 			for i=1, GetNumGroupMembers() do
 				name[i], _, _, _, _, _, _, _, _, _, _, _ = GetRaidRosterInfo(i)
+				deaththrottle = 1
 			end
 		if not IsInGroup() then
 			name = {}
@@ -27,7 +29,7 @@ function ElvUI_EltreumUI:RaidDeath()
 		local _, eventType, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
 		if not eventType == "UNIT_DIED" then
 			return
-		elseif eventType == "UNIT_DIED" then
+		elseif eventType == "UNIT_DIED"  and deaththrottle == 1 then
 			for i=1,#name do
 				if name[i] == destName then
 					if E.db.ElvUI_EltreumUI.partyraiddeath.enable then

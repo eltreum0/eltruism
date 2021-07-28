@@ -944,6 +944,54 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["assist"]["rdebuffs"]["font"] = "Kimberley"
 			E.db["unitframe"]["units"]["assist"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
 
+
+			--test arena tbc
+			E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Kimberley"
+			E.db["unitframe"]["units"]["arena"]["buffs"]["countXOffset"] = 2
+			E.db["unitframe"]["units"]["arena"]["buffs"]["countYOffset"] = -3
+			E.db["unitframe"]["units"]["arena"]["buffs"]["durationPosition"] = "TOP"
+			E.db["unitframe"]["units"]["arena"]["buffs"]["height"] = 25
+			E.db["unitframe"]["units"]["arena"]["buffs"]["keepSizeRatio"] = false
+			E.db["unitframe"]["units"]["arena"]["buffs"]["perrow"] = 6
+			E.db["unitframe"]["units"]["arena"]["buffs"]["sizeOverride"] = 30
+			E.db["unitframe"]["units"]["arena"]["buffs"]["xOffset"] = -3
+			E.db["unitframe"]["units"]["arena"]["buffs"]["yOffset"] = 14
+			E.db["unitframe"]["units"]["arena"]["colorOverride"] = "FORCE_OFF"
+			E.db["unitframe"]["units"]["arena"]["debuffs"]["anchorPoint"] = "BOTTOM"
+			E.db["unitframe"]["units"]["arena"]["debuffs"]["attachTo"] = "BUFFS"
+			E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "Kimberley"
+			E.db["unitframe"]["units"]["arena"]["debuffs"]["countXOffset"] = 2
+			E.db["unitframe"]["units"]["arena"]["debuffs"]["countYOffset"] = -3
+			E.db["unitframe"]["units"]["arena"]["debuffs"]["height"] = 25
+			E.db["unitframe"]["units"]["arena"]["debuffs"]["keepSizeRatio"] = false
+			E.db["unitframe"]["units"]["arena"]["debuffs"]["perrow"] = 6
+			E.db["unitframe"]["units"]["arena"]["debuffs"]["sizeOverride"] = 30
+			E.db["unitframe"]["units"]["arena"]["debuffs"]["yOffset"] = -4
+			E.db["unitframe"]["units"]["arena"]["fader"]["minAlpha"] = 0.8
+			E.db["unitframe"]["units"]["arena"]["health"]["text_format"] = ""
+			E.db["unitframe"]["units"]["arena"]["health"]["xOffset"] = 0
+			E.db["unitframe"]["units"]["arena"]["height"] = 40
+			E.db["unitframe"]["units"]["arena"]["infoPanel"]["enable"] = true
+			E.db["unitframe"]["units"]["arena"]["infoPanel"]["height"] = 15
+			E.db["unitframe"]["units"]["arena"]["infoPanel"]["transparent"] = true
+			E.db["unitframe"]["units"]["arena"]["name"]["text_format"] = ""
+			E.db["unitframe"]["units"]["arena"]["portrait"]["overlay"] = true
+			E.db["unitframe"]["units"]["arena"]["portrait"]["style"] = "Class"
+			E.db["unitframe"]["units"]["arena"]["power"]["height"] = 14
+			E.db["unitframe"]["units"]["arena"]["power"]["text_format"] = ""
+			E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["size"] = 55
+			E.db["unitframe"]["units"]["arena"]["pvpTrinket"]["xOffset"] = 0
+			E.db["unitframe"]["units"]["arena"]["pvpclassificationindicator"]["size"] = 30
+			E.db["unitframe"]["units"]["arena"]["spacing"] = 20
+			E.db["unitframe"]["units"]["arena"]["width"] = 250
+
+
+
+
+
+
+
+
 			E.db["unitframe"]["units"]["focus"]["CombatIcon"]["xOffset"] = -87
 			E.db["unitframe"]["units"]["focus"]["CombatIcon"]["yOffset"] = 10
 			E.db["unitframe"]["units"]["focus"]["buffIndicator"]["size"] = 20

@@ -694,7 +694,7 @@ if ElvUI_EltreumUI.Classic then
 						},
 					},
 				},
-				 ={
+				misc ={
 					type = 'group',
 					name = 'Misc',
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\misc',

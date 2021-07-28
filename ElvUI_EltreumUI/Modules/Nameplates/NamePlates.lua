@@ -28,7 +28,9 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			if not string.find(unit, "nameplate") then
 				return
 			end
-			button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
+			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
+			end
 			button.cd:SetFrameStrata('DIALOG')
 			--button.cd:SetDrawSwipe(false)  --works to erase it
 			local TimeSinceLastUpdate = 0
@@ -53,8 +55,10 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 					end
 				end
 			end)
-			button:SetWidth(25)
-			button:SetHeight(18)
+			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				button:SetWidth(25)
+				button:SetHeight(18)
+			end
 			button.count:SetParent(button.cd)
 			if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 				button.count:Point('BOTTOMRIGHT', 2, -3) --elvui added a setting for it in retail but not classic/tbc yet
@@ -66,15 +70,19 @@ end
 
 function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 	if E.db.ElvUI_EltreumUI.widenameplate.enable then
-		if not E.private.ElvUI_EltreumUI.nameplatepower.adjust then
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
+		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+			if not E.private.ElvUI_EltreumUI.nameplatepower.adjust then
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
+			end
 		end
 		if button and button.spellID then
 			if not string.find(unit, "nameplate") then
 				return
 			end
-			button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
+			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
+			end
 			local TimeSinceLastUpdate = 0
 			button.cd:SetScript('OnUpdate', function(self, elapsed)
 			TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
@@ -87,8 +95,10 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 					end
 				end
 			end)
-			button:SetWidth(25)
-			button:SetHeight(18)
+			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				button:SetWidth(25)
+				button:SetHeight(18)
+			end
 			button.count:SetParent(button.cd)
 			button.count:Point('BOTTOMRIGHT', 2, -3)
 		end
