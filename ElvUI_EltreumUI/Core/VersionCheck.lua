@@ -20,7 +20,7 @@ end
 
 function ElvUI_EltreumUI:ElvUIVersionCheck()
 	if ElvUI_EltreumUI.Retail then
-		if E.version < 12.37 then
+		if E.version < 12.38 then
 			ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
 		end
 	end
@@ -181,31 +181,6 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.db["sle"]["shadows"]["unitframes"]["target"]["power"] = false
 			E.db["sle"]["shadows"]["unitframes"]["targettarget"]["health"] = false
 			E.db["sle"]["shadows"]["unitframes"]["targettarget"]["power"] = false
-
-			--update stack count
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countXOffset"] = 2
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countYOffset"] = -3
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countXOffset"] = 2
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countYOffset"] = -3
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countXOffset"] = 2
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countYOffset"] = -3
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countXOffset"] = 2
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countYOffset"] = -3
-			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countFontSize"] = 10
-			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countXOffset"] = 2
-			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countYOffset"] = -3
-			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["countFontSize"] = 10
-			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["countXOffset"] = 2
-			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["countYOffset"] = -3
-			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFontSize"] = 10
-			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countXOffset"] = 2
-			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countYOffset"] = -3
-			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countXOffset"] = 2
-			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countYOffset"] = -3
-			E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countXOffset"] = 2
-			E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countYOffset"] = -3
-			E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["countXOffset"] = 2
-			E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["countYOffset"] = -3
 		end
 	end
 end
