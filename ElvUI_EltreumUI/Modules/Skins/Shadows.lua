@@ -280,7 +280,6 @@ function ElvUI_EltreumUI:AuraShadows()
 			end
 		end
 
-
 		--target buffs UF
 		--nvm doesnt look good
 		--[[

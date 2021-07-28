@@ -102,7 +102,7 @@ if ElvUI_EltreumUI.TBC then
 		-- Chat
 		E.db["chat"]["chatHistory"] = false
 		E.db["chat"]["hideCopyButton"] = true
-		--E.db["chat"]["hideVoiceButtons"] = true
+		E.db["chat"]["hideVoiceButtons"] = true
 		E.db["chat"]["fadeTabsNoBackdrop"] = false
 		E.db["chat"]["font"] = "Kimberley"
 		E.db["chat"]["fontOutline"] = "OUTLINE"

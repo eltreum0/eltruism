@@ -38,8 +38,11 @@ function ElvUI_EltreumUI:GetASProfile()
 	AS.db["DBMFontFlag"] = "THICKOUTLINE"
 	AS.db["DBMFont"] = "Kimberley"
 	AS.db["DBMRadarTrans"] = true
-	AS.db["HideChatFrame"] = "ChatFrame4"
-	--AS.db["HideChatFrame"] = "ChatFrame3"
+	if ElvUI_EltreumUI.Retail then
+		AS.db["HideChatFrame"] = "ChatFrame4"
+	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		AS.db["HideChatFrame"] = "ChatFrame3"
+	end
 	AS.db["TransparentEmbed"] = true
 	AS.db["EmbedSystemDual"] = true
 	AS.db["Immersion"] = true
