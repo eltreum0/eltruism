@@ -190,7 +190,7 @@ function ElvUI_EltreumUI:SkinMailZone()
 	if E.db.ElvUI_EltreumUI.skins.zones then
 		if not IsAddOnLoaded("ElvUI_SLE") then
 			hooksecurefunc("SetZoneText", function()
-				_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 36, "OUTLINE")
+				_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, "OUTLINE")
 				_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, "OUTLINE")
 				_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, "OUTLINE")
 				_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, "OUTLINE")

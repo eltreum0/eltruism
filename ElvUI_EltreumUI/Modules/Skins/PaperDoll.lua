@@ -53,21 +53,12 @@ if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 	end
 end
 
+local classsymbolonframe
+
+
 --put the icon on the papeldoll frame, modify it a bit if SLE is not loaded
 function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
-
-
-
-		local classsymbolonframe
-		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
-			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
-		elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
-			classsymbolonframe = ("|T"..(classIconsReleafborder[E.myclass]..".tga:0:0:0:0|t"))
-		else
-			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
-		end
-
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 			--hooksecurefunc('CharacterFrame_OnEvent', function()
 					_G.CharacterNameText:ClearAllPoints()
@@ -82,6 +73,14 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					_G.CharacterLevelText:ClearAllPoints()
 					_G.CharacterLevelText:SetPoint('TOP', _G.CharacterNameText, 'BOTTOM', 0, -2)
 			--end)
+		end
+
+		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
+			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
+		elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
+			classsymbolonframe = ("|T"..(classIconsReleafborder[E.myclass]..".tga:0:0:0:0|t"))
+		else
+			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
 		end
 
 		if (not IsAddOnLoaded("ElvUI_SLE")) then
