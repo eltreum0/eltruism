@@ -90,19 +90,44 @@ function ElvUI_EltreumUI:Shadows()
 			_G.DropDownList2:CreateShadow()
 		end
 
+		_G.GameTooltipStatusBar:CreateShadow()
 		if not _G.GameTooltip.shadow then
 			_G.GameTooltip:CreateShadow()
 		end
+
+		if not _G.GameTooltip.shadow then
+			_G.GameTooltip:CreateShadow()
+		end
+
+		--if not _G.GameTooltip.StatusBar.shadow then
+		--	_G.GameTooltip.StatusBar:CreateShadow()
+		--end
+
 		--[[if not GameTooltip.shadow then
-			GameTooltip.shadow = GameTooltip:CreateShadow()
+			_G.GameTooltip:CreateShadow()
 			if GameTooltip.shadow then
-				GameTooltip.shadow:SetPoint("TOPLEFT", _G['GameTooltip.StatusBar'] ,"TOPLEFT", 0, 0)
-				GameTooltip.shadow:SetPoint("BOTTOMRIGHT", _G['GameTooltip'] ,"BOTTOMRIGHT", 0, 0)
+				if _G['GameTooltipStatusBar'] then
+					GameTooltip.shadow:SetPoint("TOPLEFT", _G['GameTooltipStatusBar'] ,"TOPLEFT", 0, 0)
+					GameTooltip.shadow:SetPoint("BOTTOMRIGHT", _G['GameTooltip'] ,"BOTTOMRIGHT", 0, 0)
+				else
+					GameTooltip.shadow:SetAllPoints(_G['GameTooltip'])
+				end
+				--GameTooltip.shadow:SetWidth(GameTooltip.shadow:GetWidth()+5)
+				--GameTooltip.shadow:SetHeight(GameTooltip.shadow:GetHeight())
 			end
 		end]]--
-		if not _G.GameTooltip.StatusBar.shadow then
-			_G.GameTooltip.StatusBar:CreateShadow()
+
+		if not _G.ShoppingTooltip1.shadow then
+			_G.ShoppingTooltip1:CreateShadow()
 		end
+
+		if not _G.ShoppingTooltip2.shadow then
+			_G.ShoppingTooltip2:CreateShadow()
+		end
+
+		--ShoppingTooltip3:CreateShadow()
+		--ShoppingTooltip4:CreateShadow()
+		--ShoppingTooltip5:CreateShadow()
 
 		if not _G.VideoOptionsFrame.shadow then
 			_G.VideoOptionsFrame:CreateShadow()
