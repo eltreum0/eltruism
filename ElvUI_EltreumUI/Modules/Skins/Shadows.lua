@@ -166,8 +166,14 @@ function ElvUI_EltreumUI:Shadows()
 		end
 		local PlayerTalentFrame = _G.PlayerTalentFrame
 		PlayerTalentFrame:HookScript("OnShow", function()
-			if not _G.PlayerTalentFrame.shadow then
-				_G.PlayerTalentFrame:CreateShadow()
+			if ElvUI_EltreumUI.Retail then
+				if not _G.PlayerTalentFrame.shadow then
+					_G.PlayerTalentFrame:CreateShadow()
+				end
+			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+				if not _G.PlayerTalentFrame.backdrop.shadow then
+					_G.PlayerTalentFrame.backdrop:CreateShadow()
+				end
 			end
 		end)
 
