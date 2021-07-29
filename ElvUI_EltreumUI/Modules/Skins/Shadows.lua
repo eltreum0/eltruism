@@ -134,8 +134,6 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-
-
 		--[[
 			--power?
 			ElvUF_Player_ClassBar:CreateShadow()
