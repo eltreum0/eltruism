@@ -28,6 +28,10 @@ function ElvUI_EltreumUI:Shadows()
 			ElvUF_Player_PowerBar:CreateShadow()
 		end
 
+		if not _G.ElvUF_Player_Stagger.shadow then
+			_G.ElvUF_Player_Stagger:CreateShadow()
+		end
+
 		if not ElvUF_TargetTarget_HealthBar.shadow then
 			ElvUF_TargetTarget_HealthBar:CreateShadow()
 		end
@@ -61,83 +65,90 @@ function ElvUI_EltreumUI:Shadows()
 			ElvUF_Pet:CreateShadow()
 		end
 
-		_G.GameTooltip:CreateShadow()
-		_G.ElvUI_ContainerFrame:CreateShadow()
-
-		if ElvUI_EltreumUI.Retail then
-			_G.FriendsFrame:CreateShadow()
-			_G.PaperDollFrame:CreateShadow()
-			_G.GroupFinderFrame:CreateShadow()
-			_G.CollectionsJournal:CreateShadow()
-			_G.WorldMapFrame.backdrop:CreateShadow()
-			_G.SpellBookFrame:CreateShadow()
-			--_G.PlayerTalentFrame:CreateShadow()  --errors out
-		elseif  ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-			_G.FriendsFrame.backdrop:CreateShadow()
-			_G.WorldMapFrame:CreateShadow()
-			_G.CharacterFrame.backdrop:CreateShadow()
-			_G.SpellBookFrame.backdrop:CreateShadow()
-			_G.FriendsFrame.backdrop:CreateShadow()
+		if not _G.ElvUI_ContainerFrame.shadow then
 			_G.ElvUI_ContainerFrame:CreateShadow()
 		end
 
-		--[[
-			if _G.PlayerTalentFrame then
-				if not _G.PlayerTalentFrame.shadow then
-					_G.PlayerTalentFrame.Center:CreateShadow()
-				end
+		if not _G.GameMenuFrame.shadow then
+			_G.GameMenuFrame:CreateShadow()
+		end
+
+		if not _G.DropDownList1.shadow then
+			_G.DropDownList1:CreateShadow()
+		end
+		if not _G.DropDownList2.shadow then
+			_G.DropDownList2:CreateShadow()
+		end
+
+		if not _G.GameTooltip.shadow then
+			_G.GameTooltip:CreateShadow()
+		end
+		--[[if not GameTooltip.shadow then
+			GameTooltip.shadow = GameTooltip:CreateShadow()
+			if GameTooltip.shadow then
+				GameTooltip.shadow:SetPoint("TOPLEFT", _G['GameTooltip.StatusBar'] ,"TOPLEFT", 0, 0)
+				GameTooltip.shadow:SetPoint("BOTTOMRIGHT", _G['GameTooltip'] ,"BOTTOMRIGHT", 0, 0)
+			end
+		end]]--
+		if not _G.GameTooltip.StatusBar.shadow then
+			_G.GameTooltip.StatusBar:CreateShadow()
+		end
+
+		if not _G.VideoOptionsFrame.shadow then
+			_G.VideoOptionsFrame:CreateShadow()
+		end
+
+		if ElvUI_EltreumUI.Retail then
+			if not _G.FriendsFrame.shadow then
+				_G.FriendsFrame:CreateShadow()
+			end
+			if not _G.PaperDollFrame.shadow then
+				_G.PaperDollFrame:CreateShadow()
+			end
+			if not _G.GroupFinderFrame.shadow then
+				_G.GroupFinderFrame:CreateShadow()
+			end
+			if not _G.CollectionsJournal.shadow then
+				_G.CollectionsJournal:CreateShadow()
+			end
+			if not _G.WorldMapFrame.backdrop.shadow then
+				_G.WorldMapFrame.backdrop:CreateShadow()
+			end
+			if not _G.SpellBookFrame.shadow then
+				_G.SpellBookFrame:CreateShadow()
 			end
 
-			local EltruismPlayerTalentFrame = CreateFrame("Frame", "EltruismCommunitiesFrameShadowFrame")
-			EltruismPlayerTalentFrame:SetParent(_G.PlayerTalentFrame)
-			if not (self.EltruismPlayerTalentFrameIsSkinned) then
-	        	EltruismPlayerTalentFrame.shadow = EltruismPlayerTalentFrame:CreateShadow(nil, true)
-				EltruismPlayerTalentFrame:SetAllPoints(_G.PlayerTalentFrame)
-				EltruismPlayerTalentFrame:Show()
-	        	self.EltruismPlayerTalentFrameIsSkinned = true
-	    	end
-
-			if _G.CommunitiesFrame then
-				if not _G.CommunitiesFrame.shadow then
-					_G.CommunitiesFrame:CreateShadow()
-				end
+			--_G.CovenantMissionFrame:CreateShadow() --??? doesnt work
+			if not _G.ZoneAbilityFrame.shadow then
+				_G.ZoneAbilityFrame:CreateShadow()
 			end
-
-
-			local CommunitiesFrame1 = CreateFrame("Frame", "EltruismCommunitiesFrameShadowFrame")
-			local CommunitiesFramex, CommunitiesFramey = _G['CommunitiesFrame']:GetSize()
-			CommunitiesFrame1:SetSize(CommunitiesFramex, CommunitiesFramey)
-			CommunitiesFrame1:SetParent(_G.CommunitiesFrame)
-			if not (self.CommunitiesFrameIsSkinned) then
-	        	CommunitiesFrame1.shadow = CommunitiesFrame1:CreateShadow(nil, true)
-				CommunitiesFrame1:SetPoint("CENTER", _G.CommunitiesFrame, "CENTER", -14, 0)
-				CommunitiesFrame1:Show()
-
-	        	self.CommunitiesFrameIsSkinned = true
-	    	end
-
-			if _G.AchievementFrame then
-				--if not _G.AchievementFrame.backdrop.shadow then
-					_G.AchievementFrame:CreateShadow()
-					_G.AchievementFrame.backdrop:CreateShadow()
-				--end
+			if not _G.BossButton.shadow then
+				_G.BossButton:CreateShadow()
 			end
-			--_G.QuestMapFrame:CreateShadow()
-
-
-			local AchievementFrame = _G.AchievementFrame
-	    	local AchievementFrame2 = CreateFrame("Frame", "EltruismAchievementFrameShadowFrame")
-			local AchievementFramex, AchievementFramey = AchievementFrame:GetSize()
-			AchievementFrame2:SetSize(AchievementFramex, AchievementFramey)
-			AchievementFrame2:SetParent(_G.AchievementFrame)
-			if not (self.AchievementFrameIsSkinned) then
-	        	AchievementFrame2.shadow = AchievementFrame2:CreateShadow(nil, true)
-				AchievementFrame2:SetPoint("CENTER", _G.AchievementFrame, "CENTER", -14, 0)
-				AchievementFrame2:Show()
-
-	        	self.AchievementFrameIsSkinned = true
-	    	end
-    	]]--
+			--_G.PlayerTalentFrame:CreateShadow()  --errors out
+			--_G.CommunitiesFrame:CreateShadow() --error
+			--_G.AchievementFrame:CreateShadow()  --error
+			--_G.AchievementFrame.backdrop:CreateShadow() --error
+		elseif  ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			if not _G.FriendsFrame.backdrop.shadow then
+				_G.FriendsFrame.backdrop:CreateShadow()
+			end
+			if not _G.WorldMapFrame.shadow then
+				_G.WorldMapFrame:CreateShadow()
+			end
+			if not _G.CharacterFrame.backdrop.shadow then
+				_G.CharacterFrame.backdrop:CreateShadow()
+			end
+			if not _G.SpellBookFrame.backdrop.shadow then
+				_G.SpellBookFrame.backdrop:CreateShadow()
+			end
+			if not _G.FriendsFrame.backdrop.shadow then
+				_G.FriendsFrame.backdrop:CreateShadow()
+			end
+			if not _G.ElvUI_ContainerFrame.shadow then
+				_G.ElvUI_ContainerFrame:CreateShadow()
+			end
+		end
 
 		--action bars, from borders
 		for i = 1, 10 do
@@ -212,24 +223,58 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		--[[
-			--power?
-			ElvUF_Player_ClassBar:CreateShadow()
-			ElvUF_Player_ClassIconButton1:CreateShadow()
-			ElvUF_Player_ClassIconButton2:CreateShadow()
-			ElvUF_Player_ClassIconButton3:CreateShadow()
-			ElvUF_Player_ClassIconButton4:CreateShadow()
-			for i = 1, 12 do
-				local classpowerbutton = {_G['ElvUF_PlayerClassIconButton'..i]}
-				for _, frame in pairs(classpowerbutton) do
-					for _, button in pairs(classpowerbutton) do
-						button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2
-					end
+		--classpower
+		for i = 1, 10 do
+			local button = _G['ElvUF_PlayerClassIconButton'..i]
+			if not button then
+				break
+			else
+				if not button.shadow then
+					button.shadow = button:CreateShadow(nil, true)
+					button.shadow:SetParent(button)
+					button.shadow.size = 2
 				end
 			end
-		]]--
+		end
+
+		--runes
+		for i = 1, 10 do
+			local button = _G['ElvUF_PlayerRuneButton'..i]
+			if not button then
+				break
+			else
+				if not button.shadow then
+					button.shadow = button:CreateShadow(nil, true)
+					button.shadow:SetParent(button)
+					button.shadow.size = 2
+				end
+			end
+		end
+
+		--_AdditionalPowerBar
+		for i = 1, 10 do
+			local button = _G['ElvUF_Player_AdditionalPowerBar'..i]
+			if not button then
+				break
+			else
+				if not button.shadow then
+					button.shadow = button:CreateShadow(nil, true)
+					button.shadow:SetParent(button)
+					button.shadow.size = 2
+				end
+			end
+		end
+		--ElvUF_Player_ClassBar:CreateShadow()
+		--ElvUF_PlayerClassIconButton1:CreateShadow()
+
+
+		if not _G['ElvUF_Player_AdditionalPowerBar1'] then
+			if _G['ElvUF_Player_AdditionalPowerBar'] then
+				if not _G.ElvUF_Player_AdditionalPowerBar.shadow then
+					_G.ElvUF_Player_AdditionalPowerBar:CreateShadow()
+				end
+			end
+		end
 
 		local PlayerCastbar = CreateFrame("Frame", "EltruismPlayerCastBarShadowFrame")
 		local PlayerCastbarx = E.db.unitframe.units.player.castbar.width + E.db.unitframe.units.player.castbar.iconSize -3
@@ -292,6 +337,7 @@ function ElvUI_EltreumUI:Shadows()
 			MinimapShadow:Show()
 			self.minimapIsSkinned = true
 		end
+
 	end
 end
 
@@ -339,9 +385,9 @@ function ElvUI_EltreumUI:AuraShadows()
 			end
 		end
 
-		--target buffs UF
-		--nvm doesnt look good
+		--shadows for these end up overlapping, making them not look so good
 		--[[
+		--target buffs UF
 		for i = 1, 20 do
 			local targetbuffaura = {_G['ElvUF_TargetBuffsButton'..i]}
 			for _, frame in pairs(targetbuffaura) do
@@ -353,7 +399,78 @@ function ElvUI_EltreumUI:AuraShadows()
 					end
 				end
 			end
-		end]]--
+		end
+
+		--target debuffs UF
+		for i = 1, 20 do
+			local targetdebuffaura = {_G['ElvUF_TargetDebuffsButton'..i]}
+			for _, frame in pairs(targetdebuffaura) do
+				for _, button in pairs(targetdebuffaura) do
+					if not button.shadow then
+						button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2
+					end
+				end
+			end
+		end
+
+		--player buffs UF
+		for i = 1, 20 do
+			local playerdebuffaura = {_G['ElvUF_PlayerBuffsButton'..i]}
+			for _, frame in pairs(playerdebuffaura) do
+				for _, button in pairs(playerdebuffaura) do
+					if not button.shadow then
+						button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2
+					end
+				end
+			end
+		end
+
+		--player debuffs UF
+		for i = 1, 20 do
+			local playerdebuffaura = {_G['ElvUF_PlayerDebuffsButton'..i]}
+			for _, frame in pairs(playerdebuffaura) do
+				for _, button in pairs(playerdebuffaura) do
+					if not button.shadow then
+						button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2
+					end
+				end
+			end
+		end
+
+		--player aurabars
+		for i = 1, 20 do
+			local playeraurabars = {_G['ElvUF_Player_AuraBarsStatusBar'..i]}
+			for _, frame in pairs(playeraurabars) do
+				for _, button in pairs(playeraurabars) do
+					if not button.shadow then
+						button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2
+					end
+				end
+			end
+		end
+
+		--target aurabars
+		for i = 1, 20 do
+			local targetaurabars = {_G['ElvUF_Target_AuraBarsStatusBar'..i]}
+			for _, frame in pairs(targetaurabars) do
+				for _, button in pairs(targetaurabars) do
+					if not button.shadow then
+						button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2
+					end
+				end
+			end
+		end
+		]]--
 
 	end
 end

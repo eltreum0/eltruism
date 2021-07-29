@@ -1445,7 +1445,8 @@ if ElvUI_EltreumUI.Retail then
 
 			E.db["unitframe"]["units"]["player"]["debuffs"]["anchorPoint"] = "BOTTOM"
 			E.db["unitframe"]["units"]["player"]["debuffs"]["countFont"] = "Kimberley"
-			E.db["unitframe"]["units"]["player"]["debuffs"]["countXOffset"] = -3
+			E.db["unitframe"]["units"]["player"]["debuffs"]["countXOffset"] = 2
+			E.db["unitframe"]["units"]["player"]["debuffs"]["countYOffset"] = -4
 			E.db["unitframe"]["units"]["player"]["debuffs"]["height"] = 25
 			E.db["unitframe"]["units"]["player"]["debuffs"]["keepSizeRatio"] = false
 			E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,nonPersonal"

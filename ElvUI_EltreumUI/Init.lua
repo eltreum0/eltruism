@@ -202,6 +202,7 @@ function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:GetSpec()
+		ElvUI_EltreumUI:Shadows()
 		if E.private["nameplates"]["enable"] == true then
 			ElvUI_EltreumUI:UpdateNPwithoutBar()
 		end
