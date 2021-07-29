@@ -201,7 +201,27 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 
 			local startpower = UnitPower("player")
 			EltreumPowerBar:SetValue(startpower) --try to make it not be full always at the start
-			EltreumPowerBar.Text:SetText(startpower)
+
+			local ret
+		    local placeValue = ("%%.%df"):format(1)
+		    if not startpower then
+		        return 0
+		    elseif startpower >= 1000000000000 then
+		        ret = placeValue:format(startpower / 1000000000000) .. " T" -- trillion
+		    elseif startpower >= 1000000000 then
+		        ret = placeValue:format(startpower / 1000000000) .. " B" -- billion
+		    elseif startpower >= 1000000 then
+		        ret = placeValue:format(startpower / 1000000) .. " M" -- million
+		    elseif startpower >= 1000 then
+		        ret = placeValue:format(startpower / 1000) .. "k" -- thousand
+		    else
+		        ret = startpower -- hundreds
+		    end
+		    EltreumPowerBar.Text:SetText(ret)    --this is an actual number not string
+
+
+
+			--EltreumPowerBar.Text:SetText(BreakUpLargeNumbers(startpower))    --this is an actual number not string
 			EltreumPowerBar:SetSize(sizex, sizey)
 			EltreumPowerBar:SetStatusBarTexture(powertexture)
 			EltreumPowerBar.bg:SetSize(bgx, bgy)
@@ -600,7 +620,24 @@ function ElvUI_EltreumUI:NameplatePowerTextUpdate(unit)
 				local power = UnitPower("player")
 				--ElvUI_EltreumUI:Print('power frequent')
 				EltreumPowerBar:SetValue(power)
-				EltreumPowerBar.Text:SetText(power)
+
+				local ret
+			    local placeValue = ("%%.%df"):format(1)
+			    if not power then
+			        return 0
+			    elseif power >= 1000000000000 then
+			        ret = placeValue:format(power / 1000000000000) .. " T" -- trillion
+			    elseif power >= 1000000000 then
+			        ret = placeValue:format(power / 1000000000) .. " B" -- billion
+			    elseif power >= 1000000 then
+			        ret = placeValue:format(power / 1000000) .. " M" -- million
+			    elseif power >= 1000 then
+			        ret = placeValue:format(power / 1000) .. "K" -- thousand
+			    else
+			        ret = power -- hundreds
+			    end
+			    EltreumPowerBar.Text:SetText(ret)
+				--EltreumPowerBar.Text:SetText(BreakUpLargeNumbers(power))
 			end
 		end
 	end)

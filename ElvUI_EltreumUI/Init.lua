@@ -209,7 +209,6 @@ function ElvUI_EltreumUI:UNIT_NAME_UPDATE(event,unit)
 	end
 end
 
-
 function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	if ElvUI_EltreumUI.Retail then
