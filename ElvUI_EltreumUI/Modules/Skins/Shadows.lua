@@ -28,8 +28,10 @@ function ElvUI_EltreumUI:Shadows()
 			ElvUF_Player_PowerBar:CreateShadow()
 		end
 
-		if not _G.ElvUF_Player_Stagger.shadow then
-			_G.ElvUF_Player_Stagger:CreateShadow()
+		if _G.ElvUF_Player_Stagger then
+			if not _G.ElvUF_Player_Stagger.shadow then
+				_G.ElvUF_Player_Stagger:CreateShadow()
+			end
 		end
 
 		if not ElvUF_TargetTarget_HealthBar.shadow then
@@ -117,10 +119,7 @@ function ElvUI_EltreumUI:Shadows()
 		if not _G.KeyBindingFrame.shadow then
 			_G.KeyBindingFrame:CreateShadow()
 		end
-
 		]]--
-
-
 
 		if not _G.stAMFrame.shadow then
 			_G.stAMFrame:CreateShadow()
