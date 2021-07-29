@@ -38,23 +38,19 @@ local classIconsReleafborder = {
 }
 
 --create the frame that holds the icon
-if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-	local classFrame = CreateFrame("Frame", "EltruismClassIcon", UIParent)
-	classFrame:SetSize(20, 20)
-	classFrame:SetParent("PaperDollFrame")
-	local classTexture = classFrame:CreateTexture()
-	classTexture:SetAllPoints(classFrame)
-	local CharacterLevelText = _G.CharacterLevelText
-	if ElvUI_EltreumUI.Retail then
-		CharacterLevelText:SetWidth(300) --new
-		--classFrame:Hide()
-	elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-		CharacterLevelText:SetWidth(280) --new
-	end
+local classFrame = CreateFrame("Frame", "EltruismClassIcon", UIParent)
+classFrame:SetSize(20, 20)
+classFrame:SetParent("PaperDollFrame")
+local classTexture = classFrame:CreateTexture()
+classTexture:SetAllPoints(classFrame)
+local CharacterLevelText = _G.CharacterLevelText
+if ElvUI_EltreumUI.Retail then
+	CharacterLevelText:SetWidth(300) --new
+	--classFrame:Hide()
+elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+	CharacterLevelText:SetWidth(280) --new
 end
-
 local classsymbolonframe
-
 
 --put the icon on the papeldoll frame, modify it a bit if SLE is not loaded
 function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()

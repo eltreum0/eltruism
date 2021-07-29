@@ -61,6 +61,84 @@ function ElvUI_EltreumUI:Shadows()
 			ElvUF_Pet:CreateShadow()
 		end
 
+		_G.GameTooltip:CreateShadow()
+		_G.ElvUI_ContainerFrame:CreateShadow()
+
+		if ElvUI_EltreumUI.Retail then
+			_G.FriendsFrame:CreateShadow()
+			_G.PaperDollFrame:CreateShadow()
+			_G.GroupFinderFrame:CreateShadow()
+			_G.CollectionsJournal:CreateShadow()
+			_G.WorldMapFrame.backdrop:CreateShadow()
+			_G.SpellBookFrame:CreateShadow()
+			--_G.PlayerTalentFrame:CreateShadow()  --errors out
+		elseif  ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			_G.FriendsFrame.backdrop:CreateShadow()
+			_G.WorldMapFrame:CreateShadow()
+			_G.CharacterFrame.backdrop:CreateShadow()
+			_G.SpellBookFrame.backdrop:CreateShadow()
+			_G.FriendsFrame.backdrop:CreateShadow()
+			_G.ElvUI_ContainerFrame:CreateShadow()
+		end
+
+		--[[
+			if _G.PlayerTalentFrame then
+				if not _G.PlayerTalentFrame.shadow then
+					_G.PlayerTalentFrame.Center:CreateShadow()
+				end
+			end
+
+			local EltruismPlayerTalentFrame = CreateFrame("Frame", "EltruismCommunitiesFrameShadowFrame")
+			EltruismPlayerTalentFrame:SetParent(_G.PlayerTalentFrame)
+			if not (self.EltruismPlayerTalentFrameIsSkinned) then
+	        	EltruismPlayerTalentFrame.shadow = EltruismPlayerTalentFrame:CreateShadow(nil, true)
+				EltruismPlayerTalentFrame:SetAllPoints(_G.PlayerTalentFrame)
+				EltruismPlayerTalentFrame:Show()
+	        	self.EltruismPlayerTalentFrameIsSkinned = true
+	    	end
+
+			if _G.CommunitiesFrame then
+				if not _G.CommunitiesFrame.shadow then
+					_G.CommunitiesFrame:CreateShadow()
+				end
+			end
+
+
+			local CommunitiesFrame1 = CreateFrame("Frame", "EltruismCommunitiesFrameShadowFrame")
+			local CommunitiesFramex, CommunitiesFramey = _G['CommunitiesFrame']:GetSize()
+			CommunitiesFrame1:SetSize(CommunitiesFramex, CommunitiesFramey)
+			CommunitiesFrame1:SetParent(_G.CommunitiesFrame)
+			if not (self.CommunitiesFrameIsSkinned) then
+	        	CommunitiesFrame1.shadow = CommunitiesFrame1:CreateShadow(nil, true)
+				CommunitiesFrame1:SetPoint("CENTER", _G.CommunitiesFrame, "CENTER", -14, 0)
+				CommunitiesFrame1:Show()
+
+	        	self.CommunitiesFrameIsSkinned = true
+	    	end
+
+			if _G.AchievementFrame then
+				--if not _G.AchievementFrame.backdrop.shadow then
+					_G.AchievementFrame:CreateShadow()
+					_G.AchievementFrame.backdrop:CreateShadow()
+				--end
+			end
+			--_G.QuestMapFrame:CreateShadow()
+
+
+			local AchievementFrame = _G.AchievementFrame
+	    	local AchievementFrame2 = CreateFrame("Frame", "EltruismAchievementFrameShadowFrame")
+			local AchievementFramex, AchievementFramey = AchievementFrame:GetSize()
+			AchievementFrame2:SetSize(AchievementFramex, AchievementFramey)
+			AchievementFrame2:SetParent(_G.AchievementFrame)
+			if not (self.AchievementFrameIsSkinned) then
+	        	AchievementFrame2.shadow = AchievementFrame2:CreateShadow(nil, true)
+				AchievementFrame2:SetPoint("CENTER", _G.AchievementFrame, "CENTER", -14, 0)
+				AchievementFrame2:Show()
+
+	        	self.AchievementFrameIsSkinned = true
+	    	end
+    	]]--
+
 		--action bars, from borders
 		for i = 1, 10 do
 			local actionbars = {_G['ElvUI_Bar'..i]}
