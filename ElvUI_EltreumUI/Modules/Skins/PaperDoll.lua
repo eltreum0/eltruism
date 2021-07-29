@@ -53,6 +53,20 @@ end
 local classsymbolonframe
 
 --put the icon on the papeldoll frame, modify it a bit if SLE is not loaded
+
+
+function ElvUI_EltreumUI:PlayerNamepaperdoll()
+	if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
+			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
+		elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
+			classsymbolonframe = ("|T"..(classIconsReleafborder[E.myclass]..".tga:0:0:0:0|t"))
+		else
+			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
+		end
+	_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+end
+
+
 function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then

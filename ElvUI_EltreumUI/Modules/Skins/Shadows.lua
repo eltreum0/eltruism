@@ -34,6 +34,14 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
+		if not ElvLootFrame.shadow then
+			ElvLootFrame:CreateShadow()
+		end
+
+		if not MailFrame.shadow then
+			MailFrame:CreateShadow()
+		end
+
 		if not ElvUF_TargetTarget_HealthBar.shadow then
 			ElvUF_TargetTarget_HealthBar:CreateShadow()
 		end

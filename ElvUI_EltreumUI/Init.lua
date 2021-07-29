@@ -136,6 +136,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_CURRENCY")
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED")
+	ElvUI_EltreumUI:RegisterEvent("UNIT_NAME_UPDATE")
 	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE')
 	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', 0.02)
@@ -197,6 +198,17 @@ function ElvUI_EltreumUI:UNIT_POWER_UPDATE(event,unit)
 		ElvUI_EltreumUI:NameplatePowerTextUpdate()
 	end
 end
+
+function ElvUI_EltreumUI:UNIT_NAME_UPDATE(event,unit)
+	if unit and unit ~= 'player' then
+		return
+	elseif unit and unit == 'player' then
+		--print(event,unit)
+		ElvUI_EltreumUI:PlayerNamepaperdoll()
+		--ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+	end
+end
+
 
 function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
