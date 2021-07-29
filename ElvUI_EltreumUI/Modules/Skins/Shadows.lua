@@ -98,6 +98,38 @@ function ElvUI_EltreumUI:Shadows()
 			_G.VideoOptionsFrame:CreateShadow()
 		end
 
+		if not _G.InterfaceOptionsFrame.shadow then
+			_G.InterfaceOptionsFrame:CreateShadow()
+		end
+
+		-- these have errors
+		--[[
+		if _G.MacroFrame then
+			if not _G.MacroFrame.shadow then
+				_G.MacroFrame:CreateShadow()
+			end
+		end
+
+		if not _G.MacroPopupFrame.shadow then
+			_G.MacroPopupFrame:CreateShadow()
+		end
+
+		if not _G.KeyBindingFrame.shadow then
+			_G.KeyBindingFrame:CreateShadow()
+		end
+
+		]]--
+
+
+
+		if not _G.stAMFrame.shadow then
+			_G.stAMFrame:CreateShadow()
+		end
+
+		if not _G.stAMProfileMenu.shadow then
+			_G.stAMProfileMenu:CreateShadow()
+		end
+
 		if ElvUI_EltreumUI.Retail then
 			if not _G.FriendsFrame.shadow then
 				_G.FriendsFrame:CreateShadow()
