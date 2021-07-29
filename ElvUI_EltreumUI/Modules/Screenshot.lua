@@ -9,3 +9,9 @@ EltruismScreenShot:RegisterEvent("PLAYER_LEVEL_UP")
 EltruismScreenShot:SetScript("OnEvent", function()
 	Screenshot()	
 end)
+
+if ElvUI_EltreumUI.TBC then
+	hooksecurefunc(_G.MasterLooterFrame, 'Hide', function(self)
+		self:ClearAllPoints()
+	end)
+end
