@@ -34,12 +34,12 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		if not ElvLootFrame.shadow then
-			ElvLootFrame:CreateShadow()
+		if not _G.ElvLootFrame.shadow then
+			_G.ElvLootFrame:CreateShadow()
 		end
 
-		if not MailFrame.shadow then
-			MailFrame:CreateShadow()
+		if not _G.MailFrame.shadow then
+			_G.MailFrame:CreateShadow()
 		end
 
 		if not ElvUF_TargetTarget_HealthBar.shadow then
@@ -99,6 +99,16 @@ function ElvUI_EltreumUI:Shadows()
 			_G.GameTooltip:CreateShadow()
 		end
 
+		if not IsAddOnLoaded("Blizzard_MacroUI") then
+			LoadAddOn("Blizzard_MacroUI")
+		end
+		local MacroFrame = _G.MacroFrame
+		MacroFrame:HookScript("OnShow", function()
+			if not _G.MacroFrame.shadow then
+				_G.MacroFrame:CreateShadow()
+			end
+		end)
+
 		--if not _G.GameTooltip.StatusBar.shadow then
 		--	_G.GameTooltip.StatusBar:CreateShadow()
 		--end
@@ -125,10 +135,6 @@ function ElvUI_EltreumUI:Shadows()
 			_G.ShoppingTooltip2:CreateShadow()
 		end
 
-		--ShoppingTooltip3:CreateShadow()
-		--ShoppingTooltip4:CreateShadow()
-		--ShoppingTooltip5:CreateShadow()
-
 		if not _G.VideoOptionsFrame.shadow then
 			_G.VideoOptionsFrame:CreateShadow()
 		end
@@ -136,23 +142,6 @@ function ElvUI_EltreumUI:Shadows()
 		if not _G.InterfaceOptionsFrame.shadow then
 			_G.InterfaceOptionsFrame:CreateShadow()
 		end
-
-		-- these have errors
-		--[[
-		if _G.MacroFrame then
-			if not _G.MacroFrame.shadow then
-				_G.MacroFrame:CreateShadow()
-			end
-		end
-
-		if not _G.MacroPopupFrame.shadow then
-			_G.MacroPopupFrame:CreateShadow()
-		end
-
-		if not _G.KeyBindingFrame.shadow then
-			_G.KeyBindingFrame:CreateShadow()
-		end
-		]]--
 
 		if not _G.stAMFrame.shadow then
 			_G.stAMFrame:CreateShadow()
@@ -162,7 +151,58 @@ function ElvUI_EltreumUI:Shadows()
 			_G.stAMProfileMenu:CreateShadow()
 		end
 
+		if not IsAddOnLoaded("Blizzard_BindingUI") then
+			LoadAddOn("Blizzard_BindingUI")
+		end
+		local KeyBindingFrame = _G.KeyBindingFrame
+		KeyBindingFrame:HookScript("OnShow", function()
+			if not _G.KeyBindingFrame.shadow then
+				_G.KeyBindingFrame:CreateShadow()
+			end
+		end)
+
+		if not IsAddOnLoaded("Blizzard_TalentUI") then
+			LoadAddOn("Blizzard_TalentUI")
+		end
+		local PlayerTalentFrame = _G.PlayerTalentFrame
+		PlayerTalentFrame:HookScript("OnShow", function()
+			if not _G.PlayerTalentFrame.shadow then
+				_G.PlayerTalentFrame:CreateShadow()
+			end
+		end)
+
 		if ElvUI_EltreumUI.Retail then
+
+			if not IsAddOnLoaded("Blizzard_Communities") then
+				LoadAddOn("Blizzard_Communities")
+			end
+			local CommunitiesFrame = _G.CommunitiesFrame
+			CommunitiesFrame:HookScript("OnShow", function()
+				if not _G.CommunitiesFrame.shadow then
+					_G.CommunitiesFrame:CreateShadow()
+				end
+			end)
+
+			if not IsAddOnLoaded("Blizzard_AchievementUI") then
+				LoadAddOn("Blizzard_AchievementUI")
+			end
+			local AchievementFrame = _G.AchievementFrame
+			AchievementFrame:HookScript("OnShow", function()
+				if not _G.AchievementFrame.backdrop.shadow then
+					_G.AchievementFrame.backdrop:CreateShadow()
+				end
+			end)
+
+			if not IsAddOnLoaded("Blizzard_GarrisonUI") then
+				LoadAddOn("Blizzard_GarrisonUI")
+			end
+			local CovenantMissionFrame = _G.CovenantMissionFrame
+			CovenantMissionFrame:HookScript("OnShow", function()
+				if not _G.CovenantMissionFrame.shadow then
+					_G.CovenantMissionFrame:CreateShadow()
+				end
+			end)
+
 			if not _G.FriendsFrame.shadow then
 				_G.FriendsFrame:CreateShadow()
 			end
@@ -182,17 +222,13 @@ function ElvUI_EltreumUI:Shadows()
 				_G.SpellBookFrame:CreateShadow()
 			end
 
-			--_G.CovenantMissionFrame:CreateShadow() --??? doesnt work
 			if not _G.ZoneAbilityFrame.shadow then
 				_G.ZoneAbilityFrame:CreateShadow()
 			end
 			if not _G.BossButton.shadow then
 				_G.BossButton:CreateShadow()
 			end
-			--_G.PlayerTalentFrame:CreateShadow()  --errors out
-			--_G.CommunitiesFrame:CreateShadow() --error
-			--_G.AchievementFrame:CreateShadow()  --error
-			--_G.AchievementFrame.backdrop:CreateShadow() --error
+
 		elseif  ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			if not _G.FriendsFrame.backdrop.shadow then
 				_G.FriendsFrame.backdrop:CreateShadow()
@@ -330,7 +366,6 @@ function ElvUI_EltreumUI:Shadows()
 		end
 		--ElvUF_Player_ClassBar:CreateShadow()
 		--ElvUF_PlayerClassIconButton1:CreateShadow()
-
 
 		if not _G['ElvUF_Player_AdditionalPowerBar1'] then
 			if _G['ElvUF_Player_AdditionalPowerBar'] then
