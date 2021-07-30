@@ -51,10 +51,9 @@ elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 	CharacterLevelText:SetWidth(280) --new
 end
 local classsymbolonframe
+local charactertext --check character text
 
 --put the icon on the papeldoll frame, modify it a bit if SLE is not loaded
-
-
 function ElvUI_EltreumUI:PlayerNamepaperdoll()
 	if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
 			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
@@ -63,9 +62,10 @@ function ElvUI_EltreumUI:PlayerNamepaperdoll()
 		else
 			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
 		end
-	_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+	if not charactertext:match("|T") then
+		_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+	end
 end
-
 
 function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
@@ -74,7 +74,6 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					_G.CharacterNameText:ClearAllPoints()
 					_G.CharacterNameText:SetPoint('TOP',  _G.CharacterModelFrame, 0, 50)
 					_G.CharacterNameText:SetParent(_G.CharacterFrame)
-					--_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
 					_G.CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
 					_G.CharacterNameText:SetTextColor(R, G, B)
 					_G.CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
@@ -92,6 +91,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		else
 			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
 		end
+
 
 		if (not IsAddOnLoaded("ElvUI_SLE")) then
 			if ElvUI_EltreumUI.Retail then
@@ -112,9 +112,15 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					if _G.PaperDollFrame:IsShown() then
 						_G.CharacterFrame:SetWidth(500)
 						if ElvUI_EltreumUI.Retail then
-							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+							charactertext = _G.CharacterFrameTitleText:GetText()
+							if not charactertext:match("|T") then
+								_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+							end
 						elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-							_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
+							charactertext = _G.CharacterFrameTitleText:GetText()
+							if not charactertext:match("|T") then
+								_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
+							end
 						end
 					end
 				end)
@@ -123,9 +129,15 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					if _G.PaperDollFrame:IsShown() then
 						_G.CharacterFrame:SetWidth(700)
 						if ElvUI_EltreumUI.Retail then
-							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+							charactertext = _G.CharacterFrameTitleText:GetText()
+							if not charactertext:match("|T") then
+								_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+							end
 						elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-							_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
+							charactertext = _G.CharacterFrameTitleText:GetText()
+							if not charactertext:match("|T") then
+								_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
+							end
 						end
 					end
 				end)

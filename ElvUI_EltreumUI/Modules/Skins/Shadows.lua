@@ -209,6 +209,16 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end)
 
+			if not IsAddOnLoaded("Blizzard_Collections") then
+				LoadAddOn("Blizzard_Collections")
+			end
+			local CollectionsJournal = _G.CollectionsJournal
+			CollectionsJournal:HookScript("OnShow", function()
+				if not _G.CollectionsJournal.shadow then
+					_G.CollectionsJournal:CreateShadow()
+				end
+			end)
+
 			if not _G.FriendsFrame.shadow then
 				_G.FriendsFrame:CreateShadow()
 			end
@@ -218,9 +228,7 @@ function ElvUI_EltreumUI:Shadows()
 			if not _G.GroupFinderFrame.shadow then
 				_G.GroupFinderFrame:CreateShadow()
 			end
-			if not _G.CollectionsJournal.shadow then
-				_G.CollectionsJournal:CreateShadow()
-			end
+
 			if not _G.WorldMapFrame.backdrop.shadow then
 				_G.WorldMapFrame.backdrop:CreateShadow()
 			end
