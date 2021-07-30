@@ -152,7 +152,23 @@ if ElvUI_EltreumUI.TBC then
 									type = 'execute',
 									name = 'Reset layout to Eltruism Healer',
 									width = 'double',
+
 									func = function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') end,
+								},
+							},
+						},
+						resetcvars = {
+							order = 4,
+							type = 'group',
+							inline = true,
+							name = "CVars",
+							args = {
+								resetcvar = {
+									order = 1,
+									type = 'execute',
+									name = 'Reset CVars to Eltruism defaults',
+									width = 'double',
+									func = function() ElvUI_EltreumUI:SetupCVars() end,
 								},
 							},
 						},

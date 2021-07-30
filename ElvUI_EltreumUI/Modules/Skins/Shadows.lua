@@ -281,6 +281,20 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
+		--elvui popup
+		for i = 1, 5 do
+			local ElvUI_StaticPopups = {_G['ElvUI_StaticPopup'..i]}
+			for _, frame in pairs(ElvUI_StaticPopups) do
+				for _, button in pairs(ElvUI_StaticPopups) do
+					if not button.shadow then
+						button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2
+					end
+				end
+			end
+		end
+
 		--same as above but for party
 		for i = 1, 5 do
 			local partymembers = {_G['ElvUF_PartyGroup1UnitButton'..i]}
