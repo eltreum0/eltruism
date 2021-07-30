@@ -128,15 +128,15 @@ function ElvUI_EltreumUI:PreviewGlow()
 		local r, g, b = unpack(E.media.rgbvaluecolor)
 		skillglowcolor = {r, g, b, 1}
 	end
-    if EltruismGlowPreview:IsShown() then
+	if EltruismGlowPreview:IsShown() then
 		--LCG.PixelGlow_Stop(ElvUI_Bar1Button1)
 		LCG.PixelGlow_Stop(EltruismGlowPreview)
 		LCG.AutoCastGlow_Stop(EltruismGlowPreview)
 		LCG.ButtonGlow_Stop(EltruismGlowPreview)
 		EltruismGlowPreview:Hide()
-    else
-    	EltruismGlowPreview:Show()
-    	if E.db.ElvUI_EltreumUI.glow.pixel then
+	else
+		EltruismGlowPreview:Show()
+		if E.db.ElvUI_EltreumUI.glow.pixel then
 			LCG.PixelGlow_Start(EltruismGlowPreview, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
 		end
 		if E.db.ElvUI_EltreumUI.glow.autocast then
@@ -145,5 +145,5 @@ function ElvUI_EltreumUI:PreviewGlow()
 		if E.db.ElvUI_EltreumUI.glow.blizzard then
 			LCG.ButtonGlow_Start(EltruismGlowPreview, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
 		end
-    end
+	end
 end

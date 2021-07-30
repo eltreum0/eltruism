@@ -95,9 +95,9 @@ if IsAddOnLoaded("ElvUI_WindTools") then
 			HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
 			DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', sizeString),
 		}
-	    CT.cache.blizzardRoleIcons.Tank = roleIcons.TANK
-	    CT.cache.blizzardRoleIcons.Healer = roleIcons.HEALER
-	    CT.cache.blizzardRoleIcons.DPS = roleIcons.DAMAGER
+		CT.cache.blizzardRoleIcons.Tank = roleIcons.TANK
+		CT.cache.blizzardRoleIcons.Healer = roleIcons.HEALER
+		CT.cache.blizzardRoleIcons.DPS = roleIcons.DAMAGER
 	end
 	hooksecurefunc(CT, "UpdateRoleIcons", ElvUI_EltreumUI.RoleIcons)
 end

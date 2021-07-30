@@ -409,12 +409,12 @@ function ElvUI_EltreumUI:Shadows()
 		PlayerCastbar:SetSize(PlayerCastbarx, PlayerCastbary)
 		PlayerCastbar:SetParent(_G.ElvUF_Player_CastBar)
 		if not (self.PlayerCastBarIsSkinned) then
-        	PlayerCastbar.shadow = PlayerCastbar:CreateShadow(nil, true)
+			PlayerCastbar.shadow = PlayerCastbar:CreateShadow(nil, true)
 			PlayerCastbar:SetPoint("CENTER", _G.ElvUF_Player_CastBar, "CENTER", -14, 0)
 			PlayerCastbar:Show()
 
-        	self.PlayerCastBarIsSkinned = true
-    	end
+			self.PlayerCastBarIsSkinned = true
+		end
 
 		if not E.db.unitframe.units.target.castbar.overlayOnFrame == "Power" then
 			local TargetCastbar = CreateFrame("Frame", "EltruismTargetCastBarShadowFrame")

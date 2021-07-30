@@ -19,6 +19,7 @@ local function AddLootIcons(self, event, message, ...)
 		return false, message, ...
 	end
 end
+
 ChatFrame_AddMessageEventFilter("CHAT_MSG_LOOT", AddLootIcons)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_GUILD", AddLootIcons)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", AddLootIcons)
@@ -35,4 +36,3 @@ ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", AddLootIcons)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_WHISPER", AddLootIcons)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_WHISPER_INFORM", AddLootIcons)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_OFFICER", AddLootIcons)
-
