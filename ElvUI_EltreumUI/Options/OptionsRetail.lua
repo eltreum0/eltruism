@@ -156,21 +156,6 @@ if ElvUI_EltreumUI.Retail then
 								},
 							},
 						},
-						resetcvars = {
-							order = 4,
-							type = 'group',
-							inline = true,
-							name = "CVars",
-							args = {
-								resetcvar = {
-									order = 1,
-									type = 'execute',
-									name = 'Reset CVars to Eltruism defaults',
-									width = 'double',
-									func = function() ElvUI_EltreumUI:SetupCVars() end,
-								},
-							},
-						},
 					},
 				},
 				aurafilters = {
