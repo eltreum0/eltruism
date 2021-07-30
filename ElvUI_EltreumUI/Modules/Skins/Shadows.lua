@@ -42,6 +42,13 @@ function ElvUI_EltreumUI:Shadows()
 			_G.MailFrame:CreateShadow()
 		end
 
+		local DT = E:GetModule('DataTexts')
+		if DT.tooltip then
+			if not DT.tooltip.shadow then
+				DT.tooltip:CreateShadow()
+			end
+		end
+
 		if not ElvUF_TargetTarget_HealthBar.shadow then
 			ElvUF_TargetTarget_HealthBar:CreateShadow()
 		end
@@ -98,6 +105,48 @@ function ElvUI_EltreumUI:Shadows()
 		if not _G.GameTooltip.shadow then
 			_G.GameTooltip:CreateShadow()
 		end
+
+		if not _G.ReadyCheckFrame.shadow then
+			_G.ReadyCheckFrame:CreateShadow()
+		end
+
+		if not _G.StackSplitFrame.shadow then
+			_G.StackSplitFrame:CreateShadow()
+		end
+
+		if not _G.QueueStatusFrame.shadow then
+			_G.QueueStatusFrame:CreateShadow()
+		end
+
+		if not _G.SplashFrame.shadow then
+			_G.LFDRoleCheckPopup:CreateShadow()
+		end
+
+		if not _G.LFDReadyCheckPopup.shadow then
+			_G.LFDReadyCheckPopup:CreateShadow()
+		end
+
+		if not _G.ChatConfigFrame.shadow then
+			_G.LFDRoleCheckPopup:CreateShadow()
+		end
+
+		if not _G.LFDRoleCheckPopup.shadow then
+			_G.LFDRoleCheckPopup:CreateShadow()
+		end
+
+		if not _G.LFGListApplicationDialog.shadow then
+			_G.LFGListApplicationDialog:CreateShadow()
+		end
+
+		if not IsAddOnLoaded("Blizzard_MacroUI") then
+			LoadAddOn("Blizzard_MacroUI")
+		end
+		local MacroFrame = _G.MacroFrame
+		MacroFrame:HookScript("OnShow", function()
+			if not _G.MacroFrame.shadow then
+				_G.MacroFrame:CreateShadow()
+			end
+		end)
 
 		if not IsAddOnLoaded("Blizzard_MacroUI") then
 			LoadAddOn("Blizzard_MacroUI")
@@ -193,6 +242,39 @@ function ElvUI_EltreumUI:Shadows()
 
 		if ElvUI_EltreumUI.Retail then
 
+
+			-- these end up not fitting the button :(
+			--[[if ObjectiveTrackerFrame then
+				if ObjectiveTrackerFrame.HeaderMenu then
+					if ObjectiveTrackerFrame.HeaderMenu.MinimizeButton then
+						if not ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow then
+							ObjectiveTrackerFrame.HeaderMenu.MinimizeButton:CreateShadow(nil, true)
+							--ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetInside()
+						end
+					end
+				end
+			end
+
+			if ObjectiveTrackerBlocksFrame then
+				if ObjectiveTrackerBlocksFrame.CampaignQuestHeader then
+					if ObjectiveTrackerBlocksFrame.CampaignQuestHeader.MinimizeButton then
+						if not ObjectiveTrackerBlocksFrame.CampaignQuestHeader.MinimizeButton.shadow then
+							ObjectiveTrackerBlocksFrame.CampaignQuestHeader.MinimizeButton:CreateShadow()
+						end
+					end
+				end
+			end]]--
+
+			if not IsAddOnLoaded("Blizzard_Calendar") then
+				LoadAddOn("Blizzard_Calendar")
+			end
+			local CalendarFrame = _G.CalendarFrame
+			CalendarFrame:HookScript("OnShow", function()
+				if not _G.CalendarFrame.shadow then
+					_G.CalendarFrame:CreateShadow()
+				end
+			end)
+
 			if not IsAddOnLoaded("Blizzard_Communities") then
 				LoadAddOn("Blizzard_Communities")
 			end
@@ -220,6 +302,13 @@ function ElvUI_EltreumUI:Shadows()
 			CovenantMissionFrame:HookScript("OnShow", function()
 				if not _G.CovenantMissionFrame.shadow then
 					_G.CovenantMissionFrame:CreateShadow()
+				end
+			end)
+
+			local GarrisonLandingPage = _G.GarrisonLandingPage
+			GarrisonLandingPage:HookScript("OnShow", function()
+				if not _G.GarrisonLandingPage.shadow then
+					_G.GarrisonLandingPage:CreateShadow()
 				end
 			end)
 
