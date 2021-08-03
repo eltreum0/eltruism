@@ -277,6 +277,7 @@ P.ElvUI_EltreumUI = {
 		arenaunitframes = false,
 		fastloot = true,
 		screenshot = true,
+		hidetalkinghead = true,
 		--floatingrep = false,
 	},
 }

@@ -55,6 +55,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive()
 		ElvUI_EltreumUI:SkillGlow()
+		ElvUI_EltreumUI:EltrusimHideTalkingHead()
 		ElvUI_EltreumUI:GetSpec()
 		ElvUI_EltreumUI:SkinLevelUp()
 		ElvUI_EltreumUI:ArenaQuest()

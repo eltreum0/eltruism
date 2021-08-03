@@ -114,3 +114,28 @@ function ElvUI_EltreumUI:ChatRoleSwapIcons()
 	_G.INLINE_HEALER_ICON = roleIcons.HEALER
 	_G.INLINE_DAMAGER_ICON = roleIcons.DAMAGER
 end
+
+--hide talking head
+local EltrusimHideTalkingHead = CreateFrame('Frame', "EltruismHideTalkingHead")
+EltrusimHideTalkingHead:RegisterEvent('PLAYER_ENTERING_WORLD')
+EltrusimHideTalkingHead:RegisterEvent('ADDON_LOADED')
+function ElvUI_EltreumUI:EltrusimHideTalkingHead()
+	if E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead then
+		EltrusimHideTalkingHead:SetScript('OnEvent', function(_, event, addon)
+			if event == 'PLAYER_ENTERING_WORLD' then
+				if IsAddOnLoaded('Blizzard_TalkingHeadUI') then
+					hooksecurefunc('TalkingHeadFrame_PlayCurrent', function()
+						_G.TalkingHeadFrame:Hide()
+					end)
+				end
+			end
+			if event == 'ADDON_LOADED' then
+				 if IsAddOnLoaded('Blizzard_TalkingHeadUI') then
+					hooksecurefunc('TalkingHeadFrame_PlayCurrent', function()
+						_G.TalkingHeadFrame:Hide()
+					end)
+				end
+			end
+		end)
+	end
+end

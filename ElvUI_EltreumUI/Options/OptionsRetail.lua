@@ -418,41 +418,26 @@ if ElvUI_EltreumUI.Retail then
 							get = function(info) return E.db.ElvUI_EltreumUI.questsettings.rogueopen end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.questsettings.rogueopen = value end,
 						},
-						header845 = {
-							order = 23,
+						header5 = {
+							order = 10,
 							type = "description",
 							name = "",
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
-						iconsoncharacter = {
-							order = 23,
-							type = 'toggle',
-							name = "Add Class Icons to Character Panel",
-							width = 'full',
-							desc = "Enable this option",
-							get = function(info) return E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel end,
-							set = function(info, value) E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel = value E:StaticPopup_Show('CONFIG_RL') end,
+						hidehead = {
+							order = 11,
+							type = "description",
+							name = "Hide NPC Talking Head Popup",
+							width = "full",
 						},
-						blizzicons = {
-							order = 24,
+						hideheadenable = {
+							order = 12,
 							type = 'toggle',
-							name = "Use Blizzard Icons",
-							width = 'full',
-							desc = "Enable Blizzard Icons",
-							disabled = function() return not E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel or E.db.ElvUI_EltreumUI.skins.classiconsreleaf end,
-							get = function(info) return E.db.ElvUI_EltreumUI.skins.classiconsblizz end,
-							set = function(info, value) E.db.ElvUI_EltreumUI.skins.classiconsblizz = value E:StaticPopup_Show('CONFIG_RL') end,
-						},
-						releaficons= {
-							order = 25,
-							type = 'toggle',
-							name = "Use Blizzard Icons colored by Releaf",
-							width = 'full',
-							desc = "Enable Releaf Icons",
-							disabled = function() return not E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel or E.db.ElvUI_EltreumUI.skins.classiconsblizz end,
-							get = function(info) return E.db.ElvUI_EltreumUI.skins.classiconsreleaf end,
-							set = function(info, value) E.db.ElvUI_EltreumUI.skins.classiconsreleaf = value E:StaticPopup_Show('CONFIG_RL') end,
+							name = L["Enable"],
+							desc = "Enable Hiding the Talking Head Popup",
+							get = function(info) return E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead = value end,
 						},
 						header9 = {
 							order = 26,
@@ -504,6 +489,119 @@ if ElvUI_EltreumUI.Retail then
 							get = function() return E.db.ElvUI_EltreumUI.otherstuff.worldtextscale end,
 							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldtextscale = value ElvUI_EltreumUI:WorldTextScale(value) end,
 						},
+						header13 = {
+							order = 38,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						fastlootdesc = {
+							order = 39,
+							type = "description",
+							name = "Loot Items Faster",
+							desc = "Decrease the time it takes for auto loot to work",
+							width = 'full',
+						},
+						fastlootenable = {
+							order = 40,
+							name = "Enable",
+							type = "toggle",
+							desc = "Decrease the time it takes for auto loot to work",
+							width = 'full',
+							get = function(info) return E.db.ElvUI_EltreumUI.otherstuff.fastloot end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.fastloot = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
+						header99 = {
+							order = 41,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						hidetalkdesc = {
+							order = 42,
+							type = "description",
+							name = "Hide Talking Head",
+							desc = "Hide Talking Head",
+							width = 'full',
+						},
+						hidetalkenable = {
+							order = 43,
+							name = "Enable",
+							type = "toggle",
+							desc = "Prevent Blizzard's Talking Head from appearing",
+							width = 'full',
+							get = function(info) return E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
+						header15 = {
+							order = 47,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						autossdesc = {
+							order = 48,
+							type = "description",
+							name = "Automatically take Screenshots",
+							desc = "Automatically take Screenshots",
+							width = 'full',
+						},
+						autossenable = {
+							order = 49,
+							name = "Enable",
+							type = "toggle",
+							desc = "Automatically take Screenshots such as when leveling up",
+							width = 'full',
+							get = function(info) return E.db.ElvUI_EltreumUI.otherstuff.screenshot end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.screenshot = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
+					},
+				},
+				skins = {
+					order = 85,
+					type = 'group',
+					name = "Skins",
+					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\paint',
+					args = {
+						header845 = {
+							order = 23,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						iconsoncharacter = {
+							order = 23,
+							type = 'toggle',
+							name = "Add Class Icons to Character Panel",
+							width = 'full',
+							desc = "Enable this option",
+							get = function(info) return E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
+						blizzicons = {
+							order = 24,
+							type = 'toggle',
+							name = "Use Blizzard Icons",
+							width = 'full',
+							desc = "Enable Blizzard Icons",
+							disabled = function() return not E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel or E.db.ElvUI_EltreumUI.skins.classiconsreleaf end,
+							get = function(info) return E.db.ElvUI_EltreumUI.skins.classiconsblizz end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.skins.classiconsblizz = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
+						releaficons= {
+							order = 25,
+							type = 'toggle',
+							name = "Use Blizzard Icons colored by Releaf",
+							width = 'full',
+							desc = "Enable Releaf Icons",
+							disabled = function() return not E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel or E.db.ElvUI_EltreumUI.skins.classiconsblizz end,
+							get = function(info) return E.db.ElvUI_EltreumUI.skins.classiconsreleaf end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.skins.classiconsreleaf = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
 						header11 = {
 							order = 32,
 							type = "description",
@@ -550,45 +648,22 @@ if ElvUI_EltreumUI.Retail then
 							get = function(info) return E.db.ElvUI_EltreumUI.skins.quests end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.skins.quests = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
-						header13 = {
-							order = 38,
-							type = "description",
-							name = "",
-							width = 'full',
-							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-						},
-						fastlootdesc = {
-							order = 39,
-							type = "description",
-							name = "Loot Items Faster",
-							desc = "Decrease the time it takes for auto loot to work",
-							width = 'full',
-						},
-						fastlootenable = {
-							order = 40,
-							name = "Enable",
-							type = "toggle",
-							desc = "Decrease the time it takes for auto loot to work",
-							width = 'full',
-							get = function(info) return E.db.ElvUI_EltreumUI.otherstuff.fastloot end,
-							set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.fastloot = value E:StaticPopup_Show('CONFIG_RL') end,
-						},
 						header14 = {
-							order = 41,
+							order = 44,
 							type = "description",
 							name = "",
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
 						shadowsdesc = {
-							order = 42,
+							order = 45,
 							type = "description",
 							name = "Add Shadows to Frames",
 							desc = "Add Shadows to some frames",
 							width = 'full',
 						},
 						shadowsenable = {
-							order = 43,
+							order = 46,
 							name = "Enable",
 							type = "toggle",
 							desc = "Add Shadows to frames like Player, target, Chats and others",
@@ -596,31 +671,112 @@ if ElvUI_EltreumUI.Retail then
 							get = function(info) return E.db.ElvUI_EltreumUI.skins.shadows end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.skins.shadows = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
-						header15 = {
-							order = 44,
+
+						levelbossskins = {
+							order = 47,
+							type = "description",
+							name = L["Skin Level Up, Boss Loot and Instance Entrance frames to be class colored"],
+							width = "full",
+						},
+						skinenable = {
+							order = 48,
+							type = 'toggle',
+							name = L['Enable'],
+							desc = L["Enable the Skins"],
+							get = function(info) return E.db.ElvUI_EltreumUI.skins.enable end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.skins.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
+						header665454 = {
+							order = 49,
 							type = "description",
 							name = "",
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
-						autossdesc = {
-							order = 45,
+						expandedstable = {
+							order = 50,
 							type = "description",
-							name = "Automatically take Screenshots",
-							desc = "Automatically take Screenshots",
-							width = 'full',
+							name = L["Expand Hunter Stables to show all pets and improve search"],
+							width = "full",
 						},
-						autossenable = {
-							order = 46,
-							name = "Enable",
-							type = "toggle",
-							desc = "Automatically take Screenshots such as when leveling up",
-							width = 'full',
-							get = function(info) return E.db.ElvUI_EltreumUI.otherstuff.screenshot end,
-							set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.screenshot = value E:StaticPopup_Show('CONFIG_RL') end,
+						stableenable = {
+							order = 51,
+							type = 'toggle',
+							name = 'Enable',
+							desc = L["Enable the Expanded Stable"],
+							get = function(info) return E.db.ElvUI_EltreumUI.skins.expandedstable end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.skins.expandedstable = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
+						header79745 = {
+							order = 52,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						raidbossemoteframe = {
+							order = 53,
+							type = "description",
+							name = "Remove Blizzard's Boss Emote Frame",
+							width = "full",
+						},
+						removebossemote = {
+							order = 54,
+							type = 'toggle',
+							name = 'Enable',
+							desc = "Enable removing the Alert Frame that can show up in the middle of the screen",
+							get = function(info) return E.db.ElvUI_EltreumUI.skins.bossemote end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.skins.bossemote = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
+						header8897 = {
+							order = 55,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						widertransmog = {
+							order = 56,
+							type = "description",
+							name = L["Expand Transmog Window to better show your character"],
+							width = "full",
+						},
+						widetransmogenable = {
+							order = 57,
+							type = 'toggle',
+							name = 'Enable',
+							desc = L["Enable the Wider Transmog Window"],
+							get = function(info) return E.db.ElvUI_EltreumUI.skins.widertransmog end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.skins.widertransmog = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
+
+
+
+
+
+
+
+
+
 					},
 				},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 				profiles = {
 					type = 'group',
 					name = L["Addons"],
@@ -2545,83 +2701,6 @@ if ElvUI_EltreumUI.Retail then
 									name = "",
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								},
-								levelbossskins = {
-									order = 20,
-									type = "description",
-									name = L["Skin Level Up, Boss Loot and Instance Entrance frames to be class colored"],
-									width = "full",
-								},
-								skinenable = {
-									order = 21,
-									type = 'toggle',
-									name = L['Enable'],
-									desc = L["Enable the Skins"],
-									get = function(info) return E.db.ElvUI_EltreumUI.skins.enable end,
-									set = function(info, value) E.db.ElvUI_EltreumUI.skins.enable = value E:StaticPopup_Show('CONFIG_RL') end,
-								},
-								header6 = {
-									order = 22,
-									type = "description",
-									name = "",
-									width = 'full',
-									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								},
-								expandedstable = {
-									order = 23,
-									type = "description",
-									name = L["Expand Hunter Stables to show all pets and improve search"],
-									width = "full",
-								},
-								stableenable = {
-									order = 24,
-									type = 'toggle',
-									name = 'Enable',
-									desc = L["Enable the Expanded Stable"],
-									get = function(info) return E.db.ElvUI_EltreumUI.skins.expandedstable end,
-									set = function(info, value) E.db.ElvUI_EltreumUI.skins.expandedstable = value E:StaticPopup_Show('CONFIG_RL') end,
-								},
-								header7 = {
-									order = 25,
-									type = "description",
-									name = "",
-									width = 'full',
-									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								},
-								raidbossemoteframe = {
-									order = 26,
-									type = "description",
-									name = "Remove Blizzard's Boss Emote Frame",
-									width = "full",
-								},
-								removebossemote = {
-									order = 27,
-									type = 'toggle',
-									name = 'Enable',
-									desc = "Enable removing the Alert Frame that can show up in the middle of the screen",
-									get = function(info) return E.db.ElvUI_EltreumUI.skins.bossemote end,
-									set = function(info, value) E.db.ElvUI_EltreumUI.skins.bossemote = value E:StaticPopup_Show('CONFIG_RL') end,
-								},
-								header8 = {
-									order = 28,
-									type = "description",
-									name = "",
-									width = 'full',
-									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								},
-								widertransmog = {
-									order = 29,
-									type = "description",
-									name = L["Expand Transmog Window to better show your character"],
-									width = "full",
-								},
-								widetransmogenable = {
-									order = 30,
-									type = 'toggle',
-									name = 'Enable',
-									desc = L["Enable the Wider Transmog Window"],
-									get = function(info) return E.db.ElvUI_EltreumUI.skins.widertransmog end,
-									set = function(info, value) E.db.ElvUI_EltreumUI.skins.widertransmog = value E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								--[[header10 = {
 									order = 32,
