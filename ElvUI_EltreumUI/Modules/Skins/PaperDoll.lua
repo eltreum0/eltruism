@@ -4,7 +4,6 @@ local CreateFrame = _G.CreateFrame
 local unpack = _G.unpack
 local UnitClass = _G.UnitClass
 local R, G, B = unpack(E.media.rgbvaluecolor)
-local _ , classes = UnitClass("player")
 
 local classIcons = {
 	['WARRIOR'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Warrior",
@@ -219,7 +218,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 			local levelwidth = CharacterLevelText:GetWidth()
 			local totalgap = levelwidth - textwidth
 			local gapclassic = totalgap/4
-			local gapretail = totalgap/4
+			--local gapretail = totalgap/4
 			classFrame:SetPoint("RIGHT", "CharacterLevelText", -gapclassic, 0)
 		end
 	end
