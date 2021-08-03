@@ -2,12 +2,17 @@
 The future is uncertain
 ___
 ### v2.4.6
+Eltruism no longer requires ProjectAzilroka, Shadow & Light and Windtools. These addons are highly recommended screenshots still use them, but you no longer need to have to use Eltruism\
+Updated layout for ElvUI 12.38\
 Added loot icons which is merged from Stanzilla's Chat Loot Icons which is Public Domain\
 Added Shadows to frames\
+Added an option to hide the NPC Talking Head Popup\
 Added InstantLoot, yet another fast looter\
-Hid the copy chat and Voice Buttons\
-Waypoint Time to Arrive now has unlimited range, automatically tracks new waypoints and the font follows ElvUI General Font\
 Added Skins to the default Objective Frame/Quest Log\
+Optimized nameplates and other functions\
+Hid the copy chat and Voice Buttons on the layouts\
+Nameplate Power Bar will now break down big numbers such as 50000 becoming 50k\
+Waypoint Time to Arrive now has unlimited range, automatically tracks new waypoints and the font follows ElvUI General Font
 ___
 ### v2.4.5
 Added a Preview for Custom Glow, you will need to toggle it on and off in order to update the glow options\

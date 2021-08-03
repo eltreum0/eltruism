@@ -37,11 +37,11 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 end
 
 function ElvUI_EltreumUI:PluginCheck()
-	if E.private.ElvUI_EltreumUI.install_version < "2.4.6" then
+	if E.private.ElvUI_EltreumUI.install_version < "2.4.7" then
 		E.private.ElvUI_EltreumUI.isInstalled.sle = true
 		E.private.ElvUI_EltreumUI.isInstalled.windtools = true
 		E.private.ElvUI_EltreumUI.isInstalled.projectazilroka = true
-	elseif E.private.ElvUI_EltreumUI.install_version >= "2.4.6" then
+	elseif E.private.ElvUI_EltreumUI.install_version >= "2.4.7" then
 		if IsAddOnLoaded("ElvUI_SLE") and not IsAddOnLoaded("ElvUI_WindTools") and not IsAddOnLoaded('ProjectAzilroka') then
 			if E.private.ElvUI_EltreumUI.isInstalled.sle == false then
 				ElvUI_EltreumUI:Print("You have "..E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).." installed but not setup, it is highly recommended to install Shadow and Light's profile for Eltruism, found in Eltruism > Addons, before continuing")
