@@ -25,8 +25,12 @@ function ElvUI_EltreumUI:SetupPrivate()
 	E.private["theme"] = "class"
 	E.private["skins"]["parchmentRemoverEnable"] = true
 	if ElvUI_EltreumUI.Retail then
-		E.private["install_complete"] = "12.24"
+		E.private["install_complete"] = "12.38"
 		E.private["general"]["totemBar"] = true
+		E.private["general"]["nameplateFont"] = "Kimberley"
+		E.private["general"]["nameplateFontSize"] = 10
+		E.private["general"]["nameplateLargeFont"] = "Kimberley"
+		E.private["general"]["nameplateLargeFontSize"] = 10
 	elseif ElvUI_EltreumUI.TBC then
 		E.private["install_complete"] = "2.06"
 		E.private["general"]["totemBar"] = true

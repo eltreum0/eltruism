@@ -69,7 +69,6 @@ end
 function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-			--hooksecurefunc('CharacterFrame_OnEvent', function()
 					_G.CharacterNameText:ClearAllPoints()
 					_G.CharacterNameText:SetPoint('TOP',  _G.CharacterModelFrame, 0, 50)
 					_G.CharacterNameText:SetParent(_G.CharacterFrame)
@@ -80,7 +79,6 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 					_G.CharacterLevelText:ClearAllPoints()
 					_G.CharacterLevelText:SetPoint('TOP', _G.CharacterNameText, 'BOTTOM', 0, -2)
-			--end)
 		end
 
 		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
@@ -104,7 +102,6 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					_G.CharacterFrameTitleText:SetShadowOffset(2, -1)
 					_G.CharacterLevelText:ClearAllPoints()
 					_G.CharacterLevelText:SetPoint('TOP', _G.CharacterFrameTitleText, 'BOTTOM', 0, 0)
-					--_G.CharacterLevelText:SetParent(_G.CharacterFrame)
 				end)
 
 				hooksecurefunc("CharacterFrame_Collapse", function()

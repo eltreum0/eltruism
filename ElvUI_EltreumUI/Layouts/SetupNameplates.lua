@@ -698,6 +698,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplate"]["filters"]["EltreumRestedNP"]["triggers"]["isTarget"] = true
 		E.global["nameplate"]["filters"]["EltreumRestedNP"]["triggers"]["notTarget"] = true
 		E.global["nameplate"]["filters"]["EltreumRestedNP"]["triggers"]["outOfCombat"] = true
+		E.global["nameplate"]["filters"]["EltreumRestedNP"]["triggers"]["playerCanNotAttack"] = true
 
 		--show enemy level
 		E.global["nameplate"]["filters"]["EltreumLevel"]["actions"]["tags"]["level"] = "[difficultycolor][smartlevel]"

@@ -9,8 +9,6 @@ local ElvUF_Target_HealthBar = _G['ElvUF_Target_HealthBar']
 local ElvUF_Target_PowerBar = _G['ElvUF_Target_PowerBar']
 local ElvUF_Focus_HealthBar = _G['ElvUF_Focus_HealthBar']
 local ElvUF_Focus_PowerBar = _G['ElvUF_Focus_PowerBar']
---local ElvUF_Player_CastBar = _G['ElvUF_Player_CastBar']
---local ElvUF_Target_CastBar = _G['ElvUF_Target_CastBar']
 local ElvUF_Pet = _G['ElvUF_Pet']
 local pairs = _G.pairs
 local CreateFrame = _G.CreateFrame
@@ -238,29 +236,6 @@ function ElvUI_EltreumUI:Shadows()
 			if not _G.LFGListApplicationDialog.shadow then
 				_G.LFGListApplicationDialog:CreateShadow()
 			end
-
-
-			-- these end up not fitting the button :(
-			--[[if ObjectiveTrackerFrame then
-				if ObjectiveTrackerFrame.HeaderMenu then
-					if ObjectiveTrackerFrame.HeaderMenu.MinimizeButton then
-						if not ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow then
-							ObjectiveTrackerFrame.HeaderMenu.MinimizeButton:CreateShadow(nil, true)
-							--ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetInside()
-						end
-					end
-				end
-			end
-
-			if ObjectiveTrackerBlocksFrame then
-				if ObjectiveTrackerBlocksFrame.CampaignQuestHeader then
-					if ObjectiveTrackerBlocksFrame.CampaignQuestHeader.MinimizeButton then
-						if not ObjectiveTrackerBlocksFrame.CampaignQuestHeader.MinimizeButton.shadow then
-							ObjectiveTrackerBlocksFrame.CampaignQuestHeader.MinimizeButton:CreateShadow()
-						end
-					end
-				end
-			end]]--
 
 			if not IsAddOnLoaded("Blizzard_Calendar") then
 				LoadAddOn("Blizzard_Calendar")
@@ -597,93 +572,6 @@ function ElvUI_EltreumUI:AuraShadows()
 				end
 			end
 		end
-
-		--shadows for these end up overlapping, making them not look so good
-		--[[
-		--target buffs UF
-		for i = 1, 20 do
-			local targetbuffaura = {_G['ElvUF_TargetBuffsButton'..i]}
-			for _, frame in pairs(targetbuffaura) do
-				for _, button in pairs(targetbuffaura) do
-					if not button.shadow then
-						button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2
-					end
-				end
-			end
-		end
-
-		--target debuffs UF
-		for i = 1, 20 do
-			local targetdebuffaura = {_G['ElvUF_TargetDebuffsButton'..i]}
-			for _, frame in pairs(targetdebuffaura) do
-				for _, button in pairs(targetdebuffaura) do
-					if not button.shadow then
-						button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2
-					end
-				end
-			end
-		end
-
-		--player buffs UF
-		for i = 1, 20 do
-			local playerdebuffaura = {_G['ElvUF_PlayerBuffsButton'..i]}
-			for _, frame in pairs(playerdebuffaura) do
-				for _, button in pairs(playerdebuffaura) do
-					if not button.shadow then
-						button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2
-					end
-				end
-			end
-		end
-
-		--player debuffs UF
-		for i = 1, 20 do
-			local playerdebuffaura = {_G['ElvUF_PlayerDebuffsButton'..i]}
-			for _, frame in pairs(playerdebuffaura) do
-				for _, button in pairs(playerdebuffaura) do
-					if not button.shadow then
-						button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2
-					end
-				end
-			end
-		end
-
-		--player aurabars
-		for i = 1, 20 do
-			local playeraurabars = {_G['ElvUF_Player_AuraBarsStatusBar'..i]}
-			for _, frame in pairs(playeraurabars) do
-				for _, button in pairs(playeraurabars) do
-					if not button.shadow then
-						button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2
-					end
-				end
-			end
-		end
-
-		--target aurabars
-		for i = 1, 20 do
-			local targetaurabars = {_G['ElvUF_Target_AuraBarsStatusBar'..i]}
-			for _, frame in pairs(targetaurabars) do
-				for _, button in pairs(targetaurabars) do
-					if not button.shadow then
-						button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2
-					end
-				end
-			end
-		end
-		]]--
 
 	end
 end

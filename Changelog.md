@@ -2,7 +2,7 @@
 The future is uncertain
 ___
 ### v2.4.6
-Eltruism no longer requires ProjectAzilroka, Shadow & Light and Windtools. These addons are highly recommended screenshots still use them, but you no longer need to have to use Eltruism\
+Eltruism now only requires ElvUI and AddOnSkins. ProjectAzilroka, Shadow & Light and Windtools are highly recommended screenshots still use them, but you no longer need to have to use Eltruism\
 Updated layout for ElvUI 12.38\
 Added loot icons which is merged from Stanzilla's Chat Loot Icons which is Public Domain\
 Added Shadows to frames\
