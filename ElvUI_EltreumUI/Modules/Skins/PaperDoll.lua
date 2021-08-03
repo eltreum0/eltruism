@@ -186,10 +186,10 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 		end
 
-		if ElvUI_EltreumUI.Retail then
+		--[[if ElvUI_EltreumUI.Retail then
 			--classFrame:Hide()
 
-			--[[if ElvUI_EltreumUI.Retail then
+			if ElvUI_EltreumUI.Retail then
 				--print(gapretail)
 				if not IsAddOnLoaded("ElvUI_SLE") then
 					CharacterLevelText:SetPoint("TOPLEFT", "PaperDollFrame", 0 , - 30)
@@ -203,8 +203,9 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				elseif gapretail >= 40 then
 					classFrame:SetPoint("RIGHT", "CharacterLevelText", (0-gapretail), 0)
 				end
-			end]]--
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			end
+		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then]]--
+		if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			classFrame:ClearAllPoints()
 			--type of icon
 			if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
