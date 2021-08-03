@@ -114,28 +114,8 @@ function ElvUI_EltreumUI:Shadows()
 			_G.StackSplitFrame:CreateShadow()
 		end
 
-		if not _G.QueueStatusFrame.shadow then
-			_G.QueueStatusFrame:CreateShadow()
-		end
-
-		if not _G.SplashFrame.shadow then
-			_G.LFDRoleCheckPopup:CreateShadow()
-		end
-
-		if not _G.LFDReadyCheckPopup.shadow then
-			_G.LFDReadyCheckPopup:CreateShadow()
-		end
-
 		if not _G.ChatConfigFrame.shadow then
-			_G.LFDRoleCheckPopup:CreateShadow()
-		end
-
-		if not _G.LFDRoleCheckPopup.shadow then
-			_G.LFDRoleCheckPopup:CreateShadow()
-		end
-
-		if not _G.LFGListApplicationDialog.shadow then
-			_G.LFGListApplicationDialog:CreateShadow()
+			_G.ChatConfigFrame:CreateShadow()
 		end
 
 		if not IsAddOnLoaded("Blizzard_MacroUI") then
@@ -171,24 +151,6 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 		end
-
-		--if not _G.GameTooltip.StatusBar.shadow then
-		--	_G.GameTooltip.StatusBar:CreateShadow()
-		--end
-
-		--[[if not GameTooltip.shadow then
-			_G.GameTooltip:CreateShadow()
-			if GameTooltip.shadow then
-				if _G['GameTooltipStatusBar'] then
-					GameTooltip.shadow:SetPoint("TOPLEFT", _G['GameTooltipStatusBar'] ,"TOPLEFT", 0, 0)
-					GameTooltip.shadow:SetPoint("BOTTOMRIGHT", _G['GameTooltip'] ,"BOTTOMRIGHT", 0, 0)
-				else
-					GameTooltip.shadow:SetAllPoints(_G['GameTooltip'])
-				end
-				--GameTooltip.shadow:SetWidth(GameTooltip.shadow:GetWidth()+5)
-				--GameTooltip.shadow:SetHeight(GameTooltip.shadow:GetHeight())
-			end
-		end]]--
 
 		if not _G.ShoppingTooltip1.shadow then
 			_G.ShoppingTooltip1:CreateShadow()
@@ -227,20 +189,55 @@ function ElvUI_EltreumUI:Shadows()
 		if not IsAddOnLoaded("Blizzard_TalentUI") then
 			LoadAddOn("Blizzard_TalentUI")
 		end
-		local PlayerTalentFrame = _G.PlayerTalentFrame
-		PlayerTalentFrame:HookScript("OnShow", function()
-			if ElvUI_EltreumUI.Retail then
-				if not _G.PlayerTalentFrame.shadow then
-					_G.PlayerTalentFrame:CreateShadow()
+
+		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
+			local PlayerTalentFrame = _G.PlayerTalentFrame
+			PlayerTalentFrame:HookScript("OnShow", function()
+				if ElvUI_EltreumUI.Retail then
+					if not _G.PlayerTalentFrame.shadow then
+						_G.PlayerTalentFrame:CreateShadow()
+					end
+				elseif ElvUI_EltreumUI.TBC then
+					if not _G.PlayerTalentFrame.backdrop.shadow then
+						_G.PlayerTalentFrame.backdrop:CreateShadow()
+					end
 				end
-			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-				if not _G.PlayerTalentFrame.backdrop.shadow then
-					_G.PlayerTalentFrame.backdrop:CreateShadow()
-				end
-			end
-		end)
+			end)
+		end
+
+		if ElvUI_EltreumUI.Classic then
+			local TalentFrame = _G.TalentFrame
+			TalentFrame:HookScript("OnShow", function()
+
+
+					if not _G.TalentFrame.backdrop.shadow then
+						_G.TalentFrame.backdrop:CreateShadow()
+					end
+
+			end)
+		end
 
 		if ElvUI_EltreumUI.Retail then
+
+			if not _G.QueueStatusFrame.shadow then
+				_G.QueueStatusFrame:CreateShadow()
+			end
+
+			if not _G.SplashFrame.shadow then
+				_G.LFDRoleCheckPopup:CreateShadow()
+			end
+
+			if not _G.LFDReadyCheckPopup.shadow then
+				_G.LFDReadyCheckPopup:CreateShadow()
+			end
+
+			if not _G.LFDRoleCheckPopup.shadow then
+				_G.LFDRoleCheckPopup:CreateShadow()
+			end
+
+			if not _G.LFGListApplicationDialog.shadow then
+				_G.LFGListApplicationDialog:CreateShadow()
+			end
 
 
 			-- these end up not fitting the button :(
@@ -346,7 +343,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.BossButton:CreateShadow()
 			end
 
-		elseif  ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			if not _G.FriendsFrame.backdrop.shadow then
 				_G.FriendsFrame.backdrop:CreateShadow()
 			end

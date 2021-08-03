@@ -989,20 +989,20 @@ if ElvUI_EltreumUI.TBC then
 							set = function(info, value) E.db.ElvUI_EltreumUI.skins.shadows = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
 						header6 = {
-							order = 22,
+							order = 47,
 							type = "description",
 							name = "",
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
 						tbctalentinfo = {
-							order = 23,
+							order = 48,
 							type = "description",
 							name = L["Expand the Talents to show the entire tree"],
 							width = "full",
 						},
 						tbctalents = {
-							order = 24,
+							order = 49,
 							type = 'toggle',
 							name = L["Expanded Talents"],
 							desc = L["Expand Talents to cover the full tree"],

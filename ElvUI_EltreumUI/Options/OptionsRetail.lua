@@ -567,7 +567,7 @@ if ElvUI_EltreumUI.Retail then
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\paint',
 					args = {
 						header845 = {
-							order = 23,
+							order = 22,
 							type = "description",
 							name = "",
 							width = 'full',
@@ -749,34 +749,8 @@ if ElvUI_EltreumUI.Retail then
 							get = function(info) return E.db.ElvUI_EltreumUI.skins.widertransmog end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.skins.widertransmog = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
-
-
-
-
-
-
-
-
-
 					},
 				},
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 				profiles = {
 					type = 'group',
 					name = L["Addons"],
