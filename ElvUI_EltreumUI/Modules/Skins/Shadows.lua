@@ -126,16 +126,6 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end)
 
-		if not IsAddOnLoaded("Blizzard_MacroUI") then
-			LoadAddOn("Blizzard_MacroUI")
-		end
-		local MacroFrame = _G.MacroFrame
-		MacroFrame:HookScript("OnShow", function()
-			if not _G.MacroFrame.shadow then
-				_G.MacroFrame:CreateShadow()
-			end
-		end)
-
 		--elvui popup
 		for i = 1, 5 do
 			local ElvUI_StaticPopups = {_G['ElvUI_StaticPopup'..i]}
@@ -166,12 +156,14 @@ function ElvUI_EltreumUI:Shadows()
 			_G.InterfaceOptionsFrame:CreateShadow()
 		end
 
-		if not _G.stAMFrame.shadow then
-			_G.stAMFrame:CreateShadow()
-		end
+		if IsAddOnLoaded('ProjectAzilroka') then
+			if not _G.stAMFrame.shadow then
+				_G.stAMFrame:CreateShadow()
+			end
 
-		if not _G.stAMProfileMenu.shadow then
-			_G.stAMProfileMenu:CreateShadow()
+			if not _G.stAMProfileMenu.shadow then
+				_G.stAMProfileMenu:CreateShadow()
+			end
 		end
 
 		if not IsAddOnLoaded("Blizzard_BindingUI") then
