@@ -81,15 +81,6 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					_G.CharacterLevelText:SetPoint('TOP', _G.CharacterNameText, 'BOTTOM', 0, -2)
 		end
 
-		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
-			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
-		elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
-			classsymbolonframe = ("|T"..(classIconsReleafborder[E.myclass]..".tga:0:0:0:0|t"))
-		else
-			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
-		end
-
-
 		if (not IsAddOnLoaded("ElvUI_SLE")) then
 			if ElvUI_EltreumUI.Retail then
 				hooksecurefunc('PaperDollFrame_SetLevel', function()
@@ -163,7 +154,10 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc("CharacterFrame_Collapse", function()
 				if _G.PaperDollFrame:IsShown() then
-					_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+					charactertext = _G.CharacterFrameTitleText:GetText()
+					if not charactertext:match("|T") then
+						_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+					end
 					_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
 					_G.CharacterFrameTitleText:SetTextColor(R, G, B)
 					_G.CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
@@ -173,7 +167,10 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc("CharacterFrame_Expand", function()
 				if _G.PaperDollFrame:IsShown() then
-					_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+					charactertext = _G.CharacterFrameTitleText:GetText()
+					if not charactertext:match("|T") then
+						_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+					end
 					_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
 					_G.CharacterFrameTitleText:SetTextColor(R, G, B)
 					_G.CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
@@ -202,6 +199,15 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				end
 			end
 		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then]]--
+
+		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
+			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
+		elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
+			classsymbolonframe = ("|T"..(classIconsReleafborder[E.myclass]..".tga:0:0:0:0|t"))
+		else
+			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
+		end
+
 		if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			classFrame:ClearAllPoints()
 			--type of icon
