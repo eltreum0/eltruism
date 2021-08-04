@@ -156,6 +156,26 @@ if ElvUI_EltreumUI.Classic then
 								},
 							},
 						},
+						skipplugin = {
+							order = 4,
+							type = 'group',
+							inline = true,
+							name = "Skip Plugins",
+							args = {
+								resethealer = {
+									order = 1,
+									type = 'execute',
+									name = 'Skip Plugins install message',
+									desc = "Make the warnings to install profiles for other plugins stop",
+									width = 'double',
+									func = function()
+										E.private.ElvUI_EltreumUI.isInstalled.sle = true
+										E.private.ElvUI_EltreumUI.isInstalled.windtools = true
+										E.private.ElvUI_EltreumUI.isInstalled.projectazilroka = true
+									end,
+								},
+							},
+						},
 					},
 				},
 				afk = {

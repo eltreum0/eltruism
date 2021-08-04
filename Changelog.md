@@ -1,6 +1,11 @@
 ### 🌌 Next Version 
 The future is uncertain
 ___
+### v2.4.7
+Removed SmartAura from Pet Unitframe\
+Added a check for ProjectAzilroka before applying shadows to stAddonManager\
+Added an option to skip plugin install warnings on login
+___
 ### v2.4.6
 Eltruism now only requires ElvUI and AddOnSkins. ProjectAzilroka, Shadow & Light and Windtools are highly recommended screenshots still use them, but you no longer need to have to use Eltruism\
 Updated layout for ElvUI 12.38\
