@@ -1011,7 +1011,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = "[powercolor][power:current:shortvalue]"
 			E.db["unitframe"]["units"]["pet"]["power"]["xOffset"] = 0
 			E.db["unitframe"]["units"]["pet"]["disableMouseoverGlow"] = true
-			E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
+			--E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 			E.db["unitframe"]["units"]["pet"]["width"] = 161
 			E.db["unitframe"]["units"]["pettarget"]["buffs"]["countFontOutline"] = "NONE"
 			E.db["unitframe"]["units"]["pettarget"]["debuffs"]["countFontOutline"] = "NONE"

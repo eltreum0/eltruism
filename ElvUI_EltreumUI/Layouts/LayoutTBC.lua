@@ -1084,7 +1084,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["party"]["castbar"]["width"] = 200
 			E.db["unitframe"]["units"]["party"]["castbar"]["xOffsetText"] = 2
 			E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
-			E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
+			--E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "NONE"
 			E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["a"] = 0
 			E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0.50196078431373
@@ -1121,7 +1121,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = "[powercolor][power:current:shortvalue]"
 			E.db["unitframe"]["units"]["pet"]["power"]["xOffset"] = 0
 			E.db["unitframe"]["units"]["pet"]["disableMouseoverGlow"] = true
-			E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
+			--E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 			E.db["unitframe"]["units"]["pet"]["width"] = 161
 			E.db["unitframe"]["units"]["pettarget"]["buffs"]["countFontOutline"] = "NONE"
 			E.db["unitframe"]["units"]["pettarget"]["debuffs"]["countFontOutline"] = "NONE"
@@ -1916,7 +1916,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = "[powercolor][power:current:shortvalue]"
 			E.db["unitframe"]["units"]["pet"]["power"]["xOffset"] = 0
 			E.db["unitframe"]["units"]["pet"]["disableMouseoverGlow"] = true
-			E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
+			--E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 			E.db["unitframe"]["units"]["pet"]["width"] = 100
 			E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["b"] = 1
 			E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["g"] = 1

@@ -261,7 +261,6 @@ if ElvUI_EltreumUI.Retail then
 			E.db["datatexts"]["panels"]["MinimapPanel"][2] = "Friends"
 		end
 
-
 		E.db["datatexts"]["panels"]["MinimapPanel"]["border"] = false
 		E.db["datatexts"]["panels"]["RightChatDataPanel"][2] = "Combat"
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["border"] = false
@@ -1380,7 +1379,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["pet"]["power"]["enable"] = false
 			E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = "[power:current:shortvalue]"
 			E.db["unitframe"]["units"]["pet"]["power"]["width"] = "spaced"
-			E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
+			--E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 			E.db["unitframe"]["units"]["pet"]["width"] = 161
 			E.db["unitframe"]["units"]["pettarget"]["buffs"]["countFontOutline"] = "NONE"
 			E.db["unitframe"]["units"]["pettarget"]["debuffs"]["countFontOutline"] = "NONE"
