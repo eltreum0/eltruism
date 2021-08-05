@@ -668,7 +668,7 @@ if ElvUI_EltreumUI.Retail then
 							get = function(info) return E.db.ElvUI_EltreumUI.skins.quests end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.skins.quests = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
-						header14 = {
+						header14685 = {
 							order = 44,
 							type = "description",
 							name = "",
@@ -691,7 +691,13 @@ if ElvUI_EltreumUI.Retail then
 							get = function(info) return E.db.ElvUI_EltreumUI.skins.shadows end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.skins.shadows = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
-
+						header1485 = {
+							order = 47,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
 						levelbossskins = {
 							order = 47,
 							type = "description",
@@ -2057,6 +2063,15 @@ if ElvUI_EltreumUI.Retail then
 									width = 'full',
 									get = function(info) return E.db.ElvUI_EltreumUI.cursor.cooldown end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.cursor.cooldown = value end,
+								},
+								fixlag = {
+									order = 2,
+									type = 'toggle',
+									name = "Attempt to fix Cursor Lag",
+									desc = "Disable Hardware cursor, returning the cursor to how it was before Battle for Azeroth",
+									width = 'full',
+									get = function(info) return E.db.ElvUI_EltreumUI.cursor.fixlag end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.cursor.fixlag = value end,
 								},
 								header1 = {
 									order = 3,

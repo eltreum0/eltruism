@@ -77,8 +77,13 @@ end
 --all credits of this module go to michaelsp
 function ElvUI_EltreumUI:CastCursor()
 	if E.db.ElvUI_EltreumUI.cursor.enable then
-		--SetCVar("gxCursor", 0)
-		SetCVar("HardwareCursor", 0) --fix the cursor lag
+
+		if E.db.ElvUI_EltreumUI.cursor.fixlag then
+			--SetCVar("gxCursor", 0)
+			SetCVar("HardwareCursor", 0) --fix the cursor lag
+		end
+
+
 		local ring = E.db.ElvUI_EltreumUI.cursor.ring
 		local castradius = E.db.ElvUI_EltreumUI.cursorcast.radius
 		local castthickness = E.db.ElvUI_EltreumUI.cursorcast.thickness

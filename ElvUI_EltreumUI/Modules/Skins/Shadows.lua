@@ -281,6 +281,9 @@ function ElvUI_EltreumUI:Shadows()
 				if not _G.ElvUI_ContainerFrame.shadow then
 					_G.ElvUI_ContainerFrame:CreateShadow()
 				end
+				if not _G.ElvUI_BankContainerFrame.shadow then
+					_G.ElvUI_BankContainerFrame:CreateShadow()
+				end
 			end
 		end
 
@@ -500,6 +503,9 @@ function ElvUI_EltreumUI:Shadows()
 		if E.private.bags.enable then
 			if not _G.ElvUI_ContainerFrame.shadow then
 				_G.ElvUI_ContainerFrame:CreateShadow()
+			end
+			if not _G.ElvUI_BankContainerFrame.shadow then
+				_G.ElvUI_BankContainerFrame:CreateShadow()
 			end
 		end
 
