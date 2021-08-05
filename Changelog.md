@@ -1,6 +1,10 @@
 ### 🌌 Next Version 
 The future is uncertain
 ___
+### v2.4.8
+Fixed Multiple Class Icons on Character Frame
+Added check for elvui bags before adding shadows to prevent errors
+___
 ### v2.4.7
 Removed SmartAura from Pet Unitframe\
 Added a check for ProjectAzilroka before applying shadows to stAddonManager\
