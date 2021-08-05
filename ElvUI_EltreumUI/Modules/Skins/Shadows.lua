@@ -18,72 +18,7 @@ function ElvUI_EltreumUI:Shadows()
 	--Very simple shadows from elvui, SLE likely does it way better
 	if E.db.ElvUI_EltreumUI.skins.shadows then
 
-		if not ElvUF_Player_HealthBar.shadow then
-			ElvUF_Player_HealthBar:CreateShadow()
-		end
-
-		if not ElvUF_Player_PowerBar.shadow then
-			ElvUF_Player_PowerBar:CreateShadow()
-		end
-
-		if _G.ElvUF_Player_Stagger then
-			if not _G.ElvUF_Player_Stagger.shadow then
-				_G.ElvUF_Player_Stagger:CreateShadow()
-			end
-		end
-
-		if not _G.ElvLootFrame.shadow then
-			_G.ElvLootFrame:CreateShadow()
-		end
-
-		if not _G.MailFrame.shadow then
-			_G.MailFrame:CreateShadow()
-		end
-
-		local DT = E:GetModule('DataTexts')
-		if DT.tooltip then
-			if not DT.tooltip.shadow then
-				DT.tooltip:CreateShadow()
-			end
-		end
-
-		if not ElvUF_TargetTarget_HealthBar.shadow then
-			ElvUF_TargetTarget_HealthBar:CreateShadow()
-		end
-
-		if not ElvUF_TargetTarget_PowerBar.shadow then
-			ElvUF_TargetTarget_PowerBar:CreateShadow()
-		end
-
-		if not ElvUF_TargetTarget_PowerBar.shadow then
-			ElvUF_TargetTarget_PowerBar:CreateShadow()
-		end
-
-		if not ElvUF_Target_HealthBar.shadow then
-			ElvUF_Target_HealthBar:CreateShadow()
-		end
-
-		if not ElvUF_Target_PowerBar.shadow then
-			ElvUF_Target_PowerBar:CreateShadow()
-		end
-
-		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
-			if not ElvUF_Focus_HealthBar.shadow then
-				ElvUF_Focus_HealthBar:CreateShadow()
-			end
-			if not ElvUF_Focus_PowerBar.shadow then
-				ElvUF_Focus_PowerBar:CreateShadow()
-			end
-		end
-
-		if not ElvUF_Pet.shadow then
-			ElvUF_Pet:CreateShadow()
-		end
-
-		if not _G.ElvUI_ContainerFrame.shadow then
-			_G.ElvUI_ContainerFrame:CreateShadow()
-		end
-
+		--blizzard ones
 		if not _G.GameMenuFrame.shadow then
 			_G.GameMenuFrame:CreateShadow()
 		end
@@ -116,6 +51,10 @@ function ElvUI_EltreumUI:Shadows()
 			_G.ChatConfigFrame:CreateShadow()
 		end
 
+		if not _G.MailFrame.shadow then
+			_G.MailFrame:CreateShadow()
+		end
+
 		if not IsAddOnLoaded("Blizzard_MacroUI") then
 			LoadAddOn("Blizzard_MacroUI")
 		end
@@ -125,20 +64,6 @@ function ElvUI_EltreumUI:Shadows()
 				_G.MacroFrame:CreateShadow()
 			end
 		end)
-
-		--elvui popup
-		for i = 1, 5 do
-			local ElvUI_StaticPopups = {_G['ElvUI_StaticPopup'..i]}
-			for _, frame in pairs(ElvUI_StaticPopups) do
-				for _, button in pairs(ElvUI_StaticPopups) do
-					if not button.shadow then
-						button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2
-					end
-				end
-			end
-		end
 
 		if not _G.ShoppingTooltip1.shadow then
 			_G.ShoppingTooltip1:CreateShadow()
@@ -154,16 +79,6 @@ function ElvUI_EltreumUI:Shadows()
 
 		if not _G.InterfaceOptionsFrame.shadow then
 			_G.InterfaceOptionsFrame:CreateShadow()
-		end
-
-		if IsAddOnLoaded('ProjectAzilroka') then
-			if not _G.stAMFrame.shadow then
-				_G.stAMFrame:CreateShadow()
-			end
-
-			if not _G.stAMProfileMenu.shadow then
-				_G.stAMProfileMenu:CreateShadow()
-			end
 		end
 
 		if not IsAddOnLoaded("Blizzard_BindingUI") then
@@ -198,14 +113,48 @@ function ElvUI_EltreumUI:Shadows()
 		if ElvUI_EltreumUI.Classic then
 			local TalentFrame = _G.TalentFrame
 			TalentFrame:HookScript("OnShow", function()
-
-
 					if not _G.TalentFrame.backdrop.shadow then
 						_G.TalentFrame.backdrop:CreateShadow()
 					end
-
 			end)
 		end
+
+		local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
+		local rightsizex, rightsizey = _G['RightChatMover']:GetSize()
+		RightChatShadow:SetSize(rightsizex, rightsizey)
+		RightChatShadow:SetParent(_G['RightChatPanel'])
+		if not (self.RightChatIsSkinned) then
+			RightChatShadow.shadow = RightChatShadow:CreateShadow(nil, true)
+			RightChatShadow:SetPoint("TOPRIGHT", _G['RightChatPanel'] ,"TOPRIGHT", 0, 0)
+			RightChatShadow:SetPoint("BOTTOMLEFT", _G['RightChatDataPanel'] ,"BOTTOMLEFT", 0, 0)
+			RightChatShadow:Show()
+			self.RightChatIsSkinned = true
+		end
+
+		local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
+		local leftsizex, leftsizey = _G['LeftChatMover']:GetSize()
+		LeftChatShadow:SetSize(leftsizex, leftsizey)
+		LeftChatShadow:SetParent(_G['LeftChatPanel'])
+		if not (self.LeftChatIsSkinned) then
+			LeftChatShadow.shadow = LeftChatShadow:CreateShadow(nil, true)
+			LeftChatShadow:SetPoint("TOPLEFT", _G['LeftChatPanel'] ,"TOPLEFT", 0, 0)
+			LeftChatShadow:SetPoint("BOTTOMRIGHT", _G['LeftChatDataPanel'] ,"BOTTOMRIGHT", 0, 0)
+			LeftChatShadow:Show()
+			self.LeftChatIsSkinned = true
+		end
+
+		local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
+		local Minimapsizex, Minimapsizey = _G['Minimap']:GetSize()
+		MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
+		MinimapShadow:SetParent(_G['RightChatPanel'])
+		if not (self.minimapIsSkinned) then
+			MinimapShadow.shadow = MinimapShadow:CreateShadow(nil, true)
+			MinimapShadow:SetPoint("TOPRIGHT", _G['Minimap'] ,"TOPRIGHT", 0, 0)
+			MinimapShadow:SetPoint("BOTTOMLEFT", _G['MinimapPanel'] ,"BOTTOMLEFT", 0, 0)
+			MinimapShadow:Show()
+			self.minimapIsSkinned = true
+		end
+
 
 		if ElvUI_EltreumUI.Retail then
 
@@ -306,6 +255,7 @@ function ElvUI_EltreumUI:Shadows()
 			if not _G.ZoneAbilityFrame.shadow then
 				_G.ZoneAbilityFrame:CreateShadow()
 			end
+
 			if not _G.BossButton.shadow then
 				_G.BossButton:CreateShadow()
 			end
@@ -326,22 +276,29 @@ function ElvUI_EltreumUI:Shadows()
 			if not _G.FriendsFrame.backdrop.shadow then
 				_G.FriendsFrame.backdrop:CreateShadow()
 			end
-			if not _G.ElvUI_ContainerFrame.shadow then
-				_G.ElvUI_ContainerFrame:CreateShadow()
+
+			if E.private.bags.enable then
+				if not _G.ElvUI_ContainerFrame.shadow then
+					_G.ElvUI_ContainerFrame:CreateShadow()
+				end
 			end
 		end
 
+----------------------------------------------------------------------------------------------------
+		--elvui
 		--action bars, from borders
-		for i = 1, 10 do
-			local actionbars = {_G['ElvUI_Bar'..i]}
-			for _, frame in pairs(actionbars) do
-				for k = 1, 12 do
-					local slots = {_G['ElvUI_Bar'..i..'Button'..k]}
-					for _, button in pairs(slots) do
-						if not button.shadow then
-							button.shadow = button:CreateShadow(nil, true)
-							button.shadow:SetParent(button)
-							button.shadow.size = 2
+		if E.private.actionbar.enable then
+			for i = 1, 10 do
+				local actionbars = {_G['ElvUI_Bar'..i]}
+				for _, frame in pairs(actionbars) do
+					for k = 1, 12 do
+						local slots = {_G['ElvUI_Bar'..i..'Button'..k]}
+						for _, button in pairs(slots) do
+							if not button.shadow then
+								button.shadow = button:CreateShadow(nil, true)
+								button.shadow:SetParent(button)
+								button.shadow.size = 2
+							end
 						end
 					end
 				end
@@ -377,15 +334,17 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		--pets
-		for i = 1, 12 do
-			local button = _G['PetActionButton'..i]
-			if not button then
-				break
-			else
-				if not button.shadow then
-					button.shadow = button:CreateShadow(nil, true)
-					button.shadow:SetParent(button)
-					button.shadow.size = 2
+		if E.private.actionbar.enable then
+			for i = 1, 12 do
+				local button = _G['PetActionButton'..i]
+				if not button then
+					break
+				else
+					if not button.shadow then
+						button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2
+					end
 				end
 			end
 		end
@@ -445,8 +404,6 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 		end
-		--ElvUF_Player_ClassBar:CreateShadow()
-		--ElvUF_PlayerClassIconButton1:CreateShadow()
 
 		if not _G['ElvUF_Player_AdditionalPowerBar1'] then
 			if _G['ElvUF_Player_AdditionalPowerBar'] then
@@ -482,40 +439,92 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
-		local rightsizex, rightsizey = _G['RightChatMover']:GetSize()
-		RightChatShadow:SetSize(rightsizex, rightsizey)
-		RightChatShadow:SetParent(_G['RightChatPanel'])
-		if not (self.RightChatIsSkinned) then
-			RightChatShadow.shadow = RightChatShadow:CreateShadow(nil, true)
-			RightChatShadow:SetPoint("TOPRIGHT", _G['RightChatPanel'] ,"TOPRIGHT", 0, 0)
-			RightChatShadow:SetPoint("BOTTOMLEFT", _G['RightChatDataPanel'] ,"BOTTOMLEFT", 0, 0)
-			RightChatShadow:Show()
-			self.RightChatIsSkinned = true
+		if not ElvUF_Player_HealthBar.shadow then
+			ElvUF_Player_HealthBar:CreateShadow()
 		end
 
-		local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
-		local leftsizex, leftsizey = _G['LeftChatMover']:GetSize()
-		LeftChatShadow:SetSize(leftsizex, leftsizey)
-		LeftChatShadow:SetParent(_G['LeftChatPanel'])
-		if not (self.LeftChatIsSkinned) then
-			LeftChatShadow.shadow = LeftChatShadow:CreateShadow(nil, true)
-			LeftChatShadow:SetPoint("TOPLEFT", _G['LeftChatPanel'] ,"TOPLEFT", 0, 0)
-			LeftChatShadow:SetPoint("BOTTOMRIGHT", _G['LeftChatDataPanel'] ,"BOTTOMRIGHT", 0, 0)
-			LeftChatShadow:Show()
-			self.LeftChatIsSkinned = true
+		if not ElvUF_Player_PowerBar.shadow then
+			ElvUF_Player_PowerBar:CreateShadow()
 		end
 
-		local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
-		local Minimapsizex, Minimapsizey = _G['Minimap']:GetSize()
-		MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
-		MinimapShadow:SetParent(_G['RightChatPanel'])
-		if not (self.minimapIsSkinned) then
-			MinimapShadow.shadow = MinimapShadow:CreateShadow(nil, true)
-			MinimapShadow:SetPoint("TOPRIGHT", _G['Minimap'] ,"TOPRIGHT", 0, 0)
-			MinimapShadow:SetPoint("BOTTOMLEFT", _G['MinimapPanel'] ,"BOTTOMLEFT", 0, 0)
-			MinimapShadow:Show()
-			self.minimapIsSkinned = true
+		if _G.ElvUF_Player_Stagger then
+			if not _G.ElvUF_Player_Stagger.shadow then
+				_G.ElvUF_Player_Stagger:CreateShadow()
+			end
+		end
+
+		if not _G.ElvLootFrame.shadow then
+			_G.ElvLootFrame:CreateShadow()
+		end
+
+		local DT = E:GetModule('DataTexts')
+		if DT.tooltip then
+			if not DT.tooltip.shadow then
+				DT.tooltip:CreateShadow()
+			end
+		end
+
+		if not ElvUF_TargetTarget_HealthBar.shadow then
+			ElvUF_TargetTarget_HealthBar:CreateShadow()
+		end
+
+		if not ElvUF_TargetTarget_PowerBar.shadow then
+			ElvUF_TargetTarget_PowerBar:CreateShadow()
+		end
+
+		if not ElvUF_TargetTarget_PowerBar.shadow then
+			ElvUF_TargetTarget_PowerBar:CreateShadow()
+		end
+
+		if not ElvUF_Target_HealthBar.shadow then
+			ElvUF_Target_HealthBar:CreateShadow()
+		end
+
+		if not ElvUF_Target_PowerBar.shadow then
+			ElvUF_Target_PowerBar:CreateShadow()
+		end
+
+		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
+			if not ElvUF_Focus_HealthBar.shadow then
+				ElvUF_Focus_HealthBar:CreateShadow()
+			end
+			if not ElvUF_Focus_PowerBar.shadow then
+				ElvUF_Focus_PowerBar:CreateShadow()
+			end
+		end
+
+		if not ElvUF_Pet.shadow then
+			ElvUF_Pet:CreateShadow()
+		end
+
+		if E.private.bags.enable then
+			if not _G.ElvUI_ContainerFrame.shadow then
+				_G.ElvUI_ContainerFrame:CreateShadow()
+			end
+		end
+
+		--elvui popup
+		for i = 1, 5 do
+			local ElvUI_StaticPopups = {_G['ElvUI_StaticPopup'..i]}
+			for _, frame in pairs(ElvUI_StaticPopups) do
+				for _, button in pairs(ElvUI_StaticPopups) do
+					if not button.shadow then
+						button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2
+					end
+				end
+			end
+		end
+
+		if IsAddOnLoaded('ProjectAzilroka') then
+			if not _G.stAMFrame.shadow then
+				_G.stAMFrame:CreateShadow()
+			end
+
+			if not _G.stAMProfileMenu.shadow then
+				_G.stAMProfileMenu:CreateShadow()
+			end
 		end
 
 	end
