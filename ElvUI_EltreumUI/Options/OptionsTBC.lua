@@ -2160,7 +2160,7 @@ if ElvUI_EltreumUI.TBC then
 								addagaphereforcustom = {
 								order = 8,
 								type = "description",
-								name = "",
+								name = "If using Light mode you will need to reapply it after choosing a custom font",
 								},
 								sharedmediafont = {
 									 order = 8,
