@@ -1380,7 +1380,17 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = "[power:current:shortvalue]"
 			E.db["unitframe"]["units"]["pet"]["power"]["width"] = "spaced"
 			--E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
-			E.db["unitframe"]["units"]["pet"]["width"] = 161
+			if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
+				E.db["unitframe"]["units"]["pet"]["width"] = 161
+			elseif GetCVar('gxFullscreenResolution') == "2560x1440" or GetCVar('gxWindowedResolution') == "2560x1440"  then
+				E.db["unitframe"]["units"]["pet"]["width"] = 159
+			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
+				E.db["unitframe"]["units"]["pet"]["width"] = 159
+			elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto"  then
+				E.db["unitframe"]["units"]["pet"]["width"] = 159
+			else
+				E.db["unitframe"]["units"]["pet"]["width"] = 159
+			end
 			E.db["unitframe"]["units"]["pettarget"]["buffs"]["countFontOutline"] = "NONE"
 			E.db["unitframe"]["units"]["pettarget"]["debuffs"]["countFontOutline"] = "NONE"
 			E.db["unitframe"]["units"]["pettarget"]["power"]["enable"] = false
