@@ -1,6 +1,10 @@
 ### 🌌 Next Version 
 The future is uncertain
 ___
+### v2.4.9
+Updated tags for new ElvUI version\
+Added an option to disable hardware cursor, resolving the cursor lag introduced in Battle for Azeroth
+___
 ### v2.4.8
 Fixed Multiple Class Icons on Character Frame\
 Added check for elvui bags before adding shadows to prevent errors
