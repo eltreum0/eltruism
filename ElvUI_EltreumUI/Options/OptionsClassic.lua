@@ -2281,22 +2281,21 @@ if ElvUI_EltreumUI.Classic then
 									get = function() return E.db.ElvUI_EltreumUI.otherstuff.worldtextscale end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldtextscale = value ElvUI_EltreumUI:WorldTextScale(value) end,
 								},
-								--[[header10 = {
+								header10 = {
 									order = 32,
 									type = "description",
 									name = "",
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
-								floatingrep = {
+								apswap = {
 									order = 33,
-									type = 'toggle',
-									name = L["Enable Floating Reputation Changes"],
-									desc = L["Enable the Floating Rep Text"],
+									type = 'execute',
+									name = "Swap Action Paging and visibility for Bar1 and Bar4",
+									--desc = "",
 									width = 'full',
-									get = function(info) return E.db.ElvUI_EltreumUI.otherstuff.floatingrep end,
-									set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.floatingrep = value ElvUI_EltreumUI:floatingrep(value) end,
-								},]]--
+									func = function() ElvUI_EltreumUI:ActionPagingSwap() end,
+								},
 							},
 						},
 					},

@@ -2458,8 +2458,6 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "OUTLINE"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
 
-
-
 			E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["a"] = 0
 			E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0.50196078431373
 			E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0.50196078431373
