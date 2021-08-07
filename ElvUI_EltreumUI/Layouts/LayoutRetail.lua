@@ -2510,16 +2510,21 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["player"]["buffs"]["keepSizeRatio"] = false
 			E.db["unitframe"]["units"]["player"]["buffs"]["sizeOverride"] = 30
 			--E.db["unitframe"]["units"]["player"]["buffs"]["yOffset"] = -227
+
 			E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorBackdrop"]["a"] = 0
 			E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0.50196078431373
 			E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0.50196078431373
 			E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0.50196078431373
+			E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorNoInterrupt"]["b"] = 0.29803921568627
+			E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorNoInterrupt"]["g"] = 0.78039215686275
+			E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorNoInterrupt"]["r"] = 0
 			E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["transparent"] = true
 			E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["useClassColor"] = true
 			E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["useCustomBackdrop"] = true
 			E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 28
+			E.db["unitframe"]["units"]["player"]["castbar"]["iconAttached"] = false
 			E.db["unitframe"]["units"]["player"]["castbar"]["iconAttachedTo"] = "Castbar"
-			E.db["unitframe"]["units"]["player"]["castbar"]["iconSize"] = 40
+			E.db["unitframe"]["units"]["player"]["castbar"]["iconSize"] = 27
 			E.db["unitframe"]["units"]["player"]["castbar"]["iconXOffset"] = 0
 			E.db["unitframe"]["units"]["player"]["castbar"]["insideInfoPanel"] = false
 			E.db["unitframe"]["units"]["player"]["castbar"]["tickColor"]["a"] = 0
@@ -2529,7 +2534,8 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["player"]["castbar"]["tickWidth"] = 20
 			E.db["unitframe"]["units"]["player"]["castbar"]["ticks"] = false
 			E.db["unitframe"]["units"]["player"]["castbar"]["timeToHold"] = 0.6
-			E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 290
+			E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 267
+
 			E.db["unitframe"]["units"]["player"]["classbar"]["fill"] = "spaced"
 			E.db["unitframe"]["units"]["player"]["colorOverride"] = "FORCE_OFF"
 

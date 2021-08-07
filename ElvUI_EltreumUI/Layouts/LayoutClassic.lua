@@ -1794,6 +1794,16 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["player"]["aurabar"]["spacing"] = 1
 			E.db["unitframe"]["units"]["player"]["aurabar"]["yOffset"] = 1
 			E.db["unitframe"]["units"]["player"]["buffs"]["countFont"] = "Kimberley"
+
+			E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 28
+			E.db["unitframe"]["units"]["player"]["castbar"]["iconAttached"] = false
+			E.db["unitframe"]["units"]["player"]["castbar"]["iconAttachedTo"] = "Castbar"
+			E.db["unitframe"]["units"]["player"]["castbar"]["iconSize"] = 27
+			E.db["unitframe"]["units"]["player"]["castbar"]["iconXOffset"] = 0
+			E.db["unitframe"]["units"]["player"]["castbar"]["insideInfoPanel"] = false
+			E.db["unitframe"]["units"]["player"]["castbar"]["timeToHold"] = 0.6
+			E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 267
+
 			E.db["unitframe"]["units"]["player"]["classbar"]["fill"] = "spaced"
 			E.db["unitframe"]["units"]["player"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["player"]["debuffs"]["anchorPoint"] = "BOTTOMLEFT"
