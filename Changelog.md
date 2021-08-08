@@ -1,6 +1,9 @@
 ### 🌌 Next Version 
 The future is uncertain
 ___
+### v2.5.1
+Fixed shadows error related to unitframes
+___
 ### v2.5.0
 Added a check for resolution for pet unitframe\
 Enabled buffs and debuffs on pet unitframe for DPS/Tank profile \
@@ -8,7 +11,7 @@ Changed castbar on Healer profile to fit the shadows, this change will be pushed
 Added a button in Eltruism > Media to swap action paging and visibility for Action Bar 1 and Action Bar 4\
 Added more checks before creating shadows to prevent errors\
 Tweaked class icons in light mode to not be so pixelated\
-Set most chat fade options to be disabled by default, making it user prefrence to enable them
+Set most chat fade options to be disabled by default, making it user preference to enable them
 ___
 ### v2.4.9
 Updated tags for new ElvUI version\

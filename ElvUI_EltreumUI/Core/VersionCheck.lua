@@ -182,7 +182,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.db["sle"]["shadows"]["unitframes"]["targettarget"]["health"] = false
 			E.db["sle"]["shadows"]["unitframes"]["targettarget"]["power"] = false
 		end
-	elseif E.private.ElvUI_EltreumUI.install_version < "2.5.0" then
+	elseif E.private.ElvUI_EltreumUI.install_version < "2.5.1" then
 		if ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 			E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 28
 			E.db["unitframe"]["units"]["player"]["castbar"]["iconAttached"] = false
