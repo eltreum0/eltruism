@@ -13,10 +13,10 @@ P.ElvUI_EltreumUI = {
 
 	chat = {
 		enable = true,
-		leftmouseover = true,
-		rightmouseover = true,
-		leftfader = true,
-		rightfader = true,
+		leftmouseover = false,
+		rightmouseover = false,
+		leftfader = false,
+		rightfader = false,
 		leftcombathide = true,
 		rightcombathide = false,
 		invertclick = false,
