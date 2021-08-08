@@ -985,9 +985,17 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 20
 			E.db["unitframe"]["units"]["party"]["width"] = 200
 			E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
+
+			E.db["unitframe"]["units"]["pet"]["buffs"]["anchorPoint"] = "TOP"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
-			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "NONE"
-			E.db["unitframe"]["units"]["pet"]["debuffs"]["countFontOutline"] = "NONE"
+			E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Kimberley"
+			E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
+			E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 0
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOPLEFT"
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
+			E.db["unitframe"]["units"]["pet"]["debuffs"]["yOffset"] = 1
+			E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
+
 			E.db["unitframe"]["units"]["pet"]["castbar"]["overlayOnFrame"] = "Health"
 			E.db["unitframe"]["units"]["pet"]["disableTargetGlow"] = false
 			E.db["unitframe"]["units"]["pet"]["fader"]["casting"] = true
