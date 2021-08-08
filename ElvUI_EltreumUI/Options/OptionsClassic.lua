@@ -2292,6 +2292,7 @@ if ElvUI_EltreumUI.Classic then
 									order = 33,
 									type = 'execute',
 									name = "Swap Action Paging and visibility for Bar1 and Bar4",
+									confirm = true,
 									--desc = "",
 									width = 'full',
 									func = function() ElvUI_EltreumUI:ActionPagingSwap() end,

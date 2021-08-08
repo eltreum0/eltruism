@@ -2334,6 +2334,7 @@ if ElvUI_EltreumUI.TBC then
 									name = "Swap Action Paging and visibility for Bar1 and Bar4",
 									--desc = "",
 									width = 'full',
+									confirm = true,
 									func = function() ElvUI_EltreumUI:ActionPagingSwap() end,
 								},
 							},
