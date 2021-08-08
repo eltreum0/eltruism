@@ -103,8 +103,10 @@ function ElvUI_EltreumUI:Shadows()
 						_G.PlayerTalentFrame:CreateShadow()
 					end
 				elseif ElvUI_EltreumUI.TBC then
-					if not _G.PlayerTalentFrame.backdrop.shadow then
-						_G.PlayerTalentFrame.backdrop:CreateShadow()
+					if _G.PlayerTalentFrame.backdrop then
+						if not _G.PlayerTalentFrame.backdrop.shadow then
+							_G.PlayerTalentFrame.backdrop:CreateShadow()
+						end
 					end
 				end
 			end)
@@ -113,8 +115,10 @@ function ElvUI_EltreumUI:Shadows()
 		if ElvUI_EltreumUI.Classic then
 			local TalentFrame = _G.TalentFrame
 			TalentFrame:HookScript("OnShow", function()
-					if not _G.TalentFrame.backdrop.shadow then
-						_G.TalentFrame.backdrop:CreateShadow()
+					if _G.TalentFrame.backdrop then
+						if not _G.TalentFrame.backdrop.shadow then
+							_G.TalentFrame.backdrop:CreateShadow()
+						end
 					end
 			end)
 		end
@@ -203,8 +207,10 @@ function ElvUI_EltreumUI:Shadows()
 			end
 			local AchievementFrame = _G.AchievementFrame
 			AchievementFrame:HookScript("OnShow", function()
-				if not _G.AchievementFrame.backdrop.shadow then
-					_G.AchievementFrame.backdrop:CreateShadow()
+				if _G.AchievementFrame.backdrop then
+					if not _G.AchievementFrame.backdrop.shadow then
+						_G.AchievementFrame.backdrop:CreateShadow()
+					end
 				end
 			end)
 
@@ -245,9 +251,12 @@ function ElvUI_EltreumUI:Shadows()
 				_G.GroupFinderFrame:CreateShadow()
 			end
 
-			if not _G.WorldMapFrame.backdrop.shadow then
-				_G.WorldMapFrame.backdrop:CreateShadow()
+			if  _G.WorldMapFrame.backdrop then
+				if not _G.WorldMapFrame.backdrop.shadow then
+					_G.WorldMapFrame.backdrop:CreateShadow()
+				end
 			end
+
 			if not _G.SpellBookFrame.shadow then
 				_G.SpellBookFrame:CreateShadow()
 			end
@@ -261,20 +270,32 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-			if not _G.FriendsFrame.backdrop.shadow then
-				_G.FriendsFrame.backdrop:CreateShadow()
+			if _G.FriendsFrame.backdrop then
+				if not _G.FriendsFrame.backdrop.shadow then
+					_G.FriendsFrame.backdrop:CreateShadow()
+				end
 			end
+
 			if not _G.WorldMapFrame.shadow then
 				_G.WorldMapFrame:CreateShadow()
 			end
-			if not _G.CharacterFrame.backdrop.shadow then
-				_G.CharacterFrame.backdrop:CreateShadow()
+
+			if _G.CharacterFrame.backdrop then
+				if not _G.CharacterFrame.backdrop.shadow then
+					_G.CharacterFrame.backdrop:CreateShadow()
+				end
 			end
-			if not _G.SpellBookFrame.backdrop.shadow then
-				_G.SpellBookFrame.backdrop:CreateShadow()
+
+			if _G.SpellBookFrame.backdrop then
+				if not _G.SpellBookFrame.backdrop.shadow then
+					_G.SpellBookFrame.backdrop:CreateShadow()
+				end
 			end
-			if not _G.FriendsFrame.backdrop.shadow then
-				_G.FriendsFrame.backdrop:CreateShadow()
+
+			if _G.FriendsFrame.backdrop then
+				if not _G.FriendsFrame.backdrop.shadow then
+					_G.FriendsFrame.backdrop:CreateShadow()
+				end
 			end
 
 			if E.private.bags.enable then
