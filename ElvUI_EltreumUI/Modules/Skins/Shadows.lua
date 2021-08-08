@@ -1,15 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
-local ElvUF_Player_PowerBar = _G['ElvUF_Player_PowerBar']
-local ElvUF_Player_HealthBar = _G['ElvUF_Player_HealthBar']
-local ElvUF_TargetTarget_HealthBar = _G['ElvUF_TargetTarget_HealthBar']
-local ElvUF_TargetTarget_PowerBar = _G['ElvUF_TargetTarget_PowerBar']
-local ElvUF_Target_HealthBar = _G['ElvUF_Target_HealthBar']
-local ElvUF_Target_PowerBar = _G['ElvUF_Target_PowerBar']
-local ElvUF_Focus_HealthBar = _G['ElvUF_Focus_HealthBar']
-local ElvUF_Focus_PowerBar = _G['ElvUF_Focus_PowerBar']
-local ElvUF_Pet = _G['ElvUF_Pet']
 local pairs = _G.pairs
 local CreateFrame = _G.CreateFrame
 
@@ -432,7 +423,7 @@ function ElvUI_EltreumUI:Shadows()
 		if not _G['ElvUF_Player_AdditionalPowerBar1'] then
 			if _G['ElvUF_Player_AdditionalPowerBar'] then
 				if not _G.ElvUF_Player_AdditionalPowerBar.shadow then
-					_G.ElvUF_Player_AdditionalPowerBar:CreateShadow()
+					_G['ElvUF_Player_AdditionalPowerBar']:CreateShadow()
 				end
 			end
 		end
@@ -463,22 +454,26 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		if not ElvUF_Player_HealthBar.shadow then
-			ElvUF_Player_HealthBar:CreateShadow()
-		end
-
-		if not ElvUF_Player_PowerBar.shadow then
-			ElvUF_Player_PowerBar:CreateShadow()
-		end
-
-		if _G.ElvUF_Player_Stagger then
-			if not _G.ElvUF_Player_Stagger.shadow then
-				_G.ElvUF_Player_Stagger:CreateShadow()
+		if _G['ElvUF_Player_HealthBar'] then
+			if not ElvUF_Player_HealthBar.shadow then
+				_G['ElvUF_Player_HealthBar']:CreateShadow()
 			end
 		end
 
-		if not _G.ElvLootFrame.shadow then
-			_G.ElvLootFrame:CreateShadow()
+		if _G['ElvUF_Player_PowerBar'] then
+			if not ElvUF_Player_PowerBar.shadow then
+				_G['ElvUF_Player_PowerBar']:CreateShadow()
+			end
+		end
+
+		if _G['ElvUF_Player_Stagger'] then
+			if not _G.ElvUF_Player_Stagger.shadow then
+				_G['ElvUF_Player_Stagger']:CreateShadow()
+			end
+		end
+
+		if not ElvLootFrame.shadow then
+			_G['ElvLootFrame']:CreateShadow()
 		end
 
 		local DT = E:GetModule('DataTexts')
@@ -488,45 +483,47 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		if not ElvUF_TargetTarget_HealthBar.shadow then
-			ElvUF_TargetTarget_HealthBar:CreateShadow()
+		if _G['ElvUF_TargetTarget_HealthBar'] then
+			if not ElvUF_TargetTarget_HealthBar.shadow then
+				_G['ElvUF_TargetTarget_HealthBar']:CreateShadow()
+			end
 		end
 
 		if not ElvUF_TargetTarget_PowerBar.shadow then
-			ElvUF_TargetTarget_PowerBar:CreateShadow()
+			_G['ElvUF_TargetTarget_PowerBar']:CreateShadow()
 		end
 
 		if not ElvUF_TargetTarget_PowerBar.shadow then
-			ElvUF_TargetTarget_PowerBar:CreateShadow()
+			_G['ElvUF_TargetTarget_PowerBar']:CreateShadow()
 		end
 
 		if not ElvUF_Target_HealthBar.shadow then
-			ElvUF_Target_HealthBar:CreateShadow()
+			_G['ElvUF_Target_HealthBar']:CreateShadow()
 		end
 
 		if not ElvUF_Target_PowerBar.shadow then
-			ElvUF_Target_PowerBar:CreateShadow()
+			_G['ElvUF_Target_PowerBar']:CreateShadow()
 		end
 
 		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 			if not ElvUF_Focus_HealthBar.shadow then
-				ElvUF_Focus_HealthBar:CreateShadow()
+				_G['ElvUF_Focus_HealthBar']:CreateShadow()
 			end
 			if not ElvUF_Focus_PowerBar.shadow then
-				ElvUF_Focus_PowerBar:CreateShadow()
+				_G['ElvUF_Focus_PowerBar']:CreateShadow()
 			end
 		end
 
 		if not ElvUF_Pet.shadow then
-			ElvUF_Pet:CreateShadow()
+			_G['ElvUF_Pet']:CreateShadow()
 		end
 
 		if E.private.bags.enable then
 			if not _G.ElvUI_ContainerFrame.shadow then
-				_G.ElvUI_ContainerFrame:CreateShadow()
+				_G['ElvUI_ContainerFrame']:CreateShadow()
 			end
 			if not _G.ElvUI_BankContainerFrame.shadow then
-				_G.ElvUI_BankContainerFrame:CreateShadow()
+				_G['ElvUI_BankContainerFrame']:CreateShadow()
 			end
 		end
 
