@@ -8,7 +8,7 @@ local string = _G.string
 local utf8sub = string.utf8sub
 
 -- Name custom abbreviation by Azilroka
-if ElvUI_EltreumUI.Retail then
+if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 	E:AddTag("name:eltruism:abbreviate", "UNIT_NAME_UPDATE", function(unit)
 		local name = UnitName(unit)
 		-- local name = 'Ецхо оф а Пандарен Монк' --cyrillic name test
@@ -17,7 +17,7 @@ if ElvUI_EltreumUI.Retail then
 		end
 		return name
 	end)
-elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+elseif ElvUI_EltreumUI.Classic then
 	ElvUF.Tags.Events['name:eltruism:abbreviate'] = 'UNIT_NAME_UPDATE'
 	ElvUF.Tags.Methods['name:eltruism:abbreviate'] = function(unit)
 		local name = UnitName(unit)
@@ -47,14 +47,14 @@ local classIcons = {
 }
 
 --show class icons on all targets
-if ElvUI_EltreumUI.Retail then
+if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 	E:AddTag("eltruism:class:all", "UNIT_NAME_UPDATE", function(unit)
 		local icon
 		local _ , classes = UnitClass(unit)
 		icon = classIcons[classes]
 		return icon
 	end)
-elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+elseif ElvUI_EltreumUI.Classic then
 	ElvUF.Tags.Events['eltruism:class:all'] = 'UNIT_NAME_UPDATE'
 	ElvUF.Tags.Methods['eltruism:class:all'] = function(unit)
 		local icon
@@ -66,7 +66,7 @@ end
 E:AddTagInfo('eltruism:class:all', ElvUI_EltreumUI.Name, L["Shows Class Icons recolored by Releaf on all targets"])
 
 --show class icons only on players, ty repooc!
-if ElvUI_EltreumUI.Retail then
+if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 	E:AddTag("eltruism:class:player", "UNIT_NAME_UPDATE", function(unit)
 		if not UnitIsPlayer(unit) then return end
 		local icon
@@ -74,7 +74,7 @@ if ElvUI_EltreumUI.Retail then
 		icon = classIcons[classes]
 		return icon
 	end)
-elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+elseif ElvUI_EltreumUI.Classic then
 	ElvUF.Tags.Events['eltruism:class:player'] = 'UNIT_NAME_UPDATE'
 	ElvUF.Tags.Methods['eltruism:class:player'] = function(unit)
 	if not UnitIsPlayer(unit) then return end
@@ -103,14 +103,14 @@ local classIconsBlizzard = {
 }
 
 --alternate class icons on all targets
-if ElvUI_EltreumUI.Retail then
+if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 	E:AddTag("eltruism:blizz:all", "UNIT_NAME_UPDATE", function(unit)
 		local icon
 		local _ , classes = UnitClass(unit)
 		icon = classIconsBlizzard[classes]
 		return icon
 	end)
-elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+elseif ElvUI_EltreumUI.Classic then
 	ElvUF.Tags.Events['eltruism:blizz:all'] = 'UNIT_NAME_UPDATE'
 	ElvUF.Tags.Methods['eltruism:blizz:all'] = function(unit)
 		local icon
@@ -122,7 +122,7 @@ end
 E:AddTagInfo('eltruism:blizz:all', ElvUI_EltreumUI.Name, L["Shows Class Icons by Blizzard on all targets"])
 
 --alternate class icons on players
-if ElvUI_EltreumUI.Retail then
+if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 	E:AddTag("eltruism:blizz:player", "UNIT_NAME_UPDATE", function(unit)
 		if not UnitIsPlayer(unit) then return end
 		local icon
@@ -130,7 +130,7 @@ if ElvUI_EltreumUI.Retail then
 		icon = classIconsBlizzard[classes]
 		return icon
 	end)
-elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+elseif ElvUI_EltreumUI.Classic then
 	ElvUF.Tags.Events['eltruism:blizz:player'] = 'UNIT_NAME_UPDATE'
 	ElvUF.Tags.Methods['eltruism:blizz:player'] = function(unit)
 		if not UnitIsPlayer(unit) then return end
@@ -159,14 +159,14 @@ local classIconsReleafborder = {
 }
 
 --alternate class icons on all targets
-if ElvUI_EltreumUI.Retail then
+if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 	E:AddTag("eltruism:ReleafBorder:all", "UNIT_NAME_UPDATE", function(unit)
 		local icon
 		local _ , classes = UnitClass(unit)
 		icon = classIconsReleafborder[classes]
 		return icon
 	end)
-elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+elseif ElvUI_EltreumUI.Classic then
 	ElvUF.Tags.Events['eltruism:ReleafBorder:all'] = 'UNIT_NAME_UPDATE'
 	ElvUF.Tags.Methods['eltruism:ReleafBorder:all'] = function(unit)
 		local icon
@@ -178,7 +178,7 @@ end
 E:AddTagInfo('eltruism:ReleafBorder:all', ElvUI_EltreumUI.Name, L["Shows Class Icons with borders recolored by Releaf on all targets"])
 
 --alternate class icons on players
-if ElvUI_EltreumUI.Retail then
+if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 	E:AddTag("eltruism:ReleafBorder:player", "UNIT_NAME_UPDATE", function(unit)
 		if not UnitIsPlayer(unit) then return end
 		local icon
@@ -186,7 +186,7 @@ if ElvUI_EltreumUI.Retail then
 		icon = classIconsReleafborder[classes]
 		return icon
 	end)
-elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+elseif ElvUI_EltreumUI.Classic then
 	ElvUF.Tags.Events['eltruism:ReleafBorder:player'] = 'UNIT_NAME_UPDATE'
 	ElvUF.Tags.Methods['eltruism:ReleafBorder:player'] = function(unit)
 		if not UnitIsPlayer(unit) then return end
@@ -215,15 +215,14 @@ local classIconsOutline = {
 }
 
 --class icons with outlines on all targets
-
-if ElvUI_EltreumUI.Retail then
+if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 	E:AddTag("eltruism:IconOutline:all", "UNIT_NAME_UPDATE", function(unit)
 		local icon
 		local _ , classes = UnitClass(unit)
 		icon = classIconsOutline[classes]
 		return icon
 	end)
-elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+elseif ElvUI_EltreumUI.Classic then
 	ElvUF.Tags.Events['eltruism:IconOutline:all'] = 'UNIT_NAME_UPDATE'
 	ElvUF.Tags.Methods['eltruism:IconOutline:all'] = function(unit)
 		local icon
@@ -235,7 +234,7 @@ end
 E:AddTagInfo('eltruism:IconOutline:all', ElvUI_EltreumUI.Name, "Shows Class Icons with Outlines all targets")
 
 --class icons with otlines on players
-if ElvUI_EltreumUI.Retail then
+if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 	E:AddTag("eltruism:IconOutline:player", "UNIT_NAME_UPDATE", function(unit)
 		if not UnitIsPlayer(unit) then return end
 		local icon
@@ -243,7 +242,7 @@ if ElvUI_EltreumUI.Retail then
 		icon = classIconsOutline[classes]
 		return icon
 	end)
-elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+elseif ElvUI_EltreumUI.Classic then
 	ElvUF.Tags.Events['eltruism:IconOutline:player'] = 'UNIT_NAME_UPDATE'
 	ElvUF.Tags.Methods['eltruism:IconOutline:player'] = function(unit)
 	if not UnitIsPlayer(unit) then return end
@@ -272,14 +271,14 @@ local classIconsOutlineReleaf = {
 }
 
 --class icons with outlines on all targets
-if ElvUI_EltreumUI.Retail then
+if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 	E:AddTag("eltruism:ReleafIconOutline:all", "UNIT_NAME_UPDATE", function(unit)
 		local icon
 		local _ , classes = UnitClass(unit)
 		icon = classIconsOutlineReleaf[classes]
 		return icon
 	end)
-elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+elseif ElvUI_EltreumUI.Classic then
 	ElvUF.Tags.Events['eltruism:ReleafIconOutline:all'] = 'UNIT_NAME_UPDATE'
 	ElvUF.Tags.Methods['eltruism:ReleafIconOutline:all'] = function(unit)
 		local icon
@@ -291,7 +290,7 @@ end
 E:AddTagInfo('eltruism:ReleafIconOutline:all', ElvUI_EltreumUI.Name, "Shows Class Icons with Outlines by Releaf all targets")
 
 --class icons with otlines on players
-if ElvUI_EltreumUI.Retail then
+if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 	E:AddTag("eltruism:ReleafIconOutline:player", "UNIT_NAME_UPDATE", function(unit)
 		if not UnitIsPlayer(unit) then return end
 		local icon
@@ -299,7 +298,7 @@ if ElvUI_EltreumUI.Retail then
 		icon = classIconsOutlineReleaf[classes]
 		return icon
 	end)
-elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+elseif ElvUI_EltreumUI.Classic then
 	ElvUF.Tags.Events['eltruism:ReleafIconOutline:player'] = 'UNIT_NAME_UPDATE'
 	ElvUF.Tags.Methods['eltruism:ReleafIconOutline:player'] = function(unit)
 	if not UnitIsPlayer(unit) then return end
@@ -312,7 +311,7 @@ end
 E:AddTagInfo('eltruism:ReleafIconOutline:player', ElvUI_EltreumUI.Name, "Shows Class Icons with Outlines by Releaf on Player targets")
 
 -- Releaf Logo
-if ElvUI_EltreumUI.Retail then
+if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 	E:AddTag("releaf", "UNIT_NAME_UPDATE", function(unit)
 		local color = E:ClassColor(E.myclass, true)
 		local red = math.floor(color.r*255)
@@ -322,7 +321,7 @@ if ElvUI_EltreumUI.Retail then
 		--local releaf = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Releaf-Orange.tga:0:0:0:0|t"
 		return releaf
 	end)
-elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+elseif ElvUI_EltreumUI.Classic then
 	ElvUF.Tags.Events['releaf'] = 'UNIT_NAME_UPDATE'
 	ElvUF.Tags.Methods['releaf'] = function(unit)
 		local color = E:ClassColor(E.myclass, true)
