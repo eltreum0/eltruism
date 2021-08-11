@@ -1,6 +1,10 @@
 ### 🌌 Next Version 
 The future is uncertain
 ___
+### v2.5.2
+Fixed tags in TBC due to a new ElvUI version\
+Fixed buffs being too high on nameplates due to a change in how they are handled
+___
 ### v2.5.1
 Fixed shadows error related to unitframes
 ___
