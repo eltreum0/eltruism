@@ -605,10 +605,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 		end
 	end
 end
---idk when it started, but it works without hooking into elvui np
---hooksecurefunc(NP, 'Style', ElvUI_EltreumUI.NameplatePower)
---hooksecurefunc(NP, 'UpdatePlate', ElvUI_EltreumUI.NameplatePower)
---hooksecurefunc(NP, 'NamePlateCallBack', ElvUI_EltreumUI.NameplatePower)
 
 --update the values of nameplate power bar
 function ElvUI_EltreumUI:NameplatePowerTextUpdate(unit)
@@ -647,47 +643,45 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 	if E.private.ElvUI_EltreumUI.nameplatepower.adjust then
 		if E.private.ElvUI_EltreumUI.nameplatepower.enable then
 			if ElvUI_EltreumUI.Retail then
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 1
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 1
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 				if myclass == 'MONK' or myclass == 'ROGUE' or myclass == 'DEATHKNIGHT' or myclass == 'PALADIN' or myclass == 'WARLOCK' or myclass == 'DRUID' then
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 47
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 47
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
 				elseif myclass == "MAGE" and id == 62 then  --62 is arcane --myclass== 'MAGE' or
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 47
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 47
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
 				else
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 				end
 			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 				if myclass == 'ROGUE'  or myclass == 'DRUID' then
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 47
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 47
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 47
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 47
 				else
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.energy then
 				if myclass == 'MONK' or myclass == 'ROGUE' then
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
+					if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
+					end
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.runic then
 				if myclass == 'DEATHKNIGHT' then
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 				end
@@ -695,55 +689,57 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 			if not E.private.ElvUI_EltreumUI.nameplatepower.mana then
 				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 					if myclass == 'MAGE' or myclass == 'HUNTER' or myclass == 'PRIEST' or myclass == 'SHAMAN' or myclass == 'PALADIN' or myclass == 'WARLOCK' then
-						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
-						E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
+						if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+							E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
+							E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
+						end
 					end
 				end
 				if ElvUI_EltreumUI.Retail then
 					if id == 64 or id == 63 or id == 270 or id == 256 or id == 257 or id == 264 then
-						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
-						E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
+						if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+							E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
+							E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
+						end
 					elseif id == 65 or id == 66 or id == 70 or id == 265 or id == 266 or id == 267 then --paladin specs bc of holy power and warlocks bc of soul shards
-						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
-						E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
+						if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+							E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
+							E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
+						end
 					end
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.focus then
 				if myclass == 'HUNTER' then
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.fury then
 				if myclass == 'DEMONHUNTER' then
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.rage then
 				if myclass == 'WARRIOR' then
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
+					if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
+					end
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.insanity then
 				if ElvUI_EltreumUI.Retail then
 					if id == 258 then
-					   	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
-						E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
 					end
@@ -752,18 +748,18 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 			if not E.private.ElvUI_EltreumUI.nameplatepower.maelstrom then
 				if ElvUI_EltreumUI.Retail then
 					if id == 262 or id == 263 then
-					   	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
-						E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
 					end
 				end
 			end
 		else --eltruism default buff/debuff position
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
+			if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
+			end
 		end
 	end
 end
