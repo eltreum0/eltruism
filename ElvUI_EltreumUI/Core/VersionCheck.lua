@@ -20,12 +20,12 @@ end
 
 function ElvUI_EltreumUI:ElvUIVersionCheck()
 	if ElvUI_EltreumUI.Retail then
-		if E.version < 12.40 then
+		if E.version < 12.41 then
 			ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
 		end
 	end
 	if ElvUI_EltreumUI.TBC then
-		if E.version < 2.10 then
+		if E.version < 2.11 then
 			ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
 		end
 	end
@@ -182,7 +182,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.db["sle"]["shadows"]["unitframes"]["targettarget"]["health"] = false
 			E.db["sle"]["shadows"]["unitframes"]["targettarget"]["power"] = false
 		end
-	elseif E.private.ElvUI_EltreumUI.install_version < "2.5.1" then
+	elseif E.private.ElvUI_EltreumUI.install_version < "2.5.2" then
 		if ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 			E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 28
 			E.db["unitframe"]["units"]["player"]["castbar"]["iconAttached"] = false
