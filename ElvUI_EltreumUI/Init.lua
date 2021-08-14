@@ -120,7 +120,6 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
-
 	ElvUI_EltreumUI:RegisterEvent('UNIT_AURA')
 	--power bar
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED')
@@ -227,6 +226,7 @@ function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED(event)
 	ElvUI_EltreumUI:CombatMusic()
 	ElvUI_EltreumUI:DynamicChatFade()
 	ElvUI_EltreumUI:ArenaUnitframes()
+	ElvUI_EltreumUI:BlizzCombatText()
 end
 
 function ElvUI_EltreumUI:PLAYER_LEVEL_UP()

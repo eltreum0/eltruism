@@ -1,6 +1,10 @@
 ### 🌌 Next Version 
 The future is uncertain
 ___
+### v2.5.3
+Disabled the Hardware Cursor change by default\
+Changed how detecting combat text addons work, now it is an option in Eltruism >Misc
+___
 ### v2.5.2
 Fixed tags in TBC due to a new ElvUI version\
 Fixed buffs being too high on nameplates due to a change in how they are handled
