@@ -55,7 +55,7 @@ P.ElvUI_EltreumUI = {
 		ring = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga',
 		size = '-1',
 		cooldown = true,
-		fixlag = true,
+		fixlag = false,
 	},
 
 	cursorcast = {
@@ -279,6 +279,7 @@ P.ElvUI_EltreumUI = {
 		fastloot = true,
 		screenshot = true,
 		hidetalkinghead = true,
+		blizzcombattext = true,
 		--floatingrep = false,
 	},
 }

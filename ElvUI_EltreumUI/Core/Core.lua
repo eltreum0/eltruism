@@ -90,6 +90,23 @@ function ElvUI_EltreumUI:ResolutionOutline()
 	end
 end
 
+--turn and off blizzard combat text
+function ElvUI_EltreumUI:BlizzCombatText()
+	if not E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext then
+		if ElvUI_EltreumUI.Retail then
+			SetCVar("enableFloatingCombatText", 1)
+		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			SetCVar("floatingCombatTextCombatDamage", 1)
+		end
+	elseif E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext then
+		if ElvUI_EltreumUI.Retail then
+			SetCVar("enableFloatingCombatText", 0)
+		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			SetCVar("floatingCombatTextCombatDamage", 0)
+		end
+	end
+end
+
 -- Ghost frame for Automatic Weakauras Positioning
 local EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", E.UIParent)
 local EltruismWAConsumablesAnchor = CreateFrame("Frame", "EltruismConsumables", E.UIParent)

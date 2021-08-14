@@ -52,6 +52,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:DynamicChatFade()
 	ElvUI_EltreumUI:StealthOptions()
 	ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
+	ElvUI_EltreumUI:BlizzCombatText()
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive()
 		ElvUI_EltreumUI:SkillGlow()
@@ -81,11 +82,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:NamePlateOptions()
 		ElvUI_EltreumUI:DynamicLevelStyleFilter()
 		ElvUI_EltreumUI:UpdateNPwithoutBar()
-	end
-	if not IsAddOnLoaded('NameplateSCT') and not IsAddOnLoaded('ElvUI_FCT') then
-		SetCVar("floatingCombatTextCombatDamage", 1)
-	elseif IsAddOnLoaded('NameplateSCT') or IsAddOnLoaded('ElvUI_FCT') then
-		SetCVar("floatingCombatTextCombatDamage", 0)
 	end
 end
 
