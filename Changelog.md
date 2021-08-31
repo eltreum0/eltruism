@@ -1,6 +1,10 @@
 ### 🌌 Next Version 
 The future is uncertain
 ___
+### v2.5.4
+Fixed GothanNarrow font not working well with French localization\
+Fixed chat loot icons being enabled even when chat modifications were disabled
+___
 ### v2.5.3
 Disabled the Hardware Cursor change by default\
 Changed how detecting combat text addons work, now it is an option in Eltruism >Misc
