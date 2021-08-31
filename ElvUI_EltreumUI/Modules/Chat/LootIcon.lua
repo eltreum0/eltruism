@@ -10,6 +10,8 @@ local function AddLootIcons(self, event, message, ...)
 		return
 	elseif not E.db.ElvUI_EltreumUI.chat then
 		return
+	elseif not E.db.ElvUI_EltreumUI.chat.enable then
+		return
 	elseif E.db.ElvUI_EltreumUI.chat.looticons then
 		local function Icon(link)
 			local texture = GetItemIcon(link)
