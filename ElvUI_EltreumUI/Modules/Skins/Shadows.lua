@@ -82,6 +82,8 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end)
 
+
+
 		if not IsAddOnLoaded("Blizzard_TalentUI") then
 			LoadAddOn("Blizzard_TalentUI")
 		end
@@ -102,7 +104,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end)
 		end
-
+	--]]
 		if ElvUI_EltreumUI.Classic then
 			local TalentFrame = _G.TalentFrame
 			TalentFrame:HookScript("OnShow", function()
