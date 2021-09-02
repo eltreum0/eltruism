@@ -1076,6 +1076,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["player"]["health"]["text_format"] = ""
 			E.db["unitframe"]["units"]["player"]["health"]["xOffset"] = 0
 			E.db["unitframe"]["units"]["player"]["name"]["position"] = "LEFT"
+			E.db["unitframe"]["units"]["target"]["name"]["text_format"] = ""
 			E.db["unitframe"]["units"]["player"]["name"]["xOffset"] = 2
 			E.db["unitframe"]["units"]["player"]["portrait"]["camDistanceScale"] = 4.2
 			E.db["unitframe"]["units"]["player"]["portrait"]["enable"] = true
@@ -1827,6 +1828,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["player"]["health"]["xOffset"] = 0
 			E.db["unitframe"]["units"]["player"]["name"]["position"] = "LEFT"
 			E.db["unitframe"]["units"]["player"]["name"]["xOffset"] = 3
+			E.db["unitframe"]["units"]["target"]["name"]["text_format"] = ""
 			E.db["unitframe"]["units"]["player"]["portrait"]["camDistanceScale"] = 4.2
 			E.db["unitframe"]["units"]["player"]["portrait"]["enable"] = true
 			E.db["unitframe"]["units"]["player"]["portrait"]["fullOverlay"] = true

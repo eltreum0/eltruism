@@ -1,6 +1,14 @@
 ### 🌌 Next Version 
 The future is uncertain
 ___
+### v2.5.6
+Fixed duplicate name text\
+___
+### v2.5.5
+Updated toc for TBC classic\
+Attempted to fix errors related to font file format\
+If you still have errors or issues please report to the Eltruism discord, thank you
+___
 ### v2.5.4
 Fixed GothanNarrow font not working well with French localization\
 Fixed chat loot icons being enabled even when chat modifications were disabled
