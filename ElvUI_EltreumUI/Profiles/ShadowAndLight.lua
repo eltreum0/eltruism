@@ -47,7 +47,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		]]--
 
 		-- Actionbars
-		E.db["sle"]["actionbars"]["vehicle"]["buttonspacing"] = 1
+		--E.db["sle"]["actionbars"]["vehicle"]["buttonspacing"] = 1
 		-- Armory
 		E.db["sle"]["armory"]["character"]["background"]["selectedBG"] = "CLASS"
 		E.db["sle"]["armory"]["character"]["durability"]["display"] = "Hide"

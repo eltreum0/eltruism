@@ -3,6 +3,8 @@ The future is uncertain
 ___
 ### v2.5.6
 Fixed duplicate name text\
+Fixed error on install due to a Shadow & Light change\
+Changed action paging for Rogue due to an issue with Shadowdance
 ___
 ### v2.5.5
 Updated toc for TBC classic\
