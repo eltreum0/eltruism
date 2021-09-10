@@ -1,6 +1,10 @@
 ### 🌌 Next Version 
 The future is uncertain
 ___
+### TODO for 2.5.7
+Check colors on party/raid frames bc of rogue/priest color being confusing
+Add something for pet in party/raid unitframes for tbc
+___
 ### v2.5.6
 Fixed duplicate name text\
 Fixed error on install due to a Shadow & Light change\
