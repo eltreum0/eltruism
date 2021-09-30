@@ -492,6 +492,21 @@ if ElvUI_EltreumUI.TBC then
 		["yOffset"] = -1
 		}
 
+		--tbc raid pet
+		E.db["movers"]["ElvUF_RaidpetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,249,227"
+		E.db["unitframe"]["units"]["raidpet"]["enable"] = true
+		E.db["unitframe"]["units"]["raidpet"]["height"] = 31
+		E.db["unitframe"]["units"]["raidpet"]["horizontalSpacing"] = 2
+		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["duration"]["position"] = "TOP"
+		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["font"] = "Kimberley"
+		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["fontOutline"] = "OUTLINE"
+		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["stack"]["xOffset"] = 2
+		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["stack"]["yOffset"] = -3
+		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["xOffset"] = 45
+		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["yOffset"] = 3
+		E.db["unitframe"]["units"]["raidpet"]["width"] = 120
+		E.db["unitframe"]["units"]["raidpet"]["visibility"] = "[@raid6,exists] show; hide"
+
 		if layout == 'dps' then
 			-- set Dynamic Status Icons
 			if IsAddOnLoaded("ElvUI_DynamicStatusIcons") then
