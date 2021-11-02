@@ -106,14 +106,16 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		if ElvUI_EltreumUI.Classic then
-			local TalentFrame = _G.TalentFrame
-			TalentFrame:HookScript("OnShow", function()
-					if _G.TalentFrame.backdrop then
-						if not _G.TalentFrame.backdrop.shadow then
-							_G.TalentFrame.backdrop:CreateShadow()
+			if _G.TalentFrame == true then
+				local TalentFrame = _G.TalentFrame
+				TalentFrame:HookScript("OnShow", function()
+						if _G.TalentFrame.backdrop then
+							if not _G.TalentFrame.backdrop.shadow then
+								_G.TalentFrame.backdrop:CreateShadow()
+							end
 						end
-					end
-			end)
+				end)
+			end
 		end
 
 		local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
