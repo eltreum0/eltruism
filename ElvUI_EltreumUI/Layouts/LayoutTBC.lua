@@ -182,6 +182,10 @@ if ElvUI_EltreumUI.TBC then
 		E.db["databars"]["experience"]["showLevel"] = true
 		E.db["databars"]["experience"]["textFormat"] = "CUR"
 		E.db["databars"]["experience"]["width"] = 500
+
+		--new pet experience
+		E.db["databars"]["petExperience"]["enable"] = false
+
 		--new reputation
 		E.db["databars"]["reputation"]["enable"] = true
 		E.db["databars"]["reputation"]["font"] = "Kimberley"
@@ -207,7 +211,7 @@ if ElvUI_EltreumUI.TBC then
 		E.db["datatexts"]["fontOutline"] = "THICKOUTLINE"
 		E.db["datatexts"]["noCombatClick"] = true
 		E.db["datatexts"]["noCombatHover"] = true
-		E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "ElvUI Config"
+		E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "ElvUI"
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["left"] = "ElvUI Config"
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"][2] = "Durability"
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["middle"] = "Durability"
@@ -222,7 +226,7 @@ if ElvUI_EltreumUI.TBC then
 		E.db["datatexts"]["panels"]["MinimapPanel"][1] = "Time"
 		E.db["datatexts"]["panels"]["MinimapPanel"][2] = "Coords"
 		E.db["datatexts"]["panels"]["MinimapPanel"]["border"] = false
-		E.db["datatexts"]["panels"]["RightChatDataPanel"][2] = "Combat Time"
+		E.db["datatexts"]["panels"]["RightChatDataPanel"][2] = "Combat"
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["border"] = false
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["left"] = "System"
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["middle"] = "Combat Time"
@@ -493,18 +497,17 @@ if ElvUI_EltreumUI.TBC then
 		}
 
 		--tbc raid pet
-		E.db["movers"]["ElvUF_RaidpetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,249,227"
+		E.db["movers"]["ElvUF_RaidpetMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,255,1"
 		E.db["unitframe"]["units"]["raidpet"]["enable"] = true
-		E.db["unitframe"]["units"]["raidpet"]["height"] = 31
-		E.db["unitframe"]["units"]["raidpet"]["horizontalSpacing"] = 2
+		E.db["unitframe"]["units"]["raidpet"]["horizontalSpacing"] = 0
+		E.db["unitframe"]["units"]["raidpet"]["numGroups"] = 3
 		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["duration"]["position"] = "TOP"
 		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["font"] = "Kimberley"
 		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["fontOutline"] = "OUTLINE"
 		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["stack"]["xOffset"] = 2
 		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["stack"]["yOffset"] = -3
-		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["xOffset"] = 45
 		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["yOffset"] = 3
-		E.db["unitframe"]["units"]["raidpet"]["width"] = 120
+		E.db["unitframe"]["units"]["raidpet"]["verticalSpacing"] = 0
 		E.db["unitframe"]["units"]["raidpet"]["visibility"] = "[@raid6,exists] show; hide"
 
 		if layout == 'dps' then
@@ -847,7 +850,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,299"
 			E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
 			E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
-			E.db["movers"]["ElvUF_RaidpetMover"] = "TOPLEFT,ElvUIParent,BOTTOMLEFT,4,736"
+			E.db["movers"]["ElvUF_RaidpetMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,255,1"
 			E.db["movers"]["ElvUF_TankMover"] = "BOTTOM,ElvUIParent,BOTTOM,-155,-4"
 			--E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,269"
 			E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,295,268"
@@ -1352,6 +1355,20 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 0
 			E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid21,noexists] hide;show"
 			E.db["unitframe"]["units"]["raid40"]["width"] = 120
+
+			--new raid pet
+			E.db["unitframe"]["units"]["raidpet"]["enable"] = true
+			E.db["unitframe"]["units"]["raidpet"]["horizontalSpacing"] = 0
+			E.db["unitframe"]["units"]["raidpet"]["numGroups"] = 3
+			E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["duration"]["position"] = "TOP"
+			E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["font"] = "Kimberley"
+			E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["fontOutline"] = "OUTLINE"
+			E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["stack"]["xOffset"] = 2
+			E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["stack"]["yOffset"] = -3
+			E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["yOffset"] = 3
+			E.db["unitframe"]["units"]["raidpet"]["verticalSpacing"] = 0
+			E.db["unitframe"]["units"]["raidpet"]["visibility"] = "[@raid6,exists] show; hide"
+
 			E.db["unitframe"]["units"]["tank"]["buffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["tank"]["debuffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["tank"]["debuffs"]["enable"] = true
@@ -1705,7 +1722,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["movers"]["ElvAB_7"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,240"
 			E.db["movers"]["ElvAB_8"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,275"
 			E.db["movers"]["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,310"
-			E.db["movers"]["ElvUF_AssistMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,130,-523"
+			E.db["movers"]["ElvUF_AssistMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-427,-450"
 			E.db["movers"]["ElvUF_FocusMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,424,-204"
 			E.db["movers"]["ElvUF_PartyMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,87"
 			E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,311,352"
@@ -1715,8 +1732,8 @@ if ElvUI_EltreumUI.TBC then
 			E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,387"
 			E.db["movers"]["ElvUF_Raid40Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
 			E.db["movers"]["ElvUF_RaidMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
-			E.db["movers"]["ElvUF_RaidpetMover"] = "TOPLEFT,ElvUIParent,BOTTOMLEFT,4,736"
-			E.db["movers"]["ElvUF_TankMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-435,-449"
+			E.db["movers"]["ElvUF_RaidpetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,204" --healer pet mover
+			E.db["movers"]["ElvUF_TankMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-427,-515"
 			E.db["movers"]["ElvUF_TargetAuraMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-400,288"
 			E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,311,359"
 			E.db["movers"]["ElvUF_TargetMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,387"
@@ -2124,9 +2141,20 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raid40"]["summonIcon"]["size"] = 15
 			E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid21,noexists] hide;show"
 			E.db["unitframe"]["units"]["raid40"]["width"] = 100
-			E.db["unitframe"]["units"]["raidpet"]["healPrediction"]["absorbStyle"] = "REVERSED"
-			E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["size"] = 20
-			E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["yOffset"] = 5
+
+			--new raid pet
+			E.db["unitframe"]["units"]["raidpet"]["enable"] = true
+			E.db["unitframe"]["units"]["raidpet"]["horizontalSpacing"] = 0
+			E.db["unitframe"]["units"]["raidpet"]["numGroups"] = 3
+			E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["duration"]["position"] = "TOP"
+			E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["font"] = "Kimberley"
+			E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["fontOutline"] = "OUTLINE"
+			E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["stack"]["xOffset"] = 2
+			E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["stack"]["yOffset"] = -3
+			E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["yOffset"] = 3
+			E.db["unitframe"]["units"]["raidpet"]["verticalSpacing"] = 0
+			E.db["unitframe"]["units"]["raidpet"]["visibility"] = "[@raid6,exists] show; hide"
+
 			E.db["unitframe"]["units"]["target"]["CombatIcon"]["anchorPoint"] = "TOPLEFT"
 			E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["b"] = 1
 			E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["g"] = 1

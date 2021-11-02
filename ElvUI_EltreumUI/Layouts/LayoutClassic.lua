@@ -159,6 +159,10 @@ if ElvUI_EltreumUI.Classic then
 		E.db["databars"]["experience"]["showLevel"] = true
 		E.db["databars"]["experience"]["textFormat"] = "CUR"
 		E.db["databars"]["experience"]["width"] = 500
+
+		--new pet experience
+		E.db["databars"]["petExperience"]["enable"] = false
+
 		--new reputation
 		E.db["databars"]["reputation"]["enable"] = true
 		E.db["databars"]["reputation"]["font"] = "Kimberley"
@@ -175,7 +179,7 @@ if ElvUI_EltreumUI.Classic then
 		E.db["datatexts"]["fontOutline"] = "THICKOUTLINE"
 		E.db["datatexts"]["noCombatClick"] = true
 		E.db["datatexts"]["noCombatHover"] = true
-		E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "ElvUI Config"
+		E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "ElvUI"
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["left"] = "ElvUI Config"
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"][2] = "Durability"
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["middle"] = "Durability"
@@ -190,7 +194,7 @@ if ElvUI_EltreumUI.Classic then
 		E.db["datatexts"]["panels"]["MinimapPanel"][1] = "Time"
 		E.db["datatexts"]["panels"]["MinimapPanel"][2] = "Coords"
 		E.db["datatexts"]["panels"]["MinimapPanel"]["border"] = false
-		E.db["datatexts"]["panels"]["RightChatDataPanel"][2] = "Combat Time"
+		E.db["datatexts"]["panels"]["RightChatDataPanel"][2] = "Combat"
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["border"] = false
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["left"] = "System"
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["middle"] = "Combat Time"

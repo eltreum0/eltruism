@@ -726,7 +726,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
 			E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
 			E.db["actionbar"]["bar4"]["point"] = "BOTTOMLEFT"
-			E.db["actionbar"]["bar4"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; show;"
+			E.db["actionbar"]["bar4"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
 			E.db["actionbar"]["bar5"]["alpha"] = 1
 			E.db["actionbar"]["bar5"]["buttonHeight"] = 30
 			E.db["actionbar"]["bar5"]["buttonSize"] = 35
@@ -1915,7 +1915,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
 			E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
 			E.db["actionbar"]["bar4"]["point"] = "TOPLEFT"
-			E.db["actionbar"]["bar4"]["visibility"] = "[vehicleui] show; [overridebar] show; [petbattle] hide; show"
+			E.db["actionbar"]["bar4"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
 			E.db["actionbar"]["bar5"]["buttonsPerRow"] = 6
 			E.db["actionbar"]["bar5"]["buttonHeight"] = 25
 			E.db["actionbar"]["bar5"]["buttonSize"] = 30

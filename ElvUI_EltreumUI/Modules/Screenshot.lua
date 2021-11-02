@@ -25,3 +25,21 @@ if ElvUI_EltreumUI.TBC then
 		self:ClearAllPoints()
 	end)
 end
+
+
+--aftermathh's spark replace
+--not working with elvui
+--[[
+local function CreateSpark(self)
+    if (self.Spark) then
+        return
+    end
+    local Spark = self:CreateTexture(nil, "OVERLAY")
+    Spark:Size(4, self:GetHeight())
+    Spark:Point("CENTER", self:GetStatusBarTexture(), "RIGHT")
+    Spark:SetTexture ( -- add brackets between this                 Interface\AddOns\ElvUI\Core\Media\Textures\Highlight\  )
+    Spark:SetVertexColor(1, 0, 0, 1)
+    Spark:SetBlendMode("DISABLE")
+    self.Spark = Spark
+end
+]]
