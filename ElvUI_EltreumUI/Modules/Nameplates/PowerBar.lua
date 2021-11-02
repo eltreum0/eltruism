@@ -640,8 +640,8 @@ function ElvUI_EltreumUI:NameplatePowerTextUpdate(unit)
 end
 
 function ElvUI_EltreumUI:UpdateNPwithoutBar()
-	if E.private.ElvUI_EltreumUI.nameplatepower.adjust then
-		if E.private.ElvUI_EltreumUI.nameplatepower.enable then
+	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
+		if E.private.ElvUI_EltreumUI.nameplatepower.adjust then
 			if ElvUI_EltreumUI.Retail then
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 1
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 1

@@ -74,12 +74,12 @@ end
 
 function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 	if E.db.ElvUI_EltreumUI.widenameplate.enable then
-		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+		--[[if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 			if not E.private.ElvUI_EltreumUI.nameplatepower.adjust then
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
 			end
-		end
+		end]]
 		if button and button.spellID then
 			if not string.find(unit, "nameplate") then
 				return
