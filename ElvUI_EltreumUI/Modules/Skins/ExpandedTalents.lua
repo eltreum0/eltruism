@@ -5,7 +5,7 @@ local LoadAddOn = _G.LoadAddOn
 
 function ElvUI_EltreumUI:ExpandedTalents()
 	--Reskin Blizzard Talent frame for TBC
-	if ElvUI_EltreumUI.TBC then
+	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		if E.db.ElvUI_EltreumUI.tbctalents.enable then
 			if not IsAddOnLoaded("Blizzard_TalentUI") then
 				LoadAddOn("Blizzard_TalentUI")
@@ -44,13 +44,13 @@ function ElvUI_EltreumUI:ExpandedTalents()
 		end
 	end
 
-	--Reskin Blizzard Talent frame for Classic
-	if ElvUI_EltreumUI.Classic then
+	--Reskin Blizzard Talent frame for Classic (was for before 1.14.0, after 1.14.0 it seems merged with tbc)
+	--[[ if ElvUI_EltreumUI.Classic then
 		if E.db.ElvUI_EltreumUI.tbctalents.enable then
 			if not IsAddOnLoaded("Blizzard_TalentUI") then
 				LoadAddOn("Blizzard_TalentUI")
 			end
-			--assert(IsAddOnLoaded("Blizzard_TalentUI"), "Talent UI not loaded")
+			assert(IsAddOnLoaded("Blizzard_TalentUI"), "Talent UI not loaded")
 
 			--hide the scroll
 			if _G.TalentFrameScrollFrameScrollBar then
@@ -82,5 +82,6 @@ function ElvUI_EltreumUI:ExpandedTalents()
 				_G.TalentFrameBackgroundTopLeft:SetSize(310 , 490)
 			end
 		end
-	end
+
+	end ]]
 end
