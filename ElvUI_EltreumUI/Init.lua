@@ -86,8 +86,8 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 end
 
 function ElvUI_EltreumUI:HidePopups()
-	E:StaticPopup_Hide("INCOMPATIBLE_ADDON")
-	E:StaticPopup_Hide('DISABLE_INCOMPATIBLE_ADDON')
+	--E:StaticPopup_Hide("INCOMPATIBLE_ADDON") --915 error
+	--E:StaticPopup_Hide('DISABLE_INCOMPATIBLE_ADDON') --915 error
 	if E:IsAddOnEnabled("ElvUI_WindTools") then
 		local W = unpack(WindTools)
 		local function WindtoolsCompatHideWhileInstall()
