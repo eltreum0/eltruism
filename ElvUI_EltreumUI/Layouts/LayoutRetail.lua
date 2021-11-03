@@ -1827,7 +1827,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
 			["enable"] = true
 			}
-			-- Change sle y offsets for healer frames
+			-- Change sle y offsets for healer frames error 915
 			if IsAddOnLoaded("ElvUI_SLE") then
 				E.db["sle"]["unitframes"]["unit"]["raid"]["dead"]["yOffset"] = 10
 				E.db["sle"]["unitframes"]["unit"]["raid"]["offline"]["yOffset"] = 10
