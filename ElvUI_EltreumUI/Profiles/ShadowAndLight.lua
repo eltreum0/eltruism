@@ -32,7 +32,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.private["sle"]["skins"]["petbattles"]["enable"] = false
 		E.private["sle"]["pvp"]["KBbanner"]["enable"] = true
 		E.private["sle"]["uibuttons"]["style"] = "dropdown"
-		E.private["sle"]["unitframe"]["statusbarTextures"]["aura"] = true
+		E.private["sle"]["unitframe"]["statusbarTextures"]["aura"] = true --error 915
 		E.private["sle"]["actionbars"]["checkedColor"]["a"] = 1
 		E.private["sle"]["actionbars"]["checkedColor"]["g"] = 0
 		--[[  --viewport sometimes errors idk why
