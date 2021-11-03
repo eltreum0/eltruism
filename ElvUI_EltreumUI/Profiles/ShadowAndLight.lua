@@ -417,7 +417,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["skins"]["objectiveTracker"]["colorHeader"]["r"] = 0.81960784313725
 		E.db["sle"]["skins"]["objectiveTracker"]["underlineClass"] = true
 		E.db["sle"]["skins"]["talkinghead"]["hide"] = true
-		--Unitframes
+		--Unitframes this was erroring in 915
 		E.db["sle"]["unitframes"]["roleicons"] = "Eltruism"
 		E.db["sle"]["unitframes"]["statusTextures"]["auraTexture"] = "Eltreum-Blank"
 		E.db["sle"]["unitframes"]["statusTextures"]["castTexture"] = "Eltreum-Blank"
