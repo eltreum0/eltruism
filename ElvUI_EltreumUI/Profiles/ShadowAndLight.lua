@@ -32,7 +32,6 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.private["sle"]["skins"]["petbattles"]["enable"] = false
 		E.private["sle"]["pvp"]["KBbanner"]["enable"] = true
 		E.private["sle"]["uibuttons"]["style"] = "dropdown"
-		E.private["sle"]["unitframe"]["statusbarTextures"]["aura"] = true --error 915
 		E.private["sle"]["actionbars"]["checkedColor"]["a"] = 1
 		E.private["sle"]["actionbars"]["checkedColor"]["g"] = 0
 		--[[  --viewport sometimes errors idk why
@@ -417,36 +416,43 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["skins"]["objectiveTracker"]["colorHeader"]["r"] = 0.81960784313725
 		E.db["sle"]["skins"]["objectiveTracker"]["underlineClass"] = true
 		E.db["sle"]["skins"]["talkinghead"]["hide"] = true
-		--Unitframes this was erroring in 915
-		E.db["sle"]["unitframes"]["roleicons"] = "Eltruism"
-		E.db["sle"]["unitframes"]["statusTextures"]["auraTexture"] = "Eltreum-Blank"
-		E.db["sle"]["unitframes"]["statusTextures"]["castTexture"] = "Eltreum-Blank"
-		E.db["sle"]["unitframes"]["unit"]["party"]["dead"]["CustomTexture"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga"
-		E.db["sle"]["unitframes"]["unit"]["party"]["dead"]["enable"] = true
-		E.db["sle"]["unitframes"]["unit"]["party"]["dead"]["size"] = 25
-		E.db["sle"]["unitframes"]["unit"]["party"]["dead"]["texture"] = "CUSTOM"
-		E.db["sle"]["unitframes"]["unit"]["party"]["dead"]["yOffset"] = 10
-		E.db["sle"]["unitframes"]["unit"]["party"]["offline"]["CustomTexture"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga"
-		E.db["sle"]["unitframes"]["unit"]["party"]["offline"]["enable"] = true
-		E.db["sle"]["unitframes"]["unit"]["party"]["offline"]["size"] = 25
-		E.db["sle"]["unitframes"]["unit"]["party"]["offline"]["texture"] = "CUSTOM"
-		E.db["sle"]["unitframes"]["unit"]["party"]["offline"]["yOffset"] = 10
-		E.db["sle"]["unitframes"]["unit"]["raid"]["dead"]["CustomTexture"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga"
-		E.db["sle"]["unitframes"]["unit"]["raid"]["dead"]["enable"] = true
-		E.db["sle"]["unitframes"]["unit"]["raid"]["dead"]["size"] = 15
-		E.db["sle"]["unitframes"]["unit"]["raid"]["dead"]["texture"] = "CUSTOM"
-		E.db["sle"]["unitframes"]["unit"]["raid"]["offline"]["CustomTexture"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga"
-		E.db["sle"]["unitframes"]["unit"]["raid"]["offline"]["enable"] = true
-		E.db["sle"]["unitframes"]["unit"]["raid"]["offline"]["size"] = 15
-		E.db["sle"]["unitframes"]["unit"]["raid"]["offline"]["texture"] = "CUSTOM"
-		E.db["sle"]["unitframes"]["unit"]["raid40"]["dead"]["CustomTexture"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga"
-		E.db["sle"]["unitframes"]["unit"]["raid40"]["dead"]["enable"] = true
-		E.db["sle"]["unitframes"]["unit"]["raid40"]["dead"]["size"] = 15
-		E.db["sle"]["unitframes"]["unit"]["raid40"]["dead"]["texture"] = "CUSTOM"
-		E.db["sle"]["unitframes"]["unit"]["raid40"]["offline"]["CustomTexture"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga"
-		E.db["sle"]["unitframes"]["unit"]["raid40"]["offline"]["enable"] = true
-		E.db["sle"]["unitframes"]["unit"]["raid40"]["offline"]["size"] = 15
-		E.db["sle"]["unitframes"]["unit"]["raid40"]["offline"]["texture"] = "CUSTOM"
+
+		--Unitframes this was erroring in 915 due to internal sle change months back that i didnt realize
+		E.db["sle"]["unitframes"]["roleIcons"]["icons"] = "Eltruism"
+		--E.private["sle"]["unitframe"]["statusbarTextures"]["aura"] = true --old
+		E.db["sle"]["unitframe"]["statusbarTextures"]["aurabar"]["enable"] = true
+		E.db["sle"]["unitframe"]["statusbarTextures"]["aurabar"]["texture"] = "Eltreum-Blank"
+		E.db["sle"]["unitframe"]["statusbarTextures"]["castbar"]["enable"] = true
+		E.db["sle"]["unitframe"]["statusbarTextures"]["castbar"]["texture"] = "Eltreum-Blank"
+
+		E.db["sle"]["unitframe"]["units"]["party"]["deathIndicator"]["custom"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga"
+		E.db["sle"]["unitframe"]["units"]["party"]["deathIndicator"]["enable"] = true
+		E.db["sle"]["unitframe"]["units"]["party"]["deathIndicator"]["size"] = 25
+		E.db["sle"]["unitframe"]["units"]["party"]["deathIndicator"]["texture"] = "CUSTOM"
+		E.db["sle"]["unitframe"]["units"]["party"]["deathIndicator"]["yOffset"] = 10
+		E.db["sle"]["unitframe"]["units"]["party"]["offlineIndicator"]["custom"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga"
+		E.db["sle"]["unitframe"]["units"]["party"]["offlineIndicator"]["enable"] = true
+		E.db["sle"]["unitframe"]["units"]["party"]["offlineIndicator"]["size"] = 25
+		E.db["sle"]["unitframe"]["units"]["party"]["offlineIndicator"]["texture"] = "CUSTOM"
+		E.db["sle"]["unitframe"]["units"]["party"]["offlineIndicator"]["yOffset"] = 10
+
+		E.db["sle"]["unitframe"]["units"]["raid"]["deathIndicator"]["custom"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga"
+		E.db["sle"]["unitframe"]["units"]["raid"]["deathIndicator"]["enable"] = true
+		E.db["sle"]["unitframe"]["units"]["raid"]["deathIndicator"]["size"] = 15
+		E.db["sle"]["unitframe"]["units"]["raid"]["deathIndicator"]["texture"] = "CUSTOM"
+		E.db["sle"]["unitframe"]["units"]["raid"]["offlineIndicator"]["custom"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga"
+		E.db["sle"]["unitframe"]["units"]["raid"]["offlineIndicator"]["enable"] = true
+		E.db["sle"]["unitframe"]["units"]["raid"]["offlineIndicator"]["size"] = 15
+		E.db["sle"]["unitframe"]["units"]["raid"]["offlineIndicator"]["texture"] = "CUSTOM"
+
+		E.db["sle"]["unitframe"]["units"]["raid40"]["deathIndicator"]["custom"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga"
+		E.db["sle"]["unitframe"]["units"]["raid40"]["deathIndicator"]["enable"] = true
+		E.db["sle"]["unitframe"]["units"]["raid40"]["deathIndicator"]["size"] = 15
+		E.db["sle"]["unitframe"]["units"]["raid40"]["deathIndicator"]["texture"] = "CUSTOM"
+		E.db["sle"]["unitframe"]["units"]["raid40"]["offlineIndicator"]["custom"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga"
+		E.db["sle"]["unitframe"]["units"]["raid40"]["offlineIndicator"]["enable"] = true
+		E.db["sle"]["unitframe"]["units"]["raid40"]["offlineIndicator"]["size"] = 15
+		E.db["sle"]["unitframe"]["units"]["raid40"]["offlineIndicator"]["texture"] = "CUSTOM"
 
 		ElvUI_EltreumUI:Print("Shadow and Light profile has been set")
 
