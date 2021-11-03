@@ -29,10 +29,10 @@ local THANKYOU = {
 	'Pat',
 	'|cff00c0faBenik|r',
 	'|T136012:15:15:0:0:64:64:5:59:5:59|t |cff006fdcRubgrsch|r |T656558:15:15:0:0:64:64:5:59:5:59|t',
-	'|TInterface/AddOns/ElvUI/Media/ChatLogos/FoxWarlock:15:15:0:0:64:64:5:59:5:59|t |cff8788EENihilistzsche|r',
-	'|TInterface/AddOns/ElvUI/Media/ChatLogos/Clover:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0ALuckyone|r Especially for allowing the usage of his installer/plugin as a model',
+	'|cff8788EENihilistzsche|r',
+	'|TInterface/AddOns/ElvUI/Core/Media/ChatLogos/Clover:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0ALuckyone|r Especially for allowing the usage of his installer/plugin as a model',
 	'|TInterface/AddOns/ElvUI_EltreumUI/Media/Textures/releaf:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0AReleaf|r for the alternate class icons',
-	'AcidWeb |TInterface/AddOns/ElvUI/Media/ChatLogos/Gem:15:15:-1:2:64:64:6:60:8:60|t',
+	'AcidWeb |TInterface/AddOns/ElvUI/Core/Media/ChatLogos/Gem:15:15:-1:2:64:64:6:60:8:60|t',
 }
 
 local SUPPORTER = {
