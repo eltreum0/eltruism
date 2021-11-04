@@ -1,11 +1,14 @@
 ### 🌌 Next Version 
 The future is uncertain
 ___
+### 2.5.8
+Fixed Shadow and Light Profile not applying and failing to install Eltruism Profile due to a database change
+___
 ### 2.5.7
-Updated all versions to newest ElvUI and game versions
-Fixed Nameplate Buffs and Debuffs's position being adjusted even when autoadjust was disabled
-Fixed Action Bar 4 showing up during pet battles
-Moved the Raid Pet frames for Burning Crusade Classic and Classic to allow healers to more easily heal pets
+Updated all versions to newest ElvUI and game versions\
+Fixed Nameplate Buffs and Debuffs's position being adjusted even when autoadjust was disabled\
+Fixed Action Bar 4 showing up during pet battles\
+Moved the Raid Pet frames for Burning Crusade Classic and Classic to allow healers to more easily heal pets\
 Fixed Expanded Talents on Classic
 ___
 ### v2.5.6
