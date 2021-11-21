@@ -260,8 +260,10 @@ function ElvUI_EltreumUI:Shadows()
 				_G.ZoneAbilityFrame:CreateShadow()
 			end
 
-			if not _G.BossButton.shadow then
-				_G.BossButton:CreateShadow()
+			if E.private.actionbar.enable then
+				if not _G.BossButton.shadow then
+					_G.BossButton:CreateShadow()
+				end
 			end
 
 		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
