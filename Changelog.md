@@ -1,6 +1,9 @@
 ### 🌌 Next Version 
 The future is uncertain
 ___
+### 2.5.9
+Fixed an error related to shadows when ElvUI Action Bars were disabled
+___
 ### 2.5.8
 Fixed Shadow and Light Profile not applying and failing to install Eltruism Profile due to a database change
 ___

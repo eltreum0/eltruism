@@ -28,7 +28,7 @@ end
 
 
 --aftermathh's spark replace
---not working with elvui
+--needs some investigation to work with elvui
 --[[
 local function CreateSpark(self)
     if (self.Spark) then
