@@ -1,5 +1,6 @@
 ### 🌌 Next Version 
 The future is uncertain
+___
 ### 2.6.0
 Fixed an error causing the install prompt to not appear due to a change in WindTools
 ___
