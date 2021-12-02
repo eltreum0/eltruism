@@ -1,5 +1,7 @@
 ### 🌌 Next Version 
 The future is uncertain
+### 2.6.0
+Fixed an error causing the install prompt to not appear due to a change in WindTools
 ___
 ### 2.5.9
 Fixed an error related to shadows when ElvUI Action Bars were disabled
