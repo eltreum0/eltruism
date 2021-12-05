@@ -108,7 +108,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["tooltips"]["objectiveProgress"] = false
 		E.private["WT"]["tooltips"]["progression"]["enable"] = false
 		E.private["WT"]["unitFrames"]["roleIcon"]["roleIconStyle"] = "DEFAULT"
-		E.db["WT"]["social"]["contextMenu"]["enable"] = true
+
 		E.db["WT"]["announcement"]["combatResurrection"]["onlySourceIsPlayer"] = true
 		E.db["WT"]["announcement"]["combatResurrection"]["text"] = "Casting %spell% on %target%"
 		E.db["WT"]["announcement"]["goodbye"]["enable"] = false
@@ -218,6 +218,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["quest"]["turnIn"]["followerAssignees"] = false
 		E.db["WT"]["skins"]["vignetting"]["enable"] = false
 		E.db["WT"]["skins"]["vignetting"]["level"] = 100
+
 		E.db["WT"]["social"]["chatBar"]["buttonHeight"] = 27
 		E.db["WT"]["social"]["chatBar"]["enable"] = false
 		E.db["WT"]["social"]["chatLink"]["icon"] = false
@@ -230,6 +231,10 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["social"]["friendList"]["infoFont"]["style"] = "THICKOUTLINE"
 		E.db["WT"]["social"]["friendList"]["nameFont"]["style"] = "THICKOUTLINE"
 		E.db["WT"]["social"]["friendList"]["textures"]["factionIcon"] = true
+
+
+
+
 		E.db["WT"]["social"]["smartTab"]["enable"] = false
 		E.db["WT"]["tooltips"]["groupInfo"]["enable"] = false
 		E.db["WT"]["tooltips"]["groupInfo"]["title"] = false
