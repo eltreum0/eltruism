@@ -94,13 +94,15 @@ end
 function ElvUI_EltreumUI:BlizzCombatText()
 	if not E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext then
 		if ElvUI_EltreumUI.Retail then
-			SetCVar("enableFloatingCombatText", 1)
+			--SetCVar("enableFloatingCombatText", 1) --this is damage taken
+			SetCVar("floatingCombatTextCombatDamage", 1)
 		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			SetCVar("floatingCombatTextCombatDamage", 1)
 		end
 	elseif E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext then
 		if ElvUI_EltreumUI.Retail then
-			SetCVar("enableFloatingCombatText", 0)
+			--SetCVar("enableFloatingCombatText", 0) --this is damage taken
+			SetCVar("floatingCombatTextCombatDamage", 0)
 		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			SetCVar("floatingCombatTextCombatDamage", 0)
 		end
