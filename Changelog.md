@@ -1,5 +1,16 @@
 ### 🌌 Next Version 
 The future is uncertain
+
+check 
+
+E.global["nameplate"]["filters"]
+
+being renamed to
+
+E.global["nameplates"]["filters"]
+___
+### 2.6.1
+Fixed an error causing the install of the healer profile to fail when Shadow and Light was enabled
 ___
 ### 2.6.0
 Fixed an error causing the install prompt to not appear due to a change in WindTools
