@@ -1828,12 +1828,14 @@ if ElvUI_EltreumUI.Retail then
 			["enable"] = true
 			}
 			-- Change sle y offsets for healer frames error 915
-			if IsAddOnLoaded("ElvUI_SLE") then
+
+			--[[if IsAddOnLoaded("ElvUI_SLE") then
 				E.db["sle"]["unitframes"]["unit"]["raid"]["dead"]["yOffset"] = 10
 				E.db["sle"]["unitframes"]["unit"]["raid"]["offline"]["yOffset"] = 10
 				E.db["sle"]["unitframes"]["unit"]["raid40"]["dead"]["yOffset"] = 10
 				E.db["sle"]["unitframes"]["unit"]["raid40"]["offline"]["yOffset"] = 10
-			end
+			end]]--
+
 			--set Dynamic Status Icons
 			if IsAddOnLoaded("ElvUI_DynamicStatusIcons") then
 				E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["anchorPoint"] = "BOTTOMRIGHT"
