@@ -326,34 +326,6 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		--same as above but for party
-		for i = 1, 5 do
-			local partymembers = {_G['ElvUF_PartyGroup1UnitButton'..i]}
-			for _, frame in pairs(partymembers) do
-				for _, button in pairs(partymembers) do
-					if not button.shadow then
-						button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2
-					end
-				end
-			end
-		end
-
-		--boss
-		for i = 1, 5 do
-			local bossmembers = {_G['ElvUF_Boss'..i]}
-			for _, frame in pairs(bossmembers) do
-				for _, button in pairs(bossmembers) do
-					if not button.shadow then
-						button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2
-					end
-				end
-			end
-		end
-
 		--pets
 		if E.private.actionbar.enable then
 			for i = 1, 12 do
@@ -384,100 +356,6 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		--classpower
-		for i = 1, 10 do
-			local button = _G['ElvUF_PlayerClassIconButton'..i]
-			if not button then
-				break
-			else
-				if not button.shadow then
-					button.shadow = button:CreateShadow(nil, true)
-					button.shadow:SetParent(button)
-					button.shadow.size = 2
-				end
-			end
-		end
-
-		--runes
-		for i = 1, 10 do
-			local button = _G['ElvUF_PlayerRuneButton'..i]
-			if not button then
-				break
-			else
-				if not button.shadow then
-					button.shadow = button:CreateShadow(nil, true)
-					button.shadow:SetParent(button)
-					button.shadow.size = 2
-				end
-			end
-		end
-
-		--_AdditionalPowerBar
-		for i = 1, 10 do
-			local button = _G['ElvUF_Player_AdditionalPowerBar'..i]
-			if not button then
-				break
-			else
-				if not button.shadow then
-					button.shadow = button:CreateShadow(nil, true)
-					button.shadow:SetParent(button)
-					button.shadow.size = 2
-				end
-			end
-		end
-
-		if not _G['ElvUF_Player_AdditionalPowerBar1'] then
-			if _G['ElvUF_Player_AdditionalPowerBar'] then
-				if not _G.ElvUF_Player_AdditionalPowerBar.shadow then
-					_G['ElvUF_Player_AdditionalPowerBar']:CreateShadow()
-				end
-			end
-		end
-
-		local PlayerCastbar = CreateFrame("Frame", "EltruismPlayerCastBarShadowFrame")
-		local PlayerCastbarx = E.db.unitframe.units.player.castbar.width + E.db.unitframe.units.player.castbar.iconSize -3
-		local PlayerCastbary = E.db.unitframe.units.player.castbar.height -1
-		PlayerCastbar:SetSize(PlayerCastbarx, PlayerCastbary)
-		PlayerCastbar:SetParent(_G.ElvUF_Player_CastBar)
-		if not (self.PlayerCastBarIsSkinned) then
-			PlayerCastbar.shadow = PlayerCastbar:CreateShadow(nil, true)
-			PlayerCastbar:SetPoint("CENTER", _G.ElvUF_Player_CastBar, "CENTER", -14, 0)
-			PlayerCastbar:Show()
-
-			self.PlayerCastBarIsSkinned = true
-		end
-
-		if not E.db.unitframe.units.target.castbar.overlayOnFrame == "Power" then
-			local TargetCastbar = CreateFrame("Frame", "EltruismTargetCastBarShadowFrame")
-			local TargetCastbarx = E.db.unitframe.units.target.castbar.width + E.db.unitframe.units.target.castbar.iconSize -2
-			local TargetCastbary = E.db.unitframe.units.target.castbar.height - 1
-			TargetCastbar:SetSize(TargetCastbarx, TargetCastbary)
-			TargetCastbar:SetParent(_G.ElvUF_Target_CastBar)
-			if not (self.TargetCastBarIsSkinned) then
-				TargetCastbar.shadow = TargetCastbar:CreateShadow(nil, true)
-				TargetCastbar:SetPoint("CENTER", _G.ElvUF_Target_CastBar, "CENTER", -14, 0)
-				self.TargetCastBarIsSkinned = true
-			end
-		end
-
-		if _G['ElvUF_Player_HealthBar'] then
-			if not ElvUF_Player_HealthBar.shadow then
-				_G['ElvUF_Player_HealthBar']:CreateShadow()
-			end
-		end
-
-		if _G['ElvUF_Player_PowerBar'] then
-			if not ElvUF_Player_PowerBar.shadow then
-				_G['ElvUF_Player_PowerBar']:CreateShadow()
-			end
-		end
-
-		if _G['ElvUF_Player_Stagger'] then
-			if not _G.ElvUF_Player_Stagger.shadow then
-				_G['ElvUF_Player_Stagger']:CreateShadow()
-			end
-		end
-
 		if not ElvLootFrame.shadow then
 			_G['ElvLootFrame']:CreateShadow()
 		end
@@ -488,41 +366,171 @@ function ElvUI_EltreumUI:Shadows()
 				DT.tooltip:CreateShadow()
 			end
 		end
+----------------------------------------------------------------------------------------------------
+		--start of unitframes
 
-		if _G['ElvUF_TargetTarget_HealthBar'] then
-			if not ElvUF_TargetTarget_HealthBar.shadow then
-				_G['ElvUF_TargetTarget_HealthBar']:CreateShadow()
+		if E.private.unitframe.enable then
+
+
+			for i = 1, 5 do
+				local partymembers = {_G['ElvUF_PartyGroup1UnitButton'..i]}
+				for _, frame in pairs(partymembers) do
+					for _, button in pairs(partymembers) do
+						if not button.shadow then
+							button.shadow = button:CreateShadow(nil, true)
+							button.shadow:SetParent(button)
+							button.shadow.size = 2
+						end
+					end
+				end
 			end
-		end
 
-		if not ElvUF_TargetTarget_PowerBar.shadow then
-			_G['ElvUF_TargetTarget_PowerBar']:CreateShadow()
-		end
-
-		if not ElvUF_TargetTarget_PowerBar.shadow then
-			_G['ElvUF_TargetTarget_PowerBar']:CreateShadow()
-		end
-
-		if not ElvUF_Target_HealthBar.shadow then
-			_G['ElvUF_Target_HealthBar']:CreateShadow()
-		end
-
-		if not ElvUF_Target_PowerBar.shadow then
-			_G['ElvUF_Target_PowerBar']:CreateShadow()
-		end
-
-		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
-			if not ElvUF_Focus_HealthBar.shadow then
-				_G['ElvUF_Focus_HealthBar']:CreateShadow()
+			--boss
+			for i = 1, 5 do
+				local bossmembers = {_G['ElvUF_Boss'..i]}
+				for _, frame in pairs(bossmembers) do
+					for _, button in pairs(bossmembers) do
+						if not button.shadow then
+							button.shadow = button:CreateShadow(nil, true)
+							button.shadow:SetParent(button)
+							button.shadow.size = 2
+						end
+					end
+				end
 			end
-			if not ElvUF_Focus_PowerBar.shadow then
-				_G['ElvUF_Focus_PowerBar']:CreateShadow()
-			end
-		end
 
-		if not ElvUF_Pet.shadow then
-			_G['ElvUF_Pet']:CreateShadow()
+			if _G['ElvUF_TargetTarget_HealthBar'] then
+				if not ElvUF_TargetTarget_HealthBar.shadow then
+					_G['ElvUF_TargetTarget_HealthBar']:CreateShadow()
+				end
+			end
+
+			if not ElvUF_TargetTarget_PowerBar.shadow then
+				_G['ElvUF_TargetTarget_PowerBar']:CreateShadow()
+			end
+
+			if not ElvUF_TargetTarget_PowerBar.shadow then
+				_G['ElvUF_TargetTarget_PowerBar']:CreateShadow()
+			end
+
+			if not ElvUF_Target_HealthBar.shadow then
+				_G['ElvUF_Target_HealthBar']:CreateShadow()
+			end
+
+			if not ElvUF_Target_PowerBar.shadow then
+				_G['ElvUF_Target_PowerBar']:CreateShadow()
+			end
+
+			if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
+				if not ElvUF_Focus_HealthBar.shadow then
+					_G['ElvUF_Focus_HealthBar']:CreateShadow()
+				end
+				if not ElvUF_Focus_PowerBar.shadow then
+					_G['ElvUF_Focus_PowerBar']:CreateShadow()
+				end
+			end
+
+			if not ElvUF_Pet.shadow then
+				_G['ElvUF_Pet']:CreateShadow()
+			end
+
+				--classpower
+			for i = 1, 10 do
+				local button = _G['ElvUF_PlayerClassIconButton'..i]
+				if not button then
+					break
+				else
+					if not button.shadow then
+						button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2
+					end
+				end
+			end
+
+			--runes
+			for i = 1, 10 do
+				local button = _G['ElvUF_PlayerRuneButton'..i]
+				if not button then
+					break
+				else
+					if not button.shadow then
+						button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2
+					end
+				end
+			end
+
+			--_AdditionalPowerBar
+			for i = 1, 10 do
+				local button = _G['ElvUF_Player_AdditionalPowerBar'..i]
+				if not button then
+					break
+				else
+					if not button.shadow then
+						button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2
+					end
+				end
+			end
+
+			if not _G['ElvUF_Player_AdditionalPowerBar1'] then
+				if _G['ElvUF_Player_AdditionalPowerBar'] then
+					if not _G.ElvUF_Player_AdditionalPowerBar.shadow then
+						_G['ElvUF_Player_AdditionalPowerBar']:CreateShadow()
+					end
+				end
+			end
+
+			local PlayerCastbar = CreateFrame("Frame", "EltruismPlayerCastBarShadowFrame")
+			local PlayerCastbarx = E.db.unitframe.units.player.castbar.width + E.db.unitframe.units.player.castbar.iconSize -3
+			local PlayerCastbary = E.db.unitframe.units.player.castbar.height -1
+			PlayerCastbar:SetSize(PlayerCastbarx, PlayerCastbary)
+			PlayerCastbar:SetParent(_G.ElvUF_Player_CastBar)
+			if not (self.PlayerCastBarIsSkinned) then
+				PlayerCastbar.shadow = PlayerCastbar:CreateShadow(nil, true)
+				PlayerCastbar:SetPoint("CENTER", _G.ElvUF_Player_CastBar, "CENTER", -14, 0)
+				PlayerCastbar:Show()
+
+				self.PlayerCastBarIsSkinned = true
+			end
+
+			if not E.db.unitframe.units.target.castbar.overlayOnFrame == "Power" then
+				local TargetCastbar = CreateFrame("Frame", "EltruismTargetCastBarShadowFrame")
+				local TargetCastbarx = E.db.unitframe.units.target.castbar.width + E.db.unitframe.units.target.castbar.iconSize -2
+				local TargetCastbary = E.db.unitframe.units.target.castbar.height - 1
+				TargetCastbar:SetSize(TargetCastbarx, TargetCastbary)
+				TargetCastbar:SetParent(_G.ElvUF_Target_CastBar)
+				if not (self.TargetCastBarIsSkinned) then
+					TargetCastbar.shadow = TargetCastbar:CreateShadow(nil, true)
+					TargetCastbar:SetPoint("CENTER", _G.ElvUF_Target_CastBar, "CENTER", -14, 0)
+					self.TargetCastBarIsSkinned = true
+				end
+			end
+
+			if _G['ElvUF_Player_HealthBar'] then
+				if not ElvUF_Player_HealthBar.shadow then
+					_G['ElvUF_Player_HealthBar']:CreateShadow()
+				end
+			end
+
+			if _G['ElvUF_Player_PowerBar'] then
+				if not ElvUF_Player_PowerBar.shadow then
+					_G['ElvUF_Player_PowerBar']:CreateShadow()
+				end
+			end
+
+			if _G['ElvUF_Player_Stagger'] then
+				if not _G.ElvUF_Player_Stagger.shadow then
+					_G['ElvUF_Player_Stagger']:CreateShadow()
+				end
+			end
+
 		end
+----------------------------------------------------------------------------------------------------
+		--end of unitframes
 
 		if E.private.bags.enable then
 			if not _G.ElvUI_ContainerFrame.shadow then
