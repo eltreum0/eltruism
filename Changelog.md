@@ -7,7 +7,7 @@ being renamed to
 E.global["nameplates"]["filters"]
 ___
 ### 2.6.2
-Fixed an error that occured when ElvUI unitframes were disabled
+Fixed an error that occurred when ElvUI unitframes were disabled
 ___
 ### 2.6.1
 Fixed an error causing the install of the healer profile to fail when Shadow and Light was enabled
