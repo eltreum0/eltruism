@@ -37,4 +37,5 @@
 	<Script file='Quests.lua'/>
 	<Script file='Screenshot.lua'/>
 	<Script file='Stealth.lua'/>
+	<Script file='Unitframes.lua'/>
 </Ui>
