@@ -271,6 +271,16 @@ P.ElvUI_EltreumUI = {
 	lightmode = false,
 	modetexture = true,
 
+	sparkcustomcolor ={
+		enable = true,
+		texture = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga',
+		r = 0.80,
+		g = 0.80,
+		b = 0.10,
+		a = 1,
+		width = 3,
+	},
+
 	otherstuff ={
 		worldtextscale = 1,
 		arenabuffs = false,
