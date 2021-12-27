@@ -5,6 +5,12 @@ check
 E.global["nameplate"]["filters"]
 being renamed to
 E.global["nameplates"]["filters"]
+
+
+Added options to customize the player castbar spark under Eltruism > Skins
+Added borders to nameplate power bar
+Fixed shadows showing up when chat panels were disabled
+
 ___
 ### 2.6.2
 Fixed an error that occurred when ElvUI unitframes were disabled
