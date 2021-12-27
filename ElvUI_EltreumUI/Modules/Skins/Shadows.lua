@@ -119,27 +119,40 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
-		local rightsizex, rightsizey = _G['RightChatMover']:GetSize()
-		RightChatShadow:SetSize(rightsizex, rightsizey)
-		RightChatShadow:SetParent(_G['RightChatPanel'])
-		if not (self.RightChatIsSkinned) then
-			RightChatShadow.shadow = RightChatShadow:CreateShadow(nil, true)
-			RightChatShadow:SetPoint("TOPRIGHT", _G['RightChatPanel'] ,"TOPRIGHT", 0, 0)
-			RightChatShadow:SetPoint("BOTTOMLEFT", _G['RightChatDataPanel'] ,"BOTTOMLEFT", 0, 0)
-			RightChatShadow:Show()
-			self.RightChatIsSkinned = true
+		if E.db["chat"]["panelBackdrop"] == "RIGHT" then
+			return
+		else
+			local rightsizex, rightsizey = _G['RightChatMover']:GetSize()
+			RightChatShadow:SetSize(rightsizex, rightsizey)
+			RightChatShadow:SetParent(_G['RightChatPanel'])
+			if not (self.RightChatIsSkinned) then
+				RightChatShadow.shadow = RightChatShadow:CreateShadow(nil, true)
+				RightChatShadow:SetPoint("TOPRIGHT", _G['RightChatPanel'] ,"TOPRIGHT", 0, 0)
+				RightChatShadow:SetPoint("BOTTOMLEFT", _G['RightChatDataPanel'] ,"BOTTOMLEFT", 0, 0)
+				RightChatShadow:Show()
+				self.RightChatIsSkinned = true
+			end
 		end
 
 		local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
-		local leftsizex, leftsizey = _G['LeftChatMover']:GetSize()
-		LeftChatShadow:SetSize(leftsizex, leftsizey)
-		LeftChatShadow:SetParent(_G['LeftChatPanel'])
-		if not (self.LeftChatIsSkinned) then
-			LeftChatShadow.shadow = LeftChatShadow:CreateShadow(nil, true)
-			LeftChatShadow:SetPoint("TOPLEFT", _G['LeftChatPanel'] ,"TOPLEFT", 0, 0)
-			LeftChatShadow:SetPoint("BOTTOMRIGHT", _G['LeftChatDataPanel'] ,"BOTTOMRIGHT", 0, 0)
-			LeftChatShadow:Show()
-			self.LeftChatIsSkinned = true
+		if E.db["chat"]["panelBackdrop"] == "LEFT" then
+			return
+		else
+			local leftsizex, leftsizey = _G['LeftChatMover']:GetSize()
+			LeftChatShadow:SetSize(leftsizex, leftsizey)
+			LeftChatShadow:SetParent(_G['LeftChatPanel'])
+			if not (self.LeftChatIsSkinned) then
+				LeftChatShadow.shadow = LeftChatShadow:CreateShadow(nil, true)
+				LeftChatShadow:SetPoint("TOPLEFT", _G['LeftChatPanel'] ,"TOPLEFT", 0, 0)
+				LeftChatShadow:SetPoint("BOTTOMRIGHT", _G['LeftChatDataPanel'] ,"BOTTOMRIGHT", 0, 0)
+				LeftChatShadow:Show()
+				self.LeftChatIsSkinned = true
+			end
+		end
+
+		if E.db["chat"]["panelBackdrop"] == "HIDEBOTH" then
+			LeftChatShadow:Hide()
+			RightChatShadow:Hide()
 		end
 
 		local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
@@ -153,7 +166,6 @@ function ElvUI_EltreumUI:Shadows()
 			MinimapShadow:Show()
 			self.minimapIsSkinned = true
 		end
-
 
 		if ElvUI_EltreumUI.Retail then
 
