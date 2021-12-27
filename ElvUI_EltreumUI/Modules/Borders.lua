@@ -213,6 +213,25 @@ function ElvUI_EltreumUI:Borders()
 			createbar6borders()
 		end
 
+
+
+		--nameplate power bar test
+
+		--if E.db.ElvUI_EltreumUI.borders.powerbarborder then
+			local powerbarborder = CreateFrame("Frame", "EltruismPowerBarBorder", _G.EltruismPowerBar, BackdropTemplateMixin and "BackdropTemplate")
+			--powerbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xpowerbar, E.db.ElvUI_EltreumUI.borders.ypowerbar)
+			powerbarborder:SetSize(150, 8)
+			powerbarborder:SetPoint("CENTER", _G.EltruismPowerBar, "CENTER", 0, 0)
+			powerbarborder:SetBackdrop({
+				edgeFile = bordertexture,
+				edgeSize = 20,
+			})
+			powerbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			powerbarborder:SetFrameStrata("LOW")
+		--end
+
+
+
 	--[[
 
 		--bar7
