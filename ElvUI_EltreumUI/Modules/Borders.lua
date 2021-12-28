@@ -12,8 +12,22 @@ function ElvUI_EltreumUI:Borders()
 	else
 		bordertexture = "Interface\\Addons\\ElvUI_EltreumUI\\Media\border\\better-blizzard-border-small-alternate.tga"
 	end
-	local classcolor = E:ClassColor(E.myclass, true)
+	local classcolor
+
+	if E.db.ElvUI_EltreumUI.borders.classcolor then
+			classcolor = E:ClassColor(E.myclass, true)
+	end
+	if not E.db.ElvUI_EltreumUI.borders.classcolor then
+		classcolor = {
+			r = E.db.ElvUI_EltreumUI.bordercolors.r,
+			g = E.db.ElvUI_EltreumUI.bordercolors.g,
+			b = E.db.ElvUI_EltreumUI.bordercolors.b
+		}
+	end
+
 	local playertargetsize = E.db.ElvUI_EltreumUI.borders.playertargetsize
+	local powerbarsize = E.db.ElvUI_EltreumUI.borders.powerbarsize
+
 	local baredgesize = E.db.ElvUI_EltreumUI.borders.baredgesize
 	local xbar = E.db.ElvUI_EltreumUI.borders.bar1xborder
 	local ybar = E.db.ElvUI_EltreumUI.borders.bar1yborder
@@ -213,27 +227,20 @@ function ElvUI_EltreumUI:Borders()
 			createbar6borders()
 		end
 
-
-
-		--nameplate power bar test
-
-		--if E.db.ElvUI_EltreumUI.borders.powerbarborder then
+		--nameplate power bar
+		if E.db.ElvUI_EltreumUI.borders.powerbarborder then
 			local powerbarborder = CreateFrame("Frame", "EltruismPowerBarBorder", _G.EltruismPowerBar, BackdropTemplateMixin and "BackdropTemplate")
-			--powerbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xpowerbar, E.db.ElvUI_EltreumUI.borders.ypowerbar)
-			powerbarborder:SetSize(150, 8)
+			powerbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xpowerbar, E.db.ElvUI_EltreumUI.borders.ypowerbar)
 			powerbarborder:SetPoint("CENTER", _G.EltruismPowerBar, "CENTER", 0, 0)
 			powerbarborder:SetBackdrop({
 				edgeFile = bordertexture,
-				edgeSize = 20,
+				edgeSize = powerbarsize,
 			})
 			powerbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			powerbarborder:SetFrameStrata("LOW")
-		--end
-
-
+			powerbarborder:SetFrameStrata("HIGH")
+		end
 
 	--[[
-
 		--bar7
 		local borders7 = {}
 		for i = 1,12 do

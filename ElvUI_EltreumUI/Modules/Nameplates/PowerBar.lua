@@ -26,7 +26,6 @@ EltreumPowerBar.Text:SetJustifyH("CENTER")
 EltreumPowerBar.Text:SetJustifyV("CENTER")
 EltreumPowerBar.bg = EltreumPowerBar:CreateTexture(nil, "BACKGROUND")
 EltreumPowerBar.bg:SetTexture(E.media.normTex)
-EltreumPowerBar.bg:SetVertexColor(0, 0, 0)
 EltreumPowerBar.bg:SetPoint("CENTER", EltreumPowerBar, "CENTER", 0, 0)
 EltreumPowerBar:Hide() --hide at the start before events
 EltreumPowerBar:RegisterEvent("UNIT_POWER_FREQUENT")
@@ -56,6 +55,8 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 	elseif not nameplate then
 		EltreumPowerBar:Hide()
 	end
+
+	EltreumPowerBar.bg:SetVertexColor(E.db.ElvUI_EltreumUI.nameplatepower.r, E.db.ElvUI_EltreumUI.nameplatepower.g, E.db.ElvUI_EltreumUI.nameplatepower.b) -- option for changing this color
 
 	if E.db.ElvUI_EltreumUI.nameplatepower == nil then
 		E.db.ElvUI_EltreumUI.nameplatepower = {
@@ -218,8 +219,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				ret = startpower -- hundreds
 			end
 			EltreumPowerBar.Text:SetText(ret)	--this is an actual number not string
-
-
 
 			--EltreumPowerBar.Text:SetText(BreakUpLargeNumbers(startpower))	--this is an actual number not string
 			EltreumPowerBar:SetSize(sizex, sizey)
