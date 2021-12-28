@@ -1,16 +1,14 @@
 ### 🌌 Next Version 
 The future is uncertain
 
-check 
-E.global["nameplate"]["filters"]
-being renamed to
-E.global["nameplates"]["filters"]
 
-
-Added options to customize the player castbar spark under Eltruism > Skins
-Added borders to nameplate power bar
-Fixed shadows showing up when chat panels were disabled
-
+Added options to customize the player castbar spark under Eltruism > Skins\
+Added borders to nameplate power bar\
+Added options to change the colors of the borders\
+Added an option to change the background of the Nameplate Power Bar\
+Updated references to nameplates due to a change in ElvUI code\
+Fixed shadows showing up when chat panels were disabled\
+Fixed an issue with nameplate power bar visibility when using Plater instead of ElvUI Nameplates
 ___
 ### 2.6.2
 Fixed an error that occurred when ElvUI unitframes were disabled
