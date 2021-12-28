@@ -2860,13 +2860,6 @@ if ElvUI_EltreumUI.Retail then
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
-								header10 = {
-									order = 32,
-									type = "description",
-									name = "",
-									width = 'full',
-									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								},
 								apswap = {
 									order = 33,
 									type = 'execute',
