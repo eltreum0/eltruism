@@ -9,6 +9,9 @@ P.ElvUI_EltreumUI = {
 		sizey = 6,
 		posy = 16,
 		texture = "Eltreum-Elvui-Norm",
+		r = 0,
+		g = 0,
+		b = 0,
 	},
 
 	chat = {
@@ -208,8 +211,15 @@ P.ElvUI_EltreumUI = {
 		borders = false,
 		texture = "better-blizzard-border-small-alternate",
 
+		classcolor = true,
+
 		playertargetsize = 20,
 		baredgesize = 13,
+
+		powerbarborder = false,
+		powerbarsize = 4,
+		xpowerbar = 138,
+		ypowerbar = 12,
 
 		playerborder = false,
 		xplayer = 285,
@@ -266,6 +276,13 @@ P.ElvUI_EltreumUI = {
 		bar10borders = false,
 		bar10xborder = 42,
 		bar10yborder = 37,
+	},
+
+	bordercolors = {
+		r = 0.27,
+		g = 0.50,
+		b = 0.70,
+		a = 1,
 	},
 
 	lightmode = false,
