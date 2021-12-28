@@ -488,7 +488,7 @@ if ElvUI_EltreumUI.TBC then
 										nicegap3 = {
 											order = 18,
 											type = "description",
-											name = L["Cursor Colors "]..'|cffff0000('..L["Requires a Reload"]..")|r",
+											name = L["Cursor Sizes "]..'|cffff0000('..L["Requires a Reload"]..")|r",
 											width = 'full',
 										},
 										castradius = {
