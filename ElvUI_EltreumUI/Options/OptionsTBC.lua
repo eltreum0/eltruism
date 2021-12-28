@@ -1555,8 +1555,32 @@ if ElvUI_EltreumUI.TBC then
 							disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
 							set = function(self,key) E.db.ElvUI_EltreumUI.borders.texture = key end,
 						},
-						headerline3 = {
+						classcolors = {
+							type = 'toggle',
+							name = L["Use Class Colors"],
+							--width = "full",
 							order = 5,
+							get = function() return E.db.ElvUI_EltreumUI.borders.classcolor end,
+							set = function(_, value) E.db.ElvUI_EltreumUI.borders.classcolor = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
+						colorborders = {
+							order = 6,
+							type = 'color',
+							name = L["Custom Color"],
+							hasAlpha = false,
+							disabled = function() return E.db.ElvUI_EltreumUI.borders.classcolor end,
+							get = function()
+								local customcolorborders = E.db.ElvUI_EltreumUI.bordercolors
+								local d = P.ElvUI_EltreumUI.bordercolors
+								return customcolorborders.r, customcolorborders.g, customcolorborders.b, customcolorborders.a, d.r, d.g, d.b, d.a
+							end,
+							set = function(_, r, g, b, a)
+								local customcolorborders = E.db.ElvUI_EltreumUI.bordercolors
+								customcolorborders.r, customcolorborders.g, customcolorborders.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+							end,
+						},
+						headerline3 = {
+							order = 7,
 							type = "description",
 							name = "Change the size of the borders:",
 							width = 'full',
@@ -1991,6 +2015,58 @@ if ElvUI_EltreumUI.TBC then
 									disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
 									get = function() return E.db.ElvUI_EltreumUI.borders.ycasttarget end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.borders.ycasttarget = value end,
+								},
+								gappowerbar = {
+									order = 35,
+									type = "description",
+									name = "Nameplate Power Bar Border",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								barpowerbar = {
+									type = 'toggle',
+									name = L["Enable"],
+									order = 36,
+									width = "full",
+									disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+									get = function() return E.db.ElvUI_EltreumUI.borders.powerbarborder end,
+									set = function(_, value) E.db.ElvUI_EltreumUI.borders.powerbarborder = value end,
+								},
+								borderpowerbarsize = {
+									type = 'range',
+									name = "Nameplate Power Bar Thickness",
+									order = 37,
+									min = 1,
+									max = 200,
+									step = 1,
+									width = "full",
+									disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+									get = function() return E.db.ElvUI_EltreumUI.borders.powerbarsize end,
+									set = function(_, value) E.db.ElvUI_EltreumUI.borders.powerbarsize = value end,
+								},
+								borderxpowerbar = {
+									type = 'range',
+									name = "Border X offset",
+									order = 38,
+									min = 1,
+									max = 800,
+									step = 1,
+									width = "full",
+									disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+									get = function() return E.db.ElvUI_EltreumUI.borders.xpowerbar end,
+									set = function(_, value) E.db.ElvUI_EltreumUI.borders.xpowerbar = value end,
+								},
+								borderypowerbar = {
+									type = 'range',
+									name = "Border Y offset",
+									order = 39,
+									min = 1,
+									max = 800,
+									step = 1,
+									width = "full",
+									disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+									get = function() return E.db.ElvUI_EltreumUI.borders.ypowerbar end,
+									set = function(_, value) E.db.ElvUI_EltreumUI.borders.ypowerbar = value end,
 								},
 							},
 						},
@@ -2666,6 +2742,22 @@ if ElvUI_EltreumUI.TBC then
 									get = function() return E.db.ElvUI_EltreumUI.nameplatepower.texture end,
 									set = function(self,key) E.db.ElvUI_EltreumUI.nameplatepower.texture = key end,
 								},
+								powerbarbackgroundcolor = {
+									order = 9,
+									type = 'color',
+									name = L["Color"],
+									hasAlpha = false,
+									disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
+									get = function()
+										local customcolorpowerbar = E.db.ElvUI_EltreumUI.nameplatepower
+										local d = P.ElvUI_EltreumUI.nameplatepower
+										return customcolorpowerbar.r, customcolorpowerbar.g, customcolorpowerbar.b, customcolorpowerbar.a, d.r, d.g, d.b, d.a
+									end,
+									set = function(_, r, g, b, a)
+										local customcolorpowerbar = E.db.ElvUI_EltreumUI.nameplatepower
+										customcolorpowerbar.r, customcolorpowerbar.g, customcolorpowerbar.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+									end,
+								},
 								describethis = {
 									order = 98,
 									type = "description",
@@ -3322,14 +3414,14 @@ if ElvUI_EltreumUI.TBC then
 							type = 'input',
 							width = 'full',
 							name = L["Changelog"],
-							get = function() return 'https://git.tukui.org/eltreum/eltruism/-/blob/main/Changelog.md' end,
+							get = function() return 'https://github.com/eltreum0/eltruism/blob/main/Changelog.md' end,
 						},
 						issues = {
 							order = 2,
 							type = 'input',
 							width = 'full',
 							name = L["Report issues and problems here:"],
-							get = function() return 'https://git.tukui.org/eltreum/eltruism/-/issues' end,
+							get = function() return 'https://github.com/eltreum0/eltruism/issues' end,
 						},
 						tukui = {
 							order = 3,
