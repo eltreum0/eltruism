@@ -151,10 +151,10 @@ function ElvUI_EltreumUI:Initialize()
 end
 
 function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
-	if E.private["nameplates"]["enable"] == true then
+	--if E.private["nameplates"]["enable"] == true then --this causes problems for plater
 		ElvUI_EltreumUI:NamePlateOptions()
 		ElvUI_EltreumUI:NameplatePower()
-	end
+	--end
 end
 
 function ElvUI_EltreumUI:UNIT_MODEL_CHANGED(event,unit)

@@ -1241,7 +1241,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["tank"]["targetsGroup"]["height"] = 30
 			E.db["unitframe"]["units"]["tank"]["targetsGroup"]["enable"] = false
 			E.db["unitframe"]["units"]["tank"]["targetsGroup"]["xOffset"] = 2
-			---E.db["unitframe"]["units"]["tank"]["targetsGroup"]["anchorPoint"] = "LEFT"   ----arduino
+			---E.db["unitframe"]["units"]["tank"]["targetsGroup"]["anchorPoint"] = "LEFT"
 			E.db["unitframe"]["units"]["tank"]["verticalSpacing"] = 7
 			E.db["unitframe"]["units"]["target"]["CombatIcon"]["anchorPoint"] = "TOPLEFT"
 			E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["b"] = 1

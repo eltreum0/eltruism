@@ -2118,7 +2118,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raid40"]["name"]["attachTextTo"] = "InfoPanel"
 			E.db["unitframe"]["units"]["raid40"]["name"]["position"] = "BOTTOMLEFT"
 			E.db["unitframe"]["units"]["raid40"]["power"]["attachTextTo"] = "Power"
-			E.db["unitframe"]["units"]["raid40"]["power"]["enable"] = true   --healer raid40
+			E.db["unitframe"]["units"]["raid40"]["power"]["enable"] = true --healer raid40
 			E.db["unitframe"]["units"]["raid40"]["power"]["height"] = 8
 			E.db["unitframe"]["units"]["raid40"]["power"]["width"] = "inset"
 			E.db["unitframe"]["units"]["raid40"]["power"]["xOffset"] = 0

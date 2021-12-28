@@ -79,7 +79,7 @@ if ElvUI_EltreumUI.Retail then
 					PluginInstallFrame.Desc3:SetText(L["Such as diminishing cooldowns, enemy cast tracker, cooldown tracker"])
 					PluginInstallFrame.Desc4:SetText('')
 					PluginInstallFrame.Option1:Disable()
-			   	end
+				end
 			end,
 			[5] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Details')
@@ -102,7 +102,7 @@ if ElvUI_EltreumUI.Retail then
 					PluginInstallFrame.Desc3:SetText(L["It uses less memory and is more efficient than alternatives"])
 					PluginInstallFrame.Desc4:SetText(L["And has many plugins to choose from"])
 					PluginInstallFrame.Option1:Disable()
-			   	end
+				end
 			end,
 			[6] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText(L["Boss Mods"])
@@ -125,16 +125,16 @@ if ElvUI_EltreumUI.Retail then
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 					PluginInstallFrame.Option1:Disable()
-			   	end
-			   	if (not IsAddOnLoaded("BigWigs")) then
+				end
+				if (not IsAddOnLoaded("BigWigs")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 					PluginInstallFrame.Desc1:SetText(L["BigWigs is not installed or enabled so DBM will be used"])
 					PluginInstallFrame.Desc2:SetText(L["DBM uses DBM English by Calanon as a voice pack"])
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 					PluginInstallFrame.Option2:Disable()
-			   	end
-			   	if (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) then
+				end
+				if (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 					PluginInstallFrame.Desc1:SetText(L["Both DBM and BigWigs are not installed or enabled"])
 					PluginInstallFrame.Desc2:SetText(L["No boss mods found"])
@@ -142,7 +142,7 @@ if ElvUI_EltreumUI.Retail then
 					PluginInstallFrame.Desc4:SetText('')
 					PluginInstallFrame.Option1:Disable()
 					PluginInstallFrame.Option2:Disable()
-			   	end
+				end
 			end,
 			[7] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText(L["Method Raid Tools"])
@@ -166,7 +166,7 @@ if ElvUI_EltreumUI.Retail then
 					PluginInstallFrame.Desc4:SetText(L["Alongside attendance and other features"])
 					PluginInstallFrame.Option1:Disable()
 					PluginInstallFrame.Option2:Disable()
-			   	end
+				end
 			end,
 			[8] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText(L["Combat Text"])
@@ -188,16 +188,16 @@ if ElvUI_EltreumUI.Retail then
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 					PluginInstallFrame.Option1:Disable()
-			   	end
-			   	if (not IsAddOnLoaded("ElvUI_FCT")) then
+				end
+				if (not IsAddOnLoaded("ElvUI_FCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 					PluginInstallFrame.Desc1:SetText("FCT"..L[" is not installed or enabled"])
 					PluginInstallFrame.Desc2:SetText(L["NameplateSCT profile will be used"])
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 					PluginInstallFrame.Option2:Disable()
-			   	end
-			   	if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
+				end
+				if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 					PluginInstallFrame.Desc1:SetText(L["NameplateSCT and FCT are not installed or enabled"])
 					PluginInstallFrame.Desc2:SetText(L["Combat text addons enhance the default Blizzard Combat Text"])
@@ -205,7 +205,7 @@ if ElvUI_EltreumUI.Retail then
 					PluginInstallFrame.Desc4:SetText(L["And add effects to them with minimal memory usage"])
 					PluginInstallFrame.Option1:Disable()
 					PluginInstallFrame.Option2:Disable()
-			   	end
+				end
 			end,
 			[9] = function()
 				PluginInstallFrame.SubTitle:SetText('Immersion')
@@ -222,7 +222,7 @@ if ElvUI_EltreumUI.Retail then
 					PluginInstallFrame.Desc3:SetText(L["It transforms them into a talking head with dialog options on the side"])
 					PluginInstallFrame.Desc4:SetText(L["Including the ability to press number keys to select an option"])
 					PluginInstallFrame.Option1:Disable()
-			   	end
+				end
 			end,
 			[10] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Dynamic Cam')
@@ -246,7 +246,7 @@ if ElvUI_EltreumUI.Retail then
 					PluginInstallFrame.Desc4:SetText(L["But in instances the effects are disabled"])
 					PluginInstallFrame.Option1:Disable()
 					PluginInstallFrame.Option2:Disable()
-			   	end
+				end
 			end,
 			--[[[11] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('WeakAuras')
@@ -372,7 +372,7 @@ elseif ElvUI_EltreumUI.Classic then
 					PluginInstallFrame.Desc3:SetText(L["It uses less memory and is more efficient than alternatives"])
 					PluginInstallFrame.Desc4:SetText(L["And has many plugins to choose from"])
 					PluginInstallFrame.Option1:Disable()
-			   	end
+				end
 			end,
 			[5] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText(L["Boss Mods"])
@@ -395,16 +395,16 @@ elseif ElvUI_EltreumUI.Classic then
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 					PluginInstallFrame.Option1:Disable()
-			   	end
-			   	if (not IsAddOnLoaded("BigWigs")) then
+				end
+				if (not IsAddOnLoaded("BigWigs")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 					PluginInstallFrame.Desc1:SetText(L["BigWigs is not installed or enabled so DBM will be used"])
 					PluginInstallFrame.Desc2:SetText(L["DBM uses DBM English by Calanon as a voice pack"])
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 					PluginInstallFrame.Option2:Disable()
-			   	end
-			   	if (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) then
+				end
+				if (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 					PluginInstallFrame.Desc1:SetText(L["Both DBM and BigWigs are not installed or enabled"])
 					PluginInstallFrame.Desc2:SetText(L["No boss mods found"])
@@ -412,7 +412,7 @@ elseif ElvUI_EltreumUI.Classic then
 					PluginInstallFrame.Desc4:SetText('')
 					PluginInstallFrame.Option1:Disable()
 					PluginInstallFrame.Option2:Disable()
-			   	end
+				end
 			end,
 			[6] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText(L["Combat Text"])
@@ -434,16 +434,16 @@ elseif ElvUI_EltreumUI.Classic then
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 					PluginInstallFrame.Option1:Disable()
-			   	end
-			   	if (not IsAddOnLoaded("ElvUI_FCT")) then
+				end
+				if (not IsAddOnLoaded("ElvUI_FCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 					PluginInstallFrame.Desc1:SetText("FCT"..L[" is not installed or enabled"])
 					PluginInstallFrame.Desc2:SetText(L["NameplateSCT profile will be used"])
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 					PluginInstallFrame.Option2:Disable()
-			   	end
-			   	if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
+				end
+				if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 					PluginInstallFrame.Desc1:SetText(L["NameplateSCT and FCT are not installed or enabled"])
 					PluginInstallFrame.Desc2:SetText(L["Combat text addons enhance the default Blizzard Combat Text"])
@@ -451,7 +451,7 @@ elseif ElvUI_EltreumUI.Classic then
 					PluginInstallFrame.Desc4:SetText(L["And add effects to them with minimal memory usage"])
 					PluginInstallFrame.Option1:Disable()
 					PluginInstallFrame.Option2:Disable()
-			   	end
+				end
 			end,
 			[7] = function()
 				PluginInstallFrame.SubTitle:SetText('Immersion')
@@ -468,7 +468,7 @@ elseif ElvUI_EltreumUI.Classic then
 					PluginInstallFrame.Desc3:SetText(L["It transforms them into a talking head with dialog options on the side"])
 					PluginInstallFrame.Desc4:SetText(L["Including the ability to press number keys to select an option"])
 					PluginInstallFrame.Option1:Disable()
-			   	end
+				end
 			end,
 			[8] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Dynamic Cam')
@@ -492,7 +492,7 @@ elseif ElvUI_EltreumUI.Classic then
 					PluginInstallFrame.Desc4:SetText(L["But in instances the effects are disabled"])
 					PluginInstallFrame.Option1:Disable()
 					PluginInstallFrame.Option2:Disable()
-			   	end
+				end
 			end,
 			[9] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Questie')
@@ -510,7 +510,7 @@ elseif ElvUI_EltreumUI.Classic then
 					PluginInstallFrame.Desc3:SetText(L["As such Questie adds a lot of features to it not available by default"])
 					PluginInstallFrame.Desc4:SetText(L["Including TomTom support"])
 					PluginInstallFrame.Option1:Disable()
-			   	end
+				end
 			end,
 			[10] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Discord')
@@ -624,7 +624,7 @@ elseif ElvUI_EltreumUI.TBC then
 					PluginInstallFrame.Desc3:SetText(L["It uses less memory and is more efficient than alternatives"])
 					PluginInstallFrame.Desc4:SetText(L["And has many plugins to choose from"])
 					PluginInstallFrame.Option1:Disable()
-			   	end
+				end
 			end,
 			[5] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText(L["Boss Mods"])
@@ -647,16 +647,16 @@ elseif ElvUI_EltreumUI.TBC then
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 					PluginInstallFrame.Option1:Disable()
-			   	end
-			   	if (not IsAddOnLoaded("BigWigs")) then
+				end
+				if (not IsAddOnLoaded("BigWigs")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 					PluginInstallFrame.Desc1:SetText(L["BigWigs is not installed or enabled so DBM will be used"])
 					PluginInstallFrame.Desc2:SetText(L["DBM uses DBM English by Calanon as a voice pack"])
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 					PluginInstallFrame.Option2:Disable()
-			   	end
-			   	if (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) then
+				end
+				if (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 					PluginInstallFrame.Desc1:SetText(L["Both DBM and BigWigs are not installed or enabled"])
 					PluginInstallFrame.Desc2:SetText(L["No boss mods found"])
@@ -664,7 +664,7 @@ elseif ElvUI_EltreumUI.TBC then
 					PluginInstallFrame.Desc4:SetText('')
 					PluginInstallFrame.Option1:Disable()
 					PluginInstallFrame.Option2:Disable()
-			   	end
+				end
 			end,
 			[6] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText(L["Arenas"])
@@ -726,16 +726,16 @@ elseif ElvUI_EltreumUI.TBC then
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 					PluginInstallFrame.Option1:Disable()
-			   	end
-			   	if (not IsAddOnLoaded("ElvUI_FCT")) then
+				end
+				if (not IsAddOnLoaded("ElvUI_FCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 					PluginInstallFrame.Desc1:SetText("FCT"..L[" is not installed or enabled"])
 					PluginInstallFrame.Desc2:SetText(L["NameplateSCT profile will be used"])
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 					PluginInstallFrame.Option2:Disable()
-			   	end
-			   	if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
+				end
+				if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 					PluginInstallFrame.Desc1:SetText(L["NameplateSCT and FCT are not installed or enabled"])
 					PluginInstallFrame.Desc2:SetText(L["Combat text addons enhance the default Blizzard Combat Text"])
@@ -743,7 +743,7 @@ elseif ElvUI_EltreumUI.TBC then
 					PluginInstallFrame.Desc4:SetText(L["And add effects to them with minimal memory usage"])
 					PluginInstallFrame.Option1:Disable()
 					PluginInstallFrame.Option2:Disable()
-			   	end
+				end
 			end,
 			[8] = function()
 				PluginInstallFrame.SubTitle:SetText('Immersion')
@@ -760,7 +760,7 @@ elseif ElvUI_EltreumUI.TBC then
 					PluginInstallFrame.Desc3:SetText(L["It transforms them into a talking head with dialog options on the side"])
 					PluginInstallFrame.Desc4:SetText(L["Including the ability to press number keys to select an option"])
 					PluginInstallFrame.Option1:Disable()
-			   	end
+				end
 			end,
 			[9] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Dynamic Cam')
@@ -784,7 +784,7 @@ elseif ElvUI_EltreumUI.TBC then
 					PluginInstallFrame.Desc4:SetText(L["But in instances the effects are disabled"])
 					PluginInstallFrame.Option1:Disable()
 					PluginInstallFrame.Option2:Disable()
-			   	end
+				end
 			end,
 			[10] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Questie')
@@ -802,7 +802,7 @@ elseif ElvUI_EltreumUI.TBC then
 					PluginInstallFrame.Desc3:SetText(L["As such Questie adds a lot of features to it not available by default"])
 					PluginInstallFrame.Desc4:SetText(L["Including TomTom support"])
 					PluginInstallFrame.Option1:Disable()
-			   	end
+				end
 			end,
 			[11] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Discord')

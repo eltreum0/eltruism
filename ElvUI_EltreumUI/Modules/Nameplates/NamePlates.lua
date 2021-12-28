@@ -151,31 +151,33 @@ local rareclass = {
 function ElvUI_EltreumUI:NamePlateOptions()
 	local nameplateclasscolors
 	nameplateclasscolors = E:ClassColor(E.myclass, true)
-	if E.db.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow then
-		E.db["nameplates"]["colors"]["glowColor"]["b"] = nameplateclasscolors.b
-		E.db["nameplates"]["colors"]["glowColor"]["r"] = nameplateclasscolors.r
-		E.db["nameplates"]["colors"]["glowColor"]["g"] = nameplateclasscolors.g
-	end
-	if E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate then
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = true
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
+	if E.private["nameplates"]["enable"] == true then
+		if E.db.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow then
+			E.db["nameplates"]["colors"]["glowColor"]["b"] = nameplateclasscolors.b
+			E.db["nameplates"]["colors"]["glowColor"]["r"] = nameplateclasscolors.r
+			E.db["nameplates"]["colors"]["glowColor"]["g"] = nameplateclasscolors.g
+		end
+		if E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate then
+			E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = true
+			E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
+			E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
+			E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
+				if not E.private.ElvUI_EltreumUI.install_version then
+					return
+				elseif E.private.ElvUI_EltreumUI.install_version > "2.0.0" and E.global.nameplates.filters.EltreumRare then
+					E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["border"] = true
+					E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
+					E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
+					E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
+				end
+		end
+		if E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
+			E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
 			if not E.private.ElvUI_EltreumUI.install_version then
 				return
 			elseif E.private.ElvUI_EltreumUI.install_version > "2.0.0" and E.global.nameplates.filters.EltreumRare then
-				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["border"] = true
-				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
-				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
-				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
+				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 			end
-	end
-	if E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[E.myclass])
-		if not E.private.ElvUI_EltreumUI.install_version then
-			return
-		elseif E.private.ElvUI_EltreumUI.install_version > "2.0.0" and E.global.nameplates.filters.EltreumRare then
-			E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 		end
 	end
 end
