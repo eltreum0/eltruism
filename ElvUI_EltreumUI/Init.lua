@@ -8,7 +8,7 @@ local myclass = E.myclass
 local L = E.Libs.ACL:GetLocale("ElvUI", E.global.general.locale)
 local SetCVar = _G.SetCVar
 local GetAddOnMetadata = _G.GetAddOnMetadata
-local IsAddOnLoaded =  _G.IsAddOnLoaded
+--local IsAddOnLoaded =  _G.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 
 Engine[1] = ElvUI_EltreumUI
@@ -86,8 +86,8 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 end
 
 function ElvUI_EltreumUI:HidePopups()
-	--E:StaticPopup_Hide("INCOMPATIBLE_ADDON") --915 error
-	--E:StaticPopup_Hide('DISABLE_INCOMPATIBLE_ADDON') --915 error
+	E:StaticPopup_Hide("INCOMPATIBLE_ADDON") --915 error to be tested
+	E:StaticPopup_Hide('DISABLE_INCOMPATIBLE_ADDON') --915 error to be tested
 	if E:IsAddOnEnabled("ElvUI_WindTools") then
 		local W = unpack(WindTools)
 		local function WindtoolsCompatHideWhileInstall()

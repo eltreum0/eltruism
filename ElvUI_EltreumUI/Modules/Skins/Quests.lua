@@ -132,7 +132,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				local questWatchMaxWidth = 0
 				local tempWidth
 				local text, _, finished
-				local questTitle
+				local questTitle --currently unused
 				local watchTextIndex = 1
 				local objectivesCompleted
 				for i=1, GetNumQuestWatches() do
