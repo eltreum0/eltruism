@@ -307,7 +307,7 @@ if ElvUI_EltreumUI.Retail then
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 16,
-			["text_format"] = "[health:current:shortvalue]",
+			["text_format"] = "[eltruism:raidmarker] [health:current:shortvalue]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -388,7 +388,7 @@ if ElvUI_EltreumUI.Retail then
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 16,
-			["text_format"] = "[namecolor][name] [eltruism:class:player]",
+			["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]",
 			["xOffset"] = 2,
 			["yOffset"] = 0
 		}
@@ -526,7 +526,7 @@ if ElvUI_EltreumUI.Retail then
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 16,
-			["text_format"] = "[eltruism:class:player] [namecolor][name:eltruism:abbreviate]",
+			["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][name:eltruism:abbreviate]",
 			["xOffset"] = -2,
 			["yOffset"] = 0
 		}
@@ -1331,6 +1331,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["party"]["raidicon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["party"]["raidicon"]["size"] = 20
 			E.db["unitframe"]["units"]["party"]["raidicon"]["yOffset"] = 0
+			E.db["unitframe"]["units"]["party"]["raidicon"]["enable"] = false
 			E.db["unitframe"]["units"]["party"]["rdebuffs"]["enable"] = true
 			E.db["unitframe"]["units"]["party"]["rdebuffs"]["font"] = "Kimberley"
 			E.db["unitframe"]["units"]["party"]["rdebuffs"]["fontOutline"] = "OUTLINE"
@@ -1512,6 +1513,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["player"]["raidicon"]["size"] = 20
 			E.db["unitframe"]["units"]["player"]["raidicon"]["xOffset"] = 30
 			E.db["unitframe"]["units"]["player"]["raidicon"]["yOffset"] = 2
+			E.db["unitframe"]["units"]["player"]["raidicon"]["enable"] = false
 			--E.db["unitframe"]["units"]["raid"]["buffIndicator"]["size"] = 20
 			--E.db["unitframe"]["units"]["raid"]["buffs"]["countFont"] = "Kimberley"
 
@@ -1774,6 +1776,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["target"]["raidicon"]["size"] = 20
 			E.db["unitframe"]["units"]["target"]["raidicon"]["xOffset"] = -25
 			E.db["unitframe"]["units"]["target"]["raidicon"]["yOffset"] = 0
+			E.db["unitframe"]["units"]["target"]["raidicon"]["enable"] = false
 			E.db["unitframe"]["units"]["target"]["smartAuraPosition"] = "DEBUFFS_ON_BUFFS"
 			E.db["unitframe"]["units"]["target"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "FORCE_OFF"
@@ -2437,6 +2440,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["party"]["raidicon"]["attachTo"] = "TOPRIGHT"
 			E.db["unitframe"]["units"]["party"]["raidicon"]["size"] = 24
 			E.db["unitframe"]["units"]["party"]["raidicon"]["yOffset"] = 0
+			E.db["unitframe"]["units"]["party"]["raidicon"]["enable"] = false
 			E.db["unitframe"]["units"]["party"]["rdebuffs"]["fontSize"] = 12
 			E.db["unitframe"]["units"]["party"]["rdebuffs"]["size"] = 22
 			E.db["unitframe"]["units"]["party"]["rdebuffs"]["xOffset"] = -35
@@ -2588,6 +2592,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["player"]["raidicon"]["attachTo"] = "CENTER"
 			E.db["unitframe"]["units"]["player"]["raidicon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["player"]["raidicon"]["yOffset"] = 0
+			E.db["unitframe"]["units"]["player"]["raidicon"]["enable"] = false
 			E.db["unitframe"]["units"]["raid"]["buffIndicator"]["size"] = 12
 
 			--E.db["unitframe"]["units"]["raid"]["buffs"]["anchorPoint"] = "BOTTOMRIGHT"
@@ -2817,6 +2822,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["target"]["raidicon"]["attachTo"] = "CENTER"
 			E.db["unitframe"]["units"]["target"]["raidicon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["target"]["raidicon"]["yOffset"] = 0
+			E.db["unitframe"]["units"]["target"]["raidicon"]["enable"] = false
 			E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "FORCE_OFF"
 
 			E.db["unitframe"]["units"]["targettarget"]["buffs"]["height"] = 25

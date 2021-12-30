@@ -336,7 +336,7 @@ end
 E:AddTagInfo('releaf', ElvUI_EltreumUI.Name, "Shows Releaf's Icon")
 
 -- Target Marker tag
-E:AddTag("eltruism:raidmarker", 'RAID_TARGET_UPDATE', function(unit, event)
+E:AddTag("eltruism:raidmarker", 'RAID_TARGET_UPDATE', function(unit)
 	local index = GetRaidTargetIndex(unit)
 	local mark
 	if index then

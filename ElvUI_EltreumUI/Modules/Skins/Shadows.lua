@@ -383,7 +383,6 @@ function ElvUI_EltreumUI:Shadows()
 
 		if E.private.unitframe.enable then
 
-
 			for i = 1, 5 do
 				local partymembers = {_G['ElvUF_PartyGroup1UnitButton'..i]}
 				for _, frame in pairs(partymembers) do
