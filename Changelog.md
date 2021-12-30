@@ -6,6 +6,8 @@ Added options to customize the player castbar spark under Eltruism > Skins\
 Added borders to nameplate power bar\
 Added options to change the colors of the borders\
 Added an option to change the background of the Nameplate Power Bar\
+Added a new tag [eltruism:raidmarker] which will display the raid marker icon, this tag does not update on real time\
+Updated references to FCT to make it more clear that it's Simpy's ElvUI FCT\
 Updated references to nameplates due to a change in ElvUI code\
 Fixed shadows showing up when chat panels were disabled\
 Fixed an issue with nameplate power bar visibility when using Plater instead of ElvUI Nameplates

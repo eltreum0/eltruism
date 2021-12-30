@@ -417,8 +417,10 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
-			if not ElvUF_TargetTarget_PowerBar.shadow then
-				_G['ElvUF_TargetTarget_PowerBar']:CreateShadow()
+			if _G['ElvUF_TargetTarget_PowerBar'] then
+				if not ElvUF_TargetTarget_PowerBar.shadow then
+					_G['ElvUF_TargetTarget_PowerBar']:CreateShadow()
+				end
 			end
 
 			if not ElvUF_TargetTarget_PowerBar.shadow then

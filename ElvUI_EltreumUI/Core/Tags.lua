@@ -334,3 +334,14 @@ elseif ElvUI_EltreumUI.Classic then
 	end
 end
 E:AddTagInfo('releaf', ElvUI_EltreumUI.Name, "Shows Releaf's Icon")
+
+-- Target Marker tag
+E:AddTag("eltruism:raidmarker", 'RAID_TARGET_UPDATE', function(unit, event)
+	local index = GetRaidTargetIndex(unit)
+	local mark
+	if index then
+		mark = "|TINTERFACE\\TARGETINGFRAME\\UI-RaidTargetingIcon_"..index..".blp:0:0:0:0|t"
+	end
+	return mark
+end)
+E:AddTagInfo('eltruism:raidmarker', ElvUI_EltreumUI.Name, L["Shows raid target marker"])

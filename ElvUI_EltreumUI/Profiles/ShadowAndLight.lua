@@ -205,8 +205,8 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["dt"]["guild"]["tooltipAutohide"] = 0.1
 		-- Loot
 		E.db["sle"]["loot"]["autoroll"]["enable"] = false
-		E.db["sle"]["loot"]["enable"] = true
-		E.db["sle"]["loot"]["history"]["autohide"] = true
+		E.db["sle"]["loot"]["enable"] = false
+		E.db["sle"]["loot"]["history"]["autohide"] = false
 		E.db["sle"]["loot"]["looticons"]["channels"]["CHAT_MSG_BN_CONVERSATION"] = true
 		E.db["sle"]["loot"]["looticons"]["channels"]["CHAT_MSG_BN_WHISPER"] = true
 		E.db["sle"]["loot"]["looticons"]["channels"]["CHAT_MSG_BN_WHISPER_INFORM"] = true

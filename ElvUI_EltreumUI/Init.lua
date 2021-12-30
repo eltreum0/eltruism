@@ -133,6 +133,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED")
 	ElvUI_EltreumUI:RegisterEvent("UNIT_NAME_UPDATE")
+	--ElvUI_EltreumUI:RegisterEvent("RAID_TARGET_UPDATE")
 	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE')
 	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', 0.02)
