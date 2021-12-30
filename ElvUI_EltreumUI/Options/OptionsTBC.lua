@@ -1222,7 +1222,7 @@ if ElvUI_EltreumUI.TBC then
 								fct = {
 									order = 6,
 									type = 'execute',
-									name = 'Floating Combat Text',
+									name = 'ElvUI Floating Combat Text',
 									desc = 'Reset to Eltreum UI defaults.',
 									func = function() ElvUI_EltreumUI:AddonSetupFCT() E:StaticPopup_Show('CONFIG_RL') end,
 								},

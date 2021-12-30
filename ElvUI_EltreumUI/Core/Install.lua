@@ -180,18 +180,18 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Option2:Enable()
 				PluginInstallFrame.Option2:Show()
 				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupFCT() end)
-				PluginInstallFrame.Option2:SetText('FCT')
+				PluginInstallFrame.Option2:SetText('ElvUI FCT')
 				if (not IsAddOnLoaded("NameplateSCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 					PluginInstallFrame.Desc1:SetText("NameplateSCT"..L[" is not installed or enabled"])
-					PluginInstallFrame.Desc2:SetText(L["FCT profile will be used"])
+					PluginInstallFrame.Desc2:SetText(L["ElvUI FCT profile will be used"])
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 					PluginInstallFrame.Option1:Disable()
 				end
 				if (not IsAddOnLoaded("ElvUI_FCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-					PluginInstallFrame.Desc1:SetText("FCT"..L[" is not installed or enabled"])
+					PluginInstallFrame.Desc1:SetText("ElvUI FCT"..L[" is not installed or enabled"])
 					PluginInstallFrame.Desc2:SetText(L["NameplateSCT profile will be used"])
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
@@ -199,9 +199,9 @@ if ElvUI_EltreumUI.Retail then
 				end
 				if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-					PluginInstallFrame.Desc1:SetText(L["NameplateSCT and FCT are not installed or enabled"])
+					PluginInstallFrame.Desc1:SetText(L["NameplateSCT and ElvUI FCT are not installed or enabled"])
 					PluginInstallFrame.Desc2:SetText(L["Combat text addons enhance the default Blizzard Combat Text"])
-					PluginInstallFrame.Desc3:SetText(L["NameplateSCT and FCT make the combat text float from the nameplate/frame"])
+					PluginInstallFrame.Desc3:SetText(L["NameplateSCT and ElvUI FCT make the combat text float from the nameplate/frame"])
 					PluginInstallFrame.Desc4:SetText(L["And add effects to them with minimal memory usage"])
 					PluginInstallFrame.Option1:Disable()
 					PluginInstallFrame.Option2:Disable()
@@ -426,18 +426,18 @@ elseif ElvUI_EltreumUI.Classic then
 				PluginInstallFrame.Option2:Enable()
 				PluginInstallFrame.Option2:Show()
 				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupFCT() end)
-				PluginInstallFrame.Option2:SetText('FCT')
+				PluginInstallFrame.Option2:SetText('ElvUI FCT')
 				if (not IsAddOnLoaded("NameplateSCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 					PluginInstallFrame.Desc1:SetText("NameplateSCT"..L[" is not installed or enabled"])
-					PluginInstallFrame.Desc2:SetText(L["FCT profile will be used"])
+					PluginInstallFrame.Desc2:SetText(L["ElvUI FCT profile will be used"])
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 					PluginInstallFrame.Option1:Disable()
 				end
 				if (not IsAddOnLoaded("ElvUI_FCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-					PluginInstallFrame.Desc1:SetText("FCT"..L[" is not installed or enabled"])
+					PluginInstallFrame.Desc1:SetText("ElvUI FCT"..L[" is not installed or enabled"])
 					PluginInstallFrame.Desc2:SetText(L["NameplateSCT profile will be used"])
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
@@ -445,9 +445,9 @@ elseif ElvUI_EltreumUI.Classic then
 				end
 				if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-					PluginInstallFrame.Desc1:SetText(L["NameplateSCT and FCT are not installed or enabled"])
+					PluginInstallFrame.Desc1:SetText(L["NameplateSCT and ElvUI FCT are not installed or enabled"])
 					PluginInstallFrame.Desc2:SetText(L["Combat text addons enhance the default Blizzard Combat Text"])
-					PluginInstallFrame.Desc3:SetText(L["NameplateSCT and FCT make the combat text float from the nameplate/frame"])
+					PluginInstallFrame.Desc3:SetText(L["NameplateSCT and ElvUI FCT make the combat text float from the nameplate/frame"])
 					PluginInstallFrame.Desc4:SetText(L["And add effects to them with minimal memory usage"])
 					PluginInstallFrame.Option1:Disable()
 					PluginInstallFrame.Option2:Disable()
@@ -718,18 +718,18 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Option2:Enable()
 				PluginInstallFrame.Option2:Show()
 				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupFCT() end)
-				PluginInstallFrame.Option2:SetText('FCT')
+				PluginInstallFrame.Option2:SetText('ElvUI FCT')
 				if (not IsAddOnLoaded("NameplateSCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 					PluginInstallFrame.Desc1:SetText("NameplateSCT"..L[" is not installed or enabled"])
-					PluginInstallFrame.Desc2:SetText(L["FCT profile will be used"])
+					PluginInstallFrame.Desc2:SetText(L["ElvUI FCT profile will be used"])
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 					PluginInstallFrame.Option1:Disable()
 				end
 				if (not IsAddOnLoaded("ElvUI_FCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-					PluginInstallFrame.Desc1:SetText("FCT"..L[" is not installed or enabled"])
+					PluginInstallFrame.Desc1:SetText("ElvUI FCT"..L[" is not installed or enabled"])
 					PluginInstallFrame.Desc2:SetText(L["NameplateSCT profile will be used"])
 					PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 					PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
@@ -737,9 +737,9 @@ elseif ElvUI_EltreumUI.TBC then
 				end
 				if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
 					PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-					PluginInstallFrame.Desc1:SetText(L["NameplateSCT and FCT are not installed or enabled"])
+					PluginInstallFrame.Desc1:SetText(L["NameplateSCT and ElvUI FCT are not installed or enabled"])
 					PluginInstallFrame.Desc2:SetText(L["Combat text addons enhance the default Blizzard Combat Text"])
-					PluginInstallFrame.Desc3:SetText(L["NameplateSCT and FCT make the combat text float from the nameplate/frame"])
+					PluginInstallFrame.Desc3:SetText(L["NameplateSCT and ElvUI FCT make the combat text float from the nameplate/frame"])
 					PluginInstallFrame.Desc4:SetText(L["And add effects to them with minimal memory usage"])
 					PluginInstallFrame.Option1:Disable()
 					PluginInstallFrame.Option2:Disable()

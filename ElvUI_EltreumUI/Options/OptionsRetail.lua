@@ -984,7 +984,7 @@ if ElvUI_EltreumUI.Retail then
 								fct = {
 									order = 6,
 									type = 'execute',
-									name = 'Floating Combat Text',
+									name = 'ElvUI Floating Combat Text',
 									desc = L["Reset to Eltruism defaults."],
 									func = function() ElvUI_EltreumUI:AddonSetupFCT() E:StaticPopup_Show('CONFIG_RL') end,
 								},
