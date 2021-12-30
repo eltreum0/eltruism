@@ -32,7 +32,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 				button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 			end
 			button.cd:SetFrameStrata('DIALOG')
-			--button.cd:SetDrawSwipe(false)  --works to erase it
+			--button.cd:SetDrawSwipe(false) --works to erase it
 			local TimeSinceLastUpdate = 0
 			if not button.cd then
 				return
@@ -124,8 +124,8 @@ local playerclass = {
 	['ROGUE'] = "Eltreum-Class-Rogue",
 	['PRIEST'] = "Eltreum-Class-Priest",
 	['DEATHKNIGHT'] = "Eltreum-Class-DeathKnight",
-	['SHAMAN'] = "Eltreum-Class-Paladin",	 -- issues becoming green due to color mixing so color changed to paladin from "Eltreum-Class-Shaman"
-	['MAGE'] = "Eltreum-Class-Paladin",		 --  issues becoming green due to color mixing so color changed to paladin from "Eltreum-Class-Mage"
+	['SHAMAN'] = "Eltreum-Class-Paladin", -- issues becoming green due to color mixing so color changed to paladin from "Eltreum-Class-Shaman"
+	['MAGE'] = "Eltreum-Class-Paladin", -- issues becoming green due to color mixing so color changed to paladin from "Eltreum-Class-Mage"
 	['WARLOCK'] = "Eltreum-Class-Warlock",
 	['MONK'] = "Eltreum-Class-Monk",
 	['DRUID'] = "Eltreum-Class-Druid",

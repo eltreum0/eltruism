@@ -19,7 +19,7 @@ local Eltruismhealerplayerbuffs = "Blacklist,Personal,PlayerBuffs,Whitelist,bloc
 --local Eltruismhealerraiddebuffs = "Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist"
 local Eltruismhealerfocusbuffs = "Blacklist,Personal,PlayerBuffs,CastByUnit,Dispellable,RaidBuffsElvUI"
 local Eltruismhealerfocusdebuffs = "Blacklist,Personal,Boss,RaidDebuffs,Dispellable,Whitelist"
-local Eltruismhealerbossbuffs =  "Blacklist,CastByUnit,Dispellable,Whitelist,RaidBuffsElvUI"
+local Eltruismhealerbossbuffs = "Blacklist,CastByUnit,Dispellable,Whitelist,RaidBuffsElvUI"
 local Eltruismhealerbossdebuffs = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,Whitelist"
 --nameplates
 local Eltruismnpenemynpcbuffs = "Blacklist,RaidBuffsElvUI,Dispellable,blockNoDuration,PlayerBuffs,TurtleBuffs,CastByUnit"
@@ -46,7 +46,7 @@ local allhealerplayerbuffs = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDu
 --local allhealerraiddebuffs = "Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist,nonPersonal"
 local allhealerfocusbuffs = "Blacklist,Personal,PlayerBuffs,CastByUnit,Dispellable,RaidBuffsElvUI"
 local allhealerfocusdebuffs = "Blacklist,Personal,Boss,RaidDebuffs,Dispellable,Whitelist"
-local allhealerbossbuffs =  "Blacklist,CastByUnit,Dispellable,Whitelist,RaidBuffsElvUI"
+local allhealerbossbuffs = "Blacklist,CastByUnit,Dispellable,Whitelist,RaidBuffsElvUI"
 local allhealerbossdebuffs = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,Whitelist"
 --nameplates
 local allnpenemynpcbuffs = "Blacklist,RaidBuffsElvUI,Dispellable,blockNoDuration,PlayerBuffs,TurtleBuffs,CastByUnit,nonPersonal"

@@ -8,7 +8,7 @@ local myclass = E.myclass
 local L = E.Libs.ACL:GetLocale("ElvUI", E.global.general.locale)
 local SetCVar = _G.SetCVar
 local GetAddOnMetadata = _G.GetAddOnMetadata
---local IsAddOnLoaded =  _G.IsAddOnLoaded
+--local IsAddOnLoaded = _G.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 
 Engine[1] = ElvUI_EltreumUI
@@ -86,7 +86,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 end
 
 function ElvUI_EltreumUI:HidePopups()
-	E:StaticPopup_Hide("INCOMPATIBLE_ADDON") --915 error to be tested
+	E:StaticPopup_Hide('INCOMPATIBLE_ADDON') --915 error to be tested
 	E:StaticPopup_Hide('DISABLE_INCOMPATIBLE_ADDON') --915 error to be tested
 	if E:IsAddOnEnabled("ElvUI_WindTools") then
 		local W = unpack(WindTools)
@@ -124,8 +124,8 @@ function ElvUI_EltreumUI:Initialize()
 	--power bar
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_FREQUENT') --power update real time
-	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_UPDATE')  --power type changes
-	ElvUI_EltreumUI:RegisterEvent("UNIT_MODEL_CHANGED")  --druid things
+	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_UPDATE') --power type changes
+	ElvUI_EltreumUI:RegisterEvent("UNIT_MODEL_CHANGED") --druid things
 	--LootText things
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_LOOT")
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_MONEY")

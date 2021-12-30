@@ -70,7 +70,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 					_G.CharacterNameText:ClearAllPoints()
-					_G.CharacterNameText:SetPoint('TOP',  _G.CharacterModelFrame, 0, 50)
+					_G.CharacterNameText:SetPoint('TOP', _G.CharacterModelFrame, 0, 50)
 					_G.CharacterNameText:SetParent(_G.CharacterFrame)
 					_G.CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
 					_G.CharacterNameText:SetTextColor(R, G, B)
@@ -85,7 +85,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 			if ElvUI_EltreumUI.Retail then
 				hooksecurefunc('PaperDollFrame_SetLevel', function()
 					_G.CharacterFrameTitleText:ClearAllPoints()
-					_G.CharacterFrameTitleText:SetPoint('TOP',  _G.CharacterModelFrame, 0, 50)
+					_G.CharacterFrameTitleText:SetPoint('TOP', _G.CharacterModelFrame, 0, 50)
 					_G.CharacterFrameTitleText:SetParent(_G.CharacterFrame)
 					_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
 					_G.CharacterFrameTitleText:SetTextColor(R, G, B)

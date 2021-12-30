@@ -17,7 +17,7 @@ if ElvUI_EltreumUI.Retail then
 	function ElvUI_EltreumUI:QuestEncounter()
 		if E.db.ElvUI_EltreumUI.questsettings.enable then
 			local _, instanceType = IsInInstance()
-			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then  --and event == "PLAYER_REGEN_DISABLED"
+			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
 				ObjectiveTracker_Collapse()
 			end
 		end
@@ -26,7 +26,7 @@ if ElvUI_EltreumUI.Retail then
 	function ElvUI_EltreumUI:QuestEncounterEnd()
 		if E.db.ElvUI_EltreumUI.questsettings.enable then
 			local _, instanceType = IsInInstance()
-			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then  --and event == "PLAYER_REGEN_DISABLED"
+			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
 				ObjectiveTracker_Expand()
 			end
 		end

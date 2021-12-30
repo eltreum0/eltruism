@@ -5,7 +5,7 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 local LoadAddOn = _G.LoadAddOn
 local hooksecurefunc = _G.hooksecurefunc
 local PetStableFrame = _G.PetStableFrame
-local PetStableNextPageButton =  _G.PetStableNextPageButton
+local PetStableNextPageButton = _G.PetStableNextPageButton
 local PetStablePrevPageButton = _G.PetStablePrevPageButton
 local PetStableFrameModelBg = _G.PetStableFrameModelBg
 local PetStableModel = _G.PetStableModel
@@ -107,7 +107,7 @@ function ElvUI_EltreumUI:ExpandedStable()
 			end
 		end
 		searchInput:HookScript("OnTextChanged", ExpandedStable_Update)
-		searchInput.Instructions:SetText(SEARCH .. " (" .. NAME .. ", " .. PET_FAMILIES .. ", " .. PET_TALENTS  .. ")")
+		searchInput.Instructions:SetText(SEARCH .. " (" .. NAME .. ", " .. PET_FAMILIES .. ", " .. PET_TALENTS .. ")")
 		hooksecurefunc("PetStable_Update", ExpandedStable_Update)
 		NUM_PET_STABLE_SLOTS = maxSlots
 		NUM_PET_STABLE_PAGES = 1

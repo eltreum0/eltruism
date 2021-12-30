@@ -13,7 +13,7 @@ local myclass = E.myclass
 if ElvUI_EltreumUI.Retail then
 	-- Installer Steps Retail
 	ElvUI_EltreumUI.InstallerData = {
-		Title =  ElvUI_EltreumUI.Name,
+		Title = ElvUI_EltreumUI.Name,
 		Name = ElvUI_EltreumUI.Name,
 		tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 		Pages = {
@@ -302,7 +302,7 @@ if ElvUI_EltreumUI.Retail then
 elseif ElvUI_EltreumUI.Classic then
 	-- Installer Steps Classic
 	ElvUI_EltreumUI.InstallerData = {
-		Title =  ElvUI_EltreumUI.Name,
+		Title = ElvUI_EltreumUI.Name,
 		Name = ElvUI_EltreumUI.Name,
 		tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 		Pages = {
@@ -553,7 +553,7 @@ elseif ElvUI_EltreumUI.Classic then
 elseif ElvUI_EltreumUI.TBC then
 	-- Installer Steps Burning Crusade
 	ElvUI_EltreumUI.InstallerData = {
-		Title =  ElvUI_EltreumUI.Name,
+		Title = ElvUI_EltreumUI.Name,
 		Name = ElvUI_EltreumUI.Name,
 		tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 		Pages = {

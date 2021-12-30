@@ -2,7 +2,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local ElvUF = E.oUF
 local _G = _G
 local UnitName = _G.UnitName
-local UnitClass =  _G.UnitClass
+local UnitClass = _G.UnitClass
 local UnitIsPlayer = _G.UnitIsPlayer
 local string = _G.string
 local utf8sub = string.utf8sub
@@ -317,7 +317,7 @@ if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 		local red = math.floor(color.r*255)
 		local blue = math.floor(color.b*255)
 		local green = math.floor(color.g*255)
-		local releaf  = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\releaftag.tga:0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+		local releaf = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\releaftag.tga:0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
 		--local releaf = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Releaf-Orange.tga:0:0:0:0|t"
 		return releaf
 	end)
@@ -328,7 +328,7 @@ elseif ElvUI_EltreumUI.Classic then
 		local red = math.floor(color.r*255)
 		local blue = math.floor(color.b*255)
 		local green = math.floor(color.g*255)
-		local releaf  = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\releaftag.tga:0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+		local releaf = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\releaftag.tga:0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
 		--local releaf = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Releaf-Orange.tga:0:0:0:0|t"
 		return releaf
 	end

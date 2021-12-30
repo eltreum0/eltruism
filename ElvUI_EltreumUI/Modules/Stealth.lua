@@ -25,21 +25,21 @@ function ElvUI_EltreumUI:StealthOptions()
 	if E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect then
 		--Script the frame, ty wowpedia for examples
 		StealthOptionsFrame:HookScript("OnEvent", function(__, event)
-		  if (event == "PLAYER_ENTERING_WORLD") then
-			if IsStealthed() then
-				StealthOptionsFrame:Show()
-				UIFrameFadeIn(StealthOptionsFrame, 0.125, 0, 1)
-			else
-				StealthOptionsFrame:Hide()
+			if (event == "PLAYER_ENTERING_WORLD") then
+				if IsStealthed() then
+					StealthOptionsFrame:Show()
+					UIFrameFadeIn(StealthOptionsFrame, 0.125, 0, 1)
+				else
+					StealthOptionsFrame:Hide()
+				end
+			elseif (event == "UPDATE_STEALTH") then
+				if IsStealthed() then
+					StealthOptionsFrame:Show()
+					UIFrameFadeIn(StealthOptionsFrame, 0.125, 0, 1)
+				else
+					UIFrameFadeOut(StealthOptionsFrame, 0.1, 1, 0)
+				end
 			end
-		  elseif (event == "UPDATE_STEALTH") then
-			if IsStealthed() then
-				StealthOptionsFrame:Show()
-				UIFrameFadeIn(StealthOptionsFrame, 0.125, 0, 1)
-			else
-				UIFrameFadeOut(StealthOptionsFrame, 0.1, 1, 0)
-			end
-		  end
 		end)
 	end
 end

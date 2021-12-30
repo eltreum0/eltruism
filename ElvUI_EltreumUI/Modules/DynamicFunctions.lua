@@ -32,7 +32,7 @@ function ElvUI_EltreumUI:ArenaUnitframes()
 	end
 end
 
-function  ElvUI_EltreumUI:DynamicBuffs()
+function ElvUI_EltreumUI:DynamicBuffs()
 	if E.db.ElvUI_EltreumUI.otherstuff.arenabuffs then
 		local _, instanceType = IsInInstance()
 		if instanceType == "arena" or instanceType == "pvp" then

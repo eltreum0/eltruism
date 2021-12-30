@@ -111,7 +111,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 	end
 	local powertexture
 	if E.db.ElvUI_EltreumUI.nameplatepower.texture then
-		powertexture =  E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture)
+		powertexture = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture)
 	else
 		powertexture = E.media.norm
 	end
@@ -250,7 +250,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, posy)
 						end
 					end
-					if ElvUI_EltreumUI.Retail  then
+					if ElvUI_EltreumUI.Retail then
 						if myclass == 'PALADIN' or myclass == 'WARLOCK' then
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
@@ -287,9 +287,9 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					-- 1 is bear
 					-- 2 is cat
 					-- 3 is bird
-					-- 4 is moonkin  (if known)
+					-- 4 is moonkin (if known)
 					-- 4 is tree (if known and moonkin not known)
-					--5  = tree of life (talent)
+					--5 = tree of life (talent)
 				]]--
 				if ElvUI_EltreumUI.Retail then
 					--local tree = IsSpellKnown(114282)
@@ -567,7 +567,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					end
 				elseif ElvUI_EltreumUI.Retail then
 					if id == 262 or id == 263 then
-					   	if E.private.ElvUI_EltreumUI.nameplatepower.maelstrom then
+						if E.private.ElvUI_EltreumUI.nameplatepower.maelstrom then
 							EltreumPowerBar:Show()
 							EltreumPowerBar:SetStatusBarColor(maelr, maelg, maelb) --its maelstrom
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
@@ -649,7 +649,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 				if myclass == 'MONK' or myclass == 'ROGUE' or myclass == 'DEATHKNIGHT' or myclass == 'PALADIN' or myclass == 'WARLOCK' or myclass == 'DRUID' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
-				elseif myclass == "MAGE" and id == 62 then  --62 is arcane --myclass== 'MAGE' or
+				elseif myclass == "MAGE" and id == 62 then --62 is arcane --myclass== 'MAGE' or
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
 				else
@@ -657,7 +657,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 				end
 			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-				if myclass == 'ROGUE'  or myclass == 'DRUID' then
+				if myclass == 'ROGUE' or myclass == 'DRUID' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 47

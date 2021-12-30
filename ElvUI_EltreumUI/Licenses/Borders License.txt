@@ -1,11 +1,7 @@
 Fer textures belong to Ferous (https://www.wowinterface.com/downloads/info15613-FerousMediaPack.html)
 Renaitre textures belong to Limb0 (https://www.wowinterface.com/downloads/info19490-SharedMediaRenaitre.html)
-
-
-
-
 Aura border/Better Blizzard is by Goldpawn (https://www.curseforge.com/wow/addons/sharedmedia_goldpaw)
-License from Goldpawn below refers to the artwork and none of ELtruism's code:
+License from Goldpawn below refers to the artwork and none of Eltruism's code:
 
 ## Custom License
 

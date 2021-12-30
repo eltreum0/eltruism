@@ -571,7 +571,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["TARGET"]["arrow"] = "Arrow21"
 			E.db["nameplates"]["units"]["TARGET"]["arrowScale"] = 0.4
 			E.db["nameplates"]["units"]["TARGET"]["arrowSpacing"] = 0
-			E.db["nameplates"]["units"]["TARGET"]["classpower"]["classColor"] = false  --no this would set the classbar to have class color as opposed to being nicely colored
+			E.db["nameplates"]["units"]["TARGET"]["classpower"]["classColor"] = false --no this would set the classbar to have class color as opposed to being nicely colored
 			E.db["nameplates"]["units"]["TARGET"]["classpower"]["enable"] = true
 			E.db["nameplates"]["units"]["TARGET"]["classpower"]["sortDirection"] = "asc"
 			E.db["nameplates"]["units"]["TARGET"]["classpower"]["width"] = 150

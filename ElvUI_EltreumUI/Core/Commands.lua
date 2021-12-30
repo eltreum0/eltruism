@@ -47,7 +47,7 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 	if ElvUI_EltreumUI.Retail then
 		if E.db.ElvUI_EltreumUI.waytext.enable then
 			-- translate the message into numbers
-		  	local translatemsg = message:gsub("(%d)[%.,] (%d)", "%1 %2"):gsub("(%d)" .. (tonumber("1.1") and "," or ".") .. "(%d)", "%1" .. (tonumber("1.1") and "." or ",") .. "%2")
+			local translatemsg = message:gsub("(%d)[%.,] (%d)", "%1 %2"):gsub("(%d)" .. (tonumber("1.1") and "," or ".") .. "(%d)", "%1" .. (tonumber("1.1") and "." or ",") .. "%2")
 			local coords = {}
 			--put the numbers into the table
 			for pattern in translatemsg:gmatch("%S+") do

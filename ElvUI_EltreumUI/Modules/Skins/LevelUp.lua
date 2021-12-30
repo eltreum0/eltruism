@@ -23,7 +23,7 @@ function ElvUI_EltreumUI:SkinLevelUp()
 				EventToastManagerFrame.StatusLine2:SetPoint("BOTTOM", EventToastManagerFrame, 0, 0)
 				EventToastManagerFrame.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
 				EventToastManagerFrame.StatusLine2:SetStatusBarColor(R, G, B, 1)
-				--EventToastManagerFrame.currentDisplayingToast.BannerFrame:Kill()  --lets try
+				--EventToastManagerFrame.currentDisplayingToast.BannerFrame:Kill() --lets try
 				--/script EventToastManagerFrame:Show()
 			end
 

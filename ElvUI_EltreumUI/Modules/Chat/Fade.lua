@@ -6,7 +6,7 @@ local InCombatLockdown = _G.InCombatLockdown
 local IsAddOnLoaded = _G.IsAddOnLoaded
 
 --chat fading/mouseover/combathide
-local leftfaderbutton = 0  -- when 1 it can fade, when 0 it cannot
+local leftfaderbutton = 0 -- when 1 it can fade, when 0 it cannot
 local rightfaderbutton = 0 -- same as above
 function ElvUI_EltreumUI:DynamicChatFade(event)
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
@@ -47,7 +47,7 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 		LeftChatPanel:RegisterEvent("CHAT_MSG_SYSTEM")
 		LeftChatPanel:RegisterEvent("CHAT_MSG_WHISPER")
 		LeftChatPanel:RegisterEvent("CHAT_MSG_YELL")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_BN_INLINE_TOAST_ALERT")  --new
+		LeftChatPanel:RegisterEvent("CHAT_MSG_BN_INLINE_TOAST_ALERT") --new
 		--register events right chat panel
 		RightChatPanel:RegisterEvent("PLAYER_REGEN_DISABLED")
 		RightChatPanel:RegisterEvent("PLAYER_REGEN_ENABLED")

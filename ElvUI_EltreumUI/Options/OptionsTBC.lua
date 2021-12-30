@@ -228,7 +228,7 @@ if ElvUI_EltreumUI.TBC then
 									},
 									style = 'radio',
 									get = function(info) return E.db.ElvUI_EltreumUI.cursor.size end,
-  									set = function(info,value) ElvUI_EltreumUI:CursorSize(value) end,
+									set = function(info,value) ElvUI_EltreumUI:CursorSize(value) end,
 								},
 							},
 						},
@@ -1074,7 +1074,7 @@ if ElvUI_EltreumUI.TBC then
 							name = L["Customize the player castbar spark"],
 							width = "full",
 						},
-						castbarsparkenable  = {
+						castbarsparkenable = {
 							order = 60,
 							type = 'toggle',
 							name = 'Enable',
@@ -2274,7 +2274,7 @@ if ElvUI_EltreumUI.TBC then
 									type = 'execute',
 									name = 'Kimberley',
 									desc = L["This will set all ElvUI fonts as Kimberley"],
-									func = function() ElvUI_EltreumUI:SetupFontsKimberley() E:StaggeredUpdateAll(nil, true)  end,
+									func = function() ElvUI_EltreumUI:SetupFontsKimberley() E:StaggeredUpdateAll(nil, true) end,
 									confirm = true,
 								},
 								exo2 = {
@@ -2321,11 +2321,11 @@ if ElvUI_EltreumUI.TBC then
 									 desc = L["Choose a different font from the preselected ones"],
 									 values = AceGUIWidgetLSMlists.font,
 									 get = function()
-										  return E.db.ElvUI_EltreumUI.fonts.playerfont
+										return E.db.ElvUI_EltreumUI.fonts.playerfont
 									 end,
 									 set = function(self,fontvalue)
-										  E.db.ElvUI_EltreumUI.fonts.playerfont = fontvalue
-										  ElvUI_EltreumUI:SetupCustomFont(fontvalue)
+										E.db.ElvUI_EltreumUI.fonts.playerfont = fontvalue
+										ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 									 end,
 								},
 								addagaphereforoutlines = {

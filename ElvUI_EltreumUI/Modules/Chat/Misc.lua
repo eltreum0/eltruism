@@ -45,7 +45,7 @@ local function ColorSysMsgs(self, event, message, ...)
 				return false, msg, ...
 			end
 		end
-		if message:find("online") then  --german, english, italian all use the same online/offline
+		if message:find("online") then --german, english, italian all use the same online/offline
 			return false, gsub(message, "online", "|cff00FF00online|r"), ...
 		end
 		if message:find("offline") then

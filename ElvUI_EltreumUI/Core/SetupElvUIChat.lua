@@ -23,7 +23,6 @@ local LOOT, GENERAL, TRADE = LOOT, GENERAL, TRADE
 local GUILD_EVENT_LOG = GUILD_EVENT_LOG
 local tinsert = _G.tinsert
 
-
 -- ElvUI Chat Setup pretty much
 function ElvUI_EltreumUI:SetupChat()
 	--Reset chat

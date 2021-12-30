@@ -73,15 +73,15 @@ end
 
 --Resolution check for font outline
 function ElvUI_EltreumUI:ResolutionOutline()
-	if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160"  then
+	if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160" then
 		ElvUI_EltreumUI:Print(L["4K resolution detected, setting fonts to default mode."])
-	elseif GetCVar('gxFullscreenResolution') == '2560x1440' or GetCVar('gxWindowedResolution') == "2560x1440"  then
+	elseif GetCVar('gxFullscreenResolution') == '2560x1440' or GetCVar('gxWindowedResolution') == "2560x1440" then
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
 		ElvUI_EltreumUI:Print(L["1440p resolution detected, setting fonts to outline mode."])
-	elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080"  then
+	elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080" then
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
 		ElvUI_EltreumUI:Print(L["1080p resolution detected, setting fonts to outline mode."])
-	elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto"  then
+	elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto" then
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
 		ElvUI_EltreumUI:Print(L["Fonts were set to Outline due to your resolution."])
 	else

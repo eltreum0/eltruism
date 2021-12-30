@@ -258,7 +258,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.GroupFinderFrame:CreateShadow()
 			end
 
-			if  _G.WorldMapFrame.backdrop then
+			if _G.WorldMapFrame.backdrop then
 				if not _G.WorldMapFrame.backdrop.shadow then
 					_G.WorldMapFrame.backdrop:CreateShadow()
 				end

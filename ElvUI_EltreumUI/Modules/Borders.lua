@@ -8,7 +8,7 @@ local pairs = _G.pairs
 function ElvUI_EltreumUI:Borders()
 	local bordertexture
 	if E.db.ElvUI_EltreumUI.borders.texture then
-		bordertexture =  E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture)
+		bordertexture = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture)
 	else
 		bordertexture = "Interface\\Addons\\ElvUI_EltreumUI\\Media\border\\better-blizzard-border-small-alternate.tga"
 	end

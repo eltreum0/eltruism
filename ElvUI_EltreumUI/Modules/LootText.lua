@@ -196,9 +196,9 @@ function ElvUI_EltreumUI:LootText()
 				end
 				if ElvUI_EltreumUI.Retail then
 					if (event == "CHAT_MSG_CURRENCY") then
-						itemLink, amount =  Deformat(arg1, CURRENCY_GAINED_MULTIPLE_BONUS)
+						itemLink, amount = Deformat(arg1, CURRENCY_GAINED_MULTIPLE_BONUS)
 						if not amount then
-							itemLink, amount =  Deformat(arg1, CURRENCY_GAINED_MULTIPLE)
+							itemLink, amount = Deformat(arg1, CURRENCY_GAINED_MULTIPLE)
 						end
 						if not amount then
 							itemLink = Deformat(arg1, CURRENCY_GAINED)
@@ -225,9 +225,9 @@ function ElvUI_EltreumUI:LootText()
 			end
 			if E.db.ElvUI_EltreumUI.loottext.honor then
 				if (event == "CHAT_MSG_COMBAT_HONOR_GAIN") then
-					itemLink, amount =  Deformat(arg1, CURRENCY_GAINED_MULTIPLE_BONUS)
+					itemLink, amount = Deformat(arg1, CURRENCY_GAINED_MULTIPLE_BONUS)
 					if not amount then
-						itemLink, amount =  Deformat(arg1, CURRENCY_GAINED_MULTIPLE)
+						itemLink, amount = Deformat(arg1, CURRENCY_GAINED_MULTIPLE)
 					end
 					if not amount then
 						itemLink = Deformat(arg1, CURRENCY_GAINED)

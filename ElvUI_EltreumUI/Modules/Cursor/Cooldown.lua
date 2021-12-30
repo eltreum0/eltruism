@@ -325,7 +325,7 @@ function ElvUI_EltreumUI:UNIT_SPELLCAST_FAILED(event, unit, _, _, _, id)
 		return
 	elseif unit then
 		if unit == 'player' or unit == 'pet' then
-		  self:checkSpellCooldown(id)
+			self:checkSpellCooldown(id)
 		end
 	end
 end

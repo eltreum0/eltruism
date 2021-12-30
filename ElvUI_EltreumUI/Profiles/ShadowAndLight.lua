@@ -34,7 +34,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.private["sle"]["uibuttons"]["style"] = "dropdown"
 		E.private["sle"]["actionbars"]["checkedColor"]["a"] = 1
 		E.private["sle"]["actionbars"]["checkedColor"]["g"] = 0
-		--[[  --viewport sometimes errors idk why
+		--[[ --viewport sometimes errors idk why
 			E.db["sle"]["misc"]["viewport"]["left"] = {}
 			E.db["sle"]["misc"]["viewport"]["left"] = 0
 			E.db["sle"]["misc"]["viewport"]["right"] = {}
