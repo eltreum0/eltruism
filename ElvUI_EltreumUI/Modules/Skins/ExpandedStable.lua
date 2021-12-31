@@ -65,7 +65,7 @@ function ElvUI_EltreumUI:ExpandedStable()
 		PetStableStabledPet1:ClearAllPoints()
 		PetStableStabledPet1:SetPoint("TOPLEFT", f, 8, -36)
 
-		local searchInput = CreateFrame("EditBox", "ES_SearchInput", f, "SearchBoxTemplate")
+		local searchInput = CreateFrame("EditBox", "EltruismES_SearchInput", f, "SearchBoxTemplate")
 		searchInput:SetPoint("TOPLEFT", 9, 0)
 		searchInput:SetPoint("RIGHT", -3, 0)
 		searchInput:SetHeight(20)
@@ -112,10 +112,10 @@ function ElvUI_EltreumUI:ExpandedStable()
 		NUM_PET_STABLE_SLOTS = maxSlots
 		NUM_PET_STABLE_PAGES = 1
 		PetStableFrame.page = 1
-		PetStableFrame:HookScript("OnShow", function()
+		--[[ PetStableFrame:HookScript("OnShow", function()
 			if not IsAddOnLoaded("ExpandedStable") then
 				LoadAddOn("ExpandedStable")
 			end
-		end)
+		end) ]]
 	end
 end
