@@ -319,6 +319,12 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
+			if _G.QuestLogFrame.backdrop then
+				if not _G.QuestLogFrame.backdrop.shadow then
+					_G.QuestLogFrame.backdrop:CreateShadow()
+				end
+			end
+
 			if not _G.WorldMapFrame.shadow then
 				_G.WorldMapFrame:CreateShadow()
 			end
