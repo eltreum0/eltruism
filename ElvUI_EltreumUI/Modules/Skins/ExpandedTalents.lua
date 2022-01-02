@@ -18,11 +18,19 @@ function ElvUI_EltreumUI:ExpandedTalents()
 			end
 			--increase the size of the whole frame
 			if _G.PlayerTalentFrame then
-				_G.PlayerTalentFrame:SetSize(376, 780)
+				if ElvUI_EltreumUI.TBC then
+					_G.PlayerTalentFrame:SetSize(376, 780)
+				elseif ElvUI_EltreumUI.Classic then
+					_G.PlayerTalentFrame:SetSize(376, 670)
+				end
 			end
 			if _G.PlayerTalentFrameScrollFrame then
 				--increase the size of the actual frame that has the talent buttons
-				_G.PlayerTalentFrameScrollFrame:SetSize( 280 , 580)
+				if ElvUI_EltreumUI.TBC then
+					_G.PlayerTalentFrameScrollFrame:SetSize( 280 , 580)
+				elseif ElvUI_EltreumUI.Classic then
+					_G.PlayerTalentFrameScrollFrame:SetSize( 280 , 470)
+				end
 				--set the position
 				_G.PlayerTalentFrameScrollFrame:ClearAllPoints()
 				_G.PlayerTalentFrameScrollFrame:SetPoint("CENTER", _G.PlayerTalentFrame, 0, 20)
@@ -39,7 +47,11 @@ function ElvUI_EltreumUI:ExpandedTalents()
 			end
 			--increase the size of the background
 			if _G.PlayerTalentFrameBackgroundTopLeft then
-				_G.PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 600)
+				if ElvUI_EltreumUI.TBC then
+					_G.PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 600)
+				elseif ElvUI_EltreumUI.Classic then
+					_G.PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 490)
+				end
 			end
 		end
 	end
