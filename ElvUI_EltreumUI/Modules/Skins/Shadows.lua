@@ -82,20 +82,18 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end)
 
-
-
 		if not IsAddOnLoaded("Blizzard_TalentUI") then
 			LoadAddOn("Blizzard_TalentUI")
 		end
 
-		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
+		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			local PlayerTalentFrame = _G.PlayerTalentFrame
 			PlayerTalentFrame:HookScript("OnShow", function()
 				if ElvUI_EltreumUI.Retail then
 					if not _G.PlayerTalentFrame.shadow then
 						_G.PlayerTalentFrame:CreateShadow()
 					end
-				elseif ElvUI_EltreumUI.TBC then
+				elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 					if _G.PlayerTalentFrame.backdrop then
 						if not _G.PlayerTalentFrame.backdrop.shadow then
 							_G.PlayerTalentFrame.backdrop:CreateShadow()
@@ -105,6 +103,8 @@ function ElvUI_EltreumUI:Shadows()
 			end)
 		end
 
+		--before season of mastery
+		--[[
 		if ElvUI_EltreumUI.Classic then
 			if _G.TalentFrame == true then
 				local TalentFrame = _G.TalentFrame
@@ -117,6 +117,7 @@ function ElvUI_EltreumUI:Shadows()
 				end)
 			end
 		end
+		]]
 
 		local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
 		if E.db["chat"]["panelBackdrop"] == "RIGHT" then
