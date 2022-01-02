@@ -278,6 +278,39 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
+			if _G.ReputationFrame then
+				if not _G.ReputationFrame.shadow then
+					_G.ReputationFrame:CreateShadow()
+				end
+			end
+
+			if _G.TokenFrame then
+				if not _G.TokenFrame.shadow then
+					_G.TokenFrame:CreateShadow()
+				end
+			end
+
+			--refuses to work
+			--[[
+			if not IsAddOnLoaded("Blizzard_ChallengesUI") then
+				LoadAddOn("Blizzard_ChallengesUI")
+			end
+			if _G.PvEFrame then
+				if not _G.PvEFrame.shadow then
+					_G.PvEFrame:CreateShadow()
+				end
+			end
+			]]
+
+			if not IsAddOnLoaded("Blizzard_EncounterJournal") then
+				LoadAddOn("Blizzard_EncounterJournal")
+			end
+			if _G.EncounterJournal then
+				if not _G.EncounterJournal.shadow then
+					_G.EncounterJournal:CreateShadow()
+				end
+			end
+
 		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			if _G.FriendsFrame.backdrop then
 				if not _G.FriendsFrame.backdrop.shadow then
