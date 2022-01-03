@@ -11,6 +11,7 @@ Updated references to nameplates due to a change in ElvUI code\
 Fixed shadows showing up when chat panels were disabled\
 Fixed some missing shadows in TBC and Classic\
 Fixed Expanded Talents for Season of Mastery\
+Fixed an issue where disabling wide nameplate auras would also disable the nameplate glows\
 Fixed an issue with nameplate power bar visibility when using Plater instead of ElvUI Nameplates
 ___
 ### 2.6.2
