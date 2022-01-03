@@ -102,6 +102,7 @@ if ElvUI_EltreumUI.Retail then
 					PluginInstallFrame.Desc3:SetText(L["It uses less memory and is more efficient than alternatives"])
 					PluginInstallFrame.Desc4:SetText(L["And has many plugins to choose from"])
 					PluginInstallFrame.Option1:Disable()
+					PluginInstallFrame.Option2:Disable()
 				end
 			end,
 			[6] = function()
@@ -227,7 +228,7 @@ if ElvUI_EltreumUI.Retail then
 			[10] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Dynamic Cam')
 				PluginInstallFrame.Desc1:SetText(L["Import Dynamic Cam profile"])
-				PluginInstallFrame.Desc2:SetText(L["You might need to swap profiles in DynamicCam settings"])
+				PluginInstallFrame.Desc2:SetText(L["It is recommended to copy the profile into Dynamic Cam's Settings"])
 				PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 				PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 				PluginInstallFrame.Option1:Enable()
@@ -372,6 +373,7 @@ elseif ElvUI_EltreumUI.Classic then
 					PluginInstallFrame.Desc3:SetText(L["It uses less memory and is more efficient than alternatives"])
 					PluginInstallFrame.Desc4:SetText(L["And has many plugins to choose from"])
 					PluginInstallFrame.Option1:Disable()
+					PluginInstallFrame.Option2:Disable()
 				end
 			end,
 			[5] = function()
@@ -473,7 +475,7 @@ elseif ElvUI_EltreumUI.Classic then
 			[8] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Dynamic Cam')
 				PluginInstallFrame.Desc1:SetText(L["Import Dynamic Cam profile"])
-				PluginInstallFrame.Desc2:SetText(L["You might need to swap profiles in DynamicCam settings"])
+				PluginInstallFrame.Desc2:SetText(L["It is recommended to copy the profile into Dynamic Cam's Settings"])
 				PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 				PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 				PluginInstallFrame.Option1:Enable()
@@ -624,6 +626,7 @@ elseif ElvUI_EltreumUI.TBC then
 					PluginInstallFrame.Desc3:SetText(L["It uses less memory and is more efficient than alternatives"])
 					PluginInstallFrame.Desc4:SetText(L["And has many plugins to choose from"])
 					PluginInstallFrame.Option1:Disable()
+					PluginInstallFrame.Option2:Disable()
 				end
 			end,
 			[5] = function()
@@ -765,7 +768,7 @@ elseif ElvUI_EltreumUI.TBC then
 			[9] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Dynamic Cam')
 				PluginInstallFrame.Desc1:SetText(L["Import Dynamic Cam profile"])
-				PluginInstallFrame.Desc2:SetText(L["You might need to swap profiles in DynamicCam settings"])
+				PluginInstallFrame.Desc2:SetText(L["It is recommended to copy the profile into Dynamic Cam's Settings"])
 				PluginInstallFrame.Desc3:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
 				PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 				PluginInstallFrame.Option1:Enable()
