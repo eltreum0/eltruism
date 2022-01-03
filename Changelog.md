@@ -9,6 +9,8 @@ Added a new tag [eltruism:raidmarker] which will display the raid marker icon\
 Updated references to FCT to make it more clear that it's Simpy's ElvUI FCT\
 Updated references to nameplates due to a change in ElvUI code\
 Fixed shadows showing up when chat panels were disabled\
+Fixed some missing shadows in TBC and Classic\
+Fixed Expanded Talents for Season of Mastery\
 Fixed an issue with nameplate power bar visibility when using Plater instead of ElvUI Nameplates
 ___
 ### 2.6.2
