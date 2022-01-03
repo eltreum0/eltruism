@@ -1,5 +1,5 @@
 ### 🌌 Next Version 
-** The future is uncertain **
+**The future is uncertain**
 
 Added options to customize the player castbar spark under Eltruism > Skins\
 Added borders to nameplate power bar\
