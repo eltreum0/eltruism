@@ -7,7 +7,7 @@ local WorldMapFrame = _G.WorldMapFrame
 local string = _G.string
 local hooksecurefunc = _G.hooksecurefunc
 local SetCVar = _G.SetCVar
-local LCG = LibStub('LibCustomGlow-1.0')
+local LCG = E.Libs.CustomGlow
 
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1

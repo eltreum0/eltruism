@@ -1,6 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local AB = E:GetModule('ActionBars')
-local LCG = LibStub('LibCustomGlow-1.0')
+local LCG = E.Libs.CustomGlow
 
 -- Skill Glow
 function ElvUI_EltreumUI:SkillGlow()
@@ -14,35 +14,34 @@ function ElvUI_EltreumUI:SkillGlow()
 		local r, g, b = unpack(E.media.rgbvaluecolor)
 		skillglowcolor = {r, g, b, 1}
 	end
-	local customglow = LibStub("LibButtonGlow-1.0")
 	if E.db.ElvUI_EltreumUI.glow.enable then
 		if E.db.ElvUI_EltreumUI.glow.pixel then
-			function customglow.ShowOverlayGlow(button)
+			function LCG.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
 					LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
 				end
 			end
-			function customglow.HideOverlayGlow(button)
+			function LCG.HideOverlayGlow(button)
 				LCG.PixelGlow_Stop(button)
 			end
 		end
 		if E.db.ElvUI_EltreumUI.glow.autocast then
-			function customglow.ShowOverlayGlow(button)
+			function LCG.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
 					LCG.AutoCastGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 				end
 			end
-			function customglow.HideOverlayGlow(button)
+			function LCG.HideOverlayGlow(button)
 				LCG.AutoCastGlow_Stop(button)
 			end
 		end
 		if E.db.ElvUI_EltreumUI.glow.blizzard then
-			function customglow.ShowOverlayGlow(button)
+			function LCG.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
 					LCG.ButtonGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
 				end
 			end
-			function customglow.HideOverlayGlow(button)
+			function LCG.HideOverlayGlow(button)
 				LCG.ButtonGlow_Stop(button)
 			end
 		end
