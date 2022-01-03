@@ -12,7 +12,7 @@ local LCG = E.Libs.CustomGlow
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1
 function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
-	if E.db.ElvUI_EltreumUI.widenameplate.enable then
+	if E.db.ElvUI_EltreumUI.widenameplate.enable or E.db.ElvUI_EltreumUI.widenameplate.npglow then
 		local glowcolor
 		if not E.db.ElvUI_EltreumUI.glow.colorclass then
 			local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolornp
@@ -29,7 +29,9 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 				return
 			end
 			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-				button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
+				if E.db.ElvUI_EltreumUI.widenameplate.enable then
+					button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
+				end
 			end
 			button.cd:SetFrameStrata('DIALOG')
 			--button.cd:SetDrawSwipe(false) --works to erase it
@@ -42,8 +44,10 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 					if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 						TimeSinceLastUpdate = 0
 						if button.cd.timer then
-							button.cd.timer.text:ClearAllPoints()
-							button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
+							if E.db.ElvUI_EltreumUI.widenameplate.enable then
+								button.cd.timer.text:ClearAllPoints()
+								button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
+							end
 							local _, g, b, a = button.cd.timer.text:GetTextColor()
 							--local r = math.random(1,10)
 							--print(r)
@@ -60,12 +64,16 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 				end)
 			end
 			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-				button:SetWidth(25)
-				button:SetHeight(18)
+				if E.db.ElvUI_EltreumUI.widenameplate.enable then
+					button:SetWidth(25)
+					button:SetHeight(18)
+				end
 			end
 			button.count:SetParent(button.cd)
 			if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-				button.count:Point('BOTTOMRIGHT', 2, -3) --elvui added a setting for it in retail but not classic/tbc yet
+				if E.db.ElvUI_EltreumUI.widenameplate.enable then
+					button.count:Point('BOTTOMRIGHT', 2, -3) --elvui added a setting for it but its missing some things
+				end
 			end
 		end
 		UF.PostUpdateAura(self, unit, button)
