@@ -348,8 +348,20 @@ E:AddTagInfo('eltruism:raidmarker', ElvUI_EltreumUI.Name, L["Shows raid target m
 
 --Difficulty color for npcs in classic/tbc
 if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-	E:AddTag('eltruismdifficulty', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT PLAYER_TARGET_CHANGED', function(unit, player)
+	E:AddTag('eltruismdifficulty', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT PLAYER_TARGET_CHANGED', function(unit)
 		--classic/tbc enemy difficulty color table
+		local targetlevel = UnitLevel("unit")
+		local playerlevel = UnitLevel("player")
+		local difference = (targetlevel - playerlevel)
+		local printdifference
+		if difference > 5 then
+			printdifference = "5"
+		elseif difference < -9 then
+			printdifference = "-9"
+		else
+			printdifference = tostring(difference)
+		end
+
 		local eltruismdif = {
 			["-9"] = "|cFF808080",
 			["-8"] = "|cFF008000",
@@ -368,21 +380,9 @@ if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			["5"] = "|cFFFF0000",
 		}
 		--make sure its not a player as to not overwrite class colors
-		if UnitIsPlayer("unit") == false then
-			local targetlevel = UnitLevel("target")
-			local playerlevel = UnitLevel("player")
-			local difference = (targetlevel - playerlevel)
-			local printdifference
-			--i dont want to make an infinite table, so just make a case for values beyond it
-			if difference > 5 then
-				printdifference = "5"
-			elseif difference < -9 then
-				printdifference = "-9"
-			else
-				printdifference = tostring(difference)
-			end
+		if not UnitIsPlayer("target") then
 			return (eltruismdif[printdifference])
 		end
 	end)
-	E:AddTagInfo('eltruismdifficulty', ElvUI_EltreumUI.Name, L["Colors NPC enemies names acoording to their difficulty compared to the player"])
+	E:AddTagInfo('eltruismdifficulty', ElvUI_EltreumUI.Name, L["Colors NPC target name acoording to their difficulty compared to the player"])
 end
