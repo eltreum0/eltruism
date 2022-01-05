@@ -350,7 +350,7 @@ E:AddTagInfo('eltruism:raidmarker', ElvUI_EltreumUI.Name, L["Shows raid target m
 if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 	E:AddTag('eltruismdifficulty', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT PLAYER_TARGET_CHANGED', function(unit)
 		--classic/tbc enemy difficulty color table
-		local targetlevel = UnitLevel("unit")
+		local targetlevel = UnitLevel("target")
 		local playerlevel = UnitLevel("player")
 		local difference = (targetlevel - playerlevel)
 		local printdifference
