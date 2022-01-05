@@ -367,7 +367,7 @@ if ElvUI_EltreumUI.Retail then
 		["justifyH"] = "RIGHT",
 		["size"] = 12,
 		["text_format"] = "||cffFFFF00[absorbs]||r ",
-		["xOffset"] = 6,
+		["xOffset"] = 0,
 		["yOffset"] = 15
 		}
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] = {
