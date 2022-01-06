@@ -355,6 +355,8 @@ if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		--calculate the difference
 		local difference = (targetlevel - playerlevel)
 		local printdifference
+		local classification = UnitClassification(unit)
+		--  "worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
 		if difference > 5 then
 			printdifference = "5"
 		elseif difference < -9 then
@@ -383,7 +385,11 @@ if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		--make sure its not a player as to not overwrite class colors
 		if not UnitIsPlayer("unit") then
 			if UnitIsEnemy("player", unit) == true then
-				return (eltruismdif[printdifference])
+				if classification ~= "worldboss" then
+					return (eltruismdif[printdifference])
+				elseif classification == "worldboss" then
+					return ("|cFFFF0000")
+				end
 			end
 		end
 	end)
