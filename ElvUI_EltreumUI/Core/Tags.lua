@@ -352,8 +352,6 @@ if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		--obtain the levels
 		local targetlevel = UnitLevel(unit)
 		local playerlevel = UnitLevel("player")
-
-		local reaction = UnitReaction(unit, "player")
 		--calculate the difference
 		local difference = (targetlevel - playerlevel)
 		local printdifference
@@ -384,7 +382,7 @@ if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		}
 		--make sure its not a player as to not overwrite class colors
 		if not UnitIsPlayer("unit") then
-			if reaction == 4 or reaction == 3 or reaction == 2 or reaction == 1 then
+			if UnitIsEnemy("player", unit) == true then
 				return (eltruismdif[printdifference])
 			end
 		end
