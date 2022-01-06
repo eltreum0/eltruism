@@ -395,3 +395,11 @@ if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 	end)
 	E:AddTagInfo('eltruismdifficulty', ElvUI_EltreumUI.Name, L["Colors NPC name according to their difficulty compared to the player"])
 end
+
+E:AddTag('eltruismtarget', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGET UNIT_SPELLCAST_STOP', function(unit)
+	local targetname = UnitName(unit.."target")
+	if UnitCastingInfo(unit) and targetname then
+		return targetname
+	end
+end)
+E:AddTagInfo('eltruismtarget', ElvUI_EltreumUI.Name, L["Shows Target of Spellcast"])
