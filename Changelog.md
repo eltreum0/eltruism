@@ -1,16 +1,19 @@
 ### 🌌 Next Version 
 **The future is uncertain**
-
+___
+### 2.6.3
 Added options to customize the player castbar spark under Eltruism > Skins\
 Added borders to nameplate power bar\
 Added options to change the colors of the borders\
 Added an option to change the background of the Nameplate Power Bar\
 Added a new tag [eltruism:raidmarker] which will display the raid marker icon\
+Added a new tag [eltruismdifficulty] which will color the enemy npc target according to its difficulty compared to the player's level\
 Updated references to FCT to make it more clear that it's Simpy's ElvUI FCT\
 Updated references to nameplates due to a change in ElvUI code\
 Fixed shadows showing up when chat panels were disabled\
 Fixed some missing shadows in TBC and Classic\
 Fixed Expanded Talents for Season of Mastery\
+Fixed Objective/Quest Tracker position due to Questie (only for new installations of Questie)\
 Fixed an issue where disabling wide nameplate auras would also disable the nameplate glows\
 Fixed an issue where some install options would be disabled when they shouldn't\
 Fixed an issue with nameplate power bar visibility when using Plater instead of ElvUI Nameplates
