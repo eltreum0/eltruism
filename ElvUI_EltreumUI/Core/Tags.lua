@@ -376,7 +376,7 @@ if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			["0"] = "|cFFFFFF00",
 			["1"] = "|cFFFFFF00",
 			["2"] = "|cFFFFFF00",
-			["3"] = "|FFcFFA500",
+			["3"] = "|cFFA500FF",
 			["4"] = "|cFFFFA500",
 			["5"] = "|cFFFF0000",
 		}
