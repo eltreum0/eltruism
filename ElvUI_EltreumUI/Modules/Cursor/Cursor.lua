@@ -91,6 +91,7 @@ function ElvUI_EltreumUI:CastCursor()
 		local gcdthickness = E.db.ElvUI_EltreumUI.cursorgcd.thickness
 		local cursorradius = E.db.ElvUI_EltreumUI.cursorcursor.radius
 		local cursorthickness = E.db.ElvUI_EltreumUI.cursorcursor.thickness
+		local cursorcombattoggle = E.db.ElvUI_EltreumUI.cursor.combat
 		local colorcast
 		local colorgcd
 		local colorcursor
@@ -146,7 +147,7 @@ function ElvUI_EltreumUI:CastCursor()
 				radius = cursorradius,
 				sublayer = 0,
 				thickness = cursorthickness,
-				combat = true,
+				combat = cursorcombattoggle,
 				color = { colorcursor.r, colorcursor.g, colorcursor.b },
 				texture = ring,
 			},
@@ -319,6 +320,10 @@ function ElvUI_EltreumUI:CastCursor()
 					frame:RegisterEvent('PLAYER_REGEN_DISABLED')
 					frame:SetScript("OnEvent", function(self, event) RingSetShown(self,event=='PLAYER_REGEN_DISABLED') end)
 					RingSetShown( frame, _G.InCombatLockdown() )
+				else
+					frame:RegisterEvent('PLAYER_ENTERING_WORLD')
+					frame:SetScript("OnEvent", function(self, event) RingSetShown(self,event=='PLAYER_ENTERING_WORLD') end)
+					RingSetShown( frame, true )
 				end
 			else
 				frame:SetScript("OnEvent", OnEvent or nil)

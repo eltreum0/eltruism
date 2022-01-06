@@ -254,8 +254,17 @@ if ElvUI_EltreumUI.Classic then
 									get = function(info) return E.db.ElvUI_EltreumUI.cursor.enable end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.cursor.enable = value end,
 								},
-								enablecd = {
+								enablecombat = {
 									order = 2,
+									type = 'toggle',
+									name = L["Enable cursor only during combat"],
+									desc = L["Cursor will only show during combat"],
+									width = 'full',
+									get = function(info) return E.db.ElvUI_EltreumUI.cursor.combat end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.cursor.combat = value E:StaticPopup_Show('PRIVATE_RL') end,
+								},
+								enablecd = {
+									order = 3,
 									type = 'toggle',
 									name = L["Enable cooldown tracking"],
 									desc = L["Add a cooldown icon when trying to use skills that are on cooldown, and a cooldown flash when they are ready"],
@@ -264,7 +273,7 @@ if ElvUI_EltreumUI.Classic then
 									set = function(info, value) E.db.ElvUI_EltreumUI.cursor.cooldown = value end,
 								},
 								fixlag = {
-									order = 2,
+									order = 5,
 									type = 'toggle',
 									name = "Attempt to fix Cursor Lag",
 									desc = "Disable Hardware cursor, returning the cursor to how it was before Battle for Azeroth",
@@ -273,7 +282,7 @@ if ElvUI_EltreumUI.Classic then
 									set = function(info, value) E.db.ElvUI_EltreumUI.cursor.fixlag = value end,
 								},
 								header1 = {
-									order = 3,
+									order = 6,
 									type = "description",
 									name = "",
 									width = 'full',

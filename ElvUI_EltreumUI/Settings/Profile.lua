@@ -59,6 +59,7 @@ P.ElvUI_EltreumUI = {
 		size = '-1',
 		cooldown = true,
 		fixlag = false,
+		combat = true,
 	},
 
 	cursorcast = {

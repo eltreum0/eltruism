@@ -4,6 +4,7 @@ ___
 ### 2.6.3
 Added options to customize the player castbar spark under Eltruism > Skins\
 Added borders to nameplate power bar\
+Added an option to show Cursor outside of combat\
 Added options to change the colors of the borders\
 Added an option to change the background of the Nameplate Power Bar\
 Added a new tag [eltruism:raidmarker] which will display the raid marker icon\
