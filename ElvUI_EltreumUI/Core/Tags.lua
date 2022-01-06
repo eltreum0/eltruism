@@ -352,6 +352,8 @@ if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		--obtain the levels
 		local targetlevel = UnitLevel(unit)
 		local playerlevel = UnitLevel("player")
+
+		local reaction = UnitReaction(unit, "player")
 		--calculate the difference
 		local difference = (targetlevel - playerlevel)
 		local printdifference
@@ -376,13 +378,15 @@ if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			["0"] = "|cFFFFFF00",
 			["1"] = "|cFFFFFF00",
 			["2"] = "|cFFFFFF00",
-			["3"] = "|cFFA500FF",
+			["3"] = "|cFFA50000",
 			["4"] = "|cFFFFA500",
 			["5"] = "|cFFFF0000",
 		}
 		--make sure its not a player as to not overwrite class colors
 		if not UnitIsPlayer("unit") then
-			return (eltruismdif[printdifference])
+			if reaction == 4 or reaction == 3 or reaction == 2 or reaction == 1 then
+				return (eltruismdif[printdifference])
+			end
 		end
 	end)
 	E:AddTagInfo('eltruismdifficulty', ElvUI_EltreumUI.Name, L["Colors NPC name according to their difficulty compared to the player"])
