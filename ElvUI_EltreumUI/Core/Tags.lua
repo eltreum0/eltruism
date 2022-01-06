@@ -348,10 +348,11 @@ E:AddTagInfo('eltruism:raidmarker', ElvUI_EltreumUI.Name, L["Shows raid target m
 
 --Difficulty color for npcs in classic/tbc
 if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-	E:AddTag('eltruismdifficulty', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT PLAYER_TARGET_CHANGED', function(unit)
-		--classic/tbc enemy difficulty color table
-		local targetlevel = UnitLevel("target")
+	E:AddTag('eltruismdifficulty', 'UNIT_NAME_UPDATE', function(unit)
+		--obtain the levels
+		local targetlevel = UnitLevel(unit)
 		local playerlevel = UnitLevel("player")
+		--calculate the difference
 		local difference = (targetlevel - playerlevel)
 		local printdifference
 		if difference > 5 then
@@ -361,7 +362,7 @@ if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		else
 			printdifference = tostring(difference)
 		end
-
+		--level difference table based on blizzard's
 		local eltruismdif = {
 			["-9"] = "|cFF808080",
 			["-8"] = "|cFF008000",
@@ -380,9 +381,9 @@ if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			["5"] = "|cFFFF0000",
 		}
 		--make sure its not a player as to not overwrite class colors
-		if not UnitIsPlayer("target") then
+		if not UnitIsPlayer("unit") then
 			return (eltruismdif[printdifference])
 		end
 	end)
-	E:AddTagInfo('eltruismdifficulty', ElvUI_EltreumUI.Name, L["Colors NPC target name acoording to their difficulty compared to the player"])
+	E:AddTagInfo('eltruismdifficulty', ElvUI_EltreumUI.Name, L["Colors NPC name according to their difficulty compared to the player"])
 end
