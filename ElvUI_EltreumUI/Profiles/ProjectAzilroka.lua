@@ -43,6 +43,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["OzCooldowns"]["Enable"] = false
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		PA.db["MovableFrames"]["Enable"] = true
+		--[[
 		PA.db["MovableFrames"]["GhostFrame"]["Permanent"] = false
 		PA.db["MovableFrames"]["WorldStateScoreFrame"]["Permanent"] = false
 		PA.db["MovableFrames"]["GameMenuFrame"]["Permanent"] = false
@@ -130,6 +131,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 		PA.db["MovableFrames"]["EncounterJournal"]["Permanent"] = false
 		PA.db["MovableFrames"]["KeyBindingFrame"]["Permanent"] = false
 		PA.db["MovableFrames"]["HelpFrame"]["Permanent"] = false
+		]]
 		--PA.db["EnhancedFriendsList"] = {}
 		--PA.db["EnhancedFriendsList"] = true
 		--PA.db["EnhancedFriendsList"]["StatusIconPack"] = "Square"
