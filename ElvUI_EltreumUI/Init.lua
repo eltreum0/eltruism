@@ -53,6 +53,8 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:StealthOptions()
 	ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 	ElvUI_EltreumUI:BlizzCombatText()
+	--ElvUI_EltreumUI:EnemyCastTargetNP() --test
+	--ElvUI_EltreumUI:EnemyCastTargetUF() --test
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive()
 		ElvUI_EltreumUI:SkillGlow()
@@ -86,8 +88,8 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 end
 
 function ElvUI_EltreumUI:HidePopups()
-	E:StaticPopup_Hide('INCOMPATIBLE_ADDON') --915 error to be tested
-	E:StaticPopup_Hide('DISABLE_INCOMPATIBLE_ADDON') --915 error to be tested
+	--E:StaticPopup_Hide('INCOMPATIBLE_ADDON') --915 error to be tested
+	--E:StaticPopup_Hide('DISABLE_INCOMPATIBLE_ADDON') --915 error to be tested
 	if E:IsAddOnEnabled("ElvUI_WindTools") then
 		local W = unpack(WindTools)
 		local function WindtoolsCompatHideWhileInstall()
