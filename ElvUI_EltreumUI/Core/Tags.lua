@@ -397,7 +397,7 @@ if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 end
 
 
-local classcolorsescape = {
+local classcolorcast = {
 	['DEATHKNIGHT']	= "FFC41E3A",
 	['DEMONHUNTER']	= "FFA330C9",
 	['DRUID'] = "FFFF7C0A",
@@ -415,7 +415,7 @@ local classcolorsescape = {
 E:AddTag('eltruismtargetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGET UNIT_SPELLCAST_STOP', function(unit)
 	local targetname = UnitName(unit.."target")
 	local _ , classes = UnitClass(unit.."target")
-	local color = classcolorsescape[classes]
+	local color = classcolorcast[classes]
 	if UnitCastingInfo(unit) and targetname then
 		if UnitIsPlayer(unit.."target") then
 			return ("|c"..color..targetname.."|r")
@@ -424,4 +424,4 @@ E:AddTag('eltruismtargetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGE
 		end
 	end
 end)
-E:AddTagInfo('eltruismtargetcast', ElvUI_EltreumUI.Name, L["Shows Target of Spellcast"])
+E:AddTagInfo('eltruismtargetcast', ElvUI_EltreumUI.Name, L["Shows Target of Spellcast, does not work for Mouseover casts"])
