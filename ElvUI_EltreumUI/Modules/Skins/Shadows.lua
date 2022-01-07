@@ -538,13 +538,27 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			local PlayerCastbar = CreateFrame("Frame", "EltruismPlayerCastBarShadowFrame")
-			local PlayerCastbarx = E.db.unitframe.units.player.castbar.width + E.db.unitframe.units.player.castbar.iconSize -3
-			local PlayerCastbary = E.db.unitframe.units.player.castbar.height -1
+			local isattached = E.db.unitframe.units.player.castbar.iconAttached
+			local PlayerCastbarx
+			local PlayerCastbary
+			if isattached == false then
+				PlayerCastbarx = (E.db.unitframe.units.player.castbar.width + E.db.unitframe.units.player.castbar.iconSize - 5)
+				PlayerCastbary = (E.db.unitframe.units.player.castbar.height - 3)
+			elseif isattached == true then
+				PlayerCastbarx = (E.db.unitframe.units.player.castbar.width - 5)
+				PlayerCastbary = (E.db.unitframe.units.player.castbar.height - 3)
+			end
 			PlayerCastbar:SetSize(PlayerCastbarx, PlayerCastbary)
 			PlayerCastbar:SetParent(_G.ElvUF_Player_CastBar)
 			if not (self.PlayerCastBarIsSkinned) then
 				PlayerCastbar.shadow = PlayerCastbar:CreateShadow(nil, true)
-				PlayerCastbar:SetPoint("CENTER", _G.ElvUF_Player_CastBar, "CENTER", -14, 0)
+				--if isattached == false then
+					PlayerCastbar:SetPoint("CENTER", _G['ElvUF_Player_CastBar'], "CENTER", -(PlayerCastbary/2), 0)
+					--PlayerCastbar:SetPoint("CENTER", _G['ElvUF_Player_CastBar'], "CENTER", -14, 0)
+				--elseif isattached == true then
+				--	PlayerCastbar:SetPoint("CENTER", _G['ElvUF_Player_CastBar'], "CENTER", -(PlayerCastbary/2), 0)
+					--PlayerCastbar:SetPoint("CENTER", _G['ElvUF_Player_CastBar'], "CENTER", -25, 0)
+				--end
 				PlayerCastbar:Show()
 
 				self.PlayerCastBarIsSkinned = true
