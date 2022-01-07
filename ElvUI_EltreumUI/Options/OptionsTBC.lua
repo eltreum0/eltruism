@@ -36,8 +36,10 @@ local THANKYOU = {
 }
 
 local SUPPORTER = {
-	'|cffB50909Morthart|r',
+	'|cffB50909Artan|r',
 	'|cffB50909Dreandor|r',
+	'|cffB50909Morthart|r',
+	'|cffB50909Nekator|r',
 }
 
 -- SortList
@@ -3252,7 +3254,7 @@ if ElvUI_EltreumUI.TBC then
 						explainer1 = {
 							order = 5,
 							type = "group",
-							name = 'WeakAuras',
+							name = 'How to use the Anchors',
 							inline = true,
 							args = {
 								addaspaceher544e = {
@@ -3263,55 +3265,14 @@ if ElvUI_EltreumUI.TBC then
 								explainer7 = {
 									order = 87,
 									type = "description",
-									name = L["My WeakAuras are available here, but are not focused on one class. Consider them more like upcoming features."],
+									name = L["Open WeakAuras, go to your group Weakauras and in Group change Position Settings > Anchored To > Select Frame > EltruismWA or EltruismConsumables"],
 								},
-								addaspacehere = {
-									order = 88,
-									type = "description",
-									name = '',
-								},
-								wago = {
-									order = 89,
-									type = 'input',
-									width = 'normal',
-									name = L["All weakauras"],
-									get = function() return 'wago.io/p/Eltreum' end,
-								},
-								addsomegap = {
-									order = 90,
+								demopic = {
+									order = 98,
 									type = "description",
 									name = "",
-								},
-								nameplatepowerbar = {
-									order = 91,
-									type = 'input',
 									width = 'full',
-									name = L["Nameplate Power Bar"],
-									get = function() return 'https://wago.io/HJ7YjUVgo' end,
-								},
-								addsomegap2 = {
-									order = 92,
-									type = "description",
-									name = "",
-								},
-								bossnameplate = {
-									order = 93,
-									type = 'input',
-									width = 'full',
-									name = L["Boss nameplate at base"],
-									get = function() return 'https://wago.io/M7yrCgMnE' end,
-								},
-								addsomegap3 = {
-									order = 94,
-									type = "description",
-									name = "",
-								},
-								executenameplate = {
-									order = 95,
-									type = 'input',
-									width = 'full',
-									name = L["Executes next to nameplates"],
-									get = function() return 'https://wago.io/afJKwFwAX' end,
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\WADemo', 512, 1024 end,
 								},
 							},
 						},

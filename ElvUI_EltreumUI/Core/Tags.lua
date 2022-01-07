@@ -396,7 +396,6 @@ if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 	E:AddTagInfo('eltruismdifficulty', ElvUI_EltreumUI.Name, L["Colors NPC name according to their difficulty compared to the player"])
 end
 
-
 local classcolorcast = {
 	['DEATHKNIGHT']	= "FFC41E3A",
 	['DEMONHUNTER']	= "FFA330C9",
@@ -411,7 +410,6 @@ local classcolorcast = {
 	['WARLOCK'] = "FF8788EE",
 	['WARRIOR'] = "FFC69B6D",
 }
-
 E:AddTag('eltruismtargetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGET UNIT_SPELLCAST_STOP', function(unit)
 	local targetname = UnitName(unit.."target")
 	local _ , classes = UnitClass(unit.."target")

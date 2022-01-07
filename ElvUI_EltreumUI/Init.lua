@@ -8,7 +8,6 @@ local myclass = E.myclass
 local L = E.Libs.ACL:GetLocale("ElvUI", E.global.general.locale)
 local SetCVar = _G.SetCVar
 local GetAddOnMetadata = _G.GetAddOnMetadata
---local IsAddOnLoaded = _G.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 
 Engine[1] = ElvUI_EltreumUI
@@ -53,8 +52,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:StealthOptions()
 	ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 	ElvUI_EltreumUI:BlizzCombatText()
-	--ElvUI_EltreumUI:EnemyCastTargetNP() --test
-	--ElvUI_EltreumUI:EnemyCastTargetUF() --test
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive()
 		ElvUI_EltreumUI:SkillGlow()
@@ -135,7 +132,6 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED")
 	ElvUI_EltreumUI:RegisterEvent("UNIT_NAME_UPDATE")
-	--ElvUI_EltreumUI:RegisterEvent("RAID_TARGET_UPDATE")
 	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE')
 	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', 0.02)

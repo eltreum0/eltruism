@@ -9,10 +9,11 @@ Added options to change the colors of the borders\
 Added an option to change the background of the Nameplate Power Bar\
 Added a new tag [eltruism:raidmarker] which will display the raid marker icon\
 Added a new tag [eltruismdifficulty] which will color the enemy npc target according to its difficulty compared to the player's level\
-Added a new tag [eltruismtargetcast] which will show the target of an enemy spellcast, but only for non instant casts\
+Added a new tag [eltruismtargetcast] which will show the target of an enemy spellcast for non mousever and non instant casts\
 Updated references to FCT to make it more clear that it's Simpy's ElvUI FCT\
 Updated references to nameplates due to a change in ElvUI code\
 Fixed shadows showing up when chat panels were disabled\
+Fixed player castbar shadows being mismatched in some scenarios\
 Fixed some missing shadows in TBC and Classic\
 Fixed Expanded Talents for Season of Mastery\
 Fixed Objective/Quest Tracker position due to Questie (only for new installations of Questie)\
