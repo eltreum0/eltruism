@@ -396,10 +396,32 @@ if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 	E:AddTagInfo('eltruismdifficulty', ElvUI_EltreumUI.Name, L["Colors NPC name according to their difficulty compared to the player"])
 end
 
-E:AddTag('eltruismtarget', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGET UNIT_SPELLCAST_STOP', function(unit)
+
+local classcolorsescape = {
+	['DEATHKNIGHT']	= "FFC41E3A",
+	['DEMONHUNTER']	= "FFA330C9",
+	['DRUID'] = "FFFF7C0A",
+	['HUNTER'] = "FFAAD372",
+	['MAGE'] = "FF3FC7EB",
+	['MONK'] = "FF00FF98",
+	['PALADIN']	= "FFF48CBA",
+	['PRIEST'] = "FFFFFFFF",
+	['ROGUE'] = "FFFFF468",
+	['SHAMAN'] = "FF0070DD",
+	['WARLOCK'] = "FF8788EE",
+	['WARRIOR'] = "FFC69B6D",
+}
+
+E:AddTag('eltruismtargetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGET UNIT_SPELLCAST_STOP', function(unit)
 	local targetname = UnitName(unit.."target")
+	local _ , classes = UnitClass(unit.."target")
+	local color = classcolorsescape[classes]
 	if UnitCastingInfo(unit) and targetname then
-		return targetname
+		if UnitIsPlayer(unit.."target") then
+			return ("|c"..color..targetname.."|r")
+		else
+			return targetname
+		end
 	end
 end)
-E:AddTagInfo('eltruismtarget', ElvUI_EltreumUI.Name, L["Shows Target of Spellcast"])
+E:AddTagInfo('eltruismtargetcast', ElvUI_EltreumUI.Name, L["Shows Target of Spellcast"])
