@@ -42,12 +42,11 @@ end
 
 -- translate text to coordinates that are then put into the Waypoint system, inspired by the Wayfinder weakaura by Khanibrawl
 function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
-	-- still learning gsub and string matching, most of this was done with the help of stack overflow and lua-users.org
-	-- need to figure out how to prevent errors when not using the patterns
+	-- most of this was done with the help of posts on stack overflow and lua-users.org
 	if ElvUI_EltreumUI.Retail then
 		if E.db.ElvUI_EltreumUI.waytext.enable then
 			-- translate the message into numbers
-			local translatemsg = message:gsub("(%d)[%.,] (%d)", "%1 %2"):gsub("(%d)" .. (tonumber("1.1") and "," or ".") .. "(%d)", "%1" .. (tonumber("1.1") and "." or ",") .. "%2")
+			local translatemsg = message:gsub("(%d)[%.,] (%d)", "%1 %2"):gsub("(%d)"..(tonumber("1.1") and "," or ".").."(%d)", "%1"..(tonumber("1.1") and "." or ",").."%2")
 			local coords = {}
 			--put the numbers into the table
 			for pattern in translatemsg:gmatch("%S+") do
@@ -97,11 +96,28 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 					elseif x == nil or y == nil then
 						ElvUI_EltreumUI:Print(L["Area does not support waypoints"])
 					else
-						C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(C_Map.GetBestMapForUnit('player'),x,y))
-						if C_Map.GetBestMapForUnit('player') == nil then
-							ElvUI_EltreumUI:Print(L["Area does not support waypoints"])
+						--print ("X: "..x.." and Y: "..y)
+						local xlength, ylength
+						if x > 0 and x < 1 then
+							xlength = true
 						else
-							ElvUI_EltreumUI:Print(C_Map.GetUserWaypointHyperlink())
+							xlength = false
+						end
+						if y > 0 and y < 1 then
+							ylength = true
+						else
+							ylength = false
+						end
+
+						if xlength == false or ylength == false then
+							ElvUI_EltreumUI:Print(L["Unsupported format or Area does not support waypoints"])
+						else
+							C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(C_Map.GetBestMapForUnit('player'),x,y))
+							if C_Map.GetBestMapForUnit('player') == nil then
+								ElvUI_EltreumUI:Print(L["Area does not support waypoints"])
+							else
+								ElvUI_EltreumUI:Print(C_Map.GetUserWaypointHyperlink())
+							end
 						end
 					end
 				end
