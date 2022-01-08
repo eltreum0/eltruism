@@ -14,10 +14,12 @@ Updated references to FCT to make it more clear that it's Simpy's ElvUI FCT\
 Updated references to nameplates due to a change in ElvUI code\
 Fixed shadows showing up when chat panels were disabled\
 Fixed player castbar shadows being mismatched in some scenarios\
-Fixed some missing shadows in TBC and Classic\
+Fixed some missing shadows\
+Fixed Target of Target Height on Healer Profile\
 Fixed Expanded Talents for Season of Mastery\
 Fixed Objective/Quest Tracker position due to Questie (only for new installations of Questie)\
 Fixed an issue where disabling wide nameplate auras would also disable the nameplate glows\
+Fixed an issue when using certain combinations of characters with the /way command could cause errors\
 Fixed an issue where some install options would be disabled when they shouldn't\
 Fixed an issue with nameplate power bar visibility when using Plater instead of ElvUI Nameplates
 ___
