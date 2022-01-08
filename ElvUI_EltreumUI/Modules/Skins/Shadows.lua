@@ -161,11 +161,30 @@ function ElvUI_EltreumUI:Shadows()
 					_G.CovenantMissionFrame:CreateShadow()
 				end
 			end)
-
 			local GarrisonLandingPage = _G.GarrisonLandingPage
 			GarrisonLandingPage:HookScript("OnShow", function()
 				if not _G.GarrisonLandingPage.shadow then
 					_G.GarrisonLandingPage:CreateShadow()
+				end
+			end)
+
+			if not IsAddOnLoaded("Blizzard_CovenantSanctum") then
+				LoadAddOn("Blizzard_CovenantSanctum")
+			end
+			local CovenantSanctumFrame = _G.CovenantSanctumFrame
+			CovenantSanctumFrame:HookScript("OnShow", function()
+				if not _G.CovenantSanctumFrame.shadow then
+					_G.CovenantSanctumFrame:CreateShadow()
+				end
+			end)
+
+			if not IsAddOnLoaded("Blizzard_Soulbinds") then
+				LoadAddOn("Blizzard_Soulbinds")
+			end
+			local SoulbindViewer = _G.SoulbindViewer
+			SoulbindViewer:HookScript("OnShow", function()
+				if not _G.SoulbindViewer.shadow then
+					_G.SoulbindViewer:CreateShadow()
 				end
 			end)
 
@@ -191,6 +210,16 @@ function ElvUI_EltreumUI:Shadows()
 			PVPUIFrame:HookScript("OnShow", function()
 				if not _G.PVPUIFrame.shadow then
 					_G.PVPUIFrame:CreateShadow()
+				end
+			end)
+
+			if not IsAddOnLoaded("Blizzard_VoidStorageUI") then
+				LoadAddOn("Blizzard_VoidStorageUI")
+			end
+			local VoidStorageFrame = _G.VoidStorageFrame
+			VoidStorageFrame:HookScript("OnShow", function()
+				if not _G.VoidStorageFrame.shadow then
+					_G.VoidStorageFrame:CreateShadow()
 				end
 			end)
 
