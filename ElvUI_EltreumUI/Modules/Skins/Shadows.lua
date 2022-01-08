@@ -18,15 +18,10 @@ function ElvUI_EltreumUI:Shadows()
 			_G.ReadyCheckFrame,
 			_G.StackSplitFrame,
 			_G.ChatConfigFrame,
-			_G.MailFrame,
 			_G.ShoppingTooltip1,
 			_G.ShoppingTooltip2,
 			_G.VideoOptionsFrame,
 			_G.InterfaceOptionsFrame,
-			_G.FriendsFrame,
-			_G.SpellBookFrame,
-			_G.WorldMapFrame,
-			_G.MerchantFrame,
 		}
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then
@@ -39,8 +34,14 @@ function ElvUI_EltreumUI:Shadows()
 		end
 		local MacroFrame = _G.MacroFrame
 		MacroFrame:HookScript("OnShow", function()
-			if not _G.MacroFrame.shadow then
-				_G.MacroFrame:CreateShadow()
+			if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
+				if not _G.MacroFrame.shadow then
+					_G.MacroFrame:CreateShadow()
+				end
+			elseif ElvUI_EltreumUI.Classic then
+				if not _G.MacroFrame.backdrop.shadow then
+					_G.MacroFrame.backdrop:CreateShadow()
+				end
 			end
 		end)
 
@@ -85,6 +86,7 @@ function ElvUI_EltreumUI:Shadows()
 			self.minimapIsSkinned = true
 		end
 
+------------------------------------------------------------------------------------------------------version specific
 		if ElvUI_EltreumUI.Retail then
 
 			--retail frames
@@ -99,6 +101,12 @@ function ElvUI_EltreumUI:Shadows()
 				_G.ZoneAbilityFrame,
 				_G.ReputationFrame,
 				_G.TokenFrame,
+				_G.SpellBookFrame,
+				_G.FriendsFrame,
+				_G.MerchantFrame,
+				_G.MailFrame,
+				_G.HelpFrame.backdrop,
+				_G.WorldMapFrame.backdrop,
 			}
 			for _, frame in pairs(retailframes) do
 				if frame and not frame.shadow then
@@ -197,18 +205,38 @@ function ElvUI_EltreumUI:Shadows()
 		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			--tbc/classic frames
 			local classicframes = {
-				_G.QuestLogFrame,
-				_G.CharacterFrame,
+				_G.HelpFrame,
+				_G.QuestLogFrame.backdrop,
+				_G.CharacterFrame.backdrop,
+				_G.SpellBookFrame.backdrop,
+				_G.FriendsFrame.backdrop,
+				_G.MailFrame.backdrop,
+				_G.MerchantFrame.backdrop,
+				_G.WorldMapFrame,
 			}
 			for _, frame in pairs(classicframes) do
 				if frame and not frame.shadow then
 					frame:CreateShadow()
 				end
 			end
+
+			if ElvUI_EltreumUI.TBC then --tbc has this frame, classic doesnt
+				if not _G.LFGParentFrame.backdrop.shadow then
+					_G.LFGParentFrame.backdrop:CreateShadow()
+				end
+			end
 		end
 ------------------------------------------------------------------------------------------------------elvui frames
-		if not _G['ElvLootFrame'].shadow then
-			_G['ElvLootFrame']:CreateShadow()
+		local GeneralElvUIFrames = {
+			_G['ElvLootFrame'],
+			_G['ElvUI_ReputationBar'],
+			_G['ElvUI_ExperienceBar'],
+			_G['ElvUI_ThreatBar'],
+		}
+		for _, frame in pairs(GeneralElvUIFrames) do
+			if frame and not frame.shadow then
+				frame:CreateShadow()
+			end
 		end
 
 		--stances
@@ -225,6 +253,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
+		--datatexts
 		local DT = E:GetModule('DataTexts')
 		if DT.tooltip then
 			if not DT.tooltip.shadow then
@@ -232,8 +261,8 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
+		--action bars
 		if E.private.actionbar.enable then
-			--action bars, from borders
 			for i = 1, 10 do
 				local actionbars = {_G['ElvUI_Bar'..i]}
 				for _, frame in pairs(actionbars) do
@@ -250,7 +279,6 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
-			--pets
 			for i = 1, 12 do
 				local button = _G['PetActionButton'..i]
 				if not button then
@@ -265,6 +293,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
+		--unitframes
 		if E.private.unitframe.enable then
 			if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 				if not _G['ElvUF_Focus_HealthBar'].shadow then
@@ -304,7 +333,6 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
-			--boss
 			for i = 1, 5 do
 				local bossmembers = {_G['ElvUF_Boss'..i]}
 				for _, frame in pairs(bossmembers) do
@@ -394,6 +422,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
+		--bags
 		if E.private.bags.enable then
 			if not _G.ElvUI_ContainerFrame.shadow then
 				_G['ElvUI_ContainerFrame']:CreateShadow()

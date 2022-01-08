@@ -187,6 +187,15 @@ function ElvUI_EltreumUI:UNIT_POWER_UPDATE(event,unit)
 	end
 end
 
+function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
+	local _, eventType, _, _, _, _, _, _, _, _, _ = CombatLogGetCurrentEventInfo()
+	if eventType ~= "UNIT_DIED" then
+		return
+	elseif eventType == "UNIT_DIED" then
+		ElvUI_EltreumUI:RaidDeath()
+	end
+end
+
 function ElvUI_EltreumUI:UNIT_NAME_UPDATE(event,unit)
 	if unit and unit ~= 'player' then
 		return
@@ -280,15 +289,6 @@ end
 
 function ElvUI_EltreumUI:LOOT_OPENED()
 	ElvUI_EltreumUI:LootText()
-end
-
-function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
-	local _, eventType, _, _, _, _, _, _, _, _, _ = CombatLogGetCurrentEventInfo()
-	if eventType ~= "UNIT_DIED" then
-		return
-	elseif eventType == "UNIT_DIED" then
-		ElvUI_EltreumUI:RaidDeath()
-	end
 end
 
 function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
