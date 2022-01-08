@@ -144,7 +144,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		end
 	elseif E.private.ElvUI_EltreumUI.install_version < "2.4.6" then
 		if ElvUI_EltreumUI.Retail then
-			E.db["sle"]["loot"]["looticons"]["enable"] = false
+			--E.db["sle"]["loot"]["looticons"]["enable"] = false
 			E.db["sle"]["shadows"]["actionbars"]["bar1"]["buttons"] = false
 			E.db["sle"]["shadows"]["actionbars"]["bar10"]["buttons"] = false
 			E.db["sle"]["shadows"]["actionbars"]["bar2"]["buttons"] = false
