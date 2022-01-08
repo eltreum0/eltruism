@@ -49,9 +49,6 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 								button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
 							end
 							local _, g, b, a = button.cd.timer.text:GetTextColor()
-							--local r = math.random(1,10)
-							--print(r)
-							--print(g.." green and "..b.." blue")
 							if E.db.ElvUI_EltreumUI.widenameplate.npglow then
 								if (g == 0 or b == 0) and a > 0.5 then
 									LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
@@ -82,12 +79,6 @@ end
 
 function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 	if E.db.ElvUI_EltreumUI.widenameplate.enable then
-		--[[if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-			if not E.private.ElvUI_EltreumUI.nameplatepower.adjust then
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
-			end
-		end]]
 		if button and button.spellID then
 			if not string.find(unit, "nameplate") then
 				return

@@ -108,7 +108,6 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 						else
 							ylength = false
 						end
-
 						if xlength == false or ylength == false then
 							ElvUI_EltreumUI:Print(L["Unsupported format or Area does not support waypoints"])
 						else

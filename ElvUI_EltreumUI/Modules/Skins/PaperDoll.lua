@@ -69,16 +69,16 @@ end
 function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-					_G.CharacterNameText:ClearAllPoints()
-					_G.CharacterNameText:SetPoint('TOP', _G.CharacterModelFrame, 0, 50)
-					_G.CharacterNameText:SetParent(_G.CharacterFrame)
-					_G.CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
-					_G.CharacterNameText:SetTextColor(R, G, B)
-					_G.CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
-					_G.CharacterNameText:SetShadowOffset(2, -1)
+			_G.CharacterNameText:ClearAllPoints()
+			_G.CharacterNameText:SetPoint('TOP', _G.CharacterModelFrame, 0, 50)
+			_G.CharacterNameText:SetParent(_G.CharacterFrame)
+			_G.CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
+			_G.CharacterNameText:SetTextColor(R, G, B)
+			_G.CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
+			_G.CharacterNameText:SetShadowOffset(2, -1)
 
-					_G.CharacterLevelText:ClearAllPoints()
-					_G.CharacterLevelText:SetPoint('TOP', _G.CharacterNameText, 'BOTTOM', 0, -2)
+			_G.CharacterLevelText:ClearAllPoints()
+			_G.CharacterLevelText:SetPoint('TOP', _G.CharacterNameText, 'BOTTOM', 0, -2)
 		end
 
 		if (not IsAddOnLoaded("ElvUI_SLE")) then
@@ -179,26 +179,6 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 			end)
 
 		end
-
-		--[[if ElvUI_EltreumUI.Retail then
-			--classFrame:Hide()
-
-			if ElvUI_EltreumUI.Retail then
-				--print(gapretail)
-				if not IsAddOnLoaded("ElvUI_SLE") then
-					CharacterLevelText:SetPoint("TOPLEFT", "PaperDollFrame", 0 , - 30)
-				end
-				if gapretail <= 20 then
-					classFrame:SetPoint("RIGHT", "CharacterLevelText", -15, 0)
-				elseif gapretail > 20 and gapretail <=30 then
-					classFrame:SetPoint("RIGHT", "CharacterLevelText", -15, 0)
-				elseif gapretail > 30 and gapretail < 40 then
-					classFrame:SetPoint("RIGHT", "CharacterLevelText", (0-gapretail)/2, 0)
-				elseif gapretail >= 40 then
-					classFrame:SetPoint("RIGHT", "CharacterLevelText", (0-gapretail), 0)
-				end
-			end
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then]]--
 
 		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
 			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))

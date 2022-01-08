@@ -107,8 +107,6 @@ EltruismGlowPreview:SetFrameStrata("DIALOG")
 local EltruismGlowTexture = EltruismGlowPreview:CreateTexture()
 EltruismGlowPreview:Hide()
 function ElvUI_EltreumUI:PreviewGlow()
-	--local _, _, glowicontexture = GetSpellInfo(19750)
-	--GlowTexture:SetTexture(glowicontexture)
 	EltruismGlowTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\GlowPreview.tga")
 	EltruismGlowTexture:SetAllPoints(EltruismGlowPreview)
 	EltruismGlowPreview:SetMovable(true)
@@ -128,7 +126,6 @@ function ElvUI_EltreumUI:PreviewGlow()
 		skillglowcolor = {r, g, b, 1}
 	end
 	if EltruismGlowPreview:IsShown() then
-		--LCG.PixelGlow_Stop(ElvUI_Bar1Button1)
 		LCG.PixelGlow_Stop(EltruismGlowPreview)
 		LCG.AutoCastGlow_Stop(EltruismGlowPreview)
 		LCG.ButtonGlow_Stop(EltruismGlowPreview)

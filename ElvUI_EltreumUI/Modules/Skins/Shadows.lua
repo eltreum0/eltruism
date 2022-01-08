@@ -195,7 +195,6 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-
 			--tbc/classic frames
 			local classicframes = {
 				_G.QuestLogFrame,
@@ -206,41 +205,6 @@ function ElvUI_EltreumUI:Shadows()
 					frame:CreateShadow()
 				end
 			end
-			--[[
-				if _G.FriendsFrame.backdrop then
-					if not _G.FriendsFrame.backdrop.shadow then
-						_G.FriendsFrame.backdrop:CreateShadow()
-					end
-				end
-
-				if _G.QuestLogFrame.backdrop then
-					if not _G.QuestLogFrame.backdrop.shadow then
-						_G.QuestLogFrame.backdrop:CreateShadow()
-					end
-				end
-
-				if not _G.WorldMapFrame.shadow then
-					_G.WorldMapFrame:CreateShadow()
-				end
-
-				if _G.CharacterFrame.backdrop then
-					if not _G.CharacterFrame.backdrop.shadow then
-						_G.CharacterFrame.backdrop:CreateShadow()
-					end
-				end
-
-				if _G.SpellBookFrame.backdrop then
-					if not _G.SpellBookFrame.backdrop.shadow then
-						_G.SpellBookFrame.backdrop:CreateShadow()
-					end
-				end
-
-				if _G.FriendsFrame.backdrop then
-					if not _G.FriendsFrame.backdrop.shadow then
-						_G.FriendsFrame.backdrop:CreateShadow()
-					end
-				end
-			]]
 		end
 ------------------------------------------------------------------------------------------------------elvui frames
 		if not _G['ElvLootFrame'].shadow then

@@ -55,7 +55,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive()
 		ElvUI_EltreumUI:SkillGlow()
-		ElvUI_EltreumUI:EltrusimHideTalkingHead()
+		ElvUI_EltreumUI:EltruismHideTalkingHead()
 		ElvUI_EltreumUI:GetSpec()
 		ElvUI_EltreumUI:SkinLevelUp()
 		ElvUI_EltreumUI:ArenaQuest()
@@ -65,12 +65,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		if myclass == 'HUNTER' then
 			ElvUI_EltreumUI:ExpandedStable()
 		end
-	end
-	if ElvUI_EltreumUI.Classic then
-		ElvUI_EltreumUI:DynamicClassicDatatext()
-		ElvUI_EltreumUI:ExpandedTalents()
-	end
-	if ElvUI_EltreumUI.TBC then
+	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		ElvUI_EltreumUI:DynamicClassicDatatext()
 		ElvUI_EltreumUI:ExpandedTalents()
 		ElvUI_EltreumUI:ArenaUnitframes()
@@ -120,19 +115,17 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
 	ElvUI_EltreumUI:RegisterEvent('UNIT_AURA')
-	--power bar
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED')
+	ElvUI_EltreumUI:RegisterEvent("UNIT_NAME_UPDATE")
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED') --for power bar
 	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_FREQUENT') --power update real time
 	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_UPDATE') --power type changes
 	ElvUI_EltreumUI:RegisterEvent("UNIT_MODEL_CHANGED") --druid things
-	--LootText things
-	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_LOOT")
-	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_MONEY")
-	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_CURRENCY")
-	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
-	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED")
-	ElvUI_EltreumUI:RegisterEvent("UNIT_NAME_UPDATE")
-	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE')
+	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_LOOT") --LootText things
+	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_MONEY") --LootText things
+	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_CURRENCY") --LootText things
+	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN") --LootText things
+	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED") --LootText things
+	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE') --LootText things
 	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', 0.02)
 	SetCVar('nameplateOtherTopInset', 0.1)
@@ -303,8 +296,11 @@ function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
 end
 
 function ElvUI_EltreumUI:GOSSIP_SHOW()
-	if myclass == 'ROGUE' then
-		ElvUI_EltreumUI:RogueAutoOpen()
+	if ElvUI_EltreumUI.Retail then
+		if myclass == 'ROGUE' then
+			--ElvUI_EltreumUI:Print('youre a rogue')
+			ElvUI_EltreumUI:RogueAutoOpen()
+		end
 	end
 end
 

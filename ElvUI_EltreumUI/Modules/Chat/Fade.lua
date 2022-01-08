@@ -140,20 +140,14 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 
 		--Left chat and activity hide
 		LeftChatPanel:SetScript("OnEvent", function(_, event)
-			--print(E.db.ElvUI_EltreumUI.chat.leftcombathide)
-			--print(E.db.ElvUI_EltreumUI.chat.leftfader)
-			--print(E.db.ElvUI_EltreumUI.chat.rightcombathide)
-			--print(E.db.ElvUI_EltreumUI.chat.rightfader)
 			local lalpha = LeftChatPanel:GetAlpha()
 			if event == "PLAYER_REGEN_DISABLED" then
-				--print("combat startl")
 				if E.db.ElvUI_EltreumUI.chat.leftcombathide then
 					if lalpha == 1 then
 						UIFrameFadeOut(LeftChatPanel, 0.5, 1, 0)
 					end
 				end
 			elseif event == "PLAYER_REGEN_ENABLED" then
-				--print("combat endsl")
 				if E.db.ElvUI_EltreumUI.chat.leftcombathide then
 					if lalpha == 0 then
 						UIFrameFadeIn(LeftChatPanel, 0.5, 0, 1)
@@ -188,14 +182,12 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 		RightChatPanel:SetScript("OnEvent", function(_, event)
 			local ralpha = RightChatPanel:GetAlpha()
 			if event == "PLAYER_REGEN_DISABLED" then
-				--print("combat startR")
 				if E.db.ElvUI_EltreumUI.chat.rightcombathide then
 					if ralpha == 1 then
 						UIFrameFadeOut(RightChatPanel, 0.5, 1, 0)
 					end
 				end
 			elseif event == "PLAYER_REGEN_ENABLED" then
-				--print("combat endsR")
 				if E.db.ElvUI_EltreumUI.chat.rightcombathide then
 					if ralpha == 0 then
 						UIFrameFadeIn(RightChatPanel, 0.5, 0, 1)

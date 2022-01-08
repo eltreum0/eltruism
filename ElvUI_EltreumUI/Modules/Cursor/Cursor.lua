@@ -11,7 +11,7 @@ local GetCursorPosition = _G.GetCursorPosition
 local next, unpack, floor, cos, sin, max, min = _G.next, _G.unpack, _G.floor, _G.cos, _G.sin, _G.max, _G.min
 local isRetail = _G.select(4, _G.GetBuildInfo())>=30000
 --create frame
-local cursorframe = _G.CreateFrame("Frame", "EltruismCursor") --, _G.UIParent, "UIDropDownMenuTemplate")
+local cursorframe = _G.CreateFrame("Frame", "EltruismCursor")
 
 function ElvUI_EltreumUI:CursorInit()
 	ElvUI_EltreumUI:CastCursor()
@@ -83,7 +83,6 @@ function ElvUI_EltreumUI:CastCursor()
 			SetCVar("HardwareCursor", 0) --fix the cursor lag
 		end
 
-
 		local ring = E.db.ElvUI_EltreumUI.cursor.ring
 		local castradius = E.db.ElvUI_EltreumUI.cursorcast.radius
 		local castthickness = E.db.ElvUI_EltreumUI.cursorcast.thickness
@@ -126,7 +125,6 @@ function ElvUI_EltreumUI:CastCursor()
 				b = E.db.ElvUI_EltreumUI.cursorcursor.b
 			}
 		end
-
 
 		local Defaults = {
 			cast = {
@@ -332,8 +330,8 @@ function ElvUI_EltreumUI:CastCursor()
 			end
 			return frame
 		end
-		-- Casting/Channeling Ring
 
+		-- Casting/Channeling Ring
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_DELAYED", "player")
 		function Cast:UNIT_SPELLCAST_START(event, unit)
@@ -382,8 +380,8 @@ function ElvUI_EltreumUI:CastCursor()
 			end
 		end
 		Cast.UNIT_SPELLCAST_CHANNEL_UPDATE = Cast.UNIT_SPELLCAST_CHANNEL_START
-		-- GCD Ring
 
+		-- GCD Ring
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
 		function GCD:UNIT_SPELLCAST_START(event, unit, _, spellID)
@@ -411,10 +409,8 @@ function ElvUI_EltreumUI:CastCursor()
 		GCD.UNIT_SPELLCAST_INTERRUPTED = GCD.UNIT_SPELLCAST_STOP
 
 		-- Cursor Ring
-
 		Cursor.IsCursor = true
 		Cursor:Hide()
-
 		-- Run
 		--this is kinda of a roundabout way of getting this to working here
 		cursorframe:RegisterEvent("PLAYER_STARTED_MOVING")

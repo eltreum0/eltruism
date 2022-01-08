@@ -133,42 +133,39 @@ if ElvUI_EltreumUI.TBC then
 		E.db["databars"]["colors"]["rested"]["a"] = 0.20000004768372
 		E.db["databars"]["customTexture"] = true
 
-
-
-
-
 		--[[
-		E.db["databars"]["experience"]["font"] = "Kimberley"
-		E.db["databars"]["experience"]["fontOutline"] = "THICKOUTLINE"
-		if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160" then
-			E.db["databars"]["experience"]["height"] = 203
-			E.db["databars"]["reputation"]["height"] = 203
-		elseif GetCVar('gxFullscreenResolution') == '2560x1440' or GetCVar('gxWindowedResolution') == "2560x1440" then
-			E.db["databars"]["experience"]["height"] = 204
-			E.db["databars"]["reputation"]["height"] = 204
-		elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080" then
-			E.db["databars"]["experience"]["height"] = 204
-			E.db["databars"]["reputation"]["height"] = 204
-		elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto" then
-			E.db["databars"]["experience"]["height"] = 204
-			E.db["databars"]["reputation"]["height"] = 204
-		else
-			E.db["databars"]["experience"]["height"] = 204
-			E.db["databars"]["reputation"]["height"] = 204
-		end
-		E.db["databars"]["experience"]["hideInCombat"] = true
-		E.db["databars"]["experience"]["mouseover"] = false
-		E.db["databars"]["experience"]["questCompletedOnly"] = true
-		E.db["databars"]["experience"]["questCurrentZoneOnly"] = true
-		E.db["databars"]["experience"]["questTrackedOnly"] = true
-		E.db["databars"]["experience"]["width"] = 10
-		E.db["databars"]["reputation"]["enable"] = true
-		E.db["databars"]["reputation"]["font"] = "Kimberley"
-		E.db["databars"]["reputation"]["fontOutline"] = "THICKOUTLINE"
-		E.db["databars"]["reputation"]["hideInCombat"] = true
-		E.db["databars"]["reputation"]["mouseover"] = false
-		E.db["databars"]["reputation"]["width"] = 10
+			E.db["databars"]["experience"]["font"] = "Kimberley"
+			E.db["databars"]["experience"]["fontOutline"] = "THICKOUTLINE"
+			if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160" then
+				E.db["databars"]["experience"]["height"] = 203
+				E.db["databars"]["reputation"]["height"] = 203
+			elseif GetCVar('gxFullscreenResolution') == '2560x1440' or GetCVar('gxWindowedResolution') == "2560x1440" then
+				E.db["databars"]["experience"]["height"] = 204
+				E.db["databars"]["reputation"]["height"] = 204
+			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080" then
+				E.db["databars"]["experience"]["height"] = 204
+				E.db["databars"]["reputation"]["height"] = 204
+			elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto" then
+				E.db["databars"]["experience"]["height"] = 204
+				E.db["databars"]["reputation"]["height"] = 204
+			else
+				E.db["databars"]["experience"]["height"] = 204
+				E.db["databars"]["reputation"]["height"] = 204
+			end
+			E.db["databars"]["experience"]["hideInCombat"] = true
+			E.db["databars"]["experience"]["mouseover"] = false
+			E.db["databars"]["experience"]["questCompletedOnly"] = true
+			E.db["databars"]["experience"]["questCurrentZoneOnly"] = true
+			E.db["databars"]["experience"]["questTrackedOnly"] = true
+			E.db["databars"]["experience"]["width"] = 10
+			E.db["databars"]["reputation"]["enable"] = true
+			E.db["databars"]["reputation"]["font"] = "Kimberley"
+			E.db["databars"]["reputation"]["fontOutline"] = "THICKOUTLINE"
+			E.db["databars"]["reputation"]["hideInCombat"] = true
+			E.db["databars"]["reputation"]["mouseover"] = false
+			E.db["databars"]["reputation"]["width"] = 10
 		]]--
+
 		--new experience
 		E.db["databars"]["experience"]["font"] = "Kimberley"
 		E.db["databars"]["experience"]["fontOutline"] = "OUTLINE"
@@ -196,8 +193,6 @@ if ElvUI_EltreumUI.TBC then
 		E.db["databars"]["reputation"]["showBubbles"] = true
 		E.db["databars"]["reputation"]["textFormat"] = "REM"
 		E.db["databars"]["reputation"]["width"] = 500
-
-
 		E.db["databars"]["threat"]["enable"] = true
 		E.db["databars"]["threat"]["font"] = "Kimberley"
 		E.db["databars"]["threat"]["fontOutline"] = "OUTLINE"
@@ -369,26 +364,26 @@ if ElvUI_EltreumUI.TBC then
 			["yOffset"] = 10
 		}
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]= {
-		["attachTextTo"] = "InfoPanel",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "OUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 10,
-		["text_format"] = "[health:current:shortvalue]",
-		["xOffset"] = 0,
-		["yOffset"] = -1
+			["attachTextTo"] = "InfoPanel",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 10,
+			["text_format"] = "[health:current:shortvalue]",
+			["xOffset"] = 0,
+			["yOffset"] = -1
 		}
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidName"] = {
-		["attachTextTo"] = "InfoPanel",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "OUTLINE",
-		["justifyH"] = "LEFT",
-		["size"] = 10,
-		["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
-		["xOffset"] = 0,
-		["yOffset"] = 0
+			["attachTextTo"] = "InfoPanel",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "LEFT",
+			["size"] = 10,
+			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
 		}
 		-- Custom Text: Raid 40
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
@@ -439,26 +434,26 @@ if ElvUI_EltreumUI.TBC then
 			["yOffset"] = 0
 		}
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] = {
-		["attachTextTo"] = "Power",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "LEFT",
-		["size"] = 10,
-		["text_format"] = "[powercolor][power:current:shortvalue]",
-		["xOffset"] = 2,
-		["yOffset"] = -1
+			["attachTextTo"] = "Power",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "LEFT",
+			["size"] = 10,
+			["text_format"] = "[powercolor][power:current:shortvalue]",
+			["xOffset"] = 2,
+			["yOffset"] = -1
 		}
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetofTarget"] = {
-		["attachTextTo"] = "Frame",
-		["enable"] = false,
-		["font"] = "Kimberley",
-		["fontOutline"] = "OUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 10,
-		["text_format"] = "Target: [target]",
-		["xOffset"] = -5,
-		["yOffset"] = -14
+			["attachTextTo"] = "Frame",
+			["enable"] = false,
+			["font"] = "Kimberley",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 10,
+			["text_format"] = "Target: [target]",
+			["xOffset"] = -5,
+			["yOffset"] = -14
 		}
 		-- Custom Text: TargetTarget
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"] = E.db["unitframe"]["units"]["targettarget"]["customTexts"] or {}
@@ -485,15 +480,15 @@ if ElvUI_EltreumUI.TBC then
 			["yOffset"] = 3
 		}
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Powercustom"] = {
-		["attachTextTo"] = "Power",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 9,
-		["text_format"] = "[powercolor][power:current:shortvalue]",
-		["xOffset"] = 0,
-		["yOffset"] = -1
+			["attachTextTo"] = "Power",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 9,
+			["text_format"] = "[powercolor][power:current:shortvalue]",
+			["xOffset"] = 0,
+			["yOffset"] = -1
 		}
 
 		--tbc raid pet

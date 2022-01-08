@@ -42,16 +42,6 @@ function ElvUI_EltreumUI:Borders()
 	local xbar6 = E.db.ElvUI_EltreumUI.borders.bar6xborder
 	local ybar6 = E.db.ElvUI_EltreumUI.borders.bar6yborder
 
-
-	--[[SetBackdrop({
-		bgFile = "file",
-		edgeFile = "file",
-		tile = true,
-		tileSize = size,
-		edgeSize = size,
-		insets = { left = X, right = X, top = X, bottom = X }
-	})]]--
-
 	if E.db.ElvUI_EltreumUI.borders.borders then
 		if E.db.ElvUI_EltreumUI.borders.playerborder then
 			local playerborder = CreateFrame("Frame", "EltruismPlayerBorder", _G.ElvUF_Player, BackdropTemplateMixin and "BackdropTemplate")
@@ -239,82 +229,5 @@ function ElvUI_EltreumUI:Borders()
 			powerbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			powerbarborder:SetFrameStrata("HIGH")
 		end
-
-	--[[
-		--bar7
-		local borders7 = {}
-		for i = 1,12 do
-			table.insert(borders7, _G["ElvUI_Bar7Button"..i])
-		end
-		local function createbar7borders()
-			for _,v in pairs(borders7) do
-				local barborder = CreateFrame("Frame", nil, v, "BackdropTemplate")
-				barborder:SetSize(xbar7, ybar7)
-				barborder:SetPoint("CENTER", v, "CENTER")
-				barborder:SetBackdrop( {
-				edgeFile = bordertexture,
-				edgeSize = baredgesize,
-				})
-				barborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			end
-		end
-		createbar7borders()
-
-		--bar8
-		local borders8 = {}
-		for i = 1,12 do
-			table.insert(borders8, _G["ElvUI_Bar8Button"..i])
-		end
-		local function createbar8borders()
-			for _,v in pairs(borders8) do
-				local barborder = CreateFrame("Frame", nil, v, "BackdropTemplate")
-				barborder:SetSize(xbar8, ybar8)
-				barborder:SetPoint("CENTER", v, "CENTER")
-				barborder:SetBackdrop( {
-				edgeFile = bordertexture,
-				edgeSize = baredgesize,
-				})
-				barborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			end
-		end
-		createbar8borders()
-
-		--bar9
-		local borders9 = {}
-		for i = 1,12 do
-			table.insert(borders9, _G["ElvUI_Bar9Button"..i])
-		end
-		local function createbar9borders()
-			for _,v in pairs(borders9) do
-				local barborder = CreateFrame("Frame", nil, v, "BackdropTemplate")
-				barborder:SetSize(xbar9, ybar9)
-				barborder:SetPoint("CENTER", v, "CENTER")
-				barborder:SetBackdrop( {
-				edgeFile = bordertexture,
-				edgeSize = baredgesize,
-				})
-				barborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			end
-		end
-		createbar9borders()
-
-		--bar10
-		local borders10 = {}
-		for i = 1,12 do
-			table.insert(borders10, _G["ElvUI_Bar10Button"..i])
-		end
-		local function createbar10borders()
-			for _,v in pairs(borders10) do
-				local barborder = CreateFrame("Frame", nil, v, "BackdropTemplate")
-				barborder:SetSize(xbar10, ybar10)
-				barborder:SetPoint("CENTER", v, "CENTER")
-				barborder:SetBackdrop( {
-				edgeFile = bordertexture,
-				edgeSize = baredgesize,
-				})
-				barborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			end
-		end
-		createbar10borders()]]--
 	end
 end

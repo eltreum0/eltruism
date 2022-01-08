@@ -319,7 +319,6 @@ function ElvUI_EltreumUI:checkPetActionCooldown(index)
 	end
 end
 
-
 function ElvUI_EltreumUI:UNIT_SPELLCAST_FAILED(event, unit, _, _, _, id)
 	if unit and unit ~= 'player' then
 		return

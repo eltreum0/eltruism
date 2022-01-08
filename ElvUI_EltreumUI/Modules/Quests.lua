@@ -31,7 +31,7 @@ if ElvUI_EltreumUI.Retail then
 			end
 		end
 	end
-
+	--hide quests in arena matches
 	function ElvUI_EltreumUI:ArenaQuest()
 		if ElvUI_EltreumUI.Retail then
 			if E.db.ElvUI_EltreumUI.questsettings.arena then
@@ -60,38 +60,34 @@ function ElvUI_EltreumUI:RogueAutoOpen()
 			rogueopen = true,
 		}
 	end
-
-	if myclass == "ROGUE" then
-		--ElvUI_EltreumUI:Print('youre a rogue')
-		if E.db.ElvUI_EltreumUI.questsettings.rogueopen then
-			local guid = UnitGUID("npc")
-			--ElvUI_EltreumUI:Print('got guid from npc')
-			if not guid then
-				return nil
-			end
-			local NPC_ID = tonumber(string.match(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
-
-			local function handle_NPC_Interaction(self, event)
-				if C_GossipInfo.GetNumOptions() ~= 2 then
-					--ElvUI_EltreumUI:Print('not the right amount of gossip')
-					return
-				end
-				local gossipInfoTable = C_GossipInfo.GetOptions()
-				if gossipInfoTable[1].type ~= "gossip" then
-					--ElvUI_EltreumUI:Print('not a gossip at first')
-					return
-				end
-				if NPC_ID == 97004 or NPC_ID == 96782 or NPC_ID == 93188 then
-					--ElvUI_EltreumUI:Print('its the right npc')
-					if IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown() then
-						--ElvUI_EltreumUI:Print('you held a modfier key')
-						return
-					else
-						C_GossipInfo.SelectOption(1)
-					end
-				end
-			end
-			RogueOrderHallAutoOpen:SetScript("OnEvent", handle_NPC_Interaction)
+	if E.db.ElvUI_EltreumUI.questsettings.rogueopen then
+		local guid = UnitGUID("npc")
+		--ElvUI_EltreumUI:Print('got guid from npc')
+		if not guid then
+			return nil
 		end
+		local NPC_ID = tonumber(string.match(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
+
+		local function handle_NPC_Interaction(self, event)
+			if C_GossipInfo.GetNumOptions() ~= 2 then
+				--ElvUI_EltreumUI:Print('not the right amount of gossip')
+				return
+			end
+			local gossipInfoTable = C_GossipInfo.GetOptions()
+			if gossipInfoTable[1].type ~= "gossip" then
+				--ElvUI_EltreumUI:Print('not a gossip at first')
+				return
+			end
+			if NPC_ID == 97004 or NPC_ID == 96782 or NPC_ID == 93188 then
+				--ElvUI_EltreumUI:Print('its the right npc')
+				if IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown() then
+					--ElvUI_EltreumUI:Print('you held a modfier key')
+					return
+				else
+					C_GossipInfo.SelectOption(1)
+				end
+			end
+		end
+		RogueOrderHallAutoOpen:SetScript("OnEvent", handle_NPC_Interaction)
 	end
 end

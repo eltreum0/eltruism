@@ -103,7 +103,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 				E.db["nameplates"]["colors"]["power"]["MAELSTROM"]["g"] = 0.50196078431373
 			end
 
-			--spellteal style filter
+			--spellsteal style filter
 			if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 				E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
 			elseif ElvUI_EltreumUI.Classic then
@@ -292,7 +292,6 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 			end
 
-
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["castTimeFormat"] = "REMAINING"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["channelTimeFormat"] = "REMAINING"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["font"] = "Kimberley"
@@ -343,13 +342,6 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["enable"] = false
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["font"] = "Kimberley"
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["timeToHold"] = 0.5
-
-
-
-
-
-
-
 
 			if ElvUI_EltreumUI.Retail then
 				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["anchorPoint"] = "TOP"
@@ -624,7 +616,6 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["minus"] = true
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["normal"] = true
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["trivial"] = true
-
 		-- Enemy is casting, draw attention to interrupt
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["border"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["b"] = 0.22745098039216
@@ -682,7 +673,6 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["actions"]["alpha"] = 100
 		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["actions"]["flash"]["enable"] = true
 		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["actions"]["scale"] = 1.25
-
 		--hide nameplates for unattackable npcs
 		E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["nameOnly"] = true
 		E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["name"] = "[namecolor][name]"
@@ -691,7 +681,6 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["nameplateType"]["enemyNPC"] = true
 		E.global["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["playerCanNotAttack"] = true
 		E.global["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["priority"] = 15
-
 		--non target full alpha when resting and not in combat
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["alpha"] = 100
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["isResting"] = true
@@ -699,7 +688,6 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["notTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["outOfCombat"] = true
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["playerCanNotAttack"] = true
-
 		--show enemy level
 		E.global["nameplates"]["filters"]["EltreumLevel"]["actions"]["tags"]["level"] = "[difficultycolor][smartlevel]"
 		E.global["nameplates"]["filters"]["EltreumLevel"]["triggers"]["isTarget"] = true

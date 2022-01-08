@@ -13,4 +13,3 @@ local function EltruismSpark()
 	end
 end
 hooksecurefunc(UF, 'Construct_Castbar', EltruismSpark)
-

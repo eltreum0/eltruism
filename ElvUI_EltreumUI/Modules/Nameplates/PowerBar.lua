@@ -1,5 +1,4 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
---local NP = E:GetModule('NamePlates')
 local _G = _G
 local GetShapeshiftForm = _G.GetShapeshiftForm
 local UnitPower = _G.UnitPower
@@ -55,9 +54,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 	elseif not nameplate then
 		EltreumPowerBar:Hide()
 	end
-
 	EltreumPowerBar.bg:SetVertexColor(E.db.ElvUI_EltreumUI.nameplatepower.r, E.db.ElvUI_EltreumUI.nameplatepower.g, E.db.ElvUI_EltreumUI.nameplatepower.b) -- option for changing this color
-
 	if E.db.ElvUI_EltreumUI.nameplatepower == nil then
 		E.db.ElvUI_EltreumUI.nameplatepower = {
 			autoadjustposition = true,

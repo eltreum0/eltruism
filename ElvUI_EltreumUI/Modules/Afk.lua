@@ -78,10 +78,8 @@ local classicMusic = {
 
 -- with the help of Repooc, Simpy, Nihilistzsche and Acidweb (not in order :D)
 local musicSetting = GetCVar('Sound_EnableMusic')
-
 local classicmusicstopper = nil
 local willplay = nil
-
 function ElvUI_EltreumUI:AFKmusic()
 	if E.db.ElvUI_EltreumUI.afkmusic.enable then
 		if ElvUI_EltreumUI.Retail then
@@ -89,7 +87,6 @@ function ElvUI_EltreumUI:AFKmusic()
 				if musicSetting == '0' then SetCVar("Sound_EnableMusic", 1) end
 				if E.db.ElvUI_EltreumUI.afkmusic.racial then
 					if ElvUI_EltreumUI.Retail then
-						--print(E.myrace)
 						PlayMusic(racialMusic[E.myrace])
 					end
 				end

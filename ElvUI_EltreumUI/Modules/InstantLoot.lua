@@ -18,4 +18,3 @@ local function InstantLoot()
 	end
 end
 EltruismInstantLoot:SetScript("OnEvent", InstantLoot)
-

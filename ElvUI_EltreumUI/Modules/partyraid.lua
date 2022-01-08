@@ -29,9 +29,6 @@ end
 function ElvUI_EltreumUI:RaidDeath()
 	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
 		local _, _, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
-		--if eventType ~= "UNIT_DIED" then
-		--	return
-		--elseif eventType == "UNIT_DIED" and deaththrottle == 1 then
 		if deaththrottle == 1 then
 			for i=1,#name do
 				if name[i] == destName then

@@ -334,15 +334,15 @@ if ElvUI_EltreumUI.Retail then
 			["yOffset"] = 0
 		}
 		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = false,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 11,
-		["text_format"] = "||cffFFFF00[absorbs]||r ",
-		["xOffset"] = 6,
-		["yOffset"] = 0
+			["attachTextTo"] = "Health",
+			["enable"] = false,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 11,
+			["text_format"] = "||cffFFFF00[absorbs]||r ",
+			["xOffset"] = 6,
+			["yOffset"] = 0
 		}
 		-- Custom Text: Pet
 		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
@@ -360,15 +360,15 @@ if ElvUI_EltreumUI.Retail then
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = false,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 12,
-		["text_format"] = "||cffFFFF00[absorbs]||r ",
-		["xOffset"] = 0,
-		["yOffset"] = 15
+			["attachTextTo"] = "Health",
+			["enable"] = false,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 12,
+			["text_format"] = "||cffFFFF00[absorbs]||r ",
+			["xOffset"] = 0,
+			["yOffset"] = 15
 		}
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] = {
 			["attachTextTo"] = "Health",
@@ -428,50 +428,50 @@ if ElvUI_EltreumUI.Retail then
 			["yOffset"] = 10
 		}
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = false,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "CENTER",
-		["size"] = 10,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 45,
-		["yOffset"] = 0
+			["attachTextTo"] = "Health",
+			["enable"] = false,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "CENTER",
+			["size"] = 10,
+			["text_format"] = "||cffFFFF00[absorbs]||r",
+			["xOffset"] = 45,
+			["yOffset"] = 0
 		}
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]= {
-		["attachTextTo"] = "InfoPanel",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "OUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 10,
-		["text_format"] = "[health:current:shortvalue]",
-		["xOffset"] = 0,
-		["yOffset"] = -1
+			["attachTextTo"] = "InfoPanel",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 10,
+			["text_format"] = "[health:current:shortvalue]",
+			["xOffset"] = 0,
+			["yOffset"] = -1
 		}
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidName"] = {
-		["attachTextTo"] = "InfoPanel",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "OUTLINE",
-		["justifyH"] = "LEFT",
-		["size"] = 10,
-		["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
-		["xOffset"] = 0,
-		["yOffset"] = 0
+			["attachTextTo"] = "InfoPanel",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "LEFT",
+			["size"] = 10,
+			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
 		}
 		-- Custom Text: Raid 40
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
-		["attachTextTo"] = "Health",
-		["enable"] = false,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "CENTER",
-		["size"] = 10,
-		["text_format"] = "||cffFFFF00[absorbs]||r",
-		["xOffset"] = 37,
-		["yOffset"] = 12
+			["attachTextTo"] = "Health",
+			["enable"] = false,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "CENTER",
+			["size"] = 10,
+			["text_format"] = "||cffFFFF00[absorbs]||r",
+			["xOffset"] = 37,
+			["yOffset"] = 12
 		}
 		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Group"] = {
 			["attachTextTo"] = "Health",
@@ -531,26 +531,26 @@ if ElvUI_EltreumUI.Retail then
 			["yOffset"] = 0
 		}
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] = {
-		["attachTextTo"] = "Power",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "LEFT",
-		["size"] = 10,
-		["text_format"] = "[powercolor][power:current:shortvalue]",
-		["xOffset"] = 2,
-		["yOffset"] = -1
+			["attachTextTo"] = "Power",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "LEFT",
+			["size"] = 10,
+			["text_format"] = "[powercolor][power:current:shortvalue]",
+			["xOffset"] = 2,
+			["yOffset"] = -1
 		}
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetofTarget"] = {
-		["attachTextTo"] = "Frame",
-		["enable"] = false,
-		["font"] = "Kimberley",
-		["fontOutline"] = "OUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 10,
-		["text_format"] = "Target: [target]",
-		["xOffset"] = -5,
-		["yOffset"] = -14
+			["attachTextTo"] = "Frame",
+			["enable"] = false,
+			["font"] = "Kimberley",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 10,
+			["text_format"] = "Target: [target]",
+			["xOffset"] = -5,
+			["yOffset"] = -14
 		}
 		-- Custom Text: TargetTarget
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"] = E.db["unitframe"]["units"]["targettarget"]["customTexts"] or {}
@@ -577,15 +577,15 @@ if ElvUI_EltreumUI.Retail then
 			["yOffset"] = 3
 		}
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Powercustom"] = {
-		["attachTextTo"] = "Power",
-		["enable"] = true,
-		["font"] = "Kimberley",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 9,
-		["text_format"] = "[powercolor][power:current:shortvalue]",
-		["xOffset"] = 0,
-		["yOffset"] = -1
+			["attachTextTo"] = "Power",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 9,
+			["text_format"] = "[powercolor][power:current:shortvalue]",
+			["xOffset"] = 0,
+			["yOffset"] = -1
 		}
 
 		if layout == 'dps' then

@@ -2,6 +2,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local ReloadUI = _G.ReloadUI
 local IsAddOnLoaded = _G.IsAddOnLoaded
+local myclass = E.myclass
 
 -- Set version & reload on "Skip" and "Finished"
 local function InstallComplete()
@@ -9,7 +10,6 @@ local function InstallComplete()
 	ReloadUI()
 end
 
-local myclass = E.myclass
 if ElvUI_EltreumUI.Retail then
 	-- Installer Steps Retail
 	ElvUI_EltreumUI.InstallerData = {

@@ -113,7 +113,6 @@ end
 local EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", E.UIParent)
 local EltruismWAConsumablesAnchor = CreateFrame("Frame", "EltruismConsumables", E.UIParent)
 function ElvUI_EltreumUI:WAAnchor()
-	-- E.private["unitframe"]["enable"] = false
 	if E.private.unitframe.enable then
 		--Anchor for general weakauras, like those that replace actionbars
 		EltreumWAAnchor:SetParent("ElvUF_Player")
@@ -130,8 +129,8 @@ function ElvUI_EltreumUI:WAAnchor()
 		EltreumWAAnchor:Size(250, 70)
 		--E:CreateMover(parent, name, textString, overlay, snapoffset, postdrag, types, shouldDisable, configString, ignoreSizeChanged)
 		E:CreateMover(EltreumWAAnchor, "MoverEltruismWA", "EltruismWA", nil, nil, nil, "ALL")
-		--consumable weakauras, usually placed near player unitframe
 
+		--consumable weakauras, usually placed near player unitframe
 		EltruismWAConsumablesAnchor:SetParent("ElvUF_Player")
 		EltruismWAConsumablesAnchor:SetFrameStrata("BACKGROUND")
 		--postion the anchor right below the player unitframe

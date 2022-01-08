@@ -190,3 +190,10 @@ function ElvUI_EltreumUI:ActionPagingSwap()
 		E.db["actionbar"]["bar1"]["paging"]["WARRIOR"] = ""
 	end
 end
+
+--fix master loot?
+if ElvUI_EltreumUI.TBC then
+	hooksecurefunc(_G.MasterLooterFrame, 'Hide', function(self)
+		self:ClearAllPoints()
+	end)
+end
