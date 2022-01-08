@@ -348,7 +348,7 @@ E:AddTagInfo('eltruism:raidmarker', ElvUI_EltreumUI.Name, L["Shows raid target m
 
 --Difficulty color for npcs in classic/tbc
 if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-	E:AddTag('eltruismdifficulty', 'UNIT_NAME_UPDATE', function(unit)
+	E:AddTag('eltruism:difficulty', 'UNIT_NAME_UPDATE', function(unit)
 		--obtain the levels
 		local targetlevel = UnitLevel(unit)
 		local playerlevel = UnitLevel("player")
@@ -393,7 +393,7 @@ if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			end
 		end
 	end)
-	E:AddTagInfo('eltruismdifficulty', ElvUI_EltreumUI.Name, L["Colors NPC name according to their difficulty compared to the player"])
+	E:AddTagInfo('eltruism:difficulty', ElvUI_EltreumUI.Name, L["Colors NPC name according to their difficulty compared to the player"])
 end
 
 local classcolorcast = {
@@ -410,7 +410,7 @@ local classcolorcast = {
 	['WARLOCK'] = "FF8788EE",
 	['WARRIOR'] = "FFC69B6D",
 }
-E:AddTag('eltruismtargetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGET UNIT_SPELLCAST_STOP', function(unit)
+E:AddTag('eltruism:targetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGET UNIT_SPELLCAST_STOP', function(unit)
 	local targetname = UnitName(unit.."target")
 	local _ , classes = UnitClass(unit.."target")
 	local color = classcolorcast[classes]
@@ -422,4 +422,4 @@ E:AddTag('eltruismtargetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGE
 		end
 	end
 end)
-E:AddTagInfo('eltruismtargetcast', ElvUI_EltreumUI.Name, L["Shows Target of Spellcast, does not work for Mouseover casts"])
+E:AddTagInfo('eltruism:targetcast', ElvUI_EltreumUI.Name, L["Shows Target of Spellcast, does not work for Mouseover casts"])

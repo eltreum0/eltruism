@@ -8,8 +8,8 @@ Added an option to show Cursor outside of combat\
 Added options to change the colors of the borders\
 Added an option to change the background of the Nameplate Power Bar\
 Added a new tag [eltruism:raidmarker] which will display the raid marker icon\
-Added a new tag [eltruismdifficulty] which will color the enemy npc target according to its difficulty compared to the player's level\
-Added a new tag [eltruismtargetcast] which will show the target of an enemy spellcast for non mousever and non instant casts\
+Added a new tag [eltruism:difficulty] which will color the enemy npc target according to its difficulty compared to the player's level\
+Added a new tag [eltruism:targetcast] which will show the target of an enemy spellcast for non mousever and non instant casts\
 Added Crystalzcuhei as a font option during install\
 Updated references to FCT to make it more clear that it's Simpy's ElvUI FCT\
 Updated references to nameplates due to a change in ElvUI code\
