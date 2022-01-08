@@ -1,5 +1,8 @@
 ### [![](https://img.shields.io/badge/Eltruism-Join-steelblue.svg?longCache=true?style=flat-square&logo=discord)](https://discord.gg/cXfA56gmYW)
 ___
+### Changelog
+[Check upcoming changes here](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+___
 ### About
 > Eltruism is an ElvUI plugin that offers features not available on ElvUI, and also includes a DPS/Tank Profile along with a Healer profile. Both are designed for 16:9 displays, and were tested in 4K and 1080p. This plugin requires the following addons\
  \
