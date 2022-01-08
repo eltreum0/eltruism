@@ -204,6 +204,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["dt"]["guild"]["hide_titleline"] = true
 		E.db["sle"]["dt"]["guild"]["tooltipAutohide"] = 0.1
 		-- Loot
+		--[[
 		E.db["sle"]["loot"]["autoroll"]["enable"] = false
 		E.db["sle"]["loot"]["enable"] = false
 		E.db["sle"]["loot"]["history"]["autohide"] = false
@@ -227,6 +228,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["loot"]["looticons"]["channels"]["CHAT_MSG_YELL"] = true
 		E.db["sle"]["loot"]["looticons"]["enable"] = false
 		E.db["sle"]["loot"]["looticons"]["size"] = 13
+		]]--
 		--AFK Screensaver
 		E.db["sle"]["afk"]["animTime"] = 2
 		E.db["sle"]["afk"]["animType"] = "FadeIn"
