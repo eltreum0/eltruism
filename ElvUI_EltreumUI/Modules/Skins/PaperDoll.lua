@@ -54,15 +54,21 @@ local charactertext --check character text
 
 --put the icon on the papeldoll frame, modify it a bit if SLE is not loaded
 function ElvUI_EltreumUI:PlayerNamepaperdoll()
-	if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then
+		return
+	elseif not E.private.ElvUI_EltreumUI then
+		return
+	else
+		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
 			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
 		elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
 			classsymbolonframe = ("|T"..(classIconsReleafborder[E.myclass]..".tga:0:0:0:0|t"))
 		else
 			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
 		end
-	if not charactertext:match("|T") then
-		_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+		if not charactertext:match("|T") then
+			_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+		end
 	end
 end
 
