@@ -22,6 +22,7 @@
 	<Script file='DynamicFunctions.lua'/>
 	<Script file='EltruismAmmoDatatext.lua'/>
 	<Script file='Fonts/CustomFont.lua'/>
+	<Script file='Fonts/CrystalzcuheiGBK.lua'/>
 	<Script file='Fonts/Exo2.lua'/>
 	<Script file='Fonts/Gotham.lua'/>
 	<Script file='Fonts/Kimberley.lua'/>

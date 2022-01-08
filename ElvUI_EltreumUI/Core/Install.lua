@@ -68,6 +68,10 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Option3:Enable()
 				PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsGotham() end)
 				PluginInstallFrame.Option3:SetText('|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\gotham:14:112:0:1:128:64:0:128:0:16|t')
+				PluginInstallFrame.Option4:Show()
+				PluginInstallFrame.Option4:Enable()
+				PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsCrystalzcuhei() end)
+				PluginInstallFrame.Option4:SetText('Crystalzcuhei')
 			end,
 			[4] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('GladiusEx')
@@ -365,6 +369,10 @@ elseif ElvUI_EltreumUI.Classic then
 				PluginInstallFrame.Option3:Show()
 				PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsGotham() end)
 				PluginInstallFrame.Option3:SetText('|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\gotham:14:112:0:1:128:64:0:128:0:16|t')
+				PluginInstallFrame.Option4:Show()
+				PluginInstallFrame.Option4:Enable()
+				PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsCrystalzcuhei() end)
+				PluginInstallFrame.Option4:SetText('Crystalzcuhei')
 			end,
 			[4] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Details')
@@ -625,6 +633,10 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Option3:Enable()
 				PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsGotham() end)
 				PluginInstallFrame.Option3:SetText('|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\gotham:14:112:0:1:128:64:0:128:0:16|t')
+				PluginInstallFrame.Option4:Show()
+				PluginInstallFrame.Option4:Enable()
+				PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsCrystalzcuhei() end)
+				PluginInstallFrame.Option4:SetText('Crystalzcuhei')
 			end,
 			[4] = function()
 				PluginInstallFrame.SubTitle:SetFormattedText('Details')
