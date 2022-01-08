@@ -2104,7 +2104,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["movers"]["ElvUF_TargetAuraMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-400,288"
 			E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,311,359"
 			E.db["movers"]["ElvUF_TargetMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,387"
-			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,388"
+			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,389"
 			E.db["movers"]["ElvUIBagMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,24"
 			E.db["movers"]["ElvUIBankMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,24"
 			E.db["movers"]["EnhancedVehicleBar_Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
@@ -2824,7 +2824,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["target"]["raidicon"]["yOffset"] = 0
 			E.db["unitframe"]["units"]["target"]["raidicon"]["enable"] = false
 			E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "FORCE_OFF"
-
+			E.db["unitframe"]["units"]["targettarget"]["height"] = 52
 			E.db["unitframe"]["units"]["targettarget"]["buffs"]["height"] = 25
 			E.db["unitframe"]["units"]["targettarget"]["buffs"]["keepSizeRatio"] = false
 			E.db["unitframe"]["units"]["targettarget"]["buffs"]["perrow"] = 6

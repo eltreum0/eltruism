@@ -1742,7 +1742,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["movers"]["ElvUF_TargetAuraMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-400,288"
 			E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,311,359"
 			E.db["movers"]["ElvUF_TargetMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,387"
-			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,388"
+			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-427,389"
 			E.db["movers"]["ElvUIBagMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,24"
 			E.db["movers"]["ElvUIBankMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,24"
 			E.db["movers"]["ReputationBarMover"] = "TOP,ElvUIParent,TOP,0,0"
@@ -2233,6 +2233,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["targettarget"]["debuffs"]["enable"] = false
 			E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["transparent"] = true
+			E.db["unitframe"]["units"]["targettarget"]["height"] = 52
 			E.db["unitframe"]["units"]["targettarget"]["name"]["text_format"] = ""
 			E.db["unitframe"]["units"]["targettarget"]["power"]["width"] = "spaced"
 			E.db["unitframe"]["units"]["targettarget"]["raidicon"]["attachTo"] = "CENTER"
