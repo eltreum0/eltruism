@@ -16,9 +16,7 @@ local UnitCanAttack = _G.UnitCanAttack
 --Setup Power Bar, Prediction and Text
 local EltreumPowerBar = CreateFrame("StatusBar","EltruismPowerBar")
 local EltreumPowerPrediction = CreateFrame('StatusBar', "EltruismPowerBarPrediction", EltreumPowerBar)
-EltreumPowerPrediction:Hide() --hide at the start before events
 local EltreumPowerPredictionIncoming = CreateFrame('StatusBar', "EltruismPowerBarPredictionIncoming", EltreumPowerBar)
-EltreumPowerPredictionIncoming:Hide() --hide at the start before events
 EltreumPowerBar:SetValue(0)
 local EltreumPowerBarText = CreateFrame("Frame", nil, EltreumPowerBar)
 EltreumPowerBarText:SetWidth(1)
@@ -35,6 +33,8 @@ EltreumPowerBar.bg = EltreumPowerBar:CreateTexture(nil, "BACKGROUND")
 EltreumPowerBar.bg:SetTexture(E.media.normTex)
 EltreumPowerBar.bg:SetPoint("CENTER", EltreumPowerBar, "CENTER", 0, 0)
 EltreumPowerBar:Hide() --hide at the start before events
+EltreumPowerPrediction:Hide()
+EltreumPowerPredictionIncoming:Hide()
 EltreumPowerBar:RegisterEvent("UNIT_POWER_FREQUENT")
 EltreumPowerBar:RegisterEvent("PLAYER_TARGET_CHANGED")
 EltreumPowerBar:RegisterEvent("UNIT_DISPLAYPOWER")
@@ -50,6 +50,8 @@ function ElvUI_EltreumUI:PowerPrediction()
 	elseif not E.private.ElvUI_EltreumUI.nameplatepower then
 		return
 	end
+	EltreumPowerPrediction:Hide() --hide at the start before events
+	EltreumPowerPredictionIncoming:Hide() --hide at the start before events
 	local sizex
 	if E.db.ElvUI_EltreumUI.nameplatepower.sizex then
 		sizex = E.db.ElvUI_EltreumUI.nameplatepower.sizex
@@ -117,13 +119,13 @@ function ElvUI_EltreumUI:PowerPrediction()
 			for k, v in next, costTable do
 				local cost = v.cost
 				mainCost = cost
+
 			end
 		end
 		for k, v in next, spellGenerators do
 			if spellGenerators[spellID] ~= nil then
 				incResource = spellGenerators[spellID]
 				--print(incResource)
-
 				--readjust if the incoming would go over max
 				if (incResource + powercurrentvalue) >= powerMax then
 					incResource = (powerMax - powercurrentvalue)
@@ -134,12 +136,12 @@ function ElvUI_EltreumUI:PowerPrediction()
 		EltreumPowerPrediction:SetValue(mainCost)
 		EltreumPowerPrediction:Show()
 		EltreumPowerPredictionIncoming:SetValue(incResource)
-		EltreumPowerPrediction:Show()
+		EltreumPowerPredictionIncoming:Show()
 	else
 		EltreumPowerPrediction:SetValue(0)
-		EltreumPowerPrediction:Show()
+		EltreumPowerPrediction:Hide()
 		EltreumPowerPredictionIncoming:SetValue(0)
-		EltreumPowerPredictionIncoming:Show()
+		EltreumPowerPredictionIncoming:Hide()
 	end
 end
 
