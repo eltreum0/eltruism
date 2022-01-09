@@ -41,8 +41,14 @@ EltreumPowerBar:RegisterEvent("UNIT_MODEL_CHANGED")
 
 --Calculate the Power Cost and draw on the Bar
 function ElvUI_EltreumUI:PowerPrediction()
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then
+		return
+	elseif not E.private.ElvUI_EltreumUI then
+		return
+	elseif not E.private.ElvUI_EltreumUI.nameplatepower then
+		return
+	end
 	EltreumPowerPrediction:SetReverseFill(true)
-	EltreumPowerPrediction:SetStatusBarColor(0.8, 0.8, 0.8, 0.6)
 
 	--from elvui/ouf by ls-
 	local mainCost = 0
@@ -75,6 +81,8 @@ function ElvUI_EltreumUI:PowerPrediction()
 	else
 		sizey = 6
 	end
+	local predictioncolorr, predictioncolorg, predictioncolorb  = EltreumPowerBar:GetStatusBarColor()
+	EltreumPowerPrediction:SetStatusBarColor(predictioncolorr * 0.2, predictioncolorg * 0.2, predictioncolorb * 0.2, 1)
 	EltreumPowerPrediction:SetSize(sizex, sizey)
 	EltreumPowerPrediction:SetValue(mainCost)
 end
@@ -275,6 +283,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			local predictionpos = EltreumPowerBar:GetStatusBarTexture()
 			EltreumPowerPrediction:SetPoint("RIGHT", predictionpos, "RIGHT", 0, 0)
 			EltreumPowerPrediction:SetFrameStrata("MEDIUM")
+
 
 			if ElvUI_EltreumUI.Retail then
 				if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
