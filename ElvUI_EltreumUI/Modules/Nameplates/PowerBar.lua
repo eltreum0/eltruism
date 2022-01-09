@@ -82,7 +82,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 		sizey = 6
 	end
 	local predictioncolorr, predictioncolorg, predictioncolorb  = EltreumPowerBar:GetStatusBarColor()
-	EltreumPowerPrediction:SetStatusBarColor(predictioncolorr * 0.2, predictioncolorg * 0.2, predictioncolorb * 0.2, 1)
+	EltreumPowerPrediction:SetStatusBarColor(predictioncolorr * 2, predictioncolorg * 2, predictioncolorb * 2, 0.7)
 	EltreumPowerPrediction:SetSize(sizex, sizey)
 	EltreumPowerPrediction:SetValue(mainCost)
 end
