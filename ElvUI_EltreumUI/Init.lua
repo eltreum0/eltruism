@@ -120,6 +120,8 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_FREQUENT') --power update real time
 	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_UPDATE') --power type changes
 	ElvUI_EltreumUI:RegisterEvent("UNIT_MODEL_CHANGED") --druid things
+	ElvUI_EltreumUI:RegisterEvent('UNIT_SPELLCAST_START') --for power prediction
+	ElvUI_EltreumUI:RegisterEvent('UNIT_SPELLCAST_STOP') --for power prediction
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_LOOT") --LootText things
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_MONEY") --LootText things
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_CURRENCY") --LootText things
@@ -184,6 +186,22 @@ function ElvUI_EltreumUI:UNIT_POWER_UPDATE(event,unit)
 	elseif unit and unit == 'player' then
 		--print(event,unit)
 		ElvUI_EltreumUI:NameplatePowerTextUpdate()
+	end
+end
+
+function ElvUI_EltreumUI:UNIT_SPELLCAST_START(event,unit)
+	if unit and unit ~= 'player' then
+		return
+	elseif unit and unit == 'player' then
+		ElvUI_EltreumUI:PowerPrediction()
+	end
+end
+
+function ElvUI_EltreumUI:UNIT_SPELLCAST_STOP(event,unit)
+	if unit and unit ~= 'player' then
+		return
+	elseif unit and unit == 'player' then
+		ElvUI_EltreumUI:PowerPrediction()
 	end
 end
 

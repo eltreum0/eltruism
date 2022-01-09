@@ -13,16 +13,22 @@ local id, _
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local UnitCanAttack = _G.UnitCanAttack
 
---setup nameplate power frame
+--Setup Power Bar, Prediction and Text
 local EltreumPowerBar = CreateFrame("StatusBar","EltruismPowerBar")
+local EltreumPowerPrediction = CreateFrame('StatusBar', "EltruismPowerBarPrediction", EltreumPowerBar)
 EltreumPowerBar:SetValue(0)
 EltreumPowerBar:SetFillStyle("STANDARD")
-EltreumPowerBar.Text = EltreumPowerBar:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+local EltreumPowerBarText = CreateFrame("Frame", nil, EltreumPowerBar)
+EltreumPowerBarText:SetWidth(1)
+EltreumPowerBarText:SetHeight(1)
+EltreumPowerBarText:SetFrameStrata('DIALOG')
+EltreumPowerBar.Text = EltreumPowerBarText:CreateFontString(nil, "ARTWORK", "GameFontNormal")
 EltreumPowerBar.Text:SetTextColor(1, 1, 1)
 EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 10, "OUTLINE")
 EltreumPowerBar.Text:SetPoint("CENTER")
 EltreumPowerBar.Text:SetJustifyH("CENTER")
 EltreumPowerBar.Text:SetJustifyV("CENTER")
+--Setup background
 EltreumPowerBar.bg = EltreumPowerBar:CreateTexture(nil, "BACKGROUND")
 EltreumPowerBar.bg:SetTexture(E.media.normTex)
 EltreumPowerBar.bg:SetPoint("CENTER", EltreumPowerBar, "CENTER", 0, 0)
@@ -32,6 +38,46 @@ EltreumPowerBar:RegisterEvent("PLAYER_TARGET_CHANGED")
 EltreumPowerBar:RegisterEvent("UNIT_DISPLAYPOWER")
 EltreumPowerBar:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
 EltreumPowerBar:RegisterEvent("UNIT_MODEL_CHANGED")
+
+--Calculate the Power Cost and draw on the Bar
+function ElvUI_EltreumUI:PowerPrediction()
+	EltreumPowerPrediction:SetReverseFill(true)
+	EltreumPowerPrediction:SetStatusBarColor(0.8, 0.8, 0.8, 0.6)
+
+	--from elvui/ouf by ls-
+	local mainCost = 0
+	local mainType = UnitPowerType("player")
+	local mainMax = UnitPowerMax("player", mainType)
+	local mainType = UnitPowerType("player")
+	local _, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
+	if startTime ~= endTime then
+		local costTable = GetSpellPowerCost(spellID)
+		for k, v in next, costTable do
+			local cost, ctype, cperc = v.cost, v.type, v.costPercent
+			--mainCost = ((cost < mainMax) and cost) or (mainMax * cperc) / 100
+			mainCost = cost
+		end
+		EltreumPowerPrediction:SetValue(mainCost)
+		--print("Started casting "..spellID.." with cost "..mainCost)
+	else
+		EltreumPowerPrediction:SetValue(0)
+	end
+
+	local sizex
+	if E.db.ElvUI_EltreumUI.nameplatepower.sizex then
+		sizex = E.db.ElvUI_EltreumUI.nameplatepower.sizex
+	else
+		sizex = 132
+	end
+	local sizey
+	if E.db.ElvUI_EltreumUI.nameplatepower.sizey then
+		sizey = E.db.ElvUI_EltreumUI.nameplatepower.sizey
+	else
+		sizey = 6
+	end
+	EltreumPowerPrediction:SetSize(sizex, sizey)
+	EltreumPowerPrediction:SetValue(mainCost)
+end
 
 --so that the power updates when spec changes
 function ElvUI_EltreumUI:GetSpec()
@@ -221,6 +267,14 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			EltreumPowerBar:SetSize(sizex, sizey)
 			EltreumPowerBar:SetStatusBarTexture(powertexture)
 			EltreumPowerBar.bg:SetSize(bgx, bgy)
+			EltreumPowerBar:SetFrameStrata("MEDIUM")
+
+			--update power prediction
+			EltreumPowerPrediction:SetStatusBarTexture(powertexture)
+			EltreumPowerPrediction:SetMinMaxValues(0, powerMax)
+			local predictionpos = EltreumPowerBar:GetStatusBarTexture()
+			EltreumPowerPrediction:SetPoint("RIGHT", predictionpos, "RIGHT", 0, 0)
+			EltreumPowerPrediction:SetFrameStrata("MEDIUM")
 
 			if ElvUI_EltreumUI.Retail then
 				if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
@@ -596,6 +650,8 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					end
 				end
 			end
+			--update text position late so that it is in the correct position due to different clases/specs/forms
+			EltreumPowerBarText:SetPoint("Center", EltreumPowerBar, "Center", 0, 0)
 		else
 			EltreumPowerBar:Hide()
 		end
