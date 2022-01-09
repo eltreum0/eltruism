@@ -37,6 +37,14 @@ function ElvUI_EltreumUI:RunCommands(message)
 	elseif message == 'config' or message == 'options' then
 		E:ToggleOptionsUI()
 		E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
+	elseif message == 'dev' then
+		if E.db.ElvUI_EltreumUI.dev == false then
+			E.db.ElvUI_EltreumUI.dev = true
+			ElvUI_EltreumUI:Print("Dev Enabled")
+		elseif E.db.ElvUI_EltreumUI.dev == true then
+			E.db.ElvUI_EltreumUI.dev = false
+			ElvUI_EltreumUI:Print("Dev Disabled")
+		end
 	end
 end
 
@@ -122,5 +130,19 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 				end
 			end
 		end
+	end
+end
+
+--Better EventTrace thanks to ;Meorawr.wtf.lua;
+if E.db.ElvUI_EltreumUI.dev then
+	LoadAddOn("Blizzard_EventTrace");
+	local LogEvent = EventTrace.LogEvent;
+
+	function EventTrace:LogEvent(event, ...)
+	    if event == "COMBAT_LOG_EVENT_UNFILTERED" then
+	        LogEvent(self, event, CombatLogGetCurrentEventInfo());
+	    else
+	        LogEvent(self, event, ...);
+	    end
 	end
 end
