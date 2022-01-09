@@ -2756,7 +2756,7 @@ if ElvUI_EltreumUI.TBC then
 								powerbarbackgroundcolor = {
 									order = 9,
 									type = 'color',
-									name = L["Color"],
+									name = L["Background Color"],
 									hasAlpha = false,
 									disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 									get = function()
