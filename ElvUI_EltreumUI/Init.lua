@@ -218,7 +218,7 @@ function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
 	end
 	--elseif (eventType == "SPELL_ENERGIZE") and (sourceName == E.myname) then
 		--print(sourceName.." amount: "..amount)
-		ElvUI_EltreumUI:PowerPrediction()
+		--ElvUI_EltreumUI:PowerPrediction()
 	--end
 end
 
