@@ -107,11 +107,12 @@ function ElvUI_EltreumUI:PowerPrediction()
 	local mainCost = 0
 	local incResource = 0
 	local startTime, endTime, spellID = 0, 0, 0
-	if ElvUI_EltreumUI.Retail then
+	if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.Classic then
 		 _, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
-	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+	elseif ElvUI_EltreumUI.TBC then
 		_, _, _, startTime, endTime, _, _, spellID = UnitCastingInfo("player")
 	end
+
 	--print(spellID)
 	if startTime ~= endTime then
 		local costTable = GetSpellPowerCost(spellID)
