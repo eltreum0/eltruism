@@ -132,17 +132,3 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 		end
 	end
 end
-
---Better EventTrace thanks to ;Meorawr.wtf.lua;
-if E.db.ElvUI_EltreumUI.dev then
-	LoadAddOn("Blizzard_EventTrace");
-	local LogEvent = EventTrace.LogEvent;
-
-	function EventTrace:LogEvent(event, ...)
-	    if event == "COMBAT_LOG_EVENT_UNFILTERED" then
-	        LogEvent(self, event, CombatLogGetCurrentEventInfo());
-	    else
-	        LogEvent(self, event, ...);
-	    end
-	end
-end
