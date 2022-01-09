@@ -311,7 +311,7 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 								["texture_file"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixel.tga",
 								["height"] = 21,
 								["font_size"] = 11,
-								["icon_file"] = "Interface\\AddOns\\Details\\images\\classes_small",
+								--["icon_file"] = "Interface\\AddOns\\Details\\images\\classes_small", --duplicate by default for some reason
 								["icon_grayscale"] = false,
 								["backdrop"] = {
 									["enabled"] = false,
