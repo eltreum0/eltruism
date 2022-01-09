@@ -177,6 +177,7 @@ function ElvUI_EltreumUI:UNIT_POWER_FREQUENT(event,unit)
 		--print(event,unit)
 		ElvUI_EltreumUI:NameplatePowerTextUpdate()
 		ElvUI_EltreumUI:NameplatePower()
+		ElvUI_EltreumUI:PowerPrediction()
 	end
 end
 
@@ -186,6 +187,7 @@ function ElvUI_EltreumUI:UNIT_POWER_UPDATE(event,unit)
 	elseif unit and unit == 'player' then
 		--print(event,unit)
 		ElvUI_EltreumUI:NameplatePowerTextUpdate()
+		ElvUI_EltreumUI:PowerPrediction()
 	end
 end
 
@@ -207,11 +209,17 @@ end
 
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
 	local _, eventType, _, _, _, _, _, _, _, _, _ = CombatLogGetCurrentEventInfo()
+	--local _, eventType, _, _, sourceName, _, _, _, _, _, _, _, _, _, amount = CombatLogGetCurrentEventInfo()
+	--if eventType ~= "UNIT_DIED" and eventType ~= "SPELL_ENERGIZE" then
 	if eventType ~= "UNIT_DIED" then
 		return
 	elseif eventType == "UNIT_DIED" then
 		ElvUI_EltreumUI:RaidDeath()
 	end
+	--elseif (eventType == "SPELL_ENERGIZE") and (sourceName == E.myname) then
+		--print(sourceName.." amount: "..amount)
+		ElvUI_EltreumUI:PowerPrediction()
+	--end
 end
 
 function ElvUI_EltreumUI:UNIT_NAME_UPDATE(event,unit)

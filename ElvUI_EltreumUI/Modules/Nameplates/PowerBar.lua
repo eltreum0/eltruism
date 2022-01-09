@@ -16,8 +16,8 @@ local UnitCanAttack = _G.UnitCanAttack
 --Setup Power Bar, Prediction and Text
 local EltreumPowerBar = CreateFrame("StatusBar","EltruismPowerBar")
 local EltreumPowerPrediction = CreateFrame('StatusBar', "EltruismPowerBarPrediction", EltreumPowerBar)
+local EltreumPowerPredictionIncoming = CreateFrame('StatusBar', "EltruismPowerBarPredictionIncoming", EltreumPowerBar)
 EltreumPowerBar:SetValue(0)
-EltreumPowerBar:SetFillStyle("STANDARD")
 local EltreumPowerBarText = CreateFrame("Frame", nil, EltreumPowerBar)
 EltreumPowerBarText:SetWidth(1)
 EltreumPowerBarText:SetHeight(1)
@@ -48,27 +48,6 @@ function ElvUI_EltreumUI:PowerPrediction()
 	elseif not E.private.ElvUI_EltreumUI.nameplatepower then
 		return
 	end
-	EltreumPowerPrediction:SetReverseFill(true)
-
-	--from elvui/ouf by ls-
-	local mainCost = 0
-	local mainType = UnitPowerType("player")
-	local mainMax = UnitPowerMax("player", mainType)
-	local mainType = UnitPowerType("player")
-	local _, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
-	if startTime ~= endTime then
-		local costTable = GetSpellPowerCost(spellID)
-		for k, v in next, costTable do
-			local cost, ctype, cperc = v.cost, v.type, v.costPercent
-			--mainCost = ((cost < mainMax) and cost) or (mainMax * cperc) / 100
-			mainCost = cost
-		end
-		EltreumPowerPrediction:SetValue(mainCost)
-		--print("Started casting "..spellID.." with cost "..mainCost)
-	else
-		EltreumPowerPrediction:SetValue(0)
-	end
-
 	local sizex
 	if E.db.ElvUI_EltreumUI.nameplatepower.sizex then
 		sizex = E.db.ElvUI_EltreumUI.nameplatepower.sizex
@@ -83,8 +62,71 @@ function ElvUI_EltreumUI:PowerPrediction()
 	end
 	local predictioncolorr, predictioncolorg, predictioncolorb  = EltreumPowerBar:GetStatusBarColor()
 	EltreumPowerPrediction:SetStatusBarColor(predictioncolorr * 2, predictioncolorg * 2, predictioncolorb * 2, 0.7)
+	EltreumPowerPredictionIncoming:SetStatusBarColor(predictioncolorr * 2, predictioncolorg * 2, predictioncolorb * 2, 0.7)
 	EltreumPowerPrediction:SetSize(sizex, sizey)
-	EltreumPowerPrediction:SetValue(mainCost)
+	EltreumPowerPredictionIncoming:SetSize(sizex, sizey)
+	--make them behave nicely since i had to split them
+	EltreumPowerPrediction:SetReverseFill(true)
+	EltreumPowerPredictionIncoming:SetReverseFill(false)
+	--From Asakawa's Universal Power Bar
+	local spellGenerators = {
+		-- Moonkin
+		[190984] = function() return IsPlayerSpell(114107) and GetPlayerAuraBySpellID(48517) and 9 or 6 end,  -- Wrath
+		[194153] = 8,  --  StarFire
+		[214281] = 10, -- New Moon
+		[274281] = 10, -- New Moon
+		[214282] = 20, -- Half Moon
+		[274282] = 20, -- Half Moon
+		[274283] = 40, -- Full Moon
+		[202347] = 8,  -- Stellar Flare
+		-- Spriest
+		[8092] = 12,   -- MB
+		[205351] = 15, -- SW:V
+		[585] = 12,    -- MF
+		[48045] = 5,   -- * target hit  -- Mind Sear
+		[34914] = 6,   -- VT
+		-- Shaman
+		[188196] = 8,
+		[51505] = 10,
+		[210714] = 15,
+		[188443] = 4,
+		--Hunter
+		[56641] = 10,
+	}
+
+	--obtain values to check
+	local powerMax = UnitPowerMax("player")
+	local powercurrentvalue = EltreumPowerBar:GetValue()
+	--print(maxvaluecheck)
+
+	--From ElvUI/oUF by ls-
+	local mainCost = 0
+	local incResource = 0
+	local _, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
+	if startTime ~= endTime then
+		local costTable = GetSpellPowerCost(spellID)
+		for k, v in next, costTable do
+			local cost = v.cost
+			mainCost = cost
+		end
+		for k, v in next, spellGenerators do
+			if spellGenerators[spellID] ~= nil then
+				incResource = spellGenerators[spellID]
+				--print(incResource)
+
+				--readjust if the incoming would go over max
+				if (incResource + powercurrentvalue) >= powerMax then
+					incResource = (powerMax - powercurrentvalue)
+					print("adjusting resource")
+				end
+			end
+		end
+		EltreumPowerPrediction:SetValue(mainCost)
+		EltreumPowerPredictionIncoming:SetValue(incResource)
+	else
+		EltreumPowerPrediction:SetValue(0)
+		EltreumPowerPredictionIncoming:SetValue(0)
+	end
 end
 
 --so that the power updates when spec changes
@@ -277,13 +319,20 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			EltreumPowerBar.bg:SetSize(bgx, bgy)
 			EltreumPowerBar:SetFrameStrata("MEDIUM")
 
+			--get location of power bar texture
+			local predictionpos = EltreumPowerBar:GetStatusBarTexture()
+
 			--update power prediction
 			EltreumPowerPrediction:SetStatusBarTexture(powertexture)
 			EltreumPowerPrediction:SetMinMaxValues(0, powerMax)
-			local predictionpos = EltreumPowerBar:GetStatusBarTexture()
 			EltreumPowerPrediction:SetPoint("RIGHT", predictionpos, "RIGHT", 0, 0)
-			EltreumPowerPrediction:SetFrameStrata("MEDIUM")
+			EltreumPowerPrediction:SetFrameStrata("HIGH")
 
+			--update power prediction incoming
+			EltreumPowerPredictionIncoming:SetStatusBarTexture(powertexture)
+			EltreumPowerPredictionIncoming:SetMinMaxValues(0, powerMax)
+			EltreumPowerPredictionIncoming:SetPoint("LEFT", predictionpos, "RIGHT", 0, 0)
+			EltreumPowerPredictionIncoming:SetFrameStrata("HIGH")
 
 			if ElvUI_EltreumUI.Retail then
 				if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
