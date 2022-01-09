@@ -429,7 +429,7 @@ if ElvUI_EltreumUI.TBC then
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 16,
-			["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][name:eltruism:abbreviate]",
+			["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]",
 			["xOffset"] = -2,
 			["yOffset"] = 0
 		}
@@ -451,7 +451,7 @@ if ElvUI_EltreumUI.TBC then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 10,
-			["text_format"] = "Target: [target]",
+			["text_format"] = "Target: [eltruism:targetcast]",
 			["xOffset"] = -5,
 			["yOffset"] = -14
 		}

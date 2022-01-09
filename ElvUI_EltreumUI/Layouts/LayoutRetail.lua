@@ -548,7 +548,7 @@ if ElvUI_EltreumUI.Retail then
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 10,
-			["text_format"] = "Target: [target]",
+			["text_format"] = "Target: [eltruism:targetcast]",
 			["xOffset"] = -5,
 			["yOffset"] = -14
 		}
