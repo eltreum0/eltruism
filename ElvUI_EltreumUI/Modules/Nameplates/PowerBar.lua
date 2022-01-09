@@ -16,7 +16,9 @@ local UnitCanAttack = _G.UnitCanAttack
 --Setup Power Bar, Prediction and Text
 local EltreumPowerBar = CreateFrame("StatusBar","EltruismPowerBar")
 local EltreumPowerPrediction = CreateFrame('StatusBar', "EltruismPowerBarPrediction", EltreumPowerBar)
+EltreumPowerPrediction:Hide() --hide at the start before events
 local EltreumPowerPredictionIncoming = CreateFrame('StatusBar', "EltruismPowerBarPredictionIncoming", EltreumPowerBar)
+EltreumPowerPredictionIncoming:Hide() --hide at the start before events
 EltreumPowerBar:SetValue(0)
 local EltreumPowerBarText = CreateFrame("Frame", nil, EltreumPowerBar)
 EltreumPowerBarText:SetWidth(1)
@@ -102,12 +104,20 @@ function ElvUI_EltreumUI:PowerPrediction()
 	--From ElvUI/oUF by ls-
 	local mainCost = 0
 	local incResource = 0
-	local _, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
+	local startTime, endTime, spellID = 0, 0, 0
+	if ElvUI_EltreumUI.Retail then
+		 _, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
+	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		_, _, _, startTime, endTime, _, _, spellID = UnitCastingInfo("player")
+	end
+	--print(spellID)
 	if startTime ~= endTime then
 		local costTable = GetSpellPowerCost(spellID)
-		for k, v in next, costTable do
-			local cost = v.cost
-			mainCost = cost
+		if costTable ~= nil then
+			for k, v in next, costTable do
+				local cost = v.cost
+				mainCost = cost
+			end
 		end
 		for k, v in next, spellGenerators do
 			if spellGenerators[spellID] ~= nil then
@@ -117,15 +127,19 @@ function ElvUI_EltreumUI:PowerPrediction()
 				--readjust if the incoming would go over max
 				if (incResource + powercurrentvalue) >= powerMax then
 					incResource = (powerMax - powercurrentvalue)
-					print("adjusting resource")
+					--print("adjusting resource")
 				end
 			end
 		end
 		EltreumPowerPrediction:SetValue(mainCost)
+		EltreumPowerPrediction:Show()
 		EltreumPowerPredictionIncoming:SetValue(incResource)
+		EltreumPowerPrediction:Show()
 	else
 		EltreumPowerPrediction:SetValue(0)
+		EltreumPowerPrediction:Show()
 		EltreumPowerPredictionIncoming:SetValue(0)
+		EltreumPowerPredictionIncoming:Show()
 	end
 end
 
