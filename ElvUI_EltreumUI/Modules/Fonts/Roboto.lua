@@ -204,7 +204,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 16,
-			["text_format"] = "[health:current:shortvalue]",
+			["text_format"] = "[eltruism:raidmarker] [health:current:shortvalue]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -282,7 +282,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 			["justifyH"] = "RIGHT",
 			["size"] = 12,
 			["text_format"] = "||cffFFFF00[absorbs]||r ",
-			["xOffset"] = 6,
+			["xOffset"] = 0,
 			["yOffset"] = 15
 			}
 		end
@@ -304,7 +304,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 16,
-			["text_format"] = "[namecolor][name] [eltruism:class:player]",
+			["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]",
 			["xOffset"] = 2,
 			["yOffset"] = 0
 		}
@@ -448,7 +448,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 16,
-			["text_format"] = "[eltruism:class:player] [namecolor][name:eltruism:abbreviate]",
+			["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]",
 			["xOffset"] = -2,
 			["yOffset"] = 0
 		}
@@ -470,7 +470,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		["fontOutline"] = "OUTLINE",
 		["justifyH"] = "RIGHT",
 		["size"] = 10,
-		["text_format"] = "Target: [target]",
+		["text_format"] = "Target: [eltruism:targetcast]",
 		["xOffset"] = -5,
 		["yOffset"] = -14
 		}
