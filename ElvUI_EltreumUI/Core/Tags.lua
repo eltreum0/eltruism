@@ -347,54 +347,60 @@ end)
 E:AddTagInfo('eltruism:raidmarker', ElvUI_EltreumUI.Name, L["Shows raid target marker"])
 
 --Difficulty color for npcs in classic/tbc
-if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-	E:AddTag('eltruism:difficulty', 'UNIT_NAME_UPDATE', function(unit)
-		--obtain the levels
-		local targetlevel = UnitLevel(unit)
-		local playerlevel = UnitLevel("player")
-		--calculate the difference
-		local difference = (targetlevel - playerlevel)
-		local printdifference
-		local classification = UnitClassification(unit)
-		--  "worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
-		if difference > 5 then
-			printdifference = "5"
-		elseif difference < -9 then
-			printdifference = "-9"
-		else
-			printdifference = tostring(difference)
-		end
-		--level difference table based on blizzard's
-		local eltruismdif = {
-			["-9"] = "|cFF808080",
-			["-8"] = "|cFF008000",
-			["-7"] = "|cFF008000",
-			["-6"] = "|cFF008000",
-			["-5"] = "|cFF008000",
-			["-4"] = "|cFF008000",
-			["-3"] = "|cFF008000",
-			["-2"] = "|cFFFFFF00",
-			["-1"] = "|cFFFFFF00",
-			["0"] = "|cFFFFFF00",
-			["1"] = "|cFFFFFF00",
-			["2"] = "|cFFFFFF00",
-			["3"] = "|cFFA50000",
-			["4"] = "|cFFFFA500",
-			["5"] = "|cFFFF0000",
-		}
-		--make sure its not a player as to not overwrite class colors
-		if not UnitIsPlayer("unit") then
-			if UnitIsEnemy("player", unit) == true then
-				if classification ~= "worldboss" then
+E:AddTag('eltruism:difficulty', 'UNIT_NAME_UPDATE', function(unit)
+	--obtain the levels
+	local targetlevel = UnitLevel(unit)
+	local playerlevel = UnitLevel("player")
+	--calculate the difference
+	local difference = (targetlevel - playerlevel)
+	local printdifference
+	local classification = UnitClassification(unit)
+	--  "worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
+	if difference > 5 then
+		printdifference = "5"
+	elseif difference < -9 then
+		printdifference = "-9"
+	else
+		printdifference = tostring(difference)
+	end
+	--level difference table based on blizzard's
+	local eltruismdif = {
+		["-9"] = "|cFF808080",
+		["-8"] = "|cFF008000",
+		["-7"] = "|cFF008000",
+		["-6"] = "|cFF008000",
+		["-5"] = "|cFF008000",
+		["-4"] = "|cFF008000",
+		["-3"] = "|cFF008000",
+		["-2"] = "|cFFFFFF00",
+		["-1"] = "|cFFFFFF00",
+		["0"] = "|cFFFFFF00",
+		["1"] = "|cFFFFFF00",
+		["2"] = "|cFFFFFF00",
+		["3"] = "|cFFA50000",
+		["4"] = "|cFFFFA500",
+		["5"] = "|cFFFF0000",
+	}
+	--make sure its not a player as to not overwrite class colors
+	if not UnitIsPlayer("unit") then
+		if UnitIsEnemy("player", unit) == true then
+			if classification ~= "worldboss" then
+				if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 					return (eltruismdif[printdifference])
-				elseif classification == "worldboss" then
+				else
+					return
+				end
+			elseif classification == "worldboss" then
+				if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 					return ("|cFFFF0000")
+				else
+					return
 				end
 			end
 		end
-	end)
-	E:AddTagInfo('eltruism:difficulty', ElvUI_EltreumUI.Name, L["Colors NPC name according to their difficulty compared to the player"])
-end
+	end
+end)
+E:AddTagInfo('eltruism:difficulty', ElvUI_EltreumUI.Name, L["Colors NPC name according to their difficulty compared to the player"])
 
 local classcolorcast = {
 	['DEATHKNIGHT']	= "FFC41E3A",
