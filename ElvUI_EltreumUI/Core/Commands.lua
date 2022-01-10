@@ -40,10 +40,12 @@ function ElvUI_EltreumUI:RunCommands(message)
 	elseif message == 'dev' then
 		if E.db.ElvUI_EltreumUI.dev == false then
 			E.db.ElvUI_EltreumUI.dev = true
-			ElvUI_EltreumUI:Print("Dev Enabled")
+			ElvUI_EltreumUI:Print("Development Tools Enabled, please reload")
+			E:StaticPopup_Show('CONFIG_RL')
 		elseif E.db.ElvUI_EltreumUI.dev == true then
 			E.db.ElvUI_EltreumUI.dev = false
-			ElvUI_EltreumUI:Print("Dev Disabled")
+			ElvUI_EltreumUI:Print("Development Tools Disabled, please reload")
+			E:StaticPopup_Show('CONFIG_RL')
 		end
 	end
 end

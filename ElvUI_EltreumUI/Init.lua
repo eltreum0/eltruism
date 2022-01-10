@@ -30,7 +30,9 @@ ElvUI_EltreumUI.Classic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 ElvUI_EltreumUI.TBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
 
 function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
-	if not E.private.ElvUI_EltreumUI.install_version then return end
+	if not E.private.ElvUI_EltreumUI.install_version then
+		return
+	end
 	ElvUI_EltreumUI:LoadCommands()
 	ElvUI_EltreumUI:Borders()
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
@@ -77,7 +79,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:DynamicLevelStyleFilter()
 		ElvUI_EltreumUI:UpdateNPwithoutBar()
 	end
-	--Better EventTrace thanks to ;Meorawr.wtf.lua;
+	--Better EventTrace CLEU logging thanks to ;Meorawr.wtf.lua;
 	if E.db.ElvUI_EltreumUI.dev then
 		LoadAddOn("Blizzard_EventTrace");
 		local LogEvent = EventTrace.LogEvent;
@@ -88,6 +90,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 				LogEvent(self, event, ...);
 			end
 		end
+		ElvUI_EltreumUI:Print("|cFFFF0000WARNING:|r You are using Development Tools which increase CPU Usage. Use |cFFFF0000/eltruism dev|r to disable them")
 	end
 end
 
