@@ -1,7 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local IsInInstance = _G.IsInInstance
-local myclass = E.myclass
 local CreateFrame = _G.CreateFrame
 local UnitGUID = _G.UnitGUID
 local tonumber = _G.tonumber
