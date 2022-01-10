@@ -142,7 +142,7 @@ function ElvUI_EltreumUI:LootText()
 		local CURRENCY_GAINED_MULTIPLE = _G.CURRENCY_GAINED_MULTIPLE
 		local CURRENCY_GAINED_MULTIPLE_BONUS = _G.CURRENCY_GAINED_MULTIPLE_BONUS
 		local CURRENCY_GAINED = _G.CURRENCY_GAINED
-		local CombatText_AddMessage = _G.CombatText_AddMessage
+		--local CombatText_AddMessage = _G.CombatText_AddMessage
 		local CombatText_StandardScroll = _G.CombatText_StandardScroll
 		local GetItemInfo = _G.GetItemInfo
 		local GetItemQualityColor = _G.GetItemQualityColor
