@@ -1,6 +1,6 @@
 local _G = _G
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local pairs = _G.pairs
+--local pairs = _G.pairs
 local SetCVar = _G.SetCVar
 local UIParent = _G.UIParent
 local GetTime = _G.GetTime
@@ -180,17 +180,19 @@ function ElvUI_EltreumUI:CastCursor()
 				t:SetSize((1-y1)*r, x2*r)
 			end,
 		}
-		local function CopyDefaults(src, dst)
-			if _G.type(dst)~="table" then dst = {} end
-			for k,v in pairs(src) do
-				if _G.type(v)=="table" then
-					dst[k] = CopyDefaults(v,dst[k])
-				elseif dst[k]==nil then
-					dst[k] = v
+		--[[
+			local function CopyDefaults(src, dst)
+				if _G.type(dst)~="table" then dst = {} end
+				for k,v in pairs(src) do
+					if _G.type(v)=="table" then
+						dst[k] = CopyDefaults(v,dst[k])
+					elseif dst[k]==nil then
+						dst[k] = v
+					end
 				end
+				return dst
 			end
-			return dst
-		end
+		]]
 		-- Root Frame
 
 		rootFrame:SetSize(8,8)
@@ -416,7 +418,8 @@ function ElvUI_EltreumUI:CastCursor()
 		cursorframe:RegisterEvent("PLAYER_STARTED_MOVING")
 		cursorframe:SetScript("OnEvent", function(self, event, _)
 		--cursorframe:SetScript("OnEvent", function(self, event, name)
-			EltreumCursorDB = CopyDefaults(Defaults, EltreumCursorDB)
+			--EltreumCursorDB = CopyDefaults(Defaults, EltreumCursorDB)
+			local EltreumCursorDB = Defaults
 			--print('cursorframe loaded')
 			self:UnregisterEvent("PLAYER_STARTED_MOVING")
 			self:SetScript("OnEvent", nil)
