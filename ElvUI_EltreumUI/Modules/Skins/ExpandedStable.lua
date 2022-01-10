@@ -1,8 +1,8 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local LoadAddOn = _G.LoadAddOn
+--local IsAddOnLoaded = _G.IsAddOnLoaded
+--local LoadAddOn = _G.LoadAddOn
 local hooksecurefunc = _G.hooksecurefunc
 local PetStableFrame = _G.PetStableFrame
 local PetStableNextPageButton = _G.PetStableNextPageButton
@@ -19,6 +19,8 @@ local GetStablePetInfo = _G.GetStablePetInfo
 --based on Improved Stable Frame by Cybeloras
 function ElvUI_EltreumUI:ExpandedStable()
 	if E.db.ElvUI_EltreumUI.skins.expandedstable then
+		local NUM_PET_STABLE_PAGES = NUM_PET_STABLE_PAGES
+		local NUM_PET_STABLE_SLOTS  = NUM_PET_STABLE_SLOTS
 		local maxSlots = NUM_PET_STABLE_PAGES * NUM_PET_STABLE_SLOTS
 		local NUM_PER_ROW = 10
 
