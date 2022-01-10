@@ -7,7 +7,7 @@ local function EltruismSpark()
 		local castbar = _G["ElvUF_Player_CastBar"]
 		castbar.Spark_ = castbar:CreateTexture(nil, 'OVERLAY')
 		castbar.Spark_:SetTexture(E.media.blankTex)
-		local sparkheight = castbar.Spark_:GetHeight()
+		--local sparkheight = castbar.Spark_:GetHeight() --check if its needed
 		castbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.sparkcustomcolor.b, 1)
 		castbar.Spark_:Size(E.db.ElvUI_EltreumUI.sparkcustomcolor.width)
 	end
