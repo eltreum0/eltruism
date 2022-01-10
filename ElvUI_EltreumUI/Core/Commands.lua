@@ -6,7 +6,7 @@ local C_Map = _G.C_Map
 local table = _G.table
 local UiMapPoint = _G.UiMapPoint
 local GetCoinIcon = _G.GetCoinIcon
-local CombatText_AddMessage = _G.CombatText_AddMessage
+--local CombatText_AddMessage = _G.CombatText_AddMessage
 local CombatText_StandardScroll = _G.CombatText_StandardScroll
 
 -- Register on init
