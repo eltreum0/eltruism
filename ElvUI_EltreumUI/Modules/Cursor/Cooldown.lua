@@ -1,6 +1,7 @@
 --CursorCooldown is a fork of CooldownToGo by mitchnull, which is licensed under Public Domain. My thanks to mitchnull for making it!
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
+
 local tonumber = _G.tonumber
 local GetTime = _G.GetTime
 local GetActionInfo = _G.GetActionInfo
@@ -19,12 +20,15 @@ local UIParent = _G.UIParent
 local GetCursorPosition = _G.GetCursorPosition
 local LibStub = _G.LibStub
 local math = _G.math
+
+--onupdate things
 local NormalUpdateDelay = 1.0/10 -- update frequency == 1/NormalUpdateDelay
 local FadingUpdateDelay = 1.0/25 -- update frequency while fading == 1/FadingUpdateDelay, must be <= NormalUpdateDelay
-local Icon = [[Interface\AddOns\ElvUI_EltreumUI\Media\Textures\logo.tga]]
-local db
 local lastUpdate = 0 -- time since last real update
 local updateDelay = NormalUpdateDelay
+
+local Icon = [[Interface\AddOns\ElvUI_EltreumUI\Media\Textures\logo.tga]]
+local db
 local fadeStamp -- the timestamp when we should start fading the display
 local endStamp -- the timestamp when the cooldown will be over
 local finishStamp -- the timestamp when the we are finished with this cooldown
@@ -91,7 +95,7 @@ end
 local mask
 local frame = CreateFrame("MessageFrame", "EltruismCooldown", UIParent)
 frame:Hide()
-function ElvUI_EltreumUI:createFrame()
+function ElvUI_EltreumUI:createCooldownFrame()
 	self:SetupCDSize()
 	frame:SetWidth(cooldownsize)
 	frame:SetHeight(cooldownsize)
@@ -123,19 +127,19 @@ function ElvUI_EltreumUI:createFrame()
 		lastUpdate = lastUpdate + elapsed
 		if lastUpdate < updateDelay then return end
 		lastUpdate = 0
-		self:OnUpdate(elapsed)
+		self:UpdateCooldown(elapsed)
 	end)
 end
 
-function ElvUI_EltreumUI:OnInitialize()
+function ElvUI_EltreumUI:CooldownInitialize()
 	self.db = LibStub("AceDB-3.0"):New("ElvUI_EltreumUIDB", defaults)
 	db = self.db.profile
 	if not self.frame then
-		self:createFrame()
+		self:createCooldownFrame()
 	end
 end
 
-function ElvUI_EltreumUI:OnEnable()
+function ElvUI_EltreumUI:CooldownEnable()
 	self:SecureHook("UseAction", "checkActionCooldown")
 	self:SecureHook("UseContainerItem", "checkContainerItemCooldown")
 	self:SecureHook("UseInventoryItem", "checkInventoryItemCooldown")
@@ -146,10 +150,10 @@ function ElvUI_EltreumUI:OnEnable()
 	self:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN", "updateCooldown")
 	self:RegisterEvent("BAG_UPDATE_COOLDOWN", "updateCooldown")
 	self:RegisterEvent("PET_BAR_UPDATE_COOLDOWN", "updateCooldown")
-	self:RegisterEvent("UNIT_SPELLCAST_FAILED")
+	self:RegisterEvent("UNIT_SPELLCAST_FAILED") --hard to confirm if this event works at all for its purpose here
 end
 
-function ElvUI_EltreumUI:OnUpdate()
+function ElvUI_EltreumUI:UpdateCooldown()
 	if not isActive then
 		return
 	end
@@ -311,7 +315,8 @@ end
 
 function ElvUI_EltreumUI:checkPetActionCooldown(index)
 	if not index then return end
-	local _, _, texture, _, _, _, _, spellId = GetPetActionInfo(index)
+	--local _, _, texture, _, _, _, _, spellId = GetPetActionInfo(index) --old
+	local _, texture, _, _, _, _, spellId, _, _ = GetPetActionInfo(index) --shadowlands
 	if spellId then
 		self:checkSpellCooldown(spellId)
 	else
@@ -319,7 +324,7 @@ function ElvUI_EltreumUI:checkPetActionCooldown(index)
 	end
 end
 
-function ElvUI_EltreumUI:UNIT_SPELLCAST_FAILED(event, unit, _, _, _, id)
+function ElvUI_EltreumUI:UNIT_SPELLCAST_FAILED(unit,id) -- i think i only need unit and id here, but i havent been able to confirm if the function works at all since the event is very specific
 	if unit and unit ~= 'player' then
 		return
 	elseif unit then
@@ -329,7 +334,7 @@ function ElvUI_EltreumUI:UNIT_SPELLCAST_FAILED(event, unit, _, _, _, id)
 	end
 end
 
-function ElvUI_EltreumUI:updateCooldown(event)
+function ElvUI_EltreumUI:updateCooldown() --dont think i need event here
 	if not isActive then
 		if lastGetCooldown then
 			local start, duration, enabled = lastGetCooldown(lastArg)
