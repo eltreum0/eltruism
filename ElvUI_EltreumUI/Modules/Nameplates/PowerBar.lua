@@ -734,7 +734,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 end
 
 --update the values of nameplate power bar
-function ElvUI_EltreumUI:NameplatePowerTextUpdate()
+function ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
 	EltreumPowerBar:SetScript("OnEvent", function(event,unit)
 		if event == "UNIT_POWER_FREQUENT" or event == "UNIT_MODEL_CHANGED" then
 			if unit and unit ~= 'player' then
