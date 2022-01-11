@@ -67,7 +67,7 @@ function ElvUI_EltreumUI:RogueAutoOpen()
 		end
 		local NPC_ID = tonumber(string.match(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
 
-		local function handle_NPC_Interaction(self, event)
+		local function handle_NPC_Interaction()
 			if C_GossipInfo.GetNumOptions() ~= 2 then
 				--ElvUI_EltreumUI:Print('not the right amount of gossip')
 				return
