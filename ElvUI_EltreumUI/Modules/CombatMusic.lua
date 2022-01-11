@@ -6,7 +6,7 @@ local StopMusic = _G.StopMusic
 
 --play music during combat
 local dontstop = 0
-function ElvUI_EltreumUI:CombatMusic(event)
+function ElvUI_EltreumUI:CombatMusic()
 	if E.private.ElvUI_EltreumUI.combatmusic.enable then
 		local _, instanceType = IsInInstance()
 		local soundfile = E.private.ElvUI_EltreumUI.combatmusic.musicfile
