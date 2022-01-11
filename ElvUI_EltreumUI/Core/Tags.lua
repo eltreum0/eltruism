@@ -312,7 +312,7 @@ E:AddTagInfo('eltruism:ReleafIconOutline:player', ElvUI_EltreumUI.Name, "Shows C
 
 -- Releaf Logo
 if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
-	E:AddTag("releaf", "UNIT_NAME_UPDATE", function(unit)
+	E:AddTag("releaf", "UNIT_NAME_UPDATE", function()
 		local color = E:ClassColor(E.myclass, true)
 		local red = math.floor(color.r*255)
 		local blue = math.floor(color.b*255)
@@ -323,7 +323,7 @@ if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 	end)
 elseif ElvUI_EltreumUI.Classic then
 	ElvUF.Tags.Events['releaf'] = 'UNIT_NAME_UPDATE'
-	ElvUF.Tags.Methods['releaf'] = function(unit)
+	ElvUF.Tags.Methods['releaf'] = function()
 		local color = E:ClassColor(E.myclass, true)
 		local red = math.floor(color.r*255)
 		local blue = math.floor(color.b*255)
