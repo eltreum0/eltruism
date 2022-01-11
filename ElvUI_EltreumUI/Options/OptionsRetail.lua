@@ -440,27 +440,6 @@ if ElvUI_EltreumUI.Retail then
 							get = function(info) return E.db.ElvUI_EltreumUI.questsettings.rogueopen end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.questsettings.rogueopen = value end,
 						},
-						header5 = {
-							order = 10,
-							type = "description",
-							name = "",
-							width = 'full',
-							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-						},
-						hidehead = {
-							order = 11,
-							type = "description",
-							name = "Hide NPC Talking Head Popup",
-							width = "full",
-						},
-						hideheadenable = {
-							order = 12,
-							type = 'toggle',
-							name = L["Enable"],
-							desc = "Enable Hiding the Talking Head Popup",
-							get = function(info) return E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead end,
-							set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead = value end,
-						},
 						header9 = {
 							order = 26,
 							type = "description",
