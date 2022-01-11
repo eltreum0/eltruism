@@ -254,14 +254,14 @@ function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 	end
 end
 
-function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED(event)
+function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED()
 	ElvUI_EltreumUI:StopCombatMusic()
 	ElvUI_EltreumUI:DynamicChatFade()
 	ElvUI_EltreumUI:BlizzCombatText()
 	--ElvUI_EltreumUI:ArenaUnitframes()
 end
 
-function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED(event)
+function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED()
 	ElvUI_EltreumUI:CombatMusic()
 	ElvUI_EltreumUI:DynamicChatFade()
 	ElvUI_EltreumUI:ArenaUnitframes()
