@@ -39,8 +39,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:AFKmusic() --plays music while afk
 	ElvUI_EltreumUI:LootText() --shows LooTText and combat entering/leaving messages
 	ElvUI_EltreumUI:VersionCheckInit() --checks for old versions
-	ElvUI_EltreumUI:CursorInit() --starts cursor module with rings
-	ElvUI_EltreumUI:CastCursor() --starts cursor module with cooldowns
+	ElvUI_EltreumUI:CursorInit() --starts cursor modules
 	ElvUI_EltreumUI:SkinMailZone() --skins zone change messages and mail font
 	ElvUI_EltreumUI:Shadows() --adds shadows to frames
 	ElvUI_EltreumUI:AuraShadows() -- adds shadows to elvui auras
@@ -168,12 +167,12 @@ function ElvUI_EltreumUI:UNIT_MODEL_CHANGED(event,unit)
 		return
 	elseif unit and unit == 'player' then
 		--print(event,unit)
-		ElvUI_EltreumUI:NameplatePowerTextUpdate()
-		ElvUI_EltreumUI:NameplatePower()
+		ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
+		ElvUI_EltreumUI:NameplatePower(event)
 	end
 end
 
-function ElvUI_EltreumUI:UNIT_AURA(event,unit)
+function ElvUI_EltreumUI:UNIT_AURA(unit)
 	if unit and unit ~= 'player' then
 		return
 	elseif unit and unit == 'player' then
@@ -187,9 +186,9 @@ function ElvUI_EltreumUI:UNIT_POWER_FREQUENT(event,unit)
 		return
 	elseif unit and unit == 'player' then
 		--print(event,unit)
-		ElvUI_EltreumUI:NameplatePowerTextUpdate()
-		ElvUI_EltreumUI:NameplatePower()
-		ElvUI_EltreumUI:PowerPrediction()
+		ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
+		ElvUI_EltreumUI:NameplatePower(event)
+		ElvUI_EltreumUI:PowerPrediction(event)
 	end
 end
 
@@ -198,8 +197,8 @@ function ElvUI_EltreumUI:UNIT_POWER_UPDATE(event,unit)
 		return
 	elseif unit and unit == 'player' then
 		--print(event,unit)
-		ElvUI_EltreumUI:NameplatePowerTextUpdate()
-		ElvUI_EltreumUI:PowerPrediction()
+		ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
+		ElvUI_EltreumUI:PowerPrediction(event)
 	end
 end
 
@@ -207,7 +206,7 @@ function ElvUI_EltreumUI:UNIT_SPELLCAST_START(event,unit)
 	if unit and unit ~= 'player' then
 		return
 	elseif unit and unit == 'player' then
-		ElvUI_EltreumUI:PowerPrediction()
+		ElvUI_EltreumUI:PowerPrediction(event)
 	end
 end
 
@@ -215,7 +214,7 @@ function ElvUI_EltreumUI:UNIT_SPELLCAST_STOP(event,unit)
 	if unit and unit ~= 'player' then
 		return
 	elseif unit and unit == 'player' then
-		ElvUI_EltreumUI:PowerPrediction()
+		ElvUI_EltreumUI:PowerPrediction(event)
 	end
 end
 
