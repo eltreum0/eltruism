@@ -21,7 +21,7 @@ local classcolorsescape = {
 	['WARLOCK'] = "8788EE",
 	['WARRIOR'] = "C69B6D",
 }
-local function ColorSysMsgs(self, event, message, ...)
+local function ColorSysMsgs(_, event, message, ...)
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
 	elseif not E.db.ElvUI_EltreumUI then
@@ -88,7 +88,7 @@ ChatFrame_AddMessageEventFilter("ROLE_CHANGED_INFORM", ColorSysMsgs)
 --party/raid role icons
 if IsAddOnLoaded("ElvUI_WindTools") then
 	local CT = WT:GetModule("ChatText")
-	function ElvUI_EltreumUI:RoleIcons(_)
+	function ElvUI_EltreumUI:RoleIcons()
 		local sizeString = ":12:12"
 		local roleIcons = {
 			TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
@@ -121,7 +121,7 @@ EltrusimHideTalkingHead:RegisterEvent('PLAYER_ENTERING_WORLD')
 EltrusimHideTalkingHead:RegisterEvent('ADDON_LOADED')
 function ElvUI_EltreumUI:EltruismHideTalkingHead()
 	if E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead then
-		EltrusimHideTalkingHead:SetScript('OnEvent', function(_, event, addon)
+		EltrusimHideTalkingHead:SetScript('OnEvent', function(_, event)
 			if event == 'PLAYER_ENTERING_WORLD' then
 				if IsAddOnLoaded('Blizzard_TalkingHeadUI') then
 					hooksecurefunc('TalkingHeadFrame_PlayCurrent', function()
