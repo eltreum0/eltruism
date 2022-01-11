@@ -16,6 +16,8 @@ local cursorframe = _G.CreateFrame("Frame", "EltruismCursor")
 function ElvUI_EltreumUI:CursorInit()
 	ElvUI_EltreumUI:CastCursor()
 	ElvUI_EltreumUI:CurrentTypeofCursor()
+	ElvUI_EltreumUI:CooldownInitialize() --starts cursor module with cooldowns
+	ElvUI_EltreumUI:CooldownEnable() --starts cursor module with cooldowns
 end
 
 local rootFrame = _G.CreateFrame("Frame", "EltruismCursorRoot", UIParent)
