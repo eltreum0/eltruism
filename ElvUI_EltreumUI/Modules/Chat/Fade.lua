@@ -8,7 +8,7 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 --chat fading/mouseover/combathide
 local leftfaderbutton = 0 -- when 1 it can fade, when 0 it cannot
 local rightfaderbutton = 0 -- same as above
-function ElvUI_EltreumUI:DynamicChatFade(event)
+function ElvUI_EltreumUI:DynamicChatFade()
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
 	elseif not E.db.ElvUI_EltreumUI then
