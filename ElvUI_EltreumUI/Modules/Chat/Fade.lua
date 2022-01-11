@@ -21,60 +21,68 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 		rightfaderbutton = 1
 	end
 	if E.db.ElvUI_EltreumUI.chat.enable then
-		--register events left chat panel
+
+		--if E.db.ElvUI_EltreumUI.chat.leftcombathide or E.db.ElvUI_EltreumUI.chat.rightcombathide then
 		LeftChatPanel:RegisterEvent("PLAYER_REGEN_DISABLED")
 		LeftChatPanel:RegisterEvent("PLAYER_REGEN_ENABLED")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_ACHIEVEMENT")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_BG_SYSTEM_ALLIANCE")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_BG_SYSTEM_HORDE")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_BG_SYSTEM_NEUTRAL")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_BN_WHISPER")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_CHANNEL")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_EMOTE")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_GUILD")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_GUILD_ACHIEVEMENT")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_INSTANCE_CHAT")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_INSTANCE_CHAT_LEADER")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_OFFICER")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_PARTY")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_PARTY_LEADER")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_RAID")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_RAID_LEADER")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_RAID_WARNING")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_SAY")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_SYSTEM")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_WHISPER")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_YELL")
-		LeftChatPanel:RegisterEvent("CHAT_MSG_BN_INLINE_TOAST_ALERT") --new
-		--register events right chat panel
 		RightChatPanel:RegisterEvent("PLAYER_REGEN_DISABLED")
 		RightChatPanel:RegisterEvent("PLAYER_REGEN_ENABLED")
-		RightChatPanel:RegisterEvent("CHAT_MSG_ACHIEVEMENT")
-		RightChatPanel:RegisterEvent("CHAT_MSG_BG_SYSTEM_ALLIANCE")
-		RightChatPanel:RegisterEvent("CHAT_MSG_BG_SYSTEM_HORDE")
-		RightChatPanel:RegisterEvent("CHAT_MSG_BG_SYSTEM_NEUTRAL")
-		RightChatPanel:RegisterEvent("CHAT_MSG_BN_WHISPER")
-		RightChatPanel:RegisterEvent("CHAT_MSG_CHANNEL")
-		RightChatPanel:RegisterEvent("CHAT_MSG_EMOTE")
-		RightChatPanel:RegisterEvent("CHAT_MSG_GUILD")
-		RightChatPanel:RegisterEvent("CHAT_MSG_GUILD_ACHIEVEMENT")
-		RightChatPanel:RegisterEvent("CHAT_MSG_INSTANCE_CHAT")
-		RightChatPanel:RegisterEvent("CHAT_MSG_INSTANCE_CHAT_LEADER")
-		RightChatPanel:RegisterEvent("CHAT_MSG_OFFICER")
-		RightChatPanel:RegisterEvent("CHAT_MSG_PARTY")
-		RightChatPanel:RegisterEvent("CHAT_MSG_PARTY_LEADER")
-		RightChatPanel:RegisterEvent("CHAT_MSG_RAID")
-		RightChatPanel:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
-		RightChatPanel:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER")
-		RightChatPanel:RegisterEvent("CHAT_MSG_RAID_LEADER")
-		RightChatPanel:RegisterEvent("CHAT_MSG_RAID_WARNING")
-		RightChatPanel:RegisterEvent("CHAT_MSG_SAY")
-		RightChatPanel:RegisterEvent("CHAT_MSG_SYSTEM")
-		RightChatPanel:RegisterEvent("CHAT_MSG_WHISPER")
-		RightChatPanel:RegisterEvent("CHAT_MSG_YELL")
-		RightChatPanel:RegisterEvent("CHAT_MSG_BN_INLINE_TOAST_ALERT") --new
+		--end
+
+		--register events left chat panel
+		if E.db.ElvUI_EltreumUI.chat.leftfader then
+			LeftChatPanel:RegisterEvent("CHAT_MSG_ACHIEVEMENT")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_BG_SYSTEM_ALLIANCE")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_BG_SYSTEM_HORDE")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_BG_SYSTEM_NEUTRAL")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_BN_WHISPER")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_CHANNEL")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_EMOTE")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_GUILD")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_GUILD_ACHIEVEMENT")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_INSTANCE_CHAT")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_INSTANCE_CHAT_LEADER")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_OFFICER")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_PARTY")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_PARTY_LEADER")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_RAID")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_RAID_LEADER")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_RAID_WARNING")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_SAY")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_SYSTEM")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_WHISPER")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_YELL")
+			LeftChatPanel:RegisterEvent("CHAT_MSG_BN_INLINE_TOAST_ALERT") --new
+		end
+		--register events right chat panel
+		if E.db.ElvUI_EltreumUI.chat.rightfader then
+			RightChatPanel:RegisterEvent("CHAT_MSG_ACHIEVEMENT")
+			RightChatPanel:RegisterEvent("CHAT_MSG_BG_SYSTEM_ALLIANCE")
+			RightChatPanel:RegisterEvent("CHAT_MSG_BG_SYSTEM_HORDE")
+			RightChatPanel:RegisterEvent("CHAT_MSG_BG_SYSTEM_NEUTRAL")
+			RightChatPanel:RegisterEvent("CHAT_MSG_BN_WHISPER")
+			RightChatPanel:RegisterEvent("CHAT_MSG_CHANNEL")
+			RightChatPanel:RegisterEvent("CHAT_MSG_EMOTE")
+			RightChatPanel:RegisterEvent("CHAT_MSG_GUILD")
+			RightChatPanel:RegisterEvent("CHAT_MSG_GUILD_ACHIEVEMENT")
+			RightChatPanel:RegisterEvent("CHAT_MSG_INSTANCE_CHAT")
+			RightChatPanel:RegisterEvent("CHAT_MSG_INSTANCE_CHAT_LEADER")
+			RightChatPanel:RegisterEvent("CHAT_MSG_OFFICER")
+			RightChatPanel:RegisterEvent("CHAT_MSG_PARTY")
+			RightChatPanel:RegisterEvent("CHAT_MSG_PARTY_LEADER")
+			RightChatPanel:RegisterEvent("CHAT_MSG_RAID")
+			RightChatPanel:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+			RightChatPanel:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER")
+			RightChatPanel:RegisterEvent("CHAT_MSG_RAID_LEADER")
+			RightChatPanel:RegisterEvent("CHAT_MSG_RAID_WARNING")
+			RightChatPanel:RegisterEvent("CHAT_MSG_SAY")
+			RightChatPanel:RegisterEvent("CHAT_MSG_SYSTEM")
+			RightChatPanel:RegisterEvent("CHAT_MSG_WHISPER")
+			RightChatPanel:RegisterEvent("CHAT_MSG_YELL")
+			RightChatPanel:RegisterEvent("CHAT_MSG_BN_INLINE_TOAST_ALERT") --new
+		end
 
 		--timer things
 		local hidetime = E.db.chat.inactivityTimer+2
@@ -138,7 +146,7 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 			end)
 		end
 
-		--Left chat and activity hide
+		--Left chat inactivity hide
 		LeftChatPanel:SetScript("OnEvent", function(_, event)
 			local lalpha = LeftChatPanel:GetAlpha()
 			if event == "PLAYER_REGEN_DISABLED" then
@@ -178,7 +186,7 @@ function ElvUI_EltreumUI:DynamicChatFade(event)
 			end
 		end)
 
-		--Right chat activity hide
+		--Right chat inactivity hide
 		RightChatPanel:SetScript("OnEvent", function(_, event)
 			local ralpha = RightChatPanel:GetAlpha()
 			if event == "PLAYER_REGEN_DISABLED" then
