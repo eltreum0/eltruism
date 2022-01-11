@@ -3,7 +3,7 @@ local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 
 --From Chat Loot Icons by Stanzilla which is Public Domain
-local function AddLootIcons(self, event, message, ...)
+local function AddLootIcons(_, _, message, ...)
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
 	elseif not E.db.ElvUI_EltreumUI then
