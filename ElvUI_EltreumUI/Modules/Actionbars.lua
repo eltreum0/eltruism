@@ -49,7 +49,7 @@ function ElvUI_EltreumUI:SkillGlow()
 end
 
 --Skill Glow Pet
-function ElvUI_EltreumUI:SkillGlowPet(event, unit)
+function ElvUI_EltreumUI:SkillGlowPet()
 	local skillglowcolor
 	if not E.db.ElvUI_EltreumUI.glow.colorclass then
 		local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolorpet
