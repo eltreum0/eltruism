@@ -127,7 +127,7 @@ function ElvUI_EltreumUI:createCooldownFrame()
 		lastUpdate = lastUpdate + elapsed
 		if lastUpdate < updateDelay then return end
 		lastUpdate = 0
-		self:UpdateCooldown(elapsed)
+		self:CooldownUpdate(elapsed)
 	end)
 end
 
@@ -140,20 +140,56 @@ function ElvUI_EltreumUI:CooldownInitialize()
 end
 
 function ElvUI_EltreumUI:CooldownEnable()
-	self:SecureHook("UseAction", "checkActionCooldown")
-	self:SecureHook("UseContainerItem", "checkContainerItemCooldown")
-	self:SecureHook("UseInventoryItem", "checkInventoryItemCooldown")
-	self:SecureHook("UseItemByName", "checkItemCooldown")
-	self:SecureHook("CastSpellByName", "checkSpellCooldown") -- only needed for pet spells
-	self:SecureHook("CastPetAction", "checkPetActionCooldown")
+	if ElvUI_EltreumUI:IsHooked("UseAction", "checkActionCooldown") then
+		return
+	else
+		self:SecureHook("UseAction", "checkActionCooldown") --this enables tracking actions that are not macros
+	end
+
+	if ElvUI_EltreumUI:IsHooked("UseContainerItem", "checkContainerItemCooldown") then
+		return
+	else
+		self:SecureHook("UseContainerItem", "checkContainerItemCooldown")
+	end
+
+	if ElvUI_EltreumUI:IsHooked("UseInventoryItem", "checkInventoryItemCooldown") then
+		return
+	else
+		self:SecureHook("UseInventoryItem", "checkInventoryItemCooldown")
+	end
+
+	if ElvUI_EltreumUI:IsHooked("UseItemByName", "checkItemCooldown") then
+		return
+	else
+		self:SecureHook("UseItemByName", "checkItemCooldown")
+	end
+
+	if ElvUI_EltreumUI:IsHooked("CastSpellByName", "checkSpellCooldown") then
+		return
+	else
+		self:SecureHook("CastSpellByName", "checkSpellCooldown") -- only needed for pet spells
+	end
+
+	if ElvUI_EltreumUI:IsHooked("CastPetAction", "checkPetActionCooldown") then
+		return
+	else
+		self:SecureHook("CastPetAction", "checkPetActionCooldown")
+	end
+
+	--self:SecureHook("UseAction", "checkActionCooldown") --this enables tracking actions that are not macros
+	--self:SecureHook("UseContainerItem", "checkContainerItemCooldown")
+	--self:SecureHook("UseInventoryItem", "checkInventoryItemCooldown")
+	--self:SecureHook("UseItemByName", "checkItemCooldown")
+	--self:SecureHook("CastSpellByName", "checkSpellCooldown") -- only needed for pet spells
+	--self:SecureHook("CastPetAction", "checkPetActionCooldown")
 	self:RegisterEvent("SPELL_UPDATE_COOLDOWN", "updateCooldown")
 	self:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN", "updateCooldown")
 	self:RegisterEvent("BAG_UPDATE_COOLDOWN", "updateCooldown")
 	self:RegisterEvent("PET_BAR_UPDATE_COOLDOWN", "updateCooldown")
-	self:RegisterEvent("UNIT_SPELLCAST_FAILED") --hard to confirm if this event works at all for its purpose here
+	--self:RegisterEvent("UNIT_SPELLCAST_FAILED") --this triggers every single time a spell fails like when out of resources or on cd
 end
 
-function ElvUI_EltreumUI:UpdateCooldown()
+function ElvUI_EltreumUI:CooldownUpdate()
 	if not isActive then
 		return
 	end
@@ -324,7 +360,8 @@ function ElvUI_EltreumUI:checkPetActionCooldown(index)
 	end
 end
 
-function ElvUI_EltreumUI:UNIT_SPELLCAST_FAILED(unit,id) -- i think i only need unit and id here, but i havent been able to confirm if the function works at all since the event is very specific
+--[[
+function ElvUI_EltreumUI:UNIT_SPELLCAST_FAILED(unit,id) -- im thinking this might not be needed
 	if unit and unit ~= 'player' then
 		return
 	elseif unit then
@@ -333,6 +370,7 @@ function ElvUI_EltreumUI:UNIT_SPELLCAST_FAILED(unit,id) -- i think i only need u
 		end
 	end
 end
+]]--
 
 function ElvUI_EltreumUI:updateCooldown() --dont think i need event here
 	if not isActive then
