@@ -17,6 +17,7 @@ Updated references to nameplates due to a change in ElvUI code\
 Fixed shadows showing up when chat panels were disabled\
 Fixed player castbar shadows being mismatched in some scenarios\
 Fixed some missing shadows\
+Fixed pet cooldowns not always working with Cursor Cooldowns\
 Fixed Target of Target Height on Healer Profile\
 Fixed Expanded Talents for Season of Mastery\
 Fixed Objective/Quest Tracker position due to Questie (only for new installations of Questie)\
