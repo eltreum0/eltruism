@@ -33,51 +33,48 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
 	end
-	ElvUI_EltreumUI:LoadCommands()
-	ElvUI_EltreumUI:Borders()
-	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
-	ElvUI_EltreumUI:AFKmusic()
-	ElvUI_EltreumUI:LootText()
-	ElvUI_EltreumUI:VersionCheckInit()
-	ElvUI_EltreumUI:CursorInit()
-	ElvUI_EltreumUI:CastCursor()
-	ElvUI_EltreumUI:SkinMailZone()
-	ElvUI_EltreumUI:Shadows()
-	ElvUI_EltreumUI:AutoScreenshot()
-	ElvUI_EltreumUI:AuraShadows()
-	ElvUI_EltreumUI:SkinQuests()
-	ElvUI_EltreumUI:FriendlyNameplates()
-	ElvUI_EltreumUI:TextureMode()
-	ElvUI_EltreumUI:WAAnchor()
-	ElvUI_EltreumUI:ChatRoleSwapIcons()
-	ElvUI_EltreumUI:DynamicChatFade()
-	ElvUI_EltreumUI:StealthOptions()
-	ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
-	ElvUI_EltreumUI:BlizzCombatText()
+	ElvUI_EltreumUI:LoadCommands() --loads chat commands
+	ElvUI_EltreumUI:Borders() --creates borders if option is enabled
+	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()  --adds class icons to character panel
+	ElvUI_EltreumUI:AFKmusic() --plays music while afk
+	ElvUI_EltreumUI:LootText() --shows LooTText and combat entering/leaving messages
+	ElvUI_EltreumUI:VersionCheckInit() --checks for old versions
+	ElvUI_EltreumUI:CursorInit() --starts cursor module with rings
+	ElvUI_EltreumUI:CastCursor() --starts cursor module with cooldowns
+	ElvUI_EltreumUI:SkinMailZone() --skins zone change messages and mail font
+	ElvUI_EltreumUI:Shadows() --adds shadows to frames
+	ElvUI_EltreumUI:AuraShadows() -- adds shadows to elvui auras
+	ElvUI_EltreumUI:AutoScreenshot() --takes screenshots when certain events are fired
+	ElvUI_EltreumUI:SkinQuests() --skins quest objective frame to be class colored
+	ElvUI_EltreumUI:FriendlyNameplates() -- controls hiding healthbar from friendly nameplates inside instances
+	ElvUI_EltreumUI:TextureMode() -- checks for light mode in order to set texture to be class based, fired only when option is enabled
+	ElvUI_EltreumUI:WAAnchor()  --creates a weakaura anchor that can be used to attack weakauras to elvui's unitframe visibility settings
+	ElvUI_EltreumUI:ChatRoleSwapIcons() --adds custom role icons in chat when swapping roles
+	ElvUI_EltreumUI:DynamicChatFade() --adds chat fade/hide functions
+	ElvUI_EltreumUI:StealthOptions() --adds an overlay when in stealth
+	ElvUI_EltreumUI:DynamicSpellStealStyleFilter() -- toggles spellsteal filter for mages based on their level
+	ElvUI_EltreumUI:BlizzCombatText() --enables or disables blizzard's combat text depending on player setting in eltruism
+	ElvUI_EltreumUI:ArenaUnitframes() --hides elvui unitframes in arenas
+	ElvUI_EltreumUI:BattlegroundGroupUnitframes() --hides elvui unitframes in bgs
+	ElvUI_EltreumUI:DynamicBuffs() --shows enemy player buffs on nameplates/unitframes if in arena/bgs, hides otherwise
 	if ElvUI_EltreumUI.Retail then
-		ElvUI_EltreumUI:WaypointTimeToArrive()
-		ElvUI_EltreumUI:SkillGlow()
-		ElvUI_EltreumUI:EltruismHideTalkingHead()
-		ElvUI_EltreumUI:GetSpec()
-		ElvUI_EltreumUI:SkinLevelUp()
-		ElvUI_EltreumUI:ArenaQuest()
-		ElvUI_EltreumUI:ArenaUnitframes()
-		ElvUI_EltreumUI:BattlegroundGroupUnitframes()
-		ElvUI_EltreumUI:DynamicBuffs()
+		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
+		ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
+		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
+		ElvUI_EltreumUI:GetSpec() --checks player spec
+		ElvUI_EltreumUI:SkinLevelUp() --skins level up toast
+		ElvUI_EltreumUI:ArenaQuest() --hides quests when in arena/bgs
 		if myclass == 'HUNTER' then
-			ElvUI_EltreumUI:ExpandedStable()
+			ElvUI_EltreumUI:ExpandedStable() --expands pet stable for hunters
 		end
 	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-		ElvUI_EltreumUI:DynamicClassicDatatext()
-		ElvUI_EltreumUI:ExpandedTalents()
-		ElvUI_EltreumUI:ArenaUnitframes()
-		ElvUI_EltreumUI:BattlegroundGroupUnitframes()
-		ElvUI_EltreumUI:DynamicBuffs()
+		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
+		ElvUI_EltreumUI:ExpandedTalents() --makes talents fit in one window without scroll
 	end
 	if E.private["nameplates"]["enable"] == true then
-		ElvUI_EltreumUI:NamePlateOptions()
-		ElvUI_EltreumUI:DynamicLevelStyleFilter()
-		ElvUI_EltreumUI:UpdateNPwithoutBar()
+		ElvUI_EltreumUI:NamePlateOptions() --adds dynamic class based color filters to elvui nameplates
+		ElvUI_EltreumUI:DynamicLevelStyleFilter() --shows or hides level filter on np based on player level
+		ElvUI_EltreumUI:UpdateNPwithoutBar() --updates buffs/debuffs positions on np based on powerbar settings
 	end
 	--Better EventTrace CLEU logging thanks to ;Meorawr.wtf.lua;
 	if E.db.ElvUI_EltreumUI.dev then
@@ -116,21 +113,21 @@ function ElvUI_EltreumUI:Initialize()
 	--register the plugin config
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
 	--Register Events
-	ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
-	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_START')
-	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_END')
-	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE')
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD')
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED')
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEVEL_UP')
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_ENABLED')
-	ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_DISABLED')
-	ElvUI_EltreumUI:RegisterEvent('UPDATE_STEALTH')
-	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS')
-	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED')
-	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA')
-	ElvUI_EltreumUI:RegisterEvent('UNIT_AURA')
-	ElvUI_EltreumUI:RegisterEvent("UNIT_NAME_UPDATE")
+	ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for party/raid death
+	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_START') --for quests and combat music
+	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_END') --for quests and combat music
+	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE') --to store group roster in order to compare in party/raid death
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_ENTERING_WORLD') --for most of the addon
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_FLAGS_CHANGED') -- for afk music
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEVEL_UP') --for the level up skin
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_ENABLED') --for combat music/chat hide/unitframe hide
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_REGEN_DISABLED') --for combat music/chat hide/unitframe hide
+	ElvUI_EltreumUI:RegisterEvent('UPDATE_STEALTH') --for stealth overlay
+	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS') --for hiding healthbar in friendly np
+	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED') --for hiding healthbar in friendly np
+	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA') --for hiding healthbar in friendly np
+	ElvUI_EltreumUI:RegisterEvent('UNIT_AURA') --for aura shadows
+	ElvUI_EltreumUI:RegisterEvent("UNIT_NAME_UPDATE") --for class icons in the character frame
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED') --for power bar
 	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_FREQUENT') --power update real time
 	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_UPDATE') --power type changes
@@ -150,8 +147,8 @@ function ElvUI_EltreumUI:Initialize()
 	SetCVar('nameplateTargetRadialPosition', 1)
 	--depending on game version sets cvars or register events
 	if ElvUI_EltreumUI.Retail then
-		ElvUI_EltreumUI:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
-		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW')
+		ElvUI_EltreumUI:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED') --for class icons, power bar and shadows
+		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW') --for rogue order hall
 		SetCVar('showInGameNavigation', 1)
 	end
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
