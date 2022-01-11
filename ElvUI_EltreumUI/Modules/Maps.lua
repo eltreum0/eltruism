@@ -12,6 +12,7 @@ if ElvUI_EltreumUI.Retail then
 	local EltruismTimeToArrive = CreateFrame("Frame", "EltruismTimeToArrive", UIParent)
 	local autopin = CreateFrame("Frame", "EltruismAutoPin")
 	autopin:RegisterEvent("USER_WAYPOINT_UPDATED")
+	--autopin:RegisterEvent("SUPER_TRACKING_CHANGED")
 	EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 	function ElvUI_EltreumUI:WaypointTimeToArrive()
 		if E.db.ElvUI_EltreumUI.waypointetasetting.enable then

@@ -14,6 +14,8 @@ Added a new tag [eltruism:targetcast] which will show the target of an enemy spe
 Added Crystalzcuhei as a font option during install\
 Updated references to FCT to make it more clear that it's Simpy's ElvUI FCT\
 Updated references to nameplates due to a change in ElvUI code\
+Updated Chat Fade to register events only when enabled\
+Updated Dynamic Cam Profile for Retail due to Dynamic Cam's internal changes\
 Fixed shadows showing up when chat panels were disabled\
 Fixed player castbar shadows being mismatched in some scenarios\
 Fixed some missing shadows\
