@@ -76,18 +76,17 @@ if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 
 	LevelUpFrame.Text = LevelUpFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 	LevelUpFrame.Text:SetSize(418, 72)
-	LevelUpFrame.Text:SetPoint("CENTER", "EltruismLevelUp", "CENTER", 0, 0)
-	LevelUpFrame.Text:SetTextColor(R, G, B)
-	LevelUpFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 36, "OUTLINE")
-	LevelUpFrame.Text:SetText("Level Up!")
+	LevelUpFrame.Text:SetPoint("CENTER", "EltruismLevelUp", "CENTER", 0, 16)
+	LevelUpFrame.Text:SetTextColor(1, 1, 1)
+	LevelUpFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
+	LevelUpFrame.Text:SetText("You've Reached")
 
 	LevelUpFrame.Text2 = LevelUpFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 	LevelUpFrame.Text2:SetSize(418, 72)
-	LevelUpFrame.Text2:SetPoint("CENTER", "EltruismLevelUp", "CENTER", 0, 0)
+	LevelUpFrame.Text2:SetPoint("CENTER", "EltruismLevelUp", "CENTER", 0, -16)
 	LevelUpFrame.Text2:SetTextColor(R, G, B)
-	LevelUpFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 36, "OUTLINE")
-	LevelUpFrame.Text2:SetText("You've reached level "..UnitLevel("player").."!")
-	LevelUpFrame.Text2:Hide()
+	LevelUpFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 42, "OUTLINE")
+	LevelUpFrame.Text2:SetText("Level "..UnitLevel("player").."!")
 
 	LevelUpFrame.StatusLine = CreateFrame("StatusBar", "EltruismLevelUp", LevelUpFrame)
 	LevelUpFrame.StatusLine:SetSize(418, 3)
@@ -106,9 +105,7 @@ if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 	LevelUpFrame:SetScript("OnEvent", function()
 		if E.db.ElvUI_EltreumUI.skins.enable then
 			UIFrameFadeIn(LevelUpFrame, 1, 0, 1)
-			C_Timer.After(3, function() LevelUpFrame.Text:Hide() LevelUpFrame.Text2:Show() end)
-			C_Timer.After(7, function() UIFrameFadeOut(LevelUpFrame, 1, 1, 0)  end)
-			C_Timer.After(8, function() LevelUpFrame.Text:Show() LevelUpFrame.Text2:Hide() end)
+			C_Timer.After(5, function() UIFrameFadeOut(LevelUpFrame, 1, 1, 0) end)
 		end
 	end)
 end
