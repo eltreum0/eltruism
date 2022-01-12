@@ -1,12 +1,12 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local CreateFrame = _G.CreateFrame
+local R, G, B = unpack(E.media.rgbvaluecolor)
 
 function ElvUI_EltreumUI:SkinLevelUp()
 	-- Color level up display and boss banner originally by Aftermathh, 9.1 partially by Eltreum
 	if ElvUI_EltreumUI.Retail then
 		if E.db.ElvUI_EltreumUI.skins.enable then
-			local R, G, B = unpack(E.media.rgbvaluecolor)
 			local BossBanner = _G.BossBanner
 			local EventToastManagerFrame = _G.EventToastManagerFrame
 
@@ -65,4 +65,50 @@ function ElvUI_EltreumUI:SkinLevelUp()
 			end
 		end
 	end
+end
+
+--add one for classic/tbc as well, but for some reason doesnt really work inside a function, maybe because of the timer?
+if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+	local LevelUpFrame = CreateFrame("Frame", "EltruismLevelUp", UIParent)
+
+	LevelUpFrame:SetPoint("TOP", UIParent, 0, -100)
+	LevelUpFrame:SetSize(418, 72)
+
+	LevelUpFrame.Text = LevelUpFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
+	LevelUpFrame.Text:SetSize(418, 72)
+	LevelUpFrame.Text:SetPoint("CENTER", "EltruismLevelUp", "CENTER", 0, 0)
+	LevelUpFrame.Text:SetTextColor(R, G, B)
+	LevelUpFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 36, "OUTLINE")
+	LevelUpFrame.Text:SetText("Level Up!")
+
+	LevelUpFrame.Text2 = LevelUpFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
+	LevelUpFrame.Text2:SetSize(418, 72)
+	LevelUpFrame.Text2:SetPoint("CENTER", "EltruismLevelUp", "CENTER", 0, 0)
+	LevelUpFrame.Text2:SetTextColor(R, G, B)
+	LevelUpFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 36, "OUTLINE")
+	LevelUpFrame.Text2:SetText("You've reached level "..UnitLevel("player").."!")
+	LevelUpFrame.Text2:Hide()
+
+	LevelUpFrame.StatusLine = CreateFrame("StatusBar", "EltruismLevelUp", LevelUpFrame)
+	LevelUpFrame.StatusLine:SetSize(418, 3)
+	LevelUpFrame.StatusLine:SetPoint("TOP", LevelUpFrame, 0, -5)
+	LevelUpFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
+	LevelUpFrame.StatusLine:SetStatusBarColor(R, G, B, 1)
+	LevelUpFrame.StatusLine2 = CreateFrame("StatusBar", "EltruismLevelUp", LevelUpFrame)
+	LevelUpFrame.StatusLine2:SetSize(418, 3)
+	LevelUpFrame.StatusLine2:SetPoint("BOTTOM", LevelUpFrame, 0, 0)
+	LevelUpFrame.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
+	LevelUpFrame.StatusLine2:SetStatusBarColor(R, G, B, 1)
+
+	LevelUpFrame:Hide()
+
+	LevelUpFrame:RegisterEvent("PLAYER_LEVEL_UP")
+	LevelUpFrame:SetScript("OnEvent", function()
+		if E.db.ElvUI_EltreumUI.skins.enable then
+			UIFrameFadeIn(LevelUpFrame, 1, 0, 1)
+			C_Timer.After(3, function() LevelUpFrame.Text:Hide() LevelUpFrame.Text2:Show() end)
+			C_Timer.After(7, function() UIFrameFadeOut(LevelUpFrame, 1, 1, 0)  end)
+			C_Timer.After(8, function() LevelUpFrame.Text:Show() LevelUpFrame.Text2:Hide() end)
+		end
+	end)
 end

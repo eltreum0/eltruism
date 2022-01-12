@@ -24,7 +24,19 @@ function ElvUI_EltreumUI:CombatMusic()
 	end
 end
 
+--test memory things
+--local memorystart = collectgarbage("count")
 function ElvUI_EltreumUI:StopCombatMusic()
+	--[[if not InCombatLockdown() then
+		print("ready to collect")
+		local aftercombat = collectgarbage("count")
+		if aftercombat > (memorystart * 3) then
+			collectgarbage("collect")
+			print("Collected " .. (aftercombat-collectgarbage("count")) .. " kB of garbage");
+		else
+			print("Not enough memory usage to collect garbage yet")
+		end
+	end]]--
 	if E.private.ElvUI_EltreumUI.combatmusic.enable then
 		if dontstop == 1 then
 			StopMusic()

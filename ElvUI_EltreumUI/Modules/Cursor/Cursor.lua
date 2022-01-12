@@ -197,8 +197,8 @@ function ElvUI_EltreumUI:CastCursor()
 				return dst
 			end
 		]]
-		-- Root Frame
 
+		-- Root Frame
 		rootFrame:SetSize(8,8)
 		rootFrame:SetScript("OnUpdate", function(self)
 			local x, y = GetCursorPosition()
