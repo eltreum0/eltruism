@@ -22,6 +22,9 @@ function ElvUI_EltreumUI:CombatMusic()
 			end
 		end
 	end
+	if E.db.ElvUI_EltreumUI.otherstuff.mapcombathide then
+		Minimap:Hide()
+	end
 end
 
 --test memory things
@@ -41,5 +44,8 @@ function ElvUI_EltreumUI:StopCombatMusic()
 		if dontstop == 1 then
 			StopMusic()
 		end
+	end
+	if E.db.ElvUI_EltreumUI.otherstuff.mapcombathide then
+		Minimap:Show()
 	end
 end

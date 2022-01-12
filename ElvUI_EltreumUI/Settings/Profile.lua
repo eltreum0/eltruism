@@ -311,6 +311,7 @@ P.ElvUI_EltreumUI = {
 		screenshot = true,
 		hidetalkinghead = true,
 		blizzcombattext = true,
+		mapcombathide = false,
 		--floatingrep = false,
 	},
 }
