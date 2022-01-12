@@ -183,21 +183,25 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				if ElvUI_EltreumUI.Retail then
 					if E.myclass == 'DEATHKNIGHT' then
 						_G['ElvNP_TargetClassPowerRunes']:Show()
-					else
+					elseif E.myclass == 'DRUID' or E.myclass == 'MAGE' or E.myclass == 'MONK' or E.myclass == 'PALADIN ' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' then
 						_G['ElvNP_TargetClassPowerClassPower']:Show()
 					end
 				elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-					_G['ElvNP_TargetClassPowerClassPower']:Show()
+					if E.myclass == 'DRUID' or E.myclass == 'ROGUE' then
+						_G['ElvNP_TargetClassPowerClassPower']:Show()
+					end
 				end
 			elseif UnitExists("target") and not UnitCanAttack("player", "target") then
 				if ElvUI_EltreumUI.Retail then
 					if E.myclass == 'DEATHKNIGHT' then
 						_G['ElvNP_TargetClassPowerRunes']:Hide()
-					else
+					elseif E.myclass == 'DRUID' or E.myclass == 'MAGE' or E.myclass == 'MONK' or E.myclass == 'PALADIN ' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' then
 						_G['ElvNP_TargetClassPowerClassPower']:Hide()
 					end
 				elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-					_G['ElvNP_TargetClassPowerClassPower']:Hide()
+					if E.myclass == 'DRUID' or E.myclass == 'ROGUE' then
+						_G['ElvNP_TargetClassPowerClassPower']:Hide()
+					end
 				end
 			end
 		end

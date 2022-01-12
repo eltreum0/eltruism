@@ -31,7 +31,6 @@ end
 --local memorystart = collectgarbage("count")
 function ElvUI_EltreumUI:StopCombatMusic()
 	--[[if not InCombatLockdown() then
-		print("ready to collect")
 		local aftercombat = collectgarbage("count")
 		if aftercombat > (memorystart * 3) then
 			collectgarbage("collect")

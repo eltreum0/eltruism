@@ -8,6 +8,10 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 --chat fading/mouseover/combathide
 local leftfaderbutton = 0 -- when 1 it can fade, when 0 it cannot
 local rightfaderbutton = 0 -- same as above
+
+--hides the background on the chat panel toggle arrows
+--/run RightChatToggleButton.Center:Hide()
+
 function ElvUI_EltreumUI:DynamicChatFade()
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
