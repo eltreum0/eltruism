@@ -13,9 +13,9 @@ Added an option to change the background of the Nameplate Power Bar\
 Added Crystalzcuhei as a font option during install\
 Added a new tag [eltruism:raidmarker] which will display the raid marker icon\
 Added a new tag [eltruism:difficulty] which will color the enemy npc target according to its difficulty compared to the player's level\
-Added a new tag [eltruism:targetcast] which will show the target of an enemy spellcast for non mousever and non instant casts\
-Added a new tag [eltruism:targetcast:indicator] which will show the target of an enemy spellcast for non mousever and non instant casts alonside a Target > text\
-Updated references to FCT to make it more clear that it's Simpy's ElvUI FCT\
+Added a new tag [eltruism:targetcast] which will show the target of an enemy spellcast for non mouseover and non-instant casts\
+Added a new tag [eltruism:targetcast:indicator] which will show the target of an enemy spellcast for non mouseover and non-instant casts alongside a Target > text\
+Updated references to FCT to make it clearer that it's Simpy's ElvUI FCT\
 Updated references to nameplates due to a change in ElvUI code\
 Updated Chat Fade to register events only when enabled\
 Updated Dynamic Cam Profile for Retail due to Dynamic Cam's internal changes\
@@ -48,9 +48,9 @@ Fixed Shadow and Light Profile not applying and failing to install Eltruism Prof
 ___
 ### 2.5.7
 Updated all versions to newest ElvUI and game versions\
-Fixed Nameplate Buffs and Debuffs's position being adjusted even when autoadjust was disabled\
+Fixed Nameplate Buffs and Debuffs's position being adjusted even when auto adjust was disabled\
 Fixed Action Bar 4 showing up during pet battles\
-Moved the Raid Pet frames for Burning Crusade Classic and Classic to allow healers to more easily heal pets\
+Moved the Raid Pet frames for Burning Crusade Classic and Classic to allow healers heal pets more easily\
 Fixed Expanded Talents on Classic
 ___
 ### v2.5.6
@@ -61,7 +61,7 @@ ___
 ### v2.5.5
 Updated toc for TBC classic\
 Attempted to fix errors related to font file format\
-If you still have errors or issues please report to the Eltruism discord, thank you
+If you still have errors or issues, please report to the Eltruism discord, thank you
 ___
 ### v2.5.4
 Fixed GothanNarrow font not working well with French localization\
@@ -116,7 +116,7 @@ ___
 ### v2.4.5
 Added a Preview for Custom Glow, you will need to toggle it on and off in order to update the glow options\
 Updated Time to Arrive to use less CPU\
-Fixed Buffs being moved when autoadjust was turned off\
+Fixed Buffs being moved when auto adjust was turned off\
 Cooldown will now color the text red when below 1 second
 ___
 ### v2.4.4
@@ -205,7 +205,7 @@ Changed classpower on nameplates that was defaulting to class color when it was 
 LootText will now have trimmed icons without the grey border
 ___
 ### v2.3.4
-Added Localization Support (only English is live at the moment)\
+Added Localization Support (only English is live for now)\
 Added World Text Scale option\
 Fixed overlapping debuffs on nameplates due to Nameplate Power Bar\
 Moved the Focus to the top left side since on the right side there are boss frames and Arena frames and it should not overlap the Alternate Unitframes
@@ -216,7 +216,7 @@ Fixed missing Demon Hunter Power Bar due to the position being behind the namepl
 Added Gladius and Gladdy profiles for TBC
 ___
 ### v2.3.2
-Added more options to Nameplate Power Bar, such as changing its size, position and texture\
+Added more options to Nameplate Power Bar, such as changing its size, position, and texture\
 Fixed Nameplate Power Bar not appearing for retail Shamans until they swapped specs\
 Bundled ElvUI Chat and CVArs setup with Eltruism Install\
 ElvUI Install prompt will now be skipped since Eltruism sets the same things or overwrites things\
@@ -304,7 +304,7 @@ ___
 Fixed repeating install process prompt due to a database change
 ___
 ### v2.1.8
-Revamped Changelog in order to fit more versions\
+Revamped Changelog to fit more versions\
 Layout now has additional checks for resolution\
 Added class check to change left chat datatext panel to count Ammo/Soul Shards if playing Hunter or Warlock in Classic/TBC\
 Do note that the datatext will not dynamically swap if you change characters\
@@ -390,7 +390,7 @@ Pet bar change to accommodate name length and happiness\
 Other minor changes to profile\
 Questie profile for Classic and Burning Crusade Classic\
 You will need to reload after questie builds the database and reload again after setting the profile\
-Classic Questie has some issues at the moment, and you might need several reloads due to a known bug with townsfolk
+Classic Questie has some issues for now, and you might need several reloads due to a known bug with townsfolk
 ___
 ### v2.0.2
 Added Dark Mode and Light Mode\
