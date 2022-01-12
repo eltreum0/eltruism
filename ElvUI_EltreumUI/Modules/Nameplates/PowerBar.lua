@@ -201,18 +201,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 	else
 		sizey = 6
 	end
-	local bgx
-	if E.db.ElvUI_EltreumUI.nameplatepower.sizex then
-		bgx = E.db.ElvUI_EltreumUI.nameplatepower.sizex + 1
-	else
-		bgx = 133
-	end
-	local bgy
-	if E.db.ElvUI_EltreumUI.nameplatepower.sizey then
-		bgy = E.db.ElvUI_EltreumUI.nameplatepower.sizey + 1
-	else
-		bgy = 7
-	end
 	local posy
 	if E.db.ElvUI_EltreumUI.nameplatepower.posy then
 		posy = E.db.ElvUI_EltreumUI.nameplatepower.posy
@@ -333,7 +321,8 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			--EltreumPowerBar.Text:SetText(BreakUpLargeNumbers(startpower))	--this is an actual number not string
 			EltreumPowerBar:SetSize(sizex, sizey)
 			EltreumPowerBar:SetStatusBarTexture(powertexture)
-			EltreumPowerBar.bg:SetSize(bgx, bgy)
+			--EltreumPowerBar.bg:SetSize(bgx, bgy)
+			EltreumPowerBar.bg:SetSize(sizex + 1 , sizey + 1 )
 			EltreumPowerBar:SetFrameStrata("MEDIUM")
 
 			--get location of power bar texture
