@@ -179,14 +179,26 @@ function ElvUI_EltreumUI:NamePlateOptions()
 			end
 		end
 		if E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide then
-			if UnitCanAttack("player", "target") and UnitExists("target") then
-				_G['ElvNP_TargetClassPowerClassPower']:Show()
-				--E.db["nameplates"]["units"]["TARGET"]["classpower"]["enable"] = true
-				--print("enemy")
+			if UnitExists("target") and UnitCanAttack("player", "target") then
+				if ElvUI_EltreumUI.Retail then
+					if E.myclass == 'DEATHKNIGHT' then
+						_G['ElvNP_TargetClassPowerRunes']:Show()
+					else
+						_G['ElvNP_TargetClassPowerClassPower']:Show()
+					end
+				elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+					_G['ElvNP_TargetClassPowerClassPower']:Show()
+				end
 			elseif UnitExists("target") and not UnitCanAttack("player", "target") then
-				--print("friendly")
-				_G['ElvNP_TargetClassPowerClassPower']:Hide()
-				--E.db["nameplates"]["units"]["TARGET"]["classpower"]["enable"] = false
+				if ElvUI_EltreumUI.Retail then
+					if E.myclass == 'DEATHKNIGHT' then
+						_G['ElvNP_TargetClassPowerRunes']:Hide()
+					else
+						_G['ElvNP_TargetClassPowerClassPower']:Hide()
+					end
+				elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+					_G['ElvNP_TargetClassPowerClassPower']:Hide()
+				end
 			end
 		end
 	end
@@ -238,6 +250,7 @@ local function ClassPowerColor()
 	NP.multiplier = 0
 end
 hooksecurefunc(NP, 'Initialize', ClassPowerColor)
+--hooksecurefunc(NP, 'ClassPower_UpdateColor', ClassPowerColor)
 
 if ElvUI_EltreumUI.Retail then
 	local function RuneBackground()
