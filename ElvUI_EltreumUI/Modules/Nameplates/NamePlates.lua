@@ -178,6 +178,15 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 			end
 		end
+		if UnitCanAttack("player", "target") and UnitExists("target") then
+			_G['ElvNP_TargetClassPowerClassPower']:Show()
+			--E.db["nameplates"]["units"]["TARGET"]["classpower"]["enable"] = true
+			--print("enemy")
+		elseif UnitExists("target") and not UnitCanAttack("player", "target") then
+			--print("friendly")
+			_G['ElvNP_TargetClassPowerClassPower']:Hide()
+			--E.db["nameplates"]["units"]["TARGET"]["classpower"]["enable"] = false
+		end
 	end
 end
 
