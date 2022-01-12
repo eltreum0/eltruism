@@ -2600,8 +2600,15 @@ if ElvUI_EltreumUI.Retail then
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\map',
 					order = 85,
 					args = {
-						waypointetasetting = {
+						header1 = {
 							order = 1,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						waypointetasetting = {
+							order = 2,
 							type = 'group',
 							inline = true,
 							name = L["Add a time to arrive below the waypoint"],
@@ -2636,8 +2643,15 @@ if ElvUI_EltreumUI.Retail then
 								},
 							},
 						},
+						header2 = {
+							order = 3,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
 						waytext = {
-							order = 2,
+							order = 4,
 							type = 'group',
 							inline = true,
 							name = L["Enable the /way and /waypoint commands"],
@@ -2669,6 +2683,34 @@ if ElvUI_EltreumUI.Retail then
 									desc = L["Enable the /way and /waypoint commands"],
 									get = function(info) return E.db.ElvUI_EltreumUI.waytext.enable end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.waytext.enable = value end,
+								},
+							},
+						},
+						header3 = {
+							order = 5,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						mapcombathide = {
+							order = 6,
+							type = 'group',
+							inline = true,
+							name = L["Minimap"],
+							args = {
+								explainer4 = {
+									order = 4,
+									type = "description",
+									name = 'Hide Minimap while in Combat',
+								},
+								enable = {
+									order = 5,
+									type = 'toggle',
+									name = 'Enable',
+									desc = L["Automatically hide the Minimap in combat"],
+									get = function(info) return E.db.ElvUI_EltreumUI.otherstuff.mapcombathide end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.mapcombathide = value E:StaticPopup_Show('CONFIG_RL') end,
 								},
 							},
 						},
