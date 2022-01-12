@@ -429,3 +429,17 @@ E:AddTag('eltruism:targetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARG
 	end
 end)
 E:AddTagInfo('eltruism:targetcast', ElvUI_EltreumUI.Name, L["Shows Target of Spellcast, does not work for Mouseover casts"])
+
+E:AddTag('eltruism:targetcast:indicator', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGET UNIT_SPELLCAST_STOP', function(unit)
+	local targetname = UnitName(unit.."target")
+	local _ , classes = UnitClass(unit.."target")
+	local color = classcolorcast[classes]
+	if UnitCastingInfo(unit) and targetname then
+		if UnitIsPlayer(unit.."target") then
+			return ("Target > |c"..color..targetname.."|r")
+		else
+			return ("Target > "..targetname)
+		end
+	end
+end)
+E:AddTagInfo('eltruism:targetcast:indicator', ElvUI_EltreumUI.Name, L["Shows Target of Spellcast, does not work for Mouseover casts. Includes a Target > indicator"])
