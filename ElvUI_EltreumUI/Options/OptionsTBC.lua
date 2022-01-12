@@ -1051,6 +1051,20 @@ if ElvUI_EltreumUI.TBC then
 							get = function(info) return E.db.ElvUI_EltreumUI.skins.shadows end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.skins.shadows = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
+						levelskins = {
+							order = 47,
+							type = "description",
+							name = L["Add a Level Up toast"],
+							width = "full",
+						},
+						skinenable = {
+							order = 48,
+							type = 'toggle',
+							name = L['Enable'],
+							desc = L["Enable a toast showing up when you level up"],
+							get = function(info) return E.db.ElvUI_EltreumUI.skins.enable end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.skins.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
 						header64546 = {
 							order = 47,
 							type = "description",
