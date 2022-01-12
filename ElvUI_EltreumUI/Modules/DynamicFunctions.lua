@@ -197,3 +197,11 @@ if ElvUI_EltreumUI.TBC then
 		self:ClearAllPoints()
 	end)
 end
+
+-- Inspired by Luckyone's performance option. Thanks Luckyone!
+function ElvUI_EltreumUI:EmptyDetailsTable()
+	_detalhes.encounter_spell_pool = {}
+	_detalhes.npcid_pool = {}
+	_detalhes.spell_pool = {}
+	_detalhes.spell_school_cache = {}
+end

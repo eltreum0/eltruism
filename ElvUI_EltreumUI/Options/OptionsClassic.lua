@@ -1225,6 +1225,27 @@ if ElvUI_EltreumUI.Classic then
 								},
 							},
 						},
+						header10 = {
+							order = 10,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						detailstable = {
+							order = 11,
+							type = "description",
+							name = L["Clear Details! Damage Meter tables to free up memory"],
+							width = "full",
+						},
+						detailstableexecute = {
+							order = 12,
+							type = 'execute',
+							name = L["Clear Details Tables"],
+							desc = L["Set Details tables to be empty"],
+							confirm = true,
+							func = function() ElvUI_EltreumUI:EmptyDetailsTable() end,
+						},
 					},
 				},
 				combatmusic = {
