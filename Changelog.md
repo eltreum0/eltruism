@@ -3,11 +3,12 @@
 ___
 ### 2.6.3
 Added Power Prediction to Nameplate Power Bar\
-Added a Level Up toast for TBC and Classic\
-Added a new function to nameplates which will make the classbar hide if the target is friendly\
-Added options to customize the player castbar spark under Eltruism > Skins\
-Added borders to nameplate power bar\
 Added an option to show Cursor outside of combat\
+Added a Level Up toast for TBC and Classic\
+Added options to customize the player castbar spark under Eltruism > Skins\
+Added an option to hide the Minimap while in combat\
+Added borders to nameplate power bar\
+Added a new function to nameplates which will make the classbar hide if the target is friendly\
 Added options to change the colors of the borders\
 Added an option to change the background of the Nameplate Power Bar\
 Added Crystalzcuhei as a font option during install\
