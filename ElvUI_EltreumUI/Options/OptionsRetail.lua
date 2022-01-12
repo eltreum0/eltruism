@@ -2927,6 +2927,14 @@ if ElvUI_EltreumUI.Retail then
 									get = function(info) return E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = value end,
 								},
+								classbarautohide = {
+									order = 2,
+									type = 'toggle',
+									name = L["Smart Classbar"],
+									desc = L["Automatically hide the Classbar if the Target is Friendly, show if it is an enemy"],
+									get = function(info) return E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide = value end,
+								},
 							},
 						},
 						addsomegap = {

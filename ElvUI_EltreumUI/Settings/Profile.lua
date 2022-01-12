@@ -102,6 +102,7 @@ P.ElvUI_EltreumUI = {
 		ClassColorGlow = true,
 		ClassBorderNameplate = true,
 		nameplatetexture = true,
+		classbarautohide = true,
 	},
 
 	stealthOptions = {
