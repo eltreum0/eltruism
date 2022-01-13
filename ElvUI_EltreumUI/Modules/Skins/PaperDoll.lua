@@ -66,7 +66,9 @@ function ElvUI_EltreumUI:PlayerNamepaperdoll()
 		else
 			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
 		end
-		if not charactertext:match("|T") then
+		if charactertext == nil then
+			return
+		elseif not charactertext:match("|T") then
 			_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
 		end
 	end
