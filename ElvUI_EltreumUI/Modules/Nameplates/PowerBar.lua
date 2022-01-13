@@ -106,6 +106,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 		[188196] = 8, --lightning bolt
 		[51505] = 10, --lava burst
 		[117014] = 30, --elemental blast
+		[114074] = 4, --lava beam
 		[210714] = 25, --icefury
 		[188443] = 4, --chain lightning (per target hit)
 		--Hunter
