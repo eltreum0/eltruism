@@ -190,7 +190,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 			end
 			if UnitExists("target") and UnitCanAttack("player", "target") then
 				if ElvUI_EltreumUI.Retail then
-					print(id)
+					--print(id)
 					if E.myclass == 'DEATHKNIGHT' then
 						_G['ElvNP_TargetClassPowerRunes']:Show()
 					elseif E.myclass == 'PALADIN ' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' then
