@@ -80,11 +80,12 @@ function ElvUI_EltreumUI:PowerPrediction()
 		mindflay = 22
 	end
 	local druidwrath = 6
-	local druideclipse = GetPlayerAuraBySpellID(48517)
-	if IsPlayerSpell(114107) and druideclipse ~= nil then
-		druidwrath = 9
+	if ElvUI_EltreumUI.Retail then
+		local druideclipse = GetPlayerAuraBySpellID(48517)
+		if IsPlayerSpell(114107) and druideclipse ~= nil then
+			druidwrath = 9
+		end
 	end
-
 	--Some of this is from Asakawa's Universal Power Bar, but mostly has been revamped and updated to current values instead of BFA values
 	local spellGenerators = {
 		-- Balance Druid
@@ -124,11 +125,11 @@ function ElvUI_EltreumUI:PowerPrediction()
 	local startTime, endTime, spellID = 0, 0, 0
 	if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.Classic then
 		 _, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
-	elseif ElvUI_EltreumUI.TBC then
+	elseif ElvUI_EltreumUI.TBC then  --Next TBC version it switches to normal info, but for now its this one
 		_, _, _, startTime, endTime, _, _, spellID = UnitCastingInfo("player")
 	end
+	--print(spellID.." spellID!")
 
-	--print(spellID)
 	if startTime ~= endTime then
 		local costTable = GetSpellPowerCost(spellID)
 		if costTable ~= nil then
