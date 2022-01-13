@@ -205,3 +205,27 @@ function ElvUI_EltreumUI:EmptyDetailsTable()
 	_detalhes.spell_pool = {}
 	_detalhes.spell_school_cache = {}
 end
+
+--Dynamic Experience Bar Mouseover
+function ElvUI_EltreumUI:DynamicExperienceDatabar()
+	if not E.private.ElvUI_EltreumUI.install_version then
+		return
+	else
+		local level = UnitLevel("player")
+		if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" and E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar then
+			if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.Classic  then
+				if level < 60 then
+					E.db["databars"]["experience"]["mouseover"] = false
+				elseif level == 60 then
+					E.db["databars"]["experience"]["mouseover"] = true
+				end
+			elseif ElvUI_EltreumUI.TBC then
+				if level < 70 then
+					E.db["databars"]["experience"]["mouseover"] = false
+				elseif level == 70 then
+					E.db["databars"]["experience"]["mouseover"] = true
+				end
+			end
+		end
+	end
+end

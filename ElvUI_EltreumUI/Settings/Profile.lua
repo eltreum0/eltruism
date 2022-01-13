@@ -312,6 +312,7 @@ P.ElvUI_EltreumUI = {
 		hidetalkinghead = true,
 		blizzcombattext = true,
 		mapcombathide = false,
+		dynamicxpbar = true,
 		--floatingrep = false,
 	},
 }

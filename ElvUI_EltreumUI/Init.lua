@@ -52,6 +52,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:DynamicChatFade() --adds chat fade/hide functions
 	ElvUI_EltreumUI:StealthOptions() --adds an overlay when in stealth
 	ElvUI_EltreumUI:DynamicSpellStealStyleFilter() -- toggles spellsteal filter for mages based on their level
+	ElvUI_EltreumUI:DynamicExperienceDatabar() --makes experience bar mouseover or not depending on current player level
 	ElvUI_EltreumUI:BlizzCombatText() --enables or disables blizzard's combat text depending on player setting in eltruism
 	ElvUI_EltreumUI:ArenaUnitframes() --hides elvui unitframes in arenas
 	ElvUI_EltreumUI:BattlegroundGroupUnitframes() --hides elvui unitframes in bgs
@@ -290,6 +291,8 @@ end
 
 function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
 	ElvUI_EltreumUI:DynamicLevelStyleFilter()
+	ElvUI_EltreumUI:DynamicExperienceDatabar()
+	ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED()

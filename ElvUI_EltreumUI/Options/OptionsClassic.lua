@@ -792,6 +792,22 @@ if ElvUI_EltreumUI.Classic then
 							get = function() return E.db.ElvUI_EltreumUI.otherstuff.bgunitframes end,
 							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bgunitframes = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
+						header122 = {
+							order = 7,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						xpdatabar = {
+							order = 8,
+							type = "toggle",
+							name = "Dynamically toggle the mouseover of the Experience Bar",
+							desc = "Shows XP bar when below max level, makes it mouseover when max level",
+							width = 'full',
+							get = function(info) return E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
 						header9 = {
 							order = 26,
 							type = "description",
