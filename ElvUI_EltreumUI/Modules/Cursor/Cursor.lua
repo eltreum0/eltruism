@@ -203,7 +203,7 @@ function ElvUI_EltreumUI:CastCursor()
 		rootFrame:SetSize(8,8)
 		if rootFrame:IsShown() then
 			rootFrame:SetScript("OnUpdate", function(self)
-				print("cursor spam "..math.random(1,99))
+				--print("cursor spam "..math.random(1,99))
 				local x, y = GetCursorPosition()
 				local scaleDivisor = UIParent:GetEffectiveScale()
 				self:ClearAllPoints()
@@ -423,6 +423,10 @@ function ElvUI_EltreumUI:CastCursor()
 		-- Cursor Ring
 		Cursor.IsCursor = true
 		Cursor:Hide()
+
+		--attempt to hide at the start to prevent onupdate
+		rootFrame:Hide()
+
 		-- Run
 		--this is kinda of a roundabout way of getting this to working here
 		cursorframe:RegisterEvent("PLAYER_STARTED_MOVING")
