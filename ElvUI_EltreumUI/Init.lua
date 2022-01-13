@@ -247,12 +247,33 @@ function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:GetSpec()
+		ElvUI_EltreumUI:NamePlateOptions()
 		ElvUI_EltreumUI:Shadows()
 		if E.private["nameplates"]["enable"] == true then
 			ElvUI_EltreumUI:UpdateNPwithoutBar()
 		end
 	end
 end
+
+--[[
+-- ID then name, use id to work on any locale, name changes with locale
+--classes that dont have a class bar at all
+Demon Hunter	577	Havoc			581	Vengeance
+Hunter			253	Beast Mastery	254	Marksmanship	255	Survival
+Priest			256	Discipline		257	Holy			258	Shadow
+Shaman			262	Elemental		263	Enhancement		264	Restoration
+Warrior			71	Arms			72	Fury			73	Protection
+
+--classes that have a classbar depending on spec or druid form
+Druid			102	Balance			103	Feral			104	Guardian	105	Restoration
+Mage			62	Arcane			63	Fire			64	Frost
+Monk			268	Brewmaster		270	Mistweaver		269	Windwalker
+Paladin			65	Holy			66	Protection		70	Retribution
+
+--classes that always have a classbar
+Rogue			259	Assassination	260	Outlaw			261	Subtlety
+Warlock			265	Affliction		266	Demonology		267	Destruction
+]]--
 
 function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED()
 	ElvUI_EltreumUI:StopCombatMusic()
