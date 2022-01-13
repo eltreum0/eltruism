@@ -271,7 +271,7 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 
 			--throttling here using elapsed makes the frame not sync up, idk if i can make it sync with a throttle
 			-- so instead we make it not update at all when hidden
-			EltruismCooldownFrame:SetScript("OnUpdate", function(frame, elapsed)
+			EltruismCooldownFrame:SetScript("OnUpdate", function(frame, elapsed) --if frame is removed, then pet cooldowns can have issues
 				---print("cooldown spam "..math.random(1,99))
 				local x, y = GetCursorPosition()
 				local scaleDivisor = UIParent:GetEffectiveScale()
