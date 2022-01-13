@@ -1082,6 +1082,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["player"]["health"]["xOffset"] = 0
 			E.db["unitframe"]["units"]["player"]["name"]["position"] = "LEFT"
 			E.db["unitframe"]["units"]["target"]["name"]["text_format"] = ""
+			E.db["unitframe"]["units"]["player"]["name"]["text_format"] = ""
 			E.db["unitframe"]["units"]["player"]["name"]["xOffset"] = 2
 			E.db["unitframe"]["units"]["player"]["portrait"]["camDistanceScale"] = 4.2
 			E.db["unitframe"]["units"]["player"]["portrait"]["enable"] = true
@@ -1840,6 +1841,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["player"]["name"]["position"] = "LEFT"
 			E.db["unitframe"]["units"]["player"]["name"]["xOffset"] = 3
 			E.db["unitframe"]["units"]["target"]["name"]["text_format"] = ""
+			E.db["unitframe"]["units"]["player"]["name"]["text_format"] = ""
 			E.db["unitframe"]["units"]["player"]["portrait"]["camDistanceScale"] = 4.2
 			E.db["unitframe"]["units"]["player"]["portrait"]["enable"] = true
 			E.db["unitframe"]["units"]["player"]["portrait"]["fullOverlay"] = true
@@ -1849,6 +1851,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["player"]["power"]["height"] = 14
 			E.db["unitframe"]["units"]["player"]["power"]["text_format"] = ""
 			E.db["unitframe"]["units"]["player"]["power"]["width"] = "spaced"
+			E.db["unitframe"]["units"]["player"]["power"]["text_format"] = ""
 			E.db["unitframe"]["units"]["player"]["power"]["xOffset"] = 0
 			E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
 			E.db["unitframe"]["units"]["player"]["raidicon"]["attachTo"] = "CENTER"

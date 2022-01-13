@@ -24,6 +24,7 @@ Updated Dynamic Cam Profile for Retail due to Dynamic Cam's internal changes\
 Fixed shadows showing up when chat panels were disabled\
 Fixed player castbar shadows being mismatched in some scenarios\
 Fixed some missing shadows\
+Fixed some unitframe texts not being disabled before setting up custom texts\
 Fixed pet cooldowns not always working with Cursor Cooldowns\
 Fixed Target of Target Height on Healer Profile\
 Fixed Expanded Talents for Season of Mastery\
