@@ -339,6 +339,8 @@ function ElvUI_EltreumUI:CastCursor()
 				frame:SetScript("OnEvent", OnEvent or nil)
 				frame:SetScript("OnUpdate", Update)
 				RingSetShown( frame, false )
+				--frame:UnregisterEvent('PLAYER_REGEN_ENABLED') --may be an optimization path
+				--frame:UnregisterEvent('PLAYER_REGEN_DISABLED')
 			end
 			return frame
 		end
