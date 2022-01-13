@@ -73,11 +73,6 @@ function ElvUI_EltreumUI:PowerPrediction()
 	EltreumPowerPrediction:SetReverseFill(true)
 	EltreumPowerPredictionIncoming:SetReverseFill(false)
 
-
-
-
-
-	--fixing spell generator functions
 	local mindblast = 8
 	local mindflay = 18
 	if IsPlayerSpell(193195) then
@@ -92,10 +87,8 @@ function ElvUI_EltreumUI:PowerPrediction()
 
 	--Some of this is from Asakawa's Universal Power Bar, but mostly has been revamped and updated to current values instead of BFA values
 	local spellGenerators = {
-
 		-- Moonkin
 		[190984] = druidwrath, --wrath
-		--[190984] = function() return IsPlayerSpell(114107) and GetPlayerAuraBySpellID(48517) and 9 or 6 end,  -- asakawa's Wrath values
 		[194153] = 8,  --  StarFire
 		[214281] = 10, -- New Moon
 		[274281] = 10, -- New Moon
@@ -103,22 +96,18 @@ function ElvUI_EltreumUI:PowerPrediction()
 		[274282] = 20, -- Half Moon
 		[274283] = 40, -- Full Moon
 		[202347] = 8,  -- Stellar Flare
-
 		-- Spriest
 		[8092] = mindblast, -- mind blast
 		[15407] = mindflay, -- mind flay
 		[48045] = 6, -- * target hit  -- Mind Sear
 		[34914] = 5, -- vampiric touch
 		[263165] = 60, -- void torrent
-		--[15407] = function() if IsPlayerSpell(193195) then return 22 else return 18 end end, -- mind flay
-
 		-- Shaman (elemental only)
 		[188196] = 8, --lightning bolt
 		[51505] = 10, --lava burst
 		[117014] = 30, --elemental blast
 		[210714] = 25, --icefury
 		[188443] = 4, --chain lightning (per target hit)
-
 		--Hunter
 		[56641] = 10, --steady shot
 	}
