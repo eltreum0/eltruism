@@ -123,11 +123,26 @@ function ElvUI_EltreumUI:PowerPrediction()
 	local mainCost = 0
 	local incResource = 0
 	local startTime, endTime, spellID = 0, 0, 0
-	if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.Classic then
-		 _, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
-	elseif ElvUI_EltreumUI.TBC then  --Next TBC version it switches to normal info, but for now its this one
+
+
+	--print(select(4, GetBuildInfo()))
+
+	--Next TBC version it switches to normal info, so we do this to detect wow version
+	local wowversion = (select(4, GetBuildInfo()))
+
+	if wowversion == "20503" then
 		_, _, _, startTime, endTime, _, _, spellID = UnitCastingInfo("player")
+	else
+		_, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
 	end
+
+	--[[
+		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.Classic then
+			 _, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
+		elseif ElvUI_EltreumUI.TBC then
+			_, _, _, startTime, endTime, _, _, spellID = UnitCastingInfo("player")
+		end
+	]]
 	--print(spellID.." spellID!")
 
 	if startTime ~= endTime then
