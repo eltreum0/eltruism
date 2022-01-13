@@ -16,6 +16,7 @@ Added a new tag [eltruism:raidmarker] which will display the raid marker icon\
 Added a new tag [eltruism:difficulty] which will color the enemy npc target according to its difficulty compared to the player's level\
 Added a new tag [eltruism:targetcast] which will show the target of an enemy spellcast for non mouseover and non-instant casts\
 Added a new tag [eltruism:targetcast:indicator] which will show the target of an enemy spellcast for non mouseover and non-instant casts alongside a Target > text\
+Updated Cursor, GCD, Combat Cursor and Cooldown Cursor functions\
 Updated references to FCT to make it clearer that it's Simpy's ElvUI FCT\
 Updated references to nameplates due to a change in ElvUI code\
 Updated Chat Fade to register events only when enabled\
