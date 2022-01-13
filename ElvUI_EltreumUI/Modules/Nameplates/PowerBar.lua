@@ -98,10 +98,10 @@ function ElvUI_EltreumUI:PowerPrediction()
 		[202347] = 8,  -- Stellar Flare
 		-- Shadow Priest
 		[8092] = mindblast, -- mind blast
-		[15407] = mindflay, -- mind flay
-		[48045] = 6, -- * target hit  -- Mind Sear
 		[34914] = 5, -- vampiric touch
-		[263165] = 60, -- void torrent
+		[15407] = mindflay, -- mind flay, but is a channel so idc
+		[48045] = 6, -- per target, but is a channel so idc
+		[263165] = 60, -- void torrent, but is a channel so idc
 		-- Elemental Shaman
 		[188196] = 8, --lightning bolt
 		[51505] = 10, --lava burst
