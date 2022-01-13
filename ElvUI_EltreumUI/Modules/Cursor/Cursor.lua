@@ -199,13 +199,19 @@ function ElvUI_EltreumUI:CastCursor()
 		]]
 
 		-- Root Frame
+		--throttling here makes the frame not sync up, idk if i can make it sync with a throttle
 		rootFrame:SetSize(8,8)
-		rootFrame:SetScript("OnUpdate", function(self)
-			local x, y = GetCursorPosition()
-			local scaleDivisor = UIParent:GetEffectiveScale()
-			self:ClearAllPoints()
-			self:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", x / scaleDivisor , y / scaleDivisor )
-		end )
+		if rootFrame:IsShown() then
+			rootFrame:SetScript("OnUpdate", function(self)
+				print("cursor spam "..math.random(1,99))
+				local x, y = GetCursorPosition()
+				local scaleDivisor = UIParent:GetEffectiveScale()
+				self:ClearAllPoints()
+				self:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", x / scaleDivisor , y / scaleDivisor )
+			end )
+		else
+			rootFrame:SetScript("OnUpdate", nil)
+		end
 
 		local ringsVisible = {}
 		local function RingSetShown(self, visible)
