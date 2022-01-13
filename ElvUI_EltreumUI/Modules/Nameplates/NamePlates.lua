@@ -178,15 +178,33 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 			end
 		end
+		--automatically hide classbar when targeting friendly targets
 		if E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide then
+			--add spec info for retail
+			local id, _
+			if ElvUI_EltreumUI.Retail then
+				local currentSpec = GetSpecialization()
+				if currentSpec then
+					id, _ = GetSpecializationInfo(currentSpec)
+				end
+			end
 			if UnitExists("target") and UnitCanAttack("player", "target") then
 				if ElvUI_EltreumUI.Retail then
+					print(id)
 					if E.myclass == 'DEATHKNIGHT' then
 						_G['ElvNP_TargetClassPowerRunes']:Show()
-					elseif E.myclass == 'MAGE' or E.myclass == 'MONK' or E.myclass == 'PALADIN ' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' then
+					elseif E.myclass == 'PALADIN ' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' then
 						_G['ElvNP_TargetClassPowerClassPower']:Show()
 					elseif E.myclass == 'DRUID' then
 						return
+					elseif E.myclass == 'MONK' then
+						if id == 268 or id == 269 then
+							_G['ElvNP_TargetClassPowerClassPower']:Show()
+						end
+					elseif E.myclass == 'MAGE' then
+						if id == 62 then
+							_G['ElvNP_TargetClassPowerClassPower']:Show()
+						end
 					end
 				elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 					if E.myclass == 'ROGUE' then
@@ -199,10 +217,18 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				if ElvUI_EltreumUI.Retail then
 					if E.myclass == 'DEATHKNIGHT' then
 						_G['ElvNP_TargetClassPowerRunes']:Hide()
-					elseif E.myclass == 'MAGE' or E.myclass == 'MONK' or E.myclass == 'PALADIN ' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' then
+					elseif E.myclass == 'PALADIN ' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' then
 						_G['ElvNP_TargetClassPowerClassPower']:Hide()
 					elseif E.myclass == 'DRUID' then
 						return
+					elseif E.myclass == 'MONK' then
+						if id == 268 or id == 269 then
+							_G['ElvNP_TargetClassPowerClassPower']:Hide()
+						end
+					elseif E.myclass == 'MAGE' then
+						if id == 62 then
+							_G['ElvNP_TargetClassPowerClassPower']:Hide()
+						end
 					end
 				elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 					if E.myclass == 'ROGUE' then
