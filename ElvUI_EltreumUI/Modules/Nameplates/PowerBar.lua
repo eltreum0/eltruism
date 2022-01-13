@@ -125,12 +125,12 @@ function ElvUI_EltreumUI:PowerPrediction()
 	local startTime, endTime, spellID = 0, 0, 0
 
 	--Next TBC version it switches to normal info, so we do this to detect wow version
-	local wowversion = (select(4, GetBuildInfo()))
-	if wowversion == 20502 then --tbc pre phase 3
-		_, _, _, startTime, endTime, _, _, spellID = UnitCastingInfo("player")
-	else --everything else
+	--local wowversion = (select(4, GetBuildInfo()))
+	--if wowversion == 20502 then --tbc pre phase 3
+	--	_, _, _, startTime, endTime, _, _, spellID = UnitCastingInfo("player")
+	--else --everything else
 		_, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
-	end
+	--end
 	--print(select(4, GetBuildInfo()))
 	--print(spellID.." spellID!")
 
