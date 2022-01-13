@@ -83,7 +83,7 @@ if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 
 	LevelUpFrame.Text2 = LevelUpFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 	LevelUpFrame.Text2:SetSize(418, 72)
-	LevelUpFrame.Text2:SetPoint("CENTER", "EltruismLevelUp", "CENTER", 0, -16)
+	LevelUpFrame.Text2:SetPoint("CENTER", "EltruismLevelUp", "CENTER", 0, -14)
 	LevelUpFrame.Text2:SetTextColor(R, G, B)
 	LevelUpFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 42, "OUTLINE")
 	LevelUpFrame.Text2:SetText("Level "..UnitLevel("player").."!")
