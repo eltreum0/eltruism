@@ -93,48 +93,37 @@ function ElvUI_EltreumUI:updateLayout()
 end
 
 local mask
-local frame = CreateFrame("MessageFrame", "EltruismCooldown", UIParent)
-frame:Hide()
+local EltruismCooldownFrame = CreateFrame("MessageFrame", "EltruismCooldown", UIParent)
+EltruismCooldownFrame:Hide()
 function ElvUI_EltreumUI:createCooldownFrame()
 	self:SetupCDSize()
-	frame:SetWidth(cooldownsize)
-	frame:SetHeight(cooldownsize)
-	frame:SetJustifyH("CENTER")
-	self.frame = frame
-	mask = frame:CreateMaskTexture()
+	EltruismCooldownFrame:SetWidth(cooldownsize)
+	EltruismCooldownFrame:SetHeight(cooldownsize)
+	EltruismCooldownFrame:SetJustifyH("CENTER")
+	self.EltruismCooldownFrame = EltruismCooldownFrame
+	mask = EltruismCooldownFrame:CreateMaskTexture()
 	mask:SetTexture([[Interface\CHARACTERFRAME\TempPortraitAlphaMask]], "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
-	mask:SetAllPoints(frame)
+	mask:SetAllPoints(EltruismCooldownFrame)
 
-	local text = frame:CreateFontString("EltruismCoooldownText", "OVERLAY", "GameFontNormal")
+	local text = EltruismCooldownFrame:CreateFontString("EltruismCoooldownText", "OVERLAY", "GameFontNormal")
 	local textsize = ( (cooldownsize / 2) + 1)
 	text:SetFont(E.media.normFont, textsize, "OUTLINE")
 	text:SetTextColor(1, 1, 1)
 	text:SetPoint("CENTER")
 	self.text = text
 
-	local icon = frame:CreateTexture("EltruismCooldownIcon", "OVERLAY")
+	local icon = EltruismCooldownFrame:CreateTexture("EltruismCooldownIcon", "OVERLAY")
 	self.icon = icon
 	self.iconTexture = icon
 	self.iconTexture:SetTexture(Icon)
 	self.iconTexture:AddMaskTexture(mask)
 	self:updateLayout()
-
-	frame:SetScript("OnUpdate", function(frame, elapsed)
-		local x, y = GetCursorPosition()
-		local scaleDivisor = UIParent:GetEffectiveScale()
-		frame:ClearAllPoints()
-		frame:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", x / scaleDivisor , y / scaleDivisor )
-		lastUpdate = lastUpdate + elapsed
-		if lastUpdate < updateDelay then return end
-		lastUpdate = 0
-		self:CooldownUpdate(elapsed)
-	end)
 end
 
 function ElvUI_EltreumUI:CooldownInitialize()
 	self.db = LibStub("AceDB-3.0"):New("ElvUI_EltreumUIDB", defaults)
 	db = self.db.profile
-	if not self.frame then
+	if not self.EltruismCooldownFrame then
 		self:createCooldownFrame()
 	end
 end
@@ -238,10 +227,10 @@ function ElvUI_EltreumUI:CooldownUpdate()
 		local alpha = 1 - ((now - fadeStamp) / db.fadeTime)
 		if alpha <= 0 then
 			isHidden = true
-			self.frame:SetAlpha(0)
+			self.EltruismCooldownFrame:SetAlpha(0)
 			updateDelay = NormalUpdateDelay
 		else
-			self.frame:SetAlpha(alpha)
+			self.EltruismCooldownFrame:SetAlpha(alpha)
 			updateDelay = FadingUpdateDelay
 		end
 	end
@@ -270,13 +259,34 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 	if show then
 		updateDelay = NormalUpdateDelay
 		if E.db.ElvUI_EltreumUI.cursor.cooldown then
-			self.frame:Show()
+			self.EltruismCooldownFrame:Show()
 		end
 		if startHidden then
 			isHidden = true
-			self.frame:SetAlpha(0)
+			self.EltruismCooldownFrame:SetAlpha(0)
+			--unregister onupdate when hidden
+			EltruismCooldownFrame:SetScript("OnUpdate", nil)
 		else
-			self.frame:SetAlpha(1)
+			self.EltruismCooldownFrame:SetAlpha(1)
+
+			--throttling here using elapsed makes the frame not sync up, idk if i can make it sync with a throttle
+			-- so instead we make it not update at all when hidden
+			EltruismCooldownFrame:SetScript("OnUpdate", function(frame, elapsed)
+				---print("cooldown spam "..math.random(1,99))
+				local x, y = GetCursorPosition()
+				local scaleDivisor = UIParent:GetEffectiveScale()
+				EltruismCooldownFrame:ClearAllPoints()
+				EltruismCooldownFrame:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", x / scaleDivisor , y / scaleDivisor )
+				lastUpdate = lastUpdate + elapsed
+				if lastUpdate < updateDelay then return end
+				lastUpdate = 0
+				self:CooldownUpdate(elapsed)
+				if isHidden == true then
+					EltruismCooldownFrame:SetScript("OnUpdate", nil)
+					--print("stopped updating")
+				end
+			end)
+
 		end
 	end
 end
@@ -386,7 +396,7 @@ function ElvUI_EltreumUI:updateCooldown() --dont think i need event here
 			isAlmostReady = false
 			self.iconTexture:SetTexture(lastTexture)
 			self:updateStamps(start, duration, true, true)
-			self.frame:SetAlpha(0)
+			self.EltruismCooldownFrame:SetAlpha(0)
 		end
 		return
 	end
