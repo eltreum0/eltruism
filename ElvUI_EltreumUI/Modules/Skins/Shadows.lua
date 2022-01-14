@@ -22,6 +22,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G.ShoppingTooltip2,
 			_G.VideoOptionsFrame,
 			_G.InterfaceOptionsFrame,
+			_G.StaticPopup1, --seems like blizzard
 		}
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then
