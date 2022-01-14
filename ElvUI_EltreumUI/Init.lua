@@ -57,6 +57,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:ArenaUnitframes() --hides elvui unitframes in arenas
 	ElvUI_EltreumUI:BattlegroundGroupUnitframes() --hides elvui unitframes in bgs
 	ElvUI_EltreumUI:DynamicBuffs() --shows enemy player buffs on nameplates/unitframes if in arena/bgs, hides otherwise
+	ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
