@@ -86,7 +86,6 @@ if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 	LevelUpFrame.Text2:SetPoint("CENTER", "EltruismLevelUp", "CENTER", 0, -14)
 	LevelUpFrame.Text2:SetTextColor(R, G, B)
 	LevelUpFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 42, "OUTLINE")
-	LevelUpFrame.Text2:SetText("Level "..UnitLevel("player").."!")
 
 	LevelUpFrame.StatusLine = CreateFrame("StatusBar", "EltruismLevelUp", LevelUpFrame)
 	LevelUpFrame.StatusLine:SetSize(418, 3)
@@ -104,6 +103,7 @@ if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 	LevelUpFrame:RegisterEvent("PLAYER_LEVEL_UP")
 	LevelUpFrame:SetScript("OnEvent", function()
 		if E.db.ElvUI_EltreumUI.skins.enable then
+			LevelUpFrame.Text2:SetText("Level "..UnitLevel("player").."!")
 			UIFrameFadeIn(LevelUpFrame, 1, 0, 1)
 			C_Timer.After(5, function() UIFrameFadeOut(LevelUpFrame, 1, 1, 0) end)
 		end
