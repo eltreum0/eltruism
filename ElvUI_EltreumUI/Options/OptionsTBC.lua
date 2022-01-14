@@ -972,6 +972,22 @@ if ElvUI_EltreumUI.TBC then
 					name = "Skins",
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\paint',
 					args = {
+						headerfirst = {
+							order = 1,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						skincharpanel = {
+							order = 2,
+							type = 'toggle',
+							name = "Skin the Character Panel",
+							width = 'full',
+							desc = "Enable this option",
+							get = function(info) return E.db.ElvUI_EltreumUI.skins.classicarmory end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.skins.classicarmory = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
 						header845 = {
 							order = 23,
 							type = "description",
@@ -3472,7 +3488,7 @@ if ElvUI_EltreumUI.TBC then
 									order = 1,
 									type = 'description',
 									fontSize = 'medium',
-									name = 'Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3\nCursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain\nExpand Hunter Stables is merged from Improved Stable Frame by Cybeloras which is licensed under GNU GPLv3\nIcons8 (www.icons8.com) for some of the icons. List in license.txt\nLootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3\nRogue Door Opener is a fork of Rogue Door Opener by Burzolog which licensed under GNU GPLv3\nLoot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain',
+									name = 'Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3\nCursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain\nExpand Hunter Stables is merged from Improved Stable Frame by Cybeloras which is licensed under GNU GPLv3\nIcons8 (www.icons8.com) for some of the icons. List in license.txt\nLootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3\nRogue Door Opener is a fork of Rogue Door Opener by Burzolog which licensed under GNU GPLv3\nLoot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain\nThe Item Level shown on the Character Panel Skin uses code from Simple Item level by Kemayo, licensed under BSD',
 								},
 							},
 						},
