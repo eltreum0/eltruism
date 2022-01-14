@@ -152,6 +152,8 @@ function ElvUI_EltreumUI:Initialize()
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED') --for class icons, power bar and shadows
 		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW') --for rogue order hall
+		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
+		ElvUI_EltreumUI:RegisterEvent('CHALLENGE_MODE_COMPLETED') --for auto screenshot
 		SetCVar('showInGameNavigation', 1)
 	end
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
@@ -296,6 +298,7 @@ function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
 	ElvUI_EltreumUI:DynamicLevelStyleFilter()
 	ElvUI_EltreumUI:DynamicExperienceDatabar()
 	ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
+	ElvUI_EltreumUI:AutoScreenshot()
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED()
@@ -357,6 +360,14 @@ end
 
 function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
 	ElvUI_EltreumUI:AFKmusic()
+end
+
+function ElvUI_EltreumUI:ACHIEVEMENT_EARNED()
+	ElvUI_EltreumUI:AutoScreenshot()
+end
+
+function ElvUI_EltreumUI:CHALLENGE_MODE_COMPLETED()
+	ElvUI_EltreumUI:AutoScreenshot()
 end
 
 function ElvUI_EltreumUI:GOSSIP_SHOW()
