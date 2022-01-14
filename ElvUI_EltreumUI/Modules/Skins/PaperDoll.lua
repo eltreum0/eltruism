@@ -299,9 +299,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.MagicResFrame5:SetParent(_G.CharacterStatFrame1)
 				end
 
-
-
-
 				if ElvUI_EltreumUI.TBC then
 					_G.PlayerStatFrameLeft1:ClearAllPoints()
 					_G.PlayerStatFrameLeft1:SetPoint("TOP", CharacterFrame, "TOP", 150, -185)
