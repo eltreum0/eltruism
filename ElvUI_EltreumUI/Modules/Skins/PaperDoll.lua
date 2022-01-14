@@ -291,7 +291,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.MagicResFrame5:SetParent(_G.PlayerStatFrameLeft1)
 				elseif ElvUI_EltreumUI.Classic then
 					_G.MagicResFrame1:ClearAllPoints()
-					_G.MagicResFrame1:SetPoint("LEFT", _G.CharacterStatFrame1, "LEFT", -30, 0)
+					_G.MagicResFrame1:SetPoint("LEFT", _G.CharacterStatFrame1, "LEFT", -30, -8)
 					_G.MagicResFrame1:SetParent(_G.CharacterStatFrame1)
 					_G.MagicResFrame2:SetParent(_G.CharacterStatFrame1)
 					_G.MagicResFrame3:SetParent(_G.CharacterStatFrame1)
