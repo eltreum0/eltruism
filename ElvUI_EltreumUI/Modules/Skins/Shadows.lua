@@ -262,10 +262,18 @@ function ElvUI_EltreumUI:Shadows()
 			_G['ElvUI_ReputationBar'],
 			_G['ElvUI_ExperienceBar'],
 			_G['ElvUI_ThreatBar'],
+			--_G['ElvUI_MicroBar.backdrop'],
 		}
 		for _, frame in pairs(GeneralElvUIFrames) do
 			if frame and not frame.shadow then
 				frame:CreateShadow()
+			end
+		end
+
+		--microbar shadow
+		if _G.ElvUI_MicroBar.backdrop then
+			if not _G.ElvUI_MicroBar.backdrop.shadow then
+				_G.ElvUI_MicroBar.backdrop:CreateShadow()
 			end
 		end
 
@@ -512,7 +520,7 @@ function ElvUI_EltreumUI:Shadows()
 			LeftChatShadow:Hide()
 			RightChatShadow:Hide()
 		end
-------------------------------------------------------------------------------------------------------end of elvui frames
+		------------------------------------------------------------------------------------------------------end of elvui frames
 		if IsAddOnLoaded('ProjectAzilroka') then
 			if not _G.stAMFrame.shadow then
 				_G.stAMFrame:CreateShadow()
