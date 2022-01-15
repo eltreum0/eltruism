@@ -50,47 +50,49 @@ end
 
 --Skill Glow Pet
 function ElvUI_EltreumUI:SkillGlowPet()
-	local skillglowcolor
-	if not E.db.ElvUI_EltreumUI.glow.colorclass then
-		local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolorpet
-		local r, g, b = glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b
-		skillglowcolor = {r, g, b, 1}
-	end
-	if E.db.ElvUI_EltreumUI.glow.colorclass then
-		local r, g, b = unpack(E.media.rgbvaluecolor)
-		skillglowcolor = {r, g, b, 1}
-	end
+	if E.myclass == 'HUNTER' or E.myclass == 'WARLOCK' then
+		local skillglowcolor
+		if not E.db.ElvUI_EltreumUI.glow.colorclass then
+			local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolorpet
+			local r, g, b = glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b
+			skillglowcolor = {r, g, b, 1}
+		end
+		if E.db.ElvUI_EltreumUI.glow.colorclass then
+			local r, g, b = unpack(E.media.rgbvaluecolor)
+			skillglowcolor = {r, g, b, 1}
+		end
 
-	if E.db.ElvUI_EltreumUI.glow.enablepet then
-		for i = 1, NUM_PET_ACTION_SLOTS, 1 do
-			local _, _, _, _, _, autoCastEnabled, _ = GetPetActionInfo(i)
-			local buttonName = 'PetActionButton'..i
-			local button = _G[buttonName]
+		if E.db.ElvUI_EltreumUI.glow.enablepet then
+			for i = 1, NUM_PET_ACTION_SLOTS, 1 do
+				local _, _, _, _, _, autoCastEnabled, _ = GetPetActionInfo(i)
+				local buttonName = 'PetActionButton'..i
+				local button = _G[buttonName]
 
-			if autoCastEnabled then
-				AutoCastShine_AutoCastStop(button.AutoCastShine)
-				if E.db.ElvUI_EltreumUI.glow.pixel then
-					--PixelGlow_Start(frame[, color[, N[, frequency[, length[, th[, xOffset[, yOffset[, border[ ,key]]]]]]]])
-					LCG.PixelGlow_Start(button, skillglowcolor, 10, 0.25, 5, 2, 0, 0, false, nil, high)
-				end
-				if E.db.ElvUI_EltreumUI.glow.autocast then
-					--AutoCastGlow_Start(frame[, color[, N[, frequency[, scale[, xOffset[, yOffset[, key]]]]]]])
-					LCG.AutoCastGlow_Start(button, skillglowcolor, 16, 0.25, 0.7, 0, 0)
-				end
-				if E.db.ElvUI_EltreumUI.glow.blizzard then
-					--ButtonGlow_Start(frame[, color[, frequency]]])
-					LCG.ButtonGlow_Start(button, skillglowcolor, 0.125)
-				end
-			else
-				AutoCastShine_AutoCastStop(button.AutoCastShine)
-				if E.db.ElvUI_EltreumUI.glow.pixel then
-					LCG.PixelGlow_Stop(button)
-				end
-				if E.db.ElvUI_EltreumUI.glow.autocast then
-					LCG.AutoCastGlow_Stop(button)
-				end
-				if E.db.ElvUI_EltreumUI.glow.blizzard then
-					LCG.ButtonGlow_Stop(button)
+				if autoCastEnabled then
+					AutoCastShine_AutoCastStop(button.AutoCastShine)
+					if E.db.ElvUI_EltreumUI.glow.pixel then
+						--PixelGlow_Start(frame[, color[, N[, frequency[, length[, th[, xOffset[, yOffset[, border[ ,key]]]]]]]])
+						LCG.PixelGlow_Start(button, skillglowcolor, 10, 0.25, 5, 2, 0, 0, false, nil, high)
+					end
+					if E.db.ElvUI_EltreumUI.glow.autocast then
+						--AutoCastGlow_Start(frame[, color[, N[, frequency[, scale[, xOffset[, yOffset[, key]]]]]]])
+						LCG.AutoCastGlow_Start(button, skillglowcolor, 16, 0.25, 0.7, 0, 0)
+					end
+					if E.db.ElvUI_EltreumUI.glow.blizzard then
+						--ButtonGlow_Start(frame[, color[, frequency]]])
+						LCG.ButtonGlow_Start(button, skillglowcolor, 0.125)
+					end
+				else
+					AutoCastShine_AutoCastStop(button.AutoCastShine)
+					if E.db.ElvUI_EltreumUI.glow.pixel then
+						LCG.PixelGlow_Stop(button)
+					end
+					if E.db.ElvUI_EltreumUI.glow.autocast then
+						LCG.AutoCastGlow_Stop(button)
+					end
+					if E.db.ElvUI_EltreumUI.glow.blizzard then
+						LCG.ButtonGlow_Stop(button)
+					end
 				end
 			end
 		end

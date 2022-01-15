@@ -180,8 +180,10 @@ function ElvUI_EltreumUI:UNIT_MODEL_CHANGED(event,unit)
 		return
 	elseif unit and unit == 'player' then
 		--print(event,unit)
-		ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
-		ElvUI_EltreumUI:NameplatePower(event)
+		if E.myclass == 'DRUID' then
+			ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
+			ElvUI_EltreumUI:NameplatePower(event)
+		end
 	end
 end
 
