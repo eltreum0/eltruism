@@ -217,6 +217,12 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 						_G.CharacterFrameTitleText:SetTextColor(R, G, B)
 						_G.CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
 						_G.CharacterFrameTitleText:SetShadowOffset(2, -1)
+
+						_G.CharacterModelFrameBackgroundOverlay:Show()
+						_G.CharacterModelFrameBackgroundOverlay:ClearAllPoints()
+						_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(_G.CharacterFrame)
+						_G.CharacterModelFrameBackgroundOverlay:SetParent(_G.CharacterFrame)
+						_G.CharacterModelFrameBackgroundOverlay:SetDrawLayer("OVERLAY")
 					end
 				end)
 
@@ -230,6 +236,12 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 						_G.CharacterFrameTitleText:SetTextColor(R, G, B)
 						_G.CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
 						_G.CharacterFrameTitleText:SetShadowOffset(2, -1)
+
+						_G.CharacterModelFrameBackgroundOverlay:Show()
+						_G.CharacterModelFrameBackgroundOverlay:ClearAllPoints()
+						_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(_G.CharacterFrame)
+						_G.CharacterModelFrameBackgroundOverlay:SetParent(_G.CharacterFrame)
+						_G.CharacterModelFrameBackgroundOverlay:SetDrawLayer("OVERLAY")
 					end
 				end)
 
@@ -243,6 +255,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					_G.PaperDollFrame.SLE_Armory_BG:SetParent(_G.CharacterFrame)
 					_G.PaperDollFrame.SLE_Armory_BG:SetDrawLayer("ARTWORK")
 					--show the background overlay so its not bright
+
 					_G.CharacterModelFrameBackgroundOverlay:Show()
 					_G.CharacterModelFrameBackgroundOverlay:ClearAllPoints()
 					_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(_G.CharacterFrame)
@@ -261,7 +274,6 @@ CharacterFrame.Text2 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFont
 function ElvUI_EltreumUI:ExpandedCharacterStats()
 	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then
-
 			if CharacterFrame then
 				CharacterFrame:SetSize(600, 505)
 
@@ -285,19 +297,16 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 				CharacterFrame.StatusLine:SetStatusBarColor(R, G, B, 1)
 
-
 				CharacterFrame.Text2:SetSize(418, 72)
 				CharacterFrame.Text2:SetPoint("TOP", CharacterFrame, "TOP", 150, -45)
 				CharacterFrame.Text2:SetTextColor(R, G, B)
 				CharacterFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 28, "OUTLINE")
-
 
 				CharacterFrame.StatusLine2:SetFrameStrata("LOW")
 				CharacterFrame.StatusLine2:SetSize(200, 30)
 				CharacterFrame.StatusLine2:SetPoint("CENTER", CharacterFrame.Text2, "CENTER", 0, 0)
 				CharacterFrame.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
 				CharacterFrame.StatusLine2:SetStatusBarColor(1, 1, 1, 1)
-
 
 				CharacterFrame.Text3:SetSize(418, 72)
 				CharacterFrame.Text3:SetPoint("TOP", CharacterFrame, "TOP", 150, -80)
@@ -381,16 +390,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterRangedAttackPowerFrame:SetParent(_G._G.CharacterStatFrame1)
 					_G.CharacterRangedDamageFrame:SetParent(_G._G.CharacterStatFrame1)
 				end
-
 				_G.SkillFrame:SetHeight(400)
 				_G.SkillDetailScrollChildFrame:ClearAllPoints()
 				_G.SkillDetailScrollChildFrame:SetPoint("BOTTOMLEFT", CharacterFrame, "BOTTOMLEFT", 30, 150)
 				_G.SkillDetailScrollChildFrame:SetParent(_G.SkillFrame)
-
 				_G.SkillFrameCancelButton:Hide()
 			end
-
-
 		end
 	end
 end
