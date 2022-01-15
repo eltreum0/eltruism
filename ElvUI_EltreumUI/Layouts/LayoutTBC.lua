@@ -734,8 +734,14 @@ if ElvUI_EltreumUI.TBC then
 			E.db["actionbar"]["fontOutline"] = "THICKOUTLINE"
 			E.db["actionbar"]["lockActionBars"] = false
 			E.db["actionbar"]["globalFadeAlpha"] = 1
-			E.db["actionbar"]["microbar"]["backdropSpacing"] = 6
-			E.db["actionbar"]["microbar"]["buttonHeight"] = 20
+			E.db["actionbar"]["microbar"]["backdrop"] = true
+			E.db["actionbar"]["microbar"]["buttonHeight"] = 29
+			E.db["actionbar"]["microbar"]["buttonSize"] = 25
+			E.db["actionbar"]["microbar"]["buttonSpacing"] = 4
+			E.db["actionbar"]["microbar"]["buttonsPerRow"] = 9
+			E.db["actionbar"]["microbar"]["enabled"] = true
+			E.db["actionbar"]["microbar"]["visibility"] = "[combat] hide; show"
+			E.db["actionbar"]["microbar"]["mouseover"] = true
 			E.db["actionbar"]["noPowerColor"]["b"] = 0.29019607843137
 			E.db["actionbar"]["noPowerColor"]["g"] = 0.14509803921569
 			E.db["actionbar"]["noPowerColor"]["r"] = 0.14509803921569
@@ -846,7 +852,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
 			E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
 			E.db["movers"]["ElvUF_RaidpetMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,255,1"
-			E.db["movers"]["ElvUF_TankMover"] = "BOTTOM,ElvUIParent,BOTTOM,-155,-4"
+			E.db["movers"]["ElvUF_TankMover"] = "BOTTOM,ElvUIParent,BOTTOM,-155, 41"
 			--E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,269"
 			E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,295,268"
 			E.db["movers"]["ElvUF_TargetMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,299"
@@ -863,7 +869,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["movers"]["LootFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-156"
 			E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-317"
 			E.db["movers"]["MasterExperienceMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,515,-79"
-			E.db["movers"]["MicrobarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-422,0"
+			E.db["movers"]["MicrobarMover"] = "BOTTOM,ElvUIParent,BOTTOM, 0, 0"
 			E.db["movers"]["MinimapButtonAnchor"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-223"
 			E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
 			E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96"
@@ -1646,6 +1652,15 @@ if ElvUI_EltreumUI.TBC then
 			E.db["actionbar"]["notUsableColor"]["g"] = 0.16862745098039
 			E.db["actionbar"]["notUsableColor"]["r"] = 0.16862745098039
 			E.db["actionbar"]["rightClickSelfCast"] = true
+			E.db["actionbar"]["microbar"]["backdrop"] = true
+			E.db["actionbar"]["microbar"]["buttonHeight"] = 29
+			E.db["actionbar"]["microbar"]["buttonSize"] = 25
+			E.db["actionbar"]["microbar"]["buttonSpacing"] = 4
+			E.db["actionbar"]["microbar"]["buttonsPerRow"] = 9
+			E.db["actionbar"]["microbar"]["enabled"] = true
+			E.db["actionbar"]["microbar"]["visibility"] = "[combat] hide; show"
+			E.db["actionbar"]["microbar"]["mouseover"] = true
+			E.db["actionbar"]["noPowerColor"]["b"] = 0.29019607843137
 			E.db["actionbar"]["stanceBar"]["buttonSize"] = 25
 			E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 1
 			E.db["actionbar"]["stanceBar"]["hotkeyFont"] = "Kimberley"
@@ -1769,6 +1784,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-134"
 			E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,376"
 			E.db["movers"]["ZoneAbility"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-458,73"
+			E.db["movers"]["MicrobarMover"] = "TOPLEFT,UIParent,TOPLEFT,4,-4"
 
 			-- UnitFrames Healing
 			E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = 0.86666476726532
