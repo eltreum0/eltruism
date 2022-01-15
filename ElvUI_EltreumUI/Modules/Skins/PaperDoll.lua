@@ -405,11 +405,11 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 	if not InCombatLockdown() then
 		local currentmemory = GetAddOnMemoryUsage ("ElvUI_EltreumUI")
 		if currentmemory > maxmemory then
-			C_Timer.After(5, function()
+			C_Timer.After(2, function()
+				--print(GetAddOnMemoryUsage("ElvUI_ELtreumUI").." cleared memory")
 				collectgarbage("collect")
 				UpdateAddOnCPUUsage("ElvUI_EltreumUI")
 				ResetCPUUsage()
-				--print("cleared memory")
 			end)
 		end
 	end
