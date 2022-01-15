@@ -228,16 +228,16 @@ P.ElvUI_EltreumUI = {
 		ypowerbar = 12,
 
 		playerborder = false,
-		xplayer = 285,
-		yplayer = 55,
+		xplayer = 304,
+		yplayer = 75,
 
 		playercastborder = false,
 		xplayercast = 250,
 		yplayercast = 40,
 
 		targetborder = false,
-		xtarget = 285,
-		ytarget = 55,
+		xtarget = 304,
+		ytarget = 75,
 
 		targetcastborder = false,
 		xcasttarget = 150,

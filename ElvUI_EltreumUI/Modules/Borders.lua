@@ -44,9 +44,9 @@ function ElvUI_EltreumUI:Borders()
 
 	if E.db.ElvUI_EltreumUI.borders.borders then
 		if E.db.ElvUI_EltreumUI.borders.playerborder then
-			local playerborder = CreateFrame("Frame", "EltruismPlayerBorder", _G.ElvUF_Player, BackdropTemplateMixin and "BackdropTemplate")
+			local playerborder = CreateFrame("Frame", "EltruismPlayerBorder", _G.ElvUF_Player_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
 			playerborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayer, E.db.ElvUI_EltreumUI.borders.yplayer)
-			playerborder:SetPoint("CENTER", _G.ElvUF_Player, "CENTER", 0, 0)
+			playerborder:SetPoint("CENTER", _G.ElvUF_Player_HealthBar, "CENTER", 0, 0)
 			playerborder:SetBackdrop({
 				edgeFile = bordertexture,
 				edgeSize = playertargetsize,
@@ -68,9 +68,9 @@ function ElvUI_EltreumUI:Borders()
 		end
 
 		if E.db.ElvUI_EltreumUI.borders.targetborder then
-			local targetborder = CreateFrame("Frame", "EltruismTargetBorder", _G.ElvUF_Target, BackdropTemplateMixin and "BackdropTemplate")
+			local targetborder = CreateFrame("Frame", "EltruismTargetBorder", _G.ElvUF_Target_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
 			targetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xtarget, E.db.ElvUI_EltreumUI.borders.ytarget)
-			targetborder:SetPoint("CENTER", _G.ElvUF_Target)
+			targetborder:SetPoint("CENTER", _G.ElvUF_Target_HealthBar, "CENTER", 0 ,0)
 			targetborder:SetBackdrop({
 				edgeFile = bordertexture,
 				edgeSize = playertargetsize,
