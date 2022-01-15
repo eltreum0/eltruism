@@ -15,7 +15,10 @@ LSM:Register("font", "Roboto", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Ro
 LSM:Register("font", "BIG NOODLE TITLING", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\big_noodle_titling.ttf]])
 LSM:Register("font", "Good Brush", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GoodBrush.ttf]])
 LSM:Register("font", "Neuropol", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\neuropolxrg.ttf]])
+--For Chinese support
 LSM:Register("font", "CrystalzcuheiGBK", [[Fonts\ARHei.ttf]])
+--For Korean support
+LSM:Register("font", "2002B", [[Fonts\2002B.ttf]])
 
 -- Sound
 LSM:Register("sound", "You_Died", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\You_Died.ogg]])
