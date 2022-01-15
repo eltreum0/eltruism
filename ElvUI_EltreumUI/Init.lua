@@ -89,6 +89,9 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 				LogEvent(self, event, ...);
 			end
 		end
+		if _G.ElvUI_StaticPopup1 then
+			_G.ElvUI_StaticPopup1:Hide()
+		end
 		ElvUI_EltreumUI:Print("|cFFFF0000WARNING:|r You are using Development Tools which increase CPU Usage. Use |cFFFF0000/eltruism dev|r to disable them")
 	end
 	--a warning in case people are using the dev version
