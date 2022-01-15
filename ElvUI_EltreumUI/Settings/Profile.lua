@@ -38,6 +38,7 @@ P.ElvUI_EltreumUI = {
 		classiconsblizz = false,
 		classiconsreleaf = true,
 		classicarmory = true,
+		expandarmorybg = true,
 		bossemote = true,
 		quests = true,
 		zones = true,
