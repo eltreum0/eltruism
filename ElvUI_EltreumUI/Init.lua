@@ -58,7 +58,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:ArenaUnitframes() --hides elvui unitframes in arenas
 	ElvUI_EltreumUI:BattlegroundGroupUnitframes() --hides elvui unitframes in bgs
 	ElvUI_EltreumUI:DynamicBuffs() --shows enemy player buffs on nameplates/unitframes if in arena/bgs, hides otherwise
-	ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
@@ -72,6 +71,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
 		ElvUI_EltreumUI:ExpandedTalents() --makes talents fit in one window without scroll
+		ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
 	end
 	if E.private["nameplates"]["enable"] == true then
 		ElvUI_EltreumUI:NamePlateOptions() --adds dynamic class based color filters to elvui nameplates
@@ -158,7 +158,9 @@ function ElvUI_EltreumUI:Initialize()
 		SetCVar('showInGameNavigation', 1)
 	end
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+		ElvUI_EltreumUI:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
 		SetCVar('clampTargetNameplateToScreen', 1)
+		ElvUI_EltreumUI:UpdateAvgIlvl()
 	end
 end
 
@@ -167,6 +169,10 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 		ElvUI_EltreumUI:NamePlateOptions()
 		ElvUI_EltreumUI:NameplatePower()
 	--end
+end
+
+function ElvUI_EltreumUI:PLAYER_AVG_ITEM_LEVEL_UPDATE()
+	ElvUI_EltreumUI:UpdateAvgIlvl()
 end
 
 function ElvUI_EltreumUI:UNIT_MODEL_CHANGED(event,unit)
