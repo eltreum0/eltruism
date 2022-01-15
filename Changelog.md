@@ -4,26 +4,28 @@ ___
 ### 2.6.3
 Added Power Prediction to Nameplate Power Bar\
 Added an option to show Cursor outside of combat\
-Added a Level Up toast for TBC and Classic\
-Added options to customize the player castbar spark under Eltruism > Skins\
 Added an option to hide the Minimap while in combat\
-Added borders to nameplate power bar\
-Added a skin to the Character Panel for TBC and Classic\
-Added a new function to nameplates which will make the classbar hide if the target is friendly\
-Added options to change the colors of the borders\
+Added options to customize the player castbar spark\
+Added borders to Nameplate Power Bar\
 Added an option to change the background of the Nameplate Power Bar\
+Added a Smart Classbar option for Nameplates\
+Added a Level Up toast for TBC and Classic\
+Added a skin to the Character Panel for TBC and Classic\
+Added options to change the colors of the borders\
 Added Crystalzcuhei as a font option during install\
-Added Dynamic Experience Databar, which makes the Experience Databar visible when below max level, but mouse over when max level. Option can be controlled in Eltruism > Misc\
-Added an option to display floating Power gains (such as Mana/Rage/Energy) from Blizzard's default Combat Text\
+Added an option to automatically show or hide the experience bar depending on level\
+Added an option to display floating Power gains (such as Mana/Rage/Energy)\
 Added a new tag [eltruism:raidmarker] which will display the raid marker icon\
-Added a new tag [eltruism:difficulty] which will color the enemy npc target according to its difficulty compared to the player's level\
-Added a new tag [eltruism:targetcast] which will show the target of an enemy spellcast for non mouseover and non-instant casts\
-Added a new tag [eltruism:targetcast:indicator] which will show the target of an enemy spellcast for non mouseover and non-instant casts alongside a Target > text\
+Added a new tag [eltruism:difficulty] which will color the enemy npc according to its difficulty compared to the player's level\
+Added a new tag [eltruism:targetcast] which will show the target of an enemy spellcast\
+Added a new tag [eltruism:targetcast:indicator] which will show the target of an enemy spellcast alongside a Target > text\
+
 Updated Cursor, GCD, Combat Cursor and Cooldown Cursor functions\
 Updated references to FCT to make it clearer that it's Simpy's ElvUI FCT\
 Updated references to nameplates due to a change in ElvUI code\
 Updated Chat Fade to register events only when enabled\
 Updated Dynamic Cam Profile for Retail due to Dynamic Cam's internal changes\
+
 Fixed shadows showing up when chat panels were disabled\
 Fixed player castbar shadows being mismatched in some scenarios\
 Fixed some missing shadows\
