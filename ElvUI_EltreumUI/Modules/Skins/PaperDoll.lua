@@ -395,46 +395,42 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 	end
 end
 
-
---test memory things
---from Simple Item Levels by Kemayo (BSD License) with some edits by Eltreum
-local function PrepareItemButton(button)
-	if button.eltruismilvl then
-		return
-	end
-	local overlayFrame = CreateFrame("FRAME", nil, button)
-	--overlayFrame:SetFrameLevel(9999) -- this was bugging out inspect
-	overlayFrame:SetAllPoints()
-	button.eltruismilvl = overlayFrame:CreateFontString('$parentItemLevel', 'OVERLAY')
-	button.eltruismilvl:SetPoint('CENTER', 0, 0)
-	button.eltruismilvl:SetFont(E.LSM:Fetch("font", E.db.general.font), 16, "THICKOUTLINE")
-	button.eltruismilvl:SetJustifyH('LEFT')
-	--button.eltruismilvl:Hide()
-end
-
-
-
---local memorystart = collectgarbage("count")
+--average item level calculation, this is the highest memory table i've seen
+--need to figure out how to decrease usage if possible, but for now we collect garbage if not in combat
+--should be fine since the event to update is only called when player ilvl changes, which should not be often
+--except i spammed equip changes and it goes up drastically, thus the function
+--will need to see how it will end up in the future with more usage
+local maxmemory = 4
 function ElvUI_EltreumUI:UpdateAvgIlvl()
-
-	--[[if not InCombatLockdown() then
-		local aftercombat = collectgarbage("count")
-		if aftercombat > memorystart then
-			collectgarbage("collect")
-			ResetCPUUsage()
-			print("Collected " .. (aftercombat-collectgarbage("count")) .. " kB of garbage");
-		else
-			print("Not enough memory usage to collect garbage yet")
+	if not InCombatLockdown() then
+		local currentmemory = GetAddOnMemoryUsage ("ElvUI_EltreumUI")
+		if currentmemory > maxmemory then
+			C_Timer.After(5, function()
+				collectgarbage("collect")
+				UpdateAddOnCPUUsage("ElvUI_EltreumUI")
+				ResetCPUUsage()
+				--print("cleared memory")
+			end)
 		end
-	else
-		print("in combat cannot collect without issue")
-	end]]
+	end
 
 	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then
 
-
-			local numberofslots = 0
+			--from Simple Item Levels by Kemayo (BSD License) with some edits by Eltreum
+			local function PrepareItemButton(button)
+				if button.eltruismilvl then
+					return
+				end
+				local overlayFrame = CreateFrame("FRAME", nil, button)
+				--overlayFrame:SetFrameLevel(9999) -- this was bugging out inspect
+				overlayFrame:SetAllPoints()
+				button.eltruismilvl = overlayFrame:CreateFontString('$parentItemLevel', 'OVERLAY')
+				button.eltruismilvl:SetPoint('CENTER', 0, 0)
+				button.eltruismilvl:SetFont(E.LSM:Fetch("font", E.db.general.font), 16, "THICKOUTLINE")
+				button.eltruismilvl:SetJustifyH('LEFT')
+				--button.eltruismilvl:Hide()
+			end
 
 
 			local function AddLevelToButton(button, itemLevel, itemQuality)
@@ -458,7 +454,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 			end
 
 			local ilvltable ={}
-
+			-- this is the taxing part of the function, since the GetItemQualityAndLevel is getting called multiple times and updating for every single slot when one changes
 			local _, ilvl1 = GetItemQualityAndLevel("player", 1)
 			local _, ilvl2 = GetItemQualityAndLevel("player", 2)
 			local _, ilvl3 = GetItemQualityAndLevel("player", 3)
@@ -514,18 +510,13 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 			elseif numslots >= 17 then
 				numslots = 17
 			end
-			print(totalilvl)
-			--CharacterFrame.Text2:Hide()
+			--print(totalilvl)
 			CharacterFrame.Text2:SetText((math.floor((totalilvl/numslots)*100))/100)
-			--CharacterFrame.Text2:Show()
-			local ilvltable ={}
-
-
+			--local ilvltable ={}
 
 			local function UpdateItemSlotButton(button, unit)
 				if button.eltruismilvl then button.eltruismilvl:Hide() end
 				local slotID = button:GetID()
-				--print(slotID)
 				if (slotID >= INVSLOT_FIRST_EQUIPPED and slotID <= INVSLOT_LAST_EQUIPPED) then
 					if unit == "player" then
 						local item = Item:CreateFromEquipmentSlot(slotID)
@@ -547,7 +538,6 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 			hooksecurefunc("PaperDollItemSlotButton_Update", function(button)
 				UpdateItemSlotButton(button, "player")
 			end)
-
 			if not IsAddOnLoaded("Blizzard_InspectUI") then
 				LoadAddOn("Blizzard_InspectUI")
 			end
