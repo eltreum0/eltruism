@@ -382,7 +382,7 @@ E:AddTag('eltruism:difficulty', 'UNIT_NAME_UPDATE', function(unit)
 		["5"] = "|cFFFF0000",
 	}
 	--make sure its not a player as to not overwrite class colors
-	if not UnitIsPlayer("unit") then
+	if not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
 		if UnitIsEnemy("player", unit) == true then
 			if classification ~= "worldboss" then
 				if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
