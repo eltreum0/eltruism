@@ -5,10 +5,10 @@ local pairs = _G.pairs
 local CreateFrame = _G.CreateFrame
 
 --turns out elvui includes shadows! Ty azilroka
+--Very simple shadows from elvui, SLE likely does it way better
 function ElvUI_EltreumUI:Shadows()
-	--Very simple shadows from elvui, SLE likely does it way better
 	if E.db.ElvUI_EltreumUI.skins.shadows then
-------------------------------------------------------------------------------------------------------blizzard frames
+		------------------------------------------------------------------------------------------------------blizzard frames
 		local blizzardframes = {
 			_G.GameMenuFrame,
 			_G.DropDownList1,
@@ -87,7 +87,7 @@ function ElvUI_EltreumUI:Shadows()
 			self.minimapIsSkinned = true
 		end
 
-------------------------------------------------------------------------------------------------------version specific
+		------------------------------------------------------------------------------------------------------version specific
 		if ElvUI_EltreumUI.Retail then
 
 			--retail frames
@@ -256,7 +256,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 		end
-------------------------------------------------------------------------------------------------------elvui frames
+		------------------------------------------------------------------------------------------------------elvui frames
 		local GeneralElvUIFrames = {
 			_G['ElvLootFrame'],
 			_G['ElvUI_ReputationBar'],
