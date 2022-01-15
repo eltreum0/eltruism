@@ -617,11 +617,26 @@ if ElvUI_EltreumUI.Retail then
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\paint',
 					args = {
 						header845 = {
-							order = 22,
+							order = 1,
+							type = "description",
+							name = "Character Panel",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						expandart = {
+							order = 2,
+							type = 'toggle',
+							name = "Expand Character Art",
+							width = 'full',
+							desc = "Enable this option",
+							get = function(info) return E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.skins.expandarmorybg = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
+						headergapart = {
+							order = 3,
 							type = "description",
 							name = "",
 							width = 'full',
-							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
 						iconsoncharacter = {
 							order = 23,
