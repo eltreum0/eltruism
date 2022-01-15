@@ -271,9 +271,34 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		--microbar shadow
-		if _G.ElvUI_MicroBar.backdrop then
-			if not _G.ElvUI_MicroBar.backdrop.shadow then
-				_G.ElvUI_MicroBar.backdrop:CreateShadow()
+		if E.db.actionbar.microbar.enabled == true then
+			if E.db.actionbar.microbar.backdrop == true then
+				if not _G.ElvUI_MicroBar.backdrop.shadow then
+					_G.ElvUI_MicroBar.backdrop:CreateShadow()
+				end
+			else
+				local microbar = {
+					_G['CharacterMicroButton'],
+					_G['SpellbookMicroButton'],
+					_G['TalentMicroButton'],
+					_G['QuestLogMicroButton'],
+					_G['SocialsMicroButton'],
+					_G['MainMenuMicroButton'],
+					_G['HelpMicroButton'],
+					_G['LFGMicroButton'],
+					_G['WorldMapMicroButton'],
+					_G['AchievementMicroButton'],
+					_G['GuildMicroButton'],
+					_G['LFDMicroButton'],
+					_G['EJMicroButton'],
+					_G['CollectionsMicroButton'],
+					_G['StoreMicroButton'],
+				}
+				for _, frame in pairs(microbar) do
+					if frame and not frame.shadow then
+						frame:CreateShadow()
+					end
+				end
 			end
 		end
 
