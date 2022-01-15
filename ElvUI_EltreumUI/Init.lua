@@ -36,6 +36,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:LoadCommands() --loads chat commands
 	ElvUI_EltreumUI:Borders() --creates borders if option is enabled
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()  --adds class icons to character panel
+	ElvUI_EltreumUI:PlayerNamepaperdoll() --update player name
 	ElvUI_EltreumUI:AFKmusic() --plays music while afk
 	ElvUI_EltreumUI:LootText() --shows LooTText and combat entering/leaving messages
 	ElvUI_EltreumUI:VersionCheckInit() --checks for old versions
@@ -245,7 +246,7 @@ function ElvUI_EltreumUI:UNIT_NAME_UPDATE(event,unit)
 	elseif unit and unit == 'player' then
 		--print(event,unit)
 		ElvUI_EltreumUI:PlayerNamepaperdoll()
-		--ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	end
 end
 
@@ -260,26 +261,6 @@ function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 		end
 	end
 end
-
---[[
--- ID then name, use id to work on any locale, name changes with locale
---classes that dont have a class bar at all
-Demon Hunter	577	Havoc			581	Vengeance
-Hunter			253	Beast Mastery	254	Marksmanship	255	Survival
-Priest			256	Discipline		257	Holy			258	Shadow
-Shaman			262	Elemental		263	Enhancement		264	Restoration
-Warrior			71	Arms			72	Fury			73	Protection
-
---classes that have a classbar depending on spec or druid form
-Druid			102	Balance			103	Feral			104	Guardian	105	Restoration
-Mage			62	Arcane			63	Fire			64	Frost
-Monk			268	Brewmaster		270	Mistweaver		269	Windwalker
-Paladin			65	Holy			66	Protection		70	Retribution
-
---classes that always have a classbar
-Rogue			259	Assassination	260	Outlaw			261	Subtlety
-Warlock			265	Affliction		266	Demonology		267	Destruction
-]]--
 
 function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED()
 	ElvUI_EltreumUI:StopCombatMusic()
@@ -373,7 +354,6 @@ end
 function ElvUI_EltreumUI:GOSSIP_SHOW()
 	if ElvUI_EltreumUI.Retail then
 		if myclass == 'ROGUE' then
-			--ElvUI_EltreumUI:Print('youre a rogue')
 			ElvUI_EltreumUI:RogueAutoOpen()
 		end
 	end
