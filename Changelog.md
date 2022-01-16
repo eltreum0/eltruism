@@ -15,6 +15,7 @@ Added options to change the colors of the borders\
 Added Crystalzcuhei as a font option during install\
 Added an option to automatically show or hide the experience bar depending on level\
 Added an option to display floating Power gains (such as Mana/Rage/Energy)\
+Added more options to control some CVars\
 Added a new tag [eltruism:raidmarker] which will display the raid marker icon\
 Added a new tag [eltruism:difficulty] which will color the enemy npc according to its difficulty compared to the player's level\
 Added a new tag [eltruism:targetcast] which will show the target of an enemy spellcast\
