@@ -190,9 +190,6 @@ function ElvUI_EltreumUI:Shadows()
 				_G.PlayerTalentFrameTab1.backdrop,
 				_G.PlayerTalentFrameTab2.backdrop,
 				_G.PlayerTalentFrameTab3.backdrop,
-				_G.LFGParentFrame.backdrop,
-				_G.LFGParentFrameTab1.backdrop,
-				_G.LFGParentFrameTab2.backdrop,
 				_G.CharacterFrameTab4.backdrop,  --only in classic though
 				_G.CharacterFrameTab5.backdrop,  --only in classic though
 				_G.FriendsFrameTab5.backdrop, --only in classic though
@@ -202,6 +199,20 @@ function ElvUI_EltreumUI:Shadows()
 					frame:CreateShadow()
 				end
 			end
+
+			if ElvUI_EltreumUI.TBC then
+				local tbcframes = {
+				_G.LFGParentFrame.backdrop,
+				_G.LFGParentFrameTab1.backdrop,
+				_G.LFGParentFrameTab2.backdrop,
+				}
+				for _, frame in pairs(tbcframes) do
+					if frame and not frame.shadow then
+						frame:CreateShadow()
+					end
+				end
+			end
+
 		end
 		------------------------------------------------------------------------------------------------------elvui frames
 		local GeneralElvUIFrames = {
