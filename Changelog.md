@@ -26,6 +26,7 @@ Updated references to FCT to make it clearer that it's Simpy's ElvUI FCT\
 Updated references to nameplates due to a change in ElvUI code\
 Updated Chat Fade to register events only when enabled\
 Updated Dynamic Cam Profile for Retail due to Dynamic Cam's internal changes
+Updated Chat, which is now transparent with a new option in Eltruism > Chat to revert to the dark mode or switch to the transparent mode if the user wants\
 
 Fixed shadows showing up when chat panels were disabled\
 Fixed player castbar shadows being mismatched in some scenarios\
