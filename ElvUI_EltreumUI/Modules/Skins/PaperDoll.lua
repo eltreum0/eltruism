@@ -202,6 +202,11 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(_G.CharacterFrame)
 					_G.CharacterModelFrameBackgroundOverlay:SetParent(_G.CharacterFrame)
 					_G.CharacterModelFrameBackgroundOverlay:SetDrawLayer("OVERLAY")
+
+					--color the avg item level
+					_G.CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradientAlpha('Horizontal', R, G, B, 0.4, R, G, B, 0)
+					_G.CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradientAlpha('Horizontal', R, G, B, 0, R, G, B, 0.4)
+
 				end
 
 
@@ -405,20 +410,7 @@ end
 --should be fine since the event to update is only called when player ilvl changes, which should not be often
 --except i spammed equip changes and it goes up drastically, thus the function
 --will need to see how it will end up in the future with more usage
-local maxmemory = 4
 function ElvUI_EltreumUI:UpdateAvgIlvl()
-	if not InCombatLockdown() then
-		local currentmemory = GetAddOnMemoryUsage ("ElvUI_EltreumUI")
-		if currentmemory > maxmemory then
-			C_Timer.After(2, function()
-				--print(GetAddOnMemoryUsage("ElvUI_ELtreumUI").." cleared memory")
-				collectgarbage("collect")
-				UpdateAddOnCPUUsage("ElvUI_EltreumUI")
-				ResetCPUUsage()
-			end)
-		end
-	end
-
 	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then
 
@@ -543,6 +535,12 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 			hooksecurefunc("PaperDollItemSlotButton_Update", function(button)
 				UpdateItemSlotButton(button, "player")
 			end)
+
+			--main way of clearing memory
+			hooksecurefunc("ToggleCharacter", function()
+				ElvUI_EltreumUI:ClearMemory()
+			end)
+
 			if not IsAddOnLoaded("Blizzard_InspectUI") then
 				LoadAddOn("Blizzard_InspectUI")
 			end
