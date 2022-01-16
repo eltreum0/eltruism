@@ -92,6 +92,11 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 			_G.CharacterLevelText:ClearAllPoints()
 			if E.db.ElvUI_EltreumUI.skins.classicarmory then
 				_G.CharacterLevelText:SetPoint('TOP', _G.CharacterNameText, 'BOTTOM', 0, -10)
+
+				_G.PetNameText:SetPoint('TOP', _G.PetModelFrame, 0, 60)
+				_G.PetLevelText:SetPoint('BOTTOM', _G.PetNameText, 0, -10)
+				_G.PetLoyaltyText:SetPoint('BOTTOM', _G.PetLevelText, 0, -20)
+				_G.PetPaperDollCloseButton:Hide()
 			else
 				_G.CharacterLevelText:SetPoint('TOP', _G.CharacterNameText, 'BOTTOM', 0, -7)
 			end
@@ -127,6 +132,44 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					_G.CharacterLevelText:SetPoint('TOP', _G.CharacterFrameTitleText, 'BOTTOM', 0, 0)
 					_G.CharacterLevelText:SetDrawLayer("OVERLAY")
 				end)
+				_G.CharacterFrame:SetHeight(470)
+				-- Move Right Side since left side is already ok
+				_G.CharacterFrameInsetRight:SetPoint('TOPLEFT', _G.CharacterFrameInset, 'TOPRIGHT', 130, 0)
+				_G.CharacterHandsSlot:SetPoint('TOPRIGHT', _G.CharacterFrameInsetRight, 'TOPLEFT', 0, -3)
+				-- Move bottom equipment slots
+				_G.CharacterMainHandSlot:SetPoint('BOTTOMLEFT', _G.PaperDollItemsFrame, 'BOTTOMLEFT', 195, 20)
+				--strech it a bit
+				_G.CharacterModelFrame:ClearAllPoints()
+				_G.CharacterModelFrame:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
+				_G.CharacterModelFrame:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
+				_G.CharacterModelFrame:SetPoint('BOTTOM', _G.CharacterMainHandSlot, 0, -5)
+				--hide other bgs so one can be streched like the talents for tbc/classic
+				_G.CharacterModelFrame.BackgroundTopRight:Hide()
+				_G.CharacterModelFrame.BackgroundBotLeft:Hide()
+				_G.CharacterModelFrame.BackgroundBotRight:Hide()
+				_G.CharacterModelFrame.BackgroundTopLeft:SetAllPoints(_G.CharacterModelFrame)
+				_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(_G.CharacterModelFrame)
+				--move the equipment manager to a nice position
+				_G.PaperDollEquipmentManagerPane:ClearAllPoints()
+				_G.PaperDollEquipmentManagerPane:SetPoint("RIGHT", _G.CharacterFrame, "RIGHT", -30, -20)
+				--move the titles panel to a nice position
+				_G.PaperDollTitlesPane:ClearAllPoints()
+				_G.PaperDollTitlesPane:SetPoint("RIGHT", _G.CharacterFrame, "RIGHT", -30, -20)
+
+				--move the artwork
+				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+					_G.CharacterModelFrameBackgroundTopLeft:ClearAllPoints()
+					_G.CharacterModelFrameBackgroundTopLeft:SetAllPoints(_G.CharacterFrame)
+					_G.CharacterModelFrameBackgroundTopLeft:SetParent(_G.CharacterFrame)
+					_G.CharacterModelFrameBackgroundTopLeft:SetDrawLayer("ARTWORK")
+					_G.CharacterModelFrameBackgroundOverlay:ClearAllPoints()
+					_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(_G.CharacterFrame)
+					_G.CharacterModelFrameBackgroundOverlay:SetParent(_G.CharacterFrame)
+					_G.CharacterModelFrameBackgroundOverlay:SetDrawLayer("OVERLAY")
+					--color the avg item level
+					_G.CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradientAlpha('Horizontal', R, G, B, 0.4, R, G, B, 0)
+					_G.CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradientAlpha('Horizontal', R, G, B, 0, R, G, B, 0.4)
+				end
 
 				hooksecurefunc("CharacterFrame_Collapse", function()
 					if _G.PaperDollFrame:IsShown() then
@@ -161,54 +204,6 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 						end
 					end
 				end)
-				_G.CharacterFrame:SetHeight(470)
-
-				-- Move Right Side since left side is already ok
-				_G.CharacterFrameInsetRight:SetPoint('TOPLEFT', _G.CharacterFrameInset, 'TOPRIGHT', 130, 0)
-				_G.CharacterHandsSlot:SetPoint('TOPRIGHT', _G.CharacterFrameInsetRight, 'TOPLEFT', 0, -3)
-
-				-- Move bottom equipment slots
-				_G.CharacterMainHandSlot:SetPoint('BOTTOMLEFT', _G.PaperDollItemsFrame, 'BOTTOMLEFT', 195, 20)
-
-				--strech it a bit
-				_G.CharacterModelFrame:ClearAllPoints()
-				_G.CharacterModelFrame:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
-				_G.CharacterModelFrame:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
-				_G.CharacterModelFrame:SetPoint('BOTTOM', _G.CharacterMainHandSlot, 0, -5)
-
-				--hide other bgs so one can be streched like the talents for tbc/classic
-				_G.CharacterModelFrame.BackgroundTopRight:Hide()
-				_G.CharacterModelFrame.BackgroundBotLeft:Hide()
-				_G.CharacterModelFrame.BackgroundBotRight:Hide()
-				_G.CharacterModelFrame.BackgroundTopLeft:SetAllPoints(_G.CharacterModelFrame)
-				_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(_G.CharacterModelFrame)
-
-				--move the equipment manager to a nice position
-				_G.PaperDollEquipmentManagerPane:ClearAllPoints()
-				_G.PaperDollEquipmentManagerPane:SetPoint("RIGHT", _G.CharacterFrame, "RIGHT", -30, -20)
-
-				--move the titles panel to a nice position
-				_G.PaperDollTitlesPane:ClearAllPoints()
-				_G.PaperDollTitlesPane:SetPoint("RIGHT", _G.CharacterFrame, "RIGHT", -30, -20)
-
-				--move the artwork
-				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-					_G.CharacterModelFrameBackgroundTopLeft:ClearAllPoints()
-					_G.CharacterModelFrameBackgroundTopLeft:SetAllPoints(_G.CharacterFrame)
-					_G.CharacterModelFrameBackgroundTopLeft:SetParent(_G.CharacterFrame)
-					_G.CharacterModelFrameBackgroundTopLeft:SetDrawLayer("ARTWORK")
-
-					_G.CharacterModelFrameBackgroundOverlay:ClearAllPoints()
-					_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(_G.CharacterFrame)
-					_G.CharacterModelFrameBackgroundOverlay:SetParent(_G.CharacterFrame)
-					_G.CharacterModelFrameBackgroundOverlay:SetDrawLayer("OVERLAY")
-
-					--color the avg item level
-					_G.CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradientAlpha('Horizontal', R, G, B, 0.4, R, G, B, 0)
-					_G.CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradientAlpha('Horizontal', R, G, B, 0, R, G, B, 0.4)
-
-				end
-
 
 			elseif IsAddOnLoaded("ElvUI_SLE") and E.db.sle.armory.character.enable then
 
@@ -270,5 +265,8 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			end
 		end
+
+
+
 	end
 end
