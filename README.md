@@ -71,7 +71,7 @@ Wider Transmog Window for Retail\
 Reskinned Character Panel for Retail, featuring expanded character art, class icon and class colors\
 Reskinned Character Panel for TBC and Classic, featuring ilvl, class icon and class colors\
 Add a Level Up Toast frame for TBC and Classic\
-Add item levels to Character Panel in TBC/Classic\
+Add item levels to Character Panel in TBC/Classic, which is a fork of Simple Item levels by Kemayo\
 Expanded Talent Trees for TBC/Classic\
 Add borders to frames, which can be customized in style and size/color\
 Expanded Stables, showing all hunter pets in one window. This module is a fork of Improved Stable Frame by Cybeloras. License information in the Licenses folder\
