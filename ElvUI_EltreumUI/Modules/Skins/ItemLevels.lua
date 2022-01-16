@@ -3,7 +3,6 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local unpack = _G.unpack
 local LibItemInfo = LibStub:GetLibrary("LibItemInfo.1000")
---local LibItemStats = LibStub:GetLibrary("LibItemStats.1000")
 
 --Calculate ilvl and average ilvl of player items/inspect unit
 function ElvUI_EltreumUI:UpdateAvgIlvl()
