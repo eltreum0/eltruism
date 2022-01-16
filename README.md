@@ -30,7 +30,7 @@ Eltruism includes many features and all can be turned off if the user wants. Inc
 
 >Actionbars:\
 Custom Glows, supporting both player and pet action bars.\
-
+\
 >Chat:\
 Show item icons in chat, based on Chat Loot Icons by Stanzilla\
 Inactivity Fader using ElvUI's Chat setting\
@@ -39,7 +39,7 @@ Class colored rolls\
 Sounds can be played if a player rolls a 1 or a 100\
 Colored system messages\
 Hide using Mouse Over\
-
+\
 >Cursor:\
 Cast Cursor, showing current castbar\
 GCD Cursor, showing your current GCD\
@@ -48,7 +48,7 @@ Cast, GCD and Combat cursors are a fork of CastCursor by michaelsp (credits in t
 Cooldown, on an attempt to use a skill on cooldown its cooldown will be shown, if no other skill is pressed afterwards then 3s before the cooldown is done the 
 skill will show up again with a countdown to be used\
 Cooldown is a fork of CooldownToGo by mitchnull (credits in the Licenses folder)
-
+\
 >Nameplates:\
 Nameplate Power Bar, and advanced power bar above the target nameplate that includes spell costs and incoming resource gains\
 Wide Debuffs and Buffs on Nameplates\
@@ -57,13 +57,13 @@ Class themed gradient Nameplate Texture, Border, and Glow\
 Show Friendly Nameplates inside instances with only names or hide them\
 Dynamically show enemy level when you are below max level, hiding when max level\
 Dynamically show a glowing spellsteal on nameplates when the enemy has spellstealable buffs and you are playing a mage\
-
+\
 >Unitframes:
 Dark Mode and Light Mode, with Light mode featuring class textures\
 Automatically use class based textures\
 Automatically hide Unitframes and/or Arena frames when in PvP, allowing more compatibility when using addons for PvP\
 Dynamically show enemy player buffs in PvP, hide in PvE\
-
+\
 Skins:\
 Adds shadows to frames\
 Show a stealth overlay when in stealth\
@@ -78,7 +78,7 @@ Expanded Stables, showing all hunter pets in one window. This module is a fork o
 Customize the castbar spark\
 Skin the Quest Log, adding class colors\
 Change the default cursor size\
-
+\
 Miscelanous:\
 Play custom music when in combat, simply put your mp3 inside the addons folder and set the music in Eltruism settings\
 Automatically take a screenshot when an achievement is earned or when you level up\
