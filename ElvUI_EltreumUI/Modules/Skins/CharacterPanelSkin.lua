@@ -3,6 +3,7 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local unpack = _G.unpack
 local R, G, B = unpack(E.media.rgbvaluecolor)
+local LibItemInfo = LibStub:GetLibrary("LibItemInfo.1000")
 
 --attempt at recreating a similar character panel to retail
 local CharacterFrame = _G.CharacterFrame
@@ -11,6 +12,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then
 			if CharacterFrame then
+
+				local ilevel, _, _ = LibItemInfo:GetUnitItemLevel("player")
+				_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
+
 				CharacterFrame:SetSize(600, 505)
 				CharacterFrame.Text = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 				CharacterFrame.StatusLine = CreateFrame("StatusBar", "EltruismCharacterBar2", CharacterFrame)
