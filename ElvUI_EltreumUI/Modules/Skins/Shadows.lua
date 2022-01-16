@@ -4,35 +4,18 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 local pairs = _G.pairs
 local CreateFrame = _G.CreateFrame
 
---turns out elvui includes shadows! Ty azilroka
---Very simple shadows from elvui, SLE likely does it way better
+--Frame Shadows, turns out ElvUI includes the function but it seems to add a lot of usage during load time
 function ElvUI_EltreumUI:Shadows()
 	if E.db.ElvUI_EltreumUI.skins.shadows then
 		------------------------------------------------------------------------------------------------------blizzard frames
-		local blizzardframes = {
-			_G.GameMenuFrame,
-			_G.DropDownList1,
-			_G.DropDownList2,
-			_G.GameTooltipStatusBar.backdrop,
-			_G.GameTooltip,
-			_G.ReadyCheckFrame,
-			_G.StackSplitFrame,
-			_G.ChatConfigFrame,
-			_G.ShoppingTooltip1,
-			_G.ShoppingTooltip2,
-			_G.VideoOptionsFrame,
-			_G.InterfaceOptionsFrame,
-			_G.StaticPopup1, --seems like blizzard
-		}
-		for _, frame in pairs(blizzardframes) do
-			if frame and not frame.shadow then
-				frame:CreateShadow()
-			end
+		if not IsAddOnLoaded("Blizzard_BindingUI") then
+			LoadAddOn("Blizzard_BindingUI")
 		end
 
 		if not IsAddOnLoaded("Blizzard_MacroUI") then
 			LoadAddOn("Blizzard_MacroUI")
 		end
+
 		local MacroFrame = _G.MacroFrame
 		MacroFrame:HookScript("OnShow", function()
 			if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
@@ -46,20 +29,10 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end)
 
-		if not IsAddOnLoaded("Blizzard_BindingUI") then
-			LoadAddOn("Blizzard_BindingUI")
-		end
-		local KeyBindingFrame = _G.KeyBindingFrame
-		KeyBindingFrame:HookScript("OnShow", function()
-			if not _G.KeyBindingFrame.shadow then
-				_G.KeyBindingFrame:CreateShadow()
-			end
-		end)
-
 		if not IsAddOnLoaded("Blizzard_TalentUI") then
 			LoadAddOn("Blizzard_TalentUI")
 		end
-
+		--[[
 		local PlayerTalentFrame = _G.PlayerTalentFrame
 		PlayerTalentFrame:HookScript("OnShow", function()
 			if ElvUI_EltreumUI.Retail then
@@ -74,6 +47,58 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 		end)
+
+		local PlayerTalentFrameTab1= _G.PlayerTalentFrameTab1.backdrop
+		PlayerTalentFrameTab1:HookScript("OnShow", function()
+			if not _G.PlayerTalentFrameTab1.backdrop.shadow then
+				_G.PlayerTalentFrameTab1.backdrop:CreateShadow()
+			end
+		end)
+
+		local PlayerTalentFrameTab2= _G.PlayerTalentFrameTab2.backdrop
+		PlayerTalentFrameTab2:HookScript("OnShow", function()
+			if not _G.PlayerTalentFrameTab2.backdrop.shadow then
+				_G.PlayerTalentFrameTab2.backdrop:CreateShadow()
+			end
+		end)
+
+		]]--
+
+		local blizzardframes = {
+			_G.GameMenuFrame,
+			_G.DropDownList1,
+			_G.DropDownList2,
+			_G.GameTooltipStatusBar.backdrop,
+			_G.GameTooltip,
+			_G.ReadyCheckFrame,
+			_G.StackSplitFrame,
+			_G.ChatConfigFrame,
+			_G.ShoppingTooltip1,
+			_G.ShoppingTooltip2,
+			_G.VideoOptionsFrame,
+			_G.InterfaceOptionsFrame,
+			_G.StaticPopup1, --seems like blizzard
+			_G.KeyBindingFrame,
+
+			--need to confirm
+			_G.CharacterFrameTab1.backdrop,
+			_G.CharacterFrameTab2.backdrop,
+			_G.CharacterFrameTab3.backdrop,
+			_G.CharacterFrameTab4.backdrop,  --only in classic though
+			_G.CharacterFrameTab5.backdrop,  --only in classic though
+			_G.FriendsFrameTab1.backdrop,
+			_G.FriendsFrameTab2.backdrop,
+			_G.FriendsFrameTab3.backdrop,
+			_G.FriendsFrameTab4.backdrop,
+			_G.FriendsFrameTab5.backdrop, --only in classic though
+			_G.SpellBookFrameTabButton1.backdrop,
+			_G.SpellBookFrameTabButton2.backdrop,
+		}
+		for _, frame in pairs(blizzardframes) do
+			if frame and not frame.shadow then
+				frame:CreateShadow()
+			end
+		end
 
 		local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
 		local Minimapsizex, Minimapsizey = _G['Minimap']:GetSize()
@@ -90,10 +115,48 @@ function ElvUI_EltreumUI:Shadows()
 		------------------------------------------------------------------------------------------------------version specific
 		if ElvUI_EltreumUI.Retail then
 
+			if not IsAddOnLoaded("Blizzard_Calendar") then
+				LoadAddOn("Blizzard_Calendar")
+			end
+			if not IsAddOnLoaded("Blizzard_Communities") then
+				LoadAddOn("Blizzard_Communities")
+			end
+			if not IsAddOnLoaded("Blizzard_AchievementUI") then
+				LoadAddOn("Blizzard_AchievementUI")
+			end
+
+			if not IsAddOnLoaded("Blizzard_GarrisonUI") then
+				LoadAddOn("Blizzard_GarrisonUI")
+			end
+
+			if not IsAddOnLoaded("Blizzard_CovenantSanctum") then
+				LoadAddOn("Blizzard_CovenantSanctum")
+			end
+
+			if not IsAddOnLoaded("Blizzard_Soulbinds") then
+				LoadAddOn("Blizzard_Soulbinds")
+			end
+
+			if not IsAddOnLoaded("Blizzard_Collections") then
+				LoadAddOn("Blizzard_Collections")
+			end
+
+			if not IsAddOnLoaded("Blizzard_PVPUI") then
+				LoadAddOn("Blizzard_PVPUI")
+			end
+
+			if not IsAddOnLoaded("Blizzard_VoidStorageUI") then
+				LoadAddOn("Blizzard_VoidStorageUI")
+			end
+
+			if not IsAddOnLoaded("Blizzard_EncounterJournal") then
+				LoadAddOn("Blizzard_EncounterJournal")
+			end
+
 			--retail frames
 			local retailframes = {
 				_G.QueueStatusFrame,
-				_G.SplashFrame,
+				--_G.SplashFrame,
 				_G.LFDRoleCheckPopup,
 				_G.LFDReadyCheckPopup,
 				_G.LFGListApplicationDialog,
@@ -108,6 +171,31 @@ function ElvUI_EltreumUI:Shadows()
 				_G.MailFrame,
 				_G.HelpFrame.backdrop,
 				_G.WorldMapFrame.backdrop,
+				_G.CalendarFrame,
+				_G.CommunitiesFrame,
+				_G.AchievementFrame,
+				_G.CovenantMissionFrame,
+				_G.GarrisonLandingPage,
+				_G.CovenantSanctumFrame,
+				_G.SoulbindViewer,
+				_G.CollectionsJournal,
+				_G.CollectionsJournalTab1.backdrop,
+				_G.CollectionsJournalTab2.backdrop,
+				_G.CollectionsJournalTab3.backdrop,
+				_G.CollectionsJournalTab4.backdrop,
+				_G.ToyBox,
+				_G.HeirloomsJournal,
+				_G.PetJournal,
+				_G.WardrobeFrame,
+				_G.WardrobeCollectionFrame,
+				_G.PVPUIFrame,
+				_G.PVEFrameTab1.backdrop,
+				_G.PVEFrameTab2.backdrop,
+				_G.VoidStorageFrame,
+				_G.EncounterJournal,
+				_G.PlayerTalentFrame,
+				_G.PlayerTalentFrameTab1.backdrop,
+				_G.PlayerTalentFrameTab2.backdrop,
 			}
 			for _, frame in pairs(retailframes) do
 				if frame and not frame.shadow then
@@ -121,117 +209,6 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
-			if not IsAddOnLoaded("Blizzard_Calendar") then
-				LoadAddOn("Blizzard_Calendar")
-			end
-			local CalendarFrame = _G.CalendarFrame
-			CalendarFrame:HookScript("OnShow", function()
-				if not _G.CalendarFrame.shadow then
-					_G.CalendarFrame:CreateShadow()
-				end
-			end)
-
-			if not IsAddOnLoaded("Blizzard_Communities") then
-				LoadAddOn("Blizzard_Communities")
-			end
-			local CommunitiesFrame = _G.CommunitiesFrame
-			CommunitiesFrame:HookScript("OnShow", function()
-				if not _G.CommunitiesFrame.shadow then
-					_G.CommunitiesFrame:CreateShadow()
-				end
-			end)
-
-			if not IsAddOnLoaded("Blizzard_AchievementUI") then
-				LoadAddOn("Blizzard_AchievementUI")
-			end
-			local AchievementFrame = _G.AchievementFrame
-			AchievementFrame:HookScript("OnShow", function()
-				if _G.AchievementFrame.backdrop then
-					if not _G.AchievementFrame.backdrop.shadow then
-						_G.AchievementFrame.backdrop:CreateShadow()
-					end
-				end
-			end)
-
-			if not IsAddOnLoaded("Blizzard_GarrisonUI") then
-				LoadAddOn("Blizzard_GarrisonUI")
-			end
-			local CovenantMissionFrame = _G.CovenantMissionFrame
-			CovenantMissionFrame:HookScript("OnShow", function()
-				if not _G.CovenantMissionFrame.shadow then
-					_G.CovenantMissionFrame:CreateShadow()
-				end
-			end)
-			local GarrisonLandingPage = _G.GarrisonLandingPage
-			GarrisonLandingPage:HookScript("OnShow", function()
-				if not _G.GarrisonLandingPage.shadow then
-					_G.GarrisonLandingPage:CreateShadow()
-				end
-			end)
-
-			if not IsAddOnLoaded("Blizzard_CovenantSanctum") then
-				LoadAddOn("Blizzard_CovenantSanctum")
-			end
-			local CovenantSanctumFrame = _G.CovenantSanctumFrame
-			CovenantSanctumFrame:HookScript("OnShow", function()
-				if not _G.CovenantSanctumFrame.shadow then
-					_G.CovenantSanctumFrame:CreateShadow()
-				end
-			end)
-
-			if not IsAddOnLoaded("Blizzard_Soulbinds") then
-				LoadAddOn("Blizzard_Soulbinds")
-			end
-			local SoulbindViewer = _G.SoulbindViewer
-			SoulbindViewer:HookScript("OnShow", function()
-				if not _G.SoulbindViewer.shadow then
-					_G.SoulbindViewer:CreateShadow()
-				end
-			end)
-
-			if not IsAddOnLoaded("Blizzard_Collections") then
-				LoadAddOn("Blizzard_Collections")
-			end
-			local CollectionsJournal = _G.CollectionsJournal
-			CollectionsJournal:HookScript("OnShow", function()
-				if not _G.CollectionsJournal.shadow then
-					_G.CollectionsJournal:CreateShadow()
-				end
-			end)
-			local WardrobeFrame = _G.WardrobeFrame
-			WardrobeFrame:HookScript("OnShow", function()
-				if not _G.WardrobeFrame.shadow then
-					_G.WardrobeFrame:CreateShadow()
-				end
-			end)
-			if not IsAddOnLoaded("Blizzard_PVPUI") then
-				LoadAddOn("Blizzard_PVPUI")
-			end
-			local PVPUIFrame = _G.PVPUIFrame
-			PVPUIFrame:HookScript("OnShow", function()
-				if not _G.PVPUIFrame.shadow then
-					_G.PVPUIFrame:CreateShadow()
-				end
-			end)
-
-			if not IsAddOnLoaded("Blizzard_VoidStorageUI") then
-				LoadAddOn("Blizzard_VoidStorageUI")
-			end
-			local VoidStorageFrame = _G.VoidStorageFrame
-			VoidStorageFrame:HookScript("OnShow", function()
-				if not _G.VoidStorageFrame.shadow then
-					_G.VoidStorageFrame:CreateShadow()
-				end
-			end)
-
-			if not IsAddOnLoaded("Blizzard_EncounterJournal") then
-				LoadAddOn("Blizzard_EncounterJournal")
-			end
-			if _G.EncounterJournal then
-				if not _G.EncounterJournal.shadow then
-					_G.EncounterJournal:CreateShadow()
-				end
-			end
 		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			--tbc/classic frames
 			local classicframes = {
@@ -243,6 +220,10 @@ function ElvUI_EltreumUI:Shadows()
 				_G.MailFrame.backdrop,
 				_G.MerchantFrame.backdrop,
 				_G.WorldMapFrame,
+				_G.PlayerTalentFrame.backdrop,
+				_G.PlayerTalentFrameTab1.backdrop,
+				_G.PlayerTalentFrameTab2.backdrop,
+				_G.PlayerTalentFrameTab3.backdrop,
 			}
 			for _, frame in pairs(classicframes) do
 				if frame and not frame.shadow then
@@ -509,6 +490,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
+		--chat
 		local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
 		if E.db["chat"]["panelBackdrop"] == "RIGHT" then
 			return
