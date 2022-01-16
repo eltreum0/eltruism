@@ -395,3 +395,34 @@ function ElvUI_EltreumUI:SetupGladdy()
 		ElvUI_EltreumUI:Print("Gladdy is not loaded")
 	end
 end
+
+--set some CVars when entering world
+function ElvUI_EltreumUI:EnteringWorldCVars()
+		--SetCVars at start
+	SetCVar('nameplateOtherBottomInset', E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset)
+	SetCVar('nameplateOtherTopInset', E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset)
+	SetCVar('cameraDistanceMaxZoomFactor', E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor)
+	SetCVar('nameplateTargetRadialPosition', E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition)
+	--ElvUI_EltreumUI:Print(L["Custom Nameplate CVars were set."])
+	if ElvUI_EltreumUI.Retail then
+		SetCVar('showInGameNavigation', E.db.ElvUI_EltreumUI.cvars.showInGameNavigation)
+	elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+		SetCVar('clampTargetNameplateToScreen', E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen)
+	end
+end
+
+local maxmemory = 3000
+function ElvUI_EltreumUI:ClearMemory()
+	if not InCombatLockdown() then
+		local currentmemory = GetAddOnMemoryUsage ("ElvUI_EltreumUI")
+		if currentmemory > maxmemory then
+			--print(GetAddOnMemoryUsage("ElvUI_ELtreumUI").." cleared memory")
+			collectgarbage("collect")
+			ResetCPUUsage()
+			--UpdateAddOnCPUUsage("ElvUI_EltreumUI")
+			currentmemory = 0
+		--else
+		--	print("Not enough memory usage to clear memory")
+		end
+	end
+end
