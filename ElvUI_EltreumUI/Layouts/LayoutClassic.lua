@@ -110,6 +110,12 @@ if ElvUI_EltreumUI.Classic then
 		E.db["chat"]["hideCopyButton"] = true
 		E.db["chat"]["hideVoiceButtons"] = true
 		E.db["chat"]["fadeTabsNoBackdrop"] = false
+
+		E.db["chat"]["fadeUndockedTabs"] = true
+		E.db["chat"]["panelBackdrop"] = "HIDEBOTH"
+		E.db["chat"]["panelTabTransparency"] = true
+
+
 		E.db["chat"]["font"] = "Kimberley"
 		E.db["chat"]["fontOutline"] = "OUTLINE"
 		E.db["chat"]["fontSize"] = 12
@@ -190,6 +196,7 @@ if ElvUI_EltreumUI.Classic then
 		end
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["border"] = false
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
+		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["backdrop"] = false
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["right"] = "Guild"
 		E.db["datatexts"]["panels"]["MinimapPanel"][1] = "Time"
 		E.db["datatexts"]["panels"]["MinimapPanel"][2] = "Coords"
@@ -199,6 +206,7 @@ if ElvUI_EltreumUI.Classic then
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["left"] = "System"
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["middle"] = "Combat Time"
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
+		E.db["datatexts"]["panels"]["RightChatDataPanel"]["backdrop"] = false
 
 		-- Tooltip
 		E.db["tooltip"]["alwaysShowRealm"] = true
