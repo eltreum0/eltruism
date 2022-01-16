@@ -412,13 +412,14 @@ function ElvUI_EltreumUI:EnteringWorldCVars()
 end
 
 local maxmemory = 3000
+local currentmemory
 function ElvUI_EltreumUI:ClearMemory()
 	if not InCombatLockdown() then
-		local currentmemory = GetAddOnMemoryUsage ("ElvUI_EltreumUI")
+		currentmemory = GetAddOnMemoryUsage ("ElvUI_EltreumUI")
 		if currentmemory > maxmemory then
 			--print(GetAddOnMemoryUsage("ElvUI_ELtreumUI").." cleared memory")
 			collectgarbage("collect")
-			ResetCPUUsage()
+			--ResetCPUUsage()
 			--UpdateAddOnCPUUsage("ElvUI_EltreumUI")
 			currentmemory = 0
 		--else
