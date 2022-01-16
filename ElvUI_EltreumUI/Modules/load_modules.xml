@@ -6,7 +6,9 @@
 	<Script file='Chat/Misc.lua'/>
 	<Script file='Nameplates/Nameplates.lua'/>
 	<Script file='Nameplates/PowerBar.lua'/>
-	<Script file='Skins/Paperdoll.lua'/>
+	<Script file='Skins/CharacterPanelIcons.lua'/>
+	<Script file='Skins/CharacterPanelSkin.lua'/>
+	<Script file='Skins/ItemLevels.lua'/>
 	<Script file='Skins/ExpandedStable.lua'/>
 	<Script file='Skins/ExpandedTalents.lua'/>
 	<Script file='Skins/LevelUp.lua'/>
