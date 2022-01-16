@@ -120,7 +120,9 @@ if ElvUI_EltreumUI.Retail then
 		E.db["chat"]["chatHistory"] = false
 		E.db["chat"]["hideCopyButton"] = true
 		E.db["chat"]["hideVoiceButtons"] = true
-		E.db["chat"]["fadeTabsNoBackdrop"] = false
+		--E.db["chat"]["fadeTabsNoBackdrop"] = false
+		E.db["chat"]["fadeUndockedTabs"] = true
+		E.db["chat"]["panelBackdrop"] = "HIDEBOTH"
 		E.db["chat"]["font"] = "Kimberley"
 		E.db["chat"]["fontOutline"] = "OUTLINE"
 		E.db["chat"]["fontSize"] = 12
@@ -253,6 +255,7 @@ if ElvUI_EltreumUI.Retail then
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Missions"
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["border"] = false
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
+		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["backdrop"] = false
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["right"] = "System"
 		E.db["datatexts"]["panels"]["MinimapPanel"][1] = "Time"
 		if IsAddOnLoaded("ElvUI_SLE") then
@@ -260,13 +263,13 @@ if ElvUI_EltreumUI.Retail then
 		else
 			E.db["datatexts"]["panels"]["MinimapPanel"][2] = "Friends"
 		end
-
 		E.db["datatexts"]["panels"]["MinimapPanel"]["border"] = false
 		E.db["datatexts"]["panels"]["RightChatDataPanel"][2] = "Combat"
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["border"] = false
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["left"] = "Orderhall"
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["middle"] = "BfA Missions"
 		E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
+		E.db["datatexts"]["panels"]["RightChatDataPanel"]["backdrop"] = false
 
 		-- Tooltip
 		E.db["tooltip"]["alwaysShowRealm"] = true
