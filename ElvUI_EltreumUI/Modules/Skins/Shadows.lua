@@ -32,37 +32,6 @@ function ElvUI_EltreumUI:Shadows()
 		if not IsAddOnLoaded("Blizzard_TalentUI") then
 			LoadAddOn("Blizzard_TalentUI")
 		end
-		--[[
-		local PlayerTalentFrame = _G.PlayerTalentFrame
-		PlayerTalentFrame:HookScript("OnShow", function()
-			if ElvUI_EltreumUI.Retail then
-				if not _G.PlayerTalentFrame.shadow then
-					_G.PlayerTalentFrame:CreateShadow()
-				end
-			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-				if _G.PlayerTalentFrame.backdrop then
-					if not _G.PlayerTalentFrame.backdrop.shadow then
-						_G.PlayerTalentFrame.backdrop:CreateShadow()
-					end
-				end
-			end
-		end)
-
-		local PlayerTalentFrameTab1= _G.PlayerTalentFrameTab1.backdrop
-		PlayerTalentFrameTab1:HookScript("OnShow", function()
-			if not _G.PlayerTalentFrameTab1.backdrop.shadow then
-				_G.PlayerTalentFrameTab1.backdrop:CreateShadow()
-			end
-		end)
-
-		local PlayerTalentFrameTab2= _G.PlayerTalentFrameTab2.backdrop
-		PlayerTalentFrameTab2:HookScript("OnShow", function()
-			if not _G.PlayerTalentFrameTab2.backdrop.shadow then
-				_G.PlayerTalentFrameTab2.backdrop:CreateShadow()
-			end
-		end)
-
-		]]--
 
 		local blizzardframes = {
 			_G.GameMenuFrame,
@@ -224,16 +193,13 @@ function ElvUI_EltreumUI:Shadows()
 				_G.PlayerTalentFrameTab1.backdrop,
 				_G.PlayerTalentFrameTab2.backdrop,
 				_G.PlayerTalentFrameTab3.backdrop,
+				_G.LFGParentFrame.backdrop,
+				_G.LFGParentFrameTab1.backdrop,
+				_G.LFGParentFrameTab2.backdrop,
 			}
 			for _, frame in pairs(classicframes) do
 				if frame and not frame.shadow then
 					frame:CreateShadow()
-				end
-			end
-
-			if ElvUI_EltreumUI.TBC then --tbc has this frame, classic doesnt
-				if not _G.LFGParentFrame.backdrop.shadow then
-					_G.LFGParentFrame.backdrop:CreateShadow()
 				end
 			end
 		end
