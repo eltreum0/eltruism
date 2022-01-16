@@ -7,7 +7,7 @@ ___
 > Eltruism is an ElvUI plugin that offers features not available on ElvUI, and also includes a DPS/Tank Profile along with a Healer profile. Both are designed for 16:9 displays, and were tested in 4K, 1440p and 1080p. This plugin requires the following addons:\
  \
 **[ElvUI](https://www.tukui.org/download.php/ui=elvui)** \
-**[AddOnSkins](https://www.curseforge.com/wow/addons/addonskins)** \
+**[AddOnSkins](https://www.curseforge.com/wow/addons/addonskins)**
 ___
 ### Addon Profiles
 > The installation will offer profiles for the following addons:\
@@ -27,10 +27,11 @@ ___
 ___
 ### Features
 Eltruism includes many features and all can be turned off if the user wants. Included features in this plugin:\
-\
->Actionbars:\
+
+**Actionbars:**\
 Custom Glows, supporting both player and pet action bars.\
->Chat:\
+
+**Chat:**\
 Show item icons in chat, based on Chat Loot Icons by Stanzilla\
 Inactivity Fader using ElvUI's Chat setting\
 Combat Hide\
@@ -38,15 +39,17 @@ Class colored rolls\
 Sounds can be played if a player rolls a 1 or a 100\
 Colored system messages\
 Hide using Mouse Over\
->Cursor:\
+
+**Cursor:**\
 Cast Cursor, showing current castbar\
 GCD Cursor, showing your current GCD\
 Combat Cursor, showing in combat but can also be toggled to show always\
 Cast, GCD and Combat cursors are a fork of CastCursor by michaelsp (credits in the Licenses folder)
 Cooldown, on an attempt to use a skill on cooldown its cooldown will be shown, if no other skill is pressed afterwards then 3s before the cooldown is done the 
 skill will show up again with a countdown to be used\
-Cooldown is a fork of CooldownToGo by mitchnull (credits in the Licenses folder)\
->Nameplates:
+Cooldown is a fork of CooldownToGo by mitchnull (credits in the Licenses folder)
+
+**Nameplates:**\
 Nameplate Power Bar, and advanced power bar above the target nameplate that includes spell costs and incoming resource gains\
 Wide Debuffs and Buffs on Nameplates\
 Glow on Expiring Debuffs on Nameplates\
@@ -59,7 +62,8 @@ Dark Mode and Light Mode, with Light mode featuring class textures\
 Automatically use class based textures\
 Automatically hide Unitframes and/or Arena frames when in PvP, allowing more compatibility when using addons for PvP\
 Dynamically show enemy player buffs in PvP, hide in PvE\
->Skins:\
+
+**Skins:**\
 Adds shadows to frames\
 Show a stealth overlay when in stealth\
 Wider Transmog Window for Retail\
@@ -73,7 +77,8 @@ Expanded Stables, showing all hunter pets in one window. This module is a fork o
 Customize the castbar spark\
 Skin the Quest Log, adding class colors\
 Change the default cursor size\
->Miscelanous:\
+
+**Miscelanous:**\
 Play custom music when in combat, simply put your mp3 inside the addons folder and set the music in Eltruism settings\
 Automatically take a screenshot when an achievement is earned or when you level up\
 Custom WeakAuras anchors, allowing WAs to be attached to them and be moved using /moveui, alongside with them automatically following unitframe visibility settings\
