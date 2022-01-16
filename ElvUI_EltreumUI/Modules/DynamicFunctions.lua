@@ -229,3 +229,23 @@ function ElvUI_EltreumUI:DynamicExperienceDatabar()
 		end
 	end
 end
+
+function ElvUI_EltreumUI:TransparentChat()
+	E.db["chat"]["fadeUndockedTabs"] = true
+	E.db["chat"]["panelBackdrop"] = "HIDEBOTH"
+	E.db["chat"]["panelTabTransparency"] = true
+	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
+	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["backdrop"] = false
+	E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
+	E.db["datatexts"]["panels"]["RightChatDataPanel"]["backdrop"] = false
+end
+
+function ElvUI_EltreumUI:DarkChat()
+	E.db["chat"]["fadeUndockedTabs"] = false
+	E.db["chat"]["panelBackdrop"] = "SHOWBOTH"
+	E.db["chat"]["panelTabTransparency"] = false
+	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
+	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["backdrop"] = true
+	E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
+	E.db["datatexts"]["panels"]["RightChatDataPanel"]["backdrop"] = true
+end
