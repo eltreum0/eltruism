@@ -58,6 +58,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:ArenaUnitframes() --hides elvui unitframes in arenas
 	ElvUI_EltreumUI:BattlegroundGroupUnitframes() --hides elvui unitframes in bgs
 	ElvUI_EltreumUI:DynamicBuffs() --shows enemy player buffs on nameplates/unitframes if in arena/bgs, hides otherwise
+	ElvUI_EltreumUI:EnteringWorldCVars() --set cvars at the start
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
@@ -72,6 +73,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
 		ElvUI_EltreumUI:ExpandedTalents() --makes talents fit in one window without scroll
 		ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
+		ElvUI_EltreumUI:UpdateAvgIlvl()
 	end
 	if E.private["nameplates"]["enable"] == true then
 		ElvUI_EltreumUI:NamePlateOptions() --adds dynamic class based color filters to elvui nameplates
@@ -147,23 +149,15 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN") --LootText things
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED") --LootText things
 	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE') --LootText things
-	--SetCVars at start
-	SetCVar('nameplateOtherBottomInset', 0.02)
-	SetCVar('nameplateOtherTopInset', 0.1)
-	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
-	SetCVar('nameplateTargetRadialPosition', 1)
 	--depending on game version sets cvars or register events
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED') --for class icons, power bar and shadows
 		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW') --for rogue order hall
 		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
 		ElvUI_EltreumUI:RegisterEvent('CHALLENGE_MODE_COMPLETED') --for auto screenshot
-		SetCVar('showInGameNavigation', 1)
 	end
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
-		SetCVar('clampTargetNameplateToScreen', 1)
-		ElvUI_EltreumUI:UpdateAvgIlvl()
 	end
 end
 
