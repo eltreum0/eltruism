@@ -53,13 +53,10 @@ function ElvUI_EltreumUI:Shadows()
 			_G.CharacterFrameTab1.backdrop,
 			_G.CharacterFrameTab2.backdrop,
 			_G.CharacterFrameTab3.backdrop,
-			_G.CharacterFrameTab4.backdrop,  --only in classic though
-			_G.CharacterFrameTab5.backdrop,  --only in classic though
 			_G.FriendsFrameTab1.backdrop,
 			_G.FriendsFrameTab2.backdrop,
 			_G.FriendsFrameTab3.backdrop,
 			_G.FriendsFrameTab4.backdrop,
-			_G.FriendsFrameTab5.backdrop, --only in classic though
 			_G.SpellBookFrameTabButton1.backdrop,
 			_G.SpellBookFrameTabButton2.backdrop,
 		}
@@ -196,6 +193,9 @@ function ElvUI_EltreumUI:Shadows()
 				_G.LFGParentFrame.backdrop,
 				_G.LFGParentFrameTab1.backdrop,
 				_G.LFGParentFrameTab2.backdrop,
+				_G.CharacterFrameTab4.backdrop,  --only in classic though
+				_G.CharacterFrameTab5.backdrop,  --only in classic though
+				_G.FriendsFrameTab5.backdrop, --only in classic though
 			}
 			for _, frame in pairs(classicframes) do
 				if frame and not frame.shadow then
