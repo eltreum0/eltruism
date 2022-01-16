@@ -30,6 +30,17 @@ P.ElvUI_EltreumUI = {
 		looticons = true,
 	},
 
+	cvars = {
+		nameplateOtherBottomInset = 0.02,
+		nameplateOtherTopInset = 0.1,
+		cameraDistanceMaxZoomFactor = 2.6,
+		nameplateTargetRadialPosition = 1,
+		--for retail
+		showInGameNavigation = 1,
+		--for tbc/classic
+		clampTargetNameplateToScreen = 1,
+	},
+
 	skins = {
 		enable = true,
 		widertransmog = true,
@@ -228,7 +239,7 @@ P.ElvUI_EltreumUI = {
 		ypowerbar = 12,
 
 		playerborder = false,
-		xplayer = 304,
+		xplayer = 303,
 		yplayer = 75,
 
 		playercastborder = false,
@@ -236,7 +247,7 @@ P.ElvUI_EltreumUI = {
 		yplayercast = 58,
 
 		targetborder = false,
-		xtarget = 304,
+		xtarget = 303,
 		ytarget = 75,
 
 		targetcastborder = false,
