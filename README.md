@@ -26,12 +26,12 @@ ___
 **[ElvUI Floating Combat Text](https://www.tukui.org/addons.php?id=137)** 
 ___
 ### Features
-Eltruism includes many features and all can be turned off if the user wants. Included features in this plugin:\
+Eltruism includes many features and all can be turned off if the user wants. Included features in this plugin:
 
-Actionbars:\
+>Actionbars:\
 Custom Glows, supporting both player and pet action bars.\
 
-Chat:\
+>Chat:\
 Show item icons in chat, based on Chat Loot Icons by Stanzilla\
 Inactivity Fader using ElvUI's Chat setting\
 Combat Hide\
@@ -40,7 +40,7 @@ Sounds can be played if a player rolls a 1 or a 100\
 Colored system messages\
 Hide using Mouse Over\
 
-Cursor:\
+>Cursor:\
 Cast Cursor, showing current castbar\
 GCD Cursor, showing your current GCD\
 Combat Cursor, showing in combat but can also be toggled to show always\
@@ -49,7 +49,7 @@ Cooldown, on an attempt to use a skill on cooldown its cooldown will be shown, i
 skill will show up again with a countdown to be used\
 Cooldown is a fork of CooldownToGo by mitchnull (credits in the Licenses folder)
 
-Nameplates:\
+>Nameplates:\
 Nameplate Power Bar, and advanced power bar above the target nameplate that includes spell costs and incoming resource gains\
 Wide Debuffs and Buffs on Nameplates\
 Glow on Expiring Debuffs on Nameplates\
@@ -57,6 +57,7 @@ Class themed gradient Nameplate Texture, Border, and Glow\
 Show Friendly Nameplates inside instances with only names or hide them\
 Dynamically show enemy level when you are below max level, hiding when max level\
 Dynamically show a glowing spellsteal on nameplates when the enemy has spellstealable buffs and you are playing a mage\
+
 >Unitframes:
 Dark Mode and Light Mode, with Light mode featuring class textures\
 Automatically use class based textures\
