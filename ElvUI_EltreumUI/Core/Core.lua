@@ -140,11 +140,11 @@ function ElvUI_EltreumUI:WAAnchor()
 		EltruismWAConsumablesAnchor:SetFrameStrata("BACKGROUND")
 		--postion the anchor right below the player unitframe
 		if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
-			EltruismWAConsumablesAnchor:Point("LEFT", ElvUF_Player, 0, -75)
+			EltruismWAConsumablesAnchor:Point("LEFT", _G["ElvUF_Player"], 0, -75)
 		elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
-			EltruismWAConsumablesAnchor:Point("LEFT", ElvUF_Player, 0, -42)
+			EltruismWAConsumablesAnchor:Point("LEFT", _G["ElvUF_Player"], 0, -42)
 		else
-			EltruismWAConsumablesAnchor:Point("LEFT", ElvUF_Player, 0, -75)
+			EltruismWAConsumablesAnchor:Point("LEFT", _G["ElvUF_Player"], 0, -75)
 		end
 		EltruismWAConsumablesAnchor:Size(270, 30)
 		--EltruismWAConsumablesAnchor:Hide()
