@@ -6,7 +6,6 @@ local _G = _G
 local ElvUI_EltreumUI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0', 'AceConsole-3.0')
 local myclass = E.myclass
 local L = E.Libs.ACL:GetLocale("ElvUI", E.global.general.locale)
-local SetCVar = _G.SetCVar
 local GetAddOnMetadata = _G.GetAddOnMetadata
 local hooksecurefunc = _G.hooksecurefunc
 
