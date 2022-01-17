@@ -477,10 +477,10 @@ if ElvUI_EltreumUI.Retail then
 							order = 28,
 							type = "toggle",
 							name = "Add Sounds to /roll when someone gets a 1 or a 100",
-							desc = "Plays a sound if someone roll 1 or 100 out 100",
+							desc = "Plays a sound if someone rolls 1 or 100 out 100",
 							width = 'full',
 							get = function(info) return E.db.ElvUI_EltreumUI.chat.rollsound end,
-							set = function(info, value) E.db.ElvUI_EltreumUI.chat.rollsound = value E:StaticPopup_Show('CONFIG_RL') end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.chat.rollsound = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\WillSmith-Ahaha.ogg", "Master") E:StaticPopup_Show('CONFIG_RL') end,
 						},
 						header10 = {
 							order = 29,
