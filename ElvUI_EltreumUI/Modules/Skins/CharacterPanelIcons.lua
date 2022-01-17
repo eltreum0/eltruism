@@ -86,7 +86,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 				_G.CharacterNameText:SetPoint('TOP', _G.CharacterModelFrame, 0, 80)
 				_G.CharacterLevelText:SetPoint('TOP', _G.CharacterModelFrame, 0, 65)
-				_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterModelFrame, 0, 50)
+				_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterModelFrame, 0, 40)
 				_G.CharacterLevelText:SetPoint('TOP', _G.CharacterNameText, 'BOTTOM', 0, -10)
 				_G.PetNameText:SetPoint('TOP', _G.PetModelFrame, 0, 60)
 				_G.PetLevelText:SetPoint('BOTTOM', _G.PetNameText, 0, -10)
@@ -301,6 +301,17 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				end
 
 			end
+		end
+	else
+		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+			_G.CharacterNameText:ClearAllPoints()
+			_G.CharacterLevelText:ClearAllPoints()
+			_G.PlayerTitleDropDown:Show()
+			_G.PlayerTitleDropDown:ClearAllPoints()
+			_G.PlayerTitleDropDown:SetParent(_G.CharacterFrame)
+			_G.CharacterNameText:SetPoint('TOP', _G.CharacterModelFrame, 0, 80)
+			_G.CharacterLevelText:SetPoint('TOP', _G.CharacterModelFrame, 0, 65)
+			_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterModelFrame, 0, 40)
 		end
 	end
 end
