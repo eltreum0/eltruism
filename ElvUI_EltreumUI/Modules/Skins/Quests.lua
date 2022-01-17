@@ -3,7 +3,7 @@ local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local CreateFrame = _G.CreateFrame
 local unpack = _G.unpack
-local r, g, b = unpack(E.media.rgbvaluecolor)
+local classcolor = E:ClassColor(E.myclass, true)
 
 function ElvUI_EltreumUI:SkinQuests()
 	local fontsize = E.db.general.fontSize
@@ -16,105 +16,105 @@ function ElvUI_EltreumUI:SkinQuests()
 					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetSize(250, 2)
 					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetPoint("BOTTOM", ObjectiveTrackerBlocksFrame.ScenarioHeader, 0, -1)
 					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetStatusBarColor(r, g, b, 1)
+					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
 					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine = CreateFrame("StatusBar", "EltruismCampaignLine", ObjectiveTrackerBlocksFrame.CampaignQuestHeader)
 					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:SetSize(250, 2)
 					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:SetPoint("BOTTOM", ObjectiveTrackerBlocksFrame.CampaignQuestHeader, 0, -1)
 					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:SetStatusBarColor(r, g, b, 1)
+					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
 					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine = CreateFrame("StatusBar", "EltruismQuestLine", ObjectiveTrackerBlocksFrame.QuestHeader)
 					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:SetSize(250, 2)
 					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:SetPoint("BOTTOM", ObjectiveTrackerBlocksFrame.QuestHeader, 0, -1)
 					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:SetStatusBarColor(r, g, b, 1)
+					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
 					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine = CreateFrame("StatusBar", "EltruismAchievementLine", ObjectiveTrackerBlocksFrame.AchievementHeader)
 					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetSize(250, 2)
 					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetPoint("BOTTOM", ObjectiveTrackerBlocksFrame.AchievementHeader, 0, -1)
 					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetStatusBarColor(r, g, b, 1)
+					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				end
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetTextColor(r, g, b)
+					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
 					_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*2, "OUTLINE")
-					_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.Text:SetTextColor(r, g, b)
+					_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
 					_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*2, "OUTLINE")
-					_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetTextColor(r, g, b)
+					_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
 					_G.ObjectiveTrackerBlocksFrame.AchievementHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*2, "OUTLINE")
-					_G.ObjectiveTrackerBlocksFrame.AchievementHeader.Text:SetTextColor(r, g, b)
+					_G.ObjectiveTrackerBlocksFrame.AchievementHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
 					_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*2, "OUTLINE")
-					_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.Text:SetTextColor(r, g, b)
+					_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
 					_G.WORLD_QUEST_TRACKER_MODULE.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-					_G.WORLD_QUEST_TRACKER_MODULE.Header.Text:SetTextColor(r, g, b)
+					_G.WORLD_QUEST_TRACKER_MODULE.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
 					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetTextColor(r, g, b)
+					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
-					_G.OBJECTIVE_TRACKER_COLOR["Header"].r = r
-					_G.OBJECTIVE_TRACKER_COLOR["Header"].g = g
-					_G.OBJECTIVE_TRACKER_COLOR["Header"].b = b
+					_G.OBJECTIVE_TRACKER_COLOR["Header"].r = classcolor.r
+					_G.OBJECTIVE_TRACKER_COLOR["Header"].g = classcolor.g
+					_G.OBJECTIVE_TRACKER_COLOR["Header"].b = classcolor.b
 
 					_G.ObjectiveFont:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-					_G.ObjectiveFont:SetTextColor(r, g, b)
+					_G.ObjectiveFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
 					_G.QuestFont:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize)
-					_G.QuestFont:SetTextColor(r, g, b)
+					_G.QuestFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
 					_G.QuestFont_Large:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize)
 					_G.QuestFont_Super_Huge:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
 					_G.QuestFont_Enormous:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
 				hooksecurefunc("ObjectiveTracker_Update", function()
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetTextColor(r, g, b)
+					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetShadowColor(0, 0, 0, 0.8)
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetShadowOffset(2, -1)
 
 					_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*1.5, "OUTLINE")
-					_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.Text:SetTextColor(r, g, b)
+					_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.Text:SetShadowColor(0, 0, 0, 0.8)
 					_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.Text:SetShadowOffset(2, -1)
 
 					_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*1.5, "OUTLINE")
-					_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetTextColor(r, g, b)
+					_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetShadowColor(0, 0, 0, 0.8)
 					_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetShadowOffset(2, -1)
 
 					_G.ObjectiveTrackerBlocksFrame.AchievementHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*1.5, "OUTLINE")
-					_G.ObjectiveTrackerBlocksFrame.AchievementHeader.Text:SetTextColor(r, g, b)
+					_G.ObjectiveTrackerBlocksFrame.AchievementHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					_G.ObjectiveTrackerBlocksFrame.AchievementHeader.Text:SetShadowColor(0, 0, 0, 0.8)
 					_G.ObjectiveTrackerBlocksFrame.AchievementHeader.Text:SetShadowOffset(2, -1)
 
 					_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*1.5, "OUTLINE")
-					_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.Text:SetTextColor(r, g, b)
+					_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.Text:SetShadowColor(0, 0, 0, 0.8)
 					_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.Text:SetShadowOffset(2, -1)
 
 					_G.WORLD_QUEST_TRACKER_MODULE.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-					_G.WORLD_QUEST_TRACKER_MODULE.Header.Text:SetTextColor(r, g, b)
+					_G.WORLD_QUEST_TRACKER_MODULE.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					_G.WORLD_QUEST_TRACKER_MODULE.Header.Text:SetShadowColor(0, 0, 0, 0.8)
 					_G.WORLD_QUEST_TRACKER_MODULE.Header.Text:SetShadowOffset(2, -1)
 
 					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetTextColor(r, g, b)
+					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetShadowColor(0, 0, 0, 0.8)
 					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetShadowOffset(2, -1)
 
-					_G.OBJECTIVE_TRACKER_COLOR["Header"].r = r
-					_G.OBJECTIVE_TRACKER_COLOR["Header"].g = g
-					_G.OBJECTIVE_TRACKER_COLOR["Header"].b = b
+					_G.OBJECTIVE_TRACKER_COLOR["Header"].r = classcolor.r
+					_G.OBJECTIVE_TRACKER_COLOR["Header"].g = classcolor.g
+					_G.OBJECTIVE_TRACKER_COLOR["Header"].b = classcolor.b
 
 					_G.ObjectiveFont:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-					_G.ObjectiveFont:SetTextColor(r, g, b)
+					_G.ObjectiveFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
 					_G.QuestFont:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize)
-					_G.QuestFont:SetTextColor(r, g, b)
+					_G.QuestFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
 					_G.QuestFont_Large:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize)
 					_G.QuestFont_Super_Huge:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
@@ -144,7 +144,7 @@ function ElvUI_EltreumUI:SkinQuests()
 							watchText = _G["QuestWatchLine"..watchTextIndex]
 							watchText:SetText(GetQuestLogTitle(questIndex))
 							watchText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-							watchText:SetTextColor(r, g, b)
+							watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 							tempWidth = watchText:GetWidth()
 							if ( watchTextIndex > 1 ) then
 								watchText:SetPoint("TOPLEFT", "QuestWatchLine"..(watchTextIndex - 1), "BOTTOMLEFT", 0, -10)

@@ -21,8 +21,8 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			glowcolor = {r, g, b, 1}
 		end
 		if E.db.ElvUI_EltreumUI.glow.colorclass then
-			local r, g, b = unpack(E.media.rgbvaluecolor)
-			glowcolor = {r, g, b, 1}
+			local classcolor = E:ClassColor(E.myclass, true)
+			glowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 		end
 		--changing the texture and the size will likely not be needed in 12.38, but the cooldown will be
 		if button and button.spellID then

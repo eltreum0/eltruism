@@ -2,7 +2,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local unpack = _G.unpack
-local R, G, B = unpack(E.media.rgbvaluecolor)
+local classcolor = E:ClassColor(E.myclass, true)
 local LibItemInfo = LibStub:GetLibrary("LibItemInfo.1000")
 
 --attempt at recreating a similar character panel to retail
@@ -69,12 +69,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.StatusLine4:SetSize(170, 3)
 				CharacterFrame.StatusLine4:SetPoint("CENTER", CharacterFrame.Text4, "CENTER", 0, -15)
 				CharacterFrame.StatusLine4:SetStatusBarTexture(E.Media.Textures.Highlight)
-				CharacterFrame.StatusLine4:SetStatusBarColor(R, G, B, 1)
+				CharacterFrame.StatusLine4:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
 				CharacterFrame.Text5 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 				CharacterFrame.Text5:SetSize(418, 72)
 				CharacterFrame.Text5:SetPoint("TOP", CharacterFrame, "TOP", 150, -20)
-				CharacterFrame.Text5:SetTextColor(R, G, B)
+				CharacterFrame.Text5:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				CharacterFrame.Text5:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
 				CharacterFrame.Text5:SetText(PlayerSpec())
 
@@ -93,11 +93,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.StatusLine:SetSize(170, 3)
 				CharacterFrame.StatusLine:SetPoint("CENTER", CharacterFrame.Text, "CENTER", 0, -15)
 				CharacterFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-				CharacterFrame.StatusLine:SetStatusBarColor(R, G, B, 1)
+				CharacterFrame.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
 				CharacterFrame.Text2:SetSize(418, 72)
 				CharacterFrame.Text2:SetPoint("TOP", CharacterFrame, "TOP", 150, -80)
-				CharacterFrame.Text2:SetTextColor(R, G, B)
+				CharacterFrame.Text2:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				CharacterFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
 				CharacterFrame.StatusLine2 = CreateFrame("StatusBar", "EltruismCharacterBar1", CharacterFrame)
 				CharacterFrame.StatusLine2:SetFrameStrata("LOW")
@@ -116,7 +116,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.StatusLine3:SetSize(170, 3)
 				CharacterFrame.StatusLine3:SetPoint("CENTER", CharacterFrame.Text3, "CENTER", 0, -15)
 				CharacterFrame.StatusLine3:SetStatusBarTexture(E.Media.Textures.Highlight)
-				CharacterFrame.StatusLine3:SetStatusBarColor(R, G, B, 1)
+				CharacterFrame.StatusLine3:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
 				_G.CharacterModelFrame:ClearAllPoints()
 				_G.CharacterModelFrame:SetPoint("RIGHT", CharacterFrame, "CENTER", -20, 0)

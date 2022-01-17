@@ -1,6 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local AB = E:GetModule('ActionBars')
 local LCG = E.Libs.CustomGlow
+local classcolor = E:ClassColor(E.myclass, true)
 
 -- Skill Glow
 function ElvUI_EltreumUI:SkillGlow()
@@ -11,8 +12,7 @@ function ElvUI_EltreumUI:SkillGlow()
 		skillglowcolor = {r, g, b, 1}
 	end
 	if E.db.ElvUI_EltreumUI.glow.colorclass then
-		local r, g, b = unpack(E.media.rgbvaluecolor)
-		skillglowcolor = {r, g, b, 1}
+		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 	end
 	if E.db.ElvUI_EltreumUI.glow.enable then
 		if E.db.ElvUI_EltreumUI.glow.pixel then
@@ -58,8 +58,7 @@ function ElvUI_EltreumUI:SkillGlowPet()
 			skillglowcolor = {r, g, b, 1}
 		end
 		if E.db.ElvUI_EltreumUI.glow.colorclass then
-			local r, g, b = unpack(E.media.rgbvaluecolor)
-			skillglowcolor = {r, g, b, 1}
+			skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 		end
 
 		if E.db.ElvUI_EltreumUI.glow.enablepet then
@@ -124,8 +123,7 @@ function ElvUI_EltreumUI:PreviewGlow()
 		skillglowcolor = {r, g, b, 1}
 	end
 	if E.db.ElvUI_EltreumUI.glow.colorclass then
-		local r, g, b = unpack(E.media.rgbvaluecolor)
-		skillglowcolor = {r, g, b, 1}
+		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 	end
 	if EltruismGlowPreview:IsShown() then
 		LCG.PixelGlow_Stop(EltruismGlowPreview)

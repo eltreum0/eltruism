@@ -3,7 +3,7 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local unpack = _G.unpack
 --local UnitClass = _G.UnitClass --currently unused
-local R, G, B = unpack(E.media.rgbvaluecolor)
+local classcolor = E:ClassColor(E.myclass, true)
 
 local classIcons = {
 	['WARRIOR'] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Warrior",
@@ -85,7 +85,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 			end
 			_G.CharacterNameText:SetParent(_G.CharacterModelFrame)
 			_G.CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, "OUTLINE")
-			_G.CharacterNameText:SetTextColor(R, G, B)
+			_G.CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 			_G.CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
 			_G.CharacterNameText:SetShadowOffset(2, -1)
 
@@ -130,7 +130,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					_G.CharacterFrameTitleText:SetPoint('TOP', _G.CharacterModelFrame, 0, 50)
 					_G.CharacterFrameTitleText:SetParent(_G.CharacterFrame)
 					_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
-					_G.CharacterFrameTitleText:SetTextColor(R, G, B)
+					_G.CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					_G.CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
 					_G.CharacterFrameTitleText:SetShadowOffset(2, -1)
 					_G.CharacterLevelText:ClearAllPoints()
@@ -206,8 +206,8 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					--_G.CharacterModelFrameBackgroundOverlay:SetDrawLayer("OVERLAY")
 
 					--color the avg item level
-					_G.CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradientAlpha('Horizontal', R, G, B, 0.4, R, G, B, 0)
-					_G.CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradientAlpha('Horizontal', R, G, B, 0, R, G, B, 0.4)
+					_G.CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0.4, classcolor.r, classcolor.g, classcolor.b, 0)
+					_G.CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0, classcolor.r, classcolor.g, classcolor.b, 0.4)
 				end
 
 				hooksecurefunc("CharacterFrame_Collapse", function()
@@ -253,7 +253,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
 						end
 						_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
-						_G.CharacterFrameTitleText:SetTextColor(R, G, B)
+						_G.CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 						_G.CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
 						_G.CharacterFrameTitleText:SetShadowOffset(2, -1)
 
@@ -272,7 +272,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
 						end
 						_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
-						_G.CharacterFrameTitleText:SetTextColor(R, G, B)
+						_G.CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 						_G.CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
 						_G.CharacterFrameTitleText:SetShadowOffset(2, -1)
 
