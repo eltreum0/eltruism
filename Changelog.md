@@ -24,6 +24,7 @@ Added a new tag [eltruism:targetcast] which will show the target of an enemy spe
 Added a new tag [eltruism:targetcast:indicator] which will show the target of an enemy spellcast alongside a Target > text\
 Added new commands: /eltruism color and /eltruism chat, color will toggle between dark and light mode, and chat will toggle between dark and transparent mode
 
+Updated Light and Dark Modes, now Light mode will have the Target Unitframe Texture as its own class based texture, with the player keeping its own and power and classbars not being affected by it\
 Updated Cursor, GCD, Combat Cursor and Cooldown Cursor functions\
 Updated references to FCT to make it clearer that it's Simpy's ElvUI FCT\
 Updated references to nameplates due to a change in ElvUI code\
