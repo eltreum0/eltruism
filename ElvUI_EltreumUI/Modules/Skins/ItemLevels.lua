@@ -7,7 +7,7 @@ local LibItemInfo = LibStub:GetLibrary("LibItemInfo.1000")
 --Calculate ilvl and average ilvl of player items/inspect unit
 function ElvUI_EltreumUI:UpdateAvgIlvl()
 	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-		if E.db.ElvUI_EltreumUI.skins.classicarmory then
+		if E.db.ElvUI_EltreumUI.skins.ilvls then
 
 			--from Simple Item Levels by Kemayo (BSD License) with some edits by Eltreum
 			local function PrepareItemButton(button)
@@ -18,7 +18,8 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 				--overlayFrame:SetFrameLevel(9999) -- this was bugging out inspect
 				overlayFrame:SetAllPoints()
 				button.eltruismilvl = overlayFrame:CreateFontString('$parentItemLevel', 'OVERLAY')
-				button.eltruismilvl:SetPoint('CENTER', 0, 0)
+				--button.eltruismilvl:SetPoint('CENTER', 0, 0)
+				button.eltruismilvl:SetPoint(E.db.ElvUI_EltreumUI.skins.ilvlanchor, 0, 0)
 				button.eltruismilvl:SetFont(E.LSM:Fetch("font", E.db.general.font), 16, "THICKOUTLINE")
 				button.eltruismilvl:SetJustifyH('LEFT')
 				button.eltruismilvl:Hide()
