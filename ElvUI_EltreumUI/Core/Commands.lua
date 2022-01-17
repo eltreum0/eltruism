@@ -47,6 +47,28 @@ function ElvUI_EltreumUI:RunCommands(message)
 			ElvUI_EltreumUI:Print("Development Tools Disabled, please reload")
 			E:StaticPopup_Show('CONFIG_RL')
 		end
+	elseif message == 'chat' then
+		if E.db.chat.panelBackdrop == "HIDEBOTH" then
+			ElvUI_EltreumUI:DarkChat()
+			ElvUI_EltreumUI:Print("Chat set to dark mode, please reload")
+		elseif E.db.chat.panelBackdrop == "SHOWBOTH" then
+			ElvUI_EltreumUI:TransparentChat()
+			ElvUI_EltreumUI:Print("Chat set to transparent mode, please reload")
+		else
+			ElvUI_EltreumUI:TransparentChat()
+			ElvUI_EltreumUI:Print("Chat set to transparent mode, please reload")
+		end
+	elseif message == 'color' then
+		if E.db.ElvUI_EltreumUI.lightmode == true then
+			ElvUI_EltreumUI:DarkMode()
+			ElvUI_EltreumUI:Print("Unitframes set to dark mode, please reload")
+		elseif E.db.ElvUI_EltreumUI.lightmode == false then
+			ElvUI_EltreumUI:LightMode()
+			ElvUI_EltreumUI:Print("Unitframes set to light mode, please reload")
+		else
+			ElvUI_EltreumUI:DarkMode()
+			ElvUI_EltreumUI:Print("Unitframes set to dark mode, please reload")
+		end
 	end
 end
 
