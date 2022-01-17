@@ -19,10 +19,6 @@ LSM:Register("font", "2002B", [[Fonts\2002B.ttf]])
 --For Chinese support
 LSM:Register("font", "CrystalzcuheiGBK", [[Fonts\ARHei.ttf]])
 
-
-
-
-
 -- Sound
 LSM:Register("sound", "You_Died", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\You_Died.ogg]])
 LSM:Register("sound", "Todd Horward - It just works", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\Itjustworks.ogg]])
