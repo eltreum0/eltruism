@@ -92,7 +92,6 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 			_G.CharacterLevelText:ClearAllPoints()
 			if E.db.ElvUI_EltreumUI.skins.classicarmory then
 				_G.CharacterLevelText:SetPoint('TOP', _G.CharacterNameText, 'BOTTOM', 0, -10)
-
 				_G.PetNameText:SetPoint('TOP', _G.PetModelFrame, 0, 60)
 				_G.PetLevelText:SetPoint('BOTTOM', _G.PetNameText, 0, -10)
 				_G.PetLoyaltyText:SetPoint('BOTTOM', _G.PetLevelText, 0, -20)
@@ -101,11 +100,15 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				_G.CharacterLevelText:SetPoint('TOP', _G.CharacterNameText, 'BOTTOM', 0, -7)
 			end
 
-			if _G.PlayerTitleDropDown then
+			if _G.PlayerTitleDropDown:IsShown() then
+				--print("Test1")
 				_G.PlayerTitleDropDown:ClearAllPoints()
 				_G.PlayerTitleDropDown:SetParent(_G.CharacterFrame)
-				--_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterLevelText, 'BOTTOM', 0, -10)
+				_G.CharacterNameText:SetPoint('TOP', _G.CharacterModelFrame, 0, 80)
+				_G.CharacterLevelText:SetPoint('TOP', _G.CharacterModelFrame, 0, 65)
 				_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterModelFrame, 0, 50)
+			else
+				--print("Test2")
 			end
 
 			classFrame:ClearAllPoints()
