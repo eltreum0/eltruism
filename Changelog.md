@@ -31,6 +31,7 @@ Updated Chat Fade to register events only when enabled\
 Updated Dynamic Cam Profile for Retail due to Dynamic Cam's internal changes
 Updated Chat, which is now transparent with a new option in Eltruism > Chat to revert to the dark mode or switch to the transparent mode if the user wants
 
+Fixed an error when setting fonts without Project Azilroka installed\
 Fixed shadows showing up when chat panels were disabled\
 Fixed player castbar shadows being mismatched in some scenarios\
 Fixed some missing shadows\
