@@ -26,11 +26,19 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
 			}
 
+			local alpha
+			if E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha ~= nil then
+				alpha = E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha
+			elseif E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha == nil then
+				alpha = 0.3
+			end
+
+
 			local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture()
 			CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
 			CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-			if E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha then
-				CharacterFrameBackgroundTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
+			if alpha ~= nil then
+				CharacterFrameBackgroundTexture:SetAlpha(alpha)
 			else
 				CharacterFrameBackgroundTexture:SetAlpha(0.3)
 			end
