@@ -120,6 +120,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		elseif ElvUI_EltreumUI.Retail then
 			if (not IsAddOnLoaded("ElvUI_SLE")) or not E.db.sle.armory.character.enable then
 
+
 				hooksecurefunc('PaperDollFrame_SetLevel', function()
 					_G.CharacterFrameTitleText:ClearAllPoints()
 					_G.CharacterFrameTitleText:SetPoint('TOP', _G.CharacterModelFrame, 0, 50)
@@ -158,14 +159,44 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 				--move the artwork
 				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-					_G.CharacterModelFrameBackgroundTopLeft:ClearAllPoints()
-					_G.CharacterModelFrameBackgroundTopLeft:SetAllPoints(_G.CharacterFrame)
-					_G.CharacterModelFrameBackgroundTopLeft:SetParent(_G.CharacterFrame)
-					_G.CharacterModelFrameBackgroundTopLeft:SetDrawLayer("ARTWORK")
-					_G.CharacterModelFrameBackgroundOverlay:ClearAllPoints()
-					_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(_G.CharacterFrame)
-					_G.CharacterModelFrameBackgroundOverlay:SetParent(_G.CharacterFrame)
-					_G.CharacterModelFrameBackgroundOverlay:SetDrawLayer("OVERLAY")
+
+
+					local classBgs = {
+						['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
+						['PALADIN'] = "Interface\\Artifacts\\ArtifactUIPaladin",
+						['HUNTER'] = "Interface\\Artifacts\\ArtifactUIHunter",
+						['ROGUE'] = "Interface\\Artifacts\\ArtifactUIRogue",
+						['PRIEST'] = "Interface\\Artifacts\\ArtifactUIPriest",
+						['DEATHKNIGHT'] = "Interface\\Artifacts\\ArtifactUIDeathKnightFrost",
+						['SHAMAN'] = "Interface\\Artifacts\\ArtifactUIShaman",
+						['MAGE'] = "Interface\\Artifacts\\ArtifactUIMageArcane",
+						['WARLOCK'] = "Interface\\Artifacts\\ArtifactUIWarlock",
+						['MONK'] = "Interface\\Artifacts\\ArtifactUIMonk",
+						['DRUID'] = "Interface\\Artifacts\\ArtifactUIDruid",
+						['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
+					}
+
+
+					local CharacterFrameBackgroundTexture = _G.CharacterFrame:CreateTexture()
+					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
+					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+					CharacterFrameBackgroundTexture:SetAlpha(0.3)
+					CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame)
+					CharacterFrameBackgroundTexture:SetParent(_G.CharacterFrame)
+					CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK")
+
+					_G.CharacterModelFrame.backdrop:Hide()
+					--_G.CharacterModelFrameBackgroundTopLeft:ClearAllPoints()
+					--_G.CharacterModelFrameBackgroundTopLeft:SetAllPoints(_G.CharacterFrame)
+					--_G.CharacterModelFrameBackgroundTopLeft:SetParent(_G.CharacterFrame)
+					--_G.CharacterModelFrameBackgroundTopLeft:SetDrawLayer("ARTWORK")
+					_G.CharacterModelFrameBackgroundTopLeft:Hide()
+					_G.CharacterModelFrameBackgroundOverlay:Hide()
+					--_G.CharacterModelFrameBackgroundOverlay:ClearAllPoints()
+					--_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(_G.CharacterFrame)
+					--_G.CharacterModelFrameBackgroundOverlay:SetParent(_G.CharacterFrame)
+					--_G.CharacterModelFrameBackgroundOverlay:SetDrawLayer("OVERLAY")
+
 					--color the avg item level
 					_G.CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradientAlpha('Horizontal', R, G, B, 0.4, R, G, B, 0)
 					_G.CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradientAlpha('Horizontal', R, G, B, 0, R, G, B, 0.4)
