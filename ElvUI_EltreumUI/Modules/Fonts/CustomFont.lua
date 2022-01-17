@@ -59,7 +59,9 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 		E.private["general"]["dmgfont"] = fontvalue
 		E.private["general"]["namefont"] = fontvalue
 	if ElvUI_EltreumUI.Retail then
-		PA.db["stAddonManager"]["Font"] = fontvalue
+		if IsAddOnLoaded('ProjectAzilroka') then
+			PA.db["stAddonManager"]["Font"] = fontvalue
+		end
 		if IsAddOnLoaded("ElvUI_SLE") then
 			E.db["sle"]["armory"]["character"]["durability"]["font"] = fontvalue
 			E.db["sle"]["armory"]["character"]["enchant"]["font"] = fontvalue

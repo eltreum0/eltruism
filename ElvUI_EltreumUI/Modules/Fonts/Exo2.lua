@@ -60,7 +60,9 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 		E.private["general"]["dmgfont"] = "Exo2 Extra Bold"
 		E.private["general"]["namefont"] = "Exo2 Extra Bold"
 	if ElvUI_EltreumUI.Retail then
-		PA.db["stAddonManager"]["Font"] = "Exo2 Extra Bold"
+		if IsAddOnLoaded('ProjectAzilroka') then
+			PA.db["stAddonManager"]["Font"] = "Exo2 Extra Bold"
+		end
 		if IsAddOnLoaded("ElvUI_SLE") then
 			E.db["sle"]["armory"]["character"]["durability"]["font"] = "Exo2 Extra Bold"
 			E.db["sle"]["armory"]["character"]["enchant"]["font"] = "Exo2 Extra Bold"

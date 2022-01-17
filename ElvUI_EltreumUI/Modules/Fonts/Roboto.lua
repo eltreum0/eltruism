@@ -59,7 +59,9 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		E.private["general"]["dmgfont"] = "Roboto"
 		E.private["general"]["namefont"] = "Roboto"
 	if ElvUI_EltreumUI.Retail then
-		PA.db["stAddonManager"]["Font"] = "Roboto"
+		if IsAddOnLoaded('ProjectAzilroka') then
+			PA.db["stAddonManager"]["Font"] = "Roboto"
+		end
 		if IsAddOnLoaded("ElvUI_SLE") then
 			E.db["sle"]["armory"]["character"]["durability"]["font"] = "Roboto"
 			E.db["sle"]["armory"]["character"]["enchant"]["font"] = "Roboto"

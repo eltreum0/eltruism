@@ -5,7 +5,9 @@ local PA = _G.ProjectAzilroka
 
 function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
 	if ElvUI_EltreumUI.Retail then
-		PA.db["stAddonManager"]["FontFlag"] = "NONE"
+		if IsAddOnLoaded('ProjectAzilroka') then
+			PA.db["stAddonManager"]["FontFlag"] = "NONE"
+		end
 		if IsAddOnLoaded("ElvUI_SLE") then
 			E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "NONE"
 			E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "NONE"

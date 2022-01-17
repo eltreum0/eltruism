@@ -58,10 +58,9 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 		E.private["general"]["dmgfont"] = "Kimberley"
 		E.private["general"]["namefont"] = "Kimberley"
 	if ElvUI_EltreumUI.Retail then
-		PA.db["stAddonManager"]["Font"] = "Kimberley"
-
-
-
+		if IsAddOnLoaded('ProjectAzilroka') then
+			PA.db["stAddonManager"]["Font"] = "Kimberley"
+		end
 		if IsAddOnLoaded("ElvUI_SLE") then
 			E.db["sle"]["armory"]["character"]["durability"]["font"] = "Kimberley"
 			E.db["sle"]["armory"]["character"]["enchant"]["font"] = "Kimberley"

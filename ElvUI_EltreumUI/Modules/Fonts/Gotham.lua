@@ -59,7 +59,9 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 		E.private["general"]["dmgfont"] = "GothamNarrow Black"
 		E.private["general"]["namefont"] = "GothamNarrow Black"
 	if ElvUI_EltreumUI.Retail then
-		PA.db["stAddonManager"]["Font"] = "GothamNarrow Black"
+		if IsAddOnLoaded('ProjectAzilroka') then
+			PA.db["stAddonManager"]["Font"] = "GothamNarrow Black"
+		end
 		if IsAddOnLoaded("ElvUI_SLE") then
 			E.db["sle"]["armory"]["character"]["durability"]["font"] = "GothamNarrow Black"
 			E.db["sle"]["armory"]["character"]["enchant"]["font"] = "GothamNarrow Black"

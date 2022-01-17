@@ -5,7 +5,9 @@ local PA = _G.ProjectAzilroka
 
 function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
 	if ElvUI_EltreumUI.Retail then
-		PA.db["stAddonManager"]["FontFlag"] = "THICKOUTLINE"
+		if IsAddOnLoaded('ProjectAzilroka') then
+			PA.db["stAddonManager"]["FontFlag"] = "THICKOUTLINE"
+		end
 		if IsAddOnLoaded("ElvUI_SLE") then
 			E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "THICKOUTLINE"
 			E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "THICKOUTLINE"

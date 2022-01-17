@@ -60,7 +60,9 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei(addon)
 		E.private["general"]["dmgfont"] = "CrystalzcuheiGBK"
 		E.private["general"]["namefont"] = "CrystalzcuheiGBK"
 	if ElvUI_EltreumUI.Retail then
-		PA.db["stAddonManager"]["Font"] = "CrystalzcuheiGBK"
+		if IsAddOnLoaded('ProjectAzilroka') then
+			PA.db["stAddonManager"]["Font"] = "CrystalzcuheiGBK"
+		end
 		if IsAddOnLoaded("ElvUI_SLE") then
 			E.db["sle"]["armory"]["character"]["durability"]["font"] = "CrystalzcuheiGBK"
 			E.db["sle"]["armory"]["character"]["enchant"]["font"] = "CrystalzcuheiGBK"
