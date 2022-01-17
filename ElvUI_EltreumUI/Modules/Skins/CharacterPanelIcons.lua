@@ -76,33 +76,6 @@ end
 function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-			_G.CharacterNameText:ClearAllPoints()
-			_G.CharacterLevelText:ClearAllPoints()
-			if E.db.ElvUI_EltreumUI.skins.classicarmory then
-				_G.PlayerTitleDropDown:Show()
-				_G.PlayerTitleDropDown:ClearAllPoints()
-				_G.PlayerTitleDropDown:SetParent(_G.CharacterFrame)
-				--_G.PlayerTitleDropDown:SetMovable()
-
-				_G.CharacterNameText:SetPoint('TOP', _G.CharacterModelFrame, 0, 80)
-				_G.CharacterLevelText:SetPoint('TOP', _G.CharacterModelFrame, 0, 65)
-				_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterModelFrame, 0, 40)
-				_G.CharacterLevelText:SetPoint('TOP', _G.CharacterNameText, 'BOTTOM', 0, -10)
-				_G.PetNameText:SetPoint('TOP', _G.PetModelFrame, 0, 60)
-				_G.PetLevelText:SetPoint('BOTTOM', _G.PetNameText, 0, -10)
-				_G.PetLoyaltyText:SetPoint('BOTTOM', _G.PetLevelText, 0, -20)
-				_G.PetPaperDollCloseButton:Hide()
-			else
-				_G.CharacterNameText:SetPoint('TOP', _G.CharacterModelFrame, 0, 50)
-				_G.CharacterLevelText:SetPoint('TOP', _G.CharacterNameText, 'BOTTOM', 0, -7)
-			end
-			_G.CharacterNameText:SetParent(_G.CharacterModelFrame)
-			_G.CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, "OUTLINE")
-			_G.CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-			_G.CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
-			_G.CharacterNameText:SetShadowOffset(2, -1)
-
-
 			classFrame:ClearAllPoints()
 			--type of icon
 			if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
