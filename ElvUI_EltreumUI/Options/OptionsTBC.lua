@@ -581,6 +581,62 @@ if ElvUI_EltreumUI.TBC then
 						},
 					},
 				},
+				quests = {
+					type = 'group',
+					name = L["Quests"],
+					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\quest',
+					order = 85,
+					args = {
+						questsettings = {
+							order = 1,
+							type = 'group',
+							inline = true,
+							name = L["Collapse Quests during Encounters/Boss Fights"],
+							get = function(info) return E.db.ElvUI_EltreumUI.questsettings.enable end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.questsettings.enable = value end,
+							args = {
+								enable = {
+									order = 5,
+									type = 'toggle',
+									name = L["Enable"],
+									desc = L["Collapse Quests when the boss fight starts"],
+								},
+							},
+						},
+						questcombatsettings = {
+							order = 2,
+							type = 'group',
+							inline = true,
+							name = L["Collapse Quests during any combat event"],
+							get = function(info) return E.db.ElvUI_EltreumUI.questsettings.combatenable end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.questsettings.combatenable = value end,
+							args = {
+								enable = {
+									order = 5,
+									type = 'toggle',
+									name = L["Enable"],
+									desc = L["Collapse Quests when you enter combat"],
+								},
+							},
+						},
+						arenaquestsettings = {
+							order = 3,
+							type = 'group',
+							inline = true,
+							name = "Hide Quests during Battlegrounds and Arenas",
+							get = function(info) return E.db.ElvUI_EltreumUI.questsettings.arena end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.questsettings.arena = value end,
+							args = {
+								enable = {
+									order = 5,
+									type = 'toggle',
+									name = L["Enable"],
+									desc = "Hide Quests during Battlegrounds and Arenas",
+								},
+							},
+						},
+					},
+				},
 				aurafilters = {
 					type = 'group',
 					name = L["Aura Filters"],
