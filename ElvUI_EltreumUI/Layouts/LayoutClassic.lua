@@ -34,6 +34,9 @@ if ElvUI_EltreumUI.Classic then
 		-- AB Conversion
 		E.db["convertPages"] = true
 
+		--mark as dark mode
+		E.db.ElvUI_EltreumUI.lightmode = false
+
 		-- General
 		E.db["general"]["altPowerBar"]["font"] = "Kimberley"
 		E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
@@ -109,7 +112,7 @@ if ElvUI_EltreumUI.Classic then
 		E.db["chat"]["chatHistory"] = false
 		E.db["chat"]["hideCopyButton"] = true
 		E.db["chat"]["hideVoiceButtons"] = true
-		E.db["chat"]["fadeTabsNoBackdrop"] = false
+		E.db["chat"]["fadeTabsNoBackdrop"] = true
 
 		E.db["chat"]["fadeUndockedTabs"] = true
 		E.db["chat"]["panelBackdrop"] = "HIDEBOTH"
@@ -708,7 +711,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["actionbar"]["microbar"]["buttonHeight"] = 29
 			E.db["actionbar"]["microbar"]["buttonSize"] = 25
 			E.db["actionbar"]["microbar"]["buttonSpacing"] = 4
-			E.db["actionbar"]["microbar"]["buttonsPerRow"] = 9
+			E.db["actionbar"]["microbar"]["buttonsPerRow"] = 11
 			E.db["actionbar"]["microbar"]["enabled"] = true
 			E.db["actionbar"]["microbar"]["visibility"] = "[combat] hide; show"
 			E.db["actionbar"]["microbar"]["mouseover"] = true
