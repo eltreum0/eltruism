@@ -34,6 +34,9 @@ if ElvUI_EltreumUI.TBC then
 
 		--mark as dark mode
 		E.db.ElvUI_EltreumUI.lightmode = false
+		--disable the quest hide by default on classic/tbc
+		E.db.ElvUI_EltreumUI.questsettings.enable = false
+		E.db.ElvUI_EltreumUI.questsettings.arena = false
 
 		-- General
 		E.db["general"]["autoRepair"] = "GUILD"
