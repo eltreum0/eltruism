@@ -36,7 +36,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture then
 		local bar = LSM:Fetch("statusbar", "Eltreum-Blank")
 		local _, targetclass = UnitClass("target")
-		if targetclass then
+		if targetclass and UnitIsPlayer("target") then
 			bar = LSM:Fetch("statusbar", unitframeclass[targetclass])
 		end
 		local playertexture = LSM:Fetch("statusbar", unitframeclass[E.myclass])
