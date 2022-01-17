@@ -270,6 +270,7 @@ function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED()
 	ElvUI_EltreumUI:StopCombatMusic()
 	ElvUI_EltreumUI:DynamicChatFade()
 	ElvUI_EltreumUI:BlizzCombatText()
+	ElvUI_EltreumUI:QuestCombat()
 	--ElvUI_EltreumUI:ArenaUnitframes()
 end
 
@@ -277,6 +278,7 @@ function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED()
 	ElvUI_EltreumUI:CombatMusic()
 	ElvUI_EltreumUI:DynamicChatFade()
 	ElvUI_EltreumUI:ArenaUnitframes()
+	ElvUI_EltreumUI:QuestCombatEnd()
 end
 
 function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
@@ -299,16 +301,12 @@ function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
 end
 
 function ElvUI_EltreumUI:ENCOUNTER_START()
-	if ElvUI_EltreumUI.Retail then
-		ElvUI_EltreumUI:QuestEncounter()
-	end
+	ElvUI_EltreumUI:QuestEncounter()
 	ElvUI_EltreumUI:CombatMusic()
 end
 
 function ElvUI_EltreumUI:ENCOUNTER_END()
-	if ElvUI_EltreumUI.Retail then
-		ElvUI_EltreumUI:QuestEncounterEnd()
-	end
+	ElvUI_EltreumUI:QuestEncounterEnd()
 end
 
 function ElvUI_EltreumUI:UPDATE_STEALTH()
