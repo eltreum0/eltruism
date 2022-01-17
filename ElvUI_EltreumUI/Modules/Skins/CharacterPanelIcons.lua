@@ -102,7 +102,10 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 			end
 
 			if _G.PlayerTitleDropDown then
-				_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterLevelText, 'BOTTOM', 0, -10)
+				_G.PlayerTitleDropDown:ClearAllPoints()
+				_G.PlayerTitleDropDown:SetParent(_G.CharacterFrame)
+				--_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterLevelText, 'BOTTOM', 0, -10)
+				_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterModelFrame, 0, 50)
 			end
 
 			classFrame:ClearAllPoints()
