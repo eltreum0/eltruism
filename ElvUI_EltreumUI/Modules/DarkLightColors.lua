@@ -84,9 +84,13 @@ function ElvUI_EltreumUI:LightMode()
 	E.db["unitframe"]["colors"]["transparentCastbar"] = false
 	E.db["unitframe"]["colors"]["transparentHealth"] = false
 	E.db["unitframe"]["colors"]["transparentPower"] = false
-	E.db["auras"]["buffs"]["barTexture"] = unitframeclass[E.myclass]
-	E.db["auras"]["debuffs"]["barTexture"] = unitframeclass[E.myclass]
-	E.db["unitframe"]["statusbar"] = unitframeclass[E.myclass]
+	--E.db["auras"]["buffs"]["barTexture"] = unitframeclass[E.myclass]
+	--E.db["auras"]["debuffs"]["barTexture"] = unitframeclass[E.myclass]
+	--E.db["unitframe"]["statusbar"] = unitframeclass[E.myclass]
+
+	E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
+	E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
+	E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
 	--setup namecolors
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
@@ -107,9 +111,12 @@ end
 function ElvUI_EltreumUI:TextureMode()
 	if E.db.ElvUI_EltreumUI.modetexture then
 		if E.db.ElvUI_EltreumUI.lightmode then
-			E.db["auras"]["buffs"]["barTexture"] = unitframeclass[E.myclass]
-			E.db["auras"]["debuffs"]["barTexture"] = unitframeclass[E.myclass]
-			E.db["unitframe"]["statusbar"] = unitframeclass[E.myclass]
+			--E.db["auras"]["buffs"]["barTexture"] = unitframeclass[E.myclass]
+			--E.db["auras"]["debuffs"]["barTexture"] = unitframeclass[E.myclass]
+			--E.db["unitframe"]["statusbar"] = unitframeclass[E.myclass]
+			E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
+			E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
+			E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
 		else
 			E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
 			E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
