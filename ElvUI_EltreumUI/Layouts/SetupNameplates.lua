@@ -123,6 +123,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumTotems"]["triggers"]["enable"] = true
 			E.db["nameplates"]["highlight"] = false
 			E.db["nameplates"]["lowHealthThreshold"] = 0.2
 			E.db["nameplates"]["plateSize"]["friendlyHeight"] = 10
@@ -588,7 +589,7 @@ end
 -- Style Filter Setup
 function ElvUI_EltreumUI:SetupStyleFilters()
 	if E.private["nameplates"]["enable"] == true then
-		for _, filterName in pairs({'ElvUI_NonTarget', 'ElvUI_Target', 'EltreumInterrupt', 'EltreumExecute', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel'}) do
+		for _, filterName in pairs({'ElvUI_NonTarget', 'ElvUI_Target', 'EltreumInterrupt', 'EltreumExecute', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
@@ -698,6 +699,16 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumLevel"]["triggers"]["notTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumLevel"]["triggers"]["notTargetMe"] = false
 		E.global["nameplates"]["filters"]["EltreumLevel"]["triggers"]["playerCanAttack"] = true
+
+		--totem portrait filter
+		E.global["nameplates"]["filters"]["EltreumTotems"]["actions"]["scale"] = 1.25
+		E.global["nameplates"]["filters"]["EltreumTotems"]["actions"]["usePortrait"] = true
+		E.global["nameplates"]["filters"]["EltreumTotems"]["triggers"]["creatureType"]["Totem"] = true
+		E.global["nameplates"]["filters"]["EltreumTotems"]["triggers"]["creatureType"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumTotems"]["triggers"]["isTarget"] = true
+		E.global["nameplates"]["filters"]["EltreumTotems"]["triggers"]["notTarget"] = true
+		E.global["nameplates"]["filters"]["EltreumTotems"]["triggers"]["playerCanAttack"] = true
+		E.global["nameplates"]["filters"]["EltreumTotems"]["triggers"]["priority"] = 14
 
 		E:StaggeredUpdateAll(nil, true)
 		ElvUI_EltreumUI:Print(L["NamePlate Style Filters have been setup."])
