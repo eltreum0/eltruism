@@ -699,7 +699,6 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumLevel"]["triggers"]["notTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumLevel"]["triggers"]["notTargetMe"] = false
 		E.global["nameplates"]["filters"]["EltreumLevel"]["triggers"]["playerCanAttack"] = true
-
 		--totem portrait filter
 		E.global["nameplates"]["filters"]["EltreumTotems"]["actions"]["scale"] = 1.25
 		E.global["nameplates"]["filters"]["EltreumTotems"]["actions"]["usePortrait"] = true
