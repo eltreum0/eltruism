@@ -1044,6 +1044,21 @@ if ElvUI_EltreumUI.TBC then
 							get = function(info) return E.db.ElvUI_EltreumUI.skins.classicarmory end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.skins.classicarmory = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
+						expandart = {
+							order = 3,
+							type = 'toggle',
+							name = "Expand Character Art",
+							width = 'full',
+							desc = "Enable this option",
+							get = function(info) return E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.skins.expandarmorybg = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
+						headergapart = {
+							order = 2,
+							type = "description",
+							name = "",
+							width = 'full',
+						},
 						header845 = {
 							order = 23,
 							type = "description",
