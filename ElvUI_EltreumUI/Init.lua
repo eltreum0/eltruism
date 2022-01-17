@@ -270,7 +270,7 @@ function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED()
 	ElvUI_EltreumUI:StopCombatMusic()
 	ElvUI_EltreumUI:DynamicChatFade()
 	ElvUI_EltreumUI:BlizzCombatText()
-	ElvUI_EltreumUI:QuestCombat()
+	ElvUI_EltreumUI:QuestCombatEnd()
 	--ElvUI_EltreumUI:ArenaUnitframes()
 end
 
@@ -278,7 +278,7 @@ function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED()
 	ElvUI_EltreumUI:CombatMusic()
 	ElvUI_EltreumUI:DynamicChatFade()
 	ElvUI_EltreumUI:ArenaUnitframes()
-	ElvUI_EltreumUI:QuestCombatEnd()
+	ElvUI_EltreumUI:QuestCombat()
 end
 
 function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
