@@ -101,6 +101,10 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				_G.CharacterLevelText:SetPoint('TOP', _G.CharacterNameText, 'BOTTOM', 0, -7)
 			end
 
+			if _G.PlayerTitleDropDown then
+				_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterLevelText, 'BOTTOM', 0, -10)
+			end
+
 			classFrame:ClearAllPoints()
 			--type of icon
 			if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
