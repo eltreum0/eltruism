@@ -265,8 +265,5 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			end
 		end
-
-
-
 	end
 end
