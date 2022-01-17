@@ -13,12 +13,16 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then
 			if CharacterFrame then
 
+
 				--turns out classic has the functions to get number of points on talent trees
+				--need to figure out how to print when all trees have spent the same amount
 				local function PlayerSpec()
-				local spec, points
-				for i=1, GetNumTalentTabs() do
+					local spec, points
+					for i=1, GetNumTalentTabs() do
 						local name, _, spent = GetTalentTabInfo(i)
+						--print(spent..name.." 1")
 						if spent > 0 and (not points or spent > points) then
+							--print(spec..points.." 2")
 							spec, points = name, spent
 						end
 					end
@@ -137,6 +141,16 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PlayerStatFrameRight4:SetParent(_G.PlayerStatFrameRight1)
 					_G.PlayerStatFrameRight5:SetParent(_G.PlayerStatFrameRight1)
 					_G.PlayerStatFrameRight6:SetParent(_G.PlayerStatFrameRight1)
+
+					--set the tabs
+						SetCVar("playerStatLeftDropdown", "PLAYERSTAT_BASE_STATS")
+					if E.myclass == "MAGE" or E.myclass == "PRIEST" or E.myclass == "WARLOCK" or E.myclass == "DRUID" then
+						SetCVar("playerStatRightDropdown", "PLAYERSTAT_SPELL_COMBAT")
+					elseif ( E.myclass == "HUNTER" ) then
+						SetCVar("playerStatRightDropdown", "PLAYERSTAT_RANGED_COMBAT")
+					else
+						SetCVar("playerStatRightDropdown", "PLAYERSTAT_MELEE_COMBAT")
+					end
 				elseif ElvUI_EltreumUI.Classic then
 					_G.CharacterStatFrame1:ClearAllPoints()
 					_G.CharacterStatFrame1:SetPoint("TOP", CharacterFrame, "TOP", 150, -215)
