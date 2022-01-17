@@ -13,42 +13,80 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then
 			if CharacterFrame then
 
+				--turns out classic has the functions to get number of points on talent trees
+				local function PlayerSpec()
+				local spec, points
+				for i=1, GetNumTalentTabs() do
+						local name, _, spent = GetTalentTabInfo(i)
+						if spent > 0 and (not points or spent > points) then
+							spec, points = name, spent
+						end
+					end
+					if spec ~= nil then
+						return spec
+					else
+						return L["None"]
+					end
+				end
+				CharacterFrame.Text4 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+				CharacterFrame.Text4:SetSize(418, 72)
+				CharacterFrame.Text4:SetPoint("TOP", CharacterFrame, "TOP", 150, 10)
+				CharacterFrame.Text4:SetTextColor(1, 1, 1)
+				CharacterFrame.Text4:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
+				CharacterFrame.Text4:SetText("Specialization")
+				CharacterFrame.StatusLine4 = CreateFrame("StatusBar", "EltruismCharacterBar2", CharacterFrame)
+				CharacterFrame.StatusLine4:SetSize(150, 3)
+				CharacterFrame.StatusLine4:SetPoint("CENTER", CharacterFrame.Text4, "CENTER", 0, -15)
+				CharacterFrame.StatusLine4:SetStatusBarTexture(E.Media.Textures.Highlight)
+				CharacterFrame.StatusLine4:SetStatusBarColor(R, G, B, 1)
+
+				CharacterFrame.Text5 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+				CharacterFrame.Text5:SetSize(418, 72)
+				CharacterFrame.Text5:SetPoint("TOP", CharacterFrame, "TOP", 150, -20)
+				CharacterFrame.Text5:SetTextColor(R, G, B)
+				CharacterFrame.Text5:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
+				CharacterFrame.Text5:SetText(PlayerSpec())
+
+
 				local ilevel, _, _ = LibItemInfo:GetUnitItemLevel("player")
 				_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
 
 				CharacterFrame:SetSize(600, 505)
 				CharacterFrame.Text = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-				CharacterFrame.StatusLine = CreateFrame("StatusBar", "EltruismCharacterBar2", CharacterFrame)
-				CharacterFrame.StatusLine2 = CreateFrame("StatusBar", "EltruismCharacterBar1", CharacterFrame)
-				CharacterFrame.Text3 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-				CharacterFrame.StatusLine3 = CreateFrame("StatusBar", "EltruismCharacterBar2", CharacterFrame)
 				CharacterFrame.Text:SetSize(418, 72)
-				CharacterFrame.Text:SetPoint("TOP", CharacterFrame, "TOP", 150, 0)
+				CharacterFrame.Text:SetPoint("TOP", CharacterFrame, "TOP", 150, -45)
 				CharacterFrame.Text:SetTextColor(1, 1, 1)
 				CharacterFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
 				CharacterFrame.Text:SetText("Item Level")
+				CharacterFrame.StatusLine = CreateFrame("StatusBar", "EltruismCharacterBar2", CharacterFrame)
 				CharacterFrame.StatusLine:SetSize(150, 3)
 				CharacterFrame.StatusLine:SetPoint("CENTER", CharacterFrame.Text, "CENTER", 0, -15)
 				CharacterFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 				CharacterFrame.StatusLine:SetStatusBarColor(R, G, B, 1)
+
 				CharacterFrame.Text2:SetSize(418, 72)
-				CharacterFrame.Text2:SetPoint("TOP", CharacterFrame, "TOP", 150, -45)
+				CharacterFrame.Text2:SetPoint("TOP", CharacterFrame, "TOP", 150, -80)
 				CharacterFrame.Text2:SetTextColor(R, G, B)
-				CharacterFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 28, "OUTLINE")
+				CharacterFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
+				CharacterFrame.StatusLine2 = CreateFrame("StatusBar", "EltruismCharacterBar1", CharacterFrame)
 				CharacterFrame.StatusLine2:SetFrameStrata("LOW")
 				CharacterFrame.StatusLine2:SetSize(200, 30)
 				CharacterFrame.StatusLine2:SetPoint("CENTER", CharacterFrame.Text2, "CENTER", 0, 0)
 				CharacterFrame.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
 				CharacterFrame.StatusLine2:SetStatusBarColor(1, 1, 1, 1)
+
+				CharacterFrame.Text3 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 				CharacterFrame.Text3:SetSize(418, 72)
-				CharacterFrame.Text3:SetPoint("TOP", CharacterFrame, "TOP", 150, -80)
+				CharacterFrame.Text3:SetPoint("TOP", CharacterFrame, "TOP", 150, -105)
 				CharacterFrame.Text3:SetTextColor(1, 1, 1)
 				CharacterFrame.Text3:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
 				CharacterFrame.Text3:SetText("Attributes")
+				CharacterFrame.StatusLine3 = CreateFrame("StatusBar", "EltruismCharacterBar2", CharacterFrame)
 				CharacterFrame.StatusLine3:SetSize(150, 3)
 				CharacterFrame.StatusLine3:SetPoint("CENTER", CharacterFrame.Text3, "CENTER", 0, -15)
 				CharacterFrame.StatusLine3:SetStatusBarTexture(E.Media.Textures.Highlight)
 				CharacterFrame.StatusLine3:SetStatusBarColor(R, G, B, 1)
+
 				_G.CharacterModelFrame:ClearAllPoints()
 				_G.CharacterModelFrame:SetPoint("RIGHT", CharacterFrame, "CENTER", -20, 0)
 				_G.CharacterModelFrame:SetSize(200, 300)
@@ -78,10 +116,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				if ElvUI_EltreumUI.TBC then
 					_G.PlayerStatFrameLeftDropDown:ClearAllPoints()
-					_G.PlayerStatFrameLeftDropDown:SetPoint("TOP", CharacterFrame, "TOP", 143, -170)
+					_G.PlayerStatFrameLeftDropDown:SetPoint("TOP", CharacterFrame, "TOP", 143, -200)
 					_G.PlayerStatFrameLeftDropDown:SetParent(CharacterFrame)
 					_G.PlayerStatFrameLeft1:ClearAllPoints()
-					_G.PlayerStatFrameLeft1:SetPoint("TOP", CharacterFrame, "TOP", 150, -195)
+					_G.PlayerStatFrameLeft1:SetPoint("TOP", CharacterFrame, "TOP", 150, -225)
 					_G.PlayerStatFrameLeft1:SetParent(CharacterFrame)
 					_G.PlayerStatFrameLeft2:SetParent(_G.PlayerStatFrameLeft1)
 					_G.PlayerStatFrameLeft3:SetParent(_G.PlayerStatFrameLeft1)
@@ -89,10 +127,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PlayerStatFrameLeft5:SetParent(_G.PlayerStatFrameLeft1)
 					_G.PlayerStatFrameLeft6:SetParent(_G.PlayerStatFrameLeft1)
 					_G.PlayerStatFrameRightDropDown:ClearAllPoints()
-					_G.PlayerStatFrameRightDropDown:SetPoint("TOP", CharacterFrame, "TOP", 143, -280)
+					_G.PlayerStatFrameRightDropDown:SetPoint("TOP", CharacterFrame, "TOP", 143, -310)
 					_G.PlayerStatFrameRightDropDown:SetParent(CharacterFrame)
 					_G.PlayerStatFrameRight1:ClearAllPoints()
-					_G.PlayerStatFrameRight1:SetPoint("TOP", CharacterFrame, "TOP", 150, -305)
+					_G.PlayerStatFrameRight1:SetPoint("TOP", CharacterFrame, "TOP", 150, -335)
 					_G.PlayerStatFrameRight1:SetParent(CharacterFrame)
 					_G.PlayerStatFrameRight2:SetParent(_G.PlayerStatFrameRight1)
 					_G.PlayerStatFrameRight3:SetParent(_G.PlayerStatFrameRight1)
@@ -101,7 +139,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PlayerStatFrameRight6:SetParent(_G.PlayerStatFrameRight1)
 				elseif ElvUI_EltreumUI.Classic then
 					_G.CharacterStatFrame1:ClearAllPoints()
-					_G.CharacterStatFrame1:SetPoint("TOP", CharacterFrame, "TOP", 150, -185)
+					_G.CharacterStatFrame1:SetPoint("TOP", CharacterFrame, "TOP", 150, -215)
 					_G.CharacterStatFrame1:SetParent(CharacterFrame)
 					_G.CharacterStatFrame2:SetParent(_G._G.CharacterStatFrame1)
 					_G.CharacterStatFrame3:SetParent(_G._G.CharacterStatFrame1)
@@ -109,7 +147,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterStatFrame5:SetParent(_G._G.CharacterStatFrame1)
 					_G.CharacterArmorFrame:SetParent(_G._G.CharacterStatFrame1)
 					_G.CharacterAttackFrame:ClearAllPoints()
-					_G.CharacterAttackFrame:SetPoint("TOP", CharacterFrame, "TOP", 150, -295)
+					_G.CharacterAttackFrame:SetPoint("TOP", CharacterFrame, "TOP", 150, -325)
 					_G.CharacterAttackFrame:SetParent(CharacterFrame)
 					_G.CharacterAttackPowerFrame:SetParent(_G._G.CharacterStatFrame1)
 					_G.CharacterDamageFrame:SetParent(_G._G.CharacterStatFrame1)
