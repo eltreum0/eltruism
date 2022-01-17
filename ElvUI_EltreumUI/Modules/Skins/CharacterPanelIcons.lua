@@ -302,16 +302,5 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			end
 		end
-	else
-		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-			_G.CharacterNameText:ClearAllPoints()
-			_G.CharacterLevelText:ClearAllPoints()
-			_G.PlayerTitleDropDown:Show()
-			_G.PlayerTitleDropDown:ClearAllPoints()
-			_G.PlayerTitleDropDown:SetParent(_G.CharacterFrame)
-			_G.CharacterNameText:SetPoint('TOP', _G.CharacterModelFrame, 0, 80)
-			_G.CharacterLevelText:SetPoint('TOP', _G.CharacterModelFrame, 0, 65)
-			_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterModelFrame, 0, 40)
-		end
 	end
 end

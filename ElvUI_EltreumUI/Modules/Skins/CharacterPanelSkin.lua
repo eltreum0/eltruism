@@ -45,7 +45,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame.backdrop)
 			CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK")
 		end
-
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then
 			if CharacterFrame then
 				--turns out classic has the functions to get number of points on talent trees
@@ -66,6 +65,16 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						return L["None"]
 					end
 				end
+				else
+
+				_G.CharacterNameText:ClearAllPoints()
+				_G.CharacterLevelText:ClearAllPoints()
+				_G.PlayerTitleDropDown:Show()
+				_G.PlayerTitleDropDown:ClearAllPoints()
+				_G.PlayerTitleDropDown:SetParent(_G.CharacterFrame)
+				_G.CharacterNameText:SetPoint('TOP', _G.CharacterModelFrame, 0, 80)
+				_G.CharacterLevelText:SetPoint('TOP', _G.CharacterModelFrame, 0, 65)
+				_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterModelFrame, 0, 45)
 
 				CharacterFrame.Text4 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 				CharacterFrame.Text4:SetSize(418, 72)
