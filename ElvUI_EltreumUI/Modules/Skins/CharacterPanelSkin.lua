@@ -10,10 +10,32 @@ local CharacterFrame = _G.CharacterFrame
 CharacterFrame.Text2 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 function ElvUI_EltreumUI:ExpandedCharacterStats()
 	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+			local classBgs = {
+				['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
+				['PALADIN'] = "Interface\\Artifacts\\ArtifactUIPaladin",
+				['HUNTER'] = "Interface\\Artifacts\\ArtifactUIHunter",
+				['ROGUE'] = "Interface\\Artifacts\\ArtifactUIRogue",
+				['PRIEST'] = "Interface\\Artifacts\\ArtifactUIPriest",
+				['DEATHKNIGHT'] = "Interface\\Artifacts\\ArtifactUIDeathKnightFrost",
+				['SHAMAN'] = "Interface\\Artifacts\\ArtifactUIShaman",
+				['MAGE'] = "Interface\\Artifacts\\ArtifactUIMageArcane",
+				['WARLOCK'] = "Interface\\Artifacts\\ArtifactUIWarlock",
+				['MONK'] = "Interface\\Artifacts\\ArtifactUIMonk",
+				['DRUID'] = "Interface\\Artifacts\\ArtifactUIDruid",
+				['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
+			}
+
+			local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture()
+			CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
+			CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+			CharacterFrameBackgroundTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
+			CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame.backdrop)
+			CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK")
+		end
+
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then
 			if CharacterFrame then
-
-
 				--turns out classic has the functions to get number of points on talent trees
 				--need to figure out how to print when all trees have spent the same amount
 				local function PlayerSpec()
@@ -31,30 +53,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					else
 						return L["None"]
 					end
-				end
-
-				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-					local classBgs = {
-						['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
-						['PALADIN'] = "Interface\\Artifacts\\ArtifactUIPaladin",
-						['HUNTER'] = "Interface\\Artifacts\\ArtifactUIHunter",
-						['ROGUE'] = "Interface\\Artifacts\\ArtifactUIRogue",
-						['PRIEST'] = "Interface\\Artifacts\\ArtifactUIPriest",
-						['DEATHKNIGHT'] = "Interface\\Artifacts\\ArtifactUIDeathKnightFrost",
-						['SHAMAN'] = "Interface\\Artifacts\\ArtifactUIShaman",
-						['MAGE'] = "Interface\\Artifacts\\ArtifactUIMageArcane",
-						['WARLOCK'] = "Interface\\Artifacts\\ArtifactUIWarlock",
-						['MONK'] = "Interface\\Artifacts\\ArtifactUIMonk",
-						['DRUID'] = "Interface\\Artifacts\\ArtifactUIDruid",
-						['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
-					}
-
-					local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture()
-					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
-					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-					CharacterFrameBackgroundTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
-					CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame.backdrop)
-					CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK")
 				end
 
 				CharacterFrame.Text4 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
@@ -144,28 +142,98 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.MagicResFrame5:SetPoint("RIGHT", _G.MagicResFrame4, "RIGHT", 27, 0)
 
 				if ElvUI_EltreumUI.TBC then
+
+					--"left side" or in this case the top side
 					_G.PlayerStatFrameLeftDropDown:ClearAllPoints()
 					_G.PlayerStatFrameLeftDropDown:SetPoint("TOP", CharacterFrame, "TOP", 143, -200)
 					_G.PlayerStatFrameLeftDropDown:SetParent(CharacterFrame)
+
+
+
 					_G.PlayerStatFrameLeft1:ClearAllPoints()
-					_G.PlayerStatFrameLeft1:SetPoint("TOP", CharacterFrame, "TOP", 150, -225)
+					_G.PlayerStatFrameLeft1:SetPoint("TOP", CharacterFrame, "TOP", 124, -225)
 					_G.PlayerStatFrameLeft1:SetParent(CharacterFrame)
+					_G.PlayerStatFrameLeft2:ClearAllPoints()
+					_G.PlayerStatFrameLeft2:SetPoint("BOTTOM", _G.PlayerStatFrameLeft1, "BOTTOM", 0, -13)
 					_G.PlayerStatFrameLeft2:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft3:ClearAllPoints()
+					_G.PlayerStatFrameLeft3:SetPoint("BOTTOM", _G.PlayerStatFrameLeft2, "BOTTOM", 0, -13)
 					_G.PlayerStatFrameLeft3:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft4:ClearAllPoints()
+					_G.PlayerStatFrameLeft4:SetPoint("BOTTOM", _G.PlayerStatFrameLeft3, "BOTTOM", 0, -13)
 					_G.PlayerStatFrameLeft4:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft5:ClearAllPoints()
+					_G.PlayerStatFrameLeft5:SetPoint("BOTTOM", _G.PlayerStatFrameLeft4, "BOTTOM", 0, -13)
 					_G.PlayerStatFrameLeft5:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft6:ClearAllPoints()
+					_G.PlayerStatFrameLeft6:SetPoint("BOTTOM", _G.PlayerStatFrameLeft5, "BOTTOM", 0, -13)
 					_G.PlayerStatFrameLeft6:SetParent(_G.PlayerStatFrameLeft1)
+
+					_G.PlayerStatFrameLeft1Stat:ClearAllPoints()
+					_G.PlayerStatFrameLeft1Stat:SetPoint("TOP", CharacterFrame, "TOP", 211, -225)
+					_G.PlayerStatFrameLeft1Stat:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft2Stat:ClearAllPoints()
+					_G.PlayerStatFrameLeft2Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft1Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameLeft2Stat:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft3Stat:ClearAllPoints()
+					_G.PlayerStatFrameLeft3Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft2Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameLeft3Stat:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft4Stat:ClearAllPoints()
+					_G.PlayerStatFrameLeft4Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft3Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameLeft4Stat:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft5Stat:ClearAllPoints()
+					_G.PlayerStatFrameLeft5Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft4Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameLeft5Stat:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft6Stat:ClearAllPoints()
+					_G.PlayerStatFrameLeft6Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft5Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameLeft6Stat:SetParent(_G.PlayerStatFrameLeft1)
+
+
+					--"right side", on this case its the bottom
 					_G.PlayerStatFrameRightDropDown:ClearAllPoints()
 					_G.PlayerStatFrameRightDropDown:SetPoint("TOP", CharacterFrame, "TOP", 143, -310)
 					_G.PlayerStatFrameRightDropDown:SetParent(CharacterFrame)
+
 					_G.PlayerStatFrameRight1:ClearAllPoints()
-					_G.PlayerStatFrameRight1:SetPoint("TOP", CharacterFrame, "TOP", 150, -335)
+					_G.PlayerStatFrameRight1:SetPoint("TOP", CharacterFrame, "TOP", 124, -335)
 					_G.PlayerStatFrameRight1:SetParent(CharacterFrame)
+					_G.PlayerStatFrameRight2:ClearAllPoints()
+					_G.PlayerStatFrameRight2:SetPoint("BOTTOM", _G.PlayerStatFrameRight1, "BOTTOM", 0, -13)
 					_G.PlayerStatFrameRight2:SetParent(_G.PlayerStatFrameRight1)
+					_G.PlayerStatFrameRight3:ClearAllPoints()
+					_G.PlayerStatFrameRight3:SetPoint("BOTTOM", _G.PlayerStatFrameRight2, "BOTTOM", 0, -13)
 					_G.PlayerStatFrameRight3:SetParent(_G.PlayerStatFrameRight1)
+					_G.PlayerStatFrameRight4:ClearAllPoints()
+					_G.PlayerStatFrameRight4:SetPoint("BOTTOM", _G.PlayerStatFrameRight3, "BOTTOM", 0, -13)
 					_G.PlayerStatFrameRight4:SetParent(_G.PlayerStatFrameRight1)
+					_G.PlayerStatFrameRight5:ClearAllPoints()
+					_G.PlayerStatFrameRight5:SetPoint("BOTTOM", _G.PlayerStatFrameRight4, "BOTTOM", 0, -13)
 					_G.PlayerStatFrameRight5:SetParent(_G.PlayerStatFrameRight1)
+					_G.PlayerStatFrameRight6:ClearAllPoints()
+					_G.PlayerStatFrameRight6:SetPoint("BOTTOM", _G.PlayerStatFrameRight5, "BOTTOM", 0, -13)
 					_G.PlayerStatFrameRight6:SetParent(_G.PlayerStatFrameRight1)
+
+					_G.PlayerStatFrameRight1Stat:ClearAllPoints()
+					_G.PlayerStatFrameRight1Stat:SetPoint("TOP", CharacterFrame, "TOP", 211, -335)
+					_G.PlayerStatFrameRight1Stat:SetParent(_G.PlayerStatFrameRight1)
+					_G.PlayerStatFrameRight2Stat:ClearAllPoints()
+					_G.PlayerStatFrameRight2Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight1Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameRight2Stat:SetParent(_G.PlayerStatFrameRight1)
+					_G.PlayerStatFrameRight3Stat:ClearAllPoints()
+					_G.PlayerStatFrameRight3Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight2Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameRight3Stat:SetParent(_G.PlayerStatFrameRight1)
+					_G.PlayerStatFrameRight4Stat:ClearAllPoints()
+					_G.PlayerStatFrameRight4Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight3Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameRight4Stat:SetParent(_G.PlayerStatFrameRight1)
+					_G.PlayerStatFrameRight5Stat:ClearAllPoints()
+					_G.PlayerStatFrameRight5Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight4Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameRight5Stat:SetParent(_G.PlayerStatFrameRight1)
+					_G.PlayerStatFrameRight6Stat:ClearAllPoints()
+					_G.PlayerStatFrameRight6Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight5Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameRight6Stat:SetParent(_G.PlayerStatFrameRight1)
+
+
+
 
 					--set the tabs
 						SetCVar("playerStatLeftDropdown", "PLAYERSTAT_BASE_STATS")
