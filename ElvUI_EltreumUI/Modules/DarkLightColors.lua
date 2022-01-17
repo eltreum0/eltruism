@@ -27,6 +27,8 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
 		E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
 		E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
+		E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.3
+		E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.3
 
 		--setup namecolors
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
@@ -87,6 +89,8 @@ function ElvUI_EltreumUI:LightMode()
 	--E.db["auras"]["buffs"]["barTexture"] = unitframeclass[E.myclass]
 	--E.db["auras"]["debuffs"]["barTexture"] = unitframeclass[E.myclass]
 	--E.db["unitframe"]["statusbar"] = unitframeclass[E.myclass]
+	E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.6
+	E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.6
 
 	E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
 	E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
