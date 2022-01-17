@@ -3574,7 +3574,7 @@ if ElvUI_EltreumUI.Classic then
 							type = 'input',
 							width = 'full',
 							name = '',
-							get = function() return 'https://discord.gg/cXfA56gmYW' end,
+							get = function() return 'https://discord.gg/rBXNxUY6pk' end,
 						},
 					},
 				},

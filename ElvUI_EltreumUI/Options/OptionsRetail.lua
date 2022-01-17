@@ -4000,7 +4000,7 @@ if ElvUI_EltreumUI.Retail then
 							type = 'input',
 							width = 'full',
 							name = '',
-							get = function() return 'https://discord.gg/cXfA56gmYW' end,
+							get = function() return 'https://discord.gg/rBXNxUY6pk' end,
 						},
 					},
 				},

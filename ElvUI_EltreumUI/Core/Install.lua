@@ -277,7 +277,7 @@ if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Desc1:SetText(L["Join the Discord if you have any questions or issues (English Support)"])
 				PluginInstallFrame.Option1:Enable()
 				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/cXfA56gmYW') 	end)
+				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/rBXNxUY6pk') 	end)
 				PluginInstallFrame.Option1:SetText('Discord')
 			end,
 			[12] = function()
@@ -542,7 +542,7 @@ elseif ElvUI_EltreumUI.Classic then
 				PluginInstallFrame.Desc1:SetText(L["Join the Discord if you have any questions or issues (English Support)"])
 				PluginInstallFrame.Option1:Enable()
 				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/cXfA56gmYW') 	end)
+				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/rBXNxUY6pk') 	end)
 				PluginInstallFrame.Option1:SetText('Discord')
 			end,
 			[11] = function()
@@ -846,7 +846,7 @@ elseif ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Desc1:SetText(L["Join the Discord if you have any questions or issues (English Support)"])
 				PluginInstallFrame.Option1:Enable()
 				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/cXfA56gmYW') 	end)
+				PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/rBXNxUY6pk') 	end)
 				PluginInstallFrame.Option1:SetText('Discord')
 			end,
 			[12] = function()
