@@ -548,7 +548,7 @@ if ElvUI_EltreumUI.Retail then
 							order = 43,
 							name = "Enable",
 							type = "toggle",
-							desc = "Prevent Blizzard's Talking Head from appearing and playing sounds",
+							desc = "Prevent Blizzard's Talking Head from appearing",
 							width = 'full',
 							get = function(info) return E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead = value E:StaticPopup_Show('CONFIG_RL') end,
