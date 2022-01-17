@@ -11,42 +11,76 @@ local IsShiftKeyDown = _G.IsShiftKeyDown
 local IsAltKeyDown = _G.IsAltKeyDown
 local IsAddOnLoaded = _G.IsAddOnLoaded
 
-if ElvUI_EltreumUI.Retail then
-	--Collapse Quests during boss fights
-	function ElvUI_EltreumUI:QuestEncounter()
-		if E.db.ElvUI_EltreumUI.questsettings.enable then
-			local _, instanceType = IsInInstance()
-			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
+
+--Collapse Quests during boss fights
+function ElvUI_EltreumUI:QuestEncounter()
+	if E.db.ElvUI_EltreumUI.questsettings.enable then
+		local _, instanceType = IsInInstance()
+		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
+			if ElvUI_EltreumUI.Retail then
 				ObjectiveTracker_Collapse()
+			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+				QuestWatchFrame:Hide()
 			end
 		end
 	end
-	--expand after encounter is over
-	function ElvUI_EltreumUI:QuestEncounterEnd()
-		if E.db.ElvUI_EltreumUI.questsettings.enable then
-			local _, instanceType = IsInInstance()
-			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
+end
+--expand after encounter is over
+function ElvUI_EltreumUI:QuestEncounterEnd()
+	if E.db.ElvUI_EltreumUI.questsettings.enable then
+		local _, instanceType = IsInInstance()
+		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
+			if ElvUI_EltreumUI.Retail then
 				ObjectiveTracker_Expand()
+			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+				QuestWatchFrame:Show()
 			end
 		end
 	end
-	--hide quests in arena matches
-	function ElvUI_EltreumUI:ArenaQuest()
-		if ElvUI_EltreumUI.Retail then
-			if E.db.ElvUI_EltreumUI.questsettings.arena then
-				local _, instanceType = IsInInstance()
-				if instanceType == "arena" or instanceType == "pvp" then
-					ObjectiveTrackerFrame:Hide()
-				elseif instanceType == "none" then
-					ObjectiveTrackerFrame:Show()
-				end
+end
+--hide quests in arena matches
+function ElvUI_EltreumUI:ArenaQuest()
+	if E.db.ElvUI_EltreumUI.questsettings.arena then
+		local _, instanceType = IsInInstance()
+		if instanceType == "arena" or instanceType == "pvp" then
+			if ElvUI_EltreumUI.Retail then
+				ObjectiveTrackerFrame:Hide()
+			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+				QuestWatchFrame:Hide()
 			end
+		elseif instanceType == "none" then
+			if ElvUI_EltreumUI.Retail then
+				ObjectiveTrackerFrame:Show()
+			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+				QuestWatchFrame:Show()
+			end
+		end
+	end
+end
+--Collapse/Hide Quests during combat with anything
+function ElvUI_EltreumUI:QuestCombat()
+	if E.db.ElvUI_EltreumUI.questsettings.combatenable then
+		if ElvUI_EltreumUI.Retail then
+			ObjectiveTracker_Collapse()
+		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			QuestWatchFrame:Hide()
+		end
+	end
+end
+--expand after combat is over
+function ElvUI_EltreumUI:QuestCombatEnd()
+	if E.db.ElvUI_EltreumUI.questsettings.combatenable then
+		if ElvUI_EltreumUI.Retail then
+			ObjectiveTracker_Expand()
+		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			QuestWatchFrame:Show()
 		end
 	end
 end
 
 --based on Rogue Door Opener by Burzolog
 local RogueOrderHallAutoOpen = CreateFrame("Frame", "EltruismRogueOrderHallAutoOpen")
+RogueOrderHallAutoOpen:Hide()
 RogueOrderHallAutoOpen:RegisterEvent("GOSSIP_SHOW")
 function ElvUI_EltreumUI:RogueAutoOpen()
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
