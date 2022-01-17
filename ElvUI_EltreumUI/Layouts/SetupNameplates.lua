@@ -130,6 +130,9 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["smoothbars"] = true
 			E.db["nameplates"]["statusbar"] = "Eltreum-Blank"
 
+			E.db["nameplates"]["overlapH"] = 0.8
+			E.db["nameplates"]["overlapV"] = 1.1
+
 			if ElvUI_EltreumUI.Retail then
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["anchorPoint"] = "TOP"
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["attachTo"] = "DEBUFFS"
