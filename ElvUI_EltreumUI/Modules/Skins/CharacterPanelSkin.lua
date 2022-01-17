@@ -52,7 +52,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture()
 					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-					CharacterFrameBackgroundTexture:SetAlpha(0.3)
+					CharacterFrameBackgroundTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
 					CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame.backdrop)
 					CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK")
 				end

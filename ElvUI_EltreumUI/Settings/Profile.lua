@@ -50,6 +50,7 @@ P.ElvUI_EltreumUI = {
 		classiconsreleaf = true,
 		classicarmory = true,
 		expandarmorybg = true,
+		expandarmorybgalpha = 0.3,
 		bossemote = true,
 		quests = true,
 		zones = true,

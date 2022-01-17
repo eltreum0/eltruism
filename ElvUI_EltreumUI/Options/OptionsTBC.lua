@@ -1044,8 +1044,14 @@ if ElvUI_EltreumUI.TBC then
 							get = function(info) return E.db.ElvUI_EltreumUI.skins.classicarmory end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.skins.classicarmory = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
-						expandart = {
+						headergapart = {
 							order = 3,
+							type = "description",
+							name = "",
+							width = 'full',
+						},
+						expandart = {
+							order = 4,
 							type = 'toggle',
 							name = "Expand Character Art",
 							width = 'full',
@@ -1053,11 +1059,17 @@ if ElvUI_EltreumUI.TBC then
 							get = function(info) return E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.skins.expandarmorybg = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
-						headergapart = {
-							order = 2,
-							type = "description",
-							name = "",
-							width = 'full',
+						expandartalpha = {
+							type = 'range',
+							name = L["Art Alpha"],
+							desc = L["Change the transparency of the Art"],
+							order = 5,
+							min = 0.01,
+							max = 1,
+							step = 0.01,
+							width = "full",
+							get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha end,
+							set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha = value  end,
 						},
 						header845 = {
 							order = 23,
