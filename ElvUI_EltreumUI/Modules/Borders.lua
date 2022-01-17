@@ -6,43 +6,42 @@ local pairs = _G.pairs
 
 --Beta borders on frames
 function ElvUI_EltreumUI:Borders()
-	local bordertexture
-	if E.db.ElvUI_EltreumUI.borders.texture then
-		bordertexture = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture)
-	else
-		bordertexture = "Interface\\Addons\\ElvUI_EltreumUI\\Media\border\\better-blizzard-border-small-alternate.tga"
-	end
-	local classcolor
-
-	if E.db.ElvUI_EltreumUI.borders.classcolor then
-			classcolor = E:ClassColor(E.myclass, true)
-	end
-	if not E.db.ElvUI_EltreumUI.borders.classcolor then
-		classcolor = {
-			r = E.db.ElvUI_EltreumUI.bordercolors.r,
-			g = E.db.ElvUI_EltreumUI.bordercolors.g,
-			b = E.db.ElvUI_EltreumUI.bordercolors.b
-		}
-	end
-
-	local playertargetsize = E.db.ElvUI_EltreumUI.borders.playertargetsize
-	local powerbarsize = E.db.ElvUI_EltreumUI.borders.powerbarsize
-
-	local baredgesize = E.db.ElvUI_EltreumUI.borders.baredgesize
-	local xbar = E.db.ElvUI_EltreumUI.borders.bar1xborder
-	local ybar = E.db.ElvUI_EltreumUI.borders.bar1yborder
-	local xbar2 = E.db.ElvUI_EltreumUI.borders.bar2xborder
-	local ybar2 = E.db.ElvUI_EltreumUI.borders.bar2yborder
-	local xbar3 = E.db.ElvUI_EltreumUI.borders.bar3xborder
-	local ybar3 = E.db.ElvUI_EltreumUI.borders.bar3yborder
-	local xbar4 = E.db.ElvUI_EltreumUI.borders.bar4xborder
-	local ybar4 = E.db.ElvUI_EltreumUI.borders.bar4yborder
-	local xbar5 = E.db.ElvUI_EltreumUI.borders.bar5xborder
-	local ybar5 = E.db.ElvUI_EltreumUI.borders.bar5yborder
-	local xbar6 = E.db.ElvUI_EltreumUI.borders.bar6xborder
-	local ybar6 = E.db.ElvUI_EltreumUI.borders.bar6yborder
-
 	if E.db.ElvUI_EltreumUI.borders.borders then
+		local bordertexture
+		if E.db.ElvUI_EltreumUI.borders.texture then
+			bordertexture = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture)
+		else
+			bordertexture = "Interface\\Addons\\ElvUI_EltreumUI\\Media\border\\better-blizzard-border-small-alternate.tga"
+		end
+		local classcolor
+
+		if E.db.ElvUI_EltreumUI.borders.classcolor then
+				classcolor = E:ClassColor(E.myclass, true)
+		end
+		if not E.db.ElvUI_EltreumUI.borders.classcolor then
+			classcolor = {
+				r = E.db.ElvUI_EltreumUI.bordercolors.r,
+				g = E.db.ElvUI_EltreumUI.bordercolors.g,
+				b = E.db.ElvUI_EltreumUI.bordercolors.b
+			}
+		end
+
+		local playertargetsize = E.db.ElvUI_EltreumUI.borders.playertargetsize
+		local powerbarsize = E.db.ElvUI_EltreumUI.borders.powerbarsize
+
+		local baredgesize = E.db.ElvUI_EltreumUI.borders.baredgesize
+		local xbar = E.db.ElvUI_EltreumUI.borders.bar1xborder
+		local ybar = E.db.ElvUI_EltreumUI.borders.bar1yborder
+		local xbar2 = E.db.ElvUI_EltreumUI.borders.bar2xborder
+		local ybar2 = E.db.ElvUI_EltreumUI.borders.bar2yborder
+		local xbar3 = E.db.ElvUI_EltreumUI.borders.bar3xborder
+		local ybar3 = E.db.ElvUI_EltreumUI.borders.bar3yborder
+		local xbar4 = E.db.ElvUI_EltreumUI.borders.bar4xborder
+		local ybar4 = E.db.ElvUI_EltreumUI.borders.bar4yborder
+		local xbar5 = E.db.ElvUI_EltreumUI.borders.bar5xborder
+		local ybar5 = E.db.ElvUI_EltreumUI.borders.bar5yborder
+		local xbar6 = E.db.ElvUI_EltreumUI.borders.bar6xborder
+		local ybar6 = E.db.ElvUI_EltreumUI.borders.bar6yborder
 		if E.db.ElvUI_EltreumUI.borders.playerborder then
 			local playerborder = CreateFrame("Frame", "EltruismPlayerBorder", _G.ElvUF_Player_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
 			playerborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayer, E.db.ElvUI_EltreumUI.borders.yplayer)
