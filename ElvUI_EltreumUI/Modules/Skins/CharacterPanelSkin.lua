@@ -33,27 +33,29 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 				end
 
-				local classBgs = {
-					['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
-					['PALADIN'] = "Interface\\Artifacts\\ArtifactUIPaladin",
-					['HUNTER'] = "Interface\\Artifacts\\ArtifactUIHunter",
-					['ROGUE'] = "Interface\\Artifacts\\ArtifactUIRogue",
-					['PRIEST'] = "Interface\\Artifacts\\ArtifactUIPriest",
-					['DEATHKNIGHT'] = "Interface\\Artifacts\\ArtifactUIDeathKnightFrost",
-					['SHAMAN'] = "Interface\\Artifacts\\ArtifactUIShaman",
-					['MAGE'] = "Interface\\Artifacts\\ArtifactUIMageArcane",
-					['WARLOCK'] = "Interface\\Artifacts\\ArtifactUIWarlock",
-					['MONK'] = "Interface\\Artifacts\\ArtifactUIMonk",
-					['DRUID'] = "Interface\\Artifacts\\ArtifactUIDruid",
-					['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
-				}
+				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+					local classBgs = {
+						['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
+						['PALADIN'] = "Interface\\Artifacts\\ArtifactUIPaladin",
+						['HUNTER'] = "Interface\\Artifacts\\ArtifactUIHunter",
+						['ROGUE'] = "Interface\\Artifacts\\ArtifactUIRogue",
+						['PRIEST'] = "Interface\\Artifacts\\ArtifactUIPriest",
+						['DEATHKNIGHT'] = "Interface\\Artifacts\\ArtifactUIDeathKnightFrost",
+						['SHAMAN'] = "Interface\\Artifacts\\ArtifactUIShaman",
+						['MAGE'] = "Interface\\Artifacts\\ArtifactUIMageArcane",
+						['WARLOCK'] = "Interface\\Artifacts\\ArtifactUIWarlock",
+						['MONK'] = "Interface\\Artifacts\\ArtifactUIMonk",
+						['DRUID'] = "Interface\\Artifacts\\ArtifactUIDruid",
+						['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
+					}
 
-				local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture()
-				CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
-				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-				CharacterFrameBackgroundTexture:SetAlpha(0.3)
-				CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame.backdrop)
-				CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK")
+					local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture()
+					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
+					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+					CharacterFrameBackgroundTexture:SetAlpha(0.3)
+					CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame.backdrop)
+					CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK")
+				end
 
 				CharacterFrame.Text4 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 				CharacterFrame.Text4:SetSize(418, 72)
