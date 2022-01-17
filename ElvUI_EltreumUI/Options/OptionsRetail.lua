@@ -2241,8 +2241,24 @@ if ElvUI_EltreumUI.Retail then
 								},
 							},
 						},
-						arenaquestsettings = {
+						questcombatsettings = {
 							order = 2,
+							type = 'group',
+							inline = true,
+							name = L["Collapse Quests during any combat event"],
+							get = function(info) return E.db.ElvUI_EltreumUI.questsettings.combatenable end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.questsettings.combatenable = value end,
+							args = {
+								enable = {
+									order = 5,
+									type = 'toggle',
+									name = L["Enable"],
+									desc = L["Collapse Quests when you enter combat"],
+								},
+							},
+						},
+						arenaquestsettings = {
+							order = 3,
 							type = 'group',
 							inline = true,
 							name = "Hide Quests during Battlegrounds and Arenas",
