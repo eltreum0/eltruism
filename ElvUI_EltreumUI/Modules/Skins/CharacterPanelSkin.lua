@@ -77,6 +77,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.CharacterLevelText:SetParent(_G.CharacterModelFrame)
 			_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterModelFrame, 0, 40)
 
+
+			_G.PVPFrameToggleButton:ClearAllPoints()
+			_G.PVPFrameToggleButton:SetPoint('TOP', _G.PVPHonor, 'TOP', 52, 42)
+			_G.PVPFrameToggleButton:SetParent(_G.PVPFrameHonor)
+
 			_G.CharacterLevelText:SetPoint('TOP', _G.CharacterNameText, 'BOTTOM', 0, -10)
 			_G.PetNameText:SetPoint('TOP', _G.PetModelFrame, 0, 60)
 			_G.PetLevelText:SetPoint('BOTTOM', _G.PetNameText, 0, -10)
