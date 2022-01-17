@@ -148,7 +148,6 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 								["rotateBack"] = true,
 								["zoomSetting"] = "in",
 								["timeIsMax"] = false,
-								["rotateSpeed"] = 80,
 								["zoomValue"] = 2,
 								["rotate"] = true,
 								["transitionTime"] = 1.5,
