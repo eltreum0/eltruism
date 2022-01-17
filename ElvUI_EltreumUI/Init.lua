@@ -74,14 +74,16 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
 		ElvUI_EltreumUI:UpdateAvgIlvl()
 	end
-	if E.private["nameplates"]["enable"] == true then
+	if E.private.nameplates.enable then
 		ElvUI_EltreumUI:NamePlateOptions() --adds dynamic class based color filters to elvui nameplates
 		ElvUI_EltreumUI:DynamicLevelStyleFilter() --shows or hides level filter on np based on player level
 		ElvUI_EltreumUI:UpdateNPwithoutBar() --updates buffs/debuffs positions on np based on powerbar settings
 	end
 	--Better EventTrace CLEU logging thanks to ;Meorawr.wtf.lua;
 	if E.db.ElvUI_EltreumUI.dev then
-		LoadAddOn("Blizzard_EventTrace");
+		if not IsAddOnLoaded("Blizzard_EventTrace") then
+			LoadAddOn("Blizzard_EventTrace")
+		end
 		local LogEvent = EventTrace.LogEvent;
 		function EventTrace:LogEvent(event, ...)
 			if event == "COMBAT_LOG_EVENT_UNFILTERED" then
@@ -148,7 +150,6 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN") --LootText things
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED") --LootText things
 	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE') --LootText things
-	--depending on game version sets cvars or register events
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED') --for class icons, power bar and shadows
 		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW') --for rogue order hall
@@ -160,27 +161,74 @@ function ElvUI_EltreumUI:Initialize()
 	end
 end
 
-function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
-	--if E.private["nameplates"]["enable"] == true then --this causes problems for plater
-		ElvUI_EltreumUI:NamePlateOptions()
-		ElvUI_EltreumUI:NameplatePower()
+function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
+	local _, eventType, _, _, _, _, _, _, _, _, _ = CombatLogGetCurrentEventInfo()
+	--local _, eventType, _, _, sourceName, _, _, _, _, _, _, _, _, _, amount = CombatLogGetCurrentEventInfo()
+	--if eventType ~= "UNIT_DIED" and eventType ~= "SPELL_ENERGIZE" then
+	if eventType ~= "UNIT_DIED" then
+		return
+	elseif eventType == "UNIT_DIED" then
+		ElvUI_EltreumUI:RaidDeath()
+	end
+	--elseif (eventType == "SPELL_ENERGIZE") and (sourceName == E.myname) then
+		--print(sourceName.." amount: "..amount)
+		--ElvUI_EltreumUI:PowerPrediction()
 	--end
 end
 
-function ElvUI_EltreumUI:PLAYER_AVG_ITEM_LEVEL_UPDATE()
-	ElvUI_EltreumUI:UpdateAvgIlvl()
+function ElvUI_EltreumUI:ENCOUNTER_START()
+	ElvUI_EltreumUI:QuestEncounter()
+	ElvUI_EltreumUI:CombatMusic()
 end
 
-function ElvUI_EltreumUI:UNIT_MODEL_CHANGED(event,unit)
-	if unit and unit ~= 'player' then
-		return
-	elseif unit and unit == 'player' then
-		--print(event,unit)
-		if E.myclass == 'DRUID' then
-			ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
-			ElvUI_EltreumUI:NameplatePower(event)
-		end
-	end
+function ElvUI_EltreumUI:ENCOUNTER_END()
+	ElvUI_EltreumUI:QuestEncounterEnd()
+end
+
+function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
+	ElvUI_EltreumUI:GroupRoster()
+end
+
+function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
+	ElvUI_EltreumUI:AFKmusic()
+end
+
+function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
+	ElvUI_EltreumUI:DynamicLevelStyleFilter()
+	ElvUI_EltreumUI:DynamicExperienceDatabar()
+	ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
+	ElvUI_EltreumUI:AutoScreenshot()
+end
+
+function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED()
+	ElvUI_EltreumUI:StopCombatMusic()
+	ElvUI_EltreumUI:DynamicChatFade()
+	ElvUI_EltreumUI:BlizzCombatText()
+	ElvUI_EltreumUI:QuestCombatEnd()
+	--ElvUI_EltreumUI:ArenaUnitframes()
+end
+
+function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED()
+	ElvUI_EltreumUI:CombatMusic()
+	ElvUI_EltreumUI:DynamicChatFade()
+	ElvUI_EltreumUI:ArenaUnitframes()
+	ElvUI_EltreumUI:QuestCombat()
+end
+
+function ElvUI_EltreumUI:UPDATE_STEALTH()
+	ElvUI_EltreumUI:StealthOptions()
+end
+
+function ElvUI_EltreumUI:ZONE_CHANGED()
+	ElvUI_EltreumUI:FriendlyNameplates()
+end
+
+function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
+	ElvUI_EltreumUI:FriendlyNameplates()
+end
+
+function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
+	ElvUI_EltreumUI:FriendlyNameplates()
 end
 
 function ElvUI_EltreumUI:UNIT_AURA(unit)
@@ -190,6 +238,22 @@ function ElvUI_EltreumUI:UNIT_AURA(unit)
 		--print(event,unit)
 		ElvUI_EltreumUI:AuraShadows()
 	end
+end
+
+function ElvUI_EltreumUI:UNIT_NAME_UPDATE(event,unit)
+	if unit and unit ~= 'player' then
+		return
+	elseif unit and unit == 'player' then
+		--print(event,unit)
+		ElvUI_EltreumUI:PlayerNamepaperdoll()
+		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+	end
+end
+
+function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
+	ElvUI_EltreumUI:NamePlateOptions()
+	ElvUI_EltreumUI:NameplatePower()
+	--ElvUI_EltreumUI:LightModeUFTexture()
 end
 
 function ElvUI_EltreumUI:UNIT_POWER_FREQUENT(event,unit)
@@ -213,6 +277,18 @@ function ElvUI_EltreumUI:UNIT_POWER_UPDATE(event,unit)
 	end
 end
 
+function ElvUI_EltreumUI:UNIT_MODEL_CHANGED(event,unit)
+	if unit and unit ~= 'player' then
+		return
+	elseif unit and unit == 'player' then
+		--print(event,unit)
+		if E.myclass == 'DRUID' then
+			ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
+			ElvUI_EltreumUI:NameplatePower(event)
+		end
+	end
+end
+
 function ElvUI_EltreumUI:UNIT_SPELLCAST_START(event,unit)
 	if unit and unit ~= 'player' then
 		return
@@ -227,98 +303,6 @@ function ElvUI_EltreumUI:UNIT_SPELLCAST_STOP(event,unit)
 	elseif unit and unit == 'player' then
 		ElvUI_EltreumUI:PowerPrediction(event)
 	end
-end
-
-function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
-	local _, eventType, _, _, _, _, _, _, _, _, _ = CombatLogGetCurrentEventInfo()
-	--local _, eventType, _, _, sourceName, _, _, _, _, _, _, _, _, _, amount = CombatLogGetCurrentEventInfo()
-	--if eventType ~= "UNIT_DIED" and eventType ~= "SPELL_ENERGIZE" then
-	if eventType ~= "UNIT_DIED" then
-		return
-	elseif eventType == "UNIT_DIED" then
-		ElvUI_EltreumUI:RaidDeath()
-	end
-	--elseif (eventType == "SPELL_ENERGIZE") and (sourceName == E.myname) then
-		--print(sourceName.." amount: "..amount)
-		--ElvUI_EltreumUI:PowerPrediction()
-	--end
-end
-
-function ElvUI_EltreumUI:UNIT_NAME_UPDATE(event,unit)
-	if unit and unit ~= 'player' then
-		return
-	elseif unit and unit == 'player' then
-		--print(event,unit)
-		ElvUI_EltreumUI:PlayerNamepaperdoll()
-		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
-	end
-end
-
-function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
-	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
-	if ElvUI_EltreumUI.Retail then
-		ElvUI_EltreumUI:GetSpec()
-		ElvUI_EltreumUI:NamePlateOptions()
-		ElvUI_EltreumUI:Shadows()
-		if E.private["nameplates"]["enable"] == true then
-			ElvUI_EltreumUI:UpdateNPwithoutBar()
-		end
-	end
-end
-
-function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED()
-	ElvUI_EltreumUI:StopCombatMusic()
-	ElvUI_EltreumUI:DynamicChatFade()
-	ElvUI_EltreumUI:BlizzCombatText()
-	ElvUI_EltreumUI:QuestCombatEnd()
-	--ElvUI_EltreumUI:ArenaUnitframes()
-end
-
-function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED()
-	ElvUI_EltreumUI:CombatMusic()
-	ElvUI_EltreumUI:DynamicChatFade()
-	ElvUI_EltreumUI:ArenaUnitframes()
-	ElvUI_EltreumUI:QuestCombat()
-end
-
-function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
-	ElvUI_EltreumUI:DynamicLevelStyleFilter()
-	ElvUI_EltreumUI:DynamicExperienceDatabar()
-	ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
-	ElvUI_EltreumUI:AutoScreenshot()
-end
-
-function ElvUI_EltreumUI:ZONE_CHANGED()
-	ElvUI_EltreumUI:FriendlyNameplates()
-end
-
-function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
-	ElvUI_EltreumUI:FriendlyNameplates()
-end
-
-function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
-	ElvUI_EltreumUI:FriendlyNameplates()
-end
-
-function ElvUI_EltreumUI:ENCOUNTER_START()
-	ElvUI_EltreumUI:QuestEncounter()
-	ElvUI_EltreumUI:CombatMusic()
-end
-
-function ElvUI_EltreumUI:ENCOUNTER_END()
-	ElvUI_EltreumUI:QuestEncounterEnd()
-end
-
-function ElvUI_EltreumUI:UPDATE_STEALTH()
-	ElvUI_EltreumUI:StealthOptions()
-end
-
-function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
-	ElvUI_EltreumUI:GroupRoster()
-end
-
-function ElvUI_EltreumUI:UI_ERROR_MESSAGE()
-	ElvUI_EltreumUI:LootText()
 end
 
 function ElvUI_EltreumUI:CHAT_MSG_LOOT()
@@ -341,8 +325,28 @@ function ElvUI_EltreumUI:LOOT_OPENED()
 	ElvUI_EltreumUI:LootText()
 end
 
-function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
-	ElvUI_EltreumUI:AFKmusic()
+function ElvUI_EltreumUI:UI_ERROR_MESSAGE()
+	ElvUI_EltreumUI:LootText()
+end
+
+function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
+	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+	if ElvUI_EltreumUI.Retail then
+		ElvUI_EltreumUI:GetSpec()
+		ElvUI_EltreumUI:NamePlateOptions()
+		ElvUI_EltreumUI:Shadows()
+		if E.private.nameplates.enable then
+			ElvUI_EltreumUI:UpdateNPwithoutBar()
+		end
+	end
+end
+
+function ElvUI_EltreumUI:GOSSIP_SHOW()
+	if ElvUI_EltreumUI.Retail then
+		if myclass == 'ROGUE' then
+			ElvUI_EltreumUI:RogueAutoOpen()
+		end
+	end
 end
 
 function ElvUI_EltreumUI:ACHIEVEMENT_EARNED()
@@ -353,12 +357,8 @@ function ElvUI_EltreumUI:CHALLENGE_MODE_COMPLETED()
 	ElvUI_EltreumUI:AutoScreenshot()
 end
 
-function ElvUI_EltreumUI:GOSSIP_SHOW()
-	if ElvUI_EltreumUI.Retail then
-		if myclass == 'ROGUE' then
-			ElvUI_EltreumUI:RogueAutoOpen()
-		end
-	end
+function ElvUI_EltreumUI:PLAYER_AVG_ITEM_LEVEL_UPDATE()
+	ElvUI_EltreumUI:UpdateAvgIlvl()
 end
 
 local function CallbackInitialize()

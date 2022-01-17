@@ -38,7 +38,7 @@ function ElvUI_EltreumUI:QuestEncounterEnd()
 		end
 	end
 end
---hide quests in arena matches
+--hide quests in arena/bg matches
 function ElvUI_EltreumUI:ArenaQuest()
 	if E.db.ElvUI_EltreumUI.questsettings.arena then
 		local _, instanceType = IsInInstance()
