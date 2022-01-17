@@ -1,5 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local UF = E:GetModule('UnitFrames')
+local LSM = LibStub("LibSharedMedia-3.0")
 
 --elvui spark hook
 local function EltruismSpark()
@@ -14,11 +15,7 @@ local function EltruismSpark()
 end
 hooksecurefunc(UF, 'Construct_Castbar', EltruismSpark)
 
-
-
-
---[[
-
+--color unitframes target texture during light mode
 local unitframeclass = {
 	['WARRIOR'] = "Eltreum-Class-Warrior",
 	['PALADIN'] = "Eltreum-Class-Paladin",
@@ -34,57 +31,31 @@ local unitframeclass = {
 	['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
 }
 
-
-function ElvUI_EltreumUI:LightModeUFTexture(frame)
-	if frame then
-		print(frame)
-	end
-	local _, targetclass = UnitClass("target")
-	print(targetclass)
-
-
-	--local  a = _G["ElvUF_Target_HealthBar"]:GetTexture()
-
-	--_G["ElvUF_Target_HealthBar"]:SetTexture(unitframeclass[targetclass])
-
+--from Benik
+function ElvUI_EltreumUI:ChangeUnitTexture()
 	if E.db.ElvUI_EltreumUI.lightmode then
-		if frame then
-			print(frame)
-		else
-			print("no frame")
-		end
+		local bar = LSM:Fetch("statusbar", "Eltreum-Blank")
 		local _, targetclass = UnitClass("target")
-		--local a = UnitGUID("target")
-		print(targetclass) --.." and unitguid "..a)
-
-		--i know that the table outputs 16 characters, of which the first 5 are zeroes and the other 11 are the ones that show up as ElvUF_Target_HealthBar.ABCDEFGHIJK
-		--need to find a way to get those letters, then simply attach to the ElvUF_Target_HealthBar name and set texture
-		local z = _G["ElvUF_Target_HealthBar"]:GetStatusBarTexture()
-		print(z)
-
-
-			local r = _G["ElvUF_Target_HealthBar"]:GetAttribute();
-			local s = _G["ElvUF_Target_HealthBar"]:GetChildren()
-			local t = _G["ElvUF_Target_HealthBar"]:GetNumChildren()
-			local v = _G["ElvUF_Target_HealthBar"]:GetID()
-			print("nchildren  "..t.." and id "..v)
-
-			for index, data in pairs(s) do
-			    print(index)
-			    for key, value in pairs(data) do
-			        print('\t', key, value)
-			        for key, value in ipairs(data) do
-				        print('\t', key, value)
-				    end
-			    end
+		if targetclass then
+			bar = LSM:Fetch("statusbar", unitframeclass[targetclass])
+		end
+		local playertexture = LSM:Fetch("statusbar", unitframeclass[E.myclass])
+		for _, unitName in pairs(UF.units) do
+			local frameNameUnit = E:StringTitle(unitName)
+			if frameNameUnit == 'Target' then
+				local unitframe = _G["ElvUF_"..frameNameUnit]
+				if unitframe and unitframe.Health then
+					unitframe.Health:SetStatusBarTexture(bar)
+				end
+			elseif frameNameUnit == 'Player' then
+				local unitframe = _G["ElvUF_"..frameNameUnit]
+				if unitframe and unitframe.Health then
+					unitframe.Health:SetStatusBarTexture(playertexture)
+				end
 			end
-			--_G["ElvUF_Target_HealthBar"..z]:SetStatusBarTexture(unitframeclass[targetclass])
+		end
+	end
 end
-hooksecurefunc(UF, "Configure_HealthBar", ElvUI_EltreumUI.LightModeUFTexture)
-end
-]]
-
---function ElvUI_EltreumUI:Construct_HealthBar(frame, bg, text, textPos)
---	health.bg = ElvUI_EltreumUI.LightModeUFTexture
---end
---hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.Construct_HealthBar)
+hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.ChangeUnitTexture)
+hooksecurefunc(UF, "Configure_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
+hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)

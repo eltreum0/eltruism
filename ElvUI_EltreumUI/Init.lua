@@ -253,7 +253,7 @@ end
 function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	ElvUI_EltreumUI:NamePlateOptions()
 	ElvUI_EltreumUI:NameplatePower()
-	--ElvUI_EltreumUI:LightModeUFTexture()
+	ElvUI_EltreumUI:ChangeUnitTexture()
 end
 
 function ElvUI_EltreumUI:UNIT_POWER_FREQUENT(event,unit)

@@ -148,8 +148,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PlayerStatFrameLeftDropDown:SetPoint("TOP", CharacterFrame, "TOP", 143, -200)
 					_G.PlayerStatFrameLeftDropDown:SetParent(CharacterFrame)
 
-
-
 					_G.PlayerStatFrameLeft1:ClearAllPoints()
 					_G.PlayerStatFrameLeft1:SetPoint("TOP", CharacterFrame, "TOP", 124, -225)
 					_G.PlayerStatFrameLeft1:SetParent(CharacterFrame)
@@ -187,7 +185,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PlayerStatFrameLeft6Stat:ClearAllPoints()
 					_G.PlayerStatFrameLeft6Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft5Stat, "BOTTOM", 0, -13)
 					_G.PlayerStatFrameLeft6Stat:SetParent(_G.PlayerStatFrameLeft1)
-
 
 					--"right side", on this case its the bottom
 					_G.PlayerStatFrameRightDropDown:ClearAllPoints()
@@ -231,9 +228,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PlayerStatFrameRight6Stat:ClearAllPoints()
 					_G.PlayerStatFrameRight6Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight5Stat, "BOTTOM", 0, -13)
 					_G.PlayerStatFrameRight6Stat:SetParent(_G.PlayerStatFrameRight1)
-
-
-
 
 					--set the tabs
 						SetCVar("playerStatLeftDropdown", "PLAYERSTAT_BASE_STATS")
