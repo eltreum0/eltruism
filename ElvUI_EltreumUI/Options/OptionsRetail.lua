@@ -2001,7 +2001,7 @@ if ElvUI_EltreumUI.Retail then
 						header1 = {
 							order = 1,
 							type = "description",
-							name = "CVars",
+							name = "",
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
