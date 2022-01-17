@@ -11,6 +11,7 @@ local UIParent = _G.UIParent
 if ElvUI_EltreumUI.Retail then
 	local EltruismTimeToArrive = CreateFrame("Frame", "EltruismTimeToArrive", UIParent)
 	local autopin = CreateFrame("Frame", "EltruismAutoPin")
+	--autopin:Hide()
 	autopin:RegisterEvent("USER_WAYPOINT_UPDATED")
 	--autopin:RegisterEvent("SUPER_TRACKING_CHANGED")
 	EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
