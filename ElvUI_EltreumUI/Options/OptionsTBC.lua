@@ -1067,6 +1067,7 @@ if ElvUI_EltreumUI.TBC then
 								["BOTTOMRIGHT"] = 'Bottom Right',
 							},
 							style = 'radio',
+							disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvlanchor end,
 							get = function(info) return E.db.ElvUI_EltreumUI.skins.ilvlanchor end,
 							set = function(info,value) E.db.ElvUI_EltreumUI.skins.ilvlanchor = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
