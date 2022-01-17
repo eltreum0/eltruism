@@ -7,6 +7,7 @@ local LootSlot = LootSlot
 
 -- yet another fast loot thing
 local EltruismInstantLoot = CreateFrame("Frame", "EltruismInstantLoot")
+--EltruismInstantLoot:Hide()
 EltruismInstantLoot:RegisterEvent("LOOT_READY")
 local function InstantLoot()
 	if E.db.ElvUI_EltreumUI.otherstuff.fastloot then
