@@ -33,7 +33,7 @@ if ElvUI_EltreumUI.Retail then
 				if myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'MONK' or myclass == 'SHAMAN' or myclass == 'PALADIN' then
 					PluginInstallFrame.Desc3:SetText('|cff82B4ff'..L["You can support the group with your class, if you select DPS/Tank then its recommended to click Alt Frames after clicking DPS/Tank"]..'|r')
 				end
-				PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cFFFF0000'..L["Very High"]..'|r')
+				PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cFFFF0000'..L["Very High (but Optional)"]..'|r')
 				PluginInstallFrame.Option1:Enable()
 				PluginInstallFrame.Option1:Show()
 				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:SetupChat() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end)
@@ -338,7 +338,7 @@ elseif ElvUI_EltreumUI.Classic then
 				if myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'MONK' or myclass == 'SHAMAN' or myclass == 'PALADIN' then
 					PluginInstallFrame.Desc3:SetText('|cff82B4ff'..L["You can support the group with your class, if you select DPS/Tank then its recommended to click Alt Frames after clicking DPS/Tank"]..'|r')
 				end
-				PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cFFFF0000'..L["Very High"]..'|r')
+				PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cFFFF0000'..L["Very High (but Optional)"]..'|r')
 				PluginInstallFrame.Option1:Show()
 				PluginInstallFrame.Option1:Enable()
 				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:SetupChatClassic() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end)
@@ -605,7 +605,7 @@ elseif ElvUI_EltreumUI.TBC then
 				if myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'MONK' or myclass == 'SHAMAN' or myclass == 'PALADIN' then
 					PluginInstallFrame.Desc3:SetText('|cff82B4ff'..L["You can support the group with your class, if you select DPS/Tank then its recommended to click Alt Frames after clicking DPS/Tank"]..'|r')
 				end
-				PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cFFFF0000'..L["Very High"]..'|r')
+				PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cFFFF0000'..L["Very High (but Optional)"]..'|r')
 				PluginInstallFrame.Option1:Show()
 				PluginInstallFrame.Option1:Enable()
 				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:SetupChatClassic() ElvUI_EltreumUI:AddonSetupPA() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end)
