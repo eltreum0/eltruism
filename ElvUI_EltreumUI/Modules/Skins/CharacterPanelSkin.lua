@@ -460,26 +460,16 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 	end
 end
 
-
-local InspectFrameBackgroundTexture
-local InspectFrame
-function ElvUI_EltreumUI:CreateInspectBg()
-	local a = IsAddOnLoaded("Blizzard_InspectUI")
-	if a == false then
-		LoadAddOn("Blizzard_InspectUI")
-		--a = IsAddOnLoaded("Blizzard_InspectUI")
-	end
-	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-		InspectFrame = _G.InspectFrame.backdrop
-	elseif ElvUI_EltreumUI.Retail then
-		InspectFrame = _G.InspectFrame
-	end
-	InspectFrameBackgroundTexture = InspectFrame:CreateTexture()
-end
-
-
-
+--inspect bg
+local EltruismInspectBg = CreateFrame("Frame", "EltruismInspectBg")
+EltruismInspectBg:SetParent(_G.InspectFrame)
+local EltruismInspectBgTexture = EltruismInspectBg:CreateTexture()
 function ElvUI_EltreumUI:InspectBg()
+	--local a = IsAddOnLoaded("Blizzard_InspectUI")
+	--if a == false and UnitExists("target") then
+	--	LoadAddOn("Blizzard_InspectUI")
+		--a = IsAddOnLoaded("Blizzard_InspectUI")
+--	end
 	if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 		local classBgs = {
 			['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
@@ -502,32 +492,36 @@ function ElvUI_EltreumUI:InspectBg()
 			alpha = 0.3
 		end
 		--inspect frame bg
-		local _, targetclass = UnitClass("target")
-		if targetclass then
-			InspectFrameBackgroundTexture:SetTexture()
-			InspectFrameBackgroundTexture:SetTexture(classBgs[targetclass])
-			--tex:SetTexCoord(left, right, top, bottom)
-			InspectFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-			if alpha ~= nil then
-				InspectFrameBackgroundTexture:SetAlpha(alpha)
-			else
-				InspectFrameBackgroundTexture:SetAlpha(0.3)
+		if UnitExists("target") and UnitIsPlayer("target") and IsAddOnLoaded("Blizzard_InspectUI") then
+			local _, targetclass = UnitClass("target")
+			if targetclass then
+				if _G.InspectFrame then
+					EltruismInspectBgTexture:SetTexture(classBgs[targetclass])
+					EltruismInspectBgTexture:SetTexCoord(0, 0.87, 0, 0.60)
+					if alpha ~= nil then
+						EltruismInspectBgTexture:SetAlpha(alpha)
+					else
+						EltruismInspectBgTexture:SetAlpha(0.3)
+					end
+					if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop)
+					elseif ElvUI_EltreumUI.Retail then
+						_G.InspectModelFrameBackgroundBotLeft:Hide()
+						_G.InspectModelFrameBackgroundBotRight:Hide()
+						_G.InspectModelFrameBackgroundTopLeft:Hide()
+						_G.InspectModelFrameBackgroundTopRight:Hide()
+						_G.InspectModelFrameBackgroundOverlay:Hide()
+						--_G.InspectModelFrame.backdrop:Hide()
+						_G.InspectModelFrame.backdrop:SetParent(_G.InspectFrame)
+						_G.InspectModelFrame.backdrop:SetAllPoints(_G.InspectFrame)
+						_G.InspectModelFrame.backdrop:SetAlpha(0.2)
+						EltruismInspectBgTexture:SetParent(_G.InspectFrame)
+						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame)
+					end
+					EltruismInspectBgTexture:SetDrawLayer("ARTWORK")
+				end
 			end
-			if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-				InspectFrameBackgroundTexture:SetAllPoints(_G.InspectFrame.backdrop)
-			elseif ElvUI_EltreumUI.Retail then
-				_G.InspectModelFrameBackgroundBotLeft:Hide()
-				_G.InspectModelFrameBackgroundBotRight:Hide()
-				_G.InspectModelFrameBackgroundTopLeft:Hide()
-				_G.InspectModelFrameBackgroundTopRight:Hide()
-				_G.InspectModelFrameBackgroundOverlay:Hide()
-				--_G.InspectModelFrame.backdrop:Hide()
-				_G.InspectModelFrame.backdrop:SetParent(_G.InspectFrame)
-				_G.InspectModelFrame.backdrop:SetAllPoints(_G.InspectFrame)
-				_G.InspectModelFrame.backdrop:SetAlpha(0.2)
-				InspectFrameBackgroundTexture:SetAllPoints(_G.InspectFrame)
-			end
-			InspectFrameBackgroundTexture:SetDrawLayer("ARTWORK")
 		end
 	end
 end
+
