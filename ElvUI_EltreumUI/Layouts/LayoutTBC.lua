@@ -570,6 +570,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["actionbar"]["bar10"]["macroTextYOffset"] = 2
 			E.db["actionbar"]["bar10"]["macrotext"] = true
 			E.db["actionbar"]["bar10"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [petbattle] hide; show[combat][@target, exists]show;hide"
+			E.db["actionbar"]["bar10"]["enabled"] = false
 			E.db["actionbar"]["bar2"]["alpha"] = 1
 			E.db["actionbar"]["bar2"]["buttonHeight"] = 30
 			E.db["actionbar"]["bar2"]["buttonSize"] = 35
@@ -697,6 +698,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["actionbar"]["bar7"]["macroTextYOffset"] = 2
 			E.db["actionbar"]["bar7"]["macrotext"] = true
 			E.db["actionbar"]["bar7"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+			E.db["actionbar"]["bar7"]["enabled"] = false
 			E.db["actionbar"]["bar8"]["alpha"] = 1
 			E.db["actionbar"]["bar8"]["buttonHeight"] = 30
 			E.db["actionbar"]["bar8"]["buttonSize"] = 35
@@ -711,6 +713,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["actionbar"]["bar8"]["macroTextYOffset"] = 2
 			E.db["actionbar"]["bar8"]["macrotext"] = true
 			E.db["actionbar"]["bar8"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+			E.db["actionbar"]["bar8"]["enabled"] = false
 			E.db["actionbar"]["bar9"]["alpha"] = 1
 			E.db["actionbar"]["bar9"]["countFont"] = "Kimberley"
 			E.db["actionbar"]["bar9"]["countFontOutline"] = "THICKOUTLINE"
@@ -722,6 +725,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["actionbar"]["bar9"]["macroTextYOffset"] = 2
 			E.db["actionbar"]["bar9"]["macrotext"] = true
 			E.db["actionbar"]["bar9"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+			E.db["actionbar"]["bar9"]["enabled"] = false
 			E.db["actionbar"]["barPet"]["backdrop"] = false
 			E.db["actionbar"]["barPet"]["backdropSpacing"] = 0
 			E.db["actionbar"]["barPet"]["buttonHeight"] = 24
@@ -1544,6 +1548,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["actionbar"]["bar10"]["macroFont"] = "Kimberley"
 			E.db["actionbar"]["bar10"]["point"] = "TOPLEFT"
 			E.db["actionbar"]["bar10"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+			E.db["actionbar"]["bar10"]["enabled"] = false
 			E.db["actionbar"]["bar2"]["buttonHeight"] = 25
 			E.db["actionbar"]["bar2"]["buttonSize"] = 30
 			E.db["actionbar"]["bar2"]["buttonSpacing"] = 3
@@ -1631,16 +1636,19 @@ if ElvUI_EltreumUI.TBC then
 			E.db["actionbar"]["bar7"]["macroFont"] = "Kimberley"
 			E.db["actionbar"]["bar7"]["point"] = "TOPLEFT"
 			E.db["actionbar"]["bar7"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+			E.db["actionbar"]["bar7"]["enabled"] = false
 			E.db["actionbar"]["bar8"]["countFont"] = "Kimberley"
 			E.db["actionbar"]["bar8"]["hotkeyFont"] = "Kimberley"
 			E.db["actionbar"]["bar8"]["macroFont"] = "Kimberley"
 			E.db["actionbar"]["bar8"]["point"] = "TOPLEFT"
 			E.db["actionbar"]["bar8"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+			E.db["actionbar"]["bar8"]["enabled"] = false
 			E.db["actionbar"]["bar9"]["countFont"] = "Kimberley"
 			E.db["actionbar"]["bar9"]["hotkeyFont"] = "Kimberley"
 			E.db["actionbar"]["bar9"]["macroFont"] = "Kimberley"
 			E.db["actionbar"]["bar9"]["point"] = "TOPLEFT"
 			E.db["actionbar"]["bar9"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+			E.db["actionbar"]["bar9"]["enabled"] = false
 			E.db["actionbar"]["barPet"]["buttonHeight"] = 18
 			E.db["actionbar"]["barPet"]["buttonSize"] = 31
 			E.db["actionbar"]["barPet"]["buttonsPerRow"] = 3
