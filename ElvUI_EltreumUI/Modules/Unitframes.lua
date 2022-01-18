@@ -34,12 +34,51 @@ local unitframeclass = {
 --from Benik
 function ElvUI_EltreumUI:ChangeUnitTexture()
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture then
+		--target
 		local bar = LSM:Fetch("statusbar", "Eltreum-Blank")
 		local _, targetclass = UnitClass("target")
 		if targetclass and UnitIsPlayer("target") then
 			bar = LSM:Fetch("statusbar", unitframeclass[targetclass])
 		end
+		if UF.units.target then
+			local unitframe = _G["ElvUF_Target"]
+			if unitframe and unitframe.Health then
+				unitframe.Health:SetStatusBarTexture(bar)
+			end
+		end
+		--player
 		local playertexture = LSM:Fetch("statusbar", unitframeclass[E.myclass])
+		if UF.units.player then
+			local unitframe = _G["ElvUF_Player"]
+			if unitframe and unitframe.Health then
+				unitframe.Health:SetStatusBarTexture(playertexture)
+			end
+		end
+		--target of target
+		local _, targettargetclass = UnitClass("targettarget")
+		local targettargetbar = LSM:Fetch("statusbar", "Eltreum-Blank")
+		if targettargetclass and UnitIsPlayer("targettarget") then
+			targettargetbar = LSM:Fetch("statusbar", unitframeclass[targettargetclass])
+		end
+		if UF.units.targettarget then
+			local unitframe = _G["ElvUF_TargetTarget"]
+			if unitframe and unitframe.Health then
+				unitframe.Health:SetStatusBarTexture(targettargetbar)
+			end
+		end
+		--focus
+		local _, focusclass = UnitClass("focus")
+		local focusbar = LSM:Fetch("statusbar", "Eltreum-Blank")
+		if focusclass and UnitIsPlayer("focus") then
+			focusbar = LSM:Fetch("statusbar", unitframeclass[focusclass])
+		end
+		if UF.units.focus then
+			local focusframe = _G["ElvUF_Focus"]
+			if focusframe and focusframe.Health then
+				focusframe.Health:SetStatusBarTexture(focusbar)
+			end
+		end
+	--[[
 		for _, unitName in pairs(UF.units) do
 			local frameNameUnit = E:StringTitle(unitName)
 			if frameNameUnit == 'Target' then
@@ -54,8 +93,9 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 				end
 			end
 		end
+	]]--
 	end
 end
-hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.ChangeUnitTexture)
-hooksecurefunc(UF, "Configure_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
+--hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.ChangeUnitTexture)
+--hooksecurefunc(UF, "Configure_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
 hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
