@@ -1,7 +1,8 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local AB = E:GetModule('ActionBars')
-local LCG = E.Libs.CustomGlow
+--local LCG = E.Libs.CustomGlow
 local classcolor = E:ClassColor(E.myclass, true)
+local LCG = LibStub('LibCustomGlow-1.0')
 
 -- Skill Glow
 function ElvUI_EltreumUI:SkillGlow()
