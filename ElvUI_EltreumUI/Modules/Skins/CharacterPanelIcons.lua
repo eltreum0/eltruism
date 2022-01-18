@@ -151,15 +151,14 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 						['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
 					}
 
-
+					local alphabg = E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha
+					if alphabg == nil then
+						alphabg = 0.3
+					end
 					local CharacterFrameBackgroundTexture = _G.CharacterFrame:CreateTexture()
 					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-					if E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha then
-						CharacterFrameBackgroundTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
-					else
-						CharacterFrameBackgroundTexture:SetAlpha(0.3)
-					end
+					CharacterFrameBackgroundTexture:SetAlpha(alphabg)
 					CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame)
 					CharacterFrameBackgroundTexture:SetParent(_G.CharacterFrame)
 					CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK")
