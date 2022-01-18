@@ -227,53 +227,6 @@ function ElvUI_EltreumUI:Shadows()
 				frame:CreateShadow()
 			end
 		end
-
-		--microbar shadow
-		if E.db.actionbar.microbar.enabled == true then
-			if E.db.actionbar.microbar.backdrop == true then
-				if not _G.ElvUI_MicroBar.backdrop.shadow then
-					_G.ElvUI_MicroBar.backdrop:CreateShadow()
-				end
-			else
-				local microbar = {
-					_G['CharacterMicroButton'],
-					_G['SpellbookMicroButton'],
-					_G['TalentMicroButton'],
-					_G['QuestLogMicroButton'],
-					_G['SocialsMicroButton'],
-					_G['MainMenuMicroButton'],
-					_G['HelpMicroButton'],
-					_G['LFGMicroButton'],
-					_G['WorldMapMicroButton'],
-					_G['AchievementMicroButton'],
-					_G['GuildMicroButton'],
-					_G['LFDMicroButton'],
-					_G['EJMicroButton'],
-					_G['CollectionsMicroButton'],
-					_G['StoreMicroButton'],
-				}
-				for _, frame in pairs(microbar) do
-					if frame and not frame.shadow then
-						frame:CreateShadow()
-					end
-				end
-			end
-		end
-
-		--stances
-		for i = 1, 12 do
-			local button = _G['ElvUI_StanceBarButton'..i]
-			if not button then
-				break
-			else
-				if not button.shadow then
-					button.shadow = button:CreateShadow(nil, true)
-					button.shadow:SetParent(button)
-					button.shadow.size = 2
-				end
-			end
-		end
-
 		--datatexts
 		local DT = E:GetModule('DataTexts')
 		if DT.tooltip then
@@ -302,6 +255,52 @@ function ElvUI_EltreumUI:Shadows()
 
 			for i = 1, 12 do
 				local button = _G['PetActionButton'..i]
+				if not button then
+					break
+				else
+					if not button.shadow then
+						button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2
+					end
+				end
+			end
+
+			--microbar shadow
+			if E.db.actionbar.microbar.enabled == true then
+				if E.db.actionbar.microbar.backdrop == true then
+					if not _G.ElvUI_MicroBar.backdrop.shadow then
+						_G.ElvUI_MicroBar.backdrop:CreateShadow()
+					end
+				else
+					local microbar = {
+						_G['CharacterMicroButton'],
+						_G['SpellbookMicroButton'],
+						_G['TalentMicroButton'],
+						_G['QuestLogMicroButton'],
+						_G['SocialsMicroButton'],
+						_G['MainMenuMicroButton'],
+						_G['HelpMicroButton'],
+						_G['LFGMicroButton'],
+						_G['WorldMapMicroButton'],
+						_G['AchievementMicroButton'],
+						_G['GuildMicroButton'],
+						_G['LFDMicroButton'],
+						_G['EJMicroButton'],
+						_G['CollectionsMicroButton'],
+						_G['StoreMicroButton'],
+					}
+					for _, frame in pairs(microbar) do
+						if frame and not frame.shadow then
+							frame:CreateShadow()
+						end
+					end
+				end
+			end
+
+			--stances
+			for i = 1, 12 do
+				local button = _G['ElvUI_StanceBarButton'..i]
 				if not button then
 					break
 				else
