@@ -318,13 +318,15 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PlayerStatFrameRight6Stat:SetParent(_G.PlayerStatFrameRight1)
 
 				--set the tabs
-					SetCVar("playerStatLeftDropdown", "PLAYERSTAT_BASE_STATS")
-				if E.myclass == "MAGE" or E.myclass == "PRIEST" or E.myclass == "WARLOCK" or E.myclass == "DRUID" then
-					SetCVar("playerStatRightDropdown", "PLAYERSTAT_SPELL_COMBAT")
-				elseif ( E.myclass == "HUNTER" ) then
-					SetCVar("playerStatRightDropdown", "PLAYERSTAT_RANGED_COMBAT")
-				else
-					SetCVar("playerStatRightDropdown", "PLAYERSTAT_MELEE_COMBAT")
+				if E.db.ElvUI_EltreumUI.skins.classicarmoryautostats then
+						SetCVar("playerStatLeftDropdown", "PLAYERSTAT_BASE_STATS")
+					if E.myclass == "MAGE" or E.myclass == "PRIEST" or E.myclass == "WARLOCK" or E.myclass == "DRUID" then
+						SetCVar("playerStatRightDropdown", "PLAYERSTAT_SPELL_COMBAT")
+					elseif ( E.myclass == "HUNTER" ) then
+						SetCVar("playerStatRightDropdown", "PLAYERSTAT_RANGED_COMBAT")
+					else
+						SetCVar("playerStatRightDropdown", "PLAYERSTAT_MELEE_COMBAT")
+					end
 				end
 			elseif ElvUI_EltreumUI.Classic then
 				_G.CharacterStatFrame1:ClearAllPoints()

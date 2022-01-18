@@ -49,6 +49,7 @@ P.ElvUI_EltreumUI = {
 		classiconsblizz = false,
 		classiconsreleaf = true,
 		classicarmory = true,
+		classicarmoryautostats = true,
 		ilvls = true,
 		ilvlanchor = "CENTER",
 		ilvlfontsize = 16,
