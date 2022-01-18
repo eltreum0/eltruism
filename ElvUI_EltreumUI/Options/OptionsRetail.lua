@@ -649,7 +649,7 @@ if ElvUI_EltreumUI.Retail then
 							width = "full",
 							disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
 							get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha end,
-							set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha = value  end,
+							set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
 						iconsoncharacter = {
 							order = 23,

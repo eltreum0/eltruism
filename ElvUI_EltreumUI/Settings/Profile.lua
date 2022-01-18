@@ -51,6 +51,8 @@ P.ElvUI_EltreumUI = {
 		classicarmory = true,
 		ilvls = true,
 		ilvlanchor = "CENTER",
+		ilvlfontsize = 16,
+		ilvlfontweight = "THICKOUTLINE",
 		expandarmorybg = true,
 		expandarmorybgalpha = 0.3,
 		bossemote = true,
@@ -279,24 +281,24 @@ P.ElvUI_EltreumUI = {
 		bar5yborder = 50,
 
 		bar6borders = false,
-		bar6xborder = 40,
-		bar6yborder = 32,
+		bar6xborder = 52,
+		bar6yborder = 44,
 
 		bar7borders = false,
-		bar7xborder = 42,
-		bar7yborder = 37,
+		bar7xborder = 52,
+		bar7yborder = 44,
 
 		bar8borders = false,
-		bar8xborder = 42,
-		bar8yborder = 37,
+		bar8xborder = 52,
+		bar8yborder = 44,
 
 		bar9borders = false,
-		bar9xborder = 42,
-		bar9yborder = 37,
+		bar9xborder = 52,
+		bar9yborder = 44,
 
 		bar10borders = false,
-		bar10xborder = 42,
-		bar10yborder = 37,
+		bar10xborder = 52,
+		bar10yborder = 44,
 	},
 
 	bordercolors = {
