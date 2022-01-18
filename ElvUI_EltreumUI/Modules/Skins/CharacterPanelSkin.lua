@@ -84,7 +84,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.CharacterLevelText:SetPoint('TOP', _G.CharacterModelFrame, 0, 60)
 			_G.CharacterLevelText:SetParent(_G.CharacterModelFrame)
 			if ElvUI_EltreumUI.TBC then
-				_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterModelFrame, 0, 40)
+				_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterModelFrame, -3, 40)
 			elseif ElvUI_EltreumUI.Classic then
 				_G.CharacterTitleText:SetPoint('TOP', _G.CharacterModelFrame, 0, 40)
 			end
