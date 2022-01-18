@@ -14,13 +14,15 @@ local deaththrottle
 function ElvUI_EltreumUI:GroupRoster()
 	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
 		if IsInGroup() == true then
+			deaththrottle = 1
+			ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for party/raid death
 			for i=1, GetNumGroupMembers() do
 				name[i], _, _, _, _, _, _, _, _, _, _, _ = GetRaidRosterInfo(i)
 			end
-			deaththrottle = 1
 		elseif IsInGroup() == false then
 			name = {}
 			deaththrottle = 0
+			ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for party/raid death
 			--name = {E.myname}
 		end
 	end
@@ -31,6 +33,7 @@ function ElvUI_EltreumUI:RaidDeath()
 		local _, _, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
 		if deaththrottle == 1 then
 			for i=1,#name do
+				--if (name[i] == destName) and ( eventType == "UNIT_DIED" ) then
 				if name[i] == destName then
 					if E.db.ElvUI_EltreumUI.partyraiddeath.bruh then
 						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.ogg", "Master")
