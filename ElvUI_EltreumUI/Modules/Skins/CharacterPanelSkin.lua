@@ -494,7 +494,8 @@ function ElvUI_EltreumUI:InspectBg(unit)
 		--inspect frame bg
 		--print(unit)
 		if IsAddOnLoaded("Blizzard_InspectUI") then
-			local localizedClass, englishClass, localizedRace, englishRace, sex, name, realm = GetPlayerInfoByGUID(unit)
+			--local localizedClass, englishClass, localizedRace, englishRace, sex, name, realm = GetPlayerInfoByGUID(unit)
+			local _, englishClass, _, _, _, _, _ = GetPlayerInfoByGUID(unit)
 			--print(englishClass)
 			--local _, targetclass = UnitClass("target")
 			if englishClass then
