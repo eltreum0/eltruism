@@ -65,7 +65,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			end
 
-
 			_G.PlayerTitleDropDown:Show()
 			_G.PlayerTitleDropDown:ClearAllPoints()
 			_G.PlayerTitleDropDown:SetParent(_G.CharacterModelFrame)
@@ -76,7 +75,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.CharacterLevelText:SetPoint('TOP', _G.CharacterModelFrame, 0, 60)
 			_G.CharacterLevelText:SetParent(_G.CharacterModelFrame)
 			_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterModelFrame, 0, 40)
-
 
 			_G.PVPFrameToggleButton:ClearAllPoints()
 			_G.PVPFrameToggleButton:SetPoint('TOP', _G.PVPHonor, 'TOP', 52, 42)
@@ -100,9 +98,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.SkillDetailScrollChildFrame:SetParent(_G.SkillFrame)
 			_G.SkillFrameCancelButton:Hide()
 
-
-
-
 			--_G.ReputationDefailFrame:SetPoint('TOPRIGHT', _G.CharacterFrame)
 
 			CharacterFrame.Text4 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
@@ -123,7 +118,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.Text5:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			CharacterFrame.Text5:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
 			CharacterFrame.Text5:SetText(PlayerSpec())
-
 
 			local ilevel, _, _ = LibItemInfo:GetUnitItemLevel("player")
 			_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)

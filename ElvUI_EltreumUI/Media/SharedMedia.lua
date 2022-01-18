@@ -14,10 +14,6 @@ LSM:Register("font", "Neuropol", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\
 LSM:Register("font", "OptimusPrinceps", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\OptimusPrinceps.ttf]])
 LSM:Register("font", "Pricedown", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\pricedown.ttf]])
 LSM:Register("font", "Roboto", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Roboto-Bold.ttf]])
---For Korean support
-LSM:Register("font", "2002B", [[Fonts\2002B.ttf]])
---For Chinese support
-LSM:Register("font", "CrystalzcuheiGBK", [[Fonts\ARHei.ttf]])
 
 -- Sound
 LSM:Register("sound", "You_Died", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\You_Died.ogg]])
@@ -99,16 +95,7 @@ LSM:Register("border", "better-blizzard-border-small-alternate", [[Interface\Add
 LSM:Register("border", "border-glow-overlay", [[Interface\Addons\ElvUI_EltreumUI\Media\border\border-glow-overlay.tga]])
 LSM:Register("border", "RenaitreBeveled10", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreBeveled10.tga]])
 LSM:Register("border", "RenaitreBeveled10x", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreBeveled10x.tga]])
-LSM:Register("border", "RenaitreBeveled11", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreBeveled11.tga]])
-LSM:Register("border", "RenaitreBeveled11x", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreBeveled11x.tga]])
 LSM:Register("border", "RenaitreFade10", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade10.tga]])
-LSM:Register("border", "RenaitreFade10blk", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade10blk.tga]])
-LSM:Register("border", "RenaitreFade10x", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade10x.tga]])
-LSM:Register("border", "RenaitreFade10xblk", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade10xblk.tga]])
-LSM:Register("border", "RenaitreFade11", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade11.tga]])
-LSM:Register("border", "RenaitreFade11blk", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade11blk.tga]])
-LSM:Register("border", "RenaitreFade11x", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade11x.tga]])
-LSM:Register("border", "RenaitreFade11xblk", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade11xblk.tga]])
 LSM:Register("border", "RenDefine", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenDefine.tga]])
 LSM:Register("border", "RenFade", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenFade.tga]])
 LSM:Register("border", "RenFadeB", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenFadeB.tga]])
@@ -125,3 +112,14 @@ LSM:Register("border", "fer10", [[Interface\Addons\ElvUI_EltreumUI\Media\border\
 LSM:Register("border", "fer11", [[Interface\Addons\ElvUI_EltreumUI\Media\border\fer11.tga]])
 LSM:Register("border", "fer12", [[Interface\Addons\ElvUI_EltreumUI\Media\border\fer12.tga]])
 LSM:Register("border", "fer13", [[Interface\Addons\ElvUI_EltreumUI\Media\border\fer13.tga]])
+
+--if removing borders these are the candidates to be removed
+LSM:Register("border", "RenaitreBeveled11", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreBeveled11.tga]])
+LSM:Register("border", "RenaitreBeveled11x", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreBeveled11x.tga]])
+LSM:Register("border", "RenaitreFade10blk", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade10blk.tga]])
+LSM:Register("border", "RenaitreFade10x", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade10x.tga]])
+LSM:Register("border", "RenaitreFade10xblk", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade10xblk.tga]])
+LSM:Register("border", "RenaitreFade11", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade11.tga]])
+LSM:Register("border", "RenaitreFade11blk", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade11blk.tga]])
+LSM:Register("border", "RenaitreFade11x", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade11x.tga]])
+LSM:Register("border", "RenaitreFade11xblk", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade11xblk.tga]])
