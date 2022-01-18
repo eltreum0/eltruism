@@ -84,6 +84,13 @@ if ElvUI_EltreumUI.Retail then
 		E.db["general"]["minimap"]["resetZoom"]["enable"] = true
 		E.db["general"]["minimap"]["resetZoom"]["time"] = 10
 		E.db["general"]["minimap"]["size"] = 200
+
+		E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = "Kimberley"
+		E.db["general"]["minimap"]["icons"]["queueStatus"]["fontOutline"] = "OUTLINE"
+		E.db["general"]["minimap"]["icons"]["queueStatus"]["fontSize"] = 20
+		E.db["general"]["minimap"]["icons"]["queueStatus"]["xOffset"] = 0
+		E.db["general"]["minimap"]["icons"]["queueStatus"]["yOffset"] = 0
+
 		E.db["general"]["objectiveFrameAutoHideInKeystone"] = false
 		E.db["general"]["objectiveFrameHeight"] = 550
 		E.db["general"]["resurrectSound"] = true

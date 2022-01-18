@@ -181,6 +181,9 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei(addon)
 	end
 		E.db["general"]["font"] = "AR CrystalzcuheiGBK Demibold"
 		E.db["general"]["minimap"]["locationFont"] = "AR CrystalzcuheiGBK Demibold"
+		if ElvUI_EltreumUI.Retail then
+			E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = "AR CrystalzcuheiGBK Demibold"
+		end
 		E.db["bags"]["countFont"] = "AR CrystalzcuheiGBK Demibold"
 		E.db["bags"]["itemInfoFont"] = "AR CrystalzcuheiGBK Demibold"
 		E.db["bags"]["itemLevelFont"] = "AR CrystalzcuheiGBK Demibold"

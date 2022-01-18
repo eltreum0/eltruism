@@ -180,6 +180,9 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 	end
 		E.db["general"]["font"] = fontvalue
 		E.db["general"]["minimap"]["locationFont"] = fontvalue
+		if ElvUI_EltreumUI.Retail then
+			E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = fontvalue
+		end
 		E.db["bags"]["countFont"] = fontvalue
 		E.db["bags"]["itemInfoFont"] = fontvalue
 		E.db["bags"]["itemLevelFont"] = fontvalue

@@ -181,6 +181,9 @@ function ElvUI_EltreumUI:SetupFontsExo2(addon)
 	end
 		E.db["general"]["font"] = "Exo2 Extra Bold"
 		E.db["general"]["minimap"]["locationFont"] = "Exo2 Extra Bold"
+		if ElvUI_EltreumUI.Retail then
+			E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = "Exo2 Extra Bold"
+		end
 		E.db["bags"]["countFont"] = "Exo2 Extra Bold"
 		E.db["bags"]["itemInfoFont"] = "Exo2 Extra Bold"
 		E.db["bags"]["itemLevelFont"] = "Exo2 Extra Bold"

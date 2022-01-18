@@ -178,6 +178,9 @@ function ElvUI_EltreumUI:SetupFontsKimberley(addon)
 	end
 		E.db["general"]["font"] = "Kimberley"
 		E.db["general"]["minimap"]["locationFont"] = "Kimberley"
+		if ElvUI_EltreumUI.Retail then
+			E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = "Kimberley"
+		end
 		E.db["bags"]["countFont"] = "Kimberley"
 		E.db["bags"]["itemInfoFont"] = "Kimberley"
 		E.db["bags"]["itemLevelFont"] = "Kimberley"

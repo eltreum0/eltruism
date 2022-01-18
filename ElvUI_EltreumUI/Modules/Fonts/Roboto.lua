@@ -179,6 +179,9 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 	end
 		E.db["general"]["font"] = "Roboto"
 		E.db["general"]["minimap"]["locationFont"] = "Roboto"
+		if ElvUI_EltreumUI.Retail then
+			E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = "Roboto"
+		end
 		E.db["bags"]["countFont"] = "Roboto"
 		E.db["bags"]["itemInfoFont"] = "Roboto"
 		E.db["bags"]["itemLevelFont"] = "Roboto"

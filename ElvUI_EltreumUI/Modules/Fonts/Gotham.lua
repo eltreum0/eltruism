@@ -179,6 +179,9 @@ function ElvUI_EltreumUI:SetupFontsGotham(addon)
 	end
 		E.db["general"]["font"] = "GothamNarrow Black"
 		E.db["general"]["minimap"]["locationFont"] = "GothamNarrow Black"
+		if ElvUI_EltreumUI.Retail then
+			E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = "GothamNarrow Black"
+		end
 		E.db["bags"]["countFont"] = "GothamNarrow Black"
 		E.db["bags"]["itemInfoFont"] = "GothamNarrow Black"
 		E.db["bags"]["itemLevelFont"] = "GothamNarrow Black"

@@ -46,6 +46,9 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault(addon)
 	end
 	E.db["general"]["fontStyle"] = "THICKOUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE"
+	if ElvUI_EltreumUI.Retail then
+		E.db["general"]["minimap"]["icons"]["queueStatus"]["fontOutline"] = "OUTLINE"
+	end
 	--E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE" --test
 	E.db["bags"]["countFontOutline"] = "OUTLINE"
 	E.db["bags"]["itemInfoFontOutline"] = "OUTLINE"

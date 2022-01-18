@@ -47,6 +47,9 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone(addon)
 	end
 	E.db["general"]["fontStyle"] = "NONE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "NONE"
+	if ElvUI_EltreumUI.Retail then
+		E.db["general"]["minimap"]["icons"]["queueStatus"]["fontOutline"] = "NONE"
+	end
 	E.db["bags"]["countFontOutline"] = "NONE"
 	E.db["bags"]["itemInfoFontOutline"] = "NONE"
 	E.db["bags"]["itemLevelFontOutline"] = "NONE"
