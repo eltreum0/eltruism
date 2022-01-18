@@ -237,7 +237,7 @@ function ElvUI_EltreumUI:UNIT_AURA(event,unit)
 	if unit and unit ~= 'player' then
 		return
 	elseif unit and unit == 'player' then
-		print(unit)
+		--print(unit)
 		--print(event,unit)
 		ElvUI_EltreumUI:AuraShadows()
 		ElvUI_EltreumUI:UnregisterEvent('UNIT_AURA') --for aura shadows

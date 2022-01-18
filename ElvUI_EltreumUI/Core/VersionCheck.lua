@@ -20,17 +20,17 @@ end
 
 function ElvUI_EltreumUI:ElvUIVersionCheck()
 	if ElvUI_EltreumUI.Retail then
-		if E.version < 12.58 then
+		if E.version < 12.59 then
 			ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
 		end
 	end
 	if ElvUI_EltreumUI.TBC then
-		if E.version < 2.31 then
+		if E.version < 2.32 then
 			ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
 		end
 	end
 	if ElvUI_EltreumUI.Classic then
-		if E.version < 1.57 then
+		if E.version < 1.58 then
 			ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
 		end
 	end
