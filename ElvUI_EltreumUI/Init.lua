@@ -239,6 +239,7 @@ function ElvUI_EltreumUI:UNIT_AURA(unit)
 	elseif unit and unit == 'player' then
 		--print(event,unit)
 		ElvUI_EltreumUI:AuraShadows()
+		ElvUI_EltreumUI:UnregisterEvent('UNIT_AURA') --for aura shadows
 	end
 end
 
@@ -364,8 +365,9 @@ function ElvUI_EltreumUI:PLAYER_AVG_ITEM_LEVEL_UPDATE()
 end
 
 function ElvUI_EltreumUI:INSPECT_READY()
-	--if UnitExists("target") and UnitIsPlayer("target") then
-	ElvUI_EltreumUI:InspectBg()
+	if UnitExists("target") and UnitIsPlayer("target") then
+		ElvUI_EltreumUI:InspectBg()
+	end
 	--print("inspect ready")
 end
 
