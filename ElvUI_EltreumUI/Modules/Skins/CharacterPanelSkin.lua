@@ -464,53 +464,70 @@ end
 local InspectFrameBackgroundTexture
 local InspectFrame
 function ElvUI_EltreumUI:CreateInspectBg()
-	if not IsAddOnLoaded("Blizzard_InspectUI") then
+	local a = IsAddOnLoaded("Blizzard_InspectUI")
+	if a == false then
 		LoadAddOn("Blizzard_InspectUI")
+		--a = IsAddOnLoaded("Blizzard_InspectUI")
 	end
-	InspectFrame = _G.InspectFrame.backdrop
+	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		InspectFrame = _G.InspectFrame.backdrop
+	elseif ElvUI_EltreumUI.Retail then
+		InspectFrame = _G.InspectFrame
+	end
 	InspectFrameBackgroundTexture = InspectFrame:CreateTexture()
 end
 
+
+
 function ElvUI_EltreumUI:InspectBg()
-	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-			local classBgs = {
-				['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
-				['PALADIN'] = "Interface\\Artifacts\\ArtifactUIPaladin",
-				['HUNTER'] = "Interface\\Artifacts\\ArtifactUIHunter",
-				['ROGUE'] = "Interface\\Artifacts\\ArtifactUIRogue",
-				['PRIEST'] = "Interface\\Artifacts\\ArtifactUIPriest",
-				['DEATHKNIGHT'] = "Interface\\Artifacts\\ArtifactUIDeathKnightFrost",
-				['SHAMAN'] = "Interface\\Artifacts\\ArtifactUIShaman",
-				['MAGE'] = "Interface\\Artifacts\\ArtifactUIMageArcane",
-				['WARLOCK'] = "Interface\\Artifacts\\ArtifactUIWarlock",
-				['MONK'] = "Interface\\Artifacts\\ArtifactUIMonk",
-				['DRUID'] = "Interface\\Artifacts\\ArtifactUIDruid",
-				['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
-			}
-
-			local alpha
-			if E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha ~= nil then
-				alpha = E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha
-			elseif E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha == nil then
-				alpha = 0.3
+	if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+		local classBgs = {
+			['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
+			['PALADIN'] = "Interface\\Artifacts\\ArtifactUIPaladin",
+			['HUNTER'] = "Interface\\Artifacts\\ArtifactUIHunter",
+			['ROGUE'] = "Interface\\Artifacts\\ArtifactUIRogue",
+			['PRIEST'] = "Interface\\Artifacts\\ArtifactUIPriest",
+			['DEATHKNIGHT'] = "Interface\\Artifacts\\ArtifactUIDeathKnightFrost",
+			['SHAMAN'] = "Interface\\Artifacts\\ArtifactUIShaman",
+			['MAGE'] = "Interface\\Artifacts\\ArtifactUIMageArcane",
+			['WARLOCK'] = "Interface\\Artifacts\\ArtifactUIWarlock",
+			['MONK'] = "Interface\\Artifacts\\ArtifactUIMonk",
+			['DRUID'] = "Interface\\Artifacts\\ArtifactUIDruid",
+			['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
+		}
+		local alpha
+		if E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha ~= nil then
+			alpha = E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha
+		elseif E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha == nil then
+			alpha = 0.3
+		end
+		--inspect frame bg
+		local _, targetclass = UnitClass("target")
+		if targetclass then
+			InspectFrameBackgroundTexture:SetTexture()
+			InspectFrameBackgroundTexture:SetTexture(classBgs[targetclass])
+			--tex:SetTexCoord(left, right, top, bottom)
+			InspectFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+			if alpha ~= nil then
+				InspectFrameBackgroundTexture:SetAlpha(alpha)
+			else
+				InspectFrameBackgroundTexture:SetAlpha(0.3)
 			end
-
-			--inspect frame bg
-			local _, targetclass = UnitClass("target")
-			if targetclass then
-				InspectFrameBackgroundTexture:SetTexture()
-				InspectFrameBackgroundTexture:SetTexture(classBgs[targetclass])
-				--tex:SetTexCoord(left, right, top, bottom)
-				InspectFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-				if alpha ~= nil then
-					InspectFrameBackgroundTexture:SetAlpha(alpha)
-				else
-					InspectFrameBackgroundTexture:SetAlpha(0.3)
-				end
+			if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 				InspectFrameBackgroundTexture:SetAllPoints(_G.InspectFrame.backdrop)
-				InspectFrameBackgroundTexture:SetDrawLayer("ARTWORK")
+			elseif ElvUI_EltreumUI.Retail then
+				_G.InspectModelFrameBackgroundBotLeft:Hide()
+				_G.InspectModelFrameBackgroundBotRight:Hide()
+				_G.InspectModelFrameBackgroundTopLeft:Hide()
+				_G.InspectModelFrameBackgroundTopRight:Hide()
+				_G.InspectModelFrameBackgroundOverlay:Hide()
+				--_G.InspectModelFrame.backdrop:Hide()
+				_G.InspectModelFrame.backdrop:SetParent(_G.InspectFrame)
+				_G.InspectModelFrame.backdrop:SetAllPoints(_G.InspectFrame)
+				_G.InspectModelFrame.backdrop:SetAlpha(0.2)
+				InspectFrameBackgroundTexture:SetAllPoints(_G.InspectFrame)
 			end
+			InspectFrameBackgroundTexture:SetDrawLayer("ARTWORK")
 		end
 	end
 end

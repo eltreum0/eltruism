@@ -58,6 +58,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:BattlegroundGroupUnitframes() --hides elvui unitframes in bgs
 	ElvUI_EltreumUI:DynamicBuffs() --shows enemy player buffs on nameplates/unitframes if in arena/bgs, hides otherwise
 	ElvUI_EltreumUI:EnteringWorldCVars() --set cvars at the start
+	ElvUI_EltreumUI:CreateInspectBg()
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
@@ -72,7 +73,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
 		ElvUI_EltreumUI:ExpandedTalents() --makes talents fit in one window without scroll
 		ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
-		ElvUI_EltreumUI:CreateInspectBg()
 		ElvUI_EltreumUI:UpdateAvgIlvl()
 	end
 	if E.private.nameplates.enable then
@@ -151,6 +151,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN") --LootText things
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED") --LootText things
 	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE') --LootText things
+	ElvUI_EltreumUI:RegisterEvent('INSPECT_READY')
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED') --for class icons, power bar and shadows
 		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW') --for rogue order hall
@@ -159,7 +160,6 @@ function ElvUI_EltreumUI:Initialize()
 	end
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
-		ElvUI_EltreumUI:RegisterEvent('INSPECT_READY')
 	end
 end
 
@@ -364,7 +364,9 @@ function ElvUI_EltreumUI:PLAYER_AVG_ITEM_LEVEL_UPDATE()
 end
 
 function ElvUI_EltreumUI:INSPECT_READY()
+	--if UnitExists("target") and UnitIsPlayer("target") then
 	ElvUI_EltreumUI:InspectBg()
+	--print("inspect ready")
 end
 
 local function CallbackInitialize()
