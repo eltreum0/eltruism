@@ -199,7 +199,7 @@ function ElvUI_EltreumUI:Shadows()
 					frame:CreateShadow()
 				end
 			end
-
+			--tbc only frames
 			if ElvUI_EltreumUI.TBC then
 				local tbcframes = {
 				_G.LFGParentFrame.backdrop,
@@ -237,6 +237,7 @@ function ElvUI_EltreumUI:Shadows()
 
 		--action bars
 		if E.private.actionbar.enable then
+			--elvui action bars
 			for i = 1, 10 do
 				local actionbars = {_G['ElvUI_Bar'..i]}
 				for _, frame in pairs(actionbars) do
@@ -253,6 +254,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
+			--pet bars
 			for i = 1, 12 do
 				local button = _G['PetActionButton'..i]
 				if not button then
@@ -340,6 +342,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
+			--party
 			for i = 1, 5 do
 				local partymembers = {_G['ElvUF_PartyGroup1UnitButton'..i]}
 				for _, frame in pairs(partymembers) do
@@ -353,6 +356,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
+			--boss
 			for i = 1, 5 do
 				local bossmembers = {_G['ElvUF_Boss'..i]}
 				for _, frame in pairs(bossmembers) do
@@ -408,6 +412,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
+			--player castbar
 			local PlayerCastbar = CreateFrame("Frame", "EltruismPlayerCastBarShadowFrame")
 			local isattached = E.db.unitframe.units.player.castbar.iconAttached
 			local PlayerCastbarx
@@ -428,6 +433,7 @@ function ElvUI_EltreumUI:Shadows()
 				self.PlayerCastBarIsSkinned = true
 			end
 
+			--target castbar
 			if not E.db.unitframe.units.target.castbar.overlayOnFrame == "Power" then
 				local TargetCastbar = CreateFrame("Frame", "EltruismTargetCastBarShadowFrame")
 				local TargetCastbarx = E.db.unitframe.units.target.castbar.width + E.db.unitframe.units.target.castbar.iconSize -2
