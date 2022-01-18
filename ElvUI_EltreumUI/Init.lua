@@ -72,6 +72,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
 		ElvUI_EltreumUI:ExpandedTalents() --makes talents fit in one window without scroll
 		ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
+		ElvUI_EltreumUI:CreateInspectBg()
 		ElvUI_EltreumUI:UpdateAvgIlvl()
 	end
 	if E.private.nameplates.enable then
@@ -158,6 +159,7 @@ function ElvUI_EltreumUI:Initialize()
 	end
 	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
+		ElvUI_EltreumUI:RegisterEvent('INSPECT_READY')
 	end
 end
 
@@ -359,6 +361,10 @@ end
 
 function ElvUI_EltreumUI:PLAYER_AVG_ITEM_LEVEL_UPDATE()
 	ElvUI_EltreumUI:UpdateAvgIlvl()
+end
+
+function ElvUI_EltreumUI:INSPECT_READY()
+	ElvUI_EltreumUI:InspectBg()
 end
 
 local function CallbackInitialize()

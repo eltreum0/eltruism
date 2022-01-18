@@ -33,7 +33,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				alpha = 0.3
 			end
 
-
+			--character frame bg
 			local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture()
 			CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
 			CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
@@ -88,8 +88,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			elseif ElvUI_EltreumUI.Classic then
 				_G.CharacterTitleText:SetPoint('TOP', _G.CharacterModelFrame, 0, 40)
 			end
-
-
 
 			_G.CharacterLevelText:SetPoint('TOP', _G.CharacterNameText, 'BOTTOM', 0, -10)
 			_G.PetNameText:SetPoint('TOP', _G.PetModelFrame, 0, 60)
@@ -197,7 +195,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.MagicResFrame5:SetPoint("RIGHT", _G.MagicResFrame4, "RIGHT", 27, 0)
 
 			if ElvUI_EltreumUI.TBC then
-
 				--"left side" or in this case the top side
 				_G.PlayerStatFrameLeftDropDown:ClearAllPoints()
 				_G.PlayerStatFrameLeftDropDown:SetPoint("TOP", CharacterFrame, "TOP", 143, -200)
@@ -360,7 +357,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterStatFrame5:SetParent(_G.CharacterStatFrame1)
 				_G.CharacterStatFrame5:SetPoint("BOTTOM", _G.CharacterStatFrame4, "BOTTOM", 0, -13)
 
-
 				_G.CharacterArmorFrame:ClearAllPoints()
 				_G.CharacterArmorFrame:SetParent(_G.CharacterStatFrame1)
 				_G.CharacterArmorFrame:SetPoint("BOTTOM", _G.CharacterStatFrame5, "BOTTOM", 0, -13)
@@ -409,7 +405,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterRangedDamageFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 				_G.CharacterRangedDamageFrame.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
 
-
 				_G.CharacterStatFrame1Stat:ClearAllPoints()
 				_G.CharacterStatFrame1Stat:SetPoint("TOP", CharacterFrame, "TOP", 211, -225)
 				_G.CharacterStatFrame1Stat:SetParent(_G.CharacterStatFrame1)
@@ -455,13 +450,66 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterRangedDamageFrameStat:SetPoint("BOTTOM", _G.CharacterRangedAttackPowerFrameStat, "BOTTOM", 0, -13)
 				_G.CharacterRangedDamageFrameStat:SetParent(_G.CharacterStatFrame1)
 
-
-
 				_G.SkillFrame:SetHeight(400)
 				_G.SkillDetailScrollChildFrame:ClearAllPoints()
 				_G.SkillDetailScrollChildFrame:SetPoint("BOTTOMLEFT", CharacterFrame, "BOTTOMLEFT", 30, 150)
 				_G.SkillDetailScrollChildFrame:SetParent(_G.SkillFrame)
 				_G.SkillFrameCancelButton:Hide()
+			end
+		end
+	end
+end
+
+
+local InspectFrameBackgroundTexture
+local InspectFrame
+function ElvUI_EltreumUI:CreateInspectBg()
+	if not IsAddOnLoaded("Blizzard_InspectUI") then
+		LoadAddOn("Blizzard_InspectUI")
+	end
+	InspectFrame = _G.InspectFrame.backdrop
+	InspectFrameBackgroundTexture = InspectFrame:CreateTexture()
+end
+
+function ElvUI_EltreumUI:InspectBg()
+	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+			local classBgs = {
+				['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
+				['PALADIN'] = "Interface\\Artifacts\\ArtifactUIPaladin",
+				['HUNTER'] = "Interface\\Artifacts\\ArtifactUIHunter",
+				['ROGUE'] = "Interface\\Artifacts\\ArtifactUIRogue",
+				['PRIEST'] = "Interface\\Artifacts\\ArtifactUIPriest",
+				['DEATHKNIGHT'] = "Interface\\Artifacts\\ArtifactUIDeathKnightFrost",
+				['SHAMAN'] = "Interface\\Artifacts\\ArtifactUIShaman",
+				['MAGE'] = "Interface\\Artifacts\\ArtifactUIMageArcane",
+				['WARLOCK'] = "Interface\\Artifacts\\ArtifactUIWarlock",
+				['MONK'] = "Interface\\Artifacts\\ArtifactUIMonk",
+				['DRUID'] = "Interface\\Artifacts\\ArtifactUIDruid",
+				['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
+			}
+
+			local alpha
+			if E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha ~= nil then
+				alpha = E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha
+			elseif E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha == nil then
+				alpha = 0.3
+			end
+
+			--inspect frame bg
+			local _, targetclass = UnitClass("target")
+			if targetclass then
+				InspectFrameBackgroundTexture:SetTexture()
+				InspectFrameBackgroundTexture:SetTexture(classBgs[targetclass])
+				--tex:SetTexCoord(left, right, top, bottom)
+				InspectFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+				if alpha ~= nil then
+					InspectFrameBackgroundTexture:SetAlpha(alpha)
+				else
+					InspectFrameBackgroundTexture:SetAlpha(0.3)
+				end
+				InspectFrameBackgroundTexture:SetAllPoints(_G.InspectFrame.backdrop)
+				InspectFrameBackgroundTexture:SetDrawLayer("ARTWORK")
 			end
 		end
 	end
