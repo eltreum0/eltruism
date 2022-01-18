@@ -364,10 +364,12 @@ function ElvUI_EltreumUI:PLAYER_AVG_ITEM_LEVEL_UPDATE()
 	ElvUI_EltreumUI:UpdateAvgIlvl()
 end
 
-function ElvUI_EltreumUI:INSPECT_READY()
-	if UnitExists("target") and UnitIsPlayer("target") then
-		ElvUI_EltreumUI:InspectBg()
-	end
+function ElvUI_EltreumUI:INSPECT_READY(event,unit)
+	--if UnitExists("target") and UnitIsPlayer("target") then
+		--print(event)
+		--print(unit)
+		ElvUI_EltreumUI:InspectBg(unit)
+	--end
 	--print("inspect ready")
 end
 

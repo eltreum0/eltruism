@@ -14,13 +14,14 @@ local deaththrottle
 function ElvUI_EltreumUI:GroupRoster()
 	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
 		if IsInGroup() == true then
+			--print("in a group")
 			deaththrottle = 1
 			ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for party/raid death
 			for i=1, GetNumGroupMembers() do
 				name[i], _, _, _, _, _, _, _, _, _, _, _ = GetRaidRosterInfo(i)
 			end
 		elseif IsInGroup() == false then
-			--print("test")
+			--print("not in a group")
 			name = {}
 			deaththrottle = 0
 			ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for party/raid death
@@ -32,6 +33,7 @@ end
 function ElvUI_EltreumUI:RaidDeath()
 	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
 		local _, _, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
+		--print("raid death function")
 		if deaththrottle == 1 then
 			for i=1,#name do
 				--if (name[i] == destName) and ( eventType == "UNIT_DIED" ) then
