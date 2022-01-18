@@ -6,7 +6,7 @@ local PlayMusic = _G.PlayMusic
 local StopMusic = _G.StopMusic
 local PlaySound = _G.PlaySound
 local StopSound = _G.StopSound
-local GetCVar = _G.GetCVar
+local C_CVar = _G.C_CVar
 
 -- general alliance walk (legion) maybe human music idk
 --/script PlaySoundFile(1417250, "Dialog", true)
@@ -77,7 +77,7 @@ local classicMusic = {
 }
 
 -- with the help of Repooc, Simpy, Nihilistzsche and Acidweb (not in order :D)
-local musicSetting = GetCVar('Sound_EnableMusic')
+local musicSetting = C_CVar.GetCVar('Sound_EnableMusic')
 local classicmusicstopper = nil
 local willplay = nil
 function ElvUI_EltreumUI:AFKmusic()

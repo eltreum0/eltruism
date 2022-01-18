@@ -4,7 +4,7 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 local GetAddOnMetadata = _G.GetAddOnMetadata
 local valuecolors = E:ClassColor(E.myclass, true)
 local myclass = E.myclass
-local GetCVar = _G.GetCVar
+local C_CVar = _G.C_CVar
 
 if ElvUI_EltreumUI.Classic then
 	function ElvUI_EltreumUI:SetupLayout(layout)
@@ -620,16 +620,16 @@ if ElvUI_EltreumUI.Classic then
 			E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 			E.db["actionbar"]["bar6"]["alpha"] = 1
 			E.db["actionbar"]["bar6"]["buttonHeight"] = 24
-			if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160" then
+			if C_CVar.GetCVar('gxFullscreenResolution') == "3140x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3140x2160" then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
 				E.db["actionbar"]["bar6"]["buttonSize"] = 35
-			elseif GetCVar('gxFullscreenResolution') == "2560x1440" or GetCVar('gxWindowedResolution') == "2560x1440" then
+			elseif C_CVar.GetCVar('gxFullscreenResolution') == "2560x1440" or C_CVar.GetCVar('gxWindowedResolution') == "2560x1440" then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
-			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080" then
+			elseif C_CVar.GetCVar('gxFullscreenResolution') == "1920x1080" or C_CVar.GetCVar('gxWindowedResolution') == "1920x1080" then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
-			elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto" then
+			elseif C_CVar.GetCVar('gxFullscreenResolution') == "auto" or C_CVar.GetCVar('gxWindowedResolution') == "auto" then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			else
@@ -1040,13 +1040,13 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["pet"]["power"]["xOffset"] = 0
 			E.db["unitframe"]["units"]["pet"]["disableMouseoverGlow"] = true
 			--E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
-			if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160" then
+			if C_CVar.GetCVar('gxFullscreenResolution') == "3140x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3140x2160" then
 				E.db["unitframe"]["units"]["pet"]["width"] = 161
-			elseif GetCVar('gxFullscreenResolution') == "2560x1440" or GetCVar('gxWindowedResolution') == "2560x1440" then
+			elseif C_CVar.GetCVar('gxFullscreenResolution') == "2560x1440" or C_CVar.GetCVar('gxWindowedResolution') == "2560x1440" then
 				E.db["unitframe"]["units"]["pet"]["width"] = 159
-			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080" then
+			elseif C_CVar.GetCVar('gxFullscreenResolution') == "1920x1080" or C_CVar.GetCVar('gxWindowedResolution') == "1920x1080" then
 				E.db["unitframe"]["units"]["pet"]["width"] = 159
-			elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto" then
+			elseif C_CVar.GetCVar('gxFullscreenResolution') == "auto" or C_CVar.GetCVar('gxWindowedResolution') == "auto" then
 				E.db["unitframe"]["units"]["pet"]["width"] = 159
 			else
 				E.db["unitframe"]["units"]["pet"]["width"] = 159
@@ -1143,22 +1143,22 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid"]["health"]["xOffset"] = 0
 			E.db["unitframe"]["units"]["raid"]["health"]["yOffset"] = 0
-			if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160" then
+			if C_CVar.GetCVar('gxFullscreenResolution') == "3140x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3140x2160" then
 				E.db["unitframe"]["units"]["raid"]["height"] = 32
 				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
 				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
 				E.db["unitframe"]["units"]["raid40"]["height"] = 32
-			elseif GetCVar('gxFullscreenResolution') == "2560x1440" or GetCVar('gxWindowedResolution') == "2560x1440" then
+			elseif C_CVar.GetCVar('gxFullscreenResolution') == "2560x1440" or C_CVar.GetCVar('gxWindowedResolution') == "2560x1440" then
 				E.db["unitframe"]["units"]["raid"]["height"] = 31
 				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
 				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
 				E.db["unitframe"]["units"]["raid40"]["height"] = 31
-			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080" then
+			elseif C_CVar.GetCVar('gxFullscreenResolution') == "1920x1080" or C_CVar.GetCVar('gxWindowedResolution') == "1920x1080" then
 				E.db["unitframe"]["units"]["raid"]["height"] = 31
 				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
 				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
 				E.db["unitframe"]["units"]["raid40"]["height"] = 31
-			elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto" then
+			elseif C_CVar.GetCVar('gxFullscreenResolution') == "auto" or C_CVar.GetCVar('gxWindowedResolution') == "auto" then
 				E.db["unitframe"]["units"]["raid"]["height"] = 31
 				E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
 				E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
@@ -1448,16 +1448,16 @@ if ElvUI_EltreumUI.Classic then
 			E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 			E.db["actionbar"]["bar6"]["alpha"] = 1
 			E.db["actionbar"]["bar6"]["buttonHeight"] = 24
-			if GetCVar('gxFullscreenResolution') == "3140x2160" or GetCVar('gxWindowedResolution') == "3140x2160" then
+			if C_CVar.GetCVar('gxFullscreenResolution') == "3140x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3140x2160" then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
 				E.db["actionbar"]["bar6"]["buttonSize"] = 35
-			elseif GetCVar('gxFullscreenResolution') == "2560x1440" or GetCVar('gxWindowedResolution') == "2560x1440" then
+			elseif C_CVar.GetCVar('gxFullscreenResolution') == "2560x1440" or C_CVar.GetCVar('gxWindowedResolution') == "2560x1440" then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
-			elseif GetCVar('gxFullscreenResolution') == "1920x1080" or GetCVar('gxWindowedResolution') == "1920x1080" then
+			elseif C_CVar.GetCVar('gxFullscreenResolution') == "1920x1080" or C_CVar.GetCVar('gxWindowedResolution') == "1920x1080" then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
-			elseif GetCVar('gxFullscreenResolution') == "auto" or GetCVar('gxWindowedResolution') == "auto" then
+			elseif C_CVar.GetCVar('gxFullscreenResolution') == "auto" or C_CVar.GetCVar('gxWindowedResolution') == "auto" then
 				E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 				E.db["actionbar"]["bar6"]["buttonSize"] = 33
 			else
