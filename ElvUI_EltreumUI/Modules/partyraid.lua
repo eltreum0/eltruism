@@ -20,6 +20,7 @@ function ElvUI_EltreumUI:GroupRoster()
 				name[i], _, _, _, _, _, _, _, _, _, _, _ = GetRaidRosterInfo(i)
 			end
 		elseif IsInGroup() == false then
+			--print("test")
 			name = {}
 			deaththrottle = 0
 			ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for party/raid death
