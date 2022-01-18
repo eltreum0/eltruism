@@ -233,10 +233,11 @@ function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
 	ElvUI_EltreumUI:FriendlyNameplates()
 end
 
-function ElvUI_EltreumUI:UNIT_AURA(unit)
+function ElvUI_EltreumUI:UNIT_AURA(event,unit)
 	if unit and unit ~= 'player' then
 		return
 	elseif unit and unit == 'player' then
+		print(unit)
 		--print(event,unit)
 		ElvUI_EltreumUI:AuraShadows()
 		ElvUI_EltreumUI:UnregisterEvent('UNIT_AURA') --for aura shadows
