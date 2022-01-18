@@ -1215,7 +1215,7 @@ if ElvUI_EltreumUI.TBC then
 						questskins = {
 							order = 36,
 							type = "description",
-							name = "Skin Objective Frame (when Shadow and Light and Windtools are not loaded)",
+							name = "Skin Objective Frame",
 							desc = "Only loads when Shadow and Light and Windtools are not enabled",
 							width = 'full',
 						},
