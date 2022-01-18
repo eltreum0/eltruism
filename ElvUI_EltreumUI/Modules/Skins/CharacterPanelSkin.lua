@@ -505,6 +505,7 @@ function ElvUI_EltreumUI:InspectBg()
 					end
 					if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop)
+						EltruismInspectBgTexture:SetParent(_G.InspectFrame)
 					elseif ElvUI_EltreumUI.Retail then
 						_G.InspectModelFrameBackgroundBotLeft:Hide()
 						_G.InspectModelFrameBackgroundBotRight:Hide()
