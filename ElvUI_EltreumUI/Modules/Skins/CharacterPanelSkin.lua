@@ -464,7 +464,7 @@ end
 local EltruismInspectBg = CreateFrame("Frame", "EltruismInspectBg")
 EltruismInspectBg:SetParent(_G.InspectFrame)
 local EltruismInspectBgTexture = EltruismInspectBg:CreateTexture()
-function ElvUI_EltreumUI:InspectBg()
+function ElvUI_EltreumUI:InspectBg(unit)
 	--local a = IsAddOnLoaded("Blizzard_InspectUI")
 	--if a == false and UnitExists("target") then
 	--	LoadAddOn("Blizzard_InspectUI")
@@ -492,11 +492,15 @@ function ElvUI_EltreumUI:InspectBg()
 			alpha = 0.3
 		end
 		--inspect frame bg
-		if UnitExists("target") and UnitIsPlayer("target") and IsAddOnLoaded("Blizzard_InspectUI") then
-			local _, targetclass = UnitClass("target")
-			if targetclass then
+		--print(unit)
+		if IsAddOnLoaded("Blizzard_InspectUI") then
+			local localizedClass, englishClass, localizedRace, englishRace, sex, name, realm = GetPlayerInfoByGUID(unit)
+			--print(englishClass)
+			--local _, targetclass = UnitClass("target")
+			if englishClass then
 				if _G.InspectFrame then
-					EltruismInspectBgTexture:SetTexture(classBgs[targetclass])
+					--EltruismInspectBgTexture:SetTexture(classBgs[targetclass])
+					EltruismInspectBgTexture:SetTexture(classBgs[englishClass])
 					EltruismInspectBgTexture:SetTexCoord(0, 0.87, 0, 0.60)
 					if alpha ~= nil then
 						EltruismInspectBgTexture:SetAlpha(alpha)
