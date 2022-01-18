@@ -65,20 +65,31 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			end
 
-			_G.PlayerTitleDropDown:Show()
-			_G.PlayerTitleDropDown:ClearAllPoints()
-			_G.PlayerTitleDropDown:SetParent(_G.CharacterModelFrame)
+			if ElvUI_EltreumUI.TBC then
+				--_G.PlayerTitleDropDown:Show()
+				_G.PlayerTitleDropDown:ClearAllPoints()
+				_G.PlayerTitleDropDown:SetParent(_G.CharacterModelFrame)
+				_G.PVPFrameToggleButton:ClearAllPoints()
+				_G.PVPFrameToggleButton:SetPoint('TOP', _G.PVPHonor, 'TOP', 52, 42)
+				_G.PVPFrameToggleButton:SetParent(_G.PVPFrameHonor)
+			elseif ElvUI_EltreumUI.Classic then
+				--_G.CharacterTitleText:Show()
+				_G.CharacterTitleText:ClearAllPoints()
+				_G.CharacterTitleText:SetParent(_G.CharacterModelFrame)
+			end
 			_G.CharacterNameText:ClearAllPoints()
 			_G.CharacterLevelText:ClearAllPoints()
 			_G.CharacterNameText:SetPoint('TOP', _G.CharacterModelFrame, 0, 80)
 			_G.CharacterNameText:SetParent(_G.CharacterModelFrame)
 			_G.CharacterLevelText:SetPoint('TOP', _G.CharacterModelFrame, 0, 60)
 			_G.CharacterLevelText:SetParent(_G.CharacterModelFrame)
-			_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterModelFrame, 0, 40)
+			if ElvUI_EltreumUI.TBC then
+				_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterModelFrame, 0, 40)
+			elseif ElvUI_EltreumUI.Classic then
+				_G.CharacterTitleText:SetPoint('TOP', _G.CharacterModelFrame, 0, 40)
+			end
 
-			_G.PVPFrameToggleButton:ClearAllPoints()
-			_G.PVPFrameToggleButton:SetPoint('TOP', _G.PVPHonor, 'TOP', 52, 42)
-			_G.PVPFrameToggleButton:SetParent(_G.PVPFrameHonor)
+
 
 			_G.CharacterLevelText:SetPoint('TOP', _G.CharacterNameText, 'BOTTOM', 0, -10)
 			_G.PetNameText:SetPoint('TOP', _G.PetModelFrame, 0, 60)
