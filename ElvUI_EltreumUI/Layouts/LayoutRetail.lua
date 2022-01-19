@@ -2646,8 +2646,6 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["player"]["raidicon"]["enable"] = false
 			E.db["unitframe"]["units"]["raid"]["buffIndicator"]["size"] = 12
 
-			--E.db["unitframe"]["units"]["raid"]["buffs"]["anchorPoint"] = "BOTTOMRIGHT"
-			--E.db["unitframe"]["units"]["raid"]["buffs"]["attachTo"] = "DEBUFFS"
 			E.db["unitframe"]["units"]["raid"]["buffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["raid"]["buffs"]["countFontSize"] = 8
 			E.db["unitframe"]["units"]["raid"]["buffs"]["countXOffset"] = 2
@@ -2656,7 +2654,6 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["raid"]["buffs"]["height"] = 15
 			E.db["unitframe"]["units"]["raid"]["buffs"]["keepSizeRatio"] = false
 			E.db["unitframe"]["units"]["raid"]["buffs"]["sizeOverride"] = 20
-			--E.db["unitframe"]["units"]["raid"]["buffs"]["yOffset"] = -5
 
 			E.db["unitframe"]["units"]["raid"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["anchorPoint"] = "CENTER"

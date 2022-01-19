@@ -2065,7 +2065,6 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["player"]["health"]["text_format"] = ""
 			E.db["unitframe"]["units"]["player"]["health"]["xOffset"] = 0
 			E.db["unitframe"]["units"]["player"]["name"]["position"] = "LEFT"
-			E.db["unitframe"]["units"]["target"]["name"]["text_format"] = ""
 			E.db["unitframe"]["units"]["player"]["name"]["text_format"] = ""
 			E.db["unitframe"]["units"]["player"]["name"]["xOffset"] = 3
 			E.db["unitframe"]["units"]["player"]["portrait"]["camDistanceScale"] = 4.2
@@ -2085,6 +2084,13 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["player"]["raidicon"]["enable"] = false
 			E.db["unitframe"]["units"]["raid"]["buffIndicator"]["size"] = 12
 			E.db["unitframe"]["units"]["raid"]["buffs"]["countFont"] = "Kimberley"
+			E.db["unitframe"]["units"]["raid"]["buffs"]["countFontSize"] = 8
+			E.db["unitframe"]["units"]["raid"]["buffs"]["countXOffset"] = 2
+			E.db["unitframe"]["units"]["raid"]["buffs"]["countYOffset"] = -3
+			E.db["unitframe"]["units"]["raid"]["buffs"]["durationPosition"] = "TOP"
+			E.db["unitframe"]["units"]["raid"]["buffs"]["height"] = 15
+			E.db["unitframe"]["units"]["raid"]["buffs"]["keepSizeRatio"] = false
+			E.db["unitframe"]["units"]["raid"]["buffs"]["sizeOverride"] = 20
 			E.db["unitframe"]["units"]["raid"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["anchorPoint"] = "CENTER"
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["attachTo"] = "HEALTH"
