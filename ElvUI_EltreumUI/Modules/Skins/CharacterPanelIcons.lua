@@ -68,7 +68,11 @@ function ElvUI_EltreumUI:PlayerNamepaperdoll()
 		if charactertext == nil then
 			return
 		elseif not charactertext:match("|T") then
-			_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+			if ElvUI_EltreumUI.REtail then
+				_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+			else
+				_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+			end
 		end
 	end
 end
@@ -89,12 +93,10 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 			local levelwidth = CharacterLevelText:GetWidth()
 			local totalgap = levelwidth - textwidth
 			local gapclassic = totalgap/4
-			--local gapretail = totalgap/4
-			classFrame:SetPoint("RIGHT", "CharacterLevelText", -gapclassic, 0)
+			classFrame:SetPoint("RIGHT", "CharacterLevelText", 8-gapclassic, 0)
 
 		elseif ElvUI_EltreumUI.Retail then
 			if (not IsAddOnLoaded("ElvUI_SLE")) or not E.db.sle.armory.character.enable then
-
 
 				hooksecurefunc('PaperDollFrame_SetLevel', function()
 					_G.CharacterFrameTitleText:ClearAllPoints()
