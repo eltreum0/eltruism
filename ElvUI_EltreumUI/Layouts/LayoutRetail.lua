@@ -2364,6 +2364,9 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["boss"]["portrait"]["fullOverlay"] = true
 			E.db["unitframe"]["units"]["boss"]["portrait"]["overlay"] = true
 			E.db["unitframe"]["units"]["boss"]["buffIndicator"]["size"] = 15
+			E.db["unitframe"]["units"]["boss"]["buffs"]["anchorPoint"] = "TOP"
+			E.db["unitframe"]["units"]["boss"]["buffs"]["attachTo"] = "DEBUFFS"
+			E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["boss"]["buffs"]["countXOffset"] = 2
 			E.db["unitframe"]["units"]["boss"]["buffs"]["countYOffset"] = -3
 			E.db["unitframe"]["units"]["boss"]["buffs"]["durationPosition"] = "TOP"
@@ -2371,15 +2374,8 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["boss"]["buffs"]["keepSizeRatio"] = false
 			E.db["unitframe"]["units"]["boss"]["buffs"]["perrow"] = 7
 			E.db["unitframe"]["units"]["boss"]["buffs"]["sizeOverride"] = 30
-			--E.db["unitframe"]["units"]["boss"]["buffs"]["xOffset"] = -5
-			--E.db["unitframe"]["units"]["boss"]["buffs"]["yOffset"] = 16
-			E.db["unitframe"]["units"]["boss"]["buffs"]["anchorPoint"] = "TOP"
-			E.db["unitframe"]["units"]["boss"]["buffs"]["attachTo"] = "DEBUFFS"
-			E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["boss"]["buffs"]["yOffset"] = 0
-
-			--E.db["unitframe"]["units"]["boss"]["debuffs"]["anchorPoint"] = "BOTTOM"
-			--E.db["unitframe"]["units"]["boss"]["debuffs"]["attachTo"] = "BUFFS"
+			E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["boss"]["debuffs"]["countXOffset"] = 2
 			E.db["unitframe"]["units"]["boss"]["debuffs"]["countYOffset"] = -3
 			E.db["unitframe"]["units"]["boss"]["debuffs"]["durationPosition"] = "TOP"
@@ -2387,10 +2383,8 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["boss"]["debuffs"]["keepSizeRatio"] = false
 			E.db["unitframe"]["units"]["boss"]["debuffs"]["perrow"] = 7
 			E.db["unitframe"]["units"]["boss"]["debuffs"]["sizeOverride"] = 30
-			E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["boss"]["debuffs"]["xOffset"] = -1
 			E.db["unitframe"]["units"]["boss"]["debuffs"]["yOffset"] = -12
-
 			E.db["unitframe"]["units"]["focus"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["focus"]["healPrediction"]["absorbStyle"] = "REVERSED"
 			E.db["unitframe"]["units"]["focus"]["CombatIcon"]["xOffset"] = -87
