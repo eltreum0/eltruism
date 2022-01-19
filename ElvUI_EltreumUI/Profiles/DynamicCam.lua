@@ -30,7 +30,7 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 						["incAddDifference"] = 2,
 					},
 					["advanced"] = true,
-					["zoomRestoreSetting"] = "always",
+					["version"] = 2,
 					["situations"] = {
 						["303"] = {
 							["view"] = {
@@ -58,17 +58,41 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 							["enabled"] = false,
 						},
 						["006"] = {
+							["enabled"] = false,
 						},
 						["302"] = {
 						},
-						["031"] = {
+						["020"] = {
 							["enabled"] = false,
+							["situationSettings"] = {
+								["cvars"] = {
+									["test_cameraDynamicPitch"] = 0,
+									["test_cameraOverShoulder"] = 0,
+								},
+							},
+						},
+						["060"] = {
+							["enabled"] = false,
+							["situationSettings"] = {
+								["cvars"] = {
+									["test_cameraOverShoulder"] = 0,
+									["test_cameraDynamicPitch"] = 0,
+								},
+							},
 						},
 						["002"] = {
+							["cameraActions"] = {
+								["timeIsMax"] = false,
+								["zoomValue"] = 8,
+								["zoomSetting"] = "in",
+							},
 							["situationSettings"] = {
 								["cvars"] = {
 									["test_cameraOverShoulder"] = 0,
 								},
+							},
+							["cameraCVars"] = {
+								["test_cameraTargetFocusInteractEnable"] = 1,
 							},
 							["viewZoom"] = {
 								["enabled"] = true,
@@ -77,7 +101,11 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 								["zoomValue"] = 15,
 							},
 						},
-						["060"] = {
+						["034"] = {
+							["enabled"] = false,
+						},
+						["030"] = {
+							["enabled"] = false,
 							["situationSettings"] = {
 								["cvars"] = {
 									["test_cameraOverShoulder"] = 0,
@@ -94,14 +122,8 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 								},
 							},
 						},
-						["030"] = {
+						["021"] = {
 							["enabled"] = false,
-							["situationSettings"] = {
-								["cvars"] = {
-									["test_cameraOverShoulder"] = 0,
-									["test_cameraDynamicPitch"] = 0,
-								},
-							},
 						},
 						["301"] = {
 							["view"] = {
@@ -111,8 +133,8 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 							},
 							["cameraActions"] = {
 								["timeIsMax"] = false,
-								["zoomSetting"] = "in",
 								["zoomValue"] = 2,
+								["zoomSetting"] = "in",
 							},
 							["viewZoom"] = {
 								["enabled"] = true,
@@ -128,10 +150,17 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 							},
 						},
 						["005"] = {
+							["cameraActions"] = {
+								["timeIsMax"] = false,
+								["zoomSetting"] = "in",
+							},
 							["situationSettings"] = {
 								["cvars"] = {
 									["test_cameraOverShoulder"] = 0,
 								},
+							},
+							["cameraCVars"] = {
+								["test_cameraTargetFocusInteractEnable"] = 1,
 							},
 							["viewZoom"] = {
 								["enabled"] = true,
@@ -140,35 +169,24 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 								["zoomValue"] = 14,
 							},
 						},
-						["101"] = {
-							["cameraActions"] = {
-								["rotateBack"] = true,
-								["transitionTime"] = 1.5,
-								["zoomValue"] = 2,
-								["rotate"] = true,
-								["timeIsMax"] = false,
-								["zoomSetting"] = "in",
-							},
-							["rotation"] = {
-								["enabled"] = true,
-								["rotateBackTime"] = 0.5,
-								["rotationTime"] = 0.5,
-								["rotateBack"] = false,
-							},
-							["view"] = {
-								["enabled"] = true,
-								["viewNumber"] = 2,
-							},
+						["031"] = {
+							["enabled"] = false,
 						},
 						["201"] = {
 						},
-						["020"] = {
-							["enabled"] = false,
+						["004"] = {
 							["situationSettings"] = {
 								["cvars"] = {
-									["test_cameraDynamicPitch"] = 0,
 									["test_cameraOverShoulder"] = 0,
 								},
+							},
+							["viewZoom"] = {
+								["enabled"] = true,
+								["zoomTransitionTime"] = 1.5,
+								["zoomValue"] = 15,
+							},
+							["cameraCVars"] = {
+								["test_cameraTargetFocusInteractEnable"] = 1,
 							},
 						},
 						["001"] = {
@@ -183,6 +201,9 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 								["zoomType"] = "out",
 								["zoomValue"] = 20,
 							},
+							["cameraCVars"] = {
+								["test_cameraTargetFocusInteractEnable"] = 1,
+							},
 						},
 						["024"] = {
 							["enabled"] = false,
@@ -190,17 +211,8 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 						["051"] = {
 							["enabled"] = false,
 						},
-						["004"] = {
-							["situationSettings"] = {
-								["cvars"] = {
-									["test_cameraOverShoulder"] = 0,
-								},
-							},
-							["viewZoom"] = {
-								["enabled"] = true,
-								["zoomTransitionTime"] = 1.5,
-								["zoomValue"] = 15,
-							},
+						["061"] = {
+							["enabled"] = false,
 						},
 						["300"] = {
 							["view"] = {
@@ -210,8 +222,8 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 							},
 							["cameraActions"] = {
 								["timeIsMax"] = false,
-								["zoomValue"] = 2,
 								["zoomSetting"] = "in",
+								["zoomValue"] = 2,
 							},
 							["situationSettings"] = {
 								["cvars"] = {
@@ -240,17 +252,12 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 							["executeOnInit"] = "this.spells = {\n  556,     -- Astral Recall\n  3561,    -- Teleport: Stormwind\n  3562,    -- Teleport: Ironforge\n  3563,    -- Teleport: Undercity\n  3565,    -- Teleport: Darnassus\n  3566,    -- Teleport: Thunder Bluff\n  3567,    -- Teleport: Orgrimmar\n  8690,    -- Hearthstone\n  32271,   -- Teleport: Exodar\n  32272,   -- Teleport: Silvermoon\n  33690,   -- Teleport: Shattrath\n  35715,   -- Teleport: Shattrath\n  49358,   -- Teleport: Stonard\n  49359,   -- Teleport: Theramore\n  49844,   -- Using Direbrew's Remote\n  50977,   -- Death Gate\n  53140,   -- Teleport: Dalaran - Northrend\n  54406,   -- Teleport: Dalaran\n  75136,   -- Ethereal Portal\n  88342,   -- Teleport: Tol Barad\n  88344,   -- Teleport: Tol Barad\n  94719,   -- The Innkeeper's Daughter\n  120145,  -- Ancient Teleport: Dalaran\n  132621,  -- Teleport: Vale of Eternal Blossoms\n  132627,  -- Teleport: Vale of Eternal Blossoms\n  136508,  -- Dark Portal\n  140295,  -- Kirin Tor Beacon\n  168487,  -- Home Away from Home\n  168499,  -- Home Away from Home\n  171253,  -- Garrison Hearthstone\n  176242,  -- Teleport: Warspear\n  176248,  -- Teleport: Stormshield\n  189838,  -- Teleport to Shipyard\n  192084,  -- Jump to Skyhold\n  192085,  -- Jump to Skyhold\n  193669,  -- Basic Dimensional Rifting\n  193753,  -- Dreamwalk\n  193759,  -- Teleport: Hall of the Guardian\n  196079,  -- Recall (to the sanctuary of Frostwolf Keep)\n  196080,  -- Recall (to the sanctuary of Dun Baldar)\n  216016,  -- Jump to Skyhold\n  222695,  -- Dalaran Hearthstone\n  223805,  -- Advanced Dimensional Rifting\n  224869,  -- Teleport: Dalaran - Broken Isles\n  225428,  -- Town Portal: Shala'nir\n  225434,  -- Town Portal: Sashj'tar\n  225435,  -- Town Portal: Kal'delar\n  225440,  -- Town Portal: Lian'tril\n  225436,  -- Town Portal: Faronaar\n  227334,  -- Flight Master's Whistle\n  231504,  -- [Tome of] Town Portal\n  231505,  -- [Scroll of] Town Portal\n  248906,  -- Vindicaar Teleport Beacon\n  262100,  -- Recall (to your Great Hall)\n  278244,  -- Greatfather Winter's Hearthstone\n  278559,  -- Headless Horseman's Hearthstone\n  281403,  -- Teleport: Boralus\n  281404,  -- Teleport: Dazar'alor\n  285362,  -- Lunar Elder's Hearthstone\n  285424,  -- Peddlefeet's Lovely Hearthstone\n  286031,  -- Noble Gardener's Hearthstone\n  286331,  -- Fire Eater's Hearthstone\n  286353,  -- Brewfest Reveler's Hearthstone\n  298068,  -- Holographic Digitalization Hearthstone\n  308742,  -- Eternal Traveler's Hearthstone\n  312372,  -- Return to Camp\n  326064,  -- Night Fae Hearthstone\n  335671,  -- Scroll of Teleport: Theater of Pain\n  340200,  -- Necrolord Hearthstone\n  126892,  -- Zen Pilgrimage\n  340767,  -- Chromie's Teleportation Scroll  \n  344587,  -- Teleport: Oribos\n  \n}",
 							["cameraActions"] = {
 								["rotateBack"] = true,
-								["transitionTime"] = 1.5,
-								["rotateSpeed"] = 80,
-								["zoomSetting"] = "in",
-								["rotate"] = true,
 								["timeIsMax"] = false,
+								["rotateSpeed"] = 80,
 								["zoomValue"] = 2,
-							},
-							["situationSettings"] = {
-								["cvars"] = {
-									["test_cameraOverShoulder"] = 0,
-								},
+								["rotate"] = true,
+								["transitionTime"] = 1.5,
+								["zoomSetting"] = "in",
 							},
 							["rotation"] = {
 								["enabled"] = true,
@@ -260,25 +267,59 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 								["yawDegrees"] = 270,
 								["rotateBack"] = false,
 							},
+							["situationSettings"] = {
+								["cvars"] = {
+									["test_cameraOverShoulder"] = 0,
+								},
+							},
 						},
 						["100"] = {
+							["cameraActions"] = {
+								["timeIsMax"] = false,
+								["zoomValue"] = 30,
+								["zoomSetting"] = "out",
+							},
+							["cameraCVars"] = {
+								["test_cameraTargetFocusInteractEnable"] = 1,
+							},
 						},
-						["021"] = {
-							["enabled"] = false,
+						["101"] = {
+							["cameraActions"] = {
+								["rotateBack"] = true,
+								["timeIsMax"] = false,
+								["rotateSpeed"] = 3,
+								["zoomSetting"] = "in",
+								["rotate"] = true,
+								["transitionTime"] = 1.5,
+								["zoomValue"] = 2,
+							},
+							["rotation"] = {
+								["enabled"] = true,
+								["rotateBackTime"] = 0.5,
+								["rotationTime"] = 0.5,
+								["rotateBack"] = false,
+							},
+							["view"] = {
+								["enabled"] = true,
+								["viewNumber"] = 2,
+							},
 						},
-						["034"] = {
+						["103"] = {
 							["enabled"] = false,
 						},
 					},
-					["version"] = 2,
+					["zoomRestoreSetting"] = "always",
 					["firstRun"] = false,
 				},
 			},
 		}
 	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		DynamicCamDB = {
+			["profileKeys"] = {
+				[E.mynameRealm] = "Eltreum",
+			},
 			["profiles"] = {
-				["Default"] = {
+				["Eltreum"] = {
 					["reactiveZoom"] = {
 						["enabled"] = true,
 						["maxZoomTime"] = 0.1,
@@ -477,6 +518,5 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 			},
 		}
 	end
-	DynamicCam.db:SetProfile("Default")
 	DynamicCam.db:SetProfile("Eltreum")
 end
