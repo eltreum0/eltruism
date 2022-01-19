@@ -3,6 +3,7 @@
 ___
 ### 2.6.4
 Added an option to toggle the automatic stats in the Character Panel for TBC/Classic\
+Added an option to load the extra media\
 Updated Dynamic Cam profile for Retail\
 Updated DBM profile\
 Updated various addon profile import functions\
