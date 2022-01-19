@@ -10,6 +10,7 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0
 		E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0
 		E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0
+		E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
 		E.db["unitframe"]["units"]["player"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["party"]["colorOverride"] = "FORCE_OFF"
@@ -73,6 +74,7 @@ function ElvUI_EltreumUI:LightMode()
 	E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0
 	E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0
 	E.db["unitframe"]["units"]["player"]["colorOverride"] = "USE_DEFAULT"
+	E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
 	E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
 	E.db["unitframe"]["units"]["party"]["colorOverride"] = "USE_DEFAULT"
 	E.db["unitframe"]["units"]["pet"]["colorOverride"] = "USE_DEFAULT"
@@ -102,8 +104,11 @@ function ElvUI_EltreumUI:LightMode()
 		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
 	end
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
+		--E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+		--E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
+		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
+
 		E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
 	if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then

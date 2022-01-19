@@ -90,6 +90,8 @@ if ElvUI_EltreumUI.Classic then
 		E.db["general"]["objectiveFrameHeight"] = 550
 		E.db["general"]["taintLog"] = false
 
+		E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
+
 		-- Bags
 		E.db["bags"]["bagSize"] = 35
 		E.db["bags"]["bagWidth"] = 412

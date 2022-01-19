@@ -83,6 +83,8 @@ if ElvUI_EltreumUI.TBC then
 		E.db["general"]["valuecolor"]["r"] = valuecolors.r
 		E.db["general"]["vehicleSeatIndicatorSize"] = 76
 
+		E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
+
 		-- Bags
 		E.db["bags"]["bagSize"] = 35
 		E.db["bags"]["bagWidth"] = 412
