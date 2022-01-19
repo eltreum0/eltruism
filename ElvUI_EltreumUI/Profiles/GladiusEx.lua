@@ -556,6 +556,7 @@ function ElvUI_EltreumUI:GetGladiusExProfile()
 			},
 		},
 		["profileKeys"] = {
+			[E.mynameRealm] = "Eltreum",
 		},
 		["profiles"] = {
 			["Eltreum"] = {
