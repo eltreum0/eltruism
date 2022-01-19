@@ -1745,17 +1745,19 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["tank"]["targetsGroup"]["xOffset"] = -3
 			-- end of new assist/tank classic
 			E.db["unitframe"]["units"]["party"]["buffIndicator"]["size"] = 16
-			--E.db["unitframe"]["units"]["party"]["buffs"]["anchorPoint"] = "TOPRIGHT"
+			E.db["unitframe"]["units"]["party"]["buffs"]["anchorPoint"] = "TOP"
 			E.db["unitframe"]["units"]["party"]["buffs"]["clickThrough"] = true
 			E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Kimberley"
-			E.db["unitframe"]["units"]["party"]["buffs"]["countFontOutline"] = "THICKOUTLINE"
 			E.db["unitframe"]["units"]["party"]["buffs"]["countFontSize"] = 14
+			E.db["unitframe"]["units"]["party"]["buffs"]["countXOffset"] = 2
+			E.db["unitframe"]["units"]["party"]["buffs"]["countYOffset"] = -3
+			E.db["unitframe"]["units"]["party"]["buffs"]["durationPosition"] = "TOP"
 			E.db["unitframe"]["units"]["party"]["buffs"]["enable"] = true
+			E.db["unitframe"]["units"]["party"]["buffs"]["height"] = 25
+			E.db["unitframe"]["units"]["party"]["buffs"]["keepSizeRatio"] = false
 			E.db["unitframe"]["units"]["party"]["buffs"]["perrow"] = 6
 			E.db["unitframe"]["units"]["party"]["buffs"]["sizeOverride"] = 24
 			E.db["unitframe"]["units"]["party"]["buffs"]["yOffset"] = 1
-			E.db["unitframe"]["units"]["party"]["buffs"]["anchorPoint"] = "TOP"
-
 			E.db["unitframe"]["units"]["party"]["debuffs"]["anchorPoint"] = "TOP"
 			E.db["unitframe"]["units"]["party"]["debuffs"]["attachTo"] = "BUFFS"
 			E.db["unitframe"]["units"]["party"]["debuffs"]["countFont"] = "Kimberley"
@@ -1770,7 +1772,6 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["party"]["debuffs"]["perrow"] = 6
 			E.db["unitframe"]["units"]["party"]["debuffs"]["sizeOverride"] = 24
 			E.db["unitframe"]["units"]["party"]["debuffs"]["yOffset"] = 1
-
 			E.db["unitframe"]["units"]["party"]["groupBy"] = "ROLE"
 			E.db["unitframe"]["units"]["party"]["healPrediction"]["absorbStyle"] = "REVERSED"
 			E.db["unitframe"]["units"]["party"]["healPrediction"]["enable"] = true

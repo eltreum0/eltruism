@@ -2430,22 +2430,19 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["focus"]["power"]["width"] = "spaced"
 			E.db["unitframe"]["units"]["focus"]["power"]["xOffset"] = -7
 			E.db["unitframe"]["units"]["focustarget"]["colorOverride"] = "FORCE_OFF"
-			E.db["unitframe"]["units"]["party"]["buffs"]["countFontOutline"] = "OUTLINE"
-			E.db["unitframe"]["units"]["party"]["buffs"]["enable"] = true
-			E.db["unitframe"]["units"]["party"]["buffIndicator"]["size"] = 20
 			E.db["unitframe"]["units"]["party"]["buffs"]["anchorPoint"] = "TOP"
+			E.db["unitframe"]["units"]["party"]["buffs"]["clickThrough"] = true
 			E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Kimberley"
+			E.db["unitframe"]["units"]["party"]["buffs"]["countFontSize"] = 14
 			E.db["unitframe"]["units"]["party"]["buffs"]["countXOffset"] = 2
 			E.db["unitframe"]["units"]["party"]["buffs"]["countYOffset"] = -3
 			E.db["unitframe"]["units"]["party"]["buffs"]["durationPosition"] = "TOP"
+			E.db["unitframe"]["units"]["party"]["buffs"]["enable"] = true
 			E.db["unitframe"]["units"]["party"]["buffs"]["height"] = 25
 			E.db["unitframe"]["units"]["party"]["buffs"]["keepSizeRatio"] = false
 			E.db["unitframe"]["units"]["party"]["buffs"]["perrow"] = 6
-			--E.db["unitframe"]["units"]["party"]["buffs"]["sizeOverride"] = 30
 			E.db["unitframe"]["units"]["party"]["buffs"]["sizeOverride"] = 24
 			E.db["unitframe"]["units"]["party"]["buffs"]["yOffset"] = 1
-
-
 			E.db["unitframe"]["units"]["party"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["party"]["debuffs"]["anchorPoint"] = "TOP"
 			E.db["unitframe"]["units"]["party"]["debuffs"]["attachTo"] = "BUFFS"
