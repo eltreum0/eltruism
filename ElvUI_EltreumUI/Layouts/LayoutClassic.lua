@@ -1745,7 +1745,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["tank"]["targetsGroup"]["xOffset"] = -3
 			-- end of new assist/tank classic
 			E.db["unitframe"]["units"]["party"]["buffIndicator"]["size"] = 16
-			E.db["unitframe"]["units"]["party"]["buffs"]["anchorPoint"] = "TOPRIGHT"
+			--E.db["unitframe"]["units"]["party"]["buffs"]["anchorPoint"] = "TOPRIGHT"
 			E.db["unitframe"]["units"]["party"]["buffs"]["clickThrough"] = true
 			E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["party"]["buffs"]["countFontOutline"] = "THICKOUTLINE"
@@ -1754,6 +1754,8 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["party"]["buffs"]["perrow"] = 6
 			E.db["unitframe"]["units"]["party"]["buffs"]["sizeOverride"] = 24
 			E.db["unitframe"]["units"]["party"]["buffs"]["yOffset"] = 1
+			E.db["unitframe"]["units"]["party"]["buffs"]["anchorPoint"] = "TOP"
+
 			E.db["unitframe"]["units"]["party"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["party"]["debuffs"]["anchorPoint"] = "TOPRIGHT"
 			E.db["unitframe"]["units"]["party"]["debuffs"]["attachTo"] = "BUFFS"
@@ -1761,6 +1763,9 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["party"]["debuffs"]["desaturate"] = false
 			E.db["unitframe"]["units"]["party"]["debuffs"]["perrow"] = 6
 			E.db["unitframe"]["units"]["party"]["debuffs"]["sizeOverride"] = 24
+			E.db["unitframe"]["units"]["party"]["debuffs"]["spacing"] = -1
+			E.db["unitframe"]["units"]["party"]["debuffs"]["yOffset"] = 1
+
 			E.db["unitframe"]["units"]["party"]["groupBy"] = "ROLE"
 			E.db["unitframe"]["units"]["party"]["healPrediction"]["absorbStyle"] = "REVERSED"
 			E.db["unitframe"]["units"]["party"]["healPrediction"]["enable"] = true
@@ -1889,6 +1894,7 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["raid"]["buffIndicator"]["size"] = 12
 			E.db["unitframe"]["units"]["raid"]["buffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["raid"]["colorOverride"] = "FORCE_OFF"
+
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["anchorPoint"] = "CENTER"
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["attachTo"] = "HEALTH"
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["countFont"] = "Kimberley"
@@ -1899,9 +1905,12 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["priority"] = "Blacklist,Boss,CCDebuffs,Dispellable,Whitelist"
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["sizeOverride"] = 15
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["spacing"] = 0
-			E.db["unitframe"]["units"]["raid"]["debuffs"]["xOffset"] = 40
-			E.db["unitframe"]["units"]["raid"]["debuffs"]["yOffset"] = -5
+			--E.db["unitframe"]["units"]["raid"]["debuffs"]["xOffset"] = 40
+			--E.db["unitframe"]["units"]["raid"]["debuffs"]["yOffset"] = -5
 			E.db["unitframe"]["units"]["raid"]["fader"]["minAlpha"] = 0.8
+			E.db["unitframe"]["units"]["raid"]["debuffs"]["xOffset"] = -75
+			E.db["unitframe"]["units"]["raid"]["debuffs"]["yOffset"] = 5
+
 			E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 1
 			E.db["unitframe"]["units"]["raid"]["healPrediction"]["absorbStyle"] = "REVERSED"
 			E.db["unitframe"]["units"]["raid"]["healPrediction"]["enable"] = true
@@ -1953,8 +1962,12 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["priority"] = "Blacklist,Boss,CCDebuffs,Dispellable,Whitelist"
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["sizeOverride"] = 15
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["spacing"] = 0
-			E.db["unitframe"]["units"]["raid40"]["debuffs"]["xOffset"] = 25
-			E.db["unitframe"]["units"]["raid40"]["debuffs"]["yOffset"] = 5
+			--E.db["unitframe"]["units"]["raid40"]["debuffs"]["xOffset"] = 25
+			--E.db["unitframe"]["units"]["raid40"]["debuffs"]["yOffset"] = 5
+			E.db["unitframe"]["units"]["raid40"]["debuffs"]["growthX"] = "LEFT"
+			E.db["unitframe"]["units"]["raid40"]["debuffs"]["xOffset"] = -45
+			E.db["unitframe"]["units"]["raid40"]["debuffs"]["yOffset"] = 8
+
 			E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 10
 			E.db["unitframe"]["units"]["raid40"]["healPrediction"]["absorbStyle"] = "REVERSED"
 			E.db["unitframe"]["units"]["raid40"]["healPrediction"]["enable"] = true
@@ -2010,14 +2023,19 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["target"]["buffs"]["anchorPoint"] = "TOPLEFT"
 			E.db["unitframe"]["units"]["target"]["buffs"]["attachTo"] = "DEBUFFS"
 			E.db["unitframe"]["units"]["target"]["buffs"]["countFont"] = "Kimberley"
-			E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = false
+			--E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = false
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal"
+			E.db["unitframe"]["units"]["target"]["buffs"]["countFont"] = "Kimberley"
+			E.db["unitframe"]["units"]["target"]["buffs"]["growthX"] = "RIGHT"
+
 			E.db["unitframe"]["units"]["target"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["target"]["debuffs"]["anchorPoint"] = "TOPLEFT"
 			E.db["unitframe"]["units"]["target"]["debuffs"]["attachTo"] = "FRAME"
 			E.db["unitframe"]["units"]["target"]["debuffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["target"]["debuffs"]["maxDuration"] = 0
 			E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
+			E.db["unitframe"]["units"]["target"]["debuffs"]["growthX"] = "RIGHT"
+
 			E.db["unitframe"]["units"]["target"]["fader"]["enable"] = false
 			E.db["unitframe"]["units"]["target"]["healPrediction"]["absorbStyle"] = "REVERSED"
 			E.db["unitframe"]["units"]["target"]["healPrediction"]["anchorPoint"] = "CENTER"
