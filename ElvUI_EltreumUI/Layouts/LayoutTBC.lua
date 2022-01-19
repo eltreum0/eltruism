@@ -2244,13 +2244,16 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["target"]["castbar"]["xOffsetText"] = 2
 			E.db["unitframe"]["units"]["target"]["castbar"]["yOffsetText"] = 1
 			E.db["unitframe"]["units"]["target"]["colorOverride"] = "FORCE_OFF"
-			E.db["unitframe"]["units"]["target"]["debuffs"]["anchorPoint"] = "TOPLEFT"
+			--E.db["unitframe"]["units"]["target"]["debuffs"]["anchorPoint"] = "TOPLEFT"
 			--E.db["unitframe"]["units"]["target"]["debuffs"]["attachTo"] = "FRAME"
 			E.db["unitframe"]["units"]["target"]["debuffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["target"]["debuffs"]["maxDuration"] = 0
 			E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
 			E.db["unitframe"]["units"]["target"]["debuffs"]["growthX"] = "RIGHT"
 			E.db["unitframe"]["units"]["target"]["debuffs"]["maxDuration"] = 0
+			E.db["unitframe"]["units"]["target"]["debuffs"]["anchorPoint"] = "TOP"
+			E.db["unitframe"]["units"]["target"]["debuffs"]["numrows"] = 3
+
 
 			E.db["unitframe"]["units"]["target"]["fader"]["enable"] = false
 			E.db["unitframe"]["units"]["target"]["healPrediction"]["absorbStyle"] = "REVERSED"

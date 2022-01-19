@@ -2848,12 +2848,16 @@ if ElvUI_EltreumUI.Retail then
 			--E.db["unitframe"]["units"]["target"]["debuffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["target"]["debuffs"]["maxDuration"] = 0
 			E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
-			E.db["unitframe"]["units"]["target"]["debuffs"]["anchorPoint"] = "BOTTOMRIGHT"
+
 			E.db["unitframe"]["units"]["target"]["debuffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["target"]["debuffs"]["countFontOutline"] = "OUTLINE"
 			E.db["unitframe"]["units"]["target"]["debuffs"]["height"] = 25
 			E.db["unitframe"]["units"]["target"]["debuffs"]["keepSizeRatio"] = false
 			E.db["unitframe"]["units"]["target"]["debuffs"]["sizeOverride"] = 30
+
+			E.db["unitframe"]["units"]["target"]["debuffs"]["anchorPoint"] = "TOP"
+			E.db["unitframe"]["units"]["target"]["debuffs"]["growthX"] = "RIGHT"
+			E.db["unitframe"]["units"]["target"]["debuffs"]["numrows"] = 3
 
 			E.db["unitframe"]["units"]["target"]["fader"]["enable"] = false
 			E.db["unitframe"]["units"]["target"]["healPrediction"]["absorbStyle"] = "REVERSED"
