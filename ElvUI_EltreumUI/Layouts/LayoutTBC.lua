@@ -2215,12 +2215,18 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = -7
 			E.db["unitframe"]["units"]["target"]["aurabar"]["spacing"] = 1
 			E.db["unitframe"]["units"]["target"]["aurabar"]["yOffset"] = 1
-			E.db["unitframe"]["units"]["target"]["buffs"]["anchorPoint"] = "TOPLEFT"
-			E.db["unitframe"]["units"]["target"]["buffs"]["attachTo"] = "DEBUFFS"
+
 			E.db["unitframe"]["units"]["target"]["buffs"]["countFont"] = "Kimberley"
-			E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = false
-			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal"
+			E.db["unitframe"]["units"]["target"]["buffs"]["anchorPoint"] = "TOP"
+			E.db["unitframe"]["units"]["target"]["buffs"]["countXOffset"] = -3
 			E.db["unitframe"]["units"]["target"]["buffs"]["growthX"] = "RIGHT"
+			E.db["unitframe"]["units"]["target"]["buffs"]["height"] = 25
+			E.db["unitframe"]["units"]["target"]["buffs"]["keepSizeRatio"] = false
+			E.db["unitframe"]["units"]["target"]["buffs"]["numrows"] = 3
+			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal"
+			E.db["unitframe"]["units"]["target"]["buffs"]["sizeOverride"] = 30
+			E.db["unitframe"]["units"]["target"]["buffs"]["sortDirection"] = "ASCENDING"
+
 
 			E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 1
 			E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 1
