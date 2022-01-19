@@ -2141,18 +2141,17 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raid40"]["buffIndicator"]["size"] = 12
 			E.db["unitframe"]["units"]["raid40"]["buffs"]["sizeOverride"] = 17
 			E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "FORCE_OFF"
+
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["anchorPoint"] = "CENTER"
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["attachTo"] = "HEALTH"
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["countFontOutline"] = "THICKOUTLINE"
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["countFontSize"] = 10
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["enable"] = true
+			E.db["unitframe"]["units"]["raid40"]["debuffs"]["growthX"] = "LEFT"
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["priority"] = "Blacklist,Boss,CCDebuffs,Dispellable,Whitelist"
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["sizeOverride"] = 15
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["spacing"] = 0
-			--E.db["unitframe"]["units"]["raid40"]["debuffs"]["xOffset"] = 25
-			--E.db["unitframe"]["units"]["raid40"]["debuffs"]["yOffset"] = 5
-			E.db["unitframe"]["units"]["raid40"]["debuffs"]["growthX"] = "LEFT"
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["xOffset"] = -45
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["yOffset"] = 8
 
@@ -2206,7 +2205,6 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["yOffset"] = 3
 			E.db["unitframe"]["units"]["raidpet"]["verticalSpacing"] = 0
 			E.db["unitframe"]["units"]["raidpet"]["visibility"] = "[@raid6,exists] show; hide"
-
 			E.db["unitframe"]["units"]["target"]["CombatIcon"]["anchorPoint"] = "TOPLEFT"
 			E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["b"] = 1
 			E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["g"] = 1
@@ -2215,7 +2213,6 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = -7
 			E.db["unitframe"]["units"]["target"]["aurabar"]["spacing"] = 1
 			E.db["unitframe"]["units"]["target"]["aurabar"]["yOffset"] = 1
-
 			E.db["unitframe"]["units"]["target"]["buffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["target"]["buffs"]["anchorPoint"] = "TOP"
 			E.db["unitframe"]["units"]["target"]["buffs"]["countXOffset"] = -3
@@ -2226,8 +2223,6 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal"
 			E.db["unitframe"]["units"]["target"]["buffs"]["sizeOverride"] = 30
 			E.db["unitframe"]["units"]["target"]["buffs"]["sortDirection"] = "ASCENDING"
-
-
 			E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 1
 			E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 1
 			E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 1

@@ -1959,15 +1959,12 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["countFontOutline"] = "THICKOUTLINE"
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["countFontSize"] = 10
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["enable"] = true
+			E.db["unitframe"]["units"]["raid40"]["debuffs"]["growthX"] = "LEFT"
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["priority"] = "Blacklist,Boss,CCDebuffs,Dispellable,Whitelist"
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["sizeOverride"] = 15
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["spacing"] = 0
-			--E.db["unitframe"]["units"]["raid40"]["debuffs"]["xOffset"] = 25
-			--E.db["unitframe"]["units"]["raid40"]["debuffs"]["yOffset"] = 5
-			E.db["unitframe"]["units"]["raid40"]["debuffs"]["growthX"] = "LEFT"
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["xOffset"] = -45
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["yOffset"] = 8
-
 			E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 10
 			E.db["unitframe"]["units"]["raid40"]["healPrediction"]["absorbStyle"] = "REVERSED"
 			E.db["unitframe"]["units"]["raid40"]["healPrediction"]["enable"] = true
@@ -2031,8 +2028,6 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal"
 			E.db["unitframe"]["units"]["target"]["buffs"]["sizeOverride"] = 30
 			E.db["unitframe"]["units"]["target"]["buffs"]["sortDirection"] = "ASCENDING"
-
-			--E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = false
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal"
 			E.db["unitframe"]["units"]["target"]["buffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["target"]["buffs"]["growthX"] = "RIGHT"
@@ -2044,7 +2039,6 @@ if ElvUI_EltreumUI.Classic then
 			E.db["unitframe"]["units"]["target"]["debuffs"]["growthX"] = "RIGHT"
 			E.db["unitframe"]["units"]["target"]["debuffs"]["anchorPoint"] = "TOP"
 			E.db["unitframe"]["units"]["target"]["debuffs"]["numrows"] = 3
-
 			E.db["unitframe"]["units"]["target"]["fader"]["enable"] = false
 			E.db["unitframe"]["units"]["target"]["healPrediction"]["absorbStyle"] = "REVERSED"
 			E.db["unitframe"]["units"]["target"]["healPrediction"]["anchorPoint"] = "CENTER"
