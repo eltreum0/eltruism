@@ -2662,26 +2662,20 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["anchorPoint"] = "CENTER"
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["attachTo"] = "HEALTH"
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["countFont"] = "Kimberley"
-			E.db["unitframe"]["units"]["raid"]["debuffs"]["countFontOutline"] = "OUTLINE"
+			E.db["unitframe"]["units"]["raid"]["debuffs"]["countFontSize"] = 8
+			E.db["unitframe"]["units"]["raid"]["debuffs"]["countXOffset"] = 2
+			E.db["unitframe"]["units"]["raid"]["debuffs"]["countYOffset"] = -3
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["desaturate"] = false
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["enable"] = true
+			E.db["unitframe"]["units"]["raid"]["debuffs"]["growthY"] = "DOWN"
+			E.db["unitframe"]["units"]["raid"]["debuffs"]["height"] = 15
+			E.db["unitframe"]["units"]["raid"]["debuffs"]["keepSizeRatio"] = false
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["perrow"] = 5
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["priority"] = "Blacklist,Boss,CCDebuffs,Dispellable,Whitelist"
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["sizeOverride"] = 15
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["spacing"] = 0
-			--E.db["unitframe"]["units"]["raid"]["debuffs"]["xOffset"] = 40
-			--E.db["unitframe"]["units"]["raid"]["debuffs"]["yOffset"] = -5
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["xOffset"] = -75
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["yOffset"] = 5
-
-			E.db["unitframe"]["units"]["raid"]["debuffs"]["countFontSize"] = 8
-			E.db["unitframe"]["units"]["raid"]["debuffs"]["countXOffset"] = 2
-			E.db["unitframe"]["units"]["raid"]["debuffs"]["countYOffset"] = -3
-			E.db["unitframe"]["units"]["raid"]["debuffs"]["growthY"] = "DOWN"
-			E.db["unitframe"]["units"]["raid"]["debuffs"]["height"] = 15
-			E.db["unitframe"]["units"]["raid"]["debuffs"]["keepSizeRatio"] = false
-			E.db["unitframe"]["units"]["raid"]["debuffs"]["sizeOverride"] = 15
-
 			E.db["unitframe"]["units"]["raid"]["fader"]["minAlpha"] = 0.8
 			E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 10
 			E.db["unitframe"]["units"]["raid"]["healPrediction"]["absorbStyle"] = "REVERSED"
@@ -2705,7 +2699,6 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["raid"]["raidicon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["raid"]["raidicon"]["size"] = 12
 			E.db["unitframe"]["units"]["raid"]["raidicon"]["yOffset"] = 0
-
 			E.db["unitframe"]["units"]["raid"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
 			--E.db["unitframe"]["units"]["raid"]["rdebuffs"]["fontSize"] = 12
 			--E.db["unitframe"]["units"]["raid"]["rdebuffs"]["size"] = 20
@@ -2717,7 +2710,6 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["raid"]["rdebuffs"]["size"] = 20
 			E.db["unitframe"]["units"]["raid"]["rdebuffs"]["stack"]["xOffset"] = 2
 			E.db["unitframe"]["units"]["raid"]["rdebuffs"]["stack"]["yOffset"] = -3
-
 			E.db["unitframe"]["units"]["raid"]["readycheckIcon"]["attachTo"] = "CENTER"
 			E.db["unitframe"]["units"]["raid"]["resurrectIcon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["raid"]["resurrectIcon"]["size"] = 20
@@ -2732,7 +2724,6 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["raid40"]["buffIndicator"]["size"] = 12
 			E.db["unitframe"]["units"]["raid40"]["buffs"]["sizeOverride"] = 17
 			E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "FORCE_OFF"
-
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["anchorPoint"] = "CENTER"
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["attachTo"] = "HEALTH"
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["countFont"] = "Kimberley"
@@ -2745,7 +2736,6 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["spacing"] = 0
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["xOffset"] = -45
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["yOffset"] = 8
-
 			E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 10
 			E.db["unitframe"]["units"]["raid40"]["healPrediction"]["absorbStyle"] = "REVERSED"
 			E.db["unitframe"]["units"]["raid40"]["healPrediction"]["enable"] = true
