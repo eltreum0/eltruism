@@ -1,6 +1,14 @@
 ### 🌌 Next Version 
 **The future is uncertain**
 ___
+### 2.6.4
+Added an option to toggle the automatic stats in the Character Panel for TBC/Classic\
+Updated Dynamic Cam profile for Retail\
+Updated DBM profile\
+Updated various addon profile import functions\
+Fixed the Player Title Dropdown in TBC/Classic\
+Fixed Healer Layout Buffs and Debuffs\
+___
 ### 2.6.3
 Added Power Prediction to Nameplate Power Bar\
 Added an option to show Cursor outside of combat\
