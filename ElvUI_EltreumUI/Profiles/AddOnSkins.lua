@@ -23,9 +23,9 @@ function ElvUI_EltreumUI:GetASProfile()
 		1, -- [4]
 	}
 	AS.db["StatusBarColor"] = {
-		0.4, -- [1]
-		0.4, -- [2]
-		0.4, -- [3]
+		1, -- [1]
+		1, -- [2]
+		1, -- [3]
 		1, -- [4]
 	}
 	AS.db["SelectedColor"] = {
