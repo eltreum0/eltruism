@@ -13,7 +13,6 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		LoadAddOn("BigWigs_Plugins")
 	end
 
-
 	if ElvUI_EltreumUI.Retail then
 
 		--create profile
@@ -134,7 +133,8 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		}
 
 		-- Set the profile
-		BigWigs.db:SetProfile("Eltreum")
+		BigWigs3DB["profileKeys"] = {[E.mynameRealm] = "Eltreum",
+		}
 	end
 	if ElvUI_EltreumUI.Classic then
 		BigWigsClassicDB = {}
@@ -221,7 +221,12 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["showBar"] = true,
 		}
 
-		BigWigs.db:SetProfile("Eltreum")
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Wipe"] = {["profiles"] = {["Eltreum"] = {["wipeSound"] = "We are too late",},},
+		}
+
+		--set the profile
+		BigWigsClassicDB["profileKeys"] = {[E.mynameRealm] = "Eltreum",
+		}
 	end
 	if ElvUI_EltreumUI.TBC then
 		--create profile
@@ -305,7 +310,8 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				-100, -- [4]
 			},
 		}
-
-		BigWigs.db:SetProfile("Eltreum")
+		--set the profile
+		BigWigsClassicDB["profileKeys"] = {[E.mynameRealm] = "Eltreum",
+		}
 	end
 end
