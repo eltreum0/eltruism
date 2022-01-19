@@ -5,6 +5,7 @@ local unpack = unpack
 function ElvUI_EltreumUI:GetGladdyProfile()
 	GladdyXZ = {
 		["profileKeys"] = {
+			[E.mynameRealm] = "Eltreum",
 		},
 		["profiles"] = {
 			["Eltreum"] = {

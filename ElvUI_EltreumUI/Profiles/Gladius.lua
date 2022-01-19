@@ -5,6 +5,7 @@ local unpack = unpack
 function ElvUI_EltreumUI:GetGladiusProfile()
 	Gladius2DB = {
 		["profileKeys"] = {
+			[E.mynameRealm] = "Eltreum",
 		},
 		["profiles"] = {
 			["Eltreum"] = {
