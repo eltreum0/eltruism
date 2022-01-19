@@ -1904,18 +1904,20 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["party"]["buffs"]["sizeOverride"] = 24
 			E.db["unitframe"]["units"]["party"]["buffs"]["yOffset"] = 1
 			E.db["unitframe"]["units"]["party"]["buffs"]["anchorPoint"] = "TOP"
-
-			E.db["unitframe"]["units"]["party"]["colorOverride"] = "FORCE_OFF"
-			--E.db["unitframe"]["units"]["party"]["debuffs"]["anchorPoint"] = "TOPRIGHT"
+			E.db["unitframe"]["units"]["party"]["debuffs"]["anchorPoint"] = "TOP"
 			E.db["unitframe"]["units"]["party"]["debuffs"]["attachTo"] = "BUFFS"
 			E.db["unitframe"]["units"]["party"]["debuffs"]["countFont"] = "Kimberley"
+			E.db["unitframe"]["units"]["party"]["debuffs"]["countFontSize"] = 10
+			E.db["unitframe"]["units"]["party"]["debuffs"]["countXOffset"] = 2
+			E.db["unitframe"]["units"]["party"]["debuffs"]["countYOffset"] = -3
 			E.db["unitframe"]["units"]["party"]["debuffs"]["desaturate"] = false
+			E.db["unitframe"]["units"]["party"]["debuffs"]["durationPosition"] = "TOP"
+			E.db["unitframe"]["units"]["party"]["debuffs"]["height"] = 25
+			E.db["unitframe"]["units"]["party"]["debuffs"]["keepSizeRatio"] = false
+			E.db["unitframe"]["units"]["party"]["debuffs"]["numrows"] = 2
 			E.db["unitframe"]["units"]["party"]["debuffs"]["perrow"] = 6
 			E.db["unitframe"]["units"]["party"]["debuffs"]["sizeOverride"] = 24
-			E.db["unitframe"]["units"]["party"]["debuffs"]["anchorPoint"] = "TOP"
-			E.db["unitframe"]["units"]["party"]["debuffs"]["spacing"] = -1
 			E.db["unitframe"]["units"]["party"]["debuffs"]["yOffset"] = 1
-
 			E.db["unitframe"]["units"]["party"]["groupBy"] = "ROLE"
 			E.db["unitframe"]["units"]["party"]["healPrediction"]["absorbStyle"] = "REVERSED"
 			E.db["unitframe"]["units"]["party"]["healPrediction"]["enable"] = true
@@ -2025,7 +2027,6 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["player"]["aurabar"]["spacing"] = 1
 			E.db["unitframe"]["units"]["player"]["aurabar"]["yOffset"] = 1
 			E.db["unitframe"]["units"]["player"]["buffs"]["countFont"] = "Kimberley"
-
 			E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorBackdrop"]["a"] = 0
 			E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0.50196078431373
 			E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0.50196078431373
@@ -2050,7 +2051,6 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["player"]["castbar"]["ticks"] = false
 			E.db["unitframe"]["units"]["player"]["castbar"]["timeToHold"] = 0.6
 			E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 267
-
 			E.db["unitframe"]["units"]["player"]["classbar"]["fill"] = "spaced"
 			E.db["unitframe"]["units"]["player"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["player"]["debuffs"]["anchorPoint"] = "BOTTOMLEFT"
