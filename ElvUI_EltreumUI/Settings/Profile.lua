@@ -322,6 +322,14 @@ P.ElvUI_EltreumUI = {
 		width = 3,
 	},
 
+	media = {
+		font = false,
+		border = false,
+		statusbar = false,
+		texture = false,
+		sound = false,
+	},
+
 	otherstuff ={
 		worldtextscale = 1,
 		arenabuffs = false,
