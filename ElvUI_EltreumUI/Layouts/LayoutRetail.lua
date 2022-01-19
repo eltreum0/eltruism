@@ -2633,7 +2633,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["raid"]["buffs"]["keepSizeRatio"] = false
 			E.db["unitframe"]["units"]["raid"]["buffs"]["sizeOverride"] = 20
 			E.db["unitframe"]["units"]["raid"]["colorOverride"] = "FORCE_OFF"
-			E.db["unitframe"]["units"]["raid"]["debuffs"]["anchorPoint"] = "CENTER"
+			E.db["unitframe"]["units"]["raid"]["debuffs"]["anchorPoint"] = "RIGHT"
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["attachTo"] = "HEALTH"
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["raid"]["debuffs"]["countFontSize"] = 8
@@ -2698,7 +2698,7 @@ if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["raid40"]["buffIndicator"]["size"] = 12
 			E.db["unitframe"]["units"]["raid40"]["buffs"]["sizeOverride"] = 17
 			E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "FORCE_OFF"
-			E.db["unitframe"]["units"]["raid40"]["debuffs"]["anchorPoint"] = "CENTER"
+			E.db["unitframe"]["units"]["raid40"]["debuffs"]["anchorPoint"] = "RIGHT"
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["attachTo"] = "HEALTH"
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["raid40"]["debuffs"]["countFontOutline"] = "THICKOUTLINE"
