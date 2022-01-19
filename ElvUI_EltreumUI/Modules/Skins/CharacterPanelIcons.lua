@@ -94,6 +94,8 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 			local totalgap = levelwidth - textwidth
 			local gapclassic = totalgap/4
 			classFrame:SetPoint("RIGHT", "CharacterLevelText", 8-gapclassic, 0)
+			--classFrame:SetSize(30, 30)
+			--classFrame:SetPoint("TOPLEFT", _G["PaperDollItemsFrame"], 20, -15)
 
 		elseif ElvUI_EltreumUI.Retail then
 			if (not IsAddOnLoaded("ElvUI_SLE")) or not E.db.sle.armory.character.enable then
