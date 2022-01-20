@@ -160,6 +160,15 @@ function ElvUI_EltreumUI:SetupScale()
 	end
 end
 
+function ElvUI_EltreumUI:AutoScale()
+	local a = E:PixelBestSize()
+	SetCVar('uiScale', a)
+	E.global["general"]["UIScale"] = a
+
+	ElvUI_EltreumUI:Print(L["A scale of "..a.." has automatically been set."])
+end
+
+
 --World text Scale
 function ElvUI_EltreumUI:WorldTextScale(value)
 	E.db.ElvUI_EltreumUI.otherstuff.worldtextscale = value
