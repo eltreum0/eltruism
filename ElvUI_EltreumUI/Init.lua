@@ -182,10 +182,12 @@ end
 function ElvUI_EltreumUI:ENCOUNTER_START()
 	ElvUI_EltreumUI:QuestEncounter()
 	ElvUI_EltreumUI:CombatMusic()
+	ElvUI_EltreumUI:BossMusic()
 end
 
 function ElvUI_EltreumUI:ENCOUNTER_END()
 	ElvUI_EltreumUI:QuestEncounterEnd()
+	ElvUI_EltreumUI:StopBossMusic()
 end
 
 function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()

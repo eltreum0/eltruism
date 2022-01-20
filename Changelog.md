@@ -1,6 +1,11 @@
 ### 🌌 Next Version 
 **The future is uncertain**
 ___
+### 2.6.5
+Updated the detection of targets for Light mode, adding more reactions\
+Updated the Combat Music function, now simply type the name of the sound file \if inside Interface\Addons, and Combat Music can now play during Boss Fights in TBC/Retail\
+
+___
 ### 2.6.4
 Added an option to toggle the automatic stats in the Character Panel for TBC/Classic\
 Added an option to load the extra media\

@@ -9,7 +9,7 @@ local dontstop = 0
 function ElvUI_EltreumUI:CombatMusic()
 	if E.private.ElvUI_EltreumUI.combatmusic.enable then
 		local _, instanceType = IsInInstance()
-		local soundfile = E.private.ElvUI_EltreumUI.combatmusic.musicfile
+		local soundfile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.musicfile
 		if E.private.ElvUI_EltreumUI.combatmusic.disableinstance == false then
 				PlayMusic(soundfile)
 				dontstop = 1
@@ -35,5 +35,26 @@ function ElvUI_EltreumUI:StopCombatMusic()
 	end
 	if E.db.ElvUI_EltreumUI.otherstuff.mapcombathide then
 		Minimap:Show()
+	end
+end
+
+
+
+--play music during boss fights
+local dontstopboss = 0
+function ElvUI_EltreumUI:BossMusic()
+	if E.private.ElvUI_EltreumUI.combatmusic.bossmusic then
+		local _, instanceType = IsInInstance()
+		local soundfile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.bossfile
+		PlayMusic(soundfile)
+		dontstopboss = 1
+	end
+end
+
+function ElvUI_EltreumUI:StopBossMusic()
+	if E.private.ElvUI_EltreumUI.combatmusic.bossmusic then
+		if dontstopboss == 1 then
+			StopMusic()
+		end
 	end
 end
