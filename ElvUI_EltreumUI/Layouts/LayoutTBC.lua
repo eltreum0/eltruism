@@ -1321,7 +1321,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raid"]["name"]["position"] = "LEFT"
 			E.db["unitframe"]["units"]["raid"]["name"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid"]["name"]["xOffset"] = 2
-			E.db["unitframe"]["units"]["raid"]["numGroups"] = 4
+			E.db["unitframe"]["units"]["raid"]["numGroups"] = 5
 			E.db["unitframe"]["units"]["raid"]["power"]["enable"] = true
 			E.db["unitframe"]["units"]["raid"]["power"]["text_format"] = ""
 			E.db["unitframe"]["units"]["raid"]["raidRoleIcons"]["yOffset"] = -3
@@ -2149,6 +2149,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raid"]["summonIcon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["raid"]["summonIcon"]["size"] = 20
 			E.db["unitframe"]["units"]["raid"]["threatStyle"] = "HEALTHBORDER"
+			E.db["unitframe"]["units"]["raid"]["numGroups"] = 5
 			E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid26,exists] hide;show"
 			E.db["unitframe"]["units"]["raid"]["width"] = 150
 			E.db["unitframe"]["units"]["raid40"]["buffIndicator"]["size"] = 12
@@ -2320,7 +2321,7 @@ function ElvUI_EltreumUI:AlternativeGroupsDPS()
 		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
 		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 2
 		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 25
-		E.db["unitframe"]["units"]["raid"]["numGroups"] = 4
+		E.db["unitframe"]["units"]["raid"]["numGroups"] = 5
 		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 0
 		E.db["unitframe"]["units"]["raid"]["width"] = 120
 		E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
@@ -2345,7 +2346,7 @@ function ElvUI_EltreumUI:OriginalGroupsDPS()
 		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
 		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 4
 		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 0
-		E.db["unitframe"]["units"]["raid"]["numGroups"] = 4
+		E.db["unitframe"]["units"]["raid"]["numGroups"] = 5
 		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 0
 		E.db["unitframe"]["units"]["raid"]["width"] = 120
 		E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
