@@ -48,21 +48,6 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db.ElvUI_EltreumUI.lightmode = false
 end
 
-local unitframeclass = {
-	['WARRIOR'] = "Eltreum-Class-Warrior",
-	['PALADIN'] = "Eltreum-Class-Paladin",
-	['HUNTER'] = "Eltreum-Class-Hunter",
-	['ROGUE'] = "Eltreum-Class-Rogue",
-	['PRIEST'] = "Eltreum-Class-Priest",
-	['DEATHKNIGHT'] = "Eltreum-Class-DeathKnight",
-	['SHAMAN'] = "Eltreum-Class-Shaman",
-	['MAGE'] = "Eltreum-Class-Mage",
-	['WARLOCK'] = "Eltreum-Class-Warlock",
-	['MONK'] = "Eltreum-Class-Monk",
-	['DRUID'] = "Eltreum-Class-Druid",
-	['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
-}
-
 function ElvUI_EltreumUI:LightMode()
 	if not E.db.movers then E.db.movers = {} end
 	--setup colors

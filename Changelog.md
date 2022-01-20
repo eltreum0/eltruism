@@ -7,8 +7,11 @@ Added an option to load the extra media\
 Updated Dynamic Cam profile for Retail\
 Updated DBM profile\
 Updated various addon profile import functions\
+Updated Light mode name colors\
 Fixed the Player Title Dropdown in TBC/Classic\
 Fixed Healer Layout Buffs and Debuffs\
+Fixed Cursor being stuck in some situations\
+Fixed Aura shadows not updating\
 ___
 ### 2.6.3
 Added Power Prediction to Nameplate Power Bar\
@@ -139,7 +142,7 @@ Nameplate Power Bar will now break down big numbers such as 50000 becoming 50k\
 Waypoint Time to Arrive now has unlimited range, automatically tracks new waypoints and the font follows ElvUI General Font
 ___
 ### v2.4.5
-Added a Preview for Custom Glow, you will need to toggle it on and off in order to update the glow options\
+Added a Preview for Custom Glow, you will need to toggle it on and off to update the glow options\
 Updated Time to Arrive to use less CPU\
 Fixed Buffs being moved when auto adjust was turned off\
 Cooldown will now color the text red when below 1 second
@@ -365,7 +368,7 @@ Changed TBC/Classic profiles to show mana/energy regen
 ___
 ### v2.1.2
 Added option to reset nameplates to Eltruism defaults\
-Tweaked nameplate class borders, colors and textures when option is off
+Tweaked nameplate class borders, colors, and textures when option is off
 ___
 ### v2.1.1
 Fixed friendly nameplates being forced on during login
