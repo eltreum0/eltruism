@@ -1471,7 +1471,7 @@ if ElvUI_EltreumUI.Classic then
 								enable = {
 									order = 1,
 									type = 'toggle',
-									name = L["Enable"],
+									name = L["Enable Combat Music"],
 									desc = L["Enable music during combat"],
 									width = 'full',
 									get = function(info) return E.private.ElvUI_EltreumUI.combatmusic.enable end,
@@ -1480,7 +1480,7 @@ if ElvUI_EltreumUI.Classic then
 								enableboss = {
 									order = 1,
 									type = 'toggle',
-									name = L["Enable"],
+									name = L["Enable Boss Music"],
 									desc = L["Enable music during combat"],
 									width = 'full',
 									get = function(info) return E.private.ElvUI_EltreumUI.combatmusic.bossmusic end,
