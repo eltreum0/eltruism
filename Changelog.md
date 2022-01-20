@@ -22,7 +22,7 @@ Added borders to Nameplate Power Bar\
 Added an option to change the background of the Nameplate Power Bar\
 Added a Smart Classbar option for Nameplates\
 Added a Level Up toast for TBC and Classic\
-Added a skin to the Character Panel for TBC and Classic\
+Added a skin to the Character Panel for TBC and Classic, which includes a fork of Simple Item Levels by kemayo\
 Added options to change the colors of the borders\
 Added Quests to TBC and Classic, also adding an option for any combat event\
 Added Crystalzcuhei as a font option during install\
