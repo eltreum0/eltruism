@@ -34,18 +34,7 @@ local unitframeclass = {
 --from Benik
 function ElvUI_EltreumUI:ChangeUnitTexture()
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture then
-		--target
-		local bar = LSM:Fetch("statusbar", "Eltreum-Blank")
-		local _, targetclass = UnitClass("target")
-		if targetclass and UnitIsPlayer("target") then
-			bar = LSM:Fetch("statusbar", unitframeclass[targetclass])
-		end
-		if UF.units.target then
-			local unitframe = _G["ElvUF_Target"]
-			if unitframe and unitframe.Health then
-				unitframe.Health:SetStatusBarTexture(bar)
-			end
-		end
+
 		--player
 		local playertexture = LSM:Fetch("statusbar", unitframeclass[E.myclass])
 		if UF.units.player then
@@ -54,11 +43,39 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 				unitframe.Health:SetStatusBarTexture(playertexture)
 			end
 		end
+
+		--target
+		local bar = LSM:Fetch("statusbar", "Eltreum-Blank")
+		local _, targetclass = UnitClass("target")
+		local reactiontarget = UnitReaction("player", "target")
+		if UnitExists("target") then
+			if targetclass and UnitIsPlayer("target") then
+				bar = LSM:Fetch("statusbar", unitframeclass[targetclass])
+			elseif ( UnitIsPlayer("target") == false and ( reactiontarget >= 5) ) then
+				bar = LSM:Fetch("statusbar", "Eltreum-Class-Hunter")
+			elseif reactiontarget == 4 then
+				bar = LSM:Fetch("statusbar", "Eltreum-Class-Rogue")
+			end
+		end
+		if UF.units.target then
+			local unitframe = _G["ElvUF_Target"]
+			if unitframe and unitframe.Health then
+				unitframe.Health:SetStatusBarTexture(bar)
+			end
+		end
+
 		--target of target
 		local _, targettargetclass = UnitClass("targettarget")
+		local reactiontargettarget = UnitReaction("player", "targettarget")
 		local targettargetbar = LSM:Fetch("statusbar", "Eltreum-Blank")
-		if targettargetclass and UnitIsPlayer("targettarget") then
-			targettargetbar = LSM:Fetch("statusbar", unitframeclass[targettargetclass])
+		if UnitExists("targettarget") then
+			if targettargetclass and UnitIsPlayer("targettarget") then
+				targettargetbar = LSM:Fetch("statusbar", unitframeclass[targettargetclass])
+			elseif ( UnitIsPlayer("targettarget") == false and ( reactiontargettarget >= 5) ) then
+				targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-Hunter")
+			elseif reactiontargettarget == 4 then
+				targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-Rogue")
+			end
 		end
 		if UF.units.targettarget then
 			local unitframe = _G["ElvUF_TargetTarget"]
@@ -66,6 +83,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 				unitframe.Health:SetStatusBarTexture(targettargetbar)
 			end
 		end
+
 		--focus
 		local _, focusclass = UnitClass("focus")
 		local focusbar = LSM:Fetch("statusbar", "Eltreum-Blank")
@@ -76,6 +94,15 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 			local focusframe = _G["ElvUF_Focus"]
 			if focusframe and focusframe.Health then
 				focusframe.Health:SetStatusBarTexture(focusbar)
+			end
+		end
+
+		--pet
+		local petbar = LSM:Fetch("statusbar", "Eltreum-Class-Hunter")
+		if UF.units.pet then
+			local petframe = _G["ElvUF_Pet"]
+			if petframe and petframe.Health then
+				petframe.Health:SetStatusBarTexture(petbar)
 			end
 		end
 
