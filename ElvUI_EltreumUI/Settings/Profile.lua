@@ -62,6 +62,11 @@ P.ElvUI_EltreumUI = {
 		shadows = true,
 	},
 
+	shadows = {
+		nameplates = false,
+		aura = false,
+	},
+
 	tbctalents = {
 		enable = true,
 	},

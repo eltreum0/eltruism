@@ -523,46 +523,107 @@ function ElvUI_EltreumUI:Shadows()
 end
 
 function ElvUI_EltreumUI:AuraShadows()
-	if E.db.ElvUI_EltreumUI.skins.shadows then
-		--buffs
-		for i = 1, 20 do
-			local buffaura = {_G['ElvUIPlayerBuffsAuraButton'..i]}
-			for _, frame in pairs(buffaura) do
-				for _, button in pairs(buffaura) do
-					if not button.shadow then
-						button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then
+		return
+	elseif not E.private.ElvUI_EltreumUI then
+		return
+	elseif not E.db.ElvUI_EltreumUI.shadows.nameplates then
+		return
+	end
+	if E.db.ElvUI_EltreumUI.shadows.aura then
+		if E.db.ElvUI_EltreumUI.skins.shadows then
+			--buffs
+			for i = 1, 20 do
+				local buffaura = {_G['ElvUIPlayerBuffsAuraButton'..i]}
+				for _, frame in pairs(buffaura) do
+					for _, button in pairs(buffaura) do
+						if not button.shadow then
+							button.shadow = button:CreateShadow(nil, true)
+							button.shadow:SetParent(button)
+							button.shadow.size = 2
+						end
+					end
+				end
+			end
+
+			--debuffs
+			for i = 1, 20 do
+				local debuffaura = {_G['ElvUIPlayerDebuffsAuraButton'..i]}
+				for _, frame in pairs(debuffaura) do
+					for _, button in pairs(debuffaura) do
+						if not button.shadow then
+							button.shadow = button:CreateShadow(nil, true)
+							button.shadow:SetParent(button)
+							button.shadow.size = 2
+						end
+					end
+				end
+			end
+
+			--weapon enchant thing
+			for i = 1, 20 do
+				local weaponenchant = {_G['ElvUIPlayerBuffsTempEnchant'..i]}
+				for _, frame in pairs(weaponenchant) do
+					for _, button in pairs(weaponenchant) do
+						if not button.shadow then
+							button.shadow = button:CreateShadow(nil, true)
+							button.shadow:SetParent(button)
+							button.shadow.size = 2
+						end
+					end
+				end
+			end
+
+
+			--target buff uf
+			for i = 1, 20 do
+				local targetbuffs = {_G['ElvUF_TargetBuffsButton'..i]}
+				for _, frame in pairs(targetbuffs) do
+					for _, button in pairs(targetbuffs) do
+						if not button.shadow then
+							button.shadow = button:CreateShadow(nil, true)
+							button.shadow:SetParent(button)
+							button.shadow.size = 2
+						end
+					end
+				end
+			end
+
+			--target debuff uf
+			for i = 1, 20 do
+				local targetbuffs = {_G['ElvUF_TargetDebuffsButton'..i]}
+				for _, frame in pairs(targetbuffs) do
+					for _, button in pairs(targetbuffs) do
+						if not button.shadow then
+							button.shadow = button:CreateShadow(nil, true)
+							button.shadow:SetParent(button)
+							button.shadow.size = 2
+						end
 					end
 				end
 			end
 		end
+	end
+end
 
-		--debuffs
-		for i = 1, 20 do
-			local debuffaura = {_G['ElvUIPlayerDebuffsAuraButton'..i]}
-			for _, frame in pairs(debuffaura) do
-				for _, button in pairs(debuffaura) do
-					if not button.shadow then
-						button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2
-					end
-				end
-			end
+function ElvUI_EltreumUI:NameplateShadows()
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then
+		return
+	elseif not E.private.ElvUI_EltreumUI then
+		return
+	elseif not E.db.ElvUI_EltreumUI.shadows.nameplates then
+		return
+	end
+	if E.db.ElvUI_EltreumUI.shadows.nameplates then
+		local nameplates = C_NamePlate.GetNamePlates()
+	 	--print(#nameplates)
+		local nameplatelist = {}
+		for i = 1, #nameplates do
+			table.insert(nameplatelist, _G["ElvNP_NamePlate"..i.."Health"])
 		end
-
-		--weapon enchant thing
-		for i = 1, 20 do
-			local weaponenchant = {_G['ElvUIPlayerBuffsTempEnchant'..i]}
-			for _, frame in pairs(weaponenchant) do
-				for _, button in pairs(weaponenchant) do
-					if not button.shadow then
-						button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2
-					end
-				end
+		for _,v in pairs(nameplatelist) do
+			if not v.backdrop.shadow then
+				v.backdrop:CreateShadow()
 			end
 		end
 	end

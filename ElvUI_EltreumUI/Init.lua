@@ -138,7 +138,6 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS') --for hiding healthbar in friendly np
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED') --for hiding healthbar in friendly np
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA') --for hiding healthbar in friendly np
-	ElvUI_EltreumUI:RegisterEvent('UNIT_AURA') --for aura shadows
 	ElvUI_EltreumUI:RegisterEvent("UNIT_NAME_UPDATE") --for class icons in the character frame
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED') --for power bar
 	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_FREQUENT') --power update real time
@@ -153,6 +152,21 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED") --LootText things
 	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE') --LootText things
 	ElvUI_EltreumUI:RegisterEvent('INSPECT_READY')
+
+	if E.db.ElvUI_EltreumUI.shadows.nameplates == nil then
+		E.db.ElvUI_EltreumUI.shadows.nameplates = false
+	end
+	if E.db.ElvUI_EltreumUI.shadows.nameplates then
+		ElvUI_EltreumUI:RegisterEvent('NAME_PLATE_UNIT_ADDED') --nameplate shadows
+		ElvUI_EltreumUI:RegisterEvent('NAME_PLATE_UNIT_REMOVED') --nameplate shadows
+	end
+	if E.db.ElvUI_EltreumUI.shadows.aura == nil then
+		E.db.ElvUI_EltreumUI.shadows.aura = false
+	end
+	if E.db.ElvUI_EltreumUI.shadows.aura then
+		ElvUI_EltreumUI:RegisterEvent('UNIT_AURA') --for aura shadows
+	end
+
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED') --for class icons, power bar and shadows
 		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW') --for rogue order hall
@@ -242,7 +256,9 @@ function ElvUI_EltreumUI:UNIT_AURA(event,unit)
 	elseif unit and unit == 'player' then
 		--print(unit)
 		--print(event,unit)
-		ElvUI_EltreumUI:AuraShadows()
+		if E.db.ElvUI_EltreumUI.shadows.aura then
+			ElvUI_EltreumUI:AuraShadows()
+		end
 	end
 end
 
@@ -374,6 +390,18 @@ function ElvUI_EltreumUI:INSPECT_READY(event,unit)
 		ElvUI_EltreumUI:InspectBg(unit)
 	--end
 	--print("inspect ready")
+end
+
+function ElvUI_EltreumUI:NAME_PLATE_UNIT_ADDED()
+	if E.db.ElvUI_EltreumUI.shadows.nameplates then
+		ElvUI_EltreumUI:NameplateShadows()
+	end
+end
+
+function ElvUI_EltreumUI:NAME_PLATE_UNIT_REMOVED()
+	if E.db.ElvUI_EltreumUI.shadows.nameplates then
+		ElvUI_EltreumUI:NameplateShadows()
+	end
 end
 
 local function CallbackInitialize()
