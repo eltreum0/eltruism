@@ -10,6 +10,7 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db["unitframe"]["colors"]["healPrediction"]["maxOverflow"] = 0.01
 		E.db["unitframe"]["colors"]["healPrediction"]["personal"]["a"] = 0.25
 		E.db["unitframe"]["colors"]["healPrediction"]["personal"]["b"] = 0.50196078431373
+		E.db["unitframe"]["colors"]["healPrediction"]["others"]["a"] = 0.25
 		E.db["unitframe"]["colors"]["colorhealthbyvalue"] = false
 		E.db["unitframe"]["colors"]["classbackdrop"] = true
 		E.db["unitframe"]["colors"]["healthclass"] = false
@@ -65,6 +66,7 @@ function ElvUI_EltreumUI:LightMode()
 	E.db["unitframe"]["colors"]["healPrediction"]["overhealabsorbs"]["a"] = 0.5
 	E.db["unitframe"]["colors"]["healPrediction"]["personal"]["a"] = 0.5
 	E.db["unitframe"]["colors"]["healPrediction"]["personal"]["b"] = 0.50196078431373
+	E.db["unitframe"]["colors"]["healPrediction"]["others"]["a"] = 0.5
 	E.db["unitframe"]["colors"]["colorhealthbyvalue"] = false
 	E.db["unitframe"]["colors"]["classbackdrop"] = false
 	E.db["unitframe"]["colors"]["healthclass"] = true
