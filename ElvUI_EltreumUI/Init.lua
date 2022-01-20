@@ -241,7 +241,6 @@ function ElvUI_EltreumUI:UNIT_AURA(event,unit)
 		--print(unit)
 		--print(event,unit)
 		ElvUI_EltreumUI:AuraShadows()
-		ElvUI_EltreumUI:UnregisterEvent('UNIT_AURA') --for aura shadows
 	end
 end
 
