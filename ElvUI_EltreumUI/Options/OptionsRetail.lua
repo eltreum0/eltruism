@@ -133,7 +133,7 @@ if ElvUI_EltreumUI.Retail then
 									type = 'execute',
 									name = 'Reset Chat to ElvUI settings',
 									width = 'double',
-									func = function() ElvUI_EltreumUI:SetupChat() end,
+									func = function() E:SetupChat() ElvUI_EltreumUI:Print(L["ElvUI Chat has been Set"]) end,
 								},
 							},
 						},
