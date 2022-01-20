@@ -75,6 +75,20 @@ function ElvUI_EltreumUI:RunCommands(message)
 			ElvUI_EltreumUI:Print("Unitframes set to dark mode, please reload")
 			E:StaticPopup_Show('CONFIG_RL')
 		end
+	else
+		ElvUI_EltreumUI:Print("|cff82B4ffYou have entered an unknown command, here's a list of commands you can use:|r")
+		print("|cff82B4ff/eltruism|r - Opens the Eltruism Installer")
+		print("|cff82B4ff/eltruism install|r - Opens the Eltruism Installer")
+		print("|cff82B4ff/eltruism setup|r - Opens the Eltruism Installer")
+		print("|cff82B4ff/eltruism options|r - Opens the Eltruism settings")
+		print("|cff82B4ff/eltruism config|r - Opens the Eltruism settings")
+		print("|cff82B4ff/eltruism loot|r - Demonstrates the LootText")
+		if ElvUI_EltreumUI.Retail then
+			print("|cff82B4ff/way|r - Sets a map waypoint with the supplied coordinates")
+			print("|cff82B4ff/waypoint|r - In retail sets a map waypoint with the supplied coordinates")
+		end
+		print("|cff82B4ff/eltruism color|r - Toggles unitframe between light and dark modes")
+		print("|cff82B4ff/eltruism chat|r - Toggles chat between dark and transparent modes")
 	end
 end
 

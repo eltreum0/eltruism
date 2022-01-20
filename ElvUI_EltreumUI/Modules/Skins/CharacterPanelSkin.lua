@@ -65,6 +65,18 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			end
 
+			--set the tabs
+			if E.db.ElvUI_EltreumUI.skins.classicarmoryautostats then
+					SetCVar("playerStatLeftDropdown", "PLAYERSTAT_BASE_STATS")
+				if E.myclass == "MAGE" or E.myclass == "PRIEST" or E.myclass == "WARLOCK" or E.myclass == "DRUID" or E.myclass == "SHAMAN" then
+					SetCVar("playerStatRightDropdown", "PLAYERSTAT_SPELL_COMBAT")
+				elseif ( E.myclass == "HUNTER" ) then
+					SetCVar("playerStatRightDropdown", "PLAYERSTAT_RANGED_COMBAT")
+				else
+					SetCVar("playerStatRightDropdown", "PLAYERSTAT_MELEE_COMBAT")
+				end
+			end
+
 			if ElvUI_EltreumUI.TBC then
 				--_G.PlayerTitleDropDown:Show()
 				_G.PlayerTitleDropDown:ClearAllPoints()
@@ -316,18 +328,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PlayerStatFrameRight6Stat:ClearAllPoints()
 				_G.PlayerStatFrameRight6Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight5Stat, "BOTTOM", 0, -13)
 				_G.PlayerStatFrameRight6Stat:SetParent(_G.PlayerStatFrameRight1)
-
-				--set the tabs
-				if E.db.ElvUI_EltreumUI.skins.classicarmoryautostats then
-						SetCVar("playerStatLeftDropdown", "PLAYERSTAT_BASE_STATS")
-					if E.myclass == "MAGE" or E.myclass == "PRIEST" or E.myclass == "WARLOCK" or E.myclass == "DRUID" then
-						SetCVar("playerStatRightDropdown", "PLAYERSTAT_SPELL_COMBAT")
-					elseif ( E.myclass == "HUNTER" ) then
-						SetCVar("playerStatRightDropdown", "PLAYERSTAT_RANGED_COMBAT")
-					else
-						SetCVar("playerStatRightDropdown", "PLAYERSTAT_MELEE_COMBAT")
-					end
-				end
 			elseif ElvUI_EltreumUI.Classic then
 				_G.CharacterStatFrame1:ClearAllPoints()
 				_G.CharacterStatFrame1:SetPoint("TOP", CharacterFrame, "TOP", 124, -225)

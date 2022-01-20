@@ -38,8 +38,6 @@ function ElvUI_EltreumUI:StopCombatMusic()
 	end
 end
 
-
-
 --play music during boss fights
 local dontstopboss = 0
 function ElvUI_EltreumUI:BossMusic()
