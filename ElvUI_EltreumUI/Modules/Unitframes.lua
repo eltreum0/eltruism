@@ -78,24 +78,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 				focusframe.Health:SetStatusBarTexture(focusbar)
 			end
 		end
-	--[[
-		for _, unitName in pairs(UF.units) do
-			local frameNameUnit = E:StringTitle(unitName)
-			if frameNameUnit == 'Target' then
-				local unitframe = _G["ElvUF_"..frameNameUnit]
-				if unitframe and unitframe.Health then
-					unitframe.Health:SetStatusBarTexture(bar)
-				end
-			elseif frameNameUnit == 'Player' then
-				local unitframe = _G["ElvUF_"..frameNameUnit]
-				if unitframe and unitframe.Health then
-					unitframe.Health:SetStatusBarTexture(playertexture)
-				end
-			end
-		end
-	]]--
+
 	end
 end
---hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.ChangeUnitTexture)
---hooksecurefunc(UF, "Configure_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
 hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
