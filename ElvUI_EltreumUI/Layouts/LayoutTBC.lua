@@ -1341,7 +1341,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raid"]["summonIcon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["raid"]["summonIcon"]["yOffset"] = -5
 			E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 0
-			E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
+			E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid26,exists] hide;show"
 			E.db["unitframe"]["units"]["raid"]["width"] = 120
 			E.db["unitframe"]["units"]["raid40"]["buffIndicator"]["size"] = 10
 			E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "FORCE_OFF"
@@ -1374,7 +1374,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["yOffset"] = 20
 			--E.db["unitframe"]["units"]["raid40"]["orientation"] = "MIDDLE"
 			E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 0
-			E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid21,noexists] hide;show"
+			E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid26,noexists] hide;show"
 			E.db["unitframe"]["units"]["raid40"]["width"] = 120
 
 			--new raid pet
@@ -2149,7 +2149,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raid"]["summonIcon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["raid"]["summonIcon"]["size"] = 20
 			E.db["unitframe"]["units"]["raid"]["threatStyle"] = "HEALTHBORDER"
-			E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
+			E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid26,exists] hide;show"
 			E.db["unitframe"]["units"]["raid"]["width"] = 150
 			E.db["unitframe"]["units"]["raid40"]["buffIndicator"]["size"] = 12
 			E.db["unitframe"]["units"]["raid40"]["buffs"]["sizeOverride"] = 17
@@ -2201,7 +2201,7 @@ if ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["raid40"]["resurrectIcon"]["size"] = 15
 			E.db["unitframe"]["units"]["raid40"]["summonIcon"]["attachToObject"] = "Health"
 			E.db["unitframe"]["units"]["raid40"]["summonIcon"]["size"] = 15
-			E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid21,noexists] hide;show"
+			E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid26,noexists] hide;show"
 			E.db["unitframe"]["units"]["raid40"]["width"] = 100
 
 			--new raid pet
