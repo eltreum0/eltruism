@@ -209,8 +209,8 @@ function ElvUI_EltreumUI:CastCursor()
 				self:ClearAllPoints()
 				self:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", x / scaleDivisor , y / scaleDivisor )
 			end )
-		else
-			rootFrame:SetScript("OnUpdate", nil)
+	--	else
+	--		rootFrame:SetScript("OnUpdate", nil)
 		end
 
 		local ringsVisible = {}
