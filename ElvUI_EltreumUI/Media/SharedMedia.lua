@@ -128,8 +128,6 @@ function ElvUI_EltreumUI:ExtraMedia()
 		LSM:Register("border", "fer11", [[Interface\Addons\ElvUI_EltreumUI\Media\border\fer11.tga]])
 		LSM:Register("border", "fer12", [[Interface\Addons\ElvUI_EltreumUI\Media\border\fer12.tga]])
 		LSM:Register("border", "fer13", [[Interface\Addons\ElvUI_EltreumUI\Media\border\fer13.tga]])
-
-		--if removing borders these are the candidates to be removed
 		LSM:Register("border", "RenaitreBeveled11", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreBeveled11.tga]])
 		LSM:Register("border", "RenaitreBeveled11x", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreBeveled11x.tga]])
 		LSM:Register("border", "RenaitreFade10blk", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade10blk.tga]])
