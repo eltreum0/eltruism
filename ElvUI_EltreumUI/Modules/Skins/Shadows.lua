@@ -5,7 +5,7 @@ local pairs = _G.pairs
 local CreateFrame = _G.CreateFrame
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
-local AB = E:GetModule('ActionBars')
+--local AB = E:GetModule('ActionBars')
 local A = E:GetModule('Auras')
 
 --Frame Shadows, turns out ElvUI includes the function but it seems to add a lot of usage during load time

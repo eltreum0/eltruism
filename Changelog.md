@@ -3,6 +3,7 @@
 ___
 ### 2.6.5
 Added various shadows, such as Nameplate Healthbars, which can be enabled in the Eltruism > Skins settings\
+Updated the Eltruism Options, with some settings now showing up in tabs instead\
 Updated the detection of targets for Light mode, adding more reactions\
 Updated the Combat Music function, now simply type the name of the sound file \if inside Interface\Addons, and Combat Music can now play during Boss Fights in TBC/Retail\
 Updated specialization in the character panel for TBC/Classic, which now displays hybrids\

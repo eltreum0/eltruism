@@ -85,12 +85,12 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		if not IsAddOnLoaded("Blizzard_EventTrace") then
 			LoadAddOn("Blizzard_EventTrace")
 		end
-		local LogEvent = EventTrace.LogEvent;
+		local LogEvent = EventTrace.LogEvent
 		function EventTrace:LogEvent(event, ...)
 			if event == "COMBAT_LOG_EVENT_UNFILTERED" then
-				LogEvent(self, event, CombatLogGetCurrentEventInfo());
+				LogEvent(self, event, CombatLogGetCurrentEventInfo())
 			else
-				LogEvent(self, event, ...);
+				LogEvent(self, event, ...)
 			end
 		end
 		if _G.ElvUI_StaticPopup1 then

@@ -42,7 +42,6 @@ end
 local dontstopboss = 0
 function ElvUI_EltreumUI:BossMusic()
 	if E.private.ElvUI_EltreumUI.combatmusic.bossmusic then
-		local _, instanceType = IsInInstance()
 		local soundfile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.bossfile
 		PlayMusic(soundfile)
 		dontstopboss = 1
