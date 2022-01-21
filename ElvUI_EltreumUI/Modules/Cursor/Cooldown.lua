@@ -22,13 +22,13 @@ local LibStub = _G.LibStub
 local math = _G.math
 
 --onupdate things
---local NormalUpdateDelay = 1.0/10 -- update frequency == 1/NormalUpdateDelay
---local FadingUpdateDelay = 1.0/25 -- update frequency while fading == 1/FadingUpdateDelay, must be <= NormalUpdateDelay
---local updateDelay = NormalUpdateDelay
+local NormalUpdateDelay = 1.0/10 -- update frequency == 1/NormalUpdateDelay
+local FadingUpdateDelay = 1.0/25 -- update frequency while fading == 1/FadingUpdateDelay, must be <= NormalUpdateDelay
 local lastUpdate = 0 -- time since last real update
-local updateDelay = 0.1
+local updateDelay = NormalUpdateDelay
 
 local Icon = [[Interface\AddOns\ElvUI_EltreumUI\Media\Textures\logo.tga]]
+local db
 local fadeStamp -- the timestamp when we should start fading the display
 local endStamp -- the timestamp when the cooldown will be over
 local finishStamp -- the timestamp when the we are finished with this cooldown
@@ -84,9 +84,49 @@ function ElvUI_EltreumUI:SetupCDSize()
 	end
 end
 
+function ElvUI_EltreumUI:updateLayout()
+	self.icon:ClearAllPoints()
+	self.icon:SetPoint("CENTER")
+	self:SetupCDSize()
+	self.icon:SetHeight(cooldownsize +2)
+	self.icon:SetWidth(cooldownsize +2)
+end
+
 local mask
 local EltruismCooldownFrame = CreateFrame("MessageFrame", "EltruismCooldown", UIParent)
 EltruismCooldownFrame:Hide()
+function ElvUI_EltreumUI:createCooldownFrame()
+	self:SetupCDSize()
+	EltruismCooldownFrame:SetWidth(cooldownsize)
+	EltruismCooldownFrame:SetHeight(cooldownsize)
+	EltruismCooldownFrame:SetJustifyH("CENTER")
+	self.EltruismCooldownFrame = EltruismCooldownFrame
+	mask = EltruismCooldownFrame:CreateMaskTexture()
+	mask:SetTexture([[Interface\CHARACTERFRAME\TempPortraitAlphaMask]], "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+	mask:SetAllPoints(EltruismCooldownFrame)
+
+	local text = EltruismCooldownFrame:CreateFontString("EltruismCoooldownText", "OVERLAY", "GameFontNormal")
+	local textsize = ( (cooldownsize / 2) + 1)
+	text:SetFont(E.media.normFont, textsize, "OUTLINE")
+	text:SetTextColor(1, 1, 1)
+	text:SetPoint("CENTER")
+	self.text = text
+
+	local icon = EltruismCooldownFrame:CreateTexture("EltruismCooldownIcon", "OVERLAY")
+	self.icon = icon
+	self.iconTexture = icon
+	self.iconTexture:SetTexture(Icon)
+	self.iconTexture:AddMaskTexture(mask)
+	self:updateLayout()
+end
+
+function ElvUI_EltreumUI:CooldownInitialize()
+	self.db = LibStub("AceDB-3.0"):New("ElvUI_EltreumUIDB", defaults)
+	db = self.db.profile
+	if not self.EltruismCooldownFrame then
+		self:createCooldownFrame()
+	end
+end
 
 function ElvUI_EltreumUI:CooldownEnable()
 	if ElvUI_EltreumUI:IsHooked("UseAction", "checkActionCooldown") then
@@ -136,35 +176,6 @@ function ElvUI_EltreumUI:CooldownEnable()
 	self:RegisterEvent("BAG_UPDATE_COOLDOWN", "updateCooldown")
 	self:RegisterEvent("PET_BAR_UPDATE_COOLDOWN", "updateCooldown")
 	--self:RegisterEvent("UNIT_SPELLCAST_FAILED") --this triggers every single time a spell fails like when out of resources or on cd
-
-	if not self.EltruismCooldownFrame then
-		self:SetupCDSize()
-		EltruismCooldownFrame:SetWidth(cooldownsize)
-		EltruismCooldownFrame:SetHeight(cooldownsize)
-		EltruismCooldownFrame:SetJustifyH("CENTER")
-		self.EltruismCooldownFrame = EltruismCooldownFrame
-		mask = EltruismCooldownFrame:CreateMaskTexture()
-		mask:SetTexture([[Interface\CHARACTERFRAME\TempPortraitAlphaMask]], "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
-		mask:SetAllPoints(EltruismCooldownFrame)
-
-		local text = EltruismCooldownFrame:CreateFontString("EltruismCoooldownText", "OVERLAY", "GameFontNormal")
-		local textsize = ( (cooldownsize / 2) + 1)
-		text:SetFont(E.media.normFont, textsize, "OUTLINE")
-		text:SetTextColor(1, 1, 1)
-		text:SetPoint("CENTER")
-		self.text = text
-
-		local icon = EltruismCooldownFrame:CreateTexture("EltruismCooldownIcon", "OVERLAY")
-		self.icon = icon
-		self.iconTexture = icon
-		self.iconTexture:SetTexture(Icon)
-		self.iconTexture:AddMaskTexture(mask)
-		self.icon:ClearAllPoints()
-		self.icon:SetPoint("CENTER")
-		self:SetupCDSize()
-		self.icon:SetHeight(cooldownsize +2)
-		self.icon:SetWidth(cooldownsize +2)
-	end
 end
 
 function ElvUI_EltreumUI:CooldownUpdate()
@@ -194,7 +205,7 @@ function ElvUI_EltreumUI:CooldownUpdate()
 		end
 	else
 		local cd = endStamp - now
-		if cd <= defaults.profile.readyTime and not isAlmostReady then
+		if cd <= db.readyTime and not isAlmostReady then
 			isAlmostReady = true
 			self:updateStamps(currStart, currDuration, true)
 		end
@@ -212,18 +223,17 @@ function ElvUI_EltreumUI:CooldownUpdate()
 	if isHidden then
 		return
 	end
-
-	--investigations point to this being the major way of throttling it
 	if now > fadeStamp then
-		local alpha = 1 - ((now - fadeStamp) / defaults.profile.fadeTime)
+		local alpha = 1 - ((now - fadeStamp) / db.fadeTime)
 		if alpha <= 0 then
 			isHidden = true
-			ElvUI_EltreumUI:CooldownAlpha(0)
-		elseif alpha > 0 then
-			ElvUI_EltreumUI:CooldownAlpha(alpha)
+			self.EltruismCooldownFrame:SetAlpha(0)
+			updateDelay = NormalUpdateDelay
+		else
+			self.EltruismCooldownFrame:SetAlpha(alpha)
+			updateDelay = FadingUpdateDelay
 		end
 	end
-
 end
 
 function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
@@ -237,60 +247,48 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 	if endStamp < now then
 		endStamp = now
 	end
-	if now + defaults.profile.holdTime >= endStamp then
+	if now + db.holdTime >= endStamp then
 		fadeStamp = endStamp
 	else
-		fadeStamp = now + defaults.profile.holdTime
+		fadeStamp = now + db.holdTime
 	end
-	finishStamp = endStamp + defaults.profile.fadeTime
-	lastUpdate = updateDelay -- to force update in next frame
+	finishStamp = endStamp + db.fadeTime
+	lastUpdate = NormalUpdateDelay -- to force update in next frame
 	isAlmostReady = false
 	isHidden = false
 	if show then
+		updateDelay = NormalUpdateDelay
 		if E.db.ElvUI_EltreumUI.cursor.cooldown then
 			self.EltruismCooldownFrame:Show()
 		end
 		if startHidden then
 			isHidden = true
-			ElvUI_EltreumUI:CooldownAlpha(0)
+			self.EltruismCooldownFrame:SetAlpha(0)
+			--unregister onupdate when hidden
+			EltruismCooldownFrame:SetScript("OnUpdate", nil)
 		else
-			ElvUI_EltreumUI:CooldownAlpha(1)
+			self.EltruismCooldownFrame:SetAlpha(1)
+
+			--throttling here using elapsed makes the frame not sync up, idk if i can make it sync with a throttle
+			-- so instead we make it not update at all when hidden
+			EltruismCooldownFrame:SetScript("OnUpdate", function(frame, elapsed) --if frame is removed, then pet cooldowns can have issues
+				---print("cooldown spam "..math.random(1,99))
+				local x, y = GetCursorPosition()
+				local scaleDivisor = UIParent:GetEffectiveScale()
+				EltruismCooldownFrame:ClearAllPoints()
+				EltruismCooldownFrame:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", x / scaleDivisor , y / scaleDivisor )
+				lastUpdate = lastUpdate + elapsed
+				if lastUpdate < updateDelay then return end
+				lastUpdate = 0
+				self:CooldownUpdate(elapsed)
+				if isHidden == true then
+					EltruismCooldownFrame:SetScript("OnUpdate", nil)
+					--print("stopped updating")
+				end
+			end)
+
 		end
 	end
-end
-
-
-function ElvUI_EltreumUI:CooldownAlpha(alpha)
-	--print(alpha)
-	EltruismCooldownFrame:SetAlpha(alpha)
-
-	lastUpdate =  0
-	EltruismCooldownFrame:SetScript("OnUpdate", function(frame, elapsed) --if frame is removed, then pet cooldowns can have issues
-		lastUpdate = lastUpdate + elapsed
-		if lastUpdate >= updateDelay then return end
-
-		lastUpdate =  0
-		--print("cooldown spam "..math.random(1,9999))
-		local x, y = GetCursorPosition()
-		local scaleDivisor = UIParent:GetEffectiveScale()
-		EltruismCooldownFrame:ClearAllPoints()
-		EltruismCooldownFrame:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", x / scaleDivisor , y / scaleDivisor )
-		--EltruismCooldownFrame:SetPoint( "CENTER", "EltruismCursorRoot", "CENTER", 0, 0)
-		ElvUI_EltreumUI:CooldownUpdate()
-
-		--[[if lastUpdate >= updateDelay then
-			return
-		elseif lastUpdate < updateDelay then
-			lastUpdate =  0
-			print("cooldown spam "..math.random(1,9999))
-			local x, y = GetCursorPosition()
-			local scaleDivisor = UIParent:GetEffectiveScale()
-			EltruismCooldownFrame:ClearAllPoints()
-			EltruismCooldownFrame:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", x / scaleDivisor , y / scaleDivisor )
-			ElvUI_EltreumUI:CooldownUpdate()
-		end]]
-	end)
-
 end
 
 function ElvUI_EltreumUI:showCooldown(texture, getCooldownFunc, arg, hasCooldown)
@@ -301,7 +299,7 @@ function ElvUI_EltreumUI:showCooldown(texture, getCooldownFunc, arg, hasCooldown
 		end
 		return
 	end
-	if (GetTime() - start) < defaults.profile.gracePeriod then
+	if GetTime() - start < db.gracePeriod then
 		return
 	end
 	currGetCooldown, currArg = getCooldownFunc, arg
@@ -363,18 +361,26 @@ end
 
 function ElvUI_EltreumUI:checkPetActionCooldown(index)
 	if not index then return end
-	local texture, spellId
-	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-		local _, _, texture, _, _, _, _, spellId = GetPetActionInfo(index) --old
-	elseif ElvUI_EltreumUI.Retail then
-		local _, texture, _, _, _, _, spellId, _, _ = GetPetActionInfo(index) --shadowlands
-	end
+	--local _, _, texture, _, _, _, _, spellId = GetPetActionInfo(index) --old
+	local _, texture, _, _, _, _, spellId, _, _ = GetPetActionInfo(index) --shadowlands
 	if spellId then
 		self:checkSpellCooldown(spellId)
 	else
 		self:showCooldown(texture, GetPetActionCooldown, index)
 	end
 end
+
+--[[
+function ElvUI_EltreumUI:UNIT_SPELLCAST_FAILED(unit,id) -- im thinking this might not be needed
+	if unit and unit ~= 'player' then
+		return
+	elseif unit then
+		if unit == 'player' or unit == 'pet' then
+			self:checkSpellCooldown(id)
+		end
+	end
+end
+]]--
 
 function ElvUI_EltreumUI:updateCooldown() --dont think i need event here
 	if not isActive then
@@ -390,7 +396,7 @@ function ElvUI_EltreumUI:updateCooldown() --dont think i need event here
 			isAlmostReady = false
 			self.iconTexture:SetTexture(lastTexture)
 			self:updateStamps(start, duration, true, true)
-			ElvUI_EltreumUI:CooldownAlpha(0)
+			self.EltruismCooldownFrame:SetAlpha(0)
 		end
 		return
 	end
