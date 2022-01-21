@@ -1,4 +1,0 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file='LayoutTBC.lua'/>
-	<Script file='SetupNameplates.lua'/>
-</Ui>
