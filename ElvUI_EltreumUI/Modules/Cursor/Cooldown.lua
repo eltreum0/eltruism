@@ -281,10 +281,10 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 				if lastUpdate < updateDelay then return end
 				lastUpdate = 0
 				self:CooldownUpdate(elapsed)
-				if isHidden == true then
+				--[[if isHidden == true then
 					EltruismCooldownFrame:SetScript("OnUpdate", nil)
-					--print("stopped updating")
-				end
+					print("stopped updating")
+				end]]
 			end)
 
 		end
@@ -362,11 +362,12 @@ end
 function ElvUI_EltreumUI:checkPetActionCooldown(index)
 	if not index then return end
 	local texture, spellId
-	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+	local _, texture, _, _, _, _, spellId, _, _ = GetPetActionInfo(index) --shadowlands
+	--[[if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		local _, _, texture, _, _, _, _, spellId = GetPetActionInfo(index) --old
 	elseif ElvUI_EltreumUI.Retail then
 		local _, texture, _, _, _, _, spellId, _, _ = GetPetActionInfo(index) --shadowlands
-	end
+	end]]
 	if spellId then
 		self:checkSpellCooldown(spellId)
 	else
