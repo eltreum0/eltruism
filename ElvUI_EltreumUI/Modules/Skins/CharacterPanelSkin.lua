@@ -47,9 +47,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		end
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then -- this is expand classic armory
 			--turns out classic has the functions to get number of points on talent trees
-			--need to figure out how to print when all trees have spent the same amount
 			local function PlayerSpec()
 				local spec, points
+				local _, _, spent1 = GetTalentTabInfo(1)
+				local _, _, spent2 = GetTalentTabInfo(2)
+				local _, _, spent3 = GetTalentTabInfo(3)
+
 				for i=1, GetNumTalentTabs() do
 					local name, _, spent = GetTalentTabInfo(i)
 					--print(spent..name.." 1")
@@ -58,8 +61,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						spec, points = name, spent
 					end
 				end
-				if spec ~= nil then
+				if spec ~= nil and not ( (spent1 == spent2) or (spent2 == spent3) or (spent1 == spent3) ) then
 					return spec
+				elseif spent1 == spent2 or spent2 == spent3 or spent1 == spent3 then
+					return L["Hybrid"]
 				else
 					return L["None"]
 				end
