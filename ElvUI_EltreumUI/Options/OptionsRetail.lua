@@ -1363,7 +1363,7 @@ if ElvUI_EltreumUI.Retail then
 									type = "description",
 									name = "Pet Bar",
 									width = 'full',
-									--image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								classcolorpet = {
 									type = 'toggle',
@@ -1394,7 +1394,7 @@ if ElvUI_EltreumUI.Retail then
 									type = "description",
 									name = "Nameplate Buff/Debuff",
 									width = 'full',
-									--image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								classcolornp = {
 									type = 'toggle',
@@ -1425,18 +1425,18 @@ if ElvUI_EltreumUI.Retail then
 						pixelglow = {
 							type = 'group',
 							name = L["Pixel Glow"],
-							order = 2,
+							order = 3,
 							args = {
 								headerline1 = {
 									order = 1,
 									type = "description",
-									name = "Pixel Glow Options",
+									name = "",
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								borderpixel = {
 									type = 'toggle',
-									name = L["Pixel Border"],
+									name = L["Enable Pixel Border"],
 									desc = L["Enable a border for the Pixel Glow"],
 									order = 83,
 									width = "full",
@@ -1444,10 +1444,11 @@ if ElvUI_EltreumUI.Retail then
 									set = function(_, value) E.db.ElvUI_EltreumUI.glow.borderpixel = value end,
 								},
 								addagapherepixel2 = {
-									order = 84,
+									order = 85,
 									type = "description",
-									width = "full",
 									name = "",
+									width = "full",
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								numberpixel = {
 									type = 'range',
@@ -1461,6 +1462,13 @@ if ElvUI_EltreumUI.Retail then
 									get = function() return E.db.ElvUI_EltreumUI.glow.numberpixel end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.glow.numberpixel = value end,
 								},
+								addagapherepixel3 = {
+									order = 86,
+									type = "description",
+									width = "full",
+									name = "",
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
 								frequencypixel = {
 									type = 'range',
 									name = L["Pixel Frequency (Default is 1)"],
@@ -1472,6 +1480,13 @@ if ElvUI_EltreumUI.Retail then
 									width = "full",
 									get = function() return E.db.ElvUI_EltreumUI.glow.frequencypixel end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.glow.frequencypixel = value end,
+								},
+								addagapherepixel4 = {
+									order = 87,
+									type = "description",
+									width = "full",
+									name = "",
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								lengthpixel = {
 									type = 'range',
@@ -1485,6 +1500,13 @@ if ElvUI_EltreumUI.Retail then
 									get = function() return E.db.ElvUI_EltreumUI.glow.lengthpixel end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.glow.lengthpixel = value end,
 								},
+								addagapherepixel5 = {
+									order = 88,
+									type = "description",
+									width = "full",
+									name = "",
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
 								thicknesspixel = {
 									type = 'range',
 									name = L["Pixel Thickness (Default is 5)"],
@@ -1497,6 +1519,13 @@ if ElvUI_EltreumUI.Retail then
 									get = function() return E.db.ElvUI_EltreumUI.glow.thicknesspixel end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.glow.thicknesspixel = value end,
 								},
+								addagapherepixel6 = {
+									order = 89,
+									type = "description",
+									width = "full",
+									name = "",
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
 								pixelxOffset = {
 									type = 'range',
 									name = L["Pixel Horizontal Offset (Default is 5)"],
@@ -1508,6 +1537,13 @@ if ElvUI_EltreumUI.Retail then
 									width = "full",
 									get = function() return E.db.ElvUI_EltreumUI.glow.pixelxOffset end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.glow.pixelxOffset = value end,
+								},
+								addagapherepixel7 = {
+									order = 90,
+									type = "description",
+									width = "full",
+									name = "",
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								pixelyOffset = {
 									type = 'range',
@@ -1526,8 +1562,15 @@ if ElvUI_EltreumUI.Retail then
 						autocast = {
 							type = 'group',
 							name = L["Autocast Glow"],
-							order = 2,
+							order = 3,
 							args = {
+								headerline1 = {
+									order = 1,
+									type = "description",
+									name = "Autocast Glow",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
 								numberauto = {
 									type = 'range',
 									name = L["Autocast Particle Groups (Default is 8)"],
@@ -1539,6 +1582,13 @@ if ElvUI_EltreumUI.Retail then
 									width = "full",
 									get = function() return E.db.ElvUI_EltreumUI.glow.numberauto end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.glow.numberauto = value end,
+								},
+								headerline2 = {
+									order = 93,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								frequencyauto = {
 									type = 'range',
@@ -1552,6 +1602,13 @@ if ElvUI_EltreumUI.Retail then
 									get = function() return E.db.ElvUI_EltreumUI.glow.frequencyauto end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.glow.frequencyauto = value end,
 								},
+								headerline3 = {
+									order = 94,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
 								autoscale = {
 									type = 'range',
 									name = L["Autocast Scale (Default is 2)"],
@@ -1564,6 +1621,13 @@ if ElvUI_EltreumUI.Retail then
 									get = function() return E.db.ElvUI_EltreumUI.glow.autoscale end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.glow.autoscale = value end,
 								},
+								headerline4 = {
+									order = 95,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
 								autoxOffset = {
 									type = 'range',
 									name = L["Autocast Horizontal Offset (Default is 5)"],
@@ -1575,6 +1639,13 @@ if ElvUI_EltreumUI.Retail then
 									width = "full",
 									get = function() return E.db.ElvUI_EltreumUI.glow.autoxOffset end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.glow.autoxOffset = value end,
+								},
+								headerline5 = {
+									order = 97,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								autoyOffset = {
 									type = 'range',
@@ -1593,8 +1664,15 @@ if ElvUI_EltreumUI.Retail then
 						blizz = {
 							type = 'group',
 							name = L["Blizzard Glow"],
-							order = 2,
+							order = 3,
 							args = {
+								headerline2 = {
+									order = 93,
+									type = "description",
+									name = L["Blizzard Glow"],
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
 								frequencyblizz = {
 									type = 'range',
 									name = L["Blizzard Frequency (Default is 0.5)"],

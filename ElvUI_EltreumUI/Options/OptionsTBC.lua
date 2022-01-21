@@ -92,11 +92,18 @@ if ElvUI_EltreumUI.TBC then
 					name = L["Installer"],
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\install',
 					args = {
-						install = {
+						header5 = {
 							order = 1,
+							type = "description",
+							name = "Eltruism Installer",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						install = {
+							order = 2,
 							type = 'group',
 							inline = true,
-							name = "Eltruism Installer",
+							name = "",
 							args = {
 								pluginagain = {
 									order = 1,
@@ -107,11 +114,18 @@ if ElvUI_EltreumUI.TBC then
 								},
 							},
 						},
+						header6 = {
+							order = 3,
+							type = "description",
+							name = "Nameplates",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
 						resetnameplates = {
-							order = 2,
+							order = 4,
 							type = 'group',
 							inline = true,
-							name = "Nameplates",
+							name = "",
 							args = {
 								nameplateagain = {
 									order = 1,
@@ -122,11 +136,18 @@ if ElvUI_EltreumUI.TBC then
 								},
 							},
 						},
+						header7 = {
+							order = 5,
+							type = "description",
+							name = "Chat",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
 						resetchat = {
-							order = 3,
+							order = 6,
 							type = 'group',
 							inline = true,
-							name = "Chat",
+							name = "",
 							args = {
 								resetchatagain = {
 									order = 1,
@@ -137,11 +158,18 @@ if ElvUI_EltreumUI.TBC then
 								},
 							},
 						},
+						header8 = {
+							order = 7,
+							type = "description",
+							name = "Layouts",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
 						resetlayout = {
-							order = 3,
+							order = 8,
 							type = 'group',
 							inline = true,
-							name = "Layouts",
+							name = "",
 							args = {
 								resetdps = {
 									order = 1,
@@ -159,11 +187,18 @@ if ElvUI_EltreumUI.TBC then
 								},
 							},
 						},
+						header9 = {
+							order = 9,
+							type = "description",
+							name = "Skip Plugins",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
 						skipplugin = {
-							order = 4,
+							order = 10,
 							type = 'group',
 							inline = true,
-							name = "Skip Plugins",
+							name = "",
 							args = {
 								resethealer = {
 									order = 1,
@@ -176,6 +211,31 @@ if ElvUI_EltreumUI.TBC then
 										E.private.ElvUI_EltreumUI.isInstalled.windtools = true
 										E.private.ElvUI_EltreumUI.isInstalled.projectazilroka = true
 									end,
+								},
+							},
+						},
+						header10 = {
+							order = 11,
+							type = "description",
+							name = L["Clear Details! Damage Meter tables to free up memory"],
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						detailstable = {
+							order = 12,
+							type = 'group',
+							name = "",
+							width = "full",
+							inline = true,
+							args = {
+								detailstableexecute = {
+									order = 12,
+									type = 'execute',
+									name = L["Clear Details Tables"],
+									desc = L["Set Details tables to be empty"],
+									width = 'double',
+									confirm = true,
+									func = function() ElvUI_EltreumUI:EmptyDetailsTable() end,
 								},
 							},
 						},
