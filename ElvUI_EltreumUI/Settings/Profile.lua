@@ -63,8 +63,14 @@ P.ElvUI_EltreumUI = {
 	},
 
 	shadows = {
-		nameplates = false,
+		nameplates = false, --healthbars
+		npauras = false,
+		npportraits = false,
+		nppower = false,
+		npcastbar = false,
 		aura = false,
+		ufaura = false,
+		actionbars = true,
 	},
 
 	tbctalents = {

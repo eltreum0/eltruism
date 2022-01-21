@@ -3,6 +3,10 @@ local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local pairs = _G.pairs
 local CreateFrame = _G.CreateFrame
+local NP = E:GetModule('NamePlates')
+local UF = E:GetModule('UnitFrames')
+local AB = E:GetModule('ActionBars')
+local A = E:GetModule('Auras')
 
 --Frame Shadows, turns out ElvUI includes the function but it seems to add a lot of usage during load time
 function ElvUI_EltreumUI:Shadows()
@@ -234,7 +238,7 @@ function ElvUI_EltreumUI:Shadows()
 				DT.tooltip:CreateShadow()
 			end
 		end
-
+		--[[
 		--action bars
 		if E.private.actionbar.enable then
 			--elvui action bars
@@ -268,38 +272,6 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
-			--microbar shadow
-			if E.db.actionbar.microbar.enabled == true then
-				if E.db.actionbar.microbar.backdrop == true then
-					if not _G.ElvUI_MicroBar.backdrop.shadow then
-						_G.ElvUI_MicroBar.backdrop:CreateShadow()
-					end
-				else
-					local microbar = {
-						_G['CharacterMicroButton'],
-						_G['SpellbookMicroButton'],
-						_G['TalentMicroButton'],
-						_G['QuestLogMicroButton'],
-						_G['SocialsMicroButton'],
-						_G['MainMenuMicroButton'],
-						_G['HelpMicroButton'],
-						_G['LFGMicroButton'],
-						_G['WorldMapMicroButton'],
-						_G['AchievementMicroButton'],
-						_G['GuildMicroButton'],
-						_G['LFDMicroButton'],
-						_G['EJMicroButton'],
-						_G['CollectionsMicroButton'],
-						_G['StoreMicroButton'],
-					}
-					for _, frame in pairs(microbar) do
-						if frame and not frame.shadow then
-							frame:CreateShadow()
-						end
-					end
-				end
-			end
-
 			--stances
 			for i = 1, 12 do
 				local button = _G['ElvUI_StanceBarButton'..i]
@@ -310,6 +282,40 @@ function ElvUI_EltreumUI:Shadows()
 						button.shadow = button:CreateShadow(nil, true)
 						button.shadow:SetParent(button)
 						button.shadow.size = 2
+					end
+				end
+			end
+		end
+
+	]]
+
+		--microbar shadow
+		if E.db.actionbar.microbar.enabled == true then
+			if E.db.actionbar.microbar.backdrop == true then
+				if not _G.ElvUI_MicroBar.backdrop.shadow then
+					_G.ElvUI_MicroBar.backdrop:CreateShadow()
+				end
+			else
+				local microbar = {
+					_G['CharacterMicroButton'],
+					_G['SpellbookMicroButton'],
+					_G['TalentMicroButton'],
+					_G['QuestLogMicroButton'],
+					_G['SocialsMicroButton'],
+					_G['MainMenuMicroButton'],
+					_G['HelpMicroButton'],
+					_G['LFGMicroButton'],
+					_G['WorldMapMicroButton'],
+					_G['AchievementMicroButton'],
+					_G['GuildMicroButton'],
+					_G['LFDMicroButton'],
+					_G['EJMicroButton'],
+					_G['CollectionsMicroButton'],
+					_G['StoreMicroButton'],
+				}
+				for _, frame in pairs(microbar) do
+					if frame and not frame.shadow then
+						frame:CreateShadow()
 					end
 				end
 			end
@@ -522,6 +528,8 @@ function ElvUI_EltreumUI:Shadows()
 	end
 end
 
+--old method i came up with
+--[[
 function ElvUI_EltreumUI:AuraShadows()
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
@@ -614,17 +622,102 @@ function ElvUI_EltreumUI:NameplateShadows()
 	elseif not E.db.ElvUI_EltreumUI.shadows.nameplates then
 		return
 	end
-	if E.db.ElvUI_EltreumUI.shadows.nameplates then
-		local nameplates = C_NamePlate.GetNamePlates()
-	 	--print(#nameplates)
-		local nameplatelist = {}
-		for i = 1, #nameplates do
-			table.insert(nameplatelist, _G["ElvNP_NamePlate"..i.."Health"])
-		end
-		for _,v in pairs(nameplatelist) do
-			if not v.backdrop.shadow then
-				v.backdrop:CreateShadow()
+	if E.private["nameplates"]["enable"] == true then
+		if E.db.ElvUI_EltreumUI.shadows.nameplates then
+			local nameplates = C_NamePlate.GetNamePlates()
+		 	--print(#nameplates)
+			local nameplatelist = {}
+			for i = 1, #nameplates do
+				table.insert(nameplatelist, _G["ElvNP_NamePlate"..i.."Health"])
+			end
+			for _,v in pairs(nameplatelist) do
+				if not v.backdrop.shadow then
+					v.backdrop:CreateShadow()
+				end
 			end
 		end
 	end
 end
+]]--
+
+--benik's version
+function ElvUI_EltreumUI:NameplateShadows(nameplate)
+	if E.db.ElvUI_EltreumUI.shadows.nameplates then
+		if nameplate.Health.backdrop then
+			if not nameplate.Health.backdrop.shadow then
+				nameplate.Health.backdrop:CreateShadow()
+			end
+		end
+	end
+
+	if E.db.ElvUI_EltreumUI.shadows.nppower then
+		if nameplate.Power.backdrop then
+			if not nameplate.Power.backdrop.shadow then
+				nameplate.Power.backdrop:CreateShadow()
+			end
+		end
+	end
+
+	if E.db.ElvUI_EltreumUI.shadows.npcastbar then
+		if nameplate.Castbar.backdrop then
+			if not nameplate.Castbar.backdrop.shadow then
+				nameplate.Castbar.backdrop:CreateShadow()
+			end
+		end
+
+		if nameplate.Castbar.Button then
+			if not nameplate.Castbar.Button.shadow then
+				nameplate.Castbar.Button:CreateShadow()
+			end
+		end
+	end
+
+	if E.db.ElvUI_EltreumUI.shadows.npportraits then
+		if nameplate.Portrait.backdrop then
+			if not nameplate.Portrait.backdrop.shadow then
+				nameplate.Portrait.backdrop:CreateShadow()
+			end
+		end
+	end
+end
+hooksecurefunc(NP, 'StylePlate', ElvUI_EltreumUI.NameplateShadows) --nameplate shadows
+
+function ElvUI_EltreumUI:Construct_AuraIcon(button)
+	if E.db.ElvUI_EltreumUI.shadows.npauras then
+		if not button then return end
+		if not button.shadow then
+			button:CreateShadow()
+		end
+	end
+end
+hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) -- nameplate buffs/debuffs shadows
+
+function ElvUI_EltreumUI:ActionBarShadows(button)
+	if E.db.ElvUI_EltreumUI.shadows.actionbars then
+		if not button then return end
+		if not button.shadow then
+			button:CreateShadow()
+		end
+	end
+end
+hooksecurefunc(AB, 'StyleButton', ElvUI_EltreumUI.ActionBarShadows)  --action bar shadows
+
+function ElvUI_EltreumUI:AuraShadows(button)
+	if E.db.ElvUI_EltreumUI.shadows.aura then
+		if not button then return end
+		if not button.shadow then
+			button:CreateShadow()
+		end
+	end
+end
+hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows)  --aura (minimap) shadows
+
+function ElvUI_EltreumUI:UFAuraShadows(button)
+	if E.db.ElvUI_EltreumUI.shadows.ufaura then
+		if not button then return end
+		if not button.shadow then
+			button:CreateShadow()
+		end
+	end
+end
+hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraShadows)   --uf aura shadows
