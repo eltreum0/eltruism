@@ -717,6 +717,22 @@ if ElvUI_EltreumUI.Retail then
 							get = function(info) return E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
+						header578 = {
+							order = 55,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						apswap = {
+							order = 56,
+							type = 'execute',
+							name = "Swap Action Paging and visibility for Bar1 and Bar4",
+							--desc = "",
+							width = 'full',
+							confirm = true,
+							func = function() ElvUI_EltreumUI:ActionPagingSwap() end,
+						},
 					},
 				},
 				skins = {
@@ -776,13 +792,6 @@ if ElvUI_EltreumUI.Retail then
 									width = 'full',
 									get = function(info) return E.db.ElvUI_EltreumUI.skins.quests end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.skins.quests = value E:StaticPopup_Show('CONFIG_RL') end,
-								},
-								header14685 = {
-									order = 44,
-									type = "description",
-									name = "",
-									width = 'full',
-									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								levelbossskins = {
 									order = 48,
@@ -914,7 +923,7 @@ if ElvUI_EltreumUI.Retail then
 							name = 'Character',
 							order = 2,
 							args = {
-								header845 = {
+								header844 = {
 									order = 1,
 									type = "description",
 									name = "Character Panel",
@@ -930,6 +939,13 @@ if ElvUI_EltreumUI.Retail then
 									get = function(info) return E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.skins.expandarmorybg = value E:StaticPopup_Show('CONFIG_RL') end,
 								},
+								header845 = {
+									order = 5,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
 								expandartalpha = {
 									type = 'range',
 									name = L["Art Alpha"],
@@ -942,6 +958,13 @@ if ElvUI_EltreumUI.Retail then
 									disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
 									get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha = value E:StaticPopup_Show('CONFIG_RL') end,
+								},
+								header85 = {
+									order = 22,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								iconsoncharacter = {
 									order = 23,
@@ -984,6 +1007,7 @@ if ElvUI_EltreumUI.Retail then
 									type = "description",
 									name = "Add Shadows to Frames",
 									desc = "Add Shadows to some frames",
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									width = 'full',
 								},
 								shadowsenable = {
@@ -998,7 +1022,7 @@ if ElvUI_EltreumUI.Retail then
 								header845 = {
 									order = 46,
 									type = "description",
-									name = "Other Shadows (CPU/Memory Intensive)",
+									name = "Other Shadows (can become CPU/Memory Intensive)",
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -3373,22 +3397,6 @@ if ElvUI_EltreumUI.Retail then
 									desc = L["This will set colors to class based with black backgrounds when losing health"],
 									func = function() ElvUI_EltreumUI:LightMode() E:StaggeredUpdateAll(nil, true) end,
 									confirm = true,
-								},
-								header5 = {
-									order = 19,
-									type = "description",
-									name = "",
-									width = 'full',
-									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								},
-								apswap = {
-									order = 33,
-									type = 'execute',
-									name = "Swap Action Paging and visibility for Bar1 and Bar4",
-									--desc = "",
-									width = 'full',
-									confirm = true,
-									func = function() ElvUI_EltreumUI:ActionPagingSwap() end,
 								},
 								header1115 = {
 									order = 34,
