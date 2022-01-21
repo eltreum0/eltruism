@@ -361,8 +361,12 @@ end
 
 function ElvUI_EltreumUI:checkPetActionCooldown(index)
 	if not index then return end
-	--local _, _, texture, _, _, _, _, spellId = GetPetActionInfo(index) --old
-	local _, texture, _, _, _, _, spellId, _, _ = GetPetActionInfo(index) --shadowlands
+	local texture, spellId
+	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+		local _, _, texture, _, _, _, _, spellId = GetPetActionInfo(index) --old
+	elseif ElvUI_EltreumUI.Retail then
+		local _, texture, _, _, _, _, spellId, _, _ = GetPetActionInfo(index) --shadowlands
+	end
 	if spellId then
 		self:checkSpellCooldown(spellId)
 	else
