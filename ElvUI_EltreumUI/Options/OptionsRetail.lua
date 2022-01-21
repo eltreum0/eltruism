@@ -148,14 +148,14 @@ if ElvUI_EltreumUI.Retail then
 									type = 'execute',
 									name = 'Reset layout to Eltruism DPS/Tank',
 									width = 'double',
-									func = function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupLayout('dps') end,
+									func = function() E.data:SetProfile('Eltreum DPS/Tank') ElvUI_EltreumUI:SetupGeneralLayout() ElvUI_EltreumUI:SetupLayoutDPS() end,
 								},
 								resethealer = {
 									order = 1,
 									type = 'execute',
 									name = 'Reset layout to Eltruism Healer',
 									width = 'double',
-									func = function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupLayout('healer') end,
+									func = function() E.data:SetProfile('Eltreum Healer') ElvUI_EltreumUI:SetupGeneralLayout() ElvUI_EltreumUI:SetupLayoutHealer() end,
 								},
 							},
 						},
@@ -375,6 +375,7 @@ if ElvUI_EltreumUI.Retail then
 				misc = {
 					type = 'group',
 					name = 'Misc',
+					--childGroups = "tab",
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\misc',
 					order = 85,
 					args = {
@@ -576,22 +577,31 @@ if ElvUI_EltreumUI.Retail then
 							get = function(info) return E.db.ElvUI_EltreumUI.otherstuff.screenshot end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.screenshot = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
-						header16 = {
+						header197876 = {
 							order = 50,
 							type = "description",
-							name = "",
+							name = "Stealth",
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
-						blizzcombattextdesc = {
+						stealthframeoptions = {
 							order = 51,
+							type = 'toggle',
+							name = L["Add a vignette effect while in stealth"],
+							width = 'full',
+							desc = L["Turn the effect on"],
+							get = function(info) return E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect = value end,
+						},
+						header16 = {
+							order = 52,
 							type = "description",
 							name = "Blizzard Floating Combat Text",
-							desc = "Enable or disable Blizzard's default Floating Combat Text",
 							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
 						blizzcombatexttoggle = {
-							order = 52,
+							order = 53,
 							name = "Disable Combat Text",
 							type = "toggle",
 							desc = "Enable or disable Blizzard's default Floating Combat Text",
@@ -600,7 +610,7 @@ if ElvUI_EltreumUI.Retail then
 							set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
 						blizzcombatextmana = {
-							order = 53,
+							order = 54,
 							name = "Enable Resource Gains",
 							type = "toggle",
 							desc = "Enable or disable Blizzard's default Floating Combat Text for Mana/Rage/Energy and other resouces",
@@ -3791,31 +3801,6 @@ if ElvUI_EltreumUI.Retail then
 									order = 18,
 									get = function() return E.db.ElvUI_EltreumUI.loottext.fontsetting end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.loottext.fontsetting = value E:StaticPopup_Show('CONFIG_RL') end,
-								},
-							},
-						},
-					},
-				},
-				stealth = {
-					type = 'group',
-					name = L["Stealth Vignette"],
-					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\stealth',
-					order = 85,
-					args = {
-						stealthOptions = {
-							order = 1,
-							type = 'group',
-							inline = true,
-							name = L["Toggle a Stealth Effect"],
-							args = {
-								stealthframeoptions = {
-									order = 1,
-									type = 'toggle',
-									name = L["Add a vignette effect while in stealth"],
-									width = 'full',
-									desc = L["Turn the effect on"],
-									get = function(info) return E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect end,
-									set = function(info, value) E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect = value end,
 								},
 							},
 						},
