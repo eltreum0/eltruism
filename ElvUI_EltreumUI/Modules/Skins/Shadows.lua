@@ -238,7 +238,7 @@ function ElvUI_EltreumUI:Shadows()
 				DT.tooltip:CreateShadow()
 			end
 		end
-		--[[
+
 		--action bars
 		if E.private.actionbar.enable then
 			--elvui action bars
@@ -286,8 +286,6 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 		end
-
-	]]
 
 		--microbar shadow
 		if E.db.actionbar.microbar.enabled == true then
@@ -692,16 +690,6 @@ function ElvUI_EltreumUI:Construct_AuraIcon(button)
 end
 hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) -- nameplate buffs/debuffs shadows
 
-function ElvUI_EltreumUI:ActionBarShadows(button)
-	if E.db.ElvUI_EltreumUI.shadows.actionbars then
-		if not button then return end
-		if not button.shadow then
-			button:CreateShadow()
-		end
-	end
-end
-hooksecurefunc(AB, 'StyleButton', ElvUI_EltreumUI.ActionBarShadows)  --action bar shadows
-
 function ElvUI_EltreumUI:AuraShadows(button)
 	if E.db.ElvUI_EltreumUI.shadows.aura then
 		if not button then return end
@@ -721,3 +709,16 @@ function ElvUI_EltreumUI:UFAuraShadows(button)
 	end
 end
 hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraShadows)   --uf aura shadows
+
+--uses a lot more cpu for some reason
+--[[
+function ElvUI_EltreumUI:ActionBarShadows(button)
+	if E.db.ElvUI_EltreumUI.shadows.actionbars then
+		if not button then return end
+		if not button.shadow then
+			button:CreateShadow()
+		end
+	end
+end
+hooksecurefunc(AB, 'StyleButton', ElvUI_EltreumUI.ActionBarShadows)  --action bar shadows
+]]
