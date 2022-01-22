@@ -273,6 +273,10 @@ P.ElvUI_EltreumUI = {
 		xcasttarget = 272,
 		ycasttarget = 58,
 
+		targettargetborder = false,
+		xtargettarget = 134,
+		ytargettarget = 75,
+
 		bar1borders = true,
 		bar1xborder = 65,
 		bar1yborder = 56,

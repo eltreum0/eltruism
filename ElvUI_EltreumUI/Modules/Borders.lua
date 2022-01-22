@@ -157,6 +157,18 @@ function ElvUI_EltreumUI:Borders()
 				targetcastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				targetcastbarborder:SetFrameStrata("HIGH")
 			end
+
+			if E.db.ElvUI_EltreumUI.borders.targettargetborder and E.db.unitframe.units.targettarget.enable then
+				local targettargetborder = CreateFrame("Frame", "EltruismTargetTargetBorder", _G.ElvUF_TargetTarget_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
+				targettargetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xtargettarget, E.db.ElvUI_EltreumUI.borders.ytargettarget)
+				targettargetborder:SetPoint("CENTER", _G.ElvUF_TargetTarget_HealthBar, "CENTER", 0 ,0)
+				targettargetborder:SetBackdrop({
+					edgeFile = bordertexture,
+					edgeSize = playertargetsize,
+				})
+				targettargetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+				targettargetborder:SetFrameStrata("LOW")
+			end
 		end
 
 		--elvui action bars
