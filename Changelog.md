@@ -2,7 +2,8 @@
 **The future is uncertain**
 ___
 ### 2.6.7
-Improved the Hybrid spec detection for TBC/Classic
+Improved the Hybrid spec detection for TBC/Classic\
+Improved the Dark/Light mode switch and the Dark/Transparent chat mode switch\
 ___
 ### 2.6.6
 Added an option for Nameplate Texture to be based on the Target's Class/Reaction\
