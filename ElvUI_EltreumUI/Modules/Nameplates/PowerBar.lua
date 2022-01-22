@@ -133,7 +133,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 	--end
 	--print(select(4, GetBuildInfo()))
 	--print(spellID.." spellID!")
-
+	local startpower = UnitPower("player")
 	if startTime ~= endTime then
 		local costTable = GetSpellPowerCost(spellID)
 		if costTable ~= nil then
@@ -154,11 +154,21 @@ function ElvUI_EltreumUI:PowerPrediction()
 				end
 			end
 		end
-		EltreumPowerPrediction:SetValue(mainCost)
+
+		--EltreumPowerPrediction:SetSize(mainCost, sizey)
+		--EltreumPowerPredictionIncoming:SetSize(incResource, sizey)
+		if startpower == 0 then
+			EltreumPowerPrediction:SetValue(0)
+		elseif startpower ~= 0 then
+			EltreumPowerPrediction:SetValue(mainCost)
+		end
+
 		EltreumPowerPrediction:Show()
 		EltreumPowerPredictionIncoming:SetValue(incResource)
 		EltreumPowerPredictionIncoming:Show()
 	else
+		EltreumPowerPrediction:SetSize(sizex, sizey)
+		EltreumPowerPredictionIncoming:SetSize(sizex, sizey)
 		EltreumPowerPrediction:SetValue(0)
 		EltreumPowerPrediction:Hide()
 		EltreumPowerPredictionIncoming:SetValue(0)
