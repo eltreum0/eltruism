@@ -5,6 +5,7 @@ ___
 Added an option for Nameplate Texture to be based on the Target's Class/Reaction\
 Added borders to Target of Target unitframe\
 Updated Details install with a new profile, this profile is equal to v2 but the icons are not as transparent. All three profiles are still available\
+Fixed a dev print that wasn't supposed to be on release\
 ___
 ### 2.6.5
 Added various shadows, such as Nameplate Healthbars, which can be enabled in the Eltruism > Skins settings\
