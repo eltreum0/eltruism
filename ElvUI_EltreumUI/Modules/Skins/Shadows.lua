@@ -348,84 +348,6 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
-			--party
-			for i = 1, 5 do
-				local partymembers = {_G['ElvUF_PartyGroup1UnitButton'..i]}
-				for _, frame in pairs(partymembers) do
-					for _, button in pairs(partymembers) do
-						if not button.shadow then
-							button:CreateShadow()
-						--[[button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2]]
-						end
-					end
-				end
-			end
-
-			--boss
-			for i = 1, 5 do
-				local bossmembers = {_G['ElvUF_Boss'..i]}
-				for _, frame in pairs(bossmembers) do
-					for _, button in pairs(bossmembers) do
-						if not button.shadow then
-							button:CreateShadow()
-						--[[button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2]]
-						end
-					end
-				end
-			end
-
-			--classpower
-			for i = 1, 10 do
-				if not _G['ElvUF_PlayerClassIconButton'..i] then
-					return
-				end
-				local button = _G['ElvUF_PlayerClassIconButton'..i].backdrop
-				if not button then
-					break
-				else
-					if not button.shadow then
-						button:CreateShadow()
-						--[[button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2]]
-					end
-				end
-			end
-
-			--runes
-			for i = 1, 10 do
-				if not _G['ElvUF_PlayerRuneButton'..i] then
-					return
-				end
-				local button = _G['ElvUF_PlayerRuneButton'..i].backdrop
-				if not button then
-					break
-				else
-					if not button.shadow then
-						button:CreateShadow()
-					end
-				end
-			end
-
-			--AdditionalPowerBar
-			for i = 1, 10 do
-				if not _G['ElvUF_Player_AdditionalPowerBar'..i] then
-					return
-				end
-				local button = _G['ElvUF_Player_AdditionalPowerBar'..i].backdrop
-				if not button then
-					break
-				else
-					if not button.shadow then
-						button:CreateShadow()
-					end
-				end
-			end
-
 			--player castbar
 			local PlayerCastbar = CreateFrame("Frame", "EltruismPlayerCastBarShadowFrame")
 			local isattached = E.db.unitframe.units.player.castbar.iconAttached
@@ -460,6 +382,97 @@ function ElvUI_EltreumUI:Shadows()
 					self.TargetCastBarIsSkinned = true
 				end
 			end
+
+
+			--party
+			for i = 1, 5 do
+				local partymembers = {_G['ElvUF_PartyGroup1UnitButton'..i]}
+				for _, frame in pairs(partymembers) do
+					for _, button in pairs(partymembers) do
+						if not button.shadow then
+							button:CreateShadow()
+						--[[button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2]]
+						end
+					end
+				end
+			end
+
+			--boss
+			for i = 1, 5 do
+				local bossmembers = {_G['ElvUF_Boss'..i]}
+				for _, frame in pairs(bossmembers) do
+					for _, button in pairs(bossmembers) do
+						if not button.shadow then
+							button:CreateShadow()
+						--[[button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2]]
+						end
+					end
+				end
+			end
+
+			--runes
+			if E.myclass == 'DEATHKNIGHT' then
+				for i = 1, 6 do
+					if not _G['ElvUF_PlayerRuneButton'..i] then
+						break
+					end
+					local button = _G['ElvUF_PlayerRuneButton'..i] --.backdrop
+					if not button then
+						break
+					else
+						if not button.shadow then
+							button:CreateShadow()
+						end
+					end
+				end
+			end
+
+			local additionalpowerbar = _G['ElvUF_Player_AdditionalPowerBar']
+			if not _G['ElvUF_Player_AdditionalPowerBar'].shadow then
+				_G['ElvUF_Player_AdditionalPowerBar']:CreateShadow()
+			end
+
+			--classpower
+			if not (E.myclass == 'DEATHKNIGHT') then
+				for i = 1, 10 do
+					if not _G['ElvUF_PlayerClassIconButton'..i] then
+						break
+					end
+					local button = _G['ElvUF_PlayerClassIconButton'..i].backdrop
+					if not button then
+						break
+					else
+						if not button.shadow then
+							button:CreateShadow()
+							--[[button.shadow = button:CreateShadow(nil, true)
+							button.shadow:SetParent(button)
+							button.shadow.size = 2]]
+						end
+					end
+				end
+			end
+
+			--AdditionalPowerBar
+			if E.myclass == 'DRUID' or E.myclass == 'SHAMAN' or E.myclass == 'PRIEST' then
+				for i = 1, 3 do
+					if not _G['ElvUF_Player_AdditionalPowerBar'..i] then
+						break
+					end
+					local button = _G['ElvUF_Player_AdditionalPowerBar'..i].backdrop
+					if not button then
+						break
+					else
+						if not button.shadow then
+							button:CreateShadow()
+						end
+					end
+				end
+			end
+
 		end
 
 		--bags
