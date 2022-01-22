@@ -32,6 +32,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
 	end
+	ElvUI_EltreumUI:ExtraMedia() -- load extra media if settings enabled
 	ElvUI_EltreumUI:LoadCommands() --loads chat commands
 	ElvUI_EltreumUI:Borders() --creates borders if option is enabled
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()  --adds class icons to character panel
@@ -58,7 +59,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:DynamicBuffs() --shows enemy player buffs on nameplates/unitframes if in arena/bgs, hides otherwise
 	ElvUI_EltreumUI:EnteringWorldCVars() --set cvars at the start
 	ElvUI_EltreumUI:GroupRoster() -- attempt at prevent CLEU tracking
-	ElvUI_EltreumUI:ExtraMedia() -- load extra media if settings enabled
+
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
@@ -80,23 +81,8 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:DynamicLevelStyleFilter() --shows or hides level filter on np based on player level
 		ElvUI_EltreumUI:UpdateNPwithoutBar() --updates buffs/debuffs positions on np based on powerbar settings
 	end
-	--Better EventTrace CLEU logging thanks to ;Meorawr.wtf.lua;
-	if E.db.ElvUI_EltreumUI.dev then
-		if not IsAddOnLoaded("Blizzard_EventTrace") then
-			LoadAddOn("Blizzard_EventTrace")
-		end
-		local LogEvent = EventTrace.LogEvent
-		function EventTrace:LogEvent(event, ...)
-			if event == "COMBAT_LOG_EVENT_UNFILTERED" then
-				LogEvent(self, event, CombatLogGetCurrentEventInfo())
-			else
-				LogEvent(self, event, ...)
-			end
-		end
-		if _G.ElvUI_StaticPopup1 then
-			_G.ElvUI_StaticPopup1:Hide()
-		end
-		ElvUI_EltreumUI:Print("|cFFFF0000WARNING:|r You are using Development Tools which increase CPU and Memory Usage. Use |cFFFF0000/eltruism dev|r to disable them")
+	if E.db.ElvUI_EltreumUI.dev then --load dev tools if user enables
+		ElvUI_EltreumUI:DevTools()
 	end
 	--a warning in case people are using the dev version
 	ElvUI_EltreumUI:Print("|cFFFF0000WARNING:|r You are using Eltruism DEV. This is a version not ready for release which can have incomplete features or issues. |cFFFF0000Please report them on discord if you encounter any.|r")
@@ -177,15 +163,18 @@ function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
 	--end
 end
 
-function ElvUI_EltreumUI:ENCOUNTER_START()
+function ElvUI_EltreumUI:ENCOUNTER_START(event)
+	--print(event)
 	ElvUI_EltreumUI:QuestEncounter()
-	ElvUI_EltreumUI:CombatMusic()
-	ElvUI_EltreumUI:BossMusic()
+	ElvUI_EltreumUI:CombatMusic(event)
+	ElvUI_EltreumUI:BossMusic(event)
 end
 
-function ElvUI_EltreumUI:ENCOUNTER_END()
+function ElvUI_EltreumUI:ENCOUNTER_END(event)
+	--print(event)
 	ElvUI_EltreumUI:QuestEncounterEnd()
-	ElvUI_EltreumUI:StopBossMusic()
+	ElvUI_EltreumUI:StopBossMusic(event)
+	ElvUI_EltreumUI:StopCombatMusic(event)
 end
 
 function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
@@ -203,16 +192,18 @@ function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
 	ElvUI_EltreumUI:AutoScreenshot()
 end
 
-function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED()
-	ElvUI_EltreumUI:StopCombatMusic()
+function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED(event)
+	--print(event)
+	ElvUI_EltreumUI:StopCombatMusic(event)
 	ElvUI_EltreumUI:DynamicChatFade()
 	ElvUI_EltreumUI:BlizzCombatText()
 	ElvUI_EltreumUI:QuestCombatEnd()
 	--ElvUI_EltreumUI:ArenaUnitframes()
 end
 
-function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED()
-	ElvUI_EltreumUI:CombatMusic()
+function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED(event)
+	--print(event)
+	ElvUI_EltreumUI:CombatMusic(event)
 	ElvUI_EltreumUI:DynamicChatFade()
 	ElvUI_EltreumUI:ArenaUnitframes()
 	ElvUI_EltreumUI:QuestCombat()
@@ -276,9 +267,10 @@ function ElvUI_EltreumUI:UNIT_MODEL_CHANGED(event,unit)
 		return
 	elseif unit and unit == 'player' then
 		--print(event,unit)
-		if E.myclass == 'DRUID' then
+		if E.myclass == 'DRUID' or E.myclass == 'SHAMAN' then
 			ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
 			ElvUI_EltreumUI:NameplatePower(event)
+			ElvUI_EltreumUI:PowerPrediction()
 		end
 	end
 end

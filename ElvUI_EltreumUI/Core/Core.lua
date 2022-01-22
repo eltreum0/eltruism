@@ -494,3 +494,24 @@ function ElvUI_EltreumUI:OriginalGroupsDPS()
 		ElvUI_EltreumUI:Print(L["The original layout was made for the Eltruism DPS/Tank profile, please switch to it to use it"])
 	end
 end
+
+--Better EventTrace CLEU logging thanks to ;Meorawr.wtf.lua;
+function ElvUI_EltreumUI:DevTools()
+	if E.db.ElvUI_EltreumUI.dev then
+		if not IsAddOnLoaded("Blizzard_EventTrace") then
+			LoadAddOn("Blizzard_EventTrace")
+		end
+		local LogEvent = EventTrace.LogEvent
+		local function EventTraceLogEvent(event, ...)
+			if event == "COMBAT_LOG_EVENT_UNFILTERED" then
+				LogEvent(self, event, CombatLogGetCurrentEventInfo())
+			else
+				LogEvent(self, event, ...)
+			end
+		end
+		if _G.ElvUI_StaticPopup1 then
+			_G.ElvUI_StaticPopup1:Hide()
+		end
+		ElvUI_EltreumUI:Print("|cFFFF0000WARNING:|r You are using Development Tools which increase CPU and Memory Usage. Use |cFFFF0000/eltruism dev|r to disable them")
+	end
+end
