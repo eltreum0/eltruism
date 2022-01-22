@@ -1,9 +1,10 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local LibStub = _G.LibStub
-local LSM = LibStub("LibSharedMedia-3.0")
+--local LSM = LibStub("LibSharedMedia-3.0")
+--if LSM == nil then return end
+local LSM = E.Libs.LSM
 
-if LSM == nil then return end
 -- Fonts
 LSM:Register("font", "Exo2 Extra Bold", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Exo2-ExtraBold.ttf]])
 LSM:Register("font", "GothamNarrow Black", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GothamNarrowBlack.ttf]])
@@ -11,31 +12,34 @@ LSM:Register('font', "Kimberley", [[Interface\AddOns\ElvUI_EltreumUI\Media\Fonts
 LSM:Register("font", "Roboto", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Roboto-Bold.ttf]])
 
 -- Statusbar
-LSM:Register("statusbar", "Eltreum7pixel", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum7pixel.tga]])
 LSM:Register("statusbar", "Eltreum-Blank", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Blank.tga]])
 LSM:Register("statusbar", "Eltreum-Elvui-Norm", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Elvui-Norm.tga]])
-LSM:Register("statusbar", "Eltreum-Class-DemonHunter", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-DH.tga]])
-LSM:Register("statusbar", "Eltreum-Class-DeathKnight", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-DK.tga]])
-LSM:Register("statusbar", "Eltreum-Class-Druid", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-DR.tga]])
-LSM:Register("statusbar", "Eltreum-Class-Hunter", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-HT.tga]])
-LSM:Register("statusbar", "Eltreum-Class-Mage", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-MG.tga]])
-LSM:Register("statusbar", "Eltreum-Class-Monk", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-MK.tga]])
-LSM:Register("statusbar", "Eltreum-Class-Paladin", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-PL.tga]])
-LSM:Register("statusbar", "Eltreum-Class-Rogue", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-RG.tga]])
-LSM:Register("statusbar", "Eltreum-Class-Shaman", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-SH.tga]])
-LSM:Register("statusbar", "Eltreum-Class-Warrior", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-WA.tga]])
-LSM:Register("statusbar", "Eltreum-Class-Warlock", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-WL.tga]])
-LSM:Register("statusbar", "Eltreum-Class-Priest", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Blank.tga]])
 LSM:Register("statusbar", "Asphyxia-Norm", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\AsphyxiaNorm.tga]])
 LSM:Register("statusbar", "Eltreum-Stripes", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Stripes.tga]])
 
 -- Border
 LSM:Register("border", "better-blizzard-border-small-alternate", [[Interface\Addons\ElvUI_EltreumUI\Media\border\better-blizzard-border-small-alternate.tga]])
 
-
 function ElvUI_EltreumUI:ExtraMedia()
+
+	-- Statusbar
+	LSM:Register("statusbar", "Eltreum7pixel", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum7pixel.tga]])
+	LSM:Register("statusbar", "Eltreum-Class-DemonHunter", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-DH.tga]])
+	LSM:Register("statusbar", "Eltreum-Class-DeathKnight", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-DK.tga]])
+	LSM:Register("statusbar", "Eltreum-Class-Druid", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-DR.tga]])
+	LSM:Register("statusbar", "Eltreum-Class-Hunter", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-HT.tga]])
+	LSM:Register("statusbar", "Eltreum-Class-Mage", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-MG.tga]])
+	LSM:Register("statusbar", "Eltreum-Class-Monk", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-MK.tga]])
+	LSM:Register("statusbar", "Eltreum-Class-Paladin", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-PL.tga]])
+	LSM:Register("statusbar", "Eltreum-Class-Rogue", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-RG.tga]])
+	LSM:Register("statusbar", "Eltreum-Class-Shaman", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-SH.tga]])
+	LSM:Register("statusbar", "Eltreum-Class-Warrior", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-WA.tga]])
+	LSM:Register("statusbar", "Eltreum-Class-Warlock", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-WL.tga]])
+	LSM:Register("statusbar", "Eltreum-Class-Priest", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Blank.tga]])
+
+	--Only load extra media if the user enables it
+	--Fonts
 	if E.db.ElvUI_EltreumUI.media.font then
-		--font
 		LSM:Register("font", "Good Brush", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GoodBrush.ttf]])
 		LSM:Register("font", "GothamXNarrow Black", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GothamXNarrowBlack.ttf]])
 		LSM:Register("font", "JosefinSans-Bold", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\JosefinSans-Bold.ttf]])
@@ -44,8 +48,8 @@ function ElvUI_EltreumUI:ExtraMedia()
 		LSM:Register("font", "Pricedown", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\pricedown.ttf]])
 	end
 
+	-- Sound
 	if E.db.ElvUI_EltreumUI.media.sound then
-		-- Sound
 		LSM:Register("sound", "You_Died", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\You_Died.ogg]])
 		LSM:Register("sound", "Todd Horward - It just works", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\Itjustworks.ogg]])
 		LSM:Register("sound", "Will Smith - Ah ahaha", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WillSmith-Ahaha.ogg]])
@@ -68,6 +72,7 @@ function ElvUI_EltreumUI:ExtraMedia()
 		LSM:Register("sound", "Frankly thats a skill issue", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\ionskillissue.ogg]])
 	end
 
+	--Statusbars
 	if E.db.ElvUI_EltreumUI.media.statusbar then
 		LSM:Register("statusbar", "Eltreum-bottom", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-bottom.tga]])
 		LSM:Register("statusbar", "Eltreum-left", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-left.tga]])
@@ -87,8 +92,8 @@ function ElvUI_EltreumUI:ExtraMedia()
 		LSM:Register("statusbar", "Eltreum-30%", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-30pc.tga]])
 	end
 
+	--Class Textures & Backgrounds
 	if E.db.ElvUI_EltreumUI.media.texture then
-		--Class Textures
 		LSM:Register("texture", "Eltreum-Death Knight", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Classes\DeathKnight.tga]])
 		LSM:Register("texture", "Eltreum-Demon Hunter", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Classes\DemonHunter.tga]])
 		LSM:Register("texture", "Eltreum-Druid", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Classes\Druid.tga]])
@@ -106,6 +111,7 @@ function ElvUI_EltreumUI:ExtraMedia()
 		LSM:Register("background", "Eltreum-StealthOverlay", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\StealthOverlay.tga]])
 	end
 
+	--Borders
 	if E.db.ElvUI_EltreumUI.media.border then
 		LSM:Register("border", "aura_border", [[Interface\Addons\ElvUI_EltreumUI\Media\border\aura_border.tga]])
 		LSM:Register("border", "border-glow-overlay", [[Interface\Addons\ElvUI_EltreumUI\Media\border\border-glow-overlay.tga]])

@@ -12,7 +12,6 @@ function ElvUI_EltreumUI:Borders()
 		return
 	end
 	if E.db.ElvUI_EltreumUI.borders.borders then
-		print("borders")
 		local bordertexture
 		if E.db.ElvUI_EltreumUI.borders.texture then
 			bordertexture = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture)
