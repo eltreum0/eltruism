@@ -134,7 +134,6 @@ function ElvUI_EltreumUI:PowerPrediction()
 	--print(select(4, GetBuildInfo()))
 	--print(spellID.." spellID!")
 	local startpower = UnitPower("player")
-	local powerMax = UnitPowerMax("player")
 	if startTime ~= endTime then
 		local costTable = GetSpellPowerCost(spellID)
 		if costTable ~= nil then
