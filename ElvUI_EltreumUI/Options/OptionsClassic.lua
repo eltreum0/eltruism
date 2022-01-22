@@ -1682,7 +1682,7 @@ if ElvUI_EltreumUI.Classic then
 								instancemusic = {
 									order = 2,
 									type = 'toggle',
-									name = L["Disable in Instances"],
+									name = L["Disable Combat Music in Instances"],
 									desc = L["Disable music during combat in instances"],
 									width = 'full',
 									disabled = function() return not E.private.ElvUI_EltreumUI.combatmusic.enable end,
@@ -2885,7 +2885,6 @@ if ElvUI_EltreumUI.Classic then
 									func = function() ElvUI_EltreumUI:SetupFontsGotham() E:StaggeredUpdateAll(nil, true) end,
 									confirm = true,
 								},
-
 								roboto = {
 									order = 7,
 									type = 'execute',
@@ -3012,7 +3011,6 @@ if ElvUI_EltreumUI.Classic then
 									func = function() ElvUI_EltreumUI:LightMode() E:StaggeredUpdateAll(nil, true) end,
 									confirm = true,
 								},
-
 								header5 = {
 								order = 52,
 								type = "description",
@@ -3066,13 +3064,45 @@ if ElvUI_EltreumUI.Classic then
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
-								extramedia = {
+								extramediafont = {
 									order = 35,
 									type = 'toggle',
-									name = L["Enable Extra Media"],
-									desc = L["Add more media to Shared Media"],
-									get = function(info) return E.db.ElvUI_EltreumUI.media.enable end,
-									set = function(info, value) E.db.ElvUI_EltreumUI.media.enable = value end,
+									name = L["Fonts"],
+									desc = L["Add more fonts to Shared Media"],
+									get = function(info) return E.db.ElvUI_EltreumUI.media.font end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.media.font = value E:StaticPopup_Show('CONFIG_RL') end,
+								},
+								extramediasound = {
+									order = 35,
+									type = 'toggle',
+									name = L["Sounds"],
+									desc = L["Add more sounds to Shared Media"],
+									get = function(info) return E.db.ElvUI_EltreumUI.media.sound end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.media.sound = value E:StaticPopup_Show('CONFIG_RL') end,
+								},
+								extramediaborder = {
+									order = 35,
+									type = 'toggle',
+									name = L["Borders"],
+									desc = L["Add more borders to Shared Media"],
+									get = function(info) return E.db.ElvUI_EltreumUI.media.border end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.media.border = value E:StaticPopup_Show('CONFIG_RL') end,
+								},
+								extramediastatusbar = {
+									order = 35,
+									type = 'toggle',
+									name = L["Statusbars"],
+									desc = L["Add more statusbars to Shared Media"],
+									get = function(info) return E.db.ElvUI_EltreumUI.media.statusbar end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.media.statusbar = value E:StaticPopup_Show('CONFIG_RL') end,
+								},
+								extramediatexture = {
+									order = 35,
+									type = 'toggle',
+									name = L["Textures"],
+									desc = L["Add more statusbars to Shared Media"],
+									get = function(info) return E.db.ElvUI_EltreumUI.media.texture end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.media.texture = value E:StaticPopup_Show('CONFIG_RL') end,
 								},
 							},
 						},

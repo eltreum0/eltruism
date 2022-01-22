@@ -1742,7 +1742,7 @@ if ElvUI_EltreumUI.TBC then
 								instancemusic = {
 									order = 2,
 									type = 'toggle',
-									name = L["Disable in Instances"],
+									name = L["Disable Combat Music in Instances"],
 									desc = L["Disable music during combat in instances"],
 									width = 'full',
 									disabled = function() return not E.private.ElvUI_EltreumUI.combatmusic.enable end,
