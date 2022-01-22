@@ -169,14 +169,10 @@ function ElvUI_EltreumUI:PowerPrediction()
 				EltreumPowerPrediction:SetValue(mainCost)
 			end
 		end
-
-
 		EltreumPowerPrediction:Show()
 		EltreumPowerPredictionIncoming:SetValue(incResource)
 		EltreumPowerPredictionIncoming:Show()
 	else
-		EltreumPowerPrediction:SetSize(sizex, sizey)
-		EltreumPowerPredictionIncoming:SetSize(sizex, sizey)
 		EltreumPowerPrediction:SetValue(0)
 		EltreumPowerPrediction:Hide()
 		EltreumPowerPredictionIncoming:SetValue(0)
