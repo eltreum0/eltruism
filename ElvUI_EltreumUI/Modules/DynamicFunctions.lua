@@ -240,7 +240,18 @@ function ElvUI_EltreumUI:TransparentChat()
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["backdrop"] = false
 
-	E:StaggeredUpdateAll()
+	E:UpdateChat()
+	E:UpdateLayout()
+	E:UpdateDataBars()
+	E:UpdateDataTexts()
+	--E:StaggeredUpdateAll()
+
+	if _G["EltruismRightChatShadowFrame"] then
+		_G["EltruismRightChatShadowFrame"]:Hide()
+	end
+	if _G["EltruismLeftChatShadowFrame"] then
+		_G["EltruismLeftChatShadowFrame"]:Hide()
+	end
 end
 
 function ElvUI_EltreumUI:DarkChat()
@@ -253,5 +264,15 @@ function ElvUI_EltreumUI:DarkChat()
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["backdrop"] = true
 
-	E:StaggeredUpdateAll()
+	E:UpdateChat()
+	E:UpdateLayout()
+	E:UpdateDataBars()
+	E:UpdateDataTexts()
+	--E:StaggeredUpdateAll()
+	if _G["EltruismRightChatShadowFrame"] then
+		_G["EltruismRightChatShadowFrame"]:Show()
+	end
+	if _G["EltruismLeftChatShadowFrame"] then
+		_G["EltruismLeftChatShadowFrame"]:Show()
+	end
 end

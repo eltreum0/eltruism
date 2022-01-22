@@ -55,7 +55,13 @@ function ElvUI_EltreumUI:DarkMode()
 		--E:StaggeredUpdateAll(nil, true)
 		E.db.ElvUI_EltreumUI.lightmode = false
 
-		E:StaggeredUpdateAll()
+		--E:StaggeredUpdateAll()
+		--E:UpdateLayout()
+		--E:UpdateMisc()
+		--E:UpdateChat()
+		--E:UpdateMoverPositions()
+		E:UpdateMediaItems()
+		E:UpdateUnitFrames()
 end
 
 function ElvUI_EltreumUI:LightMode()
@@ -119,7 +125,13 @@ function ElvUI_EltreumUI:LightMode()
 	end
 	E.db.ElvUI_EltreumUI.lightmode = true
 
-	E:StaggeredUpdateAll()
+	--E:StaggeredUpdateAll()
+	--E:UpdateLayout()
+	--E:UpdateMisc()
+	--E:UpdateMoverPositions()
+	E:UpdateMediaItems()
+	E:UpdateUnitFrames()
+	--E:UpdateChat()
 end
 
 function ElvUI_EltreumUI:TextureMode()

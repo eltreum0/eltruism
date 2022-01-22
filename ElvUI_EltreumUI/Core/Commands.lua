@@ -52,30 +52,36 @@ function ElvUI_EltreumUI:RunCommands(message)
 	elseif message == 'chat' then
 		if E.db.chat.panelBackdrop == "HIDEBOTH" then
 			ElvUI_EltreumUI:DarkChat()
-			ElvUI_EltreumUI:Print("Chat set to dark mode, please reload")
-			E:StaticPopup_Show('CONFIG_RL')
+			ElvUI_EltreumUI:Print("Chat set to Dark mode")
+			--ElvUI_EltreumUI:Print("Chat set to dark mode, please reload")
+			--E:StaticPopup_Show('CONFIG_RL')
 		elseif E.db.chat.panelBackdrop == "SHOWBOTH" then
 			ElvUI_EltreumUI:TransparentChat()
-			ElvUI_EltreumUI:Print("Chat set to transparent mode, please reload")
-			E:StaticPopup_Show('CONFIG_RL')
+			ElvUI_EltreumUI:Print("Chat set to Transparent mode")
+			--ElvUI_EltreumUI:Print("Chat set to transparent mode, please reload")
+			--E:StaticPopup_Show('CONFIG_RL')
 		else
 			ElvUI_EltreumUI:TransparentChat()
-			ElvUI_EltreumUI:Print("Chat set to transparent mode, please reload")
-			E:StaticPopup_Show('CONFIG_RL')
+			ElvUI_EltreumUI:Print("Chat set to Transparent mode")
+			--ElvUI_EltreumUI:Print("Chat set to transparent mode, please reload")
+			--E:StaticPopup_Show('CONFIG_RL')
 		end
 	elseif message == 'color' then
 		if E.db.ElvUI_EltreumUI.lightmode == true then
 			ElvUI_EltreumUI:DarkMode()
-			ElvUI_EltreumUI:Print("Unitframes set to dark mode, please reload")
-			E:StaticPopup_Show('CONFIG_RL')
+			ElvUI_EltreumUI:Print("Unitframes set to Dark Mode")
+			--ElvUI_EltreumUI:Print("Unitframes set to dark mode, please reload")
+			--E:StaticPopup_Show('CONFIG_RL')
 		elseif E.db.ElvUI_EltreumUI.lightmode == false then
 			ElvUI_EltreumUI:LightMode()
-			ElvUI_EltreumUI:Print("Unitframes set to light mode, please reload")
-			E:StaticPopup_Show('CONFIG_RL')
+			ElvUI_EltreumUI:Print("Unitframes set to Light Mode")
+			--ElvUI_EltreumUI:Print("Unitframes set to light mode, please reload")
+			--E:StaticPopup_Show('CONFIG_RL')
 		else
 			ElvUI_EltreumUI:DarkMode()
-			ElvUI_EltreumUI:Print("Unitframes set to dark mode, please reload")
-			E:StaticPopup_Show('CONFIG_RL')
+			ElvUI_EltreumUI:Print("Unitframes set to Dark Mode")
+			--ElvUI_EltreumUI:Print("Unitframes set to dark mode, please reload")
+			--E:StaticPopup_Show('CONFIG_RL')
 		end
 	else
 		ElvUI_EltreumUI:Print("|cff82B4ffYou have entered an unknown command, here's a list of commands you can use:|r")
