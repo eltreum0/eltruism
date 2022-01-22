@@ -6,7 +6,13 @@ local pairs = _G.pairs
 
 --Beta borders on frames
 function ElvUI_EltreumUI:Borders()
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then
+		return
+	elseif not E.private.ElvUI_EltreumUI then
+		return
+	end
 	if E.db.ElvUI_EltreumUI.borders.borders then
+		print("borders")
 		local bordertexture
 		if E.db.ElvUI_EltreumUI.borders.texture then
 			bordertexture = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture)
