@@ -249,9 +249,10 @@ function ElvUI_EltreumUI:Shadows()
 						local slots = {_G['ElvUI_Bar'..i..'Button'..k]}
 						for _, button in pairs(slots) do
 							if not button.shadow then
-								button.shadow = button:CreateShadow(nil, true)
+								button:CreateShadow()
+								--[[button.shadow = button:CreateShadow(nil, true)
 								button.shadow:SetParent(button)
-								button.shadow.size = 2
+								button.shadow.size = 2]]
 							end
 						end
 					end
@@ -279,9 +280,10 @@ function ElvUI_EltreumUI:Shadows()
 					break
 				else
 					if not button.shadow then
-						button.shadow = button:CreateShadow(nil, true)
+						button:CreateShadow()
+						--[[button.shadow = button:CreateShadow(nil, true)
 						button.shadow:SetParent(button)
-						button.shadow.size = 2
+						button.shadow.size = 2]]
 					end
 				end
 			end
@@ -352,9 +354,10 @@ function ElvUI_EltreumUI:Shadows()
 				for _, frame in pairs(partymembers) do
 					for _, button in pairs(partymembers) do
 						if not button.shadow then
-							button.shadow = button:CreateShadow(nil, true)
-							button.shadow:SetParent(button)
-							button.shadow.size = 2
+							button:CreateShadow()
+						--[[button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2]]
 						end
 					end
 				end
@@ -366,9 +369,10 @@ function ElvUI_EltreumUI:Shadows()
 				for _, frame in pairs(bossmembers) do
 					for _, button in pairs(bossmembers) do
 						if not button.shadow then
-							button.shadow = button:CreateShadow(nil, true)
-							button.shadow:SetParent(button)
-							button.shadow.size = 2
+							button:CreateShadow()
+						--[[button.shadow = button:CreateShadow(nil, true)
+						button.shadow:SetParent(button)
+						button.shadow.size = 2]]
 						end
 					end
 				end
@@ -376,42 +380,48 @@ function ElvUI_EltreumUI:Shadows()
 
 			--classpower
 			for i = 1, 10 do
-				local button = _G['ElvUF_PlayerClassIconButton'..i]
+				if not _G['ElvUF_PlayerClassIconButton'..i] then
+					return
+				end
+				local button = _G['ElvUF_PlayerClassIconButton'..i].backdrop
 				if not button then
 					break
 				else
 					if not button.shadow then
-						button.shadow = button:CreateShadow(nil, true)
+						button:CreateShadow()
+						--[[button.shadow = button:CreateShadow(nil, true)
 						button.shadow:SetParent(button)
-						button.shadow.size = 2
+						button.shadow.size = 2]]
 					end
 				end
 			end
 
 			--runes
 			for i = 1, 10 do
-				local button = _G['ElvUF_PlayerRuneButton'..i]
+				if not _G['ElvUF_PlayerRuneButton'..i] then
+					return
+				end
+				local button = _G['ElvUF_PlayerRuneButton'..i].backdrop
 				if not button then
 					break
 				else
 					if not button.shadow then
-						button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2
+						button:CreateShadow()
 					end
 				end
 			end
 
 			--AdditionalPowerBar
 			for i = 1, 10 do
-				local button = _G['ElvUF_Player_AdditionalPowerBar'..i]
+				if not _G['ElvUF_Player_AdditionalPowerBar'..i] then
+					return
+				end
+				local button = _G['ElvUF_Player_AdditionalPowerBar'..i].backdrop
 				if not button then
 					break
 				else
 					if not button.shadow then
-						button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2
+						button:CreateShadow()
 					end
 				end
 			end
@@ -468,9 +478,10 @@ function ElvUI_EltreumUI:Shadows()
 			for _, frame in pairs(ElvUI_StaticPopups) do
 				for _, button in pairs(ElvUI_StaticPopups) do
 					if not button.shadow then
-						button.shadow = button:CreateShadow(nil, true)
+						button:CreateShadow()
+						--[[button.shadow = button:CreateShadow(nil, true)
 						button.shadow:SetParent(button)
-						button.shadow.size = 2
+						button.shadow.size = 2]]
 					end
 				end
 			end
