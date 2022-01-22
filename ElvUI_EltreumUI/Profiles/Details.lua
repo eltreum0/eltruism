@@ -58,7 +58,7 @@ function ElvUI_EltreumUI:GetDetailsProfileReleafv3()
 		_G.Details:ImportProfile(dtprofileTBC, "Eltreum Dual v3")
 	end
 
-	if "Eltreum Dual v2" ~= _G.Details:GetCurrentProfileName() then
+	if "Eltreum Dual v3" ~= _G.Details:GetCurrentProfileName() then
 		_G.Details:ApplyProfile("Eltreum Dual v3")
 	end
 end
