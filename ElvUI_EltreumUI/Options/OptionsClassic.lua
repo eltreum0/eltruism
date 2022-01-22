@@ -1534,8 +1534,15 @@ if ElvUI_EltreumUI.Classic then
 							name = L["ElvUI Plugins"],
 							order = 1,
 							args = {
-								addonskins = {
+								header1 = {
 									order = 1,
+									type = "description",
+									name = "Azilroka Addons",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								addonskins = {
+									order = 2,
 									type = 'execute',
 									name = '|cff16C3F2AddOn|r|cFFFFFFFFSkins|r',
 									desc = L["Reset to Eltruism defaults."],
@@ -1544,7 +1551,7 @@ if ElvUI_EltreumUI.Classic then
 									func = function() ElvUI_EltreumUI:AddonSetupAS() E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								projectazilroka = {
-									order = 2,
+									order = 3,
 									type = 'execute',
 									name = '|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r',
 									desc = L["Reset to Eltruism defaults."],
@@ -1559,8 +1566,15 @@ if ElvUI_EltreumUI.Classic then
 							name = L["BossMods Profiles"],
 							order = 2,
 							args = {
-								bigwigs = {
+								header1 = {
 									order = 1,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								bigwigs = {
+									order = 2,
 									type = 'execute',
 									name = 'BigWigs',
 									desc = L["Reset to Eltruism defaults."],
@@ -1582,24 +1596,45 @@ if ElvUI_EltreumUI.Classic then
 							name = L["Addon Profiles"],
 							order = 3,
 							args = {
-								dynamiccam = {
+								header1 = {
 									order = 1,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								dynamiccam = {
+									order = 2,
 									type = 'execute',
 									name = 'Dynamic Cam',
 									desc = L["Reset to Eltruism defaults."],
 									width = 'double',
 									func = function() ElvUI_EltreumUI:AddonSetupDynamicCam() E:StaticPopup_Show('CONFIG_RL') end,
 								},
+								header3 = {
+									order = 3,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
 								immersion = {
-									order = 2,
+									order = 4,
 									type = 'execute',
 									name = 'Immersion',
 									desc = L["Reset to Eltruism defaults."],
 									width = 'double',
 									func = function() ElvUI_EltreumUI:AddonSetupImmersion() E:StaticPopup_Show('CONFIG_RL') end,
 								},
-								nameplatesct = {
+								header5 = {
 									order = 5,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								nameplatesct = {
+									order = 6,
 									type = 'execute',
 									name = 'NameplateSCT',
 									desc = L["Reset to Eltruism defaults."],
@@ -1614,24 +1649,46 @@ if ElvUI_EltreumUI.Classic then
 									width = 'double',
 									func = function() ElvUI_EltreumUI:AddonSetupFCT() E:StaticPopup_Show('CONFIG_RL') end,
 								},
-								details = {
+								header7 = {
 									order = 7,
+									type = "description",
+									name = "Details Profiles",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								details = {
+									order = 8,
 									type = 'execute',
-									name = 'Details v1',
+									name = 'Details v1 - Blizzard Flat Icons',
 									desc = L["Reset to Eltruism defaults."],
 									width = 'double',
 									func = function() ElvUI_EltreumUI:AddonSetupDT() E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								details2 = {
-									order = 8,
+									order = 9,
 									type = 'execute',
-									name = 'Details v2',
+									name = 'Details v2 - Releaf Transparent Icons',
 									desc = L["Reset to Eltruism defaults."],
 									width = 'double',
 									func = function() ElvUI_EltreumUI:AddonSetupDTReleaf() E:StaticPopup_Show('CONFIG_RL') end,
 								},
+								details3 = {
+									order = 10,
+									type = 'execute',
+									name = 'Details v3 - Releaf Solid Icons',
+									desc = L["Reset to Eltruism defaults."],
+									width = 'double',
+									func = function() ElvUI_EltreumUI:AddonSetupDTReleafv3() E:StaticPopup_Show('CONFIG_RL') end,
+								},
+								header11 = {
+									order = 11,
+									type = "description",
+									name = "Details Profiles",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
 								questie = {
-									order = 9,
+									order = 12,
 									type = 'execute',
 									name = 'Questie',
 									desc = L["Reset to Eltruism defaults."],
