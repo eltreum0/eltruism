@@ -134,6 +134,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 	--print(select(4, GetBuildInfo()))
 	--print(spellID.." spellID!")
 	local startpower = UnitPower("player")
+	local powerMax = UnitPowerMax("player")
 	if startTime ~= endTime then
 		local costTable = GetSpellPowerCost(spellID)
 		if costTable ~= nil then
@@ -160,8 +161,16 @@ function ElvUI_EltreumUI:PowerPrediction()
 		if startpower == 0 then
 			EltreumPowerPrediction:SetValue(0)
 		elseif startpower ~= 0 then
-			EltreumPowerPrediction:SetValue(mainCost)
+			if mainCost >= powerMax then
+				if E.db.ElvUI_EltreumUI.dev then
+					print("Eltruism couldn't Calculate your power properly, please report in Discord")
+				end
+				EltreumPowerPrediction:SetValue(0)
+			else
+				EltreumPowerPrediction:SetValue(mainCost)
+			end
 		end
+
 
 		EltreumPowerPrediction:Show()
 		EltreumPowerPredictionIncoming:SetValue(incResource)
