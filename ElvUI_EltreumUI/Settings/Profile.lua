@@ -133,6 +133,7 @@ P.ElvUI_EltreumUI = {
 		ClassBorderNameplate = true,
 		nameplatetexture = true,
 		classbarautohide = true,
+		targetclasstexture = false,
 	},
 
 	stealthOptions = {

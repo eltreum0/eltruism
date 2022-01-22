@@ -184,6 +184,23 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 			end
 		end
+		if E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture then
+			local _, targetclass = UnitClass("target")
+			local reactiontarget = UnitReaction("player", "target")
+			if UnitExists("target") then
+				if targetclass and UnitIsPlayer("target") then
+					E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = (playerclass[targetclass])
+				elseif ( UnitIsPlayer("target") == false and ( reactiontarget >= 5) ) then
+					E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "Eltreum-Class-Hunter"
+				elseif reactiontarget == 4 then
+					E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "Eltreum-Class-Rogue"
+				elseif reactiontarget == 3 then
+					E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "Eltreum-Class-Druid"
+				elseif reactiontarget == 2 or reactiontarget == 1  then
+					E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "Eltreum-Class-DeathKnight"
+				end
+			end
+		end
 		--automatically hide classbar when targeting friendly targets
 		if E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide then
 			--add spec info for retail
