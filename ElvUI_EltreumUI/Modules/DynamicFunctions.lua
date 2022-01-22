@@ -239,6 +239,8 @@ function ElvUI_EltreumUI:TransparentChat()
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["backdrop"] = false
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["backdrop"] = false
+
+	E:StaggeredUpdateAll()
 end
 
 function ElvUI_EltreumUI:DarkChat()
@@ -250,4 +252,6 @@ function ElvUI_EltreumUI:DarkChat()
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["backdrop"] = true
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["backdrop"] = true
+
+	E:StaggeredUpdateAll()
 end

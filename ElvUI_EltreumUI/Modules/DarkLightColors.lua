@@ -54,6 +54,8 @@ function ElvUI_EltreumUI:DarkMode()
 		end
 		--E:StaggeredUpdateAll(nil, true)
 		E.db.ElvUI_EltreumUI.lightmode = false
+
+		E:StaggeredUpdateAll()
 end
 
 function ElvUI_EltreumUI:LightMode()
@@ -116,6 +118,8 @@ function ElvUI_EltreumUI:LightMode()
 		E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
 	end
 	E.db.ElvUI_EltreumUI.lightmode = true
+
+	E:StaggeredUpdateAll()
 end
 
 function ElvUI_EltreumUI:TextureMode()
