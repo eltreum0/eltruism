@@ -3,7 +3,6 @@
 	<Script file='BigWigs.lua'/>
 	<Script file='DBM.lua'/>
 	<Script file='Details.lua'/>
-	<Script file='DetailsReleaf.lua'/>
 	<Script file='DynamicCam.lua'/>
 	<Script file='MRT.lua'/>
 	<Script file='FCT.lua'/>
