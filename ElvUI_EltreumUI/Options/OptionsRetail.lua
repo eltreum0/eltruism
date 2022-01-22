@@ -3750,6 +3750,22 @@ if ElvUI_EltreumUI.Retail then
 									get = function() return E.db.ElvUI_EltreumUI.nameplatelevel.enable end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.nameplatelevel.enable = value end,
 								},
+								header5 = {
+									order = 15,
+									type = "description",
+									name = L["Automatically Hide NPC Names"],
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								hidenpcname = {
+									order = 16,
+									type = 'toggle',
+									name = L["Hide NPC Names when they are too far away to have Nameplates"],
+									desc = L["Toogle On and Off"],
+									width = 'full',
+									get = function() return E.db.ElvUI_EltreumUI.cvars.autohidenpcname end,
+									set = function(_, value) E.db.ElvUI_EltreumUI.cvars.autohidenpcname = value end,
+								},
 							},
 						},
 						powerbar = {

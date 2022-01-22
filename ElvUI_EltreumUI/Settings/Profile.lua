@@ -39,6 +39,7 @@ P.ElvUI_EltreumUI = {
 		showInGameNavigation = 1,
 		--for tbc/classic
 		clampTargetNameplateToScreen = 1,
+		autohidenpcname = true,
 	},
 
 	skins = {
@@ -63,14 +64,14 @@ P.ElvUI_EltreumUI = {
 	},
 
 	shadows = {
+		aura = true,
+		ufaura = true,
+		actionbars = true,
 		nameplates = false, --healthbars
 		npauras = false,
 		npportraits = false,
 		nppower = false,
 		npcastbar = false,
-		aura = false,
-		ufaura = false,
-		actionbars = true,
 	},
 
 	tbctalents = {

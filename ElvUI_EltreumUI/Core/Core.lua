@@ -423,6 +423,17 @@ function ElvUI_EltreumUI:EnteringWorldCVars()
 	SetCVar('nameplateTargetRadialPosition', E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition)
 	--ElvUI_EltreumUI:Print(L["Custom Nameplate CVars were set."])
 	if ElvUI_EltreumUI.Retail then
+		if  E.db.ElvUI_EltreumUI.cvars.autohidenpcname then
+			SetCVar('UnitNameHostleNPC', 0)
+			SetCVar('UnitNameInteractiveNPC', 0)
+			SetCVar('UnitNameNPC', 0)
+		else
+			SetCVar('UnitNameHostleNPC', 1)
+			SetCVar('UnitNameInteractiveNPC', 1)
+			SetCVar('UnitNameNPC', 1)
+		end
+	end
+	if ElvUI_EltreumUI.Retail then
 		SetCVar('showInGameNavigation', E.db.ElvUI_EltreumUI.cvars.showInGameNavigation)
 	elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 		SetCVar('clampTargetNameplateToScreen', E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen)
