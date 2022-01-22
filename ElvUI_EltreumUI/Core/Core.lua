@@ -292,7 +292,7 @@ end
 function ElvUI_EltreumUI:AddonSetupDT()
 	if IsAddOnLoaded('Details') then
 		ElvUI_EltreumUI:GetDetailsProfile()
-		ElvUI_EltreumUI:Print(L["Details profile has been set."])
+		ElvUI_EltreumUI:Print(L["Details profile using Blizzard icons has been set."])
 	else
 		ElvUI_EltreumUI:Print("Details is not loaded")
 	end
@@ -301,7 +301,7 @@ end
 function ElvUI_EltreumUI:AddonSetupDTReleaf()
 	if IsAddOnLoaded('Details') then
 		ElvUI_EltreumUI:GetDetailsProfileReleaf()
-		ElvUI_EltreumUI:Print("Details profile using Releaf icons has been set.")
+		ElvUI_EltreumUI:Print("Details profile using Releaf Transparent icons has been set.")
 	else
 		ElvUI_EltreumUI:Print("Details is not loaded")
 	end
@@ -310,7 +310,7 @@ end
 function ElvUI_EltreumUI:AddonSetupDTReleafv3()
 	if IsAddOnLoaded('Details') then
 		ElvUI_EltreumUI:GetDetailsProfileReleaf()
-		ElvUI_EltreumUI:Print("Details profile using Releaf icons has been set.")
+		ElvUI_EltreumUI:Print("Details profile using Releaf Solid icons has been set.")
 	else
 		ElvUI_EltreumUI:Print("Details is not loaded")
 	end

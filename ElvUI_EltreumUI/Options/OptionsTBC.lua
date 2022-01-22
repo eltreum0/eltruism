@@ -247,8 +247,15 @@ if ElvUI_EltreumUI.TBC then
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\afk',
 					order = 85,
 					args = {
-						afkmusic = {
+						header7 = {
 							order = 1,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						afkmusic = {
+							order = 2,
 							type = 'group',
 							inline = true,
 							name = L["Play music while you are AFK"],
@@ -2951,6 +2958,13 @@ if ElvUI_EltreumUI.TBC then
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\media',
 					order = 85,
 					args = {
+						header7 = {
+							order = 1,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
 						mediaoptions = {
 							order = 1,
 							type = 'group',
