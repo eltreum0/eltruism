@@ -2,6 +2,7 @@
 **The future is uncertain**
 ___
 ### 2.6.6
+Added an option for Nameplate Texture to be based on the Target's Class/Reaction\
 Updated Details install with a new profile, this profile is equal to v2 but the icons are not as transparent. All three profiles are still available\
 ___
 ### 2.6.5
