@@ -431,9 +431,14 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
-			local additionalpowerbar = _G['ElvUF_Player_AdditionalPowerBar']
-			if not _G['ElvUF_Player_AdditionalPowerBar'].shadow then
-				_G['ElvUF_Player_AdditionalPowerBar']:CreateShadow()
+			--AdditionalPowerBar
+			if E.myclass == 'DRUID' or E.myclass == 'SHAMAN' or E.myclass == 'PRIEST' then
+				local additionalpowerbar = _G['ElvUF_Player_AdditionalPowerBar']
+				if additionalpowerbar ~= nil then
+					if not _G['ElvUF_Player_AdditionalPowerBar'].shadow then
+						_G['ElvUF_Player_AdditionalPowerBar']:CreateShadow()
+					end
+				end
 			end
 
 			--classpower
@@ -457,7 +462,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--AdditionalPowerBar
-			if E.myclass == 'DRUID' or E.myclass == 'SHAMAN' or E.myclass == 'PRIEST' then
+			--[[if E.myclass == 'DRUID' or E.myclass == 'SHAMAN' or E.myclass == 'PRIEST' then
 				for i = 1, 3 do
 					if not _G['ElvUF_Player_AdditionalPowerBar'..i] then
 						break
@@ -471,7 +476,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 				end
-			end
+			end]]
 
 		end
 
