@@ -1,6 +1,9 @@
 ### 🌌 Next Version 
 **The future is uncertain**
 ___
+### 2.6.6
+Updated Details install with a new profile, this profile is equal to v2 but the icons are not as transparent. All three profiles are still available\
+___
 ### 2.6.5
 Added various shadows, such as Nameplate Healthbars, which can be enabled in the Eltruism > Skins settings\
 Fixed shaman Power Prediction in Retail\
