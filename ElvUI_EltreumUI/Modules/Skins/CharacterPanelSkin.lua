@@ -64,7 +64,29 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				if spec ~= nil and not ( (spent1 == spent2) or (spent2 == spent3) or (spent1 == spent3) ) then
 					return spec
 				elseif spent1 == spent2 or spent2 == spent3 or spent1 == spent3 then
-					return L["Hybrid"]
+					if (spent1 == spent2) and (spent1 > spent3 or spent3 > spent1) then
+						if spent1 > spent3 then
+							return L["Hybrid"]
+						elseif spent3 > spent1 then
+							return spec
+						end
+					elseif (spent2 == spent3) and (spent1 > spent3 or spent3 > spent1) then
+						if spent1 > spent3 then
+							return spec
+						elseif spent3 > spent1 then
+							return L["Hybrid"]
+						end
+					elseif (spent1 == spent3) and (spent1 > spent3 or spent3 > spent1) then
+						if spent1 > spent2 then
+							return L["Hybrid"]
+						elseif spent2 > spent1 then
+							return spec
+						end
+					elseif (spent1 == spent3 and spent1 == spent2) or (spent2 == spent3 and spent2 == spent1) then
+						return L["Hybrid"]
+					else
+						return spec
+					end
 				else
 					return L["None"]
 				end
