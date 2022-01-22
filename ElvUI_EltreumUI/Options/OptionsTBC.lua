@@ -3546,8 +3546,15 @@ if ElvUI_EltreumUI.TBC then
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\loot',
 					order = 85,
 					args = {
-						lootsetting = {
+						header1 = {
 							order = 1,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						lootsetting = {
+							order = 2,
 							type = 'group',
 							inline = true,
 							name = L["Show a floating loot text"],
