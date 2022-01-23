@@ -34,15 +34,10 @@ function ElvUI_EltreumUI:GetASProfile()
 		1, -- [3]
 		1, -- [4]
 	}
-
-
 	AS.db["DBMSkinHalf"] = true
 	AS.db["DBMFontFlag"] = "THICKOUTLINE"
 	AS.db["DBMFont"] = "Kimberley"
 	AS.db["DBMRadarTrans"] = true
-
-
-
 	if ElvUI_EltreumUI.Retail then
 		AS.db["HideChatFrame"] = "ChatFrame4"
 	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
