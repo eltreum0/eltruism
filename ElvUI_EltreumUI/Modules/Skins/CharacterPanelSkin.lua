@@ -7,6 +7,7 @@ local LibItemInfo = LibStub:GetLibrary("LibItemInfo.1000")
 
 --attempt at recreating a similar character panel to retail
 local CharacterFrame = _G.CharacterFrame
+local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture()
 CharacterFrame.Text2 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 function ElvUI_EltreumUI:ExpandedCharacterStats()
 	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
@@ -34,7 +35,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 
 			--character frame bg
-			local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture()
 			CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 			if alpha == nil then
 				CharacterFrameBackgroundTexture:SetAlpha(0.3)

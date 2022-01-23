@@ -50,6 +50,7 @@ elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 end
 local classsymbolonframe
 local charactertext --check character text
+local CharacterFrameBackgroundTexture = _G.CharacterFrame:CreateTexture()
 
 --put the icon on the papeldoll frame, modify it a bit if SLE is not loaded
 function ElvUI_EltreumUI:PlayerNamepaperdoll()
@@ -159,7 +160,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					if alphabg == nil then
 						alphabg = 0.3
 					end
-					local CharacterFrameBackgroundTexture = _G.CharacterFrame:CreateTexture()
+
 					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 					CharacterFrameBackgroundTexture:SetAlpha(alphabg)
