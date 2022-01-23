@@ -51,14 +51,14 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 		if UnitExists("target") then
 			if targetclass and UnitIsPlayer("target") then
 				bar = LSM:Fetch("statusbar", unitframeclass[targetclass])
-			elseif ( UnitIsPlayer("target") == false and ( reactiontarget >= 5) ) then
-				targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-Hunter")
-			elseif ( UnitIsPlayer("targettarget") == false and ( reactiontargettarget == 4) ) then
-				targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-Rogue")
-			elseif ( UnitIsPlayer("targettarget") == false and ( reactiontargettarget == 3) ) then
-				targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-Druid")
-			elseif ( UnitIsPlayer("targettarget") == false and ( reactiontargettarget == 1) )  then
-				targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-DeathKnight")
+			elseif ( reactiontarget >= 5) then
+				bar = LSM:Fetch("statusbar", "Eltreum-Class-Hunter")
+			elseif reactiontarget == 4 then
+				bar = LSM:Fetch("statusbar", "Eltreum-Class-Rogue")
+			elseif reactiontarget == 3 then
+				bar = LSM:Fetch("statusbar", "Eltreum-Class-Druid")
+			elseif reactiontarget == 2 or reactiontarget == 1  then
+				bar = LSM:Fetch("statusbar", "Eltreum-Class-DeathKnight")
 			end
 		end
 		if UF.units.target then
@@ -75,14 +75,14 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 		if UnitExists("targettarget") then
 			if targettargetclass and UnitIsPlayer("targettarget") then
 				targettargetbar = LSM:Fetch("statusbar", unitframeclass[targettargetclass])
-			elseif ( UnitIsPlayer("targettarget") == false and ( reactiontargettarget >= 5) ) then
-				targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-Hunter")
-			elseif ( UnitIsPlayer("targettarget") == false and ( reactiontargettarget == 4) ) then
-				targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-Rogue")
-			elseif ( UnitIsPlayer("targettarget") == false and ( reactiontargettarget == 3) ) then
-				targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-Druid")
-			elseif ( UnitIsPlayer("targettarget") == false and ( reactiontargettarget == 1) )  then
-				targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-DeathKnight")
+			elseif ( reactiontargettarget >= 5) then
+				bar = LSM:Fetch("statusbar", "Eltreum-Class-Hunter")
+			elseif reactiontarget == 4 then
+				bar = LSM:Fetch("statusbar", "Eltreum-Class-Rogue")
+			elseif reactiontarget == 3 then
+				bar = LSM:Fetch("statusbar", "Eltreum-Class-Druid")
+			elseif reactiontarget == 2 or reactiontarget == 1  then
+				bar = LSM:Fetch("statusbar", "Eltreum-Class-DeathKnight")
 			end
 		end
 		if UF.units.targettarget then
