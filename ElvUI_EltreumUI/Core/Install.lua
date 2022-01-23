@@ -210,6 +210,10 @@ ElvUI_EltreumUI.InstallerData = {
 				PluginInstallFrame.Desc3:SetText(L["Gladdy is not installed or enabled (You can find the Gladius profile in Eltruism Settings"])
 				PluginInstallFrame.Option4:Disable()
 			end
+			if (IsAddOnLoaded("Gladius")) and ElvUI_EltreumUI.TBC then
+				PluginInstallFrame.Desc3:SetText(L["Gladius profile can be found in Eltruism > Addons, please check it there"])
+				PluginInstallFrame.Option4:Disable()
+			end
 			if ElvUI_EltreumUI.Retail and ((not IsAddOnLoaded("MRT")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("GladiusEx"))) then
 				PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end

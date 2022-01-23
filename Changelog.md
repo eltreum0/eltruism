@@ -2,6 +2,7 @@
 **The future is uncertain**
 ___
 ### 2.6.7
+Improved the install process by revamping the pages\
 Improved the Hybrid spec detection for TBC/Classic\
 Improved the Dark/Light mode switch and the Dark/Transparent chat mode switch\
 ___
