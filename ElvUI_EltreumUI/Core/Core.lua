@@ -527,14 +527,22 @@ local currentmemory
 function ElvUI_EltreumUI:ClearMemory()
 	if not InCombatLockdown() then
 		currentmemory = GetAddOnMemoryUsage ("ElvUI_EltreumUI")
-		if currentmemory > maxmemory then
-			--print(GetAddOnMemoryUsage("ElvUI_ELtreumUI").." cleared memory")
-			collectgarbage("collect")
-			ResetCPUUsage()
-			--UpdateAddOnCPUUsage("ElvUI_EltreumUI")
-			currentmemory = 0
-		--else
-		--	print("Not enough memory usage to clear memory")
+		if E.db.ElvUI_EltreumUI.dev then
+			if currentmemory > maxmemory then
+				collectgarbage("collect")
+				ResetCPUUsage()
+				print(GetAddOnMemoryUsage("ElvUI_ELtreumUI").." memory was cleared")
+				--UpdateAddOnCPUUsage("ElvUI_EltreumUI")
+				currentmemory = 0
+			else
+				print("Not enough memory usage to clear memory")
+			end
+		else
+			if currentmemory > maxmemory then
+				collectgarbage("collect")
+				ResetCPUUsage()
+				currentmemory = 0
+			end
 		end
 	end
 end
