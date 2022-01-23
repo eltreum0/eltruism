@@ -51,14 +51,16 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 		if UnitExists("target") then
 			if targetclass and UnitIsPlayer("target") then
 				targetbar = LSM:Fetch("statusbar", unitframeclass[targetclass])
-			elseif ( reactiontarget >= 5) and not UnitIsPlayer("targettarget") then
-				targetbar = LSM:Fetch("statusbar", "Eltreum-Class-Hunter")
-			elseif reactiontarget == 4 and not UnitIsPlayer("targettarget") then
-				targetbar = LSM:Fetch("statusbar", "Eltreum-Class-Rogue")
-			elseif reactiontarget == 3 and not UnitIsPlayer("targettarget") then
-				targetbar = LSM:Fetch("statusbar", "Eltreum-Class-Druid")
-			elseif (reactiontarget == 2 or reactiontarget == 1) and not UnitIsPlayer("targettarget") then
-				targetbar = LSM:Fetch("statusbar", "Eltreum-Class-DeathKnight")
+			elseif not UnitIsPlayer("target") then
+				if reactiontarget >= 5 then
+					targetbar = LSM:Fetch("statusbar", "Eltreum-Class-Hunter")
+				elseif reactiontarget == 4 then
+					targetbar = LSM:Fetch("statusbar", "Eltreum-Class-Rogue")
+				elseif reactiontarget == 3 then
+					targetbar = LSM:Fetch("statusbar", "Eltreum-Class-Druid")
+				elseif reactiontarget == 2 or reactiontarget == 1 then
+					targetbar = LSM:Fetch("statusbar", "Eltreum-Class-DeathKnight")
+				end
 			end
 		end
 		if UF.units.target then
@@ -75,14 +77,16 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 		if UnitExists("targettarget") then
 			if targettargetclass and UnitIsPlayer("targettarget") then
 				targettargetbar = LSM:Fetch("statusbar", unitframeclass[targettargetclass])
-			elseif ( reactiontargettarget >= 5) and not UnitIsPlayer("targettarget") then
-				targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-Hunter")
-			elseif reactiontargettarget == 4 and not UnitIsPlayer("targettarget") then
-				targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-Rogue")
-			elseif reactiontargettarget == 3 and not UnitIsPlayer("targettarget") then
-				targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-Druid")
-			elseif (reactiontargettarget == 2 or reactiontargettarget == 1) and not UnitIsPlayer("targettarget") then
-				targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-DeathKnight")
+			elseif not UnitIsPlayer("target") then
+				if reactiontargettarget >= 5 then
+					targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-Hunter")
+				elseif reactiontargettarget == 4 then
+					targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-Rogue")
+				elseif reactiontargettarget == 3 then
+					targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-Druid")
+				elseif reactiontargettarget == 2 or reactiontargettarget == 1 then
+					targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-DeathKnight")
+				end
 			end
 		end
 		if UF.units.targettarget then
@@ -117,6 +121,9 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 	end
 end
 hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
---hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.ChangeUnitTexture)
+--hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.ChangeUnitTexture) --if not hooking into this then when the target of target changes it doesnt update
+--hooksecurefunc(UF, "Style", ElvUI_EltreumUI.ChangeUnitTexture)
+--hooksecurefunc(UF, "Update_StatusBar", ElvUI_EltreumUI.ChangeUnitTexture)
+--hooksecurefunc(UF, "ToggleTransparentStatusBar", ElvUI_EltreumUI.ChangeUnitTexture)
 --hooksecurefunc(UF, "Update_TargetTargetFrame", ElvUI_EltreumUI.ChangeUnitTexture)
 --hooksecurefunc(UF, "Construct_TargetTargetFrame", ElvUI_EltreumUI.ChangeUnitTexture)
