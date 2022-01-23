@@ -49,8 +49,10 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 		local _, targetclass = UnitClass("target")
 		local reactiontarget = UnitReaction("player", "target")
 		if UnitExists("target") then
-			if targetclass and UnitIsPlayer("target") then
-				targetbar = LSM:Fetch("statusbar", unitframeclass[targetclass])
+			if UnitIsPlayer("target") then
+				if targetclass then
+					targetbar = LSM:Fetch("statusbar", unitframeclass[targetclass])
+				end
 			elseif not UnitIsPlayer("target") then
 				if reactiontarget >= 5 then
 					targetbar = LSM:Fetch("statusbar", "Eltreum-Class-Hunter")
@@ -75,9 +77,11 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 		local reactiontargettarget = UnitReaction("player", "targettarget")
 		local targettargetbar = LSM:Fetch("statusbar", "Eltreum-Blank")
 		if UnitExists("targettarget") then
-			if targettargetclass and UnitIsPlayer("targettarget") then
-				targettargetbar = LSM:Fetch("statusbar", unitframeclass[targettargetclass])
-			elseif not UnitIsPlayer("target") then
+			if UnitIsPlayer("targettarget") then
+				if targettargetclass then
+					targettargetbar = LSM:Fetch("statusbar", unitframeclass[targettargetclass])
+				end
+			elseif not UnitIsPlayer("targettarget") then
 				if reactiontargettarget >= 5 then
 					targettargetbar = LSM:Fetch("statusbar", "Eltreum-Class-Hunter")
 				elseif reactiontargettarget == 4 then
