@@ -22,7 +22,7 @@ function ElvUI_EltreumUI:GroupRoster()
 			end
 		elseif IsInGroup() == false then
 			--print("not in a group")
-			name = {}
+			wipe(name)-- = {}
 			deaththrottle = 0
 			ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for party/raid death
 			--name = {E.myname}
