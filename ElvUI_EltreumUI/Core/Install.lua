@@ -28,7 +28,7 @@ ElvUI_EltreumUI.InstallerData = {
 		[2] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Layouts"])
 			PluginInstallFrame.Desc1:SetText(L["Please select the role for your character, which will create a new profile, this process can take a few seconds"])
-			PluginInstallFrame.Desc2:SetText("You can let ElvUI automatically calculate the best scale for you using the AutoScale option")
+			PluginInstallFrame.Desc2:SetText("You can let ElvUI automatically calculate the best scale for you using the Automatic Scale option")
 			if myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'MONK' or myclass == 'SHAMAN' or myclass == 'PALADIN' then
 				PluginInstallFrame.Desc3:SetText('|cff82B4ff'..L["You can support the group with your class, if you select DPS/Tank then its recommended to click Alt Frames after clicking DPS/Tank"]..'|r')
 			end
@@ -114,7 +114,11 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option1:Enable()
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT() ElvUI_EltreumUI:GetASProfile() end)
-			PluginInstallFrame.Option1:SetText('Spec')
+			if ElvUI_EltreumUI.Retail then
+				PluginInstallFrame.Option1:SetText('Spec')
+			elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				PluginInstallFrame.Option1:SetText('Blizzard')
+			end
 			PluginInstallFrame.Option2:Enable()
 			PluginInstallFrame.Option2:Show()
 			PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDTReleaf() ElvUI_EltreumUI:GetASProfile() end)
@@ -229,7 +233,7 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["Import profiles for NameplateSCT or ElvUI Floating Combat Text"])
 			PluginInstallFrame.Desc2:SetText(L["Import "]..'Immersion '..L["settings configured for "]..'Eltruism')
 			PluginInstallFrame.Desc3:SetText(L["Import Dynamic Cam profile"])
-			PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost with overwrite, please back them up"]..'|r')
+			PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
 			PluginInstallFrame.Option1:Enable()
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupNameplateSCT() end)
