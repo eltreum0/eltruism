@@ -52,16 +52,11 @@ function ElvUI_EltreumUI:DarkMode()
 		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
 		end
-		--E:StaggeredUpdateAll(nil, true)
 		E.db.ElvUI_EltreumUI.lightmode = false
-
 		--E:StaggeredUpdateAll()
-		--E:UpdateLayout()
-		--E:UpdateMisc()
-		--E:UpdateChat()
-		--E:UpdateMoverPositions()
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
+		ElvUI_EltreumUI:Print("Unitframes set to Dark Mode")
 end
 
 function ElvUI_EltreumUI:LightMode()
@@ -125,13 +120,9 @@ function ElvUI_EltreumUI:LightMode()
 	end
 	E.db.ElvUI_EltreumUI.lightmode = true
 
-	--E:StaggeredUpdateAll()
-	--E:UpdateLayout()
-	--E:UpdateMisc()
-	--E:UpdateMoverPositions()
 	E:UpdateMediaItems()
 	E:UpdateUnitFrames()
-	--E:UpdateChat()
+	ElvUI_EltreumUI:Print("Unitframes set to Light Mode")
 end
 
 function ElvUI_EltreumUI:TextureMode()
