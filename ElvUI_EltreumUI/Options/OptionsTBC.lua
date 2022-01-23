@@ -117,7 +117,7 @@ if ElvUI_EltreumUI.TBC then
 						header6 = {
 							order = 3,
 							type = "description",
-							name = "Nameplates",
+							name = L["Nameplates"],
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
@@ -139,7 +139,7 @@ if ElvUI_EltreumUI.TBC then
 						header7 = {
 							order = 5,
 							type = "description",
-							name = "Chat",
+							name = L["Chat"],
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
@@ -161,7 +161,7 @@ if ElvUI_EltreumUI.TBC then
 						header8 = {
 							order = 7,
 							type = "description",
-							name = "Layouts",
+							name = L["Layouts"],
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
@@ -710,7 +710,7 @@ if ElvUI_EltreumUI.TBC then
 					args = {
 						player = {
 							type = 'group',
-							name = 'Player',
+							name = L["Player"],
 							order = 2,
 							args = {
 								playerallbuffs = {
@@ -749,7 +749,7 @@ if ElvUI_EltreumUI.TBC then
 						},
 						target = {
 							type = 'group',
-							name = 'Target',
+							name = L["Target"],
 							order = 2,
 							args = {
 								targetalldebuffs = {
@@ -788,7 +788,7 @@ if ElvUI_EltreumUI.TBC then
 						},
 						focus= {
 							type = 'group',
-							name = 'Focus',
+							name = L["Focus"],
 							order = 2,
 							args = {
 								focusallbuffs = {
@@ -827,7 +827,7 @@ if ElvUI_EltreumUI.TBC then
 						},
 						boss= {
 							type = 'group',
-							name = 'Boss',
+							name = L["Boss"],
 							order = 2,
 							args = {
 								bossallbuffs = {
@@ -866,7 +866,7 @@ if ElvUI_EltreumUI.TBC then
 						},
 						nameplate= {
 							type = 'group',
-							name = 'Nameplates',
+							name = L["Nameplates"],
 							order = 2,
 							args = {
 								nameplateallbuffs = {
@@ -907,7 +907,7 @@ if ElvUI_EltreumUI.TBC then
 				},
 				misc = {
 					type = 'group',
-					name = 'Misc',
+					name = L["Misc"],
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\misc',
 					order = 85,
 					args = {
@@ -920,7 +920,7 @@ if ElvUI_EltreumUI.TBC then
 						},
 						arenabuffs = {
 							type = 'toggle',
-							name = "Enable",
+							name = L['Enable'],
 							order = 2,
 							get = function() return E.db.ElvUI_EltreumUI.otherstuff.arenabuffs end,
 							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.arenabuffs = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -934,7 +934,7 @@ if ElvUI_EltreumUI.TBC then
 						},
 						arenaUF = {
 							type = 'toggle',
-							name = "Enable",
+							name = L['Enable'],
 							order = 4,
 							get = function() return E.db.ElvUI_EltreumUI.otherstuff.arenaunitframes end,
 							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.arenaunitframes = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -948,7 +948,7 @@ if ElvUI_EltreumUI.TBC then
 						},
 						bgUF = {
 							type = 'toggle',
-							name = "Enable",
+							name = L['Enable'],
 							order = 6,
 							get = function() return E.db.ElvUI_EltreumUI.otherstuff.bgunitframes end,
 							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bgunitframes = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -1035,7 +1035,7 @@ if ElvUI_EltreumUI.TBC then
 						},
 						fastlootenable = {
 							order = 40,
-							name = "Enable",
+							name = L['Enable'],
 							type = "toggle",
 							desc = "Decrease the time it takes for auto loot to work",
 							width = 'full',
@@ -1058,7 +1058,7 @@ if ElvUI_EltreumUI.TBC then
 						},
 						autossenable = {
 							order = 46,
-							name = "Enable",
+							name = L['Enable'],
 							type = "toggle",
 							desc = "Automatically take Screenshots such as when leveling up",
 							width = 'full',
@@ -1140,7 +1140,7 @@ if ElvUI_EltreumUI.TBC then
 					args = {
 						general = {
 							type = 'group',
-							name = 'General',
+							name = L["General"],
 							order = 1,
 							args = {
 								header11 = {
@@ -1159,7 +1159,7 @@ if ElvUI_EltreumUI.TBC then
 								},
 								zoneenable = {
 									order = 34,
-									name = "Enable",
+									name = L['Enable'],
 									type = "toggle",
 									desc = "Such as the Zones, Mail and others",
 									width = 'full',
@@ -1182,7 +1182,7 @@ if ElvUI_EltreumUI.TBC then
 								},
 								questenable = {
 									order = 37,
-									name = "Enable",
+									name = L['Enable'],
 									type = "toggle",
 									desc = "Skin the Objective/Quest Frame",
 									width = 'full',
@@ -1235,7 +1235,7 @@ if ElvUI_EltreumUI.TBC then
 								castbarsparkenable = {
 									order = 60,
 									type = 'toggle',
-									name = 'Enable',
+									name = L["Enable"],
 									width = "full",
 									desc = L["Customize Player CastBar Spark"],
 									get = function(info) return E.db.ElvUI_EltreumUI.sparkcustomcolor.enable end,
@@ -1274,7 +1274,7 @@ if ElvUI_EltreumUI.TBC then
 						},
 						character = {
 							type = 'group',
-							name = 'Character',
+							name = L["Character"],
 							order = 2,
 							args = {
 								headerfirst = {
@@ -1553,7 +1553,7 @@ if ElvUI_EltreumUI.TBC then
 								},
 								shadowsenableab = {
 									order = 47,
-									name = "ActionBars",
+									name = L["ActionBars"],
 									type = "toggle",
 									desc = "Add Shadows to Actionbars",
 									disabled = function() return not E.db.ElvUI_EltreumUI.skins.shadows end,
@@ -1562,7 +1562,7 @@ if ElvUI_EltreumUI.TBC then
 								},
 								shadowsenableaura = {
 									order = 47,
-									name = "Aura",
+									name = L["Aura"],
 									type = "toggle",
 									desc = "Add Auras (Aura list next to the minimap)",
 									disabled = function() return not E.db.ElvUI_EltreumUI.skins.shadows end,
@@ -1932,7 +1932,7 @@ if ElvUI_EltreumUI.TBC then
 								preview ={
 									order = 4,
 									type = "execute",
-									name = "Preview",
+									name = L["Preview"],
 									desc = "Preview the Glow, you will need to toggle it off and on to update the glow",
 									func = function() ElvUI_EltreumUI:PreviewGlow() end,
 								},
@@ -2090,14 +2090,14 @@ if ElvUI_EltreumUI.TBC then
 				},
 				borders = {
 					type = 'group',
-					name = "Borders",
+					name = L["Borders"],
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\border',
 					order = 85,
 					childGroups = "tab",
 					args = {
 						general = {
 							type = 'group',
-							name = 'General',
+							name = L["General"],
 							order = 1,
 							args = {
 								headerline1 = {
@@ -3970,7 +3970,7 @@ if ElvUI_EltreumUI.TBC then
 								colorsysmsgs = {
 									order = 18,
 									type = 'toggle',
-									name = "Enable",
+									name = L['Enable'],
 									width = 'full',
 									desc = L["Toggle the option on"],
 									disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
@@ -3987,7 +3987,7 @@ if ElvUI_EltreumUI.TBC then
 								chatlooticons = {
 									order = 20,
 									type = 'toggle',
-									name = "Enable",
+									name = L['Enable'],
 									width = 'full',
 									desc = L["Toggle the option on"],
 									disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,

@@ -117,7 +117,7 @@ if ElvUI_EltreumUI.Retail then
 						header6 = {
 							order = 3,
 							type = "description",
-							name = "Nameplates",
+							name = L["Nameplates"],
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
@@ -139,7 +139,7 @@ if ElvUI_EltreumUI.Retail then
 						header7 = {
 							order = 5,
 							type = "description",
-							name = "Chat",
+							name = L["Chat"],
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
@@ -161,7 +161,7 @@ if ElvUI_EltreumUI.Retail then
 						header8 = {
 							order = 7,
 							type = "description",
-							name = "Layouts",
+							name = L["Layouts"],
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
@@ -250,7 +250,7 @@ if ElvUI_EltreumUI.Retail then
 					args = {
 						general = {
 							type = 'group',
-							name = 'General',
+							name = L["General"],
 							order = 1,
 							args = {
 								auradesc = {
@@ -276,7 +276,7 @@ if ElvUI_EltreumUI.Retail then
 						},
 						player = {
 							type = 'group',
-							name = 'Player',
+							name = L["Player"],
 							order = 2,
 							args = {
 								headerline1 = {
@@ -322,7 +322,7 @@ if ElvUI_EltreumUI.Retail then
 						},
 						target = {
 							type = 'group',
-							name = 'Target',
+							name = L["Target"],
 							order = 2,
 							args = {
 								headerline1 = {
@@ -368,7 +368,7 @@ if ElvUI_EltreumUI.Retail then
 						},
 						focus= {
 							type = 'group',
-							name = 'Focus',
+							name = L["Focus"],
 							order = 2,
 							args = {
 								headerline1 = {
@@ -414,7 +414,7 @@ if ElvUI_EltreumUI.Retail then
 						},
 						boss= {
 							type = 'group',
-							name = 'Boss',
+							name = L["Boss"],
 							order = 2,
 							args = {
 								headerline1 = {
@@ -460,7 +460,7 @@ if ElvUI_EltreumUI.Retail then
 						},
 						nameplate= {
 							type = 'group',
-							name = 'Nameplates',
+							name = L["Nameplates"],
 							order = 2,
 							args = {
 								headerline1 = {
@@ -508,7 +508,7 @@ if ElvUI_EltreumUI.Retail then
 				},
 				misc = {
 					type = 'group',
-					name = 'Misc',
+					name = L["Misc"],
 					--childGroups = "tab",
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\misc',
 					order = 85,
@@ -522,7 +522,7 @@ if ElvUI_EltreumUI.Retail then
 						},
 						arenabuffs = {
 							type = 'toggle',
-							name = "Enable",
+							name = L['Enable'],
 							order = 2,
 							get = function() return E.db.ElvUI_EltreumUI.otherstuff.arenabuffs end,
 							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.arenabuffs = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -536,7 +536,7 @@ if ElvUI_EltreumUI.Retail then
 						},
 						arenaUF = {
 							type = 'toggle',
-							name = "Enable",
+							name = L['Enable'],
 							order = 4,
 							get = function() return E.db.ElvUI_EltreumUI.otherstuff.arenaunitframes end,
 							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.arenaunitframes = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -550,7 +550,7 @@ if ElvUI_EltreumUI.Retail then
 						},
 						bgUF = {
 							type = 'toggle',
-							name = "Enable",
+							name = L['Enable'],
 							order = 6,
 							get = function() return E.db.ElvUI_EltreumUI.otherstuff.bgunitframes end,
 							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bgunitframes = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -658,7 +658,7 @@ if ElvUI_EltreumUI.Retail then
 						},
 						fastlootenable = {
 							order = 40,
-							name = "Enable",
+							name = L['Enable'],
 							type = "toggle",
 							desc = "Decrease the time it takes for auto loot to work",
 							width = 'full',
@@ -681,7 +681,7 @@ if ElvUI_EltreumUI.Retail then
 						},
 						hidetalkenable = {
 							order = 43,
-							name = "Enable",
+							name = L['Enable'],
 							type = "toggle",
 							desc = "Prevent Blizzard's Talking Head from appearing",
 							width = 'full',
@@ -704,7 +704,7 @@ if ElvUI_EltreumUI.Retail then
 						},
 						autossenable = {
 							order = 49,
-							name = "Enable",
+							name = L['Enable'],
 							type = "toggle",
 							desc = "Automatically take Screenshots such as when leveling up",
 							width = 'full',
@@ -773,13 +773,13 @@ if ElvUI_EltreumUI.Retail then
 				skins = {
 					order = 85,
 					type = 'group',
-					name = "Skins",
+					name = L["Skins"],
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\paint',
 					childGroups = "tab",
 					args = {
 						general = {
 							type = 'group',
-							name = 'General',
+							name = L["General"],
 							order = 1,
 							args = {
 								header11 = {
@@ -798,7 +798,7 @@ if ElvUI_EltreumUI.Retail then
 								},
 								zoneenable = {
 									order = 34,
-									name = "Enable",
+									name = L['Enable'],
 									type = "toggle",
 									desc = "Such as the Zones, Mail and others",
 									width = 'full',
@@ -821,7 +821,7 @@ if ElvUI_EltreumUI.Retail then
 								},
 								questenable = {
 									order = 37,
-									name = "Enable",
+									name = L['Enable'],
 									type = "toggle",
 									desc = "Skin the Objective/Quest Frame",
 									width = 'full',
@@ -853,7 +853,7 @@ if ElvUI_EltreumUI.Retail then
 								stableenable = {
 									order = 51,
 									type = 'toggle',
-									name = 'Enable',
+									name = L['Enable'],
 									desc = L["Enable the Expanded Stable"],
 									get = function(info) return E.db.ElvUI_EltreumUI.skins.expandedstable end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.skins.expandedstable = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -874,7 +874,7 @@ if ElvUI_EltreumUI.Retail then
 								removebossemote = {
 									order = 54,
 									type = 'toggle',
-									name = 'Enable',
+									name = L['Enable'],
 									desc = "Enable removing the Alert Frame that can show up in the middle of the screen",
 									get = function(info) return E.db.ElvUI_EltreumUI.skins.bossemote end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.skins.bossemote = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -895,7 +895,7 @@ if ElvUI_EltreumUI.Retail then
 								widetransmogenable = {
 									order = 57,
 									type = 'toggle',
-									name = 'Enable',
+									name = L['Enable'],
 									desc = L["Enable the Wider Transmog Window"],
 									get = function(info) return E.db.ElvUI_EltreumUI.skins.widertransmog end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.skins.widertransmog = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -916,7 +916,7 @@ if ElvUI_EltreumUI.Retail then
 								castbarsparkenable = {
 									order = 60,
 									type = 'toggle',
-									name = 'Enable',
+									name = L['Enable'],
 									width = "full",
 									desc = L["Customize Player CastBar Spark"],
 									get = function(info) return E.db.ElvUI_EltreumUI.sparkcustomcolor.enable end,
@@ -955,7 +955,7 @@ if ElvUI_EltreumUI.Retail then
 						},
 						character = {
 							type = 'group',
-							name = 'Character',
+							name = L["Character"],
 							order = 2,
 							args = {
 								header844 = {
@@ -1034,7 +1034,7 @@ if ElvUI_EltreumUI.Retail then
 						},
 						shadows = {
 							type = 'group',
-							name = 'Shadows',
+							name = L["Shadows"],
 							order = 2,
 							args = {
 								shadowsdesc = {
@@ -1370,7 +1370,7 @@ if ElvUI_EltreumUI.Retail then
 					args = {
 						general = {
 							type = 'group',
-							name = 'General',
+							name = L["General"],
 							order = 1,
 							args = {
 								generalglowop1 = {
@@ -1822,14 +1822,14 @@ if ElvUI_EltreumUI.Retail then
 				},
 				borders = {
 					type = 'group',
-					name = "Borders",
+					name = L["Borders"],
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\border',
 					order = 85,
 					childGroups = "tab",
 					args = {
 						general = {
 							type = 'group',
-							name = 'General',
+							name = L["General"],
 							order = 1,
 							args = {
 								headerline1 = {
@@ -1927,7 +1927,7 @@ if ElvUI_EltreumUI.Retail then
 							order = 2,
 							type = 'group',
 							--inline = true,
-							name = "ActionBars",
+							name = L["ActionBars"],
 							childGroups = "tab",
 							args = {
 								gap0 = {
@@ -2181,7 +2181,7 @@ if ElvUI_EltreumUI.Retail then
 						},
 						ufborders = {
 							type = 'group',
-							name= 'Unitframes',
+							name = L["Unitframes"],
 							order = 2,
 							args = {
 								gap0 = {
@@ -2395,7 +2395,7 @@ if ElvUI_EltreumUI.Retail then
 						},
 						npborder = {
 							type = 'group',
-							name = 'Nameplate',
+							name = L["Nameplate"],
 							order = 3,
 							args = {
 								gap0 = {
@@ -2506,7 +2506,7 @@ if ElvUI_EltreumUI.Retail then
 						header2 = {
 							order = 4,
 							type = "description",
-							name = "Customize CVars",
+							name = L["Customize CVars"],
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
@@ -2667,10 +2667,10 @@ if ElvUI_EltreumUI.Retail then
 							order = 12,
 							args = {
 								layoutdescription = {
-										order = 1,
-										type = 'description',
-										fontSize = 'medium',
-										name = L["DPS/Tank layouts were created with pure dps classes in mind, if you play a class with more raid cooldowns like a Shaman, Druid or Paladin you might want to use the alternative layout in order to make it easier for you to use your cooldowns on the members of your group"],
+									order = 1,
+									type = 'description',
+									fontSize = 'medium',
+									name = L["DPS/Tank layouts were created with pure dps classes in mind, if you play a class with more raid cooldowns like a Shaman, Druid or Paladin you might want to use the alternative layout in order to make it easier for you to use your cooldowns on the members of your group"],
 								},
 								alternativegroups = {
 									order = 2,
@@ -2754,7 +2754,7 @@ if ElvUI_EltreumUI.Retail then
 						cursorgeneral = {
 							order = 1,
 							type = 'group',
-							name= "General",
+							name = L["General"],
 							args = {
 								header1 = {
 									order = 20,
@@ -3281,7 +3281,7 @@ if ElvUI_EltreumUI.Retail then
 								enable = {
 									order = 5,
 									type = 'toggle',
-									name = 'Enable',
+									name = L['Enable'],
 									desc = L["Add an ETA to waypoints"],
 									get = function(info) return E.db.ElvUI_EltreumUI.waypointetasetting.enable end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.waypointetasetting.enable = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -3352,7 +3352,7 @@ if ElvUI_EltreumUI.Retail then
 								enable = {
 									order = 5,
 									type = 'toggle',
-									name = 'Enable',
+									name = L['Enable'],
 									desc = L["Automatically hide the Minimap in combat"],
 									get = function(info) return E.db.ElvUI_EltreumUI.otherstuff.mapcombathide end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.mapcombathide = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -3619,7 +3619,7 @@ if ElvUI_EltreumUI.Retail then
 						general = {
 							order = 1,
 							type = 'group',
-							name= "General",
+							name = L["General"],
 							args = {
 								header = {
 									order = 1,
@@ -4357,7 +4357,7 @@ if ElvUI_EltreumUI.Retail then
 								colorsysmsgs = {
 									order = 18,
 									type = 'toggle',
-									name = "Enable",
+									name = L['Enable'],
 									width = 'full',
 									desc = L["Toggle the option on"],
 									disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
@@ -4374,7 +4374,7 @@ if ElvUI_EltreumUI.Retail then
 								chatlooticons = {
 									order = 20,
 									type = 'toggle',
-									name = "Enable",
+									name = L['Enable'],
 									width = 'full',
 									desc = L["Toggle the option on"],
 									disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
@@ -4477,7 +4477,7 @@ if ElvUI_EltreumUI.Retail then
 				weakauras = {
 					type = 'group',
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras',
-					name = 'WeakAuras',
+					name = L["WeakAuras"],
 					order = 95,
 					args = {
 						header1 = {
