@@ -16,7 +16,7 @@ function ElvUI_EltreumUI:GroupRoster()
 		if IsInGroup() == true then
 			--print("in a group")
 			deaththrottle = 1
-			ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for party/raid death
+			ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath()
 			for i=1, GetNumGroupMembers() do
 				name[i], _, _, _, _, _, _, _, _, _, _, _ = GetRaidRosterInfo(i)
 			end
@@ -24,7 +24,7 @@ function ElvUI_EltreumUI:GroupRoster()
 			--print("not in a group")
 			wipe(name)-- = {}
 			deaththrottle = 0
-			ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for party/raid death
+			ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath() to not fire when not in a group
 			--name = {E.myname}
 		end
 	end
