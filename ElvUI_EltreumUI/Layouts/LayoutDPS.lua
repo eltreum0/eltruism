@@ -837,6 +837,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["player"]["aurabar"]["attachTo"] = "FRAME"
 		E.db["unitframe"]["units"]["player"]["aurabar"]["detachedWidth"] = 266
 		E.db["unitframe"]["units"]["player"]["aurabar"]["maxDuration"] = 60
+		E.db["unitframe"]["units"]["player"]["aurabar"]["spacing"] = 1
 		E.db["unitframe"]["units"]["player"]["aurabar"]["yOffset"] = 1
 		E.db["unitframe"]["units"]["player"]["buffs"]["yOffset"] = -227
 		E.db["unitframe"]["units"]["player"]["buffs"]["attachTo"] = "FRAME"
@@ -1106,6 +1107,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["target"]["aurabar"]["attachTo"] = "FRAME"
 		E.db["unitframe"]["units"]["target"]["aurabar"]["maxBars"] = 15
 		E.db["unitframe"]["units"]["target"]["aurabar"]["yOffset"] = 1
+		E.db["unitframe"]["units"]["target"]["aurabar"]["spacing"] = 1
 		E.db["unitframe"]["units"]["target"]["buffs"]["anchorPoint"] = "BOTTOM"
 		E.db["unitframe"]["units"]["target"]["buffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["target"]["buffs"]["countXOffset"] = -3
