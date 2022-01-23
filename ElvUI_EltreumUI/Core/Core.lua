@@ -92,17 +92,19 @@ end
 
 --turn and off blizzard combat text
 function ElvUI_EltreumUI:BlizzCombatText()
-	if not E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext then
-		if ElvUI_EltreumUI.Retail then
-			SetCVar("floatingCombatTextCombatDamage", 1)
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-			SetCVar("floatingCombatTextCombatDamage", 1)
-		end
-	elseif E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext then
-		if ElvUI_EltreumUI.Retail then
-			SetCVar("floatingCombatTextCombatDamage", 0)
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-			SetCVar("floatingCombatTextCombatDamage", 0)
+	if IsAddOnLoaded('ElvUI_FCT') or IsAddOnLoaded('NameplateSCT') then
+		if not E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext then
+			if ElvUI_EltreumUI.Retail then
+				SetCVar("floatingCombatTextCombatDamage", 1)
+			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+				SetCVar("floatingCombatTextCombatDamage", 1)
+			end
+		elseif E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext then
+			if ElvUI_EltreumUI.Retail then
+				SetCVar("floatingCombatTextCombatDamage", 0)
+			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+				SetCVar("floatingCombatTextCombatDamage", 0)
+			end
 		end
 	end
 	if E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana then
@@ -164,10 +166,8 @@ function ElvUI_EltreumUI:AutoScale()
 	local a = E:PixelBestSize()
 	SetCVar('uiScale', a)
 	E.global["general"]["UIScale"] = a
-
 	ElvUI_EltreumUI:Print(L["A scale of "..a.." has automatically been set."])
 end
-
 
 --World text Scale
 function ElvUI_EltreumUI:WorldTextScale(value)
@@ -200,6 +200,13 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('lockActionBars', 1)
 	SetCVar('spamFilter', 0)
 	SetCVar('Sound_EnableErrorSpeech', 1)
+
+	--this makes it so that the non nameplate names are hidden
+	if ElvUI_EltreumUI.Retail then
+		SetCVar('UnitNameHostleNPC', 0)
+		SetCVar('UnitNameInteractiveNPC', 0)
+		SetCVar('UnitNameNPC', 0)
+	end
 
 	-- fast loot
 	SetCVar("autoLootRate", 1)
@@ -246,6 +253,28 @@ function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('nameplateShowEnemies', 1)
 	SetCVar("nameplateShowFriends", 1)
 	ElvUI_EltreumUI:Print(L["NamePlate CVars have been set."])
+end
+
+--set some CVars when entering world
+function ElvUI_EltreumUI:EnteringWorldCVars()
+	--SetCVars at start
+	SetCVar('nameplateOtherBottomInset', E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset)
+	SetCVar('nameplateOtherTopInset', E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset)
+	SetCVar('cameraDistanceMaxZoomFactor', E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor)
+	SetCVar('nameplateTargetRadialPosition', E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition)
+	--ElvUI_EltreumUI:Print(L["Custom Nameplate CVars were set."])
+	if ElvUI_EltreumUI.Retail then
+		if  E.db.ElvUI_EltreumUI.cvars.autohidenpcname then
+			SetCVar('UnitNameHostleNPC', 0)
+			SetCVar('UnitNameInteractiveNPC', 0)
+			SetCVar('UnitNameNPC', 0)
+		end
+	end
+	if ElvUI_EltreumUI.Retail then
+		SetCVar('showInGameNavigation', E.db.ElvUI_EltreumUI.cvars.showInGameNavigation)
+	elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+		SetCVar('clampTargetNameplateToScreen', E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen)
+	end
 end
 
 -- AddOnSkins Profile
@@ -414,49 +443,6 @@ function ElvUI_EltreumUI:SetupGladdy()
 	end
 end
 
---set some CVars when entering world
-function ElvUI_EltreumUI:EnteringWorldCVars()
-		--SetCVars at start
-	SetCVar('nameplateOtherBottomInset', E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset)
-	SetCVar('nameplateOtherTopInset', E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset)
-	SetCVar('cameraDistanceMaxZoomFactor', E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor)
-	SetCVar('nameplateTargetRadialPosition', E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition)
-	--ElvUI_EltreumUI:Print(L["Custom Nameplate CVars were set."])
-	if ElvUI_EltreumUI.Retail then
-		if  E.db.ElvUI_EltreumUI.cvars.autohidenpcname then
-			SetCVar('UnitNameHostleNPC', 0)
-			SetCVar('UnitNameInteractiveNPC', 0)
-			SetCVar('UnitNameNPC', 0)
-		else
-			SetCVar('UnitNameHostleNPC', 1)
-			SetCVar('UnitNameInteractiveNPC', 1)
-			SetCVar('UnitNameNPC', 1)
-		end
-	end
-	if ElvUI_EltreumUI.Retail then
-		SetCVar('showInGameNavigation', E.db.ElvUI_EltreumUI.cvars.showInGameNavigation)
-	elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-		SetCVar('clampTargetNameplateToScreen', E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen)
-	end
-end
-
-local maxmemory = 3000
-local currentmemory
-function ElvUI_EltreumUI:ClearMemory()
-	if not InCombatLockdown() then
-		currentmemory = GetAddOnMemoryUsage ("ElvUI_EltreumUI")
-		if currentmemory > maxmemory then
-			--print(GetAddOnMemoryUsage("ElvUI_ELtreumUI").." cleared memory")
-			collectgarbage("collect")
-			ResetCPUUsage()
-			--UpdateAddOnCPUUsage("ElvUI_EltreumUI")
-			currentmemory = 0
-		--else
-		--	print("Not enough memory usage to clear memory")
-		end
-	end
-end
-
 function ElvUI_EltreumUI:AlternativeGroupsDPS()
 	if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
 		if not E.db.movers then E.db.movers = {} end
@@ -533,5 +519,22 @@ function ElvUI_EltreumUI:DevTools()
 			_G.ElvUI_StaticPopup1:Hide()
 		end
 		ElvUI_EltreumUI:Print("|cFFFF0000WARNING:|r You are using Development Tools which increase CPU and Memory Usage. Use |cFFFF0000/eltruism dev|r to disable them")
+	end
+end
+
+local maxmemory = 3000
+local currentmemory
+function ElvUI_EltreumUI:ClearMemory()
+	if not InCombatLockdown() then
+		currentmemory = GetAddOnMemoryUsage ("ElvUI_EltreumUI")
+		if currentmemory > maxmemory then
+			--print(GetAddOnMemoryUsage("ElvUI_ELtreumUI").." cleared memory")
+			collectgarbage("collect")
+			ResetCPUUsage()
+			--UpdateAddOnCPUUsage("ElvUI_EltreumUI")
+			currentmemory = 0
+		--else
+		--	print("Not enough memory usage to clear memory")
+		end
 	end
 end
