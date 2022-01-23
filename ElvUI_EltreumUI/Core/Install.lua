@@ -106,7 +106,7 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option4:SetText(L["Dark Chat"])
 		end,
 		[5] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText('Details')
+			PluginInstallFrame.SubTitle:SetFormattedText('Details! DPS Meter')
 			PluginInstallFrame.Desc1:SetText(L["Import Details! profile with dual panels"])
 			PluginInstallFrame.Desc2:SetText(L["You can right click the bottom right arrow to toggle the Details! Window"])
 			PluginInstallFrame.Desc3:SetText(L["Remember to swap the second window to Healing Done or Tiny Threat"])
@@ -296,7 +296,7 @@ ElvUI_EltreumUI.InstallerData = {
 		[2] = L["Layouts"],
 		[3] = L["Fonts"],
 		[4] = 'Eltruism Modes',
-		[5] = 'Details',
+		[5] = 'Details! DPS Meter',
 		[6] = L["PVP/PVE Addons"],
 		[7] = L["QOL Addons"],
 		[8] = 'Discord',
