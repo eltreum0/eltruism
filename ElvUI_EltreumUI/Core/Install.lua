@@ -137,28 +137,23 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.SubTitle:SetFormattedText('PVP/PVE Addons')
 			if ElvUI_EltreumUI.Retail then
 				PluginInstallFrame.Desc1:SetText(L["Import GladiusEx profile for arenas, remember to disable ElvUI Arena Frames"])
-				PluginInstallFrame.Desc3:SetText(L["Import Method Raid Tools profile with raid cooldowns and other settings"])
 				PluginInstallFrame.Option1:Enable()
 				PluginInstallFrame.Option1:Show()
 				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupGladiusEx() end)
 				PluginInstallFrame.Option1:SetText('GladiusEx')
-				PluginInstallFrame.Option4:Enable()
-				PluginInstallFrame.Option4:Show()
-				PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupMRT() end)
-				PluginInstallFrame.Option4:SetText(L["Method\nRaid Tools"])
 			elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 				PluginInstallFrame.Desc1:SetText(L["Import Questie profile, which uses the DBM radar"])
 				PluginInstallFrame.Option1:Enable()
 				PluginInstallFrame.Option1:Show()
 				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupQuestie() end)
 				PluginInstallFrame.Option1:SetText(L["Questie"])
-				PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladdy (Gladius can be found in Eltruism settings)"])
-				PluginInstallFrame.Option4:Enable()
-				PluginInstallFrame.Option4:Show()
-				PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
-				PluginInstallFrame.Option4:SetText('Gladdy')
 			end
 			PluginInstallFrame.Desc2:SetText(L["Import DBM or BigWigs profiles for dungeons and raigs. (Uses DBM English Calanon and Bigwigs Voice)"])
+			if ElvUI_EltreumUI.Retail then
+				PluginInstallFrame.Desc3:SetText(L["Import Method Raid Tools profile with raid cooldowns and other settings"])
+			elseif ElvUI_EltreumUI.TBC then
+				PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladdy (Gladius can be found in Eltruism settings)"])
+			end
 			PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
 			PluginInstallFrame.Option2:Enable()
 			PluginInstallFrame.Option2:Show()
@@ -168,6 +163,17 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option3:Show()
 			PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupBW() end)
 			PluginInstallFrame.Option3:SetText('BigWigs')
+			if ElvUI_EltreumUI.Retail then
+				PluginInstallFrame.Option4:Enable()
+				PluginInstallFrame.Option4:Show()
+				PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupMRT() end)
+				PluginInstallFrame.Option4:SetText(L["Method\nRaid Tools"])
+			elseif ElvUI_EltreumUI.TBC then
+				PluginInstallFrame.Option4:Enable()
+				PluginInstallFrame.Option4:Show()
+				PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
+				PluginInstallFrame.Option4:SetText('Gladdy')
+			end
 			if (not IsAddOnLoaded("Questie")) and (ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC) then
 				PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				PluginInstallFrame.Desc1:SetText(L["Questie is not installed or enabled"])
@@ -207,10 +213,10 @@ ElvUI_EltreumUI.InstallerData = {
 			if ElvUI_EltreumUI.Retail and ((not IsAddOnLoaded("MRT")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("GladiusEx"))) then
 				PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
-			if ElvUI_EltreumUI.Classic and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("GladiusEx"))) then
+			if ElvUI_EltreumUI.Classic and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs"))) then
 				PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
-			if ElvUI_EltreumUI.TBC and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("GladiusEx"))) and (not IsAddOnLoaded("Gladdy")) then
+			if ElvUI_EltreumUI.TBC and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("Gladdy"))) then
 				PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
 		end,
@@ -236,14 +242,14 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option4:Show()
 			PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDynamicCam() end)
 			PluginInstallFrame.Option4:SetText(L["DynamicCam"])
-			if (not IsAddOnLoaded("NameplateSCT")) then
+			if (not IsAddOnLoaded("NameplateSCT")) and IsAddOnLoaded("ElvUI_FCT") then
 				PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-				PluginInstallFrame.Desc1:SetText("NameplateSCT"..L[" is not installed or enabled"])
+				PluginInstallFrame.Desc1:SetText("Import a profile for Simpy's ElvUI FCT configured for Eltruism")
 				PluginInstallFrame.Option1:Disable()
 			end
-			if (not IsAddOnLoaded("ElvUI_FCT")) then
+			if (not IsAddOnLoaded("ElvUI_FCT")) and IsAddOnLoaded("NameplateSCT") then
 				PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-				PluginInstallFrame.Desc1:SetText("ElvUI FCT"..L[" is not installed or enabled"])
+				PluginInstallFrame.Desc1:SetText("Import a profile for NameplateSCT configured for Eltruism")
 				PluginInstallFrame.Option2:Disable()
 			end
 			if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
