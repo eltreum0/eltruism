@@ -32,34 +32,41 @@ end
 
 function ElvUI_EltreumUI:RaidDeath()
 	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
-		local _, _, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
-		--print("raid death function")
-		if deaththrottle == 1 then
-			for i=1,#name do
-				--if (name[i] == destName) and ( eventType == "UNIT_DIED" ) then
-				if name[i] == destName then
-					if E.db.ElvUI_EltreumUI.partyraiddeath.bruh then
-						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.ogg", "Master")
-					end
-					if E.db.ElvUI_EltreumUI.partyraiddeath.robloxoof then
-						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.ogg", "Master")
-					end
-					if E.db.ElvUI_EltreumUI.partyraiddeath.shame then
-						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.ogg", "Master")
-					end
-					if E.db.ElvUI_EltreumUI.partyraiddeath.wow then
-						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.ogg", "Master")
-					end
-					if E.db.ElvUI_EltreumUI.partyraiddeath.mario then
-						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\mariodeath.ogg", "Master")
-					end
-					if E.db.ElvUI_EltreumUI.partyraiddeath.ion then
-						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\ionskillissue.ogg", "Master")
+		ElvUI_EltreumUI:ClearMemory()
+		--local _, _, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
+		local _, eventType, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
+		--print(eventType.." "..destName)
+		if eventType ~= "UNIT_DIED" then
+			return
+		elseif eventType == "UNIT_DIED" then
+			print("raid death function "..destName)
+			if deaththrottle == 1 then
+				for i=1,#name do
+					--if (name[i] == destName) and ( eventType == "UNIT_DIED" ) then
+					if name[i] == destName then
+						if E.db.ElvUI_EltreumUI.partyraiddeath.bruh then
+							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.ogg", "Master")
+						end
+						if E.db.ElvUI_EltreumUI.partyraiddeath.robloxoof then
+							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.ogg", "Master")
+						end
+						if E.db.ElvUI_EltreumUI.partyraiddeath.shame then
+							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.ogg", "Master")
+						end
+						if E.db.ElvUI_EltreumUI.partyraiddeath.wow then
+							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.ogg", "Master")
+						end
+						if E.db.ElvUI_EltreumUI.partyraiddeath.mario then
+							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\mariodeath.ogg", "Master")
+						end
+						if E.db.ElvUI_EltreumUI.partyraiddeath.ion then
+							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\ionskillissue.ogg", "Master")
+						end
 					end
 				end
+			else
+				return
 			end
-		else
-			return
 		end
 	end
 end
