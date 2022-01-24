@@ -2,10 +2,12 @@
 **The future is uncertain**
 ___
 ### 2.6.7
+Update for ElvUI 12.62/2.34/1.60\
 Improved the install process by revamping the pages\
 Improved the Hybrid spec detection for TBC/Classic\
 Improved the Dark/Light mode switch and the Dark/Transparent chat mode switch\
 Fixed the Character Panel art sometimes having wrong alpha\
+Fixed the Target of Target statusbar not updating sometimes in Light mode
 ___
 ### 2.6.6
 Added an option for Nameplate Texture to be based on the Target's Class/Reaction\
