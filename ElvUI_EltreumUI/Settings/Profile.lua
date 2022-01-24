@@ -230,6 +230,8 @@ P.ElvUI_EltreumUI = {
 		rogueopen = true,
 		arena = true,
 		combatenable = false,
+		autoaccept = false,
+		autoacceptinvert = true
 	},
 
 	loottext = {

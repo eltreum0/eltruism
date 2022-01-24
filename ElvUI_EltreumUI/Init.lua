@@ -59,6 +59,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:DynamicBuffs() --shows enemy player buffs on nameplates/unitframes if in arena/bgs, hides otherwise
 	ElvUI_EltreumUI:EnteringWorldCVars() --set cvars at the start
 	ElvUI_EltreumUI:GroupRoster() -- attempt at prevent CLEU tracking
+	ElvUI_EltreumUI:AutoAcceptQuests() -- yet another auto accept quest thing
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
