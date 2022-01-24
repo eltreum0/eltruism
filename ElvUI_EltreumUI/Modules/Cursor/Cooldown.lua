@@ -133,60 +133,59 @@ function ElvUI_EltreumUI:CooldownEnable()
 end
 
 function ElvUI_EltreumUI:CooldownUpdate()
-	--print("CooldownUPdate spam "..math.random(1,99))
+	--print("CooldownUpdate spam "..math.random(1,99))
 	if not isActive then
 		return
-	end
-	if needUpdate then
-		needUpdate = false
-		local start, duration = currGetCooldown(currArg)
-		if currStart ~= start or currDuration ~= duration then
-			ElvUI_EltreumUI:updateStamps(start, duration, false)
-		end
-	end
-	local now = GetTime()
-	if now > finishStamp then
-		isActive = false
-		EltruismCooldownText:SetText(nil)
-		EltruismCooldownIcon:SetTexture(nil)
-		ElvUI_EltreumUI:updateCooldown() -- check lastGetCooldown, lastArg
-		return
-	end
-	if now >= endStamp then
-		if not isReady then
-			isReady = true
-			EltruismCooldownText:SetText("")
-			ElvUI_EltreumUI:updateStamps(currStart, currDuration, true)
-		end
 	else
-		local cd = endStamp - now
-		if cd <= db.readyTime and not isAlmostReady then
-			isAlmostReady = true
-			ElvUI_EltreumUI:updateStamps(currStart, currDuration, true)
+		if needUpdate then
+			needUpdate = false
+			local start, duration = currGetCooldown(currArg)
+			if currStart ~= start or currDuration ~= duration then
+				ElvUI_EltreumUI:updateStamps(start, duration, false)
+			end
 		end
-		if cd > 60 then
-			EltruismCooldownText:SetFormattedText("%01.f".."m", cd / 60, cd % 60)
-			EltruismCooldownText:SetTextColor(1, 1, 1)
-		elseif cd > 1 and cd < 60 then
-			EltruismCooldownText:SetFormattedText("%01.f", math.floor(cd))
-			EltruismCooldownText:SetTextColor(1, 1, 1)
+		local now = GetTime()
+		if now > finishStamp then
+			isActive = false
+			EltruismCooldownText:SetText(nil)
+			EltruismCooldownIcon:SetTexture(nil)
+			ElvUI_EltreumUI:updateCooldown() -- check lastGetCooldown, lastArg
+			return
+		elseif now >= endStamp then
+			if not isReady then
+				isReady = true
+				EltruismCooldownText:SetText("")
+				ElvUI_EltreumUI:updateStamps(currStart, currDuration, true)
+			end
 		else
-			EltruismCooldownText:SetFormattedText("%.1f", cd)
-			EltruismCooldownText:SetTextColor(1, 0, 0)
+			local cd = endStamp - now
+			if cd <= db.readyTime and not isAlmostReady then
+				isAlmostReady = true
+				ElvUI_EltreumUI:updateStamps(currStart, currDuration, true)
+			end
+			if cd > 60 then
+				EltruismCooldownText:SetFormattedText("%01.f".."m", cd / 60, cd % 60)
+				EltruismCooldownText:SetTextColor(1, 1, 1)
+			elseif cd > 1 and cd < 60 then
+				EltruismCooldownText:SetFormattedText("%01.f", math.floor(cd))
+				EltruismCooldownText:SetTextColor(1, 1, 1)
+			else
+				EltruismCooldownText:SetFormattedText("%.1f", cd)
+				EltruismCooldownText:SetTextColor(1, 0, 0)
+			end
 		end
-	end
-	if isHidden then
-		return
-	end
-	if now > fadeStamp then
-		local alpha = 1 - ((now - fadeStamp) / db.fadeTime)
-		if alpha <= 0 then
-			isHidden = true
-			EltruismCooldownFrame:SetAlpha(0)
-			updateDelay = NormalUpdateDelay
-		else
-			EltruismCooldownFrame:SetAlpha(alpha)
-			updateDelay = FadingUpdateDelay
+		if isHidden then
+			return
+		elseif now > fadeStamp then
+			local alpha = 1 - ((now - fadeStamp) / db.fadeTime)
+			if alpha <= 0 then
+				isHidden = true
+				EltruismCooldownFrame:SetAlpha(0)
+				updateDelay = NormalUpdateDelay
+			else
+				EltruismCooldownFrame:SetAlpha(alpha)
+				updateDelay = FadingUpdateDelay
+			end
 		end
 	end
 end
