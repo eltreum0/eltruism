@@ -182,8 +182,30 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 				end
 				if event == 'GOSSIP_SHOW' then
 					---print("cccc")
-					for i, k in next, C_GossipInfo.GetAvailableQuests() do
-						C_GossipInfo.SelectAvailableQuest(i)
+					if ElvUI_EltreumUI.Retail then
+						for i, k in next, C_GossipInfo.GetAvailableQuests() do
+							C_GossipInfo.SelectAvailableQuest(i)
+						end
+					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						if (GetNumGossipAvailableQuests() > 0) then
+							local arg = {GetGossipAvailableQuests()}
+							local i = 1
+							while(arg[i]) do
+								SelectGossipAvailableQuest(i)
+								i = i + 1
+							end
+						end
+						if (GetNumGossipActiveQuests() > 0) then
+							local numactive = GetNumGossipActiveQuests()
+							for i = 1, numactive do
+								SelectGossipActiveQuest(i)
+								AcceptQuest()
+								if (GetNumQuestChoices() <= 0) then
+									return
+								end
+								i = i + 1
+							end
+						end
 					end
 				end
 				if event == 'QUEST_GREETING' then
@@ -196,7 +218,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 
 					--if completing quests
 					for i = 1, GetNumActiveQuests() do
-					---	print("hhhhh")
+					--print("hhhhh")
 						local _, completed = GetActiveTitle(i)
 						if completed and not C_QuestLog.IsWorldQuest(GetActiveQuestID(i)) then
 							--print("iiiiii")
@@ -213,7 +235,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 					end
 				end
 				if event == 'QUEST_COMPLETE' then
-				--	print("eeeeeee")
+				--print("eeeeeee")
 					if GetQuestMoneyToGet() > 0 then
 						return
 					else
