@@ -114,7 +114,7 @@ function ElvUI_EltreumUI:RogueAutoOpen()
 			if NPC_ID == 97004 or NPC_ID == 96782 or NPC_ID == 93188 then
 				--ElvUI_EltreumUI:Print('its the right npc')
 				if IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown() then
-					--ElvUI_EltreumUI:Print('you held a modfier key')
+					--ElvUI_EltreumUI:Print('you hold a modifier key')
 					return
 				else
 					C_GossipInfo.SelectOption(1)
@@ -122,5 +122,96 @@ function ElvUI_EltreumUI:RogueAutoOpen()
 			end
 		end
 		RogueOrderHallAutoOpen:SetScript("OnEvent", handle_NPC_Interaction)
+	end
+end
+
+--yet another quest auto accept thing
+local EltruismAutoComplete = CreateFrame("FRAME", "EltruismAutoCompleteFrame")
+function ElvUI_EltreumUI:AutoAcceptQuests()
+	if E.db.ElvUI_EltreumUI.questsettings.autoaccept then
+		EltruismAutoComplete:RegisterEvent("QUEST_GREETING")
+		EltruismAutoComplete:RegisterEvent("GOSSIP_SHOW")
+		EltruismAutoComplete:RegisterEvent("QUEST_DETAIL")
+		EltruismAutoComplete:RegisterEvent("QUEST_COMPLETE")
+		EltruismAutoComplete:RegisterEvent("QUEST_ACCEPT_CONFIRM")
+		EltruismAutoComplete:RegisterEvent("QUEST_PROGRESS")
+		EltruismAutoComplete:SetScript("OnEvent", function(_, event)
+
+			local normal = (IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown())
+			if E.db.ElvUI_EltreumUI.questsettings.autoacceptinvert then
+				normal = not (IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown())
+			end
+			if normal then
+				--ElvUI_EltreumUI:Print('you didnt hold a modifier key')
+				return
+			else
+				if event == 'QUEST_DETAIL' then
+					--print("11111")
+					if QuestGetAutoAccept() then
+						--print("222222")
+						CloseQuest()
+					else
+						--print("33333")
+						if QuestIsDaily() then
+							--print("44444444")
+							return
+						elseif QuestIsWeekly() then
+							--print("5555555")
+							return
+						end
+						AcceptQuest()
+						--print("aaaaa")
+					end
+				end
+				if event == 'QUEST_ACCEPT_CONFIRM' then
+					ConfirmAcceptQuest()
+					StaticPopup_Hide("QUEST_ACCEPT")
+					--print("bbbb")
+				end
+				if event == 'GOSSIP_SHOW' then
+					---print("cccc")
+					for i, k in next, C_GossipInfo.GetAvailableQuests() do
+						C_GossipInfo.SelectAvailableQuest(i)
+					end
+				end
+				if event == 'QUEST_GREETING' then
+					--print("ffff")
+					--if accepting quests
+					for i = 1, GetNumAvailableQuests() do
+						---print("gggg")
+						SelectAvailableQuest(i)
+					end
+
+					--if completing quests
+					for i = 1, GetNumActiveQuests() do
+					---	print("hhhhh")
+						local _, completed = GetActiveTitle(i)
+						if completed and not C_QuestLog.IsWorldQuest(GetActiveQuestID(i)) then
+							--print("iiiiii")
+							SelectActiveQuest(i)
+						end
+					end
+				end
+				if event == 'QUEST_PROGRESS' then
+					--print("ddddd")
+					if GetQuestMoneyToGet() > 0 then
+						return
+					else
+						CompleteQuest()
+					end
+				end
+				if event == 'QUEST_COMPLETE' then
+				--	print("eeeeeee")
+					if GetQuestMoneyToGet() > 0 then
+						return
+					else
+						if GetNumQuestChoices() <= 1 then
+							GetQuestReward(GetNumQuestChoices())
+						end
+					end
+				end
+
+			end
+		end)
 	end
 end
