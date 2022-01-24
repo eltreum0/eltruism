@@ -39,7 +39,7 @@ function ElvUI_EltreumUI:RaidDeath()
 		if eventType ~= "UNIT_DIED" then
 			return
 		elseif eventType == "UNIT_DIED" then
-			print("raid death function "..destName)
+			--print("raid death function "..destName)
 			if deaththrottle == 1 then
 				for i=1,#name do
 					--if (name[i] == destName) and ( eventType == "UNIT_DIED" ) then
