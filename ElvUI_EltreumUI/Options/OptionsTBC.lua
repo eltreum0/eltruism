@@ -332,7 +332,7 @@ if ElvUI_EltreumUI.TBC then
 									desc = L["Add a cooldown icon when trying to use skills that are on cooldown, and a cooldown flash when they are ready"],
 									width = 'full',
 									get = function(info) return E.db.ElvUI_EltreumUI.cursor.cooldown end,
-									set = function(info, value) E.db.ElvUI_EltreumUI.cursor.cooldown = value end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.cursor.cooldown = value E:StaticPopup_Show('PRIVATE_RL') end,
 								},
 								fixlag = {
 									order = 4,
