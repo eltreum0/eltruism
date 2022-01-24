@@ -83,8 +83,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if E.db.ElvUI_EltreumUI.dev then --load dev tools if user enables
 		ElvUI_EltreumUI:DevTools()
 	end
-	--a warning in case people are using the dev version
-	--ElvUI_EltreumUI:Print("|cFFFF0000WARNING:|r You are using Eltruism DEV. This is a version not ready for release which can have incomplete features or issues. |cFFFF0000Please report them on discord if you encounter any.|r")
 end
 
 function ElvUI_EltreumUI:HidePopups()
@@ -109,7 +107,7 @@ function ElvUI_EltreumUI:Initialize()
 	--register the plugin config
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
 	--Register Events
-	ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for party/raid death
+	--ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for party/raid death
 	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_START') --for quests and combat music
 	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_END') --for quests and combat music
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE') --to store group roster in order to compare in party/raid death
