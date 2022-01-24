@@ -2,33 +2,12 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 
-local tonumber = _G.tonumber
-local GetTime = _G.GetTime
-local GetActionInfo = _G.GetActionInfo
-local GetPetActionCooldown = _G.GetPetActionCooldown
-local GetPetActionInfo = _G.GetPetActionInfo
-local GetSpellInfo = _G.GetSpellInfo
-local GetSpellCooldown = _G.GetSpellCooldown
-local GetSpellBaseCooldown = _G.GetSpellBaseCooldown
-local GetInventoryItemLink = _G.GetInventoryItemLink
-local GetContainerItemLink = _G.GetContainerItemLink
-local GetItemInfo = _G.GetItemInfo
-local GetItemCooldown = _G.GetItemCooldown
-local NUM_PET_ACTION_SLOTS = NUM_PET_ACTION_SLOTS
-local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
-local GetCursorPosition = _G.GetCursorPosition
-local LibStub = _G.LibStub
-local math = _G.math
-
 --onupdate things
 local NormalUpdateDelay = 1.0/10 -- update frequency == 1/NormalUpdateDelay
 local FadingUpdateDelay = 1.0/25 -- update frequency while fading == 1/FadingUpdateDelay, must be <= NormalUpdateDelay
 local lastUpdate = 0 -- time since last real update
 local updateDelay = NormalUpdateDelay
 
-local Icon = [[Interface\AddOns\ElvUI_EltreumUI\Media\Textures\logo.tga]]
---local db
 local fadeStamp -- the timestamp when we should start fading the display
 local endStamp -- the timestamp when the cooldown will be over
 local finishStamp -- the timestamp when the we are finished with this cooldown
@@ -44,11 +23,10 @@ local isActive = false
 local isAlmostReady = false
 local isReady = false
 local isHidden = false
-local myclass = E.myclass
 
 --gcd things
 local GCD = 1.5
-if myclass == "ROGUE" or myclass == "MONK" or myclass == "DRUID" then
+if E.myclass == "ROGUE" or E.myclass == "MONK" or E.myclass == "DRUID" then
 	GCD = 1
 end
 
@@ -56,8 +34,7 @@ local db = {
 	holdTime = 1.0,
 	fadeTime = 1.0,
 	readyTime = 4.0,
-	--gracePeriod = 1,
-	gracePeriod = 5, --time after cd start that pressing a skill will show the cd left
+	gracePeriod = 0.5, --time after cd start that pressing a skill will show the cd left
 }
 
 local function itemIdFromLink(link)
@@ -66,10 +43,12 @@ local function itemIdFromLink(link)
 	return tonumber(id)
 end
 
-local mask
 local EltruismCooldownFrame = CreateFrame("MessageFrame", "EltruismCooldown", UIParent)
 local EltruismCooldownText = EltruismCooldownFrame:CreateFontString("EltruismCoooldownText", "OVERLAY", "GameFontNormal")
 local EltruismCooldownIcon = EltruismCooldownFrame:CreateTexture("EltruismCooldownIcon", "OVERLAY")
+local EltruismCooldownMask = EltruismCooldownFrame:CreateMaskTexture()
+EltruismCooldownMask:SetTexture([[Interface\CHARACTERFRAME\TempPortraitAlphaMask]], "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+EltruismCooldownMask:SetAllPoints(EltruismCooldownFrame)
 EltruismCooldownFrame:Hide()
 
 function ElvUI_EltreumUI:CooldownInitialize()
@@ -90,24 +69,12 @@ function ElvUI_EltreumUI:CooldownInitialize()
 	EltruismCooldownFrame:SetWidth(cooldownsize)
 	EltruismCooldownFrame:SetHeight(cooldownsize)
 	EltruismCooldownFrame:SetJustifyH("CENTER")
-	--self.EltruismCooldownFrame = EltruismCooldownFrame
-	mask = EltruismCooldownFrame:CreateMaskTexture()
-	mask:SetTexture([[Interface\CHARACTERFRAME\TempPortraitAlphaMask]], "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
-	mask:SetAllPoints(EltruismCooldownFrame)
-
-
 	local textsize = ( (cooldownsize / 2) + 1)
 	EltruismCooldownText:SetFont(E.media.normFont, textsize, "OUTLINE")
 	EltruismCooldownText:SetTextColor(1, 1, 1)
 	EltruismCooldownText:SetPoint("CENTER")
-	--self.text = EltruismCooldownText
-
-
-	--self.icon = EltruismCooldownIcon
-	--self.iconTexture:SetTexture(Icon)
-
-	EltruismCooldownIcon:SetTexture(Icon)
-	EltruismCooldownIcon:AddMaskTexture(mask)
+	EltruismCooldownIcon:SetTexture(nil)
+	EltruismCooldownIcon:AddMaskTexture(EltruismCooldownMask)
 	EltruismCooldownIcon:ClearAllPoints()
 	EltruismCooldownIcon:SetPoint("CENTER")
 	EltruismCooldownIcon:SetHeight(cooldownsize +2)
@@ -115,40 +82,41 @@ function ElvUI_EltreumUI:CooldownInitialize()
 end
 
 function ElvUI_EltreumUI:CooldownEnable()
+	--print("CooldownEnable spam "..math.random(1,99))
 	if ElvUI_EltreumUI:IsHooked("UseAction", "checkActionCooldown") then
 		return
 	else
-		self:SecureHook("UseAction", "checkActionCooldown") --this enables tracking actions that are not macros
+		ElvUI_EltreumUI:SecureHook("UseAction", "checkActionCooldown") --this enables tracking actions that are not macros
 	end
 
 	if ElvUI_EltreumUI:IsHooked("UseContainerItem", "checkContainerItemCooldown") then
 		return
 	else
-		self:SecureHook("UseContainerItem", "checkContainerItemCooldown")
+		ElvUI_EltreumUI:SecureHook("UseContainerItem", "checkContainerItemCooldown")
 	end
 
 	if ElvUI_EltreumUI:IsHooked("UseInventoryItem", "checkInventoryItemCooldown") then
 		return
 	else
-		self:SecureHook("UseInventoryItem", "checkInventoryItemCooldown")
+		ElvUI_EltreumUI:SecureHook("UseInventoryItem", "checkInventoryItemCooldown")
 	end
 
 	if ElvUI_EltreumUI:IsHooked("UseItemByName", "checkItemCooldown") then
 		return
 	else
-		self:SecureHook("UseItemByName", "checkItemCooldown")
+		ElvUI_EltreumUI:SecureHook("UseItemByName", "checkItemCooldown")
 	end
 
 	if ElvUI_EltreumUI:IsHooked("CastSpellByName", "checkSpellCooldown") then
 		return
 	else
-		self:SecureHook("CastSpellByName", "checkSpellCooldown") -- only needed for pet spells
+		ElvUI_EltreumUI:SecureHook("CastSpellByName", "checkSpellCooldown") -- only needed for pet spells
 	end
 
 	if ElvUI_EltreumUI:IsHooked("CastPetAction", "checkPetActionCooldown") then
 		return
 	else
-		self:SecureHook("CastPetAction", "checkPetActionCooldown")
+		ElvUI_EltreumUI:SecureHook("CastPetAction", "checkPetActionCooldown")
 	end
 
 	--self:SecureHook("UseAction", "checkActionCooldown") --this enables tracking actions that are not macros
@@ -157,14 +125,15 @@ function ElvUI_EltreumUI:CooldownEnable()
 	--self:SecureHook("UseItemByName", "checkItemCooldown")
 	--self:SecureHook("CastSpellByName", "checkSpellCooldown") -- only needed for pet spells
 	--self:SecureHook("CastPetAction", "checkPetActionCooldown")
-	self:RegisterEvent("SPELL_UPDATE_COOLDOWN", "updateCooldown")
-	self:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN", "updateCooldown")
-	self:RegisterEvent("BAG_UPDATE_COOLDOWN", "updateCooldown")
-	self:RegisterEvent("PET_BAR_UPDATE_COOLDOWN", "updateCooldown")
+	ElvUI_EltreumUI:RegisterEvent("SPELL_UPDATE_COOLDOWN", "updateCooldown")
+	ElvUI_EltreumUI:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN", "updateCooldown")
+	ElvUI_EltreumUI:RegisterEvent("BAG_UPDATE_COOLDOWN", "updateCooldown")
+	ElvUI_EltreumUI:RegisterEvent("PET_BAR_UPDATE_COOLDOWN", "updateCooldown")
 	--self:RegisterEvent("UNIT_SPELLCAST_FAILED") --this triggers every single time a spell fails like when out of resources or on cd
 end
 
 function ElvUI_EltreumUI:CooldownUpdate()
+	--print("CooldownUPdate spam "..math.random(1,99))
 	if not isActive then
 		return
 	end
@@ -213,11 +182,9 @@ function ElvUI_EltreumUI:CooldownUpdate()
 		local alpha = 1 - ((now - fadeStamp) / db.fadeTime)
 		if alpha <= 0 then
 			isHidden = true
-			--self.EltruismCooldownFrame:SetAlpha(0)
 			EltruismCooldownFrame:SetAlpha(0)
 			updateDelay = NormalUpdateDelay
 		else
-			--self.EltruismCooldownFrame:SetAlpha(alpha)
 			EltruismCooldownFrame:SetAlpha(alpha)
 			updateDelay = FadingUpdateDelay
 		end
@@ -225,6 +192,7 @@ function ElvUI_EltreumUI:CooldownUpdate()
 end
 
 function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
+	----print("updateStamps spam "..math.random(1,99))
 	if not start then
 		return
 	end
@@ -247,23 +215,20 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 	if show then
 		updateDelay = NormalUpdateDelay
 		if E.db.ElvUI_EltreumUI.cursor.cooldown then
-			--self.EltruismCooldownFrame:Show()
 			EltruismCooldownFrame:Show()
 		end
 		if startHidden then
 			isHidden = true
-			--self.EltruismCooldownFrame:SetAlpha(0)
 			EltruismCooldownFrame:SetAlpha(0)
 			--unregister onupdate when hidden
 			EltruismCooldownFrame:SetScript("OnUpdate", nil)
 		else
-			--self.EltruismCooldownFrame:SetAlpha(1)
 			EltruismCooldownFrame:SetAlpha(1)
 
 			--throttling here using elapsed makes the frame not sync up, idk if i can make it sync with a throttle
 			-- so instead we make it not update at all when hidden
 			EltruismCooldownFrame:SetScript("OnUpdate", function(frame, elapsed) --if frame is removed, then pet cooldowns can have issues
-				---print("cooldown spam "..math.random(1,99))
+				-----print("cooldown spam "..math.random(1,99))
 				local x, y = GetCursorPosition()
 				local scaleDivisor = UIParent:GetEffectiveScale()
 				EltruismCooldownFrame:ClearAllPoints()
@@ -274,7 +239,7 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 				ElvUI_EltreumUI:CooldownUpdate(elapsed)
 				--[[if isHidden == true then
 					EltruismCooldownFrame:SetScript("OnUpdate", nil)
-					print("stopped updating")
+					--print("stopped updating")
 				end]]
 			end)
 
@@ -283,6 +248,7 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 end
 
 function ElvUI_EltreumUI:showCooldown(texture, getCooldownFunc, arg, hasCooldown)
+	--print("showCooldown spam "..math.random(1,99))
 	local start, duration, enabled = getCooldownFunc(arg)
 	if not start or enabled ~= 1 or duration <= GCD then
 		if hasCooldown and (isReady or not isActive) then
@@ -298,20 +264,22 @@ function ElvUI_EltreumUI:showCooldown(texture, getCooldownFunc, arg, hasCooldown
 	isReady = false
 	isAlmostReady = false
 	EltruismCooldownIcon:SetTexture(texture)
-	EltruismCooldownIcon:AddMaskTexture(mask)
+	EltruismCooldownIcon:AddMaskTexture(EltruismCooldownMask)
 	ElvUI_EltreumUI:updateStamps(start, duration, true)
 end
 
 function ElvUI_EltreumUI:checkActionCooldown(slot)
+	--print("checkActionCooldown spam "..math.random(1,99))
 	local type, id, _ = GetActionInfo(slot)
 	if type == 'spell' then
-		self:checkSpellCooldown(id)
+		ElvUI_EltreumUI:checkSpellCooldown(id)
 	elseif type == 'item' then
-		self:checkItemCooldown(id)
+		ElvUI_EltreumUI:checkItemCooldown(id)
 	end
 end
 
 local function findPetActionIndexForSpell(spell)
+	--print("findPetActionIndexForSpell spam "..math.random(1,99))
 	if not spell then return end
 	for i = 1, NUM_PET_ACTION_SLOTS do
 		local name, _, _, isToken = GetPetActionInfo(i)
@@ -323,6 +291,7 @@ local function findPetActionIndexForSpell(spell)
 end
 
 function ElvUI_EltreumUI:checkSpellCooldown(spell)
+	--print("checkSpellCooldown spam "..math.random(1,99))
 	if not spell then return end
 	local name, _, texture = GetSpellInfo(spell)
 	if not name then
@@ -333,16 +302,19 @@ function ElvUI_EltreumUI:checkSpellCooldown(spell)
 end
 
 function ElvUI_EltreumUI:checkInventoryItemCooldown(invSlot)
+	--print("checkInventoryItemCooldown spam "..math.random(1,99))
 	local itemLink = GetInventoryItemLink("player", invSlot)
 	ElvUI_EltreumUI:checkItemCooldown(itemLink)
 end
 
 function ElvUI_EltreumUI:checkContainerItemCooldown(bagId, bagSlot)
+	--print("checkContainerItemCooldown spam "..math.random(1,99))
 	local itemLink = GetContainerItemLink(bagId, bagSlot)
 	ElvUI_EltreumUI:checkItemCooldown(itemLink)
 end
 
 function ElvUI_EltreumUI:checkItemCooldown(item)
+	--print("checkItemCooldown spam "..math.random(1,99))
 	if not item then return end
 	local _, itemLink, _, _, _, _, _, _, _, texture = GetItemInfo(item)
 	local itemId = itemIdFromLink(itemLink)
@@ -351,6 +323,7 @@ function ElvUI_EltreumUI:checkItemCooldown(item)
 end
 
 function ElvUI_EltreumUI:checkPetActionCooldown(index)
+	--print("checkPetActionCooldown spam "..math.random(1,99))
 	if not index then return end
 	local _, texture, _, _, _, _, spellId, _, _ = GetPetActionInfo(index) --shadowlands
 	--[[if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
@@ -378,6 +351,7 @@ end
 ]]--
 
 function ElvUI_EltreumUI:updateCooldown() --dont think i need event here
+	--print("updateCooldown spam "..math.random(1,99))
 	if not isActive then
 		if lastGetCooldown then
 			local start, duration, enabled = lastGetCooldown(lastArg)
@@ -391,7 +365,6 @@ function ElvUI_EltreumUI:updateCooldown() --dont think i need event here
 			isAlmostReady = false
 			EltruismCooldownIcon:SetTexture(lastTexture)
 			ElvUI_EltreumUI:updateStamps(start, duration, true, true)
-			--self.EltruismCooldownFrame:SetAlpha(0)
 			EltruismCooldownFrame:SetAlpha(0)
 		end
 		return
