@@ -17,7 +17,7 @@ function ElvUI_EltreumUI:CursorInit()
 	ElvUI_EltreumUI:CastCursor()
 	ElvUI_EltreumUI:CurrentTypeofCursor()
 	if E.db.ElvUI_EltreumUI.cursor.cooldown then
-		ElvUI_EltreumUI:CooldownInitialize() --starts cursor module with cooldowns
+		--ElvUI_EltreumUI:CooldownInitialize() --starts cursor module with cooldowns
 		ElvUI_EltreumUI:CooldownEnable() --starts cursor module with cooldowns
 	end
 end

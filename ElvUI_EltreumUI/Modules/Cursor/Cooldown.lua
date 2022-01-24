@@ -7,7 +7,7 @@ local NormalUpdateDelay = 1 --1.0/10 -- update while hidden
 local FadingUpdateDelay = 1/10 --1.0/25 -- update while shown
 local lastUpdate = 0 -- time since last real update
 local updateDelay = NormalUpdateDelay
-
+--function variables
 local fadeStamp -- the timestamp when we should start fading the display
 local endStamp -- the timestamp when the cooldown will be over
 local finishStamp -- the timestamp when the we are finished with this cooldown
@@ -23,19 +23,13 @@ local GCD = 1.5
 if E.myclass == "ROGUE" or E.myclass == "MONK" or E.myclass == "DRUID" then
 	GCD = 1
 end
-
+--settings
 local db = {
 	holdTime = 1.0,
 	fadeTime = 1.0,
 	readyTime = 4.0,
 	gracePeriod = 0.5, --time after cd start that pressing a skill will show the cd left
 }
-
-local function itemIdFromLink(link)
-	if not link then return nil end
-	local id = link:match("item:(%d+)")
-	return tonumber(id)
-end
 
 local EltruismCooldownFrame = CreateFrame("MessageFrame", "EltruismCooldown", UIParent)
 local EltruismCooldownText = EltruismCooldownFrame:CreateFontString("EltruismCoooldownText", "OVERLAY", "GameFontNormal")
@@ -45,7 +39,7 @@ EltruismCooldownMask:SetTexture([[Interface\CHARACTERFRAME\TempPortraitAlphaMask
 EltruismCooldownMask:SetAllPoints(EltruismCooldownFrame)
 EltruismCooldownFrame:Hide()
 
-function ElvUI_EltreumUI:CooldownInitialize()
+function ElvUI_EltreumUI:CooldownEnable()
 	local cooldownsize
 	if not E.db.ElvUI_EltreumUI then
 		cooldownsize = 28
@@ -73,9 +67,6 @@ function ElvUI_EltreumUI:CooldownInitialize()
 	EltruismCooldownIcon:SetPoint("CENTER")
 	EltruismCooldownIcon:SetHeight(cooldownsize +2)
 	EltruismCooldownIcon:SetWidth(cooldownsize +2)
-end
-
-function ElvUI_EltreumUI:CooldownEnable()
 	--print("CooldownEnable spam "..math.random(1,99))
 	if ElvUI_EltreumUI:IsHooked("UseAction", "checkActionCooldown") then
 		return
@@ -127,13 +118,13 @@ function ElvUI_EltreumUI:CooldownEnable()
 end
 
 function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
-	----print("updateStamps spam "..math.random(1,99))
+	--print("updateStamps spam "..math.random(1,99))
 	if not start then
 		return
 	end
 	currStart = start
 	currDuration = duration
-	local now = GetTime()
+	now = GetTime()
 	endStamp = start + duration
 	if endStamp < now then
 		endStamp = now
@@ -155,12 +146,8 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 		if startHidden then
 			isHidden = true
 			EltruismCooldownFrame:SetAlpha(0)
-			--unregister onupdate when hidden
-			EltruismCooldownFrame:SetScript("OnUpdate", nil)
 		else
 			EltruismCooldownFrame:SetAlpha(1)
-			--throttling here using elapsed makes the frame not sync up, idk if i can make it sync with a throttle
-			-- so instead we make it not update at all when hidden
 			EltruismCooldownFrame:SetScript("OnUpdate", function(frame, elapsed) --if frame is removed, then pet cooldowns can have issues
 				--print("onupdate spam "..math.random(1,99))
 				updateDelay = NormalUpdateDelay
@@ -173,7 +160,7 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 					return
 				else
 					lastUpdate = 0
-					print("CooldownUpdate spam "..math.random(1,99))
+					--print("CooldownUpdate spam "..math.random(1,99))
 					if not isActive then
 						return
 					else
@@ -186,9 +173,8 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 						end
 						now = GetTime()
 						if now > finishStamp then
-							print("cd over now")
+							--print("cd over now")
 							EltruismCooldownFrame:SetScript("OnUpdate", nil)
-
 							isActive = false
 							EltruismCooldownText:SetText(nil)
 							EltruismCooldownIcon:SetTexture(nil)
@@ -218,8 +204,6 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 							end
 						end
 						if isHidden then
-							updateDelay = 5
-							print("ishidden")
 							return
 						elseif now > fadeStamp then
 							getEltruismCooldownFrameAlpha = EltruismCooldownFrame:GetAlpha()
@@ -230,29 +214,11 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 							else
 								updateDelay = FadingUpdateDelay
 							end
-							--[[
-							local alpha = 1 - ((now - fadeStamp) / db.fadeTime)
-							if alpha <= 0 then
-								isHidden = true
-								EltruismCooldownFrame:SetAlpha(0)
-								updateDelay = NormalUpdateDelay
-							else
-								EltruismCooldownFrame:SetAlpha(alpha)
-								updateDelay = FadingUpdateDelay
-							end
-							]]--
 						end
 					end
 				end
 			end)
 		end
-	elseif not show then
-		now = GetTime()
-		if now > finishStamp then
-			EltruismCooldownFrame:SetScript("OnUpdate", nil)
-			print("even slower updates!!!!")
-		end
-		print("slow updating")
 	end
 end
 
@@ -320,6 +286,12 @@ function ElvUI_EltreumUI:checkContainerItemCooldown(bagId, bagSlot)
 	--print("checkContainerItemCooldown spam "..math.random(1,99))
 	local itemLink = GetContainerItemLink(bagId, bagSlot)
 	ElvUI_EltreumUI:checkItemCooldown(itemLink)
+end
+
+local function itemIdFromLink(link)
+	if not link then return nil end
+	local id = link:match("item:(%d+)")
+	return tonumber(id)
 end
 
 function ElvUI_EltreumUI:checkItemCooldown(item)
