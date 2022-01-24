@@ -1,6 +1,15 @@
 ### 🌌 Next Version 
 **The future is uncertain**
 ___
+### 2.6.8
+Added an option to disable the automatic pinning of waypoints in Retail\
+Updated the Light Mode texture switch when your target changes target (target of target)\
+Updated the Install process\
+Improved the Party/Raid Death function\
+Improved the Cursor Cooldown function\
+Fixed a bug where users couldn't adjust the position of Buffs/Debuffs on nameplates\
+Fixed Combat Music playing instead of Boss Music
+___
 ### 2.6.7
 Update for ElvUI 12.62/2.34/1.60\
 Improved the install process by revamping the pages\
