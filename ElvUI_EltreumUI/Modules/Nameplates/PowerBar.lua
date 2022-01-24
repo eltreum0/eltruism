@@ -162,7 +162,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 		elseif startpower ~= 0 then
 			if mainCost >= powerMax then
 				if E.db.ElvUI_EltreumUI.dev then
-					print("Eltruism couldn't Calculate your power properly, please report in Discord")
+					ElvUI_EltreumUI:Print("Couldn't Calculate your power properly, please report in Discord")
 				end
 				EltreumPowerPrediction:SetValue(0)
 			else

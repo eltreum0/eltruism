@@ -531,11 +531,11 @@ function ElvUI_EltreumUI:ClearMemory()
 			if currentmemory > maxmemory then
 				collectgarbage("collect")
 				ResetCPUUsage()
-				print(GetAddOnMemoryUsage("ElvUI_ELtreumUI").." memory was cleared")
+				ElvUI_EltreumUI:Print(currentmemory.." memory was cleared")
 				--UpdateAddOnCPUUsage("ElvUI_EltreumUI")
 				currentmemory = 0
 			else
-				print("Not enough memory usage to clear memory")
+				ElvUI_EltreumUI:Print("Not enough memory usage to clear memory")
 			end
 		else
 			if currentmemory > maxmemory then
