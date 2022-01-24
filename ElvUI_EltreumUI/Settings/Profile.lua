@@ -213,6 +213,7 @@ P.ElvUI_EltreumUI = {
 
 	waypointetasetting = {
 		enable = true,
+		autopin = false,
 	},
 
 	waytext = {

@@ -9,11 +9,13 @@ local UIParent = _G.UIParent
 
 --Conversion of Time to Arrive weakaura (new version)
 if ElvUI_EltreumUI.Retail then
-	local EltruismTimeToArrive = CreateFrame("Frame", "EltruismTimeToArrive", UIParent)
-	local autopin = CreateFrame("Frame", "EltruismAutoPin")
+
+	local EltruismAutopin = CreateFrame("Frame", "EltruismAutoPin")
+
 	--autopin:Hide()
-	autopin:RegisterEvent("USER_WAYPOINT_UPDATED")
 	--autopin:RegisterEvent("SUPER_TRACKING_CHANGED")
+
+	local EltruismTimeToArrive = CreateFrame("Frame", "EltruismTimeToArrive", UIParent)
 	EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 	EltruismTimeToArrive.TimeText:SetJustifyV("TOP")
 	EltruismTimeToArrive.TimeText:SetSize(0, 26)
@@ -24,18 +26,22 @@ if ElvUI_EltreumUI.Retail then
 	EltruismTimeToArrive:SetParent("SuperTrackedFrame")
 
 	_G.SuperTrackedFrame.DistanceText:SetTextColor(1,1,1)
-	--set font to be elvui's
 	_G.SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, "OUTLINE")
+
 	--set the throttle
 	local ONUPDATE_INTERVAL = 1
 	local TimeSinceLastUpdate = 0
 	function ElvUI_EltreumUI:WaypointTimeToArrive()
 		if E.db.ElvUI_EltreumUI.waypointetasetting.enable then
-			autopin:SetScript("OnEvent", function(self, event, ...)
-				if event == "USER_WAYPOINT_UPDATED" and C_Map.HasUserWaypoint() == true then
-					C_Timer.After(0, function() C_SuperTrack.SetSuperTrackedUserWaypoint(true) end)
-				end
-			end)
+
+			if E.db.ElvUI_EltreumUI.waypointetasetting.autopin then
+				EltruismAutopin:RegisterEvent("USER_WAYPOINT_UPDATED")
+				EltruismAutopin:SetScript("OnEvent", function(self, event, ...)
+					if event == "USER_WAYPOINT_UPDATED" then--and C_Map.HasUserWaypoint() == true then
+						C_Timer.After(0, function() C_SuperTrack.SetSuperTrackedUserWaypoint(true) end)
+					end
+				end)
+			end
 
 			--use throttled onupdate to udpate the text (once per second)
 			EltruismTimeToArrive:SetScript("OnUpdate", function(self, elapsed)
@@ -43,6 +49,7 @@ if ElvUI_EltreumUI.Retail then
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 					TimeSinceLastUpdate = 0
 					--remove max distance
+
 					do
 						function SuperTrackedFrame:GetTargetAlphaBaseValue()
 							local d = C_Navigation.GetDistance()
@@ -53,6 +60,7 @@ if ElvUI_EltreumUI.Retail then
 							end
 						end
 					end
+
 					--calculate time to arrive
 					local speed = GetUnitSpeed("player")
 					local distance = C_Navigation.GetDistance()
