@@ -128,7 +128,9 @@ end
 --yet another quest auto accept thing
 local EltruismAutoComplete = CreateFrame("FRAME", "EltruismAutoCompleteFrame")
 function ElvUI_EltreumUI:AutoAcceptQuests()
+	--print("77777777")
 	if E.db.ElvUI_EltreumUI.questsettings.autoaccept then
+		--print("6666")
 		EltruismAutoComplete:RegisterEvent("QUEST_GREETING")
 		EltruismAutoComplete:RegisterEvent("GOSSIP_SHOW")
 		EltruismAutoComplete:RegisterEvent("QUEST_DETAIL")
@@ -139,28 +141,38 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 
 			local normal = (IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown())
 			if E.db.ElvUI_EltreumUI.questsettings.autoacceptinvert then
+				--print("888888")
 				normal = not (IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown())
 			end
 			if normal then
+				--print("9999999")
 				--ElvUI_EltreumUI:Print('you didnt hold a modifier key')
 				return
 			else
+				--print("+++++++")
 				if event == 'QUEST_DETAIL' then
 					--print("11111")
-					if QuestGetAutoAccept() then
-						--print("222222")
-						CloseQuest()
-					else
-						--print("33333")
-						if QuestIsDaily() then
-							--print("44444444")
-							return
-						elseif QuestIsWeekly() then
-							--print("5555555")
+					if ElvUI_EltreumUI.Retail then
+						if QuestGetAutoAccept() then
+							--print("222222")
+							CloseQuest()
+						else
+							--print("33333")
+							if QuestIsDaily() then
+								--print("44444444")
+								return
+							elseif QuestIsWeekly() then
+								--print("5555555")
+								return
+							end
+							AcceptQuest()
+							--print("aaaaa")
+						end
+					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						AcceptQuest()
+						if (GetNumQuestChoices() <= 0) then
 							return
 						end
-						AcceptQuest()
-						--print("aaaaa")
 					end
 				end
 				if event == 'QUEST_ACCEPT_CONFIRM' then

@@ -1524,7 +1524,7 @@ if ElvUI_EltreumUI.Classic then
 							name = L["Invert CTRL/SHIFT/ALT"],
 							desc = L["You will only accept and turn in quests if you hold CTRL/SHIFT/ALT while talking to the NPC"],
 							width = 'full',
-							get = function(info) return E.db.ElvUI_EltreumUI.questsettings.autoacceptinver end,
+							get = function(info) return E.db.ElvUI_EltreumUI.questsettings.autoacceptinvert end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.questsettings.autoacceptinvert = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
 						headergaphere2 = {
