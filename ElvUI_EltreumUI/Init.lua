@@ -163,17 +163,18 @@ function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
 end
 
 function ElvUI_EltreumUI:ENCOUNTER_START(event)
-	--print(event)
+	local event2 = event
 	ElvUI_EltreumUI:QuestEncounter()
-	ElvUI_EltreumUI:CombatMusic(event)
+	ElvUI_EltreumUI:CombatMusic(event2)
 	ElvUI_EltreumUI:BossMusic(event)
 end
 
 function ElvUI_EltreumUI:ENCOUNTER_END(event)
 	--print(event)
+	local event2 = event
 	ElvUI_EltreumUI:QuestEncounterEnd()
 	ElvUI_EltreumUI:StopBossMusic(event)
-	ElvUI_EltreumUI:StopCombatMusic(event)
+	ElvUI_EltreumUI:StopCombatMusic(event2)
 end
 
 function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
