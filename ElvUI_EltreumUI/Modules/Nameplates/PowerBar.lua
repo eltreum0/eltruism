@@ -904,13 +904,13 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 					end
 				end
 			end
-		else --eltruism default buff/debuff position
+		--[[else --eltruism default buff/debuff position
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
 			if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
-			end
+			end]]
 		end
 	end
 end
