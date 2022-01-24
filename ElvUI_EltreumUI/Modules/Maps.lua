@@ -11,9 +11,8 @@ local UIParent = _G.UIParent
 if ElvUI_EltreumUI.Retail then
 
 	local EltruismAutopin = CreateFrame("Frame", "EltruismAutoPin")
-
-	--autopin:Hide()
-	--autopin:RegisterEvent("SUPER_TRACKING_CHANGED")
+	--EltruismAutopin:Hide()
+	--EltruismAutopin:RegisterEvent("SUPER_TRACKING_CHANGED")
 
 	local EltruismTimeToArrive = CreateFrame("Frame", "EltruismTimeToArrive", UIParent)
 	EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
@@ -37,7 +36,7 @@ if ElvUI_EltreumUI.Retail then
 			if E.db.ElvUI_EltreumUI.waypointetasetting.autopin then
 				EltruismAutopin:RegisterEvent("USER_WAYPOINT_UPDATED")
 				EltruismAutopin:SetScript("OnEvent", function(self, event, ...)
-					if event == "USER_WAYPOINT_UPDATED" then--and C_Map.HasUserWaypoint() == true then
+					if event == "USER_WAYPOINT_UPDATED" and C_Map.HasUserWaypoint() == true then
 						C_Timer.After(0, function() C_SuperTrack.SetSuperTrackedUserWaypoint(true) end)
 					end
 				end)
@@ -48,8 +47,8 @@ if ElvUI_EltreumUI.Retail then
 				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 					TimeSinceLastUpdate = 0
-					--remove max distance
 
+					--remove max distance
 					do
 						function SuperTrackedFrame:GetTargetAlphaBaseValue()
 							local d = C_Navigation.GetDistance()

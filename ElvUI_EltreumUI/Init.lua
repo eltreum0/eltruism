@@ -136,6 +136,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED") --LootText things
 	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE') --LootText things
 	ElvUI_EltreumUI:RegisterEvent('INSPECT_READY')
+	ElvUI_EltreumUI:RegisterEvent('UNIT_TARGET') --for target of target light mode
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED') --for class icons, power bar and shadows
 		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW') --for rogue order hall
@@ -239,6 +240,15 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	ElvUI_EltreumUI:NamePlateOptions()
 	ElvUI_EltreumUI:NameplatePower()
 	ElvUI_EltreumUI:ChangeUnitTexture()
+end
+
+function ElvUI_EltreumUI:UNIT_TARGET(event, unit)
+	--print(event,unit)
+	if unit and unit ~= 'target' then
+		return
+	elseif unit and unit == 'target' then
+		ElvUI_EltreumUI:ChangeUnitTexture()
+	end
 end
 
 function ElvUI_EltreumUI:UNIT_POWER_FREQUENT(event,unit)
