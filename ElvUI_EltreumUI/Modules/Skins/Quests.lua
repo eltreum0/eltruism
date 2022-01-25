@@ -58,9 +58,28 @@ function ElvUI_EltreumUI:SkinQuests()
 					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
 					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
-					_G.OBJECTIVE_TRACKER_COLOR["Header"].r = classcolor.r
-					_G.OBJECTIVE_TRACKER_COLOR["Header"].g = classcolor.g
-					_G.OBJECTIVE_TRACKER_COLOR["Header"].b = classcolor.b
+					--Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua
+					hooksecurefunc(QUEST_TRACKER_MODULE, "SetBlockHeader", function()
+						local questlist = ObjectiveTrackerFrame.MODULES
+						if questlist then
+							for i = 1, #questlist do
+								local quest = questlist[i]
+								if quest then
+									if not (quest.skinned) then
+										hooksecurefunc(quest, "AddObjective", function(_, block)
+											if block then
+												if block.HeaderText then
+													block.HeaderText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
+													block.HeaderText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+												end
+											end
+										end)
+										quest.skinned = true
+									end
+								end
+							end
+						end
+					end)
 
 					_G.ObjectiveFont:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
 					_G.ObjectiveFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
@@ -106,10 +125,6 @@ function ElvUI_EltreumUI:SkinQuests()
 					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetShadowColor(0, 0, 0, 0.8)
 					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetShadowOffset(2, -1)
-
-					_G.OBJECTIVE_TRACKER_COLOR["Header"].r = classcolor.r
-					_G.OBJECTIVE_TRACKER_COLOR["Header"].g = classcolor.g
-					_G.OBJECTIVE_TRACKER_COLOR["Header"].b = classcolor.b
 
 					_G.ObjectiveFont:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
 					_G.ObjectiveFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
