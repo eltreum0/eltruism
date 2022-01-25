@@ -32,7 +32,8 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallOption4ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, "OUTLINE")
 			PluginInstallFrame.SubTitle:SetText(L["Layouts"])
 			PluginInstallFrame.Desc1:SetText(L["Please select the role for your character, which will create a new profile.\nThis process can take a few seconds"])
-			PluginInstallFrame.Desc2:SetText("ElvUI can calculate the best scale for you using the Automatic Scale option")
+			PluginInstallFrame.Desc2:SetText("Eltruism uses a 0.7 scale, but ElvUI can calculate the best scale for you using the Automatic Scale option")
+			--PluginInstallFrame.Desc2:SetText("Eltruism uses a 0.7 scale, but Automatic Scale can calculate one for you")
 			if myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'MONK' or myclass == 'SHAMAN' or myclass == 'PALADIN' then
 				PluginInstallFrame.Desc3:SetText('|cff82B4ff'..L["You can support the group with your class, if you select DPS/Tank then its recommended to click Alternative Frames after clicking DPS/Tank"]..'|r')
 			end
