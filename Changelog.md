@@ -3,6 +3,7 @@
 ___
 ### 2.6.8
 Added an option to disable the automatic pinning of waypoints in Retail\
+Added an option to automatically accept and turn in quests\
 Updated the Light Mode texture switch when your target changes target (target of target)\
 Updated the Install process\
 Improved the Party/Raid Death function\

@@ -128,9 +128,8 @@ end
 --yet another quest auto accept thing
 local EltruismAutoComplete = CreateFrame("FRAME", "EltruismAutoCompleteFrame")
 function ElvUI_EltreumUI:AutoAcceptQuests()
-	--print("77777777")
 	if E.db.ElvUI_EltreumUI.questsettings.autoaccept then
-		--print("6666")
+		--print("quest automation is enabled")
 		EltruismAutoComplete:RegisterEvent("QUEST_GREETING")
 		EltruismAutoComplete:RegisterEvent("GOSSIP_SHOW")
 		EltruismAutoComplete:RegisterEvent("QUEST_DETAIL")
@@ -138,69 +137,74 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 		EltruismAutoComplete:RegisterEvent("QUEST_ACCEPT_CONFIRM")
 		EltruismAutoComplete:RegisterEvent("QUEST_PROGRESS")
 		EltruismAutoComplete:SetScript("OnEvent", function(_, event)
-
 			local normal = (IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown())
 			if E.db.ElvUI_EltreumUI.questsettings.autoacceptinvert then
-				--print("888888")
+				--print("inverted the mod keys")
 				normal = not (IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown())
 			end
 			if normal then
-				--print("9999999")
-				--ElvUI_EltreumUI:Print('you didnt hold a modifier key')
+				--print("using normal keys")
 				return
 			else
-				--print("+++++++")
+				--print("started quest automation")
 				if event == 'QUEST_DETAIL' then
-					--print("11111")
+					--print("QUEST_DETAIL")
 					if ElvUI_EltreumUI.Retail then
 						if QuestGetAutoAccept() then
-							--print("222222")
+							--print("its an annoying auto accept quest, panel has been closed")
 							CloseQuest()
 						else
-							--print("33333")
+							--print("not an auto accept quest")
 							if QuestIsDaily() then
-								--print("44444444")
+								--print("its a daily quest")
 								return
 							elseif QuestIsWeekly() then
-								--print("5555555")
+								--print("its a weekly quest")
 								return
 							end
 							AcceptQuest()
-							--print("aaaaa")
+							--print("quest accepted")
 						end
 					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 						AcceptQuest()
+						--print("quest accepted")
 						if (GetNumQuestChoices() <= 0) then
+							--print("no quest choices")
 							return
 						end
 					end
 				end
 				if event == 'QUEST_ACCEPT_CONFIRM' then
+					--print("QUEST_ACCEPT_CONFIRM tried to accept and hide popup")
 					ConfirmAcceptQuest()
 					StaticPopup_Hide("QUEST_ACCEPT")
-					--print("bbbb")
 				end
 				if event == 'GOSSIP_SHOW' then
-					---print("cccc")
+					--print("GOSSIP_SHOW")
 					if ElvUI_EltreumUI.Retail then
 						for i, k in next, C_GossipInfo.GetAvailableQuests() do
+							--print("iterate and select quest")
 							C_GossipInfo.SelectAvailableQuest(i)
 						end
 					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 						if (GetNumGossipAvailableQuests() > 0) then
-							local arg = {GetGossipAvailableQuests()}
+							--number of available quests > 0)
+							local questlist = {GetGossipAvailableQuests()}
 							local i = 1
-							while(arg[i]) do
+							while(questlist[i]) do
+								--print("tried to select quests with while "..math.random(1,99))
 								SelectGossipAvailableQuest(i)
 								i = i + 1
 							end
 						end
 						if (GetNumGossipActiveQuests() > 0) then
-							local numactive = GetNumGossipActiveQuests()
-							for i = 1, numactive do
+							--number of active quests > 0)
+							for i = 1, GetNumGossipActiveQuests() do
+								--print("tried to select and accept quests in a loop"..math.random(1,99))
 								SelectGossipActiveQuest(i)
 								AcceptQuest()
 								if (GetNumQuestChoices() <= 0) then
+									--print("no quest choices")
 									return
 								end
 								i = i + 1
@@ -209,42 +213,69 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 					end
 				end
 				if event == 'QUEST_GREETING' then
-					--print("ffff")
+					--print("QUEST_GREETING")
+
 					--if accepting quests
 					for i = 1, GetNumAvailableQuests() do
-						---print("gggg")
+						---print("numquests accept loop")
 						SelectAvailableQuest(i)
 					end
 
 					--if completing quests
 					for i = 1, GetNumActiveQuests() do
-					--print("hhhhh")
+					--print("numquests complete loop")
 						local _, completed = GetActiveTitle(i)
-						if completed and not C_QuestLog.IsWorldQuest(GetActiveQuestID(i)) then
-							--print("iiiiii")
-							SelectActiveQuest(i)
+						--print(completed)
+						if ElvUI_EltreumUI.Retail then
+							if completed and not C_QuestLog.IsWorldQuest(GetActiveQuestID(i)) then
+								--print("tried to complete "..completed.." and it's not a world quest")
+								SelectActiveQuest(i)
+							end
+						elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+							if completed then
+								--print("tried to complete "..completed)
+								SelectActiveQuest(i)
+							end
 						end
 					end
 				end
 				if event == 'QUEST_PROGRESS' then
-					--print("ddddd")
+					--print("QUEST_PROGRESS")
 					if GetQuestMoneyToGet() > 0 then
+						--print("quest requires gold")
 						return
 					else
+						--print("tried to complete quest")
 						CompleteQuest()
 					end
 				end
 				if event == 'QUEST_COMPLETE' then
-				--print("eeeeeee")
+				--print("QUEST_COMPLETE")
 					if GetQuestMoneyToGet() > 0 then
+						--print("quest requires gold")
 						return
 					else
-						if GetNumQuestChoices() <= 1 then
-							GetQuestReward(GetNumQuestChoices())
+						if ElvUI_EltreumUI.Retail then
+							if GetNumQuestChoices() <= 1 then
+								--print("tried to select reward and complete")
+								GetQuestReward(GetNumQuestChoices())
+							end
+						elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+							if GetNumQuestChoices() == 1 then
+								--QuestRewardCompleteButton_OnClick
+								GetQuestReward(1)
+								--print("tried to select reward and complete")
+								QuestFrameCompleteButton:Click()
+							end
+							if GetNumQuestChoices() == 0 then
+								--QuestFrameProgressPanel_OnShow
+								--print("tried to complete")
+								QuestFrameCompleteButton:Click()
+								QuestFrameCompleteQuestButton:Click()
+							end
 						end
 					end
 				end
-
 			end
 		end)
 	end
