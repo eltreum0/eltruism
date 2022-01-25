@@ -8,7 +8,7 @@ Updated the Light Mode texture switch when your target changes target (target of
 Updated the Install process\
 Improved the Party/Raid Death function\
 Improved the Cursor Cooldown function\
-Fixed a bug where users couldn't adjust the position of Buffs/Debuffs on nameplates\
+Fixed a bug where the position of Buffs/Debuffs on nameplates couldn't be adjusted\
 Fixed Combat Music playing instead of Boss Music
 ___
 ### 2.6.7
