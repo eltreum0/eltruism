@@ -945,8 +945,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["target"]["buffs"]["growthX"] = "RIGHT"
 		E.db["unitframe"]["units"]["target"]["buffs"]["height"] = 25
 		E.db["unitframe"]["units"]["target"]["buffs"]["keepSizeRatio"] = false
-		E.db["unitframe"]["units"]["target"]["buffs"]["numrows"] = 3
-		E.db["unitframe"]["units"]["target"]["buffs"]["perrow"] = 6
+		E.db["unitframe"]["units"]["target"]["buffs"]["numrows"] = 2
+		E.db["unitframe"]["units"]["target"]["buffs"]["perrow"] = 8
 		E.db["unitframe"]["units"]["target"]["buffs"]["sizeOverride"] = 30
 		E.db["unitframe"]["units"]["target"]["buffs"]["sortDirection"] = "ASCENDING"
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 1
@@ -981,7 +981,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["target"]["debuffs"]["sizeOverride"] = 30
 		E.db["unitframe"]["units"]["target"]["debuffs"]["anchorPoint"] = "TOP"
 		E.db["unitframe"]["units"]["target"]["debuffs"]["growthX"] = "RIGHT"
-		E.db["unitframe"]["units"]["target"]["debuffs"]["numrows"] = 3
+		E.db["unitframe"]["units"]["target"]["debuffs"]["numrows"] = 2
+		E.db["unitframe"]["units"]["target"]["debuffs"]["perrow"] = 8
 		E.db["unitframe"]["units"]["target"]["fader"]["enable"] = false
 		E.db["unitframe"]["units"]["target"]["healPrediction"]["absorbStyle"] = "REVERSED"
 		E.db["unitframe"]["units"]["target"]["healPrediction"]["anchorPoint"] = "CENTER"

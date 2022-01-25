@@ -78,7 +78,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					_G.CAMPAIGN_QUEST_TRACKER_MODULE,
 				}
 
-				local mult = 0.7
+				local mult = 0.85
 				for _, k in pairs(questmodules) do
 					hooksecurefunc(k, "AddObjective", function(_, block)
 						if block.HeaderText then --quest title

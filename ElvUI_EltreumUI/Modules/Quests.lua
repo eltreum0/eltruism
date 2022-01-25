@@ -139,72 +139,80 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 			--print(event)
 			local normal = (IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown())
 			if E.db.ElvUI_EltreumUI.questsettings.autoacceptinvert then
-				print("inverted the mod keys")
+				--print("inverted the mod keys")
 				normal = not (IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown())
 			end
 			if normal then
-				print("using normal keys")
+				--print("using normal keys")
 				return
 			else
 				--print("started quest automation")
 				if event == 'QUEST_DETAIL' then
-					print("QUEST_DETAIL")
+					--print("QUEST_DETAIL")
 					if ElvUI_EltreumUI.Retail then
 						if QuestGetAutoAccept() then
-							print("its an annoying auto accept quest, panel has been closed")
+							--print("its an annoying auto accept quest, panel has been closed")
 							CloseQuest()
 						else
-							print("not an auto accept quest")
+							--print("not an auto accept quest")
 							if QuestIsDaily() then
-								print("its a daily quest")
+								--print("its a daily quest")
 								return
 							elseif QuestIsWeekly() then
-								print("its a weekly quest")
+								--print("its a weekly quest")
 								return
 							end
 							AcceptQuest()
-							print("quest accepted")
+							--print("quest accepted")
 						end
 					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 						AcceptQuest()
-						print("quest accepted")
+						--print("quest accepted")
 						if (GetNumQuestChoices() <= 0) then
-							print("no quest choices")
+							--print("no quest choices")
 							return
 						end
 					end
 				end
 				if event == 'QUEST_ACCEPT_CONFIRM' then
-					print("QUEST_ACCEPT_CONFIRM tried to accept and hide popup")
+					--print("QUEST_ACCEPT_CONFIRM tried to accept and hide popup")
 					ConfirmAcceptQuest()
 					StaticPopup_Hide("QUEST_ACCEPT")
 				end
 				if event == 'GOSSIP_SHOW' then
-					print("GOSSIP_SHOW")
+					--print("GOSSIP_SHOW")
 					if ElvUI_EltreumUI.Retail then
 						for i, k in next, C_GossipInfo.GetAvailableQuests() do
-							print("iterate and select quest")
+							--print("iterate and select quest")
 							C_GossipInfo.SelectAvailableQuest(i)
 						end
 					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 						if (GetNumGossipAvailableQuests() > 0) then
-							print("number of available quests > 0")
+							--print("number of available quests > 0")
 							local questlist = {GetGossipAvailableQuests()}
 							local i = 1
 							while(questlist[i]) do
-								print("tried to select quests with while "..math.random(1,99))
+								--print("tried to select quests with while "..math.random(1,99))
 								SelectGossipAvailableQuest(i)
 								i = i + 1
 							end
 						end
 						if (GetNumGossipActiveQuests() > 0) then
-							print("number of active quests > 0")
+							--print("number of active quests > 0")
 							for i = 1, GetNumGossipActiveQuests() do
-								print("tried to select and accept quests in a loop"..math.random(1,99))
+								--print("tried to select and accept quests in a loop"..math.random(1,99))
 								SelectGossipActiveQuest(i)
-								AcceptQuest()
+								if QuestIsDaily() then
+									--print("its a daily quest")
+									return
+								elseif QuestIsWeekly() then
+									--print("its a weekly quest")
+									return
+								else
+									AcceptQuest()
+								end
 								if (GetNumQuestChoices() <= 0) then
-									print("no quest choices")
+									--print("no quest choices")
 									return
 								end
 								i = i + 1
@@ -213,60 +221,60 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 					end
 				end
 				if event == 'QUEST_GREETING' then
-					print("QUEST_GREETING")
+					--print("QUEST_GREETING")
 
 					--if accepting quests
 					for i = 1, GetNumAvailableQuests() do
-						print("numquests accept loop")
+						--print("numquests accept loop")
 						SelectAvailableQuest(i)
 					end
 
 					--if completing quests
 					for i = 1, GetNumActiveQuests() do
-					print("numquests complete loop")
+					--print("numquests complete loop")
 						local _, completed = GetActiveTitle(i)
 						if ElvUI_EltreumUI.Retail then
 							if completed and not C_QuestLog.IsWorldQuest(GetActiveQuestID(i)) then
-								print("tried to complete "..completed.." and it's not a world quest")
+								--print("tried to complete "..completed.." and it's not a world quest")
 								SelectActiveQuest(i)
 							end
 						elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 							if completed then
-								print("tried to complete "..completed)
+								--print("tried to complete "..completed)
 								SelectActiveQuest(i)
 							end
 						end
 					end
 				end
 				if event == 'QUEST_PROGRESS' then
-					print("QUEST_PROGRESS")
+					--print("QUEST_PROGRESS")
 					if GetQuestMoneyToGet() > 0 then
-						print("quest requires gold")
+						--print("quest requires gold")
 						return
 					else
-						print("tried to complete quest")
+						--print("tried to complete quest")
 						CompleteQuest()
 					end
 				end
 				if event == 'QUEST_COMPLETE' then
-				print("QUEST_COMPLETE")
+				--print("QUEST_COMPLETE")
 					if GetQuestMoneyToGet() > 0 then
-						print("quest requires gold")
+						--print("quest requires gold")
 						return
 					else
 						if ElvUI_EltreumUI.Retail then
 							if GetNumQuestChoices() <= 1 then
-								print("tried to select reward and complete")
+								--print("tried to select reward and complete")
 								GetQuestReward(GetNumQuestChoices())
 							end
 						elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 							if GetNumQuestChoices() == 1 then
 								GetQuestReward(1)
-								print("tried to select reward and complete")
+								--print("tried to select reward and complete")
 								QuestFrameCompleteButton:Click()
 							end
 							if GetNumQuestChoices() == 0 then
-								print("tried to complete")
+								--print("tried to complete")
 								QuestFrameCompleteButton:Click()
 								QuestFrameCompleteQuestButton:Click()
 							end
