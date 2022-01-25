@@ -109,9 +109,6 @@ function ElvUI_EltreumUI:SkinQuests()
 						--print("entered default obj tracker module")
 					end
 					if block.currentLine then --this is the text
-						if block.currentLine.objectiveKey == 0 then
-							print("aaa")
-						end
 						for objectiveKey, line in pairs(block.lines) do
 							line.Text:SetTextColor(1, 1, 1);
 							line.Text.colorStyle = {r = mult * 1, g = mult * 1, b = mult * 1}
@@ -130,9 +127,6 @@ function ElvUI_EltreumUI:SkinQuests()
 						block.HeaderText.colorStyle = customheaderColorStyle
 					end
 					if block.currentLine then
-						if block.currentLine.objectiveKey == 0 then
-							print("bbb")
-						end
 						for objectiveKey, line in pairs(block.lines) do
 							line.Text:SetTextColor(mult, mult, mult);
 							line.Text.colorStyle = {r = mult, g = mult, b = mult}
