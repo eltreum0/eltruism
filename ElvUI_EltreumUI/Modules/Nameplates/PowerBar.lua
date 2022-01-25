@@ -43,6 +43,7 @@ EltreumPowerBar:RegisterEvent("UNIT_MODEL_CHANGED")
 
 --Calculate the Power Cost and draw on the Bar
 function ElvUI_EltreumUI:PowerPrediction()
+	--print("power prediction spam "..math.random(1,99))
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
 	elseif not E.private.ElvUI_EltreumUI then
@@ -182,6 +183,7 @@ end
 
 --so that the power updates when spec changes
 function ElvUI_EltreumUI:GetSpec()
+	--print("getspec spam "..math.random(1,99))
 	if ElvUI_EltreumUI.Retail then
 		local currentSpec = GetSpecialization()
 		if currentSpec then
@@ -192,6 +194,7 @@ end
 
 --Main function
 function ElvUI_EltreumUI:NameplatePower(nameplate)
+	--print("nameplate power spam "..math.random(1,99))
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
 	elseif not E.private.ElvUI_EltreumUI then

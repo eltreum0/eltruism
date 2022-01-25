@@ -21,7 +21,7 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		local MacroFrame = _G.MacroFrame
-		MacroFrame:HookScript("OnShow", function()
+		MacroFrame:SetScript("OnShow", function()
 			if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
 				if not _G.MacroFrame.shadow then
 					_G.MacroFrame:CreateShadow()

@@ -4,6 +4,7 @@ local CreateFrame = _G.CreateFrame
 local classcolor = E:ClassColor(E.myclass, true)
 
 function ElvUI_EltreumUI:SkinLevelUp()
+	--print("skin levelup spam")
 	-- Color level up display and boss banner originally by Aftermathh, 9.1 partially by Eltreum
 	if ElvUI_EltreumUI.Retail then
 		if E.db.ElvUI_EltreumUI.skins.enable then
@@ -67,12 +68,7 @@ function ElvUI_EltreumUI:SkinLevelUp()
 	end
 end
 
-
 --add one for classic/tbc as well, but for some reason doesnt really work inside a function, maybe because of the timer?
-
-
-
-
 if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 	local LevelUpFrame = CreateFrame("Frame", "EltruismLevelUp", UIParent)
 	LevelUpFrame:SetPoint("TOP", UIParent, 0, -100)

@@ -24,7 +24,9 @@ StealthOptionsFrame:Hide()
 function ElvUI_EltreumUI:StealthOptions()
 	if E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect then
 		--Script the frame, ty wowpedia for examples
-		StealthOptionsFrame:HookScript("OnEvent", function(__, event)
+
+		StealthOptionsFrame:SetScript("OnEvent", function(__, event)
+			--print(event.."stealth spam")
 			if (event == "PLAYER_ENTERING_WORLD") then
 				if IsStealthed() then
 					StealthOptionsFrame:Show()

@@ -5,6 +5,7 @@ local classcolor = E:ClassColor(E.myclass, true)
 
 -- Skill Glow
 function ElvUI_EltreumUI:SkillGlow()
+	--print("glow spam")
 	local skillglowcolor
 	if not E.db.ElvUI_EltreumUI.glow.colorclass then
 		local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolor

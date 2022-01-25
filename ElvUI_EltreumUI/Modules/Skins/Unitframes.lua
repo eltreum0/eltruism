@@ -4,6 +4,7 @@ local LSM = LibStub("LibSharedMedia-3.0")
 
 --elvui spark hook
 local function EltruismSpark()
+	--print("spark spam")
 	if E.db.ElvUI_EltreumUI.sparkcustomcolor.enable then
 		local castbar = _G["ElvUF_Player_CastBar"]
 		castbar.Spark_ = castbar:CreateTexture(nil, 'OVERLAY')
@@ -33,6 +34,7 @@ local unitframeclass = {
 
 --from Benik
 function ElvUI_EltreumUI:ChangeUnitTexture()
+	--print("change unit texture spam")
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture then
 
 		--player

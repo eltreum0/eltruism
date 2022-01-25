@@ -136,6 +136,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 		EltruismAutoComplete:RegisterEvent("QUEST_ACCEPT_CONFIRM")
 		EltruismAutoComplete:RegisterEvent("QUEST_PROGRESS")
 		EltruismAutoComplete:SetScript("OnEvent", function(_, event)
+			--print(event)
 			local normal = (IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown())
 			if E.db.ElvUI_EltreumUI.questsettings.autoacceptinvert then
 				print("inverted the mod keys")

@@ -6,6 +6,7 @@ local pairs = _G.pairs
 
 --Beta borders on frames
 function ElvUI_EltreumUI:Borders()
+	--print("border spam")
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
 	elseif not E.private.ElvUI_EltreumUI then

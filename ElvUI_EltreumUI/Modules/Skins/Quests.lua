@@ -6,6 +6,7 @@ local unpack = _G.unpack
 local classcolor = E:ClassColor(E.myclass, true)
 
 function ElvUI_EltreumUI:SkinQuests()
+	--print("skin quests spam")
 	local fontsize = E.db.general.fontSize
 	if E.db.ElvUI_EltreumUI.skins.quests then
 		if ElvUI_EltreumUI.Retail then
