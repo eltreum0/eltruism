@@ -22,10 +22,10 @@ function ElvUI_EltreumUI:CursorInit()
 	end
 end
 
-local rootFrame = _G.CreateFrame("Frame", "EltruismCursorRoot", UIParent)
-local Cast = _G.CreateFrame("Frame", "EltruismCursorCast", rootFrame)
-local GCD = _G.CreateFrame("Frame", "EltruismCursorGCD", rootFrame)
-local Cursor = _G.CreateFrame("Frame", "EltruismCursorCursor", rootFrame)
+local rootFrame = CreateFrame("Frame", "EltruismCursorRoot", UIParent)
+local Cast = CreateFrame("Frame", "EltruismCursorCast", rootFrame)
+local GCD = CreateFrame("Frame", "EltruismCursorGCD", rootFrame)
+local Cursor = CreateFrame("Frame", "EltruismCursorCursor", rootFrame)
 
 --Detect the current cursor for options
 function ElvUI_EltreumUI:CurrentTypeofCursor()
@@ -77,8 +77,7 @@ function ElvUI_EltreumUI:CursorSize(value)
 	end
 end
 
---This module is a direct merge of CastCursor by michaelsp and as such is available under GNU GPL v3 like the original
---all credits of this module go to michaelsp
+--This module is a direct fork of CastCursor by michaelsp and as such is available under GNU GPL v3 like the original
 function ElvUI_EltreumUI:CastCursor()
 	if E.db.ElvUI_EltreumUI.cursor.enable then
 
@@ -184,19 +183,6 @@ function ElvUI_EltreumUI:CastCursor()
 				t:SetSize((1-y1)*r, x2*r)
 			end,
 		}
-		--[[
-			local function CopyDefaults(src, dst)
-				if _G.type(dst)~="table" then dst = {} end
-				for k,v in pairs(src) do
-					if _G.type(v)=="table" then
-						dst[k] = CopyDefaults(v,dst[k])
-					elseif dst[k]==nil then
-						dst[k] = v
-					end
-				end
-				return dst
-			end
-		]]
 
 		-- Root Frame
 		--throttling here makes the frame not sync up, idk if i can make it sync with a throttle
@@ -209,8 +195,6 @@ function ElvUI_EltreumUI:CastCursor()
 				self:ClearAllPoints()
 				self:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", x / scaleDivisor , y / scaleDivisor )
 			end )
-	--	else
-	--		rootFrame:SetScript("OnUpdate", nil)
 		end
 
 		local ringsVisible = {}
@@ -339,8 +323,6 @@ function ElvUI_EltreumUI:CastCursor()
 				frame:SetScript("OnEvent", OnEvent or nil)
 				frame:SetScript("OnUpdate", Update)
 				RingSetShown( frame, false )
-				--frame:UnregisterEvent('PLAYER_REGEN_ENABLED') --may be an optimization path
-				--frame:UnregisterEvent('PLAYER_REGEN_DISABLED')
 			end
 			return frame
 		end
@@ -399,7 +381,6 @@ function ElvUI_EltreumUI:CastCursor()
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
 		function GCD:UNIT_SPELLCAST_START(event, unit, _, spellID)
-		--function GCD:UNIT_SPELLCAST_START(event, unit, guid, spellID)
 			if unit and unit ~= 'player' then
 				return
 			elseif unit and unit == 'player' then
@@ -412,7 +393,6 @@ function ElvUI_EltreumUI:CastCursor()
 		GCD.UNIT_SPELLCAST_SUCCEEDED = GCD.UNIT_SPELLCAST_START
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", "player")
-		--function GCD:UNIT_SPELLCAST_STOP(event, unit, castID)
 		function GCD:UNIT_SPELLCAST_STOP(event, unit)
 			if unit and unit ~= 'player' then
 				return
@@ -433,23 +413,14 @@ function ElvUI_EltreumUI:CastCursor()
 		--this is kinda of a roundabout way of getting this to working here
 		cursorframe:RegisterEvent("PLAYER_STARTED_MOVING")
 		cursorframe:SetScript("OnEvent", function(self, event, _)
-		--cursorframe:SetScript("OnEvent", function(self, event, name)
-			--EltreumCursorDB = CopyDefaults(Defaults, EltreumCursorDB)
-			local EltreumCursorDB = Defaults
 			--print('cursorframe loaded')
-			self:UnregisterEvent("PLAYER_STARTED_MOVING")
-			self:SetScript("OnEvent", nil)
-			self:SetPoint("Center", UIParent, "Center")
-			self:Hide()
-			self.db = EltreumCursorDB
-			Cursor.db = self.db.cursor
-			Cast.db = self.db.cast
-			GCD.db = self.db.gcd
-			self.Start = Start
-			self.Update = Update
-			self.Setup = Setup
-			self.Defaults = Defaults
-			self.rings = { cast = Cast, gcd = GCD, cursor = Cursor }
+			cursorframe:UnregisterEvent("PLAYER_STARTED_MOVING")
+			cursorframe:SetScript("OnEvent", nil)
+			cursorframe:SetPoint("Center", UIParent, "Center")
+			cursorframe:Hide()
+			Cursor.db = Defaults.cursor
+			Cast.db = Defaults.cast
+			GCD.db = Defaults.gcd
 			Setup(Cursor)
 			Setup(Cast)
 			Setup(GCD)

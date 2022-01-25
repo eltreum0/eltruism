@@ -6,6 +6,7 @@ Added an option to disable the automatic pinning of waypoints in Retail\
 Added an option to automatically accept and turn in quests\
 Updated the Light Mode texture switch when your target changes target (target of target)\
 Updated the Install process\
+Updated the Retail Quest Skin, which under some scenarios could end up using more memory than needed\
 Improved the Party/Raid Death function\
 Improved the Cursor Cooldown function\
 Fixed a bug where the position of Buffs/Debuffs on nameplates couldn't be adjusted\
