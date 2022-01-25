@@ -27,6 +27,8 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			--changing the texture and the size will likely not be needed in 12.38, but the cooldown will be
 			if button and button.spellID then
 				if not string.find(unit, "nameplate") then
+					--print("np button nil "..math.random(1,99))
+					button.cd:SetScript('OnUpdate', nil) --lets check this
 					return
 				end
 				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
@@ -41,6 +43,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 					return
 				else
 					button.cd:SetScript('OnUpdate', function(self, elapsed)
+						--print("np button spam "..math.random(1,99))
 						TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 						if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 							TimeSinceLastUpdate = 0
@@ -84,12 +87,15 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 		if E.db.ElvUI_EltreumUI.widenameplate.enable then
 			if button and button.spellID then
 				if not string.find(unit, "nameplate") then
+					--print("np button buff nil attempt "..math.random(1,99))
+					button.cd:SetScript('OnUpdate', nil)
 					return
 				end
 				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 					button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 				end
 				local TimeSinceLastUpdate = 0
+				--print("np button buff spam "..math.random(1,99))
 				button.cd:SetScript('OnUpdate', function(self, elapsed)
 				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 					if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
