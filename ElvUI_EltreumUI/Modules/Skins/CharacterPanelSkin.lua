@@ -3,7 +3,10 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local unpack = _G.unpack
 local classcolor = E:ClassColor(E.myclass, true)
-local LibItemInfo = LibStub:GetLibrary("LibItemInfo.1000")
+local LibItemInfo
+if ElvUI_EltreumUI. TBC or ElvUI_EltreumUI.Classic then
+	LibItemInfo = LibStub:GetLibrary("LibItemInfo.1000")
+end
 
 --attempt at recreating a similar character panel to retail
 local CharacterFrame = _G.CharacterFrame

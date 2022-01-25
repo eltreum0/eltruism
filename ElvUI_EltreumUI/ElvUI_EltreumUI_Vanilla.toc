@@ -13,7 +13,7 @@ Init.lua
 Settings\load_settings.xml
 Localization\Load_localization.xml
 Core\load_core.xml
-Libs\Load_Libs.xml
+Libs\Load_Libs_Classic.xml
 Media\load_media.xml
 Modules\load_modules.xml
 Profiles\load_profiles.xml
