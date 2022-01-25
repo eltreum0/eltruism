@@ -67,26 +67,82 @@ function ElvUI_EltreumUI:SkinQuests()
 					_G.UI_WIDGET_TRACKER_MODULE,
 					_G.CAMPAIGN_QUEST_TRACKER_MODULE,
 				}
+
+				local mult = 0.7
 				for _, k in pairs(questmodules) do
 					hooksecurefunc(k, "AddObjective", function(_, block)
 						if block.HeaderText then --quest title
 							block.HeaderText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
-							block.HeaderText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 							block.HeaderText:SetWordWrap(true)
-					    end
-					    if block.currentLine then
-					        if block.currentLine.objectiveKey == 0 then --also quest title
-					            block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
-								block.currentLine.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+						end
+						if block.currentLine then
+							if block.currentLine.objectiveKey == 0 then --also quest title
+								block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
+								block.currentLine.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 								block.currentLine.Text:SetWordWrap(true)
-					        else  --step/description of the quest
-					            block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, "OUTLINE")
-								block.currentLine.Text:SetTextColor(1, 1, 1)
+							else  --step/description of the quest
+								block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, "OUTLINE")
+								block.currentLine.Text:SetTextColor(mult, mult, mult)
 								block.currentLine.Text:SetWordWrap(true)
-					        end
-					    end
-		        	end)
-		        end
+							end
+						end
+					end)
+				end
+
+				hooksecurefunc(_G.DEFAULT_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
+					print("entered block header")
+					block.isHighlighted = true
+					if ( block.HeaderText ) then
+						local customheaderColorStyle = {r = classcolor.r, g = classcolor.g, b = classcolor.b}
+						block.HeaderText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+						block.HeaderText.colorStyle = customheaderColorStyle
+						--print("entered default obj tracker module")
+					end
+					if block.currentLine then --this is the text
+						for objectiveKey, line in pairs(block.lines) do
+							local colorStyle = {r = mult * 1, g = mult * 1, b = mult * 1}
+							if ( colorStyle ) then
+								line.Text:SetTextColor(1, 1, 1);
+								line.Text.colorStyle = colorStyle;
+								if ( line.Dash ) then
+									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
+							end
+						end
+						if block.module then
+							print("aaaaa")
+						end
+
+					end
+				end)
+
+				hooksecurefunc(_G.DEFAULT_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
+					block.isHighlighted = nil
+					if ( block.HeaderText ) then
+						local customheaderColorStyle = { r = mult * classcolor.r, g = mult * classcolor.g, b = mult * classcolor.b }
+						block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+						block.HeaderText.colorStyle = customheaderColorStyle
+						--print("exited default obj tracker module")
+					end
+					if block.currentLine then --this is the text
+						for objectiveKey, line in pairs(block.lines) do
+							local colorStyle = {r = mult, g = mult, b = mult}
+							if ( colorStyle ) then
+								line.Text:SetTextColor(mult, mult, mult);
+								line.Text.colorStyle = colorStyle;
+								if ( line.Dash ) then
+									line.Dash:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+								end
+							end
+						end
+						if block.module then
+							print("aaaaa")
+						end
+					end
+				end)
+
+
 
 				_G.ObjectiveFont:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
 				_G.ObjectiveFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
