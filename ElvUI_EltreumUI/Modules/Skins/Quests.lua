@@ -37,59 +37,67 @@ function ElvUI_EltreumUI:SkinQuests()
 					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				end
-					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
+				_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
-					_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*2, "OUTLINE")
-					_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*2, "OUTLINE")
+				_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
-					_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*2, "OUTLINE")
-					_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*2, "OUTLINE")
+				_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
-					_G.ObjectiveTrackerBlocksFrame.AchievementHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*2, "OUTLINE")
-					_G.ObjectiveTrackerBlocksFrame.AchievementHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				_G.ObjectiveTrackerBlocksFrame.AchievementHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*2, "OUTLINE")
+				_G.ObjectiveTrackerBlocksFrame.AchievementHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
-					_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*2, "OUTLINE")
-					_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*2, "OUTLINE")
+				_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
-					_G.WORLD_QUEST_TRACKER_MODULE.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-					_G.WORLD_QUEST_TRACKER_MODULE.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				_G.WORLD_QUEST_TRACKER_MODULE.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
+				_G.WORLD_QUEST_TRACKER_MODULE.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
-					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
+				_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
-					--Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua
-					hooksecurefunc(QUEST_TRACKER_MODULE, "SetBlockHeader", function()
-						local questlist = ObjectiveTrackerFrame.MODULES
-						if questlist then
-							for i = 1, #questlist do
-								local quest = questlist[i]
-								if quest then
-									if not (quest.skinned) then
-										hooksecurefunc(quest, "AddObjective", function(_, block)
-											if block then
-												if block.HeaderText then
-													block.HeaderText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
-													block.HeaderText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-												end
-											end
-										end)
-										quest.skinned = true
-									end
-								end
-							end
-						end
-					end)
+				--Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua
+				local questmodules = {
+					_G.QUEST_TRACKER_MODULE,
+					_G.ACHIEVEMENT_TRACKER_MODULE,
+					_G.BONUS_OBJECTIVE_TRACKER_MODULE,
+					_G.WORLD_QUEST_TRACKER_MODULE,
+					_G.UI_WIDGET_TRACKER_MODULE,
+					_G.CAMPAIGN_QUEST_TRACKER_MODULE,
+				}
+				for _, k in pairs(questmodules) do
+					hooksecurefunc(k, "AddObjective", function(_, block)
+						if block.HeaderText then --quest title
+							block.HeaderText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
+							block.HeaderText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							block.HeaderText:SetWordWrap(true)
+					    end
+					    if block.currentLine then
+					        if block.currentLine.objectiveKey == 0 then --also quest title
+					            block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
+								block.currentLine.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								block.currentLine.Text:SetWordWrap(true)
+					        else  --step/description of the quest
+					            block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, "OUTLINE")
+								block.currentLine.Text:SetTextColor(1, 1, 1)
+								block.currentLine.Text:SetWordWrap(true)
+					        end
+					    end
+		        	end)
+		        end
 
-					_G.ObjectiveFont:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-					_G.ObjectiveFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				_G.ObjectiveFont:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
+				_G.ObjectiveFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
-					_G.QuestFont:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize)
-					_G.QuestFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				_G.QuestFont:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize)
+				_G.QuestFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
-					_G.QuestFont_Large:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize)
-					_G.QuestFont_Super_Huge:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-					_G.QuestFont_Enormous:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
+				_G.QuestFont_Large:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize)
+				_G.QuestFont_Super_Huge:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
+				_G.QuestFont_Enormous:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
+
 				hooksecurefunc("ObjectiveTracker_Update", function()
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
