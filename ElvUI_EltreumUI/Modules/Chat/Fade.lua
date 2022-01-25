@@ -26,13 +26,6 @@ function ElvUI_EltreumUI:DynamicChatFade()
 	end
 	if E.db.ElvUI_EltreumUI.chat.enable then
 
-		--if E.db.ElvUI_EltreumUI.chat.leftcombathide or E.db.ElvUI_EltreumUI.chat.rightcombathide then
-		LeftChatPanel:RegisterEvent("PLAYER_REGEN_DISABLED")
-		LeftChatPanel:RegisterEvent("PLAYER_REGEN_ENABLED")
-		RightChatPanel:RegisterEvent("PLAYER_REGEN_DISABLED")
-		RightChatPanel:RegisterEvent("PLAYER_REGEN_ENABLED")
-		--end
-
 		--register events left chat panel
 		if E.db.ElvUI_EltreumUI.chat.leftfader then
 			LeftChatPanel:RegisterEvent("CHAT_MSG_ACHIEVEMENT")
@@ -152,6 +145,8 @@ function ElvUI_EltreumUI:DynamicChatFade()
 
 		--Left chat inactivity hide
 		if E.db.ElvUI_EltreumUI.chat.leftcombathide or E.db.ElvUI_EltreumUI.chat.leftfader then
+			LeftChatPanel:RegisterEvent("PLAYER_REGEN_DISABLED")
+			LeftChatPanel:RegisterEvent("PLAYER_REGEN_ENABLED")
 			LeftChatPanel:SetScript("OnEvent", function(_, event)
 				local lalpha = LeftChatPanel:GetAlpha()
 				if event == "PLAYER_REGEN_DISABLED" then
@@ -194,6 +189,8 @@ function ElvUI_EltreumUI:DynamicChatFade()
 
 		--Right chat inactivity hide
 		if E.db.ElvUI_EltreumUI.chat.rightcombathide or E.db.ElvUI_EltreumUI.chat.rightfader then
+			RightChatPanel:RegisterEvent("PLAYER_REGEN_DISABLED")
+			RightChatPanel:RegisterEvent("PLAYER_REGEN_ENABLED")
 			RightChatPanel:SetScript("OnEvent", function(_, event)
 				local ralpha = RightChatPanel:GetAlpha()
 				if event == "PLAYER_REGEN_DISABLED" then
