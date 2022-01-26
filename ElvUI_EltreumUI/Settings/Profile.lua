@@ -232,6 +232,7 @@ P.ElvUI_EltreumUI = {
 		combatenable = false,
 		autoaccept = false,
 		autoacceptinvert = false,
+		questitems = true,
 	},
 
 	loottext = {

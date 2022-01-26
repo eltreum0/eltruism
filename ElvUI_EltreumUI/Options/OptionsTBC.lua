@@ -676,8 +676,17 @@ if ElvUI_EltreumUI.TBC then
 							get = function(info) return E.db.ElvUI_EltreumUI.questsettings.autoacceptinvert end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.questsettings.autoacceptinvert = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
-						headergaphere1 = {
+						questitembar = {
 							order = 4,
+							type = 'toggle',
+							name = L["Quest Item Bar"],
+							desc = L["Add a Quest Item bar, keybind can be changed in Keybinds > Addons > CLICK EltruismQuestItem"],
+							width = 'full',
+							get = function(info) return E.db.ElvUI_EltreumUI.questsettings.questitems end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.questsettings.questitems = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
+						headergaphere1 = {
+							order = 5,
 							type = "description",
 							name = "",
 							width = 'full',
@@ -4189,7 +4198,7 @@ if ElvUI_EltreumUI.TBC then
 									order = 1,
 									type = 'description',
 									fontSize = 'medium',
-									name = 'Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3\nCursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain\nExpand Hunter Stables is merged from Improved Stable Frame by Cybeloras which is licensed under GNU GPLv3\nIcons8 (www.icons8.com) for some of the icons. List in license.txt\nLootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3\nRogue Door Opener is a fork of Rogue Door Opener by Burzolog which licensed under GNU GPLv3\nLoot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain\nThe Item Level shown on the Character Panel Skin uses code from Simple Item level by Kemayo, licensed under BSD',
+									name = 'Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3\nCursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain\nExpand Hunter Stables is merged from Improved Stable Frame by Cybeloras which is licensed under GNU GPLv3\nIcons8 (www.icons8.com) for some of the icons. List in license.txt\nLootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3\nRogue Door Opener is a fork of Rogue Door Opener by Burzolog which licensed under GNU GPLv3\nLoot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain\nThe Item Level shown on the Character Panel Skin uses code from Simple Item level by Kemayo, licensed under BSD\nQuest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3',
 								},
 							},
 						},

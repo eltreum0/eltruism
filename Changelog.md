@@ -1,6 +1,10 @@
 ### 🌌 Next Version 
 **The future is uncertain**
 ___
+### 2.6.9
+Added QuestItems, which will display quest items in a bar. Default keybind is ], but it can be changed in the default Blizzard UI (Keybinds > Addons > EltruismQuestItem)
+Fixed an error when attempting to automatically turn in quests in TBC/Classic
+___
 ### 2.6.8
 Added an option to disable the automatic pinning of waypoints in Retail\
 Added an option to automatically accept and turn in quests\
