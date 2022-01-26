@@ -35,7 +35,7 @@ function ElvUI_EltreumUI:QuestItem()
 	EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA");	-- Should work better than PLAYER_ENTERING_WORLD
 	--EltruismQuestItemFrame:RegisterForClicks()
 	EltruismQuestItemFrame:Show()
-	local bindingText = GetBindingKey("EltruismQuestItem")
+	local bindingText = GetBindingKey("CLICK EltruismQuestItem1:LeftButton")
 	EltruismQuestItemFrame:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, 34)
 	E:CreateMover(EltruismQuestItemFrame, "MoverEltruismQuestItem", "EltruismQuestItem", nil, nil, nil, "ALL")
 
@@ -83,7 +83,7 @@ function ElvUI_EltreumUI:QuestItem()
 	EltruismQuestItemFrame:SetFrameStrata("MEDIUM");
 
 	local function OnUpdate(self,elapsed)
-		print("quest item spam "..math.random(1,99))
+		--print("quest item spam "..math.random(1,99))
 		self.updateTime = (self.updateTime + elapsed);
 		if (self.updateTime > UPDATE_DELAY) then
 			self:SetScript("OnUpdate",nil);
@@ -155,6 +155,7 @@ function ElvUI_EltreumUI:QuestItem()
 		b.bind:SetPoint("TOPRIGHT",b.icon,-3,-3);
 		b.bind:SetJustifyH("RIGHT");
 
+
 		--b.bind:SetText
 		if (#EltruismQuestItemFrame.items == 0) then
 			b:SetPoint("TOPLEFT",EltruismQuestItemFrame,0,0);
@@ -165,7 +166,9 @@ function ElvUI_EltreumUI:QuestItem()
 	end
 
  	--register keybind
-	SetBindingClick(bindingText, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1), "LeftButton")
+ 	if bindingText then
+		SetBindingClick(bindingText, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1))
+	end
 
 	-- Add Button
 	local function AddButton(index,bag,slot,link,itemId,count)
@@ -234,7 +237,7 @@ function ElvUI_EltreumUI:QuestItem()
 	function EltruismQuestItemFrame:RequestUpdate()
 		self.updateTime = 0;
 		self:SetScript("OnUpdate",OnUpdate);
-		print("re quest item spam "..math.random(1,99))
+		--print("re quest item spam "..math.random(1,99))
 	end
 	EltruismQuestItemFrame:RequestUpdate()
 
@@ -252,13 +255,24 @@ function ElvUI_EltreumUI:QuestItem()
 				local link = GetContainerItemLink(bag,slot);
 				local itemId = link and tonumber(link:match(ITEMID_PATTERN));
 				if (link) and (itemId) then
-					local isQuestItem, questId, isActive = GetContainerItemQuestInfo(bag,slot);
-					if isQuestItem then
-					--if (questId and not isActive) or (cfg.userList[itemId]) or (CheckItemTooltip(link,itemId)) then
-						--icon, itemCount, locked, quality, readable, lootable, itemLink, isFiltered, noValue, itemID, isBound = GetContainerItemInfo(bagID, slot)
-						local _, count = GetContainerItemInfo(bag,slot);
-						AddButton(index,bag,slot,link,itemId,count);
-						index = (index + 1);
+					--itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = GetItemInfo(item)
+
+					if ElvUI_EltreumUI.Retail then
+						local isQuestItem, questId, isActive = GetContainerItemQuestInfo(bag,slot);
+						if isQuestItem then
+						--if (questId and not isActive) or (cfg.userList[itemId]) or (CheckItemTooltip(link,itemId)) then
+							--icon, itemCount, locked, quality, readable, lootable, itemLink, isFiltered, noValue, itemID, isBound = GetContainerItemInfo(bagID, slot)
+							local _, count = GetContainerItemInfo(bag,slot);
+							AddButton(index,bag,slot,link,itemId,count);
+							index = (index + 1);
+						end
+					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						local _, _, _, _, _, itemType, itemSubType = GetItemInfo(itemId)
+						if itemType == "Quest" then
+							local _, count = GetContainerItemInfo(bag,slot);
+							AddButton(index,bag,slot,link,itemId,count);
+							index = (index + 1);
+						end
 					end
 				end
 			end
