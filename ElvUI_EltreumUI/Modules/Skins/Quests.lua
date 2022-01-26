@@ -12,6 +12,7 @@ function ElvUI_EltreumUI:SkinQuests()
 		if ElvUI_EltreumUI.Retail then
 			if (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ElvUI_WindTools")) then
 				local ObjectiveTrackerBlocksFrame = _G.ObjectiveTrackerBlocksFrame
+				--create the lines
 				if ObjectiveTrackerBlocksFrame then
 					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine = CreateFrame("StatusBar", "EltruismScenarioLine", ObjectiveTrackerBlocksFrame.ScenarioHeader)
 					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetSize(250, 2)
@@ -37,6 +38,8 @@ function ElvUI_EltreumUI:SkinQuests()
 					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				end
+
+				--set the fonts
 				_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
 				_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 

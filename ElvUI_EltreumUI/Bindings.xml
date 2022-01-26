@@ -1,0 +1,4 @@
+<Bindings>
+    <Binding name="EltruismQuestItem" description="Uses the Quest Item displayed on the Eltruism Quest Bar" header="Eltruism" category="ADDONS" default="\">
+    </Binding>
+</Bindings>

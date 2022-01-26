@@ -30,6 +30,7 @@
 	<Script file='Maps.lua'/>
 	<Script file='PartyRaid.lua'/>
 	<Script file='Quests.lua'/>
+	<Script file='QuestItem.lua'/>
 	<Script file='Screenshot.lua'/>
 	<Script file='Fonts/CustomFont.lua'/>
 	<Script file='Fonts/CrystalzcuheiGBK.lua'/>
