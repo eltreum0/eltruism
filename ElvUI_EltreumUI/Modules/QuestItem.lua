@@ -344,9 +344,45 @@ function ElvUI_EltreumUI:QuestItem()
 				else
 					CooldownFrame_Set(self.items[i].cooldown,GetInventoryItemCooldown("player",slot))
 				end
-				if (not InCombatLockdown()) and (self.shownItems == 1 or cfg.lastItem == self.items[i].itemId) then
+				--[[if (not InCombatLockdown()) and (self.shownItems == 1 or cfg.lastItem == self.items[i].itemId) then
 					self.items[i].bind:SetText(bindingText..i)
-				end
+				end]]
+			end
+			if bindingText1 and self.shownItems >= 1 then
+				self.items[1].bind:SetText(bindingText1)
+			end
+			if bindingText2 and self.shownItems >= 2 then
+				self.items[2].bind:SetText(bindingText2)
+			end
+			if bindingText3 and self.shownItems >= 3 then
+				self.items[3].bind:SetText(bindingText3)
+			end
+			if bindingText4 and self.shownItems >= 4 then
+				self.items[4].bind:SetText(bindingText4)
+			end
+			if bindingText5 and self.shownItems >= 5 then
+				self.items[5].bind:SetText(bindingText5)
+			end
+			if bindingText6 and self.shownItems >= 6 then
+				self.items[6].bind:SetText(bindingText6)
+			end
+			if bindingText7 and self.shownItems >= 7 then
+				self.items[7].bind:SetText(bindingText7)
+			end
+			if bindingText8 and self.shownItems >= 8 then
+				self.items[8].bind:SetText(bindingText8)
+			end
+			if bindingText9 and self.shownItems >= 9 then
+				self.items[9].bind:SetText(bindingText9)
+			end
+			if bindingText10 and self.shownItems >= 10 then
+				self.items[10].bind:SetText(bindingText10)
+			end
+			if bindingText11 and self.shownItems >= 11 then
+				self.items[11].bind:SetText(bindingText11)
+			end
+			if bindingText12 and self.shownItems >= 12 then
+				self.items[12].bind:SetText(bindingText12)
 			end
 		end
 
