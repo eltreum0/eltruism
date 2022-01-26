@@ -17,20 +17,20 @@ Engine[5] = P --ElvUI ProfileDB
 Engine[6] = G --ElvUI GlobalDB
 _G[addon] = Engine
 
-
+--Binding
 _G.BINDING_HEADER_ELTRUISM = GetAddOnMetadata(..., 'Title')
-_G["BINDING_NAME_CLICK EltruismQuestItem1:LeftButton"] = "Quest Item 1";
-_G["BINDING_NAME_CLICK EltruismQuestItem2:LeftButton"] = "Quest Item 2";
-_G["BINDING_NAME_CLICK EltruismQuestItem3:LeftButton"] = "Quest Item 3";
-_G["BINDING_NAME_CLICK EltruismQuestItem4:LeftButton"] = "Quest Item 4";
-_G["BINDING_NAME_CLICK EltruismQuestItem5:LeftButton"] = "Quest Item 5";
-_G["BINDING_NAME_CLICK EltruismQuestItem6:LeftButton"] = "Quest Item 6";
-_G["BINDING_NAME_CLICK EltruismQuestItem7:LeftButton"] = "Quest Item 7";
-_G["BINDING_NAME_CLICK EltruismQuestItem8:LeftButton"] = "Quest Item 8";
-_G["BINDING_NAME_CLICK EltruismQuestItem9:LeftButton"] = "Quest Item 9";
-_G["BINDING_NAME_CLICK EltruismQuestItem10:LeftButton"] = "Quest Item 10";
-_G["BINDING_NAME_CLICK EltruismQuestItem11:LeftButton"] = "Quest Item 11";
-_G["BINDING_NAME_CLICK EltruismQuestItem12:LeftButton"] = "Quest Item 12";
+_G["BINDING_NAME_CLICK EltruismQuestItem1:LeftButton"] = "Quest Item 1"
+_G["BINDING_NAME_CLICK EltruismQuestItem2:LeftButton"] = "Quest Item 2"
+_G["BINDING_NAME_CLICK EltruismQuestItem3:LeftButton"] = "Quest Item 3"
+_G["BINDING_NAME_CLICK EltruismQuestItem4:LeftButton"] = "Quest Item 4"
+_G["BINDING_NAME_CLICK EltruismQuestItem5:LeftButton"] = "Quest Item 5"
+_G["BINDING_NAME_CLICK EltruismQuestItem6:LeftButton"] = "Quest Item 6"
+_G["BINDING_NAME_CLICK EltruismQuestItem7:LeftButton"] = "Quest Item 7"
+_G["BINDING_NAME_CLICK EltruismQuestItem8:LeftButton"] = "Quest Item 8"
+_G["BINDING_NAME_CLICK EltruismQuestItem9:LeftButton"] = "Quest Item 9"
+_G["BINDING_NAME_CLICK EltruismQuestItem10:LeftButton"] = "Quest Item 10"
+_G["BINDING_NAME_CLICK EltruismQuestItem11:LeftButton"] = "Quest Item 11"
+_G["BINDING_NAME_CLICK EltruismQuestItem12:LeftButton"] = "Quest Item 12"
 
 
 --Constants

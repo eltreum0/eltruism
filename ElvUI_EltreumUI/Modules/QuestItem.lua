@@ -19,15 +19,15 @@ function ElvUI_EltreumUI:QuestItem()
 				btnSize = 36,
 			}
 
-		local EltruismQuestItemFrame = CreateFrame("Frame","EltruismQuestItem",UIParent,BackdropTemplateMixin and "BackdropTemplate");	-- 9.0.1: Using BackdropTemplate
-		EltruismQuestItemFrame:SetSize(cfg.btnSize,cfg.btnSize);
+		local EltruismQuestItemFrame = CreateFrame("Frame","EltruismQuestItem",UIParent,BackdropTemplateMixin and "BackdropTemplate")	-- 9.0.1: Using BackdropTemplate
+		EltruismQuestItemFrame:SetSize(cfg.btnSize,cfg.btnSize)
 		EltruismQuestItemFrame:SetClampedToScreen(true)
-		EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE");
-		EltruismQuestItemFrame:RegisterEvent("UNIT_INVENTORY_CHANGED");
-		EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED");			-- Needed for items that starts a quest, when we accept it, update to remove the icon
-		--EltruismQuestItemFrame:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN"); --hmm
-		--EltruismQuestItemFrame:RegisterEvent("PLAYER_REGEN_ENABLED");
-		EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA");	-- Should work better than PLAYER_ENTERING_WORLD
+		EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE")
+		EltruismQuestItemFrame:RegisterEvent("UNIT_INVENTORY_CHANGED")
+		EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED")			-- Needed for items that starts a quest, when we accept it, update to remove the icon
+		--EltruismQuestItemFrame:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN") --hmm
+		--EltruismQuestItemFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
+		EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
 		--EltruismQuestItemFrame:RegisterForClicks()
 		EltruismQuestItemFrame:Show()
 
@@ -94,22 +94,22 @@ function ElvUI_EltreumUI:QuestItem()
 		--                                                Main                                                --
 		--------------------------------------------------------------------------------------------------------
 
-		EltruismQuestItemFrame:SetFrameStrata("MEDIUM");
+		EltruismQuestItemFrame:SetFrameStrata("MEDIUM")
 
 		local function OnUpdate(self,elapsed)
 			--print("quest item spam "..math.random(1,99))
-			self.updateTime = (self.updateTime + elapsed);
+			self.updateTime = (self.updateTime + elapsed)
 			if (self.updateTime > UPDATE_DELAY) then
-				self:SetScript("OnUpdate",nil);
-				self:UpdateButtons();
+				self:SetScript("OnUpdate",nil)
+				self:UpdateButtons()
 			end
 		end
 
-		--EltruismQuestItemFrame:EnableMouse(nil);
+		--EltruismQuestItemFrame:EnableMouse(nil)
 
-		EltruismQuestItemFrame.tip = CreateFrame("GameTooltip","EltruismQuestItem",nil,"GameTooltipTemplate");
-		EltruismQuestItemFrame.tip:SetOwner(UIParent,"ANCHOR_NONE");
-		EltruismQuestItemFrame.items = {};
+		EltruismQuestItemFrame.tip = CreateFrame("GameTooltip","EltruismQuestItem",nil,"GameTooltipTemplate")
+		EltruismQuestItemFrame.tip:SetOwner(UIParent,"ANCHOR_NONE")
+		EltruismQuestItemFrame.items = {}
 		--EltruismQuestItemFrame:RequestUpdate()
 
 		--------------------------------------------------------------------------------------------------------
@@ -119,11 +119,11 @@ function ElvUI_EltreumUI:QuestItem()
 		-- Button Scripts
 		local function Button_OnEnter(self)
 			GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
-			local bag, slot = self:GetAttribute("bag"), self:GetAttribute("slot");
+			local bag, slot = self:GetAttribute("bag"), self:GetAttribute("slot")
 			if (bag) then
-				GameTooltip:SetBagItem(bag,slot);
+				GameTooltip:SetBagItem(bag,slot)
 			else
-				GameTooltip:SetInventoryItem("player",slot);
+				GameTooltip:SetInventoryItem("player",slot)
 			end
 		end
 
@@ -131,52 +131,52 @@ function ElvUI_EltreumUI:QuestItem()
 		local function Button_OnClick(self,button, down)
 			-- Handle Modified Click
 			if (HandleModifiedItemClick(self.link)) then
-				return;
+				return
 			-- Ignore
 			elseif (IsShiftKeyDown()) then
-				EltruismQuestItemFrame:RequestUpdate();
+				EltruismQuestItemFrame:RequestUpdate()
 			-- Set Hotkey
 			elseif (self.itemId ~= cfg.lastItem) then
-				cfg.lastItem = self.itemId;
+				cfg.lastItem = self.itemId
 			end
 		end
 
 		-- Make Loot Button
 		local function CreateItemButton()
-			local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"SecureActionButtonTemplate");
-			b:SetSize(cfg.btnSize,cfg.btnSize);
-			--b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square");
+			local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"SecureActionButtonTemplate")
+			b:SetSize(cfg.btnSize,cfg.btnSize)
+			--b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
 			b:SetHighlightTexture("Interface\\Buttons\\OldButtonHilight-Square")
-			b:RegisterForClicks("LeftButtonUp","RightButtonUp");
-			b:SetScript("OnEnter",Button_OnEnter);
-			b:SetScript("OnLeave", function() GameTooltip:Hide() end);
-			b:HookScript("OnClick",Button_OnClick);
-			b:SetAttribute("type*","item");
+			b:RegisterForClicks("LeftButtonUp","RightButtonUp")
+			b:SetScript("OnEnter",Button_OnEnter)
+			b:SetScript("OnLeave", function() GameTooltip:Hide() end)
+			b:HookScript("OnClick",Button_OnClick)
+			b:SetAttribute("type*","item")
 
-			b.icon = b:CreateTexture(nil,"ARTWORK");
-			b.icon:SetAllPoints();
+			b.icon = b:CreateTexture(nil,"ARTWORK")
+			b.icon:SetAllPoints()
 
-			b.count = b:CreateFontString(nil,"ARTWORK");
-			b.count:SetFont(GameFontNormal:GetFont(),14,"OUTLINE");
-			b.count:SetTextColor(1,1,1);
-			b.count:SetPoint("BOTTOMRIGHT",b.icon,-3,3);
+			b.count = b:CreateFontString(nil,"ARTWORK")
+			b.count:SetFont(GameFontNormal:GetFont(),14,"OUTLINE")
+			b.count:SetTextColor(1,1,1)
+			b.count:SetPoint("BOTTOMRIGHT",b.icon,-3,3)
 
-			b.cooldown = CreateFrame("Cooldown",nil,b,"CooldownFrameTemplate");
-			b.cooldown:SetAllPoints();
+			b.cooldown = CreateFrame("Cooldown",nil,b,"CooldownFrameTemplate")
+			b.cooldown:SetAllPoints()
 
-			b.bind = b:CreateFontString(nil,"ARTWORK","NumberFontNormalSmallGray");
-			b.bind:SetPoint("TOPLEFT",b.icon,3,-3);
-			b.bind:SetPoint("TOPRIGHT",b.icon,-3,-3);
-			b.bind:SetJustifyH("RIGHT");
+			b.bind = b:CreateFontString(nil,"ARTWORK","NumberFontNormalSmallGray")
+			b.bind:SetPoint("TOPLEFT",b.icon,3,-3)
+			b.bind:SetPoint("TOPRIGHT",b.icon,-3,-3)
+			b.bind:SetJustifyH("RIGHT")
 
 
 			--b.bind:SetText
 			if (#EltruismQuestItemFrame.items == 0) then
-				b:SetPoint("TOPLEFT",EltruismQuestItemFrame,0,0);
+				b:SetPoint("TOPLEFT",EltruismQuestItemFrame,0,0)
 			end
 
-			EltruismQuestItemFrame.items[#EltruismQuestItemFrame.items + 1] = b;
-			return b;
+			EltruismQuestItemFrame.items[#EltruismQuestItemFrame.items + 1] = b
+			return b
 		end
 
 	 	--register keybind
@@ -222,46 +222,46 @@ function ElvUI_EltreumUI:QuestItem()
 
 		-- Add Button
 		local function AddButton(index,bag,slot,link,itemId,count)
-			local btn = EltruismQuestItemFrame.items[index] or CreateItemButton();
-			local _, _, _, _, _, _, _, _, _, itemTexture, _, classID = GetItemInfo(link);
+			local btn = EltruismQuestItemFrame.items[index] or CreateItemButton()
+			local _, _, _, _, _, _, _, _, _, itemTexture, _, classID = GetItemInfo(link)
 			--if classID == 12 then --its a quest item
-				btn.icon:SetTexture(itemTexture);
-				btn.count:SetText(count and count > 1 and count or "");
+				btn.icon:SetTexture(itemTexture)
+				btn.count:SetText(count and count > 1 and count or "")
 
-				btn.link = link;
-				btn.itemId = itemId;
+				btn.link = link
+				btn.itemId = itemId
 
-				btn:SetAttribute("bag",bag);
-				btn:SetAttribute("slot",slot);
+				btn:SetAttribute("bag",bag)
+				btn:SetAttribute("slot",slot)
 
 				if (index > 1) then
-					btn:ClearAllPoints();
-					btn:SetPoint("LEFT",EltruismQuestItemFrame.items[index - 1],"RIGHT",1,0);
+					btn:ClearAllPoints()
+					btn:SetPoint("LEFT",EltruismQuestItemFrame.items[index - 1],"RIGHT",1,0)
 				end
-				btn:Show();
+				btn:Show()
 			--end
 		end
 
 		-- Check Item -- Az: Some items which starts a quest, are not marked as "Quest" in itemType or itemSubType. Ex: item:17008
 		local function CheckItemTooltip(link,itemId)
-			local itemName, _, _, _, _, itemType, itemSubType, _, _, _, _, classID = GetItemInfo(link);
+			local itemName, _, _, _, _, itemType, itemSubType, _, _, _, _, classID = GetItemInfo(link)
 			-- Include predefinded items
 			for _, id in ipairs(qItems) do
 				if (itemId == id) then
-					return 1;
+					return 1
 				end
 			end
 			-- Scan Tip -- Az: any reason we cant just check for more or equal to 4 lines, or would some quest items fail that check?
-			EltruismQuestItemFrame.tip:ClearLines();
-			EltruismQuestItemFrame.tip:SetHyperlink(link);
-			local numLines = EltruismQuestItemFrame.tip:NumLines();
-			--local line2 = (_G[modName.."TipTextLeft2"]:GetText() or "");
+			EltruismQuestItemFrame.tip:ClearLines()
+			EltruismQuestItemFrame.tip:SetHyperlink(link)
+			local numLines = EltruismQuestItemFrame.tip:NumLines()
+			--local line2 = (_G[modName.."TipTextLeft2"]:GetText() or "")
 			--if (numLines >= 3) and (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or line2 == ITEM_BIND_QUEST or line2 == GetZoneText()) then
 			if (numLines >= 3) and (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN) then
 				for i = 3, numLines do
-					local text = _G["EltruismQuestItem".."TipTextLeft"..i]:GetText() or "";
+					local text = _G["EltruismQuestItem".."TipTextLeft"..i]:GetText() or ""
 					if (text:find("^"..ITEM_SPELL_TRIGGER_ONUSE)) then
-						return 1;
+						return 1
 					end
 				end
 			end
@@ -273,8 +273,8 @@ function ElvUI_EltreumUI:QuestItem()
 
 		-- Request a Button Update
 		function EltruismQuestItemFrame:RequestUpdate()
-			self.updateTime = 0;
-			self:SetScript("OnUpdate",OnUpdate);
+			self.updateTime = 0
+			self:SetScript("OnUpdate",OnUpdate)
 			--print("re quest item spam "..math.random(1,99))
 		end
 		EltruismQuestItemFrame:RequestUpdate()
@@ -283,33 +283,33 @@ function ElvUI_EltreumUI:QuestItem()
 		function EltruismQuestItemFrame:UpdateButtons()
 			-- Check if we are locked by combat
 			if (InCombatLockdown()) then
-				return;
+				return
 			end
 			-- locals
-			local index = 1;
+			local index = 1
 			-- Inventory
 			for bag = 0, NUM_BAG_SLOTS do
 				for slot = 1, GetContainerNumSlots(bag) do
-					local link = GetContainerItemLink(bag,slot);
-					local itemId = link and tonumber(link:match(ITEMID_PATTERN));
+					local link = GetContainerItemLink(bag,slot)
+					local itemId = link and tonumber(link:match(ITEMID_PATTERN))
 					if (link) and (itemId) then
 						--itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = GetItemInfo(item)
 
 						if ElvUI_EltreumUI.Retail then
-							local isQuestItem, questId, isActive = GetContainerItemQuestInfo(bag,slot);
+							local isQuestItem, questId, isActive = GetContainerItemQuestInfo(bag,slot)
 							if isQuestItem then
 							--if (questId and not isActive) or (cfg.userList[itemId]) or (CheckItemTooltip(link,itemId)) then
 								--icon, itemCount, locked, quality, readable, lootable, itemLink, isFiltered, noValue, itemID, isBound = GetContainerItemInfo(bagID, slot)
-								local _, count = GetContainerItemInfo(bag,slot);
-								AddButton(index,bag,slot,link,itemId,count);
-								index = (index + 1);
+								local _, count = GetContainerItemInfo(bag,slot)
+								AddButton(index,bag,slot,link,itemId,count)
+								index = (index + 1)
 							end
 						elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 							local _, _, _, _, _, itemType, itemSubType = GetItemInfo(itemId)
 							if itemType == "Quest" then
-								local _, count = GetContainerItemInfo(bag,slot);
-								AddButton(index,bag,slot,link,itemId,count);
-								index = (index + 1);
+								local _, count = GetContainerItemInfo(bag,slot)
+								AddButton(index,bag,slot,link,itemId,count)
+								index = (index + 1)
 							end
 						end
 					end
@@ -317,38 +317,38 @@ function ElvUI_EltreumUI:QuestItem()
 			end
 			-- Equipped Items
 			for _, slotName in ipairs(slots) do
-				local slotId = GetInventorySlotInfo(slotName);
-				local link = GetInventoryItemLink("player",slotId);
-				local itemId = link and tonumber(link:match(ITEMID_PATTERN));
+				local slotId = GetInventorySlotInfo(slotName)
+				local link = GetInventoryItemLink("player",slotId)
+				local itemId = link and tonumber(link:match(ITEMID_PATTERN))
 				if (link) and (itemId) and (CheckItemTooltip(link,itemId)) then
-					AddButton(index,nil,slotId,link,itemId);
-					index = (index + 1);
+					AddButton(index,nil,slotId,link,itemId)
+					index = (index + 1)
 				end
 			end
 			-- Set Shown Items
-			self.shownItems = (index - 1);
+			self.shownItems = (index - 1)
 			for i = index, #self.items do
-				self.items[i]:Hide();
+				self.items[i]:Hide()
 			end
 			--update bind text
 			for i = 1, self.shownItems do
-				self.items[i].bind:SetText(GetBindingText(GetBindingKey("CLICK ".."EltruismQuestItem"..i..":LeftButton"),"",1));
+				self.items[i].bind:SetText(GetBindingText(GetBindingKey("CLICK ".."EltruismQuestItem"..i..":LeftButton"),"",1))
 			end
 			-- Update Misc
-			self:UpdateCooldowns();
+			self:UpdateCooldowns()
 		end
 
 		-- Update Cooldowns
 		function EltruismQuestItemFrame:UpdateCooldowns()
 			for i = 1, self.shownItems do
-				local bag, slot = self.items[i]:GetAttribute("bag"), self.items[i]:GetAttribute("slot");
+				local bag, slot = self.items[i]:GetAttribute("bag"), self.items[i]:GetAttribute("slot")
 				if (bag) then
-					CooldownFrame_Set(self.items[i].cooldown,GetContainerItemCooldown(bag,slot));
+					CooldownFrame_Set(self.items[i].cooldown,GetContainerItemCooldown(bag,slot))
 				else
-					CooldownFrame_Set(self.items[i].cooldown,GetInventoryItemCooldown("player",slot));
+					CooldownFrame_Set(self.items[i].cooldown,GetInventoryItemCooldown("player",slot))
 				end
 				if (not InCombatLockdown()) and (self.shownItems == 1 or cfg.lastItem == self.items[i].itemId) then
-					self.items[i].bind:SetText(bindingText..i);
+					self.items[i].bind:SetText(bindingText..i)
 				end
 			end
 		end
@@ -359,11 +359,11 @@ function ElvUI_EltreumUI:QuestItem()
 
 		EltruismQuestItemFrame:SetScript("OnEvent",function(self,event,...)
 			if (self[event]) then
-				self[event](self,event,...);
+				self[event](self,event,...)
 			else
-				self:RequestUpdate();
+				self:RequestUpdate()
 			end
-		end);
+		end)
 
 		-- Update Cooldowns
 		function EltruismQuestItemFrame:ACTIONBAR_UPDATE_COOLDOWN(event)
@@ -371,14 +371,14 @@ function ElvUI_EltreumUI:QuestItem()
 				self.shownItems = 0
 			end
 			if (self.shownItems > 0) then
-				self:UpdateCooldowns();
+				self:UpdateCooldowns()
 			end
 		end
 
 		-- Inventory Changed
 		function EltruismQuestItemFrame:UNIT_INVENTORY_CHANGED(event,unit)
 			if (unit == "player") then
-				self:RequestUpdate();
+				self:RequestUpdate()
 			end
 		end
 	end

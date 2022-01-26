@@ -1,14 +1,14 @@
 <Bindings>
-    <Binding name="CLICK EltruismQuestItem1:LeftButton" description="Uses the Quest Item displayed on the Eltruism Quest Bar" header="ELTRUISM" category="BINDING_HEADER_ELTRUISM" default="]"></Binding>
-    <Binding name="CLICK EltruismQuestItem2:LeftButton" description="Uses the Quest Item displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
-    <Binding name="CLICK EltruismQuestItem3:LeftButton" description="Uses the Quest Item displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
-    <Binding name="CLICK EltruismQuestItem4:LeftButton" description="Uses the Quest Item displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
-    <Binding name="CLICK EltruismQuestItem5:LeftButton" description="Uses the Quest Item displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
-    <Binding name="CLICK EltruismQuestItem6:LeftButton" description="Uses the Quest Item displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
-    <Binding name="CLICK EltruismQuestItem7:LeftButton" description="Uses the Quest Item displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
-    <Binding name="CLICK EltruismQuestItem8:LeftButton" description="Uses the Quest Item displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
-    <Binding name="CLICK EltruismQuestItem9:LeftButton" description="Uses the Quest Item displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
-    <Binding name="CLICK EltruismQuestItem10:LeftButton" description="Uses the Quest Item displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
-    <Binding name="CLICK EltruismQuestItem11:LeftButton" description="Uses the Quest Item displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
-    <Binding name="CLICK EltruismQuestItem12:LeftButton" description="Uses the Quest Item displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
+    <Binding name="CLICK EltruismQuestItem1:LeftButton" description="Uses the Quest Item 1 displayed on the Eltruism Quest Bar" header="ELTRUISM" category="BINDING_HEADER_ELTRUISM" default="]"></Binding>
+    <Binding name="CLICK EltruismQuestItem2:LeftButton" description="Uses the Quest Item 2 displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
+    <Binding name="CLICK EltruismQuestItem3:LeftButton" description="Uses the Quest Item 3 displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
+    <Binding name="CLICK EltruismQuestItem4:LeftButton" description="Uses the Quest Item 4 displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
+    <Binding name="CLICK EltruismQuestItem5:LeftButton" description="Uses the Quest Item 5 displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
+    <Binding name="CLICK EltruismQuestItem6:LeftButton" description="Uses the Quest Item 6 displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
+    <Binding name="CLICK EltruismQuestItem7:LeftButton" description="Uses the Quest Item 7 displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
+    <Binding name="CLICK EltruismQuestItem8:LeftButton" description="Uses the Quest Item 8 displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
+    <Binding name="CLICK EltruismQuestItem9:LeftButton" description="Uses the Quest Item 9 displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
+    <Binding name="CLICK EltruismQuestItem10:LeftButton" description="Uses the Quest Item 10 displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
+    <Binding name="CLICK EltruismQuestItem11:LeftButton" description="Uses the Quest Item 11 displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
+    <Binding name="CLICK EltruismQuestItem12:LeftButton" description="Uses the Quest Item 12 displayed on the Eltruism Quest Bar" category="BINDING_HEADER_ELTRUISM"></Binding>
 </Bindings>
