@@ -125,32 +125,18 @@ function ElvUI_EltreumUI:WAAnchor()
 		EltreumWAAnchor:SetParent("ElvUF_Player")
 		EltreumWAAnchor:SetFrameStrata("BACKGROUND")
 		--position the anchor around the place where the action bars would be
-		if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
-			EltreumWAAnchor:Point("CENTER", E.UIParent, "CENTER", 0, -380)
-		elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
-			EltreumWAAnchor:Point("CENTER", E.UIParent, "CENTER", 0, -250)
-		else
-			EltreumWAAnchor:Point("CENTER", E.UIParent, "CENTER", 0, -380)
-		end
-		--EltreumWAAnchor:Hide()
+		EltreumWAAnchor:Point("CENTER", E.UIParent, "CENTER", 0, -380)
 		EltreumWAAnchor:Size(250, 70)
 		--E:CreateMover(parent, name, textString, overlay, snapoffset, postdrag, types, shouldDisable, configString, ignoreSizeChanged)
-		E:CreateMover(EltreumWAAnchor, "MoverEltruismWA", "EltruismWA", nil, nil, nil, "ALL")
+		E:CreateMover(EltreumWAAnchor, "MoverEltruismWA", "EltruismWA", nil, nil, nil, "ALL,SOLO")
 
 		--consumable weakauras, usually placed near player unitframe
 		EltruismWAConsumablesAnchor:SetParent("ElvUF_Player")
 		EltruismWAConsumablesAnchor:SetFrameStrata("BACKGROUND")
 		--postion the anchor right below the player unitframe
-		if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
-			EltruismWAConsumablesAnchor:Point("LEFT", _G["ElvUF_Player"], 0, -75)
-		elseif ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
-			EltruismWAConsumablesAnchor:Point("LEFT", _G["ElvUF_Player"], 0, -42)
-		else
-			EltruismWAConsumablesAnchor:Point("LEFT", _G["ElvUF_Player"], 0, -75)
-		end
+		EltruismWAConsumablesAnchor:Point("LEFT", _G["ElvUF_Player"], 0, -75)
 		EltruismWAConsumablesAnchor:Size(270, 30)
-		--EltruismWAConsumablesAnchor:Hide()
-		E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", L["EltruismConsumables"], nil, nil, nil, "ALL")
+		E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", L["EltruismConsumables"], nil, nil, nil, "ALL,SOLO")
 	end
 end
 

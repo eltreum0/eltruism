@@ -28,7 +28,13 @@ function ElvUI_EltreumUI:QuestItem()
 		--EltruismQuestItemFrame:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN") --hmm
 		--EltruismQuestItemFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
 		EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
-		EltruismQuestItemFrame:Show()
+
+		local _, instanceType = IsInInstance()
+		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
+			EltruismQuestItemFrame:Hide()
+		else
+			EltruismQuestItemFrame:Show()
+		end
 
 		--get the keybind
 		--local bindingText = GetBindingKey("CLICK EltruismQuestItem1:LeftButton")
@@ -141,6 +147,9 @@ function ElvUI_EltreumUI:QuestItem()
 		-- Make Loot Button
 		local function CreateItemButton()
 			local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"SecureActionButtonTemplate")
+			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
+				b:Hide()
+			end
 			b:SetSize(cfg.btnSize,cfg.btnSize)
 			--b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
 			b:SetHighlightTexture("Interface\\Buttons\\OldButtonHilight-Square")
