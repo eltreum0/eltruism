@@ -154,16 +154,20 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 							--print("its an annoying auto accept quest, panel has been closed")
 							CloseQuest()
 						else
-							--print("not an auto accept quest")
-							if QuestIsDaily() then
-								--print("its a daily quest")
-								return
-							elseif QuestIsWeekly() then
-								--print("its a weekly quest")
-								return
+							if ElvUI_EltreumUI.Retail then
+								--print("not an auto accept quest")
+								if QuestIsDaily() then
+									--print("its a daily quest")
+									return
+								elseif QuestIsWeekly() then
+									--print("its a weekly quest")
+									return
+								end
+								AcceptQuest()
+								--print("quest accepted")
+							elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+								AcceptQuest()
 							end
-							AcceptQuest()
-							--print("quest accepted")
 						end
 					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 						AcceptQuest()
@@ -202,19 +206,29 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 							for i = 1, GetNumGossipActiveQuests() do
 								--print("tried to select and accept quests in a loop"..math.random(1,99))
 								SelectGossipActiveQuest(i)
-								if QuestIsDaily() then
-									--print("its a daily quest")
-									return
-								elseif QuestIsWeekly() then
-									--print("its a weekly quest")
-									return
-								else
+
+
+								if ElvUI_EltreumUI.Retail then
+									if QuestIsDaily() then
+										--print("its a daily quest")
+										return
+									elseif QuestIsWeekly() then
+										--print("its a weekly quest")
+										return
+									else
+										AcceptQuest()
+									end
+									if (GetNumQuestChoices() <= 0) then
+										--print("no quest choices")
+										return
+									end
+								elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 									AcceptQuest()
+									if (GetNumQuestChoices() <= 0) then
+										return
+									end
 								end
-								if (GetNumQuestChoices() <= 0) then
-									--print("no quest choices")
-									return
-								end
+
 								i = i + 1
 							end
 						end
