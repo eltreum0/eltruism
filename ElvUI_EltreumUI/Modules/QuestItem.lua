@@ -30,7 +30,26 @@ function ElvUI_EltreumUI:QuestItem()
 		EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA");	-- Should work better than PLAYER_ENTERING_WORLD
 		--EltruismQuestItemFrame:RegisterForClicks()
 		EltruismQuestItemFrame:Show()
-		local bindingText = GetBindingKey("CLICK EltruismQuestItem1:LeftButton")
+
+
+		local bindingText1 = GetBindingKey("CLICK EltruismQuestItem1:LeftButton")
+		local bindingText2 = GetBindingKey("CLICK EltruismQuestItem2:LeftButton")
+		local bindingText3 = GetBindingKey("CLICK EltruismQuestItem3:LeftButton")
+		local bindingText4 = GetBindingKey("CLICK EltruismQuestItem4:LeftButton")
+		local bindingText5 = GetBindingKey("CLICK EltruismQuestItem5:LeftButton")
+		local bindingText6 = GetBindingKey("CLICK EltruismQuestItem6:LeftButton")
+		local bindingText7 = GetBindingKey("CLICK EltruismQuestItem7:LeftButton")
+		local bindingText8 = GetBindingKey("CLICK EltruismQuestItem8:LeftButton")
+		local bindingText9 = GetBindingKey("CLICK EltruismQuestItem9:LeftButton")
+		local bindingText10 = GetBindingKey("CLICK EltruismQuestItem10:LeftButton")
+		local bindingText11 = GetBindingKey("CLICK EltruismQuestItem11:LeftButton")
+		local bindingText12 = GetBindingKey("CLICK EltruismQuestItem12:LeftButton")
+
+		--get the keybind
+		--local bindingText = GetBindingKey("CLICK EltruismQuestItem1:LeftButton")
+
+
+
 		EltruismQuestItemFrame:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, 34)
 		E:CreateMover(EltruismQuestItemFrame, "MoverEltruismQuestItem", "EltruismQuestItem", nil, nil, nil, "ALL")
 
@@ -161,9 +180,45 @@ function ElvUI_EltreumUI:QuestItem()
 		end
 
 	 	--register keybind
-	 	if bindingText then
-			SetBindingClick(bindingText, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1))
-		end
+	 	--SetBindingClick(bindingText, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1))
+
+	 	if bindingText1 then
+	 		SetBindingClick(bindingText1, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1))
+	 	end
+	 	if bindingText2 then
+		 	SetBindingClick(bindingText2, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 2))
+		 end
+	 	if bindingText3 then
+	 		SetBindingClick(bindingText3, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 3))
+	 	end
+	 	if bindingText4 then
+	 		SetBindingClick(bindingText4, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 4))
+	 	end
+	 	if bindingText5 then
+	 		SetBindingClick(bindingText5, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 5))
+	 	end
+	 	if bindingText6 then
+	 		SetBindingClick(bindingText6, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 6))
+	 	end
+	 	if bindingText7 then
+	 		SetBindingClick(bindingText7, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 7))
+	 	end
+	 	if bindingText8 then
+	 		SetBindingClick(bindingText8, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 8))
+	 	end
+	 	if bindingText9 then
+	 		SetBindingClick(bindingText9, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 9))
+	 	end
+	 	if bindingText10 then
+	 		SetBindingClick(bindingText10, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 10))
+	 	end
+	 	if bindingText11 then
+	 		SetBindingClick(bindingText11, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 11))
+	 	end
+	 	if bindingText12 then
+	 		SetBindingClick(bindingText12, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 12))
+	 	end
+
 
 		-- Add Button
 		local function AddButton(index,bag,slot,link,itemId,count)
@@ -275,6 +330,10 @@ function ElvUI_EltreumUI:QuestItem()
 			for i = index, #self.items do
 				self.items[i]:Hide();
 			end
+			--update bind text
+			for i = 1, self.shownItems do
+				self.items[i].bind:SetText(GetBindingText(GetBindingKey("CLICK ".."EltruismQuestItem"..i..":LeftButton"),"",1));
+			end
 			-- Update Misc
 			self:UpdateCooldowns();
 		end
@@ -289,7 +348,7 @@ function ElvUI_EltreumUI:QuestItem()
 					CooldownFrame_Set(self.items[i].cooldown,GetInventoryItemCooldown("player",slot));
 				end
 				if (not InCombatLockdown()) and (self.shownItems == 1 or cfg.lastItem == self.items[i].itemId) then
-					self.items[i].bind:SetText(bindingText);
+					self.items[i].bind:SetText(bindingText..i);
 				end
 			end
 		end
