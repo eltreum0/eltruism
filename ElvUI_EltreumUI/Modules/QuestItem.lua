@@ -16,8 +16,8 @@ function ElvUI_EltreumUI:QuestItem()
 
 		-- Config
 		local cfg = {
-				btnSize = 36,
-			}
+			btnSize = 36,
+		}
 
 		local EltruismQuestItemFrame = CreateFrame("Frame","EltruismQuestItem",UIParent,BackdropTemplateMixin and "BackdropTemplate")	-- 9.0.1: Using BackdropTemplate
 		EltruismQuestItemFrame:SetSize(cfg.btnSize,cfg.btnSize)
