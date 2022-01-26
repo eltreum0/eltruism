@@ -28,10 +28,10 @@ function ElvUI_EltreumUI:QuestItem()
 		--EltruismQuestItemFrame:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN") --hmm
 		--EltruismQuestItemFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
 		EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
-		--EltruismQuestItemFrame:RegisterForClicks()
 		EltruismQuestItemFrame:Show()
 
-
+		--get the keybind
+		--local bindingText = GetBindingKey("CLICK EltruismQuestItem1:LeftButton")
 		local bindingText1 = GetBindingKey("CLICK EltruismQuestItem1:LeftButton")
 		local bindingText2 = GetBindingKey("CLICK EltruismQuestItem2:LeftButton")
 		local bindingText3 = GetBindingKey("CLICK EltruismQuestItem3:LeftButton")
@@ -45,13 +45,10 @@ function ElvUI_EltreumUI:QuestItem()
 		local bindingText11 = GetBindingKey("CLICK EltruismQuestItem11:LeftButton")
 		local bindingText12 = GetBindingKey("CLICK EltruismQuestItem12:LeftButton")
 
-		--get the keybind
-		--local bindingText = GetBindingKey("CLICK EltruismQuestItem1:LeftButton")
-
 
 
 		EltruismQuestItemFrame:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, 34)
-		E:CreateMover(EltruismQuestItemFrame, "MoverEltruismQuestItem", "EltruismQuestItem", nil, nil, nil, "ALL")
+		E:CreateMover(EltruismQuestItemFrame, "MoverEltruismQuestItem", "EltruismQuestItemBar", nil, nil, nil, "ALL,SOLO")
 
 		-- These items are not marked as being quest items, but we want to include them anyway
 		local qItems = {

@@ -1531,7 +1531,7 @@ if ElvUI_EltreumUI.Classic then
 							order = 4,
 							type = 'toggle',
 							name = L["Quest Item Bar"],
-							desc = L["Add a Quest Item bar, keybind can be changed in Keybinds > Addons > CLICK EltruismQuestItem"],
+							desc = L["Add a Quest Item bar, keybind can be changed in Key Bindings > ElvUI Eltruism Classic"],
 							width = 'full',
 							get = function(info) return E.db.ElvUI_EltreumUI.questsettings.questitems end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.questsettings.questitems = value E:StaticPopup_Show('CONFIG_RL') end,
