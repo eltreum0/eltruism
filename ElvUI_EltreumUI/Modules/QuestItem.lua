@@ -3,7 +3,10 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 --A merge of QBAr by Aezay with a few edits by Eltreum
 --This module is GNU GPL v3
 function ElvUI_EltreumUI:QuestItem()
-	if E.db.ElvUI_EltreumUI.questsettings.questitems then
+	local _, instanceType = IsInInstance()
+	if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
+		return
+	elseif E.db.ElvUI_EltreumUI.questsettings.questitems then
 		-- Constants
 		local UPDATE_DELAY = 0.5
 		local ITEMID_PATTERN = "item:(%d+)"
@@ -33,14 +36,14 @@ function ElvUI_EltreumUI:QuestItem()
 		EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
 		EltruismQuestItemFrame:SetFrameStrata("MEDIUM")
 
-		local _, instanceType = IsInInstance()
-		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
-			EltruismQuestItemFrame:SetAlpha(0)
+
+		--if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
+			--EltruismQuestItemFrame:SetAlpha(0)
 			--EltruismQuestItemFrame:Hide()
-		else
-			EltruismQuestItemFrame:SetAlpha(1)
+		--else
+			--EltruismQuestItemFrame:SetAlpha(1)
 			--EltruismQuestItemFrame:Show()
-		end
+		--end
 
 		--get the keybind
 		--local bindingText = GetBindingKey("CLICK EltruismQuestItem1:LeftButton")
@@ -143,17 +146,17 @@ function ElvUI_EltreumUI:QuestItem()
 		--local a = EltruismQuestItemFrame:GetWidth()
 		local function CreateItemButton()
 			local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"SecureActionButtonTemplate")
-			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
-				b:Hide()
-			end
+			--if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
+			--	b:Hide()
+			--end
 			b:SetSize(cfg.btnSize,cfg.btnSize)
 			--b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
 			b:SetHighlightTexture("Interface\\Buttons\\OldButtonHilight-Square")
 			b:RegisterForClicks("LeftButtonUp","RightButtonUp")
 			b:SetScript("OnEnter", function (self)
-				if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
-					return
-				else
+				--if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
+				--	return
+				--else
 					GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
 					local bag, slot = self:GetAttribute("bag"), self:GetAttribute("slot")
 					if (bag) then
@@ -164,17 +167,17 @@ function ElvUI_EltreumUI:QuestItem()
 					if E.db.ElvUI_EltreumUI.questsettings.questitemsfade then
 						b:SetAlpha(1)
 					end
-				end
+				--end
 			end)
 			b:SetScript("OnLeave", function(self)
-				if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
-					return
-				else
+				--if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
+				--	return
+				--else
 					if E.db.ElvUI_EltreumUI.questsettings.questitemsfade then
-							b:SetAlpha(0)
+						b:SetAlpha(0)
 					end
 					GameTooltip:Hide()
-				end
+				--end
 			end)
 			b:HookScript("OnClick",Button_OnClick)
 			b:SetAttribute("type*","item")
