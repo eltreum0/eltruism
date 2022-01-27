@@ -3,7 +3,7 @@
 ___
 ### 2.6.9
 Added Quest Items, which will display quest items in a bar. Default keybind for the first is ], but it can be changed in the default Blizzard UI (Keybinds > ElvUI Eltruism)\
-Quest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3\
+Quest Items is a fork of QBar by Aezay, which is licensed under GNU GPLv3\
 Fixed an error when attempting to automatically turn in quests in TBC/Classic
 ___
 ### 2.6.8
