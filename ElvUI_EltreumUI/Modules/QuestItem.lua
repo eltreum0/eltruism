@@ -412,7 +412,7 @@ function ElvUI_EltreumUI:QuestItem()
 		--------------------------------------------------------------------------------------------------------
 
 		EltruismQuestItemFrame:SetScript("OnEvent",function(self,event,...)
-			print("onevent spam"..math.random(1,99))
+			--print(event.." quest onevent spam "..math.random(1,99))
 			if (self[event]) then
 				self[event](self,event,...)
 			else

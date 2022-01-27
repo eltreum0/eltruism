@@ -185,6 +185,11 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					_G.CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0, classcolor.r, classcolor.g, classcolor.b, 0.4)
 				end
 
+				--hide the backdrop on reputation/currency tab
+				hooksecurefunc("CharacterFrameTab_OnClick", function()
+					_G.CharacterFrameInset.backdrop:Hide()
+				end)
+
 				hooksecurefunc("CharacterFrame_Collapse", function()
 					if _G.PaperDollFrame:IsShown() then
 						_G.CharacterFrame:SetWidth(500)
