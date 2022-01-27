@@ -230,7 +230,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 						if id == 269 then
 							_G['ElvNP_TargetClassPowerClassPower']:Show()
 						elseif id == 268 then
-							_G['ElvNP_TargetClassPowerClassPowerStagger']:Show()
+							_G['ElvNP_TargetClassPowerStagger']:Show()
 						end
 					elseif E.myclass == 'MAGE' then
 						if id == 62 then
@@ -256,7 +256,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 						if id == 269 then
 							_G['ElvNP_TargetClassPowerClassPower']:Hide()
 						elseif id == 268 then
-							_G['ElvNP_TargetClassPowerClassPowerStagger']:Hide()
+							_G['ElvNP_TargetClassPowerStagger']:Hide()
 						end
 					elseif E.myclass == 'MAGE' then
 						if id == 62 then
