@@ -2,7 +2,7 @@
 **The future is uncertain**
 ___
 ### 2.6.9
-Added QuestItems, which will display quest items in a bar. Default keybind for the first is ], but it can be changed in the default Blizzard UI (Keybinds > ElvUI Eltruism)
+Added QuestItems, which will display quest items in a bar. Default keybind for the first is ], but it can be changed in the default Blizzard UI (Keybinds > ElvUI Eltruism)\
 Fixed an error when attempting to automatically turn in quests in TBC/Classic
 ___
 ### 2.6.8
