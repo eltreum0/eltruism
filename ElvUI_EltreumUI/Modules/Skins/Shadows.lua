@@ -82,8 +82,6 @@ function ElvUI_EltreumUI:Shadows()
 			self.minimapIsSkinned = true
 		end
 
-
-
 		--tooltip hp bar, one of the worst actually
 		if not _G.GameTooltipStatusBar.backdrop.shadow then
 			local EltruismGameTooltipStatusBar = CreateFrame("Frame", "EltruismGameTooltipStatusBarShadowFrame")
@@ -100,7 +98,6 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-
 		--attempt at mirroring elvui CreateFrame() but edited with a texture that doesn't have a bottom, pretty much failed since it looks the same
 		--[[
 		local offset = (E.PixelMode and 3) or (4)
@@ -115,13 +112,6 @@ function ElvUI_EltreumUI:Shadows()
 		shadow:SetBackdropColor(0, 0, 0, 0)
 		shadow:SetBackdropBorderColor(0, 0, 0, 0.9)
 		]]
-
-
-
-
-
-
-
 
 		------------------------------------------------------------------------------------------------------version specific
 		if ElvUI_EltreumUI.Retail then
