@@ -16,10 +16,13 @@ function ElvUI_EltreumUI:QuestItem()
 
 		-- Config
 		local cfg = {
-			btnSize = 36,
+			btnSize = E.db.ElvUI_EltreumUI.questsettings.questitemsize,
 		}
 
-		local EltruismQuestItemFrame = CreateFrame("Frame","EltruismQuestItem",UIParent,BackdropTemplateMixin and "BackdropTemplate")	-- 9.0.1: Using BackdropTemplate
+		local EltruismQuestItemFrame = CreateFrame("Frame", "EltruismQuestItem", UIParent, BackdropTemplateMixin and "BackdropTemplate")	-- 9.0.1: Using BackdropTemplate
+		if E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 then
+			EltruismQuestItemFrame:SetParent(_G["ElvUI_Bar1Button1"])
+		end
 		EltruismQuestItemFrame:SetSize(cfg.btnSize,cfg.btnSize)
 		EltruismQuestItemFrame:SetClampedToScreen(true)
 		EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE")
@@ -28,6 +31,7 @@ function ElvUI_EltreumUI:QuestItem()
 		--EltruismQuestItemFrame:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN") --hmm
 		--EltruismQuestItemFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
 		EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
+		EltruismQuestItemFrame:SetFrameStrata("MEDIUM")
 
 		local _, instanceType = IsInInstance()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
@@ -97,7 +101,7 @@ function ElvUI_EltreumUI:QuestItem()
 		--                                                Main                                                --
 		--------------------------------------------------------------------------------------------------------
 
-		EltruismQuestItemFrame:SetFrameStrata("MEDIUM")
+
 
 		local function OnUpdate(self,elapsed)
 			--print("quest item spam "..math.random(1,99))
@@ -119,17 +123,6 @@ function ElvUI_EltreumUI:QuestItem()
 		--                                                Items                                               --
 		--------------------------------------------------------------------------------------------------------
 
-		-- Button Scripts
-		local function Button_OnEnter(self)
-			GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
-			local bag, slot = self:GetAttribute("bag"), self:GetAttribute("slot")
-			if (bag) then
-				GameTooltip:SetBagItem(bag,slot)
-			else
-				GameTooltip:SetInventoryItem("player",slot)
-			end
-		end
-
 		-- OnClick
 		local function Button_OnClick(self,button, down)
 			-- Handle Modified Click
@@ -145,6 +138,7 @@ function ElvUI_EltreumUI:QuestItem()
 		end
 
 		-- Make Loot Button
+		--local a = EltruismQuestItemFrame:GetWidth()
 		local function CreateItemButton()
 			local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"SecureActionButtonTemplate")
 			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
@@ -154,8 +148,24 @@ function ElvUI_EltreumUI:QuestItem()
 			--b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
 			b:SetHighlightTexture("Interface\\Buttons\\OldButtonHilight-Square")
 			b:RegisterForClicks("LeftButtonUp","RightButtonUp")
-			b:SetScript("OnEnter",Button_OnEnter)
-			b:SetScript("OnLeave", function() GameTooltip:Hide() end)
+			b:SetScript("OnEnter", function (self)
+				GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
+				local bag, slot = self:GetAttribute("bag"), self:GetAttribute("slot")
+				if (bag) then
+					GameTooltip:SetBagItem(bag,slot)
+				else
+					GameTooltip:SetInventoryItem("player",slot)
+				end
+				if E.db.ElvUI_EltreumUI.questsettings.questitemsfade then
+					b:SetAlpha(1)
+				end
+			end)
+			b:SetScript("OnLeave", function(self)
+				if E.db.ElvUI_EltreumUI.questsettings.questitemsfade then
+						b:SetAlpha(0)
+				end
+				GameTooltip:Hide()
+			end)
 			b:HookScript("OnClick",Button_OnClick)
 			b:SetAttribute("type*","item")
 
@@ -174,13 +184,15 @@ function ElvUI_EltreumUI:QuestItem()
 			b.bind:SetPoint("TOPLEFT",b.icon,3,-3)
 			b.bind:SetPoint("TOPRIGHT",b.icon,-3,-3)
 			b.bind:SetJustifyH("RIGHT")
-
+			--b:SetFrameStrata("HIGH") --new
+			--b:SetParent(EltruismQuestItemFrame) --new
 
 			--b.bind:SetText
 			if (#EltruismQuestItemFrame.items == 0) then
 				b:SetPoint("TOPLEFT",EltruismQuestItemFrame,0,0)
 			end
 
+			--EltruismQuestItemFrame:SetWidth(a + cfg.btnSize)
 			EltruismQuestItemFrame.items[#EltruismQuestItemFrame.items + 1] = b
 			return b
 		end
@@ -400,6 +412,7 @@ function ElvUI_EltreumUI:QuestItem()
 		--------------------------------------------------------------------------------------------------------
 
 		EltruismQuestItemFrame:SetScript("OnEvent",function(self,event,...)
+			print("onevent spam"..math.random(1,99))
 			if (self[event]) then
 				self[event](self,event,...)
 			else
