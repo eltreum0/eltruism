@@ -129,7 +129,8 @@ function ElvUI_EltreumUI:QuestItem()
 		--------------------------------------------------------------------------------------------------------
 
 		-- OnClick
-		local function Button_OnClick(self,button, down)
+		--local function Button_OnClick(self,button, down)
+		local function Button_OnClick(self, _, _)
 			-- Handle Modified Click
 			if (HandleModifiedItemClick(self.link)) then
 				return
@@ -254,7 +255,8 @@ function ElvUI_EltreumUI:QuestItem()
 		-- Add Button
 		local function AddButton(index,bag,slot,link,itemId,count)
 			local btn = EltruismQuestItemFrame.items[index] or CreateItemButton()
-			local _, _, _, _, _, _, _, _, _, itemTexture, _, classID = GetItemInfo(link)
+			--local _, _, _, _, _, _, _, _, _, itemTexture, _, classID = GetItemInfo(link)
+			local _, _, _, _, _, _, _, _, _, itemTexture, _, _ = GetItemInfo(link)
 			--if classID == 12 then --its a quest item
 				btn.icon:SetTexture(itemTexture)
 				btn.count:SetText(count and count > 1 and count or "")
@@ -275,7 +277,8 @@ function ElvUI_EltreumUI:QuestItem()
 
 		-- Check Item -- Az: Some items which starts a quest, are not marked as "Quest" in itemType or itemSubType. Ex: item:17008
 		local function CheckItemTooltip(link,itemId)
-			local itemName, _, _, _, _, itemType, itemSubType, _, _, _, _, classID = GetItemInfo(link)
+			--local itemName, _, _, _, _, itemType, itemSubType, _, _, _, _, classID = GetItemInfo(link)
+			local _, _, _, _, _, itemType, itemSubType, _, _, _, _, _ = GetItemInfo(link)
 			-- Include predefinded items
 			for _, id in ipairs(qItems) do
 				if (itemId == id) then
@@ -327,7 +330,8 @@ function ElvUI_EltreumUI:QuestItem()
 						--itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = GetItemInfo(item)
 
 						if ElvUI_EltreumUI.Retail then
-							local isQuestItem, questId, isActive = GetContainerItemQuestInfo(bag,slot)
+							--local isQuestItem, questId, isActive = GetContainerItemQuestInfo(bag,slot)
+							local isQuestItem, _, _ = GetContainerItemQuestInfo(bag,slot)
 							if isQuestItem then
 							--if (questId and not isActive) or (cfg.userList[itemId]) or (CheckItemTooltip(link,itemId)) then
 								--icon, itemCount, locked, quality, readable, lootable, itemLink, isFiltered, noValue, itemID, isBound = GetContainerItemInfo(bagID, slot)
@@ -336,7 +340,8 @@ function ElvUI_EltreumUI:QuestItem()
 								index = (index + 1)
 							end
 						elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-							local _, _, _, _, _, itemType, itemSubType = GetItemInfo(itemId)
+							--local _, _, _, _, _, itemType, itemSubType = GetItemInfo(itemId)
+							local _, _, _, _, _, itemType, _ = GetItemInfo(itemId)
 							if itemType == "Quest" then
 								local _, count = GetContainerItemInfo(bag,slot)
 								AddButton(index,bag,slot,link,itemId,count)

@@ -1,6 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local LibStub = _G.LibStub
+--local LibStub = _G.LibStub
 --local LSM = LibStub("LibSharedMedia-3.0")
 --if LSM == nil then return end
 local LSM = E.Libs.LSM
