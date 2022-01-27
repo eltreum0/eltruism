@@ -15,9 +15,15 @@ local UnitCanAttack = _G.UnitCanAttack
 
 --Setup Power Bar, Prediction and Text
 local EltreumPowerBar = CreateFrame("StatusBar","EltruismPowerBar")
-local EltreumPowerPrediction = CreateFrame('StatusBar', "EltruismPowerBarPrediction", EltreumPowerBar)
-local EltreumPowerPredictionIncoming = CreateFrame('StatusBar', "EltruismPowerBarPredictionIncoming", EltreumPowerBar)
 EltreumPowerBar:SetValue(0)
+EltreumPowerBar:Hide() --hide at the start before events
+EltreumPowerBar:RegisterEvent("UNIT_POWER_FREQUENT")
+EltreumPowerBar:RegisterEvent("PLAYER_TARGET_CHANGED")
+EltreumPowerBar:RegisterEvent("UNIT_DISPLAYPOWER")
+EltreumPowerBar:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
+EltreumPowerBar:RegisterEvent("UNIT_MODEL_CHANGED")
+
+--Setup the text
 local EltreumPowerBarText = CreateFrame("Frame", nil, EltreumPowerBar)
 EltreumPowerBarText:SetWidth(1)
 EltreumPowerBarText:SetHeight(1)
@@ -28,18 +34,18 @@ EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 10, "OUTLIN
 EltreumPowerBar.Text:SetPoint("CENTER")
 EltreumPowerBar.Text:SetJustifyH("CENTER")
 EltreumPowerBar.Text:SetJustifyV("CENTER")
+
 --Setup background
 EltreumPowerBar.bg = EltreumPowerBar:CreateTexture(nil, "BACKGROUND")
 EltreumPowerBar.bg:SetTexture(E.media.normTex)
 EltreumPowerBar.bg:SetPoint("CENTER", EltreumPowerBar, "CENTER", 0, 0)
-EltreumPowerBar:Hide() --hide at the start before events
+
+--setup the prediction and incoming prediction
+local EltreumPowerPrediction = CreateFrame('StatusBar', "EltruismPowerBarPrediction", EltreumPowerBar)
 EltreumPowerPrediction:Hide()
+
+local EltreumPowerPredictionIncoming = CreateFrame('StatusBar', "EltruismPowerBarPredictionIncoming", EltreumPowerBar)
 EltreumPowerPredictionIncoming:Hide()
-EltreumPowerBar:RegisterEvent("UNIT_POWER_FREQUENT")
-EltreumPowerBar:RegisterEvent("PLAYER_TARGET_CHANGED")
-EltreumPowerBar:RegisterEvent("UNIT_DISPLAYPOWER")
-EltreumPowerBar:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
-EltreumPowerBar:RegisterEvent("UNIT_MODEL_CHANGED")
 
 --Calculate the Power Cost and draw on the Bar
 function ElvUI_EltreumUI:PowerPrediction()
@@ -261,24 +267,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 	local energyb = E.db.unitframe.colors.power.ENERGY.b
 	local energyg = E.db.unitframe.colors.power.ENERGY.g
 	local energyr = E.db.unitframe.colors.power.ENERGY.r
-	local focusb
-	local focusg
-	local focusr
-	local furyb
-	local furyg
-	local furyr
-	local insanityb
-	local insanityg
-	local insanityr
-	local lunarb
-	local lunarg
-	local lunarr
-	local maelb
-	local maelr
-	local maelg
-	local runicr
-	local runicg
-	local runicb
+	local focusb, focusg, focusr, furyb, furyg, furyr, insanityb, insanityg, insanityr, lunarb, lunarg, lunarr, maelb, maelr, maelg, runicr, runicg, runicb
 	if ElvUI_EltreumUI.Retail then
 		focusb = E.db.unitframe.colors.power.FOCUS.b
 		focusg = E.db.unitframe.colors.power.FOCUS.g
