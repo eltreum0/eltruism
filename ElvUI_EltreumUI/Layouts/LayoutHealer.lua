@@ -937,6 +937,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = -7
 		E.db["unitframe"]["units"]["target"]["aurabar"]["spacing"] = 1
 		E.db["unitframe"]["units"]["target"]["aurabar"]["yOffset"] = 1
+		E.db["unitframe"]["units"]["target"]["buffs"]["spacing"] = 2
 		E.db["unitframe"]["units"]["target"]["buffs"]["anchorPoint"] = "TOP"
 		E.db["unitframe"]["units"]["target"]["buffs"]["attachTo"] = "DEBUFFS"
 		E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal"
@@ -981,6 +982,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["target"]["debuffs"]["sizeOverride"] = 30
 		E.db["unitframe"]["units"]["target"]["debuffs"]["anchorPoint"] = "TOP"
 		E.db["unitframe"]["units"]["target"]["debuffs"]["growthX"] = "RIGHT"
+		E.db["unitframe"]["units"]["target"]["debuffs"]["spacing"] = 2
 		E.db["unitframe"]["units"]["target"]["debuffs"]["numrows"] = 2
 		E.db["unitframe"]["units"]["target"]["debuffs"]["perrow"] = 8
 		E.db["unitframe"]["units"]["target"]["fader"]["enable"] = false

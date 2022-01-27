@@ -1108,6 +1108,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["target"]["aurabar"]["maxBars"] = 15
 		E.db["unitframe"]["units"]["target"]["aurabar"]["yOffset"] = 1
 		E.db["unitframe"]["units"]["target"]["aurabar"]["spacing"] = 1
+		E.db["unitframe"]["units"]["target"]["buffs"]["spacing"] = 2
 		E.db["unitframe"]["units"]["target"]["buffs"]["anchorPoint"] = "BOTTOM"
 		E.db["unitframe"]["units"]["target"]["buffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["target"]["buffs"]["countXOffset"] = -3
@@ -1149,6 +1150,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["target"]["debuffs"]["anchorPoint"] = "TOPLEFT"
 		E.db["unitframe"]["units"]["target"]["debuffs"]["growthX"] = "RIGHT"
 		E.db["unitframe"]["units"]["target"]["debuffs"]["enable"] = false
+		E.db["unitframe"]["units"]["target"]["debuffs"]["spacing"] = 2
 		E.db["unitframe"]["units"]["target"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["target"]["fader"]["minAlpha"] = 0.25
 		E.db["unitframe"]["units"]["target"]["fader"]["smooth"] = 0.25
