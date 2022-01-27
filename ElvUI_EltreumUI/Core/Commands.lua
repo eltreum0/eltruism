@@ -85,6 +85,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 			print("|cff82B4ff/way|r - Sets a map waypoint with the supplied coordinates")
 			print("|cff82B4ff/waypoint|r - In retail sets a map waypoint with the supplied coordinates")
 		end
+		print("|cff82B4ff/eltruism background|r - Toggles chat between grey and black background colors for ElvUI")
 		print("|cff82B4ff/eltruism color|r - Toggles unitframe between light and dark modes")
 		print("|cff82B4ff/eltruism chat|r - Toggles chat between dark and transparent modes")
 	end
