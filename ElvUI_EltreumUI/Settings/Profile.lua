@@ -335,6 +335,7 @@ P.ElvUI_EltreumUI = {
 
 	lightmode = false,
 	modetexture = true,
+	greybackground = false,
 
 	sparkcustomcolor ={
 		enable = true,

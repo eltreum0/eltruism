@@ -454,14 +454,39 @@ if ElvUI_EltreumUI.Classic then
 							type = 'group',
 							name = "Cursor Type",
 							args = {
-								currentring = {
+								topbar = {
 									order = 0,
+									type = "description",
+									name = "Choose a type of cursor by clicking it,",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								gap = {
+									order = 1,
+									type = "description",
+									name = "",
+									width = 'full',
+								},
+								gap2 = {
+									order = 2,
+									type = "description",
+									name = "",
+									width = 'full',
+								},
+								gap3 = {
+									order = 3,
+									type = "description",
+									name = "",
+									width = 'full',
+								},
+								currentring = {
+									order = 5,
 									type = 'description',
 									name = function() return L["Currently selected cursor: "]..ElvUI_EltreumUI:CurrentTypeofCursor() end,
 									desc = 'Choose a type of cursor by clicking it,'
 								},
 								showring1 = {
-									order = 1,
+									order = 90,
 									type = "execute",
 									image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring1',
 									name = L["Type 1"],
@@ -469,7 +494,7 @@ if ElvUI_EltreumUI.Classic then
 									func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring1.tga' E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								showring2 = {
-									order = 2,
+									order = 91,
 									type = "execute",
 									image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring2',
 									name = L["Type 2"],
@@ -478,7 +503,7 @@ if ElvUI_EltreumUI.Classic then
 									func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring2.tga' E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								showring3 = {
-									order = 3,
+									order = 92,
 									type = "execute",
 									image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3',
 									name = L["Type 3"],
@@ -487,7 +512,7 @@ if ElvUI_EltreumUI.Classic then
 									func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga' E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								showring4 = {
-									order = 4,
+									order = 93,
 									type = "execute",
 									image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring4',
 									name = L["Type 4"],
@@ -496,7 +521,7 @@ if ElvUI_EltreumUI.Classic then
 									func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring4.tga' E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								showring5 = {
-									order = 5,
+									order = 94,
 									type = "execute",
 									image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring5',
 									name = L["Type 5"],
@@ -505,7 +530,7 @@ if ElvUI_EltreumUI.Classic then
 									func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring5.tga' E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								showring6 = {
-									order = 6,
+									order = 95,
 									type = "execute",
 									image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring6',
 									name = L["Type 6"],
@@ -514,7 +539,7 @@ if ElvUI_EltreumUI.Classic then
 									func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring6.tga' E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								showring7 = {
-									order = 7,
+									order = 96,
 									type = "execute",
 									image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring7',
 									name = L["Type 7"],
@@ -523,7 +548,7 @@ if ElvUI_EltreumUI.Classic then
 									func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring7.tga' E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								showring8 = {
-									order = 8,
+									order = 97,
 									type = "execute",
 									image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring8',
 									name = L["Type 8"],
@@ -532,7 +557,7 @@ if ElvUI_EltreumUI.Classic then
 									func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring8.tga' E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								showring9 = {
-									order = 9,
+									order = 98,
 									type = "execute",
 									image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring9',
 									name = L["Type 9"],
@@ -541,7 +566,7 @@ if ElvUI_EltreumUI.Classic then
 									func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring9.tga' E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								showring10 = {
-									order = 10,
+									order = 99,
 									type = "execute",
 									image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring10',
 									name = L["Type 10"],
@@ -3203,18 +3228,47 @@ if ElvUI_EltreumUI.Classic then
 									func = function() ElvUI_EltreumUI:LightMode() E:StaggeredUpdateAll(nil, true) end,
 									confirm = true,
 								},
+								header448 = {
+									order = 19,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								bgmode = {
+									order = 21,
+									type = "description",
+									name = L["Change the ElvUI background"],
+									width = "full",
+								},
+								black = {
+									order = 22,
+									type = 'execute',
+									name = L["Grey Background"],
+									desc = L["This will set the background to be a grey color"],
+									func = function() ElvUI_EltreumUI:GreyBg() E:StaggeredUpdateAll(nil, true) end,
+									confirm = true,
+								},
+								grey = {
+									order = 23,
+									type = 'execute',
+									name = L["Black Background"],
+									desc = L["This will set the background to be a black color"],
+									func = function() ElvUI_EltreumUI:BlackBg() E:StaggeredUpdateAll(nil, true) end,
+									confirm = true,
+								},
 								header5 = {
-								order = 52,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									order = 52,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								dynamicdatatext = {
-								order = 53,
-								type = "description",
-								name = L["Dynamic Datatext that changes according to class to show Ammo or Soul Shards when playing Hunter, Warrior, Rogue or Warlock"],
-								width = "full",
+									order = 53,
+									type = "description",
+									name = L["Dynamic Datatext that changes according to class to show Ammo or Soul Shards when playing Hunter, Warrior, Rogue or Warlock"],
+									width = "full",
 								},
 								dynamicenable = {
 									order = 54,

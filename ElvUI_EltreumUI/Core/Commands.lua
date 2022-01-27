@@ -65,6 +65,14 @@ function ElvUI_EltreumUI:RunCommands(message)
 		else
 			ElvUI_EltreumUI:DarkMode()
 		end
+	elseif message == 'background' then
+		if E.db.ElvUI_EltreumUI.greybackground == true then
+			ElvUI_EltreumUI:BlackBg()
+		elseif E.db.ElvUI_EltreumUI.greybackground == false then
+			ElvUI_EltreumUI:GreyBg()
+		else
+			ElvUI_EltreumUI:BlackBg()
+		end
 	else
 		ElvUI_EltreumUI:Print("|cff82B4ffYou have entered an unknown command, here's a list of commands you can use:|r")
 		print("|cff82B4ff/eltruism|r - Opens the Eltruism Installer")

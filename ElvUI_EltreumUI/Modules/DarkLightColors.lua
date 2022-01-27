@@ -143,3 +143,33 @@ function ElvUI_EltreumUI:TextureMode()
 		end
 	end
 end
+
+--a more grey and less dark background
+function ElvUI_EltreumUI:GreyBg()
+	E.db["general"]["backdropcolor"]["b"] = 0.098039215686275
+	E.db["general"]["backdropcolor"]["g"] = 0.098039215686275
+	E.db["general"]["backdropcolor"]["r"] = 0.098039215686275
+	E.db["general"]["backdropfadecolor"]["a"] = 0.80000001192093
+	E.db["general"]["backdropfadecolor"]["b"] = 0.13725490196078
+	E.db["general"]["backdropfadecolor"]["g"] = 0.13725490196078
+	E.db["general"]["backdropfadecolor"]["r"] = 0.13725490196078
+
+	E.db.ElvUI_EltreumUI.greybackground = true
+	E:UpdateMediaItems()
+	ElvUI_EltreumUI:Print("ElvUI set to Grey Background")
+end
+
+--the traditional black/dark background
+function ElvUI_EltreumUI:BlackBg()
+	E.db["general"]["backdropcolor"]["b"] = 0
+	E.db["general"]["backdropcolor"]["g"] = 0
+	E.db["general"]["backdropcolor"]["r"] = 0
+	E.db["general"]["backdropfadecolor"]["a"] = 0.70000001788139
+	E.db["general"]["backdropfadecolor"]["b"] = 0
+	E.db["general"]["backdropfadecolor"]["g"] = 0
+	E.db["general"]["backdropfadecolor"]["r"] = 0
+
+	E.db.ElvUI_EltreumUI.greybackground = false
+	E:UpdateMediaItems()
+	ElvUI_EltreumUI:Print("ElvUI set to Black Background")
+end
