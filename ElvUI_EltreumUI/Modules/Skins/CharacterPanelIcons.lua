@@ -187,7 +187,9 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 				--hide the backdrop on reputation/currency tab
 				hooksecurefunc("CharacterFrameTab_OnClick", function()
-					_G.CharacterFrameInset.backdrop:Hide()
+					if _G.CharacterFrameInset.backdrop:IsShown() then
+						_G.CharacterFrameInset.backdrop:Hide()
+					end
 				end)
 
 				hooksecurefunc("CharacterFrame_Collapse", function()

@@ -295,6 +295,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["tooltip"]["colorAlpha"] = 0.7
 		E.db["tooltip"]["cursorAnchor"] = true
 		E.db["tooltip"]["font"] = "Kimberley"
+		E.db["tooltip"]["fontOutline"] = "OUTLINE"
 		E.db["tooltip"]["healthBar"]["font"] = "Kimberley"
 		E.db["tooltip"]["healthBar"]["fontOutline"] = "OUTLINE"
 		E.db["tooltip"]["healthBar"]["height"] = 15
