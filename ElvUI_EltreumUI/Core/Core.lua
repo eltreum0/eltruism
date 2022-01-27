@@ -517,7 +517,7 @@ function ElvUI_EltreumUI:DevTools()
 	end
 end
 
-local maxmemory = 3000
+local maxmemory = 4096
 local currentmemory
 function ElvUI_EltreumUI:ClearMemory()
 	if not InCombatLockdown() then
