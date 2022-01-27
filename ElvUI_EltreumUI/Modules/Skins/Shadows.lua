@@ -41,7 +41,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G.GameMenuFrame,
 			_G.DropDownList1,
 			_G.DropDownList2,
-			_G.GameTooltipStatusBar.backdrop,
+			--_G.GameTooltipStatusBar.backdrop,
 			_G.GameTooltip,
 			_G.ReadyCheckFrame,
 			_G.StackSplitFrame,
@@ -81,6 +81,47 @@ function ElvUI_EltreumUI:Shadows()
 			MinimapShadow:Show()
 			self.minimapIsSkinned = true
 		end
+
+
+
+		--tooltip hp bar, one of the worst actually
+		if not _G.GameTooltipStatusBar.backdrop.shadow then
+			local EltruismGameTooltipStatusBar = CreateFrame("Frame", "EltruismGameTooltipStatusBarShadowFrame")
+			local GameTooltipStatusBarx, GameTooltipStatusBary = _G.GameTooltipStatusBar.backdrop:GetSize()
+			EltruismGameTooltipStatusBar:SetSize(GameTooltipStatusBarx, GameTooltipStatusBary-3)
+			EltruismGameTooltipStatusBar:SetParent(_G['GameTooltipStatusBar.backdrop'])
+			if not (self.EltruismGameTooltipStatusBarIsSkinned) then
+				EltruismGameTooltipStatusBar.shadow = EltruismGameTooltipStatusBar:CreateShadow()
+				EltruismGameTooltipStatusBar:SetPoint("BOTTOMLEFT", _G.GameTooltipStatusBar.backdrop ,"BOTTOMLEFT", 0, 1)
+				EltruismGameTooltipStatusBar:SetPoint("TOPRIGHT", _G.GameTooltipStatusBar.backdrop ,"TOPRIGHT", 0, 0)
+				EltruismGameTooltipStatusBar:SetParent(_G.GameTooltipStatusBar.backdrop)
+				EltruismGameTooltipStatusBar:Show()
+				self.EltruismGameTooltipStatusBarIsSkinned = true
+			end
+		end
+
+
+		--attempt at mirroring elvui CreateFrame() but edited with a texture that doesn't have a bottom, pretty much failed since it looks the same
+		--[[
+		local offset = (E.PixelMode and 3) or (4)
+		local shadow = CreateFrame('Frame', nil, _G.GameTooltipStatusBar.backdrop, 'BackdropTemplate')
+		shadow:SetFrameLevel(1)
+		shadow:SetFrameStrata(_G.GameTooltipStatusBar.backdrop:GetFrameStrata())
+		shadow:SetOutside(_G.GameTooltipStatusBar.backdrop, offset, offset, nil, true)
+		shadow:SetBackdrop({
+			edgeFile = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\GlowTex2.tga",
+			edgeSize = 3
+		})
+		shadow:SetBackdropColor(0, 0, 0, 0)
+		shadow:SetBackdropBorderColor(0, 0, 0, 0.9)
+		]]
+
+
+
+
+
+
+
 
 		------------------------------------------------------------------------------------------------------version specific
 		if ElvUI_EltreumUI.Retail then
