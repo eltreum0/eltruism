@@ -189,9 +189,18 @@ function ElvUI_EltreumUI:SetupCVars()
 
 	--this makes it so that the non nameplate names are hidden
 	if ElvUI_EltreumUI.Retail then
-		SetCVar('UnitNameHostleNPC', 0)
-		SetCVar('UnitNameInteractiveNPC', 0)
+		SetCVar('UnitNameHostleNPC', 0) --Display names for hostile NPCs
+		SetCVar('UnitNameInteractiveNPC', 0) --Display names for interactive NPCs
 		SetCVar('UnitNameNPC', 0)
+		--[[
+		SetCVar('findYourselfAnywhere', 0) --"Always Highlight your character"
+		SetCVar('findYourselfAnywhereOnlyInCombat', 0) --"Highlight your character only when in combat"
+		SetCVar('findYourselfInBG', 0) --"Always Highlight your character in Battlegrounds"
+		SetCVar('findYourselfInBGOnlyInCombat', 9) --"Highlight your character in Battlegrounds only when in combat"
+		SetCVar('findYourselfInRaid', 0) --"Always Highlight your character in Raids"
+		SetCVar('findYourselfInRaidOnlyInCombat', 0) --"Highlight your character in Raids only when in combat"
+		SetCVar('findYourselfMode', 1) --"Highlight you character. 0 = circle, 1 = circle & outline"
+		]]
 	end
 
 	-- fast loot
