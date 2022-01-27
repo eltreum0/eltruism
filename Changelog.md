@@ -4,7 +4,9 @@ ___
 ### 2.6.9
 Added Quest Items, which will display quest items in a bar. Default keybind for the first is ], but it can be changed in the default Blizzard UI (Keybinds > ElvUI Eltruism)\
 Quest Items is a fork of QBar by Aezay, which is licensed under GNU GPLv3\
+Added a grey background mode for ElvUI, simply type /eltruism background to switch between grey and black backgrounds, or go to Eltruism > Media and choose which mode to use\
 Fixed an error when attempting to automatically turn in quests in TBC/Classic
+Fixed missing smart classbar for Brewmaster Monks
 ___
 ### 2.6.8
 Added an option to disable the automatic pinning of waypoints in Retail\
