@@ -351,13 +351,12 @@ function ElvUI_EltreumUI:Shadows()
 			--player castbar
 			local PlayerCastbar = CreateFrame("Frame", "EltruismPlayerCastBarShadowFrame")
 			local isattached = E.db.unitframe.units.player.castbar.iconAttached
-			local PlayerCastbarx
-			local PlayerCastbary
+			local PlayerCastbarx, PlayerCastbary
 			if isattached == false then
-				PlayerCastbarx = (E.db.unitframe.units.player.castbar.width + E.db.unitframe.units.player.castbar.iconSize - 5)
+				PlayerCastbarx = (E.db.unitframe.units.player.castbar.width + E.db.unitframe.units.player.castbar.iconSize -4)
 				PlayerCastbary = (E.db.unitframe.units.player.castbar.height - 3)
 			elseif isattached == true then
-				PlayerCastbarx = (E.db.unitframe.units.player.castbar.width - 5)
+				PlayerCastbarx = (E.db.unitframe.units.player.castbar.width - 4)
 				PlayerCastbary = (E.db.unitframe.units.player.castbar.height - 3)
 			end
 			PlayerCastbar:SetSize(PlayerCastbarx, PlayerCastbary)
@@ -370,19 +369,24 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--target castbar
-			if not E.db.unitframe.units.target.castbar.overlayOnFrame == "Power" then
-				local TargetCastbar = CreateFrame("Frame", "EltruismTargetCastBarShadowFrame")
-				local TargetCastbarx = E.db.unitframe.units.target.castbar.width + E.db.unitframe.units.target.castbar.iconSize -2
-				local TargetCastbary = E.db.unitframe.units.target.castbar.height - 1
-				TargetCastbar:SetSize(TargetCastbarx, TargetCastbary)
-				TargetCastbar:SetParent(_G.ElvUF_Target_CastBar)
-				if not (self.TargetCastBarIsSkinned) then
-					TargetCastbar.shadow = TargetCastbar:CreateShadow(nil, true)
-					TargetCastbar:SetPoint("CENTER", _G.ElvUF_Target_CastBar, "CENTER", -14, 0)
-					self.TargetCastBarIsSkinned = true
-				end
+			local TargetCastbar = CreateFrame("Frame", "EltruismTargetCastBarShadowFrame")
+			local isattachedtarget = E.db.unitframe.units.target.castbar.iconAttached
+			local TargetCastbarx, TargetCastbary
+			if isattachedtarget == false then
+				TargetCastbarx = (E.db.unitframe.units.target.castbar.width + E.db.unitframe.units.target.castbar.iconSize - 4)
+				TargetCastbary = (E.db.unitframe.units.target.castbar.height - 3)
+			elseif isattachedtarget == true then
+				TargetCastbarx = (E.db.unitframe.units.target.castbar.width - 4)
+				TargetCastbary = (E.db.unitframe.units.target.castbar.height - 3)
 			end
-
+			TargetCastbar:SetSize(TargetCastbarx, TargetCastbary)
+			TargetCastbar:SetParent(_G.ElvUF_Target_CastBar)
+			if not (self.TargetCastBarIsSkinned) then
+				TargetCastbar.shadow = TargetCastbar:CreateShadow(nil, true)
+				TargetCastbar:SetPoint("CENTER", _G['ElvUF_Target_CastBar'], "CENTER", -(TargetCastbary/2), 0) ---14, 0)
+				TargetCastbar:Show()
+				self.TargetCastBarIsSkinned = true
+			end
 
 			--party
 			for i = 1, 5 do
