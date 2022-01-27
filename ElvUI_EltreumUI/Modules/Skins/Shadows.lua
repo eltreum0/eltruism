@@ -101,8 +101,6 @@ function ElvUI_EltreumUI:Shadows()
 		--local a = _G["EltruismGameTooltipStatusBarShadowFrame"]:GetChildren()
 		--print(inspect(getmetatable(a)))
 
-
-
 		--attempt at mirroring elvui CreateFrame() but edited with a texture that doesn't have a bottom, pretty much failed since it looks the same
 		--[[
 		local offset = (E.PixelMode and 3) or (4)
@@ -197,6 +195,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.PVPUIFrame,
 				_G.PVEFrameTab1.backdrop,
 				_G.PVEFrameTab2.backdrop,
+				_G.PVEFrameTab3.backdrop,
 				_G.VoidStorageFrame,
 				_G.EncounterJournal,
 				_G.PlayerTalentFrame,
