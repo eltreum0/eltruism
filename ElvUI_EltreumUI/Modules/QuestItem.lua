@@ -35,11 +35,11 @@ function ElvUI_EltreumUI:QuestItem()
 
 		local _, instanceType = IsInInstance()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
-			--EltruismQuestItemFrame:SetAlpha(0)
-			EltruismQuestItemFrame:Hide()
+			EltruismQuestItemFrame:SetAlpha(0)
+			--EltruismQuestItemFrame:Hide()
 		else
-			--EltruismQuestItemFrame:SetAlpha(1)
-			EltruismQuestItemFrame:Show()
+			EltruismQuestItemFrame:SetAlpha(1)
+			--EltruismQuestItemFrame:Show()
 		end
 
 		--get the keybind
