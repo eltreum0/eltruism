@@ -32,7 +32,6 @@ _G["BINDING_NAME_CLICK EltruismQuestItem10:LeftButton"] = "Quest Item 10"
 _G["BINDING_NAME_CLICK EltruismQuestItem11:LeftButton"] = "Quest Item 11"
 _G["BINDING_NAME_CLICK EltruismQuestItem12:LeftButton"] = "Quest Item 12"
 
-
 --Constants
 ElvUI_EltreumUI.Version = GetAddOnMetadata(addon, 'Version')
 ElvUI_EltreumUI.CreditsList = {}
