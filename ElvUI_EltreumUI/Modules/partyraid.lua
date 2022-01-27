@@ -23,6 +23,7 @@ function ElvUI_EltreumUI:GroupRoster()
 		elseif IsInGroup() == false then
 			--print("not in a group")
 			wipe(name)-- = {}
+			--ElvUI_EltreumUI:ClearMemory()
 			deaththrottle = 0
 			ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath() to not fire when not in a group
 			--name = {E.myname}
