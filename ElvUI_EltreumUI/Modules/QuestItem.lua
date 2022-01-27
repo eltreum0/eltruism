@@ -35,8 +35,10 @@ function ElvUI_EltreumUI:QuestItem()
 
 		local _, instanceType = IsInInstance()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
+			--EltruismQuestItemFrame:SetAlpha(0)
 			EltruismQuestItemFrame:Hide()
 		else
+			--EltruismQuestItemFrame:SetAlpha(1)
 			EltruismQuestItemFrame:Show()
 		end
 
@@ -149,22 +151,30 @@ function ElvUI_EltreumUI:QuestItem()
 			b:SetHighlightTexture("Interface\\Buttons\\OldButtonHilight-Square")
 			b:RegisterForClicks("LeftButtonUp","RightButtonUp")
 			b:SetScript("OnEnter", function (self)
-				GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
-				local bag, slot = self:GetAttribute("bag"), self:GetAttribute("slot")
-				if (bag) then
-					GameTooltip:SetBagItem(bag,slot)
+				if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
+					return
 				else
-					GameTooltip:SetInventoryItem("player",slot)
-				end
-				if E.db.ElvUI_EltreumUI.questsettings.questitemsfade then
-					b:SetAlpha(1)
+					GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
+					local bag, slot = self:GetAttribute("bag"), self:GetAttribute("slot")
+					if (bag) then
+						GameTooltip:SetBagItem(bag,slot)
+					else
+						GameTooltip:SetInventoryItem("player",slot)
+					end
+					if E.db.ElvUI_EltreumUI.questsettings.questitemsfade then
+						b:SetAlpha(1)
+					end
 				end
 			end)
 			b:SetScript("OnLeave", function(self)
-				if E.db.ElvUI_EltreumUI.questsettings.questitemsfade then
-						b:SetAlpha(0)
+				if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
+					return
+				else
+					if E.db.ElvUI_EltreumUI.questsettings.questitemsfade then
+							b:SetAlpha(0)
+					end
+					GameTooltip:Hide()
 				end
-				GameTooltip:Hide()
 			end)
 			b:HookScript("OnClick",Button_OnClick)
 			b:SetAttribute("type*","item")
