@@ -98,6 +98,11 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
+		--local a = _G["EltruismGameTooltipStatusBarShadowFrame"]:GetChildren()
+		--print(inspect(getmetatable(a)))
+
+
+
 		--attempt at mirroring elvui CreateFrame() but edited with a texture that doesn't have a bottom, pretty much failed since it looks the same
 		--[[
 		local offset = (E.PixelMode and 3) or (4)
@@ -785,4 +790,15 @@ function ElvUI_EltreumUI:ActionBarShadows(button)
 	end
 end
 hooksecurefunc(AB, 'StyleButton', ElvUI_EltreumUI.ActionBarShadows)  --action bar shadows
+
+benik's statusbar tooltip method, basically the same
+local TT = E:GetModule('Tooltip')
+function ElvUI_EltreumUI:TooltipStatusbarShadow(tt)
+    if not tt.StatusBar then return end
+
+    if not tt.StatusBar.backdrop.shadow then
+        tt.StatusBar.backdrop:CreateShadow()
+    end
+end
+hooksecurefunc(TT, "GameTooltip_SetDefaultAnchor", ElvUI_EltreumUI.TooltipStatusbarShadow)
 ]]
