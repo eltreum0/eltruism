@@ -169,63 +169,65 @@ function ElvUI_EltreumUI:SkinQuests()
 			end
 		end
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-			--from blizzard's QuestLogFrame.lua
-			hooksecurefunc("QuestWatch_Update",function()
-				local questIndex
-				local watchTextIndex = 1
-				local numObjectives
-				local watchText
-				local questWatchMaxWidth = 0
-				local tempWidth
-				local text, _, finished
-				--local questTitle --currently unused, confirm if needed
-				local objectivesCompleted
-				for i=1, GetNumQuestWatches() do
-					questIndex = GetQuestIndexForWatch(i)
-					if (questIndex) then
-						numObjectives = GetNumQuestLeaderBoards(questIndex)
-						--If there are objectives set the title
-						if ( numObjectives > 0 ) then
-							-- Set title
-							watchText = _G["QuestWatchLine"..watchTextIndex]
-							watchText:SetText(GetQuestLogTitle(questIndex))
-							watchText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-							watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-							tempWidth = watchText:GetWidth()
-							if ( watchTextIndex > 1 ) then
-								watchText:SetPoint("TOPLEFT", "QuestWatchLine"..(watchTextIndex - 1), "BOTTOMLEFT", 0, -10)
-							end
-							watchText:Show()
-							if ( tempWidth > questWatchMaxWidth ) then
-								questWatchMaxWidth = tempWidth
-							end
-							watchTextIndex = watchTextIndex + 1
-							objectivesCompleted = 0
-							for j=1, numObjectives do
-								text, _, finished = GetQuestLogLeaderBoard(j, questIndex)
+			if not IsAddOnLoaded('Questie') then
+				--from blizzard's QuestLogFrame.lua
+				hooksecurefunc("QuestWatch_Update",function()
+					local questIndex
+					local watchTextIndex = 1
+					local numObjectives
+					local watchText
+					local questWatchMaxWidth = 0
+					local tempWidth
+					local text, _, finished
+					--local questTitle --currently unused, confirm if needed
+					local objectivesCompleted
+					for i=1, GetNumQuestWatches() do
+						questIndex = GetQuestIndexForWatch(i)
+						if (questIndex) then
+							numObjectives = GetNumQuestLeaderBoards(questIndex)
+							--If there are objectives set the title
+							if ( numObjectives > 0 ) then
+								-- Set title
 								watchText = _G["QuestWatchLine"..watchTextIndex]
-								-- Set Objective text
-								watchText:SetText("  "..text)
+								watchText:SetText(GetQuestLogTitle(questIndex))
 								watchText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-								-- Color the objectives
-								if ( finished ) then
-									watchText:SetTextColor(0, 1, 0)
-									objectivesCompleted = objectivesCompleted + 1
-								else
-									watchText:SetTextColor(1, 1, 1)
-								end
+								watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 								tempWidth = watchText:GetWidth()
+								if ( watchTextIndex > 1 ) then
+									watchText:SetPoint("TOPLEFT", "QuestWatchLine"..(watchTextIndex - 1), "BOTTOMLEFT", 0, -10)
+								end
+								watchText:Show()
 								if ( tempWidth > questWatchMaxWidth ) then
 									questWatchMaxWidth = tempWidth
 								end
-								watchText:SetPoint("TOPLEFT", "QuestWatchLine"..(watchTextIndex - 1), "BOTTOMLEFT", 0, -5)
-								watchText:Show()
 								watchTextIndex = watchTextIndex + 1
+								objectivesCompleted = 0
+								for j=1, numObjectives do
+									text, _, finished = GetQuestLogLeaderBoard(j, questIndex)
+									watchText = _G["QuestWatchLine"..watchTextIndex]
+									-- Set Objective text
+									watchText:SetText("  "..text)
+									watchText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
+									-- Color the objectives
+									if ( finished ) then
+										watchText:SetTextColor(0, 1, 0)
+										objectivesCompleted = objectivesCompleted + 1
+									else
+										watchText:SetTextColor(1, 1, 1)
+									end
+									tempWidth = watchText:GetWidth()
+									if ( tempWidth > questWatchMaxWidth ) then
+										questWatchMaxWidth = tempWidth
+									end
+									watchText:SetPoint("TOPLEFT", "QuestWatchLine"..(watchTextIndex - 1), "BOTTOMLEFT", 0, -5)
+									watchText:Show()
+									watchTextIndex = watchTextIndex + 1
+								end
 							end
 						end
 					end
-				end
-			end)
+				end)
+			end
 		end
 	end
 end
