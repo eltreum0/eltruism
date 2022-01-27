@@ -33,7 +33,6 @@ end
 
 function ElvUI_EltreumUI:RaidDeath()
 	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
-		ElvUI_EltreumUI:ClearMemory()
 		--local _, _, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
 		local _, eventType, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
 		--print(eventType.." "..destName)
