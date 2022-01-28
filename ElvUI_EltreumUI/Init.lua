@@ -239,6 +239,7 @@ end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
 	ElvUI_EltreumUI:FriendlyNameplates()
+	ElvUI_EltreumUI:QuestItem()
 end
 
 function ElvUI_EltreumUI:UNIT_NAME_UPDATE(event,unit)
