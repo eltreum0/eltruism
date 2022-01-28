@@ -164,14 +164,15 @@ function ElvUI_EltreumUI:Initialize()
 end
 
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
-	local _, eventType, _, _, _, _, _, _, _, _, _ = CombatLogGetCurrentEventInfo()
+	--print("aaaaa")
+	--local _, eventType, _, _, _, _, _, _, _, _, _ = CombatLogGetCurrentEventInfo()
 	--local _, eventType, _, _, sourceName, _, _, _, _, _, _, _, _, _, amount = CombatLogGetCurrentEventInfo()
 	--if eventType ~= "UNIT_DIED" and eventType ~= "SPELL_ENERGIZE" then
-	if eventType ~= "UNIT_DIED" then
-		return
-	elseif eventType == "UNIT_DIED" then
+	--if eventType ~= "UNIT_DIED" then
+	--	return
+	--elseif eventType == "UNIT_DIED" then
 		ElvUI_EltreumUI:RaidDeath()
-	end
+	--end
 	--elseif (eventType == "SPELL_ENERGIZE") and (sourceName == E.myname) then
 		--print(sourceName.." amount: "..amount)
 		--ElvUI_EltreumUI:PowerPrediction()
