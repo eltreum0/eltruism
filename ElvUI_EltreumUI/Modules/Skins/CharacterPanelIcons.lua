@@ -69,10 +69,14 @@ function ElvUI_EltreumUI:PlayerNamepaperdoll()
 		if charactertext == nil then
 			return
 		elseif not charactertext:match("|T") then
-			if ElvUI_EltreumUI.REtail then
-				_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+			if ElvUI_EltreumUI.Retail then
+				if _G.CharacterFrameTitleText then
+					_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+				end
 			else
-				_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+				if _G.CharacterFrameTitleText then
+					_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+				end
 			end
 		end
 	end
