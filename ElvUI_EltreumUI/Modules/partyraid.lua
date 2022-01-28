@@ -9,8 +9,7 @@ local GetRaidRosterInfo = _G.GetRaidRosterInfo
 
 -- Conversion of the party/raid death weakaura into an addon option
 local name = {}
-local _
-local deaththrottle
+local _, deaththrottle
 function ElvUI_EltreumUI:GroupRoster()
 	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
 		if IsInGroup() == true then
