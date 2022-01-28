@@ -39,58 +39,28 @@ function ElvUI_EltreumUI:SkinQuests()
 					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				end
 
-				--set the fonts
-				_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-				_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-
-				_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*2, "OUTLINE")
-				_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-
-				_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*2, "OUTLINE")
-				_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-
-				_G.ObjectiveTrackerBlocksFrame.AchievementHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*2, "OUTLINE")
-				_G.ObjectiveTrackerBlocksFrame.AchievementHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-
-				_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*2, "OUTLINE")
-				_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-
-				_G.WORLD_QUEST_TRACKER_MODULE.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-				_G.WORLD_QUEST_TRACKER_MODULE.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-
-				_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-				_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-
-				_G.ObjectiveFont:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-				_G.ObjectiveFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-
-				_G.QuestFont:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize)
-				_G.QuestFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-
-				_G.QuestFont_Large:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize)
-				_G.QuestFont_Super_Huge:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-				_G.QuestFont_Enormous:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-
 				--Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua
-				local questmodules = {
+			    local questmodules = {
 					_G.QUEST_TRACKER_MODULE,
 					_G.ACHIEVEMENT_TRACKER_MODULE,
 					_G.BONUS_OBJECTIVE_TRACKER_MODULE,
 					_G.WORLD_QUEST_TRACKER_MODULE,
 					_G.UI_WIDGET_TRACKER_MODULE,
 					_G.CAMPAIGN_QUEST_TRACKER_MODULE,
-				}
-
-				local mult = 0.85
-				for _, k in pairs(questmodules) do
-					hooksecurefunc(k, "AddObjective", function(_, block)
-						if block.HeaderText then --quest title
-							block.HeaderText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
+			    }
+			    local mult = 0.85
+			    for _, k in pairs(questmodules) do
+			    	hooksecurefunc(k, "AddObjective", function(_, block)
+		                if not block then
+		                    return
+		                end
+		                if block.HeaderText then
+		                    block.HeaderText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
 							block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 							block.HeaderText:SetWordWrap(true)
-						end
-						if block.currentLine then
-							if block.currentLine.objectiveKey == 0 then --also quest title
+		                end
+		                if block.currentLine then --quest text
+		                   if block.currentLine.objectiveKey == 0 then --also quest title
 								block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
 								block.currentLine.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 								block.currentLine.Text:SetWordWrap(true)
@@ -99,75 +69,109 @@ function ElvUI_EltreumUI:SkinQuests()
 								block.currentLine.Text:SetTextColor(mult, mult, mult)
 								block.currentLine.Text:SetWordWrap(true)
 							end
+		                end
+		            end)
+			    end
+
+			    hooksecurefunc('ObjectiveTracker_Update', function ()
+				    local modules = _G.ObjectiveTrackerFrame.MODULES
+				    if not modules then
+				        return
+				    end
+				    for i = 1, #modules do
+				        local module = modules[i]
+				        if module and module.Header and module.Header.Text then
+				            module.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*1.5, "OUTLINE")
+							module.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							module.Header.Text:SetShadowColor(0, 0, 0, 0.8)
+							module.Header.Text:SetShadowOffset(2, -1)
+				        end
+				    end
+				end)
+
+			    hooksecurefunc(_G.SCENARIO_CONTENT_TRACKER_MODULE, 'UpdateCriteria', function ()
+				    if _G.ScenarioObjectiveBlock then
+				        local frames = {_G.ScenarioObjectiveBlock:GetChildren()}
+				        for _, frame in pairs(frames) do
+				            if frame.Text then
+				                frame.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
+								frame.Text:SetTextColor(1, 1, 1)  --dungeon obj text
+								frame.Text:SetWordWrap(true)
+				            end
+				        end
+				    end
+				end)
+
+			    if _G.ScenarioObjectiveBlock then
+			        local frames = {_G.ScenarioObjectiveBlock:GetChildren()}
+			        for _, frame in pairs(frames) do
+			            if frame.Text then
+			                frame.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
+							frame.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+							frame.Text:SetWordWrap(true)
+			            end
+			        end
+			    end
+
+			    --skin the dungeon/raid/scenario bg
+				local ScenarioObjectiveBlockBackground = CreateFrame("Frame", "EltruismScenarioBlockBg")
+				local ScenarioObjectiveBlockBackgroundTexture = ScenarioObjectiveBlockBackground:CreateTexture()
+				hooksecurefunc(_G["SCENARIO_CONTENT_TRACKER_MODULE"], "Update", function ()
+					ScenarioObjectiveBlockBackground:SetParent(_G.ScenarioStageBlock)
+					ScenarioObjectiveBlockBackground:ClearAllPoints()
+					ScenarioObjectiveBlockBackground:SetAllPoints(_G.ScenarioStageBlock.NormalBG)
+					ScenarioObjectiveBlockBackground:CreateBackdrop('Transparent')
+					ScenarioObjectiveBlockBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI\\Code\\Media\\Textures\\White8x8.tga")
+					ScenarioObjectiveBlockBackgroundTexture:SetColorTexture(0, 0, 0, 0.1)
+					ScenarioObjectiveBlockBackgroundTexture:SetAlpha(0.1)
+					ScenarioObjectiveBlockBackgroundTexture:SetAllPoints(_G.ScenarioStageBlock.NormalBG)
+					ScenarioObjectiveBlockBackground:Show()
+					ScenarioObjectiveBlockBackgroundTexture:Show()
+					_G.ScenarioStageBlock.NormalBG:Hide()
+					_G.ScenarioStageBlock.FinalBG:Hide()
+					--dungeon/raid/scenario name text
+					if _G.ScenarioStageBlock.Stage then
+						_G.ScenarioStageBlock.Stage:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+						_G.ScenarioStageBlock.Stage:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, "OUTLINE")
+						_G.ScenarioStageBlock.Stage:SetShadowColor(0, 0, 0, 0.8)
+						_G.ScenarioStageBlock.Stage:SetShadowOffset(2, -1)
+					end
+				end)
+
+				--turns out this is using too much memory, maybe because it was hooking?
+				--[[
+				    hooksecurefunc(_G.DEFAULT_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
+						if ( block.HeaderText ) then
+							block.HeaderText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							block.HeaderText.colorStyle = {r = classcolor.r, g = classcolor.g, b = classcolor.b}
+						end
+						if block.currentLine then --this is the text
+							for _, line in pairs(block.lines) do
+								line.Text:SetTextColor(1, 1, 1)
+								line.Text.colorStyle = {r = mult * 1, g = mult * 1, b = mult * 1}
+								if ( line.Dash ) then
+									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
+							end
 						end
 					end)
-				end
 
-				hooksecurefunc(_G.DEFAULT_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
-					block.isHighlighted = true
-					if ( block.HeaderText ) then
-						local customheaderColorStyle = {r = classcolor.r, g = classcolor.g, b = classcolor.b}
-						block.HeaderText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-						block.HeaderText.colorStyle = customheaderColorStyle
-						--print("entered default obj tracker module")
-					end
-					if block.currentLine then --this is the text
-						--for objectiveKey, line in pairs(block.lines) do
-						for _, line in pairs(block.lines) do
-							line.Text:SetTextColor(1, 1, 1)
-							line.Text.colorStyle = {r = mult * 1, g = mult * 1, b = mult * 1}
-							if ( line.Dash ) then
-								line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+					hooksecurefunc(_G.DEFAULT_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
+						if ( block.HeaderText ) then
+							block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+							block.HeaderText.colorStyle = { r = mult * classcolor.r, g = mult * classcolor.g, b = mult * classcolor.b }
+						end
+						if block.currentLine then
+							for _, line in pairs(block.lines) do
+								line.Text:SetTextColor(mult, mult, mult)
+								line.Text.colorStyle = {r = mult, g = mult, b = mult}
+								if ( line.Dash ) then
+									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
 							end
 						end
-					end
-				end)
-
-				hooksecurefunc(_G.DEFAULT_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
-					block.isHighlighted = nil
-					if ( block.HeaderText ) then
-						local customheaderColorStyle = { r = mult * classcolor.r, g = mult * classcolor.g, b = mult * classcolor.b }
-						block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
-						block.HeaderText.colorStyle = customheaderColorStyle
-					end
-					if block.currentLine then
-						--for objectiveKey, line in pairs(block.lines) do
-						for _, line in pairs(block.lines) do
-							line.Text:SetTextColor(mult, mult, mult)
-							line.Text.colorStyle = {r = mult, g = mult, b = mult}
-							if ( line.Dash ) then
-								line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-							end
-						end
-					end
-				end)
-
-
-				local titletable = {
-					_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.Text,
-					_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text,
-					_G.ObjectiveTrackerBlocksFrame.AchievementHeader.Text,
-					_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.Text,
-				}
-				local mainttilestable = {
-					_G.ObjectiveTrackerFrame.HeaderMenu.Title,
-					_G.WORLD_QUEST_TRACKER_MODULE.Header.Text,
-					_G.BONUS_OBJECTIVE_TRACKER_MODULE.Header.Text,
-				}
-				hooksecurefunc("ObjectiveTracker_Update", function()
-					for _, k in pairs(titletable) do
-						k:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*1.5, "OUTLINE")
-						k:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-						k:SetShadowColor(0, 0, 0, 0.8)
-						k:SetShadowOffset(2, -1)
-					end
-					for _, k in pairs(mainttilestable) do
-						k:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-						k:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-						k:SetShadowColor(0, 0, 0, 0.8)
-						k:SetShadowOffset(2, -1)
-					end
-				end)
+					end)
+				]]
 			end
 		end
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
