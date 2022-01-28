@@ -10,7 +10,7 @@ function ElvUI_EltreumUI:SkinQuests()
 	local fontsize = E.db.general.fontSize
 	if E.db.ElvUI_EltreumUI.skins.quests then
 		if ElvUI_EltreumUI.Retail then
-			if (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ElvUI_WindTools")) then
+			if (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 				local ObjectiveTrackerBlocksFrame = _G.ObjectiveTrackerBlocksFrame
 				--create the lines
 				if ObjectiveTrackerBlocksFrame then
