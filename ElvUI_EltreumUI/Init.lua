@@ -59,7 +59,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:SkinMailZone() --skins zone change messages and mail font
 	ElvUI_EltreumUI:Shadows() --adds shadows to frames
 	ElvUI_EltreumUI:AutoScreenshot() --takes screenshots when certain events are fired
-	ElvUI_EltreumUI:SkinQuests() --skins quest objective frame to be class colored
 	ElvUI_EltreumUI:FriendlyNameplates() -- controls hiding healthbar from friendly nameplates inside instances
 	ElvUI_EltreumUI:TextureMode() -- checks for light mode in order to set texture to be class based, fired only when option is enabled
 	ElvUI_EltreumUI:WAAnchor()  --creates a weakaura anchor that can be used to attack weakauras to elvui's unitframe visibility settings
@@ -76,6 +75,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:GroupRoster() -- attempt at prevent CLEU tracking
 	ElvUI_EltreumUI:AutoAcceptQuests() -- yet another auto accept quest thing
 	ElvUI_EltreumUI:QuestItem() -- quest item bar merged from QBar by Aezay with edits to work in TBC/Classic
+	ElvUI_EltreumUI:SkinQuests() --skins quest objective frame to be class colored
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
