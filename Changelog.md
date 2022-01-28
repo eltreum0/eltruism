@@ -3,6 +3,8 @@
 ___
 ### 2.7.0
 Fixed Quest Items showing up inside instances when it shouldn't\
+Fixed Blizzard Combat Text getting disabled/enabled when it shouldn't\
+Added some missing shadows
 ___
 ### 2.6.9
 Added a grey background mode for ElvUI, simply type /eltruism background to switch between grey and black backgrounds, or go to Eltruism > Media and choose which mode to use\
