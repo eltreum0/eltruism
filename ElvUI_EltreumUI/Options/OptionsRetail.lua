@@ -2701,7 +2701,7 @@ if ElvUI_EltreumUI.Retail then
 					icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\quest',
 					order = 85,
 					args = {
-						headergaphere = {
+						headergaphere112 = {
 							order = 1,
 							type = "description",
 							name = "",
@@ -2775,7 +2775,7 @@ if ElvUI_EltreumUI.Retail then
 							get = function() return E.db.ElvUI_EltreumUI.questsettings.questitemsize end,
 							set = function(_, value) E.db.ElvUI_EltreumUI.questsettings.questitemsize = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
-						headergaphere = {
+						headergaphere9487 = {
 							order = 95,
 							type = "description",
 							name = "",
