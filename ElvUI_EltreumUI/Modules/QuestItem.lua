@@ -15,7 +15,9 @@ function ElvUI_EltreumUI:QuestItem()
 			--E:DisableMover("MoverEltruismQuestItem")
 			--return
 		else
-			EltruismQuestItemFrame:Show()
+			if not EltruismQuestItemFrame:IsShown() then
+				EltruismQuestItemFrame:Show()
+			end
 			-- Constants
 			local UPDATE_DELAY = 0.5
 			local ITEMID_PATTERN = "item:(%d+)"
