@@ -5,22 +5,20 @@ local LSM = E.Libs.LSM
 -- Statusbar
 LSM:Register("statusbar", "Eltreum-Blank", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Blank.tga]])
 LSM:Register("statusbar", "Eltreum-Elvui-Norm", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Elvui-Norm.tga]])
+LSM:Register("statusbar", "Asphyxia-Norm", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\AsphyxiaNorm.tga]])
+LSM:Register("statusbar", "Eltreum-Stripes", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Stripes.tga]])
+
+-- Fonts
+LSM:Register("font", "Exo2 Extra Bold", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Exo2-ExtraBold.ttf]])
+LSM:Register("font", "GothamNarrow Black", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GothamNarrowBlack.ttf]])
+LSM:Register('font', "Kimberley", [[Interface\AddOns\ElvUI_EltreumUI\Media\Fonts\Kimberley.ttf]])
+LSM:Register("font", "Roboto", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Roboto-Bold.ttf]])
+
+-- Border
+LSM:Register("border", "better-blizzard-border-small-alternate", [[Interface\Addons\ElvUI_EltreumUI\Media\border\better-blizzard-border-small-alternate.tga]])
+
 function ElvUI_EltreumUI:ExtraMedia()
 
-	-- Fonts
-	LSM:Register("font", "Exo2 Extra Bold", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Exo2-ExtraBold.ttf]])
-	LSM:Register("font", "GothamNarrow Black", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GothamNarrowBlack.ttf]])
-	LSM:Register('font', "Kimberley", [[Interface\AddOns\ElvUI_EltreumUI\Media\Fonts\Kimberley.ttf]])
-	LSM:Register("font", "Roboto", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Roboto-Bold.ttf]])
-
-	-- Statusbar
-	LSM:Register("statusbar", "Asphyxia-Norm", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\AsphyxiaNorm.tga]])
-	LSM:Register("statusbar", "Eltreum-Stripes", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Stripes.tga]])
-
-	-- Border
-	LSM:Register("border", "better-blizzard-border-small-alternate", [[Interface\Addons\ElvUI_EltreumUI\Media\border\better-blizzard-border-small-alternate.tga]])
-
-	--below was on function, above was not
 	-- Statusbar
 	LSM:Register("statusbar", "Eltreum7pixel", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum7pixel.tga]])
 	LSM:Register("statusbar", "Eltreum-Class-DemonHunter", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-DH.tga]])
