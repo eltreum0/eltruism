@@ -12,12 +12,10 @@ function ElvUI_EltreumUI:QuestItem()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
 			EltruismQuestItemFrame:Hide()
 			--EltruismQuestItemFrame:UnregisterAllEvents()
-			print("222222222222222222222222222222aaaaa")
 			--E:DisableMover("MoverEltruismQuestItem")
 			--return
 		else
 			EltruismQuestItemFrame:Show()
-			print("333333333333333333bbbbb")
 			-- Constants
 			local UPDATE_DELAY = 0.5
 			local ITEMID_PATTERN = "item:(%d+)"
