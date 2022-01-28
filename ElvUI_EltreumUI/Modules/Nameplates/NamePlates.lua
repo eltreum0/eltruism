@@ -244,7 +244,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 						return
 					end
 				end
-			elseif UnitExists("target") and not UnitCanAttack("player", "target") then
+			elseif UnitExists("target") and (not UnitCanAttack("player", "target")) then
 				if ElvUI_EltreumUI.Retail then
 					if E.myclass == 'DEATHKNIGHT' then
 						_G['ElvNP_TargetClassPowerRunes']:Hide()
