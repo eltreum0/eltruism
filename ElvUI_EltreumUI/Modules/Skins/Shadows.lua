@@ -187,6 +187,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.CollectionsJournalTab2.backdrop,
 				_G.CollectionsJournalTab3.backdrop,
 				_G.CollectionsJournalTab4.backdrop,
+				_G.CollectionsJournalTab5.backdrop,
 				_G.ToyBox,
 				_G.HeirloomsJournal,
 				_G.PetJournal,
