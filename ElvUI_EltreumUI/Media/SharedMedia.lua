@@ -1,9 +1,14 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
---local LibStub = _G.LibStub
---local LSM = LibStub("LibSharedMedia-3.0")
---if LSM == nil then return end
 local LSM = E.Libs.LSM
+
+
+-- Statusbar
+LSM:Register("statusbar", "Eltreum-Blank", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Blank.tga]])
+LSM:Register("statusbar", "Eltreum-Elvui-Norm", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Elvui-Norm.tga]])
+
+function ElvUI_EltreumUI:ExtraMedia()
+
 
 -- Fonts
 LSM:Register("font", "Exo2 Extra Bold", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Exo2-ExtraBold.ttf]])
@@ -12,15 +17,23 @@ LSM:Register('font', "Kimberley", [[Interface\AddOns\ElvUI_EltreumUI\Media\Fonts
 LSM:Register("font", "Roboto", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Roboto-Bold.ttf]])
 
 -- Statusbar
-LSM:Register("statusbar", "Eltreum-Blank", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Blank.tga]])
-LSM:Register("statusbar", "Eltreum-Elvui-Norm", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Elvui-Norm.tga]])
+
 LSM:Register("statusbar", "Asphyxia-Norm", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\AsphyxiaNorm.tga]])
 LSM:Register("statusbar", "Eltreum-Stripes", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Stripes.tga]])
+
+
+
 
 -- Border
 LSM:Register("border", "better-blizzard-border-small-alternate", [[Interface\Addons\ElvUI_EltreumUI\Media\border\better-blizzard-border-small-alternate.tga]])
 
-function ElvUI_EltreumUI:ExtraMedia()
+
+
+
+
+
+
+
 
 	-- Statusbar
 	LSM:Register("statusbar", "Eltreum7pixel", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum7pixel.tga]])
