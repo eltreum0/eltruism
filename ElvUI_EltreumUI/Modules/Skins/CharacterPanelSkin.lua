@@ -403,7 +403,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G['GameTooltip']:Hide()
 				end)
 
-
 		  		hooksecurefunc("PaperDollFrame_UpdateStats", function()
 		  			local speed = ((GetUnitSpeed("player")/7) *100)
 		  			_G.CharacterFrame.EltruismSpeed:SetText(math.ceil(speed).."%")
@@ -427,7 +426,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 					local stats = {_G.CharacterStatsPane:GetChildren()}
 					local number = (#stats)
-					print(number)
+					--print(number)
 					if number == 13 then
 						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -80)
 						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -80)
