@@ -1,5 +1,6 @@
 ### 🌌 Next Version 
-**The future is uncertain**___
+**The future is uncertain**
+___
 ### 2.7.1
 Improved the Retail Character Panel skin, making it more compatible with Shadow & Light\
 Added some checks to prevent possible taints related to Quest Items while being in combat\
