@@ -3,6 +3,7 @@
 ___
 ### 2.7.2
 Fixed Waypoint Time to Arrive not updating when selecting World Quests\
+Fixed Light Mode texture not updating on druid shapeshift and when loading in
 ___
 ### 2.7.1
 Improved the Retail Character Panel skin, making it more compatible with Shadow & Light\
