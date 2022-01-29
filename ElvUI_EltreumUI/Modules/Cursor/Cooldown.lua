@@ -203,9 +203,15 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 								EltruismCooldownText:SetTextColor(1, 0, 0)
 							end
 						end
+						if fadeStamp == nil then --error fix attempt
+							fadeStamp = 0
+						end
+						if now == nil then
+							now = 0
+						end
 						if isHidden then
 							return
-						elseif now > fadeStamp then
+						elseif now > fadeStamp then  --error?
 							getEltruismCooldownFrameAlpha = EltruismCooldownFrame:GetAlpha()
 							isHidden = true
 							UIFrameFadeOut(EltruismCooldownFrame, 1, 1, 0)
