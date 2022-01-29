@@ -98,14 +98,8 @@ if ElvUI_EltreumUI.Retail then
 							end
 						end
 					end)
-				elseif C_Map.HasUserWaypoint() == false then
-					--remove the onupdate
-					EltruismTimeToArrive:SetScript("OnUpdate", nil)
-					--print("nil onupdate maps")
 				end
 			end)
-
-
 		end
 	end
 end
