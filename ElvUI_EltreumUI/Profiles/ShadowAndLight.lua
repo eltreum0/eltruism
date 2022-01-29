@@ -232,6 +232,19 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		--AFK Screensaver
 		E.db["sle"]["afk"]["animTime"] = 2
 		E.db["sle"]["afk"]["animType"] = "FadeIn"
+		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["alpha"] = 1
+		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["anchorPoint"] = "CENTER"
+		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["attachTo"] = "SL_TopPanel"
+		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["drawLayer"] = "ARTWORK"
+		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["drawLevel"] = 1
+		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["enable"] = true
+		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["height"] = 80
+		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["inversePoint"] = false
+		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["name"] = "EltruismLogo"
+		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["path"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohq"
+		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["width"] = 320
+		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["xOffset"] = -500
+		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["yOffset"] = 0
 		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["anchorPoint"] = "CENTER"
 		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["attachTo"] = "SL_TopPanel"
 		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["styleOptions"] = "benikui"
@@ -271,7 +284,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["yOffset"] = 0
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = "Kimberley"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["size"] = 20
-		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["xOffset"] = 4
+		E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["xOffset"] = 2
 		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["anchorPoint"] = "TOPRIGHT"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["attachTo"] = "SL_BottomPanel"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["enable"] = false
@@ -297,7 +310,10 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["size"] = 20
 		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["xOffset"] = 128
 		E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["yOffset"] = -30
+		E.db["sle"]["afk"]["defaultTexts"]["SL_ScrollFrame"]["font"] = "Kimberley"
+		E.db["sle"]["afk"]["defaultTexts"]["SL_ScrollFrame"]["yOffset"] = -40
 		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["enable"] = false
+		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["font"] = "Kimberley"
 		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["size"] = 16
 		E.db["sle"]["afk"]["defaultTexts"]["SL_SubText"]["xOffset"] = 0
 		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["anchorPoint"] = "CENTER"
