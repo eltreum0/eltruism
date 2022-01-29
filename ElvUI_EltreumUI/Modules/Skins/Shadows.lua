@@ -80,7 +80,7 @@ function ElvUI_EltreumUI:Shadows()
 			MinimapShadow:SetPoint("BOTTOMLEFT", _G['MinimapPanel'] ,"BOTTOMLEFT", 0, 0)
 			if E.db.datatexts.panels.MinimapPanel.backdrop == false then
 				MinimapShadow:SetPoint("BOTTOMLEFT", _G['Minimap'] ,"BOTTOMLEFT", 0, 0)
-				print("aaaa")
+				--print("aaaa")
 			end
 			MinimapShadow:Show()
 			self.minimapIsSkinned = true
