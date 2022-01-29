@@ -101,194 +101,52 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 			classFrame:SetPoint("RIGHT", "CharacterLevelText", 8-gapclassic, 0)
 			--classFrame:SetSize(30, 30)
 			--classFrame:SetPoint("TOPLEFT", _G["PaperDollItemsFrame"], 20, -15)
-
 		elseif ElvUI_EltreumUI.Retail then
-			if (not IsAddOnLoaded("ElvUI_SLE")) or not E.db.sle.armory.character.enable then
 
-				hooksecurefunc('PaperDollFrame_SetLevel', function()
-					_G.CharacterFrameTitleText:ClearAllPoints()
-					_G.CharacterFrameTitleText:SetPoint('TOP', _G.CharacterModelFrame, 0, 50)
-					_G.CharacterFrameTitleText:SetParent(_G.CharacterFrame)
-					_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
-					_G.CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-					_G.CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
-					_G.CharacterFrameTitleText:SetShadowOffset(2, -1)
-					_G.CharacterLevelText:ClearAllPoints()
-					_G.CharacterLevelText:SetPoint('TOP', _G.CharacterFrameTitleText, 'BOTTOM', 0, 0)
-					_G.CharacterLevelText:SetDrawLayer("OVERLAY")
-				end)
-				_G.CharacterFrame:SetHeight(470)
-				-- Move Right Side since left side is already ok
-				_G.CharacterFrameInsetRight:SetPoint('TOPLEFT', _G.CharacterFrameInset, 'TOPRIGHT', 130, 0)
-				_G.CharacterHandsSlot:SetPoint('TOPRIGHT', _G.CharacterFrameInsetRight, 'TOPLEFT', 0, -3)
-				-- Move bottom equipment slots
-				_G.CharacterMainHandSlot:SetPoint('BOTTOMLEFT', _G.PaperDollItemsFrame, 'BOTTOMLEFT', 195, 20)
-				--strech it a bit
-				_G.CharacterModelFrame:ClearAllPoints()
-				_G.CharacterModelFrame:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
-				_G.CharacterModelFrame:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
-				_G.CharacterModelFrame:SetPoint('BOTTOM', _G.CharacterMainHandSlot, 0, -5)
-				--hide other bgs so one can be streched like the talents for tbc/classic
-				_G.CharacterModelFrame.BackgroundTopRight:Hide()
-				_G.CharacterModelFrame.BackgroundBotLeft:Hide()
-				_G.CharacterModelFrame.BackgroundBotRight:Hide()
-				_G.CharacterModelFrame.BackgroundTopLeft:SetAllPoints(_G.CharacterModelFrame)
-				_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(_G.CharacterModelFrame)
-				--move the equipment manager to a nice position
-				_G.PaperDollEquipmentManagerPane:ClearAllPoints()
-				_G.PaperDollEquipmentManagerPane:SetPoint("RIGHT", _G.CharacterFrame, "RIGHT", -30, -20)
-				--move the titles panel to a nice position
-				_G.PaperDollTitlesPane:ClearAllPoints()
-				_G.PaperDollTitlesPane:SetPoint("RIGHT", _G.CharacterFrame, "RIGHT", -30, -20)
-
-				--move the artwork
-				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-
-
-					local classBgs = {
-						['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
-						['PALADIN'] = "Interface\\Artifacts\\ArtifactUIPaladin",
-						['HUNTER'] = "Interface\\Artifacts\\ArtifactUIHunter",
-						['ROGUE'] = "Interface\\Artifacts\\ArtifactUIRogue",
-						['PRIEST'] = "Interface\\Artifacts\\ArtifactUIPriest",
-						['DEATHKNIGHT'] = "Interface\\Artifacts\\ArtifactUIDeathKnightFrost",
-						['SHAMAN'] = "Interface\\Artifacts\\ArtifactUIShaman",
-						['MAGE'] = "Interface\\Artifacts\\ArtifactUIMageArcane",
-						['WARLOCK'] = "Interface\\Artifacts\\ArtifactUIWarlock",
-						['MONK'] = "Interface\\Artifacts\\ArtifactUIMonk",
-						['DRUID'] = "Interface\\Artifacts\\ArtifactUIDruid",
-						['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
-					}
-
-					local alphabg = E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha
-					if alphabg == nil then
-						alphabg = 0.3
-					end
-
-					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
-					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-					CharacterFrameBackgroundTexture:SetAlpha(alphabg)
-					CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame)
-					CharacterFrameBackgroundTexture:SetParent(_G.CharacterFrame)
-					CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK")
-
-					_G.CharacterModelFrame.backdrop:Hide()
-					--_G.CharacterModelFrameBackgroundTopLeft:ClearAllPoints()
-					--_G.CharacterModelFrameBackgroundTopLeft:SetAllPoints(_G.CharacterFrame)
-					--_G.CharacterModelFrameBackgroundTopLeft:SetParent(_G.CharacterFrame)
-					--_G.CharacterModelFrameBackgroundTopLeft:SetDrawLayer("ARTWORK")
-					_G.CharacterModelFrameBackgroundTopLeft:Hide()
-					_G.CharacterModelFrameBackgroundOverlay:Hide()
-					--_G.CharacterModelFrameBackgroundOverlay:ClearAllPoints()
-					--_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(_G.CharacterFrame)
-					--_G.CharacterModelFrameBackgroundOverlay:SetParent(_G.CharacterFrame)
-					--_G.CharacterModelFrameBackgroundOverlay:SetDrawLayer("OVERLAY")
-
-					--color the avg item level
-					_G.CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0.4, classcolor.r, classcolor.g, classcolor.b, 0)
-					_G.CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0, classcolor.r, classcolor.g, classcolor.b, 0.4)
-				end
-
-				--hide the backdrop on reputation/currency tab
-				hooksecurefunc("CharacterFrameTab_OnClick", function()
-					if _G.CharacterFrameInset.backdrop:IsShown() then
-						_G.CharacterFrameInset.backdrop:Hide()
-					end
-				end)
-
-				hooksecurefunc("CharacterFrame_Collapse", function()
-					if _G.PaperDollFrame:IsShown() then
-						_G.CharacterFrame:SetWidth(500)
-						if ElvUI_EltreumUI.Retail then
-							charactertext = _G.CharacterFrameTitleText:GetText()
-							if not charactertext:match("|T") then
-								_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
-							end
-						elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-							charactertext = _G.CharacterFrameTitleText:GetText()
-							if not charactertext:match("|T") then
-								_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
-							end
-						end
-					end
-				end)
-
-				hooksecurefunc("CharacterFrame_Expand", function()
-					if _G.PaperDollFrame:IsShown() then
-						_G.CharacterFrame:SetWidth(700)
-						if ElvUI_EltreumUI.Retail then
-							charactertext = _G.CharacterFrameTitleText:GetText()
-							if not charactertext:match("|T") then
-								_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
-							end
-						elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-							charactertext = _G.CharacterFrameTitleText:GetText()
-							if not charactertext:match("|T") then
-								_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
-							end
-						end
-					end
-				end)
-
-			elseif IsAddOnLoaded("ElvUI_SLE") and E.db.sle.armory.character.enable then
-
-				hooksecurefunc("CharacterFrame_Collapse", function()
-					if _G.PaperDollFrame:IsShown() then
-						charactertext = _G.CharacterFrameTitleText:GetText()
-						if not charactertext:match("|T") then
-							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
-						end
-						_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
-						_G.CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-						_G.CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
-						_G.CharacterFrameTitleText:SetShadowOffset(2, -1)
-
-						_G.CharacterModelFrameBackgroundOverlay:Show()
-						_G.CharacterModelFrameBackgroundOverlay:ClearAllPoints()
-						_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(_G.CharacterFrame)
-						_G.CharacterModelFrameBackgroundOverlay:SetParent(_G.CharacterFrame)
-						_G.CharacterModelFrameBackgroundOverlay:SetDrawLayer("OVERLAY")
-					end
-				end)
-
-				hooksecurefunc("CharacterFrame_Expand", function()
-					if _G.PaperDollFrame:IsShown() then
-						charactertext = _G.CharacterFrameTitleText:GetText()
-						if not charactertext:match("|T") then
-							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
-						end
-						_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
-						_G.CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-						_G.CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
-						_G.CharacterFrameTitleText:SetShadowOffset(2, -1)
-
-						_G.CharacterModelFrameBackgroundOverlay:Show()
-						_G.CharacterModelFrameBackgroundOverlay:ClearAllPoints()
-						_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(_G.CharacterFrame)
-						_G.CharacterModelFrameBackgroundOverlay:SetParent(_G.CharacterFrame)
-						_G.CharacterModelFrameBackgroundOverlay:SetDrawLayer("OVERLAY")
-					end
-				end)
-
+			hooksecurefunc('PaperDollFrame_SetLevel', function()
+				_G.CharacterFrameTitleText:ClearAllPoints()
+				_G.CharacterFrameTitleText:SetPoint('TOP', _G.CharacterModelFrame, 0, 50)
+				_G.CharacterFrameTitleText:SetParent(_G.CharacterFrame)
+				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
+				_G.CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				_G.CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
+				_G.CharacterFrameTitleText:SetShadowOffset(2, -1)
+				_G.CharacterLevelText:ClearAllPoints()
+				_G.CharacterLevelText:SetPoint('TOP', _G.CharacterFrameTitleText, 'BOTTOM', 0, 0)
 				_G.CharacterLevelText:SetDrawLayer("OVERLAY")
-				_G.CharacterLevelText:SetParent(_G.CharacterFrame)
+			end)
 
-				--move the artwork
-				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-					_G.PaperDollFrame.SLE_Armory_BG:ClearAllPoints()
-					_G.PaperDollFrame.SLE_Armory_BG:SetAllPoints(_G.CharacterFrame)
-					_G.PaperDollFrame.SLE_Armory_BG:SetParent(_G.CharacterFrame)
-					_G.PaperDollFrame.SLE_Armory_BG:SetDrawLayer("ARTWORK")
-					--show the background overlay so its not bright
-
-					_G.CharacterModelFrameBackgroundOverlay:Show()
-					_G.CharacterModelFrameBackgroundOverlay:ClearAllPoints()
-					_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(_G.CharacterFrame)
-					_G.CharacterModelFrameBackgroundOverlay:SetParent(_G.CharacterFrame)
-					_G.CharacterModelFrameBackgroundOverlay:SetDrawLayer("OVERLAY")
+			hooksecurefunc("CharacterFrame_Collapse", function()
+				if _G.PaperDollFrame:IsShown() then
+					if ElvUI_EltreumUI.Retail then
+						charactertext = _G.CharacterFrameTitleText:GetText()
+						if not charactertext:match("|T") then
+							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+						end
+					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						charactertext = _G.CharacterFrameTitleText:GetText()
+						if not charactertext:match("|T") then
+							_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
+						end
+					end
 				end
+			end)
 
-			end
+			hooksecurefunc("CharacterFrame_Expand", function()
+				if _G.PaperDollFrame:IsShown() then
+					if ElvUI_EltreumUI.Retail then
+						charactertext = _G.CharacterFrameTitleText:GetText()
+						if not charactertext:match("|T") then
+							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+						end
+					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						charactertext = _G.CharacterFrameTitleText:GetText()
+						if not charactertext:match("|T") then
+							_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
+						end
+					end
+				end
+			end)
 		end
 	end
 end

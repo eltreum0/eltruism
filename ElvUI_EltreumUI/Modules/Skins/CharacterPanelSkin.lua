@@ -13,7 +13,285 @@ local CharacterFrame = _G.CharacterFrame
 local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture()
 CharacterFrame.Text2 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 function ElvUI_EltreumUI:ExpandedCharacterStats()
-	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+	if ElvUI_EltreumUI.Retail then
+		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+			_G.CharacterFrame:SetHeight(470)
+			-- Move Right Side since left side is already ok
+			_G.CharacterFrameInsetRight:SetPoint('TOPLEFT', _G.CharacterFrameInset, 'TOPRIGHT', 130, 0)
+			_G.CharacterHandsSlot:SetPoint('TOPRIGHT', _G.CharacterFrameInsetRight, 'TOPLEFT', 0, -3)
+			-- Move bottom equipment slots
+			_G.CharacterMainHandSlot:SetPoint('BOTTOMLEFT', _G.PaperDollItemsFrame, 'BOTTOMLEFT', 195, 20)
+			--strech it a bit
+			_G.CharacterModelFrame:ClearAllPoints()
+			_G.CharacterModelFrame:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
+			_G.CharacterModelFrame:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
+			_G.CharacterModelFrame:SetPoint('BOTTOM', _G.CharacterMainHandSlot, 0, -5)
+			--hide other bgs so one can be streched like the talents for tbc/classic
+			_G.CharacterModelFrame.BackgroundTopRight:Hide()
+			_G.CharacterModelFrame.BackgroundBotLeft:Hide()
+			_G.CharacterModelFrame.BackgroundBotRight:Hide()
+			_G.CharacterModelFrame.BackgroundTopLeft:SetAllPoints(_G.CharacterModelFrame)
+			_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(_G.CharacterModelFrame)
+			--move the equipment manager to a nice position
+			_G.PaperDollEquipmentManagerPane:ClearAllPoints()
+			_G.PaperDollEquipmentManagerPane:SetPoint("RIGHT", _G.CharacterFrame, "RIGHT", -30, -20)
+			--move the titles panel to a nice position
+			_G.PaperDollTitlesPane:ClearAllPoints()
+			_G.PaperDollTitlesPane:SetPoint("RIGHT", _G.CharacterFrame, "RIGHT", -30, -20)
+
+			--move the artwork
+
+			local classBgs = {
+				['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
+				['PALADIN'] = "Interface\\Artifacts\\ArtifactUIPaladin",
+				['HUNTER'] = "Interface\\Artifacts\\ArtifactUIHunter",
+				['ROGUE'] = "Interface\\Artifacts\\ArtifactUIRogue",
+				['PRIEST'] = "Interface\\Artifacts\\ArtifactUIPriest",
+				['DEATHKNIGHT'] = "Interface\\Artifacts\\ArtifactUIDeathKnightFrost",
+				['SHAMAN'] = "Interface\\Artifacts\\ArtifactUIShaman",
+				['MAGE'] = "Interface\\Artifacts\\ArtifactUIMageArcane",
+				['WARLOCK'] = "Interface\\Artifacts\\ArtifactUIWarlock",
+				['MONK'] = "Interface\\Artifacts\\ArtifactUIMonk",
+				['DRUID'] = "Interface\\Artifacts\\ArtifactUIDruid",
+				['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
+			}
+
+			local alphabg = E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha
+			if alphabg == nil then
+				alphabg = 0.3
+			end
+
+			CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
+			CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+			CharacterFrameBackgroundTexture:SetAlpha(alphabg)
+			CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame)
+			CharacterFrameBackgroundTexture:SetParent(_G.CharacterFrame)
+			CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK")
+
+			_G.CharacterModelFrame.backdrop:Hide()
+			_G.CharacterModelFrameBackgroundTopLeft:Hide()
+			_G.CharacterModelFrameBackgroundOverlay:Hide()
+
+			--color the avg item level
+			_G.CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0.4, classcolor.r, classcolor.g, classcolor.b, 0)
+			_G.CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0, classcolor.r, classcolor.g, classcolor.b, 0.4)
+
+			--hide the backdrop on reputation/currency tab
+			hooksecurefunc("CharacterFrameTab_OnClick", function()
+				if _G.CharacterFrameInset.backdrop:IsShown() then
+					_G.CharacterFrameInset.backdrop:Hide()
+				end
+			end)
+
+			hooksecurefunc("CharacterFrame_Collapse", function()
+				if _G.PaperDollFrame:IsShown() then
+					_G.CharacterFrame:SetWidth(500)
+					_G.CharacterModelFrameBackgroundOverlay:Hide()
+					if _G.PaperDollFrame.SLE_Armory_BG then
+						if _G.PaperDollFrame.SLE_Armory_BG:IsShown() then
+							_G.PaperDollFrame.SLE_Armory_BG:Hide()
+						end
+					end
+				end
+			end)
+
+			hooksecurefunc("CharacterFrame_Expand", function()
+				if _G.PaperDollFrame:IsShown() then
+					_G.CharacterFrame:SetWidth(700)
+					_G.CharacterModelFrameBackgroundOverlay:Hide()
+					if _G.PaperDollFrame.SLE_Armory_BG then
+						if _G.PaperDollFrame.SLE_Armory_BG:IsShown() then
+							_G.PaperDollFrame.SLE_Armory_BG:Hide()
+						end
+					end
+				end
+			end)
+
+
+			if (not IsAddOnLoaded('DejaCharacterStats')) or (not IsAddOnLoaded("ElvUI_SLE")) then
+
+				_G.CharacterFrame.EltruismExtraStats = _G.CharacterFrame:CreateTexture(nil, 'BORDER')
+				_G.CharacterFrame.EltruismExtraStats:SetSize(150, 18)
+				_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -80)
+				_G.CharacterFrame.EltruismExtraStats:SetTexture(E.Media.Textures.Black8x8)
+				--_G.CharacterFrame.EltruismExtraStats:SetColorTexture(0,0,0,1)
+				_G.CharacterFrame.EltruismExtraStats:SetParent(_G.CharacterStatsPane)
+				_G.CharacterFrame.EltruismExtraStatsFont = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+				_G.CharacterFrame.EltruismExtraStatsFont:SetFont(E.LSM:Fetch('font', E.db.general.font), 12)
+				_G.CharacterFrame.EltruismExtraStatsFont:SetTextColor(1, 1, 1)
+				_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -80)
+				_G.CharacterFrame.EltruismExtraStatsFont:SetParent(_G.CharacterStatsPane)
+				_G.CharacterFrame.EltruismExtraStatsFont:SetText("Extra")
+
+				_G.CharacterFrame.EltruismDodge = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+				_G.CharacterFrame.EltruismDodge:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+				_G.CharacterFrame.EltruismDodge:SetTextColor(1, 1, 1)
+				_G.CharacterFrame.EltruismDodge:SetPoint("CENTER", _G.CharacterStatsPane , 70, -107)
+				_G.CharacterFrame.EltruismDodge:SetParent(_G.CharacterStatsPane)
+				_G.CharacterFrame.EltruismDodge:SetJustifyH("RIGHT")
+				_G.CharacterFrame.EltruismDodge:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismDodge:SetShadowOffset(1, 0)
+				_G.CharacterFrame.EltruismDodgeDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+				_G.CharacterFrame.EltruismDodgeDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+				_G.CharacterFrame.EltruismDodgeDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
+				_G.CharacterFrame.EltruismDodgeDesc:SetPoint("CENTER", _G.CharacterStatsPane , -66, -107)
+				_G.CharacterFrame.EltruismDodgeDesc:SetParent(_G.CharacterStatsPane)
+				_G.CharacterFrame.EltruismDodgeDesc:SetText(STAT_DODGE)
+				_G.CharacterFrame.EltruismDodgeDesc:SetJustifyH("LEFT")
+				_G.CharacterFrame.EltruismDodgeDesc:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismDodgeDesc:SetShadowOffset(1, 0)
+
+				_G.CharacterFrame.EltruismLeech = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+				_G.CharacterFrame.EltruismLeech:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+				_G.CharacterFrame.EltruismLeech:SetTextColor(1, 1, 1)
+				_G.CharacterFrame.EltruismLeech:SetPoint("CENTER", _G.CharacterStatsPane , 70, -120)
+				_G.CharacterFrame.EltruismLeech:SetParent(_G.CharacterStatsPane)
+				_G.CharacterFrame.EltruismLeech:SetJustifyH("RIGHT")
+				_G.CharacterFrame.EltruismLeech:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismLeech:SetShadowOffset(1, 0)
+				_G.CharacterFrame.EltruismLeechDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+				_G.CharacterFrame.EltruismLeechDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+				_G.CharacterFrame.EltruismLeechDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
+				_G.CharacterFrame.EltruismLeechDesc:SetPoint("CENTER", _G.CharacterStatsPane , -67, -120)
+				_G.CharacterFrame.EltruismLeechDesc:SetParent(_G.CharacterStatsPane)
+				_G.CharacterFrame.EltruismLeechDesc:SetText(STAT_LIFESTEAL)
+				_G.CharacterFrame.EltruismLeechDesc:SetJustifyH("LEFT")
+				_G.CharacterFrame.EltruismLeechDesc:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismLeechDesc:SetShadowOffset(1, 0)
+
+				_G.CharacterFrame.EltruismStatusLine1Left = _G.CharacterFrame:CreateTexture(nil, 'BORDER')
+				_G.CharacterFrame.EltruismStatusLine1Left:SetSize(80, 14)
+				_G.CharacterFrame.EltruismStatusLine1Left:SetPoint("RIGHT", _G.CharacterStatsPane, "CENTER", 0, -120)
+				_G.CharacterFrame.EltruismStatusLine1Left:SetTexture(E.Media.Textures.White8x8)
+				_G.CharacterFrame.EltruismStatusLine1Left:SetGradientAlpha('Horizontal', 0.8, 0.8, 0.8, 0, 0.8, 0.8, 0.8, 0.25)
+				_G.CharacterFrame.EltruismStatusLine1Left:SetParent(_G.CharacterStatsPane)
+				_G.CharacterFrame.EltruismStatusLine1Right = _G.CharacterFrame:CreateTexture(nil, 'BORDER')
+				_G.CharacterFrame.EltruismStatusLine1Right:SetSize(80, 14)
+				_G.CharacterFrame.EltruismStatusLine1Right:SetPoint("LEFT", _G.CharacterStatsPane, "CENTER", 0, -120)
+				_G.CharacterFrame.EltruismStatusLine1Right:SetTexture(E.Media.Textures.White8x8)
+				_G.CharacterFrame.EltruismStatusLine1Right:SetGradientAlpha('Horizontal', 0.8, 0.8, 0.8, 0.25, 0.8, 0.8, 0.8, 0)
+				_G.CharacterFrame.EltruismStatusLine1Right:SetParent(_G.CharacterStatsPane)
+
+				_G.CharacterFrame.EltruismSpeed = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+				_G.CharacterFrame.EltruismSpeed:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+				_G.CharacterFrame.EltruismSpeed:SetTextColor(1, 1, 1)
+				_G.CharacterFrame.EltruismSpeed:SetPoint("CENTER", _G.CharacterStatsPane , 70, -133)
+				_G.CharacterFrame.EltruismSpeed:SetParent(_G.CharacterStatsPane)
+				_G.CharacterFrame.EltruismSpeed:SetJustifyH("RIGHT")
+				_G.CharacterFrame.EltruismSpeed:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismSpeed:SetShadowOffset(1, 0)
+				_G.CharacterFrame.EltruismSpeedDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+				_G.CharacterFrame.EltruismSpeedDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+				_G.CharacterFrame.EltruismSpeedDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
+				_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", _G.CharacterStatsPane , -66, -133)
+				_G.CharacterFrame.EltruismSpeedDesc:SetParent(_G.CharacterStatsPane)
+				_G.CharacterFrame.EltruismSpeedDesc:SetText(STAT_SPEED)
+				_G.CharacterFrame.EltruismSpeedDesc:SetJustifyH("LEFT")
+				_G.CharacterFrame.EltruismSpeedDesc:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismSpeedDesc:SetShadowOffset(1, 0)
+
+				_G.CharacterFrame.EltruismBlock = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+				_G.CharacterFrame.EltruismBlock:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+				_G.CharacterFrame.EltruismBlock:SetTextColor(1, 1, 1)
+				_G.CharacterFrame.EltruismBlock:SetPoint("CENTER", _G.CharacterStatsPane , 70, -146)
+				_G.CharacterFrame.EltruismBlock:SetParent(_G.CharacterStatsPane)
+				_G.CharacterFrame.EltruismBlock:SetJustifyH("RIGHT")
+				_G.CharacterFrame.EltruismBlock:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismBlock:SetShadowOffset(1, 0)
+				_G.CharacterFrame.EltruismBlockDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+				_G.CharacterFrame.EltruismBlockDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+				_G.CharacterFrame.EltruismBlockDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
+				_G.CharacterFrame.EltruismBlockDesc:SetPoint("CENTER", _G.CharacterStatsPane , -69, -146)
+				_G.CharacterFrame.EltruismBlockDesc:SetParent(_G.CharacterStatsPane)
+				_G.CharacterFrame.EltruismBlockDesc:SetText(STAT_BLOCK)
+				_G.CharacterFrame.EltruismBlockDesc:SetJustifyH("LEFT")
+				_G.CharacterFrame.EltruismBlockDesc:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismBlockDesc:SetShadowOffset(1, 0)
+
+				_G.CharacterFrame.EltruismStatusLine2Left = _G.CharacterFrame:CreateTexture(nil, 'BORDER')
+				_G.CharacterFrame.EltruismStatusLine2Left:SetSize(80, 14)
+				_G.CharacterFrame.EltruismStatusLine2Left:SetPoint("RIGHT", _G.CharacterStatsPane, "CENTER", 0, -146)
+				_G.CharacterFrame.EltruismStatusLine2Left:SetTexture(E.Media.Textures.White8x8)
+				_G.CharacterFrame.EltruismStatusLine2Left:SetGradientAlpha('Horizontal', 0.8, 0.8, 0.8, 0, 0.8, 0.8, 0.8, 0.25)
+				_G.CharacterFrame.EltruismStatusLine2Left:SetParent(_G.CharacterStatsPane)
+				_G.CharacterFrame.EltruismStatusLine2Right = _G.CharacterFrame:CreateTexture(nil, 'BORDER')
+				_G.CharacterFrame.EltruismStatusLine2Right:SetSize(80, 14)
+				_G.CharacterFrame.EltruismStatusLine2Right:SetPoint("LEFT", _G.CharacterStatsPane, "CENTER", 0, -146)
+				_G.CharacterFrame.EltruismStatusLine2Right:SetTexture(E.Media.Textures.White8x8)
+				_G.CharacterFrame.EltruismStatusLine2Right:SetGradientAlpha('Horizontal', 0.8, 0.8, 0.8, 0.25, 0.8, 0.8, 0.8, 0)
+				_G.CharacterFrame.EltruismStatusLine2Right:SetParent(_G.CharacterStatsPane)
+
+				_G.CharacterFrame.EltruismAvoidance = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+				_G.CharacterFrame.EltruismAvoidance:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+				_G.CharacterFrame.EltruismAvoidance:SetTextColor(1, 1, 1)
+				_G.CharacterFrame.EltruismAvoidance:SetPoint("CENTER", _G.CharacterStatsPane , 70, -159)
+				_G.CharacterFrame.EltruismAvoidance:SetParent(_G.CharacterStatsPane)
+				_G.CharacterFrame.EltruismAvoidance:SetJustifyH("RIGHT")
+				_G.CharacterFrame.EltruismAvoidance:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismAvoidance:SetShadowOffset(1, 0)
+				_G.CharacterFrame.EltruismAvoidanceDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+				_G.CharacterFrame.EltruismAvoidanceDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+				_G.CharacterFrame.EltruismAvoidanceDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
+				_G.CharacterFrame.EltruismAvoidanceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -56, -159)
+				_G.CharacterFrame.EltruismAvoidanceDesc:SetParent(_G.CharacterStatsPane)
+				_G.CharacterFrame.EltruismAvoidanceDesc:SetText(STAT_AVOIDANCE)
+				_G.CharacterFrame.EltruismAvoidanceDesc:SetJustifyH("LEFT")
+				_G.CharacterFrame.EltruismAvoidanceDesc:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismAvoidanceDesc:SetShadowOffset(1, 0)
+
+				_G.CharacterFrame.EltruismParry = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+				_G.CharacterFrame.EltruismParry:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+				_G.CharacterFrame.EltruismParry:SetTextColor(1, 1, 1)
+				_G.CharacterFrame.EltruismParry:SetPoint("CENTER", _G.CharacterStatsPane , 70, -172)
+				_G.CharacterFrame.EltruismParry:SetParent(_G.CharacterStatsPane)
+				_G.CharacterFrame.EltruismParry:SetJustifyH("RIGHT")
+				_G.CharacterFrame.EltruismParry:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismParry:SetShadowOffset(1, 0)
+				_G.CharacterFrame.EltruismParryDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+				_G.CharacterFrame.EltruismParryDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+				_G.CharacterFrame.EltruismParryDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
+				_G.CharacterFrame.EltruismParryDesc:SetPoint("CENTER", _G.CharacterStatsPane , -69, -172)
+				_G.CharacterFrame.EltruismParryDesc:SetParent(_G.CharacterStatsPane)
+				_G.CharacterFrame.EltruismParryDesc:SetText(STAT_PARRY)
+				_G.CharacterFrame.EltruismParryDesc:SetJustifyH("LEFT")
+				_G.CharacterFrame.EltruismParryDesc:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismParryDesc:SetShadowOffset(1, 0)
+
+				_G.CharacterFrame.EltruismStatusLine3Left = _G.CharacterFrame:CreateTexture(nil, 'BORDER')
+				_G.CharacterFrame.EltruismStatusLine3Left:SetSize(80, 14)
+				_G.CharacterFrame.EltruismStatusLine3Left:SetPoint("RIGHT", _G.CharacterStatsPane, "CENTER", 0, -172)
+				_G.CharacterFrame.EltruismStatusLine3Left:SetTexture(E.Media.Textures.White8x8)
+				_G.CharacterFrame.EltruismStatusLine3Left:SetGradientAlpha('Horizontal', 0.8, 0.8, 0.8, 0, 0.8, 0.8, 0.8, 0.25)
+				_G.CharacterFrame.EltruismStatusLine3Left:SetParent(_G.CharacterStatsPane)
+				_G.CharacterFrame.EltruismStatusLine3Right = _G.CharacterFrame:CreateTexture(nil, 'BORDER')
+				_G.CharacterFrame.EltruismStatusLine3Right:SetSize(80, 14)
+				_G.CharacterFrame.EltruismStatusLine3Right:SetPoint("LEFT", _G.CharacterStatsPane, "CENTER", 0, -172)
+				_G.CharacterFrame.EltruismStatusLine3Right:SetTexture(E.Media.Textures.White8x8)
+				_G.CharacterFrame.EltruismStatusLine3Right:SetGradientAlpha('Horizontal', 0.8, 0.8, 0.8, 0.25, 0.8, 0.8, 0.8, 0)
+				_G.CharacterFrame.EltruismStatusLine3Right:SetParent(_G.CharacterStatsPane)
+
+		  		hooksecurefunc("PaperDollFrame_UpdateStats", function()
+					local dodge = GetDodgeChance();
+					_G.CharacterFrame.EltruismDodge:SetText(string.format('%.2f', dodge).."%")
+
+					local leech = GetLifesteal()
+					_G.CharacterFrame.EltruismLeech:SetText(string.format('%.2f', leech).."%")
+
+					local speed = ((GetUnitSpeed("player")/7) *100)
+					_G.CharacterFrame.EltruismSpeed:SetText(math.ceil(speed).."%")
+
+					local block = GetBlockChance()
+					_G.CharacterFrame.EltruismBlock:SetText(string.format('%.2f', block).."%")
+
+					local avoidance = GetCombatRatingBonus(CR_AVOIDANCE)
+					_G.CharacterFrame.EltruismAvoidance:SetText(string.format('%.2f', avoidance).."%")
+
+					local parry = GetParryChance()
+					_G.CharacterFrame.EltruismParry:SetText(string.format('%.2f', parry).."%")
+				end)
+			end
+		end
+	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 			local classBgs = {
 				['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
@@ -501,9 +779,9 @@ local EltruismInspectBgTexture = EltruismInspectBg:CreateTexture()
 function ElvUI_EltreumUI:InspectBg(unit)
 	--local a = IsAddOnLoaded("Blizzard_InspectUI")
 	--if a == false and UnitExists("target") then
-	--	LoadAddOn("Blizzard_InspectUI")
+		--LoadAddOn("Blizzard_InspectUI")
 		--a = IsAddOnLoaded("Blizzard_InspectUI")
---	end
+	--end
 	if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 		local classBgs = {
 			['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
