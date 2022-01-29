@@ -1,6 +1,9 @@
 ### 🌌 Next Version 
 **The future is uncertain**
 ___
+### 2.7.2
+Fixed Waypoint Time to Arrive not updating when selecting World Quests\
+___
 ### 2.7.1
 Improved the Retail Character Panel skin, making it more compatible with Shadow & Light\
 Added some checks to prevent possible taints related to Quest Items while being in combat\
