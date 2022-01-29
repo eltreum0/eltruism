@@ -76,6 +76,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:AutoAcceptQuests() -- yet another auto accept quest thing
 	ElvUI_EltreumUI:QuestItem() -- quest item bar merged from QBar by Aezay with edits to work in TBC/Classic
 	ElvUI_EltreumUI:SkinQuests() --skins quest objective frame to be class colored
+	ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
@@ -89,7 +90,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
 		ElvUI_EltreumUI:ExpandedTalents() --makes talents fit in one window without scroll
-		ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
 		ElvUI_EltreumUI:UpdateAvgIlvl()
 	end
 	if E.private.nameplates.enable then
@@ -171,7 +171,9 @@ function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
 	--if eventType ~= "UNIT_DIED" then
 	--	return
 	--elseif eventType == "UNIT_DIED" then
-		ElvUI_EltreumUI:RaidDeath()
+		if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
+			ElvUI_EltreumUI:RaidDeath()
+		end
 	--end
 	--elseif (eventType == "SPELL_ENERGIZE") and (sourceName == E.myname) then
 		--print(sourceName.." amount: "..amount)
