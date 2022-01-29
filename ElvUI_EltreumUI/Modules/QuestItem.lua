@@ -32,17 +32,22 @@ function ElvUI_EltreumUI:QuestItem()
 				btnSize = E.db.ElvUI_EltreumUI.questsettings.questitemsize,
 			}
 			if E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 then
-				EltruismQuestItemFrame:SetParent(_G["ElvUI_Bar1Button1"])
+				if not InCombatLockdown() then
+					EltruismQuestItemFrame:SetParent(_G["ElvUI_Bar1Button1"])
+				end
 			end
-			EltruismQuestItemFrame:SetSize(cfg.btnSize,cfg.btnSize)
-			EltruismQuestItemFrame:SetClampedToScreen(true)
+			if not InCombatLockdown() then
+				EltruismQuestItemFrame:SetSize(cfg.btnSize,cfg.btnSize)
+				EltruismQuestItemFrame:SetClampedToScreen(true)
+				EltruismQuestItemFrame:SetFrameStrata("MEDIUM")
+			end
 			EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE")
 			EltruismQuestItemFrame:RegisterEvent("UNIT_INVENTORY_CHANGED")
 			EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED")			-- Needed for items that starts a quest, when we accept it, update to remove the icon
 			--EltruismQuestItemFrame:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN") --hmm
 			--EltruismQuestItemFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
 			EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
-			EltruismQuestItemFrame:SetFrameStrata("MEDIUM")
+
 
 
 			--if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
@@ -190,42 +195,44 @@ function ElvUI_EltreumUI:QuestItem()
 			end
 
 		 	--register keybind
-		 	if bindingText1 then
-		 		SetBindingClick(bindingText1, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1))
-		 	end
-		 	if bindingText2 then
-			 	SetBindingClick(bindingText2, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 2))
+		 	if not InCombatLockdown() then
+			 	if bindingText1 then
+			 		SetBindingClick(bindingText1, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1))
+			 	end
+			 	if bindingText2 then
+				 	SetBindingClick(bindingText2, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 2))
+				 end
+			 	if bindingText3 then
+			 		SetBindingClick(bindingText3, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 3))
+			 	end
+			 	if bindingText4 then
+			 		SetBindingClick(bindingText4, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 4))
+			 	end
+			 	if bindingText5 then
+			 		SetBindingClick(bindingText5, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 5))
+			 	end
+			 	if bindingText6 then
+			 		SetBindingClick(bindingText6, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 6))
+			 	end
+			 	if bindingText7 then
+			 		SetBindingClick(bindingText7, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 7))
+			 	end
+			 	if bindingText8 then
+			 		SetBindingClick(bindingText8, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 8))
+			 	end
+			 	if bindingText9 then
+			 		SetBindingClick(bindingText9, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 9))
+			 	end
+			 	if bindingText10 then
+			 		SetBindingClick(bindingText10, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 10))
+			 	end
+			 	if bindingText11 then
+			 		SetBindingClick(bindingText11, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 11))
+			 	end
+			 	if bindingText12 then
+			 		SetBindingClick(bindingText12, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 12))
+			 	end
 			 end
-		 	if bindingText3 then
-		 		SetBindingClick(bindingText3, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 3))
-		 	end
-		 	if bindingText4 then
-		 		SetBindingClick(bindingText4, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 4))
-		 	end
-		 	if bindingText5 then
-		 		SetBindingClick(bindingText5, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 5))
-		 	end
-		 	if bindingText6 then
-		 		SetBindingClick(bindingText6, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 6))
-		 	end
-		 	if bindingText7 then
-		 		SetBindingClick(bindingText7, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 7))
-		 	end
-		 	if bindingText8 then
-		 		SetBindingClick(bindingText8, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 8))
-		 	end
-		 	if bindingText9 then
-		 		SetBindingClick(bindingText9, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 9))
-		 	end
-		 	if bindingText10 then
-		 		SetBindingClick(bindingText10, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 10))
-		 	end
-		 	if bindingText11 then
-		 		SetBindingClick(bindingText11, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 11))
-		 	end
-		 	if bindingText12 then
-		 		SetBindingClick(bindingText12, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 12))
-		 	end
 
 			-- Add Button
 			local function AddButton(index,bag,slot,link,itemId,count)
