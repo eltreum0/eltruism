@@ -121,3 +121,34 @@ function ElvUI_EltreumUI:AFKmusic()
 		end
 	end
 end
+
+--add Eltruism logo to elvui afk screen
+local EltruismAFKLogo
+if E.db.general.afk then
+	local AFK = E:GetModule('AFK')
+	EltruismAFKLogo = CreateFrame("Frame", "EltruismAFKLogo")
+	local EltruismAFKLogoTexture = EltruismAFKLogo:CreateTexture()
+	EltruismAFKLogoTexture:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohq")
+	EltruismAFKLogo:SetSize(320, 80)
+	EltruismAFKLogo:ClearAllPoints()
+	EltruismAFKLogo:SetPoint("TOP", UIParent, "TOP", 0, -20)
+	EltruismAFKLogoTexture:SetAllPoints(EltruismAFKLogo)
+	EltruismAFKLogo:SetFrameStrata("DIALOG")
+	EltruismAFKLogo:Hide()
+
+	local EltruismAFKTop = CreateFrame('Frame', nil, EltruismAFKLogo)
+	EltruismAFKTop:SetFrameLevel(0)
+	EltruismAFKTop:SetTemplate('Transparent')
+	EltruismAFKTop:SetPoint('TOP', UIParent, 'TOP', 0, 0)
+	EltruismAFKTop:SetWidth(E.screenWidth + (E.Border*2))
+	EltruismAFKTop:SetHeight(E.screenHeight * (1 / 10))
+end
+
+function ElvUI_EltreumUI:AFKLogo()
+	EltruismAFKLogo:SetParent(_G.ElvUIAFKFrame.bottom)
+	if UnitIsAFK("player") then
+		EltruismAFKLogo:Show()
+	else
+		EltruismAFKLogo:Hide()
+	end
+end

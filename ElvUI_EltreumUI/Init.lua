@@ -202,6 +202,9 @@ end
 
 function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
 	ElvUI_EltreumUI:AFKmusic()
+	if E.db.general.afk then
+		ElvUI_EltreumUI:AFKLogo()
+	end
 end
 
 function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
