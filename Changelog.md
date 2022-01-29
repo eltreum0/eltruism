@@ -1,5 +1,10 @@
 ### 🌌 Next Version 
-**The future is uncertain**
+**The future is uncertain**___
+### 2.7.1
+Improved the Retail Character Panel skin, making it more compatible with Shadow & Light\
+Added some checks to prevent possible taints related to Quest Items while being in combat\
+Fixed a possible scenario where things on Character Panel could get multiplied\
+Fixed a rare error with cursor cooldown
 ___
 ### 2.7.0
 Fixed Quest Items showing up inside instances when it shouldn't\
