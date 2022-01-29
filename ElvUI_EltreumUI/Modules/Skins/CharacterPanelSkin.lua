@@ -8,10 +8,55 @@ if ElvUI_EltreumUI. TBC or ElvUI_EltreumUI.Classic then
 	LibItemInfo = LibStub:GetLibrary("LibItemInfo.1000")
 end
 
---attempt at recreating a similar character panel to retail
+--improving character panel
 local CharacterFrame = _G.CharacterFrame
 local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture()
-CharacterFrame.Text2 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+
+if ElvUI_EltreumUI.Retail then
+	_G.CharacterFrame.EltruismClassResource = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+	_G.CharacterFrame.EltruismClassResourceDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+	_G.CharacterFrame.EltruismClassResourceDescTooltip = CreateFrame("Frame", "EltruismClassResourceDesc")
+	_G.CharacterFrame.EltruismClassResource2 = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+	_G.CharacterFrame.EltruismClassResourceDesc2 = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+	_G.CharacterFrame.EltruismClassResourceDescTooltip2 = CreateFrame("Frame", "EltruismClassResourceDesc2")
+	_G.CharacterFrame.EltruismSpeedDescTooltip = CreateFrame("Frame", "EltruismSpeedDesc")
+	_G.CharacterFrame.EltruismExtraStats = _G.CharacterFrame:CreateTexture(nil, 'BORDER')
+	_G.CharacterFrame.EltruismExtraStatsFont = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+	_G.CharacterFrame.EltruismSpeed = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+	_G.CharacterFrame.EltruismSpeedDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+end
+
+if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+	CharacterFrame.Text = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+	CharacterFrame.Text2 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+	CharacterFrame.Text3 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+	CharacterFrame.Text4 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+	CharacterFrame.Text5 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+	CharacterFrame.StatusLine = CreateFrame("StatusBar", "EltruismCharacterBar1", CharacterFrame)
+	CharacterFrame.StatusLine2 = CreateFrame("StatusBar", "EltruismCharacterBar2", CharacterFrame)
+	CharacterFrame.StatusLine3 = CreateFrame("StatusBar", "EltruismCharacterBar3", CharacterFrame)
+	CharacterFrame.StatusLine4 = CreateFrame("StatusBar", "EltruismCharacterBar4", CharacterFrame)
+end
+
+if ElvUI_EltreumUI.TBC then
+	_G.PlayerStatFrameLeft2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine12", CharacterFrame)
+	_G.PlayerStatFrameLeft4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine22", CharacterFrame)
+	_G.PlayerStatFrameLeft6.StatusLine = CreateFrame("StatusBar", "EltruismStatLine32", CharacterFrame)
+	_G.PlayerStatFrameRight2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine52", CharacterFrame)
+	_G.PlayerStatFrameRight4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine62", CharacterFrame)
+	_G.PlayerStatFrameRight6.StatusLine = CreateFrame("StatusBar", "EltruismStatLine7", CharacterFrame)
+end
+
+if ElvUI_EltreumUI.Classic then
+	_G.CharacterArmorFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine3", CharacterFrame)
+	_G.CharacterAttackPowerFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine4", CharacterFrame)
+	_G.CharacterRangedAttackFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine5", CharacterFrame)
+	_G.CharacterRangedDamageFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine6", CharacterFrame)
+	_G.CharacterStatFrame2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine1", CharacterFrame)
+	_G.CharacterStatFrame4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine2", CharacterFrame)
+end
+
+
 function ElvUI_EltreumUI:ExpandedCharacterStats()
 	if ElvUI_EltreumUI.Retail then
 		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
@@ -258,12 +303,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterFrame.EltruismStatusLine3Right:SetParent(_G.CharacterStatsPane)
 				]]
 
-				_G.CharacterFrame.EltruismExtraStats = _G.CharacterFrame:CreateTexture(nil, 'BORDER')
+
+
 				_G.CharacterFrame.EltruismExtraStats:SetSize(150, 18)
 				_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -140)
 				_G.CharacterFrame.EltruismExtraStats:SetTexture(E.Media.Textures.Black8x8)
 				_G.CharacterFrame.EltruismExtraStats:SetParent(_G.CharacterStatsPane)
-				_G.CharacterFrame.EltruismExtraStatsFont = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+
 				_G.CharacterFrame.EltruismExtraStatsFont:SetFont(E.LSM:Fetch('font', E.db.general.font), 12)
 				_G.CharacterFrame.EltruismExtraStatsFont:SetTextColor(1, 1, 1)
 				_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -140)
@@ -271,7 +317,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterFrame.EltruismExtraStatsFont:SetText("Other")
 
 				--movement speed
-				_G.CharacterFrame.EltruismSpeed = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+
 				_G.CharacterFrame.EltruismSpeed:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
 				_G.CharacterFrame.EltruismSpeed:SetTextColor(1, 1, 1)
 				_G.CharacterFrame.EltruismSpeed:SetPoint("CENTER", _G.CharacterStatsPane , 70, -163)
@@ -279,7 +325,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterFrame.EltruismSpeed:SetJustifyH("RIGHT")
 				_G.CharacterFrame.EltruismSpeed:SetShadowColor(0, 0, 0, 1)
 				_G.CharacterFrame.EltruismSpeed:SetShadowOffset(1, 0)
-				_G.CharacterFrame.EltruismSpeedDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+
 				_G.CharacterFrame.EltruismSpeedDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
 				_G.CharacterFrame.EltruismSpeedDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
 				_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", _G.CharacterStatsPane , -36, -163)
@@ -288,7 +334,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterFrame.EltruismSpeedDesc:SetJustifyH("LEFT")
 				_G.CharacterFrame.EltruismSpeedDesc:SetShadowColor(0, 0, 0, 1)
 				_G.CharacterFrame.EltruismSpeedDesc:SetShadowOffset(1, 0)
-				_G.CharacterFrame.EltruismSpeedDescTooltip = CreateFrame("Frame", "EltruismSpeedDesc")
+
 				_G.CharacterFrame.EltruismSpeedDescTooltip:SetSize(190, 15)
 				_G.CharacterFrame.EltruismSpeedDescTooltip:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -163)
 				_G.CharacterFrame.EltruismSpeedDescTooltip:SetParent(_G.CharacterStatsPane)
@@ -303,7 +349,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end)
 
 				--class resource
-				_G.CharacterFrame.EltruismClassResource = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+
 				_G.CharacterFrame.EltruismClassResource:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
 				_G.CharacterFrame.EltruismClassResource:SetTextColor(1, 1, 1)
 				_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", _G.CharacterStatsPane , 72, -176)
@@ -311,7 +357,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterFrame.EltruismClassResource:SetJustifyH("RIGHT")
 				_G.CharacterFrame.EltruismClassResource:SetShadowColor(0, 0, 0, 1)
 				_G.CharacterFrame.EltruismClassResource:SetShadowOffset(1, 0)
-				_G.CharacterFrame.EltruismClassResourceDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+
 				_G.CharacterFrame.EltruismClassResourceDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
 				_G.CharacterFrame.EltruismClassResourceDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
 				_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -46, -176)
@@ -328,7 +374,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterFrame.EltruismClassResourceDesc:SetJustifyH("LEFT")
 				_G.CharacterFrame.EltruismClassResourceDesc:SetShadowColor(0, 0, 0, 1)
 				_G.CharacterFrame.EltruismClassResourceDesc:SetShadowOffset(1, 0)
-				_G.CharacterFrame.EltruismClassResourceDescTooltip = CreateFrame("Frame", "EltruismClassResourceDesc")
+
 				_G.CharacterFrame.EltruismClassResourceDescTooltip:SetSize(190, 15)
 				_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -176)
 				_G.CharacterFrame.EltruismClassResourceDescTooltip:SetParent(_G.CharacterStatsPane)
@@ -360,7 +406,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 
 				--class resource 2, because druids and monks are not nice
-				_G.CharacterFrame.EltruismClassResource2 = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+
 				_G.CharacterFrame.EltruismClassResource2:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
 				_G.CharacterFrame.EltruismClassResource2:SetTextColor(1, 1, 1)
 				_G.CharacterFrame.EltruismClassResource2:SetPoint("CENTER", _G.CharacterStatsPane , 72, -189)
@@ -368,7 +414,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterFrame.EltruismClassResource2:SetJustifyH("RIGHT")
 				_G.CharacterFrame.EltruismClassResource2:SetShadowColor(0, 0, 0, 1)
 				_G.CharacterFrame.EltruismClassResource2:SetShadowOffset(1, 0)
-				_G.CharacterFrame.EltruismClassResourceDesc2 = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+
 				_G.CharacterFrame.EltruismClassResourceDesc2:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
 				_G.CharacterFrame.EltruismClassResourceDesc2:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
 				_G.CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", _G.CharacterStatsPane , -48, -189)
@@ -379,7 +425,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterFrame.EltruismClassResourceDesc2:SetJustifyH("LEFT")
 				_G.CharacterFrame.EltruismClassResourceDesc2:SetShadowColor(0, 0, 0, 1)
 				_G.CharacterFrame.EltruismClassResourceDesc2:SetShadowOffset(1, 0)
-				_G.CharacterFrame.EltruismClassResourceDescTooltip2 = CreateFrame("Frame", "EltruismClassResourceDesc2")
+
 				_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetSize(190, 15)
 				_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -189)
 				_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetParent(_G.CharacterStatsPane)
@@ -712,19 +758,19 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--_G.ReputationDefailFrame:SetPoint('TOPRIGHT', _G.CharacterFrame)
 
-			CharacterFrame.Text4 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+
 			CharacterFrame.Text4:SetSize(418, 72)
 			CharacterFrame.Text4:SetPoint("TOP", CharacterFrame, "TOP", 150, 10)
 			CharacterFrame.Text4:SetTextColor(1, 1, 1)
 			CharacterFrame.Text4:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
 			CharacterFrame.Text4:SetText("Specialization")
-			CharacterFrame.StatusLine4 = CreateFrame("StatusBar", "EltruismCharacterBar2", CharacterFrame)
+
 			CharacterFrame.StatusLine4:SetSize(170, 3)
 			CharacterFrame.StatusLine4:SetPoint("CENTER", CharacterFrame.Text4, "CENTER", 0, -15)
 			CharacterFrame.StatusLine4:SetStatusBarTexture(E.Media.Textures.Highlight)
 			CharacterFrame.StatusLine4:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
-			CharacterFrame.Text5 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+
 			CharacterFrame.Text5:SetSize(418, 72)
 			CharacterFrame.Text5:SetPoint("TOP", CharacterFrame, "TOP", 150, -20)
 			CharacterFrame.Text5:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
@@ -735,13 +781,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
 
 			CharacterFrame:SetSize(600, 505)
-			CharacterFrame.Text = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+
 			CharacterFrame.Text:SetSize(418, 72)
 			CharacterFrame.Text:SetPoint("TOP", CharacterFrame, "TOP", 150, -45)
 			CharacterFrame.Text:SetTextColor(1, 1, 1)
 			CharacterFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
 			CharacterFrame.Text:SetText("Item Level")
-			CharacterFrame.StatusLine = CreateFrame("StatusBar", "EltruismCharacterBar2", CharacterFrame)
+
 			CharacterFrame.StatusLine:SetSize(170, 3)
 			CharacterFrame.StatusLine:SetPoint("CENTER", CharacterFrame.Text, "CENTER", 0, -15)
 			CharacterFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
@@ -751,20 +797,20 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.Text2:SetPoint("TOP", CharacterFrame, "TOP", 150, -80)
 			CharacterFrame.Text2:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			CharacterFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
-			CharacterFrame.StatusLine2 = CreateFrame("StatusBar", "EltruismCharacterBar1", CharacterFrame)
+
 			CharacterFrame.StatusLine2:SetFrameStrata("LOW")
 			CharacterFrame.StatusLine2:SetSize(170, 25)
 			CharacterFrame.StatusLine2:SetPoint("CENTER", CharacterFrame.Text2, "CENTER", 0, 0)
 			CharacterFrame.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
 			CharacterFrame.StatusLine2:SetStatusBarColor(1, 1, 1, 0.8)
 
-			CharacterFrame.Text3 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+
 			CharacterFrame.Text3:SetSize(418, 72)
 			CharacterFrame.Text3:SetPoint("TOP", CharacterFrame, "TOP", 150, -105)
 			CharacterFrame.Text3:SetTextColor(1, 1, 1)
 			CharacterFrame.Text3:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
 			CharacterFrame.Text3:SetText("Attributes")
-			CharacterFrame.StatusLine3 = CreateFrame("StatusBar", "EltruismCharacterBar2", CharacterFrame)
+
 			CharacterFrame.StatusLine3:SetSize(170, 3)
 			CharacterFrame.StatusLine3:SetPoint("CENTER", CharacterFrame.Text3, "CENTER", 0, -15)
 			CharacterFrame.StatusLine3:SetStatusBarTexture(E.Media.Textures.Highlight)
@@ -781,7 +827,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.MagicResFrame1:SetPoint("TOPLEFT", _G.PlayerStatFrameLeftDropDown, "TOPLEFT", 14, 27)
 			elseif ElvUI_EltreumUI.Classic then
 				_G.MagicResFrame1:SetParent(_G.CharacterStatFrame1)
-				_G.MagicResFrame1:SetPoint("BOTTOM", "EltruismCharacterBar2", "BOTTOM", -55, -155)
+				_G.MagicResFrame1:SetPoint("BOTTOM", CharacterFrame.StatusLine3, "BOTTOM", -55, -50)
 			end
 
 			_G.MagicResFrame2:ClearAllPoints()
@@ -809,7 +855,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PlayerStatFrameLeft2:ClearAllPoints()
 				_G.PlayerStatFrameLeft2:SetPoint("BOTTOM", _G.PlayerStatFrameLeft1, "BOTTOM", 0, -13)
 				_G.PlayerStatFrameLeft2:SetParent(_G.PlayerStatFrameLeft1)
-				_G.PlayerStatFrameLeft2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine1", CharacterFrame)
+
 				_G.PlayerStatFrameLeft2.StatusLine:SetSize(170, 12)
 				_G.PlayerStatFrameLeft2.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameLeft2, "CENTER", 25, 0)
 				_G.PlayerStatFrameLeft2.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
@@ -822,7 +868,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PlayerStatFrameLeft4:ClearAllPoints()
 				_G.PlayerStatFrameLeft4:SetPoint("BOTTOM", _G.PlayerStatFrameLeft3, "BOTTOM", 0, -13)
 				_G.PlayerStatFrameLeft4:SetParent(_G.PlayerStatFrameLeft1)
-				_G.PlayerStatFrameLeft4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine2", CharacterFrame)
+
 				_G.PlayerStatFrameLeft4.StatusLine:SetSize(170, 12)
 				_G.PlayerStatFrameLeft4.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameLeft4, "CENTER", 25, 0)
 				_G.PlayerStatFrameLeft4.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
@@ -835,7 +881,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PlayerStatFrameLeft6:ClearAllPoints()
 				_G.PlayerStatFrameLeft6:SetPoint("BOTTOM", _G.PlayerStatFrameLeft5, "BOTTOM", 0, -13)
 				_G.PlayerStatFrameLeft6:SetParent(_G.PlayerStatFrameLeft1)
-				_G.PlayerStatFrameLeft6.StatusLine = CreateFrame("StatusBar", "EltruismStatLine3", CharacterFrame)
+
 				_G.PlayerStatFrameLeft6.StatusLine:SetSize(170, 12)
 				_G.PlayerStatFrameLeft6.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameLeft6, "CENTER", 25, 0)
 				_G.PlayerStatFrameLeft6.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
@@ -871,7 +917,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PlayerStatFrameRight2:ClearAllPoints()
 				_G.PlayerStatFrameRight2:SetPoint("BOTTOM", _G.PlayerStatFrameRight1, "BOTTOM", 0, -13)
 				_G.PlayerStatFrameRight2:SetParent(_G.PlayerStatFrameRight1)
-				_G.PlayerStatFrameRight2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine5", CharacterFrame)
+
 				_G.PlayerStatFrameRight2.StatusLine:SetSize(170, 12)
 				_G.PlayerStatFrameRight2.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameRight2, "CENTER", 25, 0)
 				_G.PlayerStatFrameRight2.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
@@ -883,7 +929,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PlayerStatFrameRight4:ClearAllPoints()
 				_G.PlayerStatFrameRight4:SetPoint("BOTTOM", _G.PlayerStatFrameRight3, "BOTTOM", 0, -13)
 				_G.PlayerStatFrameRight4:SetParent(_G.PlayerStatFrameRight1)
-				_G.PlayerStatFrameRight4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine6", CharacterFrame)
+
 				_G.PlayerStatFrameRight4.StatusLine:SetSize(170, 12)
 				_G.PlayerStatFrameRight4.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameRight4, "CENTER", 25, 0)
 				_G.PlayerStatFrameRight4.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
@@ -895,7 +941,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PlayerStatFrameRight6:ClearAllPoints()
 				_G.PlayerStatFrameRight6:SetPoint("BOTTOM", _G.PlayerStatFrameRight5, "BOTTOM", 0, -13)
 				_G.PlayerStatFrameRight6:SetParent(_G.PlayerStatFrameRight1)
-				_G.PlayerStatFrameRight6.StatusLine = CreateFrame("StatusBar", "EltruismStatLine7", CharacterFrame)
+
 				_G.PlayerStatFrameRight6.StatusLine:SetSize(170, 12)
 				_G.PlayerStatFrameRight6.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameRight6, "CENTER", 25, 0)
 				_G.PlayerStatFrameRight6.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
@@ -927,7 +973,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterStatFrame2:ClearAllPoints()
 				_G.CharacterStatFrame2:SetParent(_G.CharacterStatFrame1)
 				_G.CharacterStatFrame2:SetPoint("BOTTOM", _G.CharacterStatFrame1, "BOTTOM", 0, -13)
-				_G.CharacterStatFrame2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine1", CharacterFrame)
+
 				_G.CharacterStatFrame2.StatusLine:SetSize(170, 12)
 				_G.CharacterStatFrame2.StatusLine:SetPoint("CENTER", _G.CharacterStatFrame2, "CENTER", 25, 0)
 				_G.CharacterStatFrame2.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
@@ -940,7 +986,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterStatFrame4:ClearAllPoints()
 				_G.CharacterStatFrame4:SetParent(_G.CharacterStatFrame1)
 				_G.CharacterStatFrame4:SetPoint("BOTTOM", _G.CharacterStatFrame3, "BOTTOM", 0, -13)
-				_G.CharacterStatFrame4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine2", CharacterFrame)
+
 				_G.CharacterStatFrame4.StatusLine:SetSize(170, 12)
 				_G.CharacterStatFrame4.StatusLine:SetPoint("CENTER", _G.CharacterStatFrame4, "CENTER", 25, 0)
 				_G.CharacterStatFrame4.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
@@ -953,7 +999,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterArmorFrame:ClearAllPoints()
 				_G.CharacterArmorFrame:SetParent(_G.CharacterStatFrame1)
 				_G.CharacterArmorFrame:SetPoint("BOTTOM", _G.CharacterStatFrame5, "BOTTOM", 0, -13)
-				_G.CharacterArmorFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine3", CharacterFrame)
+
 				_G.CharacterArmorFrame.StatusLine:SetSize(170, 12)
 				_G.CharacterArmorFrame.StatusLine:SetPoint("CENTER", _G.CharacterArmorFrame, "CENTER", 25, 0)
 				_G.CharacterArmorFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
@@ -966,7 +1012,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterAttackPowerFrame:ClearAllPoints()
 				_G.CharacterAttackPowerFrame:SetParent(_G.CharacterStatFrame1)
 				_G.CharacterAttackPowerFrame:SetPoint("BOTTOM", _G.CharacterAttackFrame, "BOTTOM", 0, -13)
-				_G.CharacterAttackPowerFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine4", CharacterFrame)
+
 				_G.CharacterAttackPowerFrame.StatusLine:SetSize(170, 12)
 				_G.CharacterAttackPowerFrame.StatusLine:SetPoint("CENTER", _G.CharacterAttackPowerFrame, "CENTER", 25, 0)
 				_G.CharacterAttackPowerFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
@@ -979,7 +1025,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterRangedAttackFrame:ClearAllPoints()
 				_G.CharacterRangedAttackFrame:SetParent(_G.CharacterStatFrame1)
 				_G.CharacterRangedAttackFrame:SetPoint("BOTTOM", _G.CharacterDamageFrame, "BOTTOM", 0, -13)
-				_G.CharacterRangedAttackFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine5", CharacterFrame)
+
 				_G.CharacterRangedAttackFrame.StatusLine:SetSize(170, 12)
 				_G.CharacterRangedAttackFrame.StatusLine:SetPoint("CENTER", _G.CharacterRangedAttackFrame, "CENTER", 25, 0)
 				_G.CharacterRangedAttackFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
@@ -992,7 +1038,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterRangedDamageFrame:ClearAllPoints()
 				_G.CharacterRangedDamageFrame:SetParent(_G.CharacterStatFrame1)
 				_G.CharacterRangedDamageFrame:SetPoint("BOTTOM", _G.CharacterRangedAttackPowerFrame, "BOTTOM", 0, -13)
-				_G.CharacterRangedDamageFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine6", CharacterFrame)
+
 				_G.CharacterRangedDamageFrame.StatusLine:SetSize(170, 12)
 				_G.CharacterRangedDamageFrame.StatusLine:SetPoint("CENTER", _G.CharacterRangedDamageFrame, "CENTER", 25, 0)
 				_G.CharacterRangedDamageFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
