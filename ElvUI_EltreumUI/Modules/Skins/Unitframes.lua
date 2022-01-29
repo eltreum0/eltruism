@@ -130,10 +130,10 @@ end
 hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
 --hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.ChangeUnitTexture)
 hooksecurefunc(UF, "Style", ElvUI_EltreumUI.ChangeUnitTexture)  --if not hooking into this then when the target of target changes it doesnt update
+hooksecurefunc(UF, "Update_StatusBar", ElvUI_EltreumUI.ChangeUnitTexture) --needed for druid form swap for some reason + fixes on player entering world
+--hooksecurefunc(UF, "ToggleTransparentStatusBar", ElvUI_EltreumUI.ChangeUnitTexture)
 --hooksecurefunc(UF, "Construct_Raid40Frames", ElvUI_EltreumUI.ChangeUnitTexture)
 --hooksecurefunc(UF, "Construct_RaidFrames", ElvUI_EltreumUI.ChangeUnitTexture)
 --hooksecurefunc(UF, "Construct_PartyFrames", ElvUI_EltreumUI.ChangeUnitTexture)
---hooksecurefunc(UF, "Update_StatusBar", ElvUI_EltreumUI.ChangeUnitTexture)
---hooksecurefunc(UF, "ToggleTransparentStatusBar", ElvUI_EltreumUI.ChangeUnitTexture)
 --hooksecurefunc(UF, "Update_TargetTargetFrame", ElvUI_EltreumUI.ChangeUnitTexture)
 --hooksecurefunc(UF, "Construct_TargetTargetFrame", ElvUI_EltreumUI.ChangeUnitTexture)
