@@ -573,9 +573,9 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["TARGET"]["classpower"]["width"] = 150
 			E.db["nameplates"]["units"]["TARGET"]["classpower"]["yOffset"] = 26
 
-			E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style1" --border glow
-			--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style2" --its the background glow
-			--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style8" --background glow + arrow
+			--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style1" --border glow
+			E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style2" --background glow
+			--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style8" --background glow + side arrow
 			--E.db["nameplates"]["units"]["TARGET"]["arrow"] = "Arrow21" --the arrow
 			if ElvUI_EltreumUI.Classic then
 				--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style2"
