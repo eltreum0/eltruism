@@ -50,7 +50,6 @@ elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 end
 local classsymbolonframe
 local charactertext --check character text
-local CharacterFrameBackgroundTexture = _G.CharacterFrame:CreateTexture()
 
 --put the icon on the papeldoll frame, modify it a bit if SLE is not loaded
 function ElvUI_EltreumUI:PlayerNamepaperdoll()
