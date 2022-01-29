@@ -289,14 +289,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterFrame.EltruismSpeedDesc:SetShadowOffset(1, 0)
 
 				_G.CharacterFrame.EltruismSpeedDescTooltip = CreateFrame("Frame", "EltruismSpeedDesc")
-				_G.CharacterFrame.EltruismSpeedDescTooltip:SetSize(150, 12)
+				_G.CharacterFrame.EltruismSpeedDescTooltip:SetSize(190, 15)
 				_G.CharacterFrame.EltruismSpeedDescTooltip:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -163)
 				_G.CharacterFrame.EltruismSpeedDescTooltip:SetParent(_G.CharacterStatsPane)
 				_G.CharacterFrame.EltruismSpeedDescTooltip:Show()
-
 				_G.CharacterFrame.EltruismSpeedDescTooltip:SetScript("OnEnter", function()
 					_G['GameTooltip']:SetOwner(_G.CharacterFrame.EltruismSpeedDescTooltip, 'ANCHOR_RIGHT')
-					_G['GameTooltip']:AddLine(format(CR_SPEED_TOOLTIP, math.ceil(GetUnitSpeed("player")), ((GetUnitSpeed("player")/7) *100)))
+					_G['GameTooltip']:AddLine(format(CR_SPEED_TOOLTIP, string.format('%.2f', (GetUnitSpeed("player"))), ((GetUnitSpeed("player")/7) *100)))
 					_G['GameTooltip']:Show()
 				end)
 				_G.CharacterFrame.EltruismSpeedDescTooltip:SetScript("OnLeave", function()
@@ -322,6 +321,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					local parry = GetParryChance()
 					_G.CharacterFrame.EltruismParry:SetText(string.format('%.2f', parry).."%")]]
 				end)
+
 		  	end
 		end
 	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
