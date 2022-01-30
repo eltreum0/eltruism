@@ -8,22 +8,23 @@ local string = _G.string
 local hooksecurefunc = _G.hooksecurefunc
 local SetCVar = _G.SetCVar
 local LCG = E.Libs.CustomGlow
-
+local classcolor = E:ClassColor(E.myclass, true)
 -- Different Debuffs/Buffs on nameplates
+
+
+
 local ONUPDATE_INTERVAL = 0.1
 function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
-	if E.private["nameplates"]["enable"] == true then
+	if E.private.nameplates.enable == true then
+
+		local glowcolor
+		if E.db.ElvUI_EltreumUI.glow.colorclass then
+			glowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
+		else
+			glowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolornp.r, E.db.ElvUI_EltreumUI.glowcustomcolornp.g, E.db.ElvUI_EltreumUI.glowcustomcolornp.b, 1}
+		end
+
 		if E.db.ElvUI_EltreumUI.widenameplate.enable or E.db.ElvUI_EltreumUI.widenameplate.npglow then
-			local glowcolor
-			if not E.db.ElvUI_EltreumUI.glow.colorclass then
-				local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolornp
-				local r, g, b = glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b
-				glowcolor = {r, g, b, 1}
-			end
-			if E.db.ElvUI_EltreumUI.glow.colorclass then
-				local classcolor = E:ClassColor(E.myclass, true)
-				glowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
-			end
 			--changing the texture and the size will likely not be needed in 12.38, but the cooldown will be
 			if button and button.spellID then
 				if not string.find(unit, "nameplate") then
@@ -162,7 +163,7 @@ local rareclass = {
 function ElvUI_EltreumUI:NamePlateOptions()
 	local nameplateclasscolors
 	nameplateclasscolors = E:ClassColor(E.myclass, true)
-	if E.private["nameplates"]["enable"] == true then
+	if E.private.nameplates.enable == true then
 		if E.db.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow then
 			E.db["nameplates"]["colors"]["glowColor"]["b"] = nameplateclasscolors.b
 			E.db["nameplates"]["colors"]["glowColor"]["r"] = nameplateclasscolors.r
