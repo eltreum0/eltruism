@@ -8,64 +8,104 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 local GetRaidRosterInfo = _G.GetRaidRosterInfo
 
 -- Conversion of the party/raid death weakaura into an addon option
-local name = {}
+--local name = {}
 local _, deaththrottle
 function ElvUI_EltreumUI:GroupRoster()
 	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
 		if IsInGroup() == true then
-			--print("in a group")
 			deaththrottle = 1
 			ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath()
-			for i=1, GetNumGroupMembers() do
-				name[i], _, _, _, _, _, _, _, _, _, _, _ = GetRaidRosterInfo(i)
-			end
+			--for i=1, GetNumGroupMembers() do
+				--name[i], _, _, _, _, _, _, _, _, _, _, _ = GetRaidRosterInfo(i)
+			--end
 		elseif IsInGroup() == false then
-			--print("not in a group")
-			wipe(name)-- = {}
-			--ElvUI_EltreumUI:ClearMemory()
+			--wipe(name)-- = {}
 			deaththrottle = 0
 			ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath() to not fire when not in a group
-			--name = {E.myname}
 		end
 	end
 end
 
-function ElvUI_EltreumUI:RaidDeath()
+local deathsound
+function ElvUI_EltreumUI:DeathSound()
+	if E.db.ElvUI_EltreumUI.partyraiddeath.bruh then
+		deathsound = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.ogg"
+	end
+	if E.db.ElvUI_EltreumUI.partyraiddeath.robloxoof then
+		deathsound = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.ogg"
+	end
+	if E.db.ElvUI_EltreumUI.partyraiddeath.shame then
+		deathsound = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.ogg"
+	end
+	if E.db.ElvUI_EltreumUI.partyraiddeath.wow then
+		deathsound = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.ogg"
+	end
+	if E.db.ElvUI_EltreumUI.partyraiddeath.mario then
+		deathsound = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\mariodeath.ogg"
+	end
+	if E.db.ElvUI_EltreumUI.partyraiddeath.ion then
+		deathsound = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\ionskillissue.ogg"
+	end
+end
+
+function ElvUI_EltreumUI:RaidDeath(destFlags)
+	--print(destFlags.. "destflag")
+	-- 1298 destflag party
+	--1297 destflag raid
 	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
-		--local _, _, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
-		local _, eventType, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
-		--print(eventType.." "..destName)
-		if eventType ~= "UNIT_DIED" then
-			return
-		elseif eventType == "UNIT_DIED" then
-			--print("raid death function "..destName)
-			if deaththrottle == 1 then
-				for i=1,#name do
-					--if (name[i] == destName) and ( eventType == "UNIT_DIED" ) then
-					if name[i] == destName then
-						if E.db.ElvUI_EltreumUI.partyraiddeath.bruh then
-							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\bruh.ogg", "Master")
-						end
-						if E.db.ElvUI_EltreumUI.partyraiddeath.robloxoof then
-							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.ogg", "Master")
-						end
-						if E.db.ElvUI_EltreumUI.partyraiddeath.shame then
-							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\shame.ogg", "Master")
-						end
-						if E.db.ElvUI_EltreumUI.partyraiddeath.wow then
-							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wow.ogg", "Master")
-						end
-						if E.db.ElvUI_EltreumUI.partyraiddeath.mario then
-							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\mariodeath.ogg", "Master")
-						end
-						if E.db.ElvUI_EltreumUI.partyraiddeath.ion then
-							PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\ionskillissue.ogg", "Master")
-						end
+		if deaththrottle == 1 then
+			--local _, eventType, _, _, _, _, _, _, destName, _, _ = CombatLogGetCurrentEventInfo()
+			--local _, eventType, _, _, _, 	sourceFlags, raidFlags, GUID, destName, _, _ = CombatLogGetCurrentEventInfo()
+
+			--if destFlags == 1298 or destFlags == 1297 then
+				local c = bit.band(destFlags, COMBATLOG_OBJECT_AFFILIATION_RAID)  --(2 for party) (0 for raid)
+				print(c.." raid affiliation")
+
+				if bit.band(destFlags, COMBATLOG_OBJECT_TYPE_PLAYER) > 0 then
+					if bit.band(destFlags, COMBATLOG_OBJECT_AFFILIATION_RAID) > 0 or bit.band(destFlags, COMBATLOG_OBJECT_AFFILIATION_PARTY) > 0 then
+						PlaySoundFile(deathsound, "Master")
+						print("working!")
 					end
 				end
-			else
-				return
-			end
+			--end
+
+			--if eventType ~= "UNIT_DIED" then
+			--	return
+			--elseif eventType == "UNIT_DIED" then
+				--for i=1,#name do
+					--if name[i] == destName then
+						--bit.band(args.destFlags, COMBATLOG_OBJECT_TYPE_PLAYER) ~= 0
+
+
+
+						--local flag1, flag2 = CombatLog_Object_IsA(destFlags, filter)
+						--print(flag1)
+						--print(flag2)
+						--[[
+						local a = bit.band(destFlags, 0x00000400)  --(1024)
+						local b = bit.band(destFlags, 0x00000004)  --(0 for party AND raid)
+						local c = bit.band(destFlags, 0x00000002)  --(2 for party) (0 for raid)
+						print(a)
+						print(b)
+						print(c)
+						if bit.band(destFlags, 0x00000400) == 1024 then
+							if ( bit.band(destFlags, 0x00000004) ~= 0) or (bit.band(destFlags, 0x00000002) == 2) then
+								PlaySoundFile(deathsound, "Master")
+							end
+						end
+						]]
+						--local a = bit.band(destFlags, COMBATLOG_OBJECT_TYPE_PLAYER)  --(1024)
+						--local b = bit.band(destFlags, COMBATLOG_OBJECT_AFFILIATION_RAID)  --(0 for party AND raid)
+						--local c = bit.band(destFlags, COMBATLOG_OBJECT_AFFILIATION_PARTY)  --(2 for party) (0 for raid)
+						--print(a)
+						--print(b)
+						--print(c)
+
+
+
+
+				--end
+			--end
 		end
 	end
 end
