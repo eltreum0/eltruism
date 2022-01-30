@@ -58,8 +58,8 @@ function ElvUI_EltreumUI:RaidDeath(destFlags)
 			--local _, eventType, _, _, _, 	sourceFlags, raidFlags, GUID, destName, _, _ = CombatLogGetCurrentEventInfo()
 
 			--if destFlags == 1298 or destFlags == 1297 then
-				local c = bit.band(destFlags, COMBATLOG_OBJECT_AFFILIATION_RAID)  --(2 for party) (0 for raid)
-				print(c.." raid affiliation")
+				--local c = bit.band(destFlags, COMBATLOG_OBJECT_AFFILIATION_RAID)  --(2 for party) (0 for raid)
+				--print(c.." raid affiliation")
 
 				if bit.band(destFlags, COMBATLOG_OBJECT_TYPE_PLAYER) > 0 then
 					if bit.band(destFlags, COMBATLOG_OBJECT_AFFILIATION_RAID) > 0 or bit.band(destFlags, COMBATLOG_OBJECT_AFFILIATION_PARTY) > 0 then
