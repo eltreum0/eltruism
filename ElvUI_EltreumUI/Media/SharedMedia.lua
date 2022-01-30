@@ -14,9 +14,7 @@ LSM:Register("font", "GothamNarrow Black", [[Interface\Addons\ElvUI_EltreumUI\Me
 LSM:Register('font', "Kimberley", [[Interface\AddOns\ElvUI_EltreumUI\Media\Fonts\Kimberley.ttf]])
 LSM:Register("font", "Roboto", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Roboto-Bold.ttf]])
 
--- Border
-LSM:Register("border", "better-blizzard-border-small-alternate", [[Interface\Addons\ElvUI_EltreumUI\Media\border\better-blizzard-border-small-alternate.tga]])
-
+--extra media that has to be loaded anyway
 function ElvUI_EltreumUI:ExtraMedia()
 	-- Statusbar
 	LSM:Register("statusbar", "Eltreum7pixel", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum7pixel.tga]])
@@ -32,9 +30,16 @@ function ElvUI_EltreumUI:ExtraMedia()
 	LSM:Register("statusbar", "Eltreum-Class-Warrior", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-WA.tga]])
 	LSM:Register("statusbar", "Eltreum-Class-Warlock", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-WL.tga]])
 	LSM:Register("statusbar", "Eltreum-Class-Priest", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Blank.tga]])
+
+	-- Sound
+	LSM:Register("sound", "bruh", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\bruh.ogg]])
+	LSM:Register("sound", "Frankly thats a skill issue", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\ionskillissue.ogg]])
+
+	-- Border
+	LSM:Register("border", "better-blizzard-border-small-alternate", [[Interface\Addons\ElvUI_EltreumUI\Media\border\better-blizzard-border-small-alternate.tga]])
 end
 
-
+--all media below this is only loaded when selected
 function ElvUI_EltreumUI:ExtraMediaStatusBar()
 	LSM:Register("statusbar", "Eltreum-bottom", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-bottom.tga]])
 	LSM:Register("statusbar", "Eltreum-left", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-left.tga]])
@@ -69,7 +74,6 @@ function ElvUI_EltreumUI:ExtraMediaSounds()
 	LSM:Register("sound", "Will Smith - Ah ahaha", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WillSmith-Ahaha.ogg]])
 	LSM:Register("sound", "Will Smith - Rewind", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WillSmith-Rewind-Long.ogg]])
 	LSM:Register("sound", "Will Smith - That's Hot", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WillSmith-Thats-hot.ogg]])
-	LSM:Register("sound", "bruh", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\bruh.ogg]])
 	LSM:Register("sound", "Oof", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\oof.ogg]])
 	LSM:Register("sound", "This is no time for caution", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\caution.ogg]])
 	LSM:Register("sound", "Its not Possible", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\necessary.ogg]])
@@ -83,7 +87,7 @@ function ElvUI_EltreumUI:ExtraMediaSounds()
 	LSM:Register("sound", "Mario Game Over", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\mariodeath.ogg]])
 	LSM:Register("sound", "Xera", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\xera.ogg]])
 	LSM:Register("sound", "Mission Failed", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\codmissionfailed.ogg]])
-	LSM:Register("sound", "Frankly thats a skill issue", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\ionskillissue.ogg]])
+
 end
 
 function ElvUI_EltreumUI:ExtraMediaTextures()

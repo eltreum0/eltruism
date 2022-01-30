@@ -185,14 +185,13 @@ P.ElvUI_EltreumUI = {
 
 	partyraiddeath = {
 		enable = true,
-		bruh = true,
-		robloxoof = false,
-		shame = false,
-		wow = false,
-		mario = false,
-		ion = false,
-		--playerdeathsound = "None",
-		--customenable = false,
+		--bruh = true,
+		--robloxoof = false,
+		--shame = false,
+		--wow = false,
+		--mario = false,
+		--ion = false,
+		playerdeathsound = "bruh",
 	},
 
 	friendlynameplatetoggle = {
