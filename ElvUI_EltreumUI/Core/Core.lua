@@ -490,21 +490,39 @@ end
 --Better EventTrace CLEU logging thanks to ;Meorawr.wtf.lua;
 function ElvUI_EltreumUI:DevTools()
 	if E.db.ElvUI_EltreumUI.dev then
+		if not EventTraceFrame then
+			UIParentLoadAddOn("Blizzard_DebugTools")
+		end
 		if not IsAddOnLoaded("Blizzard_EventTrace") then
 			LoadAddOn("Blizzard_EventTrace")
 		end
-		local LogEvent = EventTrace.LogEvent
-		local function EventTraceLogEvent(event, ...)
-			if event == "COMBAT_LOG_EVENT_UNFILTERED" then
-				LogEvent(self, event, CombatLogGetCurrentEventInfo())
+		local function LogEvent(self, event, ...)
+			if event == "COMBAT_LOG_EVENT_UNFILTERED" or event == "COMBAT_LOG_EVENT" then
+				self:LogEvent_Original(event, CombatLogGetCurrentEventInfo())
+			elseif event == "COMBAT_TEXT_UPDATE" then
+				self:LogEvent_Original(event, (...), GetCurrentCombatTextEventInfo())
 			else
-				LogEvent(self, event, ...)
+				self:LogEvent_Original(event, ...)
 			end
 		end
-		if _G.ElvUI_StaticPopup1 then
-			_G.ElvUI_StaticPopup1:Hide()
+
+		local function OnEventTraceLoaded()
+			EventTrace.LogEvent_Original = EventTrace.LogEvent
+			EventTrace.LogEvent = LogEvent
 		end
-		ElvUI_EltreumUI:Print("|cFFFF0000WARNING:|r You are using Development Tools which increase CPU and Memory Usage. Use |cFFFF0000/eltruism dev|r to disable them")
+
+		if EventTrace then
+			OnEventTraceLoaded()
+		else
+			local frame = CreateFrame("Frame")
+			frame:RegisterEvent("ADDON_LOADED")
+			frame:SetScript("OnEvent", function(self, event, ...)
+				if event == "ADDON_LOADED" and (...) == "Blizzard_EventTrace" then
+					OnEventTraceLoaded()
+					self:UnregisterAllEvents()
+				end
+			end)
+		end
 	end
 end
 
