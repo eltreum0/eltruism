@@ -68,8 +68,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:Borders() --creates borders if option is enabled
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()  --adds class icons to character panel
 	ElvUI_EltreumUI:PlayerNamepaperdoll() --update player name
-	--ElvUI_EltreumUI:AFKmusic() --plays music while afk
-	--ElvUI_EltreumUI:LootText() --shows LooTText and combat entering/leaving messages
 	ElvUI_EltreumUI:VersionCheckInit() --checks for old versions
 	ElvUI_EltreumUI:CursorInit() --starts cursor modules
 	ElvUI_EltreumUI:SkinMailZone() --skins zone change messages and mail font
@@ -157,7 +155,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("UNIT_NAME_UPDATE") --for class icons in the character frame
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED') --for power bar and light mode texture
 	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_FREQUENT') --power update real time
-	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_UPDATE') --power type changes
+	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_UPDATE') --power type less frequent but more cpu/memory friendly
 	ElvUI_EltreumUI:RegisterEvent("UNIT_MODEL_CHANGED") --druid things
 	ElvUI_EltreumUI:RegisterEvent('UNIT_SPELLCAST_START') --for power prediction
 	ElvUI_EltreumUI:RegisterEvent('UNIT_SPELLCAST_STOP') --for power prediction
@@ -266,7 +264,9 @@ end
 function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	ElvUI_EltreumUI:NamePlateOptions()
 	ElvUI_EltreumUI:NameplatePower()
-	ElvUI_EltreumUI:ChangeUnitTexture()
+	if E.db.ElvUI_EltreumUI.lightmode then
+		ElvUI_EltreumUI:ChangeUnitTexture()
+	end
 end
 
 function ElvUI_EltreumUI:UNIT_TARGET(event, unit)
@@ -287,12 +287,15 @@ function ElvUI_EltreumUI:UNIT_POWER_UPDATE(event,unit)
 	if unit == 'player' then
 		ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
 		ElvUI_EltreumUI:PowerPrediction(event)
+		--ElvUI_EltreumUI:NameplatePower(event)
 	end
 end
 
 function ElvUI_EltreumUI:UNIT_MODEL_CHANGED(event,unit)
 	if unit == 'player' then
-		ElvUI_EltreumUI:ChangePlayerTexture()
+		if E.db.ElvUI_EltreumUI.lightmode then
+			ElvUI_EltreumUI:ChangePlayerTexture()
+		end
 		if E.myclass == 'DRUID' or E.myclass == 'SHAMAN' then
 			ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
 			ElvUI_EltreumUI:NameplatePower(event)
