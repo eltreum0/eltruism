@@ -2,17 +2,11 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
 local _G = _G
-local IsInInstance = _G.IsInInstance
 local WorldMapFrame = _G.WorldMapFrame
-local string = _G.string
-local hooksecurefunc = _G.hooksecurefunc
-local SetCVar = _G.SetCVar
 local LCG = E.Libs.CustomGlow
 local classcolor = E:ClassColor(E.myclass, true)
+
 -- Different Debuffs/Buffs on nameplates
-
-
-
 local ONUPDATE_INTERVAL = 0.1
 function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 	if E.private.nameplates.enable == true then
