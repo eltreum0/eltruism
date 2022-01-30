@@ -94,6 +94,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:SkinQuests() --skins quest objective frame to be class colored
 	ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
 	ElvUI_EltreumUI:DeathSound() -- set the party/raid death sound
+	ElvUI_EltreumUI:ChangePlayerTexture() -- load the player texture
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
@@ -141,7 +142,6 @@ function ElvUI_EltreumUI:Initialize()
 	--register the plugin config
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
 	--Register Events
-	--ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for party/raid death
 	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_START') --for quests and combat music
 	ElvUI_EltreumUI:RegisterEvent('ENCOUNTER_END') --for quests and combat music
 	ElvUI_EltreumUI:RegisterEvent('GROUP_ROSTER_UPDATE') --to store group roster in order to compare in party/raid death
@@ -373,7 +373,7 @@ function ElvUI_EltreumUI:INSPECT_READY(event,unit)
 	--if UnitExists("target") and UnitIsPlayer("target") then
 		--print(event)
 		--print(unit)
-		ElvUI_EltreumUI:InspectBg(unit)
+	ElvUI_EltreumUI:InspectBg(unit)
 	--end
 	--print("inspect ready")
 end
