@@ -48,6 +48,22 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		return
 	end
 	ElvUI_EltreumUI:ExtraMedia() -- load extra media if settings enabled
+	if E.db.ElvUI_EltreumUI.media.statusbar then
+		ElvUI_EltreumUI:ExtraMediaStatusBar()
+	end
+	if E.db.ElvUI_EltreumUI.media.font then
+		ElvUI_EltreumUI:ExtraMediaFonts()
+	end
+	if E.db.ElvUI_EltreumUI.media.sound then
+		ElvUI_EltreumUI:ExtraMediaSounds()
+	end
+	if E.db.ElvUI_EltreumUI.media.texture then
+		ElvUI_EltreumUI:ExtraMediaTextures()
+	end
+	if E.db.ElvUI_EltreumUI.media.border then
+		ElvUI_EltreumUI:ExtraMediaBorders()
+	end
+
 	ElvUI_EltreumUI:LoadCommands() --loads chat commands
 	ElvUI_EltreumUI:Borders() --creates borders if option is enabled
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()  --adds class icons to character panel
@@ -77,6 +93,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:QuestItem() -- quest item bar merged from QBar by Aezay with edits to work in TBC/Classic
 	ElvUI_EltreumUI:SkinQuests() --skins quest objective frame to be class colored
 	ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
+	ElvUI_EltreumUI:DeathSound() -- set the party/raid death sound
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
@@ -164,21 +181,12 @@ function ElvUI_EltreumUI:Initialize()
 end
 
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
-	--print("aaaaa")
-	--local _, eventType, _, _, _, _, _, _, _, _, _ = CombatLogGetCurrentEventInfo()
-	--local _, eventType, _, _, sourceName, _, _, _, _, _, _, _, _, _, amount = CombatLogGetCurrentEventInfo()
-	--if eventType ~= "UNIT_DIED" and eventType ~= "SPELL_ENERGIZE" then
-	--if eventType ~= "UNIT_DIED" then
-	--	return
-	--elseif eventType == "UNIT_DIED" then
-		if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
-			ElvUI_EltreumUI:RaidDeath()
-		end
-	--end
-	--elseif (eventType == "SPELL_ENERGIZE") and (sourceName == E.myname) then
-		--print(sourceName.." amount: "..amount)
-		--ElvUI_EltreumUI:PowerPrediction()
-	--end
+	--local timestamp, eventType,	hideCaster,	sourceGUID,	sourceName,	sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags
+	--local _, eventType, _, _, _, sourceFlags, _, _, destName, destFlags = CombatLogGetCurrentEventInfo()
+	local _, eventType, _, _, _, _, _, _, _, destFlags = CombatLogGetCurrentEventInfo()
+	if eventType == "UNIT_DIED" and E.db.ElvUI_EltreumUI.partyraiddeath.enable then
+		ElvUI_EltreumUI:RaidDeath(destFlags)
+	end
 end
 
 function ElvUI_EltreumUI:ENCOUNTER_START(event)
@@ -249,10 +257,7 @@ function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
 end
 
 function ElvUI_EltreumUI:UNIT_NAME_UPDATE(event,unit)
-	if unit and unit ~= 'player' then
-		return
-	elseif unit and unit == 'player' then
-		--print(event,unit)
+	if unit == 'player' then
 		ElvUI_EltreumUI:PlayerNamepaperdoll()
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	end
@@ -265,19 +270,13 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 end
 
 function ElvUI_EltreumUI:UNIT_TARGET(event, unit)
-	--print(event,unit)
-	if unit and unit ~= 'target' then
-		return
-	elseif unit and unit == 'target' then
+	if unit == 'target' then
 		ElvUI_EltreumUI:ChangeUnitTexture()
 	end
 end
 
 function ElvUI_EltreumUI:UNIT_POWER_FREQUENT(event,unit)
-	if unit and unit ~= 'player' then
-		return
-	elseif unit and unit == 'player' then
-		--print(event,unit)
+	if unit == 'player' then
 		ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
 		ElvUI_EltreumUI:NameplatePower(event)
 		ElvUI_EltreumUI:PowerPrediction(event)
@@ -285,20 +284,15 @@ function ElvUI_EltreumUI:UNIT_POWER_FREQUENT(event,unit)
 end
 
 function ElvUI_EltreumUI:UNIT_POWER_UPDATE(event,unit)
-	if unit and unit ~= 'player' then
-		return
-	elseif unit and unit == 'player' then
-		--print(event,unit)
+	if unit == 'player' then
 		ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
 		ElvUI_EltreumUI:PowerPrediction(event)
 	end
 end
 
 function ElvUI_EltreumUI:UNIT_MODEL_CHANGED(event,unit)
-	if unit and unit ~= 'player' then
-		return
-	elseif unit and unit == 'player' then
-		--print(event,unit)
+	if unit == 'player' then
+		ElvUI_EltreumUI:ChangePlayerTexture()
 		if E.myclass == 'DRUID' or E.myclass == 'SHAMAN' then
 			ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
 			ElvUI_EltreumUI:NameplatePower(event)
@@ -308,17 +302,13 @@ function ElvUI_EltreumUI:UNIT_MODEL_CHANGED(event,unit)
 end
 
 function ElvUI_EltreumUI:UNIT_SPELLCAST_START(event,unit)
-	if unit and unit ~= 'player' then
-		return
-	elseif unit and unit == 'player' then
+	if unit == 'player' then
 		ElvUI_EltreumUI:PowerPrediction(event)
 	end
 end
 
 function ElvUI_EltreumUI:UNIT_SPELLCAST_STOP(event,unit)
-	if unit and unit ~= 'player' then
-		return
-	elseif unit and unit == 'player' then
+	if unit == 'player' then
 		ElvUI_EltreumUI:PowerPrediction(event)
 	end
 end
