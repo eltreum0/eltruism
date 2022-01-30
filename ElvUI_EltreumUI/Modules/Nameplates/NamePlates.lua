@@ -115,7 +115,7 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 end
 
 function ElvUI_EltreumUI:Construct_Auras(nameplate)
-	if E.private["nameplates"]["enable"] == true then
+	if E.private.nameplates.enable == true then
 		nameplate.Buffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIconBuff
 		nameplate.Debuffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIconDebuff
 	end
