@@ -66,14 +66,14 @@ function ElvUI_EltreumUI:SkinQuests()
 						if not block then
 							return
 						end
-						if block.HeaderText then
-							block.HeaderText:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
+						if block.HeaderText then  --quest title
+							block.HeaderText:SetFont(E.LSM:Fetch('font', E.db.general.font), 13, "OUTLINE")
 							block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 							block.HeaderText:SetWordWrap(true)
 						end
 						if block.currentLine then --quest text
 							if block.currentLine.objectiveKey == 0 then --also quest title
-								block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
+								block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, "OUTLINE")
 								block.currentLine.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 								block.currentLine.Text:SetWordWrap(true)
 							else  --step/description of the quest
@@ -92,7 +92,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 					for i = 1, #modules do
 						local module = modules[i]
-						if module and module.Header and module.Header.Text then
+						if module and module.Header and module.Header.Text then --the big type of quest
 							module.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*1.5, "OUTLINE")
 							module.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 							module.Header.Text:SetShadowColor(0, 0, 0, 0.8)
