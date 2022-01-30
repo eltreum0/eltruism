@@ -14,14 +14,16 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 local UnitCanAttack = _G.UnitCanAttack
 
 --Setup Power Bar, Prediction and Text
+local EltreumPowerAnchor
 local EltreumPowerBar = CreateFrame("StatusBar","EltruismPowerBar")
 EltreumPowerBar:SetValue(0)
 EltreumPowerBar:Hide() --hide at the start before events
-EltreumPowerBar:RegisterEvent("UNIT_POWER_FREQUENT")
+EltreumPowerBar:RegisterEvent("UNIT_POWER_FREQUENT") --real time power update
+--EltreumPowerBar:RegisterEvent("UNIT_POWER_UPDATE") --less frequent but more cpu/memory friendly
 EltreumPowerBar:RegisterEvent("PLAYER_TARGET_CHANGED")
-EltreumPowerBar:RegisterEvent("UNIT_DISPLAYPOWER")
-EltreumPowerBar:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
-EltreumPowerBar:RegisterEvent("UNIT_MODEL_CHANGED")
+EltreumPowerBar:RegisterEvent("UNIT_DISPLAYPOWER") --when power type changes
+EltreumPowerBar:RegisterEvent("UPDATE_SHAPESHIFT_FORM") --druid thing
+EltreumPowerBar:RegisterEvent("UNIT_MODEL_CHANGED") --druid thing for classic
 
 --Setup the text
 local EltreumPowerBarText = CreateFrame("Frame", nil, EltreumPowerBar)
@@ -40,7 +42,6 @@ EltreumPowerBar.bg = EltreumPowerBar:CreateTexture(nil, "BACKGROUND")
 EltreumPowerBar.bg:SetTexture(E.media.normTex)
 EltreumPowerBar.bg:SetPoint("CENTER", EltreumPowerBar, "CENTER", 0, 0)
 
-
 --setup the prediction and incoming prediction
 local EltreumPowerPrediction = CreateFrame('StatusBar', "EltruismPowerBarPrediction", EltreumPowerBar)
 EltreumPowerPrediction:Hide()
@@ -54,10 +55,15 @@ function ElvUI_EltreumUI:PowerPrediction()
 	EltreumPowerPrediction:Hide() --hide at the start before events
 	EltreumPowerPredictionIncoming:Hide() --hide at the start before events
 	local predictioncolorr, predictioncolorg, predictioncolorb  = EltreumPowerBar:GetStatusBarColor()
+
+	EltreumPowerPrediction:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture))
 	EltreumPowerPrediction:SetStatusBarColor(predictioncolorr * 2, predictioncolorg * 2, predictioncolorb * 2, 0.7)
-	EltreumPowerPredictionIncoming:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
 	EltreumPowerPrediction:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplatepower.sizey)
+
+	EltreumPowerPredictionIncoming:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
+	EltreumPowerPredictionIncoming:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture))
 	EltreumPowerPredictionIncoming:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplatepower.sizey)
+
 	--make them behave nicely since i had to split them
 	EltreumPowerPrediction:SetReverseFill(true)
 	EltreumPowerPredictionIncoming:SetReverseFill(false)
@@ -183,7 +189,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
 		--local canattack = UnitCanAttack("player", "target")
 		if UnitExists("target") and UnitCanAttack("player", "target") then
-			local EltreumPowerAnchor = C_NamePlate.GetNamePlateForUnit("target")
+			EltreumPowerAnchor = C_NamePlate.GetNamePlateForUnit("target")
 			EltreumPowerBar:SetParent(EltreumPowerAnchor)
 
 			EltreumPowerBar:SetMinMaxValues(0, UnitPowerMax("player"))
@@ -206,26 +212,28 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				ret = UnitPower("player") -- hundreds
 			end
 			EltreumPowerBar.Text:SetText(ret)	--this is an actual number not string
-
 			--EltreumPowerBar.Text:SetText(BreakUpLargeNumbers(UnitPower("player")))	--this is an actual number not string
+
 			EltreumPowerBar:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplatepower.sizey)
 			EltreumPowerBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture))
+			EltreumPowerBar:SetFrameStrata("MEDIUM")
+
 			--EltreumPowerBar.bg:SetSize(bgx, bgy)
 			EltreumPowerBar.bg:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex + 1 , E.db.ElvUI_EltreumUI.nameplatepower.sizey + 1 )
 			EltreumPowerBar.bg:SetVertexColor(E.db.ElvUI_EltreumUI.nameplatepower.r, E.db.ElvUI_EltreumUI.nameplatepower.g, E.db.ElvUI_EltreumUI.nameplatepower.b) -- option for changing this color
-			EltreumPowerBar:SetFrameStrata("MEDIUM")
+
 
 			--get location of power bar texture
 			--local predictionpos = EltreumPowerBar:GetStatusBarTexture()
 
 			--update power prediction
-			EltreumPowerPrediction:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture))
+
 			EltreumPowerPrediction:SetMinMaxValues(0, UnitPowerMax("player"))
 			EltreumPowerPrediction:SetPoint("RIGHT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
 			EltreumPowerPrediction:SetFrameStrata("HIGH")
 
 			--update power prediction incoming
-			EltreumPowerPredictionIncoming:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture))
+
 			EltreumPowerPredictionIncoming:SetMinMaxValues(0, UnitPowerMax("player"))
 			EltreumPowerPredictionIncoming:SetPoint("LEFT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
 			EltreumPowerPredictionIncoming:SetFrameStrata("HIGH")
