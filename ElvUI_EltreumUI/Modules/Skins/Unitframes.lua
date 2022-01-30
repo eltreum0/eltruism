@@ -37,15 +37,6 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 	--print("change unit texture spam")
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture then
 
-		--player
-		local playertexture = LSM:Fetch("statusbar", unitframeclass[E.myclass])
-		if UF.units.player then
-			local unitframe = _G["ElvUF_Player"]
-			if unitframe and unitframe.Health then
-				unitframe.Health:SetStatusBarTexture(playertexture)
-			end
-		end
-
 		--target
 		local targetbar = LSM:Fetch("statusbar", "Eltreum-Blank")
 		local _, targetclass = UnitClass("target")
@@ -128,9 +119,30 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 	end
 end
 hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
---hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.ChangeUnitTexture)
 hooksecurefunc(UF, "Style", ElvUI_EltreumUI.ChangeUnitTexture)  --if not hooking into this then when the target of target changes it doesnt update
-hooksecurefunc(UF, "Update_StatusBar", ElvUI_EltreumUI.ChangeUnitTexture) --needed for druid form swap for some reason + fixes on player entering world
+--hooksecurefunc(UF, "Update_StatusBar", ElvUI_EltreumUI.ChangeUnitTexture) --needed for druid form swap for some reason + fixes on player entering world... except it also causes memory to go WAY up
+--hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.ChangeUnitTexture)
+
+
+--from Benik
+function ElvUI_EltreumUI:ChangePlayerTexture()
+	--print("change unit texture spam")
+	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture then
+		--player
+		local playertexture = LSM:Fetch("statusbar", unitframeclass[E.myclass])
+		if UF.units.player then
+			local unitframe = _G["ElvUF_Player"]
+			if unitframe and unitframe.Health then
+				unitframe.Health:SetStatusBarTexture(playertexture)
+			end
+		end
+	end
+end
+hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangePlayerTexture)
+--hooksecurefunc(UF, "Update_StatusBar", ElvUI_EltreumUI.ChangePlayerTexture) --needed for druid form swap for some reason + fixes on player entering world... except it also causes memory to go WAY up
+
+
+
 --hooksecurefunc(UF, "ToggleTransparentStatusBar", ElvUI_EltreumUI.ChangeUnitTexture)
 --hooksecurefunc(UF, "Construct_Raid40Frames", ElvUI_EltreumUI.ChangeUnitTexture)
 --hooksecurefunc(UF, "Construct_RaidFrames", ElvUI_EltreumUI.ChangeUnitTexture)
