@@ -6,6 +6,7 @@ Fixed Waypoint Time to Arrive not updating when selecting World Quests\
 Fixed Light Mode texture not updating on druid shapeshift and when loading in\
 Fixed an action paging issue for Druids when doing some world quests\
 Improved Media loading\
+Updated the Party/Raid sound selection, now any sound can be selected\
 Updated many functions, decreasing their cpu/memory use\
 ___
 ### 2.7.1
