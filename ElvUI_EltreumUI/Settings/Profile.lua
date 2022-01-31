@@ -191,6 +191,7 @@ P.ElvUI_EltreumUI = {
 		--wow = false,
 		--mario = false,
 		--ion = false,
+		bgdisable = true,
 		playerdeathsound = "bruh",
 	},
 

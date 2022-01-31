@@ -86,7 +86,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:BattlegroundGroupUnitframes() --hides elvui unitframes in bgs
 	ElvUI_EltreumUI:DynamicBuffs() --shows enemy player buffs on nameplates/unitframes if in arena/bgs, hides otherwise
 	ElvUI_EltreumUI:EnteringWorldCVars() --set cvars at the start
-	ElvUI_EltreumUI:GroupRoster() -- attempt at prevent CLEU tracking
+	ElvUI_EltreumUI:RaidDeathGroupCheck() -- attempt at prevent CLEU tracking
 	ElvUI_EltreumUI:AutoAcceptQuests() -- yet another auto accept quest thing
 	ElvUI_EltreumUI:QuestItem() -- quest item bar merged from QBar by Aezay with edits to work in TBC/Classic
 	ElvUI_EltreumUI:SkinQuests() --skins quest objective frame to be class colored
@@ -203,7 +203,7 @@ function ElvUI_EltreumUI:ENCOUNTER_END(event)
 end
 
 function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
-	ElvUI_EltreumUI:GroupRoster()
+	ElvUI_EltreumUI:RaidDeathGroupCheck()
 end
 
 function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()

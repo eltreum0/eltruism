@@ -9,11 +9,21 @@ local GetRaidRosterInfo = _G.GetRaidRosterInfo
 
 -- Conversion of the party/raid death weakaura into an addon option
 local _, deaththrottle
-function ElvUI_EltreumUI:GroupRoster()
+function ElvUI_EltreumUI:RaidDeathGroupCheck()
+	local _, instanceType = IsInInstance()
 	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
 		if IsInGroup() == true then
-			deaththrottle = 1
-			ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath()
+			if E.db.ElvUI_EltreumUI.partyraiddeath.bgdisable then  --to disable it in arena/bg
+				if instanceType == "arena" or instanceType == "pvp" then
+					ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
+				else
+					deaththrottle = 1
+					ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath()
+				end
+			else
+				deaththrottle = 1
+				ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath()
+			end
 		elseif IsInGroup() == false then
 			deaththrottle = 0
 			ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath() to not fire when not in a group
@@ -31,9 +41,7 @@ function ElvUI_EltreumUI:RaidDeath(destFlags)
 		if deaththrottle == 1 then
 			if bit.band(destFlags, COMBATLOG_OBJECT_TYPE_PLAYER) > 0 then
 				if bit.band(destFlags, COMBATLOG_OBJECT_AFFILIATION_RAID) > 0 or bit.band(destFlags, COMBATLOG_OBJECT_AFFILIATION_PARTY) > 0 then
-					--PlaySoundFile(deathsound, "Master")
 					PlaySoundFile(deathsound , "Master")
-					print("working!")
 				end
 			end
 		end
