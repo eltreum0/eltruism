@@ -538,7 +538,7 @@ function ElvUI_EltreumUI:ClearMemory()
 				ElvUI_EltreumUI:Print(currentmemory.." memory was cleared")
 				--UpdateAddOnCPUUsage("ElvUI_EltreumUI")
 				--GetAddOnMemoryUsage("ElvUI_EltreumUI")
-				--/run UpdateAddOnMemoryUsage() print(GetAddOnMemoryUsage("ElvUI_EltreumUI"))
+				--/run UpdateAddOnMemoryUsage() print("memory "..GetAddOnMemoryUsage("ElvUI_EltreumUI")); print("cpu "..GetAddOnCPUUsage("ElvUI_EltreumUI"))
 				currentmemory = 0
 			else
 				ElvUI_EltreumUI:Print("Not enough memory usage to clear memory")
