@@ -2,12 +2,13 @@
 **The future is uncertain**
 ___
 ### 2.7.2
-Fixed Waypoint Time to Arrive not updating when selecting World Quests\
-Fixed Light Mode texture not updating on druid shapeshift and when loading in\
-Fixed an action paging issue for Druids when doing some world quests\
 Improved Media loading\
 Updated the Party/Raid sound selection, now any sound can be selected\
 Updated many functions, decreasing their cpu/memory use\
+Added an option to automatically type DELETE on certain popups\
+Fixed Waypoint Time to Arrive not updating when selecting World Quests\
+Fixed Light Mode texture not updating on druid shapeshift and when loading in\
+Fixed an action paging issue for Druids when doing some world quests
 ___
 ### 2.7.1
 Improved the Retail Character Panel skin, making it more compatible with Shadow & Light\
