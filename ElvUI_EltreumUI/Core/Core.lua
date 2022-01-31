@@ -552,3 +552,17 @@ function ElvUI_EltreumUI:ClearMemory()
 		end
 	end
 end
+
+function ElvUI_EltreumUI:DeleteItem()
+	if E.db.ElvUI_EltreumUI.otherstuff.delete then
+		hooksecurefunc(StaticPopupDialogs["DELETE_GOOD_ITEM"],"OnShow",function(self) --Interface/FrameXML/StaticPopup.lua line 1965/2074
+			self.editBox:SetText(DELETE_ITEM_CONFIRM_STRING)  --from line 2028
+			ElvUI_EltreumUI:Print("DELETE automatically typed")
+		end)
+
+		hooksecurefunc(StaticPopupDialogs["DELETE_GOOD_QUEST_ITEM"],"OnShow",function(self) --Interface/FrameXML/StaticPopup.lua line 2125
+			self.editBox:SetText(DELETE_ITEM_CONFIRM_STRING)  --from line 2028
+			ElvUI_EltreumUI:Print("DELETE automatically typed")
+		end)
+	end
+end

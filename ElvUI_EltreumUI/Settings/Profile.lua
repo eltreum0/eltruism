@@ -367,6 +367,7 @@ P.ElvUI_EltreumUI = {
 		blizzcombatmana = false,
 		mapcombathide = false,
 		dynamicxpbar = true,
+		delete = false,
 		--floatingrep = false,
 	},
 }

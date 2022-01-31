@@ -93,6 +93,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
 	ElvUI_EltreumUI:DeathSound() -- set the party/raid death sound
 	ElvUI_EltreumUI:ChangePlayerTexture() -- load the player texture
+	ElvUI_EltreumUI:DeleteItem() -- automatically type delete
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow

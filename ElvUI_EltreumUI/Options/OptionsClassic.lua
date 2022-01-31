@@ -1061,15 +1061,31 @@ if ElvUI_EltreumUI.Classic then
 							get = function(info) return E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect = value end,
 						},
-						header578 = {
+						headerdelete = {
 							order = 56,
+							type = "description",
+							name = "Item Deletion",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						autotypedelete = {
+							order = 57,
+							type = 'toggle',
+							name = L["Automatically type DELETE on the popup"],
+							width = 'full',
+							desc = L["Will not delete the item, will simply type DELETE instead you needing to type it"],
+							get = function(info) return E.db.ElvUI_EltreumUI.otherstuff.delete end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.delete = value end,
+						},
+						header578 = {
+							order = 58,
 							type = "description",
 							name = "",
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
 						apswap = {
-							order = 57,
+							order = 59,
 							type = 'execute',
 							name = "Swap Action Paging and visibility for Bar1 and Bar4",
 							--desc = "",
