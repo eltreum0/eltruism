@@ -78,7 +78,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 end
 
 function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
-	if E.private["nameplates"]["enable"] == true then
+	if E.private.nameplates.enable == true then
 		if E.db.ElvUI_EltreumUI.widenameplate.enable then
 			if button and button.spellID then
 				if not string.find(unit, "nameplate") then
