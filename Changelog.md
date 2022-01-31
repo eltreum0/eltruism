@@ -3,6 +3,7 @@
 ___
 ### 2.7.2
 Improved Media loading\
+Made Quest Item Bar disabled by default, if you still want to use it simply enable it in Eltruism > Quests\
 Updated the Party/Raid sound selection, now any sound can be selected\
 Updated many functions, decreasing their cpu/memory use\
 Added an option to disable the Party/Raid death sound during battlegrounds and arenas\
