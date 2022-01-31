@@ -22,53 +22,54 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			--changing the texture and the size will likely not be needed in 12.38, but the cooldown will be
 			if button and button.spellID then
 				if not string.find(unit, "nameplate") then
-					--print("np button nil "..math.random(1,99))
-					button.cd:SetScript('OnUpdate', nil) --lets check this
-					return
-				end
-				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-					if E.db.ElvUI_EltreumUI.widenameplate.enable then
-						button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
-					end
-				end
-				button.cd:SetFrameStrata('DIALOG')
-				--button.cd:SetDrawSwipe(false) --works to erase it
-				local TimeSinceLastUpdate = 0
-				if not button.cd then
+					--print("np button debuff nil "..math.random(1,99))
+					--button.cd:SetScript('OnUpdate', nil) --lets check this
 					return
 				else
-					button.cd:SetScript('OnUpdate', function(self, elapsed)
-						--print("np button spam "..math.random(1,99))
-						TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
-						if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
-							TimeSinceLastUpdate = 0
-							if button.cd.timer then
-								if E.db.ElvUI_EltreumUI.widenameplate.enable then
-									button.cd.timer.text:ClearAllPoints()
-									button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
-								end
-								local _, g, b, a = button.cd.timer.text:GetTextColor()
-								if E.db.ElvUI_EltreumUI.widenameplate.npglow then
-									if (g == 0 or b == 0) and a > 0.5 then
-										LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
-									else
-										LCG.PixelGlow_Stop(button)
+					if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+						if E.db.ElvUI_EltreumUI.widenameplate.enable then
+							button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
+						end
+					end
+					button.cd:SetFrameStrata('DIALOG')
+					--button.cd:SetDrawSwipe(false) --works to erase it
+					local TimeSinceLastUpdate = 0
+					if not button.cd then
+						return
+					else
+						button.cd:SetScript('OnUpdate', function(self, elapsed)
+							--print("np button spam "..math.random(1,99))
+							TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+							if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+								TimeSinceLastUpdate = 0
+								if button.cd.timer then
+									if E.db.ElvUI_EltreumUI.widenameplate.enable then
+										button.cd.timer.text:ClearAllPoints()
+										button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
+									end
+									local _, g, b, a = button.cd.timer.text:GetTextColor()
+									if E.db.ElvUI_EltreumUI.widenameplate.npglow then
+										if (g == 0 or b == 0) and a > 0.5 then
+											LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
+										else
+											LCG.PixelGlow_Stop(button)
+										end
 									end
 								end
 							end
-						end
-					end)
-				end
-				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-					if E.db.ElvUI_EltreumUI.widenameplate.enable then
-						button:SetWidth(25)
-						button:SetHeight(18)
+						end)
 					end
-				end
-				button.count:SetParent(button.cd)
-				if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-					if E.db.ElvUI_EltreumUI.widenameplate.enable then
-						button.count:Point('BOTTOMRIGHT', 2, -3) --elvui added a setting for it but its missing some things
+					if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+						if E.db.ElvUI_EltreumUI.widenameplate.enable then
+							button:SetWidth(25)
+							button:SetHeight(18)
+						end
+					end
+					button.count:SetParent(button.cd)
+					if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						if E.db.ElvUI_EltreumUI.widenameplate.enable then
+							button.count:Point('BOTTOMRIGHT', 2, -3) --elvui added a setting for it but its missing some things
+						end
 					end
 				end
 			end
@@ -82,32 +83,33 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 		if E.db.ElvUI_EltreumUI.widenameplate.enable then
 			if button and button.spellID then
 				if not string.find(unit, "nameplate") then
-					--print("np button buff nil attempt "..math.random(1,99))
-					button.cd:SetScript('OnUpdate', nil)
+					--print("np button buff nil "..math.random(1,99))
+					--button.cd:SetScript('OnUpdate', nil)
 					return
-				end
-				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-					button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
-				end
-				local TimeSinceLastUpdate = 0
-				--print("np button buff spam "..math.random(1,99))
-				button.cd:SetScript('OnUpdate', function(self, elapsed)
-				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
-					if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
-						TimeSinceLastUpdate = 0
-						if button.cd.timer then
-							button.cd.timer.text:ClearAllPoints()
-							button.cd.timer.text:SetDrawLayer('OVERLAY',1)
-							button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
-						end
+				else
+					if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+						button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 					end
-				end)
-				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-					button:SetWidth(25)
-					button:SetHeight(18)
+					local TimeSinceLastUpdate = 0
+					--print("np button buff spam "..math.random(1,99))
+					button.cd:SetScript('OnUpdate', function(self, elapsed)
+					TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+						if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+							TimeSinceLastUpdate = 0
+							if button.cd.timer then
+								button.cd.timer.text:ClearAllPoints()
+								button.cd.timer.text:SetDrawLayer('OVERLAY',1)
+								button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
+							end
+						end
+					end)
+					if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+						button:SetWidth(25)
+						button:SetHeight(18)
+					end
+					button.count:SetParent(button.cd)
+					button.count:Point('BOTTOMRIGHT', 2, -3)
 				end
-				button.count:SetParent(button.cd)
-				button.count:Point('BOTTOMRIGHT', 2, -3)
 			end
 			UF.PostUpdateAura(self, unit, button)
 		end
@@ -271,7 +273,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 end
 
 function ElvUI_EltreumUI:ClassicThreatNP()
-	if E.private["nameplates"]["enable"] == true then
+	if E.private.nameplates.enable == true then
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Kimberley"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["fontOutline"] = "OUTLINE"
