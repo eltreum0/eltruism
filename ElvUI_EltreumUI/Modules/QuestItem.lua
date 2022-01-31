@@ -31,7 +31,7 @@ function ElvUI_EltreumUI:QuestItem()
 			local cfg = {
 				btnSize = E.db.ElvUI_EltreumUI.questsettings.questitemsize,
 			}
-			if E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 then
+			if E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 and E.private.actionbar.enable then
 				if not InCombatLockdown() then
 					EltruismQuestItemFrame:SetParent(_G["ElvUI_Bar1Button1"])
 				end
