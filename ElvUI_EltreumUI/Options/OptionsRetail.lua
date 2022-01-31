@@ -748,7 +748,7 @@ if ElvUI_EltreumUI.Retail then
 							width = 'full',
 							desc = L["Will not delete the item, will simply type DELETE instead you needing to type it"],
 							get = function(info) return E.db.ElvUI_EltreumUI.otherstuff.delete end,
-							set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.delete = value end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.otherstuff.delete = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
 						header16 = {
 							order = 54,
