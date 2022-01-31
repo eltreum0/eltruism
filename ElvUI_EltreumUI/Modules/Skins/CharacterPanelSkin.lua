@@ -11,6 +11,7 @@ end
 --improving character panel
 local CharacterFrame = _G.CharacterFrame
 local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture()
+local ilevel
 
 if ElvUI_EltreumUI.Retail then
 	_G.CharacterFrame.EltruismClassResource = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
@@ -19,11 +20,11 @@ if ElvUI_EltreumUI.Retail then
 	_G.CharacterFrame.EltruismClassResource2 = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
 	_G.CharacterFrame.EltruismClassResourceDesc2 = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
 	_G.CharacterFrame.EltruismClassResourceDescTooltip2 = CreateFrame("Frame", "EltruismClassResourceDesc2")
-	_G.CharacterFrame.EltruismSpeedDescTooltip = CreateFrame("Frame", "EltruismSpeedDesc")
 	_G.CharacterFrame.EltruismExtraStats = _G.CharacterFrame:CreateTexture(nil, 'BORDER')
 	_G.CharacterFrame.EltruismExtraStatsFont = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
 	_G.CharacterFrame.EltruismSpeed = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
 	_G.CharacterFrame.EltruismSpeedDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
+	_G.CharacterFrame.EltruismSpeedDescTooltip = CreateFrame("Frame", "EltruismSpeedDesc")
 end
 
 if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
@@ -634,6 +635,15 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				['DRUID'] = "Interface\\Artifacts\\ArtifactUIDruid",
 				['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
 			}
+
+
+
+			--main way of clearing memory
+			hooksecurefunc("ToggleCharacter", function()
+				ElvUI_EltreumUI:ClearMemory()
+				ilevel = LibItemInfo:GetUnitItemLevel("player")
+				_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
+			end)
 
 			local alpha
 			if E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha ~= nil then

@@ -80,13 +80,6 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 				UpdateItemSlotButton(button, "player")
 			end)
 
-			local ilevel, _, _ = LibItemInfo:GetUnitItemLevel("player")
-			--main way of clearing memory
-			hooksecurefunc("ToggleCharacter", function()
-				ElvUI_EltreumUI:ClearMemory()
-				_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
-			end)
-
 			if not IsAddOnLoaded("Blizzard_InspectUI") then
 				LoadAddOn("Blizzard_InspectUI")
 			end
