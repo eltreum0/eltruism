@@ -155,7 +155,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("UNIT_NAME_UPDATE") --for class icons in the character frame
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED') --for power bar and light mode texture
 	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_FREQUENT') --power update real time
-	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_UPDATE') --power type less frequent but more cpu/memory friendly
+	--ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_UPDATE') --power type less frequent but more cpu/memory friendly
 	ElvUI_EltreumUI:RegisterEvent("UNIT_MODEL_CHANGED") --druid things
 	ElvUI_EltreumUI:RegisterEvent('UNIT_SPELLCAST_START') --for power prediction
 	ElvUI_EltreumUI:RegisterEvent('UNIT_SPELLCAST_STOP') --for power prediction
@@ -283,13 +283,13 @@ function ElvUI_EltreumUI:UNIT_POWER_FREQUENT(event,unit)
 	end
 end
 
-function ElvUI_EltreumUI:UNIT_POWER_UPDATE(event,unit)
+--[[function ElvUI_EltreumUI:UNIT_POWER_UPDATE(event,unit)
 	if unit == 'player' then
 		ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
 		ElvUI_EltreumUI:PowerPrediction(event)
 		--ElvUI_EltreumUI:NameplatePower(event)
 	end
-end
+end]]
 
 function ElvUI_EltreumUI:UNIT_MODEL_CHANGED(event,unit)
 	if unit == 'player' then

@@ -18,12 +18,12 @@ local EltreumPowerAnchor
 local EltreumPowerBar = CreateFrame("StatusBar","EltruismPowerBar")
 EltreumPowerBar:SetValue(0)
 EltreumPowerBar:Hide() --hide at the start before events
-EltreumPowerBar:RegisterEvent("UNIT_POWER_FREQUENT") --real time power update
+--EltreumPowerBar:RegisterEvent("UNIT_POWER_FREQUENT") --real time power update
 --EltreumPowerBar:RegisterEvent("UNIT_POWER_UPDATE") --less frequent but more cpu/memory friendly
-EltreumPowerBar:RegisterEvent("PLAYER_TARGET_CHANGED")
-EltreumPowerBar:RegisterEvent("UNIT_DISPLAYPOWER") --when power type changes
-EltreumPowerBar:RegisterEvent("UPDATE_SHAPESHIFT_FORM") --druid thing
-EltreumPowerBar:RegisterEvent("UNIT_MODEL_CHANGED") --druid thing for classic
+--EltreumPowerBar:RegisterEvent("PLAYER_TARGET_CHANGED")
+--EltreumPowerBar:RegisterEvent("UNIT_DISPLAYPOWER") --when power type changes
+--EltreumPowerBar:RegisterEvent("UPDATE_SHAPESHIFT_FORM") --druid thing
+--EltreumPowerBar:RegisterEvent("UNIT_MODEL_CHANGED") --druid thing for classic
 
 --Setup the text
 local EltreumPowerBarText = CreateFrame("Frame", nil, EltreumPowerBar)
