@@ -5,6 +5,7 @@ ___
 Improved Media loading\
 Updated the Party/Raid sound selection, now any sound can be selected\
 Updated many functions, decreasing their cpu/memory use\
+Added an option to disable the Party/Raid death sound during battlegrounds and arenas\
 Added an option to automatically type DELETE on certain popups\
 Fixed Waypoint Time to Arrive not updating when selecting World Quests\
 Fixed Light Mode texture not updating on druid shapeshift and when loading in\
