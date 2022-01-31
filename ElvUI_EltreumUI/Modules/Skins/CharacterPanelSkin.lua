@@ -636,8 +636,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
 			}
 
-
-
 			--main way of clearing memory
 			hooksecurefunc("ToggleCharacter", function()
 				ElvUI_EltreumUI:ClearMemory()
