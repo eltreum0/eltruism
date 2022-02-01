@@ -1241,21 +1241,43 @@ if ElvUI_EltreumUI.Classic then
 							name = L["Character"],
 							order = 2,
 							args = {
-								headerfirst = {
+								headersocket = {
 									order = 1,
+									type = "description",
+									name = "Sockets and Enchants",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								anchorgapheresocket = {
+									order = 2,
+									type = "description",
+									name = "",
+									width = 'full',
+								},
+								socketsonchar = {
+									order = 3,
+									type = 'toggle',
+									name = "Add Sockets and Enchants to the Character Panel",
+									width = 'full',
+									desc = "Enable this option",
+									get = function(info) return E.db.ElvUI_EltreumUI.skins.sockets end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.skins.sockets = value E:StaticPopup_Show('CONFIG_RL') end,
+								},
+								headerfirst = {
+									order = 80,
 									type = "description",
 									name = "Item Levels",
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								anchorgaphere = {
-									order = 2,
+									order = 81,
 									type = "description",
 									name = "",
 									width = 'full',
 								},
 								skincharpanel = {
-									order = 3,
+									order = 82,
 									type = 'toggle',
 									name = "Add Item Levels to the Character Panel",
 									width = 'full',
