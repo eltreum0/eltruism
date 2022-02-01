@@ -2023,13 +2023,16 @@ function Tooltip:_ShowTooltips(parent, items)
 				Tooltips[i]:SetPoint("TOPLEFT", Tooltips[i - 1], "TOPRIGHT")
 			end
 
-			if item[FIELD_TYPE] == TYPE_HYPERLINK then
-				Tooltips[i]:SetHyperlink(item[FIELD_CONTENT])
-				self.link = item[FIELD_CONTENT]
-			elseif item[FIELD_TYPE] == TYPE_TEXT then
+			if ElvUI_EltreumUI.TBC then
+				if item[FIELD_TYPE] == TYPE_HYPERLINK then
+					Tooltips[i]:SetHyperlink(item[FIELD_CONTENT])
+					self.link = item[FIELD_CONTENT]
+				elseif item[FIELD_TYPE] == TYPE_TEXT then
+					Tooltips[i]:SetText(item[FIELD_CONTENT])
+				end
+			elseif ElvUI_EltreumUI.Classic then
 				Tooltips[i]:SetText(item[FIELD_CONTENT])
 			end
-
 			maxSize = max(Tooltips[i]:GetHeight(), maxSize)
 		end
 
@@ -2207,6 +2210,9 @@ AddOn.defaults = {
 }
 
 function AddOn:OnInitialize()
+	if E.db.ElvUI_EltreumUI == nil then
+		return
+	end
 	if E.db.ElvUI_EltreumUI.skins == nil then
 		E.db.ElvUI_EltreumUI.skins = {
 			enable = true,
