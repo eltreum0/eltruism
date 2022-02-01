@@ -51,120 +51,122 @@ EltreumPowerPredictionIncoming:Hide()
 
 --Calculate the Power Cost and draw on the Bar
 function ElvUI_EltreumUI:PowerPrediction()
-	--print("power prediction spam "..math.random(1,99))
-	EltreumPowerPrediction:Hide() --hide at the start before events
-	EltreumPowerPredictionIncoming:Hide() --hide at the start before events
-	local predictioncolorr, predictioncolorg, predictioncolorb  = EltreumPowerBar:GetStatusBarColor()
+	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
+		--print("power prediction spam "..math.random(1,99))
+		EltreumPowerPrediction:Hide() --hide at the start before events
+		EltreumPowerPredictionIncoming:Hide() --hide at the start before events
+		local predictioncolorr, predictioncolorg, predictioncolorb  = EltreumPowerBar:GetStatusBarColor()
 
-	EltreumPowerPrediction:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture))
-	EltreumPowerPrediction:SetStatusBarColor(predictioncolorr * 2, predictioncolorg * 2, predictioncolorb * 2, 0.7)
-	EltreumPowerPrediction:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplatepower.sizey)
+		EltreumPowerPrediction:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture))
+		EltreumPowerPrediction:SetStatusBarColor(predictioncolorr * 2, predictioncolorg * 2, predictioncolorb * 2, 0.7)
+		EltreumPowerPrediction:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplatepower.sizey)
 
-	EltreumPowerPredictionIncoming:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
-	EltreumPowerPredictionIncoming:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture))
-	EltreumPowerPredictionIncoming:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplatepower.sizey)
+		EltreumPowerPredictionIncoming:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
+		EltreumPowerPredictionIncoming:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture))
+		EltreumPowerPredictionIncoming:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplatepower.sizey)
 
-	--make them behave nicely since i had to split them
-	EltreumPowerPrediction:SetReverseFill(true)
-	EltreumPowerPredictionIncoming:SetReverseFill(false)
+		--make them behave nicely since i had to split them
+		EltreumPowerPrediction:SetReverseFill(true)
+		EltreumPowerPredictionIncoming:SetReverseFill(false)
 
-	local mindblast = 8
-	local mindflay = 18
-	if IsPlayerSpell(193195) then
-		mindblast = 9
-		mindflay = 22
-	end
-	local druidwrath = 6
-	if ElvUI_EltreumUI.Retail then
-		local druideclipse = GetPlayerAuraBySpellID(48517)
-		if IsPlayerSpell(114107) and druideclipse ~= nil then
-			druidwrath = 9
+		local mindblast = 8
+		local mindflay = 18
+		if IsPlayerSpell(193195) then
+			mindblast = 9
+			mindflay = 22
 		end
-	end
-	--Some of this is from Asakawa's Universal Power Bar, but mostly has been revamped and updated to current values instead of BFA values
-	local spellGenerators = {
-		-- Balance Druid
-		[190984] = druidwrath, --wrath
-		[194153] = 8,  --  StarFire
-		[214281] = 10, -- New Moon
-		[274281] = 10, -- New Moon
-		[214282] = 20, -- Half Moon
-		[274282] = 20, -- Half Moon
-		[274283] = 40, -- Full Moon
-		[202347] = 8,  -- Stellar Flare
-		-- Shadow Priest
-		[8092] = mindblast, -- mind blast
-		[34914] = 5, -- vampiric touch
-		[15407] = mindflay, -- mind flay, but is a channel so idc
-		[48045] = 6, -- per target, but is a channel so idc
-		[263165] = 60, -- void torrent, but is a channel so idc
-		-- Elemental Shaman
-		[188196] = 8, --lightning bolt
-		[51505] = 10, --lava burst
-		[117014] = 30, --elemental blast
-		[114074] = 4, --lava beam
-		[210714] = 25, --icefury
-		[188443] = 4, --chain lightning (per target hit)
-		--Hunter
-		[56641] = 10, --steady shot
-	}
-
-	--From ElvUI/oUF by ls-
-	local mainCost = 0
-	local incResource = 0
-	local startTime, endTime, spellID = 0, 0, 0
-
-	--Next TBC version it switches to normal info, so we do this to detect wow version
-	--local wowversion = (select(4, GetBuildInfo()))
-	--if wowversion == 20502 then --tbc pre phase 3
-	--	_, _, _, startTime, endTime, _, _, spellID = UnitCastingInfo("player")
-	--else --everything else
-		_, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
-	--end
-	--print(select(4, GetBuildInfo()))
-	--print(spellID.." spellID!")
-	if startTime ~= endTime then
-		local costTable = GetSpellPowerCost(spellID)
-		if costTable ~= nil then
-			for k, v in next, costTable do
-				local cost = v.cost
-				mainCost = cost
+		local druidwrath = 6
+		if ElvUI_EltreumUI.Retail then
+			local druideclipse = GetPlayerAuraBySpellID(48517)
+			if IsPlayerSpell(114107) and druideclipse ~= nil then
+				druidwrath = 9
 			end
 		end
-		for k, v in next, spellGenerators do
-			if spellGenerators[spellID] ~= nil then
-				incResource = spellGenerators[spellID]
-				--print(incResource)
-				--readjust if the incoming would go over max
-				if (incResource + EltreumPowerBar:GetValue()) >= UnitPowerMax("player") then
-					incResource = (UnitPowerMax("player") - EltreumPowerBar:GetValue())
-					--print("adjusting resource")
+		--Some of this is from Asakawa's Universal Power Bar, but mostly has been revamped and updated to current values instead of BFA values
+		local spellGenerators = {
+			-- Balance Druid
+			[190984] = druidwrath, --wrath
+			[194153] = 8,  --  StarFire
+			[214281] = 10, -- New Moon
+			[274281] = 10, -- New Moon
+			[214282] = 20, -- Half Moon
+			[274282] = 20, -- Half Moon
+			[274283] = 40, -- Full Moon
+			[202347] = 8,  -- Stellar Flare
+			-- Shadow Priest
+			[8092] = mindblast, -- mind blast
+			[34914] = 5, -- vampiric touch
+			[15407] = mindflay, -- mind flay, but is a channel so idc
+			[48045] = 6, -- per target, but is a channel so idc
+			[263165] = 60, -- void torrent, but is a channel so idc
+			-- Elemental Shaman
+			[188196] = 8, --lightning bolt
+			[51505] = 10, --lava burst
+			[117014] = 30, --elemental blast
+			[114074] = 4, --lava beam
+			[210714] = 25, --icefury
+			[188443] = 4, --chain lightning (per target hit)
+			--Hunter
+			[56641] = 10, --steady shot
+		}
+
+		--From ElvUI/oUF by ls-
+		local mainCost = 0
+		local incResource = 0
+		local startTime, endTime, spellID = 0, 0, 0
+
+		--Next TBC version it switches to normal info, so we do this to detect wow version
+		--local wowversion = (select(4, GetBuildInfo()))
+		--if wowversion == 20502 then --tbc pre phase 3
+		--	_, _, _, startTime, endTime, _, _, spellID = UnitCastingInfo("player")
+		--else --everything else
+			_, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
+		--end
+		--print(select(4, GetBuildInfo()))
+		--print(spellID.." spellID!")
+		if startTime ~= endTime then
+			local costTable = GetSpellPowerCost(spellID)
+			if costTable ~= nil then
+				for k, v in next, costTable do
+					local cost = v.cost
+					mainCost = cost
 				end
 			end
-		end
-
-		--EltreumPowerPrediction:SetSize(mainCost, sizey)
-		--EltreumPowerPredictionIncoming:SetSize(incResource, sizey)
-		if UnitPower("player") == 0 then
-			EltreumPowerPrediction:SetValue(0)
-		elseif UnitPower("player") ~= 0 then
-			if mainCost >= UnitPowerMax("player") then
-				if E.db.ElvUI_EltreumUI.dev then
-					ElvUI_EltreumUI:Print("Couldn't Calculate your power properly, please report in Discord")
+			for k, v in next, spellGenerators do
+				if spellGenerators[spellID] ~= nil then
+					incResource = spellGenerators[spellID]
+					--print(incResource)
+					--readjust if the incoming would go over max
+					if (incResource + EltreumPowerBar:GetValue()) >= UnitPowerMax("player") then
+						incResource = (UnitPowerMax("player") - EltreumPowerBar:GetValue())
+						--print("adjusting resource")
+					end
 				end
+			end
+
+			--EltreumPowerPrediction:SetSize(mainCost, sizey)
+			--EltreumPowerPredictionIncoming:SetSize(incResource, sizey)
+			if UnitPower("player") == 0 then
 				EltreumPowerPrediction:SetValue(0)
-			else
-				EltreumPowerPrediction:SetValue(mainCost)
+			elseif UnitPower("player") ~= 0 then
+				if mainCost >= UnitPowerMax("player") then
+					if E.db.ElvUI_EltreumUI.dev then
+						ElvUI_EltreumUI:Print("Couldn't Calculate your power properly, please report in Discord")
+					end
+					EltreumPowerPrediction:SetValue(0)
+				else
+					EltreumPowerPrediction:SetValue(mainCost)
+				end
 			end
+			EltreumPowerPrediction:Show()
+			EltreumPowerPredictionIncoming:SetValue(incResource)
+			EltreumPowerPredictionIncoming:Show()
+		else
+			EltreumPowerPrediction:SetValue(0)
+			EltreumPowerPrediction:Hide()
+			EltreumPowerPredictionIncoming:SetValue(0)
+			EltreumPowerPredictionIncoming:Hide()
 		end
-		EltreumPowerPrediction:Show()
-		EltreumPowerPredictionIncoming:SetValue(incResource)
-		EltreumPowerPredictionIncoming:Show()
-	else
-		EltreumPowerPrediction:SetValue(0)
-		EltreumPowerPrediction:Hide()
-		EltreumPowerPredictionIncoming:SetValue(0)
-		EltreumPowerPredictionIncoming:Hide()
 	end
 end
 
@@ -622,31 +624,33 @@ end
 
 --update the values of nameplate power bar
 function ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
-	EltreumPowerBar:SetScript("OnEvent", function(event,unit)
-		if (event == "UNIT_POWER_FREQUENT" or event == "UNIT_MODEL_CHANGED") and unit == 'player' then
-			local power = UnitPower("player")
-			--ElvUI_EltreumUI:Print('power frequent')
-			EltreumPowerBar:SetValue(power)
+	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
+		EltreumPowerBar:SetScript("OnEvent", function(event,unit)
+			if (event == "UNIT_POWER_FREQUENT" or event == "UNIT_MODEL_CHANGED") and unit == 'player' then
+				local power = UnitPower("player")
+				--ElvUI_EltreumUI:Print('power frequent')
+				EltreumPowerBar:SetValue(power)
 
-			local ret
-			local placeValue = ("%%.%df"):format(1)
-			if not power then
-				return 0
-			elseif power >= 1000000000000 then
-				ret = placeValue:format(power / 1000000000000) .. " T" -- trillion
-			elseif power >= 1000000000 then
-				ret = placeValue:format(power / 1000000000) .. " B" -- billion
-			elseif power >= 1000000 then
-				ret = placeValue:format(power / 1000000) .. " M" -- million
-			elseif power >= 1000 then
-				ret = placeValue:format(power / 1000) .. "K" -- thousand
-			else
-				ret = power -- hundreds
+				local ret
+				local placeValue = ("%%.%df"):format(1)
+				if not power then
+					return 0
+				elseif power >= 1000000000000 then
+					ret = placeValue:format(power / 1000000000000) .. " T" -- trillion
+				elseif power >= 1000000000 then
+					ret = placeValue:format(power / 1000000000) .. " B" -- billion
+				elseif power >= 1000000 then
+					ret = placeValue:format(power / 1000000) .. " M" -- million
+				elseif power >= 1000 then
+					ret = placeValue:format(power / 1000) .. "K" -- thousand
+				else
+					ret = power -- hundreds
+				end
+				EltreumPowerBar.Text:SetText(ret)
+				--EltreumPowerBar.Text:SetText(BreakUpLargeNumbers(power))
 			end
-			EltreumPowerBar.Text:SetText(ret)
-			--EltreumPowerBar.Text:SetText(BreakUpLargeNumbers(power))
-		end
-	end)
+		end)
+	end
 end
 
 function ElvUI_EltreumUI:UpdateNPwithoutBar()
