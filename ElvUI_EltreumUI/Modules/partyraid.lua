@@ -1,11 +1,8 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local PlaySoundFile = _G.PlaySoundFile
-local GetNumGroupMembers = _G.GetNumGroupMembers
 local IsInGroup = _G.IsInGroup
-local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
 local IsAddOnLoaded = _G.IsAddOnLoaded
-local GetRaidRosterInfo = _G.GetRaidRosterInfo
 
 -- Conversion of the party/raid death weakaura into an addon option
 local deaththrottle

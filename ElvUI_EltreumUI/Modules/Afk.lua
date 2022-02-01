@@ -125,7 +125,6 @@ end
 --add Eltruism logo to elvui afk screen
 local EltruismAFKLogo
 if E.db.general.afk then
-	local AFK = E:GetModule('AFK')
 	EltruismAFKLogo = CreateFrame("Frame", "EltruismAFKLogo")
 	local EltruismAFKLogoTexture = EltruismAFKLogo:CreateTexture()
 	EltruismAFKLogoTexture:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohq")
