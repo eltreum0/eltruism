@@ -1158,6 +1158,12 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop)
 						EltruismInspectBgTexture:SetParent(_G.InspectFrame)
+						if _G.InspectModelFrameRotateLeftButton:IsShown() then
+							_G.InspectModelFrameRotateLeftButton:Hide()
+						end
+						if _G.InspectModelFrameRotateRightButton:IsShown() then
+							_G.InspectModelFrameRotateRightButton:Hide()
+						end
 					elseif ElvUI_EltreumUI.Retail then
 						_G.InspectModelFrameBackgroundBotLeft:Hide()
 						_G.InspectModelFrameBackgroundBotRight:Hide()
@@ -1173,6 +1179,10 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					end
 					EltruismInspectBgTexture:SetDrawLayer("ARTWORK")
 				end
+			end
+
+			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				ElvUI_EltreumUI:ClearMemory()
 			end
 		end
 	end
