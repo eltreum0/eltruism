@@ -15,7 +15,7 @@ Localization\Load_localization.xml
 Core\load_core.xml
 Libs\Load_Libs_Classic.xml
 Media\load_media.xml
-Modules\load_modules.xml
+Modules\load_modules_Classic.xml
 Profiles\load_profiles.xml
 Layouts\load_layouts.xml
 Options\load_optionstbc.xml
