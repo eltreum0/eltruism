@@ -1,6 +1,9 @@
 ### 🌌 Next Version 
 **The future is uncertain**
 ___
+### 2.7.3
+Added Sockets and Enchants to the TBC/Classic Character Panel, this option can be enabled in Eltruism > Skins > Character\
+___
 ### 2.7.2
 Improved Media loading\
 Made Quest Item Bar disabled by default, if you still want to use it simply enable it in Eltruism > Quests\
