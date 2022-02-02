@@ -63,12 +63,11 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if E.db.ElvUI_EltreumUI.media.border then
 		ElvUI_EltreumUI:ExtraMediaBorders()
 	end
-
+	ElvUI_EltreumUI:VersionCheckInit() --checks for old versions
 	ElvUI_EltreumUI:LoadCommands() --loads chat commands
 	ElvUI_EltreumUI:Borders() --creates borders if option is enabled
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()  --adds class icons to character panel
 	ElvUI_EltreumUI:PlayerNamepaperdoll() --update player name
-	ElvUI_EltreumUI:VersionCheckInit() --checks for old versions
 	ElvUI_EltreumUI:CursorInit() --starts cursor modules
 	ElvUI_EltreumUI:SkinMailZone() --skins zone change messages and mail font
 	ElvUI_EltreumUI:Shadows() --adds shadows to frames
