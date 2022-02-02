@@ -222,7 +222,12 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					elseif E.myclass == 'PALADIN ' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' then
 						_G['ElvNP_TargetClassPowerClassPower']:Show()
 					elseif E.myclass == 'DRUID' then
-						return
+						local stance = GetShapeshiftForm()
+						if stance == 2 then --its a cat
+							_G['ElvNP_TargetClassPowerClassPower']:Show()
+						else
+							_G['ElvNP_TargetClassPowerClassPower']:Hide()
+						end
 					elseif E.myclass == 'MONK' then
 						if id == 269 then
 							_G['ElvNP_TargetClassPowerClassPower']:Show()
@@ -238,7 +243,12 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					if E.myclass == 'ROGUE' then
 						_G['ElvNP_TargetClassPowerClassPower']:Show()
 					elseif E.myclass == 'DRUID' then
-						return
+						local stance = GetShapeshiftForm()
+						if stance == 2 then --its a cat
+							_G['ElvNP_TargetClassPowerClassPower']:Show()
+						else
+							_G['ElvNP_TargetClassPowerClassPower']:Hide()
+						end
 					end
 				end
 			elseif UnitExists("target") and (not UnitCanAttack("player", "target")) then
@@ -248,7 +258,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					elseif E.myclass == 'PALADIN ' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' then
 						_G['ElvNP_TargetClassPowerClassPower']:Hide()
 					elseif E.myclass == 'DRUID' then
-						return
+							_G['ElvNP_TargetClassPowerClassPower']:Hide()
 					elseif E.myclass == 'MONK' then
 						if id == 269 then
 							_G['ElvNP_TargetClassPowerClassPower']:Hide()
@@ -264,7 +274,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					if E.myclass == 'ROGUE' then
 						_G['ElvNP_TargetClassPowerClassPower']:Hide()
 					elseif E.myclass == 'DRUID' then
-						return
+						_G['ElvNP_TargetClassPowerClassPower']:Hide()
 					end
 				end
 			end

@@ -300,6 +300,7 @@ function ElvUI_EltreumUI:UNIT_MODEL_CHANGED(event,unit)
 			ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
 			ElvUI_EltreumUI:NameplatePower(event)
 			ElvUI_EltreumUI:PowerPrediction()
+			ElvUI_EltreumUI:NamePlateOptions() --because druids ofc are complex
 		end
 	end
 end
