@@ -6,6 +6,9 @@ function ElvUI_EltreumUI:VersionCheckInit()
 	ElvUI_EltreumUI:OldVersionCheck()
 	ElvUI_EltreumUI:NewVersionCheck()
 	ElvUI_EltreumUI:ElvUIVersionCheck()
+	if E.private.ElvUI_EltreumUI.install_version < "2.7.3" then
+		ElvUI_EltreumUI:DatabaseConversions()
+	end
 end
 
 function ElvUI_EltreumUI:NewVersionCheck()
@@ -193,5 +196,499 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.db["unitframe"]["units"]["player"]["castbar"]["timeToHold"] = 0.6
 			E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 267
 		end
+	end
+end
+
+--Based on ElvUI's and SLE's db convert
+function ElvUI_EltreumUI:DatabaseConversions()
+	if E.private.ElvUI_EltreumUI.install_version ~= nil and E.private.ElvUI_EltreumUI.install_version < "2.7.3" then
+		local ProfileNames = "NONE"
+		local CharacterNames = "NONE"
+		--Profile options conversion
+		for profile, data in pairs(ElvDB.profiles) do
+			local profileChanged = false
+			if data then
+				if data.ElvUI_EltreumUI then
+					if data.ElvUI_EltreumUI.nameplatepower then
+						if data.ElvUI_EltreumUI.nameplatepower.autoadjustposition == nil then
+							E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition = true
+						elseif data.ElvUI_EltreumUI.nameplatepower.autoadjustposition == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition, data.ElvUI_EltreumUI.nameplatepower.autoadjustposition)
+						end
+					elseif data.ElvUI_EltreumUI.nameplatepower == nil then
+						--if data.ElvUI_EltreumUI.nameplatepower.autoadjustposition == nil then
+							E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition = true
+						--end
+					end
+					if data.ElvUI_EltreumUI.chat.enable then
+						if data.ElvUI_EltreumUI.chat.enable == nil then
+							E.db.ElvUI_EltreumUI.chat.enable = true
+						elseif data.ElvUI_EltreumUI.chat.enable == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.chat.enable, data.ElvUI_EltreumUI.chat.enable)
+						end
+						if data.ElvUI_EltreumUI.chat.leftcombathide == nil then
+							E.db.ElvUI_EltreumUI.chat.leftcombathide = true
+						elseif data.ElvUI_EltreumUI.chat.leftcombathide == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.chat.leftcombathide, data.ElvUI_EltreumUI.chat.leftcombathide)
+						end
+						if data.ElvUI_EltreumUI.chat.colorsysmsg == nil then
+							E.db.ElvUI_EltreumUI.chat.colorsysmsg = true
+						elseif data.ElvUI_EltreumUI.chat.colorsysmsg == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.chat.colorsysmsg, data.ElvUI_EltreumUI.chat.colorsysmsg)
+						end
+						if data.ElvUI_EltreumUI.chat.looticons == nil then
+							E.db.ElvUI_EltreumUI.chat.looticons = true
+						elseif data.ElvUI_EltreumUI.chat.looticons == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.chat.looticons, data.ElvUI_EltreumUI.chat.looticons)
+						end
+					elseif data.ElvUI_EltreumUI.chat.enable == nil then
+						E.db.ElvUI_EltreumUI.chat.enable = true
+						E.db.ElvUI_EltreumUI.chat.leftcombathide = true
+						E.db.ElvUI_EltreumUI.chat.colorsysmsg = true
+						E.db.ElvUI_EltreumUI.chat.looticons = true
+					end
+					if data.ElvUI_EltreumUI.cvars then
+						if data.ElvUI_EltreumUI.cvars.autohidenpcname == nil then
+							E.db.ElvUI_EltreumUI.cvars.autohidenpcname = true
+						elseif data.ElvUI_EltreumUI.cvars.autohidenpcname == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.cvars.autohidenpcname, data.ElvUI_EltreumUI.cvars.autohidenpcname)
+						end
+					elseif data.ElvUI_EltreumUI.cvars == nil then
+						E.db.ElvUI_EltreumUI.cvars.autohidenpcname = true
+					end
+					if data.ElvUI_EltreumUI.skins then
+						if data.ElvUI_EltreumUI.skins.enable == nil then
+							E.db.ElvUI_EltreumUI.skins.enable = true
+						elseif data.ElvUI_EltreumUI.skins.enable == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.skins.enable, data.ElvUI_EltreumUI.skins.enable)
+						end
+						if data.ElvUI_EltreumUI.skins.widertransmog == nil then
+							E.db.ElvUI_EltreumUI.skins.widertransmog = true
+						elseif data.ElvUI_EltreumUI.skins.widertransmog == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.skins.widertransmog, data.ElvUI_EltreumUI.skins.widertransmog)
+						end
+						if data.ElvUI_EltreumUI.skins.expandedstable == nil then
+							E.db.ElvUI_EltreumUI.skins.expandedstable = true
+						elseif data.ElvUI_EltreumUI.skins.expandedstable == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.skins.expandedstable, data.ElvUI_EltreumUI.skins.expandedstable)
+						end
+						if data.ElvUI_EltreumUI.skins.classiconsoncharacterpanel == nil then
+							E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel = true
+						elseif data.ElvUI_EltreumUI.skins.classiconsoncharacterpanel == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel, data.ElvUI_EltreumUI.skins.classiconsoncharacterpanel)
+						end
+						if data.ElvUI_EltreumUI.skins.classiconsreleaf == nil then
+							E.db.ElvUI_EltreumUI.skins.classiconsreleaf = true
+						elseif data.ElvUI_EltreumUI.skins.classiconsreleaf == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.skins.classiconsreleaf, data.ElvUI_EltreumUI.skins.classiconsreleaf)
+						end
+						if data.ElvUI_EltreumUI.skins.classicarmory == nil then
+							E.db.ElvUI_EltreumUI.skins.classicarmory = true
+						elseif data.ElvUI_EltreumUI.skins.classicarmory == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.skins.classicarmory, data.ElvUI_EltreumUI.skins.classicarmory)
+						end
+						if data.ElvUI_EltreumUI.skins.classicarmoryautostats == nil then
+							E.db.ElvUI_EltreumUI.skins.classicarmoryautostats = true
+						elseif data.ElvUI_EltreumUI.skins.classicarmoryautostats == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.skins.classicarmoryautostats, data.ElvUI_EltreumUI.skins.classicarmoryautostats)
+						end
+						if data.ElvUI_EltreumUI.skins.ilvls == nil then
+							E.db.ElvUI_EltreumUI.skins.ilvls = true
+						elseif data.ElvUI_EltreumUI.skins.ilvls == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.skins.ilvls, data.ElvUI_EltreumUI.skins.ilvls)
+						end
+						if data.ElvUI_EltreumUI.skins.expandarmorybg == nil then
+							E.db.ElvUI_EltreumUI.skins.expandarmorybg = true
+						elseif data.ElvUI_EltreumUI.skins.expandarmorybg == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.skins.expandarmorybg, data.ElvUI_EltreumUI.skins.expandarmorybg)
+						end
+						if data.ElvUI_EltreumUI.skins.bossemote == nil then
+							E.db.ElvUI_EltreumUI.skins.bossemote = true
+						elseif data.ElvUI_EltreumUI.skins.bossemote == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.skins.bossemote, data.ElvUI_EltreumUI.skins.bossemote)
+						end
+						if data.ElvUI_EltreumUI.skins.quests == nil then
+							E.db.ElvUI_EltreumUI.skins.quests = true
+						elseif data.ElvUI_EltreumUI.skins.quests == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.skins.quests, data.ElvUI_EltreumUI.skins.quests)
+						end
+						if data.ElvUI_EltreumUI.skins.zones == nil then
+							E.db.ElvUI_EltreumUI.skins.zones = true
+						elseif data.ElvUI_EltreumUI.skins.zones == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.skins.zones, data.ElvUI_EltreumUI.skins.zones)
+						end
+						if data.ElvUI_EltreumUI.skins.shadows == nil then
+							E.db.ElvUI_EltreumUI.skins.shadows = true
+						elseif data.ElvUI_EltreumUI.skins.shadows == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.skins.shadows, data.ElvUI_EltreumUI.skins.shadows)
+						end
+					elseif data.ElvUI_EltreumUI.skins == nil then
+						E.db.ElvUI_EltreumUI.skins.enable = true
+						E.db.ElvUI_EltreumUI.skins.widertransmog = true
+						E.db.ElvUI_EltreumUI.skins.expandedstable = true
+						E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel = true
+						E.db.ElvUI_EltreumUI.skins.classiconsreleaf = true
+						E.db.ElvUI_EltreumUI.skins.classicarmory = true
+						E.db.ElvUI_EltreumUI.skins.classicarmoryautostats = true
+						E.db.ElvUI_EltreumUI.skins.ilvls = true
+						E.db.ElvUI_EltreumUI.skins.expandarmorybg = true
+						E.db.ElvUI_EltreumUI.skins.bossemote = true
+						E.db.ElvUI_EltreumUI.skins.quests = true
+						E.db.ElvUI_EltreumUI.skins.zones = true
+						E.db.ElvUI_EltreumUI.skins.shadows = true
+					end
+					if data.ElvUI_EltreumUI.shadows then
+						if data.ElvUI_EltreumUI.shadows.aura == nil then
+							E.db.ElvUI_EltreumUI.shadows.aura = true
+						elseif data.ElvUI_EltreumUI.shadows.aura == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.shadows.aura, data.ElvUI_EltreumUI.shadows.aura)
+						end
+						if data.ElvUI_EltreumUI.shadows.ufaura == nil then
+							E.db.ElvUI_EltreumUI.shadows.ufaura = true
+						elseif data.ElvUI_EltreumUI.shadows.ufaura == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.shadows.ufaura, data.ElvUI_EltreumUI.shadows.ufaura)
+						end
+						if data.ElvUI_EltreumUI.shadows.actionbars == nil then
+							E.db.ElvUI_EltreumUI.shadows.actionbars = true
+						elseif data.ElvUI_EltreumUI.shadows.actionbars == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.shadows.actionbars, data.ElvUI_EltreumUI.shadows.actionbars)
+						end
+					elseif data.ElvUI_EltreumUI.shadows == nil then
+						E.db.ElvUI_EltreumUI.shadows.aura = true
+						E.db.ElvUI_EltreumUI.shadows.ufaura = true
+						E.db.ElvUI_EltreumUI.shadows.actionbars = true
+					end
+					if data.ElvUI_EltreumUI.tbctalents then
+						if data.ElvUI_EltreumUI.tbctalents.enable == nil then
+							E.db.ElvUI_EltreumUI.tbctalents.enable = true
+						elseif data.ElvUI_EltreumUI.tbctalents.enable == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.tbctalents.enable, data.ElvUI_EltreumUI.tbctalents.enable)
+						end
+					elseif data.ElvUI_EltreumUI.tbctalents == nil then
+						E.db.ElvUI_EltreumUI.tbctalents.enable = true
+					end
+					if data.ElvUI_EltreumUI.dynamicdatatext then
+						if data.ElvUI_EltreumUI.dynamicdatatext.enable == nil then
+							E.db.ElvUI_EltreumUI.dynamicdatatext.enable = true
+						elseif data.ElvUI_EltreumUI.dynamicdatatext.enable == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.dynamicdatatext.enable, data.ElvUI_EltreumUI.dynamicdatatext.enable)
+						end
+					elseif data.ElvUI_EltreumUI.dynamicdatatext == nil then
+						E.db.ElvUI_EltreumUI.dynamicdatatext.enable = true
+					end
+					if data.ElvUI_EltreumUI.nameplatelevel then
+						if data.ElvUI_EltreumUI.nameplatelevel.enable == nil then
+							E.db.ElvUI_EltreumUI.nameplatelevel.enable = true
+						elseif data.ElvUI_EltreumUI.nameplatelevel.enable == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.nameplatelevel.enable, data.ElvUI_EltreumUI.nameplatelevel.enable)
+						end
+					elseif data.ElvUI_EltreumUI.nameplatelevel == nil then
+						E.db.ElvUI_EltreumUI.nameplatelevel.enable = true
+					end
+					if data.ElvUI_EltreumUI.cursor then
+						if data.ElvUI_EltreumUI.cursor.enable == nil then
+							E.db.ElvUI_EltreumUI.cursor.enable = true
+						elseif data.ElvUI_EltreumUI.cursor.enable == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.cursor.enable, data.ElvUI_EltreumUI.cursor.enable)
+						end
+						if data.ElvUI_EltreumUI.cursor.cooldown == nil then
+							E.db.ElvUI_EltreumUI.cursor.cooldown = true
+						elseif data.ElvUI_EltreumUI.cursor.cooldown == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.cursor.cooldown, data.ElvUI_EltreumUI.cursor.cooldown)
+						end
+						if data.ElvUI_EltreumUI.cursor.combat == nil then
+							E.db.ElvUI_EltreumUI.cursor.combat = true
+						elseif data.ElvUI_EltreumUI.cursor.combat == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.cursor.combat, data.ElvUI_EltreumUI.cursor.combat)
+						end
+					elseif data.ElvUI_EltreumUI.cursor == nil then
+						E.db.ElvUI_EltreumUI.cursor.enable = true
+						E.db.ElvUI_EltreumUI.cursor.cooldown = true
+						E.db.ElvUI_EltreumUI.cursor.combat = true
+					end
+					if data.ElvUI_EltreumUI.nameplateOptions then
+						if data.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow == nil then
+							E.db.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow = true
+						elseif data.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow, data.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow)
+						end
+						if data.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate == nil then
+							E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate = true
+						elseif data.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate, data.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate)
+						end
+						if data.ElvUI_EltreumUI.nameplateOptions.nameplatetexture == nil then
+							E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = true
+						elseif data.ElvUI_EltreumUI.nameplateOptions.nameplatetexture == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture, data.ElvUI_EltreumUI.nameplateOptions.nameplatetexture)
+						end
+						if data.ElvUI_EltreumUI.nameplateOptions.classbarautohide == nil then
+							E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide = true
+						elseif data.ElvUI_EltreumUI.nameplateOptions.classbarautohide == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide, data.ElvUI_EltreumUI.nameplateOptions.classbarautohide)
+						end
+					elseif data.ElvUI_EltreumUI.nameplateOptions == nil then
+						E.db.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow = true
+						E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate = true
+						E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = true
+						E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide = true
+					end
+					if data.ElvUI_EltreumUI.stealthOptions then
+						if data.ElvUI_EltreumUI.stealthOptions.stealtheffect == nil then
+							E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect = true
+						elseif data.ElvUI_EltreumUI.stealthOptions.stealtheffect == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect, data.ElvUI_EltreumUI.stealthOptions.stealtheffect)
+						end
+					elseif data.ElvUI_EltreumUI.stealthOptions then
+						E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect = true
+					end
+					if data.ElvUI_EltreumUI.glow then
+						if data.ElvUI_EltreumUI.glow.enable == nil then
+							E.db.ElvUI_EltreumUI.glow.enable = true
+						elseif data.ElvUI_EltreumUI.glow.enable == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.glow.enable, data.ElvUI_EltreumUI.glow.enable)
+						end
+						if data.ElvUI_EltreumUI.glow.enablepet == nil then
+							E.db.ElvUI_EltreumUI.glow.enablepet = true
+						elseif data.ElvUI_EltreumUI.glow.enablepet == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.glow.enablepet, data.ElvUI_EltreumUI.glow.enablepet)
+						end
+					elseif data.ElvUI_EltreumUI.glow == nil then
+						E.db.ElvUI_EltreumUI.glow.enable = true
+						E.db.ElvUI_EltreumUI.glow.enablepet = true
+					end
+					if data.ElvUI_EltreumUI.partyraiddeath then
+						if data.ElvUI_EltreumUI.partyraiddeath.enable == nil then
+							E.db.ElvUI_EltreumUI.partyraiddeath.enable = true
+						elseif data.ElvUI_EltreumUI.partyraiddeath.enable == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.partyraiddeath.enable, data.ElvUI_EltreumUI.partyraiddeath.enable)
+						end
+					elseif data.ElvUI_EltreumUI.partyraiddeath == nil then
+						E.db.ElvUI_EltreumUI.partyraiddeath.enable = true
+					end
+					if data.ElvUI_EltreumUI.friendlynameplatetoggle then
+						if data.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames and data.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames == nil then
+							E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames = true
+						elseif data.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames, data.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames)
+						end
+					elseif data.ElvUI_EltreumUI.friendlynameplatetoggle == nil then
+						E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames = true
+					end
+					if data.ElvUI_EltreumUI.afkmusic then
+						if data.ElvUI_EltreumUI.afkmusic.enable == nil then
+							E.db.ElvUI_EltreumUI.afkmusic.enable = true
+						elseif data.ElvUI_EltreumUI.afkmusic.enable == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.afkmusic.enable, data.ElvUI_EltreumUI.afkmusic.enable)
+						end
+					elseif data.ElvUI_EltreumUI.afkmusic == nil then
+						E.db.ElvUI_EltreumUI.afkmusic.enable = true
+					end
+					if data.ElvUI_EltreumUI.waypointetasetting then
+						if data.ElvUI_EltreumUI.waypointetasetting.enable == nil then
+							E.db.ElvUI_EltreumUI.waypointetasetting.enable = true
+						elseif data.ElvUI_EltreumUI.waypointetasetting.enable == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.waypointetasetting.enable, data.ElvUI_EltreumUI.waypointetasetting.enable)
+						end
+						if data.ElvUI_EltreumUI.waypointetasetting.autopin == nil then
+							E.db.ElvUI_EltreumUI.waypointetasetting.autopin = true
+						elseif data.ElvUI_EltreumUI.waypointetasetting.enable == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.waypointetasetting.autopin, data.ElvUI_EltreumUI.waypointetasetting.autopin)
+						end
+					elseif data.ElvUI_EltreumUI.waypointetasetting == nil then
+						E.db.ElvUI_EltreumUI.waypointetasetting.enable = true
+						E.db.ElvUI_EltreumUI.waypointetasetting.autopin = true
+					end
+					if data.ElvUI_EltreumUI.waytext then
+						if data.ElvUI_EltreumUI.waytext.enable == nil then
+							E.db.ElvUI_EltreumUI.waytext.enable = true
+						elseif data.ElvUI_EltreumUI.waytext.enable == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.waytext.enable, data.ElvUI_EltreumUI.waytext.enable)
+						end
+					elseif data.ElvUI_EltreumUI.waytext == nil then
+						E.db.ElvUI_EltreumUI.waytext.enable = true
+					end
+					if data.ElvUI_EltreumUI.widenameplate then
+						if data.ElvUI_EltreumUI.widenameplate.enable == nil then
+							E.db.ElvUI_EltreumUI.widenameplate.enable = true
+						elseif data.ElvUI_EltreumUI.widenameplate.enable == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.widenameplate.enable, data.ElvUI_EltreumUI.widenameplate.enable)
+						end
+						if data.ElvUI_EltreumUI.widenameplate.npglow == nil then
+							E.db.ElvUI_EltreumUI.widenameplate.npglow = true
+						elseif data.ElvUI_EltreumUI.widenameplate.npglow == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.widenameplate.npglow, data.ElvUI_EltreumUI.widenameplate.npglow)
+						end
+					elseif data.ElvUI_EltreumUI.widenameplate == nil then
+						E.db.ElvUI_EltreumUI.widenameplate.enable = true
+						E.db.ElvUI_EltreumUI.widenameplate.npglow = true
+					end
+					if data.ElvUI_EltreumUI.questsettings then
+						if data.ElvUI_EltreumUI.questsettings.enable == nil then
+							E.db.ElvUI_EltreumUI.questsettings.enable = true
+						elseif data.ElvUI_EltreumUI.questsettings.enable == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.questsettings.enable, data.ElvUI_EltreumUI.questsettings.enable)
+						end
+						if data.ElvUI_EltreumUI.questsettings.rogueopen == nil then
+							E.db.ElvUI_EltreumUI.questsettings.rogueopen = true
+						elseif data.ElvUI_EltreumUI.questsettings.rogueopen == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.questsettings.rogueopen, data.ElvUI_EltreumUI.questsettings.rogueopen)
+						end
+						if data.ElvUI_EltreumUI.questsettings.arena == nil then
+							E.db.ElvUI_EltreumUI.questsettings.arena = true
+						elseif data.ElvUI_EltreumUI.questsettings.arena == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.questsettings.arena, data.ElvUI_EltreumUI.questsettings.arena)
+						end
+						if data.ElvUI_EltreumUI.questsettings.questitemsbar1 == nil then
+							E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 = true
+						elseif data.ElvUI_EltreumUI.questsettings.questitemsbar1 == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.questsettings.questitemsbar1, data.ElvUI_EltreumUI.questsettings.questitemsbar1)
+						end
+					elseif data.ElvUI_EltreumUI.questsettings == nil then
+						E.db.ElvUI_EltreumUI.questsettings.enable = true
+						E.db.ElvUI_EltreumUI.questsettings.rogueopen = true
+						E.db.ElvUI_EltreumUI.questsettings.arena = true
+						E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 = true
+					end
+					if data.ElvUI_EltreumUI.loottext then
+						if data.ElvUI_EltreumUI.loottext.enable == nil then
+							E.db.ElvUI_EltreumUI.loottext.enable = true
+						elseif data.ElvUI_EltreumUI.loottext.enable == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.loottext.enable, data.ElvUI_EltreumUI.loottext.enable)
+						end
+						if data.ElvUI_EltreumUI.loottext.fontsetting == nil then
+							E.db.ElvUI_EltreumUI.loottext.fontsetting = true
+						elseif data.ElvUI_EltreumUI.loottext.fontsetting == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.loottext.fontsetting, data.ElvUI_EltreumUI.loottext.fontsetting)
+						end
+					elseif data.ElvUI_EltreumUI.loottext == nil then
+						E.db.ElvUI_EltreumUI.loottext.enable = true
+						E.db.ElvUI_EltreumUI.loottext.fontsetting = true
+					end
+					if data.ElvUI_EltreumUI.modetexture then
+						if data.ElvUI_EltreumUI.modetexture == nil then
+							E.db.ElvUI_EltreumUI.modetexture = true
+						elseif data.ElvUI_EltreumUI.modetexture == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.modetexture, data.ElvUI_EltreumUI.modetexture)
+						end
+					elseif data.ElvUI_EltreumUI.modetexture == nil then
+						E.db.ElvUI_EltreumUI.modetexture = true
+					end
+					if data.ElvUI_EltreumUI.sparkcustomcolor then
+						if data.ElvUI_EltreumUI.sparkcustomcolor.enable == nil then
+							E.db.ElvUI_EltreumUI.sparkcustomcolor.enable = true
+						elseif data.ElvUI_EltreumUI.sparkcustomcolor.enable == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.sparkcustomcolor.enable, data.ElvUI_EltreumUI.sparkcustomcolor.enable)
+						end
+					elseif data.ElvUI_EltreumUI.sparkcustomcolor == nil then
+						E.db.ElvUI_EltreumUI.sparkcustomcolor.enable = true
+					end
+					if data.ElvUI_EltreumUI.otherstuff then
+						if data.ElvUI_EltreumUI.otherstuff.fastloot == nil then
+							E.db.ElvUI_EltreumUI.otherstuff.fastloot = true
+						elseif data.ElvUI_EltreumUI.otherstuff.fastloot == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.otherstuff.fastloot, data.ElvUI_EltreumUI.otherstuff.fastloot)
+						end
+						if data.ElvUI_EltreumUI.otherstuff.screenshot == nil then
+							E.db.ElvUI_EltreumUI.otherstuff.screenshot = true
+						elseif data.ElvUI_EltreumUI.otherstuff.screenshot == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.otherstuff.screenshot, data.ElvUI_EltreumUI.otherstuff.screenshot)
+						end
+						if data.ElvUI_EltreumUI.otherstuff.hidetalkinghead == nil then
+							E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead = true
+						elseif data.ElvUI_EltreumUI.otherstuff.hidetalkinghead == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead, data.ElvUI_EltreumUI.otherstuff.hidetalkinghead)
+						end
+						if data.ElvUI_EltreumUI.otherstuff.blizzcombattext == nil then
+							E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = true
+						elseif data.ElvUI_EltreumUI.otherstuff.blizzcombattext == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext, data.ElvUI_EltreumUI.otherstuff.blizzcombattext)
+						end
+						if data.ElvUI_EltreumUI.otherstuff.dynamicxpbar == nil then
+							E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = true
+						elseif data.ElvUI_EltreumUI.otherstuff.dynamicxpbar == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar, data.ElvUI_EltreumUI.otherstuff.dynamicxpbar)
+						end
+					elseif data.ElvUI_EltreumUI.otherstuff == nil then
+						E.db.ElvUI_EltreumUI.otherstuff.fastloot = true
+						E.db.ElvUI_EltreumUI.otherstuff.screenshot = true
+						E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead = true
+						E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = true
+						E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = true
+					end
+					--E:CopyTable(E.db.ElvUI_EltreumUI, data.ElvUI_EltreumUI)
+					--data.ElvUI_EltreumUI = nil
+					profileChanged = true
+				end
+				if profileChanged then
+					if ProfileNames == "NONE" then
+						ProfileNames = profile
+					else
+						ProfileNames = ProfileNames..', '..profile
+					end
+				end
+			end
+		end
+
+		--Private options convert
+		for private, data in pairs(ElvPrivateDB.profiles) do
+			local privateChanged = false
+			if data then
+				if data.ElvUI_EltreumUI then
+					if data.ElvUI_EltreumUI.nameplatepower then
+						if data.ElvUI_EltreumUI.nameplatepower.enable == nil or data.ElvUI_EltreumUI.nameplatepower.enable == true then
+							E.private.ElvUI_EltreumUI.nameplatepower.enable = true
+						elseif data.ElvUI_EltreumUI.nameplatepower.enable == false then
+							E.private.ElvUI_EltreumUI.nameplatepower.enable = false
+							--E:CopyTable(E.private.ElvUI_EltreumUI.nameplatepower.enable, data.ElvUI_EltreumUI.nameplatepower.enable)
+						end
+					elseif data.ElvUI_EltreumUI.nameplatepower == nil or data.ElvUI_EltreumUI.nameplatepower == true then
+						E.private.ElvUI_EltreumUI.nameplatepower.enable = true
+					end
+					if data.ElvUI_EltreumUI.combatmusic then
+						if data.ElvUI_EltreumUI.combatmusic.enable == nil or data.ElvUI_EltreumUI.combatmusic.enable == true then
+							E.private.ElvUI_EltreumUI.combatmusic.enable = true
+						elseif data.ElvUI_EltreumUI.combatmusic.enable == false then
+							E.private.ElvUI_EltreumUI.combatmusic.enable = false
+							--E:CopyTable(E.private.ElvUI_EltreumUI.combatmusic.enable, data.ElvUI_EltreumUI.combatmusic.enable)
+						end
+						if data.ElvUI_EltreumUI.combatmusic.disableinstance == nil or data.ElvUI_EltreumUI.combatmusic.disableinstance == true then
+							E.private.ElvUI_EltreumUI.combatmusic.disableinstance = true
+						elseif data.ElvUI_EltreumUI.combatmusic.disableinstance == false then
+							E.private.ElvUI_EltreumUI.combatmusic.disableinstance = false
+							--E:CopyTable(E.private.ElvUI_EltreumUI.combatmusic.disableinstance, data.ElvUI_EltreumUI.combatmusic.disableinstance)
+						end
+					elseif data.ElvUI_EltreumUI.combatmusic == nil or data.ElvUI_EltreumUI.combatmusic == true then
+							E.private.ElvUI_EltreumUI.combatmusic.enable = true
+							E.private.ElvUI_EltreumUI.combatmusic.disableinstance = true
+					end
+					--E:CopyTable(E.private.ElvUI_EltreumUI, data.ElvUI_EltreumUI)
+					--data.ElvUI_EltreumUI = nil
+					privateChanged = true
+				end
+				if privateChanged then
+					if CharacterNames == "NONE" then
+						CharacterNames = private
+					else
+						CharacterNames = CharacterNames..', '..private
+					end
+				end
+			end
+		end
+
+		E:StaggeredUpdateAll(nil, true)
+
+		E.PopupDialogs['ELTRUISMDBCONVERT'] = {
+			text = L["Eltruism database was converted.\n|cff82B4ffThe Following profiles were updated:|r\n%s\n\n|cff82B4ffPrivate settings were updated for the following characters:|r\n%s\n\n|cff82B4ffIf you have any issues please report in Discord or open a ticket|r"],
+			--button1 = OKAY,
+			button1 = RELOADUI,
+			timeout = 0,
+			whileDead = 1,
+			hideOnEscape = false,
+		}
+
+		E:StaticPopup_Show('ELTRUISMDBCONVERT', ProfileNames, CharacterNames)
+
+		E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
 	end
 end
