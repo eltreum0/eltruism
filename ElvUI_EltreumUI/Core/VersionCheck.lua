@@ -1032,6 +1032,66 @@ function ElvUI_EltreumUI:DatabaseConversions()
 						data.ElvUI_EltreumUI.sparkcustomcolor.enable = true
 						E:CopyTable(E.db.ElvUI_EltreumUI.sparkcustomcolor.enable, data.ElvUI_EltreumUI.sparkcustomcolor.enable)
 					end
+					--[[if data.ElvUI_EltreumUI.media then
+						if data.ElvUI_EltreumUI.media.font == nil then
+							E.db.ElvUI_EltreumUI.media.font = true
+							data.ElvUI_EltreumUI.media.font = true
+							E:CopyTable(E.db.ElvUI_EltreumUI.media.font, data.ElvUI_EltreumUI.media.font)
+						elseif data.ElvUI_EltreumUI.media.font == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.media.font, data.ElvUI_EltreumUI.media.font)
+						end
+						if data.ElvUI_EltreumUI.media.border == nil then
+							E.db.ElvUI_EltreumUI.media.border = true
+							data.ElvUI_EltreumUI.media.border = true
+							E:CopyTable(E.db.ElvUI_EltreumUI.media.border, data.ElvUI_EltreumUI.media.border)
+						elseif data.ElvUI_EltreumUI.media.border == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.media.border, data.ElvUI_EltreumUI.media.border)
+						end
+						if data.ElvUI_EltreumUI.media.statusbar == nil then
+							E.db.ElvUI_EltreumUI.media.statusbar = true
+							data.ElvUI_EltreumUI.media.statusbar = true
+							E:CopyTable(E.db.ElvUI_EltreumUI.media.statusbar, data.ElvUI_EltreumUI.media.statusbar)
+						elseif data.ElvUI_EltreumUI.media.statusbar == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.media.statusbar, data.ElvUI_EltreumUI.media.statusbar)
+						end
+						if data.ElvUI_EltreumUI.media.texture == nil then
+							E.db.ElvUI_EltreumUI.media.texture = true
+							data.ElvUI_EltreumUI.media.texture = true
+							E:CopyTable(E.db.ElvUI_EltreumUI.media.texture, data.ElvUI_EltreumUI.media.texture)
+						elseif data.ElvUI_EltreumUI.media.texture == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.media.texture, data.ElvUI_EltreumUI.media.texture)
+						end
+						if data.ElvUI_EltreumUI.media.sound == nil then
+							E.db.ElvUI_EltreumUI.media.sound = true
+							data.ElvUI_EltreumUI.media.sound = true
+							E:CopyTable(E.db.ElvUI_EltreumUI.media.sound, data.ElvUI_EltreumUI.media.sound)
+						elseif data.ElvUI_EltreumUI.media.sound == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.media.sound, data.ElvUI_EltreumUI.media.sound)
+						end
+					elseif data.ElvUI_EltreumUI.media == nil then
+						data.ElvUI_EltreumUI.media ={
+							font = false,
+							border = false,
+							statusbar = false,
+							texture = false,
+							sound = false,
+						}
+						E.db.ElvUI_EltreumUI.media.font = true
+						data.ElvUI_EltreumUI.media.font = true
+						E:CopyTable(E.db.ElvUI_EltreumUI.media.font, data.ElvUI_EltreumUI.media.font)
+						E.db.ElvUI_EltreumUI.media.border = true
+						data.ElvUI_EltreumUI.media.border = true
+						E:CopyTable(E.db.ElvUI_EltreumUI.media.border, data.ElvUI_EltreumUI.media.border)
+						E.db.ElvUI_EltreumUI.media.statusbar = true
+						data.ElvUI_EltreumUI.media.statusbar = true
+						E:CopyTable(E.db.ElvUI_EltreumUI.media.statusbar, data.ElvUI_EltreumUI.media.statusbar)
+						E.db.ElvUI_EltreumUI.media.texture = true
+						data.ElvUI_EltreumUI.media.texture = true
+						E:CopyTable(E.db.ElvUI_EltreumUI.media.texture, data.ElvUI_EltreumUI.media.texture)
+						E.db.ElvUI_EltreumUI.media.sound = true
+						data.ElvUI_EltreumUI.media.sound = true
+						E:CopyTable(E.db.ElvUI_EltreumUI.media.sound, data.ElvUI_EltreumUI.media.sound)
+					end]]
 					if data.ElvUI_EltreumUI.otherstuff then
 						if data.ElvUI_EltreumUI.otherstuff.fastloot == nil then
 							E.db.ElvUI_EltreumUI.otherstuff.fastloot = true
