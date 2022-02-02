@@ -10,7 +10,6 @@ local CreateFrame = _G.CreateFrame
 local UnitPowerMax = _G.UnitPowerMax
 local myclass = E.myclass
 local id, _
-local IsAddOnLoaded = _G.IsAddOnLoaded
 local UnitCanAttack = _G.UnitCanAttack
 
 --Setup Power Bar, Prediction and Text

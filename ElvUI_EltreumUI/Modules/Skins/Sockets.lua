@@ -2291,7 +2291,8 @@ function AddOn:OnInitialize()
 		local frame = CreateFrame("Frame")
 		frame:RegisterEvent("ADDON_LOADED")
 		addonNamespace.Debug("Added Frame")
-		frame:SetScript("OnEvent", function(this, event,...)
+		--frame:SetScript("OnEvent", function(this, event,...)
+		frame:SetScript("OnEvent", function(_, event,...)
 			local args = {...}
 			addonNamespace.Debug("Addon event ", args[1])
 			if event == "ADDON_LOADED" and args[1] == "Blizzard_InspectUI" then
