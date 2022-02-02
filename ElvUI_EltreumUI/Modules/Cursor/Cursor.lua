@@ -14,11 +14,13 @@ local isRetail = _G.select(4, _G.GetBuildInfo())>=90000
 local cursorframe = _G.CreateFrame("Frame", "EltruismCursor")
 
 function ElvUI_EltreumUI:CursorInit()
-	ElvUI_EltreumUI:CastCursor()
-	ElvUI_EltreumUI:CurrentTypeofCursor()
-	if E.db.ElvUI_EltreumUI.cursor.cooldown then
-		--ElvUI_EltreumUI:CooldownInitialize() --starts cursor module with cooldowns
-		ElvUI_EltreumUI:CooldownEnable() --starts cursor module with cooldowns
+	if E.db.ElvUI_EltreumUI.cursor.enable then
+		ElvUI_EltreumUI:CastCursor()
+		ElvUI_EltreumUI:CurrentTypeofCursor()
+		if E.db.ElvUI_EltreumUI.cursor.cooldown then
+			--ElvUI_EltreumUI:CooldownInitialize() --starts cursor module with cooldowns
+			ElvUI_EltreumUI:CooldownEnable() --starts cursor module with cooldowns
+		end
 	end
 end
 
