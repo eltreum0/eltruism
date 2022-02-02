@@ -2568,7 +2568,7 @@ if ElvUI_EltreumUI.Retail then
 								['2'] = L["All in Combat"],
 							},
 							style = 'radio',
-							get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition end,
+							get = function() return C_CVar.GetCVar('nameplateTargetRadialPosition') end,
 							set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition = value SetCVar('nameplateTargetRadialPosition', value) end,
 						},
 						cameraDistanceMaxZoomFactor = {
