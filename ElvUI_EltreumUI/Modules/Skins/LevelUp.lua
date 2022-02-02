@@ -8,9 +8,9 @@ function ElvUI_EltreumUI:SkinLevelUp()
 	-- Color level up display and boss banner originally by Aftermathh, 9.1 partially by Eltreum
 	if ElvUI_EltreumUI.Retail then
 		if E.db.ElvUI_EltreumUI.skins.enable then
-			local BossBanner = _G.BossBanner
-			local EventToastManagerFrame = _G.EventToastManagerFrame
 
+			--skin the toast popup for level
+			local EventToastManagerFrame = _G.EventToastManagerFrame
 			if EventToastManagerFrame then
 				_G.EventToastManagerFrame.GLine:SetVertexColor(classcolor.r, classcolor.g, classcolor.b)
 				_G.EventToastManagerFrame.GLine2:SetVertexColor(classcolor.r, classcolor.g, classcolor.b)
@@ -24,18 +24,22 @@ function ElvUI_EltreumUI:SkinLevelUp()
 				EventToastManagerFrame.StatusLine2:SetPoint("BOTTOM", EventToastManagerFrame, 0, 0)
 				EventToastManagerFrame.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
 				EventToastManagerFrame.StatusLine2:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				--EventToastManagerFrame.currentDisplayingToast.BannerFrame:Kill() --lets try
 				--/script EventToastManagerFrame:Show()
 			end
 
-			--test
+			--remove blizzard boss emote during raids/dungeons
 			if E.db.ElvUI_EltreumUI.skins.bossemote then
 				local RaidBossEmoteFrame = _G.RaidBossEmoteFrame
-				RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_EMOTE")
-				RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_WHISPER")
-				RaidBossEmoteFrame:UnregisterEvent("CLEAR_BOSS_EMOTES")
+				local _, instanceType = IsInInstance()
+				if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --fix for WQs that use the boss emote frame
+					RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_EMOTE")
+					RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_WHISPER")
+					RaidBossEmoteFrame:UnregisterEvent("CLEAR_BOSS_EMOTES")
+				end
 			end
 
+			--skin the boss loot banner
+			local BossBanner = _G.BossBanner
 			if BossBanner then
 				local StatusLineTop = CreateFrame("StatusBar", nil, _G.BossBanner)
 				StatusLineTop:SetSize(418, 2)
