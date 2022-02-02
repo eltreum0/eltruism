@@ -730,7 +730,7 @@ addonNamespace.loaded.Localization = true
 addonNamespace.L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------POOL FUNCTION
 --if not addonNamespace or addonNamespace.loaded.Pool then return end
 addonNamespace.loaded.Pool = true
 
@@ -785,6 +785,7 @@ function Pool:Release(ref)
 	self.releaseCallback(ref)
 end
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------SLOTICON
 --if not addonNamespace or addonNamespace.loaded.SlotIcon then return end
 addonNamespace.loaded.SlotIcon = true
 
@@ -898,6 +899,7 @@ addonNamespace.ReleaseSlotIcon = function (ref)
 	pool:Release(ref)
 end
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------FRAMEADAPTER
 --if not addonNamespace or addonNamespace.loaded.FrameAdapter then return end
 addonNamespace.loaded.FrameAdapter = true
 
@@ -973,7 +975,7 @@ end
 
 addonNamespace.FrameAdapter = FrameAdapter
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------CHARACTER FRAME ADAPTER
 --if not addonNamespace or addonNamespace.loaded.CharacterFrameAdapter then return end
 addonNamespace.loaded.CharacterFrameAdapter = true
 
@@ -1031,7 +1033,7 @@ end
 
 addonNamespace.CharacterFrameAdapter = CharacterFrameAdapter
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------INSPECTION FRAME ADAPTER
 --if not addonNamespace or addonNamespace.loaded.InspectionFrameAdapter then return end
 addonNamespace.loaded.InspectionFrameAdapter = true
 
@@ -1073,6 +1075,7 @@ end
 
 addonNamespace.InspectionFrameAdapter = InspectionFrameAdapter
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------SLOT ICON MANAGER
 --if not addonNamespace or addonNamespace.loaded.SlotIconManager then return end
 addonNamespace.loaded.SlotIconManager = true
 
@@ -1175,24 +1178,56 @@ function SlotIconManager:Debug(...)
 end
 
 function SlotIconManager:Init()
-	self:Debug('Init')
+	if E.db.ElvUI_EltreumUI == nil then
+		return
+	end
+	if E.db.ElvUI_EltreumUI.skins == nil then
+		E.db.ElvUI_EltreumUI.skins = {
+			enable = true,
+			widertransmog = true,
+			expandedstable = true,
+			classiconsoncharacterpanel = true,
+			classiconsblizz = false,
+			classiconsreleaf = true,
+			classicarmory = true,
+			classicarmoryautostats = true,
+			ilvls = true,
+			sockets = false,
+			ilvlanchor = "CENTER",
+			ilvlfontsize = 16,
+			ilvlfontweight = "THICKOUTLINE",
+			expandarmorybg = true,
+			expandarmorybgalpha = 0.3,
+			bossemote = true,
+			quests = true,
+			zones = true,
+			shadows = true,
+		}
+	end
+	if E.db.ElvUI_EltreumUI.skins.sockets == nil then
+		E.db.ElvUI_EltreumUI.skins.sockets = false
+	end
 
-	self.adapter:OnShow(function()
-		self:Debug('OnShow')
-		self.parentVisible = true
-		self:Refresh()
-	end)
+	if E.db.ElvUI_EltreumUI.skins.sockets == true then
+		self:Debug('Init')
 
-	self.adapter:OnHide(function()
-		self:Debug('OnHide')
-		self.parentVisible = false
-		self:Refresh()
-	end)
+		self.adapter:OnShow(function()
+			self:Debug('OnShow')
+			self.parentVisible = true
+			self:Refresh()
+		end)
 
-	self.adapter:OnContentChanged(function()
-		self:Debug('OnContentChanged')
-		self:Refresh()
-	end)
+		self.adapter:OnHide(function()
+			self:Debug('OnHide')
+			self.parentVisible = false
+			self:Refresh()
+		end)
+
+		self.adapter:OnContentChanged(function()
+			self:Debug('OnContentChanged')
+			self:Refresh()
+		end)
+	end
 end
 
 function SlotIconManager:Refresh()
@@ -1526,6 +1561,7 @@ function SlotIconManager:IsSlotGemRequired(slotName, itemInfo)
 	return self:IsAtMaxLevel()
 end
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ITEM STRING INFO
 --if not addonNamespace or addonNamespace.loaded.ItemStringInfo then return end
 addonNamespace.loaded.ItemStringInfo = true
 
@@ -1695,6 +1731,8 @@ function ItemStringInfo:GetUpgrades()
 	return unpack(self.upgrades)
 end
 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ITEM ENCHANT INFO
 --if not addonNamespace or addonNamespace.loaded.ItemEnchantInfo then return end
 addonNamespace.loaded.ItemEnchantInfo = true
 
@@ -1956,6 +1994,7 @@ function ItemEnchantInfo:getFormulaItem()
 end
 
 --if not addonNamespace or addonNamespace.loaded.Tooltip then return end
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------TOOLTIP
 addonNamespace.loaded.Tooltip = true
 
 local Tooltip = {}
@@ -2061,6 +2100,8 @@ function Tooltip:Hide()
 	self:_HideTooltips()
 end
 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------SOCKET INFO
 --if not addonNamespace or addonNamespace.loaded.SocketInfo then return end
 addonNamespace.loaded.SocketInfo = true
 
@@ -2113,6 +2154,7 @@ function SocketInfo:getMissingGemText()
 	return self.missingGemText ~= nil and self.missingGemText or L['Missing gem']
 end
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------SPELL INFO
 --if not addonNamespace or addonNamespace.loaded.SpellInfo then return end
 addonNamespace.loaded.SpellInfo = true
 
@@ -2148,6 +2190,7 @@ function SpellInfo:getTextureName()
 end
 
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------SPINNER
 --if not addonNamespace or addonNamespace.loaded.Spinner then return end
 addonNamespace.loaded.Spinner = true
 
@@ -2210,6 +2253,7 @@ AddOn.defaults = {
 	}
 }
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------INITIALIZE
 function AddOn:OnInitialize()
 	if E.db.ElvUI_EltreumUI == nil then
 		return
@@ -2238,7 +2282,7 @@ function AddOn:OnInitialize()
 		}
 	end
 	if E.db.ElvUI_EltreumUI.skins.sockets == nil then
-		E.db.ElvUI_EltreumUI.skins.sockets = true
+		E.db.ElvUI_EltreumUI.skins.sockets = false
 	end
 
 	if E.db.ElvUI_EltreumUI.skins.sockets == true then
@@ -2339,7 +2383,7 @@ addonNamespace.SetDebugPrinter = function(callback)
 end
 
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------APPLYSTYLE
 function AddOn:ApplyStyle()
 	self:Debug("ApplyStyle")
 
