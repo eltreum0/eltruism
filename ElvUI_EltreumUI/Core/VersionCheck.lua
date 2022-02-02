@@ -803,6 +803,13 @@ function ElvUI_EltreumUI:DatabaseConversions()
 						elseif data.ElvUI_EltreumUI.afkmusic.enable == false then
 							E:CopyTable(E.db.ElvUI_EltreumUI.afkmusic.enable, data.ElvUI_EltreumUI.afkmusic.enable)
 						end
+						if data.ElvUI_EltreumUI.afkmusic.racial == nil then
+							E.db.ElvUI_EltreumUI.afkmusic.racial = true
+							data.ElvUI_EltreumUI.afkmusic.racial = true
+							E:CopyTable(E.db.ElvUI_EltreumUI.afkmusic.racial, data.ElvUI_EltreumUI.afkmusic.racial)
+						elseif data.ElvUI_EltreumUI.afkmusic.racial == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.afkmusic.racial, data.ElvUI_EltreumUI.afkmusic.racial)
+						end
 					elseif data.ElvUI_EltreumUI.afkmusic == nil then
 						data.ElvUI_EltreumUI.afkmusic = {
 							enable = false,
@@ -812,6 +819,9 @@ function ElvUI_EltreumUI:DatabaseConversions()
 						E.db.ElvUI_EltreumUI.afkmusic.enable = true
 						data.ElvUI_EltreumUI.afkmusic.enable = true
 						E:CopyTable(E.db.ElvUI_EltreumUI.afkmusic.enable, data.ElvUI_EltreumUI.afkmusic.enable)
+						E.db.ElvUI_EltreumUI.afkmusic.racial = true
+						data.ElvUI_EltreumUI.afkmusic.racial = true
+						E:CopyTable(E.db.ElvUI_EltreumUI.afkmusic.racial, data.ElvUI_EltreumUI.afkmusic.racial)
 					end
 					if data.ElvUI_EltreumUI.waypointetasetting then
 						if data.ElvUI_EltreumUI.waypointetasetting.enable == nil then
