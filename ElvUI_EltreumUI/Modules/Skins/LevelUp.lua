@@ -68,7 +68,11 @@ function ElvUI_EltreumUI:SkinLevelUp()
 				_G.BossBanner.SkullSpikes:Kill()
 
 				_G.BossBanner.Title:SetTextColor(1, 1, 1, 1)
+				_G.BossBanner.Title:SetShadowColor(0, 0, 0, 0.8)
+				_G.BossBanner.Title:SetShadowOffset(2, -1)
 				_G.BossBanner.SubTitle:SetTextColor(1, 1, 1, 1)
+				_G.BossBanner.SubTitle:SetShadowColor(0, 0, 0, 0.8)
+				_G.BossBanner.SubTitle:SetShadowOffset(2, -1)
 				--/script BossBanner:Show()
 			end
 		end
