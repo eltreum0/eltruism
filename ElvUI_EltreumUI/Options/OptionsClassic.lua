@@ -281,7 +281,7 @@ if ElvUI_EltreumUI.Classic then
 						cursorgeneral = {
 							order = 1,
 							type = 'group',
-							name = L["General"],
+							name= "General",
 							args = {
 								header1 = {
 									order = 20,
@@ -306,7 +306,6 @@ if ElvUI_EltreumUI.Classic then
 									get = function(info) return E.db.ElvUI_EltreumUI.cursor.size end,
 									set = function(info,value) ElvUI_EltreumUI:CursorSize(value) end,
 								},
-
 								enable = {
 									order = 1,
 									type = 'toggle',
@@ -322,6 +321,7 @@ if ElvUI_EltreumUI.Classic then
 									name = L["Enable cursor only during combat"],
 									desc = L["Cursor will only show during combat"],
 									width = 'full',
+									disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 									get = function(info) return E.db.ElvUI_EltreumUI.cursor.combat end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.cursor.combat = value E:StaticPopup_Show('PRIVATE_RL') end,
 								},
@@ -331,6 +331,7 @@ if ElvUI_EltreumUI.Classic then
 									name = L["Enable cooldown tracking"],
 									desc = L["Add a cooldown icon when trying to use skills that are on cooldown, and a cooldown flash when they are ready"],
 									width = 'full',
+									disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 									get = function(info) return E.db.ElvUI_EltreumUI.cursor.cooldown end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.cursor.cooldown = value E:StaticPopup_Show('PRIVATE_RL') end,
 								},
@@ -368,6 +369,7 @@ if ElvUI_EltreumUI.Classic then
 									name = L["Class Colored Casts"],
 									order = 12,
 									desc = L["Use Class Colors for Cast"],
+									disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 									get = function() return E.db.ElvUI_EltreumUI.cursorcast.classcolor end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.cursorcast.classcolor = value E:StaticPopup_Show('CONFIG_RL') end,
 								},
@@ -376,6 +378,7 @@ if ElvUI_EltreumUI.Classic then
 									type = 'color',
 									name = L["Custom Color Cast"],
 									hasAlpha = false,
+									disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 									disabled = function() return E.db.ElvUI_EltreumUI.cursorcast.classcolor end,
 									get = function()
 										local cursorcast = E.db.ElvUI_EltreumUI.cursorcast
@@ -398,6 +401,7 @@ if ElvUI_EltreumUI.Classic then
 									name = L["Class Colored GCD"],
 									order = 14,
 									desc = L["Use Class Colors for GCD"],
+									disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 									get = function() return E.db.ElvUI_EltreumUI.cursorgcd.classcolor end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.cursorgcd.classcolor = value E:StaticPopup_Show('CONFIG_RL') end,
 								},
@@ -406,7 +410,7 @@ if ElvUI_EltreumUI.Classic then
 									type = 'color',
 									name = L["Custom Color GCD"],
 									hasAlpha = false,
-									disabled = function() return E.db.ElvUI_EltreumUI.cursorgcd.classcolor end,
+									disabled = function() return E.db.ElvUI_EltreumUI.cursorgcd.classcolor or (not E.db.ElvUI_EltreumUI.cursor.enable ) end,
 									get = function()
 										local cursorgcd = E.db.ElvUI_EltreumUI.cursorgcd
 										local d = P.ElvUI_EltreumUI.cursorgcd
@@ -428,6 +432,7 @@ if ElvUI_EltreumUI.Classic then
 									name = L["Class Colored Combat"],
 									order = 16,
 									desc = L["Use Class Colors for Cursor"],
+									disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 									get = function() return E.db.ElvUI_EltreumUI.cursorcursor.classcolor end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.cursorcursor.classcolor = value E:StaticPopup_Show('CONFIG_RL') end,
 								},
@@ -436,7 +441,7 @@ if ElvUI_EltreumUI.Classic then
 									type = 'color',
 									name = L["Custom Color Combat"],
 									hasAlpha = false,
-									disabled = function() return E.db.ElvUI_EltreumUI.cursorcursor.classcolor end,
+									disabled = function() return E.db.ElvUI_EltreumUI.cursorcursor.classcolor or (not E.db.ElvUI_EltreumUI.cursor.enable) end,
 									get = function()
 										local cursorcursor = E.db.ElvUI_EltreumUI.cursorcursor
 										local d = P.ElvUI_EltreumUI.cursorcursor
@@ -603,6 +608,7 @@ if ElvUI_EltreumUI.Classic then
 									max = 50,
 									step = 1,
 									width = "full",
+									disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 									get = function() return E.db.ElvUI_EltreumUI.cursorcast.radius end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.cursorcast.radius = value end,
 								},
@@ -615,6 +621,7 @@ if ElvUI_EltreumUI.Classic then
 									max = 10,
 									step = 1,
 									width = "full",
+									disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 									get = function() return E.db.ElvUI_EltreumUI.cursorcast.thickness end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.cursorcast.thickness = value end,
 								},
@@ -627,6 +634,7 @@ if ElvUI_EltreumUI.Classic then
 									max = 50,
 									step = 1,
 									width = "full",
+									disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 									get = function() return E.db.ElvUI_EltreumUI.cursorgcd.radius end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.cursorgcd.radius = value end,
 								},
@@ -639,6 +647,7 @@ if ElvUI_EltreumUI.Classic then
 									max = 10,
 									step = 1,
 									width = "full",
+									disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 									get = function() return E.db.ElvUI_EltreumUI.cursorgcd.thickness end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.cursorgcd.thickness = value end,
 								},
@@ -651,6 +660,7 @@ if ElvUI_EltreumUI.Classic then
 									max = 50,
 									step = 1,
 									width = "full",
+									disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 									get = function() return E.db.ElvUI_EltreumUI.cursorcursor.radius end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.cursorcursor.radius = value end,
 								},
@@ -663,6 +673,7 @@ if ElvUI_EltreumUI.Classic then
 									max = 10,
 									step = 1,
 									width = "full",
+									disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 									get = function() return E.db.ElvUI_EltreumUI.cursorcursor.thickness end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.cursorcursor.thickness = value end,
 								},
