@@ -6,7 +6,7 @@ function ElvUI_EltreumUI:VersionCheckInit()
 	ElvUI_EltreumUI:OldVersionCheck()
 	ElvUI_EltreumUI:NewVersionCheck()
 	ElvUI_EltreumUI:ElvUIVersionCheck()
-	if E.private.ElvUI_EltreumUI.install_version < "2.8.3" then
+	if E.private.ElvUI_EltreumUI.install_version < "2.7.3" then
 		ElvUI_EltreumUI:DatabaseConversions()
 	end
 end
@@ -201,7 +201,7 @@ end
 
 --Based on ElvUI's and SLE's db convert
 function ElvUI_EltreumUI:DatabaseConversions()
-	if E.private.ElvUI_EltreumUI.install_version ~= nil and E.private.ElvUI_EltreumUI.install_version > "2.5.3" then
+	if E.private.ElvUI_EltreumUI.install_version ~= nil and E.private.ElvUI_EltreumUI.install_version < "2.7.3" then
 		local ProfileNames = "NONE"
 		local CharacterNames = "NONE"
 		--Profile options conversion

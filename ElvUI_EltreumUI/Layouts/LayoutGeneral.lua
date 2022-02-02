@@ -78,6 +78,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db.ElvUI_EltreumUI.partyraiddeath.enable = true
 		E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames = true
 		E.db.ElvUI_EltreumUI.afkmusic.enable = true
+		E.db.ElvUI_EltreumUI.afkmusic.racial = true
 		E.db.ElvUI_EltreumUI.waypointetasetting.enable = true
 		E.db.ElvUI_EltreumUI.waypointetasetting.autopin = true
 		E.db.ElvUI_EltreumUI.waytext.enable = true
