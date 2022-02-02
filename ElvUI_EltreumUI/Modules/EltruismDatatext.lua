@@ -2,10 +2,56 @@ local _G = _G
 local unpack = _G.unpack
 local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-
---just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
 local DT = E:GetModule("DataTexts")
 
+
+
+--modified elvui config datatext for opening eltruism
+local InCombatLockdown = InCombatLockdown
+local displayString = ''
+local configText = 'Eltruism'
+local lastPanel
+
+local function OnEvent(self)
+	lastPanel = self
+	self.text:SetFormattedText(displayString, E.global.datatexts.settings.ElvUI.Label ~= '' and E.global.datatexts.settings.ElvUI.Label or configText)
+end
+
+local function OnEnter()
+	DT.tooltip:ClearLines()
+	DT.tooltip:AddDoubleLine(L["Click:"], L["Open Eltruism Configuration Panel"], 1, 1, 1)
+	DT.tooltip:Show()
+end
+
+local function OnClick(_, button)
+	if InCombatLockdown() then _G.UIErrorsFrame:AddMessage(E.InfoColor.._G.ERR_NOT_IN_COMBAT) return end
+
+	if button == 'LeftButton' then
+		E:ToggleOptionsUI()
+		E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
+	elseif button == 'RightButton' then
+		E:ToggleOptionsUI()
+		E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
+	end
+end
+
+local function ValueColorUpdate(hex)
+	displayString = strjoin('', hex, '%s|r')
+
+	if lastPanel then
+		OnEvent(lastPanel, 'ELVUI_COLOR_UPDATE')
+	end
+end
+E.valueColorUpdateFuncs[ValueColorUpdate] = true
+
+DT:RegisterDatatext('Eltruism', nil, nil, OnEvent, nil, OnClick, OnEnter, nil, L["Eltruism Config"], nil, ValueColorUpdate)
+
+
+
+
+
+
+--just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
 if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 	if E.myclass ~= 'HUNTER' and E.myclass ~= 'ROGUE' and E.myclass ~= 'WARLOCK' and E.myclass ~= 'WARRIOR' then return end
 	local _G = _G

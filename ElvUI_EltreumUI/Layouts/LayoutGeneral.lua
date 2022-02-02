@@ -333,12 +333,10 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				E.db["datatexts"]["panels"]["MinimapPanel"][2] = "Friends"
 			end
 		elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-			E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "ElvUI"
-			E.db["datatexts"]["panels"]["LeftChatDataPanel"]["left"] = "ElvUI Config"
-			E.db["datatexts"]["panels"]["LeftChatDataPanel"][2] = "Durability"
-			E.db["datatexts"]["panels"]["LeftChatDataPanel"]["middle"] = "Durability"
-			E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "ElvUI"
-			E.db["datatexts"]["panels"]["LeftChatDataPanel"]["left"] = "ElvUI Config"
+			--E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "ElvUI"
+			--E.db["datatexts"]["panels"]["LeftChatDataPanel"]["left"] = "ElvUI Config"
+			E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "Eltruism"
+			E.db["datatexts"]["panels"]["LeftChatDataPanel"]["left"] = "Eltruism"
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][2] = "Durability"
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"]["middle"] = "Durability"
 			if myclass == 'HUNTER' or myclass == 'WARLOCK' then
