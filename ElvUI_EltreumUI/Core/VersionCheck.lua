@@ -288,43 +288,6 @@ function ElvUI_EltreumUI:DatabaseConversions()
 						data.ElvUI_EltreumUI.chat.looticons = true
 						E:CopyTable(E.db.ElvUI_EltreumUI.chat.looticons, data.ElvUI_EltreumUI.chat.looticons)
 					end
-					if data.ElvUI_EltreumUI.cvars then
-						if data.ElvUI_EltreumUI.cvars.autohidenpcname == nil then
-							E.db.ElvUI_EltreumUI.cvars.autohidenpcname = true
-							data.ElvUI_EltreumUI.cvars.autohidenpcname = true
-							E:CopyTable(E.db.ElvUI_EltreumUI.cvars.autohidenpcname, data.ElvUI_EltreumUI.cvars.autohidenpcname)
-						elseif data.ElvUI_EltreumUI.cvars.autohidenpcname == false then
-							E:CopyTable(E.db.ElvUI_EltreumUI.cvars.autohidenpcname, data.ElvUI_EltreumUI.cvars.autohidenpcname)
-						end
-						if data.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition == nil then
-							E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition = 1
-							SetCVar('nameplateTargetRadialPosition', 1)
-							data.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition = 1
-							E:CopyTable(E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition, data.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition)
-						elseif data.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition == 2 then
-							SetCVar('nameplateTargetRadialPosition', 2)
-							E:CopyTable(E.db.ElvUI_EltreumUI.cvars.autohidenpcname, data.ElvUI_EltreumUI.cvars.autohidenpcname)
-						end
-					elseif data.ElvUI_EltreumUI.cvars == nil then
-						data.ElvUI_EltreumUI.cvars = {
-							nameplateOtherBottomInset = 0.02,
-							nameplateOtherTopInset = 0.1,
-							cameraDistanceMaxZoomFactor = 2.6,
-							nameplateTargetRadialPosition = 1,
-							--for retail
-							showInGameNavigation = 1,
-							--for tbc/classic
-							clampTargetNameplateToScreen = 1,
-							autohidenpcname = false,
-						}
-						E.db.ElvUI_EltreumUI.cvars.autohidenpcname = true
-						data.ElvUI_EltreumUI.cvars.autohidenpcname = true
-						E:CopyTable(E.db.ElvUI_EltreumUI.cvars.autohidenpcname, data.ElvUI_EltreumUI.cvars.autohidenpcname)
-						E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition = 1
-						data.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition = 1
-						E:CopyTable(E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition, data.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition)
-						SetCVar('nameplateTargetRadialPosition', 1)
-					end
 					if data.ElvUI_EltreumUI.skins then
 						if data.ElvUI_EltreumUI.skins.enable == nil then
 							E.db.ElvUI_EltreumUI.skins.enable = true
