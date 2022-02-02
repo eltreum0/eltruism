@@ -6,7 +6,7 @@ P.ElvUI_EltreumUI = {
 	dev = false,
 
 	nameplatepower = {
-		autoadjustposition = true,
+		autoadjustposition = false,
 		sizex = 132,
 		sizey = 6,
 		posy = 16,
@@ -17,17 +17,17 @@ P.ElvUI_EltreumUI = {
 	},
 
 	chat = {
-		enable = true,
+		enable = false,
 		leftmouseover = false,
 		rightmouseover = false,
 		leftfader = false,
 		rightfader = false,
-		leftcombathide = true,
+		leftcombathide = false,
 		rightcombathide = false,
 		invertclick = false,
 		colorsysmsg = true,
 		rollsound = false,
-		looticons = true,
+		looticons = false,
 	},
 
 	cvars = {
@@ -39,35 +39,35 @@ P.ElvUI_EltreumUI = {
 		showInGameNavigation = 1,
 		--for tbc/classic
 		clampTargetNameplateToScreen = 1,
-		autohidenpcname = true,
+		autohidenpcname = false,
 	},
 
 	skins = {
-		enable = true,
-		widertransmog = true,
-		expandedstable = true,
-		classiconsoncharacterpanel = true,
+		enable = false,
+		widertransmog = false,
+		expandedstable = false,
+		classiconsoncharacterpanel = false,
 		classiconsblizz = false,
-		classiconsreleaf = true,
-		classicarmory = true,
-		classicarmoryautostats = true,
-		ilvls = true,
+		classiconsreleaf = false,
+		classicarmory = false,
+		classicarmoryautostats = false,
+		ilvls = false,
 		sockets = false,
 		ilvlanchor = "CENTER",
 		ilvlfontsize = 16,
 		ilvlfontweight = "THICKOUTLINE",
-		expandarmorybg = true,
+		expandarmorybg = false,
 		expandarmorybgalpha = 0.3,
-		bossemote = true,
-		quests = true,
-		zones = true,
-		shadows = true,
+		bossemote = false,
+		quests = false,
+		zones = false,
+		shadows = false,
 	},
 
 	shadows = {
-		aura = true,
-		ufaura = true,
-		actionbars = true,
+		aura = false,
+		ufaura = false,
+		actionbars = false,
 		nameplates = false, --healthbars
 		npauras = false,
 		npportraits = false,
@@ -76,19 +76,19 @@ P.ElvUI_EltreumUI = {
 	},
 
 	tbctalents = {
-		enable = true,
+		enable = false,
 	},
 
 	dynamicdatatext = {
-		enable = true,
+		enable = false,
 	},
 
 	nameplatelevel = {
-		enable = true,
+		enable = false,
 	},
 
 	cursor = {
-		enable = true,
+		enable = false,
 		ring = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga',
 		size = '-1',
 		cooldown = true,
@@ -131,20 +131,20 @@ P.ElvUI_EltreumUI = {
 	},
 
 	nameplateOptions = {
-		ClassColorGlow = true,
-		ClassBorderNameplate = true,
-		nameplatetexture = true,
-		classbarautohide = true,
+		ClassColorGlow = false,
+		ClassBorderNameplate = false,
+		nameplatetexture = false,
+		classbarautohide = false,
 		targetclasstexture = false,
 	},
 
 	stealthOptions = {
-		stealtheffect = true,
+		stealtheffect = false,
 	},
 
 	glow = {
-		enable = true,
-		enablepet = true,
+		enable = false,
+		enablepet = false,
 		blizzard = false,
 		pixel = true,
 		autocast = false,
@@ -185,25 +185,19 @@ P.ElvUI_EltreumUI = {
 	},
 
 	partyraiddeath = {
-		enable = true,
-		--bruh = true,
-		--robloxoof = false,
-		--shame = false,
-		--wow = false,
-		--mario = false,
-		--ion = false,
-		bgdisable = true,
+		enable = false,
+		bgdisable = false,
 		playerdeathsound = "bruh",
 	},
 
 	friendlynameplatetoggle = {
 		disablefriendly = false,
-		friendlynames = true,
+		friendlynames = false,
 		hidefriendly = false,
 	},
 
 	afkmusic = {
-		enable = true,
+		enable = false,
 		racial = true,
 		playerclass = false,
 	},
@@ -213,34 +207,34 @@ P.ElvUI_EltreumUI = {
 	},
 
 	waypointetasetting = {
-		enable = true,
+		enable = false,
 		autopin = false,
 	},
 
 	waytext = {
-		enable = true,
+		enable = false,
 	},
 
 	widenameplate = {
-		enable = true,
-		npglow = true,
+		enable = false,
+		npglow = false,
 	},
 
 	questsettings = {
-		enable = true,
-		rogueopen = true,
-		arena = true,
+		enable = false,
+		rogueopen = false,
+		arena = false,
 		combatenable = false,
 		autoaccept = false,
 		autoacceptinvert = false,
 		questitems = false,
-		questitemsbar1 = true,
+		questitemsbar1 = false,
 		questitemsize = 36,
 		questitemsfade = false,
 	},
 
 	loottext = {
-		enable = true,
+		enable = false,
 		honor = true,
 		currency = true,
 		pet = true,
@@ -335,11 +329,11 @@ P.ElvUI_EltreumUI = {
 	},
 
 	lightmode = false,
-	modetexture = true,
+	modetexture = false,
 	greybackground = false,
 
 	sparkcustomcolor ={
-		enable = true,
+		enable = false,
 		texture = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga',
 		r = 0.80,
 		g = 0.80,
@@ -361,13 +355,13 @@ P.ElvUI_EltreumUI = {
 		arenabuffs = false,
 		bgunitframes = false,
 		arenaunitframes = false,
-		fastloot = true,
-		screenshot = true,
-		hidetalkinghead = true,
-		blizzcombattext = true,
+		fastloot = false,
+		screenshot = false,
+		hidetalkinghead = false,
+		blizzcombattext = false,
 		blizzcombatmana = false,
 		mapcombathide = false,
-		dynamicxpbar = true,
+		dynamicxpbar = false,
 		delete = false,
 		--floatingrep = false,
 	},
