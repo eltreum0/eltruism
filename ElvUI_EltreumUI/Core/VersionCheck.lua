@@ -1101,8 +1101,6 @@ function ElvUI_EltreumUI:DatabaseConversions()
 						data.ElvUI_EltreumUI.otherstuff.dynamicxpbar = true
 						E:CopyTable(E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar, data.ElvUI_EltreumUI.otherstuff.dynamicxpbar)
 					end
-					--E:CopyTable(E.db.ElvUI_EltreumUI, data.ElvUI_EltreumUI)
-					--data.ElvUI_EltreumUI = nil
 					profileChanged = true
 				end
 				if profileChanged then
@@ -1208,9 +1206,8 @@ function ElvUI_EltreumUI:DatabaseConversions()
 						data.ElvUI_EltreumUI.combatmusic.bossmusic = true
 						E:CopyTable(E.private.ElvUI_EltreumUI.combatmusic.bossmusic, data.ElvUI_EltreumUI.combatmusic.bossmusic)
 					end
-					--E:CopyTable(E.private.ElvUI_EltreumUI, data.ElvUI_EltreumUI)
-					--data.ElvUI_EltreumUI = nil
 					E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
+					data.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
 					privateChanged = true
 				end
 				if privateChanged then
