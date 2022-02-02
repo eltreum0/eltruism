@@ -32,18 +32,15 @@ function ElvUI_EltreumUI:SkinQuests()
 					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
-
 					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:SetSize(250, 2)
 					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:SetPoint("BOTTOM", ObjectiveTrackerBlocksFrame.CampaignQuestHeader, 0, -1)
 					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
-
 					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:SetSize(250, 2)
 					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:SetPoint("BOTTOM", ObjectiveTrackerBlocksFrame.QuestHeader, 0, -1)
 					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
-
 
 					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetSize(250, 2)
 					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetPoint("BOTTOM", ObjectiveTrackerBlocksFrame.AchievementHeader, 0, -1)
@@ -126,7 +123,6 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 
 				--skin the dungeon/raid/scenario bg
-
 				hooksecurefunc(_G["SCENARIO_CONTENT_TRACKER_MODULE"], "Update", function ()
 					ScenarioObjectiveBlockBackground:SetParent(_G.ScenarioStageBlock)
 					ScenarioObjectiveBlockBackground:ClearAllPoints()
@@ -189,77 +185,78 @@ function ElvUI_EltreumUI:SkinQuests()
 			if not IsAddOnLoaded('Questie') then
 				--from blizzard's FrameXML/QuestLogFrame.lua
 				hooksecurefunc("QuestWatch_Update",function()
-					local numObjectives;
-					local questWatchMaxWidth = 0;
-					local tempWidth;
-					local watchText;
-					local text, type, finished;
-					local questTitle
-					local watchTextIndex = 1;
-					local questIndex;
-					local objectivesCompleted;
+					local numObjectives
+					local questWatchMaxWidth = 0
+					local tempWidth
+					local watchText
+					--local text, type, finished --type is unused
+					local text, _, finished
+					--local questTitle  --unused
+					local watchTextIndex = 1
+					local questIndex
+					local objectivesCompleted
 
 					for i=1, GetNumQuestWatches() do
-						questIndex = GetQuestIndexForWatch(i);
+						questIndex = GetQuestIndexForWatch(i)
 						if ( questIndex ) then
-							numObjectives = GetNumQuestLeaderBoards(questIndex);
+							numObjectives = GetNumQuestLeaderBoards(questIndex)
 
 							--If there are objectives set the title
 							if ( numObjectives > 0 ) then
 								-- Set title
-								watchText = _G["QuestWatchLine"..watchTextIndex];
-								watchText:SetText(GetQuestLogTitle(questIndex));
+								watchText = _G["QuestWatchLine"..watchTextIndex]
+								watchText:SetText(GetQuestLogTitle(questIndex))
 								watchText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
 								--watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
-								tempWidth = watchText:GetWidth();
+								tempWidth = watchText:GetWidth()
 								-- Set the anchor of the title line a little lower
 								if ( watchTextIndex > 1 ) then
-									--watchText:SetPoint("TOPLEFT", "QuestWatchLine"..(watchTextIndex - 1), "BOTTOMLEFT", 0, -4);
+									--watchText:SetPoint("TOPLEFT", "QuestWatchLine"..(watchTextIndex - 1), "BOTTOMLEFT", 0, -4)
 									watchText:SetPoint("TOPLEFT", "QuestWatchLine"..(watchTextIndex - 1), "BOTTOMLEFT", 0, -10)
 									--watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 								end
-								watchText:Show();
+								watchText:Show()
 								if ( tempWidth > questWatchMaxWidth ) then
-									questWatchMaxWidth = tempWidth;
+									questWatchMaxWidth = tempWidth
 								end
-								watchTextIndex = watchTextIndex + 1;
-								objectivesCompleted = 0;
+								watchTextIndex = watchTextIndex + 1
+								objectivesCompleted = 0
 								for j=1, numObjectives do
-									text, type, finished = GetQuestLogLeaderBoard(j, questIndex);
+									text, _, finished = GetQuestLogLeaderBoard(j, questIndex)
 									if ( text == nil ) then
-										text = "";
+										text = ""
 									end
 									if ( finished == nil ) then
-										finished = true;
+										finished = true
 									end
-									watchText = _G["QuestWatchLine"..watchTextIndex];
+									watchText = _G["QuestWatchLine"..watchTextIndex]
 									-- Set Objective text
-									watchText:SetText(" - "..text);
+									watchText:SetText(" - "..text)
 									watchText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
 									--watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 									-- Color the objectives
 									if ( finished ) then
 										watchText:SetTextColor(0, 1, 0)
-										--watchText:SetTextColor(HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b);
-										objectivesCompleted = objectivesCompleted + 1;
+										--watchText:SetTextColor(HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b)
+										objectivesCompleted = objectivesCompleted + 1
 									else
-										watchText:SetTextColor(0.8, 0.8, 0.8);
+										watchText:SetTextColor(0.8, 0.8, 0.8)
 									end
-									tempWidth = watchText:GetWidth();
+									tempWidth = watchText:GetWidth()
 									if ( tempWidth > questWatchMaxWidth ) then
-										questWatchMaxWidth = tempWidth;
+										questWatchMaxWidth = tempWidth
 									end
-									--watchText:SetPoint("TOPLEFT", "QuestWatchLine"..(watchTextIndex - 1), "BOTTOMLEFT", 0, 0);
+									--watchText:SetPoint("TOPLEFT", "QuestWatchLine"..(watchTextIndex - 1), "BOTTOMLEFT", 0, 0)
 									watchText:SetPoint("TOPLEFT", "QuestWatchLine"..(watchTextIndex - 1), "BOTTOMLEFT", 0, -5)
 									--watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-									watchText:Show();
-									watchTextIndex = watchTextIndex + 1;
+									watchText:Show()
+									watchTextIndex = watchTextIndex + 1
 								end
 								-- Brighten the quest title if all the quest objectives were met
-								watchText = _G["QuestWatchLine"..watchTextIndex-numObjectives-1];
+								watchText = _G["QuestWatchLine"..watchTextIndex-numObjectives-1]
 								if ( objectivesCompleted == numObjectives ) then
-									--watchText:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b);
+									--watchText:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
 									watchText:SetTextColor(0, 1, 0)
 								else
 									watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
@@ -270,27 +267,27 @@ function ElvUI_EltreumUI:SkinQuests()
 
 					-- Set tracking indicator
 					if ( GetNumQuestWatches() > 0 ) then
-						QuestLogTrackTracking:SetVertexColor(0, 1.0, 0);
+						QuestLogTrackTracking:SetVertexColor(0, 1.0, 0)
 					else
-						QuestLogTrackTracking:SetVertexColor(1.0, 0, 0);
+						QuestLogTrackTracking:SetVertexColor(1.0, 0, 0)
 					end
 
 					-- If no watch lines used then hide the frame and return
 					if ( watchTextIndex == 1 ) then
-						QuestWatchFrame:Hide();
-						return;
+						QuestWatchFrame:Hide()
+						return
 					else
-						QuestWatchFrame:Show();
-						QuestWatchFrame:SetHeight(watchTextIndex * 13);
-						QuestWatchFrame:SetWidth(questWatchMaxWidth + 10);
+						QuestWatchFrame:Show()
+						QuestWatchFrame:SetHeight(watchTextIndex * 13)
+						QuestWatchFrame:SetWidth(questWatchMaxWidth + 10)
 					end
 
 					-- Hide unused watch lines
 					for i=watchTextIndex, MAX_QUESTWATCH_LINES do
-						_G["QuestWatchLine"..i]:Hide();
+						_G["QuestWatchLine"..i]:Hide()
 					end
 
-					UIParent_ManageFramePositions();
+					UIParent_ManageFramePositions()
 				end)
 			end
 		end

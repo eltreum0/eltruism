@@ -3,6 +3,7 @@
 ___
 ### 2.7.3
 Added Sockets and Enchants to the TBC/Classic Character Panel, this option can be enabled in Eltruism > Skins > Character\
+Fixed Quest Skin erroring on TBC/Classic on some quests\
 Eltruism Database has been revamped, with almost all settings being disabled now. A Database converter will be run the first time you load into the game, copying your settings over to the profile. The original settings now will be set on the layout install and players that skip the install can choose what to enable at will. Make sure to reload after running the database converter to save your settings
 ___
 ### 2.7.2
