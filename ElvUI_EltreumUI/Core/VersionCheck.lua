@@ -1229,6 +1229,11 @@ function ElvUI_EltreumUI:DatabaseConversions()
 						data.ElvUI_EltreumUI.combatmusic.bossmusic = true
 						E:CopyTable(E.private.ElvUI_EltreumUI.combatmusic.bossmusic, data.ElvUI_EltreumUI.combatmusic.bossmusic)
 					end
+					if data.ElvUI_EltreumUI.install_version then
+						E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
+						data.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
+						E:CopyTable(E.private.ElvUI_EltreumUI.install_version, data.ElvUI_EltreumUI.install_version)
+					end
 					E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
 					data.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
 					privateChanged = true
