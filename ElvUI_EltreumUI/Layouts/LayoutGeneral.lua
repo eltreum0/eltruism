@@ -83,9 +83,14 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db.ElvUI_EltreumUI.waytext.enable = true
 		E.db.ElvUI_EltreumUI.widenameplate.enable = true
 		E.db.ElvUI_EltreumUI.widenameplate.npglow = true
-		E.db.ElvUI_EltreumUI.questsettings.enable = true
+		if ElvUI_EltreumUI.Retail then
+			E.db.ElvUI_EltreumUI.questsettings.enable = true
+			E.db.ElvUI_EltreumUI.questsettings.arena = true
+		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			E.db.ElvUI_EltreumUI.questsettings.enable = false
+			E.db.ElvUI_EltreumUI.questsettings.arena = false
+		end
 		E.db.ElvUI_EltreumUI.questsettings.rogueopen = true
-		E.db.ElvUI_EltreumUI.questsettings.arena = true
 		E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 = true
 		E.db.ElvUI_EltreumUI.loottext.enable = true
 		E.db.ElvUI_EltreumUI.loottext.fontsetting = true
@@ -97,18 +102,14 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead = true
 		E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = true
 		E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = true
-
+		--private
 		E.private.ElvUI_EltreumUI.nameplatepower.enable = true
 		E.private.ElvUI_EltreumUI.nameplatepower.adjust = true
 		E.private.ElvUI_EltreumUI.combatmusic.enable = true
 		E.private.ElvUI_EltreumUI.combatmusic.bossmusic = true
 		E.private.ElvUI_EltreumUI.combatmusic.disableinstance = true
 
-		--disable the quest hide by default on classic/tbc
-		if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-			E.db.ElvUI_EltreumUI.questsettings.enable = false
-			E.db.ElvUI_EltreumUI.questsettings.arena = false
-		end
+
 
 		-- AB Conversion
 		E.db["convertPages"] = true

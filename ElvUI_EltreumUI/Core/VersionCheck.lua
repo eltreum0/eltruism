@@ -201,7 +201,7 @@ end
 
 --Based on ElvUI's and SLE's db convert
 function ElvUI_EltreumUI:DatabaseConversions()
-	if E.private.ElvUI_EltreumUI.install_version ~= nil and E.private.ElvUI_EltreumUI.install_version < "2.7.0" then
+	if E.private.ElvUI_EltreumUI.install_version ~= nil and E.private.ElvUI_EltreumUI.install_version < "2.7.3" then
 		local ProfileNames = "NONE"
 		local CharacterNames = "NONE"
 		--Profile options conversion
