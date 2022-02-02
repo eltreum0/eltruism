@@ -201,7 +201,7 @@ end
 
 --Based on ElvUI's and SLE's db convert
 function ElvUI_EltreumUI:DatabaseConversions()
-	if E.private.ElvUI_EltreumUI.install_version ~= nil and E.private.ElvUI_EltreumUI.install_version < "2.7.3" then
+	if E.private.ElvUI_EltreumUI.install_version ~= nil and E.private.ElvUI_EltreumUI.install_version > "2.8.3" then
 		local ProfileNames = "NONE"
 		local CharacterNames = "NONE"
 		--Profile options conversion
@@ -482,13 +482,25 @@ function ElvUI_EltreumUI:DatabaseConversions()
 						E.db.ElvUI_EltreumUI.partyraiddeath.enable = true
 					end
 					if data.ElvUI_EltreumUI.friendlynameplatetoggle then
-						if data.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames and data.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames == nil then
+						if data.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames == nil then
 							E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames = true
 						elseif data.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames == false then
 							E:CopyTable(E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames, data.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames)
 						end
+						if data.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly == nil then
+							E.db.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendlys = false
+						elseif data.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly, data.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly)
+						end
+						if data.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly == nil then
+							E.db.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly = false
+						elseif data.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly, data.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly)
+						end
 					elseif data.ElvUI_EltreumUI.friendlynameplatetoggle == nil then
 						E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames = true
+						E.db.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly = false
+						E.db.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly = false
 					end
 					if data.ElvUI_EltreumUI.afkmusic then
 						if data.ElvUI_EltreumUI.afkmusic.enable == nil then
@@ -699,6 +711,7 @@ function ElvUI_EltreumUI:DatabaseConversions()
 					end
 					--E:CopyTable(E.private.ElvUI_EltreumUI, data.ElvUI_EltreumUI)
 					--data.ElvUI_EltreumUI = nil
+					E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
 					privateChanged = true
 				end
 				if privateChanged then
