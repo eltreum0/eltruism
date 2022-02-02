@@ -22,7 +22,7 @@ V.ElvUI_EltreumUI = {
 		musicfile = "None",
 		bossmusic = false,
 		bossfile = "None",
-		disableinstance = true,
+		disableinstance = false,
 	},
 
 	isInstalled ={
