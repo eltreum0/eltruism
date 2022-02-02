@@ -253,8 +253,17 @@ function ElvUI_EltreumUI:DatabaseConversions()
 						elseif data.ElvUI_EltreumUI.cvars.autohidenpcname == false then
 							E:CopyTable(E.db.ElvUI_EltreumUI.cvars.autohidenpcname, data.ElvUI_EltreumUI.cvars.autohidenpcname)
 						end
+						if data.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition == nil then
+							E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition = 1
+							SetCVar('nameplateTargetRadialPosition', 1)
+						elseif data.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition == 2 then
+							SetCVar('nameplateTargetRadialPosition', 2)
+							E:CopyTable(E.db.ElvUI_EltreumUI.cvars.autohidenpcname, data.ElvUI_EltreumUI.cvars.autohidenpcname)
+						end
 					elseif data.ElvUI_EltreumUI.cvars == nil then
 						E.db.ElvUI_EltreumUI.cvars.autohidenpcname = true
+						E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition = 1
+						SetCVar('nameplateTargetRadialPosition', 1)
 					end
 					if data.ElvUI_EltreumUI.skins then
 						if data.ElvUI_EltreumUI.skins.enable == nil then
@@ -677,9 +686,16 @@ function ElvUI_EltreumUI:DatabaseConversions()
 							E.private.ElvUI_EltreumUI.combatmusic.disableinstance = false
 							--E:CopyTable(E.private.ElvUI_EltreumUI.combatmusic.disableinstance, data.ElvUI_EltreumUI.combatmusic.disableinstance)
 						end
+						if data.ElvUI_EltreumUI.combatmusic.bossmusic == nil or data.ElvUI_EltreumUI.combatmusic.bossmusic == true then
+							E.private.ElvUI_EltreumUI.combatmusic.bossmusic = true
+						elseif data.ElvUI_EltreumUI.combatmusic.bossmusic == false then
+							E.private.ElvUI_EltreumUI.combatmusic.bossmusic = false
+							--E:CopyTable(E.private.ElvUI_EltreumUI.combatmusic.disableinstance, data.ElvUI_EltreumUI.combatmusic.disableinstance)
+						end
 					elseif data.ElvUI_EltreumUI.combatmusic == nil or data.ElvUI_EltreumUI.combatmusic == true then
-							E.private.ElvUI_EltreumUI.combatmusic.enable = true
-							E.private.ElvUI_EltreumUI.combatmusic.disableinstance = true
+						E.private.ElvUI_EltreumUI.combatmusic.enable = true
+						E.private.ElvUI_EltreumUI.combatmusic.disableinstance = true
+						E.private.ElvUI_EltreumUI.combatmusic.bossmusic = true
 					end
 					--E:CopyTable(E.private.ElvUI_EltreumUI, data.ElvUI_EltreumUI)
 					--data.ElvUI_EltreumUI = nil

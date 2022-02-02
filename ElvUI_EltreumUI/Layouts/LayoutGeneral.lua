@@ -101,6 +101,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.private.ElvUI_EltreumUI.nameplatepower.enable = true
 		E.private.ElvUI_EltreumUI.nameplatepower.adjust = true
 		E.private.ElvUI_EltreumUI.combatmusic.enable = true
+		E.private.ElvUI_EltreumUI.combatmusic.bossmusic = true
 		E.private.ElvUI_EltreumUI.combatmusic.disableinstance = true
 
 		--disable the quest hide by default on classic/tbc
