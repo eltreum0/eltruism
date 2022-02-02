@@ -374,6 +374,11 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["colors"]["classResources"]["PALADIN"]["g"] = 0.98823529411765
 		E.db["unitframe"]["colors"]["classResources"]["PALADIN"]["r"] = 1
 		E.db["unitframe"]["colors"]["classbackdrop"] = true
+		E.db["unitframe"]["colors"]["healthclass"] = false
+		E.db["unitframe"]["colors"]["customhealthbackdrop"] = false
+		E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0
+		E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0
+		E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0
 		E.db["unitframe"]["colors"]["colorhealthbyvalue"] = false
 		E.db["unitframe"]["colors"]["customclasspowerbackdrop"] = true
 		E.db["unitframe"]["colors"]["classpower_backdrop"]["b"] = 0
@@ -439,6 +444,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["smartRaidFilter"] = false
 		E.db["unitframe"]["smoothbars"] = true
 		E.db["unitframe"]["targetSound"] = true
+
+		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countXOffset"] = 2
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countYOffset"] = -3
@@ -487,6 +494,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["assist"]["targetsGroup"]["height"] = 25
 		E.db["unitframe"]["units"]["assist"]["targetsGroup"]["xOffset"] = -3
 		E.db["unitframe"]["units"]["assist"]["verticalSpacing"] = 1
+		E.db["unitframe"]["units"]["tank"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["tank"]["buffIndicator"]["size"] = 12
 		E.db["unitframe"]["units"]["tank"]["buffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["tank"]["buffs"]["enable"] = true
@@ -695,6 +703,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["pet"]["fader"]["unittarget"] = true
 		E.db["unitframe"]["units"]["pet"]["fader"]["vehicle"] = true
 		E.db["unitframe"]["units"]["pet"]["name"]["text_format"] = ""
+		E.db["unitframe"]["units"]["pet"]["colorOverride"] = "FORCE_OFF"
 		if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["pet"]["power"]["enable"] = false
 		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
@@ -704,6 +713,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["pet"]["power"]["width"] = "spaced"
 		E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 		E.db["unitframe"]["units"]["pet"]["width"] = 100
+		E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["b"] = 1
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["g"] = 1
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["defaultColor"] = false

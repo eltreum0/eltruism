@@ -473,6 +473,11 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["colors"]["classResources"]["PALADIN"]["r"] = 1
 		E.db["unitframe"]["colors"]["classResources"]["WARLOCK"]["r"] = 0.58039215686275
 		E.db["unitframe"]["colors"]["classbackdrop"] = true
+		E.db["unitframe"]["colors"]["healthclass"] = false
+		E.db["unitframe"]["colors"]["customhealthbackdrop"] = false
+		E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0
+		E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0
+		E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0
 		E.db["unitframe"]["colors"]["classpower_backdrop"]["b"] = 0
 		E.db["unitframe"]["colors"]["classpower_backdrop"]["g"] = 0
 		E.db["unitframe"]["colors"]["classpower_backdrop"]["r"] = 0
@@ -540,6 +545,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["targetSound"] = true
 
 		--Dps units
+		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countXOffset"] = 2
 		E.db["unitframe"]["units"]["arena"]["buffs"]["countYOffset"] = -3
@@ -799,6 +805,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["pet"]["fader"]["unittarget"] = true
 		E.db["unitframe"]["units"]["pet"]["fader"]["vehicle"] = true
 		E.db["unitframe"]["units"]["pet"]["name"]["text_format"] = ""
+		E.db["unitframe"]["units"]["pet"]["colorOverride"] = "FORCE_OFF"
 		if ElvUI_EltreumUI.Retail then
 			E.db["unitframe"]["units"]["pet"]["power"]["enable"] = false
 		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
@@ -821,6 +828,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["pettarget"]["debuffs"]["countFontOutline"] = "NONE"
 		E.db["unitframe"]["units"]["pettarget"]["power"]["enable"] = false
 		E.db["unitframe"]["units"]["pettarget"]["power"]["text_format"] = "[power:current:shortvalue]"
+		E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "TOPRIGHT"
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["a"] = 0.80000001192093
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["b"] = 1
@@ -1078,6 +1086,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 			E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid26,noexists] hide;show"
 		end
 		E.db["unitframe"]["units"]["raid40"]["width"] = 120
+		E.db["unitframe"]["units"]["tank"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["tank"]["buffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["tank"]["debuffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["tank"]["debuffs"]["enable"] = true

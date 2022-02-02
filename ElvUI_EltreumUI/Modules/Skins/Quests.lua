@@ -210,13 +210,14 @@ function ElvUI_EltreumUI:SkinQuests()
 								watchText = _G["QuestWatchLine"..watchTextIndex];
 								watchText:SetText(GetQuestLogTitle(questIndex));
 								watchText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
-								watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								--watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
 								tempWidth = watchText:GetWidth();
 								-- Set the anchor of the title line a little lower
 								if ( watchTextIndex > 1 ) then
 									--watchText:SetPoint("TOPLEFT", "QuestWatchLine"..(watchTextIndex - 1), "BOTTOMLEFT", 0, -4);
 									watchText:SetPoint("TOPLEFT", "QuestWatchLine"..(watchTextIndex - 1), "BOTTOMLEFT", 0, -10)
+									--watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 								end
 								watchText:Show();
 								if ( tempWidth > questWatchMaxWidth ) then
@@ -236,6 +237,7 @@ function ElvUI_EltreumUI:SkinQuests()
 									-- Set Objective text
 									watchText:SetText(" - "..text);
 									watchText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
+									--watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 									-- Color the objectives
 									if ( finished ) then
 										watchText:SetTextColor(0, 1, 0)
@@ -250,15 +252,17 @@ function ElvUI_EltreumUI:SkinQuests()
 									end
 									--watchText:SetPoint("TOPLEFT", "QuestWatchLine"..(watchTextIndex - 1), "BOTTOMLEFT", 0, 0);
 									watchText:SetPoint("TOPLEFT", "QuestWatchLine"..(watchTextIndex - 1), "BOTTOMLEFT", 0, -5)
+									--watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 									watchText:Show();
 									watchTextIndex = watchTextIndex + 1;
 								end
 								-- Brighten the quest title if all the quest objectives were met
 								watchText = _G["QuestWatchLine"..watchTextIndex-numObjectives-1];
 								if ( objectivesCompleted == numObjectives ) then
-									watchText:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b);
+									--watchText:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b);
+									watchText:SetTextColor(0, 1, 0)
 								else
-									watchText:SetTextColor(0.75, 0.61, 0);
+									watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 								end
 							end
 						end
