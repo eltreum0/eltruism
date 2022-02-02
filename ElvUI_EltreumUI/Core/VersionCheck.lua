@@ -201,7 +201,7 @@ end
 
 --Based on ElvUI's and SLE's db convert
 function ElvUI_EltreumUI:DatabaseConversions()
-	if E.private.ElvUI_EltreumUI.install_version ~= nil and E.private.ElvUI_EltreumUI.install_version < "2.7.3" then
+	if E.private.ElvUI_EltreumUI.install_version ~= nil and E.private.ElvUI_EltreumUI.install_version < "2.7.0" then
 		local ProfileNames = "NONE"
 		local CharacterNames = "NONE"
 		--Profile options conversion
@@ -453,9 +453,15 @@ function ElvUI_EltreumUI:DatabaseConversions()
 						elseif data.ElvUI_EltreumUI.glow.enablepet == false then
 							E:CopyTable(E.db.ElvUI_EltreumUI.glow.enablepet, data.ElvUI_EltreumUI.glow.enablepet)
 						end
+						if data.ElvUI_EltreumUI.glow.pixel == nil then
+							E.db.ElvUI_EltreumUI.glow.pixel = true
+						elseif data.ElvUI_EltreumUI.glow.pixel == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.glow.pixel, data.ElvUI_EltreumUI.glow.pixel)
+						end
 					elseif data.ElvUI_EltreumUI.glow == nil then
 						E.db.ElvUI_EltreumUI.glow.enable = true
 						E.db.ElvUI_EltreumUI.glow.enablepet = true
+						E.db.ElvUI_EltreumUI.glow.pixel = true
 					end
 					if data.ElvUI_EltreumUI.partyraiddeath then
 						if data.ElvUI_EltreumUI.partyraiddeath.enable == nil then
@@ -561,9 +567,15 @@ function ElvUI_EltreumUI:DatabaseConversions()
 						elseif data.ElvUI_EltreumUI.loottext.fontsetting == false then
 							E:CopyTable(E.db.ElvUI_EltreumUI.loottext.fontsetting, data.ElvUI_EltreumUI.loottext.fontsetting)
 						end
+						if data.ElvUI_EltreumUI.loottext.combatindicator == nil then
+							E.db.ElvUI_EltreumUI.loottext.combatindicator = true
+						elseif data.ElvUI_EltreumUI.loottext.combatindicator == false then
+							E:CopyTable(E.db.ElvUI_EltreumUI.loottext.combatindicator, data.ElvUI_EltreumUI.loottext.combatindicator)
+						end
 					elseif data.ElvUI_EltreumUI.loottext == nil then
 						E.db.ElvUI_EltreumUI.loottext.enable = true
 						E.db.ElvUI_EltreumUI.loottext.fontsetting = true
+						E.db.ElvUI_EltreumUI.loottext.combatindicator = true
 					end
 					if data.ElvUI_EltreumUI.modetexture then
 						if data.ElvUI_EltreumUI.modetexture == nil then
@@ -642,8 +654,15 @@ function ElvUI_EltreumUI:DatabaseConversions()
 							E.private.ElvUI_EltreumUI.nameplatepower.enable = false
 							--E:CopyTable(E.private.ElvUI_EltreumUI.nameplatepower.enable, data.ElvUI_EltreumUI.nameplatepower.enable)
 						end
+						if data.ElvUI_EltreumUI.nameplatepower.adjust == nil or data.ElvUI_EltreumUI.nameplatepower.adjust == true then
+							E.private.ElvUI_EltreumUI.nameplatepower.adjust = true
+						elseif data.ElvUI_EltreumUI.nameplatepower.adjust == false then
+							E.private.ElvUI_EltreumUI.nameplatepower.adjust = false
+							--E:CopyTable(E.private.ElvUI_EltreumUI.nameplatepower.enable, data.ElvUI_EltreumUI.nameplatepower.enable)
+						end
 					elseif data.ElvUI_EltreumUI.nameplatepower == nil or data.ElvUI_EltreumUI.nameplatepower == true then
 						E.private.ElvUI_EltreumUI.nameplatepower.enable = true
+						E.private.ElvUI_EltreumUI.nameplatepower.adjust = true
 					end
 					if data.ElvUI_EltreumUI.combatmusic then
 						if data.ElvUI_EltreumUI.combatmusic.enable == nil or data.ElvUI_EltreumUI.combatmusic.enable == true then
