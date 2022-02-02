@@ -5,7 +5,7 @@ V.ElvUI_EltreumUI = {
 
 	nameplatepower = {
 		enable = false,
-		adjust = true,
+		adjust = false,
 		mana = true,
 		insanity = true,
 		maelstrom = true,
