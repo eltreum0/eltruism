@@ -137,7 +137,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						local frames = {_G.ScenarioObjectiveBlock:GetChildren()}
 						for _, frame in pairs(frames) do
 							if frame.Text then
-								frame.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, "OUTLINE")
+								frame.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, "OUTLINE")  --this is the objective like boss 1/1
 								frame.Text:SetTextColor(1, 1, 1)  --dungeon obj text
 								frame.Text:SetWordWrap(true)
 							end
