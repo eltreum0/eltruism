@@ -1,6 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 
+--Fork of Kibs Item Level by Kibsgaard, this module is GNU
 local addonName = "EltruismKibsItemLevel"
 local addonNamespace = LibStub:NewLibrary(addonName .. "-1.0", 1)
 --if not addonNamespace then return end
