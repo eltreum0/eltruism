@@ -73,6 +73,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide = true
 		E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect = true
 		E.db.ElvUI_EltreumUI.glow.enable = true
+		E.db.ElvUI_EltreumUI.glow.pixel = true
 		E.db.ElvUI_EltreumUI.glow.enablepet = true
 		E.db.ElvUI_EltreumUI.partyraiddeath.enable = true
 		E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames = true
@@ -88,6 +89,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 = true
 		E.db.ElvUI_EltreumUI.loottext.enable = true
 		E.db.ElvUI_EltreumUI.loottext.fontsetting = true
+		E.db.ElvUI_EltreumUI.loottext.combatindicator = true
 		E.db.ElvUI_EltreumUI.modetexture = true
 		E.db.ElvUI_EltreumUI.sparkcustomcolor.enable = true
 		E.db.ElvUI_EltreumUI.otherstuff.fastloot = true
@@ -97,6 +99,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = true
 
 		E.private.ElvUI_EltreumUI.nameplatepower.enable = true
+		E.private.ElvUI_EltreumUI.nameplatepower.adjust = true
 		E.private.ElvUI_EltreumUI.combatmusic.enable = true
 		E.private.ElvUI_EltreumUI.combatmusic.disableinstance = true
 
