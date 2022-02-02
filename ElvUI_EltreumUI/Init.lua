@@ -250,7 +250,7 @@ function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
-	ElvUI_EltreumUI:FriendlyNameplates()
+	C_Timer.After(5, function() ElvUI_EltreumUI:FriendlyNameplates() end)
 	ElvUI_EltreumUI:QuestItem()
 end
 
