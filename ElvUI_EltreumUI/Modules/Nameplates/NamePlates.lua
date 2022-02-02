@@ -302,9 +302,23 @@ end
 function ElvUI_EltreumUI:FriendlyNameplates()
 	local _, instanceType = IsInInstance()
 	local mapID = WorldMapFrame:GetMapID()
+	--print(mapID, instanceType)
 	if not InCombatLockdown() then
+		if ElvUI_EltreumUI.Retail then
+			if E.db.ElvUI_EltreumUI.cvars.autohidenpcname then
+				if instanceType == "none" then
+					SetCVar('UnitNameHostleNPC', 0)
+					SetCVar('UnitNameInteractiveNPC', 0)
+					SetCVar('UnitNameNPC', 0)
+				elseif instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" or mapID == 1662 or mapID == 582 or mapID == 590 then
+					SetCVar('UnitNameHostleNPC', 1)
+					SetCVar('UnitNameInteractiveNPC', 1)
+					SetCVar('UnitNameNPC', 1)
+				end
+			end
+		end
 		if E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames then
-			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" or instanceType == "none" or mapID == 1662 or mapID == 582 then
+			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" or instanceType == "none" or mapID == 1662 or mapID == 582 or mapID == 590 then
 				--SetCVar("nameplateShowFriends", 1)
 				SetCVar("nameplateShowOnlyNames", 1)
 			end
@@ -313,7 +327,7 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
 				SetCVar("nameplateShowFriends", 0)
 			end
-			if instanceType == "none" or mapID == 1662 then
+			if instanceType == "none" or mapID == 1662 or mapID == 582 or mapID == 590 then
 				SetCVar("nameplateShowFriends", 1)
 			end
 		end
