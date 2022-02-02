@@ -24,7 +24,7 @@
 	<Script file='CombatMusic.lua'/>
 	<Script file='DarkLightColors.lua'/>
 	<Script file='DynamicFunctions.lua'/>
-	<Script file='EltruismAmmoDatatext.lua'/>
+	<Script file='EltruismDatatext.lua'/>
 	<Script file='InstantLoot.lua'/>
 	<Script file='LootText.lua'/>
 	<Script file='Maps.lua'/>
