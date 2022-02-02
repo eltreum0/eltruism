@@ -2,9 +2,9 @@
 **The future is uncertain**
 ___
 ### 2.7.3
-Added Sockets and Enchants to the Character Panel for TBC and Classic (Classic only has Enchants), this option can be enabled in Eltruism > Skins > Character\
+Added Sockets and Enchants to the Character Panel for TBC and Classic (Classic only has Enchants), this option can be enabled in Eltruism > Skins > Character. This module is a fork of Kibs Item Level by Kibsgaard, which is licensed under Public Domain\
 Skinned the World Quest Banner and the quests statusbars\
-Fixed Druid Smartclass bar not working\
+Fixed Druid Smart classbar not working\
 Fixed some World Quests not showing emotes due to the Raid Boss Emote Frame\
 Eltruism Database has been revamped, with almost all settings being disabled now.\
 A Database converter will be run the first time you load into the game, copying your settings over to the profile. The original settings now will be set on the layout install and players that skip the install can choose what to enable at will. Make sure to reload after running the database converter to save your settings
