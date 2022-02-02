@@ -66,6 +66,9 @@ function ElvUI_EltreumUI:SkinLevelUp()
 				_G.BossBanner.LeftFillagree:Kill()
 				_G.BossBanner.BottomFillagree:Kill()
 				_G.BossBanner.SkullSpikes:Kill()
+
+				_G.BossBanner.Title:SetTextColor(1, 1, 1, 1)
+				_G.BossBanner.SubTitle:SetTextColor(1, 1, 1, 1)
 				--/script BossBanner:Show()
 			end
 		end
