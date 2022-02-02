@@ -98,6 +98,30 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 				end)
 
+				--skin the progress bars
+				local function EltreumSkinProgressBars(_, _, line)
+					local progressBar = line and line.ProgressBar
+					local bar = progressBar and progressBar.Bar
+					if not bar or progressBar.EltruismSkin then
+						return
+					else
+						bar:CreateShadow()
+						progressBar.Bar.backdrop:SetAlpha(0.7)
+						--local a = progressBar.Bar.backdrop:GetObjectType()  --results in frame
+						--progressBar.Bar.backdrop:SetBackdropColor(0, 1, 0, 0.2)
+						--progressBar.Bar.backdrop:SetColorTexture(0,1,0,1)
+						--progressBar.Bar.backdrop:SetStatusBarColor(0,1,0)
+						--progressBar.Bar.backdrop:SetVertexColor(0,1,0,1)
+						progressBar.EltruismSkin = true
+					end
+				end
+				hooksecurefunc(_G.QUEST_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
+				hooksecurefunc(_G.BONUS_OBJECTIVE_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
+				hooksecurefunc(_G.WORLD_QUEST_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
+				hooksecurefunc(_G.CAMPAIGN_QUEST_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
+				hooksecurefunc(_G.SCENARIO_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
+				hooksecurefunc(_G.DEFAULT_OBJECTIVE_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
+
 				hooksecurefunc(_G.SCENARIO_CONTENT_TRACKER_MODULE, 'UpdateCriteria', function ()
 					if _G.ScenarioObjectiveBlock then
 						local frames = {_G.ScenarioObjectiveBlock:GetChildren()}
