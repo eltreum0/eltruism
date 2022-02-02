@@ -198,7 +198,7 @@ P.ElvUI_EltreumUI = {
 
 	afkmusic = {
 		enable = false,
-		racial = true,
+		racial = false,
 		playerclass = false,
 	},
 
