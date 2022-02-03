@@ -8,7 +8,7 @@ local UF = E:GetModule('UnitFrames')
 --local AB = E:GetModule('ActionBars')
 local A = E:GetModule('Auras')
 
---Frame Shadows, turns out ElvUI includes the function but it seems to add a lot of usage during load time
+--Frame Shadows, turns out ElvUI includes the function
 function ElvUI_EltreumUI:Shadows()
 	if E.db.ElvUI_EltreumUI.skins.shadows then
 		------------------------------------------------------------------------------------------------------blizzard frames

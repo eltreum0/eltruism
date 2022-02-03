@@ -3,7 +3,9 @@
 ___
 ### 2.7.5
 Added a button in Eltruism > Installer that will reset Eltruism settings\
+Improved the Quests skins for Classic by adding a bigger Quest Log to it\
 Updated Instant Loot to be compatible with TSM Destroy\
+Updated how shadows are applied\
 Updated the profile install process with the profile naming using your character name and realm name to prevent possible overwrites from happening
 ___
 ### 2.7.4
