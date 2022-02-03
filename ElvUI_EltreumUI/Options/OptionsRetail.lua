@@ -3886,6 +3886,21 @@ if ElvUI_EltreumUI.Retail then
 									get = function() return E.db.ElvUI_EltreumUI.cvars.autohidenpcname end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.cvars.autohidenpcname = value end,
 								},
+								headerrestore = {
+									order = 17,
+									type = "description",
+									name = L["Restore Hidden Names"],
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								restorenames = {
+									order = 18,
+									type = 'execute',
+									name = L["Restore Unit Names hidden by Hide NPC Names"],
+									width = 'full',
+									desc = L["Use this button to restore names should you have disabled the Hide NPC Names option"],
+									func = function() ElvUI_EltreumUI:RestoreNameplateNames() end,
+								},
 							},
 						},
 						powerbar = {

@@ -337,6 +337,21 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 	end
 end
 
+function ElvUI_EltreumUI:RestoreNameplateNames()
+	SetCVar('nameplateShowFriendlyMinions', 1)
+	SetCVar('nameplateShowEnemies', 1)
+	SetCVar("nameplateShowFriends", 1)
+	SetCVar('UnitNameHostleNPC', 1)
+	SetCVar('UnitNameInteractiveNPC', 1)
+	SetCVar('UnitNameNPC', 1)
+	SetCVar('UnitNameEnemyGuardianName', 1)
+	SetCVar('UnitNameEnemyMinionName', 1)
+	SetCVar('UnitNameEnemyPetName', 1)
+	SetCVar('UnitNameFriendlyPetName', 1)
+	SetCVar('UnitNameEnemyPlayerName', 1)
+	SetCVar('UnitNameEnemyTotemName', 1)
+end
+
 --Change classpower background, ty Benik for the great help
 local function ClassPowerColor()
 	NP.multiplier = 0

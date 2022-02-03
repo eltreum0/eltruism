@@ -1,6 +1,10 @@
 ### 🌌 Next Version 
 **The future is uncertain**
 ___
+### 2.7.4
+Added a button in Eltruism > Nameplates that restores all unit names should you disable the automatic name toggling.
+Fixed World Quest banner colors for some classes\
+___
 ### 2.7.3
 Added Sockets and Enchants to the Character Panel for TBC and Classic (Classic only has Enchants), this option can be enabled in Eltruism > Skins > Character. This module is a fork of Kibs Item Level by Kibsgaard, which is licensed under Public Domain\
 Skinned the World Quest Banner and the quests statusbars\

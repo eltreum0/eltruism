@@ -3496,6 +3496,21 @@ if ElvUI_EltreumUI.Classic then
 									get = function() return E.db.ElvUI_EltreumUI.nameplatelevel.enable end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.nameplatelevel.enable = value end,
 								},
+								headerrestore = {
+									order = 17,
+									type = "description",
+									name = L["Restore Hidden Names"],
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								restorenames = {
+									order = 18,
+									type = 'execute',
+									name = L["Restore Unit Names Hidden during install"],
+									width = 'full',
+									desc = L["Use this button to restore names"],
+									func = function() ElvUI_EltreumUI:RestoreNameplateNames() end,
+								},
 							},
 						},
 						powerbar = {
