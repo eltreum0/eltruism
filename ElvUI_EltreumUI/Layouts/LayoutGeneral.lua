@@ -22,9 +22,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		--Set the Profile and Private Settings
 		ElvUI_EltreumUI:UpdateSettings()
 
-		--mark as dark mode
-		--E.db.ElvUI_EltreumUI.lightmode = false
-
 		--SetupShadowAndLight
 		if IsAddOnLoaded("ElvUI_SLE") then
 			ElvUI_EltreumUI:GetSLEProfile()
