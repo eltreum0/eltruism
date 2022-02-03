@@ -181,7 +181,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.WorldMapFrame.backdrop,
 				_G.CalendarFrame,
 				_G.CommunitiesFrame,
-				_G.AchievementFrame,
+				_G.AchievementFrame.backdrop,
 				_G.CovenantMissionFrame,
 				_G.GarrisonLandingPage,
 				_G.CovenantSanctumFrame,
