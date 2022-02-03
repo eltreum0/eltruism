@@ -4,26 +4,29 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 local C_CVar = _G.C_CVar
 
 function ElvUI_EltreumUI:SetupLayoutDPS()
-		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
-		["enable"] = false
-		}
-		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
-		["enable"] = false
-		}
-		E.db["unitframe"]["units"]["raid"]["customTexts"] = E.db["unitframe"]["units"]["raid"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
-		["enable"] = false
-		}
-		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
-		["enable"] = false
-		}
-		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
-		["enable"] = false
-		}
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
+			["enable"] = false
+			}
+			E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
+			["enable"] = false
+			}
+			E.db["unitframe"]["units"]["raid"]["customTexts"] = E.db["unitframe"]["units"]["raid"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
+			["enable"] = false
+			}
+			E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
+			["enable"] = false
+			}
+			E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
+			["enable"] = false
+			}
+		end
+
 		-- set Dynamic Status Icons
 		if IsAddOnLoaded("ElvUI_DynamicStatusIcons") then
 			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["anchorPoint"] = "BOTTOMRIGHT"
