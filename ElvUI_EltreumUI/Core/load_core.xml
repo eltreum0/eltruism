@@ -1,7 +1,9 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file='Commands.lua'/>
 	<Script file='Core.lua'/>
+	<Script file='AddonSetup.lua'/>
 	<Script file='Install.lua'/>
 	<Script file='Tags.lua'/>
 	<Script file='VersionCheck.lua'/>
+	<Script file='DatabaseConverter.lua'/>
 </Ui>
