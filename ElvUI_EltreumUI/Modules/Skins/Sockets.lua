@@ -12,27 +12,20 @@ local KIBC_EnchantToSpellID = {
 	[368] = 34004, --cloak 12 agility
 	[684] = 33995,  --gloves 15 strength
 	[2931] = 46519, -- ring stats +4
-
 	[65] = 7454,
-
 	[2928] = 27924, -- ring + 12 dmg spell
 	[2929] = 27920, -- ring + 2 dmg phys
 	[2930] = 27926, -- ring +20 healing
-
 	[1593] = 359639, -- bracer assault
 	[1144] = 33990, -- 15 spirit
-
 	[1257] = 46506, -- 15 arcane res
 	[1441] = 46507, -- 15 shadow res
 	[2620] = 359949, -- 15 nature res
 	[2519] = 359950, -- 15 fire res
 	[2664] = 46508, -- 7 res all
-
 	[2343] = 46531, -- major healing weapon
-
 	[1888] = 359685, --shield resilience? resistance?   46525
 	[926] = 359895, --shield frost res
-
 
 	---- old list
 	[15] = 2831, -- Reinforced (+$k1 Armor)
@@ -2231,13 +2224,8 @@ end
 
 --if not addonNamespace or addonNamespace.loaded.AddOn then return end
 addonNamespace.loaded.AddOn = true
-
---LoadAddOn("Blizzard_InspectUI")
-
 local L = addonNamespace.L
-
 local AddOn = LibStub("AceAddon-3.0"):NewAddon(addonName, "AceConsole-3.0", "AceEvent-3.0")
-
 _G[addonName] = AddOn
 
 AddOn.configPanel = nil
