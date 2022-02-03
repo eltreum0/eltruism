@@ -3,6 +3,7 @@
 ___
 ### 2.7.4
 Added a button in Eltruism > Nameplates that restores all unit names should you disable the automatic name toggling.
+Fixed a few options that were overlapping in the Eltruism menu\
 Fixed World Quest banner colors for some classes\
 ___
 ### 2.7.3
