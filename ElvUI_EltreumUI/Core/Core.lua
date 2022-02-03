@@ -319,6 +319,9 @@ function ElvUI_EltreumUI:DevTools()
 	if E.db.ElvUI_EltreumUI.dev then
 		if not EventTraceFrame then
 			UIParentLoadAddOn("Blizzard_DebugTools")
+			_G.TableAttributeDisplay:SetWidth(800)
+			_G.TableAttributeDisplay.LinesScrollFrame:SetWidth(700)
+			_G.TableAttributeDisplay.TitleButton.Text:SetWidth(600)
 		end
 		if not IsAddOnLoaded("Blizzard_EventTrace") then
 			LoadAddOn("Blizzard_EventTrace")
