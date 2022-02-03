@@ -36,6 +36,19 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
+			if (arg == "Blizzard_InspectUI") then
+				_G.InspectFrame:HookScript("OnShow", function()
+					if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						if _G.InspectFrame and not _G.InspectFrame.backdrop.shadow then
+							_G.InspectFrame.backdrop:CreateShadow()
+						end
+					elseif ElvUI_EltreumUI.Retail then
+						if _G.InspectFrame and not _G.InspectFrame.shadow then
+							_G.InspectFrame:CreateShadow()
+						end
+					end
+				end)
+			end
 		end)
 
 		local blizzardframes = {

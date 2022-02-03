@@ -1141,12 +1141,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 		--inspect frame bg
 		--print(unit)
 		if IsAddOnLoaded("Blizzard_InspectUI") then
-			--make inspect shadow
-			if E.db.ElvUI_EltreumUI.skins.shadows then
-				if _G.InspectFrame and not _G.InspectFrame.backdrop.shadow then
-					_G.InspectFrame.backdrop:CreateShadow()
-				end
-			end
+
 			--local localizedClass, englishClass, localizedRace, englishRace, sex, name, realm = GetPlayerInfoByGUID(unit)
 			local _, englishClass, _, _, _, _, _ = GetPlayerInfoByGUID(unit)
 			--print(englishClass)
