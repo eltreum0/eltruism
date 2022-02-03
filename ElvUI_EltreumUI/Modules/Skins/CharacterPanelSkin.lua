@@ -1,7 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local unpack = _G.unpack
 local classcolor = E:ClassColor(E.myclass, true)
 local LibItemInfo
 if ElvUI_EltreumUI. TBC or ElvUI_EltreumUI.Classic then
@@ -1112,11 +1111,6 @@ local EltruismInspectBg = CreateFrame("Frame", "EltruismInspectBg")
 EltruismInspectBg:SetParent(_G.InspectFrame)
 local EltruismInspectBgTexture = EltruismInspectBg:CreateTexture()
 function ElvUI_EltreumUI:InspectBg(unit)
-	--local a = IsAddOnLoaded("Blizzard_InspectUI")
-	--if a == false and UnitExists("target") then
-		--LoadAddOn("Blizzard_InspectUI")
-		--a = IsAddOnLoaded("Blizzard_InspectUI")
-	--end
 	if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 		local classBgs = {
 			['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
@@ -1141,7 +1135,6 @@ function ElvUI_EltreumUI:InspectBg(unit)
 		--inspect frame bg
 		--print(unit)
 		if IsAddOnLoaded("Blizzard_InspectUI") then
-
 			--local localizedClass, englishClass, localizedRace, englishRace, sex, name, realm = GetPlayerInfoByGUID(unit)
 			local _, englishClass, _, _, _, _, _ = GetPlayerInfoByGUID(unit)
 			--print(englishClass)

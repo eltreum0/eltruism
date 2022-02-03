@@ -1,8 +1,4 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local valuecolors = E:ClassColor(E.myclass, true)
-local myclass = E.myclass
 
 --Old settings ettings that would be true but became false per request, now a function that can be used
 function ElvUI_EltreumUI:UpdateSettings()
