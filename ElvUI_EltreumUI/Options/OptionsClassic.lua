@@ -110,8 +110,18 @@ if ElvUI_EltreumUI.Classic then
 									type = 'execute',
 									name = "Launch Eltruism Installer",
 									width = 'double',
+									desc = "Launches the Eltruism install prompt",
 									func = function() E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData) E:ToggleOptionsUI() end,
 								},
+								eltruismsettings = {
+									order = 2,
+									type = 'execute',
+									name = "Update Settings",
+									width = 'double',
+									desc = "Resets Eltruism Settings to Eltreum's Defaults",
+									func = function() ElvUI_EltreumUI:UpdateSettings() E:StaticPopup_Show('CONFIG_RL') end,
+								},
+
 							},
 						},
 						header6 = {
