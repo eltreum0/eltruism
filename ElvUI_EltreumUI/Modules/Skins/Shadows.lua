@@ -1004,11 +1004,11 @@ hooksecurefunc(AB, 'StyleButton', ElvUI_EltreumUI.ActionBarShadows)  --action ba
 benik's statusbar tooltip method, basically the same
 local TT = E:GetModule('Tooltip')
 function ElvUI_EltreumUI:TooltipStatusbarShadow(tt)
-    if not tt.StatusBar then return end
+	if not tt.StatusBar then return end
 
-    if not tt.StatusBar.backdrop.shadow then
-        tt.StatusBar.backdrop:CreateShadow()
-    end
+	if not tt.StatusBar.backdrop.shadow then
+		tt.StatusBar.backdrop:CreateShadow()
+	end
 end
 hooksecurefunc(TT, "GameTooltip_SetDefaultAnchor", ElvUI_EltreumUI.TooltipStatusbarShadow)
 ]]

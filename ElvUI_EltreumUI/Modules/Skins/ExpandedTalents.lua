@@ -1,7 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local LoadAddOn = _G.LoadAddOn
 
 function ElvUI_EltreumUI:ExpandedTalents()
 	--Reskin Blizzard Talent frame for TBC
