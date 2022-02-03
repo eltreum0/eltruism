@@ -78,5 +78,5 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.private.ElvUI_EltreumUI.combatmusic.bossmusic = true
 	E.private.ElvUI_EltreumUI.combatmusic.disableinstance = true
 
-	ElvUI_EltreumUI:Print(L["Eltruism settings were applied."])
+	ElvUI_EltreumUI:Print(L["Settings for Eltruism were applied."])
 end

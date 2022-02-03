@@ -815,7 +815,8 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 			E.db["unitframe"]["units"]["pet"]["power"]["enable"] = true
 		end
 		E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = "[power:current:shortvalue]"
-		E.db["unitframe"]["units"]["pet"]["power"]["width"] = "spaced"
+		--E.db["unitframe"]["units"]["pet"]["power"]["width"] = "spaced"
+		E.db["unitframe"]["units"]["pet"]["power"]["width"] = "inset"
 		if C_CVar.GetCVar('gxFullscreenResolution') == "3140x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3140x2160" then
 			E.db["unitframe"]["units"]["pet"]["width"] = 161
 		elseif C_CVar.GetCVar('gxFullscreenResolution') == "2560x1440" or C_CVar.GetCVar('gxWindowedResolution') == "2560x1440" then
