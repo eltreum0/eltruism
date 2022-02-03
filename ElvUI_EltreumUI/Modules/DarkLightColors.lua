@@ -124,6 +124,7 @@ function ElvUI_EltreumUI:LightMode()
 
 	E:UpdateMediaItems()
 	E:UpdateUnitFrames()
+	ElvUI_EltreumUI:ChangePlayerTexture()
 	ElvUI_EltreumUI:Print("Unitframes set to Light Mode, reloading is recommended")
 end
 
