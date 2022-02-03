@@ -2902,8 +2902,7 @@ if ElvUI_EltreumUI.Retail then
 									type = 'color',
 									name = L["Custom Color Cast"],
 									hasAlpha = false,
-									disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
-									disabled = function() return E.db.ElvUI_EltreumUI.cursorcast.classcolor end,
+									disabled = function() return (not E.db.ElvUI_EltreumUI.cursor.enable) or E.db.ElvUI_EltreumUI.cursorcast.classcolor end,
 									get = function()
 										local cursorcast = E.db.ElvUI_EltreumUI.cursorcast
 										local d = P.ElvUI_EltreumUI.cursorcast
