@@ -2,7 +2,6 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local CreateFrame = _G.CreateFrame
-local unpack = _G.unpack
 local classcolor = E:ClassColor(E.myclass, true)
 
 local ObjectiveTrackerBlocksFrame, ScenarioObjectiveBlockBackground, ScenarioObjectiveBlockBackgroundTexture
@@ -129,11 +128,6 @@ function ElvUI_EltreumUI:SkinQuests()
 					else
 						bar:CreateShadow()
 						progressBar.Bar.backdrop:SetAlpha(0.7)
-						--local a = progressBar.Bar.backdrop:GetObjectType()  --results in frame
-						--progressBar.Bar.backdrop:SetBackdropColor(0, 1, 0, 0.2)
-						--progressBar.Bar.backdrop:SetColorTexture(0,1,0,1)
-						--progressBar.Bar.backdrop:SetStatusBarColor(0,1,0)
-						--progressBar.Bar.backdrop:SetVertexColor(0,1,0,1)
 						progressBar.EltruismSkin = true
 					end
 				end
@@ -191,40 +185,39 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 				end)
 
-				--turns out this is using too much memory, maybe because it was hooking?
-				--[[
-					hooksecurefunc(_G.DEFAULT_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
-						if ( block.HeaderText ) then
-							block.HeaderText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-							block.HeaderText.colorStyle = {r = classcolor.r, g = classcolor.g, b = classcolor.b}
-						end
-						if block.currentLine then --this is the text
-							for _, line in pairs(block.lines) do
-								line.Text:SetTextColor(1, 1, 1)
-								line.Text.colorStyle = {r = mult * 1, g = mult * 1, b = mult * 1}
-								if ( line.Dash ) then
-									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-								end
+				--on mouse enter and leave
+				hooksecurefunc(DEFAULT_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
+					if ( block.HeaderText ) then
+						block.HeaderText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+						block.HeaderText.colorStyle = {r = classcolor.r, g = classcolor.g, b = classcolor.b}
+					end
+					if block.currentLine then --this is the text
+						for _, line in pairs(block.lines) do
+							line.Text:SetTextColor(1, 1, 1)
+							line.Text.colorStyle = {r = mult * 1, g = mult * 1, b = mult * 1}
+							if ( line.Dash ) then
+								line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 							end
 						end
-					end)
+					end
+				end)
 
-					hooksecurefunc(_G.DEFAULT_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
-						if ( block.HeaderText ) then
-							block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
-							block.HeaderText.colorStyle = { r = mult * classcolor.r, g = mult * classcolor.g, b = mult * classcolor.b }
-						end
-						if block.currentLine then
-							for _, line in pairs(block.lines) do
-								line.Text:SetTextColor(mult, mult, mult)
-								line.Text.colorStyle = {r = mult, g = mult, b = mult}
-								if ( line.Dash ) then
-									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-								end
+				hooksecurefunc(DEFAULT_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
+					if ( block.HeaderText ) then
+						block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+						block.HeaderText.colorStyle = { r = mult * classcolor.r, g = mult * classcolor.g, b = mult * classcolor.b }
+					end
+					if block.currentLine then
+						for _, line in pairs(block.lines) do
+							line.Text:SetTextColor(mult, mult, mult)
+							line.Text.colorStyle = {r = mult, g = mult, b = mult}
+							if ( line.Dash ) then
+								line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 							end
 						end
-					end)
-				]]
+					end
+				end)
+
 			end
 		end
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
@@ -379,12 +372,16 @@ function ElvUI_EltreumUI:SkinMailZone()
 	local fontsize = E.db.general.fontSize
 	if E.db.ElvUI_EltreumUI.skins.zones then
 		if not IsAddOnLoaded("ElvUI_SLE") then
-			hooksecurefunc("SetZoneText", function()
+			--[[hooksecurefunc("SetZoneText", function()
 				_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, "OUTLINE")
 				_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, "OUTLINE")
 				_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, "OUTLINE")
 				_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, "OUTLINE")
-			end)
+			end)]]
+			_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, "OUTLINE")
+			_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, "OUTLINE")
+			_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, "OUTLINE")
+			_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, "OUTLINE")
 			_G.OpenMailBodyText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
 			_G.SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, "OUTLINE")
 		end
