@@ -1,7 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local unpack = _G.unpack
 local LibItemInfo
 if ElvUI_EltreumUI. TBC or ElvUI_EltreumUI.Classic then
 	LibItemInfo = LibStub:GetLibrary("LibItemInfo.1000")
@@ -80,13 +79,16 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 				UpdateItemSlotButton(button, "player")
 			end)
 
-			if not IsAddOnLoaded("Blizzard_InspectUI") then
-				LoadAddOn("Blizzard_InspectUI")
-			end
-			hooksecurefunc("InspectPaperDollItemSlotButton_Update", function(button)
-				UpdateItemSlotButton(button, "target")
-			end)
 
+			local EltruismInspectilvls = CreateFrame("Frame")
+			EltruismInspectilvls:RegisterEvent("ADDON_LOADED")
+			EltruismInspectilvls:SetScript("OnEvent", function(_,_,arg)
+				if arg == "Blizzard_InspectUI" then
+					hooksecurefunc("InspectPaperDollItemSlotButton_Update", function(button)
+						UpdateItemSlotButton(button, "target")
+					end)
+				end
+			end)
 
 			--this loop might come in handy in the future
 			--[[local ilvltable ={}
@@ -95,14 +97,8 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 				table.insert(ilvltable, i)
 			end]]
 
-
 			local ilevel, _, _ = LibItemInfo:GetUnitItemLevel("player")
 			_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
-
-			--local ilevel, a, maxLevel = LibItemInfo:GetUnitItemLevel("player")
-			--local link = LibItemInfo:GetUnitItemIndexLink("player", 1)
-			--print(ilevel.."      "..link.."     "..maxLevel)
-
 		end
 	end
 end
