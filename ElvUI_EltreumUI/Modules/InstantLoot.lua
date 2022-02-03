@@ -11,7 +11,9 @@ local EltruismInstantLoot = CreateFrame("Frame", "EltruismInstantLoot")
 EltruismInstantLoot:RegisterEvent("LOOT_READY")
 local function InstantLoot()
 	if E.db.ElvUI_EltreumUI.otherstuff.fastloot then
-		if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
+		if _G["TSMDestroyBtn"] and _G["TSMDestroyBtn"]:IsShown() then
+			return
+		elseif GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
 			for i = GetNumLootItems(), 1, -1 do
 				LootSlot(i)
 			end
