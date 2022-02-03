@@ -116,7 +116,7 @@ if ElvUI_EltreumUI.Retail then
 								eltruismsettings = {
 									order = 2,
 									type = 'execute',
-									name = "Update Settings",
+									name = "Reset Eltruism Settings",
 									width = 'double',
 									desc = "Resets Eltruism Settings to Eltreum's Defaults",
 									func = function() ElvUI_EltreumUI:UpdateSettings() E:StaticPopup_Show('CONFIG_RL') end,
@@ -163,7 +163,7 @@ if ElvUI_EltreumUI.Retail then
 									type = 'execute',
 									name = 'Reset Chat to ElvUI settings',
 									width = 'double',
-									func = function() E:SetupChat() ElvUI_EltreumUI:Print(L["ElvUI Chat has been Set"]) end,
+									func = function() E:SetupChat() ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."]) end,
 								},
 							},
 						},
