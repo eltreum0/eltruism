@@ -218,7 +218,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 				end
-				--[[if (arg == "Blizzard_Collections") then
+				if (arg == "Blizzard_Collections") then
 					_G.CollectionsJournal:HookScript("OnShow", function()
 						if not _G.CollectionsJournal.shadow then
 							_G.CollectionsJournal:CreateShadow()
@@ -273,14 +273,14 @@ function ElvUI_EltreumUI:Shadows()
 							_G.CollectionsJournal:CreateShadow()
 						end
 					end)
-					_G.WardrobeCollectionFrame:HookScript("OnShow", function()
+					--[[_G.WardrobeCollectionFrame:HookScript("OnShow", function()
 						if not _G.WardrobeCollectionFrame.shadow then
 							_G.WardrobeCollectionFrame:CreateShadow()
 						end
 						if not _G.CollectionsJournal.shadow then
 							_G.CollectionsJournal:CreateShadow()
 						end
-					end)
+					end)]]
 					_G.WardrobeFrame:HookScript("OnShow", function()
 						if not _G.WardrobeFrame.shadow then
 							_G.WardrobeFrame:CreateShadow()
@@ -294,7 +294,7 @@ function ElvUI_EltreumUI:Shadows()
 							_G.CollectionsJournal:CreateShadow()
 						end
 					end)
-				end]]
+				end
 				if (arg == "Blizzard_PVPUI") then
 					_G.PVPUIFrame:HookScript("OnShow", function()
 						if not _G.PVPUIFrame.shadow then
@@ -351,16 +351,16 @@ function ElvUI_EltreumUI:Shadows()
 				--_G.GarrisonLandingPage,
 				--_G.CovenantSanctumFrame,
 				--_G.SoulbindViewer,
-				_G.CollectionsJournal,
-				_G.CollectionsJournalTab1.backdrop,
-				_G.CollectionsJournalTab2.backdrop,
-				_G.CollectionsJournalTab3.backdrop,
-				_G.CollectionsJournalTab4.backdrop,
-				_G.CollectionsJournalTab5.backdrop,
-				_G.ToyBox,
-				_G.HeirloomsJournal,
-				_G.PetJournal,
-				_G.WardrobeFrame,
+				--_G.CollectionsJournal,
+				--_G.CollectionsJournalTab1.backdrop,
+				--_G.CollectionsJournalTab2.backdrop,
+				--_G.CollectionsJournalTab3.backdrop,
+				--_G.CollectionsJournalTab4.backdrop,
+				--_G.CollectionsJournalTab5.backdrop,
+				--_G.ToyBox,
+				--_G.HeirloomsJournal,
+				--_G.PetJournal,
+				--_G.WardrobeFrame,
 				--_G.WardrobeCollectionFrame,
 				--_G.PVPUIFrame,
 				_G.PVEFrame,
