@@ -228,8 +228,43 @@ function ElvUI_EltreumUI:SkinQuests()
 			end
 		end
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+
+			--move the text for no quests
+			QuestLogNoQuestsText:ClearAllPoints()
+			QuestLogNoQuestsText:SetPoint("CENTER", QuestLogFrame, 0, 0)
+			--make the whole thing bigger almost like retail
+		    QuestLogFrame:SetWidth(720)
+		    QuestLogFrame:SetHeight(550)
+		    --move the frame title
+		    QuestLogTitleText:ClearAllPoints()
+		    QuestLogTitleText:SetPoint("TOP", QuestLogFrame, "TOP", 0, -20)
+		    --increase the size of the quest title frame
+		    QuestLogListScrollFrame:SetHeight(390)
+		    --increase the size of the quest description frame and move it
+		    QuestLogDetailScrollFrame:ClearAllPoints()
+		    QuestLogDetailScrollFrame:SetPoint("TOPLEFT", QuestLogListScrollFrame, "TOPRIGHT", 35, 0)
+		    QuestLogDetailScrollFrame:SetHeight(390)
+			-- Create the additional rows
+		    local numQuests = QUESTS_DISPLAYED
+		    QUESTS_DISPLAYED = QUESTS_DISPLAYED + 18
+		    for i = numQuests + 1, QUESTS_DISPLAYED do
+		        local questTitlebutton = CreateFrame("Button", "QuestLogTitle" .. i, QuestLogFrame, "QuestLogTitleButtonTemplate")
+		        questTitlebutton:SetID(i)
+		        questTitlebutton:Hide()
+		        questTitlebutton:ClearAllPoints()
+		        --watchText:SetPoint("TOPLEFT", "QuestWatchLine"..(watchTextIndex - 1), "BOTTOMLEFT", 0, -4);
+		        questTitlebutton:SetPoint("TOPLEFT", _G["QuestLogTitle" .. (i - 1)], "BOTTOMLEFT", 0, 1)
+		    end
+		    --increase the width of the rows so the title fits
+		    for i = 1, QUESTS_DISPLAYED do
+				local questTitle = _G['QuestLogTitle'..i]
+				questTitle:Width(335)
+			end
+
 			if not IsAddOnLoaded('Questie') then
 				--from blizzard's FrameXML/QuestLogFrame.lua
+
+			    --skin the classic objective frame
 				hooksecurefunc("QuestWatch_Update",function()
 					local numObjectives
 					local questWatchMaxWidth = 0
