@@ -3,6 +3,7 @@
 ___
 ### 2.7.5
 Added a button in Eltruism > Installer that will reset Eltruism settings\
+Updated Instant Loot to be compatible with TSM Destroy\
 ___
 ### 2.7.4
 Added a button in Eltruism > Nameplates that restores all unit names should you disable the automatic name toggling.
