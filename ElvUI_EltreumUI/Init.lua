@@ -47,23 +47,8 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
 	end
-	ElvUI_EltreumUI:ExtraMedia() -- load extra media if settings enabled
-	if E.db.ElvUI_EltreumUI.media.statusbar then
-		ElvUI_EltreumUI:ExtraMediaStatusBar()
-	end
-	if E.db.ElvUI_EltreumUI.media.font then
-		ElvUI_EltreumUI:ExtraMediaFonts()
-	end
-	if E.db.ElvUI_EltreumUI.media.sound then
-		ElvUI_EltreumUI:ExtraMediaSounds()
-	end
-	if E.db.ElvUI_EltreumUI.media.texture then
-		ElvUI_EltreumUI:ExtraMediaTextures()
-	end
-	if E.db.ElvUI_EltreumUI.media.border then
-		ElvUI_EltreumUI:ExtraMediaBorders()
-	end
 	ElvUI_EltreumUI:VersionCheckInit() --checks for old versions
+	ElvUI_EltreumUI:ExtraMedia() -- load extra media if settings enabled
 	ElvUI_EltreumUI:LoadCommands() --loads chat commands
 	ElvUI_EltreumUI:Borders() --creates borders if option is enabled
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()  --adds class icons to character panel
@@ -112,6 +97,21 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:NamePlateOptions() --adds dynamic class based color filters to elvui nameplates
 		ElvUI_EltreumUI:DynamicLevelStyleFilter() --shows or hides level filter on np based on player level
 		ElvUI_EltreumUI:UpdateNPwithoutBar() --updates buffs/debuffs positions on np based on powerbar settings
+	end
+	if E.db.ElvUI_EltreumUI.media.statusbar then
+		ElvUI_EltreumUI:ExtraMediaStatusBar()
+	end
+	if E.db.ElvUI_EltreumUI.media.font then
+		ElvUI_EltreumUI:ExtraMediaFonts()
+	end
+	if E.db.ElvUI_EltreumUI.media.sound then
+		ElvUI_EltreumUI:ExtraMediaSounds()
+	end
+	if E.db.ElvUI_EltreumUI.media.texture then
+		ElvUI_EltreumUI:ExtraMediaTextures()
+	end
+	if E.db.ElvUI_EltreumUI.media.border then
+		ElvUI_EltreumUI:ExtraMediaBorders()
 	end
 	if E.db.ElvUI_EltreumUI.dev then --load dev tools if user enables
 		ElvUI_EltreumUI:DevTools()
