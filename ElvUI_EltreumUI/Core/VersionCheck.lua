@@ -2,13 +2,13 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local IsAddOnLoaded = IsAddOnLoaded
 
 function ElvUI_EltreumUI:VersionCheckInit()
+	if E.private.ElvUI_EltreumUI.install_version < "2.7.3" then
+		ElvUI_EltreumUI:DatabaseConversions()
+	end
 	ElvUI_EltreumUI:PluginCheck()
 	ElvUI_EltreumUI:OldVersionCheck()
 	ElvUI_EltreumUI:NewVersionCheck()
 	ElvUI_EltreumUI:ElvUIVersionCheck()
-	if E.private.ElvUI_EltreumUI.install_version < "2.7.3" then
-		ElvUI_EltreumUI:DatabaseConversions()
-	end
 end
 
 function ElvUI_EltreumUI:NewVersionCheck()
