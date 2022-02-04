@@ -83,7 +83,7 @@ end
 function ElvUI_EltreumUI:CastCursor()
 	if E.db.ElvUI_EltreumUI.cursor.enable then
 
-		if E.db.ElvUI_EltreumUI.cursor.fixlag then
+		if E.db.ElvUI_EltreumUI.cursor.fixlag == 0 then
 			--SetCVar("gxCursor", 0)
 			SetCVar("HardwareCursor", 0) --fix the cursor lag
 		end
