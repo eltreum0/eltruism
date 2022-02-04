@@ -149,7 +149,6 @@ P.ElvUI_EltreumUI = {
 		blizzard = false,
 		pixel = false,
 		autocast = false,
-
 		totemtypecolor = true,
 		totem1 = true,
 		totem2 = true,
