@@ -387,6 +387,19 @@ function ElvUI_EltreumUI:Shadows()
 
 		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 
+			--classic only elvui
+			local ClassicElvUIFrames = {
+			_G['ElvUF_PlayerTotem1'],
+			_G['ElvUF_PlayerTotem2'],
+			_G['ElvUF_PlayerTotem3'],
+			_G['ElvUF_PlayerTotem4'],
+			}
+			for _, frame in pairs(ClassicElvUIFrames) do
+				if frame and not frame.shadow then
+					frame:CreateShadow()
+				end
+			end
+
 			local EltruismBlizzShadowsClassic = CreateFrame("Frame")
 			EltruismBlizzShadowsClassic:RegisterEvent("ADDON_LOADED")
 			EltruismBlizzShadowsClassic:SetScript("OnEvent", function(_, _, arg)
