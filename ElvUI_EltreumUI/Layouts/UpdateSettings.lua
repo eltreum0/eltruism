@@ -4,10 +4,12 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition = true
 	E.db.ElvUI_EltreumUI.chat.enable = true
-	E.db.ElvUI_EltreumUI.chat.leftcombathide = true
+	--E.db.ElvUI_EltreumUI.chat.leftcombathide = true
 	E.db.ElvUI_EltreumUI.chat.colorsysmsg = true
 	E.db.ElvUI_EltreumUI.chat.looticons = true
-	E.db.ElvUI_EltreumUI.cvars.autohidenpcname = true
+	if ElvUI_EltreumUI.Retail then
+		E.db.ElvUI_EltreumUI.cvars.autohidenpcname = true
+	end
 	E.db.ElvUI_EltreumUI.skins.enable = true
 	E.db.ElvUI_EltreumUI.skins.widertransmog = true
 	E.db.ElvUI_EltreumUI.skins.expandedstable = true

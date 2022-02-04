@@ -35,6 +35,7 @@ function ElvUI_EltreumUI:GetMRTProfile()
 				["LastUpdateTime"] = 1613541038,
 			},
 			["ProfileKeys"] = {
+				[E.mynameRealm] = "Eltreum's EXRT",
 			},
 			["Encounter"] = {
 				["names"] = {
@@ -1798,8 +1799,7 @@ function ElvUI_EltreumUI:GetMRTProfile()
 				["Outline"] = true,
 			},
 			["ProfileKeys"] = {
-				["Eltreum-Pagle"] = "default",
-				["Eltruist-Pagle"] = "default",
+				[E.mynameRealm] = "Eltreum's EXRT",
 			},
 			["Encounter"] = {
 				["list"] = {

@@ -48,6 +48,6 @@ function ElvUI_EltreumUI:GetASProfile()
 	AS.db["Immersion"] = true
 	AS.db["BugSack"] = true
 	if ElvUI_EltreumUI.Retail then
-		AS.db["Blizzard_AchievementUI"] = true
+		AS.db["Blizzard_AchievementUI"] = false
 	end
 end

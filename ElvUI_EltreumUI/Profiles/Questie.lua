@@ -1994,7 +1994,7 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 			},
 			["profileKeys"] = {
 			},
-			["dbCompiledOnVersion"] = "v6.3.11",
+			["dbCompiledOnVersion"] = "v6.8.2",
 			["npcBin"] = "",
 			["dbCompiledLang"] = "enUS",
 			["profiles"] = {
@@ -2050,7 +2050,7 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 			["profileKeys"] = {
 				["Eltruism - Faerlina"] = "Default",
 			},
-			["dbCompiledOnVersion"] = "v6.0.0",
+			["dbCompiledOnVersion"] = "v6.8.2",
 			["npcBin"] = "",
 			["itemPtrs"] = "",
 			["profiles"] = {
