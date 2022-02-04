@@ -130,6 +130,44 @@ end
 
 function ElvUI_EltreumUI:TextureMode()
 	if E.db.ElvUI_EltreumUI.modetexture then
+ 		print("a")
+		local NP = E:GetModule('NamePlates')
+		--Change classpower background, ty Benik for the great help
+		local function ClassPowerColor()
+			NP.multiplier = 0
+		end
+		hooksecurefunc(NP, 'Initialize', ClassPowerColor)
+		ClassPowerColor()
+		--hooksecurefunc(NP, 'ClassPower_UpdateColor', ClassPowerColor)
+
+		if ElvUI_EltreumUI.Retail then
+			local function RuneBackground()
+				NP.multiplier = 0
+			end
+			hooksecurefunc(NP, 'Construct_Runes', RuneBackground)
+			RuneBackground()
+		end
+
+		local UF = E:GetModule('UnitFrames') --only classpower that is actually in UF instead of NP
+		if (ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic) then
+			print("b")
+			local function TotemBackground()
+				print("c")
+				local header = _G['ElvUF_Player']
+				for i = 1, header:GetNumChildren() do
+					local group = select(i, header:GetChildren())
+					for j = 1, group:GetNumChildren() do
+						local unitbutton = select(j, group:GetChildren())
+						if unitbutton and unitbutton.bg then
+							unitbutton.bg:SetVertexColor(0, 0, 0)
+						end
+					end
+				end
+			end
+			hooksecurefunc(UF, 'Construct_Totems', TotemBackground)
+			TotemBackground()
+		end
+
 		if E.db.ElvUI_EltreumUI.lightmode then
 			--E.db["auras"]["buffs"]["barTexture"] = unitframeclass[E.myclass]
 			--E.db["auras"]["debuffs"]["barTexture"] = unitframeclass[E.myclass]
@@ -144,6 +182,16 @@ function ElvUI_EltreumUI:TextureMode()
 		end
 	end
 end
+
+
+
+
+
+
+
+
+
+
 
 --a more grey and less dark background
 function ElvUI_EltreumUI:GreyBg()

@@ -351,34 +351,3 @@ function ElvUI_EltreumUI:RestoreNameplateNames()
 	SetCVar('UnitNameEnemyPlayerName', 1)
 	SetCVar('UnitNameEnemyTotemName', 1)
 end
-
---Change classpower background, ty Benik for the great help
-local function ClassPowerColor()
-	NP.multiplier = 0
-end
-hooksecurefunc(NP, 'Initialize', ClassPowerColor)
---hooksecurefunc(NP, 'ClassPower_UpdateColor', ClassPowerColor)
-
-if ElvUI_EltreumUI.Retail then
-	local function RuneBackground()
-		NP.multiplier = 0
-	end
-	hooksecurefunc(NP, 'Construct_Runes', RuneBackground)
-end
-
-local UF = E:GetModule('UnitFrames')
-if (ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic) and E.db.ElvUI_EltreumUI.modetexture then
-	local function TotemBackground()
-		local header = _G['ElvUF_Player']
-		for i = 1, header:GetNumChildren() do
-			local group = select(i, header:GetChildren())
-			for j = 1, group:GetNumChildren() do
-				local unitbutton = select(j, group:GetChildren())
-				if unitbutton and unitbutton.bg then
-					unitbutton.bg:SetVertexColor(0, 0, 0)
-				end
-			end
-		end
-	end
-	hooksecurefunc(UF, 'Construct_Totems', TotemBackground)
-end
