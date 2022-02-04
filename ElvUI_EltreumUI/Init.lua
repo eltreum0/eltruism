@@ -78,9 +78,9 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:DeathSound() -- set the party/raid death sound
 	ElvUI_EltreumUI:ChangePlayerTexture() -- load the player texture
 	ElvUI_EltreumUI:DeleteItem() -- automatically type delete
+	ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
-		ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
 		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
 		ElvUI_EltreumUI:GetSpec() --checks player spec
 		ElvUI_EltreumUI:SkinLevelUp() --skins level up toast
