@@ -46,6 +46,125 @@ function ElvUI_EltreumUI:SkillGlow()
 				LCG.ButtonGlow_Stop(button)
 			end
 		end
+		--classic shaman totem bar glow when totems are not active in combat
+		if (ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic) and E.myclass == 'SHAMAN' and E.db.ElvUI_EltreumUI.glow.enabletotem then
+			local totemglowholder = CreateFrame("FRAME")
+			local totemglowcombatdetect = CreateFrame("FRAME")
+			totemglowcombatdetect:RegisterEvent('PLAYER_REGEN_DISABLED')
+			totemglowcombatdetect:RegisterEvent('PLAYER_REGEN_ENABLED')
+
+			local totemglow1 = CreateFrame("FRAME")
+			totemglow1:SetAllPoints(_G['ElvUF_PlayerTotem1'])
+			totemglow1:SetParent(_G['ElvUF_Player'])
+
+			local totemglow2 = CreateFrame("FRAME")
+			totemglow2:SetAllPoints(_G['ElvUF_PlayerTotem2'])
+			totemglow2:SetParent(_G['ElvUF_Player'])
+
+			local totemglow3 = CreateFrame("FRAME")
+			totemglow3:SetAllPoints(_G['ElvUF_PlayerTotem3'])
+			totemglow3:SetParent(_G['ElvUF_Player'])
+
+			local totemglow4 = CreateFrame("FRAME")
+			totemglow4:SetAllPoints(_G['ElvUF_PlayerTotem4'])
+			totemglow4:SetParent(_G['ElvUF_Player'])
+
+			totemglowcombatdetect:SetScript("OnEvent", function(self, event)
+				if event == 'PLAYER_REGEN_DISABLED' then
+					local ONUPDATE_INTERVAL = 1
+					local TimeSinceLastUpdate = 0
+					totemglowholder:SetScript("OnUpdate", function(self, elapsed)
+						TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+						if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+							TimeSinceLastUpdate = 0
+							if E.db.ElvUI_EltreumUI.glow.pixel then
+								if not _G['ElvUF_PlayerTotem1']:IsShown() then
+									LCG.PixelGlow_Start(totemglow1, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+								elseif _G['ElvUF_PlayerTotem1']:IsShown() then
+									LCG.PixelGlow_Stop(totemglow1)
+								end
+								if not _G['ElvUF_PlayerTotem2']:IsShown() then
+									LCG.PixelGlow_Start(totemglow2, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+								elseif _G['ElvUF_PlayerTotem2']:IsShown() then
+									LCG.PixelGlow_Stop(totemglow2)
+								end
+								if not _G['ElvUF_PlayerTotem3']:IsShown() then
+									LCG.PixelGlow_Start(totemglow3, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+								elseif _G['ElvUF_PlayerTotem3']:IsShown() then
+									LCG.PixelGlow_Stop(totemglow3)
+								end
+								if not _G['ElvUF_PlayerTotem4']:IsShown() then
+									LCG.PixelGlow_Start(totemglow4, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+								elseif _G['ElvUF_PlayerTotem4']:IsShown() then
+									LCG.PixelGlow_Stop(totemglow4)
+								end
+							elseif E.db.ElvUI_EltreumUI.glow.autocast then
+								if not _G['ElvUF_PlayerTotem1']:IsShown() then
+									LCG.AutoCastGlow_Start(totemglow1, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+								elseif _G['ElvUF_PlayerTotem1']:IsShown() then
+									LCG.AutoCastGlow_Stop(totemglow1)
+								end
+								if not _G['ElvUF_PlayerTotem2']:IsShown() then
+									LCG.AutoCastGlow_Start(totemglow2, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+								elseif _G['ElvUF_PlayerTotem2']:IsShown() then
+									LCG.AutoCastGlow_Stop(totemglow2)
+								end
+								if not _G['ElvUF_PlayerTotem3']:IsShown() then
+									LCG.AutoCastGlow_Start(totemglow3, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+								elseif _G['ElvUF_PlayerTotem3']:IsShown() then
+									LCG.AutoCastGlow_Stop(totemglow3)
+								end
+								if not _G['ElvUF_PlayerTotem4']:IsShown() then
+									LCG.AutoCastGlow_Start(totemglow4, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+								elseif _G['ElvUF_PlayerTotem4']:IsShown() then
+									LCG.AutoCastGlow_Stop(totemglow4)
+								end
+							elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+								if not _G['ElvUF_PlayerTotem1']:IsShown() then
+									LCG.ButtonGlow_Start(totemglow1, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
+								elseif _G['ElvUF_PlayerTotem1']:IsShown() then
+									LCG.ButtonGlow_Stop(totemglow1)
+								end
+								if not _G['ElvUF_PlayerTotem2']:IsShown() then
+									LCG.ButtonGlow_Start(totemglow2, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
+								elseif _G['ElvUF_PlayerTotem2']:IsShown() then
+									LCG.ButtonGlow_Stop(totemglow2)
+								end
+								if not _G['ElvUF_PlayerTotem3']:IsShown() then
+									LCG.ButtonGlow_Start(totemglow3, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
+								elseif _G['ElvUF_PlayerTotem3']:IsShown() then
+									LCG.ButtonGlow_Stop(totemglow3)
+								end
+								if not _G['ElvUF_PlayerTotem4']:IsShown() then
+									LCG.ButtonGlow_Start(totemglow4, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
+								elseif _G['ElvUF_PlayerTotem4']:IsShown() then
+									LCG.ButtonGlow_Stop(totemglow4)
+								end
+							end
+						end
+					end)
+				elseif event == 'PLAYER_REGEN_ENABLED' then
+					totemglowholder:SetScript("OnUpdate", nil)
+					if E.db.ElvUI_EltreumUI.glow.pixel then
+						LCG.PixelGlow_Stop(totemglow1)
+						LCG.PixelGlow_Stop(totemglow2)
+						LCG.PixelGlow_Stop(totemglow3)
+						LCG.PixelGlow_Stop(totemglow4)
+					elseif E.db.ElvUI_EltreumUI.glow.autocast then
+						LCG.AutoCastGlow_Stop(totemglow1)
+						LCG.AutoCastGlow_Stop(totemglow2)
+						LCG.AutoCastGlow_Stop(totemglow3)
+						LCG.AutoCastGlow_Stop(totemglow4)
+					elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+						LCG.ButtonGlow_Stop(totemglow1)
+						LCG.ButtonGlow_Stop(totemglow2)
+						LCG.ButtonGlow_Stop(totemglow3)
+						LCG.ButtonGlow_Stop(totemglow4)
+					end
+				end
+			end)
+		end
+
 	end
 end
 
