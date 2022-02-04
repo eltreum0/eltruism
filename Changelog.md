@@ -3,6 +3,7 @@
 ___
 ### 2.7.6
 Added Light mode to Party/Raid/Raid40 Unitframes\
+Added [eltruism:effectivehp] tag which will show effective hp for tanks based on the target's level for TBC/Classic\
 Updated Priest Statusbar Texture\
 Fixed Classic/TBC Shaman power not having shadows and not being colored. This option is liked to Auto Texture in Eltruism > Media\
 Fixed the Quest Log scrollbar overlapping the quest titles
