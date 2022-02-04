@@ -313,3 +313,18 @@ E:AddTag('eltruism:targetcast:indicator', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START
 	end
 end)
 E:AddTagInfo('eltruism:targetcast:indicator', ElvUI_EltreumUI.Name, L["Shows Target of Spellcast, does not work for Mouseover casts. Includes a Target > indicator"])
+
+E:AddTag("eltruism:effectivehp", "UNIT_HEALTH", function(unit)
+	local dr
+	if UnitExists("target") then
+		dr = (UnitArmor("player")/((UnitLevel('target')*467.5)+UnitArmor("player")-22167.5))
+		--dr = (UnitArmor("player")/((UnitLevel('target')*467.5)+UnitHealthMax("player")-22167.5))
+	else
+		dr = (UnitArmor("player")/((UnitLevel('player')*467.5)+UnitArmor("player")-22167.5))
+		--dr = (UnitArmor("player")/((UnitLevel('player')*467.5)+UnitHealthMax("player")-22167.5))
+	end
+	local ehp = UnitHealthMax("player")/(1-dr)
+	local effective = math.floor((ehp*100)/100)
+	return effective
+end)
+E:AddTagInfo('eltruism:effectivehp', ElvUI_EltreumUI.Name, L["Shows Effective Health"])
