@@ -149,6 +149,12 @@ P.ElvUI_EltreumUI = {
 		blizzard = false,
 		pixel = false,
 		autocast = false,
+
+		totemtypecolor = true,
+		totem1 = true,
+		totem2 = true,
+		totem3 = true,
+		totem4 = true,
 		colorclass = true,
 		colorclasspet = true,
 		colorclassnp = true,
@@ -180,6 +186,30 @@ P.ElvUI_EltreumUI = {
 	},
 
 	glowcustomcolornp = {
+		r = 0.27,
+		g = 0.50,
+		b = 0.70,
+	},
+
+	glowtotem1customcolor = {
+		r = 0.27,
+		g = 0.50,
+		b = 0.70,
+	},
+
+	glowtotem2customcolor = {
+		r = 0.27,
+		g = 0.50,
+		b = 0.70,
+	},
+
+	glowtotem3customcolor = {
+		r = 0.27,
+		g = 0.50,
+		b = 0.70,
+	},
+
+	glowtotem4customcolor = {
 		r = 0.27,
 		g = 0.50,
 		b = 0.70,
