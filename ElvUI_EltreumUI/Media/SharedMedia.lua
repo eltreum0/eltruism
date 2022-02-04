@@ -29,7 +29,7 @@ function ElvUI_EltreumUI:ExtraMedia()
 	LSM:Register("statusbar", "Eltreum-Class-Shaman", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-SH.tga]])
 	LSM:Register("statusbar", "Eltreum-Class-Warrior", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-WA.tga]])
 	LSM:Register("statusbar", "Eltreum-Class-Warlock", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-WL.tga]])
-	LSM:Register("statusbar", "Eltreum-Class-Priest", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Blank.tga]])
+	LSM:Register("statusbar", "Eltreum-Class-Priest", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-PR.tga]])
 
 	-- Sound
 	LSM:Register("sound", "bruh", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\bruh.ogg]])
