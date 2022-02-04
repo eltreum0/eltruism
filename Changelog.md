@@ -1,6 +1,10 @@
 ### 🌌 Next Version 
 **The future is uncertain**
 ___
+### 2.7.6
+Added Light mode to Party/Raid/Raid40 Unitframes\
+Updated Priest Statusbar Texture\
+___
 ### 2.7.5
 Added a button in Eltruism > Installer that will reset Eltruism settings\
 Improved the Quests skins for Classic by adding a bigger Quest Log to it\
