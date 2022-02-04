@@ -24,7 +24,7 @@ function ElvUI_EltreumUI:DynamicChatFade()
 		leftfaderbutton = 1
 		rightfaderbutton = 1
 	end
-	if E.db.ElvUI_EltreumUI.chat.enable then
+	if E.db.ElvUI_EltreumUI.chat.enable == true then
 
 		--register events left chat panel
 		if E.db.ElvUI_EltreumUI.chat.leftfader then
