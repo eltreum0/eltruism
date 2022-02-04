@@ -130,7 +130,6 @@ end
 
 function ElvUI_EltreumUI:TextureMode()
 	if E.db.ElvUI_EltreumUI.modetexture then
- 		print("a")
 		local NP = E:GetModule('NamePlates')
 		--Change classpower background, ty Benik for the great help
 		local function ClassPowerColor()
@@ -149,10 +148,8 @@ function ElvUI_EltreumUI:TextureMode()
 		end
 
 		local UF = E:GetModule('UnitFrames') --only classpower that is actually in UF instead of NP
-		if (ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic) then
-			print("b")
+		if (ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic) and E.myclass == 'SHAMAN' then
 			local function TotemBackground()
-				print("c")
 				local header = _G['ElvUF_Player']
 				for i = 1, header:GetNumChildren() do
 					local group = select(i, header:GetChildren())
@@ -182,16 +179,6 @@ function ElvUI_EltreumUI:TextureMode()
 		end
 	end
 end
-
-
-
-
-
-
-
-
-
-
 
 --a more grey and less dark background
 function ElvUI_EltreumUI:GreyBg()
