@@ -32,46 +32,20 @@ local unitframeclass = {
 	['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
 }
 
---colors
-local dcr = "0.83921384811401"
-local dcg = "0.74901795387268"
-local dcb = "0.65097898244858"
-local paladinr = "0.95686066150665"
-local palading = "0.54901838302612"
-local paladinb = "0.72941017150879"
-local warriorr = "0.77646887302399"
-local warriorg = "0.60784178972244"
-local warriorb = "0.4274500310421"
-local shamanr = "0"
-local shamang = "0.4392147064209"
-local shamanb = "0.86666476726532"
-local druidr = "0.99999779462814"
-local druidg = "0.48627343773842"
-local druidb = "0.039215601980686"
-local dkr = "0.76862573623657"
-local dkg = "0.11764679849148"
-local dkb = "0.2274504750967"
-local dhr = "0.63921427726746"
-local dhg = "0.1882348805666"
-local dhb = "0.78823357820511"
-local monkr = "0"
-local monkg = "0.99999779462814"
-local monkb = "0.59607714414597"
-local roguer = "0.99999779462814"
-local rogueg = "0.95686066150665"
-local rogueb = "0.40784224867821"
-local priestr = "0.99999779462814"
-local priestg = "0.99999779462814"
-local priestb = "0.99999779462814"
-local mager = "0.24705828726292"
-local mageg = "0.78039044141769"
-local mageb = "0.92156660556793"
-local hunterr = "0.66666519641876"
-local hunterg = "0.82744914293289"
-local hunterb = "0.44705784320831"
-local warlockr = "0.52941060066223"
-local warlockg = "0.53333216905594"
-local warlockb = "0.93333131074905"
+--bar colors for party/raid/raid40
+local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
+local paladin = {r = "0.95686066150665", g = "0.54901838302612", b = "0.72941017150879"}
+local warrior = {r = "0.77646887302399", g = "0.60784178972244", b = "0.4274500310421"}
+local shaman = {r = "0", g = "0.4392147064209", b = "0.86666476726532",}
+local druid = {r = "0.99999779462814", g = "0.48627343773842", b = "0.039215601980686"}
+local deathknight = {r = "0.76862573623657", g = "0.11764679849148", b = "0.2274504750967"}
+local demonhunter = {r = "0.63921427726746", g = "0.1882348805666", b = "0.78823357820511"}
+local monk = {r = "0", g = "0.99999779462814", b = "0.59607714414597"}
+local rogue = {r = "0.99999779462814", g = "0.95686066150665", b = "0.40784224867821"}
+local priest = {r = "0.99999779462814", g = "0.99999779462814", b = "0.99999779462814"}
+local mage = {r = "0.24705828726292", g = "0.78039044141769", b = "0.92156660556793"}
+local hunter = {r = "0.66666519641876", g = "0.82744914293289", b = "0.44705784320831"}
+local warlock = {r = "0.52941060066223", g = "0.53333216905594", b = "0.93333131074905"}
 
 --from Benik
 function ElvUI_EltreumUI:ChangeUnitTexture()
@@ -162,7 +136,6 @@ end
 hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
 hooksecurefunc(UF, "Style", ElvUI_EltreumUI.ChangeUnitTexture)  --if not hooking into this then when the target of target changes it doesnt update
 --hooksecurefunc(UF, "Update_StatusBar", ElvUI_EltreumUI.ChangeUnitTexture) --needed for druid form swap for some reason + fixes on player entering world... except it also causes memory to go WAY up
---hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.ChangeUnitTexture)
 
 --from Benik
 function ElvUI_EltreumUI:ChangePlayerTexture()
@@ -180,15 +153,7 @@ function ElvUI_EltreumUI:ChangePlayerTexture()
 end
 hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangePlayerTexture)
 --hooksecurefunc(UF, "Update_StatusBar", ElvUI_EltreumUI.ChangePlayerTexture) --needed for druid form swap for some reason + fixes on player entering world... except it also causes memory to go WAY up
---hooksecurefunc(UF, "ToggleTransparentStatusBar", ElvUI_EltreumUI.ChangeUnitTexture)
---hooksecurefunc(UF, "Construct_Raid40Frames", ElvUI_EltreumUI.ChangeUnitTexture)
---hooksecurefunc(UF, "Construct_RaidFrames", ElvUI_EltreumUI.ChangeUnitTexture)
---hooksecurefunc(UF, "Construct_PartyFrames", ElvUI_EltreumUI.ChangeUnitTexture)
---hooksecurefunc(UF, "Update_TargetTargetFrame", ElvUI_EltreumUI.ChangeUnitTexture)
---hooksecurefunc(UF, "Construct_TargetTargetFrame", ElvUI_EltreumUI.ChangeUnitTexture)
 
-
--- Raid
 function ElvUI_EltreumUI:ChangeRaidTexture()
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture then
 		local header = _G['ElvUF_Raid']
@@ -201,29 +166,29 @@ function ElvUI_EltreumUI:ChangeRaidTexture()
 					local r = tostring(r1)
 					local g = tostring(g1)
 					local b = tostring(b1)
-					if (r == paladinr) and (g == palading) and (b == paladinb) then
+					if (r == paladin.r) and (g == paladin.g) and (b == paladin.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Paladin"))
-					elseif (r == warriorr) and (g == warriorg) and (b == warriorb) then
+					elseif (r == warrior.r) and (g == warrior.g) and (b == warrior.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Warrior"))
-					elseif (r == shamanr) and (g == shamang) and (b == shamanb) then
+					elseif (r == shaman.r) and (g == shaman.g) and (b == shaman.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Shaman"))
-					elseif (r == druidr) and (g == druidg) and (b == druidb) then
+					elseif (r == druid.r) and (g == druid.g) and (b == druid.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Druid"))
-					elseif (r == dkr) and (g == dkg) and (b == dkb) then
+					elseif (r == deathknight.r) and (g == deathknight.g) and (b == deathknight.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-DeathKnight"))
-					elseif (r == dhr) and (g == dhg) and (b == dhb) then
+					elseif (r == demonhunter.r) and (g == demonhunter.g) and (b == demonhunter.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-DemonHunter"))
-					elseif (r == monkr) and (g == monkg) and (b == monkb) then
+					elseif (r == monk.r) and (g == monk.g) and (b == monk.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Monk"))
-					elseif (r == roguer) and (g == rogueg) and (b == rogueb) then
+					elseif (r == rogue.r) and (g == rogue.g) and (b == rogue.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Rogue"))
-					elseif (r == priestr) and (g == priestg) and (b == priestb) then
+					elseif (r == priest.r) and (g == priest.g) and (b == priest.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Priest"))
-					elseif (r == mager) and (g == mageg) and (b == mageb) then
+					elseif (r == mage.r) and (g == mage.g) and (b == mage.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Mage"))
-					elseif (r == hunterr) and (g == hunterg) and (b == hunterb) then
+					elseif (r == hunter.r) and (g == hunter.g) and (b == hunter.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Hunter"))
-					elseif (r == warlockr) and (g == warlockg) and (b == warlockb) then
+					elseif (r == warlock.r) and (g == warlock.g) and (b == warlock.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Warlock"))
 					else
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Blank"))
@@ -235,7 +200,6 @@ function ElvUI_EltreumUI:ChangeRaidTexture()
 end
 hooksecurefunc(UF, 'Update_RaidFrames', ElvUI_EltreumUI.ChangeRaidTexture)
 
--- Raid-40
 function ElvUI_EltreumUI:ChangeRaid40Texture()
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture then
 		local header = _G['ElvUF_Raid40']
@@ -248,29 +212,29 @@ function ElvUI_EltreumUI:ChangeRaid40Texture()
 					local r = tostring(r1)
 					local g = tostring(g1)
 					local b = tostring(b1)
-					if (r == paladinr) and (g == palading) and (b == paladinb) then
+					if (r == paladin.r) and (g == paladin.g) and (b == paladin.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Paladin"))
-					elseif (r == warriorr) and (g == warriorg) and (b == warriorb) then
+					elseif (r == warrior.r) and (g == warrior.g) and (b == warrior.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Warrior"))
-					elseif (r == shamanr) and (g == shamang) and (b == shamanb) then
+					elseif (r == shaman.r) and (g == shaman.g) and (b == shaman.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Shaman"))
-					elseif (r == druidr) and (g == druidg) and (b == druidb) then
+					elseif (r == druid.r) and (g == druid.g) and (b == druid.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Druid"))
-					elseif (r == dkr) and (g == dkg) and (b == dkb) then
+					elseif (r == deathknight.r) and (g == deathknight.g) and (b == deathknight.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-DeathKnight"))
-					elseif (r == dhr) and (g == dhg) and (b == dhb) then
+					elseif (r == demonhunter.r) and (g == demonhunter.g) and (b == demonhunter.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-DemonHunter"))
-					elseif (r == monkr) and (g == monkg) and (b == monkb) then
+					elseif (r == monk.r) and (g == monk.g) and (b == monk.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Monk"))
-					elseif (r == roguer) and (g == rogueg) and (b == rogueb) then
+					elseif (r == rogue.r) and (g == rogue.g) and (b == rogue.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Rogue"))
-					elseif (r == priestr) and (g == priestg) and (b == priestb) then
+					elseif (r == priest.r) and (g == priest.g) and (b == priest.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Priest"))
-					elseif (r == mager) and (g == mageg) and (b == mageb) then
+					elseif (r == mage.r) and (g == mage.g) and (b == mage.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Mage"))
-					elseif (r == hunterr) and (g == hunterg) and (b == hunterb) then
+					elseif (r == hunter.r) and (g == hunter.g) and (b == hunter.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Hunter"))
-					elseif (r == warlockr) and (g == warlockg) and (b == warlockb) then
+					elseif (r == warlock.r) and (g == warlock.g) and (b == warlock.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Warlock"))
 					else
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Blank"))
@@ -282,7 +246,6 @@ function ElvUI_EltreumUI:ChangeRaid40Texture()
 end
 hooksecurefunc(UF, 'Update_Raid40Frames', ElvUI_EltreumUI.ChangeRaid40Texture)
 
--- Party
 function ElvUI_EltreumUI:ChangePartyTexture()
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture then
 		local header = _G['ElvUF_Party']
@@ -295,29 +258,29 @@ function ElvUI_EltreumUI:ChangePartyTexture()
 					local r = tostring(r1)
 					local g = tostring(g1)
 					local b = tostring(b1)
-					if (r == paladinr) and (g == palading) and (b == paladinb) then
+					if (r == paladin.r) and (g == paladin.g) and (b == paladin.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Paladin"))
-					elseif (r == warriorr) and (g == warriorg) and (b == warriorb) then
+					elseif (r == warrior.r) and (g == warrior.g) and (b == warrior.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Warrior"))
-					elseif (r == shamanr) and (g == shamang) and (b == shamanb) then
+					elseif (r == shaman.r) and (g == shaman.g) and (b == shaman.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Shaman"))
-					elseif (r == druidr) and (g == druidg) and (b == druidb) then
+					elseif (r == druid.r) and (g == druid.g) and (b == druid.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Druid"))
-					elseif (r == dkr) and (g == dkg) and (b == dkb) then
+					elseif (r == deathknight.r) and (g == deathknight.g) and (b == deathknight.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-DeathKnight"))
-					elseif (r == dhr) and (g == dhg) and (b == dhb) then
+					elseif (r == demonhunter.r) and (g == demonhunter.g) and (b == demonhunter.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-DemonHunter"))
-					elseif (r == monkr) and (g == monkg) and (b == monkb) then
+					elseif (r == monk.r) and (g == monk.g) and (b == monk.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Monk"))
-					elseif (r == roguer) and (g == rogueg) and (b == rogueb) then
+					elseif (r == rogue.r) and (g == rogue.g) and (b == rogue.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Rogue"))
-					elseif (r == priestr) and (g == priestg) and (b == priestb) then
+					elseif (r == priest.r) and (g == priest.g) and (b == priest.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Priest"))
-					elseif (r == mager) and (g == mageg) and (b == mageb) then
+					elseif (r == mage.r) and (g == mage.g) and (b == mage.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Mage"))
-					elseif (r == hunterr) and (g == hunterg) and (b == hunterb) then
+					elseif (r == hunter.r) and (g == hunter.g) and (b == hunter.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Hunter"))
-					elseif (r == warlockr) and (g == warlockg) and (b == warlockb) then
+					elseif (r == warlock.r) and (g == warlock.g) and (b == warlock.b) then
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Class-Warlock"))
 					else
 						unitbutton.Health:SetStatusBarTexture(LSM:Fetch("statusbar", "Eltreum-Blank"))
@@ -328,4 +291,3 @@ function ElvUI_EltreumUI:ChangePartyTexture()
 	end
 end
 hooksecurefunc(UF, 'Update_PartyFrames', ElvUI_EltreumUI.ChangePartyTexture)
-
