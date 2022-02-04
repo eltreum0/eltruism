@@ -344,6 +344,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.MailFrame,
 				_G.HelpFrame.backdrop,
 				_G.WorldMapFrame.backdrop,
+				--_G.AlertFrame, --doesntwork
 				--_G.CalendarFrame,
 				--_G.CommunitiesFrame,
 				--_G.AchievementFrame.backdrop,
