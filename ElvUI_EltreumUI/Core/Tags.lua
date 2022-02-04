@@ -317,10 +317,10 @@ E:AddTagInfo('eltruism:targetcast:indicator', ElvUI_EltreumUI.Name, L["Shows Tar
 E:AddTag("eltruism:effectivehp", "UNIT_HEALTH UNIT_TARGET", function(unit)
 	local dr
 	if UnitExists("target") then
-		dr = (UnitArmor("player")/((UnitLevel('target')*467.5)+UnitArmor("player")-22167.5))
+		dr = (UnitArmor("player")/((UnitLevel("target")*467.5)+UnitArmor("player")-22167.5))
 		--dr = (UnitArmor("player")/((UnitLevel('target')*467.5)+UnitHealthMax("player")-22167.5))
 	else
-		dr = (UnitArmor("player")/((UnitLevel('player')*467.5)+UnitArmor("player")-22167.5))
+		dr = (UnitArmor("player")/((UnitLevel("player")*467.5)+UnitArmor("player")-22167.5))
 		--dr = (UnitArmor("player")/((UnitLevel('player')*467.5)+UnitHealthMax("player")-22167.5))
 	end
 	local ehp = UnitHealthMax("player")/(1-dr)
