@@ -56,6 +56,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		E.db.ElvUI_EltreumUI.questsettings.enable = false
 		E.db.ElvUI_EltreumUI.questsettings.arena = false
+		E.db.ElvUI_EltreumUI.glow.enabletotem = true
 	end
 	E.db.ElvUI_EltreumUI.questsettings.rogueopen = true
 	E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 = true
