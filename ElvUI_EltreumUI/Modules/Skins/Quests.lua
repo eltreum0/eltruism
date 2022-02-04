@@ -226,17 +226,19 @@ function ElvUI_EltreumUI:SkinQuests()
 			QuestLogNoQuestsText:ClearAllPoints()
 			QuestLogNoQuestsText:SetPoint("CENTER", QuestLogFrame, 0, 0)
 			--make the whole thing bigger almost like retail
-			QuestLogFrame:SetWidth(720)
+			QuestLogFrame:SetWidth(765)
 			QuestLogFrame:SetHeight(550)
 			--move the frame title
 			QuestLogTitleText:ClearAllPoints()
 			QuestLogTitleText:SetPoint("TOP", QuestLogFrame, "TOP", 0, -20)
 			--increase the size of the quest title frame
 			QuestLogListScrollFrame:SetHeight(390)
+			QuestLogListScrollFrame:SetWidth(350)
 			--increase the size of the quest description frame and move it
 			QuestLogDetailScrollFrame:ClearAllPoints()
 			QuestLogDetailScrollFrame:SetPoint("TOPLEFT", QuestLogListScrollFrame, "TOPRIGHT", 35, 0)
 			QuestLogDetailScrollFrame:SetHeight(390)
+
 			-- Create the additional rows
 			local numQuests = QUESTS_DISPLAYED
 			QUESTS_DISPLAYED = QUESTS_DISPLAYED + 18
