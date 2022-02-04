@@ -204,6 +204,11 @@ end
 
 function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
 	ElvUI_EltreumUI:RaidDeathGroupCheck()
+	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture then
+		ElvUI_EltreumUI:ChangePartyTexture()
+		ElvUI_EltreumUI:ChangeRaid40Texture()
+		ElvUI_EltreumUI:ChangeRaidTexture()
+	end
 end
 
 function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
