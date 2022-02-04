@@ -4,6 +4,8 @@ ___
 ### 2.7.6
 Added Light mode to Party/Raid/Raid40 Unitframes\
 Updated Priest Statusbar Texture\
+Fixed Classic/TBC Shaman power not having shadows and not being colored. This option is liked to Auto Texture in Eltruism > Media\
+Fixed the Quest Log scrollbar overlapping the quest titles
 ___
 ### 2.7.5
 Added a button in Eltruism > Installer that will reset Eltruism settings\
