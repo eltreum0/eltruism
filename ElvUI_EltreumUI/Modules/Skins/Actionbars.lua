@@ -25,8 +25,7 @@ function ElvUI_EltreumUI:SkillGlow()
 			function LCG.HideOverlayGlow(button)
 				LCG.PixelGlow_Stop(button)
 			end
-		end
-		if E.db.ElvUI_EltreumUI.glow.autocast then
+		elseif E.db.ElvUI_EltreumUI.glow.autocast then
 			function LCG.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
 					LCG.AutoCastGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
@@ -35,8 +34,7 @@ function ElvUI_EltreumUI:SkillGlow()
 			function LCG.HideOverlayGlow(button)
 				LCG.AutoCastGlow_Stop(button)
 			end
-		end
-		if E.db.ElvUI_EltreumUI.glow.blizzard then
+		elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 			function LCG.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
 					LCG.ButtonGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
@@ -54,21 +52,33 @@ function ElvUI_EltreumUI:SkillGlow()
 			totemglowcombatdetect:RegisterEvent('PLAYER_REGEN_ENABLED')
 
 			local totemglow1 = CreateFrame("FRAME")
-			totemglow1:SetAllPoints(_G['ElvUF_PlayerTotem1'])
 			totemglow1:SetParent(_G['ElvUF_Player'])
-
 			local totemglow2 = CreateFrame("FRAME")
-			totemglow2:SetAllPoints(_G['ElvUF_PlayerTotem2'])
 			totemglow2:SetParent(_G['ElvUF_Player'])
-
 			local totemglow3 = CreateFrame("FRAME")
-			totemglow3:SetAllPoints(_G['ElvUF_PlayerTotem3'])
 			totemglow3:SetParent(_G['ElvUF_Player'])
-
 			local totemglow4 = CreateFrame("FRAME")
-			totemglow4:SetAllPoints(_G['ElvUF_PlayerTotem4'])
 			totemglow4:SetParent(_G['ElvUF_Player'])
-
+			--set the sizes differently depending on type because blizz glow is not nice
+			if E.db.ElvUI_EltreumUI.glow.pixel then
+				totemglow1:SetAllPoints(_G['ElvUF_PlayerTotem1'])
+				totemglow2:SetAllPoints(_G['ElvUF_PlayerTotem2'])
+				totemglow3:SetAllPoints(_G['ElvUF_PlayerTotem3'])
+				totemglow4:SetAllPoints(_G['ElvUF_PlayerTotem4'])
+			elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+				local t1x, t1y = _G['ElvUF_PlayerTotem1']:GetSize()
+				totemglow1:SetSize(t1x+12, t1y+4)
+				totemglow1:SetPoint("Center", _G['ElvUF_PlayerTotem1'])
+				local t2x, t2y = _G['ElvUF_PlayerTotem2']:GetSize()
+				totemglow2:SetSize(t2x+12, t2y+4)
+				totemglow2:SetPoint("Center", _G['ElvUF_PlayerTotem2'])
+				local t3x, t3y = _G['ElvUF_PlayerTotem3']:GetSize()
+				totemglow3:SetSize(t3x+12, t3y+4)
+				totemglow3:SetPoint("Center", _G['ElvUF_PlayerTotem3'])
+				local t4x, t4y = _G['ElvUF_PlayerTotem4']:GetSize()
+				totemglow4:SetSize(t4x+12, t4y+4)
+				totemglow4:SetPoint("Center", _G['ElvUF_PlayerTotem4'])
+			end
 
 			local totem1glowcolor = {0.58, 0.23, 0.10, 1}
 			local totem2glowcolor = {0.23,0.45,0.13, 1}
@@ -228,12 +238,10 @@ function ElvUI_EltreumUI:SkillGlowPet()
 					if E.db.ElvUI_EltreumUI.glow.pixel then
 						--PixelGlow_Start(frame[, color[, N[, frequency[, length[, th[, xOffset[, yOffset[, border[ ,key]]]]]]]])
 						LCG.PixelGlow_Start(button, skillglowcolor, 10, 0.25, 5, 2, 0, 0, false, nil, high)
-					end
-					if E.db.ElvUI_EltreumUI.glow.autocast then
+					elseif E.db.ElvUI_EltreumUI.glow.autocast then
 						--AutoCastGlow_Start(frame[, color[, N[, frequency[, scale[, xOffset[, yOffset[, key]]]]]]])
 						LCG.AutoCastGlow_Start(button, skillglowcolor, 16, 0.25, 0.7, 0, 0)
-					end
-					if E.db.ElvUI_EltreumUI.glow.blizzard then
+					elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 						--ButtonGlow_Start(frame[, color[, frequency]]])
 						LCG.ButtonGlow_Start(button, skillglowcolor, 0.125)
 					end
@@ -241,11 +249,9 @@ function ElvUI_EltreumUI:SkillGlowPet()
 					AutoCastShine_AutoCastStop(button.AutoCastShine)
 					if E.db.ElvUI_EltreumUI.glow.pixel then
 						LCG.PixelGlow_Stop(button)
-					end
-					if E.db.ElvUI_EltreumUI.glow.autocast then
+					elseif E.db.ElvUI_EltreumUI.glow.autocast then
 						LCG.AutoCastGlow_Stop(button)
-					end
-					if E.db.ElvUI_EltreumUI.glow.blizzard then
+					elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 						LCG.ButtonGlow_Stop(button)
 					end
 				end
