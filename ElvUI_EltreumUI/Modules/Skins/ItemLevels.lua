@@ -33,6 +33,8 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 			local function AddLevelToButton(button, itemLevel, itemQuality)
 				if not itemLevel then
 					return button.eltruismilvl and button.eltruismilvl:Hide()
+				elseif itemLevel == 1 then
+					return button.eltruismilvl and button.eltruismilvl:Hide()
 				end
 				PrepareItemButton(button)
 				local _, _, _, hex = GetItemQualityColor(itemQuality)
