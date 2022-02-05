@@ -1,6 +1,13 @@
 ### 🌌 Next Version 
 **The future is uncertain**
 ___
+### 2.7.7
+Added Capping profile, which can be found in Eltruism > Addons\
+Improved how addon profiles are applied, detecting if the profile already exists and if so just setting your character to use it\
+Improved the Socket and Enchants loading function\
+Improved how Item Levels detects tabards and shirts\
+Improved how Zone text is applied
+___
 ### 2.7.6
 Added Light mode to Party/Raid/Raid40 Unitframes\
 Added [eltruism:effectivehp] tag which will show effective hp for tanks based on the target's level for TBC/Classic\
