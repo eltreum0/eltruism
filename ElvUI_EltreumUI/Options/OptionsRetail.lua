@@ -1320,6 +1320,14 @@ if ElvUI_EltreumUI.Retail then
 									width = 'double',
 									func = function() ElvUI_EltreumUI:AddonSetupGladiusEx() E:StaticPopup_Show('CONFIG_RL') end,
 								},
+								capping = {
+									order = 3,
+									type = 'execute',
+									name = 'Capping',
+									desc = L["Reset to Eltruism defaults."],
+									width = 'double',
+									func = function() ElvUI_EltreumUI:GetCappingProfile() E:StaticPopup_Show('CONFIG_RL') end,
+								},
 								header4 = {
 									order = 4,
 									type = "description",

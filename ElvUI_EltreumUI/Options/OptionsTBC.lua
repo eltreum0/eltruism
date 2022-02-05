@@ -1905,7 +1905,7 @@ if ElvUI_EltreumUI.TBC then
 								header11 = {
 									order = 13,
 									type = "description",
-									name = "Arena Addons",
+									name = "PvP Addons",
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -1924,6 +1924,14 @@ if ElvUI_EltreumUI.TBC then
 									desc = L["Reset to Eltruism defaults."],
 									width = 'double',
 									func = function() ElvUI_EltreumUI:SetupGladius() E:StaticPopup_Show('CONFIG_RL') end,
+								},
+								capping = {
+									order = 16,
+									type = 'execute',
+									name = 'Capping',
+									desc = L["Reset to Eltruism defaults."],
+									width = 'double',
+									func = function() ElvUI_EltreumUI:GetCappingProfile() E:StaticPopup_Show('CONFIG_RL') end,
 								},
 							},
 						},

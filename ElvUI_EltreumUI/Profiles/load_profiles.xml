@@ -1,6 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file='AddOnSkins.lua'/>
 	<Script file='BigWigs.lua'/>
+	<Script file='Capping.lua'/>
 	<Script file='DBM.lua'/>
 	<Script file='Details.lua'/>
 	<Script file='DynamicCam.lua'/>
