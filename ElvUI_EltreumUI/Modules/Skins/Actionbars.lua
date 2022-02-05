@@ -5,8 +5,10 @@ local classcolor = E:ClassColor(E.myclass, true)
 
 -- Skill Glow
 function ElvUI_EltreumUI:SkillGlow()
-	--print("glow spam")
-	local skillglowcolor
+	if not E.private.ElvUI_EltreumUI then
+		return
+	end
+	--[[local skillglowcolor
 	if not E.db.ElvUI_EltreumUI.glow.colorclass then
 		local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolor
 		local r, g, b = glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b
@@ -14,7 +16,13 @@ function ElvUI_EltreumUI:SkillGlow()
 	end
 	if E.db.ElvUI_EltreumUI.glow.colorclass then
 		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
+	end]]
+
+	local skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glowcustomcolor.b, 1}
+	if E.db.ElvUI_EltreumUI.glow.colorclass then
+		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 	end
+
 	if E.db.ElvUI_EltreumUI.glow.enable then
 		if E.db.ElvUI_EltreumUI.glow.pixel then
 			function LCG.ShowOverlayGlow(button)
@@ -216,13 +224,21 @@ end
 
 --Skill Glow Pet
 function ElvUI_EltreumUI:SkillGlowPet()
+	if not E.private.ElvUI_EltreumUI then
+		return
+	end
 	if E.myclass == 'HUNTER' or E.myclass == 'WARLOCK' then
-		local skillglowcolor
+		--[[local skillglowcolor
 		if not E.db.ElvUI_EltreumUI.glow.colorclass then
 			local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolorpet
 			local r, g, b = glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b
 			skillglowcolor = {r, g, b, 1}
 		end
+		if E.db.ElvUI_EltreumUI.glow.colorclass then
+			skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
+		end]]
+
+		local skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolorpet.r, E.db.ElvUI_EltreumUI.glowcustomcolorpet.g, E.db.ElvUI_EltreumUI.glowcustomcolorpet.b, 1}
 		if E.db.ElvUI_EltreumUI.glow.colorclass then
 			skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 		end
@@ -270,6 +286,9 @@ EltruismGlowPreview:SetFrameStrata("DIALOG")
 local EltruismGlowTexture = EltruismGlowPreview:CreateTexture()
 EltruismGlowPreview:Hide()
 function ElvUI_EltreumUI:PreviewGlow()
+	if not E.private.ElvUI_EltreumUI then
+		return
+	end
 	EltruismGlowTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\GlowPreview")
 	EltruismGlowTexture:SetAllPoints(EltruismGlowPreview)
 	EltruismGlowPreview:SetMovable(true)
@@ -278,12 +297,17 @@ function ElvUI_EltreumUI:PreviewGlow()
 	EltruismGlowPreview:SetScript("OnDragStart", EltruismGlowPreview.StartMoving)
 	EltruismGlowPreview:SetScript("OnDragStop",EltruismGlowPreview.StopMovingOrSizing)
 
-	local skillglowcolor
+	--[[local skillglowcolor
 	if not E.db.ElvUI_EltreumUI.glow.colorclass then
 		local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolor
 		local r, g, b = glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b
 		skillglowcolor = {r, g, b, 1}
 	elseif E.db.ElvUI_EltreumUI.glow.colorclass then
+		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
+	end]]
+
+	local skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glowcustomcolor.b, 1}
+	if E.db.ElvUI_EltreumUI.glow.colorclass then
 		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 	end
 
