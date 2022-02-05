@@ -1,9 +1,9 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local PlaySoundFile = _G.PlaySoundFile
-local gsub = _G.gsub
-local string = _G.string
+--local IsAddOnLoaded = _G.IsAddOnLoaded
+--local PlaySoundFile = _G.PlaySoundFile
+--local gsub = _G.gsub
+--local string = _G.string
 local WT = E.Libs.AceAddon:GetAddon("ElvUI_WindTools", true)
 
 --Color System messages
