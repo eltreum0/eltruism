@@ -1,5 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
+--[[
 local GetShapeshiftForm = _G.GetShapeshiftForm
 local UnitPower = _G.UnitPower
 local GetSpecialization = _G.GetSpecialization
@@ -8,9 +9,10 @@ local C_NamePlate = _G.C_NamePlate
 local UnitExists = _G.UnitExists
 local CreateFrame = _G.CreateFrame
 local UnitPowerMax = _G.UnitPowerMax
+]]
 local myclass = E.myclass
 local id, _
-local UnitCanAttack = _G.UnitCanAttack
+--local UnitCanAttack = _G.UnitCanAttack
 
 --Setup Power Bar, Prediction and Text
 local EltreumPowerAnchor
