@@ -338,5 +338,6 @@ ElvUI_EltreumUI.InstallerData = {
 	StepTitlesColorSelected = {70/255, 130/255, 180/255},
 	StepTitleWidth = 200,
 	StepTitleButtonWidth = 180,
-	StepTitleTextJustification = 'CENTER',
+	--StepTitleTextJustification = 'CENTER',
+	StepTitleTextJustification = 'RIGHT',
 }
