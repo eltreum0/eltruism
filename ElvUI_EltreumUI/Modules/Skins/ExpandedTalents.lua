@@ -15,6 +15,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 					end
 					--increase the size of the whole frame
 					if _G.PlayerTalentFrame then
+						--_G.PlayerTalentFrame:SetScale(0.8,0.8) --should be around this scale for wrath
 						if ElvUI_EltreumUI.TBC then
 							_G.PlayerTalentFrame:SetSize(376, 780)
 						elseif ElvUI_EltreumUI.Classic then
