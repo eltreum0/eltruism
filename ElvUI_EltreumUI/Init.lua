@@ -89,6 +89,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 			ElvUI_EltreumUI:ExpandedStable() --expands pet stable for hunters
 		end
 	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		ElvUI_EltreumUI:ClassicSockets()
 		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
 		ElvUI_EltreumUI:ExpandedTalents() --makes talents fit in one window without scroll
 		ElvUI_EltreumUI:UpdateAvgIlvl()
