@@ -4,8 +4,6 @@ local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local DT = E:GetModule("DataTexts")
 
-
-
 --modified elvui config datatext for opening eltruism
 local InCombatLockdown = InCombatLockdown
 local displayString = ''
