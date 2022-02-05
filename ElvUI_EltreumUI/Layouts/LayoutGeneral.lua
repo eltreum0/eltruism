@@ -161,16 +161,17 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
 
 		-- DataBars
+		E.db["databars"]["threat"]["font"] = "Kimberley"
+		E.db["databars"]["threat"]["fontOutline"] = "OUTLINE"
+		E.db["databars"]["threat"]["fontSize"] = 12
+		E.db["databars"]["threat"]["height"] = 22
+		E.db["databars"]["threat"]["orientation"] = "HORIZONTAL"
+		E.db["databars"]["threat"]["width"] = 412
 		if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 			E.db["databars"]["threat"]["enable"] = true
-			E.db["databars"]["threat"]["font"] = "Kimberley"
-			E.db["databars"]["threat"]["fontOutline"] = "OUTLINE"
-			E.db["databars"]["threat"]["fontSize"] = 12
-			E.db["databars"]["threat"]["height"] = 22
-			E.db["databars"]["threat"]["orientation"] = "HORIZONTAL"
-			E.db["databars"]["threat"]["width"] = 412
 		end
 		if ElvUI_EltreumUI.Retail then
+			E.db["databars"]["threat"]["enable"] = false
 			E.db["databars"]["azerite"]["font"] = "Kimberley"
 			E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
 			E.db["databars"]["azerite"]["fontSize"] = 12
@@ -225,13 +226,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["databars"]["honor"]["mouseover"] = true
 		E.db["databars"]["honor"]["orientation"] = "VERTICAL"
 		E.db["databars"]["honor"]["width"] = 10
-		E.db["databars"]["threat"]["enable"] = false
-		E.db["databars"]["threat"]["font"] = "Kimberley"
-		E.db["databars"]["threat"]["fontOutline"] = "OUTLINE"
-		E.db["databars"]["threat"]["fontSize"] = 12
-		E.db["databars"]["threat"]["height"] = 22
-		E.db["databars"]["threat"]["orientation"] = "HORIZONTAL"
-		E.db["databars"]["threat"]["width"] = 412
 
 		-- DataTexts
 		E.db["datatexts"]["font"] = "Kimberley"
