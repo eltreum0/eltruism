@@ -248,6 +248,7 @@ end
 
 function ElvUI_EltreumUI:ZONE_CHANGED()
 	ElvUI_EltreumUI:FriendlyNameplates()
+	ElvUI_EltreumUI:SkinMailZone()
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
