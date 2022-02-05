@@ -56,6 +56,20 @@ if ElvUI_EltreumUI.Classic then
 	_G.CharacterStatFrame4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine2", CharacterFrame)
 end
 
+local classBgs = {
+	['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
+	['PALADIN'] = "Interface\\Artifacts\\ArtifactUIPaladin",
+	['HUNTER'] = "Interface\\Artifacts\\ArtifactUIHunter",
+	['ROGUE'] = "Interface\\Artifacts\\ArtifactUIRogue",
+	['PRIEST'] = "Interface\\Artifacts\\ArtifactUIPriest",
+	['DEATHKNIGHT'] = "Interface\\Artifacts\\ArtifactUIDeathKnightFrost",
+	['SHAMAN'] = "Interface\\Artifacts\\ArtifactUIShaman",
+	['MAGE'] = "Interface\\Artifacts\\ArtifactUIMageArcane",
+	['WARLOCK'] = "Interface\\Artifacts\\ArtifactUIWarlock",
+	['MONK'] = "Interface\\Artifacts\\ArtifactUIMonk",
+	['DRUID'] = "Interface\\Artifacts\\ArtifactUIDruid",
+	['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
+}
 
 function ElvUI_EltreumUI:ExpandedCharacterStats()
 	if ElvUI_EltreumUI.Retail then
@@ -85,22 +99,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.PaperDollTitlesPane:SetPoint("RIGHT", _G.CharacterFrame, "RIGHT", -30, -20)
 
 			--move the artwork
-
-			local classBgs = {
-				['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
-				['PALADIN'] = "Interface\\Artifacts\\ArtifactUIPaladin",
-				['HUNTER'] = "Interface\\Artifacts\\ArtifactUIHunter",
-				['ROGUE'] = "Interface\\Artifacts\\ArtifactUIRogue",
-				['PRIEST'] = "Interface\\Artifacts\\ArtifactUIPriest",
-				['DEATHKNIGHT'] = "Interface\\Artifacts\\ArtifactUIDeathKnightFrost",
-				['SHAMAN'] = "Interface\\Artifacts\\ArtifactUIShaman",
-				['MAGE'] = "Interface\\Artifacts\\ArtifactUIMageArcane",
-				['WARLOCK'] = "Interface\\Artifacts\\ArtifactUIWarlock",
-				['MONK'] = "Interface\\Artifacts\\ArtifactUIMonk",
-				['DRUID'] = "Interface\\Artifacts\\ArtifactUIDruid",
-				['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
-			}
-
 			local alphabg = E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha
 			if alphabg == nil then
 				alphabg = 0.3
@@ -371,20 +369,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		end
 	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-			local classBgs = {
-				['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
-				['PALADIN'] = "Interface\\Artifacts\\ArtifactUIPaladin",
-				['HUNTER'] = "Interface\\Artifacts\\ArtifactUIHunter",
-				['ROGUE'] = "Interface\\Artifacts\\ArtifactUIRogue",
-				['PRIEST'] = "Interface\\Artifacts\\ArtifactUIPriest",
-				['DEATHKNIGHT'] = "Interface\\Artifacts\\ArtifactUIDeathKnightFrost",
-				['SHAMAN'] = "Interface\\Artifacts\\ArtifactUIShaman",
-				['MAGE'] = "Interface\\Artifacts\\ArtifactUIMageArcane",
-				['WARLOCK'] = "Interface\\Artifacts\\ArtifactUIWarlock",
-				['MONK'] = "Interface\\Artifacts\\ArtifactUIMonk",
-				['DRUID'] = "Interface\\Artifacts\\ArtifactUIDruid",
-				['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
-			}
 
 			--main way of clearing memory
 			hooksecurefunc("ToggleCharacter", function()
@@ -863,20 +847,6 @@ EltruismInspectBg:SetParent(_G.InspectFrame)
 local EltruismInspectBgTexture = EltruismInspectBg:CreateTexture()
 function ElvUI_EltreumUI:InspectBg(unit)
 	if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-		local classBgs = {
-			['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
-			['PALADIN'] = "Interface\\Artifacts\\ArtifactUIPaladin",
-			['HUNTER'] = "Interface\\Artifacts\\ArtifactUIHunter",
-			['ROGUE'] = "Interface\\Artifacts\\ArtifactUIRogue",
-			['PRIEST'] = "Interface\\Artifacts\\ArtifactUIPriest",
-			['DEATHKNIGHT'] = "Interface\\Artifacts\\ArtifactUIDeathKnightFrost",
-			['SHAMAN'] = "Interface\\Artifacts\\ArtifactUIShaman",
-			['MAGE'] = "Interface\\Artifacts\\ArtifactUIMageArcane",
-			['WARLOCK'] = "Interface\\Artifacts\\ArtifactUIWarlock",
-			['MONK'] = "Interface\\Artifacts\\ArtifactUIMonk",
-			['DRUID'] = "Interface\\Artifacts\\ArtifactUIDruid",
-			['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
-		}
 		local alpha
 		if E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha ~= nil then
 			alpha = E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha
