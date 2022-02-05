@@ -152,172 +152,20 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			end)
 
-			if (not IsAddOnLoaded('DejaCharacterStats')) or (not IsAddOnLoaded("ElvUI_SLE")) then
-
-				--[[
-					_G.CharacterFrame.EltruismDodge = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
-					_G.CharacterFrame.EltruismDodge:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
-					_G.CharacterFrame.EltruismDodge:SetTextColor(1, 1, 1)
-					_G.CharacterFrame.EltruismDodge:SetPoint("CENTER", _G.CharacterStatsPane , 70, -107)
-					_G.CharacterFrame.EltruismDodge:SetParent(_G.CharacterStatsPane)
-					_G.CharacterFrame.EltruismDodge:SetJustifyH("RIGHT")
-					_G.CharacterFrame.EltruismDodge:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismDodge:SetShadowOffset(1, 0)
-					_G.CharacterFrame.EltruismDodgeDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
-					_G.CharacterFrame.EltruismDodgeDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
-					_G.CharacterFrame.EltruismDodgeDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
-					_G.CharacterFrame.EltruismDodgeDesc:SetPoint("CENTER", _G.CharacterStatsPane , -66, -107)
-					_G.CharacterFrame.EltruismDodgeDesc:SetParent(_G.CharacterStatsPane)
-					_G.CharacterFrame.EltruismDodgeDesc:SetText(STAT_DODGE)
-					_G.CharacterFrame.EltruismDodgeDesc:SetJustifyH("LEFT")
-					_G.CharacterFrame.EltruismDodgeDesc:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismDodgeDesc:SetShadowOffset(1, 0)
-
-					_G.CharacterFrame.EltruismLeech = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
-					_G.CharacterFrame.EltruismLeech:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
-					_G.CharacterFrame.EltruismLeech:SetTextColor(1, 1, 1)
-					_G.CharacterFrame.EltruismLeech:SetPoint("CENTER", _G.CharacterStatsPane , 70, -120)
-					_G.CharacterFrame.EltruismLeech:SetParent(_G.CharacterStatsPane)
-					_G.CharacterFrame.EltruismLeech:SetJustifyH("RIGHT")
-					_G.CharacterFrame.EltruismLeech:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismLeech:SetShadowOffset(1, 0)
-					_G.CharacterFrame.EltruismLeechDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
-					_G.CharacterFrame.EltruismLeechDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
-					_G.CharacterFrame.EltruismLeechDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
-					_G.CharacterFrame.EltruismLeechDesc:SetPoint("CENTER", _G.CharacterStatsPane , -67, -120)
-					_G.CharacterFrame.EltruismLeechDesc:SetParent(_G.CharacterStatsPane)
-					_G.CharacterFrame.EltruismLeechDesc:SetText(STAT_LIFESTEAL)
-					_G.CharacterFrame.EltruismLeechDesc:SetJustifyH("LEFT")
-					_G.CharacterFrame.EltruismLeechDesc:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismLeechDesc:SetShadowOffset(1, 0)
-
-					_G.CharacterFrame.EltruismStatusLine1Left = _G.CharacterFrame:CreateTexture(nil, 'BORDER')
-					_G.CharacterFrame.EltruismStatusLine1Left:SetSize(80, 14)
-					_G.CharacterFrame.EltruismStatusLine1Left:SetPoint("RIGHT", _G.CharacterStatsPane, "CENTER", 0, -120)
-					_G.CharacterFrame.EltruismStatusLine1Left:SetTexture(E.Media.Textures.White8x8)
-					_G.CharacterFrame.EltruismStatusLine1Left:SetGradientAlpha('Horizontal', 0.8, 0.8, 0.8, 0, 0.8, 0.8, 0.8, 0.25)
-					_G.CharacterFrame.EltruismStatusLine1Left:SetParent(_G.CharacterStatsPane)
-					_G.CharacterFrame.EltruismStatusLine1Right = _G.CharacterFrame:CreateTexture(nil, 'BORDER')
-					_G.CharacterFrame.EltruismStatusLine1Right:SetSize(80, 14)
-					_G.CharacterFrame.EltruismStatusLine1Right:SetPoint("LEFT", _G.CharacterStatsPane, "CENTER", 0, -120)
-					_G.CharacterFrame.EltruismStatusLine1Right:SetTexture(E.Media.Textures.White8x8)
-					_G.CharacterFrame.EltruismStatusLine1Right:SetGradientAlpha('Horizontal', 0.8, 0.8, 0.8, 0.25, 0.8, 0.8, 0.8, 0)
-					_G.CharacterFrame.EltruismStatusLine1Right:SetParent(_G.CharacterStatsPane)
-
-					_G.CharacterFrame.EltruismSpeed = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
-					_G.CharacterFrame.EltruismSpeed:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
-					_G.CharacterFrame.EltruismSpeed:SetTextColor(1, 1, 1)
-					_G.CharacterFrame.EltruismSpeed:SetPoint("CENTER", _G.CharacterStatsPane , 70, -133)
-					_G.CharacterFrame.EltruismSpeed:SetParent(_G.CharacterStatsPane)
-					_G.CharacterFrame.EltruismSpeed:SetJustifyH("RIGHT")
-					_G.CharacterFrame.EltruismSpeed:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismSpeed:SetShadowOffset(1, 0)
-					_G.CharacterFrame.EltruismSpeedDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
-					_G.CharacterFrame.EltruismSpeedDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
-					_G.CharacterFrame.EltruismSpeedDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
-					_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", _G.CharacterStatsPane , -66, -133)
-					_G.CharacterFrame.EltruismSpeedDesc:SetParent(_G.CharacterStatsPane)
-					_G.CharacterFrame.EltruismSpeedDesc:SetText(STAT_SPEED)
-					_G.CharacterFrame.EltruismSpeedDesc:SetJustifyH("LEFT")
-					_G.CharacterFrame.EltruismSpeedDesc:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismSpeedDesc:SetShadowOffset(1, 0)
-
-					_G.CharacterFrame.EltruismBlock = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
-					_G.CharacterFrame.EltruismBlock:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
-					_G.CharacterFrame.EltruismBlock:SetTextColor(1, 1, 1)
-					_G.CharacterFrame.EltruismBlock:SetPoint("CENTER", _G.CharacterStatsPane , 70, -146)
-					_G.CharacterFrame.EltruismBlock:SetParent(_G.CharacterStatsPane)
-					_G.CharacterFrame.EltruismBlock:SetJustifyH("RIGHT")
-					_G.CharacterFrame.EltruismBlock:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismBlock:SetShadowOffset(1, 0)
-					_G.CharacterFrame.EltruismBlockDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
-					_G.CharacterFrame.EltruismBlockDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
-					_G.CharacterFrame.EltruismBlockDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
-					_G.CharacterFrame.EltruismBlockDesc:SetPoint("CENTER", _G.CharacterStatsPane , -69, -146)
-					_G.CharacterFrame.EltruismBlockDesc:SetParent(_G.CharacterStatsPane)
-					_G.CharacterFrame.EltruismBlockDesc:SetText(STAT_BLOCK)
-					_G.CharacterFrame.EltruismBlockDesc:SetJustifyH("LEFT")
-					_G.CharacterFrame.EltruismBlockDesc:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismBlockDesc:SetShadowOffset(1, 0)
-
-					_G.CharacterFrame.EltruismStatusLine2Left = _G.CharacterFrame:CreateTexture(nil, 'BORDER')
-					_G.CharacterFrame.EltruismStatusLine2Left:SetSize(80, 14)
-					_G.CharacterFrame.EltruismStatusLine2Left:SetPoint("RIGHT", _G.CharacterStatsPane, "CENTER", 0, -146)
-					_G.CharacterFrame.EltruismStatusLine2Left:SetTexture(E.Media.Textures.White8x8)
-					_G.CharacterFrame.EltruismStatusLine2Left:SetGradientAlpha('Horizontal', 0.8, 0.8, 0.8, 0, 0.8, 0.8, 0.8, 0.25)
-					_G.CharacterFrame.EltruismStatusLine2Left:SetParent(_G.CharacterStatsPane)
-					_G.CharacterFrame.EltruismStatusLine2Right = _G.CharacterFrame:CreateTexture(nil, 'BORDER')
-					_G.CharacterFrame.EltruismStatusLine2Right:SetSize(80, 14)
-					_G.CharacterFrame.EltruismStatusLine2Right:SetPoint("LEFT", _G.CharacterStatsPane, "CENTER", 0, -146)
-					_G.CharacterFrame.EltruismStatusLine2Right:SetTexture(E.Media.Textures.White8x8)
-					_G.CharacterFrame.EltruismStatusLine2Right:SetGradientAlpha('Horizontal', 0.8, 0.8, 0.8, 0.25, 0.8, 0.8, 0.8, 0)
-					_G.CharacterFrame.EltruismStatusLine2Right:SetParent(_G.CharacterStatsPane)
-
-					_G.CharacterFrame.EltruismAvoidance = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
-					_G.CharacterFrame.EltruismAvoidance:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
-					_G.CharacterFrame.EltruismAvoidance:SetTextColor(1, 1, 1)
-					_G.CharacterFrame.EltruismAvoidance:SetPoint("CENTER", _G.CharacterStatsPane , 70, -159)
-					_G.CharacterFrame.EltruismAvoidance:SetParent(_G.CharacterStatsPane)
-					_G.CharacterFrame.EltruismAvoidance:SetJustifyH("RIGHT")
-					_G.CharacterFrame.EltruismAvoidance:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismAvoidance:SetShadowOffset(1, 0)
-					_G.CharacterFrame.EltruismAvoidanceDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
-					_G.CharacterFrame.EltruismAvoidanceDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
-					_G.CharacterFrame.EltruismAvoidanceDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
-					_G.CharacterFrame.EltruismAvoidanceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -56, -159)
-					_G.CharacterFrame.EltruismAvoidanceDesc:SetParent(_G.CharacterStatsPane)
-					_G.CharacterFrame.EltruismAvoidanceDesc:SetText(STAT_AVOIDANCE)
-					_G.CharacterFrame.EltruismAvoidanceDesc:SetJustifyH("LEFT")
-					_G.CharacterFrame.EltruismAvoidanceDesc:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismAvoidanceDesc:SetShadowOffset(1, 0)
-
-					_G.CharacterFrame.EltruismParry = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
-					_G.CharacterFrame.EltruismParry:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
-					_G.CharacterFrame.EltruismParry:SetTextColor(1, 1, 1)
-					_G.CharacterFrame.EltruismParry:SetPoint("CENTER", _G.CharacterStatsPane , 70, -172)
-					_G.CharacterFrame.EltruismParry:SetParent(_G.CharacterStatsPane)
-					_G.CharacterFrame.EltruismParry:SetJustifyH("RIGHT")
-					_G.CharacterFrame.EltruismParry:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismParry:SetShadowOffset(1, 0)
-					_G.CharacterFrame.EltruismParryDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
-					_G.CharacterFrame.EltruismParryDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
-					_G.CharacterFrame.EltruismParryDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
-					_G.CharacterFrame.EltruismParryDesc:SetPoint("CENTER", _G.CharacterStatsPane , -69, -172)
-					_G.CharacterFrame.EltruismParryDesc:SetParent(_G.CharacterStatsPane)
-					_G.CharacterFrame.EltruismParryDesc:SetText(STAT_PARRY)
-					_G.CharacterFrame.EltruismParryDesc:SetJustifyH("LEFT")
-					_G.CharacterFrame.EltruismParryDesc:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismParryDesc:SetShadowOffset(1, 0)
-
-					_G.CharacterFrame.EltruismStatusLine3Left = _G.CharacterFrame:CreateTexture(nil, 'BORDER')
-					_G.CharacterFrame.EltruismStatusLine3Left:SetSize(80, 14)
-					_G.CharacterFrame.EltruismStatusLine3Left:SetPoint("RIGHT", _G.CharacterStatsPane, "CENTER", 0, -172)
-					_G.CharacterFrame.EltruismStatusLine3Left:SetTexture(E.Media.Textures.White8x8)
-					_G.CharacterFrame.EltruismStatusLine3Left:SetGradientAlpha('Horizontal', 0.8, 0.8, 0.8, 0, 0.8, 0.8, 0.8, 0.25)
-					_G.CharacterFrame.EltruismStatusLine3Left:SetParent(_G.CharacterStatsPane)
-					_G.CharacterFrame.EltruismStatusLine3Right = _G.CharacterFrame:CreateTexture(nil, 'BORDER')
-					_G.CharacterFrame.EltruismStatusLine3Right:SetSize(80, 14)
-					_G.CharacterFrame.EltruismStatusLine3Right:SetPoint("LEFT", _G.CharacterStatsPane, "CENTER", 0, -172)
-					_G.CharacterFrame.EltruismStatusLine3Right:SetTexture(E.Media.Textures.White8x8)
-					_G.CharacterFrame.EltruismStatusLine3Right:SetGradientAlpha('Horizontal', 0.8, 0.8, 0.8, 0.25, 0.8, 0.8, 0.8, 0)
-					_G.CharacterFrame.EltruismStatusLine3Right:SetParent(_G.CharacterStatsPane)
-				]]
-
-
-
+			if (not IsAddOnLoaded('DejaCharacterStats')) and (not IsAddOnLoaded("ElvUI_SLE")) then
+				--banner other stats
 				_G.CharacterFrame.EltruismExtraStats:SetSize(150, 18)
-				_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -140)
+				_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -80)
 				_G.CharacterFrame.EltruismExtraStats:SetTexture(E.Media.Textures.Black8x8)
 				_G.CharacterFrame.EltruismExtraStats:SetParent(_G.CharacterStatsPane)
 
 				_G.CharacterFrame.EltruismExtraStatsFont:SetFont(E.LSM:Fetch('font', E.db.general.font), 12)
 				_G.CharacterFrame.EltruismExtraStatsFont:SetTextColor(1, 1, 1)
-				_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -140)
+				_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -80)
 				_G.CharacterFrame.EltruismExtraStatsFont:SetParent(_G.CharacterStatsPane)
 				_G.CharacterFrame.EltruismExtraStatsFont:SetText("Other")
 
 				--movement speed
-
 				_G.CharacterFrame.EltruismSpeed:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
 				_G.CharacterFrame.EltruismSpeed:SetTextColor(1, 1, 1)
 				_G.CharacterFrame.EltruismSpeed:SetPoint("CENTER", _G.CharacterStatsPane , 70, -163)
@@ -349,7 +197,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end)
 
 				--class resource
-
 				_G.CharacterFrame.EltruismClassResource:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
 				_G.CharacterFrame.EltruismClassResource:SetTextColor(1, 1, 1)
 				_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", _G.CharacterStatsPane , 72, -176)
@@ -357,7 +204,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterFrame.EltruismClassResource:SetJustifyH("RIGHT")
 				_G.CharacterFrame.EltruismClassResource:SetShadowColor(0, 0, 0, 1)
 				_G.CharacterFrame.EltruismClassResource:SetShadowOffset(1, 0)
-
 				_G.CharacterFrame.EltruismClassResourceDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
 				_G.CharacterFrame.EltruismClassResourceDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
 				_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -46, -176)
@@ -375,6 +221,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterFrame.EltruismClassResourceDesc:SetShadowColor(0, 0, 0, 1)
 				_G.CharacterFrame.EltruismClassResourceDesc:SetShadowOffset(1, 0)
 
+				--class resource tooltip
 				_G.CharacterFrame.EltruismClassResourceDescTooltip:SetSize(190, 15)
 				_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -176)
 				_G.CharacterFrame.EltruismClassResourceDescTooltip:SetParent(_G.CharacterStatsPane)
@@ -404,9 +251,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G['GameTooltip']:Hide()
 				end)
 
-
 				--class resource 2, because druids and monks are not nice
-
 				_G.CharacterFrame.EltruismClassResource2:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
 				_G.CharacterFrame.EltruismClassResource2:SetTextColor(1, 1, 1)
 				_G.CharacterFrame.EltruismClassResource2:SetPoint("CENTER", _G.CharacterStatsPane , 72, -189)
@@ -449,6 +294,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G['GameTooltip']:Hide()
 				end)
 
+				--update stats and stats position
 		  		hooksecurefunc("PaperDollFrame_UpdateStats", function()
 		  			local speed = ((GetUnitSpeed("player")/7) *100)
 		  			_G.CharacterFrame.EltruismSpeed:SetText(math.ceil(speed).."%")
@@ -472,150 +318,55 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 					local stats = {_G.CharacterStatsPane:GetChildren()}
 					local number = (#stats)
-					--print(number)
-					if number == 13 then
-						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -80)
-						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -80)
-
-						_G.CharacterFrame.EltruismSpeed:SetPoint("CENTER", _G.CharacterStatsPane , 78, -103)
-						_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", _G.CharacterStatsPane , -36, -103)
-						_G.CharacterFrame.EltruismSpeedDescTooltip:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -103)
-
-						_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", _G.CharacterStatsPane , 72, -176)
-						if E.myclass == 'DEATHKNIGHT' then
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -50, -176)
-						else
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -48, -176)
-						end
-						_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -176)
-
-						_G.CharacterFrame.EltruismClassResource2:SetPoint("CENTER", _G.CharacterStatsPane , 72, -189)
-						_G.CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", _G.CharacterStatsPane , -48, -189)
-						_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -189)
-					elseif number == 14 then
-						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -100)
-						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -100)
-
-						_G.CharacterFrame.EltruismSpeed:SetPoint("CENTER", _G.CharacterStatsPane , 72, -123)
-						_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", _G.CharacterStatsPane , -36, -123)
-						_G.CharacterFrame.EltruismSpeedDescTooltip:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -123)
-
-						_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", _G.CharacterStatsPane , 72, -176)
-						if E.myclass == 'DEATHKNIGHT' then
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -50, -176)
-						elseif E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -45, -176)
-						else
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -48, -176)
-						end
-						_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -176)
-
-						_G.CharacterFrame.EltruismClassResource2:SetPoint("CENTER", _G.CharacterStatsPane , 72, -189)
-						_G.CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", _G.CharacterStatsPane , -48, -189)
-						_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -189)
-					elseif number == 15 then
+					if E.db.ElvUI_EltreumUI.dev then
+						ElvUI_EltreumUI:Print("Number of stats: "..number)
+					end
+					--15 seems like the minimum now with the added stats
+					if number == 15 then
 						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -90)
 						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -90)
-
-						_G.CharacterFrame.EltruismSpeed:SetPoint("CENTER", _G.CharacterStatsPane , 72, -113)
-						_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", _G.CharacterStatsPane , -36, -113)
-						_G.CharacterFrame.EltruismSpeedDescTooltip:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -113)
-
-						_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", _G.CharacterStatsPane , 72, -126)
-						if E.myclass == 'DEATHKNIGHT' then
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -50, -126)
-						elseif E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -45, -126)
-						else
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -48, -126)
-						end
-						_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -126)
-
-						_G.CharacterFrame.EltruismClassResource2:SetPoint("CENTER", _G.CharacterStatsPane , 72, -139)
-						_G.CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", _G.CharacterStatsPane , -45, -139)
-						_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -139)
 					elseif number == 16 then
+						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -100)
+						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -100)
+					elseif number == 17 then
 						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -110)
 						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -110)
-
-						_G.CharacterFrame.EltruismSpeed:SetPoint("CENTER", _G.CharacterStatsPane , 72, -133)
-						_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", _G.CharacterStatsPane , -36, -133)
-						_G.CharacterFrame.EltruismSpeedDescTooltip:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -133)
-
-						_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", _G.CharacterStatsPane , 72, -146)
-						if E.myclass == 'DEATHKNIGHT' then
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -50, -146)
-						elseif E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -45, -146)
-						else
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -48, -146)
-						end
-						_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -146)
-
-						_G.CharacterFrame.EltruismClassResource2:SetPoint("CENTER", _G.CharacterStatsPane , 72, -159)
-						_G.CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", _G.CharacterStatsPane , -48, -159)
-						_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -159)
-					elseif number == 17 then
-						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -120)
-						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -120)
-
-						_G.CharacterFrame.EltruismSpeed:SetPoint("CENTER", _G.CharacterStatsPane , 72, -143)
-						_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", _G.CharacterStatsPane , -36, -143)
-						_G.CharacterFrame.EltruismSpeedDescTooltip:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -143)
-
-						_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", _G.CharacterStatsPane , 72, -156)
-						if E.myclass == 'DEATHKNIGHT' then
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -50, -156)
-						elseif E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -45, -156)
-						else
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -48, -156)
-						end
-						_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -156)
-
-						_G.CharacterFrame.EltruismClassResource2:SetPoint("CENTER", _G.CharacterStatsPane , 72, -169)
-						_G.CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", _G.CharacterStatsPane , -48, -169)
-						_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -169)
 					elseif number == 18 then
 						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -120)
 						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -120)
-
-						_G.CharacterFrame.EltruismSpeed:SetPoint("CENTER", _G.CharacterStatsPane , 72, -143)
-						_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", _G.CharacterStatsPane , -36, -143)
-						_G.CharacterFrame.EltruismSpeedDescTooltip:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -143)
-
-						_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", _G.CharacterStatsPane , 72, -156)
-						if E.myclass == 'DEATHKNIGHT' then
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -50, -156)
-						elseif E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -45, -156)
-						else
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterStatsPane , -48, -156)
-						end
-						_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -156)
-
-						_G.CharacterFrame.EltruismClassResource2:SetPoint("CENTER", _G.CharacterStatsPane , 72, -169)
-						_G.CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", _G.CharacterStatsPane , -48, -169)
-						_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -169)
+					elseif number == 19 then
+						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -140)
+						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -140)
+					elseif number == 20 then
+						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -150)
+						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -150)
+					elseif number == 21 then
+						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -170)
+						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -170)
 					end
-					--[[
-						local dodge = GetDodgeChance();
-						_G.CharacterFrame.EltruismDodge:SetText(string.format('%.2f', dodge).."%")
 
-						local leech = GetLifesteal()
-						_G.CharacterFrame.EltruismLeech:SetText(string.format('%.2f', leech).."%")
+					_G.CharacterFrame.EltruismSpeed:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont , 72, -20)
+					_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont , -36, -20)
+					_G.CharacterFrame.EltruismSpeedDescTooltip:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -20)
 
-						local block = GetBlockChance()
-						_G.CharacterFrame.EltruismBlock:SetText(string.format('%.2f', block).."%")
+					if E.myclass == 'DEATHKNIGHT' then
+						_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, 72, -33)
+						_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, -50, -33)
+						_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -33)
+					elseif E.myclass == 'DRUID' or E.myclass == 'MONK' then
+						_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, 72, -33)
+						_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, -45, -33)
+						_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -33)
+					else
+						_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, 72, -33)
+						_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, -48, -33)
+						_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -33)
+					end
 
-						local avoidance = GetCombatRatingBonus(CR_AVOIDANCE)
-						_G.CharacterFrame.EltruismAvoidance:SetText(string.format('%.2f', avoidance).."%")
-
-						local parry = GetParryChance()
-						_G.CharacterFrame.EltruismParry:SetText(string.format('%.2f', parry).."%")
-					]]
+					_G.CharacterFrame.EltruismClassResource2:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, 72, -46)
+					_G.CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, -48, -46)
+					_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -46)
 				end)
-
 		  	end
 		end
 	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
