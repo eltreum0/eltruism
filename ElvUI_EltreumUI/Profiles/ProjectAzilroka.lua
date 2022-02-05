@@ -2,7 +2,6 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local pacheck = GetAddOnMetadata('ProjectAzilroka', 'Version')
 
-
 -- ProjectAzilroka profile setup
 function ElvUI_EltreumUI:GetPAProfile()
 	local PA = _G.ProjectAzilroka
