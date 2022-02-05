@@ -270,7 +270,7 @@ EltruismGlowPreview:SetFrameStrata("DIALOG")
 local EltruismGlowTexture = EltruismGlowPreview:CreateTexture()
 EltruismGlowPreview:Hide()
 function ElvUI_EltreumUI:PreviewGlow()
-	EltruismGlowTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\GlowPreview.tga")
+	EltruismGlowTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\GlowPreview")
 	EltruismGlowTexture:SetAllPoints(EltruismGlowPreview)
 	EltruismGlowPreview:SetMovable(true)
 	EltruismGlowPreview:EnableMouse(true)
@@ -283,10 +283,10 @@ function ElvUI_EltreumUI:PreviewGlow()
 		local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolor
 		local r, g, b = glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b
 		skillglowcolor = {r, g, b, 1}
-	end
-	if E.db.ElvUI_EltreumUI.glow.colorclass then
+	elseif E.db.ElvUI_EltreumUI.glow.colorclass then
 		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 	end
+
 	if EltruismGlowPreview:IsShown() then
 		LCG.PixelGlow_Stop(EltruismGlowPreview)
 		LCG.AutoCastGlow_Stop(EltruismGlowPreview)
@@ -296,11 +296,9 @@ function ElvUI_EltreumUI:PreviewGlow()
 		EltruismGlowPreview:Show()
 		if E.db.ElvUI_EltreumUI.glow.pixel then
 			LCG.PixelGlow_Start(EltruismGlowPreview, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
-		end
-		if E.db.ElvUI_EltreumUI.glow.autocast then
+		elseif E.db.ElvUI_EltreumUI.glow.autocast then
 			LCG.AutoCastGlow_Start(EltruismGlowPreview, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-		end
-		if E.db.ElvUI_EltreumUI.glow.blizzard then
+		elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 			LCG.ButtonGlow_Start(EltruismGlowPreview, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
 		end
 	end
