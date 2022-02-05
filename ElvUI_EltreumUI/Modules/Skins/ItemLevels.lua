@@ -36,6 +36,9 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 				end
 				PrepareItemButton(button)
 				local _, _, _, hex = GetItemQualityColor(itemQuality)
+				if hex == "ffffffff" then
+					return
+				end
 				button.eltruismilvl:SetFormattedText('|c%s%s|r', hex, itemLevel or '?')
 				button.eltruismilvl:Show()
 			end
