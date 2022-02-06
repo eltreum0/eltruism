@@ -68,7 +68,7 @@ function ElvUI_EltreumUI:SkillGlow()
 			local totemglow4 = CreateFrame("FRAME")
 			totemglow4:SetParent(_G['ElvUF_Player'])
 			--set the sizes differently depending on type because blizz glow is not nice
-			if E.db.ElvUI_EltreumUI.glow.pixel then
+			if E.db.ElvUI_EltreumUI.glow.pixel or E.db.ElvUI_EltreumUI.glow.autocast then
 				totemglow1:SetAllPoints(_G['ElvUF_PlayerTotem1'])
 				totemglow2:SetAllPoints(_G['ElvUF_PlayerTotem2'])
 				totemglow3:SetAllPoints(_G['ElvUF_PlayerTotem3'])

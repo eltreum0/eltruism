@@ -28,7 +28,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				if ObjectiveTrackerBonusBannerFrame then
 					--textcoords from https://www.townlong-yak.com/framexml/39229/Helix/AtlasInfo.lua
 					_G.ObjectiveTrackerBonusBannerFrame.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-					_G.ObjectiveTrackerBonusBannerFrame.Title:SetParent("ObjectiveTrackerBonusBannerFrame")
+					_G.ObjectiveTrackerBonusBannerFrame.Title:SetParent(_G.ObjectiveTrackerBonusBannerFrame) --idk why the text sticks around when only the color got changed
 					_G.ObjectiveTrackerBonusBannerFrame.Icon:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")
 					_G.ObjectiveTrackerBonusBannerFrame.Icon:SetTexCoord(0.482422, 0.785156, 0.00195312, 0.294922)
 					_G.ObjectiveTrackerBonusBannerFrame.Icon2:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")

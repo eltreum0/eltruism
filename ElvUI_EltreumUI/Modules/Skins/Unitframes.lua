@@ -5,7 +5,7 @@ local LSM = LibStub("LibSharedMedia-3.0")
 --elvui spark hook
 local function EltruismSpark()
 	--print("spark spam")
-	if E.db.ElvUI_EltreumUI.sparkcustomcolor.enable then
+	if E.db.ElvUI_EltreumUI.sparkcustomcolor.enable and E.private.unitframe.enable then
 		local castbar = _G["ElvUF_Player_CastBar"]
 		castbar.Spark_ = castbar:CreateTexture(nil, 'OVERLAY')
 		castbar.Spark_:SetTexture(E.media.blankTex)
@@ -50,7 +50,7 @@ local warlock = {r = "0.52941060066223", g = "0.53333216905594", b = "0.93333131
 --from Benik
 function ElvUI_EltreumUI:ChangeUnitTexture()
 	--print("change unit texture spam")
-	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture then
+	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
 
 		--target
 		local targetbar = LSM:Fetch("statusbar", "Eltreum-Blank")
@@ -140,7 +140,7 @@ hooksecurefunc(UF, "Style", ElvUI_EltreumUI.ChangeUnitTexture)  --if not hooking
 --from Benik
 function ElvUI_EltreumUI:ChangePlayerTexture()
 	--print("change unit texture spam")
-	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture then
+	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
 		--player
 		local playertexture = LSM:Fetch("statusbar", unitframeclass[E.myclass])
 		if UF.units.player then
@@ -155,7 +155,7 @@ hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangePlayerTexture)
 --hooksecurefunc(UF, "Update_StatusBar", ElvUI_EltreumUI.ChangePlayerTexture) --needed for druid form swap for some reason + fixes on player entering world... except it also causes memory to go WAY up
 
 function ElvUI_EltreumUI:ChangeRaidTexture()
-	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture then
+	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
 		local header = _G['ElvUF_Raid']
 		for i = 1, header:GetNumChildren() do
 			local group = select(i, header:GetChildren())
@@ -201,7 +201,7 @@ end
 hooksecurefunc(UF, 'Update_RaidFrames', ElvUI_EltreumUI.ChangeRaidTexture)
 
 function ElvUI_EltreumUI:ChangeRaid40Texture()
-	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture then
+	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
 		local header = _G['ElvUF_Raid40']
 		for i = 1, header:GetNumChildren() do
 			local group = select(i, header:GetChildren())
@@ -247,7 +247,7 @@ end
 hooksecurefunc(UF, 'Update_Raid40Frames', ElvUI_EltreumUI.ChangeRaid40Texture)
 
 function ElvUI_EltreumUI:ChangePartyTexture()
-	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture then
+	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
 		local header = _G['ElvUF_Party']
 		for i = 1, header:GetNumChildren() do
 			local group = select(i, header:GetChildren())

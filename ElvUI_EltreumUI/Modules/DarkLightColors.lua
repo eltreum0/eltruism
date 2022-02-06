@@ -1,7 +1,9 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:DarkMode()
-	if not E.db.movers then E.db.movers = {} end
+	if E.private.unitframe.enable then
+		if not E.db.movers then E.db.movers = {} end
+
 		--setup colors
 		E.db["unitframe"]["colors"]["healPrediction"]["healAbsorbs"]["a"] = 0.25
 		E.db["unitframe"]["colors"]["healPrediction"]["overabsorbs"]["a"] = 0.25
@@ -57,79 +59,82 @@ function ElvUI_EltreumUI:DarkMode()
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
 		ElvUI_EltreumUI:Print("Unitframes set to Dark Mode")
+	end
 end
 
 function ElvUI_EltreumUI:LightMode()
-	if not E.db.movers then E.db.movers = {} end
-	--setup colors
-	E.db["unitframe"]["colors"]["healPrediction"]["absorbs"]["a"] = 0.5
-	E.db["unitframe"]["colors"]["healPrediction"]["healAbsorbs"]["a"] = 0.5
-	E.db["unitframe"]["colors"]["healPrediction"]["maxOverflow"] = 0.01
-	E.db["unitframe"]["colors"]["healPrediction"]["overabsorbs"]["a"] = 0.5
-	E.db["unitframe"]["colors"]["healPrediction"]["overhealabsorbs"]["a"] = 0.5
-	E.db["unitframe"]["colors"]["healPrediction"]["personal"]["a"] = 0.5
-	E.db["unitframe"]["colors"]["healPrediction"]["personal"]["b"] = 0.50196078431373
-	E.db["unitframe"]["colors"]["healPrediction"]["others"]["a"] = 0.5
-	E.db["unitframe"]["colors"]["colorhealthbyvalue"] = false
-	E.db["unitframe"]["colors"]["classbackdrop"] = false
-	E.db["unitframe"]["colors"]["healthclass"] = true
-	E.db["unitframe"]["colors"]["customhealthbackdrop"] = true
-	E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0
-	E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0
-	E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0
-	E.db["unitframe"]["units"]["player"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
-	E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["party"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["pet"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["raid"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["tank"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["target"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "USE_DEFAULT"
-	E.db["unitframe"]["colors"]["transparentAurabars"] = false
-	E.db["unitframe"]["colors"]["transparentCastbar"] = false
-	E.db["unitframe"]["colors"]["transparentHealth"] = false
-	E.db["unitframe"]["colors"]["transparentPower"] = false
-	--E.db["auras"]["buffs"]["barTexture"] = unitframeclass[E.myclass]
-	--E.db["auras"]["debuffs"]["barTexture"] = unitframeclass[E.myclass]
-	--E.db["unitframe"]["statusbar"] = unitframeclass[E.myclass]
-	E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.6
-	--E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.95
-	E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.6
-	--E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.95
+	if E.private.unitframe.enable then
+		if not E.db.movers then E.db.movers = {} end
+		--setup colors
+		E.db["unitframe"]["colors"]["healPrediction"]["absorbs"]["a"] = 0.5
+		E.db["unitframe"]["colors"]["healPrediction"]["healAbsorbs"]["a"] = 0.5
+		E.db["unitframe"]["colors"]["healPrediction"]["maxOverflow"] = 0.01
+		E.db["unitframe"]["colors"]["healPrediction"]["overabsorbs"]["a"] = 0.5
+		E.db["unitframe"]["colors"]["healPrediction"]["overhealabsorbs"]["a"] = 0.5
+		E.db["unitframe"]["colors"]["healPrediction"]["personal"]["a"] = 0.5
+		E.db["unitframe"]["colors"]["healPrediction"]["personal"]["b"] = 0.50196078431373
+		E.db["unitframe"]["colors"]["healPrediction"]["others"]["a"] = 0.5
+		E.db["unitframe"]["colors"]["colorhealthbyvalue"] = false
+		E.db["unitframe"]["colors"]["classbackdrop"] = false
+		E.db["unitframe"]["colors"]["healthclass"] = true
+		E.db["unitframe"]["colors"]["customhealthbackdrop"] = true
+		E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0
+		E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0
+		E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0
+		E.db["unitframe"]["units"]["player"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
+		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["party"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["pet"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["raid"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["tank"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["target"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["colors"]["transparentAurabars"] = false
+		E.db["unitframe"]["colors"]["transparentCastbar"] = false
+		E.db["unitframe"]["colors"]["transparentHealth"] = false
+		E.db["unitframe"]["colors"]["transparentPower"] = false
+		--E.db["auras"]["buffs"]["barTexture"] = unitframeclass[E.myclass]
+		--E.db["auras"]["debuffs"]["barTexture"] = unitframeclass[E.myclass]
+		--E.db["unitframe"]["statusbar"] = unitframeclass[E.myclass]
+		E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.6
+		--E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.95
+		E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.6
+		--E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.95
 
-	E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
-	E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
-	E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
-	--setup namecolors
-	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
-	elseif ElvUI_EltreumUI.Retail then
-		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
+		E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
+		E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
+		E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
+		--setup namecolors
+		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
+		elseif ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
+		end
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
+			--E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+			--E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
+
+			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
+		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
+			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
+		end
+		E.db.ElvUI_EltreumUI.lightmode = true
+
+		E:UpdateMediaItems()
+		E:UpdateUnitFrames()
+		ElvUI_EltreumUI:ChangePlayerTexture()
+		ElvUI_EltreumUI:Print("Unitframes set to Light Mode")
 	end
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-		--E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
-		--E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
-
-		E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-	if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
-		E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
-	end
-	E.db.ElvUI_EltreumUI.lightmode = true
-
-	E:UpdateMediaItems()
-	E:UpdateUnitFrames()
-	ElvUI_EltreumUI:ChangePlayerTexture()
-	ElvUI_EltreumUI:Print("Unitframes set to Light Mode")
 end
 
 function ElvUI_EltreumUI:TextureMode()
-	if E.db.ElvUI_EltreumUI.modetexture then
+	if E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
 		local NP = E:GetModule('NamePlates')
 		--Change classpower background, ty Benik for the great help
 		local function ClassPowerColor()
