@@ -1,13 +1,11 @@
-local unpack = unpack
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
 
 -- Questie profile setup
 function ElvUI_EltreumUI:GetQuestieProfile()
-
 	if ElvUI_EltreumUI.TBC then
-		LoadAddOn("Questie")
-
+		if not IsAddOnLoaded("Questie") then
+			LoadAddOn("Questie")
+		end
 		QuestieConfig = {
 			["dbIsCompiled"] = false,
 			["global"] = {
@@ -2011,10 +2009,10 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 			["itemPtrs"] = "",
 			["objBin"] = "",
 		}
-	end
-
-	if ElvUI_EltreumUI.Classic then
-		LoadAddOn("Questie")
+	elseif ElvUI_EltreumUI.Classic then
+		if not IsAddOnLoaded("Questie") then
+			LoadAddOn("Questie")
+		end
 		QuestieConfig = {
 			["dbIsCompiled"] = true,
 			["global"] = {
@@ -2068,5 +2066,4 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 			["objBin"] = "",
 		}
 	end
-
 end
