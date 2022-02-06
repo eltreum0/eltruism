@@ -1,11 +1,14 @@
 ### 🌌 Next Version 
 **The future is uncertain**
 ___
+### 2.7.8
+___
 ### 2.7.7
 Added a mover for the Error Frame, along with making it use the ElvUI General Font and Font Size\
 Added Capping profile, which can be found in Eltruism > Addons\
 Added Method Raid Tools profile for TBC/Classic\
 Fixed missing Threat bar for TBC/Classic\
+Fixed ElvUI Floating Combat Text not showing up on other targets\
 Improved how addon profiles are applied, detecting if the profile already exists and if so just setting your character to use it\
 Improved the Socket and Enchants loading function\
 Improved how Item Levels detects tabards and shirts\
