@@ -539,7 +539,7 @@ if ElvUI_EltreumUI.Retail then
 						header2 = {
 							order = 3,
 							type = "description",
-							name = "Hide Arena Frames in Arena due to Gladius/Gladdy or another addon",
+							name = "Hide Arena Frames in Arena due to Gladius/GladiusEX or another addon",
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
