@@ -44,9 +44,12 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["convertPages"] = true
 
 		--smoothbars
-		E.db["general"]["altPowerBar"]["smoothbars"] = true
-		E.db["nameplates"]["smoothbars"] = true
-		E.db["unitframe"]["smoothbars"] = true
+		--E.db["general"]["altPowerBar"]["smoothbars"] = true
+		--E.db["nameplates"]["smoothbars"] = true
+		--E.db["unitframe"]["smoothbars"] = true
+		E.db["general"]["altPowerBar"]["smoothbars"] = false
+		E.db["nameplates"]["smoothbars"] = false
+		E.db["unitframe"]["smoothbars"] = false
 
 		-- General
 		E.db["general"]["altPowerBar"]["font"] = "Kimberley"
