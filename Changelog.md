@@ -4,6 +4,7 @@ ___
 ### 2.7.7
 Added Capping profile, which can be found in Eltruism > Addons\
 Added Method Raid Tools profile for TBC/Classic\
+Added a mover for the Error Frame, along with making it use the ElvUI General Font and Font Size\
 Fixed missing Threat bar for TBC/Classic\
 Improved how addon profiles are applied, detecting if the profile already exists and if so just setting your character to use it\
 Improved the Socket and Enchants loading function\
