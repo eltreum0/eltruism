@@ -1932,7 +1932,7 @@ if ElvUI_EltreumUI.TBC then
 									width = 'double',
 									func = function() ElvUI_EltreumUI:SetupGladdy() E:StaticPopup_Show('CONFIG_RL') end,
 								},
-								gladdius = {
+								gladius = {
 									order = 15,
 									type = 'execute',
 									name = 'Gladius',
@@ -1940,6 +1940,14 @@ if ElvUI_EltreumUI.TBC then
 									width = 'double',
 									func = function() ElvUI_EltreumUI:SetupGladius() E:StaticPopup_Show('CONFIG_RL') end,
 								},
+								--[[gladiusex = {
+									order = 15,
+									type = 'execute',
+									name = 'GladiusEX',
+									desc = L["Reset to Eltruism defaults."],
+									width = 'double',
+									func = function() ElvUI_EltreumUI:AddonSetupGladiusEx() E:StaticPopup_Show('CONFIG_RL') end,
+								},]]
 								capping = {
 									order = 16,
 									type = 'execute',
