@@ -442,7 +442,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["font"] = "Kimberley"
 		E.db["unitframe"]["fontOutline"] = "OUTLINE"
 		E.db["unitframe"]["smartRaidFilter"] = false
-		E.db["unitframe"]["smoothbars"] = true
 		E.db["unitframe"]["targetSound"] = true
 
 		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "FORCE_OFF"

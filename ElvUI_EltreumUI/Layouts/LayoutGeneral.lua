@@ -43,10 +43,14 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		-- AB Conversion
 		E.db["convertPages"] = true
 
+		--smoothbars
+		E.db["general"]["altPowerBar"]["smoothbars"] = true
+		E.db["nameplates"]["smoothbars"] = true
+		E.db["unitframe"]["smoothbars"] = true
+
 		-- General
 		E.db["general"]["altPowerBar"]["font"] = "Kimberley"
 		E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
-		E.db["general"]["altPowerBar"]["smoothbars"] = true
 		E.db["general"]["altPowerBar"]["statusBarColorGradient"] = true
 		E.db["general"]["autoRepair"] = "GUILD"
 		E.db["general"]["autoTrackReputation"] = true

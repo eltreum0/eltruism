@@ -128,7 +128,6 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["lowHealthThreshold"] = 0.2
 			E.db["nameplates"]["plateSize"]["friendlyHeight"] = 10
 			E.db["nameplates"]["plateSize"]["friendlyWidth"] = 140
-			E.db["nameplates"]["smoothbars"] = true
 			E.db["nameplates"]["statusbar"] = "Eltreum-Blank"
 
 			E.db["nameplates"]["overlapH"] = 0.8

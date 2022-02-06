@@ -543,7 +543,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["font"] = "Kimberley"
 		E.db["unitframe"]["fontOutline"] = "OUTLINE"
 		E.db["unitframe"]["smartRaidFilter"] = false
-		E.db["unitframe"]["smoothbars"] = true
 		E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
 		E.db["unitframe"]["targetSound"] = true
 
