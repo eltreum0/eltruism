@@ -126,6 +126,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			end)
 
+			hooksecurefunc("ReputationFrame_Update", function()
+				if _G.CharacterFrameInset.backdrop:IsShown() then
+					_G.CharacterFrameInset.backdrop:Hide()
+				end
+			end)
+
 			hooksecurefunc("CharacterFrame_Collapse", function()
 				if _G.PaperDollFrame:IsShown() then
 					_G.CharacterFrame:SetWidth(500)
