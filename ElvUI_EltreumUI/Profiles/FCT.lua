@@ -5,40 +5,51 @@ function ElvUI_EltreumUI:GetFCTProfile()
 	ElvFCT = {
 		["nameplates"] = {
 			["frames"] = {
+				["Player"] = {
+					["showIcon"] = true,
+					["showHots"] = true,
+					["alternateIcon"] = true,
+					["showDots"] = true,
+				},
 				["EnemyNPC"] = {
 					["advanced"] = {
 						["OffsetY"] = 70,
 					},
-					["font"] = "Kimberley",
 					["textShake"] = true,
+					["isTarget"] = false,
+					["fontSize"] = 16,
 					["prefix"] = "",
-					["numberStyle"] = "BLIZZARD",
+					["font"] = "Kimberley",
 					["showDots"] = true,
 					["critFontSize"] = 60,
 					["shakeDuration"] = 0.4,
-					["critShake"] = true,
-					["fontSize"] = 16,
+					["numberStyle"] = "BLIZZARD",
 					["critFont"] = "Kimberley",
 				},
 				["FriendlyPlayer"] = {
 					["enable"] = false,
+					["isTarget"] = false,
+					["showHots"] = true,
+					["showDots"] = true,
 				},
 				["EnemyPlayer"] = {
 					["advanced"] = {
 						["OffsetY"] = 70,
 					},
-					["font"] = "Kimberley",
 					["textShake"] = true,
+					["isTarget"] = false,
+					["fontSize"] = 16,
 					["prefix"] = "",
-					["numberStyle"] = "BLIZZARD",
+					["font"] = "Kimberley",
 					["showDots"] = true,
 					["critFontSize"] = 60,
 					["shakeDuration"] = 0.4,
-					["fontSize"] = 16,
+					["numberStyle"] = "BLIZZARD",
 					["critFont"] = "Kimberley",
 				},
 				["FriendlyNPC"] = {
 					["enable"] = false,
+					["isTarget"] = false,
 				},
 			},
 		},
