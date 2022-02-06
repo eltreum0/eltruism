@@ -131,6 +131,10 @@ function ElvUI_EltreumUI:WAAnchor()
 	end
 end
 
+--mover for UI errors frame
+E:CreateMover(_G.UIErrorsFrame, "MoverUIERRORS", "Eltruism UIErrorsFrame", nil, nil, nil, "ALL,SOLO")
+_G.UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, "THINOUTLINE")
+
 -- UI Scale
 function ElvUI_EltreumUI:SetupScale()
 	E.global["general"]["UIScale"] = 0.7
