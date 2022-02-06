@@ -88,9 +88,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		if myclass == 'HUNTER' then
 			ElvUI_EltreumUI:ExpandedStable() --expands pet stable for hunters
 		end
-		if _G.ObjectiveTrackerBonusBannerFrame.Title:IsShown() then
-			_G.ObjectiveTrackerBonusBannerFrame.Title:Hide()
-		end
 	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 		ElvUI_EltreumUI:ClassicSockets()
 		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
