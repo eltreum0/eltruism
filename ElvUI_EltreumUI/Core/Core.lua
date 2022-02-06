@@ -133,7 +133,7 @@ end
 
 --mover for UI errors frame
 E:CreateMover(_G.UIErrorsFrame, "MoverUIERRORS", "Eltruism UIErrorsFrame", nil, nil, nil, "ALL,SOLO")
-_G.UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, "THINOUTLINE")
+_G.UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+2, "THINOUTLINE")
 
 -- UI Scale
 function ElvUI_EltreumUI:SetupScale()
