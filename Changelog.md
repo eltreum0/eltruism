@@ -2,6 +2,7 @@
 **The future is uncertain**
 ___
 ### 2.7.8
+Fixed an annoying World Quest Title being displayed when it shouldn't
 ___
 ### 2.7.7
 Added a mover for the Error Frame, along with making it use the ElvUI General Font and Font Size\
