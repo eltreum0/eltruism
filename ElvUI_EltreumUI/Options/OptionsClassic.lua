@@ -1766,6 +1766,21 @@ if ElvUI_EltreumUI.Classic then
 									width = 'double',
 									func = function() ElvUI_EltreumUI:AddonSetupDBM() E:StaticPopup_Show('CONFIG_RL') end,
 								},
+								headermrt = {
+									order = 17,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								mrt = {
+									order = 18,
+									type = 'execute',
+									name = 'Method Raid Tools',
+									desc = L["Reset to Eltruism defaults."],
+									width = 'double',
+									func = function() ElvUI_EltreumUI:AddonSetupMRT() E:StaticPopup_Show('CONFIG_RL') end,
+								},
 							},
 						},
 						addons = {

@@ -1268,6 +1268,21 @@ if ElvUI_EltreumUI.Retail then
 									width = 'double',
 									func = function() ElvUI_EltreumUI:AddonSetupDBM() E:StaticPopup_Show('CONFIG_RL') end,
 								},
+								header4 = {
+									order = 4,
+									type = "description",
+									name = "",
+									width = 'full',
+									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								},
+								mrt = {
+									order = 4,
+									type = 'execute',
+									name = 'Method Raid Tools',
+									desc = L["Reset to Eltruism defaults."],
+									width = 'double',
+									func = function() ElvUI_EltreumUI:AddonSetupMRT() E:StaticPopup_Show('CONFIG_RL') end,
+								},
 							},
 						},
 						addons = {
@@ -1327,21 +1342,6 @@ if ElvUI_EltreumUI.Retail then
 									desc = L["Reset to Eltruism defaults."],
 									width = 'double',
 									func = function() ElvUI_EltreumUI:GetCappingProfile() E:StaticPopup_Show('CONFIG_RL') end,
-								},
-								header4 = {
-									order = 4,
-									type = "description",
-									name = "",
-									width = 'full',
-									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								},
-								exorsus = {
-									order = 4,
-									type = 'execute',
-									name = 'Method Raid Tools',
-									desc = L["Reset to Eltruism defaults."],
-									width = 'double',
-									func = function() ElvUI_EltreumUI:AddonSetupExRT() E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								header5 = {
 									order = 5,
