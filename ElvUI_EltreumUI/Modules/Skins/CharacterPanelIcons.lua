@@ -97,8 +97,6 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 			local totalgap = levelwidth - textwidth
 			local gapclassic = totalgap/4
 			classFrame:SetPoint("RIGHT", "CharacterLevelText", 8-gapclassic, 0)
-			--classFrame:SetSize(30, 30)
-			--classFrame:SetPoint("TOPLEFT", _G["PaperDollItemsFrame"], 20, -15)
 		elseif ElvUI_EltreumUI.Retail then
 
 			hooksecurefunc('PaperDollFrame_SetLevel', function()
@@ -183,8 +181,8 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 end
 
 local EltruismCharacterPanelEventFrame = CreateFrame("FRAME")
-EltruismCharacterPanelEventFrame:RegisterUnitEvent("UNIT_NAME_UPDATE")
+EltruismCharacterPanelEventFrame:RegisterUnitEvent("UNIT_NAME_UPDATE", "player")
 EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
-	ElvUI_EltreumUI:PlayerNamepaperdoll()
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+	ElvUI_EltreumUI:PlayerNamepaperdoll()
 end)
