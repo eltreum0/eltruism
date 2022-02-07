@@ -7,6 +7,9 @@ function ElvUI_EltreumUI:ClassicSockets()
 	if not E.db.ElvUI_EltreumUI.skins.sockets then
 		return
 	end
+	if not (ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic) then
+		return
+	end
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ENCHANT TABLES
 	local KIBC_EnchantToSpellID = {
 		--missing ones added by eltreum
