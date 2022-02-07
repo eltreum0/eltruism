@@ -204,7 +204,7 @@ function ElvUI_EltreumUI:DevTools()
 			frame:SetScript("OnEvent", function(self, event, ...)
 				if event == "ADDON_LOADED" and (...) == "Blizzard_EventTrace" then
 					OnEventTraceLoaded()
-					self:UnregisterAllEvents()
+					frame:UnregisterAllEvents()
 				end
 			end)
 		end
