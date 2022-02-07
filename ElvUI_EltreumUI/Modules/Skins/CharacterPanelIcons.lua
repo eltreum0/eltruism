@@ -145,6 +145,46 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					end
 				end
 			end)
+
+			hooksecurefunc("ReputationFrame_Update", function()
+				if _G.ReputationFrame:IsShown() then
+					if ElvUI_EltreumUI.Retail then
+						charactertext = _G.CharacterFrameTitleText:GetText()
+						if not charactertext:match("|T") then
+							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+						end
+					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						charactertext = _G.CharacterFrameTitleText:GetText()
+						if not charactertext:match("|T") then
+							_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
+						end
+					end
+				end
+			end)
+
+			hooksecurefunc("TokenFrame_Update", function()
+				if _G.TokenFrame:IsShown() then
+					if ElvUI_EltreumUI.Retail then
+						charactertext = _G.CharacterFrameTitleText:GetText()
+						if not charactertext:match("|T") then
+							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+						end
+					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						charactertext = _G.CharacterFrameTitleText:GetText()
+						if not charactertext:match("|T") then
+							_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
+						end
+					end
+				end
+			end)
+
 		end
 	end
 end
+
+local EltruismCharacterPanelEventFrame = CreateFrame("FRAME")
+EltruismCharacterPanelEventFrame:RegisterUnitEvent("UNIT_NAME_UPDATE")
+EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
+	ElvUI_EltreumUI:PlayerNamepaperdoll()
+	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+end)
