@@ -2,8 +2,10 @@
 **The future is uncertain**
 ___
 ### 2.7.8
+Reworked many functions and how they are registered, resulting in improved performance and memory usage, specially in combat\
+Set smoothbars to off and friendly nameplates inside instances to off since it's been discovered that they impact performance. It is recommended to do the same, by going into ElvUI > Unitframes/Nameplates and unchecking Smooth Bars, then ElvUI > Eltruism > Nameplates > Hide Friendly Nameplates inside instances\
 Fixed an annoying World Quest Title being displayed when it shouldn't\
-Updated how events are registed for various functions, improving memory/cpu usage\
+Fixed Class Icon on Character Panel not showing up in the reputation and currency tabs for Retail\
 ___
 ### 2.7.7
 Added a mover for the Error Frame, along with making it use the ElvUI General Font and Font Size\
