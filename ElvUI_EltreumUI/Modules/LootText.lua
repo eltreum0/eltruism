@@ -1,9 +1,6 @@
-local _G = _G
-local unpack = _G.unpack
-local select = _G.select
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local _G = _G
 local Deformat = _G.LibStub("LibDeformat-3.0")
-local CreateFrame = _G.CreateFrame
 local CombatText = _G.CombatText
 
 -- LootText is a fork of Scrolling Loot Text (SLoTe) by xavjer using fixes by Eltreum for pet caging and other things
