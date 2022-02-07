@@ -1,11 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local SetCVar = _G.SetCVar
-local UnitIsAFK = _G.UnitIsAFK
-local PlayMusic = _G.PlayMusic
-local StopMusic = _G.StopMusic
-local PlaySound = _G.PlaySound
-local StopSound = _G.StopSound
 local C_CVar = _G.C_CVar
 
 -- general alliance walk (legion) maybe human music idk
@@ -132,7 +126,7 @@ if E.db.general.afk then
 	EltruismAFKLogoTexture:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohq")
 	EltruismAFKLogo:SetSize(320, 80)
 	EltruismAFKLogo:ClearAllPoints()
-	EltruismAFKLogo:SetPoint("TOP", UIParent, "TOP", 0, -20)
+	EltruismAFKLogo:SetPoint("TOP", UIParent, "TOP", 0, -10)
 	EltruismAFKLogoTexture:SetAllPoints(EltruismAFKLogo)
 	EltruismAFKLogo:SetFrameStrata("DIALOG")
 	EltruismAFKLogo:Hide()
@@ -141,7 +135,8 @@ if E.db.general.afk then
 	EltruismAFKTop:SetFrameLevel(0)
 	EltruismAFKTop:SetTemplate('Transparent')
 	EltruismAFKTop:SetPoint('TOP', UIParent, 'TOP', 0, 0)
-	EltruismAFKTop:SetWidth(E.screenWidth + (E.Border*2))
+	--EltruismAFKTop:SetWidth(E.screenWidth + (E.Border*2))
+	EltruismAFKTop:SetWidth(E.screenWidth*2)
 	EltruismAFKTop:SetHeight(E.screenHeight * (1 / 10))
 end
 
