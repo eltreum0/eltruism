@@ -1,7 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local CreateFrame = _G.CreateFrame
 local classcolor = E:ClassColor(E.myclass, true)
 
 local ObjectiveTrackerBlocksFrame, ScenarioObjectiveBlockBackground, ScenarioObjectiveBlockBackgroundTexture

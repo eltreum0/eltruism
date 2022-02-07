@@ -1,7 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local CreateFrame = _G.CreateFrame
---local UnitClass = _G.UnitClass --currently unused
 local classcolor = E:ClassColor(E.myclass, true)
 
 local classIcons = {

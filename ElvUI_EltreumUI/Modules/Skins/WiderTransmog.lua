@@ -1,6 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local CreateFrame = _G.CreateFrame
 
 --Wider Transmog Window
 local EltruismWiderTransmog = CreateFrame("Frame", "EltruismWiderTransmog")

@@ -1,16 +1,9 @@
-local _G = _G
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
---local pairs = _G.pairs
-local SetCVar = _G.SetCVar
-local UIParent = _G.UIParent
-local GetTime = _G.GetTime
+local _G = _G
 local UnitCastingInfo = _G.UnitCastingInfo or _G.CastingInfo
 local UnitChannelInfo = _G.UnitChannelInfo or _G.ChannelInfo
-local GetSpellCooldown = _G.GetSpellCooldown
-local GetCursorPosition = _G.GetCursorPosition
-local next, unpack, floor, cos, sin, max, min = _G.next, _G.unpack, _G.floor, _G.cos, _G.sin, _G.max, _G.min
+--local next, unpack, floor, cos, sin, max, min = _G.next, _G.unpack, _G.floor, _G.cos, _G.sin, _G.max, _G.min
 local isRetail = _G.select(4, _G.GetBuildInfo())>=90000
---create frame
 local cursorframe = _G.CreateFrame("Frame", "EltruismCursor")
 
 function ElvUI_EltreumUI:CursorInit()

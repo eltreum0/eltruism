@@ -1,6 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local CreateFrame = _G.CreateFrame
 local LibItemInfo
 if ElvUI_EltreumUI. TBC or ElvUI_EltreumUI.Classic then
 	LibItemInfo = LibStub:GetLibrary("LibItemInfo.1000")
