@@ -173,6 +173,9 @@ function ElvUI_EltreumUI:SkinQuests()
 					ScenarioObjectiveBlockBackgroundTexture:SetAllPoints(_G.ScenarioStageBlock.NormalBG)
 					ScenarioObjectiveBlockBackground:Show()
 					ScenarioObjectiveBlockBackgroundTexture:Show()
+					if not ScenarioObjectiveBlockBackground.shadow then
+						ScenarioObjectiveBlockBackground:CreateShadow()
+					end
 					_G.ScenarioStageBlock.NormalBG:Hide()
 					_G.ScenarioStageBlock.FinalBG:Hide()
 					--dungeon/raid/scenario name text
