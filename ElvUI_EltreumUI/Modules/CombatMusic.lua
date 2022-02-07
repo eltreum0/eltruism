@@ -1,14 +1,10 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
-local IsInInstance = _G.IsInInstance
-local PlayMusic = _G.PlayMusic
-local StopMusic = _G.StopMusic
 local dontstop = 0
 local dontstopboss = 0
 
 --play music during combat
 function ElvUI_EltreumUI:CombatMusic(event, event2)
-	if E.private.ElvUI_EltreumUI.combatmusic.enable then
+	if E.private.ElvUI_EltreumUI.combatmusic.enable and C_CVar.GetCVar('Sound_EnableMusic') == '1' then
 		local _, instanceType = IsInInstance()
 		local soundfile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.musicfile
 		if E.private.ElvUI_EltreumUI.combatmusic.disableinstance == false then
@@ -33,7 +29,7 @@ function ElvUI_EltreumUI:CombatMusic(event, event2)
 end
 
 function ElvUI_EltreumUI:StopCombatMusic(event, event2)
-	if E.private.ElvUI_EltreumUI.combatmusic.enable then
+	if E.private.ElvUI_EltreumUI.combatmusic.enable and C_CVar.GetCVar('Sound_EnableMusic') == '1' then
 		if dontstop == 1 then
 			if event == 'PLAYER_REGEN_ENABLED' and event2 == nil and dontstopboss == 0 then
 				StopMusic()
@@ -48,7 +44,7 @@ end
 
 --play music during boss fights
 function ElvUI_EltreumUI:BossMusic(event)
-	if E.private.ElvUI_EltreumUI.combatmusic.bossmusic then
+	if E.private.ElvUI_EltreumUI.combatmusic.bossmusic and C_CVar.GetCVar('Sound_EnableMusic') == '1' then
 		local soundfile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.bossfile
 		if event == 'ENCOUNTER_START' then
 			if dontstop == 1 then
@@ -61,7 +57,7 @@ function ElvUI_EltreumUI:BossMusic(event)
 end
 
 function ElvUI_EltreumUI:StopBossMusic(event)
-	if E.private.ElvUI_EltreumUI.combatmusic.bossmusic then
+	if E.private.ElvUI_EltreumUI.combatmusic.bossmusic and C_CVar.GetCVar('Sound_EnableMusic') == '1' then
 		if dontstopboss == 1 then
 			if event == 'ENCOUNTER_END' then
 				StopMusic()

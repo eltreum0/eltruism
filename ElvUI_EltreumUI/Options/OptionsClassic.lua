@@ -3,7 +3,6 @@ local sort = sort
 local pairs = pairs
 local tinsert = table.insert
 local tconcat = table.concat
-local PlaySoundFile = PlaySoundFile
 
 --Author list
 local AUTHORS = {

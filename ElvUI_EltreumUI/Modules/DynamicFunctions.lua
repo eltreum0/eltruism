@@ -1,8 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local UnitLevel = _G.UnitLevel
 local myclass = E.myclass
-local IsInInstance = _G.IsInInstance
 
 function ElvUI_EltreumUI:BattlegroundGroupUnitframes()
 	if E.db.ElvUI_EltreumUI.otherstuff.bgunitframes and E.private.unitframe.enable then
