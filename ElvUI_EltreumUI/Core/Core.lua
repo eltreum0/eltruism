@@ -75,8 +75,6 @@ function ElvUI_EltreumUI:Anchors()
 	_G.UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+2, "THINOUTLINE")
 end
 
-
-
 -- UI Scale
 function ElvUI_EltreumUI:SetupScale()
 	E.global["general"]["UIScale"] = 0.7
