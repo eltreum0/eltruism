@@ -41,12 +41,7 @@ local function ValueColorUpdate(hex)
 	end
 end
 E.valueColorUpdateFuncs[ValueColorUpdate] = true
-
 DT:RegisterDatatext('Eltruism', nil, nil, OnEvent, nil, OnClick, OnEnter, nil, L["Eltruism Config"], nil, ValueColorUpdate)
-
-
-
-
 
 
 --just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon

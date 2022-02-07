@@ -40,17 +40,10 @@ function ElvUI_EltreumUI:DynamicBuffs()
 			E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = true
 			ElvUI_EltreumUI:Print(L["Buffs have been updated for Arenas"])
 		elseif instanceType == "none" then
-			--if not E.db.movers then E.db.movers = {} end
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["enable"] = false
 			E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = false
-			--E.db["unitframe"]["units"]["player"]["buffs"]["enable"] = false
 			ElvUI_EltreumUI:Print(L["Buffs have been updated for Open World"])
 		end
-		--E:StaggeredUpdateAll(nil, true)
-		--eltruism defaults
-		--E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["enable"] = true
-		--E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = true
-		--E.db["unitframe"]["units"]["player"]["buffs"]["enable"] = false
 	end
 end
 

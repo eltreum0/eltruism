@@ -96,13 +96,8 @@ function ElvUI_EltreumUI:LightMode()
 		E.db["unitframe"]["colors"]["transparentCastbar"] = false
 		E.db["unitframe"]["colors"]["transparentHealth"] = false
 		E.db["unitframe"]["colors"]["transparentPower"] = false
-		--E.db["auras"]["buffs"]["barTexture"] = unitframeclass[E.myclass]
-		--E.db["auras"]["debuffs"]["barTexture"] = unitframeclass[E.myclass]
-		--E.db["unitframe"]["statusbar"] = unitframeclass[E.myclass]
 		E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.6
-		--E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.95
 		E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.6
-		--E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.95
 
 		E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
 		E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
@@ -114,11 +109,8 @@ function ElvUI_EltreumUI:LightMode()
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
 		end
 			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-			--E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
-			--E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
-
 			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
 			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
 		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
@@ -142,7 +134,6 @@ function ElvUI_EltreumUI:TextureMode()
 		end
 		hooksecurefunc(NP, 'Initialize', ClassPowerColor)
 		ClassPowerColor()
-		--hooksecurefunc(NP, 'ClassPower_UpdateColor', ClassPowerColor)
 
 		if ElvUI_EltreumUI.Retail then
 			local function RuneBackground()
@@ -171,9 +162,6 @@ function ElvUI_EltreumUI:TextureMode()
 		end
 
 		if E.db.ElvUI_EltreumUI.lightmode then
-			--E.db["auras"]["buffs"]["barTexture"] = unitframeclass[E.myclass]
-			--E.db["auras"]["debuffs"]["barTexture"] = unitframeclass[E.myclass]
-			--E.db["unitframe"]["statusbar"] = unitframeclass[E.myclass]
 			E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
 			E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
 			E.db["unitframe"]["statusbar"] = "Eltreum-Blank"

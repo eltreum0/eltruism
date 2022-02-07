@@ -11,9 +11,6 @@ function ElvUI_EltreumUI:QuestItem()
 	if E.db.ElvUI_EltreumUI.questsettings.questitems then
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
 			EltruismQuestItemFrame:Hide()
-			--EltruismQuestItemFrame:UnregisterAllEvents()
-			--E:DisableMover("MoverEltruismQuestItem")
-			--return
 		else
 			if not EltruismQuestItemFrame:IsShown() then
 				EltruismQuestItemFrame:Show()
@@ -44,22 +41,9 @@ function ElvUI_EltreumUI:QuestItem()
 			EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE")
 			EltruismQuestItemFrame:RegisterUnitEvent("UNIT_INVENTORY_CHANGED", "player")
 			EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED") -- Needed for items that starts a quest, when we accept it, update to remove the icon
-			--EltruismQuestItemFrame:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN") --hmm
-			--EltruismQuestItemFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
 			EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
 
-
-
-			--if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
-				--EltruismQuestItemFrame:SetAlpha(0)
-				--EltruismQuestItemFrame:Hide()
-			--else
-				--EltruismQuestItemFrame:SetAlpha(1)
-				--EltruismQuestItemFrame:Show()
-			--end
-
 			--get the keybind
-			--local bindingText = GetBindingKey("CLICK EltruismQuestItem1:LeftButton")
 			local bindingText1 = GetBindingKey("CLICK EltruismQuestItem1:LeftButton")
 			local bindingText2 = GetBindingKey("CLICK EltruismQuestItem2:LeftButton")
 			local bindingText3 = GetBindingKey("CLICK EltruismQuestItem3:LeftButton")
@@ -121,11 +105,10 @@ function ElvUI_EltreumUI:QuestItem()
 					self:UpdateButtons()
 				end
 			end
-			--EltruismQuestItemFrame:EnableMouse(nil)
+
 			EltruismQuestItemFrame.tip = CreateFrame("GameTooltip","EltruismQuestItem",nil,"GameTooltipTemplate")
 			EltruismQuestItemFrame.tip:SetOwner(UIParent,"ANCHOR_NONE")
 			EltruismQuestItemFrame.items = {}
-			--EltruismQuestItemFrame:RequestUpdate()
 			--------------------------------------------------------------------------------------------------------
 			--                                                Items                                               --
 			--------------------------------------------------------------------------------------------------------
@@ -145,7 +128,6 @@ function ElvUI_EltreumUI:QuestItem()
 			end
 
 			-- Make Loot Button
-			--local a = EltruismQuestItemFrame:GetWidth()
 			local function CreateItemButton()
 				local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"SecureActionButtonTemplate")
 				b:SetSize(cfg.btnSize,cfg.btnSize)

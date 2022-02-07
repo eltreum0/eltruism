@@ -1,10 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
---[[
-local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
-local IsStealthed = _G.IsStealthed
-]]
 local UIFrameFadeIn = _G.UIFrameFadeIn
 local UIFrameFadeOut = _G.UIFrameFadeOut
 
@@ -19,16 +14,12 @@ StealthOptionsFrame.tex:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\T
 StealthOptionsFrame.tex:SetAllPoints(UIParent)
 StealthOptionsFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 StealthOptionsFrame:RegisterEvent("UPDATE_STEALTH")
--- set to hide so it doesnt show on characters that dont have stealth
 StealthOptionsFrame:Hide()
 
 -- Setup the Stealth Overlay Options
 function ElvUI_EltreumUI:StealthOptions()
 	if E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect then
-		--Script the frame, ty wowpedia for examples
-
 		StealthOptionsFrame:SetScript("OnEvent", function(__, event)
-			--print(event.."stealth spam")
 			if (event == "PLAYER_ENTERING_WORLD") then
 				if IsStealthed() then
 					StealthOptionsFrame:Show()

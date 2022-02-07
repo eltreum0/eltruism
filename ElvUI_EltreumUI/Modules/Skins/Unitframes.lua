@@ -4,12 +4,10 @@ local LSM = LibStub("LibSharedMedia-3.0")
 
 --elvui spark hook
 local function EltruismSpark()
-	--print("spark spam")
 	if E.db.ElvUI_EltreumUI.sparkcustomcolor.enable and E.private.unitframe.enable then
 		local castbar = _G["ElvUF_Player_CastBar"]
 		castbar.Spark_ = castbar:CreateTexture(nil, 'OVERLAY')
 		castbar.Spark_:SetTexture(E.media.blankTex)
-		--local sparkheight = castbar.Spark_:GetHeight() --check if its needed
 		castbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.sparkcustomcolor.b, 1)
 		castbar.Spark_:Size(E.db.ElvUI_EltreumUI.sparkcustomcolor.width)
 	end
@@ -49,7 +47,6 @@ local warlock = {r = "0.52941060066223", g = "0.53333216905594", b = "0.93333131
 
 --from Benik
 local function ChangeUnitTexture()
-	--print("change unit texture spam")
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
 
 		--target
@@ -129,8 +126,6 @@ local function ChangeUnitTexture()
 				petframe.Health:SetStatusBarTexture(petbar)
 			end
 		end
-
-		--raid & party its UF.groupunits instead
 	end
 end
 
@@ -141,7 +136,6 @@ EltruismChangeUnitTextureFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
 EltruismChangeUnitTextureFrame:SetScript("OnEvent", ChangeUnitTexture)
 hooksecurefunc(UF, "Construct_HealthBar", ChangeUnitTexture)
 hooksecurefunc(UF, "Style", ChangeUnitTexture)  --if not hooking into this then when the target of target changes it doesnt update
---hooksecurefunc(UF, "Update_StatusBar", ElvUI_EltreumUI.ChangeUnitTexture) --needed for druid form swap for some reason + fixes on player entering world... except it also causes memory to go WAY up
 
 --from Benik
 function ElvUI_EltreumUI:ChangePlayerTexture()
@@ -158,7 +152,6 @@ function ElvUI_EltreumUI:ChangePlayerTexture()
 	end
 end
 hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangePlayerTexture)
---hooksecurefunc(UF, "Update_StatusBar", ElvUI_EltreumUI.ChangePlayerTexture) --needed for druid form swap for some reason + fixes on player entering world... except it also causes memory to go WAY up
 
 local EltruismPlayerTextureUpdate = CreateFrame("FRAME")
 EltruismPlayerTextureUpdate:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")

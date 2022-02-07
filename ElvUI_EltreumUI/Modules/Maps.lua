@@ -1,18 +1,9 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local GetUnitSpeed = _G.GetUnitSpeed
-local C_Navigation = _G.C_Navigation
-local math = _G.math
-local string = _G.string
-local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
 
 --Conversion of Time to Arrive weakaura (new version)
 if ElvUI_EltreumUI.Retail then
-
 	local EltruismAutopin = CreateFrame("Frame", "EltruismAutoPin")
-	--EltruismAutopin:Hide()
-	--EltruismAutopin:RegisterEvent("SUPER_TRACKING_CHANGED")
 	local EltruismTimeToArriveParent = CreateFrame("Frame", "EltruismTimeToArriveParent")
 	local EltruismTimeToArrive = CreateFrame("Frame", "EltruismTimeToArrive", UIParent)
 	EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
@@ -32,7 +23,6 @@ if ElvUI_EltreumUI.Retail then
 	local TimeSinceLastUpdate = 0
 	function ElvUI_EltreumUI:WaypointTimeToArrive()
 		if E.db.ElvUI_EltreumUI.waypointetasetting.enable then
-
 			if E.db.ElvUI_EltreumUI.waypointetasetting.autopin then
 				EltruismAutopin:RegisterEvent("USER_WAYPOINT_UPDATED")
 				EltruismAutopin:SetScript("OnEvent", function(self, event, ...)

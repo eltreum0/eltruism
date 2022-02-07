@@ -1,8 +1,4 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
-local PlaySoundFile = _G.PlaySoundFile
-local IsInGroup = _G.IsInGroup
-local IsAddOnLoaded = _G.IsAddOnLoaded
 
 -- Conversion of the party/raid death weakaura into an addon option
 local deaththrottle

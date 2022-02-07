@@ -63,8 +63,6 @@ function ElvUI_EltreumUI:Shadows()
 			_G.VideoOptionsFrame,
 			_G.InterfaceOptionsFrame,
 			_G.StaticPopup1, --seems like blizzard
-
-			--need to confirm
 			_G.CharacterFrameTab1.backdrop,
 			_G.CharacterFrameTab2.backdrop,
 			_G.CharacterFrameTab3.backdrop,
@@ -343,35 +341,10 @@ function ElvUI_EltreumUI:Shadows()
 				_G.MailFrame,
 				_G.HelpFrame.backdrop,
 				_G.WorldMapFrame.backdrop,
-				--_G.AlertFrame, --doesntwork
-				--_G.CalendarFrame,
-				--_G.CommunitiesFrame,
-				--_G.AchievementFrame.backdrop,
-				--_G.CovenantMissionFrame,
-				--_G.GarrisonLandingPage,
-				--_G.CovenantSanctumFrame,
-				--_G.SoulbindViewer,
-				--_G.CollectionsJournal,
-				--_G.CollectionsJournalTab1.backdrop,
-				--_G.CollectionsJournalTab2.backdrop,
-				--_G.CollectionsJournalTab3.backdrop,
-				--_G.CollectionsJournalTab4.backdrop,
-				--_G.CollectionsJournalTab5.backdrop,
-				--_G.ToyBox,
-				--_G.HeirloomsJournal,
-				--_G.PetJournal,
-				--_G.WardrobeFrame,
-				--_G.WardrobeCollectionFrame,
-				--_G.PVPUIFrame,
 				_G.PVEFrame,
 				_G.PVEFrameTab1.backdrop,
 				_G.PVEFrameTab2.backdrop,
 				_G.PVEFrameTab3.backdrop,
-				--_G.VoidStorageFrame,
-				--_G.EncounterJournal,
-				--_G.PlayerTalentFrame,
-				--_G.PlayerTalentFrameTab1.backdrop,
-				--_G.PlayerTalentFrameTab2.backdrop,
 			}
 			for _, frame in pairs(retailframes) do
 				if frame and not frame.shadow then
@@ -437,10 +410,6 @@ function ElvUI_EltreumUI:Shadows()
 				_G.MailFrame.backdrop,
 				_G.MerchantFrame.backdrop,
 				_G.WorldMapFrame,
-				--_G.PlayerTalentFrame.backdrop,
-				--_G.PlayerTalentFrameTab1.backdrop,
-				--_G.PlayerTalentFrameTab2.backdrop,
-				--_G.PlayerTalentFrameTab3.backdrop,
 				_G.CharacterFrameTab4.backdrop,  --only in classic though
 				_G.CharacterFrameTab5.backdrop,  --only in classic though
 				_G.FriendsFrameTab5.backdrop, --only in classic though
@@ -471,7 +440,6 @@ function ElvUI_EltreumUI:Shadows()
 			_G['ElvUI_ReputationBar'],
 			_G['ElvUI_ExperienceBar'],
 			_G['ElvUI_ThreatBar'],
-			--_G['ElvUI_MicroBar.backdrop'],
 		}
 		for _, frame in pairs(GeneralElvUIFrames) do
 			if frame and not frame.shadow then
@@ -497,9 +465,6 @@ function ElvUI_EltreumUI:Shadows()
 						for _, button in pairs(slots) do
 							if not button.shadow then
 								button:CreateShadow()
-								--[[button.shadow = button:CreateShadow(nil, true)
-								button.shadow:SetParent(button)
-								button.shadow.size = 2]]
 							end
 						end
 					end
@@ -513,9 +478,11 @@ function ElvUI_EltreumUI:Shadows()
 					break
 				else
 					if not button.shadow then
+						button:CreateShadow()
+						--[[
 						button.shadow = button:CreateShadow(nil, true)
 						button.shadow:SetParent(button)
-						button.shadow.size = 2
+						button.shadow.size = 2]]
 					end
 				end
 			end
@@ -528,9 +495,6 @@ function ElvUI_EltreumUI:Shadows()
 				else
 					if not button.shadow then
 						button:CreateShadow()
-						--[[button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2]]
 					end
 				end
 			end
@@ -654,9 +618,6 @@ function ElvUI_EltreumUI:Shadows()
 					for _, button in pairs(partymembers) do
 						if not button.shadow then
 							button:CreateShadow()
-						--[[button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2]]
 						end
 					end
 				end
@@ -669,9 +630,6 @@ function ElvUI_EltreumUI:Shadows()
 					for _, button in pairs(bossmembers) do
 						if not button.shadow then
 							button:CreateShadow()
-						--[[button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2]]
 						end
 					end
 				end
@@ -716,31 +674,10 @@ function ElvUI_EltreumUI:Shadows()
 					else
 						if not button.shadow then
 							button:CreateShadow()
-							--[[button.shadow = button:CreateShadow(nil, true)
-							button.shadow:SetParent(button)
-							button.shadow.size = 2]]
 						end
 					end
 				end
 			end
-
-			--AdditionalPowerBar
-			--[[if E.myclass == 'DRUID' or E.myclass == 'SHAMAN' or E.myclass == 'PRIEST' then
-				for i = 1, 3 do
-					if not _G['ElvUF_Player_AdditionalPowerBar'..i] then
-						break
-					end
-					local button = _G['ElvUF_Player_AdditionalPowerBar'..i].backdrop
-					if not button then
-						break
-					else
-						if not button.shadow then
-							button:CreateShadow()
-						end
-					end
-				end
-			end]]
-
 		end
 
 		--bags
@@ -760,9 +697,6 @@ function ElvUI_EltreumUI:Shadows()
 				for _, button in pairs(ElvUI_StaticPopups) do
 					if not button.shadow then
 						button:CreateShadow()
-						--[[button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2]]
 					end
 				end
 			end

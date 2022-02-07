@@ -4,7 +4,6 @@ local CreateFrame = _G.CreateFrame
 local classcolor = E:ClassColor(E.myclass, true)
 
 function ElvUI_EltreumUI:SkinLevelUp()
-	--print("skin levelup spam")
 	-- Color level up display and boss banner originally by Aftermathh, 9.1 partially by Eltreum
 	if ElvUI_EltreumUI.Retail then
 		if E.db.ElvUI_EltreumUI.skins.enable then

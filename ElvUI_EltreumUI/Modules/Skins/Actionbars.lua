@@ -8,16 +8,6 @@ function ElvUI_EltreumUI:SkillGlow()
 	if not E.private.ElvUI_EltreumUI then
 		return
 	end
-	--[[local skillglowcolor
-	if not E.db.ElvUI_EltreumUI.glow.colorclass then
-		local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolor
-		local r, g, b = glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b
-		skillglowcolor = {r, g, b, 1}
-	end
-	if E.db.ElvUI_EltreumUI.glow.colorclass then
-		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
-	end]]
-
 	local skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glowcustomcolor.b, 1}
 	if E.db.ElvUI_EltreumUI.glow.colorclass then
 		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
@@ -228,16 +218,6 @@ function ElvUI_EltreumUI:SkillGlowPet()
 		return
 	end
 	if E.myclass == 'HUNTER' or E.myclass == 'WARLOCK' then
-		--[[local skillglowcolor
-		if not E.db.ElvUI_EltreumUI.glow.colorclass then
-			local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolorpet
-			local r, g, b = glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b
-			skillglowcolor = {r, g, b, 1}
-		end
-		if E.db.ElvUI_EltreumUI.glow.colorclass then
-			skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
-		end]]
-
 		local skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolorpet.r, E.db.ElvUI_EltreumUI.glowcustomcolorpet.g, E.db.ElvUI_EltreumUI.glowcustomcolorpet.b, 1}
 		if E.db.ElvUI_EltreumUI.glow.colorclass then
 			skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
@@ -248,7 +228,6 @@ function ElvUI_EltreumUI:SkillGlowPet()
 				local _, _, _, _, _, autoCastEnabled, _ = GetPetActionInfo(i)
 				local buttonName = 'PetActionButton'..i
 				local button = _G[buttonName]
-
 				if autoCastEnabled then
 					AutoCastShine_AutoCastStop(button.AutoCastShine)
 					if E.db.ElvUI_EltreumUI.glow.pixel then
@@ -296,15 +275,6 @@ function ElvUI_EltreumUI:PreviewGlow()
 	EltruismGlowPreview:RegisterForDrag("LeftButton")
 	EltruismGlowPreview:SetScript("OnDragStart", EltruismGlowPreview.StartMoving)
 	EltruismGlowPreview:SetScript("OnDragStop",EltruismGlowPreview.StopMovingOrSizing)
-
-	--[[local skillglowcolor
-	if not E.db.ElvUI_EltreumUI.glow.colorclass then
-		local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolor
-		local r, g, b = glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b
-		skillglowcolor = {r, g, b, 1}
-	elseif E.db.ElvUI_EltreumUI.glow.colorclass then
-		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
-	end]]
 
 	local skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glowcustomcolor.b, 1}
 	if E.db.ElvUI_EltreumUI.glow.colorclass then

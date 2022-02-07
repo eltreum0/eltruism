@@ -8,7 +8,6 @@ local dontstopboss = 0
 
 --play music during combat
 function ElvUI_EltreumUI:CombatMusic(event, event2)
-	--print(event2.." "..event)
 	if E.private.ElvUI_EltreumUI.combatmusic.enable then
 		local _, instanceType = IsInInstance()
 		local soundfile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.musicfile
@@ -34,7 +33,6 @@ function ElvUI_EltreumUI:CombatMusic(event, event2)
 end
 
 function ElvUI_EltreumUI:StopCombatMusic(event, event2)
-	--print(event2.." "..event)
 	if E.private.ElvUI_EltreumUI.combatmusic.enable then
 		if dontstop == 1 then
 			if event == 'PLAYER_REGEN_ENABLED' and event2 == nil and dontstopboss == 0 then
@@ -49,9 +47,7 @@ function ElvUI_EltreumUI:StopCombatMusic(event, event2)
 end
 
 --play music during boss fights
-
 function ElvUI_EltreumUI:BossMusic(event)
-	--print(event)
 	if E.private.ElvUI_EltreumUI.combatmusic.bossmusic then
 		local soundfile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.bossfile
 		if event == 'ENCOUNTER_START' then
@@ -65,7 +61,6 @@ function ElvUI_EltreumUI:BossMusic(event)
 end
 
 function ElvUI_EltreumUI:StopBossMusic(event)
-	--print(event)
 	if E.private.ElvUI_EltreumUI.combatmusic.bossmusic then
 		if dontstopboss == 1 then
 			if event == 'ENCOUNTER_END' then

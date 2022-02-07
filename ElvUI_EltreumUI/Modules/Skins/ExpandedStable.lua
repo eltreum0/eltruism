@@ -1,24 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 
---[[
-local CreateFrame = _G.CreateFrame
---local IsAddOnLoaded = _G.IsAddOnLoaded
---local LoadAddOn = _G.LoadAddOn
-local hooksecurefunc = _G.hooksecurefunc
-local PetStableFrame = _G.PetStableFrame
-local PetStableNextPageButton = _G.PetStableNextPageButton
-local PetStablePrevPageButton = _G.PetStablePrevPageButton
-local PetStableFrameModelBg = _G.PetStableFrameModelBg
-local PetStableModel = _G.PetStableModel
-local PetStableStabledPet1 = _G.PetStableStabledPet1
-local SEARCH = _G.SEARCH
-local NAME = _G.NAME
-local PET_FAMILIES = _G.PET_FAMILIES
-local PET_TALENTS = _G.PET_TALENTS
-local GetStablePetInfo = _G.GetStablePetInfo
-]]
-
 --based on Improved Stable Frame by Cybeloras
 function ElvUI_EltreumUI:ExpandedStable()
 	if E.myclass == 'HUNTER' then
@@ -118,11 +100,6 @@ function ElvUI_EltreumUI:ExpandedStable()
 			NUM_PET_STABLE_SLOTS = maxSlots
 			NUM_PET_STABLE_PAGES = 1
 			PetStableFrame.page = 1
-			--[[ PetStableFrame:HookScript("OnShow", function()
-				if not IsAddOnLoaded("ExpandedStable") then
-					LoadAddOn("ExpandedStable")
-				end
-			end) ]]
 		end
 	end
 end

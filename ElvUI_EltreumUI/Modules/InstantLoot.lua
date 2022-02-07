@@ -1,13 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
-local GetCVarBool = GetCVarBool
-local GetNumLootItems = GetNumLootItems
-local IsModifiedClick = IsModifiedClick
-local LootSlot = LootSlot
 
 -- yet another fast loot thing
 local EltruismInstantLoot = CreateFrame("Frame", "EltruismInstantLoot")
---EltruismInstantLoot:Hide()
 EltruismInstantLoot:RegisterEvent("LOOT_READY")
 local function InstantLoot()
 	if _G["TSMDestroyBtn"] and _G["TSMDestroyBtn"]:IsShown() then

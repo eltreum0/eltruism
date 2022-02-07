@@ -17,14 +17,12 @@ if ElvUI_EltreumUI.Retail then
 end
 
 function ElvUI_EltreumUI:SkinQuests()
-	--print("skin quests spam")
 	local fontsize = E.db.general.fontSize
 	if E.db.ElvUI_EltreumUI.skins.quests then
 		if ElvUI_EltreumUI.Retail then
 			if (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 
 				--WQs banner
-				--local ObjectiveTrackerBonusBannerFrame = _G.ObjectiveTrackerBonusBannerFrame
 				if _G.ObjectiveTrackerBonusBannerFrame then
 					--textcoords from https://www.townlong-yak.com/framexml/39229/Helix/AtlasInfo.lua
 					_G.ObjectiveTrackerBonusBannerFrame.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
