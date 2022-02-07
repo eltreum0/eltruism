@@ -15,8 +15,6 @@ EltreumPowerBar:Hide() --hide at the start before events
 --EltreumPowerBar:RegisterEvent("UPDATE_SHAPESHIFT_FORM") --druid thing
 --EltreumPowerBar:RegisterEvent("UNIT_MODEL_CHANGED") --druid thing for classic
 
-
-
 --Setup the text
 local EltreumPowerBarText = CreateFrame("Frame", nil, EltreumPowerBar)
 EltreumPowerBarText:SetWidth(1)
@@ -40,26 +38,6 @@ EltreumPowerPrediction:Hide()
 
 local EltreumPowerPredictionIncoming = CreateFrame('StatusBar', "EltruismPowerBarPredictionIncoming", EltreumPowerBar)
 EltreumPowerPredictionIncoming:Hide()
-
-
-function ElvUI_EltreumUI:SetupPowerBar()
-	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
-		EltreumPowerBar:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
-		EltreumPowerBar:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
-		EltreumPowerBar:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
-
-		EltreumPowerPrediction:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
-		EltreumPowerPrediction:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
-		EltreumPowerPrediction:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
-		EltreumPowerPrediction:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
-
-		EltreumPowerPredictionIncoming:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
-		EltreumPowerPredictionIncoming:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
-		EltreumPowerPredictionIncoming:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
-		EltreumPowerPredictionIncoming:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
-
-	end
-end
 
 --Calculate the Power Cost and draw on the Bar
 function ElvUI_EltreumUI:PowerPrediction()
@@ -181,14 +159,6 @@ function ElvUI_EltreumUI:PowerPrediction()
 		end
 	end
 end
-
-local EltruismPowerBarEventsFrame =  CreateFrame("FRAME")
-EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
-EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
-EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
-EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
-EltruismPowerBarEventsFrame:SetScript("OnEvent", ElvUI_EltreumUI.PowerPrediction)
-
 
 --so that the power updates when spec changes
 function ElvUI_EltreumUI:GetSpec()
@@ -669,13 +639,20 @@ function ElvUI_EltreumUI:NameplatePowerTextUpdate()
 	end
 end
 
-local EltruismPowerTextUpdateFrame = CreateFrame("FRAME")
-EltruismPowerTextUpdateFrame:RegisterEvent("UNIT_POWER_FREQUENT", "player")
-EltruismPowerTextUpdateFrame:RegisterEvent("UNIT_MODEL_CHANGED", "player")
-EltruismPowerTextUpdateFrame:SetScript("OnEvent", function()
+local EltruismPowerBarEventsFrame =  CreateFrame("FRAME")
+EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
+EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+EltruismPowerBarEventsFrame:SetScript("OnEvent", function()
+	--ElvUI_EltreumUI:PowerPrediction()
 	ElvUI_EltreumUI:NameplatePowerTextUpdate()
 	ElvUI_EltreumUI:NameplatePower()
+end)
 
+local EltruismPowerBarPredictionEventsFrame =  CreateFrame("FRAME")
+EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
+EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
+EltruismPowerBarPredictionEventsFrame:SetScript("OnEvent", function()
+	ElvUI_EltreumUI:PowerPrediction()
 end)
 
 function ElvUI_EltreumUI:UpdateNPwithoutBar()
