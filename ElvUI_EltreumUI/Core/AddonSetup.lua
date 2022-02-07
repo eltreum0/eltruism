@@ -1,7 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local SetCVar = _G.SetCVar
-local IsAddOnLoaded = _G.IsAddOnLoaded
 
 -- AddOnSkins Profile
 function ElvUI_EltreumUI:AddonSetupAS()
