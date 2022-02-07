@@ -84,7 +84,9 @@ function ElvUI_EltreumUI:AFKmusic()
 	if E.db.ElvUI_EltreumUI.afkmusic.enable then
 		if ElvUI_EltreumUI.Retail then
 			if UnitIsAFK("player") then
-				if musicSetting == '0' then SetCVar("Sound_EnableMusic", 1) end
+				if musicSetting == '0' then
+					SetCVar("Sound_EnableMusic", 1)
+				end
 				if E.db.ElvUI_EltreumUI.afkmusic.racial then
 					if ElvUI_EltreumUI.Retail then
 						PlayMusic(racialMusic[E.myrace])
@@ -100,7 +102,9 @@ function ElvUI_EltreumUI:AFKmusic()
 		end
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 			if UnitIsAFK("player") then
-				if musicSetting == '0' then SetCVar("Sound_EnableMusic", 1) end
+				if musicSetting == '0' then
+					SetCVar("Sound_EnableMusic", 1)
+				end
 				if ElvUI_EltreumUI.TBC then
 					PlayMusic(tbcMusic[E.myrace])
 				elseif ElvUI_EltreumUI.Classic then
