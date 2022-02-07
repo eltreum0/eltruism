@@ -42,8 +42,8 @@ function ElvUI_EltreumUI:QuestItem()
 				EltruismQuestItemFrame:SetFrameStrata("MEDIUM")
 			end
 			EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE")
-			EltruismQuestItemFrame:RegisterEvent("UNIT_INVENTORY_CHANGED")
-			EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED")			-- Needed for items that starts a quest, when we accept it, update to remove the icon
+			EltruismQuestItemFrame:RegisterUnitEvent("UNIT_INVENTORY_CHANGED", "player")
+			EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED") -- Needed for items that starts a quest, when we accept it, update to remove the icon
 			--EltruismQuestItemFrame:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN") --hmm
 			--EltruismQuestItemFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
 			EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
