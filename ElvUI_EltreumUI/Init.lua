@@ -7,7 +7,6 @@ local ElvUI_EltreumUI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTi
 local myclass = E.myclass
 local L = E.Libs.ACL:GetLocale("ElvUI", E.global.general.locale)
 local GetAddOnMetadata = _G.GetAddOnMetadata
-local hooksecurefunc = _G.hooksecurefunc
 
 Engine[1] = ElvUI_EltreumUI
 Engine[2] = E --ElvUI Engine
@@ -59,7 +58,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:AutoScreenshot() --takes screenshots when certain events are fired
 	ElvUI_EltreumUI:FriendlyNameplates() -- controls hiding healthbar from friendly nameplates inside instances
 	ElvUI_EltreumUI:TextureMode() -- checks for light mode in order to set texture to be class based, fired only when option is enabled
-	ElvUI_EltreumUI:WAAnchor()  --creates a weakaura anchor that can be used to attack weakauras to elvui's unitframe visibility settings
+	ElvUI_EltreumUI:Anchors()  --creates anchors for error frame and weakaura that can be used to attack weakauras to elvui's unitframe visibility settings
 	ElvUI_EltreumUI:ChatRoleSwapIcons() --adds custom role icons in chat when swapping roles
 	ElvUI_EltreumUI:DynamicChatFade() --adds chat fade/hide functions
 	ElvUI_EltreumUI:StealthOptions() --adds an overlay when in stealth

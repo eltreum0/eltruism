@@ -50,7 +50,7 @@ end
 -- Ghost frame for Automatic Weakauras Positioning
 local EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", E.UIParent)
 local EltruismWAConsumablesAnchor = CreateFrame("Frame", "EltruismConsumables", E.UIParent)
-function ElvUI_EltreumUI:WAAnchor()
+function ElvUI_EltreumUI:Anchors()
 	if E.private.unitframe.enable then
 		--Anchor for general weakauras, like those that replace actionbars
 		EltreumWAAnchor:SetParent("ElvUF_Player")
@@ -69,11 +69,13 @@ function ElvUI_EltreumUI:WAAnchor()
 		EltruismWAConsumablesAnchor:Size(270, 30)
 		E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", L["EltruismConsumables"], nil, nil, nil, "ALL,SOLO")
 	end
+
+	--mover for UI errors frame
+	E:CreateMover(_G.UIErrorsFrame, "MoverUIERRORS", "UI Error Frame", nil, nil, nil, "ALL,SOLO")
+	_G.UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+2, "THINOUTLINE")
 end
 
---mover for UI errors frame
-E:CreateMover(_G.UIErrorsFrame, "MoverUIERRORS", "UI Error Frame", nil, nil, nil, "ALL,SOLO")
-_G.UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+2, "THINOUTLINE")
+
 
 -- UI Scale
 function ElvUI_EltreumUI:SetupScale()
