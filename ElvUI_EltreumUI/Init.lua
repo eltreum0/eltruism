@@ -56,7 +56,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:CursorInit() --starts cursor modules
 	ElvUI_EltreumUI:SkinMailZone() --skins zone change messages and mail font
 	ElvUI_EltreumUI:Shadows() --adds shadows to frames
-	ElvUI_EltreumUI:SetupPowerBar() --set events
 	ElvUI_EltreumUI:AutoScreenshot() --takes screenshots when certain events are fired
 	ElvUI_EltreumUI:FriendlyNameplates() -- controls hiding healthbar from friendly nameplates inside instances
 	ElvUI_EltreumUI:TextureMode() -- checks for light mode in order to set texture to be class based, fired only when option is enabled
@@ -317,3 +316,8 @@ local function CallbackInitialize()
 	ElvUI_EltreumUI:Initialize()
 end
 E:RegisterModule(addon, CallbackInitialize)
+
+if IsAddOnLoaded("ElvUIDev") then
+	ElvUIDev:RegisterPlugin(ElvUI_EltreumUI)
+	--ElvUIDev:RegisterPluginModule("ElvUI_EltreumUI", moduleName, module)
+end
