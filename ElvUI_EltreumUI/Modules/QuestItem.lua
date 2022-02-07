@@ -59,6 +59,10 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- These items are not marked as being quest items, but we want to include them anyway
 			local qItems = {
+				--by Eltreum
+				28607,  -- Sunfury Disguise
+
+				-- by Az
 				23818,	-- Stillpine Furbolg Language Primer
 				23792,	-- Tree Disguise Kit
 				24084,	-- Draenei Banner
@@ -90,7 +94,6 @@ function ElvUI_EltreumUI:QuestItem()
 
 				56909,	-- Earthen Ring Unbinding Totem (Cata event)
 				60501, 	-- Stormstone, Deepholm Quest
-
 				--45067,	-- Egg Basket -- Az: offhand item, but I wanted it on my bar for a hotkey
 			}
 
