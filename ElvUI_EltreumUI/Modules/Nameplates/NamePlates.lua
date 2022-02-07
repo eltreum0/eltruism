@@ -282,6 +282,10 @@ function ElvUI_EltreumUI:NamePlateOptions()
 	end
 end
 
+local EltruismNamePlateOptionsFrame = CreateFrame("FRAME")
+EltruismNamePlateOptionsFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+EltruismNamePlateOptionsFrame:SetScript("OnEvent", ElvUI_EltreumUI.NamePlateOptions)
+
 function ElvUI_EltreumUI:ClassicThreatNP()
 	if E.private.nameplates.enable == true then
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then

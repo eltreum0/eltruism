@@ -56,6 +56,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:CursorInit() --starts cursor modules
 	ElvUI_EltreumUI:SkinMailZone() --skins zone change messages and mail font
 	ElvUI_EltreumUI:Shadows() --adds shadows to frames
+	ElvUI_EltreumUI:SetupPowerBar() --set events
 	ElvUI_EltreumUI:AutoScreenshot() --takes screenshots when certain events are fired
 	ElvUI_EltreumUI:FriendlyNameplates() -- controls hiding healthbar from friendly nameplates inside instances
 	ElvUI_EltreumUI:TextureMode() -- checks for light mode in order to set texture to be class based, fired only when option is enabled
@@ -121,8 +122,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 end
 
 function ElvUI_EltreumUI:HidePopups()
-	--E:StaticPopup_Hide('INCOMPATIBLE_ADDON') --915 error to be tested
-	--E:StaticPopup_Hide('DISABLE_INCOMPATIBLE_ADDON') --915 error to be tested
 	if E:IsAddOnEnabled("ElvUI_WindTools") then
 		local W = unpack(WindTools)
 		local function WindtoolsCompatHideWhileInstall()
@@ -154,13 +153,7 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_INDOORS') --for hiding healthbar in friendly np
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED') --for hiding healthbar in friendly np
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA') --for hiding healthbar in friendly np
-	ElvUI_EltreumUI:RegisterEvent("UNIT_NAME_UPDATE") --for class icons in the character frame
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED') --for power bar and light mode texture
-	ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_FREQUENT') --power update real time
-	--ElvUI_EltreumUI:RegisterEvent('UNIT_POWER_UPDATE') --power type less frequent but more cpu/memory friendly
-	ElvUI_EltreumUI:RegisterEvent("UNIT_MODEL_CHANGED") --druid things
-	ElvUI_EltreumUI:RegisterEvent('UNIT_SPELLCAST_START') --for power prediction
-	ElvUI_EltreumUI:RegisterEvent('UNIT_SPELLCAST_STOP') --for power prediction
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_LOOT") --LootText things
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_MONEY") --LootText things
 	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_CURRENCY") --LootText things
@@ -168,7 +161,6 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED") --LootText things
 	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE') --LootText things
 	ElvUI_EltreumUI:RegisterEvent('INSPECT_READY')
-	ElvUI_EltreumUI:RegisterEvent('UNIT_TARGET') --for target of target light mode
 	if ElvUI_EltreumUI.Retail then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED') --for class icons, power bar and shadows
 		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW') --for rogue order hall
@@ -181,8 +173,6 @@ function ElvUI_EltreumUI:Initialize()
 end
 
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
-	--local timestamp, eventType,	hideCaster,	sourceGUID,	sourceName,	sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags
-	--local _, eventType, _, _, _, sourceFlags, _, _, destName, destFlags = CombatLogGetCurrentEventInfo()
 	local _, eventType, _, _, _, _, _, _, _, destFlags = CombatLogGetCurrentEventInfo()
 	if eventType == "UNIT_DIED" and E.db.ElvUI_EltreumUI.partyraiddeath.enable then
 		ElvUI_EltreumUI:RaidDeath(destFlags)
@@ -197,7 +187,6 @@ function ElvUI_EltreumUI:ENCOUNTER_START(event)
 end
 
 function ElvUI_EltreumUI:ENCOUNTER_END(event)
-	--print(event)
 	local event2 = event
 	ElvUI_EltreumUI:QuestEncounterEnd()
 	ElvUI_EltreumUI:StopBossMusic(event)
@@ -228,16 +217,13 @@ function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
 end
 
 function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED(event)
-	--print(event)
 	ElvUI_EltreumUI:StopCombatMusic(event)
 	ElvUI_EltreumUI:DynamicChatFade()
 	ElvUI_EltreumUI:BlizzCombatText()
 	ElvUI_EltreumUI:QuestCombatEnd()
-	--ElvUI_EltreumUI:ArenaUnitframes()
 end
 
 function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED(event)
-	--print(event)
 	ElvUI_EltreumUI:CombatMusic(event)
 	ElvUI_EltreumUI:DynamicChatFade()
 	ElvUI_EltreumUI:ArenaUnitframes()
@@ -262,67 +248,9 @@ function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
 	ElvUI_EltreumUI:QuestItem()
 end
 
-function ElvUI_EltreumUI:UNIT_NAME_UPDATE(event,unit)
-	if unit == 'player' then
-		ElvUI_EltreumUI:PlayerNamepaperdoll()
-		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
-	end
-end
-
 function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	ElvUI_EltreumUI:NamePlateOptions()
 	ElvUI_EltreumUI:NameplatePower()
-	if E.db.ElvUI_EltreumUI.lightmode then
-		ElvUI_EltreumUI:ChangeUnitTexture()
-	end
-end
-
-function ElvUI_EltreumUI:UNIT_TARGET(event, unit)
-	if unit == 'target' then
-		ElvUI_EltreumUI:ChangeUnitTexture()
-	end
-end
-
-function ElvUI_EltreumUI:UNIT_POWER_FREQUENT(event,unit)
-	if unit == 'player' then
-		ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
-		ElvUI_EltreumUI:NameplatePower(event)
-		ElvUI_EltreumUI:PowerPrediction(event)
-	end
-end
-
---[[function ElvUI_EltreumUI:UNIT_POWER_UPDATE(event,unit)
-	if unit == 'player' then
-		ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
-		ElvUI_EltreumUI:PowerPrediction(event)
-		--ElvUI_EltreumUI:NameplatePower(event)
-	end
-end]]
-
-function ElvUI_EltreumUI:UNIT_MODEL_CHANGED(event,unit)
-	if unit == 'player' then
-		if E.db.ElvUI_EltreumUI.lightmode then
-			ElvUI_EltreumUI:ChangePlayerTexture()
-		end
-		if E.myclass == 'DRUID' or E.myclass == 'SHAMAN' then
-			ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
-			ElvUI_EltreumUI:NameplatePower(event)
-			ElvUI_EltreumUI:PowerPrediction()
-			ElvUI_EltreumUI:NamePlateOptions() --because druids ofc are complex
-		end
-	end
-end
-
-function ElvUI_EltreumUI:UNIT_SPELLCAST_START(event,unit)
-	if unit == 'player' then
-		ElvUI_EltreumUI:PowerPrediction(event)
-	end
-end
-
-function ElvUI_EltreumUI:UNIT_SPELLCAST_STOP(event,unit)
-	if unit == 'player' then
-		ElvUI_EltreumUI:PowerPrediction(event)
-	end
 end
 
 function ElvUI_EltreumUI:CHAT_MSG_LOOT()
@@ -382,12 +310,7 @@ function ElvUI_EltreumUI:PLAYER_AVG_ITEM_LEVEL_UPDATE()
 end
 
 function ElvUI_EltreumUI:INSPECT_READY(event,unit)
-	--if UnitExists("target") and UnitIsPlayer("target") then
-		--print(event)
-		--print(unit)
 	ElvUI_EltreumUI:InspectBg(unit)
-	--end
-	--print("inspect ready")
 end
 
 local function CallbackInitialize()

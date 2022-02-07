@@ -48,7 +48,7 @@ local hunter = {r = "0.66666519641876", g = "0.82744914293289", b = "0.447057843
 local warlock = {r = "0.52941060066223", g = "0.53333216905594", b = "0.93333131074905"}
 
 --from Benik
-function ElvUI_EltreumUI:ChangeUnitTexture()
+local function ChangeUnitTexture()
 	--print("change unit texture spam")
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
 
@@ -133,8 +133,14 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 		--raid & party its UF.groupunits instead
 	end
 end
-hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
-hooksecurefunc(UF, "Style", ElvUI_EltreumUI.ChangeUnitTexture)  --if not hooking into this then when the target of target changes it doesnt update
+
+local EltruismChangeUnitTextureFrame = CreateFrame("FRAME")
+EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_TARGET", "player")
+EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+EltruismChangeUnitTextureFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
+EltruismChangeUnitTextureFrame:SetScript("OnEvent", ChangeUnitTexture)
+hooksecurefunc(UF, "Construct_HealthBar", ChangeUnitTexture)
+hooksecurefunc(UF, "Style", ChangeUnitTexture)  --if not hooking into this then when the target of target changes it doesnt update
 --hooksecurefunc(UF, "Update_StatusBar", ElvUI_EltreumUI.ChangeUnitTexture) --needed for druid form swap for some reason + fixes on player entering world... except it also causes memory to go WAY up
 
 --from Benik
@@ -153,6 +159,10 @@ function ElvUI_EltreumUI:ChangePlayerTexture()
 end
 hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangePlayerTexture)
 --hooksecurefunc(UF, "Update_StatusBar", ElvUI_EltreumUI.ChangePlayerTexture) --needed for druid form swap for some reason + fixes on player entering world... except it also causes memory to go WAY up
+
+local EltruismPlayerTextureUpdate = CreateFrame("FRAME")
+EltruismPlayerTextureUpdate:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+EltruismPlayerTextureUpdate:SetScript("OnEvent", ElvUI_EltreumUI.ChangePlayerTexture)
 
 function ElvUI_EltreumUI:ChangeRaidTexture()
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then

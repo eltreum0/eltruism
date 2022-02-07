@@ -1,18 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
---[[
-local GetShapeshiftForm = _G.GetShapeshiftForm
-local UnitPower = _G.UnitPower
-local GetSpecialization = _G.GetSpecialization
-local GetSpecializationInfo = _G.GetSpecializationInfo
-local C_NamePlate = _G.C_NamePlate
-local UnitExists = _G.UnitExists
-local CreateFrame = _G.CreateFrame
-local UnitPowerMax = _G.UnitPowerMax
-]]
 local myclass = E.myclass
 local id, _
---local UnitCanAttack = _G.UnitCanAttack
 
 --Setup Power Bar, Prediction and Text
 local EltreumPowerAnchor
@@ -25,6 +14,8 @@ EltreumPowerBar:Hide() --hide at the start before events
 --EltreumPowerBar:RegisterEvent("UNIT_DISPLAYPOWER") --when power type changes
 --EltreumPowerBar:RegisterEvent("UPDATE_SHAPESHIFT_FORM") --druid thing
 --EltreumPowerBar:RegisterEvent("UNIT_MODEL_CHANGED") --druid thing for classic
+
+
 
 --Setup the text
 local EltreumPowerBarText = CreateFrame("Frame", nil, EltreumPowerBar)
@@ -49,6 +40,26 @@ EltreumPowerPrediction:Hide()
 
 local EltreumPowerPredictionIncoming = CreateFrame('StatusBar', "EltruismPowerBarPredictionIncoming", EltreumPowerBar)
 EltreumPowerPredictionIncoming:Hide()
+
+
+function ElvUI_EltreumUI:SetupPowerBar()
+	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
+		EltreumPowerBar:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
+		EltreumPowerBar:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+		EltreumPowerBar:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
+
+		EltreumPowerPrediction:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
+		EltreumPowerPrediction:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+		EltreumPowerPrediction:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
+		EltreumPowerPrediction:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
+
+		EltreumPowerPredictionIncoming:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
+		EltreumPowerPredictionIncoming:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+		EltreumPowerPredictionIncoming:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
+		EltreumPowerPredictionIncoming:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
+
+	end
+end
 
 --Calculate the Power Cost and draw on the Bar
 function ElvUI_EltreumUI:PowerPrediction()
@@ -170,6 +181,14 @@ function ElvUI_EltreumUI:PowerPrediction()
 		end
 	end
 end
+
+local EltruismPowerBarEventsFrame =  CreateFrame("FRAME")
+EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
+EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
+EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
+EltruismPowerBarEventsFrame:SetScript("OnEvent", ElvUI_EltreumUI.PowerPrediction)
+
 
 --so that the power updates when spec changes
 function ElvUI_EltreumUI:GetSpec()
@@ -624,35 +643,40 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 end
 
 --update the values of nameplate power bar
-function ElvUI_EltreumUI:NameplatePowerTextUpdate(event,unit)
+function ElvUI_EltreumUI:NameplatePowerTextUpdate()
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
-		EltreumPowerBar:SetScript("OnEvent", function(event,unit)
-			if (event == "UNIT_POWER_FREQUENT" or event == "UNIT_MODEL_CHANGED") and unit == 'player' then
-				local power = UnitPower("player")
-				--ElvUI_EltreumUI:Print('power frequent')
-				EltreumPowerBar:SetValue(power)
+		local power = UnitPower("player")
+		--ElvUI_EltreumUI:Print('power frequent')
+		EltreumPowerBar:SetValue(power)
 
-				local ret
-				local placeValue = ("%%.%df"):format(1)
-				if not power then
-					return 0
-				elseif power >= 1000000000000 then
-					ret = placeValue:format(power / 1000000000000) .. " T" -- trillion
-				elseif power >= 1000000000 then
-					ret = placeValue:format(power / 1000000000) .. " B" -- billion
-				elseif power >= 1000000 then
-					ret = placeValue:format(power / 1000000) .. " M" -- million
-				elseif power >= 1000 then
-					ret = placeValue:format(power / 1000) .. "K" -- thousand
-				else
-					ret = power -- hundreds
-				end
-				EltreumPowerBar.Text:SetText(ret)
-				--EltreumPowerBar.Text:SetText(BreakUpLargeNumbers(power))
-			end
-		end)
+		local ret
+		local placeValue = ("%%.%df"):format(1)
+		if not power then
+			return 0
+		elseif power >= 1000000000000 then
+			ret = placeValue:format(power / 1000000000000) .. " T" -- trillion
+		elseif power >= 1000000000 then
+			ret = placeValue:format(power / 1000000000) .. " B" -- billion
+		elseif power >= 1000000 then
+			ret = placeValue:format(power / 1000000) .. " M" -- million
+		elseif power >= 1000 then
+			ret = placeValue:format(power / 1000) .. "K" -- thousand
+		else
+			ret = power -- hundreds
+		end
+		EltreumPowerBar.Text:SetText(ret)
+		--EltreumPowerBar.Text:SetText(BreakUpLargeNumbers(power))
 	end
 end
+
+local EltruismPowerTextUpdateFrame = CreateFrame("FRAME")
+EltruismPowerTextUpdateFrame:RegisterEvent("UNIT_POWER_FREQUENT", "player")
+EltruismPowerTextUpdateFrame:RegisterEvent("UNIT_MODEL_CHANGED", "player")
+EltruismPowerTextUpdateFrame:SetScript("OnEvent", function()
+	ElvUI_EltreumUI:NameplatePowerTextUpdate()
+	ElvUI_EltreumUI:NameplatePower()
+
+end)
 
 function ElvUI_EltreumUI:UpdateNPwithoutBar()
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
