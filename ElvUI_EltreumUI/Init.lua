@@ -317,7 +317,7 @@ local function CallbackInitialize()
 end
 E:RegisterModule(addon, CallbackInitialize)
 
-if IsAddOnLoaded("ElvUIDev") then
-	ElvUIDev:RegisterPlugin(ElvUI_EltreumUI)
+if IsAddOnLoaded("ElvUI_CPU") then
+	ElvUI_CPU:RegisterPlugin(ElvUI_EltreumUI)
 	--ElvUIDev:RegisterPluginModule("ElvUI_EltreumUI", moduleName, module)
 end
