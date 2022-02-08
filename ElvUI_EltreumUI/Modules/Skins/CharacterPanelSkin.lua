@@ -9,6 +9,8 @@ end
 --improving character panel
 local CharacterFrame = _G.CharacterFrame
 local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture()
+local ClassCrestFrame = CreateFrame("Frame")
+local ClassCrestFrameTexture = ClassCrestFrame:CreateTexture()
 local ilevel
 
 if ElvUI_EltreumUI.Retail then
@@ -70,8 +72,33 @@ local classBgs = {
 	['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
 }
 
+local classCrests = {
+	['WARRIOR'] = "Artifacts-Warrior-BG-rune",
+	['PALADIN'] = "Artifacts-Paladin-BG-rune",
+	['HUNTER'] = "Artifacts-Hunter-BG-rune",
+	['ROGUE'] = "Artifacts-Rogue-BG-rune",
+	['PRIEST'] = "Artifacts-Priest-BG-rune",
+	['DEATHKNIGHT'] = "Artifacts-DeathKnightFrost-BG-Rune",
+	['SHAMAN'] = "Artifacts-Shaman-BG-rune",
+	['MAGE'] = "Artifacts-Mage-BG-rune",
+	['WARLOCK'] = "Artifacts-Warlock-BG-rune",
+	['MONK'] = "Artifacts-Monk-BG-rune",
+	['DRUID'] = "Artifacts-Druid-BG-rune",
+	['DEMONHUNTER'] = "Artifacts-DemonHunter-BG-rune",
+}
+
 function ElvUI_EltreumUI:ExpandedCharacterStats()
 	if ElvUI_EltreumUI.Retail then
+		--add class crest
+		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
+			ClassCrestFrame:SetSize(256, 256)
+			ClassCrestFrame:SetPoint("CENTER", _G.CharacterModelFrame)
+			ClassCrestFrame:SetParent(_G.CharacterFrame)
+			ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
+			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
+		end
+
 		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 			_G.CharacterFrame:SetHeight(470)
 			-- Move Right Side since left side is already ok
@@ -103,6 +130,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				alphabg = 0.3
 			end
 
+			--add class bg texture
 			CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
 			CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 			CharacterFrameBackgroundTexture:SetAlpha(alphabg)
@@ -373,6 +401,15 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		  	end
 		end
 	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		--add class crest
+		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
+			ClassCrestFrame:SetSize(150, 150)
+			ClassCrestFrame:SetPoint("CENTER", _G.CharacterModelFrame)
+			ClassCrestFrame:SetParent(_G.CharacterFrame)
+			ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
+			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
+		end
 		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 
 			--main way of clearing memory

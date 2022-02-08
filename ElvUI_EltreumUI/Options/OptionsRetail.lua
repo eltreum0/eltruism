@@ -1005,8 +1005,17 @@ if ElvUI_EltreumUI.Retail then
 									get = function(info) return E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.skins.expandarmorybg = value E:StaticPopup_Show('CONFIG_RL') end,
 								},
-								header845 = {
+								expandartcrest = {
 									order = 5,
+									type = 'toggle',
+									name = "Add Crest to Character Panel",
+									width = 'full',
+									desc = "Enable this option",
+									get = function(info) return E.db.ElvUI_EltreumUI.skins.expandarmorycrest end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.skins.expandarmorycrest = value E:StaticPopup_Show('CONFIG_RL') end,
+								},
+								header845 = {
+									order = 6,
 									type = "description",
 									name = "",
 									width = 'full',
@@ -1016,7 +1025,7 @@ if ElvUI_EltreumUI.Retail then
 									type = 'range',
 									name = L["Art Alpha"],
 									desc = L["Change the transparency of the Art"],
-									order = 5,
+									order = 7,
 									min = 0.01,
 									max = 1,
 									step = 0.01,

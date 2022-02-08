@@ -58,6 +58,7 @@ P.ElvUI_EltreumUI = {
 		ilvlfontweight = "THICKOUTLINE",
 		expandarmorybg = false,
 		expandarmorybgalpha = 0.3,
+		expandarmorycrest = false,
 		bossemote = false,
 		quests = false,
 		zones = false,
