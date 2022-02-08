@@ -1310,7 +1310,7 @@ if ElvUI_EltreumUI.TBC then
 									order = 36,
 									type = "description",
 									name = "Skin Objective Frame",
-									desc = "Only loads when Shadow and Light and Windtools are not enabled",
+									desc = "Only loads when Questie is not enabled",
 									width = 'full',
 								},
 								questenable = {
@@ -1321,6 +1321,21 @@ if ElvUI_EltreumUI.TBC then
 									width = 'full',
 									get = function(info) return E.db.ElvUI_EltreumUI.skins.quests end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.skins.quests = value E:StaticPopup_Show('CONFIG_RL') end,
+								},
+								professionskins = {
+									order = 38,
+									type = "description",
+									name = "Skin Profession Frame",
+									width = 'full',
+								},
+								professionenable = {
+									order = 39,
+									name = L['Enable'],
+									type = "toggle",
+									desc = "Skin the Profession/Tradeskill Frame",
+									width = 'full',
+									get = function(info) return E.db.ElvUI_EltreumUI.skins.professions end,
+									set = function(info, value) E.db.ElvUI_EltreumUI.skins.professions = value E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								header64546 = {
 									order = 48,
