@@ -88,7 +88,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 			ElvUI_EltreumUI:ExpandedStable() --expands pet stable for hunters
 		end
 	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-		ElvUI_EltreumUI:ClassicSockets()
+		ElvUI_EltreumUI:ClassicSockets() --adds sockets and enchants into the character panel, based on Kibs Item Level by Kibsgaard
 		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
 		ElvUI_EltreumUI:ExpandedTalents() --makes talents fit in one window without scroll
 		ElvUI_EltreumUI:UpdateAvgIlvl() --updates the ilvl of the character at login so its not 0

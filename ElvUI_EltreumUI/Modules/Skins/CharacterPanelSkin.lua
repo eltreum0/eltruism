@@ -92,7 +92,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		--add class crest
 		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
 			ClassCrestFrame:SetSize(256, 256)
-			ClassCrestFrame:SetPoint("CENTER", _G.CharacterModelFrame)
+			ClassCrestFrame:SetPoint("CENTER", _G.CharacterModelFrame, 0, 50)
 			ClassCrestFrame:SetParent(_G.CharacterFrame)
 			ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
 			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
@@ -406,7 +406,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		--add class crest
 		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
 			ClassCrestFrame:SetSize(150, 150)
-			ClassCrestFrame:SetPoint("CENTER", _G.CharacterModelFrame)
+			ClassCrestFrame:SetPoint("CENTER", _G.CharacterModelFrame, 0 , 50)
 			ClassCrestFrame:SetParent(_G.CharacterFrame)
 			ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
 			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)

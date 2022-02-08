@@ -4,6 +4,7 @@ ___
 ### 2.7.9
 Added an option to display the Class Crest in the Character Panel (Eltruism > Skins> Character)\
 Added a few items that are not considered quest items to the quest item bar\
+Skinned the professions window to be wider, this skin can be enabled in Eltruism > Skins
 ___
 ### 2.7.8
 Reworked many functions and how they are registered, resulting in improved performance and memory usage, specially in combat\

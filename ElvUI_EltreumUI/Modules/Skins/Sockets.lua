@@ -2,7 +2,6 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 
 --Fork of Kibs Item Level by Kibsgaard
-
 function ElvUI_EltreumUI:ClassicSockets()
 	if not E.db.ElvUI_EltreumUI.skins.sockets then
 		return

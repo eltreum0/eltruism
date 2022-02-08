@@ -22,6 +22,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.skins.expandarmorybg = true
 	E.db.ElvUI_EltreumUI.skins.bossemote = true
 	E.db.ElvUI_EltreumUI.skins.quests = true
+	E.db.ElvUI_EltreumUI.skins.professions = true
 	E.db.ElvUI_EltreumUI.skins.zones = true
 	E.db.ElvUI_EltreumUI.skins.shadows = true
 	E.db.ElvUI_EltreumUI.shadows.aura = true
