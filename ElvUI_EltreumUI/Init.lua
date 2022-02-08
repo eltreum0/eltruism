@@ -91,7 +91,8 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:ClassicSockets()
 		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
 		ElvUI_EltreumUI:ExpandedTalents() --makes talents fit in one window without scroll
-		ElvUI_EltreumUI:UpdateAvgIlvl()
+		ElvUI_EltreumUI:UpdateAvgIlvl() --updates the ilvl of the character at login so its not 0
+		ElvUI_EltreumUI:SkinProfessions() --makes professions wider
 	end
 	if E.private.nameplates.enable then
 		ElvUI_EltreumUI:NamePlateOptions() --adds dynamic class based color filters to elvui nameplates
