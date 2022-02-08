@@ -2710,6 +2710,15 @@ if ElvUI_EltreumUI.Retail then
 							get = function(info) return E.db.ElvUI_EltreumUI.questsettings.autoaccept end,
 							set = function(info, value) E.db.ElvUI_EltreumUI.questsettings.autoaccept = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
+						autoacceptdailyweekly = {
+							order = 3,
+							type = 'toggle',
+							name = L["Accept Daily and Weekly quests"],
+							desc = L["You will also automatically accept Daily and Weekly Quests"],
+							width = 'full',
+							get = function(info) return E.db.ElvUI_EltreumUI.questsettings.acceptdaily end,
+							set = function(info, value) E.db.ElvUI_EltreumUI.questsettings.acceptdaily = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
 						autoacceptinvert = {
 							order = 3,
 							type = 'toggle',

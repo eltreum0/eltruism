@@ -258,6 +258,7 @@ P.ElvUI_EltreumUI = {
 		arena = false,
 		combatenable = false,
 		autoaccept = false,
+		acceptdaily = false,
 		autoacceptinvert = false,
 		questitems = false,
 		questitemsbar1 = false,

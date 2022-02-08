@@ -3,6 +3,7 @@
 ___
 ### 2.7.9
 Added an option to display the Class Crest in the Character Panel (Eltruism > Skins> Character)\
+Added an option to also automatically accept weekly and daily quests for retail\
 Added a few items that are not considered quest items to the quest item bar\
 Skinned the professions window to be wider, this skin can be enabled in Eltruism > Skins
 ___

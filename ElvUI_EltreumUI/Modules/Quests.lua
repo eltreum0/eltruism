@@ -163,15 +163,21 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						else
 							if ElvUI_EltreumUI.Retail then
 								--print("not an auto accept quest")
-								if QuestIsDaily() then
-									--print("its a daily quest")
-									return
-								elseif QuestIsWeekly() then
-									--print("its a weekly quest")
-									return
+								if not E.db.ElvUI_EltreumUI.questsettings.acceptdaily then
+									if QuestIsDaily() then
+										--print("its a daily quest")
+										return
+									elseif QuestIsWeekly() then
+										--print("its a weekly quest")
+										return
+									else
+										AcceptQuest()
+										--print("quest accepted")
+									end
+								else
+									AcceptQuest()
+									--print("quest accepted")
 								end
-								AcceptQuest()
-								--print("quest accepted")
 							elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 								AcceptQuest()
 							end
@@ -213,15 +219,17 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 							for i = 1, GetNumGossipActiveQuests() do
 								--print("tried to select and accept quests in a loop"..math.random(1,99))
 								SelectGossipActiveQuest(i)
-
-
 								if ElvUI_EltreumUI.Retail then
-									if QuestIsDaily() then
-										--print("its a daily quest")
-										return
-									elseif QuestIsWeekly() then
-										--print("its a weekly quest")
-										return
+									if not E.db.ElvUI_EltreumUI.questsettings.acceptdaily then
+										if QuestIsDaily() then
+											--print("its a daily quest")
+											return
+										elseif QuestIsWeekly() then
+											--print("its a weekly quest")
+											return
+										else
+											AcceptQuest()
+										end
 									else
 										AcceptQuest()
 									end
