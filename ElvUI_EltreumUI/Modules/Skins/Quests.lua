@@ -311,6 +311,9 @@ function ElvUI_EltreumUI:SkinQuests()
 					end)
 				end
 			end)
+
+
+
 			--and enchanting which uses a different system apparently
 			local WideTradeSkillEnchant = CreateFrame("Frame")
 			local dontexpandanymoreEnchant = 0
@@ -336,11 +339,15 @@ function ElvUI_EltreumUI:SkinQuests()
 						CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30,  -46)
 						CraftDetailScrollChildFrame:SetHeight(390)
 
-						CraftFrameFilterDropDown:ClearAllPoints()
-						CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
-
-						CraftFrameAvailableFilterCheckButton:ClearAllPoints()
-						CraftFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", CraftFrame, 64,-48)
+						if ElvUI_EltreumUI.TBC then
+							CraftFrameFilterDropDown:ClearAllPoints()
+							CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
+							CraftFrameAvailableFilterCheckButton:ClearAllPoints()
+							CraftFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", CraftFrame, 64,-48)
+						elseif ElvUI_EltreumUI.Classic then
+							CraftDetailScrollFrame:Hide()
+							CraftDetailScrollFrameScrollBar:Hide()
+						end
 
 						CraftCreateButton:ClearAllPoints()
 						CraftCreateButton:SetPoint("LEFT", CraftFrame, "BOTTOMLEFT", 15, 95)
