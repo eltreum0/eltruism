@@ -61,6 +61,8 @@ function ElvUI_EltreumUI:QuestItem()
 			local qItems = {
 				--by Eltreum
 				28607,  -- Sunfury Disguise
+				28132, -- area 52 bomb
+				28038, -- seaforium explosive
 
 				-- by Az
 				23818,	-- Stillpine Furbolg Language Primer

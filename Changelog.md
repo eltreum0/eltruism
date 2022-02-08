@@ -1,6 +1,10 @@
 ### 🌌 Next Version 
 **The future is uncertain**
 ___
+### 2.7.9
+Added an option to display the Class Crest in the Character Panel (Eltruism > Skins> Character)\
+Added a few items that are not considered quest items to the quest item bar\
+___
 ### 2.7.8
 Reworked many functions and how they are registered, resulting in improved performance and memory usage, specially in combat\
 Set smoothbars to off and friendly nameplates inside instances to off since it's been discovered that they impact performance. It is recommended to do the same, by going into ElvUI > Unitframes/Nameplates and unchecking Smooth Bars, then ElvUI > Eltruism > Nameplates > Hide Friendly Nameplates inside instances\

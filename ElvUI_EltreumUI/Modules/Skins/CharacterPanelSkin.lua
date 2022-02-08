@@ -117,6 +117,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.CharacterModelFrame.BackgroundBotRight:Hide()
 			_G.CharacterModelFrame.BackgroundTopLeft:SetAllPoints(_G.CharacterModelFrame)
 			_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(_G.CharacterModelFrame)
+
+
 			--move the equipment manager to a nice position
 			_G.PaperDollEquipmentManagerPane:ClearAllPoints()
 			_G.PaperDollEquipmentManagerPane:SetPoint("RIGHT", _G.CharacterFrame, "RIGHT", -30, -20)

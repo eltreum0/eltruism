@@ -256,6 +256,122 @@ function ElvUI_EltreumUI:SkinQuests()
 				questTitle:Width(335)
 			end
 
+
+			--skin and expand the tradeskills
+			local WideTradeSkill = CreateFrame("Frame")
+			local dontexpandanymore = 0
+			WideTradeSkill:RegisterEvent("ADDON_LOADED")
+			WideTradeSkill:SetScript("OnEvent", function(_, _, arg)
+				if (arg == "Blizzard_TradeSkillUI") then
+					TradeSkillFrame:HookScript("OnShow", function()
+						if not TradeSkillFrame.backdrop.shadow then
+							TradeSkillFrame.backdrop:CreateShadow()
+						end
+						TradeSkillFrame:SetWidth(765)
+						TradeSkillFrame:SetHeight(550)
+
+						TradeSkillDetailScrollFrame:SetHeight(390)
+						TradeSkillDetailScrollFrame:SetWidth(350)
+
+						TradeSkillDetailScrollFrame:ClearAllPoints()
+						TradeSkillDetailScrollFrame:SetPoint("RIGHT", TradeSkillFrame, 0,  -35)
+						TradeSkillDetailScrollFrame:SetHeight(390)
+
+						TradeSkillListScrollFrameScrollBar:ClearAllPoints()
+						TradeSkillListScrollFrameScrollBar:SetPoint("LEFT", TradeSkillDetailScrollChildFrame, -30,  -70)
+						TradeSkillListScrollFrameScrollBar:SetHeight(320)
+
+						TradeSkillCreateAllButton:ClearAllPoints()
+						TradeSkillCreateAllButton:SetPoint("LEFT", TradeSkillFrame, "BOTTOMLEFT", 15, 95)
+
+						TradeSkillCreateButton:ClearAllPoints()
+						TradeSkillCreateButton:SetPoint("LEFT", TradeSkillFrame, "BOTTOMLEFT", 180, 95)
+
+						TradeSkillCancelButton:ClearAllPoints()
+						TradeSkillCancelButton:SetPoint("RIGHT", TradeSkillFrame, "BOTTOMRIGHT", -50, 95)
+
+						if dontexpandanymore == 0 then
+							-- Create the additional rows
+							local numSkills = TRADE_SKILLS_DISPLAYED
+							TRADE_SKILLS_DISPLAYED = TRADE_SKILLS_DISPLAYED + 14
+							for i = numSkills + 1, TRADE_SKILLS_DISPLAYED do
+								local skillbutton = CreateFrame("Button", "TradeSkillSkill" .. i, TradeSkillFrame, "TradeSkillSkillButtonTemplate")
+								skillbutton:SetID(i)
+								skillbutton:Hide()
+								skillbutton:ClearAllPoints()
+								skillbutton:SetPoint("TOPLEFT", _G["TradeSkillSkill" .. (i - 1)], "BOTTOMLEFT", 0, 1)
+							end
+							--increase the width of the rows so the title fits
+							for i = 1, TRADE_SKILLS_DISPLAYED do
+								local skillTitle = _G['TradeSkillSkill'..i]
+								skillTitle:Width(335)
+							end
+							dontexpandanymore = 1
+						end
+					end)
+				end
+			end)
+			--and enchanting which uses a different system apparently
+			local WideTradeSkillEnchant = CreateFrame("Frame")
+			local dontexpandanymoreEnchant = 0
+			WideTradeSkillEnchant:RegisterEvent("ADDON_LOADED")
+			WideTradeSkillEnchant:SetScript("OnEvent", function(_, _, arg)
+				if (arg == "Blizzard_CraftUI") then
+					CraftFrame:HookScript("OnShow", function()
+						if not CraftFrame.backdrop.shadow then
+							CraftFrame.backdrop:CreateShadow()
+						end
+						CraftFrame:SetWidth(765)
+						CraftFrame:SetHeight(550)
+
+						CraftListScrollFrameScrollChildFrame:SetHeight(390)
+						CraftListScrollFrameScrollChildFrame:SetWidth(350)
+
+						CraftListScrollFrameScrollBar:ClearAllPoints()
+						CraftListScrollFrameScrollBar:SetPoint("CENTER", CraftFrame, "CENTER", 10,  12)
+						CraftListScrollFrameScrollBar:SetHeight(320)
+
+						CraftDetailScrollChildFrame:SetParent(CraftFrame)
+						CraftDetailScrollChildFrame:ClearAllPoints()
+						CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30,  -46)
+						CraftDetailScrollChildFrame:SetHeight(390)
+
+						CraftFrameFilterDropDown:ClearAllPoints()
+						CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
+
+						CraftFrameAvailableFilterCheckButton:ClearAllPoints()
+						CraftFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", CraftFrame, 64,-48)
+
+						CraftCreateButton:ClearAllPoints()
+						CraftCreateButton:SetPoint("LEFT", CraftFrame, "BOTTOMLEFT", 15, 95)
+
+						CraftCancelButton:ClearAllPoints()
+						CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
+
+						if dontexpandanymoreEnchant == 0 then
+							-- Create the additional rows
+							local numCrafts = CRAFTS_DISPLAYED
+							CRAFTS_DISPLAYED = CRAFTS_DISPLAYED + 14
+							for i = numCrafts + 1, CRAFTS_DISPLAYED do
+								local craftbutton = CreateFrame("Button", "Craft" .. i, CraftFrame, "CraftButtonTemplate")
+								craftbutton:SetID(i)
+								craftbutton:Hide()
+								craftbutton:ClearAllPoints()
+								craftbutton:SetPoint("TOPLEFT", _G["Craft" .. (i - 1)], "BOTTOMLEFT", 0, 1)
+							end
+							--increase the width of the rows so the title fits
+							for i = 1, CRAFTS_DISPLAYED do
+								local craftTitle = _G['Craft'..i]
+								craftTitle:Width(335)
+							end
+							dontexpandanymoreEnchant = 1
+						end
+					end)
+				end
+			end)
+
+
+
 			if not IsAddOnLoaded('Questie') then
 				--from blizzard's FrameXML/QuestLogFrame.lua
 
