@@ -952,7 +952,7 @@ if ElvUI_EltreumUI.TBC then
 									order = 6,
 									type = 'execute',
 									name = L["All Boss Debuffs"],
-									desc = L["Set filters to show more debuffs on Bosss"],
+									desc = L["Set filters to show more debuffs on Boss"],
 									width = 'double',
 									func = function() ElvUI_EltreumUI:SetupDebuffs('boss', 'Everything') end,
 								},

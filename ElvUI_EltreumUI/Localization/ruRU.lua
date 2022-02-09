@@ -2,10 +2,10 @@
 local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "ruRU", true, true)
 if not L then return end
 -- Core
-L["4K resolution detected, setting fonts to default mode."] = true
-L["1440p resolution detected, setting fonts to outline mode."] = true
-L["1080p resolution detected, setting fonts to outline mode."] = true
-L["Fonts were set to Outline due to your resolution."] = true
+L["4K resolution detected, setting fonts to default mode."] = L["Обнаружено разрешение 4K, установка шрифтов в режим по умолчанию."]
+L["1440p resolution detected, setting fonts to outline mode."] = L["Обнаружено разрешение 1440p, установлен режим начертания шрифтов."]
+L["1080p resolution detected, setting fonts to outline mode."] = L["Обнаружено разрешение 1080p, установлен режим начертания шрифтов."]
+L["Fonts were set to Outline due to your resolution."] = L["Шрифты были установлены в режим начертания из-за вашего разрешения."]
 L["EltruismConsumables"] = true
 --Install
 L["General CVars have been set."] = true
@@ -227,7 +227,7 @@ L["Set filters to show more debuffs on Focus"] = true
 L["All Boss Buffs"] = true
 L["Set filters to show more buffs on Boss"] = true
 L["All Boss Debuffs"] = true
-L["Set filters to show more debuffs on Bosss"] = true
+L["Set filters to show more debuffs on Boss"] = true
 L["All Nameplate Buffs"] = true
 L["Set filters to show more buffs on Nameplates"] = true
 L["All Nameplate Debuffs"] = true
@@ -315,7 +315,7 @@ L["Hide Friendly Nameplates inside Instances"] = true
 L["Hide Friendly Nameplates everywhere"] = true
 L["Wide nameplate debuffs and buffs"] = true
 L["Make Buffs and Debuffs Wide on Nameplates"] = true
-L["Toogle On and Off"] = true
+L["Toggle On and Off"] = true
 L["Enemy Nameplate Level"] = true
 L["Hide level on enemy nameplates when you are max level"] = true
 L["Nameplate Power Bar"] = true

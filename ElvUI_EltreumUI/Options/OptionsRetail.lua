@@ -444,7 +444,7 @@ if ElvUI_EltreumUI.Retail then
 									order = 6,
 									type = 'execute',
 									name = L["All Boss Debuffs"],
-									desc = L["Set filters to show more debuffs on Bosss"],
+									desc = L["Set filters to show more debuffs on Boss"],
 									width = 'double',
 									func = function() ElvUI_EltreumUI:SetupDebuffs('boss', 'Everything') end,
 								},
@@ -859,7 +859,7 @@ if ElvUI_EltreumUI.Retail then
 									get = function(info) return E.db.ElvUI_EltreumUI.skins.quests end,
 									set = function(info, value) E.db.ElvUI_EltreumUI.skins.quests = value E:StaticPopup_Show('CONFIG_RL') end,
 								},
-								levelbossskins = {
+								levelBosskins = {
 									order = 48,
 									type = "description",
 									name = L["Skin Level Up, Boss Loot and Instance Entrance frames to be class colored"],

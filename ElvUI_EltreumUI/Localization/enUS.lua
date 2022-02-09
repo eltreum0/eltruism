@@ -56,8 +56,7 @@ L["Import Details! profile with dual panels"] = true
 L["You can right click the bottom right arrow to toggle the Details! Window"] = true
 L["Remember to swap the second window to Healing Done or Tiny Threat"] = true
 L["Details is an advanced combat parser"] = true
-L["It uses less memory and is more efficient than alternatives"] = true
-L["And has many plugins to choose from"] = true
+L["It has many plugins to choose from"] = true
 L["Boss Mods"] = true
 L["Import DBM or Bigwigs profiles"] = true
 L["DBM is not installed or enabled so BigWigs will be used"] = true
@@ -182,7 +181,7 @@ L["Set filters to show more debuffs on Focus"] = true
 L["All Boss Buffs"] = true
 L["Set filters to show more buffs on Boss"] = true
 L["All Boss Debuffs"] = true
-L["Set filters to show more debuffs on Bosss"] = true
+L["Set filters to show more debuffs on Boss"] = true
 L["All Nameplate Buffs"] = true
 L["Set filters to show more buffs on Nameplates"] = true
 L["All Nameplate Debuffs"] = true
@@ -311,7 +310,6 @@ L["Dialog"] = true
 L["Change the Horizontal Position of LootText (Default = 0)"] = true
 L["Set X offset"] = true
 L["Change the Vertical Position of LootText (Default = 200)"] = true
-L["Set Y offset"] = true
 L["Change the font of LootText to be that the ElvUI Default Font found in General"] = true
 L["Use ElvUI General Font"] = true
 L["Change the font of LootText"] = true
@@ -343,7 +341,6 @@ L["In order to use this feature, simply go to your Weakaura, and go to its Group
 L["Setting "] = true
 L[" or "] = true
 L[" as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero"] = true
-L["My WeakAuras are available here, but are not focused on one class. Consider them more like upcoming features."] = true
 L["All weakauras"] = true
 L["Nameplate Power Bar"] = true
 L["Boss nameplate at base"] = true
