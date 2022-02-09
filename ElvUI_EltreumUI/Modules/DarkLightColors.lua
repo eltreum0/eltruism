@@ -125,26 +125,25 @@ function ElvUI_EltreumUI:LightMode()
 	end
 end
 
-function ElvUI_EltreumUI:TextureMode()
-	if E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
-		local NP = E:GetModule('NamePlates')
-		--Change classpower background, ty Benik for the great help
-		local function ClassPowerColor()
+local NP = E:GetModule('NamePlates')
+hooksecurefunc(NP, 'Initialize', function()
+	if E.db.ElvUI_EltreumUI.modetexture then
+		NP.multiplier = 0
+	end
+end)
+if ElvUI_EltreumUI.Retail then
+	hooksecurefunc(NP, 'Construct_Runes', function()
+		if E.db.ElvUI_EltreumUI.modetexture then
 			NP.multiplier = 0
 		end
-		hooksecurefunc(NP, 'Initialize', ClassPowerColor)
-		ClassPowerColor()
+	end)
+end
 
-		if ElvUI_EltreumUI.Retail then
-			local function RuneBackground()
-				NP.multiplier = 0
-			end
-			hooksecurefunc(NP, 'Construct_Runes', RuneBackground)
-			RuneBackground()
-		end
+function ElvUI_EltreumUI:TextureMode()
+	if E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
 
-		local UF = E:GetModule('UnitFrames') --only classpower that is actually in UF instead of NP
 		if (ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic) and E.myclass == 'SHAMAN' then
+			local UF = E:GetModule('UnitFrames') --only classpower that is actually in UF instead of NP
 			local function TotemBackground()
 				local header = _G['ElvUF_Player']
 				for i = 1, header:GetNumChildren() do
