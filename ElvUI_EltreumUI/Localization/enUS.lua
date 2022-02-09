@@ -88,7 +88,6 @@ L["The original layout was made for the Eltruism DPS/Tank profile, please switch
 L["You need to be using an Eltruism profile in order to use this function"] = true
 L["Debuff filters were setup"] = true
 L["Buff filters were setup"] = true
-L["ElvUI Chat has been Set"] = true
 -- Datatext
 L["Eltruism Ammo"] = true
 L["Click:"] = true
@@ -115,9 +114,7 @@ L["Chat"] = true
 L["Clear Details! Damage Meter tables to free up memory"] = true
 L["Clear Details Tables"] = true
 L["Set Details tables to be empty"] = true
-L["Reinstall the plugin to reset settings"] = true
 L["Install"] = true
-L["Reset nameplates to Eltruism settings"] = true
 L["A.F.K"] = true -- away from keyboard, can be longer in other languages
 L["Play music while you are AFK"] = true
 L["Enable"] = true
@@ -216,7 +213,6 @@ L["Play music during combat"] = true
 L["Enable music during combat"] = true
 L["Disable in Instances"] = true
 L["Disable music during combat in instances"] = true
-L["Path to file"] = true
 L["Example: "] = true
 L["CVars"] = true -- i dont know if this gets localized
 L["Setup CVars"] = true
