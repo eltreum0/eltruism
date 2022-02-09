@@ -8,6 +8,7 @@ L["1080p resolution detected, setting fonts to outline mode."] = true
 L["Fonts were set to Outline due to your resolution."] = true
 L["EltruismConsumables"] = true
 --Install
+L["ElvUI Chat has been set."] = true
 L["General CVars have been set."] = true
 L["NamePlate CVars have been set."] = true
 L["AddOnSkins profile has been set."] = true
@@ -132,6 +133,7 @@ L["NamePlate Style Filters have been setup."] = true
 L["Abbreviates the unit name once it goes over 16 characters, made by Azilroka"] = true
 L["updated to "] = true
 L["Layout has been set."] = true
+L["General Layout has been set."] = true
 L["The alternative layout was made for the Eltruism DPS/Tank profile, please switch to it to use it"] = true
 L["The original layout was made for the Eltruism DPS/Tank profile, please switch to it to use it"] = true
 L["You need to be using an Eltruism profile in order to use this function"] = true
@@ -140,12 +142,16 @@ L["Buff filters were setup"] = true
 L["ElvUI Chat has been Set"] = true
 -- Datatext
 L["Eltruism Ammo"] = true
+L["Click:"] = true
+L["Open Eltruism Configuration Panel"] = true
+L["Eltruism Config"] = true
 -- Fonts
 L["Your custom font has been set."] = true
 L["Kimberley Font has been set."] = true
 L["Exo2 Font has been set."] = true
 L["GothamNarrow Black Font has been set."] = true
 L["Roboto Font has been set."] = true
+L["Crystalzcuhei Font has been set."] = true
 --LootText
 L["INVENTORY IS FULL"] = true
 L["Inventory is full."] = true --is a blizzard argument for the error, if different from blizzard it will not work
@@ -155,6 +161,11 @@ L["Copper"] = true -- the coin type exactly as it is in game, or the function wi
 L["Soul Ash"] = true -- the currency exactly as it is in game, or the function will not work for the location
 --Options
 L["Installer"] = true
+L["Nameplates"] = true
+L["Chat"] = true
+L["Clear Details! Damage Meter tables to free up memory"] = true
+L["Clear Details Tables"] = true
+L["Set Details tables to be empty"] = true
 L["Reinstall the plugin to reset settings"] = true
 L["Install"] = true
 L["Reset nameplates to Eltruism settings"] = true
@@ -488,3 +499,4 @@ L["Shows Class Icons by Blizzard on all targets"] = true
 L["Shows Class Icons by Blizzard only on Player targets"] = true
 L["Shows Class Icons with borders recolored by Releaf on all targets"] = true
 L["Shows Class Icons with borders recolored by Releaf on Player targets"] = true
+L["Hybrid"] = true
