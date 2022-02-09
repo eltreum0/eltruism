@@ -344,11 +344,11 @@ function ElvUI_EltreumUI:Shadows()
 				_G.PVEFrameTab2.backdrop,
 				_G.PVEFrameTab3.backdrop,
 				_G.CollectionsJournal,
-				_G.CollectionsJournalTab1.backdrop,
-				_G.CollectionsJournalTab2.backdrop,
-				_G.CollectionsJournalTab3.backdrop,
-				_G.CollectionsJournalTab4.backdrop,
-				_G.CollectionsJournalTab5.backdrop,
+				--_G.CollectionsJournalTab1.backdrop,
+				--_G.CollectionsJournalTab2.backdrop,
+				--_G.CollectionsJournalTab3.backdrop,
+				--_G.CollectionsJournalTab4.backdrop,
+				--_G.CollectionsJournalTab5.backdrop,
 			}
 			for _, frame in pairs(retailframes) do
 				if frame and not frame.shadow then
