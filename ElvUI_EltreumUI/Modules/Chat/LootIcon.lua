@@ -8,7 +8,7 @@ local function AddLootIcons(_, _, message, ...)
 		local function Icon(link)
 			local texture = GetItemIcon(link)
 			local _, _, itemQuality, itemLevel = GetItemInfo(link)
-			if itemLevel > 1 and E.db.ElvUI_EltreumUI.chat.itemlevels and itemQuality then
+			if itemLevel ~= nil and itemLevel > 1 and E.db.ElvUI_EltreumUI.chat.itemlevels and itemQuality then
 				local _, _, _, hex = GetItemQualityColor(itemQuality)
 				return "|T"..texture..":".. 12 .."|t|c"..hex.."["..itemLevel.."]|r"..link
 			else
