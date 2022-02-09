@@ -4,14 +4,14 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local EltruismInstantLoot = CreateFrame("Frame", "EltruismInstantLoot")
 EltruismInstantLoot:RegisterEvent("LOOT_READY")
 local function InstantLoot()
-	local openslots = 0
+	--[[local openslots = 0
 	for i=0, 4 do
 		openslots = openslots + GetContainerNumFreeSlots(i)
-	end
+	end]]
 	if _G["TSMDestroyBtn"] and _G["TSMDestroyBtn"]:IsShown() then
 		return
 	elseif E.db.ElvUI_EltreumUI.otherstuff.fastloot then
-		if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") and openslots > 0 then
+		if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then -- and openslots > 0 then
 			for i = GetNumLootItems(), 1, -1 do
 				LootSlot(i)
 			end
