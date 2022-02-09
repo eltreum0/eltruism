@@ -210,7 +210,8 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["databars"]["experience"]["questTrackedOnly"] = true
 		E.db["databars"]["experience"]["showBubbles"] = true
 		E.db["databars"]["experience"]["showLevel"] = true
-		E.db["databars"]["experience"]["textFormat"] = "CUR"
+		--E.db["databars"]["experience"]["textFormat"] = "CUR"
+		E.db["databars"]["experience"]["textFormat"] = "PERCENT"
 		E.db["databars"]["experience"]["width"] = 500
 		--new pet experience
 		E.db["databars"]["petExperience"]["enable"] = false
