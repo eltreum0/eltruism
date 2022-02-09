@@ -4547,7 +4547,7 @@ if ElvUI_EltreumUI.Classic then
 								gap8 = {
 									order = 19,
 									type = "description",
-									name = "Add icons to loot sent in chat",
+									name = "Enhance Item Links in Chat",
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
