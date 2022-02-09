@@ -1,23 +1,21 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
 
---From Chat Loot Icons by Stanzilla which is Public Domain
+--Forked from Chat Loot Icons by Stanzilla which is Public Domain
 local function AddLootIcons(_, _, message, ...)
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
-		return
-	elseif not E.db.ElvUI_EltreumUI then
-		return
-	elseif not E.db.ElvUI_EltreumUI.chat then
-		return
-	elseif not E.db.ElvUI_EltreumUI.chat.enable then
 		return
 	elseif E.db.ElvUI_EltreumUI.chat.looticons then
 		local function Icon(link)
 			local texture = GetItemIcon(link)
-			return "\124T" .. texture .. ":" .. 12 .. "\124t" .. link
+			local _, _, itemQuality, itemLevel = GetItemInfo(link)
+			local _, _, _, hex = GetItemQualityColor(itemQuality)
+			if itemLevel > 1 and E.db.ElvUI_EltreumUI.chat.itemlevels then
+				return "|T"..texture..":".. 12 .."|t|c"..hex.."["..itemLevel.."]|r"..link
+			else
+				return "|T"..texture..":".. 12 .."|t"..link
+			end
 		end
-		message = message:gsub("(\124c%x+\124Hitem:.-\124h\124r)", Icon)
+		message = message:gsub("(|c%x+|Hitem:.-|h|r)", Icon)
 		return false, message, ...
 	end
 end
