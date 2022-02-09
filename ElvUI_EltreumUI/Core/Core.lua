@@ -108,7 +108,7 @@ function ElvUI_EltreumUI:EnteringWorldCVars()
 end
 
 function ElvUI_EltreumUI:AlternativeGroupsDPS()
-	if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
+	if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 		if not E.db.movers then E.db.movers = {} end
 		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,228,-322"
 		E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,47,-337"
@@ -137,7 +137,7 @@ function ElvUI_EltreumUI:AlternativeGroupsDPS()
 end
 
 function ElvUI_EltreumUI:OriginalGroupsDPS()
-	if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" then
+	if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 		if not E.db.movers then E.db.movers = {} end
 		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-247"
 		E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
