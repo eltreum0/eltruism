@@ -132,7 +132,6 @@ function ElvUI_EltreumUI:Shadows()
 			local EltruismBlizzShadowsRetail = CreateFrame("Frame")
 			EltruismBlizzShadowsRetail:RegisterEvent("ADDON_LOADED")
 			EltruismBlizzShadowsRetail:SetScript("OnEvent", function(_, _, arg)
-				--print(arg)
 				if (arg == "Blizzard_TalentUI") then
 					_G.PlayerTalentFrame:HookScript("OnShow", function()
 						if not _G.PlayerTalentFrame.shadow then
@@ -344,6 +343,12 @@ function ElvUI_EltreumUI:Shadows()
 				_G.PVEFrameTab1.backdrop,
 				_G.PVEFrameTab2.backdrop,
 				_G.PVEFrameTab3.backdrop,
+				_G.CollectionsJournal,
+				_G.CollectionsJournalTab1.backdrop,
+				_G.CollectionsJournalTab2.backdrop,
+				_G.CollectionsJournalTab3.backdrop,
+				_G.CollectionsJournalTab4.backdrop,
+				_G.CollectionsJournalTab5.backdrop,
 			}
 			for _, frame in pairs(retailframes) do
 				if frame and not frame.shadow then
