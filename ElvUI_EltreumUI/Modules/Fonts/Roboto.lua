@@ -1,11 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local GetAddOnMetadata = _G.GetAddOnMetadata
 local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
-local PA = _G.ProjectAzilroka
 
-function ElvUI_EltreumUI:SetupFontsRoboto(addon)
+function ElvUI_EltreumUI:SetupFontsRoboto()
 	if not E.db.movers then E.db.movers = {} end
 		--nameplates
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Roboto"
@@ -60,7 +56,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto(addon)
 		E.private["general"]["namefont"] = "Roboto"
 	if ElvUI_EltreumUI.Retail then
 		if IsAddOnLoaded('ProjectAzilroka') then
-			PA.db["stAddonManager"]["Font"] = "Roboto"
+			_G.ProjectAzilroka.db["stAddonManager"]["Font"] = "Roboto"
 		end
 		if IsAddOnLoaded("ElvUI_SLE") then
 			E.db["sle"]["armory"]["character"]["durability"]["font"] = "Roboto"

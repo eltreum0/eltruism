@@ -1,11 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local GetAddOnMetadata = _G.GetAddOnMetadata
 local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
-local PA = _G.ProjectAzilroka
 
-function ElvUI_EltreumUI:SetupFontsCrystalzcuhei(addon)
+function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 	if not E.db.movers then E.db.movers = {} end
 
 		--nameplates
@@ -61,7 +57,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei(addon)
 		E.private["general"]["namefont"] = "AR CrystalzcuheiGBK Demibold"
 	if ElvUI_EltreumUI.Retail then
 		if IsAddOnLoaded('ProjectAzilroka') then
-			PA.db["stAddonManager"]["Font"] = "AR CrystalzcuheiGBK Demibold"
+			_G.ProjectAzilroka.db["stAddonManager"]["Font"] = "AR CrystalzcuheiGBK Demibold"
 		end
 		if IsAddOnLoaded("ElvUI_SLE") then
 			E.db["sle"]["armory"]["character"]["durability"]["font"] = "AR CrystalzcuheiGBK Demibold"
