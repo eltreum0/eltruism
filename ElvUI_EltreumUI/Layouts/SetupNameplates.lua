@@ -1,5 +1,4 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local pairs = pairs
 
 -- for rare nameplates
 local rareclass = {

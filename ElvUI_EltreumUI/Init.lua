@@ -4,7 +4,6 @@ local EP = LibStub('LibElvUIPlugin-1.0')
 local addon, Engine = ...
 local _G = _G
 local ElvUI_EltreumUI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0', 'AceConsole-3.0')
-local myclass = E.myclass
 local L = E.Libs.ACL:GetLocale("ElvUI", E.global.general.locale)
 local GetAddOnMetadata = _G.GetAddOnMetadata
 
@@ -84,7 +83,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:GetSpec() --checks player spec
 		ElvUI_EltreumUI:SkinLevelUp() --skins level up toast
 		ElvUI_EltreumUI:ArenaQuest() --hides quests when in arena/bgs
-		if myclass == 'HUNTER' then
+		if E.myclass == 'HUNTER' then
 			ElvUI_EltreumUI:ExpandedStable() --expands pet stable for hunters
 		end
 	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
@@ -290,7 +289,7 @@ end
 
 function ElvUI_EltreumUI:GOSSIP_SHOW()
 	if ElvUI_EltreumUI.Retail then
-		if myclass == 'ROGUE' then
+		if E.myclass == 'ROGUE' then
 			ElvUI_EltreumUI:RogueAutoOpen()
 		end
 	end

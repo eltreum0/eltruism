@@ -1,8 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
 local valuecolors = E:ClassColor(E.myclass, true)
-local myclass = E.myclass
 
 function ElvUI_EltreumUI:SetupGeneralLayout()
 	if not E.db.movers then E.db.movers = {} end
@@ -266,7 +263,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"]["left"] = "Eltruism"
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][2] = "Durability"
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"]["middle"] = "Durability"
-			if myclass == 'HUNTER' or myclass == 'WARLOCK' then
+			if E.myclass == 'HUNTER' or E.myclass == 'WARLOCK' then
 				E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Ammo"
 			else
 				E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Friends"

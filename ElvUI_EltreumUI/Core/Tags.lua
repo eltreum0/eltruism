@@ -1,16 +1,10 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
---local ElvUF = E.oUF
-local _G = _G
-local UnitName = _G.UnitName
-local UnitClass = _G.UnitClass
-local UnitIsPlayer = _G.UnitIsPlayer
-local string = _G.string
 local utf8sub = string.utf8sub
 
 -- Name custom abbreviation by Azilroka
 E:AddTag("name:eltruism:abbreviate", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
-	--local name = 'Ецхо оф а Пандарен Монк' --cyrillic name test
+	--local name = 'Ецхо оф а Пандарен' --cyrillic name test
 	if name and string.len(name) > 16 then
 		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
 	end

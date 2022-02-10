@@ -1,8 +1,4 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
-local ReloadUI = _G.ReloadUI
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local myclass = E.myclass
 
 -- Set version & reload on "Skip" and "Finished"
 local function InstallComplete()
@@ -34,7 +30,7 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Desc1:SetText(L["Please select the role for your character, which will create a new profile.\nThis process can take a few seconds"])
 			PluginInstallFrame.Desc2:SetText("Eltruism uses a 0.7 scale, but ElvUI can calculate the best scale for you using the Automatic Scale option")
 			--PluginInstallFrame.Desc2:SetText("Eltruism uses a 0.7 scale, but Automatic Scale can calculate one for you")
-			if myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'MONK' or myclass == 'SHAMAN' or myclass == 'PALADIN' then
+			if E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' then
 				PluginInstallFrame.Desc3:SetText('|cff82B4ff'..L["You can support the group with your class, if you select DPS/Tank then its recommended to click Alternative Frames after clicking DPS/Tank"]..'|r')
 			end
 			PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cFFFF0000'..L["Very High (but Optional)"]..'|r')
@@ -68,7 +64,7 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option3:Enable()
 			PluginInstallFrame.Option3:Show()
 			PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AutoScale() end)
-			if myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'MONK' or myclass == 'SHAMAN' or myclass == 'PALADIN' then
+			if E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' then
 				PluginInstallFrame.Option4:SetText('Alternative\nFrames')
 				PluginInstallFrame.Option4:Enable()
 				PluginInstallFrame.Option4:Show()

@@ -1,7 +1,4 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local C_CVar = _G.C_CVar
 
 function ElvUI_EltreumUI:SetupLayoutDPS()
 		if ElvUI_EltreumUI.Retail then

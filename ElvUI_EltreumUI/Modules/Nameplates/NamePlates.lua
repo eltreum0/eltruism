@@ -1,8 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
-local _G = _G
-local WorldMapFrame = _G.WorldMapFrame
 local LCG = E.Libs.CustomGlow
 local classcolor = E:ClassColor(E.myclass, true)
 

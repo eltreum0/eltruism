@@ -1,6 +1,4 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
-local myclass = E.myclass
 local id, _
 
 --Setup Power Bar, Prediction and Text
@@ -238,7 +236,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				end
 			end
 
-			if myclass == 'PALADIN' or myclass == 'MAGE' or myclass == 'WARLOCK' then
+			if E.myclass == 'PALADIN' or E.myclass == 'MAGE' or E.myclass == 'WARLOCK' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 					EltreumPowerBar:Show()
 					EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
@@ -250,13 +248,13 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						end
 					end
 					if ElvUI_EltreumUI.Retail then
-						if myclass == 'PALADIN' or myclass == 'WARLOCK' then
+						if E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' then
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
 							else
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplatepower.posy)
 							end
-						elseif myclass == 'MAGE' then
+						elseif E.myclass == 'MAGE' then
 							if id == 62 then
 								if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
@@ -267,7 +265,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						end
 					end
 				end
-			elseif myclass == 'DRUID' then
+			elseif E.myclass == 'DRUID' then
 				local stance = GetShapeshiftForm()
 				--print(stance)
 				--[[
@@ -423,7 +421,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						end
 					end
 				end
-			elseif myclass == 'WARRIOR' then
+			elseif E.myclass == 'WARRIOR' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.rage then
 					EltreumPowerBar:Show()
 					EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.RAGE.r, E.db.unitframe.colors.power.RAGE.g, E.db.unitframe.colors.power.RAGE.b) --its rage so color it like rage
@@ -441,7 +439,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						end
 					end
 				end
-			elseif myclass == 'ROGUE' then
+			elseif E.myclass == 'ROGUE' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.energy then
 					EltreumPowerBar:Show()
 					EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.ENERGY.r, E.db.unitframe.colors.power.ENERGY.g, E.db.unitframe.colors.power.ENERGY.b) --its energy so color it like energy
@@ -459,7 +457,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						end
 					end
 				end
-			elseif myclass == 'MONK' then
+			elseif E.myclass == 'MONK' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.energy then
 					EltreumPowerBar:Show()
 					EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.ENERGY.r, E.db.unitframe.colors.power.ENERGY.g, E.db.unitframe.colors.power.ENERGY.b) --its energy so color it like energy
@@ -469,7 +467,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplatepower.posy)
 					end
 				end
-			elseif myclass == 'DEATHKNIGHT' then
+			elseif E.myclass == 'DEATHKNIGHT' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.runic then
 					EltreumPowerBar:Show()
 					EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.RUNIC_POWER.r, E.db.unitframe.colors.power.RUNIC_POWER.g, E.db.unitframe.colors.power.RUNIC_POWER.b) --its runic power
@@ -479,7 +477,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplatepower.posy)
 					end
 				end
-			elseif myclass == 'HUNTER' then
+			elseif E.myclass == 'HUNTER' then
 				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 					if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 						EltreumPowerBar:Show()
@@ -501,7 +499,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						end
 					end
 				end
-			elseif myclass == 'DEMONHUNTER' then
+			elseif E.myclass == 'DEMONHUNTER' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.fury then
 					EltreumPowerBar:Show()
 					EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.FURY.r, E.db.unitframe.colors.power.FURY.g, E.db.unitframe.colors.power.FURY.b) --its fury
@@ -511,7 +509,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplatepower.posy)
 					end
 				end
-			elseif myclass == 'PRIEST' then
+			elseif E.myclass == 'PRIEST' then
 				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 					if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 						EltreumPowerBar:Show()
@@ -553,7 +551,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						end
 					end
 				end
-			elseif myclass == 'SHAMAN' then
+			elseif E.myclass == 'SHAMAN' then
 				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
 					if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 						EltreumPowerBar:Show()
@@ -658,10 +656,10 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 1
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
-				if myclass == 'MONK' or myclass == 'ROGUE' or myclass == 'DEATHKNIGHT' or myclass == 'PALADIN' or myclass == 'WARLOCK' or myclass == 'DRUID' then
+				if E.myclass == 'MONK' or E.myclass == 'ROGUE' or E.myclass == 'DEATHKNIGHT' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' or E.myclass == 'DRUID' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
-				elseif myclass == "MAGE" and id == 62 then --62 is arcane --myclass== 'MAGE' or
+				elseif E.myclass == "MAGE" and id == 62 then --62 is arcane --E.myclass== 'MAGE' or
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
 				else
@@ -669,7 +667,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 				end
 			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-				if myclass == 'ROGUE' or myclass == 'DRUID' then
+				if E.myclass == 'ROGUE' or E.myclass == 'DRUID' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 47
@@ -682,7 +680,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.energy then
-				if myclass == 'MONK' or myclass == 'ROGUE' then
+				if E.myclass == 'MONK' or E.myclass == 'ROGUE' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 					if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
@@ -692,14 +690,14 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.runic then
-				if myclass == 'DEATHKNIGHT' then
+				if E.myclass == 'DEATHKNIGHT' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.mana then
 				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
-					if myclass == 'MAGE' or myclass == 'HUNTER' or myclass == 'PRIEST' or myclass == 'SHAMAN' or myclass == 'PALADIN' or myclass == 'WARLOCK' then
+					if E.myclass == 'MAGE' or E.myclass == 'HUNTER' or E.myclass == 'PRIEST' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' then
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
 						if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
@@ -727,19 +725,19 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.focus then
-				if myclass == 'HUNTER' then
+				if E.myclass == 'HUNTER' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.fury then
-				if myclass == 'DEMONHUNTER' then
+				if E.myclass == 'DEMONHUNTER' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.rage then
-				if myclass == 'WARRIOR' then
+				if E.myclass == 'WARRIOR' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
 					if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then

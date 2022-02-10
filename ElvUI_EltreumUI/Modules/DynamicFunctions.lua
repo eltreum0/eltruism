@@ -1,6 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local myclass = E.myclass
 
 function ElvUI_EltreumUI:BattlegroundGroupUnitframes()
 	if E.db.ElvUI_EltreumUI.otherstuff.bgunitframes and E.private.unitframe.enable then
@@ -49,9 +48,9 @@ end
 function ElvUI_EltreumUI:DynamicClassicDatatext()
 	if E.db.ElvUI_EltreumUI.dynamicdatatext.enable then
 		if not E.db.movers then E.db.movers = {} end
-		if myclass == 'HUNTER' or myclass == 'WARLOCK' or myclass == 'WARRIOR' or myclass == 'ROGUE' then
+		if E.myclass == 'HUNTER' or E.myclass == 'WARLOCK' or E.myclass == 'WARRIOR' or E.myclass == 'ROGUE' then
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Eltruism Ammo"
-		elseif myclass == 'PALADIN' or myclass == 'MAGE' or myclass == 'PRIEST' or myclass == 'DRUID' or myclass == 'SHAMAN' then
+		elseif E.myclass == 'PALADIN' or E.myclass == 'MAGE' or E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'SHAMAN' then
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Friends"
 		end
 	end
@@ -96,7 +95,7 @@ function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 	else
 		if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" and E.db.nameplates.filters.EltreumSpellsteal then
 			if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Retail then
-				if myclass == 'MAGE' then
+				if E.myclass == 'MAGE' then
 					local level = UnitLevel("player")
 					if ElvUI_EltreumUI.Retail then
 						if level >= 39 then
