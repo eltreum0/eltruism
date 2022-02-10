@@ -295,6 +295,7 @@ function ElvUI_EltreumUI:QuestItem()
 								--local isQuestItem, questId, isActive = GetContainerItemQuestInfo(bag,slot)
 								local isQuestItem, _, _ = GetContainerItemQuestInfo(bag,slot)
 								if isQuestItem then
+									--print(link)
 								--if (questId and not isActive) or (cfg.userList[itemId]) or (CheckItemTooltip(link,itemId)) then
 									--icon, itemCount, locked, quality, readable, lootable, itemLink, isFiltered, noValue, itemID, isBound = GetContainerItemInfo(bagID, slot)
 									local _, count = GetContainerItemInfo(bag,slot)
