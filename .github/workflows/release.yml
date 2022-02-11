@@ -8,7 +8,7 @@ name: Release
 on:
   push:
     tags:
-      - '**'
+      - '**'   # ** means anything, could be say v** for any version or **_TBC for tbc tag
 
 # a workflow is built up as jobs, and within these jobs are steps
 jobs:
@@ -38,3 +38,7 @@ jobs:
       # once cloned, we just run the GitHub Action for the packager project
       - name: Package
         uses: BigWigsMods/packager@multitoc
+
+      - name: WoW Packager
+        uses: BigWigsMods/packager@v1.0.3
+
