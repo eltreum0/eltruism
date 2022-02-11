@@ -8,7 +8,7 @@ name: Release
 on:
   push:
     #tags:
-      #- 'v*.*.*'   # ** means anything, could be say v** for any version or **_TBC for tbc tag
+      #- 'v*.*.*'
      # - '*'
 
 # a workflow is built up as jobs, and within these jobs are steps
