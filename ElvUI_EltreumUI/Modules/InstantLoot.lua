@@ -99,11 +99,12 @@ local function InstantLoot()
 			end
 			local id = itemLink:match("item:(%d+)")
 			local itemID = tonumber(id)
+			if GetLootSlotType(i) == 2 then
+				LootSlot(i)
+			end
 			--print(id, itemID, E.db.ElvUI_EltreumUI.otherstuff.lootwishlist[i])
 			for k=1, #E.db.ElvUI_EltreumUI.otherstuff.lootwishlist do
 				if itemID == tonumber(E.db.ElvUI_EltreumUI.otherstuff.lootwishlist[k]) then
-					LootSlot(i)
-				elseif GetLootSlotType(i) == 2 then
 					LootSlot(i)
 				else
 					CloseLoot()
