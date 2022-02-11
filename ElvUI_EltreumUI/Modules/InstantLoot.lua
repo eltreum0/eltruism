@@ -72,7 +72,7 @@ local function InstantLoot()
 			end
 		end
 	elseif E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter then
-		print("fastlootfilter")
+		--print("fastlootfilter")
 		if C_CVar.GetCVar('autoLootDefault') == 1 then
 			ElvUI_EltreumUI:Print("Autoloot is enabled, please disable it to use Loot Filtering")
 		end
@@ -99,7 +99,7 @@ local function InstantLoot()
 			end
 			local id = itemLink:match("item:(%d+)")
 			local itemID = tonumber(id)
-			print(id, itemID, E.db.ElvUI_EltreumUI.otherstuff.lootwishlist[i])
+			--print(id, itemID, E.db.ElvUI_EltreumUI.otherstuff.lootwishlist[i])
 			for k=1, #E.db.ElvUI_EltreumUI.otherstuff.lootwishlist do
 				if itemID == tonumber(E.db.ElvUI_EltreumUI.otherstuff.lootwishlist[k]) then
 					LootSlot(i)
