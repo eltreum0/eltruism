@@ -34,7 +34,9 @@ WishlistItemFrame:Hide()
 -- yet another fast loot thing
 local EltruismInstantLoot = CreateFrame("Frame", "EltruismInstantLoot")
 EltruismInstantLoot:RegisterEvent("LOOT_READY")
-local function InstantLoot()
+EltruismInstantLoot:RegisterEvent("LOOT_BIND_CONFIRM")
+local function InstantLoot(_, event)
+	--ElvUI_EltreumUI:Print("Event: "..event)
 	if E.db.ElvUI_EltreumUI.otherstuff.lootwishlistwarning then
 		for i = GetNumLootItems(), 1, -1 do
 			local itemLink = GetLootSlotLink(i)
@@ -66,48 +68,64 @@ local function InstantLoot()
 	if _G["TSMDestroyBtn"] and _G["TSMDestroyBtn"]:IsShown() then
 		return
 	elseif E.db.ElvUI_EltreumUI.otherstuff.fastloot then
-		if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
-			for i = GetNumLootItems(), 1, -1 do
-				LootSlot(i)
+		if event == 'LOOT_BIND_CONFIRM' then
+			return
+		else
+			if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
+				for i = GetNumLootItems(), 1, -1 do
+					LootSlot(i)
+				end
 			end
 		end
 	elseif E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter then
-		--print("fastlootfilter")
-		if C_CVar.GetCVar('autoLootDefault') == 1 then
-			ElvUI_EltreumUI:Print("Autoloot is enabled, please disable it to use Loot Filtering")
-		end
-		for i = GetNumLootItems(), 1, -1 do
-			local _, _, _, _, lootQuality, _, isQuestItem = GetLootSlotInfo(i)
-			if isQuestItem == true then
-				LootSlot(i)
-			elseif lootQuality >= tonumber(E.db.ElvUI_EltreumUI.otherstuff.fastlootquality) then
-				LootSlot(i)
-			elseif GetLootSlotType(i) == 2 then
-				LootSlot(i)
-			else
-				CloseLoot()
+		if event == 'LOOT_BIND_CONFIRM' then
+			return
+		else
+			--print("fastlootfilter")
+			if C_CVar.GetCVar('autoLootDefault') == 1 then
+				ElvUI_EltreumUI:Print("Autoloot is enabled, please disable it to use Loot Filtering")
+			end
+			for i = GetNumLootItems(), 1, -1 do
+				local _, _, _, _, lootQuality, _, isQuestItem = GetLootSlotInfo(i)
+				if isQuestItem == true then
+					LootSlot(i)
+				elseif lootQuality >= tonumber(E.db.ElvUI_EltreumUI.otherstuff.fastlootquality) then
+					LootSlot(i)
+				elseif GetLootSlotType(i) == 2 then
+					LootSlot(i)
+				else
+					if E.db.ElvUI_EltreumUI.otherstuff.lootautoclose then
+						CloseLoot()
+					end
+				end
 			end
 		end
 	elseif E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter then
 		if C_CVar.GetCVar('autoLootDefault') == 1 then
 			ElvUI_EltreumUI:Print("Autoloot is enabled, please disable it to use Wishlist Loot Filtering")
 		end
-		for i = GetNumLootItems(), 1, -1 do
-			local itemLink = GetLootSlotLink(i)
-			if itemLink == nil then
-				itemLink = "|cffe6cc80|Hitem:158075::::::::53:257::11:4:4932:4933:6316:1554::::::|h[Heart of Azeroth]|h|r"
-			end
-			local id = itemLink:match("item:(%d+)")
-			local itemID = tonumber(id)
-			if GetLootSlotType(i) == 2 then
-				LootSlot(i)
-			end
-			--print(id, itemID, E.db.ElvUI_EltreumUI.otherstuff.lootwishlist[i])
-			for k=1, #E.db.ElvUI_EltreumUI.otherstuff.lootwishlist do
-				if itemID == tonumber(E.db.ElvUI_EltreumUI.otherstuff.lootwishlist[k]) then
+		if event == 'LOOT_BIND_CONFIRM' then
+			return
+		else
+			for i = GetNumLootItems(), 1, -1 do
+				local itemLink = GetLootSlotLink(i)
+				if itemLink == nil then
+					itemLink = "|cffe6cc80|Hitem:158075::::::::53:257::11:4:4932:4933:6316:1554::::::|h[Heart of Azeroth]|h|r"
+				end
+				local id = itemLink:match("item:(%d+)")
+				local itemID = tonumber(id)
+				if GetLootSlotType(i) == 2 then
 					LootSlot(i)
-				else
-					CloseLoot()
+				end
+				--print(id, itemID, E.db.ElvUI_EltreumUI.otherstuff.lootwishlist[i])
+				for k=1, #E.db.ElvUI_EltreumUI.otherstuff.lootwishlist do
+					if itemID == tonumber(E.db.ElvUI_EltreumUI.otherstuff.lootwishlist[k]) then
+						LootSlot(i)
+					else
+						if E.db.ElvUI_EltreumUI.otherstuff.lootautoclose then
+							CloseLoot()
+						end
+					end
 				end
 			end
 		end

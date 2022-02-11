@@ -4388,6 +4388,15 @@ if ElvUI_EltreumUI.Retail then
 							get = function() return E.db.ElvUI_EltreumUI.otherstuff.lootwishlistwarning end,
 							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.lootwishlistwarning = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
+						lootautoclose = {
+							order = 43,
+							name = L['Enable Automatically Closing Loot Window'],
+							type = "toggle",
+							desc = L["Loot Window will automatically close when using filters and the item desired is not found"],
+							width = 'full',
+							get = function() return E.db.ElvUI_EltreumUI.otherstuff.lootautoclose end,
+							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.lootautoclose = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
 						fastlootenablefilterquality = {
 							order = 43,
 							type = 'select',

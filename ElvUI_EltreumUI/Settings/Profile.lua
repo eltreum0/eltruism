@@ -396,6 +396,7 @@ P.ElvUI_EltreumUI = {
 		lootwishlistnames = {},
 		lootwishlistwarning = false,
 		lootwishlistfilter = false,
+		lootautoclose = true,
 		screenshot = false,
 		hidetalkinghead = false,
 		blizzcombattext = false,
