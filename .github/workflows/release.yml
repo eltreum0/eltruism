@@ -42,5 +42,5 @@ jobs:
       - name: WoW Packager
         uses: BigWigsMods/packager@v1.0.3
         with:
-          args: release.sh -n "{package-name}-{project-version}"
+          args: release.sh -n "{package-name}"
 
