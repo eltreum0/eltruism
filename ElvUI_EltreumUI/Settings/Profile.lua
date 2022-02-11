@@ -394,6 +394,7 @@ P.ElvUI_EltreumUI = {
 		fastlootquality = '0',
 		lootwishlistwarning = false,
 		lootwishlistfilter = false,
+		lootwishlistscreenshot = false,
 		lootautoclose = true,
 		screenshot = false,
 		hidetalkinghead = false,

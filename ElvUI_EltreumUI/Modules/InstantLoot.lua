@@ -61,6 +61,9 @@ local function InstantLoot(_, event)
 					end
 					WishlistItemFrame.Text2:SetText(itemName.."!")
 					UIFrameFadeIn(WishlistItemFrame, 1, 0, 1)
+					if E.db.ElvUI_EltreumUI.otherstuff.lootwishlistscreenshot then
+						C_Timer.After(1, function() Screenshot() end)
+					end
 					C_Timer.After(5, function() UIFrameFadeOut(WishlistItemFrame, 1, 1, 0) end)
 				end
 			end
