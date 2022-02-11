@@ -7,6 +7,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	--E.db.ElvUI_EltreumUI.chat.leftcombathide = true
 	E.db.ElvUI_EltreumUI.chat.colorsysmsg = true
 	E.db.ElvUI_EltreumUI.chat.looticons = true
+	E.db.ElvUI_EltreumUI.chat.itemlevels = true
 	if ElvUI_EltreumUI.Retail then
 		E.db.ElvUI_EltreumUI.cvars.autohidenpcname = true
 	end
