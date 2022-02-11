@@ -25,6 +25,9 @@ V.ElvUI_EltreumUI = {
 		disableinstance = false,
 	},
 
+	wishlistID = {},
+	wishlistName = {},
+
 	isInstalled ={
 		sle = false,
 		windtools = false,

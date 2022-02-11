@@ -4478,7 +4478,7 @@ if ElvUI_EltreumUI.TBC then
 							name = 'Item Wishlist (type the Item ID)',
 							desc = 'Items in your wishlist will display a warning when looted',
 							width = 'double',
-							get = function() return E.db.ElvUI_EltreumUI.otherstuff.lootwishlist end,
+							get = function() return E.private.ElvUI_EltreumUI.wishlistID end,
 							validate = function(_, value)
 								E.PopupDialogs['ELTRUISMINVALID'] = {
 									text = L["Invalid Item, you need to add an itemID which can be found in the tooltip or in Wowhead"],
@@ -4507,8 +4507,8 @@ if ElvUI_EltreumUI.TBC then
 								item:ContinueOnItemLoad(function()
 									local itemName = item:GetItemName()
 									local itemID = tonumber(value)
-									tinsert(E.db.ElvUI_EltreumUI.otherstuff.lootwishlistnames, itemName)
-									tinsert(E.db.ElvUI_EltreumUI.otherstuff.lootwishlist, itemID)
+									tinsert(E.private.ElvUI_EltreumUI.wishlistName, itemName)
+									tinsert(E.private.ElvUI_EltreumUI.wishlistID, itemID)
 								end)
 							end,
 						},
@@ -4518,12 +4518,12 @@ if ElvUI_EltreumUI.TBC then
 							width = "double",
 							name = "Remove item from Wishlist",
 							desc = L["Remove"],
-							values = E.db.ElvUI_EltreumUI.otherstuff.lootwishlistnames,
-							get = function() return E.db.ElvUI_EltreumUI.otherstuff.lootwishlistnames end,
+							values = E.private.ElvUI_EltreumUI.wishlistName,
+							get = function() return E.private.ElvUI_EltreumUI.wishlistName end,
 							set = function(_,value)
 								local item = tonumber(value)
-								tremove(E.db.ElvUI_EltreumUI.otherstuff.lootwishlist, item)
-								tremove(E.db.ElvUI_EltreumUI.otherstuff.lootwishlistnames, item)
+								tremove(E.private.ElvUI_EltreumUI.wishlistID, item)
+								tremove(E.private.ElvUI_EltreumUI.wishlistName, item)
 							 end,
 						},
 					},

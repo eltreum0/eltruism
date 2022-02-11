@@ -50,8 +50,8 @@ local function InstantLoot(_, event)
 			end
 			local id = itemLink:match("item:(%d+)")
 			local itemID = tonumber(id)
-			for k=1, #E.db.ElvUI_EltreumUI.otherstuff.lootwishlist do
-				if itemID == tonumber(E.db.ElvUI_EltreumUI.otherstuff.lootwishlist[k]) then
+			for k=1, #E.private.ElvUI_EltreumUI.wishlistID do
+				if itemID == tonumber(E.private.ElvUI_EltreumUI.wishlistID[k]) then
 					WishlistItemFrame.Text2:SetText("")
 					if quality then
 						WishlistItemFrame.Text2:SetTextColor(r, g, b)
@@ -68,13 +68,9 @@ local function InstantLoot(_, event)
 	if _G["TSMDestroyBtn"] and _G["TSMDestroyBtn"]:IsShown() then
 		return
 	elseif E.db.ElvUI_EltreumUI.otherstuff.fastloot then
-		if event == 'LOOT_BIND_CONFIRM' then
-			return
-		else
-			if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
-				for i = GetNumLootItems(), 1, -1 do
-					LootSlot(i)
-				end
+		if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
+			for i = GetNumLootItems(), 1, -1 do
+				LootSlot(i)
 			end
 		end
 	elseif E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter then
@@ -117,9 +113,9 @@ local function InstantLoot(_, event)
 				if GetLootSlotType(i) == 2 then
 					LootSlot(i)
 				end
-				--print(id, itemID, E.db.ElvUI_EltreumUI.otherstuff.lootwishlist[i])
-				for k=1, #E.db.ElvUI_EltreumUI.otherstuff.lootwishlist do
-					if itemID == tonumber(E.db.ElvUI_EltreumUI.otherstuff.lootwishlist[k]) then
+				--print(id, itemID, E.private.ElvUI_EltreumUI.wishlistID[i])
+				for k=1, #E.private.ElvUI_EltreumUI.wishlistID do
+					if itemID == tonumber(E.private.ElvUI_EltreumUI.wishlistID[k]) then
 						LootSlot(i)
 					else
 						if E.db.ElvUI_EltreumUI.otherstuff.lootautoclose then
