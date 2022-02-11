@@ -5,6 +5,8 @@ ___
 Added an option to display the item level of the item being linked in chat\
 Added an option to display the Class Crest in the Character Panel (Eltruism > Skins> Character)\
 Added an option to also automatically accept weekly and daily quests for retail\
+Added an option to filter loot items by quality\
+Added an option to put loot items into a wish list, which can also display a popup once the item is looted, alongside another option to restrict items to be looted only from the wishlist\
 Added a few items that are not considered quest items to the quest item bar\
 Skinned the professions window to be wider, this skin can be enabled in Eltruism > Skins
 Fixed Aura Filters and Alternative Layout not applying due to the profile name change\
