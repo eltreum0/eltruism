@@ -19,14 +19,6 @@ jobs:
     # we can run our steps on pretty much anything, but the "ubuntu-latest" image is a safe bet
     runs-on: ubuntu-latest
 
-    # specify the environment variables used by the packager, matching the secrets from the project on GitHub
-    env:
-      ##CF_API_KEY: ${{ secrets.CF_API_KEY }}
-      ##WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}
-      ##WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
-      GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}  # "GITHUB_TOKEN" is a secret always provided to the workflow
-                                                 # for your own token, the name cannot start with "GITHUB_"
-
     # "steps" holds a list of all the steps needed to package and release our AddOn
     steps:
 
@@ -44,3 +36,10 @@ jobs:
         #with:
           #args: release.sh -n "{alpha}"
 
+      # specify the environment variables used by the packager, matching the secrets from the project on GitHub
+    env:
+      ##CF_API_KEY: ${{ secrets.CF_API_KEY }}
+      ##WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}
+      ##WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
+      GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}  # "GITHUB_TOKEN" is a secret always provided to the workflow
+                                                 # for your own token, the name cannot start with "GITHUB_"
