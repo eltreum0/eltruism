@@ -1152,7 +1152,7 @@ if ElvUI_EltreumUI.TBC then
 						},
 						fastlootenable = {
 							order = 40,
-							name = L['Enable'],
+							name = L['Enable Fast Loot'],
 							type = "toggle",
 							desc = "Decrease the time it takes for auto loot to work",
 							width = 'full',
