@@ -66,6 +66,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["general"]["backdropfadecolor"]["r"] = 0
 		E.db["general"]["bonusObjectivePosition"] = "RIGHT"
 		E.db["general"]["bottomPanel"] = false
+		E.db["general"]["cropIcon"] = 2
 		E.db["general"]["font"] = "Kimberley"
 		E.db["general"]["fontStyle"] = "THICKOUTLINE"
 		E.db["general"]["interruptAnnounce"] = "RAID"
