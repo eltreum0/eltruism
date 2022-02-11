@@ -7,8 +7,8 @@ name: Release
 # other branches or even pullrequests.
 on:
   push:
-    #tags:
-      #- '**'   # ** means anything, could be say v** for any version or **_TBC for tbc tag
+    tags:
+      - 'v*.*.*'   # ** means anything, could be say v** for any version or **_TBC for tbc tag
 
 # a workflow is built up as jobs, and within these jobs are steps
 jobs:
@@ -28,13 +28,13 @@ jobs:
                                    # file naming for non-tagged builds will not work properly
 
       # once cloned, we just run the GitHub Action for the packager project
-      - name: Package
-        uses: BigWigsMods/packager@multitoc
+      #- name: Package
+      #  uses: BigWigsMods/packager@multitoc
 
-      #- name: WoW Packager
-      #  uses: BigWigsMods/packager@v1.0.3
-      #  with:
-      #    args: release.sh -n "{package-name}"
+      - name: WoW Packager
+        uses: BigWigsMods/packager@v1.0.3
+        with:
+          args: release.sh #-n "{package-name}"
 
       # specify the environment variables used by the packager, matching the secrets from the project on GitHub
     env:
