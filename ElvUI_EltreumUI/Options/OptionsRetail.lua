@@ -4464,7 +4464,6 @@ if ElvUI_EltreumUI.Retail then
 							get = function() return E.private.ElvUI_EltreumUI.wishlistName end,
 							set = function(_,value)
 								local item = tonumber(value)
-								print(value)
 								tremove(E.private.ElvUI_EltreumUI.wishlistID, item)
 								tremove(E.private.ElvUI_EltreumUI.wishlistName, item)
 							 end,
