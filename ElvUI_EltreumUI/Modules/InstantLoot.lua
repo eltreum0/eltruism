@@ -34,6 +34,7 @@ WishlistItemFrame:Hide()
 -- yet another fast loot thing
 local EltruismInstantLoot = CreateFrame("Frame", "EltruismInstantLoot")
 EltruismInstantLoot:RegisterEvent("LOOT_READY")
+EltruismInstantLoot:RegisterEvent("LOOT_OPENED")
 EltruismInstantLoot:RegisterEvent("LOOT_BIND_CONFIRM")
 local function InstantLoot(_, event)
 	--ElvUI_EltreumUI:Print("Event: "..event)
