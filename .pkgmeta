@@ -1,0 +1,14 @@
+package-as: ElvUI_EltreumUI
+
+enable-nolib-creation: no
+
+ignore:
+  - Eltruism/.git
+  - Eltruism/.github
+  - .pkgmeta
+  - Eltruism/Changelog.md
+  - Eltruism/License.md
+  - Eltruism/README.md
+
+move-folders:
+    Eltruism/ElvUI_EltreumUI: ElvUI_EltreumUI
