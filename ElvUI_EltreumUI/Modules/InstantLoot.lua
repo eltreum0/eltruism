@@ -39,6 +39,9 @@ local function InstantLoot()
 	if E.db.ElvUI_EltreumUI.otherstuff.lootwishlistwarning then
 		for i = GetNumLootItems(), 1, -1 do
 			local itemLink = GetLootSlotLink(i)
+			if itemLink == nil then
+				itemLink = "|cffe6cc80|Hitem:158075::::::::53:257::11:4:4932:4933:6316:1554::::::|h[Heart of Azeroth]|h|r"
+			end
 			local itemName = GetItemInfo(itemLink)
 			local id = itemLink:match("item:(%d+)")
 			local itemID = tonumber(id)
@@ -84,9 +87,9 @@ local function InstantLoot()
 		end
 		for i = GetNumLootItems(), 1, -1 do
 			local itemLink = GetLootSlotLink(i)
-			--if itemLink == nil then
-			--	itemLink = "|cffe6cc80|Hitem:158075::::::::53:257::11:4:4932:4933:6316:1554::::::|h[Heart of Azeroth]|h|r"
-			--end
+			if itemLink == nil then
+				itemLink = "|cffe6cc80|Hitem:158075::::::::53:257::11:4:4932:4933:6316:1554::::::|h[Heart of Azeroth]|h|r"
+			end
 			local id = itemLink:match("item:(%d+)")
 			local itemID = tonumber(id)
 			--local itemID = {}
