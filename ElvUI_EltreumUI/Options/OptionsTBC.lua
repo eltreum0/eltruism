@@ -4423,7 +4423,7 @@ if ElvUI_EltreumUI.TBC then
 							type = "toggle",
 							desc = L["Enable filtering item quality, items can still be looted by holding Shift or the mod key setup in Interface"],
 							width = 'full',
-							disabled = function() return E.db.ElvUI_EltreumUI.otherstuff.fastloot or E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter end,
+							disabled = function() return E.db.ElvUI_EltreumUI.otherstuff.fastloot or E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter or #E.db.ElvUI_EltreumUI.otherstuff.lootwishlist == 0 end,
 							get = function() return E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter end,
 							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter = value SetCVar('autoLootDefault', 0) E:StaticPopup_Show('CONFIG_RL') end,
 						},
@@ -4472,7 +4472,7 @@ if ElvUI_EltreumUI.TBC then
 							get = function() return E.db.ElvUI_EltreumUI.otherstuff.lootwishlist end,
 							validate = function(_, value)
 								E.PopupDialogs['ELTRUISMINVALID'] = {
-									text = L["Invalid Item"],
+									text = L["Invalid Item, you need to add an itemID which can be found in the tooltip or in Wowhead"],
 									button1 = OKAY,
 									timeout = 0,
 									whileDead = 1,
