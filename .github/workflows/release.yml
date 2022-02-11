@@ -7,8 +7,8 @@ name: Release
 # other branches or even pullrequests.
 on:
   push:
-    tags:
-      - '**'   # ** means anything, could be say v** for any version or **_TBC for tbc tag
+    #tags:
+      #- '**'   # ** means anything, could be say v** for any version or **_TBC for tbc tag
 
 # a workflow is built up as jobs, and within these jobs are steps
 jobs:
@@ -42,5 +42,5 @@ jobs:
       - name: WoW Packager
         uses: BigWigsMods/packager@v1.0.3
         with:
-          args: release.sh -n "{package-name}"
+          args: release.sh -n "{alpha}"
 
