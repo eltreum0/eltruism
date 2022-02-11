@@ -674,8 +674,18 @@ if ElvUI_EltreumUI.Retail then
 							get = function() return E.db.ElvUI_EltreumUI.otherstuff.fastloot end,
 							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.fastloot = value SetCVar('autoLootDefault', 1) E:StaticPopup_Show('CONFIG_RL') end,
 						},
-						fastlootenablefilter = {
+						lootwishlistfilter = {
 							order = 41,
+							name = L['Wishlist Filter'],
+							type = "toggle",
+							desc = L["Items not on the wishlist will not be looted"],
+							--width = 'full',
+							--disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.lootwishlist end,
+							get = function() return E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter end,
+							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter = value SetCVar('autoLootDefault', 0) E:StaticPopup_Show('CONFIG_RL') end,
+						},
+						fastlootenablefilter = {
+							order = 42,
 							name = L['Enable with Loot Filter'],
 							type = "toggle",
 							desc = L["Enable filtering item quality"],
@@ -685,7 +695,7 @@ if ElvUI_EltreumUI.Retail then
 							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter = value SetCVar('autoLootDefault', 0) E:StaticPopup_Show('CONFIG_RL') end,
 						},
 						fastlootenablefilterquality = {
-							order = 42,
+							order = 43,
 							type = 'select',
 							name = L["Items of this quality or better will be looted, otherwise loot will be closed. You can still fast loot by holding the mod key set in Interface (default is shift)"],
 							desc = L["Items at or above this quality will be looted"],
@@ -702,7 +712,7 @@ if ElvUI_EltreumUI.Retail then
 							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.fastlootquality = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
 						lootwishlist = {
-							order = 43,
+							order = 44,
 							type = 'input',
 							name = 'Item Wishlist (type the Item ID)',
 							desc = 'Items in your wishlist will display a warning when looted',
@@ -740,16 +750,6 @@ if ElvUI_EltreumUI.Retail then
 									tinsert(E.db.ElvUI_EltreumUI.otherstuff.lootwishlist, itemID)
 								end)
 							end,
-						},
-						lootwishlistfilter = {
-							order = 44,
-							name = L['Wishlist Filter'],
-							type = "toggle",
-							desc = L["Items not on the wishlist will not be looted"],
-							--width = 'full',
-							--disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.lootwishlist end,
-							get = function() return E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter end,
-							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter = value SetCVar('autoLootDefault', 0) E:StaticPopup_Show('CONFIG_RL') end,
 						},
 						lootwishlistremove = {
 							order = 45,
