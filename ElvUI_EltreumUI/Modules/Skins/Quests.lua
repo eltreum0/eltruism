@@ -431,12 +431,8 @@ function ElvUI_EltreumUI:SkinProfessions()
 		end)
 
 		--and enchanting which uses a different system apparently
-		local WideTradeSkillEnchant = CreateFrame("Frame")
-		local dontexpandanymoreEnchant = 0
-		WideTradeSkillEnchant:RegisterEvent("ADDON_LOADED")
-		WideTradeSkillEnchant:SetScript("OnEvent", function(_, _, arg)
-			if (arg == "Blizzard_CraftUI") then
-				CraftFrame:HookScript("OnShow", function()
+		if IsAddOnLoaded("TradeSkillMaster") then
+			CraftFrame:HookScript("OnShow", function()
 					if not CraftFrame.backdrop.shadow then
 						CraftFrame.backdrop:CreateShadow()
 					end
@@ -490,8 +486,69 @@ function ElvUI_EltreumUI:SkinProfessions()
 						dontexpandanymoreEnchant = 1
 					end
 				end)
-			end
-		end)
+		else
+			local WideTradeSkillEnchant = CreateFrame("Frame")
+			local dontexpandanymoreEnchant = 0
+			WideTradeSkillEnchant:RegisterEvent("ADDON_LOADED")
+			WideTradeSkillEnchant:SetScript("OnEvent", function(_, _, arg)
+				if (arg == "Blizzard_CraftUI") then
+					CraftFrame:HookScript("OnShow", function()
+						if not CraftFrame.backdrop.shadow then
+							CraftFrame.backdrop:CreateShadow()
+						end
+						CraftFrame:SetWidth(765)
+						CraftFrame:SetHeight(550)
+
+						CraftListScrollFrameScrollChildFrame:SetHeight(390)
+						CraftListScrollFrameScrollChildFrame:SetWidth(350)
+
+						CraftListScrollFrameScrollBar:ClearAllPoints()
+						CraftListScrollFrameScrollBar:SetPoint("CENTER", CraftFrame, "CENTER", 10,  12)
+						CraftListScrollFrameScrollBar:SetHeight(320)
+
+						CraftDetailScrollChildFrame:SetParent(CraftFrame)
+						CraftDetailScrollChildFrame:ClearAllPoints()
+						CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30,  -46)
+						CraftDetailScrollChildFrame:SetHeight(390)
+
+						if ElvUI_EltreumUI.TBC then
+							CraftFrameFilterDropDown:ClearAllPoints()
+							CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
+							CraftFrameAvailableFilterCheckButton:ClearAllPoints()
+							CraftFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", CraftFrame, 64,-48)
+						elseif ElvUI_EltreumUI.Classic then
+							CraftDetailScrollFrame:Hide()
+							CraftDetailScrollFrameScrollBar:Hide()
+						end
+
+						CraftCreateButton:ClearAllPoints()
+						CraftCreateButton:SetPoint("LEFT", CraftFrame, "BOTTOMLEFT", 15, 95)
+
+						CraftCancelButton:ClearAllPoints()
+						CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
+
+						if dontexpandanymoreEnchant == 0 then
+							-- Create the additional rows
+							local numCrafts = CRAFTS_DISPLAYED
+							CRAFTS_DISPLAYED = CRAFTS_DISPLAYED + 14
+							for i = numCrafts + 1, CRAFTS_DISPLAYED do
+								local craftbutton = CreateFrame("Button", "Craft" .. i, CraftFrame, "CraftButtonTemplate")
+								craftbutton:SetID(i)
+								craftbutton:Hide()
+								craftbutton:ClearAllPoints()
+								craftbutton:SetPoint("TOPLEFT", _G["Craft" .. (i - 1)], "BOTTOMLEFT", 0, 1)
+							end
+							--increase the width of the rows so the title fits
+							for i = 1, CRAFTS_DISPLAYED do
+								local craftTitle = _G['Craft'..i]
+								craftTitle:Width(335)
+							end
+							dontexpandanymoreEnchant = 1
+						end
+					end)
+				end
+			end)
+		end
 	end
 end
 
