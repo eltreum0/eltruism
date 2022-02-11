@@ -11,7 +11,7 @@ ignore:
   - Eltruism/README.md
 
 move-folders:
-    Eltruism/ElvUI_EltreumUI: ElvUI_EltreumUI
+    eltruism/ElvUI_EltreumUI: ElvUI_EltreumUI
 
 manual-changelog:
   filename: Changelog.md
