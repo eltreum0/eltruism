@@ -16,7 +16,6 @@ WishlistItemFrame.Text:SetText("You have looted")
 WishlistItemFrame.Text2 = WishlistItemFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 WishlistItemFrame.Text2:SetSize(418, 72)
 WishlistItemFrame.Text2:SetPoint("CENTER", "EltruismWishlistItem", "CENTER", 0, -14)
-WishlistItemFrame.Text2:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 WishlistItemFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 24, "OUTLINE")
 
 WishlistItemFrame.StatusLine = CreateFrame("StatusBar", "EltruismWishlistItem", WishlistItemFrame)
@@ -42,12 +41,14 @@ local function InstantLoot()
 			if itemLink == nil then
 				itemLink = "|cffe6cc80|Hitem:158075::::::::53:257::11:4:4932:4933:6316:1554::::::|h[Heart of Azeroth]|h|r"
 			end
-			local itemName = GetItemInfo(itemLink)
+			local itemName, _, quality = GetItemInfo(itemLink)
+			local r,g,b = GetItemQualityColor(quality)
 			local id = itemLink:match("item:(%d+)")
 			local itemID = tonumber(id)
 			for k=1, #E.db.ElvUI_EltreumUI.otherstuff.lootwishlist do
 				if itemID == tonumber(E.db.ElvUI_EltreumUI.otherstuff.lootwishlist[k]) then
 					WishlistItemFrame.Text2:SetText("")
+					WishlistItemFrame.Text2:SetTextColor(r, g, b)
 					WishlistItemFrame.Text2:SetText(itemName.."!")
 					UIFrameFadeIn(WishlistItemFrame, 1, 0, 1)
 					C_Timer.After(5, function() UIFrameFadeOut(WishlistItemFrame, 1, 1, 0) end)
