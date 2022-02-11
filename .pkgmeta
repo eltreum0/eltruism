@@ -12,3 +12,7 @@ ignore:
 
 move-folders:
     Eltruism/ElvUI_EltreumUI: ElvUI_EltreumUI
+
+manual-changelog:
+  filename: CHANGELOG.md
+  markup-type: markdown
