@@ -42,13 +42,20 @@ local function InstantLoot()
 				itemLink = "|cffe6cc80|Hitem:158075::::::::53:257::11:4:4932:4933:6316:1554::::::|h[Heart of Azeroth]|h|r"
 			end
 			local itemName, _, quality = GetItemInfo(itemLink)
-			local r,g,b = GetItemQualityColor(quality)
+			local r,g,b
+			if quality then
+				r,g,b = GetItemQualityColor(quality)
+			end
 			local id = itemLink:match("item:(%d+)")
 			local itemID = tonumber(id)
 			for k=1, #E.db.ElvUI_EltreumUI.otherstuff.lootwishlist do
 				if itemID == tonumber(E.db.ElvUI_EltreumUI.otherstuff.lootwishlist[k]) then
 					WishlistItemFrame.Text2:SetText("")
-					WishlistItemFrame.Text2:SetTextColor(r, g, b)
+					if quality then
+						WishlistItemFrame.Text2:SetTextColor(r, g, b)
+					else
+						WishlistItemFrame.Text2:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+					end
 					WishlistItemFrame.Text2:SetText(itemName.."!")
 					UIFrameFadeIn(WishlistItemFrame, 1, 0, 1)
 					C_Timer.After(5, function() UIFrameFadeOut(WishlistItemFrame, 1, 1, 0) end)
