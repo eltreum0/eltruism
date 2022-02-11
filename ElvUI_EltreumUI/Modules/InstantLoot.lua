@@ -7,7 +7,7 @@ WishlistItemFrame:SetPoint("TOP", UIParent, 0, -100)
 WishlistItemFrame:SetSize(418, 72)
 
 WishlistItemFrame.Text = WishlistItemFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
-WishlistItemFrame.Text:SetSize(418, 72)
+WishlistItemFrame.Text:SetSize(800, 72)
 WishlistItemFrame.Text:SetPoint("CENTER", "EltruismWishlistItem", "CENTER", 0, 16)
 WishlistItemFrame.Text:SetTextColor(1, 1, 1)
 WishlistItemFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
