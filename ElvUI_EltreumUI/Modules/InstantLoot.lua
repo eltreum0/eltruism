@@ -58,7 +58,6 @@ local function InstantLoot()
 	if _G["TSMDestroyBtn"] and _G["TSMDestroyBtn"]:IsShown() then
 		return
 	elseif E.db.ElvUI_EltreumUI.otherstuff.fastloot then
-		print("fastloot")
 		if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
 			for i = GetNumLootItems(), 1, -1 do
 				LootSlot(i)
