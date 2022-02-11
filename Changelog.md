@@ -4,15 +4,15 @@ ___
 ### 2.7.9
 Added an option to display the item level of the item being linked in chat\
 Added an option to display the Class Crest in the Character Panel (Eltruism > Skins> Character)\
-Added an option to also automatically accept weekly and daily quests for retail\
+Added an option to also accept weekly and daily quests automatically for retail\
 Added an option to filter loot items by quality\
-Added an option to put loot items into a wish list, which can also display a popup once the item is looted, alongside another option to restrict items to be looted only from the wishlist\
+Added an option to put loot items into a wish list, which can also display a toast once the item is looted, alongside another option to restrict items to be looted only from the wishlist\
 Added a few items that are not considered quest items to the quest item bar\
-Skinned the professions window to be wider, this skin can be enabled in Eltruism > Skins
-Fixed Aura Filters and Alternative Layout not applying due to the profile name change\
+Skinned the professions window to be wider, this skin can be enabled in Eltruism > Skins\
+Fixed Aura Filters and Alternative Layout not applying due to the profile name change
 ___
 ### 2.7.8
-Reworked many functions and how they are registered, resulting in improved performance and memory usage, specially in combat\
+Reworked many functions and how they are registered, resulting in improved performance and memory usage, especially in combat\
 Set smoothbars to off and friendly nameplates inside instances to off since it's been discovered that they impact performance. It is recommended to do the same, by going into ElvUI > Unitframes/Nameplates and unchecking Smooth Bars, then ElvUI > Eltruism > Nameplates > Hide Friendly Nameplates inside instances\
 Fixed an annoying World Quest Title being displayed when it shouldn't\
 Fixed Class Icon on Character Panel not showing up in the reputation and currency tabs for Retail\
