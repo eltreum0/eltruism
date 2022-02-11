@@ -1227,19 +1227,9 @@ if ElvUI_EltreumUI.TBC then
 								end)
 							end,
 						},
-						lootwishlistwarning = {
-							order = 44,
-							name = L['Enable Loot Warning'],
-							type = "toggle",
-							desc = L["Show a popup if the item is looted"],
-							--width = 'full',
-							disabled = function() return E.db.ElvUI_EltreumUI.otherstuff.fastloot or E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter end,
-							get = function() return E.db.ElvUI_EltreumUI.otherstuff.lootwishlistwarning end,
-							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.lootwishlistwarning = value E:StaticPopup_Show('CONFIG_RL') end,
-						},
 						lootwishlistfilter = {
-							order = 45,
-							name = L['Only loot items on the wishlist'],
+							order = 44,
+							name = L['Wishlist Filter'],
 							type = "toggle",
 							desc = L["Items not on the wishlist will not be looted"],
 							--width = 'full',
@@ -1248,7 +1238,7 @@ if ElvUI_EltreumUI.TBC then
 							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter = value SetCVar('autoLootDefault', 0) E:StaticPopup_Show('CONFIG_RL') end,
 						},
 						lootwishlistremove = {
-							order = 46,
+							order = 45,
 							type = 'select',
 							width = "double",
 							name = "Remove item from Wishlist",
@@ -1260,6 +1250,16 @@ if ElvUI_EltreumUI.TBC then
 								tremove(E.db.ElvUI_EltreumUI.otherstuff.lootwishlist, item)
 								tremove(E.db.ElvUI_EltreumUI.otherstuff.lootwishlistnames, item)
 							 end,
+						},
+						lootwishlistwarning = {
+							order = 46,
+							name = L['Enable Loot Warning'],
+							type = "toggle",
+							desc = L["Show a popup if the item is looted"],
+							width = 'full',
+							disabled = function() return E.db.ElvUI_EltreumUI.otherstuff.fastloot or E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter end,
+							get = function() return E.db.ElvUI_EltreumUI.otherstuff.lootwishlistwarning end,
+							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.lootwishlistwarning = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
 						header15 = {
 							order = 47,

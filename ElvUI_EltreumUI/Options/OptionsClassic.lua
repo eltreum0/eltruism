@@ -1012,8 +1012,9 @@ if ElvUI_EltreumUI.Classic then
 							type = "toggle",
 							desc = "Decrease the time it takes for auto loot to work",
 							width = 'full',
+							disabled = function() return E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter or E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter end,
 							get = function() return E.db.ElvUI_EltreumUI.otherstuff.fastloot end,
-							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.fastloot = value E:StaticPopup_Show('CONFIG_RL') end,
+							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.fastloot = value SetCVar('autoLootDefault', 1) E:StaticPopup_Show('CONFIG_RL') end,
 						},
 						fastlootenablefilter = {
 							order = 41,
@@ -1021,7 +1022,7 @@ if ElvUI_EltreumUI.Classic then
 							type = "toggle",
 							desc = L["Enable filtering item quality"],
 							width = 'full',
-							disabled = function() return E.db.ElvUI_EltreumUI.otherstuff.fastloot end,
+							disabled = function() return E.db.ElvUI_EltreumUI.otherstuff.fastloot or E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter end,
 							get = function() return E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter end,
 							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter = value SetCVar('autoLootDefault', 0) E:StaticPopup_Show('CONFIG_RL') end,
 						},
@@ -1038,26 +1039,100 @@ if ElvUI_EltreumUI.Classic then
 								['4'] = L["Epic"],
 							},
 							style = 'radio',
-							disabled = function() return E.db.ElvUI_EltreumUI.otherstuff.fastloot or not E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter end,
+							disabled = function() return E.db.ElvUI_EltreumUI.otherstuff.fastloot or not E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter or E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter end,
 							get = function() return E.db.ElvUI_EltreumUI.otherstuff.fastlootquality end,
 							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.fastlootquality = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
-						header15 = {
+						lootwishlist = {
+							order = 43,
+							type = 'input',
+							name = 'Item Wishlist (type the Item ID)',
+							desc = 'Items in your wishlist will display a warning when looted',
+							width = 'double',
+							get = function() return E.db.ElvUI_EltreumUI.otherstuff.lootwishlist end,
+							validate = function(_, value)
+								E.PopupDialogs['ELTRUISMINVALID'] = {
+									text = L["Invalid Item"],
+									button1 = OKAY,
+									timeout = 0,
+									whileDead = 1,
+									hideOnEscape = true,
+								}
+								if tonumber(value) ~= nil then
+									value = tonumber(value)
+									local item = Item:CreateFromItemID(value)
+									if item == nil then
+										return E:StaticPopup_Show('ELTRUISMINVALID') and false
+									elseif item:IsItemEmpty() then
+										return E:StaticPopup_Show('ELTRUISMINVALID') and false
+									else
+										return true
+									end
+								else
+									return E:StaticPopup_Show('ELTRUISMINVALID') and false
+								end
+							end,
+							set = function(_, value)
+								value = tonumber(value)
+								local item = Item:CreateFromItemID(value)
+								item:ContinueOnItemLoad(function()
+									local itemName = item:GetItemName()
+									local itemID = tonumber(value)
+									tinsert(E.db.ElvUI_EltreumUI.otherstuff.lootwishlistnames, itemName)
+									tinsert(E.db.ElvUI_EltreumUI.otherstuff.lootwishlist, itemID)
+								end)
+							end,
+						},
+						lootwishlistfilter = {
 							order = 44,
+							name = L['Wishlist Filter'],
+							type = "toggle",
+							desc = L["Items not on the wishlist will not be looted"],
+							--width = 'full',
+							--disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.lootwishlist end,
+							get = function() return E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter end,
+							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter = value SetCVar('autoLootDefault', 0) E:StaticPopup_Show('CONFIG_RL') end,
+						},
+						lootwishlistremove = {
+							order = 45,
+							type = 'select',
+							width = "double",
+							name = "Remove item from Wishlist",
+							desc = L["Remove"],
+							values = E.db.ElvUI_EltreumUI.otherstuff.lootwishlistnames,
+							get = function() return E.db.ElvUI_EltreumUI.otherstuff.lootwishlistnames end,
+							set = function(_,value)
+								local item = tonumber(value)
+								tremove(E.db.ElvUI_EltreumUI.otherstuff.lootwishlist, item)
+								tremove(E.db.ElvUI_EltreumUI.otherstuff.lootwishlistnames, item)
+							 end,
+						},
+						lootwishlistwarning = {
+							order = 46,
+							name = L['Enable Loot Warning'],
+							type = "toggle",
+							desc = L["Show a popup if the item is looted"],
+							width = 'full',
+							disabled = function() return E.db.ElvUI_EltreumUI.otherstuff.fastloot or E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter end,
+							get = function() return E.db.ElvUI_EltreumUI.otherstuff.lootwishlistwarning end,
+							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.lootwishlistwarning = value E:StaticPopup_Show('CONFIG_RL') end,
+						},
+						header15 = {
+							order = 47,
 							type = "description",
 							name = "",
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
 						autossdesc = {
-							order = 45,
+							order = 48,
 							type = "description",
 							name = "Automatically take Screenshots",
 							desc = "Automatically take Screenshots",
 							width = 'full',
 						},
 						autossenable = {
-							order = 46,
+							order = 49,
 							name = L['Enable'],
 							type = "toggle",
 							desc = "Automatically take Screenshots such as when leveling up",

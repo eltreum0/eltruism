@@ -92,8 +92,6 @@ local function InstantLoot()
 			end
 			local id = itemLink:match("item:(%d+)")
 			local itemID = tonumber(id)
-			--local itemID = {}
-			--tinsert(itemID, tonumber(id))
 			print(id, itemID, E.db.ElvUI_EltreumUI.otherstuff.lootwishlist[i])
 			for k=1, #E.db.ElvUI_EltreumUI.otherstuff.lootwishlist do
 				if itemID == tonumber(E.db.ElvUI_EltreumUI.otherstuff.lootwishlist[k]) then
