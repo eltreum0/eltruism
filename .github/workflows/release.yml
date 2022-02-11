@@ -36,9 +36,11 @@ jobs:
                                    # file naming for non-tagged builds will not work properly
 
       # once cloned, we just run the GitHub Action for the packager project
-      - name: Package
-        uses: BigWigsMods/packager@multitoc
+      #- name: Package
+      #  uses: BigWigsMods/packager@multitoc
 
       - name: WoW Packager
         uses: BigWigsMods/packager@v1.0.3
+        with:
+          args: release.sh -n "{package-name}-{project-version}"
 
