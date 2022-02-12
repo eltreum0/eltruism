@@ -9,6 +9,10 @@ ignore:
   - eltruism/Changelog.md
   - eltruism/License.md
   - eltruism/README.md
+  - "*.md"
+
+move-folders:
+    eltruism/ElvUI_EltreumUI: ElvUI_EltreumUI
 
 manual-changelog:
   filename: Changelog.md
