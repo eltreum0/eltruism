@@ -45,7 +45,8 @@ moveOut:SetOffset(-fontsize, -fontsize/4)
 darksouls:RegisterEvent("PLAYER_DEAD")
 --darksouls:RegisterEvent("PLAYER_STARTED_MOVING")
 darksouls:SetScript("OnEvent", function()
-	if E.db.ElvUI_EltreumUI.otherstuff.playerdeath then
+	local _, instanceType = IsInInstance()
+	if E.db.ElvUI_EltreumUI.otherstuff.playerdeath and IsEncounterSuppressingRelease() == false and instanceType ~= "arena" and instanceType ~= "pvp" then
 		UIParent:SetAlpha(0)
 		PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\You_Died.ogg" , "Master")
 		UIFrameFadeIn(darksouls, 1, 0, 1)
