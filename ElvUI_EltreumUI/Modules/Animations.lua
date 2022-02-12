@@ -51,13 +51,7 @@ darksouls:SetScript("OnEvent", function()
 		PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\You_Died.ogg" , "Master")
 		UIFrameFadeIn(darksouls, 1, 0, 1)
 		darksouls.scaler:Play()
-		C_Timer.After(4, function()
-			UIFrameFadeOut(darksouls, 1, 1, 0)
-		end)
-		C_Timer.After(5, function()
-			--if not InCombatLockdown() then
-				UIParent:SetAlpha(1)
-			--end
-		end)
+		C_Timer.After(4, function() UIFrameFadeOut(darksouls, 1, 1, 0) end)
+		C_Timer.After(5, function() UIParent:SetAlpha(1) end)
 	end
 end)
