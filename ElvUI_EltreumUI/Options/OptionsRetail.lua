@@ -616,6 +616,22 @@ if ElvUI_EltreumUI.Retail then
 							get = function() return E.db.ElvUI_EltreumUI.loottext.combatindicator end,
 							set = function(_, value) E.db.ElvUI_EltreumUI.loottext.combatindicator = value E:StaticPopup_Show('CONFIG_RL') end,
 						},
+						headerdarksouls = {
+							order = 28,
+							type = "description",
+							name = "",
+							width = 'full',
+							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						},
+						darksouls = {
+							order = 29,
+							type = "toggle",
+							name = L["Enable a Dark Souls death animation"],
+							desc = L["Plays an animation when you die"],
+							width = 'full',
+							get = function() return E.db.ElvUI_EltreumUI.otherstuff.playerdeath end,
+							set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.playerdeath = value end,
+						},
 						header9987 = {
 							order = 33,
 							type = "description",

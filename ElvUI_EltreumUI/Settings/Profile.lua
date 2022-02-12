@@ -404,6 +404,7 @@ P.ElvUI_EltreumUI = {
 		mapcombathide = false,
 		dynamicxpbar = false,
 		delete = false,
+		playerdeath = false,
 		--floatingrep = false,
 	},
 }

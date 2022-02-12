@@ -442,3 +442,5 @@ L["Shows Class Icons by Blizzard only on Player targets"] = true
 L["Shows Class Icons with borders recolored by Releaf on all targets"] = true
 L["Shows Class Icons with borders recolored by Releaf on Player targets"] = true
 L["Hybrid"] = true
+L["Enable a Dark Souls death animation"] = true
+L["Plays an animation when you die"] = true
