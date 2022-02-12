@@ -12,7 +12,7 @@ ignore:
   - "*.md"
 
 move-folders:
-    eltruism/ElvUI_EltreumUI: ElvUI_EltreumUI
+    ElvUI_EltreumUI/ElvUI_EltreumUI: ElvUI_EltreumUI
 
 manual-changelog:
   filename: Changelog.md
