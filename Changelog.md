@@ -1,6 +1,3 @@
-### 🌌 Next Version 
-**The future is uncertain**
-___
 ### 2.7.9
 Added an option to display the item level of the item being linked in chat\
 Added an option to display the Class Crest in the Character Panel (Eltruism > Skins> Character)\
