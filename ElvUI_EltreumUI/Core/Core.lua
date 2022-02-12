@@ -237,11 +237,21 @@ end
 function ElvUI_EltreumUI:DeleteItem()
 	if E.db.ElvUI_EltreumUI.otherstuff.delete then
 		hooksecurefunc(StaticPopupDialogs["DELETE_GOOD_ITEM"],"OnShow",function(self) --Interface/FrameXML/StaticPopup.lua line 1965/2074
+			local itemLink = select(3, GetCursorInfo())
+			local lootName = select(1, GetItemInfo(itemLink))
+			local lootTexture = select(10, GetItemInfo(itemLink))
+			local deletetext = string.gsub(StaticPopup1Text:GetText(), lootName, "|T"..lootTexture..":".. 14 .."|t"..itemLink.."")
+			StaticPopup1Text:SetText(deletetext)
 			self.editBox:SetText(DELETE_ITEM_CONFIRM_STRING)  --from line 2028
 			ElvUI_EltreumUI:Print("DELETE automatically typed")
 		end)
 
 		hooksecurefunc(StaticPopupDialogs["DELETE_GOOD_QUEST_ITEM"],"OnShow",function(self) --Interface/FrameXML/StaticPopup.lua line 2125
+			local itemLink = select(3, GetCursorInfo())
+			local lootName = select(1, GetItemInfo(itemLink))
+			local lootTexture = select(10, GetItemInfo(itemLink))
+			local deletetext = string.gsub(StaticPopup1Text:GetText(), lootName, "|T"..lootTexture..":".. 14 .."|t"..itemLink.."")
+			StaticPopup1Text:SetText(deletetext)
 			self.editBox:SetText(DELETE_ITEM_CONFIRM_STRING)  --from line 2028
 			ElvUI_EltreumUI:Print("DELETE automatically typed")
 		end)
