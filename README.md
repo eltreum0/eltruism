@@ -47,7 +47,7 @@ Combat Cursor, showing in combat but can also be toggled to show always\
 Cast, GCD and Combat cursors are a fork of CastCursor by michaelsp (credits in the Licenses folder)
 Cooldown, on an attempt to use a skill on cooldown its cooldown will be shown, if no other skill is pressed afterwards then 3s before the cooldown is done the 
 skill will show up again with a countdown to be used\
-Cooldown is a fork of CooldownToGo by mitchnull (credits in the Licenses folder)
+Cooldown is a fork of CooldownToGo by mitchnull (credits in the Licenses folder)\
 \
 >Nameplates:\
 Nameplate Power Bar, and advanced power bar above the target nameplate that includes spell costs and incoming resource gains\
