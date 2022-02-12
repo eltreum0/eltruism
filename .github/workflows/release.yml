@@ -8,8 +8,8 @@ name: Release
 on:
   push:
     #tags:
-     # - 'v*.*.*'
-     # - '*'
+    # - 'v*.*.*'
+     - '*'
 
 # a workflow is built up as jobs, and within these jobs are steps
 jobs:
