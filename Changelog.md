@@ -1,3 +1,8 @@
+### 2.8.0
+Added Wowhead button for quests\
+Improved the Delete Item with the item texture and item link in the message to make it clearer which item is being deleted\
+Implemented BigWigs Packager for addon releases
+___
 ### 2.7.9
 Added an option to display the item level of the item being linked in chat\
 Added an option to display the Class Crest in the Character Panel (Eltruism > Skins> Character)\
