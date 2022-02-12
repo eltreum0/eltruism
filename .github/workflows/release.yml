@@ -35,7 +35,8 @@ jobs:
       - name: WoW Packager
         uses: BigWigsMods/packager@v1.0.3
         with:
-         args: release.sh -n "{package-name}"
+        # args: release.sh -n "{package-name}"
+         args: release.sh -n "ElvUI_EltreumUI"
 
       # specify the environment variables used by the packager, matching the secrets from the project on GitHub
     env:
