@@ -20,6 +20,7 @@
 	<Script file='Skins/Unitframes.lua'/>
 	<Script file='Skins/WiderTransmog.lua'/>
 	<Script file='AFK.lua'/>
+	<Script file='Animations.lua'/>
 	<Script file='Auras.lua'/>
 	<Script file='CombatMusic.lua'/>
 	<Script file='DarkLightColors.lua'/>
