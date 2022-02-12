@@ -46,11 +46,17 @@ darksouls:RegisterEvent("PLAYER_DEAD")
 --darksouls:RegisterEvent("PLAYER_STARTED_MOVING")
 darksouls:SetScript("OnEvent", function()
 	if E.db.ElvUI_EltreumUI.otherstuff.playerdeath then
-		UIParent:Hide()
+		UIParent:SetAlpha(0)
 		PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\You_Died.ogg" , "Master")
 		UIFrameFadeIn(darksouls, 1, 0, 1)
 		darksouls.scaler:Play()
-		C_Timer.After(4, function() UIFrameFadeOut(darksouls, 1, 1, 0) end)
-		C_Timer.After(5, function() UIParent:Show() end)
+		C_Timer.After(4, function()
+			UIFrameFadeOut(darksouls, 1, 1, 0)
+		end)
+		C_Timer.After(5, function()
+			--if not InCombatLockdown() then
+				UIParent:SetAlpha(1)
+			--end
+		end)
 	end
 end)
