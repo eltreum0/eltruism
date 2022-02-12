@@ -16,7 +16,69 @@ end
 function ElvUI_EltreumUI:SkinQuests()
 	local fontsize = E.db.general.fontSize
 	if E.db.ElvUI_EltreumUI.skins.quests then
+
+		--create the button for wowhead
+		local wowheadbutton = CreateFrame("Button", nil)
 		if ElvUI_EltreumUI.Retail then
+			wowheadbutton:SetWidth(80)
+			wowheadbutton:SetHeight(20)
+			wowheadbutton:SetParent(_G.WorldMapFrame)
+			wowheadbutton:SetPoint("TOPRIGHT", _G.WorldMapFrame, "TOPRIGHT", -80, 0)
+		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			local x, y = _G.QuestFramePushQuestButton:GetSize()
+			wowheadbutton:SetWidth(x)
+			wowheadbutton:SetHeight(y)
+			wowheadbutton:SetParent(_G.QuestLogFrame)
+			wowheadbutton:SetPoint("LEFT", _G.QuestFramePushQuestButton, "LEFT", -x-2, 0)
+		end
+		wowheadbutton:SetText("Wowhead")
+		wowheadbutton:SetNormalFontObject("GameFontNormal")
+		--let elvui handle the button skin
+		local S = E:GetModule('Skins')
+		S:HandleButton(wowheadbutton)
+		--get the wowhead region based on game language region
+		local wowheadregion
+		if GetLocale() == "deDE" then
+			wowheadregion = "de.wowhead.com"
+		elseif GetLocale() == "enUS" or GetLocale() == "enCN" or GetLocale() == "enGB" or GetLocale() == "enTW"  then
+			wowheadregion = "wowhead.com"
+		elseif GetLocale() == "esMX" or GetLocale() == "esES" then
+			wowheadregion = "es.wowhead.com"
+		elseif GetLocale() == "frFR" then
+			wowheadregion = "fr.wowhead.com"
+		elseif GetLocale() == "itIT" then
+			wowheadregion = "it.wowhead.com"
+		elseif GetLocale() == "koKR" then
+			wowheadregion = "ko.wowhead.com"
+		elseif GetLocale() == "ptBR" or GetLocale() == "ptPT" then
+			wowheadregion = "pt.wowhead.com"
+		elseif GetLocale() == "ruRU" then
+			wowheadregion = "ru.wowhead.com"
+		elseif GetLocale() == "zhCN" or GetLocale() == "zhTW" then
+			wowheadregion = "cn.wowhead.com"
+		else
+			wowheadregion = "wowhead.com"
+		end
+		--register the button for clicks
+		wowheadbutton:RegisterForClicks("AnyUp")
+		local questID
+
+		if not E.db.ElvUI_EltreumUI.skins.questswowhead then
+			wowheadbutton:Hide()
+		end
+
+		if ElvUI_EltreumUI.Retail then
+			--get questID based on wether or not the quest is shown, if not trying to grab the one from waypoint then it would error out
+			if _G.QuestMapFrame.DetailsFrame:IsShown() then
+				questID = QuestMapFrame_GetDetailQuestID()
+			else
+				questID = _G.C_SuperTrack.GetSuperTrackedQuestID()
+			end
+			--set the link to show when the button is clicked
+			wowheadbutton:SetScript('OnClick', function()
+				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
+			end)
+
 			if (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 
 				--WQs banner
@@ -258,6 +320,16 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 				dontexpandanymorequests = 1
 			end
+
+			--hook the function that sets the quest detail to get the questID from the quest title
+			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --questlogframe.lua 311
+				questID = select(8, GetQuestLogTitle(questTitle))
+			end)
+			--set the link to show when the button is clicked
+			wowheadbutton:SetScript('OnClick', function()
+				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
+			end)
+
 
 			if not IsAddOnLoaded('Questie') then
 				--from blizzard's FrameXML/QuestLogFrame.lua
@@ -551,7 +623,6 @@ function ElvUI_EltreumUI:SkinProfessions()
 		end
 	end
 end
-
 
 function ElvUI_EltreumUI:SkinMailZone()
 	local fontsize = E.db.general.fontSize

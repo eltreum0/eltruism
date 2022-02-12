@@ -62,6 +62,7 @@ P.ElvUI_EltreumUI = {
 		expandarmorycrest = false,
 		bossemote = false,
 		quests = false,
+		questswowhead = false,
 		professions = false,
 		zones = false,
 		shadows = false,
