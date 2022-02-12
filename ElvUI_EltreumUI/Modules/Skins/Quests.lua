@@ -56,8 +56,6 @@ function ElvUI_EltreumUI:SkinQuests()
 			wowheadregion = "ru.wowhead.com"
 		elseif GetLocale() == "zhCN" or GetLocale() == "zhTW" then
 			wowheadregion = "cn.wowhead.com"
-		else
-			wowheadregion = "wowhead.com"
 		end
 		--register the button for clicks
 		wowheadbutton:RegisterForClicks("AnyUp")
@@ -80,7 +78,6 @@ function ElvUI_EltreumUI:SkinQuests()
 			end)
 
 			if (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
-
 				--WQs banner
 				if _G.ObjectiveTrackerBonusBannerFrame then
 					--textcoords from https://www.townlong-yak.com/framexml/39229/Helix/AtlasInfo.lua
@@ -278,10 +275,17 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 					end
 				end)
-
 			end
 		end
 		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+			--hook the function that sets the quest detail to get the questID from the quest title
+			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --questlogframe.lua 311
+				questID = select(8, GetQuestLogTitle(questTitle))
+			end)
+			--set the link to show when the button is clicked
+			wowheadbutton:SetScript('OnClick', function()
+				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
+			end)
 
 			--move the text for no quests
 			QuestLogNoQuestsText:ClearAllPoints()
@@ -310,7 +314,6 @@ function ElvUI_EltreumUI:SkinQuests()
 					questTitlebutton:SetID(i)
 					questTitlebutton:Hide()
 					questTitlebutton:ClearAllPoints()
-					--watchText:SetPoint("TOPLEFT", "QuestWatchLine"..(watchTextIndex - 1), "BOTTOMLEFT", 0, -4);
 					questTitlebutton:SetPoint("TOPLEFT", _G["QuestLogTitle" .. (i - 1)], "BOTTOMLEFT", 0, 1)
 				end
 				--increase the width of the rows so the title fits
@@ -320,16 +323,6 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 				dontexpandanymorequests = 1
 			end
-
-			--hook the function that sets the quest detail to get the questID from the quest title
-			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --questlogframe.lua 311
-				questID = select(8, GetQuestLogTitle(questTitle))
-			end)
-			--set the link to show when the button is clicked
-			wowheadbutton:SetScript('OnClick', function()
-				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
-			end)
-
 
 			if not IsAddOnLoaded('Questie') then
 				--from blizzard's FrameXML/QuestLogFrame.lua
