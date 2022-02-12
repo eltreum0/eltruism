@@ -268,3 +268,48 @@ function ElvUI_EltreumUI:DarkChat()
 	end
 	ElvUI_EltreumUI:Print("Chat set to Dark mode")
 end
+
+
+
+
+--[[
+
+local darksouls = CreateFrame("FRAME", nil, WorldFrame)
+local x = GetScreenWidth()
+local y = GetScreenHeight()
+darksouls:SetSize(1920,1080)
+local darksoulstex = darksouls:CreateTexture();
+darksoulstex:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\StealthOverlay.tga")
+darksoulstex:SetAllPoints(darksouls);
+darksouls:SetPoint("Center", UIParent);
+darksouls.Text = darksouls:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
+darksouls.Text:SetJustifyH("CENTER")
+darksouls.Text:SetPoint("CENTER", UIParent)
+darksouls.Text:SetTextColor(1, 0.1803921568627451, 0.196078431372549, 0.5)
+darksouls.Text:SetFont(E.LSM:Fetch("font", "OptimusPrinceps"), 240, "OUTLINE")
+darksouls.Text:SetParent(darksouls)
+darksouls.Text:SetText("YOU DIED")
+darksouls:Hide()
+darksouls.scaler = darksouls.Text:CreateAnimationGroup()
+darksouls:RegisterEvent("PLAYER_DEAD")
+darksouls:SetScript("OnEvent", function()
+
+	local scaleOut = darksouls.scaler:CreateAnimation("Scale")
+	scaleOut:SetOrder(1)
+	scaleOut:SetDuration(5)
+	--scaleOut:SetTarget(darksouls.Text)
+	scaleOut:SetOrigin (darksouls.Text:GetCenter(), 0, 0)
+	scaleOut:SetStartDelay(0.1)
+	scaleOut:SetSmoothing("OUT")
+	scaleOut:SetFromScale(1, 1)
+	scaleOut:SetToScale(2, 2)
+
+
+	UIParent:Hide()
+	PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\You_Died.ogg" , "Master")
+	UIFrameFadeIn(darksouls, 1, 0, 1)
+	darksouls.scaler:Play()
+	C_Timer.After(4, function() UIFrameFadeOut(darksouls, 1, 1, 0) end)
+	C_Timer.After(5, function() UIParent:Show() end)
+end)
+]]

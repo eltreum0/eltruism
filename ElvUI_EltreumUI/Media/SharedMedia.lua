@@ -13,6 +13,7 @@ LSM:Register("font", "Exo2 Extra Bold", [[Interface\Addons\ElvUI_EltreumUI\Media
 LSM:Register("font", "GothamNarrow Black", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GothamNarrowBlack.ttf]])
 LSM:Register('font', "Kimberley", [[Interface\AddOns\ElvUI_EltreumUI\Media\Fonts\Kimberley.ttf]])
 LSM:Register("font", "Roboto", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Roboto-Bold.ttf]])
+LSM:Register("font", "OptimusPrinceps", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\OptimusPrinceps.ttf]])
 
 --extra media that has to be loaded anyway
 function ElvUI_EltreumUI:ExtraMedia()
