@@ -7,8 +7,8 @@ name: Release
 # other branches or even pullrequests.
 on:
   push:
-    #tags:
-    # - 'v*.*.*'
+    tags:
+     # - 'v*.*.*'
      - '*'
 
 # a workflow is built up as jobs, and within these jobs are steps
