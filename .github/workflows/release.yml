@@ -33,10 +33,11 @@ jobs:
       #  uses: BigWigsMods/packager@multitoc
 
       - name: WoW Packager
-        uses: BigWigsMods/packager@v1.0.3
+        #uses: BigWigsMods/packager@v1.0.3
+        uses: BigWigsMods/packager@multitoc
         with:
         # args: release.sh -n "{package-name}"
-         args: release.sh -n "ElvUI_EltreumUI"
+         args: release.sh -n "ElvUI_EltreumUI" #-g game-version
 
       # specify the environment variables used by the packager, matching the secrets from the project on GitHub
     env:
