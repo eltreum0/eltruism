@@ -38,23 +38,23 @@ function ElvUI_EltreumUI:SkinQuests()
 		S:HandleButton(wowheadbutton)
 		--get the wowhead region based on game language region
 		local wowheadregion
-		if GetLocale() == "deDE" then
+		if E.locale == "deDE" then
 			wowheadregion = "de.wowhead.com"
-		elseif GetLocale() == "enUS" or GetLocale() == "enCN" or GetLocale() == "enGB" or GetLocale() == "enTW"  then
+		elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW"  then
 			wowheadregion = "wowhead.com"
-		elseif GetLocale() == "esMX" or GetLocale() == "esES" then
+		elseif E.locale == "esMX" or E.locale == "esES" then
 			wowheadregion = "es.wowhead.com"
-		elseif GetLocale() == "frFR" then
+		elseif E.locale == "frFR" then
 			wowheadregion = "fr.wowhead.com"
-		elseif GetLocale() == "itIT" then
+		elseif E.locale == "itIT" then
 			wowheadregion = "it.wowhead.com"
-		elseif GetLocale() == "koKR" then
+		elseif E.locale == "koKR" then
 			wowheadregion = "ko.wowhead.com"
-		elseif GetLocale() == "ptBR" or GetLocale() == "ptPT" then
+		elseif E.locale == "ptBR" or E.locale == "ptPT" then
 			wowheadregion = "pt.wowhead.com"
-		elseif GetLocale() == "ruRU" then
+		elseif E.locale == "ruRU" then
 			wowheadregion = "ru.wowhead.com"
-		elseif GetLocale() == "zhCN" or GetLocale() == "zhTW" then
+		elseif E.locale == "zhCN" or E.locale == "zhTW" then
 			wowheadregion = "cn.wowhead.com"
 		end
 		--register the button for clicks
