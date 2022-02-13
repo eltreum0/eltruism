@@ -48,7 +48,9 @@ darksouls:SetScript("OnEvent", function()
 	local _, instanceType = IsInInstance()
 	if E.db.ElvUI_EltreumUI.otherstuff.playerdeath and IsEncounterSuppressingRelease() == false and instanceType ~= "arena" and instanceType ~= "pvp" then
 		UIParent:SetAlpha(0)
-		ObjectiveTrackerFrame:SetAlpha(0)
+		if ElvUI_EltreumUI.Retail then
+			ObjectiveTrackerFrame:SetAlpha(0)
+		end
 		Minimap:Hide()
 		PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\You_Died.ogg" , "Master")
 		UIFrameFadeIn(darksouls, 1, 0, 1)
@@ -56,7 +58,9 @@ darksouls:SetScript("OnEvent", function()
 		C_Timer.After(4, function() UIFrameFadeOut(darksouls, 1, 1, 0) end)
 		C_Timer.After(5, function()
 			UIParent:SetAlpha(1)
-			ObjectiveTrackerFrame:SetAlpha(1)
+			if ElvUI_EltreumUI.Retail then
+				ObjectiveTrackerFrame:SetAlpha(1)
+			end
 			Minimap:Show()
 		end)
 	end
