@@ -444,3 +444,5 @@ L["Shows Class Icons with borders recolored by Releaf on Player targets"] = true
 L["Hybrid"] = true
 L["Enable a Dark Souls death animation"] = true
 L["Plays an animation when you die"] = true
+L["ElvUI NamePlates were setup."] = true
+L["NamePlate Style Filters were set."] = true
