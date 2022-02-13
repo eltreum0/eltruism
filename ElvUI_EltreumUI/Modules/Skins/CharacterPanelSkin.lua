@@ -568,6 +568,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			CharacterFrame:SetSize(600, 505)
 
+			--SkillListScrollFrameScrollBar:ClearAllPoints()
+			--SkillListScrollFrameScrollBar:SetPoint("LEFT", CharacterFrame)
+
 			CharacterFrame.Text:SetSize(418, 72)
 			CharacterFrame.Text:SetPoint("TOP", CharacterFrame, "TOP", 150, -45)
 			CharacterFrame.Text:SetTextColor(1, 1, 1)
