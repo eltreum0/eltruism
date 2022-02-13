@@ -211,7 +211,6 @@ L["Combat Music"] = true
 L["Play music during combat"] = true
 L["Enable music during combat"] = true
 L["Disable in Instances"] = true
-L["Disable music during combat in instances"] = true
 L["Example: "] = true
 L["CVars"] = true -- i dont know if this gets localized
 L["Setup CVars"] = true
@@ -447,6 +446,34 @@ L["Plays an animation when you die"] = true
 L["ElvUI NamePlates were setup."] = true
 L["NamePlate Style Filters were set."] = true
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 L["Launch Eltruism Installer"] = true
 L["Reset Eltruism Settings"] = true
 L["Reset nameplates to Eltruism Settings"] = true
@@ -458,7 +485,6 @@ L["Details v1 - Blizzard Flat Icons"] = true
 L["Details v2 - Releaf Transparent Icons"] = true
 L["Details v3 - Releaf Solid Icons"] = true
 L["Enable Borders"] = true
-L["Choose the Border Texture to be used"] = true
 L["Change the size of the borders:"] = true
 L["Actionbar Thickness"] = true
 L["Unitframe Thickness"] = true
@@ -490,6 +516,11 @@ L["Loot Window will automatically close when using filters and the item desired 
 L['Enable Screenshotting if an item from the wishlist is looted'] = true
 L["Loot Window will automatically close when using filters and the item desired is not found"] = true
 L["Mininum Loot Quality Filter"] = true
+L["Poor"] = true
+L["Common"] = true
+L["Uncommon"] = true
+L["Rare"] = true
+L["Epic"] = true
 L["Only items of this quality or better will be looted when using Fast Loot Filter"] = true
 L['Item Wishlist (type the Item ID)'] = true
 L['Items in your wishlist will display a warning when looted'] = true
@@ -510,6 +541,130 @@ L['Enable Wowhead Button on Quest Log'] = true
 L['Enable Skin'] = true
 L["Skin the Objective/Quest Frame"] = true
 L["Remove Blizzard's Boss Emote Frame"] = true
+L["Customize the player castbar spark"] = true
+L["Cursor Sizes"] = true
+L["Select how auras will be displayed for Player"] = true
+L["Select how auras will be displayed for Target"] = true
+L["Select how auras will be displayed for Focus"] = true
+L["Select how auras will be displayed for Boss"] = true
+L["Select how auras will be displayed for Nameplates"] = true
+L["Enable cursor only during combat"] = true
+L["Cursor will only show during combat"] = true
+L["Enable cooldown tracking"] = true
+L["Add a cooldown icon when trying to use skills that are on cooldown, and a cooldown flash when they are ready"] = true
+L["Attempt to fix Cursor Lag"] = true
+L["Software cursor is how the cursor was before Battle for Azeroth, Hardware cursor is faster but will cause problems with addons that attach to it"] = true
+L["Software Cursor"] = true
+L["Hardware Cursor"] = true
+L["Enable on Action Bars"] = true
+L["Enable on Pet Bar"] = true
+L["Enable on Nameplate"] = true
+L["Add a glow when buffs or debuffs are expiring on nameplates"] = true
+L["Adds an autocast style glow using class color"] = true
+L["Adds a pixel style glow using class color"] = true
+L["Preview the Glow"] = true
+L["Preview"] = true
+L["Preview the Glow, you will need to toggle it off and on to update the glow"] = true
+L["Action Bars"] = true
+L["Pet Bar"] = true
+L["Nameplate Buff/Debuff"] = true
+L["Customize CVars"] = true
+L["Nameplate Other Bottom Inset"] = true
+L["In screen % the inset from the Bottom"] = true
+L["Nameplate Other Top Inset"] = true
+L["In screen % the inset from the Top"] = true
+L["Nameplate Target Radial Position"] = true
+L["When target is off screen, position its nameplate radially around sides and bottom."] = true
+L["Target Only"] = true
+L["All in Combat"] = true
+L["Camera Distance Max Zoom Factor"] = true
+L["Maximum Camera Zoom Out"] = true
+L["Hide Minimap while in Combat"] = true
+L["Automatically hide the Minimap in combat"] = true
+L["Dynamically toggle the mouseover of the Experience Bar"] = true
+L["Shows XP bar when below max level, makes it mouseover when max level"] = true
+L["Enable Entering/Leaving Combat Indicator Texts"] = true
+L["Adds a +Combat and -Combat for when entering and leaving combat"] = true
+L["Enable a Dark Souls death animation"] = true
+L["Plays an animation when you die"] = true
+L["Add Sounds to /roll when someone gets a 1 or a 100"] = true
+L["Plays a sound if someone rolls 1 or 100 out 100"] = true
+L["Change the Scale of the World Text"] = true
+L["Such as the floating XP, floating reputation changes and others"] = true
+L["Select the size of the World Text"] = true
+L["Hide Talking Head"] = true
+L["Prevent Blizzard's Talking Head from appearing"] = true
+L["Automatically take Screenshots"] = true
+L["Automatically take Screenshots such as when leveling up"] = true
+L["Stealth"] = true
+L["Item Deletion"] = true
+L["Automatically type DELETE on the popup"] = true
+L["Will not delete the item, will simply type DELETE instead you needing to type it"] = true
+L["Blizzard Floating Combat Text"] = true
+L["Disable Combat Text"] = true
+L["Enable or disable Blizzard's default Floating Combat Text"] = true
+L["Enable Resource Gains"] = true
+L["Enable or disable Blizzard's default Floating Combat Text for Mana/Rage/Energy and other resouces"] = true
+L["Swap Action Paging and visibility for Bar1 and Bar4"] = true
+L["Enable Boss Music"] = true
+L["Disable Combat Music in Instances"] = true
+L["Normal Combat Music"] = true
+L["Name of file inside Interface\\Addons"] = true
+L["Boss Combat Music"] = true
+L["Player Class Texture"] = true
+L["Target Class Texture"] = true
+L["Change the texture of the nameplate to be a class gradient of the player's class"] = true
+L["Target Class Texture"] = true
+L["Change the texture of the nameplate to be a class gradient of the target's class"] = true
+L["Enable Automatically accepting/turning in Quests when not holding CTRL/SHIFT/ALT"] = true
+L["You will automatically accept and turn in quests that do not require gold, are not weekly and are not daily"] = true
+L["Accept Daily and Weekly quests"] = true
+L["You will also automatically accept Daily and Weekly Quests"] = true
+L["Invert CTRL/SHIFT/ALT"] = true
+L["You will only accept and turn in quests if you hold CTRL/SHIFT/ALT while talking to the NPC"] = true
+L["Quest Item Bar"] = true
+L["Enable Quest Item Bar"] = true
+L["Add a Quest Item bar, keybind can be changed in Keybinds > ElvUI Eltruism"] = true
+L["Quest Item Bar follows visibility settings for ElvUI Action Bar 1"] = true
+L["The Quest Item Bar will appear only when ElvUI Action Bar 1 appears, following its settings"] = true
+L["Quest Item Bar Button Mouse Over"] = true
+L["Each Button in the Quest Item Bar will appear only if the cursor is over it"] = true
+L["Quest Item Bar Button Size"] = true
+L["Change the size of the button on the Quest Item Bar"] = true
+L["Character Panel"] = true
+L["Expand Character Art"] = true
+L["Add Crest to Character Panel"] = true
+L["Art Alpha"] = true
+L["Change the transparency of the Art"] = true
+L["Add Class Icons to Character Panel"] = true
+L["Enable this option"] = true
+L["Use Blizzard Icons"] = true
+L["Enable Blizzard Icons"] = true
+L["Use Blizzard Icons colored by Releaf"] = true
+L["Enable Releaf Icons"] = true
+L["Add Shadows to Frames"] = true
+L["Add Shadows to some frames"] = true
+L["Enable General Shadows"] = true
+L["Add Shadows to frames like Player, target, Chats and others"] = true
+L["Other Shadows (can become CPU/Memory Intensive)"] = true
+L["Nameplate Health"] = true
+L["Add Shadows to Nameplate Healthbars"] = true
+L["Nameplate Aura"] = true
+L["Add Shadows to Nameplate Auras"] = true
+L["Nameplate Portrait"] = true
+L["Add Shadows to Nameplate Portraits"] = true
+L["Nameplate Power"] = true
+L["Add Shadows to Nameplate Powers"] = true
+L["Nameplate Castbar"] = true
+L["Add Shadows to Nameplate Castbars"] = true
+L["Unitframe Aura"] = true
+L["Add Shadows to Unitframe Auras"] = true
+L["ActionBars"] = true
+L["Add Shadows to Actionbars"] = true
+L["Aura"] = true
+L["Add Aura Shadows (Aura list next to the minimap)"] = true
+L["Choose the Border Texture to be used:"] = true
+L["Change the size of the borders:"] = true
 L[""] = true
 L[""] = true
 L[""] = true
@@ -533,3 +688,11 @@ L[""] = true
 L[""] = true
 L[""] = true
 L[""] = true
+L[""] = true
+L[""] = true
+L[""] = true
+L[""] = true
+L[""] = true
+L[""] = true
+
+
