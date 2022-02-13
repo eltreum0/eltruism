@@ -1761,6 +1761,15 @@ if ElvUI_EltreumUI.Classic then
 									width = 'double',
 									func = function() ElvUI_EltreumUI:AddonSetupPA() E:StaticPopup_Show('CONFIG_RL') end,
 								},
+								dynamicstatusicons = {
+									order = 4,
+									type = 'execute',
+									name = '|cFF16C3F2Dynamic Status |r|cFFFFFFFFIcons|r',
+									desc = L["Reset to Eltruism defaults."],
+									confirm = true,
+									width = 'double',
+									func = function() ElvUI_EltreumUI:SetupDynamicStatusIcons() E:StaticPopup_Show('CONFIG_RL') end,
+								},
 							},
 						},
 						bossmods = {
