@@ -26,7 +26,7 @@ local Eltruismnpenemynpcdebuffs = "Blacklist,Personal,CCDebuffs"
 local Eltruismnpenemyplayerdebuffs = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
 
 --All filter mainly for tbc/classic
-local allfilter = "Blacklist,Personal,nonPersonal,Dispellable"
+local allfilter = "Blacklist,Personal,nonPersonal"
 
 --aura filter setup based on Luckyone's credits to him!
 function ElvUI_EltreumUI:SetupBuffs(frame, type)
