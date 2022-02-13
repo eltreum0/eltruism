@@ -1,5 +1,6 @@
 ﻿-- DeepL esMX translation
-local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "esMX", true, true)
+--local L = LibStub("AceLocale-3.0"):NewLocale("ElvUI_EltreumUI", "esMX")
+local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "esMX")
 if not L then return end
 
 L[" and "] = "y"
