@@ -54,8 +54,6 @@ darksouls:SetScript("OnEvent", function()
 			tbccheck = true
 		end
 	end
-
-
 	if E.db.ElvUI_EltreumUI.otherstuff.playerdeath and IsEncounterSuppressingRelease() == false and instanceType ~= "arena" and instanceType ~= "pvp" and tbccheck == true then
 		UIParent:SetAlpha(0)
 		if E.Retail then
