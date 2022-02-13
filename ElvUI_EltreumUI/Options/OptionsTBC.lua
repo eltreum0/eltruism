@@ -4289,7 +4289,7 @@ if E.TBC then
 											},
 											honor = {
 												type = 'toggle',
-												name = L["Honor"],
+												name = HONOR,
 												order = 5,
 												disabled = function() return not E.db.ElvUI_EltreumUI.loottext.enable end,
 												get = function() return E.db.ElvUI_EltreumUI.loottext.honor end,
@@ -4297,7 +4297,7 @@ if E.TBC then
 											},
 											currency = {
 												type = 'toggle',
-												name = L["Currency"],
+												name = CURRENCY,
 												order = 5,
 												disabled = function() return not E.db.ElvUI_EltreumUI.loottext.enable end,
 												get = function() return E.db.ElvUI_EltreumUI.loottext.currency end,
