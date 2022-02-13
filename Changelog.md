@@ -1,3 +1,10 @@
+___
+### 2.8.1
+Fixed error with instant loot if the inventor was full\
+Fixed Death animation playing when in a party/raid in TBC/Classic\
+Fixed Nameplate Debuff Glow showing up on debuffs that had no duration\
+Updated Auras in Eltruism > Aura Filters
+___
 ### 2.8.0
 Added Wowhead button for quests\
 Added Dark Souls death animation for player death, default disabled and can enabled in Eltruism > Misc\
