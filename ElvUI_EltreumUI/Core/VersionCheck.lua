@@ -28,23 +28,13 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 		whileDead = 1,
 		hideOnEscape = false,
 	}
-	if ElvUI_EltreumUI.Retail then
-		if E.version < 12.63 then
-			E:StaticPopup_Show('ELVUIVERSIONCHECK')
-			--ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
-		end
-	end
-	if ElvUI_EltreumUI.TBC then
-		if E.version < 2.35 then
-			E:StaticPopup_Show('ELVUIVERSIONCHECK')
-			--ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
-		end
-	end
-	if ElvUI_EltreumUI.Classic then
-		if E.version < 1.61 then
-			E:StaticPopup_Show('ELVUIVERSIONCHECK')
-			--ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
-		end
+	if ElvUI_EltreumUI.Retail and E.version < 12.63 then
+		E:StaticPopup_Show('ELVUIVERSIONCHECK')
+		--ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
+	elseif ElvUI_EltreumUI.TBC and E.version < 2.35 then
+		E:StaticPopup_Show('ELVUIVERSIONCHECK')
+	elseif ElvUI_EltreumUI.Classic and E.version < 1.61 then
+		E:StaticPopup_Show('ELVUIVERSIONCHECK')
 	end
 end
 
