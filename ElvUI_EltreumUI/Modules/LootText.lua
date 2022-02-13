@@ -157,7 +157,7 @@ function ElvUI_EltreumUI:LootText()
 						CombatText_AddMessage("|cffFF0000+COMBAT|r", CombatText_StandardScroll, 1, 0, 0)
 				end
 			end
-			if event == "UI_ERROR_MESSAGE" and arg2 == L["Inventory is full."] then
+			if event == "UI_ERROR_MESSAGE" and arg2 == ERR_INV_FULL then
 					CombatText_AddMessage(L["INVENTORY IS FULL"], CombatText_StandardScroll, 1, 0, 0)
 			end
 			if (event == "CHAT_MSG_LOOT") then
@@ -181,12 +181,12 @@ function ElvUI_EltreumUI:LootText()
 			if E.db.ElvUI_EltreumUI.loottext.currency then
 				if (event == "CHAT_MSG_MONEY") then
 					local moneystring = Deformat(arg1, LOOT_MONEY_SPLIT) or Deformat(arg1, YOU_LOOT_MONEY)
-					if moneystring:match(L["Silver"]) and not moneystring:match(L["Gold"]) then
-							CombatText_AddMessage("|T ".. 133786 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
-					elseif moneystring:match(L["Copper"]) and not moneystring:match("Silver") and not moneystring:match(L["Gold"]) then
-							CombatText_AddMessage("|T ".. 133788 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
-					elseif moneystring:match(L["Gold"]) then
-							CombatText_AddMessage("|T ".. 133784 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
+					if moneystring:match(SILVER_AMOUNT) and not moneystring:match(GOLD_AMOUNT) then
+						CombatText_AddMessage("|T ".. 133786 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
+					elseif moneystring:match(COPPER_AMOUNT) and not moneystring:match(SILVER_AMOUNT) and not moneystring:match(GOLD_AMOUNT) then
+						CombatText_AddMessage("|T ".. 133788 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
+					elseif moneystring:match(GOLD_AMOUNT) then
+						CombatText_AddMessage("|T ".. 133784 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
 					else
 						CombatText_AddMessage("|T ".. 133784 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
 					end
