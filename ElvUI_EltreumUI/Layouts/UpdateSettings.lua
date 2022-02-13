@@ -76,9 +76,9 @@ function ElvUI_EltreumUI:UpdateSettings()
 	--private
 	E.private.ElvUI_EltreumUI.nameplatepower.enable = true
 	E.private.ElvUI_EltreumUI.nameplatepower.adjust = true
-	E.private.ElvUI_EltreumUI.combatmusic.enable = true
-	E.private.ElvUI_EltreumUI.combatmusic.bossmusic = true
-	E.private.ElvUI_EltreumUI.combatmusic.disableinstance = true
+	--E.private.ElvUI_EltreumUI.combatmusic.enable = true
+	--E.private.ElvUI_EltreumUI.combatmusic.bossmusic = true
+	--E.private.ElvUI_EltreumUI.combatmusic.disableinstance = true
 
 	ElvUI_EltreumUI:Print(L["Settings for Eltruism were applied."])
 end
