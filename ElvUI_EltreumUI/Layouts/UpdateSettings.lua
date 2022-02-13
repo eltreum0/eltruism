@@ -74,6 +74,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead = true
 	E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = true
 	E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = true
+	E.db.ElvUI_EltreumUI.otherstuff.playerdeath = true
 	--private
 	E.private.ElvUI_EltreumUI.nameplatepower.enable = true
 	E.private.ElvUI_EltreumUI.nameplatepower.adjust = true
