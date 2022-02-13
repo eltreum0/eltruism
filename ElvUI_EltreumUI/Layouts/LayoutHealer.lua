@@ -952,7 +952,11 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["target"]["buffs"]["spacing"] = 2
 		E.db["unitframe"]["units"]["target"]["buffs"]["anchorPoint"] = "TOP"
 		E.db["unitframe"]["units"]["target"]["buffs"]["attachTo"] = "DEBUFFS"
-		E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal"
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal,Dispellable"
+		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal,Dispellable,BlizzardNameplate" --new for tbc/classic
+		end
 		E.db["unitframe"]["units"]["target"]["buffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["target"]["buffs"]["countXOffset"] = -3
 		E.db["unitframe"]["units"]["target"]["buffs"]["growthX"] = "RIGHT"
@@ -962,6 +966,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["target"]["buffs"]["perrow"] = 8
 		E.db["unitframe"]["units"]["target"]["buffs"]["sizeOverride"] = 30
 		E.db["unitframe"]["units"]["target"]["buffs"]["sortDirection"] = "ASCENDING"
+		E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = true --wasnt here before
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 1
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 1
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 1

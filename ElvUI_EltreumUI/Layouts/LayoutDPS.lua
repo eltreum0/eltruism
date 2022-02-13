@@ -1127,11 +1127,16 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["target"]["buffs"]["keepSizeRatio"] = false
 		E.db["unitframe"]["units"]["target"]["buffs"]["numrows"] = 3
 		E.db["unitframe"]["units"]["target"]["buffs"]["perrow"] = 6
-		E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,nonPersonal,Dispellable"
+		if ElvUI_EltreumUI.Retail then
+			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,nonPersonal,Dispellable"
+		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,nonPersonal,Dispellable,BlizzardNameplate"
+		end
 		E.db["unitframe"]["units"]["target"]["buffs"]["sizeOverride"] = 30
 		E.db["unitframe"]["units"]["target"]["buffs"]["sortDirection"] = "ASCENDING"
 		E.db["unitframe"]["units"]["target"]["buffs"]["yOffset"] = -32
-		E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = false
+		--E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = false --was disabled before
+		E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0

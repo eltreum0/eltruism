@@ -2,7 +2,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 --Eltruism/Default ElvUI filters
 --dps filters
-local Eltruismdpstargetbuffs = "Blacklist,Personal,nonPersonal,Dispellable"
+local Eltruismdpstargetbuffs = "Blacklist,Personal,nonPersonal,Dispellable,BlizzardNameplate"
 local Eltruismdpstargetdebuffs = "Blacklist,Personal,RaidDebuffs,CCDebuffs,Friendly:Dispellable"
 local Eltruismdpsplayerdebuffs = "Blacklist,blockNoDuration,Personal,nonPersonal"
 local Eltruismdpsplayerbuffs = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal"
@@ -11,12 +11,10 @@ local Eltruismdpsbossdebuffs = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,W
 local Eltruismdpsfocusbuffs = "Blacklist,Personal,PlayerBuffs,CastByUnit,Dispellable,RaidBuffsElvUI"
 local Eltruismdpsfocusdebuffs = "Blacklist,Personal,Boss,RaidDebuffs,Dispellable,Whitelist"
 --healer filters
-local Eltruismhealertargetbuffs = "Blacklist,Personal,nonPersonal,Dispellable"
+local Eltruismhealertargetbuffs = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal,Dispellable,BlizzardNameplate"
 local Eltruismhealertargetdebuffs = "Blacklist,Personal,RaidDebuffs,CCDebuffs,Friendly:Dispellable"
 local Eltruismhealerplayerdebuffs = "Blacklist,blockNoDuration,Personal,nonPersonal"
 local Eltruismhealerplayerbuffs = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal"
---local Eltruismhealerraid40debuffs = "Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist"
---local Eltruismhealerraiddebuffs = "Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist"
 local Eltruismhealerfocusbuffs = "Blacklist,Personal,PlayerBuffs,CastByUnit,Dispellable,RaidBuffsElvUI"
 local Eltruismhealerfocusdebuffs = "Blacklist,Personal,Boss,RaidDebuffs,Dispellable,Whitelist"
 local Eltruismhealerbossbuffs = "Blacklist,CastByUnit,Dispellable,Whitelist,RaidBuffsElvUI"
@@ -27,41 +25,17 @@ local Eltruismnpenemyplayerbuffs = "Blacklist,Dispellable,PlayerBuffs,TurtleBuff
 local Eltruismnpenemynpcdebuffs = "Blacklist,Personal,CCDebuffs"
 local Eltruismnpenemyplayerdebuffs = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
 
---All filters mainly for tbc/classic
---dps filters
-local alldpstargetbuffs = "Blacklist,Personal,nonPersonal,Dispellable"
-local alldpstargetdebuffs = "Blacklist,Personal,RaidDebuffs,CCDebuffs,Friendly:Dispellable,nonPersonal"
-local alldpsplayerdebuffs = "Blacklist,blockNoDuration,Personal,nonPersonal"
-local alldpsplayerbuffs = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal"
-local alldpsfocusbuffs = "Blacklist,Personal,PlayerBuffs,CastByUnit,Dispellable,RaidBuffsElvUI"
-local alldpsfocusdebuffs = "Blacklist,Personal,Boss,RaidDebuffs,Dispellable,Whitelist"
-local alldpsbossbuffs = "Blacklist,CastByUnit,Dispellable,Whitelist,RaidBuffsElvUI"
-local alldpsbossdebuffs = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,Whitelist"
---healer filters
-local allhealertargetbuffs = "Blacklist,Personal,nonPersonal,Dispellable"
-local allhealertargetdebuffs = "Blacklist,Personal,RaidDebuffs,CCDebuffs,Friendly:Dispellable,nonPersonal"
-local allhealerplayerdebuffs = "Blacklist,blockNoDuration,Personal,nonPersonal"
-local allhealerplayerbuffs = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal"
---local allhealerraid40debuffs = "Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist,nonPersonal"
---local allhealerraiddebuffs = "Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist,nonPersonal"
-local allhealerfocusbuffs = "Blacklist,Personal,PlayerBuffs,CastByUnit,Dispellable,RaidBuffsElvUI"
-local allhealerfocusdebuffs = "Blacklist,Personal,Boss,RaidDebuffs,Dispellable,Whitelist"
-local allhealerbossbuffs = "Blacklist,CastByUnit,Dispellable,Whitelist,RaidBuffsElvUI"
-local allhealerbossdebuffs = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,Whitelist"
---nameplates
-local allnpenemynpcbuffs = "Blacklist,RaidBuffsElvUI,Dispellable,blockNoDuration,PlayerBuffs,TurtleBuffs,CastByUnit,nonPersonal"
-local allnpenemyplayerbuffs = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs,nonPersonal"
-local allnpenemynpcdebuffs = "Blacklist,Personal,CCDebuffs,nonPersonal"
-local allnpenemyplayerdebuffs = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
+--All filter mainly for tbc/classic
+local allfilter = "Blacklist,Personal,nonPersonal,Dispellable"
 
 --aura filter setup based on Luckyone's credits to him!
 function ElvUI_EltreumUI:SetupBuffs(frame, type)
 	if frame == 'player' then
 		if type == 'Everything' then
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
-				E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = alldpsplayerbuffs
+				E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = allfilter
 			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-				E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = allhealerplayerbuffs
+				E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = allfilter
 			else
 				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
@@ -77,9 +51,9 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 	elseif frame == 'target' then
 		if type == 'Everything' then
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
-				E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = alldpstargetbuffs
+				E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = allfilter
 			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-				E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = allhealertargetbuffs
+				E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = allfilter
 			else
 				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
@@ -95,9 +69,9 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 	elseif frame == 'focus' then
 		if type == 'Everything' then
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
-				E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = alldpsfocusbuffs
+				E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = allfilter
 			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-				E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = allhealerfocusbuffs
+				E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = allfilter
 			else
 				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
@@ -113,9 +87,9 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 	elseif frame == 'boss' then
 		if type == 'Everything' then
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
-				E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = alldpsbossbuffs
+				E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = allfilter
 			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-				E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = allhealerbossbuffs
+				E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = allfilter
 			else
 				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
@@ -131,11 +105,11 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 	elseif frame == 'nameplate' then
 		if type == 'Everything' then
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = allnpenemyplayerbuffs
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = allnpenemynpcbuffs
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = allfilter
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = allfilter
 			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = allnpenemyplayerbuffs
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = allnpenemynpcbuffs
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = allfilter
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = allfilter
 			else
 				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
@@ -159,9 +133,9 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 	if frame == 'player' then
 		if type == 'Everything' then
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
-				E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = alldpsplayerdebuffs
+				E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = allfilter
 			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-				E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = allhealerplayerdebuffs
+				E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = allfilter
 			else
 				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
@@ -177,9 +151,9 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 	elseif frame == 'target' then
 		if type == 'Everything' then
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
-				E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = alldpstargetdebuffs
+				E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = allfilter
 			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-				E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = allhealertargetdebuffs
+				E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = allfilter
 			else
 				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
@@ -195,9 +169,9 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 	elseif frame == 'focus' then
 		if type == 'Everything' then
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
-				E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = alldpsfocusdebuffs
+				E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = allfilter
 			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-				E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = allhealerfocusdebuffs
+				E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = allfilter
 			else
 				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
@@ -213,9 +187,9 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 	elseif frame == 'boss' then
 		if type == 'Everything' then
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
-				E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = alldpsbossdebuffs
+				E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = allfilter
 			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-				E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = allhealerbossdebuffs
+				E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = allfilter
 			else
 				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
@@ -231,11 +205,11 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 	elseif frame == 'nameplate' then
 		if type == 'Everything' then
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = allnpenemyplayerdebuffs
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = allnpenemynpcdebuffs
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = allfilter
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = allfilter
 			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = allnpenemyplayerdebuffs
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = allnpenemynpcdebuffs
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = allfilter
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = allfilter
 			else
 				ElvUI_EltreumUI:Print(L["You need to be using an Eltruism profile in order to use this function"])
 			end
