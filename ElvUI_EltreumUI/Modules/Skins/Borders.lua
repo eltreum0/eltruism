@@ -1,7 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 
---Beta borders on frames
+--Borders on frames
 function ElvUI_EltreumUI:Borders()
 	--print("border spam")
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
