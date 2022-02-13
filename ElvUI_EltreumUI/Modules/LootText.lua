@@ -131,22 +131,22 @@ function ElvUI_EltreumUI:LootText()
 
 		local itemLink = nil
 		local amount = 0
-		local YOU_LOOT_MONEY = _G.YOU_LOOT_MONEY
+		--local YOU_LOOT_MONEY = _G.YOU_LOOT_MONEY
 		--local ERR_AUTOLOOT_MONEY_S = _G.ERR_AUTOLOOT_MONEY_S
-		local LOOT_MONEY_SPLIT = _G.LOOT_MONEY_SPLIT
-		local LOOT_ITEM_SELF_MULTIPLE = _G.LOOT_ITEM_SELF_MULTIPLE
-		local LOOT_ITEM_SELF = _G.LOOT_ITEM_SELF
-		local CURRENCY_GAINED_MULTIPLE = _G.CURRENCY_GAINED_MULTIPLE
-		local CURRENCY_GAINED_MULTIPLE_BONUS = _G.CURRENCY_GAINED_MULTIPLE_BONUS
-		local CURRENCY_GAINED = _G.CURRENCY_GAINED
+		--local LOOT_MONEY_SPLIT = _G.LOOT_MONEY_SPLIT
+		--local LOOT_ITEM_SELF_MULTIPLE = _G.LOOT_ITEM_SELF_MULTIPLE
+		--local LOOT_ITEM_SELF = _G.LOOT_ITEM_SELF
+		--local CURRENCY_GAINED_MULTIPLE = _G.CURRENCY_GAINED_MULTIPLE
+		--local CURRENCY_GAINED_MULTIPLE_BONUS = _G.CURRENCY_GAINED_MULTIPLE_BONUS
+		--local CURRENCY_GAINED = _G.CURRENCY_GAINED
 		--local CombatText_AddMessage = _G.CombatText_AddMessage
-		local CombatText_StandardScroll = _G.CombatText_StandardScroll
-		local GetItemInfo = _G.GetItemInfo
-		local GetItemQualityColor = _G.GetItemQualityColor
-		local C_CurrencyInfo = _G.C_CurrencyInfo
-		local getLoot = _G.getLoot
-		local LOOT_ITEM_PUSHED_SELF_MULTIPLE = _G.LOOT_ITEM_PUSHED_SELF_MULTIPLE
-		local LOOT_ITEM_PUSHED_SELF = _G.LOOT_ITEM_PUSHED_SELF
+		--local CombatText_StandardScroll = _G.CombatText_StandardScroll
+		--local GetItemInfo = _G.GetItemInfo
+		--local GetItemQualityColor = _G.GetItemQualityColor
+		--local C_CurrencyInfo = _G.C_CurrencyInfo
+		--local getLoot = _G.getLoot
+		--local LOOT_ITEM_PUSHED_SELF_MULTIPLE = _G.LOOT_ITEM_PUSHED_SELF_MULTIPLE
+		--local LOOT_ITEM_PUSHED_SELF = _G.LOOT_ITEM_PUSHED_SELF
 
 		function LootTextframe.OnEvent(self, event, arg1, arg2)
 			if E.db.ElvUI_EltreumUI.loottext.combatindicator then
