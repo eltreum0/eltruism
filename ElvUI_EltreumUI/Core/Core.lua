@@ -207,25 +207,25 @@ function ElvUI_EltreumUI:DevTools()
 	end
 end
 
-local maxmemory = 4096
+local maxmemory = 3072
 local currentmemory
 function ElvUI_EltreumUI:ClearMemory()
-	if not InCombatLockdown() then
+	if not InCombatLockdown() and not UnitAffectingCombat("player") then
+		UpdateAddOnMemoryUsage() --so that it doesnt freeze if spammed
 		currentmemory = GetAddOnMemoryUsage ("ElvUI_EltreumUI")
 		if E.db.ElvUI_EltreumUI.dev then
 			if currentmemory > maxmemory then
 				collectgarbage("collect")
 				ResetCPUUsage()
 				ElvUI_EltreumUI:Print(currentmemory.." memory was cleared")
-				--UpdateAddOnCPUUsage("ElvUI_EltreumUI")
-				--GetAddOnMemoryUsage("ElvUI_EltreumUI")
+				--UpdateAddOnCPUUsage("ElvUI_EltreumUI") --only works with profiling
 				--/run UpdateAddOnMemoryUsage() print("memory "..GetAddOnMemoryUsage("ElvUI_EltreumUI")); print("cpu "..GetAddOnCPUUsage("ElvUI_EltreumUI"))
 				currentmemory = 0
 			else
 				ElvUI_EltreumUI:Print("Not enough memory usage to clear memory")
 			end
 		else
-			if currentmemory > maxmemory then
+			if currentmemory >= maxmemory then
 				collectgarbage("collect")
 				ResetCPUUsage()
 				currentmemory = 0
