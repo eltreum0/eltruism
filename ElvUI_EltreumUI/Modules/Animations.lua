@@ -46,7 +46,17 @@ darksouls:RegisterEvent("PLAYER_DEAD")
 --darksouls:RegisterEvent("PLAYER_STARTED_MOVING")
 darksouls:SetScript("OnEvent", function()
 	local _, instanceType = IsInInstance()
-	if E.db.ElvUI_EltreumUI.otherstuff.playerdeath and IsEncounterSuppressingRelease() == false and instanceType ~= "arena" and instanceType ~= "pvp" and instanceType ~= "raid" and instanceType ~= "party" then
+	local tbccheck = false
+	if E.Retail then
+		tbccheck = true
+	elseif E.TBC or E.Classic then
+		if instanceType ~= "raid" and instanceType ~= "party" then
+			tbccheck = true
+		end
+	end
+
+
+	if E.db.ElvUI_EltreumUI.otherstuff.playerdeath and IsEncounterSuppressingRelease() == false and instanceType ~= "arena" and instanceType ~= "pvp" and tbccheck == true then
 		UIParent:SetAlpha(0)
 		if E.Retail then
 			ObjectiveTrackerFrame:SetAlpha(0)
