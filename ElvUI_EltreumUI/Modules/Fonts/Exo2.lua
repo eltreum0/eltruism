@@ -13,7 +13,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "Exo2 Extra Bold"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "Exo2 Extra Bold"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "Exo2 Extra Bold"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Exo2 Extra Bold"
 		end
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Exo2 Extra Bold"
@@ -32,7 +32,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["font"] = "Exo2 Extra Bold"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = "Exo2 Extra Bold"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "Exo2 Extra Bold"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Exo2 Extra Bold"
 		end
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["font"] = "Exo2 Extra Bold"
@@ -55,7 +55,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 		E.private["general"]["chatBubbleFont"] = "Exo2 Extra Bold"
 		E.private["general"]["dmgfont"] = "Exo2 Extra Bold"
 		E.private["general"]["namefont"] = "Exo2 Extra Bold"
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		if IsAddOnLoaded('ProjectAzilroka') then
 			_G.ProjectAzilroka.db["stAddonManager"]["Font"] = "Exo2 Extra Bold"
 		end
@@ -177,7 +177,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 	end
 		E.db["general"]["font"] = "Exo2 Extra Bold"
 		E.db["general"]["minimap"]["locationFont"] = "Exo2 Extra Bold"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = "Exo2 Extra Bold"
 		end
 		E.db["bags"]["countFont"] = "Exo2 Extra Bold"
@@ -186,7 +186,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 		E.db["chat"]["font"] = "Exo2 Extra Bold"
 		E.db["chat"]["tabFont"] = "Exo2 Extra Bold"
 		E.db["cooldown"]["fonts"]["font"] = "Exo2 Extra Bold"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["databars"]["honor"]["font"] = "Exo2 Extra Bold"
 			E.db["databars"]["azerite"]["font"] = "Exo2 Extra Bold"
 		end
@@ -232,7 +232,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -246,7 +246,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 			}
 		end
 		-- Custom Text: Pet
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
@@ -259,7 +259,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
@@ -275,7 +275,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 		end
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -345,7 +345,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 			["xOffset"] = 37,
 			["yOffset"] = 10
 		}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -382,7 +382,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 		}
 		-- Custom Text: Raid 40
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -419,7 +419,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 		}
 		-- Custom Text: Target
 		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -545,7 +545,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 		E.db["actionbar"]["bar9"]["macroFont"] = "Exo2 Extra Bold"
 		E.db["actionbar"]["barPet"]["countFont"] = "Exo2 Extra Bold"
 		E.db["actionbar"]["barPet"]["hotkeyFont"] = "Exo2 Extra Bold"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "Exo2 Extra Bold"
 		end
 		E.db["actionbar"]["font"] = "Exo2 Extra Bold"
@@ -556,7 +556,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 		E.db["auras"]["debuffs"]["countFont"] = "Exo2 Extra Bold"
 		E.db["auras"]["debuffs"]["timeFont"] = "Exo2 Extra Bold"
 		E.db["unitframe"]["font"] = "Exo2 Extra Bold"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Exo2 Extra Bold"
 			E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "Exo2 Extra Bold"
 			E.db["unitframe"]["units"]["assist"]["buffs"]["countFont"] = "Exo2 Extra Bold"

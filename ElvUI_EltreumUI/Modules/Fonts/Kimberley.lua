@@ -11,7 +11,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "Kimberley"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Kimberley"
 		end
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Kimberley"
@@ -30,7 +30,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "Kimberley"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Kimberley"
 		end
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["font"] = "Kimberley"
@@ -53,7 +53,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		E.private["general"]["chatBubbleFont"] = "Kimberley"
 		E.private["general"]["dmgfont"] = "Kimberley"
 		E.private["general"]["namefont"] = "Kimberley"
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		if IsAddOnLoaded('ProjectAzilroka') then
 			_G.ProjectAzilroka.db["stAddonManager"]["Font"] = "Kimberley"
 		end
@@ -174,7 +174,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 	end
 		E.db["general"]["font"] = "Kimberley"
 		E.db["general"]["minimap"]["locationFont"] = "Kimberley"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = "Kimberley"
 		end
 		E.db["bags"]["countFont"] = "Kimberley"
@@ -183,7 +183,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		E.db["chat"]["font"] = "Kimberley"
 		E.db["chat"]["tabFont"] = "Kimberley"
 		E.db["cooldown"]["fonts"]["font"] = "Kimberley"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["databars"]["azerite"]["font"] = "Kimberley"
 			E.db["databars"]["honor"]["font"] = "Kimberley"
 		end
@@ -229,7 +229,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -243,7 +243,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 			}
 		end
 		-- Custom Text: Pet
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
@@ -256,7 +256,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
@@ -272,7 +272,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		end
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -342,7 +342,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 			["xOffset"] = 37,
 			["yOffset"] = 10
 		}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -379,7 +379,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		}
 		-- Custom Text: Raid 40
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -416,7 +416,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		}
 		-- Custom Text: Target
 		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -542,7 +542,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		E.db["actionbar"]["bar9"]["macroFont"] = "Kimberley"
 		E.db["actionbar"]["barPet"]["countFont"] = "Kimberley"
 		E.db["actionbar"]["barPet"]["hotkeyFont"] = "Kimberley"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "Kimberley"
 		end
 		E.db["actionbar"]["font"] = "Kimberley"
@@ -553,7 +553,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		E.db["auras"]["debuffs"]["countFont"] = "Kimberley"
 		E.db["auras"]["debuffs"]["timeFont"] = "Kimberley"
 		E.db["unitframe"]["font"] = "Kimberley"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["assist"]["buffs"]["countFont"] = "Kimberley"

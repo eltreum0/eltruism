@@ -191,7 +191,7 @@ function ElvUI_EltreumUI:LootText()
 						CombatText_AddMessage("|T ".. 133784 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..moneystring, CombatText_StandardScroll, 255, 255, 255)
 					end
 				end
-				if ElvUI_EltreumUI.Retail then
+				if E.Retail then
 					if (event == "CHAT_MSG_CURRENCY") then
 						itemLink, amount = Deformat(arg1, CURRENCY_GAINED_MULTIPLE_BONUS)
 						if not amount then

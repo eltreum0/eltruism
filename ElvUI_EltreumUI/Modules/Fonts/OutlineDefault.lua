@@ -1,7 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:SetupFontsOutlineDefault()
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		if IsAddOnLoaded('ProjectAzilroka') then
 			_G.ProjectAzilroka.db["stAddonManager"]["FontFlag"] = "THICKOUTLINE"
 		end
@@ -43,7 +43,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	end
 	E.db["general"]["fontStyle"] = "THICKOUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE"
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		E.db["general"]["minimap"]["icons"]["queueStatus"]["fontOutline"] = "OUTLINE"
 	end
 	--E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE" --test

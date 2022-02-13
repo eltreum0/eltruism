@@ -3,7 +3,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 -- Register on init
 function ElvUI_EltreumUI:LoadCommands()
 	self:RegisterChatCommand('eltruism', 'RunCommands')
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		if E.db.ElvUI_EltreumUI.waytext.enable then
 			self:RegisterChatCommand('way', 'WaypointTexttoCoordinate')
 			self:RegisterChatCommand('waypoint', 'WaypointTexttoCoordinate')
@@ -19,9 +19,9 @@ function ElvUI_EltreumUI:RunCommands(message)
 				local aImage = GetCoinIcon(9999999999)
 				local aSilver = GetCoinIcon(100)
 				local aCopper = GetCoinIcon(1)
-				if ElvUI_EltreumUI.Retail then
+				if E.Retail then
 					CombatText_AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."9.999.999 Gold", CombatText_StandardScroll, 255, 255, 255)
-				elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				elseif E.Classic or E.TBC then
 					CombatText_AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."214.748 Gold ".."|T ".. aSilver ..":22:22:0:0:64:64:5:59:5:59|t ".."36 Silver ".."|T ".. aCopper ..":22:22:0:0:64:64:5:59:5:59|t ".."47 Copper", CombatText_StandardScroll, 255, 255, 255)
 				end
 		else
@@ -72,7 +72,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 		print("|cff82B4ff/eltruism options|r - Opens the Eltruism settings")
 		print("|cff82B4ff/eltruism config|r - Opens the Eltruism settings")
 		print("|cff82B4ff/eltruism loot|r - Demonstrates the LootText")
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			print("|cff82B4ff/way|r - Sets a map waypoint with the supplied coordinates")
 			print("|cff82B4ff/waypoint|r - In retail sets a map waypoint with the supplied coordinates")
 		end

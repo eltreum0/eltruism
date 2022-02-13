@@ -16,7 +16,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = fontvalue
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = fontvalue
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = fontvalue
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = fontvalue
 		end
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = fontvalue
@@ -35,7 +35,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["font"] = fontvalue
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = fontvalue
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = fontvalue
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = fontvalue
 		end
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["font"] = fontvalue
@@ -58,7 +58,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 		E.private["general"]["chatBubbleFont"] = fontvalue
 		E.private["general"]["dmgfont"] = fontvalue
 		E.private["general"]["namefont"] = fontvalue
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		if IsAddOnLoaded('ProjectAzilroka') then
 			PA.db["stAddonManager"]["Font"] = fontvalue
 		end
@@ -180,7 +180,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 	end
 		E.db["general"]["font"] = fontvalue
 		E.db["general"]["minimap"]["locationFont"] = fontvalue
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = fontvalue
 		end
 		E.db["bags"]["countFont"] = fontvalue
@@ -189,7 +189,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 		E.db["chat"]["font"] = fontvalue
 		E.db["chat"]["tabFont"] = fontvalue
 		E.db["cooldown"]["fonts"]["font"] = fontvalue
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["databars"]["honor"]["font"] = fontvalue
 			E.db["databars"]["azerite"]["font"] = fontvalue
 		end
@@ -235,7 +235,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -249,7 +249,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 			}
 		end
 		-- Custom Text: Pet
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
@@ -262,7 +262,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
@@ -278,7 +278,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 		end
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -348,7 +348,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 			["xOffset"] = 37,
 			["yOffset"] = 10
 		}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -385,7 +385,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 		}
 		-- Custom Text: Raid 40
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -422,7 +422,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 		}
 		-- Custom Text: Target
 		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -548,7 +548,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 		E.db["actionbar"]["bar9"]["macroFont"] = fontvalue
 		E.db["actionbar"]["barPet"]["countFont"] = fontvalue
 		E.db["actionbar"]["barPet"]["hotkeyFont"] = fontvalue
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = fontvalue
 		end
 		E.db["actionbar"]["font"] = fontvalue
@@ -559,7 +559,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 		E.db["auras"]["debuffs"]["countFont"] = fontvalue
 		E.db["auras"]["debuffs"]["timeFont"] = fontvalue
 		E.db["unitframe"]["font"] = fontvalue
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = fontvalue
 			E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = fontvalue
 			E.db["unitframe"]["units"]["assist"]["buffs"]["countFont"] = fontvalue

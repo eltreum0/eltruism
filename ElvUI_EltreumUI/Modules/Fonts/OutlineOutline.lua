@@ -1,7 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:SetupFontsOutlineOutline()
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		if IsAddOnLoaded('ProjectAzilroka') then
 			_G.ProjectAzilroka.db["stAddonManager"]["FontFlag"] = "OUTLINE"
 		end
@@ -44,7 +44,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline()
 	end
 	E.db["general"]["fontStyle"] = "OUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "OUTLINE"
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		E.db["general"]["minimap"]["icons"]["queueStatus"]["fontOutline"] = "OUTLINE"
 	end
 	E.db["bags"]["countFontOutline"] = "OUTLINE"

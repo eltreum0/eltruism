@@ -24,7 +24,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 					--button.cd:SetScript('OnUpdate', nil) --lets check this
 					return
 				else
-					if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+					if E.Classic or E.TBC then
 						if E.db.ElvUI_EltreumUI.widenameplate.enable then
 							button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 						end
@@ -57,14 +57,14 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 							end
 						end)
 					end
-					if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+					if E.Classic or E.TBC then
 						if E.db.ElvUI_EltreumUI.widenameplate.enable then
 							button:SetWidth(25)
 							button:SetHeight(18)
 						end
 					end
 					button.count:SetParent(button.cd)
-					if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+					if E.TBC or E.Classic then
 						if E.db.ElvUI_EltreumUI.widenameplate.enable then
 							button.count:Point('BOTTOMRIGHT', 2, -3) --elvui added a setting for it but its missing some things
 						end
@@ -85,7 +85,7 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 					--button.cd:SetScript('OnUpdate', nil)
 					return
 				else
-					if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+					if E.Classic or E.TBC then
 						button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 					end
 					local TimeSinceLastUpdate = 0
@@ -101,7 +101,7 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 							end
 						end
 					end)
-					if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+					if E.Classic or E.TBC then
 						button:SetWidth(25)
 						button:SetHeight(18)
 					end
@@ -206,14 +206,14 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		if E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide then
 			--add spec info for retail
 			local id, _
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				local currentSpec = GetSpecialization()
 				if currentSpec then
 					id, _ = GetSpecializationInfo(currentSpec)
 				end
 			end
 			if UnitExists("target") and UnitCanAttack("player", "target") then
-				if ElvUI_EltreumUI.Retail then
+				if E.Retail then
 					--print(id)
 					if E.myclass == 'DEATHKNIGHT' then
 						_G['ElvNP_TargetClassPowerRunes']:Show()
@@ -237,7 +237,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 							_G['ElvNP_TargetClassPowerClassPower']:Show()
 						end
 					end
-				elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+				elseif E.TBC or E.Classic then
 					if E.myclass == 'ROGUE' then
 						_G['ElvNP_TargetClassPowerClassPower']:Show()
 					elseif E.myclass == 'DRUID' then
@@ -250,7 +250,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					end
 				end
 			elseif UnitExists("target") and (not UnitCanAttack("player", "target")) then
-				if ElvUI_EltreumUI.Retail then
+				if E.Retail then
 					if E.myclass == 'DEATHKNIGHT' then
 						_G['ElvNP_TargetClassPowerRunes']:Hide()
 					elseif E.myclass == 'PALADIN ' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' then
@@ -268,7 +268,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 							_G['ElvNP_TargetClassPowerClassPower']:Hide()
 						end
 					end
-				elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+				elseif E.TBC or E.Classic then
 					if E.myclass == 'ROGUE' then
 						_G['ElvNP_TargetClassPowerClassPower']:Hide()
 					elseif E.myclass == 'DRUID' then
@@ -287,7 +287,7 @@ EltruismNamePlateOptionsFrame:SetScript("OnEvent", ElvUI_EltreumUI.NamePlateOpti
 --add threat to nameplate by putting threat into title and moving title to the healthbar
 function ElvUI_EltreumUI:ClassicThreatNP()
 	if E.private.nameplates.enable == true then
-		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+		if E.Classic or E.TBC then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Kimberley"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["fontOutline"] = "OUTLINE"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = true
@@ -307,7 +307,7 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 	local mapID = WorldMapFrame:GetMapID()
 	--print(mapID, instanceType)
 	if not InCombatLockdown() then
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			if E.db.ElvUI_EltreumUI.cvars.autohidenpcname then
 				if instanceType == "none" then
 					SetCVar('UnitNameHostleNPC', 0)

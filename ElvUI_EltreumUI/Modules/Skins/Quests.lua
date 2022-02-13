@@ -3,7 +3,7 @@ local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
 local ObjectiveTrackerBlocksFrame, ScenarioObjectiveBlockBackground, ScenarioObjectiveBlockBackgroundTexture
 
-if ElvUI_EltreumUI.Retail then
+if E.Retail then
 	ScenarioObjectiveBlockBackground = CreateFrame("Frame", "EltruismScenarioBlockBg")
 	ScenarioObjectiveBlockBackgroundTexture = ScenarioObjectiveBlockBackground:CreateTexture()
 	ObjectiveTrackerBlocksFrame = _G.ObjectiveTrackerBlocksFrame
@@ -19,12 +19,12 @@ function ElvUI_EltreumUI:SkinQuests()
 
 		--create the button for wowhead
 		local wowheadbutton = CreateFrame("Button", nil)
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			wowheadbutton:SetWidth(80)
 			wowheadbutton:SetHeight(20)
 			wowheadbutton:SetParent(_G.WorldMapFrame)
 			wowheadbutton:SetPoint("TOPRIGHT", _G.WorldMapFrame, "TOPRIGHT", -80, 0)
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 			local x, y = _G.QuestFramePushQuestButton:GetSize()
 			wowheadbutton:SetWidth(x)
 			wowheadbutton:SetHeight(y)
@@ -65,7 +65,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			wowheadbutton:Hide()
 		end
 
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			--get questID based on wether or not the quest is shown, if not trying to grab the one from waypoint then it would error out
 			if _G.QuestMapFrame.DetailsFrame:IsShown() then
 				questID = QuestMapFrame_GetDetailQuestID()
@@ -277,7 +277,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end)
 			end
 		end
-		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+		if E.Classic or E.TBC then
 			--hook the function that sets the quest detail to get the questID from the quest title
 			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --questlogframe.lua 311
 				questID = select(8, GetQuestLogTitle(questTitle))
@@ -516,12 +516,12 @@ function ElvUI_EltreumUI:SkinProfessions()
 					CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30,  -46)
 					CraftDetailScrollChildFrame:SetHeight(390)
 
-					if ElvUI_EltreumUI.TBC then
+					if E.TBC then
 						CraftFrameFilterDropDown:ClearAllPoints()
 						CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
 						CraftFrameAvailableFilterCheckButton:ClearAllPoints()
 						CraftFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", CraftFrame, 64,-48)
-					elseif ElvUI_EltreumUI.Classic then
+					elseif E.Classic then
 						CraftDetailScrollFrame:Hide()
 						CraftDetailScrollFrameScrollBar:Hide()
 					end
@@ -576,12 +576,12 @@ function ElvUI_EltreumUI:SkinProfessions()
 						CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30,  -46)
 						CraftDetailScrollChildFrame:SetHeight(390)
 
-						if ElvUI_EltreumUI.TBC then
+						if E.TBC then
 							CraftFrameFilterDropDown:ClearAllPoints()
 							CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
 							CraftFrameAvailableFilterCheckButton:ClearAllPoints()
 							CraftFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", CraftFrame, 64,-48)
-						elseif ElvUI_EltreumUI.Classic then
+						elseif E.Classic then
 							CraftDetailScrollFrame:Hide()
 							CraftDetailScrollFrameScrollBar:Hide()
 						end

@@ -42,7 +42,7 @@ function ElvUI_EltreumUI:RaidDeath(destFlags)
 end
 
 -- Role icons, ty a lot Darth Predator for the help!
-if ElvUI_EltreumUI.Retail then
+if E.Retail then
 	if IsAddOnLoaded("ElvUI_SLE") then
 		local SLE = unpack(ElvUI_SLE)
 		SLE.rolePaths["Eltruism"] = {

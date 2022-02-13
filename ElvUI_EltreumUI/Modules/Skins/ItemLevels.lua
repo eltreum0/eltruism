@@ -1,14 +1,14 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local LibItemInfo
-if ElvUI_EltreumUI. TBC or ElvUI_EltreumUI.Classic then
+if ElvUI_EltreumUI. TBC or E.Classic then
 	LibItemInfo = LibStub:GetLibrary("LibItemInfo.1000")
 end
 
 --Calculate ilvl and average ilvl of player items/inspect unit
 function ElvUI_EltreumUI:UpdateAvgIlvl()
 	--print("ilvl spam")
-	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+	if E.TBC or E.Classic then
 		if E.db.ElvUI_EltreumUI.skins.ilvls then
 
 			--from Simple Item Levels by Kemayo (BSD License) with some edits by Eltreum

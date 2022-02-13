@@ -14,11 +14,11 @@ function ElvUI_EltreumUI:Shadows()
 		EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
 			if (arg == "Blizzard_MacroUI") then
 				_G.MacroFrame:HookScript("OnShow", function()
-					if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
+					if E.Retail or E.TBC then
 						if not _G.MacroFrame.shadow then
 							_G.MacroFrame:CreateShadow()
 						end
-					elseif ElvUI_EltreumUI.Classic then
+					elseif E.Classic then
 						if not _G.MacroFrame.backdrop.shadow then
 							_G.MacroFrame.backdrop:CreateShadow()
 						end
@@ -34,11 +34,11 @@ function ElvUI_EltreumUI:Shadows()
 			end
 			if (arg == "Blizzard_InspectUI") then
 				_G.InspectFrame:HookScript("OnShow", function()
-					if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+					if E.TBC or E.Classic then
 						if _G.InspectFrame and not _G.InspectFrame.backdrop.shadow then
 							_G.InspectFrame.backdrop:CreateShadow()
 						end
-					elseif ElvUI_EltreumUI.Retail then
+					elseif E.Retail then
 						if _G.InspectFrame and not _G.InspectFrame.shadow then
 							_G.InspectFrame:CreateShadow()
 						end
@@ -127,7 +127,7 @@ function ElvUI_EltreumUI:Shadows()
 		]]
 
 		------------------------------------------------------------------------------------------------------version specific
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 
 			local EltruismBlizzShadowsRetail = CreateFrame("Frame")
 			EltruismBlizzShadowsRetail:RegisterEvent("ADDON_LOADED")
@@ -362,7 +362,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 
 			--classic only elvui
 			local ClassicElvUIFrames = {
@@ -424,7 +424,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 			--tbc only frames
-			if ElvUI_EltreumUI.TBC then
+			if E.TBC then
 				local tbcframes = {
 				_G.LFGParentFrame.backdrop,
 				_G.LFGParentFrameTab1.backdrop,
@@ -538,7 +538,7 @@ function ElvUI_EltreumUI:Shadows()
 
 		--unitframes
 		if E.private.unitframe.enable then
-			if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
+			if E.Retail or E.TBC then
 				if not _G['ElvUF_Focus_HealthBar'].shadow then
 					_G['ElvUF_Focus_HealthBar']:CreateShadow()
 				end

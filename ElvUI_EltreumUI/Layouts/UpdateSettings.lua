@@ -8,7 +8,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.chat.colorsysmsg = true
 	E.db.ElvUI_EltreumUI.chat.looticons = true
 	E.db.ElvUI_EltreumUI.chat.itemlevels = true
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		E.db.ElvUI_EltreumUI.cvars.autohidenpcname = true
 	end
 	E.db.ElvUI_EltreumUI.skins.enable = true
@@ -30,7 +30,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.shadows.aura = true
 	E.db.ElvUI_EltreumUI.shadows.ufaura = true
 	E.db.ElvUI_EltreumUI.shadows.actionbars = true
-	E.db.ElvUI_EltreumUI.tbctalents.enable = true
+	E.db.E.TBCtalents.enable = true
 	E.db.ElvUI_EltreumUI.dynamicdatatext.enable = true
 	E.db.ElvUI_EltreumUI.nameplatelevel.enable = true
 	E.db.ElvUI_EltreumUI.cursor.enable = true
@@ -54,10 +54,10 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.waytext.enable = true
 	E.db.ElvUI_EltreumUI.widenameplate.enable = true
 	E.db.ElvUI_EltreumUI.widenameplate.npglow = true
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		E.db.ElvUI_EltreumUI.questsettings.enable = true
 		E.db.ElvUI_EltreumUI.questsettings.arena = true
-	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+	elseif E.TBC or E.Classic then
 		E.db.ElvUI_EltreumUI.questsettings.enable = false
 		E.db.ElvUI_EltreumUI.questsettings.arena = false
 		E.db.ElvUI_EltreumUI.glow.enabletotem = true

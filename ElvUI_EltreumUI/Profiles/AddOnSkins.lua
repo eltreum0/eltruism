@@ -37,16 +37,16 @@ function ElvUI_EltreumUI:GetASProfile()
 	AS.db["DBMFontFlag"] = "THICKOUTLINE"
 	AS.db["DBMFont"] = "Kimberley"
 	AS.db["DBMRadarTrans"] = true
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		AS.db["HideChatFrame"] = "ChatFrame4"
-	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+	elseif E.TBC or E.Classic then
 		AS.db["HideChatFrame"] = "ChatFrame3"
 	end
 	AS.db["TransparentEmbed"] = true
 	AS.db["EmbedSystemDual"] = true
 	AS.db["Immersion"] = true
 	AS.db["BugSack"] = true
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		AS.db["Blizzard_AchievementUI"] = false
 	end
 end

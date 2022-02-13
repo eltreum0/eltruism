@@ -30,9 +30,9 @@ end
 function ElvUI_EltreumUI:BlizzCombatText()
 	if IsAddOnLoaded('ElvUI_FCT') or IsAddOnLoaded('NameplateSCT') then
 		if E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext then
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				SetCVar("floatingCombatTextCombatDamage", 0)
-			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			elseif E.TBC or E.Classic then
 				SetCVar("floatingCombatTextCombatDamage", 0)
 			end
 		end
@@ -100,9 +100,9 @@ function ElvUI_EltreumUI:EnteringWorldCVars()
 	SetCVar('cameraDistanceMaxZoomFactor', E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor)
 	SetCVar('nameplateTargetRadialPosition', E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition)
 	--ElvUI_EltreumUI:Print(L["Custom Nameplate CVars were set."])
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		SetCVar('showInGameNavigation', E.db.ElvUI_EltreumUI.cvars.showInGameNavigation)
-	elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+	elseif E.Classic or E.TBC then
 		SetCVar('clampTargetNameplateToScreen', E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen)
 	end
 end
@@ -116,7 +116,7 @@ function ElvUI_EltreumUI:AlternativeGroupsDPS()
 		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
 		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 2
 		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 25
-		if ElvUI_EltreumUI.TBC then
+		if E.TBC then
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 5
 		else
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 4
@@ -145,7 +145,7 @@ function ElvUI_EltreumUI:OriginalGroupsDPS()
 		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
 		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 4
 		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 0
-		if ElvUI_EltreumUI.TBC then
+		if E.TBC then
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 5
 		else
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 4

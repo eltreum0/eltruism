@@ -3,8 +3,8 @@ local _G = _G
 
 function ElvUI_EltreumUI:ExpandedTalents()
 	--Reskin Blizzard Talent frame for TBC
-	if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
-		if E.db.ElvUI_EltreumUI.tbctalents.enable then
+	if E.TBC or E.Classic then
+		if E.db.E.TBCtalents.enable then
 			local EltruismExpandedTalents = CreateFrame("Frame")
 			EltruismExpandedTalents:RegisterEvent("ADDON_LOADED")
 			EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
@@ -16,17 +16,17 @@ function ElvUI_EltreumUI:ExpandedTalents()
 					--increase the size of the whole frame
 					if _G.PlayerTalentFrame then
 						--_G.PlayerTalentFrame:SetScale(0.8,0.8) --should be around this scale for wrath
-						if ElvUI_EltreumUI.TBC then
+						if E.TBC then
 							_G.PlayerTalentFrame:SetSize(376, 780)
-						elseif ElvUI_EltreumUI.Classic then
+						elseif E.Classic then
 							_G.PlayerTalentFrame:SetSize(376, 670)
 						end
 					end
 					if _G.PlayerTalentFrameScrollFrame then
 						--increase the size of the actual frame that has the talent buttons
-						if ElvUI_EltreumUI.TBC then
+						if E.TBC then
 							_G.PlayerTalentFrameScrollFrame:SetSize( 280 , 580)
-						elseif ElvUI_EltreumUI.Classic then
+						elseif E.Classic then
 							_G.PlayerTalentFrameScrollFrame:SetSize( 280 , 470)
 						end
 						--set the position
@@ -45,9 +45,9 @@ function ElvUI_EltreumUI:ExpandedTalents()
 					end
 					--increase the size of the background
 					if _G.PlayerTalentFrameBackgroundTopLeft then
-						if ElvUI_EltreumUI.TBC then
+						if E.TBC then
 							_G.PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 600)
-						elseif ElvUI_EltreumUI.Classic then
+						elseif E.Classic then
 							_G.PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 490)
 						end
 					end

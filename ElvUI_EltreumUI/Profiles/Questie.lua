@@ -2,7 +2,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 -- Questie profile setup
 function ElvUI_EltreumUI:GetQuestieProfile()
-	if ElvUI_EltreumUI.TBC then
+	if E.TBC then
 		if not IsAddOnLoaded("Questie") then
 			LoadAddOn("Questie")
 		end
@@ -2009,7 +2009,7 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 			["itemPtrs"] = "",
 			["objBin"] = "",
 		}
-	elseif ElvUI_EltreumUI.Classic then
+	elseif E.Classic then
 		if not IsAddOnLoaded("Questie") then
 			LoadAddOn("Questie")
 		end

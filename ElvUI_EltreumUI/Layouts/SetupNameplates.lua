@@ -65,7 +65,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["colors"]["selection"][13]["r"] = 0.16862745098039
 			E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Kimberley"
 			E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				--remove the by type border colors
 				E.db["nameplates"]["colors"]["auraByType"] = false
 				--boss mods
@@ -103,15 +103,15 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			end
 
 			--spellsteal style filter
-			if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
+			if E.Retail or E.TBC then
 				E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
-			elseif ElvUI_EltreumUI.Classic then
+			elseif E.Classic then
 				E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
 			end
 			--level style filter
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
-			elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+			elseif E.Classic or E.TBC then
 				E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
 			end
 			--enable general style filters on all versions
@@ -132,7 +132,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["overlapH"] = 0.8
 			E.db["nameplates"]["overlapV"] = 1.1
 
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["anchorPoint"] = "TOP"
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["attachTo"] = "DEBUFFS"
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Kimberley"
@@ -159,7 +159,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["size"] = 25
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["spacing"] = 2
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
-			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			elseif E.TBC or E.Classic then
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["anchorPoint"] = "TOPRIGHT"
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Kimberley"
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFontSize"] = 10
@@ -223,7 +223,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "Kimberley"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["fontOutline"] = "NONE"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["fontSize"] = 10
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Kimberley"
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["fontSize"] = 15
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["size"] = 25
@@ -241,15 +241,15 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["position"] = "CENTER"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["yOffset"] = 0
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["xOffset"] = -55
-			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+			if E.Classic or E.TBC then
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = true
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["format"] = "[threat:percent]"
-			elseif ElvUI_EltreumUI.Retail then
+			elseif E.Retail then
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = true
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["format"] = "[threat:percent]"
 			end
 
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["anchorPoint"] = "TOP"
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["attachTo"] = "DEBUFFS"
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
@@ -275,7 +275,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["size"] = 25
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
-			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			elseif E.TBC or E.Classic then
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["anchorPoint"] = "TOPRIGHT"
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFontSize"] = 10
@@ -326,7 +326,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["yOffset"] = 15
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["power"]["text"]["font"] = "Kimberley"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["power"]["text"]["fontOutline"] = "NONE"
-			--[[if ElvUI_EltreumUI.Retail then
+			--[[if E.Retail then
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["pvpclassificationindicator"]["position"] = "CENTER"
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["pvpclassificationindicator"]["size"] = 100
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["pvpclassificationindicator"]["yOffset"] = 100
@@ -345,7 +345,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["font"] = "Kimberley"
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["timeToHold"] = 0.5
 
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["anchorPoint"] = "TOP"
 				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["attachTo"] = "DEBUFFS"
 				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countFont"] = "Kimberley"
@@ -371,7 +371,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["numAuras"] = 6
 				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["size"] = 25
 				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["yOffset"] = 38
-			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			elseif E.TBC or E.Classic then
 				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countFont"] = "Kimberley"
 				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["enable"] = false
 				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["countFont"] = "Kimberley"
@@ -388,7 +388,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["yOffset"] = 7
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["nameOnly"] = false
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "Kimberley"
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["xOffset"] = 0
 				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["yOffset"] = 7
 				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["size"] = 22
@@ -405,7 +405,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["enable"] = false
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["font"] = "Kimberley"
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["fontOutline"] = "NONE"
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["anchorPoint"] = "TOP"
 				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["attachTo"] = "DEBUFFS"
 				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
@@ -428,7 +428,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["numAuras"] = 6
 				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["size"] = 25
 				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["yOffset"] = 38
-			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			elseif E.TBC or E.Classic then
 				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
 				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFontOutline"] = "NONE"
 				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["enable"] = false
@@ -483,7 +483,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["PLAYER"]["classpower"]["height"] = 8
 			E.db["nameplates"]["units"]["PLAYER"]["classpower"]["width"] = 150
 			E.db["nameplates"]["units"]["PLAYER"]["classpower"]["yOffset"] = 15
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["anchorPoint"] = "TOPRIGHT"
 				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFont"] = "Kimberley"
 				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFontSize"] = 10
@@ -502,7 +502,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["size"] = 25
 				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["spacing"] = 0
 				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["yOffset"] = 17
-			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			elseif E.TBC or E.Classic then
 				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFont"] = "Kimberley"
 				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFontOutline"] = "NONE"
 				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["numAuras"] = 8
@@ -575,7 +575,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style2" --background glow
 			--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style8" --background glow + side arrow
 			--E.db["nameplates"]["units"]["TARGET"]["arrow"] = "Arrow21" --the arrow
-			if ElvUI_EltreumUI.Classic then
+			if E.Classic then
 				--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style2"
 				E.db["v11NamePlateReset"] = true
 				E.db["nameplates"]["motionType"] = "OVERLAP"

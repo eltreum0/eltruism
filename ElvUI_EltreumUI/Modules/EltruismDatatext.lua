@@ -43,7 +43,7 @@ DT:RegisterDatatext('Eltruism', nil, nil, OnEvent, nil, OnClick, OnEnter, nil, L
 
 
 --just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
-if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+if E.Classic or E.TBC then
 	if E.myclass ~= 'HUNTER' and E.myclass ~= 'ROGUE' and E.myclass ~= 'WARLOCK' and E.myclass ~= 'WARRIOR' then return end
 	local _G = _G
 	local select, wipe = _G.select, _G.wipe

@@ -42,16 +42,16 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.3
 
 		--setup namecolors
-		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+		if E.Classic or E.TBC then
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
-		elseif ElvUI_EltreumUI.Retail then
+		elseif E.Retail then
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name]"
 		end
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]"
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
 			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
 			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
-		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
+		if E.Retail or E.TBC then
 			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
 		end
 		E.db.ElvUI_EltreumUI.lightmode = false
@@ -103,9 +103,9 @@ function ElvUI_EltreumUI:LightMode()
 		E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
 		E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
 		--setup namecolors
-		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+		if E.Classic or E.TBC then
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
-		elseif ElvUI_EltreumUI.Retail then
+		elseif E.Retail then
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
 		end
 			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
@@ -113,7 +113,7 @@ function ElvUI_EltreumUI:LightMode()
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
 			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
 			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-		if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.TBC then
+		if E.Retail or E.TBC then
 			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
 		end
 		E.db.ElvUI_EltreumUI.lightmode = true
@@ -131,7 +131,7 @@ hooksecurefunc(NP, 'Initialize', function()
 		NP.multiplier = 0
 	end
 end)
-if ElvUI_EltreumUI.Retail then
+if E.Retail then
 	hooksecurefunc(NP, 'Construct_Runes', function()
 		if E.db.ElvUI_EltreumUI.modetexture then
 			NP.multiplier = 0
@@ -142,7 +142,7 @@ end
 function ElvUI_EltreumUI:TextureMode()
 	if E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
 
-		if (ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic) and E.myclass == 'SHAMAN' then
+		if (E.TBC or E.Classic) and E.myclass == 'SHAMAN' then
 			local UF = E:GetModule('UnitFrames') --only classpower that is actually in UF instead of NP
 			local function TotemBackground()
 				local header = _G['ElvUF_Player']

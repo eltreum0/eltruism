@@ -8,11 +8,11 @@ function ElvUI_EltreumUI:GetDetailsProfile()
 
  	_G.Details:EraseProfile("Eltreum Dual v1")
 
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		_G.Details:ImportProfile(dtprofileRetail, "Eltreum Dual v1")
-	elseif ElvUI_EltreumUI.Classic then
+	elseif E.Classic then
 		_G.Details:ImportProfile(dtprofileClassic, "Eltreum Dual v1")
-	elseif ElvUI_EltreumUI.TBC then
+	elseif E.TBC then
 		_G.Details:ImportProfile(dtprofileTBC, "Eltreum Dual v1")
 	end
 
@@ -29,11 +29,11 @@ function ElvUI_EltreumUI:GetDetailsProfileReleaf()
 
 	_G.Details:EraseProfile("Eltreum Dual v2")
 
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		_G.Details:ImportProfile(dtprofileRetail, "Eltreum Dual v2")
-	elseif ElvUI_EltreumUI.Classic then
+	elseif E.Classic then
 		_G.Details:ImportProfile(dtprofileClassic, "Eltreum Dual v2")
-	elseif ElvUI_EltreumUI.TBC then
+	elseif E.TBC then
 		_G.Details:ImportProfile(dtprofileTBC, "Eltreum Dual v2")
 	end
 
@@ -50,11 +50,11 @@ function ElvUI_EltreumUI:GetDetailsProfileReleafv3()
 
 	_G.Details:EraseProfile("Eltreum Dual v3")
 
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		_G.Details:ImportProfile(dtprofileRetail, "Eltreum Dual v3")
-	elseif ElvUI_EltreumUI.Classic then
+	elseif E.Classic then
 		_G.Details:ImportProfile(dtprofileClassic, "Eltreum Dual v3")
-	elseif ElvUI_EltreumUI.TBC then
+	elseif E.TBC then
 		_G.Details:ImportProfile(dtprofileTBC, "Eltreum Dual v3")
 	end
 

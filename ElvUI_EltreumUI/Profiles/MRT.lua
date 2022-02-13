@@ -6,7 +6,7 @@ function ElvUI_EltreumUI:GetMRTProfile()
 		local key = {[E.mynameRealm] = "Eltreum"}
 		table.insert(VMRT.ProfileKeys, key)
 	else
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			VMRT = {
 				["Note"] = {
 					["BlackNames"] = {
@@ -1767,7 +1767,7 @@ function ElvUI_EltreumUI:GetMRTProfile()
 					},
 				},
 			}
-		elseif ElvUI_EltreumUI.Classic then
+		elseif E.Classic then
 			VMRT = {
 				["Note"] = {
 					["BlackNames"] = {
@@ -2489,7 +2489,7 @@ function ElvUI_EltreumUI:GetMRTProfile()
 					["Strata"] = "HIGH",
 				},
 			}
-		elseif ElvUI_EltreumUI.TBC then
+		elseif E.TBC then
 			VMRT = {
 				["Note"] = {
 					["BlackNames"] = {

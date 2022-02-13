@@ -70,7 +70,7 @@ end
 local SUPPORTER_STRING = tconcat(SUPPORTER, '|n')
 
 -- EltreumUI ingame options Retail
-if ElvUI_EltreumUI.Retail then
+if E.Retail then
 	function ElvUI_EltreumUI:Configtable()
 		-- Add EltreumUI version on top of the ElvUI config
 		E.Options.name = E.Options.name .. " + " .. ElvUI_EltreumUI.Name .. format(" |cffffffff%s|r", ElvUI_EltreumUI.Version)

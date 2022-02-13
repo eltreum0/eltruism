@@ -12,7 +12,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "Roboto"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "Roboto"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "Roboto"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Roboto"
 		end
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Roboto"
@@ -31,7 +31,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["font"] = "Roboto"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = "Roboto"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "Roboto"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Roboto"
 		end
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["font"] = "Roboto"
@@ -54,7 +54,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 		E.private["general"]["chatBubbleFont"] = "Roboto"
 		E.private["general"]["dmgfont"] = "Roboto"
 		E.private["general"]["namefont"] = "Roboto"
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		if IsAddOnLoaded('ProjectAzilroka') then
 			_G.ProjectAzilroka.db["stAddonManager"]["Font"] = "Roboto"
 		end
@@ -175,7 +175,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 	end
 		E.db["general"]["font"] = "Roboto"
 		E.db["general"]["minimap"]["locationFont"] = "Roboto"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = "Roboto"
 		end
 		E.db["bags"]["countFont"] = "Roboto"
@@ -184,7 +184,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 		E.db["chat"]["font"] = "Roboto"
 		E.db["chat"]["tabFont"] = "Roboto"
 		E.db["cooldown"]["fonts"]["font"] = "Roboto"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["databars"]["azerite"]["font"] = "Roboto"
 			E.db["databars"]["honor"]["font"] = "Roboto"
 		end
@@ -231,7 +231,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -245,7 +245,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 			}
 		end
 		-- Custom Text: Pet
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
@@ -258,7 +258,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
@@ -274,7 +274,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 		end
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -344,7 +344,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 			["xOffset"] = 37,
 			["yOffset"] = 10
 		}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -381,7 +381,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 		}
 		-- Custom Text: Raid 40
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -418,7 +418,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 		}
 		-- Custom Text: Target
 		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -544,7 +544,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 		E.db["actionbar"]["bar9"]["macroFont"] = "Roboto"
 		E.db["actionbar"]["barPet"]["countFont"] = "Roboto"
 		E.db["actionbar"]["barPet"]["hotkeyFont"] = "Roboto"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "Roboto"
 		end
 		E.db["actionbar"]["font"] = "Roboto"
@@ -555,7 +555,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 		E.db["auras"]["debuffs"]["countFont"] = "Roboto"
 		E.db["auras"]["debuffs"]["timeFont"] = "Roboto"
 		E.db["unitframe"]["font"] = "Roboto"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Roboto"
 			E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "Roboto"
 			E.db["unitframe"]["units"]["assist"]["buffs"]["countFont"] = "Roboto"

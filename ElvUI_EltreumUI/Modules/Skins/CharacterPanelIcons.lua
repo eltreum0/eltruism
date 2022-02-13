@@ -40,9 +40,9 @@ classFrame:SetParent("PaperDollFrame")
 local classTexture = classFrame:CreateTexture()
 classTexture:SetAllPoints(classFrame)
 local CharacterLevelText = _G.CharacterLevelText
-if ElvUI_EltreumUI.Retail then
+if E.Retail then
 	CharacterLevelText:SetWidth(300) --new
-elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+elseif E.Classic or E.TBC then
 	CharacterLevelText:SetWidth(280) --new
 end
 local classsymbolonframe
@@ -65,7 +65,7 @@ function ElvUI_EltreumUI:PlayerNamepaperdoll()
 		if charactertext == nil then
 			return
 		elseif not charactertext:match("|T") then
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				if _G.CharacterFrameTitleText then
 					_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
 				end
@@ -80,7 +80,7 @@ end
 
 function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
-		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+		if E.Classic or E.TBC then
 			classFrame:ClearAllPoints()
 			--type of icon
 			if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
@@ -95,7 +95,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 			local totalgap = levelwidth - textwidth
 			local gapclassic = totalgap/4
 			classFrame:SetPoint("RIGHT", "CharacterLevelText", 8-gapclassic, 0)
-		elseif ElvUI_EltreumUI.Retail then
+		elseif E.Retail then
 
 			hooksecurefunc('PaperDollFrame_SetLevel', function()
 				_G.CharacterFrameTitleText:ClearAllPoints()
@@ -112,12 +112,12 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc("CharacterFrame_Collapse", function()
 				if _G.PaperDollFrame:IsShown() then
-					if ElvUI_EltreumUI.Retail then
+					if E.Retail then
 						charactertext = _G.CharacterFrameTitleText:GetText()
 						if not charactertext:match("|T") then
 							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
 						end
-					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+					elseif E.TBC or E.Classic then
 						charactertext = _G.CharacterFrameTitleText:GetText()
 						if not charactertext:match("|T") then
 							_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
@@ -128,12 +128,12 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc("CharacterFrame_Expand", function()
 				if _G.PaperDollFrame:IsShown() then
-					if ElvUI_EltreumUI.Retail then
+					if E.Retail then
 						charactertext = _G.CharacterFrameTitleText:GetText()
 						if not charactertext:match("|T") then
 							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
 						end
-					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+					elseif E.TBC or E.Classic then
 						charactertext = _G.CharacterFrameTitleText:GetText()
 						if not charactertext:match("|T") then
 							_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
@@ -144,12 +144,12 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc("ReputationFrame_Update", function()
 				if _G.ReputationFrame:IsShown() then
-					if ElvUI_EltreumUI.Retail then
+					if E.Retail then
 						charactertext = _G.CharacterFrameTitleText:GetText()
 						if not charactertext:match("|T") then
 							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
 						end
-					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+					elseif E.TBC or E.Classic then
 						charactertext = _G.CharacterFrameTitleText:GetText()
 						if not charactertext:match("|T") then
 							_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
@@ -160,12 +160,12 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc("TokenFrame_Update", function()
 				if _G.TokenFrame:IsShown() then
-					if ElvUI_EltreumUI.Retail then
+					if E.Retail then
 						charactertext = _G.CharacterFrameTitleText:GetText()
 						if not charactertext:match("|T") then
 							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
 						end
-					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+					elseif E.TBC or E.Classic then
 						charactertext = _G.CharacterFrameTitleText:GetText()
 						if not charactertext:match("|T") then
 							_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())

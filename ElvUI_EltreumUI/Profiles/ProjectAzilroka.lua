@@ -12,7 +12,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["AuraReminder"]["Enable"] = false
 	PA.db["QuestSounds"]["Enable"] = false
 	PA.db["FasterLoot"]["Enable"] = false
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		if pacheck >= '1.77' then
 			PA.db["SunsongRanchFarmer"]["Enable"] = false
 		elseif pacheck < '1.77' then
@@ -40,7 +40,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["MouseoverAuras"]["Enable"] = false
 	PA.db["MovableFrames"]["Enable"] = false
 	PA.db["OzCooldowns"]["Enable"] = false
-	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+	if E.Classic or E.TBC then
 		PA.db["MovableFrames"]["Enable"] = true
 		--[[
 		PA.db["MovableFrames"]["GhostFrame"]["Permanent"] = false

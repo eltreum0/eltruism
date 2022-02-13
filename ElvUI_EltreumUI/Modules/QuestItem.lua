@@ -291,7 +291,7 @@ function ElvUI_EltreumUI:QuestItem()
 						local itemId = link and tonumber(link:match(ITEMID_PATTERN))
 						if (link) and (itemId) then
 							--itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = GetItemInfo(item)
-							if ElvUI_EltreumUI.Retail then
+							if E.Retail then
 								--local isQuestItem, questId, isActive = GetContainerItemQuestInfo(bag,slot)
 								local isQuestItem, _, _ = GetContainerItemQuestInfo(bag,slot)
 								if isQuestItem then
@@ -302,7 +302,7 @@ function ElvUI_EltreumUI:QuestItem()
 									AddButton(index,bag,slot,link,itemId,count)
 									index = (index + 1)
 								end
-							elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+							elseif E.TBC or E.Classic then
 								local _, _, _, _, _, itemType, _ = GetItemInfo(itemId)
 								if itemType == "Quest" then
 									local _, count = GetContainerItemInfo(bag,slot)

@@ -70,7 +70,7 @@ end
 local SUPPORTER_STRING = tconcat(SUPPORTER, '|n')
 
 -- EltreumUI ingame options TBC
-if ElvUI_EltreumUI.TBC then
+if E.TBC then
 	function ElvUI_EltreumUI:Configtable()
 		-- Add EltreumUI version on top of the ElvUI config
 		E.Options.name = E.Options.name .. " + " .. ElvUI_EltreumUI.Name .. format(" |cffffffff%s|r", ElvUI_EltreumUI.Version)
@@ -1319,7 +1319,7 @@ if ElvUI_EltreumUI.TBC then
 									order = 37,
 									name = L['Enable Wowhead Button'],
 									type = "toggle",
-									desc = "Show a button for Wowhead quest links",
+									desc = "Show a button for [Wowhead quest links",
 									width = 'full',
 									get = function() return E.db.ElvUI_EltreumUI.skins.questswowhead end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.skins.questswowhead = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -1366,8 +1366,8 @@ if ElvUI_EltreumUI.TBC then
 									type = 'toggle',
 									name = L["Expanded Talents"],
 									desc = L["Expand Talents to cover the full tree"],
-									get = function() return E.db.ElvUI_EltreumUI.tbctalents.enable end,
-									set = function(_, value) E.db.ElvUI_EltreumUI.tbctalents.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+									get = function() return E.db.E.TBCtalents.enable end,
+									set = function(_, value) E.db.E.TBCtalents.enable = value E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								header8898 = {
 									order = 58,

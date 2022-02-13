@@ -12,7 +12,7 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "GothamNarrow Black"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "GothamNarrow Black"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "GothamNarrow Black"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "GothamNarrow Black"
 		end
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "GothamNarrow Black"
@@ -31,7 +31,7 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["font"] = "GothamNarrow Black"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = "GothamNarrow Black"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "GothamNarrow Black"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "GothamNarrow Black"
 		end
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["font"] = "GothamNarrow Black"
@@ -54,7 +54,7 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 		E.private["general"]["chatBubbleFont"] = "GothamNarrow Black"
 		E.private["general"]["dmgfont"] = "GothamNarrow Black"
 		E.private["general"]["namefont"] = "GothamNarrow Black"
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		if IsAddOnLoaded('ProjectAzilroka') then
 			_G.ProjectAzilroka.db["stAddonManager"]["Font"] = "GothamNarrow Black"
 		end
@@ -175,7 +175,7 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 	end
 		E.db["general"]["font"] = "GothamNarrow Black"
 		E.db["general"]["minimap"]["locationFont"] = "GothamNarrow Black"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = "GothamNarrow Black"
 		end
 		E.db["bags"]["countFont"] = "GothamNarrow Black"
@@ -184,7 +184,7 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 		E.db["chat"]["font"] = "GothamNarrow Black"
 		E.db["chat"]["tabFont"] = "GothamNarrow Black"
 		E.db["cooldown"]["fonts"]["font"] = "GothamNarrow Black"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["databars"]["honor"]["font"] = "GothamNarrow Black"
 			E.db["databars"]["azerite"]["font"] = "GothamNarrow Black"
 		end
@@ -230,7 +230,7 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -244,7 +244,7 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 			}
 		end
 		-- Custom Text: Pet
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
@@ -257,7 +257,7 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
@@ -273,7 +273,7 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 		end
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -343,7 +343,7 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 			["xOffset"] = 37,
 			["yOffset"] = 10
 		}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -380,7 +380,7 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 		}
 		-- Custom Text: Raid 40
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -417,7 +417,7 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 		}
 		-- Custom Text: Target
 		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -543,7 +543,7 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 		E.db["actionbar"]["bar9"]["macroFont"] = "GothamNarrow Black"
 		E.db["actionbar"]["barPet"]["countFont"] = "GothamNarrow Black"
 		E.db["actionbar"]["barPet"]["hotkeyFont"] = "GothamNarrow Black"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "GothamNarrow Black"
 		end
 		E.db["actionbar"]["font"] = "GothamNarrow Black"
@@ -554,7 +554,7 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 		E.db["auras"]["debuffs"]["countFont"] = "GothamNarrow Black"
 		E.db["auras"]["debuffs"]["timeFont"] = "GothamNarrow Black"
 		E.db["unitframe"]["font"] = "GothamNarrow Black"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "GothamNarrow Black"
 			E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "GothamNarrow Black"
 			E.db["unitframe"]["units"]["assist"]["buffs"]["countFont"] = "GothamNarrow Black"

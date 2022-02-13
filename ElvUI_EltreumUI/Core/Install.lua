@@ -134,9 +134,9 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option1:Enable()
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT() ElvUI_EltreumUI:GetASProfile() end)
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				PluginInstallFrame.Option1:SetText('Spec')
-			elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+			elseif E.Classic or E.TBC then
 				PluginInstallFrame.Option1:SetText('Blizzard')
 			end
 			PluginInstallFrame.Option2:Enable()
@@ -158,13 +158,13 @@ ElvUI_EltreumUI.InstallerData = {
 		end,
 		[6] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('PVP/PVE Addons')
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				PluginInstallFrame.Desc1:SetText(L["Import GladiusEx profile for arenas, remember to disable ElvUI Arena Frames"])
 				PluginInstallFrame.Option1:Enable()
 				PluginInstallFrame.Option1:Show()
 				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupGladiusEx() end)
 				PluginInstallFrame.Option1:SetText('GladiusEx')
-			elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+			elseif E.Classic or E.TBC then
 				PluginInstallFrame.Desc1:SetText(L["Import Questie profile, which uses the DBM radar"])
 				PluginInstallFrame.Option1:Enable()
 				PluginInstallFrame.Option1:Show()
@@ -172,9 +172,9 @@ ElvUI_EltreumUI.InstallerData = {
 				PluginInstallFrame.Option1:SetText(L["Questie"])
 			end
 			PluginInstallFrame.Desc2:SetText(L["Import DBM or BigWigs profiles for dungeons and raigs. (Uses DBM English Calanon and Bigwigs Voice)"])
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				PluginInstallFrame.Desc3:SetText(L["Import Method Raid Tools profile with raid cooldowns and other settings"])
-			elseif ElvUI_EltreumUI.TBC then
+			elseif E.TBC then
 				PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladdy (Gladius can be found in Eltruism settings)"])
 			end
 			PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
@@ -186,23 +186,23 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option3:Show()
 			PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupBW() end)
 			PluginInstallFrame.Option3:SetText('BigWigs')
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				PluginInstallFrame.Option4:Enable()
 				PluginInstallFrame.Option4:Show()
 				PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupMRT() end)
 				PluginInstallFrame.Option4:SetText(L["Method\nRaid Tools"])
-			elseif ElvUI_EltreumUI.TBC then
+			elseif E.TBC then
 				PluginInstallFrame.Option4:Enable()
 				PluginInstallFrame.Option4:Show()
 				PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
 				PluginInstallFrame.Option4:SetText('Gladdy')
 			end
-			if (not IsAddOnLoaded("Questie")) and (ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC) then
+			if (not IsAddOnLoaded("Questie")) and (E.Classic or E.TBC) then
 				PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				PluginInstallFrame.Desc1:SetText(L["Questie is not installed or enabled"])
 				PluginInstallFrame.Option1:Disable()
 			end
-			if (not IsAddOnLoaded("GladiusEx")) and ElvUI_EltreumUI.Retail then
+			if (not IsAddOnLoaded("GladiusEx")) and E.Retail then
 				PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				PluginInstallFrame.Desc1:SetText("GladiusEx"..L[" is not installed or enabled"])
 				PluginInstallFrame.Option1:Disable()
@@ -223,27 +223,27 @@ ElvUI_EltreumUI.InstallerData = {
 				PluginInstallFrame.Option2:Disable()
 				PluginInstallFrame.Option3:Disable()
 			end
-			if (not IsAddOnLoaded("MRT")) and ElvUI_EltreumUI.Retail then
+			if (not IsAddOnLoaded("MRT")) and E.Retail then
 				PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				PluginInstallFrame.Desc3:SetText(L["Method Raid Tools"]..L[" is not installed or enabled"])
 				PluginInstallFrame.Option4:Disable()
 			end
-			if (not IsAddOnLoaded("Gladdy")) and ElvUI_EltreumUI.TBC then
+			if (not IsAddOnLoaded("Gladdy")) and E.TBC then
 				PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				PluginInstallFrame.Desc3:SetText(L["Gladdy is not installed or enabled (You can find the Gladius profile in Eltruism Settings"])
 				PluginInstallFrame.Option4:Disable()
 			end
-			if (IsAddOnLoaded("Gladius")) and ElvUI_EltreumUI.TBC then
+			if (IsAddOnLoaded("Gladius")) and E.TBC then
 				PluginInstallFrame.Desc3:SetText(L["Gladius profile can be found in Eltruism > Addons, please check it there"])
 				PluginInstallFrame.Option4:Disable()
 			end
-			if ElvUI_EltreumUI.Retail and ((not IsAddOnLoaded("MRT")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("GladiusEx"))) then
+			if E.Retail and ((not IsAddOnLoaded("MRT")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("GladiusEx"))) then
 				PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
-			if ElvUI_EltreumUI.Classic and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs"))) then
+			if E.Classic and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs"))) then
 				PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
-			if ElvUI_EltreumUI.TBC and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("Gladdy"))) then
+			if E.TBC and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("Gladdy"))) then
 				PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
 		end,

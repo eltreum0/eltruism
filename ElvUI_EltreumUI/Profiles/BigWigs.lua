@@ -11,7 +11,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		LoadAddOn("BigWigs_Plugins")
 	end
 
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 
 		--create profile
 		BigWigs3DB["profiles"] = BigWigs3DB["profiles"] or {}
@@ -134,7 +134,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		BigWigs3DB["profileKeys"] = {[E.mynameRealm] = "Eltreum",
 		}
 	end
-	if ElvUI_EltreumUI.Classic then
+	if E.Classic then
 		BigWigsClassicDB = {}
 		BigWigsClassicDB["profiles"] = BigWigsClassicDB["profiles"] or {}
 		BigWigsClassicDB["namespaces"] = {}
@@ -226,7 +226,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		BigWigsClassicDB["profileKeys"] = {[E.mynameRealm] = "Eltreum",
 		}
 	end
-	if ElvUI_EltreumUI.TBC then
+	if E.TBC then
 		--create profile
 		BigWigsClassicDB["profiles"] = BigWigsClassicDB["profiles"] or {}
 		BigWigsClassicDB["profiles"]["Eltreum"] = BigWigsClassicDB["profiles"]["Eltreum"] or {}

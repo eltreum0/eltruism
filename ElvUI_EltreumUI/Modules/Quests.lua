@@ -5,9 +5,9 @@ function ElvUI_EltreumUI:QuestEncounter()
 	if E.db.ElvUI_EltreumUI.questsettings.enable then
 		local _, instanceType = IsInInstance()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				ObjectiveTracker_Collapse()
-			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			elseif E.TBC or E.Classic then
 				QuestWatchFrame:Hide()
 				if IsAddOnLoaded("Questie") then
 					_G["Questie_BaseFrame"]:Hide()
@@ -21,9 +21,9 @@ function ElvUI_EltreumUI:QuestEncounterEnd()
 	if E.db.ElvUI_EltreumUI.questsettings.enable then
 		local _, instanceType = IsInInstance()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				ObjectiveTracker_Expand()
-			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			elseif E.TBC or E.Classic then
 				QuestWatchFrame:Show()
 				if IsAddOnLoaded("Questie") then
 					_G["Questie_BaseFrame"]:Show()
@@ -37,18 +37,18 @@ function ElvUI_EltreumUI:ArenaQuest()
 	if E.db.ElvUI_EltreumUI.questsettings.arena then
 		local _, instanceType = IsInInstance()
 		if instanceType == "arena" or instanceType == "pvp" then
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				ObjectiveTrackerFrame:Hide()
-			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			elseif E.TBC or E.Classic then
 				QuestWatchFrame:Hide()
 				if IsAddOnLoaded("Questie") then
 					_G["Questie_BaseFrame"]:Hide()
 				end
 			end
 		elseif instanceType == "none" then
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				ObjectiveTrackerFrame:Show()
-			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			elseif E.TBC or E.Classic then
 				QuestWatchFrame:Show()
 				if IsAddOnLoaded("Questie") then
 					_G["Questie_BaseFrame"]:Show()
@@ -60,9 +60,9 @@ end
 --Collapse/Hide Quests during combat with anything
 function ElvUI_EltreumUI:QuestCombat()
 	if E.db.ElvUI_EltreumUI.questsettings.combatenable then
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			ObjectiveTracker_Collapse()
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 			QuestWatchFrame:Hide()
 			if IsAddOnLoaded("Questie") then
 				_G["Questie_BaseFrame"]:Hide()
@@ -73,9 +73,9 @@ end
 --expand after combat is over
 function ElvUI_EltreumUI:QuestCombatEnd()
 	if E.db.ElvUI_EltreumUI.questsettings.combatenable then
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			ObjectiveTracker_Expand()
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 			QuestWatchFrame:Show()
 			if IsAddOnLoaded("Questie") then
 				_G["Questie_BaseFrame"]:Show()
@@ -156,12 +156,12 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 				--print("started quest automation")
 				if event == 'QUEST_DETAIL' then
 					--print("QUEST_DETAIL")
-					if ElvUI_EltreumUI.Retail then
+					if E.Retail then
 						if QuestGetAutoAccept() then
 							--print("its an annoying auto accept quest, panel has been closed")
 							CloseQuest()
 						else
-							if ElvUI_EltreumUI.Retail then
+							if E.Retail then
 								--print("not an auto accept quest")
 								if not E.db.ElvUI_EltreumUI.questsettings.acceptdaily then
 									if QuestIsDaily() then
@@ -178,11 +178,11 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 									AcceptQuest()
 									--print("quest accepted")
 								end
-							elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+							elseif E.TBC or E.Classic then
 								AcceptQuest()
 							end
 						end
-					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+					elseif E.TBC or E.Classic then
 						AcceptQuest()
 						--print("quest accepted")
 						if (GetNumQuestChoices() <= 0) then
@@ -198,12 +198,12 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 				end
 				if event == 'GOSSIP_SHOW' then
 					--print("GOSSIP_SHOW")
-					if ElvUI_EltreumUI.Retail then
+					if E.Retail then
 						for i, k in next, C_GossipInfo.GetAvailableQuests() do
 							--print("iterate and select quest")
 							C_GossipInfo.SelectAvailableQuest(i)
 						end
-					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+					elseif E.TBC or E.Classic then
 						if (GetNumGossipAvailableQuests() > 0) then
 							--print("number of available quests > 0")
 							local questlist = {GetGossipAvailableQuests()}
@@ -219,7 +219,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 							for i = 1, GetNumGossipActiveQuests() do
 								--print("tried to select and accept quests in a loop"..math.random(1,99))
 								SelectGossipActiveQuest(i)
-								if ElvUI_EltreumUI.Retail then
+								if E.Retail then
 									if not E.db.ElvUI_EltreumUI.questsettings.acceptdaily then
 										if QuestIsDaily() then
 											--print("its a daily quest")
@@ -237,7 +237,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 										--print("no quest choices")
 										return
 									end
-								elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+								elseif E.TBC or E.Classic then
 									AcceptQuest()
 									if (GetNumQuestChoices() <= 0) then
 										return
@@ -262,12 +262,12 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 					for i = 1, GetNumActiveQuests() do
 					--print("numquests complete loop")
 						local _, completed = GetActiveTitle(i)
-						if ElvUI_EltreumUI.Retail then
+						if E.Retail then
 							if completed and not C_QuestLog.IsWorldQuest(GetActiveQuestID(i)) then
 								--print("tried to complete "..completed.." and it's not a world quest")
 								SelectActiveQuest(i)
 							end
-						elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						elseif E.TBC or E.Classic then
 							if completed then
 								--print("tried to complete "..completed)
 								SelectActiveQuest(i)
@@ -291,12 +291,12 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						--print("quest requires gold")
 						return
 					else
-						if ElvUI_EltreumUI.Retail then
+						if E.Retail then
 							if GetNumQuestChoices() <= 1 then
 								--print("tried to select reward and complete")
 								GetQuestReward(GetNumQuestChoices())
 							end
-						elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						elseif E.TBC or E.Classic then
 							if GetNumQuestChoices() == 1 then
 								GetQuestReward(1)
 								--print("tried to select reward and complete")

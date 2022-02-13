@@ -172,10 +172,10 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["databars"]["threat"]["height"] = 22
 		E.db["databars"]["threat"]["orientation"] = "HORIZONTAL"
 		E.db["databars"]["threat"]["width"] = 412
-		if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		if E.TBC or E.Classic then
 			E.db["databars"]["threat"]["enable"] = true
 		end
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["databars"]["threat"]["enable"] = false
 			E.db["databars"]["azerite"]["font"] = "Kimberley"
 			E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
@@ -240,7 +240,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["datatexts"]["noCombatHover"] = true
 		E.db["datatexts"]["panels"]["MinimapPanel"][1] = "Time"
 		E.db["datatexts"]["panels"]["MinimapPanel"]["border"] = false
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Missions"
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"]["border"] = false
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"]["panelTransparency"] = true
@@ -257,7 +257,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			else
 				E.db["datatexts"]["panels"]["MinimapPanel"][2] = "Friends"
 			end
-		elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+		elseif E.Classic or E.TBC then
 			--E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "ElvUI"
 			--E.db["datatexts"]["panels"]["LeftChatDataPanel"]["left"] = "ElvUI Config"
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "Eltruism"
@@ -361,7 +361,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		}
 		-- Custom Text: Pet
 		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
 				["enable"] = true,
@@ -373,7 +373,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
 				["enable"] = true,
@@ -548,7 +548,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["xOffset"] = 2,
 			["yOffset"] = 0
 		}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] = {
 				["attachTextTo"] = "Health",
 				["enable"] = true,
@@ -560,7 +560,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["xOffset"] = -2,
 				["yOffset"] = 0
 			}
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] = {
 				["attachTextTo"] = "Health",
 				["enable"] = true,
@@ -648,17 +648,17 @@ function ElvUI_EltreumUI:SetupPrivate()
 	E.private["general"]["normTex"] = "Eltreum-Blank"
 	E.private["theme"] = "class"
 	E.private["skins"]["parchmentRemoverEnable"] = true
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		E.private["install_complete"] = "12.38"
 		E.private["general"]["totemBar"] = true
 		E.private["general"]["nameplateFont"] = "Kimberley"
 		E.private["general"]["nameplateFontSize"] = 10
 		E.private["general"]["nameplateLargeFont"] = "Kimberley"
 		E.private["general"]["nameplateLargeFontSize"] = 10
-	elseif ElvUI_EltreumUI.TBC then
+	elseif E.TBC then
 		E.private["install_complete"] = "2.06"
 		E.private["general"]["totemBar"] = true
-	elseif ElvUI_EltreumUI.Classic then
+	elseif E.Classic then
 		E.private["install_complete"] = "1.42"
 	end
 end
@@ -666,18 +666,18 @@ end
 -- Global DB
 function ElvUI_EltreumUI:SetupGlobal()
 	-- ElvUI Global DB
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		E.global["general"]["commandBarSetting"] = "ENABLED_RESIZEPARENT"
 		E.global["general"]["smallerWorldMap"] = false
 		E.global["general"]["smallerWorldMapScale"] = 1
 		E.global["general"]["mapAlphaWhenMoving"] = 0.35
 	end
-	if ElvUI_EltreumUI.Classic then
+	if E.Classic then
 		E.global["general"]["smallerWorldMapScale"] = 0.5
 		E.global["general"]["mapAlphaWhenMoving"] = 0.5
 		E.global["general"]["smallerWorldMap"] = true
 	end
-	if ElvUI_EltreumUI.TBC then
+	if E.TBC then
 		E.global["general"]["smallerWorldMapScale"] = 0.5
 		E.global["general"]["mapAlphaWhenMoving"] = 0.5
 		E.global["general"]["smallerWorldMap"] = true
@@ -689,7 +689,7 @@ function ElvUI_EltreumUI:SetupGlobal()
 	E.global["datatexts"]["settings"]["Friends"]["hideAFK"] = true
 	E.global["datatexts"]["settings"]["Friends"]["hideApp"] = true
 	E.global["datatexts"]["settings"]["Gold"]["goldCoins"] = false
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		E.global["datatexts"]["settings"]["MovementSpeed"]["NoLabel"] = true
 	end
 	E.global["datatexts"]["settings"]["Time"]["time24"] = true
@@ -722,7 +722,7 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('Sound_EnableErrorSpeech', 1)
 
 	--this makes it so that the non nameplate names are hidden
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		SetCVar('UnitNameHostleNPC', 0) --Display names for hostile NPCs
 		SetCVar('UnitNameInteractiveNPC', 0) --Display names for interactive NPCs
 		SetCVar('UnitNameNPC', 0)
@@ -749,12 +749,12 @@ function ElvUI_EltreumUI:SetupCVars()
 	_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:SetValue('SHIFT')
 	_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:RefreshValue()
 
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		SetCVar('showNPETutorials', 0)
 		SetCVar('threatWarning', 3)
 		SetCVar('showQuestTrackingTooltips', 1)
 		SetCVar('fstack_preferParentKeys', 0) --Add back the frame names via fstack!
-	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+	elseif E.TBC or E.Classic then
 		SetCVar("lootUnderMouse", 1)
 		SetCVar("chatBubbles", 1)
 		SetCVar("chatBubblesParty", 1)

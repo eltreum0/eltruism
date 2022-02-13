@@ -6,7 +6,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 	if not E.db.ElvUI_EltreumUI.skins.sockets then
 		return
 	end
-	if not (ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic) then
+	if not (E.TBC or E.Classic) then
 		return
 	end
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ENCHANT TABLES
@@ -1791,14 +1791,14 @@ function ElvUI_EltreumUI:ClassicSockets()
 					Tooltips[i]:SetOwner(Tooltips[i - 1], "ANCHOR_NONE")
 					Tooltips[i]:SetPoint("TOPLEFT", Tooltips[i - 1], "TOPRIGHT")
 				end
-				if ElvUI_EltreumUI.TBC then
+				if E.TBC then
 					if item[FIELD_TYPE] == TYPE_HYPERLINK then
 						Tooltips[i]:SetHyperlink(item[FIELD_CONTENT])
 						self.link = item[FIELD_CONTENT]
 					elseif item[FIELD_TYPE] == TYPE_TEXT then
 						Tooltips[i]:SetText(item[FIELD_CONTENT])
 					end
-				elseif ElvUI_EltreumUI.Classic then
+				elseif E.Classic then
 					Tooltips[i]:SetText(item[FIELD_CONTENT])
 				end
 				maxSize = max(Tooltips[i]:GetHeight(), maxSize)

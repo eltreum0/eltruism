@@ -75,13 +75,13 @@ local classicmusicstopper = nil
 local willplay = nil
 function ElvUI_EltreumUI:AFKmusic()
 	if E.db.ElvUI_EltreumUI.afkmusic.enable then
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			if UnitIsAFK("player") then
 				if musicSetting == '0' then
 					SetCVar("Sound_EnableMusic", 1)
 				end
 				if E.db.ElvUI_EltreumUI.afkmusic.racial then
-					if ElvUI_EltreumUI.Retail then
+					if E.Retail then
 						PlayMusic(racialMusic[E.myrace])
 					end
 				elseif E.db.ElvUI_EltreumUI.afkmusic.playerclass then
@@ -92,21 +92,21 @@ function ElvUI_EltreumUI:AFKmusic()
 				SetCVar("Sound_EnableMusic", musicSetting)
 			end
 		end
-		if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+		if E.Classic or E.TBC then
 			if UnitIsAFK("player") then
 				if musicSetting == '0' then
 					SetCVar("Sound_EnableMusic", 1)
 				end
-				if ElvUI_EltreumUI.TBC then
+				if E.TBC then
 					PlayMusic(tbcMusic[E.myrace])
-				elseif ElvUI_EltreumUI.Classic then
+				elseif E.Classic then
 					willplay, classicmusicstopper = PlaySound(classicMusic[E.myrace])
 				end
 			else
-				if ElvUI_EltreumUI.TBC then
+				if E.TBC then
 					StopMusic()
 					SetCVar("Sound_EnableMusic", musicSetting)
-				elseif ElvUI_EltreumUI.Classic then
+				elseif E.Classic then
 					if willplay then
 						StopSound(classicmusicstopper,3000)
 					end

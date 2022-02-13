@@ -43,7 +43,7 @@ function ElvUI_EltreumUI:SkillGlow()
 			end
 		end
 		--classic shaman totem bar glow when totems are not active in combat
-		if (ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic) and E.myclass == 'SHAMAN' and E.db.ElvUI_EltreumUI.glow.enabletotem then
+		if (E.TBC or E.Classic) and E.myclass == 'SHAMAN' and E.db.ElvUI_EltreumUI.glow.enabletotem then
 			local totemglowholder = CreateFrame("FRAME")
 			local totemglowcombatdetect = CreateFrame("FRAME")
 			totemglowcombatdetect:RegisterEvent('PLAYER_REGEN_DISABLED')

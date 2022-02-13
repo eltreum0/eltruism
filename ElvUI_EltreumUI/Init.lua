@@ -36,11 +36,6 @@ ElvUI_EltreumUI.CreditsList = {}
 ElvUI_EltreumUI.Config = {}
 ElvUI_EltreumUI.Name = '|cff82B4ffEltruism|r'
 
---Check WoW Project ID
-ElvUI_EltreumUI.Retail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
-ElvUI_EltreumUI.Classic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
-ElvUI_EltreumUI.TBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
-
 function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
@@ -77,7 +72,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:ChangePlayerTexture() -- load the player texture
 	ElvUI_EltreumUI:DeleteItem() -- automatically type delete
 	ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
 		ElvUI_EltreumUI:GetSpec() --checks player spec
@@ -86,7 +81,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		if E.myclass == 'HUNTER' then
 			ElvUI_EltreumUI:ExpandedStable() --expands pet stable for hunters
 		end
-	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+	elseif E.TBC or E.Classic then
 		ElvUI_EltreumUI:ClassicSockets() --adds sockets and enchants into the character panel, based on Kibs Item Level by Kibsgaard
 		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
 		ElvUI_EltreumUI:ExpandedTalents() --makes talents fit in one window without scroll
@@ -159,13 +154,13 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED") --LootText things
 	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE') --LootText things
 	ElvUI_EltreumUI:RegisterEvent('INSPECT_READY')
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED') --for class icons, power bar and shadows
 		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW') --for rogue order hall
 		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
 		ElvUI_EltreumUI:RegisterEvent('CHALLENGE_MODE_COMPLETED') --for auto screenshot
 	end
-	if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+	if E.Classic or E.TBC then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
 	end
 end
@@ -277,7 +272,7 @@ end
 
 function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		ElvUI_EltreumUI:GetSpec()
 		ElvUI_EltreumUI:NamePlateOptions()
 		ElvUI_EltreumUI:Shadows()
@@ -288,7 +283,7 @@ function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 end
 
 function ElvUI_EltreumUI:GOSSIP_SHOW()
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		if E.myclass == 'ROGUE' then
 			ElvUI_EltreumUI:RogueAutoOpen()
 		end

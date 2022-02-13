@@ -2,7 +2,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
 local LibItemInfo
-if ElvUI_EltreumUI. TBC or ElvUI_EltreumUI.Classic then
+if ElvUI_EltreumUI. TBC or E.Classic then
 	LibItemInfo = LibStub:GetLibrary("LibItemInfo.1000")
 end
 
@@ -13,7 +13,7 @@ local ClassCrestFrame = CreateFrame("Frame")
 local ClassCrestFrameTexture = ClassCrestFrame:CreateTexture()
 local ilevel
 
-if ElvUI_EltreumUI.Retail then
+if E.Retail then
 	_G.CharacterFrame.EltruismClassResource = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
 	_G.CharacterFrame.EltruismClassResourceDesc = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
 	_G.CharacterFrame.EltruismClassResourceDescTooltip = CreateFrame("Frame", "EltruismClassResourceDesc")
@@ -27,7 +27,7 @@ if ElvUI_EltreumUI.Retail then
 	_G.CharacterFrame.EltruismSpeedDescTooltip = CreateFrame("Frame", "EltruismSpeedDesc")
 end
 
-if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+if E.TBC or E.Classic then
 	CharacterFrame.Text = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 	CharacterFrame.Text2 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 	CharacterFrame.Text3 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
@@ -39,7 +39,7 @@ if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
 	CharacterFrame.StatusLine4 = CreateFrame("StatusBar", "EltruismCharacterBar4", CharacterFrame)
 end
 
-if ElvUI_EltreumUI.TBC then
+if E.TBC then
 	_G.PlayerStatFrameLeft2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine12", CharacterFrame)
 	_G.PlayerStatFrameLeft4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine22", CharacterFrame)
 	_G.PlayerStatFrameLeft6.StatusLine = CreateFrame("StatusBar", "EltruismStatLine32", CharacterFrame)
@@ -48,7 +48,7 @@ if ElvUI_EltreumUI.TBC then
 	_G.PlayerStatFrameRight6.StatusLine = CreateFrame("StatusBar", "EltruismStatLine7", CharacterFrame)
 end
 
-if ElvUI_EltreumUI.Classic then
+if E.Classic then
 	_G.CharacterArmorFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine3", CharacterFrame)
 	_G.CharacterAttackPowerFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine4", CharacterFrame)
 	_G.CharacterRangedAttackFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine5", CharacterFrame)
@@ -88,7 +88,7 @@ local classCrests = {
 }
 
 function ElvUI_EltreumUI:ExpandedCharacterStats()
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		--add class crest
 		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
 			ClassCrestFrame:SetSize(256, 256)
@@ -402,7 +402,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end)
 		  	end
 		end
-	elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+	elseif E.TBC or E.Classic then
 		--add class crest
 		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
 			ClassCrestFrame:SetSize(150, 150)
@@ -500,14 +500,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			end
 
-			if ElvUI_EltreumUI.TBC then
+			if E.TBC then
 				--_G.PlayerTitleDropDown:Show()
 				_G.PlayerTitleDropDown:ClearAllPoints()
 				_G.PlayerTitleDropDown:SetParent(_G.CharacterModelFrame)
 				_G.PVPFrameToggleButton:ClearAllPoints()
 				_G.PVPFrameToggleButton:SetPoint('TOP', _G.PVPHonor, 'TOP', 52, 42)
 				_G.PVPFrameToggleButton:SetParent(_G.PVPFrameHonor)
-			elseif ElvUI_EltreumUI.Classic then
+			elseif E.Classic then
 				--_G.CharacterTitleText:Show()
 				_G.CharacterTitleText:ClearAllPoints()
 				_G.CharacterTitleText:SetParent(_G.CharacterModelFrame)
@@ -518,9 +518,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.CharacterNameText:SetParent(_G.CharacterModelFrame)
 			_G.CharacterLevelText:SetPoint('TOP', _G.CharacterModelFrame, 0, 60)
 			_G.CharacterLevelText:SetParent(_G.CharacterModelFrame)
-			if ElvUI_EltreumUI.TBC then
+			if E.TBC then
 				_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterModelFrame, -6, 40)
-			elseif ElvUI_EltreumUI.Classic then
+			elseif E.Classic then
 				_G.CharacterTitleText:SetPoint('TOP', _G.CharacterModelFrame, 0, 40)
 			end
 
@@ -611,10 +611,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.CharacterModelFrameRotateRightButton:Hide()
 			_G.CharacterModelFrameRotateLeftButton:Hide()
 			_G.MagicResFrame1:ClearAllPoints()
-			if ElvUI_EltreumUI.TBC then
+			if E.TBC then
 				_G.MagicResFrame1:SetParent(_G.PlayerStatFrameLeft1)
 				_G.MagicResFrame1:SetPoint("TOPLEFT", _G.PlayerStatFrameLeftDropDown, "TOPLEFT", 14, 27)
-			elseif ElvUI_EltreumUI.Classic then
+			elseif E.Classic then
 				_G.MagicResFrame1:SetParent(_G.CharacterStatFrame1)
 				_G.MagicResFrame1:SetPoint("BOTTOM", CharacterFrame.StatusLine3, "BOTTOM", -55, -50)
 			end
@@ -632,7 +632,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.MagicResFrame5:SetParent(_G.MagicResFrame4)
 			_G.MagicResFrame5:SetPoint("RIGHT", _G.MagicResFrame4, "RIGHT", 27, 0)
 
-			if ElvUI_EltreumUI.TBC then
+			if E.TBC then
 				--"left side" or in this case the top side
 				_G.PlayerStatFrameLeftDropDown:ClearAllPoints()
 				_G.PlayerStatFrameLeftDropDown:SetPoint("TOP", CharacterFrame, "TOP", 143, -200)
@@ -754,7 +754,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PlayerStatFrameRight6Stat:ClearAllPoints()
 				_G.PlayerStatFrameRight6Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight5Stat, "BOTTOM", 0, -13)
 				_G.PlayerStatFrameRight6Stat:SetParent(_G.PlayerStatFrameRight1)
-			elseif ElvUI_EltreumUI.Classic then
+			elseif E.Classic then
 				_G.CharacterStatFrame1:ClearAllPoints()
 				_G.CharacterStatFrame1:SetPoint("TOP", CharacterFrame, "TOP", 124, -225)
 				_G.CharacterStatFrame1:SetParent(CharacterFrame)
@@ -917,7 +917,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					else
 						EltruismInspectBgTexture:SetAlpha(0.3)
 					end
-					if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+					if E.TBC or E.Classic then
 						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop)
 						EltruismInspectBgTexture:SetParent(_G.InspectFrame)
 						if _G.InspectModelFrameRotateLeftButton:IsShown() then
@@ -926,7 +926,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						if _G.InspectModelFrameRotateRightButton:IsShown() then
 							_G.InspectModelFrameRotateRightButton:Hide()
 						end
-					elseif ElvUI_EltreumUI.Retail then
+					elseif E.Retail then
 						_G.InspectModelFrameBackgroundBotLeft:Hide()
 						_G.InspectModelFrameBackgroundBotRight:Hide()
 						_G.InspectModelFrameBackgroundTopLeft:Hide()
@@ -943,7 +943,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 				end
 			end
 
-			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+			if E.Classic or E.TBC then
 				ElvUI_EltreumUI:ClearMemory()
 			end
 		end

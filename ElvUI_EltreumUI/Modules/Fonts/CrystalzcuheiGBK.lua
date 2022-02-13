@@ -13,7 +13,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "AR CrystalzcuheiGBK Demibold"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "AR CrystalzcuheiGBK Demibold"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "AR CrystalzcuheiGBK Demibold"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "AR CrystalzcuheiGBK Demibold"
 		end
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "AR CrystalzcuheiGBK Demibold"
@@ -32,7 +32,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["font"] = "AR CrystalzcuheiGBK Demibold"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = "AR CrystalzcuheiGBK Demibold"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "AR CrystalzcuheiGBK Demibold"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "AR CrystalzcuheiGBK Demibold"
 		end
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["font"] = "AR CrystalzcuheiGBK Demibold"
@@ -55,7 +55,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 		E.private["general"]["chatBubbleFont"] = "AR CrystalzcuheiGBK Demibold"
 		E.private["general"]["dmgfont"] = "AR CrystalzcuheiGBK Demibold"
 		E.private["general"]["namefont"] = "AR CrystalzcuheiGBK Demibold"
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		if IsAddOnLoaded('ProjectAzilroka') then
 			_G.ProjectAzilroka.db["stAddonManager"]["Font"] = "AR CrystalzcuheiGBK Demibold"
 		end
@@ -177,7 +177,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 	end
 		E.db["general"]["font"] = "AR CrystalzcuheiGBK Demibold"
 		E.db["general"]["minimap"]["locationFont"] = "AR CrystalzcuheiGBK Demibold"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = "AR CrystalzcuheiGBK Demibold"
 		end
 		E.db["bags"]["countFont"] = "AR CrystalzcuheiGBK Demibold"
@@ -186,7 +186,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 		E.db["chat"]["font"] = "AR CrystalzcuheiGBK Demibold"
 		E.db["chat"]["tabFont"] = "AR CrystalzcuheiGBK Demibold"
 		E.db["cooldown"]["fonts"]["font"] = "AR CrystalzcuheiGBK Demibold"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["databars"]["honor"]["font"] = "AR CrystalzcuheiGBK Demibold"
 			E.db["databars"]["azerite"]["font"] = "AR CrystalzcuheiGBK Demibold"
 		end
@@ -232,7 +232,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -246,7 +246,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 			}
 		end
 		-- Custom Text: Pet
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
@@ -259,7 +259,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
@@ -275,7 +275,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 		end
 		-- Custom Text: Player
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -345,7 +345,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 			["xOffset"] = 37,
 			["yOffset"] = 10
 		}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -382,7 +382,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 		}
 		-- Custom Text: Raid 40
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
@@ -419,7 +419,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 		}
 		-- Custom Text: Target
 		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -545,7 +545,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 		E.db["actionbar"]["bar9"]["macroFont"] = "AR CrystalzcuheiGBK Demibold"
 		E.db["actionbar"]["barPet"]["countFont"] = "AR CrystalzcuheiGBK Demibold"
 		E.db["actionbar"]["barPet"]["hotkeyFont"] = "AR CrystalzcuheiGBK Demibold"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "AR CrystalzcuheiGBK Demibold"
 		end
 		E.db["actionbar"]["font"] = "AR CrystalzcuheiGBK Demibold"
@@ -556,7 +556,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 		E.db["auras"]["debuffs"]["countFont"] = "AR CrystalzcuheiGBK Demibold"
 		E.db["auras"]["debuffs"]["timeFont"] = "AR CrystalzcuheiGBK Demibold"
 		E.db["unitframe"]["font"] = "AR CrystalzcuheiGBK Demibold"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "AR CrystalzcuheiGBK Demibold"
 			E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "AR CrystalzcuheiGBK Demibold"
 			E.db["unitframe"]["units"]["assist"]["buffs"]["countFont"] = "AR CrystalzcuheiGBK Demibold"

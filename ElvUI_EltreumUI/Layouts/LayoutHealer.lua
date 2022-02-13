@@ -1,7 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 function ElvUI_EltreumUI:SetupLayoutHealer()
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
 			["enable"] = true
@@ -700,9 +700,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["pet"]["fader"]["vehicle"] = true
 		E.db["unitframe"]["units"]["pet"]["name"]["text_format"] = ""
 		E.db["unitframe"]["units"]["pet"]["colorOverride"] = "FORCE_OFF"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["pet"]["power"]["enable"] = false
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["pet"]["power"]["enable"] = true
 		end
 		E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = "[power:current:shortvalue]"
@@ -836,9 +836,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["raid"]["power"]["powerPrediction"] = true
 		E.db["unitframe"]["units"]["raid"]["power"]["yOffset"] = 4
 		E.db["unitframe"]["units"]["raid"]["power"]["text_format"] = ""
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["raid"]["power"]["enable"] = false
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["raid"]["power"]["enable"] = true
 		end
 		E.db["unitframe"]["units"]["raid"]["raidicon"]["attachTo"] = "TOPRIGHT"
@@ -863,9 +863,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["raid"]["summonIcon"]["attachToObject"] = "Health"
 		E.db["unitframe"]["units"]["raid"]["summonIcon"]["size"] = 20
 		E.db["unitframe"]["units"]["raid"]["threatStyle"] = "HEALTHBORDER"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid26,exists] hide;show"
 		end
 		E.db["unitframe"]["units"]["raid"]["width"] = 150
@@ -927,15 +927,15 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["raid40"]["roleIcon"]["yOffset"] = 9
 		E.db["unitframe"]["units"]["raid40"]["summonIcon"]["attachToObject"] = "Health"
 		E.db["unitframe"]["units"]["raid40"]["summonIcon"]["size"] = 15
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid21,noexists] hide;show"
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid26,noexists] hide;show"
 		end
 		E.db["unitframe"]["units"]["raid40"]["width"] = 100
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["raidpet"]["enable"] = false
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["raidpet"]["enable"] = true
 		end
 		E.db["unitframe"]["units"]["raidpet"]["healPrediction"]["absorbStyle"] = "REVERSED"
@@ -952,9 +952,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["target"]["buffs"]["spacing"] = 2
 		E.db["unitframe"]["units"]["target"]["buffs"]["anchorPoint"] = "TOP"
 		E.db["unitframe"]["units"]["target"]["buffs"]["attachTo"] = "DEBUFFS"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal,Dispellable"
-		elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+		elseif E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal,Dispellable,BlizzardNameplate" --new for tbc/classic
 		end
 		E.db["unitframe"]["units"]["target"]["buffs"]["countFont"] = "Kimberley"

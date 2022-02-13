@@ -58,7 +58,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 			mindflay = 22
 		end
 		local druidwrath = 6
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			local druideclipse = GetPlayerAuraBySpellID(48517)
 			if IsPlayerSpell(114107) and druideclipse ~= nil then
 				druidwrath = 9
@@ -155,7 +155,7 @@ end
 --so that the power updates when spec changes
 function ElvUI_EltreumUI:GetSpec()
 	--print("getspec spam "..math.random(1,99))
-	if ElvUI_EltreumUI.Retail then
+	if E.Retail then
 		local currentSpec = GetSpecialization()
 		if currentSpec then
 			id, _ = GetSpecializationInfo(currentSpec)
@@ -222,13 +222,13 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			EltreumPowerPredictionIncoming:SetPoint("LEFT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
 			EltreumPowerPredictionIncoming:SetFrameStrata("HIGH")
 
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
 				else
 					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplatepower.posy)
 				end
-			elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+			elseif E.Classic or E.TBC then
 				if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
 				else
@@ -240,14 +240,14 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 					EltreumPowerBar:Show()
 					EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
-					if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+					if E.Classic or E.TBC then
 						if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
 						else
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplatepower.posy)
 						end
 					end
-					if ElvUI_EltreumUI.Retail then
+					if E.Retail then
 						if E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' then
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
@@ -288,7 +288,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					-- 4 is tree (if known and moonkin not known)
 					--5 = tree of life (talent)
 				]]--
-				if ElvUI_EltreumUI.Retail then
+				if E.Retail then
 					--local tree = IsSpellKnown(114282)
 					--local moonkin = IsSpellKnown(197625)
 					--local stag = IsSpellKnown(210053)
@@ -367,7 +367,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						end
 					end
 				end
-				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				if E.Classic or E.TBC then
 					if stance == 0 then --humanoid
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 							EltreumPowerBar:Show()
@@ -425,13 +425,13 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				if E.private.ElvUI_EltreumUI.nameplatepower.rage then
 					EltreumPowerBar:Show()
 					EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.RAGE.r, E.db.unitframe.colors.power.RAGE.g, E.db.unitframe.colors.power.RAGE.b) --its rage so color it like rage
-					if ElvUI_EltreumUI.Retail then
+					if E.Retail then
 						if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
 						else
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplatepower.posy)
 						end
-					elseif ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+					elseif E.Classic or E.TBC then
 						if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
 						else
@@ -443,13 +443,13 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				if E.private.ElvUI_EltreumUI.nameplatepower.energy then
 					EltreumPowerBar:Show()
 					EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.ENERGY.r, E.db.unitframe.colors.power.ENERGY.g, E.db.unitframe.colors.power.ENERGY.b) --its energy so color it like energy
-					if ElvUI_EltreumUI.Retail then
+					if E.Retail then
 						if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
 						else
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplatepower.posy)
 						end
-					elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+					elseif E.TBC or E.Classic then
 						if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
 						else
@@ -478,7 +478,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					end
 				end
 			elseif E.myclass == 'HUNTER' then
-				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				if E.Classic or E.TBC then
 					if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 						EltreumPowerBar:Show()
 						EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
@@ -488,7 +488,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplatepower.posy)
 						end
 					end
-				elseif ElvUI_EltreumUI.Retail then
+				elseif E.Retail then
 					if E.private.ElvUI_EltreumUI.nameplatepower.focus then
 						EltreumPowerBar:Show()
 						EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.FOCUS.r, E.db.unitframe.colors.power.FOCUS.g, E.db.unitframe.colors.power.FOCUS.b) --its focus so color it like focus
@@ -510,7 +510,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					end
 				end
 			elseif E.myclass == 'PRIEST' then
-				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				if E.Classic or E.TBC then
 					if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 						EltreumPowerBar:Show()
 						EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
@@ -520,7 +520,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplatepower.posy)
 						end
 					end
-				elseif ElvUI_EltreumUI.Retail then
+				elseif E.Retail then
 					if id == 258 then
 						if E.private.ElvUI_EltreumUI.nameplatepower.insanity then
 							EltreumPowerBar:Show()
@@ -552,7 +552,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					end
 				end
 			elseif E.myclass == 'SHAMAN' then
-				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				if E.Classic or E.TBC then
 					if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 						EltreumPowerBar:Show()
 						EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
@@ -562,7 +562,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplatepower.posy)
 						end
 					end
-				elseif ElvUI_EltreumUI.Retail then
+				elseif E.Retail then
 					if id == 262 or id == 263 then
 						if E.private.ElvUI_EltreumUI.nameplatepower.maelstrom then
 							EltreumPowerBar:Show()
@@ -651,7 +651,7 @@ end)
 function ElvUI_EltreumUI:UpdateNPwithoutBar()
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
 		if E.private.ElvUI_EltreumUI.nameplatepower.adjust then
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 1
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 1
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
@@ -666,7 +666,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 				end
-			elseif ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			elseif E.TBC or E.Classic then
 				if E.myclass == 'ROGUE' or E.myclass == 'DRUID' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
@@ -683,7 +683,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 				if E.myclass == 'MONK' or E.myclass == 'ROGUE' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
-					if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+					if E.TBC or E.Classic then
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
 					end
@@ -696,28 +696,28 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.mana then
-				if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+				if E.Classic or E.TBC then
 					if E.myclass == 'MAGE' or E.myclass == 'HUNTER' or E.myclass == 'PRIEST' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' then
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
-						if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						if E.TBC or E.Classic then
 							E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
 							E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
 						end
 					end
 				end
-				if ElvUI_EltreumUI.Retail then
+				if E.Retail then
 					if id == 64 or id == 63 or id == 270 or id == 256 or id == 257 or id == 264 then
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
-						if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						if E.TBC or E.Classic then
 							E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
 							E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
 						end
 					elseif id == 65 or id == 66 or id == 70 or id == 265 or id == 266 or id == 267 then --paladin specs bc of holy power and warlocks bc of soul shards
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
-						if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+						if E.TBC or E.Classic then
 							E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
 							E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
 						end
@@ -740,14 +740,14 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 				if E.myclass == 'WARRIOR' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
-					if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+					if E.TBC or E.Classic then
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
 					end
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.insanity then
-				if ElvUI_EltreumUI.Retail then
+				if E.Retail then
 					if id == 258 then
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
@@ -755,7 +755,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.maelstrom then
-				if ElvUI_EltreumUI.Retail then
+				if E.Retail then
 					if id == 262 or id == 263 then
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
@@ -765,7 +765,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 		--[[else --eltruism default buff/debuff position
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
-			if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Classic then
+			if E.TBC or E.Classic then
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
 			end]]

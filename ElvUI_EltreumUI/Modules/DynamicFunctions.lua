@@ -63,7 +63,7 @@ function ElvUI_EltreumUI:DynamicLevelStyleFilter()
 			return
 		else
 			local level = UnitLevel("player")
-			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.Retail then
+			if E.Classic or E.Retail then
 				if level == 60 then
 					if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" then
 						E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
@@ -73,7 +73,7 @@ function ElvUI_EltreumUI:DynamicLevelStyleFilter()
 						E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
 					end
 				end
-			elseif ElvUI_EltreumUI.TBC then
+			elseif E.TBC then
 				if level == 70 then
 					if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" then
 						E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
@@ -94,16 +94,16 @@ function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 		return
 	else
 		if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" and E.db.nameplates.filters.EltreumSpellsteal then
-			if ElvUI_EltreumUI.TBC or ElvUI_EltreumUI.Retail then
+			if E.TBC or E.Retail then
 				if E.myclass == 'MAGE' then
 					local level = UnitLevel("player")
-					if ElvUI_EltreumUI.Retail then
+					if E.Retail then
 						if level >= 39 then
 							E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
 						elseif level < 39 then
 							E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
 						end
-					elseif ElvUI_EltreumUI.TBC then
+					elseif E.TBC then
 						if level == 70 then
 							E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
 						elseif level < 70 then
@@ -113,7 +113,7 @@ function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 				else
 					E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
 				end
-			elseif ElvUI_EltreumUI.Classic then
+			elseif E.Classic then
 				if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" then
 					E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
 				end
@@ -184,7 +184,7 @@ function ElvUI_EltreumUI:ActionPagingSwap()
 end
 
 --fix master loot?
-if ElvUI_EltreumUI.TBC then
+if E.TBC then
 	hooksecurefunc(_G.MasterLooterFrame, 'Hide', function(self)
 		self:ClearAllPoints()
 	end)
@@ -205,13 +205,13 @@ function ElvUI_EltreumUI:DynamicExperienceDatabar()
 	else
 		local level = UnitLevel("player")
 		if E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar then
-			if ElvUI_EltreumUI.Retail or ElvUI_EltreumUI.Classic  then
+			if E.Retail or E.Classic  then
 				if level < 60 then
 					E.db.databars.experience.mouseover = false
 				elseif level == 60 then
 					E.db.databars.experience.mouseover = true
 				end
-			elseif ElvUI_EltreumUI.TBC then
+			elseif E.TBC then
 				if level < 70 then
 					E.db.databars.experience.mouseover = false
 				elseif level == 70 then
