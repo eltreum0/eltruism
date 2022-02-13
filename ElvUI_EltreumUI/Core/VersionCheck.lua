@@ -21,19 +21,28 @@ function ElvUI_EltreumUI:NewVersionCheck()
 end
 
 function ElvUI_EltreumUI:ElvUIVersionCheck()
+	E.PopupDialogs['ELVUIVERSIONCHECK'] = {text = L["Your ElvUI version is out of date, please update to avoid issues!"],
+	 button1 = OKAY,
+	 timeout = 0,
+	 whileDead = 1,
+	 hideOnEscape = false,
+	}
 	if ElvUI_EltreumUI.Retail then
-		if E.version < 12.62 then
-			ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
+		if E.version < 12.63 then
+			E:StaticPopup_Show('ELVUIVERSIONCHECK')
+			--ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
 		end
 	end
 	if ElvUI_EltreumUI.TBC then
-		if E.version < 2.34 then
-			ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
+		if E.version < 2.35 then
+			E:StaticPopup_Show('ELVUIVERSIONCHECK')
+			--ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
 		end
 	end
 	if ElvUI_EltreumUI.Classic then
-		if E.version < 1.60 then
-			ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
+		if E.version < 1.61 then
+			E:StaticPopup_Show('ELVUIVERSIONCHECK')
+			--ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
 		end
 	end
 end
