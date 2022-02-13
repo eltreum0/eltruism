@@ -2,7 +2,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
 local LibItemInfo
-if ElvUI_EltreumUI. TBC or E.Classic then
+if E.TBC or E.Classic then
 	LibItemInfo = LibStub:GetLibrary("LibItemInfo.1000")
 end
 

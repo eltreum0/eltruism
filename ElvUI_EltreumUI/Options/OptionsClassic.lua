@@ -1222,8 +1222,8 @@ if E.Classic then
 									type = 'toggle',
 									name = L["Expanded Talents"],
 									desc = L["Expand Talents to cover the full tree"],
-									get = function() return E.db.E.TBCtalents.enable end,
-									set = function(_, value) E.db.E.TBCtalents.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+									get = function() return E.db.ElvUI_EltreumUI.tbctalents.enable end,
+									set = function(_, value) E.db.ElvUI_EltreumUI.tbctalents.enable = value E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								header8898 = {
 									order = 58,

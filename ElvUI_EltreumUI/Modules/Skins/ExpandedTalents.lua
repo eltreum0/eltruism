@@ -4,7 +4,7 @@ local _G = _G
 function ElvUI_EltreumUI:ExpandedTalents()
 	--Reskin Blizzard Talent frame for TBC
 	if E.TBC or E.Classic then
-		if E.db.E.TBCtalents.enable then
+		if E.db.ElvUI_EltreumUI.tbctalents.enable then
 			local EltruismExpandedTalents = CreateFrame("Frame")
 			EltruismExpandedTalents:RegisterEvent("ADDON_LOADED")
 			EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
