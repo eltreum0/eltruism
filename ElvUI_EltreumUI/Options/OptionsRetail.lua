@@ -816,15 +816,14 @@ if E.Retail then
 								zonetext = {
 									order = 33,
 									type = "description",
-									name = "Make more texts use ElvUI font settings",
-									desc = "Such as the Zones, Mail and others",
+									name = L["Make more texts use ElvUI font settings"],
 									width = 'full',
 								},
 								zoneenable = {
 									order = 34,
 									name = L['Enable'],
 									type = "toggle",
-									desc = "Such as the Zones, Mail and others",
+									desc = L["Such as the Zones, Mail and others"],
 									width = 'full',
 									get = function() return E.db.ElvUI_EltreumUI.skins.zones end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.skins.zones = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -839,8 +838,7 @@ if E.Retail then
 								questskins = {
 									order = 36,
 									type = "description",
-									name = "Skin Objective Frame (when Shadow and Light and Windtools are not loaded)",
-									desc = "Only loads when Shadow and Light and Windtools are not enabled",
+									name = L["Skin Objective Frame (when Shadow and Light and Windtools are not loaded)"],
 									width = 'full',
 								},
 								showwowhead = {
@@ -856,7 +854,7 @@ if E.Retail then
 									order = 37,
 									name = L['Enable Skin'],
 									type = "toggle",
-									desc = "Skin the Objective/Quest Frame",
+									desc = L["Skin the Objective/Quest Frame"],
 									width = 'full',
 									get = function() return E.db.ElvUI_EltreumUI.skins.quests end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.skins.quests = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -901,7 +899,7 @@ if E.Retail then
 								raidbossemoteframe = {
 									order = 53,
 									type = "description",
-									name = "Remove Blizzard's Boss Emote Frame",
+									name = L["Remove Blizzard's Boss Emote Frame"],
 									width = "full",
 								},
 								removebossemote = {
@@ -2246,14 +2244,14 @@ if E.Retail then
 								gap0 = {
 									order = 1,
 									type = "description",
-									name = "(All settings require a reload)",
+									name = L["(All settings require a reload)"],
 									width = 'full',
 									--image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								gaptarget = {
 									order = 23,
 									type = "description",
-									name = "Target Border",
+									name = L["Target Border"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -2268,7 +2266,7 @@ if E.Retail then
 								},
 								borderxtarget = {
 									type = 'range',
-									name = "Border X offet",
+									name = L["Border X offset"],
 									order = 25,
 									min = 1,
 									max = 800,
@@ -2280,7 +2278,7 @@ if E.Retail then
 								},
 								borderytarget = {
 									type = 'range',
-									name = "Border Y offset",
+									name = L["Border Y offset"],
 									order = 25,
 									min = 1,
 									max = 800,
@@ -2293,7 +2291,7 @@ if E.Retail then
 								gapplayer = {
 									order = 26,
 									type = "description",
-									name = "Player Border",
+									name = L["Player Border"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -2308,7 +2306,7 @@ if E.Retail then
 								},
 								borderxplayer = {
 									type = 'range',
-									name = "Border X offset",
+									name = L["Border X offset"],
 									order = 28,
 									min = 1,
 									max = 800,
@@ -2320,7 +2318,7 @@ if E.Retail then
 								},
 								borderyplayer = {
 									type = 'range',
-									name = "Border Y offset",
+									name = L["Border Y offset"],
 									order = 28,
 									min = 1,
 									max = 800,
@@ -2333,7 +2331,7 @@ if E.Retail then
 								gapplayercast = {
 									order = 29,
 									type = "description",
-									name = "Player Castbar Border",
+									name = L["Player Castbar Border"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -2348,7 +2346,7 @@ if E.Retail then
 								},
 								borderxcastplayer = {
 									type = 'range',
-									name = "Border X offset",
+									name = L["Border X offset"],
 									order = 31,
 									min = 1,
 									max = 800,
@@ -2360,7 +2358,7 @@ if E.Retail then
 								},
 								borderycastplayer = {
 									type = 'range',
-									name = "Border Y offset",
+									name = L["Border Y offset"],
 									order = 31,
 									min = 1,
 									max = 800,
@@ -2373,7 +2371,7 @@ if E.Retail then
 								gaptargetcast = {
 									order = 32,
 									type = "description",
-									name = "Target Castbar Border",
+									name = L["Target Castbar Border"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -2388,7 +2386,7 @@ if E.Retail then
 								},
 								borderxcasttarget = {
 									type = 'range',
-									name = "Border X offset",
+									name = L["Border X offset"],
 									order = 34,
 									min = 1,
 									max = 800,
@@ -2400,7 +2398,7 @@ if E.Retail then
 								},
 								borderycasttarget = {
 									type = 'range',
-									name = "Border Y offset",
+									name = L["Border Y offset"],
 									order = 34,
 									min = 1,
 									max = 800,
@@ -2413,7 +2411,7 @@ if E.Retail then
 								gaptargettarget = {
 									order = 35,
 									type = "description",
-									name = "Target of Target Border",
+									name = L["Target of Target Border"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -2428,7 +2426,7 @@ if E.Retail then
 								},
 								borderxtargettarget = {
 									type = 'range',
-									name = "Border X offset",
+									name = L["Border X offset"],
 									order = 37,
 									min = 1,
 									max = 800,
@@ -2440,7 +2438,7 @@ if E.Retail then
 								},
 								borderytargettarget = {
 									type = 'range',
-									name = "Border Y offset",
+									name = L["Border Y offset"],
 									order = 38,
 									min = 1,
 									max = 800,
@@ -2460,14 +2458,14 @@ if E.Retail then
 								gap0 = {
 									order = 1,
 									type = "description",
-									name = "(All settings require a reload)",
+									name = L["(All settings require a reload)"],
 									width = 'full',
 									--image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								gappowerbar = {
 									order = 35,
 									type = "description",
-									name = "Nameplate Power Bar Border",
+									name = L["Nameplate Power Bar Border"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -2482,7 +2480,7 @@ if E.Retail then
 								},
 								borderpowerbarsize = {
 									type = 'range',
-									name = "Nameplate Power Bar Thickness",
+									name = L["Nameplate Power Bar Thickness"],
 									order = 37,
 									min = 1,
 									max = 200,
@@ -2494,7 +2492,7 @@ if E.Retail then
 								},
 								borderxpowerbar = {
 									type = 'range',
-									name = "Border X offset",
+									name = L["Border X offset"],
 									order = 38,
 									min = 1,
 									max = 800,
@@ -2506,7 +2504,7 @@ if E.Retail then
 								},
 								borderypowerbar = {
 									type = 'range',
-									name = "Border Y offset",
+									name = L["Border Y offset"],
 									order = 39,
 									min = 1,
 									max = 800,
@@ -4387,7 +4385,7 @@ if E.Retail then
 							order = 39,
 							name = L['Enable Fast Loot'],
 							type = "toggle",
-							desc = "Decrease the time it takes for auto loot to work, works with TSM",
+							desc = L["Decrease the time it takes for auto loot to work, works with TSM"],
 							width = 'full',
 							disabled = function() return E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter or E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter end,
 							get = function() return E.db.ElvUI_EltreumUI.otherstuff.fastloot end,
@@ -4462,8 +4460,8 @@ if E.Retail then
 						lootwishlist = {
 							order = 44,
 							type = 'input',
-							name = 'Item Wishlist (type the Item ID)',
-							desc = 'Items in your wishlist will display a warning when looted',
+							name = L['Item Wishlist (type the Item ID)'],
+							desc = L['Items in your wishlist will display a warning when looted'],
 							width = 'double',
 							get = function() return E.private.ElvUI_EltreumUI.wishlistID end,
 							validate = function(_, value)
@@ -4503,7 +4501,7 @@ if E.Retail then
 							order = 45,
 							type = 'select',
 							width = "double",
-							name = "Remove item from Wishlist",
+							name = L["Remove item from Wishlist"],
 							desc = L["Remove"],
 							values = E.private.ElvUI_EltreumUI.wishlistName,
 							get = function() return E.private.ElvUI_EltreumUI.wishlistName end,
@@ -4559,6 +4557,7 @@ if E.Retail then
 									type = 'toggle',
 									name = L["Left Chat Mouse Over"],
 									desc = L["Toggle the option"],
+									width = 'full',
 									disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
 									get = function() return E.db.ElvUI_EltreumUI.chat.leftmouseover end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftmouseover = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -4574,12 +4573,13 @@ if E.Retail then
 									order = 6,
 									type = "description",
 									name = L["Add a fade to the left chat panel, controlled by ElvUI Chat > Text Fade > Inactivity Timer"],
+									width = 'full',
 								},
 								leftfade = {
 									order = 7,
 									type = 'toggle',
 									name = L["Left Inactivity Fader"],
-									--width = 'full',
+									width = 'full',
 									desc = L["Toggle the option"],
 									disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
 									get = function() return E.db.ElvUI_EltreumUI.chat.leftfader end,
@@ -4602,6 +4602,7 @@ if E.Retail then
 									type = 'toggle',
 									name = L["Right Chat Mouse Over"],
 									desc = L["Toggle the option"],
+									width = 'full',
 									disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
 									get = function() return E.db.ElvUI_EltreumUI.chat.rightmouseover end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightmouseover = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -4623,6 +4624,7 @@ if E.Retail then
 									type = 'toggle',
 									name = L["Right Inactivity Fader"],
 									desc = L["Toggle the option"],
+									width = 'full',
 									disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
 									get = function() return E.db.ElvUI_EltreumUI.chat.rightfader end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightfader = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -4674,7 +4676,7 @@ if E.Retail then
 								gap7 = {
 									order = 17,
 									type = "description",
-									name = "Add color to some chat messages",
+									name = L["Add color to some chat messages"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -4691,7 +4693,7 @@ if E.Retail then
 								gap8 = {
 									order = 19,
 									type = "description",
-									name = "Enhance Item Links in Chat",
+									name = L["Enhance Item Links in Chat"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -4718,21 +4720,21 @@ if E.Retail then
 								gap9 = {
 									order = 22,
 									type = "description",
-									name = "Customize the Chat tabs",
+									name = L["Customize the Chat tabs"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								darkchat = {
 									order = 23,
 									type = 'execute',
-									name = "Dark Chat",
+									name = L["Dark Chat"],
 									--width = 'double',
 									func = function() ElvUI_EltreumUI:DarkChat() E:StaticPopup_Show('CONFIG_RL') end,
 								},
 								lightchat = {
 									order = 24,
 									type = 'execute',
-									name = "Transparent Chat",
+									name = L["Transparent Chat"],
 									--width = 'double',
 									func = function() ElvUI_EltreumUI:TransparentChat() E:StaticPopup_Show('CONFIG_RL') end,
 								},

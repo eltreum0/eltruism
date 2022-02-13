@@ -1,5 +1,5 @@
 ﻿-- English localization
-local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "enCN", true, true)
+local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "enCN")
 if not L then return end
 -- Core
 L["4K resolution detected, setting fonts to default mode."] = true

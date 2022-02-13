@@ -1,16 +1,19 @@
 ﻿-- DeepL esMX translation
---local L = LibStub("AceLocale-3.0"):NewLocale("ElvUI_EltreumUI", "esMX")
+--local L = LibStub("AceLocale-3.0"):NewLocale("ElvUI_EltreumUI", "esES")
 local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "esMX")
 if not L then return end
 
-L[" and "] = "y"
+-- Core
+L["4K resolution detected, setting fonts to default mode."] = "Se ha detectado la resolución 4K y se ha establecido el modo de fuentes por default."
+L["1440p resolution detected, setting fonts to outline mode."] = "Se ha detectado una resolución de 1440p y se ha configurado el modo de contorno de las fuentes."
+L["1080p resolution detected, setting fonts to outline mode."] = "Se ha detectado una resolución de 1080p y se ha establecido el modo de contorno de las fuentes."
+L["Fonts were set to Outline due to your resolution."] = "Las fuentes se han ajustado a Outline debido a su resolución."
+L["EltruismConsumables"] = true
 L[" and import its settings"] = "e importar su configuración"
 L[" as the anchor will move them to the locations keep in mind you might need to change the X and Y offset of the weakaura to zero"] = "como el ancla los moverá a las ubicaciones tenga en cuenta que podría necesitar cambiar el desplazamiento X e Y de la weakaura a cero"
 L[" is not installed or enabled"] = "no está instalado o habilitado"
 L[" or "] = "o"
-L["1080p resolution detected setting fonts to outline mode."] = "Se ha detectado una resolución de 1080p y se ha establecido el modo de contorno de las fuentes."
-L["1440p resolution detected setting fonts to outline mode."] = "Se ha detectado una resolución de 1440p y se ha configurado el modo de contorno de las fuentes."
-L["4K resolution detected setting fonts to default mode."] = "Se ha detectado la resolución 4K y se ha establecido el modo de fuentes por default."
+L[" and "] = "y"
 L["A.F.K"] = true
 L["Abbreviates the unit name once it goes over 16 characters made by Azilroka"] = "Abrevia el nombre de la unidad cuando supera los 16 caracteres hecho por Azilroka"
 L["Add a cooldown icon when trying to use skills that are on cooldown and a cooldown flash when they are ready"] = "Añadir un icono de enfriamiento cuando se intenta utilizar habilidades que están en enfriamiento y un flash de enfriamiento cuando están listos"
@@ -151,7 +154,6 @@ L["Eltruism Player Debuffs"] = "Eltruism Jugador Debuffs"
 L["Eltruism Target Buffs"] = "Eltruism Objetivo Buffs"
 L["Eltruism Target Debuffs"] = "Eltruism Objetivo Debuffs"
 L["Eltruism uses Kimberley as the default font"] = "Eltruism utiliza Kimberley como fuente por defecto"
-L["EltruismConsumables"] = true
 L["ElvUI Chat has been set."] = "ElvUI Chat ha sido fijado."
 L["ElvUI Plugins"] = "Plugins de ElvUI"
 L["Enable"] = "Activar"
@@ -188,7 +190,6 @@ L["Finished"] = "Terminado"
 L["Floating Combat Text profile has been set."] = "Se ha establecido el perfil del texto de combate flotante."
 L["Focus"] = "Enfoque"
 L["Fonts"] = "Fuentes"
-L["Fonts were set to Outline due to your resolution."] = "Las fuentes se han ajustado a Outline debido a su resolución."
 L["For Shadowlands import aura filters by copying the code below and going into Profiles > Import Profile."] = "Para las Shadowlands importa los filtros de aura copiando el código de abajo y yendo a Perfiles > Importar Perfil."
 L["Fury"] = "Furia"
 L["GCD Radius (Default: 20)"] = "Radio de GCD (Predeterminado: 20)"
