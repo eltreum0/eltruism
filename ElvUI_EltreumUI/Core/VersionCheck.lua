@@ -28,13 +28,9 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 		whileDead = 1,
 		hideOnEscape = false,
 	}
-	if ElvUI_EltreumUI.Retail and E.version < 12.63 then
+	if E.version < (E.Retail and 12.63 or E.TBC and 2.35 or E.Classic and 1.61) then
 		E:StaticPopup_Show('ELVUIVERSIONCHECK')
-		--ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
-	elseif ElvUI_EltreumUI.TBC and E.version < 2.35 then
-		E:StaticPopup_Show('ELVUIVERSIONCHECK')
-	elseif ElvUI_EltreumUI.Classic and E.version < 1.61 then
-		E:StaticPopup_Show('ELVUIVERSIONCHECK')
+		ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
 	end
 end
 
@@ -102,10 +98,10 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			if not E.db.movers then E.db.movers = {} end
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
 			ElvUI_EltreumUI:Print('Nameplate Filters were changed, please remove |cffff0000EnemyCasting, ExecuteRange, StealThisBuff and HideThis filters|r')
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				E.db["WT"]["social"]["chatText"]["roleIconStyle"] = "BLIZZARD" --update role icons
 			end
-			if ElvUI_EltreumUI.Classic or ElvUI_EltreumUI.TBC then
+			if E.Classic or E.TBC then
 				if ElvDB.profileKeys[E.mynameRealm] == "Eltreum DPS/Tank" or ElvDB.profileKeys[E.mynameRealm] == "Eltreum Healer" then
 					if not E.db.movers then E.db.movers = {} end
 					E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true
@@ -118,7 +114,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.private.ElvUI_EltreumUI.install_version = "2.2.2"
 		if E.private["nameplates"]["enable"] == true then
 			ElvUI_EltreumUI:SetupNamePlates('ElvUI')
-			if ElvUI_EltreumUI.Retail then
+			if E.Retail then
 				E.db["WT"]["social"]["chatText"]["roleIconStyle"] = "BLIZZARD" --update role icons
 			end
 			ElvUI_EltreumUI:Print('Please go to: |cffff0000ElvUI > Unitframes > Group Units > Party/Raid/Raid40 > Aura Indicator >|r Set them to |cffff0000Textured Icon with Display Timer|r')
@@ -126,14 +122,14 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		end
 	elseif E.private.ElvUI_EltreumUI.install_version > "2.2.1" and E.private.ElvUI_EltreumUI.install_version < "2.3.0" then
 		E.private.ElvUI_EltreumUI.install_version = "2.3.0"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["WT"]["social"]["chatText"]["roleIconStyle"] = "BLIZZARD" --update role icons
 		end
 		ElvUI_EltreumUI:Print('Chat modifications were recently added, please check Eltruism > Chat if you want to turn them off. You can Left click on a Chat Panel enable them (reloading will reset this)')
 		ElvUI_EltreumUI:Print('More options were added to Nameplate Power Bar, such as the ability to change its size, position and texture. Configure it in Eltruism > Nameplates')
 	elseif E.private.ElvUI_EltreumUI.install_version >= "2.3.0" and E.private.ElvUI_EltreumUI.install_version < "2.4.0" then
 		E.private.ElvUI_EltreumUI.install_version = "2.4.0"
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["WT"]["social"]["chatText"]["roleIconStyle"] = "BLIZZARD" --update role icons
 		end
 		ElvUI_EltreumUI:Print('Chat modifications were recently added, please check Eltruism > Chat if you want to turn them off. You can Left click on a Chat Panel enable them (reloading will reset this)')
@@ -141,11 +137,11 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		ElvUI_EltreumUI:Print('Borders released, you can test this feature in Eltruism > Borders. You might need to adjust settings to fit your action bars')
 		ElvUI_EltreumUI:Print('Cooldowns were added to Cursor recently, thats why you see icons when you try to use a skill again')
 	elseif E.private.ElvUI_EltreumUI.install_version >= "2.4.0" and E.private.ElvUI_EltreumUI.install_version < "2.4.5" then
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			E.db["WT"]["social"]["chatText"]["roleIconStyle"] = "BLIZZARD" --update role icons
 		end
 	elseif E.private.ElvUI_EltreumUI.install_version < "2.4.6" then
-		if ElvUI_EltreumUI.Retail then
+		if E.Retail then
 			--E.db["sle"]["loot"]["looticons"]["enable"] = false
 			E.db["sle"]["shadows"]["actionbars"]["bar1"]["buttons"] = false
 			E.db["sle"]["shadows"]["actionbars"]["bar10"]["buttons"] = false
