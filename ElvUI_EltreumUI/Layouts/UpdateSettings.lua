@@ -26,6 +26,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.skins.professions = true
 	E.db.ElvUI_EltreumUI.skins.zones = true
 	E.db.ElvUI_EltreumUI.skins.shadows = true
+	E.db.ElvUI_EltreumUI.skins.questswowhead = true
 	E.db.ElvUI_EltreumUI.shadows.aura = true
 	E.db.ElvUI_EltreumUI.shadows.ufaura = true
 	E.db.ElvUI_EltreumUI.shadows.actionbars = true
