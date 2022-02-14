@@ -47,7 +47,7 @@ L["Please read the instructions to avoid issues"] = "Bitte lese die Instruktione
 L["Skip Install"] = "Überspringe Installtion"
 L["Layouts"] = true
 L["Please select the role for your character, which will create a new profile.\nThis process can take a few seconds"] = "Bitte wähle die Rolle deines Charakters für welches ein Profil erstellt wird.\nDieser Prozess dauert ein paar Sekunden"
-L["You can support the group with your class, if you select DPS/Tank then its recommended to click Alt Frames after clicking DPS/Tank"] = "Du kannst die Gruppe mit deiner Klasse unterstützen! Wenn du DPS/Tank wählst dann wird Empfohlen auf Alt Frames zu klicken nachdem du auf DPS/Tank geklickt hast"
+
 L["Importance: "] = "Wichtig: "
 L["Very High"] = true
 L["Fonts"] = true
@@ -757,3 +757,5 @@ L["Ilvl Font Outline"] = true
 L["Choose the Ilvl font outline"] = true
 L["Automatically swap the Character Stats to your main ones"] = true
 L["Add Item Levels to the Character Panel"] = true
+L["You can support the group with your class, if you select DPS/Tank then its recommended to click Alternative Frames after clicking DPS/Tank"] = "Du kannst die Gruppe mit deiner Klasse unterstützen! Wenn du DPS/Tank wählst dann wird Empfohlen auf Alternative Frames zu klicken nachdem du auf DPS/Tank geklickt hast"
+L["And has many plugins to choose from"] = "Es gibt viele Plugins zur Auswahl"
