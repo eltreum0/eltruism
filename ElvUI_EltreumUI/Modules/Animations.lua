@@ -60,6 +60,7 @@ darksouls:SetScript("OnEvent", function()
 			ObjectiveTrackerFrame:SetAlpha(0)
 		end
 		Minimap:Hide()
+		Minimap:SetAlpha(0)
 		PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\You_Died.ogg" , "Master")
 		UIFrameFadeIn(darksouls, 1, 0, 1)
 		darksouls.scaler:Play()
@@ -69,6 +70,7 @@ darksouls:SetScript("OnEvent", function()
 			if E.Retail then
 				ObjectiveTrackerFrame:SetAlpha(1)
 			end
+			Minimap:SetAlpha(1)
 			Minimap:Show()
 		end)
 	end
