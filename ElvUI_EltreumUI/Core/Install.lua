@@ -13,13 +13,13 @@ ElvUI_EltreumUI.InstallerData = {
 	tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 	Pages = {
 		[1] = function()
-				PluginInstallFrame.SubTitle:SetFormattedText(L["Welcome"])
-				PluginInstallFrame.Desc1:SetText(L["This prompt will help you install "]..ElvUI_EltreumUI.Name..L[" and import its settings"])
-				PluginInstallFrame.Desc2:SetText(L["Please read the instructions to avoid issues"])
-				PluginInstallFrame.Option1:Enable()
-				PluginInstallFrame.Option1:Show()
-				PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
-				PluginInstallFrame.Option1:SetText(L["Skip Install"])
+			PluginInstallFrame.SubTitle:SetFormattedText(L["Welcome"])
+			PluginInstallFrame.Desc1:SetText(L["This prompt will help you install "]..ElvUI_EltreumUI.Name..L[" and import its settings"])
+			PluginInstallFrame.Desc2:SetText(L["Please read the instructions to avoid issues"])
+			PluginInstallFrame.Option1:Enable()
+			PluginInstallFrame.Option1:Show()
+			PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
+			PluginInstallFrame.Option1:SetText(L["Skip Install"])
 		end,
 		[2] = function()
 			PluginInstallOption1ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, "OUTLINE")
@@ -333,6 +333,5 @@ ElvUI_EltreumUI.InstallerData = {
 	StepTitlesColorSelected = {70/255, 130/255, 180/255},
 	StepTitleWidth = 200,
 	StepTitleButtonWidth = 180,
-	--StepTitleTextJustification = 'CENTER',
 	StepTitleTextJustification = 'RIGHT',
 }
