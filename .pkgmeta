@@ -15,5 +15,5 @@ move-folders:
     ElvUI_EltreumUI/ElvUI_EltreumUI: ElvUI_EltreumUI
 
 manual-changelog:
-  filename: Changelog.md
+  filename: Latest.md
   markup-type: markdown
