@@ -614,7 +614,8 @@ function ElvUI_EltreumUI:SkinProfessions()
 							--local numCrafts = CRAFTS_DISPLAYED
 							local numCrafts = 8
 							--CRAFTS_DISPLAYED = CRAFTS_DISPLAYED + 14
-							for i = numCrafts + 1, 8 do
+							CRAFTS_DISPLAYED = 22
+							for i = numCrafts + 1, 22 do
 								local craftbutton = CreateFrame("Button", "Craft" .. i, CraftFrame, "CraftButtonTemplate")
 								craftbutton:SetID(i)
 								craftbutton:Hide()
