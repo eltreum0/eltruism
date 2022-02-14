@@ -213,7 +213,13 @@ E:AddTagInfo('eltruism:raidmarker', ElvUI_EltreumUI.Name, L["Shows raid target m
 --Difficulty color for npcs in classic/tbc
 E:AddTag('eltruism:difficulty', 'UNIT_NAME_UPDATE', function(unit)
 	--obtain the levels
-	local targetlevel = UnitLevel(unit)
+	local targetlevel
+	if E.Retail then
+		targetlevel = UnitEffectiveLevel(unit)
+	else
+		targetlevel = UnitLevel(unit)
+	end
+
 	local playerlevel = UnitLevel("player")
 	--calculate the difference
 	local difference = (targetlevel - playerlevel)
