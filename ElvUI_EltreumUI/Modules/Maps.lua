@@ -34,6 +34,7 @@ if E.Retail then
 			end
 
 			EltruismTimeToArriveParent:RegisterEvent("USER_WAYPOINT_UPDATED")
+			EltruismTimeToArriveParent:RegisterEvent("WAYPOINT_UPDATE")
 			EltruismTimeToArriveParent:RegisterEvent("SUPER_TRACKING_CHANGED")
 			EltruismTimeToArriveParent:SetScript("OnEvent", function(_, event)
 				--print(event.."waypoint")
