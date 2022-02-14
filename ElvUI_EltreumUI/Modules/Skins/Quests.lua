@@ -59,19 +59,23 @@ function ElvUI_EltreumUI:SkinQuests()
 		end
 		--register the button for clicks
 		wowheadbutton:RegisterForClicks("AnyUp")
-		local questID
-
 		if not E.db.ElvUI_EltreumUI.skins.questswowhead then
 			wowheadbutton:Hide()
 		end
 
 		if E.Retail then
-			--get questID based on wether or not the quest is shown, if not trying to grab the one from waypoint then it would error out
-			if _G.QuestMapFrame.DetailsFrame:IsShown() then
+			--get questid
+			local questID
+			local getquestid = CreateFrame("FRAME")
+			getquestid:RegisterEvent("QUEST_DATA_LOAD_RESULT")
+			getquestid:SetScript("OnEvent", function()
 				questID = QuestMapFrame_GetDetailQuestID()
-			else
-				questID = _G.C_SuperTrack.GetSuperTrackedQuestID()
-			end
+				if questID ~= nil then
+					questID = questID
+				elseif questID == nil then
+					questID = _G.C_SuperTrack.GetSuperTrackedQuestID()
+				end
+			end)
 			--set the link to show when the button is clicked
 			wowheadbutton:SetScript('OnClick', function()
 				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
@@ -278,6 +282,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			end
 		end
 		if E.Classic or E.TBC then
+			local questID
 			--hook the function that sets the quest detail to get the questID from the quest title
 			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --questlogframe.lua 311
 				questID = select(8, GetQuestLogTitle(questTitle))
