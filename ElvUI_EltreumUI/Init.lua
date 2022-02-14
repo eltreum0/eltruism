@@ -40,6 +40,9 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
 	end
+	if E.global.general.locale == "esMX" or E.global.general.locale == "esES" then
+		ElvUI_EltreumUI:Print("Spanish Translation is from DeepL and is in testing, feedback is welcome. - La traducción al español es de DeepL y está en pruebas, los comentarios son bienvenidos.")
+	end
 	ElvUI_EltreumUI:VersionCheckInit() --checks for old versions
 	ElvUI_EltreumUI:ExtraMedia() -- load extra media if settings enabled
 	ElvUI_EltreumUI:LoadCommands() --loads chat commands
