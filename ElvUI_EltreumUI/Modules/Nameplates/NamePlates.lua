@@ -20,8 +20,6 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			--changing the texture and the size will likely not be needed in 12.38, but the cooldown will be
 			if button and button.spellID then
 				if not string.find(unit, "nameplate") then
-					--print("np button debuff nil "..math.random(1,99))
-					--button.cd:SetScript('OnUpdate', nil) --lets check this
 					return
 				else
 					if E.Classic or E.TBC then
@@ -33,7 +31,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 					--button.cd:SetDrawSwipe(false) --works to erase it
 					local TimeSinceLastUpdate = 0
 					if not button.cd then
-						return
+						LCG.PixelGlow_Stop(button)
 					else
 						button.cd:SetScript('OnUpdate', function(self, elapsed)
 							TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
@@ -47,14 +45,16 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 									end
 									local _, g, b, a = button.cd.timer.text:GetTextColor()
 									if E.db.ElvUI_EltreumUI.widenameplate.npglow then
-										if (g == 0 or b == 0) and a > 0.5 then
+										if (g == 0 or b == 0) and a > 0.5 and button.cd.timer.text then
 											LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
 										else
 											LCG.PixelGlow_Stop(button)
 										end
 									end
-								elseif E.db.ElvUI_EltreumUI.widenameplate.npglow and (not button.cd.timer or not button.cd or not button.cd.timer.text) then
-									LCG.PixelGlow_Stop(button)
+								else
+									if E.db.ElvUI_EltreumUI.widenameplate.npglow and (not button.cd or not button.cd.timer.text)then
+										LCG.PixelGlow_Stop(button)
+									end
 								end
 							end
 						end)
