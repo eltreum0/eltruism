@@ -2150,13 +2150,13 @@ if E.TBC then
 								headerlinetotemsglow = {
 									order = 3,
 									type = "description",
-									name = "Shaman Totems",
+									name = L["Shaman Totems"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								enabletotem = {
 									type = 'toggle',
-									name = "Enable on Shaman Totems",
+									name = L["Enable on Shaman Totems"],
 									order = 4,
 									width = 'full',
 									disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable end,
@@ -2165,7 +2165,7 @@ if E.TBC then
 								},
 								enabletotem1 = {
 									type = 'toggle',
-									name = "Enable on Shaman Fire Totem",
+									name = L["Enable on Shaman Fire Totem"],
 									order = 5,
 									width = 'full',
 									disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end,
@@ -2174,7 +2174,7 @@ if E.TBC then
 								},
 								enabletotem2 = {
 									type = 'toggle',
-									name = "Enable on Shaman Earth Totem",
+									name = L["Enable on Shaman Earth Totem"],
 									order = 6,
 									width = 'full',
 									disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end,
@@ -2183,7 +2183,7 @@ if E.TBC then
 								},
 								enabletotem3 = {
 									type = 'toggle',
-									name = "Enable on Shaman Water Totem",
+									name = L["Enable on Shaman Water Totem"],
 									order = 7,
 									width = 'full',
 									disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end,
@@ -2192,7 +2192,7 @@ if E.TBC then
 								},
 								enabletotem4 = {
 									type = 'toggle',
-									name = "Enable on Shaman Air Totem",
+									name = L["Enable on Shaman Air Totem"],
 									order = 8,
 									width = 'full',
 									disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end,

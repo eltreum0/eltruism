@@ -445,37 +445,10 @@ L["Plays an animation when you die"] = true
 L["ElvUI NamePlates were setup."] = true
 L["NamePlate Style Filters were set."] = true
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+--missing texts from February 2022
 L["Eltruism Installer"] = true
 L["Launch Eltruism Installer"] = true
 L["Reset Eltruism Settings"] = true
-
 L["Launches the Eltruism install prompt"] = true
 L["Resets Eltruism Settings to Eltreum's Defaults"] = true
 L["Reset nameplates to Eltruism Settings"] = true
@@ -685,3 +658,39 @@ L["Bar 6 Y offset"] = true
 L["How to use the Anchors"] = true
 L["Open WeakAuras, go to your group Weakauras and in Group change Position Settings > Anchored To > Select Frame > EltruismWA or EltruismConsumables"] = true
 L["Hide Quests during Battlegrounds and Arenas"] = true
+L["Eltruism uses a 0.7 scale, but ElvUI can calculate the best scale for you using the Automatic Scale option"] = true
+L["Very High (but Optional)"] = true
+L['DPS\nTank'] = true
+L['Healer'] = true
+L['Automatic\nScale'] = true
+L['Alternative\nFrames'] = true
+L["Or change it later in Eltruism > Media options"] = true
+L["Eltruism Modes"] = true
+L["Eltruism uses Dark Mode and Transparent chat by default"] = true
+L["You can switch to Light Mode and/or Dark Chat by clicking the buttons below"] = true
+L["Transparent\nChat"] = true
+L['Details! DPS Meter'] = true
+L['Choose the type of icons Details! will use:'] = true
+L['PVP/PVE Addons'] = true
+L["Import GladiusEx profile for arenas, remember to disable ElvUI Arena Frames"] = true
+L['GladiusEx'] = true
+L["Import Questie profile, which uses the DBM radar"] = true
+L["Questie"] = true
+L["Import DBM or BigWigs profiles for dungeons and raids. (Uses DBM English Calanon and Bigwigs Voice)"] = true
+L["Import Method Raid Tools profile with raid cooldowns and other settings"] = true
+L["Import profiles for Gladdy (Gladius can be found in Eltruism settings)"] = true
+L["Gladdy is not installed or enabled (You can find the Gladius profile in Eltruism Settings"] = true
+L["Gladius profile can be found in Eltruism > Addons, please check it there"] = true
+L["You have none of these addons installed or enabled"] = true
+L["QOL Addons"] = true
+L["Import a profile for Simpy's ElvUI FCT configured for Eltruism"] = true
+L["Import a profile for NameplateSCT configured for Eltruism"] = true
+L["NameplateSCT and ElvUI FCT are not installed or enabled"] = true
+L["You have completed the installation process"] = true
+L["Please click Finished to reload the UI"] = true
+L["Shaman Totems"] = true
+L["Enable on Shaman Totems"]
+L["Enable on Shaman Fire Totem"]
+L["Enable on Shaman Earth Totem"]
+L["Enable on Shaman Water Totem"]
+L["Enable on Shaman Air Totem"]
