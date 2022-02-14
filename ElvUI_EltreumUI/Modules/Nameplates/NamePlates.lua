@@ -56,6 +56,8 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 											LCG.PixelGlow_Stop(button)
 										end
 									end
+								elseif not button.cd.timer then
+									LCG.PixelGlow_Stop(button)
 								end
 							end
 						end)
