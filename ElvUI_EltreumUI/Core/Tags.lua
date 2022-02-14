@@ -322,3 +322,20 @@ E:AddTag("eltruism:effectivehp", "UNIT_HEALTH UNIT_TARGET", function(unit)
 	return effective
 end)
 E:AddTagInfo('eltruism:effectivehp', ElvUI_EltreumUI.Name, L["Shows Effective Health"])
+
+E:AddTag("eltruism:levelskull", "UNIT_TARGET UNIT_NAME_UPDATE", function(unit)
+	local level
+	if E.Retail then
+		level = UnitEffectiveLevel(unit)
+	else
+		level = UnitLevel(unit)
+	end
+	local diff = level - UnitLevel("player")
+	local classification = UnitClassification(unit)
+	if diff > 8 or classification == "worldboss" then
+		return "|TInterface\\TARGETINGFRAME\\UI-TARGETINGFRAME-SKULL.BLP:0:0:0:0|t"
+	else
+		return level
+	end
+end)
+E:AddTagInfo('eltruism:levelskull', ElvUI_EltreumUI.Name, L["Shows the Unit Level, or a skull if the level is too high"])
