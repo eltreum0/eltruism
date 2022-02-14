@@ -1,6 +1,7 @@
 ### 2.8.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
 Added German translation by Khornan, and test Spanish translation using DeepL automatic translation.\
+Added [eltruism:levelskull] tag which displays the unit's level or a skull if the level difference is too high\
 Fixed Enchanting/TradeSkill window increasing the number of crafts when it shouldn't\
 Fixed the Enchant button when TSM was loaded\
 Fixed error with instant loot if the inventor was full\
