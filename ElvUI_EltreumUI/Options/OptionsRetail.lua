@@ -843,7 +843,7 @@ if E.Retail then
 									order = 37,
 									name = L['Enable Wowhead Button on Quest Log'],
 									type = "toggle",
-									desc = "Show a button for Wowhead quest links",
+									desc = L["Show a button for Wowhead quest links"],
 									width = 'full',
 									get = function() return E.db.ElvUI_EltreumUI.skins.questswowhead end,
 									set = function(_, value) E.db.ElvUI_EltreumUI.skins.questswowhead = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -4708,7 +4708,7 @@ if E.Retail then
 								chatitemlevels = {
 									order = 21,
 									type = 'toggle',
-									name = L['Enable Item Levels'],
+									name = L["Enable Item Levels"],
 									width = 'full',
 									desc = L["Toggle the option on"],
 									disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable or not E.db.ElvUI_EltreumUI.chat.looticons end,
