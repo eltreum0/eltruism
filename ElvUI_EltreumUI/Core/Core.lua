@@ -31,6 +31,9 @@ function ElvUI_EltreumUI:BlizzCombatText()
 	if IsAddOnLoaded('ElvUI_FCT') or IsAddOnLoaded('NameplateSCT') then
 		if E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext then
 			if E.Retail then
+				if not E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana then
+					SetCVar("enableFloatingCombatText", 0)
+				end
 				SetCVar("floatingCombatTextCombatDamage", 0)
 			elseif E.TBC or E.Classic then
 				SetCVar("floatingCombatTextCombatDamage", 0)
