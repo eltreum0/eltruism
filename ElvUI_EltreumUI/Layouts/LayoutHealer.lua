@@ -24,6 +24,13 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 			}
 		end
 
+		--healprediction
+		E.db["unitframe"]["units"]["target"]["healPrediction"]["enable"] = true
+		E.db["unitframe"]["units"]["player"]["healPrediction"]["enable"] = true
+		E.db["unitframe"]["units"]["party"]["healPrediction"]["enable"] = true
+		E.db["unitframe"]["units"]["raid"]["healPrediction"]["enable"] = true
+		E.db["unitframe"]["units"]["tank"]["healPrediction"]["enable"] = true
+
 		--set Dynamic Status Icons
 		if IsAddOnLoaded("ElvUI_DynamicStatusIcons") then
 			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["anchorPoint"] = "BOTTOMRIGHT"
