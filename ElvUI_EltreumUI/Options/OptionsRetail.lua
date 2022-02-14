@@ -211,7 +211,7 @@ if E.Retail then
 								resethealer = {
 									order = 1,
 									type = 'execute',
-									name = 'Skip Plugins install message',
+									name = L["Skip Plugins install message"],
 									desc = "Make the warnings to install profiles for other plugins stop",
 									width = 'double',
 									func = function()
@@ -1391,7 +1391,7 @@ if E.Retail then
 								details = {
 									order = 8,
 									type = 'execute',
-									name = 'Details v1 - Blizzard Flat Icons',
+									name = L["Details v1 - Blizzard Flat Icons"],
 									desc = L["Reset to Eltruism defaults."],
 									width = 'double',
 									func = function() ElvUI_EltreumUI:AddonSetupDT() E:StaticPopup_Show('CONFIG_RL') end,
@@ -1399,7 +1399,7 @@ if E.Retail then
 								details2 = {
 									order = 9,
 									type = 'execute',
-									name = 'Details v2 - Releaf Transparent Icons',
+									name = L["Details v2 - Releaf Transparent Icons"],
 									desc = L["Reset to Eltruism defaults."],
 									width = 'double',
 									func = function() ElvUI_EltreumUI:AddonSetupDTReleaf() E:StaticPopup_Show('CONFIG_RL') end,
@@ -1407,7 +1407,7 @@ if E.Retail then
 								details3 = {
 									order = 10,
 									type = 'execute',
-									name = 'Details v3 - Releaf Solid Icons',
+									name = L["Details v3 - Releaf Solid Icons"],
 									desc = L["Reset to Eltruism defaults."],
 									width = 'double',
 									func = function() ElvUI_EltreumUI:AddonSetupDTReleafv3() E:StaticPopup_Show('CONFIG_RL') end,
@@ -4381,7 +4381,7 @@ if E.Retail then
 						},
 						fastlootenable = {
 							order = 39,
-							name = L['Enable Fast Loot'],
+							name = L["Enable Fast Loot"],
 							type = "toggle",
 							desc = L["Decrease the time it takes for auto loot to work, works with TSM"],
 							width = 'full',
@@ -4411,7 +4411,7 @@ if E.Retail then
 						},
 						lootwishlistwarning = {
 							order = 42,
-							name = L['Enable Wishlist Loot Warning'],
+							name = L["Enable Wishlist Loot Warning"],
 							type = "toggle",
 							desc = L["Show a toast if an item in the wishlist is looted"],
 							width = 'full',
@@ -4421,7 +4421,7 @@ if E.Retail then
 						},
 						lootautoclose = {
 							order = 43,
-							name = L['Enable Automatically Closing Loot Window'],
+							name = L["Enable Automatically Closing Loot Window"],
 							type = "toggle",
 							desc = L["Loot Window will automatically close when using filters and the item desired is not found"],
 							width = 'full',
@@ -4430,7 +4430,7 @@ if E.Retail then
 						},
 						lootscreenshot = {
 							order = 43,
-							name = L['Enable Screenshotting if an item from the wishlist is looted'],
+							name = L["Enable Screenshotting if an item from the wishlist is looted"],
 							type = "toggle",
 							desc = L["Loot Window will automatically close when using filters and the item desired is not found"],
 							width = 'full',
@@ -4441,7 +4441,7 @@ if E.Retail then
 						fastlootenablefilterquality = {
 							order = 43,
 							type = 'select',
-							name = L["Mininum Loot Quality Filter"],
+							name = L["Minimum Loot Quality Filter"],
 							desc = L["Only items of this quality or better will be looted when using Fast Loot Filter"],
 							values = {
 								['0'] = L["Poor"],
@@ -4458,7 +4458,7 @@ if E.Retail then
 						lootwishlist = {
 							order = 44,
 							type = 'input',
-							name = L['Item Wishlist (type the Item ID)'],
+							name = L["Item Wishlist (type the Item ID)"],
 							desc = L['Items in your wishlist will display a warning when looted'],
 							width = 'double',
 							get = function() return E.private.ElvUI_EltreumUI.wishlistID end,
