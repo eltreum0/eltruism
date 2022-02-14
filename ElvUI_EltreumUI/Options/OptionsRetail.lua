@@ -534,7 +534,7 @@ function ElvUI_EltreumUI:Configtable()
 					header1 = {
 						order = 1,
 						type = "description",
-						name = "Show Buffs in Arena and hide them outside (will overwrite Eltruism default settings)",
+						name = L["Show Buffs in Arena and hide them outside (will overwrite Eltruism default settings)"],
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
@@ -548,7 +548,7 @@ function ElvUI_EltreumUI:Configtable()
 					header2 = {
 						order = 3,
 						type = "description",
-						name = "Hide Arena Frames in Arena due to Gladius/GladiusEX or another addon",
+						name = L["Hide Arena Frames in Arena due to Gladius/GladiusEX or another addon"],
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
@@ -562,7 +562,7 @@ function ElvUI_EltreumUI:Configtable()
 					header3 = {
 						order = 5,
 						type = "description",
-						name = "Hide Raid Unitframes in battlegrounds due to addons like Battleground Enemies",
+						name = L["Hide Raid Unitframes in battlegrounds due to addons like Battleground Enemies"],
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
@@ -1086,7 +1086,7 @@ function ElvUI_EltreumUI:Configtable()
 						order = 2,
 						args = {
 							shadowsdesc = {
-								order = 45,
+								order = 44,
 								type = "description",
 								name = L["Add Shadows to Frames"],
 								desc = L["Add Shadows to some frames"],
@@ -3961,7 +3961,7 @@ function ElvUI_EltreumUI:Configtable()
 					powerbar = {
 						order = 2,
 						type = 'group',
-						name= "Nameplate Power Bar",
+						name= L["Nameplate Power Bar"],
 						args = {
 							header5 = {
 								order = 10,
@@ -3998,7 +3998,7 @@ function ElvUI_EltreumUI:Configtable()
 									header998747 = {
 										order = 3,
 										type = "description",
-										name = "Nameplate Powerbar Position",
+										name = L["Nameplate Powerbar Position"],
 										width = 'full',
 										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
@@ -4028,7 +4028,7 @@ function ElvUI_EltreumUI:Configtable()
 									header98879 = {
 										order = 93,
 										type = "description",
-										name = "Nameplate Powerbar Size",
+										name = L["Nameplate Powerbar Size"],
 										width = 'full',
 										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
@@ -4061,7 +4061,7 @@ function ElvUI_EltreumUI:Configtable()
 									header998 = {
 										order = 96,
 										type = "description",
-										name = "Nameplate Powerbar appearance",
+										name = L["Nameplate Powerbar appearance"],
 										width = 'full',
 										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},

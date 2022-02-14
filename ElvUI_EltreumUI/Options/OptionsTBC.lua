@@ -1023,7 +1023,7 @@ function ElvUI_EltreumUI:Configtable()
 					header1 = {
 						order = 1,
 						type = "description",
-						name = "Show Buffs in Arena and hide them outside (will overwrite Eltruism default settings)",
+						name = L["Show Buffs in Arena and hide them outside (will overwrite Eltruism default settings)"],
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
@@ -1037,7 +1037,7 @@ function ElvUI_EltreumUI:Configtable()
 					header2 = {
 						order = 3,
 						type = "description",
-						name = "Hide Arena Frames in Arena due to Gladius/Gladdy or another addon",
+						name = L["Hide Arena Frames in Arena due to Gladius/Gladdy or another addon"],
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
@@ -1051,7 +1051,7 @@ function ElvUI_EltreumUI:Configtable()
 					header3 = {
 						order = 5,
 						type = "description",
-						name = "Hide Raid Unitframes in battlegrounds due to addons like Battleground Enemies",
+						name = L["Hide Raid Unitframes in battlegrounds due to addons like Battleground Enemies"],
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
@@ -1300,7 +1300,7 @@ function ElvUI_EltreumUI:Configtable()
 							questskins = {
 								order = 36,
 								type = "description",
-								name = "Skin Objective Frame",
+								name = L["Skin Objective Frame"],
 								desc = "Only loads when Questie is not enabled",
 								width = 'full',
 							},
@@ -1325,14 +1325,14 @@ function ElvUI_EltreumUI:Configtable()
 							professionskins = {
 								order = 38,
 								type = "description",
-								name = "Skin Profession Frame",
+								name = L["Skin Profession Frame"],
 								width = 'full',
 							},
 							professionenable = {
 								order = 39,
 								name = L['Enable'],
 								type = "toggle",
-								desc = "Skin the Profession/Tradeskill Frame",
+								desc = L["Skin the Profession/Tradeskill Frame"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.skins.professions end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.professions = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -1428,7 +1428,7 @@ function ElvUI_EltreumUI:Configtable()
 							headersocket = {
 								order = 1,
 								type = "description",
-								name = "Sockets and Enchants",
+								name = L["Sockets and Enchants"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -1441,7 +1441,7 @@ function ElvUI_EltreumUI:Configtable()
 							socketsonchar = {
 								order = 3,
 								type = 'toggle',
-								name = "Add Sockets and Enchants to the Character Panel",
+								name = L["Add Sockets and Enchants to the Character Panel"],
 								width = 'full',
 								desc = L["Enable this option"],
 								get = function() return E.db.ElvUI_EltreumUI.skins.sockets end,
@@ -1450,7 +1450,7 @@ function ElvUI_EltreumUI:Configtable()
 							headerfirst = {
 								order = 80,
 								type = "description",
-								name = "Item Levels",
+								name = L["Item Levels"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -1463,7 +1463,7 @@ function ElvUI_EltreumUI:Configtable()
 							skincharpanel = {
 								order = 82,
 								type = 'toggle',
-								name = "Add Item Levels to the Character Panel",
+								name = L["Add Item Levels to the Character Panel"],
 								width = 'full',
 								desc = L["Enable this option"],
 								get = function() return E.db.ElvUI_EltreumUI.skins.ilvls end,
@@ -1479,8 +1479,8 @@ function ElvUI_EltreumUI:Configtable()
 							ilvlanchor = {
 								order = 84,
 								type = 'select',
-								name = "Ilvl Anchor Point",
-								desc = "Choose where the Ilvl will be attach to on the items",
+								name = L["Ilvl Anchor Point"],
+								desc = L["Choose where the Ilvl will be attach to on the items"],
 								values = {
 									["CENTER"] = "Center",
 									["LEFT"] = 'Left',
@@ -1507,8 +1507,8 @@ function ElvUI_EltreumUI:Configtable()
 							ilvlfontweight = {
 								order = 86,
 								type = 'select',
-								name = "Ilvl Font Outline",
-								desc = "Choose the Ilvl font outline",
+								name = L["Ilvl Font Outline"],
+								desc = L["Choose the Ilvl font outline"],
 								values = {
 									["OUTLINE"] = "Outline",
 									["THICKOUTLINE"] = 'Thick Outline',
@@ -1565,7 +1565,7 @@ function ElvUI_EltreumUI:Configtable()
 							autoarmorystats = {
 								order = 92,
 								type = 'toggle',
-								name = "Automatically swap the Character Stats to your main ones",
+								name = L["Automatically swap the Character Stats to your main ones"],
 								width = 'full',
 								desc = L["Enable this option"],
 								get = function() return E.db.ElvUI_EltreumUI.skins.classicarmoryautostats end,
@@ -1653,7 +1653,7 @@ function ElvUI_EltreumUI:Configtable()
 						order = 2,
 						args = {
 							shadowsdesc = {
-								order = 45,
+								order = 44,
 								type = "description",
 								name = L["Add Shadows to Frames"],
 								desc = L["Add Shadows to some frames"],
@@ -4059,7 +4059,7 @@ function ElvUI_EltreumUI:Configtable()
 					powerbar = {
 						order = 2,
 						type = 'group',
-						name= "Nameplate Power Bar",
+						name= L["Nameplate Power Bar"],
 						args = {
 							header5 = {
 								order = 10,
@@ -4096,7 +4096,7 @@ function ElvUI_EltreumUI:Configtable()
 									header998747 = {
 										order = 3,
 										type = "description",
-										name = "Nameplate Powerbar Position",
+										name = L["Nameplate Powerbar Position"],
 										width = 'full',
 										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
@@ -4126,7 +4126,7 @@ function ElvUI_EltreumUI:Configtable()
 									header98879 = {
 										order = 93,
 										type = "description",
-										name = "Nameplate Powerbar Size",
+										name = L["Nameplate Powerbar Size"],
 										width = 'full',
 										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
@@ -4159,7 +4159,7 @@ function ElvUI_EltreumUI:Configtable()
 									header998 = {
 										order = 96,
 										type = "description",
-										name = "Nameplate Powerbar appearance",
+										name = L["Nameplate Powerbar appearance"],
 										width = 'full',
 										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
@@ -4615,6 +4615,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'toggle',
 								name = L["Left Chat Mouse Over"],
 								desc = L["Toggle the option"],
+								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.chat.leftmouseover end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftmouseover = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -4635,7 +4636,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 7,
 								type = 'toggle',
 								name = L["Left Inactivity Fader"],
-								--width = 'full',
+								width = 'full',
 								desc = L["Toggle the option"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.chat.leftfader end,
@@ -4658,6 +4659,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'toggle',
 								name = L["Right Chat Mouse Over"],
 								desc = L["Toggle the option"],
+								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.chat.rightmouseover end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightmouseover = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -4679,6 +4681,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'toggle',
 								name = L["Right Inactivity Fader"],
 								desc = L["Toggle the option"],
+								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.chat.rightfader end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightfader = value E:StaticPopup_Show('CONFIG_RL') end,
