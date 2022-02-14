@@ -712,7 +712,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		elseif E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["pet"]["power"]["enable"] = true
 		end
-		E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = "[power:current:shortvalue]"
+		E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = ""
 		--E.db["unitframe"]["units"]["pet"]["power"]["width"] = "spaced"
 		E.db["unitframe"]["units"]["pet"]["power"]["width"] = "inset"
 		E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
