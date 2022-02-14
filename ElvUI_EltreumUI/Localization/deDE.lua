@@ -107,7 +107,7 @@ L["But in instances the effects are disabled"] = "Aber in Instanzen sind sie Dea
 L["Welcome"] = "Willkommen"
 L["Join the Discord if you have any questions or issues (English Support)"] = "Join unseren Discord wenn du irgendwelche Fragen oder Probleme hast(English Support)"
 L["Installation Complete"] = "Installation Abgeschlossen"
-L["You have completed the installation process"] "Du hast die Installation Abgeschlossen"
+L["You have completed the installation process"] = "Du hast die Installation Abgeschlossen"
 L["Please click Finished to reload the UI"] = "Klicke bitte auf Finish Button zum reloaden der UI"
 L["Finished"] = true
 L["Import Questie profile"] = "Importiert Questie Profil"
