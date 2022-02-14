@@ -473,9 +473,12 @@ L["NamePlate Style Filters were set."] = true
 
 
 
-
+L["Eltruism Installer"] = true
 L["Launch Eltruism Installer"] = true
 L["Reset Eltruism Settings"] = true
+
+L["Launches the Eltruism install prompt"] = true
+L["Resets Eltruism Settings to Eltreum's Defaults"] = true
 L["Reset nameplates to Eltruism Settings"] = true
 L["Reset Chat to ElvUI Settings"] = true
 L["Reset layout to Eltruism DPS/Tank"] = true
@@ -665,8 +668,20 @@ L["Aura"] = true
 L["Add Aura Shadows (Aura list next to the minimap)"] = true
 L["Choose the Border Texture to be used:"] = true
 L["Change the size of the borders:"] = true
-L[""] = true
-L[""] = true
+L["Bar 1 X offset"] = true
+L["Bar 1 Y offset"] = true
+L["Bar 2 X offset"] = true
+L["Bar 2 Y offset"] = true
+L["Bar 3 X offset"] = true
+L["Bar 3 Y offset"] = true
+L["Bar 4 X offset"] = true
+L["Bar 4 Y offset"] = true
+L["Bar 5 X offset"] = true
+L["Bar 5 Y offset"] = true
+L["Bar 6 X offset"] = true
+L["Bar 6 Y offset"] = true
+L["How to use the Anchors"]
+L["Open WeakAuras, go to your group Weakauras and in Group change Position Settings > Anchored To > Select Frame > EltruismWA or EltruismConsumables"] = true
 L[""] = true
 L[""] = true
 L[""] = true

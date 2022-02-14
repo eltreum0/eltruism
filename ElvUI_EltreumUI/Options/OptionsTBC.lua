@@ -94,7 +94,7 @@ if E.TBC then
 						header5 = {
 							order = 1,
 							type = "description",
-							name = "Eltruism Installer",
+							name = L["Eltruism Installer"],
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
@@ -107,17 +107,17 @@ if E.TBC then
 								pluginagain = {
 									order = 1,
 									type = 'execute',
-									name = "Launch Eltruism Installer",
+									name = L["Launch Eltruism Installer"],
 									width = 'double',
-									desc = "Launches the Eltruism install prompt",
+									desc = L["Launches the Eltruism install prompt"],
 									func = function() E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData) E:ToggleOptionsUI() end,
 								},
 								eltruismsettings = {
 									order = 2,
 									type = 'execute',
-									name = "Reset Eltruism Settings",
+									name = L["Reset Eltruism Settings"],
 									width = 'double',
-									desc = "Resets Eltruism Settings to Eltreum's Defaults",
+									desc = L["Resets Eltruism Settings to Eltreum's Defaults"],
 									func = function() ElvUI_EltreumUI:UpdateSettings() E:StaticPopup_Show('CONFIG_RL') end,
 								},
 							},
@@ -138,7 +138,7 @@ if E.TBC then
 								nameplateagain = {
 									order = 1,
 									type = 'execute',
-									name = 'Reset nameplates to Eltruism settings',
+									name = L["Reset nameplates to Eltruism settings"],
 									width = 'double',
 									func = function() ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end,
 								},
@@ -160,7 +160,7 @@ if E.TBC then
 								resetchatagain = {
 									order = 1,
 									type = 'execute',
-									name = 'Reset Chat to ElvUI settings',
+									name = L["Reset Chat to ElvUI Settings"],
 									width = 'double',
 									func = function() E:SetupChat() ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."]) end,
 								},
@@ -182,14 +182,14 @@ if E.TBC then
 								resetdps = {
 									order = 1,
 									type = 'execute',
-									name = 'Reset layout to Eltruism DPS/Tank',
+									name = L["Reset layout to Eltruism DPS/Tank"],
 									width = 'double',
 									func = function() E.data:SetProfile('Eltreum DPS/Tank ('..E.mynameRealm..')') ElvUI_EltreumUI:SetupGeneralLayout() ElvUI_EltreumUI:SetupLayoutDPS() end,
 								},
 								resethealer = {
 									order = 1,
 									type = 'execute',
-									name = 'Reset layout to Eltruism Healer',
+									name = L["Reset layout to Eltruism Healer"],
 									width = 'double',
 									func = function() E.data:SetProfile('Eltreum Healer ('..E.mynameRealm..')') ElvUI_EltreumUI:SetupGeneralLayout() ElvUI_EltreumUI:SetupLayoutHealer() end,
 								},
@@ -211,7 +211,7 @@ if E.TBC then
 								resethealer = {
 									order = 1,
 									type = 'execute',
-									name = 'Skip Plugins install message',
+									name = L["Skip Plugins install message"],
 									desc = "Make the warnings to install profiles for other plugins stop",
 									width = 'double',
 									func = function()
@@ -1915,7 +1915,7 @@ if E.TBC then
 								details = {
 									order = 8,
 									type = 'execute',
-									name = 'Details v1 - Blizzard Flat Icons',
+									name = L["Details v1 - Blizzard Flat Icons"],
 									desc = L["Reset to Eltruism defaults."],
 									width = 'double',
 									func = function() ElvUI_EltreumUI:AddonSetupDT() E:StaticPopup_Show('CONFIG_RL') end,
@@ -1923,7 +1923,7 @@ if E.TBC then
 								details2 = {
 									order = 9,
 									type = 'execute',
-									name = 'Details v2 - Releaf Transparent Icons',
+									name = L["Details v2 - Releaf Transparent Icons"],
 									desc = L["Reset to Eltruism defaults."],
 									width = 'double',
 									func = function() ElvUI_EltreumUI:AddonSetupDTReleaf() E:StaticPopup_Show('CONFIG_RL') end,
@@ -1931,7 +1931,7 @@ if E.TBC then
 								details3 = {
 									order = 10,
 									type = 'execute',
-									name = 'Details v3 - Releaf Solid Icons',
+									name = L["Details v3 - Releaf Solid Icons"],
 									desc = L["Reset to Eltruism defaults."],
 									width = 'double',
 									func = function() ElvUI_EltreumUI:AddonSetupDTReleafv3() E:StaticPopup_Show('CONFIG_RL') end,
@@ -2856,7 +2856,7 @@ if E.TBC then
 								},
 								bar1xsize = {
 									type = 'range',
-									name = "Bar 1 X offset",
+									name = L["Bar 1 X offset"],
 									order = 7,
 									min = 1,
 									max = 200,
@@ -2868,7 +2868,7 @@ if E.TBC then
 								},
 								bar1ysize = {
 									type = 'range',
-									name = "Bar 1 Y offset",
+									name = L["Bar 1 Y offset"],
 									order = 7,
 									min = 1,
 									max = 200,
@@ -2896,7 +2896,7 @@ if E.TBC then
 								},
 								bar2xsize = {
 									type = 'range',
-									name = "Bar 2 X offset",
+									name = L["Bar 2 X offset"],
 									order = 10,
 									min = 1,
 									max = 200,
@@ -2908,7 +2908,7 @@ if E.TBC then
 								},
 								bar2ysize = {
 									type = 'range',
-									name = "Bar 2 Y offset",
+									name = L["Bar 2 Y offset"],
 									order = 10,
 									min = 1,
 									max = 200,
@@ -2936,7 +2936,7 @@ if E.TBC then
 								},
 								bar3xsize = {
 									type = 'range',
-									name = "Bar 3 X offset",
+									name = L["Bar 3 X offset"],
 									order = 13,
 									min = 1,
 									max = 200,
@@ -2948,7 +2948,7 @@ if E.TBC then
 								},
 								bar3ysize = {
 									type = 'range',
-									name = "Bar 3 Y offset",
+									name = L["Bar 3 Y offset"],
 									order = 13,
 									min = 1,
 									max = 200,
@@ -2976,7 +2976,7 @@ if E.TBC then
 								},
 								bar4xsize = {
 									type = 'range',
-									name = "Bar 4 X offset",
+									name = L["Bar 4 X offset"],
 									order = 16,
 									min = 1,
 									max = 200,
@@ -2988,7 +2988,7 @@ if E.TBC then
 								},
 								bar4ysize = {
 									type = 'range',
-									name = "Bar 4 Y offset",
+									name = L["Bar 4 Y offset"],
 									order = 16,
 									min = 1,
 									max = 200,
@@ -3016,7 +3016,7 @@ if E.TBC then
 								},
 								bar5xsize = {
 									type = 'range',
-									name = "Bar 5 X offset",
+									name = L["Bar 5 X offset"],
 									order = 19,
 									min = 1,
 									max = 200,
@@ -3028,7 +3028,7 @@ if E.TBC then
 								},
 								bar5ysize = {
 									type = 'range',
-									name = "Bar 5 Y offset",
+									name = L["Bar 5 Y offset"],
 									order = 19,
 									min = 1,
 									max = 200,
@@ -3056,7 +3056,7 @@ if E.TBC then
 								},
 								bar6xsize = {
 									type = 'range',
-									name = "Bar 6 X offset",
+									name = L["Bar 6 X offset"],
 									order = 22,
 									min = 1,
 									max = 200,
@@ -3068,7 +3068,7 @@ if E.TBC then
 								},
 								bar6ysize = {
 									type = 'range',
-									name = "Bar 6 Y offset",
+									name = L["Bar 6 Y offset"],
 									order = 22,
 									min = 1,
 									max = 200,
@@ -3095,7 +3095,7 @@ if E.TBC then
 								gaptarget = {
 									order = 23,
 									type = "description",
-									name = "Target Border",
+									name = L["Target Border"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -3110,7 +3110,7 @@ if E.TBC then
 								},
 								borderxtarget = {
 									type = 'range',
-									name = "Border X offet",
+									name = L["Border X offset"],
 									order = 25,
 									min = 1,
 									max = 800,
@@ -3122,7 +3122,7 @@ if E.TBC then
 								},
 								borderytarget = {
 									type = 'range',
-									name = "Border Y offset",
+									name = L["Border Y offset"],
 									order = 25,
 									min = 1,
 									max = 800,
@@ -3150,7 +3150,7 @@ if E.TBC then
 								},
 								borderxplayer = {
 									type = 'range',
-									name = "Border X offset",
+									name = L["Border X offset"],
 									order = 28,
 									min = 1,
 									max = 800,
@@ -3162,7 +3162,7 @@ if E.TBC then
 								},
 								borderyplayer = {
 									type = 'range',
-									name = "Border Y offset",
+									name = L["Border Y offset"],
 									order = 28,
 									min = 1,
 									max = 800,
@@ -3190,7 +3190,7 @@ if E.TBC then
 								},
 								borderxcastplayer = {
 									type = 'range',
-									name = "Border X offset",
+									name = L["Border X offset"],
 									order = 31,
 									min = 1,
 									max = 800,
@@ -3202,7 +3202,7 @@ if E.TBC then
 								},
 								borderycastplayer = {
 									type = 'range',
-									name = "Border Y offset",
+									name = L["Border Y offset"],
 									order = 31,
 									min = 1,
 									max = 800,
@@ -3230,7 +3230,7 @@ if E.TBC then
 								},
 								borderxcasttarget = {
 									type = 'range',
-									name = "Border X offset",
+									name = L["Border X offset"],
 									order = 34,
 									min = 1,
 									max = 800,
@@ -3242,7 +3242,7 @@ if E.TBC then
 								},
 								borderycasttarget = {
 									type = 'range',
-									name = "Border Y offset",
+									name = L["Border Y offset"],
 									order = 34,
 									min = 1,
 									max = 800,
@@ -3270,7 +3270,7 @@ if E.TBC then
 								},
 								borderxtargettarget = {
 									type = 'range',
-									name = "Border X offset",
+									name = L["Border X offset"],
 									order = 37,
 									min = 1,
 									max = 800,
@@ -3282,7 +3282,7 @@ if E.TBC then
 								},
 								borderytargettarget = {
 									type = 'range',
-									name = "Border Y offset",
+									name = L["Border Y offset"],
 									order = 38,
 									min = 1,
 									max = 800,
@@ -3309,7 +3309,7 @@ if E.TBC then
 								gappowerbar = {
 									order = 35,
 									type = "description",
-									name = "Nameplate Power Bar Border",
+									name = L["Nameplate Power Bar Border"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -3324,7 +3324,7 @@ if E.TBC then
 								},
 								borderpowerbarsize = {
 									type = 'range',
-									name = "Nameplate Power Bar Thickness",
+									name = L["Nameplate Power Bar Thickness"],
 									order = 37,
 									min = 1,
 									max = 200,
@@ -3336,7 +3336,7 @@ if E.TBC then
 								},
 								borderxpowerbar = {
 									type = 'range',
-									name = "Border X offset",
+									name = L["Border X offset"],
 									order = 38,
 									min = 1,
 									max = 800,
@@ -3348,7 +3348,7 @@ if E.TBC then
 								},
 								borderypowerbar = {
 									type = 'range',
-									name = "Border Y offset",
+									name = L["Border Y offset"],
 									order = 39,
 									min = 1,
 									max = 800,
@@ -3371,7 +3371,7 @@ if E.TBC then
 						header2 = {
 							order = 4,
 							type = "description",
-							name = "Customize CVars",
+							name = L["Customize CVars"],
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
@@ -4827,7 +4827,7 @@ if E.TBC then
 						explainer1 = {
 							order = 5,
 							type = "group",
-							name = 'How to use the Anchors',
+							name = L["How to use the Anchors"],
 							inline = true,
 							args = {
 								addaspaceher544e = {

@@ -94,7 +94,7 @@ if E.Retail then
 						header5 = {
 							order = 1,
 							type = "description",
-							name = "Eltruism Installer",
+							name = L["Eltruism Installer"],
 							width = 'full',
 							image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 						},
@@ -107,17 +107,17 @@ if E.Retail then
 								pluginagain = {
 									order = 1,
 									type = 'execute',
-									name = "Launch Eltruism Installer",
+									name = L["Launch Eltruism Installer"],
 									width = 'double',
-									desc = "Launches the Eltruism install prompt",
+									desc = L["Launches the Eltruism install prompt"],
 									func = function() E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData) E:ToggleOptionsUI() end,
 								},
 								eltruismsettings = {
 									order = 2,
 									type = 'execute',
-									name = "Reset Eltruism Settings",
+									name = L["Reset Eltruism Settings"],
 									width = 'double',
-									desc = "Resets Eltruism Settings to Eltreum's Defaults",
+									desc = L["Resets Eltruism Settings to Eltreum's Defaults"],
 									func = function() ElvUI_EltreumUI:UpdateSettings() E:StaticPopup_Show('CONFIG_RL') end,
 								},
 							},
@@ -138,7 +138,7 @@ if E.Retail then
 								nameplateagain = {
 									order = 1,
 									type = 'execute',
-									name = 'Reset nameplates to Eltruism settings',
+									name = L["Reset nameplates to Eltruism settings"],
 									width = 'double',
 									func = function() ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end,
 								},
@@ -160,7 +160,7 @@ if E.Retail then
 								resetchatagain = {
 									order = 1,
 									type = 'execute',
-									name = 'Reset Chat to ElvUI settings',
+									name = L["Reset Chat to ElvUI Settings"],
 									width = 'double',
 									func = function() E:SetupChat() ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."]) end,
 								},
@@ -182,14 +182,14 @@ if E.Retail then
 								resetdps = {
 									order = 1,
 									type = 'execute',
-									name = 'Reset layout to Eltruism DPS/Tank',
+									name = L["Reset layout to Eltruism DPS/Tank"],
 									width = 'double',
 									func = function() E.data:SetProfile('Eltreum DPS/Tank ('..E.mynameRealm..')') ElvUI_EltreumUI:SetupGeneralLayout() ElvUI_EltreumUI:SetupLayoutDPS() end,
 								},
 								resethealer = {
 									order = 1,
 									type = 'execute',
-									name = 'Reset layout to Eltruism Healer',
+									name = L["Reset layout to Eltruism Healer"],
 									width = 'double',
 									func = function() E.data:SetProfile('Eltreum Healer ('..E.mynameRealm..')') ElvUI_EltreumUI:SetupGeneralLayout() ElvUI_EltreumUI:SetupLayoutHealer() end,
 								},
@@ -2010,7 +2010,7 @@ if E.Retail then
 								},
 								bar1xsize = {
 									type = 'range',
-									name = "Bar 1 X offset",
+									name = L["Bar 1 X offset"],
 									order = 7,
 									min = 1,
 									max = 200,
@@ -2022,7 +2022,7 @@ if E.Retail then
 								},
 								bar1ysize = {
 									type = 'range',
-									name = "Bar 1 Y offset",
+									name = L["Bar 1 Y offset"],
 									order = 7,
 									min = 1,
 									max = 200,
@@ -2050,7 +2050,7 @@ if E.Retail then
 								},
 								bar2xsize = {
 									type = 'range',
-									name = "Bar 2 X offset",
+									name = L["Bar 2 X offset"],
 									order = 10,
 									min = 1,
 									max = 200,
@@ -2062,7 +2062,7 @@ if E.Retail then
 								},
 								bar2ysize = {
 									type = 'range',
-									name = "Bar 2 Y offset",
+									name = L["Bar 2 Y offset"],
 									order = 10,
 									min = 1,
 									max = 200,
@@ -2090,7 +2090,7 @@ if E.Retail then
 								},
 								bar3xsize = {
 									type = 'range',
-									name = "Bar 3 X offset",
+									name = L["Bar 3 X offset"],
 									order = 13,
 									min = 1,
 									max = 200,
@@ -2102,7 +2102,7 @@ if E.Retail then
 								},
 								bar3ysize = {
 									type = 'range',
-									name = "Bar 3 Y offset",
+									name = L["Bar 3 Y offset"],
 									order = 13,
 									min = 1,
 									max = 200,
@@ -2130,7 +2130,7 @@ if E.Retail then
 								},
 								bar4xsize = {
 									type = 'range',
-									name = "Bar 4 X offset",
+									name = L["Bar 4 X offset"],
 									order = 16,
 									min = 1,
 									max = 200,
@@ -2142,7 +2142,7 @@ if E.Retail then
 								},
 								bar4ysize = {
 									type = 'range',
-									name = "Bar 4 Y offset",
+									name = L["Bar 4 Y offset"],
 									order = 16,
 									min = 1,
 									max = 200,
@@ -2170,7 +2170,7 @@ if E.Retail then
 								},
 								bar5xsize = {
 									type = 'range',
-									name = "Bar 5 X offset",
+									name = L["Bar 5 X offset"],
 									order = 19,
 									min = 1,
 									max = 200,
@@ -2182,7 +2182,7 @@ if E.Retail then
 								},
 								bar5ysize = {
 									type = 'range',
-									name = "Bar 5 Y offset",
+									name = L["Bar 5 Y offset"],
 									order = 19,
 									min = 1,
 									max = 200,
@@ -2210,7 +2210,7 @@ if E.Retail then
 								},
 								bar6xsize = {
 									type = 'range',
-									name = "Bar 6 X offset",
+									name = L["Bar 6 X offset"],
 									order = 22,
 									min = 1,
 									max = 200,
@@ -2222,7 +2222,7 @@ if E.Retail then
 								},
 								bar6ysize = {
 									type = 'range',
-									name = "Bar 6 Y offset",
+									name = L["Bar 6 Y offset"],
 									order = 22,
 									min = 1,
 									max = 200,
@@ -4837,7 +4837,7 @@ if E.Retail then
 						explainer1 = {
 							order = 5,
 							type = "group",
-							name = 'How to use the Anchors',
+							name = L["How to use the Anchors"],
 							inline = true,
 							args = {
 								addaspaceher544e = {
