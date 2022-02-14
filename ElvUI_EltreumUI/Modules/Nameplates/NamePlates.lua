@@ -36,10 +36,10 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 						return
 					else
 						button.cd:SetScript('OnUpdate', function(self, elapsed)
-							--print("np button spam "..math.random(1,99))
 							TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 							if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 								TimeSinceLastUpdate = 0
+								--print("np button spam "..math.random(1,99))
 								if button.cd.timer then
 									if E.db.ElvUI_EltreumUI.widenameplate.enable then
 										button.cd.timer.text:ClearAllPoints()
@@ -47,16 +47,13 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 									end
 									local _, g, b, a = button.cd.timer.text:GetTextColor()
 									if E.db.ElvUI_EltreumUI.widenameplate.npglow then
-										if button.cd.timer.text == nil or button.cd.timer.text == "" then
-											LCG.PixelGlow_Stop(button)
-											return
-										elseif (g == 0 or b == 0) and a > 0.5 then
+										if (g == 0 or b == 0) and a > 0.5 then
 											LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
 										else
 											LCG.PixelGlow_Stop(button)
 										end
 									end
-								elseif not button.cd.timer then
+								elseif E.db.ElvUI_EltreumUI.widenameplate.npglow and (not button.cd.timer or not button.cd or not button.cd.timer.text) then
 									LCG.PixelGlow_Stop(button)
 								end
 							end
