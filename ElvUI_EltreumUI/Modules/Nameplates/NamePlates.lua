@@ -52,7 +52,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 										end
 									end
 								else
-									if E.db.ElvUI_EltreumUI.widenameplate.npglow and (not button.cd or not button.cd.timer.text)then
+									if E.db.ElvUI_EltreumUI.widenameplate.npglow and (button.cd == nil or button.cd.timer == nil)then
 										LCG.PixelGlow_Stop(button)
 									end
 								end
