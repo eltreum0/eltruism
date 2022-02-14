@@ -4,6 +4,7 @@ Added German translation by Khornan, and test Spanish translation using DeepL au
 Fixed error with instant loot if the inventor was full\
 Fixed Death animation playing when in a party/raid in TBC/Classic\
 Fixed Nameplate Debuff Glow showing up on debuffs that had no duration\
+Fixed waypoint time to arrive not attaching to some quests\
 Improved quest detection for wowhead button in Retail\
 Updated Auras in Eltruism > Aura Filters\
 Updated locale files since many changes happened since they were originally made
