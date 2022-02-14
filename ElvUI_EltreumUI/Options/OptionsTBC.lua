@@ -2202,7 +2202,7 @@ if E.TBC then
 								headerline1 = {
 									order = 9,
 									type = "description",
-									name = "Select a Type",
+									name = L["Select a Type"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -2243,7 +2243,7 @@ if E.TBC then
 								preview ={
 									order = 12,
 									type = "execute",
-									name = "Preview",
+									name = L["Preview"],
 									desc = L["Preview the Glow, you will need to toggle it off and on to update the glow"],
 									func = function() ElvUI_EltreumUI:PreviewGlow() end,
 								},
@@ -2257,7 +2257,7 @@ if E.TBC then
 								headertotem1 = {
 									order = 1,
 									type = "description",
-									name = "Shaman Fire Totem",
+									name = L["Shaman Fire Totem"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -2288,7 +2288,7 @@ if E.TBC then
 								headertotem2 = {
 									order = 4,
 									type = "description",
-									name = "Shaman Earth Totem",
+									name = L["Shaman Earth Totem"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -2319,7 +2319,7 @@ if E.TBC then
 								headertotem3 = {
 									order = 7,
 									type = "description",
-									name = "Shaman Water Totem",
+									name = L["Shaman Water Totem"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -2350,7 +2350,7 @@ if E.TBC then
 								headertotem4 = {
 									order = 10,
 									type = "description",
-									name = "Shaman Air Totem",
+									name = L["Shaman Air Totem"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},

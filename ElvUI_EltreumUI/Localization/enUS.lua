@@ -689,8 +689,12 @@ L["NameplateSCT and ElvUI FCT are not installed or enabled"] = true
 L["You have completed the installation process"] = true
 L["Please click Finished to reload the UI"] = true
 L["Shaman Totems"] = true
-L["Enable on Shaman Totems"]
-L["Enable on Shaman Fire Totem"]
-L["Enable on Shaman Earth Totem"]
-L["Enable on Shaman Water Totem"]
-L["Enable on Shaman Air Totem"]
+L["Enable on Shaman Totems"] = true
+L["Enable on Shaman Fire Totem"] = true
+L["Enable on Shaman Earth Totem"] = true
+L["Enable on Shaman Water Totem"] = true
+L["Enable on Shaman Air Totem"] = true
+L["Shaman Fire Totem"] = true
+L["Shaman Earth Totem"] = true
+L["Shaman Water Totem"] = true
+L["Shaman Air Totem"] = true

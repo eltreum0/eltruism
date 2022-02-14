@@ -2051,13 +2051,13 @@ if E.Classic then
 								headerlinetotemsglow = {
 									order = 3,
 									type = "description",
-									name = "Shaman Totems",
+									name = L["Shaman Totems"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
 								enabletotem = {
 									type = 'toggle',
-									name = "Enable on Shaman Totems",
+									name = L["Enable on Shaman Totems"],
 									order = 4,
 									width = 'full',
 									disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable end,
@@ -2066,7 +2066,7 @@ if E.Classic then
 								},
 								enabletotem1 = {
 									type = 'toggle',
-									name = "Enable on Shaman Fire Totem",
+									name = L["Enable on Shaman Fire Totem"],
 									order = 5,
 									width = 'full',
 									disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end,
@@ -2075,7 +2075,7 @@ if E.Classic then
 								},
 								enabletotem2 = {
 									type = 'toggle',
-									name = "Enable on Shaman Earth Totem",
+									name = L["Enable on Shaman Earth Totem"],
 									order = 6,
 									width = 'full',
 									disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end,
@@ -2084,7 +2084,7 @@ if E.Classic then
 								},
 								enabletotem3 = {
 									type = 'toggle',
-									name = "Enable on Shaman Water Totem",
+									name = L["Enable on Shaman Water Totem"],
 									order = 7,
 									width = 'full',
 									disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end,
@@ -2093,7 +2093,7 @@ if E.Classic then
 								},
 								enabletotem4 = {
 									type = 'toggle',
-									name = "Enable on Shaman Air Totem",
+									name = L["Enable on Shaman Air Totem"],
 									order = 8,
 									width = 'full',
 									disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end,
@@ -2103,7 +2103,7 @@ if E.Classic then
 								headerline1 = {
 									order = 9,
 									type = "description",
-									name = "Select a Type",
+									name = L["Select a Type"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -2144,7 +2144,7 @@ if E.Classic then
 								preview ={
 									order = 12,
 									type = "execute",
-									name = "Preview",
+									name = L["Preview"],
 									desc = L["Preview the Glow, you will need to toggle it off and on to update the glow"],
 									func = function() ElvUI_EltreumUI:PreviewGlow() end,
 								},
@@ -2158,7 +2158,7 @@ if E.Classic then
 								headertotem1 = {
 									order = 1,
 									type = "description",
-									name = "Shaman Fire Totem",
+									name = L["Shaman Fire Totem"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -2189,7 +2189,7 @@ if E.Classic then
 								headertotem2 = {
 									order = 4,
 									type = "description",
-									name = "Shaman Earth Totem",
+									name = L["Shaman Earth Totem"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -2220,7 +2220,7 @@ if E.Classic then
 								headertotem3 = {
 									order = 7,
 									type = "description",
-									name = "Shaman Water Totem",
+									name = L["Shaman Water Totem"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
@@ -2251,7 +2251,7 @@ if E.Classic then
 								headertotem4 = {
 									order = 10,
 									type = "description",
-									name = "Shaman Air Totem",
+									name = L["Shaman Air Totem"],
 									width = 'full',
 									image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								},
