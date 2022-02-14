@@ -4,7 +4,6 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition = true
 	E.db.ElvUI_EltreumUI.chat.enable = true
-	--E.db.ElvUI_EltreumUI.chat.leftcombathide = true
 	E.db.ElvUI_EltreumUI.chat.colorsysmsg = true
 	E.db.ElvUI_EltreumUI.chat.looticons = true
 	E.db.ElvUI_EltreumUI.chat.itemlevels = true
@@ -23,10 +22,10 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.skins.expandarmorybg = true
 	E.db.ElvUI_EltreumUI.skins.bossemote = true
 	E.db.ElvUI_EltreumUI.skins.quests = true
+	E.db.ElvUI_EltreumUI.skins.questswowhead = true
 	E.db.ElvUI_EltreumUI.skins.professions = true
 	E.db.ElvUI_EltreumUI.skins.zones = true
 	E.db.ElvUI_EltreumUI.skins.shadows = true
-	E.db.ElvUI_EltreumUI.skins.questswowhead = true
 	E.db.ElvUI_EltreumUI.shadows.aura = true
 	E.db.ElvUI_EltreumUI.shadows.ufaura = true
 	E.db.ElvUI_EltreumUI.shadows.actionbars = true
@@ -63,6 +62,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 		E.db.ElvUI_EltreumUI.glow.enabletotem = true
 	end
 	E.db.ElvUI_EltreumUI.questsettings.rogueopen = true
+	E.db.ElvUI_EltreumUI.questsettings.questitems = false
 	E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 = true
 	E.db.ElvUI_EltreumUI.loottext.enable = true
 	E.db.ElvUI_EltreumUI.loottext.fontsetting = true
@@ -78,9 +78,6 @@ function ElvUI_EltreumUI:UpdateSettings()
 	--private
 	E.private.ElvUI_EltreumUI.nameplatepower.enable = true
 	E.private.ElvUI_EltreumUI.nameplatepower.adjust = true
-	E.private.ElvUI_EltreumUI.combatmusic.enable = false
-	E.private.ElvUI_EltreumUI.combatmusic.bossmusic = false
-	E.private.ElvUI_EltreumUI.combatmusic.disableinstance = false
 
 	ElvUI_EltreumUI:Print(L["Settings for Eltruism were applied."])
 end
