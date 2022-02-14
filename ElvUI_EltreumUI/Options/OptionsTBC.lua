@@ -4086,8 +4086,8 @@ function ElvUI_EltreumUI:Configtable()
 									enableadjust = {
 										order = 2,
 										type = 'toggle',
-										name = L["Enable Autoadjusting Buffs/Debuffs"],
-										desc = L["Enable autoadjusting the position of Buffs/Debuffs"],
+										name = L["Enable Auto-adjusting Buffs/Debuffs"],
+										desc = L["Enable Auto-adjusting the position of Buffs/Debuffs"],
 										width = 'full',
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function() return E.private.ElvUI_EltreumUI.nameplatepower.adjust end,
@@ -4103,7 +4103,7 @@ function ElvUI_EltreumUI:Configtable()
 									enableautoadjust = {
 										order = 91,
 										type = 'toggle',
-										name = L["Enable Autoadjusting the Vertical Position of the Power Bar"],
+										name = L["Enable Auto-adjusting the Vertical Position of the Power Bar"],
 										desc = L["Power Bar will move automatically based on class/spec/druid form"],
 										width = 'full',
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
