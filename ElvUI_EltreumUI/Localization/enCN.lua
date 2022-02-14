@@ -108,7 +108,6 @@ L["But in instances the effects are disabled"] = true
 L["Welcome"] = true
 L["Join the Discord if you have any questions or issues (English Support)"] = true
 L["Installation Complete"] = true
-L["You have completed the installation process, please click Finished to reload the UI"] = true
 L["Finished"] = true
 L["Import Questie profile"] = true
 L["You will need to reload and wait for questie to rebuild the database"] = true

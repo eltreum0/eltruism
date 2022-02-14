@@ -74,7 +74,6 @@ L["Import Dynamic Cam profile"] = true
 L["Welcome"] = true
 L["Join the Discord if you have any questions or issues (English Support)"] = true
 L["Installation Complete"] = true
-L["You have completed the installation process, please click Finished to reload the UI"] = true
 L["Finished"] = true
 L["Questie is not installed or enabled"] = true
 L["Arenas"] = true
