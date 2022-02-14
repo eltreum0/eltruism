@@ -42,6 +42,10 @@ local SUPPORTER = {
 	'|cffB50909Nekator|r',
 }
 
+local TRANSLATORS = {
+	'|cffCC3333Khornan|r',
+}
+
 -- SortList
 local function SortList(a, b)
 	return E:StripString(a) < E:StripString(b)
@@ -50,6 +54,7 @@ end
 sort(AUTHORS, SortList)
 sort(THANKYOU, SortList)
 sort(SUPPORTER, SortList)
+sort(TRANSLATORS, SortList)
 
 -- Author table
 for _, name in pairs(AUTHORS) do
@@ -68,6 +73,12 @@ for _, name in pairs(SUPPORTER) do
 	tinsert(ElvUI_EltreumUI.CreditsList, name)
 end
 local SUPPORTER_STRING = tconcat(SUPPORTER, '|n')
+
+-- Translators table
+for _, name in pairs(TRANSLATORS) do
+	tinsert(ElvUI_EltreumUI.CreditsList, name)
+end
+local TRANSLATORS_STRING = tconcat(TRANSLATORS, '|n')
 
 -- EltreumUI ingame options Retail
 if E.Retail then
@@ -4937,6 +4948,20 @@ if E.Retail then
 									type = 'description',
 									fontSize = 'medium',
 									name = SUPPORTER_STRING,
+								},
+							},
+						},
+						translators = {
+							order = 4,
+							type = 'group',
+							inline = true,
+							name = "Translators",
+							args = {
+								desc = {
+									order = 1,
+									type = 'description',
+									fontSize = 'medium',
+									name = TRANSLATORS_STRING,
 								},
 							},
 						},
