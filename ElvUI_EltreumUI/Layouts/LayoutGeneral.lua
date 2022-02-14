@@ -48,6 +48,11 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["nameplates"]["smoothbars"] = false
 		E.db["unitframe"]["smoothbars"] = false
 
+		--new tooltip things, check later
+		--E.db["tooltip"]["inspectDataEnable"] = true
+		--E.db["tooltip"]["mythicDataEnable"] = true
+		--E.db["tooltip"]["role"] = true
+
 		-- General
 		E.db["general"]["altPowerBar"]["font"] = "Kimberley"
 		E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
