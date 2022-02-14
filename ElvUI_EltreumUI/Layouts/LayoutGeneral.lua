@@ -198,6 +198,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["databars"]["customTexture"] = true
 
 		--new experience
+		E.db["databars"]["experience"]["enable"] = true
 		E.db["databars"]["experience"]["font"] = "Kimberley"
 		E.db["databars"]["experience"]["fontOutline"] = "OUTLINE"
 		E.db["databars"]["experience"]["fontSize"] = 10
