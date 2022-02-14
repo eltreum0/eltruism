@@ -8,7 +8,6 @@ L["1080p resolution detected, setting fonts to outline mode."] = true
 L["Fonts were set to Outline due to your resolution."] = true
 L["EltruismConsumables"] = true
 --Install
-L["ElvUI Chat has been set."] = true
 L["General CVars have been set."] = true
 L["NamePlate CVars have been set."] = true
 L["AddOnSkins profile has been set."] = true
@@ -85,6 +84,7 @@ L["The original layout was made for the Eltruism DPS/Tank profile, please switch
 L["You need to be using an Eltruism profile in order to use this function"] = true
 L["Debuff filters were setup"] = true
 L["Buff filters were setup"] = true
+L["ElvUI Chat has been Set"] = true
 -- Datatext
 L["Eltruism Ammo"] = true
 L["Click:"] = true
