@@ -740,3 +740,4 @@ L["Skin Level Up, Boss Loot and Instance Entrance frames to be class colored"] =
 L["Speed for Autocast, set to negative to inverse direction of rotation"] = "Velocidad para el autocasting, ponerlo en negativo para invertir el sentido de giro"
 L["The alternative layout was made for the Eltruism DPS/Tank profile, please switch to it to use it"] = "El diseño alternativo fue hecho para el perfil de DPS/Tanque de Eltruism, por favor cambia a él para usarlo"
 L["You can support the group with your class, if you select DPS/Tank then its recommended to click Alternative Frames after clicking DPS/Tank"] = "Puedes apoyar al grupo con tu clase si seleccionas DPS/Tanque entonces se recomienda hacer clic en Alternative Frames después de hacer clic en DPS/Tanque"
+L["Enable a GTA death animation"] = true

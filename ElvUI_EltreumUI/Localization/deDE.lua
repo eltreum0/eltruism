@@ -759,3 +759,4 @@ L["Automatically swap the Character Stats to your main ones"] = true
 L["Add Item Levels to the Character Panel"] = true
 L["You can support the group with your class, if you select DPS/Tank then its recommended to click Alternative Frames after clicking DPS/Tank"] = "Du kannst die Gruppe mit deiner Klasse unterstützen! Wenn du DPS/Tank wählst dann wird Empfohlen auf Alternative Frames zu klicken nachdem du auf DPS/Tank geklickt hast"
 L["And has many plugins to choose from"] = "Es gibt viele Plugins zur Auswahl"
+L["Enable a GTA death animation"] = true

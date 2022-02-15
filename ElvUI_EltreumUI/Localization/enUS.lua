@@ -725,3 +725,4 @@ L["Ilvl Font Outline"] = true
 L["Choose the Ilvl font outline"] = true
 L["Automatically swap the Character Stats to your main ones"] = true
 L["Add Item Levels to the Character Panel"] = true
+L["Enable a GTA death animation"] = true
