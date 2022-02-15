@@ -282,7 +282,5 @@ if IsAddOnLoaded('ProjectAzilroka') then
 		end
 		_G.MouseoverAuras.Holder:ClearAllPoints()
 		_G.MouseoverAuras.Holder:SetPoint("TOPLEFT", _G.GameTooltip, "TOPLEFT", 0, 60)
-
-		--_G.MouseoverAuras.Holder.elapsed = _G.MouseoverAuras.Holder.elapsed + elapsed
 	end)
 end
