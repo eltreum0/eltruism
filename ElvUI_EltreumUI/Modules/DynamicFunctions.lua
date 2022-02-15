@@ -284,10 +284,5 @@ if IsAddOnLoaded('ProjectAzilroka') then
 		_G.MouseoverAuras.Holder:SetPoint("TOPLEFT", _G.GameTooltip, "TOPLEFT", 0, 60)
 
 		--_G.MouseoverAuras.Holder.elapsed = _G.MouseoverAuras.Holder.elapsed + elapsed
-
-		if (_G.MouseoverAuras.Holder.elapsed > .25) then
-			_G.MouseoverAuras:UpdateAuras('mouseover')
-			_G.MouseoverAuras.Holder.elapsed = 0
-		end
 	end)
 end
