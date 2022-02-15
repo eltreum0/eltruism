@@ -100,8 +100,8 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 
 	--Grand Theft Auto (5/Online)
 	if E.db.ElvUI_EltreumUI.otherstuff.playerdeathgta then
-		--gta:RegisterEvent("PLAYER_DEAD")
-		gta:RegisterEvent("PLAYER_STARTED_MOVING")
+		gta:RegisterEvent("PLAYER_DEAD")
+		--gta:RegisterEvent("PLAYER_STARTED_MOVING")
 		gta:SetScript("OnEvent", function()
 			local x, y = UIParent:GetSize()
 			gta:SetSize(x,y)
