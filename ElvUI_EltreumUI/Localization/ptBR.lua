@@ -84,7 +84,7 @@ L["The original layout was made for the Eltruism DPS/Tank profile, please switch
 L["You need to be using an Eltruism profile in order to use this function"] = true
 L["Debuff filters were setup"] = true
 L["Buff filters were setup"] = true
-L["ElvUI Chat has been Set"] = true
+L["ElvUI Chat has been set."] = true
 -- Datatext
 L["Eltruism Ammo"] = true
 L["Click:"] = true

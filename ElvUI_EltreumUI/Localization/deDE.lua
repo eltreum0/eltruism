@@ -139,7 +139,7 @@ L["The original layout was made for the Eltruism DPS/Tank profile, please switch
 L["You need to be using an Eltruism profile in order to use this function"] = "Du musst ein Eltruismus-Profil verwenden, um diese Funktion nutzen zu können."
 L["Debuff filters were setup"] = "Debuff Filter wurden eingestellt"
 L["Buff filters were setup"] = "Buff Filter wurden eingestellt"
-L["ElvUI Chat has been Set"] = "ElvUI Chat wurde festgelegt"
+L["ElvUI Chat has been set."] = "ElvUI Chat wurde festgelegt"
 -- Datatext
 L["Eltruism Ammo"] = true
 -- Fonts
