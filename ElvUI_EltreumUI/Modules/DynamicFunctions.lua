@@ -272,3 +272,22 @@ function ElvUI_EltreumUI:DarkChat()
 	end
 	ElvUI_EltreumUI:Print("Chat set to Dark mode")
 end
+
+--move mouseoverauras to top of tooltip
+if IsAddOnLoaded('ProjectAzilroka') then
+	hooksecurefunc(_G.MouseoverAuras, "Update", function()
+		if (not UnitExists('mouseover')) or GetMouseFocus() and (GetMouseFocus():IsForbidden()) then
+			_G.MouseoverAuras.Holder:Hide()
+			return
+		end
+		_G.MouseoverAuras.Holder:ClearAllPoints()
+		_G.MouseoverAuras.Holder:SetPoint("TOPLEFT", _G.GameTooltip, "TOPLEFT", 0, 60)
+
+		--_G.MouseoverAuras.Holder.elapsed = _G.MouseoverAuras.Holder.elapsed + elapsed
+
+		if (_G.MouseoverAuras.Holder.elapsed > .25) then
+			_G.MouseoverAuras:UpdateAuras('mouseover')
+			_G.MouseoverAuras.Holder.elapsed = 0
+		end
+	end)
+end
