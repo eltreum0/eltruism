@@ -4,12 +4,13 @@ local _G = _G
 --Dark Souls Death, my first weakaura adapted
 
 --create frame/texture/font
+local x, y = UIParent:GetSize()
 local darksouls = CreateFrame("FRAME", nil, WorldFrame)
-darksouls:SetSize(1920,1080)
+darksouls:SetSize(x,y)
 local darksoulstex = darksouls:CreateTexture()
 darksoulstex:SetTexture(186185)
 darksoulstex:SetVertexColor(0, 0, 0)
-darksoulstex:SetAlpha(0.72)
+darksoulstex:SetAlpha(0.60)
 darksoulstex:SetAllPoints(darksouls)
 darksouls:SetPoint("Center", UIParent)
 darksouls.Text = darksouls:CreateFontString(nil, "OVERLAY", "GameFontNormal")
@@ -24,6 +25,11 @@ darksoulstex:SetParent(darksouls)
 darksouls.Text:SetParent(darksouls)
 darksouls.Text:SetText("YOU DIED")
 darksouls:Hide()
+local darksoulsbar = darksouls:CreateTexture()
+darksoulsbar:SetSize(x,200)
+darksoulsbar:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\YouDied.TGA")
+darksoulsbar:SetAlpha(0.60)
+darksoulsbar:SetPoint("CENTER", WorldFrame)
 
 --create animation
 darksouls.scaler = darksouls.Text:CreateAnimationGroup()
@@ -42,8 +48,8 @@ moveOut:SetStartDelay(0.1)
 moveOut:SetOffset(-fontsize, -fontsize/4)
 
 --run
-darksouls:RegisterEvent("PLAYER_DEAD")
---darksouls:RegisterEvent("PLAYER_STARTED_MOVING")
+--darksouls:RegisterEvent("PLAYER_DEAD")
+darksouls:RegisterEvent("PLAYER_STARTED_MOVING")
 darksouls:SetScript("OnEvent", function()
 	local _, instanceType = IsInInstance()
 	local tbccheck = false
@@ -54,7 +60,11 @@ darksouls:SetScript("OnEvent", function()
 			tbccheck = true
 		end
 	end
-	if E.db.ElvUI_EltreumUI.otherstuff.playerdeath and IsEncounterSuppressingRelease() == false and instanceType ~= "arena" and instanceType ~= "pvp" and tbccheck == true then
+	local spellId
+	for i= 1, 10 do
+		spellId = select(10, UnitAura("player", i))
+	end
+	if E.db.ElvUI_EltreumUI.otherstuff.playerdeath and IsEncounterSuppressingRelease() == false and instanceType ~= "arena" and instanceType ~= "pvp" and tbccheck == true and (spellId ~= 20711 and spellId ~= 5384) then
 		UIParent:SetAlpha(0)
 		if E.Retail then
 			ObjectiveTrackerFrame:SetAlpha(0)
