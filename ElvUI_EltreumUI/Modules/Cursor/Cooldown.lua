@@ -114,7 +114,7 @@ function ElvUI_EltreumUI:CooldownEnable()
 	ElvUI_EltreumUI:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN", "updateCooldown")
 	ElvUI_EltreumUI:RegisterEvent("BAG_UPDATE_COOLDOWN", "updateCooldown")
 	ElvUI_EltreumUI:RegisterEvent("PET_BAR_UPDATE_COOLDOWN", "updateCooldown")
-	--self:RegisterEvent("UNIT_SPELLCAST_FAILED") --this triggers every single time a spell fails like when out of resources or on cd
+	--self:RegisterUnitEvent("UNIT_SPELLCAST_FAILED", "player") --this triggers every single time a spell fails like when out of resources or on cd
 end
 
 function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
