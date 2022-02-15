@@ -405,6 +405,7 @@ P.ElvUI_EltreumUI = {
 		dynamicxpbar = false,
 		delete = false,
 		playerdeath = false,
+		playerdeathgta = false,
 		--floatingrep = false,
 	},
 }
