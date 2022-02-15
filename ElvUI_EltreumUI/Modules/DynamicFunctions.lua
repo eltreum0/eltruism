@@ -273,6 +273,7 @@ function ElvUI_EltreumUI:DarkChat()
 	ElvUI_EltreumUI:Print("Chat set to Dark mode")
 end
 
+--[[
 --move mouseoverauras to top of tooltip
 if IsAddOnLoaded('ProjectAzilroka') and not ProjectAzilrokaDB.profiles.Default.MouseoverAuras.Enable then  --because enable only shows up if its NOT enabled
 	hooksecurefunc(_G.MouseoverAuras, "Update", function()
@@ -284,3 +285,4 @@ if IsAddOnLoaded('ProjectAzilroka') and not ProjectAzilrokaDB.profiles.Default.M
 		_G.MouseoverAuras.Holder:SetPoint("TOPLEFT", _G.GameTooltip, "TOPLEFT", 0, 60)
 	end)
 end
+]]
