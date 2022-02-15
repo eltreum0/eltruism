@@ -3,8 +3,10 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 -- GladiusEx profile setup
 function ElvUI_EltreumUI:GetGladiusExProfile()
 	if GladiusExDB.profiles.Eltreum then
-		local key = {[E.mynameRealm] = "Eltreum"}
-		table.insert(GladiusExDB.profileKeys, key)
+		--local key = {[E.mynameRealm] = "Eltreum"}
+		--table.insert(DynamicCamDB.profileKeys, key)
+		table.insert(GladiusExDB.profileKeys, E.mynameRealm)
+		GladiusExDB["profileKeys"][E.mynameRealm] = "Eltreum"
 	else
 		GladiusExDB = {
 			["namespaces"] = {

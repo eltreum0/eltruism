@@ -3,8 +3,10 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 -- Capping profile setup
 function ElvUI_EltreumUI:GetCappingProfile()
 	if CappingSettings.profiles.Eltreum then
-		local key = {[E.mynameRealm] = "Eltreum"}
-		table.insert(CappingSettings.profileKeys, key)
+		--local key = {[E.mynameRealm] = "Eltreum"}
+		--table.insert(CappingSettings.profileKeys, key)
+		table.insert(CappingSettings.profileKeys, E.mynameRealm)
+		CappingSettings["profileKeys"][E.mynameRealm] = "Eltreum"
 	else
 		CappingSettings = {
 			["profileKeys"] = {

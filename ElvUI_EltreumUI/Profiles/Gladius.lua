@@ -3,8 +3,10 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 -- Gladdy profile setup
 function ElvUI_EltreumUI:GetGladiusProfile()
 	if Gladius2DB.profiles.Eltreum then
-		local key = {[E.mynameRealm] = "Eltreum"}
-		table.insert(Gladius2DB.profileKeys, key)
+		--local key = {[E.mynameRealm] = "Eltreum"}
+		--table.insert(Gladius2DB.profileKeys, key)
+		table.insert(Gladius2DB.profileKeys, E.mynameRealm)
+		Gladius2DB["profileKeys"][E.mynameRealm] = "Eltreum"
 	else
 		Gladius2DB = {
 			["profileKeys"] = {

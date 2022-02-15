@@ -4,8 +4,10 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 function ElvUI_EltreumUI:GetDynamicCamProfile()
 	if E.Retail then
 		if DynamicCamDB.profiles.Eltreum then
-			local key = {[E.mynameRealm] = "Eltreum"}
-			table.insert(DynamicCamDB.profileKeys, key)
+			--local key = {[E.mynameRealm] = "Eltreum"}
+			--table.insert(DynamicCamDB.profileKeys, key)
+			table.insert(DynamicCamDB.profileKeys, E.mynameRealm)
+			DynamicCamDB["profileKeys"][E.mynameRealm] = "Eltreum"
 		else
 			DynamicCamDB = {
 				["profileKeys"] = {

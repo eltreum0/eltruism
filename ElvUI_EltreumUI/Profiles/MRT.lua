@@ -3,8 +3,10 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 -- Exorsus Raid Tools profile setup
 function ElvUI_EltreumUI:GetMRTProfile()
 	if VMRT.Profiles.Eltreum then
-		local key = {[E.mynameRealm] = "Eltreum"}
-		table.insert(VMRT.ProfileKeys, key)
+		--local key = {[E.mynameRealm] = "Eltreum"}
+		--table.insert(VMRT.ProfileKeys, key)
+		table.insert(VMRT.profileKeys, E.mynameRealm)
+		VMRT["profileKeys"][E.mynameRealm] = "Eltreum"
 	else
 		if E.Retail then
 			VMRT = {
