@@ -13,7 +13,7 @@ ___
 > The installation will offer profiles for the following addons:\
  \
 **[ProjectAzilroka](https://www.curseforge.com/wow/addons/projectazilroka)**\
-**[Shadow & Light](https://www.tukui.orgaddons.php?id=38)** \
+**[Shadow & Light](https://www.tukui.org/addons.php?id=38)** \
 **[Windtools](https://www.curseforge.com/wow/addons/elvui-windtools)** \
 **[Bigwigs](https://www.curseforge.com/wow/addons/big-wigs)** \
 **[DBM](https://www.curseforge.com/wow/addons/deadly-boss-mods)** \
@@ -24,15 +24,22 @@ ___
 **[Immersion](https://www.curseforge.com/wow/addons/immersion)** \
 **[Nameplate Scrolling Combat Text](https://www.curseforge.com/wow/addons/nameplate-scrolling-combat-text)** \
 **[ElvUI Floating Combat Text](https://www.tukui.org/addons.php?id=137)** 
+**[Capping](https://www.curseforge.com/wow/addons/capping-bg-timers)**
+For Burning Crusade Classic and Classic also the following addons:
+**[Questie](https://www.curseforge.com/wow/addons/questie)**
+**[Gladdy](https://www.curseforge.com/wow/addons/gladdy-tbc)**
+**[Gladius](https://www.curseforge.com/wow/addons/gladius-v3)**
 ___
-### Features
+### Features (List based on v2.8.2)
 Eltruism includes many features and all can be turned off if the user wants. Included features in this plugin:
 
 >Actionbars:\
-Custom Glows, supporting both player and pet action bars.\
+Custom Glows, adding glows to procs in player bars and pets.\
+Adds a glow reminder to Shaman Totems in TBC/Classic, glowing when the totem is missing\
 \
 >Chat:\
 Show item icons in chat, based on Chat Loot Icons by Stanzilla\
+Show item levels for items linked in chat\
 Inactivity Fader using ElvUI's Chat setting\
 Combat Hide\
 Class colored rolls\
@@ -51,11 +58,12 @@ Cooldown is a fork of CooldownToGo by mitchnull (credits in the Licenses folder)
 \
 >Nameplates:\
 Nameplate Power Bar, and advanced power bar above the target nameplate that includes spell costs and incoming resource gains\
-Wide Debuffs and Buffs on Nameplates\
-Glow on Expiring Debuffs on Nameplates\
+Wide Debuffs and Buffs on ElvUI Nameplates\
+Glow on Expiring Debuffs on ElvUI Nameplates\
 Class themed gradient Nameplate Texture, Border, and Glow\
 Show Friendly Nameplates inside instances with only names or hide them\
 Dynamically show enemy level when you are below max level, hiding when max level\
+Dynamically show the ElvUI Classbar only when targeting enemies\
 Dynamically show a glowing spellsteal on nameplates when the enemy has spellstealable buffs and you are playing a mage\
 \
 >Unitframes:
@@ -66,17 +74,20 @@ Dynamically show enemy player buffs in PvP, hide in PvE\
 \
 Skins:\
 Adds shadows to frames\
+Adds a Dark Souls or GTA based animation when the player dies\
+Add borders to frames, which can be customized in style and size/color\
+Expanded Stables, showing all hunter pets in one window. This module is a fork of Improved Stable Frame by Cybeloras. License information in the Licenses folder\
 Show a stealth overlay when in stealth\
 Wider Transmog Window for Retail\
 Reskinned Character Panel for Retail, featuring expanded character art, class icon and class colors\
-Reskinned Character Panel for TBC and Classic, featuring ilvl, class icon and class colors\
+Reskinned Character Panel for TBC and Classic, featuring ilvl, class icon, sockets, enchants and class colors\
 Add a Level Up Toast frame for TBC and Classic\
 Add item levels to Character Panel in TBC/Classic, which is a fork of Simple Item levels by Kemayo\
 Expanded Talent Trees for TBC/Classic\
-Add borders to frames, which can be customized in style and size/color\
-Expanded Stables, showing all hunter pets in one window. This module is a fork of Improved Stable Frame by Cybeloras. License information in the Licenses folder\
 Customize the castbar spark\
-Skin the Quest Log, adding class colors\
+Skin the Objective Quest Log, adding class colors\
+Skins the Quest Log, adding a button for a Wowhead link and in TBC/Classic makes it wider\
+Skin the Profession windows in TBC/Classic, making it wider\
 Change the default cursor size\
 \
 Miscelanous:\
@@ -94,6 +105,9 @@ Play racial or class based music when going AFK\
 Improved font replacing function, allowing all ElvUI texts to be changed with your custom font\
 Rogue Order Hall, which will automatically open the Rogue Class Hall Door. This module is a fork of Rogue Door Opener by Burzolog and licensed under GNU GPLv3\
 Instant Loot, yet another fast loot module to attempt to make looting items faster\
+Loot Wishlist, allowing items to be added to a wishlist, which can then display a toast when looted or filter looting only items in the wishlist\
+Loot Quality Filter, making instant loot only loot items above or equal to a selected quality\
+Improved Item Deletion window, showing item link, item texture and automatically typing DELETE\
 Automatically show the experience bar when below max level\
 Different Aura filter settings, allowing all debuffs to be shown if the user desires\
 Automatically set font outlines and movers based on game resolution\
