@@ -1,14 +1,4 @@
-### 2.8.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 2.8.2 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added test Spanish translation using DeepL automatic translation.\
-Added a popup if ElvUI is out date, since Eltruism is a plugin for ElvUI if its out of date a lot of problems can happen\
-Added [eltruism:levelskull] tag which displays the unit's level or a skull if the level difference is too high\
-Fixed Enchanting/TradeSkill window increasing the number of crafts when it shouldn't\
-Fixed the Enchant button when TSM was loaded\
-Fixed error with instant loot if the inventor was full\
-Fixed Death animation playing when in a party/raid in TBC/Classic\
-Fixed Nameplate Debuff Glow showing up on debuffs that had no duration\
-Fixed waypoint time to arrive not attaching to some quests\
-Improved quest detection for wowhead button in Retail\
-Updated Auras in Eltruism > Aura Filters\
-Updated locale files since many changes happened since they were originally made
+Added a dark bar to the Dark Souls death animation\
+Improved the addon profile importing for some addons\
