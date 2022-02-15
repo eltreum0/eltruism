@@ -48,8 +48,8 @@ moveOut:SetStartDelay(0.1)
 moveOut:SetOffset(-fontsize, -fontsize/4)
 
 --run
---darksouls:RegisterEvent("PLAYER_DEAD")
-darksouls:RegisterEvent("PLAYER_STARTED_MOVING")
+darksouls:RegisterEvent("PLAYER_DEAD")
+--darksouls:RegisterEvent("PLAYER_STARTED_MOVING")
 darksouls:SetScript("OnEvent", function()
 	local _, instanceType = IsInInstance()
 	local tbccheck = false
