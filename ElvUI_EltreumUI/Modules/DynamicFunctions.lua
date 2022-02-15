@@ -274,7 +274,7 @@ function ElvUI_EltreumUI:DarkChat()
 end
 
 --move mouseoverauras to top of tooltip
-if IsAddOnLoaded('ProjectAzilroka') then
+if IsAddOnLoaded('ProjectAzilroka') and not ProjectAzilrokaDB.profiles.Default.MouseoverAuras.Enable then  --because enable only shows up if its NOT enabled
 	hooksecurefunc(_G.MouseoverAuras, "Update", function()
 		if (not UnitExists('mouseover')) or GetMouseFocus() and (GetMouseFocus():IsForbidden()) then
 			_G.MouseoverAuras.Holder:Hide()
