@@ -19,8 +19,7 @@ local gtatext = CreateFrame("FRAME", nil, WorldFrame)
 gta.Text = gtatext:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 
 function ElvUI_EltreumUI.PlayerDeathAnimation()
-
-	--run
+	--Dark Souls
 	darksouls:RegisterEvent("PLAYER_DEAD")
 	--darksouls:RegisterEvent("PLAYER_STARTED_MOVING")
 	darksouls:SetScript("OnEvent", function()
@@ -94,14 +93,14 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 		end
 	end)
 
-	--run
+	--Grand Theft Auto (5/Online)
 	gta:RegisterEvent("PLAYER_DEAD")
 	--gta:RegisterEvent("PLAYER_STARTED_MOVING")
 	gta:SetScript("OnEvent", function()
 		local x, y = UIParent:GetSize()
 		gta:SetSize(x,y)
 		gtatex:SetTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\White8x8.tga")
-		gtatex:SetVertexColor(0.03, 0.06, 0)
+		gtatex:SetVertexColor(0.03, 0.03, 0)
 		gtatex:SetAlpha(0.40)
 		gtatex:SetAllPoints(gta)
 		gta:SetPoint("Center", UIParent)
@@ -111,8 +110,10 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 
 		gta.Text:SetJustifyH("CENTER")
 		gta.Text:SetJustifyV("MIDDLE")
-		gta.Text:SetTextColor(1, 0.1803921568627451, 0.196078431372549, 0.5)
+		gta.Text:SetTextColor(1, 0.1, 0.10, 1)
 		gta.Text:SetFont("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Fonts\\pricedown.TTF", 200, "OUTLINE")
+		gta.Text:SetShadowColor(0, 0, 0, 1)
+		gta.Text:SetShadowOffset(4, -4)
 		gta.Text:SetText("WASTED")
 		gta.Text:SetDrawLayer("OVERLAY")
 		gtatext:Hide()
@@ -138,11 +139,17 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 			Minimap:SetAlpha(0)
 			PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wasted.ogg" , "Master")
 			UIFrameFadeIn(gta, 1, 0, 1)
+
 			C_Timer.After(2.6, function()
 				gta.Text:SetPoint("CENTER", WorldFrame, "CENTER", math.random(-200,200), math.random(-200,200))
 				UIFrameFadeIn(gtatext, 0, 0, 1)
 			end)
-			C_Timer.After(5, function() UIFrameFadeOut(gta, 1, 1, 0) UIFrameFadeOut(gtatext, 1, 1, 0) end)
+
+			C_Timer.After(5, function()
+				UIFrameFadeOut(gta, 1, 1, 0)
+				UIFrameFadeOut(gtatext, 1, 1, 0)
+			end)
+
 			C_Timer.After(6, function()
 				UIParent:SetAlpha(1)
 				if E.Retail then
