@@ -596,6 +596,16 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					end
 				end
 			end
+
+			if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
+				if _G['ElvNP_TargetClassPowerRunes'] then
+					EltreumPowerBar:SetPoint("TOP", _G['ElvNP_TargetClassPowerRunes'], "TOP", 0, 7)
+				elseif _G['ElvNP_TargetClassPowerClassPower'] then
+					EltreumPowerBar:SetPoint("TOP", _G['ElvNP_TargetClassPowerClassPower'], "TOP", 0, 7)
+				elseif _G['ElvNP_TargetClassPowerStagger'] then
+					EltreumPowerBar:SetPoint("TOP", _G['ElvNP_TargetClassPowerStagger'], "TOP", 0, 7)
+				end
+			end
 			--update text position late so that it is in the correct position due to different clases/specs/forms
 			EltreumPowerBarText:SetPoint("Center", EltreumPowerBar, "Center", 0, 0)
 		else
