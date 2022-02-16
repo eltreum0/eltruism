@@ -16,18 +16,18 @@ hooksecurefunc(UF, 'Construct_Castbar', EltruismSpark)
 
 --color unitframes target texture during light mode
 local unitframeclass = {
-	['WARRIOR'] = "Eltreum-Class-Warrior",
-	['PALADIN'] = "Eltreum-Class-Paladin",
-	['HUNTER'] = "Eltreum-Class-Hunter",
-	['ROGUE'] = "Eltreum-Class-Rogue",
-	['PRIEST'] = "Eltreum-Class-Priest",
-	['DEATHKNIGHT'] = "Eltreum-Class-DeathKnight",
-	['SHAMAN'] = "Eltreum-Class-Shaman",
-	['MAGE'] = "Eltreum-Class-Mage",
-	['WARLOCK'] = "Eltreum-Class-Warlock",
-	['MONK'] = "Eltreum-Class-Monk",
-	['DRUID'] = "Eltreum-Class-Druid",
-	['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
+	['WARRIOR'] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga",
+	['PALADIN'] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PL.tga",
+	['HUNTER'] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga",
+	['ROGUE'] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RG.tga",
+	['PRIEST'] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PR.tga",
+	['DEATHKNIGHT'] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga",
+	['SHAMAN'] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SH.tga",
+	['MAGE'] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MG.tga",
+	['WARLOCK'] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WL.tga",
+	['MONK'] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MK.tga",
+	['DRUID'] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga",
+	['DEMONHUNTER'] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DH.tga",
 }
 
 --bar colors for party/raid/raid40
@@ -294,3 +294,10 @@ function ElvUI_EltreumUI:ChangePartyTexture()
 	end
 end
 hooksecurefunc(UF, 'Update_PartyFrames', ElvUI_EltreumUI.ChangePartyTexture)
+
+function ElvUI_EltreumUI:LeaderIndicatorSize(frame)
+	frame.LeaderIndicator:Size(E.db.ElvUI_EltreumUI.otherstuff.leadersize)
+	frame.AssistantIndicator:Size(E.db.ElvUI_EltreumUI.otherstuff.leadersize)
+	frame.MasterLooterIndicator:Size(E.db.ElvUI_EltreumUI.otherstuff.leadersize)
+end
+hooksecurefunc(UF, 'Construct_RaidRoleFrames', ElvUI_EltreumUI.LeaderIndicatorSize)
