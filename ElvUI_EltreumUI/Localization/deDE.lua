@@ -764,3 +764,6 @@ L["Import profiles for Gladius"] = "Importiere Profile für Gladius"
 L["Import profiles for Gladdy"] = "Importiere Profile für Gladdy"
 L["Both Gladdy and Gladius are not installed or enabled"] = "Gladdy und Gladius sind nicht Installiert oder Aktiviert"
 L["Open Eltruism Configuration Panel"] = true
+L['Enable for Error Frame'] = true
+L['Enable for Boss Emote Frame'] = true
+L['Enable for Zones, Mail and others'] = true

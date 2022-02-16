@@ -743,3 +743,6 @@ L["The alternative layout was made for the Eltruism DPS/Tank profile, please swi
 L["You can support the group with your class, if you select DPS/Tank then its recommended to click Alternative Frames after clicking DPS/Tank"] = "Puedes apoyar al grupo con tu clase si seleccionas DPS/Tanque entonces se recomienda hacer clic en Alternative Frames después de hacer clic en DPS/Tanque"
 L["Enable a GTA death animation"] = "Habilita una animación de muerte de GTA"
 L["Both Gladdy and Gladius are not installed or enabled"] = "Tanto Gladdy como Gladius no están instalados o habilitados"
+L['Enable for Error Frame'] = "Habilitar para cuadro de error"
+L['Enable for Boss Emote Frame'] = "Habilitar para cuadro de emote del jefe"
+L['Enable for Zones, Mail and others'] = "Habilitar para las Zonas, el Correo y otros"

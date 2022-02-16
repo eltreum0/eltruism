@@ -728,3 +728,6 @@ L["Automatically swap the Character Stats to your main ones"] = true
 L["Add Item Levels to the Character Panel"] = true
 L["Enable a GTA death animation"] = true
 L["Both Gladdy and Gladius are not installed or enabled"] = true
+L['Enable for Error Frame'] = true
+L['Enable for Boss Emote Frame'] = true
+L['Enable for Zones, Mail and others'] = true
