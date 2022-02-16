@@ -28,7 +28,7 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallOption4ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, "OUTLINE")
 			PluginInstallFrame.SubTitle:SetText(L["Layouts"])
 			PluginInstallFrame.Desc1:SetText(L["Please select the role for your character, which will create a new profile.\nThis process can take a few seconds"])
-			PluginInstallFrame.Desc2:SetText(L["Eltruism uses a 0.7 scale, but ElvUI can calculate the best scale for you using the Automatic Scale option"])
+			PluginInstallFrame.Desc2:SetText(L["Eltruism uses a 0.7 scale, but ElvUI can calculate the best scale for you using the Automatic Scale option"].." ("..E:PixelBestSize()..")")
 			--PluginInstallFrame.Desc2:SetText("Eltruism uses a 0.7 scale, but Automatic Scale can calculate one for you")
 			if E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' then
 				PluginInstallFrame.Desc3:SetText('|cff82B4ff'..L["You can support the group with your class, if you select DPS/Tank then its recommended to click Alternative Frames after clicking DPS/Tank"]..'|r')
@@ -175,7 +175,15 @@ ElvUI_EltreumUI.InstallerData = {
 			if E.Retail then
 				PluginInstallFrame.Desc3:SetText(L["Import Method Raid Tools profile with raid cooldowns and other settings"])
 			elseif E.TBC then
-				PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladdy (Gladius can be found in Eltruism settings)"])
+				if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
+					PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladdy"])
+				elseif IsAddOnLoaded("Gladius") and IsAddOnLoaded("Gladdy") then
+					PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladdy (Gladius can be found in Eltruism settings)"])
+				elseif not IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
+					PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladius"])
+				elseif not IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
+					PluginInstallFrame.Desc3:SetText(L["Gladdy and Gladius are not installed or enabled"])
+				end
 			end
 			PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
 			PluginInstallFrame.Option2:Enable()
@@ -194,8 +202,19 @@ ElvUI_EltreumUI.InstallerData = {
 			elseif E.TBC then
 				PluginInstallFrame.Option4:Enable()
 				PluginInstallFrame.Option4:Show()
-				PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
-				PluginInstallFrame.Option4:SetText('Gladdy')
+				if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
+					PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
+					PluginInstallFrame.Option4:SetText('Gladdy')
+				elseif IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
+					PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
+					PluginInstallFrame.Option4:SetText('Gladdy')
+				elseif not IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
+					PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladius() end)
+					PluginInstallFrame.Option4:SetText('Gladius')
+				elseif not IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
+					PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
+					PluginInstallFrame.Option4:SetText('Gladdy')
+				end
 			end
 			if (not IsAddOnLoaded("Questie")) and (E.Classic or E.TBC) then
 				PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
@@ -228,13 +247,9 @@ ElvUI_EltreumUI.InstallerData = {
 				PluginInstallFrame.Desc3:SetText(L["Method Raid Tools"]..L[" is not installed or enabled"])
 				PluginInstallFrame.Option4:Disable()
 			end
-			if (not IsAddOnLoaded("Gladdy")) and E.TBC then
+			if not IsAddOnLoaded("Gladdy") and E.TBC and not IsAddOnLoaded("Gladius") then
 				PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-				PluginInstallFrame.Desc3:SetText(L["Gladdy is not installed or enabled (You can find the Gladius profile in Eltruism Settings"])
-				PluginInstallFrame.Option4:Disable()
-			end
-			if (IsAddOnLoaded("Gladius")) and E.TBC then
-				PluginInstallFrame.Desc3:SetText(L["Gladius profile can be found in Eltruism > Addons, please check it there"])
+				PluginInstallFrame.Desc3:SetText(L["Both Gladdy and Gladius are not installed or enabled"])
 				PluginInstallFrame.Option4:Disable()
 			end
 			if E.Retail and ((not IsAddOnLoaded("MRT")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("GladiusEx"))) then
@@ -243,7 +258,7 @@ ElvUI_EltreumUI.InstallerData = {
 			if E.Classic and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs"))) then
 				PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
-			if E.TBC and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("Gladdy"))) then
+			if E.TBC and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("Gladdy")) and (not IsAddOnLoaded("Gladius"))) then
 				PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
 		end,
