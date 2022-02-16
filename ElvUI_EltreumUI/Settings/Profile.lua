@@ -385,6 +385,11 @@ P.ElvUI_EltreumUI = {
 		sound = false,
 	},
 
+	blizzframes = {
+		errorframe = true,
+		raidbossframe = true,
+	},
+
 	otherstuff ={
 		worldtextscale = 1,
 		arenabuffs = false,
