@@ -5,3 +5,4 @@ Added a GTA death animation\
 Updated the Pet castbar to not be transparent since the text was overlapping with the Pet unitframe\
 Updated the Weakauras tutorial image since the previous one was for single Weakauras, which was causing misunderstandings\
 Improved the addon profile importing for some addons\
+Improved the install logic detection of Gladdy and Gladius for TBC\
