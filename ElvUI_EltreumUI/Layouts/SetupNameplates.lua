@@ -65,42 +65,41 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["colors"]["selection"][13]["r"] = 0.16862745098039
 			E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Kimberley"
 			E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
-			if E.Retail then
-				--remove the by type border colors
-				E.db["nameplates"]["colors"]["auraByType"] = false
-				--boss mods
-				E.db["nameplates"]["bossMods"]["enable"] = true
-				E.db["nameplates"]["bossMods"]["anchorPoint"] = 'BOTTOM'
-				E.db["nameplates"]["bossMods"]["growthX"] = 'RIGHT'
-				E.db["nameplates"]["bossMods"]["growthY"] = 'DOWN'
-				E.db["nameplates"]["bossMods"]["size"] = 34
-				E.db["nameplates"]["bossMods"]["spacing"] = 1
-				E.db["nameplates"]["bossMods"]["yOffset"] = -10
-				E.db["nameplates"]["bossMods"]["xOffset"] = 0
-				E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["b"] = 1
-				E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["g"] = 1
-				E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["r"] = 0
-				E.db["nameplates"]["colors"]["classResources"]["WARLOCK"]["r"] = 0.58039215686275
-				E.db["nameplates"]["colors"]["power"]["PAIN"]["b"] = 1
-				E.db["nameplates"]["colors"]["power"]["PAIN"]["g"] = 1
-				E.db["nameplates"]["colors"]["power"]["PAIN"]["r"] = 1
-				E.db["nameplates"]["colors"]["power"]["RAGE"]["b"] = 0.32156862745098
-				E.db["nameplates"]["colors"]["power"]["RAGE"]["g"] = 0.32156862745098
-				E.db["nameplates"]["colors"]["power"]["RAGE"]["r"] = 1
-				E.db["nameplates"]["colors"]["power"]["FOCUS"]["b"] = 0.38039215686275
-				E.db["nameplates"]["colors"]["power"]["FOCUS"]["g"] = 0.6078431372549
-				E.db["nameplates"]["colors"]["power"]["FOCUS"]["r"] = 1
-				E.db["nameplates"]["colors"]["power"]["FURY"]["b"] = 0.17254901960784
-				E.db["nameplates"]["colors"]["power"]["FURY"]["g"] = 0.55686274509804
-				E.db["nameplates"]["colors"]["power"]["FURY"]["r"] = 1
-				E.db["nameplates"]["colors"]["power"]["INSANITY"]["b"] = 1
-				E.db["nameplates"]["colors"]["power"]["INSANITY"]["g"] = 0.20392156862745
-				E.db["nameplates"]["colors"]["power"]["INSANITY"]["r"] = 0.79607843137255
-				E.db["nameplates"]["colors"]["power"]["LUNAR_POWER"]["b"] = 0.13333333333333
-				E.db["nameplates"]["colors"]["power"]["LUNAR_POWER"]["g"] = 0.95294117647059
-				E.db["nameplates"]["colors"]["power"]["LUNAR_POWER"]["r"] = 1
-				E.db["nameplates"]["colors"]["power"]["MAELSTROM"]["g"] = 0.50196078431373
-			end
+
+			--remove the by type border colors
+			E.db["nameplates"]["colors"]["auraByType"] = false
+			--boss mods
+			E.db["nameplates"]["bossMods"]["enable"] = true
+			E.db["nameplates"]["bossMods"]["anchorPoint"] = 'BOTTOM'
+			E.db["nameplates"]["bossMods"]["growthX"] = 'RIGHT'
+			E.db["nameplates"]["bossMods"]["growthY"] = 'DOWN'
+			E.db["nameplates"]["bossMods"]["size"] = 34
+			E.db["nameplates"]["bossMods"]["spacing"] = 1
+			E.db["nameplates"]["bossMods"]["yOffset"] = -10
+			E.db["nameplates"]["bossMods"]["xOffset"] = 0
+			E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["b"] = 1
+			E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["g"] = 1
+			E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["r"] = 0
+			E.db["nameplates"]["colors"]["classResources"]["WARLOCK"]["r"] = 0.58039215686275
+			E.db["nameplates"]["colors"]["power"]["PAIN"]["b"] = 1
+			E.db["nameplates"]["colors"]["power"]["PAIN"]["g"] = 1
+			E.db["nameplates"]["colors"]["power"]["PAIN"]["r"] = 1
+			E.db["nameplates"]["colors"]["power"]["RAGE"]["b"] = 0.32156862745098
+			E.db["nameplates"]["colors"]["power"]["RAGE"]["g"] = 0.32156862745098
+			E.db["nameplates"]["colors"]["power"]["RAGE"]["r"] = 1
+			E.db["nameplates"]["colors"]["power"]["FOCUS"]["b"] = 0.38039215686275
+			E.db["nameplates"]["colors"]["power"]["FOCUS"]["g"] = 0.6078431372549
+			E.db["nameplates"]["colors"]["power"]["FOCUS"]["r"] = 1
+			E.db["nameplates"]["colors"]["power"]["FURY"]["b"] = 0.17254901960784
+			E.db["nameplates"]["colors"]["power"]["FURY"]["g"] = 0.55686274509804
+			E.db["nameplates"]["colors"]["power"]["FURY"]["r"] = 1
+			E.db["nameplates"]["colors"]["power"]["INSANITY"]["b"] = 1
+			E.db["nameplates"]["colors"]["power"]["INSANITY"]["g"] = 0.20392156862745
+			E.db["nameplates"]["colors"]["power"]["INSANITY"]["r"] = 0.79607843137255
+			E.db["nameplates"]["colors"]["power"]["LUNAR_POWER"]["b"] = 0.13333333333333
+			E.db["nameplates"]["colors"]["power"]["LUNAR_POWER"]["g"] = 0.95294117647059
+			E.db["nameplates"]["colors"]["power"]["LUNAR_POWER"]["r"] = 1
+			E.db["nameplates"]["colors"]["power"]["MAELSTROM"]["g"] = 0.50196078431373
 
 			--spellsteal style filter
 			if E.Retail or E.TBC then
@@ -128,56 +127,35 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["plateSize"]["friendlyHeight"] = 10
 			E.db["nameplates"]["plateSize"]["friendlyWidth"] = 140
 			E.db["nameplates"]["statusbar"] = "Eltreum-Blank"
-
 			E.db["nameplates"]["overlapH"] = 0.8
 			E.db["nameplates"]["overlapV"] = 1.1
 
-			if E.Retail then
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["anchorPoint"] = "TOP"
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["attachTo"] = "DEBUFFS"
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFontSize"] = 10
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countXOffset"] = 2
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countYOffset"] = -3
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["durationPosition"] = "TOP"
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["growthX"] = "LEFT"
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["height"] = 18
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["keepSizeRatio"] = false
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["numAuras"] = 6
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["size"] = 25
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["spacing"] = 2
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["anchorPoint"] = "TOP"
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countFontSize"] = 10
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countXOffset"] = 2
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countYOffset"] = -3
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["durationPosition"] = "TOP"
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["height"] = 18
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["keepSizeRatio"] = false
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["numAuras"] = 6
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["size"] = 25
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["spacing"] = 2
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
-			elseif E.TBC or E.Classic then
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["anchorPoint"] = "TOPRIGHT"
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFontSize"] = 10
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["durationPosition"] = "TOPLEFT"
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["growthX"] = "LEFT"
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["numAuras"] = 6
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["size"] = 25
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["spacing"] = 0
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 43
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countFontSize"] = 10
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["durationPosition"] = "TOPLEFT"
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["numAuras"] = 6
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["size"] = 25
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["spacing"] = 0
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
-			end
-
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["anchorPoint"] = "TOP"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["attachTo"] = "DEBUFFS"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Kimberley"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFontSize"] = 10
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countXOffset"] = 2
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countYOffset"] = -3
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["durationPosition"] = "TOP"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["growthX"] = "LEFT"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["height"] = 18
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["keepSizeRatio"] = false
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["numAuras"] = 6
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["size"] = 25
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["spacing"] = 2
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["anchorPoint"] = "TOP"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countFont"] = "Kimberley"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countFontSize"] = 10
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countXOffset"] = 2
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countYOffset"] = -3
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["durationPosition"] = "TOP"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["height"] = 18
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["keepSizeRatio"] = false
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["numAuras"] = 6
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["size"] = 25
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["spacing"] = 2
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["castTimeFormat"] = "REMAINING"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["channelTimeFormat"] = "REMAINING"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["font"] = "Kimberley"
@@ -223,13 +201,11 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "Kimberley"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["fontOutline"] = "NONE"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["fontSize"] = 10
-			if E.Retail then
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Kimberley"
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["fontSize"] = 15
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["size"] = 25
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["textPosition"] = "TOPRIGHT"
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["xOffset"] = 4
-			end
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Kimberley"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["fontSize"] = 15
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["size"] = 25
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["textPosition"] = "TOPRIGHT"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["xOffset"] = 4
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["raidTargetIndicator"]["size"] = 32
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["raidTargetIndicator"]["xOffset"] = -26
 
@@ -249,51 +225,31 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["format"] = "[threat:percent]"
 			end
 
-			if E.Retail then
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["anchorPoint"] = "TOP"
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["attachTo"] = "DEBUFFS"
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFontSize"] = 10
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countXOffset"] = 2
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countYOffset"] = -3
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["durationPosition"] = "TOP"
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["growthX"] = "LEFT"
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["height"] = 18
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["keepSizeRatio"] = false
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["numAuras"] = 6
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["size"] = 25
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["anchorPoint"] = "TOP"
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countFontSize"] = 10
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countXOffset"] = 2
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countYOffset"] = -3
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["durationPosition"] = "TOP"
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["height"] = 18
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["keepSizeRatio"] = false
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["numAuras"] = 6
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["size"] = 25
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
-			elseif E.TBC or E.Classic then
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["anchorPoint"] = "TOPRIGHT"
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFontSize"] = 10
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["durationPosition"] = "TOPLEFT"
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["growthX"] = "LEFT"
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["numAuras"] = 6
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["size"] = 25
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["spacing"] = 0
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 43
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countFontSize"] = 10
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["durationPosition"] = "TOPLEFT"
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["numAuras"] = 6
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["size"] = 25
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["spacing"] = 0
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
-			end
-
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["anchorPoint"] = "TOP"
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["attachTo"] = "DEBUFFS"
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFontSize"] = 10
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countXOffset"] = 2
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countYOffset"] = -3
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["durationPosition"] = "TOP"
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["growthX"] = "LEFT"
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["height"] = 18
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["keepSizeRatio"] = false
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["numAuras"] = 6
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["size"] = 25
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["anchorPoint"] = "TOP"
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countFont"] = "Kimberley"
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countFontSize"] = 10
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countXOffset"] = 2
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countYOffset"] = -3
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["durationPosition"] = "TOP"
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["height"] = 18
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["keepSizeRatio"] = false
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["numAuras"] = 6
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["size"] = 25
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["castTimeFormat"] = "REMAINING"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["channelTimeFormat"] = "REMAINING"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["font"] = "Kimberley"
@@ -326,14 +282,6 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["yOffset"] = 15
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["power"]["text"]["font"] = "Kimberley"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["power"]["text"]["fontOutline"] = "NONE"
-			--[[if E.Retail then
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["pvpclassificationindicator"]["position"] = "CENTER"
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["pvpclassificationindicator"]["size"] = 100
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["pvpclassificationindicator"]["yOffset"] = 100
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["pvpindicator"]["position"] = "CENTER"
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["pvpindicator"]["size"] = 24
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["pvpindicator"]["yOffset"] = 32
-			end]]--
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["raidTargetIndicator"]["size"] = 32
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["raidTargetIndicator"]["xOffset"] = -26
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["font"] = "Kimberley"
@@ -341,42 +289,38 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["position"] = "CENTER"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["yOffset"] = 0
+
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["enable"] = false
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["font"] = "Kimberley"
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["timeToHold"] = 0.5
-
-			if E.Retail then
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["anchorPoint"] = "TOP"
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["attachTo"] = "DEBUFFS"
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countFontSize"] = 10
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countXOffset"] = 2
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countYOffset"] = -3
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["durationPosition"] = "TOP"
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["enable"] = false
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["growthX"] = "LEFT"
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["height"] = 18
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["keepSizeRatio"] = false
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["numAuras"] = 6
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["size"] = 25
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["anchorPoint"] = "TOP"
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["countFontSize"] = 10
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["countXOffset"] = 2
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["countYOffset"] = -3
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["durationPosition"] = "TOP"
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["enable"] = false
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["height"] = 18
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["keepSizeRatio"] = false
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["numAuras"] = 6
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["size"] = 25
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["yOffset"] = 38
-			elseif E.TBC or E.Classic then
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["enable"] = false
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["enable"] = false
-			end
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["enable"] = true
+			--E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["enable"] = false
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["anchorPoint"] = "TOP"
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["attachTo"] = "DEBUFFS"
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countFont"] = "Kimberley"
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countFontSize"] = 10
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countXOffset"] = 2
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countYOffset"] = -3
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["durationPosition"] = "TOP"
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["growthX"] = "LEFT"
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["height"] = 18
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["keepSizeRatio"] = false
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["numAuras"] = 6
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,TurtleBuffs,CastByNPC"
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["size"] = 25
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["yOffset"] = 8
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["anchorPoint"] = "TOP"
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["countFont"] = "Kimberley"
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["countFontSize"] = 10
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["countXOffset"] = 2
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["countYOffset"] = -3
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["durationPosition"] = "TOP"
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["enable"] = false
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["height"] = 18
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["keepSizeRatio"] = false
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["numAuras"] = 6
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["size"] = 25
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["yOffset"] = 38
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["health"]["enable"] = false
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["health"]["text"]["enable"] = false
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["health"]["text"]["font"] = "Kimberley"
@@ -388,11 +332,9 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["yOffset"] = 7
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["nameOnly"] = false
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "Kimberley"
-			if E.Retail then
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["xOffset"] = 0
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["yOffset"] = 7
-				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["size"] = 22
-			end
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["xOffset"] = 0
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["yOffset"] = 7
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["size"] = 22
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["position"] = "CENTER"
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["size"] = 64
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["xOffset"] = 0
@@ -402,44 +344,32 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["format"] = "[namecolor][npctitle:brackets]"
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["position"] = "CENTER"
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["yOffset"] = -5
+
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["enable"] = false
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["font"] = "Kimberley"
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["fontOutline"] = "NONE"
-			if E.Retail then
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["anchorPoint"] = "TOP"
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["attachTo"] = "DEBUFFS"
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFontSize"] = 10
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countXOffset"] = 2
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countYOffset"] = -3
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["enable"] = false
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["height"] = 18
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["keepSizeRatio"] = false
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["numAuras"] = 6
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["size"] = 25
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["anchorPoint"] = "TOP"
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countFontSize"] = 10
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countXOffset"] = 2
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countYOffset"] = -3
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["enable"] = false
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["height"] = 18
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["keepSizeRatio"] = false
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["numAuras"] = 6
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["size"] = 25
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["yOffset"] = 38
-			elseif E.TBC or E.Classic then
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFontOutline"] = "NONE"
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["enable"] = false
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countFontOutline"] = "NONE"
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countFontSize"] = 10
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["enable"] = false
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["numAuras"] = 8
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["size"] = 25
-				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["spacing"] = 0
-			end
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["anchorPoint"] = "TOP"
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["attachTo"] = "DEBUFFS"
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFontSize"] = 10
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countXOffset"] = 2
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countYOffset"] = -3
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["enable"] = false
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["height"] = 18
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["keepSizeRatio"] = false
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["numAuras"] = 6
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["size"] = 25
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["anchorPoint"] = "TOP"
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countFont"] = "Kimberley"
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countFontSize"] = 10
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countXOffset"] = 2
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countYOffset"] = -3
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["enable"] = false
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["height"] = 18
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["keepSizeRatio"] = false
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["numAuras"] = 6
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["size"] = 25
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["yOffset"] = 38
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["health"]["enable"] = false
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["health"]["text"]["enable"] = false
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["health"]["text"]["font"] = "Kimberley"
@@ -466,6 +396,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["position"] = "CENTER"
 			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["yOffset"] = 0
+
 			E.db["nameplates"]["units"]["PLAYER"]["castbar"]["castTimeFormat"] = "REMAINING"
 			E.db["nameplates"]["units"]["PLAYER"]["castbar"]["channelTimeFormat"] = "REMAINING"
 			E.db["nameplates"]["units"]["PLAYER"]["castbar"]["font"] = "Kimberley"
@@ -483,41 +414,24 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["PLAYER"]["classpower"]["height"] = 8
 			E.db["nameplates"]["units"]["PLAYER"]["classpower"]["width"] = 150
 			E.db["nameplates"]["units"]["PLAYER"]["classpower"]["yOffset"] = 15
-			if E.Retail then
-				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["anchorPoint"] = "TOPRIGHT"
-				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFontSize"] = 10
-				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["durationPosition"] = "TOPLEFT"
-				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["growthX"] = "LEFT"
-				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["numAuras"] = 6
-				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["priority"] = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs"
-				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["size"] = 25
-				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["spacing"] = 0
-				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["yOffset"] = 38
-				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["countFontSize"] = 10
-				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["durationPosition"] = "TOPLEFT"
-				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["numAuras"] = 6
-				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
-				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["size"] = 25
-				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["spacing"] = 0
-				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["yOffset"] = 17
-			elseif E.TBC or E.Classic then
-				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFontOutline"] = "NONE"
-				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["numAuras"] = 8
-				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["size"] = 17
-				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["spacing"] = 2
-				E.db["nameplates"]["units"]["PLAYER"]["buffs"]["yOffset"] = 11
-				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["anchorPoint"] = "TOPLEFT"
-				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["countFont"] = "Kimberley"
-				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["countFontOutline"] = "NONE"
-				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["growthX"] = "RIGHT"
-				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["numAuras"] = 8
-				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["size"] = 17
-				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["spacing"] = 2
-				E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["yOffset"] = 28
-			end
+			E.db["nameplates"]["units"]["PLAYER"]["buffs"]["anchorPoint"] = "TOPRIGHT"
+			E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFont"] = "Kimberley"
+			E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFontSize"] = 10
+			E.db["nameplates"]["units"]["PLAYER"]["buffs"]["durationPosition"] = "TOPLEFT"
+			E.db["nameplates"]["units"]["PLAYER"]["buffs"]["growthX"] = "LEFT"
+			E.db["nameplates"]["units"]["PLAYER"]["buffs"]["numAuras"] = 6
+			E.db["nameplates"]["units"]["PLAYER"]["buffs"]["priority"] = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs"
+			E.db["nameplates"]["units"]["PLAYER"]["buffs"]["size"] = 25
+			E.db["nameplates"]["units"]["PLAYER"]["buffs"]["spacing"] = 0
+			E.db["nameplates"]["units"]["PLAYER"]["buffs"]["yOffset"] = 38
+			E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["countFont"] = "Kimberley"
+			E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["countFontSize"] = 10
+			E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["durationPosition"] = "TOPLEFT"
+			E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["numAuras"] = 6
+			E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
+			E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["size"] = 25
+			E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["spacing"] = 0
+			E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["yOffset"] = 17
 			E.db["nameplates"]["units"]["PLAYER"]["health"]["height"] = 20
 			E.db["nameplates"]["units"]["PLAYER"]["health"]["text"]["font"] = "Kimberley"
 			E.db["nameplates"]["units"]["PLAYER"]["health"]["text"]["fontOutline"] = "THICKOUTLINE"
@@ -562,6 +476,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["PLAYER"]["visibility"]["hideDelay"] = 0
 			E.db["nameplates"]["units"]["PLAYER"]["visibility"]["showInCombat"] = false
 			E.db["nameplates"]["units"]["PLAYER"]["visibility"]["showWithTarget"] = true
+
 			E.db["nameplates"]["units"]["TARGET"]["arrow"] = "Arrow21"
 			E.db["nameplates"]["units"]["TARGET"]["arrowScale"] = 0.4
 			E.db["nameplates"]["units"]["TARGET"]["arrowSpacing"] = 0
@@ -570,7 +485,6 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["TARGET"]["classpower"]["sortDirection"] = "asc"
 			E.db["nameplates"]["units"]["TARGET"]["classpower"]["width"] = 150
 			E.db["nameplates"]["units"]["TARGET"]["classpower"]["yOffset"] = 26
-
 			--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style1" --border glow
 			E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style2" --background glow
 			--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style8" --background glow + side arrow
