@@ -1,5 +1,4 @@
-﻿-- Chinese(Traditional) localization
-local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "zhTW")
+﻿local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "zhTW")
 if not L then return end
 -- Core
 L["4K resolution detected, setting fonts to default mode."] = true
@@ -677,8 +676,9 @@ L["Import Questie profile, which uses the DBM radar"] = true
 L["Questie"] = true
 L["Import DBM or BigWigs profiles for dungeons and raids. (Uses DBM English Calanon and Bigwigs Voice)"] = true
 L["Import Method Raid Tools profile with raid cooldowns and other settings"] = true
-L["Import profiles for Gladdy (Gladius can be found in Eltruism settings)"] = true
-L["Gladdy is not installed or enabled (You can find the Gladius profile in Eltruism Settings"] = true
+L["Import profiles for Gladdy"] = true
+L["Import profiles for Gladius"] = true
+L["Gladdy is not installed or enabled (You can find the Gladius profile in Eltruism Settings)"] = true
 L["Gladius profile can be found in Eltruism > Addons, please check it there"] = true
 L["You have none of these addons installed or enabled"] = true
 L["QOL Addons"] = true
@@ -725,3 +725,5 @@ L["Ilvl Font Outline"] = true
 L["Choose the Ilvl font outline"] = true
 L["Automatically swap the Character Stats to your main ones"] = true
 L["Add Item Levels to the Character Panel"] = true
+L["Enable a GTA death animation"] = true
+L["Both Gladdy and Gladius are not installed or enabled"] = true
