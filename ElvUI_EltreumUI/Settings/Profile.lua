@@ -406,6 +406,7 @@ P.ElvUI_EltreumUI = {
 		delete = false,
 		playerdeath = false,
 		playerdeathgta = false,
+		leadersize = 12,
 		--floatingrep = false,
 	},
 }
