@@ -838,7 +838,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Make more texts use ElvUI font settings"],
 								width = 'full',
 							},
-							zoneenable = {
+							errorenable = {
 								order = 3,
 								name = L['Enable for Error Frame'],
 								type = "toggle",
@@ -847,7 +847,7 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.zones end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.zones = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							zoneenable = {
+							bossenable = {
 								order = 4,
 								name = L['Enable for Boss Emote Frame'],
 								type = "toggle",
@@ -865,17 +865,20 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.zones end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.zones = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							header12 = {
+							hideerrorframe = {
 								order = 35,
-								type = "description",
-								name = "",
+								name = L['Hide Error Frame'],
+								type = "toggle",
+								desc = L['Hide Error Frame'],
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								get = function() return E.db.ElvUI_EltreumUI.blizzframes.hideerrorframe end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.blizzframes.hideerrorframe = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							questskins = {
 								order = 36,
 								type = "description",
 								name = L["Skin Objective Frame (when Shadow and Light and Windtools are not loaded)"],
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								width = 'full',
 							},
 							showwowhead = {

@@ -387,6 +387,7 @@ P.ElvUI_EltreumUI = {
 
 	blizzframes = {
 		errorframe = true,
+		hideerrorframe = false,
 		raidbossframe = true,
 	},
 
