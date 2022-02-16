@@ -71,7 +71,14 @@ function ElvUI_EltreumUI:Anchors()
 
 	--mover for UI errors frame
 	E:CreateMover(_G.UIErrorsFrame, "MoverUIERRORS", "UI Error Frame", nil, nil, nil, "ALL,SOLO")
-	_G.UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+2, "THINOUTLINE")
+	if E.db.ElvUI_EltreumUI.blizzframes.errorframe then
+		_G.UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+2, "THINOUTLINE")
+	end
+
+	E:CreateMover(_G.RaidBossEmoteFrame, "MoverRaidBossEmoteFrame", "Raid/Boss Emote Frame", nil, nil, nil, "ALL,SOLO")
+	if E.db.ElvUI_EltreumUI.blizzframes.raidbossframe then
+		_G.UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+2, "THINOUTLINE")
+	end
 end
 
 -- UI Scale
