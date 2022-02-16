@@ -493,8 +493,11 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["colors"]["customcastbarbackdrop"] = true
 		E.db["unitframe"]["colors"]["customclasspowerbackdrop"] = true
 		E.db["unitframe"]["colors"]["custompowerbackdrop"] = true
+		E.db["unitframe"]["colors"]["frameGlow"]["mainGlow"]["class"] = true
+		E.db["unitframe"]["colors"]["frameGlow"]["mainGlow"]["enable"] = true
 		E.db["unitframe"]["colors"]["frameGlow"]["mouseoverGlow"]["class"] = true
 		E.db["unitframe"]["colors"]["frameGlow"]["mouseoverGlow"]["color"]["a"] = 1
+		E.db["unitframe"]["colors"]["frameGlow"]["mouseoverGlow"]["enable"] = false
 		E.db["unitframe"]["colors"]["healPrediction"]["maxOverflow"] = 0.01
 		E.db["unitframe"]["colors"]["healPrediction"]["healAbsorbs"]["a"] = 0.35
 		E.db["unitframe"]["colors"]["healPrediction"]["others"]["a"] = 0.35

@@ -391,6 +391,11 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["colors"]["customaurabarbackdrop"] = true
 		E.db["unitframe"]["colors"]["customcastbarbackdrop"] = true
 		E.db["unitframe"]["colors"]["custompowerbackdrop"] = true
+		E.db["unitframe"]["colors"]["frameGlow"]["mainGlow"]["class"] = true
+		E.db["unitframe"]["colors"]["frameGlow"]["mainGlow"]["enable"] = true
+		E.db["unitframe"]["colors"]["frameGlow"]["mouseoverGlow"]["class"] = true
+		E.db["unitframe"]["colors"]["frameGlow"]["mouseoverGlow"]["color"]["a"] = 1
+		E.db["unitframe"]["colors"]["frameGlow"]["mouseoverGlow"]["enable"] = false
 		E.db["unitframe"]["colors"]["health"]["b"] = 0
 		E.db["unitframe"]["colors"]["health"]["g"] = 0
 		E.db["unitframe"]["colors"]["health"]["r"] = 0
