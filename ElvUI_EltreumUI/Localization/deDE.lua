@@ -767,3 +767,4 @@ L["Open Eltruism Configuration Panel"] = true
 L['Enable for Error Frame'] = true
 L['Enable for Boss Emote Frame'] = true
 L['Enable for Zones, Mail and others'] = true
+L["Only loads when Questie is not enabled"] = true

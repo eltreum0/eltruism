@@ -746,3 +746,4 @@ L["Both Gladdy and Gladius are not installed or enabled"] = "Tanto Gladdy como G
 L['Enable for Error Frame'] = "Habilitar para cuadro de error"
 L['Enable for Boss Emote Frame'] = "Habilitar para cuadro de emote del jefe"
 L['Enable for Zones, Mail and others'] = "Habilitar para las Zonas, el Correo y otros"
+L["Only loads when Questie is not enabled"] = true
