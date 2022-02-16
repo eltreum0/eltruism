@@ -549,7 +549,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["speed"] = 7
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["scale"] = 1.2
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["enable"] = true
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["texture"] = "Asphyxia-Norm"
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["texture"] = "Eltreum-Stripes"
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["alpha"] = 100
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["casting"]["interruptible"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["inCombat"] = true
@@ -566,7 +566,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["enable"] = false
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["speed"] = 7
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["scale"] = 1.25
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["texture"]["texture"] = "Eltreum-Stripes"
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["texture"]["texture"] = "Asphyxia-Norm"
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["healthThreshold"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["isTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["priority"] = 1
