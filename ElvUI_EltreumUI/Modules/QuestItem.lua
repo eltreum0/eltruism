@@ -100,7 +100,7 @@ function ElvUI_EltreumUI:QuestItem()
 			}
 			local blocklist = {
 				[176809] = true, -- junk item that for some reason showed up
-				[140212] = true,
+				--[140212] = true, --test item
 			}
 
 			--------------------------------------------------------------------------------------------------------
