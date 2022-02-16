@@ -293,7 +293,7 @@ function ElvUI_EltreumUI:DatabaseConversions()
 							E.db.ElvUI_EltreumUI.tbctalents.enable = true
 							data.ElvUI_EltreumUI.tbctalents.enable = true
 							E:CopyTable(E.db.ElvUI_EltreumUI.tbctalents.enable, data.ElvUI_EltreumUI.tbctalents.enable)
-						elseif data.E.TBCtalents.enable == false then
+						elseif data.ElvUI_EltreumUI.tbctalents == false then
 							E:CopyTable(E.db.ElvUI_EltreumUI.tbctalents.enable, data.ElvUI_EltreumUI.tbctalents.enable)
 						end
 					elseif data.ElvUI_EltreumUI.tbctalents == nil then
