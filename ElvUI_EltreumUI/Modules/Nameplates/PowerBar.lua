@@ -598,11 +598,12 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			end
 
 			if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
-				if _G['ElvNP_TargetClassPowerRunes'] then
+				if _G['ElvNP_TargetClassPowerRunes'] and _G['ElvNP_TargetClassPowerRunes']:IsShown() then
 					EltreumPowerBar:SetPoint("TOP", _G['ElvNP_TargetClassPowerRunes'], "TOP", 0, 7)
-				elseif _G['ElvNP_TargetClassPowerClassPower'] then
+				elseif _G['ElvNP_TargetClassPowerClassPower'] and _G['ElvNP_TargetClassPowerClassPower']:IsShown() then
+					--print("using classpower anchor instead")
 					EltreumPowerBar:SetPoint("TOP", _G['ElvNP_TargetClassPowerClassPower'], "TOP", 0, 7)
-				elseif _G['ElvNP_TargetClassPowerStagger'] then
+				elseif _G['ElvNP_TargetClassPowerStagger'] and _G['ElvNP_TargetClassPowerStagger']:IsShown() then
 					EltreumPowerBar:SetPoint("TOP", _G['ElvNP_TargetClassPowerStagger'], "TOP", 0, 7)
 				end
 			end
