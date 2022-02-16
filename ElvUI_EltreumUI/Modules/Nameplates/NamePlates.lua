@@ -59,12 +59,12 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 							end
 						end)
 					end
-					if E.Classic or E.TBC then
+					--[[if E.Classic or E.TBC then
 						if E.db.ElvUI_EltreumUI.widenameplate.enable then
 							button:SetWidth(25)
 							button:SetHeight(18)
 						end
-					end
+					end]]
 					button.count:SetParent(button.cd)
 					if E.TBC or E.Classic then
 						if E.db.ElvUI_EltreumUI.widenameplate.enable then
