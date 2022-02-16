@@ -98,6 +98,10 @@ function ElvUI_EltreumUI:QuestItem()
 				60501, 	-- Stormstone, Deepholm Quest
 				--45067,	-- Egg Basket -- Az: offhand item, but I wanted it on my bar for a hotkey
 			}
+			local blocklist = {
+				[176809] = true, -- junk item that for some reason showed up
+				[140212] = true,
+			}
 
 			--------------------------------------------------------------------------------------------------------
 			--                                                Main                                                --
@@ -290,24 +294,26 @@ function ElvUI_EltreumUI:QuestItem()
 						local link = GetContainerItemLink(bag,slot)
 						local itemId = link and tonumber(link:match(ITEMID_PATTERN))
 						if (link) and (itemId) then
-							--itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = GetItemInfo(item)
-							if E.Retail then
-								--local isQuestItem, questId, isActive = GetContainerItemQuestInfo(bag,slot)
-								local isQuestItem, _, _ = GetContainerItemQuestInfo(bag,slot)
-								if isQuestItem then
-									--print(link)
-								--if (questId and not isActive) or (cfg.userList[itemId]) or (CheckItemTooltip(link,itemId)) then
-									--icon, itemCount, locked, quality, readable, lootable, itemLink, isFiltered, noValue, itemID, isBound = GetContainerItemInfo(bagID, slot)
-									local _, count = GetContainerItemInfo(bag,slot)
-									AddButton(index,bag,slot,link,itemId,count)
-									index = (index + 1)
-								end
-							elseif E.TBC or E.Classic then
-								local _, _, _, _, _, itemType, _ = GetItemInfo(itemId)
-								if itemType == "Quest" then
-									local _, count = GetContainerItemInfo(bag,slot)
-									AddButton(index,bag,slot,link,itemId,count)
-									index = (index + 1)
+							if not blocklist[itemId] then
+								--itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = GetItemInfo(item)
+								if E.Retail then
+									--local isQuestItem, questId, isActive = GetContainerItemQuestInfo(bag,slot)
+									local isQuestItem, _, _ = GetContainerItemQuestInfo(bag,slot)
+									if isQuestItem then
+										--print(link)
+									--if (questId and not isActive) or (cfg.userList[itemId]) or (CheckItemTooltip(link,itemId)) then
+										--icon, itemCount, locked, quality, readable, lootable, itemLink, isFiltered, noValue, itemID, isBound = GetContainerItemInfo(bagID, slot)
+										local _, count = GetContainerItemInfo(bag,slot)
+										AddButton(index,bag,slot,link,itemId,count)
+										index = (index + 1)
+									end
+								elseif E.TBC or E.Classic then
+									local _, _, _, _, _, itemType, _ = GetItemInfo(itemId)
+									if itemType == "Quest" then
+										local _, count = GetContainerItemInfo(bag,slot)
+										AddButton(index,bag,slot,link,itemId,count)
+										index = (index + 1)
+									end
 								end
 							end
 						end
