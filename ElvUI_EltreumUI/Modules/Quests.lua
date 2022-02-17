@@ -200,8 +200,12 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 					--print("GOSSIP_SHOW")
 					if E.Retail then
 						for i, k in next, C_GossipInfo.GetAvailableQuests() do
-							--print("iterate and select quest")
+							--print("iterate and select quest to get")
 							C_GossipInfo.SelectAvailableQuest(i)
+						end
+						for i, k in next, C_GossipInfo.GetActiveQuests() do
+							--print("iterate and select already active quest")
+							C_GossipInfo.SelectActiveQuest(i)
 						end
 					elseif E.TBC or E.Classic then
 						if (GetNumGossipAvailableQuests() > 0) then
