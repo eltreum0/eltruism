@@ -367,6 +367,14 @@ P.ElvUI_EltreumUI = {
 	modetexture = false,
 	greybackground = false,
 
+	ufcustomtexture = {
+		enable = false,
+		targettexture = "Eltreum-Blank",
+		playertexture = "Eltreum-Blank",
+		targettargettexture = "Eltreum-Blank",
+		focustexture = "Eltreum-Blank",
+	},
+
 	sparkcustomcolor ={
 		enable = false,
 		texture = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga',
