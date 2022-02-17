@@ -72,6 +72,9 @@ local function ChangeUnitTexture()
 		if UF.units.target then
 			local unitframe = _G["ElvUF_Target"]
 			if unitframe and unitframe.Health then
+				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+					targetbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.targettexture)
+				end
 				unitframe.Health:SetStatusBarTexture(targetbar)
 			end
 		end
@@ -100,6 +103,9 @@ local function ChangeUnitTexture()
 		if UF.units.targettarget then
 			local unitframe = _G["ElvUF_TargetTarget"]
 			if unitframe and unitframe.Health then
+				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+					targettargetbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.targettargettexture)
+				end
 				unitframe.Health:SetStatusBarTexture(targettargetbar)
 			end
 		end
@@ -113,6 +119,9 @@ local function ChangeUnitTexture()
 		if UF.units.focus then
 			local focusframe = _G["ElvUF_Focus"]
 			if focusframe and focusframe.Health then
+				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+					focusbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.focustexture)
+				end
 				focusframe.Health:SetStatusBarTexture(focusbar)
 			end
 		end
@@ -145,6 +154,9 @@ function ElvUI_EltreumUI:ChangePlayerTexture()
 		if UF.units.player then
 			local unitframe = _G["ElvUF_Player"]
 			if unitframe and unitframe.Health then
+				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+					playertexture = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.playertexture)
+				end
 				unitframe.Health:SetStatusBarTexture(playertexture)
 			end
 		end
