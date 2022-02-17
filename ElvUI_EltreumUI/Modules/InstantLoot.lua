@@ -39,7 +39,9 @@ EltruismInstantLoot:RegisterEvent("LOOT_BIND_CONFIRM")
 EltruismInstantLoot:RegisterEvent("UI_ERROR_MESSAGE")
 
 local function InstantLoot(_, event,_, arg2)
-	if event == "UI_ERROR_MESSAGE" and arg2 == ERR_INV_FULL then
+	if event == "LOOT_BIND_CONFIRM" then
+		return
+	elseif event == "UI_ERROR_MESSAGE" and arg2 == ERR_INV_FULL then
 		return
 	elseif event ~= "UI_ERROR_MESSAGE" then
 		--ElvUI_EltreumUI:Print("Event: "..event)
