@@ -245,11 +245,12 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								C_GossipInfo.SelectAvailableQuest(i)
 							end
 							for i, k in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
-								local _, _, _, _, _, isComplete = C_GossipInfo.GetActiveQuests(i)
-								if isComplete ~= nil then
+								local questdump = C_GossipInfo.GetActiveQuests()
+								local _, _, _, _, isComplete = questdump[i]
+								if questdump[i].isComplete == true then
 									--print("iterate and select already active quest")
 									C_GossipInfo.SelectActiveQuest(i)
-								else
+								elseif questdump[i].isComplete ~= true then
 									--print("selecting gossip instead")
 									local gossipInfoTable = C_GossipInfo.GetOptions()
 									for i = 1, C_GossipInfo.GetNumOptions() do
@@ -346,11 +347,13 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						--print("tried to complete quest")
 						if E.Retail then
 							for i, k in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
-								local _, _, _, _, _, isComplete = C_GossipInfo.GetActiveQuests(i)
-								if isComplete == nil then
-									--print("iterate and select already active quest")
+								local questdump = C_GossipInfo.GetActiveQuests()
+								local _, _, _, _, isComplete = questdump[i]
+								if questdump[i].isComplete ~= true then
+									--print("quest not completed")
 									return
-								elseif isComplete ~= nil then
+								elseif questdump[i].isComplete == true then
+									--print("quest completed, turning in")
 									CompleteQuest()
 								end
 							end
