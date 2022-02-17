@@ -198,60 +198,114 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 				end
 				if event == 'GOSSIP_SHOW' then
 					--print("GOSSIP_SHOW")
-					if E.Retail then
-						for i, k in next, C_GossipInfo.GetAvailableQuests() do
-							--print("iterate and select quest to get")
-							C_GossipInfo.SelectAvailableQuest(i)
-						end
-						for i, k in next, C_GossipInfo.GetActiveQuests() do
-							--print("iterate and select already active quest")
-							C_GossipInfo.SelectActiveQuest(i)
-						end
-					elseif E.TBC or E.Classic then
-						if (GetNumGossipAvailableQuests() > 0) then
-							--print("number of available quests > 0")
-							local questlist = {GetGossipAvailableQuests()}
-							local i = 1
-							while(questlist[i]) do
-								--print("tried to select quests with while "..math.random(1,99))
-								SelectGossipAvailableQuest(i)
-								i = i + 1
+					local guid = UnitGUID("npc")
+					local NPC_ID = tonumber(string.match(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
+					local ignoredNPCS = {
+						[164079] = true,
+						[174871] = true,
+						[164173] = true,
+						[111243] = true,
+						[142063] = true,
+						[141584] = true,
+						[88570] = true,
+						[87391] = true,
+						[18166] = true,
+						[142700] = true,
+						[143005] = true,
+						[142685] = true,
+						[142975] = true,
+						[143007] = true,
+						[142992] = true,
+						[142997] = true,
+						[142998] = true,
+						[142983] = true,
+						[142995] = true,
+						[142993] = true,
+						[142981] = true,
+						[143004] = true,
+						[142973] = true,
+						[142970] = true,
+						[142994] = true,
+						[142969] = true,
+						[142157] = true,
+						[143008] = true,
+						[142158] = true,
+						[142159] = true,
+						[142977] = true,
+					}
+					if ignoredNPCS[NPC_ID] then
+						--print("npc is in the ignored list")
+						return
+					else
+						--https://wowpedia.fandom.com/wiki/Category:API_namespaces/C_GossipInfo
+						if E.Retail then
+							for i, k in next, C_GossipInfo.GetAvailableQuests() do
+								--print("iterate and select quest to get")
+								C_GossipInfo.SelectAvailableQuest(i)
 							end
-						end
-						if (GetNumGossipActiveQuests() > 0) then
-							--print("number of active quests > 0")
-							for i = 1, GetNumGossipActiveQuests() do
-								--print("tried to select and accept quests in a loop"..math.random(1,99))
-								SelectGossipActiveQuest(i)
-								if E.Retail then
-									if not E.db.ElvUI_EltreumUI.questsettings.acceptdaily then
-										if QuestIsDaily() then
-											--print("its a daily quest")
+							for i, k in next, C_GossipInfo.GetActiveQuests() do
+								--print("iterate and select already active quest")
+								C_GossipInfo.SelectActiveQuest(i)
+							end
+							if C_GossipInfo.GetNumAvailableQuests() == 0 and C_GossipInfo.GetNumActiveQuests() == 0 then
+								local gossipInfoTable = C_GossipInfo.GetOptions()
+								for i = 1, C_GossipInfo.GetNumOptions() do
+									if gossipInfoTable[i].type == "gossip" then
+										if NPC_ID == 153897 then
 											return
-										elseif QuestIsWeekly() then
-											--print("its a weekly quest")
-											return
+										else
+											C_GossipInfo.SelectOption(i)
+										end
+									end
+								end
+							end
+						elseif E.TBC or E.Classic then
+							if (GetNumGossipAvailableQuests() > 0) then
+								--print("number of available quests > 0")
+								local questlist = {GetGossipAvailableQuests()}
+								local i = 1
+								while(questlist[i]) do
+									--print("tried to select quests with while "..math.random(1,99))
+									SelectGossipAvailableQuest(i)
+									i = i + 1
+								end
+							end
+							if (GetNumGossipActiveQuests() > 0) then
+								--print("number of active quests > 0")
+								for i = 1, GetNumGossipActiveQuests() do
+									--print("tried to select and accept quests in a loop"..math.random(1,99))
+									SelectGossipActiveQuest(i)
+									if E.Retail then
+										if not E.db.ElvUI_EltreumUI.questsettings.acceptdaily then
+											if QuestIsDaily() then
+												--print("its a daily quest")
+												return
+											elseif QuestIsWeekly() then
+												--print("its a weekly quest")
+												return
+											else
+												AcceptQuest()
+											end
 										else
 											AcceptQuest()
 										end
-									else
+										if (GetNumQuestChoices() <= 0) then
+											--print("no quest choices")
+											return
+										end
+									elseif E.TBC or E.Classic then
 										AcceptQuest()
+										if (GetNumQuestChoices() <= 0) then
+											return
+										end
 									end
-									if (GetNumQuestChoices() <= 0) then
-										--print("no quest choices")
-										return
-									end
-								elseif E.TBC or E.Classic then
-									AcceptQuest()
-									if (GetNumQuestChoices() <= 0) then
-										return
-									end
-								end
 
-								i = i + 1
+									i = i + 1
+								end
 							end
 						end
 					end
+
 				end
 				if event == 'QUEST_GREETING' then
 					--print("QUEST_GREETING")
