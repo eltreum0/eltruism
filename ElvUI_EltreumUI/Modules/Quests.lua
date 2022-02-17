@@ -246,7 +246,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 							end
 							for i, k in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
 								local questdump = C_GossipInfo.GetActiveQuests()
-								local _, _, _, _, isComplete = questdump[i]
+								--local _, _, _, _, isComplete = questdump[i]
 								if questdump[i].isComplete == true then
 									--print("iterate and select already active quest")
 									C_GossipInfo.SelectActiveQuest(i)
@@ -365,7 +365,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						if E.Retail then
 							for i, k in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
 								local questdump = C_GossipInfo.GetActiveQuests()
-								local _, _, _, _, isComplete = questdump[i]
+								--local _, _, _, _, isComplete = questdump[i]
 								if questdump[i].isComplete ~= true then
 									--print("quest not completed")
 									return
