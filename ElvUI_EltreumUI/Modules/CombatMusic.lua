@@ -25,6 +25,9 @@ function ElvUI_EltreumUI:CombatMusic(event, event2)
 	end
 	if E.db.ElvUI_EltreumUI.otherstuff.mapcombathide then
 		Minimap:Hide()
+		E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-4"
+		E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-101"
+		E:UpdateMoverPositions()
 	end
 end
 
@@ -39,6 +42,9 @@ function ElvUI_EltreumUI:StopCombatMusic(event, event2)
 	end
 	if E.db.ElvUI_EltreumUI.otherstuff.mapcombathide then
 		Minimap:Show()
+		E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-4"
+		E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-101"
+		E:UpdateMoverPositions()
 	end
 end
 
