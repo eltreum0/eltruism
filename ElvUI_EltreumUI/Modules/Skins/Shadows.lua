@@ -339,6 +339,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.MailFrame,
 				_G.HelpFrame.backdrop,
 				_G.WorldMapFrame.backdrop,
+				_G.WardrobeFrame, --weird
 				_G.PVEFrame,
 				_G.PVEFrameTab1.backdrop,
 				_G.PVEFrameTab2.backdrop,
