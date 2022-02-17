@@ -253,7 +253,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 									--print("selecting gossip instead")
 									local gossipInfoTable = C_GossipInfo.GetOptions()
 									for i = 1, C_GossipInfo.GetNumOptions() do
-										if gossipInfoTable[i].type == "gossip" or gossipInfoTable[i].type == "chatbubble" then
+										if gossipInfoTable[i].type == "gossip" or gossipInfoTable[i].type == "chatbubble" then --chatbubble is for sanctum stuff
 											if NPC_ID == 153897 then
 												return
 											else
