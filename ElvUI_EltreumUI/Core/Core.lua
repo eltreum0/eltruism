@@ -272,3 +272,12 @@ function ElvUI_EltreumUI:DeleteItem()
 		end)
 	end
 end
+
+--make the video options movable because its annoying whena adjusting settings
+_G.VideoOptionsFrame:SetMovable(true)
+_G.VideoOptionsFrame:EnableMouse(true)
+_G.VideoOptionsFrame:RegisterForDrag("LeftButton")
+_G.VideoOptionsFrame:SetScript("OnDragStart", _G.VideoOptionsFrame.StartMoving)
+_G.VideoOptionsFrame:SetScript("OnDragStop",_G.VideoOptionsFrame.StopMovingOrSizing)
+_G.VideoOptionsFrame:SetClampedToScreen(true)
+--_G.InterfaceOptionsFrame
