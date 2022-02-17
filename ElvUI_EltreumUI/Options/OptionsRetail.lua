@@ -3577,13 +3577,6 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-							header7 = {
-								order = 1,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
 							private = {
 								order = 2,
 								type = 'execute',
@@ -3774,7 +3767,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Change the ElvUI background"],
 								width = "full",
 							},
-							black = {
+							grey = {
 								order = 22,
 								type = 'execute',
 								name = L["Grey Background"],
@@ -3782,7 +3775,7 @@ function ElvUI_EltreumUI:Configtable()
 								func = function() ElvUI_EltreumUI:GreyBg() E:StaggeredUpdateAll(nil, true) end,
 								confirm = true,
 							},
-							grey = {
+							black = {
 								order = 23,
 								type = 'execute',
 								name = L["Black Background"],
@@ -3847,7 +3840,7 @@ function ElvUI_EltreumUI:Configtable()
 							unitframesdesc = {
 								order = 10,
 								type = "description",
-								name = L["Customize Unitframe textures (Only works with Light Mode)"],
+								name = L["Customize Unitframe textures"],
 								desc = L["Choose custom textures for some unitframes"],
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								width = 'full',
@@ -3859,7 +3852,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Enable Custom Textures"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.ufcustomtexture.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.ufcustomtexture.enable = value E.db.ElvUI_EltreumUI.lightmode = true E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							playertexture = {
 								order = 12,
@@ -3911,7 +3904,6 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						},
 					},
-
 				},
 			},
 			nameplates = {
