@@ -264,6 +264,23 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 									end
 								end
 							end
+
+							local active = C_GossipInfo.GetActiveQuests()
+							local available = C_GossipInfo.GetAvailableQuests()
+							if active.title == nil or available.title == nil then
+								--print("no available or active quest, looking for gossip instead")
+								local gossipInfoTable = C_GossipInfo.GetOptions()
+								for i = 1, C_GossipInfo.GetNumOptions() do
+									if gossipInfoTable[i].type == "gossip" or gossipInfoTable[i].type == "chatbubble" then --chatbubble is for sanctum stuff
+										if NPC_ID == 153897 then
+											return
+										else
+											--print("gossip found, selecting it")
+											C_GossipInfo.SelectOption(i)
+										end
+									end
+								end
+							end
 						elseif E.TBC or E.Classic then
 							if (GetNumGossipAvailableQuests() > 0) then
 								--print("number of available quests > 0")
