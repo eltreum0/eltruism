@@ -344,7 +344,19 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						return
 					else
 						--print("tried to complete quest")
-						CompleteQuest()
+						if E.Retail then
+							for i, k in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
+								local _, _, _, _, _, isComplete = C_GossipInfo.GetActiveQuests(i)
+								if isComplete == nil then
+									--print("iterate and select already active quest")
+									return
+								elseif isComplete ~= nil then
+									CompleteQuest()
+								end
+							end
+						elseif E.TBC or E.Classic then
+							CompleteQuest()
+						end
 					end
 				end
 				if event == 'QUEST_COMPLETE' then
