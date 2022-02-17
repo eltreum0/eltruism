@@ -239,22 +239,28 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 					else
 						--https://wowpedia.fandom.com/wiki/Category:API_namespaces/C_GossipInfo
 						if E.Retail then
-							for i, k in next, C_GossipInfo.GetAvailableQuests() do
+							for i, k in next, C_GossipInfo.GetAvailableQuests() do  --quests to grab
+								--local title, questLevel, isTrivial, frequency, repeatable, isComplete, isLegendary, isIgnored, questID = C_GossipInfo.GetAvailableQuests(i)
+								--print(isComplete)
 								--print("iterate and select quest to get")
 								C_GossipInfo.SelectAvailableQuest(i)
 							end
-							for i, k in next, C_GossipInfo.GetActiveQuests() do
-								--print("iterate and select already active quest")
-								C_GossipInfo.SelectActiveQuest(i)
-							end
-							if C_GossipInfo.GetNumAvailableQuests() == 0 and C_GossipInfo.GetNumActiveQuests() == 0 then
-								local gossipInfoTable = C_GossipInfo.GetOptions()
-								for i = 1, C_GossipInfo.GetNumOptions() do
-									if gossipInfoTable[i].type == "gossip" then
-										if NPC_ID == 153897 then
-											return
-										else
-											C_GossipInfo.SelectOption(i)
+							for i, k in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
+								local title, questLevel, isTrivial, frequency, repeatable, isComplete, isLegendary, isIgnored, questID = C_GossipInfo.GetActiveQuests(i)
+								--print(isComplete)
+								if isComplete ~= nil then
+									--print("iterate and select already active quest")
+									C_GossipInfo.SelectActiveQuest(i)
+								else
+									--print("selecting gossip instead")
+									local gossipInfoTable = C_GossipInfo.GetOptions()
+									for i = 1, C_GossipInfo.GetNumOptions() do
+										if gossipInfoTable[i].type == "gossip" or gossipInfoTable[i].type == "chatbubble" then
+											if NPC_ID == 153897 then
+												return
+											else
+												C_GossipInfo.SelectOption(i)
+											end
 										end
 									end
 								end
