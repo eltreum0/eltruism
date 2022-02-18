@@ -767,3 +767,4 @@ L["Shaman"] = true
 L["Warlock"] = true
 L["Warrior"] = true
 L["Extra Media"] = "Recursos Adicionales"
+L["Skip Plugins"] = "Saltar Plugin"

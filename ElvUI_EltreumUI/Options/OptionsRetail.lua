@@ -208,7 +208,7 @@ function ElvUI_EltreumUI:Configtable()
 					header9 = {
 						order = 9,
 						type = "description",
-						name = "Skip Plugins",
+						name = L["Skip Plugins"],
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},

@@ -782,3 +782,4 @@ L["Shaman"] = true
 L["Warlock"] = true
 L["Warrior"] = true
 L["Extra Media"] = "Weitere Medien"
+L["Skip Plugins"] = "Plugin überspringen"
