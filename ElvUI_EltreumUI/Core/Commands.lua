@@ -84,11 +84,9 @@ function ElvUI_EltreumUI:RunCommands(message)
 	end
 end
 
+--Adapted from Luckyone's +keys as requested by khornan
 
-
---from luckyone's +keys as requested by khornan
-
--- Keystone item IDs
+-- keystone id tables and keys table with stored keys
 local ids = {
 	[138019] = true, -- Legion
 	[158923] = true, -- BfA
@@ -96,7 +94,6 @@ local ids = {
 	[151086] = true, -- Tournament
 	[187786] = true, -- Legion Timewalking
 }
-
 local keys = {
 }
 
@@ -145,6 +142,7 @@ function ElvUI_EltreumUI:Keys(event,message)
 	end
 end
 
+--frame to update using events
 local keyframe = CreateFrame("FRAME")
 keyframe:RegisterEvent("BAG_UPDATE_DELAYED")
 keyframe:RegisterEvent("CHAT_MSG_GUILD")
