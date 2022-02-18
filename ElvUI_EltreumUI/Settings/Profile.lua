@@ -383,8 +383,8 @@ P.ElvUI_EltreumUI = {
 		priesttexture = "Eltreum-Class-Priest",
 		roguetexture = "Eltreum-Class-Rogue",
 		shamantexture = "Eltreum-Class-Shaman",
-		warlocktexture = "Eltreum-Class-Warrior",
-		warriortexture = "Eltreum-Class-Warlock",
+		warlocktexture = "Eltreum-Class-Warlock",
+		warriortexture = "Eltreum-Class-Warrior",
 	},
 
 	sparkcustomcolor ={
