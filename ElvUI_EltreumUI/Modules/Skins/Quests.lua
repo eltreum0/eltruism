@@ -538,14 +538,14 @@ function ElvUI_EltreumUI:SkinProfessions()
 				CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30,  -46)
 				CraftDetailScrollChildFrame:SetHeight(390)
 
+				CraftDetailScrollFrame:Hide()
+				CraftDetailScrollFrameScrollBar:Hide()
+
 				if E.TBC then
 					CraftFrameFilterDropDown:ClearAllPoints()
 					CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
 					CraftFrameAvailableFilterCheckButton:ClearAllPoints()
 					CraftFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", CraftFrame, 64,-48)
-				elseif E.Classic then
-					CraftDetailScrollFrame:Hide()
-					CraftDetailScrollFrameScrollBar:Hide()
 				end
 
 				if dontexpandanymoreEnchant == 0 then
@@ -593,14 +593,13 @@ function ElvUI_EltreumUI:SkinProfessions()
 						CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30,  -46)
 						CraftDetailScrollChildFrame:SetHeight(390)
 
+						CraftDetailScrollFrame:Hide()
+						CraftDetailScrollFrameScrollBar:Hide()
 						if E.TBC then
 							CraftFrameFilterDropDown:ClearAllPoints()
 							CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
 							CraftFrameAvailableFilterCheckButton:ClearAllPoints()
 							CraftFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", CraftFrame, 64,-48)
-						elseif E.Classic then
-							CraftDetailScrollFrame:Hide()
-							CraftDetailScrollFrameScrollBar:Hide()
 						end
 
 						CraftCreateButton:ClearAllPoints()
