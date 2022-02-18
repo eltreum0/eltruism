@@ -7,6 +7,8 @@ function ElvUI_EltreumUI:LoadCommands()
 		if E.db.ElvUI_EltreumUI.waytext.enable then
 			self:RegisterChatCommand('way', 'WaypointTexttoCoordinate')
 			self:RegisterChatCommand('waypoint', 'WaypointTexttoCoordinate')
+			self:RegisterChatCommand('!key', 'Keys')
+			self:RegisterChatCommand('!keys', 'Keys')
 		end
 	end
 end
@@ -81,3 +83,73 @@ function ElvUI_EltreumUI:RunCommands(message)
 		print("|cff82B4ff/eltruism chat|r - Toggles chat between dark and transparent modes")
 	end
 end
+
+
+
+--from luckyone's +keys as requested by khornan
+
+-- Keystone item IDs
+local ids = {
+	[138019] = true, -- Legion
+	[158923] = true, -- BfA
+	[180653] = true, -- Shadowlands
+	[151086] = true, -- Tournament
+	[187786] = true, -- Legion Timewalking
+}
+
+local keys = {
+}
+
+function ElvUI_EltreumUI:Keys(event,message)
+	if IsInGroup() == false then
+		return
+	elseif message == nil then
+		return
+	elseif message:match("!keys") == false or message:match("!key") == false then
+		return
+	end
+
+	local function update()
+		for bag = 0, NUM_BAG_SLOTS do
+			local bagSlots = GetContainerNumSlots(bag)
+			for slot = 1, bagSlots do
+				local itemLink, _, _, itemID = select(7, GetContainerItemInfo(bag, slot))
+				if ids[itemID] then
+					keys[itemID] = itemLink
+				end
+			end
+		end
+	end
+	local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or 'PARTY'
+
+	local function link()
+		  update()
+		-- Add covenant data
+		local covenantID = C_Covenants.GetActiveCovenantID()
+		local covenantData = covenantID and C_Covenants.GetCovenantData(covenantID)
+		local covenantName = ''
+		if covenantData then
+		  covenantName = covenantData.name
+		end
+		for _, link in next, keys do
+			message = ""..link
+			SendChatMessage(message..(covenantName and (' ('..covenantName..')') or ''), channel)
+		end
+	end
+
+	if event == 'BAG_UPDATE_DELAYED' then
+		update()
+	elseif message and ( strlower(message) == '!keys' or strlower(message) == '!key') then
+		local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or 'PARTY'
+		link(channel)
+	end
+end
+
+local keyframe = CreateFrame("FRAME")
+keyframe:RegisterEvent("BAG_UPDATE_DELAYED")
+keyframe:RegisterEvent("CHAT_MSG_GUILD")
+keyframe:RegisterEvent("CHAT_MSG_PARTY_LEADER")
+keyframe:RegisterEvent("CHAT_MSG_PARTY")
+keyframe:SetScript("OnEvent", function(_,event, message)
+	ElvUI_EltreumUI:Keys(event, message)
+end)
