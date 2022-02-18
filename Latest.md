@@ -5,3 +5,4 @@ Added options to change class textures when using light mode in Eltruism > Media
 Fixed some quests not turning in when using automatic turnin\
 Fixed loading german translation\
 Fixed enchanting material scroll bar not hiding in TBC
+Improved the cursor cooldown mask texture\
