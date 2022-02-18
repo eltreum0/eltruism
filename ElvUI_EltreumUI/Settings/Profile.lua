@@ -373,6 +373,18 @@ P.ElvUI_EltreumUI = {
 		playertexture = "Eltreum-Blank",
 		targettargettexture = "Eltreum-Blank",
 		focustexture = "Eltreum-Blank",
+		deathknighttexture = "Eltreum-Class-DeathKnight",
+		demonhuntertexture = "Eltreum-Class-DemonHunter",
+		druidtexture = "Eltreum-Class-Druid",
+		huntertexture = "Eltreum-Class-Hunter",
+		magetexture = "Eltreum-Class-Mage",
+		monktexture = "Eltreum-Class-Monk",
+		paladintexture = "Eltreum-Class-Paladin",
+		priesttexture = "Eltreum-Class-Priest",
+		roguetexture = "Eltreum-Class-Rogue",
+		shamantexture = "Eltreum-Class-Shaman",
+		warlocktexture = "Eltreum-Class-Warrior",
+		warriortexture = "Eltreum-Class-Warlock",
 	},
 
 	sparkcustomcolor ={

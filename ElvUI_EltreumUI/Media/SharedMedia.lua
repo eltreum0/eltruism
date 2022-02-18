@@ -18,18 +18,18 @@ LSM:Register("font", "Roboto", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Ro
 function ElvUI_EltreumUI:ExtraMedia()
 	-- Statusbar
 	LSM:Register("statusbar", "Eltreum7pixel", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum7pixel.tga]])
-	LSM:Register("statusbar", "Eltreum-Class-DemonHunter", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-DH.tga]])
 	LSM:Register("statusbar", "Eltreum-Class-DeathKnight", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-DK.tga]])
+	LSM:Register("statusbar", "Eltreum-Class-DemonHunter", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-DH.tga]])
 	LSM:Register("statusbar", "Eltreum-Class-Druid", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-DR.tga]])
 	LSM:Register("statusbar", "Eltreum-Class-Hunter", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-HT.tga]])
 	LSM:Register("statusbar", "Eltreum-Class-Mage", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-MG.tga]])
 	LSM:Register("statusbar", "Eltreum-Class-Monk", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-MK.tga]])
 	LSM:Register("statusbar", "Eltreum-Class-Paladin", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-PL.tga]])
+	LSM:Register("statusbar", "Eltreum-Class-Priest", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-PR.tga]])
 	LSM:Register("statusbar", "Eltreum-Class-Rogue", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-RG.tga]])
 	LSM:Register("statusbar", "Eltreum-Class-Shaman", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-SH.tga]])
 	LSM:Register("statusbar", "Eltreum-Class-Warrior", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-WA.tga]])
 	LSM:Register("statusbar", "Eltreum-Class-Warlock", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-WL.tga]])
-	LSM:Register("statusbar", "Eltreum-Class-Priest", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-PR.tga]])
 
 	-- Sound
 	LSM:Register("sound", "bruh", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\bruh.ogg]])
