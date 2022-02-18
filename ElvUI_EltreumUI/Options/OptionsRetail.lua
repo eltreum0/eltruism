@@ -3786,7 +3786,7 @@ function ElvUI_EltreumUI:Configtable()
 							header1115 = {
 								order = 34,
 								type = "description",
-								name = "Extra Media",
+								name = L["Extra Media"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
