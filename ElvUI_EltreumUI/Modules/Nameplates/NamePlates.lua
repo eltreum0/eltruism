@@ -312,32 +312,52 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 		if E.Retail then
 			if E.db.ElvUI_EltreumUI.cvars.autohidenpcname then
 				if instanceType == "none" then
-					SetCVar('UnitNameHostleNPC', 0)
-					SetCVar('UnitNameInteractiveNPC', 0)
-					SetCVar('UnitNameNPC', 0)
+					if C_CVar.GetCVar('UnitNameHostleNPC') == 1 then
+						SetCVar('UnitNameHostleNPC', 0)
+					end
+					if C_CVar.GetCVar('UnitNameInteractiveNPC') == 1 then
+						SetCVar('UnitNameInteractiveNPC', 0)
+					end
+					if C_CVar.GetCVar('UnitNameNPC') == 1 then
+						SetCVar('UnitNameNPC', 0)
+					end
 				elseif instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" or mapID == 1662 or mapID == 582 or mapID == 590 then
-					SetCVar('UnitNameHostleNPC', 1)
-					SetCVar('UnitNameInteractiveNPC', 1)
-					SetCVar('UnitNameNPC', 1)
+					if C_CVar.GetCVar('UnitNameHostleNPC') == 0 then
+						SetCVar('UnitNameHostleNPC', 1)
+					end
+					if C_CVar.GetCVar('UnitNameInteractiveNPC') == 0 then
+						SetCVar('UnitNameInteractiveNPC', 1)
+					end
+					if C_CVar.GetCVar('UnitNameNPC') == 0 then
+						SetCVar('UnitNameNPC', 1)
+					end
 				end
 			end
 		end
 		if E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames then
 			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" or instanceType == "none" or mapID == 1662 or mapID == 582 or mapID == 590 then
 				--SetCVar("nameplateShowFriends", 1)
-				SetCVar("nameplateShowOnlyNames", 1)
+				if C_CVar.GetCVar('nameplateShowOnlyNames') == 0 then
+					SetCVar("nameplateShowOnlyNames", 1)
+				end
 			end
 		end
 		if E.db.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly then
 			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
-				SetCVar("nameplateShowFriends", 0)
+				if C_CVar.GetCVar('nameplateShowFriends') == 1 then
+					SetCVar("nameplateShowFriends", 0)
+				end
 			end
 			if instanceType == "none" or mapID == 1662 or mapID == 582 or mapID == 590 then
-				SetCVar("nameplateShowFriends", 1)
+				if C_CVar.GetCVar('nameplateShowFriends') == 0 then
+					SetCVar("nameplateShowFriends", 1)
+				end
 			end
 		end
 		if E.db.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly then
-			SetCVar("nameplateShowFriends", 0)
+			if C_CVar.GetCVar('nameplateShowFriends') == 1 then
+				SetCVar("nameplateShowFriends", 0)
+			end
 		end
 	end
 end
