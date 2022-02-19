@@ -1,10 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
-local LibItemInfo
-if E.TBC or E.Classic then
-	LibItemInfo = LibStub:GetLibrary("LibItemInfo.1000")
-end
 
 --improving character panel
 local CharacterFrame = _G.CharacterFrame
@@ -87,6 +83,60 @@ local classCrests = {
 	['DEMONHUNTER'] = "Artifacts-DemonHunter-BG-rune",
 }
 
+--adapted from libiteminfo to be player only
+function ElvUI_EltreumUI:GetPlayerItemLevel()
+	local total, maxlevel = 0, 0
+	local level, mainhand, offhand, ranged
+	local linkloop
+
+	for i = 1, 15 do
+		if (i ~= 4) then
+			local linkloop = GetInventoryItemLink("player", i)
+			if linkloop then
+				level = select(4, GetItemInfo(linkloop))
+			else
+				level = -1
+			end
+			if level > 0 then
+				total = total + level
+				maxlevel = max(maxlevel, level)
+			end
+		end
+	end
+
+	local mainlevel = 0
+	local mainlink = GetInventoryItemLink("player", 16)
+	if mainlink then
+		mainlevel = select(4, GetItemInfo(mainlink))
+	end
+	mainhand = (tonumber(mainlevel))
+
+	local offhandlink = GetInventoryItemLink("player", 17)
+	local offhandlevel = 0
+	if offhandlink then
+		offhandlevel = select(4, GetItemInfo(offhandlink))
+	end
+	offhand = (tonumber(offhandlevel))
+
+	local rangedlevel = 0
+	local rangedlink = GetInventoryItemLink("player", 18)
+	if rangedlink then
+		rangedlevel = select(4, GetItemInfo(rangedlink))
+	end
+	ranged = (tonumber(rangedlevel))
+
+	if (mainhand <= 0 and ranged <= 0 and ranged <= 0) then
+	elseif (mainhand > 0 and offhand > 0) then
+		total = total + mainhand + offhand
+	elseif (offhand > 0 and ranged > 0) then
+		total = total + offhand + ranged
+	else
+		total = total + max(mainhand,offhand,ranged) * 2
+	end
+	return total/16, max(mainhand,offhand), maxlevel
+end
+
+--expanded armory
 function ElvUI_EltreumUI:ExpandedCharacterStats()
 	if E.Retail then
 		--add class crest
@@ -436,7 +486,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--set ilvl on char panel
 			hooksecurefunc("ToggleCharacter", function()
-				ilevel = LibItemInfo:GetUnitItemLevel("player")
+				ilevel = ElvUI_EltreumUI:GetPlayerItemLevel()
 				_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
 			end)
 
@@ -563,7 +613,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.Text5:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
 			CharacterFrame.Text5:SetText(PlayerSpec())
 
-			local ilevel, _, _ = LibItemInfo:GetUnitItemLevel("player")
+			local ilevel, _, _ = ElvUI_EltreumUI:GetPlayerItemLevel()
 			_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
 
 			CharacterFrame:SetSize(600, 505)

@@ -1,9 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local LibItemInfo
-if E.TBC or E.Classic then
-	LibItemInfo = LibStub:GetLibrary("LibItemInfo.1000")
-end
 
 --Calculate ilvl and average ilvl of player items/inspect unit
 local antispam = 0
@@ -91,12 +87,6 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 
 			hooksecurefunc("PaperDollItemSlotButton_Update", function(button)
 				UpdateItemSlotButton(button, "player")
-				if antispam == 0 then
-					antispam = 1
-					print('test')
-
-					C_Timer.After(3, function() antispam = 0 end)
-				end
 			end)
 
 
@@ -117,7 +107,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 				table.insert(ilvltable, i)
 			end]]
 			--local ilevel = E:GetPlayerItemLevel()  --GetAverageItemLevel() doesnt exist in tbc/classic
-			local ilevel, _, _ = LibItemInfo:GetUnitItemLevel("player")
+			local ilevel, _, _ = ElvUI_EltreumUI:GetPlayerItemLevel()
 			_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
 		end
 	end
