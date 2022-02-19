@@ -6,8 +6,8 @@ if E.TBC or E.Classic then
 end
 
 --Calculate ilvl and average ilvl of player items/inspect unit
+local antispam = 0
 function ElvUI_EltreumUI:UpdateAvgIlvl()
-	--print("ilvl spam")
 	if E.TBC or E.Classic then
 		if E.db.ElvUI_EltreumUI.skins.ilvls then
 
@@ -33,7 +33,6 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 				button.eltruismilvl:Hide()
 			end
 
-
 			local function AddLevelToButton(button, itemLevel, itemQuality)
 				if not itemLevel then
 					return button.eltruismilvl and button.eltruismilvl:Hide()
@@ -52,7 +51,8 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 			local function GetItemQualityAndLevel(unit, slotID)
 				-- link is more reliably fetched than ID, for whatever reason
 				--local itemLink = GetInventoryItemLink(unit, slotID)
-				local itemLink = LibItemInfo:GetUnitItemIndexLink(unit, slotID)
+				local itemLink = GetInventoryItemLink(unit, slotID)
+				--local itemLink = LibItemInfo:GetUnitItemIndexLink(unit, slotID)
 				if itemLink ~= nil then
 					local quality = GetInventoryItemQuality(unit, slotID)
 					local level = GetDetailedItemLevelInfo(itemLink)
@@ -66,9 +66,14 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 				if button.eltruismilvl then button.eltruismilvl:Hide() end
 				local slotID = button:GetID()
 				if (slotID >= INVSLOT_FIRST_EQUIPPED and slotID <= INVSLOT_LAST_EQUIPPED) then
-					if unit == "player" then
+					local itemQuality, itemLevel = GetItemQualityAndLevel(unit, slotID)
+					if itemLevel then
+						return AddLevelToButton(button, itemLevel, itemQuality)
+					end
+
+					--[[if unit == "player" then
 						local item = Item:CreateFromEquipmentSlot(slotID)
-						if item:IsItemEmpty() then
+						if item:IsItemEmpty() == true then
 							return
 						end
 						return item:ContinueOnItemLoad(function()
@@ -79,13 +84,19 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 						if itemLevel then
 							return AddLevelToButton(button, itemLevel, itemQuality)
 						end
-					end
+					end]]
 				end
 				return button.eltruismilvl and button.eltruismilvl:Hide()
 			end
 
 			hooksecurefunc("PaperDollItemSlotButton_Update", function(button)
 				UpdateItemSlotButton(button, "player")
+				if antispam == 0 then
+					antispam = 1
+					print('test')
+
+					C_Timer.After(3, function() antispam = 0 end)
+				end
 			end)
 
 
@@ -105,7 +116,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 				local _, i = GetItemQualityAndLevel("player", i)
 				table.insert(ilvltable, i)
 			end]]
-
+			--local ilevel = E:GetPlayerItemLevel()  --GetAverageItemLevel() doesnt exist in tbc/classic
 			local ilevel, _, _ = LibItemInfo:GetUnitItemLevel("player")
 			_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
 		end
