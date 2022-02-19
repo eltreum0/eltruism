@@ -125,13 +125,13 @@ function ElvUI_EltreumUI:Keys(event,message)
 		local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or 'PARTY'
 
 		local function link()
-			  update()
+			update()
 			-- Add covenant data
 			local covenantID = C_Covenants.GetActiveCovenantID()
 			local covenantData = covenantID and C_Covenants.GetCovenantData(covenantID)
 			local covenantName = ''
 			if covenantData then
-			  covenantName = covenantData.name
+			covenantName = covenantData.name
 			end
 			for _, link in next, keys do
 				message = ""..link

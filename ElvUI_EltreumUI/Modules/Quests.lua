@@ -232,6 +232,8 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						[142158] = true,
 						[142159] = true,
 						[142977] = true,
+						[172925] = true,
+						[169501] = true,
 					}
 					if ignoredNPCS[NPC_ID] then
 						--print("npc is in the ignored list")
