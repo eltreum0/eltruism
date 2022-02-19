@@ -107,7 +107,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 				table.insert(ilvltable, i)
 			end]]
 			--local ilevel = E:GetPlayerItemLevel()  --GetAverageItemLevel() doesnt exist in tbc/classic
-			local ilevel, _, _ = ElvUI_EltreumUI:GetPlayerItemLevel()
+			local ilevel = ElvUI_EltreumUI:GetPlayerItemLevel()
 			_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
 		end
 	end
