@@ -7,8 +7,10 @@ function ElvUI_EltreumUI:LoadCommands()
 		if E.db.ElvUI_EltreumUI.waytext.enable then
 			self:RegisterChatCommand('way', 'WaypointTexttoCoordinate')
 			self:RegisterChatCommand('waypoint', 'WaypointTexttoCoordinate')
-			self:RegisterChatCommand('!key', 'Keys')
-			self:RegisterChatCommand('!keys', 'Keys')
+			if E.Retail then
+				self:RegisterChatCommand('!key', 'Keys')
+				self:RegisterChatCommand('!keys', 'Keys')
+			end
 		end
 	end
 end
@@ -98,7 +100,9 @@ local keys = {
 }
 
 function ElvUI_EltreumUI:Keys(event,message)
-	if IsInGroup() == false then
+	if E.TBC or E.Classic then
+		return
+	elseif IsInGroup() == false then
 		return
 	elseif message == nil then
 		return
@@ -143,11 +147,13 @@ function ElvUI_EltreumUI:Keys(event,message)
 end
 
 --frame to update using events
-local keyframe = CreateFrame("FRAME")
-keyframe:RegisterEvent("BAG_UPDATE_DELAYED")
-keyframe:RegisterEvent("CHAT_MSG_GUILD")
-keyframe:RegisterEvent("CHAT_MSG_PARTY_LEADER")
-keyframe:RegisterEvent("CHAT_MSG_PARTY")
-keyframe:SetScript("OnEvent", function(_,event, message)
-	ElvUI_EltreumUI:Keys(event, message)
-end)
+if E.Retail then
+	local keyframe = CreateFrame("FRAME")
+	keyframe:RegisterEvent("BAG_UPDATE_DELAYED")
+	keyframe:RegisterEvent("CHAT_MSG_GUILD")
+	keyframe:RegisterEvent("CHAT_MSG_PARTY_LEADER")
+	keyframe:RegisterEvent("CHAT_MSG_PARTY")
+	keyframe:SetScript("OnEvent", function(_,event, message)
+		ElvUI_EltreumUI:Keys(event, message)
+	end)
+end
