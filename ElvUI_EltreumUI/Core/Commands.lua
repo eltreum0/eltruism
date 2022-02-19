@@ -7,7 +7,7 @@ function ElvUI_EltreumUI:LoadCommands()
 		if E.db.ElvUI_EltreumUI.waytext.enable then
 			self:RegisterChatCommand('way', 'WaypointTexttoCoordinate')
 			self:RegisterChatCommand('waypoint', 'WaypointTexttoCoordinate')
-			if E.Retail then
+			if E.Retail and E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
 				self:RegisterChatCommand('!key', 'Keys')
 				self:RegisterChatCommand('!keys', 'Keys')
 			end
@@ -110,44 +110,46 @@ function ElvUI_EltreumUI:Keys(event,message)
 		return
 	end
 
-	local function update()
-		for bag = 0, NUM_BAG_SLOTS do
-			local bagSlots = GetContainerNumSlots(bag)
-			for slot = 1, bagSlots do
-				local itemLink, _, _, itemID = select(7, GetContainerItemInfo(bag, slot))
-				if ids[itemID] then
-					keys[itemID] = itemLink
+	if E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
+		local function update()
+			for bag = 0, NUM_BAG_SLOTS do
+				local bagSlots = GetContainerNumSlots(bag)
+				for slot = 1, bagSlots do
+					local itemLink, _, _, itemID = select(7, GetContainerItemInfo(bag, slot))
+					if ids[itemID] then
+						keys[itemID] = itemLink
+					end
 				end
 			end
 		end
-	end
-	local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or 'PARTY'
-
-	local function link()
-		  update()
-		-- Add covenant data
-		local covenantID = C_Covenants.GetActiveCovenantID()
-		local covenantData = covenantID and C_Covenants.GetCovenantData(covenantID)
-		local covenantName = ''
-		if covenantData then
-		  covenantName = covenantData.name
-		end
-		for _, link in next, keys do
-			message = ""..link
-			SendChatMessage(message..(covenantName and (' ('..covenantName..')') or ''), channel)
-		end
-	end
-
-	if event == 'BAG_UPDATE_DELAYED' then
-		update()
-	elseif message and ( strlower(message) == '!keys' or strlower(message) == '!key') then
 		local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or 'PARTY'
-		link(channel)
+
+		local function link()
+			  update()
+			-- Add covenant data
+			local covenantID = C_Covenants.GetActiveCovenantID()
+			local covenantData = covenantID and C_Covenants.GetCovenantData(covenantID)
+			local covenantName = ''
+			if covenantData then
+			  covenantName = covenantData.name
+			end
+			for _, link in next, keys do
+				message = ""..link
+				SendChatMessage(message..(covenantName and (' ('..covenantName..')') or ''), channel)
+			end
+		end
+
+		if event == 'BAG_UPDATE_DELAYED' then
+			update()
+		elseif message and ( strlower(message) == '!keys' or strlower(message) == '!key') then
+			local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or 'PARTY'
+			link(channel)
+		end
 	end
 end
 
 --frame to update using events
-if E.Retail then
+if E.Retail and E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
 	local keyframe = CreateFrame("FRAME")
 	keyframe:RegisterEvent("BAG_UPDATE_DELAYED")
 	keyframe:RegisterEvent("CHAT_MSG_GUILD")
