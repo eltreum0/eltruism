@@ -182,73 +182,73 @@ function ElvUI_EltreumUI:ChangeRaidTexture()
 					local b = tostring(b1)
 					if (r == paladin.r) and (g == paladin.g) and (b == paladin.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.paladintexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.paladintexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PL.tga")
 						end
 					elseif (r == warrior.r) and (g == warrior.g) and (b == warrior.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.warriortexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warriortexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga")
 						end
 					elseif (r == shaman.r) and (g == shaman.g) and (b == shaman.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.shamantexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.shamantexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SH.tga")
 						end
 					elseif (r == druid.r) and (g == druid.g) and (b == druid.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.druidtexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.druidtexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga")
 						end
 					elseif (r == deathknight.r) and (g == deathknight.g) and (b == deathknight.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.deathknighttexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.deathknighttexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga")
 						end
 					elseif (r == demonhunter.r) and (g == demonhunter.g) and (b == demonhunter.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.demonhuntertexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.demonhuntertexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DH.tga")
 						end
 					elseif (r == monk.r) and (g == monk.g) and (b == monk.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.monktexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.monktexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MK.tga")
 						end
 					elseif (r == rogue.r) and (g == rogue.g) and (b == rogue.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.roguetexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.roguetexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RG.tga")
 						end
 					elseif (r == priest.r) and (g == priest.g) and (b == priest.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.priesttexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.priesttexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PR.tga")
 						end
 					elseif (r == mage.r) and (g == mage.g) and (b == mage.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.magetexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.magetexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MG.tga")
 						end
 					elseif (r == hunter.r) and (g == hunter.g) and (b == hunter.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.huntertexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.huntertexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga")
 						end
 					elseif (r == warlock.r) and (g == warlock.g) and (b == warlock.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.warlocktexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warlocktexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WL.tga")
 						end
@@ -276,73 +276,73 @@ function ElvUI_EltreumUI:ChangeRaid40Texture()
 					local b = tostring(b1)
 					if (r == paladin.r) and (g == paladin.g) and (b == paladin.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.paladintexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.paladintexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PL.tga")
 						end
 					elseif (r == warrior.r) and (g == warrior.g) and (b == warrior.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.warriortexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warriortexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga")
 						end
 					elseif (r == shaman.r) and (g == shaman.g) and (b == shaman.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.shamantexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.shamantexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SH.tga")
 						end
 					elseif (r == druid.r) and (g == druid.g) and (b == druid.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.druidtexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.druidtexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga")
 						end
 					elseif (r == deathknight.r) and (g == deathknight.g) and (b == deathknight.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.deathknighttexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.deathknighttexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga")
 						end
 					elseif (r == demonhunter.r) and (g == demonhunter.g) and (b == demonhunter.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.demonhuntertexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.demonhuntertexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DH.tga")
 						end
 					elseif (r == monk.r) and (g == monk.g) and (b == monk.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.monktexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.monktexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MK.tga")
 						end
 					elseif (r == rogue.r) and (g == rogue.g) and (b == rogue.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.roguetexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.roguetexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RG.tga")
 						end
 					elseif (r == priest.r) and (g == priest.g) and (b == priest.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.priesttexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.priesttexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PR.tga")
 						end
 					elseif (r == mage.r) and (g == mage.g) and (b == mage.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.magetexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.magetexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MG.tga")
 						end
 					elseif (r == hunter.r) and (g == hunter.g) and (b == hunter.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.huntertexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.huntertexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga")
 						end
 					elseif (r == warlock.r) and (g == warlock.g) and (b == warlock.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.warlocktexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warlocktexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WL.tga")
 						end
@@ -370,73 +370,73 @@ function ElvUI_EltreumUI:ChangePartyTexture()
 					local b = tostring(b1)
 					if (r == paladin.r) and (g == paladin.g) and (b == paladin.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.paladintexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.paladintexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PL.tga")
 						end
 					elseif (r == warrior.r) and (g == warrior.g) and (b == warrior.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.warriortexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warriortexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga")
 						end
 					elseif (r == shaman.r) and (g == shaman.g) and (b == shaman.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.shamantexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.shamantexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SH.tga")
 						end
 					elseif (r == druid.r) and (g == druid.g) and (b == druid.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.druidtexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.druidtexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga")
 						end
 					elseif (r == deathknight.r) and (g == deathknight.g) and (b == deathknight.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.deathknighttexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.deathknighttexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga")
 						end
 					elseif (r == demonhunter.r) and (g == demonhunter.g) and (b == demonhunter.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.demonhuntertexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.demonhuntertexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DH.tga")
 						end
 					elseif (r == monk.r) and (g == monk.g) and (b == monk.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.monktexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.monktexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MK.tga")
 						end
 					elseif (r == rogue.r) and (g == rogue.g) and (b == rogue.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.roguetexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.roguetexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RG.tga")
 						end
 					elseif (r == priest.r) and (g == priest.g) and (b == priest.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.priesttexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.priesttexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PR.tga")
 						end
 					elseif (r == mage.r) and (g == mage.g) and (b == mage.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.magetexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.magetexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MG.tga")
 						end
 					elseif (r == hunter.r) and (g == hunter.g) and (b == hunter.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.huntertexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.huntertexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga")
 						end
 					elseif (r == warlock.r) and (g == warlock.g) and (b == warlock.b) then
 						if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-							unitbutton.Health:SetStatusBarTexture(E.db.ElvUI_EltreumUI.ufcustomtexture.warlocktexture)
+							unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warlocktexture))
 						else
 							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WL.tga")
 						end

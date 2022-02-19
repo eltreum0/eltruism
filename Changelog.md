@@ -1,3 +1,12 @@
+### 2.8.4 
+Updated german translation with additional translations by Khornan\
+Added options to change class textures when using light mode in Eltruism > Media > Unitframes\
+Added !keys and !key commands adapted from Luckyone's M+ keys weakaura\
+Fixed some quests not turning in when using automatic turnin\
+Fixed loading german translation\
+Fixed enchanting material scroll bar not hiding in TBC
+Improved the cursor cooldown mask texture\
+___
 ### 2.8.3
 Added German language translation by Khornan\
 Added options to change the Player, Target, Target of Target and Focus unitframe textures, this option can be found in Eltruism > Media > Unitframes and needs light mode or class colors enabled in ElvUI unitframes\
