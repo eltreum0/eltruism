@@ -96,6 +96,8 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 				end)
 			end
 		end)
+	else
+		darksouls:UnregisterAllEvents()
 	end
 
 	--Grand Theft Auto (5/Online)
@@ -171,5 +173,7 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 				end)
 			end
 		end)
+	else
+		gta:UnregisterAllEvents()
 	end
 end
