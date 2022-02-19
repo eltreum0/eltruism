@@ -3704,11 +3704,6 @@ function ElvUI_EltreumUI:Configtable()
 								func = function() ElvUI_EltreumUI:SetupFontsRoboto() E:StaggeredUpdateAll(nil, true) end,
 								confirm = true,
 							},
-							addagaphereforcustom = {
-								order = 8,
-								type = "description",
-								name = "If using Light mode you will need to reapply it after choosing a custom font",
-							},
 							sharedmediafont = {
 								 order = 8,
 								 type = 'select',

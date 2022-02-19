@@ -588,6 +588,36 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 		E.db["unitframe"]["units"]["targettargettarget"]["buffs"]["countFont"] = fontvalue
 		E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = fontvalue
 
+	--fix for dark/light mode
+	if E.db.ElvUI_EltreumUI.lightmode == false then
+		if E.Classic or E.TBC then
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
+		elseif E.Retail then
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name]"
+		end
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]"
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
+			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
+		if E.Retail or E.TBC then
+			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
+		end
+	elseif E.db.ElvUI_EltreumUI.lightmode == true then
+		if E.Classic or E.TBC then
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
+		elseif E.Retail then
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
+		end
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
+			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
+		if E.Retail or E.TBC then
+			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
+		end
+	end
+
 	E:StaggeredUpdateAll(nil, true)
 	ElvUI_EltreumUI:Print(L["Your custom font has been set."])
 end
