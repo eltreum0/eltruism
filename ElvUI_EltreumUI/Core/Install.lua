@@ -74,7 +74,7 @@ ElvUI_EltreumUI.InstallerData = {
 		[3] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Fonts"])
 			PluginInstallFrame.Desc1:SetText(L["Eltruism uses Kimberley as the default font"])
-			PluginInstallFrame.Desc2:SetText(L["You can replace it with one of the following"])
+			PluginInstallFrame.Desc2:SetText(L["You can replace it with one of the following:"])
 			PluginInstallFrame.Desc3:SetText(L["Or change it later in Eltruism > Media options"])
 			PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 			PluginInstallFrame.Option1:Enable()

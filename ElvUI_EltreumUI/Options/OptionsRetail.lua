@@ -222,7 +222,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 1,
 								type = 'execute',
 								name = L["Skip Plugins install message"],
-								desc = "Make the warnings to install profiles for other plugins stop",
+								desc = L["Make the warnings to install profiles for other plugins stop"],
 								width = 'double',
 								func = function()
 									E.private.ElvUI_EltreumUI.isInstalled.sle = true
@@ -946,7 +946,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 54,
 								type = 'toggle',
 								name = L['Enable'],
-								desc = "Enable removing the Alert Frame that can show up in the middle of the screen",
+								desc = L["Enable removing the Alert Frame that can show up in the middle of the screen"],
 								get = function() return E.db.ElvUI_EltreumUI.skins.bossemote end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.bossemote = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -1814,7 +1814,7 @@ function ElvUI_EltreumUI:Configtable()
 							headerline1 = {
 								order = 1,
 								type = "description",
-								name = "Autocast Glow",
+								name = L["Autocast Glow"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -2881,8 +2881,8 @@ function ElvUI_EltreumUI:Configtable()
 						order = 99,
 						type = 'toggle',
 						width = 'full',
-						name = "Hide Quests during Battlegrounds and Arenas",
-						desc = "Hide Quests during Battlegrounds and Arenas",
+						name = L["Hide Quests during Battlegrounds and Arenas"],
+						desc = L["Hide Quests during Battlegrounds and Arenas"],
 						get = function() return E.db.ElvUI_EltreumUI.questsettings.arena end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.questsettings.arena = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
@@ -2971,7 +2971,7 @@ function ElvUI_EltreumUI:Configtable()
 					cursorcolors = {
 						order = 6,
 						type = 'group',
-						name = 'Cursor Colors',
+						name = L["Cursor Colors"],
 						args = {
 							nicegap17 = {
 								order = 11,
@@ -3078,12 +3078,12 @@ function ElvUI_EltreumUI:Configtable()
 					cursortype = {
 						order = 7,
 						type = 'group',
-						name = "Cursor Type",
+						name = L["Cursor Type"],
 						args = {
 							topbar = {
 								order = 0,
 								type = "description",
-								name = "Choose a type of cursor by clicking it,",
+								name = L["Choose a type of cursor by clicking it"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -3109,7 +3109,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 5,
 								type = 'description',
 								name = function() return L["Currently selected cursor: "]..ElvUI_EltreumUI:CurrentTypeofCursor() end,
-								desc = 'Choose a type of cursor by clicking it,'
+								desc = L["Choose a type of cursor by clicking it"],
 							},
 							showring1 = {
 								order = 90,
@@ -3249,7 +3249,7 @@ function ElvUI_EltreumUI:Configtable()
 							gcdradius = {
 								type = 'range',
 								name = L["GCD Radius (Default: 20)"],
-								desc = 'Set the radius of the gcd cursor',
+								desc = L["Set the radius of the gcd cursor"],
 								order = 19,
 								min = 10,
 								max = 50,
@@ -3728,8 +3728,8 @@ function ElvUI_EltreumUI:Configtable()
 							textureadjust = {
 								order = 16,
 								type = 'toggle',
-								name = "Auto Adjust Textures",
-								desc = "Automatically adjust textures for the current mode",
+								name = L["Auto Adjust Textures"],
+								desc = L["Automatically adjust textures for the current mode"],
 								get = function() return E.db.ElvUI_EltreumUI.modetexture end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.modetexture = value end,
 							},
@@ -4710,7 +4710,7 @@ function ElvUI_EltreumUI:Configtable()
 						order = 43,
 						name = L["Enable Screenshotting if an item from the wishlist is looted"],
 						type = "toggle",
-						desc = L["Loot Window will automatically close when using filters and the item desired is not found"],
+						desc = L["Automatically screenshot when you loot an item from the wishlist"],
 						width = 'full',
 						disabled = function() return #E.private.ElvUI_EltreumUI.wishlistID == 0 end,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.lootwishlistscreenshot end,
