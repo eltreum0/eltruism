@@ -5,6 +5,7 @@ local _G = _G
 if E.Retail then
 	local EltruismAutopin = CreateFrame("Frame", "EltruismAutoPin")
 	local EltruismTimeToArriveParent = CreateFrame("Frame", "EltruismTimeToArriveParent")
+	EltruismTimeToArriveParent:RegisterEvent("PLAYER_ENTERING_WORLD")
 	local EltruismTimeToArrive = CreateFrame("Frame", "EltruismTimeToArrive", UIParent)
 	EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 	EltruismTimeToArrive.TimeText:SetJustifyV("TOP")
