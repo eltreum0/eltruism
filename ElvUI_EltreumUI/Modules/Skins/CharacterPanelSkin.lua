@@ -403,6 +403,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		  	end
 		end
 	elseif E.TBC or E.Classic then
+
 		--add class crest
 		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
 			ClassCrestFrame:SetSize(150, 150)
@@ -413,14 +414,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
 		end
 		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-
-			--main way of clearing memory
-			hooksecurefunc("ToggleCharacter", function()
-				ElvUI_EltreumUI:ClearMemory()
-				ilevel = LibItemInfo:GetUnitItemLevel("player")
-				_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
-			end)
-
 			local alpha
 			if E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha ~= nil then
 				alpha = E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha
@@ -440,6 +433,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK")
 		end
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then -- this is expand classic armory
+
+			--set ilvl on char panel
+			hooksecurefunc("ToggleCharacter", function()
+				ilevel = LibItemInfo:GetUnitItemLevel("player")
+				_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
+			end)
+
 			--turns out classic has the functions to get number of points on talent trees
 			local function PlayerSpec()
 				local spec, points
