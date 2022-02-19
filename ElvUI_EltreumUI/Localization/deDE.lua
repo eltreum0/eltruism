@@ -783,3 +783,6 @@ L["Warlock"] = true
 L["Warrior"] = true
 L["Extra Media"] = "Weitere Medien"
 L["Skip Plugins"] = "Plugin überspringen"
+L["!key Chat Command"] = true
+L["Enable !key and !keys chat command"] = true
+L["Will link your key and covenant in guild or party chat"] = true
