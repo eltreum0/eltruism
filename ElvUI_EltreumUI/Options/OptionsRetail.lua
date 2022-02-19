@@ -771,14 +771,14 @@ function ElvUI_EltreumUI:Configtable()
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.delete = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
 					headerkeys = {
-						order = 55,
+						order = 57,
 						type = "description",
 						name = L["!key Chat Command"],
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
 					mpluskeys = {
-						order = 56,
+						order = 58,
 						type = 'toggle',
 						name = L["Enable !key and !keys chat command"],
 						width = 'full',
