@@ -433,6 +433,7 @@ P.ElvUI_EltreumUI = {
 		playerdeath = false,
 		playerdeathgta = false,
 		leadersize = 12,
+		mpluskeys = false,
 		--floatingrep = false,
 	},
 }
