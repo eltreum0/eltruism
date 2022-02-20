@@ -224,10 +224,12 @@ end
 
 local maxmemory = 4096
 local currentmemory
+--local count = 0
 function ElvUI_EltreumUI:ClearMemory()
 	if not InCombatLockdown() and not UnitAffectingCombat("player") then
 		UpdateAddOnMemoryUsage() --so that it doesnt freeze if spammed
 		currentmemory = GetAddOnMemoryUsage ("ElvUI_EltreumUI")
+		--count = count + 1
 		if E.db.ElvUI_EltreumUI.dev then
 			if currentmemory > maxmemory then
 				collectgarbage("collect")
@@ -244,6 +246,9 @@ function ElvUI_EltreumUI:ClearMemory()
 				collectgarbage("collect")
 				ResetCPUUsage()
 				currentmemory = 0
+			--	print("clearing memory")
+			--else
+			--	print(math.floor((currentmemory*100)/100).." memory, and try number "..count)
 			end
 		end
 	end

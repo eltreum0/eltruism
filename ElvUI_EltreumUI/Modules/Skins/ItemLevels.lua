@@ -6,9 +6,9 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 	if E.db.ElvUI_EltreumUI.skins.ilvls then
 
 		--main way of clearing memory
-		hooksecurefunc("ToggleCharacter", function()
-			ElvUI_EltreumUI:ClearMemory()
-		end)
+		--hooksecurefunc("ToggleCharacter", function()
+			--ElvUI_EltreumUI:ClearMemory()
+		--end)
 
 		--from Simple Item Levels by Kemayo (BSD License) with some edits by Eltreum
 		local function PrepareItemButton(button)

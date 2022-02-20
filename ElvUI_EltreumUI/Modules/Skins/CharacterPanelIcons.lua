@@ -54,7 +54,7 @@ function ElvUI_EltreumUI:PlayerNamepaperdoll()
 		return
 	elseif not E.private.ElvUI_EltreumUI then
 		return
-	else
+	elseif E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
 		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
 			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
 		elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then

@@ -149,6 +149,18 @@ function ElvUI_EltreumUI:GetPlayerItemLevel()
 	return total/16, max(mainhand,offhand), maxlevel
 end
 
+
+local avgilvl = CreateFrame("FRAME")
+avgilvl:RegisterEvent("PLAYER_ENTERING_WORLD")
+avgilvl:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
+avgilvl:SetScript("OnEvent", function()
+	--local ilevel = ElvUI_EltreumUI:GetPlayerItemLevel()
+	--_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
+	_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetPlayerItemLevel()*100))/100)
+end)
+
+
+
 --expanded armory
 function ElvUI_EltreumUI:ExpandedCharacterStats()
 	if E.Retail then
@@ -498,10 +510,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then -- this is expand classic armory
 
 			--set ilvl on char panel
-			hooksecurefunc("ToggleCharacter", function()
+			--[[hooksecurefunc("ToggleCharacter", function()
 				ilevel = ElvUI_EltreumUI:GetPlayerItemLevel()
 				_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
-			end)
+			end)]]
 
 			--turns out classic has the functions to get number of points on talent trees
 			local function PlayerSpec()
@@ -626,8 +638,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.Text5:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
 			CharacterFrame.Text5:SetText(PlayerSpec())
 
-			local ilevel, _, _ = ElvUI_EltreumUI:GetPlayerItemLevel()
-			_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
+			--local ilevel, _, _ = ElvUI_EltreumUI:GetPlayerItemLevel()
+			--_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
 
 			CharacterFrame:SetSize(600, 505)
 
