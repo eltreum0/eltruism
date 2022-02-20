@@ -278,7 +278,8 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 											return
 										else
 											--print("gossip found, selecting it")
-											C_GossipInfo.SelectOption(i)
+											C_Timer.After(1, function() C_GossipInfo.SelectOption(i) end)
+											--C_GossipInfo.SelectOption(i)
 										end
 									end
 								end
