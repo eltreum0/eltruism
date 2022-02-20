@@ -6,3 +6,4 @@ Gotham Narrow - Free License available at https://fontsgeek.com/gotham-narrow-fo
 Optimus Princeps - Free License available at https://www.dafont.com/optimusprinceps.font
 Pricedown - Free license available at https://www.dafont.com/pricedown.font
 Neuropol - Free license available at https://www.dafont.com/neuropol-x.font
+Pepsi-Cyr-lat - MIT License by Dmitry Astakhov, available at https://fontlibrary.org/en/font/pepsi-cyr-lat
