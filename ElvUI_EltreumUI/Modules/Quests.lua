@@ -243,13 +243,13 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						if E.Retail then
 							local active = C_GossipInfo.GetActiveQuests()
 							local available = C_GossipInfo.GetAvailableQuests()
-							if available.title ~= nil then
+							if available[1] and available[1].title ~= nil then
 								for i, k in next, C_GossipInfo.GetAvailableQuests() do  --quests to grab
 									--local title, questLevel, isTrivial, frequency, repeatable, isComplete, isLegendary, isIgnored, questID = C_GossipInfo.GetAvailableQuests(i)
 									--print("iterate and select quest to get")
 									C_GossipInfo.SelectAvailableQuest(i)
 								end
-							elseif active.title ~= nil then
+							elseif active[1] and active[1].title ~= nil then
 								for i, k in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
 									local questdump = C_GossipInfo.GetActiveQuests()
 									--local _, _, _, _, isComplete = questdump[i]
@@ -270,12 +270,14 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 										end
 									end
 								end
-							elseif active.title == nil or available.title == nil then
+							elseif (not active[1] or active[1].title == nil) or (not available[1] or available[1].title == nil) then
 								--print("no available or active quest, looking for gossip instead")
 								local gossipInfoTable = C_GossipInfo.GetOptions()
 								for i = 1, C_GossipInfo.GetNumOptions() do
 									if gossipInfoTable[i].type == "gossip" or gossipInfoTable[i].type == "chatbubble" then --chatbubble is for sanctum stuff
 										if NPC_ID == 153897 then
+											return
+										elseif C_GossipInfo.GetNumOptions() > 1 then
 											return
 										else
 											--print("gossip found, selecting it")
