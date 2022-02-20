@@ -149,16 +149,16 @@ function ElvUI_EltreumUI:GetPlayerItemLevel()
 	return total/16, max(mainhand,offhand), maxlevel
 end
 
-
-local avgilvl = CreateFrame("FRAME")
-avgilvl:RegisterEvent("PLAYER_ENTERING_WORLD")
-avgilvl:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
-avgilvl:SetScript("OnEvent", function()
-	--local ilevel = ElvUI_EltreumUI:GetPlayerItemLevel()
-	--_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
-	_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetPlayerItemLevel()*100))/100)
-end)
-
+if not E.Retail then
+	local avgilvl = CreateFrame("FRAME")
+	avgilvl:RegisterEvent("PLAYER_ENTERING_WORLD")
+	avgilvl:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
+	avgilvl:SetScript("OnEvent", function()
+		--local ilevel = ElvUI_EltreumUI:GetPlayerItemLevel()
+		--_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
+		_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetPlayerItemLevel()*100))/100)
+	end)
+end
 
 
 --expanded armory
