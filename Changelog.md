@@ -1,3 +1,6 @@
+### 2.8.5
+Fixed custom class textures for unitframes
+___
 ### 2.8.4 
 Updated german translation with additional translations by Khornan\
 Added options to change class textures when using light mode in Eltruism > Media > Unitframes\
