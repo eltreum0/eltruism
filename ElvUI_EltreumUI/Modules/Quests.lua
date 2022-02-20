@@ -179,8 +179,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 							end
 						end
 					end
-				end
-				if event == 'QUEST_DETAIL' then
+				elseif event == 'QUEST_DETAIL' then
 					--print("QUEST_DETAIL")
 					if E.Retail then
 						if QuestGetAutoAccept() then
@@ -216,13 +215,11 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 							return
 						end
 					end
-				end
-				if event == 'QUEST_ACCEPT_CONFIRM' then
+				elseif event == 'QUEST_ACCEPT_CONFIRM' then
 					--print("QUEST_ACCEPT_CONFIRM tried to accept and hide popup")
 					ConfirmAcceptQuest()
 					StaticPopup_Hide("QUEST_ACCEPT")
-				end
-				if event == 'GOSSIP_SHOW' then
+				elseif event == 'GOSSIP_SHOW' then
 					--print("GOSSIP_SHOW")
 					local guid = UnitGUID("npc")
 					local NPC_ID = tonumber(string.match(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
@@ -359,8 +356,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 							end
 						end
 					end
-				end
-				if event == 'QUEST_PROGRESS' then
+				elseif event == 'QUEST_PROGRESS' then
 					--print("QUEST_PROGRESS")
 					if GetQuestMoneyToGet() > 0 then
 						--print("quest requires gold")
@@ -387,8 +383,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 							CompleteQuest()
 						end
 					end
-				end
-				if event == 'QUEST_COMPLETE' then
+				elseif event == 'QUEST_COMPLETE' then
 					--print("QUEST_COMPLETE")
 					if GetQuestMoneyToGet() > 0 then
 						--print("quest requires gold")
