@@ -222,38 +222,6 @@ function ElvUI_EltreumUI:DevTools()
 	end
 end
 
-local maxmemory = 4096
-local currentmemory
---local count = 0
-function ElvUI_EltreumUI:ClearMemory()
-	if not InCombatLockdown() and not UnitAffectingCombat("player") then
-		UpdateAddOnMemoryUsage() --so that it doesnt freeze if spammed
-		currentmemory = GetAddOnMemoryUsage ("ElvUI_EltreumUI")
-		--count = count + 1
-		if E.db.ElvUI_EltreumUI.dev then
-			if currentmemory > maxmemory then
-				collectgarbage("collect")
-				ResetCPUUsage()
-				ElvUI_EltreumUI:Print(currentmemory.." memory was cleared")
-				--UpdateAddOnCPUUsage("ElvUI_EltreumUI") --only works with profiling
-				--/run UpdateAddOnMemoryUsage() print("memory "..GetAddOnMemoryUsage("ElvUI_EltreumUI")); print("cpu "..GetAddOnCPUUsage("ElvUI_EltreumUI"))
-				currentmemory = 0
-			else
-				ElvUI_EltreumUI:Print("Not enough memory usage to clear memory")
-			end
-		else
-			if currentmemory >= maxmemory then
-				collectgarbage("collect")
-				ResetCPUUsage()
-				currentmemory = 0
-			--	print("clearing memory")
-			--else
-			--	print(math.floor((currentmemory*100)/100).." memory, and try number "..count)
-			end
-		end
-	end
-end
-
 function ElvUI_EltreumUI:DeleteItem()
 	if E.db.ElvUI_EltreumUI.otherstuff.delete then
 		hooksecurefunc(StaticPopupDialogs["DELETE_GOOD_ITEM"],"OnShow",function(self) --Interface/FrameXML/StaticPopup.lua line 1965/2074
@@ -285,3 +253,35 @@ _G.VideoOptionsFrame:RegisterForDrag("LeftButton")
 _G.VideoOptionsFrame:SetScript("OnDragStart", _G.VideoOptionsFrame.StartMoving)
 _G.VideoOptionsFrame:SetScript("OnDragStop",_G.VideoOptionsFrame.StopMovingOrSizing)
 _G.VideoOptionsFrame:SetClampedToScreen(true)
+
+local maxmemory = 4096
+local currentmemory
+--local count = 0
+function ElvUI_EltreumUI:ClearMemory()
+	if not InCombatLockdown() and not UnitAffectingCombat("player") then
+		UpdateAddOnMemoryUsage() --so that it doesnt freeze if spammed
+		currentmemory = GetAddOnMemoryUsage ("ElvUI_EltreumUI")
+		--count = count + 1
+		if E.db.ElvUI_EltreumUI.dev then
+			if currentmemory > maxmemory then
+				collectgarbage("collect")
+				ResetCPUUsage()
+				ElvUI_EltreumUI:Print(currentmemory.." memory was cleared")
+				--UpdateAddOnCPUUsage("ElvUI_EltreumUI") --only works with profiling
+				--/run UpdateAddOnMemoryUsage() print("memory "..GetAddOnMemoryUsage("ElvUI_EltreumUI")); print("cpu "..GetAddOnCPUUsage("ElvUI_EltreumUI"))
+				currentmemory = 0
+			else
+				ElvUI_EltreumUI:Print("Not enough memory usage to clear memory")
+			end
+		else
+			if currentmemory >= maxmemory then
+				collectgarbage("collect")
+				ResetCPUUsage()
+				currentmemory = 0
+			--	print("clearing memory")
+			--else
+			--	print(math.floor((currentmemory*100)/100).." memory, and try number "..count)
+			end
+		end
+	end
+end
