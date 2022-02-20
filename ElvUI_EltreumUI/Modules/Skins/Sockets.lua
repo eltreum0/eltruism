@@ -1548,7 +1548,11 @@ function ElvUI_EltreumUI:ClassicSockets()
 	end
 
 	function SlotIconManager:IsAtMaxLevel()
-		return UnitLevel(self.adapter:GetUnit()) == 60
+		if E.TBC then
+			return UnitLevel(self.adapter:GetUnit()) == 70
+		elseif E.Classic then
+			return UnitLevel(self.adapter:GetUnit()) == 60
+		end
 	end
 
 	function SlotIconManager:IsSlotEnchantRequired(slotName)
