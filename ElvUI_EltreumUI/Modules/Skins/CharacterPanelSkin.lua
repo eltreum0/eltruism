@@ -97,6 +97,10 @@ function ElvUI_EltreumUI:GetPlayerItemLevel()
 			else
 				level = -1
 			end
+			if level == nil then
+				level = -1
+			end
+
 			if level > 0 then
 				total = total + level
 				maxlevel = max(maxlevel, level)
@@ -110,6 +114,9 @@ function ElvUI_EltreumUI:GetPlayerItemLevel()
 		mainlevel = select(4, GetItemInfo(mainlink))
 	end
 	mainhand = (tonumber(mainlevel))
+	if mainhand == nil then
+		mainhand = 0
+	end
 
 	local offhandlink = GetInventoryItemLink("player", 17)
 	local offhandlevel = 0
@@ -117,6 +124,9 @@ function ElvUI_EltreumUI:GetPlayerItemLevel()
 		offhandlevel = select(4, GetItemInfo(offhandlink))
 	end
 	offhand = (tonumber(offhandlevel))
+	if offhand == nil then
+		offhand = 0
+	end
 
 	local rangedlevel = 0
 	local rangedlink = GetInventoryItemLink("player", 18)
@@ -124,6 +134,9 @@ function ElvUI_EltreumUI:GetPlayerItemLevel()
 		rangedlevel = select(4, GetItemInfo(rangedlink))
 	end
 	ranged = (tonumber(rangedlevel))
+	if ranged == nil then
+		ranged = 0
+	end
 
 	if (mainhand <= 0 and ranged <= 0 and ranged <= 0) then
 	elseif (mainhand > 0 and offhand > 0) then
