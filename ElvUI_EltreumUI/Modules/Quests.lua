@@ -154,6 +154,32 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 				return
 			else
 				--print("started quest automation")
+				if event == 'QUEST_GREETING' then
+					--print("QUEST_GREETING")
+
+					--if accepting quests
+					for i = 1, GetNumAvailableQuests() do
+						--print("numquests accept loop")
+						SelectAvailableQuest(i)
+					end
+
+					--if completing quests
+					for i = 1, GetNumActiveQuests() do
+					--print("numquests complete loop")
+						local _, completed = GetActiveTitle(i)
+						if E.Retail then
+							if completed and not C_QuestLog.IsWorldQuest(GetActiveQuestID(i)) then
+								--print("tried to complete "..completed.." and it's not a world quest")
+								SelectActiveQuest(i)
+							end
+						elseif E.TBC or E.Classic then
+							if completed then
+								--print("tried to complete "..completed)
+								SelectActiveQuest(i)
+							end
+						end
+					end
+				end
 				if event == 'QUEST_DETAIL' then
 					--print("QUEST_DETAIL")
 					if E.Retail then
@@ -333,33 +359,6 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 							end
 						end
 					end
-
-				end
-				if event == 'QUEST_GREETING' then
-					--print("QUEST_GREETING")
-
-					--if accepting quests
-					for i = 1, GetNumAvailableQuests() do
-						--print("numquests accept loop")
-						SelectAvailableQuest(i)
-					end
-
-					--if completing quests
-					for i = 1, GetNumActiveQuests() do
-					--print("numquests complete loop")
-						local _, completed = GetActiveTitle(i)
-						if E.Retail then
-							if completed and not C_QuestLog.IsWorldQuest(GetActiveQuestID(i)) then
-								--print("tried to complete "..completed.." and it's not a world quest")
-								SelectActiveQuest(i)
-							end
-						elseif E.TBC or E.Classic then
-							if completed then
-								--print("tried to complete "..completed)
-								SelectActiveQuest(i)
-							end
-						end
-					end
 				end
 				if event == 'QUEST_PROGRESS' then
 					--print("QUEST_PROGRESS")
@@ -390,7 +389,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 					end
 				end
 				if event == 'QUEST_COMPLETE' then
-				--print("QUEST_COMPLETE")
+					--print("QUEST_COMPLETE")
 					if GetQuestMoneyToGet() > 0 then
 						--print("quest requires gold")
 						return
