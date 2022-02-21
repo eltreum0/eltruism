@@ -1523,6 +1523,15 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.ilvls end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvls = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							inspectilvl = {
+								order = 82,
+								type = 'toggle',
+								name = L["Add Item Levels to the Inspect Panel"],
+								width = 'full',
+								desc = L["Enable this option"],
+								get = function() return E.db.ElvUI_EltreumUI.skins.ilvlsinspect end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvlsinspect = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
 							header831 = {
 								order = 83,
 								type = "description",

@@ -20,9 +20,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 			--overlayFrame:SetFrameLevel(9999) -- this was bugging out inspect
 			overlayFrame:SetAllPoints()
 			button.eltruismilvl = overlayFrame:CreateFontString('$parentItemLevel', 'OVERLAY')
-			--button.eltruismilvl:SetPoint('CENTER', 0, 0)
 			button.eltruismilvl:SetPoint(E.db.ElvUI_EltreumUI.skins.ilvlanchor, 0, 0)
-			--button.eltruismilvl:SetFont(E.LSM:Fetch("font", E.db.general.font), 16, "THICKOUTLINE")
 			button.eltruismilvl:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.ilvlfontsize, E.db.ElvUI_EltreumUI.skins.ilvlfontweight)
 			button.eltruismilvl:SetJustifyH('LEFT')
 			button.eltruismilvl:Hide()
@@ -85,16 +83,16 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 		end
 
 		hooksecurefunc("PaperDollItemSlotButton_Update", function(button)
-			UpdateItemSlotButton(button, "player")
+			if E.db.ElvUI_EltreumUI.skins.ilvls then
+				UpdateItemSlotButton(button, "player")
+			end
 		end)
-
-
 
 		EltruismInspectilvls:RegisterEvent("ADDON_LOADED")
 		EltruismInspectilvls:SetScript("OnEvent", function(_,_,arg)
 			if arg == "Blizzard_InspectUI" then
 				hooksecurefunc("InspectPaperDollItemSlotButton_Update", function(button)
-					if E.db.ElvUI_EltreumUI.skins.ilvls then
+					if E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
 						UpdateItemSlotButton(button, "target")
 					end
 				end)
