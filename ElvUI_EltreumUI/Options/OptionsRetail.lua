@@ -857,7 +857,7 @@ function ElvUI_EltreumUI:Configtable()
 								step = 1,
 								width = "double",
 								get = function() return E.db.ElvUI_EltreumUI.blizzframes.errorframefontsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.blizzframes.errorframefontsize = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.blizzframes.errorframefontsize = tonumber(value) E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							bossenable = {
 								order = 5,
@@ -878,7 +878,7 @@ function ElvUI_EltreumUI:Configtable()
 								step = 1,
 								width = "double",
 								get = function() return E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize = tonumber(value) E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							zoneenable = {
 								order = 34,
