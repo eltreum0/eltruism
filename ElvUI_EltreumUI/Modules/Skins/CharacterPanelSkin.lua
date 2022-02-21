@@ -976,12 +976,9 @@ function ElvUI_EltreumUI:InspectBg(unit)
 			alpha = 0.3
 		end
 		--inspect frame bg
-		--print(unit)
 		if IsAddOnLoaded("Blizzard_InspectUI") then
 			--local localizedClass, englishClass, localizedRace, englishRace, sex, name, realm = GetPlayerInfoByGUID(unit)
-			local _, englishClass, _, _, _, _, _ = GetPlayerInfoByGUID(unit)
-			--print(englishClass)
-			--local _, targetclass = UnitClass("target")
+			local _, englishClass = GetPlayerInfoByGUID(unit)
 			if englishClass then
 				if _G.InspectFrame then
 					--EltruismInspectBgTexture:SetTexture(classBgs[targetclass])
@@ -1016,10 +1013,6 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					end
 					EltruismInspectBgTexture:SetDrawLayer("ARTWORK")
 				end
-			end
-
-			if E.Classic or E.TBC then
-				ElvUI_EltreumUI:ClearMemory()
 			end
 		end
 	end

@@ -2,6 +2,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 
 --Calculate ilvl and average ilvl of player items/inspect unit
+local EltruismInspectilvls = CreateFrame("Frame")
 function ElvUI_EltreumUI:UpdateAvgIlvl()
 	if E.db.ElvUI_EltreumUI.skins.ilvls then
 
@@ -88,12 +89,14 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 		end)
 
 
-		local EltruismInspectilvls = CreateFrame("Frame")
+
 		EltruismInspectilvls:RegisterEvent("ADDON_LOADED")
 		EltruismInspectilvls:SetScript("OnEvent", function(_,_,arg)
 			if arg == "Blizzard_InspectUI" then
 				hooksecurefunc("InspectPaperDollItemSlotButton_Update", function(button)
-					UpdateItemSlotButton(button, "target")
+					if E.db.ElvUI_EltreumUI.skins.ilvls then
+						UpdateItemSlotButton(button, "target")
+					end
 				end)
 			end
 		end)
