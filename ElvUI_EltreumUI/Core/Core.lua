@@ -77,13 +77,15 @@ function ElvUI_EltreumUI:Anchors()
 		E:CreateMover(_G.UIErrorsFrame, "MoverUIERRORS", "UI Error Frame", nil, nil, nil, "ALL,SOLO")
 		if E.db.ElvUI_EltreumUI.blizzframes.errorframe then
 			_G.UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.errorframefontsize, E.db.general.fontStyle)
+			print(E.db.general.fontStyle)
 		end
 	end
 
 	if E.Retail then
 		E:CreateMover(_G.RaidBossEmoteFrame, "MoverRaidBossEmoteFrame", "Raid/Boss Emote Frame", nil, nil, nil, "ALL,SOLO")
 		if E.db.ElvUI_EltreumUI.blizzframes.raidbossframe then
-			_G.RaidBossEmoteFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
+			_G.RaidWarningFrameSlot1:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
+			--_G.RaidBossEmoteFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
 		end
 	end
 end
