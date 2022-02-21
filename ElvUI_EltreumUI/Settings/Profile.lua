@@ -407,8 +407,10 @@ P.ElvUI_EltreumUI = {
 
 	blizzframes = {
 		errorframe = true,
+		errorframefontsize = 14,
 		hideerrorframe = false,
 		raidbossframe = true,
+		raidbossframefontsize = 14,
 	},
 
 	otherstuff ={
