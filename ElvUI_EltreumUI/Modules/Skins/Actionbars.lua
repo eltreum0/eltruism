@@ -14,7 +14,7 @@ function ElvUI_EltreumUI:SkillGlow()
 	end
 
 	if E.db.ElvUI_EltreumUI.glow.enable then
-		if E.db.ElvUI_EltreumUI.glow.pixel then
+		if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 			function LCG.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
 					LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
@@ -23,7 +23,7 @@ function ElvUI_EltreumUI:SkillGlow()
 			function LCG.HideOverlayGlow(button)
 				LCG.PixelGlow_Stop(button)
 			end
-		elseif E.db.ElvUI_EltreumUI.glow.autocast then
+		elseif E.db.ElvUI_EltreumUI.glow.autocast and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 			function LCG.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
 					LCG.AutoCastGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
@@ -32,7 +32,7 @@ function ElvUI_EltreumUI:SkillGlow()
 			function LCG.HideOverlayGlow(button)
 				LCG.AutoCastGlow_Stop(button)
 			end
-		elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+		elseif E.db.ElvUI_EltreumUI.glow.blizzard and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 			function LCG.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
 					LCG.ButtonGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
@@ -217,7 +217,7 @@ function ElvUI_EltreumUI:SkillGlowPet()
 	if not E.private.ElvUI_EltreumUI then
 		return
 	end
-	if E.myclass == 'HUNTER' or E.myclass == 'WARLOCK' then
+	if (E.myclass == 'HUNTER' or E.myclass == 'WARLOCK') and (not IsAddOnLoaded("ElvUI_ActionBarMasks")) then
 		local skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolorpet.r, E.db.ElvUI_EltreumUI.glowcustomcolorpet.g, E.db.ElvUI_EltreumUI.glowcustomcolorpet.b, 1}
 		if E.db.ElvUI_EltreumUI.glow.colorclass then
 			skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
