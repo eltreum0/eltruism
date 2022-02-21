@@ -12,12 +12,12 @@ if E.Retail then
 	EltruismTimeToArrive.TimeText:SetSize(0, 26)
 	EltruismTimeToArrive.TimeText:SetPoint("TOP", "SuperTrackedFrame", "BOTTOM", 0, -40)
 	EltruismTimeToArrive.TimeText:SetTextColor(1, 1, 1)
-	EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, "OUTLINE")
+	EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 	EltruismTimeToArrive.TimeText:SetParent("SuperTrackedFrame")
 	EltruismTimeToArrive:SetParent("SuperTrackedFrame")
 
 	_G.SuperTrackedFrame.DistanceText:SetTextColor(1,1,1)
-	_G.SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, "OUTLINE")
+	_G.SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 
 	--set the throttle
 	local ONUPDATE_INTERVAL = 1

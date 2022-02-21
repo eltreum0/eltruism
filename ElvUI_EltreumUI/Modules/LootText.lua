@@ -36,7 +36,7 @@ function ElvUI_EltreumUI:LootText()
 
 			--use elvui general font
 			if E.db.ElvUI_EltreumUI.loottext.fontsetting then
-				string:SetFont(E.media.normFont, 24, "OUTLINE")
+				string:SetFont(E.media.normFont, 24, E.db.general.fontStyle)
 		 	end
 			string:SetText(message)
 			string:SetTextColor(r, g, b)

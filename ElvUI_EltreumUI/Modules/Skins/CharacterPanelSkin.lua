@@ -267,7 +267,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterFrame.EltruismExtraStats:SetTexture(E.Media.Textures.Black8x8)
 				_G.CharacterFrame.EltruismExtraStats:SetParent(_G.CharacterStatsPane)
 
-				_G.CharacterFrame.EltruismExtraStatsFont:SetFont(E.LSM:Fetch('font', E.db.general.font), 12)
+				_G.CharacterFrame.EltruismExtraStatsFont:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize)
 				_G.CharacterFrame.EltruismExtraStatsFont:SetTextColor(1, 1, 1)
 				_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -80)
 				_G.CharacterFrame.EltruismExtraStatsFont:SetParent(_G.CharacterStatsPane)
