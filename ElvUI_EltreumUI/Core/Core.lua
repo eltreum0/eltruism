@@ -81,16 +81,17 @@ function ElvUI_EltreumUI:Anchors()
 		end
 	end
 
-	E:CreateMover(_G.RaidBossEmoteFrame, "MoverRaidBossEmoteFrame", "Raid/Boss Emote Frame", nil, nil, nil, "ALL,SOLO")
+	E:CreateMover(_G.RaidWarningFrame, "MoverRaidWarningFrame", "Raid Warning Frame", nil, nil, nil, "ALL,SOLO")
 
-	--if E.Retail then
+	if E.Retail then
+		E:CreateMover(_G.RaidBossEmoteFrame, "MoverRaidBossEmoteFrame", "Raid/Boss Emote Frame", nil, nil, nil, "ALL,SOLO")
 		--this doesnt seem to work well, rather if you set font size to like 200 it becomes less blurry, but if its 12 its very blurry
 		--[[if E.db.ElvUI_EltreumUI.blizzframes.raidbossframe then
 			_G.RaidWarningFrameSlot1:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
 			_G.RaidWarningFrameSlot2:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
 			--_G.RaidBossEmoteFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
 		end]]
-	--end
+	end
 end
 
 -- UI Scale
