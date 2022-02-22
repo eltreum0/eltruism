@@ -859,7 +859,7 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.blizzframes.errorframefontsize end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.blizzframes.errorframefontsize = tonumber(value) E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							bossenable = {
+							--[[bossenable = {
 								order = 5,
 								name = L['Enable for Boss Emote Frame'],
 								type = "toggle",
@@ -879,7 +879,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "double",
 								get = function() return E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize = tonumber(value) E:StaticPopup_Show('CONFIG_RL') end,
-							},
+							},]]
 							zoneenable = {
 								order = 34,
 								name = L['Enable for Zones, Mail and others'],
