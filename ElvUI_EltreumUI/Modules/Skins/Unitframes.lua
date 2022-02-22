@@ -477,7 +477,10 @@ function ElvUI_EltreumUI:SetUFHooks()
 			EltruismBackdropUF:RegisterEvent("PLAYER_TARGET_CHANGED")
 			EltruismBackdropUF:RegisterEvent("GROUP_ROSTER_UPDATE")
 			EltruismBackdropUF:SetScript("OnEvent", function()
-				hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
+				if not self.isHooked then
+					hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
+					self.isHooked = true
+				end
 			end)
 			--print("dark mode hook function"..math.random(1,9999999))
 			--[[hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.BackdropTexture)
