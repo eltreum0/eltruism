@@ -43,6 +43,23 @@ local mage = {r = "0.24705828726292", g = "0.78039044141769", b = "0.92156660556
 local hunter = {r = "0.66666519641876", g = "0.82744914293289", b = "0.44705784320831"}
 local warlock = {r = "0.52941060066223", g = "0.53333216905594", b = "0.93333131074905"}
 
+--Unitframe Backdrop Texture
+function ElvUI_EltreumUI:BackdropTexture(statusBar, statusBarTex, backdropTex)
+	if (not E.db.ElvUI_EltreumUI.lightmode) and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
+		backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
+		backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+	end
+end
+hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
+
+local EltruismBackdropUF = CreateFrame("FRAME")
+EltruismBackdropUF:RegisterEvent("UNIT_TARGET", "player")
+EltruismBackdropUF:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+EltruismBackdropUF:RegisterEvent("PLAYER_TARGET_CHANGED")
+EltruismBackdropUF:SetScript("OnEvent", function()
+	hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
+end)
+
 --from Benik
 local function ChangeUnitTexture()
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
@@ -439,14 +456,6 @@ function ElvUI_EltreumUI:LeaderIndicatorSize(frame)
 	frame.MasterLooterIndicator:Size(E.db.ElvUI_EltreumUI.otherstuff.leadersize)
 end
 
---Unitframe Backdrop Texture
-function ElvUI_EltreumUI:BackdropTexture(statusBar, statusBarTex, backdropTex)
-	if (not E.db.ElvUI_EltreumUI.lightmode) and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
-		backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
-		backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-	end
-end
-
 -- because otherwise everything was hooking
 function ElvUI_EltreumUI:SetUFHooks()
 	if E.db.ElvUI_EltreumUI.sparkcustomcolor.enable and E.private.unitframe.enable then
@@ -470,7 +479,13 @@ function ElvUI_EltreumUI:SetUFHooks()
 			hooksecurefunc(UF, 'Update_PartyFrames', ElvUI_EltreumUI.ChangePartyTexture)
 			hooksecurefunc(UF, 'Construct_RaidRoleFrames', ElvUI_EltreumUI.LeaderIndicatorSize)
 		elseif not E.db.ElvUI_EltreumUI.lightmode then
-			hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
+			return
+			--print("dark mode hook function"..math.random(1,9999999))
+			--[[hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.BackdropTexture)
+			hooksecurefunc(UF, 'Update_RaidFrames', ElvUI_EltreumUI.BackdropTexture)
+			hooksecurefunc(UF, 'Update_Raid40Frames', ElvUI_EltreumUI.BackdropTexture)
+			hooksecurefunc(UF, 'Update_PartyFrames', ElvUI_EltreumUI.BackdropTexture)
+			hooksecurefunc(UF, 'Construct_RaidRoleFrames', ElvUI_EltreumUI.BackdropTexture)]]
 		end
 	end
 end

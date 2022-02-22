@@ -111,7 +111,7 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 					button.count:Point('BOTTOMRIGHT', 2, -3)
 				end
 			end
-			UF.PostUpdateAura(self, unit, button)
+			UF.PostUpdateAura(self, unit, button)  --error?
 		end
 	end
 end
