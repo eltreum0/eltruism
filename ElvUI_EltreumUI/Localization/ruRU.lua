@@ -784,3 +784,7 @@ L["Make the warnings to install profiles for other plugins stop"] = true
 L['Error Frame Font Size'] = true
 L['Boss Emote Frame Font Size'] = true
 L["Add Item Levels to the Inspect Panel"] = true
+L["Backdrops"] = true
+L["Backdrop Texture"] = true
+L["Backdrop Alpha"] = true
+L["Change the transparency of the backdrop"] = true
