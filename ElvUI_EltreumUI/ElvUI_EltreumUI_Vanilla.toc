@@ -1,6 +1,6 @@
 ## Interface: 11402
 ## Author: Eltreum
-## Version: 2.8.5
+## Version: 2.8.6
 ## Title: |cff1784d1ElvUI|r Eltruism Classic
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
 ## Dependencies: ElvUI, AddOnSkins
