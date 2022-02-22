@@ -285,32 +285,6 @@ function ElvUI_EltreumUI:SkillGlow()
 				[705] = true,
 				[695] = true,
 				[686] = true,
-
-				--earth shock
-				[25454] = true,
-				[10414] = true,
-				[10413] = true,
-				[10412] = true,
-				[8046] = true,
-				[8045] = true,
-				[8044] = true,
-				[8042] = true,
-
-				--flame shock
-				[29228] = true,
-				[25457] = true,
-				[10448] = true,
-				[10447] = true,
-				[8053] = true,
-				[8052] = true,
-				[8050] = true,
-
-				--frost shock
-				[25464] = true,
-				[10473] = true,
-				[10472] = true,
-				[8058] = true,
-				[8056] = true,
 			}
 			local proc
 			function ElvUI_EltreumUI:ClassicGlow(barName)

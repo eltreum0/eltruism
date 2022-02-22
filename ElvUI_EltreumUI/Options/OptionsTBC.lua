@@ -2514,6 +2514,37 @@ function ElvUI_EltreumUI:Configtable()
 									glowcustomcolornp.r, glowcustomcolornp.g, glowcustomcolornp.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
 								end,
 							},
+							headerline100 = {
+								order = 100,
+								type = "description",
+								name = L["Action Bars"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							classcolorab = {
+								type = 'toggle',
+								name = L["Use Class Colors"],
+								order = 101,
+								desc = L["Toggle Class Colored glows"],
+								get = function() return E.db.ElvUI_EltreumUI.glow.colorclass end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.glow.colorclass = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							colorab = {
+								order = 102,
+								type = 'color',
+								name = L["Custom Color"],
+								hasAlpha = false,
+								disabled = function() return E.db.ElvUI_EltreumUI.glow.colorclass end,
+								get = function()
+									local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolor
+									local d = P.ElvUI_EltreumUI.glowcustomcolor
+									return glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b, glowcustomcolor.a, d.r, d.g, d.b, d.a
+								end,
+								set = function(_, r, g, b, a)
+									local glowcustomcolor = E.db.ElvUI_EltreumUI.glowcustomcolor
+									glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+								end,
+							},
 						},
 					},
 					pixelglow = {
