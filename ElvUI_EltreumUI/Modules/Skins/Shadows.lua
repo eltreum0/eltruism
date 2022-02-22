@@ -76,6 +76,10 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
+		--[[if _G['MMHolder'] and not _G['MMHolder'].shadow then
+			_G['MMHolder']:CreateShadow()
+		end]]
+
 		local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
 		local Minimapsizex, Minimapsizey = _G['Minimap']:GetSize()
 		MinimapShadow:SetSize(Minimapsizex, Minimapsizey)

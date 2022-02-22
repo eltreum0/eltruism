@@ -306,7 +306,6 @@ function ElvUI_EltreumUI:SkillGlow()
 						if SPELL_ID[proc] then
 							local USABLE, NO_MANA = IsUsableSpell(proc)
 							local cd = GetSpellCooldown(proc)
-							--print(cd)
 							if (UnitExists("target") and UnitCanAttack("player", "target") and cd == 0 and USABLE and not NO_MANA) and _G[buttonname].GetSpellId and _G[buttonname]:GetSpellId() == proc then
 								if E.myclass == 'PALADIN' then
 									if proc == 27138 or proc == 10314 or proc == 10313 or proc == 10312 or proc == 5615 or proc == 5614 or proc == 879 then
