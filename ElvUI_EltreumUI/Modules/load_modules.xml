@@ -21,7 +21,7 @@
 	<Script file='AFK.lua'/>
 	<Script file='Animations.lua'/>
 	<Script file='Auras.lua'/>
-	<Script file='CombatMusic.lua'/>
+	<Script file='CombatEvents.lua'/>
 	<Script file='DarkLightColors.lua'/>
 	<Script file='DynamicFunctions.lua'/>
 	<Script file='EltruismDatatext.lua'/>
