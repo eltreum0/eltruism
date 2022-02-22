@@ -1,5 +1,6 @@
 ### 2.8.6 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
+Added custom glow to actionbars in TBC/Classic\
 Added options to enable/disable the !key and !keys chat commands\
 Added more npcs to the automatic quest turn in ignore list\
 Added Pepsi-Cyr-Lat font\
