@@ -7,7 +7,7 @@ function ElvUI_EltreumUI:LoadCommands()
 		if E.db.ElvUI_EltreumUI.waytext.enable then
 			self:RegisterChatCommand('way', 'WaypointTexttoCoordinate')
 			self:RegisterChatCommand('waypoint', 'WaypointTexttoCoordinate')
-			if E.Retail and E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
+			if E.Retail then
 				self:RegisterChatCommand('!key', 'Keys')
 				self:RegisterChatCommand('!keys', 'Keys')
 			end
@@ -134,9 +134,11 @@ function ElvUI_EltreumUI:Keys(event,message)
 			if covenantData then
 			covenantName = covenantData.name
 			end
-			for _, link in next, keys do
-				message = ""..link
-				SendChatMessage(message..(covenantName and (' ('..covenantName..')') or ''), channel)
+			if E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
+				for _, link in next, keys do
+					message = ""..link
+					SendChatMessage(message..(covenantName and (' ('..covenantName..')') or ''), channel)
+				end
 			end
 		end
 
