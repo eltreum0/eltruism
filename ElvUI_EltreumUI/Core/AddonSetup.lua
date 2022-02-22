@@ -61,7 +61,7 @@ end
 
 function ElvUI_EltreumUI:AddonSetupDTReleafv3()
 	if IsAddOnLoaded('Details') then
-		ElvUI_EltreumUI:GetDetailsProfileReleaf()
+		ElvUI_EltreumUI:GetDetailsProfileReleafv3()
 		ElvUI_EltreumUI:Print("Details profile using Releaf Solid icons has been set.")
 	else
 		ElvUI_EltreumUI:Print("Details is not loaded")
