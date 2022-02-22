@@ -11,7 +11,6 @@ local function EltruismSpark()
 		castbar.Spark_:Size(E.db.ElvUI_EltreumUI.sparkcustomcolor.width)
 	end
 end
-hooksecurefunc(UF, 'Construct_Castbar', EltruismSpark)
 
 --color unitframes target texture during light mode
 local unitframeclass = {
@@ -137,14 +136,6 @@ local function ChangeUnitTexture()
 	end
 end
 
-local EltruismChangeUnitTextureFrame = CreateFrame("FRAME")
-EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_TARGET", "player")
-EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
-EltruismChangeUnitTextureFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
-EltruismChangeUnitTextureFrame:SetScript("OnEvent", ChangeUnitTexture)
-hooksecurefunc(UF, "Construct_HealthBar", ChangeUnitTexture)
-hooksecurefunc(UF, "Style", ChangeUnitTexture)  --if not hooking into this then when the target of target changes it doesnt update
-
 --from Benik
 function ElvUI_EltreumUI:ChangePlayerTexture()
 	--print("change unit texture spam")
@@ -162,11 +153,6 @@ function ElvUI_EltreumUI:ChangePlayerTexture()
 		end
 	end
 end
-hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangePlayerTexture)
-
-local EltruismPlayerTextureUpdate = CreateFrame("FRAME")
-EltruismPlayerTextureUpdate:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
-EltruismPlayerTextureUpdate:SetScript("OnEvent", ElvUI_EltreumUI.ChangePlayerTexture)
 
 function ElvUI_EltreumUI:ChangeRaidTexture()
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
@@ -260,7 +246,6 @@ function ElvUI_EltreumUI:ChangeRaidTexture()
 		end
 	end
 end
-hooksecurefunc(UF, 'Update_RaidFrames', ElvUI_EltreumUI.ChangeRaidTexture)
 
 function ElvUI_EltreumUI:ChangeRaid40Texture()
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
@@ -354,7 +339,6 @@ function ElvUI_EltreumUI:ChangeRaid40Texture()
 		end
 	end
 end
-hooksecurefunc(UF, 'Update_Raid40Frames', ElvUI_EltreumUI.ChangeRaid40Texture)
 
 function ElvUI_EltreumUI:ChangePartyTexture()
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
@@ -448,29 +432,52 @@ function ElvUI_EltreumUI:ChangePartyTexture()
 		end
 	end
 end
-hooksecurefunc(UF, 'Update_PartyFrames', ElvUI_EltreumUI.ChangePartyTexture)
 
 function ElvUI_EltreumUI:LeaderIndicatorSize(frame)
 	frame.LeaderIndicator:Size(E.db.ElvUI_EltreumUI.otherstuff.leadersize)
 	frame.AssistantIndicator:Size(E.db.ElvUI_EltreumUI.otherstuff.leadersize)
 	frame.MasterLooterIndicator:Size(E.db.ElvUI_EltreumUI.otherstuff.leadersize)
 end
-hooksecurefunc(UF, 'Construct_RaidRoleFrames', ElvUI_EltreumUI.LeaderIndicatorSize)
 
-
---[[   --this controls everything that is transparent, not intended
-function ElvUI_EltreumUI:DarkTexture(isTransparent, statusBar)
-	if isTransparent then
-		statusBar:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\AsphyxiaNorm.tga")
+--Unitframe Backdrop Texture
+function ElvUI_EltreumUI:BackdropTexture(statusBar, statusBarTex, backdropTex)
+	if (not E.db.ElvUI_EltreumUI.lightmode) and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
+		backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
+		backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
 	end
 end
-hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.DarkTexture)
-]]
+
+-- because otherwise everything was hooking
+function ElvUI_EltreumUI:SetUFHooks()
+	if E.db.ElvUI_EltreumUI.sparkcustomcolor.enable and E.private.unitframe.enable then
+		hooksecurefunc(UF, 'Construct_Castbar', EltruismSpark)
+	end
+
+	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
+
+		local EltruismChangeUnitTextureFrame = CreateFrame("FRAME")
+		EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_TARGET", "player")
+		EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+		EltruismChangeUnitTextureFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
+		EltruismChangeUnitTextureFrame:SetScript("OnEvent", ChangeUnitTexture)
 
 
---actual backdrop texture
-function ElvUI_EltreumUI:BackdropTexture(statusBar, statusBarTex, backdropTex)
-	backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
-	backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+		hooksecurefunc(UF, "Construct_HealthBar", ChangeUnitTexture)
+		hooksecurefunc(UF, "Style", ChangeUnitTexture)  --if not hooking into this then when the target of target changes it doesnt update
+
+		local EltruismPlayerTextureUpdate = CreateFrame("FRAME")
+		EltruismPlayerTextureUpdate:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+		EltruismPlayerTextureUpdate:SetScript("OnEvent", ElvUI_EltreumUI.ChangePlayerTexture)
+
+		hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangePlayerTexture)
+		hooksecurefunc(UF, 'Update_RaidFrames', ElvUI_EltreumUI.ChangeRaidTexture)
+		hooksecurefunc(UF, 'Update_Raid40Frames', ElvUI_EltreumUI.ChangeRaid40Texture)
+		hooksecurefunc(UF, 'Update_PartyFrames', ElvUI_EltreumUI.ChangePartyTexture)
+		hooksecurefunc(UF, 'Construct_RaidRoleFrames', ElvUI_EltreumUI.LeaderIndicatorSize)
+
+	end
+
+	if (not E.db.ElvUI_EltreumUI.lightmode) and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
+		hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
+	end
 end
-hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)

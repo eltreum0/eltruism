@@ -4065,7 +4065,7 @@ function ElvUI_EltreumUI:Configtable()
 							ufbackdropTex = {
 								order = 17,
 								type = 'select',
-								width = "double",
+								--width = "double",
 								dialogControl = 'LSM30_Statusbar',
 								name = L["Backdrop Texture"],
 								desc = L["Select a Texture"],
@@ -4081,7 +4081,7 @@ function ElvUI_EltreumUI:Configtable()
 								min = 0.1,
 								max = 1,
 								step = 0.01,
-								width = "double",
+								--width = "double",
 								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha = value end,
 							},

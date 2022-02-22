@@ -140,9 +140,8 @@ if E.Retail then
 end
 
 function ElvUI_EltreumUI:TextureMode()
-	if E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
-
-		if (E.TBC or E.Classic) and E.myclass == 'SHAMAN' then
+	if (E.TBC or E.Classic) and E.myclass == 'SHAMAN' then
+		if E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
 			local UF = E:GetModule('UnitFrames') --only classpower that is actually in UF instead of NP
 			local function TotemBackground()
 				local header = _G['ElvUF_Player']
@@ -158,16 +157,6 @@ function ElvUI_EltreumUI:TextureMode()
 			end
 			hooksecurefunc(UF, 'Construct_Totems', TotemBackground)
 			TotemBackground()
-		end
-
-		if E.db.ElvUI_EltreumUI.lightmode then
-			E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
-			E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
-			E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
-		else
-			E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
-			E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
-			E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
 		end
 	end
 end
