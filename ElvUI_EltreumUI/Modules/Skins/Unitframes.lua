@@ -452,32 +452,25 @@ function ElvUI_EltreumUI:SetUFHooks()
 	if E.db.ElvUI_EltreumUI.sparkcustomcolor.enable and E.private.unitframe.enable then
 		hooksecurefunc(UF, 'Construct_Castbar', EltruismSpark)
 	end
-
-	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
-
-		local EltruismChangeUnitTextureFrame = CreateFrame("FRAME")
-		EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_TARGET", "player")
-		EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
-		EltruismChangeUnitTextureFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
-		EltruismChangeUnitTextureFrame:SetScript("OnEvent", ChangeUnitTexture)
-
-
-		hooksecurefunc(UF, "Construct_HealthBar", ChangeUnitTexture)
-		hooksecurefunc(UF, "Style", ChangeUnitTexture)  --if not hooking into this then when the target of target changes it doesnt update
-
-		local EltruismPlayerTextureUpdate = CreateFrame("FRAME")
-		EltruismPlayerTextureUpdate:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
-		EltruismPlayerTextureUpdate:SetScript("OnEvent", ElvUI_EltreumUI.ChangePlayerTexture)
-
-		hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangePlayerTexture)
-		hooksecurefunc(UF, 'Update_RaidFrames', ElvUI_EltreumUI.ChangeRaidTexture)
-		hooksecurefunc(UF, 'Update_Raid40Frames', ElvUI_EltreumUI.ChangeRaid40Texture)
-		hooksecurefunc(UF, 'Update_PartyFrames', ElvUI_EltreumUI.ChangePartyTexture)
-		hooksecurefunc(UF, 'Construct_RaidRoleFrames', ElvUI_EltreumUI.LeaderIndicatorSize)
-
-	end
-
-	if (not E.db.ElvUI_EltreumUI.lightmode) and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
-		hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
+	if E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
+		if E.db.ElvUI_EltreumUI.lightmode then
+			local EltruismChangeUnitTextureFrame = CreateFrame("FRAME")
+			EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_TARGET", "player")
+			EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+			EltruismChangeUnitTextureFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
+			EltruismChangeUnitTextureFrame:SetScript("OnEvent", ChangeUnitTexture)
+			hooksecurefunc(UF, "Construct_HealthBar", ChangeUnitTexture)
+			hooksecurefunc(UF, "Style", ChangeUnitTexture)  --if not hooking into this then when the target of target changes it doesnt update
+			local EltruismPlayerTextureUpdate = CreateFrame("FRAME")
+			EltruismPlayerTextureUpdate:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+			EltruismPlayerTextureUpdate:SetScript("OnEvent", ElvUI_EltreumUI.ChangePlayerTexture)
+			hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangePlayerTexture)
+			hooksecurefunc(UF, 'Update_RaidFrames', ElvUI_EltreumUI.ChangeRaidTexture)
+			hooksecurefunc(UF, 'Update_Raid40Frames', ElvUI_EltreumUI.ChangeRaid40Texture)
+			hooksecurefunc(UF, 'Update_PartyFrames', ElvUI_EltreumUI.ChangePartyTexture)
+			hooksecurefunc(UF, 'Construct_RaidRoleFrames', ElvUI_EltreumUI.LeaderIndicatorSize)
+		elseif not E.db.ElvUI_EltreumUI.lightmode then
+			hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
+		end
 	end
 end
