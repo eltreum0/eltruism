@@ -13,5 +13,5 @@ Updated waypoint ETA to also show itself when the player has a waypoint when log
 Updated how fonts are applied, they should no longer overwrite light/dark mode texts\
 Updated Item Levels for TBC/Classic, making it use less memory and be generally faster\
 Updated automatic quest turn, improving how gossips and quests are detected\
-Updated Details v3 Icons
-
+Updated Details v3 Icons\
+Fixed debuff positions in the party unitframe for the DPS Layout
