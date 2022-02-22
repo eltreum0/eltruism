@@ -29,7 +29,15 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["player"]["healPrediction"]["enable"] = true
 		E.db["unitframe"]["units"]["party"]["healPrediction"]["enable"] = false
 		E.db["unitframe"]["units"]["raid"]["healPrediction"]["enable"] = false
+		E.db["unitframe"]["units"]["raidpet"]["healPrediction"]["enable"] = false
+		E.db["unitframe"]["units"]["raid40"]["healPrediction"]["enable"] = false
 		E.db["unitframe"]["units"]["tank"]["healPrediction"]["enable"] = false
+
+		--aura indicator
+		E.db["unitframe"]["units"]["party"]["buffIndicator"]["enable"] = true
+		E.db["unitframe"]["units"]["raid"]["buffIndicator"]["enable"] = true
+		E.db["unitframe"]["units"]["raid40"]["buffIndicator"]["enable"] = true
+		E.db["unitframe"]["units"]["tank"]["buffIndicator"]["enable"] = true
 
 		-- set Dynamic Status Icons
 		if IsAddOnLoaded("ElvUI_DynamicStatusIcons") then

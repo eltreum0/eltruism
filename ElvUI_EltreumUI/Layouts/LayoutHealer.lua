@@ -29,7 +29,23 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["player"]["healPrediction"]["enable"] = true
 		E.db["unitframe"]["units"]["party"]["healPrediction"]["enable"] = true
 		E.db["unitframe"]["units"]["raid"]["healPrediction"]["enable"] = true
+		E.db["unitframe"]["units"]["raidpet"]["healPrediction"]["enable"] = true
+		E.db["unitframe"]["units"]["raid40"]["healPrediction"]["enable"] = true
 		E.db["unitframe"]["units"]["tank"]["healPrediction"]["enable"] = true
+
+		--aura indicator
+		E.db["unitframe"]["units"]["party"]["buffIndicator"]["enable"] = true
+		E.db["unitframe"]["units"]["raid"]["buffIndicator"]["enable"] = true
+		E.db["unitframe"]["units"]["raid40"]["buffIndicator"]["enable"] = true
+		E.db["unitframe"]["units"]["tank"]["buffIndicator"]["enable"] = true
+
+
+
+	--BuffIndicator_ApplyToAll(info, nil, E.db.unitframe.units[groupName].buffIndicator.profileSpecific, groupName == 'pet') end,
+	--BuffIndicator_ApplyToAll(info, value, E.db.unitframe.units[groupName].buffIndicator.profileSpecific, groupName == 'pet') updateFunc(UF, groupName, numGroup) end)
+
+
+
 
 		--set Dynamic Status Icons
 		if IsAddOnLoaded("ElvUI_DynamicStatusIcons") then
