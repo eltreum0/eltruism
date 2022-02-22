@@ -3921,15 +3921,45 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.focustexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.focustexture = key end,
 							},
-							headerclasses = {
+							headerufbackdrop = {
 								order = 16,
+								type = "description",
+								name = L["Backdrops"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							ufbackdropTex = {
+								order = 17,
+								type = 'select',
+								width = "double",
+								dialogControl = 'LSM30_Statusbar',
+								name = L["Backdrop Texture"],
+								desc = L["Select a Texture"],
+								values = AceGUIWidgetLSMlists.statusbar,
+								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture = key end,
+							},
+							ufbackdropTexalpha = {
+								type = 'range',
+								name = L["Backdrop Alpha"],
+								desc = L["Change the transparency of the backdrop"],
+								order = 18,
+								min = 0.1,
+								max = 1,
+								step = 0.01,
+								width = "double",
+								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha = value end,
+							},
+							headerclasses = {
+								order = 98,
 								type = "description",
 								name = L["Class Textures"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							dktexture = {
-								order = 17,
+								order = 99,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -3941,7 +3971,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.deathknighttexture = key end,
 							},
 							dhtexture = {
-								order = 17,
+								order = 99,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -3953,7 +3983,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.demonhuntertexture = key end,
 							},
 							druidtexture = {
-								order = 17,
+								order = 99,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -3965,7 +3995,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.druidtexture = key end,
 							},
 							huntertexture = {
-								order = 17,
+								order = 99,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -3977,7 +4007,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.huntertexture = key end,
 							},
 							magetexture = {
-								order = 17,
+								order = 99,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -3989,7 +4019,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.magetexture = key end,
 							},
 							monktexture = {
-								order = 17,
+								order = 99,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -4001,7 +4031,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.monktexture = key end,
 							},
 							paladintexture = {
-								order = 17,
+								order = 99,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -4013,7 +4043,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.paladintexture = key end,
 							},
 							priesttexture = {
-								order = 17,
+								order = 99,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -4025,7 +4055,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.priesttexture = key end,
 							},
 							roguetexture = {
-								order = 17,
+								order = 99,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -4037,7 +4067,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.roguetexture = key end,
 							},
 							shamantexture = {
-								order = 17,
+								order = 99,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -4049,7 +4079,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.shamantexture = key end,
 							},
 							warlocktexture = {
-								order = 17,
+								order = 99,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -4061,7 +4091,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.warlocktexture = key end,
 							},
 							warriortexture = {
-								order = 17,
+								order = 99,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',

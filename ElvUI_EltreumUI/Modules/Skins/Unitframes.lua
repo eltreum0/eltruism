@@ -456,3 +456,21 @@ function ElvUI_EltreumUI:LeaderIndicatorSize(frame)
 	frame.MasterLooterIndicator:Size(E.db.ElvUI_EltreumUI.otherstuff.leadersize)
 end
 hooksecurefunc(UF, 'Construct_RaidRoleFrames', ElvUI_EltreumUI.LeaderIndicatorSize)
+
+
+--[[   --this controls everything that is transparent, not intended
+function ElvUI_EltreumUI:DarkTexture(isTransparent, statusBar)
+	if isTransparent then
+		statusBar:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\AsphyxiaNorm.tga")
+	end
+end
+hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.DarkTexture)
+]]
+
+
+--actual backdrop texture
+function ElvUI_EltreumUI:BackdropTexture(statusBar, statusBarTex, backdropTex)
+	backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
+	backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+end
+hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)

@@ -370,6 +370,8 @@ P.ElvUI_EltreumUI = {
 
 	ufcustomtexture = {
 		enable = false,
+		backdroptexture = "Eltreum-Blank",
+		backdropalpha = 1,
 		targettexture = "Eltreum-Blank",
 		playertexture = "Eltreum-Blank",
 		targettargettexture = "Eltreum-Blank",
