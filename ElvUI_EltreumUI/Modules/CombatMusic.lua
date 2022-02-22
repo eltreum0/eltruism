@@ -23,12 +23,6 @@ function ElvUI_EltreumUI:CombatMusic(event, event2)
 			end
 		end
 	end
-	if E.db.ElvUI_EltreumUI.otherstuff.mapcombathide then
-		Minimap:Hide()
-		E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-4"
-		E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-101"
-		E:UpdateMoverPositions()
-	end
 end
 
 function ElvUI_EltreumUI:StopCombatMusic(event, event2)
@@ -40,12 +34,7 @@ function ElvUI_EltreumUI:StopCombatMusic(event, event2)
 			end
 		end
 	end
-	if E.db.ElvUI_EltreumUI.otherstuff.mapcombathide then
-		Minimap:Show()
-		E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-4"
-		E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-101"
-		E:UpdateMoverPositions()
-	end
+
 end
 
 --play music during boss fights
@@ -69,6 +58,30 @@ function ElvUI_EltreumUI:StopBossMusic(event)
 				StopMusic()
 				dontstopboss = 0
 			end
+		end
+	end
+end
+
+function ElvUI_EltreumUI:MinimapHide(event)
+	if E.db.ElvUI_EltreumUI.otherstuff.mapcombathide then
+		if event == 'PLAYER_REGEN_DISABLED' then
+			Minimap:Hide()
+			E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-4"
+			E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-101"
+			--if not InCombatLockdown() then
+				E:SetMoverPoints("BuffsMover")
+				E:SetMoverPoints("DebuffsMover")
+				--E:UpdateMoverPositions()
+			--end
+		elseif event == 'PLAYER_REGEN_ENABLED' then
+			Minimap:Show()
+			E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-4"
+			E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-101"
+			--if not InCombatLockdown() then
+				E:SetMoverPoints("BuffsMover")
+				E:SetMoverPoints("DebuffsMover")
+				--E:UpdateMoverPositions()
+			--end
 		end
 	end
 end
