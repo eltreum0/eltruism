@@ -273,8 +273,8 @@ function ElvUI_EltreumUI:SkillGlow()
 				[24274] = true,
 				[24239] = true,
 
-				--shadowbolt
-				[27209] = true,
+				--shadow bolt
+				--[[[27209] = true,
 				[25307] = true,
 				[11661] = true,
 				[11660] = true,
@@ -284,9 +284,10 @@ function ElvUI_EltreumUI:SkillGlow()
 				[1088] = true,
 				[705] = true,
 				[695] = true,
-				[686] = true,
+				[686] = true,]]
 			}
 			local proc
+			local auraid, _
 			function ElvUI_EltreumUI:ClassicGlow(barName)
 				local bar = AB['handledBars'][barName]
 				if not bar then return end
@@ -319,7 +320,6 @@ function ElvUI_EltreumUI:SkillGlow()
 											elseif E.db.ElvUI_EltreumUI.glow.blizzard and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 												LCG.ButtonGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
 											end
-
 										else
 											if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 												LCG.PixelGlow_Stop(_G[buttonname])
@@ -338,6 +338,29 @@ function ElvUI_EltreumUI:SkillGlow()
 											LCG.ButtonGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
 										end
 									end
+								--[[elseif E.myclass == 'WARLOCK' then
+									procFrame:RegisterUnitEvent('UNIT_AURA', "player")
+									for i = 1, 30 do
+										--auraid = select(10, UnitAura("player", i))
+										--print(auraid)
+										if auraid == 34936 or auraid == 17941 then --backlash and shadow trance
+											if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+											elseif E.db.ElvUI_EltreumUI.glow.autocast and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												LCG.AutoCastGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+											elseif E.db.ElvUI_EltreumUI.glow.blizzard and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												LCG.ButtonGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
+											end
+										elseif not auraid or auraid ~= 34936 or auraid ~= 17941 then
+											if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												LCG.PixelGlow_Stop(_G[buttonname])
+											elseif E.db.ElvUI_EltreumUI.glow.autocast and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												LCG.AutoCastGlow_Stop(_G[buttonname])
+											elseif E.db.ElvUI_EltreumUI.glow.blizzard and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												LCG.ButtonGlow_Stop(_G[buttonname])
+											end
+										end
+									end]]
 								else
 									if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 										LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
@@ -374,9 +397,11 @@ function ElvUI_EltreumUI:SkillGlow()
 			--classicglowframe:RegisterEvent('ACTIONBAR_UPDATE_USABLE')
 			classicglowframe:SetScript("OnEvent", function(event)
 				classicglowframe:UnregisterAllEvents()
-				hooksecurefunc(AB, 'PositionAndSizeBar', ElvUI_EltreumUI.ClassicGlow)
-				for i = 1, 10 do
-					AB:PositionAndSizeBar('bar'..i)
+				if not InCombatLockdown() then
+					hooksecurefunc(AB, 'PositionAndSizeBar', ElvUI_EltreumUI.ClassicGlow)
+					for i = 1, 10 do
+						AB:PositionAndSizeBar('bar'..i)
+					end
 				end
 			end)
 
