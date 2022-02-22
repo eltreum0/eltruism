@@ -732,8 +732,8 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["party"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["party"]["debuffs"]["countFontOutline"] = "OUTLINE"
 		E.db["unitframe"]["units"]["party"]["debuffs"]["xOffset"] = 5
-		E.db["unitframe"]["units"]["party"]["debuffs"]["yOffset"] = 23
-		E.db["unitframe"]["units"]["party"]["debuffs"]["anchorPoint"] = "TOPRIGHT"
+		E.db["unitframe"]["units"]["party"]["debuffs"]["yOffset"] = 11
+		E.db["unitframe"]["units"]["party"]["debuffs"]["anchorPoint"] = "RIGHT"
 		E.db["unitframe"]["units"]["party"]["debuffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["party"]["debuffs"]["countFontSize"] = 10
 		E.db["unitframe"]["units"]["party"]["debuffs"]["countXOffset"] = 2
