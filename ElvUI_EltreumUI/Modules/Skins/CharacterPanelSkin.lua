@@ -7,7 +7,6 @@ local CharacterFrame = _G.CharacterFrame
 local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture()
 local ClassCrestFrame = CreateFrame("Frame")
 local ClassCrestFrameTexture = ClassCrestFrame:CreateTexture()
-local ilevel
 
 if E.Retail then
 	_G.CharacterFrame.EltruismClassResource = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
@@ -154,9 +153,9 @@ if not E.Retail then
 	avgilvl:RegisterEvent("PLAYER_ENTERING_WORLD")
 	avgilvl:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
 	avgilvl:SetScript("OnEvent", function()
-		--local ilevel = ElvUI_EltreumUI:GetPlayerItemLevel()
-		--_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
-		_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetPlayerItemLevel()*100))/100)
+		local ilevel = ElvUI_EltreumUI:GetPlayerItemLevel()
+		_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
+		--_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetPlayerItemLevel()*100))/100)
 	end)
 end
 
@@ -510,10 +509,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then -- this is expand classic armory
 
 			--set ilvl on char panel
-			--[[hooksecurefunc("ToggleCharacter", function()
-				ilevel = ElvUI_EltreumUI:GetPlayerItemLevel()
+			hooksecurefunc("ToggleCharacter", function()
+				local ilevel = ElvUI_EltreumUI:GetPlayerItemLevel()
 				_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
-			end)]]
+			end)
 
 			--turns out classic has the functions to get number of points on talent trees
 			local function PlayerSpec()
@@ -619,7 +618,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--_G.ReputationDefailFrame:SetPoint('TOPRIGHT', _G.CharacterFrame)
 
-
 			CharacterFrame.Text4:SetSize(418, 72)
 			CharacterFrame.Text4:SetPoint("TOP", CharacterFrame, "TOP", 150, 10)
 			CharacterFrame.Text4:SetTextColor(1, 1, 1)
@@ -631,15 +629,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.StatusLine4:SetStatusBarTexture(E.Media.Textures.Highlight)
 			CharacterFrame.StatusLine4:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
-
 			CharacterFrame.Text5:SetSize(418, 72)
 			CharacterFrame.Text5:SetPoint("TOP", CharacterFrame, "TOP", 150, -20)
 			CharacterFrame.Text5:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			CharacterFrame.Text5:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
 			CharacterFrame.Text5:SetText(PlayerSpec())
-
-			--local ilevel, _, _ = ElvUI_EltreumUI:GetPlayerItemLevel()
-			--_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
 
 			CharacterFrame:SetSize(600, 505)
 
