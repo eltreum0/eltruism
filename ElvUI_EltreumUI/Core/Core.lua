@@ -85,6 +85,7 @@ function ElvUI_EltreumUI:Anchors()
 
 	if E.Retail then
 		E:CreateMover(_G.RaidBossEmoteFrame, "MoverRaidBossEmoteFrame", "Raid/Boss Emote Frame", nil, nil, nil, "ALL,SOLO")
+		--E:CreateMover(_G.BossBanner, "MoverBossBanner", "Boss Loot Banner", nil, nil, nil, "ALL,SOLO") --doesnt work
 		--this doesnt seem to work well, rather if you set font size to like 200 it becomes less blurry, but if its 12 its very blurry
 		--[[if E.db.ElvUI_EltreumUI.blizzframes.raidbossframe then
 			_G.RaidWarningFrameSlot1:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
@@ -262,6 +263,7 @@ _G.VideoOptionsFrame:SetScript("OnDragStart", _G.VideoOptionsFrame.StartMoving)
 _G.VideoOptionsFrame:SetScript("OnDragStop",_G.VideoOptionsFrame.StopMovingOrSizing)
 _G.VideoOptionsFrame:SetClampedToScreen(true)
 
+--[[
 local maxmemory = 4096
 local currentmemory
 --local count = 0
@@ -293,3 +295,4 @@ function ElvUI_EltreumUI:ClearMemory()
 		end
 	end
 end
+]]
