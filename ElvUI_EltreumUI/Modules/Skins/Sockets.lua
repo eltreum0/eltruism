@@ -946,6 +946,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 	end
 
 	function Pool:Release(ref)
+		print(ref)
 		if not self.allocated[ref] then
 			error("Pool:Release failed: bad reference")
 		end
