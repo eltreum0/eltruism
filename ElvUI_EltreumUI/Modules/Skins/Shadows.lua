@@ -564,7 +564,11 @@ function ElvUI_EltreumUI:Shadows()
 			}
 			for _, frame in pairs(elvuiframes) do
 				if frame and not frame.shadow then
-					frame:CreateShadow()
+					if E.db.ElvUI_EltreumUI.borders.borders then
+						return
+					else
+						frame:CreateShadow()
+					end
 				end
 			end
 
