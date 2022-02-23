@@ -10,3 +10,4 @@ Updated how ilvl is calculated during login in TBC/Classic\
 Updated player/target/targettarget border size\
 Updated how borders are applied and shadows are applied, since some shadows conflict with borders they will not show up if borders are activated.\
 Updated healer layout for TBC/Classic, adding party pets\
+Updated quest item bar icon texture\
