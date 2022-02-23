@@ -1292,7 +1292,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		self.refreshTimer1 = C_Timer.NewTimer(3, function()
 			self:_Refresh()
 		end)
-		self.refreshTimer2 = C_Timer.NewTimer(6, function()
+		self.refreshTimer2 = C_Timer.NewTimer(6, function() --possible source of hara's error
 			self:_Refresh()
 		end)
 	end
@@ -1931,16 +1931,21 @@ function ElvUI_EltreumUI:ClassicSockets()
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------INITIALIZE
 	local frame = CreateFrame("Frame")
 	frame:RegisterEvent("ADDON_LOADED")
+	frame:RegisterEvent("INSPECT_READY")
 	frame:SetScript("OnEvent", function(_, event,...)
 		local args = {...}
+		local inspectisready = 0
 		if event == "ADDON_LOADED" and args[1] == "Blizzard_InspectUI" then
+			inspectisready = 1
+			frame:UnregisterEvent("ADDON_LOADED")
+		end
+		if event == "INSPECT_READY" and inspectisready == 1 then
 			self.inspectorSlotIconManager = ElvUI_EltreumUI.SlotIconManager:new(ElvUI_EltreumUI.InspectionFrameAdapter:new())
 			local style = 0
 			style = style + ElvUI_EltreumUI.SlotIconManager.STYLE.COLOR
 			local inspectorSlotIconManager = style
 			inspectorSlotIconManager = inspectorSlotIconManager + ElvUI_EltreumUI.SlotIconManager.STYLE.ENABLED
 			self.inspectorSlotIconManager:SetStyle(inspectorSlotIconManager)
-			frame:UnregisterEvent("ADDON_LOADED")
 		end
 	end)
 	self.playerSlotIconManager = ElvUI_EltreumUI.SlotIconManager:new(ElvUI_EltreumUI.CharacterFrameAdapter:new())
