@@ -375,10 +375,25 @@ function ElvUI_EltreumUI:Shadows()
 			_G['ElvUF_PlayerTotem2'],
 			_G['ElvUF_PlayerTotem3'],
 			_G['ElvUF_PlayerTotem4'],
+			_G['ElvUF_PartyGroup1UnitButton1Pet'],
+			_G['ElvUF_PartyGroup1UnitButton2Pet'],
+			_G['ElvUF_PartyGroup1UnitButton3Pet'],
+			_G['ElvUF_PartyGroup1UnitButton4Pet'],
+			_G['ElvUF_PartyGroup1UnitButton5Pet'],
 			}
 			for _, frame in pairs(ClassicElvUIFrames) do
 				if frame and not frame.shadow then
 					frame:CreateShadow()
+				end
+			end
+
+			--raid pet
+			for k = 1, 42 do
+				local petunits = {_G['ElvUF_RaidpetGroup1UnitButton'..k]}
+				for _, button in pairs(petunits) do
+					if not button.shadow then
+						button:CreateShadow()
+					end
 				end
 			end
 

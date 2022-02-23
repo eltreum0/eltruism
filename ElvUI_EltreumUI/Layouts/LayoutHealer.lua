@@ -299,7 +299,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["movers"]["ElvAB_7"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,240"
 		E.db["movers"]["ElvAB_8"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,275"
 		E.db["movers"]["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,310"
-		E.db["movers"]["ElvUF_AssistMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,130,-523"
+		--E.db["movers"]["ElvUF_AssistMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,130,-523"
+		E.db["movers"]["ElvUF_AssistMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,428,-523" --new
 		E.db["movers"]["ElvUF_FocusMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,424,-204"
 		E.db["movers"]["ElvUF_FocusCastbarMover"] = "TOP,ElvUIParent,TOP,0,-168"
 		E.db["movers"]["ElvUF_PartyMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,87"
@@ -309,8 +310,10 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,387"
 		E.db["movers"]["ElvUF_Raid40Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
 		E.db["movers"]["ElvUF_RaidMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
-		E.db["movers"]["ElvUF_RaidpetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,204" --healer pet mover
-		E.db["movers"]["ElvUF_TankMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-427,-515"
+		--E.db["movers"]["ElvUF_RaidpetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,204" --healer pet mover
+		E.db["movers"]["ElvUF_RaidpetMover"] = "BOTTOMLEFT,UIParent,BOTTOMLEFT,4,217" --new
+		--E.db["movers"]["ElvUF_TankMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-427,-515"
+		E.db["movers"]["ElvUF_TankMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-428,-515" --new
 		E.db["movers"]["ElvUF_TargetAuraMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-400,288"
 		E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,311,359"
 		E.db["movers"]["ElvUF_TargetMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,387"
@@ -690,6 +693,17 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["party"]["castbar"]["timeToHold"] = 1
 		E.db["unitframe"]["units"]["party"]["castbar"]["width"] = 200
 		E.db["unitframe"]["units"]["party"]["castbar"]["xOffsetText"] = 2
+		if E.TBC or E.Classic then
+			E.db["unitframe"]["units"]["party"]["petsGroup"]["anchorPoint"] = "BOTTOM"
+			E.db["unitframe"]["units"]["party"]["petsGroup"]["buffIndicator"]["enable"] = true
+			E.db["unitframe"]["units"]["party"]["petsGroup"]["buffIndicator"]["size"] = 16
+			E.db["unitframe"]["units"]["party"]["petsGroup"]["enable"] = true
+			E.db["unitframe"]["units"]["party"]["petsGroup"]["healPrediction"]["enable"] = true
+			E.db["unitframe"]["units"]["party"]["petsGroup"]["height"] = 36
+			E.db["unitframe"]["units"]["party"]["petsGroup"]["width"] = 150
+			E.db["unitframe"]["units"]["party"]["petsGroup"]["xOffset"] = 0
+			E.db["unitframe"]["units"]["party"]["petsGroup"]["yOffset"] = -2
+		end
 		E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
 		E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
 		E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "OUTLINE"
