@@ -1,3 +1,20 @@
+### 2.8.6
+Added options in Eltruism > Media > Unitframe to change the backdrop texture of unitframes, and to change the backdrop alpha\
+Added custom glow to actionbars in TBC/Classic\
+Added options to enable/disable the !key and !keys chat commands\
+Added more npcs to the automatic quest turn in ignore list\
+Added Pepsi-Cyr-Lat font\
+Added an option to change the font size of the Error Frame\
+Added a mover for the Raid Warning Frame\
+Updated german translations by Khornan and spanish translations using deepL\
+Updated how friendly nameplates is applied\
+Updated waypoint ETA to also show itself when the player has a waypoint when logging in\
+Updated how fonts are applied, they should no longer overwrite light/dark mode texts\
+Updated Item Levels for TBC/Classic, making it use less memory and be generally faster\
+Updated automatic quest turn, improving how gossips and quests are detected\
+Updated Details v3 Icons\
+Fixed debuff positions in the party unitframe for the DPS Layout\
+___
 ### 2.8.5
 Fixed custom class textures for unitframes
 ___

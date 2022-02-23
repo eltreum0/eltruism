@@ -1,17 +1,12 @@
-### 2.8.6 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 2.8.7 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added options in Eltruism > Media > Unitframe to change the backdrop texture of unitframes, and to change the backdrop alpha\
-Added custom glow to actionbars in TBC/Classic\
-Added options to enable/disable the !key and !keys chat commands\
-Added more npcs to the automatic quest turn in ignore list\
-Added Pepsi-Cyr-Lat font\
-Added an option to change the font size of the Error Frame\
-Added a mover for the Raid Warning Frame\
-Updated german translations by Khornan and spanish translations using deepL\
-Updated how friendly nameplates is applied\
-Updated waypoint ETA to also show itself when the player has a waypoint when logging in\
-Updated how fonts are applied, they should no longer overwrite light/dark mode texts\
-Updated Item Levels for TBC/Classic, making it use less memory and be generally faster\
-Updated automatic quest turn, improving how gossips and quests are detected\
-Updated Details v3 Icons\
-Fixed debuff positions in the party unitframe for the DPS Layout
+Improved how the background texture is applied\
+Added options to change the font and font size of the nameplate power bar text\
+Added [eltruism:leader] tag, which will show an icon for party leader or assist\
+Added [name:eltruism:abbreviate20] tag, which will abbreviate at 20 characters instead of the normal 16\
+Added [eltruism:newline] tag, which will add a line break\
+Added Pocopoc to the automatic quest ignore list\
+Updated how ilvl is calculated during login in TBC/Classic\
+Updated player/target/targettarget border size\
+Updated how borders are applied and shadows are applied, since some shadows conflict with borders they will not show up if borders are activated.\
+Updated healer layout for TBC/Classic, adding party pets\
