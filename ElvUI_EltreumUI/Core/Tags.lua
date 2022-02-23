@@ -355,18 +355,12 @@ E:AddTag("eltruism:leader", "GROUP_ROSTER_UPDATE", function(unit)
 		return "|TInterface\\GROUPFRAME\\UI-GROUP-ASSISTANTICON.BLP:0:0:0:0|t"
 	end
 end)
-E:AddTagInfo('eltruism:leader', ElvUI_EltreumUI.Name, L["Shows the Leader Icon or Assist icon if the unit is Leader or Assist"])
+E:AddTagInfo("eltruism:leader", ElvUI_EltreumUI.Name, L["Shows the Leader Icon or Assist icon if the unit is Leader or Assist"])
 
--- Abbreviate in 20 chars for Nekator
-E:AddTag("name:eltruism:abbreviate20", "UNIT_NAME_UPDATE", function(unit)
-	local name = UnitName(unit)
-	--local name = 'Ецхо оф а Пандарен' --cyrillic name test
-	if name and string.len(name) > 20 then
-		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
-	end
-	return name
+E:AddTag("eltruism:newline", "UNIT_NAME_UPDATE", function(unit)
+	return "\n"
 end)
-E:AddTagInfo('name:eltruism:abbreviate20', ElvUI_EltreumUI.Name, L["Abbreviates the unit name once it goes over 20 characters, made by Azilroka"])
+E:AddTagInfo("eltruism:newline", ElvUI_EltreumUI.Name, L["Adds a line break"])
 
 
 
