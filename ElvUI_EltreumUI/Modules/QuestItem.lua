@@ -230,6 +230,7 @@ function ElvUI_EltreumUI:QuestItem()
 				local btn = EltruismQuestItemFrame.items[index] or CreateItemButton()
 				local _, _, _, _, _, _, _, _, _, itemTexture, _, _ = GetItemInfo(link)
 				btn.icon:SetTexture(itemTexture)
+				btn.icon:SetTexCoord(0.08,0.92,0.08,0.92)
 				btn.count:SetText(count and count > 1 and count or "")
 
 				btn.link = link
