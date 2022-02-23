@@ -1,3 +1,17 @@
+### 2.8.7
+Improved how the background texture is applied\
+Profiles will now apply Asphyxia-Norm texture and 0.7 alpha for the background texture, your settings will not be changed unless you reapply the profile\
+Added options to change the font and font size of the nameplate power bar text\
+Added [eltruism:leader] tag, which will show an icon for party leader or assist\
+Added [name:eltruism:abbreviate20] tag, which will abbreviate at 20 characters instead of the normal 16\
+Added [eltruism:newline] tag, which will add a line break\
+Added Pocopoc to the automatic quest ignore list\
+Updated how ilvl is calculated during login in TBC/Classic\
+Updated player/target/targettarget border size\
+Updated how borders are applied and shadows are applied, since some shadows conflict with borders they will not show up if borders are activated.\
+Updated healer layout for TBC/Classic, adding party pets\
+Updated quest item bar icon texture\
+___
 ### 2.8.6
 Added options in Eltruism > Media > Unitframe to change the backdrop texture of unitframes, and to change the backdrop alpha\
 Added custom glow to actionbars in TBC/Classic\
