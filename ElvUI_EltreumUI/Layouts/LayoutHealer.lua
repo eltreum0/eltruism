@@ -702,7 +702,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 			E.db["unitframe"]["units"]["party"]["petsGroup"]["height"] = 36
 			E.db["unitframe"]["units"]["party"]["petsGroup"]["width"] = 150
 			E.db["unitframe"]["units"]["party"]["petsGroup"]["xOffset"] = 0
-			E.db["unitframe"]["units"]["party"]["petsGroup"]["yOffset"] = -2
+			E.db["unitframe"]["units"]["party"]["petsGroup"]["yOffset"] = -3
 		end
 		E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
 		E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
