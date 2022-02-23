@@ -4392,7 +4392,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'select',
 										-- width = "double",
 										dialogControl = 'LSM30_Font',
-										name = L["Nameplate Powerbar Font"],
+										name = L["Font"],
 										desc = L["Choose a font for the Nameplate Powerbar Text"],
 										values = AceGUIWidgetLSMlists.font,
 										get = function()
@@ -4404,7 +4404,7 @@ function ElvUI_EltreumUI:Configtable()
 									},
 									nameplatepowerfontsize = {
 										type = 'range',
-										name = L['Nameplate Powerbar Font Size'],
+										name = L['Font Size'],
 										desc = L['Nameplate Powerbar Font Size'],
 										order = 98,
 										min = 8,
