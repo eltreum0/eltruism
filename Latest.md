@@ -1,6 +1,7 @@
 ### 2.8.7 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
 Improved how the background texture is applied\
+Profiles will now apply Asphyxia-Norm texture and 0.7 alpha for the background texture, your settings will not be changed unless you reapply the profile\
 Added options to change the font and font size of the nameplate power bar text\
 Added [eltruism:leader] tag, which will show an icon for party leader or assist\
 Added [name:eltruism:abbreviate20] tag, which will abbreviate at 20 characters instead of the normal 16\
