@@ -946,7 +946,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 	end
 
 	function Pool:Release(ref)
-		print(ref)
+		--print(ref)
 		if not self.allocated[ref] then
 			error("Pool:Release failed: bad reference")
 		end
@@ -1006,6 +1006,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		self:Hide()
 		self.frame:SetAlpha(1.0)
 		self.frame.icon:SetTexture(textureName)
+		self.frame.icon:SetTexCoord(0.08,0.92,0.08,0.92) --trim the border
 		if overlayAtlas ~= nil then
 			self.frame.overlay:Show()
 			self.frame.overlay:SetAtlas(overlayAtlas, true)
