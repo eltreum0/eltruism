@@ -278,12 +278,16 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								end
 							elseif active[1] and active[1].title ~= nil then
 								for i, k in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
-									local questdump = C_GossipInfo.GetActiveQuests()
-									--local _, _, _, _, isComplete = questdump[i]
-									if questdump[i].isComplete == true then
+									--local _, _, _, _, isComplete = active[i]
+									if active[i].isComplete == true then
 										--print("iterate and select already active quest")
 										C_GossipInfo.SelectActiveQuest(i)
-									elseif questdump[i].isComplete ~= true then
+									elseif active[i].isComplete ~= true then
+										--[[if active[i+1] and active[i+1].isComplete == true then
+											----print("cool")
+										else
+											--print("nope")
+										end]]
 										--print("selecting gossip instead")
 										local gossipInfoTable = C_GossipInfo.GetOptions()
 										for i = 1, C_GossipInfo.GetNumOptions() do
@@ -367,11 +371,12 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						--print("quest requires gold")
 						return
 					else
-						--print("tried to complete quest")
 						if E.Retail then
 							if C_GossipInfo.GetNumActiveQuests() == 0 then --maybe npc only has 1 quest, or its laurent from revendreth and it has a turn in with 0
 								--print("unable to determine if quest completed, trying anyway")
 								CompleteQuest()
+								--GetQuestPortraitTurnIn()
+								--C_QuestOffer.
 							end
 							for i, k in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
 								local questdump = C_GossipInfo.GetActiveQuests()
@@ -385,6 +390,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								end
 							end
 						elseif E.TBC or E.Classic then
+							--print("tried to complete quest")
 							CompleteQuest()
 						end
 					end
