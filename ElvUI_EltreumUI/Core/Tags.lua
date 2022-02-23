@@ -314,7 +314,7 @@ E:AddTag('eltruism:targetcast:indicator', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START
 end)
 E:AddTagInfo('eltruism:targetcast:indicator', ElvUI_EltreumUI.Name, L["Shows Target of Spellcast, does not work for Mouseover casts. Includes a Target > indicator"])
 
-E:AddTag("eltruism:effectivehp", "UNIT_HEALTH UNIT_TARGET", function(unit)
+E:AddTag("eltruism:effectivehp", "UNIT_HEALTH UNIT_TARGET", function()
 	local dr
 	if UnitExists("target") then
 		dr = (UnitArmor("player")/((UnitLevel("target")*467.5)+UnitArmor("player")-22167.5))
@@ -368,7 +368,7 @@ E:AddTag("name:eltruism:abbreviate20", "UNIT_NAME_UPDATE", function(unit)
 end)
 E:AddTagInfo("name:eltruism:abbreviate20", ElvUI_EltreumUI.Name, L["Abbreviates the unit name once it goes over 20 characters, made by Azilroka"])
 
-E:AddTag("eltruism:newline", "UNIT_NAME_UPDATE", function(unit)
+E:AddTag("eltruism:newline", "UNIT_NAME_UPDATE", function()
 	return "\n"
 end)
 E:AddTagInfo("eltruism:newline", ElvUI_EltreumUI.Name, L["Adds a line break"])

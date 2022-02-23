@@ -110,7 +110,8 @@ if E.TBC or E.Classic then
 	local playerlevel = E.mylevel
 	if E.TBC or E.Classic then
 		LevelUpFrame:RegisterEvent("PLAYER_LEVEL_UP")
-		LevelUpFrame:SetScript("OnEvent", function(self, event, ...)
+		--LevelUpFrame:SetScript("OnEvent", function(self, event, ...)
+		LevelUpFrame:SetScript("OnEvent", function()
 			if E.db.ElvUI_EltreumUI.skins.enable then
 				playerlevel = playerlevel + 1
 				--print(playerlevel)

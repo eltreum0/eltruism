@@ -109,12 +109,13 @@ function ElvUI_EltreumUI:PowerPrediction()
 		if startTime ~= endTime then
 			local costTable = GetSpellPowerCost(spellID)
 			if costTable ~= nil then
-				for k, v in next, costTable do
+				for _, v in next, costTable do
 					local cost = v.cost
 					mainCost = cost
 				end
 			end
-			for k, v in next, spellGenerators do
+			--for k, v in next, spellGenerators do
+			--for _, v in next, spellGenerators do
 				if spellGenerators[spellID] ~= nil then
 					incResource = spellGenerators[spellID]
 					--print(incResource)
@@ -124,7 +125,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 						--print("adjusting resource")
 					end
 				end
-			end
+			--end
 
 			--EltreumPowerPrediction:SetSize(mainCost, sizey)
 			--EltreumPowerPredictionIncoming:SetSize(incResource, sizey)

@@ -287,7 +287,7 @@ function ElvUI_EltreumUI:SkillGlow()
 				[686] = true,]]
 			}
 			local proc
-			local auraid, _
+			--local auraid, _
 			function ElvUI_EltreumUI:ClassicGlow(barName)
 				local bar = AB['handledBars'][barName]
 				if not bar then return end

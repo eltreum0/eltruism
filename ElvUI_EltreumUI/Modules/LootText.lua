@@ -55,7 +55,8 @@ function ElvUI_EltreumUI:LootText()
 				-- Flowing up
 				lowestMessage = string:GetBottom()
 				-- Find lowest message to anchor to
-				for index, value in _G.pairs(_G.COMBAT_TEXT_TO_ANIMATE) do
+				--for index, value in _G.pairs(_G.COMBAT_TEXT_TO_ANIMATE) do
+				for _, value in _G.pairs(_G.COMBAT_TEXT_TO_ANIMATE) do
 					if ( lowestMessage >= value.yPos - 16 - _G.COMBAT_TEXT_SPACING) then
 						lowestMessage = value.yPos - 16 - _G.COMBAT_TEXT_SPACING
 					end
@@ -73,7 +74,8 @@ function ElvUI_EltreumUI:LootText()
 				-- Flowing down
 				lowestMessage = string:GetTop()
 				-- Find lowest message to anchor to
-				for index, value in _G.pairs(_G.COMBAT_TEXT_TO_ANIMATE) do
+				--for index, value in _G.pairs(_G.COMBAT_TEXT_TO_ANIMATE) do
+				for _, value in _G.pairs(_G.COMBAT_TEXT_TO_ANIMATE) do
 					if ( lowestMessage <= value.yPos + 16 + _G.COMBAT_TEXT_SPACING) then
 						lowestMessage = value.yPos + 16 + _G.COMBAT_TEXT_SPACING
 					end

@@ -440,7 +440,8 @@ function ElvUI_EltreumUI:ChangePartyTexture()
 end
 
 --Unitframe Backdrop Texture
-function ElvUI_EltreumUI:BackdropTexture(statusBar, statusBarTex, backdropTex)
+--function ElvUI_EltreumUI:BackdropTexture(statusBar, statusBarTex, backdropTex)
+function ElvUI_EltreumUI:BackdropTexture(_, _, backdropTex)
 	if E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable and not E.db.ElvUI_EltreumUI.lightmode then
 		backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
 		backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)

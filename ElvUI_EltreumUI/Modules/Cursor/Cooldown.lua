@@ -149,7 +149,8 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 			EltruismCooldownFrame:SetAlpha(0)
 		else
 			EltruismCooldownFrame:SetAlpha(1)
-			EltruismCooldownFrame:SetScript("OnUpdate", function(frame, elapsed) --if frame is removed, then pet cooldowns can have issues
+			--EltruismCooldownFrame:SetScript("OnUpdate", function(frame, elapsed) --if frame is removed, then pet cooldowns can have issues
+			EltruismCooldownFrame:SetScript("OnUpdate", function(_, elapsed) --if frame is removed, then pet cooldowns can have issues
 				--print("onupdate spam "..math.random(1,99))
 				updateDelay = NormalUpdateDelay
 				x, y = GetCursorPosition()

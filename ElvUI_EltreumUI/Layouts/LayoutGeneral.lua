@@ -211,7 +211,11 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["databars"]["experience"]["height"] = 12
 		E.db["databars"]["experience"]["mouseover"] = true
 		E.db["databars"]["experience"]["questCompletedOnly"] = true
-		E.db["databars"]["experience"]["questCurrentZoneOnly"] = true
+		if E.Retail then
+			E.db["databars"]["experience"]["questCurrentZoneOnly"] = true
+		else
+			E.db["databars"]["experience"]["questCurrentZoneOnly"] = false
+		end
 		E.db["databars"]["experience"]["questTrackedOnly"] = true
 		E.db["databars"]["experience"]["showBubbles"] = true
 		E.db["databars"]["experience"]["showLevel"] = true

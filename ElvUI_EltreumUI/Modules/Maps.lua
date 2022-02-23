@@ -26,7 +26,8 @@ if E.Retail then
 		if E.db.ElvUI_EltreumUI.waypointetasetting.enable then
 			if E.db.ElvUI_EltreumUI.waypointetasetting.autopin then
 				EltruismAutopin:RegisterEvent("USER_WAYPOINT_UPDATED")
-				EltruismAutopin:SetScript("OnEvent", function(self, event, ...)
+				--EltruismAutopin:SetScript("OnEvent", function(self, event, ...)
+				EltruismAutopin:SetScript("OnEvent", function(_, event)
 					--print(event.."autopin")
 					if event == "USER_WAYPOINT_UPDATED" and C_Map.HasUserWaypoint() == true then
 						C_Timer.After(0, function() C_SuperTrack.SetSuperTrackedUserWaypoint(true) end)
@@ -37,7 +38,8 @@ if E.Retail then
 			EltruismTimeToArriveParent:RegisterEvent("USER_WAYPOINT_UPDATED")
 			EltruismTimeToArriveParent:RegisterEvent("WAYPOINT_UPDATE")
 			EltruismTimeToArriveParent:RegisterEvent("SUPER_TRACKING_CHANGED")
-			EltruismTimeToArriveParent:SetScript("OnEvent", function(_, event)
+			--EltruismTimeToArriveParent:SetScript("OnEvent", function(_, event)
+				EltruismTimeToArriveParent:SetScript("OnEvent", function()
 				--print(event.."waypoint")
 				if C_Map.HasUserWaypoint() == true or C_SuperTrack.IsSuperTrackingAnything() == true then
 					--use throttled onupdate to udpate the text (once per second)

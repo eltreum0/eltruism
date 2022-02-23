@@ -86,7 +86,6 @@ local classCrests = {
 function ElvUI_EltreumUI:GetPlayerItemLevel()
 	local total, maxlevel = 0, 0
 	local level, mainhand, offhand, ranged
-	local linkloop
 
 	for i = 1, 15 do
 		if (i ~= 4) then
