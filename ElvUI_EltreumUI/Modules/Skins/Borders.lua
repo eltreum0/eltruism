@@ -10,6 +10,25 @@ function ElvUI_EltreumUI:Borders()
 		return
 	end
 	if E.db.ElvUI_EltreumUI.borders.borders then
+
+		--borders not nice with transparent power
+		if E.db["unitframe"]["units"]["player"]["power"]["width"] == "spaced" then
+			E.db["unitframe"]["colors"]["transparentPower"] = false
+		end
+
+		-- and doesnt look nice with shadows either
+		--[[if _G["ElvUF_Player_HealthBar"].shadow then
+			_G["ElvUF_Player_HealthBar"].shadow:Hide()
+		end
+
+		if _G["ElvUF_Target_HealthBar"].shadow then
+			_G["ElvUF_Target_HealthBar"].shadow:Hide()
+		end
+
+		if _G["ElvUF_TargetTarget_HealthBar"].shadow then
+			_G["ElvUF_TargetTarget_HealthBar"].shadow:Hide()
+		end]]
+
 		local bordertexture
 		if E.db.ElvUI_EltreumUI.borders.texture then
 			bordertexture = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture)
@@ -42,71 +61,7 @@ function ElvUI_EltreumUI:Borders()
 		local ybar5 = E.db.ElvUI_EltreumUI.borders.bar5yborder
 		local xbar6 = E.db.ElvUI_EltreumUI.borders.bar6xborder
 		local ybar6 = E.db.ElvUI_EltreumUI.borders.bar6yborder
-		--[[
-			local playertargetsize = E.db.ElvUI_EltreumUI.borders.playertargetsize
-			if playertargetsize == nil then
-				playertargetsize = 20
-			end
-			local baredgesize = E.db.ElvUI_EltreumUI.borders.baredgesize
-			if baredgesize == nil then
-				baredgesize = 13
-			end
-			local xbar = E.db.ElvUI_EltreumUI.borders.bar1xborder
-			if xbar == nil then
-				xbar = 65
-			end
-			local ybar = E.db.ElvUI_EltreumUI.borders.bar1yborder
-			if ybar == nil then
-				ybar = 56
-			end
-			local xbar2 = E.db.ElvUI_EltreumUI.borders.bar2xborder
-			if xbar2 == nil then
-				xbar2 = 56
-			end
-			local ybar2 = E.db.ElvUI_EltreumUI.borders.bar2yborder
-			if ybar2 == nil then
-				ybar2 = 50
-			end
-			local xbar3 = E.db.ElvUI_EltreumUI.borders.bar3xborder
-			if xbar3 == nil then
-				xbar3 = 56
-			end
-			local ybar3 = E.db.ElvUI_EltreumUI.borders.bar3yborder
-			if ybar3 == nil then
-				ybar3 = 50
-			end
-			local xbar4 = E.db.ElvUI_EltreumUI.borders.bar4xborder
-			if xbar4 == nil then
-				xbar4 = 56
-			end
-			local ybar4 = E.db.ElvUI_EltreumUI.borders.bar4yborder
-			if ybar4 == nil then
-				ybar4 = 50
-			end
-			local xbar5 = E.db.ElvUI_EltreumUI.borders.bar5xborder
-			if xbar5 == nil then
-				xbar5 = 50
-			end
-			local ybar5 = E.db.ElvUI_EltreumUI.borders.bar5yborder
-			if ybar5 == nil then
-				ybar5 = 50
-			end
-			local xbar6 = E.db.ElvUI_EltreumUI.borders.bar6xborder
-			if xbar6 == nil then
-				xbar6 = 40
-			end
-			local ybar6 = E.db.ElvUI_EltreumUI.borders.bar6yborder
-			if ybar6 == nil then
-			 	ybar6 = 32
-			end
 
-			--elvui unitframes
-			local elvuiuf = E.private.unitframe.enable
-			if elvuiuf == nil then
-				elvuiuf = true
-			end
-			if elvuiuf then
-		]]
 		--elvui unitframes
 		if E.private.unitframe.enable then
 
