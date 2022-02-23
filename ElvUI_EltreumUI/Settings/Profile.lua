@@ -299,7 +299,7 @@ P.ElvUI_EltreumUI = {
 		ypowerbar = 12,
 
 		playerborder = false,
-		xplayer = 303,
+		xplayer = 302,
 		yplayer = 75,
 
 		playercastborder = false,
@@ -307,7 +307,7 @@ P.ElvUI_EltreumUI = {
 		yplayercast = 58,
 
 		targetborder = false,
-		xtarget = 303,
+		xtarget = 302,
 		ytarget = 75,
 
 		targetcastborder = false,
@@ -315,7 +315,7 @@ P.ElvUI_EltreumUI = {
 		ycasttarget = 58,
 
 		targettargetborder = false,
-		xtargettarget = 134,
+		xtargettarget = 132,
 		ytargettarget = 75,
 
 		bar1borders = true,
