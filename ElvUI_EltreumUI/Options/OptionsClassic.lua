@@ -5051,12 +5051,12 @@ function ElvUI_EltreumUI:Configtable()
 					explain2 = {
 						order = 3,
 						type = "description",
-						name = L["In order to use this feature, simply go to your Weakaura, and go to its Group options, scroll down to Position Settings and set the Anchored To Select Frame, then type either |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumables|r to anchor the weakaura to the preset location"],
+						name = L["In order to use this feature, simply go to your Weakaura, and go to its Group options, scroll down to Position Settings and set the Anchored To Select Frame, then type either |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumablesWA|r to anchor the weakaura to the preset location"],
 					},
 					explain3 = {
 						order = 4,
 						type = "description",
-						name = L["Setting "].."|cff82B4ffEltruismWA|r"..L[" or "].."|cff82B4ffEltruismConsumables|r"..L[" as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero"],
+						name = L["Setting "].."|cff82B4ffEltruismWA|r"..L[" or "].."|cff82B4ffEltruismConsumablesWA|r"..L[" as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero"],
 					},
 					explainer1 = {
 						order = 5,
@@ -5072,7 +5072,7 @@ function ElvUI_EltreumUI:Configtable()
 							explainer7 = {
 								order = 87,
 								type = "description",
-								name = L["Open WeakAuras, go to your group Weakauras and in Group change Position Settings > Anchored To > Select Frame > EltruismWA or EltruismConsumables"],
+								name = L["Open WeakAuras, go to your group Weakauras and in Group change Position Settings > Anchored To > Select Frame > EltruismWA or EltruismConsumablesWA"],
 							},
 							demopic = {
 								order = 98,

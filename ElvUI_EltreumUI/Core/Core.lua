@@ -48,7 +48,7 @@ end
 
 -- Ghost frame for Automatic Weakauras Positioning
 local EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", E.UIParent)
-local EltruismWAConsumablesAnchor = CreateFrame("Frame", "EltruismConsumables", E.UIParent)
+local EltruismWAConsumablesAnchor = CreateFrame("Frame", "EltruismConsumablesWA", E.UIParent)
 function ElvUI_EltreumUI:Anchors()
 	if E.private.unitframe.enable then
 		--Anchor for general weakauras, like those that replace actionbars
@@ -66,7 +66,7 @@ function ElvUI_EltreumUI:Anchors()
 		--postion the anchor right below the player unitframe
 		EltruismWAConsumablesAnchor:Point("LEFT", _G["ElvUF_Player"], 0, -75)
 		EltruismWAConsumablesAnchor:Size(270, 30)
-		E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", L["EltruismConsumables"], nil, nil, nil, "ALL,SOLO")
+		E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", L["EltruismConsumablesWA"], nil, nil, nil, "ALL,SOLO")
 	end
 
 	--mover for UI errors frame
