@@ -4387,8 +4387,35 @@ function ElvUI_EltreumUI:Configtable()
 										width = 'full',
 										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
-									sharedmediatexture = {
+									nameplatepowerfont = {
 										order = 97,
+										type = 'select',
+										-- width = "double",
+										dialogControl = 'LSM30_Font',
+										name = L["Nameplate Powerbar Font"],
+										desc = L["Choose a font for the Nameplate Powerbar Text"],
+										values = AceGUIWidgetLSMlists.font,
+										get = function()
+											return E.db.ElvUI_EltreumUI.nameplatepower.font
+										end,
+										set = function(self,fontvalue)
+											E.db.ElvUI_EltreumUI.nameplatepower.font = fontvalue
+										end,
+									},
+									nameplatepowerfontsize = {
+										type = 'range',
+										name = L['Nameplate Powerbar Font Size'],
+										desc = L['Nameplate Powerbar Font Size'],
+										order = 98,
+										min = 8,
+										max = 36,
+										step = 1,
+										--width = "double",
+										get = function() return E.db.ElvUI_EltreumUI.nameplatepower.fontsize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplatepower.fontsize = tonumber(value) end,
+									},
+									sharedmediatexture = {
+										order = 99,
 										type = 'select',
 										width = "double",
 										dialogControl = 'LSM30_Statusbar',
@@ -4400,7 +4427,7 @@ function ElvUI_EltreumUI:Configtable()
 										set = function(self,key) E.db.ElvUI_EltreumUI.nameplatepower.texture = key end,
 									},
 									powerbarbackgroundcolor = {
-										order = 98,
+										order = 100,
 										type = 'color',
 										name = L["Background Color"],
 										hasAlpha = false,
@@ -4416,26 +4443,26 @@ function ElvUI_EltreumUI:Configtable()
 										end,
 									},
 									header9987 = {
-										order = 99,
+										order = 101,
 										type = "description",
 										name = "",
 										width = 'full',
 										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
 									describethis = {
-										order = 99,
+										order = 102,
 										type = "description",
 										name = L["Select the power types to be displayed:"],
 									},
 									addagapforspace8 = {
-										order = 100,
+										order = 103,
 										type = "description",
 										name = "",
 									},
 									mana = {
 										type = 'toggle',
 										name = L["Mana"],
-										order = 101,
+										order = 104,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function() return E.private.ElvUI_EltreumUI.nameplatepower.mana end,
 										set = function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.mana = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -4443,7 +4470,7 @@ function ElvUI_EltreumUI:Configtable()
 									rage = {
 										type = 'toggle',
 										name = L["Rage"],
-										order = 101,
+										order = 104,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function() return E.private.ElvUI_EltreumUI.nameplatepower.rage end,
 										set = function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.rage = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -4451,7 +4478,7 @@ function ElvUI_EltreumUI:Configtable()
 									energy = {
 										type = 'toggle',
 										name = L["Energy"],
-										order = 101,
+										order = 104,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function() return E.private.ElvUI_EltreumUI.nameplatepower.energy end,
 										set = function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.energy = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -4459,7 +4486,7 @@ function ElvUI_EltreumUI:Configtable()
 									astral = {
 										type = 'toggle',
 										name = L["Astral power"],
-										order = 101,
+										order = 104,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function() return E.private.ElvUI_EltreumUI.nameplatepower.astral end,
 										set = function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.astral = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -4467,7 +4494,7 @@ function ElvUI_EltreumUI:Configtable()
 									runic = {
 										type = 'toggle',
 										name = L["Runic power"],
-										order = 101,
+										order = 104,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function() return E.private.ElvUI_EltreumUI.nameplatepower.runic end,
 										set = function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.runic = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -4475,7 +4502,7 @@ function ElvUI_EltreumUI:Configtable()
 									insanity = {
 										type = 'toggle',
 										name = L["Insanity"],
-										order = 101,
+										order = 104,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function() return E.private.ElvUI_EltreumUI.nameplatepower.insanity end,
 										set = function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.insanity = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -4483,7 +4510,7 @@ function ElvUI_EltreumUI:Configtable()
 									maelstrom = {
 										type = 'toggle',
 										name = L["Maelstrom"],
-										order = 101,
+										order = 104,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function() return E.private.ElvUI_EltreumUI.nameplatepower.maelstrom end,
 										set = function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.maelstrom = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -4491,7 +4518,7 @@ function ElvUI_EltreumUI:Configtable()
 									fury = {
 										type = 'toggle',
 										name = L["Fury"],
-										order = 101,
+										order = 104,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function() return E.private.ElvUI_EltreumUI.nameplatepower.fury end,
 										set = function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.fury = value E:StaticPopup_Show('PRIVATE_RL') end,
@@ -4499,7 +4526,7 @@ function ElvUI_EltreumUI:Configtable()
 									focus = {
 										type = 'toggle',
 										name = L["Focus"],
-										order = 101,
+										order = 104,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function() return E.private.ElvUI_EltreumUI.nameplatepower.focus end,
 										set = function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.focus = value E:StaticPopup_Show('PRIVATE_RL') end,

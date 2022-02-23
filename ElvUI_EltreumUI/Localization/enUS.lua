@@ -787,3 +787,10 @@ L["Backdrops"] = true
 L["Backdrop Texture"] = true
 L["Backdrop Alpha"] = true
 L["Change the transparency of the backdrop"] = true
+
+L["Nameplate Powerbar Font"] = true
+L["Choose a font for the Nameplate Powerbar Text"] = true
+L['Nameplate Powerbar Font Size'] = true
+L["Shows the Leader Icon or Assist icon if the unit is Leader or Assist"] = true
+L["Abbreviates the unit name once it goes over 20 characters, made by Azilroka"] = true
+L["Adds a line break"] = true

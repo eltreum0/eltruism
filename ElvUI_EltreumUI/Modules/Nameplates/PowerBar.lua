@@ -14,7 +14,7 @@ EltreumPowerBarText:SetHeight(1)
 EltreumPowerBarText:SetFrameStrata('DIALOG')
 EltreumPowerBar.Text = EltreumPowerBarText:CreateFontString(nil, "ARTWORK", "GameFontNormal")
 EltreumPowerBar.Text:SetTextColor(1, 1, 1)
-EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 10, "OUTLINE")
+--EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 10, "OUTLINE")
 EltreumPowerBar.Text:SetPoint("CENTER")
 EltreumPowerBar.Text:SetJustifyH("CENTER")
 EltreumPowerBar.Text:SetJustifyV("CENTER")
@@ -195,6 +195,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			else
 				ret = UnitPower("player") -- hundreds
 			end
+			EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.nameplatepower.font), E.db.ElvUI_EltreumUI.nameplatepower.fontsize, "OUTLINE")
 			EltreumPowerBar.Text:SetText(ret)	--this is an actual number not string
 			--EltreumPowerBar.Text:SetText(BreakUpLargeNumbers(UnitPower("player")))	--this is an actual number not string
 
@@ -637,6 +638,7 @@ function ElvUI_EltreumUI:NameplatePowerTextUpdate()
 		else
 			ret = power -- hundreds
 		end
+		EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.nameplatepower.font), E.db.ElvUI_EltreumUI.nameplatepower.fontsize, "OUTLINE")
 		EltreumPowerBar.Text:SetText(ret)
 		--EltreumPowerBar.Text:SetText(BreakUpLargeNumbers(power))
 	end
