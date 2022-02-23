@@ -346,7 +346,6 @@ E:AddTag("eltruism:levelskull", "UNIT_TARGET UNIT_NAME_UPDATE", function(unit)
 end)
 E:AddTagInfo('eltruism:levelskull', ElvUI_EltreumUI.Name, L["Shows the Unit Level, or a skull if the level is too high"])
 
-
 E:AddTag("eltruism:leader", "GROUP_ROSTER_UPDATE", function(unit)
 	local leader = UnitIsGroupLeader(unit)
 	local assist = UnitIsGroupAssistant(unit)
@@ -358,7 +357,7 @@ E:AddTag("eltruism:leader", "GROUP_ROSTER_UPDATE", function(unit)
 end)
 E:AddTagInfo('eltruism:leader', ElvUI_EltreumUI.Name, L["Shows the Leader Icon or Assist icon if the unit is Leader or Assist"])
 
--- Abbriviate in 20 chars for Nekator
+-- Abbreviate in 20 chars for Nekator
 E:AddTag("name:eltruism:abbreviate20", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
 	--local name = 'Ецхо оф а Пандарен' --cyrillic name test
