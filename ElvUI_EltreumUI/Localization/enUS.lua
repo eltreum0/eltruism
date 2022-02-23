@@ -788,6 +788,8 @@ L["Backdrop Texture"] = true
 L["Backdrop Alpha"] = true
 L["Change the transparency of the backdrop"] = true
 
+L["Font"] = true
+L['Font Size'] = true
 L["Nameplate Powerbar Font"] = true
 L["Choose a font for the Nameplate Powerbar Text"] = true
 L['Nameplate Powerbar Font Size'] = true
