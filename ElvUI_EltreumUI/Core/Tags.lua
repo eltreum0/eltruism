@@ -345,3 +345,30 @@ E:AddTag("eltruism:levelskull", "UNIT_TARGET UNIT_NAME_UPDATE", function(unit)
 	end
 end)
 E:AddTagInfo('eltruism:levelskull', ElvUI_EltreumUI.Name, L["Shows the Unit Level, or a skull if the level is too high"])
+
+
+E:AddTag("eltruism:leader", "GROUP_ROSTER_UPDATE", function(unit)
+	local leader = UnitIsGroupLeader(unit)
+	local assist = UnitIsGroupAssistant(unit)
+	if leader then
+		return "|TInterface\\GROUPFRAME\\UI-GROUP-LEADERICON.BLP:0:0:0:0|t"
+	elseif assist then
+		return "|TInterface\\GROUPFRAME\\UI-GROUP-ASSISTANTICON.BLP:0:0:0:0|t"
+	end
+end)
+E:AddTagInfo('eltruism:leader', ElvUI_EltreumUI.Name, L["Shows the Leader Icon or Assist icon if the unit is Leader or Assist"])
+
+-- Abbriviate in 20 chars for Nekator
+E:AddTag("name:eltruism:abbreviate20", "UNIT_NAME_UPDATE", function(unit)
+	local name = UnitName(unit)
+	--local name = 'Ецхо оф а Пандарен' --cyrillic name test
+	if name and string.len(name) > 20 then
+		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
+	end
+	return name
+end)
+E:AddTagInfo('name:eltruism:abbreviate', ElvUI_EltreumUI.Name, L["Abbreviates the unit name once it goes over 20 characters, made by Azilroka"])
+
+
+
+--future tag idea: group number only for first member of group
