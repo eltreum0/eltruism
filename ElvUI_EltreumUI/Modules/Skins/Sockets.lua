@@ -1298,13 +1298,13 @@ function ElvUI_EltreumUI:ClassicSockets()
 			self:_Refresh()
 		end)]]
 
-		self.refreshTimer0 = C_Timer.NewTimer(0.5, function()
+		self.refreshTimer0 = C_Timer.NewTimer(1, function()
 			self:_Refresh()
 		end)
-		self.refreshTimer1 = C_Timer.NewTimer(1, function()
+		self.refreshTimer1 = C_Timer.NewTimer(2, function()
 			self:_Refresh()
 		end)
-		self.refreshTimer2 = C_Timer.NewTimer(1.5, function() --possible source of hara's error
+		self.refreshTimer2 = C_Timer.NewTimer(3, function() --possible source of hara's error
 			self:_Refresh()
 		end)
 	end
