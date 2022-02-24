@@ -104,13 +104,13 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 				end
 			end
 		end
-		if UF.units.target then
+		if UF.units.target and UnitExists("target") then
 			local unitframe = _G["ElvUF_Target"]
 			if unitframe and unitframe.Health then
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 					targetbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.targettexture)
 				end
-				if E.db.ElvUI_EltreumUI.gradientmode.enable then
+				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("target") then
 					unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 					if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 						unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients[targetclass]["r1"], unitframecustomgradients[targetclass]["g1"], unitframecustomgradients[targetclass]["b1"], unitframecustomgradients[targetclass]["r2"], unitframecustomgradients[targetclass]["g2"], unitframecustomgradients[targetclass]["b2"])
@@ -144,13 +144,13 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 				end
 			end
 		end
-		if UF.units.targettarget then
+		if UF.units.targettarget and UnitExists("targettarget") then
 			local unitframe = _G["ElvUF_TargetTarget"]
 			if unitframe and unitframe.Health then
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 					targettargetbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.targettargettexture)
 				end
-				if E.db.ElvUI_EltreumUI.gradientmode.enable then
+				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("targettarget") then
 					unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 					if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 						unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients[targettargetclass]["r1"], unitframecustomgradients[targettargetclass]["g1"], unitframecustomgradients[targettargetclass]["b1"], unitframecustomgradients[targettargetclass]["r2"], unitframecustomgradients[targettargetclass]["g2"], unitframecustomgradients[targettargetclass]["b2"])
@@ -169,13 +169,13 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 		if focusclass and UnitIsPlayer("focus") then
 			focusbar = unitframeclass[focusclass]
 		end
-		if UF.units.focus then
+		if UF.units.focus and UnitExists("focus") then
 			local focusframe = _G["ElvUF_Focus"]
 			if focusframe and focusframe.Health then
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 					focusbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.focustexture)
 				end
-				if E.db.ElvUI_EltreumUI.gradientmode.enable then
+				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("focus") then
 					focusframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 					if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 						focusframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients[focusclass]["r1"], unitframecustomgradients[focusclass]["g1"], unitframecustomgradients[focusclass]["b1"], unitframecustomgradients[focusclass]["r2"], unitframecustomgradients[focusclass]["g2"], unitframecustomgradients[focusclass]["b2"])
@@ -888,6 +888,17 @@ EltruismTextureHooks:SetScript("OnEvent", function()
 			hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangePlayerTexture)
 			hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.ChangePlayerTexture)
 			hooksecurefunc(UF, "PostUpdateHealth", ElvUI_EltreumUI.ChangePlayerTexture)
+			hooksecurefunc(UF, "UpdateColors", ElvUI_EltreumUI.ChangePlayerTexture)
+			hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.ChangePlayerTexture)
+			hooksecurefunc(UF, "Update_StatusBar", ElvUI_EltreumUI.ChangePlayerTexture)
+
+
+			hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
+			hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.ChangeUnitTexture)
+			hooksecurefunc(UF, "PostUpdateHealth", ElvUI_EltreumUI.ChangeUnitTexture)
+			hooksecurefunc(UF, "UpdateColors", ElvUI_EltreumUI.ChangeUnitTexture)
+			hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.ChangeUnitTexture)
+			hooksecurefunc(UF, "Update_StatusBar", ElvUI_EltreumUI.ChangeUnitTexture)
 		elseif not E.db.ElvUI_EltreumUI.lightmode then
 			hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
 		end
