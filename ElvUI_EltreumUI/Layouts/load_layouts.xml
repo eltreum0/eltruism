@@ -4,4 +4,5 @@
 	<Script file='LayoutHealer.lua'/>
 	<Script file='LayoutDPS.lua'/>
 	<Script file='SetupNameplates.lua'/>
+	<Script file='Auras.lua'/>
 </Ui>
