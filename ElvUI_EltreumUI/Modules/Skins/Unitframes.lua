@@ -111,23 +111,17 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 					targetbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.targettexture)
 				end
 				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("target") then
-					print("target is player gradient")
 					unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 					if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 						unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients[targetclass]["r2"], unitframecustomgradients[targetclass]["g2"], unitframecustomgradients[targetclass]["b2"], unitframecustomgradients[targetclass]["r1"], unitframecustomgradients[targetclass]["g1"], unitframecustomgradients[targetclass]["b1"])
 					else
-						print("target is player gradient not custom color")
 						unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients[targetclass]["r2"], unitframegradients[targetclass]["g2"], unitframegradients[targetclass]["b2"], unitframegradients[targetclass]["r1"], unitframegradients[targetclass]["g1"], unitframegradients[targetclass]["b1"])
 					end
 				else
-					print("target non gradient color")
 					unitframe.Health:SetStatusBarTexture(targetbar)
 				end
 			end
 		end
-
-
-
 
 		--target of target
 		local _, targettargetclass = UnitClass("targettarget")
@@ -903,6 +897,11 @@ EltruismTextureHooks:SetScript("OnEvent", function()
 
 			hooksecurefunc(UF, "Update_FontString", ElvUI_EltreumUI.ChangePlayerTexture)
 			hooksecurefunc(UF, "Update_FontString", ElvUI_EltreumUI.ChangeUnitTexture)
+
+			hooksecurefunc(UF, "Configure_HealthBar", ElvUI_EltreumUI.ChangePlayerTexture)
+			hooksecurefunc(UF, "Configure_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
+
+
 
 
 			hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.ChangeUnitTexture)
