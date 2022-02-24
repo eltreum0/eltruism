@@ -51,6 +51,35 @@ local mage = {r = "0.24705828726292", g = "0.78039044141769", b = "0.92156660556
 local hunter = {r = "0.66666519641876", g = "0.82744914293289", b = "0.44705784320831"}
 local warlock = {r = "0.52941060066223", g = "0.53333216905594", b = "0.93333131074905"}
 
+local unitframecustomgradients = {
+	['WARRIOR'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['PALADIN'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['HUNTER'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['ROGUE'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['PRIEST'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['DEATHKNIGHT'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['SHAMAN'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['MAGE'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['WARLOCK'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['MONK'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['DRUID'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['DEMONHUNTER'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+}
+local unitframegradients = {
+	['WARRIOR'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['PALADIN'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['HUNTER'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['ROGUE'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['PRIEST'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['DEATHKNIGHT'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['SHAMAN'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['MAGE'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['WARLOCK'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['MONK'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['DRUID'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['DEMONHUNTER'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+}
+
 function ElvUI_EltreumUI:ChangeUnitTexture()
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
 
@@ -145,6 +174,7 @@ end
 
 function ElvUI_EltreumUI:ChangePlayerTexture()
 	--print("change unit texture spam")
+
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
 		--player
 		local playertexture = unitframeclass[E.myclass]
@@ -154,7 +184,18 @@ function ElvUI_EltreumUI:ChangePlayerTexture()
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 					playertexture = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.playertexture)
 				end
-				unitframe.Health:SetStatusBarTexture(playertexture)
+
+				if E.db.ElvUI_EltreumUI.gradientmode.enable then
+					--unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+					unitframe.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+					if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+						unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients[E.myclass]["r1"], unitframecustomgradients[E.myclass]["g1"], unitframecustomgradients[E.myclass]["b1"], unitframecustomgradients[E.myclass]["r2"], unitframecustomgradients[E.myclass]["g2"], unitframecustomgradients[E.myclass]["b2"])
+					else
+						unitframe.Health:GetStatusBarTexture():SetGradient("HORIZONTAL", unitframegradients[E.myclass]["r1"], unitframegradients[E.myclass]["g1"], unitframegradients[E.myclass]["b1"], unitframegradients[E.myclass]["r2"], unitframegradients[E.myclass]["g2"], unitframegradients[E.myclass]["b2"])
+					end
+				else
+					unitframe.Health:SetStatusBarTexture(playertexture)
+				end
 			end
 		end
 	end
@@ -452,6 +493,39 @@ hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture
 local EltruismTextureHooks = CreateFrame("FRAME")
 EltruismTextureHooks:RegisterUnitEvent("PLAYER_ENTERING_WORLD")
 EltruismTextureHooks:SetScript("OnEvent", function()
+		unitframecustomgradients = {
+			['WARRIOR'] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR2, g2= E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB2},
+			['PALADIN'] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorR2, g2= E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorB2},
+			['HUNTER'] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorR2, g2= E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorB2},
+			['ROGUE'] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorR2, g2= E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorB2},
+			['PRIEST'] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorR2, g2= E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorB2},
+			['DEATHKNIGHT'] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorR2, g2= E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorB2},
+			['SHAMAN'] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorR2, g2= E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorB2},
+			['MAGE'] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorR2, g2= E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorB2},
+			['WARLOCK'] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorR2, g2= E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorB2},
+			['MONK'] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorR2, g2= E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorB2},
+			['DRUID'] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorR2, g2= E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorB2},
+			['DEMONHUNTER'] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorR2, g2= E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorB2},
+		}
+
+		unitframegradients = {
+			['WARRIOR'] = {r1 = 0.77646887302399, g1 = 0.60784178972244, b1 = 0.4274500310421, r2 = 0.7686274509803922, g2= 0.7333333333333333, b2 = 0.6980392156862745},
+			['PALADIN'] = {r1 = 0.95686066150665, g1 = 0.54901838302612, b1 = 0.72941017150879, r2 = 0.9490196078431373, g2= 0.7215686274509804, b2 = 0.8235294117647059},
+			['HUNTER'] = {r1 = 0.66666519641876, g1 = 0.82744914293289, b1 = 0.44705784320831, r2 = 0.7686274509803922, g2= 0.8196078431372549, b2 = 0.7019607843137255},
+			['ROGUE'] = {r1 = 0.99999779462814, g1 = 0.95686066150665, b1 = 0.40784224867821, r2 = 0.99999779462814, g2= 0.9843137254901961, b2 = 0.8274509803921569},
+			['PRIEST'] = {r1 = 0.99999779462814, g1 = 0.99999779462814, b1 = 0.99999779462814, r2 = 0.3568627450980392, g2= 0.3568627450980392, b2 = 0.3568627450980392},
+			['DEATHKNIGHT'] = {r1 = 0.76862573623657, g1 = 0.11764679849148, b1 = 0.2274504750967, r2 = 0.7568627450980392, g2= 0.3647058823529412, b2 = 0.4352941176470588},
+			['SHAMAN'] = {r1 = 0, g1 = 0.4392147064209, b1 = 0.86666476726532, r2 = 0.3529411764705882, g2= 0.6196078431372549, b2 = 0.9098039215686275},
+			['MAGE'] = {r1 = 0.24705828726292, g1 = 0.78039044141769, b1 = 0.92156660556793, r2 = 0.603921568627451, g2= 0.8549019607843137, b2 = 0.9176470588235294},
+			['WARLOCK'] = {r1 = 0.52941060066223, g1 = 0.53333216905594, b1 = 0.93333131074905, r2 = 0.6941176470588235, g2= 0.6980392156862745, b2 = 0.9294117647058824},
+			['MONK'] = {r1 = 0, g1 = 0.99999779462814, b1 = 0.59607714414597, r2 = 0.4588235294117647, g2= 0.99999779462814, b2 = 0.4588235294117647},
+			['DRUID'] = {r1 = 0.99999779462814, g1 = 0.48627343773842, b1 = 0.039215601980686, r2 = 0.99999779462814, g2= 0.4627450980392157, b2 = 0.3294117647058824},
+			['DEMONHUNTER'] = {r1 = 0.63921427726746, g1 = 0.1882348805666, b1 = 0.78823357820511, r2 = 0.6823529411764706, g2= 0.396078431372549, b2 = 0.7764705882352941},
+		}
+
+
+
+
 	if E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
 		if E.db.ElvUI_EltreumUI.lightmode then
 			hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
@@ -480,7 +554,5 @@ EltruismChangeUnitTextureFrame:SetScript("OnEvent", function()
 		ElvUI_EltreumUI.ChangeRaid40Texture()
 		ElvUI_EltreumUI.ChangePartyTexture()
 		ElvUI_EltreumUI.ChangePlayerTexture()
-	else
-		return
 	end
 end)
