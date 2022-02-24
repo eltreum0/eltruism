@@ -43,7 +43,8 @@ local SUPPORTER = {
 }
 
 local TRANSLATORS = {
-	'|cffCC3333Khornan|r - German Translation' ,
+	'|cffCC3333Khornan|r - German Translation',
+	'Spanish translation by DeepL',
 }
 
 -- SortList
