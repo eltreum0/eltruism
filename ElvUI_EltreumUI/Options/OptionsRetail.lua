@@ -4136,6 +4136,20 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.customcolor = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
+							gradientorientation = {
+								type = 'select',
+								name = L["Gradient Orientation"],
+								desc = L["Choose the direction of the gradient"],
+								order = 3,
+								values = {
+									["HORIZONTAL"] = L["Horizontal"],
+									["VERTICAL"] = L["Vertical"],
+								},
+								style = 'radio',
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.gradientmode.orientation end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.orientation = value end,
+							},
 							header2 = {
 								order = 4,
 								type = "description",
@@ -4146,7 +4160,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientdeathknight1 = {
 								order = 5,
 								type = 'color',
-								name = L["Left"],
+								name = L["Color 1"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4163,7 +4177,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientdeathknight2 = {
 								order = 6,
 								type = 'color',
-								name = L["Right"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4187,7 +4201,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientdemonhunter1 = {
 								order = 8,
 								type = 'color',
-								name = L["Left"],
+								name = L["Color 1"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4204,7 +4218,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientdemonhunter2 = {
 								order = 9,
 								type = 'color',
-								name = L["Right"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4228,7 +4242,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientdruid1 = {
 								order = 11,
 								type = 'color',
-								name = L["Left"],
+								name = L["Color 1"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4245,7 +4259,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientdruid2 = {
 								order = 12,
 								type = 'color',
-								name = L["Right"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4269,7 +4283,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradienthunter1 = {
 								order = 14,
 								type = 'color',
-								name = L["Left"],
+								name = L["Color 1"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4286,7 +4300,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradienthunter2 = {
 								order = 15,
 								type = 'color',
-								name = L["Right"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4310,7 +4324,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientmage1 = {
 								order = 17,
 								type = 'color',
-								name = L["Left"],
+								name = L["Color 1"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4327,7 +4341,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientmage2 = {
 								order = 18,
 								type = 'color',
-								name = L["Right"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4351,7 +4365,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientmonk1 = {
 								order = 20,
 								type = 'color',
-								name = L["Left"],
+								name = L["Color 1"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4368,7 +4382,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientmonk2 = {
 								order = 21,
 								type = 'color',
-								name = L["Right"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4392,7 +4406,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientpaladin1 = {
 								order = 23,
 								type = 'color',
-								name = L["Left"],
+								name = L["Color 1"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4409,7 +4423,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientpaladin2 = {
 								order = 24,
 								type = 'color',
-								name = L["Right"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4433,7 +4447,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientpriest1 = {
 								order = 26,
 								type = 'color',
-								name = L["Left"],
+								name = L["Color 1"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4450,7 +4464,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientpriest2 = {
 								order = 27,
 								type = 'color',
-								name = L["Right"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4474,7 +4488,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientrogue1 = {
 								order = 29,
 								type = 'color',
-								name = L["Left"],
+								name = L["Color 1"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4491,7 +4505,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientrogue2 = {
 								order = 30,
 								type = 'color',
-								name = L["Right"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4515,7 +4529,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientshaman1 = {
 								order = 32,
 								type = 'color',
-								name = L["Left"],
+								name = L["Color 1"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4532,7 +4546,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientshaman2 = {
 								order = 33,
 								type = 'color',
-								name = L["Right"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4556,7 +4570,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientwarlock1 = {
 								order = 35,
 								type = 'color',
-								name = L["Left"],
+								name = L["Color 1"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4573,7 +4587,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientwarlock2 = {
 								order = 36,
 								type = 'color',
-								name = L["Right"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4597,7 +4611,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientwarrior1 = {
 								order = 38,
 								type = 'color',
-								name = L["Left"],
+								name = L["Color 1"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -4614,7 +4628,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientwarrior2 = {
 								order = 39,
 								type = 'color',
-								name = L["Right"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
