@@ -4125,7 +4125,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L['Enable'],
 								desc = L["Enable Gradient colors for Health instead of Textures"],
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enable = value end,
 							},
 							enablecustomcolor = {
 								order = 3,

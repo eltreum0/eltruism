@@ -4205,6 +4205,420 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						},
 					},
+					gradient = {
+						type = "group",
+						name = L["Gradient"],
+						order = 3,
+						args = {
+							header1 = {
+								order = 1,
+								type = "description",
+								name = L["Gradient Colors"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							enable = {
+								order = 2,
+								type = 'toggle',
+								name = L['Enable'],
+								desc = L["Enable Gradient colors for Health instead of Textures"],
+								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enable end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enable = value end,
+							},
+							enablecustomcolor = {
+								order = 3,
+								type = 'toggle',
+								name = L["Custom Color"],
+								desc = L["Enable Custom Colors"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.customcolor = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
+							},
+							gradientorientation = {
+								type = 'select',
+								name = L["Gradient Orientation"],
+								desc = L["Choose the direction of the gradient"],
+								order = 4,
+								values = {
+									["HORIZONTAL"] = L["Horizontal"],
+									["VERTICAL"] = L["Vertical"],
+								},
+								style = 'radio',
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.gradientmode.orientation end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.orientation = value end,
+							},
+							header4 = {
+								order = 10,
+								type = "description",
+								name = L["Druid"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gradientdruid1 = {
+								order = 11,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.druidcustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.druidcustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.druidcustomcolorB1
+									return E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorB1 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							gradientdruid2 = {
+								order = 12,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.druidcustomcolorR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.druidcustomcolorG2
+									local db = P.ElvUI_EltreumUI.gradientmode.druidcustomcolorB2
+									return E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorB2 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							header5 = {
+								order = 13,
+								type = "description",
+								name = L["Hunter"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gradienthunter1 = {
+								order = 14,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.huntercustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.huntercustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.huntercustomcolorB1
+									return E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorB1 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							gradienthunter2 = {
+								order = 15,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.huntercustomcolorR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.huntercustomcolorG2
+									local db = P.ElvUI_EltreumUI.gradientmode.huntercustomcolorB2
+									return E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorB2 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							header6 = {
+								order = 16,
+								type = "description",
+								name = L["Mage"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gradientmage1 = {
+								order = 17,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.magecustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.magecustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.magecustomcolorB1
+									return E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorB1 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							gradientmage2 = {
+								order = 18,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.magecustomcolorR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.magecustomcolorG2
+									local db = P.ElvUI_EltreumUI.gradientmode.magecustomcolorB2
+									return E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorB2 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							header8 = {
+								order = 22,
+								type = "description",
+								name = L["Paladin"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gradientpaladin1 = {
+								order = 23,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.paladincustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.paladincustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.paladincustomcolorB1
+									return E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorB1 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							gradientpaladin2 = {
+								order = 24,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.paladincustomcolorR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.paladincustomcolorG2
+									local db = P.ElvUI_EltreumUI.gradientmode.paladincustomcolorB2
+									return E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorB2 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							header9 = {
+								order = 25,
+								type = "description",
+								name = L["Priest"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gradientpriest1 = {
+								order = 26,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.priestcustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.priestcustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.priestcustomcolorB1
+									return E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorB1 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							gradientpriest2 = {
+								order = 27,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.priestcustomcolorR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.priestcustomcolorG2
+									local db = P.ElvUI_EltreumUI.gradientmode.priestcustomcolorB2
+									return E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorB2 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							header10 = {
+								order = 28,
+								type = "description",
+								name = L["Rogue"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gradientrogue1 = {
+								order = 29,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.roguecustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.roguecustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.roguecustomcolorB1
+									return E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorB1 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							gradientrogue2 = {
+								order = 30,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.roguecustomcolorR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.roguecustomcolorG2
+									local db = P.ElvUI_EltreumUI.gradientmode.roguecustomcolorB2
+									return E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorB2 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							header11 = {
+								order = 31,
+								type = "description",
+								name = L["Shaman"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gradientshaman1 = {
+								order = 32,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.shamancustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.shamancustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.shamancustomcolorB1
+									return E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorB1 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							gradientshaman2 = {
+								order = 33,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.shamancustomcolorR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.shamancustomcolorG2
+									local db = P.ElvUI_EltreumUI.gradientmode.shamancustomcolorB2
+									return E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorB2 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							header12 = {
+								order = 34,
+								type = "description",
+								name = L["Warlock"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gradientwarlock1 = {
+								order = 35,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.warlockcustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.warlockcustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.warlockcustomcolorB1
+									return E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorB1 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							gradientwarlock2 = {
+								order = 36,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.warlockcustomcolorR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.warlockcustomcolorG2
+									local db = P.ElvUI_EltreumUI.gradientmode.warlockcustomcolorB2
+									return E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorB2 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							header13 = {
+								order = 37,
+								type = "description",
+								name = L["Warrior"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gradientwarrior1 = {
+								order = 38,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB1
+									return E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB1 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							gradientwarrior2 = {
+								order = 39,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG2
+									local db = P.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB2
+									return E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB2 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+						}
+					}
 				},
 			},
 			nameplates = {
