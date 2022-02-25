@@ -4150,13 +4150,13 @@ function ElvUI_EltreumUI:Configtable()
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
-									local dr = P.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorR2
-									local dg = P.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorG2
-									local db = P.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorB2
+									local dr = P.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorB1
 									return E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorB2 = r, g, b
+									E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorB1 = r, g, b
 									ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
@@ -4191,13 +4191,13 @@ function ElvUI_EltreumUI:Configtable()
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
-									local dr = P.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorR2
-									local dg = P.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorG2
-									local db = P.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorB2
+									local dr = P.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorB1
 									return E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorB2 = r, g, b
+									E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorB1 = r, g, b
 									ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
@@ -4232,13 +4232,13 @@ function ElvUI_EltreumUI:Configtable()
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
-									local dr = P.ElvUI_EltreumUI.gradientmode.druidcustomcolorR2
-									local dg = P.ElvUI_EltreumUI.gradientmode.druidcustomcolorG2
-									local db = P.ElvUI_EltreumUI.gradientmode.druidcustomcolorB2
+									local dr = P.ElvUI_EltreumUI.gradientmode.druidcustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.druidcustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.druidcustomcolorB1
 									return E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorB2 = r, g, b
+									E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorB1 = r, g, b
 									ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
@@ -4273,13 +4273,13 @@ function ElvUI_EltreumUI:Configtable()
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
-									local dr = P.ElvUI_EltreumUI.gradientmode.huntercustomcolorR2
-									local dg = P.ElvUI_EltreumUI.gradientmode.huntercustomcolorG2
-									local db = P.ElvUI_EltreumUI.gradientmode.huntercustomcolorB2
+									local dr = P.ElvUI_EltreumUI.gradientmode.huntercustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.huntercustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.huntercustomcolorB1
 									return E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorB2 = r, g, b
+									E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorB1 = r, g, b
 									ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
@@ -4314,13 +4314,13 @@ function ElvUI_EltreumUI:Configtable()
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
-									local dr = P.ElvUI_EltreumUI.gradientmode.magecustomcolorR2
-									local dg = P.ElvUI_EltreumUI.gradientmode.magecustomcolorG2
-									local db = P.ElvUI_EltreumUI.gradientmode.magecustomcolorB2
+									local dr = P.ElvUI_EltreumUI.gradientmode.magecustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.magecustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.magecustomcolorB1
 									return E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorB2 = r, g, b
+									E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorB1 = r, g, b
 									ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
@@ -4355,13 +4355,13 @@ function ElvUI_EltreumUI:Configtable()
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
-									local dr = P.ElvUI_EltreumUI.gradientmode.monkcustomcolorR2
-									local dg = P.ElvUI_EltreumUI.gradientmode.monkcustomcolorG2
-									local db = P.ElvUI_EltreumUI.gradientmode.monkcustomcolorB2
+									local dr = P.ElvUI_EltreumUI.gradientmode.monkcustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.monkcustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.monkcustomcolorB1
 									return E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorB2 = r, g, b
+									E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorB1 = r, g, b
 									ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
@@ -4396,13 +4396,13 @@ function ElvUI_EltreumUI:Configtable()
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
-									local dr = P.ElvUI_EltreumUI.gradientmode.paladincustomcolorR2
-									local dg = P.ElvUI_EltreumUI.gradientmode.paladincustomcolorG2
-									local db = P.ElvUI_EltreumUI.gradientmode.paladincustomcolorB2
+									local dr = P.ElvUI_EltreumUI.gradientmode.paladincustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.paladincustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.paladincustomcolorB1
 									return E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorB2 = r, g, b
+									E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorB1 = r, g, b
 									ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
@@ -4437,9 +4437,9 @@ function ElvUI_EltreumUI:Configtable()
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
-									local dr = P.ElvUI_EltreumUI.gradientmode.priestcustomcolorR2
-									local dg = P.ElvUI_EltreumUI.gradientmode.priestcustomcolorG2
-									local db = P.ElvUI_EltreumUI.gradientmode.priestcustomcolorB2
+									local dr = P.ElvUI_EltreumUI.gradientmode.priestcustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.priestcustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.priestcustomcolorB1
 									return E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
@@ -4519,13 +4519,13 @@ function ElvUI_EltreumUI:Configtable()
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
-									local dr = P.ElvUI_EltreumUI.gradientmode.shamancustomcolorR2
-									local dg = P.ElvUI_EltreumUI.gradientmode.shamancustomcolorG2
-									local db = P.ElvUI_EltreumUI.gradientmode.shamancustomcolorB2
+									local dr = P.ElvUI_EltreumUI.gradientmode.shamancustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.shamancustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.shamancustomcolorB1
 									return E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorB2 = r, g, b
+									E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorB1 = r, g, b
 									ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
@@ -4601,13 +4601,13 @@ function ElvUI_EltreumUI:Configtable()
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
-									local dr = P.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR2
-									local dg = P.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG2
-									local db = P.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB2
+									local dr = P.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG1
+									local db = P.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB1
 									return E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB2 = r, g, b
+									E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB1 = r, g, b
 									ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
