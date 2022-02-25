@@ -52,6 +52,7 @@ local function InstantLoot(_, event,_, arg2)
 					itemLink = "|cffe6cc80|Hitem:158075::::::::53:257::11:4:4932:4933:6316:1554::::::|h[Heart of Azeroth]|h|r"
 				end
 				local itemName, _, quality = GetItemInfo(itemLink)
+				local itemtexture = GetItemIcon(itemLink)
 				local r,g,b
 				if quality then
 					r,g,b = GetItemQualityColor(quality)
@@ -66,7 +67,8 @@ local function InstantLoot(_, event,_, arg2)
 						else
 							WishlistItemFrame.Text2:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 						end
-						WishlistItemFrame.Text2:SetText(itemName.."!")
+						--WishlistItemFrame.Text2:SetText("|T"..itemtexture..":".. 12 .."|t"..itemName.."!")
+						WishlistItemFrame.Text2:SetText("|T"..itemtexture..":12:12:0:0:64:64:5:59:5:59|t"..itemName.."!")
 						UIFrameFadeIn(WishlistItemFrame, 1, 0, 1)
 						if E.db.ElvUI_EltreumUI.otherstuff.lootwishlistscreenshot then
 							C_Timer.After(1, function() Screenshot() end)
