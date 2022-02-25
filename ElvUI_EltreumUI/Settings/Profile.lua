@@ -381,9 +381,9 @@ P.ElvUI_EltreumUI = {
 		druidcustomcolorR1 = 1,
 		druidcustomcolorR2 = 1,
 		druidcustomcolorG1 = 0.48627450980392,
-		druidcustomcolorG2 = 0.6078431372549,
+		druidcustomcolorG2 = 0.37647058823529,
 		druidcustomcolorB1 = 0.03921568627451,
-		druidcustomcolorB2 = 0.34117647058824,
+		druidcustomcolorB2 = 0.18823529411765,
 
 		huntercustomcolorR1 = 0.43921568627451,
 		huntercustomcolorR2 = 0.80392156862745,
