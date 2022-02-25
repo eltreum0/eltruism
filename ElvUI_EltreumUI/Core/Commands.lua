@@ -162,3 +162,24 @@ if E.Retail and E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
 		ElvUI_EltreumUI:Keys(event, message)
 	end)
 end
+
+local keystone = CreateFrame("FRAME")
+keystone:RegisterEvent("ADDON_LOADED")
+keystone:SetScript("OnEvent", function(_,_,addon)
+	if addon == "Blizzard_ChallengesUI" and E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
+		keystone:UnregisterAllEvents()
+		if _G.ChallengesKeystoneFrame then
+			_G.ChallengesKeystoneFrame:SetScript("OnShow", function()
+				for bag = 0, NUM_BAG_SLOTS do
+					local bagSlots = GetContainerNumSlots(bag)
+					for slot = 1, bagSlots do
+						local itemLink, _, _, itemID = select(7, GetContainerItemInfo(bag, slot))
+						if ids[itemID] then
+							UseContainerItem(bag, slot)
+						end
+					end
+				end
+			end)
+		end
+	end
+end)
