@@ -406,11 +406,11 @@ P.ElvUI_EltreumUI = {
 		magecustomcolorB1 = 0.61960784313725,
 		magecustomcolorB2 = 1,
 
-		roguecustomcolorR1 = 0.76470588235294,
+		roguecustomcolorR1 = 1,
 		roguecustomcolorR2 = 1,
-		roguecustomcolorG1 = 0.73333333333333,
+		roguecustomcolorG1 = 0.83137254901961,
 		roguecustomcolorG2 = 0.95686274509804,
-		roguecustomcolorB1 = 0.23921568627451,
+		roguecustomcolorB1 = 0.25490196078431,
 		roguecustomcolorB2 = 0.4078431372549,
 
 		priestcustomcolorR1 = 0.98823529411765,
