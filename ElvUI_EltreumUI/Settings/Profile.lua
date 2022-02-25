@@ -448,12 +448,12 @@ P.ElvUI_EltreumUI = {
 		warlockcustomcolorB1 = 0.46666666666667,
 		warlockcustomcolorB2 = 1,
 
-		warriorcustomcolorR1 = 0.77647058823529,
-		warriorcustomcolorR2 = 1,
-		warriorcustomcolorG1 = 0.6078431372549,
-		warriorcustomcolorG2 = 0.7843137254902,
-		warriorcustomcolorB1 = 0.42745098039216,
-		warriorcustomcolorB2 = 0.54901960784314,
+		warriorcustomcolorR1 = 0.49019607843137,
+		warriorcustomcolorR2 = 0.8156862745098,
+		warriorcustomcolorG1 = 0.39607843137255,
+		warriorcustomcolorG2 = 0.63921568627451,
+		warriorcustomcolorB1 = 0.24313725490196,
+		warriorcustomcolorB2 = 0.44705882352941,
 
 		monkcustomcolorR1 = 0,
 		monkcustomcolorR2 = 0.1921568627451,
