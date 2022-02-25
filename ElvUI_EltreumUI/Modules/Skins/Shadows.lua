@@ -349,6 +349,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G.PVEFrameTab2.backdrop,
 				_G.PVEFrameTab3.backdrop,
 				_G.CollectionsJournal,
+				_G.DressUpFrame,
+				_G.DressUpFrame.OutfitDetailsPanel,
 				--_G.CollectionsJournalTab1.backdrop,
 				--_G.CollectionsJournalTab2.backdrop,
 				--_G.CollectionsJournalTab3.backdrop,
