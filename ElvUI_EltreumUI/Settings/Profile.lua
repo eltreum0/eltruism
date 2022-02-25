@@ -371,7 +371,9 @@ P.ElvUI_EltreumUI = {
 	greybackground = false,
 
 	gradientmode = {
-		enable = true,
+		enable = false,
+		enableplayertarget = true,
+		enablegroupunits = false,
 		orientation = "HORIZONTAL",
 		texture = "Eltreum-Blank",
 		customcolor = false,
