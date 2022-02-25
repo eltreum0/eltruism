@@ -527,3 +527,15 @@ hooksecurefunc(UF, 'PostUpdateHealthColor', ElvUI_EltreumUI.ChangeGroupUnitframe
 hooksecurefunc(UF, "PostUpdateHealth", ElvUI_EltreumUI.ChangePlayerTexture)
 hooksecurefunc(UF, "PostUpdateHealth", ElvUI_EltreumUI.ChangeUnitTexture)
 hooksecurefunc(UF, 'PostUpdateHealth', ElvUI_EltreumUI.ChangeGroupUnitframe)
+
+--[[hooksecurefunc(UF, "Construct_AuraBars", function()
+	UF.db.colors.aurabar_backdrop = { r = 0, g = 0, b = 0, a = 0.2 }
+end)
+
+hooksecurefunc(UF, "Configure_AuraBars", function()
+	UF.db.colors.aurabar_backdrop = { r = 0, g = 0, b = 0, a = 0.2 }
+end)
+
+hooksecurefunc(UF, "PostUpdateBar_AuraBars", function()
+	UF.db.colors.aurabar_backdrop = { r = 0, g = 0, b = 0, a = 0.2 }
+end)]]
