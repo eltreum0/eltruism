@@ -300,6 +300,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						[172925] = true,
 						[169501] = true,
 						[181059] = true,
+						[182681] = true,
 					}
 					if ignoredNPCS[NPC_ID] then
 						if E.db.ElvUI_EltreumUI.dev then
