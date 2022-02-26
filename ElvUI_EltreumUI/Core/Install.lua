@@ -105,9 +105,10 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallOption3ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, "OUTLINE")
 			PluginInstallOption4ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, "OUTLINE")
 			PluginInstallFrame.SubTitle:SetFormattedText(L["Eltruism Modes"])
-			PluginInstallFrame.Desc1:SetText(L["Eltruism uses Dark Mode and Transparent chat by default"])
-			PluginInstallFrame.Desc2:SetText(L["You can switch to Light Mode and/or Dark Chat by clicking the buttons below"])
-			PluginInstallFrame.Desc3:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
+			PluginInstallFrame.Desc1:SetText(L["Eltruism uses Dark Mode by default"])
+			PluginInstallFrame.Desc2:SetText(L["You can switch to Light Mode or Gradient Mode by clicking the buttons below"])
+			PluginInstallFrame.Desc3:SetText(L["You can customize the textures and colors in Eltruism > Media"])
+			PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 			PluginInstallFrame.Option1:Enable()
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:LightMode() end)
@@ -118,14 +119,24 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option2:SetText(L["Dark Mode"])
 			PluginInstallFrame.Option3:Enable()
 			PluginInstallFrame.Option3:Show()
-			PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:TransparentChat() end)
-			PluginInstallFrame.Option3:SetText(L["Transparent\nChat"])
-			PluginInstallFrame.Option4:Enable()
-			PluginInstallFrame.Option4:Show()
-			PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:DarkChat() end)
-			PluginInstallFrame.Option4:SetText(L["Dark Chat"])
+			PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:GradientMode() end)
+			PluginInstallFrame.Option3:SetText(L["Gradient Mode"])
 		end,
 		[5] = function()
+			PluginInstallFrame.SubTitle:SetFormattedText(L["Chat"])
+			PluginInstallFrame.Desc1:SetText(L["Eltruism uses Transparent chat by default"])
+			PluginInstallFrame.Desc2:SetText(L["You can switch to Dark Chat by clicking the buttons below"])
+			PluginInstallFrame.Desc3:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
+			PluginInstallFrame.Option1:Enable()
+			PluginInstallFrame.Option1:Show()
+			PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:TransparentChat() end)
+			PluginInstallFrame.Option1:SetText(L["Transparent\nChat"])
+			PluginInstallFrame.Option2:Enable()
+			PluginInstallFrame.Option2:Show()
+			PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:DarkChat() end)
+			PluginInstallFrame.Option2:SetText(L["Dark Chat"])
+		end,
+		[6] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText(L['Details! DPS Meter'])
 			PluginInstallFrame.Desc1:SetText(L["Import Details! profile with dual panels"])
 			PluginInstallFrame.Desc2:SetText(L["You can right click the bottom right arrow to toggle the Details! Window"])
@@ -156,7 +167,7 @@ ElvUI_EltreumUI.InstallerData = {
 				PluginInstallFrame.Option3:Disable()
 			end
 		end,
-		[6] = function()
+		[7] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText(L['PVP/PVE Addons'])
 			if E.Retail then
 				PluginInstallFrame.Desc1:SetText(L["Import GladiusEx profile for arenas, remember to disable ElvUI Arena Frames"])
@@ -262,7 +273,7 @@ ElvUI_EltreumUI.InstallerData = {
 				PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
 		end,
-		[7] = function()
+		[8] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText(L["QOL Addons"])
 			PluginInstallFrame.Desc1:SetText(L["Import profiles for NameplateSCT or ElvUI Floating Combat Text"])
 			PluginInstallFrame.Desc2:SetText(L["Import "]..'Immersion '..L["settings configured for "]..'Eltruism')
@@ -314,7 +325,7 @@ ElvUI_EltreumUI.InstallerData = {
 				PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
 		end,
-		[8] = function()
+		[9] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('Discord')
 			PluginInstallFrame.Desc1:SetText(L["Join the Discord if you have any questions or issues (English Support)"])
 			PluginInstallFrame.Option1:Enable()
@@ -322,7 +333,7 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/rBXNxUY6pk') 	end)
 			PluginInstallFrame.Option1:SetText('Discord')
 		end,
-		[9] = function()
+		[10] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Installation Complete"])
 			PluginInstallFrame.Desc1:SetText(L["You have completed the installation process"])
 			PluginInstallFrame.Desc2:SetText(L["Please click Finished to reload the UI"])
@@ -338,11 +349,12 @@ ElvUI_EltreumUI.InstallerData = {
 		[2] = L["Layouts"],
 		[3] = L["Fonts"],
 		[4] = L['Eltruism Modes'],
-		[5] = L['Details! DPS Meter'],
-		[6] = L["PVP/PVE Addons"],
-		[7] = L["QOL Addons"],
-		[8] = 'Discord',
-		[9] = L["Installation Complete"],
+		[5] = L['Chat'],
+		[6] = L['Details! DPS Meter'],
+		[7] = L["PVP/PVE Addons"],
+		[8] = L["QOL Addons"],
+		[9] = 'Discord',
+		[10] = L["Installation Complete"],
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {70/255, 130/255, 180/255},
