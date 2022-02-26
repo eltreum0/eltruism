@@ -40,7 +40,7 @@ local unitframeclass = {
 --local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
 local paladin = {r = "0.95686066150665", g = "0.54901838302612", b = "0.72941017150879"}
 local warrior = {r = "0.77646887302399", g = "0.60784178972244", b = "0.4274500310421"}
-local shaman = {r = "0", g = "0.4392147064209", b = "0.86666476726532",}
+local shaman = {r = "0", g = "0.4392147064209", b = "0.86666476726532"}
 local druid = {r = "0.99999779462814", g = "0.48627343773842", b = "0.039215601980686"}
 local deathknight = {r = "0.76862573623657", g = "0.11764679849148", b = "0.2274504750967"}
 local demonhunter = {r = "0.63921427726746", g = "0.1882348805666", b = "0.78823357820511"}
@@ -260,6 +260,7 @@ end
 local test = {
 	[1] = "notaclass",
 }
+]]
 local units = {
 	["player"] = true,
 	["party1"] = true,
@@ -307,23 +308,23 @@ local units = {
 	["raid38"] = true,
 	["raid39"] = true,
 	["raid40"] = true,
-}]]
+}
 
-function ElvUI_EltreumUI:ChangeGroupUnitframe() --(unit, r, g, b)
+function ElvUI_EltreumUI:ChangeGroupUnitframe(unit, r, g, b) --() --(unit, r, g, b)
 	--[[local _, unitclass
 	if unit and UnitExists(unit) then
 		_, unitclass = UnitClass(unit)
 		--local className, classFilename, classID = UnitClass(unit)
 		--print(unit, unitclass)
 	end]]
-	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then -- and UnitExists(unit) and units[unit] == true then
+	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable and UnitExists(unit) and units[unit] == true then
 		local header = nil
 		if E.Retail then
 			if UnitExists("raid6") == true and UnitExists("raid21") == false then
 				header = _G['ElvUF_Raid']
 			elseif UnitExists("raid21") == true then
 				header = _G['ElvUF_Raid40']
-			else
+			elseif UnitExists("party1") then
 				header = _G['ElvUF_Party']
 			end
 		elseif E.TBC or E.Classic then
@@ -331,10 +332,67 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe() --(unit, r, g, b)
 				header = _G['ElvUF_Raid']
 			elseif UnitExists("raid26") == true then
 				header = _G['ElvUF_Raid40']
-			else
+			elseif UnitExists("party1") then
 				header = _G['ElvUF_Party']
 			end
 		end
+
+
+		local _, unit1class = UnitClass(unit)
+
+		local truer = 1
+		local trueg = 1
+		local trueb = 1
+		if unit1class == 'WARRIOR' then
+			truer = 0.77646887302399
+			trueg = 0.60784178972244
+			trueb = 0.4274500310421
+		elseif unit1class == 'PALADIN' then
+			truer = 0.95686066150665
+			trueg = 0.54901838302612
+			trueb = 0.72941017150879
+		elseif unit1class == 'HUNTER' then
+			truer = 0.66666519641876
+			trueg = 0.82744914293289
+			trueb = 0.44705784320831
+		elseif unit1class == 'ROGUE' then
+			truer = 0.99999779462814
+			trueg = 0.95686066150665
+			trueb = 0.40784224867821
+		elseif unit1class == 'PRIEST' then
+			truer = 0.99999779462814
+			trueg = 0.99999779462814
+			trueb = 0.99999779462814
+		elseif unit1class == 'DEATHKNIGHT' then
+			truer = 0.76862573623657
+			trueg = 0.11764679849148
+			trueb = 0.2274504750967
+		elseif unit1class == 'SHAMAN' then
+			truer = 0
+			trueg = 0.4392147064209
+			trueb = 0.86666476726532
+		elseif unit1class == 'MAGE' then
+			truer = 0.24705828726292
+			trueg = 0.78039044141769
+			trueb = 0.92156660556793
+		elseif unit1class == 'WARLOCK' then
+			truer = 0.52941060066223
+			trueg = 0.53333216905594
+			trueb = 0.93333131074905
+		elseif unit1class == 'MONK' then
+			truer = 0
+			trueg = 0.99999779462814
+			trueb = 0.59607714414597
+		elseif unit1class == 'DRUID' then
+			truer = 0.99999779462814
+			trueg = 0.48627343773842
+			trueb = 0.039215601980686
+		elseif unit1class == 'DEMONHUNTER' then
+			truer = 0.63921427726746
+			trueg = 0.1882348805666
+			trueb = 0.78823357820511
+		end
+
 		--[[if UnitExists("party1") == true then
 			header = _G['ElvUF_Party']
 		elseif UnitExists("raid1") == true and UnitExists("raid26") == false then
@@ -348,192 +406,199 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe() --(unit, r, g, b)
 				for j = 1, group:GetNumChildren() do
 					local unitbutton = select(j, group:GetChildren())
 					if unitbutton and unitbutton.Health then --and not test[j] == unitbutton then
+						--unitbutton.Health:SetStatusBarColor(truer,trueg,trueb)
 						local r1,g1,b1 = unitbutton.Health:GetStatusBarColor()
 						local r = tostring(r1)
 						local g = tostring(g1)
 						local b = tostring(b1)
-						if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) or (r == unitframecustomgradients['PALADIN']["r2"] and g == unitframecustomgradients['PALADIN']["g2"] and b == unitframecustomgradients['PALADIN']["b2"]) then
-							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-								unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['PALADIN']["r1"], unitframecustomgradients['PALADIN']["g1"], unitframecustomgradients['PALADIN']["b1"], unitframecustomgradients['PALADIN']["r2"], unitframecustomgradients['PALADIN']["g2"], unitframecustomgradients['PALADIN']["b2"])
+						--print(unit1class, r1, truer)
+						if tostring(g1) == tostring(trueg) and tostring(r1) == tostring(truer) and tostring(b1) == tostring(trueb) then --and g1 == trueg and b1 == trueb then
+							print("matches")
+							if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) or (r == unitframecustomgradients['PALADIN']["r2"] and g == unitframecustomgradients['PALADIN']["g2"] and b == unitframecustomgradients['PALADIN']["b2"]) then
+								if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+									--unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+									if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['PALADIN']["r1"], unitframecustomgradients['PALADIN']["g1"], unitframecustomgradients['PALADIN']["b1"], unitframecustomgradients['PALADIN']["r2"], unitframecustomgradients['PALADIN']["g2"], unitframecustomgradients['PALADIN']["b2"])
+									else
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['PALADIN']["r1"], unitframegradients['PALADIN']["g1"], unitframegradients['PALADIN']["b1"], unitframegradients['PALADIN']["r2"], unitframegradients['PALADIN']["g2"], unitframegradients['PALADIN']["b2"])
+									end
 								else
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['PALADIN']["r1"], unitframegradients['PALADIN']["g1"], unitframegradients['PALADIN']["b1"], unitframegradients['PALADIN']["r2"], unitframegradients['PALADIN']["g2"], unitframegradients['PALADIN']["b2"])
+									if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+										unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.paladintexture))
+									else
+										unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PL.tga")
+									end
+								end
+							elseif ((r == warrior.r) and (g == warrior.g) and (b == warrior.b)) or (r == unitframecustomgradients['WARRIOR']["r2"] and g == unitframecustomgradients['WARRIOR']["g2"] and b == unitframecustomgradients['WARRIOR']["b2"]) then
+								if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+									--unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+									if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['WARRIOR']["r1"], unitframecustomgradients['WARRIOR']["g1"], unitframecustomgradients['WARRIOR']["b1"], unitframecustomgradients['WARRIOR']["r2"], unitframecustomgradients['WARRIOR']["g2"], unitframecustomgradients['WARRIOR']["b2"])
+									else
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['WARRIOR']["r1"], unitframegradients['WARRIOR']["g1"], unitframegradients['WARRIOR']["b1"], unitframegradients['WARRIOR']["r2"], unitframegradients['WARRIOR']["g2"], unitframegradients['WARRIOR']["b2"])
+									end
+								else
+									if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+										unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warriortexture))
+									else
+										unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga")
+									end
+								end
+							elseif ((r == shaman.r) and (g == shaman.g) and (b == shaman.b)) or (r == unitframecustomgradients['SHAMAN']["r2"] and g == unitframecustomgradients['SHAMAN']["g2"] and b == unitframecustomgradients['SHAMAN']["b2"]) then
+								if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+									--unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+									if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['SHAMAN']["r1"], unitframecustomgradients['SHAMAN']["g1"], unitframecustomgradients['SHAMAN']["b1"], unitframecustomgradients['SHAMAN']["r2"], unitframecustomgradients['SHAMAN']["g2"], unitframecustomgradients['SHAMAN']["b2"])
+									else
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['SHAMAN']["r1"], unitframegradients['SHAMAN']["g1"], unitframegradients['SHAMAN']["b1"], unitframegradients['SHAMAN']["r2"], unitframegradients['SHAMAN']["g2"], unitframegradients['SHAMAN']["b2"])
+									end
+								else
+									if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+										unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.shamantexture))
+									else
+										unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SH.tga")
+									end
+								end
+							elseif ((r == druid.r) and (g == druid.g) and (b == druid.b)) or (r == unitframecustomgradients['DRUID']["r2"] and g == unitframecustomgradients['DRUID']["g2"] and b == unitframecustomgradients['DRUID']["b2"]) then
+								if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+									print("should be working")
+									--unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+									if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DRUID']["r1"], unitframecustomgradients['DRUID']["g1"], unitframecustomgradients['DRUID']["b1"], unitframecustomgradients['DRUID']["r2"], unitframecustomgradients['DRUID']["g2"], unitframecustomgradients['DRUID']["b2"])
+									else
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DRUID']["r1"], unitframegradients['DRUID']["g1"], unitframegradients['DRUID']["b1"], unitframegradients['DRUID']["r2"], unitframegradients['DRUID']["g2"], unitframegradients['DRUID']["b2"])
+									end
+								else
+									if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+										unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.druidtexture))
+									else
+										unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga")
+									end
+								end
+							elseif ((r == deathknight.r) and (g == deathknight.g) and (b == deathknight.b)) or (r == unitframecustomgradients['DEATHKNIGHT']["r2"] and g == unitframecustomgradients['DEATHKNIGHT']["g2"] and b == unitframecustomgradients['DEATHKNIGHT']["b2"]) then
+								if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+									--unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+									if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DEATHKNIGHT']["r1"], unitframecustomgradients['DEATHKNIGHT']["g1"], unitframecustomgradients['DEATHKNIGHT']["b1"], unitframecustomgradients['DEATHKNIGHT']["r2"], unitframecustomgradients['DEATHKNIGHT']["g2"], unitframecustomgradients['DEATHKNIGHT']["b2"])
+									else
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DEATHKNIGHT']["r1"], unitframegradients['DEATHKNIGHT']["g1"], unitframegradients['DEATHKNIGHT']["b1"], unitframegradients['DEATHKNIGHT']["r2"], unitframegradients['DEATHKNIGHT']["g2"], unitframegradients['DEATHKNIGHT']["b2"])
+									end
+								else
+									if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+										unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.deathknighttexture))
+									else
+										unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga")
+									end
+								end
+							elseif ((r == demonhunter.r) and (g == demonhunter.g) and (b == demonhunter.b)) or (r == unitframecustomgradients['DEMONHUNTER']["r2"] and g == unitframecustomgradients['DEMONHUNTER']["g2"] and b == unitframecustomgradients['DEMONHUNTER']["b2"]) then
+								if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+									--unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+									if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DEMONHUNTER']["r1"], unitframecustomgradients['DEMONHUNTER']["g1"], unitframecustomgradients['DEMONHUNTER']["b1"], unitframecustomgradients['DEMONHUNTER']["r2"], unitframecustomgradients['DEMONHUNTER']["g2"], unitframecustomgradients['DEMONHUNTER']["b2"])
+									else
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DEMONHUNTER']["r1"], unitframegradients['DEMONHUNTER']["g1"], unitframegradients['DEMONHUNTER']["b1"], unitframegradients['DEMONHUNTER']["r2"], unitframegradients['DEMONHUNTER']["g2"], unitframegradients['DEMONHUNTER']["b2"])
+									end
+								else
+									if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+										unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.demonhuntertexture))
+									else
+										unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DH.tga")
+									end
+								end
+							elseif ((r == monk.r) and (g == monk.g) and (b == monk.b)) or (r == unitframecustomgradients['MONK']["r2"] and g == unitframecustomgradients['MONK']["g2"] and b == unitframecustomgradients['MONK']["b2"]) then
+								if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+									--unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+									if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['MONK']["r1"], unitframecustomgradients['MONK']["g1"], unitframecustomgradients['MONK']["b1"], unitframecustomgradients['MONK']["r2"], unitframecustomgradients['MONK']["g2"], unitframecustomgradients['MONK']["b2"])
+									else
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['MONK']["r1"], unitframegradients['MONK']["g1"], unitframegradients['MONK']["b1"], unitframegradients['MONK']["r2"], unitframegradients['MONK']["g2"], unitframegradients['MONK']["b2"])
+									end
+								else
+									if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+										unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.monktexture))
+									else
+										unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MK.tga")
+									end
+								end
+							elseif ((r == rogue.r) and (g == rogue.g) and (b == rogue.b)) or (r == unitframecustomgradients['ROGUE']["r2"] and g == unitframecustomgradients['ROGUE']["g2"] and b == unitframecustomgradients['ROGUE']["b2"]) then
+								if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+									--unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+									if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['ROGUE']["r1"], unitframecustomgradients['ROGUE']["g1"], unitframecustomgradients['ROGUE']["b1"], unitframecustomgradients['ROGUE']["r2"], unitframecustomgradients['ROGUE']["g2"], unitframecustomgradients['ROGUE']["b2"])
+									else
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['ROGUE']["r1"], unitframegradients['ROGUE']["g1"], unitframegradients['ROGUE']["b1"], unitframegradients['ROGUE']["r2"], unitframegradients['ROGUE']["g2"], unitframegradients['ROGUE']["b2"])
+									end
+								else
+									if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+										unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.roguetexture))
+									else
+										unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RG.tga")
+									end
+								end
+							elseif ((r == priest.r) and (g == priest.g) and (b == priest.b)) or (r == unitframecustomgradients['PRIEST']["r2"] and g == unitframecustomgradients['PRIEST']["g2"] and b == unitframecustomgradients['PRIEST']["b2"]) then
+								if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+									--unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+									if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['PRIEST']["r1"], unitframecustomgradients['PRIEST']["g1"], unitframecustomgradients['PRIEST']["b1"], unitframecustomgradients['PRIEST']["r2"], unitframecustomgradients['PRIEST']["g2"], unitframecustomgradients['PRIEST']["b2"])
+									else
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['PRIEST']["r1"], unitframegradients['PRIEST']["g1"], unitframegradients['PRIEST']["b1"], unitframegradients['PRIEST']["r2"], unitframegradients['PRIEST']["g2"], unitframegradients['PRIEST']["b2"])
+									end
+								else
+									if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+										unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.priesttexture))
+									else
+										unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PR.tga")
+									end
+								end
+							elseif ((r == mage.r) and (g == mage.g) and (b == mage.b)) or (r == unitframecustomgradients['MAGE']["r2"] and g == unitframecustomgradients['MAGE']["g2"] and b == unitframecustomgradients['MAGE']["b2"]) then
+								if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+									--unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+									if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['MAGE']["r1"], unitframecustomgradients['MAGE']["g1"], unitframecustomgradients['MAGE']["b1"], unitframecustomgradients['MAGE']["r2"], unitframecustomgradients['MAGE']["g2"], unitframecustomgradients['MAGE']["b2"])
+									else
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['MAGE']["r1"], unitframegradients['MAGE']["g1"], unitframegradients['MAGE']["b1"], unitframegradients['MAGE']["r2"], unitframegradients['MAGE']["g2"], unitframegradients['MAGE']["b2"])
+									end
+								else
+									if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+										unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.magetexture))
+									else
+										unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MG.tga")
+									end
+								end
+							elseif ((r == hunter.r) and (g == hunter.g) and (b == hunter.b)) or (r == unitframecustomgradients['HUNTER']["r2"] and g == unitframecustomgradients['HUNTER']["g2"] and b == unitframecustomgradients['HUNTER']["b2"]) then
+								if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+									--unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+									if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['HUNTER']["r1"], unitframecustomgradients['HUNTER']["g1"], unitframecustomgradients['HUNTER']["b1"], unitframecustomgradients['HUNTER']["r2"], unitframecustomgradients['HUNTER']["g2"], unitframecustomgradients['HUNTER']["b2"])
+									else
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['HUNTER']["r1"], unitframegradients['HUNTER']["g1"], unitframegradients['HUNTER']["b1"], unitframegradients['HUNTER']["r2"], unitframegradients['HUNTER']["g2"], unitframegradients['HUNTER']["b2"])
+									end
+								else
+									if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+										unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.huntertexture))
+									else
+										unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga")
+									end
+								end
+							elseif ((r == warlock.r) and (g == warlock.g) and (b == warlock.b)) or (r == unitframecustomgradients['WARLOCK']["r2"] and g == unitframecustomgradients['WARLOCK']["g2"] and b == unitframecustomgradients['WARLOCK']["b2"]) then
+								if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+									--unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+									if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['WARLOCK']["r1"], unitframecustomgradients['WARLOCK']["g1"], unitframecustomgradients['WARLOCK']["b1"], unitframecustomgradients['WARLOCK']["r2"], unitframecustomgradients['WARLOCK']["g2"], unitframecustomgradients['WARLOCK']["b2"])
+									else
+										unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['WARLOCK']["r1"], unitframegradients['WARLOCK']["g1"], unitframegradients['WARLOCK']["b1"], unitframegradients['WARLOCK']["r2"], unitframegradients['WARLOCK']["g2"], unitframegradients['WARLOCK']["b2"])
+									end
+								else
+									if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+										unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warlocktexture))
+									else
+										unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WL.tga")
+									end
 								end
 							else
-								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-									unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.paladintexture))
-								else
-									unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PL.tga")
-								end
+								print("noooooo")
+								--unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
 							end
-						elseif ((r == warrior.r) and (g == warrior.g) and (b == warrior.b)) or (r == unitframecustomgradients['WARRIOR']["r2"] and g == unitframecustomgradients['WARRIOR']["g2"] and b == unitframecustomgradients['WARRIOR']["b2"]) then
-							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-								unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['WARRIOR']["r1"], unitframecustomgradients['WARRIOR']["g1"], unitframecustomgradients['WARRIOR']["b1"], unitframecustomgradients['WARRIOR']["r2"], unitframecustomgradients['WARRIOR']["g2"], unitframecustomgradients['WARRIOR']["b2"])
-								else
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['WARRIOR']["r1"], unitframegradients['WARRIOR']["g1"], unitframegradients['WARRIOR']["b1"], unitframegradients['WARRIOR']["r2"], unitframegradients['WARRIOR']["g2"], unitframegradients['WARRIOR']["b2"])
-								end
-							else
-								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-									unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warriortexture))
-								else
-									unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga")
-								end
-							end
-						elseif ((r == shaman.r) and (g == shaman.g) and (b == shaman.b)) or (r == unitframecustomgradients['SHAMAN']["r2"] and g == unitframecustomgradients['SHAMAN']["g2"] and b == unitframecustomgradients['SHAMAN']["b2"]) then
-							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-								unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['SHAMAN']["r1"], unitframecustomgradients['SHAMAN']["g1"], unitframecustomgradients['SHAMAN']["b1"], unitframecustomgradients['SHAMAN']["r2"], unitframecustomgradients['SHAMAN']["g2"], unitframecustomgradients['SHAMAN']["b2"])
-								else
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['SHAMAN']["r1"], unitframegradients['SHAMAN']["g1"], unitframegradients['SHAMAN']["b1"], unitframegradients['SHAMAN']["r2"], unitframegradients['SHAMAN']["g2"], unitframegradients['SHAMAN']["b2"])
-								end
-							else
-								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-									unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.shamantexture))
-								else
-									unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SH.tga")
-								end
-							end
-						elseif ((r == druid.r) and (g == druid.g) and (b == druid.b)) or (r == unitframecustomgradients['DRUID']["r2"] and g == unitframecustomgradients['DRUID']["g2"] and b == unitframecustomgradients['DRUID']["b2"]) then
-							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-								unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DRUID']["r1"], unitframecustomgradients['DRUID']["g1"], unitframecustomgradients['DRUID']["b1"], unitframecustomgradients['DRUID']["r2"], unitframecustomgradients['DRUID']["g2"], unitframecustomgradients['DRUID']["b2"])
-								else
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DRUID']["r1"], unitframegradients['DRUID']["g1"], unitframegradients['DRUID']["b1"], unitframegradients['DRUID']["r2"], unitframegradients['DRUID']["g2"], unitframegradients['DRUID']["b2"])
-								end
-							else
-								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-									unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.druidtexture))
-								else
-									unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga")
-								end
-							end
-						elseif ((r == deathknight.r) and (g == deathknight.g) and (b == deathknight.b)) or (r == unitframecustomgradients['DEATHKNIGHT']["r2"] and g == unitframecustomgradients['DEATHKNIGHT']["g2"] and b == unitframecustomgradients['DEATHKNIGHT']["b2"]) then
-							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-								unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DEATHKNIGHT']["r1"], unitframecustomgradients['DEATHKNIGHT']["g1"], unitframecustomgradients['DEATHKNIGHT']["b1"], unitframecustomgradients['DEATHKNIGHT']["r2"], unitframecustomgradients['DEATHKNIGHT']["g2"], unitframecustomgradients['DEATHKNIGHT']["b2"])
-								else
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DEATHKNIGHT']["r1"], unitframegradients['DEATHKNIGHT']["g1"], unitframegradients['DEATHKNIGHT']["b1"], unitframegradients['DEATHKNIGHT']["r2"], unitframegradients['DEATHKNIGHT']["g2"], unitframegradients['DEATHKNIGHT']["b2"])
-								end
-							else
-								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-									unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.deathknighttexture))
-								else
-									unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga")
-								end
-							end
-						elseif ((r == demonhunter.r) and (g == demonhunter.g) and (b == demonhunter.b)) or (r == unitframecustomgradients['DEMONHUNTER']["r2"] and g == unitframecustomgradients['DEMONHUNTER']["g2"] and b == unitframecustomgradients['DEMONHUNTER']["b2"]) then
-							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-								unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DEMONHUNTER']["r1"], unitframecustomgradients['DEMONHUNTER']["g1"], unitframecustomgradients['DEMONHUNTER']["b1"], unitframecustomgradients['DEMONHUNTER']["r2"], unitframecustomgradients['DEMONHUNTER']["g2"], unitframecustomgradients['DEMONHUNTER']["b2"])
-								else
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DEMONHUNTER']["r1"], unitframegradients['DEMONHUNTER']["g1"], unitframegradients['DEMONHUNTER']["b1"], unitframegradients['DEMONHUNTER']["r2"], unitframegradients['DEMONHUNTER']["g2"], unitframegradients['DEMONHUNTER']["b2"])
-								end
-							else
-								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-									unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.demonhuntertexture))
-								else
-									unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DH.tga")
-								end
-							end
-						elseif ((r == monk.r) and (g == monk.g) and (b == monk.b)) or (r == unitframecustomgradients['MONK']["r2"] and g == unitframecustomgradients['MONK']["g2"] and b == unitframecustomgradients['MONK']["b2"]) then
-							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-								unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['MONK']["r1"], unitframecustomgradients['MONK']["g1"], unitframecustomgradients['MONK']["b1"], unitframecustomgradients['MONK']["r2"], unitframecustomgradients['MONK']["g2"], unitframecustomgradients['MONK']["b2"])
-								else
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['MONK']["r1"], unitframegradients['MONK']["g1"], unitframegradients['MONK']["b1"], unitframegradients['MONK']["r2"], unitframegradients['MONK']["g2"], unitframegradients['MONK']["b2"])
-								end
-							else
-								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-									unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.monktexture))
-								else
-									unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MK.tga")
-								end
-							end
-						elseif ((r == rogue.r) and (g == rogue.g) and (b == rogue.b)) or (r == unitframecustomgradients['ROGUE']["r2"] and g == unitframecustomgradients['ROGUE']["g2"] and b == unitframecustomgradients['ROGUE']["b2"]) then
-							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-								unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['ROGUE']["r1"], unitframecustomgradients['ROGUE']["g1"], unitframecustomgradients['ROGUE']["b1"], unitframecustomgradients['ROGUE']["r2"], unitframecustomgradients['ROGUE']["g2"], unitframecustomgradients['ROGUE']["b2"])
-								else
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['ROGUE']["r1"], unitframegradients['ROGUE']["g1"], unitframegradients['ROGUE']["b1"], unitframegradients['ROGUE']["r2"], unitframegradients['ROGUE']["g2"], unitframegradients['ROGUE']["b2"])
-								end
-							else
-								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-									unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.roguetexture))
-								else
-									unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RG.tga")
-								end
-							end
-						elseif ((r == priest.r) and (g == priest.g) and (b == priest.b)) or (r == unitframecustomgradients['PRIEST']["r2"] and g == unitframecustomgradients['PRIEST']["g2"] and b == unitframecustomgradients['PRIEST']["b2"]) then
-							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-								unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['PRIEST']["r1"], unitframecustomgradients['PRIEST']["g1"], unitframecustomgradients['PRIEST']["b1"], unitframecustomgradients['PRIEST']["r2"], unitframecustomgradients['PRIEST']["g2"], unitframecustomgradients['PRIEST']["b2"])
-								else
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['PRIEST']["r1"], unitframegradients['PRIEST']["g1"], unitframegradients['PRIEST']["b1"], unitframegradients['PRIEST']["r2"], unitframegradients['PRIEST']["g2"], unitframegradients['PRIEST']["b2"])
-								end
-							else
-								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-									unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.priesttexture))
-								else
-									unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PR.tga")
-								end
-							end
-						elseif ((r == mage.r) and (g == mage.g) and (b == mage.b)) or (r == unitframecustomgradients['MAGE']["r2"] and g == unitframecustomgradients['MAGE']["g2"] and b == unitframecustomgradients['MAGE']["b2"]) then
-							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-								unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['MAGE']["r1"], unitframecustomgradients['MAGE']["g1"], unitframecustomgradients['MAGE']["b1"], unitframecustomgradients['MAGE']["r2"], unitframecustomgradients['MAGE']["g2"], unitframecustomgradients['MAGE']["b2"])
-								else
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['MAGE']["r1"], unitframegradients['MAGE']["g1"], unitframegradients['MAGE']["b1"], unitframegradients['MAGE']["r2"], unitframegradients['MAGE']["g2"], unitframegradients['MAGE']["b2"])
-								end
-							else
-								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-									unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.magetexture))
-								else
-									unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MG.tga")
-								end
-							end
-						elseif ((r == hunter.r) and (g == hunter.g) and (b == hunter.b)) or (r == unitframecustomgradients['HUNTER']["r2"] and g == unitframecustomgradients['HUNTER']["g2"] and b == unitframecustomgradients['HUNTER']["b2"]) then
-							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-								unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['HUNTER']["r1"], unitframecustomgradients['HUNTER']["g1"], unitframecustomgradients['HUNTER']["b1"], unitframecustomgradients['HUNTER']["r2"], unitframecustomgradients['HUNTER']["g2"], unitframecustomgradients['HUNTER']["b2"])
-								else
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['HUNTER']["r1"], unitframegradients['HUNTER']["g1"], unitframegradients['HUNTER']["b1"], unitframegradients['HUNTER']["r2"], unitframegradients['HUNTER']["g2"], unitframegradients['HUNTER']["b2"])
-								end
-							else
-								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-									unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.huntertexture))
-								else
-									unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga")
-								end
-							end
-						elseif ((r == warlock.r) and (g == warlock.g) and (b == warlock.b)) or (r == unitframecustomgradients['WARLOCK']["r2"] and g == unitframecustomgradients['WARLOCK']["g2"] and b == unitframecustomgradients['WARLOCK']["b2"]) then
-							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-								unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['WARLOCK']["r1"], unitframecustomgradients['WARLOCK']["g1"], unitframecustomgradients['WARLOCK']["b1"], unitframecustomgradients['WARLOCK']["r2"], unitframecustomgradients['WARLOCK']["g2"], unitframecustomgradients['WARLOCK']["b2"])
-								else
-									unitbutton.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['WARLOCK']["r1"], unitframegradients['WARLOCK']["g1"], unitframegradients['WARLOCK']["b1"], unitframegradients['WARLOCK']["r2"], unitframegradients['WARLOCK']["g2"], unitframegradients['WARLOCK']["b2"])
-								end
-							else
-								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-									unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warlocktexture))
-								else
-									unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WL.tga")
-								end
-							end
-						else
-							unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
 						end
 						--print(test[1])
 						--tinsert(test, unit.." "..unitclass)
@@ -584,434 +649,435 @@ hooksecurefunc(UF, "PostUpdateHealth", ElvUI_EltreumUI.ChangePlayerTexture)
 hooksecurefunc(UF, "PostUpdateHealth", ElvUI_EltreumUI.ChangeUnitTexture)
 hooksecurefunc(UF, 'PostUpdateHealth', ElvUI_EltreumUI.ChangeGroupUnitframe)
 
---[[hooksecurefunc(UF, "Construct_AuraBars", function()
-	UF.db.colors.aurabar_backdrop = { r = 0, g = 0, b = 0, a = 0.2 }
-end)
+--[[
+	hooksecurefunc(UF, "Construct_AuraBars", function()
+		UF.db.colors.aurabar_backdrop = { r = 0, g = 0, b = 0, a = 0.2 }
+	end)
 
-hooksecurefunc(UF, "Configure_AuraBars", function()
-	UF.db.colors.aurabar_backdrop = { r = 0, g = 0, b = 0, a = 0.2 }
-end)
+	hooksecurefunc(UF, "Configure_AuraBars", function()
+		UF.db.colors.aurabar_backdrop = { r = 0, g = 0, b = 0, a = 0.2 }
+	end)
 
-hooksecurefunc(UF, "PostUpdateBar_AuraBars", function()
-	UF.db.colors.aurabar_backdrop = { r = 0, g = 0, b = 0, a = 0.2 }
-end)]]
+	hooksecurefunc(UF, "PostUpdateBar_AuraBars", function()
+		UF.db.colors.aurabar_backdrop = { r = 0, g = 0, b = 0, a = 0.2 }
+	end)
+]]
 
 --[[
-
-function ElvUI_EltreumUI:ChangeGroupUnitframeParty1(unit, r, g, b)
-	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable and UnitExists(unit) and unit == "party1" or unit == "player" then
-		local header = _G["ElvUF_PartyGroup1UnitButton1"]
-		if header ~= nil then
-			for i = 1, header:GetNumChildren() do
-				local group = select(i, header:GetChildren())
-				--print(group:GetName())
-				if group:GetName() == "ElvUF_PartyGroup1UnitButton1_HealthBar" then
-					local r1,g1,b1 = group:GetStatusBarColor()
-					local r = tostring(r1)
-					local g = tostring(g1)
-					local b = tostring(b1)
-					--print(r,g,b)
-					--print(unitbutton.Health:GetStatusBarColor())
-					if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) or (r == unitframecustomgradients['PALADIN']["r2"] and g == unitframecustomgradients['PALADIN']["g2"] and b == unitframecustomgradients['PALADIN']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['PALADIN']["r1"], unitframecustomgradients['PALADIN']["g1"], unitframecustomgradients['PALADIN']["b1"], unitframecustomgradients['PALADIN']["r2"], unitframecustomgradients['PALADIN']["g2"], unitframecustomgradients['PALADIN']["b2"])
+	function ElvUI_EltreumUI:ChangeGroupUnitframeParty1(unit, r, g, b)
+		if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable and UnitExists(unit) and unit == "party1" or unit == "player" then
+			local header = _G["ElvUF_PartyGroup1UnitButton1"]
+			if header ~= nil then
+				for i = 1, header:GetNumChildren() do
+					local group = select(i, header:GetChildren())
+					--print(group:GetName())
+					if group:GetName() == "ElvUF_PartyGroup1UnitButton1_HealthBar" then
+						local r1,g1,b1 = group:GetStatusBarColor()
+						local r = tostring(r1)
+						local g = tostring(g1)
+						local b = tostring(b1)
+						--print(r,g,b)
+						--print(unitbutton.Health:GetStatusBarColor())
+						if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) or (r == unitframecustomgradients['PALADIN']["r2"] and g == unitframecustomgradients['PALADIN']["g2"] and b == unitframecustomgradients['PALADIN']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['PALADIN']["r1"], unitframecustomgradients['PALADIN']["g1"], unitframecustomgradients['PALADIN']["b1"], unitframecustomgradients['PALADIN']["r2"], unitframecustomgradients['PALADIN']["g2"], unitframecustomgradients['PALADIN']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['PALADIN']["r1"], unitframegradients['PALADIN']["g1"], unitframegradients['PALADIN']["b1"], unitframegradients['PALADIN']["r2"], unitframegradients['PALADIN']["g2"], unitframegradients['PALADIN']["b2"])
+								end
 							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['PALADIN']["r1"], unitframegradients['PALADIN']["g1"], unitframegradients['PALADIN']["b1"], unitframegradients['PALADIN']["r2"], unitframegradients['PALADIN']["g2"], unitframegradients['PALADIN']["b2"])
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.paladintexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PL.tga")
+								end
+							end
+						elseif ((r == warrior.r) and (g == warrior.g) and (b == warrior.b)) or (r == unitframecustomgradients['WARRIOR']["r2"] and g == unitframecustomgradients['WARRIOR']["g2"] and b == unitframecustomgradients['WARRIOR']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['WARRIOR']["r1"], unitframecustomgradients['WARRIOR']["g1"], unitframecustomgradients['WARRIOR']["b1"], unitframecustomgradients['WARRIOR']["r2"], unitframecustomgradients['WARRIOR']["g2"], unitframecustomgradients['WARRIOR']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['WARRIOR']["r1"], unitframegradients['WARRIOR']["g1"], unitframegradients['WARRIOR']["b1"], unitframegradients['WARRIOR']["r2"], unitframegradients['WARRIOR']["g2"], unitframegradients['WARRIOR']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warriortexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga")
+								end
+							end
+						elseif ((r == shaman.r) and (g == shaman.g) and (b == shaman.b)) or (r == unitframecustomgradients['SHAMAN']["r2"] and g == unitframecustomgradients['SHAMAN']["g2"] and b == unitframecustomgradients['SHAMAN']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['SHAMAN']["r1"], unitframecustomgradients['SHAMAN']["g1"], unitframecustomgradients['SHAMAN']["b1"], unitframecustomgradients['SHAMAN']["r2"], unitframecustomgradients['SHAMAN']["g2"], unitframecustomgradients['SHAMAN']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['SHAMAN']["r1"], unitframegradients['SHAMAN']["g1"], unitframegradients['SHAMAN']["b1"], unitframegradients['SHAMAN']["r2"], unitframegradients['SHAMAN']["g2"], unitframegradients['SHAMAN']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.shamantexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SH.tga")
+								end
+							end
+						elseif ((r == druid.r) and (g == druid.g) and (b == druid.b)) or (r == unitframecustomgradients['DRUID']["r2"] and g == unitframecustomgradients['DRUID']["g2"] and b == unitframecustomgradients['DRUID']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DRUID']["r1"], unitframecustomgradients['DRUID']["g1"], unitframecustomgradients['DRUID']["b1"], unitframecustomgradients['DRUID']["r2"], unitframecustomgradients['DRUID']["g2"], unitframecustomgradients['DRUID']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DRUID']["r1"], unitframegradients['DRUID']["g1"], unitframegradients['DRUID']["b1"], unitframegradients['DRUID']["r2"], unitframegradients['DRUID']["g2"], unitframegradients['DRUID']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.druidtexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga")
+								end
+							end
+						elseif ((r == deathknight.r) and (g == deathknight.g) and (b == deathknight.b)) or (r == unitframecustomgradients['DEATHKNIGHT']["r2"] and g == unitframecustomgradients['DEATHKNIGHT']["g2"] and b == unitframecustomgradients['DEATHKNIGHT']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DEATHKNIGHT']["r1"], unitframecustomgradients['DEATHKNIGHT']["g1"], unitframecustomgradients['DEATHKNIGHT']["b1"], unitframecustomgradients['DEATHKNIGHT']["r2"], unitframecustomgradients['DEATHKNIGHT']["g2"], unitframecustomgradients['DEATHKNIGHT']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DEATHKNIGHT']["r1"], unitframegradients['DEATHKNIGHT']["g1"], unitframegradients['DEATHKNIGHT']["b1"], unitframegradients['DEATHKNIGHT']["r2"], unitframegradients['DEATHKNIGHT']["g2"], unitframegradients['DEATHKNIGHT']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.deathknighttexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga")
+								end
+							end
+						elseif ((r == demonhunter.r) and (g == demonhunter.g) and (b == demonhunter.b)) or (r == unitframecustomgradients['DEMONHUNTER']["r2"] and g == unitframecustomgradients['DEMONHUNTER']["g2"] and b == unitframecustomgradients['DEMONHUNTER']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DEMONHUNTER']["r1"], unitframecustomgradients['DEMONHUNTER']["g1"], unitframecustomgradients['DEMONHUNTER']["b1"], unitframecustomgradients['DEMONHUNTER']["r2"], unitframecustomgradients['DEMONHUNTER']["g2"], unitframecustomgradients['DEMONHUNTER']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DEMONHUNTER']["r1"], unitframegradients['DEMONHUNTER']["g1"], unitframegradients['DEMONHUNTER']["b1"], unitframegradients['DEMONHUNTER']["r2"], unitframegradients['DEMONHUNTER']["g2"], unitframegradients['DEMONHUNTER']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.demonhuntertexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DH.tga")
+								end
+							end
+						elseif ((r == monk.r) and (g == monk.g) and (b == monk.b)) or (r == unitframecustomgradients['MONK']["r2"] and g == unitframecustomgradients['MONK']["g2"] and b == unitframecustomgradients['MONK']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['MONK']["r1"], unitframecustomgradients['MONK']["g1"], unitframecustomgradients['MONK']["b1"], unitframecustomgradients['MONK']["r2"], unitframecustomgradients['MONK']["g2"], unitframecustomgradients['MONK']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['MONK']["r1"], unitframegradients['MONK']["g1"], unitframegradients['MONK']["b1"], unitframegradients['MONK']["r2"], unitframegradients['MONK']["g2"], unitframegradients['MONK']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.monktexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MK.tga")
+								end
+							end
+						elseif ((r == rogue.r) and (g == rogue.g) and (b == rogue.b)) or (r == unitframecustomgradients['ROGUE']["r2"] and g == unitframecustomgradients['ROGUE']["g2"] and b == unitframecustomgradients['ROGUE']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['ROGUE']["r1"], unitframecustomgradients['ROGUE']["g1"], unitframecustomgradients['ROGUE']["b1"], unitframecustomgradients['ROGUE']["r2"], unitframecustomgradients['ROGUE']["g2"], unitframecustomgradients['ROGUE']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['ROGUE']["r1"], unitframegradients['ROGUE']["g1"], unitframegradients['ROGUE']["b1"], unitframegradients['ROGUE']["r2"], unitframegradients['ROGUE']["g2"], unitframegradients['ROGUE']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.roguetexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RG.tga")
+								end
+							end
+						elseif ((r == priest.r) and (g == priest.g) and (b == priest.b)) or (r == unitframecustomgradients['PRIEST']["r2"] and g == unitframecustomgradients['PRIEST']["g2"] and b == unitframecustomgradients['PRIEST']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['PRIEST']["r1"], unitframecustomgradients['PRIEST']["g1"], unitframecustomgradients['PRIEST']["b1"], unitframecustomgradients['PRIEST']["r2"], unitframecustomgradients['PRIEST']["g2"], unitframecustomgradients['PRIEST']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['PRIEST']["r1"], unitframegradients['PRIEST']["g1"], unitframegradients['PRIEST']["b1"], unitframegradients['PRIEST']["r2"], unitframegradients['PRIEST']["g2"], unitframegradients['PRIEST']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.priesttexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PR.tga")
+								end
+							end
+						elseif ((r == mage.r) and (g == mage.g) and (b == mage.b)) or (r == unitframecustomgradients['MAGE']["r2"] and g == unitframecustomgradients['MAGE']["g2"] and b == unitframecustomgradients['MAGE']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['MAGE']["r1"], unitframecustomgradients['MAGE']["g1"], unitframecustomgradients['MAGE']["b1"], unitframecustomgradients['MAGE']["r2"], unitframecustomgradients['MAGE']["g2"], unitframecustomgradients['MAGE']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['MAGE']["r1"], unitframegradients['MAGE']["g1"], unitframegradients['MAGE']["b1"], unitframegradients['MAGE']["r2"], unitframegradients['MAGE']["g2"], unitframegradients['MAGE']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.magetexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MG.tga")
+								end
+							end
+						elseif ((r == hunter.r) and (g == hunter.g) and (b == hunter.b)) or (r == unitframecustomgradients['HUNTER']["r2"] and g == unitframecustomgradients['HUNTER']["g2"] and b == unitframecustomgradients['HUNTER']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['HUNTER']["r1"], unitframecustomgradients['HUNTER']["g1"], unitframecustomgradients['HUNTER']["b1"], unitframecustomgradients['HUNTER']["r2"], unitframecustomgradients['HUNTER']["g2"], unitframecustomgradients['HUNTER']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['HUNTER']["r1"], unitframegradients['HUNTER']["g1"], unitframegradients['HUNTER']["b1"], unitframegradients['HUNTER']["r2"], unitframegradients['HUNTER']["g2"], unitframegradients['HUNTER']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.huntertexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga")
+								end
+							end
+						elseif ((r == warlock.r) and (g == warlock.g) and (b == warlock.b)) or (r == unitframecustomgradients['WARLOCK']["r2"] and g == unitframecustomgradients['WARLOCK']["g2"] and b == unitframecustomgradients['WARLOCK']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['WARLOCK']["r1"], unitframecustomgradients['WARLOCK']["g1"], unitframecustomgradients['WARLOCK']["b1"], unitframecustomgradients['WARLOCK']["r2"], unitframecustomgradients['WARLOCK']["g2"], unitframecustomgradients['WARLOCK']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['WARLOCK']["r1"], unitframegradients['WARLOCK']["g1"], unitframegradients['WARLOCK']["b1"], unitframegradients['WARLOCK']["r2"], unitframegradients['WARLOCK']["g2"], unitframegradients['WARLOCK']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warlocktexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WL.tga")
+								end
 							end
 						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.paladintexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PL.tga")
-							end
+							return
+							--print("222222222")
+							--group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
 						end
-					elseif ((r == warrior.r) and (g == warrior.g) and (b == warrior.b)) or (r == unitframecustomgradients['WARRIOR']["r2"] and g == unitframecustomgradients['WARRIOR']["g2"] and b == unitframecustomgradients['WARRIOR']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['WARRIOR']["r1"], unitframecustomgradients['WARRIOR']["g1"], unitframecustomgradients['WARRIOR']["b1"], unitframecustomgradients['WARRIOR']["r2"], unitframecustomgradients['WARRIOR']["g2"], unitframecustomgradients['WARRIOR']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['WARRIOR']["r1"], unitframegradients['WARRIOR']["g1"], unitframegradients['WARRIOR']["b1"], unitframegradients['WARRIOR']["r2"], unitframegradients['WARRIOR']["g2"], unitframegradients['WARRIOR']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warriortexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga")
-							end
-						end
-					elseif ((r == shaman.r) and (g == shaman.g) and (b == shaman.b)) or (r == unitframecustomgradients['SHAMAN']["r2"] and g == unitframecustomgradients['SHAMAN']["g2"] and b == unitframecustomgradients['SHAMAN']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['SHAMAN']["r1"], unitframecustomgradients['SHAMAN']["g1"], unitframecustomgradients['SHAMAN']["b1"], unitframecustomgradients['SHAMAN']["r2"], unitframecustomgradients['SHAMAN']["g2"], unitframecustomgradients['SHAMAN']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['SHAMAN']["r1"], unitframegradients['SHAMAN']["g1"], unitframegradients['SHAMAN']["b1"], unitframegradients['SHAMAN']["r2"], unitframegradients['SHAMAN']["g2"], unitframegradients['SHAMAN']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.shamantexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SH.tga")
-							end
-						end
-					elseif ((r == druid.r) and (g == druid.g) and (b == druid.b)) or (r == unitframecustomgradients['DRUID']["r2"] and g == unitframecustomgradients['DRUID']["g2"] and b == unitframecustomgradients['DRUID']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DRUID']["r1"], unitframecustomgradients['DRUID']["g1"], unitframecustomgradients['DRUID']["b1"], unitframecustomgradients['DRUID']["r2"], unitframecustomgradients['DRUID']["g2"], unitframecustomgradients['DRUID']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DRUID']["r1"], unitframegradients['DRUID']["g1"], unitframegradients['DRUID']["b1"], unitframegradients['DRUID']["r2"], unitframegradients['DRUID']["g2"], unitframegradients['DRUID']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.druidtexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga")
-							end
-						end
-					elseif ((r == deathknight.r) and (g == deathknight.g) and (b == deathknight.b)) or (r == unitframecustomgradients['DEATHKNIGHT']["r2"] and g == unitframecustomgradients['DEATHKNIGHT']["g2"] and b == unitframecustomgradients['DEATHKNIGHT']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DEATHKNIGHT']["r1"], unitframecustomgradients['DEATHKNIGHT']["g1"], unitframecustomgradients['DEATHKNIGHT']["b1"], unitframecustomgradients['DEATHKNIGHT']["r2"], unitframecustomgradients['DEATHKNIGHT']["g2"], unitframecustomgradients['DEATHKNIGHT']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DEATHKNIGHT']["r1"], unitframegradients['DEATHKNIGHT']["g1"], unitframegradients['DEATHKNIGHT']["b1"], unitframegradients['DEATHKNIGHT']["r2"], unitframegradients['DEATHKNIGHT']["g2"], unitframegradients['DEATHKNIGHT']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.deathknighttexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga")
-							end
-						end
-					elseif ((r == demonhunter.r) and (g == demonhunter.g) and (b == demonhunter.b)) or (r == unitframecustomgradients['DEMONHUNTER']["r2"] and g == unitframecustomgradients['DEMONHUNTER']["g2"] and b == unitframecustomgradients['DEMONHUNTER']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DEMONHUNTER']["r1"], unitframecustomgradients['DEMONHUNTER']["g1"], unitframecustomgradients['DEMONHUNTER']["b1"], unitframecustomgradients['DEMONHUNTER']["r2"], unitframecustomgradients['DEMONHUNTER']["g2"], unitframecustomgradients['DEMONHUNTER']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DEMONHUNTER']["r1"], unitframegradients['DEMONHUNTER']["g1"], unitframegradients['DEMONHUNTER']["b1"], unitframegradients['DEMONHUNTER']["r2"], unitframegradients['DEMONHUNTER']["g2"], unitframegradients['DEMONHUNTER']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.demonhuntertexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DH.tga")
-							end
-						end
-					elseif ((r == monk.r) and (g == monk.g) and (b == monk.b)) or (r == unitframecustomgradients['MONK']["r2"] and g == unitframecustomgradients['MONK']["g2"] and b == unitframecustomgradients['MONK']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['MONK']["r1"], unitframecustomgradients['MONK']["g1"], unitframecustomgradients['MONK']["b1"], unitframecustomgradients['MONK']["r2"], unitframecustomgradients['MONK']["g2"], unitframecustomgradients['MONK']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['MONK']["r1"], unitframegradients['MONK']["g1"], unitframegradients['MONK']["b1"], unitframegradients['MONK']["r2"], unitframegradients['MONK']["g2"], unitframegradients['MONK']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.monktexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MK.tga")
-							end
-						end
-					elseif ((r == rogue.r) and (g == rogue.g) and (b == rogue.b)) or (r == unitframecustomgradients['ROGUE']["r2"] and g == unitframecustomgradients['ROGUE']["g2"] and b == unitframecustomgradients['ROGUE']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['ROGUE']["r1"], unitframecustomgradients['ROGUE']["g1"], unitframecustomgradients['ROGUE']["b1"], unitframecustomgradients['ROGUE']["r2"], unitframecustomgradients['ROGUE']["g2"], unitframecustomgradients['ROGUE']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['ROGUE']["r1"], unitframegradients['ROGUE']["g1"], unitframegradients['ROGUE']["b1"], unitframegradients['ROGUE']["r2"], unitframegradients['ROGUE']["g2"], unitframegradients['ROGUE']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.roguetexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RG.tga")
-							end
-						end
-					elseif ((r == priest.r) and (g == priest.g) and (b == priest.b)) or (r == unitframecustomgradients['PRIEST']["r2"] and g == unitframecustomgradients['PRIEST']["g2"] and b == unitframecustomgradients['PRIEST']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['PRIEST']["r1"], unitframecustomgradients['PRIEST']["g1"], unitframecustomgradients['PRIEST']["b1"], unitframecustomgradients['PRIEST']["r2"], unitframecustomgradients['PRIEST']["g2"], unitframecustomgradients['PRIEST']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['PRIEST']["r1"], unitframegradients['PRIEST']["g1"], unitframegradients['PRIEST']["b1"], unitframegradients['PRIEST']["r2"], unitframegradients['PRIEST']["g2"], unitframegradients['PRIEST']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.priesttexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PR.tga")
-							end
-						end
-					elseif ((r == mage.r) and (g == mage.g) and (b == mage.b)) or (r == unitframecustomgradients['MAGE']["r2"] and g == unitframecustomgradients['MAGE']["g2"] and b == unitframecustomgradients['MAGE']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['MAGE']["r1"], unitframecustomgradients['MAGE']["g1"], unitframecustomgradients['MAGE']["b1"], unitframecustomgradients['MAGE']["r2"], unitframecustomgradients['MAGE']["g2"], unitframecustomgradients['MAGE']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['MAGE']["r1"], unitframegradients['MAGE']["g1"], unitframegradients['MAGE']["b1"], unitframegradients['MAGE']["r2"], unitframegradients['MAGE']["g2"], unitframegradients['MAGE']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.magetexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MG.tga")
-							end
-						end
-					elseif ((r == hunter.r) and (g == hunter.g) and (b == hunter.b)) or (r == unitframecustomgradients['HUNTER']["r2"] and g == unitframecustomgradients['HUNTER']["g2"] and b == unitframecustomgradients['HUNTER']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['HUNTER']["r1"], unitframecustomgradients['HUNTER']["g1"], unitframecustomgradients['HUNTER']["b1"], unitframecustomgradients['HUNTER']["r2"], unitframecustomgradients['HUNTER']["g2"], unitframecustomgradients['HUNTER']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['HUNTER']["r1"], unitframegradients['HUNTER']["g1"], unitframegradients['HUNTER']["b1"], unitframegradients['HUNTER']["r2"], unitframegradients['HUNTER']["g2"], unitframegradients['HUNTER']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.huntertexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga")
-							end
-						end
-					elseif ((r == warlock.r) and (g == warlock.g) and (b == warlock.b)) or (r == unitframecustomgradients['WARLOCK']["r2"] and g == unitframecustomgradients['WARLOCK']["g2"] and b == unitframecustomgradients['WARLOCK']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['WARLOCK']["r1"], unitframecustomgradients['WARLOCK']["g1"], unitframecustomgradients['WARLOCK']["b1"], unitframecustomgradients['WARLOCK']["r2"], unitframecustomgradients['WARLOCK']["g2"], unitframecustomgradients['WARLOCK']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['WARLOCK']["r1"], unitframegradients['WARLOCK']["g1"], unitframegradients['WARLOCK']["b1"], unitframegradients['WARLOCK']["r2"], unitframegradients['WARLOCK']["g2"], unitframegradients['WARLOCK']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warlocktexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WL.tga")
-							end
-						end
-					else
-						return
-						--print("222222222")
-						--group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
 					end
 				end
 			end
 		end
 	end
-end
-hooksecurefunc(UF, 'Update_PartyFrames', ElvUI_EltreumUI.ChangeGroupUnitframeParty1)
-hooksecurefunc(UF, 'PostUpdateHealthColor', ElvUI_EltreumUI.ChangeGroupUnitframeParty1)
-hooksecurefunc(UF, 'PostUpdateHealth', ElvUI_EltreumUI.ChangeGroupUnitframeParty1)
+	hooksecurefunc(UF, 'Update_PartyFrames', ElvUI_EltreumUI.ChangeGroupUnitframeParty1)
+	hooksecurefunc(UF, 'PostUpdateHealthColor', ElvUI_EltreumUI.ChangeGroupUnitframeParty1)
+	hooksecurefunc(UF, 'PostUpdateHealth', ElvUI_EltreumUI.ChangeGroupUnitframeParty1)
 
 
-function ElvUI_EltreumUI:ChangeGroupUnitframeParty2(unit, r, g, b)
-	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable and UnitExists(unit) and unit == "party2" or unit == "player" then
-		local header = _G["ElvUF_PartyGroup1UnitButton2"]
-		if header ~= nil then
-			for i = 1, header:GetNumChildren() do
-				local group = select(i, header:GetChildren())
-				--print(group:GetName())
-				if group:GetName() == "ElvUF_PartyGroup1UnitButton2_HealthBar" then
-					local r1,g1,b1 = group:GetStatusBarColor()
-					local r = tostring(r1)
-					local g = tostring(g1)
-					local b = tostring(b1)
-					--print(r,g,b)
-					--print(unitbutton.Health:GetStatusBarColor())
-					if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) or (r == unitframecustomgradients['PALADIN']["r2"] and g == unitframecustomgradients['PALADIN']["g2"] and b == unitframecustomgradients['PALADIN']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['PALADIN']["r1"], unitframecustomgradients['PALADIN']["g1"], unitframecustomgradients['PALADIN']["b1"], unitframecustomgradients['PALADIN']["r2"], unitframecustomgradients['PALADIN']["g2"], unitframecustomgradients['PALADIN']["b2"])
+	function ElvUI_EltreumUI:ChangeGroupUnitframeParty2(unit, r, g, b)
+		if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable and UnitExists(unit) and unit == "party2" or unit == "player" then
+			local header = _G["ElvUF_PartyGroup1UnitButton2"]
+			if header ~= nil then
+				for i = 1, header:GetNumChildren() do
+					local group = select(i, header:GetChildren())
+					--print(group:GetName())
+					if group:GetName() == "ElvUF_PartyGroup1UnitButton2_HealthBar" then
+						local r1,g1,b1 = group:GetStatusBarColor()
+						local r = tostring(r1)
+						local g = tostring(g1)
+						local b = tostring(b1)
+						--print(r,g,b)
+						--print(unitbutton.Health:GetStatusBarColor())
+						if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) or (r == unitframecustomgradients['PALADIN']["r2"] and g == unitframecustomgradients['PALADIN']["g2"] and b == unitframecustomgradients['PALADIN']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['PALADIN']["r1"], unitframecustomgradients['PALADIN']["g1"], unitframecustomgradients['PALADIN']["b1"], unitframecustomgradients['PALADIN']["r2"], unitframecustomgradients['PALADIN']["g2"], unitframecustomgradients['PALADIN']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['PALADIN']["r1"], unitframegradients['PALADIN']["g1"], unitframegradients['PALADIN']["b1"], unitframegradients['PALADIN']["r2"], unitframegradients['PALADIN']["g2"], unitframegradients['PALADIN']["b2"])
+								end
 							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['PALADIN']["r1"], unitframegradients['PALADIN']["g1"], unitframegradients['PALADIN']["b1"], unitframegradients['PALADIN']["r2"], unitframegradients['PALADIN']["g2"], unitframegradients['PALADIN']["b2"])
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.paladintexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PL.tga")
+								end
+							end
+						elseif ((r == warrior.r) and (g == warrior.g) and (b == warrior.b)) or (r == unitframecustomgradients['WARRIOR']["r2"] and g == unitframecustomgradients['WARRIOR']["g2"] and b == unitframecustomgradients['WARRIOR']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['WARRIOR']["r1"], unitframecustomgradients['WARRIOR']["g1"], unitframecustomgradients['WARRIOR']["b1"], unitframecustomgradients['WARRIOR']["r2"], unitframecustomgradients['WARRIOR']["g2"], unitframecustomgradients['WARRIOR']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['WARRIOR']["r1"], unitframegradients['WARRIOR']["g1"], unitframegradients['WARRIOR']["b1"], unitframegradients['WARRIOR']["r2"], unitframegradients['WARRIOR']["g2"], unitframegradients['WARRIOR']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warriortexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga")
+								end
+							end
+						elseif ((r == shaman.r) and (g == shaman.g) and (b == shaman.b)) or (r == unitframecustomgradients['SHAMAN']["r2"] and g == unitframecustomgradients['SHAMAN']["g2"] and b == unitframecustomgradients['SHAMAN']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['SHAMAN']["r1"], unitframecustomgradients['SHAMAN']["g1"], unitframecustomgradients['SHAMAN']["b1"], unitframecustomgradients['SHAMAN']["r2"], unitframecustomgradients['SHAMAN']["g2"], unitframecustomgradients['SHAMAN']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['SHAMAN']["r1"], unitframegradients['SHAMAN']["g1"], unitframegradients['SHAMAN']["b1"], unitframegradients['SHAMAN']["r2"], unitframegradients['SHAMAN']["g2"], unitframegradients['SHAMAN']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.shamantexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SH.tga")
+								end
+							end
+						elseif ((r == druid.r) and (g == druid.g) and (b == druid.b)) or (r == unitframecustomgradients['DRUID']["r2"] and g == unitframecustomgradients['DRUID']["g2"] and b == unitframecustomgradients['DRUID']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DRUID']["r1"], unitframecustomgradients['DRUID']["g1"], unitframecustomgradients['DRUID']["b1"], unitframecustomgradients['DRUID']["r2"], unitframecustomgradients['DRUID']["g2"], unitframecustomgradients['DRUID']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DRUID']["r1"], unitframegradients['DRUID']["g1"], unitframegradients['DRUID']["b1"], unitframegradients['DRUID']["r2"], unitframegradients['DRUID']["g2"], unitframegradients['DRUID']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.druidtexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga")
+								end
+							end
+						elseif ((r == deathknight.r) and (g == deathknight.g) and (b == deathknight.b)) or (r == unitframecustomgradients['DEATHKNIGHT']["r2"] and g == unitframecustomgradients['DEATHKNIGHT']["g2"] and b == unitframecustomgradients['DEATHKNIGHT']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DEATHKNIGHT']["r1"], unitframecustomgradients['DEATHKNIGHT']["g1"], unitframecustomgradients['DEATHKNIGHT']["b1"], unitframecustomgradients['DEATHKNIGHT']["r2"], unitframecustomgradients['DEATHKNIGHT']["g2"], unitframecustomgradients['DEATHKNIGHT']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DEATHKNIGHT']["r1"], unitframegradients['DEATHKNIGHT']["g1"], unitframegradients['DEATHKNIGHT']["b1"], unitframegradients['DEATHKNIGHT']["r2"], unitframegradients['DEATHKNIGHT']["g2"], unitframegradients['DEATHKNIGHT']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.deathknighttexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga")
+								end
+							end
+						elseif ((r == demonhunter.r) and (g == demonhunter.g) and (b == demonhunter.b)) or (r == unitframecustomgradients['DEMONHUNTER']["r2"] and g == unitframecustomgradients['DEMONHUNTER']["g2"] and b == unitframecustomgradients['DEMONHUNTER']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DEMONHUNTER']["r1"], unitframecustomgradients['DEMONHUNTER']["g1"], unitframecustomgradients['DEMONHUNTER']["b1"], unitframecustomgradients['DEMONHUNTER']["r2"], unitframecustomgradients['DEMONHUNTER']["g2"], unitframecustomgradients['DEMONHUNTER']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DEMONHUNTER']["r1"], unitframegradients['DEMONHUNTER']["g1"], unitframegradients['DEMONHUNTER']["b1"], unitframegradients['DEMONHUNTER']["r2"], unitframegradients['DEMONHUNTER']["g2"], unitframegradients['DEMONHUNTER']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.demonhuntertexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DH.tga")
+								end
+							end
+						elseif ((r == monk.r) and (g == monk.g) and (b == monk.b)) or (r == unitframecustomgradients['MONK']["r2"] and g == unitframecustomgradients['MONK']["g2"] and b == unitframecustomgradients['MONK']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['MONK']["r1"], unitframecustomgradients['MONK']["g1"], unitframecustomgradients['MONK']["b1"], unitframecustomgradients['MONK']["r2"], unitframecustomgradients['MONK']["g2"], unitframecustomgradients['MONK']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['MONK']["r1"], unitframegradients['MONK']["g1"], unitframegradients['MONK']["b1"], unitframegradients['MONK']["r2"], unitframegradients['MONK']["g2"], unitframegradients['MONK']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.monktexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MK.tga")
+								end
+							end
+						elseif ((r == rogue.r) and (g == rogue.g) and (b == rogue.b)) or (r == unitframecustomgradients['ROGUE']["r2"] and g == unitframecustomgradients['ROGUE']["g2"] and b == unitframecustomgradients['ROGUE']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['ROGUE']["r1"], unitframecustomgradients['ROGUE']["g1"], unitframecustomgradients['ROGUE']["b1"], unitframecustomgradients['ROGUE']["r2"], unitframecustomgradients['ROGUE']["g2"], unitframecustomgradients['ROGUE']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['ROGUE']["r1"], unitframegradients['ROGUE']["g1"], unitframegradients['ROGUE']["b1"], unitframegradients['ROGUE']["r2"], unitframegradients['ROGUE']["g2"], unitframegradients['ROGUE']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.roguetexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RG.tga")
+								end
+							end
+						elseif ((r == priest.r) and (g == priest.g) and (b == priest.b)) or (r == unitframecustomgradients['PRIEST']["r2"] and g == unitframecustomgradients['PRIEST']["g2"] and b == unitframecustomgradients['PRIEST']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['PRIEST']["r1"], unitframecustomgradients['PRIEST']["g1"], unitframecustomgradients['PRIEST']["b1"], unitframecustomgradients['PRIEST']["r2"], unitframecustomgradients['PRIEST']["g2"], unitframecustomgradients['PRIEST']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['PRIEST']["r1"], unitframegradients['PRIEST']["g1"], unitframegradients['PRIEST']["b1"], unitframegradients['PRIEST']["r2"], unitframegradients['PRIEST']["g2"], unitframegradients['PRIEST']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.priesttexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PR.tga")
+								end
+							end
+						elseif ((r == mage.r) and (g == mage.g) and (b == mage.b)) or (r == unitframecustomgradients['MAGE']["r2"] and g == unitframecustomgradients['MAGE']["g2"] and b == unitframecustomgradients['MAGE']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['MAGE']["r1"], unitframecustomgradients['MAGE']["g1"], unitframecustomgradients['MAGE']["b1"], unitframecustomgradients['MAGE']["r2"], unitframecustomgradients['MAGE']["g2"], unitframecustomgradients['MAGE']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['MAGE']["r1"], unitframegradients['MAGE']["g1"], unitframegradients['MAGE']["b1"], unitframegradients['MAGE']["r2"], unitframegradients['MAGE']["g2"], unitframegradients['MAGE']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.magetexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MG.tga")
+								end
+							end
+						elseif ((r == hunter.r) and (g == hunter.g) and (b == hunter.b)) or (r == unitframecustomgradients['HUNTER']["r2"] and g == unitframecustomgradients['HUNTER']["g2"] and b == unitframecustomgradients['HUNTER']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['HUNTER']["r1"], unitframecustomgradients['HUNTER']["g1"], unitframecustomgradients['HUNTER']["b1"], unitframecustomgradients['HUNTER']["r2"], unitframecustomgradients['HUNTER']["g2"], unitframecustomgradients['HUNTER']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['HUNTER']["r1"], unitframegradients['HUNTER']["g1"], unitframegradients['HUNTER']["b1"], unitframegradients['HUNTER']["r2"], unitframegradients['HUNTER']["g2"], unitframegradients['HUNTER']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.huntertexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga")
+								end
+							end
+						elseif ((r == warlock.r) and (g == warlock.g) and (b == warlock.b)) or (r == unitframecustomgradients['WARLOCK']["r2"] and g == unitframecustomgradients['WARLOCK']["g2"] and b == unitframecustomgradients['WARLOCK']["b2"]) then
+							if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
+								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['WARLOCK']["r1"], unitframecustomgradients['WARLOCK']["g1"], unitframecustomgradients['WARLOCK']["b1"], unitframecustomgradients['WARLOCK']["r2"], unitframecustomgradients['WARLOCK']["g2"], unitframecustomgradients['WARLOCK']["b2"])
+								else
+									group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['WARLOCK']["r1"], unitframegradients['WARLOCK']["g1"], unitframegradients['WARLOCK']["b1"], unitframegradients['WARLOCK']["r2"], unitframegradients['WARLOCK']["g2"], unitframegradients['WARLOCK']["b2"])
+								end
+							else
+								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+									group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warlocktexture))
+								else
+									group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WL.tga")
+								end
 							end
 						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.paladintexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PL.tga")
-							end
+							return
+							--print("222222222")
+							--group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
 						end
-					elseif ((r == warrior.r) and (g == warrior.g) and (b == warrior.b)) or (r == unitframecustomgradients['WARRIOR']["r2"] and g == unitframecustomgradients['WARRIOR']["g2"] and b == unitframecustomgradients['WARRIOR']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['WARRIOR']["r1"], unitframecustomgradients['WARRIOR']["g1"], unitframecustomgradients['WARRIOR']["b1"], unitframecustomgradients['WARRIOR']["r2"], unitframecustomgradients['WARRIOR']["g2"], unitframecustomgradients['WARRIOR']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['WARRIOR']["r1"], unitframegradients['WARRIOR']["g1"], unitframegradients['WARRIOR']["b1"], unitframegradients['WARRIOR']["r2"], unitframegradients['WARRIOR']["g2"], unitframegradients['WARRIOR']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warriortexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga")
-							end
-						end
-					elseif ((r == shaman.r) and (g == shaman.g) and (b == shaman.b)) or (r == unitframecustomgradients['SHAMAN']["r2"] and g == unitframecustomgradients['SHAMAN']["g2"] and b == unitframecustomgradients['SHAMAN']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['SHAMAN']["r1"], unitframecustomgradients['SHAMAN']["g1"], unitframecustomgradients['SHAMAN']["b1"], unitframecustomgradients['SHAMAN']["r2"], unitframecustomgradients['SHAMAN']["g2"], unitframecustomgradients['SHAMAN']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['SHAMAN']["r1"], unitframegradients['SHAMAN']["g1"], unitframegradients['SHAMAN']["b1"], unitframegradients['SHAMAN']["r2"], unitframegradients['SHAMAN']["g2"], unitframegradients['SHAMAN']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.shamantexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SH.tga")
-							end
-						end
-					elseif ((r == druid.r) and (g == druid.g) and (b == druid.b)) or (r == unitframecustomgradients['DRUID']["r2"] and g == unitframecustomgradients['DRUID']["g2"] and b == unitframecustomgradients['DRUID']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DRUID']["r1"], unitframecustomgradients['DRUID']["g1"], unitframecustomgradients['DRUID']["b1"], unitframecustomgradients['DRUID']["r2"], unitframecustomgradients['DRUID']["g2"], unitframecustomgradients['DRUID']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DRUID']["r1"], unitframegradients['DRUID']["g1"], unitframegradients['DRUID']["b1"], unitframegradients['DRUID']["r2"], unitframegradients['DRUID']["g2"], unitframegradients['DRUID']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.druidtexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga")
-							end
-						end
-					elseif ((r == deathknight.r) and (g == deathknight.g) and (b == deathknight.b)) or (r == unitframecustomgradients['DEATHKNIGHT']["r2"] and g == unitframecustomgradients['DEATHKNIGHT']["g2"] and b == unitframecustomgradients['DEATHKNIGHT']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DEATHKNIGHT']["r1"], unitframecustomgradients['DEATHKNIGHT']["g1"], unitframecustomgradients['DEATHKNIGHT']["b1"], unitframecustomgradients['DEATHKNIGHT']["r2"], unitframecustomgradients['DEATHKNIGHT']["g2"], unitframecustomgradients['DEATHKNIGHT']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DEATHKNIGHT']["r1"], unitframegradients['DEATHKNIGHT']["g1"], unitframegradients['DEATHKNIGHT']["b1"], unitframegradients['DEATHKNIGHT']["r2"], unitframegradients['DEATHKNIGHT']["g2"], unitframegradients['DEATHKNIGHT']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.deathknighttexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga")
-							end
-						end
-					elseif ((r == demonhunter.r) and (g == demonhunter.g) and (b == demonhunter.b)) or (r == unitframecustomgradients['DEMONHUNTER']["r2"] and g == unitframecustomgradients['DEMONHUNTER']["g2"] and b == unitframecustomgradients['DEMONHUNTER']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['DEMONHUNTER']["r1"], unitframecustomgradients['DEMONHUNTER']["g1"], unitframecustomgradients['DEMONHUNTER']["b1"], unitframecustomgradients['DEMONHUNTER']["r2"], unitframecustomgradients['DEMONHUNTER']["g2"], unitframecustomgradients['DEMONHUNTER']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['DEMONHUNTER']["r1"], unitframegradients['DEMONHUNTER']["g1"], unitframegradients['DEMONHUNTER']["b1"], unitframegradients['DEMONHUNTER']["r2"], unitframegradients['DEMONHUNTER']["g2"], unitframegradients['DEMONHUNTER']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.demonhuntertexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DH.tga")
-							end
-						end
-					elseif ((r == monk.r) and (g == monk.g) and (b == monk.b)) or (r == unitframecustomgradients['MONK']["r2"] and g == unitframecustomgradients['MONK']["g2"] and b == unitframecustomgradients['MONK']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['MONK']["r1"], unitframecustomgradients['MONK']["g1"], unitframecustomgradients['MONK']["b1"], unitframecustomgradients['MONK']["r2"], unitframecustomgradients['MONK']["g2"], unitframecustomgradients['MONK']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['MONK']["r1"], unitframegradients['MONK']["g1"], unitframegradients['MONK']["b1"], unitframegradients['MONK']["r2"], unitframegradients['MONK']["g2"], unitframegradients['MONK']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.monktexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MK.tga")
-							end
-						end
-					elseif ((r == rogue.r) and (g == rogue.g) and (b == rogue.b)) or (r == unitframecustomgradients['ROGUE']["r2"] and g == unitframecustomgradients['ROGUE']["g2"] and b == unitframecustomgradients['ROGUE']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['ROGUE']["r1"], unitframecustomgradients['ROGUE']["g1"], unitframecustomgradients['ROGUE']["b1"], unitframecustomgradients['ROGUE']["r2"], unitframecustomgradients['ROGUE']["g2"], unitframecustomgradients['ROGUE']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['ROGUE']["r1"], unitframegradients['ROGUE']["g1"], unitframegradients['ROGUE']["b1"], unitframegradients['ROGUE']["r2"], unitframegradients['ROGUE']["g2"], unitframegradients['ROGUE']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.roguetexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RG.tga")
-							end
-						end
-					elseif ((r == priest.r) and (g == priest.g) and (b == priest.b)) or (r == unitframecustomgradients['PRIEST']["r2"] and g == unitframecustomgradients['PRIEST']["g2"] and b == unitframecustomgradients['PRIEST']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['PRIEST']["r1"], unitframecustomgradients['PRIEST']["g1"], unitframecustomgradients['PRIEST']["b1"], unitframecustomgradients['PRIEST']["r2"], unitframecustomgradients['PRIEST']["g2"], unitframecustomgradients['PRIEST']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['PRIEST']["r1"], unitframegradients['PRIEST']["g1"], unitframegradients['PRIEST']["b1"], unitframegradients['PRIEST']["r2"], unitframegradients['PRIEST']["g2"], unitframegradients['PRIEST']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.priesttexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PR.tga")
-							end
-						end
-					elseif ((r == mage.r) and (g == mage.g) and (b == mage.b)) or (r == unitframecustomgradients['MAGE']["r2"] and g == unitframecustomgradients['MAGE']["g2"] and b == unitframecustomgradients['MAGE']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['MAGE']["r1"], unitframecustomgradients['MAGE']["g1"], unitframecustomgradients['MAGE']["b1"], unitframecustomgradients['MAGE']["r2"], unitframecustomgradients['MAGE']["g2"], unitframecustomgradients['MAGE']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['MAGE']["r1"], unitframegradients['MAGE']["g1"], unitframegradients['MAGE']["b1"], unitframegradients['MAGE']["r2"], unitframegradients['MAGE']["g2"], unitframegradients['MAGE']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.magetexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MG.tga")
-							end
-						end
-					elseif ((r == hunter.r) and (g == hunter.g) and (b == hunter.b)) or (r == unitframecustomgradients['HUNTER']["r2"] and g == unitframecustomgradients['HUNTER']["g2"] and b == unitframecustomgradients['HUNTER']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['HUNTER']["r1"], unitframecustomgradients['HUNTER']["g1"], unitframecustomgradients['HUNTER']["b1"], unitframecustomgradients['HUNTER']["r2"], unitframecustomgradients['HUNTER']["g2"], unitframecustomgradients['HUNTER']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['HUNTER']["r1"], unitframegradients['HUNTER']["g1"], unitframegradients['HUNTER']["b1"], unitframegradients['HUNTER']["r2"], unitframegradients['HUNTER']["g2"], unitframegradients['HUNTER']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.huntertexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga")
-							end
-						end
-					elseif ((r == warlock.r) and (g == warlock.g) and (b == warlock.b)) or (r == unitframecustomgradients['WARLOCK']["r2"] and g == unitframecustomgradients['WARLOCK']["g2"] and b == unitframecustomgradients['WARLOCK']["b2"]) then
-						if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
-							group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients['WARLOCK']["r1"], unitframecustomgradients['WARLOCK']["g1"], unitframecustomgradients['WARLOCK']["b1"], unitframecustomgradients['WARLOCK']["r2"], unitframecustomgradients['WARLOCK']["g2"], unitframecustomgradients['WARLOCK']["b2"])
-							else
-								group:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients['WARLOCK']["r1"], unitframegradients['WARLOCK']["g1"], unitframegradients['WARLOCK']["b1"], unitframegradients['WARLOCK']["r2"], unitframegradients['WARLOCK']["g2"], unitframegradients['WARLOCK']["b2"])
-							end
-						else
-							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								group:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warlocktexture))
-							else
-								group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WL.tga")
-							end
-						end
-					else
-						return
-						--print("222222222")
-						--group:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
 					end
 				end
 			end
 		end
 	end
-end
-hooksecurefunc(UF, 'Update_PartyFrames', ElvUI_EltreumUI.ChangeGroupUnitframeParty2)
-hooksecurefunc(UF, 'PostUpdateHealthColor', ElvUI_EltreumUI.ChangeGroupUnitframeParty2)
-hooksecurefunc(UF, 'PostUpdateHealth', ElvUI_EltreumUI.ChangeGroupUnitframeParty2)
+	hooksecurefunc(UF, 'Update_PartyFrames', ElvUI_EltreumUI.ChangeGroupUnitframeParty2)
+	hooksecurefunc(UF, 'PostUpdateHealthColor', ElvUI_EltreumUI.ChangeGroupUnitframeParty2)
+	hooksecurefunc(UF, 'PostUpdateHealth', ElvUI_EltreumUI.ChangeGroupUnitframeParty2)
 ]]
