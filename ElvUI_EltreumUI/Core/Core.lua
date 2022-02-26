@@ -263,6 +263,52 @@ _G.VideoOptionsFrame:SetScript("OnDragStart", _G.VideoOptionsFrame.StartMoving)
 _G.VideoOptionsFrame:SetScript("OnDragStop",_G.VideoOptionsFrame.StopMovingOrSizing)
 _G.VideoOptionsFrame:SetClampedToScreen(true)
 
+
+--click casting button toggle
+if E.Retail then
+	local clickbindopenbutton = CreateFrame("Button", nil)
+	clickbindopenbutton:SetWidth(32)
+	clickbindopenbutton:SetHeight(32)
+	clickbindopenbutton:SetParent(_G["SpellBookFrame"])
+	clickbindopenbutton:SetPoint("LEFT", _G["SpellBookFrame"], "RIGHT", 0, -105)
+	if _G["CliqueSpellTab"] then
+		clickbindopenbutton:SetPoint("BOTTOM", _G["CliqueSpellTab"], 0, -50)
+	end
+	local S = E:GetModule('Skins')
+	S:HandleButton(clickbindopenbutton)
+	local bindexture = clickbindopenbutton:CreateTexture()
+	bindexture:SetTexture(4238928)
+	bindexture:SetTexCoord(0.08,0.92,0.08,0.92)
+	bindexture:SetAllPoints(clickbindopenbutton)
+	clickbindopenbutton:RegisterForClicks("AnyUp")
+
+	clickbindopenbutton:SetScript("OnEnter", function()
+		_G['GameTooltip']:SetOwner(clickbindopenbutton, 'ANCHOR_RIGHT')
+		_G['GameTooltip']:AddLine(L["Toggle the Click Casting Menu"])
+		_G['GameTooltip']:Show()
+	end)
+	clickbindopenbutton:SetScript("OnLeave", function()
+		_G['GameTooltip']:Hide()
+	end)
+
+	clickbindopenbutton:SetScript('OnClick', function()
+		if not IsAddOnLoaded("Blizzard_ClickBindingUI") then
+			LoadAddOn("Blizzard_ClickBindingUI")
+			if not _G["ClickBindingFrame"].shadow then
+				_G["ClickBindingFrame"]:CreateShadow()
+			end
+		end
+		if not _G["ClickBindingFrame"]:IsShown() then
+			_G["ClickBindingFrame"]:Show()
+		elseif _G["ClickBindingFrame"]:IsShown() then
+			_G["ClickBindingFrame"]:Hide()
+			_G["SpellBookFrame"]:Show()
+		end
+		_G["ClickBindingFrame"]:ClearAllPoints()
+		_G["ClickBindingFrame"]:SetParent(_G["SpellBookFrame"])
+		_G["ClickBindingFrame"]:SetPoint("LEFT", _G["SpellBookFrame"], "RIGHT", 50, -37)
+	end)
+end
 --[[
 local maxmemory = 4096
 local currentmemory
