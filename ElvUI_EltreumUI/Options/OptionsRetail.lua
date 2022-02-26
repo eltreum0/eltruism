@@ -2923,7 +2923,7 @@ function ElvUI_EltreumUI:Configtable()
 						order = 80,
 						type = 'input',
 						name = L['Raid (Timewalking)'],
-						desc = L['The text displayed when in a timwalking raid'],
+						desc = L['The text displayed when in a timewalking raid'],
 						--width = 'double',
 						disabled = function() return (not E.db.ElvUI_EltreumUI.instances.enable) end,
 						get = function() return E.db.ElvUI_EltreumUI.instances.RaidTimewalker end,
@@ -4284,7 +4284,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Enable Gradient colors for Health"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enable = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enable = value ElvUI_EltreumUI:GradientMode() end,
 							},
 							enableplayertarget = {
 								order = 2,
