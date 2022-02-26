@@ -55,6 +55,7 @@ function ElvUI_EltreumUI:DarkMode()
 			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
 		end
 		E.db.ElvUI_EltreumUI.lightmode = false
+		E.db.ElvUI_EltreumUI.gradientmode.enable = false
 		--E:StaggeredUpdateAll()
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
@@ -117,11 +118,75 @@ function ElvUI_EltreumUI:LightMode()
 			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
 		end
 		E.db.ElvUI_EltreumUI.lightmode = true
+		E.db.ElvUI_EltreumUI.gradientmode.enable = false
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
 		ElvUI_EltreumUI:ChangePlayerTexture()
 		ElvUI_EltreumUI:Print("Unitframes set to Light Mode")
+	end
+end
+
+function ElvUI_EltreumUI:GradientMode()
+	if E.private.unitframe.enable then
+		if not E.db.movers then E.db.movers = {} end
+		--setup colors
+		E.db["unitframe"]["colors"]["healPrediction"]["absorbs"]["a"] = 0.5
+		E.db["unitframe"]["colors"]["healPrediction"]["healAbsorbs"]["a"] = 0.5
+		E.db["unitframe"]["colors"]["healPrediction"]["maxOverflow"] = 0.01
+		E.db["unitframe"]["colors"]["healPrediction"]["overabsorbs"]["a"] = 0.5
+		E.db["unitframe"]["colors"]["healPrediction"]["overhealabsorbs"]["a"] = 0.5
+		E.db["unitframe"]["colors"]["healPrediction"]["personal"]["a"] = 0.5
+		E.db["unitframe"]["colors"]["healPrediction"]["personal"]["b"] = 0.50196078431373
+		E.db["unitframe"]["colors"]["healPrediction"]["others"]["a"] = 0.5
+		E.db["unitframe"]["colors"]["colorhealthbyvalue"] = false
+		E.db["unitframe"]["colors"]["classbackdrop"] = false
+		E.db["unitframe"]["colors"]["healthclass"] = true
+		E.db["unitframe"]["colors"]["customhealthbackdrop"] = true
+		E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0
+		E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0
+		E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0
+		E.db["unitframe"]["units"]["player"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
+		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["party"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["pet"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["raid"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["tank"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["target"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["colors"]["transparentAurabars"] = false
+		E.db["unitframe"]["colors"]["transparentCastbar"] = false
+		E.db["unitframe"]["colors"]["transparentHealth"] = false
+		E.db["unitframe"]["colors"]["transparentPower"] = false
+		E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.6
+		E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.6
+
+		E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
+		E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
+		E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
+		--setup namecolors
+		if E.Classic or E.TBC then
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
+		elseif E.Retail then
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
+		end
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
+			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
+		if E.Retail or E.TBC then
+			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
+		end
+		E.db.ElvUI_EltreumUI.gradientmode.enable = true
+
+		E:UpdateMediaItems()
+		E:UpdateUnitFrames()
+		ElvUI_EltreumUI:ChangePlayerTexture()
+		ElvUI_EltreumUI:Print("Unitframes set to Gradient Mode")
 	end
 end
 
