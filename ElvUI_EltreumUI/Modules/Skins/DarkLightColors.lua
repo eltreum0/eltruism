@@ -119,6 +119,7 @@ function ElvUI_EltreumUI:LightMode()
 		end
 		E.db.ElvUI_EltreumUI.lightmode = true
 		E.db.ElvUI_EltreumUI.gradientmode.enable = false
+		E.db.ElvUI_EltreumUI.modetexture = true
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
@@ -184,6 +185,8 @@ function ElvUI_EltreumUI:GradientMode()
 		E.db.ElvUI_EltreumUI.gradientmode.enable = true
 		E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget = true
 		E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits = true
+		E.db.ElvUI_EltreumUI.lightmode = true
+		E.db.ElvUI_EltreumUI.modetexture = true
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
