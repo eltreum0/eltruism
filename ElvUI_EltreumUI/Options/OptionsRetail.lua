@@ -4284,7 +4284,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Enable Gradient colors for Health"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enable = value ElvUI_EltreumUI:GradientMode() end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enable = value end,
 							},
 							enableplayertarget = {
 								order = 2,
