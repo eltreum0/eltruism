@@ -7,6 +7,7 @@ Added a loot icon to the wishlist toast that appears when looting an item from t
 Added a shortcut button in the spellbook for the click casting interface in Retail\
 Added enhancement console from Zereth Mortis to the ignore list of automatic quests\
 Attempted a fix for a socket and enchants error when inspecting a player inside an instance\
+Updated locales\
 Updated install process\
 Updated Quest Items icons\
 Updated automatic quest turn in/accept\
