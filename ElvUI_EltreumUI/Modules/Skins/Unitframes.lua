@@ -277,7 +277,7 @@ function ElvUI_EltreumUI:ChangePlayerTexture()
 		end
 	end
 end
-
+--[[
 local units = {
 	["player"] = true,
 	["party1"] = true,
@@ -325,9 +325,9 @@ local units = {
 	["raid38"] = true,
 	["raid39"] = true,
 	["raid40"] = true,
-}
+}]]
 
-function ElvUI_EltreumUI:ChangeGroupUnitframe(unit, r, g, b)
+function ElvUI_EltreumUI:ChangeGroupUnitframe(unit)--(unit, r, g, b)
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable and UnitExists(unit) then --and units[unit] == true then
 		--local header = _G['ElvUF_Raid40'] or _G['ElvUF_Raid'] or _G['ElvUF_Party']
 		local header = nil
@@ -430,6 +430,10 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit, r, g, b)
 				--truer = 0.99999779462814
 				--trueg = 0.99999779462814
 				--trueb = 0.99999779462814
+			elseif unit1class == 'PRIEST' and not E.db.ElvUI_EltreumUI.gradientmode.enable then
+				truer = 0.99999779462814
+				trueg = 0.99999779462814
+				trueb = 0.99999779462814
 			elseif unit1class == 'SHAMAN' and E.TBC then
 				truer = 0
 				trueg = 0.4392147064209
@@ -452,10 +456,6 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit, r, g, b)
 				trueb = 0.039215601980686
 			end
 		end
-
-
-
-
 
 		if header ~= nil then
 			for i = 1, header:GetNumChildren() do
