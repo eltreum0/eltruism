@@ -218,9 +218,20 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 
 		--focus
 		local _, focusclass = UnitClass("focus")
+		local reactionfocus = UnitReaction("player", "focus")
 		local focusbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga"
 		if focusclass and UnitIsPlayer("focus") then
 			focusbar = unitframeclass[focusclass]
+		elseif not UnitIsPlayer("focus") and UnitExists("focus") then
+			if reactionfocus >= 5 then
+				focusbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga"
+			elseif reactionfocus == 4 then
+				focusbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RG.tga"
+			elseif reactionfocus == 3 then
+				focusbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga"
+			elseif reactionfocus == 2 or reactionfocus == 1 then
+				focusbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga"
+			end
 		end
 		if UF.units.focus and UnitExists("focus") then
 			local focusframe = _G["ElvUF_Focus"]
