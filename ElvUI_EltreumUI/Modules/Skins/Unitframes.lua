@@ -308,6 +308,7 @@ local units = {
 
 function ElvUI_EltreumUI:ChangeGroupUnitframe(unit, r, g, b)
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable and UnitExists(unit) and units[unit] == true then
+		--local header = _G['ElvUF_Raid40'] or _G['ElvUF_Raid'] or _G['ElvUF_Party']
 		local header = nil
 		if E.Retail then
 			if UnitExists("raid6") == true and UnitExists("raid21") == false then
@@ -328,6 +329,9 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit, r, g, b)
 		end
 
 		local _, unit1class = UnitClass(unit)
+		if not unit1class then
+			return
+		end
 		local truer = 1
 		local trueg = 1
 		local trueb = 1
@@ -347,10 +351,11 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit, r, g, b)
 			truer = 0.99999779462814
 			trueg = 0.95686066150665
 			trueb = 0.40784224867821
-		elseif unit1class == 'PRIEST' then
-			truer = 0.99999779462814
-			trueg = 0.99999779462814
-			trueb = 0.99999779462814
+		elseif unit1class == 'PRIEST' and E.db.ElvUI_EltreumUI.gradientmode.enable then
+			return
+			--truer = 0.99999779462814
+			--trueg = 0.99999779462814
+			--trueb = 0.99999779462814-
 		elseif unit1class == 'DEATHKNIGHT' then
 			truer = 0.76862573623657
 			trueg = 0.11764679849148
@@ -381,13 +386,6 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit, r, g, b)
 			trueb = 0.78823357820511
 		end
 
-		--[[if UnitExists("party1") == true then
-			header = _G['ElvUF_Party']
-		elseif UnitExists("raid1") == true and UnitExists("raid26") == false then
-			header = _G['ElvUF_Raid']
-		elseif UnitExists("raid26") == true then
-			header = _G['ElvUF_Raid40']
-		end]]
 		if header ~= nil then
 			for i = 1, header:GetNumChildren() do
 				local group = select(i, header:GetChildren())
@@ -605,6 +603,7 @@ EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_TARGET", "target")
 EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
 EltruismChangeUnitTextureFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
 EltruismChangeUnitTextureFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+EltruismChangeUnitTextureFrame:RegisterEvent("GROUP_ROSTER_UPDATE")
 EltruismChangeUnitTextureFrame:SetScript("OnEvent", function()
 	if E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable and E.db.ElvUI_EltreumUI.lightmode then
 		ElvUI_EltreumUI.ChangeUnitTexture()
@@ -618,6 +617,7 @@ end)
 hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
 hooksecurefunc(UF, "Style", ElvUI_EltreumUI.ChangeUnitTexture)  --if not hooking into this then when the target of target changes it doesnt update
 hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangePlayerTexture)
+hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangeGroupUnitframe) --test
 hooksecurefunc(UF, 'Update_RaidFrames', ElvUI_EltreumUI.ChangeGroupUnitframe)
 hooksecurefunc(UF, 'Update_Raid40Frames', ElvUI_EltreumUI.ChangeGroupUnitframe)
 hooksecurefunc(UF, 'Update_PartyFrames', ElvUI_EltreumUI.ChangeGroupUnitframe)
