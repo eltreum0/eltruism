@@ -430,10 +430,14 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit, r, g, b)
 				--truer = 0.99999779462814
 				--trueg = 0.99999779462814
 				--trueb = 0.99999779462814
-			elseif unit1class == 'SHAMAN' then
+			elseif unit1class == 'SHAMAN' and E.TBC then
 				truer = 0
 				trueg = 0.4392147064209
 				trueb = 0.87058633565903
+			elseif unit1class == 'SHAMAN' and E.Classic then
+				truer = 0.96078222990036
+				trueg = 0.54901838302612
+				trueb = 0.72941017150879
 			elseif unit1class == 'MAGE' then
 				truer = 0.25097984075546
 				trueg = 0.78039044141769
