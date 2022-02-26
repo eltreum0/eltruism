@@ -4317,7 +4317,7 @@ function ElvUI_EltreumUI:Configtable()
 							enablegroupunits = {
 								order = 2,
 								type = 'toggle',
-								name = L['Enable for Group Units (currently not working)'],
+								name = L['Enable for Group Units'],
 								desc = L["Enable Gradient colors for Health"],
 								width = 'full',
 								--disabled = function() return true end,
