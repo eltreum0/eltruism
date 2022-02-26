@@ -61,6 +61,8 @@ function ElvUI_EltreumUI:RunCommands(message)
 		else
 			ElvUI_EltreumUI:DarkMode()
 		end
+	elseif message == 'gradient' then
+		ElvUI_EltreumUI:GradientMode()
 	elseif message == 'background' then
 		if E.db.ElvUI_EltreumUI.greybackground == true then
 			ElvUI_EltreumUI:BlackBg()
@@ -83,6 +85,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 		end
 		print("|cff82B4ff/eltruism background|r - Toggles chat between grey and black background colors for ElvUI")
 		print("|cff82B4ff/eltruism color|r - Toggles unitframe between light and dark modes")
+		print("|cff82B4ff/eltruism gradient|r - Activates gradient mode")
 		print("|cff82B4ff/eltruism chat|r - Toggles chat between dark and transparent modes")
 	end
 end
