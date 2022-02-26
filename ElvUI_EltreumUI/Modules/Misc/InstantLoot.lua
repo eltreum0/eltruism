@@ -68,7 +68,7 @@ local function InstantLoot(_, event,_, arg2)
 							WishlistItemFrame.Text2:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 						end
 						--WishlistItemFrame.Text2:SetText("|T"..itemtexture..":".. 12 .."|t"..itemName.."!")
-						WishlistItemFrame.Text2:SetText("|T"..itemtexture..":12:12:0:0:64:64:5:59:5:59|t"..itemName.."!")
+						WishlistItemFrame.Text2:SetText("|T"..itemtexture..":12:12:0:0:64:64:5:59:5:59|t "..itemName.."!")
 						UIFrameFadeIn(WishlistItemFrame, 1, 0, 1)
 						if E.db.ElvUI_EltreumUI.otherstuff.lootwishlistscreenshot then
 							C_Timer.After(1, function() Screenshot() end)
