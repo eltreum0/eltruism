@@ -56,30 +56,18 @@ if E.Retail then
 	warlock = {r = "0.52941060066223", g = "0.53333216905594", b = "0.93333131074905"}
 elseif E.TBC or E.Classic then
 	paladin = {r = "0.96078222990036", g = "0.54901838302612", b = "0.72941017150879"}
-	warrior = {r = "0.77646887302399", g = "0.60784178972244", b = "0.4274500310421"}
+	warrior = {r = "0.78039044141769", g = "0.61176335811615", b = "0.43137159943581"}
 	shaman = {r = "0", g = "0.4392147064209", b = "0.87058633565903"}
 	druid = {r = "0.99999779462814", g = "0.49019500613213", b = "0.039215601980686"}
 	deathknight = {r = "0.76862573623657", g = "0.11764679849148", b = "0.2274504750967"}
 	demonhunter = {r = "0.63921427726746", g = "0.1882348805666", b = "0.78823357820511"}
 	monk = {r = "0", g = "0.99999779462814", b = "0.59607714414597"}
-	rogue = {r = "0.99999779462814", g = "0.95686066150665", b = "0.40784224867821"}
+	rogue = {r = "0.99999779462814", g = "0.96078222990036", b = "0.41176378726959"}
 	priest = {r = "0.99999779462814", g = "0.99999779462814", b = "0.99999779462814"}
-	mage = {r = "0.24705828726292", g = "0.78039044141769", b = "0.92156660556793"}
-	hunter = {r = "0.66666519641876", g = "0.82744914293289", b = "0.44705784320831"}
+	mage = {r = "0.25097984075546", g = "0.78039044141769", b = "0.92156660556793"}
+	hunter = {r = "0.67058676481247", g = "0.8313707113266", b = "0.45097941160202"}
 	warlock = {r = "0.52941060066223", g = "0.52941060066223", b = "0.92940974235535"}
 end
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -369,56 +357,101 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit, r, g, b)
 		local truer = 0
 		local trueg = 0
 		local trueb = 0
-		if unit1class == 'WARRIOR' then
-			truer = 0.77646887302399
-			trueg = 0.60784178972244
-			trueb = 0.4274500310421
-		elseif unit1class == 'PALADIN' then
-			truer = 0.95686066150665
-			trueg = 0.54901838302612
-			trueb = 0.72941017150879
-		elseif unit1class == 'HUNTER' then
-			truer = 0.66666519641876
-			trueg = 0.82744914293289
-			trueb = 0.44705784320831
-		elseif unit1class == 'ROGUE' then
-			truer = 0.99999779462814
-			trueg = 0.95686066150665
-			trueb = 0.40784224867821
-		elseif unit1class == 'PRIEST' and E.db.ElvUI_EltreumUI.gradientmode.enable then --priest ruins everything gradient
-			return
-			--truer = 0.99999779462814
-			--trueg = 0.99999779462814
-			--trueb = 0.99999779462814
-		elseif unit1class == 'DEATHKNIGHT' then
-			truer = 0.76862573623657
-			trueg = 0.11764679849148
-			trueb = 0.2274504750967
-		elseif unit1class == 'SHAMAN' then
-			truer = 0
-			trueg = 0.4392147064209
-			trueb = 0.86666476726532
-		elseif unit1class == 'MAGE' then
-			truer = 0.24705828726292
-			trueg = 0.78039044141769
-			trueb = 0.92156660556793
-		elseif unit1class == 'WARLOCK' then
-			truer = 0.52941060066223
-			trueg = 0.53333216905594
-			trueb = 0.93333131074905
-		elseif unit1class == 'MONK' then
-			truer = 0
-			trueg = 0.99999779462814
-			trueb = 0.59607714414597
-		elseif unit1class == 'DRUID' then
-			truer = 0.99999779462814
-			trueg = 0.48627343773842
-			trueb = 0.039215601980686
-		elseif unit1class == 'DEMONHUNTER' then
-			truer = 0.63921427726746
-			trueg = 0.1882348805666
-			trueb = 0.78823357820511
+		if E. Retail then
+			if unit1class == 'WARRIOR' then
+				truer = 0.77646887302399
+				trueg = 0.60784178972244
+				trueb = 0.4274500310421
+			elseif unit1class == 'PALADIN' then
+				truer = 0.95686066150665
+				trueg = 0.54901838302612
+				trueb = 0.72941017150879
+			elseif unit1class == 'HUNTER' then
+				truer = 0.66666519641876
+				trueg = 0.82744914293289
+				trueb = 0.44705784320831
+			elseif unit1class == 'ROGUE' then
+				truer = 0.99999779462814
+				trueg = 0.95686066150665
+				trueb = 0.40784224867821
+			elseif unit1class == 'PRIEST' and E.db.ElvUI_EltreumUI.gradientmode.enable then --priest ruins everything gradient
+				return
+				--truer = 0.99999779462814
+				--trueg = 0.99999779462814
+				--trueb = 0.99999779462814
+			elseif unit1class == 'DEATHKNIGHT' then
+				truer = 0.76862573623657
+				trueg = 0.11764679849148
+				trueb = 0.2274504750967
+			elseif unit1class == 'SHAMAN' then
+				truer = 0
+				trueg = 0.4392147064209
+				trueb = 0.86666476726532
+			elseif unit1class == 'MAGE' then
+				truer = 0.24705828726292
+				trueg = 0.78039044141769
+				trueb = 0.92156660556793
+			elseif unit1class == 'WARLOCK' then
+				truer = 0.52941060066223
+				trueg = 0.53333216905594
+				trueb = 0.93333131074905
+			elseif unit1class == 'MONK' then
+				truer = 0
+				trueg = 0.99999779462814
+				trueb = 0.59607714414597
+			elseif unit1class == 'DRUID' then
+				truer = 0.99999779462814
+				trueg = 0.48627343773842
+				trueb = 0.039215601980686
+			elseif unit1class == 'DEMONHUNTER' then
+				truer = 0.63921427726746
+				trueg = 0.1882348805666
+				trueb = 0.78823357820511
+			end
+		elseif E.TBC or E.Classic then
+			if unit1class == 'WARRIOR' then
+				truer = 0.78039044141769
+				trueg = 0.61176335811615
+				trueb = 0.43137159943581
+			elseif unit1class == 'PALADIN' then
+				truer = 0.96078222990036
+				trueg = 0.54901838302612
+				trueb = 0.72941017150879
+			elseif unit1class == 'HUNTER' then
+				truer = 0.67058676481247
+				trueg = 0.8313707113266
+				trueb = 0.45097941160202
+			elseif unit1class == 'ROGUE' then
+				truer = 0.99999779462814
+				trueg = 0.96078222990036
+				trueb = 0.41176378726959
+			elseif unit1class == 'PRIEST' and E.db.ElvUI_EltreumUI.gradientmode.enable then --priest ruins everything gradient
+				return
+				--truer = 0.99999779462814
+				--trueg = 0.99999779462814
+				--trueb = 0.99999779462814
+			elseif unit1class == 'SHAMAN' then
+				truer = 0
+				trueg = 0.4392147064209
+				trueb = 0.87058633565903
+			elseif unit1class == 'MAGE' then
+				truer = 0.25097984075546
+				trueg = 0.78039044141769
+				trueb = 0.92156660556793
+			elseif unit1class == 'WARLOCK' then
+				truer = 0.52941060066223
+				trueg = 0.52941060066223
+				trueb = 0.92940974235535
+			elseif unit1class == 'DRUID' then
+				truer = 0.99999779462814
+				trueg = 0.49019500613213
+				trueb = 0.039215601980686
+			end
 		end
+
+
+
+
 
 		if header ~= nil then
 			for i = 1, header:GetNumChildren() do
@@ -430,7 +463,7 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit, r, g, b)
 						local r = tostring(r1)
 						local g = tostring(g1)
 						local b = tostring(b1)
-						print(r1,g1,b1,unit1class)
+						--print(r1,g1,b1,unit1class)
 						if tostring(g1) == tostring(trueg) and tostring(r1) == tostring(truer) and tostring(b1) == tostring(trueb) then
 							if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) or (r == unitframecustomgradients['PALADIN']["r2"] and g == unitframecustomgradients['PALADIN']["g2"] and b == unitframecustomgradients['PALADIN']["b2"]) then
 								if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
