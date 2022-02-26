@@ -318,13 +318,17 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit, r, g, b)
 			elseif UnitExists("party1") then
 				header = _G['ElvUF_Party']
 			end
-		elseif E.TBC or E.Classic then
+		end
+		if E.TBC or E.Classic then
 			if UnitExists("raid6") == true and UnitExists("raid26") == false then
 				header = _G['ElvUF_Raid']
+				print("in a raid")
 			elseif UnitExists("raid26") == true then
 				header = _G['ElvUF_Raid40']
+				print("in a raid40")
 			elseif UnitExists("party1") then
 				header = _G['ElvUF_Party']
+				print("in a party")
 			end
 		end
 
