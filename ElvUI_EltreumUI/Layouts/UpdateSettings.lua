@@ -81,6 +81,8 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha = 0.7
 
+	E.db.ElvUI_EltreumUI.instances.enable = true
+
 
 
 	--private

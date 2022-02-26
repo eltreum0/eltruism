@@ -538,7 +538,7 @@ P.ElvUI_EltreumUI = {
 	},
 
 	instances = {
-		enable = true,
+		enable = false,
 		fontsize = 12,
 		r = 0.90,
 		g = 0.72,
