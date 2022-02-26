@@ -269,7 +269,7 @@ if E.Retail then
 	local clickbindopenbutton = CreateFrame("Button", nil)
 	clickbindopenbutton:SetWidth(32)
 	clickbindopenbutton:SetHeight(32)
-	clickbindopenbutton:SetParent(_G["SpellBookFrame"])
+	clickbindopenbutton:SetParent(_G["SpellBookSpellIconsFrame"])
 	clickbindopenbutton:SetPoint("LEFT", _G["SpellBookFrame"], "RIGHT", 0, -105)
 	if _G["CliqueSpellTab"] then
 		clickbindopenbutton:SetPoint("BOTTOM", _G["CliqueSpellTab"], 0, -50)
