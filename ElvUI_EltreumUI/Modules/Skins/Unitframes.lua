@@ -332,9 +332,9 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit, r, g, b)
 		if not unit1class then
 			return
 		end
-		local truer = 1
-		local trueg = 1
-		local trueb = 1
+		local truer = 0
+		local trueg = 0
+		local trueb = 0
 		if unit1class == 'WARRIOR' then
 			truer = 0.77646887302399
 			trueg = 0.60784178972244
@@ -352,32 +352,10 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit, r, g, b)
 			trueg = 0.95686066150665
 			trueb = 0.40784224867821
 		elseif unit1class == 'PRIEST' and E.db.ElvUI_EltreumUI.gradientmode.enable then --priest ruins everything gradient
-			if header ~= nil then
-				for i = 1, header:GetNumChildren() do
-					local group = select(i, header:GetChildren())
-					for j = 1, group:GetNumChildren() do
-						local unitbutton = select(j, group:GetChildren())
-						if unitbutton and unitbutton.Health then
-							local r1,g1,b1 = unitbutton.Health:GetStatusBarColor()
-							local r = tostring(r1)
-							local g = tostring(g1)
-							local b = tostring(b1)
-							if ((r == priest.r) and (g == priest.g) and (b == priest.b)) then
-								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-									unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.priesttexture))
-								else
-									unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PR.tga")
-								end
-							end
-						end
-					end
-				end
-			end
 			return
-			--return
 			--truer = 0.99999779462814
 			--trueg = 0.99999779462814
-			--trueb = 0.99999779462814-
+			--trueb = 0.99999779462814
 		elseif unit1class == 'DEATHKNIGHT' then
 			truer = 0.76862573623657
 			trueg = 0.11764679849148
