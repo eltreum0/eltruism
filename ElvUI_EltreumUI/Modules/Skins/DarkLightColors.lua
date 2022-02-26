@@ -182,6 +182,8 @@ function ElvUI_EltreumUI:GradientMode()
 			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
 		end
 		E.db.ElvUI_EltreumUI.gradientmode.enable = true
+		E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget = true
+		E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits = true
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
