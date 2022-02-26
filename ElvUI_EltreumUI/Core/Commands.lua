@@ -152,16 +152,18 @@ function ElvUI_EltreumUI:Keys(event,message)
 end
 
 --frame to update using events
-if E.Retail and E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
-	local keyframe = CreateFrame("FRAME")
-	keyframe:RegisterEvent("BAG_UPDATE_DELAYED")
-	keyframe:RegisterEvent("CHAT_MSG_GUILD")
-	keyframe:RegisterEvent("CHAT_MSG_PARTY_LEADER")
-	keyframe:RegisterEvent("CHAT_MSG_PARTY")
-	keyframe:SetScript("OnEvent", function(_,event, message)
+local keyframe = CreateFrame("FRAME")
+keyframe:RegisterEvent("BAG_UPDATE_DELAYED")
+keyframe:RegisterEvent("CHAT_MSG_GUILD")
+keyframe:RegisterEvent("CHAT_MSG_PARTY_LEADER")
+keyframe:RegisterEvent("CHAT_MSG_PARTY")
+keyframe:SetScript("OnEvent", function(_,event, message)
+	if E.Retail and E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
 		ElvUI_EltreumUI:Keys(event, message)
-	end)
-end
+	else
+		keyframe:UnregisterAllEvents()
+	end
+end)
 
 local keystone = CreateFrame("FRAME")
 keystone:RegisterEvent("ADDON_LOADED")
