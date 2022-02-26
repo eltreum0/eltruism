@@ -98,7 +98,7 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 end
 
 local EltruismGradientColorTableLoad = CreateFrame("FRAME")
-EltruismGradientColorTableLoad:RegisterUnitEvent("PLAYER_ENTERING_WORLD")
+EltruismGradientColorTableLoad:RegisterEvent("PLAYER_ENTERING_WORLD")
 EltruismGradientColorTableLoad:RegisterEvent("PLAYER_STARTED_MOVING")
 EltruismGradientColorTableLoad:SetScript("OnEvent", function()
 	EltruismGradientColorTableLoad:UnregisterAllEvents()
