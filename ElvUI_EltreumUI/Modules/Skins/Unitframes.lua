@@ -315,20 +315,17 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit, r, g, b)
 				header = _G['ElvUF_Raid']
 			elseif UnitExists("raid21") == true then
 				header = _G['ElvUF_Raid40']
-			elseif UnitExists("party1") then
+			else
 				header = _G['ElvUF_Party']
 			end
 		end
 		if E.TBC or E.Classic then
 			if UnitExists("raid6") == true and UnitExists("raid26") == false then
 				header = _G['ElvUF_Raid']
-				print("in a raid")
 			elseif UnitExists("raid26") == true then
 				header = _G['ElvUF_Raid40']
-				print("in a raid40")
-			elseif UnitExists("party1") then
+			else
 				header = _G['ElvUF_Party']
-				print("in a party")
 			end
 		end
 
@@ -400,6 +397,7 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit, r, g, b)
 						local r = tostring(r1)
 						local g = tostring(g1)
 						local b = tostring(b1)
+						print(r1,g1,b1,unit1class)
 						if tostring(g1) == tostring(trueg) and tostring(r1) == tostring(truer) and tostring(b1) == tostring(trueb) then
 							if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) or (r == unitframecustomgradients['PALADIN']["r2"] and g == unitframecustomgradients['PALADIN']["g2"] and b == unitframecustomgradients['PALADIN']["b2"]) then
 								if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
