@@ -53,6 +53,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		--E.db["tooltip"]["mythicDataEnable"] = true
 		--E.db["tooltip"]["role"] = true
 
+		--instance mover
+		E.db["movers"]["MoverEltruismInstanceDifficulty"] = "TOPRIGHT,UIParent,TOPRIGHT,-146,-21"
+
 		-- General
 		E.db["general"]["altPowerBar"]["font"] = "Kimberley"
 		E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
