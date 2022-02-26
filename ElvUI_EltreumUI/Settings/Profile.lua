@@ -536,4 +536,23 @@ P.ElvUI_EltreumUI = {
 		mpluskeys = false,
 		--floatingrep = false,
 	},
+
+	instances = {
+		enable = true,
+		fontsize = 12,
+		r = 0.90,
+		g = 0.72,
+		b = 0,
+		DungeonNormal = "N.Dungeon",
+		DungeonHeroic = "H.Dungeon",
+		Raid = "Raid",
+		MythicRaid = "Mythic.Raid",
+		RaidHeroic = "Heroic.Raid",
+		RaidLFR = "LFR",
+		DungeonMythic = "Mythic 0",
+		DungeonMythicPlus = "Mythic+",
+		DungeonTimewalker = "TW.Dungeon",
+		RaidTimewalker = "TW.Raid",
+		guild = "Guild",
+	}
 }
