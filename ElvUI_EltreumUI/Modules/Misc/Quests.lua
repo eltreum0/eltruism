@@ -352,7 +352,10 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 											end
 										end
 									end]]
-									loopcomplete = true
+									--local numberleft = C_GossipInfo.GetNumActiveQuests()
+									--if i == numberleft then
+										loopcomplete = true
+									--end
 								end
 
 
@@ -371,7 +374,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 											end
 											local gossipInfoTable = C_GossipInfo.GetOptions()
 											for i = 1, C_GossipInfo.GetNumOptions() do
-												if gossipInfoTable[i].type == "gossip" or gossipInfoTable[i].type == "chatbubble" then --chatbubble is for sanctum stuff
+												if gossipInfoTable[i].type == "gossip" or gossipInfoTable[i].type == "chatbubble" then --and gossipInfoTable[i].type ~= "vendor" then --chatbubble is for sanctum stuff
 													if NPC_ID == 153897 then
 														return
 													else
@@ -390,7 +393,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								end
 								local gossipInfoTable = C_GossipInfo.GetOptions()
 								for i = 1, C_GossipInfo.GetNumOptions() do
-									if gossipInfoTable[i].type == "gossip" or gossipInfoTable[i].type == "chatbubble" then --chatbubble is for sanctum stuff
+									if gossipInfoTable[i].type == "gossip" or gossipInfoTable[i].type == "chatbubble" then --and gossipInfoTable[i].type ~= "vendor" then --chatbubble is for sanctum stuff
 										if NPC_ID == 153897 then
 											return
 										elseif C_GossipInfo.GetNumOptions() > 1 then
