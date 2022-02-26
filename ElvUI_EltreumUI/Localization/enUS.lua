@@ -1,5 +1,4 @@
-﻿-- English localization
-local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "enUS", true, true)
+﻿local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "enUS", true, true)
 if not L then return end
 -- Core
 L["4K resolution detected, setting fonts to default mode."] = true
@@ -663,8 +662,6 @@ L['Automatic\nScale'] = true
 L['Alternative\nFrames'] = true
 L["Or change it later in Eltruism > Media options"] = true
 L["Eltruism Modes"] = true
-L["Eltruism uses Dark Mode and Transparent chat by default"] = true
-L["You can switch to Light Mode and/or Dark Chat by clicking the buttons below"] = true
 L["Transparent\nChat"] = true
 L['Details! DPS Meter'] = true
 L['Choose the type of icons Details! will use:'] = true
@@ -829,6 +826,16 @@ L['The text displayed when in a lfr raid'] = true
 L['Raid (Mythic)'] = true
 L['The text displayed when in a mythic raid'] = true
 L['Raid (Timewalking)'] = true
-L['The text displayed when in a timwalking raid'] = true
+L['The text displayed when in a timewalking raid'] = true
 L['Guild'] = true
 L['The text displayed when in a guild group'] = true
+
+--previous
+L["Eltruism uses Dark Mode and Transparent chat by default"] = true
+L["You can switch to Light Mode and/or Dark Chat by clicking the buttons below"] = true
+--new
+L["Eltruism uses Dark Mode by default"] = true
+L["You can switch to Light Mode or Gradient Mode by clicking the buttons below"] = true
+L["You can customize the textures and colors in Eltruism > Media"] = true
+L["Eltruism uses Transparent chat by default"] = true
+L["You can switch to Dark Chat by clicking the buttons below"] = true

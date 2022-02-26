@@ -662,8 +662,6 @@ L['Automatic\nScale'] = true
 L['Alternative\nFrames'] = true
 L["Or change it later in Eltruism > Media options"] = true
 L["Eltruism Modes"] = true
-L["Eltruism uses Dark Mode and Transparent chat by default"] = true
-L["You can switch to Light Mode and/or Dark Chat by clicking the buttons below"] = true
 L["Transparent\nChat"] = true
 L['Details! DPS Meter'] = true
 L['Choose the type of icons Details! will use:'] = true
@@ -748,6 +746,7 @@ L["Rogue"] = true
 L["Shaman"] = true
 L["Warlock"] = true
 L["Warrior"] = true
+L["Extra Media"] = true
 L["Skip Plugins"] = true
 L["!key Chat Command"] = true
 L["Enable !key and !keys chat command"] = true
@@ -767,7 +766,7 @@ L["Automatically adjust textures for the current mode"] = true
 L["Customize Player CastBar Spark"] = true
 L["Add more fonts to Shared Media"] = true
 L["Enable Pixel Border"] = true
-L['Enable ETA'] = true
+L['Enable ETA'] = true -- eta = estimated time to arrive
 L['Enable Autopin'] = true
 L["Automatically pin the Waypoint"] = true
 L["Enable removing the Alert Frame that can show up in the middle of the screen"] = true
@@ -827,6 +826,16 @@ L['The text displayed when in a lfr raid'] = true
 L['Raid (Mythic)'] = true
 L['The text displayed when in a mythic raid'] = true
 L['Raid (Timewalking)'] = true
-L['The text displayed when in a timwalking raid'] = true
+L['The text displayed when in a timewalking raid'] = true
 L['Guild'] = true
 L['The text displayed when in a guild group'] = true
+
+--previous
+L["Eltruism uses Dark Mode and Transparent chat by default"] = true
+L["You can switch to Light Mode and/or Dark Chat by clicking the buttons below"] = true
+--new
+L["Eltruism uses Dark Mode by default"] = true
+L["You can switch to Light Mode or Gradient Mode by clicking the buttons below"] = true
+L["You can customize the textures and colors in Eltruism > Media"] = true
+L["Eltruism uses Transparent chat by default"] = true
+L["You can switch to Dark Chat by clicking the buttons below"] = true
