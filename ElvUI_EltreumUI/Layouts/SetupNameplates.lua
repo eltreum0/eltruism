@@ -643,7 +643,8 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumTotems"]["triggers"]["playerCanAttack"] = true
 		E.global["nameplates"]["filters"]["EltreumTotems"]["triggers"]["priority"] = 14
 
-		E:StaggeredUpdateAll(nil, true)
+		--E:StaggeredUpdateAll(nil, true)
+		E:UpdateNamePlates()
 		ElvUI_EltreumUI:Print(L["NamePlate Style Filters were set."])
 	end
 end
