@@ -79,7 +79,11 @@ function ElvUI_EltreumUI:SkinQuests()
 			end)
 			--set the link to show when the button is clicked
 			wowheadbutton:SetScript('OnClick', function()
-				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
+				if questID ~= 0 then
+					E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
+				else
+					E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, L["No quest selected"])
+				end
 			end)
 
 			if (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded("ElvUI_WindTools")) and (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
