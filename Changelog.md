@@ -1,3 +1,6 @@
+### 🌌 Next Version
+The future is uncertain
+___
 ### 2.8.8
 Added Gradient Mode, which will add gradient colors to unitframes. This option uses a separate texture and can be found in Eltruism > Media > Gradient where colors and textures can be customized\
 Note that for group units priests cannot have gradients and gradient mode, just like Light Mode, requires Auto Adjusting textures to be enabled in Eltruism > Media\
