@@ -44,6 +44,21 @@ DT:RegisterDatatext('Eltruism', nil, nil, OnEvent, nil, OnClick, OnEnter, nil, L
 
 --just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
 if E.Classic or E.TBC then
+
+
+	local function EltruismHonorDatatext(dt)
+		local honorCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo(Constants.CurrencyConsts.CLASSIC_HONOR_CURRENCY_ID)
+		local arenaCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo(Constants.CurrencyConsts.CLASSIC_ARENA_POINTS_CURRENCY_ID)
+
+		dt.text:SetFormattedText('%s: %s%s|r  %s: %s%s|r ', HONOR, ElvUI[1].media.hexvaluecolor, honorCurrencyInfo.quantity,ARENA, ElvUI[1].media.hexvaluecolor,arenaCurrencyInfo.quantity)
+	end
+	DT:RegisterDatatext('Eltruism Honor/Arena Points', _G.CURRENCY, {'CHAT_MSG_CURRENCY', 'CURRENCY_DISPLAY_UPDATE'}, EltruismHonorDatatext, nil, nil, nil, nil, L["Eltruism Honor/Arena Points"])
+
+
+
+
+
+
 	if E.myclass ~= 'HUNTER' and E.myclass ~= 'ROGUE' and E.myclass ~= 'WARLOCK' and E.myclass ~= 'WARRIOR' then return end
 	local _G = _G
 	local select, wipe = _G.select, _G.wipe
