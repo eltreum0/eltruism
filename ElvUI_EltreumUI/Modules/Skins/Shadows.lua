@@ -45,6 +45,23 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
+			if E.Retail then
+				if (arg == "Blizzard_AuctionHouseUI") then
+					_G.AuctionHouseFrame:HookScript("OnShow", function()
+						if _G.AuctionHouseFrame and not _G.AuctionHouseFrame.shadow then
+							_G.AuctionHouseFrame:CreateShadow()
+						end
+					end)
+				end
+			elseif E.TBC or E.Classic then
+				if (arg == "Blizzard_AuctionUI") then
+					_G.AuctionFrame:HookScript("OnShow", function()
+						if _G.AuctionFrame and not _G.AuctionFrame.backdrop.shadow then
+							_G.AuctionFrame.backdrop:CreateShadow()
+						end
+					end)
+				end
+			end
 		end)
 
 		local blizzardframes = {
