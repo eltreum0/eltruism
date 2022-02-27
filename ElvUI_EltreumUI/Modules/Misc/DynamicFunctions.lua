@@ -11,7 +11,8 @@ function ElvUI_EltreumUI:BattlegroundGroupUnitframes()
 			E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
 			E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid21,noexists] hide;show"
 		end
-		E:StaggeredUpdateAll(nil, true)
+		--E:StaggeredUpdateAll(nil, true)
+		E:UpdateUnitFrames()
 	end
 end
 
