@@ -13,7 +13,7 @@ Updated Quest Items icons\
 Updated automatic quest turn in and accept\
 Updated the healer layout for player/target unitframes, changing buffs/debuffs/aurabars and positioning the player power bar in case the player decides to use it while detached from frame\
 Updated the automatic positioning of the nameplate power bar\
-Fixed some shadows not being created when borders was enabled\
+Fixed some shadows not being created when borders was enabled
 ___
 ### 2.8.7
 Improved how the background texture is applied\
@@ -27,7 +27,7 @@ Updated how ilvl is calculated during login in TBC/Classic\
 Updated player/target/targettarget border size\
 Updated how borders are applied and shadows are applied, since some shadows conflict with borders they will not show up if borders are activated.\
 Updated healer layout for TBC/Classic, adding party pets\
-Updated quest item bar icon texture\
+Updated quest item bar icon texture
 ___
 ### 2.8.6
 Added options in Eltruism > Media > Unitframe to change the backdrop texture of unitframes, and to change the backdrop alpha\
@@ -44,7 +44,7 @@ Updated how fonts are applied, they should no longer overwrite light/dark mode t
 Updated Item Levels for TBC/Classic, making it use less memory and be generally faster\
 Updated automatic quest turn, improving how gossips and quests are detected\
 Updated Details v3 Icons\
-Fixed debuff positions in the party unitframe for the DPS Layout\
+Fixed debuff positions in the party unitframe for the DPS Layout
 ___
 ### 2.8.5
 Fixed custom class textures for unitframes
@@ -56,7 +56,7 @@ Added !keys and !key commands adapted from Luckyone's M+ keys weakaura\
 Fixed some quests not turning in when using automatic turnin\
 Fixed loading german translation\
 Fixed enchanting material scroll bar not hiding in TBC
-Improved the cursor cooldown mask texture\
+Improved the cursor cooldown mask texture
 ___
 ### 2.8.3
 Added German language translation by Khornan\
@@ -64,7 +64,7 @@ Added options to change the Player, Target, Target of Target and Focus unitframe
 Added a check to prevent fast looting when a BoP that needs confirmation is detected\
 Improved the Minimap combat hide, which will now also move auras to where the minimap was, and move them back once the minimap is shown\
 Improved the Quest Automatic Turn-in when gossips were involved, also added an ignore list for some npcs that shouldn't be automatically interacted with\
-Made the System/Interface window movable\
+Made the System/Interface window movable
 ___
 ### 2.8.2 
 Added option to change the font for the Error Frame and Raid Boss Emote Frame\
@@ -95,7 +95,7 @@ ___
 Added Wowhead button for quests\
 Added Dark Souls death animation for player death, default disabled and can enabled in Eltruism > Misc\
 Improved the Delete Item with the item texture and item link in the message to make it clearer which item is being deleted\
-Fixed an error in loot options when the wishlist was empty\
+Fixed an error in loot options when the wishlist was empty
 ___
 ### 2.7.9
 Added an option to display the item level of the item being linked in chat\
@@ -111,7 +111,7 @@ ___
 Reworked many functions and how they are registered, resulting in improved performance and memory usage, especially in combat\
 Set smoothbars to off and friendly nameplates inside instances to off since it's been discovered that they impact performance. It is recommended to do the same, by going into ElvUI > Unitframes/Nameplates and unchecking Smooth Bars, then ElvUI > Eltruism > Nameplates > Hide Friendly Nameplates inside instances\
 Fixed an annoying World Quest Title being displayed when it shouldn't\
-Fixed Class Icon on Character Panel not showing up in the reputation and currency tabs for Retail\
+Fixed Class Icon on Character Panel not showing up in the reputation and currency tabs for Retail
 ___
 ### 2.7.7
 Added a mover for the Error Frame, along with making it use the ElvUI General Font and Font Size\
@@ -143,7 +143,7 @@ ___
 ### 2.7.4
 Added a button in Eltruism > Nameplates that restores all unit names should you disable the automatic name toggling.
 Fixed a few options that were overlapping in the Eltruism menu\
-Fixed World Quest banner colors for some classes\
+Fixed World Quest banner colors for some classes
 ___
 ### 2.7.3
 Added Sockets and Enchants to the Character Panel for TBC and Classic (Classic only has Enchants), this option can be enabled in Eltruism > Skins > Character. This module is a fork of Kibs Item Level by Kibsgaard, which is licensed under Public Domain\
@@ -207,7 +207,7 @@ ___
 Added an option for Nameplate Texture to be based on the Target's Class/Reaction\
 Added borders to Target of Target unitframe\
 Updated Details install with a new profile, this profile is equal to v2 but the icons are not as transparent. All three profiles are still available\
-Fixed a dev print that wasn't supposed to be on release\
+Fixed a dev print that wasn't supposed to be on release
 ___
 ### 2.6.5
 Added various shadows, such as Nameplate Healthbars, which can be enabled in the Eltruism > Skins settings\
@@ -230,7 +230,7 @@ Updated Light mode name colors\
 Fixed the Player Title Dropdown in TBC/Classic\
 Fixed Healer Layout Buffs and Debuffs\
 Fixed Cursor being stuck in some situations\
-Fixed Aura shadows not updating\
+Fixed Aura shadows not updating
 ___
 ### 2.6.3
 Added Power Prediction to Nameplate Power Bar\
