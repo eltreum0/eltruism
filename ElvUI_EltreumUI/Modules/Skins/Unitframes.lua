@@ -92,13 +92,18 @@ local unitframegradients = {
 	['HUNTER'] = {r1 = 0.43921568627451, g1 = 0.69019607843137, b1 = 0.38039215686275, r2 = 0.80392156862745, g2= 1, b2 = 0.54117647058824},
 	['ROGUE'] = {r1 = 1, g1 = 0.83137254901961, b1 = 0.25490196078431, r2 = 1, g2= 0.95686274509804, b2 = 0.4078431372549},
 	['PRIEST'] = {r1 = 0.98823529411765, g1 = 0.98823529411765, b1 = 0.98823529411765, r2 = 0.3568627450980392, g2= 0.3568627450980392, b2 = 0.3568627450980392},
-	['DEATHKNIGHT'] = {r1 = 0.76862745098039, g1 = 0.11764705882353, b1 = 0.22745098039216, r2 = 0.76862745098039, g2= 0.30588235294118, b2 = 0.40392156862745},
+	--['DEATHKNIGHT'] = {r1 = 0.49803921568627, g1 = 0.074509803921569, b1 = 0.14901960784314, r2 = 0.76862745098039, g2= 0.14117647058824, b2 = 0.1843137254902},
+	--['DEATHKNIGHT'] = {r1 = 0.76862745098039, g1 = 0.11764705882353, b1 = 0.22745098039216, r2 = 0.76862745098039, g2= 0.30588235294118, b2 = 0.40392156862745},
 	['SHAMAN'] = {r1 = 0, g1 = 0.25882352941176, b1 = 0.50980392156863, r2 = 0, g2= 0.50588235294118, b2 = 1},
 	['MAGE'] = {r1 = 0.16470588235294, g1 = 0.52549019607843, b1 = 0.61960784313725, r2 = 0.39607843137255, g2= 0.90980392156863, b2 = 1},
 	['WARLOCK'] = {r1 = 0.26274509803922, g1 = 0.26666666666667, b1 = 0.46666666666667, r2 = 0.56862745098039, g2= 0.57254901960784, b2 = 1},
 	['MONK'] = {r1 = 0, g1 = 0.77254901960784, b1 = 0.45882352941176, r2 = 0.1921568627451, g2= 1, b2 = 0.74901960784314},
 	['DRUID'] = {r1 = 1, g1 = 0.48627450980392, b1 = 0.03921568627451, r2 = 1, g2= 0.37647058823529, b2 = 0.18823529411765},
 	['DEMONHUNTER'] = {r1 = 0.50980392156863, g1 = 0.14901960784314, b1 = 0.63137254901961, r2 = 0.83921568627451, g2= 0.36078431372549, b2 = 1},
+	['NPCFRIENDLY'] = {r1 = 0.29803921568627, g1 = 0.74901960784314, b1 = 0.33333333333333, r2 = 0.36862745098039, g2= 0.36078431372549, b2 = 0.80392156862745},
+	['NPCNEUTRAL'] = {r1 = 0.50980392156863, g1 = 0.66666666666667, b1 = 0.63137254901961, r2 = 0.72941176470588, g2= 0.47843137254902, b2 = 0.22745098039216},
+	['NPCUNFRIENDLY'] = {r1 = 0.84313725490196, g1 = 0.30196078431373, b1 = 0, r2 = 0.83137254901961, g2= 0.45882352941176, b2 = 0},
+	['NPCHOSTILE'] = {r1 = 0.31764705882353, g1 = 0.066666666666667, b1 = 0.07843137254902, r2 = 1, g2= 0.15686274509804, b2 = 0.15686274509804},
 }
 
 function ElvUI_EltreumUI:GradientColorTableUpdate()
@@ -174,23 +179,23 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 					targetunitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 					if E.db.ElvUI_EltreumUI.gradientmode.orientation == "HORIZONTAL" then
 						if reactiontarget >= 5 then
-							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["MONK"]["r2"], unitframecustomgradients["MONK"]["g2"], unitframecustomgradients["MONK"]["b2"], unitframecustomgradients["MONK"]["r1"], unitframecustomgradients["MONK"]["g1"], unitframecustomgradients["MONK"]["b1"])
+							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCFRIENDLY"]["r2"], unitframegradients["NPCFRIENDLY"]["g2"], unitframegradients["NPCFRIENDLY"]["b2"], unitframegradients["NPCFRIENDLY"]["r1"], unitframegradients["NPCFRIENDLY"]["g1"], unitframegradients["NPCFRIENDLY"]["b1"])
 						elseif reactiontarget == 4 then
-							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["ROGUE"]["r2"], unitframecustomgradients["ROGUE"]["g2"], unitframecustomgradients["ROGUE"]["b2"], unitframecustomgradients["ROGUE"]["r1"], unitframecustomgradients["ROGUE"]["g1"], unitframecustomgradients["ROGUE"]["b1"])
+							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCNEUTRAL"]["r2"], unitframegradients["NPCNEUTRAL"]["g2"], unitframegradients["NPCNEUTRAL"]["b2"], unitframegradients["NPCNEUTRAL"]["r1"], unitframegradients["NPCNEUTRAL"]["g1"], unitframegradients["NPCNEUTRAL"]["b1"])
 						elseif reactiontarget == 3 then
-							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["DRUID"]["r2"], unitframecustomgradients["DRUID"]["g2"], unitframecustomgradients["DRUID"]["b2"], unitframecustomgradients["DRUID"]["r1"], unitframecustomgradients["DRUID"]["g1"], unitframecustomgradients["DRUID"]["b1"])
+							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCUNFRIENDLY"]["r2"], unitframegradients["NPCUNFRIENDLY"]["g2"], unitframegradients["NPCUNFRIENDLY"]["b2"], unitframegradients["NPCUNFRIENDLY"]["r1"], unitframegradients["NPCUNFRIENDLY"]["g1"], unitframegradients["NPCUNFRIENDLY"]["b1"])
 						elseif reactiontarget == 2 or reactiontarget == 1 then
-							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["DEATHKNIGHT"]["r2"], unitframecustomgradients["DEATHKNIGHT"]["g2"], unitframecustomgradients["DEATHKNIGHT"]["b2"], unitframecustomgradients["DEATHKNIGHT"]["r1"], unitframecustomgradients["DEATHKNIGHT"]["g1"], unitframecustomgradients["DEATHKNIGHT"]["b1"])
+							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCHOSTILE"]["r2"], unitframegradients["NPCHOSTILE"]["g2"], unitframegradients["NPCHOSTILE"]["b2"], unitframegradients["NPCHOSTILE"]["r1"], unitframegradients["NPCHOSTILE"]["g1"], unitframegradients["NPCHOSTILE"]["b1"])
 						end
 					else
 						if reactiontarget >= 5 then
-							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["MONK"]["r1"], unitframecustomgradients["MONK"]["g1"], unitframecustomgradients["MONK"]["b1"], unitframecustomgradients["MONK"]["r2"], unitframecustomgradients["MONK"]["g2"], unitframecustomgradients["MONK"]["b2"])
+							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCFRIENDLY"]["r1"], unitframegradients["NPCFRIENDLY"]["g1"], unitframegradients["NPCFRIENDLY"]["b1"], unitframegradients["NPCFRIENDLY"]["r2"], unitframegradients["NPCFRIENDLY"]["g2"], unitframegradients["NPCFRIENDLY"]["b2"])
 						elseif reactiontarget == 4 then
-							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["ROGUE"]["r1"], unitframecustomgradients["ROGUE"]["g1"], unitframecustomgradients["ROGUE"]["b1"], unitframecustomgradients["ROGUE"]["r2"], unitframecustomgradients["ROGUE"]["g2"], unitframecustomgradients["ROGUE"]["b2"])
+							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCNEUTRAL"]["r1"], unitframegradients["NPCNEUTRAL"]["g1"], unitframegradients["NPCNEUTRAL"]["b1"], unitframegradients["NPCNEUTRAL"]["r2"], unitframegradients["NPCNEUTRAL"]["g2"], unitframegradients["NPCNEUTRAL"]["b2"])
 						elseif reactiontarget == 3 then
-							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["DRUID"]["r1"], unitframecustomgradients["DRUID"]["g1"], unitframecustomgradients["DRUID"]["b1"], unitframecustomgradients["DRUID"]["r2"], unitframecustomgradients["DRUID"]["g2"], unitframecustomgradients["DRUID"]["b2"])
+							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCUNFRIENDLY"]["r1"], unitframegradients["NPCUNFRIENDLY"]["g1"], unitframegradients["NPCUNFRIENDLY"]["b1"], unitframegradients["NPCUNFRIENDLY"]["r2"], unitframegradients["NPCUNFRIENDLY"]["g2"], unitframegradients["NPCUNFRIENDLY"]["b2"])
 						elseif reactiontarget == 2 or reactiontarget == 1 then
-							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["DEATHKNIGHT"]["r1"], unitframecustomgradients["DEATHKNIGHT"]["g1"], unitframecustomgradients["DEATHKNIGHT"]["b1"], unitframecustomgradients["DEATHKNIGHT"]["r2"], unitframecustomgradients["DEATHKNIGHT"]["g2"], unitframecustomgradients["DEATHKNIGHT"]["b2"])
+							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCHOSTILE"]["r1"], unitframegradients["NPCHOSTILE"]["g1"], unitframegradients["NPCHOSTILE"]["b1"], unitframegradients["NPCHOSTILE"]["r2"], unitframegradients["NPCHOSTILE"]["g2"], unitframegradients["NPCHOSTILE"]["b2"])
 						end
 					end
 				else
