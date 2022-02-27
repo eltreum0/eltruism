@@ -42,10 +42,10 @@ E.valueColorUpdateFuncs[ValueColorUpdate] = true
 DT:RegisterDatatext('Eltruism', nil, nil, OnEvent, nil, OnClick, OnEnter, nil, L["Eltruism Config"], nil, ValueColorUpdate)
 
 
---just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
+--other datatexts
 if E.Classic or E.TBC then
 
-
+	--honor datatext
 	local function EltruismHonorDatatext(dt)
 		local honorCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo(Constants.CurrencyConsts.CLASSIC_HONOR_CURRENCY_ID)
 		local arenaCurrencyInfo
@@ -58,11 +58,7 @@ if E.Classic or E.TBC then
 	end
 	DT:RegisterDatatext('Eltruism Honor/Arena Points', _G.CURRENCY, {'CHAT_MSG_CURRENCY', 'CURRENCY_DISPLAY_UPDATE'}, EltruismHonorDatatext, nil, nil, nil, nil, L["Eltruism Honor/Arena Points"])
 
-
-
-
-
-
+	--just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
 	if E.myclass ~= 'HUNTER' and E.myclass ~= 'ROGUE' and E.myclass ~= 'WARLOCK' and E.myclass ~= 'WARRIOR' then return end
 	local _G = _G
 	local select, wipe = _G.select, _G.wipe
