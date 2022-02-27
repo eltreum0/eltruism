@@ -170,6 +170,29 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients[targetclass]["r1"], unitframegradients[targetclass]["g1"], unitframegradients[targetclass]["b1"], unitframegradients[targetclass]["r2"], unitframegradients[targetclass]["g2"], unitframegradients[targetclass]["b2"])
 						end
 					end
+				elseif E.db.ElvUI_EltreumUI.gradientmode.enable and (not UnitIsPlayer("target")) and E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget then
+					targetunitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+					if E.db.ElvUI_EltreumUI.gradientmode.orientation == "HORIZONTAL" then
+						if reactiontarget >= 5 then
+							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["MONK"]["r2"], unitframecustomgradients["MONK"]["g2"], unitframecustomgradients["MONK"]["b2"], unitframecustomgradients["MONK"]["r1"], unitframecustomgradients["MONK"]["g1"], unitframecustomgradients["MONK"]["b1"])
+						elseif reactiontarget == 4 then
+							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["ROGUE"]["r2"], unitframecustomgradients["ROGUE"]["g2"], unitframecustomgradients["ROGUE"]["b2"], unitframecustomgradients["ROGUE"]["r1"], unitframecustomgradients["ROGUE"]["g1"], unitframecustomgradients["ROGUE"]["b1"])
+						elseif reactiontarget == 3 then
+							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["DRUID"]["r2"], unitframecustomgradients["DRUID"]["g2"], unitframecustomgradients["DRUID"]["b2"], unitframecustomgradients["DRUID"]["r1"], unitframecustomgradients["DRUID"]["g1"], unitframecustomgradients["DRUID"]["b1"])
+						elseif reactiontarget == 2 or reactiontarget == 1 then
+							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["DEATHKNIGHT"]["r2"], unitframecustomgradients["DEATHKNIGHT"]["g2"], unitframecustomgradients["DEATHKNIGHT"]["b2"], unitframecustomgradients["DEATHKNIGHT"]["r1"], unitframecustomgradients["DEATHKNIGHT"]["g1"], unitframecustomgradients["DEATHKNIGHT"]["b1"])
+						end
+					else
+						if reactiontarget >= 5 then
+							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["MONK"]["r1"], unitframecustomgradients["MONK"]["g1"], unitframecustomgradients["MONK"]["b1"], unitframecustomgradients["MONK"]["r2"], unitframecustomgradients["MONK"]["g2"], unitframecustomgradients["MONK"]["b2"])
+						elseif reactiontarget == 4 then
+							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["ROGUE"]["r1"], unitframecustomgradients["ROGUE"]["g1"], unitframecustomgradients["ROGUE"]["b1"], unitframecustomgradients["ROGUE"]["r2"], unitframecustomgradients["ROGUE"]["g2"], unitframecustomgradients["ROGUE"]["b2"])
+						elseif reactiontarget == 3 then
+							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["DRUID"]["r1"], unitframecustomgradients["DRUID"]["g1"], unitframecustomgradients["DRUID"]["b1"], unitframecustomgradients["DRUID"]["r2"], unitframecustomgradients["DRUID"]["g2"], unitframecustomgradients["DRUID"]["b2"])
+						elseif reactiontarget == 2 or reactiontarget == 1 then
+							targetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["DEATHKNIGHT"]["r1"], unitframecustomgradients["DEATHKNIGHT"]["g1"], unitframecustomgradients["DEATHKNIGHT"]["b1"], unitframecustomgradients["DEATHKNIGHT"]["r2"], unitframecustomgradients["DEATHKNIGHT"]["g2"], unitframecustomgradients["DEATHKNIGHT"]["b2"])
+						end
+					end
 				else
 					targetunitframe.Health:SetStatusBarTexture(targetbar)
 				end
@@ -288,55 +311,6 @@ function ElvUI_EltreumUI:ChangePlayerTexture()
 		end
 	end
 end
---[[
-local units = {
-	["player"] = true,
-	["party1"] = true,
-	["party2"] = true,
-	["party3"] = true,
-	["party4"] = true,
-	["party5"] = true,
-	["raid1"] = true,
-	["raid2"] = true,
-	["raid3"] = true,
-	["raid4"] = true,
-	["raid5"] = true,
-	["raid6"] = true,
-	["raid7"] = true,
-	["raid8"] = true,
-	["raid9"] = true,
-	["raid10"] = true,
-	["raid11"] = true,
-	["raid12"] = true,
-	["raid13"] = true,
-	["raid14"] = true,
-	["raid15"] = true,
-	["raid16"] = true,
-	["raid17"] = true,
-	["raid18"] = true,
-	["raid19"] = true,
-	["raid20"] = true,
-	["raid21"] = true,
-	["raid22"] = true,
-	["raid23"] = true,
-	["raid24"] = true,
-	["raid25"] = true,
-	["raid26"] = true,
-	["raid27"] = true,
-	["raid28"] = true,
-	["raid29"] = true,
-	["raid30"] = true,
-	["raid31"] = true,
-	["raid32"] = true,
-	["raid33"] = true,
-	["raid34"] = true,
-	["raid35"] = true,
-	["raid36"] = true,
-	["raid37"] = true,
-	["raid38"] = true,
-	["raid39"] = true,
-	["raid40"] = true,
-}]]
 
 function ElvUI_EltreumUI:ChangeGroupUnitframe(unit)--(unit, r, g, b)
 	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable and UnitExists(unit) then --and units[unit] == true then
