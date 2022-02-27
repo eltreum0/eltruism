@@ -43,7 +43,7 @@ local function InstantLoot(_, event,_, arg2)
 		return
 	elseif event == "UI_ERROR_MESSAGE" and arg2 == ERR_INV_FULL then
 		return
-	elseif event ~= "UI_ERROR_MESSAGE" then
+	elseif event == "LOOT_READY" or event == "LOOT_OPENED" then
 		--ElvUI_EltreumUI:Print("Event: "..event)
 		if E.db.ElvUI_EltreumUI.otherstuff.lootwishlistwarning then
 			for i = GetNumLootItems(), 1, -1 do
