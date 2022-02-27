@@ -498,7 +498,7 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		--action bars
-		if E.private.actionbar.enable then
+		if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 			--elvui action bars
 			for i = 1, 10 do
 				local actionbars = {_G['ElvUI_Bar'..i]}
