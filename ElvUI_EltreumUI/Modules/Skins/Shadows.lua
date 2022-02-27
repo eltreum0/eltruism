@@ -604,6 +604,8 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
+
+
 			--player castbar
 			if not E.db.unitframe.units.player.castbar.overlayOnFrame == "Power" then
 				local PlayerCastbar = CreateFrame("Frame", "EltruismPlayerCastBarShadowFrame")
