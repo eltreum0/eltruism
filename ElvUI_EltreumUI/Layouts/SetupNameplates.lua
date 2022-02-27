@@ -529,7 +529,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["notTarget"] = true
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["priority"] = 4
 		-- Target enemy
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = true
+		--E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = true
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["b"] = 0
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["g"] = 0
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["r"] = 0
@@ -543,6 +543,11 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["minus"] = true
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["normal"] = true
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["trivial"] = true
+		--new
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthClass"] = true
+		--
+
 		-- Enemy is casting, draw attention to interrupt
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["border"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["b"] = 0.22745098039216
@@ -564,8 +569,13 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		-- Enemy at execute range, general range bc different classes have different hp% executes
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["g"] = 0
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["b"] = 0.011764705882353
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["g"] = 0
+
+		--new
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["b"] = 0.11764705882353
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["g"] = 0.16470588235294
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["r"] = 0.69411764705882
+		--
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["color"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["color"]["g"] = 0
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["color"]["r"] = 0
@@ -590,6 +600,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumRare"]["triggers"]["isNotTapDenied"] = true
 		E.global["nameplates"]["filters"]["EltreumRare"]["triggers"]["priority"] = 10
 		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["scale"] = 1.25
+
 		--mainly for mages to steal buffs
 		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["class"]["MAGE"] = {}
 		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["class"]["MAGE"]["enabled"] = true
