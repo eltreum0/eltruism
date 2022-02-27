@@ -11,6 +11,7 @@ Attempted a fix for a socket and enchants error when inspecting a player inside 
 Updated locales\
 Updated install process\
 Updated Quest Items icons\
-Updated automatic quest turn in/accept\
+Updated automatic quest turn in and accept\
+Updated the healer layout for player/target unitframes, changing buffs/debuffs/aurabars and positioning the player power bar in case the player decides to use it while detached from frame\
 Updated the automatic positioning of the nameplate power bar\
 Fixed some shadows not being created when borders was enabled\
