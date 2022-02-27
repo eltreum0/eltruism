@@ -1,4 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local classcolor = E:ClassColor(E.myclass, true)
 
 function ElvUI_EltreumUI:SetupLayoutDPS()
 		if E.Retail then
@@ -470,16 +471,16 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["movers"]["iFilger_FocusDebuffsMover"] = "BOTTOM,ElvUIParent,BOTTOM,-217,461"
 		E.db["movers"]["iFilger_ItemCooldownsMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,526,450"
 		-- DPS unit colors
-		E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = 0.86666476726532
-		E.db["unitframe"]["colors"]["auraBarBuff"]["g"] = 0.4392147064209
-		E.db["unitframe"]["colors"]["auraBarBuff"]["r"] = 0
+		E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = classcolor.b
+		E.db["unitframe"]["colors"]["auraBarBuff"]["g"] = classcolor.g
+		E.db["unitframe"]["colors"]["auraBarBuff"]["r"] = classcolor.r
 		E.db["unitframe"]["colors"]["aurabar_backdrop"]["b"] = 0
 		E.db["unitframe"]["colors"]["aurabar_backdrop"]["g"] = 0
 		E.db["unitframe"]["colors"]["aurabar_backdrop"]["r"] = 0
 		E.db["unitframe"]["colors"]["castClassColor"] = true
-		E.db["unitframe"]["colors"]["castColor"]["b"] = 0.1
-		E.db["unitframe"]["colors"]["castColor"]["g"] = 0.1
-		E.db["unitframe"]["colors"]["castColor"]["r"] = 0.1
+		E.db["unitframe"]["colors"]["castColor"]["b"] = classcolor.b
+		E.db["unitframe"]["colors"]["castColor"]["g"] = classcolor.g
+		E.db["unitframe"]["colors"]["castColor"]["r"] = classcolor.r
 		E.db["unitframe"]["colors"]["castbar_backdrop"]["b"] = 0
 		E.db["unitframe"]["colors"]["castbar_backdrop"]["g"] = 0
 		E.db["unitframe"]["colors"]["castbar_backdrop"]["r"] = 0
@@ -490,9 +491,9 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["colors"]["classbackdrop"] = true
 		E.db["unitframe"]["colors"]["healthclass"] = false
 		E.db["unitframe"]["colors"]["customhealthbackdrop"] = false
-		E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0
-		E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0
-		E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0
+		E.db["unitframe"]["colors"]["health_backdrop"]["b"] = classcolor.b
+		E.db["unitframe"]["colors"]["health_backdrop"]["g"] = classcolor.g
+		E.db["unitframe"]["colors"]["health_backdrop"]["r"] = classcolor.r
 		E.db["unitframe"]["colors"]["classpower_backdrop"]["b"] = 0
 		E.db["unitframe"]["colors"]["classpower_backdrop"]["g"] = 0
 		E.db["unitframe"]["colors"]["classpower_backdrop"]["r"] = 0
