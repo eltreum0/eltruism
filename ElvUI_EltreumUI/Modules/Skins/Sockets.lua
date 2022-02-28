@@ -1153,21 +1153,25 @@ function ElvUI_EltreumUI:ClassicSockets()
 	local InspectionFrameAdapterMetaTable = { __index = InspectionFrameAdapter }
 	setmetatable(InspectionFrameAdapter, { __index = ElvUI_EltreumUI.FrameAdapter })
 	function InspectionFrameAdapter:new()
-		local instance = ElvUI_EltreumUI.FrameAdapter:new(InspectModelFrame, PaperDollFrame, 'Inspect')
-		instance.messages = {
-			contentChanged = 'InspectionFrameAdapter.contentChanged',
-		}
-		setmetatable(instance, InspectionFrameAdapterMetaTable)
-		instance:RegisterEvent("UNIT_INVENTORY_CHANGED", function(event, unit)
-			if unit ~= 'player' then
-				instance:SendMessage(instance.messages.contentChanged)
-			end
-		end)
-		return instance
+		if E.db.ElvUI_EltreumUI.sockets.socketsinspect then
+			local instance = ElvUI_EltreumUI.FrameAdapter:new(InspectModelFrame, PaperDollFrame, 'Inspect')
+			instance.messages = {
+				contentChanged = 'InspectionFrameAdapter.contentChanged',
+			}
+			setmetatable(instance, InspectionFrameAdapterMetaTable)
+			instance:RegisterEvent("UNIT_INVENTORY_CHANGED", function(event, unit)
+				if unit ~= 'player' then
+					instance:SendMessage(instance.messages.contentChanged)
+				end
+			end)
+			return instance
+		end
 	end
 
 	function InspectionFrameAdapter:GetUnit()
-		return InspectFrame.unit
+		if E.db.ElvUI_EltreumUI.sockets.socketsinspect then
+			return InspectFrame.unit
+		end
 	end
 	ElvUI_EltreumUI.InspectionFrameAdapter = InspectionFrameAdapter
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------SLOT ICON MANAGER
@@ -1935,7 +1939,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		local playerSlotIconManager = style
 		playerSlotIconManager = playerSlotIconManager + ElvUI_EltreumUI.SlotIconManager.STYLE.ENABLED
 		self.playerSlotIconManager:SetStyle(playerSlotIconManager)
-		if IsAddOnLoaded("Blizzard_InspectUI") then
+		if IsAddOnLoaded("Blizzard_InspectUI") and E.db.ElvUI_EltreumUI.sockets.socketsinspect then
 			local inspectorSlotIconManager = style
 			inspectorSlotIconManager = inspectorSlotIconManager + ElvUI_EltreumUI.SlotIconManager.STYLE.ENABLED
 			self.inspectorSlotIconManager:SetStyle(inspectorSlotIconManager)
@@ -1949,7 +1953,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		--local args = {...}
 		--if event == "ADDON_LOADED" and args[1] == "Blizzard_InspectUI" then
 	frame:SetScript("OnEvent", function(_, event)
-		if event == "ADDON_LOADED" and IsAddOnLoaded("Blizzard_InspectUI") then
+		if event == "ADDON_LOADED" and IsAddOnLoaded("Blizzard_InspectUI") and E.db.ElvUI_EltreumUI.sockets.socketsinspect then
 			self.inspectorSlotIconManager = ElvUI_EltreumUI.SlotIconManager:new(ElvUI_EltreumUI.InspectionFrameAdapter:new())
 			local style = 0
 			style = style + ElvUI_EltreumUI.SlotIconManager.STYLE.COLOR
