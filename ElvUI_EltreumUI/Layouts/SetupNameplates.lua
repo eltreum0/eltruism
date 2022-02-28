@@ -614,6 +614,8 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARRIOR"]["specs"][71] = true
 			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARRIOR"]["specs"][72] = true
 			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARRIOR"]["specs"][73] = true
+		elseif E.TBC or E.Classic then
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARRIOR"]["enabled"] = true
 		end
 
 		--fancy rares
