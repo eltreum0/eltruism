@@ -337,6 +337,13 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 				end
+				if (arg == "Blizzard_WeeklyRewards") then
+					_G.WeeklyRewardsFrame:HookScript("OnShow", function()
+						if not _G.WeeklyRewardsFrame.shadow then
+							_G.WeeklyRewardsFrame:CreateShadow()
+						end
+					end)
+				end
 			end)
 
 			--retail frames
@@ -368,6 +375,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.CollectionsJournal,
 				_G.DressUpFrame,
 				_G.DressUpFrame.OutfitDetailsPanel,
+				_G.WeeklyRewardsFrame,
 				--_G.CollectionsJournalTab1.backdrop,
 				--_G.CollectionsJournalTab2.backdrop,
 				--_G.CollectionsJournalTab3.backdrop,
