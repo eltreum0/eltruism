@@ -23,7 +23,6 @@ local THANKYOU = {
 	'Caedis',
 	'Elv',
 	E:TextGradient('Simpy but his name might be shorter sometimes even though he fixes a lot of things', 0.27,0.72,0.86, 0.51,0.36,0.80, 0.69,0.28,0.94, 0.94,0.28,0.63, 1.00,0.51,0.00, 0.27,0.96,0.43),
-	'Tukui Community',
 	'Shrom',
 	'Pat',
 	'|cff00c0faBenik|r',
