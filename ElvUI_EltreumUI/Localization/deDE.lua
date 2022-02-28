@@ -862,14 +862,9 @@ L['Raid (Timewalking)'] = true
 L['The text displayed when in a timewalking raid'] = "Der Text, der in ein normalen Raid angezeigt wird"
 L['Guild'] = "Gilde"
 L['The text displayed when in a guild group'] = "Der Text, der in einer Gildengruppe angezeigt wird"
-
---previously
---L["Eltruism uses Dark Mode and Transparent chat by default"] = "Eltruism benutzt Dark Mode und Transparenten Chat als Standard"
---L["You can switch to Light Mode and/or Dark Chat by clicking the buttons below"] = "Du kannst switchen zwischen Light Mode und/oder Dark Mode Chat, indem du auf die Buttons unten klickst"
-
---new
 L["Eltruism uses Dark Mode by default"] = "Eltruism benutzt Dark Mode als Standard"
 L["You can switch to Light Mode or Gradient Mode by clicking the buttons below"] = "Du kannst Light Mode oder Gradient Mode auswählen, indem du auf die Buttons unten klickst"
 L["You can customize the textures and colors in Eltruism > Media"] = "Du kannst die Farbe und Textur individuell in Eltruism > Medien ändern"
 L["Eltruism uses Transparent chat by default"] = "Eltruism benutzt Transparenten Chat als Standard"
 L["You can switch to Dark Chat by clicking the buttons below"] = "Du kannst zum Dark Chat wechseln, indem du auf den Button unten klickst" --is only one button?!
+L["Add Sockets and Enchants to the Inspect Frame"] = true

@@ -829,13 +829,9 @@ L['Raid (Timewalking)'] = true
 L['The text displayed when in a timewalking raid'] = true
 L['Guild'] = true
 L['The text displayed when in a guild group'] = true
-
---previous
-L["Eltruism uses Dark Mode and Transparent chat by default"] = true
-L["You can switch to Light Mode and/or Dark Chat by clicking the buttons below"] = true
---new
 L["Eltruism uses Dark Mode by default"] = true
 L["You can switch to Light Mode or Gradient Mode by clicking the buttons below"] = true
 L["You can customize the textures and colors in Eltruism > Media"] = true
 L["Eltruism uses Transparent chat by default"] = true
 L["You can switch to Dark Chat by clicking the buttons below"] = true
+L["Add Sockets and Enchants to the Inspect Frame"] = true

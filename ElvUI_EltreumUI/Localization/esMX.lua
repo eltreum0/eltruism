@@ -845,14 +845,9 @@ L['Raid (Timewalking)'] = 'Incursión (Timewalking)'
 L['The text displayed when in a timewalking raid'] = 'El texto que se muestra en una incursión de timewalking'
 L['Guild'] = 'Gremio'
 L['The text displayed when in a guild group'] = 'El texto que se muestra cuando se está en un grupo de gremio'
-
---previously
---L["Eltruism uses Dark Mode and Transparent chat by default"] = "Eltruism utiliza por predeterminado el Modo Oscuro y el chat Transparente"
---L["You can switch to Light Mode and/or Dark Chat by clicking the buttons below"] = "Puedes cambiar al Modo Luminoso y/o al Chat Oscuro haciendo clic en los botones de abajo"
-
---new
 L["Eltruism uses Dark Mode by default"] = "Eltruism utiliza por predeterminado el Modo Oscuro"
 L["You can switch to Light Mode or Gradient Mode by clicking the buttons below"] = "Puedes cambiar al Modo Luminoso y/o al Modo Gradiente haciendo clic en los botones de abajo"
 L["You can customize the textures and colors in Eltruism > Media"] = "Puedes personalizar las texturas y los colores en Eltruismo > Medios"
 L["Eltruism uses Transparent chat by default"] = "Eltruism utiliza por predeterminado el chat Transparente"
 L["You can switch to Dark Chat by clicking the buttons below"] = "Puedes cambiar al Chat Oscuro haciendo clic en los botones de abajo"
+L["Add Sockets and Enchants to the Inspect Frame"] = true
