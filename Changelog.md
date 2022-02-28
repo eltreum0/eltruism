@@ -1,6 +1,15 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 2.8.9
+Added another check in an attempt to prevent sockets from erroring when inspecting players inside instances\
+Added Honor/Arena Points Datatext for TBC/Classic\
+Added gradients to NPCs\
+Updated Nameplate Stylefilters\
+Updated Dynamic Cam Profile, removing instance events/druid forms which were causing the camera to reset\
+Updated border textures\
+Fixed an issue that caused action bar borders to not apply\
+Fixed Death Knights gradients being wrong color in gradient mode by default\
 ### 2.8.8
 Added Gradient Mode, which will add gradient colors to unitframes. This option uses a separate texture and can be found in Eltruism > Media > Gradient where colors and textures can be customized\
 Note that for group units priests cannot have gradients and gradient mode, just like Light Mode, requires Auto Adjusting textures to be enabled in Eltruism > Media\
