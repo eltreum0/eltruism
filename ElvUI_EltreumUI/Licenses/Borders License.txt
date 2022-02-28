@@ -1,2 +1,4 @@
 Fer textures belong to Ferous (https://www.wowinterface.com/downloads/info15613-FerousMediaPack.html)
 Renaitre textures belong to Limb0 (https://www.wowinterface.com/downloads/info19490-SharedMediaRenaitre.html)
+
+Eltreum-Border-1 and Eltreum-Border-2 are inspired by SharedMedia by Goldpaw
