@@ -36,7 +36,8 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.cursor.cooldown = true
 	E.db.ElvUI_EltreumUI.cursor.combat = true
 	E.db.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow = true
-	E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate = true
+	--E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate = true
+	E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate = false
 	E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = true
 	E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide = true
 	E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect = true
@@ -75,12 +76,10 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = true
 	E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = true
 	E.db.ElvUI_EltreumUI.otherstuff.playerdeath = true
-
 	E.db.ElvUI_EltreumUI.otherstuff.mpluskeys = true
 
 	E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha = 0.7
-
 	E.db.ElvUI_EltreumUI.instances.enable = true
 
 
