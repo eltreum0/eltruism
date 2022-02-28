@@ -169,8 +169,9 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["fontSize"] = 10
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["height"] = 12
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetX"] = -1
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetY"] = -1
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconPosition"] = "LEFT"
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 27
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 28
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["showIcon"] = true
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["textPosition"] = "ONBAR"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["timeToHold"] = 0.4
@@ -263,8 +264,9 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["fontSize"] = 10
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["height"] = 12
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconPosition"] = "LEFT"
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 27
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 28
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconOffsetX"] = -1
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconOffsetY"] = -1
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["showIcon"] = false
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["textPosition"] = "ONBAR"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["timeToHold"] = 0.4
@@ -517,6 +519,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
 		end
+
 		-- Non targeted enemies
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["actions"]["alpha"] = 20
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["actions"]["scale"] = 0.75
@@ -528,7 +531,10 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["requireTarget"] = true
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["notTarget"] = true
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["priority"] = 4
+
 		-- Target enemy
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthClass"] = true
 		--E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = true
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["b"] = 0
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["g"] = 0
@@ -538,15 +544,10 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["scale"] = 1.25
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["texture"]["enable"] = true
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "ElvUI Blank"
-		--activate only on non rare enemies due to EltreuRare working on them
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["elite"] = true
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["minus"] = true
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["normal"] = true
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["trivial"] = true
-		--new
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthClass"] = true
-		--
 
 		-- Enemy is casting, draw attention to interrupt
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["border"] = true
@@ -566,6 +567,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["inCombat"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["notTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["priority"] = 1
+
 		-- Enemy at execute range, general range bc different classes have different hp% executes
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["g"] = 0
