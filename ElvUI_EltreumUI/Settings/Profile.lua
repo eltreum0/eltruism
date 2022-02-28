@@ -286,7 +286,7 @@ P.ElvUI_EltreumUI = {
 
 	borders = {
 		borders = false,
-		texture = "better-blizzard-border-small-alternate",
+		texture = "Eltreum-Border-1",
 
 		classcolor = true,
 

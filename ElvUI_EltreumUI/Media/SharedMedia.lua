@@ -37,7 +37,7 @@ function ElvUI_EltreumUI:ExtraMedia()
 	LSM:Register("sound", "Frankly thats a skill issue", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\ionskillissue.ogg]])
 
 	-- Border
-	LSM:Register("border", "better-blizzard-border-small-alternate", [[Interface\Addons\ElvUI_EltreumUI\Media\border\better-blizzard-border-small-alternate.tga]])
+	LSM:Register("border", "Eltreum-Border-1", [[Interface\Addons\ElvUI_EltreumUI\Media\border\Eltreum-Border-1.tga]])
 end
 
 --all media below this is only loaded when selected
@@ -112,8 +112,8 @@ function ElvUI_EltreumUI:ExtraMediaTextures()
 end
 
 function ElvUI_EltreumUI:ExtraMediaBorders()
-	LSM:Register("border", "aura_border", [[Interface\Addons\ElvUI_EltreumUI\Media\border\aura_border.tga]])
-	LSM:Register("border", "border-glow-overlay", [[Interface\Addons\ElvUI_EltreumUI\Media\border\border-glow-overlay.tga]])
+	--LSM:Register("border", "Eltreum-Border-1", [[Interface\Addons\ElvUI_EltreumUI\Media\border\Eltreum-Border-1.tga]])
+	LSM:Register("border", "Eltreum-Border-2", [[Interface\Addons\ElvUI_EltreumUI\Media\border\Eltreum-Border-2.tga]])
 	LSM:Register("border", "RenaitreBeveled10", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreBeveled10.tga]])
 	LSM:Register("border", "RenaitreBeveled10x", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreBeveled10x.tga]])
 	LSM:Register("border", "RenaitreFade10", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade10.tga]])

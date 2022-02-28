@@ -33,7 +33,7 @@ function ElvUI_EltreumUI:Borders()
 		if E.db.ElvUI_EltreumUI.borders.texture then
 			bordertexture = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture)
 		else
-			bordertexture = "Interface\\Addons\\ElvUI_EltreumUI\\Media\border\\better-blizzard-border-small-alternate.tga"
+			bordertexture = "Interface\\Addons\\ElvUI_EltreumUI\\Media\border\\Eltreum-Border-1.tga"
 		end
 		local classcolor
 		if E.db.ElvUI_EltreumUI.borders.classcolor then
