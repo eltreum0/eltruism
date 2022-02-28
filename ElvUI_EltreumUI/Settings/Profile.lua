@@ -57,6 +57,7 @@ P.ElvUI_EltreumUI = {
 		ilvls = false,
 		ilvlsinspect = true,
 		sockets = false,
+		socketsinspect = true,
 		ilvlanchor = "CENTER",
 		ilvlfontsize = 16,
 		ilvlfontweight = "THICKOUTLINE",
