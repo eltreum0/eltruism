@@ -1503,6 +1503,15 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.sockets end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.sockets = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							socketsoninspect = {
+								order = 4,
+								type = 'toggle',
+								name = L["Add Sockets and Enchants to the Inspect Frame"],
+								width = 'full',
+								desc = L["Enable this option"],
+								get = function() return E.db.ElvUI_EltreumUI.skins.sockets end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.socketsinspect = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
 							headerfirst = {
 								order = 80,
 								type = "description",
