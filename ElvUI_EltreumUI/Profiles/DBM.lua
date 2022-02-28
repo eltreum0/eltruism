@@ -206,7 +206,6 @@ function ElvUI_EltreumUI:GetDBMProfile()
 			["SpecialWarningFontStyle"] = "THICKOUTLINE",
 			["LogOnlyRaidBosses"] = false,
 			["oRA3AnnounceConsumables"] = false,
-			["CountdownVoice2"] = "VP:English female",
 			["DontPlayPTCountdown"] = false,
 			["EnableWBSharing"] = true,
 			["ArrowPosX"] = -0,
@@ -266,7 +265,6 @@ function ElvUI_EltreumUI:GetDBMProfile()
 			["DontShowInfoFrame"] = true,
 			["SpecialWarningFont"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Fonts\\Kimberley.ttf",
 			["DontShowRangeFrame"] = false,
-			["CountdownVoice3v2"] = "VP:English female",
 			["MovieFilter2"] = "OnlyFight",
 			["HUDTexture1"] = "highlight",
 			["RaidWarningPosition"] = {
@@ -302,10 +300,8 @@ function ElvUI_EltreumUI:GetDBMProfile()
 			["DontSetIcons"] = false,
 			["BigBrotherAnnounceToRaid"] = false,
 			["PTCountThreshold"] = 5,
-			["CountdownVoice"] = "VP:English female",
 			["HUDAlphaOverride"] = false,
 			["WarningIconRight"] = true,
-			["CountdownVoice3"] = "VP:English female",
 			["AutoRespond"] = true,
 			["EventDungMusicMythicFilter"] = false,
 			["DisableStatusWhisper"] = false,
@@ -345,7 +341,23 @@ function ElvUI_EltreumUI:GetDBMProfile()
 			["SpecialWarningFlash3"] = true,
 			["HUDSize4"] = 5,
 			["Enabled"] = false,
-			["ChosenVoicePack"] = "English female",
+
+			--with the dbm update this seems to be the way to go around using voice packs
+			["ChosenVoicePack"] = "VEM", --dbm VEM
+			["ChosenVoicePack2"] = "VEM", --dbm VEM
+			["CountdownVoice"] = "Corsica",
+			["CountdownVoice2"] = "Corsica",
+			["CountdownVoice3"] = "Corsica",
+			["VPReplacesAnnounce"] = true,
+			["VPReplacesSA1"] = true,
+			["VPReplacesSA2"] = true,
+			["VPReplacesSA3"] = true,
+			["VPReplacesSA4"] = true,
+			--["ChosenVoicePack2"] = "English female", --calanon's voice
+			--["CountdownVoice"] = "VP:English female",
+			--["CountdownVoice2"] = "VP:English female",
+			--["CountdownVoice3"] = "VP:English female",
+
 			["WarningShortText"] = true,
 			["SpecialWarningFlash1"] = true,
 			["WarningY"] = -118.3650970458984,
