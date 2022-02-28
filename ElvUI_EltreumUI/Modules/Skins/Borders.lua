@@ -148,7 +148,7 @@ function ElvUI_EltreumUI:Borders()
 			elvuiab = true
 		end
 		if elvuiab then]]
-		if E.private.actionbarenable then
+		if E.private.actionbar.enable then
 			--action bar 1
 			if E.db.ElvUI_EltreumUI.borders.bar1borders and E.db.actionbar.bar1.enabled then
 				local borders1 = {}
