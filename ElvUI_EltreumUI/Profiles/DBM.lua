@@ -437,7 +437,7 @@ function ElvUI_EltreumUI:GetDBMProfile()
 				["HugeHeight"] = 10, --bar height
 				["HugeBarXOffset"] = 0, --offset for bars near top right center
 				["HugeBarYOffset"] = 18, --offset for bars near top right center
-				["HugeTimerX"] = 500,  --actual small bar position X
+				["HugeTimerX"] = 400,  --actual small bar position X
 				["HugeTimerY"] = 280,  --actual small bar position Y
 
 				--"small bars" the ones above right chat
@@ -551,7 +551,7 @@ function ElvUI_EltreumUI:GetDBMProfile()
 				["HugeHeight"] = 10, --bar height
 				["HugeBarXOffset"] = 0, --offset for bars near top right center
 				["HugeBarYOffset"] = 18, --offset for bars near top right center
-				["HugeTimerX"] = 500,  --actual small bar position X
+				["HugeTimerX"] = 400,  --actual small bar position X
 				["HugeTimerY"] = 280,  --actual small bar position Y
 
 				--"small bars" the ones above right chat
