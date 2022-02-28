@@ -1153,7 +1153,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 	local InspectionFrameAdapterMetaTable = { __index = InspectionFrameAdapter }
 	setmetatable(InspectionFrameAdapter, { __index = ElvUI_EltreumUI.FrameAdapter })
 	function InspectionFrameAdapter:new()
-		if E.db.ElvUI_EltreumUI.sockets.socketsinspect then
+		if E.db.ElvUI_EltreumUI.skins.socketsinspect then
 			local instance = ElvUI_EltreumUI.FrameAdapter:new(InspectModelFrame, PaperDollFrame, 'Inspect')
 			instance.messages = {
 				contentChanged = 'InspectionFrameAdapter.contentChanged',
@@ -1169,7 +1169,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 	end
 
 	function InspectionFrameAdapter:GetUnit()
-		if E.db.ElvUI_EltreumUI.sockets.socketsinspect then
+		if E.db.ElvUI_EltreumUI.skins.socketsinspect then
 			return InspectFrame.unit
 		end
 	end
@@ -1939,7 +1939,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		local playerSlotIconManager = style
 		playerSlotIconManager = playerSlotIconManager + ElvUI_EltreumUI.SlotIconManager.STYLE.ENABLED
 		self.playerSlotIconManager:SetStyle(playerSlotIconManager)
-		if IsAddOnLoaded("Blizzard_InspectUI") and E.db.ElvUI_EltreumUI.sockets.socketsinspect then
+		if IsAddOnLoaded("Blizzard_InspectUI") and E.db.ElvUI_EltreumUI.skins.socketsinspect then
 			local inspectorSlotIconManager = style
 			inspectorSlotIconManager = inspectorSlotIconManager + ElvUI_EltreumUI.SlotIconManager.STYLE.ENABLED
 			self.inspectorSlotIconManager:SetStyle(inspectorSlotIconManager)
@@ -1953,7 +1953,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		--local args = {...}
 		--if event == "ADDON_LOADED" and args[1] == "Blizzard_InspectUI" then
 	frame:SetScript("OnEvent", function(_, event)
-		if event == "ADDON_LOADED" and IsAddOnLoaded("Blizzard_InspectUI") and E.db.ElvUI_EltreumUI.sockets.socketsinspect then
+		if event == "ADDON_LOADED" and IsAddOnLoaded("Blizzard_InspectUI") and E.db.ElvUI_EltreumUI.skins.socketsinspect then
 			self.inspectorSlotIconManager = ElvUI_EltreumUI.SlotIconManager:new(ElvUI_EltreumUI.InspectionFrameAdapter:new())
 			local style = 0
 			style = style + ElvUI_EltreumUI.SlotIconManager.STYLE.COLOR
