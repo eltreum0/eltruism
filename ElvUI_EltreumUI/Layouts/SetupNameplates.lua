@@ -569,24 +569,53 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		-- Enemy at execute range, general range bc different classes have different hp% executes
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["g"] = 0
-
-		--new
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["health"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["b"] = 0.11764705882353
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["g"] = 0.16470588235294
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["r"] = 0.69411764705882
-		--
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["color"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["color"]["g"] = 0
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["color"]["r"] = 0
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["enable"] = false
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["speed"] = 7
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["scale"] = 1.25
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["texture"]["enable"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["texture"]["texture"] = "Asphyxia-Norm"
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["healthThreshold"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["isTarget"] = true
+		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["playerCanAttack"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["priority"] = 1
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.2
+		if E.Retail then
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["DEATHKNIGHT"]["enabled"] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["DEATHKNIGHT"]["specs"][252] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["HUNTER"]["enabled"] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["HUNTER"]["specs"][253] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["HUNTER"]["specs"][254] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["HUNTER"]["specs"][255] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["MAGE"]["enabled"] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["MAGE"]["specs"][63] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["MONK"]["enabled"] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["MONK"]["specs"][268] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["MONK"]["specs"][269] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["MONK"]["specs"][270] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["PALADIN"]["enabled"] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["PALADIN"]["specs"][65] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["PALADIN"]["specs"][66] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["PALADIN"]["specs"][70] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["PRIEST"]["enabled"] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["PRIEST"]["specs"][258] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["ROGUE"]["enabled"] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["ROGUE"]["specs"][259] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARLOCK"]["enabled"] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARLOCK"]["specs"][265] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARLOCK"]["specs"][267] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARRIOR"]["enabled"] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARRIOR"]["specs"][71] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARRIOR"]["specs"][72] = true
+			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARRIOR"]["specs"][73] = true
+		end
+
 		--fancy rares
 		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["health"] = true
 		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["b"] = 1
