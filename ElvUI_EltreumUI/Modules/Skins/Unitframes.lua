@@ -39,8 +39,6 @@ local unitframeclass = {
 --bar colors for party/raid/raid40
 --local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
 local paladin, warrior, shaman, druid, deathknight, demonhunter, monk, rogue, priest, mage, hunter, warlock
-
-
 if E.Retail then
 	paladin = {r = "0.95686066150665", g = "0.54901838302612", b = "0.72941017150879"}
 	warrior = {r = "0.77646887302399", g = "0.60784178972244", b = "0.4274500310421"}
@@ -68,9 +66,6 @@ elseif E.TBC or E.Classic then
 	hunter = {r = "0.67058676481247", g = "0.8313707113266", b = "0.45097941160202"}
 	warlock = {r = "0.52941060066223", g = "0.52941060066223", b = "0.92940974235535"}
 end
-
-
-
 
 local unitframecustomgradients = {
 	['WARRIOR'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
@@ -687,6 +682,7 @@ function ElvUI_EltreumUI:BackdropTexture(_, _, backdropTex)
 	if E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable and not E.db.ElvUI_EltreumUI.lightmode then
 		backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
 		backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+		--backdropTex:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients[E.myclass]["r1"], unitframecustomgradients[E.myclass]["g1"], unitframecustomgradients[E.myclass]["b1"], unitframecustomgradients[E.myclass]["r2"], unitframecustomgradients[E.myclass]["g2"], unitframecustomgradients[E.myclass]["b2"])
 	end
 end
 hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
