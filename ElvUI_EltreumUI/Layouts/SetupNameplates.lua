@@ -679,3 +679,19 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		ElvUI_EltreumUI:Print(L["NamePlate Style Filters were set."])
 	end
 end
+
+--restore nameplate cvars if user wants
+function ElvUI_EltreumUI:RestoreNameplateNames()
+	SetCVar('nameplateShowFriendlyMinions', 1)
+	SetCVar('nameplateShowEnemies', 1)
+	SetCVar("nameplateShowFriends", 1)
+	SetCVar('UnitNameHostleNPC', 1)
+	SetCVar('UnitNameInteractiveNPC', 1)
+	SetCVar('UnitNameNPC', 1)
+	SetCVar('UnitNameEnemyGuardianName', 1)
+	SetCVar('UnitNameEnemyMinionName', 1)
+	SetCVar('UnitNameEnemyPetName', 1)
+	SetCVar('UnitNameFriendlyPetName', 1)
+	SetCVar('UnitNameEnemyPlayerName', 1)
+	SetCVar('UnitNameEnemyTotemName', 1)
+end
