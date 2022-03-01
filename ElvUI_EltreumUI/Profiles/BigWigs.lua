@@ -72,40 +72,40 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"]["Eltreum"] = {
-			["posx"] = 1072.500811813545,
-			["posy"] = 499.0887122036947,
+			["posx"] = 1072,
+			["posy"] = 500,
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"]["Eltreum"] = {
-			["BigWigsEmphasizeAnchor_y"] = 541.4666533765339,
+			["BigWigsEmphasizeAnchor_y"] = 541,
 			["visibleBarLimit"] = 15,
-			["BigWigsAnchor_width"] = 382.0000305175781,
+			["BigWigsAnchor_width"] = 382,
 			["BigWigsAnchor_y"] = 151,
 			["emphasizeGrowup"] = true,
 			["BigWigsAnchor_x"] = 1096,
 			["spacing"] = 14,
 			["emphasizeTime"] = 10,
 			["barStyle"] = "AddOnSkins Half-Bar",
-			["BigWigsEmphasizeAnchor_height"] = 11.00001621246338,
+			["BigWigsEmphasizeAnchor_height"] = 11,
 			["growup"] = true,
 			["BigWigsEmphasizeAnchor_width"] = 180,
 			["fontName"] = "Kimberley",
-			["BigWigsAnchor_height"] = 9.999991416931152,
+			["BigWigsAnchor_height"] = 10,
 			["visibleBarLimitEmph"] = 6,
 			["outline"] = "OUTLINE",
-			["BigWigsEmphasizeAnchor_x"] = 928.2226282354313,
+			["BigWigsEmphasizeAnchor_x"] = 928,
 			["texture"] = "Eltreum-Blank",
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"]["Eltreum"] = {
 			["fontSize"] = 16,
 			["fontName"] = "Kimberley",
-			["width"] = 135.2697906494141,
+			["width"] = 135,
 			["objects"] = {
 				["background"] = false,
 			},
 			["posy"] = 590,
-			["height"] = 93.07933044433594,
+			["height"] = 93,
 			["posx"] = 1080,
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] or {}
@@ -165,19 +165,19 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"]["Eltreum"] = {
 			["outline"] = "OUTLINE",
 			["fontSize"] = 13,
-			["BigWigsEmphasizeAnchor_height"] = 7.99999332427979,
-			["BigWigsEmphasizeAnchor_width"] = 162.031753540039,
-			["BigWigsAnchor_width"] = 385.587371826172,
-			["BigWigsAnchor_y"] = 168.033525275613,
+			["BigWigsEmphasizeAnchor_height"] = 8,
+			["BigWigsEmphasizeAnchor_width"] = 162,
+			["BigWigsAnchor_width"] = 385,
+			["BigWigsAnchor_y"] = 168,
 			["fontName"] = "Kimberley",
-			["BigWigsAnchor_height"] = 7.99999332427979,
-			["BigWigsEmphasizeAnchor_x"] = 818.844212129385,
+			["BigWigsAnchor_height"] = 8,
+			["BigWigsEmphasizeAnchor_x"] = 819,
 			["fontSizeEmph"] = 12,
-			["BigWigsAnchor_x"] = 1094.35555997652,
+			["BigWigsAnchor_x"] = 1094,
 			["spacing"] = 18,
 			["barStyle"] = "AddOnSkins Half-Bar",
 			["growup"] = true,
-			["BigWigsEmphasizeAnchor_y"] = 595.183449336742,
+			["BigWigsEmphasizeAnchor_y"] = 595,
 			["texture"] = "Eltreum-Blank",
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Wipe"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Wipe"]["profiles"] or {}
@@ -186,8 +186,8 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"]["Eltreum"] = {
-			["posx"] = 1072.500811813545,
-			["posy"] = 499.0887122036947,
+			["posx"] = 1073,
+			["posy"] = 500,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"]["Eltreum"] = {
@@ -212,7 +212,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["posx"] = 1080,
 			["posy"] = 650,
 			["fontName"] = "Kimberley",
-			["width"] = 139.999984741211,
+			["width"] = 140,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"]["Eltreum"] = {
@@ -249,8 +249,8 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"]["Eltreum"] = {
-			["posx"] = 179.7010284338503,
-			["posy"] = 753.3776360958364,
+			["posx"] = 180,
+			["posy"] = 754,
 		}
 
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] or {}
@@ -260,16 +260,16 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["BigWigsEmphasizeAnchor_height"] = 9,
 			["growup"] = true,
 			["fontName"] = "Kimberley",
-			["BigWigsAnchor_height"] = 12.0000057220459,
+			["BigWigsAnchor_height"] = 12,
 			["BigWigsAnchor_y"] = 152,
 			["spacing"] = 13,
-			["BigWigsEmphasizeAnchor_y"] = 610.26668882597,
+			["BigWigsEmphasizeAnchor_y"] = 610,
 			["texture"] = "Eltreum-Blank",
 			["barStyle"] = "AddOnSkins Half-Bar",
 			["BigWigsAnchor_x"] = 1100,
 			["fontSizeEmph"] = 11,
-			["BigWigsEmphasizeAnchor_x"] = 818.0444929047226,
-			["BigWigsEmphasizeAnchor_width"] = 161.7144317626953,
+			["BigWigsEmphasizeAnchor_x"] = 818,
+			["BigWigsEmphasizeAnchor_width"] = 162,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"]["Eltreum"] = {
@@ -279,7 +279,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"]["Eltreum"] = {
 			["fontSize"] = 16,
 			["fontName"] = "Kimberley",
-			["width"] = 139.9999847412109,
+			["width"] = 140,
 			["posy"] = 740,
 			["posx"] = 296,
 		}
