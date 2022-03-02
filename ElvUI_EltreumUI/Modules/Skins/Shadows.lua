@@ -690,6 +690,30 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
+			--tanks
+			for i = 1, 8 do
+				local tankmembers = {_G['ElvUF_TankUnitButton'..i]}
+				for _, frame in pairs(tankmembers) do
+					for _, button in pairs(tankmembers) do
+						if not button.shadow then
+							button:CreateShadow()
+						end
+					end
+				end
+			end
+
+			--assists
+			for i = 1, 8 do
+				local assistmembers = {_G['ElvUF_AssistUnitButton'..i]}
+				for _, frame in pairs(assistmembers) do
+					for _, button in pairs(assistmembers) do
+						if not button.shadow then
+							button:CreateShadow()
+						end
+					end
+				end
+			end
+
 			--runes
 			if E.myclass == 'DEATHKNIGHT' then
 				for i = 1, 6 do
@@ -878,3 +902,30 @@ function ElvUI_EltreumUI:UFAuraShadows(button)
 	end
 end
 hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraShadows)   --uf aura shadows
+
+
+function ElvUI_EltreumUI:RaidShadows()
+	--raid
+	for i = 1, 8 do
+		local raidgroups = {_G['ElvUF_RaidGroup'..i]}
+		for _, frame in pairs(raidgroups) do
+			if frame:IsShown() == true and _G['ElvUF_RaidGroup'..i.."UnitButton2"]:IsShown() == true then
+				if not frame.shadow then
+					frame:CreateShadow()
+				end
+			end
+		end
+	end
+
+	--raid40
+	for i = 1, 8 do
+		local raid40groups = {_G['ElvUF_Raid40Group'..i]}
+		for _, frame in pairs(raid40groups) do
+			if frame:IsShown() == true and _G['ElvUF_Raid40Group'..i.."UnitButton2"]:IsShown() == true then
+				if not frame.shadow then
+					frame:CreateShadow()
+				end
+			end
+		end
+	end
+end
