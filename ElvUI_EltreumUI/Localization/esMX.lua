@@ -850,4 +850,4 @@ L["You can switch to Light Mode or Gradient Mode by clicking the buttons below"]
 L["You can customize the textures and colors in Eltruism > Media"] = "Puedes personalizar las texturas y los colores en Eltruismo > Medios"
 L["Eltruism uses Transparent chat by default"] = "Eltruism utiliza por predeterminado el chat Transparente"
 L["You can switch to Dark Chat by clicking the buttons below"] = "Puedes cambiar al Chat Oscuro haciendo clic en los botones de abajo"
-L["Add Sockets and Enchants to the Inspect Frame"] = true
+L["Add Sockets and Enchants to the Inspect Frame"] = "Añadir zócalos y encantos al marco de inspección"
