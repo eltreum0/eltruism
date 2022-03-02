@@ -571,8 +571,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["keepSizeRatio"] = false
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["perrow"] = 7
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["sizeOverride"] = 30
-		E.db["unitframe"]["units"]["boss"]["debuffs"]["xOffset"] = -1
-		E.db["unitframe"]["units"]["boss"]["debuffs"]["yOffset"] = -12
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["xOffset"] = -3
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["yOffset"] = -11
 		E.db["unitframe"]["units"]["focus"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["focus"]["healPrediction"]["absorbStyle"] = "REVERSED"
 		E.db["unitframe"]["units"]["focus"]["CombatIcon"]["xOffset"] = -87
