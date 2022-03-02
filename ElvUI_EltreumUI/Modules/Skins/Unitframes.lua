@@ -1428,6 +1428,7 @@ EltruismChangeUnitTextureFrame:SetScript("OnEvent", function()
 		if IsInGroup() == true then
 			ElvUI_EltreumUI:ChangeGroupUnitframe()
 			ElvUI_EltreumUI:ChangeTankUnitframe()
+			ElvUI_EltreumUI:ChangeAssistUnitframe()
 		end
 	end
 end)
