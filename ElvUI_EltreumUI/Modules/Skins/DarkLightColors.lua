@@ -25,6 +25,7 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["party"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["pet"]["colorOverride"] = "FORCE_OFF"
+		E.db["unitframe"]["units"]["boss"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["raid"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["tank"]["colorOverride"] = "FORCE_OFF"
@@ -93,6 +94,7 @@ function ElvUI_EltreumUI:LightMode()
 		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
 		E.db["unitframe"]["units"]["target"]["colorOverride"] = "USE_DEFAULT"
 		E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["boss"]["colorOverride"] = "USE_DEFAULT"
 		E.db["unitframe"]["colors"]["transparentAurabars"] = false
 		E.db["unitframe"]["colors"]["transparentCastbar"] = false
 		E.db["unitframe"]["colors"]["transparentHealth"] = false
@@ -158,6 +160,7 @@ function ElvUI_EltreumUI:GradientMode()
 		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
 		E.db["unitframe"]["units"]["target"]["colorOverride"] = "USE_DEFAULT"
 		E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["boss"]["colorOverride"] = "USE_DEFAULT"
 		E.db["unitframe"]["colors"]["transparentAurabars"] = true
 		E.db["unitframe"]["colors"]["transparentCastbar"] = true
 		E.db["unitframe"]["colors"]["transparentHealth"] = false
