@@ -34,6 +34,9 @@ function ElvUI_EltreumUI:BlizzCombatText()
 				if not E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana then
 					SetCVar("enableFloatingCombatText", 0)
 				end
+				SetCVar("floatingCombatTextCombatHealing", 0)
+				SetCVar("floatingCombatTextCombatHealingAbsorbSelf", 0)
+				SetCVar("floatingCombatTextCombatHealingAbsorbTarget", 0)
 				SetCVar("floatingCombatTextCombatDamage", 0)
 			elseif E.TBC or E.Classic then
 				SetCVar("floatingCombatTextCombatDamage", 0)
