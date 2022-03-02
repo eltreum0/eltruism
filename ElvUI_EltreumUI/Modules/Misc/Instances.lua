@@ -11,6 +11,8 @@ E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismIn
 instancedifficulty:SetScript("OnEvent", function(_,event)
 	local _, instanceType = IsInInstance()
 	if (instanceType == "raid" or instanceType == "party" or instanceType == "scenario") and E.db.ElvUI_EltreumUI.instances.enable then
+		instancedifficulty:Show()
+		instancedifficulty.Text:Show()
 		instancedifficulty.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.instances.fontsize, E.db.general.fontStyle)
 		instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.instances.r, E.db.ElvUI_EltreumUI.instances.g, E.db.ElvUI_EltreumUI.instances.b)
 		instancedifficulty.Text:SetPoint("CENTER", _G["MoverEltruismInstanceDifficulty"])
