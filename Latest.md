@@ -2,6 +2,7 @@
 ___
 Added gradients to tanks, assists and boss unitframes\
 Added an option to disable sockets and enchants showing on inspection for TBC/Classic\
+Added shadows to raid, tank and assist frames\
 Fixed DBM profile missing fonts\
 Fixed Instance Text not hiding the Guild Icon\
 Fixed Boss debuff/buff icon position\
