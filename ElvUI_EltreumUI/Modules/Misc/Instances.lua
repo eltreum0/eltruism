@@ -47,9 +47,8 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 				_G["MiniMapChallengeMode"]:Hide()
 			end
 
-			if _G["GuildInstanceDifficulty"] then
+			if _G["GuildInstanceDifficulty"]:IsShown() == true then
 				instancedifficulty.Text:SetText(instancedifficulty.Text:GetText().." "..E.db.ElvUI_EltreumUI.instances.guild)
-				--_G["GuildInstanceDifficulty"]:Hide()
 				_G["GuildInstanceDifficulty"]:SetAlpha(0)
 			end
 		end
