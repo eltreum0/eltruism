@@ -232,9 +232,6 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["social"]["friendList"]["nameFont"]["style"] = "THICKOUTLINE"
 		E.db["WT"]["social"]["friendList"]["textures"]["factionIcon"] = true
 
-
-
-
 		E.db["WT"]["social"]["smartTab"]["enable"] = false
 		E.db["WT"]["tooltips"]["groupInfo"]["enable"] = false
 		E.db["WT"]["tooltips"]["groupInfo"]["title"] = false
