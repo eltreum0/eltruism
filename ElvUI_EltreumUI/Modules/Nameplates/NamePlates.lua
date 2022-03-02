@@ -314,8 +314,8 @@ end
 function ElvUI_EltreumUI:FriendlyNameplates()
 	local _, instanceType = IsInInstance()
 	local mapID = WorldMapFrame:GetMapID()
-	local nameplateShowOnlyNames = C_CVar.GetCVar('nameplateShowOnlyNames')
-	local nameplateShowFriends = C_CVar.GetCVar('nameplateShowFriends')
+	local nameplateShowOnlyNames = tostring(C_CVar.GetCVar('nameplateShowOnlyNames'))
+	local nameplateShowFriends = tostring(C_CVar.GetCVar('nameplateShowFriends'))
 	--print(mapID, instanceType)
 	if not InCombatLockdown() then
 		if E.Retail then
