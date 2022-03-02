@@ -903,7 +903,6 @@ function ElvUI_EltreumUI:UFAuraShadows(button)
 end
 hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraShadows)   --uf aura shadows
 
-
 function ElvUI_EltreumUI:RaidShadows()
 	--raid
 	for i = 1, 8 do
