@@ -905,36 +905,40 @@ hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraShadows)   --uf a
 
 function ElvUI_EltreumUI:RaidShadows()
 	--raid
-	for i = 1, 8 do
-		local raidgroups = {_G['ElvUF_RaidGroup'..i]}
-		for _, frame in pairs(raidgroups) do
-			if frame:IsShown() == true and _G['ElvUF_RaidGroup'..i.."UnitButton1"]:IsShown() == true then
-				if not frame.shadow then
-					frame:CreateShadow()
-				elseif frame.shadow and _G['ElvUF_RaidGroup'..i.."UnitButton1"]:IsShown() == false then
-					frame.shadow:Hide()
-				end
-			elseif frame:IsShown() == false then
-				if frame.shadow then
-					frame.shadow():Hide()
+	if _G['ElvUF_RaidGroup1'] then
+		for i = 1, 8 do
+			local raidgroups = {_G['ElvUF_RaidGroup'..i]}
+			for _, frame in pairs(raidgroups) do
+				if frame:IsShown() == true and _G['ElvUF_RaidGroup'..i.."UnitButton1"]:IsShown() == true then
+					if not frame.shadow then
+						frame:CreateShadow()
+					elseif frame.shadow and _G['ElvUF_RaidGroup'..i.."UnitButton1"]:IsShown() == false then
+						frame.shadow:Hide()
+					end
+				elseif frame:IsShown() == false then
+					if frame.shadow then
+						frame.shadow():Hide()
+					end
 				end
 			end
 		end
 	end
 
 	--raid40
-	for i = 1, 8 do
-		local raid40groups = {_G['ElvUF_Raid40Group'..i]}
-		for _, frame in pairs(raid40groups) do
-			if frame:IsShown() == true and _G['ElvUF_Raid40Group'..i.."UnitButton1"]:IsShown() == true then
-				if not frame.shadow then
-					frame:CreateShadow()
-				elseif frame.shadow and _G['ElvUF_Raid40Group'..i.."UnitButton1"]:IsShown() == false then
-					frame.shadow:Hide()
-				end
-			elseif frame:IsShown() == false then
-				if frame.shadow then
-					frame.shadow():Hide()
+	if _G['ElvUF_Raid40Group1'] then
+		for i = 1, 8 do
+			local raid40groups = {_G['ElvUF_Raid40Group'..i]}
+			for _, frame in pairs(raid40groups) do
+				if frame:IsShown() == true and _G['ElvUF_Raid40Group'..i.."UnitButton1"]:IsShown() == true then
+					if not frame.shadow then
+						frame:CreateShadow()
+					elseif frame.shadow and _G['ElvUF_Raid40Group'..i.."UnitButton1"]:IsShown() == false then
+						frame.shadow:Hide()
+					end
+				elseif frame:IsShown() == false then
+					if frame.shadow then
+						frame.shadow():Hide()
+					end
 				end
 			end
 		end
