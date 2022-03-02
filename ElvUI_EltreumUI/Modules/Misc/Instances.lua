@@ -55,5 +55,6 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 		instancedifficulty:Show()
 	else
 		instancedifficulty:Hide()
+		instancedifficulty.Text:Hide()
 	end
 end)
