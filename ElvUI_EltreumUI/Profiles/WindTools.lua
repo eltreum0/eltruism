@@ -108,6 +108,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["tooltips"]["progression"]["enable"] = false
 		E.private["WT"]["unitFrames"]["roleIcon"]["roleIconStyle"] = "DEFAULT"
 
+		E.db["WT"]["announcement"]["enable"] = false --disable
 		E.db["WT"]["announcement"]["combatResurrection"]["onlySourceIsPlayer"] = true
 		E.db["WT"]["announcement"]["combatResurrection"]["text"] = "Casting %spell% on %target%"
 		E.db["WT"]["announcement"]["goodbye"]["enable"] = false
