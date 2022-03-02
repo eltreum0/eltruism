@@ -810,19 +810,35 @@ function ElvUI_EltreumUI:ChangeTankUnitframe(unit)--(unit, r, g, b)
 				trueg = 0.54901838302612
 				trueb = 0.72941017150879
 			elseif unit1class == 'HUNTER' then
-				return
+				truer = 0.66666519641876
+				trueg = 0.82744914293289
+				trueb = 0.44705784320831
 			elseif unit1class == 'ROGUE' then
+				truer = 0.99999779462814
+				trueg = 0.95686066150665
+				trueb = 0.40784224867821
+			elseif unit1class == 'PRIEST' and E.db.ElvUI_EltreumUI.gradientmode.enable then --priest ruins everything gradient
 				return
-			elseif unit1class == 'PRIEST' then
-				return
+			elseif unit1class == 'PRIEST' and not E.db.ElvUI_EltreumUI.gradientmode.enable then
+				truer = 0.99999779462814
+				trueg = 0.99999779462814
+				trueb = 0.99999779462814
 			elseif unit1class == 'DEATHKNIGHT' then
-				return
+				truer = 0.76862573623657
+				trueg = 0.11764679849148
+				trueb = 0.2274504750967
 			elseif unit1class == 'SHAMAN' then
-				return
+				truer = 0
+				trueg = 0.4392147064209
+				trueb = 0.86666476726532
 			elseif unit1class == 'MAGE' then
-				return
+				truer = 0.24705828726292
+				trueg = 0.78039044141769
+				trueb = 0.92156660556793
 			elseif unit1class == 'WARLOCK' then
-				return
+				truer = 0.52941060066223
+				trueg = 0.53333216905594
+				trueb = 0.93333131074905
 			elseif unit1class == 'MONK' then
 				truer = 0
 				trueg = 0.99999779462814
@@ -846,19 +862,35 @@ function ElvUI_EltreumUI:ChangeTankUnitframe(unit)--(unit, r, g, b)
 				trueg = 0.54901838302612
 				trueb = 0.72941017150879
 			elseif unit1class == 'HUNTER' then
-				return
+				truer = 0.67058676481247
+				trueg = 0.8313707113266
+				trueb = 0.45097941160202
 			elseif unit1class == 'ROGUE' then
+				truer = 0.99999779462814
+				trueg = 0.96078222990036
+				trueb = 0.41176378726959
+			elseif unit1class == 'PRIEST' and E.db.ElvUI_EltreumUI.gradientmode.enable then --priest ruins everything gradient
 				return
-			elseif unit1class == 'PRIEST' then --priest ruins everything gradient
-				return
+			elseif unit1class == 'PRIEST' and not E.db.ElvUI_EltreumUI.gradientmode.enable then
+				truer = 0.99999779462814
+				trueg = 0.99999779462814
+				trueb = 0.99999779462814
 			elseif unit1class == 'SHAMAN' and E.TBC then
-				return
+				truer = 0
+				trueg = 0.4392147064209
+				trueb = 0.87058633565903
 			elseif unit1class == 'SHAMAN' and E.Classic then
-				return
+				truer = 0.96078222990036
+				trueg = 0.54901838302612
+				trueb = 0.72941017150879
 			elseif unit1class == 'MAGE' then
-				return
+				truer = 0.25097984075546
+				trueg = 0.78039044141769
+				trueb = 0.92156660556793
 			elseif unit1class == 'WARLOCK' then
-				return
+				truer = 0.52941060066223
+				trueg = 0.52941060066223
+				trueb = 0.92940974235535
 			elseif unit1class == 'DRUID' then
 				truer = 0.99999779462814
 				trueg = 0.49019500613213
