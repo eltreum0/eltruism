@@ -4,3 +4,4 @@ Added gradients to tanks, assists and boss unitframes\
 Added an option to disable sockets and enchants showing on inspection for TBC/Classic\
 Fixed DBM profile missing fonts\
 Fixed Instance Text not hiding the Guild Icon\
+Disabled the announcement in the Windtools profile\
