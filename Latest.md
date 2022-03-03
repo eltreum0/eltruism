@@ -3,4 +3,4 @@ ___
 Added an option to disable raid shadows\
 Fixed Instance Text not hiding in some situations\
 Fixed Raid Shadows positioning\
-Fixed an error with nameplate style filters in retail\	
+Fixed an error with nameplate style filters in retail
