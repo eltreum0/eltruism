@@ -1,64 +1,31 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local DT = E:GetModule("DataTexts")
-
---modified elvui config datatext for opening eltruism
 local InCombatLockdown = InCombatLockdown
-local displayString = ''
-local configText = 'Eltruism'
-local lastPanel
 
-local function OnEvent(self)
-	lastPanel = self
-	self.text:SetFormattedText(displayString, E.global.datatexts.settings.ElvUI.Label ~= '' and E.global.datatexts.settings.ElvUI.Label or configText)
-end
-
-local function OnEnter()
-	DT.tooltip:ClearLines()
-	DT.tooltip:AddDoubleLine(L["Click:"], L["Open Eltruism Configuration Panel"], 1, 1, 1)
-	DT.tooltip:Show()
-end
-
-local function OnClick(_, button)
-	if InCombatLockdown() then _G.UIErrorsFrame:AddMessage(E.InfoColor.._G.ERR_NOT_IN_COMBAT) return end
-
-	if button == 'LeftButton' then
-		E:ToggleOptionsUI()
-		E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
-	elseif button == 'RightButton' then
-		E:ToggleOptionsUI()
-		E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
+--honor datatext
+local function EltruismHonorDatatext(dt)
+	local honorCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo(Constants.CurrencyConsts.CLASSIC_HONOR_CURRENCY_ID)
+	local arenaCurrencyInfo
+	if E.TBC then
+		arenaCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo(Constants.CurrencyConsts.CLASSIC_ARENA_POINTS_CURRENCY_ID)
+		dt.text:SetFormattedText('%s: %s%s|r  %s: %s%s|r ', HONOR, ElvUI[1].media.hexvaluecolor, honorCurrencyInfo.quantity,ARENA, ElvUI[1].media.hexvaluecolor,arenaCurrencyInfo.quantity)
+	elseif E.Classic then
+		dt.text:SetFormattedText('%s: %s%s|r', HONOR, ElvUI[1].media.hexvaluecolor, honorCurrencyInfo.quantity)
+	elseif E.Retail then
+		local retailconquest = C_CurrencyInfo.GetCurrencyInfo(1602)
+		local retailhonor = C_CurrencyInfo.GetCurrencyInfo(1792)
+		dt.text:SetFormattedText('%s: %s%s|r  %s: %s%s|r ', COMBAT_HONOR_GAIN, ElvUI[1].media.hexvaluecolor, retailhonor.quantity,PVP_CONQUEST, ElvUI[1].media.hexvaluecolor,retailconquest.quantity)
 	end
 end
-
-local function ValueColorUpdate(hex)
-	displayString = strjoin('', hex, '%s|r')
-
-	if lastPanel then
-		OnEvent(lastPanel, 'ELVUI_COLOR_UPDATE')
-	end
-end
-E.valueColorUpdateFuncs[ValueColorUpdate] = true
-DT:RegisterDatatext('Eltruism', nil, nil, OnEvent, nil, OnClick, OnEnter, nil, L["Eltruism Config"], nil, ValueColorUpdate)
-
-
---other datatexts
-if E.Classic or E.TBC then
-
-	--honor datatext
-	local function EltruismHonorDatatext(dt)
-		local honorCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo(Constants.CurrencyConsts.CLASSIC_HONOR_CURRENCY_ID)
-		local arenaCurrencyInfo
-		if E.TBC then
-			arenaCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo(Constants.CurrencyConsts.CLASSIC_ARENA_POINTS_CURRENCY_ID)
-			dt.text:SetFormattedText('%s: %s%s|r  %s: %s%s|r ', HONOR, ElvUI[1].media.hexvaluecolor, honorCurrencyInfo.quantity,ARENA, ElvUI[1].media.hexvaluecolor,arenaCurrencyInfo.quantity)
-		elseif E.Classic then
-			dt.text:SetFormattedText('%s: %s%s|r', HONOR, ElvUI[1].media.hexvaluecolor, honorCurrencyInfo.quantity)
-		end
-	end
+if E.TBC or E.Classic then
 	DT:RegisterDatatext('Eltruism Honor/Arena Points', _G.CURRENCY, {'CHAT_MSG_CURRENCY', 'CURRENCY_DISPLAY_UPDATE'}, EltruismHonorDatatext, nil, nil, nil, nil, L["Eltruism Honor/Arena Points"])
+elseif E.Retail then
+	DT:RegisterDatatext('Eltruism Honor/Conquest Points', _G.CURRENCY, {'CHAT_MSG_CURRENCY', 'CURRENCY_DISPLAY_UPDATE'}, EltruismHonorDatatext, nil, nil, nil, nil, L["Eltruism Honor/Conquest Points"])
+end
 
-	--just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
+--just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
+if E.Classic or E.TBC then
 	if E.myclass ~= 'HUNTER' and E.myclass ~= 'ROGUE' and E.myclass ~= 'WARLOCK' and E.myclass ~= 'WARRIOR' then return end
 	local _G = _G
 	local select, wipe = _G.select, _G.wipe
@@ -81,9 +48,8 @@ if E.Classic or E.TBC then
 	local LE_ITEM_CLASS_QUIVER = LE_ITEM_CLASS_QUIVER
 	local LE_ITEM_CLASS_CONTAINER = LE_ITEM_CLASS_CONTAINER
 	local iconString = '|T%s:16:16:0:0:64:64:4:55:4:55|t'
-	local displayString = ''
-	local lastPanel
 	local itemName = {}
+	local displayString = ''
 	local waitingItemID
 	local function OnEvent(self, event, ...)
 		local name, count, itemID, itemEquipLoc
@@ -205,3 +171,39 @@ if E.Classic or E.TBC then
 	E.valueColorUpdateFuncs[ValueColorUpdate] = true
 	DT:RegisterDatatext("Eltruism Ammo", nil, {'BAG_UPDATE', 'UNIT_INVENTORY_CHANGED'}, OnEvent, nil, OnClick, OnEnter, nil, L["Eltruism Ammo"])
 end
+
+--modified elvui config panel open
+local lastPanelEltruismConfig
+local displayStringEltruismconfig = ''
+local function EltruismConfigOnEvent(self)
+	lastPanelEltruismConfig = self
+	self.text:SetFormattedText(displayStringEltruismconfig, E.global.datatexts.settings.ElvUI.Label ~= '' and E.global.datatexts.settings.ElvUI.Label or 'Eltruism')
+end
+
+local function EltruismConfigOnEnter()
+	DT.tooltip:ClearLines()
+	DT.tooltip:AddDoubleLine(L["Left Click:"], L["Open Eltruism Configuration Panel"], 1, 1, 1)
+	DT.tooltip:AddDoubleLine(L["Right Click:"], L["Open Eltruism Installation"], 1, 1, 1)
+	DT.tooltip:Show()
+end
+
+local function EltruismConfigOnClick(_, button)
+	if InCombatLockdown() then _G.UIErrorsFrame:AddMessage(E.InfoColor.._G.ERR_NOT_IN_COMBAT) return end
+
+	if button == 'LeftButton' then
+		E:ToggleOptionsUI()
+		E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
+	elseif button == 'RightButton' then
+		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
+	end
+end
+
+local function EltruismConfigValueColorUpdate(hex)
+	displayStringEltruismconfig = strjoin('', hex, '%s|r')
+
+	if lastPanelEltruismConfig then
+		EltruismConfigOnEvent(lastPanelEltruismConfig, 'ELVUI_COLOR_UPDATE')
+	end
+end
+E.valueColorUpdateFuncs[EltruismConfigValueColorUpdate] = true
+DT:RegisterDatatext('Eltruism', nil, nil, EltruismConfigOnEvent, nil, EltruismConfigOnClick, EltruismConfigOnEnter, nil, L["Eltruism Config"], nil, EltruismConfigValueColorUpdate)
