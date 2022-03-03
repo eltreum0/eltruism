@@ -869,3 +869,7 @@ L["Eltruism uses Transparent chat by default"] = "Eltruism benutzt Transparenten
 L["You can switch to Dark Chat by clicking the buttons below"] = "Du kannst zum Dark Chat wechseln, indem du auf den Button unten klickst" --is only one button?!
 L["Add Sockets and Enchants to the Inspect Frame"] = true
 L["Add Shadows to Raid Frames"] = true
+L["Left Click:"] = true
+L["Right Click:"] = true
+L["Open Eltruism Installation"] = true
+L["Eltruism Honor/Conquest Points"] = true

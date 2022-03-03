@@ -86,7 +86,6 @@ L["Buff filters were setup"] = true
 L["ElvUI Chat has been set."] = true
 -- Datatext
 L["Eltruism Ammo"] = true
-L["Click:"] = true
 L["Open Eltruism Configuration Panel"] = true
 L["Eltruism Config"] = true
 -- Fonts
@@ -836,3 +835,7 @@ L["Eltruism uses Transparent chat by default"] = true
 L["You can switch to Dark Chat by clicking the buttons below"] = true
 L["Add Sockets and Enchants to the Inspect Frame"] = true
 L["Add Shadows to Raid Frames"] = true
+L["Left Click:"] = true
+L["Right Click:"] = true
+L["Open Eltruism Installation"] = true
+L["Eltruism Honor/Conquest Points"] = true
