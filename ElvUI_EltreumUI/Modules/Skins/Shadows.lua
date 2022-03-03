@@ -904,40 +904,35 @@ end
 hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraShadows)   --uf aura shadows
 
 function ElvUI_EltreumUI:RaidShadows()
-	--raid
-	if _G['ElvUF_RaidGroup1'] then
+	local inraid = IsInRaid()
+	if inraid == true and E.private.unitframe.enable and E.db.ElvUI_EltreumUI.skins.shadows and E.db.ElvUI_EltreumUI.skins.shadowsraid then
+		--raid
 		for i = 1, 8 do
 			local raidgroups = {_G['ElvUF_RaidGroup'..i]}
 			for _, frame in pairs(raidgroups) do
-				if frame:IsShown() == true and _G['ElvUF_RaidGroup'..i.."UnitButton1"]:IsShown() == true then
-					if not frame.shadow then
-						frame:CreateShadow()
-					elseif frame.shadow and _G['ElvUF_RaidGroup'..i.."UnitButton1"]:IsShown() == false then
-						frame.shadow:Hide()
-					end
-				elseif frame:IsShown() == false then
-					if frame.shadow then
-						frame.shadow():Hide()
+				for k = 1, 5 do
+					local slots = {_G['ElvUF_RaidGroup'..i..'UnitButton'..k]}
+					for _, button in pairs(slots) do
+						if not button.shadow then
+							button:CreateShadow()
+							button.shadow:SetParent(button)
+						end
 					end
 				end
 			end
 		end
-	end
 
-	--raid40
-	if _G['ElvUF_Raid40Group1'] then
+		--raid40
 		for i = 1, 8 do
 			local raid40groups = {_G['ElvUF_Raid40Group'..i]}
 			for _, frame in pairs(raid40groups) do
-				if frame:IsShown() == true and _G['ElvUF_Raid40Group'..i.."UnitButton1"]:IsShown() == true then
-					if not frame.shadow then
-						frame:CreateShadow()
-					elseif frame.shadow and _G['ElvUF_Raid40Group'..i.."UnitButton1"]:IsShown() == false then
-						frame.shadow:Hide()
-					end
-				elseif frame:IsShown() == false then
-					if frame.shadow then
-						frame.shadow():Hide()
+				for k = 1, 5 do
+					local slots = {_G['ElvUF_Raid40Group'..i..'UnitButton'..k]}
+					for _, button in pairs(slots) do
+						if not button.shadow then
+							button:CreateShadow()
+							button.shadow:SetParent(button)
+						end
 					end
 				end
 			end
