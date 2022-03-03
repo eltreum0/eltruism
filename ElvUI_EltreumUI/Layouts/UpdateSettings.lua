@@ -30,6 +30,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.shadows.aura = true
 	E.db.ElvUI_EltreumUI.shadows.ufaura = true
 	E.db.ElvUI_EltreumUI.shadows.actionbars = true
+	E.db.ElvUI_EltreumUI.shadows.raid = true
 	E.db.ElvUI_EltreumUI.tbctalents.enable = true
 	E.db.ElvUI_EltreumUI.dynamicdatatext.enable = true
 	E.db.ElvUI_EltreumUI.nameplatelevel.enable = true
