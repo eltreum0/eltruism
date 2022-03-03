@@ -905,7 +905,7 @@ hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraShadows)   --uf a
 
 function ElvUI_EltreumUI:RaidShadows()
 	local inraid = IsInRaid()
-	if inraid == true and E.private.unitframe.enable and E.db.ElvUI_EltreumUI.skins.shadows and E.db.ElvUI_EltreumUI.skins.shadowsraid then
+	if inraid == true and E.private.unitframe.enable and E.db.ElvUI_EltreumUI.skins.shadows and E.db.ElvUI_EltreumUI.shadows.raid then
 		--raid
 		for i = 1, 8 do
 			local raidgroups = {_G['ElvUF_RaidGroup'..i]}

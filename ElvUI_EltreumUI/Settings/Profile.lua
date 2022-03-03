@@ -73,6 +73,7 @@ P.ElvUI_EltreumUI = {
 	},
 
 	shadows = {
+		raid = true,
 		aura = false,
 		ufaura = false,
 		actionbars = false,
