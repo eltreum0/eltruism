@@ -3940,10 +3940,10 @@ function ElvUI_EltreumUI:Configtable()
 							textureadjust = {
 								order = 16,
 								type = 'toggle',
-								name = L["Auto Adjust Textures"],
-								desc = L["Automatically adjust textures for the current mode"],
-								get = function() return E.db.ElvUI_EltreumUI.modetexture end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.modetexture = value end,
+								name = L["Dark Power Background"],
+								desc = L["Sets Class Power backgrounds to be black"],
+								get = function() return E.db.ElvUI_EltreumUI.darkpowercolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.darkpowercolor = value end,
 							},
 							dark = {
 								order = 17,

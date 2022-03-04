@@ -55,7 +55,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:RaidShadows() --adds shadows to raid groups
 	ElvUI_EltreumUI:AutoScreenshot() --takes screenshots when certain events are fired
 	ElvUI_EltreumUI:FriendlyNameplates() -- controls hiding healthbar from friendly nameplates inside instances
-	ElvUI_EltreumUI:TextureMode() -- checks for light mode in order to set texture to be class based, fired only when option is enabled
+	ElvUI_EltreumUI:ShamanTextureMode() -- applies the dark color to shaman powers in TBC/Classic
 	ElvUI_EltreumUI:Anchors()  --creates anchors for error frame and weakaura that can be used to attack weakauras to elvui's unitframe visibility settings
 	ElvUI_EltreumUI:ChatRoleSwapIcons() --adds custom role icons in chat when swapping roles
 	ElvUI_EltreumUI:DynamicChatFade() --adds chat fade/hide functions
@@ -195,7 +195,7 @@ function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
 	ElvUI_EltreumUI:RaidDeathGroupCheck()
 	--ElvUI_EltreumUI:Shadows()
 	ElvUI_EltreumUI:RaidShadows()
-	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture then
+	if E.db.ElvUI_EltreumUI.lightmode then
 		ElvUI_EltreumUI:ChangeGroupUnitframe()
 	end
 end

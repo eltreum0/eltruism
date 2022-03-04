@@ -70,7 +70,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.loottext.enable = true
 	E.db.ElvUI_EltreumUI.loottext.fontsetting = true
 	E.db.ElvUI_EltreumUI.loottext.combatindicator = true
-	E.db.ElvUI_EltreumUI.modetexture = true
+	E.db.ElvUI_EltreumUI.darkpowercolor = true
 	E.db.ElvUI_EltreumUI.sparkcustomcolor.enable = true
 	E.db.ElvUI_EltreumUI.otherstuff.fastloot = true
 	E.db.ElvUI_EltreumUI.otherstuff.screenshot = true

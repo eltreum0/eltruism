@@ -121,7 +121,6 @@ function ElvUI_EltreumUI:LightMode()
 		end
 		E.db.ElvUI_EltreumUI.lightmode = true
 		E.db.ElvUI_EltreumUI.gradientmode.enable = false
-		E.db.ElvUI_EltreumUI.modetexture = true
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
@@ -189,7 +188,6 @@ function ElvUI_EltreumUI:GradientMode()
 		E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget = true
 		E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits = true
 		E.db.ElvUI_EltreumUI.lightmode = true
-		E.db.ElvUI_EltreumUI.modetexture = true
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
@@ -200,21 +198,21 @@ end
 
 local NP = E:GetModule('NamePlates')
 hooksecurefunc(NP, 'Initialize', function()
-	if E.db.ElvUI_EltreumUI.modetexture then
+	if E.db.ElvUI_EltreumUI.darkpowercolor then
 		NP.multiplier = 0
 	end
 end)
 if E.Retail then
 	hooksecurefunc(NP, 'Construct_Runes', function()
-		if E.db.ElvUI_EltreumUI.modetexture then
+		if E.db.ElvUI_EltreumUI.darkpowercolor then
 			NP.multiplier = 0
 		end
 	end)
 end
 
-function ElvUI_EltreumUI:TextureMode()
+function ElvUI_EltreumUI:ShamanTextureMode()
 	if (E.TBC or E.Classic) and E.myclass == 'SHAMAN' then
-		if E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
+		if E.db.ElvUI_EltreumUI.darkpowercolor and E.private.unitframe.enable then
 			local UF = E:GetModule('UnitFrames') --only classpower that is actually in UF instead of NP
 			local function TotemBackground()
 				local header = _G['ElvUF_Player']

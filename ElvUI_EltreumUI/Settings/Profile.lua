@@ -376,6 +376,7 @@ P.ElvUI_EltreumUI = {
 		enable = false,
 		enableplayertarget = true,
 		enablegroupunits = true,
+		enableplayercastbar = true,
 		orientation = "HORIZONTAL",
 		texture = "Eltreum-Blank",
 		customcolor = false,
@@ -470,10 +471,18 @@ P.ElvUI_EltreumUI = {
 		monkcustomcolorG2 = 1,
 		monkcustomcolorB1 = 0.45882352941176,
 		monkcustomcolorB2 = 0.74901960784314,
+
+		playercastbarR1 = 0,
+		playercastbarR2 = 0,
+		playercastbarG1 = 0,
+		playercastbarG2 = 0,
+		playercastbarB1 = 0,
+		playercastbarB2 = 0,
 	},
 
 	ufcustomtexture = {
 		enable = false,
+		castbartexture = "Eltreum-Blank",
 		backdroptexture = "Eltreum-Blank",
 		backdropalpha = 1,
 		targettexture = "Eltreum-Blank",

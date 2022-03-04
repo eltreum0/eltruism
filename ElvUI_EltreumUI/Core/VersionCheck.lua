@@ -193,5 +193,11 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		end
 	elseif E.private.ElvUI_EltreumUI.install_version < "2.7.5" then
 		ElvUI_EltreumUI:Print('version 2.7.3 changed the database. In version 2.7.5 a button has been added in Eltruism > Installer to reset Eltruism settings if you wish')
+	elseif E.private.ElvUI_EltreumUI.install_version < "2.9.2" then
+		if E.db.ElvUI_EltreumUI.modetexture == true then
+			E.db.ElvUI_EltreumUI.darkpowercolor = true
+		elseif E.db.ElvUI_EltreumUI.modetexture == false or E.db.ElvUI_EltreumUI.modetexture == nil then
+			E.db.ElvUI_EltreumUI.darkpowercolor = false
+		end
 	end
 end
