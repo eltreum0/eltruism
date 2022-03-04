@@ -1,18 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local UF = E:GetModule('UnitFrames')
 
---elvui spark hook
-local function EltruismSpark()
-	if E.db.ElvUI_EltreumUI.sparkcustomcolor.enable and E.private.unitframe.enable then
-		local castbar = _G["ElvUF_Player_CastBar"]
-		castbar.Spark_ = castbar:CreateTexture(nil, 'OVERLAY')
-		castbar.Spark_:SetTexture(E.media.blankTex)
-		castbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.sparkcustomcolor.b, 1)
-		castbar.Spark_:Size(E.db.ElvUI_EltreumUI.sparkcustomcolor.width)
-	end
-end
-hooksecurefunc(UF, 'Construct_Castbar', EltruismSpark)
-
 function ElvUI_EltreumUI:LeaderIndicatorSize(frame)
 	frame.LeaderIndicator:Size(E.db.ElvUI_EltreumUI.otherstuff.leadersize)
 	frame.AssistantIndicator:Size(E.db.ElvUI_EltreumUI.otherstuff.leadersize)
@@ -126,8 +114,31 @@ EltruismGradientColorTableLoad:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:GradientColorTableUpdate()
 end)
 
+--elvui texture/spark hook
+local function EltruismCastBarTexture()
+	local castbar = _G["ElvUF_Player_CastBar"]
+	if E.db.ElvUI_EltreumUI.sparkcustomcolor.enable and E.private.unitframe.enable then
+		castbar.Spark_ = castbar:CreateTexture(nil, 'OVERLAY')
+		castbar.Spark_:SetTexture(E.media.blankTex)
+		castbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.sparkcustomcolor.b, 1)
+		castbar.Spark_:Size(E.db.ElvUI_EltreumUI.sparkcustomcolor.width)
+	end
+	if E.db.ElvUI_EltreumUI.ufcustomtexture then
+		castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.castbartexture))
+	end
+	if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar then
+		if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+			castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2)
+		else
+			castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients[E.myclass]["r1"], unitframegradients[E.myclass]["g1"], unitframegradients[E.myclass]["b1"], unitframegradients[E.myclass]["r2"], unitframegradients[E.myclass]["g2"], unitframegradients[E.myclass]["b2"])
+		end
+	end
+end
+hooksecurefunc(UF, 'Construct_Castbar', EltruismCastBarTexture)
+hooksecurefunc(UF, 'PostCastStart', EltruismCastBarTexture)
+
 function ElvUI_EltreumUI:ChangeUnitTexture()
-	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
+	if E.db.ElvUI_EltreumUI.lightmode and E.private.unitframe.enable then
 		--target
 		local targetbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga"
 		local _, targetclass = UnitClass("target")
@@ -435,7 +446,7 @@ end
 
 function ElvUI_EltreumUI:ChangePlayerTexture()
 	--print("change unit texture spam")
-	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable then
+	if E.db.ElvUI_EltreumUI.lightmode and E.private.unitframe.enable then
 		--player
 		local playertexture = unitframeclass[E.myclass]
 		if UF.units.player then
@@ -460,7 +471,7 @@ function ElvUI_EltreumUI:ChangePlayerTexture()
 end
 
 function ElvUI_EltreumUI:ChangeGroupUnitframe(unit)--(unit, r, g, b)
-	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable and UnitExists(unit) then --and units[unit] == true then
+	if E.db.ElvUI_EltreumUI.lightmode and E.private.unitframe.enable and UnitExists(unit) then --and units[unit] == true then
 		--local header = _G['ElvUF_Raid40'] or _G['ElvUF_Raid'] or _G['ElvUF_Party']
 		local header = nil
 		if E.Retail then
@@ -791,7 +802,7 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit)--(unit, r, g, b)
 end
 
 function ElvUI_EltreumUI:ChangeTankUnitframe(unit)--(unit, r, g, b)
-	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable and UnitExists(unit) then --and units[unit] == true then
+	if E.db.ElvUI_EltreumUI.lightmode and E.private.unitframe.enable and UnitExists(unit) then --and units[unit] == true then
 		local header = _G['ElvUF_Tank']
 		local _, unit1class = UnitClass(unit)
 		if not unit1class then
@@ -1098,7 +1109,7 @@ function ElvUI_EltreumUI:ChangeTankUnitframe(unit)--(unit, r, g, b)
 end
 
 function ElvUI_EltreumUI:ChangeAssistUnitframe(unit)--(unit, r, g, b)
-	if E.db.ElvUI_EltreumUI.lightmode and E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable and UnitExists(unit) then --and units[unit] == true then
+	if E.db.ElvUI_EltreumUI.lightmode and E.private.unitframe.enable and UnitExists(unit) then
 		local header = _G['ElvUF_Assist']
 		local _, unit1class = UnitClass(unit)
 		if not unit1class then
@@ -1406,12 +1417,70 @@ end
 
 --Unitframe Backdrop Texture
 function ElvUI_EltreumUI:BackdropTexture(_, _, backdropTex)
-	if E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable and not E.db.ElvUI_EltreumUI.lightmode then
+	if E.private.unitframe.enable and not E.db.ElvUI_EltreumUI.lightmode then
 		backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
 		backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
 		--backdropTex:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients[E.myclass]["r1"], unitframecustomgradients[E.myclass]["g1"], unitframecustomgradients[E.myclass]["b1"], unitframecustomgradients[E.myclass]["r2"], unitframecustomgradients[E.myclass]["g2"], unitframecustomgradients[E.myclass]["b2"])
 	end
 end
+
+--[[
+	function ElvUI_EltreumUI:BackdropTexture(isTransparent, statusBar, backdropTex, adjustBackdropPoints, invertColors, reverseFill)
+		statusBar.isTransparent = isTransparent
+		statusBar.invertColors = invertColors
+		statusBar.backdropTex = backdropTex
+
+		if not statusBar.hookedColor then
+			hooksecurefunc(statusBar, 'SetStatusBarColor', UF.UpdateBackdropTextureColor)
+			statusBar.hookedColor = true
+		end
+
+		local orientation = statusBar:GetOrientation()
+		local barTexture = statusBar:GetStatusBarTexture() -- This fixes Center Pixel offset problem (normally this has > 2 points)
+		barTexture:SetInside(nil, 0, 0) -- This also unsnaps the texture
+
+		UF:HandleStatusBarTemplate(statusBar, statusBar:GetParent(), isTransparent)
+
+		if isTransparent then
+
+			if not E.db.ElvUI_EltreumUI.lightmode then
+				backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
+				backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+				--statusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", 1,0,0,0,0,1)
+				--backdropTex:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients[E.myclass]["r1"], unitframecustomgradients[E.myclass]["g1"], unitframecustomgradients[E.myclass]["b1"], unitframecustomgradients[E.myclass]["r2"], unitframecustomgradients[E.myclass]["g2"], unitframecustomgradients[E.myclass]["b2"])
+			elseif E.db.ElvUI_EltreumUI.lightmode then
+				statusBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
+				backdropTex:SetTexture(E.LSM:Fetch("statusbar", "Eltreum-Blank"))
+				backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+			end
+			--statusBar:SetStatusBarTexture(0, 0, 0, 0)
+			--UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.media.blankTex)
+			UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
+
+			UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
+		else
+			if not E.db.ElvUI_EltreumUI.lightmode then
+				backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
+				backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+				--statusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", 1,0,0,0,0,1)
+				--backdropTex:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients[E.myclass]["r1"], unitframecustomgradients[E.myclass]["g1"], unitframecustomgradients[E.myclass]["b1"], unitframecustomgradients[E.myclass]["r2"], unitframecustomgradients[E.myclass]["g2"], unitframecustomgradients[E.myclass]["b2"])
+			end
+			if E.db.ElvUI_EltreumUI.lightmode then
+				statusBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
+				backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+
+				UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
+			else
+				local texture = E.LSM:Fetch('statusbar', E.db.statusbar)
+				statusBar:SetStatusBarTexture(texture)
+				UF:Update_StatusBar(statusBar.bg or statusBar.BG, texture)
+			end
+			if adjustBackdropPoints then
+				UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
+			end
+		end
+	end
+]]
 hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
 
 local EltruismChangeUnitTextureFrame = CreateFrame("FRAME")
@@ -1422,7 +1491,7 @@ EltruismChangeUnitTextureFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
 EltruismChangeUnitTextureFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 EltruismChangeUnitTextureFrame:RegisterEvent("GROUP_ROSTER_UPDATE")
 EltruismChangeUnitTextureFrame:SetScript("OnEvent", function()
-	if E.db.ElvUI_EltreumUI.modetexture and E.private.unitframe.enable and E.db.ElvUI_EltreumUI.lightmode then
+	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.lightmode then
 		ElvUI_EltreumUI:ChangeUnitTexture()
 		ElvUI_EltreumUI:ChangePlayerTexture()
 		if IsInGroup() == true then
