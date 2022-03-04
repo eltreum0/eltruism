@@ -11,7 +11,6 @@
 	<Script file='Misc/InstantLoot.lua'/>
 	<Script file='Misc/Instances.lua'/>
 	<Script file='Misc/LootText.lua'/>
-	<Script file='Misc/Maps.lua'/>
 	<Script file='Misc/PartyRaid.lua'/>
 	<Script file='Misc/Quests.lua'/>
 	<Script file='Misc/QuestItem.lua'/>
