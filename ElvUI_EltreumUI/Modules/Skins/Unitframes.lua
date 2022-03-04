@@ -115,27 +115,30 @@ EltruismGradientColorTableLoad:SetScript("OnEvent", function()
 end)
 
 --elvui texture/spark hook
-local function EltruismCastBarTexture()
-	local castbar = _G["ElvUF_Player_CastBar"]
-	if E.db.ElvUI_EltreumUI.sparkcustomcolor.enable and E.private.unitframe.enable then
-		castbar.Spark_ = castbar:CreateTexture(nil, 'OVERLAY')
-		castbar.Spark_:SetTexture(E.media.blankTex)
-		castbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.sparkcustomcolor.b, 1)
-		castbar.Spark_:Size(E.db.ElvUI_EltreumUI.sparkcustomcolor.width)
-	end
-	if E.db.ElvUI_EltreumUI.ufcustomtexture then
-		castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.castbartexture))
-	end
-	if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar then
-		if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-			castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2)
-		else
-			castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients[E.myclass]["r1"], unitframegradients[E.myclass]["g1"], unitframegradients[E.myclass]["b1"], unitframegradients[E.myclass]["r2"], unitframegradients[E.myclass]["g2"], unitframegradients[E.myclass]["b2"])
+function ElvUI_EltreumUI:CastBarTexture(unit)
+	if unit == 'player' then
+		local castbar = _G["ElvUF_Player_CastBar"]
+		if E.db.ElvUI_EltreumUI.sparkcustomcolor.enable and E.private.unitframe.enable then
+			castbar.Spark_ = castbar:CreateTexture(nil, 'OVERLAY')
+			castbar.Spark_:SetTexture(E.media.blankTex)
+			castbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.sparkcustomcolor.b, 1)
+			castbar.Spark_:Size(E.db.ElvUI_EltreumUI.sparkcustomcolor.width)
+		end
+		if E.db.ElvUI_EltreumUI.ufcustomtexture and not E.db.ElvUI_EltreumUI.gradientmode.enable then
+			castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.castbartexture))
+		end
+		if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar then
+			castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2)
+			else
+				castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients[E.myclass]["r1"], unitframegradients[E.myclass]["g1"], unitframegradients[E.myclass]["b1"], unitframegradients[E.myclass]["r2"], unitframegradients[E.myclass]["g2"], unitframegradients[E.myclass]["b2"])
+			end
 		end
 	end
 end
-hooksecurefunc(UF, 'Construct_Castbar', EltruismCastBarTexture)
-hooksecurefunc(UF, 'PostCastStart', EltruismCastBarTexture)
+hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastBarTexture)
+hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastBarTexture)
 
 function ElvUI_EltreumUI:ChangeUnitTexture()
 	if E.db.ElvUI_EltreumUI.lightmode and E.private.unitframe.enable then
