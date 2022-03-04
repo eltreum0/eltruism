@@ -376,7 +376,7 @@ P.ElvUI_EltreumUI = {
 		enable = false,
 		enableplayertarget = true,
 		enablegroupunits = true,
-		enableplayercastbar = true,
+		enableplayercastbar = false,
 		orientation = "HORIZONTAL",
 		texture = "Eltreum-Blank",
 		customcolor = false,
@@ -423,13 +423,6 @@ P.ElvUI_EltreumUI = {
 		priestcustomcolorB1 = 0.98823529411765,
 		priestcustomcolorB2 = 0.3568627450980392,
 
-		--deathknightcustomcolorR1 = 0.76862745098039,
-		--deathknightcustomcolorR2 = 0.76862745098039,
-		--deathknightcustomcolorG1 = 0.11764705882353,
-		--deathknightcustomcolorG2 = 0.30588235294118,
-		--deathknightcustomcolorB1 = 0.22745098039216,
-		--deathknightcustomcolorB2 = 0.40392156862745,
-
 		deathknightcustomcolorR1 = 0.49803921568627,
 		deathknightcustomcolorR2 = 0.76862745098039,
 		deathknightcustomcolorG1 = 0.074509803921569,
@@ -473,11 +466,11 @@ P.ElvUI_EltreumUI = {
 		monkcustomcolorB2 = 0.74901960784314,
 
 		playercastbarR1 = 0,
-		playercastbarR2 = 0,
-		playercastbarG1 = 0,
-		playercastbarG2 = 0,
-		playercastbarB1 = 0,
-		playercastbarB2 = 0,
+		playercastbarR2 = 0.67,
+		playercastbarG1 = 0.6,
+		playercastbarG2 = 0.94,
+		playercastbarB1 = 1,
+		playercastbarB2 = 1,
 	},
 
 	ufcustomtexture = {

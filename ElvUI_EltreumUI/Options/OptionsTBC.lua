@@ -3924,26 +3924,28 @@ function ElvUI_EltreumUI:Configtable()
 								func = function() ElvUI_EltreumUI:SetupFontsOutlineThick() E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('CONFIG_RL') end,
 								confirm = true,
 							},
-							header4 = {
+							darkpowerdesc = {
 								order = 14,
 								type = "description",
-								name = "",
-								width = 'full',
+								name = L["Change the Class Power background"],
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							darklightmode123123 = {
-								order = 15,
-								type = "description",
-								name = L["Change the look of frames to Dark or Light mode"],
 								width = "full",
 							},
-							textureadjust = {
-								order = 16,
+							darkpowerenable = {
+								order = 15,
 								type = 'toggle',
+								width = "full",
 								name = L["Dark Power Background"],
 								desc = L["Sets Class Power backgrounds to be black"],
 								get = function() return E.db.ElvUI_EltreumUI.darkpowercolor end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.darkpowercolor = value end,
+							},
+							darklightmode = {
+								order = 16,
+								type = "description",
+								name = L["Change the look of frames to Dark or Light mode"],
+								width = "full",
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							dark = {
 								order = 17,
@@ -3954,7 +3956,7 @@ function ElvUI_EltreumUI:Configtable()
 								confirm = true,
 							},
 							light = {
-								order = 18,
+								order = 17,
 								type = 'execute',
 								name = L["Light Mode"],
 								desc = L["This will set colors to class based with black backgrounds when losing health"],
@@ -4090,6 +4092,36 @@ function ElvUI_EltreumUI:Configtable()
 						name = L["Unitframes"],
 						order = 2,
 						args = {
+							headerufbackdrop = {
+								order = 1,
+								type = "description",
+								name = L["Backdrops"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							ufbackdropTex = {
+								order = 2,
+								type = 'select',
+								--width = "double",
+								dialogControl = 'LSM30_Statusbar',
+								name = L["Backdrop Texture"],
+								desc = L["Select a Texture"],
+								values = AceGUIWidgetLSMlists.statusbar,
+								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture = key end,
+							},
+							ufbackdropTexalpha = {
+								type = 'range',
+								name = L["Backdrop Alpha"],
+								desc = L["Change the transparency of the backdrop"],
+								order = 3,
+								min = 0.1,
+								max = 1,
+								step = 0.01,
+								--width = "double",
+								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha = value end,
+							},
 							unitframesdesc = {
 								order = 10,
 								type = "description",
@@ -4119,8 +4151,20 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.playertexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.playertexture = key ElvUI_EltreumUI:ChangePlayerTexture() end,
 							},
-							targettexture = {
+							castbartex = {
 								order = 13,
+								type = 'select',
+								width = "double",
+								dialogControl = 'LSM30_Statusbar',
+								name = L["Player Castbar Texture"],
+								desc = L["Select a Texture"],
+								values = AceGUIWidgetLSMlists.statusbar,
+								disabled = function() return not E.db.ElvUI_EltreumUI.ufcustomtexture.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.castbartexture end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.castbartexture = key end,
+							},
+							targettexture = {
+								order = 14,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -4132,7 +4176,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.targettexture = key end,
 							},
 							targettargettexture = {
-								order = 14,
+								order = 15,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -4144,7 +4188,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.targettargettexture = key end,
 							},
 							focustexture = {
-								order = 15,
+								order = 16,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -4154,36 +4198,6 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.focustexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.focustexture = key end,
-							},
-							headerufbackdrop = {
-								order = 16,
-								type = "description",
-								name = L["Backdrops"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							ufbackdropTex = {
-								order = 17,
-								type = 'select',
-								--width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Backdrop Texture"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture = key end,
-							},
-							ufbackdropTexalpha = {
-								type = 'range',
-								name = L["Backdrop Alpha"],
-								desc = L["Change the transparency of the backdrop"],
-								order = 18,
-								min = 0.1,
-								max = 1,
-								step = 0.01,
-								--width = "double",
-								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha = value end,
 							},
 							headerclasses = {
 								order = 98,
@@ -4344,6 +4358,17 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits = value end,
 							},
+							enablecastbargradient = {
+								order = 2,
+								type = 'toggle',
+								name = L['Enable for Player Castbar'],
+								desc = L["Enable Gradient colors for Player Castbar"],
+								width = 'full',
+								--disabled = function() return true end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar = value end,
+							},
 							enablecustomcolor = {
 								order = 3,
 								type = 'toggle',
@@ -4378,6 +4403,45 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.texture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.gradientmode.texture = key ElvUI_EltreumUI:ChangePlayerTexture() ElvUI_EltreumUI:ChangeUnitTexture() end,
+							},
+							headercastbar = {
+								order = 4,
+								type = "description",
+								name = L["Castbar"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gradientcast1 = {
+								order = 5,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.playercastbarR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.playercastbarG1
+									local db = P.ElvUI_EltreumUI.gradientmode.playercastbarB1
+									return E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1 = r, g, b
+								end,
+							},
+							gradientcast2 = {
+								order = 6,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.playercastbarR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.playercastbarG2
+									local db = P.ElvUI_EltreumUI.gradientmode.playercastbarB2
+									return E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2 = r, g, b
+								end,
 							},
 							header4 = {
 								order = 10,
