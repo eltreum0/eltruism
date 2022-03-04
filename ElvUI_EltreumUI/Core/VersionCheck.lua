@@ -196,8 +196,6 @@ function ElvUI_EltreumUI:OldVersionCheck()
 	elseif E.private.ElvUI_EltreumUI.install_version < "2.9.2" then
 		if E.db.ElvUI_EltreumUI.modetexture == true then
 			E.db.ElvUI_EltreumUI.darkpowercolor = true
-		elseif E.db.ElvUI_EltreumUI.modetexture == false or E.db.ElvUI_EltreumUI.modetexture == nil then
-			E.db.ElvUI_EltreumUI.darkpowercolor = false
 		end
 	end
 end
