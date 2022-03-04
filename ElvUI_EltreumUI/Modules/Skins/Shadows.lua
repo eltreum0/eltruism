@@ -682,11 +682,14 @@ function ElvUI_EltreumUI:Shadows()
 			for i = 1, 5 do
 				local bossmembers = {_G['ElvUF_Boss'..i]}
 				for _, frame in pairs(bossmembers) do
-					for _, button in pairs(bossmembers) do
+					if not frame.shadow then
+						frame:CreateShadow()
+					end
+					--[[for _, button in pairs(bossmembers) do
 						if not button.shadow then
 							button:CreateShadow()
 						end
-					end
+					end]]
 				end
 			end
 
@@ -694,11 +697,14 @@ function ElvUI_EltreumUI:Shadows()
 			for i = 1, 8 do
 				local tankmembers = {_G['ElvUF_TankUnitButton'..i]}
 				for _, frame in pairs(tankmembers) do
-					for _, button in pairs(tankmembers) do
+					if not frame.shadow then
+						frame:CreateShadow()
+					end
+					--[[for _, button in pairs(tankmembers) do
 						if not button.shadow then
 							button:CreateShadow()
 						end
-					end
+					end]]
 				end
 			end
 
@@ -706,11 +712,14 @@ function ElvUI_EltreumUI:Shadows()
 			for i = 1, 8 do
 				local assistmembers = {_G['ElvUF_AssistUnitButton'..i]}
 				for _, frame in pairs(assistmembers) do
-					for _, button in pairs(assistmembers) do
+					if not frame.shadow then
+						frame:CreateShadow()
+					end
+					--[[for _, button in pairs(assistmembers) do
 						if not button.shadow then
 							button:CreateShadow()
 						end
-					end
+					end]]
 				end
 			end
 
