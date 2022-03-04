@@ -794,8 +794,6 @@ L["Restore Unit Names hidden by Hide NPC Names"] = "Wiederherstellen der Einheit
 L["This will set the background to be a grey color"] = "Das wird den Hintergrund in Grau ändern"
 L["This will set the background to be a black color"] = "Das wird den Hintergrund in Schwarz ändern"
 L["Set Width of the Spark (Default 3)"] = "Höhe des Zauberfunkens ändern (Standard: 3)"
-L["Auto Adjust Textures"] = "Texturen automatisch anpassen"
-L["Automatically adjust textures for the current mode"] = "Automatisches anpassen der Texturen im aktuell ausgewählten Mode"
 L["Customize Player CastBar Spark"] = "Spieler Zauberleisten-Funken Individuallisieren"
 L["Add more fonts to Shared Media"] = "Füge mehr Schriftarten zu Shared Media hinzu"
 L["Enable Pixel Border"] = "Aktiviere Pixel-Rahmen"
@@ -873,3 +871,11 @@ L["Left Click:"] = true
 L["Right Click:"] = true
 L["Open Eltruism Installation"] = true
 L["Eltruism Honor/Conquest Points"] = true
+--before
+--L["Auto Adjust Textures"] = "Texturen automatisch anpassen"
+--L["Automatically adjust textures for the current mode"] = "Automatisches anpassen der Texturen im aktuell ausgewählten Mode"
+--now
+L["Dark Power Background"] = true
+L["Sets Class Power backgrounds to be black"] = true  --the class power such as on nameplates and unitframes like energy/mana/runic power, the background is usually a lighter color but making it black makes it easier to see
+L["Change the Class Power background"] = true
+L["Player Castbar Texture"] = true

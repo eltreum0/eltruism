@@ -777,8 +777,6 @@ L["Restore Unit Names hidden by Hide NPC Names"] = "Restaurar los nombres de las
 L["This will set the background to be a grey color"] = "Esto hará que el fondo sea de color gris"
 L["This will set the background to be a black color"] = "Esto hará que el fondo sea de color negro"
 L["Set Width of the Spark (Default 3)"] = "Establecer el ancho de la chispa (El valor predeterminado es 3)"
-L["Auto Adjust Textures"] = "Ajustar automáticamente las texturas"
-L["Automatically adjust textures for the current mode"] = "Ajustar automáticamente las texturas para el modo actual"
 L["Customize Player CastBar Spark"] = "Personalizar la barra de lanzamiento del jugador"
 L["Add more fonts to Shared Media"] = "Añadir más fuentes a los medios compartidos"
 L["Enable Pixel Border"] = "Habilitar borde de píxeles"
@@ -856,3 +854,13 @@ L["Left Click:"] = true
 L["Right Click:"] = true
 L["Open Eltruism Installation"] = true
 L["Eltruism Honor/Conquest Points"] = true
+
+
+--before
+--L["Auto Adjust Textures"] = "Ajustar automáticamente las texturas"
+--L["Automatically adjust textures for the current mode"] = "Ajustar automáticamente las texturas para el modo actual"
+--now
+L["Dark Power Background"] = true
+L["Sets Class Power backgrounds to be black"] = true
+L["Change the Class Power background"] = true
+L["Player Castbar Texture"] = true

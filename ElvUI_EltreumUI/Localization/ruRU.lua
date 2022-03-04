@@ -761,8 +761,6 @@ L["Restore Unit Names hidden by Hide NPC Names"] = true
 L["This will set the background to be a grey color"] = true
 L["This will set the background to be a black color"] = true
 L["Set Width of the Spark (Default 3)"] = true
-L["Auto Adjust Textures"] = true
-L["Automatically adjust textures for the current mode"] = true
 L["Customize Player CastBar Spark"] = true
 L["Add more fonts to Shared Media"] = true
 L["Enable Pixel Border"] = true
@@ -840,3 +838,11 @@ L["Left Click:"] = true
 L["Right Click:"] = true
 L["Open Eltruism Installation"] = true
 L["Eltruism Honor/Conquest Points"] = true
+--before
+--L["Auto Adjust Textures"] = true
+--L["Automatically adjust textures for the current mode"] = true
+--now
+L["Dark Power Background"] = true
+L["Sets Class Power backgrounds to be black"] = true
+L["Change the Class Power background"] = true
+L["Player Castbar Texture"] = true
