@@ -129,7 +129,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["minimap"]["coords"]["format"] = "%.2f"
 		E.db["sle"]["minimap"]["coords"]["mouseover"] = true
 		E.db["sle"]["minimap"]["coords"]["yOffset"] = -70
-		E.db["sle"]["minimap"]["instance"]["enable"] = true
+		E.db["sle"]["minimap"]["instance"]["enable"] = false
 		E.db["sle"]["minimap"]["instance"]["font"] = "Kimberley"
 		E.db["sle"]["minimap"]["instance"]["fontOutline"] = "THICKOUTLINE"
 		E.db["sle"]["minimap"]["instance"]["fontSize"] = 13
