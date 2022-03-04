@@ -202,6 +202,8 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["dt"]["guild"]["hide_hintline"] = true
 		E.db["sle"]["dt"]["guild"]["hide_titleline"] = true
 		E.db["sle"]["dt"]["guild"]["tooltipAutohide"] = 0.1
+
+		E.db["sle"]["loot"]["enable"] = false
 		-- Loot
 		--[[
 		E.db["sle"]["loot"]["autoroll"]["enable"] = false
@@ -231,10 +233,8 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		--AFK Screensaver
 		E.db["sle"]["afk"]["animTime"] = 2
 		E.db["sle"]["afk"]["animType"] = "FadeIn"
-
 		E.db["sle"]["afk"]["customGraphics"] = {}
 		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"] = {}
-
 		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["alpha"] = 1
 		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["anchorPoint"] = "CENTER"
 		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["attachTo"] = "SL_TopPanel"
@@ -248,8 +248,6 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["width"] = 320
 		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["xOffset"] = -500
 		E.db["sle"]["afk"]["customGraphics"]["EltruismLogo"]["yOffset"] = 0
-
-
 		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["anchorPoint"] = "CENTER"
 		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["attachTo"] = "SL_TopPanel"
 		E.db["sle"]["afk"]["defaultGraphics"]["classCrest"]["styleOptions"] = "benikui"
