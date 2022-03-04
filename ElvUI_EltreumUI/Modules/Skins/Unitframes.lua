@@ -1,6 +1,19 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local UF = E:GetModule('UnitFrames')
 
+--elvui spark hook
+local function EltruismSpark()
+	if E.db.ElvUI_EltreumUI.sparkcustomcolor.enable and E.private.unitframe.enable then
+		local castbar = _G["ElvUF_Player_CastBar"]
+		castbar.Spark_ = castbar:CreateTexture(nil, 'OVERLAY')
+		castbar.Spark_:SetTexture(E.media.blankTex)
+		castbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.sparkcustomcolor.b, 1)
+		castbar.Spark_:Size(E.db.ElvUI_EltreumUI.sparkcustomcolor.width)
+	end
+end
+hooksecurefunc(UF, 'Construct_Castbar', EltruismSpark)
+
+
 function ElvUI_EltreumUI:LeaderIndicatorSize(frame)
 	frame.LeaderIndicator:Size(E.db.ElvUI_EltreumUI.otherstuff.leadersize)
 	frame.AssistantIndicator:Size(E.db.ElvUI_EltreumUI.otherstuff.leadersize)
@@ -118,12 +131,6 @@ end)
 function ElvUI_EltreumUI:CastBarTexture(unit)
 	if unit == 'player' then
 		local castbar = _G["ElvUF_Player_CastBar"]
-		if E.db.ElvUI_EltreumUI.sparkcustomcolor.enable and E.private.unitframe.enable then
-			castbar.Spark_ = castbar:CreateTexture(nil, 'OVERLAY')
-			castbar.Spark_:SetTexture(E.media.blankTex)
-			castbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.sparkcustomcolor.b, 1)
-			castbar.Spark_:Size(E.db.ElvUI_EltreumUI.sparkcustomcolor.width)
-		end
 		if E.db.ElvUI_EltreumUI.ufcustomtexture and not E.db.ElvUI_EltreumUI.gradientmode.enable then
 			castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.castbartexture))
 		end
@@ -137,7 +144,7 @@ function ElvUI_EltreumUI:CastBarTexture(unit)
 		end
 	end
 end
-hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastBarTexture)
+--hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastBarTexture)
 hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastBarTexture)
 
 function ElvUI_EltreumUI:ChangeUnitTexture()
