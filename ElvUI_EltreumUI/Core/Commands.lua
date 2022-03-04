@@ -7,11 +7,9 @@ function ElvUI_EltreumUI:LoadCommands()
 		if E.db.ElvUI_EltreumUI.waytext.enable then
 			self:RegisterChatCommand('way', 'WaypointTexttoCoordinate')
 			self:RegisterChatCommand('waypoint', 'WaypointTexttoCoordinate')
-			if E.Retail then
-				self:RegisterChatCommand('!key', 'Keys')
-				self:RegisterChatCommand('!keys', 'Keys')
-			end
 		end
+		self:RegisterChatCommand('!key', 'Keys')
+		self:RegisterChatCommand('!keys', 'Keys')
 	end
 end
 
@@ -75,13 +73,11 @@ function ElvUI_EltreumUI:RunCommands(message)
 		ElvUI_EltreumUI:Print("|cff82B4ffYou have entered an unknown command, here's a list of commands you can use:|r")
 		print("|cff82B4ff/eltruism|r - Opens the Eltruism Installer")
 		print("|cff82B4ff/eltruism install|r - Opens the Eltruism Installer")
-		print("|cff82B4ff/eltruism setup|r - Opens the Eltruism Installer")
-		print("|cff82B4ff/eltruism options|r - Opens the Eltruism settings")
-		print("|cff82B4ff/eltruism config|r - Opens the Eltruism settings")
+		print("|cff82B4ff/eltruism setup/options/config|r - Opens the Eltruism Installer")
 		print("|cff82B4ff/eltruism loot|r - Demonstrates the LootText")
 		if E.Retail then
-			print("|cff82B4ff/way|r - Sets a map waypoint with the supplied coordinates")
-			print("|cff82B4ff/waypoint|r - In retail sets a map waypoint with the supplied coordinates")
+			print("|cff82B4ff/way and /waypoint|r  - Sets a map waypoint with the supplied coordinates")
+			print("|cff82B4ff/!key and /!keys|r  - Links your keystone and covenant in chat")
 		end
 		print("|cff82B4ff/eltruism background|r - Toggles chat between grey and black background colors for ElvUI")
 		print("|cff82B4ff/eltruism color|r - Toggles unitframe between light and dark modes")
