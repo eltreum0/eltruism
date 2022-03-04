@@ -1,5 +1,11 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
+--PLaySound(61850)
+--PLaySound(61851)
+--PLaySound(61852)
+--PLaySound(61853)
+--PLaySound(61854)
+
 -- Conversion of the party/raid death weakaura into an addon option
 local deaththrottle
 function ElvUI_EltreumUI:RaidDeathGroupCheck()

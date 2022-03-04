@@ -670,11 +670,14 @@ function ElvUI_EltreumUI:Shadows()
 			for i = 1, 5 do
 				local partymembers = {_G['ElvUF_PartyGroup1UnitButton'..i]}
 				for _, frame in pairs(partymembers) do
-					for _, button in pairs(partymembers) do
+					if not frame.shadow then
+						frame:CreateShadow()
+					end
+					--[[for _, button in pairs(partymembers) do
 						if not button.shadow then
 							button:CreateShadow()
 						end
-					end
+					end]]
 				end
 			end
 
