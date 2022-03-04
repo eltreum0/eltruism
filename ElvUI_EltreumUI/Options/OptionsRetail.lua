@@ -275,18 +275,31 @@ function ElvUI_EltreumUI:Configtable()
 						args = {
 							auradesc = {
 								order = 1,
-								type = 'header',
+								type = 'description',
 								name = L["Aura Filters"],
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								width = 'full',
 							},
 							headerline1 = {
 								order = 2,
 								type = "description",
+								name = "",
+								width = 'full',
+							},
+							headerline2 = {
+								order = 4,
+								type = "description",
 								name = L["For Shadowlands, import aura filters by copying the code below and going into Profiles > Import Profile."],
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							headerline3 = {
+								order = 5,
+								type = "description",
+								name = "",
+								width = 'full',
 							},
 							listofauras = {
-								order = 3,
+								order = 99,
 								type = 'input',
 								width = 'full',
 								name = "",
