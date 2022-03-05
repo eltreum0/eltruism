@@ -8,16 +8,13 @@ local classcolor = E:ClassColor(E.myclass, true)
 local ONUPDATE_INTERVAL = 0.1
 function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 	if E.private.nameplates.enable == true then
-
 		local glowcolor
 		if E.db.ElvUI_EltreumUI.glow.colorclass then
 			glowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 		else
 			glowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolornp.r, E.db.ElvUI_EltreumUI.glowcustomcolornp.g, E.db.ElvUI_EltreumUI.glowcustomcolornp.b, 1}
 		end
-
 		if E.db.ElvUI_EltreumUI.widenameplate.enable or E.db.ElvUI_EltreumUI.widenameplate.npglow then
-			--changing the texture and the size will likely not be needed in 12.38, but the cooldown will be
 			if button and button.spellID then
 				if not string.find(unit, "nameplate") then
 					return
@@ -71,7 +68,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 					end
 				end
 			end
-			--UF.PostUpdateAura(self, unit, button)  --error? TexCoord out of range
+			--UF.PostUpdateAura(self, unit, button)  --error? TexCoord out of range (mostly in vehicles)
 		end
 	end
 end
@@ -85,9 +82,7 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 					--button.cd:SetScript('OnUpdate', nil)
 					return
 				else
-					if E.db.ElvUI_EltreumUI.widenameplate.enable then
-						button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
-					end
+					button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 					local TimeSinceLastUpdate = 0
 					--print("np button buff spam "..math.random(1,99))
 					button.cd:SetScript('OnUpdate', function(self, elapsed)
@@ -101,15 +96,15 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 							end
 						end
 					end)
-					if E.Classic or E.TBC then
+					--[[if E.Classic or E.TBC then
 						button:SetWidth(25)
 						button:SetHeight(18)
-					end
+					end]]
 					button.count:SetParent(button.cd)
 					button.count:Point('BOTTOMRIGHT', 2, -3)
 				end
 			end
-			--UF.PostUpdateAura(self, unit, button)  --error? TexCoord out of range
+			--UF.PostUpdateAura(self, unit, button)  --error? TexCoord out of range (mostly in vehicles)
 		end
 	end
 end
