@@ -10,7 +10,6 @@ function ElvUI_EltreumUI:Borders()
 		return
 	end
 	if E.db.ElvUI_EltreumUI.borders.borders then
-
 		--borders not nice with transparent power
 		if E.db["unitframe"]["units"]["player"]["power"]["width"] == "spaced" then
 			E.db["unitframe"]["colors"]["transparentPower"] = false
@@ -114,7 +113,7 @@ function ElvUI_EltreumUI:Borders()
 				targetborder:SetFrameStrata("LOW")
 			end
 
-			if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable then
+			if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and not (E.db.unitframe.units.target.castbar.overlayOnFrame == "Power") then
 				local targetcastbarborder = CreateFrame("Frame", "EltruismTargetCastBarBorder", _G.ElvUF_Target_CastBar, BackdropTemplateMixin and "BackdropTemplate")
 				local isattachedtarget = E.db.unitframe.units.target.castbar.iconAttached
 				if isattachedtarget == false then
