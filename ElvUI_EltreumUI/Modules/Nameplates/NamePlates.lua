@@ -22,10 +22,8 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 				if not string.find(unit, "nameplate") then
 					return
 				else
-					if E.Classic or E.TBC then
-						if E.db.ElvUI_EltreumUI.widenameplate.enable then
-							button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
-						end
+					if E.db.ElvUI_EltreumUI.widenameplate.enable then
+						button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 					end
 					button.cd:SetFrameStrata('DIALOG')
 					--button.cd:SetDrawSwipe(false) --works to erase it
@@ -73,7 +71,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 					end
 				end
 			end
-			UF.PostUpdateAura(self, unit, button)
+			--UF.PostUpdateAura(self, unit, button)  --error? TexCoord out of range
 		end
 	end
 end
@@ -87,7 +85,7 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 					--button.cd:SetScript('OnUpdate', nil)
 					return
 				else
-					if E.Classic or E.TBC then
+					if E.db.ElvUI_EltreumUI.widenameplate.enable then
 						button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 					end
 					local TimeSinceLastUpdate = 0
@@ -111,7 +109,7 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 					button.count:Point('BOTTOMRIGHT', 2, -3)
 				end
 			end
-			UF.PostUpdateAura(self, unit, button)  --error?
+			--UF.PostUpdateAura(self, unit, button)  --error? TexCoord out of range
 		end
 	end
 end
