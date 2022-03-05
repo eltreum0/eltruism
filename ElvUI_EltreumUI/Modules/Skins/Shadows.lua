@@ -514,7 +514,7 @@ function ElvUI_EltreumUI:Shadows()
 					for k = 1, 12 do
 						local slots = {_G['ElvUI_Bar'..i..'Button'..k]}
 						for _, button in pairs(slots) do
-							if not button.shadow then
+							if not button.shadow and (not E.db.ElvUI_EltreumUI.borders.borders) then
 								button:CreateShadow()
 							end
 						end
@@ -606,13 +606,11 @@ function ElvUI_EltreumUI:Shadows()
 			}
 			for _, frame in pairs(elvuiframes) do
 				if frame and not frame.shadow then
-					if not E.db.ElvUI_EltreumUI.borders.borders then
+					if (not E.db.ElvUI_EltreumUI.borders.borders) then
 						frame:CreateShadow()
 					end
 				end
 			end
-
-
 
 			--player castbar
 			if not E.db.unitframe.units.player.castbar.overlayOnFrame == "Power" then
@@ -628,14 +626,14 @@ function ElvUI_EltreumUI:Shadows()
 				end
 				PlayerCastbar:SetSize(PlayerCastbarx, PlayerCastbary)
 				PlayerCastbar:SetParent(_G.ElvUF_Player_CastBar)
-				if not (self.PlayerCastBarIsSkinned) then
+				if not (self.PlayerCastBarIsSkinned) and (not E.db.ElvUI_EltreumUI.borders.borders) then
 					PlayerCastbar.shadow = PlayerCastbar:CreateShadow(nil, true)
 					PlayerCastbar:SetPoint("CENTER", _G['ElvUF_Player_CastBar'], "CENTER", -(PlayerCastbary/2), 0)
 					PlayerCastbar:Show()
 					self.PlayerCastBarIsSkinned = true
 				end
 			else
-				if not _G['ElvUF_Player_CastBar'].shadow then
+				if not _G['ElvUF_Player_CastBar'].shadow and (not E.db.ElvUI_EltreumUI.borders.borders) then
 					_G['ElvUF_Player_CastBar']:CreateShadow()
 				end
 			end
@@ -654,14 +652,14 @@ function ElvUI_EltreumUI:Shadows()
 				end
 				TargetCastbar:SetSize(TargetCastbarx, TargetCastbary)
 				TargetCastbar:SetParent(_G.ElvUF_Target_CastBar)
-				if not (self.TargetCastBarIsSkinned) then
+				if not (self.TargetCastBarIsSkinned) and (not E.db.ElvUI_EltreumUI.borders.borders) then
 					TargetCastbar.shadow = TargetCastbar:CreateShadow(nil, true)
 					TargetCastbar:SetPoint("CENTER", _G['ElvUF_Target_CastBar'], "CENTER", -(TargetCastbary/2), 0) ---14, 0)
 					TargetCastbar:Show()
 					self.TargetCastBarIsSkinned = true
 				end
 			else
-				if not _G['ElvUF_Target_CastBar'].shadow then
+				if not _G['ElvUF_Target_CastBar'].shadow and (not E.db.ElvUI_EltreumUI.borders.borders) then
 					_G['ElvUF_Target_CastBar']:CreateShadow()
 				end
 			end
