@@ -2015,11 +2015,10 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							enableautoadjust = {
 								type = 'toggle',
-								name = L["Enable Auto-adjusting the actionbar border size"],
-								desc = L["Will adjust actionbar button spacing and position"],
+								name = L["Enable Auto-adjusting the actionbar spacing and position"],
+								desc = L["Adjusts actionbar spacing and position based on borders being enabled or not"],
 								width = "full",
 								order = 3,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.borderautoadjust = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
