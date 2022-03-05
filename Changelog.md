@@ -1,6 +1,12 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 2.9.1
+Added an option to disable raid shadows\
+Fixed Instance Text not hiding in some situations\
+Fixed Raid Shadows positioning\
+Fixed an error with nameplate style filters in retail
+___
 ### 2.9.0
 Added gradients to tanks, assists and boss unitframes
 Added an option to disable sockets and enchants showing on inspection for TBC/Classic
