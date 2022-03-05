@@ -278,77 +278,79 @@ end
 
 --automatically space the actionbar if borders is enabled
 function ElvUI_EltreumUI:ActionbarBorderAdjust()
-	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.borderautoadjust then
-		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
-			E.db["actionbar"]["bar1"]["buttonSpacing"] = 4
-			E.db["actionbar"]["bar2"]["buttonSpacing"] = 5
-			E.db["actionbar"]["bar3"]["buttonSpacing"] = 5
-			E.db["actionbar"]["bar4"]["buttonSpacing"] = 5
-			E.db["actionbar"]["bar5"]["buttonSpacing"] = 5
-			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,221"
-			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,187"
-			E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,154"
-			E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,121"
-			E.db["ElvUI_EltreumUI"]["borders"]["xplayercast"] = 272
-			E.db["ElvUI_EltreumUI"]["borders"]["xtargettarget"] = 132.8
-			E.db["ElvUI_EltreumUI"]["borders"]["bar1xborder"] = 65
-			E.db["ElvUI_EltreumUI"]["borders"]["bar1yborder"] = 56
-			E.db["ElvUI_EltreumUI"]["borders"]["bar2xborder"] = 56
-			E.db["ElvUI_EltreumUI"]["borders"]["bar2yborder"] = 50
-			E.db["ElvUI_EltreumUI"]["borders"]["bar3xborder"] = 56
-			E.db["ElvUI_EltreumUI"]["borders"]["bar3yborder"] = 50
-			E.db["ElvUI_EltreumUI"]["borders"]["bar4xborder"] = 56
-			E.db["ElvUI_EltreumUI"]["borders"]["bar4yborder"] = 50
-			E.db["ElvUI_EltreumUI"]["borders"]["bar5xborder"] = 56
-			E.db["ElvUI_EltreumUI"]["borders"]["bar5yborder"] = 50
-		elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-			E.db["actionbar"]["bar1"]["buttonSpacing"] = 5
-			E.db["actionbar"]["bar2"]["buttonSpacing"] = 5
-			E.db["actionbar"]["bar3"]["buttonSpacing"] = 5
-			E.db["actionbar"]["bar4"]["buttonSpacing"] = 5
-			E.db["actionbar"]["bar5"]["buttonSpacing"] = 5
-			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,307"
-			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,278"
-			E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,311,249"
-			E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,249"
-			E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,-311,249"
-			E.db["ElvUI_EltreumUI"]["borders"]["xplayercast"] = 294
-			E.db["ElvUI_EltreumUI"]["borders"]["xtargettarget"] = 164
-			E.db["ElvUI_EltreumUI"]["borders"]["bar1xborder"] = 61
-			E.db["ElvUI_EltreumUI"]["borders"]["bar1yborder"] = 51
-			E.db["ElvUI_EltreumUI"]["borders"]["bar2xborder"] = 51
-			E.db["ElvUI_EltreumUI"]["borders"]["bar2yborder"] = 46
-			E.db["ElvUI_EltreumUI"]["borders"]["bar3xborder"] = 51
-			E.db["ElvUI_EltreumUI"]["borders"]["bar3yborder"] = 46
-			E.db["ElvUI_EltreumUI"]["borders"]["bar4xborder"] = 51
-			E.db["ElvUI_EltreumUI"]["borders"]["bar4yborder"] = 46
-			E.db["ElvUI_EltreumUI"]["borders"]["bar5xborder"] = 51
-			E.db["ElvUI_EltreumUI"]["borders"]["bar5yborder"] = 46
+	if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
+		if E.db.ElvUI_EltreumUI.borders.borders then
+			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
+				E.db["actionbar"]["bar1"]["buttonSpacing"] = 4
+				E.db["actionbar"]["bar2"]["buttonSpacing"] = 5
+				E.db["actionbar"]["bar3"]["buttonSpacing"] = 5
+				E.db["actionbar"]["bar4"]["buttonSpacing"] = 5
+				E.db["actionbar"]["bar5"]["buttonSpacing"] = 5
+				E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,221"
+				E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,187"
+				E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,154"
+				E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,121"
+				E.db["ElvUI_EltreumUI"]["borders"]["xplayercast"] = 272
+				E.db["ElvUI_EltreumUI"]["borders"]["xtargettarget"] = 132.8
+				E.db["ElvUI_EltreumUI"]["borders"]["bar1xborder"] = 65
+				E.db["ElvUI_EltreumUI"]["borders"]["bar1yborder"] = 56
+				E.db["ElvUI_EltreumUI"]["borders"]["bar2xborder"] = 56
+				E.db["ElvUI_EltreumUI"]["borders"]["bar2yborder"] = 50
+				E.db["ElvUI_EltreumUI"]["borders"]["bar3xborder"] = 56
+				E.db["ElvUI_EltreumUI"]["borders"]["bar3yborder"] = 50
+				E.db["ElvUI_EltreumUI"]["borders"]["bar4xborder"] = 56
+				E.db["ElvUI_EltreumUI"]["borders"]["bar4yborder"] = 50
+				E.db["ElvUI_EltreumUI"]["borders"]["bar5xborder"] = 56
+				E.db["ElvUI_EltreumUI"]["borders"]["bar5yborder"] = 50
+			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
+				E.db["actionbar"]["bar1"]["buttonSpacing"] = 5
+				E.db["actionbar"]["bar2"]["buttonSpacing"] = 5
+				E.db["actionbar"]["bar3"]["buttonSpacing"] = 5
+				E.db["actionbar"]["bar4"]["buttonSpacing"] = 5
+				E.db["actionbar"]["bar5"]["buttonSpacing"] = 5
+				E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,307"
+				E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,278"
+				E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,311,249"
+				E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,249"
+				E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,-311,249"
+				E.db["ElvUI_EltreumUI"]["borders"]["xplayercast"] = 294
+				E.db["ElvUI_EltreumUI"]["borders"]["xtargettarget"] = 164
+				E.db["ElvUI_EltreumUI"]["borders"]["bar1xborder"] = 61
+				E.db["ElvUI_EltreumUI"]["borders"]["bar1yborder"] = 51
+				E.db["ElvUI_EltreumUI"]["borders"]["bar2xborder"] = 51
+				E.db["ElvUI_EltreumUI"]["borders"]["bar2yborder"] = 46
+				E.db["ElvUI_EltreumUI"]["borders"]["bar3xborder"] = 51
+				E.db["ElvUI_EltreumUI"]["borders"]["bar3yborder"] = 46
+				E.db["ElvUI_EltreumUI"]["borders"]["bar4xborder"] = 51
+				E.db["ElvUI_EltreumUI"]["borders"]["bar4yborder"] = 46
+				E.db["ElvUI_EltreumUI"]["borders"]["bar5xborder"] = 51
+				E.db["ElvUI_EltreumUI"]["borders"]["bar5yborder"] = 46
+			end
+		elseif not E.db.ElvUI_EltreumUI.borders.borders then
+			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
+				E.db["actionbar"]["bar1"]["buttonSpacing"] = 3
+				E.db["actionbar"]["bar2"]["buttonSpacing"] = 2
+				E.db["actionbar"]["bar3"]["buttonSpacing"] = 2
+				E.db["actionbar"]["bar4"]["buttonSpacing"] = 2
+				E.db["actionbar"]["bar5"]["buttonSpacing"] = 2
+				E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,221"
+				E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,190"
+				E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,159"
+				E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,128"
+			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
+				E.db["actionbar"]["bar1"]["buttonSpacing"] = 3
+				E.db["actionbar"]["bar2"]["buttonSpacing"] = 3
+				E.db["actionbar"]["bar3"]["buttonSpacing"] = 3
+				E.db["actionbar"]["bar4"]["buttonSpacing"] = 3
+				E.db["actionbar"]["bar5"]["buttonSpacing"] = 3
+				E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,307"
+				E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,280"
+				E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,308,253"
+				E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,253"
+				E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,-308,253"
+			end
 		end
-	elseif not E.db.ElvUI_EltreumUI.borders.borders then
-		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
-			E.db["actionbar"]["bar1"]["buttonSpacing"] = 3
-			E.db["actionbar"]["bar2"]["buttonSpacing"] = 2
-			E.db["actionbar"]["bar3"]["buttonSpacing"] = 2
-			E.db["actionbar"]["bar4"]["buttonSpacing"] = 2
-			E.db["actionbar"]["bar5"]["buttonSpacing"] = 2
-			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,221"
-			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,190"
-			E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,159"
-			E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,128"
-		elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-			E.db["actionbar"]["bar1"]["buttonSpacing"] = 3
-			E.db["actionbar"]["bar2"]["buttonSpacing"] = 3
-			E.db["actionbar"]["bar3"]["buttonSpacing"] = 3
-			E.db["actionbar"]["bar4"]["buttonSpacing"] = 3
-			E.db["actionbar"]["bar5"]["buttonSpacing"] = 3
-			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,307"
-			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,280"
-			E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,308,253"
-			E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,253"
-			E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,-308,253"
-		end
+		E:UpdateActionBars()
+		E:UpdateMoverPositions()
 	end
-	E:UpdateActionBars()
-	E:UpdateMoverPositions()
 end
