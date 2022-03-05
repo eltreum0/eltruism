@@ -878,4 +878,7 @@ L["Eltruism Honor/Conquest Points"] = true
 L["Dark Power Background"] = true
 L["Sets Class Power backgrounds to be black"] = true  --the class power such as on nameplates and unitframes like energy/mana/runic power, the background is usually a lighter color but making it black makes it easier to see
 L["Change the Class Power background"] = true
+
 L["Player Castbar Texture"] = true
+L["Enable Auto-adjusting the actionbar spacing and position"] = true
+L["Adjusts actionbar spacing and position based on borders being enabled or not"] = true

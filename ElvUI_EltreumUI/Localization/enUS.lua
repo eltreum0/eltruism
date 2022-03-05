@@ -846,3 +846,5 @@ L["Dark Power Background"] = true
 L["Sets Class Power backgrounds to be black"] = true
 L["Change the Class Power background"] = true
 L["Player Castbar Texture"] = true
+L["Enable Auto-adjusting the actionbar spacing and position"] = true
+L["Adjusts actionbar spacing and position based on borders being enabled or not"] = true
