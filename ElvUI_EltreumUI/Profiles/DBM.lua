@@ -588,7 +588,6 @@ function ElvUI_EltreumUI:GetDBMProfile()
 				["FillUpBars"] = false,
 				["EndColorR"] = 1,
 				["StartColorPB"] = 0.419607843137255,
-				["Width"] = 388,
 				["InlineIcons"] = true,
 				["EndColorAG"] = 0.384313725490196,
 				["EndColorDB"] = 1,
