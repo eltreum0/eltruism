@@ -1008,7 +1008,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["target"]["buffs"]["spacing"] = 2
 		--E.db["unitframe"]["units"]["target"]["buffs"]["anchorPoint"] = "TOP"
 		E.db["unitframe"]["units"]["target"]["buffs"]["anchorPoint"] = "BOTTOM"
-		E.db["unitframe"]["units"]["target"]["buffs"]["attachTo"] = "DEBUFFS"
+		E.db["unitframe"]["units"]["target"]["buffs"]["attachTo"] = "FRAME"
 		E.db["unitframe"]["units"]["target"]["buffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["target"]["buffs"]["countXOffset"] = -3
 		E.db["unitframe"]["units"]["target"]["buffs"]["growthX"] = "RIGHT"
