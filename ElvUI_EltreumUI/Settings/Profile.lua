@@ -289,6 +289,7 @@ P.ElvUI_EltreumUI = {
 	borders = {
 		borders = false,
 		texture = "Eltreum-Border-1",
+		borderautoadjust = false,
 
 		classcolor = true,
 
