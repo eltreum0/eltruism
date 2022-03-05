@@ -509,14 +509,11 @@ function ElvUI_EltreumUI:Shadows()
 		if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 			--elvui action bars
 			for i = 1, 10 do
-				local actionbars = {_G['ElvUI_Bar'..i]}
-				for _, frame in pairs(actionbars) do
-					for k = 1, 12 do
-						local slots = {_G['ElvUI_Bar'..i..'Button'..k]}
-						for _, button in pairs(slots) do
-							if not button.shadow and (not E.db.ElvUI_EltreumUI.borders.borders) then
-								button:CreateShadow()
-							end
+				for k = 1, 12 do
+					local slots = {_G['ElvUI_Bar'..i..'Button'..k]}
+					for _, button in pairs(slots) do
+						if not button.shadow and (not E.db.ElvUI_EltreumUI.borders.borders) then
+							button:CreateShadow()
 						end
 					end
 				end
@@ -782,11 +779,9 @@ function ElvUI_EltreumUI:Shadows()
 		--elvui popup
 		for i = 1, 5 do
 			local ElvUI_StaticPopups = {_G['ElvUI_StaticPopup'..i]}
-			for _, frame in pairs(ElvUI_StaticPopups) do
-				for _, button in pairs(ElvUI_StaticPopups) do
-					if not button.shadow then
-						button:CreateShadow()
-					end
+			for _, button in pairs(ElvUI_StaticPopups) do
+				if not button.shadow then
+					button:CreateShadow()
 				end
 			end
 		end
@@ -918,8 +913,8 @@ function ElvUI_EltreumUI:RaidShadows()
 	if inraid == true and E.private.unitframe.enable and E.db.ElvUI_EltreumUI.skins.shadows and E.db.ElvUI_EltreumUI.shadows.raid then
 		--raid
 		for i = 1, 8 do
-			local raidgroups = {_G['ElvUF_RaidGroup'..i]}
-			for _, frame in pairs(raidgroups) do
+			--local raidgroups = {_G['ElvUF_RaidGroup'..i]}
+			--for _, frame in pairs(raidgroups) do
 				for k = 1, 5 do
 					local slots = {_G['ElvUF_RaidGroup'..i..'UnitButton'..k]}
 					for _, button in pairs(slots) do
@@ -929,13 +924,13 @@ function ElvUI_EltreumUI:RaidShadows()
 						end
 					end
 				end
-			end
+			--end
 		end
 
 		--raid40
 		for i = 1, 8 do
-			local raid40groups = {_G['ElvUF_Raid40Group'..i]}
-			for _, frame in pairs(raid40groups) do
+			--local raid40groups = {_G['ElvUF_Raid40Group'..i]}
+			--for _, frame in pairs(raid40groups) do
 				for k = 1, 5 do
 					local slots = {_G['ElvUF_Raid40Group'..i..'UnitButton'..k]}
 					for _, button in pairs(slots) do
@@ -945,7 +940,7 @@ function ElvUI_EltreumUI:RaidShadows()
 						end
 					end
 				end
-			end
+			--end
 		end
 	end
 end
