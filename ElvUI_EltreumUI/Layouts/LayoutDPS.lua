@@ -100,6 +100,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["actionbar"]["bar2"]["alpha"] = 1
 		E.db["actionbar"]["bar2"]["buttonHeight"] = 30
 		E.db["actionbar"]["bar2"]["buttonSize"] = 35
+		E.db["actionbar"]["bar2"]["buttonSpacing"] = 2
 		E.db["actionbar"]["bar2"]["countFont"] = "Kimberley"
 		E.db["actionbar"]["bar2"]["countFontOutline"] = "THICKOUTLINE"
 		E.db["actionbar"]["bar2"]["enabled"] = true
@@ -116,6 +117,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["actionbar"]["bar3"]["alpha"] = 1
 		E.db["actionbar"]["bar3"]["buttonHeight"] = 30
 		E.db["actionbar"]["bar3"]["buttonSize"] = 35
+		E.db["actionbar"]["bar3"]["buttonSpacing"] = 2
 		E.db["actionbar"]["bar3"]["buttons"] = 12
 		E.db["actionbar"]["bar3"]["buttonsPerRow"] = 12
 		E.db["actionbar"]["bar3"]["countFont"] = "Kimberley"
@@ -134,6 +136,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["actionbar"]["bar4"]["backdrop"] = false
 		E.db["actionbar"]["bar4"]["buttonHeight"] = 30
 		E.db["actionbar"]["bar4"]["buttonSize"] = 35
+		E.db["actionbar"]["bar4"]["buttonSpacing"] = 2
 		E.db["actionbar"]["bar4"]["buttonsPerRow"] = 12
 		E.db["actionbar"]["bar4"]["countFont"] = "Kimberley"
 		E.db["actionbar"]["bar4"]["countFontOutline"] = "THICKOUTLINE"
