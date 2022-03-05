@@ -222,6 +222,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["social"]["chatBar"]["buttonHeight"] = 27
 		E.db["WT"]["social"]["chatBar"]["enable"] = false
 		E.db["WT"]["social"]["chatLink"]["icon"] = false
+		E.db["WT"]["social"]["chatLink"]["level"] = false
 		E.db["WT"]["social"]["chatText"]["enable"] = false
 		E.db["WT"]["social"]["chatText"]["roleIconStyle"] = "BLIZZARD"
 		E.db["WT"]["social"]["contextMenu"]["enable"] = false
