@@ -198,8 +198,11 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.db.ElvUI_EltreumUI.darkpowercolor = true
 		end
 	elseif E.private.ElvUI_EltreumUI.install_version < "2.9.3" then
-		if E.db.ElvUI_EltreumUI.lightmode == true or E.db.ElvUI_EltreumUI.gradientmode.enable == true then
+		if E.db.ElvUI_EltreumUI.lightmode == true or E.db.ElvUI_EltreumUI.gradientmode.enable == true then --convert the option
 			E.db.ElvUI_EltreumUI.UFmodifications = true
+		end
+		if E.db.ElvUI_EltreumUI.ufcustomtexture.enable == true and E.db.ElvUI_EltreumUI.gradientmode.enable == true then --prevent blocking each other
+			E.db.ElvUI_EltreumUI.ufcustomtexture.enable = false
 		end
 	end
 end
