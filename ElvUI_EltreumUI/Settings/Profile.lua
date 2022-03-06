@@ -369,8 +369,12 @@ P.ElvUI_EltreumUI = {
 		a = 1,
 	},
 
+
+	UFmodifications = true,
 	lightmode = false,
-	modetexture = false,
+	darkmode = true,
+	--modetexture = false,
+	darkpowercolor = false,
 	greybackground = false,
 
 	gradientmode = {
