@@ -4514,6 +4514,24 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.lightmode end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.lightmode = value ElvUI_EltreumUI:LightMode() E:StaggeredUpdateAll(nil, true) end,
 							},
+							applymode = {
+								order = 98,
+								type = 'execute',
+								name = L["Apply"],
+								--width = 'full',
+								desc = L["Apply the mode selected"],
+								disabled = function() return (not E.db.ElvUI_EltreumUI.UFmodifications) or (not (E.db.ElvUI_EltreumUI.lightmode or E.db.ElvUI_EltreumUI.darkmode)) end,
+								func = function()
+									if E.db.ElvUI_EltreumUI.lightmode == true then
+										ElvUI_EltreumUI:LightMode()
+										E:StaggeredUpdateAll(nil, true)
+									elseif E.db.ElvUI_EltreumUI.darkmode ==  true then
+										ElvUI_EltreumUI:DarkMode()
+										E:StaggeredUpdateAll(nil, true)
+									end
+								end,
+								confirm = true,
+							},
 							headerufbackdrop = {
 								order = 99,
 								type = "description",
