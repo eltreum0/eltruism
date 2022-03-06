@@ -56,7 +56,8 @@ function ElvUI_EltreumUI:DarkMode()
 			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
 		end
 		E.db.ElvUI_EltreumUI.lightmode = false
-		E.db.ElvUI_EltreumUI.gradientmode.enable = false
+		E.db.ElvUI_EltreumUI.darkmode = true
+		--E.db.ElvUI_EltreumUI.gradientmode.enable = false
 		--E:StaggeredUpdateAll()
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
@@ -120,6 +121,7 @@ function ElvUI_EltreumUI:LightMode()
 			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
 		end
 		E.db.ElvUI_EltreumUI.lightmode = true
+		E.db.ElvUI_EltreumUI.darkmode = false
 		E.db.ElvUI_EltreumUI.gradientmode.enable = false
 
 		E:UpdateMediaItems()
@@ -188,6 +190,7 @@ function ElvUI_EltreumUI:GradientMode()
 		E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget = true
 		E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits = true
 		E.db.ElvUI_EltreumUI.lightmode = true
+		E.db.ElvUI_EltreumUI.darkmode = false
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
