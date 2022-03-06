@@ -196,7 +196,7 @@ function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
 	ElvUI_EltreumUI:RaidDeathGroupCheck()
 	--ElvUI_EltreumUI:Shadows()
 	ElvUI_EltreumUI:RaidShadows()
-	if E.db.ElvUI_EltreumUI.lightmode then
+	if E.db.ElvUI_EltreumUI.UFmodifications then
 		ElvUI_EltreumUI:ChangeGroupUnitframe()
 	end
 end
