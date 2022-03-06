@@ -844,3 +844,5 @@ L["Change the Class Power background"] = true
 L["Player Castbar Texture"] = true
 L["Enable Auto-adjusting the actionbar spacing and position"] = true
 L["Adjusts actionbar spacing and position based on borders being enabled or not"] = true
+L["Enable Unitframe Modifications"] = true
+L["Enable changing textures and gradients for ElvUI unitframes"] = true
