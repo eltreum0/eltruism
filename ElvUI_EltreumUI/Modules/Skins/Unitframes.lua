@@ -157,7 +157,7 @@ EltruismGradientColorTableLoad:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:GradientColorTableUpdate()
 end)
 
---elvui texture/spark hook
+--elvui castbar texture/gradient
 function ElvUI_EltreumUI:CastBarTexture()
 	if E.db.ElvUI_EltreumUI.UFmodifications then
 		local castbar = _G["ElvUF_Player_CastBar"]
