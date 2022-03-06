@@ -3956,19 +3956,30 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-							dark = {
+							enableUFmod = {
 								order = 17,
+								type = 'toggle',
+								width = "full",
+								name = L["Enable Unitframe Modifications"],
+								desc = L["Enable changing textures and gradients for ElvUI unitframes"],
+								get = function() return E.db.ElvUI_EltreumUI.UFmodifications end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.UFmodifications = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							dark = {
+								order = 18,
 								type = 'execute',
 								name = L["Dark Mode"],
 								desc = L["This will set colors to black with class colors when losing health"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
 								func = function() ElvUI_EltreumUI:DarkMode() E:StaggeredUpdateAll(nil, true) end,
 								confirm = true,
 							},
 							light = {
-								order = 17,
+								order = 18,
 								type = 'execute',
 								name = L["Light Mode"],
 								desc = L["This will set colors to class based with black backgrounds when losing health"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
 								func = function() ElvUI_EltreumUI:LightMode() E:StaggeredUpdateAll(nil, true) end,
 								confirm = true,
 							},
@@ -4100,6 +4111,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						name = L["Unitframes"],
 						order = 2,
+						disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
 						args = {
 							headerufbackdrop = {
 								order = 1,
@@ -4329,6 +4341,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = "group",
 						name = L["Gradient"],
 						order = 3,
+						disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
 						args = {
 							header1 = {
 								order = 1,
