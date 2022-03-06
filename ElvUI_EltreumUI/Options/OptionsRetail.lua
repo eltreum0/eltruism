@@ -4108,7 +4108,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Enable Custom Textures"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.ufcustomtexture.enable = value E.db.ElvUI_EltreumUI.lightmode = true E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.ufcustomtexture.enable = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							playertexture = {
 								order = 12,
