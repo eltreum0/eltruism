@@ -846,3 +846,7 @@ L["Enable Auto-adjusting the actionbar spacing and position"] = true
 L["Adjusts actionbar spacing and position based on borders being enabled or not"] = true
 L["Enable Unitframe Modifications"] = true
 L["Enable changing textures and gradients for ElvUI unitframes"] = true
+L["Choose between custom textures or gradient mode"] = true
+L['Enable Gradient'] = true
+L["Apply"] = true
+L["Apply the mode selected"] = true
