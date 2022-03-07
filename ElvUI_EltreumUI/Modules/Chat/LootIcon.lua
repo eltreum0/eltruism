@@ -7,14 +7,15 @@ local function AddLootIcons(_, _, message, ...)
 	elseif E.db.ElvUI_EltreumUI.chat.looticons then
 		local function Icon(link)
 			local texture = GetItemIcon(link)
-			--texture:SetTexCoord(0.08,0.92,0.08,0.92) --texture number not file
 			local _, _, itemQuality, itemLevel, _, itemType = GetItemInfo(link)
 			--itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = GetItemInfo(item)
 			if itemLevel ~= nil and itemLevel > 1 and E.db.ElvUI_EltreumUI.chat.itemlevels and itemQuality and itemType ~= "Consumable" then
 				local _, _, _, hex = GetItemQualityColor(itemQuality)
-				return "|T"..texture..":".. 12 .."|t|c"..hex.."["..itemLevel.."]|r"..link
+				--return "|T"..texture..":".. 12 .."|t|c"..hex.."["..itemLevel.."]|r"..link
+				return "|T"..texture..":12:12:0:0:64:64:5:59:5:59|t|c"..hex.."["..itemLevel.."]|r"..link
 			else
-				return "|T"..texture..":".. 12 .."|t"..link
+				--return "|T"..texture..":".. 12 .."|t"..link
+				return "|T"..texture..":12:12:0:0:64:64:5:59:5:59|t"..link
 			end
 		end
 		message = message:gsub("(|c%x+|Hitem:.-|h|r)", Icon)
