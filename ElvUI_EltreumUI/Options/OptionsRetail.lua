@@ -4502,7 +4502,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["This will set colors to black with class colors when losing health"],
 								disabled = function() return E.db.ElvUI_EltreumUI.lightmode or not E.db.ElvUI_EltreumUI.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.darkmode end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.darkmode = value ElvUI_EltreumUI:DarkMode() E:StaggeredUpdateAll(nil, true) end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.darkmode = value end,
 							},
 							light = {
 								order = 97,
@@ -4512,7 +4512,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["This will set colors to class based with black backgrounds when losing health"],
 								disabled = function() return E.db.ElvUI_EltreumUI.darkmode or not E.db.ElvUI_EltreumUI.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.lightmode end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.lightmode = value ElvUI_EltreumUI:LightMode() E:StaggeredUpdateAll(nil, true) end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.lightmode = value end,
 							},
 							applymode = {
 								order = 98,
