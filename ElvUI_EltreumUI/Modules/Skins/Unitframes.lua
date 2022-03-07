@@ -300,7 +300,9 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 						end
 					end
 				else
-					targetunitframe.Health:SetStatusBarTexture(targetbar)
+					if E.db.ElvUI_EltreumUI.lightmode then
+						targetunitframe.Health:SetStatusBarTexture(targetbar)
+					end
 				end
 			end
 		end
@@ -407,7 +409,9 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 						end
 					end
 				else
-					targettargetunitframe.Health:SetStatusBarTexture(targettargetbar)
+					if E.db.ElvUI_EltreumUI.lightmode then
+						targettargetunitframe.Health:SetStatusBarTexture(targettargetbar)
+					end
 				end
 			end
 		end
@@ -478,7 +482,9 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 						end
 					end
 				else
-					focusframe.Health:SetStatusBarTexture(focusbar)
+					if E.db.ElvUI_EltreumUI.lightmode then
+						focusframe.Health:SetStatusBarTexture(focusbar)
+					end
 				end
 			end
 		end
@@ -488,7 +494,9 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 		if UF.units.pet then
 			local petframe = _G["ElvUF_Pet"]
 			if petframe and petframe.Health then
-				petframe.Health:SetStatusBarTexture(petbar)
+				if E.db.ElvUI_EltreumUI.lightmode then
+					petframe.Health:SetStatusBarTexture(petbar)
+				end
 			end
 		end
 
@@ -524,7 +532,9 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 							end
 						end
 					else
-						bossframe1.Health:SetStatusBarTexture(bossbar)
+						if E.db.ElvUI_EltreumUI.lightmode then
+							bossframe1.Health:SetStatusBarTexture(bossbar)
+						end
 					end
 				end
 			end
@@ -559,7 +569,9 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 							end
 						end
 					else
-						bossframe2.Health:SetStatusBarTexture(bossbar)
+						if E.db.ElvUI_EltreumUI.lightmode then
+							bossframe2.Health:SetStatusBarTexture(bossbar)
+						end
 					end
 				end
 			end
@@ -594,7 +606,9 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 							end
 						end
 					else
-						bossframe3.Health:SetStatusBarTexture(bossbar)
+						if E.db.ElvUI_EltreumUI.lightmode then
+							bossframe3.Health:SetStatusBarTexture(bossbar)
+						end
 					end
 				end
 			end
@@ -629,7 +643,9 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 							end
 						end
 					else
-						bossframe4.Health:SetStatusBarTexture(bossbar)
+						if E.db.ElvUI_EltreumUI.lightmode then
+							bossframe4.Health:SetStatusBarTexture(bossbar)
+						end
 					end
 				end
 			end
@@ -664,7 +680,9 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 							end
 						end
 					else
-						bossframe5.Health:SetStatusBarTexture(bossbar)
+						if E.db.ElvUI_EltreumUI.lightmode then
+							bossframe5.Health:SetStatusBarTexture(bossbar)
+						end
 					end
 				end
 			end
@@ -702,7 +720,9 @@ function ElvUI_EltreumUI:ChangePlayerTexture()
 						end
 					end
 				else
-					unitframe.Health:SetStatusBarTexture(playertexture)
+					if E.db.ElvUI_EltreumUI.lightmode then
+						unitframe.Health:SetStatusBarTexture(playertexture)
+					end
 				end
 			end
 		end
@@ -1314,7 +1334,9 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit)--(unit, r, g, b)
 									end
 								end
 							else
-								unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+								if E.db.ElvUI_EltreumUI.lightmode then
+									unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+								end
 							end
 						end
 					end
@@ -1910,7 +1932,9 @@ function ElvUI_EltreumUI:ChangeTankUnitframe(unit)--(unit, r, g, b)
 									end
 								end
 							else
-								unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+								if E.db.ElvUI_EltreumUI.lightmode then
+									unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+								end
 							end
 						end
 					end
@@ -2506,7 +2530,9 @@ function ElvUI_EltreumUI:ChangeAssistUnitframe(unit)--(unit, r, g, b)
 									end
 								end
 							else
-								unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+								if E.db.ElvUI_EltreumUI.lightmode then
+									unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+								end
 							end
 						end
 					end
