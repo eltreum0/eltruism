@@ -146,7 +146,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 
 		-- Chat
 		E.db["chat"]["chatHistory"] = false
-		E.db["chat"]["hideCopyButton"] = true
+		--E.db["chat"]["hideCopyButton"] = true
 		E.db["chat"]["hideVoiceButtons"] = true
 		E.db["chat"]["fadeTabsNoBackdrop"] = true
 		E.db["chat"]["fadeUndockedTabs"] = true
@@ -184,18 +184,17 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["databars"]["threat"]["width"] = 412
 		if E.TBC or E.Classic then
 			E.db["databars"]["threat"]["enable"] = true
-		end
-		if E.Retail then
+		elseif E.Retail then
 			E.db["databars"]["threat"]["enable"] = false
-			E.db["databars"]["azerite"]["font"] = "Kimberley"
-			E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
-			E.db["databars"]["azerite"]["fontSize"] = 12
-			E.db["databars"]["azerite"]["height"] = 203
-			E.db["databars"]["azerite"]["hideInCombat"] = true
-			E.db["databars"]["azerite"]["mouseover"] = true
-			E.db["databars"]["azerite"]["width"] = 10
-			E.db["databars"]["azerite"]["enable"] = false
 		end
+		E.db["databars"]["azerite"]["font"] = "Kimberley"
+		E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
+		E.db["databars"]["azerite"]["fontSize"] = 12
+		E.db["databars"]["azerite"]["height"] = 203
+		E.db["databars"]["azerite"]["hideInCombat"] = true
+		E.db["databars"]["azerite"]["mouseover"] = true
+		E.db["databars"]["azerite"]["width"] = 10
+		E.db["databars"]["azerite"]["enable"] = false
 		E.db["databars"]["colors"]["azerite"]["a"] = 0.5
 		E.db["databars"]["colors"]["azerite"]["b"] = 0.6
 		E.db["databars"]["colors"]["azerite"]["r"] = 0.90196078431373
