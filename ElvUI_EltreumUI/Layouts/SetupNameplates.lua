@@ -484,6 +484,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["PLAYER"]["visibility"]["hideDelay"] = 0
 			E.db["nameplates"]["units"]["PLAYER"]["visibility"]["showInCombat"] = false
 			E.db["nameplates"]["units"]["PLAYER"]["visibility"]["showWithTarget"] = true
+			E.db["nameplates"]["units"]["PLAYER"]["enable"] = false
 
 			E.db["nameplates"]["units"]["TARGET"]["arrow"] = "Arrow21"
 			E.db["nameplates"]["units"]["TARGET"]["arrowScale"] = 0.4
