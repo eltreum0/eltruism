@@ -343,8 +343,9 @@ function ElvUI_EltreumUI:GetDBMProfile()
 			["Enabled"] = false,
 
 			--with the dbm update this seems to be the way to go around using voice packs
-			["ChosenVoicePack"] = "VEM", --dbm VEM
-			["ChosenVoicePack2"] = "VEM", --dbm VEM
+			--["ChosenVoicePack"] = "VEM", --dbm VEM
+			--["ChosenVoicePack2"] = "VEM", --dbm VEM
+			["ChosenVoicePack2"] = "None",
 			["CountdownVoice"] = "Corsica",
 			["CountdownVoice2"] = "Corsica",
 			["CountdownVoice3"] = "Corsica",
