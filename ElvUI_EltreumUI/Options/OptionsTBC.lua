@@ -1404,57 +1404,6 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.tbctalents.enable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.tbctalents.enable = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							header8898 = {
-								order = 58,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							castbarspark = {
-								order = 59,
-								type = "description",
-								name = L["Customize the player castbar spark"],
-								width = "full",
-							},
-							castbarsparkenable = {
-								order = 60,
-								type = 'toggle',
-								name = L["Enable"],
-								width = "full",
-								desc = L["Customize Player CastBar Spark"],
-								get = function() return E.db.ElvUI_EltreumUI.sparkcustomcolor.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.sparkcustomcolor.enable = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							colorspark = {
-								order = 61,
-								type = 'color',
-								name = L["Custom Color"],
-								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.sparkcustomcolor.enable end,
-								get = function()
-									local glowcustomcolor = E.db.ElvUI_EltreumUI.sparkcustomcolor
-									local d = P.ElvUI_EltreumUI.sparkcustomcolor
-									return glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b, glowcustomcolor.a, d.r, d.g, d.b, d.a
-								end,
-								set = function(_, r, g, b, a)
-									local glowcustomcolor = E.db.ElvUI_EltreumUI.sparkcustomcolor
-									glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
-								end,
-							},
-							sparkwidth = {
-								type = 'range',
-								name = L["Width"],
-								desc = L["Set Width of the Spark (Default 3)"],
-								order = 62,
-								min = 1,
-								max = 20,
-								step = 1,
-								--width = "double",
-								disabled = function() return not E.db.ElvUI_EltreumUI.sparkcustomcolor.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.sparkcustomcolor.width end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.sparkcustomcolor.width = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
 							headerleadersize = {
 								order = 63,
 								type = "description",
@@ -4179,6 +4128,57 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Sets Class Power backgrounds to be black"],
 								get = function() return E.db.ElvUI_EltreumUI.darkpowercolor end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.darkpowercolor = value end,
+							},
+							header8898 = {
+								order = 104,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							castbarspark = {
+								order = 105,
+								type = "description",
+								name = L["Customize the player castbar spark"],
+								width = "full",
+							},
+							castbarsparkenable = {
+								order = 106,
+								type = 'toggle',
+								name = L['Enable'],
+								width = "full",
+								desc = L["Customize Player CastBar Spark"],
+								get = function() return E.db.ElvUI_EltreumUI.sparkcustomcolor.enable end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.sparkcustomcolor.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							colorspark = {
+								order = 107,
+								type = 'color',
+								name = L["Custom Color"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.sparkcustomcolor.enable end,
+								get = function()
+									local glowcustomcolor = E.db.ElvUI_EltreumUI.sparkcustomcolor
+									local d = P.ElvUI_EltreumUI.sparkcustomcolor
+									return glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b, glowcustomcolor.a, d.r, d.g, d.b, d.a
+								end,
+								set = function(_, r, g, b, a)
+									local glowcustomcolor = E.db.ElvUI_EltreumUI.sparkcustomcolor
+									glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+								end,
+							},
+							sparkwidth = {
+								type = 'range',
+								name = L["Width"],
+								desc = L["Set Width of the Spark (Default 3)"],
+								order = 108,
+								min = 1,
+								max = 20,
+								step = 1,
+								--width = "double",
+								disabled = function() return not E.db.ElvUI_EltreumUI.sparkcustomcolor.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.sparkcustomcolor.width end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.sparkcustomcolor.width = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 						},
 					},
