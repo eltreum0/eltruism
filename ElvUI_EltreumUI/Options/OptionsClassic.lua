@@ -3963,7 +3963,7 @@ function ElvUI_EltreumUI:Configtable()
 										E:StaggeredUpdateAll(nil, true)
 									end
 								end,
-								confirm = true,
+								--confirm = true,
 							},
 							headerufbackdrop = {
 								order = 99,
