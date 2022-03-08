@@ -727,23 +727,12 @@ end
 function ElvUI_EltreumUI:ChangeGroupUnitframe(unit)--(unit, r, g, b)
 	if E.private.unitframe.enable and UnitExists(unit) and E.db.ElvUI_EltreumUI.UFmodifications and (E.db.ElvUI_EltreumUI.lightmode or E.db.ElvUI_EltreumUI.darkmode) then
 		local header = nil
-		if E.Retail then
-			if UnitExists("raid6") == true and UnitExists("raid21") == false then
-				header = _G['ElvUF_Raid']
-			elseif UnitExists("raid21") == true then
-				header = _G['ElvUF_Raid40']
-			else
-				header = _G['ElvUF_Party']
-			end
-		end
-		if E.TBC or E.Classic then
-			if UnitExists("raid6") == true and UnitExists("raid26") == false then
-				header = _G['ElvUF_Raid']
-			elseif UnitExists("raid26") == true then
-				header = _G['ElvUF_Raid40']
-			else
-				header = _G['ElvUF_Party']
-			end
+		if _G['ElvUF_Raid'] and _G['ElvUF_Raid']:IsShown() then
+			header = _G['ElvUF_Raid']
+		elseif _G['ElvUF_Raid40'] and _G['ElvUF_Raid40']:IsShown() then
+			header = _G['ElvUF_Raid40']
+		elseif _G['ElvUF_Party'] and _G['ElvUF_Party']:IsShown() then
+			header = _G['ElvUF_Party']
 		end
 
 		local _, unit1class = UnitClass(unit)
