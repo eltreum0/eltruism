@@ -150,10 +150,11 @@ end)
 function ElvUI_EltreumUI:CastBarTexture()
 	local castbar = _G["ElvUF_Player_CastBar"]
 	if E.db.ElvUI_EltreumUI.sparkcustomcolor.enable and E.private.unitframe.enable then
-		castbar.Spark_ = castbar:CreateTexture(nil, 'OVERLAY')
-		castbar.Spark_:SetTexture(E.media.blankTex)
+		--castbar.Spark_ = castbar:CreateTexture(nil, 'OVERLAY')
+		--castbar.Spark_:SetTexture(E.media.blankTex)
 		castbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.sparkcustomcolor.b, 1)
-		castbar.Spark_:Size(E.db.ElvUI_EltreumUI.sparkcustomcolor.width)
+		--castbar.Spark_:Size(E.db.ElvUI_EltreumUI.sparkcustomcolor.width)
+		castbar.Spark_:SetWidth(E.db.ElvUI_EltreumUI.sparkcustomcolor.width)
 	end
 	if E.db.ElvUI_EltreumUI.UFmodifications then
 		if E.db.ElvUI_EltreumUI.ufcustomtexture.enable and (not E.db.ElvUI_EltreumUI.gradientmode.enable) then
