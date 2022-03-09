@@ -54,7 +54,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			if _G["MiniMapChallengeMode"] and (_G["MiniMapChallengeMode"]:IsShown() == true or _G["MiniMapChallengeMode"]:GetAlpha() == 1) then
 				_G["MiniMapChallengeMode"]:SetAlpha(0)
 			end
-			if _G["GuildInstanceDifficulty"] and (_G["GuildInstanceDifficulty"]:IsShown() == true or _G["GuildInstanceDifficulty"]:GetAlpha() == 1) and _G["GuildFrameTabardEmblem"] then
+			if _G["GuildInstanceDifficulty"] and (_G["GuildInstanceDifficulty"]:IsShown() == true or _G["GuildInstanceDifficulty"]:GetAlpha() == 1) then
 				local normaltext = instancedifficulty.Text:GetText()
 				instancedifficulty.Text:SetText(normaltext.." "..E.db.ElvUI_EltreumUI.instances.guild)
 				_G["GuildInstanceDifficulty"]:SetAlpha(0)
