@@ -1,6 +1,6 @@
 ## Interface: 20503
 ## Author: Eltreum
-## Version: 2.9.3
+## Version: 2.9.4
 ## Title: |cff1784d1ElvUI|r Eltruism TBC
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
 ## Dependencies: ElvUI, AddOnSkins
