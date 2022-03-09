@@ -45,6 +45,7 @@ local SUPPORTER = {
 
 local TRANSLATORS = {
 	'|cffCC3333Khornan|r - German Translation',
+	'|cffCC3333Dlarge|r - German Translation',
 	'Spanish translation by DeepL',
 }
 
