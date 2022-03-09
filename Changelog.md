@@ -1,6 +1,12 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+# 2.9.4
+Updated Light/Dark Mode to not disable gradient mode when applying\
+Fixed Raid Frame detection for TBC/Classic\
+Fixed a scenario where light mode and dark mode could be active at the same time, preventing both from working\
+Removed the confirmation prompt from the apply button for Light/Dark Mode
+___
 ### 2.9.3
 Added gradient to dark mode, making backdrops have gradient colors\
 Updated Media, which was split into Media and Unitframes, with unitframes  being moved into the new Unitframes menu making it clearer when an option cannot be enabled because another one is enabled\
