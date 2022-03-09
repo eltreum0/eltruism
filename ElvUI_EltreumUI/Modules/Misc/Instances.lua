@@ -7,6 +7,12 @@ instancedifficulty:Hide()
 instancedifficulty.Text = instancedifficulty:CreateFontString(nil,"ARTWORK")
 instancedifficulty:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 instancedifficulty:RegisterEvent("PLAYER_ENTERING_WORLD")
+if E.Retail then
+	instancedifficulty:RegisterEvent("CHALLENGE_MODE_START")
+	instancedifficulty:RegisterEvent("PLAYER_DIFFICULTY_CHANGED")
+	instancedifficulty:RegisterEvent("GUILD_PARTY_STATE_UPDATED")
+end
+
 E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismInstanceDifficulty", nil, nil, nil, "ALL,SOLO,PARTY,RAID")
 instancedifficulty:SetScript("OnEvent", function(_,event)
 	local _, instanceType = IsInInstance()
@@ -54,10 +60,14 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			if _G["MiniMapChallengeMode"] and (_G["MiniMapChallengeMode"]:IsShown() == true or _G["MiniMapChallengeMode"]:GetAlpha() == 1) then
 				_G["MiniMapChallengeMode"]:SetAlpha(0)
 			end
-			if _G["GuildInstanceDifficulty"] and (_G["GuildInstanceDifficulty"]:IsShown() == true or _G["GuildInstanceDifficulty"]:GetAlpha() == 1) then
-				local normaltext = instancedifficulty.Text:GetText()
-				instancedifficulty.Text:SetText(normaltext.." "..E.db.ElvUI_EltreumUI.instances.guild)
+			if _G["GuildInstanceDifficulty"] then
 				_G["GuildInstanceDifficulty"]:SetAlpha(0)
+				if _G["GuildInstanceDifficulty"]:IsShown() then
+					local normaltext = instancedifficulty.Text:GetText()
+					if normaltext ~= nil then
+						instancedifficulty.Text:SetText(normaltext.." "..E.db.ElvUI_EltreumUI.instances.guild)
+					end
+				end
 			end
 		end
 		instancedifficulty:Show()
