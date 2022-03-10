@@ -16,7 +16,8 @@ end
 E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismInstanceDifficulty", nil, nil, nil, "ALL,SOLO,PARTY,RAID")
 instancedifficulty:SetScript("OnEvent", function(_,event)
 	local _, instanceType = IsInInstance()
-	if (instanceType == "raid" or instanceType == "party" or instanceType == "scenario") and E.db.ElvUI_EltreumUI.instances.enable then
+	local mapID = WorldMapFrame:GetMapID()
+	if (instanceType == "raid" or instanceType == "party" or instanceType == "scenario") and E.db.ElvUI_EltreumUI.instances.enable and not (mapID == 1662 or mapID == 582 or mapID == 590) then
 		instancedifficulty:Show()
 		instancedifficulty.Text:Show()
 		instancedifficulty.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.instances.fontsize, E.db.general.fontStyle)
@@ -75,9 +76,10 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 		instancedifficulty:Hide()
 		instancedifficulty.Text:Hide()
 	end
+	--confirm its instance because once again the zone_changed event is not reliable when changing into and out of places like the garrison
 	C_Timer.After(5, function()
-		local _, instanceType = IsInInstance()
-		local mapID = WorldMapFrame:GetMapID()
+		_, instanceType = IsInInstance()
+		mapID = WorldMapFrame:GetMapID()
 		if instanceType == "none" or mapID == 1662 or mapID == 582 or mapID == 590 or instanceType == "pvp" or instanceType == "arena" then
 			instancedifficulty:Hide()
 			instancedifficulty.Text:Hide()
