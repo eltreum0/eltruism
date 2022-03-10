@@ -28,7 +28,7 @@ local db = {
 	holdTime = 1.0,
 	fadeTime = 1.0,
 	readyTime = 4.0,
-	gracePeriod = 0.5, --time after cd start that pressing a skill will show the cd left
+	gracePeriod = 2.2, --time after cd start that pressing a skill will show the cd left
 }
 
 local EltruismCooldownFrame = CreateFrame("MessageFrame", "EltruismCooldown", UIParent)
