@@ -184,6 +184,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.CharacterModelFrame:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
 			_G.CharacterModelFrame:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
 			_G.CharacterModelFrame:SetPoint('BOTTOM', _G.CharacterMainHandSlot, 0, -5)
+			_G.CharacterModelFrame:SetPosition(-0.25, 0, -0.10) -- zoom, x, y
+
 			--hide other bgs so one can be streched like the talents for tbc/classic
 			_G.CharacterModelFrame.BackgroundTopRight:Hide()
 			_G.CharacterModelFrame.BackgroundBotLeft:Hide()
