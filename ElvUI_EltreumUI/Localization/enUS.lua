@@ -853,3 +853,5 @@ L["Friendly NPC"] = true
 L["Neutral NPC"] = true
 L["Unfriendly NPC"] = true
 L["Hostile NPC"] = true
+L["Original Group, Raid and Raid40 layout has been set"] = true
+L["Alternative Group, Raid and Raid40 layout has been set"] = true

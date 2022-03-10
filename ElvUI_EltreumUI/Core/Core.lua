@@ -156,7 +156,7 @@ function ElvUI_EltreumUI:AlternativeGroupsDPS()
 		E.db["unitframe"]["units"]["raid40"]["height"] = 30
 		E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 2
 		E.db["unitframe"]["units"]["raid40"]["width"] = 120
-		ElvUI_EltreumUI:Print('Alternative Group, Raid and Raid40 layout has been set')
+		ElvUI_EltreumUI:Print(L["Alternative Group, Raid and Raid40 layout has been set"])
 		--ReloadUI()
 	else
 		ElvUI_EltreumUI:Print(L["The alternative layout was made for the Eltruism DPS/Tank profile, please switch to it to use it"])
@@ -185,7 +185,7 @@ function ElvUI_EltreumUI:OriginalGroupsDPS()
 		E.db["unitframe"]["units"]["raid40"]["height"] = 32
 		E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 2
 		E.db["unitframe"]["units"]["raid40"]["width"] = 120
-		ElvUI_EltreumUI:Print('Alternative Group, Raid and Raid40 layout has been set')
+		ElvUI_EltreumUI:Print(L["Original Group, Raid and Raid40 layout has been set"])
 		--ReloadUI()
 	else
 		ElvUI_EltreumUI:Print(L["The original layout was made for the Eltruism DPS/Tank profile, please switch to it to use it"])
