@@ -107,7 +107,7 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.SubTitle:SetFormattedText(L["Eltruism Modes"])
 			PluginInstallFrame.Desc1:SetText(L["Eltruism uses Dark Mode by default"])
 			PluginInstallFrame.Desc2:SetText(L["You can switch to Light Mode or Gradient Mode by clicking the buttons below"])
-			PluginInstallFrame.Desc3:SetText(L["You can customize the textures and colors in Eltruism > Media"])
+			PluginInstallFrame.Desc3:SetText(L["You can customize the textures and colors in Eltruism > Unitframes"])
 			PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
 			PluginInstallFrame.Option1:Enable()
 			PluginInstallFrame.Option1:Show()
