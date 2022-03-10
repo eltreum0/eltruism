@@ -476,6 +476,34 @@ P.ElvUI_EltreumUI = {
 		playercastbarG2 = 0.94,
 		playercastbarB1 = 1,
 		playercastbarB2 = 1,
+
+		npcfriendlyR1 = 0.30980392156863,
+		npcfriendlyR2 = 0.34117647058824,
+		npcfriendlyG1 = 0.85098039215686,
+		npcfriendlyG2 = 0.62745098039216,
+		npcfriendlyB1 = 0.2,
+		npcfriendlyB2 = 0.4078431372549,
+
+		npcneutralR1 = 0.712358744169101,
+		npcneutralG1 = 0.63137254901961,
+		npcneutralB1 = 0.15490196078431,
+		npcneutralR2 = 1,
+		npcneutralG2= 0.85686274509804,
+		npcneutralB2 = 0.2078431372549,
+
+		npcunfriendlyR1 = 0.84313725490196,
+		npcunfriendlyG1 = 0.30196078431373,
+		npcunfriendlyB1 = 0,
+		npcunfriendlyR2 = 0.83137254901961,
+		npcunfriendlyG2= 0.45882352941176,
+		npcunfriendlyB2 = 0,
+
+		npchostileR1 = 0.31764705882353,
+		npchostileG1 = 0.066666666666667,
+		npchostileB1 = 0.07843137254902,
+		npchostileR2 = 1,
+		npchostileG2= 0.15686274509804,
+		npchostileB2 = 0.15686274509804,
 	},
 
 	ufcustomtexture = {
