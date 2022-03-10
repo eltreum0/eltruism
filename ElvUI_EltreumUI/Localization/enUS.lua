@@ -849,3 +849,7 @@ L["Choose between custom textures or gradient mode"] = true
 L['Enable Gradient'] = true
 L["Apply"] = true
 L["Apply the mode selected"] = true
+L["Friendly NPC"] = true
+L["Neutral NPC"] = true
+L["Unfriendly NPC"] = true
+L["Hostile NPC"] = true
