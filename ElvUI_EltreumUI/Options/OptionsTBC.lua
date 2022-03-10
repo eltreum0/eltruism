@@ -4898,6 +4898,170 @@ function ElvUI_EltreumUI:Configtable()
 									ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
+							header14 = {
+								order = 100,
+								type = "description",
+								name = L["Friendly NPC"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							friendlynpc1 = {
+								order = 101,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.npcfriendlyR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.npcfriendlyG1
+									local db = P.ElvUI_EltreumUI.gradientmode.npcfriendlyB1
+									return E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyR1, E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyG1, E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyR1, E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyG1, E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyB1 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							friendlynpc2 = {
+								order = 102,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.npcfriendlyR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.npcfriendlyG2
+									local db = P.ElvUI_EltreumUI.gradientmode.npcfriendlyB2
+									return E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyR2, E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyG2, E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyR2, E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyG2, E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyB2 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							header15 = {
+								order = 103,
+								type = "description",
+								name = L["Neutral NPC"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							neutralnpc1 = {
+								order = 104,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.npcneutralR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.npcneutralG1
+									local db = P.ElvUI_EltreumUI.gradientmode.npcneutralB1
+									return E.db.ElvUI_EltreumUI.gradientmode.npcneutralR1, E.db.ElvUI_EltreumUI.gradientmode.npcneutralG1, E.db.ElvUI_EltreumUI.gradientmode.npcneutralB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.npcneutralR1, E.db.ElvUI_EltreumUI.gradientmode.npcneutralG1, E.db.ElvUI_EltreumUI.gradientmode.npcneutralB1 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							neutralnpc2 = {
+								order = 105,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.npcneutralR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.npcneutralG2
+									local db = P.ElvUI_EltreumUI.gradientmode.npcneutralB2
+									return E.db.ElvUI_EltreumUI.gradientmode.npcneutralR2, E.db.ElvUI_EltreumUI.gradientmode.npcneutralG2, E.db.ElvUI_EltreumUI.gradientmode.npcneutralB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.npcneutralR2, E.db.ElvUI_EltreumUI.gradientmode.npcneutralG2, E.db.ElvUI_EltreumUI.gradientmode.npcneutralB2 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							header16 = {
+								order = 105,
+								type = "description",
+								name = L["Unfriendly NPC"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							unfriendlynpc1 = {
+								order = 106,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.npcunfriendlyR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.npcunfriendlyG1
+									local db = P.ElvUI_EltreumUI.gradientmode.npcunfriendlyB1
+									return E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyR1, E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyG1, E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyR1, E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyG1, E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyB1 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							unfriendlynpc2 = {
+								order = 107,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.npcunfriendlyR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.npcunfriendlyG2
+									local db = P.ElvUI_EltreumUI.gradientmode.npcunfriendlyB2
+									return E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyR2, E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyG2, E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyR2, E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyG2, E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyB2 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							header17 = {
+								order = 108,
+								type = "description",
+								name = L["Hostile NPC"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							hostilenpc1 = {
+								order = 109,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.npchostileR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.npchostileG1
+									local db = P.ElvUI_EltreumUI.gradientmode.npchostileB1
+									return E.db.ElvUI_EltreumUI.gradientmode.npchostileR1, E.db.ElvUI_EltreumUI.gradientmode.npchostileG1, E.db.ElvUI_EltreumUI.gradientmode.npchostileB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.npchostileR1, E.db.ElvUI_EltreumUI.gradientmode.npchostileG1, E.db.ElvUI_EltreumUI.gradientmode.npchostileB1 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							hostilenpc2 = {
+								order = 110,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.npchostileR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.npchostileG2
+									local db = P.ElvUI_EltreumUI.gradientmode.npchostileB2
+									return E.db.ElvUI_EltreumUI.gradientmode.npchostileR2, E.db.ElvUI_EltreumUI.gradientmode.npchostileG2, E.db.ElvUI_EltreumUI.gradientmode.npchostileB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.npchostileR2, E.db.ElvUI_EltreumUI.gradientmode.npchostileG2, E.db.ElvUI_EltreumUI.gradientmode.npchostileB2 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
 						}
 					},
 				},
