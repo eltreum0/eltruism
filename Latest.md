@@ -6,4 +6,4 @@ Updated alternative unitframes option and moved it to Unitframes section\
 Fixed Chat Item Levels not showing for items that were not in the player's inventory\
 Fixed Guild logo showing when Instance Text was enabled\
 Fixed Tank and Assist frames gradient\
-Removed the aura filters import for Shadowlands as it as outdated and similar to baseline ElvUI
+Removed the aura filters import for Shadowlands as it was outdated and similar to baseline ElvUI
