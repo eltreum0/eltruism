@@ -1122,9 +1122,7 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit)--(unit, r, g, b)
 					truer = 0.74901795387268
 					trueg = 0.71764546632767
 					trueb = 0.30588167905807
-				elseif unit1class == 'PRIEST' and E.db.ElvUI_EltreumUI.gradientmode.enable then --priest ruins everything gradient
-					return
-				elseif unit1class == 'PRIEST' and not E.db.ElvUI_EltreumUI.gradientmode.enable then
+				elseif unit1class == 'PRIEST' then
 					truer = 0.74901795387268
 					trueg = 0.74901795387268
 					trueb = 0.74901795387268
@@ -1174,9 +1172,7 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit)--(unit, r, g, b)
 					truer = 0.74901795387268
 					trueg = 0.72156703472137
 					trueb = 0.30588167905807
-				elseif unit1class == 'PRIEST' and E.db.ElvUI_EltreumUI.gradientmode.enable then --priest ruins everything gradient
-					return
-				elseif unit1class == 'PRIEST' and not E.db.ElvUI_EltreumUI.gradientmode.enable then
+				elseif unit1class == 'PRIEST' then
 					truer = 0.74901795387268
 					trueg = 0.74901795387268
 					trueb = 0.74901795387268
