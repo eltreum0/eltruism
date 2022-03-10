@@ -41,7 +41,6 @@ local function AddLootIcons(_, _, message, ...)
 				--print(itemType, itemQuality, itemLevel)
 			end)
 
-
 			--itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = GetItemInfo(item)
 			if itemLevel ~= nil and itemLevel > 1 and E.db.ElvUI_EltreumUI.chat.itemlevels and itemQuality ~= nil and itemType ~= "Consumable" then
 				local _, _, _, hex = GetItemQualityColor(itemQuality)

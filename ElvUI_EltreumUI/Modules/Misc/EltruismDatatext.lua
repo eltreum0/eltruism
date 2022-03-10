@@ -3,6 +3,16 @@ local _G = _G
 local DT = E:GetModule("DataTexts")
 local InCombatLockdown = InCombatLockdown
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------spell haste datatext
+local function EltruismSpellHasteDatatext(dt)
+	local spellhaste = GetCombatRatingBonus(CR_HASTE_SPELL)
+	local spellhastepc = ((math.ceil(spellhaste*100))/100).."%"
+	dt.text:SetFormattedText('%s: %s%s|r', SPELL_HASTE_ABBR, ElvUI[1].media.hexvaluecolor, spellhastepc)
+end
+if E.TBC or E.Classic then
+	DT:RegisterDatatext('Eltruism Spellhaste', nil, {'COMBAT_RATING_UPDATE'}, EltruismSpellHasteDatatext, nil, nil, nil, nil, L["Eltruism Spell Haste"])
+end
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------honor datatext
 local function EltruismHonorDatatext(dt)
 	local honorCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo(Constants.CurrencyConsts.CLASSIC_HONOR_CURRENCY_ID)
@@ -23,7 +33,6 @@ if E.TBC or E.Classic then
 elseif E.Retail then
 	DT:RegisterDatatext('Eltruism Honor/Conquest Points', _G.CURRENCY, {'CHAT_MSG_CURRENCY', 'CURRENCY_DISPLAY_UPDATE'}, EltruismHonorDatatext, nil, nil, nil, nil, L["Eltruism Honor/Conquest Points"])
 end
-
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------modified elvui config panel open
 local lastPanelEltruismConfig
