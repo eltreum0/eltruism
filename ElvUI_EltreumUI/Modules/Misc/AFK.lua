@@ -80,7 +80,7 @@ function ElvUI_EltreumUI:AFKmusic()
 			SetCVar("Sound_EnableMusic", 1)
 			if E.Retail then
 				if E.db.ElvUI_EltreumUI.afkmusic.racial then
-						PlayMusic(racialMusic[E.myrace])
+					PlayMusic(racialMusic[E.myrace])
 				elseif E.db.ElvUI_EltreumUI.afkmusic.playerclass then
 					PlayMusic(classMusic[E.myclass])
 				end
