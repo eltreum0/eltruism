@@ -69,6 +69,10 @@ local unitframecustomgradients = {
 	['MONK'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
 	['DRUID'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
 	['DEMONHUNTER'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['NPCFRIENDLY'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['NPCNEUTRAL'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['NPCUNFRIENDLY'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
+	['NPCHOSTILE'] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2= 0, b2 = 0},
 }
 local unitframegradients = {
 	['WARRIOR'] = {r1 = 0.49019607843137, g1 = 0.39607843137255, b1 = 0.24313725490196, r2 = 0.8156862745098, g2= 0.63921568627451, b2 = 0.44705882352941},
