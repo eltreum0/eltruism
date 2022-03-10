@@ -7,10 +7,10 @@ local InCombatLockdown = InCombatLockdown
 local function EltruismSpellHasteDatatext(dt)
 	local spellhaste = GetCombatRatingBonus(CR_HASTE_SPELL)
 	local spellhastepc = ((math.ceil(spellhaste*100))/100).."%"
-	dt.text:SetFormattedText('%s: %s%s|r', SPELL_HASTE_ABBR, ElvUI[1].media.hexvaluecolor, spellhastepc)
+	dt.text:SetFormattedText('%s: %s%s|r', L["Spell Haste"], ElvUI[1].media.hexvaluecolor, spellhastepc)
 end
 if E.TBC or E.Classic then
-	DT:RegisterDatatext('Eltruism Spellhaste', nil, {'COMBAT_RATING_UPDATE'}, EltruismSpellHasteDatatext, nil, nil, nil, nil, L["Eltruism Spell Haste"])
+	DT:RegisterDatatext('Eltruism Spellhaste', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE'}, EltruismSpellHasteDatatext, nil, nil, nil, nil, L["Eltruism Spell Haste"])
 end
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------honor datatext
