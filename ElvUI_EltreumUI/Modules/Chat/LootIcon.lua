@@ -21,9 +21,9 @@ local function AddLootIcons(_, _, message, ...)
 					local lineText = line:GetText()
 					if lineText ~= nil then
 						itemLevel = tonumber(lineText:match(ilvlpattern))
-					end
-					if itemLevel ~= nil then
-						break
+						if itemLevel ~= nil then
+							break
+						end
 					end
 				end
 			end
