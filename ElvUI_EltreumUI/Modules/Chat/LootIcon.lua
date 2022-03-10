@@ -30,8 +30,20 @@ local function AddLootIcons(_, _, message, ...)
 			tt:Hide()
 
 			local _, _, itemQuality, _, _, itemType = GetItemInfo(link)
+			if itemLevel == nil then
+				itemLevel = select(4, GetItemInfo(link))
+			end
+
+			local item = Item:CreateFromItemLink(link)
+			item:ContinueOnItemLoad(function()
+				itemType = select(6, GetItemInfo(link))
+				itemQuality = item:GetItemQuality()
+				--print(itemType, itemQuality, itemLevel)
+			end)
+
+
 			--itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = GetItemInfo(item)
-			if itemLevel ~= nil and itemLevel > 1 and E.db.ElvUI_EltreumUI.chat.itemlevels and itemQuality and itemType ~= "Consumable" then
+			if itemLevel ~= nil and itemLevel > 1 and E.db.ElvUI_EltreumUI.chat.itemlevels and itemQuality ~= nil and itemType ~= "Consumable" then
 				local _, _, _, hex = GetItemQualityColor(itemQuality)
 				--return "|T"..texture..":".. 12 .."|t|c"..hex.."["..itemLevel.."]|r"..link
 				return "|T"..texture..":12:12:0:0:64:64:5:59:5:59|t|c"..hex.."["..itemLevel.."]|r"..link
