@@ -137,9 +137,9 @@ end
 function ElvUI_EltreumUI:AlternativeGroupsDPS()
 	if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 		if not E.db.movers then E.db.movers = {} end
-		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,228,-322"
-		E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,47,-337"
-		E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,229,-327"
+		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-258"
+		E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,47,-316"
+		E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-297"
 		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
 		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 2
 		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 25
@@ -157,7 +157,10 @@ function ElvUI_EltreumUI:AlternativeGroupsDPS()
 		E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 2
 		E.db["unitframe"]["units"]["raid40"]["width"] = 120
 		ElvUI_EltreumUI:Print(L["Alternative Group, Raid and Raid40 layout has been set"])
-		--ReloadUI()
+
+		E:UpdateLayout()
+		E:UpdateUnitFrames()
+		E:UpdateMoverPositions()
 	else
 		ElvUI_EltreumUI:Print(L["The alternative layout was made for the Eltruism DPS/Tank profile, please switch to it to use it"])
 	end
@@ -186,7 +189,10 @@ function ElvUI_EltreumUI:OriginalGroupsDPS()
 		E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 2
 		E.db["unitframe"]["units"]["raid40"]["width"] = 120
 		ElvUI_EltreumUI:Print(L["Original Group, Raid and Raid40 layout has been set"])
-		--ReloadUI()
+
+		E:UpdateLayout()
+		E:UpdateUnitFrames()
+		E:UpdateMoverPositions()
 	else
 		ElvUI_EltreumUI:Print(L["The original layout was made for the Eltruism DPS/Tank profile, please switch to it to use it"])
 	end
