@@ -75,4 +75,12 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 		instancedifficulty:Hide()
 		instancedifficulty.Text:Hide()
 	end
+	C_Timer.After(5, function()
+		local _, instanceType = IsInInstance()
+		local mapID = WorldMapFrame:GetMapID()
+		if instanceType == "none" or mapID == 1662 or mapID == 582 or mapID == 590 or instanceType == "pvp" or instanceType == "arena" then
+			instancedifficulty:Hide()
+			instancedifficulty.Text:Hide()
+		end
+	end)
 end)
