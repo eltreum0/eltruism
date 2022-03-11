@@ -120,16 +120,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	end
 end
 
-function ElvUI_EltreumUI:HidePopups()
-	if E:IsAddOnEnabled("ElvUI_WindTools") then
-		local W = unpack(WindTools)
-		local function WindtoolsCompatHideWhileInstall()
-			WTCompatibilityFrame:Kill()
-		end
-		hooksecurefunc(W, "ConstructCompatibilityFrame", WindtoolsCompatHideWhileInstall)
-	end
-end
-
 function ElvUI_EltreumUI:Initialize()
 	--since now Eltruism has both ElvUI Cvars and ElvUI Chat setup builtin we can skip elvui setup
 	if not E.private.ElvUI_EltreumUI.install_version then

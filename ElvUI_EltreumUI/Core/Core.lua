@@ -7,6 +7,85 @@ function ElvUI_EltreumUI:Print(msg)
 	print('|cff82B4ffEltruism|r: '..msg)
 end
 
+--hide popups during install
+function ElvUI_EltreumUI:HidePopups()
+	if E:IsAddOnEnabled("ElvUI_WindTools") then
+		local W = unpack(WindTools)
+		local function WindtoolsCompatHideWhileInstall()
+			WTCompatibilityFrame:Kill()
+		end
+		hooksecurefunc(W, "ConstructCompatibilityFrame", WindtoolsCompatHideWhileInstall)
+	end
+	if _G["StaticPopup1"] then
+		_G["StaticPopup1"]:Hide()
+	end
+	if _G["StaticPopup2"] then
+		_G["StaticPopup2"]:Hide()
+	end
+	if _G["StaticPopup3"] then
+		_G["StaticPopup3"]:Hide()
+	end
+	if _G["StaticPopup4"] then
+		_G["StaticPopup4"]:Hide()
+	end
+	if _G["ElvUI_StaticPopup1"] then
+		_G["ElvUI_StaticPopup1"]:Hide()
+	end
+	if _G["ElvUI_StaticPopup2"] then
+		_G["ElvUI_StaticPopup2"]:Hide()
+	end
+	if _G["ElvUI_StaticPopup3"] then
+		_G["ElvUI_StaticPopup3"]:Hide()
+	end
+	if _G["ElvUI_StaticPopup4"] then
+		_G["ElvUI_StaticPopup4"]:Hide()
+	end
+	C_Timer.After(14, function()
+		if IsAddOnLoaded('Details') then
+			if _G["StreamOverlayWelcomeWindow"] then
+				_G["StreamOverlayWelcomeWindow"]:Hide()
+			end
+			if _G["DetailsWelcomeWindow"] then
+				_G["DetailsWelcomeWindow"]:Hide()
+			end
+			if _G["DetailsNewsWindow"] then
+				_G["DetailsNewsWindow"]:Hide()
+			end
+		end
+		if IsAddOnLoaded('GladiusEx') then
+			if _G["GladiusExPartyFrame"] then
+				_G["GladiusExPartyFrame"]:Hide()
+			end
+			if _G["GladiusExArenaFrame"] then
+				_G["GladiusExArenaFrame"]:Hide()
+			end
+		end
+		if IsAddOnLoaded('Gladius') then
+			if _G["GladiusButtonFramearena1"] then
+				_G["GladiusButtonFramearena1"]:Hide()
+			end
+			if _G["GladiusButtonFramearena2"] then
+				_G["GladiusButtonFramearena2"]:Hide()
+			end
+			if _G["GladiusButtonFramearena3"] then
+				_G["GladiusButtonFramearena3"]:Hide()
+			end
+			if _G["GladiusButtonFramearena4"] then
+				_G["GladiusButtonFramearena4"]:Hide()
+			end
+			if _G["GladiusButtonFramearena5"] then
+				_G["GladiusButtonFramearena5"]:Hide()
+			end
+			if _G["GladiusButtonAnchor"] then
+				_G["GladiusButtonAnchor"]:Hide()
+			end
+			if _G["GladiusButtonBackground"] then
+				_G["GladiusButtonBackground"]:Hide()
+			end
+		end
+	end)
+end
+
 --Resolution check for font outline
 function ElvUI_EltreumUI:ResolutionOutline()
 	if C_CVar.GetCVar('gxFullscreenResolution') == "3140x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3140x2160" then
