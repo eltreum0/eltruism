@@ -3,6 +3,7 @@ ___
 Added Spell Haste datatext for TBC/Classic\
 Added priest gradients to dark mode\
 Added priest texture in gradient mode while in light mode\
+Updated gradient unit options, splitting player, target, target of target, focus and boss into different options\
 Updated default gradient colors for some classes\
 Updated cursor cooldown to prevent some low cd skills from spamming\
 Update AFK music to prevent overwriting the game's music setting\
