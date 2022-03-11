@@ -7,7 +7,7 @@
 ## RequiredDeps: Blizzard_CombatText
 ## OptionalDeps: NameplateSCT, Immersion, DynamicCam, GladiusEx, ElvUI_SLE, ElvUI_WindTools, ProjectAzilroka
 ## DefaultState: enabled
-## X-Interface: 90105
+## X-Interface: 90200
 ## X-Curse-Project-ID: 459494
 ## X-Wago-ID: vEGPqEN1
 
