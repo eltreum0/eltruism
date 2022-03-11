@@ -792,7 +792,6 @@ L["Abbreviates the unit name once it goes over 20 characters, made by Azilroka"]
 L["Adds a line break"] = true
 L["Gradient Colors"] = true
 L["Enable Gradient colors for Health"] = true
-L['Enable for Player, Target, Target of Target and Focus'] = true
 L['Enable for Group Units'] = true
 L["Enable Custom Colors"] = true
 L["Gradient Orientation"] = true
@@ -857,3 +856,8 @@ L["Hostile NPC"] = true
 L["Original Group, Raid and Raid40 layout has been set"] = true
 L["Alternative Group, Raid and Raid40 layout has been set"] = true
 L["Spell Haste"] = true
+L['Enable for Player'] = true
+L['Enable for Target'] = true
+L['Enable for Target of Target'] = true
+L['Enable for Focus'] = true
+L['Enable for Boss'] = true

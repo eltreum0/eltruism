@@ -808,7 +808,6 @@ L["Abbreviates the unit name once it goes over 20 characters, made by Azilroka"]
 L["Adds a line break"] = "Añade un salto de línea"
 L["Gradient Colors"] = "Colores gradientes"
 L["Enable Gradient colors for Health"] = "Habilitar colores de gradiente para la salud"
-L['Enable for Player, Target, Target of Target and Focus'] = 'Habilitar para Jugador, Objetivo, Objetivo de Objetivo y Foco'
 L['Enable for Group Units'] = 'Habilitar para Unidades de Grupo (actualmente no funciona)'
 L["Enable Custom Colors"] = "Habilitar colores personalizados"
 L["Gradient Orientation"] = "Orientación del gradiente"
@@ -873,3 +872,9 @@ L["Original Group, Raid and Raid40 layout has been set"] = "Se ha establecido la
 L["Alternative Group, Raid and Raid40 layout has been set"] = "Se ha establecido la disposición alternativa del grupo, la incursión y la incursión 40"
 L["Spell Haste"] = "Prisa de hechizo"
 L["You can customize the textures and colors in Eltruism > Unitframes"] = "Puedes personalizar las texturas y los colores en Eltruismo > Unitframes"
+--L['Enable for Player, Target, Target of Target and Focus'] = 'Habilitar para Jugador, Objetivo, Objetivo de Objetivo y Foco'
+L['Enable for Player'] = 'Habilitar para Jugador'
+L['Enable for Target'] = 'Habilitar para Objetivo'
+L['Enable for Target of Target'] = 'Habilitar para Objetivo de Objetivo'
+L['Enable for Focus'] = 'Habilitar para Foco'
+L['Enable for Boss'] = 'Habilitar para Jefes'
