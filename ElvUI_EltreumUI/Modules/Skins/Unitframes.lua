@@ -1692,9 +1692,7 @@ function ElvUI_EltreumUI:ChangeTankUnitframe(unit)--(unit, r, g, b)
 					truer = 0.74901795387268
 					trueg = 0.71764546632767
 					trueb = 0.30588167905807
-				elseif unit1class == 'PRIEST' and E.db.ElvUI_EltreumUI.gradientmode.enable then --priest ruins everything gradient
-					return
-				elseif unit1class == 'PRIEST' and not E.db.ElvUI_EltreumUI.gradientmode.enable then
+				elseif unit1class == 'PRIEST' then
 					truer = 0.74901795387268
 					trueg = 0.74901795387268
 					trueb = 0.74901795387268
@@ -1744,9 +1742,7 @@ function ElvUI_EltreumUI:ChangeTankUnitframe(unit)--(unit, r, g, b)
 					truer = 0.74901795387268
 					trueg = 0.72156703472137
 					trueb = 0.30588167905807
-				elseif unit1class == 'PRIEST' and E.db.ElvUI_EltreumUI.gradientmode.enable then --priest ruins everything gradient
-					return
-				elseif unit1class == 'PRIEST' and not E.db.ElvUI_EltreumUI.gradientmode.enable then
+				elseif unit1class == 'PRIEST' then
 					truer = 0.74901795387268
 					trueg = 0.74901795387268
 					trueb = 0.74901795387268
@@ -2154,6 +2150,14 @@ function ElvUI_EltreumUI:ChangeTankUnitframe(unit)--(unit, r, g, b)
 								unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
 							end
 						end
+					else --might be priest, use texture then if gradient, custom texture woulnt work because its class based and would force it on all
+						if E.db.ElvUI_EltreumUI.gradientmode.enable then
+							if E.db.ElvUI_EltreumUI.lightmode then
+								unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+							elseif E.db.ElvUI_EltreumUI.darkmode then
+								unitbutton.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+							end
+						end
 					end
 				end
 			end
@@ -2287,9 +2291,7 @@ function ElvUI_EltreumUI:ChangeAssistUnitframe(unit)--(unit, r, g, b)
 					truer = 0.74901795387268
 					trueg = 0.71764546632767
 					trueb = 0.30588167905807
-				elseif unit1class == 'PRIEST' and E.db.ElvUI_EltreumUI.gradientmode.enable then --priest ruins everything gradient
-					return
-				elseif unit1class == 'PRIEST' and not E.db.ElvUI_EltreumUI.gradientmode.enable then
+				elseif unit1class == 'PRIEST' then
 					truer = 0.74901795387268
 					trueg = 0.74901795387268
 					trueb = 0.74901795387268
@@ -2339,9 +2341,7 @@ function ElvUI_EltreumUI:ChangeAssistUnitframe(unit)--(unit, r, g, b)
 					truer = 0.74901795387268
 					trueg = 0.72156703472137
 					trueb = 0.30588167905807
-				elseif unit1class == 'PRIEST' and E.db.ElvUI_EltreumUI.gradientmode.enable then --priest ruins everything gradient
-					return
-				elseif unit1class == 'PRIEST' and not E.db.ElvUI_EltreumUI.gradientmode.enable then
+				elseif unit1class == 'PRIEST' then
 					truer = 0.74901795387268
 					trueg = 0.74901795387268
 					trueb = 0.74901795387268
@@ -2747,6 +2747,14 @@ function ElvUI_EltreumUI:ChangeAssistUnitframe(unit)--(unit, r, g, b)
 						else
 							if E.db.ElvUI_EltreumUI.lightmode then
 								unitbutton.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+							end
+						end
+					else --might be priest, use texture then if gradient, custom texture woulnt work because its class based and would force it on all
+						if E.db.ElvUI_EltreumUI.gradientmode.enable then
+							if E.db.ElvUI_EltreumUI.lightmode then
+								unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+							elseif E.db.ElvUI_EltreumUI.darkmode then
+								unitbutton.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 							end
 						end
 					end
