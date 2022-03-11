@@ -4346,7 +4346,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								disabled = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enable = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enable = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							darklightmode = {
 								order = 96,
