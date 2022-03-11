@@ -327,6 +327,19 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["actionbar"]["zoneActionButton"]["inheritGlobalFade"] = false --retail only
 		E.db["actionbar"]["stanceBar"]["inheritGlobalFade"] = true
 
+		E.db["actionbar"]["bar1"]["hotkeytext"] = true
+		E.db["actionbar"]["bar2"]["hotkeytext"] = true
+		E.db["actionbar"]["bar3"]["hotkeytext"] = true
+		E.db["actionbar"]["bar4"]["hotkeytext"] = true
+		E.db["actionbar"]["bar5"]["hotkeytext"] = true
+		E.db["actionbar"]["bar6"]["hotkeytext"] = true
+		E.db["actionbar"]["bar1"]["counttext"] = true
+		E.db["actionbar"]["bar2"]["counttext"] = true
+		E.db["actionbar"]["bar3"]["counttext"] = true
+		E.db["actionbar"]["bar4"]["counttext"] = true
+		E.db["actionbar"]["bar5"]["counttext"] = true
+		E.db["actionbar"]["bar6"]["counttext"] = true
+
 		-- Custom Text: Party
 		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"] = {
