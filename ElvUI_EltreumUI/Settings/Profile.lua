@@ -379,7 +379,11 @@ P.ElvUI_EltreumUI = {
 
 	gradientmode = {
 		enable = false,
-		enableplayertarget = true,
+		enableplayer = true,
+		enabletarget = true,
+		enabletargettarget = true,
+		enablefocus = true,
+		enableboss = true,
 		enablegroupunits = true,
 		enableplayercastbar = false,
 		orientation = "HORIZONTAL",
