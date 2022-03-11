@@ -1554,7 +1554,7 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit)--(unit, r, g, b)
 							if E.db.ElvUI_EltreumUI.gradientmode.enable then
 								if E.db.ElvUI_EltreumUI.lightmode then
 									unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-								elseif E.db.ElvUI_EltreumUI.darkmode then
+								elseif E.db.ElvUI_EltreumUI.darkmode and unitbutton.Health.backdropTex then
 									unitbutton.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 								end
 							end
@@ -2154,7 +2154,7 @@ function ElvUI_EltreumUI:ChangeTankUnitframe(unit)--(unit, r, g, b)
 						if E.db.ElvUI_EltreumUI.gradientmode.enable then
 							if E.db.ElvUI_EltreumUI.lightmode then
 								unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							elseif E.db.ElvUI_EltreumUI.darkmode then
+							elseif E.db.ElvUI_EltreumUI.darkmode and unitbutton.Health.backdropTex then
 								unitbutton.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 							end
 						end
@@ -2753,7 +2753,7 @@ function ElvUI_EltreumUI:ChangeAssistUnitframe(unit)--(unit, r, g, b)
 						if E.db.ElvUI_EltreumUI.gradientmode.enable then
 							if E.db.ElvUI_EltreumUI.lightmode then
 								unitbutton.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
-							elseif E.db.ElvUI_EltreumUI.darkmode then
+							elseif E.db.ElvUI_EltreumUI.darkmode and unitbutton.Health.backdropTex then
 								unitbutton.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 							end
 						end
