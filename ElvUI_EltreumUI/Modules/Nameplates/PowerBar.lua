@@ -304,6 +304,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					--local moonkin = IsSpellKnown(197625)
 					--local stag = IsSpellKnown(210053)
 					if stance == 0 then --humanoid
+						--EltreumPowerBar:SetValue(UnitPower('player', 0)) -- get mana for druid humanoid
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 							EltreumPowerBar:Show()
 							EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
