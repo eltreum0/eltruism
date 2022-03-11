@@ -219,7 +219,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 					targetbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.targettexture)
 				end
-				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("target") and E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget then
+				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("target") and E.db.ElvUI_EltreumUI.gradientmode.enabletarget then
 					if E.db.ElvUI_EltreumUI.lightmode then
 						targetunitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 						if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -251,7 +251,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 							end
 						end
 					end
-				elseif E.db.ElvUI_EltreumUI.gradientmode.enable and (not UnitIsPlayer("target")) and E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget then
+				elseif E.db.ElvUI_EltreumUI.gradientmode.enable and (not UnitIsPlayer("target")) and E.db.ElvUI_EltreumUI.gradientmode.enabletarget then
 					if E.db.ElvUI_EltreumUI.lightmode then
 						targetunitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 						if E.db.ElvUI_EltreumUI.gradientmode.orientation == "HORIZONTAL" then
@@ -382,7 +382,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 					targettargetbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.targettargettexture)
 				end
-				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("targettarget") and E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget then
+				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("targettarget") and E.db.ElvUI_EltreumUI.gradientmode.enabletargettarget then
 					if E.db.ElvUI_EltreumUI.lightmode then
 						targettargetunitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 						if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -398,7 +398,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 							targettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients[targettargetclass]["r1"], unitframegradients[targettargetclass]["g1"], unitframegradients[targettargetclass]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframegradients[targettargetclass]["r2"], unitframegradients[targettargetclass]["g2"], unitframegradients[targettargetclass]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
 						end
 					end
-				elseif E.db.ElvUI_EltreumUI.gradientmode.enable and (not UnitIsPlayer("targettarget")) and E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget then
+				elseif E.db.ElvUI_EltreumUI.gradientmode.enable and (not UnitIsPlayer("targettarget")) and E.db.ElvUI_EltreumUI.gradientmode.enabletargettarget then
 					if E.db.ElvUI_EltreumUI.lightmode then
 						targettargetunitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 						if E.db.ElvUI_EltreumUI.gradientmode.orientation == "HORIZONTAL" then
@@ -525,7 +525,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 					focusbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.focustexture)
 				end
-				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("focus") and E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget then
+				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("focus") and E.db.ElvUI_EltreumUI.gradientmode.enablefocus then
 					if E.db.ElvUI_EltreumUI.lightmode then
 						focusframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 						if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -541,7 +541,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 							focusframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients[focusclass]["r1"], unitframegradients[focusclass]["g1"], unitframegradients[focusclass]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframegradients[focusclass]["r2"], unitframegradients[focusclass]["g2"], unitframegradients[focusclass]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
 						end
 					end
-				elseif E.db.ElvUI_EltreumUI.gradientmode.enable and (not UnitIsPlayer("focus")) and E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget then
+				elseif E.db.ElvUI_EltreumUI.gradientmode.enable and (not UnitIsPlayer("focus")) and E.db.ElvUI_EltreumUI.gradientmode.enablefocus then
 					if E.db.ElvUI_EltreumUI.lightmode then
 						focusframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 						if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -615,7 +615,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 			local reactionboss1 = UnitReaction("player", "boss1")
 			if bossframe1 and reactionboss1 ~= nil then
 				if bossframe1 and bossframe1.Health then
-					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget then
+					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableboss then
 						if E.db.ElvUI_EltreumUI.lightmode then
 							bossframe1.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -676,7 +676,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 			local reactionboss2 = UnitReaction("player", "boss2")
 			if bossframe2 and reactionboss2 ~= nil then
 				if bossframe2 and bossframe2.Health then
-					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget then
+					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableboss then
 						if E.db.ElvUI_EltreumUI.lightmode then
 							bossframe2.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -737,7 +737,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 			local reactionboss3 = UnitReaction("player", "boss3")
 			if bossframe3 and reactionboss3 ~= nil then
 				if bossframe3 and bossframe3.Health then
-					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget then
+					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableboss then
 						if E.db.ElvUI_EltreumUI.lightmode then
 							bossframe3.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -798,7 +798,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 			local reactionboss4 = UnitReaction("player", "boss4")
 			if bossframe4 and reactionboss4 ~= nil then
 				if bossframe4 and bossframe4.Health then
-					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget then
+					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableboss then
 						if E.db.ElvUI_EltreumUI.lightmode then
 							bossframe4.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -859,7 +859,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 			local reactionboss5 = UnitReaction("player", "boss5")
 			if bossframe5 and reactionboss5 ~= nil then
 				if bossframe5 and bossframe5.Health then
-					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget then
+					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableboss then
 						if E.db.ElvUI_EltreumUI.lightmode then
 							bossframe5.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -929,7 +929,7 @@ function ElvUI_EltreumUI:ChangePlayerTexture()
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 					playertexture = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.playertexture)
 				end
-				if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget then
+				if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableplayer then
 					if E.db.ElvUI_EltreumUI.lightmode then
 						unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 						if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
