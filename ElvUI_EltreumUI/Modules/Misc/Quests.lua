@@ -264,6 +264,9 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						ElvUI_EltreumUI:Print("GOSSIP_SHOW")
 					end
 					local guid = UnitGUID("npc")
+					if guid == nil then
+						return
+					end
 					local NPC_ID = tonumber(string.match(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
 					local ignoredNPCS = {
 						[164079] = true,
