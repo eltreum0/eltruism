@@ -1141,15 +1141,18 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["target"]["aurabar"]["maxBars"] = 15
 		E.db["unitframe"]["units"]["target"]["aurabar"]["yOffset"] = 1
 		E.db["unitframe"]["units"]["target"]["aurabar"]["spacing"] = 1
+		E.db["unitframe"]["units"]["target"]["buffs"]["countXOffset"] = 2
+		E.db["unitframe"]["units"]["target"]["buffs"]["countYOffset"] = -3
+		E.db["unitframe"]["units"]["target"]["buffs"]["durationPosition"] = "TOP"
+		E.db["unitframe"]["units"]["target"]["buffs"]["maxDuration"] = 1200
+		E.db["unitframe"]["units"]["target"]["buffs"]["numrows"] = 4
+		E.db["unitframe"]["units"]["target"]["buffs"]["perrow"] = 4
 		E.db["unitframe"]["units"]["target"]["buffs"]["spacing"] = 2
 		E.db["unitframe"]["units"]["target"]["buffs"]["anchorPoint"] = "BOTTOM"
 		E.db["unitframe"]["units"]["target"]["buffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["target"]["buffs"]["countXOffset"] = -3
 		E.db["unitframe"]["units"]["target"]["buffs"]["growthX"] = "RIGHT"
 		E.db["unitframe"]["units"]["target"]["buffs"]["height"] = 25
 		E.db["unitframe"]["units"]["target"]["buffs"]["keepSizeRatio"] = false
-		E.db["unitframe"]["units"]["target"]["buffs"]["numrows"] = 3
-		E.db["unitframe"]["units"]["target"]["buffs"]["perrow"] = 6
 		if E.Retail then
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,nonPersonal,Dispellable"
 		elseif E.TBC or E.Classic then
