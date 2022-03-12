@@ -861,3 +861,6 @@ L['Enable for Target'] = true
 L['Enable for Target of Target'] = true
 L['Enable for Focus'] = true
 L['Enable for Boss'] = true
+L["Enable a Custom death animation"] = true
+L['Custom Death Text'] = true
+L['The text displayed when you die using the custom text option'] = true

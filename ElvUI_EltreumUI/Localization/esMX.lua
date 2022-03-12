@@ -878,3 +878,6 @@ L['Enable for Target'] = 'Habilitar para Objetivo'
 L['Enable for Target of Target'] = 'Habilitar para Objetivo de Objetivo'
 L['Enable for Focus'] = 'Habilitar para Foco'
 L['Enable for Boss'] = 'Habilitar para Jefes'
+L["Enable a Custom death animation"] = true
+L['Custom Death Text'] = true
+L['The text displayed when you die using the custom text option'] = true
