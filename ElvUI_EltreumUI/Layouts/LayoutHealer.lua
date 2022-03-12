@@ -138,7 +138,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 		E.db["actionbar"]["bar6"]["alpha"] = 1
 		E.db["actionbar"]["bar6"]["buttonHeight"] = 24
-		if C_CVar.GetCVar('gxFullscreenResolution') == "3140x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3140x2160" then
+		if C_CVar.GetCVar('gxFullscreenResolution') == "3840x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3840x2160" then
 			E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
 			E.db["actionbar"]["bar6"]["buttonSize"] = 35
 		elseif C_CVar.GetCVar('gxFullscreenResolution') == "2560x1440" or C_CVar.GetCVar('gxWindowedResolution') == "2560x1440" then

@@ -58,7 +58,12 @@ function ElvUI_EltreumUI:CooldownEnable()
 	EltruismCooldownFrame:SetWidth(cooldownsize)
 	EltruismCooldownFrame:SetHeight(cooldownsize)
 	EltruismCooldownFrame:SetJustifyH("CENTER")
-	local textsize = ( (cooldownsize / 2) + 1)
+	local textsize = ( (cooldownsize / 3) + 1)
+	if C_CVar.GetCVar('gxFullscreenResolution') == "3840x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3840x2160" then
+		print("AAAAAAAAAAAAAAAAAAAA")
+		textsize = ( (cooldownsize / 2) + 1)
+	end
+
 	EltruismCooldownText:SetFont(E.media.normFont, textsize, E.db.general.fontStyle)
 	EltruismCooldownText:SetTextColor(1, 1, 1)
 	EltruismCooldownText:SetPoint("CENTER")

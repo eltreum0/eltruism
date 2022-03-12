@@ -183,7 +183,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 		E.db["actionbar"]["bar6"]["alpha"] = 1
 		E.db["actionbar"]["bar6"]["buttonHeight"] = 24
-		if C_CVar.GetCVar('gxFullscreenResolution') == "3140x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3140x2160" then
+		if C_CVar.GetCVar('gxFullscreenResolution') == "3840x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3840x2160" then
 			E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
 			E.db["actionbar"]["bar6"]["buttonSize"] = 35
 		elseif C_CVar.GetCVar('gxFullscreenResolution') == "2560x1440" or C_CVar.GetCVar('gxWindowedResolution') == "2560x1440" then
@@ -835,7 +835,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = ""
 		--E.db["unitframe"]["units"]["pet"]["power"]["width"] = "spaced"
 		E.db["unitframe"]["units"]["pet"]["power"]["width"] = "inset"
-		if C_CVar.GetCVar('gxFullscreenResolution') == "3140x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3140x2160" then
+		if C_CVar.GetCVar('gxFullscreenResolution') == "3840x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3840x2160" then
 			E.db["unitframe"]["units"]["pet"]["width"] = 161
 		elseif C_CVar.GetCVar('gxFullscreenResolution') == "2560x1440" or C_CVar.GetCVar('gxWindowedResolution') == "2560x1440" then
 			E.db["unitframe"]["units"]["pet"]["width"] = 159
@@ -984,7 +984,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["raid"]["health"]["yOffset"] = 0
-		if C_CVar.GetCVar('gxFullscreenResolution') == "3140x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3140x2160" then
+		if C_CVar.GetCVar('gxFullscreenResolution') == "3840x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3840x2160" then
 			E.db["unitframe"]["units"]["raid"]["height"] = 32
 			E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
 			E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
