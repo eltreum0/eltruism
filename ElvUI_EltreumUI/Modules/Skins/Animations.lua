@@ -28,7 +28,7 @@ gta.Text = gtatext:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 function ElvUI_EltreumUI.PlayerDeathAnimation()
 
 	--Dark Souls
-	if E.db.ElvUI_EltreumUI.otherstuff.playerdeath then
+	if E.db.ElvUI_EltreumUI.otherstuff.playerdeath or E.db.ElvUI_EltreumUI.otherstuff.playerdeathcustom then
 		darksouls:RegisterEvent("PLAYER_DEAD")
 		--darksouls:RegisterEvent("PLAYER_STARTED_MOVING")
 		darksouls:SetScript("OnEvent", function()
@@ -44,8 +44,13 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 			darksouls.Text:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
 			darksouls.Text:SetTextColor(1, 0.1803921568627451, 0.196078431372549, 0.5)
 			local fontsize = 240
-			darksouls.Text:SetFont("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Fonts\\OptimusPrinceps.TTF", fontsize, "OUTLINE")
-			darksouls.Text:SetText("YOU DIED")
+			if E.db.ElvUI_EltreumUI.otherstuff.playerdeathcustom then
+				darksouls.Text:SetText(E.db.ElvUI_EltreumUI.otherstuff.playerdeathcustomtext)
+				darksouls.Text:SetFont("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Fonts\\OptimusPrinceps.TTF", 64, "OUTLINE")
+			else
+				darksouls.Text:SetText("YOU DIED")
+				darksouls.Text:SetFont("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Fonts\\OptimusPrinceps.TTF", fontsize, "OUTLINE")
+			end
 			darksoulsbar:SetSize(x,200)
 			darksoulsbar:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\YouDied.TGA")
 			darksoulsbar:SetAlpha(0.60)
@@ -60,7 +65,12 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 			moveOut:SetDuration(5)
 			moveOut:SetSmoothing("OUT")
 			moveOut:SetStartDelay(0.1)
-			moveOut:SetOffset(-fontsize, -fontsize/4)
+			if E.db.ElvUI_EltreumUI.otherstuff.playerdeathcustom then
+				local textwidth = darksouls.Text:GetStringWidth()
+				moveOut:SetOffset(-textwidth/2, -fontsize/4)
+			else
+				moveOut:SetOffset(-fontsize, -fontsize/4)
+			end
 
 			local _, instanceType = IsInInstance()
 			local tbccheck = false
