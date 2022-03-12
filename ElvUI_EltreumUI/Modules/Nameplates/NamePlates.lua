@@ -291,7 +291,7 @@ function ElvUI_EltreumUI:ClassicThreatNP()
 	if E.private.nameplates.enable == true then
 		if E.Classic or E.TBC then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Kimberley"
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["fontOutline"] = "OUTLINE"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["fontOutline"] = E.db.general.fontStyle
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = true
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["parent"] = "Health"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["fontSize"] = 10

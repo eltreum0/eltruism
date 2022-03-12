@@ -85,14 +85,14 @@ if E.TBC or E.Classic then
 	LevelUpFrame.Text:SetSize(418, 72)
 	LevelUpFrame.Text:SetPoint("CENTER", "EltruismLevelUp", "CENTER", 0, 16)
 	LevelUpFrame.Text:SetTextColor(1, 1, 1)
-	LevelUpFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, "OUTLINE")
+	LevelUpFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 	LevelUpFrame.Text:SetText("You've Reached")
 
 	LevelUpFrame.Text2 = LevelUpFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 	LevelUpFrame.Text2:SetSize(418, 72)
 	LevelUpFrame.Text2:SetPoint("CENTER", "EltruismLevelUp", "CENTER", 0, -14)
 	LevelUpFrame.Text2:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-	LevelUpFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 42, "OUTLINE")
+	LevelUpFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 42, E.db.general.fontStyle)
 
 	LevelUpFrame.StatusLine = CreateFrame("StatusBar", "EltruismLevelUp", LevelUpFrame)
 	LevelUpFrame.StatusLine:SetSize(418, 3)

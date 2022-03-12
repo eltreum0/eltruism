@@ -169,7 +169,7 @@ function ElvUI_EltreumUI:QuestItem()
 				b.icon:SetAllPoints()
 
 				b.count = b:CreateFontString(nil,"ARTWORK")
-				b.count:SetFont(GameFontNormal:GetFont(),14,"OUTLINE")
+				b.count:SetFont(GameFontNormal:GetFont(), 14, E.db.general.fontStyle)
 				b.count:SetTextColor(1,1,1)
 				b.count:SetPoint("BOTTOMRIGHT",b.icon,-3,3)
 
