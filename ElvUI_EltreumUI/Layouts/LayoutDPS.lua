@@ -911,6 +911,10 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,nonPersonal"
 		E.db["unitframe"]["units"]["player"]["debuffs"]["sizeOverride"] = 30
 		E.db["unitframe"]["units"]["player"]["debuffs"]["yOffset"] = -32
+		E.db["unitframe"]["units"]["player"]["debuffs"]["xOffset"] = -15
+		E.db["unitframe"]["units"]["player"]["debuffs"]["numrows"] = 4
+		E.db["unitframe"]["units"]["player"]["debuffs"]["perrow"] = 4
+		E.db["unitframe"]["units"]["player"]["debuffs"]["spacing"] = 2
 		E.db["unitframe"]["units"]["player"]["disableMouseoverGlow"] = true
 		E.db["unitframe"]["units"]["player"]["fader"]["enable"] = true
 		E.db["unitframe"]["units"]["player"]["fader"]["minAlpha"] = 0
