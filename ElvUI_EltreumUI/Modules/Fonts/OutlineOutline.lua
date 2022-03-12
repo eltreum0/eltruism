@@ -153,4 +153,42 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline()
 	E.db["nameplates"]["units"]["PLAYER"]["name"]["fontOutline"] = "OUTLINE"
 	E.db["nameplates"]["units"]["PLAYER"]["power"]["text"]["fontOutline"] = "OUTLINE"
 	E.db["nameplates"]["units"]["PLAYER"]["title"]["fontOutline"] = "OUTLINE"
+
+
+	-- Custom Texts
+	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPvP"]["fontOutline"] = "OUTLINE"
+
+	E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["fontOutline"] = "OUTLINE"
+
+	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"]["fontOutline"] = "OUTLINE"
+
+	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetofTarget"]["fontOutline"] = "OUTLINE"
+
+	E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Powercustom"]["fontOutline"] = "OUTLINE"
+
+	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumGroup"]["fontOutline"] = "NONE"
+	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidName"]["fontOutline"] = "OUTLINE"
+
+	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Group"]["fontOutline"] = "NONE"
+	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Health"]["fontOutline"] = "OUTLINE"
+
+	if E.Retail then
+		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "OUTLINE"
+		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "OUTLINE"
+		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "OUTLINE"
+		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"]["fontOutline"] = "OUTLINE"
+		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"]["fontOutline"] = "OUTLINE"
+	end
+
 end
