@@ -172,109 +172,109 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 			E.db["general"]["itemLevel"]["itemLevelFont"] = "Kimberley"
 		end
 	end
-		E.db["general"]["font"] = "Kimberley"
-		E.db["general"]["minimap"]["locationFont"] = "Kimberley"
-		if E.Retail then
-			E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = "Kimberley"
-		end
-		E.db["bags"]["countFont"] = "Kimberley"
-		E.db["bags"]["itemInfoFont"] = "Kimberley"
-		E.db["bags"]["itemLevelFont"] = "Kimberley"
-		E.db["chat"]["font"] = "Kimberley"
-		E.db["chat"]["tabFont"] = "Kimberley"
-		E.db["cooldown"]["fonts"]["font"] = "Kimberley"
-		if E.Retail then
-			E.db["databars"]["azerite"]["font"] = "Kimberley"
-			E.db["databars"]["honor"]["font"] = "Kimberley"
-		end
-		E.db["databars"]["experience"]["font"] = "Kimberley"
-		E.db["databars"]["reputation"]["font"] = "Kimberley"
-		E.db["databars"]["threat"]["font"] = "Kimberley"
-		E.db["datatexts"]["font"] = "Kimberley"
-		E.db["tooltip"]["font"] = "Kimberley"
-		E.db["tooltip"]["healthBar"]["font"] = "Kimberley"
+	E.db["general"]["font"] = "Kimberley"
+	E.db["general"]["minimap"]["locationFont"] = "Kimberley"
+	if E.Retail then
+		E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = "Kimberley"
+	end
+	E.db["bags"]["countFont"] = "Kimberley"
+	E.db["bags"]["itemInfoFont"] = "Kimberley"
+	E.db["bags"]["itemLevelFont"] = "Kimberley"
+	E.db["chat"]["font"] = "Kimberley"
+	E.db["chat"]["tabFont"] = "Kimberley"
+	E.db["cooldown"]["fonts"]["font"] = "Kimberley"
+	if E.Retail then
+		E.db["databars"]["azerite"]["font"] = "Kimberley"
+		E.db["databars"]["honor"]["font"] = "Kimberley"
+	end
+	E.db["databars"]["experience"]["font"] = "Kimberley"
+	E.db["databars"]["reputation"]["font"] = "Kimberley"
+	E.db["databars"]["threat"]["font"] = "Kimberley"
+	E.db["datatexts"]["font"] = "Kimberley"
+	E.db["tooltip"]["font"] = "Kimberley"
+	E.db["tooltip"]["healthBar"]["font"] = "Kimberley"
 
-		-- Custom Text: Party
-		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"] = {
+	-- Custom Text: Party
+	E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
+	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = true,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "RIGHT",
+		["size"] = 16,
+		["text_format"] = "[eltruism:raidmarker] [health:current:shortvalue]",
+		["xOffset"] = 0,
+		["yOffset"] = 0
+	}
+	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"] = {
+		["attachTextTo"] = "InfoPanel",
+		["enable"] = true,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "LEFT",
+		["size"] = 12,
+		["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+		["xOffset"] = 2,
+		["yOffset"] = 0
+	}
+	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"] = {
+		["attachTextTo"] = "Power",
+		["enable"] = true,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "RIGHT",
+		["size"] = 11,
+		["text_format"] = "[powercolor][power:current:shortvalue]",
+		["xOffset"] = 0,
+		["yOffset"] = 0
+	}
+	if E.Retail then
+		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = false,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "RIGHT",
+		["size"] = 11,
+		["text_format"] = "||cffFFFF00[absorbs]||r ",
+		["xOffset"] = 6,
+		["yOffset"] = 0
+		}
+	end
+	-- Custom Text: Pet
+	if E.Retail then
+		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
+		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
 			["font"] = "Kimberley",
 			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 16,
-			["text_format"] = "[eltruism:raidmarker] [health:current:shortvalue]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"] = {
-			["attachTextTo"] = "InfoPanel",
-			["enable"] = true,
-			["font"] = "Kimberley",
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "LEFT",
+			["justifyH"] = "CENTER",
 			["size"] = 12,
-			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
-			["xOffset"] = 2,
-			["yOffset"] = 0
-		}
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"] = {
-			["attachTextTo"] = "Power",
-			["enable"] = true,
-			["font"] = "Kimberley",
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 11,
-			["text_format"] = "[powercolor][power:current:shortvalue]",
+			["text_format"] = "[namecolor][name]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
-		if E.Retail then
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
+	elseif E.TBC or E.Classic then
+		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
+		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 			["attachTextTo"] = "Health",
-			["enable"] = false,
+			["enable"] = true,
 			["font"] = "Kimberley",
 			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 11,
-			["text_format"] = "||cffFFFF00[absorbs]||r ",
-			["xOffset"] = 6,
+			["justifyH"] = "CENTER",
+			["size"] = 12,
+			["text_format"] = "[namecolor][name][happiness:discord]",
+			["xOffset"] = 0,
 			["yOffset"] = 0
-			}
-		end
-		-- Custom Text: Pet
-		if E.Retail then
-			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
-				["attachTextTo"] = "Health",
-				["enable"] = true,
-				["font"] = "Kimberley",
-				["fontOutline"] = "THICKOUTLINE",
-				["justifyH"] = "CENTER",
-				["size"] = 12,
-				["text_format"] = "[namecolor][name]",
-				["xOffset"] = 0,
-				["yOffset"] = 0
-			}
-		elseif E.TBC or E.Classic then
-			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
-				["attachTextTo"] = "Health",
-				["enable"] = true,
-				["font"] = "Kimberley",
-				["fontOutline"] = "THICKOUTLINE",
-				["justifyH"] = "CENTER",
-				["size"] = 12,
-				["text_format"] = "[namecolor][name][happiness:discord]",
-				["xOffset"] = 0,
-				["yOffset"] = 0
-			}
-		end
+		}
+	end
 
-		-- Custom Text: Player
-		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-		if E.Retail then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
+	-- Custom Text: Player
+	E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
+	if E.Retail then
+		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
 			["font"] = "Kimberley",
@@ -284,79 +284,79 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 			["text_format"] = "||cffFFFF00[absorbs]||r ",
 			["xOffset"] = 0,
 			["yOffset"] = 15
-			}
-		end
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = "Kimberley",
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 14,
-			["text_format"] = "[health:current-percent:shortvalue]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
 		}
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = "Kimberley",
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "LEFT",
-			["size"] = 16,
-			["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]",
-			["xOffset"] = 2,
-			["yOffset"] = 0
+	end
+	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = true,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "RIGHT",
+		["size"] = 14,
+		["text_format"] = "[health:current-percent:shortvalue]",
+		["xOffset"] = 0,
+		["yOffset"] = 0
+	}
+	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = true,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "LEFT",
+		["size"] = 16,
+		["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]",
+		["xOffset"] = 2,
+		["yOffset"] = 0
+	}
+	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] = {
+		["attachTextTo"] = "Power",
+		["enable"] = true,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "RIGHT",
+		["size"] = 10,
+		["text_format"] = "[powercolor][power:current:shortvalue]",
+		["xOffset"] = 0,
+		["yOffset"] = -1
+	}
+	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPvP"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = true,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "CENTER",
+		["size"] = 15,
+		["text_format"] = "[mouseover]||cFFB04F4F[pvptimer]||r",
+		["xOffset"] = 0,
+		["yOffset"] = 0
+	}
+	-- Custom Text: Raid
+	E.db["unitframe"]["units"]["raid"]["customTexts"] = E.db["unitframe"]["units"]["raid"]["customTexts"] or {}
+	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumGroup"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = false,
+		["font"] = "Kimberley",
+		["fontOutline"] = "NONE",
+		["justifyH"] = "LEFT",
+		["size"] = 8,
+		["text_format"] = " Group [group]",
+		["xOffset"] = 37,
+		["yOffset"] = 10
+	}
+	if E.Retail then
+		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = false,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "CENTER",
+		["size"] = 10,
+		["text_format"] = "||cffFFFF00[absorbs]||r",
+		["xOffset"] = 45,
+		["yOffset"] = 0
 		}
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] = {
-			["attachTextTo"] = "Power",
-			["enable"] = true,
-			["font"] = "Kimberley",
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 10,
-			["text_format"] = "[powercolor][power:current:shortvalue]",
-			["xOffset"] = 0,
-			["yOffset"] = -1
-		}
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPvP"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = "Kimberley",
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 15,
-			["text_format"] = "[mouseover]||cFFB04F4F[pvptimer]||r",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
-		-- Custom Text: Raid
-		E.db["unitframe"]["units"]["raid"]["customTexts"] = E.db["unitframe"]["units"]["raid"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumGroup"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = false,
-			["font"] = "Kimberley",
-			["fontOutline"] = "NONE",
-			["justifyH"] = "LEFT",
-			["size"] = 8,
-			["text_format"] = " Group [group]",
-			["xOffset"] = 37,
-			["yOffset"] = 10
-		}
-		if E.Retail then
-			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = false,
-			["font"] = "Kimberley",
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 10,
-			["text_format"] = "||cffFFFF00[absorbs]||r",
-			["xOffset"] = 45,
-			["yOffset"] = 0
-			}
-		end
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]= {
+	end
+	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]= {
 		["attachTextTo"] = "InfoPanel",
 		["enable"] = true,
 		["font"] = "Kimberley",
@@ -366,8 +366,8 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["text_format"] = "[health:current:shortvalue]",
 		["xOffset"] = 0,
 		["yOffset"] = -1
-		}
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidName"] = {
+	}
+	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidName"] = {
 		["attachTextTo"] = "InfoPanel",
 		["enable"] = true,
 		["font"] = "Kimberley",
@@ -377,11 +377,11 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
-		}
-		-- Custom Text: Raid 40
-		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
-		if E.Retail then
-			E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
+	}
+	-- Custom Text: Raid 40
+	E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
+	if E.Retail then
+		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
 			["font"] = "Kimberley",
@@ -391,68 +391,68 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 			["text_format"] = "||cffFFFF00[absorbs]||r",
 			["xOffset"] = 37,
 			["yOffset"] = 12
-			}
-		end
-		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Group"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = false,
-			["font"] = "Kimberley",
-			["fontOutline"] = "NONE",
-			["justifyH"] = "LEFT",
-			["size"] = 8,
-			["text_format"] = " Group [group]",
-			["xOffset"] = 40,
-			["yOffset"] = 12
 		}
-		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Health"] = {
-			["attachTextTo"] = "InfoPanel",
-			["enable"] = true,
-			["font"] = "Kimberley",
-			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 10,
-			["text_format"] = "[health:current:shortvalue]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
+	end
+	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Group"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = false,
+		["font"] = "Kimberley",
+		["fontOutline"] = "NONE",
+		["justifyH"] = "LEFT",
+		["size"] = 8,
+		["text_format"] = " Group [group]",
+		["xOffset"] = 40,
+		["yOffset"] = 12
+	}
+	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Health"] = {
+		["attachTextTo"] = "InfoPanel",
+		["enable"] = true,
+		["font"] = "Kimberley",
+		["fontOutline"] = "OUTLINE",
+		["justifyH"] = "RIGHT",
+		["size"] = 10,
+		["text_format"] = "[health:current:shortvalue]",
+		["xOffset"] = 0,
+		["yOffset"] = 0
+	}
+	-- Custom Text: Target
+	E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
+	if E.Retail then
+		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = true,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "RIGHT",
+		["size"] = 12,
+		["text_format"] = "||cffFFFF00[absorbs]||r",
+		["xOffset"] = 0,
+		["yOffset"] = 15
 		}
-		-- Custom Text: Target
-		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-		if E.Retail then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = "Kimberley",
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 12,
-			["text_format"] = "||cffFFFF00[absorbs]||r",
-			["xOffset"] = 0,
-			["yOffset"] = 15
-			}
-		end
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = "Kimberley",
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "LEFT",
-			["size"] = 14,
-			["text_format"] = "[health:current-percent:shortvalue]",
-			["xOffset"] = 2,
-			["yOffset"] = 0
-		}
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = "Kimberley",
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 16,
-			["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]",
-			["xOffset"] = -2,
-			["yOffset"] = 0
-		}
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] = {
+	end
+	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = true,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "LEFT",
+		["size"] = 14,
+		["text_format"] = "[health:current-percent:shortvalue]",
+		["xOffset"] = 2,
+		["yOffset"] = 0
+	}
+	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = true,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "RIGHT",
+		["size"] = 16,
+		["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]",
+		["xOffset"] = -2,
+		["yOffset"] = 0
+	}
+	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] = {
 		["attachTextTo"] = "Power",
 		["enable"] = true,
 		["font"] = "Kimberley",
@@ -462,8 +462,8 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["text_format"] = "[powercolor][power:current:shortvalue]",
 		["xOffset"] = 2,
 		["yOffset"] = -1
-		}
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetofTarget"] = {
+	}
+	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetofTarget"] = {
 		["attachTextTo"] = "Frame",
 		["enable"] = false,
 		["font"] = "Kimberley",
@@ -473,32 +473,32 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["text_format"] = "Target: [eltruism:targetcast]",
 		["xOffset"] = -5,
 		["yOffset"] = -14
-		}
-		-- Custom Text: TargetTarget
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"] = E.db["unitframe"]["units"]["targettarget"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = false,
-			["font"] = "Kimberley",
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "LEFT",
-			["size"] = 11,
-			["text_format"] = "[health:current:shortvalue]",
-			["xOffset"] = 2,
-			["yOffset"] = 3
-		}
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = "Kimberley",
-			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 12,
-			["text_format"] = "[namecolor][name:abbrev]",
-			["xOffset"] = 0,
-			["yOffset"] = 3
-		}
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Powercustom"] = {
+	}
+	-- Custom Text: TargetTarget
+	E.db["unitframe"]["units"]["targettarget"]["customTexts"] = E.db["unitframe"]["units"]["targettarget"]["customTexts"] or {}
+	E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = false,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "LEFT",
+		["size"] = 11,
+		["text_format"] = "[health:current:shortvalue]",
+		["xOffset"] = 2,
+		["yOffset"] = 3
+	}
+	E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = true,
+		["font"] = "Kimberley",
+		["fontOutline"] = "OUTLINE",
+		["justifyH"] = "CENTER",
+		["size"] = 12,
+		["text_format"] = "[namecolor][name:abbrev]",
+		["xOffset"] = 0,
+		["yOffset"] = 3
+	}
+	E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Powercustom"] = {
 		["attachTextTo"] = "Power",
 		["enable"] = true,
 		["font"] = "Kimberley",
@@ -508,111 +508,113 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["text_format"] = "[powercolor][power:current:shortvalue]",
 		["xOffset"] = 0,
 		["yOffset"] = -1
-		}
+	}
 
-		--ActionBars
-		E.db["actionbar"]["bar1"]["countFont"] = "Kimberley"
-		E.db["actionbar"]["bar1"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar1"]["macroFont"] = "Kimberley"
-		E.db["actionbar"]["bar10"]["countFont"] = "Kimberley"
-		E.db["actionbar"]["bar10"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar10"]["macroFont"] = "Kimberley"
-		E.db["actionbar"]["bar2"]["countFont"] = "Kimberley"
-		E.db["actionbar"]["bar2"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar2"]["macroFont"] = "Kimberley"
-		E.db["actionbar"]["bar3"]["countFont"] = "Kimberley"
-		E.db["actionbar"]["bar3"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar3"]["macroFont"] = "Kimberley"
-		E.db["actionbar"]["bar4"]["countFont"] = "Kimberley"
-		E.db["actionbar"]["bar4"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar4"]["macroFont"] = "Kimberley"
-		E.db["actionbar"]["bar5"]["countFont"] = "Kimberley"
-		E.db["actionbar"]["bar5"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar5"]["macroFont"] = "Kimberley"
-		E.db["actionbar"]["bar6"]["countFont"] = "Kimberley"
-		E.db["actionbar"]["bar6"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar6"]["macroFont"] = "Kimberley"
-		E.db["actionbar"]["bar7"]["countFont"] = "Kimberley"
-		E.db["actionbar"]["bar7"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar7"]["macroFont"] = "Kimberley"
-		E.db["actionbar"]["bar8"]["countFont"] = "Kimberley"
-		E.db["actionbar"]["bar8"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar8"]["macroFont"] = "Kimberley"
-		E.db["actionbar"]["bar9"]["countFont"] = "Kimberley"
-		E.db["actionbar"]["bar9"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["bar9"]["macroFont"] = "Kimberley"
-		E.db["actionbar"]["barPet"]["countFont"] = "Kimberley"
-		E.db["actionbar"]["barPet"]["hotkeyFont"] = "Kimberley"
-		if E.Retail then
-			E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "Kimberley"
-		end
-		E.db["actionbar"]["font"] = "Kimberley"
-		E.db["actionbar"]["stanceBar"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["vehicleExitButton"]["hotkeyFont"] = "Kimberley"
-		E.db["auras"]["buffs"]["countFont"] = "Kimberley"
-		E.db["auras"]["buffs"]["timeFont"] = "Kimberley"
-		E.db["auras"]["debuffs"]["countFont"] = "Kimberley"
-		E.db["auras"]["debuffs"]["timeFont"] = "Kimberley"
-		E.db["unitframe"]["font"] = "Kimberley"
-		if E.Retail then
-			E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Kimberley"
-			E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "Kimberley"
-			E.db["unitframe"]["units"]["assist"]["buffs"]["countFont"] = "Kimberley"
-			E.db["unitframe"]["units"]["assist"]["debuffs"]["countFont"] = "Kimberley"
-			E.db["unitframe"]["units"]["assist"]["rdebuffs"]["font"] = "Kimberley"
-			E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "Kimberley"
-			E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "Kimberley"
-			E.db["unitframe"]["units"]["focus"]["debuffs"]["countFont"] = "Kimberley"
-			E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["font"] = "Kimberley"
-			E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["font"] = "Kimberley"
-		end
-		E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["party"]["debuffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["party"]["rdebuffs"]["font"] = "Kimberley"
-		E.db["unitframe"]["units"]["player"]["buffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["player"]["debuffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["raid"]["buffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["raid"]["debuffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["raid"]["rdebuffs"]["font"] = "Kimberley"
-		E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["font"] = "Kimberley"
-		E.db["unitframe"]["units"]["tank"]["buffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["tank"]["debuffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["tank"]["rdebuffs"]["font"] = "Kimberley"
-		E.db["unitframe"]["units"]["target"]["buffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["target"]["debuffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["targettargettarget"]["buffs"]["countFont"] = "Kimberley"
-		E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "Kimberley"
+	--ActionBars
+	E.db["actionbar"]["bar1"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar1"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar1"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar10"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar10"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar10"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar2"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar2"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar2"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar3"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar3"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar3"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar4"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar4"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar4"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar5"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar5"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar5"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar6"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar6"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar6"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar7"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar7"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar7"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar8"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar8"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar8"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["bar9"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["bar9"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["bar9"]["macroFont"] = "Kimberley"
+	E.db["actionbar"]["barPet"]["countFont"] = "Kimberley"
+	E.db["actionbar"]["barPet"]["hotkeyFont"] = "Kimberley"
+	if E.Retail then
+		E.db["actionbar"]["extraActionButton"]["hotkeyFont"] = "Kimberley"
+	end
+	E.db["actionbar"]["font"] = "Kimberley"
+	E.db["actionbar"]["stanceBar"]["hotkeyFont"] = "Kimberley"
+	E.db["actionbar"]["vehicleExitButton"]["hotkeyFont"] = "Kimberley"
+	E.db["auras"]["buffs"]["countFont"] = "Kimberley"
+	E.db["auras"]["buffs"]["timeFont"] = "Kimberley"
+	E.db["auras"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["auras"]["debuffs"]["timeFont"] = "Kimberley"
+	E.db["unitframe"]["font"] = "Kimberley"
+	if E.Retail then
+		E.db["unitframe"]["units"]["arena"]["buffs"]["countFont"] = "Kimberley"
+		E.db["unitframe"]["units"]["arena"]["debuffs"]["countFont"] = "Kimberley"
+		E.db["unitframe"]["units"]["assist"]["buffs"]["countFont"] = "Kimberley"
+		E.db["unitframe"]["units"]["assist"]["debuffs"]["countFont"] = "Kimberley"
+		E.db["unitframe"]["units"]["assist"]["rdebuffs"]["font"] = "Kimberley"
+		E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "Kimberley"
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "Kimberley"
+		E.db["unitframe"]["units"]["focus"]["debuffs"]["countFont"] = "Kimberley"
+		E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["font"] = "Kimberley"
+		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["font"] = "Kimberley"
+	end
+	E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["party"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["party"]["rdebuffs"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["player"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["player"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid"]["rdebuffs"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["tank"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["tank"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["target"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["target"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["targettargettarget"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "Kimberley"
 
-		--fix for dark/light mode
-		if E.db.ElvUI_EltreumUI.lightmode == false then
-			if E.Classic or E.TBC then
-				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
-			elseif E.Retail then
-				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name]"
-			end
-				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]"
-				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
-				E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
-				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
-			if E.Retail or E.TBC then
-				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
-			end
-		elseif E.db.ElvUI_EltreumUI.lightmode == true then
-			if E.Classic or E.TBC then
-				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
-			elseif E.Retail then
-				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
-			end
-				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
-				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
-				E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
-				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-			if E.Retail or E.TBC then
-				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
-			end
+	--fix for dark/light mode
+	if E.db.ElvUI_EltreumUI.lightmode == false then
+		if E.Classic or E.TBC then
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
+		elseif E.Retail then
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name]"
 		end
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]"
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
+			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
+		if E.Retail or E.TBC then
+			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
+		end
+	elseif E.db.ElvUI_EltreumUI.lightmode == true then
+		if E.Classic or E.TBC then
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
+		elseif E.Retail then
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
+		end
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
+			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
+		if E.Retail or E.TBC then
+			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
+		end
+	end
 
-		E:StaggeredUpdateAll(nil, true)
-		ElvUI_EltreumUI:Print(L["Kimberley Font has been set."])
+	E:StaggeredUpdateAll(nil, true)
+	ElvUI_EltreumUI:Print(L["Kimberley Font has been set."])
+
+	ElvUI_EltreumUI:ResolutionOutline()
 end

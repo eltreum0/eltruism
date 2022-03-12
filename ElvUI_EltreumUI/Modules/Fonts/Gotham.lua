@@ -613,6 +613,8 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 		end
 	end
 
-		E:StaggeredUpdateAll(nil, true)
-		ElvUI_EltreumUI:Print(L["GothamNarrow Black Font has been set."])
+	E:StaggeredUpdateAll(nil, true)
+	ElvUI_EltreumUI:Print(L["GothamNarrow Black Font has been set."])
+
+	ElvUI_EltreumUI:ResolutionOutline()
 end

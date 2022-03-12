@@ -620,4 +620,6 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 
 	E:StaggeredUpdateAll(nil, true)
 	ElvUI_EltreumUI:Print(L["Your custom font has been set."])
+
+	ElvUI_EltreumUI:ResolutionOutline()
 end

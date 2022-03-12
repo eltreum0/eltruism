@@ -617,4 +617,6 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 
 	E:StaggeredUpdateAll(nil, true)
 	ElvUI_EltreumUI:Print(L["Exo2 Font has been set."])
+
+	ElvUI_EltreumUI:ResolutionOutline()
 end

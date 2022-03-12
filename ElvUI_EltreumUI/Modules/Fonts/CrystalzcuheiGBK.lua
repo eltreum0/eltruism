@@ -617,4 +617,6 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 
 	E:StaggeredUpdateAll(nil, true)
 	ElvUI_EltreumUI:Print(L["Crystalzcuhei Font has been set."])
+
+	ElvUI_EltreumUI:ResolutionOutline()
 end
