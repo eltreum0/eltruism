@@ -1160,6 +1160,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		end
 		E.db["unitframe"]["units"]["target"]["buffs"]["sizeOverride"] = 30
 		E.db["unitframe"]["units"]["target"]["buffs"]["sortDirection"] = "ASCENDING"
+		E.db["unitframe"]["units"]["target"]["buffs"]["xOffset"] = 15
 		E.db["unitframe"]["units"]["target"]["buffs"]["yOffset"] = -32
 		--E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = false --was disabled before
 		E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = true

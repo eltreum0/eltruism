@@ -1022,6 +1022,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["target"]["buffs"]["countYOffset"] = -3
 		E.db["unitframe"]["units"]["target"]["buffs"]["durationPosition"] = "TOP"
 		E.db["unitframe"]["units"]["target"]["buffs"]["maxDuration"] = 1200
+		E.db["unitframe"]["units"]["target"]["buffs"]["yOffset"] = -2
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 1
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 1
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 1
