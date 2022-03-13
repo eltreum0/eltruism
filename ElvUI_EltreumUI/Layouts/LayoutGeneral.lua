@@ -57,6 +57,11 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["movers"]["MoverEltruismInstanceDifficulty"] = "TOPRIGHT,UIParent,TOPRIGHT,-146,-21"
 		E.db["movers"]["MoverRaidWarningFrame"] = "TOP,UIParent,TOP,0,-182"
 
+		--its actually alt power on some fights like vigilant guardian
+		E.db["unitframe"]["units"]["party"]["classbar"]["enable"] = false
+		E.db["unitframe"]["units"]["raid"]["classbar"]["enable"] = false
+		E.db["unitframe"]["units"]["raid40"]["classbar"]["enable"] = false
+
 		-- General
 		E.db["general"]["altPowerBar"]["font"] = "Kimberley"
 		E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
@@ -747,6 +752,8 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('lockActionBars', 1)
 	SetCVar('spamFilter', 0)
 	SetCVar('Sound_EnableErrorSpeech', 1)
+	SetCVar('alwaysCompareItems', 0) --dont always compare
+	SetCVar('allowCompareWithToggle', 1) --compare using shift
 
 	--this makes it so that the non nameplate names are hidden
 	if E.Retail then
