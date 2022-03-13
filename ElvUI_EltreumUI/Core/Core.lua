@@ -326,6 +326,9 @@ function ElvUI_EltreumUI:DeleteItem()
 			local itemLink = select(3, GetCursorInfo())
 			local lootName = select(1, GetItemInfo(itemLink))
 			local lootTexture = select(10, GetItemInfo(itemLink))
+			if lootName == nil or lootTexture == nil then
+				return
+			end
 			local text = StaticPopup1Text:GetText()
 			local deletetext = string.gsub(text, lootName, "|T"..lootTexture..":".. 14 .."|t"..itemLink.."")
 			StaticPopup1Text:SetText(deletetext)
@@ -337,6 +340,9 @@ function ElvUI_EltreumUI:DeleteItem()
 			local itemLink = select(3, GetCursorInfo())
 			local lootName = select(1, GetItemInfo(itemLink))
 			local lootTexture = select(10, GetItemInfo(itemLink))
+			if lootName == nil or lootTexture == nil then
+				return
+			end
 			local text = StaticPopup1Text:GetText()
 			local deletetext = string.gsub(text, lootName, "|T"..lootTexture..":".. 14 .."|t"..itemLink.."")
 			StaticPopup1Text:SetText(deletetext)
