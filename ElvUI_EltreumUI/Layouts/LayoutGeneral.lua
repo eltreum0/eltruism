@@ -663,7 +663,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["yOffset"] = -1
 		}
 
-	E:StaggeredUpdateAll(nil, true)
 	ElvUI_EltreumUI:Print(L["General Layout has been set."])
 end
 
