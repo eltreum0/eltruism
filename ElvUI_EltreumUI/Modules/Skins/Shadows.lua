@@ -12,7 +12,7 @@ function ElvUI_EltreumUI:Shadows()
 		local EltruismBlizzShadows = CreateFrame("Frame")
 		EltruismBlizzShadows:RegisterEvent("ADDON_LOADED")
 		EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
-			if (arg == "Blizzard_MacroUI") then
+			if (arg == "Blizzard_MacroUI") and not E.private.skins.blizzard.enable == false then
 				_G.MacroFrame:HookScript("OnShow", function()
 					if E.Retail or E.TBC then
 						if not _G.MacroFrame.shadow then
@@ -25,14 +25,14 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
-			if (arg == "Blizzard_BindingUI") then
+			if (arg == "Blizzard_BindingUI") and not E.private.skins.blizzard.enable == false then
 				_G.KeyBindingFrame:HookScript("OnShow", function()
 					if not _G.KeyBindingFrame.shadow then
 						_G.KeyBindingFrame:CreateShadow()
 					end
 				end)
 			end
-			if (arg == "Blizzard_InspectUI") then
+			if (arg == "Blizzard_InspectUI") and not E.private.skins.blizzard.enable == false then
 				_G.InspectFrame:HookScript("OnShow", function()
 					if E.TBC or E.Classic then
 						if _G.InspectFrame and _G.InspectFrame.backdrop and not _G.InspectFrame.backdrop.shadow then
@@ -46,7 +46,7 @@ function ElvUI_EltreumUI:Shadows()
 				end)
 			end
 			if E.Retail then
-				if (arg == "Blizzard_AuctionHouseUI") then
+				if (arg == "Blizzard_AuctionHouseUI") and not E.private.skins.blizzard.enable == false then
 					_G.AuctionHouseFrame:HookScript("OnShow", function()
 						if _G.AuctionHouseFrame and not _G.AuctionHouseFrame.shadow then
 							_G.AuctionHouseFrame:CreateShadow()
@@ -54,7 +54,7 @@ function ElvUI_EltreumUI:Shadows()
 					end)
 				end
 			elseif E.TBC or E.Classic then
-				if (arg == "Blizzard_AuctionUI") then
+				if (arg == "Blizzard_AuctionUI") and not E.private.skins.blizzard.enable == false then
 					_G.AuctionFrame:HookScript("OnShow", function()
 						if _G.AuctionFrame and _G.AuctionFrame.backdrop and not _G.AuctionFrame.backdrop.shadow then
 							_G.AuctionFrame.backdrop:CreateShadow()
@@ -88,7 +88,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G.SpellBookFrameTabButton2.backdrop,
 		}
 		for _, frame in pairs(blizzardframes) do
-			if frame and not frame.shadow then
+			if not E.private.skins.blizzard.enable == false and frame and not frame.shadow then
 				frame:CreateShadow()
 			end
 		end
@@ -480,7 +480,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.FriendsFrameTab5.backdrop, --only in classic though
 			}
 			for _, frame in pairs(classicframes) do
-				if frame and not frame.shadow then
+				if not E.private.skins.blizzard.enable == false and frame and not frame.shadow then
 					frame:CreateShadow()
 				end
 			end
@@ -492,7 +492,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.LFGParentFrameTab2.backdrop,
 				}
 				for _, frame in pairs(tbcframes) do
-					if frame and not frame.shadow then
+					if not E.private.skins.blizzard.enable == false and frame and not frame.shadow then
 						frame:CreateShadow()
 					end
 				end

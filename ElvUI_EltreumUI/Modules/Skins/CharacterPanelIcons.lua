@@ -54,7 +54,7 @@ function ElvUI_EltreumUI:PlayerNamepaperdoll()
 		return
 	elseif not E.private.ElvUI_EltreumUI then
 		return
-	elseif E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
+	elseif E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false then
 		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
 			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
 		elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
@@ -79,7 +79,7 @@ function ElvUI_EltreumUI:PlayerNamepaperdoll()
 end
 
 function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
-	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
+	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false then
 		if E.Classic or E.TBC then
 			classFrame:ClearAllPoints()
 			--type of icon

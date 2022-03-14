@@ -17,7 +17,7 @@ end
 local dontexpandanymorequests = 0
 function ElvUI_EltreumUI:SkinQuests()
 	local fontsize = E.db.general.fontSize
-	if E.db.ElvUI_EltreumUI.skins.quests then
+	if E.db.ElvUI_EltreumUI.skins.quests and not E.private.skins.blizzard.enable == false then
 
 		--create the button for wowhead
 		local wowheadbutton = CreateFrame("Button", nil)
@@ -453,7 +453,7 @@ end
 local dontexpandanymoreEnchant = 0
 local dontexpandanymore = 0
 function ElvUI_EltreumUI:SkinProfessions()
-	if E.db.ElvUI_EltreumUI.skins.professions then
+	if E.db.ElvUI_EltreumUI.skins.professions and not E.private.skins.blizzard.enable == false then
 		--skin and expand the tradeskills
 		local WideTradeSkill = CreateFrame("Frame")
 

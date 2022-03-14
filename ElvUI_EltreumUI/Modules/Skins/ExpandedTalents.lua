@@ -1,11 +1,12 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 
+local EltruismExpandedTalents = CreateFrame("Frame")
+
 function ElvUI_EltreumUI:ExpandedTalents()
 	--Reskin Blizzard Talent frame for TBC
 	if E.TBC or E.Classic then
-		if E.db.ElvUI_EltreumUI.tbctalents.enable then
-			local EltruismExpandedTalents = CreateFrame("Frame")
+		if E.db.ElvUI_EltreumUI.tbctalents.enable and not E.private.skins.blizzard.enable == false then
 			EltruismExpandedTalents:RegisterEvent("ADDON_LOADED")
 			EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
 				if arg == "Blizzard_TalentUI" then
