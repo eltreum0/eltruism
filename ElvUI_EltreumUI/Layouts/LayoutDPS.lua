@@ -988,8 +988,8 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["raid"]["health"]["yOffset"] = 0
-		E.db["unitframe"]["units"]["raid"]["height"] = 29
-		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
+		E.db["unitframe"]["units"]["raid"]["height"] = 28
+		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
 		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 0
 		E.db["unitframe"]["units"]["raid"]["infoPanel"]["enable"] = true
 		E.db["unitframe"]["units"]["raid"]["infoPanel"]["transparent"] = true
@@ -1045,8 +1045,8 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 			E.db["unitframe"]["units"]["raid40"]["power"]["enable"] = true --dps raid 40 tbc/classic
 		end
 		E.db["unitframe"]["units"]["raid"]["width"] = 120
-		E.db["unitframe"]["units"]["raid40"]["height"] = 29
-		E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
+		E.db["unitframe"]["units"]["raid40"]["height"] = 28
+		E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
 		E.db["unitframe"]["units"]["raid40"]["buffIndicator"]["size"] = 10
 		E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["raid40"]["disableMouseoverGlow"] = true
