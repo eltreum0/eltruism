@@ -19,7 +19,7 @@ function ElvUI_EltreumUI:Shadows()
 							_G.MacroFrame:CreateShadow()
 						end
 					elseif E.Classic then
-						if not _G.MacroFrame.backdrop.shadow then
+						if _G.MacroFrame and _G.MacroFrame.backdrop and not _G.MacroFrame.backdrop.shadow then
 							_G.MacroFrame.backdrop:CreateShadow()
 						end
 					end
@@ -35,7 +35,7 @@ function ElvUI_EltreumUI:Shadows()
 			if (arg == "Blizzard_InspectUI") then
 				_G.InspectFrame:HookScript("OnShow", function()
 					if E.TBC or E.Classic then
-						if _G.InspectFrame and not _G.InspectFrame.backdrop.shadow then
+						if _G.InspectFrame and _G.InspectFrame.backdrop and not _G.InspectFrame.backdrop.shadow then
 							_G.InspectFrame.backdrop:CreateShadow()
 						end
 					elseif E.Retail then
@@ -56,7 +56,7 @@ function ElvUI_EltreumUI:Shadows()
 			elseif E.TBC or E.Classic then
 				if (arg == "Blizzard_AuctionUI") then
 					_G.AuctionFrame:HookScript("OnShow", function()
-						if _G.AuctionFrame and not _G.AuctionFrame.backdrop.shadow then
+						if _G.AuctionFrame and _G.AuctionFrame.backdrop and not _G.AuctionFrame.backdrop.shadow then
 							_G.AuctionFrame.backdrop:CreateShadow()
 						end
 					end)
@@ -160,12 +160,12 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 					_G.PlayerTalentFrameTab1:HookScript("OnShow", function()
-						if not _G.PlayerTalentFrameTab1.backdrop.shadow then
+						if _G.PlayerTalentFrameTab1 and _G.PlayerTalentFrameTab1.backdrop and not _G.PlayerTalentFrameTab1.backdrop.shadow then
 							_G.PlayerTalentFrameTab1.backdrop:CreateShadow()
 						end
 					end)
 					_G.PlayerTalentFrameTab2:HookScript("OnShow", function()
-						if not _G.PlayerTalentFrameTab2.backdrop.shadow then
+						if _G.PlayerTalentFrameTab2 and _G.PlayerTalentFrameTab2.backdrop and not _G.PlayerTalentFrameTab2.backdrop.shadow then
 							_G.PlayerTalentFrameTab2.backdrop:CreateShadow()
 						end
 					end)
@@ -186,22 +186,22 @@ function ElvUI_EltreumUI:Shadows()
 				end
 				if (arg == "Blizzard_AchievementUI") then
 					_G.AchievementFrame:HookScript("OnShow", function()
-						if not _G.AchievementFrame.backdrop.shadow then
+						if _G.AchievementFrame and _G.AchievementFrame.backdrop and not _G.AchievementFrame.backdrop.shadow then
 							_G.AchievementFrame.backdrop:CreateShadow()
 						end
 					end)
 					_G.AchievementFrameTab1:HookScript("OnShow", function()
-						if not _G.AchievementFrameTab1.backdrop.shadow then
+						if _G.AchievementFrameTab1 and _G.AchievementFrameTab1.backdrop and not _G.AchievementFrameTab1.backdrop.shadow then
 							_G.AchievementFrameTab1.backdrop:CreateShadow()
 						end
 					end)
 					_G.AchievementFrameTab2:HookScript("OnShow", function()
-						if not _G.AchievementFrameTab2.backdrop.shadow then
+						if _G.AchievementFrameTab2 and _G.AchievementFrameTab2.backdrop and not _G.AchievementFrameTab2.backdrop.shadow then
 							_G.AchievementFrameTab2.backdrop:CreateShadow()
 						end
 					end)
 					_G.AchievementFrameTab3:HookScript("OnShow", function()
-						if not _G.AchievementFrameTab3.shadow then
+						if _G.AchievementFrameTab3 and _G.AchievementFrameTab3.backdrop and not _G.AchievementFrameTab3.backdrop.shadow then
 							_G.AchievementFrameTab3.backdrop:CreateShadow()
 						end
 					end)
@@ -239,27 +239,27 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 					_G.CollectionsJournalTab1:HookScript("OnShow", function()
-						if not _G.CollectionsJournalTab1.backdrop.shadow then
+						if _G.CollectionsJournalTab1 and _G.CollectionsJournalTab1.backdrop and not _G.CollectionsJournalTab1.backdrop.shadow then
 							_G.CollectionsJournalTab1.backdrop:CreateShadow()
 						end
 					end)
 					_G.CollectionsJournalTab2:HookScript("OnShow", function()
-						if not _G.CollectionsJournalTab2.backdrop.shadow then
+						if _G.CollectionsJournalTab2 and _G.CollectionsJournalTab2.backdrop and not _G.CollectionsJournalTab2.backdrop.shadow then
 							_G.CollectionsJournalTab2.backdrop:CreateShadow()
 						end
 					end)
 					_G.CollectionsJournalTab3:HookScript("OnShow", function()
-						if not _G.CollectionsJournalTab3.backdrop.shadow then
+						if _G.CollectionsJournalTab3 and _G.CollectionsJournalTab3.backdrop and not _G.CollectionsJournalTab3.backdrop.shadow then
 							_G.CollectionsJournalTab3.backdrop:CreateShadow()
 						end
 					end)
 					_G.CollectionsJournalTab4:HookScript("OnShow", function()
-						if not _G.CollectionsJournalTab4.backdrop.shadow then
+						if _G.CollectionsJournalTab4 and _G.CollectionsJournalTab4.backdrop and not _G.CollectionsJournalTab4.backdrop.shadow then
 							_G.CollectionsJournalTab4.backdrop:CreateShadow()
 						end
 					end)
 					_G.CollectionsJournalTab5:HookScript("OnShow", function()
-						if not _G.CollectionsJournalTab5.backdrop.shadow then
+						if _G.CollectionsJournalTab5 and _G.CollectionsJournalTab5.backdrop and not _G.CollectionsJournalTab5.backdrop.shadow then
 							_G.CollectionsJournalTab5.backdrop:CreateShadow()
 						end
 					end)
@@ -429,22 +429,22 @@ function ElvUI_EltreumUI:Shadows()
 			EltruismBlizzShadowsClassic:SetScript("OnEvent", function(_, _, arg)
 				if (arg == "Blizzard_TalentUI") then
 					_G.PlayerTalentFrame.backdrop:HookScript("OnShow", function()
-						if not _G.PlayerTalentFrame.backdrop.shadow then
+						if _G.PlayerTalentFrame and _G.PlayerTalentFrame.backdrop and not _G.PlayerTalentFrame.backdrop.shadow then
 							_G.PlayerTalentFrame.backdrop:CreateShadow()
 						end
 					end)
 					_G.PlayerTalentFrameTab1.backdrop:HookScript("OnShow", function()
-						if not _G.PlayerTalentFrameTab1.backdrop.shadow then
+						if _G.PlayerTalentFrameTab1 and _G.PlayerTalentFrameTab1.backdrop and not _G.PlayerTalentFrameTab1.backdrop.shadow then
 							_G.PlayerTalentFrameTab1.backdrop:CreateShadow()
 						end
 					end)
 					_G.PlayerTalentFrameTab2.backdrop:HookScript("OnShow", function()
-						if not _G.PlayerTalentFrameTab2.backdrop.shadow then
+						if _G.PlayerTalentFrameTab2 and _G.PlayerTalentFrameTab2.backdrop and not _G.PlayerTalentFrameTab2.backdrop.shadow then
 							_G.PlayerTalentFrameTab2.backdrop:CreateShadow()
 						end
 					end)
 					_G.PlayerTalentFrameTab3.backdrop:HookScript("OnShow", function()
-						if not _G.PlayerTalentFrameTab3.backdrop.shadow then
+						if _G.PlayerTalentFrameTab3 and _G.PlayerTalentFrameTab3.backdrop and not _G.PlayerTalentFrameTab3.backdrop.shadow then
 							_G.PlayerTalentFrameTab3.backdrop:CreateShadow()
 						end
 					end)
@@ -551,7 +551,7 @@ function ElvUI_EltreumUI:Shadows()
 		--microbar shadow
 		if E.db.actionbar.microbar.enabled == true then
 			if E.db.actionbar.microbar.backdrop == true then
-				if not _G.ElvUI_MicroBar.backdrop.shadow then
+				if _G.ElvUI_MicroBar and _G.ElvUI_MicroBar.backdrop and not _G.ElvUI_MicroBar.backdrop.shadow then
 					_G.ElvUI_MicroBar.backdrop:CreateShadow()
 				end
 			else
@@ -838,40 +838,42 @@ end
 
 --benik's version
 function ElvUI_EltreumUI:NameplateShadows(nameplate)
-	if E.db.ElvUI_EltreumUI.shadows.nameplates and E.private.nameplates.enable then
-		if nameplate.Health.backdrop then
-			if not nameplate.Health.backdrop.shadow then
-				nameplate.Health.backdrop:CreateShadow()
-			end
-		end
-	end
-
-	if E.db.ElvUI_EltreumUI.shadows.nppower then
-		if nameplate.Power.backdrop then
-			if not nameplate.Power.backdrop.shadow then
-				nameplate.Power.backdrop:CreateShadow()
-			end
-		end
-	end
-
-	if E.db.ElvUI_EltreumUI.shadows.npcastbar then
-		if nameplate.Castbar.backdrop then
-			if not nameplate.Castbar.backdrop.shadow then
-				nameplate.Castbar.backdrop:CreateShadow()
+	if E.private.nameplates.enable then
+		if E.db.ElvUI_EltreumUI.shadows.nameplates then
+			if nameplate.Health.backdrop then
+				if not nameplate.Health.backdrop.shadow then
+					nameplate.Health.backdrop:CreateShadow()
+				end
 			end
 		end
 
-		if nameplate.Castbar.Button then
-			if not nameplate.Castbar.Button.shadow then
-				nameplate.Castbar.Button:CreateShadow()
+		if E.db.ElvUI_EltreumUI.shadows.nppower then
+			if nameplate.Power.backdrop then
+				if not nameplate.Power.backdrop.shadow then
+					nameplate.Power.backdrop:CreateShadow()
+				end
 			end
 		end
-	end
 
-	if E.db.ElvUI_EltreumUI.shadows.npportraits then
-		if nameplate.Portrait.backdrop then
-			if not nameplate.Portrait.backdrop.shadow then
-				nameplate.Portrait.backdrop:CreateShadow()
+		if E.db.ElvUI_EltreumUI.shadows.npcastbar then
+			if nameplate.Castbar.backdrop then
+				if not nameplate.Castbar.backdrop.shadow then
+					nameplate.Castbar.backdrop:CreateShadow()
+				end
+			end
+
+			if nameplate.Castbar.Button then
+				if not nameplate.Castbar.Button.shadow then
+					nameplate.Castbar.Button:CreateShadow()
+				end
+			end
+		end
+
+		if E.db.ElvUI_EltreumUI.shadows.npportraits then
+			if nameplate.Portrait.backdrop then
+				if not nameplate.Portrait.backdrop.shadow then
+					nameplate.Portrait.backdrop:CreateShadow()
+				end
 			end
 		end
 	end
