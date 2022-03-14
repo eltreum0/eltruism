@@ -220,22 +220,27 @@ function ElvUI_EltreumUI:AlternativeGroupsDPS()
 		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-258"
 		E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,47,-316"
 		E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-297"
-		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
-		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 2
-		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 25
 		if E.TBC then
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 5
 		else
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 4
 		end
-		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 0
+
+		E.db["unitframe"]["units"]["raid"]["height"] = 30
+		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
+		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 2
+		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 25
+		--E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 0
+		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 3
 		E.db["unitframe"]["units"]["raid"]["width"] = 120
+
 		E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
 		E.db["unitframe"]["units"]["raid40"]["groupsPerRowCol"] = 2
 		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "DOWN_RIGHT"
 		E.db["unitframe"]["units"]["raid40"]["height"] = 30
 		E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 2
 		E.db["unitframe"]["units"]["raid40"]["width"] = 120
+		E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 3
 		ElvUI_EltreumUI:Print(L["Alternative Group, Raid and Raid40 layout has been set"])
 
 		E:UpdateLayout()
@@ -252,22 +257,30 @@ function ElvUI_EltreumUI:OriginalGroupsDPS()
 		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-247"
 		E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
 		E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
-		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
-		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 4
-		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 0
 		if E.TBC then
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 5
 		else
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 4
 		end
-		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 0
+
+		E.db["unitframe"]["units"]["raid"]["height"] = 29
+		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
+		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 4
+		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 0
+		--E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 0
+		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 3
 		E.db["unitframe"]["units"]["raid"]["width"] = 120
+
+		E.db["unitframe"]["units"]["raid40"]["height"] = 29
 		E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
 		E.db["unitframe"]["units"]["raid40"]["groupsPerRowCol"] = 4
 		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "DOWN_RIGHT"
-		E.db["unitframe"]["units"]["raid40"]["height"] = 32
+		E.db["unitframe"]["units"]["raid40"]["height"] = 29
 		E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 2
 		E.db["unitframe"]["units"]["raid40"]["width"] = 120
+		E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 3
+
+
 		ElvUI_EltreumUI:Print(L["Original Group, Raid and Raid40 layout has been set"])
 
 		E:UpdateLayout()
