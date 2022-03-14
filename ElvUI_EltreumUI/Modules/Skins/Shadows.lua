@@ -428,22 +428,36 @@ function ElvUI_EltreumUI:Shadows()
 			EltruismBlizzShadowsClassic:RegisterEvent("ADDON_LOADED")
 			EltruismBlizzShadowsClassic:SetScript("OnEvent", function(_, _, arg)
 				if (arg == "Blizzard_TalentUI") then
-					_G.PlayerTalentFrame.backdrop:HookScript("OnShow", function()
+					--[[_G.PlayerTalentFrame:HookScript("OnShow", function()
 						if _G.PlayerTalentFrame and _G.PlayerTalentFrame.backdrop and not _G.PlayerTalentFrame.backdrop.shadow then
 							_G.PlayerTalentFrame.backdrop:CreateShadow()
 						end
 					end)
-					_G.PlayerTalentFrameTab1.backdrop:HookScript("OnShow", function()
+					_G.PlayerTalentFrameTab1:HookScript("OnShow", function()
 						if _G.PlayerTalentFrameTab1 and _G.PlayerTalentFrameTab1.backdrop and not _G.PlayerTalentFrameTab1.backdrop.shadow then
 							_G.PlayerTalentFrameTab1.backdrop:CreateShadow()
 						end
 					end)
-					_G.PlayerTalentFrameTab2.backdrop:HookScript("OnShow", function()
+					_G.PlayerTalentFrameTab2:HookScript("OnShow", function()
 						if _G.PlayerTalentFrameTab2 and _G.PlayerTalentFrameTab2.backdrop and not _G.PlayerTalentFrameTab2.backdrop.shadow then
 							_G.PlayerTalentFrameTab2.backdrop:CreateShadow()
 						end
 					end)
-					_G.PlayerTalentFrameTab3.backdrop:HookScript("OnShow", function()
+					_G.PlayerTalentFrameTab3:HookScript("OnShow", function()
+						if _G.PlayerTalentFrameTab3 and _G.PlayerTalentFrameTab3.backdrop and not _G.PlayerTalentFrameTab3.backdrop.shadow then
+							_G.PlayerTalentFrameTab3.backdrop:CreateShadow()
+						end
+					end)]]
+					_G.PlayerTalentFrame:HookScript("OnShow", function()
+						if _G.PlayerTalentFrame and _G.PlayerTalentFrame.backdrop and not _G.PlayerTalentFrame.backdrop.shadow then
+							_G.PlayerTalentFrame.backdrop:CreateShadow()
+						end
+						if _G.PlayerTalentFrameTab1 and _G.PlayerTalentFrameTab1.backdrop and not _G.PlayerTalentFrameTab1.backdrop.shadow then
+							_G.PlayerTalentFrameTab1.backdrop:CreateShadow()
+						end
+						if _G.PlayerTalentFrameTab2 and _G.PlayerTalentFrameTab2.backdrop and not _G.PlayerTalentFrameTab2.backdrop.shadow then
+							_G.PlayerTalentFrameTab2.backdrop:CreateShadow()
+						end
 						if _G.PlayerTalentFrameTab3 and _G.PlayerTalentFrameTab3.backdrop and not _G.PlayerTalentFrameTab3.backdrop.shadow then
 							_G.PlayerTalentFrameTab3.backdrop:CreateShadow()
 						end
