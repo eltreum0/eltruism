@@ -114,7 +114,7 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		--tooltip hp bar, one of the worst actually
-		if not _G.GameTooltipStatusBar.backdrop.shadow then
+		if _G.GameTooltipStatusBar and _G.GameTooltipStatusBar.backdrop and not _G.GameTooltipStatusBar.backdrop.shadow then
 			local EltruismGameTooltipStatusBar = CreateFrame("Frame", "EltruismGameTooltipStatusBarShadowFrame")
 			local GameTooltipStatusBarx, GameTooltipStatusBary = _G.GameTooltipStatusBar.backdrop:GetSize()
 			EltruismGameTooltipStatusBar:SetSize(GameTooltipStatusBarx, GameTooltipStatusBary-3)
