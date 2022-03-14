@@ -100,12 +100,9 @@ function ElvUI_EltreumUI:ResolutionOutline()
 	elseif width == 1920 then
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
 		ElvUI_EltreumUI:Print(L["1080p resolution detected, setting fonts to outline mode."])
-	elseif C_CVar.GetCVar('gxFullscreenResolution') == "auto" or C_CVar.GetCVar('gxWindowedResolution') == "auto" then
-		ElvUI_EltreumUI:SetupFontsOutlineOutline()
-		ElvUI_EltreumUI:Print(L["Fonts were set to Outline due to your resolution."])
 	else
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
-		ElvUI_EltreumUI:Print(L["Unknown resolution, settings fonts to outline."])
+		ElvUI_EltreumUI:Print(L["Fonts were set to Outline due to your resolution."])
 	end
 end
 
