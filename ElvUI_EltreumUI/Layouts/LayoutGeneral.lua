@@ -679,6 +679,9 @@ function ElvUI_EltreumUI:SetupPrivate()
 	E.private["general"]["normTex"] = "Eltreum-Blank"
 	E.private["theme"] = "class"
 	E.private["skins"]["parchmentRemoverEnable"] = true
+	E.private["skins"]["blizzard"]["enable"] = true
+	E.private["skins"]["ace3Enable"] = true
+	E.private["skins"]["checkBoxSkin"] = true
 	if E.Retail then
 		E.private["install_complete"] = tostring(E.version)
 		E.private["general"]["totemBar"] = true
@@ -703,27 +706,22 @@ function ElvUI_EltreumUI:SetupGlobal()
 		E.global["general"]["smallerWorldMapScale"] = 1
 		E.global["general"]["mapAlphaWhenMoving"] = 0.35
 	end
-	if E.Classic then
-		E.global["general"]["smallerWorldMapScale"] = 0.5
-		E.global["general"]["mapAlphaWhenMoving"] = 0.5
-		E.global["general"]["smallerWorldMap"] = true
-	end
-	if E.TBC then
+	if E.Classic or E.TBC then
 		E.global["general"]["smallerWorldMapScale"] = 0.5
 		E.global["general"]["mapAlphaWhenMoving"] = 0.5
 		E.global["general"]["smallerWorldMap"] = true
 	end
 	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
 	E.global["general"]["fadeMapDuration"] = 0.1
-		-- Custom DataText
+	-- Custom DataText
 	E.global["datatexts"]["settings"]["Experience"]["textFormat"] = "PERCENT"
 	E.global["datatexts"]["settings"]["Friends"]["hideAFK"] = true
 	E.global["datatexts"]["settings"]["Friends"]["hideApp"] = true
+	E.global["datatexts"]["settings"]["Friends"]["hideBSAp"] = true
 	E.global["datatexts"]["settings"]["Gold"]["goldCoins"] = false
-	if E.Retail then
-		E.global["datatexts"]["settings"]["MovementSpeed"]["NoLabel"] = true
-	end
-	E.global["datatexts"]["settings"]["Time"]["time24"] = true
+	--E.global["datatexts"]["settings"]["Time"]["time24"] = true
+	E.global["datatexts"]["settings"]["Combat"]["TimeFull"] = false
+	E.global["datatexts"]["settings"]["Durability"]["percThreshold"] = 40
 end
 
 -- CVars General
