@@ -51,6 +51,10 @@ function ElvUI_EltreumUI:ExpandedTalents()
 							_G.PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 490)
 						end
 					end
+					--hide the close button (only shows up for some people?)
+					if _G.PlayerTalentFrameCancelButton then
+						_G.PlayerTalentFrameCancelButton:Hide()
+					end
 				end
 			end)
 		end
