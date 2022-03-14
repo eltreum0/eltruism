@@ -40,7 +40,7 @@ function ElvUI_EltreumUI:HidePopups()
 	if _G["ElvUI_StaticPopup4"] then
 		_G["ElvUI_StaticPopup4"]:Hide()
 	end
-	C_Timer.After(14, function()
+	C_Timer.After(5, function()
 		if IsAddOnLoaded('Details') then
 			if _G["StreamOverlayWelcomeWindow"] then
 				_G["StreamOverlayWelcomeWindow"]:Hide()
@@ -88,21 +88,24 @@ end
 
 --Resolution check for font outline
 function ElvUI_EltreumUI:ResolutionOutline()
-	if C_CVar.GetCVar('gxFullscreenResolution') == "3840x2160" then --or C_CVar.GetCVar('gxWindowedResolution') == "3840x2160" then
+	local width = GetPhysicalScreenSize()
+	--C_CVar.GetCVar('gxFullscreenResolution') == "3840x2160"
+	--C_CVar.GetCVar('gxWindowedResolution') == "3840x2160"
+	if width == 3840 then
 		ElvUI_EltreumUI:Print(L["4K resolution detected, setting fonts to default mode."])
 		ElvUI_EltreumUI:SetupFontsOutlineDefault()
-	elseif C_CVar.GetCVar('gxFullscreenResolution') == "2560x1440" then --or C_CVar.GetCVar('gxWindowedResolution') == "2560x1440" then
+	elseif width == 2560 then
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
 		ElvUI_EltreumUI:Print(L["1440p resolution detected, setting fonts to outline mode."])
-	elseif C_CVar.GetCVar('gxFullscreenResolution') == "1920x1080" then --or C_CVar.GetCVar('gxWindowedResolution') == "1920x1080" then
+	elseif width == 1920 then
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
 		ElvUI_EltreumUI:Print(L["1080p resolution detected, setting fonts to outline mode."])
-	elseif C_CVar.GetCVar('gxFullscreenResolution') == "auto" then --or C_CVar.GetCVar('gxWindowedResolution') == "auto" then
+	elseif C_CVar.GetCVar('gxFullscreenResolution') == "auto" or C_CVar.GetCVar('gxWindowedResolution') == "auto" then
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
 		ElvUI_EltreumUI:Print(L["Fonts were set to Outline due to your resolution."])
 	else
-		ElvUI_EltreumUI:SetupFontsOutlineNone()
-		ElvUI_EltreumUI:Print(L["Fonts were set to no Outline due to your resolution."])
+		ElvUI_EltreumUI:SetupFontsOutlineDefault()
+		ElvUI_EltreumUI:Print(L["Unknown resolution detected, setting fonts to default mode."])
 	end
 end
 
@@ -217,9 +220,9 @@ end
 function ElvUI_EltreumUI:AlternativeGroupsDPS()
 	if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 		if not E.db.movers then E.db.movers = {} end
-		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-258"
-		E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,47,-316"
-		E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-297"
+		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,UIParent,TOPLEFT,200,-320"
+		E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,30,-316"
+		E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,UIParent,TOPLEFT,150,-318"
 		if E.TBC then
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 5
 		else
@@ -260,14 +263,14 @@ function ElvUI_EltreumUI:OriginalGroupsDPS()
 		else
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 4
 		end
-		E.db["unitframe"]["units"]["raid"]["height"] = 29
-		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
+		E.db["unitframe"]["units"]["raid"]["height"] = 28
+		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
 		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 4
 		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 0
 		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 3
 		E.db["unitframe"]["units"]["raid"]["width"] = 120
-		E.db["unitframe"]["units"]["raid40"]["height"] = 29
-		E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
+		E.db["unitframe"]["units"]["raid40"]["height"] = 28
+		E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
 		E.db["unitframe"]["units"]["raid40"]["groupsPerRowCol"] = 4
 		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "DOWN_RIGHT"
 		E.db["unitframe"]["units"]["raid40"]["height"] = 29
@@ -366,7 +369,6 @@ _G.VideoOptionsFrame:RegisterForDrag("LeftButton")
 _G.VideoOptionsFrame:SetScript("OnDragStart", _G.VideoOptionsFrame.StartMoving)
 _G.VideoOptionsFrame:SetScript("OnDragStop",_G.VideoOptionsFrame.StopMovingOrSizing)
 _G.VideoOptionsFrame:SetClampedToScreen(true)
-
 
 --click casting button toggle
 if E.Retail then
