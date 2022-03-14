@@ -227,8 +227,8 @@ function ElvUI_EltreumUI:CastCursor()
 				end
 			end
 			self.quad = quad
-			self.dur  = max(d,0)
-			self.max  = m
+			self.dur = max(d,0)
+			self.max = m
 			RingSetShown(self, true)
 		end
 		local function Update(self, elapsed)
@@ -248,14 +248,14 @@ function ElvUI_EltreumUI:CastCursor()
 				return 
 			end
 			self.dur = dur
-			local rev	= self.reverse
+			local rev = self.reverse
 			local maxdur = self.max
 			local radius = self.radius
-			local angle  = 360 * ( rev and maxdur-dur or dur ) / maxdur
+			local angle = 360 * ( rev and maxdur-dur or dur ) / maxdur
 			local qangle = angle % 90
-			local quad   = floor(angle/90) + 1
-			local tex	= self.textures[quad]
-			local pquad  = self.quad
+			local quad = floor(angle/90) + 1
+			local tex = self.textures[quad]
+			local pquad = self.quad
 			if quad~=pquad then
 				if pquad>0 and pquad<5 then
 					local ptex = self.textures[pquad]
@@ -276,8 +276,8 @@ function ElvUI_EltreumUI:CastCursor()
 			end
 		end
 		local function Setup(frame)
-			local cfg	 = frame.db
-			local radius  = cfg.radius
+			local cfg = frame.db
+			local radius = cfg.radius
 			local r,g,b,a = unpack(cfg.color)
 			frame:SetScale(1)
 			frame:SetAlpha(a or 1)
@@ -299,7 +299,7 @@ function ElvUI_EltreumUI:CastCursor()
 				if hide then tex:Hide() end
 				frame.textures[i] = tex
 			end
-			frame.quad   = 0
+			frame.quad  = 0
 			frame.radius = radius
 			frame.factor = (radius-cfg.thickness)/radius
 			frame.reverse = cfg.reverse

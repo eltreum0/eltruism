@@ -76,8 +76,8 @@ function ElvUI_EltreumUI:RunCommands(message)
 		print("|cff82B4ff/eltruism setup/options/config|r - Opens the Eltruism Installer")
 		print("|cff82B4ff/eltruism loot|r - Demonstrates the LootText")
 		if E.Retail then
-			print("|cff82B4ff/way and /waypoint|r  - Sets a map waypoint with the supplied coordinates")
-			print("|cff82B4ff/!key and /!keys|r  - Links your keystone and covenant in chat")
+			print("|cff82B4ff/way and /waypoint|r - Sets a map waypoint with the supplied coordinates")
+			print("|cff82B4ff/!key and /!keys|r - Links your keystone and covenant in chat")
 		end
 		print("|cff82B4ff/eltruism background|r - Toggles chat between grey and black background colors for ElvUI")
 		print("|cff82B4ff/eltruism color|r - Toggles unitframe between light and dark modes")

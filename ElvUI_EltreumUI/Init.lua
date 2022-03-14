@@ -48,7 +48,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:LoadCommands() --loads chat commands
 	ElvUI_EltreumUI:Borders() --creates borders if option is enabled
 	ElvUI_EltreumUI:ActionbarBorderAdjust() --auto adjust actionbar/border if option is enabled
-	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()  --adds class icons to character panel
+	ElvUI_EltreumUI:ClassIconsOnCharacterPanel() --adds class icons to character panel
 	ElvUI_EltreumUI:PlayerNamepaperdoll() --update player name
 	ElvUI_EltreumUI:CursorInit() --starts cursor modules
 	ElvUI_EltreumUI:SkinMailZone() --skins zone change messages and mail font
@@ -56,7 +56,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:AutoScreenshot() --takes screenshots when certain events are fired
 	ElvUI_EltreumUI:FriendlyNameplates() -- controls hiding healthbar from friendly nameplates inside instances
 	ElvUI_EltreumUI:ShamanTextureMode() -- applies the dark color to shaman powers in TBC/Classic
-	ElvUI_EltreumUI:Anchors()  --creates anchors for error frame and weakaura that can be used to attack weakauras to elvui's unitframe visibility settings
+	ElvUI_EltreumUI:Anchors() --creates anchors for error frame and weakaura that can be used to attack weakauras to elvui's unitframe visibility settings
 	ElvUI_EltreumUI:ChatRoleSwapIcons() --adds custom role icons in chat when swapping roles
 	ElvUI_EltreumUI:DynamicChatFade() --adds chat fade/hide functions
 	ElvUI_EltreumUI:StealthOptions() --adds an overlay when in stealth

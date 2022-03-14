@@ -60,7 +60,7 @@ function ElvUI_EltreumUI:QuestItem()
 			-- These items are not marked as being quest items, but we want to include them anyway
 			local qItems = {
 				--by Eltreum
-				28607,  -- Sunfury Disguise
+				28607, -- Sunfury Disguise
 				28132, -- area 52 bomb
 				28038, -- seaforium explosive
 
@@ -73,7 +73,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 				11582,	-- Fel Salve
 				12922,	-- Empty Canteen
-				11914,  -- Cursed Ooze Jar
+				11914, -- Cursed Ooze Jar
 				11948,	-- Tainted Ooze Jar
 				28038,	-- Seaforium PU-36 Explosive Nether Modulator
 				28132,	-- Area 52 Special
@@ -407,7 +407,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Update Cooldowns
 			function EltruismQuestItemFrame:ACTIONBAR_UPDATE_COOLDOWN(event)
-				if not self.shownItems then  --added this check
+				if not self.shownItems then --added this check
 					self.shownItems = 0
 				end
 				if (self.shownItems > 0) then

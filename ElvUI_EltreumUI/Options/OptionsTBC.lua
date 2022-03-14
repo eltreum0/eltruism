@@ -1633,7 +1633,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha = value  E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header845 = {
 								order = 97,
@@ -4039,7 +4039,7 @@ function ElvUI_EltreumUI:Configtable()
 									if E.db.ElvUI_EltreumUI.lightmode == true then
 										ElvUI_EltreumUI:LightMode()
 										E:StaggeredUpdateAll(nil, true)
-									elseif E.db.ElvUI_EltreumUI.darkmode ==  true then
+									elseif E.db.ElvUI_EltreumUI.darkmode == true then
 										ElvUI_EltreumUI:DarkMode()
 										E:StaggeredUpdateAll(nil, true)
 									end

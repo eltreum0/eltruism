@@ -24,7 +24,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 		instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.instances.r, E.db.ElvUI_EltreumUI.instances.g, E.db.ElvUI_EltreumUI.instances.b)
 		instancedifficulty.Text:SetPoint("CENTER", _G["MoverEltruismInstanceDifficulty"])
 		instancedifficulty.Text:SetParent(_G.Minimap)
-		local DifficultyID = select(3, GetInstanceInfo())  --https://wowpedia.fandom.com/wiki/DifficultyID
+		local DifficultyID = select(3, GetInstanceInfo()) --https://wowpedia.fandom.com/wiki/DifficultyID
 		if DifficultyID == 1 then
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.instances.DungeonNormal)
 		elseif DifficultyID == 2 then

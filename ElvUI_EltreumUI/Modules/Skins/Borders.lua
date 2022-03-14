@@ -81,7 +81,7 @@ function ElvUI_EltreumUI:Borders()
 				playerborder:SetFrameStrata("LOW")
 			end
 
-			if E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.unitframe.units.player.castbar.enable  then
+			if E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.unitframe.units.player.castbar.enable then
 				local playercastbarborder = CreateFrame("Frame", "EltruismPlayerCastBarBorder", _G.ElvUF_Player_CastBar, BackdropTemplateMixin and "BackdropTemplate")
 				local isattachedplayer = E.db.unitframe.units.player.castbar.iconAttached
 				if isattachedplayer == false then

@@ -68,7 +68,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 					end
 				end
 			end
-			--UF.PostUpdateAura(self, unit, button)  --error? TexCoord out of range (mostly in vehicles)
+			--UF.PostUpdateAura(self, unit, button) --error? TexCoord out of range (mostly in vehicles)
 		end
 	end
 end
@@ -104,7 +104,7 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 					button.count:Point('BOTTOMRIGHT', 2, -3)
 				end
 			end
-			--UF.PostUpdateAura(self, unit, button)  --error? TexCoord out of range (mostly in vehicles)
+			--UF.PostUpdateAura(self, unit, button) --error? TexCoord out of range (mostly in vehicles)
 		end
 	end
 end
@@ -199,7 +199,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "Eltreum-Class-Rogue"
 				elseif reactiontarget == 3 then
 					E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "Eltreum-Class-Druid"
-				elseif reactiontarget == 2 or reactiontarget == 1  then
+				elseif reactiontarget == 2 or reactiontarget == 1 then
 					E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "Eltreum-Class-DeathKnight"
 				end
 			end

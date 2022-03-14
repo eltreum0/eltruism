@@ -445,23 +445,23 @@ function ElvUI_EltreumUI:GetDBMProfile()
 				["Skin"] = "AddOnSkins Half-Bar",
 
 				--"huge" bars, the small bars near the top right center
-				["HugeScale"] = 1,  --bar scale
+				["HugeScale"] = 1, --bar scale
 				["HugeWidth"] = 170, --bar width
 				["HugeHeight"] = 10, --bar height
 				["HugeBarXOffset"] = 0, --offset for bars near top right center
 				["HugeBarYOffset"] = 18, --offset for bars near top right center
-				["HugeTimerX"] = 400,  --actual small bar position X
-				["HugeTimerY"] = 280,  --actual small bar position Y
+				["HugeTimerX"] = 400, --actual small bar position X
+				["HugeTimerY"] = 280, --actual small bar position Y
 
 				--"small bars" the ones above right chat
-				["BarXOffset"] = 0,  --offset between bars above right chat
+				["BarXOffset"] = 0, --offset between bars above right chat
 				["BarYOffset"] = 18, --offset between bars above right chat
-				["Scale"] = 1,  --bar scale
+				["Scale"] = 1, --bar scale
 				["TimerX"] = -195, --actual position X
-				["TimerY"] = 215,  -- actual positon Y
+				["TimerY"] = 215, -- actual positon Y
 				["Height"] = 11, --bar height
 				["FontSize"] = 11, --bar font size
-				["Width"] = 390,  --bar width
+				["Width"] = 390, --bar width
 
 				["ColorByType"] = true,
 				["IconLeft"] = true,
@@ -559,23 +559,23 @@ function ElvUI_EltreumUI:GetDBMProfile()
 				["StartColorAB"] = 1,
 
 				--"huge" bars, the small bars near the top right center
-				["HugeScale"] = 1,  --bar scale
+				["HugeScale"] = 1, --bar scale
 				["HugeWidth"] = 170, --bar width
 				["HugeHeight"] = 10, --bar height
 				["HugeBarXOffset"] = 0, --offset for bars near top right center
 				["HugeBarYOffset"] = 18, --offset for bars near top right center
-				["HugeTimerX"] = 400,  --actual small bar position X
-				["HugeTimerY"] = 280,  --actual small bar position Y
+				["HugeTimerX"] = 400, --actual small bar position X
+				["HugeTimerY"] = 280, --actual small bar position Y
 
 				--"small bars" the ones above right chat
-				["BarXOffset"] = 0,  --offset between bars above right chat
+				["BarXOffset"] = 0, --offset between bars above right chat
 				["BarYOffset"] = 18, --offset between bars above right chat
-				["Scale"] = 1,  --bar scale
+				["Scale"] = 1, --bar scale
 				["TimerX"] = -195, --actual position X
-				["TimerY"] = 215,  -- actual positon Y
+				["TimerY"] = 215, -- actual positon Y
 				["Height"] = 11, --bar height
 				["FontSize"] = 11, --bar font size
-				["Width"] = 390,  --bar width
+				["Width"] = 390, --bar width
 
 
 				["StartColorRB"] = 0.501960784313726,

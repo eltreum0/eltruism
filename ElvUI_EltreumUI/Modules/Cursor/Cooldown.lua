@@ -140,7 +140,7 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 	else
 		fadeStamp = now + db.holdTime
 	end
-	finishStamp = endStamp + db.fadeTime  --this is the time at which it will both be off cd and will not be shown
+	finishStamp = endStamp + db.fadeTime --this is the time at which it will both be off cd and will not be shown
 	lastUpdate = NormalUpdateDelay -- to force update in next frame
 	isAlmostReady = false
 	isHidden = false
@@ -217,7 +217,7 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 						end
 						if isHidden then
 							return
-						elseif now > fadeStamp then  --error?
+						elseif now > fadeStamp then --error?
 							getEltruismCooldownFrameAlpha = EltruismCooldownFrame:GetAlpha()
 							isHidden = true
 							UIFrameFadeOut(EltruismCooldownFrame, 1, 1, 0)

@@ -41,7 +41,7 @@ function ElvUI_EltreumUI:SkinQuests()
 		local wowheadregion
 		if E.locale == "deDE" then
 			wowheadregion = "de.wowhead.com"
-		elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW"  then
+		elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW" then
 			wowheadregion = "wowhead.com"
 		elseif E.locale == "esMX" or E.locale == "esES" then
 			wowheadregion = "es.wowhead.com"
@@ -149,7 +149,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						if not block then
 							return
 						end
-						if block.HeaderText then  --quest title
+						if block.HeaderText then --quest title
 							block.HeaderText:SetFont(E.LSM:Fetch('font', E.db.general.font), 13, E.db.general.fontStyle)
 							block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 							block.HeaderText:SetWordWrap(true)
@@ -159,7 +159,7 @@ function ElvUI_EltreumUI:SkinQuests()
 								block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, E.db.general.fontStyle)
 								block.currentLine.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 								block.currentLine.Text:SetWordWrap(true)
-							else  --step/description of the quest
+							else --step/description of the quest
 								block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, E.db.general.fontStyle)
 								block.currentLine.Text:SetTextColor(mult, mult, mult)
 								block.currentLine.Text:SetWordWrap(true)
@@ -208,8 +208,8 @@ function ElvUI_EltreumUI:SkinQuests()
 						local frames = {_G.ScenarioObjectiveBlock:GetChildren()}
 						for _, frame in pairs(frames) do
 							if frame.Text then
-								frame.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, E.db.general.fontStyle)  --this is the objective like boss 1/1
-								frame.Text:SetTextColor(1, 1, 1)  --dungeon obj text
+								frame.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, E.db.general.fontStyle) --this is the objective like boss 1/1
+								frame.Text:SetTextColor(1, 1, 1) --dungeon obj text
 								frame.Text:SetWordWrap(true)
 							end
 						end
@@ -347,7 +347,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					local watchText
 					--local text, type, finished --type is unused
 					local text, _, finished
-					--local questTitle  --unused
+					--local questTitle --unused
 					local watchTextIndex = 1
 					local questIndex
 					local objectivesCompleted
@@ -471,11 +471,11 @@ function ElvUI_EltreumUI:SkinProfessions()
 					TradeSkillDetailScrollFrame:SetWidth(350)
 
 					TradeSkillDetailScrollFrame:ClearAllPoints()
-					TradeSkillDetailScrollFrame:SetPoint("RIGHT", TradeSkillFrame, 0,  -35)
+					TradeSkillDetailScrollFrame:SetPoint("RIGHT", TradeSkillFrame, 0, -35)
 					TradeSkillDetailScrollFrame:SetHeight(390)
 
 					TradeSkillListScrollFrameScrollBar:ClearAllPoints()
-					TradeSkillListScrollFrameScrollBar:SetPoint("LEFT", TradeSkillDetailScrollChildFrame, -30,  -70)
+					TradeSkillListScrollFrameScrollBar:SetPoint("LEFT", TradeSkillDetailScrollChildFrame, -30, -70)
 					TradeSkillListScrollFrameScrollBar:SetHeight(320)
 
 					TradeSkillCreateAllButton:ClearAllPoints()
@@ -535,12 +535,12 @@ function ElvUI_EltreumUI:SkinProfessions()
 				CraftListScrollFrameScrollChildFrame:SetWidth(350)
 
 				CraftListScrollFrameScrollBar:ClearAllPoints()
-				CraftListScrollFrameScrollBar:SetPoint("CENTER", CraftFrame, "CENTER", 10,  12)
+				CraftListScrollFrameScrollBar:SetPoint("CENTER", CraftFrame, "CENTER", 10, 12)
 				CraftListScrollFrameScrollBar:SetHeight(320)
 
 				CraftDetailScrollChildFrame:SetParent(CraftFrame)
 				CraftDetailScrollChildFrame:ClearAllPoints()
-				CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30,  -46)
+				CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30, -46)
 				CraftDetailScrollChildFrame:SetHeight(390)
 
 				CraftDetailScrollFrame:Hide()
@@ -590,12 +590,12 @@ function ElvUI_EltreumUI:SkinProfessions()
 						CraftListScrollFrameScrollChildFrame:SetWidth(350)
 
 						CraftListScrollFrameScrollBar:ClearAllPoints()
-						CraftListScrollFrameScrollBar:SetPoint("CENTER", CraftFrame, "CENTER", 10,  12)
+						CraftListScrollFrameScrollBar:SetPoint("CENTER", CraftFrame, "CENTER", 10, 12)
 						CraftListScrollFrameScrollBar:SetHeight(320)
 
 						CraftDetailScrollChildFrame:SetParent(CraftFrame)
 						CraftDetailScrollChildFrame:ClearAllPoints()
-						CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30,  -46)
+						CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30, -46)
 						CraftDetailScrollChildFrame:SetHeight(390)
 
 						CraftDetailScrollFrame:Hide()

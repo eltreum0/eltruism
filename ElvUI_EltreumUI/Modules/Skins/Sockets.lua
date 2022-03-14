@@ -6,7 +6,7 @@ local KIBC_EnchantToSpellID = {
 	--missing ones added by eltreum
 	[1594] = 33996, -- +26 Attack Power
 	[368] = 34004, --cloak 12 agility
-	[684] = 33995,  --gloves 15 strength
+	[684] = 33995, --gloves 15 strength
 	[2931] = 46519, -- ring stats +4
 	[65] = 7454,
 	[2928] = 27924, -- ring + 12 dmg spell
@@ -20,7 +20,7 @@ local KIBC_EnchantToSpellID = {
 	[2519] = 359950, -- 15 fire res
 	[2664] = 46508, -- 7 res all
 	[2343] = 46531, -- major healing weapon
-	[1888] = 359685, --shield resilience? resistance?   46525
+	[1888] = 359685, --shield resilience? resistance? 46525
 	[926] = 359895, --shield frost res
 
 	---- old list
@@ -47,7 +47,7 @@ local KIBC_EnchantToSpellID = {
 	[247] = 7867, -- +$k1 Agility
 	[248] = 7782, -- +$k1 Strength
 	[249] = 7786, -- +$7784s1 Beastslaying
-	[250] = 7788, -- +$k1  Weapon Damage
+	[250] = 7788, -- +$k1 Weapon Damage
 	[254] = 7857, -- +$k1 Health
 	[255] = 13380, -- +$k1 Spirit
 	[369] = 34001, -- +$k1 Intellect
@@ -739,7 +739,7 @@ local db = {
 	[6245] = { nil, 327082, nil }, -- Rune of the Apocalypse
 
 	--Enchant Ring
-	[6163] = { 172357, 309612, nil }, -- Bargain of  Critical Strike
+	[6163] = { 172357, 309612, nil }, -- Bargain of Critical Strike
 	[6165] = { 172358, 309613, nil }, -- Bargain of Haste
 	[6167] = { 172359, 309614, nil }, -- Bargain of Mastery
 	[6169] = { 172360, 309615, nil }, -- Bargain of Versatility

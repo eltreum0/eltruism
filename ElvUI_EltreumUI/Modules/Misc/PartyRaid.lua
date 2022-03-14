@@ -12,7 +12,7 @@ function ElvUI_EltreumUI:RaidDeathGroupCheck()
 	local _, instanceType = IsInInstance()
 	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
 		if IsInGroup() == true then
-			if E.db.ElvUI_EltreumUI.partyraiddeath.bgdisable then  --to disable it in arena/bg
+			if E.db.ElvUI_EltreumUI.partyraiddeath.bgdisable then --to disable it in arena/bg
 				if instanceType == "arena" or instanceType == "pvp" then
 					ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
 				else

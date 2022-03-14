@@ -4406,7 +4406,7 @@ function ElvUI_EltreumUI:Configtable()
 									if E.db.ElvUI_EltreumUI.lightmode == true then
 										ElvUI_EltreumUI:LightMode()
 										E:StaggeredUpdateAll(nil, true)
-									elseif E.db.ElvUI_EltreumUI.darkmode ==  true then
+									elseif E.db.ElvUI_EltreumUI.darkmode == true then
 										ElvUI_EltreumUI:DarkMode()
 										E:StaggeredUpdateAll(nil, true)
 									end

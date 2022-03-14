@@ -37,7 +37,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 		--print("power prediction spam "..math.random(1,99))
 		EltreumPowerPrediction:Hide() --hide at the start before events
 		EltreumPowerPredictionIncoming:Hide() --hide at the start before events
-		local predictioncolorr, predictioncolorg, predictioncolorb  = EltreumPowerBar:GetStatusBarColor()
+		local predictioncolorr, predictioncolorg, predictioncolorb = EltreumPowerBar:GetStatusBarColor()
 
 		EltreumPowerPrediction:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture))
 		EltreumPowerPredictionIncoming:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture))
@@ -67,13 +67,13 @@ function ElvUI_EltreumUI:PowerPrediction()
 		local spellGenerators = {
 			-- Balance Druid
 			[190984] = druidwrath, --wrath
-			[194153] = 8,  --  StarFire
+			[194153] = 8, -- StarFire
 			[214281] = 10, -- New Moon
 			[274281] = 10, -- New Moon
 			[214282] = 20, -- Half Moon
 			[274282] = 20, -- Half Moon
 			[274283] = 40, -- Full Moon
-			[202347] = 8,  -- Stellar Flare
+			[202347] = 8, -- Stellar Flare
 			-- Shadow Priest
 			[8092] = mindblast, -- mind blast
 			[34914] = 5, -- vampiric touch
@@ -688,7 +688,7 @@ function ElvUI_EltreumUI:NameplatePowerTextUpdate()
 end
 
 --these two frames update the others
-local EltruismPowerBarEventsFrame =  CreateFrame("FRAME")
+local EltruismPowerBarEventsFrame = CreateFrame("FRAME")
 EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
 EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
 EltruismPowerBarEventsFrame:SetScript("OnEvent", function()
@@ -696,7 +696,7 @@ EltruismPowerBarEventsFrame:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:NameplatePower()
 end)
 
-local EltruismPowerBarPredictionEventsFrame =  CreateFrame("FRAME")
+local EltruismPowerBarPredictionEventsFrame = CreateFrame("FRAME")
 EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
 EltruismPowerBarPredictionEventsFrame:SetScript("OnEvent", function()

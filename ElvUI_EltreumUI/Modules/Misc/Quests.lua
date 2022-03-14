@@ -319,7 +319,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 							local completed = 0
 							local loopcomplete = false
 							if available[1] and available[1].title ~= nil then
-								for i, k in next, C_GossipInfo.GetAvailableQuests() do  --quests to grab
+								for i, k in next, C_GossipInfo.GetAvailableQuests() do --quests to grab
 									--local title, questLevel, isTrivial, frequency, repeatable, isComplete, isLegendary, isIgnored, questID = C_GossipInfo.GetAvailableQuests(i)
 									if E.db.ElvUI_EltreumUI.dev then
 										ElvUI_EltreumUI:Print("iterate and select quest to get")

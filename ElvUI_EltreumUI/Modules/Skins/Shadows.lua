@@ -444,8 +444,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G.MailFrame.backdrop,
 				_G.MerchantFrame.backdrop,
 				_G.WorldMapFrame,
-				_G.CharacterFrameTab4.backdrop,  --only in classic though
-				_G.CharacterFrameTab5.backdrop,  --only in classic though
+				_G.CharacterFrameTab4.backdrop, --only in classic though
+				_G.CharacterFrameTab5.backdrop, --only in classic though
 				_G.FriendsFrameTab5.backdrop, --only in classic though
 			}
 			for _, frame in pairs(classicframes) do
@@ -871,7 +871,7 @@ function ElvUI_EltreumUI:Construct_AuraIcon(button)
 		end
 	end
 end
-hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) -- nameplate buffs/debuffs shadows
+hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) --nameplate buffs/debuffs shadows
 
 function ElvUI_EltreumUI:AuraShadows(button)
 	if E.db.ElvUI_EltreumUI.shadows.aura and E.private.auras.enable then
@@ -881,7 +881,7 @@ function ElvUI_EltreumUI:AuraShadows(button)
 		end
 	end
 end
-hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows)  --aura (minimap) shadows
+hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
 
 function ElvUI_EltreumUI:UFAuraShadows(button)
 	if E.db.ElvUI_EltreumUI.shadows.ufaura and E.private.auras.enable then
@@ -891,7 +891,7 @@ function ElvUI_EltreumUI:UFAuraShadows(button)
 		end
 	end
 end
-hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraShadows)   --uf aura shadows
+hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraShadows) --uf aura shadows
 
 function ElvUI_EltreumUI:RaidShadows()
 	local inraid = IsInRaid()

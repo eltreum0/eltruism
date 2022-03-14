@@ -6,7 +6,7 @@ function ElvUI_EltreumUI:ExpandedStable()
 	if E.myclass == 'HUNTER' then
 		if E.db.ElvUI_EltreumUI.skins.expandedstable then
 			local NUM_PET_STABLE_PAGES = NUM_PET_STABLE_PAGES
-			local NUM_PET_STABLE_SLOTS  = NUM_PET_STABLE_SLOTS
+			local NUM_PET_STABLE_SLOTS = NUM_PET_STABLE_SLOTS
 			local maxSlots = NUM_PET_STABLE_PAGES * NUM_PET_STABLE_SLOTS
 			local NUM_PER_ROW = 10
 

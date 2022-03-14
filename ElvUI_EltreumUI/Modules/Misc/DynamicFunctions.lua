@@ -208,7 +208,7 @@ function ElvUI_EltreumUI:DynamicExperienceDatabar()
 	else
 		local level = UnitLevel("player")
 		if E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar then
-			if E.Retail or E.Classic  then
+			if E.Retail or E.Classic then
 				if level < 60 then
 					E.db.databars.experience.mouseover = false
 					E.db.databars.experience.enable = true

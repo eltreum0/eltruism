@@ -225,7 +225,7 @@ E:AddTag('eltruism:difficulty', 'UNIT_NAME_UPDATE', function(unit)
 	local difference = (targetlevel - playerlevel)
 	local printdifference
 	local classification = UnitClassification(unit)
-	--  "worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
+	-- "worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
 	if difference > 5 then
 		printdifference = "5"
 	elseif difference < -9 then

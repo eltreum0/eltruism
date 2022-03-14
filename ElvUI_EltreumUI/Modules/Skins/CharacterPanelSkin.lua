@@ -405,26 +405,26 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end)
 
 					--update stats and stats position
-			  		hooksecurefunc("PaperDollFrame_UpdateStats", function()
-			  			local speed = ((GetUnitSpeed("player")/7) *100)
-			  			_G.CharacterFrame.EltruismSpeed:SetText(math.ceil(speed).."%")
+					hooksecurefunc("PaperDollFrame_UpdateStats", function()
+						local speed = ((GetUnitSpeed("player")/7) *100)
+						_G.CharacterFrame.EltruismSpeed:SetText(math.ceil(speed).."%")
 
-			  			local _, combat = GetManaRegen()
+						local _, combat = GetManaRegen()
 						combat = math.floor(combat * 5.0)
 						local combatText = BreakUpLargeNumbers(combat)
-			  			if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
-			  				_G.CharacterFrame.EltruismClassResource:SetText(BreakUpLargeNumbers(GetPowerRegen()))
-			  			elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
-			  				_G.CharacterFrame.EltruismClassResource:SetText(combatText)
-			  			elseif E.myclass == 'DEATHKNIGHT' then
-			  				local _, regenRate = GetRuneCooldown(1)
+						if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
+							_G.CharacterFrame.EltruismClassResource:SetText(BreakUpLargeNumbers(GetPowerRegen()))
+						elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
+							_G.CharacterFrame.EltruismClassResource:SetText(combatText)
+						elseif E.myclass == 'DEATHKNIGHT' then
+							local _, regenRate = GetRuneCooldown(1)
 							local regenRateText = (format(STAT_RUNE_REGEN_FORMAT, regenRate))
-			  				_G.CharacterFrame.EltruismClassResource:SetText(regenRateText)
-			  			end
+							_G.CharacterFrame.EltruismClassResource:SetText(regenRateText)
+						end
 
-			  			if E.myclass == 'DRUID' or E.myclass == 'MONK' then
-			  				_G.CharacterFrame.EltruismClassResource2:SetText(combatText)
-			  			end
+						if E.myclass == 'DRUID' or E.myclass == 'MONK' then
+							_G.CharacterFrame.EltruismClassResource2:SetText(combatText)
+						end
 
 						local stats = {_G.CharacterStatsPane:GetChildren()}
 						local number = (#stats)
@@ -477,7 +477,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						_G.CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, -48, -46)
 						_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -46)
 					end)
-			  	end
+				end
 			end
 		elseif E.TBC or E.Classic then
 
