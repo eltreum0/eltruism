@@ -988,32 +988,8 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["raid"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["raid"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["raid"]["health"]["yOffset"] = 0
-		if C_CVar.GetCVar('gxFullscreenResolution') == "3840x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3840x2160" then
-			E.db["unitframe"]["units"]["raid"]["height"] = 32
-			E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
-			E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
-			E.db["unitframe"]["units"]["raid40"]["height"] = 32
-		elseif C_CVar.GetCVar('gxFullscreenResolution') == "2560x1440" or C_CVar.GetCVar('gxWindowedResolution') == "2560x1440" then
-			E.db["unitframe"]["units"]["raid"]["height"] = 31
-			E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
-			E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
-			E.db["unitframe"]["units"]["raid40"]["height"] = 31
-		elseif C_CVar.GetCVar('gxFullscreenResolution') == "1920x1080" or C_CVar.GetCVar('gxWindowedResolution') == "1920x1080" then
-			E.db["unitframe"]["units"]["raid"]["height"] = 31
-			E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
-			E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
-			E.db["unitframe"]["units"]["raid40"]["height"] = 31
-		elseif C_CVar.GetCVar('gxFullscreenResolution') == "auto" or C_CVar.GetCVar('gxWindowedResolution') == "auto" then
-			E.db["unitframe"]["units"]["raid"]["height"] = 31
-			E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
-			E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
-			E.db["unitframe"]["units"]["raid40"]["height"] = 31
-		else
-			E.db["unitframe"]["units"]["raid"]["height"] = 31
-			E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
-			E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
-			E.db["unitframe"]["units"]["raid40"]["height"] = 31
-		end
+		E.db["unitframe"]["units"]["raid"]["height"] = 29
+		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
 		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 0
 		E.db["unitframe"]["units"]["raid"]["infoPanel"]["enable"] = true
 		E.db["unitframe"]["units"]["raid"]["infoPanel"]["transparent"] = true
@@ -1050,7 +1026,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["raid"]["roleIcon"]["yOffset"] = -1
 		E.db["unitframe"]["units"]["raid"]["summonIcon"]["attachToObject"] = "Health"
 		E.db["unitframe"]["units"]["raid"]["summonIcon"]["yOffset"] = -5
-		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 0
+		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 3
 		if E.Retail then
 			E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
 		elseif E.TBC or E.Classic then
@@ -1069,6 +1045,8 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 			E.db["unitframe"]["units"]["raid40"]["power"]["enable"] = true --dps raid 40 tbc/classic
 		end
 		E.db["unitframe"]["units"]["raid"]["width"] = 120
+		E.db["unitframe"]["units"]["raid40"]["height"] = 29
+		E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
 		E.db["unitframe"]["units"]["raid40"]["buffIndicator"]["size"] = 10
 		E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["raid40"]["disableMouseoverGlow"] = true
@@ -1106,7 +1084,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["raid40"]["roleIcon"]["size"] = 12
 		E.db["unitframe"]["units"]["raid40"]["roleIcon"]["xOffset"] = -1
 		E.db["unitframe"]["units"]["raid40"]["roleIcon"]["yOffset"] = -1
-		E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 0
+		E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 3
 		if E.Retail then
 			E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid21,noexists] hide;show"
 		elseif E.TBC or E.Classic then
