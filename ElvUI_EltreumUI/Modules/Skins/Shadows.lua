@@ -93,10 +93,6 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		--[[if _G['MMHolder'] and not _G['MMHolder'].shadow then
-			_G['MMHolder']:CreateShadow()
-		end]]
-
 		local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
 		local Minimapsizex, Minimapsizey = _G['Minimap']:GetSize()
 		MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
@@ -107,14 +103,13 @@ function ElvUI_EltreumUI:Shadows()
 			MinimapShadow:SetPoint("BOTTOMLEFT", _G['MinimapPanel'] ,"BOTTOMLEFT", 0, 0)
 			if E.db.datatexts.panels.MinimapPanel.backdrop == false then
 				MinimapShadow:SetPoint("BOTTOMLEFT", _G['Minimap'] ,"BOTTOMLEFT", 0, 0)
-				--print("aaaa")
 			end
 			MinimapShadow:Show()
 			self.minimapIsSkinned = true
 		end
 
 		--tooltip hp bar, one of the worst actually
-		if _G.GameTooltipStatusBar and _G.GameTooltipStatusBar.backdrop and not _G.GameTooltipStatusBar.backdrop.shadow then
+		if _G.GameTooltipStatusBar and _G.GameTooltipStatusBar.backdrop and not _G.GameTooltipStatusBar.backdrop.shadow and not E.private.skins.blizzard.enable == false then
 			local EltruismGameTooltipStatusBar = CreateFrame("Frame", "EltruismGameTooltipStatusBarShadowFrame")
 			local GameTooltipStatusBarx, GameTooltipStatusBary = _G.GameTooltipStatusBar.backdrop:GetSize()
 			EltruismGameTooltipStatusBar:SetSize(GameTooltipStatusBarx, GameTooltipStatusBary-3)
@@ -128,24 +123,6 @@ function ElvUI_EltreumUI:Shadows()
 				self.EltruismGameTooltipStatusBarIsSkinned = true
 			end
 		end
-
-		--[[
-			--local a = _G["EltruismGameTooltipStatusBarShadowFrame"]:GetChildren()
-			--print(inspect(getmetatable(a)))
-
-			--attempt at mirroring elvui CreateFrame() but edited with a texture that doesn't have a bottom, pretty much failed since it looks the same
-			local offset = (E.PixelMode and 3) or (4)
-			local shadow = CreateFrame('Frame', nil, _G.GameTooltipStatusBar.backdrop, 'BackdropTemplate')
-			shadow:SetFrameLevel(1)
-			shadow:SetFrameStrata(_G.GameTooltipStatusBar.backdrop:GetFrameStrata())
-			shadow:SetOutside(_G.GameTooltipStatusBar.backdrop, offset, offset, nil, true)
-			shadow:SetBackdrop({
-				edgeFile = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\GlowTex2.tga",
-				edgeSize = 3
-			})
-			shadow:SetBackdropColor(0, 0, 0, 0)
-			shadow:SetBackdropBorderColor(0, 0, 0, 0.9)
-		]]
 
 		------------------------------------------------------------------------------------------------------version specific
 		if E.Retail then
@@ -428,26 +405,6 @@ function ElvUI_EltreumUI:Shadows()
 			EltruismBlizzShadowsClassic:RegisterEvent("ADDON_LOADED")
 			EltruismBlizzShadowsClassic:SetScript("OnEvent", function(_, _, arg)
 				if (arg == "Blizzard_TalentUI") then
-					--[[_G.PlayerTalentFrame:HookScript("OnShow", function()
-						if _G.PlayerTalentFrame and _G.PlayerTalentFrame.backdrop and not _G.PlayerTalentFrame.backdrop.shadow then
-							_G.PlayerTalentFrame.backdrop:CreateShadow()
-						end
-					end)
-					_G.PlayerTalentFrameTab1:HookScript("OnShow", function()
-						if _G.PlayerTalentFrameTab1 and _G.PlayerTalentFrameTab1.backdrop and not _G.PlayerTalentFrameTab1.backdrop.shadow then
-							_G.PlayerTalentFrameTab1.backdrop:CreateShadow()
-						end
-					end)
-					_G.PlayerTalentFrameTab2:HookScript("OnShow", function()
-						if _G.PlayerTalentFrameTab2 and _G.PlayerTalentFrameTab2.backdrop and not _G.PlayerTalentFrameTab2.backdrop.shadow then
-							_G.PlayerTalentFrameTab2.backdrop:CreateShadow()
-						end
-					end)
-					_G.PlayerTalentFrameTab3:HookScript("OnShow", function()
-						if _G.PlayerTalentFrameTab3 and _G.PlayerTalentFrameTab3.backdrop and not _G.PlayerTalentFrameTab3.backdrop.shadow then
-							_G.PlayerTalentFrameTab3.backdrop:CreateShadow()
-						end
-					end)]]
 					_G.PlayerTalentFrame:HookScript("OnShow", function()
 						if _G.PlayerTalentFrame and _G.PlayerTalentFrame.backdrop and not _G.PlayerTalentFrame.backdrop.shadow then
 							_G.PlayerTalentFrame.backdrop:CreateShadow()
@@ -513,7 +470,7 @@ function ElvUI_EltreumUI:Shadows()
 		end
 		--datatexts
 		local DT = E:GetModule('DataTexts')
-		if DT.tooltip then
+		if DT.tooltip and not E.private.skins.blizzard.enable == false then
 			if not DT.tooltip.shadow then
 				DT.tooltip:CreateShadow()
 			end
