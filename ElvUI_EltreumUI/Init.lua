@@ -52,7 +52,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:PlayerNamepaperdoll() --update player name
 	ElvUI_EltreumUI:CursorInit() --starts cursor modules
 	ElvUI_EltreumUI:SkinMailZone() --skins zone change messages and mail font
-	ElvUI_EltreumUI:Shadows() --adds shadows to frames
 	ElvUI_EltreumUI:RaidShadows() --adds shadows to raid groups
 	ElvUI_EltreumUI:AutoScreenshot() --takes screenshots when certain events are fired
 	ElvUI_EltreumUI:FriendlyNameplates() -- controls hiding healthbar from friendly nameplates inside instances
@@ -118,6 +117,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	if E.db.ElvUI_EltreumUI.dev then --load dev tools if user enables
 		ElvUI_EltreumUI:DevTools()
 	end
+	ElvUI_EltreumUI:Shadows() --adds shadows to frames
 end
 
 function ElvUI_EltreumUI:Initialize()
