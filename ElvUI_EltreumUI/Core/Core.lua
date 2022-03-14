@@ -104,8 +104,8 @@ function ElvUI_EltreumUI:ResolutionOutline()
 		ElvUI_EltreumUI:SetupFontsOutlineOutline()
 		ElvUI_EltreumUI:Print(L["Fonts were set to Outline due to your resolution."])
 	else
-		ElvUI_EltreumUI:SetupFontsOutlineNone()
-		ElvUI_EltreumUI:Print(L["Unknown resolution, settings fonts to no outline."])
+		ElvUI_EltreumUI:SetupFontsOutlineOutline()
+		ElvUI_EltreumUI:Print(L["Unknown resolution, settings fonts to outline."])
 	end
 end
 
