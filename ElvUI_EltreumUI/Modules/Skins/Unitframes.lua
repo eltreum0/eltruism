@@ -657,7 +657,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 									bossframe1.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCHOSTILE"]["r1"], unitframegradients["NPCHOSTILE"]["g1"], unitframegradients["NPCHOSTILE"]["b1"], unitframegradients["NPCHOSTILE"]["r2"], unitframegradients["NPCHOSTILE"]["g2"], unitframegradients["NPCHOSTILE"]["b2"])
 								end
 							end
-						elseif E.db.ElvUI_EltreumUI.darkmode then
+						elseif E.db.ElvUI_EltreumUI.darkmode and bossframe1.Health.backdropTex then
 							bossframe1.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 								if reactionboss1 >= 5 then
@@ -718,7 +718,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 									bossframe2.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCHOSTILE"]["r1"], unitframegradients["NPCHOSTILE"]["g1"], unitframegradients["NPCHOSTILE"]["b1"], unitframegradients["NPCHOSTILE"]["r2"], unitframegradients["NPCHOSTILE"]["g2"], unitframegradients["NPCHOSTILE"]["b2"])
 								end
 							end
-						elseif E.db.ElvUI_EltreumUI.darkmode then
+						elseif E.db.ElvUI_EltreumUI.darkmode and bossframe2.Health.backdropTex then
 							bossframe2.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 								if reactionboss2 >= 5 then
@@ -779,7 +779,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 									bossframe3.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCHOSTILE"]["r1"], unitframegradients["NPCHOSTILE"]["g1"], unitframegradients["NPCHOSTILE"]["b1"], unitframegradients["NPCHOSTILE"]["r2"], unitframegradients["NPCHOSTILE"]["g2"], unitframegradients["NPCHOSTILE"]["b2"])
 								end
 							end
-						elseif E.db.ElvUI_EltreumUI.darkmode then
+						elseif E.db.ElvUI_EltreumUI.darkmode and bossframe3.Health.backdropTex then
 							bossframe3.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 								if reactionboss3 >= 5 then
@@ -840,7 +840,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 									bossframe4.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCHOSTILE"]["r1"], unitframegradients["NPCHOSTILE"]["g1"], unitframegradients["NPCHOSTILE"]["b1"], unitframegradients["NPCHOSTILE"]["r2"], unitframegradients["NPCHOSTILE"]["g2"], unitframegradients["NPCHOSTILE"]["b2"])
 								end
 							end
-						elseif E.db.ElvUI_EltreumUI.darkmode then
+						elseif E.db.ElvUI_EltreumUI.darkmode and bossframe4.Health.backdropTex then
 							bossframe4.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 								if reactionboss4 >= 5 then
@@ -901,7 +901,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture()
 									bossframe5.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCHOSTILE"]["r1"], unitframegradients["NPCHOSTILE"]["g1"], unitframegradients["NPCHOSTILE"]["b1"], unitframegradients["NPCHOSTILE"]["r2"], unitframegradients["NPCHOSTILE"]["g2"], unitframegradients["NPCHOSTILE"]["b2"])
 								end
 							end
-						elseif E.db.ElvUI_EltreumUI.darkmode then
+						elseif E.db.ElvUI_EltreumUI.darkmode and bossframe5.Health.backdropTex then
 							bossframe5.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 								if reactionboss5 >= 5 then
