@@ -48,7 +48,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["nameplates"]["smoothbars"] = false
 		E.db["unitframe"]["smoothbars"] = false
 
-		--new tooltip things, check later
+		--new tooltip things
 		--E.db["tooltip"]["inspectDataEnable"] = true
 		--E.db["tooltip"]["mythicDataEnable"] = true
 		--E.db["tooltip"]["role"] = true
@@ -56,6 +56,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		--movers
 		E.db["movers"]["MoverEltruismInstanceDifficulty"] = "TOPRIGHT,UIParent,TOPRIGHT,-146,-21"
 		E.db["movers"]["MoverRaidWarningFrame"] = "TOP,UIParent,TOP,0,-182"
+		E.db["movers"]["TorghastChoiceToggle"] = "BOTTOM,ElvUIParent,BOTTOM,0,398"
 
 		--its actually alt power on some fights like vigilant guardian
 		E.db["unitframe"]["units"]["party"]["classbar"]["enable"] = false
@@ -82,21 +83,20 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["general"]["bottomPanel"] = false
 		E.db["general"]["cropIcon"] = 2
 		E.db["general"]["font"] = "Kimberley"
-		--E.db["general"]["fontStyle"] = "THICKOUTLINE" --previous
 		E.db["general"]["fontStyle"] = "OUTLINE"
 		E.db["general"]["interruptAnnounce"] = "RAID"
 		E.db["general"]["itemLevel"]["itemLevelFont"] = "Kimberley"
 		E.db["general"]["loginmessage"] = false
-		E.db["general"]["minimap"]["icons"]["calendar"]["position"] = "TOPLEFT" --not in classic??
-		E.db["general"]["minimap"]["icons"]["calendar"]["xOffset"] = 3 --not in classic?
-		E.db["general"]["minimap"]["icons"]["calendar"]["yOffset"] = -38 --not in classic?
-		E.db["general"]["minimap"]["icons"]["classHall"]["position"] = "BOTTOM" --not in classic
-		E.db["general"]["minimap"]["icons"]["classHall"]["scale"] = 1 --not in classic
-		E.db["general"]["minimap"]["icons"]["difficulty"]["position"] = "BOTTOM" --not in classic
-		E.db["general"]["minimap"]["icons"]["difficulty"]["scale"] = 1.2 --not in classic
+		E.db["general"]["minimap"]["icons"]["calendar"]["position"] = "TOPLEFT"
+		E.db["general"]["minimap"]["icons"]["calendar"]["xOffset"] = 3
+		E.db["general"]["minimap"]["icons"]["calendar"]["yOffset"] = -38
+		E.db["general"]["minimap"]["icons"]["classHall"]["position"] = "BOTTOM"
+		E.db["general"]["minimap"]["icons"]["classHall"]["scale"] = 1
+		E.db["general"]["minimap"]["icons"]["difficulty"]["position"] = "BOTTOM"
+		E.db["general"]["minimap"]["icons"]["difficulty"]["scale"] = 1.2
 		E.db["general"]["minimap"]["icons"]["mail"]["position"] = "BOTTOM"
 		E.db["general"]["minimap"]["icons"]["mail"]["scale"] = 1.2
-		E.db["general"]["minimap"]["icons"]["mail"]["texture"] = "Mail1" --not in classic
+		E.db["general"]["minimap"]["icons"]["mail"]["texture"] = "Mail1"
 		E.db["general"]["minimap"]["icons"]["mail"]["xOffset"] = 0
 		E.db["general"]["minimap"]["icons"]["mail"]["yOffset"] = -27
 		E.db["general"]["minimap"]["locationFont"] = "Kimberley"
@@ -200,14 +200,8 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["databars"]["azerite"]["mouseover"] = true
 		E.db["databars"]["azerite"]["width"] = 10
 		E.db["databars"]["azerite"]["enable"] = false
-		E.db["databars"]["colors"]["azerite"]["a"] = 0.5
-		E.db["databars"]["colors"]["azerite"]["b"] = 0.6
-		E.db["databars"]["colors"]["azerite"]["r"] = 0.90196078431373
 		E.db["databars"]["colors"]["experience"]["a"] = 0.5
 		E.db["databars"]["colors"]["honor"]["a"] = 0.5
-		E.db["databars"]["colors"]["honor"]["b"] = 0.25098039215686
-		E.db["databars"]["colors"]["honor"]["g"] = 0.45098039215686
-		E.db["databars"]["colors"]["honor"]["r"] = 0.94117647058824
 		E.db["databars"]["colors"]["rested"]["a"] = 0.20000004768372
 		E.db["databars"]["customTexture"] = true
 
@@ -227,12 +221,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["databars"]["experience"]["questTrackedOnly"] = true
 		E.db["databars"]["experience"]["showBubbles"] = true
 		E.db["databars"]["experience"]["showLevel"] = true
-		--E.db["databars"]["experience"]["textFormat"] = "CUR"
 		E.db["databars"]["experience"]["textFormat"] = "PERCENT"
 		E.db["databars"]["experience"]["width"] = 500
-		--new pet experience
 		E.db["databars"]["petExperience"]["enable"] = false
-		--new reputation
 		E.db["databars"]["reputation"]["enable"] = true
 		E.db["databars"]["reputation"]["font"] = "Kimberley"
 		E.db["databars"]["reputation"]["fontOutline"] = "OUTLINE"
@@ -277,8 +268,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				E.db["datatexts"]["panels"]["MinimapPanel"][2] = "Friends"
 			end
 		elseif E.Classic or E.TBC then
-			--E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "ElvUI"
-			--E.db["datatexts"]["panels"]["LeftChatDataPanel"]["left"] = "ElvUI Config"
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "Eltruism"
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"]["left"] = "Eltruism"
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][2] = "Durability"
@@ -328,8 +317,8 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["actionbar"]["bar8"]["inheritGlobalFade"] = false
 		E.db["actionbar"]["bar9"]["inheritGlobalFade"] = false
 		E.db["actionbar"]["bar10"]["inheritGlobalFade"] = false
-		E.db["actionbar"]["extraActionButton"]["inheritGlobalFade"] = false --retail only
-		E.db["actionbar"]["zoneActionButton"]["inheritGlobalFade"] = false --retail only
+		E.db["actionbar"]["extraActionButton"]["inheritGlobalFade"] = false
+		E.db["actionbar"]["zoneActionButton"]["inheritGlobalFade"] = false
 		E.db["actionbar"]["stanceBar"]["inheritGlobalFade"] = true
 
 		E.db["actionbar"]["bar1"]["hotkeytext"] = true
