@@ -35,6 +35,7 @@ function ElvUI_EltreumUI:ExtraMedia()
 	-- Sound
 	LSM:Register("sound", "bruh", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\bruh.ogg]])
 	LSM:Register("sound", "Frankly thats a skill issue", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\ionskillissue.ogg]])
+	LSM:Register("sound", "! - Metal Gear Solid", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\metalgear.ogg]])
 
 	-- Border
 	LSM:Register("border", "Eltreum-Border-1", [[Interface\Addons\ElvUI_EltreumUI\Media\border\Eltreum-Border-1.tga]])
@@ -67,7 +68,6 @@ function ElvUI_EltreumUI:ExtraMediaFonts()
 	LSM:Register("font", "Neuropol", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\neuropolxrg.ttf]])
 	LSM:Register("font", "OptimusPrinceps", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\OptimusPrinceps.ttf]])
 	LSM:Register("font", "Pricedown", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\pricedown.ttf]])
-	--LSM:Register("font", "Pepsi-Cyr-Lat", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Pepsi-Cyr-Lat.ttf]])
 end
 
 function ElvUI_EltreumUI:ExtraMediaSounds()
@@ -83,14 +83,12 @@ function ElvUI_EltreumUI:ExtraMediaSounds()
 	LSM:Register("sound", "Shame", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\shame.ogg]])
 	LSM:Register("sound", "Queen Azshara - What a shame", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\QueenAzsharaWhatAShame.ogg]])
 	LSM:Register("sound", "Queen Azshara - How disappointing", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\QueenAzsharaDissapointing.ogg]])
-	LSM:Register("sound", "! - Metal Gear Solid", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\metalgear.ogg]])
 	LSM:Register("sound", "Wow", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\wow.ogg]])
 	LSM:Register("sound", "GTA - Wasted", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\wasted.ogg]])
 	LSM:Register("sound", "GTA2 - Wasted", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\wasted2.ogg]])
 	LSM:Register("sound", "Mario Game Over", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\mariodeath.ogg]])
 	LSM:Register("sound", "Xera", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\xera.ogg]])
 	LSM:Register("sound", "Mission Failed", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\codmissionfailed.ogg]])
-
 end
 
 function ElvUI_EltreumUI:ExtraMediaTextures()
@@ -112,7 +110,6 @@ function ElvUI_EltreumUI:ExtraMediaTextures()
 end
 
 function ElvUI_EltreumUI:ExtraMediaBorders()
-	--LSM:Register("border", "Eltreum-Border-1", [[Interface\Addons\ElvUI_EltreumUI\Media\border\Eltreum-Border-1.tga]])
 	LSM:Register("border", "Eltreum-Border-2", [[Interface\Addons\ElvUI_EltreumUI\Media\border\Eltreum-Border-2.tga]])
 	LSM:Register("border", "RenaitreBeveled10", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreBeveled10.tga]])
 	LSM:Register("border", "RenaitreBeveled10x", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreBeveled10x.tga]])

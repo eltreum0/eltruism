@@ -1,6 +1,7 @@
 ### 2.9.8 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
 Added several checks before applying shadows and fixed errors when ElvUI Blizzard Skin was disabled\
+Added BattleGroundEnemies profile for Retail\
 Updated NameplateSCT profile damage offset, making it not overlap with buffs/debuffs\
 Updated Eltruism profile gradient texture to Asphyxia-Norm, this setting is only applied when installing a profile\
 Updated Raid/Raid40 DPS Unitframes, along with Original and Alternatrive layouts for those frames\

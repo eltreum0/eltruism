@@ -1381,6 +1381,14 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'double',
 								func = function() ElvUI_EltreumUI:GetCappingProfile() E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							battlegroundenemies = {
+								order = 3,
+								type = 'execute',
+								name = 'BattleGroundEnemies',
+								desc = L["Reset to Eltruism defaults."],
+								width = 'double',
+								func = function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() E:StaticPopup_Show('CONFIG_RL') end,
+							},
 							header5 = {
 								order = 5,
 								type = "description",
