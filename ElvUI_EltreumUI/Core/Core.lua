@@ -159,7 +159,6 @@ function ElvUI_EltreumUI:Anchors()
 	else
 		E:CreateMover(_G.UIErrorsFrame, "MoverUIERRORS", "UI Error Frame", nil, nil, nil, "ALL,SOLO")
 		if E.db.ElvUI_EltreumUI.blizzframes.errorframe then
-			--_G.UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.errorframefontsize, E.db.general.fontStyle)
 			_G.UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.errorframefontsize, E.db.general.fontStyle)
 		end
 	end
@@ -217,21 +216,23 @@ end
 function ElvUI_EltreumUI:AlternativeGroupsDPS()
 	if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 		if not E.db.movers then E.db.movers = {} end
-		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,UIParent,TOPLEFT,200,-320"
-		E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,30,-316"
-		E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,UIParent,TOPLEFT,150,-318"
+		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-258"
+		E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,UIParent,TOPLEFT,53,-302"
+		E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,UIParent,TOPLEFT,236,-324"
 		if E.TBC then
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 5
 		else
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 4
 		end
+
 		E.db["unitframe"]["units"]["raid"]["height"] = 30
-		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 7
+		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 10
 		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 2
 		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 25
 		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 3
 		E.db["unitframe"]["units"]["raid"]["width"] = 120
-		E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 7
+
+		E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 5
 		E.db["unitframe"]["units"]["raid40"]["groupsPerRowCol"] = 2
 		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "DOWN_RIGHT"
 		E.db["unitframe"]["units"]["raid40"]["height"] = 30
