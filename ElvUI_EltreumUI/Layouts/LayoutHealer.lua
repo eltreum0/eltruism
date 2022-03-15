@@ -1070,7 +1070,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["target"]["name"]["position"] = "LEFT"
 		E.db["unitframe"]["units"]["target"]["name"]["text_format"] = ""
 		E.db["unitframe"]["units"]["target"]["name"]["xOffset"] = 3
-		E.db["unitframe"]["units"]["target"]["orientation"] = "LEFT"
+		E.db["unitframe"]["units"]["target"]["orientation"] = "RIGHT"
 		E.db["unitframe"]["units"]["target"]["portrait"]["camDistanceScale"] = 4.2
 		E.db["unitframe"]["units"]["target"]["portrait"]["enable"] = true
 		E.db["unitframe"]["units"]["target"]["portrait"]["fullOverlay"] = true

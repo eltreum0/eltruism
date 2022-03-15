@@ -1113,6 +1113,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["tank"]["targetsGroup"]["raidicon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["tank"]["targetsGroup"]["xOffset"] = 2
 		E.db["unitframe"]["units"]["tank"]["verticalSpacing"] = 7
+		E.db["unitframe"]["units"]["target"]["orientation"] = "RIGHT"
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["anchorPoint"] = "TOPLEFT"
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["b"] = 1
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["g"] = 1
