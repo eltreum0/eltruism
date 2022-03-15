@@ -1097,7 +1097,13 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["targettarget"]["debuffs"]["enable"] = false
 		E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["targettarget"]["name"]["text_format"] = ""
+		E.db["unitframe"]["units"]["targettarget"]["power"]["attachTextTo"] = "Power"
+		E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 15
+		E.db["unitframe"]["units"]["targettarget"]["power"]["position"] = "RIGHT"
 		E.db["unitframe"]["units"]["targettarget"]["power"]["width"] = "spaced"
+		E.db["unitframe"]["units"]["targettarget"]["power"]["xOffset"] = -2
+		E.db["unitframe"]["units"]["targettarget"]["power"]["yOffset"] = 1
+		E.db["unitframe"]["units"]["targettarget"]["power"]["text_format"] = ""
 		E.db["unitframe"]["units"]["targettarget"]["raidicon"]["attachTo"] = "CENTER"
 		E.db["unitframe"]["units"]["targettarget"]["raidicon"]["attachToObject"] = "Health"
 		E.db["unitframe"]["units"]["targettarget"]["raidicon"]["xOffset"] = 44

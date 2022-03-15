@@ -1232,6 +1232,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["targettarget"]["power"]["width"] = "spaced"
 		E.db["unitframe"]["units"]["targettarget"]["power"]["xOffset"] = -2
 		E.db["unitframe"]["units"]["targettarget"]["power"]["yOffset"] = 1
+		E.db["unitframe"]["units"]["targettarget"]["power"]["text_format"] = ""
 		E.db["unitframe"]["units"]["targettarget"]["raidicon"]["attachTo"] = "CENTER"
 		E.db["unitframe"]["units"]["targettarget"]["raidicon"]["attachToObject"] = "Health"
 		E.db["unitframe"]["units"]["targettarget"]["raidicon"]["size"] = 20
