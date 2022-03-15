@@ -5933,12 +5933,14 @@ function ElvUI_EltreumUI:Configtable()
 						set = function(_, value)
 							value = tonumber(value)
 							local item = Item:CreateFromItemID(value)
-							item:ContinueOnItemLoad(function()
-								local itemName = item:GetItemName()
-								local itemID = tonumber(value)
-								tinsert(E.private.ElvUI_EltreumUI.wishlistName, itemName)
-								tinsert(E.private.ElvUI_EltreumUI.wishlistID, itemID)
-							end)
+							if not item:IsItemEmpty() then
+								item:ContinueOnItemLoad(function()
+									local itemName = item:GetItemName()
+									local itemID = tonumber(value)
+									tinsert(E.private.ElvUI_EltreumUI.wishlistName, itemName)
+									tinsert(E.private.ElvUI_EltreumUI.wishlistID, itemID)
+								end)
+							end
 						end,
 					},
 					lootwishlistremove = {

@@ -35,11 +35,13 @@ local function AddLootIcons(_, _, message, ...)
 			end
 
 			local item = Item:CreateFromItemLink(link)
-			item:ContinueOnItemLoad(function()
-				itemType = select(6, GetItemInfo(link))
-				itemQuality = item:GetItemQuality()
-				--print(itemType, itemQuality, itemLevel)
-			end)
+			if not item:IsItemEmpty() then
+				item:ContinueOnItemLoad(function()
+					itemType = select(6, GetItemInfo(link))
+					itemQuality = item:GetItemQuality()
+					--print(itemType, itemQuality, itemLevel)
+				end)
+			end
 
 			--local fontsize = select(2, GetChatWindowInfo(1))
 			--itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = GetItemInfo(item)
