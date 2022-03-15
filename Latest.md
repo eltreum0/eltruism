@@ -7,4 +7,5 @@ Updated Raid/Raid40 DPS Unitframes, along with Original and Alternatrive layouts
 Fixed Close button on Expanded Talents for TBC/Classic\
 Fixed a possible error when deleting battle pets\
 Fixed a possible double icon when deleting items\
+Fixed healer layout target and target of target power position and settings\
 Fixed a possible error when reloading during a boss fight
