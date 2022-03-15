@@ -1,12 +1,3 @@
-### 2.9.8 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 2.9.9 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added BattleGroundEnemies profile for Retail, this profile can be found in Eltruism > Addons\
-Added several checks before applying shadows and fixed errors when ElvUI Blizzard Skin was disabled\
-Updated Eltruism profile gradient texture to Asphyxia-Norm, this setting is only applied when installing a profile\
-Updated NameplateSCT profile damage offset, making it not overlap with buffs/debuffs\
-Updated Raid/Raid40 DPS Unitframes, along with Original and Alternative layouts for those frames\
-Fixed Close button on Expanded Talents for TBC/Classic\
-Fixed a possible error when deleting battle pets\
-Fixed a possible double icon when deleting items\
-Fixed a possible error when reloading during a boss fight\
-Fixed healer layout target and target of target power position and settings
+
