@@ -12,7 +12,7 @@ function ElvUI_EltreumUI:GetNameplateSCTProfile()
 			["personal"] = false,
 			["shouldDisplayOverkill"] = true,
 			--["yOffset"] = 75,
-			["yOffset"] = 130,
+			["yOffset"] = 120,
 			["enableMSQ"] = false,
 			["truncate"] = false,
 			["modOffTargetStrata"] = true,
