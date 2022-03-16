@@ -218,7 +218,8 @@ function ElvUI_EltreumUI:AlternativeGroupsDPS()
 		if not E.db.movers then E.db.movers = {} end
 		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-258"
 		E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,UIParent,TOPLEFT,53,-302"
-		E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,UIParent,TOPLEFT,236,-324"
+		--E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,UIParent,TOPLEFT,236,-324"
+		E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,UIParent,TOPLEFT,58,-439"
 		if E.TBC then
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 5
 		else
@@ -226,9 +227,13 @@ function ElvUI_EltreumUI:AlternativeGroupsDPS()
 		end
 
 		E.db["unitframe"]["units"]["raid"]["height"] = 30
-		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 10
-		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 2
-		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 25
+		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "DOWN_RIGHT"
+		--E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 10
+		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 2
+		--E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 2
+		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 1
+		--E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 25
+		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 3
 		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 3
 		E.db["unitframe"]["units"]["raid"]["width"] = 120
 
