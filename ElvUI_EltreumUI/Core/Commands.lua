@@ -8,10 +8,10 @@ function ElvUI_EltreumUI:LoadCommands()
 			if not IsAddOnLoaded("TomTom") then
 				self:RegisterChatCommand('way', 'WaypointTexttoCoordinate')
 				self:RegisterChatCommand('waypoint', 'WaypointTexttoCoordinate')
-				ElvUI_EltreumUI:Print("TomTom detected, commands moved to /eway and /ewaypoint")
 			else
 				self:RegisterChatCommand('eway', 'WaypointTexttoCoordinate')
 				self:RegisterChatCommand('ewaypoint', 'WaypointTexttoCoordinate')
+				ElvUI_EltreumUI:Print("TomTom detected, commands moved to /eway and /ewaypoint")
 			end
 		end
 		self:RegisterChatCommand('!key', 'Keys')
