@@ -67,23 +67,55 @@ function ElvUI_EltreumUI:DynamicLevelStyleFilter()
 		else
 			local level = UnitLevel("player")
 			if E.Classic or E.Retail then
-				if level == 60 then
-					if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" then
-						E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
-					end
-				elseif level < 60 then
+				if level < 60 then
 					if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" then
 						E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["format"] = ""
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["position"] = "TOPRIGHT"
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["xOffset"] = -6
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["yOffset"] = -13
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = ""
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["position"] = "TOPRIGHT"
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["xOffset"] = -6
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -13
+					end
+				elseif level == 60 then
+					if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" then
+						E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["format"] = "[eltruism:targetcast:indicator]"
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["position"] = "CENTER"
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["xOffset"] = 0
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["yOffset"] = -28
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = "[eltruism:targetcast:indicator]"
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["position"] = "CENTER"
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["xOffset"] = 0
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -28
 					end
 				end
 			elseif E.TBC then
-				if level == 70 then
-					if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" then
-						E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
-					end
-				elseif level < 70 then
+				if level < 70 then
 					if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" then
 						E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["format"] = ""
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["position"] = "TOPRIGHT"
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["xOffset"] = -6
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["yOffset"] = -13
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = ""
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["position"] = "TOPRIGHT"
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["xOffset"] = -6
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -13
+					end
+				elseif level == 70 then
+					if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" then
+						E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["format"] = "[eltruism:targetcast:indicator]"
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["position"] = "CENTER"
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["xOffset"] = 0
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["yOffset"] = -28
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = "[eltruism:targetcast:indicator]"
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["position"] = "CENTER"
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["xOffset"] = 0
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -28
 					end
 				end
 			end
