@@ -565,7 +565,7 @@ function ElvUI_EltreumUI:Configtable()
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bgunitframes = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
 					header4 = {
-						order = 99,
+						order = 9,
 						type = "description",
 						name = "",
 						width = 'full',
@@ -585,7 +585,7 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.questsettings.rogueopen end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.questsettings.rogueopen = value end,
 					},
-					header122 = {
+					header5 = {
 						order = 12,
 						type = "description",
 						name = "",
@@ -601,7 +601,7 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
-					header9 = {
+					header6 = {
 						order = 26,
 						type = "description",
 						name = "",
@@ -617,7 +617,7 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.loottext.combatindicator end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.loottext.combatindicator = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
-					headerdarksouls = {
+					header7 = {
 						order = 28,
 						type = "description",
 						name = "",
@@ -664,7 +664,7 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.playerdeathcustomtext end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.playerdeathcustomtext = tostring(value) E:StaticPopup_Show('PRIVATE_RL') end,
 					},
-					header9987 = {
+					header8 = {
 						order = 33,
 						type = "description",
 						name = "",
@@ -680,7 +680,7 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.chat.rollsound end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.chat.rollsound = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\WillSmith-Ahaha.ogg", "Master") E:StaticPopup_Show('CONFIG_RL') end,
 					},
-					header10 = {
+					header9 = {
 						order = 35,
 						type = "description",
 						name = "",
@@ -705,7 +705,7 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.worldtextscale end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldtextscale = value ElvUI_EltreumUI:WorldTextScale(value) end,
 					},
-					header99 = {
+					header10 = {
 						order = 47,
 						type = "description",
 						name = "",
@@ -727,7 +727,7 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
-					header15 = {
+					header11 = {
 						order = 50,
 						type = "description",
 						name = "",
@@ -749,7 +749,7 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.screenshot end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.screenshot = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
-					header197876 = {
+					header12 = {
 						order = 53,
 						type = "description",
 						name = L["Stealth"],
@@ -765,7 +765,7 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect = value end,
 					},
-					headerdelete = {
+					header13 = {
 						order = 55,
 						type = "description",
 						name = L["Item Deletion"],
@@ -781,7 +781,7 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.delete end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.delete = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
-					headermailsound = {
+					header14 = {
 						order = 57,
 						type = "description",
 						name = L["Play a Sound when receiving mail"],
@@ -808,7 +808,7 @@ function ElvUI_EltreumUI:Configtable()
 						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable end,
 						set = function(self,key) E.db.ElvUI_EltreumUI.otherstuff.mailsound = key E:StaticPopup_Show('CONFIG_RL') end,
 					},
-					header16 = {
+					header15 = {
 						order = 94,
 						type = "description",
 						name = L["Blizzard Floating Combat Text"],
@@ -833,7 +833,7 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
-					header578 = {
+					header16 = {
 						order = 98,
 						type = "description",
 						name = "",
