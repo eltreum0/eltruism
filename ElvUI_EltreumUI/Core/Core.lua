@@ -390,7 +390,6 @@ function ElvUI_EltreumUI:GameMenu()
 			elseif _G.GameMenuReloadUI then
 				EltruismMenuButton:Point("TOP", _G.GameMenuReloadUI, "BOTTOM", 0, -1)
 			end
-
 		end)
 
 		_G.GameMenuFrame:HookScript("OnShow", function()
