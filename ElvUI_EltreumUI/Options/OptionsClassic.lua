@@ -861,6 +861,20 @@ function ElvUI_EltreumUI:Configtable()
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\misc',
 				order = 85,
 				args = {
+					header0 = {
+						order = 1,
+						type = "description",
+						name = L["Show Eltruism Game Menu Button"],
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					gamemenu = {
+						type = 'toggle',
+						name = L['Enable'],
+						order = 2,
+						get = function() return E.db.ElvUI_EltreumUI.otherstuff.gamemenu end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.gamemenu = value E:StaticPopup_Show('CONFIG_RL') end,
+					},
 					header3 = {
 						order = 5,
 						type = "description",

@@ -1023,8 +1023,22 @@ function ElvUI_EltreumUI:Configtable()
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\misc',
 				order = 85,
 				args = {
-					header1 = {
+					header0 = {
 						order = 1,
+						type = "description",
+						name = L["Show Eltruism Game Menu Button"],
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					gamemenu = {
+						type = 'toggle',
+						name = L['Enable'],
+						order = 2,
+						get = function() return E.db.ElvUI_EltreumUI.otherstuff.gamemenu end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.gamemenu = value E:StaticPopup_Show('CONFIG_RL') end,
+					},
+					header1 = {
+						order = 3,
 						type = "description",
 						name = L["Show Buffs in Arena and hide them outside (will overwrite Eltruism default settings)"],
 						width = 'full',
@@ -1033,12 +1047,12 @@ function ElvUI_EltreumUI:Configtable()
 					arenabuffs = {
 						type = 'toggle',
 						name = L['Enable'],
-						order = 2,
+						order = 4,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.arenabuffs end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.arenabuffs = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
 					header2 = {
-						order = 3,
+						order = 5,
 						type = "description",
 						name = L["Hide Arena Frames in Arena due to Gladius/Gladdy or another addon"],
 						width = 'full',
@@ -1047,12 +1061,12 @@ function ElvUI_EltreumUI:Configtable()
 					arenaUF = {
 						type = 'toggle',
 						name = L['Enable'],
-						order = 4,
+						order = 6,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.arenaunitframes end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.arenaunitframes = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
 					header3 = {
-						order = 5,
+						order = 7,
 						type = "description",
 						name = L["Hide Raid Unitframes in battlegrounds due to addons like Battleground Enemies"],
 						width = 'full',
@@ -1061,7 +1075,7 @@ function ElvUI_EltreumUI:Configtable()
 					bgUF = {
 						type = 'toggle',
 						name = L['Enable'],
-						order = 6,
+						order = 8,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.bgunitframes end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bgunitframes = value E:StaticPopup_Show('CONFIG_RL') end,
 					},

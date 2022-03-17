@@ -508,8 +508,22 @@ function ElvUI_EltreumUI:Configtable()
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\misc',
 				order = 85,
 				args = {
-					header1 = {
+					header0 = {
 						order = 1,
+						type = "description",
+						name = L["Show Eltruism Game Menu Button"],
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					gamemenu = {
+						type = 'toggle',
+						name = L['Enable'],
+						order = 2,
+						get = function() return E.db.ElvUI_EltreumUI.otherstuff.gamemenu end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.gamemenu = value E:StaticPopup_Show('CONFIG_RL') end,
+					},
+					header1 = {
+						order = 3,
 						type = "description",
 						name = L["Show Buffs in Arena and hide them outside (will overwrite Eltruism default settings)"],
 						width = 'full',
@@ -518,12 +532,12 @@ function ElvUI_EltreumUI:Configtable()
 					arenabuffs = {
 						type = 'toggle',
 						name = L['Enable'],
-						order = 2,
+						order = 4,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.arenabuffs end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.arenabuffs = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
 					header2 = {
-						order = 3,
+						order = 5,
 						type = "description",
 						name = L["Hide Arena Frames in Arena due to Gladius/GladiusEX or another addon"],
 						width = 'full',
@@ -532,12 +546,12 @@ function ElvUI_EltreumUI:Configtable()
 					arenaUF = {
 						type = 'toggle',
 						name = L['Enable'],
-						order = 4,
+						order = 6,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.arenaunitframes end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.arenaunitframes = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
 					header3 = {
-						order = 5,
+						order = 7,
 						type = "description",
 						name = L["Hide Raid Unitframes in battlegrounds due to addons like Battleground Enemies"],
 						width = 'full',
@@ -546,25 +560,25 @@ function ElvUI_EltreumUI:Configtable()
 					bgUF = {
 						type = 'toggle',
 						name = L['Enable'],
-						order = 6,
+						order = 8,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.bgunitframes end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bgunitframes = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
 					header4 = {
-						order = 7,
+						order = 99,
 						type = "description",
 						name = "",
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
 					rogueorderhallautoopen = {
-						order = 8,
+						order = 10,
 						type = "description",
 						name = L["Auto open the Rogue Order Hall, to avoid opening hold CTRL or SHIFT or ALT while talking to the NPC"],
 						width = "full",
 					},
 					rogueenable = {
-						order = 9,
+						order = 11,
 						type = 'toggle',
 						name = L["Enable"],
 						desc = L["Enable the Rogue Order Hall Auto Open"],
@@ -572,14 +586,14 @@ function ElvUI_EltreumUI:Configtable()
 						set = function(_, value) E.db.ElvUI_EltreumUI.questsettings.rogueopen = value end,
 					},
 					header122 = {
-						order = 10,
+						order = 12,
 						type = "description",
 						name = "",
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
 					xpdatabar = {
-						order = 11,
+						order = 13,
 						type = "toggle",
 						name = L["Dynamically toggle the mouseover of the Experience Bar"],
 						desc = L["Shows XP bar when below max level, makes it mouseover when max level"],
