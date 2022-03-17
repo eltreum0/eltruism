@@ -385,9 +385,12 @@ function ElvUI_EltreumUI:GameMenu()
 
 		hooksecurefunc('GameMenuFrame_UpdateVisibleButtons', function ()
 			EltruismMenuButton:Point("TOP", _G.GameMenuFrame.ElvUI, "BOTTOM", 0, -1)
-			if _G.GameMenu_SLEConfig then
+			if _G.GameMenu_SLEConfig and not _G.GameMenuReloadUI then
 				EltruismMenuButton:Point("TOP", _G.GameMenu_SLEConfig, "BOTTOM", 0, -1)
+			elseif _G.GameMenuReloadUI then
+				EltruismMenuButton:Point("TOP", _G.GameMenuReloadUI, "BOTTOM", 0, -1)
 			end
+
 		end)
 
 		_G.GameMenuFrame:HookScript("OnShow", function()
