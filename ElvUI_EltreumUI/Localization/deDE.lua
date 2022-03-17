@@ -905,3 +905,4 @@ L["Enable a Custom death animation"] = 'Aktiviere eine benutzerdefinierte Todesa
 L['Custom Death Text'] = 'Benutzerdefinierter Todestext'
 L['The text displayed when you die using the custom text option'] = 'Der Text, der angezeigt wird, wenn Du mit der benutzerdefinierten Textoption stirbst'
 L["Feel free to explore Eltruism settings in ElvUI > Eltruism. There are lot of settings that are disabled by default."] = "Du kannst die Eltruism-Einstellungen in ElvUI > Eltruism erkunden. Es gibt viele Einstellungen, die standardmäßig deaktiviert sind."
+

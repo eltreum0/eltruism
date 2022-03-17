@@ -560,6 +560,7 @@ P.ElvUI_EltreumUI = {
 	},
 
 	otherstuff ={
+		gamemenu = false,
 		mailsoundenable = true,
 		mailsound = "Interface-10",
 		worldtextscale = 1,

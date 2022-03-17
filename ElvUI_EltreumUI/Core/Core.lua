@@ -1,6 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local C_CVar = _G.C_CVar
+local S = E:GetModule('Skins')
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
@@ -365,6 +366,38 @@ function ElvUI_EltreumUI:DeleteItem()
 	end
 end
 
+--from elvui api
+function ElvUI_EltreumUI:GameMenu()
+	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
+		local EltruismMenuButton = CreateFrame('Button', nil, _G.GameMenuFrame, 'GameMenuButtonTemplate')
+		--EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:14:14:0:0:64:64:5:59:5:59|t".. ElvUI_EltreumUI.Name)
+		EltruismMenuButton:SetText(ElvUI_EltreumUI.Name)
+		S:HandleButton(EltruismMenuButton)
+		local x, y = _G["GameMenuButtonLogout"]:GetSize()
+		EltruismMenuButton:SetSize(x,y)
+		EltruismMenuButton:SetScript("OnClick", function()
+			E:ToggleOptionsUI()
+			E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
+			if not InCombatLockdown() then
+				HideUIPanel(_G.GameMenuFrame)
+			end
+		end)
+
+		hooksecurefunc('GameMenuFrame_UpdateVisibleButtons', function ()
+			EltruismMenuButton:Point("TOP", _G.GameMenuFrame.ElvUI, "BOTTOM", 0, -1)
+			if _G.GameMenu_SLEConfig then
+				EltruismMenuButton:Point("TOP", _G.GameMenu_SLEConfig, "BOTTOM", 0, -1)
+			end
+		end)
+
+		_G.GameMenuFrame:HookScript("OnShow", function()
+			_G.GameMenuButtonLogout:ClearAllPoints()
+			_G.GameMenuButtonLogout:SetPoint("TOP", EltruismMenuButton, "BOTTOM", 0, -y)
+			_G.GameMenuFrame:SetHeight(_G.GameMenuFrame:GetHeight() + _G.GameMenuButtonLogout:GetHeight() - 4)
+		end)
+	end
+end
+
 --make the video options movable because its annoying when adjusting settings
 _G.VideoOptionsFrame:SetMovable(true)
 _G.VideoOptionsFrame:EnableMouse(true)
@@ -383,7 +416,7 @@ if E.Retail then
 	if _G["CliqueSpellTab"] then
 		clickbindopenbutton:SetPoint("BOTTOM", _G["CliqueSpellTab"], 0, -50)
 	end
-	local S = E:GetModule('Skins')
+
 	S:HandleButton(clickbindopenbutton)
 	local bindexture = clickbindopenbutton:CreateTexture()
 	bindexture:SetTexture(4238928)
@@ -418,36 +451,3 @@ if E.Retail then
 		_G["ClickBindingFrame"]:SetPoint("LEFT", _G["SpellBookFrame"], "RIGHT", 50, -37)
 	end)
 end
---[[
-local maxmemory = 4096
-local currentmemory
---local count = 0
-function ElvUI_EltreumUI:ClearMemory()
-	if not InCombatLockdown() and not UnitAffectingCombat("player") then
-		UpdateAddOnMemoryUsage() --so that it doesnt freeze if spammed
-		currentmemory = GetAddOnMemoryUsage ("ElvUI_EltreumUI")
-		--count = count + 1
-		if E.db.ElvUI_EltreumUI.dev then
-			if currentmemory > maxmemory then
-				collectgarbage("collect")
-				ResetCPUUsage()
-				ElvUI_EltreumUI:Print(currentmemory.." memory was cleared")
-				--UpdateAddOnCPUUsage("ElvUI_EltreumUI") --only works with profiling
-				--/run UpdateAddOnMemoryUsage() print("memory "..GetAddOnMemoryUsage("ElvUI_EltreumUI")); print("cpu "..GetAddOnCPUUsage("ElvUI_EltreumUI"))
-				currentmemory = 0
-			else
-				ElvUI_EltreumUI:Print("Not enough memory usage to clear memory")
-			end
-		else
-			if currentmemory >= maxmemory then
-				collectgarbage("collect")
-				ResetCPUUsage()
-				currentmemory = 0
-			--	print("clearing memory")
-			--else
-			--	print(math.floor((currentmemory*100)/100).." memory, and try number "..count)
-			end
-		end
-	end
-end
-]]
