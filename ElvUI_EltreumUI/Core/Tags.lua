@@ -290,7 +290,8 @@ E:AddTag('eltruism:targetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARG
 	local targetname = UnitName(unit.."target")
 	local _ , classes = UnitClass(unit.."target")
 	local color = classcolorcast[classes]
-	if UnitCastingInfo(unit) and targetname then
+	local spellID = select(9, UnitCastingInfo(unit))
+	if spellID and targetname then
 		if UnitIsPlayer(unit.."target") then
 			return ("|c"..color..targetname.."|r")
 		else
@@ -304,7 +305,8 @@ E:AddTag('eltruism:targetcast:indicator', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START
 	local targetname = UnitName(unit.."target")
 	local _ , classes = UnitClass(unit.."target")
 	local color = classcolorcast[classes]
-	if UnitCastingInfo(unit) and targetname then
+	local spellID = select(9, UnitCastingInfo(unit))
+	if spellID and targetname then
 		if UnitIsPlayer(unit.."target") then
 			return ("Target > |c"..color..targetname.."|r")
 		else
