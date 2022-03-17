@@ -357,7 +357,7 @@ end
 
 --based on elvui mail datatext
 local mailsoundframe = CreateFrame("FRAME")
-mailsoundframe:RegisterEvent("MAIL_INBOX_UPDATE")
+--mailsoundframe:RegisterEvent("MAIL_INBOX_UPDATE")
 mailsoundframe:RegisterEvent("UPDATE_PENDING_MAIL")
 mailsoundframe:SetScript("OnEvent", function()
 	if HasNewMail() == true and E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable and not InCombatLockdown() then
