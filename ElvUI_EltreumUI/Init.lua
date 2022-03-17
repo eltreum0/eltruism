@@ -118,7 +118,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:DevTools()
 	end
 	ElvUI_EltreumUI:Shadows() --adds shadows to frames
-	ElvUI_EltreumUI:GameMenu() -- add game menu button
+	ElvUI_EltreumUI:GameMenu() --add game menu button
 end
 
 function ElvUI_EltreumUI:Initialize()
