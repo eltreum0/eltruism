@@ -395,7 +395,7 @@ function ElvUI_EltreumUI:GameMenu()
 		_G.GameMenuFrame:HookScript("OnShow", function()
 			_G.GameMenuButtonLogout:ClearAllPoints()
 			_G.GameMenuButtonLogout:SetPoint("TOP", EltruismMenuButton, "BOTTOM", 0, -y)
-			_G.GameMenuFrame:SetHeight(_G.GameMenuFrame:GetHeight() + _G.GameMenuButtonLogout:GetHeight() - 4)
+			_G.GameMenuFrame:SetHeight(_G.GameMenuFrame:GetHeight() + _G.GameMenuButtonLogout:GetHeight() + 4)
 		end)
 	end
 end
