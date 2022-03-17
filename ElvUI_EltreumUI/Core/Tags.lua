@@ -290,8 +290,10 @@ E:AddTag('eltruism:targetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARG
 	local targetname = UnitName(unit.."target")
 	local _ , classes = UnitClass(unit.."target")
 	local color = classcolorcast[classes]
-	local spellID = select(9, UnitCastingInfo(unit))
-	if spellID and targetname then
+	local spellID = (select(9, UnitCastingInfo(unit))) or (select(8, UnitChannelInfo(unit)))
+	local startTime = (select(4, UnitCastingInfo(unit))) or (select(4, UnitChannelInfo(unit)))
+	local endTime = (select(5, UnitCastingInfo(unit))) or (select(5, UnitChannelInfo(unit)))
+	if spellID and targetname and endTime > startTime then
 		if UnitIsPlayer(unit.."target") then
 			return ("|c"..color..targetname.."|r")
 		else
@@ -305,12 +307,14 @@ E:AddTag('eltruism:targetcast:indicator', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START
 	local targetname = UnitName(unit.."target")
 	local _ , classes = UnitClass(unit.."target")
 	local color = classcolorcast[classes]
-	local spellID = select(9, UnitCastingInfo(unit))
-	if spellID and targetname then
+	local spellID = (select(9, UnitCastingInfo(unit))) or (select(8, UnitChannelInfo(unit)))
+	local startTime = (select(4, UnitCastingInfo(unit))) or (select(4, UnitChannelInfo(unit)))
+	local endTime = (select(5, UnitCastingInfo(unit))) or (select(5, UnitChannelInfo(unit)))
+	if spellID and targetname and endTime > startTime then
 		if UnitIsPlayer(unit.."target") then
-			return ("Target > |c"..color..targetname.."|r")
+			return (L["Target"].." > |c"..color..targetname.."|r")
 		else
-			return ("Target > "..targetname)
+			return (L["Target"].." > "..targetname)
 		end
 	end
 end)
