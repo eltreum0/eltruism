@@ -285,6 +285,10 @@ local classcolorcast = {
 	['SHAMAN'] = "FF0070DD",
 	['WARLOCK'] = "FF8788EE",
 	['WARRIOR'] = "FFC69B6D",
+	['HOSTILE'] = "FFFF0000",
+	['UNFRIENDLY'] = "FFF26000",
+	['NEUTRAL'] = "FFE4E400",
+	['FRIENDLY'] = "FF33FF33",
 }
 E:AddTag('eltruism:targetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGET UNIT_SPELLCAST_STOP', function(unit)
 	local targetname = UnitName(unit.."target")
@@ -293,11 +297,21 @@ E:AddTag('eltruism:targetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARG
 	local spellID = (select(9, UnitCastingInfo(unit))) or (select(8, UnitChannelInfo(unit)))
 	local startTime = (select(4, UnitCastingInfo(unit))) or (select(4, UnitChannelInfo(unit)))
 	local endTime = (select(5, UnitCastingInfo(unit))) or (select(5, UnitChannelInfo(unit)))
+	local reaction = UnitReaction("player", unit.."target")
+
 	if spellID and targetname and endTime > startTime then
 		if UnitIsPlayer(unit.."target") then
 			return ("|c"..color..targetname.."|r")
-		else
-			return targetname
+		elseif not UnitIsPlayer(unit.."target") then
+			if reaction >= 5 then
+				return ("|c"..classcolorcast['FRIENDLY']..targetname.."|r")
+			elseif reaction == 4 then
+				return ("|c"..classcolorcast['NEUTRAL']..targetname.."|r")
+			elseif reaction == 3 then
+				return ("|c"..classcolorcast['UNFRIENDLY']..targetname.."|r")
+			elseif reaction == 2 or reaction == 1 then
+				return ("|c"..classcolorcast['HOSTILE']..targetname.."|r")
+			end
 		end
 	end
 end)
@@ -310,11 +324,21 @@ E:AddTag('eltruism:targetcast:indicator', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START
 	local spellID = (select(9, UnitCastingInfo(unit))) or (select(8, UnitChannelInfo(unit)))
 	local startTime = (select(4, UnitCastingInfo(unit))) or (select(4, UnitChannelInfo(unit)))
 	local endTime = (select(5, UnitCastingInfo(unit))) or (select(5, UnitChannelInfo(unit)))
+	local reaction = UnitReaction("player", unit.."target")
+
 	if spellID and targetname and endTime > startTime then
 		if UnitIsPlayer(unit.."target") then
 			return (L["Target"].." > |c"..color..targetname.."|r")
-		else
-			return (L["Target"].." > "..targetname)
+		elseif not UnitIsPlayer(unit.."target") then
+			if reaction >= 5 then
+				return (L["Target"].." > |c"..classcolorcast['FRIENDLY']..targetname.."|r")
+			elseif reaction == 4 then
+				return (L["Target"].." > |c"..classcolorcast['NEUTRAL']..targetname.."|r")
+			elseif reaction == 3 then
+				return (L["Target"].." > |c"..classcolorcast['UNFRIENDLY']..targetname.."|r")
+			elseif reaction == 2 or reaction == 1 then
+				return (L["Target"].." > |c"..classcolorcast['HOSTILE']..targetname.."|r")
+			end
 		end
 	end
 end)
