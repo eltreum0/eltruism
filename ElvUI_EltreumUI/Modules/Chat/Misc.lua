@@ -96,6 +96,14 @@ if IsAddOnLoaded("ElvUI_WindTools") then
 		CT.cache.blizzardRoleIcons.DPS = roleIcons.DAMAGER
 	end
 	hooksecurefunc(CT, "UpdateRoleIcons", ElvUI_EltreumUI.RoleIcons)
+else
+	local sizeString = ":12:12"
+	local CH = E:GetModule('Chat')
+	CH.RoleIcons = {
+		TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
+		HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
+		DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', sizeString),
+	}
 end
 
 --icons in chat when party member swaps roles
