@@ -884,3 +884,6 @@ L['The text displayed when you die using the custom text option'] = true
 L["Feel free to explore Eltruism settings in ElvUI > Eltruism. There are lot of settings that are disabled by default."] = true
 L["Show Eltruism Game Menu Button"] = true
 L["Target"] = "Objectivo"
+L["Unitframes"] = true
+L["Shadows"] = true
+L["Cursor Type"] = true
