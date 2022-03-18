@@ -81,7 +81,7 @@ bresframe:SetAlpha(0)
 local TimeSinceLastUpdate = 0
 local ONUPDATE_INTERVAL = 1
 function ElvUI_EltreumUI:BattleRes()
-	if E.Retail then
+	if E.Retail and E.db.ElvUI_EltreumUI.otherstuff.bres then
 		E:CreateMover(bresframe, "MoverEltruismBRES", "EltruismBattleRes", nil, nil, nil, "ALL,PARTY,RAID")
 		local _, instanceType = IsInInstance()
 		local DifficultyID = select(3, GetInstanceInfo())

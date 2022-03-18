@@ -601,6 +601,22 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
+					header52 = {
+						order = 14,
+						type = "description",
+						name = "",
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					bresenable = {
+						order = 15,
+						type = "toggle",
+						name = L["Show a Battle Ressurection Count and Cooldown Frame"],
+						desc = L["Enables a frame that shows a cooldown and count for battle ressurections while in an instance that has them"],
+						width = 'full',
+						get = function() return E.db.ElvUI_EltreumUI.otherstuff.bres end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bres = value E:StaticPopup_Show('CONFIG_RL') end,
+					},
 					header6 = {
 						order = 26,
 						type = "description",
