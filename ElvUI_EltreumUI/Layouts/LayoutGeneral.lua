@@ -26,7 +26,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 
 		-- AddOnSkins Profile
 		if IsAddOnLoaded('AddOnSkins') then
-			ElvUI_EltreumUI:GetASProfile()
+			ElvUI_EltreumUI:AddonSetupAS()
 		end
 
 		if IsAddOnLoaded("ProjectAzilroka") then
