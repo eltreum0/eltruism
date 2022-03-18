@@ -887,5 +887,5 @@ L["Target"] = "Objectivo"
 L["Unitframes"] = true
 L["Shadows"] = true
 L["Cursor Type"] = true
-L["Show a Battle Ressurection Count and Cooldown Frame"] = true
+L["Show a Battle Resurrection Count and Cooldown Frame"] = true
 L["Enables a frame that shows a cooldown and count for battle ressurections while in an instance that has them"] = true
