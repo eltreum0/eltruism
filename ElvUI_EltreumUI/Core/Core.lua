@@ -367,6 +367,7 @@ function ElvUI_EltreumUI:DeleteItem()
 end
 
 --from elvui api
+local menuskinned = false
 function ElvUI_EltreumUI:GameMenu()
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
 		local EltruismMenuButton = CreateFrame('Button', nil, _G.GameMenuFrame, 'GameMenuButtonTemplate')
@@ -395,7 +396,10 @@ function ElvUI_EltreumUI:GameMenu()
 		_G.GameMenuFrame:HookScript("OnShow", function()
 			_G.GameMenuButtonLogout:ClearAllPoints()
 			_G.GameMenuButtonLogout:SetPoint("TOP", EltruismMenuButton, "BOTTOM", 0, -y)
-			_G.GameMenuFrame:SetHeight(_G.GameMenuFrame:GetHeight() + _G.GameMenuButtonLogout:GetHeight() + 4)
+			if menuskinned == false then
+				_G.GameMenuFrame:SetHeight(_G.GameMenuFrame:GetHeight() + _G.GameMenuButtonLogout:GetHeight() + 4)
+				menuskinned = true
+			end
 		end)
 	end
 end
