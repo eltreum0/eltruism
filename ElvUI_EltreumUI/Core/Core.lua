@@ -367,8 +367,7 @@ function ElvUI_EltreumUI:DeleteItem()
 end
 
 --from elvui api
-local menuskinned = false
-function ElvUI_EltreumUI:GameMenu()
+local function SkinGameMenu()
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
 		local EltruismMenuButton = CreateFrame('Button', nil, _G.GameMenuFrame, 'GameMenuButtonTemplate')
 		--EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:14:14:0:0:64:64:5:59:5:59|t".. ElvUI_EltreumUI.Name)
@@ -380,29 +379,27 @@ function ElvUI_EltreumUI:GameMenu()
 			E:ToggleOptionsUI()
 			E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
 			if not InCombatLockdown() then
-				HideUIPanel(_G.GameMenuFrame)
+				HideUIPanel(_G["GameMenuFrame"])
 			end
 		end)
 
 		hooksecurefunc('GameMenuFrame_UpdateVisibleButtons', function ()
 			EltruismMenuButton:Point("TOP", _G.GameMenuFrame.ElvUI, "BOTTOM", 0, -1)
-			if _G.GameMenu_SLEConfig and not _G.GameMenuReloadUI then
-				EltruismMenuButton:Point("TOP", _G.GameMenu_SLEConfig, "BOTTOM", 0, -1)
-			elseif _G.GameMenuReloadUI then
-				EltruismMenuButton:Point("TOP", _G.GameMenuReloadUI, "BOTTOM", 0, -1)
+			if _G["GameMenu_SLEConfig"] and not _G["GameMenuReloadUI"] then
+				EltruismMenuButton:Point("TOP", _G["GameMenu_SLEConfig"], "BOTTOM", 0, -1)
+			elseif _G["GameMenuReloadUI"] then
+				EltruismMenuButton:Point("TOP", _G["GameMenuReloadUI"], "BOTTOM", 0, -1)
 			end
 		end)
 
-		_G.GameMenuFrame:HookScript("OnShow", function()
-			_G.GameMenuButtonLogout:ClearAllPoints()
-			_G.GameMenuButtonLogout:SetPoint("TOP", EltruismMenuButton, "BOTTOM", 0, -y)
-			if menuskinned == false then
-				_G.GameMenuFrame:SetHeight(_G.GameMenuFrame:GetHeight() + _G.GameMenuButtonLogout:GetHeight() + 4)
-				menuskinned = true
-			end
+		_G["GameMenuFrame"]:HookScript("OnShow", function()
+			_G["GameMenuButtonLogout"]:ClearAllPoints()
+			_G["GameMenuButtonLogout"]:SetPoint("TOP", EltruismMenuButton, "BOTTOM", 0, -y)
+			_G["GameMenuFrame"]:SetHeight(_G["GameMenuFrame"]:GetHeight() + _G["GameMenuButtonLogout"]:GetHeight() + 4)
 		end)
 	end
 end
+SkinGameMenu()
 
 --make the video options movable because its annoying when adjusting settings
 _G.VideoOptionsFrame:SetMovable(true)
