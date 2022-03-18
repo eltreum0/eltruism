@@ -87,7 +87,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			end)
 
 			-- and (not IsAddOnLoaded("ElvUI_WindTools"))
-			if (not IsAddOnLoaded("ElvUI_SLE")) and (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
+			if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 				--WQs banner
 				if _G.ObjectiveTrackerBonusBannerFrame then
 					--textcoords from https://www.townlong-yak.com/framexml/39229/Helix/AtlasInfo.lua
@@ -111,7 +111,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 
 				--create the lines
-				if ObjectiveTrackerBlocksFrame then
+				if ObjectiveTrackerBlocksFrame and (not IsAddOnLoaded("ElvUI_SLE")) then
 
 					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetSize(250, 2)
 					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetPoint("BOTTOM", ObjectiveTrackerBlocksFrame.ScenarioHeader, 0, -1)
