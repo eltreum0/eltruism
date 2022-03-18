@@ -344,8 +344,10 @@ function ElvUI_EltreumUI:DeleteItem()
 				return
 			end
 			local text = StaticPopup1Text:GetText()
-			local deletetext = string.gsub(text, lootName, "|T"..lootTexture..":".. 14 .."|t"..itemLink.."")
-			StaticPopup1Text:SetText(deletetext)
+			if not text:match("|T") then
+				local deletetext = string.gsub(text, lootName, "|T"..lootTexture..":".. 14 .."|t"..itemLink.."")
+				StaticPopup1Text:SetText(deletetext)
+			end
 			self.editBox:SetText(DELETE_ITEM_CONFIRM_STRING) --from line 2028
 			ElvUI_EltreumUI:Print("DELETE automatically typed")
 		end)
@@ -358,8 +360,10 @@ function ElvUI_EltreumUI:DeleteItem()
 				return
 			end
 			local text = StaticPopup1Text:GetText()
-			local deletetext = string.gsub(text, lootName, "|T"..lootTexture..":".. 14 .."|t"..itemLink.."")
-			StaticPopup1Text:SetText(deletetext)
+			if not text:match("|T") then
+				local deletetext = string.gsub(text, lootName, "|T"..lootTexture..":".. 14 .."|t"..itemLink.."")
+				StaticPopup1Text:SetText(deletetext)
+			end
 			self.editBox:SetText(DELETE_ITEM_CONFIRM_STRING) --from line 2028
 			ElvUI_EltreumUI:Print("DELETE automatically typed")
 		end)
