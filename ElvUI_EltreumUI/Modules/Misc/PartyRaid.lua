@@ -1,10 +1,11 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local S = E:GetModule('Skins')
 
---PLaySound(61850)
---PLaySound(61851)
---PLaySound(61852)
---PLaySound(61853)
---PLaySound(61854)
+--PlaySound(61850)
+--PlaySound(61851)
+--PlaySound(61852)
+--PlaySound(61853)
+--PlaySound(61854)
 
 -- Conversion of the party/raid death weakaura into an addon option
 local deaththrottle
@@ -63,5 +64,81 @@ if E.Retail then
 			HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga",
 			DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga"
 		}
+	end
+end
+
+--bres
+local bresframe = CreateFrame("Frame")
+bresframe:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 342, -28)
+bresframe:SetParent(UIParent)
+bresframe:SetSize(97, 30)
+S:HandleFrame(bresframe)
+local spellicon = bresframe:CreateTexture()
+local spellcount = bresframe:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+local spellcd = bresframe:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+bresframe:SetAlpha(0)
+
+local TimeSinceLastUpdate = 0
+local ONUPDATE_INTERVAL = 1
+function ElvUI_EltreumUI:BattleRes()
+	if E.Retail then
+		E:CreateMover(bresframe, "MoverEltruismBRES", "EltruismBattleRes", nil, nil, nil, "ALL,PARTY,RAID")
+		local _, instanceType = IsInInstance()
+		local DifficultyID = select(3, GetInstanceInfo())
+		local ingroup = IsInGroup()
+		if ingroup == true and (instanceType == 'raid' or instanceType == 'party') and (DifficultyID == 8 or DifficultyID == 3 or DifficultyID == 4 or DifficultyID == 9 or DifficultyID == 14 or DifficultyID == 173 or DifficultyID == 5 or DifficultyID == 6 or DifficultyID == 174 or DifficultyID == 15 or DifficultyID == 148 or DifficultyID == 175 or DifficultyID == 176 or DifficultyID == 16) then
+			spellicon:SetSize(30, 30)
+			spellicon:SetPoint("LEFT", bresframe)
+			spellicon:SetTexture(GetSpellTexture(20484))
+			if E.myclass == "DEATHKNIGHT" then
+				spellicon:SetTexture(GetSpellTexture(61999))
+			elseif E.myclas == "WARLOCK" then
+				spellicon:SetTexture(GetSpellTexture(20707))
+			end
+			spellicon:SetTexCoord(0.08,0.92,0.08,0.92)
+
+			spellcount:SetParent(bresframe)
+			spellcount:SetPoint("CENTER", spellicon)
+			spellcount:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 4, E.db.general.fontStyle)
+			spellcount:SetTextColor(1, 1, 1)
+
+			spellcd:SetParent(bresframe)
+			spellcd:SetPoint("LEFT", spellicon, "RIGHT", 10, 0)
+			spellcd:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 4, E.db.general.fontStyle)
+			spellcd:SetTextColor(1, 1, 1)
+
+			bresframe:SetScript('OnUpdate', function(_, elapsed)
+				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+					TimeSinceLastUpdate = 0
+					--currentCharges, maxCharges, cooldownStart, cooldownDuration, chargeModRate = GetSpellCharges(spellId or spellName)
+					local currentCharges, _, cooldownStart, cooldownDuration = GetSpellCharges(20484) or GetSpellCharges(61999) or GetSpellCharges(20707)
+					if currentCharges ~= nil then
+						bresframe:SetAlpha(1)
+						local cooldown = cooldownDuration - (GetTime() - cooldownStart)
+						if cooldown <= 0 then
+							spellcd:SetText("")
+						else
+							if cooldown > 60 then
+								--from https://github.com/tomrus88/BlizzardInterfaceCode/blob/master/Interface/FrameXML/LFGList.lua#L2551, https://www.wowinterface.com/forums/showthread.php?t=36884
+								spellcd:SetFormattedText("%d:%.2d", cooldown/60, cooldown%60)
+							elseif cooldown < 60 then
+								spellcd:SetText(cooldown)
+							end
+						end
+						spellcount:SetText(currentCharges)
+						if currentCharges == 0 then
+							spellcount:SetTextColor(1, 0, 0)
+						else
+							spellcount:SetTextColor(1, 1, 1)
+						end
+					elseif currentCharges == nil then
+						bresframe:SetAlpha(0)
+					end
+				end
+			end)
+		else
+			bresframe:SetScript('OnUpdate', nil)
+		end
 	end
 end

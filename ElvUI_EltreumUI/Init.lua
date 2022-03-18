@@ -219,6 +219,7 @@ function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED(event)
 	ElvUI_EltreumUI:ArenaUnitframes()
 	ElvUI_EltreumUI:QuestCombat()
 	ElvUI_EltreumUI:MinimapHide(event)
+	ElvUI_EltreumUI:BattleRes()
 end
 
 function ElvUI_EltreumUI:UPDATE_STEALTH()
