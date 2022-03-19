@@ -245,6 +245,79 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 			["yOffset"] = 0
 			}
 		end
+
+		-- Custom Text: Arena
+		E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
+		if E.Retail or E.TBC then
+			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = "Kimberley",
+				["fontOutline"] = "OUTLINE",
+				["justifyH"] = "LEFT",
+				["size"] = 16,
+				["text_format"] = "[health:current:shortvalue]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = "AR CrystalzcuheiGBK Demibold",
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "RIGHT",
+				["size"] = 12,
+				["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+				["xOffset"] = 2,
+				["yOffset"] = 0
+			}
+			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"] = {
+				["attachTextTo"] = "Power",
+				["enable"] = true,
+				["font"] = "AR CrystalzcuheiGBK Demibold",
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "LEFT",
+				["size"] = 11,
+				["text_format"] = "[powercolor][power:current:shortvalue]",
+				["xOffset"] = 1,
+				["yOffset"] = -1
+			}
+		elseif E.Classic then
+			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = false,
+				["font"] = "AR CrystalzcuheiGBK Demibold",
+				["fontOutline"] = "OUTLINE",
+				["justifyH"] = "LEFT",
+				["size"] = 16,
+				["text_format"] = "[health:current:shortvalue]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = false,
+				["font"] = "AR CrystalzcuheiGBK Demibold",
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "RIGHT",
+				["size"] = 12,
+				["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+				["xOffset"] = 2,
+				["yOffset"] = 0
+			}
+			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"] = {
+				["attachTextTo"] = "Power",
+				["enable"] = false,
+				["font"] = "AR CrystalzcuheiGBK Demibold",
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "LEFT",
+				["size"] = 11,
+				["text_format"] = "[powercolor][power:current:shortvalue]",
+				["xOffset"] = 1,
+				["yOffset"] = -1
+			}
+		end
+
 		-- Custom Text: Pet
 		if E.Retail then
 			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}

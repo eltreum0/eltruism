@@ -3,56 +3,57 @@ local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 
 function ElvUI_EltreumUI:SetupFontsKimberley()
 	if not E.db.movers then E.db.movers = {} end
-		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countFont"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "Kimberley"
-		if E.Retail then
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Kimberley"
-		end
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countFont"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["power"]["text"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countFont"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["countFont"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["health"]["text"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "Kimberley"
-		if E.Retail then
-			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Kimberley"
-		end
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countFont"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["health"]["text"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["power"]["text"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFont"] = "Kimberley"
-		E.db["nameplates"]["units"]["PLAYER"]["castbar"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["countFont"] = "Kimberley"
-		E.db["nameplates"]["units"]["PLAYER"]["health"]["text"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["PLAYER"]["level"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["PLAYER"]["name"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["PLAYER"]["power"]["text"]["font"] = "Kimberley"
-		E.db["nameplates"]["units"]["PLAYER"]["title"]["font"] = "Kimberley"
-		E.private["general"]["chatBubbleFont"] = "Kimberley"
-		E.private["general"]["dmgfont"] = "Kimberley"
-		E.private["general"]["namefont"] = "Kimberley"
+	E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["power"]["text"]["font"] = "Kimberley"
+	if E.Retail then
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Kimberley"
+	end
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["text"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["power"]["text"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["countFont"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["health"]["text"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["level"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "Kimberley"
+	if E.Retail then
+		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Kimberley"
+	end
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["castbar"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["health"]["text"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["level"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["power"]["text"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["PLAYER"]["buffs"]["countFont"] = "Kimberley"
+	E.db["nameplates"]["units"]["PLAYER"]["castbar"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["nameplates"]["units"]["PLAYER"]["health"]["text"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["PLAYER"]["level"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["PLAYER"]["name"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["PLAYER"]["power"]["text"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["PLAYER"]["title"]["font"] = "Kimberley"
+	E.private["general"]["chatBubbleFont"] = "Kimberley"
+	E.private["general"]["dmgfont"] = "Kimberley"
+	E.private["general"]["namefont"] = "Kimberley"
+
 	if E.Retail then
 		if IsAddOnLoaded('ProjectAzilroka') then
 			_G.ProjectAzilroka.db["stAddonManager"]["Font"] = "Kimberley"
@@ -242,6 +243,79 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["yOffset"] = 0
 		}
 	end
+
+	-- Custom Text: Arena
+	E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
+	if E.Retail or E.TBC then
+		E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "LEFT",
+			["size"] = 16,
+			["text_format"] = "[health:current:shortvalue]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
+		}
+		E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 12,
+			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+			["xOffset"] = 2,
+			["yOffset"] = 0
+		}
+		E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"] = {
+			["attachTextTo"] = "Power",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "LEFT",
+			["size"] = 11,
+			["text_format"] = "[powercolor][power:current:shortvalue]",
+			["xOffset"] = 1,
+			["yOffset"] = -1
+		}
+	elseif E.Classic then
+		E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = false,
+			["font"] = "Kimberley",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "LEFT",
+			["size"] = 16,
+			["text_format"] = "[health:current:shortvalue]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
+		}
+		E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = false,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 12,
+			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+			["xOffset"] = 2,
+			["yOffset"] = 0
+		}
+		E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"] = {
+			["attachTextTo"] = "Power",
+			["enable"] = false,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "LEFT",
+			["size"] = 11,
+			["text_format"] = "[powercolor][power:current:shortvalue]",
+			["xOffset"] = 1,
+			["yOffset"] = -1
+		}
+	end
+
 	-- Custom Text: Pet
 	if E.Retail then
 		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
