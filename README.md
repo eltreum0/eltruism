@@ -1,7 +1,6 @@
 ### [![](https://img.shields.io/badge/Eltruism-Join-steelblue.svg?longCache=true?style=flat-square&logo=discord)](https://discord.gg/cXfA56gmYW)
 ___
-### Changelog
-[Check upcoming changes here](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### [Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
 ### About
 > Eltruism is an ElvUI plugin that offers features not available on ElvUI, and also includes a DPS/Tank Profile along with a Healer profile. Both are designed for 16:9 displays, and were tested in 4K, 1440p and 1080p. This plugin requires the following addons:\
@@ -19,7 +18,7 @@ ___
 **[DBM](https://www.curseforge.com/wow/addons/deadly-boss-mods)** \
 **[Details](https://www.curseforge.com/wow/addons/details)** \
 **[Dynamic Cam](https://www.curseforge.com/wow/addons/dynamiccam)** \
-**[Method Raid Tools](https://www.curseforge.com/wow/addons/method-raid-tools)**
+**[Method Raid Tools](https://www.curseforge.com/wow/addons/method-raid-tools)**\
 **[GladiusEx](https://www.curseforge.com/wow/addons/gladiusex)** \
 **[Immersion](https://www.curseforge.com/wow/addons/immersion)** \
 **[Nameplate Scrolling Combat Text](https://www.curseforge.com/wow/addons/nameplate-scrolling-combat-text)** \
@@ -131,7 +130,6 @@ ___
 [![](https://i.imgur.com/7QAQhFm.jpg)](https://i.imgur.com/xEG4b4D.png)
 \
 [![](https://i.imgur.com/bwpn8jk.jpg)](https://i.imgur.com/5gXTAox.png)
-\
 ___
 ### Credits
 > This plugin was based in **[LuckyoneUI](httpswww.tukui.orgaddons.php?id=154)** and credits go to him for allowing its use
