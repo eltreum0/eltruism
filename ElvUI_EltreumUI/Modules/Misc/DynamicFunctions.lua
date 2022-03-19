@@ -4,7 +4,7 @@ local _G = _G
 function ElvUI_EltreumUI:BattlegroundGroupUnitframes()
 	if E.db.ElvUI_EltreumUI.otherstuff.bgunitframes and E.private.unitframe.enable then
 		local _, instanceType = IsInInstance()
-		if instanceType == "pvp" then
+		if instanceType == "pvp" or instanceType == "arena" then
 			E.db["unitframe"]["units"]["party"]["visibility"] = "hide"
 			E.db["unitframe"]["units"]["raid"]["visibility"] = "hide"
 			E.db["unitframe"]["units"]["raid40"]["visibility"] = "hide"
