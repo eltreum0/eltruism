@@ -878,7 +878,7 @@ function ElvUI_EltreumUI:Configtable()
 					header3 = {
 						order = 5,
 						type = "description",
-						name = "Hide Raid Unitframes in battlegrounds due to addons like Battleground Enemies",
+						name = L["Hide Raid Unitframes in battlegrounds due to addons like Battleground Enemies"],
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
