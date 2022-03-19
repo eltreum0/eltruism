@@ -252,7 +252,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] = {
 				["attachTextTo"] = "Health",
 				["enable"] = true,
-				["font"] = "Kimberley",
+				["font"] = "AR CrystalzcuheiGBK Demibold",
 				["fontOutline"] = "OUTLINE",
 				["justifyH"] = "LEFT",
 				["size"] = 16,
