@@ -783,7 +783,7 @@ function ElvUI_EltreumUI:GetGladiusExProfile()
 				["Eltreum"] = {
 					["globalFont"] = "Kimberley",
 					["globalBarTexture"] = "ElvUI Blank",
-					["showParty"] = false,
+					["showParty"] = true,
 					["globalFontSize"] = 12,
 					["superFS"] = false,
 					["locked"] = true,
