@@ -1308,8 +1308,15 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'double',
 								func = function() ElvUI_EltreumUI:GetWindToolsProfile() E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							dynamicstatusicons = {
+							header5 = {
 								order = 8,
+								type = "description",
+								name = "Dynamic Status Icons",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							dynamicstatusicons = {
+								order = 9,
 								type = 'execute',
 								name = '|cFF16C3F2Dynamic Status |r|cFFFFFFFFIcons|r',
 								desc = L["Reset to Eltruism defaults."],
