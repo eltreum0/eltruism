@@ -23,14 +23,14 @@ ___
 **[GladiusEx](https://www.curseforge.com/wow/addons/gladiusex)** \
 **[Immersion](https://www.curseforge.com/wow/addons/immersion)** \
 **[Nameplate Scrolling Combat Text](https://www.curseforge.com/wow/addons/nameplate-scrolling-combat-text)** \
-**[ElvUI Floating Combat Text](https://www.tukui.org/addons.php?id=137)** 
-**[Capping](https://www.curseforge.com/wow/addons/capping-bg-timers)**
-For Burning Crusade Classic and Classic also the following addons:
-**[Questie](https://www.curseforge.com/wow/addons/questie)**
-**[Gladdy](https://www.curseforge.com/wow/addons/gladdy-tbc)**
+**[ElvUI Floating Combat Text](https://www.tukui.org/addons.php?id=137)** \
+**[Capping](https://www.curseforge.com/wow/addons/capping-bg-timers)**\
+For Burning Crusade Classic and Classic also the following addons:\
+**[Questie](https://www.curseforge.com/wow/addons/questie)**\
+**[Gladdy](https://www.curseforge.com/wow/addons/gladdy-tbc)**\
 **[Gladius](https://www.curseforge.com/wow/addons/gladius-v3)**
 ___
-### Features (List based on v2.8.2)
+### Features (List based on v2.9.8)
 Eltruism includes many features and all can be turned off if the user wants. Included features in this plugin:
 
 >Actionbars:\
@@ -46,6 +46,8 @@ Class colored rolls\
 Sounds can be played if a player rolls a 1 or a 100\
 Colored system messages\
 Hide using Mouse Over\
+!key and !keys command that links the player's keystone\
+/way and /waypoint commands that place a waypoint using the ingame waypoint system. If TomTom is loaded the command is renamed to /eway and /ewaypoint
 \
 >Cursor:\
 Cast Cursor, showing current castbar\
@@ -54,7 +56,7 @@ Combat Cursor, showing in combat but can also be toggled to show always\
 Cast, GCD and Combat cursors are a fork of CastCursor by michaelsp (credits in the Licenses folder)
 Cooldown, on an attempt to use a skill on cooldown its cooldown will be shown, if no other skill is pressed afterwards then 3s before the cooldown is done the 
 skill will show up again with a countdown to be used\
-Cooldown is a fork of CooldownToGo by mitchnull (credits in the Licenses folder)\
+Cooldown is a fork of CooldownToGo by mitchnull (credits in the Licenses folder)
 \
 >Nameplates:\
 Nameplate Power Bar, and advanced power bar above the target nameplate that includes spell costs and incoming resource gains\
@@ -67,8 +69,10 @@ Dynamically show the ElvUI Classbar only when targeting enemies\
 Dynamically show a glowing spellsteal on nameplates when the enemy has spellstealable buffs and you are playing a mage\
 \
 >Unitframes:
-Dark Mode and Light Mode, with Light mode featuring class textures\
-Automatically use class based textures\
+Dark Mode, featuring fully customizable background texture and alpha\
+Light Mode, featuring class based textures\
+Gradient Mode, replacing the textures and colors with custom class based gradients and compatible with Dark and Light mode\
+Gradient Player Castbar and custom texture option\
 Automatically hide Unitframes and/or Arena frames when in PvP, allowing more compatibility when using addons for PvP\
 Dynamically show enemy player buffs in PvP, hide in PvE\
 \
@@ -90,12 +94,14 @@ Skins the Quest Log, adding a button for a Wowhead link and in TBC/Classic makes
 Skin the Profession windows in TBC/Classic, making it wider\
 Change the default cursor size\
 \
-Miscelanous:\
+Miscellaneous:\
 Play custom music when in combat, simply put your mp3 inside the addons folder and set the music in Eltruism settings\
 Automatically take a screenshot when an achievement is earned or when you level up\
 Custom WeakAuras anchors, allowing WAs to be attached to them and be moved using /moveui, alongside with them automatically following unitframe visibility settings\
 Hide Quests during Boss Encounters or in PvP\
 Hide the Minimap while in combat\
+Replaces the Blizzard Instance indicator with a text based one that can be fully customized\
+Adds a button on the spellbook to open the Click Binding interface in Retail\
 Adds a time to arrive to your waypoints\
 Adds a /way command accepting coordinates\
 LootText, showing items and gold you have looted. This module is a fork of SLoTe by xavjer, credits in Licenses folder.\
@@ -105,6 +111,7 @@ Play racial or class based music when going AFK\
 Improved font replacing function, allowing all ElvUI texts to be changed with your custom font\
 Rogue Order Hall, which will automatically open the Rogue Class Hall Door. This module is a fork of Rogue Door Opener by Burzolog and licensed under GNU GPLv3\
 Instant Loot, yet another fast loot module to attempt to make looting items faster\
+Adds death animations including Dark Souls and GTA based ones and a custom one based on Dark Souls\
 Loot Wishlist, allowing items to be added to a wishlist, which can then display a toast when looted or filter looting only items in the wishlist\
 Loot Quality Filter, making instant loot only loot items above or equal to a selected quality\
 Improved Item Deletion window, showing item link, item texture and automatically typing DELETE\
@@ -121,17 +128,10 @@ ___
 > The first time you load into the game with Eltruism enabled the install prompt that will guide you will appear. It is recommended to backup your settings (WTF folder inside World of Warcraft_retail_) regularly, the installation will warn you of any options that might overwrite your settings
 ___
 ### Pictures
-[![](https://i.imgur.com/xEG4b4D.png)](https://i.imgur.com/xEG4b4D.png)
+[![](https://i.imgur.com/7QAQhFm.jpg)](https://i.imgur.com/xEG4b4D.png)
 \
-[![](https://i.imgur.com/5gXTAox.png)](https://i.imgur.com/5gXTAox.png)
+[![](https://i.imgur.com/bwpn8jk.jpg)](https://i.imgur.com/5gXTAox.png)
 \
-[![](https://i.imgur.com/DQsDaYi.png)](https://i.imgur.com/DQsDaYi.png)
-\
-[![](https://i.imgur.com/NYwCfhG.png)](https://i.imgur.com/NYwCfhG.png)
-\
-[![](https://i.imgur.com/GDKdRmf.png)](https://i.imgur.com/GDKdRmf.png)
-\
-[![](https://i.imgur.com/eOt6YGU.png)](https://i.imgur.com/eOt6YGU.png)
 ___
 ### Credits
 > This plugin was based in **[LuckyoneUI](httpswww.tukui.orgaddons.php?id=154)** and credits go to him for allowing its use
