@@ -307,7 +307,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["movers"]["ElvUF_PartyMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,87"
 		E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,311,352"
 		E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,336"
-		E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,6,361"
+		E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,14,355"
+		E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,340"
 		if E.TBC or E.Classic then
 			--E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,UIParent,BOTTOM,0,370"
 			E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,374"
@@ -853,7 +854,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["player"]["power"]["autoHide"] = true
 		--E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] = true
 		E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] = false
-		E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 291
+		E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 295
 		E.db["unitframe"]["units"]["player"]["pvp"]["position"] = "CENTER"
 		E.db["unitframe"]["units"]["player"]["pvp"]["text_format"] = ""
 		E.db["unitframe"]["units"]["player"]["raidicon"]["attachTo"] = "CENTER"
