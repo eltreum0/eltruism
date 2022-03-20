@@ -13,6 +13,6 @@ Updated the Hide Raid Unitframes in battlegrounds function to also hide party fr
 Updated the target casting tags to better detected when casting and colorize when the target is an NPC according to the player's reaction to the target\
 Updated Quest Skins compatibility with Shadow and Light\
 Updated the role icon in chat to also show when WindTools is not loaded\
-Updated a few settings of the Healer profile\
+Updated Healer profile\
 Fixed !keys not linking in guild chat when not in a party\
 Fixed Expanded Stable\
