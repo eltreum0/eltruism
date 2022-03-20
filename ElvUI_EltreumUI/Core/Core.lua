@@ -378,7 +378,11 @@ function ElvUI_EltreumUI:DeleteItem()
 end
 
 --from elvui api
+--function ElvUI_EltreumUI:SkinGameMenu()
 local function SkinGameMenu()
+	if not E.private.ElvUI_EltreumUI.install_version then
+		return
+	end
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
 		local EltruismMenuButton = CreateFrame('Button', nil, _G.GameMenuFrame, 'GameMenuButtonTemplate')
 		--EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:14:14:0:0:64:64:5:59:5:59|t".. ElvUI_EltreumUI.Name)
