@@ -322,7 +322,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["movers"]["ElvUF_TargetAuraMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-400,288"
 		E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,311,359"
 		E.db["movers"]["ElvUF_TargetMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,387"
-		E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-423,389"
+		E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-423,387"
 		E.db["movers"]["ElvUIBagMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,24"
 		E.db["movers"]["ElvUIBankMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,24"
 		E.db["movers"]["EnhancedVehicleBar_Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
@@ -496,7 +496,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["perrow"] = 6
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["sizeOverride"] = 30
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["yOffset"] = -4
-		E.db["unitframe"]["units"]["arena"]["fader"]["minAlpha"] = 0.8
+		E.db["unitframe"]["units"]["arena"]["fader"]["minAlpha"] = 0.5
 		E.db["unitframe"]["units"]["arena"]["health"]["text_format"] = ""
 		E.db["unitframe"]["units"]["arena"]["health"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["arena"]["height"] = 50
@@ -875,7 +875,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["raid"]["debuffs"]["spacing"] = 0
 		E.db["unitframe"]["units"]["raid"]["debuffs"]["xOffset"] = -75
 		E.db["unitframe"]["units"]["raid"]["debuffs"]["yOffset"] = 5
-		E.db["unitframe"]["units"]["raid"]["fader"]["minAlpha"] = 0.8
+		E.db["unitframe"]["units"]["raid"]["fader"]["minAlpha"] = 0.3
+		E.db["unitframe"]["units"]["raid"]["fader"]["enable"] = true
+		E.db["unitframe"]["units"]["raid"]["fader"]["range"] = true
 		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 10
 		E.db["unitframe"]["units"]["raid"]["healPrediction"]["absorbStyle"] = "REVERSED"
 		E.db["unitframe"]["units"]["raid"]["healPrediction"]["enable"] = true
@@ -912,7 +914,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["raid"]["rdebuffs"]["size"] = 20
 		E.db["unitframe"]["units"]["raid"]["rdebuffs"]["stack"]["xOffset"] = 2
 		E.db["unitframe"]["units"]["raid"]["rdebuffs"]["stack"]["yOffset"] = -3
-		--E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["fontSize"] = 10
 		E.db["unitframe"]["units"]["raid"]["readycheckIcon"]["attachTo"] = "CENTER"
 		E.db["unitframe"]["units"]["raid"]["resurrectIcon"]["attachToObject"] = "Health"
 		E.db["unitframe"]["units"]["raid"]["resurrectIcon"]["size"] = 20
@@ -954,6 +955,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["raid40"]["height"] = 35
 		E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 0
 		E.db["unitframe"]["units"]["raid40"]["infoPanel"]["enable"] = true
+		E.db["unitframe"]["units"]["raid40"]["fader"]["minAlpha"] = 0.3
+		E.db["unitframe"]["units"]["raid40"]["fader"]["enable"] = true
+		E.db["unitframe"]["units"]["raid40"]["fader"]["range"] = true
 		E.db["unitframe"]["units"]["raid40"]["name"]["attachTextTo"] = "InfoPanel"
 		E.db["unitframe"]["units"]["raid40"]["name"]["position"] = "BOTTOMLEFT"
 		E.db["unitframe"]["units"]["raid40"]["power"]["attachTextTo"] = "Power"
@@ -1098,7 +1102,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["target"]["raidicon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["target"]["raidicon"]["enable"] = false
 		E.db["unitframe"]["units"]["targettarget"]["colorOverride"] = "FORCE_OFF"
-		E.db["unitframe"]["units"]["targettarget"]["height"] = 52
+		E.db["unitframe"]["units"]["targettarget"]["height"] = 54
 		E.db["unitframe"]["units"]["targettarget"]["buffs"]["height"] = 25
 		E.db["unitframe"]["units"]["targettarget"]["buffs"]["keepSizeRatio"] = false
 		E.db["unitframe"]["units"]["targettarget"]["buffs"]["perrow"] = 6
@@ -1107,7 +1111,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["transparent"] = true
 		E.db["unitframe"]["units"]["targettarget"]["name"]["text_format"] = ""
 		E.db["unitframe"]["units"]["targettarget"]["power"]["attachTextTo"] = "Power"
-		E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 15
+		E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 14
 		E.db["unitframe"]["units"]["targettarget"]["power"]["position"] = "RIGHT"
 		E.db["unitframe"]["units"]["targettarget"]["power"]["width"] = "spaced"
 		E.db["unitframe"]["units"]["targettarget"]["power"]["xOffset"] = -2
