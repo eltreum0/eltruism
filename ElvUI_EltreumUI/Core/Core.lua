@@ -132,6 +132,7 @@ end
 
 -- Ghost frame for Automatic Weakauras Positioning
 local EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", E.UIParent)
+local EltreumWAAnchor2 = CreateFrame("Frame", "EltruismWA2", E.UIParent)
 local EltruismWAConsumablesAnchor = CreateFrame("Frame", "EltruismConsumablesWA", E.UIParent)
 function ElvUI_EltreumUI:Anchors()
 	if E.private.unitframe.enable then
@@ -143,6 +144,12 @@ function ElvUI_EltreumUI:Anchors()
 		EltreumWAAnchor:Size(250, 70)
 		--E:CreateMover(parent, name, textString, overlay, snapoffset, postdrag, types, shouldDisable, configString, ignoreSizeChanged)
 		E:CreateMover(EltreumWAAnchor, "MoverEltruismWA", "EltruismWA", nil, nil, nil, "ALL,SOLO")
+		--do it again
+		EltreumWAAnchor2:SetParent("ElvUF_Player")
+		EltreumWAAnchor2:SetFrameStrata("BACKGROUND")
+		EltreumWAAnchor2:Point("BOTTOM", E.UIParent, "BOTTOM", 0, 320)
+		EltreumWAAnchor2:Size(250, 70)
+		E:CreateMover(EltreumWAAnchor2, "MoverEltruismWA2", "EltruismWA2", nil, nil, nil, "ALL,SOLO")
 
 		--consumable weakauras, usually placed near player unitframe
 		EltruismWAConsumablesAnchor:SetParent("ElvUF_Player")
