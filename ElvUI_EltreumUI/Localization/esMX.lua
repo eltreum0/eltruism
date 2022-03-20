@@ -889,3 +889,4 @@ L["Shadows"] = "Sombras"
 L["Cursor Type"] = "Tipo de Cursor"
 L["Show a Battle Resurrection Count and Cooldown Frame"] = "Mostrar un marco de recuento de resurrección de batalla y enfriamiento"
 L["Enables a frame that shows a cooldown and count for battle ressurections while in an instance that has them"] = "Activa un marco que muestra un enfriamiento y un recuento para las resurrecciones de batalla mientras se está en una instancia que las tiene"
+L["Choose the Progress Bar Texture"] = true

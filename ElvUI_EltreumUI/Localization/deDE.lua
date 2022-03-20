@@ -912,3 +912,4 @@ L["Shadows"] = "Schatten"
 L["Cursor Type"] = "Mauszeiger Typ"
 L["Show a Battle Resurrection Count and Cooldown Frame"] = true
 L["Enables a frame that shows a cooldown and count for battle ressurections while in an instance that has them"] = true
+L["Choose the Progress Bar Texture"] = true

@@ -961,6 +961,18 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.quests end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.quests = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							queststexture = {
+								order = 38,
+								type = 'select',
+								width = "double",
+								dialogControl = 'LSM30_Statusbar',
+								name = L["Choose the Progress Bar Texture"],
+								desc = L["Select a Texture"],
+								values = AceGUIWidgetLSMlists.statusbar,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.queststatusbartexture end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.skins.queststatusbartexture = key E:StaticPopup_Show('CONFIG_RL') end,
+							},
 							levelBosskins = {
 								order = 48,
 								type = "description",

@@ -1421,14 +1421,26 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.questswowhead end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questswowhead = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							professionskins = {
+							queststexture = {
 								order = 38,
+								type = 'select',
+								width = "double",
+								dialogControl = 'LSM30_Statusbar',
+								name = L["Choose the Progress Bar Texture"],
+								desc = L["Select a Texture"],
+								values = AceGUIWidgetLSMlists.statusbar,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.queststatusbartexture end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.skins.queststatusbartexture = key E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							professionskins = {
+								order = 46,
 								type = "description",
 								name = L["Skin Profession Frame"],
 								width = 'full',
 							},
 							professionenable = {
-								order = 39,
+								order = 47,
 								name = L['Enable'],
 								type = "toggle",
 								desc = L["Skin the Profession/Tradeskill Frame"],

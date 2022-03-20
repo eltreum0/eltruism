@@ -193,6 +193,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					else
 						bar:CreateShadow()
 						progressBar.Bar.backdrop:SetAlpha(0.7)
+						progressBar.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.queststatusbartexture))
 						progressBar.EltruismSkin = true
 					end
 				end
