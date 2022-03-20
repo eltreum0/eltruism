@@ -309,10 +309,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,336"
 		E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,14,355"
 		E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,340"
-		if E.TBC or E.Classic then
-			--E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,UIParent,BOTTOM,0,370"
-			E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,374"
-		end
 		E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,387"
 		E.db["movers"]["ElvUF_Raid40Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
 		E.db["movers"]["ElvUF_RaidMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
@@ -1054,13 +1050,15 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["target"]["buffs"]["maxDuration"] = 1200
 		E.db["unitframe"]["units"]["target"]["buffs"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["target"]["buffs"]["yOffset"] = -2
-		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 1
-		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 1
-		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 1
-		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["transparent"] = true
+		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["enable"] = false
+		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useCustomBackdrop"] = true
+		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0
+		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0
+		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0
+		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["transparent"] = false
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useClassColor"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["height"] = 28
-		E.db["unitframe"]["units"]["target"]["castbar"]["iconAttached"] = false
+		E.db["unitframe"]["units"]["target"]["castbar"]["iconAttached"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["iconAttachedTo"] = "Castbar"
 		E.db["unitframe"]["units"]["target"]["castbar"]["iconSize"] = 14
 		E.db["unitframe"]["units"]["target"]["castbar"]["iconXOffset"] = 0
