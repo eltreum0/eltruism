@@ -80,13 +80,15 @@ local function InstantLoot(_, event,_, arg2)
 		end
 		if _G["TSMDestroyBtn"] and _G["TSMDestroyBtn"]:IsShown() then
 			return
-		elseif E.db.ElvUI_EltreumUI.otherstuff.fastloot then
+		end
+		if E.db.ElvUI_EltreumUI.otherstuff.fastloot then
 			if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
 				for i = GetNumLootItems(), 1, -1 do
 					LootSlot(i)
 				end
 			end
-		elseif E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter then
+		end
+		if E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter then
 			if event == 'LOOT_BIND_CONFIRM' then
 				return
 			else
@@ -109,7 +111,8 @@ local function InstantLoot(_, event,_, arg2)
 					end
 				end
 			end
-		elseif E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter then
+		end
+		if E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter then
 			if C_CVar.GetCVar('autoLootDefault') == 1 then
 				ElvUI_EltreumUI:Print("Autoloot is enabled, please disable it to use Wishlist Loot Filtering")
 			end
