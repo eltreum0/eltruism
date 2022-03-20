@@ -106,7 +106,6 @@ function ElvUI_EltreumUI:BattleRes()
 			spellcd:SetPoint("LEFT", spellicon, "RIGHT", 10, 0)
 			spellcd:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 4, E.db.general.fontStyle)
 			spellcd:SetTextColor(1, 1, 1)
-
 			bresframe:SetScript('OnUpdate', function(_, elapsed)
 				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
@@ -117,7 +116,7 @@ function ElvUI_EltreumUI:BattleRes()
 						bresframe:SetAlpha(1)
 						local cooldown = cooldownDuration - (GetTime() - cooldownStart)
 						if cooldown <= 0 then
-							spellcd:SetText("")
+							spellcd:SetText(_G.READY)
 						else
 							if cooldown > 60 then
 								--from https://github.com/tomrus88/BlizzardInterfaceCode/blob/master/Interface/FrameXML/LFGList.lua#L2551, https://www.wowinterface.com/forums/showthread.php?t=36884
@@ -129,11 +128,15 @@ function ElvUI_EltreumUI:BattleRes()
 						spellcount:SetText(currentCharges)
 						if currentCharges == 0 then
 							spellcount:SetTextColor(1, 0, 0)
+							spellicon:SetDesaturated(true)
 						else
 							spellcount:SetTextColor(1, 1, 1)
+							spellicon:SetDesaturated(false)
 						end
 					elseif currentCharges == nil then
 						bresframe:SetAlpha(0)
+						--spellcd:SetText(_G.READY)
+						--spellicon:SetDesaturated(true)
 					end
 				end
 			end)
