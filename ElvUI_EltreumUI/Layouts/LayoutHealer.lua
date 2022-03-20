@@ -307,7 +307,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["movers"]["ElvUF_PartyMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,87"
 		E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,311,352"
 		E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,336"
-		E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,13,340"
+		E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,6,361"
 		if E.TBC or E.Classic then
 			--E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,UIParent,BOTTOM,0,370"
 			E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,374"
@@ -352,7 +352,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 			E.db["movers"]["SLE_DataPanel_1_Mover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,202"
 			E.db["movers"]["SLE_FarmSeedMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,278"
 		end
-		E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,-278,306"
+		E.db["movers"]["ShiftAB"] = "BOTTOM,UIParent,BOTTOM,-307,307"
 		E.db["movers"]["SocialMenuMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-456"
 		E.db["movers"]["SquareMinimapBar"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-197"
 		E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-5,-226"
@@ -360,7 +360,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["movers"]["ThreatBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,-1"
 		E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-134"
 		E.db["movers"]["TorghastBuffsMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,206"
-		E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,370"
+		E.db["movers"]["TotemBarMover"] = "BOTTOM,UIParent,BOTTOM,280,306"
 		E.db["movers"]["TorghastChoiceToggle"] = "BOTTOM,UIParent,BOTTOM,0,445"
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,-1"
 		E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-183,-179"
@@ -378,7 +378,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["movers"]["ZoneAbility"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-458,73"
 		E.db["movers"]["MoverEltruismWA"] = "BOTTOM,UIParent,BOTTOM,0,264"
 		E.db["movers"]["MoverEltruismWA2"] = "TOPLEFT,UIParent,TOPLEFT,18,-514"
-		E.db["movers"]["MoverEltruismWAConsumables"] = "BOTTOM,ElvUIParent,BOTTOM,-280,355"
+		E.db["movers"]["MoverEltruismWAConsumables"] = "BOTTOM,ElvUIParent,BOTTOM,-280,357"
 
 		-- UnitFrames Healing
 		E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = classcolor.b
@@ -847,6 +847,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		--E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] = true
 		E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] = false
 		E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 291
+		E.db["unitframe"]["units"]["player"]["pvp"]["position"] = "CENTER"
+		E.db["unitframe"]["units"]["player"]["pvp"]["text_format"] = ""
 		E.db["unitframe"]["units"]["player"]["raidicon"]["attachTo"] = "CENTER"
 		E.db["unitframe"]["units"]["player"]["raidicon"]["attachToObject"] = "Health"
 		E.db["unitframe"]["units"]["player"]["raidicon"]["yOffset"] = 0
@@ -1014,6 +1016,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["defaultColor"] = false
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["xOffset"] = 8
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = -7
+		--E.db["unitframe"]["units"]["target"]["aurabar"]["attachTo"] = "FRAME"
+		E.db["unitframe"]["units"]["target"]["aurabar"]["attachTo"] = "DEBUFFS"
 		E.db["unitframe"]["units"]["target"]["aurabar"]["spacing"] = 1
 		E.db["unitframe"]["units"]["target"]["aurabar"]["yOffset"] = 1
 		if E.Retail then
@@ -1035,6 +1039,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["target"]["buffs"]["sizeOverride"] = 30
 		E.db["unitframe"]["units"]["target"]["buffs"]["sortDirection"] = "ASCENDING"
 		E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = true
+		--E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = false
 		E.db["unitframe"]["units"]["target"]["buffs"]["countXOffset"] = 2
 		E.db["unitframe"]["units"]["target"]["buffs"]["countYOffset"] = -3
 		E.db["unitframe"]["units"]["target"]["buffs"]["durationPosition"] = "TOP"
