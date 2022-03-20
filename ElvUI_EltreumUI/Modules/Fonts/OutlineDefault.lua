@@ -41,8 +41,8 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
 		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "MONOCHROMEOUTLINE"
 	end
-	E.db["general"]["fontStyle"] = "THICKOUTLINE"
-	E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE"
+	E.db["general"]["fontStyle"] = "OUTLINE"
+	E.db["general"]["minimap"]["locationFontOutline"] = "OUTLINE"
 	if E.Retail then
 		E.db["general"]["minimap"]["icons"]["queueStatus"]["fontOutline"] = "OUTLINE"
 	end
