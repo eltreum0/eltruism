@@ -1034,8 +1034,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["defaultColor"] = false
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["xOffset"] = 8
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = -7
-		--E.db["unitframe"]["units"]["target"]["aurabar"]["attachTo"] = "FRAME"
-		E.db["unitframe"]["units"]["target"]["aurabar"]["attachTo"] = "DEBUFFS"
+		E.db["unitframe"]["units"]["target"]["aurabar"]["attachTo"] = "FRAME"
+		--E.db["unitframe"]["units"]["target"]["aurabar"]["attachTo"] = "DEBUFFS"
 		E.db["unitframe"]["units"]["target"]["aurabar"]["spacing"] = 1
 		E.db["unitframe"]["units"]["target"]["aurabar"]["yOffset"] = 1
 		if E.Retail then
