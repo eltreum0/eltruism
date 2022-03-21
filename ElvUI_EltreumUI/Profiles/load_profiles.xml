@@ -16,5 +16,6 @@
 	<Script file='ProjectAzilroka.lua'/>
 	<Script file='Questie.lua'/>
 	<Script file='ShadowAndLight.lua'/>
+	<Script file='Warpdeplete.lua'/>
 	<Script file='WindTools.lua'/>
 </Ui>

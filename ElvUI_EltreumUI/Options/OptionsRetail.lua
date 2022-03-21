@@ -1418,15 +1418,30 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'double',
 								func = function() ElvUI_EltreumUI:AddonSetupImmersion() E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							header3 = {
+							header21 = {
 								order = 3,
 								type = "description",
 								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
+							warpdeplete = {
+								order = 4,
+								type = 'execute',
+								name = 'WarpDeplete',
+								desc = L["Reset to Eltruism defaults."],
+								width = 'double',
+								func = function() ElvUI_EltreumUI:GetWarpDepleteProfile() E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header3 = {
+								order = 47,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
 							gladiusex = {
-								order = 3,
+								order = 48,
 								type = 'execute',
 								name = 'Gladius Ex',
 								desc = L["Reset to Eltruism defaults."],
@@ -1434,7 +1449,7 @@ function ElvUI_EltreumUI:Configtable()
 								func = function() ElvUI_EltreumUI:AddonSetupGladiusEx() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							capping = {
-								order = 3,
+								order = 49,
 								type = 'execute',
 								name = 'Capping',
 								desc = L["Reset to Eltruism defaults."],
@@ -1442,7 +1457,7 @@ function ElvUI_EltreumUI:Configtable()
 								func = function() ElvUI_EltreumUI:GetCappingProfile() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							battlegroundenemies = {
-								order = 3,
+								order = 50,
 								type = 'execute',
 								name = 'BattleGroundEnemies',
 								desc = L["Reset to Eltruism defaults."],
@@ -1450,14 +1465,14 @@ function ElvUI_EltreumUI:Configtable()
 								func = function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header5 = {
-								order = 5,
+								order = 93,
 								type = "description",
 								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							nameplatesct = {
-								order = 5,
+								order = 94,
 								type = 'execute',
 								name = 'NameplateSCT',
 								desc = L["Reset to Eltruism defaults."],
@@ -1465,7 +1480,7 @@ function ElvUI_EltreumUI:Configtable()
 								func = function() ElvUI_EltreumUI:AddonSetupNameplateSCT() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							fct = {
-								order = 6,
+								order = 95,
 								type = 'execute',
 								name = 'ElvUI Floating Combat Text',
 								desc = L["Reset to Eltruism defaults."],
@@ -1473,14 +1488,14 @@ function ElvUI_EltreumUI:Configtable()
 								func = function() ElvUI_EltreumUI:AddonSetupFCT() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header6 = {
-								order = 7,
+								order = 96,
 								type = "description",
 								name = "Details Profiles",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							details = {
-								order = 8,
+								order = 97,
 								type = 'execute',
 								name = L["Details v1 - Blizzard Flat Icons"],
 								desc = L["Reset to Eltruism defaults."],
@@ -1488,7 +1503,7 @@ function ElvUI_EltreumUI:Configtable()
 								func = function() ElvUI_EltreumUI:AddonSetupDT() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							details2 = {
-								order = 9,
+								order = 98,
 								type = 'execute',
 								name = L["Details v2 - Releaf Transparent Icons"],
 								desc = L["Reset to Eltruism defaults."],
@@ -1496,7 +1511,7 @@ function ElvUI_EltreumUI:Configtable()
 								func = function() ElvUI_EltreumUI:AddonSetupDTReleaf() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							details3 = {
-								order = 10,
+								order = 99,
 								type = 'execute',
 								name = L["Details v3 - Releaf Solid Icons"],
 								desc = L["Reset to Eltruism defaults."],
