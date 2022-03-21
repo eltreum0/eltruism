@@ -380,7 +380,11 @@ end
 --from elvui api
 --function ElvUI_EltreumUI:SkinGameMenu()
 local function SkinGameMenu()
-	if not E.private.ElvUI_EltreumUI.install_version then
+	if E.private == nil then
+		return
+	elseif E.private.ElvUI_EltreumUI == nil then
+		return
+	elseif E.private.ElvUI_EltreumUI.install_version == nil then
 		return
 	end
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
