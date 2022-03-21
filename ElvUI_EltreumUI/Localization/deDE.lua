@@ -472,8 +472,6 @@ L["Enable Floating Reputation Changes"] = "Aktiviere  Schwebene Texte für Rufä
 L["Enable the Floating Rep Text"] = "Aktiviere ein Schwebene Texte für Ruf"
 L["Buffs have been updated for Open World"] = "Stärkungszauber wurden für die Open World geupdatet"
 L["Buffs have been updated for Arenas"] = "Stärkungszauber wurden für die Arena geupdatet"
-
---missing texts from February 2022
 L["Eltruism Installer"] = true
 L["Launch Eltruism Installer"] = "Starte Eltruism Installation"
 L["Reset Eltruism Settings"] = "Eltruism Einstellungen zurücksetzen"
@@ -627,7 +625,7 @@ L["You will only accept and turn in quests if you hold CTRL/SHIFT/ALT while talk
 L["Quest Item Bar"] = "Quest Gegenstandsleiste"
 L["Enable Quest Item Bar"] = "Aktiviere die Quest Gegenstandsleiste"
 L["Add a Quest Item bar, keybind can be changed in Keybinds > ElvUI Eltruism"] = "Fügt eine Quest Gegenstandsleiste hinzu, Tastaturbelegung kann geändert werden in Tastaturbelegung > ElvUI Eltruism"
-L["Add a Quest Item bar, keybind can be changed in Key Bindings > ElvUI Eltruism"] = "Fügt eine Quest Gegenstandsleiste hinzu, Tastaturbelegung kann geändert werden in Tastaturbelegung > ElvUI Eltruism"	--double? line 632 (no its because in classic its different naming)
+L["Add a Quest Item bar, keybind can be changed in Key Bindings > ElvUI Eltruism"] = "Fügt eine Quest Gegenstandsleiste hinzu, Tastaturbelegung kann geändert werden in Tastaturbelegung > ElvUI Eltruism"
 L["Quest Item Bar follows visibility settings for ElvUI Action Bar 1"] = "Sichtbarkeit der Quest Gegenstandsleiste erfolgt durch Einstellungen der ElvUi Aktionsleiste 1"
 L["The Quest Item Bar will appear only when ElvUI Action Bar 1 appears, following its settings"] = "Die Quest Gegenstandsleiste wird nur angezeigt, wenn die ElvUi Aktionsleiste 1 auftaucht, entsprechend ihrer Einstellung"
 L["Quest Item Bar Button Mouse Over"] = "Mouseover der Questtaste der Gegenstandsleiste"
@@ -869,14 +867,9 @@ L["Left Click:"] = "Linksklick:"
 L["Right Click:"] = "Rechtsklick:"
 L["Open Eltruism Installation"] = "Öffne Eltruism Installation"
 L["Eltruism Honor/Conquest Points"] = "Eltruism Ehre-/Eroberungspunkte"
---before
---L["Auto Adjust Textures"] = "Texturen automatisch anpassen"
---L["Automatically adjust textures for the current mode"] = "Automatisches anpassen der Texturen im aktuell ausgewählten Mode"
---now
 L["Dark Power Background"] = "Dunkler Kraft Hintergrund"
 L["Sets Class Power backgrounds to be black"] = "Stellt Klassenkraft Hintergründe auf Schwarz ein"  --the class power such as on nameplates and unitframes like energy/mana/runic power, the background is usually a lighter color but making it black makes it easier to see
 L["Change the Class Power background"] = "Ändere den Hintergrund der Klassenkraft"
-
 L["Player Castbar Texture"] = "Spieler Zauberleisten Textur"
 L["Enable Auto-adjusting the actionbar spacing and position"] = "Aktiviere Abstand und Position der Aktionsleiste automatisch anpassen"
 L["Adjusts actionbar spacing and position based on borders being enabled or not"] = "Passt den Abstand und die Position der Aktionsleiste basierend auf aktivierten oder nicht aktivierten Rändern an"
@@ -893,9 +886,7 @@ L["Hostile NPC"] = "Feindlicher NPC"
 L["Original Group, Raid and Raid40 layout has been set"] = "Originales Gruppen, Raid and Raid40 Layout wurde eingestellt"
 L["Alternative Group, Raid and Raid40 layout has been set"] = "Alternative Gruppen, Raid and Raid40 Layout wurde eingestellt"
 L["Spell Haste"] = "Zaubertempo"
---L["You can customize the textures and colors in Eltruism > Media"] = "Du kannst die Farbe und Textur individuell in Eltruism > Medien ändern"
 L["You can customize the textures and colors in Eltruism > Unitframes"] = "Du kannst die Farbe und Textur individuell anpassen in Eltruism > Einheitsfenster"
---L['Enable for Player, Target, Target of Target and Focus'] = "Aktiviere es für Spieler, Ziel, Ziel des Ziels und Fokus"
 L['Enable for Player'] = 'Aktiviere für Spieler'
 L['Enable for Target'] = 'Aktiviere für Ziel'
 L['Enable for Target of Target'] = 'Aktiviere für Ziel des Ziels'
@@ -910,6 +901,6 @@ L["Target"] = "Ziel"
 L["Unitframes"] = "Einheitsfenster"
 L["Shadows"] = "Schatten"
 L["Cursor Type"] = "Mauszeiger Typ"
-L["Show a Battle Resurrection Count and Cooldown Frame"] = true
-L["Enables a frame that shows a cooldown and count for battle ressurections while in an instance that has them"] = true
-L["Choose the Progress Bar Texture"] = true
+L["Show a Battle Resurrection Count and Cooldown Frame"] = "Zeigt ein Kampfwiederbelebungs Zähler und Abklingzeit Fenster"
+L["Enables a frame that shows a cooldown and count for battle ressurections while in an instance that has them"] = "Aktiviert ein Fenster, das die Abklingzeit und Zähler für Wiederbelebungen anzeigt, während Du dich in einer Instanz befindest, die diese unterstützt."
+L["Choose the Progress Bar Texture"] = "Wähle eine Fortschrittsleisten Textur"
