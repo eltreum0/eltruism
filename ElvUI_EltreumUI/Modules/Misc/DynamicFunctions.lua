@@ -394,8 +394,13 @@ end
 local mailsoundframe = CreateFrame("FRAME")
 --mailsoundframe:RegisterEvent("MAIL_INBOX_UPDATE")
 mailsoundframe:RegisterEvent("UPDATE_PENDING_MAIL")
+local mailthrottle = 0
 mailsoundframe:SetScript("OnEvent", function()
-	if HasNewMail() == true and E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable and not InCombatLockdown() then
+	if HasNewMail() == true and E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable and not InCombatLockdown() and mailthrottle == 0 then
 		PlaySoundFile(E.LSM:Fetch("sound", E.db.ElvUI_EltreumUI.otherstuff.mailsound) , "Master")
+		mailthrottle = 1
+		C_Timer.After(1, function()
+			mailthrottle = 0
+		end)
 	end
 end)
