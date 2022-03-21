@@ -742,6 +742,7 @@ function ElvUI_EltreumUI:SetupPrivate()
 	E.private["theme"] = "class"
 	E.private["skins"]["parchmentRemoverEnable"] = true
 	E.private["skins"]["blizzard"]["enable"] = true
+	E.private["skins"]["blizzard"]["objectiveTracker"] = true
 	E.private["skins"]["ace3Enable"] = true
 	E.private["skins"]["checkBoxSkin"] = true
 	if E.Retail then
