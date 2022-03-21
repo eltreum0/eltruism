@@ -6,7 +6,7 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 		if DynamicCamDB.profiles.Eltreum then
 			--local key = {[E.mynameRealm] = "Eltreum"}
 			--table.insert(DynamicCamDB.profileKeys, key)
-			table.insert(DynamicCamDB.profileKeys, E.mynameRealm)
+			--table.insert(DynamicCamDB.profileKeys, E.mynameRealm)
 			DynamicCamDB["profileKeys"][E.mynameRealm] = "Eltreum"
 		else
 			DynamicCamDB = {
