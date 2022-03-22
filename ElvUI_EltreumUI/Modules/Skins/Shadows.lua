@@ -4,6 +4,9 @@ local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
 local A = E:GetModule('Auras')
 
+local PlayerCastbar = CreateFrame("Frame", "EltruismPlayerCastBarShadowFrame")
+local TargetCastbar = CreateFrame("Frame", "EltruismTargetCastBarShadowFrame")
+
 --Frame Shadows, turns out ElvUI includes the function
 function ElvUI_EltreumUI:Shadows()
 	if E.db.ElvUI_EltreumUI.skins.shadows then
@@ -583,6 +586,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G['ElvUF_Player_HealthBar'],
 				_G['ElvUF_Player_PowerBar'],
 				_G['ElvUF_Player_Stagger'],
+				--_G['ElvUF_Player_CastBar'],
+				--_G['ElvUF_Target_CastBar'],
 			}
 			for _, frame in pairs(elvuiframes) do
 				if frame and not frame.shadow then
@@ -594,53 +599,59 @@ function ElvUI_EltreumUI:Shadows()
 
 			--player castbar
 			if E.db.unitframe.units.player.castbar.overlayOnFrame == "None" and (not E.db.ElvUI_EltreumUI.borders.borders) then
-				local PlayerCastbar = CreateFrame("Frame", "EltruismPlayerCastBarShadowFrame")
-				local isattached = E.db.unitframe.units.player.castbar.iconAttached
-				local PlayerCastbarx, PlayerCastbary
-				if isattached == false then
-					PlayerCastbarx = (E.db.unitframe.units.player.castbar.width + E.db.unitframe.units.player.castbar.iconSize -4)
-					PlayerCastbary = (E.db.unitframe.units.player.castbar.height - 3)
-				elseif isattached == true then
-					PlayerCastbarx = (E.db.unitframe.units.player.castbar.width - 4)
-					PlayerCastbary = (E.db.unitframe.units.player.castbar.height - 3)
+				if E.db.unitframe.units.player.castbar.iconAttached == false then
+					PlayerCastbar:SetSize(E.db.unitframe.units.player.castbar.width + E.db.unitframe.units.player.castbar.iconSize -4, E.db.unitframe.units.player.castbar.height - 3)
+				elseif E.db.unitframe.units.player.castbar.iconAttached == true then
+					PlayerCastbar:SetSize(E.db.unitframe.units.player.castbar.width - 4, E.db.unitframe.units.player.castbar.height - 3)
 				end
-				PlayerCastbar:SetSize(PlayerCastbarx, PlayerCastbary)
-				PlayerCastbar:SetParent(_G.ElvUF_Player_CastBar)
+				PlayerCastbar:SetParent(_G['ElvUF_Player_CastBar'])
 				if not (self.PlayerCastBarIsSkinned) then
-					PlayerCastbar.shadow = PlayerCastbar:CreateShadow(nil, true)
-					PlayerCastbar:SetPoint("CENTER", _G['ElvUF_Player_CastBar'], "CENTER", -(PlayerCastbary/2), 0)
-					PlayerCastbar:Show()
+					PlayerCastbar.shadow = PlayerCastbar:CreateShadow()
 					self.PlayerCastBarIsSkinned = true
 				end
+				PlayerCastbar:SetPoint("CENTER", _G['ElvUF_Player_CastBar'], "CENTER", -((E.db.unitframe.units.player.castbar.height - 3)/2), 0)
+				PlayerCastbar:Show()
+				if _G['ElvUF_Player_CastBar'].shadow then
+					_G['ElvUF_Player_CastBar'].shadow:Hide()
+				end
 			else
+				if _G["EltruismPlayerCastBarShadowFrame"] then
+					_G["EltruismPlayerCastBarShadowFrame"]:Hide()
+				end
 				if not _G['ElvUF_Player_CastBar'].shadow and (not E.db.ElvUI_EltreumUI.borders.borders) then
 					_G['ElvUF_Player_CastBar']:CreateShadow()
+				end
+				if _G['ElvUF_Player_CastBar'].shadow then
+					_G['ElvUF_Player_CastBar'].shadow:Show()
 				end
 			end
 
 			--target castbar
 			if E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and (not E.db.ElvUI_EltreumUI.borders.borders) then
-				local TargetCastbar = CreateFrame("Frame", "EltruismTargetCastBarShadowFrame")
-				local isattachedtarget = E.db.unitframe.units.target.castbar.iconAttached
-				local TargetCastbarx, TargetCastbary
-				if isattachedtarget == false then
-					TargetCastbarx = (E.db.unitframe.units.target.castbar.width + E.db.unitframe.units.target.castbar.iconSize - 4)
-					TargetCastbary = (E.db.unitframe.units.target.castbar.height - 3)
-				elseif isattachedtarget == true then
-					TargetCastbarx = (E.db.unitframe.units.target.castbar.width - 4)
-					TargetCastbary = (E.db.unitframe.units.target.castbar.height - 3)
+				if E.db.unitframe.units.target.castbar.iconAttached == false then
+					TargetCastbar:SetSize(E.db.unitframe.units.target.castbar.width + E.db.unitframe.units.target.castbar.iconSize - 4, E.db.unitframe.units.target.castbar.height - 3)
+				elseif E.db.unitframe.units.target.castbar.iconAttached == true then
+					TargetCastbar:SetSize(E.db.unitframe.units.target.castbar.width - 4, E.db.unitframe.units.target.castbar.height - 3)
 				end
-				TargetCastbar:SetSize(TargetCastbarx, TargetCastbary)
-				TargetCastbar:SetParent(_G.ElvUF_Target_CastBar)
+				TargetCastbar:SetParent(_G['ElvUF_Target_CastBar'])
 				if not (self.TargetCastBarIsSkinned) then
-					TargetCastbar.shadow = TargetCastbar:CreateShadow(nil, true)
-					TargetCastbar:SetPoint("CENTER", _G['ElvUF_Target_CastBar'], "CENTER", -(TargetCastbary/2), 0) ---14, 0)
-					TargetCastbar:Show()
+					TargetCastbar.shadow = TargetCastbar:CreateShadow()
 					self.TargetCastBarIsSkinned = true
 				end
+				TargetCastbar:SetPoint("CENTER", _G['ElvUF_Target_CastBar'], "CENTER", -((E.db.unitframe.units.target.castbar.height - 3)/2), 0)
+				TargetCastbar:Show()
+				if _G['ElvUF_Target_CastBar'].shadow then
+					_G['ElvUF_Target_CastBar'].shadow:Hide()
+				end
 			else
+				if _G["EltruismTargetCastBarShadowFrame"] then
+					_G["EltruismTargetCastBarShadowFrame"]:Hide()
+				end
 				if not _G['ElvUF_Target_CastBar'].shadow and (not E.db.ElvUI_EltreumUI.borders.borders) then
 					_G['ElvUF_Target_CastBar']:CreateShadow()
+				end
+				if _G['ElvUF_Player_CastBar'].shadow then
+					_G['ElvUF_Player_CastBar'].shadow:Show()
 				end
 			end
 
