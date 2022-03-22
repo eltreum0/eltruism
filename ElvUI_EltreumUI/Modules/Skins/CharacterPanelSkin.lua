@@ -515,122 +515,164 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 		elseif E.TBC or E.Classic then
 
-			hooksecurefunc('PlayerStatFrameLeftDropDown_OnClick', function()
-				if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft1Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameLeft2Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft2Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameLeft3Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft3Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameLeft4Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft4Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameLeft5Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft5Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameLeft6Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft6Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight1Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight1Label:SetText(E:TextGradient(_G.PlayerStatFrameRight1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight2Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight2Label:SetText(E:TextGradient(_G.PlayerStatFrameRight2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight3Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight3Label:SetText(E:TextGradient(_G.PlayerStatFrameRight3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight4Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight4Label:SetText(E:TextGradient(_G.PlayerStatFrameRight4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight5Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight5Label:SetText(E:TextGradient(_G.PlayerStatFrameRight5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight6Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight6Label:SetText(E:TextGradient(_G.PlayerStatFrameRight6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-			end)
+			if E.TBC then
+				hooksecurefunc('PlayerStatFrameLeftDropDown_OnClick', function()
+					if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft1Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameLeft2Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft2Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameLeft3Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft3Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameLeft4Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft4Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameLeft5Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft5Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameLeft6Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft6Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameRight1Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight1Label:SetText(E:TextGradient(_G.PlayerStatFrameRight1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameRight2Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight2Label:SetText(E:TextGradient(_G.PlayerStatFrameRight2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameRight3Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight3Label:SetText(E:TextGradient(_G.PlayerStatFrameRight3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameRight4Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight4Label:SetText(E:TextGradient(_G.PlayerStatFrameRight4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameRight5Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight5Label:SetText(E:TextGradient(_G.PlayerStatFrameRight5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameRight6Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight6Label:SetText(E:TextGradient(_G.PlayerStatFrameRight6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+				end)
 
-			hooksecurefunc('PlayerStatFrameRightDropDown_OnClick', function()
-				if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft1Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameLeft2Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft2Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameLeft3Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft3Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameLeft4Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft4Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameLeft5Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft5Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameLeft6Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft6Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight1Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight1Label:SetText(E:TextGradient(_G.PlayerStatFrameRight1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight2Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight2Label:SetText(E:TextGradient(_G.PlayerStatFrameRight2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight3Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight3Label:SetText(E:TextGradient(_G.PlayerStatFrameRight3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight4Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight4Label:SetText(E:TextGradient(_G.PlayerStatFrameRight4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight5Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight5Label:SetText(E:TextGradient(_G.PlayerStatFrameRight5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight6Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight6Label:SetText(E:TextGradient(_G.PlayerStatFrameRight6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-			end)
+				hooksecurefunc('PlayerStatFrameRightDropDown_OnClick', function()
+					if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft1Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameLeft2Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft2Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameLeft3Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft3Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameLeft4Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft4Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameLeft5Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft5Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameLeft6Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft6Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameRight1Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight1Label:SetText(E:TextGradient(_G.PlayerStatFrameRight1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameRight2Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight2Label:SetText(E:TextGradient(_G.PlayerStatFrameRight2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameRight3Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight3Label:SetText(E:TextGradient(_G.PlayerStatFrameRight3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameRight4Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight4Label:SetText(E:TextGradient(_G.PlayerStatFrameRight4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameRight5Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight5Label:SetText(E:TextGradient(_G.PlayerStatFrameRight5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameRight6Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight6Label:SetText(E:TextGradient(_G.PlayerStatFrameRight6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+				end)
+			end
 
 			hooksecurefunc("PaperDollFrame_UpdateStats", function()
-				if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft1Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameLeft2Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft2Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameLeft3Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft3Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameLeft4Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft4Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameLeft5Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft5Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameLeft6Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft6Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight1Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight1Label:SetText(E:TextGradient(_G.PlayerStatFrameRight1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight2Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight2Label:SetText(E:TextGradient(_G.PlayerStatFrameRight2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight3Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight3Label:SetText(E:TextGradient(_G.PlayerStatFrameRight3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight4Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight4Label:SetText(E:TextGradient(_G.PlayerStatFrameRight4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight5Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight5Label:SetText(E:TextGradient(_G.PlayerStatFrameRight5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-				if not _G.PlayerStatFrameRight6Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight6Label:SetText(E:TextGradient(_G.PlayerStatFrameRight6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-				end
-			end)
+					if E.TBC then
+						if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
+							_G.PlayerStatFrameLeft1Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameLeft2Label:GetText():match("|r") then
+							_G.PlayerStatFrameLeft2Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameLeft3Label:GetText():match("|r") then
+							_G.PlayerStatFrameLeft3Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameLeft4Label:GetText():match("|r") then
+							_G.PlayerStatFrameLeft4Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameLeft5Label:GetText():match("|r") then
+							_G.PlayerStatFrameLeft5Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameLeft6Label:GetText():match("|r") then
+							_G.PlayerStatFrameLeft6Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameRight1Label:GetText():match("|r") then
+							_G.PlayerStatFrameRight1Label:SetText(E:TextGradient(_G.PlayerStatFrameRight1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameRight2Label:GetText():match("|r") then
+							_G.PlayerStatFrameRight2Label:SetText(E:TextGradient(_G.PlayerStatFrameRight2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameRight3Label:GetText():match("|r") then
+							_G.PlayerStatFrameRight3Label:SetText(E:TextGradient(_G.PlayerStatFrameRight3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameRight4Label:GetText():match("|r") then
+							_G.PlayerStatFrameRight4Label:SetText(E:TextGradient(_G.PlayerStatFrameRight4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameRight5Label:GetText():match("|r") then
+							_G.PlayerStatFrameRight5Label:SetText(E:TextGradient(_G.PlayerStatFrameRight5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameRight6Label:GetText():match("|r") then
+							_G.PlayerStatFrameRight6Label:SetText(E:TextGradient(_G.PlayerStatFrameRight6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+					elseif E.Classic then
+						if not _G.CharacterStatFrame1Label:GetText():match("|r") then
+							_G.CharacterStatFrame1Label:SetText(E:TextGradient(_G.CharacterStatFrame1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterStatFrame2Label:GetText():match("|r") then
+							_G.CharacterStatFrame2Label:SetText(E:TextGradient(_G.CharacterStatFrame2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterStatFrame3Label:GetText():match("|r") then
+							_G.CharacterStatFrame3Label:SetText(E:TextGradient(_G.CharacterStatFrame3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterStatFrame4Label:GetText():match("|r") then
+							_G.CharacterStatFrame4Label:SetText(E:TextGradient(_G.CharacterStatFrame4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterStatFrame5Label:GetText():match("|r") then
+							_G.CharacterStatFrame5Label:SetText(E:TextGradient(_G.CharacterStatFrame5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+
+						if not _G.CharacterArmorFrameLabel:GetText():match("|r") then
+							_G.CharacterArmorFrameLabel:SetText(E:TextGradient(_G.CharacterArmorFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterAttackFrameLabel:GetText():match("|r") then
+							_G.CharacterAttackFrameLabel:SetText(E:TextGradient(_G.CharacterAttackFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterAttackPowerFrameLabel:GetText():match("|r") then
+							_G.CharacterAttackPowerFrameLabel:SetText(E:TextGradient(_G.CharacterAttackPowerFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterDamageFrameLabel:GetText():match("|r") then
+							_G.CharacterDamageFrameLabel:SetText(E:TextGradient(_G.CharacterDamageFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterRangedAttackFrameLabel:GetText():match("|r") then
+							_G.CharacterRangedAttackFrameLabel:SetText(E:TextGradient(_G.CharacterRangedAttackFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterRangedAttackPowerFrameLabel:GetText():match("|r") then
+							_G.CharacterRangedAttackPowerFrameLabel:SetText(E:TextGradient(_G.CharacterRangedAttackPowerFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterRangedDamageFrameLabel:GetText():match("|r") then
+							_G.CharacterRangedDamageFrameLabel:SetText(E:TextGradient(_G.CharacterRangedDamageFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+					end
+				end)
 
 			--add class crest
 			if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
