@@ -658,7 +658,11 @@ function ElvUI_EltreumUI:SkinMailZone()
 			_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
 			_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
 			_G.OpenMailBodyText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
-			_G.SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+			if E.Retail then
+				_G.SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+			elseif E.TBC or E.Classic then
+				_G.MailEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+			end
 		end
 	end
 end
