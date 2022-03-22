@@ -399,7 +399,7 @@ mailsoundframe:SetScript("OnEvent", function()
 	if HasNewMail() == true and E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable and not InCombatLockdown() and mailthrottle == 0 then
 		PlaySoundFile(E.LSM:Fetch("sound", E.db.ElvUI_EltreumUI.otherstuff.mailsound) , "Master")
 		mailthrottle = 1
-		C_Timer.After(1, function()
+		C_Timer.After(2, function()
 			mailthrottle = 0
 		end)
 	end
