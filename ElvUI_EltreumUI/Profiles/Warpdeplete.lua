@@ -37,7 +37,7 @@ function ElvUI_EltreumUI:GetWarpDepleteProfile()
 		["bar1Font"] = E.db.general.font,
 		["bar2TextureColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
 		["bar2Font"] = E.db.general.font,
-		["frameY"] = 38.60342788696289,
+		["frameY"] = -92.44456481933594,
 		["forcesTextureColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
 		["bar1Texture"] = classtable[E.myclass],
 		["bar2Texture"] = classtable[E.myclass],
