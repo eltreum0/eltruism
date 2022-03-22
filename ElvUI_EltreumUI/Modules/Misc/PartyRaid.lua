@@ -69,10 +69,6 @@ end
 
 --bres
 local bresframe = CreateFrame("Frame")
-bresframe:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 342, -28)
-bresframe:SetParent(UIParent)
-bresframe:SetSize(97, 30)
-S:HandleFrame(bresframe)
 local spellicon = bresframe:CreateTexture()
 local spellcount = bresframe:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 local spellcd = bresframe:CreateFontString(nil, "OVERLAY", "GameFontNormal")
@@ -82,11 +78,27 @@ local TimeSinceLastUpdate = 0
 local ONUPDATE_INTERVAL = 1
 function ElvUI_EltreumUI:BattleRes()
 	if E.Retail and E.db.ElvUI_EltreumUI.otherstuff.bres then
+		bresframe:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 342, -28)
+		bresframe:SetParent(UIParent)
+		bresframe:SetSize(97, 30)
+		S:HandleFrame(bresframe)
 		E:CreateMover(bresframe, "MoverEltruismBRES", "EltruismBattleRes", nil, nil, nil, "ALL,PARTY,RAID")
 		local _, instanceType = IsInInstance()
 		local DifficultyID = select(3, GetInstanceInfo())
 		local ingroup = IsInGroup()
-		if ingroup == true and (instanceType == 'raid' or instanceType == 'party') and (DifficultyID == 8 or DifficultyID == 3 or DifficultyID == 4 or DifficultyID == 9 or DifficultyID == 14 or DifficultyID == 173 or DifficultyID == 5 or DifficultyID == 6 or DifficultyID == 174 or DifficultyID == 15 or DifficultyID == 148 or DifficultyID == 175 or DifficultyID == 176 or DifficultyID == 16) then
+
+		local difficultyok
+		if (DifficultyID == 8 or DifficultyID == 3 or DifficultyID == 4 or DifficultyID == 9 or DifficultyID == 14 or DifficultyID == 173 or DifficultyID == 5 or DifficultyID == 6 or DifficultyID == 174 or DifficultyID == 15 or DifficultyID == 148 or DifficultyID == 175 or DifficultyID == 176 or DifficultyID == 16) then
+			difficultyok = true
+		end
+		local instanceok
+		if instanceType == 'raid' or instanceType == 'party' then
+			instanceok = true
+		end
+
+		--if ingroup == true and (instanceType == 'raid' or instanceType == 'party') and (DifficultyID == 8 or DifficultyID == 3 or DifficultyID == 4 or DifficultyID == 9 or DifficultyID == 14 or DifficultyID == 173 or DifficultyID == 5 or DifficultyID == 6 or DifficultyID == 174 or DifficultyID == 15 or DifficultyID == 148 or DifficultyID == 175 or DifficultyID == 176 or DifficultyID == 16) then
+		if ingroup == true and instanceok == true and difficultyok == true then
+			bresframe:SetAlpha(1)
 			spellicon:SetSize(30, 30)
 			spellicon:SetPoint("LEFT", bresframe)
 			spellicon:SetTexture(GetSpellTexture(20484))
