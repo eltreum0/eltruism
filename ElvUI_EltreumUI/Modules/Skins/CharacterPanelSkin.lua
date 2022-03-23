@@ -246,7 +246,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0.4, classcolor.r, classcolor.g, classcolor.b, 0)
 				_G.CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0, classcolor.r, classcolor.g, classcolor.b, 0.4)
 
-				if E.db.ElvUI_EltreumUI.skins.statcolors then
+				if E.db.ElvUI_EltreumUI.skins.statcolors and (not IsAddOnLoaded('DejaCharacterStats')) then
 					--ItemLevelCategory
 					--remove backgrounds and make font nice
 					_G.CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
@@ -348,7 +348,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				hooksecurefunc('PaperDollFrame_SetLabelAndText', function(statFrame, label)
 					if ( statFrame.Label ) then
 						--statFrame.Label:SetText(format(STAT_FORMAT, label))
-						if not statFrame.Label:GetText():match("|r") and E.db.ElvUI_EltreumUI.skins.statcolors then
+						if not statFrame.Label:GetText():match("|r") and E.db.ElvUI_EltreumUI.skins.statcolors  and (not IsAddOnLoaded('DejaCharacterStats')) then
 							statFrame.Label:SetText(E:TextGradient(format(STAT_FORMAT, label), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
 						end
 					end
