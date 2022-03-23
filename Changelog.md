@@ -1,6 +1,18 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.0.0
+Added gradient class colors to the character stats panel in the character frame\
+Added an option to change the progress bar in the objective frame for Retail\
+Added WarpDeplete profile\
+Updated player and target castbar shadows detection\
+Updated German translations by Dlarge\
+Fixed an issue with the mail text font for TBC\
+Fixed Battle Ressurection Count/Countdown\
+Fixed mail sound playing twice\
+Fixed an error with the objective frame skin when ElvUI's skin was disabled\
+Fixed an error with the Eltruism Game Menu Button
+___
 ### 2.9.9
 Added a Battle Resurrection frame that shows the count and cooldown for battle resurrection when in a party/raid that has the count system in Retail\
 Added a check for item existing to chat icons\
