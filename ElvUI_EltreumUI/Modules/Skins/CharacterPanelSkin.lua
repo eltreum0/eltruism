@@ -250,7 +250,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				--remove backgrounds and make font nice
 				_G.CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
 				_G.CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
-				_G.CharacterStatsPane.ItemLevelCategory.Title:SetText(E:TextGradient(_G.CharacterStatsPane.ItemLevelCategory.Title:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+				if not _G.CharacterStatsPane.ItemLevelCategory.Title:GetText():match("|r") then
+					_G.CharacterStatsPane.ItemLevelCategory.Title:SetText(E:TextGradient(_G.CharacterStatsPane.ItemLevelCategory.Title:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+				end
 				_G.CharacterStatsPane.ItemLevelCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 				--statusbars
 				_G.CharacterStatsPane.ItemLevelCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismItemLevelCategoryLine", _G.CharacterStatsPane)
@@ -268,7 +270,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				--remove backgrounds and make font nice
 				_G.CharacterStatsPane.AttributesCategory.backdrop:Hide()
 				_G.CharacterStatsPane.AttributesCategory.backdrop:Hide()
-				_G.CharacterStatsPane.AttributesCategory.Title:SetText(E:TextGradient(_G.CharacterStatsPane.AttributesCategory.Title:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+				if not _G.CharacterStatsPane.AttributesCategory.Title:GetText():match("|r") then
+					_G.CharacterStatsPane.AttributesCategory.Title:SetText(E:TextGradient(_G.CharacterStatsPane.AttributesCategory.Title:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+				end
 				_G.CharacterStatsPane.AttributesCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 				--statusbars
 				_G.CharacterStatsPane.AttributesCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismAttributesCategoryLine", _G.CharacterStatsPane)
@@ -286,7 +290,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				--remove backgrounds and make font nice
 				_G.CharacterStatsPane.EnhancementsCategory.backdrop:Hide()
 				_G.CharacterStatsPane.EnhancementsCategory.backdrop:Hide()
-				_G.CharacterStatsPane.EnhancementsCategory.Title:SetText(E:TextGradient(_G.CharacterStatsPane.EnhancementsCategory.Title:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+				if not _G.CharacterStatsPane.EnhancementsCategory.Title:GetText():match("|r") then
+					_G.CharacterStatsPane.EnhancementsCategory.Title:SetText(E:TextGradient(_G.CharacterStatsPane.EnhancementsCategory.Title:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+				end
 				_G.CharacterStatsPane.EnhancementsCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 				--statusbars
 				_G.CharacterStatsPane.EnhancementsCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine", _G.CharacterStatsPane)
@@ -342,7 +348,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				hooksecurefunc('PaperDollFrame_SetLabelAndText', function(statFrame, label)
 					if ( statFrame.Label ) then
 						--statFrame.Label:SetText(format(STAT_FORMAT, label))
-						statFrame.Label:SetText(E:TextGradient(format(STAT_FORMAT, label), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						if not statFrame.Label:GetText():match("|r") then
+							statFrame.Label:SetText(E:TextGradient(format(STAT_FORMAT, label), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
 					end
 				end)
 
@@ -360,7 +368,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", _G.CharacterStatsPane, "CENTER", 0, -80)
 					_G.CharacterFrame.EltruismExtraStatsFont:SetParent(_G.CharacterStatsPane)
 					--_G.CharacterFrame.EltruismExtraStatsFont:SetText("Other")
-					_G.CharacterFrame.EltruismExtraStatsFont:SetText(E:TextGradient("Other", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					--if not _G.CharacterFrame.EltruismExtraStatsFont:GetText():match("|r") then
+						_G.CharacterFrame.EltruismExtraStatsFont:SetText(E:TextGradient("Other", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					--end
 
 
 					_G.CharacterFrame.EltruismExtraStats:SetSize(67, 4)
@@ -388,7 +398,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", _G.CharacterStatsPane , -36, -163)
 					_G.CharacterFrame.EltruismSpeedDesc:SetParent(_G.CharacterStatsPane)
 					--_G.CharacterFrame.EltruismSpeedDesc:SetText(STAT_MOVEMENT_SPEED)
-					_G.CharacterFrame.EltruismSpeedDesc:SetText(E:TextGradient(STAT_MOVEMENT_SPEED, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					--if not _G.CharacterFrame.EltruismSpeedDesc:GetText():match("|r") then
+						_G.CharacterFrame.EltruismSpeedDesc:SetText(E:TextGradient(STAT_MOVEMENT_SPEED, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					--end
 					_G.CharacterFrame.EltruismSpeedDesc:SetJustifyH("LEFT")
 					_G.CharacterFrame.EltruismSpeedDesc:SetShadowColor(0, 0, 0, 1)
 					_G.CharacterFrame.EltruismSpeedDesc:SetShadowOffset(1, 0)
@@ -420,16 +432,24 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterFrame.EltruismClassResourceDesc:SetParent(_G.CharacterStatsPane)
 					if E.myclass == 'HUNTER' then
 						--_G.CharacterFrame.EltruismClassResourceDesc:SetText(STAT_FOCUS_REGEN)
-						_G.CharacterFrame.EltruismClassResourceDesc:SetText(E:TextGradient(STAT_FOCUS_REGEN, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+							_G.CharacterFrame.EltruismClassResourceDesc:SetText(E:TextGradient(STAT_FOCUS_REGEN, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						--end
 					elseif E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
 						--_G.CharacterFrame.EltruismClassResourceDesc:SetText(STAT_ENERGY_REGEN)
-						_G.CharacterFrame.EltruismClassResourceDesc:SetText(E:TextGradient(STAT_ENERGY_REGEN, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+							_G.CharacterFrame.EltruismClassResourceDesc:SetText(E:TextGradient(STAT_ENERGY_REGEN, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						--end
 					elseif E.myclass == 'DEATHKNIGHT' then
 						--_G.CharacterFrame.EltruismClassResourceDesc:SetText(STAT_RUNE_REGEN)
-						_G.CharacterFrame.EltruismClassResourceDesc:SetText(E:TextGradient(STAT_RUNE_REGEN, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+							_G.CharacterFrame.EltruismClassResourceDesc:SetText(E:TextGradient(STAT_RUNE_REGEN, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						--end
 					elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
 						--_G.CharacterFrame.EltruismClassResourceDesc:SetText(MANA_REGEN)
-						_G.CharacterFrame.EltruismClassResourceDesc:SetText(E:TextGradient(MANA_REGEN, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+							_G.CharacterFrame.EltruismClassResourceDesc:SetText(E:TextGradient(MANA_REGEN, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						--end
 					end
 					_G.CharacterFrame.EltruismClassResourceDesc:SetJustifyH("LEFT")
 					_G.CharacterFrame.EltruismClassResourceDesc:SetShadowColor(0, 0, 0, 1)
@@ -480,7 +500,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterFrame.EltruismClassResourceDesc2:SetParent(_G.CharacterStatsPane)
 					if E.myclass == 'DRUID' or E.myclass == 'MONK' then
 						--_G.CharacterFrame.EltruismClassResourceDesc2:SetText(MANA_REGEN)
-						_G.CharacterFrame.EltruismClassResourceDesc2:SetText(E:TextGradient(MANA_REGEN, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+							_G.CharacterFrame.EltruismClassResourceDesc2:SetText(E:TextGradient(MANA_REGEN, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						--end
 					end
 					_G.CharacterFrame.EltruismClassResourceDesc2:SetJustifyH("LEFT")
 					_G.CharacterFrame.EltruismClassResourceDesc2:SetShadowColor(0, 0, 0, 1)
