@@ -1060,7 +1060,7 @@ function ElvUI_EltreumUI:Configtable()
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							expandart = {
-								order = 4,
+								order = 2,
 								type = 'toggle',
 								name = L["Expand Character Art"],
 								width = 'full',
@@ -1069,13 +1069,23 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybg = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							expandartcrest = {
-								order = 5,
+								order = 3,
 								type = 'toggle',
 								name = L["Add Crest to Character Panel"],
 								width = 'full',
 								desc = L["Enable this option"],
 								get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorycrest end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorycrest = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							statcolors = {
+								order = 4,
+								type = 'toggle',
+								name = L["Add Class Gradient Colors to Stats"],
+								width = 'full',
+								desc = L["Enable this option"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.statcolors end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.statcolors = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header845 = {
 								order = 6,
