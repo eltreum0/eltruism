@@ -9,4 +9,4 @@ Fixed an issue with the mail text font for TBC\
 Fixed Battle Ressurection Count/Countdown\
 Fixed mail sound playing twice\
 Fixed an error with the objective frame skin when ElvUI's skin was disabled\
-Fixed an error with the Eltruism Game Menu Button\
+Fixed an error with the Eltruism Game Menu Button

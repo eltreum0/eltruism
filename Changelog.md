@@ -17,7 +17,7 @@ Updated Quest Skins compatibility with Shadow and Light\
 Updated the role icon in chat to also show when WindTools is not loaded\
 Updated Healer profile\
 Fixed !keys not linking in guild chat when not in a party\
-Fixed Expanded Stable\
+Fixed Expanded Stable
 ___
 ### 2.9.8
 Added BattleGroundEnemies profile for Retail, this profile can be found in Eltruism > Addons\
