@@ -126,7 +126,7 @@ function ElvUI_EltreumUI:BattleRes()
 					local currentCharges, _, cooldownStart, cooldownDuration = GetSpellCharges(20484)
 					if currentCharges ~= nil and cooldownStart ~= nil and cooldownDuration ~= nil then
 						bresframe:SetAlpha(1)
-						local cooldown = cooldownDuration - (GetTime() - cooldownStart)
+						local cooldown = math.floor(cooldownDuration - (GetTime() - cooldownStart))
 						if cooldown <= 0 then
 							spellcd:SetText(_G.READY)
 						else
