@@ -495,7 +495,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						if currentSpec then
 							id, _ = GetSpecializationInfo(currentSpec)
 						end
-						if id == 264 then
+						if id == 264 or id == 257 or id == 256 or id == 65 or id == 270 or id == 105 then
 							_G.CharacterFrame.EltruismClassResource:Hide()
 							_G.CharacterFrame.EltruismClassResourceDesc:Hide()
 							_G.CharacterFrame.EltruismClassResourceDescTooltip:Hide()
