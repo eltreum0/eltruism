@@ -123,8 +123,8 @@ function ElvUI_EltreumUI:BattleRes()
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 					TimeSinceLastUpdate = 0
 					--currentCharges, maxCharges, cooldownStart, cooldownDuration, chargeModRate = GetSpellCharges(spellId or spellName)
-					local currentCharges, _, cooldownStart, cooldownDuration = GetSpellCharges(20484) or GetSpellCharges(61999) or GetSpellCharges(20707)
-					if currentCharges ~= nil then
+					local currentCharges, _, cooldownStart, cooldownDuration = GetSpellCharges(20484)
+					if currentCharges ~= nil and cooldownStart ~= nil and cooldownDuration ~= nil then
 						bresframe:SetAlpha(1)
 						local cooldown = cooldownDuration - (GetTime() - cooldownStart)
 						if cooldown <= 0 then
