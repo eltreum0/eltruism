@@ -904,3 +904,4 @@ L["Cursor Type"] = "Mauszeiger Typ"
 L["Show a Battle Resurrection Count and Cooldown Frame"] = "Zeigt ein Kampfwiederbelebungs Zähler und Abklingzeit Fenster"
 L["Enables a frame that shows a cooldown and count for battle ressurections while in an instance that has them"] = "Aktiviert ein Fenster, das die Abklingzeit und Zähler für Wiederbelebungen anzeigt, während Du dich in einer Instanz befindest, die diese unterstützt."
 L["Choose the Progress Bar Texture"] = "Wähle eine Fortschrittsleisten Textur"
+L["Add Class Gradient Colors to Stats"] = true
