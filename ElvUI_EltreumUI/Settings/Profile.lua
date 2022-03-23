@@ -64,6 +64,7 @@ P.ElvUI_EltreumUI = {
 		expandarmorybg = false,
 		expandarmorybgalpha = 0.3,
 		expandarmorycrest = false,
+		statcolors = false,
 		bossemote = false,
 		quests = false,
 		queststatusbartexture = "Asphyxia-Norm",
