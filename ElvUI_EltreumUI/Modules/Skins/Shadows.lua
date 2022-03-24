@@ -630,15 +630,20 @@ function ElvUI_EltreumUI:Shadows()
 			if E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and (not E.db.ElvUI_EltreumUI.borders.borders) then
 				if E.db.unitframe.units.target.castbar.iconAttached == false then
 					TargetCastbar:SetSize(E.db.unitframe.units.target.castbar.width + E.db.unitframe.units.target.castbar.iconSize - 4, E.db.unitframe.units.target.castbar.height - 3)
+					if E.db["unitframe"]["units"]["target"]["castbar"]["iconPosition"] == "LEFT" then
+						TargetCastbar:SetPoint("CENTER", _G['ElvUF_Target_CastBar'], "CENTER", -((E.db.unitframe.units.target.castbar.height - 3)/2), 0)
+					elseif E.db["unitframe"]["units"]["target"]["castbar"]["iconPosition"] == "RIGHT" then
+						TargetCastbar:SetPoint("CENTER", _G['ElvUF_Target_CastBar'], "CENTER", ((E.db.unitframe.units.target.castbar.height - 3)/2), 0)
+					end
 				elseif E.db.unitframe.units.target.castbar.iconAttached == true then
 					TargetCastbar:SetSize(E.db.unitframe.units.target.castbar.width - 4, E.db.unitframe.units.target.castbar.height - 3)
+					TargetCastbar:SetPoint("CENTER", _G['ElvUF_Target_CastBar'], "CENTER", ((E.db.unitframe.units.target.castbar.height - 3)/2), 0)
 				end
 				TargetCastbar:SetParent(_G['ElvUF_Target_CastBar'])
 				if not (self.TargetCastBarIsSkinned) then
 					TargetCastbar.shadow = TargetCastbar:CreateShadow()
 					self.TargetCastBarIsSkinned = true
 				end
-				TargetCastbar:SetPoint("CENTER", _G['ElvUF_Target_CastBar'], "CENTER", -((E.db.unitframe.units.target.castbar.height - 3)/2), 0)
 				TargetCastbar:Show()
 				if _G['ElvUF_Target_CastBar'].shadow then
 					_G['ElvUF_Target_CastBar'].shadow:Hide()
