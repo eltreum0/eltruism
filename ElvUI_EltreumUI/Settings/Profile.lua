@@ -388,6 +388,7 @@ P.ElvUI_EltreumUI = {
 		enableboss = true,
 		enablegroupunits = true,
 		enableplayercastbar = false,
+		enabletargetcastbar = false,
 		orientation = "HORIZONTAL",
 		texture = "Eltreum-Blank",
 		customcolor = false,
