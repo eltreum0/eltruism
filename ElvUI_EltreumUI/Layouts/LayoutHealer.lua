@@ -279,7 +279,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "DOWN_RIGHT"
 		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "DOWN_RIGHT"
 		-- Movers Healing
-		E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-92,-293"
+		--E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-92,-293"
+		E.db["movers"]["ArenaHeaderMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-65,-292"
 		E.db["movers"]["AzeriteBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-421,0"
 		E.db["movers"]["BNETMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-259"
 		E.db["movers"]["BelowMinimapContainerMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,79,-155"
@@ -287,7 +288,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["movers"]["BigButtonsSeedBarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,281,-186"
 		E.db["movers"]["BossButton"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-458,126"
 		--E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-27,-384"
-		E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-4,-306"
+		E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-4,-334"
 		E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-4"
 		E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-101"
 		E.db["movers"]["DurabilityFrameMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,498,366"
