@@ -116,6 +116,7 @@ function ElvUI_EltreumUI:Borders()
 				})
 				targetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				targetborder:SetFrameStrata("LOW")
+				targetborder:SetParent(_G.ElvUF_Target_HealthBar)
 			end
 
 			if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and not (E.db.unitframe.units.target.castbar.overlayOnFrame == "Power") then
@@ -350,7 +351,7 @@ function ElvUI_EltreumUI:BordersTargetChanged()
 					local _, targettargetclass = UnitClass("targettarget")
 					targettargetborder:SetBackdropBorderColor(classcolorreaction[targettargetclass]["r1"], classcolorreaction[targettargetclass]["g1"], classcolorreaction[targettargetclass]["b1"], 1)
 				elseif not UnitIsPlayer("targettarget") then
-					local reactiontargettarget = UnitReaction("player", "target")
+					local reactiontargettarget = UnitReaction("player", "targettarget")
 					if reactiontargettarget >= 5 then
 						targettargetborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
 					elseif reactiontargettarget == 4 then
