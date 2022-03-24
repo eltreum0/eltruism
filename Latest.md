@@ -3,5 +3,6 @@ ___
 Added gradient to target castbar\
 Updated target castbar shadows\
 Updated the target tag\
+Updated Boss unitframe for the new ElvUI amount of boss units\
 Fixed Mail sound being enabled by default when it should be disabled by default\
-Fixed an error with the Eltruism Game Menu Button\
+Fixed an error with the Eltruism Game Menu Button
