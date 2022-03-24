@@ -4458,6 +4458,17 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar = value end,
 							},
+							enabletargetcastbargradient = {
+								order = 2,
+								type = 'toggle',
+								name = L['Enable for Target Castbar'],
+								desc = L["Enable Gradient colors for Target Castbar"],
+								width = 'full',
+								--disabled = function() return true end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar = value end,
+							},
 							enablecustomcolor = {
 								order = 3,
 								type = 'toggle',
