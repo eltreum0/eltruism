@@ -116,7 +116,6 @@ function ElvUI_EltreumUI:Borders()
 				})
 				targetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				targetborder:SetFrameStrata("LOW")
-				targetborder:SetParent(_G.ElvUF_Target_HealthBar)
 			end
 
 			if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and not (E.db.unitframe.units.target.castbar.overlayOnFrame == "Power") then
