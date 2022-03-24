@@ -837,7 +837,7 @@ end
 
 --benik's version
 function ElvUI_EltreumUI:NameplateShadows(nameplate)
-	if E.private.nameplates.enable then
+	if E.private.nameplates.enable and E.db.ElvUI_EltreumUI.skins.shadows then
 		if E.db.ElvUI_EltreumUI.shadows.nameplates then
 			if nameplate.Health.backdrop then
 				if not nameplate.Health.backdrop.shadow then
@@ -880,7 +880,7 @@ end
 hooksecurefunc(NP, 'StylePlate', ElvUI_EltreumUI.NameplateShadows) --nameplate shadows
 
 function ElvUI_EltreumUI:Construct_AuraIcon(button)
-	if E.db.ElvUI_EltreumUI.shadows.npauras and E.private.nameplates.enable then
+	if E.db.ElvUI_EltreumUI.skins.shadows and E.db.ElvUI_EltreumUI.shadows.npauras and E.private.nameplates.enable then
 		if not button then return end
 		if not button.shadow then
 			button:CreateShadow()
@@ -890,7 +890,7 @@ end
 hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) --nameplate buffs/debuffs shadows
 
 function ElvUI_EltreumUI:AuraShadows(button)
-	if E.db.ElvUI_EltreumUI.shadows.aura and E.private.auras.enable then
+	if E.db.ElvUI_EltreumUI.shadows.aura and E.private.auras.enable and E.db.ElvUI_EltreumUI.skins.shadows then
 		if not button then return end
 		if not button.shadow then
 			button:CreateShadow()
@@ -900,7 +900,7 @@ end
 hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
 
 function ElvUI_EltreumUI:UFAuraShadows(button)
-	if E.db.ElvUI_EltreumUI.shadows.ufaura and E.private.auras.enable then
+	if E.db.ElvUI_EltreumUI.shadows.ufaura and E.private.auras.enable and E.db.ElvUI_EltreumUI.skins.shadows then
 		if not button then return end
 		if not button.shadow then
 			button:CreateShadow()
