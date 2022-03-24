@@ -131,23 +131,25 @@ function ElvUI_EltreumUI:BlizzCombatText()
 end
 
 -- Ghost frame for Automatic Weakauras Positioning
-local EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", E.UIParent)
-local EltreumWAAnchor2 = CreateFrame("Frame", "EltruismWA2", E.UIParent)
-local EltruismWAConsumablesAnchor = CreateFrame("Frame", "EltruismConsumablesWA", E.UIParent)
+local EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", UIParent)
+EltreumWAAnchor:SetPoint("CENTER", UIParent, "CENTER", 0, -380)
+local EltreumWAAnchor2 = CreateFrame("Frame", "EltruismWA2", UIParent)
+EltreumWAAnchor2:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 320)
+local EltruismWAConsumablesAnchor = CreateFrame("Frame", "EltruismConsumablesWA", UIParent)
 function ElvUI_EltreumUI:Anchors()
 	if E.private.unitframe.enable then
 		--Anchor for general weakauras, like those that replace actionbars
 		EltreumWAAnchor:SetParent("ElvUF_Player")
 		EltreumWAAnchor:SetFrameStrata("BACKGROUND")
 		--position the anchor around the place where the action bars would be
-		EltreumWAAnchor:Point("CENTER", E.UIParent, "CENTER", 0, -380)
+		--EltreumWAAnchor:Point("CENTER", E.UIParent, "CENTER", 0, -380)
 		EltreumWAAnchor:Size(250, 70)
 		--E:CreateMover(parent, name, textString, overlay, snapoffset, postdrag, types, shouldDisable, configString, ignoreSizeChanged)
 		E:CreateMover(EltreumWAAnchor, "MoverEltruismWA", "EltruismWA", nil, nil, nil, "ALL,SOLO")
 		--do it again
 		EltreumWAAnchor2:SetParent("ElvUF_Player")
 		EltreumWAAnchor2:SetFrameStrata("BACKGROUND")
-		EltreumWAAnchor2:Point("BOTTOM", E.UIParent, "BOTTOM", 0, 320)
+		--EltreumWAAnchor2:Point("BOTTOM", E.UIParent, "BOTTOM", 0, 320)
 		EltreumWAAnchor2:Size(250, 70)
 		E:CreateMover(EltreumWAAnchor2, "MoverEltruismWA2", "EltruismWA2", nil, nil, nil, "ALL,SOLO")
 
