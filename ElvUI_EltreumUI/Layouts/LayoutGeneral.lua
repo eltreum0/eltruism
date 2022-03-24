@@ -63,6 +63,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["raid"]["classbar"]["enable"] = false
 		E.db["unitframe"]["units"]["raid40"]["classbar"]["enable"] = false
 
+		--E.db["unitframe"]["units"]["player"]["castbar"]["reverse"] = true
+		E.db["unitframe"]["units"]["target"]["castbar"]["reverse"] = true
+
 		-- General
 		E.db["general"]["altPowerBar"]["font"] = "Kimberley"
 		E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
