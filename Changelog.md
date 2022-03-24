@@ -1,6 +1,12 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.0.1
+Added an option to enable or disable the stat gradients\
+Updated Borders class color option to use target and target of target's class and reaction to color the border\
+Fixed Character Panel Skin compatibility with Deja Character Stats\
+Fixed Character Panel Skin not being correctly sized on other languages
+___
 ### 3.0.0
 Added gradient class colors to the character stats panel in the character frame\
 Added an option to change the progress bar in the objective frame for Retail\
