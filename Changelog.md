@@ -1,6 +1,14 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.0.2
+Added gradient to target castbar\
+Updated target castbar shadows\
+Updated the target tag\
+Updated Boss unitframe for the new ElvUI amount of boss units\
+Fixed Mail sound being enabled by default when it should be disabled by default\
+Fixed an error with the Eltruism Game Menu Button
+___
 ### 3.0.1
 Added an option to enable or disable the stat gradients\
 Updated Borders class color option to use target and target of target's class and reaction to color the border\
