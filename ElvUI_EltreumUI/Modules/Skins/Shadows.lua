@@ -107,13 +107,13 @@ function ElvUI_EltreumUI:Shadows()
 			if E.db.datatexts.panels.MinimapPanel.backdrop == false then
 				MinimapShadow:SetPoint("BOTTOMLEFT", _G['Minimap'] ,"BOTTOMLEFT", 0, 0)
 			end
-			if E.private["sle"]["minimap"]["rectangle"] == true then --Shadow and Light Rectangle Minimap
+			if IsAddOnLoaded("ElvUI_SLE") and E.private["sle"]["minimap"]["rectangle"] == true then --Shadow and Light Rectangle Minimap
 				MinimapShadow:SetPoint("TOPRIGHT", _G['Minimap'].backdrop ,"TOPRIGHT", 0, 0)
 				MinimapShadow:SetPoint("BOTTOMLEFT", _G['MinimapPanel'] ,"BOTTOMLEFT", 0, 0)
 				if E.db.datatexts.panels.MinimapPanel.backdrop == false then
 					MinimapShadow:SetPoint("BOTTOMLEFT", _G['Minimap'] ,"BOTTOMLEFT", 0, 0)
 				end
-			elseif E.db["WT"]["maps"]["rectangleMinimap"]["enable"] == true then --Windtools rectangle minimap
+			elseif IsAddOnLoaded("ElvUI_WindTools") and E.db["WT"]["maps"]["rectangleMinimap"]["enable"] == true then --Windtools rectangle minimap
 				MinimapShadow:SetAllPoints(_G["Minimap"].backdrop)
 				if E.db.datatexts.panels.MinimapPanel.backdrop == true then
 					if _G["MinimapPanel"] and not _G["MinimapPanel"].shadow then
