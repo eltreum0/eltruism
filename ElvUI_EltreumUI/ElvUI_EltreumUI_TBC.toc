@@ -1,13 +1,13 @@
 ## Interface: 20504
 ## Author: Eltreum
-## Version: 3.0.2
+## Version: 3.0.3
 ## Title: |cff1784d1ElvUI|r Eltruism TBC
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
 ## Dependencies: ElvUI, AddOnSkins
 ## RequiredDeps: Blizzard_CombatText
 ## OptionalDeps: NameplateSCT, Immersion, DynamicCam, Gladius, Gladdy, ProjectAzilroka
 ## DefaultState: enabled
-## X-Interface: 20503
+## X-Interface: 20504
 ## X-Curse-Project-ID: 459494
 ## X-Wago-ID: vEGPqEN1
 
