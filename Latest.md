@@ -1,8 +1,4 @@
-### 3.0.2 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.0.3 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added gradient to target castbar\
-Updated target castbar shadows\
-Updated the target tag\
-Updated Boss unitframe for the new ElvUI amount of boss units\
-Fixed Mail sound being enabled by default when it should be disabled by default\
-Fixed an error with the Eltruism Game Menu Button
+Fixed Nameplate Buffs and Debuffs border by type not being colored when the ElvUI option was enabled\
+Fixed Minimap shadows when Rectangle Minimap was enabled in Shadow and Light or Windtools
