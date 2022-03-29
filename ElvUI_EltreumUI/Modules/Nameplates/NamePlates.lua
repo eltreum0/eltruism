@@ -3,114 +3,96 @@ local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
 local LCG = E.Libs.CustomGlow
 local classcolor = E:ClassColor(E.myclass, true)
+local glowcolor
 
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1
 function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
-	if E.private.nameplates.enable == true then
-		local glowcolor
-		if E.db.ElvUI_EltreumUI.glow.colorclass then
-			glowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
+	if E.db.ElvUI_EltreumUI.glow.colorclass then
+		glowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
+	else
+		glowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolornp.r, E.db.ElvUI_EltreumUI.glowcustomcolornp.g, E.db.ElvUI_EltreumUI.glowcustomcolornp.b, 1}
+	end
+	if button and button.spellID then
+		if not string.find(unit, "nameplate") then
+			return
 		else
-			glowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolornp.r, E.db.ElvUI_EltreumUI.glowcustomcolornp.g, E.db.ElvUI_EltreumUI.glowcustomcolornp.b, 1}
-		end
-		if E.db.ElvUI_EltreumUI.widenameplate.enable or E.db.ElvUI_EltreumUI.widenameplate.npglow then
-			if button and button.spellID then
-				if not string.find(unit, "nameplate") then
-					return
-				else
-					if E.db.ElvUI_EltreumUI.widenameplate.enable then
-						button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
-					end
-					button.cd:SetFrameStrata('DIALOG')
-					--button.cd:SetDrawSwipe(false) --works to erase it
-					local TimeSinceLastUpdate = 0
-					if not button.cd then
-						LCG.PixelGlow_Stop(button)
-					else
-						button.cd:SetScript('OnUpdate', function(self, elapsed)
-							TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
-							if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
-								TimeSinceLastUpdate = 0
-								--print("np button spam "..math.random(1,99))
-								if button.cd.timer then
-									if E.db.ElvUI_EltreumUI.widenameplate.enable then
-										button.cd.timer.text:ClearAllPoints()
-										button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
-									end
-									local _, g, b, a = button.cd.timer.text:GetTextColor()
-									if E.db.ElvUI_EltreumUI.widenameplate.npglow then
-										if (g == 0 or b == 0) and a > 0.5 and button.cd.timer.text then
-											LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
-										else
-											LCG.PixelGlow_Stop(button)
-										end
-									end
+			if E.db.ElvUI_EltreumUI.widenameplate.enable then
+				button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
+			end
+			button.cd:SetFrameStrata('DIALOG')
+			local TimeSinceLastUpdate = 0
+			if not button.cd then
+				LCG.PixelGlow_Stop(button)
+			else
+				button.cd:SetScript('OnUpdate', function(self, elapsed)
+					TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+					if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+						TimeSinceLastUpdate = 0
+						--print("np button spam "..math.random(1,99))
+						if button.cd.timer then
+							if E.db.ElvUI_EltreumUI.widenameplate.enable then
+								button.cd.timer.text:ClearAllPoints()
+								button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
+							end
+							local _, g, b, a = button.cd.timer.text:GetTextColor()
+							if E.db.ElvUI_EltreumUI.widenameplate.npglow then
+								if (g == 0 or b == 0) and a > 0.5 and button.cd.timer.text then
+									LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
 								else
-									if E.db.ElvUI_EltreumUI.widenameplate.npglow and (button.cd == nil or button.cd.timer == nil)then
-										LCG.PixelGlow_Stop(button)
-									end
+									LCG.PixelGlow_Stop(button)
 								end
 							end
-						end)
-					end
-					--[[if E.Classic or E.TBC then
-						if E.db.ElvUI_EltreumUI.widenameplate.enable then
-							button:SetWidth(25)
-							button:SetHeight(18)
-						end
-					end]]
-					button.count:SetParent(button.cd)
-					if E.TBC or E.Classic then
-						if E.db.ElvUI_EltreumUI.widenameplate.enable then
-							button.count:Point('BOTTOMRIGHT', 2, -3) --elvui added a setting for it but its missing some things
+						else
+							if E.db.ElvUI_EltreumUI.widenameplate.npglow and (button.cd == nil or button.cd.timer == nil)then
+								LCG.PixelGlow_Stop(button)
+							end
 						end
 					end
+				end)
+			end
+			button.count:SetParent(button.cd)
+			if E.TBC or E.Classic then
+				if E.db.ElvUI_EltreumUI.widenameplate.enable then
+					button.count:Point('BOTTOMRIGHT', 2, -3) --elvui added a setting for it but its missing some things
 				end
 			end
-			--UF.PostUpdateAura(self, unit, button) --error? TexCoord out of range (mostly in vehicles)
 		end
+	end
+	if UnitExists(unit) then
+		UF.PostUpdateAura(self, unit, button) --error? TexCoord out of range (mostly in vehicles)
 	end
 end
 
 function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
-	if E.private.nameplates.enable == true then
-		if E.db.ElvUI_EltreumUI.widenameplate.enable then
-			if button and button.spellID then
-				if not string.find(unit, "nameplate") then
-					--print("np button buff nil "..math.random(1,99))
-					--button.cd:SetScript('OnUpdate', nil)
-					return
-				else
-					button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
-					local TimeSinceLastUpdate = 0
-					--print("np button buff spam "..math.random(1,99))
-					button.cd:SetScript('OnUpdate', function(self, elapsed)
-					TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
-						if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
-							TimeSinceLastUpdate = 0
-							if button.cd.timer then
-								button.cd.timer.text:ClearAllPoints()
-								button.cd.timer.text:SetDrawLayer('OVERLAY',1)
-								button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
-							end
-						end
-					end)
-					--[[if E.Classic or E.TBC then
-						button:SetWidth(25)
-						button:SetHeight(18)
-					end]]
-					button.count:SetParent(button.cd)
-					button.count:Point('BOTTOMRIGHT', 2, -3)
+	if button and button.spellID then
+		if not string.find(unit, "nameplate") then
+			return
+		else
+			button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
+			local TimeSinceLastUpdate = 0
+			button.cd:SetScript('OnUpdate', function(self, elapsed)
+			TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+					TimeSinceLastUpdate = 0
+					if button.cd.timer then
+						button.cd.timer.text:ClearAllPoints()
+						button.cd.timer.text:SetDrawLayer('OVERLAY',1)
+						button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
+					end
 				end
-			end
-			--UF.PostUpdateAura(self, unit, button) --error? TexCoord out of range (mostly in vehicles)
+			end)
+			button.count:SetParent(button.cd)
+			button.count:Point('BOTTOMRIGHT', 2, -3)
 		end
+	end
+	if UnitExists(unit) then
+		UF.PostUpdateAura(self, unit, button) --error? TexCoord out of range (mostly in vehicles)
 	end
 end
 
 function ElvUI_EltreumUI:Construct_Auras(nameplate)
-	if E.private.nameplates.enable == true then
+	if E.private.nameplates.enable == true and (E.db.ElvUI_EltreumUI.widenameplate.enable or E.db.ElvUI_EltreumUI.widenameplate.npglow) then
 		nameplate.Buffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIconBuff
 		nameplate.Debuffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIconDebuff
 	end
