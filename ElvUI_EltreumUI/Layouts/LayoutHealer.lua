@@ -579,7 +579,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["boss"]["portrait"]["fullOverlay"] = true
 		E.db["unitframe"]["units"]["boss"]["portrait"]["overlay"] = true
 		E.db["unitframe"]["units"]["boss"]["buffIndicator"]["size"] = 15
-		E.db["unitframe"]["units"]["boss"]["buffs"]["anchorPoint"] = "TOP"
+		E.db["unitframe"]["units"]["boss"]["buffs"]["anchorPoint"] = "TOPRIGHT"
 		E.db["unitframe"]["units"]["boss"]["buffs"]["attachTo"] = "DEBUFFS"
 		E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["boss"]["buffs"]["countXOffset"] = 2
