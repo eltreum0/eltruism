@@ -315,6 +315,49 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetPoint("LEFT", _G.CharacterStatsPane.EnhancementsCategory.Title, "RIGHT", 0, -1)
 					_G.CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
 					_G.CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+
+					if IsAddOnLoaded('ElvUI_SLE') then
+						--offense
+						_G.CharacterStatsPane.OffenseCategory.backdrop:Hide()
+						if not _G.CharacterStatsPane.OffenseCategory.Title:GetText():match("|r") then
+							_G.CharacterStatsPane.OffenseCategory.Title:SetText(E:TextGradient(_G.CharacterStatsPane.OffenseCategory.Title:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						--statusbars
+						local linewidthsle1 = (( 167 - _G.CharacterStatsPane.OffenseCategory.Title:GetStringWidth())/2)
+						_G.CharacterStatsPane.OffenseCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismOffenseCategory", _G.CharacterStatsPane)
+						_G.CharacterStatsPane.OffenseCategory.Title.StatusLine:SetSize(linewidthsle1, 4)
+						_G.CharacterStatsPane.OffenseCategory.Title.StatusLine:SetPoint("RIGHT", _G.CharacterStatsPane.OffenseCategory.Title, "LEFT", 0, -1)
+						_G.CharacterStatsPane.OffenseCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+						_G.CharacterStatsPane.OffenseCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+						_G.CharacterStatsPane.OffenseCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismOffenseCategoryLine2", _G.CharacterStatsPane)
+						_G.CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetSize(linewidthsle1, 4)
+						_G.CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetPoint("LEFT", _G.CharacterStatsPane.OffenseCategory.Title, "RIGHT", 0, -1)
+						_G.CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+						_G.CharacterStatsPane.OffenseCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+
+						--defense
+						_G.CharacterStatsPane.DefenceCategory.backdrop:Hide()
+						if not _G.CharacterStatsPane.DefenceCategory.Title:GetText():match("|r") then
+							_G.CharacterStatsPane.DefenceCategory.Title:SetText(E:TextGradient(_G.CharacterStatsPane.DefenceCategory.Title:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						--statusbars
+						local linewidthsle2 = (( 167 - _G.CharacterStatsPane.DefenceCategory.Title:GetStringWidth())/2)
+						_G.CharacterStatsPane.DefenceCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismDefenceCategory", _G.CharacterStatsPane)
+						_G.CharacterStatsPane.DefenceCategory.Title.StatusLine:SetSize(linewidthsle2, 4)
+						_G.CharacterStatsPane.DefenceCategory.Title.StatusLine:SetPoint("RIGHT", _G.CharacterStatsPane.DefenceCategory.Title, "LEFT", 0, -1)
+						_G.CharacterStatsPane.DefenceCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+						_G.CharacterStatsPane.DefenceCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+						_G.CharacterStatsPane.DefenceCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismDefenceCategoryLine2", _G.CharacterStatsPane)
+						_G.CharacterStatsPane.DefenceCategory.Title.StatusLine2:SetSize(linewidthsle2, 4)
+						_G.CharacterStatsPane.DefenceCategory.Title.StatusLine2:SetPoint("LEFT", _G.CharacterStatsPane.DefenceCategory.Title, "RIGHT", 0, -1)
+						_G.CharacterStatsPane.DefenceCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+						_G.CharacterStatsPane.DefenceCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+
+						--fix enhancement
+						_G.CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetSize(linewidth3 + 8, 4)
+						_G.CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetSize(linewidth3 + 8, 4)
+
+					end
 				end
 
 				--hide the backdrop on reputation/currency tab
