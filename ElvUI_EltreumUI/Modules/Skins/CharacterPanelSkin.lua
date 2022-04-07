@@ -690,7 +690,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						end
 
 						_G.CharacterFrame.EltruismSpeed:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont , 72, -20)
-						if E.Locale == "enUS" then
+						if E.locale == "enUS" then
 							_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont , -36, -20)
 						else
 							_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont , -30, -20)
