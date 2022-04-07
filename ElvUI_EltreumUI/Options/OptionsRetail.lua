@@ -4969,6 +4969,16 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enableboss end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enableboss = value end,
 							},
+							enablearena = {
+								order = 2,
+								type = 'toggle',
+								name = L['Enable for Arena'],
+								desc = L["Enable Gradient colors for Health"],
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enablearena end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enablearena = value end,
+							},
 							enablegroupunits = {
 								order = 2,
 								type = 'toggle',
