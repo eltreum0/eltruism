@@ -85,14 +85,16 @@ function ElvUI_EltreumUI:DynamicLevelStyleFilter()
 				elseif level == 60 then
 					if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" then
 						E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
-						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["format"] = "[eltruism:targetcast:indicator]"
+						--E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["format"] = "[eltruism:targetcast:indicator]"
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["position"] = "CENTER"
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["xOffset"] = 0
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["yOffset"] = -28
-						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = "[eltruism:targetcast:indicator]"
+						--E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = "[eltruism:targetcast:indicator]"
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["position"] = "CENTER"
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["xOffset"] = 0
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -28
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["format"] = ""
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = ""
 					end
 				end
 			elseif E.TBC then
@@ -111,14 +113,16 @@ function ElvUI_EltreumUI:DynamicLevelStyleFilter()
 				elseif level == 70 then
 					if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" then
 						E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
-						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["format"] = "[eltruism:targetcast:indicator]"
+						--E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["format"] = "[eltruism:targetcast:indicator]"
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["position"] = "CENTER"
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["xOffset"] = 0
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["yOffset"] = -28
-						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = "[eltruism:targetcast:indicator]"
+						--E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = "[eltruism:targetcast:indicator]"
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["position"] = "CENTER"
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["xOffset"] = 0
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -28
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["format"] = ""
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = ""
 					end
 				end
 			end
