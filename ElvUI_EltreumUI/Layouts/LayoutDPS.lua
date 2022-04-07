@@ -649,7 +649,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["sizeOverride"] = 30
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["xOffset"] = -3
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["yOffset"] = -14
-		E.db["unitframe"]["units"]["boss"]["castbar"]["strataAndLevel"]["frameStrata"] = "HIGH"
+		E.db["unitframe"]["units"]["boss"]["castbar"]["overlayOnFrame"] = "InfoPanel"
 		E.db["unitframe"]["units"]["boss"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["boss"]["fader"]["enable"] = false
 		E.db["unitframe"]["units"]["boss"]["fader"]["minAlpha"] = 0.3

@@ -568,6 +568,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["tank"]["targetsGroup"]["anchorPoint"] = "LEFT"
 		E.db["unitframe"]["units"]["tank"]["targetsGroup"]["height"] = 30
 		E.db["unitframe"]["units"]["tank"]["targetsGroup"]["xOffset"] = -3
+		E.db["unitframe"]["units"]["boss"]["castbar"]["overlayOnFrame"] = "InfoPanel"
 		E.db["unitframe"]["units"]["boss"]["height"] = 45
 		E.db["unitframe"]["units"]["boss"]["spacing"] = 10
 		E.db["unitframe"]["units"]["boss"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
