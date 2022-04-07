@@ -5,4 +5,5 @@ Added shadows to ElvUI Arena frames\
 Added gradients to ElvUI Arena frames\
 Updated boss buffs and castbar placement\
 Fixed missing gradients on the character panel when using Shadow and Light's Armory mode\
-Fixed expanded talents not applying when other addons loaded Blizzard's Talent UI before Eltruism was loaded in TBC/Classic
+Fixed expanded talents not applying when other addons loaded Blizzard's Talent UI before Eltruism was loaded in TBC/Classic\
+Disabled using level in ElvUI nameplates to show target of casts since ElvUI now has an option to show the target in its castbar option
