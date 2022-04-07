@@ -1,6 +1,10 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.0.3
+Fixed Nameplate Buffs and Debuffs border by type not being colored when the ElvUI option was enabled\
+Fixed Minimap shadows when Rectangle Minimap was enabled in Shadow and Light or Windtools
+___
 ### 3.0.2
 Added gradient to target castbar\
 Updated target castbar shadows\
