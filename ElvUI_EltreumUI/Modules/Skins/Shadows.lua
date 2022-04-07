@@ -600,6 +600,11 @@ function ElvUI_EltreumUI:Shadows()
 				_G['ElvUF_Player_HealthBar'],
 				_G['ElvUF_Player_PowerBar'],
 				_G['ElvUF_Player_Stagger'],
+				_G['ElvUF_Arena1'],
+				_G['ElvUF_Arena2'],
+				_G['ElvUF_Arena3'],
+				_G['ElvUF_Arena4'],
+				_G['ElvUF_Arena5'],
 				--_G['ElvUF_Player_CastBar'],
 				--_G['ElvUF_Target_CastBar'],
 			}
