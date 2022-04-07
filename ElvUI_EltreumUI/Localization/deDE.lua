@@ -906,3 +906,4 @@ L["Enables a frame that shows a cooldown and count for battle ressurections whil
 L["Choose the Progress Bar Texture"] = "Wähle eine Fortschrittsleisten Textur"
 L["Add Class Gradient Colors to Stats"] = true
 L['Enable for Target Castbar'] = true
+L['Enable for Arena'] = true
