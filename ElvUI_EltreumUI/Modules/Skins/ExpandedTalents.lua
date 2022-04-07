@@ -8,8 +8,9 @@ function ElvUI_EltreumUI:ExpandedTalents()
 	if E.TBC or E.Classic then
 		if E.db.ElvUI_EltreumUI.tbctalents.enable and not E.private.skins.blizzard.enable == false then
 			EltruismExpandedTalents:RegisterEvent("ADDON_LOADED")
+			EltruismExpandedTalents:RegisterEvent("PLAYER_ENTERING_WORLD")
 			EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
-				if arg == "Blizzard_TalentUI" then
+				if arg == "Blizzard_TalentUI" or IsAddOnLoaded("Blizzard_TalentUI") then
 					--hide the scroll
 					if _G.PlayerTalentFrameScrollFrameScrollBar then
 						_G.PlayerTalentFrameScrollFrameScrollBar:Hide()
