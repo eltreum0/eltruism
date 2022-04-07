@@ -133,6 +133,7 @@ function ElvUI_EltreumUI:DynamicLevelStyleFilter()
 					end
 				end
 			end
+			E:UpdateNamePlates()
 		end
 	end
 end
@@ -167,6 +168,7 @@ function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 					E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
 				end
 			end
+			E:UpdateNamePlates()
 		end
 	end
 end
