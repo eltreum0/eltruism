@@ -22,6 +22,7 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0
 		E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
 		E.db["unitframe"]["units"]["player"]["colorOverride"] = "FORCE_OFF"
+		E.db["unitframe"]["units"]["arena"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["party"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["pet"]["colorOverride"] = "FORCE_OFF"
@@ -88,6 +89,7 @@ function ElvUI_EltreumUI:LightMode()
 		E.db["unitframe"]["units"]["player"]["colorOverride"] = "USE_DEFAULT"
 		E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
 		E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
+		E.db["unitframe"]["units"]["arena"]["colorOverride"] = "USE_DEFAULT"
 		E.db["unitframe"]["units"]["party"]["colorOverride"] = "USE_DEFAULT"
 		E.db["unitframe"]["units"]["pet"]["colorOverride"] = "USE_DEFAULT"
 		E.db["unitframe"]["units"]["raid"]["colorOverride"] = "USE_DEFAULT"
@@ -156,6 +158,7 @@ function ElvUI_EltreumUI:GradientMode()
 			E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0
 			E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
 			E.db["unitframe"]["units"]["player"]["colorOverride"] = "FORCE_OFF"
+			E.db["unitframe"]["units"]["arena"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["assist"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["party"]["colorOverride"] = "FORCE_OFF"
 			E.db["unitframe"]["units"]["pet"]["colorOverride"] = "FORCE_OFF"
@@ -212,6 +215,7 @@ function ElvUI_EltreumUI:GradientMode()
 			E.db["unitframe"]["units"]["party"]["colorOverride"] = "USE_DEFAULT"
 			E.db["unitframe"]["units"]["pet"]["colorOverride"] = "USE_DEFAULT"
 			E.db["unitframe"]["units"]["raid"]["colorOverride"] = "USE_DEFAULT"
+			E.db["unitframe"]["units"]["arena"]["colorOverride"] = "USE_DEFAULT"
 			E.db["unitframe"]["units"]["raid40"]["colorOverride"] = "USE_DEFAULT"
 			E.db["unitframe"]["units"]["tank"]["colorOverride"] = "USE_DEFAULT"
 			E.db["unitframe"]["units"]["assist"]["colorOverride"] = "USE_DEFAULT"
