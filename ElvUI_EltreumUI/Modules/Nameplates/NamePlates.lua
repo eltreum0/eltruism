@@ -101,33 +101,33 @@ hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
 
 --for general nameplates
 local playerclass = {
-	['WARRIOR'] = "Eltreum-Class-Warrior",
-	['PALADIN'] = "Eltreum-Class-Paladin",
-	['HUNTER'] = "Eltreum-Class-Hunter",
-	['ROGUE'] = "Eltreum-Class-Rogue",
-	['PRIEST'] = "Eltreum-Class-Priest",
-	['DEATHKNIGHT'] = "Eltreum-Class-DeathKnight",
-	['SHAMAN'] = "Eltreum-Class-Paladin", -- issues becoming green due to color mixing so color changed to paladin from "Eltreum-Class-Shaman"
-	['MAGE'] = "Eltreum-Class-Paladin", -- issues becoming green due to color mixing so color changed to paladin from "Eltreum-Class-Mage"
-	['WARLOCK'] = "Eltreum-Class-Warlock",
-	['MONK'] = "Eltreum-Class-Monk",
-	['DRUID'] = "Eltreum-Class-Druid",
-	['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
+	["WARRIOR"] = "Eltreum-Class-Warrior",
+	["PALADIN"] = "Eltreum-Class-Paladin",
+	["HUNTER"] = "Eltreum-Class-Hunter",
+	["ROGUE"] = "Eltreum-Class-Rogue",
+	["PRIEST"] = "Eltreum-Class-Priest",
+	["DEATHKNIGHT"] = "Eltreum-Class-DeathKnight",
+	["SHAMAN"] = "Eltreum-Class-Paladin", -- issues becoming green due to color mixing so color changed to paladin from "Eltreum-Class-Shaman"
+	["MAGE"] = "Eltreum-Class-Paladin", -- issues becoming green due to color mixing so color changed to paladin from "Eltreum-Class-Mage"
+	["WARLOCK"] = "Eltreum-Class-Warlock",
+	["MONK"] = "Eltreum-Class-Monk",
+	["DRUID"] = "Eltreum-Class-Druid",
+	["DEMONHUNTER"] = "Eltreum-Class-DemonHunter",
 }
 -- for rare nameplates
 local rareclass = {
-	['WARRIOR'] = "Eltreum-Class-Warrior",
-	['PALADIN'] = "Eltreum-Class-Paladin",
-	['HUNTER'] = "Eltreum-Class-Hunter",
-	['ROGUE'] = "Eltreum-Class-Rogue",
-	['PRIEST'] = "Eltreum-Class-Priest",
-	['DEATHKNIGHT'] = "Eltreum-Class-DeathKnight",
-	['SHAMAN'] = "Eltreum-Class-Shaman",
-	['MAGE'] = "Eltreum-Class-Mage",
-	['WARLOCK'] = "Eltreum-Class-Warlock",
-	['MONK'] = "Eltreum-Class-Monk",
-	['DRUID'] = "Eltreum-Class-Druid",
-	['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
+	["WARRIOR"] = "Eltreum-Class-Warrior",
+	["PALADIN"] = "Eltreum-Class-Paladin",
+	["HUNTER"] = "Eltreum-Class-Hunter",
+	["ROGUE"] = "Eltreum-Class-Rogue",
+	["PRIEST"] = "Eltreum-Class-Priest",
+	["DEATHKNIGHT"] = "Eltreum-Class-DeathKnight",
+	["SHAMAN"] = "Eltreum-Class-Shaman",
+	["MAGE"] = "Eltreum-Class-Mage",
+	["WARLOCK"] = "Eltreum-Class-Warlock",
+	["MONK"] = "Eltreum-Class-Monk",
+	["DRUID"] = "Eltreum-Class-Druid",
+	["DEMONHUNTER"] = "Eltreum-Class-DemonHunter",
 }
 
 -- Nameplate options for Border and Glow and Texture
@@ -200,63 +200,63 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				if E.Retail then
 					--print(id)
 					if E.myclass == 'DEATHKNIGHT' then
-						_G['ElvNP_TargetClassPowerRunes']:Show()
+						_G["ElvNP_TargetClassPowerRunes"]:Show()
 					elseif E.myclass == 'PALADIN ' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' then
-						_G['ElvNP_TargetClassPowerClassPower']:Show()
+						_G["ElvNP_TargetClassPowerClassPower"]:Show()
 					elseif E.myclass == 'DRUID' then
 						local stance = GetShapeshiftForm()
 						if stance == 2 then --its a cat
-							_G['ElvNP_TargetClassPowerClassPower']:Show()
+							_G["ElvNP_TargetClassPowerClassPower"]:Show()
 						else
-							_G['ElvNP_TargetClassPowerClassPower']:Hide()
+							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 						end
 					elseif E.myclass == 'MONK' then
 						if id == 269 then
-							_G['ElvNP_TargetClassPowerClassPower']:Show()
+							_G["ElvNP_TargetClassPowerClassPower"]:Show()
 						elseif id == 268 then
-							_G['ElvNP_TargetClassPowerStagger']:Show()
+							_G["ElvNP_TargetClassPowerStagger"]:Show()
 						end
 					elseif E.myclass == 'MAGE' then
 						if id == 62 then
-							_G['ElvNP_TargetClassPowerClassPower']:Show()
+							_G["ElvNP_TargetClassPowerClassPower"]:Show()
 						end
 					end
 				elseif E.TBC or E.Classic then
 					if E.myclass == 'ROGUE' then
-						_G['ElvNP_TargetClassPowerClassPower']:Show()
+						_G["ElvNP_TargetClassPowerClassPower"]:Show()
 					elseif E.myclass == 'DRUID' then
 						local stance = GetShapeshiftForm()
 						if stance == 2 then --its a cat
-							_G['ElvNP_TargetClassPowerClassPower']:Show()
+							_G["ElvNP_TargetClassPowerClassPower"]:Show()
 						else
-							_G['ElvNP_TargetClassPowerClassPower']:Hide()
+							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 						end
 					end
 				end
 			elseif UnitExists("target") and (not UnitCanAttack("player", "target")) then
 				if E.Retail then
 					if E.myclass == 'DEATHKNIGHT' then
-						_G['ElvNP_TargetClassPowerRunes']:Hide()
+						_G["ElvNP_TargetClassPowerRunes"]:Hide()
 					elseif E.myclass == 'PALADIN ' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' then
-						_G['ElvNP_TargetClassPowerClassPower']:Hide()
+						_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 					elseif E.myclass == 'DRUID' then
-							_G['ElvNP_TargetClassPowerClassPower']:Hide()
+							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 					elseif E.myclass == 'MONK' then
 						if id == 269 then
-							_G['ElvNP_TargetClassPowerClassPower']:Hide()
+							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 						elseif id == 268 then
-							_G['ElvNP_TargetClassPowerStagger']:Hide()
+							_G["ElvNP_TargetClassPowerStagger"]:Hide()
 						end
 					elseif E.myclass == 'MAGE' then
 						if id == 62 then
-							_G['ElvNP_TargetClassPowerClassPower']:Hide()
+							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 						end
 					end
 				elseif E.TBC or E.Classic then
 					if E.myclass == 'ROGUE' then
-						_G['ElvNP_TargetClassPowerClassPower']:Hide()
+						_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 					elseif E.myclass == 'DRUID' then
-						_G['ElvNP_TargetClassPowerClassPower']:Hide()
+						_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 					end
 				end
 			end

@@ -55,52 +55,52 @@ if E.Classic then
 end
 
 local classBgs = {
-	['WARRIOR'] = "Interface\\Artifacts\\ArtifactUIWarrior",
-	['PALADIN'] = "Interface\\Artifacts\\ArtifactUIPaladin",
-	['HUNTER'] = "Interface\\Artifacts\\ArtifactUIHunter",
-	['ROGUE'] = "Interface\\Artifacts\\ArtifactUIRogue",
-	['PRIEST'] = "Interface\\Artifacts\\ArtifactUIPriest",
-	['DEATHKNIGHT'] = "Interface\\Artifacts\\ArtifactUIDeathKnightFrost",
-	['SHAMAN'] = "Interface\\Artifacts\\ArtifactUIShaman",
-	['MAGE'] = "Interface\\Artifacts\\ArtifactUIMageArcane",
-	['WARLOCK'] = "Interface\\Artifacts\\ArtifactUIWarlock",
-	['MONK'] = "Interface\\Artifacts\\ArtifactUIMonk",
-	['DRUID'] = "Interface\\Artifacts\\ArtifactUIDruid",
-	['DEMONHUNTER'] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
+	["WARRIOR"] = "Interface\\Artifacts\\ArtifactUIWarrior",
+	["PALADIN"] = "Interface\\Artifacts\\ArtifactUIPaladin",
+	["HUNTER"] = "Interface\\Artifacts\\ArtifactUIHunter",
+	["ROGUE"] = "Interface\\Artifacts\\ArtifactUIRogue",
+	["PRIEST"] = "Interface\\Artifacts\\ArtifactUIPriest",
+	["DEATHKNIGHT"] = "Interface\\Artifacts\\ArtifactUIDeathKnightFrost",
+	["SHAMAN"] = "Interface\\Artifacts\\ArtifactUIShaman",
+	["MAGE"] = "Interface\\Artifacts\\ArtifactUIMageArcane",
+	["WARLOCK"] = "Interface\\Artifacts\\ArtifactUIWarlock",
+	["MONK"] = "Interface\\Artifacts\\ArtifactUIMonk",
+	["DRUID"] = "Interface\\Artifacts\\ArtifactUIDruid",
+	["DEMONHUNTER"] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
 }
 
 local classCrests = {
-	['WARRIOR'] = "Artifacts-Warrior-BG-rune",
-	['PALADIN'] = "Artifacts-Paladin-BG-rune",
-	['HUNTER'] = "Artifacts-Hunter-BG-rune",
-	['ROGUE'] = "Artifacts-Rogue-BG-rune",
-	['PRIEST'] = "Artifacts-Priest-BG-rune",
-	['DEATHKNIGHT'] = "Artifacts-DeathKnightFrost-BG-Rune",
-	['SHAMAN'] = "Artifacts-Shaman-BG-rune",
-	['MAGE'] = "Artifacts-MageArcane-BG-rune",
-	['WARLOCK'] = "Artifacts-Warlock-BG-rune",
-	['MONK'] = "Artifacts-Monk-BG-rune",
-	['DRUID'] = "Artifacts-Druid-BG-rune",
-	['DEMONHUNTER'] = "Artifacts-DemonHunter-BG-rune",
+	["WARRIOR"] = "Artifacts-Warrior-BG-rune",
+	["PALADIN"] = "Artifacts-Paladin-BG-rune",
+	["HUNTER"] = "Artifacts-Hunter-BG-rune",
+	["ROGUE"] = "Artifacts-Rogue-BG-rune",
+	["PRIEST"] = "Artifacts-Priest-BG-rune",
+	["DEATHKNIGHT"] = "Artifacts-DeathKnightFrost-BG-Rune",
+	["SHAMAN"] = "Artifacts-Shaman-BG-rune",
+	["MAGE"] = "Artifacts-MageArcane-BG-rune",
+	["WARLOCK"] = "Artifacts-Warlock-BG-rune",
+	["MONK"] = "Artifacts-Monk-BG-rune",
+	["DRUID"] = "Artifacts-Druid-BG-rune",
+	["DEMONHUNTER"] = "Artifacts-DemonHunter-BG-rune",
 }
 
 local statgradients = {
-	['WARRIOR'] = {r1 = 0.42745098039216, g1 = 0.13725490196078, b1 = 0.090196078431373, r2 = 0.56470588235294, g2 = 0.43137254901961, b2 = 0.24705882352941},
-	['PALADIN'] = {r1 = 1, g1 = 0.26666666666667, b1 = 0.53725490196078, r2 = 0.95686274509804, g2 = 0.54901960784314, b2 = 0.72941176470588},
-	['HUNTER'] = {r1 = 0.28235294117647, g1 = 0.59607843137255, b1 = 0.29411764705882, r2 = 0.78823529411765, g2 = 1, b2 = 0.38823529411765},
-	['ROGUE'] = {r1 = 1, g1 = 0.68627450980392, b1 = 0, r2 = 1, g2 = 0.83137254901961, b2 = 0.25490196078431},
-	['PRIEST'] = {r1 = 0.6568627450980392, g1 = 0.6568627450980392, b1 = 0.6568627450980392, r2 = 0.98823529411765, g2 = 0.98823529411765, b2 = 0.98823529411765},
-	['DEATHKNIGHT'] = {r1 = 0.79803921568627, g1 = 0.074509803921569, b1 = 0.14901960784314, r2 = 1, g2 = 0.1843137254902, b2 = 0.23921568627451},
-	['SHAMAN'] = {r1 = 0, g1 = 0.6, b1 = 0.70980392156863, r2 = 0, g2 = 0.5, b2 = 1},
-	['MAGE'] = {r1 = 0, g1 = 0.73333333333333, b1 = 0.83725490196078, r2 = 0.49019607843137, g2 = 0.87058823529412, b2 = 1},
-	['WARLOCK'] = {r1 = 0.50, g1 = 0.30, b1 = 0.70, r2 = 0.7, g2= 0.53, b2 = 0.83},
-	['MONK'] = {r1 = 0, g1 = 0.77254901960784, b1 = 0.45882352941176, r2 = 0.22352941176471, g2 = 0.90980392156863, b2 = 1},
-	['DRUID'] = {r1 = 1, g1 = 0.23921568627451, b1 = 0.007843137254902, r2 = 1, g2 = 0.48627450980392, b2 = 0.03921568627451},
-	['DEMONHUNTER'] = {r1 = 0.36470588235294, g1 = 0.13725490196078, b1 = 0.57254901960784, r2 = 0.74509803921569, g2 = 0.1921568627451, b2 = 1},
-	['NPCFRIENDLY'] = {r1 = 0.30980392156863, g1 = 0.85098039215686, b1 = 0.2, r2 = 0.34117647058824, g2 = 0.62745098039216, b2 = 0.4078431372549},
-	['NPCNEUTRAL'] = {r1 = 0.712358744169101, g1 = 0.63137254901961, b1 = 0.15490196078431, r2 = 1, g2 = 0.85686274509804, b2 = 0.2078431372549},
-	['NPCUNFRIENDLY'] = {r1 = 0.84313725490196, g1 = 0.30196078431373, b1 = 0, r2 = 0.83137254901961, g2 = 0.45882352941176, b2 = 0},
-	['NPCHOSTILE'] = {r1 = 0.31764705882353, g1 = 0.066666666666667, b1 = 0.07843137254902, r2 = 1, g2 = 0.15686274509804, b2 = 0.15686274509804},
+	["WARRIOR"] = {r1 = 0.42745098039216, g1 = 0.13725490196078, b1 = 0.090196078431373, r2 = 0.56470588235294, g2 = 0.43137254901961, b2 = 0.24705882352941},
+	["PALADIN"] = {r1 = 1, g1 = 0.26666666666667, b1 = 0.53725490196078, r2 = 0.95686274509804, g2 = 0.54901960784314, b2 = 0.72941176470588},
+	["HUNTER"] = {r1 = 0.28235294117647, g1 = 0.59607843137255, b1 = 0.29411764705882, r2 = 0.78823529411765, g2 = 1, b2 = 0.38823529411765},
+	["ROGUE"] = {r1 = 1, g1 = 0.68627450980392, b1 = 0, r2 = 1, g2 = 0.83137254901961, b2 = 0.25490196078431},
+	["PRIEST"] = {r1 = 0.6568627450980392, g1 = 0.6568627450980392, b1 = 0.6568627450980392, r2 = 0.98823529411765, g2 = 0.98823529411765, b2 = 0.98823529411765},
+	["DEATHKNIGHT"] = {r1 = 0.79803921568627, g1 = 0.074509803921569, b1 = 0.14901960784314, r2 = 1, g2 = 0.1843137254902, b2 = 0.23921568627451},
+	["SHAMAN"] = {r1 = 0, g1 = 0.6, b1 = 0.70980392156863, r2 = 0, g2 = 0.5, b2 = 1},
+	["MAGE"] = {r1 = 0, g1 = 0.73333333333333, b1 = 0.83725490196078, r2 = 0.49019607843137, g2 = 0.87058823529412, b2 = 1},
+	["WARLOCK"] = {r1 = 0.50, g1 = 0.30, b1 = 0.70, r2 = 0.7, g2= 0.53, b2 = 0.83},
+	["MONK"] = {r1 = 0, g1 = 0.77254901960784, b1 = 0.45882352941176, r2 = 0.22352941176471, g2 = 0.90980392156863, b2 = 1},
+	["DRUID"] = {r1 = 1, g1 = 0.23921568627451, b1 = 0.007843137254902, r2 = 1, g2 = 0.48627450980392, b2 = 0.03921568627451},
+	["DEMONHUNTER"] = {r1 = 0.36470588235294, g1 = 0.13725490196078, b1 = 0.57254901960784, r2 = 0.74509803921569, g2 = 0.1921568627451, b2 = 1},
+	["NPCFRIENDLY"] = {r1 = 0.30980392156863, g1 = 0.85098039215686, b1 = 0.2, r2 = 0.34117647058824, g2 = 0.62745098039216, b2 = 0.4078431372549},
+	["NPCNEUTRAL"] = {r1 = 0.712358744169101, g1 = 0.63137254901961, b1 = 0.15490196078431, r2 = 1, g2 = 0.85686274509804, b2 = 0.2078431372549},
+	["NPCUNFRIENDLY"] = {r1 = 0.84313725490196, g1 = 0.30196078431373, b1 = 0, r2 = 0.83137254901961, g2 = 0.45882352941176, b2 = 0},
+	["NPCHOSTILE"] = {r1 = 0.31764705882353, g1 = 0.066666666666667, b1 = 0.07843137254902, r2 = 1, g2 = 0.15686274509804, b2 = 0.15686274509804},
 }
 
 --adapted from libiteminfo to be player only
@@ -468,12 +468,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterFrame.EltruismSpeedDescTooltip:SetParent(_G.CharacterStatsPane)
 					_G.CharacterFrame.EltruismSpeedDescTooltip:Show()
 					_G.CharacterFrame.EltruismSpeedDescTooltip:SetScript("OnEnter", function()
-						_G['GameTooltip']:SetOwner(_G.CharacterFrame.EltruismSpeedDescTooltip, 'ANCHOR_RIGHT')
-						_G['GameTooltip']:AddLine(format(CR_SPEED_TOOLTIP, string.format('%.2f', (GetUnitSpeed("player"))), ((GetUnitSpeed("player")/7) *100)))
-						_G['GameTooltip']:Show()
+						_G["GameTooltip"]:SetOwner(_G.CharacterFrame.EltruismSpeedDescTooltip, 'ANCHOR_RIGHT')
+						_G["GameTooltip"]:AddLine(format(CR_SPEED_TOOLTIP, string.format('%.2f', (GetUnitSpeed("player"))), ((GetUnitSpeed("player")/7) *100)))
+						_G["GameTooltip"]:Show()
 					end)
 					_G.CharacterFrame.EltruismSpeedDescTooltip:SetScript("OnLeave", function()
-						_G['GameTooltip']:Hide()
+						_G["GameTooltip"]:Hide()
 					end)
 
 					--class resource
@@ -549,20 +549,20 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						_G.CharacterFrame.EltruismClassResourceDescTooltip:Hide()
 					end
 					_G.CharacterFrame.EltruismClassResourceDescTooltip:SetScript("OnEnter", function()
-						_G['GameTooltip']:SetOwner(_G.CharacterFrame.EltruismClassResourceDescTooltip, 'ANCHOR_RIGHT')
+						_G["GameTooltip"]:SetOwner(_G.CharacterFrame.EltruismClassResourceDescTooltip, 'ANCHOR_RIGHT')
 						if E.myclass == 'HUNTER' then
-							_G['GameTooltip']:AddLine(STAT_FOCUS_REGEN_TOOLTIP)
+							_G["GameTooltip"]:AddLine(STAT_FOCUS_REGEN_TOOLTIP)
 						elseif E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							_G['GameTooltip']:AddLine(STAT_ENERGY_REGEN_TOOLTIP)
+							_G["GameTooltip"]:AddLine(STAT_ENERGY_REGEN_TOOLTIP)
 						elseif E.myclass == 'DEATHKNIGHT' then
-							_G['GameTooltip']:AddLine(STAT_RUNE_REGEN_TOOLTIP)
+							_G["GameTooltip"]:AddLine(STAT_RUNE_REGEN_TOOLTIP)
 						elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
-							_G['GameTooltip']:AddLine(MANA_REGEN_TOOLTIP)
+							_G["GameTooltip"]:AddLine(MANA_REGEN_TOOLTIP)
 						end
-						_G['GameTooltip']:Show()
+						_G["GameTooltip"]:Show()
 					end)
 					_G.CharacterFrame.EltruismClassResourceDescTooltip:SetScript("OnLeave", function()
-						_G['GameTooltip']:Hide()
+						_G["GameTooltip"]:Hide()
 					end)
 
 					--class resource 2, because druids and monks are not nice
@@ -604,14 +604,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						_G.CharacterFrame.EltruismClassResourceDescTooltip2:Show()
 					end
 					_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetScript("OnEnter", function()
-						_G['GameTooltip']:SetOwner(_G.CharacterFrame.EltruismClassResourceDescTooltip2, 'ANCHOR_RIGHT')
+						_G["GameTooltip"]:SetOwner(_G.CharacterFrame.EltruismClassResourceDescTooltip2, 'ANCHOR_RIGHT')
 						if E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							_G['GameTooltip']:AddLine(MANA_REGEN_TOOLTIP)
+							_G["GameTooltip"]:AddLine(MANA_REGEN_TOOLTIP)
 						end
-						_G['GameTooltip']:Show()
+						_G["GameTooltip"]:Show()
 					end)
 					_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetScript("OnLeave", function()
-						_G['GameTooltip']:Hide()
+						_G["GameTooltip"]:Hide()
 					end)
 
 					--update stats and stats position

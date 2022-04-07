@@ -279,7 +279,7 @@ function ElvUI_EltreumUI:ShamanTextureMode()
 		if E.db.ElvUI_EltreumUI.darkpowercolor and E.private.unitframe.enable then
 			local UF = E:GetModule('UnitFrames') --only classpower that is actually in UF instead of NP
 			local function TotemBackground()
-				local header = _G['ElvUF_Player']
+				local header = _G["ElvUF_Player"]
 				for i = 1, header:GetNumChildren() do
 					local group = select(i, header:GetChildren())
 					for j = 1, group:GetNumChildren() do

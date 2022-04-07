@@ -45,7 +45,7 @@ ElvUI_EltreumUI.InstallerData = {
 				ElvUI_EltreumUI:SetupNamePlates('ElvUI')
 				ElvUI_EltreumUI:ResolutionOutline()
 			end)
-			PluginInstallFrame.Option1:SetText(L['DPS\nTank'])
+			PluginInstallFrame.Option1:SetText(L["DPS\nTank"])
 			PluginInstallFrame.Option2:Enable()
 			PluginInstallFrame.Option2:Show()
 			PluginInstallFrame.Option2:SetScript('OnClick', function()
@@ -58,13 +58,13 @@ ElvUI_EltreumUI.InstallerData = {
 				ElvUI_EltreumUI:SetupNamePlates('ElvUI')
 				ElvUI_EltreumUI:ResolutionOutline()
 			end)
-			PluginInstallFrame.Option2:SetText(L['Healer'])
-			PluginInstallFrame.Option3:SetText(L['Automatic\nScale'])
+			PluginInstallFrame.Option2:SetText(L["Healer"])
+			PluginInstallFrame.Option3:SetText(L["Automatic\nScale"])
 			PluginInstallFrame.Option3:Enable()
 			PluginInstallFrame.Option3:Show()
 			PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AutoScale() end)
 			if E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' then
-				PluginInstallFrame.Option4:SetText(L['Alternative\nFrames'])
+				PluginInstallFrame.Option4:SetText(L["Alternative\nFrames"])
 				PluginInstallFrame.Option4:Enable()
 				PluginInstallFrame.Option4:Show()
 				PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:AlternativeGroupsDPS() end)
@@ -136,11 +136,11 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option2:SetText(L["Dark Chat"])
 		end,
 		[6] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText(L['Details! DPS Meter'])
+			PluginInstallFrame.SubTitle:SetFormattedText(L["Details! DPS Meter"])
 			PluginInstallFrame.Desc1:SetText(L["Import Details! profile with dual panels"])
 			PluginInstallFrame.Desc2:SetText(L["You can right click the bottom right arrow to toggle the Details! Window"])
 			PluginInstallFrame.Desc3:SetText(L["Remember to swap the second window to Healing Done or Tiny Threat"])
-			PluginInstallFrame.Desc4:SetText(L['Choose the type of icons Details! will use:'])
+			PluginInstallFrame.Desc4:SetText(L["Choose the type of icons Details! will use:"])
 			PluginInstallFrame.Option1:Enable()
 			PluginInstallFrame.Option1:Show()
 			PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT() ElvUI_EltreumUI:GetASProfile() end)
@@ -167,13 +167,13 @@ ElvUI_EltreumUI.InstallerData = {
 			end
 		end,
 		[7] = function()
-			PluginInstallFrame.SubTitle:SetFormattedText(L['PVP/PVE Addons'])
+			PluginInstallFrame.SubTitle:SetFormattedText(L["PVP/PVE Addons"])
 			if E.Retail then
 				PluginInstallFrame.Desc1:SetText(L["Import GladiusEx profile for arenas, remember to disable ElvUI Arena Frames"])
 				PluginInstallFrame.Option1:Enable()
 				PluginInstallFrame.Option1:Show()
 				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupGladiusEx() end)
-				PluginInstallFrame.Option1:SetText(L['GladiusEx'])
+				PluginInstallFrame.Option1:SetText(L["GladiusEx"])
 			elseif E.Classic or E.TBC then
 				PluginInstallFrame.Desc1:SetText(L["Import Questie profile, which uses the DBM radar"])
 				PluginInstallFrame.Option1:Enable()
@@ -348,9 +348,9 @@ ElvUI_EltreumUI.InstallerData = {
 		[1] = L["Welcome"],
 		[2] = L["Layouts"],
 		[3] = L["Fonts"],
-		[4] = L['Eltruism Modes'],
-		[5] = L['Chat'],
-		[6] = L['Details! DPS Meter'],
+		[4] = L["Eltruism Modes"],
+		[5] = L["Chat"],
+		[6] = L["Details! DPS Meter"],
 		[7] = L["PVP/PVE Addons"],
 		[8] = L["QOL Addons"],
 		[9] = 'Discord',

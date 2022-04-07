@@ -4,13 +4,13 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 function ElvUI_EltreumUI:GetASProfile()
 	local AS = unpack(AddOnSkins)
 	AS.data:SetProfile("Eltreum Dual")
-	AS.db['EmbedBackdrop'] = false
-	AS.db['EmbedBackdropTransparent'] = false
-	AS.db['EmbedRightChat'] = true
-	AS.db['EmbedSystem'] = false
+	AS.db["EmbedBackdrop"] = false
+	AS.db["EmbedBackdropTransparent"] = false
+	AS.db["EmbedRightChat"] = true
+	AS.db["EmbedSystem"] = false
 	AS.db["EmbedSystemDual"] = true
 	AS.db["EmbedLeftWidth"] = 206
-	AS.db['EmbedSystemMessage'] = false
+	AS.db["EmbedSystemMessage"] = false
 	AS.db["EmbedOoC"] = true
 	AS.db["EmbedOoCDelay"] = 1
 	AS.db["EmbedIsHidden"] = false

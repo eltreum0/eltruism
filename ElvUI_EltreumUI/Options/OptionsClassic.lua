@@ -318,11 +318,11 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Select a size"],
 								desc = L["Choose this size"],
 								values = {
-									['-1'] = L["Autodetect"],
-									['0'] = '32x32',
-									['1'] = '48x48',
-									['2'] = '64x64',
-									['3'] = '128x128',
+									["-1"] = L["Autodetect"],
+									["0"] = '32x32',
+									["1"] = '48x48',
+									["2"] = '64x64',
+									["3"] = '128x128',
 								},
 								style = 'radio',
 								get = function() return E.db.ElvUI_EltreumUI.cursor.size end,
@@ -364,8 +364,8 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Software cursor is how the cursor was before Battle for Azeroth, Hardware cursor is faster but will cause problems with addons that attach to it"],
 								--width = 'full',
 								values = {
-									['0'] = L["Software Cursor"],
-									['1'] = L["Hardware Cursor"],
+									["0"] = L["Software Cursor"],
+									["1"] = L["Hardware Cursor"],
 								},
 								style = 'radio',
 								get = function() return C_CVar.GetCVar('HardwareCursor') end,
@@ -870,7 +870,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					gamemenu = {
 						type = 'toggle',
-						name = L['Enable'],
+						name = L["Enable"],
 						order = 2,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.gamemenu end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.gamemenu = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -884,7 +884,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					bgUF = {
 						type = 'toggle',
-						name = L['Enable'],
+						name = L["Enable"],
 						order = 6,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.bgunitframes end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bgunitframes = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -945,8 +945,8 @@ function ElvUI_EltreumUI:Configtable()
 					customdeathtext = {
 						order = 28,
 						type = 'input',
-						name = L['Custom Death Text'],
-						desc = L['The text displayed when you die using the custom text option'],
+						name = L["Custom Death Text"],
+						desc = L["The text displayed when you die using the custom text option"],
 						--width = 'double',
 						disabled = function() return E.db.ElvUI_EltreumUI.otherstuff.playerdeathgta or E.db.ElvUI_EltreumUI.otherstuff.playerdeath or (not E.db.ElvUI_EltreumUI.otherstuff.playerdeathcustom) end,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.playerdeathcustomtext end,
@@ -1025,7 +1025,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					autossenable = {
 						order = 49,
-						name = L['Enable'],
+						name = L["Enable"],
 						type = "toggle",
 						desc = L["Automatically take Screenshots such as when leveling up"],
 						width = 'full',
@@ -1168,17 +1168,17 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							errorenable = {
 								order = 3,
-								name = L['Enable for Error Frame'],
+								name = L["Enable for Error Frame"],
 								type = "toggle",
-								desc = L['Enable for Error Frame'],
+								desc = L["Enable for Error Frame"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.skins.zones end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.zones = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							errorsize = {
 								type = 'range',
-								name = L['Error Frame Font Size'],
-								desc = L['Error Frame Font Size'],
+								name = L["Error Frame Font Size"],
+								desc = L["Error Frame Font Size"],
 								order = 4,
 								min = 8,
 								max = 36,
@@ -1189,7 +1189,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							zoneenable = {
 								order = 34,
-								name = L['Enable for Zones, Mail and others'],
+								name = L["Enable for Zones, Mail and others"],
 								type = "toggle",
 								desc = L["Such as the Zones, Mail and others"],
 								width = 'full',
@@ -1198,9 +1198,9 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							hideerrorframe = {
 								order = 35,
-								name = L['Hide Error Frame'],
+								name = L["Hide Error Frame"],
 								type = "toggle",
-								desc = L['Hide Error Frame'],
+								desc = L["Hide Error Frame"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.blizzframes.hideerrorframe end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.blizzframes.hideerrorframe = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -1215,7 +1215,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							questenable = {
 								order = 37,
-								name = L['Enable Skin'],
+								name = L["Enable Skin"],
 								type = "toggle",
 								desc = L["Skin the Objective/Quest Frame"],
 								width = 'full',
@@ -1224,7 +1224,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							showwowhead = {
 								order = 37,
-								name = L['Enable Wowhead Button'],
+								name = L["Enable Wowhead Button"],
 								type = "toggle",
 								desc = L["Show a button for Wowhead quest links"],
 								width = 'full',
@@ -1251,7 +1251,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							professionenable = {
 								order = 47,
-								name = L['Enable'],
+								name = L["Enable"],
 								type = "toggle",
 								desc = L["Skin the Profession/Tradeskill Frame"],
 								width = 'full',
@@ -1268,7 +1268,7 @@ function ElvUI_EltreumUI:Configtable()
 							skinenable = {
 								order = 49,
 								type = 'toggle',
-								name = L['Enable'],
+								name = L["Enable"],
 								desc = L["Enable a toast showing up when you level up"],
 								get = function() return E.db.ElvUI_EltreumUI.skins.enable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.enable = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -3444,8 +3444,8 @@ function ElvUI_EltreumUI:Configtable()
 						desc = L["When target is off screen, position its nameplate radially around sides and bottom."],
 						width = "full",
 						values = {
-							['1'] = L["Target Only"],
-							['2'] = L["All in Combat"],
+							["1"] = L["Target Only"],
+							["2"] = L["All in Combat"],
 						},
 						style = 'radio',
 						get = function() return C_CVar.GetCVar('nameplateTargetRadialPosition') end,
@@ -3576,8 +3576,8 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					instancefontsize = {
 						type = 'range',
-						name = L['Font Size'],
-						desc = L['Instance text Font Size'],
+						name = L["Font Size"],
+						desc = L["Instance text Font Size"],
 						order = 16,
 						min = 4,
 						max = 72,
@@ -3597,8 +3597,8 @@ function ElvUI_EltreumUI:Configtable()
 					DungeonNormal = {
 						order = 80,
 						type = 'input',
-						name = L['Dungeon'],
-						desc = L['The text displayed when in a normal dungeon'],
+						name = L["Dungeon"],
+						desc = L["The text displayed when in a normal dungeon"],
 						--width = 'double',
 						disabled = function() return (not E.db.ElvUI_EltreumUI.instances.enable) end,
 						get = function() return E.db.ElvUI_EltreumUI.instances.DungeonNormal end,
@@ -3607,8 +3607,8 @@ function ElvUI_EltreumUI:Configtable()
 					Raid = {
 						order = 80,
 						type = 'input',
-						name = L['Raid'],
-						desc = L['The text displayed when in a normal raid'],
+						name = L["Raid"],
+						desc = L["The text displayed when in a normal raid"],
 						--width = 'double',
 						disabled = function() return (not E.db.ElvUI_EltreumUI.instances.enable) end,
 						get = function() return E.db.ElvUI_EltreumUI.instances.Raid end,
@@ -3643,7 +3643,7 @@ function ElvUI_EltreumUI:Configtable()
 							enable = {
 								order = 5,
 								type = 'toggle',
-								name = L['Enable'],
+								name = L["Enable"],
 								desc = L["Automatically hide the Minimap in combat"],
 								get = function() return E.db.ElvUI_EltreumUI.otherstuff.mapcombathide end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mapcombathide = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -3947,7 +3947,7 @@ function ElvUI_EltreumUI:Configtable()
 							enablegradient = {
 								order = 3,
 								type = 'toggle',
-								name = L['Enable Gradient'],
+								name = L["Enable Gradient"],
 								desc = L["Enable Gradient colors for Health"],
 								width = 'full',
 								disabled = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.UFmodifications end,
@@ -4069,7 +4069,7 @@ function ElvUI_EltreumUI:Configtable()
 							castbarsparkenable = {
 								order = 106,
 								type = 'toggle',
-								name = L['Enable'],
+								name = L["Enable"],
 								width = "full",
 								desc = L["Customize Player CastBar Spark"],
 								get = function() return E.db.ElvUI_EltreumUI.sparkcustomcolor.enable end,
@@ -4399,7 +4399,7 @@ function ElvUI_EltreumUI:Configtable()
 							enableplayer = {
 								order = 2,
 								type = 'toggle',
-								name = L['Enable for Player'],
+								name = L["Enable for Player"],
 								desc = L["Enable Gradient colors for Health"],
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
@@ -4409,7 +4409,7 @@ function ElvUI_EltreumUI:Configtable()
 							enabletarget = {
 								order = 2,
 								type = 'toggle',
-								name = L['Enable for Target'],
+								name = L["Enable for Target"],
 								desc = L["Enable Gradient colors for Health"],
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
@@ -4419,7 +4419,7 @@ function ElvUI_EltreumUI:Configtable()
 							enabletargettarget = {
 								order = 2,
 								type = 'toggle',
-								name = L['Enable for Target of Target'],
+								name = L["Enable for Target of Target"],
 								desc = L["Enable Gradient colors for Health"],
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
@@ -4429,7 +4429,7 @@ function ElvUI_EltreumUI:Configtable()
 							enablefocus = {
 								order = 2,
 								type = 'toggle',
-								name = L['Enable for Focus'],
+								name = L["Enable for Focus"],
 								desc = L["Enable Gradient colors for Health"],
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
@@ -4439,7 +4439,7 @@ function ElvUI_EltreumUI:Configtable()
 							enablegroupunits = {
 								order = 2,
 								type = 'toggle',
-								name = L['Enable for Group Units'],
+								name = L["Enable for Group Units"],
 								desc = L["Enable Gradient colors for Health"],
 								width = 'full',
 								--disabled = function() return true end,
@@ -4450,7 +4450,7 @@ function ElvUI_EltreumUI:Configtable()
 							enablecastbargradient = {
 								order = 2,
 								type = 'toggle',
-								name = L['Enable for Player Castbar'],
+								name = L["Enable for Player Castbar"],
 								desc = L["Enable Gradient colors for Player Castbar"],
 								width = 'full',
 								--disabled = function() return true end,
@@ -4461,7 +4461,7 @@ function ElvUI_EltreumUI:Configtable()
 							enabletargetcastbargradient = {
 								order = 2,
 								type = 'toggle',
-								name = L['Enable for Target Castbar'],
+								name = L["Enable for Target Castbar"],
 								desc = L["Enable Gradient colors for Target Castbar"],
 								width = 'full',
 								--disabled = function() return true end,
@@ -5362,8 +5362,8 @@ function ElvUI_EltreumUI:Configtable()
 									},
 									nameplatepowerfontsize = {
 										type = 'range',
-										name = L['Font Size'],
-										desc = L['Nameplate Powerbar Font Size'],
+										name = L["Font Size"],
+										desc = L["Nameplate Powerbar Font Size"],
 										order = 98,
 										min = 8,
 										max = 36,
@@ -5566,11 +5566,11 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Set the level that LootText will be drawn to this"],
 								order = 11,
 								values = {
-									['BACKGROUND'] = L["Background"],
-									['LOW'] = L["Low"],
-									['MEDIUM'] = L["Medium"],
-									['HIGH'] = L["High"],
-									['DIALOG'] = L["Dialog"],
+									["BACKGROUND"] = L["Background"],
+									["LOW"] = L["Low"],
+									["MEDIUM"] = L["Medium"],
+									["HIGH"] = L["High"],
+									["DIALOG"] = L["Dialog"],
 								},
 								style = 'radio',
 								disabled = function() return not E.db.ElvUI_EltreumUI.loottext.enable end,
@@ -5660,7 +5660,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					fastlootenablefilter = {
 						order = 40,
-						name = L['Enable Fast Loot with Loot Quality Filter'],
+						name = L["Enable Fast Loot with Loot Quality Filter"],
 						type = "toggle",
 						desc = L["Enable filtering item quality, items can still be looted by holding Shift or the mod key setup in Interface"],
 						width = 'full',
@@ -5670,7 +5670,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					lootwishlistfilter = {
 						order = 41,
-						name = L['Enable Fast Loot with Wishlist Filter'],
+						name = L["Enable Fast Loot with Wishlist Filter"],
 						type = "toggle",
 						desc = L["Items not on the wishlist will not be looted, items can still be looted by holding Shift or the mod key setup in Interface"],
 						width = 'full',
@@ -5713,11 +5713,11 @@ function ElvUI_EltreumUI:Configtable()
 						name = L["Minimum Loot Quality Filter"],
 						desc = L["Only items of this quality or better will be looted when using Fast Loot Filter"],
 						values = {
-							['0'] = L["Poor"],
-							['1'] = L["Common"],
-							['2'] = L["Uncommon"],
-							['3'] = L["Rare"],
-							['4'] = L["Epic"],
+							["0"] = L["Poor"],
+							["1"] = L["Common"],
+							["2"] = L["Uncommon"],
+							["3"] = L["Rare"],
+							["4"] = L["Epic"],
 						},
 						style = 'radio',
 						disabled = function() return E.db.ElvUI_EltreumUI.otherstuff.fastloot or not E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter or E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter end,
@@ -5732,7 +5732,7 @@ function ElvUI_EltreumUI:Configtable()
 						width = 'double',
 						get = function() return E.private.ElvUI_EltreumUI.wishlistID end,
 						validate = function(_, value)
-							E.PopupDialogs['ELTRUISMINVALID'] = {
+							E.PopupDialogs["ELTRUISMINVALID"] = {
 								text = L["Invalid Item, you need to add an itemID which can be found in the tooltip or in Wowhead"],
 								button1 = OKAY,
 								timeout = 0,
@@ -5951,7 +5951,7 @@ function ElvUI_EltreumUI:Configtable()
 							colorsysmsgs = {
 								order = 18,
 								type = 'toggle',
-								name = L['Enable'],
+								name = L["Enable"],
 								width = 'full',
 								desc = L["Toggle the option on"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
@@ -5968,7 +5968,7 @@ function ElvUI_EltreumUI:Configtable()
 							chatlooticons = {
 								order = 20,
 								type = 'toggle',
-								name = L['Enable Chat Icons'],
+								name = L["Enable Chat Icons"],
 								width = 'full',
 								desc = L["Toggle the option on"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,

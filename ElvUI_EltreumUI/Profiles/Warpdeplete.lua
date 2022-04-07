@@ -1,18 +1,18 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local classcolor = E:ClassColor(E.myclass, true)
 local classtable = {
-	['WARRIOR'] = "Eltreum-Class-Warrior",
-	['PALADIN'] = "Eltreum-Class-Paladin",
-	['HUNTER'] = "Eltreum-Class-Hunter",
-	['ROGUE'] = "Eltreum-Class-Rogue",
-	['PRIEST'] = "Eltreum-Class-Priest",
-	['DEATHKNIGHT'] = "Eltreum-Class-DeathKnight",
-	['SHAMAN'] = "Eltreum-Class-Shaman",
-	['MAGE'] = "Eltreum-Class-Mage",
-	['WARLOCK'] = "Eltreum-Class-Warlock",
-	['MONK'] = "Eltreum-Class-Monk",
-	['DRUID'] = "Eltreum-Class-Druid",
-	['DEMONHUNTER'] = "Eltreum-Class-DemonHunter",
+	["WARRIOR"] = "Eltreum-Class-Warrior",
+	["PALADIN"] = "Eltreum-Class-Paladin",
+	["HUNTER"] = "Eltreum-Class-Hunter",
+	["ROGUE"] = "Eltreum-Class-Rogue",
+	["PRIEST"] = "Eltreum-Class-Priest",
+	["DEATHKNIGHT"] = "Eltreum-Class-DeathKnight",
+	["SHAMAN"] = "Eltreum-Class-Shaman",
+	["MAGE"] = "Eltreum-Class-Mage",
+	["WARLOCK"] = "Eltreum-Class-Warlock",
+	["MONK"] = "Eltreum-Class-Monk",
+	["DRUID"] = "Eltreum-Class-Druid",
+	["DEMONHUNTER"] = "Eltreum-Class-DemonHunter",
 }
 
 -- WarpDeplete profile setup

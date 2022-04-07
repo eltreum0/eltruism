@@ -16,7 +16,7 @@ local function AddLootIcons(_, _, message, ...)
 			tt:SetOwner(_G.UIParent, 'ANCHOR_NONE')
 			tt:SetHyperlink(link)
 			for x = 1, tt:NumLines() do
-				local line = _G['ElvUI_ScanTooltipTextLeft'..x]
+				local line = _G["ElvUI_ScanTooltipTextLeft"..x]
 				if line then
 					local lineText = line:GetText()
 					if lineText ~= nil then

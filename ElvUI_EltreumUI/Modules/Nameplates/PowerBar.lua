@@ -251,9 +251,9 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					if E.Retail then
 						if E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' then
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
-								if _G['ElvNP_TargetClassPowerClassPower'] and _G['ElvNP_TargetClassPowerClassPower']:IsShown() then
+								if _G["ElvNP_TargetClassPowerClassPower"] and _G["ElvNP_TargetClassPowerClassPower"]:IsShown() then
 									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
-								elseif _G['ElvNP_TargetClassPowerClassPower'] and not _G['ElvNP_TargetClassPowerClassPower']:IsShown() then
+								elseif _G["ElvNP_TargetClassPowerClassPower"] and not _G["ElvNP_TargetClassPowerClassPower"]:IsShown() then
 									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
 								end
 								--EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
@@ -263,9 +263,9 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						elseif E.myclass == 'MAGE' then
 							if id == 62 then
 								if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
-									if _G['ElvNP_TargetClassPowerClassPower'] and _G['ElvNP_TargetClassPowerClassPower']:IsShown() then
+									if _G["ElvNP_TargetClassPowerClassPower"] and _G["ElvNP_TargetClassPowerClassPower"]:IsShown() then
 										EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
-									elseif _G['ElvNP_TargetClassPowerClassPower'] and not _G['ElvNP_TargetClassPowerClassPower']:IsShown() then
+									elseif _G["ElvNP_TargetClassPowerClassPower"] and not _G["ElvNP_TargetClassPowerClassPower"]:IsShown() then
 										EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
 									end
 									--EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
@@ -329,9 +329,9 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 							EltreumPowerBar:Show()
 							EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.ENERGY.r, E.db.unitframe.colors.power.ENERGY.g, E.db.unitframe.colors.power.ENERGY.b) --its energy so color it like energy
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
-								if _G['ElvNP_TargetClassPowerClassPower'] and _G['ElvNP_TargetClassPowerClassPower']:IsShown() then
+								if _G["ElvNP_TargetClassPowerClassPower"] and _G["ElvNP_TargetClassPowerClassPower"]:IsShown() then
 									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 22)
-								elseif _G['ElvNP_TargetClassPowerClassPower'] and not _G['ElvNP_TargetClassPowerClassPower']:IsShown() then
+								elseif _G["ElvNP_TargetClassPowerClassPower"] and not _G["ElvNP_TargetClassPowerClassPower"]:IsShown() then
 									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
 								end
 								--EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 22)
@@ -421,9 +421,9 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 							EltreumPowerBar:Show()
 							EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.ENERGY.r, E.db.unitframe.colors.power.ENERGY.g, E.db.unitframe.colors.power.ENERGY.b) --its energy so color it like energy
 							if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
-								if _G['ElvNP_TargetClassPowerClassPower'] and _G['ElvNP_TargetClassPowerClassPower']:IsShown() then
+								if _G["ElvNP_TargetClassPowerClassPower"] and _G["ElvNP_TargetClassPowerClassPower"]:IsShown() then
 									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 17)
-								elseif _G['ElvNP_TargetClassPowerClassPower'] and not _G['ElvNP_TargetClassPowerClassPower']:IsShown() then
+								elseif _G["ElvNP_TargetClassPowerClassPower"] and not _G["ElvNP_TargetClassPowerClassPower"]:IsShown() then
 									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
 								end
 
@@ -469,9 +469,9 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.ENERGY.r, E.db.unitframe.colors.power.ENERGY.g, E.db.unitframe.colors.power.ENERGY.b) --its energy so color it like energy
 					if E.Retail then
 						if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
-							if _G['ElvNP_TargetClassPowerClassPower'] and _G['ElvNP_TargetClassPowerClassPower']:IsShown() then
+							if _G["ElvNP_TargetClassPowerClassPower"] and _G["ElvNP_TargetClassPowerClassPower"]:IsShown() then
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
-							elseif _G['ElvNP_TargetClassPowerClassPower'] and not _G['ElvNP_TargetClassPowerClassPower']:IsShown() then
+							elseif _G["ElvNP_TargetClassPowerClassPower"] and not _G["ElvNP_TargetClassPowerClassPower"]:IsShown() then
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
 							end
 							--EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
@@ -480,9 +480,9 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						end
 					elseif E.TBC or E.Classic then
 						if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
-							if _G['ElvNP_TargetClassPowerClassPower'] and _G['ElvNP_TargetClassPowerClassPower']:IsShown() then
+							if _G["ElvNP_TargetClassPowerClassPower"] and _G["ElvNP_TargetClassPowerClassPower"]:IsShown() then
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 17)
-							elseif _G['ElvNP_TargetClassPowerClassPower'] and not _G['ElvNP_TargetClassPowerClassPower']:IsShown() then
+							elseif _G["ElvNP_TargetClassPowerClassPower"] and not _G["ElvNP_TargetClassPowerClassPower"]:IsShown() then
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
 							end
 							--EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
@@ -496,9 +496,9 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					EltreumPowerBar:Show()
 					EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.ENERGY.r, E.db.unitframe.colors.power.ENERGY.g, E.db.unitframe.colors.power.ENERGY.b) --its energy so color it like energy
 					if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
-						if (_G['ElvNP_TargetClassPowerClassPower'] and _G['ElvNP_TargetClassPowerClassPower']:IsShown()) or (_G['ElvNP_TargetClassPowerStagger'] and _G['ElvNP_TargetClassPowerStagger']:IsShown()) then
+						if (_G["ElvNP_TargetClassPowerClassPower"] and _G["ElvNP_TargetClassPowerClassPower"]:IsShown()) or (_G["ElvNP_TargetClassPowerStagger"] and _G["ElvNP_TargetClassPowerStagger"]:IsShown()) then
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
-						elseif (_G['ElvNP_TargetClassPowerClassPower'] and not _G['ElvNP_TargetClassPowerClassPower']:IsShown()) or ((_G['ElvNP_TargetClassPowerStagger'] and not _G['ElvNP_TargetClassPowerStagger']:IsShown())) then
+						elseif (_G["ElvNP_TargetClassPowerClassPower"] and not _G["ElvNP_TargetClassPowerClassPower"]:IsShown()) or ((_G["ElvNP_TargetClassPowerStagger"] and not _G["ElvNP_TargetClassPowerStagger"]:IsShown())) then
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
 						end
 						--EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
@@ -511,10 +511,10 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					EltreumPowerBar:Show()
 					EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.RUNIC_POWER.r, E.db.unitframe.colors.power.RUNIC_POWER.g, E.db.unitframe.colors.power.RUNIC_POWER.b) --its runic power
 					if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
-						if _G['ElvNP_TargetClassPowerStagger'] and _G['ElvNP_TargetClassPowerStagger']:IsShown() then
-							EltreumPowerBar:SetPoint("TOP", _G['ElvNP_TargetClassPowerStagger'], "TOP", 0, 23)
-						elseif _G['ElvNP_TargetClassPowerStagger'] and not _G['ElvNP_TargetClassPowerStagger']:IsShown() then
-							EltreumPowerBar:SetPoint("TOP", _G['ElvNP_TargetClassPowerStagger'], "TOP", 0, 16)
+						if _G["ElvNP_TargetClassPowerStagger"] and _G["ElvNP_TargetClassPowerStagger"]:IsShown() then
+							EltreumPowerBar:SetPoint("TOP", _G["ElvNP_TargetClassPowerStagger"], "TOP", 0, 23)
+						elseif _G["ElvNP_TargetClassPowerStagger"] and not _G["ElvNP_TargetClassPowerStagger"]:IsShown() then
+							EltreumPowerBar:SetPoint("TOP", _G["ElvNP_TargetClassPowerStagger"], "TOP", 0, 16)
 						end
 						--EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
 					else
@@ -642,13 +642,13 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			end
 
 			if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
-				if _G['ElvNP_TargetClassPowerRunes'] and _G['ElvNP_TargetClassPowerRunes']:IsShown() then
-					EltreumPowerBar:SetPoint("TOP", _G['ElvNP_TargetClassPowerRunes'], "TOP", 0, 7)
-				elseif _G['ElvNP_TargetClassPowerClassPower'] and _G['ElvNP_TargetClassPowerClassPower']:IsShown() then
+				if _G["ElvNP_TargetClassPowerRunes"] and _G["ElvNP_TargetClassPowerRunes"]:IsShown() then
+					EltreumPowerBar:SetPoint("TOP", _G["ElvNP_TargetClassPowerRunes"], "TOP", 0, 7)
+				elseif _G["ElvNP_TargetClassPowerClassPower"] and _G["ElvNP_TargetClassPowerClassPower"]:IsShown() then
 					--print("using classpower anchor instead")
-					EltreumPowerBar:SetPoint("TOP", _G['ElvNP_TargetClassPowerClassPower'], "TOP", 0, 7)
-				elseif _G['ElvNP_TargetClassPowerStagger'] and _G['ElvNP_TargetClassPowerStagger']:IsShown() then
-					EltreumPowerBar:SetPoint("TOP", _G['ElvNP_TargetClassPowerStagger'], "TOP", 0, 7)
+					EltreumPowerBar:SetPoint("TOP", _G["ElvNP_TargetClassPowerClassPower"], "TOP", 0, 7)
+				elseif _G["ElvNP_TargetClassPowerStagger"] and _G["ElvNP_TargetClassPowerStagger"]:IsShown() then
+					EltreumPowerBar:SetPoint("TOP", _G["ElvNP_TargetClassPowerStagger"], "TOP", 0, 7)
 				end
 			end
 			--update text position late so that it is in the correct position due to different clases/specs/forms

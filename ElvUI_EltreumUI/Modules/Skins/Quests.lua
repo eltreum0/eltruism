@@ -333,7 +333,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 				--increase the width of the rows so the title fits
 				for i = 1, 24 do
-					local questTitle = _G['QuestLogTitle'..i]
+					local questTitle = _G["QuestLogTitle"..i]
 					questTitle:Width(335)
 				end
 				dontexpandanymorequests = 1
@@ -505,7 +505,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 						end
 						--increase the width of the rows so the title fits
 						for i = 1, 8 do
-							local skillTitle = _G['TradeSkillSkill'..i]
+							local skillTitle = _G["TradeSkillSkill"..i]
 							skillTitle:Width(335)
 						end
 						dontexpandanymore = 1
@@ -571,7 +571,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 					end
 					--increase the width of the rows so the title fits
 					for i = 1, 22 do
-						local craftTitle = _G['Craft'..i]
+						local craftTitle = _G["Craft"..i]
 						craftTitle:Width(335)
 					end
 					dontexpandanymoreEnchant = 1
@@ -631,7 +631,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 							end
 							--increase the width of the rows so the title fits
 							for i = 1, 8 do
-								local craftTitle = _G['Craft'..i]
+								local craftTitle = _G["Craft"..i]
 								craftTitle:Width(335)
 							end
 							dontexpandanymoreEnchant = 1

@@ -52,32 +52,32 @@ function ElvUI_EltreumUI:SkillGlow()
 				totemglowcombatdetect:RegisterEvent('PLAYER_REGEN_ENABLED')
 
 				local totemglow1 = CreateFrame("FRAME")
-				totemglow1:SetParent(_G['ElvUF_Player'])
+				totemglow1:SetParent(_G["ElvUF_Player"])
 				local totemglow2 = CreateFrame("FRAME")
-				totemglow2:SetParent(_G['ElvUF_Player'])
+				totemglow2:SetParent(_G["ElvUF_Player"])
 				local totemglow3 = CreateFrame("FRAME")
-				totemglow3:SetParent(_G['ElvUF_Player'])
+				totemglow3:SetParent(_G["ElvUF_Player"])
 				local totemglow4 = CreateFrame("FRAME")
-				totemglow4:SetParent(_G['ElvUF_Player'])
+				totemglow4:SetParent(_G["ElvUF_Player"])
 				--set the sizes differently depending on type because blizz glow is not nice
 				if E.db.ElvUI_EltreumUI.glow.pixel or E.db.ElvUI_EltreumUI.glow.autocast then
-					totemglow1:SetAllPoints(_G['ElvUF_PlayerTotem1'])
-					totemglow2:SetAllPoints(_G['ElvUF_PlayerTotem2'])
-					totemglow3:SetAllPoints(_G['ElvUF_PlayerTotem3'])
-					totemglow4:SetAllPoints(_G['ElvUF_PlayerTotem4'])
+					totemglow1:SetAllPoints(_G["ElvUF_PlayerTotem1"])
+					totemglow2:SetAllPoints(_G["ElvUF_PlayerTotem2"])
+					totemglow3:SetAllPoints(_G["ElvUF_PlayerTotem3"])
+					totemglow4:SetAllPoints(_G["ElvUF_PlayerTotem4"])
 				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-					local t1x, t1y = _G['ElvUF_PlayerTotem1']:GetSize()
+					local t1x, t1y = _G["ElvUF_PlayerTotem1"]:GetSize()
 					totemglow1:SetSize(t1x+12, t1y+4)
-					totemglow1:SetPoint("Center", _G['ElvUF_PlayerTotem1'])
-					local t2x, t2y = _G['ElvUF_PlayerTotem2']:GetSize()
+					totemglow1:SetPoint("Center", _G["ElvUF_PlayerTotem1"])
+					local t2x, t2y = _G["ElvUF_PlayerTotem2"]:GetSize()
 					totemglow2:SetSize(t2x+12, t2y+4)
-					totemglow2:SetPoint("Center", _G['ElvUF_PlayerTotem2'])
-					local t3x, t3y = _G['ElvUF_PlayerTotem3']:GetSize()
+					totemglow2:SetPoint("Center", _G["ElvUF_PlayerTotem2"])
+					local t3x, t3y = _G["ElvUF_PlayerTotem3"]:GetSize()
 					totemglow3:SetSize(t3x+12, t3y+4)
-					totemglow3:SetPoint("Center", _G['ElvUF_PlayerTotem3'])
-					local t4x, t4y = _G['ElvUF_PlayerTotem4']:GetSize()
+					totemglow3:SetPoint("Center", _G["ElvUF_PlayerTotem3"])
+					local t4x, t4y = _G["ElvUF_PlayerTotem4"]:GetSize()
 					totemglow4:SetSize(t4x+12, t4y+4)
-					totemglow4:SetPoint("Center", _G['ElvUF_PlayerTotem4'])
+					totemglow4:SetPoint("Center", _G["ElvUF_PlayerTotem4"])
 				end
 
 				local totem1glowcolor = {0.58, 0.23, 0.10, 1}
@@ -101,88 +101,88 @@ function ElvUI_EltreumUI:SkillGlow()
 								TimeSinceLastUpdate = 0
 								if E.db.ElvUI_EltreumUI.glow.pixel then
 									if E.db.ElvUI_EltreumUI.glow.totem1 then
-										if not _G['ElvUF_PlayerTotem1']:IsShown() then
+										if not _G["ElvUF_PlayerTotem1"]:IsShown() then
 											LCG.PixelGlow_Start(totemglow1, totem1glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
-										elseif _G['ElvUF_PlayerTotem1']:IsShown() then
+										elseif _G["ElvUF_PlayerTotem1"]:IsShown() then
 											LCG.PixelGlow_Stop(totemglow1)
 										end
 									end
 									if E.db.ElvUI_EltreumUI.glow.totem2 then
-										if not _G['ElvUF_PlayerTotem2']:IsShown() then
+										if not _G["ElvUF_PlayerTotem2"]:IsShown() then
 											LCG.PixelGlow_Start(totemglow2, totem2glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
-										elseif _G['ElvUF_PlayerTotem2']:IsShown() then
+										elseif _G["ElvUF_PlayerTotem2"]:IsShown() then
 											LCG.PixelGlow_Stop(totemglow2)
 										end
 									end
 									if E.db.ElvUI_EltreumUI.glow.totem3 then
-										if not _G['ElvUF_PlayerTotem3']:IsShown() then
+										if not _G["ElvUF_PlayerTotem3"]:IsShown() then
 											LCG.PixelGlow_Start(totemglow3, totem3glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
-										elseif _G['ElvUF_PlayerTotem3']:IsShown() then
+										elseif _G["ElvUF_PlayerTotem3"]:IsShown() then
 											LCG.PixelGlow_Stop(totemglow3)
 										end
 									end
 									if E.db.ElvUI_EltreumUI.glow.totem4 then
-										if not _G['ElvUF_PlayerTotem4']:IsShown() then
+										if not _G["ElvUF_PlayerTotem4"]:IsShown() then
 											LCG.PixelGlow_Start(totemglow4, totem4glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
-										elseif _G['ElvUF_PlayerTotem4']:IsShown() then
+										elseif _G["ElvUF_PlayerTotem4"]:IsShown() then
 											LCG.PixelGlow_Stop(totemglow4)
 										end
 									end
 								elseif E.db.ElvUI_EltreumUI.glow.autocast then
 									if E.db.ElvUI_EltreumUI.glow.totem1 then
-										if not _G['ElvUF_PlayerTotem1']:IsShown() then
+										if not _G["ElvUF_PlayerTotem1"]:IsShown() then
 											LCG.AutoCastGlow_Start(totemglow1, totem1glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-										elseif _G['ElvUF_PlayerTotem1']:IsShown() then
+										elseif _G["ElvUF_PlayerTotem1"]:IsShown() then
 											LCG.AutoCastGlow_Stop(totemglow1)
 										end
 									end
 									if E.db.ElvUI_EltreumUI.glow.totem2 then
-										if not _G['ElvUF_PlayerTotem2']:IsShown() then
+										if not _G["ElvUF_PlayerTotem2"]:IsShown() then
 											LCG.AutoCastGlow_Start(totemglow2, totem2glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-										elseif _G['ElvUF_PlayerTotem2']:IsShown() then
+										elseif _G["ElvUF_PlayerTotem2"]:IsShown() then
 											LCG.AutoCastGlow_Stop(totemglow2)
 										end
 									end
 									if E.db.ElvUI_EltreumUI.glow.totem3 then
-										if not _G['ElvUF_PlayerTotem3']:IsShown() then
+										if not _G["ElvUF_PlayerTotem3"]:IsShown() then
 											LCG.AutoCastGlow_Start(totemglow3, totem3glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-										elseif _G['ElvUF_PlayerTotem3']:IsShown() then
+										elseif _G["ElvUF_PlayerTotem3"]:IsShown() then
 											LCG.AutoCastGlow_Stop(totemglow3)
 										end
 									end
 									if E.db.ElvUI_EltreumUI.glow.totem4 then
-										if not _G['ElvUF_PlayerTotem4']:IsShown() then
+										if not _G["ElvUF_PlayerTotem4"]:IsShown() then
 											LCG.AutoCastGlow_Start(totemglow4, totem4glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-										elseif _G['ElvUF_PlayerTotem4']:IsShown() then
+										elseif _G["ElvUF_PlayerTotem4"]:IsShown() then
 											LCG.AutoCastGlow_Stop(totemglow4)
 										end
 									end
 								elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 									if E.db.ElvUI_EltreumUI.glow.totem1 then
-										if not _G['ElvUF_PlayerTotem1']:IsShown() then
+										if not _G["ElvUF_PlayerTotem1"]:IsShown() then
 											LCG.ButtonGlow_Start(totemglow1, totem1glowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
-										elseif _G['ElvUF_PlayerTotem1']:IsShown() then
+										elseif _G["ElvUF_PlayerTotem1"]:IsShown() then
 											LCG.ButtonGlow_Stop(totemglow1)
 										end
 									end
 									if E.db.ElvUI_EltreumUI.glow.totem2 then
-										if not _G['ElvUF_PlayerTotem2']:IsShown() then
+										if not _G["ElvUF_PlayerTotem2"]:IsShown() then
 											LCG.ButtonGlow_Start(totemglow2, totem2glowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
-										elseif _G['ElvUF_PlayerTotem2']:IsShown() then
+										elseif _G["ElvUF_PlayerTotem2"]:IsShown() then
 											LCG.ButtonGlow_Stop(totemglow2)
 										end
 									end
 									if E.db.ElvUI_EltreumUI.glow.totem3 then
-										if not _G['ElvUF_PlayerTotem3']:IsShown() then
+										if not _G["ElvUF_PlayerTotem3"]:IsShown() then
 											LCG.ButtonGlow_Start(totemglow3, totem3glowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
-										elseif _G['ElvUF_PlayerTotem3']:IsShown() then
+										elseif _G["ElvUF_PlayerTotem3"]:IsShown() then
 											LCG.ButtonGlow_Stop(totemglow3)
 										end
 									end
 									if E.db.ElvUI_EltreumUI.glow.totem4 then
-										if not _G['ElvUF_PlayerTotem4']:IsShown() then
+										if not _G["ElvUF_PlayerTotem4"]:IsShown() then
 											LCG.ButtonGlow_Start(totemglow4, totem4glowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
-										elseif _G['ElvUF_PlayerTotem4']:IsShown() then
+										elseif _G["ElvUF_PlayerTotem4"]:IsShown() then
 											LCG.ButtonGlow_Stop(totemglow4)
 										end
 									end
@@ -289,7 +289,7 @@ function ElvUI_EltreumUI:SkillGlow()
 			local proc
 			--local auraid, _
 			function ElvUI_EltreumUI:ClassicGlow(barName)
-				local bar = AB['handledBars'][barName]
+				local bar = AB["handledBars"][barName]
 				if not bar then return end
 				local button
 				local procFrame = CreateFrame('frame')

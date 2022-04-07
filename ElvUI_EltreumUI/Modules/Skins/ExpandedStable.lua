@@ -11,7 +11,7 @@ function ElvUI_EltreumUI:ExpandedStable()
 		for i = NUM_PET_STABLE_SLOTS + 1, maxSlots do
 			if not _G["PetStableStabledPet"..i] then
 				CreateFrame("Button", "PetStableStabledPet"..i, _G["PetStableFrame"], "PetStableSlotTemplate", i)
-				S:HandleItemButton(_G['PetStableStabledPet'..i], true)
+				S:HandleItemButton(_G["PetStableStabledPet"..i], true)
 			end
 		end
 

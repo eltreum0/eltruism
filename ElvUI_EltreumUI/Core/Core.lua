@@ -441,12 +441,12 @@ if E.Retail then
 	clickbindopenbutton:RegisterForClicks("AnyUp")
 
 	clickbindopenbutton:SetScript("OnEnter", function()
-		_G['GameTooltip']:SetOwner(clickbindopenbutton, 'ANCHOR_RIGHT')
-		_G['GameTooltip']:AddLine(L["Toggle the Click Casting Menu"])
-		_G['GameTooltip']:Show()
+		_G["GameTooltip"]:SetOwner(clickbindopenbutton, 'ANCHOR_RIGHT')
+		_G["GameTooltip"]:AddLine(L["Toggle the Click Casting Menu"])
+		_G["GameTooltip"]:Show()
 	end)
 	clickbindopenbutton:SetScript("OnLeave", function()
-		_G['GameTooltip']:Hide()
+		_G["GameTooltip"]:Hide()
 	end)
 
 	clickbindopenbutton:SetScript('OnClick', function()

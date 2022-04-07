@@ -1051,7 +1051,7 @@ function ElvUI_EltreumUI:DatabaseConversions()
 
 		--E:StaggeredUpdateAll(nil, true)
 
-		E.PopupDialogs['ELTRUISMDBCONVERT'] = {
+		E.PopupDialogs["ELTRUISMDBCONVERT"] = {
 			text = L["Eltruism database was converted.\n|cff82B4ffThe Following profiles were updated:|r\n%s\n\n|cff82B4ffPrivate settings were updated for the following private profiles:|r\n%s\n\n|cff82B4ffIf you have any issues please report in Discord or open a ticket|r\n|cffff0000A Reload is necessary to save this conversion|r"],
 			button1 = OKAY,
 			timeout = 0,

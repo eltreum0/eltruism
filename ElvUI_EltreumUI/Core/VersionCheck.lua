@@ -21,7 +21,7 @@ function ElvUI_EltreumUI:NewVersionCheck()
 end
 
 function ElvUI_EltreumUI:ElvUIVersionCheck()
-	E.PopupDialogs['ELVUIVERSIONCHECK'] = {
+	E.PopupDialogs["ELVUIVERSIONCHECK"] = {
 		text = L["Your ElvUI version is out of date, please update to avoid issues!"],
 		button1 = OKAY,
 		timeout = 0,
