@@ -893,3 +893,4 @@ L["Choose the Progress Bar Texture"] = true
 L["Add Class Gradient Colors to Stats"] = true
 L["Enable for Target Castbar"] = true
 L["Enable for Arena"] = true
+L["Enable for Player Castbar"] = true
