@@ -1,4 +1,6 @@
-### 3.0.3 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.0.4 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Fixed Nameplate Buffs and Debuffs border by type not being colored when the ElvUI option was enabled\
-Fixed Minimap shadows when Rectangle Minimap was enabled in Shadow and Light or Windtools
+Added gradient to Boss frames 6, 7 and 8 for Retail\
+Added shadows to ElvUI Arena frames\
+Added gradients to ElvUI Arena frames\
+Fixed missing gradients on the character panel when using Shadow and Light's Armory mode\
