@@ -86,6 +86,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 		EltruismInspectilvls:RegisterEvent("ADDON_LOADED")
 		EltruismInspectilvls:SetScript("OnEvent", function(_,_,arg)
 			if arg == "Blizzard_InspectUI" then
+				EltruismInspectilvls:UnregisterAllEvents()
 				hooksecurefunc("InspectPaperDollItemSlotButton_Update", function(button)
 					if E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
 						UpdateItemSlotButton(button, "target")

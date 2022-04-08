@@ -11,6 +11,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 			EltruismExpandedTalents:RegisterEvent("PLAYER_ENTERING_WORLD")
 			EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
 				if arg == "Blizzard_TalentUI" or IsAddOnLoaded("Blizzard_TalentUI") then
+					EltruismExpandedTalents:UnregisterAllEvents()
 					--hide the scroll
 					if _G.PlayerTalentFrameScrollFrameScrollBar then
 						_G.PlayerTalentFrameScrollFrameScrollBar:Hide()

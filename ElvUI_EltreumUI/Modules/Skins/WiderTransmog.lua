@@ -7,6 +7,7 @@ EltruismWiderTransmog:RegisterEvent("ADDON_LOADED")
 EltruismWiderTransmog:SetScript("OnEvent", function(_, _, arg)
 	--print("widetransmog spam")
 	if (arg == "Blizzard_Collections") then
+		EltruismWiderTransmog:UnregisterAllEvents()
 		WardrobeTransmogFrame:HookScript("OnShow", function()
 			if E.db.ElvUI_EltreumUI.skins.widertransmog then
 				--whole window

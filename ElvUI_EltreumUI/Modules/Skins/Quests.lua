@@ -463,6 +463,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 		WideTradeSkill:RegisterEvent("ADDON_LOADED")
 		WideTradeSkill:SetScript("OnEvent", function(_, _, arg)
 			if (arg == "Blizzard_TradeSkillUI") then
+				WideTradeSkill:UnregisterAllEvents()
 				TradeSkillFrame:HookScript("OnShow", function()
 					if not TradeSkillFrame.backdrop.shadow then
 						TradeSkillFrame.backdrop:CreateShadow()
@@ -582,6 +583,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 			WideTradeSkillEnchant:RegisterEvent("ADDON_LOADED")
 			WideTradeSkillEnchant:SetScript("OnEvent", function(_, _, arg)
 				if (arg == "Blizzard_CraftUI") then
+					WideTradeSkillEnchant:UnregisterAllEvents()
 					CraftFrame:HookScript("OnShow", function()
 						if not CraftFrame.backdrop.shadow then
 							CraftFrame.backdrop:CreateShadow()

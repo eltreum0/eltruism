@@ -130,6 +130,7 @@ function ElvUI_EltreumUI:EltruismHideTalkingHead()
 					hooksecurefunc('TalkingHeadFrame_PlayCurrent', function()
 						_G.TalkingHeadFrame:Hide()
 					end)
+					EltruismHideTalkingHead:UnregisterAllEvents()
 				end
 			end
 			if event == 'ADDON_LOADED' then
@@ -137,6 +138,7 @@ function ElvUI_EltreumUI:EltruismHideTalkingHead()
 					hooksecurefunc('TalkingHeadFrame_PlayCurrent', function()
 						_G.TalkingHeadFrame:Hide()
 					end)
+					EltruismHideTalkingHead:UnregisterAllEvents()
 				end
 			end
 		end)
