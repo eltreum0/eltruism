@@ -3334,7 +3334,7 @@ hooksecurefunc(UF, 'PostUpdateHealth', ElvUI_EltreumUI.ChangeAssistUnitframe)
 hooksecurefunc(UF, 'Update_AssistFrames', ElvUI_EltreumUI.ChangeAssistUnitframe)
 
 --arena
-hooksecurefunc(UF, 'Update_ArenaFrames', ElvUI_EltreumUI.ChangeGroupUnitframe)
-hooksecurefunc(UF, 'Construct_ArenaFrames', ElvUI_EltreumUI.ChangeGroupUnitframe)
-hooksecurefunc(UF, 'PostUpdateArenaPreparation', ElvUI_EltreumUI.ChangeGroupUnitframe)
-hooksecurefunc(UF, 'PostUpdateArenaFrame', ElvUI_EltreumUI.ChangeGroupUnitframe)
+--hooksecurefunc(UF, 'Update_ArenaFrames', ElvUI_EltreumUI.ChangeGroupUnitframe)
+--hooksecurefunc(UF, 'Construct_ArenaFrames', ElvUI_EltreumUI.ChangeGroupUnitframe)
+--hooksecurefunc(UF, 'PostUpdateArenaPreparation', ElvUI_EltreumUI.ChangeGroupUnitframe)
+--hooksecurefunc(UF, 'PostUpdateArenaFrame', ElvUI_EltreumUI.ChangeGroupUnitframe)
