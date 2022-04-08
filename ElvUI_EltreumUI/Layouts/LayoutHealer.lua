@@ -569,11 +569,11 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["tank"]["targetsGroup"]["height"] = 30
 		E.db["unitframe"]["units"]["tank"]["targetsGroup"]["xOffset"] = -3
 		E.db["unitframe"]["units"]["boss"]["castbar"]["overlayOnFrame"] = "InfoPanel"
+		E.db["unitframe"]["units"]["boss"]["castbar"]["customColor"]["enable"] = true
 		E.db["unitframe"]["units"]["boss"]["height"] = 45
 		E.db["unitframe"]["units"]["boss"]["spacing"] = 10
 		E.db["unitframe"]["units"]["boss"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 		E.db["unitframe"]["units"]["boss"]["colorOverride"] = "FORCE_OFF"
-		E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["boss"]["fader"]["enable"] = false
 		E.db["unitframe"]["units"]["boss"]["fader"]["range"] = false
 		E.db["unitframe"]["units"]["boss"]["portrait"]["enable"] = true
@@ -592,7 +592,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["boss"]["buffs"]["perrow"] = 7
 		E.db["unitframe"]["units"]["boss"]["buffs"]["sizeOverride"] = 30
 		E.db["unitframe"]["units"]["boss"]["buffs"]["xOffset"] = -1
-		E.db["unitframe"]["units"]["boss"]["buffs"]["yOffset"] = 3
+		E.db["unitframe"]["units"]["boss"]["buffs"]["yOffset"] = 5
+		E.db["unitframe"]["units"]["boss"]["buffs"]["spacing"] = 2
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["countXOffset"] = 2
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["countYOffset"] = -3
@@ -603,7 +604,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["perrow"] = 7
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["sizeOverride"] = 30
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["xOffset"] = -3
-		E.db["unitframe"]["units"]["boss"]["debuffs"]["yOffset"] = -14
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["yOffset"] = -16
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["spacing"] = 2
 		E.db["unitframe"]["units"]["focus"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["focus"]["healPrediction"]["absorbStyle"] = "REVERSED"
 		E.db["unitframe"]["units"]["focus"]["CombatIcon"]["xOffset"] = -87

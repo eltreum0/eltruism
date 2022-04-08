@@ -637,7 +637,8 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["boss"]["buffs"]["perrow"] = 7
 		E.db["unitframe"]["units"]["boss"]["buffs"]["sizeOverride"] = 30
 		E.db["unitframe"]["units"]["boss"]["buffs"]["xOffset"] = -1
-		E.db["unitframe"]["units"]["boss"]["buffs"]["yOffset"] = 3
+		E.db["unitframe"]["units"]["boss"]["buffs"]["yOffset"] = 5
+		E.db["unitframe"]["units"]["boss"]["buffs"]["spacing"] = 2
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["countXOffset"] = 2
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["countYOffset"] = -3
@@ -648,8 +649,10 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["perrow"] = 7
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["sizeOverride"] = 30
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["xOffset"] = -3
-		E.db["unitframe"]["units"]["boss"]["debuffs"]["yOffset"] = -14
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["yOffset"] = -16
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["spacing"] = 2
 		E.db["unitframe"]["units"]["boss"]["castbar"]["overlayOnFrame"] = "InfoPanel"
+		E.db["unitframe"]["units"]["boss"]["castbar"]["customColor"]["enable"] = true
 		E.db["unitframe"]["units"]["boss"]["colorOverride"] = "FORCE_OFF"
 		E.db["unitframe"]["units"]["boss"]["fader"]["enable"] = false
 		E.db["unitframe"]["units"]["boss"]["fader"]["minAlpha"] = 0.3
