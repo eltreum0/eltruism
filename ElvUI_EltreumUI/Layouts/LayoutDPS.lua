@@ -958,9 +958,11 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["player"]["power"]["attachTextTo"] = "Power"
 		E.db["unitframe"]["units"]["player"]["power"]["height"] = 15
 		E.db["unitframe"]["units"]["player"]["power"]["powerPrediction"] = true
-		E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["frameLevel"] = 128
-		E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["frameStrata"] = "HIGH"
-		E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomLevel"] = true
+		--E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["frameLevel"] = 128
+		--E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["frameStrata"] = "HIGH"
+		--E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomLevel"] = true
+		E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomLevel"] = false
+		E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomStrata"] = false
 		E.db["unitframe"]["units"]["player"]["power"]["text_format"] = ""
 		E.db["unitframe"]["units"]["player"]["power"]["width"] = "spaced"
 		E.db["unitframe"]["units"]["player"]["power"]["xOffset"] = 0

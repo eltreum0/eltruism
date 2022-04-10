@@ -875,6 +875,11 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		--E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] = true
 		E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] = false
 		E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 295
+		--E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["frameLevel"] = 128
+		--E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["frameStrata"] = "HIGH"
+		--E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomLevel"] = true
+		E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomLevel"] = false
+		E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomStrata"] = false
 		E.db["unitframe"]["units"]["player"]["pvp"]["position"] = "CENTER"
 		E.db["unitframe"]["units"]["player"]["pvp"]["text_format"] = ""
 		E.db["unitframe"]["units"]["player"]["raidicon"]["attachTo"] = "CENTER"
