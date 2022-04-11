@@ -1,8 +1,17 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
--- Set version & reload on "Skip" and "Finished"
+-- Set version & reload on "Finished"
 local function InstallComplete()
 	E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
+	ReloadUI()
+end
+
+-- Set version & reload on "Skip"
+local function SkipInstallComplete()
+	E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
+	E.private.ElvUI_EltreumUI.isInstalled.sle = true
+	E.private.ElvUI_EltreumUI.isInstalled.windtools = true
+	E.private.ElvUI_EltreumUI.isInstalled.projectazilroka = true
 	ReloadUI()
 end
 
@@ -18,7 +27,7 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Desc2:SetText(L["Please read the instructions to avoid issues"])
 			PluginInstallFrame.Option1:Enable()
 			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript("OnClick", InstallComplete)
+			PluginInstallFrame.Option1:SetScript("OnClick", SkipInstallComplete)
 			PluginInstallFrame.Option1:SetText(L["Skip Install"])
 		end,
 		[2] = function()
