@@ -150,17 +150,23 @@ function ElvUI_EltreumUI:SkinQuests()
 							return
 						end
 						if block.HeaderText then --quest title
-							block.HeaderText:SetFont(E.LSM:Fetch('font', E.db.general.font), 13, E.db.general.fontStyle)
+							if not IsAddOnLoaded("ElvUI_SLE") then
+								block.HeaderText:SetFont(E.LSM:Fetch('font', E.db.general.font), 13, E.db.general.fontStyle)
+							end
 							block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 							block.HeaderText:SetWordWrap(true)
 						end
 						if block.currentLine then --quest text
 							if block.currentLine.objectiveKey == 0 then --also quest title
-								block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, E.db.general.fontStyle)
+								if not IsAddOnLoaded("ElvUI_SLE") then
+									block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, E.db.general.fontStyle)
+								end
 								block.currentLine.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 								block.currentLine.Text:SetWordWrap(true)
 							else --step/description of the quest
-								block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, E.db.general.fontStyle)
+								if not IsAddOnLoaded("ElvUI_SLE") then
+									block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, E.db.general.fontStyle)
+								end
 								block.currentLine.Text:SetTextColor(mult, mult, mult)
 								block.currentLine.Text:SetWordWrap(true)
 							end
@@ -176,7 +182,9 @@ function ElvUI_EltreumUI:SkinQuests()
 					for i = 1, #modules do
 						local module = modules[i]
 						if module and module.Header and module.Header.Text then --the big type of quest
-							module.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*1.5, E.db.general.fontStyle)
+							if not IsAddOnLoaded("ElvUI_SLE") then
+								module.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*1.5, E.db.general.fontStyle)
+							end
 							module.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 							module.Header.Text:SetShadowColor(0, 0, 0, 0.8)
 							module.Header.Text:SetShadowOffset(2, -1)
@@ -211,7 +219,9 @@ function ElvUI_EltreumUI:SkinQuests()
 						local frames = {_G.ScenarioObjectiveBlock:GetChildren()}
 						for _, frame in pairs(frames) do
 							if frame.Text then
-								frame.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, E.db.general.fontStyle) --this is the objective like boss 1/1
+								if not IsAddOnLoaded("ElvUI_SLE") then
+									frame.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, E.db.general.fontStyle) --this is the objective like boss 1/1
+								end
 								frame.Text:SetTextColor(1, 1, 1) --dungeon obj text
 								frame.Text:SetWordWrap(true)
 							end
@@ -223,7 +233,9 @@ function ElvUI_EltreumUI:SkinQuests()
 					local frames = {_G.ScenarioObjectiveBlock:GetChildren()}
 					for _, frame in pairs(frames) do
 						if frame.Text then
-							frame.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, E.db.general.fontStyle)
+							if not IsAddOnLoaded("ElvUI_SLE") then
+								frame.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), 14, E.db.general.fontStyle)
+							end
 							frame.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 							frame.Text:SetWordWrap(true)
 						end
@@ -250,7 +262,9 @@ function ElvUI_EltreumUI:SkinQuests()
 					--dungeon/raid/scenario name text
 					if _G.ScenarioStageBlock.Stage then
 						_G.ScenarioStageBlock.Stage:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
-						_G.ScenarioStageBlock.Stage:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
+						if not IsAddOnLoaded("ElvUI_SLE") then
+							_G.ScenarioStageBlock.Stage:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
+						end
 						_G.ScenarioStageBlock.Stage:SetShadowColor(0, 0, 0, 0.8)
 						_G.ScenarioStageBlock.Stage:SetShadowOffset(2, -1)
 					end
@@ -365,7 +379,9 @@ function ElvUI_EltreumUI:SkinQuests()
 								-- Set title
 								watchText = _G["QuestWatchLine"..watchTextIndex]
 								watchText:SetText(GetQuestLogTitle(questIndex))
-								watchText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+								if not IsAddOnLoaded("ElvUI_SLE") then
+									watchText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+								end
 								--watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
 								tempWidth = watchText:GetWidth()
@@ -392,7 +408,9 @@ function ElvUI_EltreumUI:SkinQuests()
 									watchText = _G["QuestWatchLine"..watchTextIndex]
 									-- Set Objective text
 									watchText:SetText(" - "..text)
-									watchText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+									if not IsAddOnLoaded("ElvUI_SLE") then
+										watchText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+									end
 									--watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 									-- Color the objectives
 									if ( finished ) then
