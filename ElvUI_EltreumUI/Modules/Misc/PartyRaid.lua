@@ -80,6 +80,7 @@ function ElvUI_EltreumUI:BattleRes()
 	if E.Retail and E.db.ElvUI_EltreumUI.otherstuff.bres then
 		bresframe:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 342, -28)
 		bresframe:SetParent(UIParent)
+		--bresframe:RegisterEvent("PLAYER_REGEN_DISABLED")
 		bresframe:SetSize(97, 30)
 		S:HandleFrame(bresframe)
 		E:CreateMover(bresframe, "MoverEltruismBRES", "EltruismBattleRes", nil, nil, nil, "ALL,PARTY,RAID")

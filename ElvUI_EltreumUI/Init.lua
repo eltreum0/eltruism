@@ -175,6 +175,7 @@ function ElvUI_EltreumUI:ENCOUNTER_START(event)
 	ElvUI_EltreumUI:QuestEncounter()
 	ElvUI_EltreumUI:CombatMusic(event2)
 	ElvUI_EltreumUI:BossMusic(event)
+	ElvUI_EltreumUI:BattleRes()
 end
 
 function ElvUI_EltreumUI:ENCOUNTER_END(event)
@@ -182,6 +183,7 @@ function ElvUI_EltreumUI:ENCOUNTER_END(event)
 	ElvUI_EltreumUI:QuestEncounterEnd()
 	ElvUI_EltreumUI:StopBossMusic(event)
 	ElvUI_EltreumUI:StopCombatMusic(event2)
+	ElvUI_EltreumUI:BattleRes()
 end
 
 function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
@@ -234,6 +236,7 @@ end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
 	ElvUI_EltreumUI:FriendlyNameplates()
+	ElvUI_EltreumUI:BattleRes()
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
