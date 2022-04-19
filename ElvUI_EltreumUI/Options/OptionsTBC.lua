@@ -356,8 +356,18 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.cursor.cooldown end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.cursor.cooldown = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},
-							fixlag = {
+							enablepetcd = {
 								order = 4,
+								type = 'toggle',
+								name = L["Enable pet cooldown tracking"],
+								desc = L["Add a cooldown icon when trying to use skills that are on cooldown, and a cooldown flash when they are ready"],
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.cursor.petcooldown end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursor.petcooldown = value E:StaticPopup_Show('PRIVATE_RL') end,
+							},
+							fixlag = {
+								order = 5,
 								type = 'select',
 								name = L["Attempt to fix Cursor Lag"],
 								desc = L["Software cursor is how the cursor was before Battle for Azeroth, Hardware cursor is faster but will cause problems with addons that attach to it"],

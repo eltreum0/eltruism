@@ -271,7 +271,7 @@ local function findPetActionIndexForSpell(spell)
 	for i = 1, NUM_PET_ACTION_SLOTS do
 		local name, _, _, isToken = GetPetActionInfo(i)
 		if isToken then name = _G[name] end
-		if name == spell then
+		if name == spell and E.db.ElvUI_EltreumUI.cursor.petcooldown then
 			return i
 		end
 	end
@@ -281,7 +281,7 @@ function ElvUI_EltreumUI:checkSpellCooldown(spell)
 	--print("checkSpellCooldown spam "..math.random(1,99))
 	if not spell then return end
 	local name, _, texture = GetSpellInfo(spell)
-	if not name then
+	if E.db.ElvUI_EltreumUI.cursor.petcooldown and not name then
 		 return ElvUI_EltreumUI:checkPetActionCooldown(findPetActionIndexForSpell(spell))
 	end
 	local baseCooldown = GetSpellBaseCooldown(spell)

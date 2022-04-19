@@ -103,6 +103,7 @@ P.ElvUI_EltreumUI = {
 		ring = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga',
 		size = '-1',
 		cooldown = false,
+		petcooldown = false,
 		fixlag = 1,
 		combat = true,
 	},
