@@ -908,3 +908,4 @@ L["Add Class Gradient Colors to Stats"] = "Fügt eine Verlaufsfarbe in Klassenfa
 L["Enable for Target Castbar"] = "Aktiviere für Ziel Zauberleiste"
 L["Enable for Arena"] = "Aktiviere für Arena"
 L["Enable for Player Castbar"] = "Aktiviere für Spieler Zauberleiste"
+L["Enable pet cooldown tracking"] = true
