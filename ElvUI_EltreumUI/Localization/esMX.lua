@@ -513,7 +513,6 @@ L["Select how auras will be displayed for Boss"] = "Seleccionar cómo se mostrar
 L["Select how auras will be displayed for Nameplates"] = "Seleccionar cómo se mostrarán las auras para las placas de identificación"
 L["Enable cursor only during combat"] = "Activar el cursor sólo durante el combate"
 L["Cursor will only show during combat"] = "El cursor sólo se mostrará durante el combate"
-L["Enable cooldown tracking"] = "Activar el seguimiento del enfriamiento"
 L["Add a cooldown icon when trying to use skills that are on cooldown, and a cooldown flash when they are ready"] = "Añadir un icono de enfriamiento cuando se intenta usar habilidades que están en enfriamiento, y un flash de enfriamiento cuando están listas"
 L["Attempt to fix Cursor Lag"] = "Intentar arreglar el retraso del cursor"
 L["Software cursor is how the cursor was before Battle for Azeroth, Hardware cursor is faster but will cause problems with addons that attach to it"] = "El cursor de software es como el cursor era antes de Battle for Azeroth, el cursor de hardware es más rápido pero causará problemas con los addons que se conectan a él"

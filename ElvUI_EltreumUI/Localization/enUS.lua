@@ -522,7 +522,6 @@ L["Select how auras will be displayed for Boss"] = true
 L["Select how auras will be displayed for Nameplates"] = true
 L["Enable cursor only during combat"] = true
 L["Cursor will only show during combat"] = true
-L["Enable cooldown tracking"] = true
 L["Add a cooldown icon when trying to use skills that are on cooldown, and a cooldown flash when they are ready"] = true
 L["Attempt to fix Cursor Lag"] = true
 L["Software cursor is how the cursor was before Battle for Azeroth, Hardware cursor is faster but will cause problems with addons that attach to it"] = true
