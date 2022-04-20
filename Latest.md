@@ -10,5 +10,7 @@ Updated player unitframe power strata in order for its shadow to match target uf
 Updated quest Skin while Shadow and Light is loaded\
 Updated the character panel skin lines, making them align a bit better in other locales\
 Updated the skip install button to also skip plugin profiles message\
+Updated the Shaman and Hunter stat gradients on the character panel skin and used these new colors as the default for custom gradients\
+Fixed an error with the character panel skin stats related to ranged stats in TBC/Classic\
 Disabled arena frames in BattlegroundEnemies profile\
 Removed Party Leader Icon Size option since ElvUI now has a scale option that fulfills the same role
