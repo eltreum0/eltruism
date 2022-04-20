@@ -590,7 +590,6 @@ P.ElvUI_EltreumUI = {
 		playerdeathgta = false,
 		playerdeathcustom = false,
 		playerdeathcustomtext = "YOU DIED",
-		leadersize = 12,
 		mpluskeys = false,
 		bres = false,
 		--floatingrep = false,

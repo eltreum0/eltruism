@@ -783,7 +783,6 @@ L["Will link your key and covenant in guild or party chat"] = "Sendet dein Schl�
 L["Automatically screenshot when you loot an item from the wishlist"] = "Automatische Sreenshots, wenn ein Gegenstand von der Wunschliste aufgesammelt wird"
 L["Clear Details! Damage Meter tables to free up memory"] = "Lösche Details! Damage Meter Daten, um Speicherplatz freizugeben"
 L["Clear Details Tables"] = "Lösche Details! Daten"
-L["Set the Party Leader Icon Size"] = "Gruppenleiter Symbolgröße ändern"
 L["Collapse Quests during any combat event"] = "Verstecken der Questverfolgung in sämtlichen Kämpfen"
 L["Automatically Hide NPC Names"] = "Automatisches Verstecken der NPC Namen"
 L["Hide NPC Names when they are too far away to have Nameplates"] = "Verstecken der NPC Namen, wenn sie zu weit entfernt sind für Namensplaketten"
