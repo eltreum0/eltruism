@@ -127,9 +127,9 @@ ___
 > The first time you load into the game with Eltruism enabled the install prompt that will guide you will appear. It is recommended to backup your settings (WTF folder inside World of Warcraft_retail_) regularly, the installation will warn you of any options that might overwrite your settings
 ___
 ### Pictures
-[![](https://i.imgur.com/7QAQhFm.jpg)](https://i.imgur.com/xEG4b4D.png)
+[![](https://i.imgur.com/7QAQhFm.jpg)](https://i.imgur.com/7QAQhFm.jpg)
 \
-[![](https://i.imgur.com/bwpn8jk.jpg)](https://i.imgur.com/5gXTAox.png)
+[![](https://i.imgur.com/bwpn8jk.jpg)](https://i.imgur.com/bwpn8jk.jpg)
 ___
 ### Credits
 > This plugin was based in **[LuckyoneUI](httpswww.tukui.orgaddons.php?id=154)** and credits go to him for allowing its use
