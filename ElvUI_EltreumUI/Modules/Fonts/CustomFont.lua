@@ -199,6 +199,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 		E.db["datatexts"]["font"] = fontvalue
 		E.db["tooltip"]["font"] = fontvalue
 		E.db["tooltip"]["healthBar"]["font"] = fontvalue
+		E.db["tooltip"]["headerFont"] = fontvalue
 
 		-- Custom Text: Party
 		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}

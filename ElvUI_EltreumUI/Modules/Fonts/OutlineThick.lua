@@ -58,6 +58,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineThick()
 	E.db["databars"]["threat"]["fontOutline"] = "THICKOUTLINE"
 	E.db["datatexts"]["fontOutline"] = "THICKOUTLINE"
 	E.db["tooltip"]["healthBar"]["fontOutline"] = "THICKOUTLINE"
+	E.db["tooltip"]["headerFontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"]["fontOutline"] = "THICKOUTLINE"

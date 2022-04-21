@@ -307,6 +307,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["tooltip"]["modifierID"] = "SHIFT"
 		E.db["tooltip"]["showElvUIUsers"] = true
 		E.db["tooltip"]["visibility"]["combatOverride"] = "CTRL"
+		E.db["tooltip"]["headerFont"] = "Kimberley"
+		E.db["tooltip"]["headerFontOutline"] = "OUTLINE"
+		E.db["tooltip"]["headerFontSize"] = 12
 
 		-- ActionBars general
 		E.db["actionbar"]["bar1"]["inheritGlobalFade"] = true

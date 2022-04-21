@@ -194,6 +194,7 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 		E.db["datatexts"]["font"] = "GothamNarrow Black"
 		E.db["tooltip"]["font"] = "GothamNarrow Black"
 		E.db["tooltip"]["healthBar"]["font"] = "GothamNarrow Black"
+		E.db["tooltip"]["headerFont"] = "GothamNarrow Black"
 
 		-- Custom Text: Party
 		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}

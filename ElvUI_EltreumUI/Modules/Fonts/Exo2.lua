@@ -196,6 +196,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 		E.db["datatexts"]["font"] = "Exo2 Extra Bold"
 		E.db["tooltip"]["font"] = "Exo2 Extra Bold"
 		E.db["tooltip"]["healthBar"]["font"] = "Exo2 Extra Bold"
+		E.db["tooltip"]["headerFont"] = "Exo2 Extra Bold"
 
 		-- Custom Text: Party
 		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}

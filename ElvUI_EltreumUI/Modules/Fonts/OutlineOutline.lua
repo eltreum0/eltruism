@@ -58,6 +58,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline()
 	E.db["databars"]["threat"]["fontOutline"] = "OUTLINE"
 	E.db["datatexts"]["fontOutline"] = "OUTLINE"
 	E.db["tooltip"]["healthBar"]["fontOutline"] = "OUTLINE"
+	E.db["tooltip"]["headerFontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"]["fontOutline"] = "OUTLINE"

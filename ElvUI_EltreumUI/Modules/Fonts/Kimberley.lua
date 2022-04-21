@@ -194,6 +194,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 	E.db["datatexts"]["font"] = "Kimberley"
 	E.db["tooltip"]["font"] = "Kimberley"
 	E.db["tooltip"]["healthBar"]["font"] = "Kimberley"
+	E.db["tooltip"]["headerFont"] = "Kimberley"
 
 	-- Custom Text: Party
 	E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}

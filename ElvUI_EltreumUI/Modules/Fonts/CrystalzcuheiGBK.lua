@@ -196,6 +196,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 		E.db["datatexts"]["font"] = "AR CrystalzcuheiGBK Demibold"
 		E.db["tooltip"]["font"] = "AR CrystalzcuheiGBK Demibold"
 		E.db["tooltip"]["healthBar"]["font"] = "AR CrystalzcuheiGBK Demibold"
+		E.db["tooltip"]["headerFont"] = "AR CrystalzcuheiGBK Demibold"
 
 		-- Custom Text: Party
 		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}

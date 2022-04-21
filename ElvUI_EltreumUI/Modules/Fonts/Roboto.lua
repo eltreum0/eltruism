@@ -194,7 +194,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 		E.db["datatexts"]["font"] = "Roboto"
 		E.db["tooltip"]["font"] = "Roboto"
 		E.db["tooltip"]["healthBar"]["font"] = "Roboto"
-
+		E.db["tooltip"]["headerFont"] = "Roboto"
 
 		-- Custom Text: Party
 		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}

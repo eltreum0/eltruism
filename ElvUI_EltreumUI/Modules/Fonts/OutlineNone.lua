@@ -58,6 +58,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone()
 	E.db["databars"]["threat"]["fontOutline"] = "NONE"
 	E.db["datatexts"]["fontOutline"] = "NONE"
 	E.db["tooltip"]["healthBar"]["fontOutline"] = "NONE"
+	E.db["tooltip"]["headerFontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"]["fontOutline"] = "NONE"
