@@ -90,7 +90,7 @@ function ElvUI_EltreumUI:Configtable()
 	E.Options.args.ElvUI_EltreumUI = {
 		order = 6,
 		type = 'group',
-		name = ElvUI_EltreumUI.Name,
+		name = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:0:0:0:0|t" .. ElvUI_EltreumUI.Name,
 		args = {
 			logo = {
 				type = 'description',
