@@ -15,6 +15,9 @@ LSM:Register('font', "Kimberley", [[Interface\AddOns\ElvUI_EltreumUI\Media\Fonts
 LSM:Register("font", "Roboto", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Roboto-Bold.ttf]])
 LSM:Register("font", "Pepsi-Cyr-Lat", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Pepsi-Cyr-Lat.ttf]])
 
+-- Sounds
+LSM:Register("sound", "Rules of Nature", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\Rules-of-Nature.ogg]])
+
 --extra media that has to be loaded anyway
 function ElvUI_EltreumUI:ExtraMedia()
 	-- Statusbar
