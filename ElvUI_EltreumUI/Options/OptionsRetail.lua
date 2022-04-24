@@ -1324,7 +1324,7 @@ function ElvUI_EltreumUI:Configtable()
 							windtools = {
 								order = 7,
 								type = 'execute',
-								name = E:TextGradient(L["WindTools"], 0.000, 0.592, 0.902, 0.000, 0.659, 1.000),
+								name = "|cff45aaf2W|r|cff4795efi|r|cff4a80ecn|r|cff498aedd|r|cff469ff0T|r|cff60b1e8o|r|cff98c0d5o|r|cffc1ccc6l|r|cffc1ccc6s|r",
 								desc = L["Reset to Eltruism defaults."],
 								confirm = true,
 								width = 'double',
