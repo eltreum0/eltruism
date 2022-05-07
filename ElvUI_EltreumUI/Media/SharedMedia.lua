@@ -14,6 +14,8 @@ LSM:Register("font", "GothamNarrow Black", [[Interface\Addons\ElvUI_EltreumUI\Me
 LSM:Register('font', "Kimberley", [[Interface\AddOns\ElvUI_EltreumUI\Media\Fonts\Kimberley.ttf]])
 LSM:Register("font", "Roboto", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Roboto-Bold.ttf]])
 LSM:Register("font", "Pepsi-Cyr-Lat", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Pepsi-Cyr-Lat.ttf]])
+LSM:Register("font", "Noto Sans", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\NotoSans-Regular.ttf]])
+LSM:Register("font", "Inter", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Inter-SemiBold.ttf]])
 
 -- Sounds
 LSM:Register("sound", "Rules of Nature", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\Rules-of-Nature.ogg]])
@@ -72,9 +74,6 @@ function ElvUI_EltreumUI:ExtraMediaFonts()
 	LSM:Register("font", "Neuropol", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\neuropolxrg.ttf]])
 	LSM:Register("font", "OptimusPrinceps", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\OptimusPrinceps.ttf]])
 	LSM:Register("font", "Pricedown", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\pricedown.ttf]])
-
-	LSM:Register("font", "Noto Sans", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\NotoSans-Regular.ttf]])
-	LSM:Register("font", "Inter", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Inter-SemiBold.ttf]])
 end
 
 function ElvUI_EltreumUI:ExtraMediaSounds()
