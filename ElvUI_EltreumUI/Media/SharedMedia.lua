@@ -74,7 +74,7 @@ function ElvUI_EltreumUI:ExtraMediaFonts()
 	LSM:Register("font", "Pricedown", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\pricedown.ttf]])
 
 	LSM:Register("font", "Noto Sans", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\NotoSans-Regular.ttf]])
-	LSM:Register("font", "Inter", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Inter-Regular.ttf]])
+	LSM:Register("font", "Inter", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Inter-SemiBold.ttf]])
 end
 
 function ElvUI_EltreumUI:ExtraMediaSounds()
