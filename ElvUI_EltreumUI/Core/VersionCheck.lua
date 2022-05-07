@@ -28,7 +28,7 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 		whileDead = 1,
 		hideOnEscape = false,
 	}
-	if E.version < (E.Retail and 12.77 or E.TBC and 2.44 or E.Classic and 1.69) then
+	if E.version < (E.Retail and 12.78 or E.TBC and 2.45 or E.Classic and 1.70) then
 		E:StaticPopup_Show('ELVUIVERSIONCHECK')
 		ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
 	end
