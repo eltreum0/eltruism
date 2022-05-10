@@ -393,7 +393,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		--E.db["sle"]["shadows"]["unitframes"]["arena"]["health"] = true
 		E.db["sle"]["shadows"]["unitframes"]["arena"]["health"] = false
 		--E.db["sle"]["shadows"]["unitframes"]["arena"]["power"] = true
-		E.db["sle"]["shadows"]["unitframes"]["arena"]["power"] = true
+		E.db["sle"]["shadows"]["unitframes"]["arena"]["power"] = false
 		--E.db["sle"]["shadows"]["unitframes"]["boss"]["health"] = true
 		E.db["sle"]["shadows"]["unitframes"]["boss"]["health"] = false
 		--E.db["sle"]["shadows"]["unitframes"]["boss"]["power"] = true
@@ -431,6 +431,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["skins"]["merchant"]["list"]["subFont"] = "Kimberley"
 		E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "THICKOUTLINE"
 		E.db["sle"]["skins"]["merchant"]["list"]["subSize"] = 8
+		E.db["sle"]["skins"]["objectiveTracker"]["underline"] = false
 		E.db["sle"]["skins"]["objectiveTracker"]["classHeader"] = true
 		E.db["sle"]["skins"]["objectiveTracker"]["colorHeader"]["b"] = 1
 		E.db["sle"]["skins"]["objectiveTracker"]["colorHeader"]["g"] = 0

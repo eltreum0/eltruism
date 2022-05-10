@@ -21,6 +21,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["misc"]["moveBlizzardFrames"] = false
 		E.private["WT"]["misc"]["moveElvUIBags"] = false
 		E.private["WT"]["misc"]["moveSpeed"] = true
+		E.private["WT"]["misc"]["moveFrames"]["enable"] = false
 		E.private["WT"]["misc"]["pauseToSlash"] = false
 		E.private["WT"]["quest"]["objectiveTracker"]["colorfulPercentage"] = true
 		E.private["WT"]["quest"]["objectiveTracker"]["header"]["size"] = 18
@@ -106,6 +107,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["tooltips"]["icon"] = false
 		E.private["WT"]["tooltips"]["objectiveProgress"] = false
 		E.private["WT"]["tooltips"]["progression"]["enable"] = false
+		E.private["WT"]["unitFrames"]["roleIcon"]["enable"] = false
 		E.private["WT"]["unitFrames"]["roleIcon"]["roleIconStyle"] = "DEFAULT"
 
 		E.db["WT"]["announcement"]["enable"] = false --disable
@@ -136,6 +138,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["combat"]["combatAlert"]["enterText"] = "COMBAT START"
 		E.db["WT"]["combat"]["combatAlert"]["leaveText"] = "COMBAT ENDS"
 		E.db["WT"]["combat"]["combatAlert"]["text"] = false
+		E.db["WT"]["combat"]["raidMarkers"]["enable"] = false
 		E.db["WT"]["combat"]["raidMarkers"]["backdropSpacing"] = 1
 		E.db["WT"]["combat"]["raidMarkers"]["buttonSize"] = 24
 		E.db["WT"]["combat"]["raidMarkers"]["countDownTime"] = 10
