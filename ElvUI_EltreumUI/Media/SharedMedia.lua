@@ -17,9 +17,6 @@ LSM:Register("font", "Pepsi-Cyr-Lat", [[Interface\Addons\ElvUI_EltreumUI\Media\F
 LSM:Register("font", "Noto Sans", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\NotoSans-Regular.ttf]])
 LSM:Register("font", "Inter", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Inter-SemiBold.ttf]])
 
--- Sounds
-LSM:Register("sound", "Rules of Nature", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\Rules-of-Nature.ogg]])
-
 --extra media that has to be loaded anyway
 function ElvUI_EltreumUI:ExtraMedia()
 	-- Statusbar
@@ -96,6 +93,7 @@ function ElvUI_EltreumUI:ExtraMediaSounds()
 	LSM:Register("sound", "Xera", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\xera.ogg]])
 	LSM:Register("sound", "Mission Failed", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\codmissionfailed.ogg]])
 	LSM:Register("sound", "Boomerang-1", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\boomerang.ogg]])
+	LSM:Register("sound", "Rules of Nature", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\Rules-of-Nature.ogg]])
 end
 
 function ElvUI_EltreumUI:ExtraMediaTextures()
