@@ -18,12 +18,14 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["misc"]["autoScreenshot"] = false
 		E.private["WT"]["misc"]["lfgList"]["enable"] = false
 		E.private["WT"]["misc"]["lfgList"]["icon"]["pack"] = "DEFAULT"
-		E.private["WT"]["misc"]["moveBlizzardFrames"] = false
-		E.private["WT"]["misc"]["moveElvUIBags"] = false
+		--E.private["WT"]["misc"]["moveBlizzardFrames"] = false
+		--E.private["WT"]["misc"]["moveElvUIBags"] = false
 		E.private["WT"]["misc"]["moveSpeed"] = true
 		E.private["WT"]["misc"]["moveFrames"]["enable"] = false
 		E.private["WT"]["misc"]["pauseToSlash"] = false
 		E.private["WT"]["quest"]["objectiveTracker"]["colorfulPercentage"] = true
+		E.private["WT"]["quest"]["objectiveTracker"]["cosmeticBar"]["color"]["mode"] = "CLASS"
+		E.private["WT"]["quest"]["objectiveTracker"]["enable"] = false
 		E.private["WT"]["quest"]["objectiveTracker"]["header"]["size"] = 18
 		E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = "THICKOUTLINE"
 		E.private["WT"]["quest"]["objectiveTracker"]["info"]["size"] = 12
