@@ -431,7 +431,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["skins"]["merchant"]["list"]["subFont"] = "Kimberley"
 		E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "THICKOUTLINE"
 		E.db["sle"]["skins"]["merchant"]["list"]["subSize"] = 8
-		E.db["sle"]["skins"]["objectiveTracker"]["underline"] = false
+		E.db["sle"]["skins"]["objectiveTracker"]["underline"] = true
 		E.db["sle"]["skins"]["objectiveTracker"]["classHeader"] = true
 		E.db["sle"]["skins"]["objectiveTracker"]["colorHeader"]["b"] = 1
 		E.db["sle"]["skins"]["objectiveTracker"]["colorHeader"]["g"] = 0
