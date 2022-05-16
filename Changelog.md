@@ -1,6 +1,10 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.0.7
+Fixed a possible error when importing Dynamic Status Icons and Capping profiles\
+Fixed an error during install due to a database change in Windtools
+___
 ### 3.0.6
 Added  tooltip header font setting due to ElvUI update\
 Added Eltruism's logo to the options list\
