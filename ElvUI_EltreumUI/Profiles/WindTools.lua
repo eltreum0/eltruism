@@ -123,7 +123,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["announcement"]["taunt"]["others"]["pet"]["enable"] = false
 		E.db["WT"]["announcement"]["taunt"]["others"]["player"]["enable"] = false
 		E.db["WT"]["announcement"]["taunt"]["player"]["pet"]["enable"] = false
-		E.db["WT"]["announcement"]["thanksForResurrection"]["enable"] = false
+		--E.db["WT"]["announcement"]["thanksForResurrection"]["enable"] = false --removed?
 		E.db["WT"]["announcement"]["threatTransfer"]["enable"] = false
 		E.db["WT"]["announcement"]["utility"]["spells"]["190336"]["text"] = "%player% casted %spell%!"
 		E.db["WT"]["announcement"]["utility"]["spells"]["195782"]["text"] = "%player% used %spell%!"
@@ -133,6 +133,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["announcement"]["utility"]["spells"]["bots"]["text"] = "%player% summons %spell%!"
 		E.db["WT"]["announcement"]["utility"]["spells"]["feasts"]["text"] = "%player% sets down a %spell%!"
 		E.db["WT"]["announcement"]["utility"]["spells"]["toys"]["text"] = "%player% uses %spell%!"
+
 		E.db["WT"]["combat"]["combatAlert"]["animation"] = false
 		E.db["WT"]["combat"]["combatAlert"]["enable"] = false
 		E.db["WT"]["combat"]["combatAlert"]["enterText"] = "COMBAT START"
@@ -145,6 +146,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["combat"]["raidMarkers"]["readyCheck"] = false
 		E.db["WT"]["combat"]["raidMarkers"]["spacing"] = 1
 		E.db["WT"]["combat"]["raidMarkers"]["visibility"] = "INPARTY"
+
 		E.db["WT"]["item"]["contacts"]["defaultPage"] = "FAVORITE"
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["anchor"] = "BOTTOMLEFT"
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["backdropSpacing"] = 1
@@ -194,9 +196,11 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["item"]["inspect"]["levelText"]["size"] = 12
 		E.db["WT"]["item"]["inspect"]["player"] = false
 		E.db["WT"]["item"]["inspect"]["statsText"]["size"] = 12
+
 		E.db["WT"]["maps"]["rectangleMinimap"]["heightPercentage"] = 0.7
 		E.db["WT"]["maps"]["whoClicked"]["addRealm"] = true
 		E.db["WT"]["maps"]["whoClicked"]["onlyOnCombat"] = false
+
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["name"] = "Kimberley"
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "THICKOUTLINE"
 		E.db["WT"]["misc"]["gameBar"]["backdropSpacing"] = 1
@@ -214,11 +218,12 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["misc"]["gameBar"]["timeAreaHeight"] = 39
 		E.db["WT"]["misc"]["gameBar"]["timeAreaWidth"] = 85
 		E.db["WT"]["misc"]["gameBar"]["visibility"] = "[petbattle][combat] hide; show"
-		E.db["WT"]["quest"]["paragonReputation"]["text"] = "PARAGON"
+
 		E.db["WT"]["quest"]["switchButtons"]["announcement"] = false
 		E.db["WT"]["quest"]["switchButtons"]["enable"] = false
 		E.db["WT"]["quest"]["switchButtons"]["turnIn"] = false
 		E.db["WT"]["quest"]["turnIn"]["followerAssignees"] = false
+
 		E.db["WT"]["skins"]["vignetting"]["enable"] = false
 		E.db["WT"]["skins"]["vignetting"]["level"] = 100
 
@@ -235,8 +240,8 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["social"]["friendList"]["infoFont"]["style"] = "THICKOUTLINE"
 		E.db["WT"]["social"]["friendList"]["nameFont"]["style"] = "THICKOUTLINE"
 		E.db["WT"]["social"]["friendList"]["textures"]["factionIcon"] = true
-
 		E.db["WT"]["social"]["smartTab"]["enable"] = false
+
 		E.db["WT"]["tooltips"]["groupInfo"]["enable"] = false
 		E.db["WT"]["tooltips"]["groupInfo"]["title"] = false
 
