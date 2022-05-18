@@ -259,8 +259,7 @@ E:AddTag('eltruism:difficulty', 'UNIT_NAME_UPDATE', function(unit)
 		if UnitIsEnemy("player", unit) == true then
 			if classification ~= "worldboss" then
 				if E.TBC or E.Classic then
-						return (eltruismdif[printdifference])
-					end
+					return (eltruismdif[printdifference])
 				else
 					return
 				end
