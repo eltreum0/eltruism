@@ -212,6 +212,7 @@ E:AddTagInfo('eltruism:raidmarker', ElvUI_EltreumUI.Name, L["Shows raid target m
 
 --Difficulty color for npcs in classic/tbc
 E:AddTag('eltruism:difficulty', 'UNIT_NAME_UPDATE', function(unit)
+
 	--obtain the levels
 	local targetlevel
 	if E.Retail then
@@ -219,16 +220,17 @@ E:AddTag('eltruism:difficulty', 'UNIT_NAME_UPDATE', function(unit)
 	else
 		targetlevel = UnitLevel(unit)
 	end
-
 	local playerlevel = UnitLevel("player")
+
 	--calculate the difference
-	local difference = (targetlevel - playerlevel)
-	local printdifference
-	local classification = UnitClassification(unit)
+	local classification = UnitClassification(unit) -- "worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
 	if targetlevel < 1 then
 		classification = "worldboss"
 	end
-	-- "worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
+
+	--obtain the difference between target and player and fix in case its out of bounds
+	local difference = (targetlevel - playerlevel)
+	local printdifference
 	if difference > 5 then
 		printdifference = "5"
 	elseif difference < -9 then
@@ -236,6 +238,7 @@ E:AddTag('eltruism:difficulty', 'UNIT_NAME_UPDATE', function(unit)
 	else
 		printdifference = tostring(difference)
 	end
+
 	--level difference table based on blizzard's
 	local eltruismdif = {
 		["-9"] = "|cFF808080",
@@ -250,10 +253,11 @@ E:AddTag('eltruism:difficulty', 'UNIT_NAME_UPDATE', function(unit)
 		["0"] = "|cFFFFFF00",
 		["1"] = "|cFFFFFF00",
 		["2"] = "|cFFFFFF00",
-		["3"] = "|cFFA50000",
-		["4"] = "|cFFFFA500",
+		["3"] = "|cFFFFA500",
+		["4"] = "|cFFA50000",
 		["5"] = "|cFFFF0000",
 	}
+
 	--make sure its not a player as to not overwrite class colors
 	if not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
 		if UnitIsEnemy("player", unit) == true then
