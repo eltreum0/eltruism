@@ -96,33 +96,36 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
-		local Minimapsizex, Minimapsizey = _G["Minimap"]:GetSize()
-		MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
-		MinimapShadow:SetParent(_G["Minimap"])
-		if not (self.minimapIsSkinned) then
-			MinimapShadow.shadow = MinimapShadow:CreateShadow(nil, true)
-			MinimapShadow:SetPoint("TOPRIGHT", _G["Minimap"] ,"TOPRIGHT", 0, 0)
-			MinimapShadow:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", 0, 0)
-			if E.db.datatexts.panels.MinimapPanel.backdrop == false then
-				MinimapShadow:SetPoint("BOTTOMLEFT", _G["Minimap"] ,"BOTTOMLEFT", 0, 0)
-			end
-			if IsAddOnLoaded("ElvUI_SLE") and E.private["sle"]["minimap"]["rectangle"] == true then --Shadow and Light Rectangle Minimap
-				MinimapShadow:SetPoint("TOPRIGHT", _G["Minimap"].backdrop ,"TOPRIGHT", 0, 0)
+
+		if E.private["general"]["minimap"]["enable"] ~= false then
+			local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
+			local Minimapsizex, Minimapsizey = _G["Minimap"]:GetSize()
+			MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
+			MinimapShadow:SetParent(_G["Minimap"])
+			if not (self.minimapIsSkinned) then
+				MinimapShadow.shadow = MinimapShadow:CreateShadow(nil, true)
+				MinimapShadow:SetPoint("TOPRIGHT", _G["Minimap"] ,"TOPRIGHT", 0, 0)
 				MinimapShadow:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", 0, 0)
 				if E.db.datatexts.panels.MinimapPanel.backdrop == false then
 					MinimapShadow:SetPoint("BOTTOMLEFT", _G["Minimap"] ,"BOTTOMLEFT", 0, 0)
 				end
-			elseif IsAddOnLoaded("ElvUI_WindTools") and E.db["WT"]["maps"]["rectangleMinimap"]["enable"] == true then --Windtools rectangle minimap
-				MinimapShadow:SetAllPoints(_G["Minimap"].backdrop)
-				if E.db.datatexts.panels.MinimapPanel.backdrop == true then
-					if _G["MinimapPanel"] and not _G["MinimapPanel"].shadow then
-						_G["MinimapPanel"]:CreateShadow()
+				if IsAddOnLoaded("ElvUI_SLE") and E.private["sle"]["minimap"]["rectangle"] == true then --Shadow and Light Rectangle Minimap
+					MinimapShadow:SetPoint("TOPRIGHT", _G["Minimap"].backdrop ,"TOPRIGHT", 0, 0)
+					MinimapShadow:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", 0, 0)
+					if E.db.datatexts.panels.MinimapPanel.backdrop == false then
+						MinimapShadow:SetPoint("BOTTOMLEFT", _G["Minimap"] ,"BOTTOMLEFT", 0, 0)
+					end
+				elseif IsAddOnLoaded("ElvUI_WindTools") and E.db["WT"]["maps"]["rectangleMinimap"]["enable"] == true then --Windtools rectangle minimap
+					MinimapShadow:SetAllPoints(_G["Minimap"].backdrop)
+					if E.db.datatexts.panels.MinimapPanel.backdrop == true then
+						if _G["MinimapPanel"] and not _G["MinimapPanel"].shadow then
+							_G["MinimapPanel"]:CreateShadow()
+						end
 					end
 				end
+				MinimapShadow:Show()
+				self.minimapIsSkinned = true
 			end
-			MinimapShadow:Show()
-			self.minimapIsSkinned = true
 		end
 
 		--tooltip hp bar, one of the worst actually
