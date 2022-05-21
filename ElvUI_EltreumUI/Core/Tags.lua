@@ -414,11 +414,28 @@ E:AddTag("name:eltruism:abbreviate20", "UNIT_NAME_UPDATE", function(unit)
 end)
 E:AddTagInfo("name:eltruism:abbreviate20", ElvUI_EltreumUI.Name, L["Abbreviates the unit name once it goes over 20 characters, made by Azilroka"])
 
+-- Line Break
 E:AddTag("eltruism:newline", "UNIT_NAME_UPDATE", function()
 	return "\n"
 end)
 E:AddTagInfo("eltruism:newline", ElvUI_EltreumUI.Name, L["Adds a line break"])
 
+--Short classification, but with a skull for boss instead of B for Nekator
+E:AddTag("eltruism:shortclassification", "UNIT_NAME_UPDATE", function(unit)
+	local c = UnitClassification(unit)
+		if(c == 'rare') then
+			return 'R'
+		elseif(c == 'rareelite') then
+			return 'R+'
+		elseif(c == 'elite') then
+			return '+'
+		elseif(c == 'worldboss') then
+			return "|TInterface\\TARGETINGFRAME\\UI-TARGETINGFRAME-SKULL.BLP:0:0:0:0|t"
+		elseif(c == 'minus') then
+			return '-'
+		end
+end)
+E:AddTagInfo("eltruism:shortclassification", ElvUI_EltreumUI.Name, L["Displays the unit's classification in short form (e.g. '+' for ELITE and 'R' for RARE and a Skull for Boss)"])
 
 
 --future tag idea: group number only for first member of group
