@@ -816,7 +816,6 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('UberTooltips', 1)
 	SetCVar('alwaysShowActionBars', 1)
 	SetCVar('lockActionBars', 1)
-	SetCVar('spamFilter', 0)
 	SetCVar('Sound_EnableErrorSpeech', 1)
 	SetCVar('alwaysCompareItems', 0) --dont always compare
 	SetCVar('allowCompareWithToggle', 1) --compare using shift
