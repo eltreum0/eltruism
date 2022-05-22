@@ -136,28 +136,26 @@ EltreumWAAnchor:SetPoint("CENTER", UIParent, "CENTER", 0, -380)
 local EltreumWAAnchor2 = CreateFrame("Frame", "EltruismWA2", UIParent)
 EltreumWAAnchor2:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 320)
 local EltruismWAConsumablesAnchor = CreateFrame("Frame", "EltruismConsumablesWA", UIParent)
+--postion the anchor right below the player unitframe
+EltruismWAConsumablesAnchor:SetPoint("LEFT", _G["ElvUF_Player"], 0, -75)
 function ElvUI_EltreumUI:Anchors()
 	if E.private.unitframe.enable then
 		--Anchor for general weakauras, like those that replace actionbars
 		EltreumWAAnchor:SetParent("ElvUF_Player")
 		EltreumWAAnchor:SetFrameStrata("BACKGROUND")
 		--position the anchor around the place where the action bars would be
-		--EltreumWAAnchor:Point("CENTER", E.UIParent, "CENTER", 0, -380)
 		EltreumWAAnchor:Size(250, 70)
 		--E:CreateMover(parent, name, textString, overlay, snapoffset, postdrag, types, shouldDisable, configString, ignoreSizeChanged)
 		E:CreateMover(EltreumWAAnchor, "MoverEltruismWA", "EltruismWA", nil, nil, nil, "ALL,SOLO")
 		--do it again
 		EltreumWAAnchor2:SetParent("ElvUF_Player")
 		EltreumWAAnchor2:SetFrameStrata("BACKGROUND")
-		--EltreumWAAnchor2:Point("BOTTOM", E.UIParent, "BOTTOM", 0, 320)
 		EltreumWAAnchor2:Size(250, 70)
 		E:CreateMover(EltreumWAAnchor2, "MoverEltruismWA2", "EltruismWA2", nil, nil, nil, "ALL,SOLO")
 
 		--consumable weakauras, usually placed near player unitframe
 		EltruismWAConsumablesAnchor:SetParent("ElvUF_Player")
 		EltruismWAConsumablesAnchor:SetFrameStrata("BACKGROUND")
-		--postion the anchor right below the player unitframe
-		EltruismWAConsumablesAnchor:Point("LEFT", _G["ElvUF_Player"], 0, -75)
 		EltruismWAConsumablesAnchor:Size(270, 30)
 		E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", L["EltruismConsumablesWA"], nil, nil, nil, "ALL,SOLO")
 	end
