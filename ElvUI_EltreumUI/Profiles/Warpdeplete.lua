@@ -17,35 +17,37 @@ local classtable = {
 
 -- WarpDeplete profile setup
 function ElvUI_EltreumUI:GetWarpDepleteProfile()
-	WarpDepleteDB["profileKeys"][E.mynameRealm] = E.mynameRealm
-	WarpDepleteDB["global"]["mdtAlertShown"] = true
-	WarpDepleteDB["profiles"][E.mynameRealm] = {
-		["timerSuccessColor"] = "ff00ff24",
-		["bar1TextureColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
-		["forcesFont"] = E.db.general.font,
-		["frameX"] = 0,
-		["completedObjectivesColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
-		["keyDetailsFontSize"] = 14,
-		["timerFont"] = E.db.general.font,
-		["bar3Font"] = E.db.general.font,
-		["bar3TextureColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
-		["objectivesFont"] = E.db.general.font,
-		["keyDetailsFont"] = E.db.general.font,
-		["prideGlowColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
-		["deathsFont"] = E.db.general.font,
-		["completedForcesColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
-		["bar1Font"] = E.db.general.font,
-		["bar2TextureColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
-		["bar2Font"] = E.db.general.font,
-		["frameY"] = -92.44456481933594,
-		["forcesTextureColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
-		["bar1Texture"] = classtable[E.myclass],
-		["bar2Texture"] = classtable[E.myclass],
-		["forcesOverlayTexture"] = "Eltreum-Blank",
-		["bar3Texture"] = classtable[E.myclass],
-		["forcesTexture"] = classtable[E.myclass],
-		["timerRunningColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
-		["forcesFontSize"] = 18,
-		["forcesOverlayTextureColor"] = "ffffffff",
-	}
+	if IsAddOnLoaded("WarpDeplete") then
+		WarpDepleteDB["profileKeys"][E.mynameRealm] = E.mynameRealm
+		WarpDepleteDB["global"]["mdtAlertShown"] = true
+		WarpDepleteDB["profiles"][E.mynameRealm] = {
+			["timerSuccessColor"] = "ff00ff24",
+			["bar1TextureColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
+			["forcesFont"] = E.db.general.font,
+			["frameX"] = 0,
+			["completedObjectivesColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
+			["keyDetailsFontSize"] = 14,
+			["timerFont"] = E.db.general.font,
+			["bar3Font"] = E.db.general.font,
+			["bar3TextureColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
+			["objectivesFont"] = E.db.general.font,
+			["keyDetailsFont"] = E.db.general.font,
+			["prideGlowColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
+			["deathsFont"] = E.db.general.font,
+			["completedForcesColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
+			["bar1Font"] = E.db.general.font,
+			["bar2TextureColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
+			["bar2Font"] = E.db.general.font,
+			["frameY"] = -92.44456481933594,
+			["forcesTextureColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
+			["bar1Texture"] = classtable[E.myclass],
+			["bar2Texture"] = classtable[E.myclass],
+			["forcesOverlayTexture"] = "Eltreum-Blank",
+			["bar3Texture"] = classtable[E.myclass],
+			["forcesTexture"] = classtable[E.myclass],
+			["timerRunningColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
+			["forcesFontSize"] = 18,
+			["forcesOverlayTextureColor"] = "ffffffff",
+		}
+	end
 end
