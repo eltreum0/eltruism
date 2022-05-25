@@ -37,7 +37,8 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 							end
 							local _, g, b, a = button.cd.timer.text:GetTextColor()
 							if E.db.ElvUI_EltreumUI.widenameplate.npglow then
-								if (g < 0.2 or b < 0.2) and a > 0.5 and button.cd.timer.text then
+								if ((g < 0.2 and g > 0.19) or (b < 0.2 and b > 0.19)) and a > 0.5 and button.cd.timer.text then
+									--0.1999995559454 0.1999995559454
 									LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
 								else
 									LCG.PixelGlow_Stop(button)
