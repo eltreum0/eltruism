@@ -82,10 +82,6 @@ bresframe:SetAlpha(0)
 bresframe:SetSize(97, 30)
 S:HandleFrame(bresframe)
 
---test
-local ime = _G['IMECandidatesFrame']
-S:HandleFrame(ime)
-
 local TimeSinceLastUpdate = 0
 local ONUPDATE_INTERVAL = 1
 function ElvUI_EltreumUI:BattleRes()
