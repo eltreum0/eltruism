@@ -166,8 +166,7 @@ local function SkinLocale()
 	if E.locale == "koKR" or E.locale == "ruRU" or E.locale == "zhCN" or E.locale == "zhTW" then
 		local ime = _G['IMECandidatesFrame']
 		S:HandleFrame(ime)
-		local dockmenu = _G['GeneralDockManagerOverflowButtonList']
-		S:HandleFrame(dockmenu)
+		S:HandleFrame(_G['GeneralDockManagerOverflowButtonList'])
 	end
 end
 SkinLocale()
