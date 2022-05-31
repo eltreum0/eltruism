@@ -234,13 +234,6 @@ function ElvUI_EltreumUI:ActionPagingSwap()
 	end
 end
 
---fix master loot?
-if E.TBC then
-	hooksecurefunc(_G.MasterLooterFrame, 'Hide', function(self)
-		self:ClearAllPoints()
-	end)
-end
-
 -- Inspired by Luckyone's performance option. Thanks Luckyone!
 function ElvUI_EltreumUI:EmptyDetailsTable()
 	_detalhes.encounter_spell_pool = {}
