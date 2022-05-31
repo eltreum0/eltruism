@@ -46,6 +46,7 @@ local SUPPORTER = {
 local TRANSLATORS = {
 	'|cffCC3333Khornan|r - German Translation',
 	'|cffCC3333Dlarge|r - German Translation',
+	'|cffCC3333Neo|r - Chinese Translation',
 	'Spanish translation by DeepL',
 }
 
@@ -1487,6 +1488,21 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Expand Talents to cover the full tree"],
 								get = function() return E.db.ElvUI_EltreumUI.tbctalents.enable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.tbctalents.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							otherskins = {
+								order = 52,
+								type = "description",
+								name = L["Other Skins"],
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								width = "full",
+							},
+							meetinghorn = {
+								order = 53,
+								type = 'toggle',
+								name = L["Skin MeetingHorn"],
+								desc = L["Skin MeetingHorn"],
+								get = function() return E.db.ElvUI_EltreumUI.skins.meetinghorn end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.meetinghorn = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 						},
 					},

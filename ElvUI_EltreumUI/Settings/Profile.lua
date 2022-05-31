@@ -72,6 +72,7 @@ P.ElvUI_EltreumUI = {
 		professions = false,
 		zones = false,
 		shadows = false,
+		meetinghorn = false,
 	},
 
 	shadows = {
