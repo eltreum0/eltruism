@@ -910,3 +910,5 @@ L["Enable pet cooldown tracking"] = "Aktiviere Begleiter Abklingzeitverfolgung"
 L["Attributes"] = "Attribute"
 L["Item Level"] = "Gegenstandslevel"
 L["Specialization"] = "Spezialisierung"
+L["Other Skins"] = true
+L["Skin MeetingHorn"] = true

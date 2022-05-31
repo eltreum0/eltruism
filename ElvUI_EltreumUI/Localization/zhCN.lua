@@ -879,3 +879,5 @@ L["Enable pet cooldown tracking"] = true
 L["Attributes"] = "基础属性"
 L["Item Level"] = "装备等级"
 L["Specialization"] = "职业专精"
+L["Other Skins"] = true
+L["Skin MeetingHorn"] = true
