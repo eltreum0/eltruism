@@ -1,13 +1,13 @@
-## Interface: 90200
+## Interface: 90205
 ## Author: Eltreum
-## Version: 3.0.7
+## Version: 3.0.8
 ## Title: |cff1784d1ElvUI|r Eltruism
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
 ## Dependencies: ElvUI, AddOnSkins
 ## RequiredDeps: Blizzard_CombatText
 ## OptionalDeps: NameplateSCT, Immersion, DynamicCam, GladiusEx, ElvUI_SLE, ElvUI_WindTools, ProjectAzilroka
 ## DefaultState: enabled
-## X-Interface: 90200
+## X-Interface: 90205
 ## X-Curse-Project-ID: 459494
 ## X-Wago-ID: vEGPqEN1
 
