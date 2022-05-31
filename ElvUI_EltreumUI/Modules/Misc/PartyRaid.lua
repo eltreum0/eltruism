@@ -218,7 +218,7 @@ handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
 			_G.MeetingHornMainPanel.Manage.Chat.ChatBg:Hide()
 			_G.MeetingHornMainPanel.Manage.Creator.RecruitButton.RightSeparator:Hide()
 			_G.MeetingHornMainPanel.Manage.Creator.CreateButton.RightSeparator:Hide()
-			_G.MeetingHornMainPanel.Manage.Creator.CloseButton.Texture:Hide()
+			--_G.MeetingHornMainPanel.Manage.Creator.CloseButton.Texture:Hide()
 
 
 			--leader
