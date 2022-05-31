@@ -893,3 +893,6 @@ L["Enable for Target Castbar"] = true
 L["Enable for Arena"] = true
 L["Enable for Player Castbar"] = true
 L["Enable pet cooldown tracking"] = true
+L["Attributes"] = true
+L["Item Level"] = true
+L["Specialization"] = true

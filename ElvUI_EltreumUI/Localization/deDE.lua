@@ -907,3 +907,6 @@ L["Enable for Target Castbar"] = "Aktiviere für Ziel Zauberleiste"
 L["Enable for Arena"] = "Aktiviere für Arena"
 L["Enable for Player Castbar"] = "Aktiviere für Spieler Zauberleiste"
 L["Enable pet cooldown tracking"] = "Aktiviere Begleiter Abklingzeitverfolgung"
+L["Attributes"] = true
+L["Item Level"] = true
+L["Specialization"] = true
