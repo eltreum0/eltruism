@@ -160,3 +160,14 @@ function ElvUI_EltreumUI:BattleRes()
 		end
 	end
 end
+
+
+local function SkinLocale()
+	if E.locale == "koKR" or E.locale == "ruRU" or E.locale == "zhCN" or E.locale == "zhTW" then
+		local ime = _G['IMECandidatesFrame']
+		S:HandleFrame(ime)
+		local dockmenu = _G['GeneralDockManagerOverflowButtonList']
+		S:HandleFrame(dockmenu)
+	end
+end
+SkinLocale()
