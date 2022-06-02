@@ -848,7 +848,7 @@ function ElvUI_EltreumUI:Configtable()
 						--desc = "",
 						width = 'full',
 						confirm = true,
-						func = function() ElvUI_EltreumUI:ActionPagingSwap() end,
+						func = function() ElvUI_EltreumUI:ActionPagingSwap() E:StaticPopup_Show('CONFIG_RL') end,
 					},
 				},
 			},
