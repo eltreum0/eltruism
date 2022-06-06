@@ -325,3 +325,13 @@ function ElvUI_EltreumUI:BlackBg()
 	E:UpdateMediaItems()
 	ElvUI_EltreumUI:Print("ElvUI set to Black Background")
 end
+
+function ElvUI_EltreumUI:CheckBackground()
+	if E.db.ElvUI_EltreumUI.greybackground == false then
+		ElvUI_EltreumUI:GreyBg()
+	elseif E.db.ElvUI_EltreumUI.greybackground == true then
+		ElvUI_EltreumUI:BlackBg()
+	else
+		ElvUI_EltreumUI:GreyBg()
+	end
+end

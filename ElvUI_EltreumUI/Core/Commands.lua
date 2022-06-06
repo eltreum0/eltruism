@@ -75,7 +75,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 		elseif E.db.ElvUI_EltreumUI.greybackground == false then
 			ElvUI_EltreumUI:GreyBg()
 		else
-			ElvUI_EltreumUI:BlackBg()
+			ElvUI_EltreumUI:GreykBg()
 		end
 	else
 		ElvUI_EltreumUI:Print("|cff82B4ffYou have entered an unknown command, here's a list of commands you can use:|r")

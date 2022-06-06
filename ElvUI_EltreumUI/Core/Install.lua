@@ -129,6 +129,10 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option3:Show()
 			PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:GradientMode() end)
 			PluginInstallFrame.Option3:SetText(L["Gradient Mode"])
+			PluginInstallFrame.Option4:Enable()
+			PluginInstallFrame.Option4:Show()
+			PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:CheckBackground() end)
+			PluginInstallFrame.Option4:SetText(L["Background"].."\n"..L["Color"])
 		end,
 		[5] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText(L["Chat"])
