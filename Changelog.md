@@ -1,6 +1,11 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.0.9
+Added a button during install to swap the background color to a greyer color instead of black\
+Added a reload prompt to the action paging swap between Bar1 and Bar4 due to the paging not switching without a reload\
+Fixed an error due to a database change in Windtools during install when Windtools was loaded
+___
 ### 3.0.8
 Added [eltruism:shortclassification] tag, which displays the difficulty of an enemy in simple letters such as R and R+ for rare and rare elite\
 Added partial Chinese localization by Neo\
