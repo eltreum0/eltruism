@@ -4,7 +4,8 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 function ElvUI_EltreumUI:GetWindToolsProfile()
 	if IsAddOnLoaded("ElvUI_WindTools") then
 		E.private["WT"]["combat"]["talentManager"]["pvpTalent"] = true
-		E.private["WT"]["core"]["loginMessage"] = false
+		--E.global["WT"]["core"]["loginMessage"] = false
+		E.global["WT"]["core"]["loginMessage"] = false --changed in 2.43
 		E.private["WT"]["maps"]["minimapButtons"]["backdrop"] = false
 		E.private["WT"]["maps"]["minimapButtons"]["backdropSpacing"] = 0
 		E.private["WT"]["maps"]["minimapButtons"]["buttonSize"] = 24
