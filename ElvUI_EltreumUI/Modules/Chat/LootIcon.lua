@@ -4,7 +4,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local function AddLootIcons(_, _, message, ...)
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
-	elseif E.db.ElvUI_EltreumUI.chat.looticons then
+	elseif E.db.ElvUI_EltreumUI.chat.enable and E.db.ElvUI_EltreumUI.chat.looticons then
 		local function Icon(link)
 
 			local ilvlpattern = _G.ITEM_LEVEL:gsub('%%d', '(%%d+)')
