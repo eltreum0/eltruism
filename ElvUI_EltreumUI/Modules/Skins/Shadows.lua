@@ -96,7 +96,6 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-
 		if E.private["general"]["minimap"]["enable"] ~= false then
 			local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
 			local Minimapsizex, Minimapsizey = _G["Minimap"]:GetSize()
@@ -617,6 +616,22 @@ function ElvUI_EltreumUI:Shadows()
 				if frame and not frame.shadow then
 					if (not E.db.ElvUI_EltreumUI.borders.borders) then
 						frame:CreateShadow()
+					end
+				end
+			end
+
+			if E.db["unitframe"]["units"]["player"]["portrait"]["enable"] == true and E.db["unitframe"]["units"]["player"]["portrait"]["overlay"] == false then
+				if _G["ElvUF_Player"].Portrait.backdrop and not _G["ElvUF_Player"].Portrait.backdrop.shadow then
+					if (not E.db.ElvUI_EltreumUI.borders.borders) then
+						_G["ElvUF_Player"].Portrait.backdrop:CreateShadow()
+					end
+				end
+			end
+
+			if E.db["unitframe"]["units"]["target"]["portrait"]["enable"] == true and E.db["unitframe"]["units"]["target"]["portrait"]["overlay"] == false then
+				if _G["ElvUF_Target"].Portrait.backdrop and not _G["ElvUF_Target"].Portrait.backdrop.shadow then
+					if (not E.db.ElvUI_EltreumUI.borders.borders) then
+						_G["ElvUF_Target"].Portrait.backdrop:CreateShadow()
 					end
 				end
 			end
