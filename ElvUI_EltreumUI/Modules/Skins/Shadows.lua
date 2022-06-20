@@ -622,7 +622,7 @@ function ElvUI_EltreumUI:Shadows()
 
 			if E.db["unitframe"]["units"]["player"]["portrait"]["enable"] == true and E.db["unitframe"]["units"]["player"]["portrait"]["overlay"] == false then
 				if _G["ElvUF_Player"].Portrait.backdrop and not _G["ElvUF_Player"].Portrait.backdrop.shadow then
-					if (not E.db.ElvUI_EltreumUI.borders.borders) then
+					if (not E.db.ElvUI_EltreumUI.borders.playerborder) then
 						_G["ElvUF_Player"].Portrait.backdrop:CreateShadow()
 					end
 				end
@@ -630,7 +630,7 @@ function ElvUI_EltreumUI:Shadows()
 
 			if E.db["unitframe"]["units"]["target"]["portrait"]["enable"] == true and E.db["unitframe"]["units"]["target"]["portrait"]["overlay"] == false then
 				if _G["ElvUF_Target"].Portrait.backdrop and not _G["ElvUF_Target"].Portrait.backdrop.shadow then
-					if (not E.db.ElvUI_EltreumUI.borders.borders) then
+					if (not E.db.ElvUI_EltreumUI.borders.targetborder) then
 						_G["ElvUF_Target"].Portrait.backdrop:CreateShadow()
 					end
 				end
