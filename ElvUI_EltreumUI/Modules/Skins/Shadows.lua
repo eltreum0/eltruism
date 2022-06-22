@@ -621,19 +621,52 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			if E.db["unitframe"]["units"]["player"]["portrait"]["enable"] == true and E.db["unitframe"]["units"]["player"]["portrait"]["overlay"] == false then
-				if _G["ElvUF_Player"].Portrait.backdrop and not _G["ElvUF_Player"].Portrait.backdrop.shadow then
+				if _G["ElvUF_Player"] and not _G["ElvUF_Player"].shadow then
+					if not E.db.ElvUI_EltreumUI.borders.borders then
+						_G["ElvUF_Player"]:CreateShadow()
+						_G["ElvUF_Player"].shadow:ClearAllPoints()
+						_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player"] ,"TOPRIGHT", 3, 3)
+						_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player"] ,"BOTTOMLEFT", -3, -2)
+						if _G["ElvUF_Player_HealthBar"].shadow then
+							_G["ElvUF_Player_HealthBar"].shadow:Hide()
+						end
+						if _G["ElvUF_Player_PowerBar"].shadow then
+							_G["ElvUF_Player_PowerBar"].shadow:Hide()
+						end
+						if E.Retail then
+							if _G["ElvUF_Player_Stagger"].shadow then
+								_G["ElvUF_Player_Stagger"].shadow:Hide()
+							end
+						end
+					end
+				end
+				--[[if _G["ElvUF_Player"].Portrait.backdrop and not _G["ElvUF_Player"].Portrait.backdrop.shadow then
 					if (not E.db.ElvUI_EltreumUI.borders.playerborder) then
 						_G["ElvUF_Player"].Portrait.backdrop:CreateShadow()
 					end
-				end
+				end]]
 			end
 
 			if E.db["unitframe"]["units"]["target"]["portrait"]["enable"] == true and E.db["unitframe"]["units"]["target"]["portrait"]["overlay"] == false then
-				if _G["ElvUF_Target"].Portrait.backdrop and not _G["ElvUF_Target"].Portrait.backdrop.shadow then
+				if _G["ElvUF_Target"] and not _G["ElvUF_Target"].shadow then
+					if not E.db.ElvUI_EltreumUI.borders.borders then
+						_G["ElvUF_Target"]:CreateShadow()
+						_G["ElvUF_Target"].shadow:ClearAllPoints()
+						_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target"] ,"TOPRIGHT", 3, 3)
+						_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target"] ,"BOTTOMLEFT", -3, -2)
+						if _G["ElvUF_Target_HealthBar"].shadow then
+							_G["ElvUF_Target_HealthBar"].shadow:Hide()
+						end
+						if _G["ElvUF_Target_PowerBar"].shadow then
+							_G["ElvUF_Target_PowerBar"].shadow:Hide()
+						end
+					end
+				end
+				--[[if _G["ElvUF_Target"].Portrait.backdrop and not _G["ElvUF_Target"].Portrait.backdrop.shadow then
 					if (not E.db.ElvUI_EltreumUI.borders.targetborder) then
 						_G["ElvUF_Target"].Portrait.backdrop:CreateShadow()
 					end
-				end
+				end]]
 			end
 
 			--player castbar
