@@ -787,6 +787,10 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["party"]["power"]["text_format"] = ""
 		E.db["unitframe"]["units"]["party"]["power"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["party"]["power"]["yOffset"] = 1
+		E.db["unitframe"]["units"]["party"]["portrait"]["desaturation"] = 0.7
+		E.db["unitframe"]["units"]["party"]["portrait"]["fullOverlay"] = true
+		E.db["unitframe"]["units"]["party"]["portrait"]["overlay"] = true
+		E.db["unitframe"]["units"]["party"]["portrait"]["paused"] = true
 		E.db["unitframe"]["units"]["party"]["raidRoleIcons"]["yOffset"] = -3
 		E.db["unitframe"]["units"]["party"]["raidicon"]["attachTo"] = "CENTER"
 		E.db["unitframe"]["units"]["party"]["raidicon"]["attachToObject"] = "Health"
@@ -1050,6 +1054,10 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["raid"]["summonIcon"]["attachToObject"] = "Health"
 		E.db["unitframe"]["units"]["raid"]["summonIcon"]["yOffset"] = -5
 		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 3
+		E.db["unitframe"]["units"]["raid"]["portrait"]["desaturation"] = 0.7
+		E.db["unitframe"]["units"]["raid"]["portrait"]["fullOverlay"] = true
+		E.db["unitframe"]["units"]["raid"]["portrait"]["paused"] = true
+		E.db["unitframe"]["units"]["raid"]["portrait"]["overlayAlpha"] = 0.6
 		if E.Retail then
 			E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
 		elseif E.TBC or E.Classic then
@@ -1101,6 +1109,10 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["stack"]["yOffset"] = -3
 		E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["yOffset"] = 16
 		--E.db["unitframe"]["units"]["raid40"]["orientation"] = "MIDDLE"
+		E.db["unitframe"]["units"]["raid40"]["portrait"]["desaturation"] = 0.7
+		E.db["unitframe"]["units"]["raid40"]["portrait"]["fullOverlay"] = true
+		E.db["unitframe"]["units"]["raid40"]["portrait"]["overlayAlpha"] = 0.6
+		E.db["unitframe"]["units"]["raid40"]["portrait"]["paused"] = true
 		E.db["unitframe"]["units"]["raid40"]["roleIcon"]["attachTo"] = "Frame"
 		E.db["unitframe"]["units"]["raid40"]["roleIcon"]["enable"] = true
 		E.db["unitframe"]["units"]["raid40"]["roleIcon"]["position"] = "TOPRIGHT"

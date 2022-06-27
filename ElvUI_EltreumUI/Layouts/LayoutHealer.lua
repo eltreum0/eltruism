@@ -927,10 +927,10 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["raid"]["name"]["attachTextTo"] = "InfoPanel"
 		E.db["unitframe"]["units"]["raid"]["name"]["position"] = "LEFT"
 		E.db["unitframe"]["units"]["raid"]["name"]["text_format"] = ""
-		E.db["unitframe"]["units"]["raid"]["portrait"]["camDistanceScale"] = 4
-		E.db["unitframe"]["units"]["raid"]["portrait"]["desaturation"] = 1
+		E.db["unitframe"]["units"]["raid"]["portrait"]["desaturation"] = 0.7
 		E.db["unitframe"]["units"]["raid"]["portrait"]["fullOverlay"] = true
-		E.db["unitframe"]["units"]["raid"]["portrait"]["overlayAlpha"] = 0.2
+		E.db["unitframe"]["units"]["raid"]["portrait"]["paused"] = true
+		E.db["unitframe"]["units"]["raid"]["portrait"]["overlayAlpha"] = 0.6
 		E.db["unitframe"]["units"]["raid"]["power"]["height"] = 8
 		E.db["unitframe"]["units"]["raid"]["power"]["powerPrediction"] = true
 		E.db["unitframe"]["units"]["raid"]["power"]["yOffset"] = 4
@@ -1021,6 +1021,10 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["stack"]["yOffset"] = -2
 		E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["stack"]["xOffset"] = 2
 		E.db["unitframe"]["units"]["raid40"]["orientation"] = "MIDDLE"
+		E.db["unitframe"]["units"]["raid40"]["portrait"]["desaturation"] = 0.7
+		E.db["unitframe"]["units"]["raid40"]["portrait"]["fullOverlay"] = true
+		E.db["unitframe"]["units"]["raid40"]["portrait"]["overlayAlpha"] = 0.6
+		E.db["unitframe"]["units"]["raid40"]["portrait"]["paused"] = true
 		E.db["unitframe"]["units"]["raid40"]["readycheckIcon"]["attachTo"] = "CENTER"
 		E.db["unitframe"]["units"]["raid40"]["resurrectIcon"]["attachToObject"] = "Health"
 		E.db["unitframe"]["units"]["raid40"]["resurrectIcon"]["size"] = 15
