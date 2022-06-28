@@ -1,6 +1,16 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.1.0
+Enabled gradient castbar option for Player and Target castbars when using Eltruism profiles\
+Added a CVar option to change Field of Vision in Retail\
+Fixed castbar gradient colors for interrupts and non interruptible spells\
+Fixed chat loot icons not being disabled when chat options were disabled\
+Fixed Minimap shadow depending on datatext settings\
+Fixed Minimap shadow when using rectangle minimap options from Shadow and Light or Windtools\
+Fixed shadows when using 2D portraits\
+Removed some unused files
+___
 ### 3.0.9
 Added a button during install to swap the background color to a greyer color instead of black\
 Added a reload prompt to the action paging swap between Bar1 and Bar4 due to the paging not switching without a reload\
