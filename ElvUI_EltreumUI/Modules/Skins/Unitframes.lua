@@ -259,11 +259,9 @@ function ElvUI_EltreumUI:CastBarTexture()
 end
 hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastBarTexture)
 hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastBarTexture)
-
-hooksecurefunc(UF, 'PostCastStop', ElvUI_EltreumUI.CastBarTexture)
-hooksecurefunc(UF, 'PostCastFail', ElvUI_EltreumUI.CastBarTexture)
-
-hooksecurefunc(UF, 'Configure_Castbar', ElvUI_EltreumUI.CastBarTexture)
+--hooksecurefunc(UF, 'PostCastStop', ElvUI_EltreumUI.CastBarTexture)
+--hooksecurefunc(UF, 'PostCastFail', ElvUI_EltreumUI.CastBarTexture)
+--hooksecurefunc(UF, 'Configure_Castbar', ElvUI_EltreumUI.CastBarTexture)
 
 function ElvUI_EltreumUI:ChangeUnitTexture()
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then
