@@ -1084,13 +1084,14 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["target"]["buffs"]["maxDuration"] = 1200
 		E.db["unitframe"]["units"]["target"]["buffs"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["target"]["buffs"]["yOffset"] = -2
-		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["enable"] = false
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useCustomBackdrop"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0
+		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["enable"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["transparent"] = false
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useClassColor"] = true
+		E.db["unitframe"]["units"]["target"]["castbar"]["reverse"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["height"] = 28
 		E.db["unitframe"]["units"]["target"]["castbar"]["iconAttached"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["iconAttachedTo"] = "Castbar"

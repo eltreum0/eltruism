@@ -1180,18 +1180,17 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["target"]["buffs"]["sortDirection"] = "ASCENDING"
 		E.db["unitframe"]["units"]["target"]["buffs"]["xOffset"] = 15
 		E.db["unitframe"]["units"]["target"]["buffs"]["yOffset"] = -32
-		--E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = false --was disabled before
 		E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0
-		--E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["enable"] = true
+		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["enable"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["enable"] = false
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["invertColors"] = false
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["transparent"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useClassColor"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useCustomBackdrop"] = true
-		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useReactionColor"] = true
+		--E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useReactionColor"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["fontSize"] = 11
 		E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["fontStyle"] = "NONE"
 		E.db["unitframe"]["units"]["target"]["castbar"]["height"] = 30
@@ -1203,6 +1202,8 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["target"]["castbar"]["iconSize"] = 29
 		E.db["unitframe"]["units"]["target"]["castbar"]["iconXOffset"] = 0
 		E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 243
+
+
 		E.db["unitframe"]["units"]["target"]["debuffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["target"]["debuffs"]["countFontOutline"] = "OUTLINE"
 		E.db["unitframe"]["units"]["target"]["debuffs"]["height"] = 25
