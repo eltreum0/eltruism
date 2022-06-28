@@ -82,7 +82,11 @@ function ElvUI_EltreumUI:UpdateSettings()
 
 	E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha = 0.7
-	--E.db.ElvUI_EltreumUI.gradientmode.texture = "Asphyxia-Norm"
+
+	E.db.ElvUI_EltreumUI.gradientmode.texture = "Asphyxia-Norm"
+	E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar = true
+	E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar = true
+
 	E.db.ElvUI_EltreumUI.instances.enable = true
 
 	--private
