@@ -784,6 +784,7 @@ L["Automatically screenshot when you loot an item from the wishlist"] = "Automat
 L["Clear Details! Damage Meter tables to free up memory"] = "Lösche Details! Damage Meter Daten, um Speicherplatz freizugeben"
 L["Clear Details Tables"] = "Lösche Details! Daten"
 L["Collapse Quests during any combat event"] = "Verstecken der Questverfolgung in sämtlichen Kämpfen"
+L["Collapse Quests when you enter combat"] = "Questverfolgung schließen, wenn du in den Kampf eintrittst."
 L["Automatically Hide NPC Names"] = "Automatisches Verstecken der NPC Namen"
 L["Hide NPC Names when they are too far away to have Nameplates"] = "Verstecken der NPC Namen, wenn sie zu weit entfernt sind für Namensplaketten"
 L["Restore Hidden Names"] = "Die versteckten Namen wiederherstellen"

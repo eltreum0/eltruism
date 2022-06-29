@@ -769,6 +769,7 @@ L["Enable !key and !keys chat command"] = "Habilitar comando de chat !key y !key
 L["Will link your key and covenant in guild or party chat"] = "Enlazará tu llave y tu pacto en el chat del gremio o de lo grupo"
 L["Automatically screenshot when you loot an item from the wishlist"] = "Captura de pantalla automática al saquear un objeto de la lista de deseos"
 L["Collapse Quests during any combat event"] = "Colapsar las misiones durante cualquier evento de combate"
+L["Collapse Quests when you enter combat"] = true
 L["Automatically Hide NPC Names"] = "Ocultar automáticamente los nombres de los PNJ"
 L["Hide NPC Names when they are too far away to have Nameplates"] = "Ocultar los nombres de los PNJ cuando están demasiado lejos para tener placas de identificación"
 L["Restore Hidden Names"] = "Restaurar nombres ocultos"

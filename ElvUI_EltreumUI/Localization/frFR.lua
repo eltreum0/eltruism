@@ -753,6 +753,7 @@ L["Enable !key and !keys chat command"] = true
 L["Will link your key and covenant in guild or party chat"] = true
 L["Automatically screenshot when you loot an item from the wishlist"] = true
 L["Collapse Quests during any combat event"] = true
+L["Collapse Quests when you enter combat"] = true
 L["Automatically Hide NPC Names"] = true
 L["Hide NPC Names when they are too far away to have Nameplates"] = true
 L["Restore Hidden Names"] = true
