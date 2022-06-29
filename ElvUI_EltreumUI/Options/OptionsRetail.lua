@@ -4687,7 +4687,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						name = L["Textures"],
 						order = 2,
-						disabled = function() return E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.UFmodifications end,
+						disabled = function() return E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.UFmodifications or not E.db.ElvUI_EltreumUI.ufcustomtexture.enable end,
 						args = {
 							unitframesdesc = {
 								order = 102,
@@ -4914,7 +4914,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = "group",
 						name = L["Gradient"],
 						order = 3,
-						disabled = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.UFmodifications end,
+						disabled = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.UFmodifications or not E.db.ElvUI_EltreumUI.gradientmode.enable end,
 						args = {
 							header1 = {
 								order = 1,
