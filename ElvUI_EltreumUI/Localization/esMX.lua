@@ -279,6 +279,7 @@ L["Pixel Length (Default is 3)"] = "Longitud del píxel (Predeterminado es 3)"
 L["Pixel Thickness (Default is 5)"] = "Grosor del píxel (Predeterminado es 5)"
 L["Pixel Vertical Offset (Default is 5)"] = "Desplazamiento vertical de píxeles (Predeterminado es 5)"
 L["Play a sound when someone dies in Party or Raid"] = "Reproducir un sonido cuando alguien muere en Party o Raid"
+L["Play a Sound when receiving mail"] = true
 L["Play music during combat"] = "Reproducir música durante el combate"
 L["Play music while you are AFK"] = "Reproducir música mientras estás AFK"
 L["Please read the instructions to avoid issues"] = "Lea las instrucciones para evitar problemas"

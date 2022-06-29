@@ -214,6 +214,7 @@ L["General CVars"] = true
 L["It will set these CVars:"] = true
 L["Party/Raid"] = true
 L["Play a sound when someone dies in Party or Raid"] = true
+L["Play a Sound when receiving mail"] = true
 L["Select a Sound"] = true
 L["Alternative unitframe layouts"] = true
 L["DPS/Tank layouts were created with pure dps classes in mind, if you play a class with more raid cooldowns like a Shaman, Druid or Paladin you might want to use the alternative layout in order to make it easier for you to use your cooldowns on the members of your group"] = true
