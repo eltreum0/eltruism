@@ -36,7 +36,7 @@ function ElvUI_EltreumUI:ArenaUnitframes()
 end
 
 function ElvUI_EltreumUI:DynamicBuffs()
-	if E.db.ElvUI_EltreumUI.otherstuff.arenabuffs and E.private.unitframe.enable then
+	if E.db.ElvUI_EltreumUI.otherstuff.arenabuffs and E.private.unitframe.enable and not InCombatLockdown() then
 		local _, instanceType = IsInInstance()
 		if instanceType == "arena" or instanceType == "pvp" then
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["enable"] = true
@@ -64,7 +64,7 @@ end
 
 --Dynamic Level Nameplate Style Filter
 function ElvUI_EltreumUI:DynamicLevelStyleFilter()
-	if E.db.ElvUI_EltreumUI.nameplatelevel.enable and E.db.nameplates.filters.EltreumLevel then
+	if E.db.ElvUI_EltreumUI.nameplatelevel.enable and E.db.nameplates.filters.EltreumLevel and not InCombatLockdown() then
 		if not E.private.ElvUI_EltreumUI.install_version then
 			return
 		else
@@ -143,7 +143,7 @@ function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
 	else
-		if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" and E.db.nameplates.filters.EltreumSpellsteal then
+		if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" and E.db.nameplates.filters.EltreumSpellsteal and not InCombatLockdown() then
 			if E.TBC or E.Retail then
 				if E.myclass == 'MAGE' then
 					local level = UnitLevel("player")
