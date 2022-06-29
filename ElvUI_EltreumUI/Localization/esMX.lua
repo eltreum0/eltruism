@@ -462,6 +462,7 @@ L["Action Bar 6"] = "Barra de acción 6"
 L["Target Border"] = "Frontera de destino"
 L["Target of Target Border"] = "La borde de destino de destino"
 L["Border X offset"] = "Desplazamiento X de la frontera"
+L["Border Y offset"] = true
 L["Player Border"] = "Borde del jugador"
 L["Player Castbar Border"] = "Límite de la barra del jugador"
 L["Target Castbar Border"] = "Borde de la barra de destino"

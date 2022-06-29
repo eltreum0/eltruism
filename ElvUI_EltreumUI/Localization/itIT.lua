@@ -472,6 +472,7 @@ L["Action Bar 6"] = true
 L["Target Border"] = true
 L["Target of Target Border"] = true
 L["Border X offset"] = true
+L["Border Y offset"] = true
 L["Player Border"] = true
 L["Player Castbar Border"] = true
 L["Target Castbar Border"] = true

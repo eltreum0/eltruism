@@ -445,7 +445,7 @@ function ElvUI_EltreumUI:Configtable()
 								func = function() ElvUI_EltreumUI:SetupBuffs('boss', 'Eltruism') end,
 							},
 							bossEltruismdebuffs = {
-								order = 9,
+								order = 10,
 								type = 'execute',
 								name = L["Eltruism Boss Debuffs"],
 								desc = L["Set filters to be Eltruism/ElvUI defaults on Boss"],
