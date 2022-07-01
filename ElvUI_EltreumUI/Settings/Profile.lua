@@ -396,6 +396,7 @@ P.ElvUI_EltreumUI = {
 		orientation = "HORIZONTAL",
 		texture = "Eltreum-Blank",
 		customcolor = false,
+		gradientXP = false,
 
 		druidcustomcolorR1 = 1,
 		druidcustomcolorR2 = 1,

@@ -86,6 +86,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.gradientmode.texture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar = true
 	E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar = true
+	E.db.ElvUI_EltreumUI.gradientmode.gradientXP = true
 
 	E.db.ElvUI_EltreumUI.instances.enable = true
 
