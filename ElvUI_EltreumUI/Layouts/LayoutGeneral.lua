@@ -203,7 +203,8 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["databars"]["azerite"]["mouseover"] = true
 		E.db["databars"]["azerite"]["width"] = 10
 		E.db["databars"]["azerite"]["enable"] = false
-		E.db["databars"]["colors"]["experience"]["a"] = 0.5
+		--E.db["databars"]["colors"]["experience"]["a"] = 0.5
+		E.db["databars"]["colors"]["experience"]["a"] = 1 --better with gradient xp
 		E.db["databars"]["colors"]["honor"]["a"] = 0.5
 		E.db["databars"]["colors"]["rested"]["a"] = 0.20000004768372
 		E.db["databars"]["customTexture"] = true
