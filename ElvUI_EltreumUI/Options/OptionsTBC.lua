@@ -1489,15 +1489,35 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.tbctalents.enable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.tbctalents.enable = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							otherskins = {
+							header8898 = {
 								order = 52,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gradientxp = {
+								order = 53,
+								type = "description",
+								name = L["Add a gradient color to the Experience Bar"],
+								width = "full",
+							},
+							gradientxpenable = {
+								order = 54,
+								type = 'toggle',
+								name = L["Enable"],
+								get = function() return E.db.ElvUI_EltreumUI.gradientmode.gradientXP end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.gradientXP = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							otherskins = {
+								order = 998,
 								type = "description",
 								name = L["Other Skins"],
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								width = "full",
 							},
 							meetinghorn = {
-								order = 53,
+								order = 99,
 								type = 'toggle',
 								name = L["Skin MeetingHorn"],
 								desc = L["Skin MeetingHorn"],
