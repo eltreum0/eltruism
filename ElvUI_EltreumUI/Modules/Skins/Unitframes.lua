@@ -156,6 +156,16 @@ EltruismGradientColorTableLoad:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:GradientColorTableUpdate()
 end)
 
+--Databar gradient
+function ElvUI_EltreumUI:GradientDatabar()
+	local databarXP = _G["ElvUI_ExperienceBar"]
+	if databarXP and E.db.ElvUI_EltreumUI.gradientmode.gradientXP then
+		databarXP:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", E.db.databars.colors.experience.r, E.db.databars.colors.experience.g, E.db.databars.colors.experience.b, E.db.databars.colors.experience.a, 0.8, 0.4, 1, E.db.databars.colors.experience.a)
+	end
+end
+local DB = E:GetModule('DataBars')
+hooksecurefunc(DB, 'ExperienceBar_Update', ElvUI_EltreumUI.GradientDatabar)
+
 --elvui castbar texture/gradient
 function ElvUI_EltreumUI:CastBarTexture()
 	local castbar = _G["ElvUF_Player_CastBar"]
