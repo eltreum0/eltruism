@@ -884,3 +884,4 @@ L["Item Level"] = "装备等级"
 L["Specialization"] = "职业专精"
 L["Other Skins"] = true
 L["Skin MeetingHorn"] = true
+L["Add a gradient color to the Experience Bar"] = true

@@ -374,7 +374,6 @@ P.ElvUI_EltreumUI = {
 		a = 1,
 	},
 
-
 	UFmodifications = true,
 	lightmode = false,
 	darkmode = true,

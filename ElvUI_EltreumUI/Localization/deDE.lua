@@ -915,3 +915,4 @@ L["Item Level"] = "Gegenstandslevel"
 L["Specialization"] = "Spezialisierung"
 L["Other Skins"] = "Andere Skins"
 L["Skin MeetingHorn"] = true
+L["Add a gradient color to the Experience Bar"] = true
