@@ -31,8 +31,8 @@ jobs:
       # once cloned, we just run the GitHub Action for the packager project
       - name: WoW Packager
         #uses: BigWigsMods/packager@v1.0.3
-        uses: BigWigsMods/packager@multitoc
-        #uses: BigWigsMods/packager@v2 #multitoc seems like will be discontinued in the future
+        #uses: BigWigsMods/packager@multitoc #multitoc seems like will be discontinued in the future
+        uses: BigWigsMods/packager@v2
         with:
         # args: release.sh -n "{package-name}"
          args: release.sh -n "ElvUI_EltreumUI" #-g game-version
