@@ -326,14 +326,10 @@ E:AddTag('eltruism:difficulty:all', 'UNIT_NAME_UPDATE', function(unit)
 		["4"] = "|cFFA50000",
 		["5"] = "|cFFFF0000",
 	}
-
-	--make sure its not a player as to not overwrite class colors
-	if not UnitIsPlayer(unit) then
-		if classification ~= "worldboss" then
-			return (eltruismdif[printdifference])
-		elseif classification == "worldboss" then
-			return ("|cFFFF0000")
-		end
+	if classification ~= "worldboss" then
+		return (eltruismdif[printdifference])
+	elseif classification == "worldboss" then
+		return ("|cFFFF0000")
 	end
 end)
 E:AddTagInfo('eltruism:difficulty:all', ElvUI_EltreumUI.Name, L["Colors NPC name according to their difficulty compared to the player"])
