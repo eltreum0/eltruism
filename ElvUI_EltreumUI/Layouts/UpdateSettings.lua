@@ -90,6 +90,8 @@ function ElvUI_EltreumUI:UpdateSettings()
 
 	E.db.ElvUI_EltreumUI.instances.enable = true
 
+	E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
+
 	--private
 	E.private.ElvUI_EltreumUI.nameplatepower.enable = true
 	E.private.ElvUI_EltreumUI.nameplatepower.adjust = true
