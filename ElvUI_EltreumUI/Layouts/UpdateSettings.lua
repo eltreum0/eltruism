@@ -1,15 +1,41 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
---Old settings ettings that would be true but became false per request, now a function that can be used
+--Settings that would be true but became false by default per request,
+--now a function that can be used to set them while importing the profiles
+
 function ElvUI_EltreumUI:UpdateSettings()
-	E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition = true
+
+	-- Chat
 	E.db.ElvUI_EltreumUI.chat.enable = true
 	E.db.ElvUI_EltreumUI.chat.colorsysmsg = true
 	E.db.ElvUI_EltreumUI.chat.looticons = true
 	E.db.ElvUI_EltreumUI.chat.itemlevels = true
+
+	--CVars
 	if E.Retail then
 		E.db.ElvUI_EltreumUI.cvars.autohidenpcname = true
 	end
+
+	-- Nameplates
+	E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition = true
+	E.db.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow = true
+	E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate = false
+	E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = true
+	E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide = true
+	E.db.ElvUI_EltreumUI.nameplatepower.texture = "Asphyxia"
+	E.db.ElvUI_EltreumUI.widenameplate.enable = true
+	E.db.ElvUI_EltreumUI.widenameplate.npglow = true
+
+	-- Gradient/Unitframe stuff
+	E.db.ElvUI_EltreumUI.gradientmode.texture = "Asphyxia-Norm"
+	E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar = true
+	E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar = true
+	E.db.ElvUI_EltreumUI.gradientmode.gradientXP = true
+	E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture = "Asphyxia-Norm"
+	E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha = 0.7
+	E.db.unitframe.statusbar = "Asphyxia"
+
+	-- Skins
 	E.db.ElvUI_EltreumUI.skins.enable = true
 	E.db.ElvUI_EltreumUI.skins.widertransmog = true
 	E.db.ElvUI_EltreumUI.skins.expandedstable = true
@@ -28,24 +54,24 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.skins.professions = true
 	E.db.ElvUI_EltreumUI.skins.zones = true
 	E.db.ElvUI_EltreumUI.skins.shadows = true
+	E.db.ElvUI_EltreumUI.glow.enable = true
+	E.db.ElvUI_EltreumUI.glow.pixel = true
+	E.db.ElvUI_EltreumUI.glow.enablepet = true
+
+
 	E.db.ElvUI_EltreumUI.shadows.aura = true
 	E.db.ElvUI_EltreumUI.shadows.ufaura = true
 	E.db.ElvUI_EltreumUI.shadows.actionbars = true
 	E.db.ElvUI_EltreumUI.shadows.raid = true
+
+	-- Misc
 	E.db.ElvUI_EltreumUI.tbctalents.enable = true
 	E.db.ElvUI_EltreumUI.dynamicdatatext.enable = true
 	E.db.ElvUI_EltreumUI.nameplatelevel.enable = true
 	E.db.ElvUI_EltreumUI.cursor.enable = true
 	E.db.ElvUI_EltreumUI.cursor.cooldown = true
 	E.db.ElvUI_EltreumUI.cursor.combat = true
-	E.db.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow = true
-	E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate = false
-	E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = true
-	E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide = true
 	E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect = true
-	E.db.ElvUI_EltreumUI.glow.enable = true
-	E.db.ElvUI_EltreumUI.glow.pixel = true
-	E.db.ElvUI_EltreumUI.glow.enablepet = true
 	E.db.ElvUI_EltreumUI.partyraiddeath.enable = false
 	E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames = false -- turns out blizzard fakes the nameplates and alphas the helthbar, causing huge performance costs
 	E.db.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly = true --so hide it instead
@@ -54,8 +80,6 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.waypointetasetting.enable = true
 	E.db.ElvUI_EltreumUI.waypointetasetting.autopin = true
 	E.db.ElvUI_EltreumUI.waytext.enable = true
-	E.db.ElvUI_EltreumUI.widenameplate.enable = true
-	E.db.ElvUI_EltreumUI.widenameplate.npglow = true
 	if E.Retail then
 		E.db.ElvUI_EltreumUI.questsettings.enable = true
 		E.db.ElvUI_EltreumUI.questsettings.arena = true
@@ -64,6 +88,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 		E.db.ElvUI_EltreumUI.questsettings.arena = false
 		E.db.ElvUI_EltreumUI.glow.enabletotem = true
 	end
+
 	E.db.ElvUI_EltreumUI.questsettings.rogueopen = true
 	E.db.ElvUI_EltreumUI.questsettings.questitems = false
 	E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 = true
@@ -79,22 +104,17 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = true
 	E.db.ElvUI_EltreumUI.otherstuff.playerdeath = true
 	E.db.ElvUI_EltreumUI.otherstuff.mpluskeys = true
-
-	E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture = "Asphyxia-Norm"
-	E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha = 0.7
-
-	E.db.ElvUI_EltreumUI.gradientmode.texture = "Asphyxia-Norm"
-	E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar = true
-	E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar = true
-	E.db.ElvUI_EltreumUI.gradientmode.gradientXP = true
-
 	E.db.ElvUI_EltreumUI.instances.enable = true
-
 	E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
+	E.db.databars.statusbar = "Asphyxia"
 
 	--private
 	E.private.ElvUI_EltreumUI.nameplatepower.enable = true
 	E.private.ElvUI_EltreumUI.nameplatepower.adjust = true
+
+	-- primary and secondary media texture for elvui
+	E.private.general.glossTex = "Asphyxia"
+	E.private.general.normTex = "Asphyxia"
 
 	ElvUI_EltreumUI:Print(L["Settings for Eltruism were applied."])
 end
