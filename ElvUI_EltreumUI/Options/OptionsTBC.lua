@@ -2932,6 +2932,14 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.borderautoadjust = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							enableminimap = {
+								type = 'toggle',
+								name = L["Enable"].." "..MINIMAP_LABEL,
+								width = "full",
+								order = 4,
+								get = function() return E.db.ElvUI_EltreumUI.borders.minimapborder end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.minimapborder = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
 							headerline2 = {
 								order = 93,
 								type = "description",

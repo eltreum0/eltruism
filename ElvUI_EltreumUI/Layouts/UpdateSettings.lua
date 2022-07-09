@@ -59,6 +59,17 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.glow.pixel = true
 	E.db.ElvUI_EltreumUI.glow.enablepet = true
 
+	--borders
+	--E.db.ElvUI_EltreumUI.borders.borders = true --not sure yet
+	E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
+	E.db.ElvUI_EltreumUI.borders.minimapborder = true
+	E.db.ElvUI_EltreumUI.borders.playerborder = false
+	E.db.ElvUI_EltreumUI.borders.playercastborder = false
+	E.db.ElvUI_EltreumUI.borders.targetborder = false
+	E.db.ElvUI_EltreumUI.borders.targetcastborder = false
+	E.db.ElvUI_EltreumUI.borders.targettargetborder = false
+
+
 
 	E.db.ElvUI_EltreumUI.shadows.aura = true
 	E.db.ElvUI_EltreumUI.shadows.ufaura = true
@@ -106,7 +117,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.otherstuff.playerdeath = true
 	E.db.ElvUI_EltreumUI.otherstuff.mpluskeys = true
 	E.db.ElvUI_EltreumUI.instances.enable = true
-	E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
+
 	E.db.databars.statusbar = "Asphyxia"
 
 	--private

@@ -294,7 +294,7 @@ function ElvUI_EltreumUI:Borders()
 		end
 
 		-- minimap
-		if E.private["general"]["minimap"]["enable"] ~= false then
+		if E.private["general"]["minimap"]["enable"] ~= false and E.db.ElvUI_EltreumUI.borders.minimapborder then
 			local MinimapBorder = CreateFrame("Frame", "EltruismMiniMapBorderFrame", _G["Minimap"], BackdropTemplateMixin and "BackdropTemplate")
 			local Minimapsizex, Minimapsizey = _G["Minimap"]:GetSize()
 			MinimapBorder:SetSize(Minimapsizex, Minimapsizey)
