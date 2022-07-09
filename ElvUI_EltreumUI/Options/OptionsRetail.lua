@@ -129,9 +129,9 @@ function ElvUI_EltreumUI:Configtable()
 							eltruismsettings = {
 								order = 2,
 								type = 'execute',
-								name = L["Reset Eltruism Settings"],
+								name = L["Reset/Update Eltruism Settings"],
 								width = 'full',
-								desc = L["Resets Eltruism Settings to Eltreum's Defaults"],
+								desc = L["Resets/Updates Eltruism Settings to Eltreum's Defaults"],
 								func = function() ElvUI_EltreumUI:UpdateSettings() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 						},

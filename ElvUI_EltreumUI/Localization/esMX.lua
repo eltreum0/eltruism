@@ -437,9 +437,9 @@ L["Your custom font has been set."] = "Se ha configurado su fuente personalizada
 --missing texts from February 2022
 L["Eltruism Installer"] = "Instalador de Eltruism"
 L["Launch Eltruism Installer"] = "Lanzar el instalador de Eltruism"
-L["Reset Eltruism Settings"] = "Restablecer la configuración del Eltruism"
+L["Reset/Update Eltruism Settings"] = "Restablecer/Actualizar la configuración de Eltruism"
 L["Launches the Eltruism install prompt"] = "Lanza el prompt de instalación de Eltruism"
-L["Resets Eltruism Settings to Eltreum's Defaults"] = "Restablece los ajustes de Eltruism a los valores predeterminados de Eltreum"
+L["Resets/Updates Eltruism Settings to Eltreum's Defaults"] = "Restablece/actualiza la configuración de Eltruism a los valores predeterminados de Eltreum"
 L["Reset nameplates to Eltruism settings"] = "Restablece la configuración de Eltruism de las placas de identificación"
 L["Reset Chat to ElvUI Settings"] = "Restablecer el chat a la configuración de ElvUI"
 L["Reset layout to Eltruism DPS/Tank"] = "Restablecer el diseño a la configuración de DPS/Tanque de Eltruism"
