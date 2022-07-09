@@ -33,7 +33,8 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.gradientmode.gradientXP = true
 	E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha = 0.7
-	E.db.unitframe.statusbar = "Asphyxia"
+	--E.db.unitframe.statusbar = "Asphyxia"
+	E.db.unitframe.statusbar = "ElvUI Norm1"
 
 	-- Skins
 	E.db.ElvUI_EltreumUI.skins.enable = true
