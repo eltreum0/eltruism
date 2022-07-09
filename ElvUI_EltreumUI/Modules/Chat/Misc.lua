@@ -119,25 +119,23 @@ end
 
 --hide talking head
 local EltruismHideTalkingHead = CreateFrame('Frame', "EltruismHideTalkingHeadFrame")
---EltruismHideTalkingHead:Hide()
 EltruismHideTalkingHead:RegisterEvent('PLAYER_ENTERING_WORLD')
 EltruismHideTalkingHead:RegisterEvent('ADDON_LOADED')
 function ElvUI_EltreumUI:EltruismHideTalkingHead()
 	if E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead then
 		EltruismHideTalkingHead:SetScript('OnEvent', function(_, event)
-			if event == 'PLAYER_ENTERING_WORLD' then
-				if IsAddOnLoaded('Blizzard_TalkingHeadUI') then
-					hooksecurefunc('TalkingHeadFrame_PlayCurrent', function()
-						_G.TalkingHeadFrame:Hide()
-					end)
-					EltruismHideTalkingHead:UnregisterAllEvents()
-				end
-			end
-			if event == 'ADDON_LOADED' then
-				 if IsAddOnLoaded('Blizzard_TalkingHeadUI') then
-					hooksecurefunc('TalkingHeadFrame_PlayCurrent', function()
-						_G.TalkingHeadFrame:Hide()
-					end)
+			if event == 'PLAYER_ENTERING_WORLD' or event == 'ADDON_LOADED' then
+				if E.Retail then
+					if not IsAddOnLoaded("Blizzard_TalkingHeadUI") then
+						UIParentLoadAddOn("Blizzard_TalkingHeadUI")
+						if IsAddOnLoaded('Blizzard_TalkingHeadUI') then
+							hooksecurefunc('TalkingHeadFrame_PlayCurrent', function()
+								_G.TalkingHeadFrame:Hide()
+							end)
+							EltruismHideTalkingHead:UnregisterAllEvents()
+						end
+					end
+				else
 					EltruismHideTalkingHead:UnregisterAllEvents()
 				end
 			end

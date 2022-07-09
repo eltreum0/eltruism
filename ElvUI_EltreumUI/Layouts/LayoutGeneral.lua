@@ -16,9 +16,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		--Setup CVars
 		ElvUI_EltreumUI:SetupCVars()
 
-		--Set the Profile and Private Settings
-		ElvUI_EltreumUI:UpdateSettings()
-
 		--SetupShadowAndLight
 		if IsAddOnLoaded("ElvUI_SLE") then
 			ElvUI_EltreumUI:GetSLEProfile()
