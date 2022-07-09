@@ -902,3 +902,4 @@ L["Specialization"] = "Especialización"
 L["Other Skins"] = "Otras pieles"
 L["Skin MeetingHorn"] = true
 L["Add a gradient color to the Experience Bar"] = "Añadir un color degradado a la barra de experiencia"
+L["Pet Border"] = true
