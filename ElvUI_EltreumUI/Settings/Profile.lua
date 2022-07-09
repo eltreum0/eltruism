@@ -307,6 +307,7 @@ P.ElvUI_EltreumUI = {
 		ypowerbar = 12,
 
 		minimapborder = false,
+		petborder = false,
 
 		playerborder = false,
 		xplayer = 302,

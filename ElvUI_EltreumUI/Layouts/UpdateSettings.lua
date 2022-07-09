@@ -68,6 +68,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.borders.targetborder = true
 	E.db.ElvUI_EltreumUI.borders.targetcastborder = true
 	E.db.ElvUI_EltreumUI.borders.targettargetborder = true
+	E.db.ElvUI_EltreumUI.borders.petborder = true
 
 	E.db.ElvUI_EltreumUI.shadows.aura = true
 	E.db.ElvUI_EltreumUI.shadows.ufaura = true

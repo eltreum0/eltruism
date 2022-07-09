@@ -3169,6 +3169,22 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								--image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
+							gappet = {
+								order = 2,
+								type = "description",
+								name = L["Pet Border"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							petenable = {
+								type = 'toggle',
+								name = L["Enable"],
+								order = 3,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.pet.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.petborder end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.petborder = value end,
+							},
 							gaptarget = {
 								order = 23,
 								type = "description",

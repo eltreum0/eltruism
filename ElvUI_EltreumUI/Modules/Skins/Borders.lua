@@ -147,6 +147,20 @@ function ElvUI_EltreumUI:Borders()
 				targettargetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				targettargetborder:SetFrameStrata("LOW")
 			end
+
+			if E.db.ElvUI_EltreumUI.borders.petborder and E.db.unitframe.units.pet.enable then
+				local petborder = CreateFrame("Frame", "EltruismPetBorder", _G.ElvUF_Pet_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
+				local petsizex, petsizey = _G["ElvUF_Pet_HealthBar"]:GetSize()
+				petborder:SetSize(petsizex, petsizey)
+				petborder:SetPoint("TOPRIGHT", _G.ElvUF_Pet_HealthBar,"TOPRIGHT", 17, 16)
+				petborder:SetPoint("BOTTOMLEFT", _G.ElvUF_Pet_HealthBar,"BOTTOMLEFT", -17, -16)
+				petborder:SetBackdrop({
+					edgeFile = bordertexture,
+					edgeSize = playertargetsize,
+				})
+				petborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+				petborder:SetFrameStrata("LOW")
+			end
 		end
 
 		--elvui action bars
