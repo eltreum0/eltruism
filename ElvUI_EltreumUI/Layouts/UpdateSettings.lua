@@ -63,13 +63,11 @@ function ElvUI_EltreumUI:UpdateSettings()
 	--E.db.ElvUI_EltreumUI.borders.borders = true --not sure yet
 	E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
 	E.db.ElvUI_EltreumUI.borders.minimapborder = true
-	E.db.ElvUI_EltreumUI.borders.playerborder = false
-	E.db.ElvUI_EltreumUI.borders.playercastborder = false
-	E.db.ElvUI_EltreumUI.borders.targetborder = false
-	E.db.ElvUI_EltreumUI.borders.targetcastborder = false
-	E.db.ElvUI_EltreumUI.borders.targettargetborder = false
-
-
+	E.db.ElvUI_EltreumUI.borders.playerborder = true
+	E.db.ElvUI_EltreumUI.borders.playercastborder = true
+	E.db.ElvUI_EltreumUI.borders.targetborder = true
+	E.db.ElvUI_EltreumUI.borders.targetcastborder = true
+	E.db.ElvUI_EltreumUI.borders.targettargetborder = true
 
 	E.db.ElvUI_EltreumUI.shadows.aura = true
 	E.db.ElvUI_EltreumUI.shadows.ufaura = true
