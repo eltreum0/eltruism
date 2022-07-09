@@ -1,6 +1,19 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.1.1
+Added an option for the experience databar to have gradient coloring\
+Added borders to minimap and pet uniframe\
+Added the [eltruism:difficulty:all] tag, which will color all units and not just enemies\
+Updated German translation by DLarge\
+Updated the hide talking head function\
+Updated general profile textures\
+Fixed tabs in Unitframes not being disabled when they should be\
+Fixed a possible error when leveling in combat\
+Fixed transparency in an extra details texture\
+Fixed debuff alignment for the pet unitframe\
+Removed options to load extra media, media will now be loaded by default since ElvUI/WeakAuras fixed the Sharedmedia issue
+___
 ### 3.1.0
 Enabled gradient castbar option for Player and Target castbars when using Eltruism profiles\
 Added a CVar option to change Field of Vision in Retail\

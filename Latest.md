@@ -1,10 +1,13 @@
-### 3.1.0 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.1.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Enabled gradient castbar option for Player and Target castbars when using Eltruism profiles\
-Added a CVar option to change Field of Vision in Retail\
-Fixed castbar gradient colors for interrupts and non interruptible spells\
-Fixed chat loot icons not being disabled when chat options were disabled\
-Fixed Minimap shadow depending on datatext settings\
-Fixed Minimap shadow when using rectangle minimap options from Shadow and Light or Windtools\
-Fixed shadows when using 2D portraits\
-Removed some unused files
+Added an option for the experience databar to have gradient coloring\
+Added borders to minimap and pet uniframe\
+Added the [eltruism:difficulty:all] tag, which will color all units and not just enemies\
+Updated German translation by DLarge\
+Updated the hide talking head function\
+Updated general profile textures\
+Fixed tabs in Unitframes not being disabled when they should be\
+Fixed a possible error when leveling in combat\
+Fixed transparency in an extra details texture\
+Fixed debuff alignment for the pet unitframe\
+Removed options to load extra media, media will now be loaded by default since ElvUI/WeakAuras fixed the Sharedmedia issue
