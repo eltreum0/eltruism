@@ -821,7 +821,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
 		E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 0
-		E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOPLEFT"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOP"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["yOffset"] = 1
 		E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"

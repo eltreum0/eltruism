@@ -764,6 +764,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["pet"]["castbar"]["height"] = 28
 		E.db["unitframe"]["units"]["pet"]["castbar"]["overlayOnFrame"] = "Health"
 		E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 130
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOP"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFontOutline"] = "OUTLINE"
 		E.db["unitframe"]["units"]["pet"]["disableTargetGlow"] = false
 		E.db["unitframe"]["units"]["pet"]["fader"]["casting"] = true
