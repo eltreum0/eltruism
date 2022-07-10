@@ -289,23 +289,51 @@ ElvUI_EltreumUI.InstallerData = {
 		end,
 		[8] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText(L["PVP/PVE Addons"].." 2")
-			PluginInstallFrame.Desc1:SetText(L["Import Capping profile for battlegrounds"])
-			PluginInstallFrame.Option1:Enable()
-			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:GetCappingProfile() end)
-			PluginInstallFrame.Option1:SetText("Capping")
-			PluginInstallFrame.Desc2:SetText(L["Import BattlegroundEnemies profile for battlegrounds"])
-			PluginInstallFrame.Option2:Enable()
-			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() end)
-			PluginInstallFrame.Option2:SetText("Battleground\nEnemies")
+			if IsAddOnLoaded("BattleGroundEnemies") then
+				PluginInstallFrame.Desc1:SetText(L["Import BattlegroundEnemies profile for battlegrounds"])
+				PluginInstallFrame.Option1:Enable()
+				PluginInstallFrame.Option1:Show()
+				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() end)
+				PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
+			else
+				PluginInstallFrame.Desc1:SetText(L["BattlegroundEnemies is not installed or enabled"])
+				PluginInstallFrame.Option1:Disable()
+				PluginInstallFrame.Option1:Show()
+				PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() end)
+				PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
+			end
+			if IsAddOnLoaded("Capping") then
+				PluginInstallFrame.Desc2:SetText(L["Import Capping profile for battlegrounds"])
+				PluginInstallFrame.Option2:Enable()
+				PluginInstallFrame.Option2:Show()
+				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:GetCappingProfile() end)
+				PluginInstallFrame.Option2:SetText("Capping")
+			else
+				PluginInstallFrame.Desc2:SetText(L["Capping is not installed or enabled"])
+				PluginInstallFrame.Option2:Disable()
+				PluginInstallFrame.Option2:Show()
+				PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:GetCappingProfile() end)
+				PluginInstallFrame.Option2:SetText("Capping")
+			end
 			if E.Retail then
-				PluginInstallFrame.Desc3:SetText(L["Import WarpDeplete profile for Mythic Plus"])
-				PluginInstallFrame.Desc4:SetText(L["WarpDeplete profile requires an import per class in order to have the correct texture"])
-				PluginInstallFrame.Option3:Enable()
-				PluginInstallFrame.Option3:Show()
-				PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:GetWarpDepleteProfile() end)
-				PluginInstallFrame.Option3:SetText(L["WarpDeplete"])
+				if IsAddOnLoaded("WarpDeplete") then
+					PluginInstallFrame.Desc3:SetText(L["Import WarpDeplete profile for Mythic Plus"]..", "..L["WarpDeplete profile requires an import per class in order to have the correct texture"])
+					PluginInstallFrame.Option3:Enable()
+					PluginInstallFrame.Option3:Show()
+					PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:GetWarpDepleteProfile() end)
+					PluginInstallFrame.Option3:SetText(L["WarpDeplete"])
+				else
+					PluginInstallFrame.Desc3:SetText(L["WarpDeplete is not installed or enabled"])
+					PluginInstallFrame.Option3:Disable()
+					PluginInstallFrame.Option3:Show()
+					PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:GetWarpDepleteProfile() end)
+					PluginInstallFrame.Option3:SetText(L["WarpDeplete"])
+				end
+			end
+			if not ( IsAddOnLoaded("WarpDeplete") or IsAddOnLoaded("Capping") or IsAddOnLoaded("BattleGroundEnemies") ) then
+				PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
+			else
+				PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
 			end
 		end,
 		[9] = function()
