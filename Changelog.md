@@ -11,6 +11,7 @@ Updated general profile textures\
 Updated Install process with a new page for addon profiles\
 Updated the labeling in Eltruism > Install, where Reset/Update can be used to update Eltruism settings to the current version if using an old install\
 Updated WarpDeplete/BattlegroundEnemies/Capping installation\
+Updated the quest npc ignore, adding the darkmoon teleport\
 Fixed tabs in Unitframes not being disabled when they should be\
 Fixed a possible error when leveling in combat\
 Fixed transparency in an extra details texture\
