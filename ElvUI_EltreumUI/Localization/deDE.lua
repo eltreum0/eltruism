@@ -917,3 +917,7 @@ L["Other Skins"] = "Andere Skins"
 L["Skin MeetingHorn"] = true
 L["Add a gradient color to the Experience Bar"] = true
 L["Pet Border"] = true
+L["Import Capping profile for battlegrounds"] = true
+L["Import BattlegroundEnemies profile for battlegrounds"] = true
+L["Import WarpDeplete profile for Mythic Plus"] = true
+L["WarpDeplete profile requires an import per class in order to have the correct texture"] = true

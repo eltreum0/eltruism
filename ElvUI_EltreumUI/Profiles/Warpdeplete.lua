@@ -49,5 +49,7 @@ function ElvUI_EltreumUI:GetWarpDepleteProfile()
 			["forcesFontSize"] = 18,
 			["forcesOverlayTextureColor"] = "ffffffff",
 		}
+
+		ElvUI_EltreumUI:Print(L["WarpDeplete profile has been set."])
 	end
 end
