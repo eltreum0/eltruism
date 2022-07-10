@@ -425,7 +425,8 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["movers"]["LootFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-156"
 		E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-317"
 		E.db["movers"]["MasterExperienceMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,515,-79"
-		E.db["movers"]["MicrobarMover"] = "BOTTOM,ElvUIParent,BOTTOM, 0, 0"
+		--E.db["movers"]["MicrobarMover"] = "BOTTOM,ElvUIParent,BOTTOM, 0, 0"
+		E.db["movers"]["MicrobarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-412,1" --moved since it was overlapping with mouse over
 		E.db["movers"]["MinimapButtonAnchor"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-223"
 		E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
 		E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96"
