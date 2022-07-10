@@ -907,3 +907,6 @@ L["Import Capping profile for battlegrounds"] = true
 L["Import BattlegroundEnemies profile for battlegrounds"] = true
 L["Import WarpDeplete profile for Mythic Plus"] = true
 L["WarpDeplete profile requires an import per class in order to have the correct texture"] = true
+L["BattlegroundEnemies is not installed or enabled"] = "BattlegroundEnemies no está instalado o habilitado"
+L["Capping is not installed or enabled"] = "Capping no está instalado o habilitado"
+L["WarpDeplete is not installed or enabled"] = "WarpDeplete no está instalado o habilitado"
