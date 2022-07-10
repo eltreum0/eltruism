@@ -304,6 +304,9 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						[169501] = true,
 						[181059] = true,
 						[182681] = true,
+						[54334] = true, --darkmoon tp
+						[55382] = true, --darkmoon tp
+						[54346] = true, --darkmoon tp
 					}
 					if ignoredNPCS[NPC_ID] then
 						if E.db.ElvUI_EltreumUI.dev then
