@@ -44,7 +44,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:Print("Spanish Translation is from DeepL and is in testing, feedback is welcome. - La traducción al español es de DeepL y está en pruebas, los comentarios son bienvenidos.")
 	end
 	ElvUI_EltreumUI:VersionCheckInit() --checks for old versions
-	ElvUI_EltreumUI:ExtraMedia() -- load extra media if settings enabled
 	ElvUI_EltreumUI:LoadCommands() --loads chat commands
 	ElvUI_EltreumUI:Borders() --creates borders if option is enabled
 	ElvUI_EltreumUI:ActionbarBorderAdjust() --auto adjust actionbar/border if option is enabled
@@ -78,7 +77,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:DeleteItem() -- automatically type delete
 	ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
 	ElvUI_EltreumUI:BattleRes() --bres count/cd
-	--ElvUI_EltreumUI:SkinGameMenu() -- game menu button
 	if E.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
@@ -99,22 +97,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:NamePlateOptions() --adds dynamic class based color filters to elvui nameplates
 		ElvUI_EltreumUI:DynamicLevelStyleFilter() --shows or hides level filter on np based on player level
 		ElvUI_EltreumUI:UpdateNPwithoutBar() --updates buffs/debuffs positions on np based on powerbar settings
-	end
-	--all of these are to load extra media if the player enables them
-	if E.db.ElvUI_EltreumUI.media.statusbar then
-		ElvUI_EltreumUI:ExtraMediaStatusBar()
-	end
-	if E.db.ElvUI_EltreumUI.media.font then
-		ElvUI_EltreumUI:ExtraMediaFonts()
-	end
-	if E.db.ElvUI_EltreumUI.media.sound then
-		ElvUI_EltreumUI:ExtraMediaSounds()
-	end
-	if E.db.ElvUI_EltreumUI.media.texture then
-		ElvUI_EltreumUI:ExtraMediaTextures()
-	end
-	if E.db.ElvUI_EltreumUI.media.border then
-		ElvUI_EltreumUI:ExtraMediaBorders()
 	end
 	if E.db.ElvUI_EltreumUI.dev then --load dev tools if user enables
 		ElvUI_EltreumUI:DevTools()

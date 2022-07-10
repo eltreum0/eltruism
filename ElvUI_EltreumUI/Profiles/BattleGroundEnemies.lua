@@ -274,5 +274,7 @@ function ElvUI_EltreumUI:GetBattleGroundEnemiesProfile()
 				},
 			}
 		end
+
+		ElvUI_EltreumUI:Print(L["BattleGroundEnemies profile has been set."])
 	end
 end

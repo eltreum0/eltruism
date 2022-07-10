@@ -362,7 +362,7 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,249"
 				E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,-311,249"
 				E.db["ElvUI_EltreumUI"]["borders"]["xplayercast"] = 294
-				E.db["ElvUI_EltreumUI"]["borders"]["xtargettarget"] = 164
+				E.db["ElvUI_EltreumUI"]["borders"]["xtargettarget"] = 162
 				E.db["ElvUI_EltreumUI"]["borders"]["bar1xborder"] = 61
 				E.db["ElvUI_EltreumUI"]["borders"]["bar1yborder"] = 51
 				E.db["ElvUI_EltreumUI"]["borders"]["bar2xborder"] = 51

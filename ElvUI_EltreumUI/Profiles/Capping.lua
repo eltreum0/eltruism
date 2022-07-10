@@ -38,5 +38,8 @@ function ElvUI_EltreumUI:GetCappingProfile()
 				},
 			}
 		end
+
+
+		ElvUI_EltreumUI:Print(L["Capping profile has been set."])
 	end
 end

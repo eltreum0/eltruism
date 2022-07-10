@@ -288,6 +288,27 @@ ElvUI_EltreumUI.InstallerData = {
 			end
 		end,
 		[8] = function()
+			PluginInstallFrame.SubTitle:SetFormattedText(L["PVP/PVE Addons"].." 2")
+			PluginInstallFrame.Desc1:SetText(L["Import Capping profile for battlegrounds"])
+			PluginInstallFrame.Option1:Enable()
+			PluginInstallFrame.Option1:Show()
+			PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:GetCappingProfile() end)
+			PluginInstallFrame.Option1:SetText("Capping")
+			PluginInstallFrame.Desc2:SetText(L["Import BattlegroundEnemies profile for battlegrounds"])
+			PluginInstallFrame.Option2:Enable()
+			PluginInstallFrame.Option2:Show()
+			PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() end)
+			PluginInstallFrame.Option2:SetText("Battleground\nEnemies")
+			if E.Retail then
+				PluginInstallFrame.Desc3:SetText(L["Import WarpDeplete profile for Mythic Plus"])
+				PluginInstallFrame.Desc4:SetText(L["WarpDeplete profile requires an import per class in order to have the correct texture"])
+				PluginInstallFrame.Option3:Enable()
+				PluginInstallFrame.Option3:Show()
+				PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:GetWarpDepleteProfile() end)
+				PluginInstallFrame.Option3:SetText(L["WarpDeplete"])
+			end
+		end,
+		[9] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText(L["QOL Addons"])
 			PluginInstallFrame.Desc1:SetText(L["Import profiles for NameplateSCT or ElvUI Floating Combat Text"])
 			PluginInstallFrame.Desc2:SetText(L["Import "]..'Immersion '..L["settings configured for "]..'Eltruism')
@@ -339,7 +360,7 @@ ElvUI_EltreumUI.InstallerData = {
 				PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
 		end,
-		[9] = function()
+		[10] = function()
 			PluginInstallFrame.SubTitle:SetFormattedText('Discord')
 			PluginInstallFrame.Desc1:SetText(L["Join the Discord if you have any questions or issues (English Support)"])
 			PluginInstallFrame.Option1:Enable()
@@ -347,7 +368,7 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/rBXNxUY6pk') 	end)
 			PluginInstallFrame.Option1:SetText('Discord')
 		end,
-		[10] = function()
+		[11] = function()
 			PluginInstallFrame.SubTitle:SetText(L["Installation Complete"])
 			PluginInstallFrame.Desc1:SetText(L["You have completed the installation process"])
 			PluginInstallFrame.Desc2:SetText(L["Feel free to explore Eltruism settings in ElvUI > Eltruism. There are lot of settings that are disabled by default."])
@@ -367,9 +388,10 @@ ElvUI_EltreumUI.InstallerData = {
 		[5] = L["Chat"],
 		[6] = L["Details! DPS Meter"],
 		[7] = L["PVP/PVE Addons"],
-		[8] = L["QOL Addons"],
-		[9] = 'Discord',
-		[10] = L["Installation Complete"],
+		[8] = L["PVP/PVE Addons"].." 2",
+		[9] = L["QOL Addons"],
+		[10] = 'Discord',
+		[11] = L["Installation Complete"],
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {70/255, 130/255, 180/255},
