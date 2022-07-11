@@ -73,7 +73,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:ExpandedCharacterStats() --attempt at improving the character panel
 	ElvUI_EltreumUI:DeathSound() -- set the party/raid death sound
 	ElvUI_EltreumUI.PlayerDeathAnimation() -- death animation
-	--ElvUI_EltreumUI:ChangePlayerTexture() -- load the player texture
+	ElvUI_EltreumUI:ChangePlayerTexture() -- load the player texture
 	ElvUI_EltreumUI:DeleteItem() -- automatically type delete
 	ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
 	ElvUI_EltreumUI:BattleRes() --bres count/cd
