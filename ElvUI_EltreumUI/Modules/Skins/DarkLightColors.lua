@@ -130,7 +130,7 @@ function ElvUI_EltreumUI:LightMode()
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
-		ElvUI_EltreumUI:ChangePlayerTexture()
+		--ElvUI_EltreumUI:ChangePlayerTexture()
 		ElvUI_EltreumUI:Print("Unitframes set to Light Mode")
 	end
 end
@@ -255,7 +255,7 @@ function ElvUI_EltreumUI:GradientMode()
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
-		ElvUI_EltreumUI:ChangePlayerTexture()
+		--ElvUI_EltreumUI:ChangePlayerTexture()
 		ElvUI_EltreumUI:Print("Unitframes set to Gradient Mode")
 	end
 end
