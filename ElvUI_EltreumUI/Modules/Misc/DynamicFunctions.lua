@@ -247,6 +247,7 @@ function ElvUI_EltreumUI:EmptyDetailsTable()
 	_detalhes.npcid_pool = {}
 	_detalhes.spell_pool = {}
 	_detalhes.spell_school_cache = {}
+	_detalhes.boss_mods_timers = {}
 end
 
 --Dynamic Experience Bar Mouseover
