@@ -14,6 +14,7 @@ Updated the quest npc ignore, adding the darkmoon teleport\
 Updated the position of the microbar in the DPS profile\
 Fixed tabs in Unitframes not being disabled when they should be\
 Fixed a possible error when leveling in combat\
+Fixed an error with the quest items bar when an item that could be equipped was detected as a quest item\
 Fixed transparency in an extra details texture\
 Fixed debuff alignment for the pet unitframe\
 Fixed border colors not updating when changing zones\
