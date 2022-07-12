@@ -110,6 +110,7 @@ function ElvUI_EltreumUI:Initialize()
 		E.private.install_complete = E.version
 		ElvUI_EltreumUI:HidePopups()
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
+		return
 	end
 	--register the plugin config
 	EP:RegisterPlugin(addon, ElvUI_EltreumUI.Configtable)
