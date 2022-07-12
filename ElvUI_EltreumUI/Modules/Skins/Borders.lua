@@ -21,24 +21,22 @@ local classcolorreaction = {
 }
 
 local targetborder
+local targetcreatedcheck = false
 local targettargetborder
+local targettargetcreatedcheck = false
 local targetcastbarborder
+local targetcastbarcreatedcheck = false
+local bordertexture
+local classcolor
 
 --Borders on frames
 function ElvUI_EltreumUI:Borders()
-	--print("border spam")
-	if not IsAddOnLoaded("ElvUI_EltreumUI") then
-		return
-	elseif not E.private.ElvUI_EltreumUI then
-		return
-	end
 	if E.db.ElvUI_EltreumUI.borders.borders then
 		--borders not nice with transparent power
 		if E.db["unitframe"]["units"]["player"]["power"]["width"] == "spaced" then
 			E.db["unitframe"]["colors"]["transparentPower"] = false
 		end
 
-		local bordertexture
 		if E.db.ElvUI_EltreumUI.borders.texture then
 			bordertexture = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture)
 			if bordertexture == nil then --the border was not found so apply the default
@@ -48,7 +46,7 @@ function ElvUI_EltreumUI:Borders()
 		else --use default if value is nil
 			bordertexture = "Interface\\Addons\\ElvUI_EltreumUI\\Media\border\\Eltreum-Border-1.tga"
 		end
-		local classcolor
+
 		if E.db.ElvUI_EltreumUI.borders.classcolor == true then
 			classcolor = E:ClassColor(E.myclass, true)
 		else
@@ -106,7 +104,7 @@ function ElvUI_EltreumUI:Borders()
 				playercastbarborder:SetFrameStrata("HIGH")
 			end
 
-			if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable then
+			if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable and targetcreatedcheck == false then
 				targetborder = CreateFrame("Frame", "EltruismTargetBorder", _G.ElvUF_Target_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
 				targetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xtarget, E.db.ElvUI_EltreumUI.borders.ytarget)
 				targetborder:SetPoint("CENTER", _G.ElvUF_Target_HealthBar, "CENTER", 0 ,0)
@@ -116,9 +114,10 @@ function ElvUI_EltreumUI:Borders()
 				})
 				targetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				targetborder:SetFrameStrata("LOW")
+				targetcreatedcheck = true
 			end
 
-			if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and not (E.db.unitframe.units.target.castbar.overlayOnFrame == "Power") then
+			if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and targetcastbarcreatedcheck == false and not (E.db.unitframe.units.target.castbar.overlayOnFrame == "Power") then
 				targetcastbarborder = CreateFrame("Frame", "EltruismTargetCastBarBorder", _G.ElvUF_Target_CastBar, BackdropTemplateMixin and "BackdropTemplate")
 				local isattachedtarget = E.db.unitframe.units.target.castbar.iconAttached
 				if isattachedtarget == false then
@@ -134,9 +133,10 @@ function ElvUI_EltreumUI:Borders()
 				})
 				targetcastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				targetcastbarborder:SetFrameStrata("HIGH")
+				targetcastbarcreatedcheck = true
 			end
 
-			if E.db.ElvUI_EltreumUI.borders.targettargetborder and E.db.unitframe.units.targettarget.enable then
+			if E.db.ElvUI_EltreumUI.borders.targettargetborder and E.db.unitframe.units.targettarget.enable and targettargetcreatedcheck == false then
 				targettargetborder = CreateFrame("Frame", "EltruismTargetTargetBorder", _G.ElvUF_TargetTarget_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
 				targettargetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xtargettarget, E.db.ElvUI_EltreumUI.borders.ytargettarget)
 				targettargetborder:SetPoint("CENTER", _G.ElvUF_TargetTarget_HealthBar, "CENTER", 0 ,0)
@@ -146,6 +146,7 @@ function ElvUI_EltreumUI:Borders()
 				})
 				targettargetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				targettargetborder:SetFrameStrata("LOW")
+				targettargetcreatedcheck = true
 			end
 
 			if E.db.ElvUI_EltreumUI.borders.petborder and E.db.unitframe.units.pet.enable then
@@ -356,13 +357,7 @@ function ElvUI_EltreumUI:Borders()
 end
 
 function ElvUI_EltreumUI:BordersTargetChanged()
-	if not IsAddOnLoaded("ElvUI_EltreumUI") then
-		return
-	elseif not E.private.ElvUI_EltreumUI then
-		return
-	end
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor == true then
-
 		if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable then
 				if UnitExists("target") then
 					if UnitIsPlayer("target") then
@@ -427,6 +422,7 @@ end
 
 local updatetargettarget = CreateFrame("Frame")
 updatetargettarget:RegisterUnitEvent("UNIT_TARGET", "target")
+updatetargettarget:RegisterUnitEvent("PLAYER_TARGET_CHANGED")
 updatetargettarget:SetScript("OnEvent", function()
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
