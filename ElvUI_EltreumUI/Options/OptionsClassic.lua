@@ -4169,7 +4169,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return not E.db.ElvUI_EltreumUI.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.playertexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.playertexture = key ElvUI_EltreumUI:ChangePlayerTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.playertexture = key ElvUI_EltreumUI:ChangeUnitTexture() end,
 							},
 							castbartex = {
 								order = 105,
@@ -4491,7 +4491,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.texture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.gradientmode.texture = key ElvUI_EltreumUI:ChangePlayerTexture() ElvUI_EltreumUI:ChangeUnitTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.gradientmode.texture = key ElvUI_EltreumUI:ChangeUnitTexture() end,
 							},
 							headercastbar = {
 								order = 4,
