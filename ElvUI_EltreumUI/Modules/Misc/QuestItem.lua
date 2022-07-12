@@ -63,6 +63,8 @@ function ElvUI_EltreumUI:QuestItem()
 				28607, -- Sunfury Disguise
 				28132, -- area 52 bomb
 				28038, -- seaforium explosive
+				49132, -- fireliminator x-21
+				49368, -- ambassador disquise
 
 				-- by Az
 				23818,	-- Stillpine Furbolg Language Primer
@@ -250,7 +252,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Check Item -- Az: Some items which starts a quest, are not marked as "Quest" in itemType or itemSubType. Ex: item:17008
 			local function CheckItemTooltip(link,itemId)
-				local _, _, _, _, _, itemType, itemSubType, _, _, _, _, _ = GetItemInfo(link)
+				local _, _, _, _, _, itemType, itemSubType, _, itemEquipLoc, _, _, _ = GetItemInfo(link)
 				-- Include predefinded items
 				for _, id in ipairs(qItems) do
 					if (itemId == id) then
@@ -263,7 +265,7 @@ function ElvUI_EltreumUI:QuestItem()
 				local numLines = EltruismQuestItemFrame.tip:NumLines()
 				--local line2 = (_G[modName.."TipTextLeft2"]:GetText() or "")
 				--if (numLines >= 3) and (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or line2 == ITEM_BIND_QUEST or line2 == GetZoneText()) then
-				if (numLines >= 3) and (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN) then
+				if (numLines >= 3) and (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN) and itemEquipLoc == "" then
 					for i = 3, numLines do
 						local text = _G["EltruismQuestItem".."TipTextLeft"..i]:GetText() or ""
 						if (text:find("^"..ITEM_SPELL_TRIGGER_ONUSE)) then
