@@ -17,4 +17,5 @@ Fixed a possible error when leveling in combat\
 Fixed transparency in an extra details texture\
 Fixed debuff alignment for the pet unitframe\
 Fixed border colors not updating when changing zones\
+Fixed gradient target castbar no using correct colors when custom colors were changed\
 Removed options to load extra media, media will now be loaded by default since ElvUI/WeakAuras fixed the Sharedmedia issue
