@@ -37,9 +37,9 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db["unitframe"]["colors"]["transparentCastbar"] = true
 		E.db["unitframe"]["colors"]["transparentHealth"] = true
 		E.db["unitframe"]["colors"]["transparentPower"] = true
-		E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
-		E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
-		E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
+		--E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
+		--E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
+		--E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
 		E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.3
 		E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.3
 
@@ -106,9 +106,10 @@ function ElvUI_EltreumUI:LightMode()
 		E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.6
 		E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.6
 
-		E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
-		E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
-		E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
+		--E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
+		--E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
+		--E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
+
 		--setup namecolors
 		if E.Classic or E.TBC then
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
@@ -172,9 +173,9 @@ function ElvUI_EltreumUI:GradientMode()
 			E.db["unitframe"]["colors"]["transparentCastbar"] = true
 			E.db["unitframe"]["colors"]["transparentHealth"] = true
 			E.db["unitframe"]["colors"]["transparentPower"] = true
-			E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
-			E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
-			E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
+			--E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
+			--E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
+			--E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
 			E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.3
 			E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.3
 
@@ -228,9 +229,10 @@ function ElvUI_EltreumUI:GradientMode()
 			E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.6
 			E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.6
 
-			E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
-			E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
-			E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
+			--E.db["auras"]["buffs"]["barTexture"] = "Eltreum-Blank"
+			--E.db["auras"]["debuffs"]["barTexture"] = "Eltreum-Blank"
+			--E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
+
 			--setup namecolors
 			if E.Classic or E.TBC then
 				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
