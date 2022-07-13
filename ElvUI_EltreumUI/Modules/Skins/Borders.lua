@@ -422,7 +422,8 @@ end
 
 local updatetargettarget = CreateFrame("Frame")
 updatetargettarget:RegisterUnitEvent("UNIT_TARGET", "target")
-updatetargettarget:RegisterUnitEvent("PLAYER_TARGET_CHANGED")
+updatetargettarget:RegisterUnitEvent("UNIT_TARGET", "player")
+--updatetargettarget:RegisterUnitEvent("PLAYER_TARGET_CHANGED")
 updatetargettarget:SetScript("OnEvent", function()
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
