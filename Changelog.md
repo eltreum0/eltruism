@@ -5,7 +5,7 @@ ___
 Added an option for the experience databar to have gradient coloring\
 Added borders to minimap and pet uniframe\
 Added the [eltruism:difficulty:all] tag, which will color all units and not just enemies\
-Updated Gradient functions, which should use less CPU time\
+Improved Gradient functions, which should use less CPU time\
 Updated German translation by DLarge\
 Updated the hide talking head function\
 Updated general profile textures\
@@ -20,6 +20,7 @@ Fixed an error with the quest items bar when an item that could be equipped was 
 Fixed transparency in an extra details texture\
 Fixed debuff alignment for the pet unitframe\
 Fixed border colors not updating when changing zones\
+Fixed a possible border error when changing profiles or specializations\
 Fixed gradient target castbar no using correct colors when custom colors were changed\
 Removed options to load extra media, media will now be loaded by default since ElvUI/WeakAuras fixed the Sharedmedia issue
 ___
