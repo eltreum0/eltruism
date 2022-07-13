@@ -61,14 +61,14 @@ function ElvUI_EltreumUI:RunCommands(message)
 		end
 	elseif message == 'color' then
 		if E.db.ElvUI_EltreumUI.lightmode == true then
-			ElvUI_EltreumUI:DarkMode()
+			ElvUI_EltreumUI:DarkMode() E:StaticPopup_Show('CONFIG_RL')
 		elseif E.db.ElvUI_EltreumUI.lightmode == false then
-			ElvUI_EltreumUI:LightMode()
+			ElvUI_EltreumUI:LightMode() E:StaticPopup_Show('CONFIG_RL')
 		else
-			ElvUI_EltreumUI:DarkMode()
+			ElvUI_EltreumUI:DarkMode() E:StaticPopup_Show('CONFIG_RL')
 		end
 	elseif message == 'gradient' then
-		ElvUI_EltreumUI:GradientMode()
+		ElvUI_EltreumUI:GradientMode() E:StaticPopup_Show('CONFIG_RL')
 	elseif message == 'background' then
 		if E.db.ElvUI_EltreumUI.greybackground == true then
 			ElvUI_EltreumUI:BlackBg()
