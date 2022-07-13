@@ -567,13 +567,13 @@ P.ElvUI_EltreumUI = {
 		width = 3,
 	},
 
-	media = {
+	--[[media = {
 		font = false,
 		border = false,
 		statusbar = false,
 		texture = false,
 		sound = false,
-	},
+	},]]
 
 	blizzframes = {
 		errorframe = true,
