@@ -1,7 +1,7 @@
 ### 3.1.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
 Added an option for the experience databar to have gradient coloring\
-Added borders to minimap and pet uniframe\
+Added borders to minimap and pet unitframe\
 Added the [eltruism:difficulty:all] tag, which will color all units and not just enemies\
 Improved Gradient functions, which should use less CPU time\
 Updated German translation by DLarge\
