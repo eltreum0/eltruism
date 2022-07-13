@@ -15,6 +15,10 @@ local unitframeclass = {
 	["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MK.tga",
 	["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga",
 	["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DH.tga",
+	["NPCFRIENDLY"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga",
+	["NPCNEUTRAL"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RG.tga",
+	["NPCUNFRIENDLY"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga",
+	["NPCHOSTILE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga",
 }
 
 --bar colors for party/raid/raid40
@@ -105,6 +109,29 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 		["NPCUNFRIENDLY"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyB2},
 		["NPCHOSTILE"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileB2},
 	}
+
+	if E.db.ElvUI_EltreumUI.uftexturev1 then
+		return
+	elseif E.db.ElvUI_EltreumUI.uftexturev2 then
+		unitframeclass = {
+			["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WAv2.tga",
+			["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PLv2.tga",
+			["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HTv2.tga",
+			["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RGv2.tga",
+			["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PRv2.tga",
+			["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DKv2.tga",
+			["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SHv2.tga",
+			["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MGv2.tga",
+			["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WLv2.tga",
+			["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MKv2.tga",
+			["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DRv2.tga",
+			["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DHv2.tga",
+			["NPCFRIENDLY"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HTv2.tga",
+			["NPCNEUTRAL"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RGv2.tga",
+			["NPCUNFRIENDLY"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DRv2.tga",
+			["NPCHOSTILE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DKv2.tga",
+		}
+	end
 
 	if E.db.ElvUI_EltreumUI.darkmode then
 		if E.Retail then
@@ -535,7 +562,8 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 									button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.paladintexture))
 								else
-									button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PL.tga")
+									--button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PL.tga")
+									button.Health:SetStatusBarTexture(unitframeclass["PALADIN"])
 								end
 							elseif E.db.ElvUI_EltreumUI.darkmode then
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
@@ -565,7 +593,8 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 									button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warriortexture))
 								else
-									button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga")
+									--button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga")
+									button.Health:SetStatusBarTexture(unitframeclass["WARRIOR"])
 								end
 							elseif E.db.ElvUI_EltreumUI.darkmode then
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
@@ -595,7 +624,8 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 									button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.shamantexture))
 								else
-									button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SH.tga")
+									--button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-SH.tga")
+									button.Health:SetStatusBarTexture(unitframeclass["SHAMAN"])
 								end
 							elseif E.db.ElvUI_EltreumUI.darkmode then
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
@@ -625,7 +655,8 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 									button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.druidtexture))
 								else
-									button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga")
+									--button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga")
+									button.Health:SetStatusBarTexture(unitframeclass["DRUID"])
 								end
 							elseif E.db.ElvUI_EltreumUI.darkmode then
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
@@ -655,7 +686,8 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 									button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.deathknighttexture))
 								else
-									button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga")
+									--button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga")
+									button.Health:SetStatusBarTexture(unitframeclass["DEATHKNIGHT"])
 								end
 							elseif E.db.ElvUI_EltreumUI.darkmode then
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
@@ -685,7 +717,8 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 									button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.demonhuntertexture))
 								else
-									button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DH.tga")
+									--button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DH.tga")
+									button.Health:SetStatusBarTexture(unitframeclass["DEMONHUNTER"])
 								end
 							elseif E.db.ElvUI_EltreumUI.darkmode then
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
@@ -715,7 +748,8 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 									button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.monktexture))
 								else
-									button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MK.tga")
+									--button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MK.tga")
+									button.Health:SetStatusBarTexture(unitframeclass["MONK"])
 								end
 							elseif E.db.ElvUI_EltreumUI.darkmode then
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
@@ -745,7 +779,8 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 									button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.roguetexture))
 								else
-									button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RG.tga")
+									--button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RG.tga")
+									button.Health:SetStatusBarTexture(unitframeclass["ROGUE"])
 								end
 							elseif E.db.ElvUI_EltreumUI.darkmode then
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
@@ -775,7 +810,8 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 									button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.priesttexture))
 								else
-									button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PR.tga")
+									--button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PR.tga")
+									button.Health:SetStatusBarTexture(unitframeclass["PRIEST"])
 								end
 							elseif E.db.ElvUI_EltreumUI.darkmode then
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
@@ -805,7 +841,8 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 									button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.magetexture))
 								else
-									button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MG.tga")
+									--button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-MG.tga")
+									button.Health:SetStatusBarTexture(unitframeclass["MAGE"])
 								end
 							elseif E.db.ElvUI_EltreumUI.darkmode then
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
@@ -835,7 +872,8 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 									button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.huntertexture))
 								else
-									button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga")
+									--button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga")
+									button.Health:SetStatusBarTexture(unitframeclass["HUNTER"])
 								end
 							elseif E.db.ElvUI_EltreumUI.darkmode then
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
@@ -865,7 +903,8 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 									button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warlocktexture))
 								else
-									button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WL.tga")
+									--button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WL.tga")
+									button.Health:SetStatusBarTexture(unitframeclass["WARLOCK"])
 								end
 							elseif E.db.ElvUI_EltreumUI.darkmode then
 								if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
@@ -876,7 +915,8 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 					else
 						if E.db.ElvUI_EltreumUI.lightmode then
 							--button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-							button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PR.tga")
+							--button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PR.tga")
+							button.Health:SetStatusBarTexture(unitframeclass["PRIEST"])
 						end
 					end
 				else --might be priest, use texture then if gradient, custom texture woulnt work because its class based and would force it on all
@@ -991,13 +1031,13 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 				end
 			elseif not UnitIsPlayer("target") then
 				if reactiontarget >= 5 then
-					targetbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga"
+					targetbar = unitframeclass["NPCFRIENDLY"]
 				elseif reactiontarget == 4 then
-					targetbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RG.tga"
+					targetbar = unitframeclass["NPCNEUTRAL"]
 				elseif reactiontarget == 3 then
-					targetbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga"
+					targetbar = unitframeclass["NPCUNFRIENDLY"]
 				elseif reactiontarget == 2 or reactiontarget == 1 then
-					targetbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga"
+					targetbar = unitframeclass["NPCHOSTILE"]
 				end
 			end
 		end
@@ -1154,13 +1194,13 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 				end
 			elseif not UnitIsPlayer("targettarget") then
 				if reactiontargettarget >= 5 then
-					targettargetbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga"
+					targettargetbar = unitframeclass["NPCFRIENDLY"]
 				elseif reactiontargettarget == 4 then
-					targettargetbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RG.tga"
+					targettargetbar = unitframeclass["NPCNEUTRAL"]
 				elseif reactiontargettarget == 3 then
-					targettargetbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga"
+					targettargetbar = unitframeclass["NPCUNFRIENDLY"]
 				elseif reactiontargettarget == 2 or reactiontargettarget == 1 then
-					targettargetbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga"
+					targettargetbar = unitframeclass["NPCHOSTILE"]
 				end
 			end
 		end
@@ -1298,13 +1338,13 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 			focusbar = unitframeclass[focusclass]
 		elseif not UnitIsPlayer("focus") and UnitExists("focus") then
 			if reactionfocus >= 5 then
-				focusbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga"
+				focusbar = unitframeclass["NPCFRIENDLY"]
 			elseif reactionfocus == 4 then
-				focusbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-RG.tga"
+				focusbar = unitframeclass["NPCNEUTRAL"]
 			elseif reactionfocus == 3 then
-				focusbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DR.tga"
+				focusbar = unitframeclass["NPCUNFRIENDLY"]
 			elseif reactionfocus == 2 or reactionfocus == 1 then
-				focusbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga"
+				focusbar = unitframeclass["NPCHOSTILE"]
 			end
 		end
 		if UF.units.focus and UnitExists("focus") then
@@ -1386,7 +1426,8 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 		end
 
 		--pet
-		local petbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga"
+		--local petbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-HT.tga"
+		local petbar = unitframeclass["HUNTER"]
 		if UF.units.pet then
 			local petframe = _G["ElvUF_Pet"]
 			if petframe and petframe.Health then
@@ -1676,7 +1717,8 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 
 		if E.Retail then
 			--boss1
-			local bossbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga"
+			--local bossbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga"
+			local bossbar = unitframeclass["DEATHKNIGHT"]
 			local bossframe1 = _G["ElvUF_Boss1"]
 			local reactionboss1 = UnitReaction("player", "boss1")
 			if bossframe1 and reactionboss1 ~= nil then
