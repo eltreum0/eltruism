@@ -356,27 +356,27 @@ function ElvUI_EltreumUI:Borders()
 	end
 end
 
-function ElvUI_EltreumUI:BordersTargetChanged()
+function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of target changes if the target is not in party/raid, no event to register :(
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor == true then
 		if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable then
-				if UnitExists("target") and targetborder ~= nil then
-					if UnitIsPlayer("target") then
-						local _, targetclass = UnitClass("target")
-						targetborder:SetBackdropBorderColor(classcolorreaction[targetclass]["r1"], classcolorreaction[targetclass]["g1"], classcolorreaction[targetclass]["b1"], 1)
-					elseif not UnitIsPlayer("target") then
-						local reactiontarget = UnitReaction("player", "target")
-						if reactiontarget >= 5 then
-							targetborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
-						elseif reactiontarget == 4 then
-							targetborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
-						elseif reactiontarget == 3 then
-							targetborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
-						elseif reactiontarget == 2 or reactiontarget == 1 then
-							targetborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
-						end
+			if UnitExists("target") and targetborder ~= nil then
+				if UnitIsPlayer("target") then
+					local _, targetclass = UnitClass("target")
+					targetborder:SetBackdropBorderColor(classcolorreaction[targetclass]["r1"], classcolorreaction[targetclass]["g1"], classcolorreaction[targetclass]["b1"], 1)
+				elseif not UnitIsPlayer("target") then
+					local reactiontarget = UnitReaction("player", "target")
+					if reactiontarget >= 5 then
+						targetborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
+					elseif reactiontarget == 4 then
+						targetborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
+					elseif reactiontarget == 3 then
+						targetborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
+					elseif reactiontarget == 2 or reactiontarget == 1 then
+						targetborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
 					end
 				end
 			end
+		end
 
 		if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and not (E.db.unitframe.units.target.castbar.overlayOnFrame == "Power") then
 			if UnitExists("target") and targetcastbarborder ~= nil then
@@ -417,12 +417,13 @@ function ElvUI_EltreumUI:BordersTargetChanged()
 				end
 			end
 		end
+
 	end
 end
 
 local updatetargettarget = CreateFrame("Frame")
 updatetargettarget:RegisterUnitEvent("UNIT_TARGET", "target")
-updatetargettarget:RegisterUnitEvent("UNIT_TARGET", "player")
+--updatetargettarget:RegisterUnitEvent("UNIT_TARGET", "player")
 --updatetargettarget:RegisterUnitEvent("PLAYER_TARGET_CHANGED")
 updatetargettarget:SetScript("OnEvent", function()
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
