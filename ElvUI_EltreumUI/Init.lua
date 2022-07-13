@@ -265,6 +265,9 @@ function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 		if E.private.nameplates.enable then
 			ElvUI_EltreumUI:UpdateNPwithoutBar()
 		end
+		if E.db.ElvUI_EltreumUI.borders.borders then
+			E:StaticPopup_Show('CONFIG_RL')
+		end
 	end
 end
 
