@@ -110,9 +110,9 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 		["NPCHOSTILE"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileB2},
 	}
 
-	if E.db.ElvUI_EltreumUI.uftexturev1 then
+	if E.db.ElvUI_EltreumUI.uftextureversion == "V1" then
 		return
-	elseif E.db.ElvUI_EltreumUI.uftexturev2 then
+	elseif E.db.ElvUI_EltreumUI.uftextureversion == "V2" then
 		unitframeclass = {
 			["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WAv2.tga",
 			["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PLv2.tga",

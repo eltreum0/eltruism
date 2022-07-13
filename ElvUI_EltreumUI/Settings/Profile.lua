@@ -379,10 +379,8 @@ P.ElvUI_EltreumUI = {
 
 	UFmodifications = true,
 	lightmode = false,
-	uftexturev1 = true,
-	uftexturev2 = false,
-	nptexturev1 = true,
-	nptexturev2 = false,
+	uftextureversion = "V1",
+	nptextureversion = "V1",
 	darkmode = true,
 	--modetexture = false,
 	darkpowercolor = false,
