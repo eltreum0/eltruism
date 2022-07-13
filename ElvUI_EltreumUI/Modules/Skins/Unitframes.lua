@@ -284,9 +284,6 @@ function ElvUI_EltreumUI:CastBarTexture()
 end
 hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastBarTexture)
 hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastBarTexture)
---hooksecurefunc(UF, 'PostCastStop', ElvUI_EltreumUI.CastBarTexture)
---hooksecurefunc(UF, 'PostCastFail', ElvUI_EltreumUI.CastBarTexture)
---hooksecurefunc(UF, 'Configure_Castbar', ElvUI_EltreumUI.CastBarTexture)
 
 function ElvUI_EltreumUI:ChangeUnitTexture()
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then
@@ -1733,7 +1730,7 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit)--(unit, r, g, b)
 			end
 		end
 
-		local function Test(g1,b1,r1, r,g,b, button)
+		local function ApplyGradientTexture(g1,b1,r1, r,g,b, button)
 			if tostring(g1) == tostring(trueg) and tostring(r1) == tostring(truer) and tostring(b1) == tostring(trueb) then
 				if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) or (r == unitframecustomgradients["PALADIN"]["r2"] and g == unitframecustomgradients["PALADIN"]["g2"] and b == unitframecustomgradients["PALADIN"]["b2"]) then
 					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
@@ -2127,7 +2124,7 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit)--(unit, r, g, b)
 						local r = tostring(r1)
 						local g = tostring(g1)
 						local b = tostring(b1)
-						Test(g1,b1,r1, r,g,b, groupbutton)
+						ApplyGradientTexture(g1,b1,r1, r,g,b, groupbutton)
 					end
 				end
 			end
@@ -2146,7 +2143,7 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit)--(unit, r, g, b)
 					local r = tostring(r1)
 					local g = tostring(g1)
 					local b = tostring(b1)
-					Test(g1,b1,r1, r,g,b, tankbutton)
+					ApplyGradientTexture(g1,b1,r1, r,g,b, tankbutton)
 				end
 			end
 		end
@@ -2164,7 +2161,7 @@ function ElvUI_EltreumUI:ChangeGroupUnitframe(unit)--(unit, r, g, b)
 					local r = tostring(r1)
 					local g = tostring(g1)
 					local b = tostring(b1)
-					Test(g1,b1,r1, r,g,b, assistbutton)
+					ApplyGradientTexture(g1,b1,r1, r,g,b, assistbutton)
 				end
 			end
 		end
@@ -2183,23 +2180,6 @@ function ElvUI_EltreumUI:BackdropTexture(_, _, backdropTex)
 end
 hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
 
-local EltruismChangeUnitTextureFrame = CreateFrame("FRAME")
-EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_TARGET", "player")
-EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_TARGET", "target")
-EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
-EltruismChangeUnitTextureFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
-EltruismChangeUnitTextureFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-EltruismChangeUnitTextureFrame:RegisterEvent("GROUP_ROSTER_UPDATE")
-EltruismChangeUnitTextureFrame:SetScript("OnEvent", function()
-	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then
-		ElvUI_EltreumUI:ChangeUnitTexture()
-		if IsInGroup() == true then
-			ElvUI_EltreumUI:ChangeGroupUnitframe()
-		end
-	end
-end)
-
-
 function ElvUI_EltreumUI:HookUFColor(unit)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications and (E.db.ElvUI_EltreumUI.lightmode or E.db.ElvUI_EltreumUI.darkmode) then
 		ElvUI_EltreumUI:ChangeUnitTexture()
@@ -2209,28 +2189,4 @@ function ElvUI_EltreumUI:HookUFColor(unit)
 	end
 end
 hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.HookUFColor)
-
 hooksecurefunc(UF, "Style", ElvUI_EltreumUI.ChangeUnitTexture) --if not hooking into this then when the target of target changes it doesnt update
-
-
---hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.ChangeUnitTexture)
---hooksecurefunc(UF, 'PostUpdateHealthColor', ElvUI_EltreumUI.ChangeGroupUnitframe)
-
---[[
-hooksecurefunc(UF, 'Update_RaidFrames', ElvUI_EltreumUI.ChangeGroupUnitframe)
-hooksecurefunc(UF, 'Update_Raid40Frames', ElvUI_EltreumUI.ChangeGroupUnitframe)
-hooksecurefunc(UF, 'Update_PartyFrames', ElvUI_EltreumUI.ChangeGroupUnitframe)
-
-hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
-hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangeGroupUnitframe)
-
---dark mode
-hooksecurefunc(UF, "PostUpdateHealth", ElvUI_EltreumUI.ChangeUnitTexture)
-hooksecurefunc(UF, 'PostUpdateHealth', ElvUI_EltreumUI.ChangeGroupUnitframe)
-
---arena
-hooksecurefunc(UF, 'Update_ArenaFrames', ElvUI_EltreumUI.ChangeGroupUnitframe)
-hooksecurefunc(UF, 'Construct_ArenaFrames', ElvUI_EltreumUI.ChangeGroupUnitframe)
-hooksecurefunc(UF, 'PostUpdateArenaPreparation', ElvUI_EltreumUI.ChangeGroupUnitframe)
-hooksecurefunc(UF, 'PostUpdateArenaFrame', ElvUI_EltreumUI.ChangeGroupUnitframe)
-]]
