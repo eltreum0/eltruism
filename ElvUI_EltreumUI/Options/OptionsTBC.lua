@@ -1510,7 +1510,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.gradientXP = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							otherskins = {
-								order = 998,
+								order = 98,
 								type = "description",
 								name = L["Other Skins"],
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
