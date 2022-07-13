@@ -359,7 +359,7 @@ end
 function ElvUI_EltreumUI:BordersTargetChanged()
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor == true then
 		if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable then
-				if UnitExists("target") then
+				if UnitExists("target") and targetborder ~= nil then
 					if UnitIsPlayer("target") then
 						local _, targetclass = UnitClass("target")
 						targetborder:SetBackdropBorderColor(classcolorreaction[targetclass]["r1"], classcolorreaction[targetclass]["g1"], classcolorreaction[targetclass]["b1"], 1)
@@ -379,7 +379,7 @@ function ElvUI_EltreumUI:BordersTargetChanged()
 			end
 
 		if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and not (E.db.unitframe.units.target.castbar.overlayOnFrame == "Power") then
-			if UnitExists("target") then
+			if UnitExists("target") and targetcastbarborder ~= nil then
 				if UnitIsPlayer("target") then
 					local _, targetclass = UnitClass("target")
 					targetcastbarborder:SetBackdropBorderColor(classcolorreaction[targetclass]["r1"], classcolorreaction[targetclass]["g1"], classcolorreaction[targetclass]["b1"], 1)
@@ -399,7 +399,7 @@ function ElvUI_EltreumUI:BordersTargetChanged()
 		end
 
 		if E.db.ElvUI_EltreumUI.borders.targettargetborder and E.db.unitframe.units.targettarget.enable then
-			if UnitExists("targettarget") then
+			if UnitExists("targettarget") and targettargetborder ~= nil then
 				if UnitIsPlayer("targettarget") then
 					local _, targettargetclass = UnitClass("targettarget")
 					targettargetborder:SetBackdropBorderColor(classcolorreaction[targettargetclass]["r1"], classcolorreaction[targettargetclass]["g1"], classcolorreaction[targettargetclass]["b1"], 1)
