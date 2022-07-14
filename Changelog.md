@@ -1,6 +1,12 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.1.2
+Added more statusbar textures for classes\
+Added options to use a different version of the statusbar textures for nameplates and light mode\
+Fixed the positioning of the more skins option in TBC\
+Further improved gradient/unitframe functions
+___
 ### 3.1.1
 Added an option for the experience databar to have gradient coloring\
 Added borders to minimap and pet unitframe\
