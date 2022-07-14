@@ -924,3 +924,7 @@ L["WarpDeplete profile requires an import per class in order to have the correct
 L["BattlegroundEnemies is not installed or enabled"] = "BattlegroundEnemies ist nicht installiert oder aktiviert"
 L["Capping is not installed or enabled"] = "Capping ist nicht installiert oder aktiviert"
 L["WarpDeplete is not installed or enabled"] = "WarpDeplete ist nicht installiert oder aktiviert"
+L["Version 1"] = true
+L["Version 2"] = true
+L["Light Mode Texture Version"] = true
+L["Nameplate Texture Version"] = true
