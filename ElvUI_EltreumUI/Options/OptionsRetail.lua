@@ -4511,7 +4511,7 @@ function ElvUI_EltreumUI:Configtable()
 							enablegradient = {
 								order = 3,
 								type = 'toggle',
-								name = L["Enable Gradient"],
+								name = L["Enable Gradient (Requires Dark or Light Modes)"],
 								desc = L["Enable Gradient colors for Health"],
 								width = 'full',
 								disabled = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.UFmodifications end,
