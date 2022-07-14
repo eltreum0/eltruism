@@ -4,8 +4,11 @@ ___
 ### 3.1.2
 Added more statusbar textures for classes\
 Added options to use a different version of the statusbar textures for nameplates and light mode\
+Added an option to automatically apply custom textures based on the class/reaction\
+Updated some labeling related to unitframes\
+Fixed an error when skipping install due to custom texts not being set\
 Fixed the positioning of the more skins option in TBC\
-Further improved gradient/unitframe functions
+Further improved the performance of gradient/unitframe functions
 ___
 ### 3.1.1
 Added an option for the experience databar to have gradient coloring\
