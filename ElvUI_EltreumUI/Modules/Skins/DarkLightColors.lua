@@ -44,22 +44,26 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.3
 
 		--setup namecolors
-		if E.Classic or E.TBC then
-			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
-		elseif E.Retail then
-			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name]"
-		end
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]"
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
-			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
-		if E.Retail or E.TBC then
-			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
+		if E.db["unitframe"]["units"]["party"]["customTexts"] == nil then
+			return
+		else
+			if E.Classic or E.TBC then
+				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
+			elseif E.Retail then
+				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name]"
+			end
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]"
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
+				E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
+			if E.Retail or E.TBC then
+				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
+			end
 		end
 		E.db.ElvUI_EltreumUI.lightmode = false
 		E.db.ElvUI_EltreumUI.darkmode = true
 		E.db.ElvUI_EltreumUI.UFmodifications = true
-		--E.db.ElvUI_EltreumUI.gradientmode.enable = false
+		E.db.ElvUI_EltreumUI.gradientmode.enable = false
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
@@ -111,22 +115,27 @@ function ElvUI_EltreumUI:LightMode()
 		--E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
 
 		--setup namecolors
-		if E.Classic or E.TBC then
-			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
-		elseif E.Retail then
-			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
+		if E.db["unitframe"]["units"]["party"]["customTexts"] == nil then
+			return
+		else
+			if E.Classic or E.TBC then
+				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
+			elseif E.Retail then
+				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
+			end
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
+				E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
+			if E.Retail or E.TBC then
+				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
+			end
 		end
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
-			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-		if E.Retail or E.TBC then
-			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
-		end
+
 		E.db.ElvUI_EltreumUI.lightmode = true
 		E.db.ElvUI_EltreumUI.darkmode = false
-		--E.db.ElvUI_EltreumUI.gradientmode.enable = false
+		E.db.ElvUI_EltreumUI.gradientmode.enable = false
 		E.db.ElvUI_EltreumUI.UFmodifications = true
 
 		E:UpdateMediaItems()
@@ -180,17 +189,21 @@ function ElvUI_EltreumUI:GradientMode()
 			E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.3
 
 			--setup namecolors
-			if E.Classic or E.TBC then
-				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
-			elseif E.Retail then
-				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name]"
-			end
-				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]"
-				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
-				E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
-				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
-			if E.Retail or E.TBC then
-				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
+			if E.db["unitframe"]["units"]["party"]["customTexts"] == nil then
+				return
+			else
+				if E.Classic or E.TBC then
+					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
+				elseif E.Retail then
+					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name]"
+				end
+					E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]"
+					E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
+					E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
+					E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
+				if E.Retail or E.TBC then
+					E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
+				end
 			end
 		elseif E.db.ElvUI_EltreumUI.lightmode then
 			--setup colors
@@ -234,22 +247,27 @@ function ElvUI_EltreumUI:GradientMode()
 			--E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
 
 			--setup namecolors
-			if E.Classic or E.TBC then
-				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
-			elseif E.Retail then
-				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
-			end
-				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
-				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
-				E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
-				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-			if E.Retail or E.TBC then
-				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
+			if E.db["unitframe"]["units"]["party"]["customTexts"] == nil then
+				return
+			else
+				if E.Classic or E.TBC then
+					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
+				elseif E.Retail then
+					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
+				end
+					E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
+					E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+					E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
+					E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
+					E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
+				if E.Retail or E.TBC then
+					E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
+				end
 			end
 		end
 
 		E.db.ElvUI_EltreumUI.gradientmode.enable = true
+		E.db.ElvUI_EltreumUI.ufcustomtexture.enable = false
 		E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget = true
 		E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits = true
 		E.db.ElvUI_EltreumUI.UFmodifications = true
