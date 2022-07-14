@@ -934,3 +934,4 @@ L["Friendly NPC"] = true
 L["Neutral NPC"] = true
 L["Unfriendly NPC"] = true
 L["Hostile NPC"] = true
+L["Use the custom texture based on it's class instead of general texture for Player, Target, Target of Target and Focus"] = true

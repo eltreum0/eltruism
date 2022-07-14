@@ -4309,7 +4309,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 103,
 								name = L["Automatically Detect Classes for Player, Target, Target of Target and Focus"],
 								type = "toggle",
-								desc = L["Automatically Detect Classes for Player, Target, Target of Target and Focus"],
+								desc = L["Use the custom texture based on it's class instead of general texture for Player, Target, Target of Target and Focus"],
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect end,
