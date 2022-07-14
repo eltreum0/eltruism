@@ -539,6 +539,7 @@ P.ElvUI_EltreumUI = {
 
 	ufcustomtexture = {
 		enable = false,
+		classdetect = false,
 		castbartexture = "Eltreum-Blank",
 		backdroptexture = "Eltreum-Blank",
 		backdropalpha = 1,
@@ -558,6 +559,10 @@ P.ElvUI_EltreumUI = {
 		shamantexture = "Eltreum-Class-Shaman",
 		warlocktexture = "Eltreum-Class-Warlock",
 		warriortexture = "Eltreum-Class-Warrior",
+		npcfriendly = "Eltreum-Class-Hunter",
+		npcneutral = "Eltreum-Class-Rogue",
+		npcunfriendly = "Eltreum-Class-Druid",
+		npchostile = "Eltreum-Class-DeathKnight",
 	},
 
 	sparkcustomcolor ={

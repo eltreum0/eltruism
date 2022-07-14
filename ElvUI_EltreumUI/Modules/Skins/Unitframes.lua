@@ -91,6 +91,7 @@ local unitframegradients = {
 }
 
 function ElvUI_EltreumUI:GradientColorTableUpdate()
+
 	unitframecustomgradients = {
 		["WARRIOR"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB2},
 		["PALADIN"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorB2},
@@ -314,6 +315,25 @@ hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastBarTexture)
 
 function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then
+
+		local unitframeclasscustom = {
+			["WARRIOR"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warriortexture)),
+			["PALADIN"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.paladintexture)),
+			["HUNTER"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.huntertexture)),
+			["ROGUE"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.roguetexture)),
+			["PRIEST"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.priesttexture)),
+			["DEATHKNIGHT"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.deathknighttexture)),
+			["SHAMAN"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.shamantexture)),
+			["MAGE"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.magetexture)),
+			["WARLOCK"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warlocktexture)),
+			["MONK"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.monktexture)),
+			["DRUID"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.druidtexture)),
+			["DEMONHUNTER"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.demonhuntertexture)),
+			["NPCFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npcfriendly)),
+			["NPCNEUTRAL"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npcneutral)),
+			["NPCUNFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npcunfriendly)),
+			["NPCHOSTILE"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npchostile)),
+		}
 
 		--group/raid unitframes
 		if UnitExists(unit) and (E.db.ElvUI_EltreumUI.lightmode or E.db.ElvUI_EltreumUI.darkmode) then
@@ -994,7 +1014,11 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 			local unitframe = _G["ElvUF_Player"]
 			if unitframe and unitframe.Health then
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-					playertexture = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.playertexture)
+					if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
+						playertexture = unitframeclasscustom[E.myclass]
+					else
+						playertexture = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.playertexture)
+					end
 				end
 				if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableplayer then
 					if E.db.ElvUI_EltreumUI.lightmode then
@@ -1045,7 +1069,27 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 			local targetunitframe = _G["ElvUF_Target"]
 			if targetunitframe and targetunitframe.Health then
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-					targetbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.targettexture)
+					if UnitIsPlayer("target") then
+						if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
+							targetbar = unitframeclasscustom[targetclass]
+						else
+							targetbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.targettexture)
+						end
+					elseif not UnitIsPlayer("target") then
+						if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
+							if reactiontarget >= 5 then
+								targetbar = unitframeclasscustom["NPCFRIENDLY"]
+							elseif reactiontarget == 4 then
+								targetbar = unitframeclasscustom["NPCNEUTRAL"]
+							elseif reactiontarget == 3 then
+								targetbar = unitframeclasscustom["NPCUNFRIENDLY"]
+							elseif reactiontarget == 2 or reactiontarget == 1 then
+								targetbar = unitframeclasscustom["NPCHOSTILE"]
+							end
+						else
+							targetbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.targettexture)
+						end
+					end
 				end
 				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("target") and E.db.ElvUI_EltreumUI.gradientmode.enabletarget then
 					if E.db.ElvUI_EltreumUI.lightmode then
@@ -1208,7 +1252,27 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 			local targettargetunitframe = _G["ElvUF_TargetTarget"]
 			if targettargetunitframe and targettargetunitframe.Health then
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-					targettargetbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.targettargettexture)
+					if UnitIsPlayer("targettarget") then
+						if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
+							targettargetbar = unitframeclasscustom[targettargetclass]
+						else
+							targettargetbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.targettargettexture)
+						end
+					elseif not UnitIsPlayer("targettarget") then
+						if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
+							if reactiontargettarget >= 5 then
+								targettargetbar = unitframeclasscustom["NPCFRIENDLY"]
+							elseif reactiontargettarget == 4 then
+								targettargetbar = unitframeclasscustom["NPCNEUTRAL"]
+							elseif reactiontargettarget == 3 then
+								targettargetbar = unitframeclasscustom["NPCUNFRIENDLY"]
+							elseif reactiontargettarget == 2 or reactiontargettarget == 1 then
+								targettargetbar = unitframeclasscustom["NPCHOSTILE"]
+							end
+						else
+							targettargetbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.targettargettexture)
+						end
+					end
 				end
 				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("targettarget") and E.db.ElvUI_EltreumUI.gradientmode.enabletargettarget then
 					if E.db.ElvUI_EltreumUI.lightmode then
@@ -1351,7 +1415,27 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 			local focusframe = _G["ElvUF_Focus"]
 			if focusframe and focusframe.Health then
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-					focusbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.focustexture)
+					if UnitIsPlayer("focus") then
+						if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
+							focusbar = unitframeclasscustom[focusclass]
+						else
+							focusbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.focustexture)
+						end
+					elseif not UnitIsPlayer("focus") then
+						if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
+							if reactionfocus >= 5 then
+								focusbar = unitframeclasscustom["NPCFRIENDLY"]
+							elseif reactionfocus == 4 then
+								focusbar = unitframeclasscustom["NPCNEUTRAL"]
+							elseif reactionfocus == 3 then
+								focusbar = unitframeclasscustom["NPCUNFRIENDLY"]
+							elseif reactionfocus == 2 or reactionfocus == 1 then
+								focusbar = unitframeclasscustom["NPCHOSTILE"]
+							end
+						else
+							focusbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.focustexture)
+						end
+					end
 				end
 				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("focus") and E.db.ElvUI_EltreumUI.gradientmode.enablefocus then
 					if E.db.ElvUI_EltreumUI.lightmode then
@@ -1465,7 +1549,11 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 			local arena1unitframe = _G["ElvUF_Arena1"]
 			if arena1unitframe and arena1unitframe.Health then
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-					arena1bar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.arena1texture)
+					if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
+						arena1bar = unitframeclasscustom[arena1class]
+					else
+						arena1bar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.arena1texture)
+					end
 				end
 				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("arena1") and E.db.ElvUI_EltreumUI.gradientmode.enablearena then
 					if E.db.ElvUI_EltreumUI.lightmode then
@@ -1517,7 +1605,11 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 			local arena2unitframe = _G["ElvUF_Arena2"]
 			if arena2unitframe and arena2unitframe.Health then
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-					arena2bar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.arena2texture)
+					if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
+						arena2bar = unitframeclasscustom[arena2class]
+					else
+						arena2bar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.arena2texture)
+					end
 				end
 				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("arena2") and E.db.ElvUI_EltreumUI.gradientmode.enablearena then
 					if E.db.ElvUI_EltreumUI.lightmode then
@@ -1569,7 +1661,11 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 			local arena3unitframe = _G["ElvUF_Arena3"]
 			if arena3unitframe and arena3unitframe.Health then
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-					arena3bar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.arena3texture)
+					if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
+						arena3bar = unitframeclasscustom[arena3class]
+					else
+						arena3bar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.arena3texture)
+					end
 				end
 				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("arena3") and E.db.ElvUI_EltreumUI.gradientmode.enablearena then
 					if E.db.ElvUI_EltreumUI.lightmode then
@@ -1621,7 +1717,11 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 			local arena4unitframe = _G["ElvUF_Arena4"]
 			if arena4unitframe and arena4unitframe.Health then
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-					arena4bar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.arena4texture)
+					if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
+						arena4bar = unitframeclasscustom[arena4class]
+					else
+						arena4bar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.arena4texture)
+					end
 				end
 				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("arena4") and E.db.ElvUI_EltreumUI.gradientmode.enablearena then
 					if E.db.ElvUI_EltreumUI.lightmode then
@@ -1673,7 +1773,11 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 			local arena5unitframe = _G["ElvUF_Arena5"]
 			if arena5unitframe and arena5unitframe.Health then
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-					arena5bar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.arena5texture)
+					if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
+						arena5bar = unitframeclasscustom[arena5class]
+					else
+						arena5bar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.arena5texture)
+					end
 				end
 				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("arena5") and E.db.ElvUI_EltreumUI.gradientmode.enablearena then
 					if E.db.ElvUI_EltreumUI.lightmode then
