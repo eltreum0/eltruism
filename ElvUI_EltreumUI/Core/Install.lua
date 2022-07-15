@@ -31,10 +31,6 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option1:SetText(L["Skip Install"])
 		end,
 		[2] = function()
-			PluginInstallOption1ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
-			PluginInstallOption2ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
-			PluginInstallOption3ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
-			PluginInstallOption4ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
 			PluginInstallFrame.SubTitle:SetText(L["Layouts"])
 			PluginInstallFrame.Desc1:SetText(L["Please select the role for your character, which will create a new profile.\nThis process can take a few seconds"])
 			PluginInstallFrame.Desc2:SetText(L["Eltruism uses a 0.7 scale, but ElvUI can calculate the best scale for you using the Automatic Scale option"].." ("..((math.floor(E:PixelBestSize()*100))/100)..")")
@@ -84,34 +80,6 @@ ElvUI_EltreumUI.InstallerData = {
 			end
 		end,
 		[3] = function()
-			PluginInstallFrame.SubTitle:SetText(L["Fonts"])
-			PluginInstallFrame.Desc1:SetText(L["Eltruism uses Kimberley as the default font"])
-			PluginInstallFrame.Desc2:SetText(L["You can replace it with one of the following:"])
-			PluginInstallFrame.Desc3:SetText(L["Or change it later in Eltruism > Media options"])
-			PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
-			PluginInstallFrame.Option1:Enable()
-			PluginInstallFrame.Option1:Show()
-			PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsRoboto() end)
-			--PluginInstallFrame.Option1:SetText('|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\roboto:14:112:0:1:128:64:0:128:0:16|t')
-			PluginInstallFrame.Option1:SetText('Roboto')
-			PluginInstallOption1ButtonText:SetFont('Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\Roboto-Bold.TTF', 12, E.db.general.fontStyle)
-			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:Enable()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsExo2() end)
-			PluginInstallFrame.Option2:SetText('Exo2')
-			PluginInstallOption2ButtonText:SetFont('Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\Exo2-ExtraBold.TTF', 12, E.db.general.fontStyle)
-			PluginInstallFrame.Option3:Show()
-			PluginInstallFrame.Option3:Enable()
-			PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsGotham() end)
-			PluginInstallFrame.Option3:SetText('Gotham')
-			PluginInstallOption3ButtonText:SetFont('Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\GothamNarrowBlack.TTF', 12, E.db.general.fontStyle)
-			PluginInstallFrame.Option4:Show()
-			PluginInstallFrame.Option4:Enable()
-			PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsCrystalzcuhei() end)
-			PluginInstallFrame.Option4:SetText('Crystalzcuhei')
-			PluginInstallOption4ButtonText:SetFont("Fonts\\ARHei.TTF", 12, E.db.general.fontStyle)
-		end,
-		[4] = function()
 			PluginInstallOption1ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
 			PluginInstallOption2ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
 			PluginInstallOption3ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
@@ -138,7 +106,39 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:CheckBackground() end)
 			PluginInstallFrame.Option4:SetText(L["Background"].."\n"..L["Color"])
 		end,
+		[4] = function()
+			PluginInstallFrame.SubTitle:SetFormattedText(L["Fonts"])
+			PluginInstallFrame.Desc1:SetText(L["Eltruism uses Kimberley as the default font"])
+			PluginInstallFrame.Desc2:SetText(L["You can replace it with one of the following:"])
+			PluginInstallFrame.Desc3:SetText(L["Or change it later in Eltruism > Media options"])
+			PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
+			PluginInstallFrame.Option1:Enable()
+			PluginInstallFrame.Option1:Show()
+			PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsRoboto() end)
+			--PluginInstallFrame.Option1:SetText('|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\roboto:14:112:0:1:128:64:0:128:0:16|t')
+			PluginInstallFrame.Option1:SetText('Roboto')
+			PluginInstallOption1ButtonText:SetFont('Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\Roboto-Bold.TTF', 12, E.db.general.fontStyle)
+			PluginInstallFrame.Option2:Show()
+			PluginInstallFrame.Option2:Enable()
+			PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsExo2() end)
+			PluginInstallFrame.Option2:SetText('Exo2')
+			PluginInstallOption2ButtonText:SetFont('Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\Exo2-ExtraBold.TTF', 12, E.db.general.fontStyle)
+			PluginInstallFrame.Option3:Show()
+			PluginInstallFrame.Option3:Enable()
+			PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsGotham() end)
+			PluginInstallFrame.Option3:SetText('Gotham')
+			PluginInstallOption3ButtonText:SetFont('Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\GothamNarrowBlack.TTF', 12, E.db.general.fontStyle)
+			PluginInstallFrame.Option4:Show()
+			PluginInstallFrame.Option4:Enable()
+			PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFontsCrystalzcuhei() end)
+			PluginInstallFrame.Option4:SetText('Crystalzcuhei')
+			PluginInstallOption4ButtonText:SetFont("Fonts\\ARHei.TTF", 12, E.db.general.fontStyle)
+		end,
 		[5] = function()
+			PluginInstallOption1ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
+			PluginInstallOption2ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
+			PluginInstallOption3ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
+			PluginInstallOption4ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
 			PluginInstallFrame.SubTitle:SetFormattedText(L["Chat"])
 			PluginInstallFrame.Desc1:SetText(L["Eltruism uses Transparent chat by default"])
 			PluginInstallFrame.Desc2:SetText(L["You can switch to Dark Chat by clicking the buttons below"])
@@ -413,8 +413,8 @@ ElvUI_EltreumUI.InstallerData = {
 	StepTitles = {
 		[1] = L["Welcome"],
 		[2] = L["Layouts"],
-		[3] = L["Fonts"],
-		[4] = L["Eltruism Modes"],
+		[3] = L["Eltruism Modes"],
+		[4] = L["Fonts"],
 		[5] = L["Chat"],
 		[6] = L["Details! DPS Meter"],
 		[7] = L["PVP/PVE Addons"],
