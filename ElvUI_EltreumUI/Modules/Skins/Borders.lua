@@ -101,7 +101,7 @@ function ElvUI_EltreumUI:Borders()
 					edgeSize = playertargetsize,
 				})
 				playercastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				playercastbarborder:SetFrameStrata("HIGH")
+				playercastbarborder:SetFrameStrata("MEDIUM")
 			end
 
 			if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable and targetcreatedcheck == false then
@@ -132,7 +132,7 @@ function ElvUI_EltreumUI:Borders()
 					edgeSize = playertargetsize,
 				})
 				targetcastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				targetcastbarborder:SetFrameStrata("HIGH")
+				targetcastbarborder:SetFrameStrata("MEDIUM")
 				targetcastbarcreatedcheck = true
 			end
 
@@ -305,7 +305,7 @@ function ElvUI_EltreumUI:Borders()
 				edgeSize = powerbarsize,
 			})
 			powerbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			powerbarborder:SetFrameStrata("HIGH")
+			powerbarborder:SetFrameStrata("MEDIUM")
 		end
 
 		-- minimap
@@ -323,7 +323,7 @@ function ElvUI_EltreumUI:Borders()
 					edgeSize = 15,
 				})
 				MinimapBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				MinimapBorder:SetFrameStrata("HIGH")
+				MinimapBorder:SetFrameStrata("MEDIUM")
 				if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
 					MinimapBorder:SetPoint("BOTTOMLEFT", _G["Minimap"] ,"BOTTOMLEFT", -13, -13)
 				end
