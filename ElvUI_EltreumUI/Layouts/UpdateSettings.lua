@@ -119,6 +119,9 @@ function ElvUI_EltreumUI:UpdateSettings()
 
 	E.db.databars.statusbar = "Asphyxia"
 
+	E.db.ElvUI_EltreumUI.uftextureversion = "V2"
+	E.db.ElvUI_EltreumUI.nptextureversion = "V2"
+
 	--private
 	E.private.ElvUI_EltreumUI.nameplatepower.enable = true
 	E.private.ElvUI_EltreumUI.nameplatepower.adjust = true
