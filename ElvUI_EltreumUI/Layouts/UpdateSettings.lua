@@ -121,6 +121,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 
 	E.db.ElvUI_EltreumUI.uftextureversion = "V2"
 	E.db.ElvUI_EltreumUI.nptextureversion = "V2"
+	E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect = true
 
 	--private
 	E.private.ElvUI_EltreumUI.nameplatepower.enable = true
