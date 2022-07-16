@@ -459,46 +459,41 @@ function ElvUI_EltreumUI:Borders()
 
 		--chat
 		if E.private.chat.enable and E.db.ElvUI_EltreumUI.borders.chatborder then
-
 			--left chat
 			local LeftChatBorder = CreateFrame("Frame", "EltruismLeftChatBorderFrame", _G["LeftChatPanel"], BackdropTemplateMixin and "BackdropTemplate")
-			if E.db["chat"]["panelBackdrop"] == "LEFT" then
-				return
-			else
-				LeftChatBorder:SetParent(_G["LeftChatPanel"].backdrop)
-				if not (self.LeftChatIsSkinned) then
-					LeftChatBorder:SetSize(leftchatsizey, leftchatsizey)
-					LeftChatBorder:SetPoint("Center", _G["LeftChatMover"] ,"CENTER")
-					LeftChatBorder:SetBackdrop({
-						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize, --13
-					})
-					LeftChatBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-					LeftChatBorder:SetFrameStrata("MEDIUM")
-					self.LeftChatIsSkinned = true
-				end
+			LeftChatBorder:SetParent(_G["LeftChatPanel"].backdrop)
+			if not (self.LeftChatIsSkinned) then
+				LeftChatBorder:SetSize(leftchatsizex, leftchatsizey)
+				LeftChatBorder:SetPoint("CENTER", _G["LeftChatMover"] ,"CENTER")
+				LeftChatBorder:SetBackdrop({
+					edgeFile = bordertexture,
+					edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize, --13
+				})
+				LeftChatBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+				LeftChatBorder:SetFrameStrata("MEDIUM")
+				self.LeftChatIsSkinned = true
 			end
 
-
+			--right chat
 			local RightChatBorder = CreateFrame("Frame", "EltruismRightChatBorderFrame", _G["RightChatPanel"], BackdropTemplateMixin and "BackdropTemplate")
-			if E.db["chat"]["panelBackdrop"] == "LEFT" then
-				return
-			else
-				RightChatBorder:SetParent(_G["RightChatPanel"].backdrop)
-				if not (self.RightChatIsSkinned) then
-					RightChatBorder:SetSize(rightchatsizex, rightchatsizey)
-					RightChatBorder:SetPoint("CENTER", _G["RightChatMover"] ,"CENTER")
-					RightChatBorder:SetBackdrop({
-						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize, --13
-					})
-					RightChatBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-					RightChatBorder:SetFrameStrata("MEDIUM")
-					self.RightChatIsSkinned = true
-				end
+			RightChatBorder:SetParent(_G["RightChatPanel"].backdrop)
+			if not (self.RightChatIsSkinned) then
+				RightChatBorder:SetSize(rightchatsizex, rightchatsizey)
+				RightChatBorder:SetPoint("CENTER", _G["RightChatMover"] ,"CENTER")
+				RightChatBorder:SetBackdrop({
+					edgeFile = bordertexture,
+					edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize, --13
+				})
+				RightChatBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+				RightChatBorder:SetFrameStrata("MEDIUM")
+				self.RightChatIsSkinned = true
 			end
 
-			if E.db["chat"]["panelBackdrop"] == "HIDEBOTH" then
+			if E.db["chat"]["panelBackdrop"] == "RIGHT" then
+				LeftChatBorder:Hide()
+			elseif E.db["chat"]["panelBackdrop"] == "LEFT" then
+				RightChatBorder:Hide()
+			elseif E.db["chat"]["panelBackdrop"] == "HIDEBOTH" then
 				LeftChatBorder:Hide()
 				RightChatBorder:Hide()
 			end
