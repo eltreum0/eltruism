@@ -58,7 +58,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 		end
 		local druidwrath = 6
 		if E.Retail then
-			local druideclipse = GetPlayerAuraBySpellID(48517)
+			local druideclipse = GetPlayerAuraBySpellID(48517) --might be removed in dragonflight
 			if IsPlayerSpell(114107) and druideclipse ~= nil then
 				druidwrath = 9
 			end
