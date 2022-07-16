@@ -298,6 +298,20 @@ P.ElvUI_EltreumUI = {
 
 		classcolor = true,
 
+		chatborder = true,
+		leftchatborderx = 200,
+		leftchatbordery = 200,
+		rightchatborderx = 200,
+		rightchatbordery = 200,
+
+		partyborders = true,
+		partysizex = 100,
+		partysizey = 100,
+
+		raidborders = true,
+		raidsizey = 100,
+		raidsizex = 100,
+
 		playertargetsize = 20,
 		baredgesize = 13,
 

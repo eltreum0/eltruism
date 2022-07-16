@@ -71,6 +71,14 @@ function ElvUI_EltreumUI:Borders()
 		local ybar5 = E.db.ElvUI_EltreumUI.borders.bar5yborder
 		local xbar6 = E.db.ElvUI_EltreumUI.borders.bar6xborder
 		local ybar6 = E.db.ElvUI_EltreumUI.borders.bar6yborder
+		local leftchatsizex = E.db.ElvUI_EltreumUI.borders.leftchatborderx
+		local leftchatsizey = E.db.ElvUI_EltreumUI.borders.leftchatbordery
+		local rightchatsizex = E.db.ElvUI_EltreumUI.borders.rightchatborderx
+		local rightchatsizey = E.db.ElvUI_EltreumUI.borders.rightchatbordery
+		local partysizex = E.db.ElvUI_EltreumUI.borders.partysizex
+		local partysizey = E.db.ElvUI_EltreumUI.borders.partysizey
+		local raidsizex = E.db.ElvUI_EltreumUI.borders.raidsizex
+		local raidsizey = E.db.ElvUI_EltreumUI.borders.raidsizey
 
 		--elvui unitframes
 		if E.private.unitframe.enable then
@@ -189,9 +197,62 @@ function ElvUI_EltreumUI:Borders()
 				petborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				petborder:SetFrameStrata("LOW")
 			end
+
+			--party
+			if E.db.ElvUI_EltreumUI.borders.partyborders and E.db.unitframe.units.party.enable and not self.partyborderscreated then
+				local bordersparty = {}
+				for i = 1,5 do
+					table.insert(bordersparty, _G["ElvUF_PartyGroup1UnitButton"..i])
+				end
+				local function createpartyborders()
+					for _,v in pairs(bordersparty) do
+						local partyborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
+						partyborder:SetSize(partysizex, partysizey)
+						partyborder:SetPoint("CENTER", v, "CENTER")
+						partyborder:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = baredgesize,
+						})
+						partyborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						partyborder:SetFrameStrata("MEDIUM")
+					end
+					self.partyborderscreated = true
+				end
+				createpartyborders()
+			end
+
+			--raid
+			if E.db.ElvUI_EltreumUI.borders.raidborders and E.db.unitframe.units.raid.enable and not self.raidborderscreated then
+				local bordersraid = {}
+				for i = 1,5 do
+					table.insert(bordersraid, _G["ElvUF_RaidGroup1UnitButton"..i])
+					table.insert(bordersraid, _G["ElvUF_RaidGroup2UnitButton"..i])
+					table.insert(bordersraid, _G["ElvUF_RaidGroup3UnitButton"..i])
+					table.insert(bordersraid, _G["ElvUF_RaidGroup4UnitButton"..i])
+					table.insert(bordersraid, _G["ElvUF_RaidGroup5UnitButton"..i])
+					table.insert(bordersraid, _G["ElvUF_RaidGroup6UnitButton"..i])
+					table.insert(bordersraid, _G["ElvUF_RaidGroup7UnitButton"..i])
+					table.insert(bordersraid, _G["ElvUF_RaidGroup8UnitButton"..i])
+				end
+				local function createraidborders()
+					for _,v in pairs(bordersraid) do
+						local raidborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
+						raidborder:SetSize(raidsizex, raidsizey)
+						raidborder:SetPoint("CENTER", v, "CENTER")
+						raidborder:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = baredgesize,
+						})
+						raidborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						raidborder:SetFrameStrata("MEDIUM")
+					end
+					self.raidborderscreated = true
+				end
+				createraidborders()
+			end
 		end
 
-		--elvui action bars
+		--elvui action bars (has to be split because it bar can be different sizes)
 		if E.private.actionbar.enable then
 			--action bar 1
 			if E.db.ElvUI_EltreumUI.borders.bar1borders and E.db.actionbar.bar1.enabled and not self.abboderscreatedbar1 then
@@ -396,8 +457,85 @@ function ElvUI_EltreumUI:Borders()
 			end
 		end
 
+		--chat
+		if E.private.chat.enable and E.db.ElvUI_EltreumUI.borders.chatborder then
+
+			--left chat
+			local LeftChatBorder = CreateFrame("Frame", "EltruismLeftChatBorderFrame", _G["LeftChatPanel"], BackdropTemplateMixin and "BackdropTemplate")
+			if E.db["chat"]["panelBackdrop"] == "LEFT" then
+				return
+			else
+				LeftChatBorder:SetParent(_G["LeftChatPanel"].backdrop)
+				if not (self.LeftChatIsSkinned) then
+					LeftChatBorder:SetSize(leftchatsizey, leftchatsizey)
+					LeftChatBorder:SetPoint("Center", _G["LeftChatMover"] ,"CENTER")
+					LeftChatBorder:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize, --13
+					})
+					LeftChatBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					LeftChatBorder:SetFrameStrata("MEDIUM")
+					self.LeftChatIsSkinned = true
+				end
+			end
+
+
+			local RightChatBorder = CreateFrame("Frame", "EltruismRightChatBorderFrame", _G["RightChatPanel"], BackdropTemplateMixin and "BackdropTemplate")
+			if E.db["chat"]["panelBackdrop"] == "LEFT" then
+				return
+			else
+				RightChatBorder:SetParent(_G["RightChatPanel"].backdrop)
+				if not (self.RightChatIsSkinned) then
+					RightChatBorder:SetSize(rightchatsizex, rightchatsizey)
+					RightChatBorder:SetPoint("CENTER", _G["RightChatMover"] ,"CENTER")
+					RightChatBorder:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize, --13
+					})
+					RightChatBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					RightChatBorder:SetFrameStrata("MEDIUM")
+					self.RightChatIsSkinned = true
+				end
+			end
+
+			if E.db["chat"]["panelBackdrop"] == "HIDEBOTH" then
+				LeftChatBorder:Hide()
+				RightChatBorder:Hide()
+			end
+		end
+
 	end
 end
+
+local A = E:GetModule('Auras')
+local function AuraBorders(button)
+	if E.db.ElvUI_EltreumUI.shadows.aura and E.private.auras.enable and E.db.ElvUI_EltreumUI.skins.shadows then
+		if not button then return end
+		if E.db.ElvUI_EltreumUI.borders.bar1borders and E.db.actionbar.bar1.enabled then
+			local borders1 = {}
+			for i = 1,40 do
+				table.insert(borders1, _G["ElvUIPlayerBuffsAuraButton"..i])
+			end
+			local function createauraborders()
+				for _,v in pairs(borders1) do
+					local barborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
+					--local sizex, sizey = v:GetSize()
+					--print(sizex,sizey)
+					--barborder:SetSize(sizex, sizey)
+					barborder:SetAllPoints(v)
+					barborder:SetBackdrop({
+					edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
+					edgeSize = 13,
+					})
+					barborder:SetBackdropBorderColor(1, 0, 0, 1)
+				end
+			end
+			createauraborders()
+		end
+	end
+end
+hooksecurefunc(A, 'CreateIcon', AuraBorders) --aura (minimap) shadows
+
 
 function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of target changes if the target is not in party/raid, no event to register :(
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor == true then
