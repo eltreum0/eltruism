@@ -701,7 +701,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 					--elseif not UnitIsPlayer("boss"..i) then
 					elseif not UnitIsPlayer("boss1") then
 						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
-							local reactionboss = UnitReaction("player", "focus")
+							local reactionboss = UnitReaction("player", "boss1")
 							if reactionboss >= 5 then
 								bossborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
 							elseif reactionboss == 4 then
