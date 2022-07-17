@@ -208,55 +208,6 @@ function ElvUI_EltreumUI:Borders()
 				petborder:SetFrameStrata("LOW")
 			end
 
-			--focus
-			if E.db.ElvUI_EltreumUI.borders.focusborder and E.db.unitframe.units.focus.enable then
-				if not _G["EltruismFocusBorder"] then
-					focusborder = CreateFrame("Frame", "EltruismFocusBorder", _G.ElvUF_Focus_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
-				else
-					focusborder = _G["EltruismFocusBorder"]
-				end
-				focusborder:SetSize(E.db.ElvUI_EltreumUI.borders.xfocus, E.db.ElvUI_EltreumUI.borders.yfocus)
-				focusborder:SetPoint("CENTER", _G.ElvUF_Focus_HealthBar, "CENTER", 0, 0)
-				focusborder:SetBackdrop({
-					edgeFile = bordertexture,
-					edgeSize = playertargetsize,
-				})
-				focusborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				focusborder:SetFrameStrata("LOW")
-			end
-
-			--boss
-			if E.db.ElvUI_EltreumUI.borders.bossborder and E.db.unitframe.units.boss.enable then
-				local bordersboss = {}
-				for i = 1,8 do
-					local bossmembers = {_G["ElvUF_Boss"..i]}
-					for _, frame in pairs(bossmembers) do
-						bossborder = CreateFrame("Frame", "EltruismBossBorder"..i, frame, BackdropTemplateMixin and "BackdropTemplate")
-						bossborder:SetSize(E.db.ElvUI_EltreumUI.borders.xboss, E.db.ElvUI_EltreumUI.borders.yboss)
-						bossborder:SetPoint("CENTER", frame, "CENTER")
-						bossborder:SetBackdrop({
-						edgeFile = bordertexture,
-						edgeSize = playertargetsize,
-						})
-						if UnitExists("boss"..i) and E.db.ElvUI_EltreumUI.borders.classcolor == true then
-							local reactionboss= UnitReaction("player", "boss"..i)
-							if reactionboss >= 5 then
-								bossborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
-							elseif reactionboss == 4 then
-								bossborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
-							elseif reactionboss == 3 then
-								bossborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
-							elseif reactionboss == 2 or reactionboss == 1 then
-								bossborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
-							end
-						else
-							bossborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-						end
-						bossborder:SetFrameStrata("MEDIUM")
-					end
-				end
-			end
-
 			--party
 			if E.db.ElvUI_EltreumUI.borders.partyborders and E.db.unitframe.units.party.enable and not self.partyborderscreated then
 				local bordersparty = {}
@@ -317,6 +268,56 @@ function ElvUI_EltreumUI:Borders()
 				end
 				createraidborders()
 			end
+
+			--focus
+			if E.db.ElvUI_EltreumUI.borders.focusborder and E.db.unitframe.units.focus.enable and not E.Classic then
+				if not _G["EltruismFocusBorder"] then
+					focusborder = CreateFrame("Frame", "EltruismFocusBorder", _G.ElvUF_Focus_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
+				else
+					focusborder = _G["EltruismFocusBorder"]
+				end
+				focusborder:SetSize(E.db.ElvUI_EltreumUI.borders.xfocus, E.db.ElvUI_EltreumUI.borders.yfocus)
+				focusborder:SetPoint("CENTER", _G.ElvUF_Focus_HealthBar, "CENTER", 0, 0)
+				focusborder:SetBackdrop({
+					edgeFile = bordertexture,
+					edgeSize = playertargetsize,
+				})
+				focusborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+				focusborder:SetFrameStrata("LOW")
+			end
+
+			--boss
+			if E.db.ElvUI_EltreumUI.borders.bossborder and E.db.unitframe.units.boss.enable and not E.Classic then
+				local bordersboss = {}
+				for i = 1,8 do
+					local bossmembers = {_G["ElvUF_Boss"..i]}
+					for _, frame in pairs(bossmembers) do
+						bossborder = CreateFrame("Frame", "EltruismBossBorder"..i, frame, BackdropTemplateMixin and "BackdropTemplate")
+						bossborder:SetSize(E.db.ElvUI_EltreumUI.borders.xboss, E.db.ElvUI_EltreumUI.borders.yboss)
+						bossborder:SetPoint("CENTER", frame, "CENTER")
+						bossborder:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = playertargetsize,
+						})
+						if UnitExists("boss"..i) and E.db.ElvUI_EltreumUI.borders.classcolor == true then
+							local reactionboss= UnitReaction("player", "boss"..i)
+							if reactionboss >= 5 then
+								bossborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
+							elseif reactionboss == 4 then
+								bossborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
+							elseif reactionboss == 3 then
+								bossborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
+							elseif reactionboss == 2 or reactionboss == 1 then
+								bossborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
+							end
+						else
+							bossborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						end
+						bossborder:SetFrameStrata("MEDIUM")
+					end
+				end
+			end
+
 		end
 
 		--elvui action bars (has to be split because it bar can be different sizes)
@@ -670,7 +671,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 			end
 		end
 
-		if E.db.ElvUI_EltreumUI.borders.focusborder and E.db.unitframe.units.focus.enable then
+		if E.db.ElvUI_EltreumUI.borders.focusborder and E.db.unitframe.units.focus.enable and not E.Classic then
 			if UnitExists("focus") and focusborder ~= nil then
 				if UnitIsPlayer("focus") then
 					local _, focusclass = UnitClass("focus")
