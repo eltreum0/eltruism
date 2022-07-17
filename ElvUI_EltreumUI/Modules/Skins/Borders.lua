@@ -95,7 +95,11 @@ function ElvUI_EltreumUI:Borders()
 					playerborder = _G["EltruismPlayerBorder"]
 				end
 				playerborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayer, E.db.ElvUI_EltreumUI.borders.yplayer)
-				playerborder:SetPoint("CENTER", _G.ElvUF_Player_HealthBar, "CENTER", 0, 0)
+				if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
+					playerborder:SetPoint("CENTER", _G.ElvUF_Player_HealthBar, "CENTER", 0, 0)
+				else
+					playerborder:SetPoint("CENTER", _G.ElvUF_Player, "CENTER", 0, 0)
+				end
 				playerborder:SetBackdrop({
 					edgeFile = bordertexture,
 					edgeSize = playertargetsize,
@@ -136,7 +140,11 @@ function ElvUI_EltreumUI:Borders()
 					targetborder = _G["EltruismTargetBorder"]
 				end
 				targetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xtarget, E.db.ElvUI_EltreumUI.borders.ytarget)
-				targetborder:SetPoint("CENTER", _G.ElvUF_Target_HealthBar, "CENTER", 0 ,0)
+				if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
+					targetborder:SetPoint("CENTER", _G.ElvUF_Target_HealthBar, "CENTER", 0 ,0)
+				else
+					targetborder:SetPoint("CENTER", _G.ElvUF_Target, "CENTER", 0 ,0)
+				end
 				targetborder:SetBackdrop({
 					edgeFile = bordertexture,
 					edgeSize = playertargetsize,
@@ -178,7 +186,11 @@ function ElvUI_EltreumUI:Borders()
 					targettargetborder = _G["EltruismTargetTargetBorder"]
 				end
 				targettargetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xtargettarget, E.db.ElvUI_EltreumUI.borders.ytargettarget)
-				targettargetborder:SetPoint("CENTER", _G.ElvUF_TargetTarget_HealthBar, "CENTER", 0 ,0)
+				if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
+					targettargetborder:SetPoint("CENTER", _G.ElvUF_TargetTarget_HealthBar, "CENTER", 0 ,0)
+				else
+					targettargetborder:SetPoint("CENTER", _G.ElvUF_TargetTarget, "CENTER", 0 ,0)
+				end
 				targettargetborder:SetBackdrop({
 					edgeFile = bordertexture,
 					edgeSize = playertargetsize,
@@ -521,7 +533,6 @@ function ElvUI_EltreumUI:Borders()
 			MinimapBorder:SetSize(Minimapsizex, Minimapsizey)
 			MinimapBorder:SetParent(_G["Minimap"])
 			if not (self.minimaphasBorder) then
-
 				MinimapBorder:SetBackdrop({
 					edgeFile = bordertexture,
 					--edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize, --13
@@ -529,8 +540,6 @@ function ElvUI_EltreumUI:Borders()
 				})
 				MinimapBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				MinimapBorder:SetFrameStrata("MEDIUM")
-
-
 				if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
 					MinimapBorder:SetPoint("TOPRIGHT", _G["Minimap"] ,"TOPRIGHT", 13, 13)
 					MinimapBorder:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", -13, -13)
@@ -584,8 +593,6 @@ function ElvUI_EltreumUI:Borders()
 						MinimapBorder:SetPoint("BOTTOMLEFT", _G["MinimapBackdrop"] ,"BOTTOMLEFT", -12, -12)
 					end
 				end
-
-
 				MinimapBorder:Show()
 				self.minimaphasBorder = true
 			end
