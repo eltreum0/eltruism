@@ -270,10 +270,47 @@ function ElvUI_EltreumUI:CastBarTexture()
 			end
 			if E.db.ElvUI_EltreumUI.gradientmode.enable and (not E.db.ElvUI_EltreumUI.ufcustomtexture.enable) then
 				local r,g,b = _G["ElvUF_Target_CastBar"]:GetStatusBarColor()
+				local r2,g2,b2 = _G["ElvUF_Target_CastBar"].bg:GetVertexColor()
 				local r1 = tostring(r)
 				local g1 = tostring(g)
 				local b1 = tostring(b)
+				print(r2,g2,b2)
+
+--[[
+
+0.043137159198523
+normal cast
+0.039215601980686 0.039215601980686 0.039215601980686
+
+
+--can interrupt
+
+0.015686240047216
+0.015686240047216
+0.015686240047216
+
+
+--interrupted
+0.015686240047216
+0.015686240047216
+0.015686240047216
+
+
+
+
+
+
+]]
+
+
+
+
+
+
+
+
 				if (r1 == "0.78039044141769" and g1 == "0.25097984075546" and b1 == "0.25097984075546") then --cant interrupt
+					print("cant interrupt")
 					if E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbarnoninterruptible then
 						targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 						if E.db.unitframe.units.target.castbar.reverse == true then
@@ -291,6 +328,7 @@ function ElvUI_EltreumUI:CastBarTexture()
 						end
 					end
 				elseif r1 == "0.30196011066437" and g1 == "0.30196011066437" and b1 == "0.30196011066437" then --interrupted/failed
+					print("interrupted")
 					if E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbarinterrupted then
 						targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 						if E.db.unitframe.units.target.castbar.reverse == true then
@@ -308,6 +346,7 @@ function ElvUI_EltreumUI:CastBarTexture()
 						end
 					end
 				else
+					print("normal cast")
 					if E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar then
 						targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 						if E.db.unitframe.units.target.castbar.reverse == true then
