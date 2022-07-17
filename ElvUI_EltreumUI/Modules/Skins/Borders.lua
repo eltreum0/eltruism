@@ -29,6 +29,7 @@ local targetcastbarborder
 local targetcastbarcreatedcheck = false
 local bordertexture
 local classcolor
+local focusborder
 
 --Borders on frames
 function ElvUI_EltreumUI:Borders()
@@ -83,6 +84,8 @@ function ElvUI_EltreumUI:Borders()
 
 		--elvui unitframes
 		if E.private.unitframe.enable then
+
+			--player
 			if E.db.ElvUI_EltreumUI.borders.playerborder and E.db.unitframe.units.player.enable then
 				local playerborder
 				if not _G["EltruismPlayerBorder"] then
@@ -100,6 +103,7 @@ function ElvUI_EltreumUI:Borders()
 				playerborder:SetFrameStrata("LOW")
 			end
 
+			--player castbar
 			if E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.unitframe.units.player.castbar.enable then
 				local playercastbarborder
 				if not _G["EltruismPlayerCastBarBorder"] then
@@ -123,6 +127,7 @@ function ElvUI_EltreumUI:Borders()
 				playercastbarborder:SetFrameStrata("MEDIUM")
 			end
 
+			--target
 			if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable and targetcreatedcheck == false then
 				if not _G["EltruismTargetBorder"] then
 					targetborder = CreateFrame("Frame", "EltruismTargetBorder", _G.ElvUF_Target_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
@@ -140,6 +145,7 @@ function ElvUI_EltreumUI:Borders()
 				targetcreatedcheck = true
 			end
 
+			--target castbar
 			if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and targetcastbarcreatedcheck == false and not (E.db.unitframe.units.target.castbar.overlayOnFrame == "Power") then
 				if not _G["EltruismTargetCastBarBorder"] then
 					targetcastbarborder = CreateFrame("Frame", "EltruismTargetCastBarBorder", _G.ElvUF_Target_CastBar, BackdropTemplateMixin and "BackdropTemplate")
@@ -163,6 +169,7 @@ function ElvUI_EltreumUI:Borders()
 				targetcastbarcreatedcheck = true
 			end
 
+			--target of target
 			if E.db.ElvUI_EltreumUI.borders.targettargetborder and E.db.unitframe.units.targettarget.enable and targettargetcreatedcheck == false then
 				if not _G["EltruismTargetTargetBorder"] then
 					targettargetborder = CreateFrame("Frame", "EltruismTargetTargetBorder", _G.ElvUF_TargetTarget_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
@@ -180,6 +187,7 @@ function ElvUI_EltreumUI:Borders()
 				targettargetcreatedcheck = true
 			end
 
+			--pet
 			if E.db.ElvUI_EltreumUI.borders.petborder and E.db.unitframe.units.pet.enable then
 				local petborder
 				if not _G["EltruismPetBorder"] then
@@ -198,6 +206,44 @@ function ElvUI_EltreumUI:Borders()
 				petborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				petborder:SetFrameStrata("LOW")
 			end
+
+			--focus
+			if E.db.ElvUI_EltreumUI.borders.focusborder and E.db.unitframe.units.focus.enable then
+				if not _G["EltruismFocusBorder"] then
+					focusborder = CreateFrame("Frame", "EltruismFocusBorder", _G.ElvUF_Focus_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
+				else
+					focusborder = _G["EltruismFocusBorder"]
+				end
+				focusborder:SetSize(E.db.ElvUI_EltreumUI.borders.xfocus, E.db.ElvUI_EltreumUI.borders.yfocus)
+				focusborder:SetPoint("CENTER", _G.ElvUF_Focus_HealthBar, "CENTER", 0, 0)
+				focusborder:SetBackdrop({
+					edgeFile = bordertexture,
+					edgeSize = playertargetsize,
+				})
+				focusborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+				focusborder:SetFrameStrata("LOW")
+			end
+
+			--boss
+			if E.db.ElvUI_EltreumUI.borders.bossborder and E.db.unitframe.units.boss.enable then
+				local bordersboss = {}
+				for i = 1,8 do
+					local bossmembers = {_G["ElvUF_Boss"..i]}
+					for _, frame in pairs(bossmembers) do
+						local bossborder = CreateFrame("Frame", nil, frame, BackdropTemplateMixin and "BackdropTemplate")
+						bossborder:SetSize(E.db.ElvUI_EltreumUI.borders.xboss, E.db.ElvUI_EltreumUI.borders.yboss)
+						bossborder:SetPoint("CENTER", frame, "CENTER")
+						bossborder:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = playertargetsize,
+						})
+						bossborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						bossborder:SetFrameStrata("MEDIUM")
+					end
+				end
+
+			end
+
 
 			--party
 			if E.db.ElvUI_EltreumUI.borders.partyborders and E.db.unitframe.units.party.enable and not self.partyborderscreated then
@@ -606,6 +652,27 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 						targettargetborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
 					elseif reactiontargettarget == 2 or reactiontargettarget == 1 then
 						targettargetborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
+					end
+				end
+			end
+		end
+
+
+		if E.db.ElvUI_EltreumUI.borders.focusborder and E.db.unitframe.units.focus.enable then
+			if UnitExists("focus") and focusborder ~= nil then
+				if UnitIsPlayer("focus") then
+					local _, focusclass = UnitClass("focus")
+					focusborder:SetBackdropBorderColor(classcolorreaction[focusclass]["r1"], classcolorreaction[focusclass]["g1"], classcolorreaction[focusclass]["b1"], 1)
+				elseif not UnitIsPlayer("focus") then
+					local reactionfocus = UnitReaction("player", "focus")
+					if reactionfocus >= 5 then
+						focusborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
+					elseif reactionfocus == 4 then
+						focusborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
+					elseif reactionfocus == 3 then
+						focusborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
+					elseif reactionfocus == 2 or reactionfocus == 1 then
+						focusborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
 					end
 				end
 			end
