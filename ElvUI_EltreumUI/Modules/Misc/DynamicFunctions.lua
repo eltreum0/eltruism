@@ -328,7 +328,56 @@ end
 --automatically space the actionbar if borders is enabled
 function ElvUI_EltreumUI:ActionbarBorderAdjust()
 	if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
+		--if not using one of my profiles then disable auto adjust to prevent overwriting settings and return
+		if not ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or not ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
+			E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
+			return
+		end
+
 		if E.db.ElvUI_EltreumUI.borders.borders then
+
+			--general border settings for both profiles
+			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
+				E.db.ElvUI_EltreumUI.borders.texture = "Eltreum-Border-1"
+				E.db.ElvUI_EltreumUI.borders.classcolor = true
+				E.db.ElvUI_EltreumUI.borders.auraborder = true
+				E.db.ElvUI_EltreumUI.borders.aurasizex = 53
+				E.db.ElvUI_EltreumUI.borders.aurasizey = 53
+				E.db.ElvUI_EltreumUI.borders.chatborder = true
+				E.db.ElvUI_EltreumUI.borders.leftchatborderx = 432
+				E.db.ElvUI_EltreumUI.borders.leftchatbordery = 224
+				E.db.ElvUI_EltreumUI.borders.rightchatborderx = 432
+				E.db.ElvUI_EltreumUI.borders.rightchatbordery = 224
+				E.db.ElvUI_EltreumUI.borders.partyborders = true
+				E.db.ElvUI_EltreumUI.borders.raidborders = true
+				E.db.ElvUI_EltreumUI.borders.raid40borders = true
+				E.db.ElvUI_EltreumUI.borders.playertargetsize = 20
+				E.db.ElvUI_EltreumUI.borders.baredgesize = 13
+				E.db.ElvUI_EltreumUI.borders.powerbarborder = false
+				E.db.ElvUI_EltreumUI.borders.powerbarsize = 4
+				E.db.ElvUI_EltreumUI.borders.xpowerbar = 138.8
+				E.db.ElvUI_EltreumUI.borders.ypowerbar = 12
+				E.db.ElvUI_EltreumUI.borders.minimapborder = true
+				E.db.ElvUI_EltreumUI.borders.petborder = true
+				E.db.ElvUI_EltreumUI.borders.playerborder = true
+				E.db.ElvUI_EltreumUI.borders.xplayer = 302
+				E.db.ElvUI_EltreumUI.borders.yplayer = 75
+				E.db.ElvUI_EltreumUI.borders.playercastborder = true
+				E.db.ElvUI_EltreumUI.borders.yplayercast = 58
+				E.db.ElvUI_EltreumUI.borders.targetborder = true
+				E.db.ElvUI_EltreumUI.borders.xtarget = 302.8
+				E.db.ElvUI_EltreumUI.borders.ytarget = 75
+				E.db.ElvUI_EltreumUI.borders.targetcastborder = true
+				E.db.ElvUI_EltreumUI.borders.xcasttarget = 272
+				E.db.ElvUI_EltreumUI.borders.ycasttarget = 58
+				E.db.ElvUI_EltreumUI.borders.targettargetborder = true
+				E.db.ElvUI_EltreumUI.borders.ytargettarget = 75
+				E.db.ElvUI_EltreumUI.borders.focusborder = true
+				E.db.ElvUI_EltreumUI.borders.xfocus = 224
+				E.db.ElvUI_EltreumUI.borders.yfocus = 72
+				E.db.ElvUI_EltreumUI.borders.bossborder = true
+			end
+
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
 				E.db["actionbar"]["bar1"]["buttonSpacing"] = 4
 				E.db["actionbar"]["bar2"]["buttonSpacing"] = 5
@@ -339,14 +388,14 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,187"
 				E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,154"
 				E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,121"
-
-				E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-4"
-				E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-4"
-				E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 3
-				E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 7
-				E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 6
-
-
+				if E.db.ElvUI_EltreumUI.otherstuff.alternativegroups == false then
+					E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-4"
+					E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-4"
+					E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 7
+					E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 3
+					E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 6
+					E.db["unitframe"]["units"]["raid40"]["groupsPerRowCol"] = 3
+				end
 				E.db["ElvUI_EltreumUI"]["borders"]["xplayercast"] = 272
 				E.db["ElvUI_EltreumUI"]["borders"]["xtargettarget"] = 132.8
 				E.db["ElvUI_EltreumUI"]["borders"]["bar1xborder"] = 65
@@ -410,13 +459,14 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,190"
 				E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,159"
 				E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,128"
-
-				E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
-				E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
-				E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 3
-				E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 3
-				E.db["unitframe"]["units"]["raid40"]["groupsPerRowCol"] = 3
-				E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 3
+				if E.db.ElvUI_EltreumUI.otherstuff.alternativegroups == false then
+					E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
+					E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
+					E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 4
+					E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 3
+					E.db["unitframe"]["units"]["raid40"]["groupsPerRowCol"] = 4
+					E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 3
+				end
 			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
 				E.db["actionbar"]["bar1"]["buttonSpacing"] = 3
 				E.db["actionbar"]["bar2"]["buttonSpacing"] = 3
