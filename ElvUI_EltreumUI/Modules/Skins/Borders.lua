@@ -82,6 +82,8 @@ function ElvUI_EltreumUI:Borders()
 		local partysizey = E.db.ElvUI_EltreumUI.borders.partysizey
 		local raidsizex = E.db.ElvUI_EltreumUI.borders.raidsizex
 		local raidsizey = E.db.ElvUI_EltreumUI.borders.raidsizey
+		local raid40sizex = E.db.ElvUI_EltreumUI.borders.raid40sizex
+		local raid40sizey = E.db.ElvUI_EltreumUI.borders.raid40sizey
 
 		--elvui unitframes
 		if E.private.unitframe.enable then
@@ -267,6 +269,40 @@ function ElvUI_EltreumUI:Borders()
 					self.raidborderscreated = true
 				end
 				createraidborders()
+			end
+
+			--raid40
+			if E.db.ElvUI_EltreumUI.borders.raid40borders and E.db.unitframe.units.raid40.enable and not self.raid40borderscreated then
+				local bordersraid40 = {}
+				for i = 1,5 do
+					table.insert(bordersraid40, _G["ElvUF_Raid40Group1UnitButton"..i])
+					table.insert(bordersraid40, _G["ElvUF_Raid40Group2UnitButton"..i])
+					table.insert(bordersraid40, _G["ElvUF_Raid40Group3UnitButton"..i])
+					table.insert(bordersraid40, _G["ElvUF_Raid40Group4UnitButton"..i])
+					table.insert(bordersraid40, _G["ElvUF_Raid40Group5UnitButton"..i])
+					table.insert(bordersraid40, _G["ElvUF_Raid40Group6UnitButton"..i])
+					table.insert(bordersraid40, _G["ElvUF_Raid40Group7UnitButton"..i])
+					table.insert(bordersraid40, _G["ElvUF_Raid40Group8UnitButton"..i])
+				end
+				local function createraid40borders()
+					for _,v in pairs(bordersraid40) do
+						local raidborder40 = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
+						raidborder40:SetSize(raid40sizex, raid40sizey)
+						raidborder40:SetPoint("CENTER", v, "CENTER")
+						raidborder40:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = baredgesize+1,
+						})
+						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
+							raidborder40:SetBackdropBorderColor(1, 1, 1, 1)
+						else
+							raidborder40:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						end
+						raidborder40:SetFrameStrata("MEDIUM")
+					end
+					self.raid40borderscreated = true
+				end
+				createraid40borders()
 			end
 
 			--focus
