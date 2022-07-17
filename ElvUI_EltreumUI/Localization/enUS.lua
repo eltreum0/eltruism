@@ -916,5 +916,12 @@ L["Right Chat Border X offset"] = true
 L["Right Chat Border Y offset"] = true
 L["Other"] = true
 L["Raid40 Border"] = true
+
 L["Enable for Target of Target of Target"] = true
 L["Target of Target of Target Texture"] = true
+L["Player Castbar"] = true
+L["Player Castbar (Non Interruptible)"] = true
+L["Target Castbar"] = true
+L["Target Castbar (Non Interruptible)"] = true
+L["Enable for Target Castbar (Non Interruptible)"] = true
+L["Enable Gradient colors for Target Castbar (Non Interruptible)"] = true

@@ -430,7 +430,70 @@ P.ElvUI_EltreumUI = {
 		enablearena = true,
 		enablegroupunits = true,
 		enableplayercastbar = false,
+		enableplayercastbarnoninterruptible = false,
+
+
 		enabletargetcastbar = false,
+		enabletargetcastbarnoninterruptible = false,
+
+
+
+		playercastbarR1 = 0,
+		playercastbarR2 = 0.67,
+		playercastbarG1 = 0.6,
+		playercastbarG2 = 0.94,
+		playercastbarB1 = 1,
+		playercastbarB2 = 1,
+
+
+		playercastbarR1noninterruptible = 1,
+		playercastbarR2noninterruptible = 1,
+		playercastbarG1noninterruptible = 0.1,
+		playercastbarG2noninterruptible = 0.44,
+		playercastbarB1noninterruptible = 0.3,
+		playercastbarB2noninterruptible = 0.2,
+
+
+		playercastbarR1noninterruptiblecustom = 1,
+		playercastbarR2noninterruptiblecustom = 1,
+		playercastbarG1noninterruptiblecustom = 0.1,
+		playercastbarG2noninterruptiblecustom = 0.44,
+		playercastbarB1noninterruptiblecustom = 0.3,
+		playercastbarB2noninterruptiblecustom = 0.2,
+
+
+		targetcastbarR1 = 0,
+		targetcastbarR2 = 0.67,
+		targetcastbarG1 = 0.6,
+		targetcastbarG2 = 0.94,
+		targetcastbarB1 = 1,
+		targetcastbarB2 = 1,
+
+
+		targetcastbarR1noninterruptible = 1,
+		targetcastbarR2noninterruptible = 1,
+		targetcastbarG1noninterruptible = 0.1,
+		targetcastbarG2noninterruptible = 0.44,
+		targetcastbarB1noninterruptible = 0.3,
+		targetcastbarB2noninterruptible = 0.2,
+
+
+		targetcastbarR1noninterruptiblecustom = 1,
+		targetcastbarR2noninterruptiblecustom = 1,
+		targetcastbarG1noninterruptiblecustom = 0.1,
+		targetcastbarG2noninterruptiblecustom = 0.44,
+		targetcastbarB1noninterruptiblecustom = 0.3,
+		targetcastbarB2noninterruptiblecustom = 0.2,
+
+
+
+
+
+
+
+
+
+
 		orientation = "HORIZONTAL",
 		texture = "Eltreum-Blank",
 		customcolor = false,
@@ -533,13 +596,6 @@ P.ElvUI_EltreumUI = {
 		monkcustomcolorG2 = 0.90980392156863,
 		monkcustomcolorB1 = 0.45882352941176,
 		monkcustomcolorB2 = 1,
-
-		playercastbarR1 = 0,
-		playercastbarR2 = 0.67,
-		playercastbarG1 = 0.6,
-		playercastbarG2 = 0.94,
-		playercastbarB1 = 1,
-		playercastbarB2 = 1,
 
 		npcfriendlyR1 = 0.30980392156863,
 		npcfriendlyR2 = 0.34117647058824,
