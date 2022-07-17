@@ -946,5 +946,5 @@ L["Right Chat Border X offset"] = "Rechter Chat Rahmen X-Versatz"
 L["Right Chat Border Y offset"] = "Rechter Chat Rahmen Y-Versatz"
 L["Other"] = "Andere"
 L["Raid40 Border"] = "Raid40 Rahmen"
-L["Enable for Target of Target of Target"] = true
-L["Target of Target of Target Texture"] = true
+L["Enable for Target of Target of Target"] = "Aktivieren für Ziel von Ziel von Ziel"
+L["Target of Target of Target Texture"] = "Ziel von Ziel von Ziel Textur"
