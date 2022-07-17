@@ -3498,17 +3498,46 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.borders.yfocus end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.yfocus = value end,
 							},
-
-
-
-
-
-
-
-
-
-
-
+							gapboss = {
+								order = 51,
+								type = "description",
+								name = L["Boss Border"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							barboss= {
+								type = 'toggle',
+								name = L["Enable"],
+								order = 52,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.boss.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.bossborder end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bossborder = value end,
+							},
+							borderxboss = {
+								type = 'range',
+								name = L["Border X offset"],
+								order = 53,
+								min = 1,
+								max = 800,
+								step = 0.1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.boss.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.xboss end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xboss = value end,
+							},
+							borderyboss = {
+								type = 'range',
+								name = L["Border Y offset"],
+								order = 54,
+								min = 1,
+								max = 800,
+								step = 0.1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.boss.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.yboss end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.yboss = value end,
+							},
 						},
 					},
 					npborder = {
