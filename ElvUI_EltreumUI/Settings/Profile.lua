@@ -316,6 +316,10 @@ P.ElvUI_EltreumUI = {
 		raidsizey = 65,
 		raidsizex = 140,
 
+		raid40borders = true,
+		raid40sizey = 63,
+		raid40sizex = 140,
+
 		playertargetsize = 20,
 		baredgesize = 13,
 
