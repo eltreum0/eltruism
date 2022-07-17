@@ -419,12 +419,15 @@ P.ElvUI_EltreumUI = {
 
 	gradientmode = {
 		enable = false,
+		orientation = "HORIZONTAL",
+		texture = "Eltreum-Blank",
+		customcolor = false,
+		gradientXP = false,
+
 		enableplayer = true,
 		enabletarget = true,
 		enabletargettarget = true,
-
 		enabletargettargettarget = true,
-
 		enablefocus = true,
 		enableboss = true,
 		enablearena = true,
@@ -436,7 +439,6 @@ P.ElvUI_EltreumUI = {
 
 
 		enableplayercastbar = false,
-		enableplayercastbarnoninterruptible = false,
 
 		playercastbarR1 = 0,
 		playercastbarR2 = 0.67,
@@ -445,27 +447,24 @@ P.ElvUI_EltreumUI = {
 		playercastbarB1 = 1,
 		playercastbarB2 = 1,
 
-		playercastbarR1noninterruptible = 1,
-		playercastbarR2noninterruptible = 1,
-		playercastbarG1noninterruptible = 0.1,
-		playercastbarG2noninterruptible = 0.44,
-		playercastbarB1noninterruptible = 0.3,
-		playercastbarB2noninterruptible = 0.2,
+		playercastbarR1interrupted = 0,
+		playercastbarR2interrupted = 0,
+		playercastbarG1interrupted = 0,
+		playercastbarG2interrupted = 0,
+		playercastbarB1interrupted = 0,
+		playercastbarB2interrupted = 0,
 
-		playercastbarR1noninterruptiblecustom = 0,
-		playercastbarR2noninterruptiblecustom = 0,
-		playercastbarG1noninterruptiblecustom = 0,
-		playercastbarG2noninterruptiblecustom = 0,
-		playercastbarB1noninterruptiblecustom = 1,
-		playercastbarB2noninterruptiblecustom = 1,
-
-
-
-
+		playercastbarR1interruptedcustom = 0,
+		playercastbarR2interruptedcustom = 0,
+		playercastbarG1interruptedcustom = 0,
+		playercastbarG2interruptedcustom = 0,
+		playercastbarB1interruptedcustom = 0,
+		playercastbarB2interruptedcustom = 0,
 
 
 		enabletargetcastbar = false,
 		enabletargetcastbarnoninterruptible = false,
+		enabletargetcastbarinterrupted = false,
 
 		targetcastbarR1 = 0,
 		targetcastbarR2 = 0.67,
@@ -473,6 +472,13 @@ P.ElvUI_EltreumUI = {
 		targetcastbarG2 = 0.94,
 		targetcastbarB1 = 1,
 		targetcastbarB2 = 1,
+
+		targetcastbarR1custom = 0,
+		targetcastbarR2custom = 0.67,
+		targetcastbarG1custom = 0.6,
+		targetcastbarG2custom = 0.94,
+		targetcastbarB1custom = 1,
+		targetcastbarB2custom = 1,
 
 		targetcastbarR1noninterruptible = 1,
 		targetcastbarR2noninterruptible = 1,
@@ -489,6 +495,19 @@ P.ElvUI_EltreumUI = {
 		targetcastbarB1noninterruptiblecustom = 0.3,
 		targetcastbarB2noninterruptiblecustom = 0.2,
 
+		targetcastbarR1interrupted = 1,
+		targetcastbarR2interrupted = 0,
+		targetcastbarG1interrupted = 0.5,
+		targetcastbarG2interrupted = 0,
+		targetcastbarB1interrupted = 0,
+		targetcastbarB2interrupted = 0,
+
+		targetcastbarR1interruptedcustom = 0,
+		targetcastbarR2interruptedcustom = 0,
+		targetcastbarG1interruptedcustom = 1,
+		targetcastbarG2interruptedcustom = 0,
+		targetcastbarB1interruptedcustom = 0,
+		targetcastbarB2interruptedcustom = 0.5,
 
 
 
@@ -497,11 +516,6 @@ P.ElvUI_EltreumUI = {
 
 
 
-
-		orientation = "HORIZONTAL",
-		texture = "Eltreum-Blank",
-		customcolor = false,
-		gradientXP = false,
 
 		druidcustomcolorR1 = 1,
 		druidcustomcolorR2 = 1,
