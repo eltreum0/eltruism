@@ -351,6 +351,12 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db["ElvUI_EltreumUI"]["borders"]["bar4yborder"] = 50
 				E.db["ElvUI_EltreumUI"]["borders"]["bar5xborder"] = 56
 				E.db["ElvUI_EltreumUI"]["borders"]["bar5yborder"] = 50
+				E.db.ElvUI_EltreumUI.borders.partysizex = 222
+				E.db.ElvUI_EltreumUI.borders.partysizey = 98
+				E.db.ElvUI_EltreumUI.borders.raidsizex = 140
+				E.db.ElvUI_EltreumUI.borders.raidsizey = 65
+				E.db.ElvUI_EltreumUI.borders.xboss = 250
+				E.db.ElvUI_EltreumUI.borders.yboss = 87
 			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
 				E.db["actionbar"]["bar1"]["buttonSpacing"] = 5
 				E.db["actionbar"]["bar2"]["buttonSpacing"] = 5
@@ -374,6 +380,12 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db["ElvUI_EltreumUI"]["borders"]["bar4yborder"] = 46
 				E.db["ElvUI_EltreumUI"]["borders"]["bar5xborder"] = 51
 				E.db["ElvUI_EltreumUI"]["borders"]["bar5yborder"] = 46
+				E.db.ElvUI_EltreumUI.borders.partysizex = 200
+				E.db.ElvUI_EltreumUI.borders.partysizey = 100
+				E.db.ElvUI_EltreumUI.borders.raidsizex = 180
+				E.db.ElvUI_EltreumUI.borders.raidsizey = 68
+				E.db.ElvUI_EltreumUI.borders.xboss = 248
+				E.db.ElvUI_EltreumUI.borders.yboss = 78
 			end
 		elseif not E.db.ElvUI_EltreumUI.borders.borders then
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then

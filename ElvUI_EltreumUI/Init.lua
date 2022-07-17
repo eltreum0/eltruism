@@ -45,8 +45,8 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	end
 	ElvUI_EltreumUI:VersionCheckInit() --checks for old versions
 	ElvUI_EltreumUI:LoadCommands() --loads chat commands
-	ElvUI_EltreumUI:Borders() --creates borders if option is enabled
 	ElvUI_EltreumUI:ActionbarBorderAdjust() --auto adjust actionbar/border if option is enabled
+	ElvUI_EltreumUI:Borders() --creates borders if option is enabled
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel() --adds class icons to character panel
 	ElvUI_EltreumUI:PlayerNamepaperdoll() --update player name
 	ElvUI_EltreumUI:CursorInit() --starts cursor modules
