@@ -304,26 +304,25 @@ P.ElvUI_EltreumUI = {
 
 
 
-		chatborder = true,
+
+
+		auraborder = true,
 		aurasizex = 53,
 		aurasizey = 53,
+
+		chatborder = true,
 		leftchatborderx = 432,
 		leftchatbordery = 224,
 		rightchatborderx = 432,
 		rightchatbordery = 224,
 
-
-
 		partyborders = true,
-		partysizex = 220,
-		partysizey = 96,
+		partysizex = 222,
+		partysizey = 98,
 
 		raidborders = true,
-		raidsizey = 63,
-		raidsizex = 138,
-
-
-
+		raidsizey = 65,
+		raidsizex = 140,
 
 
 

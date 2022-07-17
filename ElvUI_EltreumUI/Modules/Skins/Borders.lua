@@ -1,5 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
+local A = E:GetModule('Auras')
 
 local classcolorreaction = {
 	["WARRIOR"] = {r1 = 0.77646887302399, g1 = 0.60784178972244, b1 = 0.4274500310421},
@@ -211,9 +212,13 @@ function ElvUI_EltreumUI:Borders()
 						partyborder:SetPoint("CENTER", v, "CENTER")
 						partyborder:SetBackdrop({
 						edgeFile = bordertexture,
-						edgeSize = baredgesize,
+						edgeSize = baredgesize+1,
 						})
-						partyborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
+							partyborder:SetBackdropBorderColor(1, 1, 1, 1)
+						else
+							partyborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						end
 						partyborder:SetFrameStrata("MEDIUM")
 					end
 					self.partyborderscreated = true
@@ -241,9 +246,13 @@ function ElvUI_EltreumUI:Borders()
 						raidborder:SetPoint("CENTER", v, "CENTER")
 						raidborder:SetBackdrop({
 						edgeFile = bordertexture,
-						edgeSize = baredgesize,
+						edgeSize = baredgesize+1,
 						})
-						raidborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
+							raidborder:SetBackdropBorderColor(1, 1, 1, 1)
+						else
+							raidborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						end
 						raidborder:SetFrameStrata("MEDIUM")
 					end
 					self.raidborderscreated = true
@@ -502,9 +511,8 @@ function ElvUI_EltreumUI:Borders()
 	end
 end
 
-local A = E:GetModule('Auras')
-local function AuraBorders(button)
-	if E.db.ElvUI_EltreumUI.shadows.aura and E.private.auras.enable and E.db.ElvUI_EltreumUI.skins.shadows then
+function ElvUI_EltreumUI:AuraBorders(button)
+	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable then
 		if not button then return end
 		if E.db.ElvUI_EltreumUI.borders.classcolor == true then
 			classcolor = E:ClassColor(E.myclass, true)
@@ -538,7 +546,7 @@ local function AuraBorders(button)
 		createauraborders()
 	end
 end
-hooksecurefunc(A, 'CreateIcon', AuraBorders) --aura (minimap) shadows
+hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraBorders) --aura (minimap) shadows
 
 
 function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of target changes if the target is not in party/raid, no event to register :(
