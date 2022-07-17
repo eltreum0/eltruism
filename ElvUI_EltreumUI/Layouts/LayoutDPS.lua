@@ -1189,7 +1189,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0
-		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["enable"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["enable"] = false
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["invertColors"] = false
 		E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["transparent"] = true
