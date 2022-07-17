@@ -210,73 +210,11 @@ function ElvUI_EltreumUI:CastBarTexture()
 
 		--player
 		if E.db.ElvUI_EltreumUI.gradientmode.enable and (not E.db.ElvUI_EltreumUI.ufcustomtexture.enable) then
-			local r,g,b = _G["ElvUF_Player_CastBar"].bg:GetVertexColor()
-			--local r,g,b = _G["ElvUF_Player_CastBar"]:GetStatusBarColor()
-			--print(_G["ElvUF_Player_CastBar"].bg:GetVertexColor())
+			local r,g,b = _G["ElvUF_Player_CastBar"]:GetStatusBarColor()
 			local r1 = tostring(r)
 			local g1 = tostring(g)
 			local b1 = tostring(b)
-
-			local rcheck, gcheck, bcheck, rchecknoninterruptible, gchecknoninterruptible, bchecknoninterruptible, rcheckinterrupted, gcheckinterrupted, bcheckinterrupted
-
-			-- if E.db["unitframe"]["colors"]["castClassColor"] = true then it fails
-			--[[
-					E.db["unitframe"]["colors"]["castColor"]["b"] = 0.003921568627451
-					E.db["unitframe"]["colors"]["castColor"]["g"] = 1
-					E.db["unitframe"]["colors"]["castColor"]["r"] = 0.003921568627451
-					E.db["unitframe"]["colors"]["castInterruptedColor"]["b"] = 1
-					E.db["unitframe"]["colors"]["castInterruptedColor"]["g"] = 0.003921568627451
-					E.db["unitframe"]["colors"]["castInterruptedColor"]["r"] = 0.003921568627451
-					E.db["unitframe"]["colors"]["castNoInterrupt"]["b"] = 0.74509803921569
-					E.db["unitframe"]["colors"]["castNoInterrupt"]["g"] = 0.003921568627451
-					E.db["unitframe"]["colors"]["castNoInterrupt"]["r"] = 0.78039215686275
-			]]
-			--if	E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["useClassColor"] = true  then it also fails
-			--[[
-					E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["enable"] = true
-					E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["color"]["b"] = 0.93725490196078
-					E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["color"]["g"] = 0.003921568627451
-					E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["color"]["r"] = 1
-					E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0
-					E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0
-					E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0
-					E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorInterrupted"]["b"] = 0.003921568627451
-					E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorInterrupted"]["g"] = 1
-					E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorInterrupted"]["r"] = 0.003921568627451
-					E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorNoInterrupt"]["b"] = 0.78039215686275
-					E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorNoInterrupt"]["g"] = 0.015686274509804
-					E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorNoInterrupt"]["r"] = 0.003921568627451
-			]]
-
-
-			if E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["enable"] == true then
-				rcheck = E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["color"]["r"]
-				gcheck = E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["color"]["g"]
-				bcheck = E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["color"]["b"]
-				rchecknoninterruptible = E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorNoInterrupt"]["r"]
-				gchecknoninterruptible = E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorNoInterrupt"]["g"]
-				bchecknoninterruptible = E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorNoInterrupt"]["b"]
-				rcheckinterrupted = E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorInterrupted"]["r"]
-				gcheckinterrupted = E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorInterrupted"]["g"]
-				bcheckinterrupted = E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["colorInterrupted"]["b"]
-			else
-				rcheck = E.db["unitframe"]["colors"]["castColor"]["r"]
-				gcheck = E.db["unitframe"]["colors"]["castColor"]["g"]
-				bcheck = E.db["unitframe"]["colors"]["castColor"]["b"]
-				rchecknoninterruptible = E.db["unitframe"]["colors"]["castNoInterrupt"]["r"]
-				gchecknoninterruptible = E.db["unitframe"]["colors"]["castNoInterrupt"]["g"]
-				bchecknoninterruptible = E.db["unitframe"]["colors"]["castNoInterrupt"]["b"]
-				rcheckinterrupted = E.db["unitframe"]["colors"]["castInterruptedColor"]["r"]
-				gcheckinterrupted = E.db["unitframe"]["colors"]["castInterruptedColor"]["g"]
-				bcheckinterrupted = E.db["unitframe"]["colors"]["castInterruptedColor"]["b"]
-			end
-
-			if rcheck == r1 then
-				print("YESSSSSSSSSSSSS")
-			end
-
-
-			if (r == rchecknoninterruptible and g == gchecknoninterruptible and b == bchecknoninterruptible) then --cant interrupt
+			if (r1 == "0.78039044141769" and g1 == "0.25097984075546" and b1 == "0.25097984075546") then --cant interrupt
 				if E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbarnoninterruptible then
 					castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 					if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -285,7 +223,7 @@ function ElvUI_EltreumUI:CastBarTexture()
 						castbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1noninterruptible, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2noninterruptible, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
 					end
 				end
-			elseif r == rcheckinterrupted and g == gcheckinterrupted and b == bcheckinterrupted then --interrupted/failed
+			elseif r1 == "0.30196011066437" and g1 == "0.30196011066437" and b1 == "0.30196011066437" then --interrupted/failed
 				return
 			else
 				if E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar then
