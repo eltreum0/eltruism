@@ -506,27 +506,36 @@ local A = E:GetModule('Auras')
 local function AuraBorders(button)
 	if E.db.ElvUI_EltreumUI.shadows.aura and E.private.auras.enable and E.db.ElvUI_EltreumUI.skins.shadows then
 		if not button then return end
-		if E.db.ElvUI_EltreumUI.borders.bar1borders and E.db.actionbar.bar1.enabled then
-			local borders1 = {}
-			for i = 1,40 do
-				table.insert(borders1, _G["ElvUIPlayerBuffsAuraButton"..i])
-			end
-			local function createauraborders()
-				for _,v in pairs(borders1) do
-					local barborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
-					--local sizex, sizey = v:GetSize()
-					--print(sizex,sizey)
-					--barborder:SetSize(sizex, sizey)
-					barborder:SetAllPoints(v)
-					barborder:SetBackdrop({
+		if E.db.ElvUI_EltreumUI.borders.classcolor == true then
+			classcolor = E:ClassColor(E.myclass, true)
+		else
+			classcolor = {
+				r = E.db.ElvUI_EltreumUI.bordercolors.r,
+				g = E.db.ElvUI_EltreumUI.bordercolors.g,
+				b = E.db.ElvUI_EltreumUI.bordercolors.b
+			}
+		end
+
+		local borders = {}
+		for i = 1,40 do
+			table.insert(borders, _G["ElvUIPlayerBuffsAuraButton"..i])
+		end
+		local function createauraborders()
+			for i,v in pairs(borders) do
+				local test = "EltruismBorder"..tostring(borders[i])
+				if not _G.test then
+					local auraborder = CreateFrame("Frame", "EltruismBorder"..tostring(borders[i]), v, BackdropTemplateMixin and "BackdropTemplate")
+					auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.aurasizex, E.db.ElvUI_EltreumUI.borders.aurasizey)
+					auraborder:SetPoint("CENTER", v, "CENTER", 0, 0)
+					auraborder:SetBackdrop({
 					edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
 					edgeSize = 13,
 					})
-					barborder:SetBackdropBorderColor(1, 0, 0, 1)
+					auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				end
 			end
-			createauraborders()
 		end
+		createauraborders()
 	end
 end
 hooksecurefunc(A, 'CreateIcon', AuraBorders) --aura (minimap) shadows
