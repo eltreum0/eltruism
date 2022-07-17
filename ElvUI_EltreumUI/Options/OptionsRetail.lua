@@ -33,6 +33,7 @@ local THANKYOU = {
 	'|TInterface/AddOns/ElvUI_EltreumUI/Media/Textures/tukuidiscord:15:15:0:0:64:64:5:59:5:59|t Tukui Community for all the help and motivation',
 	'|TInterface/AddOns/ElvUI_EltreumUI/Media/Textures/addonsdiscord:15:15:0:0:64:64:5:59:5:59|t WoW AddOns; for answering a lot of questions',
 	'AcidWeb |TInterface/AddOns/ElvUI/Core/Media/ChatLogos/Gem:15:15:-1:2:64:64:6:60:8:60|t',
+	'|CFF8E44ADB|r|CFF2ECC71lin|r|CFF3498DBkii|r',
 }
 
 local SUPPORTER = {
@@ -5441,6 +5442,17 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'toggle',
 								name = L["Enable for Player Castbar"],
 								desc = L["Enable Gradient colors for Player Castbar"],
+								width = 'full',
+								--disabled = function() return true end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar = value end,
+							},
+							enablecastbargradient = {
+								order = 2,
+								type = 'toggle',
+								name = L["Enable for Player Castbar (Non Interruptible)"],
+								desc = L["Enable Gradient colors for Player Castbar (Non Interruptible)"],
 								width = 'full',
 								--disabled = function() return true end,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
