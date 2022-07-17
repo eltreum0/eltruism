@@ -914,3 +914,4 @@ L["Left Chat Border Y offset"] = true
 L["Right Chat Border X offset"] = true
 L["Right Chat Border Y offset"] = true
 L["Other"] = true
+L["Raid40 Border"] = true
