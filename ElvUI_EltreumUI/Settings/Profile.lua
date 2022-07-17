@@ -622,6 +622,7 @@ P.ElvUI_EltreumUI = {
 	},
 
 	otherstuff ={
+		alternativegroups = false,
 		gamemenu = false,
 		mailsoundenable = false,
 		mailsound = "Interface-10",

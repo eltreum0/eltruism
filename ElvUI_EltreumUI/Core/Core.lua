@@ -266,6 +266,8 @@ function ElvUI_EltreumUI:AlternativeGroupsDPS()
 
 		ElvUI_EltreumUI:Print(L["Alternative Group, Raid and Raid40 layout has been set"])
 
+		E.db.ElvUI_EltreumUI.otherstuff.alternativegroups = true
+
 		E:UpdateLayout()
 		E:UpdateUnitFrames()
 		E:UpdateMoverPositions()
@@ -301,6 +303,8 @@ function ElvUI_EltreumUI:OriginalGroupsDPS()
 		E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 3
 
 		ElvUI_EltreumUI:Print(L["Original Group, Raid and Raid40 layout has been set"])
+
+		E.db.ElvUI_EltreumUI.otherstuff.alternativegroups = false
 
 		E:UpdateLayout()
 		E:UpdateUnitFrames()
