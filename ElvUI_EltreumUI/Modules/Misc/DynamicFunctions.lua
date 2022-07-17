@@ -380,8 +380,8 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db["ElvUI_EltreumUI"]["borders"]["bar4yborder"] = 46
 				E.db["ElvUI_EltreumUI"]["borders"]["bar5xborder"] = 51
 				E.db["ElvUI_EltreumUI"]["borders"]["bar5yborder"] = 46
-				E.db.ElvUI_EltreumUI.borders.partysizex = 200
-				E.db.ElvUI_EltreumUI.borders.partysizey = 100
+				E.db.ElvUI_EltreumUI.borders.partysizex = 173
+				E.db.ElvUI_EltreumUI.borders.partysizey = 98
 				E.db.ElvUI_EltreumUI.borders.raidsizex = 172
 				E.db.ElvUI_EltreumUI.borders.raidsizey = 68
 				E.db.ElvUI_EltreumUI.borders.xboss = 248
