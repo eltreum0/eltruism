@@ -347,8 +347,6 @@ P.ElvUI_EltreumUI = {
 		xtargettarget = 132.8,
 		ytargettarget = 75,
 
-
-
 		focusborder = true,
 		xfocus = 224,
 		yfocus = 72,
@@ -356,9 +354,6 @@ P.ElvUI_EltreumUI = {
 		bossborder = true,
 		xboss = 250,
 		yboss = 87,
-
-
-
 
 		bar1borders = true,
 		bar1xborder = 65,
