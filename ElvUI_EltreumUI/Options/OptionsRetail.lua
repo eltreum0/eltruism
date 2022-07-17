@@ -5600,7 +5600,7 @@ function ElvUI_EltreumUI:Configtable()
 							headercastbarnoninterruptibletarget = {
 								order = 10,
 								type = "description",
-								name = L["Target Castbar (Non Interruptible)"],
+								name = L["Target Castbar"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -5609,15 +5609,15 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbarnoninterruptible end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar end,
 								get = function()
-									local dr = P.ElvUI_EltreumUI.gradientmode.targetcastbarR1noninterruptible
-									local dg = P.ElvUI_EltreumUI.gradientmode.targetcastbarG1noninterruptible
-									local db = P.ElvUI_EltreumUI.gradientmode.targetcastbarB1noninterruptible
-									return E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB1noninterruptible, 1, dr, dg, db, 1
+									local dr = P.ElvUI_EltreumUI.gradientmode.targetcastbarR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.targetcastbarG1
+									local db = P.ElvUI_EltreumUI.gradientmode.targetcastbarB1
+									return E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR1, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG1, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB1noninterruptible = r, g, b
+									E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR1, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG1, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB1 = r, g, b
 								end,
 							},
 							gradientcast2noninterruptibletarget = {
@@ -5625,42 +5625,27 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbarnoninterruptible end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar end,
 								get = function()
-									local dr = P.ElvUI_EltreumUI.gradientmode.targetcastbarR2noninterruptible
-									local dg = P.ElvUI_EltreumUI.gradientmode.targetcastbarG2noninterruptible
-									local db = P.ElvUI_EltreumUI.gradientmode.targetcastbarB2noninterruptible
-									return E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2noninterruptible, 1, dr, dg, db, 1
+									local dr = P.ElvUI_EltreumUI.gradientmode.targetcastbarR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.targetcastbarG2
+									local db = P.ElvUI_EltreumUI.gradientmode.targetcastbarB2
+									return E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2noninterruptible = r, g, b
+									E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2 = r, g, b
 								end,
 							},
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							headercastbarnoninterruptibletarget = {
+							headercastbarnoninterruptibletargetcustom = {
 								order = 13,
 								type = "description",
 								name = L["Target Castbar (Non Interruptible)"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-							gradientcast1noninterruptibletarget = {
+							gradientcast1noninterruptibletargetcustom = {
 								order = 14,
 								type = 'color',
 								name = L["Color 1"],
@@ -5676,7 +5661,7 @@ function ElvUI_EltreumUI:Configtable()
 									E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB1noninterruptiblecustom = r, g, b
 								end,
 							},
-							gradientcast2noninterruptibletarget = {
+							gradientcast2noninterruptibletargetcustom = {
 								order = 15,
 								type = 'color',
 								name = L["Color 2"],

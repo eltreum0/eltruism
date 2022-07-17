@@ -429,14 +429,14 @@ P.ElvUI_EltreumUI = {
 		enableboss = true,
 		enablearena = true,
 		enablegroupunits = true,
+
+
+
+
+
+
 		enableplayercastbar = false,
 		enableplayercastbarnoninterruptible = false,
-
-
-		enabletargetcastbar = false,
-		enabletargetcastbarnoninterruptible = false,
-
-
 
 		playercastbarR1 = 0,
 		playercastbarR2 = 0.67,
@@ -445,14 +445,12 @@ P.ElvUI_EltreumUI = {
 		playercastbarB1 = 1,
 		playercastbarB2 = 1,
 
-
 		playercastbarR1noninterruptible = 1,
 		playercastbarR2noninterruptible = 1,
 		playercastbarG1noninterruptible = 0.1,
 		playercastbarG2noninterruptible = 0.44,
 		playercastbarB1noninterruptible = 0.3,
 		playercastbarB2noninterruptible = 0.2,
-
 
 		playercastbarR1noninterruptiblecustom = 1,
 		playercastbarR2noninterruptiblecustom = 1,
@@ -462,13 +460,19 @@ P.ElvUI_EltreumUI = {
 		playercastbarB2noninterruptiblecustom = 0.2,
 
 
+
+
+
+
+		enabletargetcastbar = false,
+		enabletargetcastbarnoninterruptible = false,
+
 		targetcastbarR1 = 0,
 		targetcastbarR2 = 0.67,
 		targetcastbarG1 = 0.6,
 		targetcastbarG2 = 0.94,
 		targetcastbarB1 = 1,
 		targetcastbarB2 = 1,
-
 
 		targetcastbarR1noninterruptible = 1,
 		targetcastbarR2noninterruptible = 1,
