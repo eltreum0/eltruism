@@ -452,12 +452,12 @@ P.ElvUI_EltreumUI = {
 		playercastbarB1noninterruptible = 0.3,
 		playercastbarB2noninterruptible = 0.2,
 
-		playercastbarR1noninterruptiblecustom = 1,
-		playercastbarR2noninterruptiblecustom = 1,
-		playercastbarG1noninterruptiblecustom = 0.1,
-		playercastbarG2noninterruptiblecustom = 0.44,
-		playercastbarB1noninterruptiblecustom = 0.3,
-		playercastbarB2noninterruptiblecustom = 0.2,
+		playercastbarR1noninterruptiblecustom = 0,
+		playercastbarR2noninterruptiblecustom = 0,
+		playercastbarG1noninterruptiblecustom = 0,
+		playercastbarG2noninterruptiblecustom = 0,
+		playercastbarB1noninterruptiblecustom = 1,
+		playercastbarB2noninterruptiblecustom = 1,
 
 
 
