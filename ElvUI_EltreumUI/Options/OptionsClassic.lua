@@ -2833,7 +2833,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Select a Texture"],
 								values = AceGUIWidgetLSMlists.border,
 								get = function() return E.db.ElvUI_EltreumUI.borders.texture end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.borders.texture = key end,
 							},
 							classcolors = {
@@ -2896,7 +2896,7 @@ function ElvUI_EltreumUI:Configtable()
 					actionbarsborders = {
 						order = 2,
 						type = 'group',
-						disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+						disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 						name = L["ActionBars"],
 						childGroups = "tab",
 						args = {
@@ -3152,7 +3152,7 @@ function ElvUI_EltreumUI:Configtable()
 					ufborders = {
 						type = 'group',
 						name = L["Unitframes"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+						disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 						order = 2,
 						args = {
 							gap0 = {
@@ -3504,7 +3504,7 @@ function ElvUI_EltreumUI:Configtable()
 					npborder = {
 						type = 'group',
 						name = L["Nameplate"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+						disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 						order = 3,
 						args = {
 							gap0 = {
@@ -3571,7 +3571,7 @@ function ElvUI_EltreumUI:Configtable()
 					otherborder = {
 						type = 'group',
 						name = L["Other"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+						disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 						order = 4,
 						args = {
 							headerline1 = {

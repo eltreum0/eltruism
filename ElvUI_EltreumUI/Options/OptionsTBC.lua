@@ -2948,7 +2948,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Select a Texture"],
 								values = AceGUIWidgetLSMlists.border,
 								get = function() return E.db.ElvUI_EltreumUI.borders.texture end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.borders.texture = key end,
 							},
 							classcolors = {
