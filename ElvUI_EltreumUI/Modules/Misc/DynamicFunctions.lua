@@ -329,7 +329,7 @@ end
 function ElvUI_EltreumUI:ActionbarBorderAdjust()
 	if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
 		--if not using one of my profiles then disable auto adjust to prevent overwriting settings and return
-		if not ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or not ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
+		if (not ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") and not ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
 			E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
 			return
 		end
