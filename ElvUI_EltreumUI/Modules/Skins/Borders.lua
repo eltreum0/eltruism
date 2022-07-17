@@ -46,8 +46,6 @@ function ElvUI_EltreumUI:Borders()
 				bordertexture = E.LSM:Fetch("border", "Eltreum-Border-1")
 				E.db.ElvUI_EltreumUI.borders.texture = "Eltreum-Border-1"
 			end
-		else --use default if value is nil
-			bordertexture = "Interface\\Addons\\ElvUI_EltreumUI\\Media\border\\Eltreum-Border-1.tga"
 		end
 
 		if E.db.ElvUI_EltreumUI.borders.classcolor == true then
