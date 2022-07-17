@@ -208,10 +208,16 @@ function ElvUI_EltreumUI:Borders()
 				else
 					petborder = _G["EltruismPetBorder"]
 				end
-				local petsizex, petsizey = _G["ElvUF_Pet_HealthBar"]:GetSize()
+				local petsizex, petsizey
+				if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
+					petborder:SetPoint("TOPRIGHT", _G.ElvUF_Pet_HealthBar,"TOPRIGHT", 17, 16)
+					petborder:SetPoint("BOTTOMLEFT", _G.ElvUF_Pet_HealthBar,"BOTTOMLEFT", -17, -16)
+					petsizex, petsizey = _G["ElvUF_Pet_HealthBar"]:GetSize()
+				else
+					petsizex, petsizey = _G["ElvUF_Pet"]:GetSize()
+					petborder:SetPoint("CENTER", _G.ElvUF_Pet,"CENTER", 0, 0)
+				end
 				petborder:SetSize(petsizex, petsizey)
-				petborder:SetPoint("TOPRIGHT", _G.ElvUF_Pet_HealthBar,"TOPRIGHT", 17, 16)
-				petborder:SetPoint("BOTTOMLEFT", _G.ElvUF_Pet_HealthBar,"BOTTOMLEFT", -17, -16)
 				petborder:SetBackdrop({
 					edgeFile = bordertexture,
 					edgeSize = playertargetsize,
@@ -323,7 +329,11 @@ function ElvUI_EltreumUI:Borders()
 					focusborder = _G["EltruismFocusBorder"]
 				end
 				focusborder:SetSize(E.db.ElvUI_EltreumUI.borders.xfocus, E.db.ElvUI_EltreumUI.borders.yfocus)
-				focusborder:SetPoint("CENTER", _G.ElvUF_Focus_HealthBar, "CENTER", 0, 0)
+				if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
+					focusborder:SetPoint("CENTER", _G.ElvUF_Focus_HealthBar, "CENTER", 0, 0)
+				else
+					focusborder:SetPoint("CENTER", _G.ElvUF_Focus, "CENTER", 0, 0)
+				end
 				focusborder:SetBackdrop({
 					edgeFile = bordertexture,
 					edgeSize = playertargetsize,
