@@ -298,14 +298,6 @@ P.ElvUI_EltreumUI = {
 
 		classcolor = true,
 
-
-
-
-
-
-
-
-
 		auraborder = true,
 		aurasizex = 53,
 		aurasizey = 53,
@@ -323,9 +315,6 @@ P.ElvUI_EltreumUI = {
 		raidborders = true,
 		raidsizey = 65,
 		raidsizex = 140,
-
-
-
 
 		playertargetsize = 20,
 		baredgesize = 13,
