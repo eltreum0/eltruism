@@ -929,3 +929,6 @@ L["Target Castbar"] = true
 L["Target Castbar (Non Interruptible)"] = true
 L["Enable for Target Castbar (Non Interruptible)"] = true
 L["Enable Gradient colors for Target Castbar (Non Interruptible)"] = true
+L["Target Castbar (Interrupted)"] = true
+L["Enable for Target Castbar (Interrupted)"] = true
+L["Enable Gradient colors for Target Castbar (Interrupted)"] = true
