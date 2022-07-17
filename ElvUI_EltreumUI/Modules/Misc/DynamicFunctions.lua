@@ -339,6 +339,14 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,187"
 				E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,154"
 				E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,121"
+
+				E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-4"
+				E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-4"
+				E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 3
+				E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 7
+				E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 6
+
+
 				E.db["ElvUI_EltreumUI"]["borders"]["xplayercast"] = 272
 				E.db["ElvUI_EltreumUI"]["borders"]["xtargettarget"] = 132.8
 				E.db["ElvUI_EltreumUI"]["borders"]["bar1xborder"] = 65
@@ -354,14 +362,11 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.partysizex = 222
 				E.db.ElvUI_EltreumUI.borders.partysizey = 98
 				E.db.ElvUI_EltreumUI.borders.raidsizex = 140
-				E.db.ElvUI_EltreumUI.borders.raidsizey = 65
+				E.db.ElvUI_EltreumUI.borders.raidsizey = 63
 				E.db.ElvUI_EltreumUI.borders.xboss = 250
 				E.db.ElvUI_EltreumUI.borders.yboss = 87
-
-
 				E.db.ElvUI_EltreumUI.borders.raid40sizex = 140
 				E.db.ElvUI_EltreumUI.borders.raid40sizey = 63
-
 			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
 				E.db["actionbar"]["bar1"]["buttonSpacing"] = 5
 				E.db["actionbar"]["bar2"]["buttonSpacing"] = 5
@@ -391,10 +396,8 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.raidsizey = 68
 				E.db.ElvUI_EltreumUI.borders.xboss = 248
 				E.db.ElvUI_EltreumUI.borders.yboss = 78
-
-				E.db.ElvUI_EltreumUI.borders.raid40sizex = 130
-				E.db.ElvUI_EltreumUI.borders.raid40sizey = 65
-
+				E.db.ElvUI_EltreumUI.borders.raid40sizex = 122
+				E.db.ElvUI_EltreumUI.borders.raid40sizey = 68
 			end
 		elseif not E.db.ElvUI_EltreumUI.borders.borders then
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
@@ -407,6 +410,13 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,190"
 				E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,159"
 				E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,128"
+
+				E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
+				E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
+				E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 3
+				E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 3
+				E.db["unitframe"]["units"]["raid40"]["groupsPerRowCol"] = 3
+				E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 3
 			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
 				E.db["actionbar"]["bar1"]["buttonSpacing"] = 3
 				E.db["actionbar"]["bar2"]["buttonSpacing"] = 3
