@@ -447,10 +447,10 @@ P.ElvUI_EltreumUI = {
 		playercastbarB1 = 1,
 		playercastbarB2 = 1,
 
-		playercastbarR1interrupted = 0,
-		playercastbarR2interrupted = 0,
-		playercastbarG1interrupted = 0,
-		playercastbarG2interrupted = 0,
+		playercastbarR1interrupted = 1,
+		playercastbarR2interrupted = 0.57,
+		playercastbarG1interrupted = 0.3,
+		playercastbarG2interrupted = 0.10,
 		playercastbarB1interrupted = 0,
 		playercastbarB2interrupted = 0,
 
@@ -508,14 +508,6 @@ P.ElvUI_EltreumUI = {
 		targetcastbarG2interruptedcustom = 0,
 		targetcastbarB1interruptedcustom = 0,
 		targetcastbarB2interruptedcustom = 0.5,
-
-
-
-
-
-
-
-
 
 		druidcustomcolorR1 = 1,
 		druidcustomcolorR2 = 1,
