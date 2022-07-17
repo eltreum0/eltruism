@@ -609,6 +609,7 @@ hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraBorders) --aura (minimap) sh
 
 function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of target changes if the target is not in party/raid, no event to register :(
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor == true then
+
 		if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable then
 			if UnitExists("target") and targetborder ~= nil then
 				if UnitIsPlayer("target") then
@@ -693,14 +694,10 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 			for i = 1,8 do
 				local bossbordername = _G["EltruismBossBorder"..i]
 				if UnitExists("boss"..i) and bossbordername ~= nil then
-				--if UnitExists("boss1") and bossborder ~= nil then
 					if UnitIsPlayer("boss1"..i) then
-					--if UnitIsPlayer("boss1") then
 						local _, bossclass = UnitClass("boss"..i)
-						--local _, bossclass = UnitClass("boss1")
 						bossbordername:SetBackdropBorderColor(classcolorreaction[bossclass]["r1"], classcolorreaction[bossclass]["g1"], classcolorreaction[bossclass]["b1"], 1)
 					elseif not UnitIsPlayer("boss"..i) then
-					--elseif not UnitIsPlayer("boss1") then
 						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
 							local reactionboss = UnitReaction("player", "boss1")
 							if reactionboss >= 5 then
@@ -726,8 +723,8 @@ end
 local updatetargettarget = CreateFrame("Frame")
 updatetargettarget:RegisterUnitEvent("UNIT_TARGET", "target")
 --updatetargettarget:RegisterUnitEvent("UNIT_TARGET", "player")
-updatetargettarget:RegisterUnitEvent("PLAYER_TARGET_CHANGED")
-updatetargettarget:RegisterUnitEvent("UNIT_TARGET", "boss1")
+--updatetargettarget:RegisterUnitEvent("PLAYER_TARGET_CHANGED")
+--updatetargettarget:RegisterUnitEvent("UNIT_TARGET", "boss1")
 updatetargettarget:RegisterUnitEvent("ENCOUNTER_START")
 updatetargettarget:RegisterUnitEvent("PLAYER_FOCUS_CHANGED")
 updatetargettarget:SetScript("OnEvent", function()
