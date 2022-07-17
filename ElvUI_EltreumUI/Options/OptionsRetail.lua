@@ -2690,8 +2690,6 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.borders.raidsizey end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidsizey = value end,
 							},
-
-
 							gapraid40 = {
 								order = 47,
 								type = "description",
@@ -2732,10 +2730,6 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.borders.raid40sizey end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40sizey = value end,
 							},
-
-
-
-
 							gapfocus = {
 								order = 51,
 								type = "description",
