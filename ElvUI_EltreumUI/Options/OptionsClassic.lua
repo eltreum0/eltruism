@@ -3442,7 +3442,7 @@ function ElvUI_EltreumUI:Configtable()
 								max = 800,
 								step = 0.1,
 								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.party.enable end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.raidsizex end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidsizex = value end,
 							},
@@ -3454,10 +3454,61 @@ function ElvUI_EltreumUI:Configtable()
 								max = 800,
 								step = 0.1,
 								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.party.enable end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.raidsizey end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidsizey = value end,
 							},
+							gapfocus = {
+								order = 47,
+								type = "description",
+								name = L["Focus Border"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							barfocus= {
+								type = 'toggle',
+								name = L["Enable"],
+								order = 48,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focus.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.raidborders end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidborders = value end,
+							},
+							borderxfocus = {
+								type = 'range',
+								name = L["Border X offset"],
+								order = 49,
+								min = 1,
+								max = 800,
+								step = 0.1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focus.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.xfocus end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xfocus = value end,
+							},
+							borderyfocus = {
+								type = 'range',
+								name = L["Border Y offset"],
+								order = 50,
+								min = 1,
+								max = 800,
+								step = 0.1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focus.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.yfocus end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.yfocus = value end,
+							},
+
+
+
+
+
+
+
+
+
+
+
 						},
 					},
 					npborder = {
