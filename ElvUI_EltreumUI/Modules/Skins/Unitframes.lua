@@ -721,6 +721,173 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 			end
 		end
 
+		--target of target of target
+		local _, targettargettargetclass = UnitClass("targettargettarget")
+		local reactiontargettargettarget = UnitReaction("player", "targettargettarget")
+		local targettargettargetbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga"
+		if UnitExists("targettargettarget") then
+			if UnitIsPlayer("targettargettarget") then
+				if targettargettargetclass then
+					targettargettargetbar = unitframeclass[targettargettargetclass]
+				end
+			elseif not UnitIsPlayer("targettargettarget") then
+				if reactiontargettargettarget >= 5 then
+					targettargettargetbar = unitframeclass["NPCFRIENDLY"]
+				elseif reactiontargettargettarget == 4 then
+					targettargettargetbar = unitframeclass["NPCNEUTRAL"]
+				elseif reactiontargettargettarget == 3 then
+					targettargettargetbar = unitframeclass["NPCUNFRIENDLY"]
+				elseif reactiontargettargettarget == 2 or reactiontargettargettarget == 1 then
+					targettargettargetbar = unitframeclass["NPCHOSTILE"]
+				end
+			end
+		end
+		if UF.units.targettargettarget and UnitExists("targettargettarget") then
+			local targettargettargetunitframe = _G["ElvUF_TargetTargetTarget"]
+			if targettargettargetunitframe and targettargettargetunitframe.Health then
+				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
+					if UnitIsPlayer("targettargettarget") then
+						if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
+							targettargettargetbar = unitframeclasscustom[targettargettargetclass]
+						else
+							targettargettargetbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.targettargettargettexture)
+						end
+					elseif not UnitIsPlayer("targettargettarget") then
+						if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
+							if reactiontargettargettarget >= 5 then
+								targettargettargetbar = unitframeclasscustom["NPCFRIENDLY"]
+							elseif reactiontargettargettarget == 4 then
+								targettargettargetbar = unitframeclasscustom["NPCNEUTRAL"]
+							elseif reactiontargettargettarget == 3 then
+								targettargettargetbar = unitframeclasscustom["NPCUNFRIENDLY"]
+							elseif reactiontargettargettarget == 2 or reactiontargettargettarget == 1 then
+								targettargettargetbar = unitframeclasscustom["NPCHOSTILE"]
+							end
+						else
+							targettargettargetbar = E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.targettargettargettexture)
+						end
+					end
+				end
+				if E.db.ElvUI_EltreumUI.gradientmode.enable and UnitIsPlayer("targettargettarget") and E.db.ElvUI_EltreumUI.gradientmode.enabletargettargettarget then
+					if E.db.ElvUI_EltreumUI.lightmode then
+						targettargettargetunitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+						if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+							targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients[targettargettargetclass]["r1"], unitframecustomgradients[targettargettargetclass]["g1"], unitframecustomgradients[targettargettargetclass]["b1"], unitframecustomgradients[targettargettargetclass]["r2"], unitframecustomgradients[targettargettargetclass]["g2"], unitframecustomgradients[targettargettargetclass]["b2"])
+						else
+							targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients[targettargettargetclass]["r1"], unitframegradients[targettargettargetclass]["g1"], unitframegradients[targettargettargetclass]["b1"], unitframegradients[targettargettargetclass]["r2"], unitframegradients[targettargettargetclass]["g2"], unitframegradients[targettargettargetclass]["b2"])
+						end
+					elseif E.db.ElvUI_EltreumUI.darkmode then
+						targettargettargetunitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+						if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+							targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients[targettargettargetclass]["r1"], unitframecustomgradients[targettargettargetclass]["g1"], unitframecustomgradients[targettargettargetclass]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframecustomgradients[targettargettargetclass]["r2"], unitframecustomgradients[targettargettargetclass]["g2"], unitframecustomgradients[targettargettargetclass]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+						else
+							targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients[targettargettargetclass]["r1"], unitframegradients[targettargettargetclass]["g1"], unitframegradients[targettargettargetclass]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframegradients[targettargettargetclass]["r2"], unitframegradients[targettargettargetclass]["g2"], unitframegradients[targettargettargetclass]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+						end
+					end
+				elseif E.db.ElvUI_EltreumUI.gradientmode.enable and (not UnitIsPlayer("targettargettarget")) and E.db.ElvUI_EltreumUI.gradientmode.enabletargettargettarget then
+					if E.db.ElvUI_EltreumUI.lightmode then
+						targettargettargetunitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+						if E.db.ElvUI_EltreumUI.gradientmode.orientation == "HORIZONTAL" then
+							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+								if reactiontargettargettarget >= 5 then
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["NPCFRIENDLY"]["r2"], unitframecustomgradients["NPCFRIENDLY"]["g2"], unitframecustomgradients["NPCFRIENDLY"]["b2"], unitframecustomgradients["NPCFRIENDLY"]["r1"], unitframecustomgradients["NPCFRIENDLY"]["g1"], unitframecustomgradients["NPCFRIENDLY"]["b1"])
+								elseif reactiontargettargettarget == 4 then
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["NPCNEUTRAL"]["r2"], unitframecustomgradients["NPCNEUTRAL"]["g2"], unitframecustomgradients["NPCNEUTRAL"]["b2"], unitframecustomgradients["NPCNEUTRAL"]["r1"], unitframecustomgradients["NPCNEUTRAL"]["g1"], unitframecustomgradients["NPCNEUTRAL"]["b1"])
+								elseif reactiontargettargettarget == 3 then
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["NPCUNFRIENDLY"]["r2"], unitframecustomgradients["NPCUNFRIENDLY"]["g2"], unitframecustomgradients["NPCUNFRIENDLY"]["b2"], unitframecustomgradients["NPCUNFRIENDLY"]["r1"], unitframecustomgradients["NPCUNFRIENDLY"]["g1"], unitframecustomgradients["NPCUNFRIENDLY"]["b1"])
+								elseif reactiontargettargettarget == 2 or reactiontarget == 1 then
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["NPCHOSTILE"]["r2"], unitframecustomgradients["NPCHOSTILE"]["g2"], unitframecustomgradients["NPCHOSTILE"]["b2"], unitframecustomgradients["NPCHOSTILE"]["r1"], unitframecustomgradients["NPCHOSTILE"]["g1"], unitframecustomgradients["NPCHOSTILE"]["b1"])
+								end
+							else
+								if reactiontargettargettarget >= 5 then
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCFRIENDLY"]["r2"], unitframegradients["NPCFRIENDLY"]["g2"], unitframegradients["NPCFRIENDLY"]["b2"], unitframegradients["NPCFRIENDLY"]["r1"], unitframegradients["NPCFRIENDLY"]["g1"], unitframegradients["NPCFRIENDLY"]["b1"])
+								elseif reactiontargettargettarget == 4 then
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCNEUTRAL"]["r2"], unitframegradients["NPCNEUTRAL"]["g2"], unitframegradients["NPCNEUTRAL"]["b2"], unitframegradients["NPCNEUTRAL"]["r1"], unitframegradients["NPCNEUTRAL"]["g1"], unitframegradients["NPCNEUTRAL"]["b1"])
+								elseif reactiontargettargettarget == 3 then
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCUNFRIENDLY"]["r2"], unitframegradients["NPCUNFRIENDLY"]["g2"], unitframegradients["NPCUNFRIENDLY"]["b2"], unitframegradients["NPCUNFRIENDLY"]["r1"], unitframegradients["NPCUNFRIENDLY"]["g1"], unitframegradients["NPCUNFRIENDLY"]["b1"])
+								elseif reactiontargettargettarget == 2 or reactiontarget == 1 then
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCHOSTILE"]["r2"], unitframegradients["NPCHOSTILE"]["g2"], unitframegradients["NPCHOSTILE"]["b2"], unitframegradients["NPCHOSTILE"]["r1"], unitframegradients["NPCHOSTILE"]["g1"], unitframegradients["NPCHOSTILE"]["b1"])
+								end
+							end
+						else
+							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+								if reactiontargettargettarget >= 5 then
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["NPCFRIENDLY"]["r1"], unitframecustomgradients["NPCFRIENDLY"]["g1"], unitframecustomgradients["NPCFRIENDLY"]["b1"], unitframecustomgradients["NPCFRIENDLY"]["r2"], unitframecustomgradients["NPCFRIENDLY"]["g2"], unitframecustomgradients["NPCFRIENDLY"]["b2"])
+								elseif reactiontargettargettarget == 4 then
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["NPCNEUTRAL"]["r1"], unitframecustomgradients["NPCNEUTRAL"]["g1"], unitframecustomgradients["NPCNEUTRAL"]["b1"], unitframecustomgradients["NPCNEUTRAL"]["r2"], unitframecustomgradients["NPCNEUTRAL"]["g2"], unitframecustomgradients["NPCNEUTRAL"]["b2"])
+								elseif reactiontargettargettarget == 3 then
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["NPCUNFRIENDLY"]["r1"], unitframecustomgradients["NPCUNFRIENDLY"]["g1"], unitframecustomgradients["NPCUNFRIENDLY"]["b1"], unitframecustomgradients["NPCUNFRIENDLY"]["r2"], unitframecustomgradients["NPCUNFRIENDLY"]["g2"], unitframecustomgradients["NPCUNFRIENDLY"]["b2"])
+								elseif reactiontargettargettarget == 2 or reactiontarget == 1 then
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["NPCHOSTILE"]["r1"], unitframecustomgradients["NPCHOSTILE"]["g1"], unitframecustomgradients["NPCHOSTILE"]["b1"], unitframecustomgradients["NPCHOSTILE"]["r2"], unitframecustomgradients["NPCHOSTILE"]["g2"], unitframecustomgradients["NPCHOSTILE"]["b2"])
+								end
+							else
+								if reactiontargettargettarget >= 5 then
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCFRIENDLY"]["r1"], unitframegradients["NPCFRIENDLY"]["g1"], unitframegradients["NPCFRIENDLY"]["b1"], unitframegradients["NPCFRIENDLY"]["r2"], unitframegradients["NPCFRIENDLY"]["g2"], unitframegradients["NPCFRIENDLY"]["b2"])
+								elseif reactiontargettargettarget == 4 then
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCNEUTRAL"]["r1"], unitframegradients["NPCNEUTRAL"]["g1"], unitframegradients["NPCNEUTRAL"]["b1"], unitframegradients["NPCNEUTRAL"]["r2"], unitframegradients["NPCNEUTRAL"]["g2"], unitframegradients["NPCNEUTRAL"]["b2"])
+								elseif reactiontargettargettarget == 3 then
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCUNFRIENDLY"]["r1"], unitframegradients["NPCUNFRIENDLY"]["g1"], unitframegradients["NPCUNFRIENDLY"]["b1"], unitframegradients["NPCUNFRIENDLY"]["r2"], unitframegradients["NPCUNFRIENDLY"]["g2"], unitframegradients["NPCUNFRIENDLY"]["b2"])
+								elseif reactiontargettargettarget == 2 or reactiontarget == 1 then
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCHOSTILE"]["r1"], unitframegradients["NPCHOSTILE"]["g1"], unitframegradients["NPCHOSTILE"]["b1"], unitframegradients["NPCHOSTILE"]["r2"], unitframegradients["NPCHOSTILE"]["g2"], unitframegradients["NPCHOSTILE"]["b2"])
+								end
+							end
+						end
+					elseif E.db.ElvUI_EltreumUI.darkmode then
+						targettargettargetunitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+						if E.db.ElvUI_EltreumUI.gradientmode.orientation == "HORIZONTAL" then
+							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+								if reactiontargettargettarget >= 5 then
+									targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["NPCFRIENDLY"]["r2"], unitframecustomgradients["NPCFRIENDLY"]["g2"], unitframecustomgradients["NPCFRIENDLY"]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframecustomgradients["NPCFRIENDLY"]["r1"], unitframecustomgradients["NPCFRIENDLY"]["g1"], unitframecustomgradients["NPCFRIENDLY"]["b1"],E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								elseif reactiontargettargettarget == 4 then
+									targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["NPCNEUTRAL"]["r2"], unitframecustomgradients["NPCNEUTRAL"]["g2"], unitframecustomgradients["NPCNEUTRAL"]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframecustomgradients["NPCNEUTRAL"]["r1"], unitframecustomgradients["NPCNEUTRAL"]["g1"], unitframecustomgradients["NPCNEUTRAL"]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								elseif reactiontargettargettarget == 3 then
+									targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["NPCUNFRIENDLY"]["r2"], unitframecustomgradients["NPCUNFRIENDLY"]["g2"], unitframecustomgradients["NPCUNFRIENDLY"]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframecustomgradients["NPCUNFRIENDLY"]["r1"], unitframecustomgradients["NPCUNFRIENDLY"]["g1"], unitframecustomgradients["NPCUNFRIENDLY"]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								elseif reactiontargettargettarget == 2 or reactiontarget == 1 then
+									targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["NPCHOSTILE"]["r2"], unitframecustomgradients["NPCHOSTILE"]["g2"], unitframecustomgradients["NPCHOSTILE"]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframecustomgradients["NPCHOSTILE"]["r1"], unitframecustomgradients["NPCHOSTILE"]["g1"], unitframecustomgradients["NPCHOSTILE"]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								end
+							else
+								if reactiontargettargettarget >= 5 then
+									targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCFRIENDLY"]["r2"], unitframegradients["NPCFRIENDLY"]["g2"], unitframegradients["NPCFRIENDLY"]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframegradients["NPCFRIENDLY"]["r1"], unitframegradients["NPCFRIENDLY"]["g1"], unitframegradients["NPCFRIENDLY"]["b1"],E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								elseif reactiontargettargettarget == 4 then
+									targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCNEUTRAL"]["r2"], unitframegradients["NPCNEUTRAL"]["g2"], unitframegradients["NPCNEUTRAL"]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframegradients["NPCNEUTRAL"]["r1"], unitframegradients["NPCNEUTRAL"]["g1"], unitframegradients["NPCNEUTRAL"]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								elseif reactiontargettargettarget == 3 then
+									targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCUNFRIENDLY"]["r2"], unitframegradients["NPCUNFRIENDLY"]["g2"], unitframegradients["NPCUNFRIENDLY"]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframegradients["NPCUNFRIENDLY"]["r1"], unitframegradients["NPCUNFRIENDLY"]["g1"], unitframegradients["NPCUNFRIENDLY"]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								elseif reactiontargettargettarget == 2 or reactiontarget == 1 then
+									targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCHOSTILE"]["r2"], unitframegradients["NPCHOSTILE"]["g2"], unitframegradients["NPCHOSTILE"]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframegradients["NPCHOSTILE"]["r1"], unitframegradients["NPCHOSTILE"]["g1"], unitframegradients["NPCHOSTILE"]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								end
+							end
+						else
+							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+								if reactiontargettargettarget >= 5 then
+									targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["NPCFRIENDLY"]["r1"], unitframecustomgradients["NPCFRIENDLY"]["g1"], unitframecustomgradients["NPCFRIENDLY"]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframecustomgradients["NPCFRIENDLY"]["r2"], unitframecustomgradients["NPCFRIENDLY"]["g2"], unitframecustomgradients["NPCFRIENDLY"]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								elseif reactiontargettargettarget == 4 then
+									targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["NPCNEUTRAL"]["r1"], unitframecustomgradients["NPCNEUTRAL"]["g1"], unitframecustomgradients["NPCNEUTRAL"]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframecustomgradients["NPCNEUTRAL"]["r2"], unitframecustomgradients["NPCNEUTRAL"]["g2"], unitframecustomgradients["NPCNEUTRAL"]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								elseif reactiontargettargettarget == 3 then
+									targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["NPCUNFRIENDLY"]["r1"], unitframecustomgradients["NPCUNFRIENDLY"]["g1"], unitframecustomgradients["NPCUNFRIENDLY"]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframecustomgradients["NPCUNFRIENDLY"]["r2"], unitframecustomgradients["NPCUNFRIENDLY"]["g2"], unitframecustomgradients["NPCUNFRIENDLY"]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								elseif reactiontargettargettarget == 2 or reactiontarget == 1 then
+									targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients["NPCHOSTILE"]["r1"], unitframecustomgradients["NPCHOSTILE"]["g1"], unitframecustomgradients["NPCHOSTILE"]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframecustomgradients["NPCHOSTILE"]["r2"], unitframecustomgradients["NPCHOSTILE"]["g2"], unitframecustomgradients["NPCHOSTILE"]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								end
+							else
+								if reactiontargettargettarget >= 5 then
+									targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCFRIENDLY"]["r1"], unitframegradients["NPCFRIENDLY"]["g1"], unitframegradients["NPCFRIENDLY"]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframegradients["NPCFRIENDLY"]["r2"], unitframegradients["NPCFRIENDLY"]["g2"], unitframegradients["NPCFRIENDLY"]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								elseif reactiontargettargettarget == 4 then
+									targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCNEUTRAL"]["r1"], unitframegradients["NPCNEUTRAL"]["g1"], unitframegradients["NPCNEUTRAL"]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframegradients["NPCNEUTRAL"]["r2"], unitframegradients["NPCNEUTRAL"]["g2"], unitframegradients["NPCNEUTRAL"]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								elseif reactiontargettargettarget == 3 then
+									targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCUNFRIENDLY"]["r1"], unitframegradients["NPCUNFRIENDLY"]["g1"], unitframegradients["NPCUNFRIENDLY"]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframegradients["NPCUNFRIENDLY"]["r2"], unitframegradients["NPCUNFRIENDLY"]["g2"], unitframegradients["NPCUNFRIENDLY"]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								elseif reactiontargettargettarget == 2 or reactiontarget == 1 then
+									targettargettargetunitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients["NPCHOSTILE"]["r1"], unitframegradients["NPCHOSTILE"]["g1"], unitframegradients["NPCHOSTILE"]["b1"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframegradients["NPCHOSTILE"]["r2"], unitframegradients["NPCHOSTILE"]["g2"], unitframegradients["NPCHOSTILE"]["b2"], E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								end
+							end
+						end
+					end
+				else
+					if E.db.ElvUI_EltreumUI.lightmode then
+						targettargettargetunitframe.Health:SetStatusBarTexture(targettargettargetbar)
+					end
+				end
+			end
+		end
+
 		--focus
 		local _, focusclass = UnitClass("focus")
 		local reactionfocus = UnitReaction("player", "focus")

@@ -422,6 +422,9 @@ P.ElvUI_EltreumUI = {
 		enableplayer = true,
 		enabletarget = true,
 		enabletargettarget = true,
+
+		enabletargettargettarget = true,
+
 		enablefocus = true,
 		enableboss = true,
 		enablearena = true,
@@ -576,6 +579,9 @@ P.ElvUI_EltreumUI = {
 		targettexture = "Eltreum-Blank",
 		playertexture = "Eltreum-Blank",
 		targettargettexture = "Eltreum-Blank",
+
+		targettargettargettexture = "Eltreum-Blank",
+
 		focustexture = "Eltreum-Blank",
 		deathknighttexture = "Eltreum-Class-DeathKnight",
 		demonhuntertexture = "Eltreum-Class-DemonHunter",
