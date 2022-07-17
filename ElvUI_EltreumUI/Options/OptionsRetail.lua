@@ -2690,8 +2690,54 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.borders.raidsizey end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidsizey = value end,
 							},
-							gapfocus = {
+
+
+							gapraid40 = {
 								order = 47,
+								type = "description",
+								name = L["Raid40 Border"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							barraid40 = {
+								type = 'toggle',
+								name = L["Enable"],
+								order = 48,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid40.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.raid40borders end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40borders = value end,
+							},
+							borderxraid40 = {
+								type = 'range',
+								name = L["Border X offset"],
+								order = 49,
+								min = 1,
+								max = 800,
+								step = 0.1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid40.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.raid40sizex end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40sizex = value end,
+							},
+							borderyraid40 = {
+								type = 'range',
+								name = L["Border Y offset"],
+								order = 50,
+								min = 1,
+								max = 800,
+								step = 0.1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid40.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.raid40sizey end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40sizey = value end,
+							},
+
+
+
+
+							gapfocus = {
+								order = 51,
 								type = "description",
 								name = L["Focus Border"],
 								width = 'full',
@@ -2700,7 +2746,7 @@ function ElvUI_EltreumUI:Configtable()
 							barfocus= {
 								type = 'toggle',
 								name = L["Enable"],
-								order = 48,
+								order = 52,
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focus.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.raidborders end,
@@ -2709,7 +2755,7 @@ function ElvUI_EltreumUI:Configtable()
 							borderxfocus = {
 								type = 'range',
 								name = L["Border X offset"],
-								order = 49,
+								order = 53,
 								min = 1,
 								max = 800,
 								step = 0.1,
@@ -2721,7 +2767,7 @@ function ElvUI_EltreumUI:Configtable()
 							borderyfocus = {
 								type = 'range',
 								name = L["Border Y offset"],
-								order = 50,
+								order = 54,
 								min = 1,
 								max = 800,
 								step = 0.1,
@@ -2731,7 +2777,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.yfocus = value end,
 							},
 							gapboss = {
-								order = 51,
+								order = 55,
 								type = "description",
 								name = L["Boss Border"],
 								width = 'full',
@@ -2740,7 +2786,7 @@ function ElvUI_EltreumUI:Configtable()
 							barboss= {
 								type = 'toggle',
 								name = L["Enable"],
-								order = 52,
+								order = 56,
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.boss.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bossborder end,
@@ -2749,7 +2795,7 @@ function ElvUI_EltreumUI:Configtable()
 							borderxboss = {
 								type = 'range',
 								name = L["Border X offset"],
-								order = 53,
+								order = 57,
 								min = 1,
 								max = 800,
 								step = 0.1,
@@ -2761,7 +2807,7 @@ function ElvUI_EltreumUI:Configtable()
 							borderyboss = {
 								type = 'range',
 								name = L["Border Y offset"],
-								order = 54,
+								order = 58,
 								min = 1,
 								max = 800,
 								step = 0.1,
