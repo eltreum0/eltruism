@@ -964,6 +964,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["raid"]["roleIcon"]["size"] = 12
 		E.db["unitframe"]["units"]["raid"]["roleIcon"]["xOffset"] = -1
 		E.db["unitframe"]["units"]["raid"]["roleIcon"]["yOffset"] = -1
+		E.db["unitframe"]["units"]["raid"]["raidRoleIcons"]["xOffset"] = 0
+		E.db["unitframe"]["units"]["raid"]["raidRoleIcons"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["raid"]["summonIcon"]["attachToObject"] = "Health"
 		E.db["unitframe"]["units"]["raid"]["summonIcon"]["size"] = 20
 		E.db["unitframe"]["units"]["raid"]["threatStyle"] = "HEALTHBORDER"
@@ -1010,7 +1012,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["raid40"]["power"]["width"] = "inset"
 		E.db["unitframe"]["units"]["raid40"]["power"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["raid40"]["power"]["yOffset"] = 0
-		E.db["unitframe"]["units"]["raid40"]["raidRoleIcons"]["yOffset"] = -2
+		E.db["unitframe"]["units"]["raid40"]["raidRoleIcons"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["raid40"]["raidicon"]["attachToObject"] = "Health"
 		E.db["unitframe"]["units"]["raid40"]["raidicon"]["size"] = 12
 		E.db["unitframe"]["units"]["raid40"]["raidicon"]["yOffset"] = 0
