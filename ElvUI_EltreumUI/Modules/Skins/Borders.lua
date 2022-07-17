@@ -377,7 +377,7 @@ function ElvUI_EltreumUI:Borders()
 		end
 
 		--elvui action bars (has to be split because it bar can be different sizes)
-		if E.private.actionbar.enable then
+		if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 			--action bar 1
 			if E.db.ElvUI_EltreumUI.borders.bar1borders and E.db.actionbar.bar1.enabled and not self.abboderscreatedbar1 then
 				local borders1 = {}
