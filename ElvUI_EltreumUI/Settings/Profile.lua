@@ -433,11 +433,6 @@ P.ElvUI_EltreumUI = {
 		enablearena = true,
 		enablegroupunits = true,
 
-
-
-
-
-
 		enableplayercastbar = false,
 		enableplayercastbarnoninterruptible = false,
 
@@ -462,24 +457,8 @@ P.ElvUI_EltreumUI = {
 		playercastbarG1noninterruptiblecustom = 0.12941176470588,
 		playercastbarG2noninterruptiblecustom = 0.1843137254902,
 
-		--playercastbarR1interrupted = 1,
-		--playercastbarR2interrupted = 0.57,
-		--playercastbarG1interrupted = 0.3,
-		--playercastbarG2interrupted = 0.10,
-		--playercastbarB1interrupted = 0,
-		--playercastbarB2interrupted = 0,
-
-		--playercastbarR1interruptedcustom = 0,
-		--playercastbarR2interruptedcustom = 0,
-		--playercastbarG1interruptedcustom = 0,
-		--playercastbarG2interruptedcustom = 0,
-		--playercastbarB1interruptedcustom = 0,
-		--playercastbarB2interruptedcustom = 0,
-
-
 		enabletargetcastbar = false,
 		enabletargetcastbarnoninterruptible = false,
-		--enabletargetcastbarinterrupted = false,
 
 		targetcastbarR1 = 0,
 		targetcastbarR2 = 0.67,
@@ -508,20 +487,6 @@ P.ElvUI_EltreumUI = {
 		targetcastbarB2noninterruptiblecustom = 0.23921568627451,
 		targetcastbarG1noninterruptiblecustom = 0.12941176470588,
 		targetcastbarG2noninterruptiblecustom = 0.1843137254902,
-
-		--targetcastbarR1interrupted = 1,
-		--targetcastbarR2interrupted = 0,
-		--targetcastbarG1interrupted = 0.5,
-		--targetcastbarG2interrupted = 0,
-		--targetcastbarB1interrupted = 0,
-		--targetcastbarB2interrupted = 0,
-
-		--targetcastbarR1interruptedcustom = 0,
-		--targetcastbarR2interruptedcustom = 0,
-		--targetcastbarG1interruptedcustom = 1,
-		--targetcastbarG2interruptedcustom = 0,
-		--targetcastbarB1interruptedcustom = 0,
-		--targetcastbarB2interruptedcustom = 0.5,
 
 		druidcustomcolorR1 = 1,
 		druidcustomcolorR2 = 1,
