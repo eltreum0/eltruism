@@ -5448,7 +5448,7 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar = value end,
 							},
-							--[[enablecastbargradientinterruptplayer = {
+							enablecastbargradientinterruptplayer = {
 								order = 2,
 								type = 'toggle',
 								name = L["Enable for Player Castbar (Non Interruptible)"],
@@ -5458,8 +5458,8 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbarnoninterruptible end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbarnoninterruptible = value end,
-							},]]
-							enablecastbargradientinterruptplayer = {
+							},
+							--[[enablecastbargradientinterruptplayer = {
 								order = 2,
 								type = 'toggle',
 								name = L["Enable for Player Castbar (Interrupted)"],
@@ -5469,7 +5469,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbarnoninterruptible end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbarnoninterruptible = value end,
-							},
+							},]]
 							enabletargetcastbargradient = {
 								order = 2,
 								type = 'toggle',
@@ -5492,7 +5492,7 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbarnoninterruptible end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbarnoninterruptible = value end,
 							},
-							enablecastbargradientinterrupttarget = {
+							--[[enablecastbargradientinterrupttarget = {
 								order = 2,
 								type = 'toggle',
 								name = L["Enable for Target Castbar (Interrupted)"],
@@ -5502,7 +5502,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbarinterrupted end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbarinterrupted = value end,
-							},
+							},]]
 							enablecustomcolor = {
 								order = 3,
 								type = 'toggle',
@@ -5577,7 +5577,7 @@ function ElvUI_EltreumUI:Configtable()
 									E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2 = r, g, b
 								end,
 							},
-							headercastbarinterrupted = {
+							--[[headercastbarinterrupted = {
 								order = 7,
 								type = "description",
 								name = L["Player Castbar (Interrupted)"],
@@ -5615,7 +5615,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2interruptedcustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2interruptedcustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2interruptedcustom = r, g, b
 								end,
-							},
+							},]]
 							headercastbarnoninterruptibletarget = {
 								order = 10,
 								type = "description",
@@ -5695,7 +5695,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 
-							headercastbarinterruptedtargetcustom = {
+							--[[headercastbarinterruptedtargetcustom = {
 								order = 16,
 								type = "description",
 								name = L["Target Castbar (Interrupted)"],
@@ -5733,13 +5733,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2interruptedcustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2interruptedcustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2interruptedcustom = r, g, b
 								end,
-							},
-
-
-
-
-
-
+							},]]
 							header2 = {
 								order = 64,
 								type = "description",
