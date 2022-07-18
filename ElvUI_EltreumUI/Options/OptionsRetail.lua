@@ -5616,9 +5616,6 @@ function ElvUI_EltreumUI:Configtable()
 									E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2noninterruptiblecustom = r, g, b
 								end,
 							},
-
-
-
 							headercastbarinterruptedplayer = {
 								order = 10,
 								type = "description",
@@ -5658,9 +5655,6 @@ function ElvUI_EltreumUI:Configtable()
 									E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2interruptedcustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2interruptedcustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2interruptedcustom = r, g, b
 								end,
 							},
-
-
-
 							headercastbartarget = {
 								order = 13,
 								type = "description",
@@ -5739,12 +5733,6 @@ function ElvUI_EltreumUI:Configtable()
 									E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2noninterruptiblecustom = r, g, b
 								end,
 							},
-
-
-
-
-
-
 							headercastbarinterruptedtarget = {
 								order = 19,
 								type = "description",
@@ -5784,18 +5772,6 @@ function ElvUI_EltreumUI:Configtable()
 									E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2interruptedcustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2interruptedcustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2interruptedcustom = r, g, b
 								end,
 							},
-
-
-
-
-
-
-
-
-
-
-
-
 							header2 = {
 								order = 64,
 								type = "description",
