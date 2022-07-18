@@ -205,7 +205,9 @@ function ElvUI_EltreumUI:CastBarTexture()
 	if E.db.ElvUI_EltreumUI.UFmodifications then
 		if E.db.ElvUI_EltreumUI.ufcustomtexture.enable and (not E.db.ElvUI_EltreumUI.gradientmode.enable) then
 			castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.castbartexture))
-			targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.castbartexture))
+			if UnitExists("target") then
+				targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.castbartexture))
+			end
 		end
 
 		--player
@@ -221,19 +223,36 @@ function ElvUI_EltreumUI:CastBarTexture()
 				local b1 = tostring(b)
 
 				--force these colors so that gradient works, but only foce when gradient is on for the frame
-				E.db["unitframe"]["colors"]["castColor"]["b"] = 0
+				--[[E.db["unitframe"]["colors"]["castColor"]["b"] = 0
 				E.db["unitframe"]["colors"]["castColor"]["g"] = 0
 				E.db["unitframe"]["colors"]["castColor"]["r"] = 0
 				E.db["unitframe"]["colors"]["castNoInterrupt"]["b"] = 0
 				E.db["unitframe"]["colors"]["castNoInterrupt"]["g"] = 0
-				E.db["unitframe"]["colors"]["castNoInterrupt"]["r"] = 0.07843137254902
+				E.db["unitframe"]["colors"]["castNoInterrupt"]["r"] = 0.07843137254902]]
 				E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["enable"] = false
 				E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["enable"] = false
-				E.db["unitframe"]["colors"]["castClassColor"] = false
+				--E.db["unitframe"]["colors"]["castClassColor"] = false
 				E.db["unitframe"]["colors"]["customcastbarbackdrop"] = false
-
-				if (r1 == "0.027450919151306" and g1 == "0" and b1 == "0") then --cant interrupt
-					if E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbarnoninterruptible then
+				print("CAST GARDIENT START")
+				print(castbar.notInterruptible)
+				if castbar.notInterruptible then --cant interrupt
+					print("cant interrupt")
+					if E.db["unitframe"]["colors"]["castClassColor"] then
+						castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+						if E.db.unitframe.units.player.castbar.reverse == true then
+							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients[E.myclass]["r2"], unitframecustomgradients[E.myclass]["g2"], unitframecustomgradients[E.myclass]["b2"], unitframecustomgradients[E.myclass]["r1"], unitframecustomgradients[E.myclass]["g1"], unitframecustomgradients[E.myclass]["b1"])
+							else
+								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2noninterruptible)
+							end
+						elseif E.db.unitframe.units.player.castbar.reverse == false then
+							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients[E.myclass]["r1"], unitframecustomgradients[E.myclass]["g1"], unitframecustomgradients[E.myclass]["b1"], unitframecustomgradients[E.myclass]["r2"], unitframecustomgradients[E.myclass]["g2"], unitframecustomgradients[E.myclass]["b2"])
+							else
+								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1noninterruptible)
+							end
+						end
+					elseif E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbarnoninterruptible then
 						castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 						if E.db.unitframe.units.player.castbar.reverse == true then
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -249,10 +268,24 @@ function ElvUI_EltreumUI:CastBarTexture()
 							end
 						end
 					end
-				elseif r1 == "0.30196011066437" and g1 == "0.30196011066437" and b1 == "0.30196011066437" then --interrupted/failed
-					return
-				elseif (r1 == "0" and g1 == "0" and b1 == "0") then --can interrupt
-					if E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar then
+				elseif (not castbar.notInterruptible) then --can interrupt
+					print("can interrupt")
+					if E.db["unitframe"]["colors"]["castClassColor"] then
+						castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
+						if E.db.unitframe.units.player.castbar.reverse == true then
+							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients[E.myclass]["r2"], unitframecustomgradients[E.myclass]["g2"], unitframecustomgradients[E.myclass]["b2"], unitframecustomgradients[E.myclass]["r1"], unitframecustomgradients[E.myclass]["g1"], unitframecustomgradients[E.myclass]["b1"])
+							else
+								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2noninterruptible)
+							end
+						elseif E.db.unitframe.units.player.castbar.reverse == false then
+							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframecustomgradients[E.myclass]["r1"], unitframecustomgradients[E.myclass]["g1"], unitframecustomgradients[E.myclass]["b1"], unitframecustomgradients[E.myclass]["r2"], unitframecustomgradients[E.myclass]["g2"], unitframecustomgradients[E.myclass]["b2"])
+							else
+								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1noninterruptible)
+							end
+						end
+					elseif E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar then
 						castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 						if E.db.unitframe.units.player.castbar.reverse == true then
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -268,6 +301,8 @@ function ElvUI_EltreumUI:CastBarTexture()
 							end
 						end
 					end
+				else --interrupted/failed
+					return
 				end
 			end
 		end
@@ -286,15 +321,15 @@ function ElvUI_EltreumUI:CastBarTexture()
 				local b1 = tostring(b2)
 
 				--force these colors so that gradient works, but only foce when gradient is on for the frame
-				E.db["unitframe"]["colors"]["castColor"]["b"] = 0
+				--[[E.db["unitframe"]["colors"]["castColor"]["b"] = 0
 				E.db["unitframe"]["colors"]["castColor"]["g"] = 0
 				E.db["unitframe"]["colors"]["castColor"]["r"] = 0
 				E.db["unitframe"]["colors"]["castNoInterrupt"]["b"] = 0
 				E.db["unitframe"]["colors"]["castNoInterrupt"]["g"] = 0
-				E.db["unitframe"]["colors"]["castNoInterrupt"]["r"] = 0.07843137254902
+				E.db["unitframe"]["colors"]["castNoInterrupt"]["r"] = 0.07843137254902]]
 				E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["enable"] = false
 				E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["enable"] = false
-				E.db["unitframe"]["colors"]["castClassColor"] = false
+				--E.db["unitframe"]["colors"]["castClassColor"] = false
 				E.db["unitframe"]["colors"]["customcastbarbackdrop"] = false
 
 				if (r1 == "0.027450919151306" and g1 == "0" and b1 == "0") then --cant interrupt
