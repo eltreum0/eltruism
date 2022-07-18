@@ -5655,7 +5655,7 @@ function ElvUI_EltreumUI:Configtable()
 									E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2noninterruptiblecustom = r, g, b
 								end,
 							},
-							headercastbarnoninterruptibletarget = {
+							headercastbartarget = {
 								order = 10,
 								type = "description",
 								name = L["Target Castbar"],
@@ -5733,7 +5733,6 @@ function ElvUI_EltreumUI:Configtable()
 									E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2noninterruptiblecustom = r, g, b
 								end,
 							},
-
 							--[[headercastbarinterruptedtargetcustom = {
 								order = 16,
 								type = "description",
