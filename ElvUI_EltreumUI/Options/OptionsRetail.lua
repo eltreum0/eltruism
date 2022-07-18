@@ -5462,8 +5462,8 @@ function ElvUI_EltreumUI:Configtable()
 							enablecastbargradientinterruptedplayer = {
 								order = 2,
 								type = 'toggle',
-								name = L["Player Castbar (Interrupted)"],
-								desc = L["Enable for Player Castbar (Interrupted)"],
+								name = L["Enable for Player Castbar (Interrupted)"],
+								desc = L["Enable Gradient colors for Player Castbar (Interrupted)"],
 								width = 'full',
 								--disabled = function() return true end,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
@@ -5495,8 +5495,8 @@ function ElvUI_EltreumUI:Configtable()
 							enablecastbargradientinterruptedtarget = {
 								order = 2,
 								type = 'toggle',
-								name = L["Target Castbar (Interrupted)"],
-								desc = L["Enable for Target Castbar (Interrupted)"],
+								name = L["Enable for Target Castbar (Interrupted)"],
+								desc = L["Enable Gradient colors for Target Castbar (Interrupted)"],
 								width = 'full',
 								--disabled = function() return true end,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
@@ -5739,6 +5739,12 @@ function ElvUI_EltreumUI:Configtable()
 									E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2noninterruptiblecustom = r, g, b
 								end,
 							},
+
+
+
+
+
+
 							headercastbarinterruptedtarget = {
 								order = 19,
 								type = "description",

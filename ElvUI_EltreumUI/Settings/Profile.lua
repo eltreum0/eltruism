@@ -467,7 +467,7 @@ P.ElvUI_EltreumUI = {
 
 		playercastbarR1interruptedcustom = 0.7,
 		playercastbarR2interruptedcustom = 0.3,
-		playercastbarB1interruptedcustom = 0,
+		playercastbarB1interruptedcustom = 0.7,
 		playercastbarB2interruptedcustom = 0.3,
 		playercastbarG1interruptedcustom = 0.7,
 		playercastbarG2interruptedcustom = 0.3,
@@ -513,7 +513,7 @@ P.ElvUI_EltreumUI = {
 
 		targetcastbarR1interruptedcustom = 0.7,
 		targetcastbarR2interruptedcustom = 0.3,
-		targetcastbarB1interruptedcustom = 0,
+		targetcastbarB1interruptedcustom = 0.7,
 		targetcastbarB2interruptedcustom = 0.3,
 		targetcastbarG1interruptedcustom = 0.7,
 		targetcastbarG2interruptedcustom = 0.3,
