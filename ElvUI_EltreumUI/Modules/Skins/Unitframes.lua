@@ -250,6 +250,8 @@ function ElvUI_EltreumUI:CastBarTexture()
 				E.db["unitframe"]["colors"]["castNoInterrupt"]["b"] = 0
 				E.db["unitframe"]["colors"]["castNoInterrupt"]["g"] = 0
 				E.db["unitframe"]["colors"]["castNoInterrupt"]["r"] = 0.07843137254902
+				E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["enable"] = false
+				E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["enable"] = false
 
 				if (r1 == "0.027450919151306" and g1 == "0" and b1 == "0") then --cant interrupt
 					if E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbarnoninterruptible then
@@ -328,6 +330,8 @@ function ElvUI_EltreumUI:CastBarTexture()
 				E.db["unitframe"]["colors"]["castNoInterrupt"]["b"] = 0
 				E.db["unitframe"]["colors"]["castNoInterrupt"]["g"] = 0
 				E.db["unitframe"]["colors"]["castNoInterrupt"]["r"] = 0.07843137254902
+				E.db["unitframe"]["units"]["player"]["castbar"]["customColor"]["enable"] = false
+				E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["enable"] = false
 
 				if (r1 == "0.027450919151306" and g1 == "0" and b1 == "0") then --cant interrupt
 					if E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbarnoninterruptible then
