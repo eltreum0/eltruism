@@ -682,6 +682,8 @@ function ElvUI_EltreumUI:AuraBorders(button)
 					edgeSize = 13,
 					})
 					auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					auraborder:SetFrameStrata("MEDIUM")
+					auraborder:SetFrameLevel(4)
 				end
 			end
 		end
