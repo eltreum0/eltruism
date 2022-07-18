@@ -1,6 +1,15 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.1.4
+Added gradient to castbars when they cannot be interrupted, splitting player and target castbars\
+Added gradient and custom texture to Target of Target of Target\
+Updated the gradient function to force some elvui unitframe colors for castbars, since these are required for gradients to work. Interruped color can still be customized\
+Updated some shadows to not apply when borders are enabled since borders would hide them\
+Updated borders to check for ElvUI Action Bar Masks being loaded\
+Fixed an issue where auto adjusting borders would not load with Eltruism profiles\
+Fixed aura borders overlapping the timer text
+___
 ### 3.1.3
 Added more frames that can have borders, including auras, chat, raid, party, focus, boss and other frames\
 Added a warning when ElvUI is out of date during install\

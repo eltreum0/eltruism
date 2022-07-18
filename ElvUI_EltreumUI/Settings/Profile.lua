@@ -419,22 +419,74 @@ P.ElvUI_EltreumUI = {
 
 	gradientmode = {
 		enable = false,
-		enableplayer = true,
-		enabletarget = true,
-		enabletargettarget = true,
-
-		enabletargettargettarget = true,
-
-		enablefocus = true,
-		enableboss = true,
-		enablearena = true,
-		enablegroupunits = true,
-		enableplayercastbar = false,
-		enabletargetcastbar = false,
 		orientation = "HORIZONTAL",
 		texture = "Eltreum-Blank",
 		customcolor = false,
 		gradientXP = false,
+
+		enableplayer = true,
+		enabletarget = true,
+		enabletargettarget = true,
+		enabletargettargettarget = true,
+		enablefocus = true,
+		enableboss = true,
+		enablearena = true,
+		enablegroupunits = true,
+
+		enableplayercastbar = false,
+		enableplayercastbarnoninterruptible = false,
+
+		playercastbarR1 = 0,
+		playercastbarR2 = 0.67,
+		playercastbarG1 = 0.6,
+		playercastbarG2 = 0.94,
+		playercastbarB1 = 1,
+		playercastbarB2 = 1,
+
+		playercastbarR1noninterruptible = 1,
+		playercastbarR2noninterruptible = 1,
+		playercastbarB1noninterruptible = 0,
+		playercastbarB2noninterruptible = 0.23921568627451,
+		playercastbarG1noninterruptible = 0.12941176470588,
+		playercastbarG2noninterruptible = 0.1843137254902,
+
+		playercastbarR1noninterruptiblecustom = 1,
+		playercastbarR2noninterruptiblecustom = 1,
+		playercastbarB1noninterruptiblecustom = 0,
+		playercastbarB2noninterruptiblecustom = 0.23921568627451,
+		playercastbarG1noninterruptiblecustom = 0.12941176470588,
+		playercastbarG2noninterruptiblecustom = 0.1843137254902,
+
+		enabletargetcastbar = false,
+		enabletargetcastbarnoninterruptible = false,
+
+		targetcastbarR1 = 0,
+		targetcastbarR2 = 0.67,
+		targetcastbarG1 = 0.6,
+		targetcastbarG2 = 0.94,
+		targetcastbarB1 = 1,
+		targetcastbarB2 = 1,
+
+		targetcastbarR1custom = 0,
+		targetcastbarR2custom = 0.67,
+		targetcastbarG1custom = 0.6,
+		targetcastbarG2custom = 0.94,
+		targetcastbarB1custom = 1,
+		targetcastbarB2custom = 1,
+
+		targetcastbarR1noninterruptible = 1,
+		targetcastbarR2noninterruptible = 1,
+		targetcastbarB1noninterruptible = 0,
+		targetcastbarB2noninterruptible = 0.23921568627451,
+		targetcastbarG1noninterruptible = 0.12941176470588,
+		targetcastbarG2noninterruptible = 0.1843137254902,
+
+		targetcastbarR1noninterruptiblecustom = 1,
+		targetcastbarR2noninterruptiblecustom = 1,
+		targetcastbarB1noninterruptiblecustom = 0,
+		targetcastbarB2noninterruptiblecustom = 0.23921568627451,
+		targetcastbarG1noninterruptiblecustom = 0.12941176470588,
+		targetcastbarG2noninterruptiblecustom = 0.1843137254902,
 
 		druidcustomcolorR1 = 1,
 		druidcustomcolorR2 = 1,
@@ -442,13 +494,6 @@ P.ElvUI_EltreumUI = {
 		druidcustomcolorG2 = 0.48627450980392,
 		druidcustomcolorB1 = 0.007843137254902,
 		druidcustomcolorB2 = 0.03921568627451,
-
-		--huntercustomcolorR1 = 0.28235294117647,
-		--huntercustomcolorR2 = 0.78823529411765,
-		--huntercustomcolorG1 = 0.59607843137255,
-		--huntercustomcolorG2 = 1,
-		--huntercustomcolorB1 = 0.29411764705882,
-		--huntercustomcolorB2 = 0.38823529411765,
 
 		huntercustomcolorR1 = 0.45490196078431,
 		huntercustomcolorR2 = 0.67058823529412,
@@ -499,13 +544,6 @@ P.ElvUI_EltreumUI = {
 		demonhuntercustomcolorB1 = 0.57254901960784,
 		demonhuntercustomcolorB2 = 1,
 
-		--shamancustomcolorR1 = 0,
-		--shamancustomcolorR2 = 0.3921568627451,
-		--shamancustomcolorG1 = 0.25882352941176,
-		--shamancustomcolorG2 = 0.44313725490196,
-		--shamancustomcolorB1 = 0.50980392156863,
-		--shamancustomcolorB2 = 1,
-
 		shamancustomcolorR1 = 0,
 		shamancustomcolorR2 = 0,
 		shamancustomcolorG1 = 0.25882352941176,
@@ -533,13 +571,6 @@ P.ElvUI_EltreumUI = {
 		monkcustomcolorG2 = 0.90980392156863,
 		monkcustomcolorB1 = 0.45882352941176,
 		monkcustomcolorB2 = 1,
-
-		playercastbarR1 = 0,
-		playercastbarR2 = 0.67,
-		playercastbarG1 = 0.6,
-		playercastbarG2 = 0.94,
-		playercastbarB1 = 1,
-		playercastbarB2 = 1,
 
 		npcfriendlyR1 = 0.30980392156863,
 		npcfriendlyR2 = 0.34117647058824,

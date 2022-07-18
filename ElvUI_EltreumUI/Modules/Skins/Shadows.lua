@@ -96,7 +96,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		if E.private["general"]["minimap"]["enable"] ~= false then
+		if E.private["general"]["minimap"]["enable"] ~= false and not E.db.ElvUI_EltreumUI.borders.borders then
 			local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
 			local Minimapsizex, Minimapsizey = _G["Minimap"]:GetSize()
 			MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
@@ -737,7 +737,9 @@ function ElvUI_EltreumUI:Shadows()
 				local partymembers = {_G["ElvUF_PartyGroup1UnitButton"..i]}
 				for _, frame in pairs(partymembers) do
 					if not frame.shadow then
-						frame:CreateShadow()
+						if not E.db.ElvUI_EltreumUI.borders.borders then
+							frame:CreateShadow()
+						end
 					end
 					--[[for _, button in pairs(partymembers) do
 						if not button.shadow then
@@ -752,7 +754,9 @@ function ElvUI_EltreumUI:Shadows()
 				local bossmembers = {_G["ElvUF_Boss"..i]}
 				for _, frame in pairs(bossmembers) do
 					if not frame.shadow then
-						frame:CreateShadow()
+						if not E.db.ElvUI_EltreumUI.borders.borders then
+							frame:CreateShadow()
+						end
 					end
 					--[[for _, button in pairs(bossmembers) do
 						if not button.shadow then
@@ -862,7 +866,7 @@ function ElvUI_EltreumUI:Shadows()
 		local rightsizex, rightsizey = _G["RightChatMover"]:GetSize()
 		RightChatShadow:SetSize(rightsizex, rightsizey)
 		RightChatShadow:SetParent(_G["RightChatPanel"].backdrop)
-		if not (self.RightChatIsSkinned) then
+		if not (self.RightChatIsSkinned) and not E.db.ElvUI_EltreumUI.borders.borders then
 			RightChatShadow.shadow = RightChatShadow:CreateShadow(nil, true)
 			RightChatShadow:SetPoint("TOPRIGHT", _G["RightChatPanel"] ,"TOPRIGHT", 0, 0)
 			RightChatShadow:SetPoint("BOTTOMLEFT", _G["RightChatDataPanel"] ,"BOTTOMLEFT", 0, 0)
@@ -874,7 +878,7 @@ function ElvUI_EltreumUI:Shadows()
 		local leftsizex, leftsizey = _G["LeftChatMover"]:GetSize()
 		LeftChatShadow:SetSize(leftsizex, leftsizey)
 		LeftChatShadow:SetParent(_G["LeftChatPanel"].backdrop)
-		if not (self.LeftChatIsSkinned) then
+		if not (self.LeftChatIsSkinned) and not E.db.ElvUI_EltreumUI.borders.borders then
 			LeftChatShadow.shadow = LeftChatShadow:CreateShadow(nil, true)
 			LeftChatShadow:SetPoint("TOPLEFT", _G["LeftChatPanel"] ,"TOPLEFT", 0, 0)
 			LeftChatShadow:SetPoint("BOTTOMRIGHT", _G["LeftChatDataPanel"] ,"BOTTOMRIGHT", 0, 0)
@@ -961,7 +965,9 @@ function ElvUI_EltreumUI:AuraShadows(button)
 	if E.db.ElvUI_EltreumUI.shadows.aura and E.private.auras.enable and E.db.ElvUI_EltreumUI.skins.shadows then
 		if not button then return end
 		if not button.shadow then
-			button:CreateShadow()
+			if not E.db.ElvUI_EltreumUI.borders.borders then
+				button:CreateShadow()
+			end
 		end
 	end
 end
@@ -988,8 +994,10 @@ function ElvUI_EltreumUI:RaidShadows()
 					local slots = {_G["ElvUF_RaidGroup"..i..'UnitButton'..k]}
 					for _, button in pairs(slots) do
 						if not button.shadow then
-							button:CreateShadow()
-							button.shadow:SetParent(button)
+							if not E.db.ElvUI_EltreumUI.borders.borders then
+								button:CreateShadow()
+								button.shadow:SetParent(button)
+							end
 						end
 					end
 				end
@@ -1004,8 +1012,10 @@ function ElvUI_EltreumUI:RaidShadows()
 					local slots = {_G["ElvUF_Raid40Group"..i..'UnitButton'..k]}
 					for _, button in pairs(slots) do
 						if not button.shadow then
-							button:CreateShadow()
-							button.shadow:SetParent(button)
+							if not E.db.ElvUI_EltreumUI.borders.borders then
+								button:CreateShadow()
+								button.shadow:SetParent(button)
+							end
 						end
 					end
 				end
