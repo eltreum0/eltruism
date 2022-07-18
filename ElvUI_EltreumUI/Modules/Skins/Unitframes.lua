@@ -242,7 +242,6 @@ function ElvUI_EltreumUI:CastBarTexture()
 				local r1 = tostring(r)
 				local g1 = tostring(g)
 				local b1 = tostring(b)
-				print("player "..r,g,b)
 
 				--force these colors so that gradient works, but only foce when gradient is on for the frame
 				E.db["unitframe"]["colors"]["castColor"]["b"] = 0
@@ -257,15 +256,15 @@ function ElvUI_EltreumUI:CastBarTexture()
 						castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 						if E.db.unitframe.units.player.castbar.reverse == true then
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								castbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1noninterruptiblecustom, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2noninterruptiblecustom, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2noninterruptiblecustom)
 							else
-								castbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1noninterruptible, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2noninterruptible, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2noninterruptible)
 							end
 						elseif E.db.unitframe.units.player.castbar.reverse == false then
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								castbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2noninterruptiblecustom, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1noninterruptiblecustom, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1noninterruptiblecustom)
 							else
-								castbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2noninterruptible, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1noninterruptible, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1noninterruptible)
 							end
 						end
 					end
@@ -321,7 +320,6 @@ function ElvUI_EltreumUI:CastBarTexture()
 				local r1 = tostring(r2)
 				local g1 = tostring(g2)
 				local b1 = tostring(b2)
-				print("target "..r2,g2,b2)
 
 				--force these colors so that gradient works, but only foce when gradient is on for the frame
 				E.db["unitframe"]["colors"]["castColor"]["b"] = 0
@@ -336,15 +334,15 @@ function ElvUI_EltreumUI:CastBarTexture()
 						targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 						if E.db.unitframe.units.target.castbar.reverse == true then
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								targetcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB1noninterruptiblecustom, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2noninterruptiblecustom, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2noninterruptiblecustom)
 							else
-								targetcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB1noninterruptible, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2noninterruptible, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2noninterruptible)
 							end
 						elseif E.db.unitframe.units.target.castbar.reverse == false then
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-								targetcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2noninterruptiblecustom, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB1noninterruptiblecustom, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB1noninterruptiblecustom)
 							else
-								targetcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2noninterruptible, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB1noninterruptible, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+								targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB1noninterruptible)
 							end
 						end
 					end

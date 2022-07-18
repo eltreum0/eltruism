@@ -922,6 +922,8 @@ L["Target of Target of Target Texture"] = true
 
 L["Player Castbar"] = true
 L["Player Castbar (Interrupted)"] = true
+L["Player Castbar (Non Interruptible)"] = true
+L["Enable for Player Castbar (Non Interruptible)"] = true
 L["Enable for Player Castbar (Interrupted)"] = true
 L["Enable Gradient colors for Player Castbar (Interrupted)"] = true
 
