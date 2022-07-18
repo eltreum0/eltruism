@@ -184,7 +184,7 @@ local DB = E:GetModule('DataBars')
 hooksecurefunc(DB, 'ExperienceBar_Update', ElvUI_EltreumUI.GradientDatabar)
 
 --elvui castbar texture/gradient
-function ElvUI_EltreumUI:CastBarTexture()
+function ElvUI_EltreumUI:CastBarTextureGradient()
 	local castbar = _G["ElvUF_Player_CastBar"]
 	local targetcastbar = _G["ElvUF_Target_CastBar"]
 
@@ -327,21 +327,20 @@ function ElvUI_EltreumUI:CastBarTexture()
 
 	end
 end
-hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastBarTexture)
-hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastBarTexture)
+hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastBarTextureGradient)
+hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastBarTextureGradient)
 
-function ElvUI_EltreumUI:CastBarTextureFail()
+--color when interrupted
+function ElvUI_EltreumUI:CastBarTextureGradientFail()
 	local castbar = _G["ElvUF_Player_CastBar"]
 	local targetcastbar = _G["ElvUF_Target_CastBar"]
-
-	print("interrupted")
 	castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2noninterruptible)
 
 	if UnitExists("target") then
 		targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG1noninterruptible, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB1noninterruptible)
 	end
 end
-hooksecurefunc(UF, 'PostCastFail', ElvUI_EltreumUI.CastBarTexture)
+hooksecurefunc(UF, 'PostCastFail', ElvUI_EltreumUI.CastBarTextureGradientFail)
 
 
 function ElvUI_EltreumUI:ChangeUnitTexture(unit)
