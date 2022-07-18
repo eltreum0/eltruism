@@ -378,6 +378,10 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.bossborder = true
 			end
 
+			E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,-1"
+			E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,-1"
+			E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-4"
+
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
 				E.db["actionbar"]["bar1"]["buttonSpacing"] = 4
 				E.db["actionbar"]["bar2"]["buttonSpacing"] = 5
@@ -453,6 +457,10 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.ycasttarget = 58
 			end
 		elseif not E.db.ElvUI_EltreumUI.borders.borders then
+			E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,0"
+			E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
+			E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
+
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
 				E.db["actionbar"]["bar1"]["buttonSpacing"] = 3
 				E.db["actionbar"]["bar2"]["buttonSpacing"] = 2
