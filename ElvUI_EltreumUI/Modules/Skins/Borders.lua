@@ -104,16 +104,20 @@ function ElvUI_EltreumUI:Borders()
 				else
 					playercastbarborder = _G["EltruismPlayerCastBarBorder"]
 				end
+
+				--E.db["unitframe"]["units"]["player"]["castbar"]["iconAttachedTo"] = "Castbar"
 				if E.db.unitframe.units.player.castbar.iconAttached == false then
-					playercastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayercast + E.db.unitframe.units.player.castbar.iconSize, E.db.ElvUI_EltreumUI.borders.yplayercast)
+					playercastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayercast, E.db.ElvUI_EltreumUI.borders.yplayercast)
+					--playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", -E.db.unitframe.units.player.castbar.iconSize/2, 0)
 					if E.db["unitframe"]["units"]["player"]["castbar"]["iconPosition"] == "RIGHT" then
 						playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", E.db.unitframe.units.player.castbar.iconSize/2, 0)
 					elseif E.db["unitframe"]["units"]["player"]["castbar"]["iconPosition"] == "LEFT" then
 						playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", -E.db.unitframe.units.player.castbar.iconSize/2, 0)
 					end
-				elseif E.db.unitframe.units.player.castbar.iconAttached == true then
+				elseif E.db.unitframe.units.player.castbar.iconAttached ~= false then
 					playercastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayercast, E.db.ElvUI_EltreumUI.borders.yplayercast)
-					playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", -E.db.unitframe.units.player.castbar.iconSize/2, 0)
+					--playercastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayercast + E.db.unitframe.units.player.castbar.iconSize, E.db.ElvUI_EltreumUI.borders.yplayercast)
+					playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"].Holder, "CENTER", 0, 0)
 				end
 				playercastbarborder:SetBackdrop({
 					edgeFile = bordertexture,
