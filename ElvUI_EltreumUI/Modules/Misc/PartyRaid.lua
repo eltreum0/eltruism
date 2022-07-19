@@ -48,25 +48,6 @@ function ElvUI_EltreumUI:RaidDeath(destFlags)
 	end
 end
 
--- Role icons, ty a lot Darth Predator for the help!
-if E.Retail then
-	if IsAddOnLoaded("ElvUI_SLE") then
-		local SLE = unpack(ElvUI_SLE)
-		SLE.rolePaths["Eltruism"] = {
-			TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga",
-			HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga",
-			DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga"
-		}
-	else
-		local UF = E:GetModule('UnitFrames')
-			UF.RoleIconTextures = {
-			TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga",
-			HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga",
-			DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga"
-		}
-	end
-end
-
 --bres
 local bresframe = CreateFrame("Frame")
 local spellicon = bresframe:CreateTexture()
