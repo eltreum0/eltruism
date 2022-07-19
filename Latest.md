@@ -8,5 +8,6 @@ Updated some shadows to not apply when borders are enabled since borders would h
 Updated borders to apply settings when changing them in Eltruism without requiring a reload, but a reload is still recommended after configuring them\
 Updated borders to check for ElvUI Action Bar Masks being loaded\
 Fixed an issue where auto adjusting borders would not load with Eltruism profiles\
+Fixed player and target castbar borders on different types of cast attachment\
 Fixed aura borders overlapping the timer text
 
