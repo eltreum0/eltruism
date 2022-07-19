@@ -9,6 +9,8 @@ Updated borders to apply settings when changing them in Eltruism without requiri
 Updated borders to check for ElvUI Action Bar Masks being loaded\
 Updated auto adjust borders function to apply when changing specs in retail if the profiles are both from Eltruism\
 Fixed an issue where auto adjusting borders would not load with Eltruism profiles\
+Fixed an issue where borders could sometimes not be centered correctly on Player/Target unitframes\
+Fixed an issue where borders would overlap action bar text\
 Fixed player and target castbar borders on different types of cast attachment\
 Fixed aura borders overlapping the timer text
 
