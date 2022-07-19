@@ -359,7 +359,7 @@ function ElvUI_EltreumUI:CastBarTextureGradientFail()
 				end
 			end
 			--target
-			if UnitExists("target") and E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbarinterrupted then
+			if UnitExists("target") and E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbarinterrupted and targetcastbar ~= nil then
 				targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 				if E.db.unitframe.units.target.castbar.reverse == true then
 					if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
