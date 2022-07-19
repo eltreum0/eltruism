@@ -308,7 +308,8 @@ P.ElvUI_EltreumUI = {
 		rightchatborderx = 432,
 		rightchatbordery = 224,
 
-
+		petsizex = 130,
+		petsizey = 66,
 
 		partyborders = true,
 		partysizex = 222,
@@ -333,7 +334,6 @@ P.ElvUI_EltreumUI = {
 		minimapborder = false,
 		minimapsizex = 226,
 		minimapsizey = 247,
-
 
 		petborder = false,
 

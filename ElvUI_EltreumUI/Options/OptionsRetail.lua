@@ -2411,6 +2411,32 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.borders.petborder end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.petborder = value ElvUI_EltreumUI:Borders() end,
 							},
+							borderxpet = {
+								type = 'range',
+								name = L["Border X offset"],
+								order = 4,
+								min = 1,
+								max = 800,
+								step = 0.1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.pet.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.petsizex end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.petsizex = value ElvUI_EltreumUI:Borders() end,
+							},
+							borderypet = {
+								type = 'range',
+								name = L["Border Y offset"],
+								order = 5,
+								min = 1,
+								max = 800,
+								step = 0.1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.pet.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.petsizey end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.petsizey = value ElvUI_EltreumUI:Borders() end,
+							},
+
+
 							gaptarget = {
 								order = 23,
 								type = "description",
