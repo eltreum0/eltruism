@@ -2435,8 +2435,6 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.borders.petsizey end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.petsizey = value ElvUI_EltreumUI:Borders() end,
 							},
-
-
 							gaptarget = {
 								order = 23,
 								type = "description",
