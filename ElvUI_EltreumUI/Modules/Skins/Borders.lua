@@ -110,7 +110,7 @@ function ElvUI_EltreumUI:Borders()
 			end
 
 			--player castbar
-			if E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.unitframe.units.player.castbar.enable and not (E.db.unitframe.units.player.castbar.overlayOnFrame == "Power")  then
+			if E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.unitframe.units.player.castbar.enable and not (E.db.unitframe.units.player.castbar.overlayOnFrame ~= "None")  then
 				local playercastbarborder
 				if not _G["EltruismPlayerCastBarBorder"] then
 					playercastbarborder = CreateFrame("Frame", "EltruismPlayerCastBarBorder", _G.ElvUF_Player_CastBar, BackdropTemplateMixin and "BackdropTemplate")
@@ -158,7 +158,7 @@ function ElvUI_EltreumUI:Borders()
 			end
 
 			--target castbar
-			if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and not (E.db.unitframe.units.target.castbar.overlayOnFrame == "Power") then
+			if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and not (E.db.unitframe.units.target.castbar.overlayOnFrame ~= "None") then
 				if not _G["EltruismTargetCastBarBorder"] then
 					targetcastbarborder = CreateFrame("Frame", "EltruismTargetCastBarBorder", _G.ElvUF_Target_CastBar, BackdropTemplateMixin and "BackdropTemplate")
 				else
