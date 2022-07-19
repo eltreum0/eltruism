@@ -41,6 +41,7 @@ local RightChatBorder
 local auraborder
 local rectangleminimapdetect = CreateFrame("FRAME")
 local updatelocationpos = CreateFrame("Frame")
+local petborder
 
 --Borders on frames
 function ElvUI_EltreumUI:Borders()
@@ -208,22 +209,17 @@ function ElvUI_EltreumUI:Borders()
 
 			--pet
 			if E.db.ElvUI_EltreumUI.borders.petborder and E.db.unitframe.units.pet.enable then
-				local petborder
 				if not _G["EltruismPetBorder"] then
 					petborder = CreateFrame("Frame", "EltruismPetBorder", _G.ElvUF_Pet_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
 				else
 					petborder = _G["EltruismPetBorder"]
 				end
-				local petsizex, petsizey
-				if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
-					petborder:SetPoint("TOPRIGHT", _G.ElvUF_Pet_HealthBar,"TOPRIGHT", 17, 16)
-					petborder:SetPoint("BOTTOMLEFT", _G.ElvUF_Pet_HealthBar,"BOTTOMLEFT", -17, -16)
-					petsizex, petsizey = _G["ElvUF_Pet_HealthBar"]:GetSize()
+				petborder:SetSize(E.db.ElvUI_EltreumUI.borders.petsizex, E.db.ElvUI_EltreumUI.borders.petsizey)
+				if E.db["unitframe"]["units"]["pet"]["power"]["width"] == "spaced" then
+					petborder:SetPoint("CENTER", _G.ElvUF_Pet_HealthBar,"CENTER", 0, 0)
 				else
-					petsizex, petsizey = _G["ElvUF_Pet"]:GetSize()
 					petborder:SetPoint("CENTER", _G.ElvUF_Pet,"CENTER", 0, 0)
 				end
-				petborder:SetSize(petsizex, petsizey)
 				petborder:SetBackdrop({
 					edgeFile = bordertexture,
 					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
