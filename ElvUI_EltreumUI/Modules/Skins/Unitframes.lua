@@ -2548,7 +2548,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 
 	end
 end
---hooksecurefunc(UF, "Style", ElvUI_EltreumUI.ChangeUnitTexture) --if not hooking into this then when the target of target changes it doesnt update
+hooksecurefunc(UF, "Style", ElvUI_EltreumUI.ChangeUnitTexture) --if not hooking into this then when the target of target changes it doesnt update
 --hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
 hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.ChangeUnitTexture)
 --hooksecurefunc(UF, "PostUpdateHealth", ElvUI_EltreumUI.ChangeUnitTexture)
