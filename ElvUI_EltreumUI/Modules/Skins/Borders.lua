@@ -356,7 +356,7 @@ function ElvUI_EltreumUI:Borders()
 			end
 
 			--boss
-			if E.db.ElvUI_EltreumUI.borders.bossborder and E.db.unitframe.units.boss.enable and not E.Classic then
+			if E.db.ElvUI_EltreumUI.borders.bossborder and E.db.unitframe.units.boss.enable and (not E.Classic and not E.TBC) then
 				local bordersboss = {}
 				for i = 1,8 do
 					local bossmembers = {_G["ElvUF_Boss"..i]}
