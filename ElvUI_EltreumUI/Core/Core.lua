@@ -21,6 +21,9 @@ function ElvUI_EltreumUI:HidePopups()
 		DisableAddOn("Details_Streamer")
 	end
 	C_Timer.After(5, function()
+		if _G["StreamOverlayWelcomeWindow"] then
+			_G["StreamOverlayWelcomeWindow"]:Hide()
+		end
 		if _G["StaticPopup1"] then
 			_G["StaticPopup1"]:Hide()
 		end
@@ -46,9 +49,6 @@ function ElvUI_EltreumUI:HidePopups()
 			_G["ElvUI_StaticPopup4"]:Hide()
 		end
 		if IsAddOnLoaded("Details") then
-			if _G["StreamOverlayWelcomeWindow"] then
-				_G["StreamOverlayWelcomeWindow"]:Hide()
-			end
 			if _G["DetailsWelcomeWindow"] then
 				_G["DetailsWelcomeWindow"]:Hide()
 			end
