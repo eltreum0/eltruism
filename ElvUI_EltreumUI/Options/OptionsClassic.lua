@@ -2807,7 +2807,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								order = 2,
 								get = function() return E.db.ElvUI_EltreumUI.borders.borders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.borders = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.borders = value ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							enableautoadjust = {
 								type = 'toggle',
@@ -2816,7 +2816,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								order = 3,
 								get = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.borderautoadjust = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.borderautoadjust = value ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							headerline2 = {
 								order = 93,
@@ -2835,7 +2835,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.border,
 								get = function() return E.db.ElvUI_EltreumUI.borders.texture end,
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.borders.texture = key end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.borders.texture = key ElvUI_EltreumUI:Borders() end,
 							},
 							classcolors = {
 								type = 'toggle',
@@ -2843,7 +2843,7 @@ function ElvUI_EltreumUI:Configtable()
 								--width = "full",
 								order = 95,
 								get = function() return E.db.ElvUI_EltreumUI.borders.classcolor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.classcolor = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.classcolor = value ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							colorborders = {
 								order = 96,
@@ -2858,7 +2858,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									local customcolorborders = E.db.ElvUI_EltreumUI.bordercolors
-									customcolorborders.r, customcolorborders.g, customcolorborders.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+									customcolorborders.r, customcolorborders.g, customcolorborders.b = r, g, b E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:Borders()
 								end,
 							},
 							headerline3 = {
@@ -2878,7 +2878,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders or not E.private.actionbar.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.baredgesize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.baredgesize = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.baredgesize = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderUFsize = {
 								type = 'range',
@@ -2890,13 +2890,14 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders or not E.private.unitframe.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.playertargetsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.playertargetsize = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.playertargetsize = value ElvUI_EltreumUI:Borders() end,
 							},
 						},
 					},
 					actionbarsborders = {
 						order = 2,
 						type = 'group',
+						--inline = true,
 						disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 						name = L["ActionBars"],
 						childGroups = "tab",
@@ -2922,7 +2923,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar1.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar1borders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar1borders = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar1borders = value ElvUI_EltreumUI:Borders() end,
 							},
 							bar1xsize = {
 								type = 'range',
@@ -2934,7 +2935,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar1.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar1xborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar1xborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar1xborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							bar1ysize = {
 								type = 'range',
@@ -2946,7 +2947,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar1.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar1yborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar1yborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar1yborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							gap2 = {
 								order = 8,
@@ -2962,7 +2963,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar2.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar2borders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar2borders = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar2borders = value ElvUI_EltreumUI:Borders() end,
 							},
 							bar2xsize = {
 								type = 'range',
@@ -2974,7 +2975,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar2.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar2xborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar2xborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar2xborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							bar2ysize = {
 								type = 'range',
@@ -2986,7 +2987,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar2.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar2yborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar2yborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar2yborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							gap3 = {
 								order = 11,
@@ -3002,7 +3003,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar3.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar3borders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar3borders = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar3borders = value ElvUI_EltreumUI:Borders() end,
 							},
 							bar3xsize = {
 								type = 'range',
@@ -3014,7 +3015,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar3.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar3xborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar3xborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar3xborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							bar3ysize = {
 								type = 'range',
@@ -3026,7 +3027,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar3.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar3yborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar3yborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar3yborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							gap4 = {
 								order = 14,
@@ -3042,7 +3043,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar4.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar4borders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar4borders = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar4borders = value ElvUI_EltreumUI:Borders() end,
 							},
 							bar4xsize = {
 								type = 'range',
@@ -3054,7 +3055,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar4.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar4xborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar4xborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar4xborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							bar4ysize = {
 								type = 'range',
@@ -3066,7 +3067,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar4.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar4yborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar4yborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar4yborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							gap5 = {
 								order = 17,
@@ -3082,7 +3083,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar5.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar5borders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar5borders = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar5borders = value ElvUI_EltreumUI:Borders() end,
 							},
 							bar5xsize = {
 								type = 'range',
@@ -3094,7 +3095,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar5.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar5xborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar5xborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar5xborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							bar5ysize = {
 								type = 'range',
@@ -3106,7 +3107,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar5.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar5yborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar5yborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar5yborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							gap6 = {
 								order = 20,
@@ -3122,7 +3123,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar6.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar6borders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar6borders = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar6borders = value ElvUI_EltreumUI:Borders() end,
 							},
 							bar6xsize = {
 								type = 'range',
@@ -3134,7 +3135,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar6.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar6xborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar6xborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar6xborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							bar6ysize = {
 								type = 'range',
@@ -3146,14 +3147,14 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar6.enabled end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.bar6yborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar6yborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar6yborder = value ElvUI_EltreumUI:Borders() end,
 							},
 						},
 					},
 					ufborders = {
 						type = 'group',
-						name = L["Unitframes"],
 						disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
+						name = L["Unitframes"],
 						order = 2,
 						args = {
 							gap0 = {
@@ -3177,7 +3178,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.pet.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.petborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.petborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.petborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							gaptarget = {
 								order = 23,
@@ -3193,7 +3194,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.target.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.targetborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.targetborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.targetborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderxtarget = {
 								type = 'range',
@@ -3205,7 +3206,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.target.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.xtarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xtarget = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xtarget = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderytarget = {
 								type = 'range',
@@ -3217,7 +3218,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.target.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.ytarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ytarget = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ytarget = value ElvUI_EltreumUI:Borders() end,
 							},
 							gapplayer = {
 								order = 26,
@@ -3233,7 +3234,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.player.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.playerborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.playerborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.playerborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderxplayer = {
 								type = 'range',
@@ -3245,7 +3246,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.player.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.xplayer end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xplayer = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xplayer = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderyplayer = {
 								type = 'range',
@@ -3257,7 +3258,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.player.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.yplayer end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.yplayer = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.yplayer = value ElvUI_EltreumUI:Borders() end,
 							},
 							gapplayercast = {
 								order = 29,
@@ -3273,7 +3274,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.player.castbar.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.playercastborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.playercastborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.playercastborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderxcastplayer = {
 								type = 'range',
@@ -3285,7 +3286,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.player.castbar.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.xplayercast end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xplayercast = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xplayercast = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderycastplayer = {
 								type = 'range',
@@ -3297,7 +3298,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.player.castbar.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.yplayercast end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.yplayercast = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.yplayercast = value ElvUI_EltreumUI:Borders() end,
 							},
 							gaptargetcast = {
 								order = 32,
@@ -3313,7 +3314,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.target.castbar.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.targetcastborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.targetcastborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.targetcastborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderxcasttarget = {
 								type = 'range',
@@ -3325,7 +3326,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.target.castbar.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.xcasttarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xcasttarget = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xcasttarget = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderycasttarget = {
 								type = 'range',
@@ -3337,7 +3338,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.target.castbar.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.ycasttarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ycasttarget = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ycasttarget = value ElvUI_EltreumUI:Borders() end,
 							},
 							gaptargettarget = {
 								order = 35,
@@ -3353,7 +3354,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.targettarget.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.targettargetborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.targettargetborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.targettargetborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderxtargettarget = {
 								type = 'range',
@@ -3365,7 +3366,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.targettarget.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.xtargettarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xtargettarget = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xtargettarget = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderytargettarget = {
 								type = 'range',
@@ -3377,7 +3378,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.targettarget.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.ytargettarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ytargettarget = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ytargettarget = value ElvUI_EltreumUI:Borders() end,
 							},
 							gapparty = {
 								order = 39,
@@ -3393,7 +3394,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.party.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.partyborders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.partyborders = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.partyborders = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderxparty = {
 								type = 'range',
@@ -3405,7 +3406,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.party.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.partysizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.partysizex = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.partysizex = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderyparty = {
 								type = 'range',
@@ -3417,7 +3418,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.party.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.partysizey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.partysizey = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.partysizey = value ElvUI_EltreumUI:Borders() end,
 							},
 							gapraid = {
 								order = 43,
@@ -3433,7 +3434,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.raidborders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidborders = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidborders = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderxraid = {
 								type = 'range',
@@ -3445,7 +3446,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.raidsizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidsizex = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidsizex = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderyraid = {
 								type = 'range',
@@ -3457,7 +3458,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.raidsizey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidsizey = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidsizey = value ElvUI_EltreumUI:Borders() end,
 							},
 							gapraid40 = {
 								order = 47,
@@ -3473,7 +3474,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid40.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.raid40borders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40borders = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40borders = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderxraid40 = {
 								type = 'range',
@@ -3485,7 +3486,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid40.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.raid40sizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40sizex = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40sizex = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderyraid40 = {
 								type = 'range',
@@ -3497,15 +3498,14 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid40.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.raid40sizey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40sizey = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40sizey = value ElvUI_EltreumUI:Borders() end,
 							},
-
 						},
 					},
 					npborder = {
 						type = 'group',
-						name = L["Nameplate"],
 						disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
+						name = L["Nameplate"],
 						order = 3,
 						args = {
 							gap0 = {
@@ -3529,7 +3529,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.private.ElvUI_EltreumUI.nameplatepower end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.powerbarborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.powerbarborder = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.powerbarborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderpowerbarsize = {
 								type = 'range',
@@ -3541,7 +3541,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.private.ElvUI_EltreumUI.nameplatepower end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.powerbarsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.powerbarsize = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.powerbarsize = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderxpowerbar = {
 								type = 'range',
@@ -3553,7 +3553,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.private.ElvUI_EltreumUI.nameplatepower end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.xpowerbar end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xpowerbar = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xpowerbar = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderypowerbar = {
 								type = 'range',
@@ -3565,7 +3565,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.private.ElvUI_EltreumUI.nameplatepower end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.ypowerbar end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ypowerbar = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ypowerbar = value ElvUI_EltreumUI:Borders() end,
 							},
 						},
 					},
@@ -3589,7 +3589,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 2,
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.minimapborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.minimapborder = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.minimapborder = value E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:Borders() end,
 							},
 							headerline2 = {
 								order = 3,
@@ -3605,7 +3605,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 4,
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.auraborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.auraborder = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.auraborder = value E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:Borders() end,
 							},
 							aurabordersizex = {
 								type = 'range',
@@ -3617,7 +3617,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.aurasizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasizex = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasizex = value ElvUI_EltreumUI:Borders() end,
 							},
 							aurabordersizey = {
 								type = 'range',
@@ -3629,7 +3629,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.aurasizey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasizey = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasizey = value ElvUI_EltreumUI:Borders() end,
 							},
 							headerline3 = {
 								order = 7,
@@ -3645,7 +3645,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 8,
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.chatborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.chatborder = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.chatborder = value E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:Borders() end,
 							},
 							leftchatbordersizex = {
 								type = 'range',
@@ -3657,7 +3657,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.leftchatborderx end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.leftchatborderx = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.leftchatborderx = value ElvUI_EltreumUI:Borders() end,
 							},
 							leftchatbordersizey = {
 								type = 'range',
@@ -3669,7 +3669,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.leftchatbordery end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.leftchatbordery = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.leftchatbordery = value ElvUI_EltreumUI:Borders() end,
 							},
 							rightchatbordersizex = {
 								type = 'range',
@@ -3681,7 +3681,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.rightchatborderx end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.rightchatborderx = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.rightchatborderx = value ElvUI_EltreumUI:Borders() end,
 							},
 							rightchatbordersizey = {
 								type = 'range',
@@ -3693,10 +3693,10 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.rightchatbordery end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.rightchatbordery = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.rightchatbordery = value ElvUI_EltreumUI:Borders() end,
 							},
 						},
-					},
+					}
 				},
 			},
 			cvars = {
