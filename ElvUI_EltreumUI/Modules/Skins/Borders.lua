@@ -36,10 +36,12 @@ local barborder5
 local barborder6
 local powerbarborder
 local MinimapBorder
-local Minimapsizex, Minimapsizey
 local LeftChatBorder
 local RightChatBorder
 local auraborder
+local rectangleminimapdetect = CreateFrame("FRAME")
+local updatelocationpos = CreateFrame("Frame")
+local petborder
 
 --Borders on frames
 function ElvUI_EltreumUI:Borders()
@@ -207,22 +209,17 @@ function ElvUI_EltreumUI:Borders()
 
 			--pet
 			if E.db.ElvUI_EltreumUI.borders.petborder and E.db.unitframe.units.pet.enable then
-				local petborder
 				if not _G["EltruismPetBorder"] then
 					petborder = CreateFrame("Frame", "EltruismPetBorder", _G.ElvUF_Pet_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
 				else
 					petborder = _G["EltruismPetBorder"]
 				end
-				local petsizex, petsizey
-				if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
-					petborder:SetPoint("TOPRIGHT", _G.ElvUF_Pet_HealthBar,"TOPRIGHT", 17, 16)
-					petborder:SetPoint("BOTTOMLEFT", _G.ElvUF_Pet_HealthBar,"BOTTOMLEFT", -17, -16)
-					petsizex, petsizey = _G["ElvUF_Pet_HealthBar"]:GetSize()
+				petborder:SetSize(E.db.ElvUI_EltreumUI.borders.petsizex, E.db.ElvUI_EltreumUI.borders.petsizey)
+				if E.db["unitframe"]["units"]["pet"]["power"]["width"] == "spaced" then
+					petborder:SetPoint("CENTER", _G.ElvUF_Pet_HealthBar,"CENTER", 0, 0)
 				else
-					petsizex, petsizey = _G["ElvUF_Pet"]:GetSize()
 					petborder:SetPoint("CENTER", _G.ElvUF_Pet,"CENTER", 0, 0)
 				end
-				petborder:SetSize(petsizex, petsizey)
 				petborder:SetBackdrop({
 					edgeFile = bordertexture,
 					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
@@ -425,7 +422,7 @@ function ElvUI_EltreumUI:Borders()
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder1:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-						barborder1:SetFrameLevel(1)
+						--barborder1:SetFrameLevel(1)
 					end
 				end
 				createbar1borders()
@@ -451,7 +448,7 @@ function ElvUI_EltreumUI:Borders()
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder2:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-						barborder2:SetFrameLevel(1)
+						--barborder2:SetFrameLevel(1)
 					end
 				end
 				createbar2borders()
@@ -477,7 +474,7 @@ function ElvUI_EltreumUI:Borders()
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder3:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-						barborder3:SetFrameLevel(1)
+						--barborder3:SetFrameLevel(1)
 					end
 				end
 				createbar3borders()
@@ -503,7 +500,7 @@ function ElvUI_EltreumUI:Borders()
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder4:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-						barborder4:SetFrameLevel(1)
+						--barborder4:SetFrameLevel(1)
 					end
 				end
 				createbar4borders()
@@ -529,7 +526,7 @@ function ElvUI_EltreumUI:Borders()
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder5:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-						barborder5:SetFrameLevel(1)
+						--barborder5:SetFrameLevel(1)
 					end
 				end
 				createbar5borders()
@@ -555,7 +552,7 @@ function ElvUI_EltreumUI:Borders()
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder6:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-						barborder6:SetFrameLevel(1)
+						--barborder6:SetFrameLevel(1)
 					end
 				end
 				createbar6borders()
@@ -586,70 +583,52 @@ function ElvUI_EltreumUI:Borders()
 			else
 				MinimapBorder = _G["EltruismMiniMapBorderFrame"]
 			end
-			Minimapsizex, Minimapsizey = _G["Minimap"]:GetSize()
-			MinimapBorder:SetSize(Minimapsizex, Minimapsizey)
+			MinimapBorder:SetSize(E.db.ElvUI_EltreumUI.borders.minimapsizex, E.db.ElvUI_EltreumUI.borders.minimapsizey)
 			MinimapBorder:SetParent(_G["Minimap"])
 			MinimapBorder:SetBackdrop({
 				edgeFile = bordertexture,
 				--edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize, --13
-				edgeSize = 15,
+				edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize + 2,
 			})
 			MinimapBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			MinimapBorder:SetFrameStrata("MEDIUM")
-			if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
-				MinimapBorder:SetPoint("TOPRIGHT", _G["Minimap"] ,"TOPRIGHT", 13, 13)
-				MinimapBorder:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", -13, -13)
-				if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
-					MinimapBorder:SetPoint("BOTTOMLEFT", _G["Minimap"] ,"BOTTOMLEFT", -13, -13)
-				end
-				if IsAddOnLoaded("ElvUI_SLE") and E.private["sle"]["minimap"]["rectangle"] == true then --Shadow and Light Rectangle Minimap
-					MinimapBorder:SetPoint("TOPRIGHT", _G["Minimap"].backdrop ,"TOPRIGHT", 12, 11)
-					MinimapBorder:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", -13, -13)
-					if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
-						MinimapBorder:SetPoint("BOTTOMLEFT", _G["Minimap"].backdrop ,"BOTTOMLEFT", -11, -11)
-					end
-					local updatelocationpos = CreateFrame("Frame")
-					updatelocationpos:RegisterEvent("ZONE_CHANGED")
-					updatelocationpos:RegisterEvent("ZONE_CHANGED_INDOORS")
-					updatelocationpos:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-					updatelocationpos:RegisterEvent("PLAYER_ENTERING_WORLD")
-					updatelocationpos:RegisterEvent("MINIMAP_UPDATE_ZOOM")
-					updatelocationpos:SetScript("OnEvent", function()
-						_G.Minimap.location:ClearAllPoints()
-						_G.Minimap.location:SetPoint('TOP', _G.Minimap, 'TOP', 0, -15)
-					end)
-				elseif IsAddOnLoaded("ElvUI_WindTools") and E.db["WT"]["maps"]["rectangleMinimap"]["enable"] == true then --Windtools rectangle minimap
-					MinimapBorder:SetPoint("TOPRIGHT", _G["MinimapBackdrop"] ,"TOPRIGHT", 12, 11)
-					MinimapBorder:SetPoint("BOTTOMLEFT", _G["MinimapBackdrop"] ,"BOTTOMLEFT", -12, -12)
-				end
+
+			if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
+				MinimapBorder:SetPoint("CENTER", _G["MinimapBackdrop"] ,"CENTER", 0, 0)
 			else
-				MinimapBorder:SetPoint("TOPRIGHT", _G["Minimap"] ,"TOPRIGHT", 0, 0)
-				MinimapBorder:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", 0, 0)
-				if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
-					MinimapBorder:SetPoint("BOTTOMLEFT", _G["Minimap"] ,"BOTTOMLEFT", 0, 0)
-				end
-				if IsAddOnLoaded("ElvUI_SLE") and E.private["sle"]["minimap"]["rectangle"] == true then --Shadow and Light Rectangle Minimap
-					MinimapBorder:SetPoint("TOPRIGHT", _G["Minimap"].backdrop ,"TOPRIGHT", 12, 11)
-					MinimapBorder:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", -13, -13)
-					if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
-						MinimapBorder:SetPoint("BOTTOMLEFT", _G["Minimap"].backdrop ,"BOTTOMLEFT", -11, -11)
-					end
-					local updatelocationpos = CreateFrame("Frame")
-					updatelocationpos:RegisterEvent("ZONE_CHANGED")
-					updatelocationpos:RegisterEvent("ZONE_CHANGED_INDOORS")
-					updatelocationpos:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-					updatelocationpos:RegisterEvent("PLAYER_ENTERING_WORLD")
-					updatelocationpos:RegisterEvent("MINIMAP_UPDATE_ZOOM")
-					updatelocationpos:SetScript("OnEvent", function()
-						_G.Minimap.location:ClearAllPoints()
-						_G.Minimap.location:SetPoint('TOP', _G.Minimap, 'TOP', 0, -15)
-					end)
-				elseif IsAddOnLoaded("ElvUI_WindTools") and E.db["WT"]["maps"]["rectangleMinimap"]["enable"] == true then --Windtools rectangle minimap
-					MinimapBorder:SetPoint("TOPRIGHT", _G["MinimapBackdrop"] ,"TOPRIGHT", 12, 11)
-					MinimapBorder:SetPoint("BOTTOMLEFT", _G["MinimapBackdrop"] ,"BOTTOMLEFT", -12, -12)
-				end
+				MinimapBorder:SetPoint("CENTER", _G["MMHolder"] ,"CENTER", 0, 0)
 			end
-			MinimapBorder:Show()
+
+			if IsAddOnLoaded("ElvUI_SLE") and E.private["sle"]["minimap"]["rectangle"] == true then --Shadow and Light Rectangle Minimap
+				rectangleminimapdetect:SetPoint("TOPRIGHT", _G["Minimap"].backdrop ,"TOPRIGHT", 0, 0)
+				rectangleminimapdetect:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", 0, 0)
+
+				MinimapBorder:SetPoint("CENTER", rectangleminimapdetect ,"CENTER", 0, 0)
+				if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
+					MinimapBorder:SetPoint("CENTER", _G["Minimap"].backdrop.Center ,"CENTER", 0, 0)
+				end
+				updatelocationpos:RegisterEvent("ZONE_CHANGED")
+				updatelocationpos:RegisterEvent("ZONE_CHANGED_INDOORS")
+				updatelocationpos:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+				updatelocationpos:RegisterEvent("PLAYER_ENTERING_WORLD")
+				updatelocationpos:RegisterEvent("MINIMAP_UPDATE_ZOOM")
+				updatelocationpos:SetScript("OnEvent", function()
+					_G.Minimap.location:ClearAllPoints()
+					_G.Minimap.location:SetPoint('TOP', _G.Minimap, 'TOP', 0, -15)
+				end)
+			elseif IsAddOnLoaded("ElvUI_WindTools") and E.db["WT"]["maps"]["rectangleMinimap"]["enable"] == true then --Windtools rectangle minimap
+				MinimapBorder:SetPoint("CENTER", _G["MinimapBackdrop"] ,"CENTER", 0, 0)
+
+				updatelocationpos:RegisterEvent("ZONE_CHANGED")
+				updatelocationpos:RegisterEvent("ZONE_CHANGED_INDOORS")
+				updatelocationpos:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+				updatelocationpos:RegisterEvent("PLAYER_ENTERING_WORLD")
+				updatelocationpos:RegisterEvent("MINIMAP_UPDATE_ZOOM")
+				updatelocationpos:SetScript("OnEvent", function()
+					_G.Minimap.location:ClearAllPoints()
+					_G.Minimap.location:SetPoint('TOP', _G.Minimap, 'TOP', 0, -15)
+				end)
+			end
 		end
 
 		--chat

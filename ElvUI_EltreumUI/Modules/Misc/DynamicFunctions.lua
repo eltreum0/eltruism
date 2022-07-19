@@ -376,6 +376,12 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.xfocus = 224
 				E.db.ElvUI_EltreumUI.borders.yfocus = 72
 				E.db.ElvUI_EltreumUI.borders.bossborder = true
+
+				if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
+					E.db.ElvUI_EltreumUI.borders.minimapsizey = 225
+				else
+					E.db.ElvUI_EltreumUI.borders.minimapsizey = 247
+				end
 			end
 
 			E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,-1"
@@ -422,6 +428,7 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.raid40sizey = 63
 				E.db.ElvUI_EltreumUI.borders.xcasttarget = 272
 				E.db.ElvUI_EltreumUI.borders.ycasttarget = 58
+				E.db.ElvUI_EltreumUI.borders.petsizex = 194
 			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
 				E.db["actionbar"]["bar1"]["buttonSpacing"] = 5
 				E.db["actionbar"]["bar2"]["buttonSpacing"] = 5
@@ -455,6 +462,7 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.raid40sizey = 68
 				E.db.ElvUI_EltreumUI.borders.xcasttarget = 296
 				E.db.ElvUI_EltreumUI.borders.ycasttarget = 58
+				E.db.ElvUI_EltreumUI.borders.petsizex = 130
 			end
 		elseif not E.db.ElvUI_EltreumUI.borders.borders then
 			E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,0"
