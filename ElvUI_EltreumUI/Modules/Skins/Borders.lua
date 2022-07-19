@@ -21,27 +21,12 @@ local classcolorreaction = {
 	["NPCHOSTILE"] = {r1 = 0.8, g1 = 0, b1 = 0},
 }
 
-local targetborder
-local targettargetborder
-local targetcastbarborder
-local bordertexture
-local classcolor
-local focusborder
-local bossborder
-local barborder1
-local barborder2
-local barborder3
-local barborder4
-local barborder5
-local barborder6
-local powerbarborder
-local MinimapBorder
-local LeftChatBorder
-local RightChatBorder
-local auraborder
+local targetborder,targettargetborder,targetcastbarborder,petborder
+local bordertexture,classcolor,focusborder,bossborder,powerbarborder
+local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6
+local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder
 local rectangleminimapdetect = CreateFrame("FRAME")
 local updatelocationpos = CreateFrame("Frame")
-local petborder
 
 --Borders on frames
 function ElvUI_EltreumUI:Borders()
