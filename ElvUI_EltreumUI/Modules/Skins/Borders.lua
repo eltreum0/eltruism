@@ -28,7 +28,12 @@ local bordertexture
 local classcolor
 local focusborder
 local bossborder
-local barborder
+local barborder1
+local barborder2
+local barborder3
+local barborder4
+local barborder5
+local barborder6
 local powerbarborder
 local MinimapBorder
 local Minimapsizex, Minimapsizey
@@ -400,24 +405,24 @@ function ElvUI_EltreumUI:Borders()
 				local function createbar1borders()
 					for i,v in pairs(borders1) do
 						if not _G["EltruismAB1Border"..i] then
-							barborder = CreateFrame("Frame", "EltruismAB1Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
+							barborder1 = CreateFrame("Frame", "EltruismAB1Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
 						else
-							barborder = _G["EltruismAB1Border"..i]
+							barborder1 = _G["EltruismAB1Border"..i]
 						end
-						barborder:SetSize(E.db.ElvUI_EltreumUI.borders.bar1xborder, E.db.ElvUI_EltreumUI.borders.bar1yborder)
-						barborder:SetPoint("CENTER", v, "CENTER")
-						barborder:SetBackdrop({
+						barborder1:SetSize(E.db.ElvUI_EltreumUI.borders.bar1xborder, E.db.ElvUI_EltreumUI.borders.bar1yborder)
+						barborder1:SetPoint("CENTER", v, "CENTER")
+						barborder1:SetBackdrop({
 						edgeFile = bordertexture,
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
-						barborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						barborder1:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					end
 				end
 				createbar1borders()
 			end
 
 			--bar2
-			if E.db.ElvUI_EltreumUI.borders.bar2borders and E.db.actionbar.bar2.enabled and not self.abboderscreatedbar2 then
+			if E.db.ElvUI_EltreumUI.borders.bar2borders and E.db.actionbar.bar2.enabled then
 				local borders2 = {}
 				for i = 1,12 do
 					table.insert(borders2, _G["ElvUI_Bar2Button"..i])
@@ -425,25 +430,24 @@ function ElvUI_EltreumUI:Borders()
 				local function createbar2borders()
 					for i,v in pairs(borders2) do
 						if not _G["EltruismAB2Border"..i] then
-							barborder = CreateFrame("Frame", "EltruismAB2Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
+							barborder2 = CreateFrame("Frame", "EltruismAB2Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
 						else
-							barborder = _G["EltruismAB2Border"..i]
+							barborder2 = _G["EltruismAB2Border"..i]
 						end
-						barborder:SetSize(E.db.ElvUI_EltreumUI.borders.bar2xborder, E.db.ElvUI_EltreumUI.borders.bar2yborder)
-						barborder:SetPoint("CENTER", v, "CENTER")
-						barborder:SetBackdrop({
+						barborder2:SetSize(E.db.ElvUI_EltreumUI.borders.bar2xborder, E.db.ElvUI_EltreumUI.borders.bar2yborder)
+						barborder2:SetPoint("CENTER", v, "CENTER")
+						barborder2:SetBackdrop({
 						edgeFile = bordertexture,
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
-						barborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						barborder2:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					end
-					self.abboderscreatedbar2 = true
 				end
 				createbar2borders()
 			end
 
 			--bar3
-			if E.db.ElvUI_EltreumUI.borders.bar3borders and E.db.actionbar.bar3.enabled and not self.abboderscreatedbar3 then
+			if E.db.ElvUI_EltreumUI.borders.bar3borders and E.db.actionbar.bar3.enabled then
 				local borders3 = {}
 				for i = 1,12 do
 					table.insert(borders3, _G["ElvUI_Bar3Button"..i])
@@ -451,25 +455,24 @@ function ElvUI_EltreumUI:Borders()
 				local function createbar3borders()
 					for i,v in pairs(borders3) do
 						if not _G["EltruismAB3Border"..i] then
-							barborder = CreateFrame("Frame", "EltruismAB3Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
+							barborder3 = CreateFrame("Frame", "EltruismAB3Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
 						else
-							barborder = _G["EltruismAB3Border"..i]
+							barborder3 = _G["EltruismAB3Border"..i]
 						end
-						barborder:SetSize(E.db.ElvUI_EltreumUI.borders.bar3xborder, E.db.ElvUI_EltreumUI.borders.bar3yborder)
-						barborder:SetPoint("CENTER", v, "CENTER")
-						barborder:SetBackdrop({
+						barborder3:SetSize(E.db.ElvUI_EltreumUI.borders.bar3xborder, E.db.ElvUI_EltreumUI.borders.bar3yborder)
+						barborder3:SetPoint("CENTER", v, "CENTER")
+						barborder3:SetBackdrop({
 						edgeFile = bordertexture,
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
-						barborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						barborder3:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					end
-					self.abboderscreatedbar3 = true
 				end
 				createbar3borders()
 			end
 
 			--bar4
-			if E.db.ElvUI_EltreumUI.borders.bar4borders and E.db.actionbar.bar4.enabled and not self.abboderscreatedbar4 then
+			if E.db.ElvUI_EltreumUI.borders.bar4borders and E.db.actionbar.bar4.enabled then
 				local borders4 = {}
 				for i = 1,12 do
 					table.insert(borders4, _G["ElvUI_Bar4Button"..i])
@@ -477,25 +480,24 @@ function ElvUI_EltreumUI:Borders()
 				local function createbar4borders()
 					for i,v in pairs(borders4) do
 						if not _G["EltruismAB4Border"..i] then
-							barborder = CreateFrame("Frame", "EltruismAB4Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
+							barborder4 = CreateFrame("Frame", "EltruismAB4Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
 						else
-							barborder = _G["EltruismAB4Border"..i]
+							barborder4 = _G["EltruismAB4Border"..i]
 						end
-						barborder:SetSize(E.db.ElvUI_EltreumUI.borders.bar4xborder, E.db.ElvUI_EltreumUI.borders.bar4yborder)
-						barborder:SetPoint("CENTER", v, "CENTER")
-						barborder:SetBackdrop({
+						barborder4:SetSize(E.db.ElvUI_EltreumUI.borders.bar4xborder, E.db.ElvUI_EltreumUI.borders.bar4yborder)
+						barborder4:SetPoint("CENTER", v, "CENTER")
+						barborder4:SetBackdrop({
 						edgeFile = bordertexture,
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
-						barborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						barborder4:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					end
-					self.abboderscreatedbar4 = true
 				end
 				createbar4borders()
 			end
 
 			--bar5
-			if E.db.ElvUI_EltreumUI.borders.bar5borders and E.db.actionbar.bar5.enabled and not self.abboderscreatedbar5 then
+			if E.db.ElvUI_EltreumUI.borders.bar5borders and E.db.actionbar.bar5.enabled then
 				local borders5 = {}
 				for i = 1,12 do
 					table.insert(borders5, _G["ElvUI_Bar5Button"..i])
@@ -503,25 +505,24 @@ function ElvUI_EltreumUI:Borders()
 				local function createbar5borders()
 					for i,v in pairs(borders5) do
 						if not _G["EltruismAB5Border"..i] then
-							barborder = CreateFrame("Frame", "EltruismAB5Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
+							barborder5 = CreateFrame("Frame", "EltruismAB5Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
 						else
-							barborder = _G["EltruismAB5Border"..i]
+							barborder5 = _G["EltruismAB5Border"..i]
 						end
-						barborder:SetSize(E.db.ElvUI_EltreumUI.borders.bar5xborder, E.db.ElvUI_EltreumUI.borders.bar5yborder)
-						barborder:SetPoint("CENTER", v, "CENTER")
-						barborder:SetBackdrop({
+						barborder5:SetSize(E.db.ElvUI_EltreumUI.borders.bar5xborder, E.db.ElvUI_EltreumUI.borders.bar5yborder)
+						barborder5:SetPoint("CENTER", v, "CENTER")
+						barborder5:SetBackdrop({
 						edgeFile = bordertexture,
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
-						barborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						barborder5:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					end
-					self.abboderscreatedbar5 = true
 				end
 				createbar5borders()
 			end
 
 			--bar6
-			if E.db.ElvUI_EltreumUI.borders.bar6borders and E.db.actionbar.bar6.enabled and not self.abboderscreatedbar6 then
+			if E.db.ElvUI_EltreumUI.borders.bar6borders and E.db.actionbar.bar6.enabled then
 				local borders6 = {}
 				for i = 1,12 do
 					table.insert(borders6, _G["ElvUI_Bar6Button"..i])
@@ -529,19 +530,18 @@ function ElvUI_EltreumUI:Borders()
 				local function createbar6borders()
 					for i,v in pairs(borders6) do
 						if not _G["EltruismAB6Border"..i] then
-							barborder = CreateFrame("Frame", "EltruismAB6Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
+							barborder6 = CreateFrame("Frame", "EltruismAB6Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
 						else
-							barborder = _G["EltruismAB6Border"..i]
+							barborder6 = _G["EltruismAB6Border"..i]
 						end
-						barborder:SetSize(E.db.ElvUI_EltreumUI.borders.bar6xborder, E.db.ElvUI_EltreumUI.borders.bar6yborder)
-						barborder:SetPoint("CENTER", v, "CENTER")
-						barborder:SetBackdrop({
+						barborder6:SetSize(E.db.ElvUI_EltreumUI.borders.bar6xborder, E.db.ElvUI_EltreumUI.borders.bar6yborder)
+						barborder6:SetPoint("CENTER", v, "CENTER")
+						barborder6:SetBackdrop({
 						edgeFile = bordertexture,
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
-						barborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						barborder6:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					end
-					self.abboderscreatedbar6 = true
 				end
 				createbar6borders()
 			end
