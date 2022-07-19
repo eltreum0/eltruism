@@ -29,7 +29,12 @@ function ElvUI_EltreumUI:UpdateSettings()
 	-- Gradient/Unitframe stuff
 	E.db.ElvUI_EltreumUI.gradientmode.texture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar = true
+	E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbarinterrupted = true
+	E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbarnoninterruptible = true
 	E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar = true
+	E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbarinterrupted = true
+	E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbarnoninterruptible = true
+
 	E.db.ElvUI_EltreumUI.gradientmode.gradientXP = true
 	E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha = 0.7

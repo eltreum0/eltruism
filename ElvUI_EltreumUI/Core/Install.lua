@@ -100,7 +100,7 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option2:SetText(L["Dark Mode"])
 			PluginInstallFrame.Option3:Enable()
 			PluginInstallFrame.Option3:Show()
-			PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:GradientMode() end)
+			PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:GradientMode() E.db["unitframe"]["colors"]["castClassColor"] = false end)
 			PluginInstallFrame.Option3:SetText(L["Gradient Mode"])
 			PluginInstallFrame.Option4:Enable()
 			PluginInstallFrame.Option4:Show()

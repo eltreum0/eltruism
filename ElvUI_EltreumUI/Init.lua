@@ -229,7 +229,9 @@ end
 function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	ElvUI_EltreumUI:NamePlateOptions()
 	ElvUI_EltreumUI:NameplatePower()
-	ElvUI_EltreumUI:BordersTargetChanged()
+	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
+		ElvUI_EltreumUI:BordersTargetChanged()
+	end
 end
 
 function ElvUI_EltreumUI:CHAT_MSG_LOOT()
@@ -266,6 +268,7 @@ function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 			ElvUI_EltreumUI:UpdateNPwithoutBar()
 		end
 		if E.db.ElvUI_EltreumUI.borders.borders then
+			ElvUI_EltreumUI:ActionbarBorderAdjust()
 			ElvUI_EltreumUI:Borders()
 		end
 	end
