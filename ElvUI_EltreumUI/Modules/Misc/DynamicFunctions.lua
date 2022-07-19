@@ -376,6 +376,12 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.xfocus = 224
 				E.db.ElvUI_EltreumUI.borders.yfocus = 72
 				E.db.ElvUI_EltreumUI.borders.bossborder = true
+
+				if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
+					E.db.ElvUI_EltreumUI.borders.minimapsizey = 225
+				else
+					E.db.ElvUI_EltreumUI.borders.minimapsizey = 247
+				end
 			end
 
 			E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,-1"
