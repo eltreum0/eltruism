@@ -96,7 +96,7 @@ function ElvUI_EltreumUI:Borders()
 					playerborder = _G["EltruismPlayerBorder"]
 				end
 				playerborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayer, E.db.ElvUI_EltreumUI.borders.yplayer)
-				if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
+				if E.db["unitframe"]["units"]["player"]["power"]["width"] == "spaced" then
 					playerborder:SetPoint("CENTER", _G.ElvUF_Player_HealthBar, "CENTER", 0, 0)
 				else
 					playerborder:SetPoint("CENTER", _G.ElvUF_Player, "CENTER", 0, 0)
@@ -144,7 +144,7 @@ function ElvUI_EltreumUI:Borders()
 					targetborder = _G["EltruismTargetBorder"]
 				end
 				targetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xtarget, E.db.ElvUI_EltreumUI.borders.ytarget)
-				if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
+				if E.db["unitframe"]["units"]["target"]["power"]["width"] == "spaced" then
 					targetborder:SetPoint("CENTER", _G.ElvUF_Target_HealthBar, "CENTER", 0 ,0)
 				else
 					targetborder:SetPoint("CENTER", _G.ElvUF_Target, "CENTER", 0 ,0)
@@ -192,7 +192,7 @@ function ElvUI_EltreumUI:Borders()
 					targettargetborder = _G["EltruismTargetTargetBorder"]
 				end
 				targettargetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xtargettarget, E.db.ElvUI_EltreumUI.borders.ytargettarget)
-				if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
+				if E.db["unitframe"]["units"]["targettarget"]["power"]["width"] == "spaced" then
 					targettargetborder:SetPoint("CENTER", _G.ElvUF_TargetTarget_HealthBar, "CENTER", 0 ,0)
 				else
 					targettargetborder:SetPoint("CENTER", _G.ElvUF_TargetTarget, "CENTER", 0 ,0)
@@ -351,7 +351,7 @@ function ElvUI_EltreumUI:Borders()
 					focusborder = _G["EltruismFocusBorder"]
 				end
 				focusborder:SetSize(E.db.ElvUI_EltreumUI.borders.xfocus, E.db.ElvUI_EltreumUI.borders.yfocus)
-				if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
+				if E.db["unitframe"]["units"]["focus"]["power"]["width"] == "spaced" then
 					focusborder:SetPoint("CENTER", _G.ElvUF_Focus_HealthBar, "CENTER", 0, 0)
 				else
 					focusborder:SetPoint("CENTER", _G.ElvUF_Focus, "CENTER", 0, 0)
@@ -425,6 +425,7 @@ function ElvUI_EltreumUI:Borders()
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder1:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						barborder1:SetFrameLevel(1)
 					end
 				end
 				createbar1borders()
@@ -450,6 +451,7 @@ function ElvUI_EltreumUI:Borders()
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder2:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						barborder2:SetFrameLevel(1)
 					end
 				end
 				createbar2borders()
@@ -475,6 +477,7 @@ function ElvUI_EltreumUI:Borders()
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder3:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						barborder3:SetFrameLevel(1)
 					end
 				end
 				createbar3borders()
@@ -500,6 +503,7 @@ function ElvUI_EltreumUI:Borders()
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder4:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						barborder4:SetFrameLevel(1)
 					end
 				end
 				createbar4borders()
@@ -525,6 +529,7 @@ function ElvUI_EltreumUI:Borders()
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder5:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						barborder5:SetFrameLevel(1)
 					end
 				end
 				createbar5borders()
@@ -550,6 +555,7 @@ function ElvUI_EltreumUI:Borders()
 						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder6:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						barborder6:SetFrameLevel(1)
 					end
 				end
 				createbar6borders()
