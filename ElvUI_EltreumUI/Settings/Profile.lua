@@ -325,6 +325,24 @@ P.ElvUI_EltreumUI = {
 		raid40sizex = 140,
 
 		playertargetsize = 20,
+
+
+
+
+		playertargetcastsize = 20,
+		petsize = 20,
+		groupsize = 14,
+
+
+
+		focussize= 20,
+		bosssize = 20,
+		minimapsize = 15,
+		chatsize = 13,
+		aurasize = 13,
+
+
+
 		baredgesize = 13,
 
 		powerbarborder = false,

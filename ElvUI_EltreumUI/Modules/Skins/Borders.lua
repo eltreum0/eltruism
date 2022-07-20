@@ -120,7 +120,7 @@ function ElvUI_EltreumUI:Borders()
 				end
 				playercastbarborder:SetBackdrop({
 					edgeFile = bordertexture,
-					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetcastsize,
 				})
 				playercastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				playercastbarborder:SetFrameStrata("MEDIUM")
@@ -171,7 +171,7 @@ function ElvUI_EltreumUI:Borders()
 				end
 				targetcastbarborder:SetBackdrop({
 					edgeFile = bordertexture,
-					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetcastsize,
 				})
 				targetcastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				targetcastbarborder:SetFrameStrata("MEDIUM")
@@ -213,7 +213,7 @@ function ElvUI_EltreumUI:Borders()
 				end
 				petborder:SetBackdrop({
 					edgeFile = bordertexture,
-					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+					edgeSize = E.db.ElvUI_EltreumUI.borders.petsize,
 				})
 				petborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				petborder:SetFrameStrata("LOW")
@@ -237,7 +237,7 @@ function ElvUI_EltreumUI:Borders()
 						partyborder:SetPoint("CENTER", v, "CENTER")
 						partyborder:SetBackdrop({
 						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize+1,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
 						})
 						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
 							partyborder:SetBackdropBorderColor(1, 1, 1, 1)
@@ -276,7 +276,7 @@ function ElvUI_EltreumUI:Borders()
 						raidborder:SetPoint("CENTER", v, "CENTER")
 						raidborder:SetBackdrop({
 						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize+1,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
 						})
 						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
 							raidborder:SetBackdropBorderColor(1, 1, 1, 1)
@@ -317,7 +317,7 @@ function ElvUI_EltreumUI:Borders()
 						raidborder40:SetPoint("CENTER", v, "CENTER")
 						raidborder40:SetBackdrop({
 						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize+1,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
 						})
 						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
 							raidborder40:SetBackdropBorderColor(1, 1, 1, 1)
@@ -346,7 +346,7 @@ function ElvUI_EltreumUI:Borders()
 				end
 				focusborder:SetBackdrop({
 					edgeFile = bordertexture,
-					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+					edgeSize = E.db.ElvUI_EltreumUI.borders.focussize,
 				})
 				focusborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				focusborder:SetFrameStrata("LOW")
@@ -368,7 +368,7 @@ function ElvUI_EltreumUI:Borders()
 						bossborder:SetPoint("CENTER", frame, "CENTER")
 						bossborder:SetBackdrop({
 						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.bosssize,
 						})
 						if UnitExists("boss"..i) and E.db.ElvUI_EltreumUI.borders.classcolor == true then
 							local reactionboss= UnitReaction("player", "boss"..i)
@@ -579,7 +579,7 @@ function ElvUI_EltreumUI:Borders()
 			MinimapBorder:SetBackdrop({
 				edgeFile = bordertexture,
 				--edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize, --13
-				edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize + 2,
+				edgeSize = E.db.ElvUI_EltreumUI.borders.minimapsize,
 			})
 			MinimapBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			MinimapBorder:SetFrameStrata("MEDIUM")
@@ -635,7 +635,7 @@ function ElvUI_EltreumUI:Borders()
 			LeftChatBorder:SetPoint("CENTER", _G["LeftChatMover"] ,"CENTER")
 			LeftChatBorder:SetBackdrop({
 				edgeFile = bordertexture,
-				edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize, --13
+				edgeSize = E.db.ElvUI_EltreumUI.borders.chatsize, --13
 			})
 			LeftChatBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			LeftChatBorder:SetFrameStrata("MEDIUM")
@@ -651,7 +651,7 @@ function ElvUI_EltreumUI:Borders()
 			RightChatBorder:SetPoint("CENTER", _G["RightChatMover"] ,"CENTER")
 			RightChatBorder:SetBackdrop({
 				edgeFile = bordertexture,
-				edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize, --13
+				edgeSize = E.db.ElvUI_EltreumUI.borders.chatsize, --13
 			})
 			RightChatBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			RightChatBorder:SetFrameStrata("MEDIUM")
@@ -697,7 +697,7 @@ function ElvUI_EltreumUI:AuraBorders(button)
 				auraborder:SetPoint("CENTER", v, "CENTER", 0, 0)
 				auraborder:SetBackdrop({
 				edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
-				edgeSize = 13,
+				edgeSize = E.db.ElvUI_EltreumUI.borders.aurasize,
 				})
 				auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				auraborder:SetFrameStrata("MEDIUM")
