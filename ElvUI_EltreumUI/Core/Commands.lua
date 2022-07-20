@@ -68,7 +68,12 @@ function ElvUI_EltreumUI:RunCommands(message)
 			ElvUI_EltreumUI:DarkMode() E:StaticPopup_Show('CONFIG_RL')
 		end
 	elseif message == 'gradient' then
-		ElvUI_EltreumUI:GradientMode() E:StaticPopup_Show('CONFIG_RL')
+		if E.db.ElvUI_EltreumUI.gradientmode.enable == false then
+			ElvUI_EltreumUI:GradientMode() E:StaticPopup_Show('CONFIG_RL')
+		else
+			E.db.ElvUI_EltreumUI.gradientmode.enable = true E:StaticPopup_Show('CONFIG_RL')
+			ElvUI_EltreumUI:Print("Gradient Disabled, please reload")
+		end
 	elseif message == 'background' then
 		if E.db.ElvUI_EltreumUI.greybackground == true then
 			ElvUI_EltreumUI:BlackBg()
