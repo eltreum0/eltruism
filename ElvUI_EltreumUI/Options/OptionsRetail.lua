@@ -2221,7 +2221,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.aurasize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasize = value ElvUI_EltreumUI:Borders() end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasize = value end, --requires a reload to apply because of how auras work
 							},
 							borderchatsize = {
 								type = 'range',
