@@ -257,13 +257,13 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 					if E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar then
 						castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 						if E.db.unitframe.units.player.castbar.reverse == true then
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor and E.db["unitframe"]["colors"]["castClassColor"] == true then
+							if E.db.ElvUI_EltreumUI.gradientmode.customcolor and E.db["unitframe"]["colors"]["castClassColor"] == false then
 								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1)
 							else
 								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients[E.myclass]["r2"], unitframegradients[E.myclass]["g2"], unitframegradients[E.myclass]["b2"], unitframegradients[E.myclass]["r1"], unitframegradients[E.myclass]["g1"], unitframegradients[E.myclass]["b1"])
 							end
 						elseif E.db.unitframe.units.player.castbar.reverse == false then
-							if E.db.ElvUI_EltreumUI.gradientmode.customcolor and E.db["unitframe"]["colors"]["castClassColor"] == true then
+							if E.db.ElvUI_EltreumUI.gradientmode.customcolor and E.db["unitframe"]["colors"]["castClassColor"] == false then
 								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2)
 							else
 								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients[E.myclass]["r1"], unitframegradients[E.myclass]["g1"], unitframegradients[E.myclass]["b1"], unitframegradients[E.myclass]["r2"], unitframegradients[E.myclass]["g2"], unitframegradients[E.myclass]["b2"])
