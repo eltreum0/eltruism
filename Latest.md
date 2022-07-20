@@ -12,7 +12,7 @@ Updated install, adding borders and making Light/Dark a toggle\
 Updated gradient chat command to be a toggle, typing it while gradient is active will disable gradient\
 Updated gradient function, splitting player and target castbars\
 Updated some shadows to not apply when borders are enabled since borders would hide them\
-Updated borders to apply settings when changing them in Eltruism without requiring a reload, but a reload is still recommended after configuring them\
+Updated borders function to update without a reload\
 Updated borders to check for ElvUI Action Bar Masks being loaded\
 Updated auto adjust borders function to apply when changing specs in retail if the profiles are both from Eltruism\
 Fixed target class statusbar textures options in nameplates, which was applying player class instead of target\
