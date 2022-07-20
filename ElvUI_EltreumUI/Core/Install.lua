@@ -73,7 +73,7 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option3:Enable()
 			PluginInstallFrame.Option3:Show()
 			PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AutoScale() end)
-			if E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' then
+			if E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' then
 				PluginInstallFrame.Option4:SetText(L["Alternative\nFrames"])
 				PluginInstallFrame.Option4:Enable()
 				PluginInstallFrame.Option4:Show()
