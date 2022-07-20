@@ -173,9 +173,6 @@ function ElvUI_EltreumUI:NamePlateOptions()
 			end
 		else
 			E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = false
-			--[[if E.global.nameplates.filters.EltreumRare then
-				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["border"] = false
-			end]]
 		end
 		if E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
 			if E.db.ElvUI_EltreumUI.nptextureversion == "V1" then
@@ -224,6 +221,60 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				end
 			end
 		end
+
+		--general disable/enable
+		if (not E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture and not E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture and not E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate and not E.db.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow) then
+			if E.global.nameplates.filters.EltreumRare and E.db["nameplates"]["filters"]["EltreumRare"] then
+				E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = false
+			end
+			if E.global.nameplates.filters.EltreumSpellsteal and E.db["nameplates"]["filters"]["EltreumSpellsteal"] then
+				E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
+			end
+			if E.global.nameplates.filters.EltreumLevel and E.db["nameplates"]["filters"]["EltreumLevel"] then
+				E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
+			end
+			if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
+				E.db["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["enable"] = false
+			end
+			if E.global.nameplates.filters.EltreumInterrupt and E.db["nameplates"]["filters"]["EltreumInterrupt"] then
+				E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = false
+			end
+			if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] then
+				E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] = false
+			end
+			if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
+				E.db["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["enable"] = false
+			end
+			if E.global.nameplates.filters.EltreumTotems and E.db["nameplates"]["filters"]["EltreumTotems"] then
+				E.db["nameplates"]["filters"]["EltreumTotems"]["triggers"]["enable"] = false
+			end
+		else
+			if E.global.nameplates.filters.EltreumRare and E.db["nameplates"]["filters"]["EltreumRare"] then
+				E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
+			end
+			if E.global.nameplates.filters.EltreumSpellsteal and E.db["nameplates"]["filters"]["EltreumSpellsteal"] then
+				E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
+			end
+			if E.global.nameplates.filters.EltreumLevel and E.db["nameplates"]["filters"]["EltreumLevel"] then
+				E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
+			end
+			if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
+				E.db["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["enable"] = true
+			end
+			if E.global.nameplates.filters.EltreumInterrupt and E.db["nameplates"]["filters"]["EltreumInterrupt"] then
+				E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = true
+			end
+			if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] then
+				E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] = true
+			end
+			if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
+				E.db["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["enable"] = true
+			end
+			if E.global.nameplates.filters.EltreumTotems and E.db["nameplates"]["filters"]["EltreumTotems"] then
+				E.db["nameplates"]["filters"]["EltreumTotems"]["triggers"]["enable"] = true
+			end
+		end
+
 		--automatically hide classbar when targeting friendly targets
 		if E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide then
 			--add spec info for retail

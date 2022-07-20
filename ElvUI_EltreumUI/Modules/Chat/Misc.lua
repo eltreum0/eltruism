@@ -66,55 +66,44 @@ local function ColorSysMsgs(_, event, message, ...)
 			return false, gsub(message, "leave", "|cffB50909leave|r"), ...
 		end
 	end
-	local sizeString = ":12:12"
-	local roleIcons = {
-		TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
-		HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
-		DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', sizeString),
-	}
-	_G.INLINE_TANK_ICON = roleIcons.TANK
-	_G.INLINE_HEALER_ICON = roleIcons.HEALER
-	_G.INLINE_DAMAGER_ICON = roleIcons.DAMAGER
+
+	if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
+		local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
+		local roleIcons = {
+			TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
+			HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
+			DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', sizeString),
+		}
+		_G.INLINE_TANK_ICON = roleIcons.TANK
+		_G.INLINE_HEALER_ICON = roleIcons.HEALER
+		_G.INLINE_DAMAGER_ICON = roleIcons.DAMAGER
+	end
 end
 ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", ColorSysMsgs)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_INLINE_TOAST_ALERT", ColorSysMsgs)
 ChatFrame_AddMessageEventFilter("ROLE_CHANGED_INFORM", ColorSysMsgs)
 --ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", ColorSysMsgs) --this is for testing purposes
 
---party/raid role icons
-if IsAddOnLoaded("ElvUI_WindTools") then
-	local CT = WT:GetModule("ChatText")
-	function ElvUI_EltreumUI:RoleIcons()
-		local roleIcons = {
-			TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', ":12:12"),
-			HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', ":12:12"),
-			DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', ":12:12"),
-		}
-		CT.cache.blizzardRoleIcons.Tank = roleIcons.TANK
-		CT.cache.blizzardRoleIcons.Healer = roleIcons.HEALER
-		CT.cache.blizzardRoleIcons.DPS = roleIcons.DAMAGER
-	end
-	hooksecurefunc(CT, "UpdateRoleIcons", ElvUI_EltreumUI.RoleIcons)
-else
-	local CH = E:GetModule('Chat')
-	CH.RoleIcons = {
-		TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', ":12:12"),
-		HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', ":12:12"),
-		DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', ":12:12"),
-	}
-end
-
---icons in chat when party member swaps roles
+--icons in chat/UF when party member swaps roles
 function ElvUI_EltreumUI:ChatRoleSwapIcons()
-	local sizeString = ":12:12"
-	local roleIcons = {
-		TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
-		HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
-		DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', sizeString),
-	}
-	_G.INLINE_TANK_ICON = roleIcons.TANK
-	_G.INLINE_HEALER_ICON = roleIcons.HEALER
-	_G.INLINE_DAMAGER_ICON = roleIcons.DAMAGER
+	if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
+		if E.Retail then
+			local UF = E:GetModule('UnitFrames')
+				UF.RoleIconTextures = {
+				TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga",
+				HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga",
+				DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga"
+			}
+		end
+		if IsAddOnLoaded("ElvUI_SLE") then
+			local SLE = unpack(ElvUI_SLE)
+			SLE.rolePaths["Eltruism"] = {
+				TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga",
+				HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga",
+				DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga"
+			}
+		end
+	end
 end
 
 --hide talking head
@@ -141,4 +130,50 @@ function ElvUI_EltreumUI:EltruismHideTalkingHead()
 			end
 		end)
 	end
+end
+
+-- Replace Chat Icons (by abusing line reading order)
+if not IsAddOnLoaded("ElvUI_EltreumUI") then return end
+if not E.private then return end
+if not E.private.ElvUI_EltreumUI then return end
+if not E.private.ElvUI_EltreumUI.install_version then return end
+if not E.db then return end
+if not E.db.ElvUI_EltreumUI then return end
+if not E.db.ElvUI_EltreumUI.otherstuff then return end
+if not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then return end
+
+local CH = E:GetModule('Chat')
+local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
+
+local roleIcons = {
+	TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
+	HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
+	DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', sizeString),
+}
+
+_G.INLINE_TANK_ICON = roleIcons.TANK
+_G.INLINE_HEALER_ICON = roleIcons.HEALER
+_G.INLINE_DAMAGER_ICON = roleIcons.DAMAGER
+
+CH.RoleIcons = {
+	TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
+	HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
+	DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', sizeString),
+}
+
+if IsAddOnLoaded("ElvUI_WindTools") then
+	local CT = WT:GetModule("ChatText")
+	if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
+		CT.cache.blizzardRoleIcons.Tank = roleIcons.TANK
+		CT.cache.blizzardRoleIcons.Healer = roleIcons.HEALER
+		CT.cache.blizzardRoleIcons.DPS = roleIcons.DAMAGER
+	end
+	local function RoleIcons()
+		if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
+			CT.cache.blizzardRoleIcons.Tank = roleIcons.TANK
+			CT.cache.blizzardRoleIcons.Healer = roleIcons.HEALER
+			CT.cache.blizzardRoleIcons.DPS = roleIcons.DAMAGER
+		end
+	end
+	hooksecurefunc(CT, "UpdateRoleIcons", RoleIcons)
 end

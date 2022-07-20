@@ -64,6 +64,7 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db.ElvUI_EltreumUI.darkmode = true
 		E.db.ElvUI_EltreumUI.UFmodifications = true
 		E.db.ElvUI_EltreumUI.gradientmode.enable = false
+		E.db.ElvUI_EltreumUI.uftextureversion = "V2"
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
@@ -137,11 +138,24 @@ function ElvUI_EltreumUI:LightMode()
 		E.db.ElvUI_EltreumUI.darkmode = false
 		E.db.ElvUI_EltreumUI.gradientmode.enable = false
 		E.db.ElvUI_EltreumUI.UFmodifications = true
+		E.db.ElvUI_EltreumUI.uftextureversion = "V2"
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
 		ElvUI_EltreumUI:Print("Unitframes set to Light Mode")
 	end
+end
+
+
+function ElvUI_EltreumUI:ColorModes()
+	if E.db.ElvUI_EltreumUI.lightmode == false and E.db.ElvUI_EltreumUI.darkmode == false then
+		ElvUI_EltreumUI:LightMode()
+	elseif E.db.ElvUI_EltreumUI.lightmode == true and E.db.ElvUI_EltreumUI.darkmode == false then
+		ElvUI_EltreumUI:DarkMode()
+	elseif E.db.ElvUI_EltreumUI.darkmode == true and E.db.ElvUI_EltreumUI.lightmode == false then
+		ElvUI_EltreumUI:LightMode()
+	end
+	ElvUI_EltreumUI:GradientColorTableUpdate()
 end
 
 function ElvUI_EltreumUI:GradientMode()

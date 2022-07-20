@@ -422,7 +422,6 @@ P.ElvUI_EltreumUI = {
 	darkpowercolor = false,
 	greybackground = false,
 
-
 	gradientmode = {
 		enable = false,
 		orientation = "HORIZONTAL",
@@ -678,7 +677,8 @@ P.ElvUI_EltreumUI = {
 		width = 3,
 	},
 
-	--[[media = {
+	--[[
+	media = {
 		font = false,
 		border = false,
 		statusbar = false,
@@ -695,6 +695,7 @@ P.ElvUI_EltreumUI = {
 	},
 
 	otherstuff ={
+		eltruismroleicons = false,
 		alternativegroups = false,
 		gamemenu = false,
 		mailsoundenable = false,

@@ -1320,6 +1320,20 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.gradientXP end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.gradientXP = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							headerroleicon = {
+								order = 55,
+								type = "description",
+								name = L["Replace role icons with Eltruism role icons"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							roleiconsenable = {
+								order = 56,
+								type = 'toggle',
+								name = L["Enable"],
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
 						},
 					},
 					character = {
