@@ -1,1 +1,2 @@
 V2 statusbars textures are inspired by Vxt, anna popanna and Blinkii's mmediatag texture "n38", these textures were modified to fit each class.
+V3 statusbars were suggested and created by Blinkii, with shading edited by Eltreum
