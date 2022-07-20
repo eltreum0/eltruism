@@ -961,3 +961,6 @@ L["Enable Gradient colors for Target Castbar (Non Interruptible)"] = true
 L["Target Castbar (Interrupted)"] = true
 L["Enable for Target Castbar (Interrupted)"] = true
 L["Enable Gradient colors for Target Castbar (Interrupted)"] = true
+L["Version 3"] = true
+L["Debuff Timer"] = true
+L["Time at which the glow will start"] = true
