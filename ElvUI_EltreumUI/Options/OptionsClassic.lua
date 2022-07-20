@@ -4341,6 +4341,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = {
 									["V1"] = L["Version 1"],
 									["V2"] = L["Version 2"],
+									["V3"] = L["Version 3"],
 								},
 								style = 'radio',
 								disabled = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.UFmodifications end,
@@ -5762,6 +5763,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = {
 									["V1"] = L["Version 1"],
 									["V2"] = L["Version 2"],
+									["V3"] = L["Version 3"],
 								},
 								style = 'radio',
 								disabled = function() return (not E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture and not E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture) end,
