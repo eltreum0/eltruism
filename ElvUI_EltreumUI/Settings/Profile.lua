@@ -171,6 +171,7 @@ P.ElvUI_EltreumUI = {
 		colorclass = true,
 		colorclasspet = true,
 		colorclassnp = true,
+		numberdebuff = 4,
 		numberpixel = 9,
 		frequencypixel = 1,
 		lengthpixel = 3,

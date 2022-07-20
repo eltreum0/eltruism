@@ -1568,7 +1568,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
-			actionbars = {
+			customglow = {
 				type = 'group',
 				name = L["Custom Glow"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\customglow',
@@ -1597,18 +1597,30 @@ function ElvUI_EltreumUI:Configtable()
 							enablepet = {
 								type = 'toggle',
 								name = L["Enable on Pet Bar"],
-								order = 2,
+								order = 3,
 								get = function() return E.db.ElvUI_EltreumUI.glow.enablepet end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.glow.enablepet = value end,
 							},
 							enablenp = {
-								order = 2,
+								order = 4,
 								type = 'toggle',
 								name = L["Enable on Nameplate"],
 								desc = L["Add a glow when buffs or debuffs are expiring on nameplates"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.widenameplate.npglow end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.widenameplate.npglow = value end,
+							},
+							debuffduration = {
+								type = 'range',
+								name = L["Debuff Timer"],
+								desc = L["Time at which the glow will start"],
+								order = 5,
+								min = 1,
+								max = 30,
+								step = 1,
+								width = "double",
+								get = function() return E.db.ElvUI_EltreumUI.glow.numberdebuff end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.glow.numberdebuff = value end,
 							},
 							headerline1 = {
 								order = 9,

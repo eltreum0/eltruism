@@ -2274,7 +2274,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
-			actionbars = {
+			customglow = {
 				type = 'group',
 				name = L["Custom Glow"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\customglow',
@@ -2304,13 +2304,13 @@ function ElvUI_EltreumUI:Configtable()
 							enablepet = {
 								type = 'toggle',
 								name = L["Enable on Pet Bar"],
-								order = 2,
+								order = 3,
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.glow.enablepet end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.glow.enablepet = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							enablenp = {
-								order = 2,
+								order = 4,
 								type = 'toggle',
 								name = L["Enable on Nameplate"],
 								desc = L["Add a glow when buffs or debuffs are expiring on nameplates"],
@@ -2318,8 +2318,20 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.widenameplate.npglow end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.widenameplate.npglow = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							debuffduration = {
+								type = 'range',
+								name = L["Debuff Timer"],
+								desc = L["Time at which the glow will start"],
+								order = 5,
+								min = 1,
+								max = 30,
+								step = 1,
+								width = "double",
+								get = function() return E.db.ElvUI_EltreumUI.glow.numberdebuff end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.glow.numberdebuff = value end,
+							},
 							headerlinetotemsglow = {
-								order = 3,
+								order = 6,
 								type = "description",
 								name = L["Shaman Totems"],
 								width = 'full',
@@ -2328,7 +2340,7 @@ function ElvUI_EltreumUI:Configtable()
 							enabletotem = {
 								type = 'toggle',
 								name = L["Enable on Shaman Totems"],
-								order = 4,
+								order = 7,
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.enabletotem end,
@@ -2337,7 +2349,7 @@ function ElvUI_EltreumUI:Configtable()
 							enabletotem1 = {
 								type = 'toggle',
 								name = L["Enable on Shaman Fire Totem"],
-								order = 5,
+								order = 8,
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.totem1 end,
@@ -2346,7 +2358,7 @@ function ElvUI_EltreumUI:Configtable()
 							enabletotem2 = {
 								type = 'toggle',
 								name = L["Enable on Shaman Earth Totem"],
-								order = 6,
+								order = 9,
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.totem2 end,
@@ -2355,7 +2367,7 @@ function ElvUI_EltreumUI:Configtable()
 							enabletotem3 = {
 								type = 'toggle',
 								name = L["Enable on Shaman Water Totem"],
-								order = 7,
+								order = 10,
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.totem3 end,
@@ -2364,14 +2376,14 @@ function ElvUI_EltreumUI:Configtable()
 							enabletotem4 = {
 								type = 'toggle',
 								name = L["Enable on Shaman Air Totem"],
-								order = 8,
+								order = 11,
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.totem4 end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.glow.totem4 = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							headerline1 = {
-								order = 9,
+								order = 12,
 								type = "description",
 								name = L["Select a Type"],
 								width = 'full',
@@ -2380,7 +2392,7 @@ function ElvUI_EltreumUI:Configtable()
 							autocast = {
 								type = 'toggle',
 								name = L["Autocast"],
-								order = 10,
+								order = 13,
 								desc = L["Adds an autocast style glow using class color"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.glow.pixel or E.db.ElvUI_EltreumUI.glow.blizzard end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.autocast end,
@@ -2389,7 +2401,7 @@ function ElvUI_EltreumUI:Configtable()
 							pixel = {
 								type = 'toggle',
 								name = L["Pixel"],
-								order = 10,
+								order = 13,
 								desc = L["Adds a pixel style glow using class color"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.blizzard end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.pixel end,
@@ -2398,21 +2410,21 @@ function ElvUI_EltreumUI:Configtable()
 							blizzard = {
 								type = 'toggle',
 								name = 'Blizzard',
-								order = 10,
+								order = 13,
 								desc = L["Adds a Blizzard style glow using class color"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.pixel end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.blizzard end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.glow.blizzard = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							previewgap = {
-								order = 11,
+								order = 14,
 								type = "description",
 								name = L["Preview the Glow"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							preview ={
-								order = 12,
+								order = 15,
 								type = "execute",
 								name = L["Preview"],
 								desc = L["Preview the Glow, you will need to toggle it off and on to update the glow"],
