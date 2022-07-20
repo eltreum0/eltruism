@@ -538,6 +538,11 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 			end
+			if _G["ElvUI_BarPet"].backdrop then
+				if not _G["ElvUI_BarPet"].backdrop.shadow then
+					_G["ElvUI_BarPet"].backdrop:CreateShadow()
+				end
+			end
 
 			--stances
 			for i = 1, 12 do
