@@ -155,6 +155,7 @@ function ElvUI_EltreumUI:ColorModes()
 	elseif E.db.ElvUI_EltreumUI.darkmode == true and E.db.ElvUI_EltreumUI.lightmode == false then
 		ElvUI_EltreumUI:LightMode()
 	end
+	ElvUI_EltreumUI:GradientColorTableUpdate()
 end
 
 function ElvUI_EltreumUI:GradientMode()
