@@ -96,7 +96,12 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option1:SetText(L["Light Mode"].."\n"..L["Dark Mode"])
 			PluginInstallFrame.Option2:Enable()
 			PluginInstallFrame.Option2:Show()
-			PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:ActionbarBorderAdjust() ElvUI_EltreumUI:Borders() end)
+			PluginInstallFrame.Option2:SetScript('OnClick', function()
+				E.db.ElvUI_EltreumUI.borders.borders = true
+				E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
+				ElvUI_EltreumUI:ActionbarBorderAdjust()
+				ElvUI_EltreumUI:Borders()
+			end)
 			PluginInstallFrame.Option2:SetText(L["Borders"])
 			PluginInstallFrame.Option3:Enable()
 			PluginInstallFrame.Option3:Show()
