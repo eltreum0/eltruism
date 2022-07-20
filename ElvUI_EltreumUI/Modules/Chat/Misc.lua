@@ -134,7 +134,12 @@ end
 
 -- Replace Chat Icons (by abusing line reading order)
 if not IsAddOnLoaded("ElvUI_EltreumUI") then return end
+if not E.private then return end
+if not E.private.ElvUI_EltreumUI then return end
 if not E.private.ElvUI_EltreumUI.install_version then return end
+if not E.db then return end
+if not E.db.ElvUI_EltreumUI then return end
+if not E.db.ElvUI_EltreumUI.otherstuff then return end
 if not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then return end
 
 local CH = E:GetModule('Chat')
