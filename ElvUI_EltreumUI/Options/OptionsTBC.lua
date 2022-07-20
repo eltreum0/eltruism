@@ -3091,7 +3091,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.aurasize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasize = value ElvUI_EltreumUI:Borders() end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasize = value ElvUI_EltreumUI:AuraBorders() end,
 							},
 							borderchatsize = {
 								type = 'range',
@@ -3919,7 +3919,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 92,
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.auraborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.auraborder = value E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:Borders() end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.auraborder = value E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:AuraBorders() end,
 							},
 							aurabordersizex = {
 								type = 'range',
@@ -3931,7 +3931,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborder end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.aurasizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasizex = value ElvUI_EltreumUI:Borders() end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasizex = value ElvUI_EltreumUI:AuraBorders() end,
 							},
 							aurabordersizey = {
 								type = 'range',
@@ -3943,7 +3943,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborder end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.aurasizey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasizey = value ElvUI_EltreumUI:Borders() end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasizey = value ElvUI_EltreumUI:AuraBorders() end,
 							},
 							headerline3 = {
 								order = 95,
