@@ -9,7 +9,7 @@ Added gradient and custom texture to Target of Target of Target\
 Added minimap border options to adjust its size\
 Added pet border options to adjust its size\
 Added V3 statusbar textures by Blinkii\
-Updated the nameplate debuff glow function and added an option to customize the timer, allowing the user to set when the glow should appear\
+Updated the nameplate debuff glow function and added an option to customize the timer\
 Updated install, adding borders and making Light/Dark a toggle\
 Updated gradient chat command to be a toggle, typing it while gradient is active will disable gradient\
 Updated gradient function, splitting player and target castbars\
