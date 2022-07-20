@@ -2223,7 +2223,6 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.borders.aurasize end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasize = value ElvUI_EltreumUI:Borders() end,
 							},
-
 							borderchatsize = {
 								type = 'range',
 								name = L["Chat Thickness"],
