@@ -2,6 +2,7 @@
 The future is uncertain
 ___
 ### 3.1.4
+Added more border size options\
 Added gradient to player and target castbars when non interruptable\
 Added gradient to player and target castbars when interrupted\
 Added gradient and custom texture to Target of Target of Target\

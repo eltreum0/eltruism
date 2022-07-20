@@ -1,5 +1,6 @@
 ### 3.1.4 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
+Added more border size options\
 Added gradient to player and target castbars when non interruptable\
 Added gradient to player and target castbars when interrupted\
 Added gradient and custom texture to Target of Target of Target\
