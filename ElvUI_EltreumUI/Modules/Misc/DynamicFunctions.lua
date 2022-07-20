@@ -353,6 +353,14 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.raid40borders = true
 				E.db.ElvUI_EltreumUI.borders.playertargetsize = 20
 				E.db.ElvUI_EltreumUI.borders.baredgesize = 13
+				E.db.ElvUI_EltreumUI.borders.playertargetcastsize = 20
+				E.db.ElvUI_EltreumUI.borders.petsize = 20
+				E.db.ElvUI_EltreumUI.borders.groupsize = 14
+				E.db.ElvUI_EltreumUI.borders.focussize = 20
+				E.db.ElvUI_EltreumUI.borders.bosssize = 20
+				E.db.ElvUI_EltreumUI.borders.minimapsize = 15
+				E.db.ElvUI_EltreumUI.borders.chatsize = 13
+				E.db.ElvUI_EltreumUI.borders.aurasize = 13
 				E.db.ElvUI_EltreumUI.borders.powerbarborder = false
 				E.db.ElvUI_EltreumUI.borders.powerbarsize = 4
 				E.db.ElvUI_EltreumUI.borders.xpowerbar = 138.8
