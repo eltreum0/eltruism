@@ -21,10 +21,10 @@ local classcolorreaction = {
 	["NPCHOSTILE"] = {r1 = 0.8, g1 = 0, b1 = 0},
 }
 
-local targetborder,targettargetborder,targetcastbarborder,petborder
-local bordertexture,classcolor,focusborder,bossborder,powerbarborder
-local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6
-local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder
+local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder
+local bordertexture,classcolor,focusborder,bossborder,powerbarborder, playercastbarborder
+local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder
+local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,raidborder,raidborder40
 local rectangleminimapdetect = CreateFrame("FRAME")
 local updatelocationpos = CreateFrame("Frame")
 
@@ -76,7 +76,6 @@ function ElvUI_EltreumUI:Borders()
 
 			--player
 			if E.db.ElvUI_EltreumUI.borders.playerborder and E.db.unitframe.units.player.enable then
-				local playerborder
 				if not _G["EltruismPlayerBorder"] then
 					playerborder = CreateFrame("Frame", "EltruismPlayerBorder", _G.ElvUF_Player_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
 				else
@@ -98,7 +97,6 @@ function ElvUI_EltreumUI:Borders()
 
 			--player castbar
 			if E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.unitframe.units.player.castbar.enable and not (E.db.unitframe.units.player.castbar.overlayOnFrame ~= "None")  then
-				local playercastbarborder
 				if not _G["EltruismPlayerCastBarBorder"] then
 					playercastbarborder = CreateFrame("Frame", "EltruismPlayerCastBarBorder", _G.ElvUF_Player_CastBar, BackdropTemplateMixin and "BackdropTemplate")
 				else
@@ -120,7 +118,7 @@ function ElvUI_EltreumUI:Borders()
 				end
 				playercastbarborder:SetBackdrop({
 					edgeFile = bordertexture,
-					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetcastsize,
 				})
 				playercastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				playercastbarborder:SetFrameStrata("MEDIUM")
@@ -171,7 +169,7 @@ function ElvUI_EltreumUI:Borders()
 				end
 				targetcastbarborder:SetBackdrop({
 					edgeFile = bordertexture,
-					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetcastsize,
 				})
 				targetcastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				targetcastbarborder:SetFrameStrata("MEDIUM")
@@ -213,7 +211,7 @@ function ElvUI_EltreumUI:Borders()
 				end
 				petborder:SetBackdrop({
 					edgeFile = bordertexture,
-					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+					edgeSize = E.db.ElvUI_EltreumUI.borders.petsize,
 				})
 				petborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				petborder:SetFrameStrata("LOW")
@@ -227,7 +225,6 @@ function ElvUI_EltreumUI:Borders()
 				end
 				local function createpartyborders()
 					for i,v in pairs(bordersparty) do
-						local partyborder
 						if not _G["EltruismPartyBorder"..i] then
 							partyborder = CreateFrame("Frame", "EltruismPartyBorder"..i, v, BackdropTemplateMixin and "BackdropTemplate")
 						else
@@ -237,7 +234,7 @@ function ElvUI_EltreumUI:Borders()
 						partyborder:SetPoint("CENTER", v, "CENTER")
 						partyborder:SetBackdrop({
 						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize+1,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
 						})
 						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
 							partyborder:SetBackdropBorderColor(1, 1, 1, 1)
@@ -265,7 +262,6 @@ function ElvUI_EltreumUI:Borders()
 				end
 				local function createraidborders()
 					for i,v in pairs(bordersraid) do
-						local raidborder
 						if not _G["EltruismRaid"..i.."Border"..i] then
 							raidborder = CreateFrame("Frame", "EltruismRaid"..i.."Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
 							--raidborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
@@ -276,7 +272,7 @@ function ElvUI_EltreumUI:Borders()
 						raidborder:SetPoint("CENTER", v, "CENTER")
 						raidborder:SetBackdrop({
 						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize+1,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
 						})
 						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
 							raidborder:SetBackdropBorderColor(1, 1, 1, 1)
@@ -306,7 +302,6 @@ function ElvUI_EltreumUI:Borders()
 				local function createraid40borders()
 					for i,v in pairs(bordersraid40) do
 						--local raidborder40 = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
-						local raidborder40
 						if not _G["Eltruism40Raid"..i.."Border"..i] then
 							raidborder40 = CreateFrame("Frame", "Eltruism40Raid"..i.."Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
 							--raidborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
@@ -317,7 +312,7 @@ function ElvUI_EltreumUI:Borders()
 						raidborder40:SetPoint("CENTER", v, "CENTER")
 						raidborder40:SetBackdrop({
 						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize+1,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
 						})
 						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
 							raidborder40:SetBackdropBorderColor(1, 1, 1, 1)
@@ -346,7 +341,7 @@ function ElvUI_EltreumUI:Borders()
 				end
 				focusborder:SetBackdrop({
 					edgeFile = bordertexture,
-					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+					edgeSize = E.db.ElvUI_EltreumUI.borders.focussize,
 				})
 				focusborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				focusborder:SetFrameStrata("LOW")
@@ -357,18 +352,18 @@ function ElvUI_EltreumUI:Borders()
 				local bordersboss = {}
 				for i = 1,8 do
 					local bossmembers = {_G["ElvUF_Boss"..i]}
-					for _, frame in pairs(bossmembers) do
+					for _, v in pairs(bossmembers) do
 						if not _G["EltruismBossBorder"..i] then
 							bossborder = CreateFrame("Frame", "EltruismBossBorder"..i, v, BackdropTemplateMixin and "BackdropTemplate")
 						else
 							bossborder = _G["EltruismBossBorder"..i]
 						end
-						bossborder = CreateFrame("Frame", "EltruismBossBorder"..i, frame, BackdropTemplateMixin and "BackdropTemplate")
+						bossborder = CreateFrame("Frame", "EltruismBossBorder"..i, v, BackdropTemplateMixin and "BackdropTemplate")
 						bossborder:SetSize(E.db.ElvUI_EltreumUI.borders.xboss, E.db.ElvUI_EltreumUI.borders.yboss)
-						bossborder:SetPoint("CENTER", frame, "CENTER")
+						bossborder:SetPoint("CENTER", v, "CENTER")
 						bossborder:SetBackdrop({
 						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.bosssize,
 						})
 						if UnitExists("boss"..i) and E.db.ElvUI_EltreumUI.borders.classcolor == true then
 							local reactionboss= UnitReaction("player", "boss"..i)
@@ -579,7 +574,7 @@ function ElvUI_EltreumUI:Borders()
 			MinimapBorder:SetBackdrop({
 				edgeFile = bordertexture,
 				--edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize, --13
-				edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize + 2,
+				edgeSize = E.db.ElvUI_EltreumUI.borders.minimapsize,
 			})
 			MinimapBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			MinimapBorder:SetFrameStrata("MEDIUM")
@@ -635,7 +630,7 @@ function ElvUI_EltreumUI:Borders()
 			LeftChatBorder:SetPoint("CENTER", _G["LeftChatMover"] ,"CENTER")
 			LeftChatBorder:SetBackdrop({
 				edgeFile = bordertexture,
-				edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize, --13
+				edgeSize = E.db.ElvUI_EltreumUI.borders.chatsize, --13
 			})
 			LeftChatBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			LeftChatBorder:SetFrameStrata("MEDIUM")
@@ -644,14 +639,14 @@ function ElvUI_EltreumUI:Borders()
 			if not _G["EltruismRightChatBorderFrame"] then
 				RightChatBorder = CreateFrame("Frame", "EltruismRightChatBorderFrame", _G["RightChatPanel"], BackdropTemplateMixin and "BackdropTemplate")
 			else
-				LeftChatBorder = _G["EltruismRightChatBorderFrame"]
+				RightChatBorder = _G["EltruismRightChatBorderFrame"]
 			end
 			RightChatBorder:SetParent(_G["RightChatPanel"].backdrop)
 			RightChatBorder:SetSize(E.db.ElvUI_EltreumUI.borders.rightchatborderx, E.db.ElvUI_EltreumUI.borders.rightchatbordery)
 			RightChatBorder:SetPoint("CENTER", _G["RightChatMover"] ,"CENTER")
 			RightChatBorder:SetBackdrop({
 				edgeFile = bordertexture,
-				edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize, --13
+				edgeSize = E.db.ElvUI_EltreumUI.borders.chatsize, --13
 			})
 			RightChatBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			RightChatBorder:SetFrameStrata("MEDIUM")
@@ -669,9 +664,9 @@ function ElvUI_EltreumUI:Borders()
 	end
 end
 
-function ElvUI_EltreumUI:AuraBorders(button)
+function ElvUI_EltreumUI:AuraBorders()
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable then
-		if not button then return end
+		--if not button then return end
 		if E.db.ElvUI_EltreumUI.borders.classcolor == true or E.db.ElvUI_EltreumUI.borders.classcolor == nil then
 			classcolor = E:ClassColor(E.myclass, true)
 		elseif E.db.ElvUI_EltreumUI.borders.classcolor == false then
@@ -688,16 +683,16 @@ function ElvUI_EltreumUI:AuraBorders(button)
 		end
 		local function createauraborders()
 			for i,v in pairs(auraborders) do
-				if not _G["EltruismBorder"..tostring(auraborders[i])] then
-					auraborder = CreateFrame("Frame", "EltruismBorder"..tostring(auraborders[i]), v, BackdropTemplateMixin and "BackdropTemplate")
+				if not _G["EltruismAuraBorder"..tostring(i)] then
+					auraborder = CreateFrame("Frame", "EltruismAuraBorder"..tostring(i), v, BackdropTemplateMixin and "BackdropTemplate")
 				else
-					auraborder = _G["EltruismBorder"..tostring(auraborders[i])]
+					auraborder = _G["EltruismAuraBorder"..tostring(i)]
 				end
 				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.aurasizex, E.db.ElvUI_EltreumUI.borders.aurasizey)
 				auraborder:SetPoint("CENTER", v, "CENTER", 0, 0)
 				auraborder:SetBackdrop({
 				edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
-				edgeSize = 13,
+				edgeSize = E.db.ElvUI_EltreumUI.borders.aurasize,
 				})
 				auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				auraborder:SetFrameStrata("MEDIUM")
@@ -843,3 +838,73 @@ updatetargettarget:SetScript("OnEvent", function()
 		ElvUI_EltreumUI:BordersTargetChanged()
 	end
 end)
+
+--Function to toggle borders during install
+function ElvUI_EltreumUI:ShowHideBorders()
+	local borderlist = {
+		playerborder,
+		targetborder,
+		targettargetborder,
+		targetcastbarborder,
+		petborder,
+		focusborder,
+		bossborder,
+		powerbarborder,
+		MinimapBorder,
+		LeftChatBorder,
+		RightChatBorder,
+		playercastbarborder,
+		partyborder,
+		raidborder,
+		raidborder40,
+	}
+	local barborderbutton
+	local barborderbuttonnumber
+	if E.db.ElvUI_EltreumUI.borders.borders == false then
+		E.db.ElvUI_EltreumUI.borders.borders = true
+		ElvUI_EltreumUI:ActionbarBorderAdjust()
+		ElvUI_EltreumUI:Borders()
+		for _, frame in pairs(borderlist) do
+			if frame ~= nil then
+				frame:Show()
+			end
+		end
+		for k = 1,6 do
+			barborderbutton  = "EltruismAB"..k.."Border"
+			for b = 1,12 do
+				barborderbuttonnumber = tostring(barborderbutton)..tostring(b)
+				if _G[barborderbuttonnumber] ~= nil then
+					_G[barborderbuttonnumber]:Show()
+				end
+			end
+		end
+		for aura = 1,40 do
+			if _G["EltruismAuraBorder"..aura] then
+				_G["EltruismAuraBorder"..aura]:Show()
+			end
+		end
+	elseif E.db.ElvUI_EltreumUI.borders.borders == true then
+		E.db.ElvUI_EltreumUI.borders.borders = false
+		ElvUI_EltreumUI:ActionbarBorderAdjust()
+		ElvUI_EltreumUI:Shadows()
+		for _, frame in pairs(borderlist) do
+			if frame ~= nil then
+				frame:Hide()
+			end
+		end
+		for k = 1,6 do
+			barborderbutton  = "EltruismAB"..k.."Border"
+			for b = 1,12 do
+				barborderbuttonnumber = tostring(barborderbutton)..tostring(b)
+				if _G[barborderbuttonnumber] ~= nil then
+					_G[barborderbuttonnumber]:Hide()
+				end
+			end
+		end
+		for aura = 1,40 do
+			if _G["EltruismAuraBorder"..aura] then
+				_G["EltruismAuraBorder"..aura]:Hide()
+			end
+		end
+	end
+end

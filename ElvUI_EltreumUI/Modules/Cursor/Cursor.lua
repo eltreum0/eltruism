@@ -2,21 +2,19 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local UnitCastingInfo = _G.UnitCastingInfo or _G.CastingInfo
 local UnitChannelInfo = _G.UnitChannelInfo or _G.ChannelInfo
---local next, unpack, floor, cos, sin, max, min = _G.next, _G.unpack, _G.floor, _G.cos, _G.sin, _G.max, _G.min
 local isRetail = _G.select(4, _G.GetBuildInfo())>=90000
-local cursorframe = _G.CreateFrame("Frame", "EltruismCursor")
 
 function ElvUI_EltreumUI:CursorInit()
 	if E.db.ElvUI_EltreumUI.cursor.enable then
 		ElvUI_EltreumUI:CastCursor()
 		ElvUI_EltreumUI:CurrentTypeofCursor()
 		if E.db.ElvUI_EltreumUI.cursor.cooldown then
-			--ElvUI_EltreumUI:CooldownInitialize() --starts cursor module with cooldowns
 			ElvUI_EltreumUI:CooldownEnable() --starts cursor module with cooldowns
 		end
 	end
 end
 
+local cursorframe = _G.CreateFrame("Frame", "EltruismCursor")
 local rootFrame = CreateFrame("Frame", "EltruismCursorRoot", UIParent)
 local Cast = CreateFrame("Frame", "EltruismCursorCast", rootFrame)
 local GCD = CreateFrame("Frame", "EltruismCursorGCD", rootFrame)
@@ -379,7 +377,7 @@ function ElvUI_EltreumUI:CastCursor()
 			if unit and unit ~= 'player' then
 				return
 			elseif unit and unit == 'player' then
-				local start, duration = GetSpellCooldown( isRetail and 61304 or spellID )
+				local start, duration = GetSpellCooldown( isRetail and 61304 or spellID ) --retest for tbc/classic season
 				if duration>0 and (isRetail or duration<=1.51) then
 					Start(self, GetTime() - start, duration )
 				end

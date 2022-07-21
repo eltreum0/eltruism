@@ -146,7 +146,6 @@ function ElvUI_EltreumUI:LightMode()
 	end
 end
 
-
 function ElvUI_EltreumUI:ColorModes()
 	if E.db.ElvUI_EltreumUI.lightmode == false and E.db.ElvUI_EltreumUI.darkmode == false then
 		ElvUI_EltreumUI:LightMode()

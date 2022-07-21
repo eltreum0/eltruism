@@ -171,6 +171,7 @@ P.ElvUI_EltreumUI = {
 		colorclass = true,
 		colorclasspet = true,
 		colorclassnp = true,
+		numberdebuff = 4,
 		numberpixel = 9,
 		frequencypixel = 1,
 		lengthpixel = 3,
@@ -324,6 +325,14 @@ P.ElvUI_EltreumUI = {
 		raid40sizex = 140,
 
 		playertargetsize = 20,
+		playertargetcastsize = 20,
+		petsize = 20,
+		groupsize = 14,
+		focussize = 20,
+		bosssize = 20,
+		minimapsize = 15,
+		chatsize = 13,
+		aurasize = 13,
 		baredgesize = 13,
 
 		powerbarborder = false,
