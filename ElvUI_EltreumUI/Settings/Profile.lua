@@ -436,6 +436,10 @@ P.ElvUI_EltreumUI = {
 		orientation = "HORIZONTAL",
 		texture = "Eltreum-Blank",
 		customcolor = false,
+
+		customcolorplayercastbar = false,
+		customcolortargetcastbar = false,
+
 		gradientXP = false,
 
 		enableplayer = true,

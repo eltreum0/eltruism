@@ -5223,12 +5223,9 @@ function ElvUI_EltreumUI:Configtable()
 							checkelvuiclasscolorcastbar = {
 								order = 7,
 								type = 'toggle',
-								name = L["Enable"].." "..L["Class Castbars"], --from elvui locale so dont need to translate i think
-								--width = 'double',
-								--disabled = function() return true end,
-								--disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
-								get = function() return E.db.unitframe.colors.castClassColor end,
-								set = function(_, value) E.db.unitframe.colors.castClassColor = value end,
+								name = L["Enable"].." "..L["Custom Color"],
+								get = function() return E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar = value end,
 							},
 							headercastbarcantinterruptplayer = {
 								order = 7,
@@ -5350,12 +5347,12 @@ function ElvUI_EltreumUI:Configtable()
 							checkelvuiclasscolorcastbartarget = {
 								order = 16,
 								type = 'toggle',
-								name = L["Enable"].." "..L["Class Castbars"], --from elvui locale so dont need to translate i think
+								name = L["Enable"].." "..L["Custom Color"], --from elvui locale so dont need to translate i think
 								--width = 'double',
 								--disabled = function() return true end,
 								--disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
-								get = function() return E.db.unitframe.colors.castClassColor end,
-								set = function(_, value) E.db.unitframe.colors.castClassColor = value end,
+								get = function() return E.db.unitframe.colors.customcolortargetcastbar end,
+								set = function(_, value) E.db.unitframe.colors.customcolortargetcastbar = value end,
 							},
 							headercastbarnoninterruptibletargetcustom = {
 								order = 16,
