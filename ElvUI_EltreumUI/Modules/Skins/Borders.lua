@@ -862,6 +862,7 @@ function ElvUI_EltreumUI:ShowHideBorders()
 	local barborderbuttonnumber
 	if E.db.ElvUI_EltreumUI.borders.borders == false then
 		E.db.ElvUI_EltreumUI.borders.borders = true
+		ElvUI_EltreumUI:ActionbarBorderAdjust()
 		ElvUI_EltreumUI:Borders()
 		for _, frame in pairs(borderlist) do
 			if frame ~= nil then
@@ -884,6 +885,8 @@ function ElvUI_EltreumUI:ShowHideBorders()
 		end
 	elseif E.db.ElvUI_EltreumUI.borders.borders == true then
 		E.db.ElvUI_EltreumUI.borders.borders = false
+		ElvUI_EltreumUI:ActionbarBorderAdjust()
+		ElvUI_EltreumUI:Shadows()
 		for _, frame in pairs(borderlist) do
 			if frame ~= nil then
 				frame:Hide()
