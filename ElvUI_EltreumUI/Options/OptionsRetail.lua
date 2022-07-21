@@ -5883,8 +5883,8 @@ function ElvUI_EltreumUI:Configtable()
 								--width = 'double',
 								--disabled = function() return true end,
 								--disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
-								get = function() return E.db.unitframe.colors.customcolortargetcastbar end,
-								set = function(_, value) E.db.unitframe.colors.customcolortargetcastbar = value end,
+								get = function() return E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar = value end,
 							},
 							headercastbarnoninterruptibletargetcustom = {
 								order = 16,
