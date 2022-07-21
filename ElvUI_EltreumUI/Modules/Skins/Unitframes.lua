@@ -431,6 +431,7 @@ function ElvUI_EltreumUI:CastBarTextureGradientFail()
 end
 hooksecurefunc(UF, 'PostCastFail', ElvUI_EltreumUI.CastBarTextureGradientFail)
 
+
 function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then
 
@@ -2603,6 +2604,20 @@ hooksecurefunc(UF, "Style", ElvUI_EltreumUI.ChangeUnitTexture) --if not hooking 
 hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.ChangeUnitTexture)
 --hooksecurefunc(UF, "PostUpdateHealth", ElvUI_EltreumUI.ChangeUnitTexture)
 
+--[[local EltruismChangeUnitTextureFrame = CreateFrame("FRAME")
+EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_TARGET", "player")
+EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_TARGET", "target")
+EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+EltruismChangeUnitTextureFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
+EltruismChangeUnitTextureFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+EltruismChangeUnitTextureFrame:RegisterEvent("GROUP_ROSTER_UPDATE")
+EltruismChangeUnitTextureFrame:SetScript("OnEvent", function()
+	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then
+		ElvUI_EltreumUI:ChangeUnitTexture()
+	end
+end)]]
+
+
 --Unitframe Backdrop Texture
 function ElvUI_EltreumUI:BackdropTexture(_, _, backdropTex)
 	if E.private.unitframe.enable and (not E.db.ElvUI_EltreumUI.lightmode) and E.db.ElvUI_EltreumUI.UFmodifications then
@@ -2613,96 +2628,3 @@ function ElvUI_EltreumUI:BackdropTexture(_, _, backdropTex)
 	end
 end
 hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
-
-
-
-
-
---gradient nameplates maybe
-local NP = E:GetModule('NamePlates')
-local function testfunc(unit)--(nameplate,unit)
-	if unit and unit.Health then--and UnitIsUnit(unit.unit, "target") then
-		local r,g,b = unit.Health:GetStatusBarColor()
-
-
-
-
---[[
-	for i,k in pairs(unit) do
-			print(unit.ThreatScale)
-			if tostring(unit.ThreatScale) == "1" then
-				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["NPCHOSTILE"]["r2"], unitframecustomgradients["NPCHOSTILE"]["g2"], unitframecustomgradients["NPCHOSTILE"]["b2"], unitframecustomgradients["NPCHOSTILE"]["r1"], unitframecustomgradients["NPCHOSTILE"]["g1"], unitframecustomgradients["NPCHOSTILE"]["b1"])
-			end
-		end
-
-
-unit.ThreatIndicator.offTank == false
-unit.ThreatIndicator.isTank == false
-unit.isEnemy false
-unit.isFriend false
-unit.ThreatScale 1
-
-unit.TargetIndicator table: 000002A52F07E230
-unit.TargetIndicator.LeftIndicator table: 000002A4B1F8E760
-unit.TargetIndicator.RightIndicator table: 000002A4B1F8F070
-unit.TargetIndicator.TopIndicator table: 000002A4B1F8E710
-unit.TargetIndicator.__owner table: 000002A4B1F86C10
-]]
-
-
-		--yellow
-		--0.99999779462814 0.85097849369049 0.19607800245285
-
-		--red
-		--0.99607622623444 0.1764702051878 0.1764702051878
-
-		if tostring(r) == tostring(0.99999779462814) and tostring(g) ==  tostring(0.85097849369049) and tostring(b) == tostring(0.19607800245285) then
-			--unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["NPCNEUTRAL"]["r1"], unitframegradients["NPCNEUTRAL"]["g1"], unitframegradients["NPCNEUTRAL"]["b1"], unitframegradients["NPCNEUTRAL"]["r2"], unitframegradients["NPCNEUTRAL"]["g2"], unitframegradients["NPCNEUTRAL"]["b2"])
-			unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["NPCNEUTRAL"]["r2"], unitframecustomgradients["NPCNEUTRAL"]["g2"], unitframecustomgradients["NPCNEUTRAL"]["b2"], unitframecustomgradients["NPCNEUTRAL"]["r1"], unitframecustomgradients["NPCNEUTRAL"]["g1"], unitframecustomgradients["NPCNEUTRAL"]["b1"])
-		--elseif (tostring(r) == tostring(0.99607622623444) and tostring(g) ==  tostring(0.1764702051878) and tostring(b) == tostring(0.1764702051878)) or (tostring(r) == tostring(0.99999779462814) and tostring(g) ==  tostring(0.99999779462814) and tostring(b) == tostring(0.99999779462814)) then
-		elseif (tostring(r) == tostring(0.99607622623444) and tostring(g) ==  tostring(0.1764702051878) and tostring(b) == tostring(0.1764702051878)) then
-
-			--unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["NPCHOSTILE"]["r1"], unitframegradients["NPCHOSTILE"]["g1"], unitframegradients["NPCHOSTILE"]["b1"], unitframegradients["NPCHOSTILE"]["r2"], unitframegradients["NPCHOSTILE"]["g2"], unitframegradients["NPCHOSTILE"]["b2"])
-			unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["NPCHOSTILE"]["r2"], unitframecustomgradients["NPCHOSTILE"]["g2"], unitframecustomgradients["NPCHOSTILE"]["b2"], unitframecustomgradients["NPCHOSTILE"]["r1"], unitframecustomgradients["NPCHOSTILE"]["g1"], unitframecustomgradients["NPCHOSTILE"]["b1"])
-		end
-	end
-end
-hooksecurefunc(NP, "Health_UpdateColor", testfunc)
-hooksecurefunc(NP, "Update_StatusBars", testfunc)
---hooksecurefunc(NP, "SetupTarget", testfunc)
---hooksecurefunc(NP, "UpdateTargetPlate", testfunc)
---hooksecurefunc(NP, "Update_ThreatIndicator", testfunc)
---hooksecurefunc(NP, "ThreatIndicator_PostUpdate", testfunc)
-
-
-
---[[
-local function testfunc(unit)
-	print(unit)
-	for bar in pairs(NP.StatusBars) do
-		if UnitExists("target") then--and UnitIsUnit(unit, "target") then
-			bar:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients[E.myclass]["r1"], unitframegradients[E.myclass]["g1"], unitframegradients[E.myclass]["b1"], unitframegradients[E.myclass]["r2"], unitframegradients[E.myclass]["g2"], unitframegradients[E.myclass]["b2"])
-		else
-			return
-		end
-	end
-end
-hooksecurefunc(NP, "Update_StatusBars", testfunc)
-hooksecurefunc(NP, "Health_UpdateColor", testfunc)
-hooksecurefunc(NP, "SetupTarget", testfunc)
-hooksecurefunc(NP, "UpdateTargetPlate", testfunc)
-]]
-
-
---[[
-hooksecurefunc(NP, "Health_UpdateColor", function(unit)
---if unit.unit == 'vehicle' or unit.unit == 'player' then return end
-	if unit and unit.Health then
-		--print("JOO")
-		--print(unit.Health:GetStatusBarColor())
-		--local r, g, b = unit.Health:GetStatusBarColor()
-		--unit.Health:GetStatusBarTexture():SetGradient("HORIZONTAL", 1, 1, 0, 0, 0, 1)
-		unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients[E.myclass]["r1"], unitframegradients[E.myclass]["g1"], unitframegradients[E.myclass]["b1"], unitframegradients[E.myclass]["r2"], unitframegradients[E.myclass]["g2"], unitframegradients[E.myclass]["b2"])
-	end
-end)
-]]
