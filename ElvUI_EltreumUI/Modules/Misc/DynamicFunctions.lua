@@ -339,7 +339,7 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 			--general border settings for both profiles
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
 				E.db.ElvUI_EltreumUI.borders.texture = "Eltreum-Border-1"
-				E.db.ElvUI_EltreumUI.borders.classcolor = true
+				--E.db.ElvUI_EltreumUI.borders.classcolor = true
 				E.db.ElvUI_EltreumUI.borders.auraborder = true
 				E.db.ElvUI_EltreumUI.borders.aurasizex = 53
 				E.db.ElvUI_EltreumUI.borders.aurasizey = 53
@@ -384,7 +384,7 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.xfocus = 224
 				E.db.ElvUI_EltreumUI.borders.yfocus = 72
 				E.db.ElvUI_EltreumUI.borders.bossborder = true
-
+				E.db.ElvUI_EltreumUI.borders.minimapsizex = 226
 				if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
 					E.db.ElvUI_EltreumUI.borders.minimapsizey = 225
 				else
