@@ -352,15 +352,15 @@ function ElvUI_EltreumUI:Borders()
 				local bordersboss = {}
 				for i = 1,8 do
 					local bossmembers = {_G["ElvUF_Boss"..i]}
-					for _, frame in pairs(bossmembers) do
+					for _, v in pairs(bossmembers) do
 						if not _G["EltruismBossBorder"..i] then
 							bossborder = CreateFrame("Frame", "EltruismBossBorder"..i, v, BackdropTemplateMixin and "BackdropTemplate")
 						else
 							bossborder = _G["EltruismBossBorder"..i]
 						end
-						bossborder = CreateFrame("Frame", "EltruismBossBorder"..i, frame, BackdropTemplateMixin and "BackdropTemplate")
+						bossborder = CreateFrame("Frame", "EltruismBossBorder"..i, v, BackdropTemplateMixin and "BackdropTemplate")
 						bossborder:SetSize(E.db.ElvUI_EltreumUI.borders.xboss, E.db.ElvUI_EltreumUI.borders.yboss)
-						bossborder:SetPoint("CENTER", frame, "CENTER")
+						bossborder:SetPoint("CENTER", v, "CENTER")
 						bossborder:SetBackdrop({
 						edgeFile = bordertexture,
 						edgeSize = E.db.ElvUI_EltreumUI.borders.bosssize,
