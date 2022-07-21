@@ -1,6 +1,9 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.1.5
+Fixed an error with boss borders
+___
 ### 3.1.4
 Added more border size options\
 Added gradient to player and target castbars when non interruptable\
