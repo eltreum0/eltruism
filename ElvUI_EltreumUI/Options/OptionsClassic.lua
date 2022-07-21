@@ -5014,7 +5014,7 @@ function ElvUI_EltreumUI:Configtable()
 							checkelvuiclasscolorcastbar = {
 								order = 7,
 								type = 'toggle',
-								name = L["Custom Color"],
+								name = L["Custom Class"],
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar = value end,
 							},
@@ -5138,7 +5138,7 @@ function ElvUI_EltreumUI:Configtable()
 							checkelvuiclasscolorcastbartarget = {
 								order = 16,
 								type = 'toggle',
-								name = L["Custom Color"], --from elvui locale so dont need to translate i think
+								name = L["Custom Class"], --from elvui locale so dont need to translate i think
 								--width = 'double',
 								--disabled = function() return true end,
 								--disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
