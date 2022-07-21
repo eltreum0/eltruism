@@ -942,3 +942,6 @@ L["Boss Thickness"] = true
 L["Aura Thickness"] = true
 L["Chat Thickness"] = true
 L["Minimap Thickness"] = true
+
+L["Custom Class"] = true -- not sure about naming it this
+L["Use Custom Class Colors instead of Castbar Colors"] = true

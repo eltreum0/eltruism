@@ -5224,6 +5224,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 7,
 								type = 'toggle',
 								name = L["Custom Class"],
+								desc = L["Use Custom Class Colors instead of Castbar Colors"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar end,
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar = value end,
@@ -5348,10 +5349,8 @@ function ElvUI_EltreumUI:Configtable()
 							checkelvuiclasscolorcastbartarget = {
 								order = 16,
 								type = 'toggle',
-								name = L["Custom Class"], --from elvui locale so dont need to translate i think
-								--width = 'double',
-								--disabled = function() return true end,
-								--disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
+								name = L["Custom Class"],
+								desc = L["Use Custom Class Colors instead of Castbar Colors"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar end,
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar = value end,
