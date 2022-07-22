@@ -1038,17 +1038,29 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PetLoyaltyText:SetPoint('BOTTOM', _G.PetLevelText, 0, -20)
 					_G.PetPaperDollCloseButton:Hide()
 				elseif E.Wrath then --wotlk specific tweaks
-					_G.CompanionSelectedName:SetPoint('TOP', _G.CompanionModelFrame, 0, 40)
+					_G.CompanionSelectedName:SetPoint('TOP', _G.CompanionModelFrame, 0, 20)
 					_G.CompanionSummonButton:ClearAllPoints()
 					_G.CompanionSummonButton:SetPoint('BOTTOM', _G.CompanionModelFrame, "Bottom", 0, -30)
 
+					if _G.PetPaperDollCloseButton then
+						_G.PetPaperDollCloseButton:Hide()
+						_G.PetPaperDollFrameExpBar:ClearAllPoints()
+						_G.PetPaperDollFrameExpBar:SetPoint("BOTTOMLEFT", _G.PetPaperDollFramePetFrame, "BOTTOMLEFT",23, 90)
+					end
+
 					_G.ReputationFrame:ClearAllPoints()
-					_G.ReputationFrame:SetPoint("BOTTOMLEFT", _G.CharacterFrame, "BOTTOMLEFT", 0, 0)
+					_G.ReputationFrame:SetPoint("BOTTOMLEFT", _G.CharacterFrame, "BOTTOMLEFT", 0, 20)
 					_G.ReputationFrame:SetSize(400, 505)
+
+					--todo, doesnt seem to work right now
+					--_G.ReputationDetailFrame:ClearAllPoints()
+					--_G.ReputationDetailFrame:SetPoint("TOPRIGHT", _G.CharacterFrame, "TOPRIGHT", 0, 0)
 
 					_G.SkillFrame:ClearAllPoints()
 					_G.SkillFrame:SetPoint("TOPLEFT", _G.CharacterFrame, "TOPLEFT", 0, 0)
 					_G.SkillFrame:SetSize(400, 505)
+
+					_G.TokenFrameCancelButton:Hide()
 				end
 
 				CharacterNameText:SetParent(CharacterModelFrame)
