@@ -723,10 +723,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterFrame.EltruismExtraStatsBlock:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, 0)
 				end
 			end
-		elseif E.TBC or E.Classic then
+		elseif E.Wrath or E.TBC or E.Classic then
 
 			if E.db.ElvUI_EltreumUI.skins.statcolors then
-				if E.TBC then
+				if E.Wrath or E.TBC then
 					hooksecurefunc('PlayerStatFrameLeftDropDown_OnClick', function()
 						if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
 							_G.PlayerStatFrameLeft1Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
@@ -807,7 +807,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 
 				hooksecurefunc("PaperDollFrame_UpdateStats", function()
-						if E.TBC then
+						if E.Wrath or E.TBC then
 							if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
 								_G.PlayerStatFrameLeft1Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
 							end
@@ -982,7 +982,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 				end
 
-				if E.TBC then
+				if E.Wrath or E.TBC then
 					--_G.PlayerTitleDropDown:Show()
 					_G.PlayerTitleDropDown:ClearAllPoints()
 					_G.PlayerTitleDropDown:SetParent(_G.CharacterModelFrame)
@@ -1000,17 +1000,19 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterNameText:SetParent(_G.CharacterModelFrame)
 				_G.CharacterLevelText:SetPoint('TOP', _G.CharacterModelFrame, 0, 60)
 				_G.CharacterLevelText:SetParent(_G.CharacterModelFrame)
-				if E.TBC then
+				if E.Wrath or E.TBC then
 					_G.PlayerTitleDropDown:SetPoint('TOP', _G.CharacterModelFrame, -6, 40)
 				elseif E.Classic then
 					_G.CharacterTitleText:SetPoint('TOP', _G.CharacterModelFrame, 0, 40)
 				end
 
 				_G.CharacterLevelText:SetPoint('TOP', _G.CharacterNameText, 'BOTTOM', 0, -10)
-				_G.PetNameText:SetPoint('TOP', _G.PetModelFrame, 0, 60)
-				_G.PetLevelText:SetPoint('BOTTOM', _G.PetNameText, 0, -10)
-				_G.PetLoyaltyText:SetPoint('BOTTOM', _G.PetLevelText, 0, -20)
-				_G.PetPaperDollCloseButton:Hide()
+				if not E.Wrath then
+					_G.PetNameText:SetPoint('TOP', _G.PetModelFrame, 0, 60)
+					_G.PetLevelText:SetPoint('BOTTOM', _G.PetNameText, 0, -10)
+					_G.PetLoyaltyText:SetPoint('BOTTOM', _G.PetLevelText, 0, -20)
+					_G.PetPaperDollCloseButton:Hide()
+				end
 
 				_G.CharacterNameText:SetParent(_G.CharacterModelFrame)
 				_G.CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
@@ -1088,7 +1090,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterModelFrameRotateRightButton:Hide()
 				_G.CharacterModelFrameRotateLeftButton:Hide()
 				_G.MagicResFrame1:ClearAllPoints()
-				if E.TBC then
+				if E.Wrath or E.TBC then
 					_G.MagicResFrame1:SetParent(_G.PlayerStatFrameLeft1)
 					_G.MagicResFrame1:SetPoint("TOPLEFT", _G.PlayerStatFrameLeftDropDown, "TOPLEFT", 14, 27)
 				elseif E.Classic then
@@ -1109,7 +1111,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.MagicResFrame5:SetParent(_G.MagicResFrame4)
 				_G.MagicResFrame5:SetPoint("RIGHT", _G.MagicResFrame4, "RIGHT", 27, 0)
 
-				if E.TBC then
+				if E.Wrath or E.TBC then
 					--"left side" or in this case the top side
 					_G.PlayerStatFrameLeftDropDown:ClearAllPoints()
 					_G.PlayerStatFrameLeftDropDown:SetPoint("TOP", CharacterFrame, "TOP", 143, -200)
@@ -1392,7 +1394,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					else
 						EltruismInspectBgTexture:SetAlpha(0.3)
 					end
-					if E.TBC or E.Classic then
+					if E.Wrath or E.TBC or E.Classic then
 						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop)
 						EltruismInspectBgTexture:SetParent(_G.InspectFrame)
 						if _G.InspectModelFrameRotateLeftButton:IsShown() then
