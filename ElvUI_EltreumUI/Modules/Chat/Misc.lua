@@ -13,7 +13,6 @@ local UIParentLoadAddOn = _G.UIParentLoadAddOn
 local INLINE_TANK_ICON = _G.INLINE_TANK_ICON
 local INLINE_HEALER_ICON = _G.INLINE_HEALER_ICON
 local INLINE_DAMAGER_ICON = _G.INLINE_DAMAGER_ICON
-local TalkingHeadFrame = _G.TalkingHeadFrame
 
 --Color System messages
 local classcolorsescape = {
@@ -131,6 +130,7 @@ function ElvUI_EltreumUI:EltruismHideTalkingHead()
 					if not IsAddOnLoaded("Blizzard_TalkingHeadUI") then
 						UIParentLoadAddOn("Blizzard_TalkingHeadUI")
 						if IsAddOnLoaded('Blizzard_TalkingHeadUI') then
+							local TalkingHeadFrame = _G.TalkingHeadFrame
 							hooksecurefunc('TalkingHeadFrame_PlayCurrent', function()
 								TalkingHeadFrame:Hide()
 							end)
