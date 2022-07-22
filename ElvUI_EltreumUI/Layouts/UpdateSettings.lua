@@ -22,7 +22,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate = false
 	E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = true
 	E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide = true
-	E.db.ElvUI_EltreumUI.nameplatepower.texture = "Asphyxia"
+	E.db.ElvUI_EltreumUI.nameplatepower.texture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.widenameplate.enable = true
 	E.db.ElvUI_EltreumUI.widenameplate.npglow = true
 
@@ -38,7 +38,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.gradientmode.gradientXP = true
 	E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha = 0.7
-	--E.db.unitframe.statusbar = "Asphyxia"
+	--E.db.unitframe.statusbar = "Asphyxia-Norm"
 	E.db.unitframe.statusbar = "ElvUI Norm1"
 
 	-- Skins
@@ -122,7 +122,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.otherstuff.mpluskeys = true
 	E.db.ElvUI_EltreumUI.instances.enable = true
 
-	E.db.databars.statusbar = "Asphyxia"
+	E.db.databars.statusbar = "Asphyxia-Norm"
 
 	E.db.ElvUI_EltreumUI.uftextureversion = "V2"
 	E.db.ElvUI_EltreumUI.nptextureversion = "V2"
@@ -133,8 +133,8 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.private.ElvUI_EltreumUI.nameplatepower.adjust = true
 
 	-- primary and secondary media texture for elvui
-	E.private.general.glossTex = "Asphyxia"
-	E.private.general.normTex = "Asphyxia"
+	E.private.general.glossTex = "Asphyxia-Norm"
+	E.private.general.normTex = "Asphyxia-Norm"
 
 	ElvUI_EltreumUI:Print(L["Settings for Eltruism were applied."])
 end
