@@ -2,14 +2,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local IsAddOnLoaded = _G.IsAddOnLoaded
-local PlayerTalentFrameScrollFrameScrollBar = _G.PlayerTalentFrameScrollFrameScrollBar
-local PlayerTalentFrame = _G.PlayerTalentFrame
-local PlayerTalentFrameScrollFrame = _G.PlayerTalentFrameScrollFrame
-local PlayerTalentFrameBackgroundTopRight = _G.PlayerTalentFrameBackgroundTopRight
-local PlayerTalentFrameBackgroundBottomLeft = _G.PlayerTalentFrameBackgroundBottomLeft
-local PlayerTalentFrameBackgroundBottomRight = _G.PlayerTalentFrameBackgroundBottomRight
-local PlayerTalentFrameBackgroundTopLeft = _G.PlayerTalentFrameBackgroundTopLeft
-local PlayerTalentFrameCancelButton = _G.PlayerTalentFrameCancelButton
+
 
 local EltruismExpandedTalents = CreateFrame("Frame")
 function ElvUI_EltreumUI:ExpandedTalents()
@@ -20,6 +13,15 @@ function ElvUI_EltreumUI:ExpandedTalents()
 			EltruismExpandedTalents:RegisterEvent("PLAYER_ENTERING_WORLD")
 			EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
 				if arg == "Blizzard_TalentUI" or IsAddOnLoaded("Blizzard_TalentUI") then
+					local PlayerTalentFrame = _G.PlayerTalentFrame
+					local PlayerTalentFrameScrollFrameScrollBar = _G.PlayerTalentFrameScrollFrameScrollBar
+					local PlayerTalentFrameScrollFrame = _G.PlayerTalentFrameScrollFrame
+					local PlayerTalentFrameBackgroundTopRight = _G.PlayerTalentFrameBackgroundTopRight
+					local PlayerTalentFrameBackgroundBottomLeft = _G.PlayerTalentFrameBackgroundBottomLeft
+					local PlayerTalentFrameBackgroundBottomRight = _G.PlayerTalentFrameBackgroundBottomRight
+					local PlayerTalentFrameBackgroundTopLeft = _G.PlayerTalentFrameBackgroundTopLeft
+					local PlayerTalentFrameCancelButton = _G.PlayerTalentFrameCancelButton
+
 					EltruismExpandedTalents:UnregisterAllEvents()
 					--hide the scroll
 					if PlayerTalentFrameScrollFrameScrollBar then
@@ -80,6 +82,26 @@ function ElvUI_EltreumUI:ExpandedTalents()
 					--hide the close button (only shows up for some people?)
 					if PlayerTalentFrameCancelButton then
 						PlayerTalentFrameCancelButton:Hide()
+					end
+
+					-- fix glyph size
+					if E.Wrath then
+						LoadAddOn("Blizzard_GlyphUI")
+						_G.GlyphFrame:HookScript("OnShow", function()
+							PlayerTalentFrame:SetSize(384, 512)
+							_G.GlyphFrame:Show()
+							_G.GlyphFrame:SetScale(0.7)
+							_G.GlyphFrame:SetFrameStrata("HIGH")
+							PlayerTalentFrameBackgroundTopLeft:Hide()
+							_G.GlyphFrame:ClearAllPoints()
+							_G.GlyphFrame:SetPoint("CENTER", _G.PlayerTalentFrame)
+
+						end)
+						_G.GlyphFrame:HookScript("OnHide", function()
+							PlayerTalentFrame:SetSize(376, 780)
+							_G.GlyphFrame:Hide()
+							PlayerTalentFrameBackgroundTopLeft:Show()
+						end)
 					end
 				end
 			end)
