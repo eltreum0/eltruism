@@ -32,12 +32,8 @@ local strlenutf8 = _G.strlenutf8
 local IsModifiedClick = _G.IsModifiedClick
 local ChatEdit_GetActiveWindow = _G.ChatEdit_GetActiveWindow
 local ChatEdit_InsertLink = _G.ChatEdit_InsertLink
-local CharacterModelFrame = _G.CharacterModelFrame
-local InspectModelFrame = _G.InspectModelFrame
-local PaperDollFrame = _G.PaperDollFrame
 local GetInventorySlotInfo = _G.GetInventorySlotInfo
 local GetItemQualityColor = _G.GetItemQualityColor
-local InspectFrame = _G.InspectFrame
 --local select = _G.select
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ENCHANT TABLES
@@ -1157,7 +1153,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 	local CharacterFrameAdapterMetaTable = { __index = CharacterFrameAdapter }
 	setmetatable(CharacterFrameAdapter, { __index = ElvUI_EltreumUI.FrameAdapter })
 	function CharacterFrameAdapter:new()
-		local instance = ElvUI_EltreumUI.FrameAdapter:new(CharacterModelFrame, CharacterModelFrame, 'Character')
+		local instance = ElvUI_EltreumUI.FrameAdapter:new(_G.CharacterModelFrame, _G.CharacterModelFrame, 'Character')
 		instance.messages = {
 			contentChanged = 'CharacterFrameAdapter.contentChanged',
 		}
@@ -1193,7 +1189,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 	setmetatable(InspectionFrameAdapter, { __index = ElvUI_EltreumUI.FrameAdapter })
 	function InspectionFrameAdapter:new()
 		if E.db.ElvUI_EltreumUI.skins.socketsinspect then
-			local instance = ElvUI_EltreumUI.FrameAdapter:new(InspectModelFrame, PaperDollFrame, 'Inspect')
+			local instance = ElvUI_EltreumUI.FrameAdapter:new(_G.InspectModelFrame, _G.PaperDollFrame, 'Inspect')
 			instance.messages = {
 				contentChanged = 'InspectionFrameAdapter.contentChanged',
 			}
@@ -1209,7 +1205,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 
 	function InspectionFrameAdapter:GetUnit()
 		if E.db.ElvUI_EltreumUI.skins.socketsinspect then
-			return InspectFrame.unit
+			return _G.InspectFrame.unit
 		end
 	end
 	ElvUI_EltreumUI.InspectionFrameAdapter = InspectionFrameAdapter
