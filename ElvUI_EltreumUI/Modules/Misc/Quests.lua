@@ -187,7 +187,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								end
 								SelectActiveQuest(i)
 							end
-						elseif E.TBC or E.Classic then
+						elseif E.Wrath or E.TBC or E.Classic then
 							if completed then
 								if E.db.ElvUI_EltreumUI.dev then
 									ElvUI_EltreumUI:Print("tried to complete "..completed)
@@ -235,7 +235,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 										ElvUI_EltreumUI:Print("quest accepted")
 									end
 								end
-							elseif E.TBC or E.Classic then
+							elseif E.Wrath or E.TBC or E.Classic then
 								AcceptQuest()
 							end
 						end
