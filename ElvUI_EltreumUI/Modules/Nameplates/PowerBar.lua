@@ -1,5 +1,20 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local id, _
+local _G = _G
+local CreateFrame = _G.CreateFrame
+local IsPlayerSpell = _G.IsPlayerSpell
+local GetPlayerAuraBySpellID = _G.GetPlayerAuraBySpellID
+local UnitCastingInfo = _G.UnitCastingInfo
+local GetSpellPowerCost = _G.GetSpellPowerCost
+local next = _G.next
+local UnitPowerMax = _G.UnitPowerMax
+local UnitPower = _G.UnitPower
+local GetSpecialization = _G.GetSpecialization
+local GetSpecializationInfo = _G.GetSpecializationInfo
+local UnitExists = _G.UnitExists
+local UnitCanAttack = _G.UnitCanAttack
+local C_NamePlate = _G.C_NamePlate
+local GetShapeshiftForm = _G.GetShapeshiftForm
 
 --Setup Power Bar, Prediction and Text
 local EltreumPowerAnchor

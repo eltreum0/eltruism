@@ -2,6 +2,8 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local UIFrameFadeIn = _G.UIFrameFadeIn
 local UIFrameFadeOut = _G.UIFrameFadeOut
+local UIParent = _G.UIParent
+local IsStealthed = _G.IsStealthed
 
 -- Create Stealth Overlay Frame
 local StealthOptionsFrame = CreateFrame("Frame", "EltruismStealthOverlay", E.UIParent)

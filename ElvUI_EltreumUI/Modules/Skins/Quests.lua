@@ -2,12 +2,77 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local S = E:GetModule('Skins')
 local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
-local ObjectiveTrackerBlocksFrame, ScenarioObjectiveBlockBackground, ScenarioObjectiveBlockBackgroundTexture
+local ObjectiveTrackerBlocksFrame = _G.ObjectiveTrackerBlocksFrame
+local ScenarioObjectiveBlockBackground = _G.ScenarioObjectiveBlockBackground
+local ScenarioObjectiveBlockBackgroundTexture = _G.ScenarioObjectiveBlockBackgroundTexture
+local CreateFrame = _G.CreateFrame
+local IsAddOnLoaded = _G.IsAddOnLoaded
+local hooksecurefunc = _G.hooksecurefunc
+local pairs = _G.pairs
+local DEFAULT_OBJECTIVE_TRACKER_MODULE = _G.DEFAULT_OBJECTIVE_TRACKER_MODULE
+local QuestLogNoQuestsText = _G.QuestLogNoQuestsText
+local QuestLogFrame = _G.QuestLogFrame
+local CraftFrame = _G.CraftFrame
+local CraftFrameAvailableFilterCheckButton = _G.CraftFrameAvailableFilterCheckButton
+local CraftFrameFilterDropDown = _G.CraftFrameFilterDropDown
+local CraftCreateButton = _G.CraftCreateButton
+local CraftCancelButton = _G.CraftCancelButton
+local CraftListScrollFrameScrollChildFrame = _G.CraftListScrollFrameScrollChildFrame
+local CraftListScrollFrameScrollBar = _G.CraftListScrollFrameScrollBar
+local CraftDetailScrollFrame = _G.CraftDetailScrollFrame
+local CraftDetailScrollChildFrame = _G.CraftDetailScrollChildFrame
+local CraftDetailScrollFrameScrollBar = _G.CraftDetailScrollFrameScrollBar
+local CRAFTS_DISPLAYED = _G.CRAFTS_DISPLAYED
+local TradeSkillDetailScrollFrame = _G.TradeSkillDetailScrollFrame
+local TradeSkillDetailScrollChildFrame = _G.TradeSkillDetailScrollChildFrame
+local TradeSkillListScrollFrameScrollBar = _G.TradeSkillListScrollFrameScrollBar
+local TradeSkillCreateAllButton = _G.TradeSkillCreateAllButton
+local TradeSkillCreateButton = _G.TradeSkillCreateButton
+local TradeSkillCancelButton = _G.TradeSkillCancelButton
+local TRADE_SKILLS_DISPLAYED = _G.TRADE_SKILLS_DISPLAYED
+local TradeSkillFrame = _G.TradeSkillFrame
+local QuestWatchFrame = _G.QuestWatchFrame
+local GetNumQuestWatches = _G.GetNumQuestWatches
+local GetQuestLogLeaderBoard = _G.GetQuestLogLeaderBoard
+local GetQuestIndexForWatch = _G.GetQuestIndexForWatch
+local QuestLogTrackTracking = _G.QuestLogTrackTracking
+local GetQuestLogTitle = _G.GetQuestLogTitle
+local UIParent_ManageFramePositions = _G.UIParent_ManageFramePositions
+local select = _G.select
+local QuestLogTitleText = _G.QuestLogTitleText
+local QuestLogListScrollFrame = _G.QuestLogListScrollFrame
+local QuestLogDetailScrollFrame = _G.QuestLogDetailScrollFrame
+local QuestMapFrame_GetDetailQuestID = _G.QuestMapFrame_GetDetailQuestID
+local GetNumQuestLeaderBoards = _G.GetNumQuestLeaderBoards
+local MAX_QUESTWATCH_LINES = _G.MAX_QUESTWATCH_LINES
+local QUESTS_DISPLAYED = _G.QUESTS_DISPLAYED
+local WorldMapFrame = _G.WorldMapFrame
+local QuestFramePushQuestButton = _G.QuestFramePushQuestButton
+local QuestLogFrameTrackButton = _G.QuestLogFrameTrackButton
+local QuestLogControlPanel = _G.QuestLogControlPanel
+local ObjectiveTrackerBonusBannerFrame = _G.ObjectiveTrackerBonusBannerFrame
+local ScenarioStageBlock = _G.ScenarioStageBlock
+local ScenarioObjectiveBlock = _G.ScenarioObjectiveBlock
+local C_SuperTrack = _G.C_SuperTrack
+local ObjectiveTrackerFrame = _G.ObjectiveTrackerFrame
+local QUEST_TRACKER_MODULE = _G.QUEST_TRACKER_MODULE
+local ACHIEVEMENT_TRACKER_MODULE = _G.GACHIEVEMENT_TRACKER_MODULE
+local BONUS_OBJECTIVE_TRACKER_MODULE =_G.BONUS_OBJECTIVE_TRACKER_MODULE
+local WORLD_QUEST_TRACKER_MODULE = _G.WORLD_QUEST_TRACKER_MODULE
+local UI_WIDGET_TRACKER_MODULE = _G.UI_WIDGET_TRACKER_MODULE
+local CAMPAIGN_QUEST_TRACKER_MODULE = _G.CAMPAIGN_QUEST_TRACKER_MODULE
+local SCENARIO_TRACKER_MODULE = _G.SCENARIO_TRACKER_MODULE
+local SCENARIO_CONTENT_TRACKER_MODULE = _G.SCENARIO_CONTENT_TRACKER_MODULE
+local ZoneTextString = _G.ZoneTextString
+local SubZoneTextString = _G.SubZoneTextString
+local PVPInfoTextString = _G.PVPInfoTextString
+local PVPArenaTextString = _G.PVPArenaTextString
+local OpenMailBodyText = _G.OpenMailBodyText
+local SendMailBodyEditBox = _G.SendMailBodyEditBox
 
 if E.Retail then
 	ScenarioObjectiveBlockBackground = CreateFrame("Frame", "EltruismScenarioBlockBg")
 	ScenarioObjectiveBlockBackgroundTexture = ScenarioObjectiveBlockBackground:CreateTexture()
-	ObjectiveTrackerBlocksFrame = _G.ObjectiveTrackerBlocksFrame
 	ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine = CreateFrame("StatusBar", "EltruismScenarioLine", ObjectiveTrackerBlocksFrame.ScenarioHeader)
 	ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine = CreateFrame("StatusBar", "EltruismCampaignLine", ObjectiveTrackerBlocksFrame.CampaignQuestHeader)
 	ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine = CreateFrame("StatusBar", "EltruismQuestLine", ObjectiveTrackerBlocksFrame.QuestHeader)
@@ -24,20 +89,20 @@ function ElvUI_EltreumUI:SkinQuests()
 		if E.Retail then
 			wowheadbutton:SetWidth(80)
 			wowheadbutton:SetHeight(20)
-			wowheadbutton:SetParent(_G.WorldMapFrame)
-			wowheadbutton:SetPoint("TOPRIGHT", _G.WorldMapFrame, "TOPRIGHT", -80, 0)
+			wowheadbutton:SetParent(WorldMapFrame)
+			wowheadbutton:SetPoint("TOPRIGHT", WorldMapFrame, "TOPRIGHT", -80, 0)
 		elseif E.TBC or E.Classic then
-			local x, y = _G.QuestFramePushQuestButton:GetSize()
+			local x, y = QuestFramePushQuestButton:GetSize()
 			wowheadbutton:SetWidth(x)
 			wowheadbutton:SetHeight(y)
-			wowheadbutton:SetParent(_G.QuestLogFrame)
-			wowheadbutton:SetPoint("LEFT", _G.QuestFramePushQuestButton, "LEFT", -x-2, 0)
+			wowheadbutton:SetParent(QuestLogFrame)
+			wowheadbutton:SetPoint("LEFT", QuestFramePushQuestButton, "LEFT", -x-2, 0)
 		elseif E.Wrath then
-			local x, y = _G.QuestLogFrameTrackButton:GetSize()
+			local x, y = QuestLogFrameTrackButton:GetSize()
 			wowheadbutton:SetWidth(x)
 			wowheadbutton:SetHeight(y)
-			wowheadbutton:SetParent(_G.QuestLogFrame)
-			wowheadbutton:SetPoint("RIGHT", _G.QuestLogControlPanel, "RIGHT", x+2, 0)
+			wowheadbutton:SetParent(QuestLogFrame)
+			wowheadbutton:SetPoint("RIGHT", QuestLogControlPanel, "RIGHT", x+2, 0)
 		end
 		wowheadbutton:SetText("Wowhead")
 		wowheadbutton:SetNormalFontObject("GameFontNormal")
@@ -80,7 +145,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				if questID ~= nil then
 					questID = questID
 				elseif questID == nil then
-					questID = _G.C_SuperTrack.GetSuperTrackedQuestID()
+					questID = C_SuperTrack.GetSuperTrackedQuestID()
 				end
 			end)
 			--set the link to show when the button is clicked
@@ -95,25 +160,25 @@ function ElvUI_EltreumUI:SkinQuests()
 			-- and (not IsAddOnLoaded("ElvUI_WindTools"))
 			if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 				--WQs banner
-				if _G.ObjectiveTrackerBonusBannerFrame then
+				if ObjectiveTrackerBonusBannerFrame then
 					--textcoords from https://www.townlong-yak.com/framexml/39229/Helix/AtlasInfo.lua
-					_G.ObjectiveTrackerBonusBannerFrame.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-					_G.ObjectiveTrackerBonusBannerFrame.Title:SetText("") --so that the text doesn't show up when it shouldnt
-					_G.ObjectiveTrackerBonusBannerFrame.Icon:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")
-					_G.ObjectiveTrackerBonusBannerFrame.Icon:SetTexCoord(0.482422, 0.785156, 0.00195312, 0.294922)
-					_G.ObjectiveTrackerBonusBannerFrame.Icon2:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")
-					_G.ObjectiveTrackerBonusBannerFrame.Icon2:SetTexCoord(0.482422, 0.785156, 0.00195312, 0.294922)
-					_G.ObjectiveTrackerBonusBannerFrame.Icon3:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")
-					_G.ObjectiveTrackerBonusBannerFrame.Icon3:SetTexCoord(0.482422, 0.785156, 0.00195312, 0.294922)
-					_G.ObjectiveTrackerBonusBannerFrame.BG1:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")
-					_G.ObjectiveTrackerBonusBannerFrame.BG1:SetTexCoord(0.00195312, 0.818359, 0.359375, 0.507812)
-					_G.ObjectiveTrackerBonusBannerFrame.BG2:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")
-					_G.ObjectiveTrackerBonusBannerFrame.BG2:SetTexCoord(0.00195312, 0.818359, 0.359375, 0.507812)
-					_G.ObjectiveTrackerBonusBannerFrame.BG1:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-bg
-					_G.ObjectiveTrackerBonusBannerFrame.BG2:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-bg
-					_G.ObjectiveTrackerBonusBannerFrame.Icon:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-icon
-					_G.ObjectiveTrackerBonusBannerFrame.Icon2:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-icon
-					_G.ObjectiveTrackerBonusBannerFrame.Icon3:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-icon
+					ObjectiveTrackerBonusBannerFrame.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+					ObjectiveTrackerBonusBannerFrame.Title:SetText("") --so that the text doesn't show up when it shouldnt
+					ObjectiveTrackerBonusBannerFrame.Icon:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")
+					ObjectiveTrackerBonusBannerFrame.Icon:SetTexCoord(0.482422, 0.785156, 0.00195312, 0.294922)
+					ObjectiveTrackerBonusBannerFrame.Icon2:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")
+					ObjectiveTrackerBonusBannerFrame.Icon2:SetTexCoord(0.482422, 0.785156, 0.00195312, 0.294922)
+					ObjectiveTrackerBonusBannerFrame.Icon3:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")
+					ObjectiveTrackerBonusBannerFrame.Icon3:SetTexCoord(0.482422, 0.785156, 0.00195312, 0.294922)
+					ObjectiveTrackerBonusBannerFrame.BG1:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")
+					ObjectiveTrackerBonusBannerFrame.BG1:SetTexCoord(0.00195312, 0.818359, 0.359375, 0.507812)
+					ObjectiveTrackerBonusBannerFrame.BG2:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")
+					ObjectiveTrackerBonusBannerFrame.BG2:SetTexCoord(0.00195312, 0.818359, 0.359375, 0.507812)
+					ObjectiveTrackerBonusBannerFrame.BG1:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-bg
+					ObjectiveTrackerBonusBannerFrame.BG2:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-bg
+					ObjectiveTrackerBonusBannerFrame.Icon:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-icon
+					ObjectiveTrackerBonusBannerFrame.Icon2:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-icon
+					ObjectiveTrackerBonusBannerFrame.Icon3:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-icon
 				end
 
 				--create the lines
@@ -142,12 +207,12 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				--Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua
 				local questmodules = {
-					_G.QUEST_TRACKER_MODULE,
-					_G.ACHIEVEMENT_TRACKER_MODULE,
-					_G.BONUS_OBJECTIVE_TRACKER_MODULE,
-					_G.WORLD_QUEST_TRACKER_MODULE,
-					_G.UI_WIDGET_TRACKER_MODULE,
-					_G.CAMPAIGN_QUEST_TRACKER_MODULE,
+					QUEST_TRACKER_MODULE,
+					ACHIEVEMENT_TRACKER_MODULE,
+					BONUS_OBJECTIVE_TRACKER_MODULE,
+					WORLD_QUEST_TRACKER_MODULE,
+					UI_WIDGET_TRACKER_MODULE,
+					CAMPAIGN_QUEST_TRACKER_MODULE,
 				}
 				local mult = 0.85
 				for _, k in pairs(questmodules) do
@@ -181,7 +246,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 
 				hooksecurefunc('ObjectiveTracker_Update', function ()
-					local modules = _G.ObjectiveTrackerFrame.MODULES
+					local modules = ObjectiveTrackerFrame.MODULES
 					if not modules then
 						return
 					end
@@ -213,16 +278,16 @@ function ElvUI_EltreumUI:SkinQuests()
 						progressBar.EltruismSkin = true
 					end
 				end
-				hooksecurefunc(_G.QUEST_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
-				hooksecurefunc(_G.BONUS_OBJECTIVE_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
-				hooksecurefunc(_G.WORLD_QUEST_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
-				hooksecurefunc(_G.CAMPAIGN_QUEST_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
-				hooksecurefunc(_G.SCENARIO_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
-				hooksecurefunc(_G.DEFAULT_OBJECTIVE_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
+				hooksecurefunc(QUEST_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
+				hooksecurefunc(BONUS_OBJECTIVE_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
+				hooksecurefunc(WORLD_QUEST_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
+				hooksecurefunc(CAMPAIGN_QUEST_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
+				hooksecurefunc(SCENARIO_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
+				hooksecurefunc(DEFAULT_OBJECTIVE_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
 
-				hooksecurefunc(_G.SCENARIO_CONTENT_TRACKER_MODULE, 'UpdateCriteria', function ()
-					if _G.ScenarioObjectiveBlock then
-						local frames = {_G.ScenarioObjectiveBlock:GetChildren()}
+				hooksecurefunc(SCENARIO_CONTENT_TRACKER_MODULE, 'UpdateCriteria', function ()
+					if ScenarioObjectiveBlock then
+						local frames = {ScenarioObjectiveBlock:GetChildren()}
 						for _, frame in pairs(frames) do
 							if frame.Text then
 								if not IsAddOnLoaded("ElvUI_SLE") then
@@ -235,8 +300,8 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 				end)
 
-				if _G.ScenarioObjectiveBlock then
-					local frames = {_G.ScenarioObjectiveBlock:GetChildren()}
+				if ScenarioObjectiveBlock then
+					local frames = {ScenarioObjectiveBlock:GetChildren()}
 					for _, frame in pairs(frames) do
 						if frame.Text then
 							if not IsAddOnLoaded("ElvUI_SLE") then
@@ -250,29 +315,29 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				--skin the dungeon/raid/scenario bg
 				hooksecurefunc(_G["SCENARIO_CONTENT_TRACKER_MODULE"], "Update", function ()
-					ScenarioObjectiveBlockBackground:SetParent(_G.ScenarioStageBlock)
+					ScenarioObjectiveBlockBackground:SetParent(ScenarioStageBlock)
 					ScenarioObjectiveBlockBackground:ClearAllPoints()
-					ScenarioObjectiveBlockBackground:SetAllPoints(_G.ScenarioStageBlock.NormalBG)
+					ScenarioObjectiveBlockBackground:SetAllPoints(ScenarioStageBlock.NormalBG)
 					ScenarioObjectiveBlockBackground:CreateBackdrop('Transparent')
 					ScenarioObjectiveBlockBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI\\Code\\Media\\Textures\\White8x8.tga")
 					ScenarioObjectiveBlockBackgroundTexture:SetColorTexture(0, 0, 0, 0.01)
 					ScenarioObjectiveBlockBackgroundTexture:SetAlpha(0.01)
-					ScenarioObjectiveBlockBackgroundTexture:SetAllPoints(_G.ScenarioStageBlock.NormalBG)
+					ScenarioObjectiveBlockBackgroundTexture:SetAllPoints(ScenarioStageBlock.NormalBG)
 					ScenarioObjectiveBlockBackground:Show()
 					ScenarioObjectiveBlockBackgroundTexture:Show()
 					if not ScenarioObjectiveBlockBackground.shadow then
 						ScenarioObjectiveBlockBackground:CreateShadow()
 					end
-					_G.ScenarioStageBlock.NormalBG:Hide()
-					_G.ScenarioStageBlock.FinalBG:Hide()
+					ScenarioStageBlock.NormalBG:Hide()
+					ScenarioStageBlock.FinalBG:Hide()
 					--dungeon/raid/scenario name text
-					if _G.ScenarioStageBlock.Stage then
-						_G.ScenarioStageBlock.Stage:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+					if ScenarioStageBlock.Stage then
+						ScenarioStageBlock.Stage:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 						if not IsAddOnLoaded("ElvUI_SLE") then
-							_G.ScenarioStageBlock.Stage:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
+							ScenarioStageBlock.Stage:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 						end
-						_G.ScenarioStageBlock.Stage:SetShadowColor(0, 0, 0, 0.8)
-						_G.ScenarioStageBlock.Stage:SetShadowOffset(2, -1)
+						ScenarioStageBlock.Stage:SetShadowColor(0, 0, 0, 0.8)
+						ScenarioStageBlock.Stage:SetShadowOffset(2, -1)
 					end
 				end)
 
@@ -707,20 +772,20 @@ function ElvUI_EltreumUI:SkinMailZone()
 	if E.db.ElvUI_EltreumUI.skins.zones then
 		if not IsAddOnLoaded("ElvUI_SLE") then
 			--[[hooksecurefunc("SetZoneText", function()
-				_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, E.db.general.fontStyle)
-				_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, E.db.general.fontStyle)
-				_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
-				_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
+				ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, E.db.general.fontStyle)
+				SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, E.db.general.fontStyle)
+				PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
+				PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
 			end)]]
-			_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, E.db.general.fontStyle)
-			_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, E.db.general.fontStyle)
-			_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
-			_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
-			_G.OpenMailBodyText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+			ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, E.db.general.fontStyle)
+			SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, E.db.general.fontStyle)
+			PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
+			PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
+			OpenMailBodyText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
 			if E.Retail then
-				_G.SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+				SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
 			--elseif E.TBC or E.Classic then
-				--_G.MailEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+				--MailEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
 			end
 		end
 	end

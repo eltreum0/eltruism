@@ -2,6 +2,29 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local C_CVar = _G.C_CVar
 local S = E:GetModule('Skins')
+local CreateFrame = _G.CreateFrame
+local UIParent = _G.UIParent
+local print = _G.print
+local unpack = _G.unpack
+local hooksecurefunc = _G.hooksecurefunc
+local IsAddOnLoaded = _G.IsAddOnLoaded
+local DisableAddOn = _G.DisableAddOn
+local C_Timer = _G.C_Timer
+local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
+local SetCVar = _G.SetCVar
+local UIParentLoadAddOn = _G.UIParentLoadAddOn
+local select = _G.select
+local GetCursorInfo = _G.GetCursorInfo
+local GetItemInfo = _G.GetItemInfo
+local string = _G.string
+local DELETE_ITEM_CONFIRM_STRING = _G.DELETE_ITEM_CONFIRM_STRING
+local InCombatLockdown = _G.InCombatLockdown
+local HideUIPanel = _G.HideUIPanel
+local LoadAddOn = _G.LoadAddOn
+local GameMenuFrame = _G.GameMenuFrame
+local VideoOptionsFrame = _G.VideoOptionsFrame
+local UIErrorsFrame = _G.UIErrorsFrame
+local RaidWarningFrame = _G.RaidWarningFrame
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
@@ -176,25 +199,25 @@ function ElvUI_EltreumUI:Anchors()
 
 	--mover for UI errors frame
 	if E.db.ElvUI_EltreumUI.blizzframes.hideerrorframe then
-		_G.UIErrorsFrame:Clear()
-		_G.UIErrorsFrame:Hide()
+		UIErrorsFrame:Clear()
+		UIErrorsFrame:Hide()
 	else
-		E:CreateMover(_G.UIErrorsFrame, "MoverUIERRORS", "UI Error Frame", nil, nil, nil, "ALL,SOLO")
+		E:CreateMover(UIErrorsFrame, "MoverUIERRORS", "UI Error Frame", nil, nil, nil, "ALL,SOLO")
 		if E.db.ElvUI_EltreumUI.blizzframes.errorframe then
-			_G.UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.errorframefontsize, E.db.general.fontStyle)
+			UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.errorframefontsize, E.db.general.fontStyle)
 		end
 	end
 
-	E:CreateMover(_G.RaidWarningFrame, "MoverRaidWarningFrame", "Raid Warning Frame", nil, nil, nil, "ALL,SOLO")
+	E:CreateMover(RaidWarningFrame, "MoverRaidWarningFrame", "Raid Warning Frame", nil, nil, nil, "ALL,SOLO")
 
 	if E.Retail then
-		E:CreateMover(_G.RaidBossEmoteFrame, "MoverRaidBossEmoteFrame", "Raid/Boss Emote Frame", nil, nil, nil, "ALL,SOLO")
-		--E:CreateMover(_G.BossBanner, "MoverBossBanner", "Boss Loot Banner", nil, nil, nil, "ALL,SOLO") --doesnt work
+		E:CreateMover(RaidBossEmoteFrame, "MoverRaidBossEmoteFrame", "Raid/Boss Emote Frame", nil, nil, nil, "ALL,SOLO")
+		--E:CreateMover(BossBanner, "MoverBossBanner", "Boss Loot Banner", nil, nil, nil, "ALL,SOLO") --doesnt work
 		--this doesnt seem to work well, rather if you set font size to like 200 it becomes less blurry, but if its 12 its very blurry
 		--[[if E.db.ElvUI_EltreumUI.blizzframes.raidbossframe then
-			_G.RaidWarningFrameSlot1:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
-			_G.RaidWarningFrameSlot2:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
-			--_G.RaidBossEmoteFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
+			RaidWarningFrameSlot1:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
+			RaidWarningFrameSlot2:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
+			--RaidBossEmoteFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
 		end]]
 	end
 end
@@ -346,9 +369,9 @@ function ElvUI_EltreumUI:DevTools()
 					if not IsAddOnLoaded("Blizzard_DebugTools") then
 						UIParentLoadAddOn("Blizzard_DebugTools")
 					end
-					_G.TableAttributeDisplay:SetWidth(800)
-					_G.TableAttributeDisplay.LinesScrollFrame:SetWidth(700)
-					_G.TableAttributeDisplay.TitleButton.Text:SetWidth(600)
+					TableAttributeDisplay:SetWidth(800)
+					TableAttributeDisplay.LinesScrollFrame:SetWidth(700)
+					TableAttributeDisplay.TitleButton.Text:SetWidth(600)
 					frame:UnregisterAllEvents()
 				end
 			end)
@@ -406,7 +429,7 @@ function ElvUI_EltreumUI:DeleteItem()
 end
 
 --from elvui api
-local EltruismMenuButton = CreateFrame('Button', nil, _G.GameMenuFrame, 'GameMenuButtonTemplate')
+local EltruismMenuButton = CreateFrame('Button', nil, GameMenuFrame, 'GameMenuButtonTemplate')
 local isMenuExpanded = false
 local EltruismGameMenu = CreateFrame("Frame")
 EltruismGameMenu:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -426,7 +449,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 		end)
 
 		hooksecurefunc('GameMenuFrame_UpdateVisibleButtons', function ()
-			EltruismMenuButton:Point("TOP", _G.GameMenuFrame.ElvUI, "BOTTOM", 0, -1)
+			EltruismMenuButton:Point("TOP", GameMenuFrame.ElvUI, "BOTTOM", 0, -1)
 			if _G["GameMenu_SLEConfig"] and not _G["GameMenuReloadUI"] then
 				EltruismMenuButton:Point("TOP", _G["GameMenu_SLEConfig"], "BOTTOM", 0, -1)
 			elseif _G["GameMenuReloadUI"] then
@@ -444,12 +467,12 @@ EltruismGameMenu:SetScript("OnEvent", function()
 end)
 
 --make the video options movable because its annoying when adjusting settings
-_G.VideoOptionsFrame:SetMovable(true)
-_G.VideoOptionsFrame:EnableMouse(true)
-_G.VideoOptionsFrame:RegisterForDrag("LeftButton")
-_G.VideoOptionsFrame:SetScript("OnDragStart", _G.VideoOptionsFrame.StartMoving)
-_G.VideoOptionsFrame:SetScript("OnDragStop",_G.VideoOptionsFrame.StopMovingOrSizing)
-_G.VideoOptionsFrame:SetClampedToScreen(true)
+VideoOptionsFrame:SetMovable(true)
+VideoOptionsFrame:EnableMouse(true)
+VideoOptionsFrame:RegisterForDrag("LeftButton")
+VideoOptionsFrame:SetScript("OnDragStart", VideoOptionsFrame.StartMoving)
+VideoOptionsFrame:SetScript("OnDragStop", VideoOptionsFrame.StopMovingOrSizing)
+VideoOptionsFrame:SetClampedToScreen(true)
 
 --click casting button toggle
 if E.Retail then

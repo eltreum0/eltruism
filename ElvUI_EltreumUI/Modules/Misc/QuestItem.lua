@@ -1,4 +1,34 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local _G = _G
+local CreateFrame = _G.CreateFrame
+local UIParent = _G.UIParent
+local BackdropTemplateMixin = _G.BackdropTemplateMixin
+local IsInInstance = _G.IsInInstance
+local GetItemClassInfo = _G.GetItemClassInfo
+local LE_ITEM_CLASS_QUESTITEM = _G.LE_ITEM_CLASS_QUESTITEM
+local LOOT_JOURNAL_LEGENDARIES_SOURCE_QUEST = _G.LOOT_JOURNAL_LEGENDARIES_SOURCE_QUEST
+local InCombatLockdown = _G.InCombatLockdown
+local GetBindingKey = _G.GetBindingKey
+local SetBindingClick = _G.SetBindingClick
+local HandleModifiedItemClick = _G.HandleModifiedItemClick
+local IsShiftKeyDown = _G.IsShiftKeyDown
+local GameFontNormal = _G.GameFontNormal
+local GameTooltip = _G.GameTooltip
+local GetItemInfo = _G.GetItemInfo
+local ipairs = _G.ipairs
+local ITEM_SPELL_TRIGGER_ONUSE = _G.ITEM_SPELL_TRIGGER_ONUSE
+local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
+local GetContainerNumSlots = _G.GetContainerNumSlots
+local GetContainerItemLink = _G.GetContainerItemLink
+local tonumber = _G.tonumber
+local GetContainerItemQuestInfo = _G.GetContainerItemQuestInfo
+local GetContainerItemInfo = _G.GetContainerItemInfo
+local GetInventorySlotInfo = _G.GetInventorySlotInfo
+local GetInventoryItemLink = _G.GetInventoryItemLink
+local GetBindingText = _G.GetBindingText
+local CooldownFrame_Set = _G.CooldownFrame_Set
+local GetContainerItemCooldown = _G.GetContainerItemCooldown
+local GetInventoryItemCooldown = _G.GetInventoryItemCooldown
 
 --A merge of QBAr by Aezay with a few edits by Eltreum
 --This module is GNU GPL v3

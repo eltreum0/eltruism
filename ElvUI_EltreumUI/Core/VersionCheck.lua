@@ -1,4 +1,8 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local _G = _G
+local string = _G.string
+local OKAY = _G.OKAY
+local IsAddOnLoaded = _G.IsAddOnLoaded
 
 function ElvUI_EltreumUI:VersionCheckInit()
 	if E.private.ElvUI_EltreumUI.install_version < "2.7.3" then

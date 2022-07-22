@@ -1,6 +1,18 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
+local CreateFrame = _G.CreateFrame
+local UIParent = _G.UIParent
+local IsAddOnLoaded = _G.IsAddOnLoaded
+local hooksecurefunc = _G.hooksecurefunc
+local CharacterLevelText = _G.CharacterLevelText
+local CharacterFrameTitleText = _G.CharacterFrameTitleText
+local CharacterNameText = _G.CharacterNameText
+local CharacterModelFrame = _G.CharacterModelFrame
+local CharacterFrame = _G.CharacterFrame
+local PaperDollFrame = _G.PaperDollFrame
+local ReputationFrame = _G.ReputationFrame
+local TokenFrame = _G.TokenFrame
 
 local classIcons = {
 	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Warrior",
@@ -39,7 +51,6 @@ classFrame:SetSize(20, 20)
 classFrame:SetParent("PaperDollFrame")
 local classTexture = classFrame:CreateTexture()
 classTexture:SetAllPoints(classFrame)
-local CharacterLevelText = _G.CharacterLevelText
 if E.Retail then
 	CharacterLevelText:SetWidth(300) --new
 elseif E.Classic or E.Wrath or E.TBC then
@@ -66,12 +77,12 @@ function ElvUI_EltreumUI:PlayerNamepaperdoll()
 			return
 		elseif not charactertext:match("|T") then
 			if E.Retail then
-				if _G.CharacterFrameTitleText then
-					_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+				if CharacterFrameTitleText then
+					CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 				end
 			else
-				if _G.CharacterFrameTitleText then
-					_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+				if CharacterFrameTitleText then
+					CharacterNameText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 				end
 			end
 		end
@@ -98,77 +109,77 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		elseif E.Retail then
 
 			hooksecurefunc('PaperDollFrame_SetLevel', function()
-				_G.CharacterFrameTitleText:ClearAllPoints()
-				_G.CharacterFrameTitleText:SetPoint('TOP', _G.CharacterModelFrame, 0, 50)
-				_G.CharacterFrameTitleText:SetParent(_G.CharacterFrame)
-				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
-				_G.CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-				_G.CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
-				_G.CharacterFrameTitleText:SetShadowOffset(2, -1)
-				_G.CharacterLevelText:ClearAllPoints()
-				_G.CharacterLevelText:SetPoint('TOP', _G.CharacterFrameTitleText, 'BOTTOM', 0, 0)
-				_G.CharacterLevelText:SetDrawLayer("OVERLAY")
+				CharacterFrameTitleText:ClearAllPoints()
+				CharacterFrameTitleText:SetPoint('TOP', CharacterModelFrame, 0, 50)
+				CharacterFrameTitleText:SetParent(CharacterFrame)
+				CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
+				CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
+				CharacterFrameTitleText:SetShadowOffset(2, -1)
+				CharacterLevelText:ClearAllPoints()
+				CharacterLevelText:SetPoint('TOP', CharacterFrameTitleText, 'BOTTOM', 0, 0)
+				CharacterLevelText:SetDrawLayer("OVERLAY")
 			end)
 
 			hooksecurefunc("CharacterFrame_Collapse", function()
-				if _G.PaperDollFrame:IsShown() then
+				if PaperDollFrame:IsShown() then
 					if E.Retail then
-						charactertext = _G.CharacterFrameTitleText:GetText()
+						charactertext = CharacterFrameTitleText:GetText()
 						if not charactertext:match("|T") then
-							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+							CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 						end
 					elseif E.Wrath or E.TBC or E.Classic then
-						charactertext = _G.CharacterFrameTitleText:GetText()
+						charactertext = CharacterFrameTitleText:GetText()
 						if not charactertext:match("|T") then
-							_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
+							CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
 						end
 					end
 				end
 			end)
 
 			hooksecurefunc("CharacterFrame_Expand", function()
-				if _G.PaperDollFrame:IsShown() then
+				if PaperDollFrame:IsShown() then
 					if E.Retail then
-						charactertext = _G.CharacterFrameTitleText:GetText()
+						charactertext = CharacterFrameTitleText:GetText()
 						if not charactertext:match("|T") then
-							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+							CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 						end
 					elseif E.Wrath or E.TBC or E.Classic then
-						charactertext = _G.CharacterFrameTitleText:GetText()
+						charactertext = CharacterFrameTitleText:GetText()
 						if not charactertext:match("|T") then
-							_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
+							CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
 						end
 					end
 				end
 			end)
 
 			hooksecurefunc("ReputationFrame_Update", function()
-				if _G.ReputationFrame:IsShown() then
+				if ReputationFrame:IsShown() then
 					if E.Retail then
-						charactertext = _G.CharacterFrameTitleText:GetText()
+						charactertext = CharacterFrameTitleText:GetText()
 						if not charactertext:match("|T") then
-							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+							CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 						end
 					elseif E.Wrath or E.TBC or E.Classic then
-						charactertext = _G.CharacterFrameTitleText:GetText()
+						charactertext = CharacterFrameTitleText:GetText()
 						if not charactertext:match("|T") then
-							_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
+							CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
 						end
 					end
 				end
 			end)
 
 			hooksecurefunc("TokenFrame_Update", function()
-				if _G.TokenFrame:IsShown() then
+				if TokenFrame:IsShown() then
 					if E.Retail then
-						charactertext = _G.CharacterFrameTitleText:GetText()
+						charactertext = CharacterFrameTitleText:GetText()
 						if not charactertext:match("|T") then
-							_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+							CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 						end
 					elseif E.Wrath or E.TBC or E.Classic then
-						charactertext = _G.CharacterFrameTitleText:GetText()
+						charactertext = CharacterFrameTitleText:GetText()
 						if not charactertext:match("|T") then
-							_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
+							CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
 						end
 					end
 				end

@@ -1,4 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local _G = _G
+local IsAddOnLoaded = _G.IsAddOnLoaded
 
 function ElvUI_EltreumUI:SetupFontsOutlineNone()
 	if E.Retail then

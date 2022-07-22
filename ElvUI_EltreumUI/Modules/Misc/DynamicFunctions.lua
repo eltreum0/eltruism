@@ -1,5 +1,14 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
+local IsInInstance = _G.IsInInstance
+local IsAddOnLoaded = _G.IsAddOnLoaded
+local hooksecurefunc = _G.hooksecurefunc
+local CreateFrame = _G.CreateFrame
+local InCombatLockdown = _G.InCombatLockdown
+local UnitLevel = _G.UnitLevel
+local HasNewMail = _G.HasNewMail
+local PlaySoundFile = _G.PlaySoundFile
+local C_Timer = _G.C_Timer
 
 function ElvUI_EltreumUI:BattlegroundGroupUnitframes()
 	if E.db.ElvUI_EltreumUI.otherstuff.bgunitframes and E.private.unitframe.enable then

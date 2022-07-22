@@ -1,5 +1,26 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local utf8sub = string.utf8sub
+local _G = _G
+local UnitName = _G.UnitName
+local string = _G.string
+local UnitClass = _G.UnitClass
+local UnitIsPlayer = _G.UnitIsPlayer
+local math = _G.math
+local GetRaidTargetIndex = _G.GetRaidTargetIndex
+local UnitEffectiveLevel = _G.UnitEffectiveLevel
+local UnitLevel = _G.UnitLevel
+local UnitClassification = _G.UnitClassification
+local tostring = _G.tostring
+local UnitCanAttack = _G.UnitCanAttack
+local UnitIsEnemy = _G.UnitIsEnemy
+local UnitChannelInfo = _G.UnitChannelInfo
+local UnitCastingInfo = _G.UnitCastingInfo
+local UnitReaction = _G.UnitReaction
+local UnitExists = _G.UnitExists
+local UnitArmor = _G.UnitArmor
+local UnitHealthMax = _G.UnitHealthMax
+local UnitIsGroupLeader = _G.UnitIsGroupLeader
+local UnitIsGroupAssistant = _G.UnitIsGroupAssistant
 
 -- Name custom abbreviation by Azilroka
 E:AddTag("name:eltruism:abbreviate", "UNIT_NAME_UPDATE", function(unit)

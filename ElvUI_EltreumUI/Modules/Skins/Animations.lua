@@ -1,5 +1,19 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
+local CreateFrame = _G.CreateFrame
+local WorldFrame = _G.WorldFrame
+local UIParent = _G.UIParent
+local IsInInstance = _G.IsInInstance
+local select = _G.select
+local UnitAura = _G.UnitAura
+local IsEncounterSuppressingRelease = _G.IsEncounterSuppressingRelease
+local ObjectiveTrackerFrame = _G.ObjectiveTrackerFrame
+local Minimap = _G.Minimap
+local PlaySoundFile = _G.PlaySoundFile
+local UIFrameFadeIn = _G.UIFrameFadeIn
+local C_Timer = _G.C_Timer
+local UIFrameFadeOut = _G.UIFrameFadeOut
+
 
 --Dark Souls Death, my first weakaura adapted
 local darksouls = CreateFrame("FRAME", nil, WorldFrame)
