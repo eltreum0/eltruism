@@ -513,5 +513,21 @@ E:AddTag("eltruism:shortclassification", "UNIT_NAME_UPDATE", function(unit)
 end)
 E:AddTagInfo("eltruism:shortclassification", ElvUI_EltreumUI.Name, L["Displays the unit's classification in short form (e.g. '+' for ELITE and 'R' for RARE and a Skull for Boss)"])
 
-
+E:AddTag('eltruism:smartlevel', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
+	local level = UnitEffectiveLevel(unit)
+	if E.Retail and (UnitIsWildBattlePet(unit) or UnitIsBattlePetCompanion(unit)) then
+		return UnitBattlePetLevel(unit)
+	elseif level == UnitEffectiveLevel('player') then
+		if UnitIsPlayer(unit) then
+			return nil
+		else
+			return level
+		end
+	elseif level > 0 then
+		return level
+	else
+		return '??'
+	end
+end)
+E:AddTagInfo("eltruism:smartlevel", ElvUI_EltreumUI.Name, L["Shows level difference when it exists for NPCs and players, hides for players if same level"])
 --future tag idea: group number only for first member of group
