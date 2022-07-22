@@ -53,7 +53,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 					if _G.PlayerTalentFrameBackgroundTopLeft then
 						if E.TBC then
 							_G.PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 600)
-						elseif E.Wrath then
+						elseif E.Wrath then --wotlk todo
 							if _G.PlayerTalentFrameScrollFrame.backdrop then
 								_G.PlayerTalentFrameScrollFrame.backdrop:Kill()
 							end

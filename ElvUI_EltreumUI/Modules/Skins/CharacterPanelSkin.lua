@@ -181,7 +181,6 @@ if not E.Retail then
 	end)
 end
 
-
 --expanded armory
 function ElvUI_EltreumUI:ExpandedCharacterStats()
 	if not E.private.skins.blizzard.enable == false then
@@ -1012,6 +1011,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PetLevelText:SetPoint('BOTTOM', _G.PetNameText, 0, -10)
 					_G.PetLoyaltyText:SetPoint('BOTTOM', _G.PetLevelText, 0, -20)
 					_G.PetPaperDollCloseButton:Hide()
+				elseif E.Wrath then --wotlk todo
+					_G.ReputationListScrollFrame:SetPoint("TOPRIGHT", _G.ReputationFrame, "TOPRIGHT", -266, -76)
 				end
 
 				_G.CharacterNameText:SetParent(_G.CharacterModelFrame)

@@ -497,7 +497,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			QuestLogDetailScrollFrame:SetPoint("TOPLEFT", QuestLogListScrollFrame, "TOPRIGHT", 35, 0)
 			QuestLogDetailScrollFrame:SetHeight(390)
 
-			if not IsAddOnLoaded('Questie') then
+			if not IsAddOnLoaded('Questie') then --wotlk todo
 				--from blizzard's FrameXML/QuestLogFrame.lua
 
 				--skin the classic objective frame
