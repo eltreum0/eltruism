@@ -5773,8 +5773,8 @@ function ElvUI_EltreumUI:Configtable()
 							checkelvuiclasscolorcastbar = {
 								order = 7,
 								type = 'toggle',
-								name = L["Custom Class"],
-								desc = L["Use Custom Class Colors instead of Castbar Colors"],
+								name = L["Class Colors"],
+								desc = L["Use Class Colors instead of Custom Colors"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar end,
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar = value end,
@@ -5899,8 +5899,8 @@ function ElvUI_EltreumUI:Configtable()
 							checkelvuiclasscolorcastbartarget = {
 								order = 16,
 								type = 'toggle',
-								name = L["Custom Class"],
-								desc = L["Use Custom Class Colors instead of Castbar Colors"],
+								name = L["Class Colors"],
+								desc = L["Use Class Colors instead of Custom Colors"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar end,
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar = value end,
@@ -6486,6 +6486,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 101,
 								type = 'color',
 								name = L["Color 1"],
+								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -6503,6 +6504,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 102,
 								type = 'color',
 								name = L["Color 2"],
+								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -6527,6 +6529,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 104,
 								type = 'color',
 								name = L["Color 1"],
+								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -6544,6 +6547,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 105,
 								type = 'color',
 								name = L["Color 2"],
+								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -6568,6 +6572,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 106,
 								type = 'color',
 								name = L["Color 1"],
+								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -6585,6 +6590,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 107,
 								type = 'color',
 								name = L["Color 2"],
+								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -6609,6 +6615,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 109,
 								type = 'color',
 								name = L["Color 1"],
+								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
@@ -6626,6 +6633,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 110,
 								type = 'color',
 								name = L["Color 2"],
+								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
 								get = function()
