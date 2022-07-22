@@ -826,6 +826,7 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('Sound_EnableErrorSpeech', 1)
 	SetCVar('alwaysCompareItems', 0) --dont always compare
 	SetCVar('allowCompareWithToggle', 1) --compare using shift
+	SetCVar('instantQuestText', 1) -- makes quest text show fast instead of per line
 
 	--this makes it so that the non nameplate names are hidden
 	if E.Retail then
