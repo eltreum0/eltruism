@@ -1,8 +1,17 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local _G = _G
+local CreateFrame = _G.CreateFrame
+local Minimap = _G.Minimap
+local IsInInstance = _G.IsInInstance
+local WorldMapFrame = _G.WorldMapFrame
+local select = _G.select
+local GetInstanceInfo = _G.GetInstanceInfo
+local C_ChallengeMode = _G.C_ChallengeMode
+local C_Timer = _G.C_Timer
 
 local instancedifficulty = CreateFrame("FRAME")
 instancedifficulty:SetSize(40, 40)
-instancedifficulty:SetPoint("CENTER", _G.Minimap , -50, 50)
+instancedifficulty:SetPoint("CENTER", Minimap , -50, 50)
 instancedifficulty:Hide()
 instancedifficulty.Text = instancedifficulty:CreateFontString(nil,"ARTWORK")
 instancedifficulty:RegisterEvent("ZONE_CHANGED_NEW_AREA")
@@ -23,7 +32,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 		instancedifficulty.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.instances.fontsize, E.db.general.fontStyle)
 		instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.instances.r, E.db.ElvUI_EltreumUI.instances.g, E.db.ElvUI_EltreumUI.instances.b)
 		instancedifficulty.Text:SetPoint("CENTER", _G["MoverEltruismInstanceDifficulty"])
-		instancedifficulty.Text:SetParent(_G.Minimap)
+		instancedifficulty.Text:SetParent(Minimap)
 		local DifficultyID = select(3, GetInstanceInfo()) --https://wowpedia.fandom.com/wiki/DifficultyID
 		if DifficultyID == 1 then
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.instances.DungeonNormal)

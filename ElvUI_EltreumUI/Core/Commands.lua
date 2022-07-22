@@ -1,4 +1,20 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local _G = _G
+local IsAddOnLoaded = _G.IsAddOnLoaded
+local CreateFrame = _G.CreateFrame
+local GetCoinIcon = _G.GetCoinIcon
+local CombatText_AddMessage = _G.CombatText_AddMessage
+local CombatText_StandardScroll = _G.CombatText_StandardScroll
+local print = _G.print
+local strlower = _G.strlower
+local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
+local GetContainerNumSlots = _G.GetContainerNumSlots
+local select = _G.select
+local GetContainerItemInfo = _G.GetContainerItemInfo
+local C_Covenants = _G.C_Covenants
+local next = _G.next
+local SendChatMessage = _G.SendChatMessage
+local UseContainerItem = _G.UseContainerItem
 
 -- Register on init
 function ElvUI_EltreumUI:LoadCommands()

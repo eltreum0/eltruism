@@ -1,4 +1,11 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local _G = _G
+local C_CVar = _G.C_CVar
+local IsInInstance = _G.IsInInstance
+local PlayMusic = _G.PlayMusic
+local tostring = _G.tostring
+local StopMusic = _G.StopMusic
+local Minimap = _G.Minimap
 local dontstop = 0
 local dontstopboss = 0
 

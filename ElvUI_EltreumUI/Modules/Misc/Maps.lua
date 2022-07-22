@@ -1,5 +1,20 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
+local CreateFrame = _G.CreateFrame
+local UIParent = _G.UIParent
+local IsInInstance = _G.IsInInstance
+local C_Map = _G.C_Map
+local C_Timer = _G.C_Timer
+local C_SuperTrack = _G.C_SuperTrack
+local SuperTrackedFrame = _G.SuperTrackedFrame
+local GetUnitSpeed = _G.GetUnitSpeed
+local C_Navigation = _G.C_Navigation
+local math = _G.math
+local string = _G.string
+local tonumber = _G.tonumber
+local table = _G.table
+local wipe = _G.wipe
+local UiMapPoint = _G.UiMapPoint
 
 --Conversion of Time to Arrive weakaura (new version)
 local EltruismAutopin = CreateFrame("Frame", "EltruismAutoPin")
@@ -15,8 +30,8 @@ EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.
 EltruismTimeToArrive.TimeText:SetParent("SuperTrackedFrame")
 EltruismTimeToArrive:SetParent("SuperTrackedFrame")
 
-_G.SuperTrackedFrame.DistanceText:SetTextColor(1,1,1)
-_G.SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+SuperTrackedFrame.DistanceText:SetTextColor(1,1,1)
+SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 
 --set the throttle
 local ONUPDATE_INTERVAL = 1

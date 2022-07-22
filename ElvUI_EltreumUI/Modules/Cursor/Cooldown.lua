@@ -1,6 +1,25 @@
 --CursorCooldown is a fork of CooldownToGo by mitchnull, which is licensed under Public Domain. My thanks to mitchnull for making it!
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
+local CreateFrame = _G.CreateFrame
+local UIParent = _G.UIParent
+local C_CVar = _G.C_CVar
+local GetTime = _G.GetTime
+local GetCursorPosition = _G.GetCursorPosition
+local math = _G.math
+local UIFrameFadeOut = _G.UIFrameFadeOut
+local GetActionInfo = _G.GetActionInfo
+local NUM_PET_ACTION_SLOTS = _G.NUM_PET_ACTION_SLOTS
+local GetPetActionInfo = _G.GetPetActionInfo
+local GetSpellInfo = _G.GetSpellInfo
+local GetSpellBaseCooldown = _G.GetSpellBaseCooldown
+local GetSpellCooldown = _G.GetSpellCooldown
+local GetInventoryItemLink = _G.GetInventoryItemLink
+local GetContainerItemLink = _G.GetContainerItemLink
+local tonumber = _G.tonumber
+local GetItemInfo = _G.GetItemInfo
+local GetItemCooldown = _G.GetItemCooldown
+local GetPetActionCooldown = _G.GetPetActionCooldown
 
 --onupdate things
 local NormalUpdateDelay = 1 --1.0/10 -- update while hidden

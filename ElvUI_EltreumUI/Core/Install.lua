@@ -1,4 +1,9 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local _G = _G
+local ReloadUI = _G.ReloadUI
+local math = _G.math
+local PlaySound = _G.PlaySound
+local IsAddOnLoaded = _G.IsAddOnLoaded
 
 -- Set version & reload on "Finished"
 local function InstallComplete()
