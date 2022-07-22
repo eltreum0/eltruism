@@ -3,8 +3,6 @@ local _G = _G
 local UIFrameFadeOut = _G.UIFrameFadeOut
 local UIFrameFadeIn = _G. UIFrameFadeIn
 local IsAddOnLoaded = _G.IsAddOnLoaded
-local LeftChatPanel = _G.LeftChatPanel
-local RightChatPanel = _G.RightChatPanel
 local InCombatLockdown = _G.InCombatLockdown
 
 --chat fading/mouseover/combathide
@@ -27,7 +25,8 @@ function ElvUI_EltreumUI:DynamicChatFade()
 		rightfaderbutton = 1
 	end
 	if E.db.ElvUI_EltreumUI.chat.enable == true then
-
+		local LeftChatPanel = _G.LeftChatPanel
+		local RightChatPanel = _G.RightChatPanel
 		--register events left chat panel
 		if E.db.ElvUI_EltreumUI.chat.leftfader then
 			LeftChatPanel:RegisterEvent("CHAT_MSG_ACHIEVEMENT")
