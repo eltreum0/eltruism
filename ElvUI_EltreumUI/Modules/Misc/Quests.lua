@@ -239,7 +239,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								AcceptQuest()
 							end
 						end
-					elseif E.TBC or E.Classic then
+					elseif E.Wrath or E.TBC or E.Classic then
 						AcceptQuest()
 						if E.db.ElvUI_EltreumUI.dev then
 							ElvUI_EltreumUI:Print("quest accepted")
@@ -414,7 +414,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 									end
 								end
 							end
-						elseif E.TBC or E.Classic then
+						elseif E.Wrath or E.TBC or E.Classic then
 							if (GetNumGossipAvailableQuests() > 0) then
 								if E.db.ElvUI_EltreumUI.dev then
 									ElvUI_EltreumUI:Print("number of available quests > 0")
@@ -462,7 +462,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 											end
 											return
 										end
-									elseif E.TBC or E.Classic then
+									elseif E.Wrath or E.TBC or E.Classic then
 										AcceptQuest()
 										if (GetNumQuestChoices() <= 0) then
 											return
