@@ -1060,6 +1060,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.SkillFrame:SetPoint("TOPLEFT", _G.CharacterFrame, "TOPLEFT", 0, 0)
 					_G.SkillFrame:SetSize(400, 505)
 
+					_G.TokenFrame:ClearAllPoints()
+					_G.TokenFrame:SetPoint("BOTTOMLEFT", _G.CharacterFrame, "BOTTOMLEFT", 0, 20)
+					_G.TokenFrame:SetSize(400, 505)
 					_G.TokenFrameCancelButton:Hide()
 				end
 
