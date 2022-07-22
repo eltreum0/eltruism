@@ -245,6 +245,12 @@ function ElvUI_EltreumUI:SkillGlow()
 				[6574] = true,
 				[6572] = true,
 
+				--kill shot
+				[61006] = true,
+
+				--rune strike
+				[56815] = true,
+
 				--mongoose bite
 				[36916] = true,
 				[14271] = true,
