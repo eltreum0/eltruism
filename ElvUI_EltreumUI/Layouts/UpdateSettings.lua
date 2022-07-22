@@ -99,7 +99,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	if E.Retail then
 		E.db.ElvUI_EltreumUI.questsettings.enable = true
 		E.db.ElvUI_EltreumUI.questsettings.arena = true
-	elseif E.TBC or E.Classic then
+	elseif E.Wrath or E.TBC or E.Classic then
 		E.db.ElvUI_EltreumUI.questsettings.enable = false
 		E.db.ElvUI_EltreumUI.questsettings.arena = false
 		E.db.ElvUI_EltreumUI.glow.enabletotem = true

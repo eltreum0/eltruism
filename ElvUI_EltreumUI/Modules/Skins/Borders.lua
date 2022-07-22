@@ -348,7 +348,7 @@ function ElvUI_EltreumUI:Borders()
 			end
 
 			--boss
-			if E.db.ElvUI_EltreumUI.borders.bossborder and E.db.unitframe.units.boss.enable and (not E.Classic and not E.TBC) then
+			if E.db.ElvUI_EltreumUI.borders.bossborder and E.db.unitframe.units.boss.enable and (not E.Classic and not E.TBC and not E.Wrath) then
 				local bordersboss = {}
 				for i = 1,8 do
 					local bossmembers = {_G["ElvUF_Boss"..i]}
@@ -792,7 +792,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 			end
 		end
 
-		if E.db.ElvUI_EltreumUI.borders.bossborder and E.db.unitframe.units.boss.enable and not (E.Classic or E.TBC) then
+		if E.db.ElvUI_EltreumUI.borders.bossborder and E.db.unitframe.units.boss.enable and not (E.Classic or E.TBC or E.Wrath) then
 			for i = 1,8 do
 				local bossbordername = _G["EltruismBossBorder"..i]
 				if UnitExists("boss"..i) and bossbordername ~= nil then

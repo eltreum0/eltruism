@@ -76,7 +76,7 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 			local tbccheck = false
 			if E.Retail then
 				tbccheck = true
-			elseif E.TBC or E.Classic then
+			elseif E.Wrath or E.TBC or E.Classic then
 				if instanceType ~= "raid" and instanceType ~= "party" then
 					tbccheck = true
 				end
@@ -145,7 +145,7 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 			local tbccheck = false
 			if E.Retail then
 				tbccheck = true
-			elseif E.TBC or E.Classic then
+			elseif E.Wrath or E.TBC or E.Classic then
 				if instanceType ~= "raid" and instanceType ~= "party" then
 					tbccheck = true
 				end

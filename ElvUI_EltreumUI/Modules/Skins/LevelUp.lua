@@ -76,7 +76,7 @@ function ElvUI_EltreumUI:SkinLevelUp()
 end
 
 --add one for classic/tbc as well, but for some reason doesnt really work inside a function, maybe because of the timer?
-if E.TBC or E.Classic then
+if E.Wrath or E.TBC or E.Classic then
 	local LevelUpFrame = CreateFrame("Frame", "EltruismLevelUp", UIParent)
 	LevelUpFrame:SetPoint("TOP", UIParent, 0, -100)
 	LevelUpFrame:SetSize(418, 72)
@@ -108,7 +108,7 @@ if E.TBC or E.Classic then
 	LevelUpFrame:Hide()
 
 	local playerlevel = E.mylevel
-	if E.TBC or E.Classic then
+	if E.Wrath or E.TBC or E.Classic then
 		LevelUpFrame:RegisterEvent("PLAYER_LEVEL_UP")
 		--LevelUpFrame:SetScript("OnEvent", function(self, event, ...)
 		LevelUpFrame:SetScript("OnEvent", function()

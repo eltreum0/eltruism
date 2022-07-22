@@ -308,7 +308,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["actionbar"]["stanceBar"]["keepSizeRatio"] = false
 		if E.Retail then
 			E.db["actionbar"]["stanceBar"]["mouseover"] = true
-		elseif E.TBC or E.Classic then
+		elseif E.Wrath or E.TBC or E.Classic then
 			E.db["actionbar"]["stanceBar"]["mouseover"] = false
 		end
 		E.db["actionbar"]["stanceBar"]["style"] = "classic"
@@ -431,7 +431,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
 		E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96"
 		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-65,-319"
-		if E.TBC or E.Classic then
+		if E.Wrath or E.TBC or E.Classic then
 			E.db["movers"]["QuestTimerFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-258,-231"
 			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-223,-304"
 		end
@@ -859,7 +859,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["pet"]["colorOverride"] = "FORCE_OFF"
 		if E.Retail then
 			E.db["unitframe"]["units"]["pet"]["power"]["enable"] = false
-		elseif E.TBC or E.Classic then
+		elseif E.Wrath or E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["pet"]["power"]["enable"] = true
 		end
 		E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = ""
@@ -1031,7 +1031,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["raid"]["name"]["xOffset"] = 2
 		if E.Retail then
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 4
-		elseif E.TBC or E.Classic then
+		elseif E.Wrath or E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 5
 		end
 		E.db["unitframe"]["units"]["raid"]["power"]["enable"] = false
@@ -1065,7 +1065,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["raid"]["portrait"]["overlayAlpha"] = 0.6
 		if E.Retail then
 			E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
-		elseif E.TBC or E.Classic then
+		elseif E.Wrath or E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid26,exists] hide;show"
 			E.db["unitframe"]["units"]["raidpet"]["enable"] = true
 			E.db["unitframe"]["units"]["raidpet"]["horizontalSpacing"] = 0
@@ -1127,7 +1127,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 3
 		if E.Retail then
 			E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid21,noexists] hide;show"
-		elseif E.TBC or E.Classic then
+		elseif E.Wrath or E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid26,noexists] hide;show"
 		end
 		E.db["unitframe"]["units"]["raid40"]["width"] = 120
@@ -1178,7 +1178,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["target"]["buffs"]["keepSizeRatio"] = false
 		if E.Retail then
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,nonPersonal,Dispellable"
-		elseif E.TBC or E.Classic then
+		elseif E.Wrath or E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,nonPersonal,Dispellable,BlizzardNameplate"
 		end
 		E.db["unitframe"]["units"]["target"]["buffs"]["sizeOverride"] = 30

@@ -187,7 +187,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["databars"]["threat"]["height"] = 22
 		E.db["databars"]["threat"]["orientation"] = "HORIZONTAL"
 		E.db["databars"]["threat"]["width"] = 412
-		if E.TBC or E.Classic then
+		if E.Wrath or E.TBC or E.Classic then
 			E.db["databars"]["threat"]["enable"] = true
 		elseif E.Retail then
 			E.db["databars"]["threat"]["enable"] = false
@@ -268,7 +268,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			else
 				E.db["datatexts"]["panels"]["MinimapPanel"][2] = "Friends"
 			end
-		elseif E.Classic or E.TBC then
+		elseif E.Classic or E.Wrath or E.TBC then
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "Eltruism"
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"]["left"] = "Eltruism"
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][2] = "Durability"
@@ -387,7 +387,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 
 		-- Custom Text: Arena
 		E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
-		if E.Retail or E.TBC then
+		if E.Retail or E.Wrath or E.TBC then
 			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] = {
 				["attachTextTo"] = "Health",
 				["enable"] = true,
@@ -471,7 +471,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
-		elseif E.TBC or E.Classic then
+		elseif E.Wrath or E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
 				["enable"] = true,
@@ -658,7 +658,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["xOffset"] = -2,
 				["yOffset"] = 0
 			}
-		elseif E.TBC or E.Classic then
+		elseif E.Wrath or E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] = {
 				["attachTextTo"] = "Health",
 				["enable"] = true,
@@ -756,7 +756,7 @@ function ElvUI_EltreumUI:SetupPrivate()
 		E.private["general"]["nameplateFontSize"] = 10
 		E.private["general"]["nameplateLargeFont"] = "Kimberley"
 		E.private["general"]["nameplateLargeFontSize"] = 10
-	elseif E.TBC then
+	elseif E.Wrath or E.TBC then
 		E.private["install_complete"] = tostring(E.version)
 		E.private["general"]["totemBar"] = true
 	elseif E.Classic then
@@ -773,7 +773,7 @@ function ElvUI_EltreumUI:SetupGlobal()
 		E.global["general"]["smallerWorldMapScale"] = 1
 		E.global["general"]["mapAlphaWhenMoving"] = 0.35
 	end
-	if E.Classic or E.TBC then
+	if E.Classic or E.Wrath or E.TBC then
 		E.global["general"]["smallerWorldMapScale"] = 0.5
 		E.global["general"]["mapAlphaWhenMoving"] = 0.5
 		E.global["general"]["smallerWorldMap"] = true
@@ -851,7 +851,7 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar('threatWarning', 3)
 		SetCVar('showQuestTrackingTooltips', 1)
 		SetCVar('fstack_preferParentKeys', 0) --Add back the frame names via fstack!
-	elseif E.TBC or E.Classic then
+	elseif E.Wrath or E.TBC or E.Classic then
 		SetCVar("lootUnderMouse", 1)
 		SetCVar("chatBubbles", 1)
 		SetCVar("chatBubblesParty", 1)

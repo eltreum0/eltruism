@@ -132,6 +132,32 @@ function ElvUI_EltreumUI:DynamicLevelStyleFilter()
 						--E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -28
 					end
 				end
+			elseif E.Wrath then
+				if level < 80 then
+					if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" then
+						E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
+						--E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["format"] = ""
+						--E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["position"] = "TOPRIGHT"
+						--E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["xOffset"] = -6
+						--E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["yOffset"] = -13
+						--E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = ""
+						--E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["position"] = "TOPRIGHT"
+						--E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["xOffset"] = -6
+						--E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -13
+					end
+				elseif level == 80 then
+					if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" then
+						E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
+						--E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["format"] = "[eltruism:targetcast:indicator]"
+						--E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["position"] = "CENTER"
+						--E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["xOffset"] = 0
+						--E.db["nameplates"]["units"]["ENEMY_PLAYER"]["level"]["yOffset"] = -28
+						--E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = "[eltruism:targetcast:indicator]"
+						--E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["position"] = "CENTER"
+						--E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["xOffset"] = 0
+						--E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -28
+					end
+				end
 			end
 			E:UpdateNamePlates()
 		end
@@ -144,7 +170,7 @@ function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 		return
 	else
 		if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" and E.db.nameplates.filters.EltreumSpellsteal and not InCombatLockdown() then
-			if E.TBC or E.Retail then
+			if E.Wrath or E.TBC or E.Retail then
 				if E.myclass == 'MAGE' then
 					local level = UnitLevel("player")
 					if E.Retail then
@@ -153,8 +179,8 @@ function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 						elseif level < 39 then
 							E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
 						end
-					elseif E.TBC then
-						if level == 70 then
+					elseif E.Wrath or E.TBC then
+						if level >= 70 then
 							E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
 						elseif level < 70 then
 							E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
@@ -235,7 +261,7 @@ function ElvUI_EltreumUI:ActionPagingSwap()
 end
 
 --fix master loot?
-if E.TBC then
+if E.Wrath or E.TBC then
 	hooksecurefunc(_G.MasterLooterFrame, 'Hide', function(self)
 		self:ClearAllPoints()
 	end)
@@ -270,6 +296,14 @@ function ElvUI_EltreumUI:DynamicExperienceDatabar()
 					E.db.databars.experience.mouseover = false
 					E.db.databars.experience.enable = true
 				elseif level == 70 then
+					E.db.databars.experience.mouseover = true
+					E.db.databars.experience.enable = false
+				end
+			elseif E.Wrath then
+				if level < 80 then
+					E.db.databars.experience.mouseover = false
+					E.db.databars.experience.enable = true
+				elseif level == 80 then
 					E.db.databars.experience.mouseover = true
 					E.db.databars.experience.enable = false
 				end

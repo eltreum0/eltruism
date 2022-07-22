@@ -47,7 +47,7 @@ function ElvUI_EltreumUI:DarkMode()
 		if E.db["unitframe"]["units"]["party"]["customTexts"] == nil then
 			return
 		else
-			if E.Classic or E.TBC then
+			if E.Classic or E.Wrath or E.TBC then
 				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
 			elseif E.Retail then
 				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name]"
@@ -56,7 +56,7 @@ function ElvUI_EltreumUI:DarkMode()
 				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
 				E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
 				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
-			if E.Retail or E.TBC then
+			if E.Retail or E.Wrath or E.TBC then
 				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
 			end
 		end
@@ -119,7 +119,7 @@ function ElvUI_EltreumUI:LightMode()
 		if E.db["unitframe"]["units"]["party"]["customTexts"] == nil then
 			return
 		else
-			if E.Classic or E.TBC then
+			if E.Classic or E.Wrath or E.TBC then
 				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
 			elseif E.Retail then
 				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
@@ -129,7 +129,7 @@ function ElvUI_EltreumUI:LightMode()
 				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
 				E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
 				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-			if E.Retail or E.TBC then
+			if E.Retail or E.Wrath or E.TBC then
 				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
 			end
 		end
@@ -205,7 +205,7 @@ function ElvUI_EltreumUI:GradientMode()
 			if E.db["unitframe"]["units"]["party"]["customTexts"] == nil then
 				return
 			else
-				if E.Classic or E.TBC then
+				if E.Classic or E.Wrath or E.TBC then
 					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
 				elseif E.Retail then
 					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name]"
@@ -214,7 +214,7 @@ function ElvUI_EltreumUI:GradientMode()
 					E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
 					E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
 					E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
-				if E.Retail or E.TBC then
+				if E.Retail or E.Wrath or E.TBC then
 					E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
 				end
 			end
@@ -263,7 +263,7 @@ function ElvUI_EltreumUI:GradientMode()
 			if E.db["unitframe"]["units"]["party"]["customTexts"] == nil then
 				return
 			else
-				if E.Classic or E.TBC then
+				if E.Classic or E.Wrath or E.TBC then
 					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
 				elseif E.Retail then
 					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
@@ -273,7 +273,7 @@ function ElvUI_EltreumUI:GradientMode()
 					E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
 					E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
 					E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-				if E.Retail or E.TBC then
+				if E.Retail or E.Wrath or E.TBC then
 					E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
 				end
 			end
@@ -306,7 +306,7 @@ if E.Retail then
 end
 
 function ElvUI_EltreumUI:ShamanTextureMode()
-	if (E.TBC or E.Classic) and E.myclass == 'SHAMAN' then
+	if (E.Wrath or E.TBC or E.Classic) and E.myclass == 'SHAMAN' then
 		if E.db.ElvUI_EltreumUI.darkpowercolor and E.private.unitframe.enable then
 			local UF = E:GetModule('UnitFrames') --only classpower that is actually in UF instead of NP
 			local function TotemBackground()

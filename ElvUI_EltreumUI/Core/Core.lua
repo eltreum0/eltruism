@@ -133,7 +133,7 @@ function ElvUI_EltreumUI:BlizzCombatText()
 				SetCVar("floatingCombatTextCombatHealingAbsorbSelf", 0)
 				SetCVar("floatingCombatTextCombatHealingAbsorbTarget", 0)
 				SetCVar("floatingCombatTextCombatDamage", 0)
-			elseif E.TBC or E.Classic then
+			elseif E.Wrath or E.TBC or E.Classic then
 				SetCVar("floatingCombatTextCombatDamage", 0)
 			end
 		end
@@ -230,7 +230,7 @@ function ElvUI_EltreumUI:EnteringWorldCVars()
 	--ElvUI_EltreumUI:Print(L["Custom Nameplate CVars were set."])
 	if E.Retail then
 		SetCVar('showInGameNavigation', E.db.ElvUI_EltreumUI.cvars.showInGameNavigation)
-	elseif E.Classic or E.TBC then
+	elseif E.Classic or E.Wrath or E.TBC then
 		SetCVar('clampTargetNameplateToScreen', E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen)
 	end
 end
@@ -242,7 +242,7 @@ function ElvUI_EltreumUI:AlternativeGroupsDPS()
 		E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,UIParent,TOPLEFT,53,-302"
 		--E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,UIParent,TOPLEFT,236,-324"
 		E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,UIParent,TOPLEFT,58,-439"
-		if E.TBC then
+		if E.Wrath or E.TBC then
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 5
 		else
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 4
@@ -285,7 +285,7 @@ function ElvUI_EltreumUI:OriginalGroupsDPS()
 		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-247"
 		E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
 		E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
-		if E.TBC then
+		if E.Wrath or E.TBC then
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 5
 		else
 			E.db["unitframe"]["units"]["raid"]["numGroups"] = 4

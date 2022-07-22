@@ -24,7 +24,7 @@ if E.Retail then
 	_G.CharacterFrame.EltruismSpeedDescTooltip = CreateFrame("Frame", "EltruismSpeedDesc")
 end
 
-if E.TBC or E.Classic then
+if E.Wrath or E.TBC or E.Classic then
 	CharacterFrame.Text = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 	CharacterFrame.Text2 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 	CharacterFrame.Text3 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
@@ -36,7 +36,7 @@ if E.TBC or E.Classic then
 	CharacterFrame.StatusLine4 = CreateFrame("StatusBar", "EltruismCharacterBar4", CharacterFrame)
 end
 
-if E.TBC then
+if E.Wrath or E.TBC then
 	_G.PlayerStatFrameLeft2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine12", CharacterFrame)
 	_G.PlayerStatFrameLeft4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine22", CharacterFrame)
 	_G.PlayerStatFrameLeft6.StatusLine = CreateFrame("StatusBar", "EltruismStatLine32", CharacterFrame)

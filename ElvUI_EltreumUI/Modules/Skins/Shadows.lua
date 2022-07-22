@@ -17,7 +17,7 @@ function ElvUI_EltreumUI:Shadows()
 		EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
 			if (arg == "Blizzard_MacroUI") and not E.private.skins.blizzard.enable == false then
 				_G.MacroFrame:HookScript("OnShow", function()
-					if E.Retail or E.TBC then
+					if E.Retail or E.Wrath or E.TBC then
 						if not _G.MacroFrame.shadow then
 							_G.MacroFrame:CreateShadow()
 						end
@@ -37,7 +37,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 			if (arg == "Blizzard_InspectUI") and not E.private.skins.blizzard.enable == false then
 				_G.InspectFrame:HookScript("OnShow", function()
-					if E.TBC or E.Classic then
+					if E.Wrath or E.TBC or E.Classic then
 						if _G.InspectFrame and _G.InspectFrame.backdrop and not _G.InspectFrame.backdrop.shadow then
 							_G.InspectFrame.backdrop:CreateShadow()
 						end
@@ -56,7 +56,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 				end
-			elseif E.TBC or E.Classic then
+			elseif E.Wrath or E.TBC or E.Classic then
 				if (arg == "Blizzard_AuctionUI") and not E.private.skins.blizzard.enable == false then
 					_G.AuctionFrame:HookScript("OnShow", function()
 						if _G.AuctionFrame and _G.AuctionFrame.backdrop and not _G.AuctionFrame.backdrop.shadow then
@@ -404,7 +404,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
-		elseif E.TBC or E.Classic then
+		elseif E.Wrath or E.TBC or E.Classic then
 
 			--classic only elvui
 			local ClassicElvUIFrames = {
@@ -475,7 +475,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 			--tbc only frames
-			if E.TBC then
+			if E.Wrath or E.TBC then
 				local tbcframes = {
 				_G.LFGParentFrame.backdrop,
 				_G.LFGParentFrameTab1.backdrop,
@@ -591,7 +591,7 @@ function ElvUI_EltreumUI:Shadows()
 
 		--unitframes
 		if E.private.unitframe.enable then
-			if E.Retail or E.TBC then
+			if E.Retail or E.Wrath or E.TBC then
 				if not _G["ElvUF_Focus_HealthBar"].shadow then
 					_G["ElvUF_Focus_HealthBar"]:CreateShadow()
 				end

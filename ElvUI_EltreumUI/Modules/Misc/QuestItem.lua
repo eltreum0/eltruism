@@ -312,7 +312,7 @@ function ElvUI_EltreumUI:QuestItem()
 										AddButton(index,bag,slot,link,itemId,count)
 										index = (index + 1)
 									end
-								elseif E.TBC or E.Classic then
+								elseif E.Wrath or E.TBC or E.Classic then
 									local _, _, _, _, _, itemType, _ = GetItemInfo(itemId)
 									if itemType == "Quest" then
 										local _, count = GetContainerItemInfo(bag,slot)

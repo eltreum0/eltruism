@@ -252,7 +252,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 
 		-- Custom Text: Arena
 		E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
-		if E.Retail or E.TBC then
+		if E.Retail or E.Wrath or E.TBC then
 			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] = {
 				["attachTextTo"] = "Health",
 				["enable"] = true,
@@ -336,7 +336,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
-		elseif E.TBC or E.Classic then
+		elseif E.Wrath or E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
@@ -664,7 +664,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 
 	--fix for dark/light mode
 	if E.db.ElvUI_EltreumUI.lightmode == false then
-		if E.Classic or E.TBC then
+		if E.Classic or E.Wrath or E.TBC then
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
 		elseif E.Retail then
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name]"
@@ -673,11 +673,11 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
 			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
 			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
-		if E.Retail or E.TBC then
+		if E.Retail or E.Wrath or E.TBC then
 			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
 		end
 	elseif E.db.ElvUI_EltreumUI.lightmode == true then
-		if E.Classic or E.TBC then
+		if E.Classic or E.Wrath or E.TBC then
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
 		elseif E.Retail then
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
@@ -687,7 +687,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
 			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
 			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-		if E.Retail or E.TBC then
+		if E.Retail or E.Wrath or E.TBC then
 			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
 		end
 	end

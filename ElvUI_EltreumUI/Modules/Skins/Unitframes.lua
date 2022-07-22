@@ -38,7 +38,7 @@ if E.Retail then
 	mage = {r = "0.24705828726292", g = "0.78039044141769", b = "0.92156660556793"}
 	hunter = {r = "0.66666519641876", g = "0.82744914293289", b = "0.44705784320831"}
 	warlock = {r = "0.52941060066223", g = "0.53333216905594", b = "0.93333131074905"}
-elseif E.TBC or E.Classic then
+elseif E.Wrath or E.TBC or E.Classic then
 	paladin = {r = "0.96078222990036", g = "0.54901838302612", b = "0.72941017150879"}
 	warrior = {r = "0.78039044141769", g = "0.61176335811615", b = "0.43137159943581"}
 	shaman = {r = "0", g = "0.4392147064209", b = "0.87058633565903"}
@@ -167,7 +167,7 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 			mage = {r = "0.18431332707405", g = "0.58431243896484", b = "0.69019454717636"}
 			hunter = {r = "0.49803811311722", g = "0.61960649490356", b = "0.33333259820938"}
 			warlock = {r = "0.39607757329941", g = "0.39999911189079", b = "0.69803768396378"}
-		elseif E.TBC or E.Classic then
+		elseif E.Wrath or E.TBC or E.Classic then
 			paladin = {r = "0.72156703472137", g = "0.41176378726959", b = "0.54901838302612"}
 			warrior = {r = "0.58431243896484", g = "0.45882251858711", b = "0.32156792283058"}
 			shaman = {r = "0", g = "0.32941102981567", b = "0.65097898244858"}
@@ -2006,7 +2006,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 						trueg = 0.1882348805666
 						trueb = 0.78823357820511
 					end
-				elseif E.TBC or E.Classic then
+				elseif E.Wrath or E.TBC or E.Classic then
 					if unit1class == 'WARRIOR' then
 						truer = 0.78039044141769
 						trueg = 0.61176335811615
@@ -2029,7 +2029,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 						truer = 0.99999779462814
 						trueg = 0.99999779462814
 						trueb = 0.99999779462814
-					elseif unit1class == 'SHAMAN' and E.TBC then
+					elseif unit1class == 'SHAMAN' and E.Wrath or E.TBC then
 						truer = 0
 						trueg = 0.4392147064209
 						trueb = 0.87058633565903
@@ -2102,7 +2102,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 						trueg = 0.14117616415024
 						trueb = 0.59215557575226
 					end
-				elseif E.TBC or E.Classic then
+				elseif E.Wrath or E.TBC or E.Classic then
 					if unit1class == 'WARRIOR' then
 						truer = 0.58431243896484
 						trueg = 0.45882251858711
@@ -2123,7 +2123,7 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 						truer = 0.74901795387268
 						trueg = 0.74901795387268
 						trueb = 0.74901795387268
-					elseif unit1class == 'SHAMAN' and E.TBC then
+					elseif unit1class == 'SHAMAN' and E.Wrath or E.TBC then
 						truer = 0
 						trueg = 0.32941102981567
 						trueb = 0.65097898244858

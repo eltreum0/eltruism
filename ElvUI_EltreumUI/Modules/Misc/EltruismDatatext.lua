@@ -9,7 +9,7 @@ local function EltruismSpellHasteDatatext(dt)
 	local spellhastepc = ((math.ceil(spellhaste*100))/100).."%"
 	dt.text:SetFormattedText('%s: %s%s|r', L["Spell Haste"], ElvUI[1].media.hexvaluecolor, spellhastepc)
 end
-if E.TBC or E.Classic then
+if E.Wrath or E.TBC or E.Classic then
 	DT:RegisterDatatext('Eltruism Spellhaste', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE'}, EltruismSpellHasteDatatext, nil, nil, nil, nil, L["Eltruism Spell Haste"])
 end
 
@@ -17,7 +17,7 @@ end
 local function EltruismHonorDatatext(dt)
 	local honorCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo(Constants.CurrencyConsts.CLASSIC_HONOR_CURRENCY_ID)
 	local arenaCurrencyInfo
-	if E.TBC then
+	if E.Wrath or E.TBC then
 		arenaCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo(Constants.CurrencyConsts.CLASSIC_ARENA_POINTS_CURRENCY_ID)
 		dt.text:SetFormattedText('%s: %s%s|r  %s: %s%s|r ', HONOR, ElvUI[1].media.hexvaluecolor, honorCurrencyInfo.quantity,ARENA, ElvUI[1].media.hexvaluecolor,arenaCurrencyInfo.quantity)
 	elseif E.Classic then
@@ -28,7 +28,7 @@ local function EltruismHonorDatatext(dt)
 		dt.text:SetFormattedText('%s: %s%s|r  %s: %s%s|r ', COMBAT_HONOR_GAIN, ElvUI[1].media.hexvaluecolor, retailhonor.quantity,PVP_CONQUEST, ElvUI[1].media.hexvaluecolor,retailconquest.quantity)
 	end
 end
-if E.TBC or E.Classic then
+if E.Wrath or E.TBC or E.Classic then
 	DT:RegisterDatatext('Eltruism Honor/Arena Points', _G.CURRENCY, {'CHAT_MSG_CURRENCY', 'CURRENCY_DISPLAY_UPDATE'}, EltruismHonorDatatext, nil, nil, nil, nil, L["Eltruism Honor/Arena Points"])
 elseif E.Retail then
 	DT:RegisterDatatext('Eltruism Honor/Conquest Points', _G.CURRENCY, {'CHAT_MSG_CURRENCY', 'CURRENCY_DISPLAY_UPDATE'}, EltruismHonorDatatext, nil, nil, nil, nil, L["Eltruism Honor/Conquest Points"])
@@ -71,7 +71,7 @@ E.valueColorUpdateFuncs[EltruismConfigValueColorUpdate] = true
 DT:RegisterDatatext('Eltruism', nil, nil, EltruismConfigOnEvent, nil, EltruismConfigOnClick, EltruismConfigOnEnter, nil, L["Eltruism Config"], nil, EltruismConfigValueColorUpdate)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
-if E.Classic or E.TBC then
+if E.Classic or E.Wrath or E.TBC then
 	if E.myclass ~= 'HUNTER' and E.myclass ~= 'ROGUE' and E.myclass ~= 'WARLOCK' and E.myclass ~= 'WARRIOR' then return end
 	local _G = _G
 	local select, wipe = _G.select, _G.wipe

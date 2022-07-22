@@ -85,7 +85,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		if E.myclass == 'HUNTER' then
 			ElvUI_EltreumUI:ExpandedStable() --expands pet stable for hunters
 		end
-	elseif E.TBC or E.Classic then
+	elseif E.Wrath or E.TBC or E.Classic then
 		ElvUI_EltreumUI:ClassicSockets() --adds sockets and enchants into the character panel, based on Kibs Item Level by Kibsgaard
 		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
 		ElvUI_EltreumUI:ExpandedTalents() --makes talents fit in one window without scroll
@@ -140,7 +140,7 @@ function ElvUI_EltreumUI:Initialize()
 		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
 		ElvUI_EltreumUI:RegisterEvent('CHALLENGE_MODE_COMPLETED') --for auto screenshot
 	end
-	if E.Classic or E.TBC then
+	if E.Classic or E.TBC or E.Wrath then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
 	end
 end

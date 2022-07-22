@@ -102,7 +102,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["colors"]["power"]["MAELSTROM"]["g"] = 0.50196078431373
 
 			--spellsteal style filter
-			if E.Retail or E.TBC then
+			if E.Retail or E.Wrath or E.TBC then
 				E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
 			elseif E.Classic then
 				E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
@@ -110,7 +110,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			--level style filter
 			if E.Retail then
 				E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
-			elseif E.Classic or E.TBC then
+			elseif E.Classic or E.Wrath or E.TBC then
 				E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
 			end
 			--enable general style filters on all versions
@@ -227,7 +227,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["position"] = "CENTER"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["yOffset"] = 0
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["xOffset"] = -55
-			if E.Classic or E.TBC then
+			if E.Classic or E.Wrath or E.TBC then
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = true
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["format"] = "[threat:percent]"
 			elseif E.Retail then

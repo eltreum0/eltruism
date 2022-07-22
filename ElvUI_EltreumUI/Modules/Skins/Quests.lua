@@ -26,7 +26,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			wowheadbutton:SetHeight(20)
 			wowheadbutton:SetParent(_G.WorldMapFrame)
 			wowheadbutton:SetPoint("TOPRIGHT", _G.WorldMapFrame, "TOPRIGHT", -80, 0)
-		elseif E.TBC or E.Classic then
+		elseif E.Wrath or E.TBC or E.Classic then
 			local x, y = _G.QuestFramePushQuestButton:GetSize()
 			wowheadbutton:SetWidth(x)
 			wowheadbutton:SetHeight(y)
@@ -304,7 +304,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end)
 			end
 		end
-		if E.Classic or E.TBC then
+		if E.Classic or E.Wrath or E.TBC then
 			local questID
 			--hook the function that sets the quest detail to get the questID from the quest title
 			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --questlogframe.lua 311
@@ -568,7 +568,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 				CraftDetailScrollFrame:Hide()
 				CraftDetailScrollFrameScrollBar:Hide()
 
-				if E.TBC then
+				if E.Wrath or E.TBC then
 					CraftFrameFilterDropDown:ClearAllPoints()
 					CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
 					CraftFrameAvailableFilterCheckButton:ClearAllPoints()
@@ -623,7 +623,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 
 						CraftDetailScrollFrame:Hide()
 						CraftDetailScrollFrameScrollBar:Hide()
-						if E.TBC then
+						if E.Wrath or E.TBC then
 							CraftFrameFilterDropDown:ClearAllPoints()
 							CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
 							CraftFrameAvailableFilterCheckButton:ClearAllPoints()
