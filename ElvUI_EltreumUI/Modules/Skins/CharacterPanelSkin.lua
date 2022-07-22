@@ -1038,8 +1038,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PetLoyaltyText:SetPoint('BOTTOM', _G.PetLevelText, 0, -20)
 					_G.PetPaperDollCloseButton:Hide()
 				elseif E.Wrath then --wotlk todo
-					_G.CompanionSelectedName:SetPoint('TOP', _G.CompanionModelFrame, 0, 60)
-					_G.CompanionSummonButton:SetPoint('BOTTOM', _G.CompanionModelFrame, "Center", 0, -20)
+					_G.CompanionSelectedName:SetPoint('TOP', _G.CompanionModelFrame, 0, 40)
+					_G.CompanionSummonButton:ClearAllPoints()
+					_G.CompanionSummonButton:SetPoint('BOTTOM', _G.CompanionModelFrame, "Bottom", 0, -30)
 
 					--_G.ReputationListScrollFrame:SetPoint("TOPRIGHT", _G.ReputationFrame, "TOPRIGHT", -266, -76)
 				end
