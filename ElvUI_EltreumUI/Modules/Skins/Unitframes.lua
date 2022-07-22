@@ -1,16 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local UF = E:GetModule('UnitFrames')
 
-local _G = _G
-local CreateFrame = _G.CreateFrame
-local hooksecurefunc = _G.hooksecurefunc
-local UnitExists = _G.UnitExists
-local UnitClass = _G.UnitClass
-local UnitReaction = _G.UnitReaction
-local UnitIsPlayer = _G.UnitIsPlayer
-local tostring = _G.tostring
-local select = _G.select
-
 --color unitframes target texture during light mode
 local unitframeclass = {
 	["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga",

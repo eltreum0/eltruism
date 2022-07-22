@@ -1,15 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local CreateFrame = _G.CreateFrame
-local hooksecurefunc = _G.hooksecurefunc
-local math = _G.math
-local GetItemQualityColor = _G.GetItemQualityColor
-local GetInventoryItemLink = _G.GetInventoryItemLink
-local GetInventoryItemQuality = _G.GetInventoryItemQuality
-local GetDetailedItemLevelInfo = _G.GetDetailedItemLevelInfo
-local INVSLOT_FIRST_EQUIPPED = _G.INVSLOT_FIRST_EQUIPPED
-local INVSLOT_LAST_EQUIPPED = _G.INVSLOT_LAST_EQUIPPED
-local CharacterFrame = _G.CharacterFrame
 
 --Calculate ilvl and average ilvl of player items/inspect unit
 local EltruismInspectilvls = CreateFrame("Frame")
@@ -113,6 +103,6 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 		end]]
 		--local ilevel = E:GetPlayerItemLevel() --GetAverageItemLevel() doesnt exist in tbc/classic
 		local ilevel = ElvUI_EltreumUI:GetPlayerItemLevel()
-		CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
+		_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
 	end
 end

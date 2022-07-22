@@ -1,15 +1,4 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local ChatFrame_AddMessageEventFilter = _G.ChatFrame_AddMessageEventFilter
-local GetItemIcon = _G.GetItemIcon
-local tonumber = _G.tonumber
-local GetItemInfo = _G.GetItemInfo
-local select = _G.select
-local Item = _G.Item
-local GetItemQualityColor = _G.GetItemQualityColor
-local ITEM_LEVEL = _G.ITEM_LEVEL
-local UIParent = _G.UIParent
 
 --Forked from Chat Loot Icons by Stanzilla which is Public Domain
 local function AddLootIcons(_, _, message, ...)
@@ -18,13 +7,13 @@ local function AddLootIcons(_, _, message, ...)
 	elseif E.db.ElvUI_EltreumUI.chat.enable and E.db.ElvUI_EltreumUI.chat.looticons then
 		local function Icon(link)
 
-			local ilvlpattern = ITEM_LEVEL:gsub('%%d', '(%%d+)')
+			local ilvlpattern = _G.ITEM_LEVEL:gsub('%%d', '(%%d+)')
 			local texture = GetItemIcon(link)
 			local itemLevel
 
 			--from elvui
 			local tt = E.ScanTooltip
-			tt:SetOwner(UIParent, 'ANCHOR_NONE')
+			tt:SetOwner(_G.UIParent, 'ANCHOR_NONE')
 			tt:SetHyperlink(link)
 			for x = 1, tt:NumLines() do
 				local line = _G["ElvUI_ScanTooltipTextLeft"..x]

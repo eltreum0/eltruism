@@ -2,10 +2,6 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local UIFrameFadeOut = _G.UIFrameFadeOut
 local UIFrameFadeIn = _G. UIFrameFadeIn
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local LeftChatPanel = _G.LeftChatPanel
-local RightChatPanel = _G.RightChatPanel
-local InCombatLockdown = _G.InCombatLockdown
 
 --chat fading/mouseover/combathide
 local leftfaderbutton = 0 -- when 1 it can fade, when 0 it cannot

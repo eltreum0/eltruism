@@ -1,22 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local S = E:GetModule('Skins')
-local _G = _G
-local select = _G.select
-local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
-local IsInInstance = _G.IsInInstance
-local IsInGroup = _G.IsInGroup
-local bit = _G.bit
-local COMBATLOG_OBJECT_TYPE_PLAYER = _G.COMBATLOG_OBJECT_TYPE_PLAYER
-local COMBATLOG_OBJECT_AFFILIATION_RAID = _G.COMBATLOG_OBJECT_AFFILIATION_RAID
-local COMBATLOG_OBJECT_AFFILIATION_PARTY = _G.COMBATLOG_OBJECT_AFFILIATION_PARTY
-local PlaySoundFile = _G.PlaySoundFile
-local GetInstanceInfo = _G.GetInstanceInfo
-local GetSpellTexture = _G.GetSpellTexture
-local GetSpellCharges = _G.GetSpellCharges
-local math = _G.math
-local GetTime = _G.GetTime
-local READY = _G.READY
 
 --PlaySound(61850)
 --PlaySound(61851)
@@ -129,7 +112,7 @@ function ElvUI_EltreumUI:BattleRes()
 						bresframe:SetAlpha(1)
 						local cooldown = math.floor(cooldownDuration - (GetTime() - cooldownStart))
 						if cooldown <= 0 then
-							spellcd:SetText(READY)
+							spellcd:SetText(_G.READY)
 						else
 							if cooldown > 60 then
 								--from https://github.com/tomrus88/BlizzardInterfaceCode/blob/master/Interface/FrameXML/LFGList.lua#L2551, https://www.wowinterface.com/forums/showthread.php?t=36884
@@ -148,7 +131,7 @@ function ElvUI_EltreumUI:BattleRes()
 						end
 					elseif currentCharges == nil then
 						bresframe:SetAlpha(0)
-						--spellcd:SetText(READY)
+						--spellcd:SetText(_G.READY)
 						--spellicon:SetDesaturated(true)
 					end
 				end

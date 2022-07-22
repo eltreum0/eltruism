@@ -2,24 +2,6 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local AB = E:GetModule('ActionBars')
 local LCG = E.Libs.CustomGlow
 local classcolor = E:ClassColor(E.myclass, true)
-local _G = _G
-local hooksecurefunc = _G.hooksecurefunc
-local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local high = _G.high  --LCG thing
-local NUM_ACTIONBAR_BUTTONS = _G.NUM_ACTIONBAR_BUTTONS
-local IsUsableSpell = _G.IsUsableSpell
-local GetSpellCooldown = _G.GetSpellCooldown
-local UnitExists = _G.UnitExists
-local UnitCanAttack = _G.UnitCanAttack
-local UnitCreatureType = _G.UnitCreatureType
-local InCombatLockdown = _G.InCombatLockdown
-local NUM_PET_ACTION_SLOTS = _G.NUM_PET_ACTION_SLOTS
-local GetPetActionInfo = _G.GetPetActionInfo
-local AutoCastShine_AutoCastStop = _G.AutoCastShine_AutoCastStop
-local PET_TYPE_DEMON = _G.PET_TYPE_DEMON
-local BATTLE_PET_DAMAGE_NAME_4 = _G.BATTLE_PET_DAMAGE_NAME_4
 
 -- Skill Glow
 function ElvUI_EltreumUI:SkillGlow()
@@ -335,7 +317,7 @@ function ElvUI_EltreumUI:SkillGlow()
 									if proc == 27138 or proc == 10314 or proc == 10313 or proc == 10312 or proc == 5615 or proc == 5614 or proc == 879 then
 										local unittype = UnitCreatureType("target")
 										--if unittype == "Demon" or unittype == "Dämon" or unittype == "Demonio" or unittype == "Démon" or unittype == "Demone" or unittype == "Demônio" or unittype == "Демон" or unittype == "악마" or unittype == "恶魔" or unittype == "惡魔" or unittype == "Undead" or unittype == "Untoter" or unittype == "No-muerto" or unittype == "Mort-vivant" or unittype == "Non Morto" or unittype == "Renegado" or unittype == "Нежить" or unittype == "언데드" or unittype == "亡灵" or unittype == "不死族" then
-										if unittype == PET_TYPE_DEMON or unittype == BATTLE_PET_DAMAGE_NAME_4 then
+										if unittype == _G.PET_TYPE_DEMON or unittype == _G.BATTLE_PET_DAMAGE_NAME_4 then
 											if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 												LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
 											elseif E.db.ElvUI_EltreumUI.glow.autocast and not IsAddOnLoaded("ElvUI_ActionBarMasks") then

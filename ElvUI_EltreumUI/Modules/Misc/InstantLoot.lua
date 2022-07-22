@@ -1,26 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
-local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
-local ERR_INV_FULL = _G.ERR_INV_FULL
-local GetNumLootItems = _G.GetNumLootItems
-local GetLootSlotLink = _G.GetLootSlotLink
-local GetItemInfo = _G.GetItemInfo
-local GetItemIcon = _G.GetItemIcon
-local GetItemQualityColor = _G.GetItemQualityColor
-local tonumber = _G.tonumber
-local UIFrameFadeIn = _G.UIFrameFadeIn
-local C_Timer = _G.C_Timer
-local GetCVarBool = _G.GetCVarBool
-local IsModifiedClick = _G.IsModifiedClick
-local LootSlot = _G.LootSlot
-local C_CVar = _G.C_CVar
-local GetLootSlotInfo = _G.GetLootSlotInfo
-local GetLootSlotType = _G.GetLootSlotType
-local CloseLoot = _G.CloseLoot
-local Screenshot = _G.Screenshot
-local UIFrameFadeOut = _G.UIFrameFadeOut
 
 --wishlist popup
 local WishlistItemFrame = CreateFrame("Frame", "EltruismWishlistItem", UIParent)

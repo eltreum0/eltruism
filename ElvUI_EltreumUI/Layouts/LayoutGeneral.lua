@@ -1,9 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local valuecolors = E:ClassColor(E.myclass, true)
-local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local tostring = _G.tostring
-local SetCVar = _G.SetCVar
 
 function ElvUI_EltreumUI:SetupGeneralLayout()
 	if not E.db.movers then E.db.movers = {} end

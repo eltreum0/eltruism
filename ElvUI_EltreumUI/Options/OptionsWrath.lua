@@ -1,26 +1,8 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
-local tinsert = _G.table.insert
-local tconcat = _G.table.concat
-local unpack = _G.unpack
-local select = _G.select
-local sort = _G.sort
-local pairs = _G.pairs
-local table = _G.table
-local format = _G.format
-local MINIMAP_LABEL = _G.MINIMAP_LABEL
-local AURAS = _G.AURAS
-local BINDING_HEADER_CHAT = _G.BINDING_HEADER_CHAT
-local HONOR = _G.HONOR
-local CURRENCY = _G.CURRENCY
-local tostring = _G.tostring
-local PlaySoundFile = _G.PlaySoundFile
-local tonumber = _G.tonumber
-local SetCVar = _G.SetCVar
-local C_CVar = _G.C_CVar
-local OKAY = _G.OKAY
-local Item = _G.Item
-local tremove = _G.tremove
+local sort = sort
+local pairs = pairs
+local tinsert = table.insert
+local tconcat = table.concat
 
 --Author list
 local AUTHORS = {

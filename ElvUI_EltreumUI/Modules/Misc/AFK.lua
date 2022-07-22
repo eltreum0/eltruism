@@ -1,14 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local C_CVar = _G.C_CVar
-local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
-local UnitIsAFK = _G.UnitIsAFK
-local SetCVar = _G.SetCVar
-local PlayMusic = _G.PlayMusic
-local PlaySound = _G.PlaySound
-local StopMusic = _G.StopMusic
-local StopSound = _G.StopSound
 
 -- general alliance walk (legion) maybe human music idk
 --/script PlaySoundFile(1417250, "Dialog", true)

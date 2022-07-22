@@ -1,43 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local DT = E:GetModule("DataTexts")
-local InCombatLockdown = _G.InCombatLockdown
-local GetCombatRatingBonus = _G.GetCombatRatingBonus
-local CR_HASTE_SPELL = _G.CR_HASTE_SPELL
-local math = _G.math
-local STAT_CATEGORY_ENHANCEMENTS = _G.STAT_CATEGORY_ENHANCEMENTS
-local CURRENCY = _G.CURRENCY
-local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
-local NUM_BAG_FRAMES = _G.NUM_BAG_FRAMES
-local INVTYPE_AMMO = _G.INVTYPE_AMMO
-local INVSLOT_RANGED = _G.INVSLOT_RANGED
-local select, wipe = _G.select, _G.wipe
-local format, strjoin = _G.format, _G.strjoin
-local GetItemInfo = _G.GetItemInfo
-local GetItemInfoInstant = _G.GetItemInfoInstant
-local GetItemCount = _G.GetItemCount
-local GetContainerItemID = _G.GetContainerItemID
-local GetInventoryItemCount = _G.GetInventoryItemCount
-local GetInventoryItemID = _G.GetInventoryItemID
-local ContainerIDToInventoryID = _G.ContainerIDToInventoryID
-local GetContainerNumSlots = _G.GetContainerNumSlots
-local GetContainerNumFreeSlots = _G.GetContainerNumFreeSlots
-local GetItemQualityColor = _G.GetItemQualityColor
-local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
-local NUM_BAG_FRAMES = _G.NUM_BAG_FRAMES
-local INVSLOT_AMMO = _G.INVSLOT_AMMO
-local LE_ITEM_CLASS_QUIVER = _G.LE_ITEM_CLASS_QUIVER
-local LE_ITEM_CLASS_CONTAINER = _G.LE_ITEM_CLASS_CONTAINER
-local C_CurrencyInfo = _G.C_CurrencyInfo
-local Constants = _G.Constants --maybe should not be
-local HONOR = _G.HONOR
-local ARENA = _G.ARENA
-local COMBAT_HONOR_GAIN = _G.COMBAT_HONOR_GAIN
-local PVP_CONQUEST = _G.PVP_CONQUEST
-local UIErrorsFrame = _G.UIErrorsFrame
-local ERR_NOT_IN_COMBAT = _G.ERR_NOT_IN_COMBAT
-local ToggleBag = _G.ToggleBag
-local ToggleAllBags = _G.ToggleAllBags
+local InCombatLockdown = InCombatLockdown
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------spell haste datatext
 local function EltruismSpellHasteDatatext(dt)
@@ -65,9 +29,9 @@ local function EltruismHonorDatatext(dt)
 	end
 end
 if E.Wrath or E.TBC or E.Classic then
-	DT:RegisterDatatext('Eltruism Honor/Arena Points', CURRENCY, {'CHAT_MSG_CURRENCY', 'CURRENCY_DISPLAY_UPDATE'}, EltruismHonorDatatext, nil, nil, nil, nil, L["Eltruism Honor/Arena Points"])
+	DT:RegisterDatatext('Eltruism Honor/Arena Points', _G.CURRENCY, {'CHAT_MSG_CURRENCY', 'CURRENCY_DISPLAY_UPDATE'}, EltruismHonorDatatext, nil, nil, nil, nil, L["Eltruism Honor/Arena Points"])
 elseif E.Retail then
-	DT:RegisterDatatext('Eltruism Honor/Conquest Points', CURRENCY, {'CHAT_MSG_CURRENCY', 'CURRENCY_DISPLAY_UPDATE'}, EltruismHonorDatatext, nil, nil, nil, nil, L["Eltruism Honor/Conquest Points"])
+	DT:RegisterDatatext('Eltruism Honor/Conquest Points', _G.CURRENCY, {'CHAT_MSG_CURRENCY', 'CURRENCY_DISPLAY_UPDATE'}, EltruismHonorDatatext, nil, nil, nil, nil, L["Eltruism Honor/Conquest Points"])
 end
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------modified elvui config panel open
@@ -86,7 +50,7 @@ local function EltruismConfigOnEnter()
 end
 
 local function EltruismConfigOnClick(_, button)
-	if InCombatLockdown() then UIErrorsFrame:AddMessage(E.InfoColor..ERR_NOT_IN_COMBAT) return end
+	if InCombatLockdown() then _G.UIErrorsFrame:AddMessage(E.InfoColor.._G.ERR_NOT_IN_COMBAT) return end
 
 	if button == 'LeftButton' then
 		E:ToggleOptionsUI()
@@ -109,6 +73,26 @@ DT:RegisterDatatext('Eltruism', nil, nil, EltruismConfigOnEvent, nil, EltruismCo
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
 if E.Classic or E.Wrath or E.TBC then
 	if E.myclass ~= 'HUNTER' and E.myclass ~= 'ROGUE' and E.myclass ~= 'WARLOCK' and E.myclass ~= 'WARRIOR' then return end
+	local _G = _G
+	local select, wipe = _G.select, _G.wipe
+	local format, strjoin = _G.format, _G.strjoin
+	local GetItemInfo = _G.GetItemInfo
+	local GetItemInfoInstant = _G.GetItemInfoInstant
+	local GetItemCount = _G.GetItemCount
+	local GetContainerItemID = _G.GetContainerItemID
+	local GetInventoryItemCount = _G.GetInventoryItemCount
+	local GetInventoryItemID = _G.GetInventoryItemID
+	local ContainerIDToInventoryID = _G.ContainerIDToInventoryID
+	local GetContainerNumSlots = _G.GetContainerNumSlots
+	local GetContainerNumFreeSlots = _G.GetContainerNumFreeSlots
+	local GetItemQualityColor = _G.GetItemQualityColor
+	local NUM_BAG_SLOTS = NUM_BAG_SLOTS
+	local NUM_BAG_FRAMES = NUM_BAG_FRAMES
+	local INVTYPE_AMMO = INVTYPE_AMMO
+	local INVSLOT_RANGED = INVSLOT_RANGED
+	local INVSLOT_AMMO = INVSLOT_AMMO
+	local LE_ITEM_CLASS_QUIVER = LE_ITEM_CLASS_QUIVER
+	local LE_ITEM_CLASS_CONTAINER = LE_ITEM_CLASS_CONTAINER
 	local iconString = '|T%s:16:16:0:0:64:64:4:55:4:55|t'
 	local itemName = {}
 	local displayString = ''
@@ -215,12 +199,12 @@ if E.Classic or E.Wrath or E.TBC then
 					if itemID then
 						local itemClassID, itemSubClassID = select(11, GetItemInfo(itemID))
 						if itemSubClassID == LE_ITEM_CLASS_QUIVER or itemClassID == LE_ITEM_CLASS_CONTAINER and itemSubClassID == 1 then
-							ToggleBag(i)
+							_G.ToggleBag(i)
 						end
 					end
 				end
 			else
-				ToggleAllBags()
+				_G.ToggleAllBags()
 			end
 		end
 	end

@@ -1,19 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
-local unpack = _G.unpack
 local WT = E.Libs.AceAddon:GetAddon("ElvUI_WindTools", true)
-local ChatFrame_AddMessageEventFilter = _G.ChatFrame_AddMessageEventFilter
-local CreateFrame = _G.CreateFrame
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local hooksecurefunc = _G.hooksecurefunc
-local string = _G.string
-local PlaySoundFile = _G.PlaySoundFile
-local gsub = _G.gsub
-local UIParentLoadAddOn = _G.UIParentLoadAddOn
-local INLINE_TANK_ICON = _G.INLINE_TANK_ICON
-local INLINE_HEALER_ICON = _G.INLINE_HEALER_ICON
-local INLINE_DAMAGER_ICON = _G.INLINE_DAMAGER_ICON
-local TalkingHeadFrame = _G.TalkingHeadFrame
 
 --Color System messages
 local classcolorsescape = {
@@ -87,9 +74,9 @@ local function ColorSysMsgs(_, event, message, ...)
 			HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
 			DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', sizeString),
 		}
-		INLINE_TANK_ICON = roleIcons.TANK
-		INLINE_HEALER_ICON = roleIcons.HEALER
-		INLINE_DAMAGER_ICON = roleIcons.DAMAGER
+		_G.INLINE_TANK_ICON = roleIcons.TANK
+		_G.INLINE_HEALER_ICON = roleIcons.HEALER
+		_G.INLINE_DAMAGER_ICON = roleIcons.DAMAGER
 	end
 end
 ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", ColorSysMsgs)
@@ -132,7 +119,7 @@ function ElvUI_EltreumUI:EltruismHideTalkingHead()
 						UIParentLoadAddOn("Blizzard_TalkingHeadUI")
 						if IsAddOnLoaded('Blizzard_TalkingHeadUI') then
 							hooksecurefunc('TalkingHeadFrame_PlayCurrent', function()
-								TalkingHeadFrame:Hide()
+								_G.TalkingHeadFrame:Hide()
 							end)
 							EltruismHideTalkingHead:UnregisterAllEvents()
 						end
@@ -164,9 +151,9 @@ local roleIcons = {
 	DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', sizeString),
 }
 
-INLINE_TANK_ICON = roleIcons.TANK
-INLINE_HEALER_ICON = roleIcons.HEALER
-INLINE_DAMAGER_ICON = roleIcons.DAMAGER
+_G.INLINE_TANK_ICON = roleIcons.TANK
+_G.INLINE_HEALER_ICON = roleIcons.HEALER
+_G.INLINE_DAMAGER_ICON = roleIcons.DAMAGER
 
 CH.RoleIcons = {
 	TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),

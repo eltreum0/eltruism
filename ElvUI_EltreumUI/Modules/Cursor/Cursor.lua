@@ -3,21 +3,6 @@ local _G = _G
 local UnitCastingInfo = _G.UnitCastingInfo or _G.CastingInfo
 local UnitChannelInfo = _G.UnitChannelInfo or _G.ChannelInfo
 local isRetail = _G.select(4, _G.GetBuildInfo())>=90000
-local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
-local SetCVar = _G.SetCVar
-local GetCursorPosition = _G.GetCursorPosition
-local next = _G.next
-local min = _G.min
-local floor = _G.floor
-local unpack = _G.unpack
-local max = _G.max
-local sin = _G.sin
-local cos = _G.cos
-local GetTime = _G.GetTime
-local InCombatLockdown = _G.InCombatLockdown
-local GetSpellCooldown = _G.GetSpellCooldown
-
 
 function ElvUI_EltreumUI:CursorInit()
 	if E.db.ElvUI_EltreumUI.cursor.enable then
@@ -29,7 +14,7 @@ function ElvUI_EltreumUI:CursorInit()
 	end
 end
 
-local cursorframe = CreateFrame("Frame", "EltruismCursor")
+local cursorframe = _G.CreateFrame("Frame", "EltruismCursor")
 local rootFrame = CreateFrame("Frame", "EltruismCursorRoot", UIParent)
 local Cast = CreateFrame("Frame", "EltruismCursorCast", rootFrame)
 local GCD = CreateFrame("Frame", "EltruismCursorGCD", rootFrame)
@@ -321,7 +306,7 @@ function ElvUI_EltreumUI:CastCursor()
 					frame:RegisterEvent('PLAYER_REGEN_ENABLED')
 					frame:RegisterEvent('PLAYER_REGEN_DISABLED')
 					frame:SetScript("OnEvent", function(self, event) RingSetShown(self,event=='PLAYER_REGEN_DISABLED') end)
-					RingSetShown( frame, InCombatLockdown() )
+					RingSetShown( frame, _G.InCombatLockdown() )
 				else
 					frame:RegisterEvent('PLAYER_ENTERING_WORLD')
 					frame:SetScript("OnEvent", function(self, event) RingSetShown(self,event=='PLAYER_ENTERING_WORLD') end)

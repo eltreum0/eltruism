@@ -1,7 +1,4 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
-local CreateFrame = _G.CreateFrame
-local Screenshot = _G.Screenshot
 
 local EltruismScreenShot = CreateFrame("Frame", "EltruismScreenShot")
 function ElvUI_EltreumUI:AutoScreenshot()

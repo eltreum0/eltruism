@@ -1,7 +1,4 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
-local GetAddOnMetadata = _G.GetAddOnMetadata
-local IsAddOnLoaded = _G.IsAddOnLoaded
 local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 
 function ElvUI_EltreumUI:SetupFontsRoboto()

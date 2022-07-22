@@ -1,17 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local A = E:GetModule('Auras')
-local CreateFrame = _G.CreateFrame
-local hooksecurefunc = _G.hooksecurefunc
-local BackdropTemplateMixin = _G.BackdropTemplateMixin
-local table = _G.table
-local pairs = _G.pairs
-local UnitExists = _G.UnitExists
-local UnitReaction = _G.UnitReaction
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local tostring = _G.tostring
-local UnitIsPlayer = _G.UnitIsPlayer
-local UnitClass = _G.UnitClass
 
 local classcolorreaction = {
 	["WARRIOR"] = {r1 = 0.77646887302399, g1 = 0.60784178972244, b1 = 0.4274500310421},

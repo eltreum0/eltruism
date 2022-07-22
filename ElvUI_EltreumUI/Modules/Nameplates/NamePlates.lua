@@ -1,29 +1,9 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local _G = _G
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
 local LCG = E.Libs.CustomGlow
 local classcolor = E:ClassColor(E.myclass, true)
 local glowcolor
-local hooksecurefunc = _G.hooksecurefunc
-local CreateFrame = _G.CreateFrame
-local string = _G.string
-local UnitExists = _G.UnitExists
-local tonumber = _G.tonumber
-local UnitClass = _G.UnitClass
-local UnitReaction = _G.UnitReaction
-local UnitIsPlayer = _G.UnitIsPlayer
-local GetSpecialization = _G.GetSpecialization
-local GetSpecializationInfo = _G.GetSpecializationInfo
-local UnitCanAttack = _G.UnitCanAttack
-local GetShapeshiftForm = _G.GetShapeshiftForm
-local IsInInstance = _G.IsInInstance
-local WorldMapFrame = _G.WorldMapFrame
-local tostring = _G.tostring
-local C_CVar = _G.C_CVar
-local InCombatLockdown = _G.InCombatLockdown
-local SetCVar = _G.SetCVar
-
 
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1
