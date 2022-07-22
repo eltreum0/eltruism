@@ -304,7 +304,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end)
 			end
 		end
-		if E.Classic or E.Wrath or E.TBC then
+		if E.Classic or E.TBC then
 			local questID
 			--hook the function that sets the quest detail to get the questID from the quest title
 			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --questlogframe.lua 311
