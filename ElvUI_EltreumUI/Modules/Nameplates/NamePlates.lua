@@ -205,8 +205,6 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
 				end
 			end
-		else
-			E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = false
 		end
 		if E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
 			if E.db.ElvUI_EltreumUI.nptextureversion == "V1" then
