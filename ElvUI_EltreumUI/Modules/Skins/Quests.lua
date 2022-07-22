@@ -26,12 +26,18 @@ function ElvUI_EltreumUI:SkinQuests()
 			wowheadbutton:SetHeight(20)
 			wowheadbutton:SetParent(_G.WorldMapFrame)
 			wowheadbutton:SetPoint("TOPRIGHT", _G.WorldMapFrame, "TOPRIGHT", -80, 0)
-		elseif E.Wrath or E.TBC or E.Classic then
+		elseif E.TBC or E.Classic then
 			local x, y = _G.QuestFramePushQuestButton:GetSize()
 			wowheadbutton:SetWidth(x)
 			wowheadbutton:SetHeight(y)
 			wowheadbutton:SetParent(_G.QuestLogFrame)
 			wowheadbutton:SetPoint("LEFT", _G.QuestFramePushQuestButton, "LEFT", -x-2, 0)
+		elseif E.Wrath then
+			local x, y = _G.QuestLogFrameTrackButton:GetSize()
+			wowheadbutton:SetWidth(x)
+			wowheadbutton:SetHeight(y)
+			wowheadbutton:SetParent(_G.QuestLogFrame)
+			wowheadbutton:SetPoint("RIGHT", _G.QuestLogControlPanel, "RIGHT", x+2, 0)
 		end
 		wowheadbutton:SetText("Wowhead")
 		wowheadbutton:SetNormalFontObject("GameFontNormal")
@@ -466,6 +472,39 @@ function ElvUI_EltreumUI:SkinQuests()
 
 					UIParent_ManageFramePositions()
 				end)
+			end
+		elseif E.Wrath then
+
+
+
+			local questID
+			--hook the function that sets the quest detail to get the questID from the quest title
+			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --questlogframe.lua 311
+				questID = select(8, GetQuestLogTitle(questTitle))
+			end)
+			--set the link to show when the button is clicked
+			wowheadbutton:SetScript('OnClick', function()
+				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
+			end)
+
+
+			--questLogTitle:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+			--questLogTitle:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+
+
+			--increase the size of the quest description frame and move it
+			QuestLogDetailScrollFrame:ClearAllPoints()
+			QuestLogDetailScrollFrame:SetPoint("TOPLEFT", QuestLogListScrollFrame, "TOPRIGHT", 35, 0)
+			QuestLogDetailScrollFrame:SetHeight(390)
+
+			if not IsAddOnLoaded('Questie') then
+				--from blizzard's FrameXML/QuestLogFrame.lua
+
+				--skin the classic objective frame
+				--[[hooksecurefunc("WatchFrame_Update",function()
+					print("test")
+				end)]]
+
 			end
 		end
 	end
