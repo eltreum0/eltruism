@@ -795,7 +795,12 @@ end
 function ElvUI_EltreumUI:SetupCVars()
 	-- ElvUI CVars
 	SetCVar('removeChatDelay', 1)
-	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
+	if not E.Wrath then
+		SetCVar('cameraDistanceMaxZoomFactor', 2.6)
+	else
+		E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor = 3.4
+		SetCVar('cameraDistanceMaxZoomFactor', 3.4)
+	end
 	SetCVar('autoLootDefault', 1)
 	SetCVar('autoQuestWatch', 1)
 	SetCVar('UnitNameEnemyGuardianName', 0)
