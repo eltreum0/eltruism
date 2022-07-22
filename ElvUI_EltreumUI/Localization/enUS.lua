@@ -943,5 +943,6 @@ L["Aura Thickness"] = true
 L["Chat Thickness"] = true
 L["Minimap Thickness"] = true
 
-L["Custom Class"] = true -- not sure about naming it this
-L["Use Custom Class Colors instead of Castbar Colors"] = true
+L["Class Colors"] = true -- not sure about naming it this
+L["Use Class Colors instead of Custom Colors"] = true
+L["NPCs use Target Castbar colors not NPC colors for their castbars"] = true
