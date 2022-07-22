@@ -1,15 +1,14 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
-local ChatFrame_AddMessageEventFilter = _G.ChatFrame_AddMessageEventFilter
-local GetItemIcon = _G.GetItemIcon
-local tonumber = _G.tonumber
-local GetItemInfo = _G.GetItemInfo
-local select = _G.select
-local Item = _G.Item
-local GetItemQualityColor = _G.GetItemQualityColor
-local ITEM_LEVEL = _G.ITEM_LEVEL
-local UIParent = _G.UIParent
+local ChatFrame_AddMessageEventFilter = ChatFrame_AddMessageEventFilter
+local GetItemIcon = GetItemIcon
+local tonumber = tonumber
+local GetItemInfo = GetItemInfo
+local select = select
+local Item = Item
+local GetItemQualityColor = GetItemQualityColor
+local UIParent = UIParent
 
 --Forked from Chat Loot Icons by Stanzilla which is Public Domain
 local function AddLootIcons(_, _, message, ...)

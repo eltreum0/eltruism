@@ -3,12 +3,10 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local IsInInstance = _G.IsInInstance
 local ObjectiveTracker_Collapse = _G.ObjectiveTracker_Collapse
-local QuestWatchFrame = _G.QuestWatchFrame
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local IsInInstance = _G.IsInInstance
 local ObjectiveTracker_Expand = _G.ObjectiveTracker_Expand
 local ObjectiveTrackerFrame = _G.ObjectiveTrackerFrame
-local UnitGUID = _G.UnitGUID
 local tonumber = _G.tonumber
 local string = _G.string
 local C_GossipInfo = _G.C_GossipInfo
@@ -22,26 +20,9 @@ local GetActiveTitle = _G.GetActiveTitle
 local C_QuestLog = _G.C_QuestLog
 local GetActiveQuestID = _G.GetActiveQuestID
 local SelectActiveQuest = _G.SelectActiveQuest
-local QuestGetAutoAccept = _G.QuestGetAutoAccept
-local CloseQuest = _G.CloseQuest
-local QuestIsDaily = _G.QuestIsDaily
-local QuestIsWeekly = _G.QuestIsWeekly
-local AcceptQuest = _G.AcceptQuest
-local GetNumQuestChoices = _G.GetNumQuestChoices
-local ConfirmAcceptQuest = _G.ConfirmAcceptQuest
 local StaticPopup_Hide = _G.StaticPopup_Hide
 local next = _G.next
-local GetNumGossipAvailableQuests = _G.GetNumGossipAvailableQuests
-local GetGossipAvailableQuests = _G.GetGossipAvailableQuests
 local math = _G.math
-local SelectGossipAvailableQuest = _G.SelectGossipAvailableQuest
-local GetNumGossipActiveQuests = _G.GetNumGossipActiveQuests
-local SelectGossipActiveQuest = _G.SelectGossipActiveQuest
-local GetQuestMoneyToGet = _G.GetQuestMoneyToGet
-local CompleteQuest = _G.CompleteQuest
-local GetQuestReward = _G.GetQuestReward
-local QuestFrameCompleteButton = _G.QuestFrameCompleteButton
-local QuestFrameCompleteQuestButton = _G.QuestFrameCompleteQuestButton
 
 --Collapse Quests during boss fights
 function ElvUI_EltreumUI:QuestEncounter()
@@ -51,7 +32,7 @@ function ElvUI_EltreumUI:QuestEncounter()
 			if E.Retail then
 				ObjectiveTracker_Collapse()
 			elseif E.TBC or E.Classic then
-				QuestWatchFrame:Hide()
+				_G.QuestWatchFrame:Hide()
 				if IsAddOnLoaded("Questie") then
 					_G["Questie_BaseFrame"]:Hide()
 				end
@@ -67,7 +48,7 @@ function ElvUI_EltreumUI:QuestEncounterEnd()
 			if E.Retail then
 				ObjectiveTracker_Expand()
 			elseif E.TBC or E.Classic then
-				QuestWatchFrame:Show()
+				_G.QuestWatchFrame:Show()
 				if IsAddOnLoaded("Questie") then
 					_G["Questie_BaseFrame"]:Show()
 				end
@@ -83,7 +64,7 @@ function ElvUI_EltreumUI:ArenaQuest()
 			if E.Retail then
 				ObjectiveTrackerFrame:Hide()
 			elseif E.TBC or E.Classic then
-				QuestWatchFrame:Hide()
+				_G.QuestWatchFrame:Hide()
 				if IsAddOnLoaded("Questie") then
 					_G["Questie_BaseFrame"]:Hide()
 				end
@@ -92,7 +73,7 @@ function ElvUI_EltreumUI:ArenaQuest()
 			if E.Retail then
 				ObjectiveTrackerFrame:Show()
 			elseif E.TBC or E.Classic then
-				QuestWatchFrame:Show()
+				_G.QuestWatchFrame:Show()
 				if IsAddOnLoaded("Questie") then
 					_G["Questie_BaseFrame"]:Show()
 				end
@@ -106,7 +87,7 @@ function ElvUI_EltreumUI:QuestCombat()
 		if E.Retail then
 			ObjectiveTracker_Collapse()
 		elseif E.TBC or E.Classic then
-			QuestWatchFrame:Hide()
+			_G.QuestWatchFrame:Hide()
 			if IsAddOnLoaded("Questie") then
 				_G["Questie_BaseFrame"]:Hide()
 			end
@@ -119,7 +100,7 @@ function ElvUI_EltreumUI:QuestCombatEnd()
 		if E.Retail then
 			ObjectiveTracker_Expand()
 		elseif E.TBC or E.Classic then
-			QuestWatchFrame:Show()
+			_G.QuestWatchFrame:Show()
 			if IsAddOnLoaded("Questie") then
 				_G["Questie_BaseFrame"]:Show()
 			end

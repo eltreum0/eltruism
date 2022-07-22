@@ -1056,10 +1056,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					--_G.ReputationDetailFrame:ClearAllPoints()
 					--_G.ReputationDetailFrame:SetPoint("TOPRIGHT", _G.CharacterFrame, "TOPRIGHT", 0, 0)
 
-					_G.SkillListScrollFrameScrollBar:ClearAllPoints()
-					_G.SkillListScrollFrameScrollBar:SetPoint("RIGHT", _G.SkillFrame, "RIGHT", -240, 50)
-					_G.SkillListScrollFrameScrollBar:SetSize(50, 188)
-
 					_G.TokenFrame:ClearAllPoints()
 					_G.TokenFrame:SetPoint("BOTTOMLEFT", _G.CharacterFrame, "BOTTOMLEFT", 0, 20)
 					_G.TokenFrame:SetSize(400, 505)
@@ -1099,8 +1095,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				CharacterFrame:SetSize(600, 505)
 
-				--SkillListScrollFrameScrollBar:ClearAllPoints()
-				--SkillListScrollFrameScrollBar:SetPoint("LEFT", CharacterFrame)
+				_G.SkillListScrollFrameScrollBar:ClearAllPoints()
+				_G.SkillListScrollFrameScrollBar:SetPoint("RIGHT", _G.SkillFrame, "RIGHT", -240, 50)
+				_G.SkillListScrollFrameScrollBar:SetSize(50, 188)
 
 				CharacterFrame.Text:SetSize(418, 72)
 				CharacterFrame.Text:SetPoint("TOP", CharacterFrame, "TOP", 150, -45)

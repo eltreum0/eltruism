@@ -6,16 +6,10 @@ local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
 local IsInInstance = _G.IsInInstance
 local IsInGroup = _G.IsInGroup
-local bit = _G.bit
-local COMBATLOG_OBJECT_TYPE_PLAYER = _G.COMBATLOG_OBJECT_TYPE_PLAYER
-local COMBATLOG_OBJECT_AFFILIATION_RAID = _G.COMBATLOG_OBJECT_AFFILIATION_RAID
-local COMBATLOG_OBJECT_AFFILIATION_PARTY = _G.COMBATLOG_OBJECT_AFFILIATION_PARTY
 local PlaySoundFile = _G.PlaySoundFile
 local GetInstanceInfo = _G.GetInstanceInfo
 local GetSpellTexture = _G.GetSpellTexture
 local GetSpellCharges = _G.GetSpellCharges
-local math = _G.math
-local GetTime = _G.GetTime
 local READY = _G.READY
 
 --PlaySound(61850)

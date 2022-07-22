@@ -7,9 +7,6 @@ local GetItemQualityColor = _G.GetItemQualityColor
 local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetInventoryItemQuality = _G.GetInventoryItemQuality
 local GetDetailedItemLevelInfo = _G.GetDetailedItemLevelInfo
-local INVSLOT_FIRST_EQUIPPED = _G.INVSLOT_FIRST_EQUIPPED
-local INVSLOT_LAST_EQUIPPED = _G.INVSLOT_LAST_EQUIPPED
-local CharacterFrame = _G.CharacterFrame
 
 --Calculate ilvl and average ilvl of player items/inspect unit
 local EltruismInspectilvls = CreateFrame("Frame")
@@ -63,7 +60,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 		local function UpdateItemSlotButton(button, unit)
 			if button.eltruismilvl then button.eltruismilvl:Hide() end
 			local slotID = button:GetID()
-			if (slotID >= INVSLOT_FIRST_EQUIPPED and slotID <= INVSLOT_LAST_EQUIPPED) then
+			if (slotID >= _G.INVSLOT_FIRST_EQUIPPED and slotID <= _G.INVSLOT_LAST_EQUIPPED) then
 				local itemQuality, itemLevel = GetItemQualityAndLevel(unit, slotID)
 				if itemLevel then
 					return AddLevelToButton(button, itemLevel, itemQuality)
@@ -113,6 +110,6 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 		end]]
 		--local ilevel = E:GetPlayerItemLevel() --GetAverageItemLevel() doesnt exist in tbc/classic
 		local ilevel = ElvUI_EltreumUI:GetPlayerItemLevel()
-		CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
+		_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
 	end
 end

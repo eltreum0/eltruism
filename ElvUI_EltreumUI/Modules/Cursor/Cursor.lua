@@ -6,7 +6,7 @@ local isRetail = _G.select(4, _G.GetBuildInfo())>=90000
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
 local SetCVar = _G.SetCVar
-local GetCursorPosition = _G.GetCursorPosition
+local GetCursorPosition = GetCursorPosition
 local next = _G.next
 local min = _G.min
 local floor = _G.floor
@@ -14,9 +14,9 @@ local unpack = _G.unpack
 local max = _G.max
 local sin = _G.sin
 local cos = _G.cos
-local GetTime = _G.GetTime
+local GetTime = GetTime
 local InCombatLockdown = _G.InCombatLockdown
-local GetSpellCooldown = _G.GetSpellCooldown
+local GetSpellCooldown = GetSpellCooldown
 
 
 function ElvUI_EltreumUI:CursorInit()

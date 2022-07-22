@@ -12,25 +12,6 @@ local pairs = _G.pairs
 local DEFAULT_OBJECTIVE_TRACKER_MODULE = _G.DEFAULT_OBJECTIVE_TRACKER_MODULE
 local QuestLogNoQuestsText = _G.QuestLogNoQuestsText
 local QuestLogFrame = _G.QuestLogFrame
-local CraftFrame = _G.CraftFrame
-local CraftFrameAvailableFilterCheckButton = _G.CraftFrameAvailableFilterCheckButton
-local CraftFrameFilterDropDown = _G.CraftFrameFilterDropDown
-local CraftCreateButton = _G.CraftCreateButton
-local CraftCancelButton = _G.CraftCancelButton
-local CraftListScrollFrameScrollChildFrame = _G.CraftListScrollFrameScrollChildFrame
-local CraftListScrollFrameScrollBar = _G.CraftListScrollFrameScrollBar
-local CraftDetailScrollFrame = _G.CraftDetailScrollFrame
-local CraftDetailScrollChildFrame = _G.CraftDetailScrollChildFrame
-local CraftDetailScrollFrameScrollBar = _G.CraftDetailScrollFrameScrollBar
-local CRAFTS_DISPLAYED = _G.CRAFTS_DISPLAYED
-local TradeSkillDetailScrollFrame = _G.TradeSkillDetailScrollFrame
-local TradeSkillDetailScrollChildFrame = _G.TradeSkillDetailScrollChildFrame
-local TradeSkillListScrollFrameScrollBar = _G.TradeSkillListScrollFrameScrollBar
-local TradeSkillCreateAllButton = _G.TradeSkillCreateAllButton
-local TradeSkillCreateButton = _G.TradeSkillCreateButton
-local TradeSkillCancelButton = _G.TradeSkillCancelButton
-local TRADE_SKILLS_DISPLAYED = _G.TRADE_SKILLS_DISPLAYED
-local TradeSkillFrame = _G.TradeSkillFrame
 local QuestWatchFrame = _G.QuestWatchFrame
 local GetNumQuestWatches = _G.GetNumQuestWatches
 local GetQuestLogLeaderBoard = _G.GetQuestLogLeaderBoard
@@ -584,9 +565,18 @@ function ElvUI_EltreumUI:SkinProfessions()
 
 		WideTradeSkill:RegisterEvent("ADDON_LOADED")
 		WideTradeSkill:SetScript("OnEvent", function(_, _, arg)
-			if (arg == "Blizzard_TradeSkillUI") then
+			if (arg == "Blizzard_TradeSkillUI") or (arg == "Blizzard_RuneforgeUI") then
 				WideTradeSkill:UnregisterAllEvents()
+				local TradeSkillFrame = _G.TradeSkillFrame
+				local TradeSkillDetailScrollFrame = _G.TradeSkillDetailScrollFrame
+				local TradeSkillDetailScrollChildFrame = _G.TradeSkillDetailScrollChildFrame
+				local TradeSkillListScrollFrameScrollBar = _G.TradeSkillListScrollFrameScrollBar
+				local TradeSkillCreateAllButton = _G.TradeSkillCreateAllButton
+				local TradeSkillCreateButton = _G.TradeSkillCreateButton
+				local TradeSkillCancelButton = _G.TradeSkillCancelButton
+
 				TradeSkillFrame:HookScript("OnShow", function()
+
 					if not TradeSkillFrame.backdrop.shadow then
 						TradeSkillFrame.backdrop:CreateShadow()
 					end
@@ -604,6 +594,10 @@ function ElvUI_EltreumUI:SkinProfessions()
 					TradeSkillListScrollFrameScrollBar:SetPoint("LEFT", TradeSkillDetailScrollChildFrame, -30, -70)
 					TradeSkillListScrollFrameScrollBar:SetHeight(320)
 
+					if _G.TradeSkillDetailScrollFrameScrollBar then
+						_G.TradeSkillDetailScrollFrameScrollBar:Hide()
+					end
+
 					TradeSkillCreateAllButton:ClearAllPoints()
 					TradeSkillCreateAllButton:SetPoint("LEFT", TradeSkillFrame, "BOTTOMLEFT", 15, 95)
 
@@ -615,10 +609,11 @@ function ElvUI_EltreumUI:SkinProfessions()
 
 					if dontexpandanymore == 0 then
 						-- Create the additional rows
-						--local numSkills = TRADE_SKILLS_DISPLAYED
 						local numSkills = 8
+						_G.TRADE_SKILLS_DISPLAYED = 22
+						--local numSkills = TRADE_SKILLS_DISPLAYED
 						--TRADE_SKILLS_DISPLAYED = TRADE_SKILLS_DISPLAYED + 14
-						TRADE_SKILLS_DISPLAYED = 22
+
 						for i = numSkills + 1, 22 do
 							local skillbutton = CreateFrame("Button", "TradeSkillSkill" .. i, TradeSkillFrame, "TradeSkillSkillButtonTemplate")
 							skillbutton:SetID(i)
@@ -643,6 +638,17 @@ function ElvUI_EltreumUI:SkinProfessions()
 			local WideTradeSkillEnchant = CreateFrame("Frame")
 			WideTradeSkillEnchant:RegisterEvent("CRAFT_SHOW")
 			WideTradeSkillEnchant:SetScript("OnEvent", function()
+				local CraftFrame = _G.CraftFrame
+				local CraftFrameAvailableFilterCheckButton = _G.CraftFrameAvailableFilterCheckButton
+				local CraftFrameFilterDropDown = _G.CraftFrameFilterDropDown
+				local CraftCreateButton = _G.CraftCreateButton
+				local CraftCancelButton = _G.CraftCancelButton
+				local CraftListScrollFrameScrollChildFrame = _G.CraftListScrollFrameScrollChildFrame
+				local CraftListScrollFrameScrollBar = _G.CraftListScrollFrameScrollBar
+				local CraftDetailScrollFrame = _G.CraftDetailScrollFrame
+				local CraftDetailScrollChildFrame = _G.CraftDetailScrollChildFrame
+				local CraftDetailScrollFrameScrollBar = _G.CraftDetailScrollFrameScrollBar
+				local CRAFTS_DISPLAYED = _G.CRAFTS_DISPLAYED
 				if not CraftFrame.backdrop.shadow then
 					CraftFrame.backdrop:CreateShadow()
 				end
@@ -705,6 +711,17 @@ function ElvUI_EltreumUI:SkinProfessions()
 			WideTradeSkillEnchant:RegisterEvent("ADDON_LOADED")
 			WideTradeSkillEnchant:SetScript("OnEvent", function(_, _, arg)
 				if (arg == "Blizzard_CraftUI") then
+					local CraftFrame = _G.CraftFrame
+					local CraftFrameAvailableFilterCheckButton = _G.CraftFrameAvailableFilterCheckButton
+					local CraftFrameFilterDropDown = _G.CraftFrameFilterDropDown
+					local CraftCreateButton = _G.CraftCreateButton
+					local CraftCancelButton = _G.CraftCancelButton
+					local CraftListScrollFrameScrollChildFrame = _G.CraftListScrollFrameScrollChildFrame
+					local CraftListScrollFrameScrollBar = _G.CraftListScrollFrameScrollBar
+					local CraftDetailScrollFrame = _G.CraftDetailScrollFrame
+					local CraftDetailScrollChildFrame = _G.CraftDetailScrollChildFrame
+					local CraftDetailScrollFrameScrollBar = _G.CraftDetailScrollFrameScrollBar
+
 					WideTradeSkillEnchant:UnregisterAllEvents()
 					CraftFrame:HookScript("OnShow", function()
 						if not CraftFrame.backdrop.shadow then
@@ -740,12 +757,12 @@ function ElvUI_EltreumUI:SkinProfessions()
 						CraftCancelButton:ClearAllPoints()
 						CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
 
-						if dontexpandanymoreEnchant == 0 then
+	 					if dontexpandanymoreEnchant == 0 then
 							-- Create the additional rows
 							--local numCrafts = CRAFTS_DISPLAYED
 							local numCrafts = 8
 							--CRAFTS_DISPLAYED = CRAFTS_DISPLAYED + 14
-							CRAFTS_DISPLAYED = 22
+							_G.CRAFTS_DISPLAYED = 22
 							for i = numCrafts + 1, 22 do
 								local craftbutton = CreateFrame("Button", "Craft" .. i, CraftFrame, "CraftButtonTemplate")
 								craftbutton:SetID(i)

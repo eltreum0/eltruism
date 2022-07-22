@@ -26,7 +26,6 @@ local ipairs = _G.ipairs
 local GetSpellTexture = _G.GetSpellTexture
 local getmetatable = _G.getmetatable
 local GRAY_FONT_COLOR = _G.GRAY_FONT_COLOR
-local MacroFrameText = _G.MacroFrameText
 local LibStub = _G.LibStub
 local strlenutf8 = _G.strlenutf8
 local IsModifiedClick = _G.IsModifiedClick
@@ -1014,10 +1013,10 @@ function ElvUI_EltreumUI:ClassicSockets()
 	end
 
 	local function PostLink(link)
-		if MacroFrameText and MacroFrameText:IsShown() and MacroFrameText:HasFocus() then
-			local text = MacroFrameText:GetText()..link
+		if _G.MacroFrameText and _G.MacroFrameText:IsShown() and _G.MacroFrameText:HasFocus() then
+			local text = _G.MacroFrameText:GetText()..link
 			if 255 >= strlenutf8(text) then
-				MacroFrameText:Insert(link)
+				_G.MacroFrameText:Insert(link)
 			end
 		elseif ChatEdit_GetActiveWindow() then
 			ChatEdit_InsertLink(link)

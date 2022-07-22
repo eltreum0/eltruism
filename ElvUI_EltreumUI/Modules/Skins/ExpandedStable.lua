@@ -2,15 +2,15 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local S = E:GetModule('Skins')
 local CreateFrame = _G.CreateFrame
-local NUM_PET_STABLE_PAGES = _G.NUM_PET_STABLE_PAGES
-local NUM_PET_STABLE_SLOTS = _G.NUM_PET_STABLE_SLOTS
+local NUM_PET_STABLE_PAGES = NUM_PET_STABLE_PAGES
+local NUM_PET_STABLE_SLOTS = NUM_PET_STABLE_SLOTS
 local SEARCH = _G.SEARCH
 local NAME = _G.NAME
 local PET_FAMILIES = _G.PET_FAMILIES
 local PET_TALENTS = _G.PET_TALENTS
 local hooksecurefunc = _G.hooksecurefunc
-local NUM_PET_ACTIVE_SLOTS = _G.NUM_PET_ACTIVE_SLOTS
-local GetStablePetInfo = _G.GetStablePetInfo
+local NUM_PET_ACTIVE_SLOTS = NUM_PET_ACTIVE_SLOTS
+local GetStablePetInfo = GetStablePetInfo
 
 --based on Improved Stable Frame by Cybeloras
 function ElvUI_EltreumUI:ExpandedStable()
