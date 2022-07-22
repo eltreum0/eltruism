@@ -3,14 +3,7 @@ local _G = _G
 local DT = E:GetModule("DataTexts")
 local InCombatLockdown = _G.InCombatLockdown
 local GetCombatRatingBonus = _G.GetCombatRatingBonus
-local CR_HASTE_SPELL = _G.CR_HASTE_SPELL
 local math = _G.math
-local STAT_CATEGORY_ENHANCEMENTS = _G.STAT_CATEGORY_ENHANCEMENTS
-local CURRENCY = _G.CURRENCY
-local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
-local NUM_BAG_FRAMES = _G.NUM_BAG_FRAMES
-local INVTYPE_AMMO = _G.INVTYPE_AMMO
-local INVSLOT_RANGED = _G.INVSLOT_RANGED
 local select, wipe = _G.select, _G.wipe
 local format, strjoin = _G.format, _G.strjoin
 local GetItemInfo = _G.GetItemInfo
@@ -23,21 +16,10 @@ local ContainerIDToInventoryID = _G.ContainerIDToInventoryID
 local GetContainerNumSlots = _G.GetContainerNumSlots
 local GetContainerNumFreeSlots = _G.GetContainerNumFreeSlots
 local GetItemQualityColor = _G.GetItemQualityColor
-local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
-local NUM_BAG_FRAMES = _G.NUM_BAG_FRAMES
-local INVSLOT_AMMO = _G.INVSLOT_AMMO
-local LE_ITEM_CLASS_QUIVER = _G.LE_ITEM_CLASS_QUIVER
-local LE_ITEM_CLASS_CONTAINER = _G.LE_ITEM_CLASS_CONTAINER
 local C_CurrencyInfo = _G.C_CurrencyInfo
 local Constants = _G.Constants --maybe should not be
-local HONOR = _G.HONOR
-local ARENA = _G.ARENA
-local COMBAT_HONOR_GAIN = _G.COMBAT_HONOR_GAIN
-local PVP_CONQUEST = _G.PVP_CONQUEST
 local UIErrorsFrame = _G.UIErrorsFrame
 local ERR_NOT_IN_COMBAT = _G.ERR_NOT_IN_COMBAT
-local ToggleBag = _G.ToggleBag
-local ToggleAllBags = _G.ToggleAllBags
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------spell haste datatext
 local function EltruismSpellHasteDatatext(dt)

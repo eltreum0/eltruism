@@ -7,7 +7,6 @@ local CombatText_AddMessage = _G.CombatText_AddMessage
 local CombatText_StandardScroll = _G.CombatText_StandardScroll
 local print = _G.print
 local strlower = strlower
-local NUM_BAG_SLOTS = NUM_BAG_SLOTS
 local GetContainerNumSlots = GetContainerNumSlots
 local select = select
 local GetContainerItemInfo = GetContainerItemInfo

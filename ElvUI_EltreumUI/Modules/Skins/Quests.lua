@@ -2,17 +2,10 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local S = E:GetModule('Skins')
 local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
-local ObjectiveTrackerBlocksFrame = _G.ObjectiveTrackerBlocksFrame
-local ScenarioObjectiveBlockBackground = _G.ScenarioObjectiveBlockBackground
-local ScenarioObjectiveBlockBackgroundTexture = _G.ScenarioObjectiveBlockBackgroundTexture
 local CreateFrame = _G.CreateFrame
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 local pairs = _G.pairs
-local DEFAULT_OBJECTIVE_TRACKER_MODULE = _G.DEFAULT_OBJECTIVE_TRACKER_MODULE
-local QuestLogNoQuestsText = _G.QuestLogNoQuestsText
-local QuestLogFrame = _G.QuestLogFrame
-local QuestWatchFrame = _G.QuestWatchFrame
 local GetNumQuestWatches = _G.GetNumQuestWatches
 local GetQuestLogLeaderBoard = _G.GetQuestLogLeaderBoard
 local GetQuestIndexForWatch = _G.GetQuestIndexForWatch
@@ -20,44 +13,14 @@ local QuestLogTrackTracking = _G.QuestLogTrackTracking
 local GetQuestLogTitle = _G.GetQuestLogTitle
 local UIParent_ManageFramePositions = _G.UIParent_ManageFramePositions
 local select = _G.select
-local QuestLogTitleText = _G.QuestLogTitleText
-local QuestLogListScrollFrame = _G.QuestLogListScrollFrame
-local QuestLogDetailScrollFrame = _G.QuestLogDetailScrollFrame
-local QuestMapFrame_GetDetailQuestID = _G.QuestMapFrame_GetDetailQuestID
-local GetNumQuestLeaderBoards = _G.GetNumQuestLeaderBoards
-local MAX_QUESTWATCH_LINES = _G.MAX_QUESTWATCH_LINES
-local QUESTS_DISPLAYED = _G.QUESTS_DISPLAYED
-local WorldMapFrame = _G.WorldMapFrame
-local QuestFramePushQuestButton = _G.QuestFramePushQuestButton
-local QuestLogFrameTrackButton = _G.QuestLogFrameTrackButton
-local QuestLogControlPanel = _G.QuestLogControlPanel
-local ObjectiveTrackerBonusBannerFrame = _G.ObjectiveTrackerBonusBannerFrame
-local ScenarioStageBlock = _G.ScenarioStageBlock
-local ScenarioObjectiveBlock = _G.ScenarioObjectiveBlock
-local C_SuperTrack = _G.C_SuperTrack
-local ObjectiveTrackerFrame = _G.ObjectiveTrackerFrame
-local QUEST_TRACKER_MODULE = _G.QUEST_TRACKER_MODULE
-local ACHIEVEMENT_TRACKER_MODULE = _G.GACHIEVEMENT_TRACKER_MODULE
-local BONUS_OBJECTIVE_TRACKER_MODULE =_G.BONUS_OBJECTIVE_TRACKER_MODULE
-local WORLD_QUEST_TRACKER_MODULE = _G.WORLD_QUEST_TRACKER_MODULE
-local UI_WIDGET_TRACKER_MODULE = _G.UI_WIDGET_TRACKER_MODULE
-local CAMPAIGN_QUEST_TRACKER_MODULE = _G.CAMPAIGN_QUEST_TRACKER_MODULE
-local SCENARIO_TRACKER_MODULE = _G.SCENARIO_TRACKER_MODULE
-local SCENARIO_CONTENT_TRACKER_MODULE = _G.SCENARIO_CONTENT_TRACKER_MODULE
-local ZoneTextString = _G.ZoneTextString
-local SubZoneTextString = _G.SubZoneTextString
-local PVPInfoTextString = _G.PVPInfoTextString
-local PVPArenaTextString = _G.PVPArenaTextString
-local OpenMailBodyText = _G.OpenMailBodyText
-local SendMailBodyEditBox = _G.SendMailBodyEditBox
 
 if E.Retail then
-	ScenarioObjectiveBlockBackground = CreateFrame("Frame", "EltruismScenarioBlockBg")
-	ScenarioObjectiveBlockBackgroundTexture = ScenarioObjectiveBlockBackground:CreateTexture()
-	ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine = CreateFrame("StatusBar", "EltruismScenarioLine", ObjectiveTrackerBlocksFrame.ScenarioHeader)
-	ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine = CreateFrame("StatusBar", "EltruismCampaignLine", ObjectiveTrackerBlocksFrame.CampaignQuestHeader)
-	ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine = CreateFrame("StatusBar", "EltruismQuestLine", ObjectiveTrackerBlocksFrame.QuestHeader)
-	ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine = CreateFrame("StatusBar", "EltruismAchievementLine", ObjectiveTrackerBlocksFrame.AchievementHeader)
+	local ScenarioObjectiveBlockBackground = CreateFrame("Frame", "EltruismScenarioBlockBg")
+	local ScenarioObjectiveBlockBackgroundTexture = ScenarioObjectiveBlockBackground:CreateTexture()
+	_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine = CreateFrame("StatusBar", "EltruismScenarioLine", _G.ObjectiveTrackerBlocksFrame.ScenarioHeader)
+	_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine = CreateFrame("StatusBar", "EltruismCampaignLine", _G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader)
+	_G.ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine = CreateFrame("StatusBar", "EltruismQuestLine", _G.ObjectiveTrackerBlocksFrame.QuestHeader)
+	_G.ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine = CreateFrame("StatusBar", "EltruismAchievementLine", _G.ObjectiveTrackerBlocksFrame.AchievementHeader)
 end
 
 local dontexpandanymorequests = 0
@@ -70,20 +33,20 @@ function ElvUI_EltreumUI:SkinQuests()
 		if E.Retail then
 			wowheadbutton:SetWidth(80)
 			wowheadbutton:SetHeight(20)
-			wowheadbutton:SetParent(WorldMapFrame)
-			wowheadbutton:SetPoint("TOPRIGHT", WorldMapFrame, "TOPRIGHT", -80, 0)
+			wowheadbutton:SetParent(_G.WorldMapFrame)
+			wowheadbutton:SetPoint("TOPRIGHT", _G.WorldMapFrame, "TOPRIGHT", -80, 0)
 		elseif E.TBC or E.Classic then
-			local x, y = QuestFramePushQuestButton:GetSize()
+			local x, y = _G.QuestFramePushQuestButton:GetSize()
 			wowheadbutton:SetWidth(x)
 			wowheadbutton:SetHeight(y)
-			wowheadbutton:SetParent(QuestLogFrame)
-			wowheadbutton:SetPoint("LEFT", QuestFramePushQuestButton, "LEFT", -x-2, 0)
+			wowheadbutton:SetParent(_G.QuestLogFrame)
+			wowheadbutton:SetPoint("LEFT", _G.QuestFramePushQuestButton, "LEFT", -x-2, 0)
 		elseif E.Wrath then
-			local x, y = QuestLogFrameTrackButton:GetSize()
+			local x, y = _G.QuestLogFrameTrackButton:GetSize()
 			wowheadbutton:SetWidth(x)
 			wowheadbutton:SetHeight(y)
-			wowheadbutton:SetParent(QuestLogFrame)
-			wowheadbutton:SetPoint("RIGHT", QuestLogControlPanel, "RIGHT", x+2, 0)
+			wowheadbutton:SetParent(_G.QuestLogFrame)
+			wowheadbutton:SetPoint("RIGHT", _G.QuestLogControlPanel, "RIGHT", x+2, 0)
 		end
 		wowheadbutton:SetText("Wowhead")
 		wowheadbutton:SetNormalFontObject("GameFontNormal")
@@ -126,7 +89,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				if questID ~= nil then
 					questID = questID
 				elseif questID == nil then
-					questID = C_SuperTrack.GetSuperTrackedQuestID()
+					questID = _G.C_SuperTrack.GetSuperTrackedQuestID()
 				end
 			end)
 			--set the link to show when the button is clicked
@@ -141,6 +104,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			-- and (not IsAddOnLoaded("ElvUI_WindTools"))
 			if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 				--WQs banner
+				local ObjectiveTrackerBonusBannerFrame = _G.ObjectiveTrackerBonusBannerFrame
 				if ObjectiveTrackerBonusBannerFrame then
 					--textcoords from https://www.townlong-yak.com/framexml/39229/Helix/AtlasInfo.lua
 					ObjectiveTrackerBonusBannerFrame.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
@@ -163,6 +127,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 
 				--create the lines
+				local ObjectiveTrackerBlocksFrame = _G.ObjectiveTrackerBlocksFrame
 				if ObjectiveTrackerBlocksFrame and (not IsAddOnLoaded("ElvUI_SLE")) then
 
 					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetSize(250, 2)
@@ -281,8 +246,8 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 				end)
 
-				if ScenarioObjectiveBlock then
-					local frames = {ScenarioObjectiveBlock:GetChildren()}
+				if _G.ScenarioObjectiveBlock then
+					local frames = {_G.ScenarioObjectiveBlock:GetChildren()}
 					for _, frame in pairs(frames) do
 						if frame.Text then
 							if not IsAddOnLoaded("ElvUI_SLE") then
@@ -296,29 +261,31 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				--skin the dungeon/raid/scenario bg
 				hooksecurefunc(_G["SCENARIO_CONTENT_TRACKER_MODULE"], "Update", function ()
-					ScenarioObjectiveBlockBackground:SetParent(ScenarioStageBlock)
+					local ScenarioObjectiveBlockBackground = _G.ScenarioObjectiveBlockBackground
+					ScenarioObjectiveBlockBackground:SetParent(_G.ScenarioStageBlock)
 					ScenarioObjectiveBlockBackground:ClearAllPoints()
-					ScenarioObjectiveBlockBackground:SetAllPoints(ScenarioStageBlock.NormalBG)
+					ScenarioObjectiveBlockBackground:SetAllPoints(_G.ScenarioStageBlock.NormalBG)
 					ScenarioObjectiveBlockBackground:CreateBackdrop('Transparent')
+					local ScenarioObjectiveBlockBackgroundTexture = _G.ScenarioObjectiveBlockBackgroundTexture
 					ScenarioObjectiveBlockBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI\\Code\\Media\\Textures\\White8x8.tga")
 					ScenarioObjectiveBlockBackgroundTexture:SetColorTexture(0, 0, 0, 0.01)
 					ScenarioObjectiveBlockBackgroundTexture:SetAlpha(0.01)
-					ScenarioObjectiveBlockBackgroundTexture:SetAllPoints(ScenarioStageBlock.NormalBG)
+					ScenarioObjectiveBlockBackgroundTexture:SetAllPoints(_G.ScenarioStageBlock.NormalBG)
 					ScenarioObjectiveBlockBackground:Show()
 					ScenarioObjectiveBlockBackgroundTexture:Show()
 					if not ScenarioObjectiveBlockBackground.shadow then
 						ScenarioObjectiveBlockBackground:CreateShadow()
 					end
-					ScenarioStageBlock.NormalBG:Hide()
-					ScenarioStageBlock.FinalBG:Hide()
+					_G.ScenarioStageBlock.NormalBG:Hide()
+					_G.ScenarioStageBlock.FinalBG:Hide()
 					--dungeon/raid/scenario name text
-					if ScenarioStageBlock.Stage then
-						ScenarioStageBlock.Stage:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+					if _G.ScenarioStageBlock.Stage then
+						_G.ScenarioStageBlock.Stage:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 						if not IsAddOnLoaded("ElvUI_SLE") then
-							ScenarioStageBlock.Stage:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
+							_G.ScenarioStageBlock.Stage:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 						end
-						ScenarioStageBlock.Stage:SetShadowColor(0, 0, 0, 0.8)
-						ScenarioStageBlock.Stage:SetShadowOffset(2, -1)
+						_G.ScenarioStageBlock.Stage:SetShadowColor(0, 0, 0, 0.8)
+						_G.ScenarioStageBlock.Stage:SetShadowOffset(2, -1)
 					end
 				end)
 
@@ -368,30 +335,30 @@ function ElvUI_EltreumUI:SkinQuests()
 			end)
 
 			--move the text for no quests
-			QuestLogNoQuestsText:ClearAllPoints()
-			QuestLogNoQuestsText:SetPoint("CENTER", QuestLogFrame, 0, 0)
+			_G.QuestLogNoQuestsText:ClearAllPoints()
+			_G.QuestLogNoQuestsText:SetPoint("CENTER", _G.QuestLogFrame, 0, 0)
 			--make the whole thing bigger almost like retail
-			QuestLogFrame:SetWidth(765)
-			QuestLogFrame:SetHeight(550)
+			_G.QuestLogFrame:SetWidth(765)
+			_G.QuestLogFrame:SetHeight(550)
 			--move the frame title
-			QuestLogTitleText:ClearAllPoints()
-			QuestLogTitleText:SetPoint("TOP", QuestLogFrame, "TOP", 0, -20)
+			_G.QuestLogTitleText:ClearAllPoints()
+			_G.QuestLogTitleText:SetPoint("TOP", _G.QuestLogFrame, "TOP", 0, -20)
 			--increase the size of the quest title frame
-			QuestLogListScrollFrame:SetHeight(390)
-			QuestLogListScrollFrame:SetWidth(350)
+			_G.QuestLogListScrollFrame:SetHeight(390)
+			_G.QuestLogListScrollFrame:SetWidth(350)
 			--increase the size of the quest description frame and move it
-			QuestLogDetailScrollFrame:ClearAllPoints()
-			QuestLogDetailScrollFrame:SetPoint("TOPLEFT", QuestLogListScrollFrame, "TOPRIGHT", 35, 0)
-			QuestLogDetailScrollFrame:SetHeight(390)
+			_G.QuestLogDetailScrollFrame:ClearAllPoints()
+			_G.QuestLogDetailScrollFrame:SetPoint("TOPLEFT", _G.QuestLogListScrollFrame, "TOPRIGHT", 35, 0)
+			_G.QuestLogDetailScrollFrame:SetHeight(390)
 
 			-- Create the additional rows
 			--local numQuests = QUESTS_DISPLAYED
 			local numQuests = 6
 			--QUESTS_DISPLAYED = QUESTS_DISPLAYED + 18
-			QUESTS_DISPLAYED = 24
+			_G.QUESTS_DISPLAYED = 24
 			if dontexpandanymorequests == 0 then
 				for i = numQuests + 1, 24 do
-					local questTitlebutton = CreateFrame("Button", "QuestLogTitle" .. i, QuestLogFrame, "QuestLogTitleButtonTemplate")
+					local questTitlebutton = CreateFrame("Button", "QuestLogTitle" .. i, _G.QuestLogFrame, "QuestLogTitleButtonTemplate")
 					questTitlebutton:SetID(i)
 					questTitlebutton:Hide()
 					questTitlebutton:ClearAllPoints()
@@ -406,7 +373,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			end
 
 			if not IsAddOnLoaded('Questie') then
-				--from blizzard's FrameXML/QuestLogFrame.lua
+				--from blizzard's FrameXML/_G.QuestLogFrame.lua
 
 				--skin the classic objective frame
 				hooksecurefunc("QuestWatch_Update",function()
@@ -503,12 +470,12 @@ function ElvUI_EltreumUI:SkinQuests()
 
 					-- If no watch lines used then hide the frame and return
 					if ( watchTextIndex == 1 ) then
-						QuestWatchFrame:Hide()
+						_G.QuestWatchFrame:Hide()
 						return
 					else
-						QuestWatchFrame:Show()
-						QuestWatchFrame:SetHeight(watchTextIndex * 13)
-						QuestWatchFrame:SetWidth(questWatchMaxWidth + 10)
+						_G.QuestWatchFrame:Show()
+						_G.QuestWatchFrame:SetHeight(watchTextIndex * 13)
+						_G.QuestWatchFrame:SetWidth(questWatchMaxWidth + 10)
 					end
 
 					-- Hide unused watch lines
@@ -525,7 +492,7 @@ function ElvUI_EltreumUI:SkinQuests()
 
 			local questID
 			--hook the function that sets the quest detail to get the questID from the quest title
-			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --questlogframe.lua 311
+			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --_G.QuestLogFrame.lua 311
 				questID = select(8, GetQuestLogTitle(questTitle))
 			end)
 			--set the link to show when the button is clicked
@@ -539,9 +506,9 @@ function ElvUI_EltreumUI:SkinQuests()
 
 
 			--increase the size of the quest description frame and move it
-			QuestLogDetailScrollFrame:ClearAllPoints()
-			QuestLogDetailScrollFrame:SetPoint("TOPLEFT", QuestLogListScrollFrame, "TOPRIGHT", 35, 0)
-			QuestLogDetailScrollFrame:SetHeight(390)
+			_G.QuestLogDetailScrollFrame:ClearAllPoints()
+			_G.QuestLogDetailScrollFrame:SetPoint("TOPLEFT", _G.QuestLogListScrollFrame, "TOPRIGHT", 35, 0)
+			_G.QuestLogDetailScrollFrame:SetHeight(390)
 
 			if not IsAddOnLoaded('Questie') then --wotlk todo
 				--from blizzard's FrameXML/QuestLogFrame.lua
@@ -794,13 +761,13 @@ function ElvUI_EltreumUI:SkinMailZone()
 				PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
 				PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
 			end)]]
-			ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, E.db.general.fontStyle)
-			SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, E.db.general.fontStyle)
-			PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
-			PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
-			OpenMailBodyText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+			_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, E.db.general.fontStyle)
+			_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, E.db.general.fontStyle)
+			_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
+			_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
+			_G.OpenMailBodyText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
 			if E.Retail then
-				SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+				_G.SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
 			--elseif E.TBC or E.Classic then
 				--MailEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
 			end

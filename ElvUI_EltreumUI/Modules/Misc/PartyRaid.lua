@@ -10,7 +10,6 @@ local PlaySoundFile = _G.PlaySoundFile
 local GetInstanceInfo = _G.GetInstanceInfo
 local GetSpellTexture = _G.GetSpellTexture
 local GetSpellCharges = _G.GetSpellCharges
-local READY = _G.READY
 
 --PlaySound(61850)
 --PlaySound(61851)

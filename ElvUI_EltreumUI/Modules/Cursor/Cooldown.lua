@@ -9,7 +9,6 @@ local GetCursorPosition = GetCursorPosition
 local math = _G.math
 local UIFrameFadeOut = _G.UIFrameFadeOut
 local GetActionInfo = GetActionInfo
-local NUM_PET_ACTION_SLOTS = NUM_PET_ACTION_SLOTS
 local GetPetActionInfo = GetPetActionInfo
 local GetSpellInfo = GetSpellInfo
 local GetSpellBaseCooldown = GetSpellBaseCooldown
