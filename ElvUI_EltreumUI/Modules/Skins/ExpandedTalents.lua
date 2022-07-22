@@ -87,15 +87,14 @@ function ElvUI_EltreumUI:ExpandedTalents()
 					-- fix glyph size
 					if E.Wrath then
 						LoadAddOn("Blizzard_GlyphUI")
+						_G.GlyphFrame:SetParent(_G.PlayerTalentFrame)
+
 						_G.GlyphFrame:HookScript("OnShow", function()
 							PlayerTalentFrame:SetSize(384, 512)
 							_G.GlyphFrame:Show()
-							_G.GlyphFrame:SetScale(0.7)
-							_G.GlyphFrame:SetFrameStrata("HIGH")
 							PlayerTalentFrameBackgroundTopLeft:Hide()
 							_G.GlyphFrame:ClearAllPoints()
 							_G.GlyphFrame:SetPoint("CENTER", _G.PlayerTalentFrame)
-
 						end)
 						_G.GlyphFrame:HookScript("OnHide", function()
 							PlayerTalentFrame:SetSize(376, 780)
