@@ -13,10 +13,12 @@ local QuestLogTrackTracking = _G.QuestLogTrackTracking
 local GetQuestLogTitle = _G.GetQuestLogTitle
 local UIParent_ManageFramePositions = _G.UIParent_ManageFramePositions
 local select = _G.select
+local ScenarioObjectiveBlockBackground
+local ScenarioObjectiveBlockBackgroundTexture
 
 if E.Retail then
-	local ScenarioObjectiveBlockBackground = CreateFrame("Frame", "EltruismScenarioBlockBg")
-	local ScenarioObjectiveBlockBackgroundTexture = ScenarioObjectiveBlockBackground:CreateTexture()
+	ScenarioObjectiveBlockBackground = CreateFrame("Frame", "EltruismScenarioBlockBg")
+	ScenarioObjectiveBlockBackgroundTexture = ScenarioObjectiveBlockBackground:CreateTexture()
 	_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine = CreateFrame("StatusBar", "EltruismScenarioLine", _G.ObjectiveTrackerBlocksFrame.ScenarioHeader)
 	_G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine = CreateFrame("StatusBar", "EltruismCampaignLine", _G.ObjectiveTrackerBlocksFrame.CampaignQuestHeader)
 	_G.ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine = CreateFrame("StatusBar", "EltruismQuestLine", _G.ObjectiveTrackerBlocksFrame.QuestHeader)
@@ -261,12 +263,10 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				--skin the dungeon/raid/scenario bg
 				hooksecurefunc(_G["SCENARIO_CONTENT_TRACKER_MODULE"], "Update", function ()
-					local ScenarioObjectiveBlockBackground = _G.ScenarioObjectiveBlockBackground
 					ScenarioObjectiveBlockBackground:SetParent(_G.ScenarioStageBlock)
 					ScenarioObjectiveBlockBackground:ClearAllPoints()
 					ScenarioObjectiveBlockBackground:SetAllPoints(_G.ScenarioStageBlock.NormalBG)
 					ScenarioObjectiveBlockBackground:CreateBackdrop('Transparent')
-					local ScenarioObjectiveBlockBackgroundTexture = _G.ScenarioObjectiveBlockBackgroundTexture
 					ScenarioObjectiveBlockBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI\\Code\\Media\\Textures\\White8x8.tga")
 					ScenarioObjectiveBlockBackgroundTexture:SetColorTexture(0, 0, 0, 0.01)
 					ScenarioObjectiveBlockBackgroundTexture:SetAlpha(0.01)
