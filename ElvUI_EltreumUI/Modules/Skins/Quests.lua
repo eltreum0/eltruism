@@ -507,11 +507,21 @@ function ElvUI_EltreumUI:SkinQuests()
 				--from blizzard's FrameXML/WatchFrame.lua
 
 				--skin the classic objective frame, based on aftermathh's
-				local function colorquests(line, _, _, isHeader, text, _, _, isComplete) --(line, anchor, verticalOffset, isHeader, text, dash, hasItem, isComplete)
+				local function colorquests(line, anchor, _, isHeader, text, _, _, isComplete) --(line, anchor, verticalOffset, isHeader, text, dash, hasItem, isComplete)
+					--anchor conflicts with even from OnEvent
+					if ( anchor ~= "PLAYER_TARGET_CHANGED" and anchor ~= "BAG_UPDATE_COOLDOWN" and anchor ~= nil) then --and verticalOffset ~= nil then
+						--line:SetPoint("TOPRIGHT", anchor, "BOTTOMRIGHT", 0, verticalOffset)
+						--line:SetPoint("TOPLEFT", anchor, "BOTTOMLEFT", 0, verticalOffset)
+						local _, point = anchor:GetPoint()
+						if point ~= anchor then
+							line:SetPoint("TOPRIGHT", anchor, "BOTTOMRIGHT", 0, -5)
+							line:SetPoint("TOPLEFT", anchor, "BOTTOMLEFT", 0, -5)
+						end
+					end
 
 					if line and line.text then
 						if ( isHeader ) then
-							--line.text:SetTextColor(0.75, 0.61, 0);
+							--line.text:SetTextColor(0.75, 0.61, 0)
 							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
 							line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 							line.text:SetWidth(200)
@@ -612,9 +622,9 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				--highlight
 				hooksecurefunc("WatchFrameLinkButtonTemplate_Highlight", function(self, onEnter)
-					local line;
+					local line
 					for index = self.startLine, self.lastLine do
-						line = self.lines[index];
+						line = self.lines[index]
 						if ( line ) then
 							if ( index == self.startLine ) then
 								-- header
