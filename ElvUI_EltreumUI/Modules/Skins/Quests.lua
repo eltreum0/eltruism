@@ -592,6 +592,11 @@ function ElvUI_EltreumUI:SkinQuests()
 							Button:ClearAllPoints()
 							Button:SetPoint("LEFT", Anchor, "LEFT", -40, -10)
 							Button:SetSize(28, 28)
+
+							if not Button.shadow then
+								Button:CreateShadow()
+							end
+
 							if not (Button.QuestTexture) then
 								if _G["EltruismQuestTexture"] then
 									Button.QuestTexture = _G["EltruismQuestTexture"]
