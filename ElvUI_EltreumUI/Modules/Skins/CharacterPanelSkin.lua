@@ -749,6 +749,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 		elseif E.Wrath or E.TBC or E.Classic then
 
+			--color stats with a class gradient
 			if E.db.ElvUI_EltreumUI.skins.statcolors then
 				if E.Wrath or E.TBC then
 					hooksecurefunc('PlayerStatFrameLeftDropDown_OnClick', function()
@@ -919,6 +920,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
 				ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
 			end
+
+			--add background from artifact weapon
 			if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 				local alpha
 				if E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha ~= nil then
@@ -938,7 +941,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame.backdrop)
 				CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK")
 			end
-			if E.db.ElvUI_EltreumUI.skins.classicarmory then -- this is expand classic armory
+
+			-- expand classic armory
+			if E.db.ElvUI_EltreumUI.skins.classicarmory then
 
 				--set ilvl on char panel
 				hooksecurefunc("ToggleCharacter", function()
@@ -1062,6 +1067,18 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.TokenFrame:SetPoint("BOTTOMLEFT", _G.CharacterFrame, "BOTTOMLEFT", 0, 20)
 					_G.TokenFrame:SetSize(400, 505)
 					_G.TokenFrameCancelButton:Hide()
+
+
+					hooksecurefunc("TokenButton_OnClick", function()
+						_G.TokenFramePopup:ClearAllPoints()
+						_G.TokenFramePopup:SetPoint("TOPLEFT", _G.CharacterFrame.backdrop, "TOPRIGHT", 0, 0)
+					end)
+
+					hooksecurefunc("ReputationBar_OnClick", function()
+						_G.ReputationDetailFrame:ClearAllPoints()
+						_G.ReputationDetailFrame:SetPoint("TOPLEFT", _G.CharacterFrame.backdrop, "TOPRIGHT", 0, 0)
+					end)
+
 				end
 
 				CharacterNameText:SetParent(CharacterModelFrame)
