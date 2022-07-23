@@ -1,12 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local hooksecurefunc = _G.hooksecurefunc
-local math = _G.math
-local GetItemQualityColor = _G.GetItemQualityColor
-local GetInventoryItemLink = _G.GetInventoryItemLink
-local GetInventoryItemQuality = _G.GetInventoryItemQuality
-local GetDetailedItemLevelInfo = _G.GetDetailedItemLevelInfo
 
 --Calculate ilvl and average ilvl of player items/inspect unit
 local EltruismInspectilvls = CreateFrame("Frame")
@@ -91,12 +85,22 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 		end)
 
 		EltruismInspectilvls:RegisterEvent("ADDON_LOADED")
-		EltruismInspectilvls:SetScript("OnEvent", function(_,_,arg)
+		EltruismInspectilvls:RegisterEvent("INSPECT_READY")
+		EltruismInspectilvls:SetScript("OnEvent", function(_,event,arg)
+			print(event)
 			if arg == "Blizzard_InspectUI" then
-				EltruismInspectilvls:UnregisterAllEvents()
+				--EltruismInspectilvls:UnregisterAllEvents()
+				EltruismInspectilvls:UnregisterEvent("ADDON_LOADED")
 				hooksecurefunc("InspectPaperDollItemSlotButton_Update", function(button)
 					if E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
 						UpdateItemSlotButton(button, "target")
+					end
+				end)
+			end
+			if event == "INSPECT_READY" then
+				C_Timer.After(1, function()
+					if _G.InspectFrame:IsVisible() then
+						InspectPaperDollFrame_UpdateButtons()
 					end
 				end)
 			end
