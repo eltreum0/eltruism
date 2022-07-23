@@ -507,24 +507,13 @@ function ElvUI_EltreumUI:SkinQuests()
 				--from blizzard's FrameXML/WatchFrame.lua
 
 				--skin the classic objective frame, based on aftermathh's
-				local function colorquests(line, anchor, _, isHeader, text, _, _, isComplete) --(line, anchor, verticalOffset, isHeader, text, dash, hasItem, isComplete)
-					--anchor conflicts with even from OnEvent
-					if ( anchor ~= "PLAYER_TARGET_CHANGED" and anchor ~= "BAG_UPDATE_COOLDOWN" and anchor ~= nil) then --and verticalOffset ~= nil then
-						--line:SetPoint("TOPRIGHT", anchor, "BOTTOMRIGHT", 0, verticalOffset)
-						--line:SetPoint("TOPLEFT", anchor, "BOTTOMLEFT", 0, verticalOffset)
-						local _, point = anchor:GetPoint()
-						if point ~= anchor then
-							line:SetPoint("TOPRIGHT", anchor, "BOTTOMRIGHT", 0, -5)
-							line:SetPoint("TOPLEFT", anchor, "BOTTOMLEFT", 0, -5)
-						end
-					end
-
+				local function colorquests(line, _, _, isHeader, text, _, _, isComplete) --(line, anchor, verticalOffset, isHeader, text, dash, hasItem, isComplete)
 					if line and line.text then
 						if ( isHeader ) then
 							--line.text:SetTextColor(0.75, 0.61, 0)
 							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
 							line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-							line.text:SetWidth(200)
+							line.text:SetWidth(400)
 						elseif isComplete then
 							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 							line.text:SetTextColor(0, 1, 0)
@@ -592,7 +581,11 @@ function ElvUI_EltreumUI:SkinQuests()
 							end
 							local _, Anchor = Button:GetPoint()
 							Button:ClearAllPoints()
-							Button:SetPoint("LEFT", Anchor, "LEFT", -40, -10)
+							if Anchor ~= nil then
+								Button:SetPoint("LEFT", Anchor, "LEFT", -40, -10)
+							elseif Anchor == nil then
+								Button:SetPoint("LEFT", _G["WatchFrameLine"..i.."Text"], "LEFT", -40, -10)
+							end
 							Button:SetSize(28, 28)
 
 							if not Button.shadow then
@@ -618,7 +611,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 				hooksecurefunc("WatchFrame_SetLine", colorquests)
 				hooksecurefunc("WatchFrame_Update",colorquests)
-				hooksecurefunc("WatchFrameItem_OnEvent",colorquests)
+				--hooksecurefunc("WatchFrameItem_OnEvent",colorquests) --screws up position
 
 				--highlight
 				hooksecurefunc("WatchFrameLinkButtonTemplate_Highlight", function(self, onEnter)
@@ -631,11 +624,11 @@ function ElvUI_EltreumUI:SkinQuests()
 								if ( onEnter ) then
 									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
 									line.text:SetTextColor(classcolor.r+0.2, classcolor.g+0.2, classcolor.b+0.2)
-									line.text:SetWidth(200)
+									line.text:SetWidth(400)
 								else
 									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
 									line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-									line.text:SetWidth(200)
+									line.text:SetWidth(400)
 								end
 							else
 								if ( onEnter ) then
@@ -657,6 +650,8 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 					end
 				end)
+
+				_G.WatchFrame_Update()
 
 				--nope, colors achievements wrong
 				--[[local function loopwatch()
