@@ -504,15 +504,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
 			end)
 
-			--questLogTitle:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-			--questLogTitle:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
-
-			--increase the size of the quest description frame and move it
-			_G.QuestLogDetailScrollFrame:ClearAllPoints()
-			_G.QuestLogDetailScrollFrame:SetPoint("TOPLEFT", _G.QuestLogListScrollFrame, "TOPRIGHT", 35, 0)
-			_G.QuestLogDetailScrollFrame:SetHeight(390)
-
-			if not IsAddOnLoaded('Questie') then --wotlk todo
+			if not IsAddOnLoaded('Questie') then
 				--from blizzard's FrameXML/WatchFrame.lua
 
 				--skin the classic objective frame, based on aftermathh's
