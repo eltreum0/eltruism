@@ -11,7 +11,6 @@ local math = _G.math
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 local CharacterStatsPane = _G.CharacterStatsPane
-local InspectFrame = _G.InspectFrame
 local PaperDollFrame = _G.PaperDollFrame
 local SkillFrame = _G.SkillFrame
 local CharacterModelFrame = _G.CharacterModelFrame
@@ -1044,7 +1043,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PetNameText:SetPoint('TOP', _G.PetModelFrame, 0, 60)
 					_G.PetLevelText:ClearAllPoints()
 					_G.PetLevelText:SetPoint('BOTTOM', _G.PetNameText, 0, -10)
-					_G.PetPaperDollCloseButton:Hide()
 
 					if _G.PetPaperDollCloseButton then
 						_G.PetPaperDollCloseButton:Hide()
@@ -1423,7 +1421,7 @@ end
 
 --inspect bg
 local EltruismInspectBg = CreateFrame("Frame", "EltruismInspectBg")
-EltruismInspectBg:SetParent(InspectFrame)
+
 local EltruismInspectBgTexture = EltruismInspectBg:CreateTexture()
 function ElvUI_EltreumUI:InspectBg(unit)
 	if E.db.ElvUI_EltreumUI.skins.expandarmorybg and not E.private.skins.blizzard.enable == false then
@@ -1436,9 +1434,10 @@ function ElvUI_EltreumUI:InspectBg(unit)
 		--inspect frame bg
 		if IsAddOnLoaded("Blizzard_InspectUI") then
 			--local localizedClass, englishClass, localizedRace, englishRace, sex, name, realm = GetPlayerInfoByGUID(unit)
+			EltruismInspectBg:SetParent(_G.InspectFrame)
 			local _, englishClass = GetPlayerInfoByGUID(unit)
 			if englishClass then
-				if InspectFrame then
+				if _G.InspectFrame then
 					--EltruismInspectBgTexture:SetTexture(classBgs[targetclass])
 					EltruismInspectBgTexture:SetTexture(classBgs[englishClass])
 					EltruismInspectBgTexture:SetTexCoord(0, 0.87, 0, 0.60)
@@ -1449,7 +1448,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					end
 					if E.Wrath or E.TBC or E.Classic then
 						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop)
-						EltruismInspectBgTexture:SetParent(InspectFrame)
+						EltruismInspectBgTexture:SetParent(_G.InspectFrame)
 						if _G.InspectModelFrameRotateLeftButton:IsShown() then
 							_G.InspectModelFrameRotateLeftButton:Hide()
 						end
@@ -1463,11 +1462,11 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						_G.InspectModelFrameBackgroundTopRight:Hide()
 						_G.InspectModelFrameBackgroundOverlay:Hide()
 						--InspectModelFrame.backdrop:Hide()
-						_G.InspectModelFrame.backdrop:SetParent(InspectFrame)
-						_G.InspectModelFrame.backdrop:SetAllPoints(InspectFrame)
+						_G.InspectModelFrame.backdrop:SetParent(_G.InspectFrame)
+						_G.InspectModelFrame.backdrop:SetAllPoints(_G.InspectFrame)
 						_G.InspectModelFrame.backdrop:SetAlpha(0.2)
-						EltruismInspectBgTexture:SetParent(InspectFrame)
-						EltruismInspectBgTexture:SetAllPoints(InspectFrame)
+						EltruismInspectBgTexture:SetParent(_G.InspectFrame)
+						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame)
 					end
 					EltruismInspectBgTexture:SetDrawLayer("ARTWORK")
 				end
