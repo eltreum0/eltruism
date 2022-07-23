@@ -211,6 +211,21 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		if E.db.ElvUI_EltreumUI.ufcustomtexture.enable == true and E.db.ElvUI_EltreumUI.gradientmode.enable == true then --prevent blocking each other
 			E.db.ElvUI_EltreumUI.ufcustomtexture.enable = false
 		end
+	elseif E.private.ElvUI_EltreumUI.install_version < "3.1.6" then --fix name change since the setting doesnt make sense otherwise
+		if E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar == nil then
+			E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar = true
+		elseif E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar == true then
+			E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar = true
+		elseif E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar == false then
+			E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar = false
+		end
+		if E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar == nil then
+			E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar = true
+		elseif E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar == true then
+			E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar = true
+		elseif E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar == false then
+			E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar = false
+		end
 	end
 	if E.db.ElvUI_EltreumUI.lightmode == true and E.db.ElvUI_EltreumUI.darkmode == true then --convert the option
 		E.db.ElvUI_EltreumUI.darkmode = false

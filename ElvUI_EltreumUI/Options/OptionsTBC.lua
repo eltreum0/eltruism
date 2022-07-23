@@ -5211,7 +5211,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar or not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar end,
+								disabled = function() return E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar or not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.playercastbarR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.playercastbarG1
@@ -5227,7 +5227,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
-								disabled = function() return E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar or not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar end,
+								disabled = function() return E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar or not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.playercastbarR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.playercastbarG2
@@ -5244,8 +5244,8 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Class Colors"],
 								desc = L["Use Class Colors instead of Custom Colors"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbar end,
-								get = function() return E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar = value end,
+								get = function() return E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar = value end,
 							},
 							headercastbarcantinterruptplayer = {
 								order = 7,
@@ -5337,7 +5337,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar or not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar end,
+								disabled = function() return E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar or not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.targetcastbarR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.targetcastbarG1
@@ -5353,7 +5353,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
-								disabled = function() return E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar or not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar end,
+								disabled = function() return E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar or not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.targetcastbarR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.targetcastbarG2
@@ -5370,8 +5370,8 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Class Colors"],
 								desc = L["Use Class Colors instead of Custom Colors"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar end,
-								get = function() return E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar = value end,
+								get = function() return E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar = value end,
 							},
 							headercastbarnoninterruptibletargetcustom = {
 								order = 16,

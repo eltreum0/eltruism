@@ -437,8 +437,8 @@ P.ElvUI_EltreumUI = {
 		texture = "Eltreum-Blank",
 		customcolor = false,
 
-		customcolorplayercastbar = false,
-		customcolortargetcastbar = false,
+		classcolorplayercastbar = false,
+		classcolortargetcastbar = false,
 
 		gradientXP = false,
 
