@@ -608,6 +608,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 				hooksecurefunc("WatchFrame_SetLine", colorquests)
 				hooksecurefunc("WatchFrame_Update",colorquests)
+				hooksecurefunc("WatchFrameItem_UpdateCooldown",colorquests)
 
 				--highlight
 				hooksecurefunc("WatchFrameLinkButtonTemplate_Highlight", function(self, onEnter)
