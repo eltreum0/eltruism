@@ -455,6 +455,9 @@ function ElvUI_EltreumUI:Shadows()
 						if _G.PlayerTalentFrameTab3 and _G.PlayerTalentFrameTab3.backdrop and not _G.PlayerTalentFrameTab3.backdrop.shadow then
 							_G.PlayerTalentFrameTab3.backdrop:CreateShadow()
 						end
+						if _G.PlayerTalentFrameTab4 and _G.PlayerTalentFrameTab4.backdrop and not _G.PlayerTalentFrameTab4.backdrop.shadow then
+							_G.PlayerTalentFrameTab4.backdrop:CreateShadow()
+						end
 					end)
 				end
 			end)
