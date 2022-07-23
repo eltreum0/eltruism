@@ -518,7 +518,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				--skin the classic objective frame, based on aftermathh's
 				local function colorquests(line, _, _, isHeader, text, _, _, isComplete) --(line, anchor, verticalOffset, isHeader, text, dash, hasItem, isComplete)
 
-					if line then
+					if line and line.text then
 						if ( isHeader ) then
 							--line.text:SetTextColor(0.75, 0.61, 0);
 							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize+2, E.db.general.fontStyle)
@@ -528,13 +528,9 @@ function ElvUI_EltreumUI:SkinQuests()
 							line.text:SetTextColor(0, 1, 0)
 							line.text:SetWidth(200)
 						else
-							if not line.text then
-								return
-							else
-								line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
-								line.text:SetTextColor(0.8, 0.8, 0.8)
-								line.text:SetWidth(200)
-							end
+							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+							line.text:SetTextColor(0.8, 0.8, 0.8)
+							line.text:SetWidth(200)
 						end
 					end
 					local WatchFrame = _G.WatchFrame
