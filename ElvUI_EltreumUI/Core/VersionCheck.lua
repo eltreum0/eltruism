@@ -37,7 +37,7 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 		ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
 	end
 	if E.Wrath then
-		ElvUI_EltreumUI:Print("Eltruism for WOTLK is in development, issues exist and are known.")
+		ElvUI_EltreumUI:Print("Eltruism for WOTLK is in development, if you have issues please report in |TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinydisc.tga:0:0:0:0|t Discord")
 	end
 end
 
