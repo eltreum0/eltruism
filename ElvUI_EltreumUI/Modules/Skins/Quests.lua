@@ -532,7 +532,11 @@ function ElvUI_EltreumUI:SkinQuests()
 							line.text:SetTextColor(0.8, 0.8, 0.8)
 							line.text:SetWidth(200)
 						end
+						if line.dash then
+							line.dash:Hide()
+						end
 					end
+
 					local WatchFrame = _G.WatchFrame
 					local WatchFrameLines = _G.WatchFrameLines
 
