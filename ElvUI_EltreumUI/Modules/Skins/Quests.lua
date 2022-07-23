@@ -602,6 +602,10 @@ function ElvUI_EltreumUI:SkinQuests()
 								Button.QuestTexture:SetPoint("LEFT", Button, "LEFT", -12, 0)
 								Button.QuestTexture:SetTexture(E.Media.Textures.BagQuestIcon)
 							end
+
+							S:HandleButton(Button)
+							local texture = _G["WatchFrameItem"..i.."IconTexture"]
+							texture:SetTexCoord(0.08,0.92,0.08,0.92)
 						end
 					end
 				end
@@ -618,7 +622,7 @@ function ElvUI_EltreumUI:SkinQuests()
 								-- header
 								if ( onEnter ) then
 									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize+2, E.db.general.fontStyle)
-									line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+									line.text:SetTextColor(classcolor.r+0.2, classcolor.g+0.2, classcolor.b+0.2)
 								else
 									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize+2, E.db.general.fontStyle)
 									line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
@@ -627,14 +631,14 @@ function ElvUI_EltreumUI:SkinQuests()
 								if ( onEnter ) then
 									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
 									line.text:SetTextColor(1, 1, 1)
-									line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
-									line.dash:SetTextColor(1, 1, 1)
-									--line.text:SetWidth(200)
+									--line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+									--line.dash:SetTextColor(1, 1, 1)
+									line.text:SetWidth(200)
 								else
 									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
 									line.text:SetTextColor(0.8, 0.8, 0.8)
-									line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
-									line.dash:SetTextColor(0.8, 0.8, 0.8)
+									--line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+									--line.dash:SetTextColor(0.8, 0.8, 0.8)
 									line.text:SetWidth(200)
 									--line.text:ClearAllPoints()
 									--line.text:SetPoint("LEFT", line.dash, "RIGHT")
