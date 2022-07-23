@@ -325,7 +325,7 @@ function ElvUI_EltreumUI:SkillGlow()
 						if _G[buttonname].GetSpellId and _G[buttonname]:GetSpellId() then
 							proc = _G[buttonname]:GetSpellId()
 						end
-						if SPELL_ID[proc] then
+						if SPELL_ID[proc] and not (E.Wrath and proc == 34026)then
 							local USABLE, NO_MANA = IsUsableSpell(proc)
 							local cd = GetSpellCooldown(proc)
 							if (UnitExists("target") and UnitCanAttack("player", "target") and cd == 0 and USABLE and not NO_MANA) and _G[buttonname].GetSpellId and _G[buttonname]:GetSpellId() == proc then
