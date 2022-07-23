@@ -516,7 +516,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				--from blizzard's FrameXML/WatchFrame.lua
 
 				--skin the classic objective frame, based on aftermathh's
-				local function colorquests(line, _, _, isHeader, text, _, _, isComplete)--, text, dash, hasItem, isComplete)
+				local function colorquests(line, _, _, isHeader, text, _, _, isComplete) --(line, anchor, verticalOffset, isHeader, text, dash, hasItem, isComplete)
 
 					if line then
 						if ( isHeader ) then
@@ -526,15 +526,19 @@ function ElvUI_EltreumUI:SkinQuests()
 						elseif isComplete then
 							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
 							line.text:SetTextColor(0, 1, 0)
+							line.text:SetWidth(200)
 						else
 							if not line.text then
 								return
 							else
 								line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
 								line.text:SetTextColor(0.8, 0.8, 0.8)
+								line.text:SetWidth(200)
 							end
 						end
 					end
+					local WatchFrame = _G.WatchFrame
+					local WatchFrameLines = _G.WatchFrameLines
 
 					if not _G["EltruismQuestLine"] then
 						WatchFrame.HeaderBar = CreateFrame("StatusBar", "EltruismQuestLine", WatchFrameLines)
@@ -554,6 +558,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					InvisFrameHeaderBar:SetFrameLevel(WatchFrame.HeaderBar:GetFrameLevel() + 10)
 					InvisFrameHeaderBar:SetInside()
 
+					local WatchFrameTitle = _G.WatchFrameTitle
 					WatchFrameTitle:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize+3, E.db.general.fontStyle)
 					WatchFrameTitle:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
@@ -602,8 +607,15 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 				hooksecurefunc("WatchFrame_SetLine", colorquests)
 				hooksecurefunc("WatchFrame_Update",colorquests)
+				hooksecurefunc("WatchFrame_Collapse",colorquests)
+				hooksecurefunc("WatchFrame_Expand",colorquests)
+				hooksecurefunc("WatchFrame_CollapseExpandButton_OnClick",colorquests)
+				_G.WatchFrameCollapseExpandButton:HookScript("OnClick",colorquests)
+
 				_G.WatchFrame:HookScript("OnEnter", colorquests)
 				_G.WatchFrame:HookScript("OnLeave", colorquests)
+				_G.WatchFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+				_G.WatchFrame:HookScript("OnEvent", colorquests)
 
 
 				--nope, colors achievements wrong
