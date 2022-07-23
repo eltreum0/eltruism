@@ -1421,7 +1421,6 @@ end
 
 --inspect bg
 local EltruismInspectBg = CreateFrame("Frame", "EltruismInspectBg")
-
 local EltruismInspectBgTexture = EltruismInspectBg:CreateTexture()
 function ElvUI_EltreumUI:InspectBg(unit)
 	if E.db.ElvUI_EltreumUI.skins.expandarmorybg and not E.private.skins.blizzard.enable == false then
