@@ -574,7 +574,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					if InCombatLockdown() then
 						return
 					else
-						for i = 1, _G.WATCHFRAME_NUM_ITEMS  do
+						for i = 1, _G.WATCHFRAME_NUM_ITEMS do
 							local Button = _G["WatchFrameItem"..i]
 							if not (Button) then
 								return
@@ -611,6 +611,30 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 				hooksecurefunc("WatchFrame_SetLine", colorquests)
 				hooksecurefunc("WatchFrame_Update",colorquests)
+
+				--[[hooksecurefunc("WatchFrame_QuestTimerUpdateFunction",function(...) --too much cpu/memory
+
+						local numTimers = select("#", ...);
+
+						if ( numTimers ~= WATCHFRAME_NUM_TIMERS ) then
+							-- We need to update the entire watch frame, the number of displayed timers has changed.
+							return true;
+						end
+
+						local line1 = WATCHFRAME_TIMERLINES[1];
+						print(line1.text:GetText())
+						line1.text:SetText(tostring(line1.text:GetText()))
+						line1.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
+						line1.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+
+						for i = 1, numTimers do
+							local line2 = WATCHFRAME_TIMERLINES[i+1]; -- The first timer line is always the "Quest Timers" line, so skip it.
+							line2.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
+							line2.text:SetTextColor(1, 1, 1)
+							local seconds = select(i, ...);
+							line2.text:SetText(" - " .. SecondsToTime(seconds));
+						end
+				end)]]
 				--hooksecurefunc("WatchFrameItem_OnEvent",colorquests) --screws up position
 
 				--highlight
