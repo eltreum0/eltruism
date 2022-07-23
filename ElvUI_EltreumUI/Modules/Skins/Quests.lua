@@ -584,9 +584,9 @@ function ElvUI_EltreumUI:SkinQuests()
 							if not (Button) then
 								return
 							end
-							--local PointA, Anchor, PointB, OffsetX, OffsetY = Button:GetPoint()
-							--Button:ClearAllPoints()
-							--Button:SetPoint("RIGHT", Anchor, "RIGHT", -500, -14)
+							local _, Anchor = Button:GetPoint()
+							Button:ClearAllPoints()
+							Button:SetPoint("LEFT", Anchor, "LEFT", -40, -10)
 							Button:SetSize(28, 28)
 							if not (Button.QuestTexture) then
 								if _G["EltruismQuestTexture"] then
@@ -603,16 +603,45 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 				hooksecurefunc("WatchFrame_SetLine", colorquests)
 				hooksecurefunc("WatchFrame_Update",colorquests)
-				hooksecurefunc("WatchFrame_Collapse",colorquests)
-				hooksecurefunc("WatchFrame_Expand",colorquests)
-				hooksecurefunc("WatchFrame_CollapseExpandButton_OnClick",colorquests)
-				_G.WatchFrameCollapseExpandButton:HookScript("OnClick",colorquests)
+				--hooksecurefunc("WatchFrame_Collapse",colorquests)
+				--hooksecurefunc("WatchFrame_Expand",colorquests)
+				--hooksecurefunc("WatchFrame_CollapseExpandButton_OnClick",colorquests)
 
-				_G.WatchFrame:HookScript("OnEnter", colorquests)
-				_G.WatchFrame:HookScript("OnLeave", colorquests)
-				_G.WatchFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-				_G.WatchFrame:HookScript("OnEvent", colorquests)
-
+				--highlight
+				hooksecurefunc("WatchFrameLinkButtonTemplate_Highlight", function(self, onEnter)
+					local line;
+					for index = self.startLine, self.lastLine do
+						line = self.lines[index];
+						if ( line ) then
+							if ( index == self.startLine ) then
+								-- header
+								if ( onEnter ) then
+									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize+2, E.db.general.fontStyle)
+									line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								else
+									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize+2, E.db.general.fontStyle)
+									line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
+							else
+								if ( onEnter ) then
+									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+									line.text:SetTextColor(1, 1, 1)
+									line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+									line.dash:SetTextColor(1, 1, 1)
+									--line.text:SetWidth(200)
+								else
+									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+									line.text:SetTextColor(0.8, 0.8, 0.8)
+									line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+									line.dash:SetTextColor(0.8, 0.8, 0.8)
+									line.text:SetWidth(200)
+									--line.text:ClearAllPoints()
+									--line.text:SetPoint("LEFT", line.dash, "RIGHT")
+								end
+							end
+						end
+					end
+				end)
 
 				--nope, colors achievements wrong
 				--[[local function loopwatch()
