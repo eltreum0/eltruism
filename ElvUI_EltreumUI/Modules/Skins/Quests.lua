@@ -487,23 +487,25 @@ function ElvUI_EltreumUI:SkinQuests()
 				end)
 			end
 		elseif E.Wrath then
-
-
-
 			local questID
 			--hook the function that sets the quest detail to get the questID from the quest title
 			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --_G.QuestLogFrame.lua 311
 				questID = select(8, GetQuestLogTitle(questTitle))
+
+				--fix black text not being readable in the quest description
+				for i = 1, 40 do
+					if _G["QuestInfoObjective"..i] then
+						_G["QuestInfoObjective"..i]:SetTextColor(1, 1, 1)
+					end
+				end
 			end)
 			--set the link to show when the button is clicked
 			wowheadbutton:SetScript('OnClick', function()
 				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
 			end)
 
-
 			--questLogTitle:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 			--questLogTitle:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
-
 
 			--increase the size of the quest description frame and move it
 			_G.QuestLogDetailScrollFrame:ClearAllPoints()
@@ -511,12 +513,124 @@ function ElvUI_EltreumUI:SkinQuests()
 			_G.QuestLogDetailScrollFrame:SetHeight(390)
 
 			if not IsAddOnLoaded('Questie') then --wotlk todo
-				--from blizzard's FrameXML/QuestLogFrame.lua
+				--from blizzard's FrameXML/WatchFrame.lua
 
-				--skin the classic objective frame
-				--[[hooksecurefunc("WatchFrame_Update",function()
-					print("test")
-				end)]]
+				--skin the classic objective frame, based on aftermathh's
+				local function colorquests(line, _, _, isHeader, text, _, _, isComplete)--, text, dash, hasItem, isComplete)
+
+					if line then
+						if ( isHeader ) then
+							--line.text:SetTextColor(0.75, 0.61, 0);
+							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize+2, E.db.general.fontStyle)
+							line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+						elseif isComplete then
+							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+							line.text:SetTextColor(0, 1, 0)
+						else
+							if not line.text then
+								return
+							else
+								line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+								line.text:SetTextColor(0.8, 0.8, 0.8)
+							end
+						end
+					end
+
+					if not _G["EltruismQuestLine"] then
+						WatchFrame.HeaderBar = CreateFrame("StatusBar", "EltruismQuestLine", WatchFrameLines)
+					else
+						WatchFrame.HeaderBar = _G["EltruismQuestLine"]
+					end
+					WatchFrame.HeaderBar:SetSize(200, 3)
+					WatchFrame.HeaderBar:SetPoint("TOP", WatchFrame, "TOP", 0, -23)
+					WatchFrame.HeaderBar:SetStatusBarTexture(E.Media.Textures.White8x8)
+					WatchFrame.HeaderBar:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b)
+
+					if not _G["EltruismQuestLine"].shadow then
+						_G["EltruismQuestLine"]:CreateShadow()
+					end
+
+					local InvisFrameHeaderBar = CreateFrame("Frame", nil, WatchFrame.HeaderBar)
+					InvisFrameHeaderBar:SetFrameLevel(WatchFrame.HeaderBar:GetFrameLevel() + 10)
+					InvisFrameHeaderBar:SetInside()
+
+					WatchFrameTitle:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize+3, E.db.general.fontStyle)
+					WatchFrameTitle:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+
+					WatchFrameTitle:SetParent(InvisFrameHeaderBar)
+					WatchFrameTitle:ClearAllPoints()
+					WatchFrameTitle:SetPoint("LEFT", InvisFrameHeaderBar, 6, 8)
+
+					local NumQuests = select(2, GetNumQuestLogEntries())
+
+					if (NumQuests >= (MAX_QUESTS - 5)) then
+						WatchFrameTitle:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, "Quests"))
+					else
+						WatchFrameTitle:SetText(format("%d/%d - %s", NumQuests, MAX_QUESTS, "Quests"))
+					end
+
+					if (GetNumQuestWatches() == 0) then
+						WatchFrame.HeaderBar:SetAlpha(0)
+					else
+						WatchFrame.HeaderBar:SetAlpha(1)
+					end
+
+					if InCombatLockdown() then
+						return
+					else
+						for i = 1, _G.WATCHFRAME_NUM_ITEMS  do
+							local Button = _G["WatchFrameItem"..i]
+							if not (Button) then
+								return
+							end
+							--local PointA, Anchor, PointB, OffsetX, OffsetY = Button:GetPoint()
+							--Button:ClearAllPoints()
+							--Button:SetPoint("RIGHT", Anchor, "RIGHT", -500, -14)
+							Button:SetSize(28, 28)
+							if not (Button.QuestTexture) then
+								if _G["EltruismQuestTexture"] then
+									Button.QuestTexture = _G["EltruismQuestTexture"]
+								else
+									Button.QuestTexture = Button:CreateTexture("EltruismQuestTexture")
+								end
+								Button.QuestTexture:SetSize(24, 24)
+								Button.QuestTexture:SetPoint("LEFT", Button, "LEFT", -12, 0)
+								Button.QuestTexture:SetTexture(E.Media.Textures.BagQuestIcon)
+							end
+						end
+					end
+				end
+				hooksecurefunc("WatchFrame_SetLine", colorquests)
+				hooksecurefunc("WatchFrame_Update",colorquests)
+				_G.WatchFrame:HookScript("OnEnter", colorquests)
+				_G.WatchFrame:HookScript("OnLeave", colorquests)
+
+
+				--nope, colors achievements wrong
+				--[[local function loopwatch()
+					_G["WatchFrameTitle"]:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize+2, E.db.general.fontStyle)
+					_G["WatchFrameTitle"]:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+
+					for i = 1, 80 do
+						repeat
+							if i % 2 == 0 then
+								if _G["WatchFrameLine"..i.."Text"] then
+									_G["WatchFrameLine"..i.."Text"]:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+									_G["WatchFrameLine"..i.."Text"]:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								else
+									do break end
+								end
+							else
+								if _G["WatchFrameLine"..i.."Text"] then
+									_G["WatchFrameLine"..i.."Text"]:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+									_G["WatchFrameLine"..i.."Text"]:SetTextColor(1, 1, 1)
+								else
+									do break end
+								end
+							end
+						until true
+					end
+				end]]
 
 			end
 		end
