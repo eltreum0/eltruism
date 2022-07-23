@@ -27,7 +27,6 @@ end
 
 local dontexpandanymorequests = 0
 function ElvUI_EltreumUI:SkinQuests()
-	local fontsize = E.db.general.fontSize
 	if E.db.ElvUI_EltreumUI.skins.quests and E.private.skins.blizzard.objectiveTracker and not E.private.skins.blizzard.enable == false then
 
 		--create the button for wowhead
@@ -202,7 +201,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						local module = modules[i]
 						if module and module.Header and module.Header.Text then --the big type of quest
 							if not IsAddOnLoaded("ElvUI_SLE") then
-								module.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize*1.5, E.db.general.fontStyle)
+								module.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize*1.5, E.db.general.fontStyle)
 							end
 							module.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 							module.Header.Text:SetShadowColor(0, 0, 0, 0.8)
@@ -399,7 +398,7 @@ function ElvUI_EltreumUI:SkinQuests()
 								watchText = _G["QuestWatchLine"..watchTextIndex]
 								watchText:SetText(GetQuestLogTitle(questIndex))
 								if not IsAddOnLoaded("ElvUI_SLE") then
-									watchText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+									watchText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 								end
 								--watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
@@ -428,7 +427,7 @@ function ElvUI_EltreumUI:SkinQuests()
 									-- Set Objective text
 									watchText:SetText(" - "..text)
 									if not IsAddOnLoaded("ElvUI_SLE") then
-										watchText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+										watchText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 									end
 									--watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 									-- Color the objectives
@@ -513,14 +512,15 @@ function ElvUI_EltreumUI:SkinQuests()
 					if line and line.text then
 						if ( isHeader ) then
 							--line.text:SetTextColor(0.75, 0.61, 0);
-							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize+2, E.db.general.fontStyle)
+							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
 							line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							line.text:SetWidth(200)
 						elseif isComplete then
-							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 							line.text:SetTextColor(0, 1, 0)
 							line.text:SetWidth(200)
 						else
-							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 							line.text:SetTextColor(0.8, 0.8, 0.8)
 							line.text:SetWidth(200)
 						end
@@ -551,7 +551,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					InvisFrameHeaderBar:SetInside()
 
 					local WatchFrameTitle = _G.WatchFrameTitle
-					WatchFrameTitle:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize+3, E.db.general.fontStyle)
+					WatchFrameTitle:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+3, E.db.general.fontStyle)
 					WatchFrameTitle:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
 					WatchFrameTitle:SetParent(InvisFrameHeaderBar)
@@ -608,7 +608,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 				hooksecurefunc("WatchFrame_SetLine", colorquests)
 				hooksecurefunc("WatchFrame_Update",colorquests)
-				hooksecurefunc("WatchFrameItem_UpdateCooldown",colorquests)
+				hooksecurefunc("WatchFrameItem_OnEvent",colorquests)
 
 				--highlight
 				hooksecurefunc("WatchFrameLinkButtonTemplate_Highlight", function(self, onEnter)
@@ -619,23 +619,25 @@ function ElvUI_EltreumUI:SkinQuests()
 							if ( index == self.startLine ) then
 								-- header
 								if ( onEnter ) then
-									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize+2, E.db.general.fontStyle)
+									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
 									line.text:SetTextColor(classcolor.r+0.2, classcolor.g+0.2, classcolor.b+0.2)
+									line.text:SetWidth(200)
 								else
-									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize+2, E.db.general.fontStyle)
+									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
 									line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+									line.text:SetWidth(200)
 								end
 							else
 								if ( onEnter ) then
-									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 									line.text:SetTextColor(1, 1, 1)
-									--line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+									--line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 									--line.dash:SetTextColor(1, 1, 1)
 									line.text:SetWidth(200)
 								else
-									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 									line.text:SetTextColor(0.8, 0.8, 0.8)
-									--line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+									--line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 									--line.dash:SetTextColor(0.8, 0.8, 0.8)
 									line.text:SetWidth(200)
 									--line.text:ClearAllPoints()
@@ -648,21 +650,21 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				--nope, colors achievements wrong
 				--[[local function loopwatch()
-					_G["WatchFrameTitle"]:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize+2, E.db.general.fontStyle)
+					_G["WatchFrameTitle"]:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
 					_G["WatchFrameTitle"]:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 
 					for i = 1, 80 do
 						repeat
 							if i % 2 == 0 then
 								if _G["WatchFrameLine"..i.."Text"] then
-									_G["WatchFrameLine"..i.."Text"]:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+									_G["WatchFrameLine"..i.."Text"]:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 									_G["WatchFrameLine"..i.."Text"]:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 								else
 									do break end
 								end
 							else
 								if _G["WatchFrameLine"..i.."Text"] then
-									_G["WatchFrameLine"..i.."Text"]:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+									_G["WatchFrameLine"..i.."Text"]:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 									_G["WatchFrameLine"..i.."Text"]:SetTextColor(1, 1, 1)
 								else
 									do break end
@@ -906,7 +908,6 @@ function ElvUI_EltreumUI:SkinProfessions()
 end
 
 function ElvUI_EltreumUI:SkinMailZone()
-	local fontsize = E.db.general.fontSize
 	if E.db.ElvUI_EltreumUI.skins.zones then
 		if not IsAddOnLoaded("ElvUI_SLE") then
 			--[[hooksecurefunc("SetZoneText", function()
@@ -919,11 +920,11 @@ function ElvUI_EltreumUI:SkinMailZone()
 			_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, E.db.general.fontStyle)
 			_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
 			_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
-			_G.OpenMailBodyText:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+			_G.OpenMailBodyText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 			if E.Retail then
-				_G.SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+				_G.SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 			--elseif E.TBC or E.Classic then
-				--MailEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, E.db.general.fontStyle)
+				--MailEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 			end
 		end
 	end
