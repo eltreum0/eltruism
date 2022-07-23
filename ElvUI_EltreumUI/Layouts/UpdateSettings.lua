@@ -115,6 +115,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.darkpowercolor = true
 	E.db.ElvUI_EltreumUI.sparkcustomcolor.enable = true
 	E.db.ElvUI_EltreumUI.otherstuff.fastloot = true
+	E.db.ElvUI_EltreumUI.otherstuff.lootautoclose = true
 	E.db.ElvUI_EltreumUI.otherstuff.screenshot = true
 	E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead = true
 	E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = true
