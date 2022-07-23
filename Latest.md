@@ -11,4 +11,5 @@ Fixed NPC castbars having NPC colors, which could become confusing (thank you Bl
 Updated ProjectAzilroka profile, enabling Moveable Frames by default\
 Fixed improperly named texture during install\
 Fixed ElvUI_Target nameplate filter having borders forced off if Eltruism nameplate settings were turned off\
+Fixed Automatically Closing Loot Window being enabled by default instead of disabled\
 Fixed Vehicle Leave Button overlapping tracking options in TBC/Classic
