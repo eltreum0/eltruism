@@ -173,7 +173,7 @@ function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
 	--ElvUI_EltreumUI:Shadows()
 	ElvUI_EltreumUI:RaidShadows()
 	if E.db.ElvUI_EltreumUI.UFmodifications then
-		ElvUI_EltreumUI:ChangeUnitTexture()
+		ElvUI_EltreumUI:GradientCustomTexture()
 	end
 end
 

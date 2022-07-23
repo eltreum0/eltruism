@@ -412,7 +412,7 @@ function ElvUI_EltreumUI:CastBarTextureGradientFail()
 end
 hooksecurefunc(UF, 'PostCastFail', ElvUI_EltreumUI.CastBarTextureGradientFail)
 
-function ElvUI_EltreumUI:ChangeUnitTexture(unit)
+function ElvUI_EltreumUI:GradientCustomTexture(unit)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then
 
 		local unitframeclasscustom = {
@@ -2579,21 +2579,21 @@ function ElvUI_EltreumUI:ChangeUnitTexture(unit)
 
 	end
 end
-hooksecurefunc(UF, "Style", ElvUI_EltreumUI.ChangeUnitTexture) --if not hooking into this then when the target of target changes it doesnt update
---hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.ChangeUnitTexture)
-hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.ChangeUnitTexture)
---hooksecurefunc(UF, "PostUpdateHealth", ElvUI_EltreumUI.ChangeUnitTexture)
+hooksecurefunc(UF, "Style", ElvUI_EltreumUI.GradientCustomTexture) --if not hooking into this then when the target of target changes it doesnt update
+--hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.GradientCustomTexture)
+hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientCustomTexture)
+--hooksecurefunc(UF, "PostUpdateHealth", ElvUI_EltreumUI.GradientCustomTexture)
 
---[[local EltruismChangeUnitTextureFrame = CreateFrame("FRAME")
-EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_TARGET", "player")
-EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_TARGET", "target")
-EltruismChangeUnitTextureFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
-EltruismChangeUnitTextureFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
-EltruismChangeUnitTextureFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-EltruismChangeUnitTextureFrame:RegisterEvent("GROUP_ROSTER_UPDATE")
-EltruismChangeUnitTextureFrame:SetScript("OnEvent", function()
+--[[local EltruismGradientCustomTextureFrame = CreateFrame("FRAME")
+EltruismGradientCustomTextureFrame:RegisterUnitEvent("UNIT_TARGET", "player")
+EltruismGradientCustomTextureFrame:RegisterUnitEvent("UNIT_TARGET", "target")
+EltruismGradientCustomTextureFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+EltruismGradientCustomTextureFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
+EltruismGradientCustomTextureFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+EltruismGradientCustomTextureFrame:RegisterEvent("GROUP_ROSTER_UPDATE")
+EltruismGradientCustomTextureFrame:SetScript("OnEvent", function()
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then
-		ElvUI_EltreumUI:ChangeUnitTexture()
+		ElvUI_EltreumUI:GradientCustomTexture()
 	end
 end)]]
 
