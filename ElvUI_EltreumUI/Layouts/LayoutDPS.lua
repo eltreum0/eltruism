@@ -459,11 +459,11 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["movers"]["TorghastBuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-346"
 		E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,256"
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
-		--if E.Retail then
-		E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-183,-179"
-		--else
-		--	E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,UIParent,TOPRIGHT,-176,-145"
-		--end
+		if E.Retail then
+			E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-183,-179"
+		else
+			E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,UIParent,TOPRIGHT,-176,-145"
+		end
 		E.db["movers"]["VehicleSeatMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-210,-150"
 		if IsAddOnLoaded("ElvUI_WindTools") then
 			E.db["movers"]["WTCustomEmoteFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,272,-448"

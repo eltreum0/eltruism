@@ -364,11 +364,11 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["movers"]["TotemBarMover"] = "BOTTOM,UIParent,BOTTOM,280,306"
 		E.db["movers"]["TorghastChoiceToggle"] = "BOTTOM,UIParent,BOTTOM,0,445"
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,-1"
-		--if E.Retail then
-		E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-183,-179"
-		--else
-			--E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,UIParent,TOPRIGHT,-176,-145"
-		--end
+		if E.Retail then
+			E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-183,-179"
+		else
+			E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,UIParent,TOPRIGHT,-176,-145"
+		end
 		E.db["movers"]["VehicleSeatMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-210,-150"
 		if IsAddOnLoaded("ElvUI_WindTools") then
 			E.db["movers"]["WTRaidMarkersBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
