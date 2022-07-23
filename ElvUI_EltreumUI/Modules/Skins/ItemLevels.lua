@@ -87,7 +87,6 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 		EltruismInspectilvls:RegisterEvent("ADDON_LOADED")
 		EltruismInspectilvls:RegisterEvent("INSPECT_READY")
 		EltruismInspectilvls:SetScript("OnEvent", function(_,event,arg)
-			print(event)
 			if arg == "Blizzard_InspectUI" then
 				--EltruismInspectilvls:UnregisterAllEvents()
 				EltruismInspectilvls:UnregisterEvent("ADDON_LOADED")
