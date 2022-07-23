@@ -212,19 +212,23 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.db.ElvUI_EltreumUI.ufcustomtexture.enable = false
 		end
 	elseif E.private.ElvUI_EltreumUI.install_version < "3.1.6" then --fix name change since the setting doesnt make sense otherwise
-		if E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar == nil then
-			E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar = true
-		elseif E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar == true then
-			E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar = true
-		elseif E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar == false then
-			E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar = false
+		if E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar == nil then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar == nil then
+				E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar = true
+			elseif E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar == true then
+				E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar = true
+			elseif E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar == false then
+				E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar = false
+			end
 		end
-		if E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar == nil then
-			E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar = true
-		elseif E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar == true then
-			E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar = true
-		elseif E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar == false then
-			E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar = false
+		if E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar == nil then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar == nil then
+				E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar = true
+			elseif E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar == true then
+				E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar = true
+			elseif E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar == false then
+				E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar = false
+			end
 		end
 	end
 	if E.db.ElvUI_EltreumUI.lightmode == true and E.db.ElvUI_EltreumUI.darkmode == true then --convert the option
