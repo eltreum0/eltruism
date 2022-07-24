@@ -3,6 +3,7 @@ The future is uncertain
 ___
 ### 3.1.6
 Added support for Wrath of the Lich King Classic Beta\
+Added [eltruism:smartlevel] tag which show level the difference when it exists for NPCs and players but hide for players if they are the same level\
 Updated auto adjust borders to not enforce class colored borders\
 Updated german translations by Dlarge\
 Updated gradient castbar colors for non interruptible spells\
@@ -304,6 +305,7 @@ Updated Dynamic Cam Profile, removing instance events/druid forms which were cau
 Updated border textures\
 Fixed an issue that caused action bar borders to not apply\
 Fixed Death Knights gradients being wrong color in gradient mode by default\
+___
 ### 2.8.8
 Added Gradient Mode, which will add gradient colors to unitframes. This option uses a separate texture and can be found in Eltruism > Media > Gradient where colors and textures can be customized\
 Note that for group units priests cannot have gradients and gradient mode, just like Light Mode, requires Auto Adjusting textures to be enabled in Eltruism > Media\

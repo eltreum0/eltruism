@@ -1,6 +1,7 @@
 ### 3.1.6 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
 Added support for Wrath of the Lich King Classic Beta\
+Added [eltruism:smartlevel] tag which show level the difference when it exists for NPCs and players but hide for players if they are the same level\
 Updated auto adjust borders to not enforce class colored borders\
 Updated german translations by Dlarge\
 Updated gradient castbar colors for non interruptible spells\
