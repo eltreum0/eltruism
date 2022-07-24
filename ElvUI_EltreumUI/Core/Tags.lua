@@ -514,10 +514,19 @@ end)
 E:AddTagInfo("eltruism:shortclassification", ElvUI_EltreumUI.Name, L["Displays the unit's classification in short form (e.g. '+' for ELITE and 'R' for RARE and a Skull for Boss)"])
 
 E:AddTag('eltruism:smartlevel', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
-	local level = UnitEffectiveLevel(unit)
+	local level
+	local playerlevel
+	if E.Retail then
+		level = UnitEffectiveLevel(unit)
+		playerlevel = UnitEffectiveLevel('player')
+	else
+		level = UnitLevel(unit)
+		playerlevel = UnitLevel('player')
+	end
+
 	if E.Retail and (UnitIsWildBattlePet(unit) or UnitIsBattlePetCompanion(unit)) then
 		return UnitBattlePetLevel(unit)
-	elseif level == UnitEffectiveLevel('player') then
+	elseif level == playerlevel then
 		if UnitIsPlayer(unit) then
 			return nil
 		else
