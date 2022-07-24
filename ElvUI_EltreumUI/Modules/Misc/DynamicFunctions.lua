@@ -372,64 +372,62 @@ end
 function ElvUI_EltreumUI:ActionbarBorderAdjust()
 	if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
 		--if not using one of my profiles then disable auto adjust to prevent overwriting settings and return
-		if (not ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") and not ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
+		if not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
 			E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
 		else
 			if E.db.ElvUI_EltreumUI.borders.borders then
 				--general border settings for both profiles
-				if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-					E.db.ElvUI_EltreumUI.borders.texture = "Eltreum-Border-1"
-					--E.db.ElvUI_EltreumUI.borders.classcolor = true
-					E.db.ElvUI_EltreumUI.borders.auraborder = true
-					E.db.ElvUI_EltreumUI.borders.aurasizex = 53
-					E.db.ElvUI_EltreumUI.borders.aurasizey = 53
-					E.db.ElvUI_EltreumUI.borders.chatborder = true
-					E.db.ElvUI_EltreumUI.borders.leftchatborderx = 432
-					E.db.ElvUI_EltreumUI.borders.leftchatbordery = 224
-					E.db.ElvUI_EltreumUI.borders.rightchatborderx = 432
-					E.db.ElvUI_EltreumUI.borders.rightchatbordery = 224
-					E.db.ElvUI_EltreumUI.borders.partyborders = true
-					E.db.ElvUI_EltreumUI.borders.raidborders = true
-					E.db.ElvUI_EltreumUI.borders.raid40borders = true
-					E.db.ElvUI_EltreumUI.borders.playertargetsize = 20
-					E.db.ElvUI_EltreumUI.borders.baredgesize = 13
-					E.db.ElvUI_EltreumUI.borders.playertargetcastsize = 20
-					E.db.ElvUI_EltreumUI.borders.petsize = 20
-					E.db.ElvUI_EltreumUI.borders.groupsize = 14
-					E.db.ElvUI_EltreumUI.borders.focussize = 20
-					E.db.ElvUI_EltreumUI.borders.bosssize = 20
-					E.db.ElvUI_EltreumUI.borders.minimapsize = 15
-					E.db.ElvUI_EltreumUI.borders.chatsize = 13
-					E.db.ElvUI_EltreumUI.borders.aurasize = 13
-					E.db.ElvUI_EltreumUI.borders.powerbarborder = false
-					E.db.ElvUI_EltreumUI.borders.powerbarsize = 4
-					E.db.ElvUI_EltreumUI.borders.xpowerbar = 138.8
-					E.db.ElvUI_EltreumUI.borders.ypowerbar = 12
-					E.db.ElvUI_EltreumUI.borders.minimapborder = true
-					E.db.ElvUI_EltreumUI.borders.petborder = true
-					E.db.ElvUI_EltreumUI.borders.playerborder = true
-					E.db.ElvUI_EltreumUI.borders.xplayer = 302
-					E.db.ElvUI_EltreumUI.borders.yplayer = 75
-					E.db.ElvUI_EltreumUI.borders.playercastborder = true
-					E.db.ElvUI_EltreumUI.borders.yplayercast = 58
-					E.db.ElvUI_EltreumUI.borders.targetborder = true
-					E.db.ElvUI_EltreumUI.borders.xtarget = 302.8
-					E.db.ElvUI_EltreumUI.borders.ytarget = 75
-					E.db.ElvUI_EltreumUI.borders.targetcastborder = true
-					E.db.ElvUI_EltreumUI.borders.xcasttarget = 272
-					E.db.ElvUI_EltreumUI.borders.ycasttarget = 58
-					E.db.ElvUI_EltreumUI.borders.targettargetborder = true
-					E.db.ElvUI_EltreumUI.borders.ytargettarget = 75
-					E.db.ElvUI_EltreumUI.borders.focusborder = true
-					E.db.ElvUI_EltreumUI.borders.xfocus = 224
-					E.db.ElvUI_EltreumUI.borders.yfocus = 72
-					E.db.ElvUI_EltreumUI.borders.bossborder = true
-					E.db.ElvUI_EltreumUI.borders.minimapsizex = 226
-					if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
-						E.db.ElvUI_EltreumUI.borders.minimapsizey = 225
-					else
-						E.db.ElvUI_EltreumUI.borders.minimapsizey = 247
-					end
+				E.db.ElvUI_EltreumUI.borders.texture = "Eltreum-Border-1"
+				--E.db.ElvUI_EltreumUI.borders.classcolor = true
+				E.db.ElvUI_EltreumUI.borders.auraborder = true
+				E.db.ElvUI_EltreumUI.borders.aurasizex = 53
+				E.db.ElvUI_EltreumUI.borders.aurasizey = 53
+				E.db.ElvUI_EltreumUI.borders.chatborder = true
+				E.db.ElvUI_EltreumUI.borders.leftchatborderx = 432
+				E.db.ElvUI_EltreumUI.borders.leftchatbordery = 224
+				E.db.ElvUI_EltreumUI.borders.rightchatborderx = 432
+				E.db.ElvUI_EltreumUI.borders.rightchatbordery = 224
+				E.db.ElvUI_EltreumUI.borders.partyborders = true
+				E.db.ElvUI_EltreumUI.borders.raidborders = true
+				E.db.ElvUI_EltreumUI.borders.raid40borders = true
+				E.db.ElvUI_EltreumUI.borders.playertargetsize = 20
+				E.db.ElvUI_EltreumUI.borders.baredgesize = 13
+				E.db.ElvUI_EltreumUI.borders.playertargetcastsize = 20
+				E.db.ElvUI_EltreumUI.borders.petsize = 20
+				E.db.ElvUI_EltreumUI.borders.groupsize = 14
+				E.db.ElvUI_EltreumUI.borders.focussize = 20
+				E.db.ElvUI_EltreumUI.borders.bosssize = 20
+				E.db.ElvUI_EltreumUI.borders.minimapsize = 15
+				E.db.ElvUI_EltreumUI.borders.chatsize = 13
+				E.db.ElvUI_EltreumUI.borders.aurasize = 13
+				E.db.ElvUI_EltreumUI.borders.powerbarborder = false
+				E.db.ElvUI_EltreumUI.borders.powerbarsize = 4
+				E.db.ElvUI_EltreumUI.borders.xpowerbar = 138.8
+				E.db.ElvUI_EltreumUI.borders.ypowerbar = 12
+				E.db.ElvUI_EltreumUI.borders.minimapborder = true
+				E.db.ElvUI_EltreumUI.borders.petborder = true
+				E.db.ElvUI_EltreumUI.borders.playerborder = true
+				E.db.ElvUI_EltreumUI.borders.xplayer = 302
+				E.db.ElvUI_EltreumUI.borders.yplayer = 75
+				E.db.ElvUI_EltreumUI.borders.playercastborder = true
+				E.db.ElvUI_EltreumUI.borders.yplayercast = 58
+				E.db.ElvUI_EltreumUI.borders.targetborder = true
+				E.db.ElvUI_EltreumUI.borders.xtarget = 302.8
+				E.db.ElvUI_EltreumUI.borders.ytarget = 75
+				E.db.ElvUI_EltreumUI.borders.targetcastborder = true
+				E.db.ElvUI_EltreumUI.borders.xcasttarget = 272
+				E.db.ElvUI_EltreumUI.borders.ycasttarget = 58
+				E.db.ElvUI_EltreumUI.borders.targettargetborder = true
+				E.db.ElvUI_EltreumUI.borders.ytargettarget = 75
+				E.db.ElvUI_EltreumUI.borders.focusborder = true
+				E.db.ElvUI_EltreumUI.borders.xfocus = 224
+				E.db.ElvUI_EltreumUI.borders.yfocus = 72
+				E.db.ElvUI_EltreumUI.borders.bossborder = true
+				E.db.ElvUI_EltreumUI.borders.minimapsizex = 226
+				if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
+					E.db.ElvUI_EltreumUI.borders.minimapsizey = 225
+				else
+					E.db.ElvUI_EltreumUI.borders.minimapsizey = 247
 				end
 
 				E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,-1"
@@ -514,7 +512,7 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				end
 			elseif not E.db.ElvUI_EltreumUI.borders.borders then
 				E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,0"
-				E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
+				E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,0"
 				E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
 
 				if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
