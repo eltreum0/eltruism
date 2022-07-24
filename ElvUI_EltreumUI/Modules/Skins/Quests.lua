@@ -612,6 +612,23 @@ function ElvUI_EltreumUI:SkinQuests()
 				hooksecurefunc("WatchFrame_SetLine", colorquests)
 				hooksecurefunc("WatchFrame_Update",colorquests)
 
+				--fix? item moving to wrong side
+				hooksecurefunc("WatchFrameItem_OnEvent", function()
+					for i = 1, _G.WATCHFRAME_NUM_ITEMS do
+						local Button = _G["WatchFrameItem"..i]
+						if not (Button) then
+							return
+						end
+						local _, Anchor = Button:GetPoint()
+						Button:ClearAllPoints()
+						if Anchor ~= nil then
+							Button:SetPoint("LEFT", Anchor, "LEFT", -40, -10)
+						elseif Anchor == nil then
+							Button:SetPoint("LEFT", _G["WatchFrameLine"..i.."Text"], "LEFT", -40, -10)
+						end
+					end
+				end)
+
 				--[[hooksecurefunc("WatchFrame_QuestTimerUpdateFunction",function(...) --too much cpu/memory
 
 						local numTimers = select("#", ...);
