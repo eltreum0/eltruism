@@ -120,6 +120,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["enable"] = true
+			E.db["nameplates"]["filters"]["EltreumTarget"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] = true
@@ -524,7 +525,7 @@ end
 -- Style Filter Setup
 function ElvUI_EltreumUI:SetupStyleFilters()
 	if E.private["nameplates"]["enable"] == true then
-		for _, filterName in pairs({'ElvUI_NonTarget', 'ElvUI_Target', 'EltreumInterrupt', 'EltreumExecute', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems'}) do
+		for _, filterName in pairs({'ElvUI_NonTarget', 'ElvUI_Target', 'EltreumTarget', 'EltreumInterrupt', 'EltreumExecute', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
@@ -543,21 +544,21 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["priority"] = 4
 
 		-- Target enemy
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["healthClass"] = true
-		--E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = true
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["b"] = 0
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["g"] = 0
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["borderColor"]["r"] = 0
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["isTarget"] = true
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["requireTarget"] = true
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["scale"] = 1.25
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["texture"]["enable"] = true
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["texture"]["texture"] = "ElvUI Blank"
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["elite"] = true
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["minus"] = true
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["normal"] = true
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["classification"]["trivial"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = true
+		--E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["border"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["b"] = 0
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["g"] = 0
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["r"] = 0
+		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["isTarget"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["requireTarget"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["scale"] = 1.25
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "ElvUI Blank"
+		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["elite"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["minus"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["normal"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["trivial"] = true
 
 		-- Enemy is casting, draw attention to interrupt
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["border"] = true
