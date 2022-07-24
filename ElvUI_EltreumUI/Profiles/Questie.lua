@@ -2,7 +2,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 -- Questie profile setup
 function ElvUI_EltreumUI:GetQuestieProfile()
-	if E.TBC then
+	if E.Wrath or E.TBC then
 		if not IsAddOnLoaded("Questie") then
 			LoadAddOn("Questie")
 		end
