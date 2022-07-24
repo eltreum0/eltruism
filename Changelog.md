@@ -4,7 +4,7 @@ ___
 ### 3.1.7
 Added EltreumTarget Nameplate Filter, which will be used instead of ElvUI_Target\
 Added [eltruism:presence] tag, which will display the Death Knight's presence in Classic Wrath (Beta)\
-Added TBC's Details profile to Wrath Beta, which is currently working\
+Added Questie, Details and DBM profiles to Wrath Beta, which are currently working\
 Updated auto adjust to prevent some scenarios where it would activate\
 Fixed LootText error when looting some currencies/items\
 Fixed [eltruism:smartlevel] in Classic\
