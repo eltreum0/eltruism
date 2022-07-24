@@ -96,10 +96,10 @@ function ElvUI_EltreumUI:SkillGlow()
 					totemglow4:SetPoint("Center", _G["ElvUF_PlayerTotem4"])
 				end
 
-				local totem1glowcolor = {0.58, 0.23, 0.10, 1}
-				local totem2glowcolor = {0.23,0.45,0.13, 1}
-				local totem3glowcolor = {0.19,0.48,0.60, 1}
-				local totem4glowcolor = {0.42,0.18,0.74, 1}
+				local totem1glowcolor = {0.78, 0.43, 0.30, 1}
+				local totem2glowcolor = {0.43,0.65,0.33, 1}
+				local totem3glowcolor = {0.39,0.68,0.80, 1}
+				local totem4glowcolor = {0.62,0.38,0.94, 1}
 				if not E.db.ElvUI_EltreumUI.glow.totemtypecolor then
 					totem1glowcolor = {E.db.ElvUI_EltreumUI.glowtotem1customcolor.r, E.db.ElvUI_EltreumUI.glowtotem1customcolor.g, E.db.ElvUI_EltreumUI.glowtotem1customcolor.b, 1}
 					totem2glowcolor = {E.db.ElvUI_EltreumUI.glowtotem2customcolor.r, E.db.ElvUI_EltreumUI.glowtotem2customcolor.g, E.db.ElvUI_EltreumUI.glowtotem2customcolor.b, 1}

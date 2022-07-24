@@ -206,27 +206,27 @@ P.ElvUI_EltreumUI = {
 	},
 
 	glowtotem1customcolor = {
-		r = 0.27,
-		g = 0.50,
-		b = 0.70,
+		r = 0.78,
+		g = 0.43,
+		b = 0.30,
 	},
 
 	glowtotem2customcolor = {
-		r = 0.27,
-		g = 0.50,
-		b = 0.70,
+		r = 0.43,
+		g = 0.65,
+		b = 0.33,
 	},
 
 	glowtotem3customcolor = {
-		r = 0.27,
-		g = 0.50,
-		b = 0.70,
+		r = 0.39,
+		g = 0.68,
+		b = 0.80,
 	},
 
 	glowtotem4customcolor = {
-		r = 0.27,
-		g = 0.50,
-		b = 0.70,
+		r = 0.62,
+		g = 0.38,
+		b = 0.94,
 	},
 
 	partyraiddeath = {
