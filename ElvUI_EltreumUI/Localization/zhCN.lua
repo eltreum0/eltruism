@@ -944,3 +944,5 @@ L["Minimap Thickness"] = true
 L["Class Colors"] = true
 L["Use Class Colors instead of Custom Colors"] = true
 L["NPCs use Target Castbar colors not NPC colors for their castbars"] = true
+L["Shows level difference when it exists for NPCs and players, hides for players if same level"] = true
+L["Shows the current Death Knight presence"] = true
