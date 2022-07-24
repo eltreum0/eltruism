@@ -481,10 +481,11 @@ function ElvUI_EltreumUI:Shadows()
 					frame:CreateShadow()
 				end
 			end
-			--tbc only frames
+			--wrath/tbc only frames
 			if E.Wrath or E.TBC then
 				local tbcframes = {
 				_G.LFGParentFrame.backdrop,
+
 				_G.LFGParentFrameTab1.backdrop,
 				_G.LFGParentFrameTab2.backdrop,
 				}
@@ -492,6 +493,13 @@ function ElvUI_EltreumUI:Shadows()
 					if not E.private.skins.blizzard.enable == false and frame and not frame.shadow then
 						frame:CreateShadow()
 					end
+				end
+			end
+
+			--wrath only frames
+			if E.Wrath then
+				if not E.private.skins.blizzard.enable == false and _G.LFGListingFrame.backdrop and not _G.LFGListingFrame.backdrop.shadow then
+					_G.LFGListingFrame.backdrop:CreateShadow()
 				end
 			end
 
