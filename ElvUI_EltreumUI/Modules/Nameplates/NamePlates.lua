@@ -298,6 +298,9 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				E.db["nameplates"]["filters"]["EltreumTotems"]["triggers"]["enable"] = false
 			end
 		else
+			if E.global.nameplates.filters.EltreumTarget and E.db["nameplates"]["filters"]["EltreumTarget"] then
+				E.db["nameplates"]["filters"]["EltreumTarget"]["triggers"]["enable"] = false
+			end
 			if E.global.nameplates.filters.EltreumRare and E.db["nameplates"]["filters"]["EltreumRare"] then
 				E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
 			end
