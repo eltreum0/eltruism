@@ -230,11 +230,57 @@ function ElvUI_EltreumUI:OldVersionCheck()
 				E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar = false
 			end
 		end
+	elseif E.private.ElvUI_EltreumUI.install_version < "3.1.7" then -- add EltreumTarget, to make it so when options are disabled ElvUI_Target is not still changing colors
+		if not E.global["nameplates"]["filters"]["EltreumTarget"] then
+			for _, filterName in pairs({'ElvUI_Target', 'EltreumTarget'}) do
+				E.global["nameplates"]["filters"][filterName] = {}
+				E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
+				E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
+			end
+			E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["enable"] = true
+			E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["priority"] = 1
+			E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["isTarget"] = true
+			E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["requireTarget"] = true
+			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = true
+			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = true
+			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["b"] = 0
+			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["g"] = 0
+			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["r"] = 0
+			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["scale"] = 1.25
+			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
+			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "ElvUI Blank"
+			E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["elite"] = true
+			E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["minus"] = true
+			E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["normal"] = true
+			E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["trivial"] = true
+		end
 	end
+
+
+	--more long term checks, in case somehow people enable 2 settings when its not possible to do so. Maybe its a shared profile from another person? No idea how they manage to do this
 	if E.db.ElvUI_EltreumUI.lightmode == true and E.db.ElvUI_EltreumUI.darkmode == true then --convert the option
 		E.db.ElvUI_EltreumUI.darkmode = false
 	end
 	if E.db.ElvUI_EltreumUI.gradientmode.enable == true and E.db.ElvUI_EltreumUI.ufcustomtexture.enable == true then --convert the option
 		E.db.ElvUI_EltreumUI.ufcustomtexture.enable = false
+	end
+	if E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture == true and E.db.ElvUI_EltreumUI.nameplateOptions.playerclass == true then
+		E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture = false
+	end
+	if E.db.ElvUI_EltreumUI.afkmusic.racial == true and E.db.ElvUI_EltreumUI.afkmusic.racial == true then
+		E.db.ElvUI_EltreumUI.afkmusic.racial = false
+	end
+	if E.db.ElvUI_EltreumUI.glow.blizzard == true and E.db.ElvUI_EltreumUI.glow.pixel == true then
+		E.db.ElvUI_EltreumUI.glow.blizzard = false
+	elseif E.db.ElvUI_EltreumUI.glow.blizzard == true and E.db.ElvUI_EltreumUI.glow.autocast == true then
+		E.db.ElvUI_EltreumUI.glow.blizzard = false
+	elseif E.db.ElvUI_EltreumUI.glow.autocast == true and E.db.ElvUI_EltreumUI.glow.pixel == true then
+		E.db.ElvUI_EltreumUI.glow.autocast = false
+	elseif E.db.ElvUI_EltreumUI.glow.autocast == true and E.db.ElvUI_EltreumUI.glow.pixel == true and E.db.ElvUI_EltreumUI.glow.blizzard == true then
+		E.db.ElvUI_EltreumUI.glow.autocast = false
+		E.db.ElvUI_EltreumUI.glow.blizzard = false
+	end
+	if E.db.ElvUI_EltreumUI.skins.classiconsblizz == true and E.db.ElvUI_EltreumUI.skins.classiconsreleaf == true then
+		E.db.ElvUI_EltreumUI.skins.classiconsblizz = false
 	end
 end
