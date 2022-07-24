@@ -6,6 +6,7 @@ Updated german translations by Dlarge\
 Updated gradient castbar colors for non interruptable spells\
 Updated Class Colors for castbars, which now prevents Custom Colors for castbars\
 Updated Item Levels in Inspect Frame, which now should be faster and more reliable\
+Updated shaman totem glow colors\
 Fixed gradient castbar colors now properly applying\
 Fixed NPC castbars having NPC colors, which could become confusing (thank you Blinkii)\
 Updated ProjectAzilroka profile, enabling Moveable Frames by default\
