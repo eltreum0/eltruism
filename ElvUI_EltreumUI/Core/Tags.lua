@@ -539,4 +539,21 @@ E:AddTag('eltruism:smartlevel', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 	end
 end)
 E:AddTagInfo("eltruism:smartlevel", ElvUI_EltreumUI.Name, L["Shows level difference when it exists for NPCs and players, hides for players if same level"])
+
+E:AddTag('eltruism:presence', 'RUNE_POWER_UPDATE', function(unit)
+	local presence = GetShapeshiftForm()
+	if E.Wrath and E.myclass == 'DEATHKNIGHT' then
+		if presence == 1 then --blood
+			return _G.RELIC_SLOT_TYPE_BLOOD
+		elseif presence == 2 then --frost
+			return _G.STRING_SCHOOL_FROST
+		elseif presence == 3 then --unholy
+			return  _G.RUNE_COST_UNHOLY:format("")
+		else
+			return nil
+		end
+	end
+end)
+E:AddTagInfo("eltruism:presence", ElvUI_EltreumUI.Name, L["Shows the current Death Knight presence"])
+
 --future tag idea: group number only for first member of group
