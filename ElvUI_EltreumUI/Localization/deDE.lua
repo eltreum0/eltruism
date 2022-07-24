@@ -975,5 +975,5 @@ L["Minimap Thickness"] = "Minikarten Dicke"
 L["Class Colors"] = "Klassenfarben"
 L["Use Class Colors instead of Custom Colors"] = "Verwende Klassenfarben anstelle von benutzerdefinierten Farben"
 L["NPCs use Target Castbar colors not NPC colors for their castbars"] = "NPCs verwenden Zielzauberleisten Farben und nicht NPC Farben für ihre Zauberleisten"
-L["Shows level difference when it exists for NPCs and players, hides for players if same level"] = true
-L["Shows the current Death Knight presence"] = true
+L["Shows level difference when it exists for NPCs and players, hides for players if same level"] = "Zeigt Levelunterschiede an, falls vorhanden, für NPCs und Spieler, versteckt für Spieler, wenn sie auf dem selben Level sind."
+L["Shows the current Death Knight presence"] = "Zeigt die aktuelle Haltung des Todesritters"
