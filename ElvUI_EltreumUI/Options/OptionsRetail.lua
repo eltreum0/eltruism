@@ -5869,7 +5869,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar or not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.targetcastbarR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.targetcastbarG1
@@ -5885,7 +5885,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
-								disabled = function() return E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar or not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor or not E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.targetcastbarR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.targetcastbarG2
