@@ -251,7 +251,7 @@ function ElvUI_EltreumUI:EnteringWorldCVars()
 	SetCVar('cameraDistanceMaxZoomFactor', E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor)
 	SetCVar('nameplateTargetRadialPosition', E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition)
 	--ElvUI_EltreumUI:Print(L["Custom Nameplate CVars were set."])
-	if E.Retail then
+	if E.Retail and E.db.ElvUI_EltreumUI.waypointetasetting.enable then
 		SetCVar('showInGameNavigation', E.db.ElvUI_EltreumUI.cvars.showInGameNavigation)
 	elseif E.Classic or E.Wrath or E.TBC then
 		SetCVar('clampTargetNameplateToScreen', E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen)
