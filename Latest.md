@@ -3,7 +3,7 @@ ___
 Added support for Wrath of the Lich King Classic Beta\
 Updated auto adjust borders to not enforce class colored borders\
 Updated german translations by Dlarge\
-Updated gradient castbar colors for non interruptable spells\
+Updated gradient castbar colors for non interruptible spells\
 Updated Class Colors for castbars, which now prevents Custom Colors for castbars\
 Updated Item Levels in Inspect Frame, which now should be faster and more reliable\
 Updated shaman totem glow colors\
