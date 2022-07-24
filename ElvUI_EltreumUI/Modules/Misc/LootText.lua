@@ -1,15 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local Deformat = _G.LibStub("LibDeformat-3.0")
-local CombatText = _G.CombatText
 local CreateFrame = _G.CreateFrame
-local GetItemInfo = _G.GetItemInfo
-local GetItemQualityColor = _G.GetItemQualityColor
-local C_CurrencyInfo = _G.C_CurrencyInfo
-local CombatText_GetAvailableString = _G.CombatText_GetAvailableString
-local fastrandom = _G.fastrandom
-local WorldFrame = _G.WorldFrame
-local tinsert = _G.tinsert
 
 -- LootText is a fork of Scrolling Loot Text (SLoTe) by xavjer using fixes by Eltreum for pet caging and other things
 -- SLoTE uses GNU GPLv3 and as such this module of Eltruism also uses GNU GPLv3
@@ -29,8 +21,8 @@ function ElvUI_EltreumUI:LootText()
 	if E.db.ElvUI_EltreumUI.loottext.enable then
 		local scale = E.db.ElvUI_EltreumUI.loottext.scale
 		local strata = E.db.ElvUI_EltreumUI.loottext.strata
-		CombatText:SetScale(scale)
-		CombatText:SetFrameStrata(strata)
+		_G.CombatText:SetScale(scale)
+		_G.CombatText:SetFrameStrata(strata)
 		--moving the combat text
 		local xOffset = E.db.ElvUI_EltreumUI.loottext.xOffset
 		local yOffset = E.db.ElvUI_EltreumUI.loottext.yOffset
@@ -119,12 +111,12 @@ function ElvUI_EltreumUI:LootText()
 			end
 
 			-- Alternate x direction
-			CombatText.xDir = CombatText.xDir * -1
+			_G.CombatText.xDir = _G.CombatText.xDir * -1
 			if ( useXadjustment == 1 ) then
 				if ( COMBAT_TEXT_X_ADJUSTMENT > 0 ) then
-					CombatText.xDir = -1
+					_G.CombatText.xDir = -1
 				else
-					CombatText.xDir = 1
+					_G.CombatText.xDir = 1
 				end
 			end
 			string.xDir = CombatText.xDir
@@ -141,22 +133,28 @@ function ElvUI_EltreumUI:LootText()
 
 		local itemLink = nil
 		local amount = 0
-		--local YOU_LOOT_MONEY = YOU_LOOT_MONEY
-		--local ERR_AUTOLOOT_MONEY_S = ERR_AUTOLOOT_MONEY_S
-		--local LOOT_MONEY_SPLIT = LOOT_MONEY_SPLIT
-		--local LOOT_ITEM_SELF_MULTIPLE = LOOT_ITEM_SELF_MULTIPLE
-		--local LOOT_ITEM_SELF = LOOT_ITEM_SELF
-		--local CURRENCY_GAINED_MULTIPLE = CURRENCY_GAINED_MULTIPLE
-		--local CURRENCY_GAINED_MULTIPLE_BONUS = CURRENCY_GAINED_MULTIPLE_BONUS
-		--local CURRENCY_GAINED = CURRENCY_GAINED
-		--local CombatText_AddMessage = CombatText_AddMessage
-		--local CombatText_StandardScroll = CombatText_StandardScroll
-		--local GetItemInfo = GetItemInfo
-		--local GetItemQualityColor = GetItemQualityColor
-		--local C_CurrencyInfo = C_CurrencyInfo
-		--local getLoot = getLoot
-		--local LOOT_ITEM_PUSHED_SELF_MULTIPLE = LOOT_ITEM_PUSHED_SELF_MULTIPLE
-		--local LOOT_ITEM_PUSHED_SELF = LOOT_ITEM_PUSHED_SELF
+
+		local function getLoot(chatmsg)
+			-- check for multiple-item-loot
+			local itemLink, amount = Deformat(chatmsg, LOOT_ITEM_SELF_MULTIPLE)
+			if not itemLink then
+				itemLink, amount = Deformat(chatmsg, LOOT_ITEM_PUSHED_SELF_MULTIPLE)
+			end
+			-- check for single-itemloot
+			if not itemLink then
+				itemLink = Deformat(chatmsg, LOOT_ITEM_SELF)
+			end
+			if not itemLink then
+				itemLink, amount = Deformat(chatmsg, LOOT_ITEM_PUSHED_SELF)
+			end
+			-- if something has been looted
+			if itemLink then
+				if not amount then
+					amount = 1
+				end
+				return itemLink, amount
+			end
+		end
 
 		function LootTextframe.OnEvent(self, event, arg1, arg2)
 			if E.db.ElvUI_EltreumUI.loottext.combatindicator then
@@ -258,27 +256,6 @@ function ElvUI_EltreumUI:LootText()
 			end
 		end
 
-		function getLoot(chatmsg)
-			-- check for multiple-item-loot
-			local itemLink, amount = Deformat(chatmsg, LOOT_ITEM_SELF_MULTIPLE)
-			if not itemLink then
-				itemLink, amount = Deformat(chatmsg, LOOT_ITEM_PUSHED_SELF_MULTIPLE)
-			end
-			-- check for single-itemloot
-			if not itemLink then
-				itemLink = Deformat(chatmsg, LOOT_ITEM_SELF)
-			end
-			if not itemLink then
-				itemLink, amount = Deformat(chatmsg, LOOT_ITEM_PUSHED_SELF)
-			end
-			-- if something has been looted
-			if itemLink then
-				if not amount then
-					amount = 1
-				end
-				return itemLink, amount
-			end
-		end
 		LootTextframe:SetScript("OnEvent", LootTextframe.OnEvent)
 	end
 end
