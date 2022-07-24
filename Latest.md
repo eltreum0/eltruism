@@ -1,17 +1,8 @@
-### 3.1.6 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.1.7 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added support for Wrath of the Lich King Classic Beta\
-Added [eltruism:smartlevel] tag which show level the difference when it exists for NPCs and players but hide for players if they are the same level\
-Updated auto adjust borders to not enforce class colored borders\
-Updated german translations by Dlarge\
-Updated gradient castbar colors for non interruptible spells\
-Updated Class Colors for castbars, which now prevents Custom Colors for castbars\
-Updated Item Levels in Inspect Frame, which now should be faster and more reliable\
-Updated shaman totem glow colors\
-Fixed gradient castbar colors now properly applying\
-Fixed NPC castbars having NPC colors, which could become confusing (thank you Blinkii)\
-Updated ProjectAzilroka profile, enabling Moveable Frames by default\
-Fixed improperly named texture during install\
-Fixed ElvUI_Target nameplate filter having borders forced off if Eltruism nameplate settings were turned off\
-Fixed Automatically Closing Loot Window being enabled by default instead of disabled\
-Fixed Vehicle Leave Button overlapping tracking options in TBC/Classic
+Added EltreumTarget Nameplate Filter, which will be used instead of ElvUI_Target\
+Added [eltruism:presence] tag, which will display the Death Knight's presence in Classic Wrath (Beta)\
+Updated auto adjust to prevent some scenarios where it would activate\
+Fixed LootText error when looting some currencies/items\
+Fixed [eltruism:smartlevel] in Classic\
+Fixed in game navigation being forced on in Retail

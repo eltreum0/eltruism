@@ -1,6 +1,14 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.1.7
+Added EltreumTarget Nameplate Filter, which will be used instead of ElvUI_Target\
+Added [eltruism:presence] tag, which will display the Death Knight's presence in Classic Wrath (Beta)\
+Updated auto adjust to prevent some scenarios where it would activate\
+Fixed LootText error when looting some currencies/items\
+Fixed [eltruism:smartlevel] in Classic\
+Fixed in game navigation being forced on in Retail
+___
 ### 3.1.6
 Added support for Wrath of the Lich King Classic Beta\
 Added [eltruism:smartlevel] tag which show level the difference when it exists for NPCs and players but hide for players if they are the same level\
