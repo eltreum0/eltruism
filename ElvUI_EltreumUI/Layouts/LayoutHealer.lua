@@ -361,6 +361,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 			E.db["movers"]["SLE_FarmSeedMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,278"
 		end
 		E.db["movers"]["ShiftAB"] = "BOTTOM,UIParent,BOTTOM,-307,307"
+		if E.Wrath then
+			E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,287,306" --move stance bar bc of totem bar
+		end
 		E.db["movers"]["SocialMenuMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-456"
 		E.db["movers"]["SquareMinimapBar"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-197"
 		E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-5,-226"
