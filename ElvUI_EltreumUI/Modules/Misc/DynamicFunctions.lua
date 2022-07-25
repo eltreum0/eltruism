@@ -394,6 +394,7 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.baredgesize = 13
 				E.db.ElvUI_EltreumUI.borders.playertargetcastsize = 20
 				E.db.ElvUI_EltreumUI.borders.petsize = 20
+				E.db.ElvUI_EltreumUI.borders.totembar = true
 				E.db.ElvUI_EltreumUI.borders.groupsize = 14
 				E.db.ElvUI_EltreumUI.borders.focussize = 20
 				E.db.ElvUI_EltreumUI.borders.bosssize = 20
@@ -475,6 +476,13 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 					E.db.ElvUI_EltreumUI.borders.xcasttarget = 272
 					E.db.ElvUI_EltreumUI.borders.ycasttarget = 58
 					E.db.ElvUI_EltreumUI.borders.petsizex = 194
+					E.db.ElvUI_EltreumUI.borders.totemxborder = 46
+					E.db.ElvUI_EltreumUI.borders.totemyborder = 46
+
+					if E.Wrath then
+						E.db["general"]["totems"]["spacing"] = 5
+						E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,260"
+					end
 					if not E.Retail then
 						E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,98"
 					end
@@ -512,6 +520,12 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 					E.db.ElvUI_EltreumUI.borders.xcasttarget = 296
 					E.db.ElvUI_EltreumUI.borders.ycasttarget = 58
 					E.db.ElvUI_EltreumUI.borders.petsizex = 130
+					E.db.ElvUI_EltreumUI.borders.totemxborder = 46
+					E.db.ElvUI_EltreumUI.borders.totemyborder = 46
+
+					if E.Wrath then
+						E.db["general"]["totems"]["spacing"] = 5
+					end
 				end
 			elseif not E.db.ElvUI_EltreumUI.borders.borders then
 				E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,0"
@@ -539,6 +553,9 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 					if not E.Retail then
 						E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,108"
 					end
+					if E.Wrath then
+						E.db["general"]["totems"]["spacing"] = 3
+					end
 				elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
 					E.db["actionbar"]["bar1"]["buttonSpacing"] = 3
 					E.db["actionbar"]["bar2"]["buttonSpacing"] = 3
@@ -550,6 +567,9 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 					E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,308,253"
 					E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,253"
 					E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,-308,253"
+					if E.Wrath then
+						E.db["general"]["totems"]["spacing"] = 3
+					end
 				end
 			end
 			E:UpdateActionBars()
