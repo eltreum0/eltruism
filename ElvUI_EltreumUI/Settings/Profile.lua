@@ -415,8 +415,8 @@ P.ElvUI_EltreumUI = {
 		bar10yborder = 44,
 
 		totembar = true,
-		totemxborder = 30,
-		totemyborder = 30,
+		totemxborder = 51,
+		totemyborder = 51,
 		totemedgesize = 13,
 
 	},
