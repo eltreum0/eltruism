@@ -438,6 +438,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 			E.db["movers"]["QuestTimerFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-258,-231"
 			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-223,-304"
 		elseif E.Wrath then
+			E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-98,-255"
 			E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-250,-306"
 		end
 		E.db["movers"]["PetAB"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,560,129"
@@ -459,7 +460,18 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["movers"]["ThreatBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,-1"
 		E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
 		E.db["movers"]["TorghastBuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-346"
-		E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,256"
+		if E.Wrath then
+			--Shaman things
+			E.db["general"]["totems"]["buttonSize"] = 30
+			E.db["general"]["totems"]["flyoutSize"] = 30
+			E.db["general"]["totems"]["flyoutSpacing"] = 3
+			E.db["general"]["totems"]["spacing"] = 5
+			E.db["general"]["totems"]["font"] = "Kimberley"
+			--E.db["general"]["totems"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+			E.db["general"]["totems"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+
+			E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,260"
+		end
 		E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
 		if E.Retail then
 			E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-183,-179"
