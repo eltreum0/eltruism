@@ -63,6 +63,17 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-98,-255"
 			E.db["movers"]["QuestTimerFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-258,-231"
 			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-223,-304"
+
+			--Shaman things
+			E.db["general"]["totems"]["buttonSize"] = 30
+			E.db["general"]["totems"]["flyoutSize"] = 30
+			E.db["general"]["totems"]["flyoutSpacing"] = 3
+			E.db["general"]["totems"]["font"] = "Kimberley"
+			--E.db["general"]["totems"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+			E.db["general"]["totems"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+
+			E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,260"
+
 		end
 
 		--its actually alt power on some fights like vigilant guardian
