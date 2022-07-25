@@ -447,7 +447,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["justifyH"] = "CENTER",
 				["size"] = 40,
 				["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
-				["xOffset"] = 0,
+				["xOffset"] = -50,
 				["yOffset"] = 0
 			}
 		elseif E.Classic then
@@ -576,9 +576,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["font"] = "Kimberley",
 			["fontOutline"] = "NONE",
 			["justifyH"] = "CENTER",
-			["size"] = 40,
+			["size"] = 27,
 			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
-			["xOffset"] = 0,
+			["xOffset"] = 50,
 			["yOffset"] = 0
 		}
 
@@ -634,7 +634,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["font"] = "Kimberley",
 			["fontOutline"] = "NONE",
 			["justifyH"] = "CENTER",
-			["size"] = 40,
+			["size"] = 25,
 			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
@@ -681,7 +681,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["font"] = "Kimberley",
 			["fontOutline"] = "NONE",
 			["justifyH"] = "CENTER",
-			["size"] = 40,
+			["size"] = 20,
 			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
@@ -717,9 +717,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["font"] = "Kimberley",
 			["fontOutline"] = "NONE",
 			["justifyH"] = "CENTER",
-			["size"] = 40,
+			["size"] = 27,
 			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
-			["xOffset"] = 0,
+			["xOffset"] = -50,
 			["yOffset"] = 0
 		}
 		if E.Retail then
@@ -811,10 +811,10 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["font"] = "Kimberley",
 			["fontOutline"] = "NONE",
 			["justifyH"] = "CENTER",
-			["size"] = 40,
+			["size"] = 27,
 			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
 			["xOffset"] = 0,
-			["yOffset"] = 0
+			["yOffset"] = -17
 		}
 
 	ElvUI_EltreumUI:Print(L["General Layout has been set."])
