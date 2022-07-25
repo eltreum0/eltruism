@@ -639,7 +639,6 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 
 						local line1 = WATCHFRAME_TIMERLINES[1];
-						print(line1.text:GetText())
 						line1.text:SetText(tostring(line1.text:GetText()))
 						line1.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
 						line1.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
