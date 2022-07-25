@@ -67,6 +67,19 @@ local tbcMusic = {
 	["BloodElf"] = 53473,
 }
 
+local wrathMusic ={
+	["Human"] = 53210, --k
+	["Gnome"] = 369055, --k
+	["NightElf"] = 2540,
+	["Dwarf"] = 298910, --k
+	["Draenei"] = 53284, --k
+	["Orc"] = 2902, --k
+	["Scourge"] = 53217, --k
+	["Tauren"] = 7077,
+	["Troll"] = 371378, --k
+	["BloodElf"] = 53473,
+}
+
 local classicMusic = {
 	["Human"] = 6794,
 	["Gnome"] = 7341,
@@ -93,8 +106,10 @@ function ElvUI_EltreumUI:AFKmusic()
 				elseif E.db.ElvUI_EltreumUI.afkmusic.playerclass then
 					PlayMusic(classMusic[E.myclass])
 				end
-			elseif E.Wrath or E.TBC then
+			elseif E.TBC then
 				PlayMusic(tbcMusic[E.myrace])
+			elseif E.Wrath then
+				PlayMusic(wrathMusic[E.myrace])
 			elseif E.Classic then
 				willplay, classicmusicstopper = PlaySound(classicMusic[E.myrace])
 			end
