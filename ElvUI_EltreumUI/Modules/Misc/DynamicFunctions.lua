@@ -476,8 +476,8 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 					E.db.ElvUI_EltreumUI.borders.xcasttarget = 272
 					E.db.ElvUI_EltreumUI.borders.ycasttarget = 58
 					E.db.ElvUI_EltreumUI.borders.petsizex = 194
-					E.db.ElvUI_EltreumUI.borders.totemxborder = 46
-					E.db.ElvUI_EltreumUI.borders.totemyborder = 46
+					E.db.ElvUI_EltreumUI.borders.totemxborder = 51
+					E.db.ElvUI_EltreumUI.borders.totemyborder = 51
 
 					if E.Wrath then
 						E.db["general"]["totems"]["spacing"] = 5
