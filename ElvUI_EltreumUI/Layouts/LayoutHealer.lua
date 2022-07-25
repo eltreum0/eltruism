@@ -345,7 +345,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-223,-304"
 		elseif E.Wrath then
 			E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-98,-255"
-			E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-250,-306"
+			E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-83,-306"
 		end
 		E.db["movers"]["PetAB"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,255"
 		E.db["movers"]["PetBattleABMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"

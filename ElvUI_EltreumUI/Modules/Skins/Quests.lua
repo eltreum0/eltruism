@@ -513,7 +513,7 @@ function ElvUI_EltreumUI:SkinQuests()
 							--line.text:SetTextColor(0.75, 0.61, 0)
 							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
 							line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-							line.text:SetWidth(400)
+							line.text:SetWidth(250)
 						elseif isComplete then
 							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 							line.text:SetTextColor(0, 1, 0)
@@ -664,11 +664,11 @@ function ElvUI_EltreumUI:SkinQuests()
 								if ( onEnter ) then
 									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
 									line.text:SetTextColor(classcolor.r+0.2, classcolor.g+0.2, classcolor.b+0.2)
-									line.text:SetWidth(400)
+									line.text:SetWidth(250)
 								else
 									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
 									line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-									line.text:SetWidth(400)
+									line.text:SetWidth(250)
 								end
 							else
 								if ( onEnter ) then
