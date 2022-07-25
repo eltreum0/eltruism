@@ -58,24 +58,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["movers"]["MoverEltruismInstanceDifficulty"] = "TOPRIGHT,UIParent,TOPRIGHT,-146,-21"
 		E.db["movers"]["MoverRaidWarningFrame"] = "TOP,UIParent,TOP,0,-182"
 		E.db["movers"]["TorghastChoiceToggle"] = "BOTTOM,ElvUIParent,BOTTOM,0,398"
-		if E.Wrath then
-			E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-250,-306"
-			E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-98,-255"
-			E.db["movers"]["QuestTimerFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-258,-231"
-			E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-223,-304"
-
-			--Shaman things
-			E.db["general"]["totems"]["buttonSize"] = 30
-			E.db["general"]["totems"]["flyoutSize"] = 30
-			E.db["general"]["totems"]["flyoutSpacing"] = 3
-			E.db["general"]["totems"]["spacing"] = 5
-			E.db["general"]["totems"]["font"] = "Kimberley"
-			--E.db["general"]["totems"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-			E.db["general"]["totems"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-
-			E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,260"
-
-		end
 
 		--its actually alt power on some fights like vigilant guardian
 		E.db["unitframe"]["units"]["party"]["classbar"]["enable"] = false
@@ -109,6 +91,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["general"]["interruptAnnounce"] = "RAID"
 		E.db["general"]["itemLevel"]["itemLevelFont"] = "Kimberley"
 		E.db["general"]["loginmessage"] = false
+		E.db["general"]["lootRoll"]["leftButtons"] = true
+		E.db["general"]["lootRoll"]["nameFont"] = "Kimberley"
+		E.db["general"]["lootRoll"]["statusBarTexture"] = "Asphyxia"
 		E.db["general"]["minimap"]["icons"]["calendar"]["position"] = "TOPLEFT"
 		E.db["general"]["minimap"]["icons"]["calendar"]["xOffset"] = 3
 		E.db["general"]["minimap"]["icons"]["calendar"]["yOffset"] = -38
