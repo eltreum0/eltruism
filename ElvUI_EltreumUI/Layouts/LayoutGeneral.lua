@@ -394,6 +394,17 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["xOffset"] = 6,
 			["yOffset"] = 0
 		}
+		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "NONE",
+			["justifyH"] = "CENTER",
+			["size"] = 40,
+			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
+		}
 
 		-- Custom Text: Arena
 		E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
@@ -430,6 +441,17 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["text_format"] = "[powercolor][power:current:shortvalue]",
 				["xOffset"] = 1,
 				["yOffset"] = -1
+			}
+			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = "Kimberley",
+				["fontOutline"] = "NONE",
+				["justifyH"] = "CENTER",
+				["size"] = 40,
+				["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
 			}
 		elseif E.Classic then
 			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] = {
@@ -551,6 +573,18 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
+		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "NONE",
+			["justifyH"] = "CENTER",
+			["size"] = 40,
+			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
+		}
+
 		-- Custom Text: Raid
 		E.db["unitframe"]["units"]["raid"]["customTexts"] = E.db["unitframe"]["units"]["raid"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumGroup"] = {
@@ -597,6 +631,18 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
+		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumStatus"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "NONE",
+			["justifyH"] = "CENTER",
+			["size"] = 40,
+			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
+		}
+
 		-- Custom Text: Raid 40
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
@@ -632,6 +678,18 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
+		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumStatus"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "NONE",
+			["justifyH"] = "CENTER",
+			["size"] = 40,
+			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
+		}
+
 		-- Custom Text: Target
 		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
@@ -654,6 +712,17 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["size"] = 14,
 			["text_format"] = "[health:current-percent:shortvalue]",
 			["xOffset"] = 2,
+			["yOffset"] = 0
+		}
+		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "NONE",
+			["justifyH"] = "CENTER",
+			["size"] = 40,
+			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
 		if E.Retail then
@@ -703,6 +772,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["xOffset"] = -5,
 			["yOffset"] = -14
 		}
+
 		-- Custom Text: TargetTarget
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"] = E.db["unitframe"]["units"]["targettarget"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"] = {
@@ -737,6 +807,17 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["text_format"] = "[powercolor][power:current:shortvalue]",
 			["xOffset"] = 0,
 			["yOffset"] = -1
+		}
+		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "NONE",
+			["justifyH"] = "CENTER",
+			["size"] = 40,
+			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
 		}
 
 	ElvUI_EltreumUI:Print(L["General Layout has been set."])
