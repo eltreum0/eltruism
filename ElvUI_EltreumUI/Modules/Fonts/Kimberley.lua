@@ -181,6 +181,9 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 	if E.Retail then
 		E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = "Kimberley"
 	end
+	if E.Wrath then
+		E.db["general"]["totems"]["font"] = "Kimberley"
+	end
 	E.db["bags"]["countFont"] = "Kimberley"
 	E.db["bags"]["itemInfoFont"] = "Kimberley"
 	E.db["bags"]["itemLevelFont"] = "Kimberley"

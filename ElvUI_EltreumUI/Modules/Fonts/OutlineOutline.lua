@@ -49,6 +49,9 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline()
 	if E.Retail then
 		E.db["general"]["minimap"]["icons"]["queueStatus"]["fontOutline"] = "OUTLINE"
 	end
+	if E.Wrath then
+		E.db["general"]["totems"]["fontOutline"] = "OUTLINE"
+	end
 	E.db["bags"]["countFontOutline"] = "OUTLINE"
 	E.db["bags"]["itemInfoFontOutline"] = "OUTLINE"
 	E.db["bags"]["itemLevelFontOutline"] = "OUTLINE"
