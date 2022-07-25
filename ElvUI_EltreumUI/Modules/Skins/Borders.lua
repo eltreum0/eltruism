@@ -34,8 +34,8 @@ local classcolorreaction = {
 
 local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder
 local bordertexture,classcolor,focusborder,bossborder,powerbarborder, playercastbarborder
-local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder
-local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,raidborder,raidborder40
+local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction
+local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,raidborder,raidborder40,totemborderfly
 local rectangleminimapdetect = CreateFrame("FRAME")
 local updatelocationpos = CreateFrame("Frame")
 
@@ -554,6 +554,55 @@ function ElvUI_EltreumUI:Borders()
 				end
 				createbar6borders()
 			end
+		end
+
+		--wotlk shaman totem bar
+		if E.Wrath and E.myclass == 'SHAMAN' and E.db.ElvUI_EltreumUI.borders.totembar then
+			local borderstotemaction = {}
+			local borderstotemfly = {}
+			for i = 1,4 do
+				table.insert(borderstotemaction, _G["MultiCastActionButton"..i])
+			end
+			table.insert(borderstotemaction, _G["MultiCastSummonSpellButton"])
+			table.insert(borderstotemaction, _G["MultiCastRecallSpellButton"])
+
+			--flyout is not nice to interact with
+			--[[for i = 1,7 do
+				table.insert(borderstotemfly, _G["MultiCastFlyoutButton"..i])
+			end]]
+			local function createtotemborders()
+				for i,v in pairs(borderstotemaction) do
+					if not _G["EltruismTotemBorderAction"..i] then
+						totemborderaction = CreateFrame("Frame", "EltruismTotemBorderAction"..i, v, BackdropTemplateMixin and "BackdropTemplate")
+					else
+						totemborderaction = _G["EltruismTotemBorderAction"..i]
+					end
+					totemborderaction:SetSize(E.db.ElvUI_EltreumUI.borders.totemxborder, E.db.ElvUI_EltreumUI.borders.totemyborder)
+					totemborderaction:SetPoint("CENTER", v, "CENTER")
+					totemborderaction:SetBackdrop({
+					edgeFile = bordertexture,
+					edgeSize = E.db.ElvUI_EltreumUI.borders.totemedgesize,
+					})
+					totemborderaction:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					--totemborderaction:SetFrameLevel(1)
+				end
+				--[[for i,v in pairs(borderstotemfly) do
+					if not _G["EltruismTotemBorderFly"..i] then
+						totemborderfly = CreateFrame("Frame", "EltruismTotemBorderFly"..i, v, BackdropTemplateMixin and "BackdropTemplate")
+					else
+						totemborderfly = _G["EltruismTotemBorderFly"..i]
+					end
+					totemborderfly:SetSize(E.db.ElvUI_EltreumUI.borders.totemxborder, E.db.ElvUI_EltreumUI.borders.totemyborder)
+					totemborderfly:SetPoint("CENTER", v, "CENTER")
+					totemborderfly:SetBackdrop({
+					edgeFile = bordertexture,
+					edgeSize = E.db.ElvUI_EltreumUI.borders.totemedgesize,
+					})
+					totemborderfly:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					--totemborderfly:SetFrameLevel(1)
+				end]]
+			end
+			createtotemborders()
 		end
 
 		--nameplate power bar
