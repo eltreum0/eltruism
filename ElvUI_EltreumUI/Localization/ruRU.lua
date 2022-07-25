@@ -947,3 +947,6 @@ L["Use Class Colors instead of Custom Colors"] = true
 L["NPCs use Target Castbar colors not NPC colors for their castbars"] = true
 L["Shows level difference when it exists for NPCs and players, hides for players if same level"] = true
 L["Shows the current Death Knight presence"] = true
+L["Displays the number of the group for the first member of that group, raid sorting can break this tag making it show up on other members."] = true
+L["Displays a dead symbol when unit is dead. Number can be between 1 and 6 for different textures from Releaf."] = true
+L["Displays a disconnect symbol when unit is disconnected. Number can be between 1 and 6 for different textures from Releaf."] = true

@@ -977,3 +977,6 @@ L["Use Class Colors instead of Custom Colors"] = "Verwende Klassenfarben anstell
 L["NPCs use Target Castbar colors not NPC colors for their castbars"] = "NPCs verwenden Zielzauberleisten Farben und nicht NPC Farben für ihre Zauberleisten"
 L["Shows level difference when it exists for NPCs and players, hides for players if same level"] = "Zeigt Levelunterschiede an, falls vorhanden, für NPCs und Spieler, versteckt für Spieler, wenn sie auf dem selben Level sind."
 L["Shows the current Death Knight presence"] = "Zeigt die aktuelle Haltung des Todesritters"
+L["Displays the number of the group for the first member of that group, raid sorting can break this tag making it show up on other members."] = true
+L["Displays a dead symbol when unit is dead. Number can be between 1 and 6 for different textures from Releaf."] = true
+L["Displays a disconnect symbol when unit is disconnected. Number can be between 1 and 6 for different textures from Releaf."] = true
