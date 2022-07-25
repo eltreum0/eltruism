@@ -501,6 +501,57 @@ function ElvUI_EltreumUI:Shadows()
 				if not E.private.skins.blizzard.enable == false and _G.LFGListingFrame.backdrop and not _G.LFGListingFrame.backdrop.shadow then
 					_G.LFGListingFrame.backdrop:CreateShadow()
 				end
+
+				if E.myclass == "SHAMAN" then
+					--Shaman Totem things
+					local totemframes = {
+						_G.MultiCastSummonSpellButton,
+						_G.MultiCastRecallSpellButton,
+						_G.MultiCastActionButton1,
+						_G.MultiCastActionButton2,
+						_G.MultiCastActionButton3,
+						_G.MultiCastActionButton4,
+						_G.MultiCastFlyoutButton1,
+						_G.MultiCastFlyoutButton2,
+						_G.MultiCastFlyoutButton3,
+						_G.MultiCastFlyoutButton4,
+						_G.MultiCastFlyoutButton5,
+						_G.MultiCastFlyoutButton6,
+						_G.MultiCastFlyoutButton7,
+						_G.MultiCastFlyoutFrameCloseButton.backdrop,
+						_G.MultiCastFlyoutFrameOpenButton.backdrop,
+					}
+					for _, frame in pairs(totemframes) do
+						if not E.private.skins.blizzard.enable == false and frame and not frame.shadow then
+							frame:CreateShadow()
+						end
+					end
+
+					_G.MultiCastFlyoutFrameOpenButton:HookScript("OnClick", function()
+						local Flyframes = {
+							_G.MultiCastActionButton1,
+							_G.MultiCastActionButton2,
+							_G.MultiCastActionButton3,
+							_G.MultiCastActionButton4,
+							_G.MultiCastFlyoutButton1,
+							_G.MultiCastFlyoutButton2,
+							_G.MultiCastFlyoutButton3,
+							_G.MultiCastFlyoutButton4,
+							_G.MultiCastFlyoutButton5,
+							_G.MultiCastFlyoutButton6,
+							_G.MultiCastFlyoutButton7,
+						}
+						for _, frame in pairs(Flyframes) do
+							if not E.private.skins.blizzard.enable == false and frame and not frame.shadow then
+								frame:CreateShadow()
+							end
+						end
+
+					end)
+
+				end
+
+
 			end
 
 		end
