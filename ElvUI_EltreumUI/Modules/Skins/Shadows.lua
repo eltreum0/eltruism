@@ -502,8 +502,8 @@ function ElvUI_EltreumUI:Shadows()
 					_G.LFGListingFrame.backdrop:CreateShadow()
 				end
 
-				if E.myclass == "SHAMAN" then
-					--Shaman Totem things
+				--Shaman Totem things
+				if E.myclass == "SHAMAN" and not E.db.ElvUI_EltreumUI.borders.totembar then
 					local totemframes = {
 						_G.MultiCastSummonSpellButton,
 						_G.MultiCastRecallSpellButton,
@@ -526,7 +526,6 @@ function ElvUI_EltreumUI:Shadows()
 							frame:CreateShadow()
 						end
 					end
-
 					_G.MultiCastFlyoutFrameOpenButton:HookScript("OnClick", function()
 						local Flyframes = {
 							_G.MultiCastActionButton1,
@@ -546,14 +545,9 @@ function ElvUI_EltreumUI:Shadows()
 								frame:CreateShadow()
 							end
 						end
-
 					end)
-
 				end
-
-
 			end
-
 		end
 		------------------------------------------------------------------------------------------------------elvui frames
 		local GeneralElvUIFrames = {
