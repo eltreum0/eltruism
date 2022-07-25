@@ -68,6 +68,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			E.db["general"]["totems"]["buttonSize"] = 30
 			E.db["general"]["totems"]["flyoutSize"] = 30
 			E.db["general"]["totems"]["flyoutSpacing"] = 3
+			E.db["general"]["totems"]["spacing"] = 5
 			E.db["general"]["totems"]["font"] = "Kimberley"
 			--E.db["general"]["totems"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 			E.db["general"]["totems"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
