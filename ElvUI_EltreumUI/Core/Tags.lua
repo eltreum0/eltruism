@@ -546,7 +546,7 @@ E:AddTag('eltruism:presence', 'RUNE_POWER_UPDATE', function(unit)
 		if presence == 1 then --blood
 			return _G.RELIC_SLOT_TYPE_BLOOD
 		elseif presence == 2 then --frost
-			return _G.STRING_SCHOOL_FROST
+			return _G.RELIC_SLOT_TYPE_FROST
 		elseif presence == 3 then --unholy
 			return  _G.RUNE_COST_UNHOLY:format("")
 		else
@@ -556,4 +556,29 @@ E:AddTag('eltruism:presence', 'RUNE_POWER_UPDATE', function(unit)
 end)
 E:AddTagInfo("eltruism:presence", ElvUI_EltreumUI.Name, L["Shows the current Death Knight presence"])
 
---future tag idea: group number only for first member of group
+--group number only for first member of group (can break if players get moved tho)
+E:AddTag("eltruism:groupnumber", "GROUP_ROSTER_UPDATE UNIT_NAME_UPDATE", function(unit)
+	local c = UnitClassification(unit)
+	if IsInRaid() == true then
+		if unit == "raid1" then
+			return "1"
+		elseif unit == "raid6" then
+			return "2"
+		elseif unit == "raid11" then
+			return "3"
+		elseif unit == "raid16" then
+			return "4"
+		elseif unit == "raid21" then
+			return "5"
+		elseif unit == "raid26" then
+			return "6"
+		elseif unit == "raid31" then
+			return "7"
+		elseif unit == "raid36" then
+			return "8"
+		end
+	else
+		return ""
+	end
+end)
+E:AddTagInfo("eltruism:groupnumber", ElvUI_EltreumUI.Name, L["Displays the number of the group for the first member of that group, raid sorting can break this tag making it show up on other members."])
