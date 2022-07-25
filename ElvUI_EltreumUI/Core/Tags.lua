@@ -582,3 +582,45 @@ E:AddTag("eltruism:groupnumber", "GROUP_ROSTER_UPDATE UNIT_NAME_UPDATE", functio
 	end
 end)
 E:AddTagInfo("eltruism:groupnumber", ElvUI_EltreumUI.Name, L["Displays the number of the group for the first member of that group, raid sorting can break this tag making it show up on other members."])
+
+--Tag for dead based on elvui tag for health with user input
+E:AddTag("eltruism:dead", "UNIT_HEALTH", function(unit,_,args)
+	local texture = strsplit(':', args or '')
+	if UnitHealth(unit) < 1 then
+		if texture == '' then
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga:0:0:0:0|t"
+		elseif texture == '1' then
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead1.tga:0:0:0:0|t"
+		elseif texture == '2' then
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead2.tga:0:0:0:0|t"
+		elseif texture == '3' then
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead3.tga:0:0:0:0|t"
+		elseif texture == '4' then
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead4.tga:0:0:0:0|t"
+		elseif texture == '5' then
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga:0:0:0:0|t"
+		end
+	end
+end)
+E:AddTagInfo("eltruism:dead{1}", ElvUI_EltreumUI.Name, L["Displays a dead symbol when unit is dead. Number can be between 1 and 6 for different textures from Releaf."])
+
+--Tag for dc based on elvui tag for health with user input
+E:AddTag("eltruism:dc", "GROUP_ROSTER_UPDATE", function(unit,_,args)
+	local texture = strsplit(':', args or '')
+	if UnitIsConnected(unit) == false then
+		if texture == '' then
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga:0:0:0:0|t"
+		elseif texture == '1' then
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc1.tga:0:0:0:0|t"
+		elseif texture == '2' then
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga:0:0:0:0|t"
+		elseif texture == '3' then
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc3.tga:0:0:0:0|t"
+		elseif texture == '4' then
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc4.tga:0:0:0:0|t"
+		elseif texture == '5' then
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc5.tga:0:0:0:0|t"
+		end
+	end
+end)
+E:AddTagInfo("[eltruism:dc{1}]", ElvUI_EltreumUI.Name, L["Displays a disconnect symbol when unit is disconnected. Number can be between 1 and 6 for different textures from Releaf."])
