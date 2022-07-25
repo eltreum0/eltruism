@@ -367,14 +367,16 @@ hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastBarTextureGradient)
 hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastBarTextureGradient)
 
 --color when interrupted
-function ElvUI_EltreumUI:CastBarTextureGradientFail()
+function ElvUI_EltreumUI:CastBarTextureGradientFail(unit)
+	if not unit then return end
+
 	local castbar = _G["ElvUF_Player_CastBar"]
 	local targetcastbar = _G["ElvUF_Target_CastBar"]
 
 	if E.db.ElvUI_EltreumUI.UFmodifications then
 		if E.db.ElvUI_EltreumUI.gradientmode.enable and (not E.db.ElvUI_EltreumUI.ufcustomtexture.enable) then
 			--player
-			if E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbarinterrupted then
+			if E.db.ElvUI_EltreumUI.gradientmode.enableplayercastbarinterrupted and (unit == "player") then
 				castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 				if E.db.unitframe.units.player.castbar.reverse == true then
 					if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -391,7 +393,7 @@ function ElvUI_EltreumUI:CastBarTextureGradientFail()
 				end
 			end
 			--target
-			if UnitExists("target") and E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbarinterrupted and targetcastbar ~= nil then
+			if UnitExists("target") and E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbarinterrupted and targetcastbar ~= nil and (unit == "target") then
 				targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 				if E.db.unitframe.units.target.castbar.reverse == true then
 					if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
