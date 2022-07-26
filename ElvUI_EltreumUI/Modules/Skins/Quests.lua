@@ -490,13 +490,6 @@ function ElvUI_EltreumUI:SkinQuests()
 			--hook the function that sets the quest detail to get the questID from the quest title
 			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --_G.QuestLogFrame.lua 311
 				questID = select(8, GetQuestLogTitle(questTitle))
-
-				--fix black text not being readable in the quest description
-				for i = 1, 40 do
-					if _G["QuestInfoObjective"..i] then
-						_G["QuestInfoObjective"..i]:SetTextColor(1, 1, 1)
-					end
-				end
 			end)
 			--set the link to show when the button is clicked
 			wowheadbutton:SetScript('OnClick', function()
