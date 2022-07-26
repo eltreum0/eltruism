@@ -411,7 +411,6 @@ function ElvUI_EltreumUI:Configtable()
 								order = 98,
 								type = 'toggle',
 								name = L["Play a Sound when attempting to use a skill that is on cooldown."],
-								desc = L["Play a Sound when attempting to use a skill that is on cooldown."],
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.cursor.cooldown end,
 								get = function() return E.db.ElvUI_EltreumUI.cursor.cooldownsound end,
