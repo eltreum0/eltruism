@@ -4,6 +4,7 @@ Added an option to play a sound when attempting to use a spell while it is in co
 Added EltreumStatus custom text, which will display symbols for the unit being dead or disconnected\
 Added shadows to Shaman Totem Bar (Wrath)\
 Added borders to Shaman Totem Bar (Wrath)\
+Added borders to Stance Bar, alongside options for it\
 Added [eltruism:dead{x}] tag, where x is a number for the texture between 1 and 6, the texture will appear when the unit dies (textures by Releaf)\
 Added [eltruism:dc{x}] tag, where x is a number for the texture between 1 and 6, the texture will appear when the unit disconnects (textures by Releaf)\
 Added [eltruism:groupnumber] tag which will display the group number for the first member of that group only. Keep in mind that changing players groups can cause this tag to not correctly report which group the unit belongs to.\
