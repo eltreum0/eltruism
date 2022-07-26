@@ -215,10 +215,19 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["actionbar"]["notUsableColor"]["g"] = 0.16862745098039
 		E.db["actionbar"]["notUsableColor"]["r"] = 0.16862745098039
 		E.db["actionbar"]["rightClickSelfCast"] = true
-		E.db["actionbar"]["stanceBar"]["buttonSize"] = 25
+		E.db["actionbar"]["stanceBar"]["style"] = "classic"
+		E.db["actionbar"]["stanceBar"]["keepSizeRatio"] = false
+		E.db["actionbar"]["stanceBar"]["buttonSize"] = 27
+		E.db["actionbar"]["stanceBar"]["buttonHeight"] = 20
 		E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 3
 		E.db["actionbar"]["stanceBar"]["hotkeyFont"] = "Kimberley"
-		E.db["actionbar"]["stanceBar"]["mouseover"] = true
+		E.db["actionbar"]["stanceBar"]["hotkeyFontOutline"] = "THICKOUTLINE"
+		E.db["actionbar"]["stanceBar"]["inheritGlobalFade"] = true
+		if E.Retail then
+			E.db["actionbar"]["stanceBar"]["mouseover"] = true
+		elseif E.Wrath or E.TBC or E.Classic then
+			E.db["actionbar"]["stanceBar"]["mouseover"] = false
+		end
 		E.db["actionbar"]["stanceBar"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 		E.db["actionbar"]["transparent"] = true
 		E.db["actionbar"]["useDrawSwipeOnCharges"] = true

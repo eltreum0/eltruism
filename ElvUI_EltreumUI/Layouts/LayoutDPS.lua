@@ -302,13 +302,14 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["actionbar"]["rightClickSelfCast"] = true
 		E.db["actionbar"]["stanceBar"]["backdropSpacing"] = 0
 		E.db["actionbar"]["stanceBar"]["buttonHeight"] = 20
-		E.db["actionbar"]["stanceBar"]["buttonSize"] = 30
+		E.db["actionbar"]["stanceBar"]["buttonSize"] = 27
 		E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 3
 		E.db["actionbar"]["stanceBar"]["buttons"] = 8
 		E.db["actionbar"]["stanceBar"]["buttonsPerRow"] = 8
 		E.db["actionbar"]["stanceBar"]["hotkeyFont"] = "Kimberley"
 		E.db["actionbar"]["stanceBar"]["hotkeyFontOutline"] = "THICKOUTLINE"
 		E.db["actionbar"]["stanceBar"]["keepSizeRatio"] = false
+		E.db["actionbar"]["stanceBar"]["inheritGlobalFade"] = true
 		if E.Retail then
 			E.db["actionbar"]["stanceBar"]["mouseover"] = true
 		elseif E.Wrath or E.TBC or E.Classic then
