@@ -433,6 +433,8 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.stancexborder = 49
 				E.db.ElvUI_EltreumUI.borders.stanceyborder = 42
 
+				E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 5
+
 
 				E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,-1"
 				E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,-1"
@@ -487,7 +489,7 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 						E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,260"
 					end
 					if not E.Retail then
-						E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,98"
+						E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,97"
 					end
 				elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
 					E.db["actionbar"]["bar1"]["buttonSpacing"] = 5
@@ -500,6 +502,7 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 					E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,311,249"
 					E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,249"
 					E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,-311,249"
+					E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,-308,309"
 					E.db["ElvUI_EltreumUI"]["borders"]["xplayercast"] = 294
 					E.db["ElvUI_EltreumUI"]["borders"]["xtargettarget"] = 162
 					E.db["ElvUI_EltreumUI"]["borders"]["bar1xborder"] = 61
@@ -534,6 +537,7 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,0"
 				E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,0"
 				E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
+				E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 3
 
 				if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
 					E.db["actionbar"]["bar1"]["buttonSpacing"] = 3
@@ -568,6 +572,7 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 					E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,308,253"
 					E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,253"
 					E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,-308,253"
+					E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,-308,308"
 					if E.Wrath then
 						E.db["general"]["totems"]["spacing"] = 3
 					end
