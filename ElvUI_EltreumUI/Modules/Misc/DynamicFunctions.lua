@@ -432,6 +432,9 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				end
 				E.db.ElvUI_EltreumUI.borders.stancexborder = 49
 				E.db.ElvUI_EltreumUI.borders.stanceyborder = 42
+				E.db.ElvUI_EltreumUI.borders.petactionxborder = 49
+				E.db.ElvUI_EltreumUI.borders.petactionyborder = 44
+				E.db.ElvUI_EltreumUI.borders.petactionedgesize = 13
 
 				E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 5
 				E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,-1"
