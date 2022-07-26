@@ -1,26 +1,3 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file='Installer.lua'/>
-	<Script file='AFK.lua'/>
-	<Script file='Cursor.lua'/>
-	<Script file='Quests.lua'/>
-	<Script file='Support.lua'/>
-	<Script file='Credits.lua'/>
-	<Script file='Aura.lua'/>
-	<Script file='Misc.lua'/>
-	<Script file='Skins.lua'/>
-	<Script file='Profile.lua'/>
-	<Script file='CombatMusic.lua'/>
-	<Script file='CustomGlow.lua'/>
-	<Script file='Borders.lua'/>
-	<Script file='CVars.lua'/>
-	<Script file='Party.lua'/>
-	<Script file='Maps.lua'/>
-	<Script file='Media.lua'/>
-	<Script file='Unitframes.lua'/>
-	<Script file='Nameplates.lua'/>
-	<Script file='LootText.lua'/>
-	<Script file='Chat.lua'/>
-	<Script file='WeakAuras.lua'/>
-	<Script file='Discord.lua'/>
 	<Script file='OptionsWrath.lua'/>
 </Ui>
