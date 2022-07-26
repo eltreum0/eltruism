@@ -5098,7 +5098,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 3,
 								name = L["Enable Custom Textures"],
 								type = "toggle",
-								desc = L["Enable Custom Textures"],
+								desc = L["Requires Light Mode Enabled"],
 								width = 'full',
 								disabled = function() return E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.enable end,
