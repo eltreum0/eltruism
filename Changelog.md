@@ -4,6 +4,7 @@ ___
 ### 3.1.8
 Added an option to play a sound when attempting to use a spell while it is in cooldown, this option can be enabled in Eltruism > Cursor (Default disabled)\
 Added EltreumStatus custom text, which will display symbols for the unit being dead or disconnected\
+Added some Warcraft 3 sounds\
 Added shadows to Shaman Totem Bar (Wrath)\
 Added borders to Shaman Totem Bar (Wrath)\
 Added borders to Stance Bar, alongside options for it\
