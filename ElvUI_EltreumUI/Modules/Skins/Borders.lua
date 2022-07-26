@@ -35,7 +35,7 @@ local classcolorreaction = {
 local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder
 local bordertexture,classcolor,focusborder,bossborder,powerbarborder, playercastbarborder
 local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction
-local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,raidborder,raidborder40,totemborderfly
+local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,raidborder,raidborder40
 local rectangleminimapdetect = CreateFrame("FRAME")
 local updatelocationpos = CreateFrame("Frame")
 
@@ -945,6 +945,8 @@ function ElvUI_EltreumUI:ShowHideBorders()
 		partyborder,
 		raidborder,
 		raidborder40,
+		totemborderaction,
+		stanceborder,
 	}
 	local barborderbutton
 	local barborderbuttonnumber
