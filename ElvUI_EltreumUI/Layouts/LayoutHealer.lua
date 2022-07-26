@@ -216,7 +216,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["actionbar"]["notUsableColor"]["r"] = 0.16862745098039
 		E.db["actionbar"]["rightClickSelfCast"] = true
 		E.db["actionbar"]["stanceBar"]["buttonSize"] = 25
-		E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 1
+		E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 3
 		E.db["actionbar"]["stanceBar"]["hotkeyFont"] = "Kimberley"
 		E.db["actionbar"]["stanceBar"]["mouseover"] = true
 		E.db["actionbar"]["stanceBar"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
@@ -360,10 +360,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 			E.db["movers"]["SLE_DataPanel_1_Mover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,202"
 			E.db["movers"]["SLE_FarmSeedMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,278"
 		end
-		E.db["movers"]["ShiftAB"] = "BOTTOM,UIParent,BOTTOM,-307,307"
-		if E.Wrath then
-			E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,287,306" --move stance bar bc of totem bar
-		end
+		E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,-308,308"
 		E.db["movers"]["SocialMenuMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-456"
 		E.db["movers"]["SquareMinimapBar"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-197"
 		E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-5,-226"
