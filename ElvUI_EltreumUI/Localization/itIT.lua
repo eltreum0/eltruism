@@ -955,3 +955,7 @@ L["Stance Bar Thickness"] = true
 L["Stance Bar"] = true
 L["Stance X offset"] = true
 L["Stance Y offset"] = true
+L["Shaman Totem Bar"] = true
+L["Shaman Totem Thickness"] = true
+L["Totem X offset"] = true
+L["Totem Y offset"] = true
