@@ -47,7 +47,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			wowheadbutton:SetWidth(x)
 			wowheadbutton:SetHeight(y)
 			wowheadbutton:SetParent(_G.QuestLogFrame)
-			wowheadbutton:SetPoint("RIGHT", _G.QuestLogControlPanel, "RIGHT", x+2, 0)
+			wowheadbutton:SetPoint("LEFT", _G.QuestLogFrameTrackButton, "RIGHT", 2, 0)
 		end
 		wowheadbutton:SetText("Wowhead")
 		wowheadbutton:SetNormalFontObject("GameFontNormal")
