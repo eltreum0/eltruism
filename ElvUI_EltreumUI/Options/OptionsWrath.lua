@@ -3187,6 +3187,18 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.borders.stanceedgesize end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.stanceedgesize = value ElvUI_EltreumUI:Borders() end,
 							},
+							borderpetabsize = {
+								type = 'range',
+								name = L["Pet Action Bar Thickness"],
+								order = 102,
+								min = 1,
+								max = 200,
+								step = 0.1,
+								width = "full",
+								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.petactionedgesize end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.petactionedgesize = value ElvUI_EltreumUI:Borders() end,
+							},
 						},
 					},
 					actionbarsborders = {
