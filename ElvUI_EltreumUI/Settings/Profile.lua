@@ -425,6 +425,11 @@ P.ElvUI_EltreumUI = {
 		stancexborder = 49,
 		stanceyborder = 42,
 		stanceedgesize = 13,
+
+		petactionborders = false,
+		petactionxborder = 49,
+		petactionyborder = 44,
+		petactionedgesize = 13,
 	},
 
 	bordercolors = {
