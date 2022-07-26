@@ -108,6 +108,21 @@ LSM:Register("sound", "Mission Failed", [[Interface\Addons\ElvUI_EltreumUI\Media
 LSM:Register("sound", "Boomerang-1", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\boomerang.ogg]])
 LSM:Register("sound", "Rules of Nature", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\Rules-of-Nature.ogg]])
 
+LSM:Register("sound", "Warcraft 3 - Night Elf Ally Dies", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3NightElfAllyHeroDies.ogg]])
+LSM:Register("sound", "Warcraft 3 - Night Elf Hero Dies", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3NightElfHeroDies.ogg]])
+LSM:Register("sound", "Warcraft 3 - Night Elf Unit Attack", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3NightElfUnitAttack.ogg]])
+LSM:Register("sound", "Warcraft 3 - Human Hero Dies", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3HumanHeroDies.ogg]])
+LSM:Register("sound", "Warcraft 3 - Human Ally Dies", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3HumanAllyHeroDies.ogg]])
+LSM:Register("sound", "Warcraft 3 - Naga Ally Dies", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3NagaAllyHeroDies.ogg]])
+LSM:Register("sound", "Warcraft 3 - Naga Hero Dies", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3NagaHeroDies.ogg]])
+LSM:Register("sound", "Warcraft 3 - Naga Unit Attack", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3NagaUnitAttack.ogg]])
+LSM:Register("sound", "Warcraft 3 - Orc Ally Dies", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3OrcAllyHeroDies.ogg]])
+LSM:Register("sound", "Warcraft 3 - Orc Hero Dies", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3OrcHeroDies.ogg]])
+LSM:Register("sound", "Warcraft 3 - Undead Ally Dies", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3UndeadAllyHeroDies.ogg]])
+LSM:Register("sound", "Warcraft 3 - Undead Under Attack", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3UndeadUnderAttack.ogg]])
+LSM:Register("sound", "Warcraft 3 - Undead Hero Dies", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3UndeadHeroDies.ogg]])
+LSM:Register("sound", "Warcraft 3 - Undead Unit Attack", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3UndeadUnitAttack.ogg]])
+
 -- Border
 LSM:Register("border", "Eltreum-Border-1", [[Interface\Addons\ElvUI_EltreumUI\Media\border\Eltreum-Border-1.tga]])
 LSM:Register("border", "Eltreum-Border-2", [[Interface\Addons\ElvUI_EltreumUI\Media\border\Eltreum-Border-2.tga]])
