@@ -68,12 +68,12 @@ function ElvUI_EltreumUI:ExpandedTalents()
 								PlayerTalentFrameScrollFrame.backdrop:Kill()
 							end
 
-							PlayerTalentFrameScrollFrame:SetScale(0.9)
+							PlayerTalentFrameScrollFrame:SetScale(0.85)
 
 							PlayerTalentFrameBackgroundTopLeft:ClearAllPoints()
 							PlayerTalentFrameBackgroundTopLeft:SetParent(PlayerTalentFrame)
-							PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 630)
-							PlayerTalentFrameBackgroundTopLeft:SetPoint("CENTER", PlayerTalentFrame, "CENTER", -10,30)
+							PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 600)
+							PlayerTalentFrameBackgroundTopLeft:SetPoint("CENTER", PlayerTalentFrame, "CENTER", -10, 20)
 						elseif E.Classic then
 							PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 490)
 						end
