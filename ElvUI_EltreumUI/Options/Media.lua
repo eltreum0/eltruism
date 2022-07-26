@@ -1,0 +1,213 @@
+local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+
+function ElvUI_EltreumUI:MediaOptions()
+	local media = {
+		type = 'group',
+		name = L["Media"],
+		icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\media',
+		childGroups = "tab",
+		order = 85,
+		args = {
+			general = {
+				type = 'group',
+				name = L["Setup Media"],
+				order = 1,
+				args = {
+					header7 = {
+						order = 1,
+						type = "description",
+						name = "",
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					private = {
+						order = 2,
+						type = 'execute',
+						name = L["Reset all Media"],
+						desc = L["Reset Fonts, Textures, Skins to Eltreum UI defaults."],
+						width = 'full',
+						func = function() ElvUI_EltreumUI:SetupPrivate() E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('CONFIG_RL') end,
+						confirm = true,
+					},
+					header1 = {
+						order = 3,
+						type = "description",
+						name = "",
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					fontdescription= {
+						order = 3,
+						type = "description",
+						name = L["Set the fonts used in Eltruism. Kimberley is the default font"],
+					},
+					kimberley = {
+						order = 4,
+						type = 'execute',
+						name = 'Kimberley',
+						desc = L["This will set all ElvUI fonts as Kimberley"],
+						func = function() ElvUI_EltreumUI:SetupFontsKimberley() E:StaggeredUpdateAll(nil, true) end,
+						confirm = true,
+					},
+					exo2 = {
+						order = 5,
+						type = 'execute',
+						name = 'Exo2',
+						desc = L["This will set all ElvUI fonts as Exo2"],
+						func = function() ElvUI_EltreumUI:SetupFontsExo2() E:StaggeredUpdateAll(nil, true) end,
+						confirm = true,
+					},
+					addagaphereforfonts = {
+						order = 6,
+						type = "description",
+						name = "",
+						--width = "full",
+					},
+					gotham = {
+						order = 7,
+						type = 'execute',
+						name = 'Gotham',
+						desc = L["This will set all ElvUI fonts as Gotham"],
+						func = function() ElvUI_EltreumUI:SetupFontsGotham() E:StaggeredUpdateAll(nil, true) end,
+						confirm = true,
+					},
+					roboto = {
+						order = 7,
+						type = 'execute',
+						name = 'Roboto',
+						desc = L["This will set all ElvUI fonts as Roboto"],
+						func = function() ElvUI_EltreumUI:SetupFontsRoboto() E:StaggeredUpdateAll(nil, true) end,
+						confirm = true,
+					},
+					sharedmediafont = {
+						 order = 8,
+						 type = 'select',
+						 width = "double",
+						 dialogControl = 'LSM30_Font',
+						 name = L["Or choose a custom font"],
+						 desc = L["Choose a different font from the preselected ones"],
+						 values = AceGUIWidgetLSMlists.font,
+						 get = function()
+							return E.db.ElvUI_EltreumUI.fonts.playerfont
+						 end,
+						 set = function(self,fontvalue)
+							E.db.ElvUI_EltreumUI.fonts.playerfont = fontvalue
+							ElvUI_EltreumUI:SetupCustomFont(fontvalue)
+						 end,
+					},
+					addagaphereforoutlines = {
+						order = 9,
+						type = "description",
+						name = "",
+					},
+					addagaphereagain = {
+						order = 9,
+						type = "description",
+						name = "",
+					},
+					header3 = {
+						order = 10,
+						type = "description",
+						name = "",
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					fontoutline = {
+						order = 11,
+						type = "description",
+						name = L["Set the Font Outlines everywhere. Use Default to return to Eltruism default settings"],
+						width = "full",
+					},
+					default = {
+						order = 12,
+						type = 'execute',
+						name = L["Defaults"],
+						desc = L["This will set fonts to Eltruism defaults, recommended for 4K"],
+						func = function() ElvUI_EltreumUI:SetupFontsOutlineDefault() E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('CONFIG_RL') end,
+						confirm = true,
+					},
+					none = {
+						order = 12,
+						type = 'execute',
+						name = L["None"],
+						desc = L["This will set fonts to no outline"],
+						func = function() ElvUI_EltreumUI:SetupFontsOutlineNone() E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('CONFIG_RL') end,
+						confirm = true,
+					},
+					outlinegap = {
+						order = 13,
+						type = "description",
+						name = "",
+					},
+					outline = {
+						order = 13,
+						type = 'execute',
+						name = L["Outline"],
+						desc = L["This will set fonts to use outline, recommended for 1440p and 1080p"],
+						func = function() ElvUI_EltreumUI:SetupFontsOutlineOutline() E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('CONFIG_RL') end,
+						confirm = true,
+					},
+					thick = {
+						order = 13,
+						type = 'execute',
+						name = L["Thick Outline"],
+						desc = L["This will set fonts to use thick outline"],
+						func = function() ElvUI_EltreumUI:SetupFontsOutlineThick() E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('CONFIG_RL') end,
+						confirm = true,
+					},
+					header448 = {
+						order = 14,
+						type = "description",
+						name = "",
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					bgmode = {
+						order = 15,
+						type = "description",
+						name = L["Change the ElvUI background"],
+						width = "full",
+					},
+					grey = {
+						order = 16,
+						type = 'execute',
+						name = L["Grey Background"],
+						desc = L["This will set the background to be a grey color"],
+						func = function() ElvUI_EltreumUI:GreyBg() E:StaggeredUpdateAll(nil, true) end,
+						confirm = true,
+					},
+					black = {
+						order = 17,
+						type = 'execute',
+						name = L["Black Background"],
+						desc = L["This will set the background to be a black color"],
+						func = function() ElvUI_EltreumUI:BlackBg() E:StaggeredUpdateAll(nil, true) end,
+						confirm = true,
+					},
+					header5 = {
+						order = 24,
+						type = "description",
+						name = "",
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					dynamicdatatext12123 = {
+						order = 25,
+						type = "description",
+						name = L["Dynamic Datatext that changes according to class to show Ammo or Soul Shards when playing Hunter, Warrior, Rogue or Warlock"],
+						width = "full",
+					},
+					dynamicenable = {
+						order = 26,
+						type = 'toggle',
+						name = L["Enable"],
+						desc = L["Enable the Dynamic Datatext"],
+						get = function() return E.db.ElvUI_EltreumUI.dynamicdatatext.enable end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.dynamicdatatext.enable = value end,
+					},
+				},
+			},
+		},
+	}
+	return media
+end
