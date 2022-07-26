@@ -444,7 +444,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				hooksecurefunc('PaperDollFrame_SetLabelAndText', function(statFrame, label)
 					if ( statFrame.Label ) then
 						--statFrame.Label:SetText(format(STAT_FORMAT, label))
-						if not statFrame.Label:GetText():match("|r") and E.db.ElvUI_EltreumUI.skins.statcolors  and (not IsAddOnLoaded('DejaCharacterStats')) then
+						if not statFrame.Label:GetText():match("|r") and E.db.ElvUI_EltreumUI.skins.statcolors and (not IsAddOnLoaded('DejaCharacterStats')) then
 							statFrame.Label:SetText(E:TextGradient(format(STAT_FORMAT, label), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
 						end
 					end

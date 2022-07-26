@@ -548,7 +548,7 @@ E:AddTag('eltruism:presence', 'RUNE_POWER_UPDATE', function(unit)
 		elseif presence == 2 then --frost
 			return _G.RELIC_SLOT_TYPE_FROST
 		elseif presence == 3 then --unholy
-			return  _G.RUNE_COST_UNHOLY:format("")
+			return _G.RUNE_COST_UNHOLY:format("")
 		else
 			return nil
 		end

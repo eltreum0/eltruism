@@ -7,7 +7,6 @@ local hooksecurefunc = _G.hooksecurefunc
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
 local IsAddOnLoaded = _G.IsAddOnLoaded
-local high = _G.high  --LCG thing
 local IsUsableSpell = _G.IsUsableSpell
 local GetSpellCooldown = _G.GetSpellCooldown
 local UnitExists = _G.UnitExists

@@ -107,7 +107,7 @@ function ElvUI_EltreumUI:Borders()
 			end
 
 			--player castbar
-			if E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.unitframe.units.player.castbar.enable and not (E.db.unitframe.units.player.castbar.overlayOnFrame ~= "None")  then
+			if E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.unitframe.units.player.castbar.enable and not (E.db.unitframe.units.player.castbar.overlayOnFrame ~= "None") then
 				if not _G["EltruismPlayerCastBarBorder"] then
 					playercastbarborder = CreateFrame("Frame", "EltruismPlayerCastBarBorder", _G.ElvUF_Player_CastBar, BackdropTemplateMixin and "BackdropTemplate")
 				else
@@ -244,8 +244,8 @@ function ElvUI_EltreumUI:Borders()
 						partyborder:SetSize(E.db.ElvUI_EltreumUI.borders.partysizex, E.db.ElvUI_EltreumUI.borders.partysizey)
 						partyborder:SetPoint("CENTER", v, "CENTER")
 						partyborder:SetBackdrop({
-						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
+							edgeFile = bordertexture,
+							edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
 						})
 						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
 							partyborder:SetBackdropBorderColor(1, 1, 1, 1)
@@ -282,8 +282,8 @@ function ElvUI_EltreumUI:Borders()
 						raidborder:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
 						raidborder:SetPoint("CENTER", v, "CENTER")
 						raidborder:SetBackdrop({
-						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
+							edgeFile = bordertexture,
+							edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
 						})
 						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
 							raidborder:SetBackdropBorderColor(1, 1, 1, 1)
@@ -322,8 +322,8 @@ function ElvUI_EltreumUI:Borders()
 						raidborder40:SetSize(E.db.ElvUI_EltreumUI.borders.raid40sizex, E.db.ElvUI_EltreumUI.borders.raid40sizey)
 						raidborder40:SetPoint("CENTER", v, "CENTER")
 						raidborder40:SetBackdrop({
-						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
+							edgeFile = bordertexture,
+							edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
 						})
 						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
 							raidborder40:SetBackdropBorderColor(1, 1, 1, 1)
@@ -373,8 +373,8 @@ function ElvUI_EltreumUI:Borders()
 						bossborder:SetSize(E.db.ElvUI_EltreumUI.borders.xboss, E.db.ElvUI_EltreumUI.borders.yboss)
 						bossborder:SetPoint("CENTER", v, "CENTER")
 						bossborder:SetBackdrop({
-						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.bosssize,
+							edgeFile = bordertexture,
+							edgeSize = E.db.ElvUI_EltreumUI.borders.bosssize,
 						})
 						if UnitExists("boss"..i) and E.db.ElvUI_EltreumUI.borders.classcolor == true then
 							local reactionboss= UnitReaction("player", "boss"..i)
@@ -415,8 +415,8 @@ function ElvUI_EltreumUI:Borders()
 						barborder1:SetSize(E.db.ElvUI_EltreumUI.borders.bar1xborder, E.db.ElvUI_EltreumUI.borders.bar1yborder)
 						barborder1:SetPoint("CENTER", v, "CENTER")
 						barborder1:SetBackdrop({
-						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
+							edgeFile = bordertexture,
+							edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder1:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 						--barborder1:SetFrameLevel(1)
@@ -441,8 +441,8 @@ function ElvUI_EltreumUI:Borders()
 						barborder2:SetSize(E.db.ElvUI_EltreumUI.borders.bar2xborder, E.db.ElvUI_EltreumUI.borders.bar2yborder)
 						barborder2:SetPoint("CENTER", v, "CENTER")
 						barborder2:SetBackdrop({
-						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
+							edgeFile = bordertexture,
+							edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder2:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 						--barborder2:SetFrameLevel(1)
@@ -467,8 +467,8 @@ function ElvUI_EltreumUI:Borders()
 						barborder3:SetSize(E.db.ElvUI_EltreumUI.borders.bar3xborder, E.db.ElvUI_EltreumUI.borders.bar3yborder)
 						barborder3:SetPoint("CENTER", v, "CENTER")
 						barborder3:SetBackdrop({
-						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
+							edgeFile = bordertexture,
+							edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder3:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 						--barborder3:SetFrameLevel(1)
@@ -493,8 +493,8 @@ function ElvUI_EltreumUI:Borders()
 						barborder4:SetSize(E.db.ElvUI_EltreumUI.borders.bar4xborder, E.db.ElvUI_EltreumUI.borders.bar4yborder)
 						barborder4:SetPoint("CENTER", v, "CENTER")
 						barborder4:SetBackdrop({
-						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
+							edgeFile = bordertexture,
+							edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder4:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 						--barborder4:SetFrameLevel(1)
@@ -519,8 +519,8 @@ function ElvUI_EltreumUI:Borders()
 						barborder5:SetSize(E.db.ElvUI_EltreumUI.borders.bar5xborder, E.db.ElvUI_EltreumUI.borders.bar5yborder)
 						barborder5:SetPoint("CENTER", v, "CENTER")
 						barborder5:SetBackdrop({
-						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
+							edgeFile = bordertexture,
+							edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder5:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 						--barborder5:SetFrameLevel(1)
@@ -545,8 +545,8 @@ function ElvUI_EltreumUI:Borders()
 						barborder6:SetSize(E.db.ElvUI_EltreumUI.borders.bar6xborder, E.db.ElvUI_EltreumUI.borders.bar6yborder)
 						barborder6:SetPoint("CENTER", v, "CENTER")
 						barborder6:SetBackdrop({
-						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
+							edgeFile = bordertexture,
+							edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder6:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 						--barborder6:SetFrameLevel(1)
@@ -571,8 +571,8 @@ function ElvUI_EltreumUI:Borders()
 						stanceborder:SetSize(E.db.ElvUI_EltreumUI.borders.stancexborder, E.db.ElvUI_EltreumUI.borders.stanceyborder)
 						stanceborder:SetPoint("CENTER", v, "CENTER")
 						stanceborder:SetBackdrop({
-						edgeFile = bordertexture,
-						edgeSize = E.db.ElvUI_EltreumUI.borders.stanceedgesize,
+							edgeFile = bordertexture,
+							edgeSize = E.db.ElvUI_EltreumUI.borders.stanceedgesize,
 						})
 						stanceborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 						--stanceborder:SetFrameLevel(1)
@@ -608,8 +608,8 @@ function ElvUI_EltreumUI:Borders()
 					totemborderaction:SetSize(E.db.ElvUI_EltreumUI.borders.totemxborder, E.db.ElvUI_EltreumUI.borders.totemyborder)
 					totemborderaction:SetPoint("CENTER", v, "CENTER")
 					totemborderaction:SetBackdrop({
-					edgeFile = bordertexture,
-					edgeSize = E.db.ElvUI_EltreumUI.borders.totemedgesize,
+						edgeFile = bordertexture,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.totemedgesize,
 					})
 					totemborderaction:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					--totemborderaction:SetFrameLevel(1)
@@ -630,8 +630,8 @@ function ElvUI_EltreumUI:Borders()
 					totemborderfly:SetSize(E.db.ElvUI_EltreumUI.borders.totemxborder, E.db.ElvUI_EltreumUI.borders.totemyborder)
 					totemborderfly:SetPoint("CENTER", v, "CENTER")
 					totemborderfly:SetBackdrop({
-					edgeFile = bordertexture,
-					edgeSize = E.db.ElvUI_EltreumUI.borders.totemedgesize,
+						edgeFile = bordertexture,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.totemedgesize,
 					})
 					totemborderfly:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					--totemborderfly:SetFrameLevel(1)
@@ -973,7 +973,7 @@ function ElvUI_EltreumUI:ShowHideBorders()
 			end
 		end
 		for k = 1,6 do
-			barborderbutton  = "EltruismAB"..k.."Border"
+			barborderbutton = "EltruismAB"..k.."Border"
 			for b = 1,12 do
 				barborderbuttonnumber = tostring(barborderbutton)..tostring(b)
 				if _G[barborderbuttonnumber] ~= nil then
@@ -996,7 +996,7 @@ function ElvUI_EltreumUI:ShowHideBorders()
 			end
 		end
 		for k = 1,6 do
-			barborderbutton  = "EltruismAB"..k.."Border"
+			barborderbutton = "EltruismAB"..k.."Border"
 			for b = 1,12 do
 				barborderbuttonnumber = tostring(barborderbutton)..tostring(b)
 				if _G[barborderbuttonnumber] ~= nil then
