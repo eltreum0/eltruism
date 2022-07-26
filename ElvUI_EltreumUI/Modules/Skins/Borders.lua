@@ -33,7 +33,7 @@ local classcolorreaction = {
 }
 
 local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder
-local bordertexture,classcolor,focusborder,bossborder,powerbarborder, playercastbarborder
+local bordertexture,classcolor,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder
 local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction
 local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,raidborder,raidborder40,totemborderfly
 local rectangleminimapdetect = CreateFrame("FRAME")
@@ -581,6 +581,33 @@ function ElvUI_EltreumUI:Borders()
 				createstanceborders()
 			end
 
+			--pet action bars
+			if E.db.ElvUI_EltreumUI.borders.petactionborders and E.db.actionbar.barPet.enabled then
+
+				local petactionborders = {}
+				for i = 1,10 do
+					table.insert(petactionborders, _G["PetActionButton"..i])
+				end
+				local function createstancepetactionborders()
+					for i,v in pairs(petactionborders) do
+						if not _G["EltruismPetActionBorder"..i] then
+							petactionborder = CreateFrame("Frame", "EltruismPetActionBorder"..i, v, BackdropTemplateMixin and "BackdropTemplate")
+						else
+							petactionborder = _G["EltruismPetActionBorder"..i]
+						end
+						petactionborder:SetSize(E.db.ElvUI_EltreumUI.borders.petactionxborder, E.db.ElvUI_EltreumUI.borders.petactionyborder)
+						petactionborder:SetPoint("CENTER", v, "CENTER")
+						petactionborder:SetBackdrop({
+							edgeFile = bordertexture,
+							edgeSize = E.db.ElvUI_EltreumUI.borders.petactionedgesize,
+						})
+						petactionborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						--petactionborder:SetFrameLevel(1)
+					end
+				end
+				createstancepetactionborders()
+			end
+
 
 		end
 
@@ -593,11 +620,6 @@ function ElvUI_EltreumUI:Borders()
 			end
 			table.insert(borderstotemaction, _G["MultiCastSummonSpellButton"])
 			table.insert(borderstotemaction, _G["MultiCastRecallSpellButton"])
-
-			--flyout is not nice to interact with
-			--[[for i = 1,7 do
-				table.insert(borderstotemfly, _G["MultiCastFlyoutButton"..i])
-			end]]
 			local function createtotemborders()
 				for i,v in pairs(borderstotemaction) do
 					if not _G["EltruismTotemBorderAction"..i] then
@@ -642,7 +664,6 @@ function ElvUI_EltreumUI:Borders()
 					createtotemflyborders()
 				end
 			end)
-
 		end
 
 		--nameplate power bar
