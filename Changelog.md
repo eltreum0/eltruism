@@ -1,6 +1,20 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.1.8
+Added an option to play a sound when attempting to use a spell while it is in cooldown, this option can be enabled in Eltruism > Cursor (Default disabled)\
+Added EltreumStatus custom text, which will display symbols for the unit being dead or disconnected\
+Added shadows to Shaman Totem Bar (Wrath)\
+Added borders to Shaman Totem Bar (Wrath)\
+Added [eltruism:dead{x}] tag, where x is a number for the texture between 1 and 6, the texture will appear when the unit dies\
+Added [eltruism:dc{x}] tag, where x is a number for the texture between 1 and 6, the texture will appear when the unit disconnects\
+Added [eltruism:groupnumber] tag which will display the group number for the first member of that group only. Keep in mind that changing players groups can cause this tag to not correctly report which group the unit belongs to.\
+Updated lootroll settings for Classic/TBC/Wrath\
+Updated Shaman Totem Bar layout movers and Objective Frame movers for Wrath\
+Fixed castbar interrupt gradient coloring both castbars when it should not (fix by Blinkii)\
+Fixed AddonSkins hiding wrong chat when Details profile is loaded (Wrath)\
+Fixed Wrath's Expanded Talents overlapping with the dual spec buttons
+___
 ### 3.1.7
 Added EltreumTarget Nameplate Filter, which will be used instead of ElvUI_Target\
 Added [eltruism:presence] tag, which will display the Death Knight's presence in Classic Wrath (Beta)\
