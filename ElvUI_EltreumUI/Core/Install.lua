@@ -181,6 +181,7 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option2:Show()
 			PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDTReleaf() ElvUI_EltreumUI:GetASProfile() end)
 			PluginInstallFrame.Option2:SetText('Releaf Alpha')
+			PluginInstallFrame.Option3:Enable()
 			PluginInstallFrame.Option3:Show()
 			PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDTReleafv3() ElvUI_EltreumUI:GetASProfile() end)
 			PluginInstallFrame.Option3:SetText('Releaf Solid')
