@@ -558,7 +558,7 @@ function ElvUI_EltreumUI:Borders()
 			--stances
 			if E.db.ElvUI_EltreumUI.borders.stanceborders and E.db.actionbar.stanceBar.enabled then
 				local stanceborders = {}
-				for i = 1,12 do
+				for i = 1,10 do
 					table.insert(stanceborders, _G["ElvUI_StanceBarButton"..i])
 				end
 				local function createstanceborders()
@@ -957,9 +957,6 @@ function ElvUI_EltreumUI:ShowHideBorders()
 		partyborder,
 		raidborder,
 		raidborder40,
-		totemborderaction,
-		totemborderfly,
-		stanceborder,
 	}
 	local barborderbutton
 	local barborderbuttonnumber
@@ -986,6 +983,21 @@ function ElvUI_EltreumUI:ShowHideBorders()
 				_G["EltruismAuraBorder"..aura]:Show()
 			end
 		end
+		for totem = 1, 7 do
+			if _G["EltruismTotemBorderAction"..totem] then
+				_G["EltruismTotemBorderAction"..totem]:Show()
+			end
+		end
+		for totemfly = 1, 7 do
+			if _G["EltruismTotemBorderFly"..totemfly] then
+				_G["EltruismTotemBorderFly"..totemfly]:Show()
+			end
+		end
+		for stance = 1, 10 do
+			if _G["EltruismStanceBorder"..stance] then
+				_G["EltruismStanceBorder"..stance]:Show()
+			end
+		end
 	elseif E.db.ElvUI_EltreumUI.borders.borders == true then
 		E.db.ElvUI_EltreumUI.borders.borders = false
 		ElvUI_EltreumUI:ActionbarBorderAdjust()
@@ -1007,6 +1019,21 @@ function ElvUI_EltreumUI:ShowHideBorders()
 		for aura = 1,40 do
 			if _G["EltruismAuraBorder"..aura] then
 				_G["EltruismAuraBorder"..aura]:Hide()
+			end
+		end
+		for totem = 1, 7 do
+			if _G["EltruismTotemBorderAction"..totem] then
+				_G["EltruismTotemBorderAction"..totem]:Hide()
+			end
+		end
+		for totemfly = 1, 7 do
+			if _G["EltruismTotemBorderFly"..totemfly] then
+				_G["EltruismTotemBorderFly"..totemfly]:Hide()
+			end
+		end
+		for stance = 1, 10 do
+			if _G["EltruismStanceBorder"..stance] then
+				_G["EltruismStanceBorder"..stance]:Hide()
 			end
 		end
 	end
