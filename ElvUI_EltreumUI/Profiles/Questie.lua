@@ -1049,7 +1049,7 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 					["Raw Fish"] = {
 					},
 				},
-				["hideTrackerInCombat"] = true,
+				["hideTrackerInCombat"] = false,
 				["questMinimapObjectiveColors"] = true,
 				["trackerFontSizeHeader"] = 14,
 				["nameplateX"] = -30,
@@ -2029,7 +2029,7 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 				["collapseCompletedQuests"] = true,
 				["trackerFontSizeHeader"] = 14,
 				["nameplateX"] = -30,
-				["hideTrackerInCombat"] = true,
+				["hideTrackerInCombat"] = false,
 				["onlyPartyShared"] = true,
 				["trackerFontSizeObjective"] = 12,
 				["mapShowHideEnabled"] = false,
