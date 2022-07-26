@@ -579,7 +579,7 @@ function ElvUI_EltreumUI:Shadows()
 				if not button then
 					break
 				else
-					if not button.shadow then
+					if not button.shadow and (not E.db.ElvUI_EltreumUI.borders.borders) then
 						button:CreateShadow()
 						--[[
 						button.shadow = button:CreateShadow(nil, true)
