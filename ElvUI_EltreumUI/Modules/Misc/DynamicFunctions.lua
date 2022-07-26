@@ -542,6 +542,7 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 					E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,190"
 					E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,159"
 					E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,128"
+					E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,106"
 					if E.db.ElvUI_EltreumUI.otherstuff.alternativegroups == false then
 						E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
 						E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
@@ -549,9 +550,6 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 						E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 3
 						E.db["unitframe"]["units"]["raid40"]["groupsPerRowCol"] = 4
 						E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 3
-					end
-					if not E.Retail then
-						E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,108"
 					end
 					if E.Wrath then
 						E.db["general"]["totems"]["spacing"] = 3
