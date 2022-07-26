@@ -441,10 +441,6 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 		if UF.units.player then
 			local unitframe = _G["ElvUF_Player"]
 			if unitframe and unitframe.Health then
-
-				local r11,g11,b11 = unitframe.Health:GetStatusBarColor()
-
-				print(r11,g11,b11)
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 					if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
 						playertexture = unitframeclasscustom[E.myclass]
