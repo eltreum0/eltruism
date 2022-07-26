@@ -43,7 +43,15 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			button.cd:SetFrameStrata('DIALOG')
 			local TimeSinceLastUpdate = 0
 			if not button.cd then
-				LCG.PixelGlow_Stop(button)
+				if E.db.ElvUI_EltreumUI.widenameplate.npglow then
+					if E.db.ElvUI_EltreumUI.glow.pixel then
+						LCG.PixelGlow_Stop(button)
+					elseif E.db.ElvUI_EltreumUI.glow.autocast then
+						LCG.AutoCastGlow_Stop(button)
+					elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+						LCG.ButtonGlow_Stop(button)
+					end
+				end
 			else
 				button.cd:SetScript('OnUpdate', function(self, elapsed)
 					TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
@@ -58,14 +66,33 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 							local debufftime = tonumber(button.cd.timer.text:GetText())
 							if E.db.ElvUI_EltreumUI.widenameplate.npglow then
 								if debufftime ~= nil and debufftime <= E.db.ElvUI_EltreumUI.glow.numberdebuff and debufftime > 0 then
-									LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
+									if E.db.ElvUI_EltreumUI.glow.pixel then
+										LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
+									elseif E.db.ElvUI_EltreumUI.glow.autocast then
+										--LCG.AutoCastGlow_Start(button, glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+										LCG.AutoCastGlow_Start(button, glowcolor, 8, 1, 1.5, 1, 1)
+									elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+										LCG.ButtonGlow_Start(button, glowcolor, 0.5)
+									end
 								else
-									LCG.PixelGlow_Stop(button)
+									if E.db.ElvUI_EltreumUI.glow.pixel then
+										LCG.PixelGlow_Stop(button)
+									elseif E.db.ElvUI_EltreumUI.glow.autocast then
+										LCG.AutoCastGlow_Stop(button)
+									elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+										LCG.ButtonGlow_Stop(button)
+									end
 								end
 							end
 						else
 							if E.db.ElvUI_EltreumUI.widenameplate.npglow and (button.cd == nil or button.cd.timer == nil) then
-								LCG.PixelGlow_Stop(button)
+								if E.db.ElvUI_EltreumUI.glow.pixel then
+									LCG.PixelGlow_Stop(button)
+								elseif E.db.ElvUI_EltreumUI.glow.autocast then
+									LCG.AutoCastGlow_Stop(button)
+								elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+									LCG.ButtonGlow_Stop(button)
+								end
 							end
 						end
 					end
