@@ -962,4 +962,4 @@ L["Requires Light Mode Enabled"] = true
 L["Pet Action Bar"] = true
 L["Pet Action Bar X offset"] = true
 L["Pet Action Bar Y offset"] = true
-L["Pet Action Bar Thickness"] =
+L["Pet Action Bar Thickness"] = true
