@@ -982,7 +982,7 @@ L["Displays a dead symbol when unit is dead. Number can be between 1 and 6 for d
 L["Displays a disconnect symbol when unit is disconnected. Number can be between 1 and 6 for different textures from Releaf."] = "Zeigt ein Symbol an, wenn die Einheit getrennt ist. Die Zahl kann zwischen 1 und 6 für verschiedene Texturen von Releaf liegen."
 L["Cooldown Sound"] = "Abklingsound"
 L["Play a Sound when attempting to use a skill that is on cooldown."] = "Spielt einen Ton ab, wenn Du versuchst, eine Fertigkeit zu verwenden, die sich in der Abklingzeit befindet."
-L["Stance Bar Thickness"] = true
-L["Stance Bar"] = true
-L["Stance X offset"] = true
-L["Stance Y offset"] = true
+L["Stance Bar Thickness"] = "Haltungsleisten Dicke"
+L["Stance Bar"] = "Haltungsleiste"
+L["Stance X offset"] = "Haltung X-Versatz"
+L["Stance Y offset"] = "Haltung Y-Versatz"
