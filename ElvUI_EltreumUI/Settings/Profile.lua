@@ -422,8 +422,8 @@ P.ElvUI_EltreumUI = {
 		totemedgesize = 13,
 
 		stanceborders = false,
-		stancexborder = 44,
-		stanceyborder = 44,
+		stancexborder = 49,
+		stanceyborder = 42,
 		stanceedgesize = 13,
 	},
 
