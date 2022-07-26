@@ -952,3 +952,7 @@ L["Displays a dead symbol when unit is dead. Number can be between 1 and 6 for d
 L["Displays a disconnect symbol when unit is disconnected. Number can be between 1 and 6 for different textures from Releaf."] = true
 L["Cooldown Sound"] = true
 L["Play a Sound when attempting to use a skill that is on cooldown."] = true
+L["Stance Bar Thickness"] = true
+L["Stance Bar"] = true
+L["Stance X offset"] = true
+L["Stance Y offset"] = true

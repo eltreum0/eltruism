@@ -32,7 +32,7 @@ local classcolorreaction = {
 	["NPCHOSTILE"] = {r1 = 0.8, g1 = 0, b1 = 0},
 }
 
-local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder
+local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder
 local bordertexture,classcolor,focusborder,bossborder,powerbarborder, playercastbarborder
 local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction
 local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,raidborder,raidborder40,totemborderfly
@@ -554,6 +554,34 @@ function ElvUI_EltreumUI:Borders()
 				end
 				createbar6borders()
 			end
+
+			--stances
+			if E.db.ElvUI_EltreumUI.borders.stanceborders and E.db.actionbar.stanceBar.enabled then
+				local stanceborders = {}
+				for i = 1,12 do
+					table.insert(stanceborders, _G["ElvUI_StanceBarButton"..i])
+				end
+				local function createstanceborders()
+					for i,v in pairs(stanceborders) do
+						if not _G["EltruismStanceBorder"..i] then
+							stanceborder = CreateFrame("Frame", "EltruismStanceBorder"..i, v, BackdropTemplateMixin and "BackdropTemplate")
+						else
+							stanceborder = _G["EltruismStanceBorder"..i]
+						end
+						stanceborder:SetSize(E.db.ElvUI_EltreumUI.borders.stancexborder, E.db.ElvUI_EltreumUI.borders.stanceyborder)
+						stanceborder:SetPoint("CENTER", v, "CENTER")
+						stanceborder:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.stanceedgesize,
+						})
+						stanceborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						--stanceborder:SetFrameLevel(1)
+					end
+				end
+				createstanceborders()
+			end
+
+
 		end
 
 		--wotlk shaman totem bar

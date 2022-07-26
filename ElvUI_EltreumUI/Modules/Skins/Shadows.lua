@@ -605,16 +605,19 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--stances
-			for i = 1, 12 do
-				local button = _G["ElvUI_StanceBarButton"..i]
-				if not button then
-					break
-				else
-					if not button.shadow then
-						button:CreateShadow()
+			if not _G["EltruismStanceBorder1"] then
+				for i = 1, 12 do
+					local button = _G["ElvUI_StanceBarButton"..i]
+					if not button then
+						break
+					else
+						if not button.shadow then
+							button:CreateShadow()
+						end
 					end
 				end
 			end
+
 		end
 
 		--microbar shadow

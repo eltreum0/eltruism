@@ -421,6 +421,10 @@ P.ElvUI_EltreumUI = {
 		totemyborder = 51,
 		totemedgesize = 13,
 
+		stanceborders = false,
+		stancexborder = 44,
+		stanceyborder = 44,
+		stanceedgesize = 13,
 	},
 
 	bordercolors = {
