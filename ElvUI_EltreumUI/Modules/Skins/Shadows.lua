@@ -511,13 +511,6 @@ function ElvUI_EltreumUI:Shadows()
 						_G.MultiCastActionButton2,
 						_G.MultiCastActionButton3,
 						_G.MultiCastActionButton4,
-						_G.MultiCastFlyoutButton1,
-						_G.MultiCastFlyoutButton2,
-						_G.MultiCastFlyoutButton3,
-						_G.MultiCastFlyoutButton4,
-						_G.MultiCastFlyoutButton5,
-						_G.MultiCastFlyoutButton6,
-						_G.MultiCastFlyoutButton7,
 						_G.MultiCastFlyoutFrameCloseButton.backdrop,
 						_G.MultiCastFlyoutFrameOpenButton.backdrop,
 					}
@@ -526,12 +519,9 @@ function ElvUI_EltreumUI:Shadows()
 							frame:CreateShadow()
 						end
 					end
-					_G.MultiCastFlyoutFrameOpenButton:HookScript("OnClick", function()
+
+					hooksecurefunc("MultiCastFlyoutFrame_ToggleFlyout", function()
 						local Flyframes = {
-							_G.MultiCastActionButton1,
-							_G.MultiCastActionButton2,
-							_G.MultiCastActionButton3,
-							_G.MultiCastActionButton4,
 							_G.MultiCastFlyoutButton1,
 							_G.MultiCastFlyoutButton2,
 							_G.MultiCastFlyoutButton3,

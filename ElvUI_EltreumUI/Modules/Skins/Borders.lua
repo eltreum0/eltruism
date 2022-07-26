@@ -35,7 +35,7 @@ local classcolorreaction = {
 local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder
 local bordertexture,classcolor,focusborder,bossborder,powerbarborder, playercastbarborder
 local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction
-local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,raidborder,raidborder40
+local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,raidborder,raidborder40,totemborderfly
 local rectangleminimapdetect = CreateFrame("FRAME")
 local updatelocationpos = CreateFrame("Frame")
 
@@ -614,7 +614,14 @@ function ElvUI_EltreumUI:Borders()
 					totemborderaction:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					--totemborderaction:SetFrameLevel(1)
 				end
-				--[[for i,v in pairs(borderstotemfly) do
+			end
+			createtotemborders()
+
+			local function createtotemflyborders()
+				for i = 1,7 do
+					table.insert(borderstotemfly, _G["MultiCastFlyoutButton"..i])
+				end
+				for i,v in pairs(borderstotemfly) do
 					if not _G["EltruismTotemBorderFly"..i] then
 						totemborderfly = CreateFrame("Frame", "EltruismTotemBorderFly"..i, v, BackdropTemplateMixin and "BackdropTemplate")
 					else
@@ -628,9 +635,14 @@ function ElvUI_EltreumUI:Borders()
 					})
 					totemborderfly:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					--totemborderfly:SetFrameLevel(1)
-				end]]
+				end
 			end
-			createtotemborders()
+			hooksecurefunc("MultiCastFlyoutFrame_ToggleFlyout", function()
+				if not _G["EltruismTotemBorderFly7"] then
+					createtotemflyborders()
+				end
+			end)
+
 		end
 
 		--nameplate power bar
@@ -946,6 +958,7 @@ function ElvUI_EltreumUI:ShowHideBorders()
 		raidborder,
 		raidborder40,
 		totemborderaction,
+		totemborderfly,
 		stanceborder,
 	}
 	local barborderbutton
