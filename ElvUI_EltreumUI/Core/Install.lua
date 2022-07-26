@@ -27,6 +27,12 @@ ElvUI_EltreumUI.InstallerData = {
 	tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 	Pages = {
 		[1] = function()
+			if not PluginInstallTitleFrame.shadow then
+				PluginInstallTitleFrame:CreateShadow()
+			end
+			if not PluginInstallFrame.shadow then
+				PluginInstallFrame:CreateShadow()
+			end
 			ElvUI_EltreumUI:ElvUIVersionCheck()
 			PluginInstallFrame.SubTitle:SetFormattedText(L["Welcome"])
 			PluginInstallFrame.Desc1:SetText(L["This prompt will help you install "]..ElvUI_EltreumUI.Name..L[" and import its settings"])
