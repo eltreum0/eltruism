@@ -271,6 +271,9 @@ function ElvUI_EltreumUI:showCooldown(texture, getCooldownFunc, arg, hasCooldown
 	EltruismCooldownIcon:SetTexture(texture)
 	EltruismCooldownIcon:AddMaskTexture(EltruismCooldownMask)
 	ElvUI_EltreumUI:updateStamps(start, duration, true)
+	if duration > 0 and E.db.ElvUI_EltreumUI.cursor.cooldownsound then
+		PlaySoundFile(E.LSM:Fetch("sound", E.db.ElvUI_EltreumUI.cursor.cooldownfile),"Master")
+	end
 end
 
 function ElvUI_EltreumUI:checkActionCooldown(slot)
