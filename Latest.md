@@ -9,6 +9,7 @@ Added [eltruism:dead{x}] tag, where x is a number for the texture between 1 and 
 Added [eltruism:dc{x}] tag, where x is a number for the texture between 1 and 6, the texture will appear when the unit disconnects (textures by Releaf)\
 Added [eltruism:groupnumber] tag which will display the group number for the first member of that group only. Keep in mind that changing players groups can cause this tag to not correctly report which group the unit belongs to.\
 Updated lootroll settings for Classic/TBC/Wrath\
+Updated spanish localization using DeepL and Google Translate, feedback is still welcome\
 Updated Shaman Totem Bar layout movers and Objective Frame movers for Wrath\
 Fixed castbar interrupt gradient coloring both castbars when it should not (fix by Blinkii)\
 Fixed AddonSkins hiding wrong chat when Details profile is loaded (Wrath)\
