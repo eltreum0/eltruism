@@ -52,7 +52,7 @@ elseif E.Wrath or E.TBC or E.Classic then
 	warrior = {r = "0.78039044141769", g = "0.61176335811615", b = "0.43137159943581"}
 	shaman = {r = "0", g = "0.4392147064209", b = "0.87058633565903"}
 	druid = {r = "0.99999779462814", g = "0.49019500613213", b = "0.039215601980686"}
-	deathknight = {r = "0.76862573623657", g = "0.11764679849148", b = "0.2274504750967"}
+	deathknight = {r = "0.76862573623657", g = "0.1215683594346", b = "0.23137204349041"}
 	demonhunter = {r = "0.63921427726746", g = "0.1882348805666", b = "0.78823357820511"}
 	monk = {r = "0", g = "0.99999779462814", b = "0.59607714414597"}
 	rogue = {r = "0.99999779462814", g = "0.96078222990036", b = "0.41176378726959"}
@@ -181,7 +181,7 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 			warrior = {r = "0.58431243896484", g = "0.45882251858711", b = "0.32156792283058"}
 			shaman = {r = "0", g = "0.32941102981567", b = "0.65097898244858"}
 			druid = {r = "0.74901795387268", g = "0.3686266541481", b = "0.031372480094433"}
-			deathknight = {r = "0.76862573623657", g = "0.11764679849148", b = "0.2274504750967"}
+			deathknight = {r = "0.57646930217743", g = "0.090195879340172", b = "0.17254863679409"}
 			demonhunter = {r = "0.63921427726746", g = "0.1882348805666", b = "0.78823357820511"}
 			monk = {r = "0", g = "0.99999779462814", b = "0.59607714414597"}
 			rogue = {r = "0.74901795387268", g = "0.72156703472137", b = "0.30588167905807"}
@@ -441,6 +441,10 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 		if UF.units.player then
 			local unitframe = _G["ElvUF_Player"]
 			if unitframe and unitframe.Health then
+
+				local r11,g11,b11 = unitframe.Health:GetStatusBarColor()
+
+				print(r11,g11,b11)
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 					if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
 						playertexture = unitframeclasscustom[E.myclass]
@@ -2011,7 +2015,11 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 						truer = 0.99999779462814
 						trueg = 0.99999779462814
 						trueb = 0.99999779462814
-					elseif unit1class == 'SHAMAN' and E.Wrath or E.TBC then
+					elseif unit1class == 'DEATHKNIGHT' then
+						truer = 0.76862573623657
+						trueg = 0.1215683594346
+						trueb = 0.23137204349041
+					elseif unit1class == 'SHAMAN' and (E.Wrath or E.TBC) then
 						truer = 0
 						trueg = 0.4392147064209
 						trueb = 0.87058633565903
@@ -2105,7 +2113,11 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 						truer = 0.74901795387268
 						trueg = 0.74901795387268
 						trueb = 0.74901795387268
-					elseif unit1class == 'SHAMAN' and E.Wrath or E.TBC then
+					elseif unit1class == 'DEATHKNIGHT' then
+						truer = 0.57646930217743
+						trueg = 0.090195879340172
+						trueb = 0.17254863679409
+					elseif unit1class == 'SHAMAN' and (E.Wrath or E.TBC) then
 						truer = 0
 						trueg = 0.32941102981567
 						trueb = 0.65097898244858
