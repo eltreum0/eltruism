@@ -1123,7 +1123,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybg = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							armorybgtextureselect = {
-								order = 194,
+								order = 3,
 								type = 'select',
 								name = L["Background Texture Type"],
 								desc = L["Choose between a Class, Race or Custom Background"],
@@ -1139,7 +1139,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armorybgtype = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							bgcustomtexture = {
-								order = 195,
+								order = 4,
 								type = 'group',
 								inline = true,
 								name = L["Name of file inside Interface\\Addons"],
@@ -1157,7 +1157,7 @@ function ElvUI_EltreumUI:Configtable()
 								}
 							},
 							expandartcrest = {
-								order = 4,
+								order = 5,
 								type = 'toggle',
 								name = L["Add Crest to Character Panel"],
 								width = 'full',
@@ -1166,7 +1166,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorycrest = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							statcolors = {
-								order = 5,
+								order = 6,
 								type = 'toggle',
 								name = L["Add Class Gradient Colors to Stats"],
 								width = 'full',
@@ -1176,7 +1176,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.statcolors = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header845 = {
-								order = 6,
+								order = 7,
 								type = "description",
 								name = "",
 								width = 'full',
@@ -1186,7 +1186,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'range',
 								name = L["Art Alpha"],
 								desc = L["Change the transparency of the Art"],
-								order = 7,
+								order = 8,
 								min = 0.01,
 								max = 1,
 								step = 0.01,
