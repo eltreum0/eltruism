@@ -1504,6 +1504,7 @@ local qualityAnchor
 local qualityAnchorInspect
 function ElvUI_EltreumUI:PlayerItemQuality(unit)
 	if E.db.ElvUI_EltreumUI.skins.expandarmorybg and not E.private.skins.blizzard.enable == false then
+		_G["CharacterModelFrame"]:SetFrameLevel(_G["CharacterModelFrame"]:GetFrameLevel()-2)
 		for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 			qualityAnchor = _G["Character"..InvSlotIdTable[InvSlotId]]
 			if qualityAnchor == nil then return end
