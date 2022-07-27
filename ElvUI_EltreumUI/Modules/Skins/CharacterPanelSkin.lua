@@ -1533,8 +1533,9 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 				local quality = select(3,GetItemInfo(itemLink))
 				local r,g,b = GetItemQualityColor(quality)
 				qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
+				qualityAnchor.Frame.Quality:SetAlpha(1)
 			elseif itemLink == nil then
-				qualityAnchor.Frame.Quality:Hide()
+				qualityAnchor.Frame.Quality:SetAlpha(0)
 			end
 
 			--align them left or right based on id since its known where they go (unless another addon changes their side...)
@@ -1640,8 +1641,9 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							local quality = select(3,GetItemInfo(itemLink))
 							local r,g,b = GetItemQualityColor(quality)
 							qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
+							qualityAnchorInspect.Frame.Quality:SetAlpha(1)
 						else
-							qualityAnchorInspect.Frame.Quality:Hide()
+							qualityAnchorInspect.Frame.Quality:SetAlpha(0)
 						end
 
 						--align them left or right based on id since its known where they go (unless another addon changes their side...)
