@@ -304,7 +304,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 				elseif E.db.ElvUI_EltreumUI.skins.racebg then
-					print(E.myrace)
 					CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace]) --(left, right, top, bottom)
 					if E.myrace == "BloodElf" or E.myrace == "Dwarf" or E.myrace == "LightforgedDraenei" or E.myrace == "Pandaren" then
 						CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.5, 0, 0.27) --topleft
@@ -317,11 +316,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					elseif E.myrace == "Goblin" or E.myrace == "Mechagnome" or E.myrace == "Troll" then
 						CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.5, 0.33, 0.60) --middleleft
 					elseif E.myrace == "HighmountainTauren" or E.myrace == "Nightborne" or E.myrace == "Scourge" then
-						CharacterFrameBackgroundTexture:SetTexCoord(0.5, 0.1, 0.33, 0.60) --middleright
+						CharacterFrameBackgroundTexture:SetTexCoord(0.5, 1, 0.33, 0.60) --middleright
 					elseif E.myrace == "Worgen" then
-						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.5, 0, 1) --left
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.5, 0, 0.6) --left
 					elseif E.myrace == "ZandalariTroll" then
-						CharacterFrameBackgroundTexture:SetTexCoord(0.5, 0, 0, 1) --right
+						CharacterFrameBackgroundTexture:SetTexCoord(0.5, 1, 0, 0.6) --right
 					end
 				end
 				CharacterFrameBackgroundTexture:SetAlpha(alphabg)
