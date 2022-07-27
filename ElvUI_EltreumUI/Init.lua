@@ -296,7 +296,7 @@ function ElvUI_EltreumUI:PLAYER_AVG_ITEM_LEVEL_UPDATE()
 	ElvUI_EltreumUI:UpdateAvgIlvl()
 end
 
-function ElvUI_EltreumUI:INSPECT_READY(event,unit)
+function ElvUI_EltreumUI:INSPECT_READY(_,unit)
 	ElvUI_EltreumUI:InspectBg(unit)
 end
 
