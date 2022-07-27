@@ -95,26 +95,33 @@ local classBgs = {
 }
 
 local raceBgs = {
-	["Troll"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
-	["Draenei"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones1",
-	["Human"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones2",
-	["Orc"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
-	["Tauren"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
-	["Dwarf"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones2",
 	["BloodElf"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones1",
-	["Pandaren"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
-	["Nightborne"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
-	["Worgen"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones5",
+	["DarkIronDwarf"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones1",
+	["Draenei"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones1",
+
+	["Dwarf"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones2",
+	["Gnome"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones2",
 	["Goblin"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones2",
 	["HighmountainTauren"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones2",
-	["ZandalariTroll"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones5",
+	["Human"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones2",
+	["KulTiran"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones2",
+
+	["LightforgedDraenei"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
 	["Vulpera"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
 	["MagharOrc"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
-	["KulTiran"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones2",
-	["VoidElf"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
-	["LightforgedDraenei"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
-	["DarkIronDwarf"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones1",
 	["Mechagnome"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
+	["Nightborne"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
+	["NightElf"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
+	["Orc"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
+
+	["Pandaren"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
+	["Tauren"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
+	["Troll"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
+	["Scourge"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
+	["VoidElf"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
+
+	["Worgen"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones5",
+	["ZandalariTroll"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones5",
 }
 
 local classicraceBgs = {
@@ -129,7 +136,6 @@ local classicraceBgs = {
 	["Tauren"] = "Interface\\Glues\\Models\\UI_HIGHMOUNTAINTAUREN\\UI_Tauren_05",
 	["Dwarf"] = "Interface\\Glues\\Models\\UI_Gnome\\UI_GNOME_BG05",
 }
-
 
 local classCrests = {
 	["WARRIOR"] = "Artifacts-Warrior-BG-rune",
@@ -298,9 +304,24 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 				elseif E.db.ElvUI_EltreumUI.skins.racebg then
-					CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
-					if E.myrace ~= ("Draenei" or "Human" or "Orc" or "Tauren" or "Dwarf") then
-						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.7, 0.28, 0.85) --loading screen settex
+					print(E.myrace)
+					CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace]) --(left, right, top, bottom)
+					if E.myrace == "BloodElf" or E.myrace == "Dwarf" or E.myrace == "LightforgedDraenei" or E.myrace == "Pandaren" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.5, 0, 0.27) --topleft
+					elseif E.myrace == "DarkIronDwarf" or E.myrace == "Gnome" or E.myrace == "Vulpera" or E.myrace == "MagharOrc" or E.myrace == "Tauren" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0.5, 0.9, 0, 0.27) --topright
+					elseif E.myrace == "Draenei" or E.myrace == "KulTiran" or E.myrace == "Orc" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0.5, 0.9, 0.7, 1) --bottomright
+					elseif E.myrace == "Human" or E.myrace == "NightElf" or E.myrace == "VoidElf" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.5, 0.7, 1) --bottomleft
+					elseif E.myrace == "Goblin" or E.myrace == "Mechagnome" or E.myrace == "Troll" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.5, 0.33, 0.60) --middleleft
+					elseif E.myrace == "HighmountainTauren" or E.myrace == "Nightborne" or E.myrace == "Scourge" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0.5, 0.1, 0.33, 0.60) --middleright
+					elseif E.myrace == "Worgen" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.5, 0, 1) --left
+					elseif E.myrace == "ZandalariTroll" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0.5, 0, 0, 1) --right
 					end
 				end
 				CharacterFrameBackgroundTexture:SetAlpha(alphabg)
