@@ -1504,7 +1504,6 @@ local qualityAnchor
 local qualityAnchorInspect
 function ElvUI_EltreumUI:PlayerItemQuality(unit)
 	if E.db.ElvUI_EltreumUI.skins.expandarmorybg and not E.private.skins.blizzard.enable == false then
-		_G["CharacterModelFrame"]:SetFrameLevel(_G["CharacterModelFrame"]:GetFrameLevel()-2)
 		for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 			qualityAnchor = _G["Character"..InvSlotIdTable[InvSlotId]]
 			if qualityAnchor == nil then return end
@@ -1521,7 +1520,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 			end
 
 			local slotlevel = _G["CharacterModelFrame"]:GetFrameLevel()
-			qualityAnchor.Frame:SetFrameLevel(slotlevel+1) --needs to be changed to not overlap the sockets/enchants
+			qualityAnchor.Frame:SetFrameLevel(slotlevel-1) --needs to be changed to not overlap the sockets/enchants
 			local slotsize = _G["Character"..InvSlotName]:GetHeight()
 			qualityAnchor.Frame:SetSize(120, slotsize+2)
 
@@ -1632,7 +1631,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					end
 
 					local slotlevel = _G["InspectModelFrame"]:GetFrameLevel()
-					qualityAnchorInspect.Frame:SetFrameLevel(slotlevel+1)
+					qualityAnchorInspect.Frame:SetFrameLevel(slotlevel-1)
 					local slotsize = _G["Inspect"..InvSlotName]:GetHeight()
 					qualityAnchorInspect.Frame:SetSize(120, slotsize+2)
 
