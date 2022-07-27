@@ -101,6 +101,8 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:DevTools()
 	end
 	ElvUI_EltreumUI:Shadows() --adds shadows to frames
+
+	ElvUI_EltreumUI:PlayerItemQuality("player")
 end
 
 function ElvUI_EltreumUI:Initialize()

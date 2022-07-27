@@ -55,29 +55,54 @@ if E.Wrath or E.TBC or E.Classic then
 	CharacterFrame.Text3 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 	CharacterFrame.Text4 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 	CharacterFrame.Text5 = CharacterFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-	CharacterFrame.StatusLine = CreateFrame("StatusBar", "EltruismCharacterBar1", CharacterFrame)
-	CharacterFrame.StatusLine2 = CreateFrame("StatusBar", "EltruismCharacterBar2", CharacterFrame)
-	CharacterFrame.StatusLine3 = CreateFrame("StatusBar", "EltruismCharacterBar3", CharacterFrame)
-	CharacterFrame.StatusLine4 = CreateFrame("StatusBar", "EltruismCharacterBar4", CharacterFrame)
+	CharacterFrame.StatusLine = CreateFrame("StatusBar", "EltruismCharacterBar1", PaperDollItemsFrame)
+	CharacterFrame.StatusLine2 = CreateFrame("StatusBar", "EltruismCharacterBar2", PaperDollItemsFrame)
+	CharacterFrame.StatusLine3 = CreateFrame("StatusBar", "EltruismCharacterBar3", PaperDollItemsFrame)
+	CharacterFrame.StatusLine4 = CreateFrame("StatusBar", "EltruismCharacterBar4", PaperDollItemsFrame)
 end
 
 if E.Wrath or E.TBC then
-	_G.PlayerStatFrameLeft2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine12", CharacterFrame)
-	_G.PlayerStatFrameLeft4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine22", CharacterFrame)
-	_G.PlayerStatFrameLeft6.StatusLine = CreateFrame("StatusBar", "EltruismStatLine32", CharacterFrame)
-	_G.PlayerStatFrameRight2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine52", CharacterFrame)
-	_G.PlayerStatFrameRight4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine62", CharacterFrame)
-	_G.PlayerStatFrameRight6.StatusLine = CreateFrame("StatusBar", "EltruismStatLine7", CharacterFrame)
+	_G.PlayerStatFrameLeft2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine12", PaperDollItemsFrame)
+	_G.PlayerStatFrameLeft4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine22", PaperDollItemsFrame)
+	_G.PlayerStatFrameLeft6.StatusLine = CreateFrame("StatusBar", "EltruismStatLine32", PaperDollItemsFrame)
+	_G.PlayerStatFrameRight2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine52", PaperDollItemsFrame)
+	_G.PlayerStatFrameRight4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine62", PaperDollItemsFrame)
+	_G.PlayerStatFrameRight6.StatusLine = CreateFrame("StatusBar", "EltruismStatLine7", PaperDollItemsFrame)
 end
 
 if E.Classic then
-	_G.CharacterArmorFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine3", CharacterFrame)
-	_G.CharacterAttackPowerFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine4", CharacterFrame)
-	_G.CharacterRangedAttackFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine5", CharacterFrame)
-	_G.CharacterRangedDamageFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine6", CharacterFrame)
-	_G.CharacterStatFrame2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine1", CharacterFrame)
-	_G.CharacterStatFrame4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine2", CharacterFrame)
+	_G.CharacterArmorFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine3", PaperDollItemsFrame)
+	_G.CharacterAttackPowerFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine4", PaperDollItemsFrame)
+	_G.CharacterRangedAttackFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine5", PaperDollItemsFrame)
+	_G.CharacterRangedDamageFrame.StatusLine = CreateFrame("StatusBar", "EltruismStatLine6", PaperDollItemsFrame)
+	_G.CharacterStatFrame2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine1", PaperDollItemsFrame)
+	_G.CharacterStatFrame4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine2", PaperDollItemsFrame)
 end
+
+
+--https://wowpedia.fandom.com/wiki/InventorySlotId
+local InvSlotIdTable = {
+	[1] = "HeadSlot", --left
+	[2] = "NeckSlot", --left
+	[4] = "ShirtSlot", --left
+	[3] = "ShoulderSlot", --left
+	[5] = "ChestSlot", --left
+	[6] = "WaistSlot", --right
+	[7] = "LegsSlot", --right
+	[8] = "FeetSlot",--right
+	[9] = "WristSlot", --left
+	[10] = "HandsSlot", --right
+	[11] = "Finger0Slot", --right
+	[12] = "Finger1Slot",--right
+	[13] = "Trinket0Slot",--right
+	[14] = "Trinket1Slot",--right
+	[15] = "BackSlot", --left
+	[16] = "MainHandSlot", --left
+	[17] = "SecondaryHandSlot",--right
+	[18] = "RangedSlot", --classic only
+	[19] = "TabardSlot", --left
+}
+
 
 local classBgs = {
 	["WARRIOR"] = "Interface\\Artifacts\\ArtifactUIWarrior",
@@ -832,83 +857,83 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 
 				hooksecurefunc("PaperDollFrame_UpdateStats", function()
-						if E.Wrath or E.TBC then
-							if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
-								_G.PlayerStatFrameLeft1Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.PlayerStatFrameLeft2Label:GetText():match("|r") then
-								_G.PlayerStatFrameLeft2Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.PlayerStatFrameLeft3Label:GetText():match("|r") then
-								_G.PlayerStatFrameLeft3Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.PlayerStatFrameLeft4Label:GetText():match("|r") then
-								_G.PlayerStatFrameLeft4Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.PlayerStatFrameLeft5Label:GetText():match("|r") then
-								_G.PlayerStatFrameLeft5Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if _G.PlayerStatFrameLeft6Label and not _G.PlayerStatFrameLeft6Label:GetText():match("|r") then
-								_G.PlayerStatFrameLeft6Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.PlayerStatFrameRight1Label:GetText():match("|r") then
-								_G.PlayerStatFrameRight1Label:SetText(E:TextGradient(_G.PlayerStatFrameRight1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.PlayerStatFrameRight2Label:GetText():match("|r") then
-								_G.PlayerStatFrameRight2Label:SetText(E:TextGradient(_G.PlayerStatFrameRight2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.PlayerStatFrameRight3Label:GetText():match("|r") then
-								_G.PlayerStatFrameRight3Label:SetText(E:TextGradient(_G.PlayerStatFrameRight3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.PlayerStatFrameRight4Label:GetText():match("|r") then
-								_G.PlayerStatFrameRight4Label:SetText(E:TextGradient(_G.PlayerStatFrameRight4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.PlayerStatFrameRight5Label:GetText():match("|r") then
-								_G.PlayerStatFrameRight5Label:SetText(E:TextGradient(_G.PlayerStatFrameRight5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if _G.PlayerStatFrameRight6Label:GetText() ~= nil and not _G.PlayerStatFrameRight6Label:GetText():match("|r") then
-								_G.PlayerStatFrameRight6Label:SetText(E:TextGradient(_G.PlayerStatFrameRight6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-						elseif E.Classic then
-							if not _G.CharacterStatFrame1Label:GetText():match("|r") then
-								_G.CharacterStatFrame1Label:SetText(E:TextGradient(_G.CharacterStatFrame1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.CharacterStatFrame2Label:GetText():match("|r") then
-								_G.CharacterStatFrame2Label:SetText(E:TextGradient(_G.CharacterStatFrame2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.CharacterStatFrame3Label:GetText():match("|r") then
-								_G.CharacterStatFrame3Label:SetText(E:TextGradient(_G.CharacterStatFrame3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.CharacterStatFrame4Label:GetText():match("|r") then
-								_G.CharacterStatFrame4Label:SetText(E:TextGradient(_G.CharacterStatFrame4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.CharacterStatFrame5Label:GetText():match("|r") then
-								_G.CharacterStatFrame5Label:SetText(E:TextGradient(_G.CharacterStatFrame5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-
-							if not _G.CharacterArmorFrameLabel:GetText():match("|r") then
-								_G.CharacterArmorFrameLabel:SetText(E:TextGradient(_G.CharacterArmorFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.CharacterAttackFrameLabel:GetText():match("|r") then
-								_G.CharacterAttackFrameLabel:SetText(E:TextGradient(_G.CharacterAttackFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.CharacterAttackPowerFrameLabel:GetText():match("|r") then
-								_G.CharacterAttackPowerFrameLabel:SetText(E:TextGradient(_G.CharacterAttackPowerFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.CharacterDamageFrameLabel:GetText():match("|r") then
-								_G.CharacterDamageFrameLabel:SetText(E:TextGradient(_G.CharacterDamageFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.CharacterRangedAttackFrameLabel:GetText():match("|r") then
-								_G.CharacterRangedAttackFrameLabel:SetText(E:TextGradient(_G.CharacterRangedAttackFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.CharacterRangedAttackPowerFrameLabel:GetText():match("|r") then
-								_G.CharacterRangedAttackPowerFrameLabel:SetText(E:TextGradient(_G.CharacterRangedAttackPowerFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
-							if not _G.CharacterRangedDamageFrameLabel:GetText():match("|r") then
-								_G.CharacterRangedDamageFrameLabel:SetText(E:TextGradient(_G.CharacterRangedDamageFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-							end
+					if E.Wrath or E.TBC then
+						if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
+							_G.PlayerStatFrameLeft1Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
 						end
-					end)
+						if not _G.PlayerStatFrameLeft2Label:GetText():match("|r") then
+							_G.PlayerStatFrameLeft2Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameLeft3Label:GetText():match("|r") then
+							_G.PlayerStatFrameLeft3Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameLeft4Label:GetText():match("|r") then
+							_G.PlayerStatFrameLeft4Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameLeft5Label:GetText():match("|r") then
+							_G.PlayerStatFrameLeft5Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if _G.PlayerStatFrameLeft6Label and not _G.PlayerStatFrameLeft6Label:GetText():match("|r") then
+							_G.PlayerStatFrameLeft6Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameRight1Label:GetText():match("|r") then
+							_G.PlayerStatFrameRight1Label:SetText(E:TextGradient(_G.PlayerStatFrameRight1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameRight2Label:GetText():match("|r") then
+							_G.PlayerStatFrameRight2Label:SetText(E:TextGradient(_G.PlayerStatFrameRight2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameRight3Label:GetText():match("|r") then
+							_G.PlayerStatFrameRight3Label:SetText(E:TextGradient(_G.PlayerStatFrameRight3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameRight4Label:GetText():match("|r") then
+							_G.PlayerStatFrameRight4Label:SetText(E:TextGradient(_G.PlayerStatFrameRight4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.PlayerStatFrameRight5Label:GetText():match("|r") then
+							_G.PlayerStatFrameRight5Label:SetText(E:TextGradient(_G.PlayerStatFrameRight5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if _G.PlayerStatFrameRight6Label:GetText() ~= nil and not _G.PlayerStatFrameRight6Label:GetText():match("|r") then
+							_G.PlayerStatFrameRight6Label:SetText(E:TextGradient(_G.PlayerStatFrameRight6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+					elseif E.Classic then
+						if not _G.CharacterStatFrame1Label:GetText():match("|r") then
+							_G.CharacterStatFrame1Label:SetText(E:TextGradient(_G.CharacterStatFrame1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterStatFrame2Label:GetText():match("|r") then
+							_G.CharacterStatFrame2Label:SetText(E:TextGradient(_G.CharacterStatFrame2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterStatFrame3Label:GetText():match("|r") then
+							_G.CharacterStatFrame3Label:SetText(E:TextGradient(_G.CharacterStatFrame3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterStatFrame4Label:GetText():match("|r") then
+							_G.CharacterStatFrame4Label:SetText(E:TextGradient(_G.CharacterStatFrame4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterStatFrame5Label:GetText():match("|r") then
+							_G.CharacterStatFrame5Label:SetText(E:TextGradient(_G.CharacterStatFrame5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+
+						if not _G.CharacterArmorFrameLabel:GetText():match("|r") then
+							_G.CharacterArmorFrameLabel:SetText(E:TextGradient(_G.CharacterArmorFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterAttackFrameLabel:GetText():match("|r") then
+							_G.CharacterAttackFrameLabel:SetText(E:TextGradient(_G.CharacterAttackFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterAttackPowerFrameLabel:GetText():match("|r") then
+							_G.CharacterAttackPowerFrameLabel:SetText(E:TextGradient(_G.CharacterAttackPowerFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterDamageFrameLabel:GetText():match("|r") then
+							_G.CharacterDamageFrameLabel:SetText(E:TextGradient(_G.CharacterDamageFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterRangedAttackFrameLabel:GetText():match("|r") then
+							_G.CharacterRangedAttackFrameLabel:SetText(E:TextGradient(_G.CharacterRangedAttackFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterRangedAttackPowerFrameLabel:GetText():match("|r") then
+							_G.CharacterRangedAttackPowerFrameLabel:SetText(E:TextGradient(_G.CharacterRangedAttackPowerFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if not _G.CharacterRangedDamageFrameLabel:GetText():match("|r") then
+							_G.CharacterRangedDamageFrameLabel:SetText(E:TextGradient(_G.CharacterRangedDamageFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+					end
+				end)
 			end
 
 			--add class crest
@@ -1042,6 +1067,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PetLoyaltyText:SetPoint('BOTTOM', _G.PetLevelText, 0, -20)
 					_G.PetPaperDollCloseButton:Hide()
 				elseif E.Wrath then --wotlk specific tweaks
+					--[[
 					_G.CompanionSummonButton:ClearAllPoints()
 					_G.CompanionSummonButton:SetPoint('BOTTOM', _G.CompanionModelFrame, "Bottom", 0, -55)
 					_G.CompanionSelectedName:SetPoint('TOP', _G.CompanionSummonButton, 0, 20)
@@ -1077,7 +1103,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					hooksecurefunc("ReputationBar_OnClick", function()
 						_G.ReputationDetailFrame:ClearAllPoints()
 						_G.ReputationDetailFrame:SetPoint("TOPLEFT", _G.CharacterFrame.backdrop, "TOPRIGHT", 0, 0)
-					end)
+					end)]]
 
 				end
 
@@ -1087,68 +1113,98 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
 				CharacterNameText:SetShadowOffset(2, -1)
 
-				SkillFrame:SetHeight(400)
+				--[[SkillFrame:SetHeight(400)
 				_G.SkillDetailScrollChildFrame:ClearAllPoints()
 				_G.SkillDetailScrollChildFrame:SetPoint("BOTTOMLEFT", CharacterFrame, "BOTTOMLEFT", 30, 150)
 				_G.SkillDetailScrollChildFrame:SetParent(SkillFrame)
-				_G.SkillFrameCancelButton:Hide()
+				_G.SkillFrameCancelButton:Hide()]]
 
 				--_G.ReputationDefailFrame:SetPoint('TOPRIGHT', _G.CharacterFrame)
 
 				CharacterFrame.Text4:SetSize(418, 72)
 				CharacterFrame.Text4:SetPoint("TOP", CharacterFrame, "TOP", 150, 10)
+				CharacterFrame.Text4:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.Text4:SetTextColor(1, 1, 1)
 				CharacterFrame.Text4:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 				CharacterFrame.Text4:SetText(L["Specialization"])
 
 				CharacterFrame.StatusLine4:SetSize(170, 3)
 				CharacterFrame.StatusLine4:SetPoint("CENTER", CharacterFrame.Text4, "CENTER", 0, -15)
+				CharacterFrame.StatusLine4:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.StatusLine4:SetStatusBarTexture(E.Media.Textures.Highlight)
 				CharacterFrame.StatusLine4:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
 				CharacterFrame.Text5:SetSize(418, 72)
 				CharacterFrame.Text5:SetPoint("TOP", CharacterFrame, "TOP", 150, -20)
+				CharacterFrame.Text5:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.Text5:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				CharacterFrame.Text5:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 				CharacterFrame.Text5:SetText(PlayerSpec())
 
 				CharacterFrame:SetSize(600, 505)
+				hooksecurefunc("CharacterFrameTab_OnClick", function()
+					if PaperDollFrame:IsShown() then
+						CharacterFrame:SetSize(600, 505)
+					else
+						CharacterFrame:SetSize(400, 505)
+					end
+				end)
 
-				_G.SkillListScrollFrameScrollBar:ClearAllPoints()
+				--swap position so they look right with the quality stuff
+				--[[_G.CharacterRangedSlot:ClearAllPoints()
+				_G.CharacterRangedSlot:SetPoint("LEFT", _G.CharacterMainHandSlot, "RIGHT", 10, 0)
+
+				_G.CharacterSecondaryHandSlot:ClearAllPoints()
+				_G.CharacterSecondaryHandSlot:SetPoint("LEFT", _G.CharacterRangedSlot, "RIGHT", 10, 0)]]
+
+				_G.PaperDollItemsFrame:SetScript("OnShow", function()
+					if PaperDollFrame:IsShown() then
+						CharacterFrame:SetSize(600, 505)
+					else
+						CharacterFrame:SetSize(400, 505)
+					end
+				end)
+
+				--[[_G.SkillListScrollFrameScrollBar:ClearAllPoints()
 				_G.SkillListScrollFrameScrollBar:SetPoint("RIGHT", _G.SkillFrame, "RIGHT", -240, 50)
-				_G.SkillListScrollFrameScrollBar:SetSize(50, 188)
+				_G.SkillListScrollFrameScrollBar:SetSize(50, 188)]]
 
 				CharacterFrame.Text:SetSize(418, 72)
 				CharacterFrame.Text:SetPoint("TOP", CharacterFrame, "TOP", 150, -45)
+				CharacterFrame.Text:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.Text:SetTextColor(1, 1, 1)
 				CharacterFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 				CharacterFrame.Text:SetText(L["Item Level"])
 
 				CharacterFrame.StatusLine:SetSize(170, 3)
 				CharacterFrame.StatusLine:SetPoint("CENTER", CharacterFrame.Text, "CENTER", 0, -15)
+				CharacterFrame.StatusLine:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 				CharacterFrame.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
 				CharacterFrame.Text2:SetSize(418, 72)
 				CharacterFrame.Text2:SetPoint("TOP", CharacterFrame, "TOP", 150, -80)
+				CharacterFrame.Text2:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.Text2:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				CharacterFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 
 				CharacterFrame.StatusLine2:SetFrameStrata("LOW")
 				CharacterFrame.StatusLine2:SetSize(170, 25)
 				CharacterFrame.StatusLine2:SetPoint("CENTER", CharacterFrame.Text2, "CENTER", 0, 0)
+				CharacterFrame.StatusLine2:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
 				CharacterFrame.StatusLine2:SetStatusBarColor(1, 1, 1, 0.8)
 
-
 				CharacterFrame.Text3:SetSize(418, 72)
 				CharacterFrame.Text3:SetPoint("TOP", CharacterFrame, "TOP", 150, -105)
+				CharacterFrame.Text3:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.Text3:SetTextColor(1, 1, 1)
 				CharacterFrame.Text3:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 				CharacterFrame.Text3:SetText(L["Attributes"])
 
 				CharacterFrame.StatusLine3:SetSize(170, 3)
 				CharacterFrame.StatusLine3:SetPoint("CENTER", CharacterFrame.Text3, "CENTER", 0, -15)
+				CharacterFrame.StatusLine3:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.StatusLine3:SetStatusBarTexture(E.Media.Textures.Highlight)
 				CharacterFrame.StatusLine3:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
@@ -1169,90 +1225,98 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.MagicResFrame2:ClearAllPoints()
 				_G.MagicResFrame2:SetParent(_G.MagicResFrame1)
 				_G.MagicResFrame2:SetPoint("RIGHT", _G.MagicResFrame1, "RIGHT", 27, 0)
+				_G.MagicResFrame2:SetParent(_G["PaperDollItemsFrame"])
 				_G.MagicResFrame3:ClearAllPoints()
 				_G.MagicResFrame3:SetParent(_G.MagicResFrame2)
 				_G.MagicResFrame3:SetPoint("RIGHT", _G.MagicResFrame2, "RIGHT", 27, 0)
+				_G.MagicResFrame3:SetParent(_G["PaperDollItemsFrame"])
 				_G.MagicResFrame4:ClearAllPoints()
 				_G.MagicResFrame4:SetParent(_G.MagicResFrame3)
 				_G.MagicResFrame4:SetPoint("RIGHT", _G.MagicResFrame3, "RIGHT", 27, 0)
+				_G.MagicResFrame4:SetParent(_G["PaperDollItemsFrame"])
 				_G.MagicResFrame5:ClearAllPoints()
 				_G.MagicResFrame5:SetParent(_G.MagicResFrame4)
 				_G.MagicResFrame5:SetPoint("RIGHT", _G.MagicResFrame4, "RIGHT", 27, 0)
+				_G.MagicResFrame5:SetParent(_G["PaperDollItemsFrame"])
 
 				if E.Wrath or E.TBC then
 					--"left side" or in this case the top side
 					_G.PlayerStatFrameLeftDropDown:ClearAllPoints()
 					_G.PlayerStatFrameLeftDropDown:SetPoint("TOP", CharacterFrame, "TOP", 143, -200)
-					_G.PlayerStatFrameLeftDropDown:SetParent(CharacterFrame)
+					_G.PlayerStatFrameLeftDropDown:SetParent(_G["PaperDollItemsFrame"])
 
 					_G.PlayerStatFrameLeft1:ClearAllPoints()
 					_G.PlayerStatFrameLeft1:SetPoint("TOP", CharacterFrame, "TOP", 124, -225)
-					_G.PlayerStatFrameLeft1:SetParent(CharacterFrame)
+					_G.PlayerStatFrameLeft1:SetParent(_G["PaperDollItemsFrame"])
+
 					_G.PlayerStatFrameLeft2:ClearAllPoints()
 					_G.PlayerStatFrameLeft2:SetPoint("BOTTOM", _G.PlayerStatFrameLeft1, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft2:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft2:SetParent(_G["PaperDollItemsFrame"])
 
 					_G.PlayerStatFrameLeft2.StatusLine:SetSize(170, 12)
 					_G.PlayerStatFrameLeft2.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameLeft2, "CENTER", 25, 0)
+					_G.PlayerStatFrameLeft2.StatusLine:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameLeft2.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					_G.PlayerStatFrameLeft2.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
 
 					_G.PlayerStatFrameLeft3:ClearAllPoints()
 					_G.PlayerStatFrameLeft3:SetPoint("BOTTOM", _G.PlayerStatFrameLeft2, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft3:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft3:SetParent(_G["PaperDollItemsFrame"])
 
 					_G.PlayerStatFrameLeft4:ClearAllPoints()
 					_G.PlayerStatFrameLeft4:SetPoint("BOTTOM", _G.PlayerStatFrameLeft3, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft4:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft4:SetParent(_G["PaperDollItemsFrame"])
 
 					_G.PlayerStatFrameLeft4.StatusLine:SetSize(170, 12)
 					_G.PlayerStatFrameLeft4.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameLeft4, "CENTER", 25, 0)
+					_G.PlayerStatFrameLeft4.StatusLine:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameLeft4.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					_G.PlayerStatFrameLeft4.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
 
 					_G.PlayerStatFrameLeft5:ClearAllPoints()
 					_G.PlayerStatFrameLeft5:SetPoint("BOTTOM", _G.PlayerStatFrameLeft4, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft5:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft5:SetParent(_G["PaperDollItemsFrame"])
 
 					_G.PlayerStatFrameLeft6:ClearAllPoints()
 					_G.PlayerStatFrameLeft6:SetPoint("BOTTOM", _G.PlayerStatFrameLeft5, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft6:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft6:SetParent(_G["PaperDollItemsFrame"])
 
 					_G.PlayerStatFrameLeft6.StatusLine:SetSize(170, 12)
 					_G.PlayerStatFrameLeft6.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameLeft6, "CENTER", 25, 0)
+					_G.PlayerStatFrameLeft6.StatusLine:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameLeft6.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					_G.PlayerStatFrameLeft6.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
 
 					_G.PlayerStatFrameLeft1Stat:ClearAllPoints()
 					_G.PlayerStatFrameLeft1Stat:SetPoint("TOP", CharacterFrame, "TOP", 211, -225)
-					_G.PlayerStatFrameLeft1Stat:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft1Stat:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameLeft2Stat:ClearAllPoints()
 					_G.PlayerStatFrameLeft2Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft1Stat, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft2Stat:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft2Stat:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameLeft3Stat:ClearAllPoints()
 					_G.PlayerStatFrameLeft3Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft2Stat, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft3Stat:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft3Stat:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameLeft4Stat:ClearAllPoints()
 					_G.PlayerStatFrameLeft4Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft3Stat, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft4Stat:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft4Stat:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameLeft5Stat:ClearAllPoints()
 					_G.PlayerStatFrameLeft5Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft4Stat, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft5Stat:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft5Stat:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameLeft6Stat:ClearAllPoints()
 					_G.PlayerStatFrameLeft6Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft5Stat, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft6Stat:SetParent(_G.PlayerStatFrameLeft1)
+					_G.PlayerStatFrameLeft6Stat:SetParent(_G["PaperDollItemsFrame"])
 
 					--"right side", on this case its the bottom
 					_G.PlayerStatFrameRightDropDown:ClearAllPoints()
 					_G.PlayerStatFrameRightDropDown:SetPoint("TOP", CharacterFrame, "TOP", 143, -310)
-					_G.PlayerStatFrameRightDropDown:SetParent(CharacterFrame)
+					_G.PlayerStatFrameRightDropDown:SetParent(_G["PaperDollItemsFrame"])
 
 					_G.PlayerStatFrameRight1:ClearAllPoints()
 					_G.PlayerStatFrameRight1:SetPoint("TOP", CharacterFrame, "TOP", 124, -335)
-					_G.PlayerStatFrameRight1:SetParent(CharacterFrame)
+					_G.PlayerStatFrameRight1:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameRight2:ClearAllPoints()
 					_G.PlayerStatFrameRight2:SetPoint("BOTTOM", _G.PlayerStatFrameRight1, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameRight2:SetParent(_G.PlayerStatFrameRight1)
+					_G.PlayerStatFrameRight2:SetParent(_G["PaperDollItemsFrame"])
 
 					_G.PlayerStatFrameRight2.StatusLine:SetSize(170, 12)
 					_G.PlayerStatFrameRight2.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameRight2, "CENTER", 25, 0)
@@ -1436,6 +1500,67 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 	end
 end
 
+local qualityAnchor
+local qualityAnchorInspect
+function ElvUI_EltreumUI:PlayerItemQuality(unit)
+	if E.db.ElvUI_EltreumUI.skins.expandarmorybg and not E.private.skins.blizzard.enable == false then
+		for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
+			qualityAnchor = _G["Character"..InvSlotIdTable[InvSlotId]]
+			if qualityAnchor == nil then return end
+
+			if _G["EltruismItemQuality"..InvSlotName] then
+				qualityAnchor.Frame = _G["EltruismItemQuality"..InvSlotName]
+			else
+				qualityAnchor.Frame = CreateFrame('Frame', "EltruismItemQuality"..InvSlotName, qualityAnchor)
+			end
+			if _G["EltruismItemQualityTexture"..InvSlotName] then
+				qualityAnchor.Frame.Quality = _G["EltruismItemQualityTexture"..InvSlotName]
+			else
+				qualityAnchor.Frame.Quality = qualityAnchor.Frame:CreateTexture("EltruismItemQualityTexture"..InvSlotName, "OVERLAY")
+			end
+
+			local slotlevel = _G["Character"..InvSlotName]:GetFrameLevel()
+			qualityAnchor.Frame:SetFrameLevel(slotlevel-1) --needs to be changed to not overlap the sockets/enchants
+			local slotsize = _G["Character"..InvSlotName]:GetHeight()
+			qualityAnchor.Frame:SetSize(120, slotsize+2)
+
+			qualityAnchor.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
+			qualityAnchor.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade') --temp for testing
+
+			--get item (actual) quality
+			local itemLink = GetInventoryItemLink(unit, InvSlotId)
+			if itemLink ~= nil then
+				local quality = select(3,GetItemInfo(itemLink))
+				local r,g,b = GetItemQualityColor(quality)
+				qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
+			elseif itemLink == nil then
+				qualityAnchor.Frame.Quality:Hide()
+			end
+
+			--align them left or right based on id since its known where they go (unless another addon changes their side...)
+			if InvSlotId <= 5 or InvSlotId == 9 or InvSlotId == 15 or InvSlotId == 18 or InvSlotId == 19 then
+				qualityAnchor.Frame:SetPoint("LEFT", _G["Character"..InvSlotName], "RIGHT", -_G["Character"..InvSlotName]:GetWidth()-4, 0)
+				qualityAnchor.Frame.Quality:SetPoint("LEFT", _G["Character"..InvSlotName], "RIGHT", -_G["Character"..InvSlotName]:GetWidth()-4, 0)
+			elseif InvSlotId == 6 or InvSlotId == 7 or InvSlotId == 8 or InvSlotId == 10 or InvSlotId == 11 or InvSlotId == 12 or InvSlotId == 13 or InvSlotId == 14 or InvSlotId == 16 then
+				qualityAnchor.Frame:SetPoint("RIGHT", _G["Character"..InvSlotName], "LEFT", _G["Character"..InvSlotName]:GetWidth()+4, 0)
+				qualityAnchor.Frame.Quality:SetPoint("RIGHT", _G["Character"..InvSlotName], "LEFT", _G["Character"..InvSlotName]:GetWidth()+4, 0)
+				--flip the texture since its on the other side
+				qualityAnchor.Frame.Quality:SetTexCoord(1, 0, 0, 1)
+			elseif InvSlotId == 17 then --rotate for the off hand slot that is in the middle in classic/tbc/wrath
+				qualityAnchor.Frame.Quality:SetRotation(1.57079633)
+				qualityAnchor.Frame:SetPoint("BOTTOM", _G["Character"..InvSlotName], "BOTTOM", 0, 37)
+				qualityAnchor.Frame.Quality:SetPoint("BOTTOM", _G["Character"..InvSlotName], "BOTTOM", 0, 37)
+			end
+		end
+	end
+end
+local refreshplayer = CreateFrame("FRAME")
+refreshplayer:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
+refreshplayer:RegisterEvent("UNIT_INVENTORY_CHANGED", "target") --need to test to see if too much cpu/memory (specially for pvp)
+refreshplayer:SetScript("OnEvent", function()
+	ElvUI_EltreumUI:PlayerItemQuality("player")
+end)
+
 --inspect bg
 local EltruismInspectBg = CreateFrame("Frame", "EltruismInspectBg")
 local EltruismInspectBgTexture = EltruismInspectBg:CreateTexture()
@@ -1447,14 +1572,13 @@ function ElvUI_EltreumUI:InspectBg(unit)
 		elseif E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha == nil then
 			alpha = 0.3
 		end
+
 		--inspect frame bg
 		if IsAddOnLoaded("Blizzard_InspectUI") then
-			--local localizedClass, englishClass, localizedRace, englishRace, sex, name, realm = GetPlayerInfoByGUID(unit)
 			EltruismInspectBg:SetParent(_G.InspectFrame)
 			local _, englishClass = GetPlayerInfoByGUID(unit)
 			if englishClass then
 				if _G.InspectFrame then
-					--EltruismInspectBgTexture:SetTexture(classBgs[targetclass])
 					EltruismInspectBgTexture:SetTexture(classBgs[englishClass])
 					EltruismInspectBgTexture:SetTexCoord(0, 0.87, 0, 0.60)
 					if alpha ~= nil then
@@ -1485,9 +1609,66 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame)
 					end
 					EltruismInspectBgTexture:SetDrawLayer("ARTWORK")
+
+					--add a texture based on quality too
+					for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
+						qualityAnchorInspect = _G["Inspect"..InvSlotIdTable[InvSlotId]]
+						if qualityAnchorInspect == nil then return end
+
+						if _G["EltruismInspectItemQuality"..InvSlotName] then
+							qualityAnchorInspect.Frame = _G["EltruismInspectItemQuality"..InvSlotName]
+						else
+							qualityAnchorInspect.Frame = CreateFrame('FRAME', "EltruismInspectItemQuality"..InvSlotName, qualityAnchorInspect)
+						end
+						if _G["EltruismInspectItemQualityTexture"..InvSlotName] then
+							qualityAnchorInspect.Frame.Quality = _G["EltruismInspectItemQualityTexture"..InvSlotName]
+						else
+							qualityAnchorInspect.Frame.Quality = qualityAnchorInspect.Frame:CreateTexture("EltruismInspectItemQualityTexture"..InvSlotName, "OVERLAY")
+						end
+
+						local slotlevel = _G["Inspect"..InvSlotName]:GetFrameLevel()
+						qualityAnchorInspect.Frame:SetFrameLevel(slotlevel-1)
+						local slotsize = _G["Inspect"..InvSlotName]:GetHeight()
+						qualityAnchorInspect.Frame:SetSize(120, slotsize+2)
+
+						qualityAnchorInspect.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade') --temp for testing
+						qualityAnchorInspect.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
+
+						--get item (actual) quality
+						local itemLink = GetInventoryItemLink("target", InvSlotId)
+						if itemLink ~= nil then
+							local quality = select(3,GetItemInfo(itemLink))
+							local r,g,b = GetItemQualityColor(quality)
+							qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
+						else
+							qualityAnchorInspect.Frame.Quality:Hide()
+						end
+
+						--align them left or right based on id since its known where they go (unless another addon changes their side...)
+						if InvSlotId <= 5 or InvSlotId == 9 or InvSlotId == 15 or InvSlotId == 18 or InvSlotId == 19 then
+							qualityAnchorInspect.Frame:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
+							qualityAnchorInspect.Frame.Quality:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
+						elseif InvSlotId == 6 or InvSlotId == 7 or InvSlotId == 8 or InvSlotId == 10 or InvSlotId == 11 or InvSlotId == 12 or InvSlotId == 13 or InvSlotId == 14 or InvSlotId == 16 then
+							qualityAnchorInspect.Frame:SetPoint("RIGHT", _G["Inspect"..InvSlotName], "LEFT", _G["Inspect"..InvSlotName]:GetWidth()+4, 0)
+							qualityAnchorInspect.Frame.Quality:SetPoint("RIGHT", _G["Inspect"..InvSlotName], "LEFT", _G["Inspect"..InvSlotName]:GetWidth()+4, 0)
+							--flip the texture since its on the other side
+							qualityAnchorInspect.Frame.Quality:SetTexCoord(1, 0, 0, 1)
+						elseif InvSlotId == 17 then --rotate for the off hand slot that is in the middle in classic/tbc/wrath
+							qualityAnchorInspect.Frame.Quality:SetRotation(1.57079633)
+							qualityAnchorInspect.Frame:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
+							qualityAnchorInspect.Frame.Quality:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
+						end
+					end
 				end
 			end
 		end
 	end
 end
+
+
+
+
+
+
+
 

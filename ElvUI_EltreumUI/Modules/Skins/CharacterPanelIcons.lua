@@ -83,6 +83,7 @@ function ElvUI_EltreumUI:PlayerNamepaperdoll()
 			else
 				if CharacterFrameTitleText then
 					CharacterNameText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+					CharacterNameText:SetParent(_G["PaperDollItemsFrame"])
 				end
 			end
 		end
@@ -106,6 +107,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 			local totalgap = levelwidth - textwidth
 			local gapclassic = totalgap/4
 			classFrame:SetPoint("RIGHT", "CharacterLevelText", 8-gapclassic, 0)
+			classFrame:SetParent(_G["PaperDollItemsFrame"])
 		elseif E.Retail then
 
 			hooksecurefunc('PaperDollFrame_SetLevel', function()
