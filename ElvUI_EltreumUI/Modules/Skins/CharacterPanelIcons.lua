@@ -45,27 +45,15 @@ local classIconsReleafborder = {
 	["DEMONHUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunterIconReleaf",
 }
 
---create the frame that holds the icon
-local classFrame = CreateFrame("Frame", "EltruismClassIcon", UIParent)
-classFrame:SetSize(20, 20)
-classFrame:SetParent("PaperDollFrame")
-local classTexture = classFrame:CreateTexture()
-classTexture:SetAllPoints(classFrame)
 if E.Retail then
 	CharacterLevelText:SetWidth(300) --new
 elseif E.Classic or E.Wrath or E.TBC then
 	CharacterLevelText:SetWidth(280) --new
 end
-local classsymbolonframe
-local charactertext --check character text
 
---put the icon on the papeldoll frame, modify it a bit if SLE is not loaded
-function ElvUI_EltreumUI:PlayerNamepaperdoll()
-	if not IsAddOnLoaded("ElvUI_EltreumUI") then
-		return
-	elseif not E.private.ElvUI_EltreumUI then
-		return
-	elseif E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false then
+local classsymbolonframe
+function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false then
 		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
 			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
 		elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
@@ -73,42 +61,13 @@ function ElvUI_EltreumUI:PlayerNamepaperdoll()
 		else
 			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
 		end
-		if charactertext == nil then
-			return
-		elseif not charactertext:match("|T") then
-			if E.Retail then
-				if CharacterFrameTitleText then
-					CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
-				end
-			else
-				if CharacterFrameTitleText then
-					CharacterNameText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
-					CharacterNameText:SetParent(_G["PaperDollItemsFrame"])
-				end
-			end
-		end
-	end
-end
 
-function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
-	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false then
-		if E.Classic or E.Wrath or E.TBC then
-			classFrame:ClearAllPoints()
-			--type of icon
-			if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
-				classTexture:SetTexture(classIcons[E.myclass])
-			elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
-				classTexture:SetTexture(classIconsReleafborder[E.myclass])
-			else
-				classTexture:SetTexture(classIcons[E.myclass])
+		if not E.Retail then
+			if not (_G.CharacterNameText:GetText():match("|T") and _G.CharacterNameText:GetText():match(E.myname)) then
+				_G.CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
 			end
-			local textwidth = CharacterLevelText:GetUnboundedStringWidth()
-			local levelwidth = CharacterLevelText:GetWidth()
-			local totalgap = levelwidth - textwidth
-			local gapclassic = totalgap/4
-			classFrame:SetPoint("RIGHT", "CharacterLevelText", 8-gapclassic, 0)
-			classFrame:SetParent(_G["PaperDollItemsFrame"])
 		elseif E.Retail then
+			local charactertext --check character text
 
 			hooksecurefunc('PaperDollFrame_SetLevel', function()
 				CharacterFrameTitleText:ClearAllPoints()
@@ -125,75 +84,68 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc("CharacterFrame_Collapse", function()
 				if PaperDollFrame:IsShown() then
-					if E.Retail then
-						charactertext = CharacterFrameTitleText:GetText()
-						if not charactertext:match("|T") then
-							CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
-						end
-					elseif E.Wrath or E.TBC or E.Classic then
-						charactertext = CharacterFrameTitleText:GetText()
-						if not charactertext:match("|T") then
-							CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
-						end
+					charactertext = CharacterFrameTitleText:GetText()
+					if not charactertext:match("|T") then
+						CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 					end
 				end
 			end)
 
 			hooksecurefunc("CharacterFrame_Expand", function()
 				if PaperDollFrame:IsShown() then
-					if E.Retail then
-						charactertext = CharacterFrameTitleText:GetText()
-						if not charactertext:match("|T") then
-							CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
-						end
-					elseif E.Wrath or E.TBC or E.Classic then
-						charactertext = CharacterFrameTitleText:GetText()
-						if not charactertext:match("|T") then
-							CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
-						end
+					charactertext = CharacterFrameTitleText:GetText()
+					if not charactertext:match("|T") then
+						CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 					end
 				end
 			end)
 
 			hooksecurefunc("ReputationFrame_Update", function()
 				if ReputationFrame:IsShown() then
-					if E.Retail then
-						charactertext = CharacterFrameTitleText:GetText()
-						if not charactertext:match("|T") then
-							CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
-						end
-					elseif E.Wrath or E.TBC or E.Classic then
-						charactertext = CharacterFrameTitleText:GetText()
-						if not charactertext:match("|T") then
-							CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
-						end
+					charactertext = CharacterFrameTitleText:GetText()
+					if not charactertext:match("|T") then
+						CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 					end
 				end
 			end)
 
 			hooksecurefunc("TokenFrame_Update", function()
 				if TokenFrame:IsShown() then
-					if E.Retail then
-						charactertext = CharacterFrameTitleText:GetText()
-						if not charactertext:match("|T") then
-							CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
-						end
-					elseif E.Wrath or E.TBC or E.Classic then
-						charactertext = CharacterFrameTitleText:GetText()
-						if not charactertext:match("|T") then
-							CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
-						end
+					charactertext = CharacterFrameTitleText:GetText()
+					if not charactertext:match("|T") then
+						CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 					end
 				end
 			end)
-
 		end
 	end
 end
 
 local EltruismCharacterPanelEventFrame = CreateFrame("FRAME")
 EltruismCharacterPanelEventFrame:RegisterUnitEvent("UNIT_NAME_UPDATE", "player")
+EltruismCharacterPanelEventFrame:RegisterUnitEvent("PLAYER_ENTERING_WORLD")
 EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
-	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
-	ElvUI_EltreumUI:PlayerNamepaperdoll()
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end
+	if not E.private then return end
+	if not E.private.ElvUI_EltreumUI then return end
+	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false then
+		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+		if not E.Retail then
+			hooksecurefunc('PaperDollFrame_SetLevel', function()
+				if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
+					classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
+				elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
+					classsymbolonframe = ("|T"..(classIconsReleafborder[E.myclass]..".tga:0:0:0:0|t"))
+				else
+					classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
+				end
+				--without delay for some reason it does not work since the text returns as just... Name for some reason
+				E:Delay(0, function()
+					if not (_G.CharacterNameText:GetText():match("|T") and _G.CharacterNameText:GetText():match(E.myname)) then
+						_G.CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
+					end
+				end)
+			end)
+		end
+	end
 end)

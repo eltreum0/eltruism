@@ -48,7 +48,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:ActionbarBorderAdjust() --auto adjust actionbar/border if option is enabled
 	ElvUI_EltreumUI:Borders() --creates borders if option is enabled
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel() --adds class icons to character panel
-	ElvUI_EltreumUI:PlayerNamepaperdoll() --update player name
 	ElvUI_EltreumUI:CursorInit() --starts cursor modules
 	ElvUI_EltreumUI:SkinMailZone() --skins zone change messages and mail font
 	ElvUI_EltreumUI:RaidShadows() --adds shadows to raid groups
