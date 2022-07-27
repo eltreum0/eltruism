@@ -95,22 +95,13 @@ local classBgs = {
 }
 
 local raceBgs = {
-
-	["Gnome"] = 369055,
-	["NightElf"] = 441709,
-	["Dwarf"] = 298910,
-
-	["Scourge"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenRuinsofLordaeronBattlegrounds",
-	["Troll"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenThunderIsle",
-	["BloodElf"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenSunwell5Man",
-
-
-
-	["Draenei"] = "Interface\\Glues\\UI_DRAENEI\\RG_JLO_DRAENEI_WINDOW_03",
-	["Human"] = "Interface\\Glues\\UI_HUMAN\\Hu_06",
-	["Orc"] = "Interface\\Glues\\Models\\UI_Horde\\Horde_04",
-	["Tauren"] = "Interface\\Glues\\Models\\UI_HIGHMOUNTAINTAUREN\\UI_Tauren_05",
-
+	["Troll"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
+	["Draenei"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones1",
+	["Human"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones2",
+	["Orc"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
+	["Tauren"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
+	["Dwarf"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones2",
+	["BloodElf"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones1",
 	["Pandaren"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
 	["Nightborne"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
 	["Worgen"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones5",
@@ -124,6 +115,19 @@ local raceBgs = {
 	["LightforgedDraenei"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
 	["DarkIronDwarf"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones1",
 	["Mechagnome"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
+}
+
+local classicraceBgs = {
+	["Gnome"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenGnomeregan",
+	["NightElf"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenWellofEternity",
+	["Scourge"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenRuinsofLordaeronBattlegrounds",
+	["Troll"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenThunderIsle",
+	["BloodElf"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenSunwell5Man",
+	["Draenei"] = "Interface\\Glues\\Models\\UI_DRAENEI\\RG_JLO_DRAENEI_WINDOW_03",
+	["Human"] = "Interface\\Glues\\Models\\UI_HUMAN\\Hu_06",
+	["Orc"] = "Interface\\Glues\\Models\\UI_Horde\\Horde_04",
+	["Tauren"] = "Interface\\Glues\\Models\\UI_HIGHMOUNTAINTAUREN\\UI_Tauren_05",
+	["Dwarf"] = "Interface\\Glues\\Models\\UI_Gnome\\UI_GNOME_BG05",
 }
 
 
@@ -289,9 +293,16 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					alphabg = 0.3
 				end
 
-				--add class bg texture
-				CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
-				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+				--add bg texture
+				if E.db.ElvUI_EltreumUI.skins.classbg then
+					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
+					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+				elseif E.db.ElvUI_EltreumUI.skins.racebg then
+					CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
+					if E.myrace ~= ("Draenei" or "Human" or "Orc" or "Tauren" or "Dwarf") then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.7, 0.28, 0.85) --loading screen settex
+					end
+				end
 				CharacterFrameBackgroundTexture:SetAlpha(alphabg)
 				CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame)
 				CharacterFrameBackgroundTexture:SetParent(_G.CharacterFrame)
@@ -433,7 +444,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						--fix enhancement
 						CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetSize(linewidth3 + 8, 4)
 						CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetSize(linewidth3 + 8, 4)
-
 					end
 				end
 
@@ -963,25 +973,21 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					alpha = 0.3
 				end
 
-				--character frame bg
-				--CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-
-				--add class bg texture
-				--CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
-				--CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-				CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
-				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.7, 0.28, 0.85) --loading screen settex
-				--flip:SetTexCoord(1, 0, 0, 1) --incase a flip is needed
-				--bottom left exture:SetTexCoord(0, 0.5, 0.5, 1); (left, right, top, bottom)
-				print(E.myrace)
-
-
+				--add bg texture
+				if E.db.ElvUI_EltreumUI.skins.classbg then
+					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
+					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+				elseif E.db.ElvUI_EltreumUI.skins.racebg then
+					CharacterFrameBackgroundTexture:SetTexture(classicraceBgs[E.myrace])
+					if E.myrace ~= ("Draenei" or "Human" or "Orc" or "Tauren" or "Dwarf") then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.7, 0.28, 0.85) --loading screen settex
+					end
+				end
 				if alpha == nil then
 					CharacterFrameBackgroundTexture:SetAlpha(0.3)
 				else
 					CharacterFrameBackgroundTexture:SetAlpha(alpha)
 				end
-				--CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
 				CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame.backdrop)
 				CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK")
 			end
