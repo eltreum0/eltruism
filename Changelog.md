@@ -1,6 +1,15 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.1.9
+Added Item Quality Textures to character/inspect panel when the character panel skin is enabled\
+Added FOV slider to Wrath (Beta)\
+Added Race backgrounds to Expanded Art, and also Custom backgrounds\
+Updated german localization by Dlarge\
+Updated Sockets to check for Belt Buckles since Wrath will have Belt Buckles\
+Updated Classic/TBC/Wrath Class Icons on Character Panel to more correctly be placed next to the Character name\
+Updated general Character Panel skin, which will now only expand on the character pane, and not on other panes
+___
 ### 3.1.8
 Added an option to play a sound when attempting to use a spell while it is in cooldown, this option can be enabled in Eltruism > Cursor (Default disabled)\
 Added EltreumStatus custom text, which will display symbols for the unit being dead or disconnected\
