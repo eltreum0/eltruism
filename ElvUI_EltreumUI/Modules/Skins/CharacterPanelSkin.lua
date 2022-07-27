@@ -1012,23 +1012,35 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 
 				if E.Wrath or E.TBC then
-					--_G.PlayerTitleDropDown:Show()
 					_G.PlayerTitleDropDown:ClearAllPoints()
 					_G.PlayerTitleDropDown:SetParent(CharacterModelFrame)
 					_G.PVPFrameToggleButton:ClearAllPoints()
 					_G.PVPFrameToggleButton:SetPoint('TOP', _G.PVPHonor, 'TOP', 52, 42)
 					_G.PVPFrameToggleButton:SetParent(_G.PVPFrameHonor)
 				elseif E.Classic then
-					--CharacterTitleText:Show()
 					CharacterTitleText:ClearAllPoints()
 					CharacterTitleText:SetParent(CharacterModelFrame)
 				end
+
+				if _G.PetPaperDollCloseButton then
+					_G.PetPaperDollCloseButton:Hide()
+				end
+
+				if _G.TokenFrameCancelButton then
+					_G.TokenFrameCancelButton:Hide()
+				end
+
+				if _G.SkillFrameCancelButton then
+					_G.SkillFrameCancelButton:Hide()
+				end
+
 				CharacterNameText:ClearAllPoints()
 				CharacterLevelText:ClearAllPoints()
 				CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
 				CharacterNameText:SetParent(CharacterModelFrame)
 				CharacterLevelText:SetPoint('TOP', CharacterModelFrame, 0, 60)
 				CharacterLevelText:SetParent(CharacterModelFrame)
+
 				if E.Wrath or E.TBC then
 					_G.PlayerTitleDropDown:SetPoint('TOP', CharacterModelFrame, -6, 40)
 				elseif E.Classic then
@@ -1036,65 +1048,18 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 
 				CharacterLevelText:SetPoint('TOP', CharacterNameText, 'BOTTOM', 0, -10)
-				if not E.Wrath then
+				--[[if not E.Wrath then
 					_G.PetNameText:SetPoint('TOP', _G.PetModelFrame, 0, 60)
 					_G.PetLevelText:SetPoint('BOTTOM', _G.PetNameText, 0, -10)
 					_G.PetLoyaltyText:SetPoint('BOTTOM', _G.PetLevelText, 0, -20)
 					_G.PetPaperDollCloseButton:Hide()
-					--[[elseif E.Wrath then --wotlk specific tweaks
-
-					_G.CompanionSummonButton:ClearAllPoints()
-					_G.CompanionSummonButton:SetPoint('BOTTOM', _G.CompanionModelFrame, "Bottom", 0, -55)
-					_G.CompanionSelectedName:SetPoint('TOP', _G.CompanionSummonButton, 0, 20)
-					_G.PetNameText:SetPoint('TOP', _G.PetModelFrame, 0, 60)
-					_G.PetLevelText:ClearAllPoints()
-					_G.PetLevelText:SetPoint('BOTTOM', _G.PetNameText, 0, -10)
-
-					if _G.PetPaperDollCloseButton then
-						_G.PetPaperDollCloseButton:Hide()
-						_G.PetPaperDollFrameExpBar:ClearAllPoints()
-						_G.PetPaperDollFrameExpBar:SetPoint("BOTTOMLEFT", _G.PetPaperDollFramePetFrame, "BOTTOMLEFT",23, 90)
-					end
-
-					_G.ReputationFrame:ClearAllPoints()
-					_G.ReputationFrame:SetPoint("BOTTOMLEFT", _G.CharacterFrame, "BOTTOMLEFT", 0, 20)
-					_G.ReputationFrame:SetSize(400, 505)
-
-					--todo, doesnt seem to work right now
-					--_G.ReputationDetailFrame:ClearAllPoints()
-					--_G.ReputationDetailFrame:SetPoint("TOPRIGHT", _G.CharacterFrame, "TOPRIGHT", 0, 0)
-
-					_G.TokenFrame:ClearAllPoints()
-					_G.TokenFrame:SetPoint("BOTTOMLEFT", _G.CharacterFrame, "BOTTOMLEFT", 0, 20)
-					_G.TokenFrame:SetSize(400, 505)
-					_G.TokenFrameCancelButton:Hide()
-
-
-					hooksecurefunc("TokenButton_OnClick", function()
-						_G.TokenFramePopup:ClearAllPoints()
-						_G.TokenFramePopup:SetPoint("TOPLEFT", _G.CharacterFrame.backdrop, "TOPRIGHT", 0, 0)
-					end)
-
-					hooksecurefunc("ReputationBar_OnClick", function()
-						_G.ReputationDetailFrame:ClearAllPoints()
-						_G.ReputationDetailFrame:SetPoint("TOPLEFT", _G.CharacterFrame.backdrop, "TOPRIGHT", 0, 0)
-					end)]]
-
-				end
+				end]]
 
 				CharacterNameText:SetParent(CharacterModelFrame)
 				CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 				CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 				CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
 				CharacterNameText:SetShadowOffset(2, -1)
-
-				--[[SkillFrame:SetHeight(400)
-				_G.SkillDetailScrollChildFrame:ClearAllPoints()
-				_G.SkillDetailScrollChildFrame:SetPoint("BOTTOMLEFT", CharacterFrame, "BOTTOMLEFT", 30, 150)
-				_G.SkillDetailScrollChildFrame:SetParent(SkillFrame)
-				_G.SkillFrameCancelButton:Hide()]]
-
-				--_G.ReputationDefailFrame:SetPoint('TOPRIGHT', _G.CharacterFrame)
 
 				CharacterFrame.Text4:SetSize(418, 72)
 				CharacterFrame.Text4:SetPoint("TOP", CharacterFrame, "TOP", 150, 10)
@@ -1125,13 +1090,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 				end)
 
-				--swap position so they look right with the quality stuff
-				--[[_G.CharacterRangedSlot:ClearAllPoints()
-				_G.CharacterRangedSlot:SetPoint("LEFT", _G.CharacterMainHandSlot, "RIGHT", 10, 0)
-
-				_G.CharacterSecondaryHandSlot:ClearAllPoints()
-				_G.CharacterSecondaryHandSlot:SetPoint("LEFT", _G.CharacterRangedSlot, "RIGHT", 10, 0)]]
-
 				_G.PaperDollItemsFrame:SetScript("OnShow", function()
 					if PaperDollFrame:IsShown() then
 						CharacterFrame:SetSize(600, 505)
@@ -1139,10 +1097,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						CharacterFrame:SetSize(400, 505)
 					end
 				end)
-
-				--[[_G.SkillListScrollFrameScrollBar:ClearAllPoints()
-				_G.SkillListScrollFrameScrollBar:SetPoint("RIGHT", _G.SkillFrame, "RIGHT", -240, 50)
-				_G.SkillListScrollFrameScrollBar:SetSize(50, 188)]]
 
 				CharacterFrame.Text:SetSize(418, 72)
 				CharacterFrame.Text:SetPoint("TOP", CharacterFrame, "TOP", 150, -45)
