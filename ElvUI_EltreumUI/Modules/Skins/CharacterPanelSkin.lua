@@ -1539,7 +1539,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 			end
 
 			--align them left or right based on id since its known where they go (unless another addon changes their side...)
-			if InvSlotId <= 5 or InvSlotId == 9 or InvSlotId == 15 or InvSlotId == 18 or InvSlotId == 19 then
+			if InvSlotId == 1 or InvSlotId == 2 or InvSlotId == 3 or InvSlotId == 5 or InvSlotId == 9 or InvSlotId == 15 or InvSlotId == 18 then
 				qualityAnchor.Frame:SetPoint("LEFT", _G["Character"..InvSlotName], "RIGHT", -_G["Character"..InvSlotName]:GetWidth()-4, 0)
 				qualityAnchor.Frame.Quality:SetPoint("LEFT", _G["Character"..InvSlotName], "RIGHT", -_G["Character"..InvSlotName]:GetWidth()-4, 0)
 			elseif InvSlotId == 6 or InvSlotId == 7 or InvSlotId == 8 or InvSlotId == 10 or InvSlotId == 11 or InvSlotId == 12 or InvSlotId == 13 or InvSlotId == 14 or InvSlotId == 16 then
@@ -1557,7 +1557,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 end
 local refreshplayer = CreateFrame("FRAME")
 refreshplayer:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
-refreshplayer:RegisterEvent("UNIT_INVENTORY_CHANGED", "target") --need to test to see if too much cpu/memory (specially for pvp)
+--refreshplayer:RegisterEvent("UNIT_INVENTORY_CHANGED", "target") --need to test to see if too much cpu/memory (specially for pvp)
 refreshplayer:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:PlayerItemQuality("player")
 end)
