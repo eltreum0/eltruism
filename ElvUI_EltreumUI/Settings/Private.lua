@@ -25,6 +25,10 @@ V.ElvUI_EltreumUI = {
 		disableinstance = false,
 	},
 
+	skins = {
+		armorybgtexture = "mytexture.tga",
+	},
+
 	wishlistID = {},
 	wishlistName = {},
 

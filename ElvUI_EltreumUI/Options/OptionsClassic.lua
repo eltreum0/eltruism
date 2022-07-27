@@ -1578,25 +1578,39 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybg = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							expandamoryclass = {
+							armorybgtextureselect = {
 								order = 194,
-								type = 'toggle',
-								name = L["Use Class Background"],
-								width = 'full',
-								desc = L["Enable this option"],
-								disabled = function() return E.db.ElvUI_EltreumUI.skins.racebg or not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.classbg end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classbg = value E:StaticPopup_Show('CONFIG_RL') end,
+								type = 'select',
+								name = L["Background Texture Type"],
+								desc = L["Choose between a Class, Race or Custom Background"],
+								--width = "full",
+								values = {
+									["CLASS"] = L["Class"],
+									["RACE"] = L["Race"],
+									["CUSTOM"] = L["Custom"],
+								},
+								style = 'radio',
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.armorybgtype end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armorybgtype = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							expandamoryrace = {
+							bgcustomtexture = {
 								order = 195,
-								type = 'toggle',
-								name = L["Use Race Background"],
-								width = 'full',
-								desc = L["Enable this option"],
-								disabled = function() return E.db.ElvUI_EltreumUI.skins.classbg or not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.racebg end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.racebg = value E:StaticPopup_Show('CONFIG_RL') end,
+								type = 'group',
+								inline = true,
+								name = L["Name of file inside Interface\\Addons"],
+								args = {
+									soundpath = {
+										order = 6,
+										type = 'input',
+										name = L["Example: "].."mytexture.tga",
+										desc = '',
+										width = 'full',
+										disabled = function() return E.db.ElvUI_EltreumUI.skins.armorybgtype ~= "CUSTOM" end,
+										get = function() return E.private.ElvUI_EltreumUI.skins.armorybgtexture end,
+										set = function(_, value) E.private.ElvUI_EltreumUI.skins.armorybgtexture = value E:StaticPopup_Show('PRIVATE_RL') end,
+									}
+								}
 							},
 							expandartcrest = {
 								order = 196,
