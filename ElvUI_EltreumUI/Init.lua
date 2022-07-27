@@ -101,8 +101,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 		ElvUI_EltreumUI:DevTools()
 	end
 	ElvUI_EltreumUI:Shadows() --adds shadows to frames
-
-	ElvUI_EltreumUI:PlayerItemQuality("player")
+	ElvUI_EltreumUI:PlayerItemQuality("player") --add item quality texture to character panel skin
 end
 
 function ElvUI_EltreumUI:Initialize()
