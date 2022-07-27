@@ -79,31 +79,6 @@ if E.Classic then
 	_G.CharacterStatFrame4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine2", PaperDollItemsFrame)
 end
 
-
---https://wowpedia.fandom.com/wiki/InventorySlotId
-local InvSlotIdTable = {
-	[1] = "HeadSlot", --left
-	[2] = "NeckSlot", --left
-	[4] = "ShirtSlot", --left
-	[3] = "ShoulderSlot", --left
-	[5] = "ChestSlot", --left
-	[6] = "WaistSlot", --right
-	[7] = "LegsSlot", --right
-	[8] = "FeetSlot",--right
-	[9] = "WristSlot", --left
-	[10] = "HandsSlot", --right
-	[11] = "Finger0Slot", --right
-	[12] = "Finger1Slot",--right
-	[13] = "Trinket0Slot",--right
-	[14] = "Trinket1Slot",--right
-	[15] = "BackSlot", --left
-	[16] = "MainHandSlot", --left
-	[17] = "SecondaryHandSlot",--right
-	[18] = "RangedSlot", --classic only
-	[19] = "TabardSlot", --left
-}
-
-
 local classBgs = {
 	["WARRIOR"] = "Interface\\Artifacts\\ArtifactUIWarrior",
 	["PALADIN"] = "Interface\\Artifacts\\ArtifactUIPaladin",
@@ -1066,8 +1041,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PetLevelText:SetPoint('BOTTOM', _G.PetNameText, 0, -10)
 					_G.PetLoyaltyText:SetPoint('BOTTOM', _G.PetLevelText, 0, -20)
 					_G.PetPaperDollCloseButton:Hide()
-				elseif E.Wrath then --wotlk specific tweaks
-					--[[
+					--[[elseif E.Wrath then --wotlk specific tweaks
+
 					_G.CompanionSummonButton:ClearAllPoints()
 					_G.CompanionSummonButton:SetPoint('BOTTOM', _G.CompanionModelFrame, "Bottom", 0, -55)
 					_G.CompanionSelectedName:SetPoint('TOP', _G.CompanionSummonButton, 0, 20)
@@ -1500,8 +1475,55 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 	end
 end
 
+--https://wowpedia.fandom.com/wiki/InventorySlotId
+local InvSlotIdTable = {
+	[1] = "HeadSlot", --left
+	[2] = "NeckSlot", --left
+	[3] = "ShoulderSlot", --left
+	[4] = "ShirtSlot", --left
+	[5] = "ChestSlot", --left
+	[6] = "WaistSlot", --right
+	[7] = "LegsSlot", --right
+	[8] = "FeetSlot",--right
+	[9] = "WristSlot", --left
+	[10] = "HandsSlot", --right
+	[11] = "Finger0Slot", --right
+	[12] = "Finger1Slot",--right
+	[13] = "Trinket0Slot",--right
+	[14] = "Trinket1Slot",--right
+	[15] = "BackSlot", --left
+	[16] = "MainHandSlot", --left
+	[17] = "SecondaryHandSlot",--right
+	[18] = "RangedSlot", --classic only
+	[19] = "TabardSlot", --left
+}
+
+if E.Retail then
+	InvSlotIdTable = {
+		[1] = "HeadSlot", --left
+		[2] = "NeckSlot", --left
+		[3] = "ShoulderSlot", --left
+		[4] = "ShirtSlot", --left
+		[5] = "ChestSlot", --left
+		[6] = "WaistSlot", --right
+		[7] = "LegsSlot", --right
+		[8] = "FeetSlot",--right
+		[9] = "WristSlot", --left
+		[10] = "HandsSlot", --right
+		[11] = "Finger0Slot", --right
+		[12] = "Finger1Slot",--right
+		[13] = "Trinket0Slot",--right
+		[14] = "Trinket1Slot",--right
+		[15] = "BackSlot", --left
+		[16] = "MainHandSlot", --left
+		[17] = "SecondaryHandSlot",--right
+	}
+end
+
 local qualityAnchor
 local qualityAnchorInspect
+
+--Player Item Quality Texture
 function ElvUI_EltreumUI:PlayerItemQuality(unit)
 	if E.db.ElvUI_EltreumUI.skins.expandarmorybg and not E.private.skins.blizzard.enable == false then
 		for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
@@ -1522,7 +1544,11 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 			local slotlevel = _G["CharacterModelFrame"]:GetFrameLevel()
 			qualityAnchor.Frame:SetFrameLevel(slotlevel-1) --needs to be changed to not overlap the sockets/enchants
 			local slotsize = _G["Character"..InvSlotName]:GetHeight()
-			qualityAnchor.Frame:SetSize(120, slotsize+2)
+			if not E.Retail then
+				qualityAnchor.Frame:SetSize(120, slotsize+2)
+			else
+				qualityAnchor.Frame:SetSize(250, slotsize+2)
+			end
 
 			qualityAnchor.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
 			qualityAnchor.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade') --temp for testing
@@ -1531,9 +1557,11 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 			local itemLink = GetInventoryItemLink(unit, InvSlotId)
 			if itemLink ~= nil then
 				local quality = select(3,GetItemInfo(itemLink))
-				local r,g,b = GetItemQualityColor(quality)
-				qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
-				qualityAnchor.Frame.Quality:SetAlpha(1)
+				if quality ~= nil then
+					local r,g,b = GetItemQualityColor(quality)
+					qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
+					qualityAnchor.Frame.Quality:SetAlpha(1)
+				end
 			elseif itemLink == nil then
 				qualityAnchor.Frame.Quality:SetAlpha(0)
 			end
@@ -1548,9 +1576,14 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 				--flip the texture since its on the other side
 				qualityAnchor.Frame.Quality:SetTexCoord(1, 0, 0, 1)
 			elseif InvSlotId == 17 then --rotate for the off hand slot that is in the middle in classic/tbc/wrath
-				qualityAnchor.Frame.Quality:SetRotation(1.57079633)
-				qualityAnchor.Frame:SetPoint("BOTTOM", _G["Character"..InvSlotName], "BOTTOM", 0, 37)
-				qualityAnchor.Frame.Quality:SetPoint("BOTTOM", _G["Character"..InvSlotName], "BOTTOM", 0, 37)
+				if not E.Retail then
+					qualityAnchor.Frame.Quality:SetRotation(1.57079633)
+					qualityAnchor.Frame:SetPoint("BOTTOM", _G["Character"..InvSlotName], "BOTTOM", 0, 37)
+					qualityAnchor.Frame.Quality:SetPoint("BOTTOM", _G["Character"..InvSlotName], "BOTTOM", 0, 37)
+				else
+					qualityAnchor.Frame:SetPoint("LEFT", _G["Character"..InvSlotName], "RIGHT", -_G["Character"..InvSlotName]:GetWidth()-4, 0)
+					qualityAnchor.Frame.Quality:SetPoint("LEFT", _G["Character"..InvSlotName], "RIGHT", -_G["Character"..InvSlotName]:GetWidth()-4, 0)
+				end
 			end
 		end
 	end
@@ -1562,7 +1595,7 @@ refreshplayer:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:PlayerItemQuality("player")
 end)
 
---inspect bg
+--inspect bg/item quality texture
 local EltruismInspectBg = CreateFrame("Frame", "EltruismInspectBg")
 local EltruismInspectBgTexture = EltruismInspectBg:CreateTexture()
 function ElvUI_EltreumUI:InspectBg(unit)
@@ -1633,7 +1666,11 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					local slotlevel = _G["InspectModelFrame"]:GetFrameLevel()
 					qualityAnchorInspect.Frame:SetFrameLevel(slotlevel-1)
 					local slotsize = _G["Inspect"..InvSlotName]:GetHeight()
-					qualityAnchorInspect.Frame:SetSize(120, slotsize+2)
+					if not E.Retail then
+						qualityAnchorInspect.Frame:SetSize(120, slotsize+2)
+					else
+						qualityAnchorInspect.Frame:SetSize(140, slotsize+2)
+					end
 
 					qualityAnchorInspect.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade') --temp for testing
 					qualityAnchorInspect.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
@@ -1659,9 +1696,14 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						--flip the texture since its on the other side
 						qualityAnchorInspect.Frame.Quality:SetTexCoord(1, 0, 0, 1)
 					elseif InvSlotId == 17 then --rotate for the off hand slot that is in the middle in classic/tbc/wrath
-						qualityAnchorInspect.Frame.Quality:SetRotation(1.57079633)
-						qualityAnchorInspect.Frame:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
-						qualityAnchorInspect.Frame.Quality:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
+						if not E.Retail then
+							qualityAnchorInspect.Frame.Quality:SetRotation(1.57079633)
+							qualityAnchorInspect.Frame:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
+							qualityAnchorInspect.Frame.Quality:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
+						else
+							qualityAnchorInspect.Frame:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
+							qualityAnchorInspect.Frame.Quality:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
+						end
 					end
 				end
 			end)
