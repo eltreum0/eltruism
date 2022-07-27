@@ -122,13 +122,13 @@ local raceBgs = {
 
 local classicraceBgs = {
 	["Gnome"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenGnomeregan",
-	["NightElf"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenWellofEternity",
+	["NightElf"] = "interface/glues/loadingscreens/loadingscreen_druidorderhall_wide",
 	["Scourge"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenRuinsofLordaeronBattlegrounds",
-	["Troll"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenThunderIsle",
+	["Troll"] = "interface/glues/loadingscreens/loadscreenthunderisle",
 	["BloodElf"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenSunwell5Man",
 	["Human"] = "interface/glues/loadingscreens/loadscreenoldstrathome",
-	["Draenei"] = "interface/glues/loadingscreens/loadingscreen_argusdungeon_widescreen",
-	["Orc"] = "interface/glues/loadingscreens/loadingscreen_hordegarrison",
+	["Draenei"] = "interface/glues/loadingscreens/loadscreenauchindoun_wod",
+	["Orc"] = "interface/glues/loadingscreens/loadscreenorgrimmararena",
 	["Tauren"] = "interface/glues/loadingscreens/loadscreenhyjal",
 	["Dwarf"] = "interface/glues/loadingscreens/loadscreenblackrockdepths",
 }
@@ -995,7 +995,15 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 				elseif E.db.ElvUI_EltreumUI.skins.racebg then
 					CharacterFrameBackgroundTexture:SetTexture(classicraceBgs[E.myrace])
-					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.7, 0.28, 0.85) --loading screen settex
+					if E.myrace == "Tauren" or E.myrace == "Gnome" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 1, 0.28, 0.80) --loading screen settex
+					elseif E.myrace == "NightElf" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0.3, 0.7, 0.3, 0.80) --loading screen settex
+					elseif E.myrace == "BloodElf" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 1, 0.3, 0.75) --loading screen settex
+					else
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 1, 0.28, 0.85) --loading screen settex
+					end
 				end
 				if alpha == nil then
 					CharacterFrameBackgroundTexture:SetAlpha(0.3)
@@ -1637,28 +1645,37 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						EltruismInspectBgTexture:SetTexture(classBgs[E.myclass])
 						EltruismInspectBgTexture:SetTexCoord(0, 0.87, 0, 0.60)
 					elseif E.db.ElvUI_EltreumUI.skins.racebg then
+						local _, race = UnitRace('target')
 						if E.Retail then
-							EltruismInspectBgTexture:SetTexture(raceBgs[E.myrace]) --(left, right, top, bottom)
-							if E.myrace == "BloodElf" or E.myrace == "Dwarf" or E.myrace == "LightforgedDraenei" or E.myrace == "Pandaren" then
+							EltruismInspectBgTexture:SetTexture(raceBgs[race]) --(left, right, top, bottom)
+							if race == "BloodElf" or race == "Dwarf" or race == "LightforgedDraenei" or race == "Pandaren" then
 								EltruismInspectBgTexture:SetTexCoord(0.1, 0.5, 0, 0.27) --topleft
-							elseif E.myrace == "DarkIronDwarf" or E.myrace == "Gnome" or E.myrace == "Vulpera" or E.myrace == "MagharOrc" or E.myrace == "Tauren" then
+							elseif race == "DarkIronDwarf" or race == "Gnome" or race == "Vulpera" or race == "MagharOrc" or race == "Tauren" then
 								EltruismInspectBgTexture:SetTexCoord(0.5, 0.9, 0, 0.27) --topright
-							elseif E.myrace == "Draenei" or E.myrace == "KulTiran" or E.myrace == "Orc" then
+							elseif race == "Draenei" or race == "KulTiran" or race == "Orc" then
 								EltruismInspectBgTexture:SetTexCoord(0.5, 0.9, 0.7, 1) --bottomright
-							elseif E.myrace == "Human" or E.myrace == "NightElf" or E.myrace == "VoidElf" then
+							elseif race == "Human" or race == "NightElf" or race == "VoidElf" then
 								EltruismInspectBgTexture:SetTexCoord(0.1, 0.5, 0.7, 1) --bottomleft
-							elseif E.myrace == "Goblin" or E.myrace == "Mechagnome" or E.myrace == "Troll" then
+							elseif race == "Goblin" or race == "Mechagnome" or race == "Troll" then
 								EltruismInspectBgTexture:SetTexCoord(0.1, 0.5, 0.33, 0.60) --middleleft
-							elseif E.myrace == "HighmountainTauren" or E.myrace == "Nightborne" or E.myrace == "Scourge" then
+							elseif race == "HighmountainTauren" or race == "Nightborne" or race == "Scourge" then
 								EltruismInspectBgTexture:SetTexCoord(0.5, 1, 0.33, 0.60) --middleright
-							elseif E.myrace == "Worgen" then
+							elseif race == "Worgen" then
 								EltruismInspectBgTexture:SetTexCoord(0, 0.5, 0, 0.6) --left
-							elseif E.myrace == "ZandalariTroll" then
+							elseif race == "ZandalariTroll" then
 								EltruismInspectBgTexture:SetTexCoord(0.5, 1, 0, 0.6) --right
 							end
 						else
-							EltruismInspectBgTexture:SetTexture(classicraceBgs[E.myrace])
-							EltruismInspectBgTexture:SetTexCoord(0, 0.7, 0.28, 0.85) --loading screen settex
+							EltruismInspectBgTexture:SetTexture(classicraceBgs[race])
+							if race == "Tauren" or race == "Gnome" then
+								EltruismInspectBgTexture:SetTexCoord(0, 1, 0.28, 0.80) --loading screen settex
+							elseif race == "NightElf" then
+								EltruismInspectBgTexture:SetTexCoord(0.3, 0.7, 0.3, 0.80) --loading screen settex
+							elseif race == "BloodElf" then
+								EltruismInspectBgTexture:SetTexCoord(0, 1, 0.3, 0.75) --loading screen settex
+							else
+								EltruismInspectBgTexture:SetTexCoord(0, 1, 0.28, 0.85) --loading screen settex
+							end
 						end
 					end
 
