@@ -1100,7 +1100,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterTitleText:SetParent(CharacterModelFrame)
 				end
 
-				if _G.PetPaperDollCloseButton then
+				--[[if _G.PetPaperDollCloseButton then
 					_G.PetPaperDollCloseButton:Hide()
 				end
 
@@ -1110,7 +1110,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				if _G.SkillFrameCancelButton then
 					_G.SkillFrameCancelButton:Hide()
-				end
+				end]]
 
 				CharacterNameText:ClearAllPoints()
 				CharacterLevelText:ClearAllPoints()
