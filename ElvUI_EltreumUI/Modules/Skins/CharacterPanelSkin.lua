@@ -98,14 +98,12 @@ local raceBgs = {
 	["BloodElf"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones1",
 	["DarkIronDwarf"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones1",
 	["Draenei"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones1",
-
 	["Dwarf"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones2",
 	["Gnome"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones2",
 	["Goblin"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones2",
 	["HighmountainTauren"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones2",
 	["Human"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones2",
 	["KulTiran"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones2",
-
 	["LightforgedDraenei"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
 	["Vulpera"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
 	["MagharOrc"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
@@ -113,13 +111,11 @@ local raceBgs = {
 	["Nightborne"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
 	["NightElf"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
 	["Orc"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
-
 	["Pandaren"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
 	["Tauren"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
 	["Troll"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
 	["Scourge"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
 	["VoidElf"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
-
 	["Worgen"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones5",
 	["ZandalariTroll"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones5",
 }
@@ -130,7 +126,7 @@ local classicraceBgs = {
 	["Scourge"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenRuinsofLordaeronBattlegrounds",
 	["Troll"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenThunderIsle",
 	["BloodElf"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenSunwell5Man",
-	["Human"] = "interface/glues/loadingscreens/loadingscreen_arathibasinwinter",
+	["Human"] = "interface/glues/loadingscreens/loadscreenoldstrathome",
 	["Draenei"] = "interface/glues/loadingscreens/loadingscreen_argusdungeon_widescreen",
 	["Orc"] = "interface/glues/loadingscreens/loadingscreen_hordegarrison",
 	["Tauren"] = "interface/glues/loadingscreens/loadscreenhyjal",
