@@ -67,7 +67,6 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				_G.CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
 			end
 		elseif E.Retail then
-			local charactertext --check character text
 
 			hooksecurefunc('PaperDollFrame_SetLevel', function()
 				CharacterFrameTitleText:ClearAllPoints()
@@ -80,12 +79,14 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				CharacterLevelText:ClearAllPoints()
 				CharacterLevelText:SetPoint('TOP', CharacterFrameTitleText, 'BOTTOM', 0, 0)
 				CharacterLevelText:SetDrawLayer("OVERLAY")
+				if not (_G.CharacterFrameTitleText:GetText():match("|T") and _G.CharacterFrameTitleText:GetText():match(E.myname)) then
+					CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+				end
 			end)
 
 			hooksecurefunc("CharacterFrame_Collapse", function()
 				if PaperDollFrame:IsShown() then
-					charactertext = CharacterFrameTitleText:GetText()
-					if not charactertext:match("|T") then
+					if not (_G.CharacterFrameTitleText:GetText():match("|T") and _G.CharacterFrameTitleText:GetText():match(E.myname)) then
 						CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 					end
 				end
@@ -93,8 +94,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc("CharacterFrame_Expand", function()
 				if PaperDollFrame:IsShown() then
-					charactertext = CharacterFrameTitleText:GetText()
-					if not charactertext:match("|T") then
+					if not (_G.CharacterFrameTitleText:GetText():match("|T") and _G.CharacterFrameTitleText:GetText():match(E.myname)) then
 						CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 					end
 				end
@@ -102,8 +102,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc("ReputationFrame_Update", function()
 				if ReputationFrame:IsShown() then
-					charactertext = CharacterFrameTitleText:GetText()
-					if not charactertext:match("|T") then
+					if not (_G.CharacterFrameTitleText:GetText():match("|T") and _G.CharacterFrameTitleText:GetText():match(E.myname)) then
 						CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 					end
 				end
@@ -111,8 +110,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc("TokenFrame_Update", function()
 				if TokenFrame:IsShown() then
-					charactertext = CharacterFrameTitleText:GetText()
-					if not charactertext:match("|T") then
+					if not (_G.CharacterFrameTitleText:GetText():match("|T") and _G.CharacterFrameTitleText:GetText():match(E.myname)) then
 						CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 					end
 				end
@@ -130,15 +128,24 @@ EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
 	if not E.private.ElvUI_EltreumUI then return end
 	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false then
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
-		if not E.Retail then
+
+
+		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
+			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
+		elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
+			classsymbolonframe = ("|T"..(classIconsReleafborder[E.myclass]..".tga:0:0:0:0|t"))
+		else
+			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
+		end
+
+		if E.Retail then
+			if _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T") and _G.CharacterFrameTitleText:GetText():match(E.myname)) then
+				CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+			end
+		else
 			hooksecurefunc('PaperDollFrame_SetLevel', function()
-				if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
-					classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
-				elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
-					classsymbolonframe = ("|T"..(classIconsReleafborder[E.myclass]..".tga:0:0:0:0|t"))
-				else
-					classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
-				end
+
+
 				--without delay for some reason it does not work since the text returns as just... Name for some reason
 				E:Delay(0, function()
 					if not (_G.CharacterNameText:GetText():match("|T") and _G.CharacterNameText:GetText():match(E.myname)) then
