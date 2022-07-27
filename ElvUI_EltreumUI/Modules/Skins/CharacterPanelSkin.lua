@@ -1506,7 +1506,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 	if E.db.ElvUI_EltreumUI.skins.expandarmorybg and not E.private.skins.blizzard.enable == false then
 		for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 			qualityAnchor = _G["Character"..InvSlotIdTable[InvSlotId]]
-			--if qualityAnchor == nil then return end
+			if qualityAnchor == nil then return end
 
 			if _G["EltruismItemQuality"..InvSlotName] then
 				qualityAnchor.Frame = _G["EltruismItemQuality"..InvSlotName]
@@ -1519,8 +1519,8 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 				qualityAnchor.Frame.Quality = qualityAnchor.Frame:CreateTexture("EltruismItemQualityTexture"..InvSlotName, "OVERLAY")
 			end
 
-			local slotlevel = _G["Character"..InvSlotName]:GetFrameLevel()
-			qualityAnchor.Frame:SetFrameLevel(slotlevel-1) --needs to be changed to not overlap the sockets/enchants
+			local slotlevel = _G["CharacterModelFrame"]:GetFrameLevel()
+			qualityAnchor.Frame:SetFrameLevel(slotlevel+1) --needs to be changed to not overlap the sockets/enchants
 			local slotsize = _G["Character"..InvSlotName]:GetHeight()
 			qualityAnchor.Frame:SetSize(120, slotsize+2)
 
@@ -1613,12 +1613,11 @@ function ElvUI_EltreumUI:InspectBg(unit)
 				end
 			end
 
-			--add a texture based on quality too
-
+			--add a texture based on quality too, tbc needed a timer
 			C_Timer.After(1, function()
 				for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 					qualityAnchorInspect = _G["Inspect"..InvSlotIdTable[InvSlotId]]
-					--if qualityAnchorInspect == nil then return end
+					if qualityAnchorInspect == nil then return end
 
 					if _G["EltruismInspectItemQuality"..InvSlotName] then
 						qualityAnchorInspect.Frame = _G["EltruismInspectItemQuality"..InvSlotName]
@@ -1631,8 +1630,8 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						qualityAnchorInspect.Frame.Quality = qualityAnchorInspect.Frame:CreateTexture("EltruismInspectItemQualityTexture"..InvSlotName, "OVERLAY")
 					end
 
-					local slotlevel = _G["Inspect"..InvSlotName]:GetFrameLevel()
-					qualityAnchorInspect.Frame:SetFrameLevel(slotlevel-1)
+					local slotlevel = _G["InspectModelFrame"]:GetFrameLevel()
+					qualityAnchorInspect.Frame:SetFrameLevel(slotlevel+1)
 					local slotsize = _G["Inspect"..InvSlotName]:GetHeight()
 					qualityAnchorInspect.Frame:SetSize(120, slotsize+2)
 
@@ -1666,8 +1665,6 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					end
 				end
 			end)
-
-
 		end
 	end
 end
