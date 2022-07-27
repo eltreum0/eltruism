@@ -130,11 +130,11 @@ local classicraceBgs = {
 	["Scourge"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenRuinsofLordaeronBattlegrounds",
 	["Troll"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenThunderIsle",
 	["BloodElf"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenSunwell5Man",
-	["Draenei"] = "Interface\\Glues\\Models\\UI_DRAENEI\\RG_JLO_DRAENEI_WINDOW_03",
-	["Human"] = "Interface\\Glues\\Models\\UI_HUMAN\\Hu_06",
-	["Orc"] = "Interface\\Glues\\Models\\UI_Horde\\Horde_04",
-	["Tauren"] = "Interface\\Glues\\Models\\UI_HIGHMOUNTAINTAUREN\\UI_Tauren_05",
-	["Dwarf"] = "Interface\\Glues\\Models\\UI_Gnome\\UI_GNOME_BG05",
+	["Human"] = "interface/glues/loadingscreens/loadingscreen_arathibasinwinter",
+	["Draenei"] = "interface/glues/loadingscreens/loadingscreen_argusdungeon_widescreen",
+	["Orc"] = "interface/glues/loadingscreens/loadingscreen_hordegarrison",
+	["Tauren"] = "interface/glues/loadingscreens/loadscreenhyjal",
+	["Dwarf"] = "interface/glues/loadingscreens/loadscreenblackrockdepths",
 }
 
 local classCrests = {
@@ -999,9 +999,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 				elseif E.db.ElvUI_EltreumUI.skins.racebg then
 					CharacterFrameBackgroundTexture:SetTexture(classicraceBgs[E.myrace])
-					if E.myrace ~= ("Draenei" or "Human" or "Orc" or "Tauren" or "Dwarf") then
-						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.7, 0.28, 0.85) --loading screen settex
-					end
+					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.7, 0.28, 0.85) --loading screen settex
 				end
 				if alpha == nil then
 					CharacterFrameBackgroundTexture:SetAlpha(0.3)
@@ -1664,9 +1662,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							end
 						else
 							EltruismInspectBgTexture:SetTexture(classicraceBgs[E.myrace])
-							if E.myrace ~= ("Draenei" or "Human" or "Orc" or "Tauren" or "Dwarf") then
-								EltruismInspectBgTexture:SetTexCoord(0, 0.7, 0.28, 0.85) --loading screen settex
-							end
+							EltruismInspectBgTexture:SetTexCoord(0, 0.7, 0.28, 0.85) --loading screen settex
 						end
 					end
 

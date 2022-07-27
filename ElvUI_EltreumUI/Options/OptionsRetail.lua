@@ -1122,8 +1122,28 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybg = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							expandartcrest = {
+							expandamoryclass = {
 								order = 3,
+								type = 'toggle',
+								name = L["Use Class Background"],
+								width = 'full',
+								desc = L["Enable this option"],
+								disabled = function() return E.db.ElvUI_EltreumUI.skins.racebg or not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.classbg end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classbg = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							expandamoryrace = {
+								order = 3,
+								type = 'toggle',
+								name = L["Use Race Background"],
+								width = 'full',
+								desc = L["Enable this option"],
+								disabled = function() return E.db.ElvUI_EltreumUI.skins.classbg or not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.racebg end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.racebg = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							expandartcrest = {
+								order = 4,
 								type = 'toggle',
 								name = L["Add Crest to Character Panel"],
 								width = 'full',
@@ -1132,7 +1152,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorycrest = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							statcolors = {
-								order = 4,
+								order = 5,
 								type = 'toggle',
 								name = L["Add Class Gradient Colors to Stats"],
 								width = 'full',
