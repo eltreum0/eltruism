@@ -1558,7 +1558,7 @@ local qualityAnchorInspect
 --Player Item Quality Texture
 function ElvUI_EltreumUI:PlayerItemQuality(unit)
 	if E.db.ElvUI_EltreumUI.skins.expandarmorybg and not E.private.skins.blizzard.enable == false then
-		C_Timer.After(1, function()
+		E:Delay(0, function()
 			for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 				qualityAnchor = _G["Character"..InvSlotIdTable[InvSlotId]]
 				if qualityAnchor == nil then return end
@@ -1720,7 +1720,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 			end
 
 			--add a texture based on quality too, tbc needed a timer
-			C_Timer.After(1, function()
+			E:Delay(0, function()
 				for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 					qualityAnchorInspect = _G["Inspect"..InvSlotIdTable[InvSlotId]]
 					if qualityAnchorInspect == nil then return end
