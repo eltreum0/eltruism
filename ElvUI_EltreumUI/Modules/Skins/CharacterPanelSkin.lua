@@ -95,16 +95,21 @@ local classBgs = {
 }
 
 local raceBgs = {
-	["Human"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreen_AllianceGarrison",
+
 	["Gnome"] = 369055,
 	["NightElf"] = 441709,
 	["Dwarf"] = 298910,
-	["Draenei"] = "Interface\\Glues\\LOADINGSCREENS\\LoadingScreen_ArgusDungeon_Widescreen",
-	["Orc"] = 441713,
+
 	["Scourge"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenRuinsofLordaeronBattlegrounds",
-	["Tauren"] = 441788,
-	["Troll"] = 371378,
+	["Troll"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenThunderIsle",
 	["BloodElf"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenSunwell5Man",
+
+
+
+	["Draenei"] = "Interface\\Glues\\UI_DRAENEI\\RG_JLO_DRAENEI_WINDOW_03",
+	["Human"] = "Interface\\Glues\\UI_HUMAN\\Hu_06",
+	["Orc"] = "Interface\\Glues\\Models\\UI_Horde\\Horde_04",
+	["Tauren"] = "Interface\\Glues\\Models\\UI_HIGHMOUNTAINTAUREN\\UI_Tauren_05",
 
 	["Pandaren"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones4",
 	["Nightborne"] = "Interface\\Glues\\CHARACTERCREATE\\CharacterCreateStartingZones3",
