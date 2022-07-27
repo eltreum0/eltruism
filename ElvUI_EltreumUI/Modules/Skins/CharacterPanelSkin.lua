@@ -1558,66 +1558,68 @@ local qualityAnchorInspect
 --Player Item Quality Texture
 function ElvUI_EltreumUI:PlayerItemQuality(unit)
 	if E.db.ElvUI_EltreumUI.skins.expandarmorybg and not E.private.skins.blizzard.enable == false then
-		for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
-			qualityAnchor = _G["Character"..InvSlotIdTable[InvSlotId]]
-			if qualityAnchor == nil then return end
+		C_Timer.After(1, function()
+			for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
+				qualityAnchor = _G["Character"..InvSlotIdTable[InvSlotId]]
+				if qualityAnchor == nil then return end
 
-			if _G["EltruismItemQuality"..InvSlotName] then
-				qualityAnchor.Frame = _G["EltruismItemQuality"..InvSlotName]
-			else
-				qualityAnchor.Frame = CreateFrame('Frame', "EltruismItemQuality"..InvSlotName, qualityAnchor)
-			end
-			if _G["EltruismItemQualityTexture"..InvSlotName] then
-				qualityAnchor.Frame.Quality = _G["EltruismItemQualityTexture"..InvSlotName]
-			else
-				qualityAnchor.Frame.Quality = qualityAnchor.Frame:CreateTexture("EltruismItemQualityTexture"..InvSlotName, "OVERLAY")
-			end
-
-			local slotlevel = _G["CharacterModelFrame"]:GetFrameLevel()
-			qualityAnchor.Frame:SetFrameLevel(slotlevel-1) --needs to be changed to not overlap the sockets/enchants
-			local slotsize = _G["Character"..InvSlotName]:GetHeight()
-			if not E.Retail then
-				qualityAnchor.Frame:SetSize(120, slotsize+2)
-			else
-				qualityAnchor.Frame:SetSize(250, slotsize+2)
-			end
-
-			qualityAnchor.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
-			qualityAnchor.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade') --temp for testing
-
-			--get item (actual) quality
-			local itemLink = GetInventoryItemLink(unit, InvSlotId)
-			if itemLink ~= nil then
-				local quality = select(3,GetItemInfo(itemLink))
-				if quality ~= nil then
-					local r,g,b = GetItemQualityColor(quality)
-					qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
-					qualityAnchor.Frame.Quality:SetAlpha(1)
-				end
-			elseif itemLink == nil then
-				qualityAnchor.Frame.Quality:SetAlpha(0)
-			end
-
-			--align them left or right based on id since its known where they go (unless another addon changes their side...)
-			if InvSlotId == 1 or InvSlotId == 2 or InvSlotId == 3 or InvSlotId == 5 or InvSlotId == 9 or InvSlotId == 15 or InvSlotId == 18 then
-				qualityAnchor.Frame:SetPoint("LEFT", _G["Character"..InvSlotName], "RIGHT", -_G["Character"..InvSlotName]:GetWidth()-4, 0)
-				qualityAnchor.Frame.Quality:SetPoint("LEFT", _G["Character"..InvSlotName], "RIGHT", -_G["Character"..InvSlotName]:GetWidth()-4, 0)
-			elseif InvSlotId == 6 or InvSlotId == 7 or InvSlotId == 8 or InvSlotId == 10 or InvSlotId == 11 or InvSlotId == 12 or InvSlotId == 13 or InvSlotId == 14 or InvSlotId == 16 then
-				qualityAnchor.Frame:SetPoint("RIGHT", _G["Character"..InvSlotName], "LEFT", _G["Character"..InvSlotName]:GetWidth()+4, 0)
-				qualityAnchor.Frame.Quality:SetPoint("RIGHT", _G["Character"..InvSlotName], "LEFT", _G["Character"..InvSlotName]:GetWidth()+4, 0)
-				--flip the texture since its on the other side
-				qualityAnchor.Frame.Quality:SetTexCoord(1, 0, 0, 1)
-			elseif InvSlotId == 17 then --rotate for the off hand slot that is in the middle in classic/tbc/wrath
-				if not E.Retail then
-					qualityAnchor.Frame.Quality:SetRotation(1.57079633)
-					qualityAnchor.Frame:SetPoint("BOTTOM", _G["Character"..InvSlotName], "BOTTOM", 0, 37)
-					qualityAnchor.Frame.Quality:SetPoint("BOTTOM", _G["Character"..InvSlotName], "BOTTOM", 0, 37)
+				if _G["EltruismItemQuality"..InvSlotName] then
+					qualityAnchor.Frame = _G["EltruismItemQuality"..InvSlotName]
 				else
+					qualityAnchor.Frame = CreateFrame('Frame', "EltruismItemQuality"..InvSlotName, qualityAnchor)
+				end
+				if _G["EltruismItemQualityTexture"..InvSlotName] then
+					qualityAnchor.Frame.Quality = _G["EltruismItemQualityTexture"..InvSlotName]
+				else
+					qualityAnchor.Frame.Quality = qualityAnchor.Frame:CreateTexture("EltruismItemQualityTexture"..InvSlotName, "OVERLAY")
+				end
+
+				local slotlevel = _G["CharacterModelFrame"]:GetFrameLevel()
+				qualityAnchor.Frame:SetFrameLevel(slotlevel-1) --needs to be changed to not overlap the sockets/enchants
+				local slotsize = _G["Character"..InvSlotName]:GetHeight()
+				if not E.Retail then
+					qualityAnchor.Frame:SetSize(120, slotsize+2)
+				else
+					qualityAnchor.Frame:SetSize(250, slotsize+2)
+				end
+
+				qualityAnchor.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
+				qualityAnchor.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade') --temp for testing
+
+				--get item (actual) quality
+				local itemLink = GetInventoryItemLink(unit, InvSlotId)
+				if itemLink ~= nil then
+					local quality = select(3,GetItemInfo(itemLink))
+					if quality ~= nil then
+						local r,g,b = GetItemQualityColor(quality)
+						qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
+						qualityAnchor.Frame.Quality:SetAlpha(1)
+					end
+				elseif itemLink == nil then
+					qualityAnchor.Frame.Quality:SetAlpha(0)
+				end
+
+				--align them left or right based on id since its known where they go (unless another addon changes their side...)
+				if InvSlotId == 1 or InvSlotId == 2 or InvSlotId == 3 or InvSlotId == 5 or InvSlotId == 9 or InvSlotId == 15 or InvSlotId == 18 then
 					qualityAnchor.Frame:SetPoint("LEFT", _G["Character"..InvSlotName], "RIGHT", -_G["Character"..InvSlotName]:GetWidth()-4, 0)
 					qualityAnchor.Frame.Quality:SetPoint("LEFT", _G["Character"..InvSlotName], "RIGHT", -_G["Character"..InvSlotName]:GetWidth()-4, 0)
+				elseif InvSlotId == 6 or InvSlotId == 7 or InvSlotId == 8 or InvSlotId == 10 or InvSlotId == 11 or InvSlotId == 12 or InvSlotId == 13 or InvSlotId == 14 or InvSlotId == 16 then
+					qualityAnchor.Frame:SetPoint("RIGHT", _G["Character"..InvSlotName], "LEFT", _G["Character"..InvSlotName]:GetWidth()+4, 0)
+					qualityAnchor.Frame.Quality:SetPoint("RIGHT", _G["Character"..InvSlotName], "LEFT", _G["Character"..InvSlotName]:GetWidth()+4, 0)
+					--flip the texture since its on the other side
+					qualityAnchor.Frame.Quality:SetTexCoord(1, 0, 0, 1)
+				elseif InvSlotId == 17 then --rotate for the off hand slot that is in the middle in classic/tbc/wrath
+					if not E.Retail then
+						qualityAnchor.Frame.Quality:SetRotation(1.57079633)
+						qualityAnchor.Frame:SetPoint("BOTTOM", _G["Character"..InvSlotName], "BOTTOM", 0, 37)
+						qualityAnchor.Frame.Quality:SetPoint("BOTTOM", _G["Character"..InvSlotName], "BOTTOM", 0, 37)
+					else
+						qualityAnchor.Frame:SetPoint("LEFT", _G["Character"..InvSlotName], "RIGHT", -_G["Character"..InvSlotName]:GetWidth()-4, 0)
+						qualityAnchor.Frame.Quality:SetPoint("LEFT", _G["Character"..InvSlotName], "RIGHT", -_G["Character"..InvSlotName]:GetWidth()-4, 0)
+					end
 				end
 			end
-		end
+		end)
 	end
 end
 local refreshplayer = CreateFrame("FRAME")
