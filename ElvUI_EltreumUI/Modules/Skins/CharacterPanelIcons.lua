@@ -129,7 +129,6 @@ EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
 	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false then
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
-
 		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
 			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
 		elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
@@ -144,7 +143,6 @@ EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
 			end
 		else
 			hooksecurefunc('PaperDollFrame_SetLevel', function()
-
 
 				--without delay for some reason it does not work since the text returns as just... Name for some reason
 				E:Delay(0, function()
