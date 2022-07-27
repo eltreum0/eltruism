@@ -4222,11 +4222,23 @@ function ElvUI_EltreumUI:Configtable()
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cvar',
 				args = {
 					header2 = {
-						order = 4,
+						order = 1,
 						type = "description",
 						name = L["Customize CVars"],
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					cameraFOV = {
+						type = 'range',
+						name = L["Camera Field of Vision"],
+						desc = L["Camera Field of Vision"],
+						order = 2,
+						min = 50,
+						max = 90,
+						step = 1,
+						width = "full",
+						get = function() return E.db.ElvUI_EltreumUI.cvars.cameraFOV end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraFOV = value SetCVar('camerafov', value) end,
 					},
 					nameplateOtherBottomInset = {
 						type = 'range',
