@@ -1506,7 +1506,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 	if E.db.ElvUI_EltreumUI.skins.expandarmorybg and not E.private.skins.blizzard.enable == false then
 		for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 			qualityAnchor = _G["Character"..InvSlotIdTable[InvSlotId]]
-			if qualityAnchor == nil then return end
+			--if qualityAnchor == nil then return end
 
 			if _G["EltruismItemQuality"..InvSlotName] then
 				qualityAnchor.Frame = _G["EltruismItemQuality"..InvSlotName]
@@ -1610,59 +1610,64 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame)
 					end
 					EltruismInspectBgTexture:SetDrawLayer("ARTWORK")
-
-					--add a texture based on quality too
-					for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
-						qualityAnchorInspect = _G["Inspect"..InvSlotIdTable[InvSlotId]]
-						if qualityAnchorInspect == nil then return end
-
-						if _G["EltruismInspectItemQuality"..InvSlotName] then
-							qualityAnchorInspect.Frame = _G["EltruismInspectItemQuality"..InvSlotName]
-						else
-							qualityAnchorInspect.Frame = CreateFrame('FRAME', "EltruismInspectItemQuality"..InvSlotName, qualityAnchorInspect)
-						end
-						if _G["EltruismInspectItemQualityTexture"..InvSlotName] then
-							qualityAnchorInspect.Frame.Quality = _G["EltruismInspectItemQualityTexture"..InvSlotName]
-						else
-							qualityAnchorInspect.Frame.Quality = qualityAnchorInspect.Frame:CreateTexture("EltruismInspectItemQualityTexture"..InvSlotName, "OVERLAY")
-						end
-
-						local slotlevel = _G["Inspect"..InvSlotName]:GetFrameLevel()
-						qualityAnchorInspect.Frame:SetFrameLevel(slotlevel-1)
-						local slotsize = _G["Inspect"..InvSlotName]:GetHeight()
-						qualityAnchorInspect.Frame:SetSize(120, slotsize+2)
-
-						qualityAnchorInspect.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade') --temp for testing
-						qualityAnchorInspect.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
-
-						--get item (actual) quality
-						local itemLink = GetInventoryItemLink("target", InvSlotId)
-						if itemLink ~= nil then
-							local quality = select(3,GetItemInfo(itemLink))
-							local r,g,b = GetItemQualityColor(quality)
-							qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
-							qualityAnchorInspect.Frame.Quality:SetAlpha(1)
-						else
-							qualityAnchorInspect.Frame.Quality:SetAlpha(0)
-						end
-
-						--align them left or right based on id since its known where they go (unless another addon changes their side...)
-						if InvSlotId <= 5 or InvSlotId == 9 or InvSlotId == 15 or InvSlotId == 18 or InvSlotId == 19 then
-							qualityAnchorInspect.Frame:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
-							qualityAnchorInspect.Frame.Quality:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
-						elseif InvSlotId == 6 or InvSlotId == 7 or InvSlotId == 8 or InvSlotId == 10 or InvSlotId == 11 or InvSlotId == 12 or InvSlotId == 13 or InvSlotId == 14 or InvSlotId == 16 then
-							qualityAnchorInspect.Frame:SetPoint("RIGHT", _G["Inspect"..InvSlotName], "LEFT", _G["Inspect"..InvSlotName]:GetWidth()+4, 0)
-							qualityAnchorInspect.Frame.Quality:SetPoint("RIGHT", _G["Inspect"..InvSlotName], "LEFT", _G["Inspect"..InvSlotName]:GetWidth()+4, 0)
-							--flip the texture since its on the other side
-							qualityAnchorInspect.Frame.Quality:SetTexCoord(1, 0, 0, 1)
-						elseif InvSlotId == 17 then --rotate for the off hand slot that is in the middle in classic/tbc/wrath
-							qualityAnchorInspect.Frame.Quality:SetRotation(1.57079633)
-							qualityAnchorInspect.Frame:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
-							qualityAnchorInspect.Frame.Quality:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
-						end
-					end
 				end
 			end
+
+			--add a texture based on quality too
+
+			C_Timer.After(1, function()
+				for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
+					qualityAnchorInspect = _G["Inspect"..InvSlotIdTable[InvSlotId]]
+					--if qualityAnchorInspect == nil then return end
+
+					if _G["EltruismInspectItemQuality"..InvSlotName] then
+						qualityAnchorInspect.Frame = _G["EltruismInspectItemQuality"..InvSlotName]
+					else
+						qualityAnchorInspect.Frame = CreateFrame('FRAME', "EltruismInspectItemQuality"..InvSlotName, qualityAnchorInspect)
+					end
+					if _G["EltruismInspectItemQualityTexture"..InvSlotName] then
+						qualityAnchorInspect.Frame.Quality = _G["EltruismInspectItemQualityTexture"..InvSlotName]
+					else
+						qualityAnchorInspect.Frame.Quality = qualityAnchorInspect.Frame:CreateTexture("EltruismInspectItemQualityTexture"..InvSlotName, "OVERLAY")
+					end
+
+					local slotlevel = _G["Inspect"..InvSlotName]:GetFrameLevel()
+					qualityAnchorInspect.Frame:SetFrameLevel(slotlevel-1)
+					local slotsize = _G["Inspect"..InvSlotName]:GetHeight()
+					qualityAnchorInspect.Frame:SetSize(120, slotsize+2)
+
+					qualityAnchorInspect.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade') --temp for testing
+					qualityAnchorInspect.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
+
+					--get item (actual) quality
+					local itemLink = GetInventoryItemLink("target", InvSlotId)
+					if itemLink ~= nil then
+						local quality = select(3,GetItemInfo(itemLink))
+						local r,g,b = GetItemQualityColor(quality)
+						qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
+						qualityAnchorInspect.Frame.Quality:SetAlpha(1)
+					else
+						qualityAnchorInspect.Frame.Quality:SetAlpha(0)
+					end
+
+					--align them left or right based on id since its known where they go (unless another addon changes their side...)
+					if InvSlotId <= 5 or InvSlotId == 9 or InvSlotId == 15 or InvSlotId == 18 or InvSlotId == 19 then
+						qualityAnchorInspect.Frame:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
+						qualityAnchorInspect.Frame.Quality:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
+					elseif InvSlotId == 6 or InvSlotId == 7 or InvSlotId == 8 or InvSlotId == 10 or InvSlotId == 11 or InvSlotId == 12 or InvSlotId == 13 or InvSlotId == 14 or InvSlotId == 16 then
+						qualityAnchorInspect.Frame:SetPoint("RIGHT", _G["Inspect"..InvSlotName], "LEFT", _G["Inspect"..InvSlotName]:GetWidth()+4, 0)
+						qualityAnchorInspect.Frame.Quality:SetPoint("RIGHT", _G["Inspect"..InvSlotName], "LEFT", _G["Inspect"..InvSlotName]:GetWidth()+4, 0)
+						--flip the texture since its on the other side
+						qualityAnchorInspect.Frame.Quality:SetTexCoord(1, 0, 0, 1)
+					elseif InvSlotId == 17 then --rotate for the off hand slot that is in the middle in classic/tbc/wrath
+						qualityAnchorInspect.Frame.Quality:SetRotation(1.57079633)
+						qualityAnchorInspect.Frame:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
+						qualityAnchorInspect.Frame.Quality:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
+					end
+				end
+			end)
+
+
 		end
 	end
 end
