@@ -481,7 +481,7 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 					E.db.ElvUI_EltreumUI.borders.raid40sizey = 63
 					E.db.ElvUI_EltreumUI.borders.xcasttarget = 272
 					E.db.ElvUI_EltreumUI.borders.ycasttarget = 58
-					E.db.ElvUI_EltreumUI.borders.petsizex = 194
+					E.db.ElvUI_EltreumUI.borders.petsizex = 192
 					E.db.ElvUI_EltreumUI.borders.totemxborder = 51
 					E.db.ElvUI_EltreumUI.borders.totemyborder = 51
 
