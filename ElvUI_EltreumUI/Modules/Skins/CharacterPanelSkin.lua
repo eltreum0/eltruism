@@ -94,6 +94,33 @@ local classBgs = {
 	["DEMONHUNTER"] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
 }
 
+local raceBgs = {
+	["Human"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreen_AllianceGarrison",
+	["Gnome"] = 369055,
+	["NightElf"] = 441709,
+	["KulTiran"] = 1781897,
+	["Dwarf"] = 298910,
+	["Draenei"] = 53284,
+	["Worgen"] = 441525,
+	["VoidElf"] = 1864282,
+	["LightforgedDraenei"] = 1864285,
+	["DarkIronDwarf"] = 441566,
+	["Mechagnome"] = 3028751,
+	["Orc"] = 441713,
+	["Scourge"] = 53217,
+	["Tauren"] = 441788,
+	["Troll"] = 371378,
+	["Goblin"] = 441627,
+	["BloodElf"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreenSunwell5Man",
+	["Pandaren"] = 642246,
+	["Nightborne"] = "Interface\\Glues\\LOADINGSCREENS\\LoadScreen_SuramarCityDungeon",
+	["HighmountainTauren"] = 1417319,
+	["ZandalariTroll"] = 2844635,
+	["Vulpera"] = 3260632,
+	["MagharOrc"] = 2146630,
+}
+
+
 local classCrests = {
 	["WARRIOR"] = "Artifacts-Warrior-BG-rune",
 	["PALADIN"] = "Artifacts-Paladin-BG-rune",
@@ -931,13 +958,24 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 
 				--character frame bg
-				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+				--CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+
+				--add class bg texture
+				--CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
+				--CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+				CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
+				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.7, 0.28, 0.85) --loading screen settex
+				--flip:SetTexCoord(1, 0, 0, 1) --incase a flip is needed
+				--bottom left exture:SetTexCoord(0, 0.5, 0.5, 1); (left, right, top, bottom)
+				print(E.myrace)
+
+
 				if alpha == nil then
 					CharacterFrameBackgroundTexture:SetAlpha(0.3)
 				else
 					CharacterFrameBackgroundTexture:SetAlpha(alpha)
 				end
-				CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
+				--CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
 				CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame.backdrop)
 				CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK")
 			end
