@@ -4065,7 +4065,7 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.borders.focuscastborder end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.focuscastborder = value ElvUI_EltreumUI:Borders() end,
 							},
-							borderxfocuscast = {
+							borderxcastfocus = {
 								type = 'range',
 								name = L["Border X offset"],
 								order = 57,
@@ -4074,10 +4074,10 @@ function ElvUI_EltreumUI:Configtable()
 								step = 0.1,
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focus.enable or not E.db.unitframe.units.focus.castbar.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.xfocuscast end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xfocuscast = value ElvUI_EltreumUI:Borders() end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.xcastfocus end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xcastfocus = value ElvUI_EltreumUI:Borders() end,
 							},
-							borderyfocuscast = {
+							borderycastfocus = {
 								type = 'range',
 								name = L["Border Y offset"],
 								order = 58,
@@ -4086,8 +4086,8 @@ function ElvUI_EltreumUI:Configtable()
 								step = 0.1,
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focus.enable or not E.db.unitframe.units.focus.castbar.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.yfocuscast end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.yfocuscast = value ElvUI_EltreumUI:Borders() end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.ycastfocus end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ycastfocus = value ElvUI_EltreumUI:Borders() end,
 							},
 						},
 					},
