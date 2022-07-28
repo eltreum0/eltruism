@@ -304,9 +304,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					elseif E.myrace == "DarkIronDwarf" or E.myrace == "Gnome" or E.myrace == "Vulpera" or E.myrace == "MagharOrc" or E.myrace == "Tauren" then
 						CharacterFrameBackgroundTexture:SetTexCoord(0.5, 0.9, 0, 0.27) --topright
 					elseif E.myrace == "Draenei" or E.myrace == "KulTiran" or E.myrace == "Orc" then
-						CharacterFrameBackgroundTexture:SetTexCoord(0.5, 0.9, 0.7, 1) --bottomright
+						CharacterFrameBackgroundTexture:SetTexCoord(0.5, 0.9, 0.7, 0.9) --bottomright
 					elseif E.myrace == "Human" or E.myrace == "NightElf" or E.myrace == "VoidElf" then
-						CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.5, 0.7, 1) --bottomleft
+						CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.5, 0.7, 0.9) --bottomleft
 					elseif E.myrace == "Goblin" or E.myrace == "Mechagnome" or E.myrace == "Troll" then
 						CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.5, 0.33, 0.60) --middleleft
 					elseif E.myrace == "HighmountainTauren" or E.myrace == "Nightborne" or E.myrace == "Scourge" then
@@ -1641,9 +1641,9 @@ function ElvUI_EltreumUI:InspectBg(unit)
 								elseif englishRace == "DarkIronDwarf" or englishRace == "Gnome" or englishRace == "Vulpera" or englishRace == "MagharOrc" or englishRace == "Tauren" then
 									EltruismInspectBgTexture:SetTexCoord(0.5, 0.9, 0, 0.27) --topright
 								elseif englishRace == "Draenei" or englishRace == "KulTiran" or englishRace == "Orc" then
-									EltruismInspectBgTexture:SetTexCoord(0.5, 0.9, 0.7, 1) --bottomright
+									EltruismInspectBgTexture:SetTexCoord(0.5, 0.9, 0.7, 0.9) --bottomright
 								elseif englishRace == "Human" or englishRace == "NightElf" or englishRace == "VoidElf" then
-									EltruismInspectBgTexture:SetTexCoord(0.1, 0.5, 0.7, 1) --bottomleft
+									EltruismInspectBgTexture:SetTexCoord(0.1, 0.5, 0.7, 0.9) --bottomleft
 								elseif englishRace == "Goblin" or englishRace == "Mechagnome" or englishRace == "Troll" then
 									EltruismInspectBgTexture:SetTexCoord(0.1, 0.5, 0.33, 0.60) --middleleft
 								elseif englishRace == "HighmountainTauren" or englishRace == "Nightborne" or englishRace == "Scourge" then
