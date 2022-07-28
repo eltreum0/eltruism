@@ -1138,18 +1138,22 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				--change the size based on if paperdoll is hidden
 				CharacterFrame:SetSize(600, 505)
 				hooksecurefunc("CharacterFrameTab_OnClick", function()
-					if PaperDollFrame:IsShown() then
-						CharacterFrame:SetSize(600, 505)
-					else
-						CharacterFrame:SetSize(400, 505)
+					if not InCombatLockdown() then
+						if PaperDollFrame:IsShown() then
+							CharacterFrame:SetSize(600, 505)
+						else
+							CharacterFrame:SetSize(400, 505)
+						end
 					end
 				end)
 
 				_G.PaperDollItemsFrame:SetScript("OnShow", function()
-					if PaperDollFrame:IsShown() then
-						CharacterFrame:SetSize(600, 505)
-					else
-						CharacterFrame:SetSize(400, 505)
+					if not InCombatLockdown() then
+						if PaperDollFrame:IsShown() then
+							CharacterFrame:SetSize(600, 505)
+						else
+							CharacterFrame:SetSize(400, 505)
+						end
 					end
 				end)
 
