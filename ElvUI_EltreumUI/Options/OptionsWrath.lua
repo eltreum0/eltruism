@@ -1757,7 +1757,7 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.classicarmoryautostats end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classicarmoryautostats = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							header844 = {
+							headergrad844 = {
 								order = 191,
 								type = "description",
 								name = "",
@@ -1765,7 +1765,7 @@ function ElvUI_EltreumUI:Configtable()
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							statcolors = {
-								order = 192,
+								order = 191,
 								type = 'toggle',
 								name = L["Add Class Gradient Colors to Stats"],
 								width = 'full',
@@ -1773,6 +1773,30 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.classicarmory end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.statcolors end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.statcolors = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							headeritemq1823 = {
+								order = 192,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							itemqualitycolors = {
+								order = 192,
+								type = 'toggle',
+								name = L["Add Item Quality Texture"],
+								width = 'full',
+								desc = L["Enable this option"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.classicarmory end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.itemquality end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.itemquality = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header8448 = {
+								order = 193,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							expandart = {
 								order = 193,
