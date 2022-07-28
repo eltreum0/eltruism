@@ -374,6 +374,10 @@ P.ElvUI_EltreumUI = {
 		xfocus = 224,
 		yfocus = 72,
 
+		focuscastborder = true,
+		xcastfocus = 272,
+		ycastfocus = 58,
+
 		bossborder = true,
 		xboss = 250,
 		yboss = 87,
