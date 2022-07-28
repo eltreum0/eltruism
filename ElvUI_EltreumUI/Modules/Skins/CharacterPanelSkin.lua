@@ -1636,15 +1636,15 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 							if E.Retail then
 								EltruismInspectBgTexture:SetTexture(raceBgs[englishRace]) --(left, right, top, bottom)
-								if englishRace == "BloodElf" or englishRace == "Dwarf" or englishRace == "LightforgedDraenei" or englishRace == "Pandaren" then ----------------------
+								if englishRace == "BloodElf" or englishRace == "Dwarf" or englishRace == "LightforgedDraenei" or englishRace == "Pandaren" then
 									EltruismInspectBgTexture:SetTexCoord(0.15, 0.30, 0, 0.20) --topleft
-								elseif englishRace == "DarkIronDwarf" or englishRace == "Gnome" or englishRace == "Vulpera" or englishRace == "MagharOrc" or englishRace == "Tauren" then ----------------------
+								elseif englishRace == "DarkIronDwarf" or englishRace == "Gnome" or englishRace == "Vulpera" or englishRace == "MagharOrc" or englishRace == "Tauren" then
 									EltruismInspectBgTexture:SetTexCoord(0.85, 1, 0, 0.20) --topright
-								elseif englishRace == "Draenei" or englishRace == "KulTiran" or englishRace == "Orc" then ----------------------
+								elseif englishRace == "Draenei" or englishRace == "KulTiran" or englishRace == "Orc" then
 									EltruismInspectBgTexture:SetTexCoord(0.85, 1, 0.80, 1) --bottomright
-								elseif englishRace == "Human" or englishRace == "NightElf" or englishRace == "VoidElf" then ----------------------
+								elseif englishRace == "Human" or englishRace == "NightElf" or englishRace == "VoidElf" then
 									EltruismInspectBgTexture:SetTexCoord(0.15, 0.30, 0.80, 1) --bottomleft
-								elseif englishRace == "Goblin" or englishRace == "Mechagnome" or englishRace == "Troll" then ----------------------
+								elseif englishRace == "Goblin" or englishRace == "Mechagnome" or englishRace == "Troll" then
 									EltruismInspectBgTexture:SetTexCoord(0.15, 0.3, 0.33, 0.60) --middleleft
 								elseif englishRace == "HighmountainTauren" or englishRace == "Nightborne" or englishRace == "Scourge" then
 									EltruismInspectBgTexture:SetTexCoord(0.85, 1, 0.33, 0.60) --middleright
@@ -1656,13 +1656,17 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							else
 								EltruismInspectBgTexture:SetTexture(classicraceBgs[englishRace])
 								if englishRace == "Tauren" or englishRace == "Gnome" then
-									EltruismInspectBgTexture:SetTexCoord(0, 1, 0.28, 0.80) --loading screen settex
+									EltruismInspectBgTexture:SetTexCoord(0.5, 0.75, 0.5, 0.75)
+								elseif englishRace == "Draenei" then
+									EltruismInspectBgTexture:SetTexCoord(0.35, 0.60, 0.5, 0.75)
+								elseif englishRace == "Scourge" then
+									EltruismInspectBgTexture:SetTexCoord(0.35, 0.60, 0.3, 0.75)
 								elseif englishRace == "NightElf" then
-									EltruismInspectBgTexture:SetTexCoord(0.3, 0.7, 0.3, 0.80) --loading screen settex
+									EltruismInspectBgTexture:SetTexCoord(0.3, 0.55, 0.5, 0.85)
 								elseif englishRace == "BloodElf" then
-									EltruismInspectBgTexture:SetTexCoord(0, 1, 0.3, 0.75) --loading screen settex
+									EltruismInspectBgTexture:SetTexCoord(0, 1, 0.3, 0.75)
 								else
-									EltruismInspectBgTexture:SetTexCoord(0, 1, 0.28, 0.85) --loading screen settex
+									EltruismInspectBgTexture:SetTexCoord(0.5, 0.75, 0.5, 0.75) --loading screen settex
 								end
 							end
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
