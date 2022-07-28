@@ -737,7 +737,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 				end
-			elseif E.Wrath or E.TBC or E.Classic then
+			elseif E.TBC or E.Classic then
 				if E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'DEATHKNIGHT' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
@@ -748,6 +748,18 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 38
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 38
+				end
+			elseif E.Wrath then
+				if E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'DEATHKNIGHT' then
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 25
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 25
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 4
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 4
+				else
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 20
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 20
+					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 4
+					E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 4
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.energy then
@@ -796,9 +808,11 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.focus then
-				if E.myclass == 'HUNTER' then
-					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
-					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
+				if E.Retail then
+					if E.myclass == 'HUNTER' then
+						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
+						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
+					end
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.fury then
