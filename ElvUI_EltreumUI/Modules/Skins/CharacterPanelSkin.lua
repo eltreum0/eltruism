@@ -1636,22 +1636,22 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 							if E.Retail then
 								EltruismInspectBgTexture:SetTexture(raceBgs[englishRace]) --(left, right, top, bottom)
-								if englishRace == "BloodElf" or englishRace == "Dwarf" or englishRace == "LightforgedDraenei" or englishRace == "Pandaren" then
-									EltruismInspectBgTexture:SetTexCoord(0.1, 0.5, 0, 0.27) --topleft
-								elseif englishRace == "DarkIronDwarf" or englishRace == "Gnome" or englishRace == "Vulpera" or englishRace == "MagharOrc" or englishRace == "Tauren" then
-									EltruismInspectBgTexture:SetTexCoord(0.5, 0.9, 0, 0.27) --topright
-								elseif englishRace == "Draenei" or englishRace == "KulTiran" or englishRace == "Orc" then
-									EltruismInspectBgTexture:SetTexCoord(0.5, 0.9, 0.7, 0.9) --bottomright
-								elseif englishRace == "Human" or englishRace == "NightElf" or englishRace == "VoidElf" then
-									EltruismInspectBgTexture:SetTexCoord(0.1, 0.5, 0.7, 0.9) --bottomleft
-								elseif englishRace == "Goblin" or englishRace == "Mechagnome" or englishRace == "Troll" then
-									EltruismInspectBgTexture:SetTexCoord(0.1, 0.5, 0.33, 0.60) --middleleft
+								if englishRace == "BloodElf" or englishRace == "Dwarf" or englishRace == "LightforgedDraenei" or englishRace == "Pandaren" then ----------------------
+									EltruismInspectBgTexture:SetTexCoord(0.15, 0.30, 0, 0.20) --topleft
+								elseif englishRace == "DarkIronDwarf" or englishRace == "Gnome" or englishRace == "Vulpera" or englishRace == "MagharOrc" or englishRace == "Tauren" then ----------------------
+									EltruismInspectBgTexture:SetTexCoord(0.85, 1, 0, 0.20) --topright
+								elseif englishRace == "Draenei" or englishRace == "KulTiran" or englishRace == "Orc" then ----------------------
+									EltruismInspectBgTexture:SetTexCoord(0.85, 1, 0.80, 1) --bottomright
+								elseif englishRace == "Human" or englishRace == "NightElf" or englishRace == "VoidElf" then ----------------------
+									EltruismInspectBgTexture:SetTexCoord(0.15, 0.30, 0.80, 1) --bottomleft
+								elseif englishRace == "Goblin" or englishRace == "Mechagnome" or englishRace == "Troll" then ----------------------
+									EltruismInspectBgTexture:SetTexCoord(0.15, 0.3, 0.33, 0.60) --middleleft
 								elseif englishRace == "HighmountainTauren" or englishRace == "Nightborne" or englishRace == "Scourge" then
-									EltruismInspectBgTexture:SetTexCoord(0.5, 1, 0.33, 0.60) --middleright
+									EltruismInspectBgTexture:SetTexCoord(0.85, 1, 0.33, 0.60) --middleright
 								elseif englishRace == "Worgen" then
-									EltruismInspectBgTexture:SetTexCoord(0, 0.5, 0, 0.6) --left
+									EltruismInspectBgTexture:SetTexCoord(0, 0.3, 0, 0.6) --left
 								elseif englishRace == "ZandalariTroll" then
-									EltruismInspectBgTexture:SetTexCoord(0.5, 1, 0, 0.6) --right
+									EltruismInspectBgTexture:SetTexCoord(0.7, 1, 0, 0.6) --right
 								end
 							else
 								EltruismInspectBgTexture:SetTexture(classicraceBgs[englishRace])
