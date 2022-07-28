@@ -1422,7 +1422,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 			local iconScale = 1
 			local iconSize = 16 / iconScale
 			local iconSpacing = (overlayAtlas == nil and 1 or 10) / iconScale
-			local dx = previousSlotIcon and iconSpacing or 10 / iconScale
+			local dx = previousSlotIcon and iconSpacing or 1 / iconScale
 			local dy = not previousSlotIcon and (overlayAtlas == nil and 2 or 0) or 0
 			if self:IsWeaponSlot(slotName) then
 				dy = 15
