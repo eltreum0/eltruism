@@ -801,6 +801,7 @@ function ElvUI_EltreumUI:AuraBorders()
 		local auraborders = {}
 		for i = 1,40 do
 			table.insert(auraborders, _G["ElvUIPlayerBuffsAuraButton"..i])
+			table.insert(auraborders, _G["ElvUIPlayerBuffsTempEnchant"..i])
 		end
 		local function createauraborders()
 			for i,v in pairs(auraborders) do
