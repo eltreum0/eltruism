@@ -970,3 +970,4 @@ L["Class"] = true
 L["Race"] = true
 L["Custom"] = true
 L["Example: "] = true
+L["Add Item Quality Texture"] = true
