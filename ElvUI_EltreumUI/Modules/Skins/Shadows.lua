@@ -149,13 +149,12 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		------------------------------------------------------------------------------------------------------version specific
-		if E.Retail then
-
-			local EltruismBlizzShadowsRetail = CreateFrame("Frame")
-			EltruismBlizzShadowsRetail:RegisterEvent("ADDON_LOADED")
-			EltruismBlizzShadowsRetail:SetScript("OnEvent", function(_, _, arg)
-				if not E.private.skins.blizzard.enable == false then
+		--blizzard stuff that loads addon later
+		local EltruismBlizzShadowsRetail = CreateFrame("Frame")
+		EltruismBlizzShadowsRetail:RegisterEvent("ADDON_LOADED")
+		EltruismBlizzShadowsRetail:SetScript("OnEvent", function(_, _, arg)
+			if not E.private.skins.blizzard.enable == false then
+				if E.Retail then
 					if (arg == "Blizzard_TalentUI") then
 						_G.PlayerTalentFrame:HookScript("OnShow", function()
 							if not _G.PlayerTalentFrame.shadow then
@@ -173,183 +172,208 @@ function ElvUI_EltreumUI:Shadows()
 							end
 						end)
 					end
-					if (arg == "Blizzard_Calendar") then
-						_G.CalendarFrame:HookScript("OnShow", function()
-							if not _G.CalendarFrame.shadow then
-								_G.CalendarFrame:CreateShadow()
+				elseif not E.Retail then
+					if (arg == "Blizzard_TalentUI") then
+						_G.PlayerTalentFrame:HookScript("OnShow", function()
+							if _G.PlayerTalentFrame and _G.PlayerTalentFrame.backdrop and not _G.PlayerTalentFrame.backdrop.shadow then
+								_G.PlayerTalentFrame.backdrop:CreateShadow()
+							end
+							if _G.PlayerTalentFrameTab1 and _G.PlayerTalentFrameTab1.backdrop and not _G.PlayerTalentFrameTab1.backdrop.shadow then
+								_G.PlayerTalentFrameTab1.backdrop:CreateShadow()
+							end
+							if _G.PlayerTalentFrameTab2 and _G.PlayerTalentFrameTab2.backdrop and not _G.PlayerTalentFrameTab2.backdrop.shadow then
+								_G.PlayerTalentFrameTab2.backdrop:CreateShadow()
+							end
+							if _G.PlayerTalentFrameTab3 and _G.PlayerTalentFrameTab3.backdrop and not _G.PlayerTalentFrameTab3.backdrop.shadow then
+								_G.PlayerTalentFrameTab3.backdrop:CreateShadow()
+							end
+							if _G.PlayerTalentFrameTab4 and _G.PlayerTalentFrameTab4.backdrop and not _G.PlayerTalentFrameTab4.backdrop.shadow then
+								_G.PlayerTalentFrameTab4.backdrop:CreateShadow()
 							end
 						end)
 					end
-					if (arg == "Blizzard_Communities") then
-						_G.CommunitiesFrame:HookScript("OnShow", function()
-							if not _G.CommunitiesFrame.shadow then
-								_G.CommunitiesFrame:CreateShadow()
-							end
-						end)
-					end
-					if (arg == "Blizzard_AchievementUI") then
-						_G.AchievementFrame:HookScript("OnShow", function()
-							if _G.AchievementFrame and _G.AchievementFrame.backdrop and not _G.AchievementFrame.backdrop.shadow then
-								_G.AchievementFrame.backdrop:CreateShadow()
-							end
-						end)
-						_G.AchievementFrameTab1:HookScript("OnShow", function()
-							if _G.AchievementFrameTab1 and _G.AchievementFrameTab1.backdrop and not _G.AchievementFrameTab1.backdrop.shadow then
-								_G.AchievementFrameTab1.backdrop:CreateShadow()
-							end
-						end)
-						_G.AchievementFrameTab2:HookScript("OnShow", function()
-							if _G.AchievementFrameTab2 and _G.AchievementFrameTab2.backdrop and not _G.AchievementFrameTab2.backdrop.shadow then
-								_G.AchievementFrameTab2.backdrop:CreateShadow()
-							end
-						end)
+				end
+				if (arg == "Blizzard_Calendar") then
+					_G.CalendarFrame:HookScript("OnShow", function()
+						if not _G.CalendarFrame.shadow then
+							_G.CalendarFrame:CreateShadow()
+						end
+					end)
+				end
+				if (arg == "Blizzard_Communities") then
+					_G.CommunitiesFrame:HookScript("OnShow", function()
+						if not _G.CommunitiesFrame.shadow then
+							_G.CommunitiesFrame:CreateShadow()
+						end
+					end)
+				end
+				if (arg == "Blizzard_AchievementUI") then
+					_G.AchievementFrame:HookScript("OnShow", function()
+						if _G.AchievementFrame and _G.AchievementFrame.backdrop and not _G.AchievementFrame.backdrop.shadow then
+							_G.AchievementFrame.backdrop:CreateShadow()
+						end
+					end)
+					_G.AchievementFrameTab1:HookScript("OnShow", function()
+						if _G.AchievementFrameTab1 and _G.AchievementFrameTab1.backdrop and not _G.AchievementFrameTab1.backdrop.shadow then
+							_G.AchievementFrameTab1.backdrop:CreateShadow()
+						end
+					end)
+					_G.AchievementFrameTab2:HookScript("OnShow", function()
+						if _G.AchievementFrameTab2 and _G.AchievementFrameTab2.backdrop and not _G.AchievementFrameTab2.backdrop.shadow then
+							_G.AchievementFrameTab2.backdrop:CreateShadow()
+						end
+					end)
+					if E.Retail then
 						_G.AchievementFrameTab3:HookScript("OnShow", function()
 							if _G.AchievementFrameTab3 and _G.AchievementFrameTab3.backdrop and not _G.AchievementFrameTab3.backdrop.shadow then
 								_G.AchievementFrameTab3.backdrop:CreateShadow()
 							end
 						end)
 					end
-					if (arg == "Blizzard_GarrisonUI") then
-						_G.GarrisonLandingPage:HookScript("OnShow", function()
-							if not _G.GarrisonLandingPage.shadow then
-								_G.GarrisonLandingPage:CreateShadow()
-							end
-						end)
-						_G.CovenantMissionFrame:HookScript("OnShow", function()
-							if not _G.CovenantMissionFrame.shadow then
-								_G.CovenantMissionFrame:CreateShadow()
-							end
-						end)
-					end
-					if (arg == "Blizzard_CovenantSanctum") then
-						_G.CovenantSanctumFrame:HookScript("OnShow", function()
-							if not _G.CovenantSanctumFrame.shadow then
-								_G.CovenantSanctumFrame:CreateShadow()
-							end
-						end)
-					end
-					if (arg == "Blizzard_Soulbinds") then
-						_G.SoulbindViewer:HookScript("OnShow", function()
-							if not _G.SoulbindViewer.shadow then
-								_G.SoulbindViewer:CreateShadow()
-							end
-						end)
-					end
-					if (arg == "Blizzard_Collections") then
-						_G.CollectionsJournal:HookScript("OnShow", function()
-							if not _G.CollectionsJournal.shadow then
-								_G.CollectionsJournal:CreateShadow()
-							end
-						end)
-						_G.CollectionsJournalTab1:HookScript("OnShow", function()
-							if _G.CollectionsJournalTab1 and _G.CollectionsJournalTab1.backdrop and not _G.CollectionsJournalTab1.backdrop.shadow then
-								_G.CollectionsJournalTab1.backdrop:CreateShadow()
-							end
-						end)
-						_G.CollectionsJournalTab2:HookScript("OnShow", function()
-							if _G.CollectionsJournalTab2 and _G.CollectionsJournalTab2.backdrop and not _G.CollectionsJournalTab2.backdrop.shadow then
-								_G.CollectionsJournalTab2.backdrop:CreateShadow()
-							end
-						end)
-						_G.CollectionsJournalTab3:HookScript("OnShow", function()
-							if _G.CollectionsJournalTab3 and _G.CollectionsJournalTab3.backdrop and not _G.CollectionsJournalTab3.backdrop.shadow then
-								_G.CollectionsJournalTab3.backdrop:CreateShadow()
-							end
-						end)
-						_G.CollectionsJournalTab4:HookScript("OnShow", function()
-							if _G.CollectionsJournalTab4 and _G.CollectionsJournalTab4.backdrop and not _G.CollectionsJournalTab4.backdrop.shadow then
-								_G.CollectionsJournalTab4.backdrop:CreateShadow()
-							end
-						end)
-						_G.CollectionsJournalTab5:HookScript("OnShow", function()
-							if _G.CollectionsJournalTab5 and _G.CollectionsJournalTab5.backdrop and not _G.CollectionsJournalTab5.backdrop.shadow then
-								_G.CollectionsJournalTab5.backdrop:CreateShadow()
-							end
-						end)
-						_G.ToyBox:HookScript("OnShow", function()
-							if not _G.ToyBox.shadow then
-								_G.ToyBox:CreateShadow()
-							end
-							if not _G.CollectionsJournal.shadow then
-								_G.CollectionsJournal:CreateShadow()
-							end
-						end)
-						_G.HeirloomsJournal:HookScript("OnShow", function()
-							if not _G.HeirloomsJournal.shadow then
-								_G.HeirloomsJournal:CreateShadow()
-							end
-							if not _G.CollectionsJournal.shadow then
-								_G.CollectionsJournal:CreateShadow()
-							end
-						end)
-						_G.PetJournal:HookScript("OnShow", function()
-							if not _G.PetJournal.shadow then
-								_G.PetJournal:CreateShadow()
-							end
-							if not _G.CollectionsJournal.shadow then
-								_G.CollectionsJournal:CreateShadow()
-							end
-						end)
-						--[[_G.WardrobeCollectionFrame:HookScript("OnShow", function()
-							if not _G.WardrobeCollectionFrame.shadow then
-								_G.WardrobeCollectionFrame:CreateShadow()
-							end
-							if not _G.CollectionsJournal.shadow then
-								_G.CollectionsJournal:CreateShadow()
-							end
-						end)]]
-						_G.WardrobeFrame:HookScript("OnShow", function()
-							if not _G.WardrobeFrame.shadow then
-								_G.WardrobeFrame:CreateShadow()
-							end
-							if not _G.CollectionsJournal.shadow then
-								_G.CollectionsJournal:CreateShadow()
-							end
-						end)
-						_G.MountJournal:HookScript("OnShow", function()
-							if not _G.CollectionsJournal.shadow then
-								_G.CollectionsJournal:CreateShadow()
-							end
-						end)
-					end
-					if (arg == "Blizzard_PVPUI") then
-						_G.PVPUIFrame:HookScript("OnShow", function()
-							if not _G.PVPUIFrame.shadow then
-								_G.PVPUIFrame:CreateShadow()
-							end
-						end)
-					end
-					if (arg == "Blizzard_VoidStorageUI") then
-						_G.VoidStorageFrame:HookScript("OnShow", function()
-							if not _G.VoidStorageFrame.shadow then
-								_G.VoidStorageFrame:CreateShadow()
-							end
-						end)
-					end
-					if (arg == "Blizzard_ChallengesUI") then
-						_G.PVEFrame:HookScript("OnShow", function()
-							if not _G.PVEFrame.shadow then
-								_G.PVEFrame:CreateShadow()
-							end
-						end)
-					end
-					if (arg == "Blizzard_EncounterJournal") then
-						_G.EncounterJournal:HookScript("OnShow", function()
-							if not _G.EncounterJournal.shadow then
-								_G.EncounterJournal:CreateShadow()
-							end
-						end)
-					end
-					if (arg == "Blizzard_WeeklyRewards") then
-						_G.WeeklyRewardsFrame:HookScript("OnShow", function()
-							if not _G.WeeklyRewardsFrame.shadow then
-								_G.WeeklyRewardsFrame:CreateShadow()
-							end
-						end)
-					end
 				end
-			end)
+				if (arg == "Blizzard_GarrisonUI") then
+					_G.GarrisonLandingPage:HookScript("OnShow", function()
+						if not _G.GarrisonLandingPage.shadow then
+							_G.GarrisonLandingPage:CreateShadow()
+						end
+					end)
+					_G.CovenantMissionFrame:HookScript("OnShow", function()
+						if not _G.CovenantMissionFrame.shadow then
+							_G.CovenantMissionFrame:CreateShadow()
+						end
+					end)
+				end
+				if (arg == "Blizzard_CovenantSanctum") then
+					_G.CovenantSanctumFrame:HookScript("OnShow", function()
+						if not _G.CovenantSanctumFrame.shadow then
+							_G.CovenantSanctumFrame:CreateShadow()
+						end
+					end)
+				end
+				if (arg == "Blizzard_Soulbinds") then
+					_G.SoulbindViewer:HookScript("OnShow", function()
+						if not _G.SoulbindViewer.shadow then
+							_G.SoulbindViewer:CreateShadow()
+						end
+					end)
+				end
+				if (arg == "Blizzard_Collections") then
+					_G.CollectionsJournal:HookScript("OnShow", function()
+						if not _G.CollectionsJournal.shadow then
+							_G.CollectionsJournal:CreateShadow()
+						end
+					end)
+					_G.CollectionsJournalTab1:HookScript("OnShow", function()
+						if _G.CollectionsJournalTab1 and _G.CollectionsJournalTab1.backdrop and not _G.CollectionsJournalTab1.backdrop.shadow then
+							_G.CollectionsJournalTab1.backdrop:CreateShadow()
+						end
+					end)
+					_G.CollectionsJournalTab2:HookScript("OnShow", function()
+						if _G.CollectionsJournalTab2 and _G.CollectionsJournalTab2.backdrop and not _G.CollectionsJournalTab2.backdrop.shadow then
+							_G.CollectionsJournalTab2.backdrop:CreateShadow()
+						end
+					end)
+					_G.CollectionsJournalTab3:HookScript("OnShow", function()
+						if _G.CollectionsJournalTab3 and _G.CollectionsJournalTab3.backdrop and not _G.CollectionsJournalTab3.backdrop.shadow then
+							_G.CollectionsJournalTab3.backdrop:CreateShadow()
+						end
+					end)
+					_G.CollectionsJournalTab4:HookScript("OnShow", function()
+						if _G.CollectionsJournalTab4 and _G.CollectionsJournalTab4.backdrop and not _G.CollectionsJournalTab4.backdrop.shadow then
+							_G.CollectionsJournalTab4.backdrop:CreateShadow()
+						end
+					end)
+					_G.CollectionsJournalTab5:HookScript("OnShow", function()
+						if _G.CollectionsJournalTab5 and _G.CollectionsJournalTab5.backdrop and not _G.CollectionsJournalTab5.backdrop.shadow then
+							_G.CollectionsJournalTab5.backdrop:CreateShadow()
+						end
+					end)
+					_G.ToyBox:HookScript("OnShow", function()
+						if not _G.ToyBox.shadow then
+							_G.ToyBox:CreateShadow()
+						end
+						if not _G.CollectionsJournal.shadow then
+							_G.CollectionsJournal:CreateShadow()
+						end
+					end)
+					_G.HeirloomsJournal:HookScript("OnShow", function()
+						if not _G.HeirloomsJournal.shadow then
+							_G.HeirloomsJournal:CreateShadow()
+						end
+						if not _G.CollectionsJournal.shadow then
+							_G.CollectionsJournal:CreateShadow()
+						end
+					end)
+					_G.PetJournal:HookScript("OnShow", function()
+						if not _G.PetJournal.shadow then
+							_G.PetJournal:CreateShadow()
+						end
+						if not _G.CollectionsJournal.shadow then
+							_G.CollectionsJournal:CreateShadow()
+						end
+					end)
+					--[[_G.WardrobeCollectionFrame:HookScript("OnShow", function()
+						if not _G.WardrobeCollectionFrame.shadow then
+							_G.WardrobeCollectionFrame:CreateShadow()
+						end
+						if not _G.CollectionsJournal.shadow then
+							_G.CollectionsJournal:CreateShadow()
+						end
+					end)]]
+					_G.WardrobeFrame:HookScript("OnShow", function()
+						if not _G.WardrobeFrame.shadow then
+							_G.WardrobeFrame:CreateShadow()
+						end
+						if not _G.CollectionsJournal.shadow then
+							_G.CollectionsJournal:CreateShadow()
+						end
+					end)
+					_G.MountJournal:HookScript("OnShow", function()
+						if not _G.CollectionsJournal.shadow then
+							_G.CollectionsJournal:CreateShadow()
+						end
+					end)
+				end
+				if (arg == "Blizzard_PVPUI") then
+					_G.PVPUIFrame:HookScript("OnShow", function()
+						if not _G.PVPUIFrame.shadow then
+							_G.PVPUIFrame:CreateShadow()
+						end
+					end)
+				end
+				if (arg == "Blizzard_VoidStorageUI") then
+					_G.VoidStorageFrame:HookScript("OnShow", function()
+						if not _G.VoidStorageFrame.shadow then
+							_G.VoidStorageFrame:CreateShadow()
+						end
+					end)
+				end
+				if (arg == "Blizzard_ChallengesUI") then
+					_G.PVEFrame:HookScript("OnShow", function()
+						if not _G.PVEFrame.shadow then
+							_G.PVEFrame:CreateShadow()
+						end
+					end)
+				end
+				if (arg == "Blizzard_EncounterJournal") then
+					_G.EncounterJournal:HookScript("OnShow", function()
+						if not _G.EncounterJournal.shadow then
+							_G.EncounterJournal:CreateShadow()
+						end
+					end)
+				end
+				if (arg == "Blizzard_WeeklyRewards") then
+					_G.WeeklyRewardsFrame:HookScript("OnShow", function()
+						if not _G.WeeklyRewardsFrame.shadow then
+							_G.WeeklyRewardsFrame:CreateShadow()
+						end
+					end)
+				end
+			end
+		end)
 
+		------------------------------------------------------------------------------------------------------version specific
+		if E.Retail then
 			if IsAddOnLoaded("Rarity") then
 				local rarityalreadyloads = {
 					_G.CollectionsJournalTab1.backdrop,
@@ -407,7 +431,6 @@ function ElvUI_EltreumUI:Shadows()
 					_G.BossButton:CreateShadow()
 				end
 			end
-
 		elseif E.Wrath or E.TBC or E.Classic then
 
 			--classic only elvui
@@ -437,30 +460,6 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 			end
-
-			local EltruismBlizzShadowsClassic = CreateFrame("Frame")
-			EltruismBlizzShadowsClassic:RegisterEvent("ADDON_LOADED")
-			EltruismBlizzShadowsClassic:SetScript("OnEvent", function(_, _, arg)
-				if (arg == "Blizzard_TalentUI") then
-					_G.PlayerTalentFrame:HookScript("OnShow", function()
-						if _G.PlayerTalentFrame and _G.PlayerTalentFrame.backdrop and not _G.PlayerTalentFrame.backdrop.shadow then
-							_G.PlayerTalentFrame.backdrop:CreateShadow()
-						end
-						if _G.PlayerTalentFrameTab1 and _G.PlayerTalentFrameTab1.backdrop and not _G.PlayerTalentFrameTab1.backdrop.shadow then
-							_G.PlayerTalentFrameTab1.backdrop:CreateShadow()
-						end
-						if _G.PlayerTalentFrameTab2 and _G.PlayerTalentFrameTab2.backdrop and not _G.PlayerTalentFrameTab2.backdrop.shadow then
-							_G.PlayerTalentFrameTab2.backdrop:CreateShadow()
-						end
-						if _G.PlayerTalentFrameTab3 and _G.PlayerTalentFrameTab3.backdrop and not _G.PlayerTalentFrameTab3.backdrop.shadow then
-							_G.PlayerTalentFrameTab3.backdrop:CreateShadow()
-						end
-						if _G.PlayerTalentFrameTab4 and _G.PlayerTalentFrameTab4.backdrop and not _G.PlayerTalentFrameTab4.backdrop.shadow then
-							_G.PlayerTalentFrameTab4.backdrop:CreateShadow()
-						end
-					end)
-				end
-			end)
 
 			--tbc/classic frames
 			local classicframes = {
