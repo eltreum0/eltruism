@@ -100,7 +100,6 @@ local unitframegradients = {
 }
 
 function ElvUI_EltreumUI:GradientColorTableUpdate()
-
 	unitframecustomgradients = {
 		["WARRIOR"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB2},
 		["PALADIN"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorB2},
@@ -2617,3 +2616,28 @@ function ElvUI_EltreumUI:BackdropTexture(_, _, backdropTex)
 	end
 end
 hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
+
+--by asakawa
+--[[ YOUR SETTINGS 1 = left, 2 = right --
+local r1,g1,b1,r2,g2,b2 = 1,1,0,0,1,1
+---------------------------------------
+if not aura_env.region.bar.gradient then
+  aura_env.region.bar.gradient = aura_env.region.bar:CreateTexture()
+  aura_env.region.bar.mask = aura_env.region.bar:CreateMaskTexture()
+end
+
+local bar = aura_env.region.bar
+local gradient = bar.gradient
+local mask = bar.mask
+
+gradient:SetTexture(bar:GetTexture())
+gradient:SetAllPoints(bar.bg)
+gradient:SetGradient("HORIZONTAL", r1,g1,b1,r2,g2,b2)
+
+]]
+
+--mask:SetTexture([[Interface\AddOns\WeakAuras\Media\Textures\Square_White]])
+--mask:SetAllPoints(bar.fg)
+
+--bar.fg:SetAlpha(0)
+--gradient:AddMaskTexture(mask)
