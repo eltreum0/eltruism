@@ -1001,5 +1001,5 @@ L["Class"] = "Klasse"
 L["Race"] = "Rasse"
 L["Custom"] = "Benutzerdefiniert"
 L["Example: "] = "Beispiel: "
-L["Add Item Quality Texture"] = true
-L["Focus Castbar Border"] = true
+L["Add Item Quality Texture"] = "Füge einen Verlauf nach Gegenstandsqualität hinzu"
+L["Focus Castbar Border"] = "Fokuszauberleisten Rahmen"
