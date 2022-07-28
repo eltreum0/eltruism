@@ -150,13 +150,11 @@ local classCrests = {
 
 local statgradients = {
 	["WARRIOR"] = {r1 = 0.60, g1 = 0.40, b1 = 0.20, r2 = 0.66470588235294, g2 = 0.53137254901961, b2 = 0.34705882352941},
-	--["WARRIOR"] = {r1 = 0.42745098039216, g1 = 0.13725490196078, b1 = 0.090196078431373, r2 = 0.56470588235294, g2 = 0.43137254901961, b2 = 0.24705882352941},
 	["PALADIN"] = {r1 = 0.9, g1 = 0.46666666666667, b1 = 0.63725490196078, r2 = 0.95686274509804, g2 = 0.64901960784314, b2 = 0.82941176470588},
 	["HUNTER"] = {r1 = 0.58235294117647, g1 = 0.69607843137255, b1 = 0.29411764705882, r2 = 0.78823529411765, g2 = 1, b2 = 0.38823529411765},
 	["ROGUE"] = {r1 = 1, g1 = 0.68627450980392, b1 = 0, r2 = 1, g2 = 0.83137254901961, b2 = 0.25490196078431},
 	["PRIEST"] = {r1 = 0.6568627450980392, g1 = 0.6568627450980392, b1 = 0.6568627450980392, r2 = 0.98823529411765, g2 = 0.98823529411765, b2 = 0.98823529411765},
 	["DEATHKNIGHT"] = {r1 = 0.79803921568627, g1 = 0.074509803921569, b1 = 0.14901960784314, r2 = 1, g2 = 0.1843137254902, b2 = 0.23921568627451},
-	--["SHAMAN"] = {r1 = 0, g1 = 0.6, b1 = 0.70980392156863, r2 = 0, g2 = 0.5, b2 = 1},
 	["SHAMAN"] = {r1 = 0, g1 = 0.25882352941176, b1 = 0.50980392156863, r2 = 0, g2 = 0.43921568627451, b2 = 0.87058823529412},
 	["MAGE"] = {r1 = 0, g1 = 0.73333333333333, b1 = 0.83725490196078, r2 = 0.49019607843137, g2 = 0.87058823529412, b2 = 1},
 	["WARLOCK"] = {r1 = 0.50, g1 = 0.30, b1 = 0.70, r2 = 0.7, g2= 0.53, b2 = 0.83},
@@ -279,7 +277,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterModelFrame.BackgroundBotLeft:Hide()
 				CharacterModelFrame.BackgroundBotRight:Hide()
 				CharacterModelFrame.BackgroundTopLeft:SetAllPoints(CharacterModelFrame)
-				CharacterModelFrameBackgroundOverlay:SetAllPoints(CharacterModelFrame)
+				_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(CharacterModelFrame)
 
 
 				--move the equipment manager to a nice position
@@ -985,6 +983,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--add background from artifact weapon
 			if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+
+				--sometimes it returns nil for no known reason so have a check just in case
 				local alpha
 				if E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha ~= nil then
 					alpha = E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha
@@ -1092,52 +1092,28 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				if E.Wrath or E.TBC then
 					_G.PlayerTitleDropDown:ClearAllPoints()
 					_G.PlayerTitleDropDown:SetParent(CharacterModelFrame)
+					_G.PlayerTitleDropDown:SetPoint('TOP', CharacterModelFrame, -6, 40)
 					_G.PVPFrameToggleButton:ClearAllPoints()
 					_G.PVPFrameToggleButton:SetPoint('TOP', _G.PVPHonor, 'TOP', 52, 42)
 					_G.PVPFrameToggleButton:SetParent(_G.PVPFrameHonor)
 				elseif E.Classic then
 					CharacterTitleText:ClearAllPoints()
+					CharacterTitleText:SetPoint('TOP', CharacterModelFrame, 0, 40)
 					CharacterTitleText:SetParent(CharacterModelFrame)
 				end
 
-				--[[if _G.PetPaperDollCloseButton then
-					_G.PetPaperDollCloseButton:Hide()
-				end
-
-				if _G.TokenFrameCancelButton then
-					_G.TokenFrameCancelButton:Hide()
-				end
-
-				if _G.SkillFrameCancelButton then
-					_G.SkillFrameCancelButton:Hide()
-				end]]
-
 				CharacterNameText:ClearAllPoints()
-				CharacterLevelText:ClearAllPoints()
 				CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
-				CharacterNameText:SetParent(CharacterModelFrame)
-				CharacterLevelText:SetPoint('TOP', CharacterModelFrame, 0, 60)
-				CharacterLevelText:SetParent(CharacterModelFrame)
-
-				if E.Wrath or E.TBC then
-					_G.PlayerTitleDropDown:SetPoint('TOP', CharacterModelFrame, -6, 40)
-				elseif E.Classic then
-					CharacterTitleText:SetPoint('TOP', CharacterModelFrame, 0, 40)
-				end
-
-				CharacterLevelText:SetPoint('TOP', CharacterNameText, 'BOTTOM', 0, -10)
-				--[[if not E.Wrath then
-					_G.PetNameText:SetPoint('TOP', _G.PetModelFrame, 0, 60)
-					_G.PetLevelText:SetPoint('BOTTOM', _G.PetNameText, 0, -10)
-					_G.PetLoyaltyText:SetPoint('BOTTOM', _G.PetLevelText, 0, -20)
-					_G.PetPaperDollCloseButton:Hide()
-				end]]
-
 				CharacterNameText:SetParent(CharacterModelFrame)
 				CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 				CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 				CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
 				CharacterNameText:SetShadowOffset(2, -1)
+
+				CharacterLevelText:ClearAllPoints()
+				--CharacterLevelText:SetPoint('TOP', CharacterModelFrame, 0, 60)
+				CharacterLevelText:SetPoint('TOP', CharacterNameText, 'BOTTOM', 0, -10)
+				CharacterLevelText:SetParent(CharacterModelFrame)
 
 				CharacterFrame.Text4:SetSize(418, 72)
 				CharacterFrame.Text4:SetPoint("TOP", CharacterFrame, "TOP", 150, 10)
@@ -1159,6 +1135,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.Text5:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 				CharacterFrame.Text5:SetText(PlayerSpec())
 
+				--change the size based on if paperdoll is hidden
 				CharacterFrame:SetSize(600, 505)
 				hooksecurefunc("CharacterFrameTab_OnClick", function()
 					if PaperDollFrame:IsShown() then
@@ -1215,11 +1192,15 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.StatusLine3:SetStatusBarTexture(E.Media.Textures.Highlight)
 				CharacterFrame.StatusLine3:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
+				--move the model
 				CharacterModelFrame:ClearAllPoints()
 				CharacterModelFrame:SetPoint("RIGHT", CharacterFrame, "CENTER", -20, 0)
 				CharacterModelFrame:SetSize(200, 300)
+
 				_G.CharacterModelFrameRotateRightButton:Hide()
 				_G.CharacterModelFrameRotateLeftButton:Hide()
+
+				--magic resistance stuff, maybe make it a loop in the future
 				_G.MagicResFrame1:ClearAllPoints()
 				if E.Wrath or E.TBC then
 					_G.MagicResFrame1:SetParent(_G.PlayerStatFrameLeft1)
@@ -1228,7 +1209,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.MagicResFrame1:SetParent(_G.CharacterStatFrame1)
 					_G.MagicResFrame1:SetPoint("BOTTOM", CharacterFrame.StatusLine3, "BOTTOM", -55, -50)
 				end
-
 				_G.MagicResFrame2:ClearAllPoints()
 				_G.MagicResFrame2:SetParent(_G.MagicResFrame1)
 				_G.MagicResFrame2:SetPoint("RIGHT", _G.MagicResFrame1, "RIGHT", 27, 0)
