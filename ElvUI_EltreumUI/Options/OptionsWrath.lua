@@ -1832,12 +1832,12 @@ function ElvUI_EltreumUI:Configtable()
 									soundpath = {
 										order = 6,
 										type = 'input',
-										name = L["Example: "].."mytexture.tga",
+										name = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
 										desc = '',
 										width = 'full',
 										disabled = function() return E.db.ElvUI_EltreumUI.skins.armorybgtype ~= "CUSTOM" end,
 										get = function() return E.private.ElvUI_EltreumUI.skins.armorybgtexture end,
-										set = function(_, value) E.private.ElvUI_EltreumUI.skins.armorybgtexture = value E:StaticPopup_Show('PRIVATE_RL') end,
+										set = function(_, value) E.private.ElvUI_EltreumUI.skins.armorybgtexture = value ElvUI_EltreumUI:ExpandedCharacterStats() E:StaticPopup_Show('PRIVATE_RL') end,
 									}
 								}
 							},

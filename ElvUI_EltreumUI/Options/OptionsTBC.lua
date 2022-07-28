@@ -1832,7 +1832,7 @@ function ElvUI_EltreumUI:Configtable()
 									soundpath = {
 										order = 6,
 										type = 'input',
-										name = L["Example: "].."mytexture.tga",
+										name = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
 										desc = '',
 										width = 'full',
 										disabled = function() return E.db.ElvUI_EltreumUI.skins.armorybgtype ~= "CUSTOM" end,
