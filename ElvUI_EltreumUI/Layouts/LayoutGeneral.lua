@@ -828,9 +828,9 @@ function ElvUI_EltreumUI:SetupPrivate()
 	E.private["general"]["chatBubbleFontSize"] = 10
 	E.private["general"]["chatBubbleName"] = true
 	E.private["general"]["dmgfont"] = "Kimberley"
-	E.private["general"]["glossTex"] = "Eltreum-Blank"
+	E.private["general"]["glossTex"] = "Asphyxia-Norm"
 	E.private["general"]["namefont"] = "Kimberley"
-	E.private["general"]["normTex"] = "Eltreum-Blank"
+	E.private["general"]["normTex"] = "Asphyxia-Norm"
 	E.private["theme"] = "class"
 	E.private["skins"]["parchmentRemoverEnable"] = true
 	E.private["skins"]["blizzard"]["enable"] = true

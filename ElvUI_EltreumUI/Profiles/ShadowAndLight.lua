@@ -443,9 +443,9 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["unitframes"]["roleIcons"]["icons"] = "Eltruism"
 		--E.private["sle"]["unitframe"]["statusbarTextures"]["aura"] = true --old
 		E.db["sle"]["unitframe"]["statusbarTextures"]["aurabar"]["enable"] = true
-		E.db["sle"]["unitframe"]["statusbarTextures"]["aurabar"]["texture"] = "Eltreum-Blank"
+		E.db["sle"]["unitframe"]["statusbarTextures"]["aurabar"]["texture"] = "ElvUI Norm1"
 		E.db["sle"]["unitframe"]["statusbarTextures"]["castbar"]["enable"] = true
-		E.db["sle"]["unitframe"]["statusbarTextures"]["castbar"]["texture"] = "Eltreum-Blank"
+		E.db["sle"]["unitframe"]["statusbarTextures"]["castbar"]["texture"] = "ElvUI Norm1"
 
 		E.db["sle"]["unitframe"]["units"]["party"]["deathIndicator"]["custom"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga"
 		E.db["sle"]["unitframe"]["units"]["party"]["deathIndicator"]["enable"] = true

@@ -500,7 +500,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["colors"]["transparentHealth"] = true
 		E.db["unitframe"]["colors"]["transparentPower"] = true
 		E.db["unitframe"]["debuffHighlighting"] = "GLOW"
-		E.db["unitframe"]["statusbar"] = "Eltreum-Blank"
+		E.db["unitframe"]["statusbar"] = "ElvUI Norm1"
 		E.db["unitframe"]["font"] = "Kimberley"
 		E.db["unitframe"]["fontOutline"] = "OUTLINE"
 		E.db["unitframe"]["smartRaidFilter"] = false
