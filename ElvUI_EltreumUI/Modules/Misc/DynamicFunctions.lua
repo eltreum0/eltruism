@@ -425,6 +425,10 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.yfocus = 72
 				E.db.ElvUI_EltreumUI.borders.bossborder = true
 				E.db.ElvUI_EltreumUI.borders.minimapsizex = 226
+				E.db.ElvUI_EltreumUI.borders.focuscastborder = true
+				E.db.ElvUI_EltreumUI.borders.xcastfocus = 365
+				E.db.ElvUI_EltreumUI.borders.ycastfocus = 62
+
 				if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
 					E.db.ElvUI_EltreumUI.borders.minimapsizey = 225
 				else
