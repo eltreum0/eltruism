@@ -26,7 +26,7 @@ V.ElvUI_EltreumUI = {
 	},
 
 	skins = {
-		armorybgtexture = "mytexture.tga",
+		armorybgtexture = "mytexture",
 	},
 
 	wishlistID = {},
