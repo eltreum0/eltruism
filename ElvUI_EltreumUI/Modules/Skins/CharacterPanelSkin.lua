@@ -1537,7 +1537,7 @@ local qualityAnchorInspect
 
 --Player Item Quality Texture
 function ElvUI_EltreumUI:PlayerItemQuality(unit)
-	if E.db.ElvUI_EltreumUI.skins.expandarmorybg and not E.private.skins.blizzard.enable == false then
+	if E.db.ElvUI_EltreumUI.skins.itemquality and not E.private.skins.blizzard.enable == false then
 		E:Delay(0, function()
 			for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 				qualityAnchor = _G["Character"..InvSlotIdTable[InvSlotId]]
@@ -1613,7 +1613,7 @@ end)
 local EltruismInspectBg = CreateFrame("Frame", "EltruismInspectBg")
 local EltruismInspectBgTexture = EltruismInspectBg:CreateTexture()
 function ElvUI_EltreumUI:InspectBg(unit)
-	if E.db.ElvUI_EltreumUI.skins.expandarmorybg and not E.private.skins.blizzard.enable == false then
+	if not E.private.skins.blizzard.enable == false then
 		local alpha
 		if E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha ~= nil then
 			alpha = E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha
@@ -1624,142 +1624,149 @@ function ElvUI_EltreumUI:InspectBg(unit)
 		--inspect frame bg
 		if IsAddOnLoaded("Blizzard_InspectUI") then
 			EltruismInspectBg:SetParent(_G.InspectFrame)
-			local _, englishClass, _, englishRace = GetPlayerInfoByGUID(unit)
-			if englishClass or englishRace then
-				if _G.InspectFrame then
-					--add bg texture
-					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-						EltruismInspectBgTexture:SetTexture(classBgs[englishClass])
-						EltruismInspectBgTexture:SetTexCoord(0, 0.87, 0, 0.60)
-					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-						if E.Retail then
-							EltruismInspectBgTexture:SetTexture(raceBgs[englishRace]) --(left, right, top, bottom)
-							if englishRace == "BloodElf" or englishRace == "Dwarf" or englishRace == "LightforgedDraenei" or englishRace == "Pandaren" then
-								EltruismInspectBgTexture:SetTexCoord(0.1, 0.5, 0, 0.27) --topleft
-							elseif englishRace == "DarkIronDwarf" or englishRace == "Gnome" or englishRace == "Vulpera" or englishRace == "MagharOrc" or englishRace == "Tauren" then
-								EltruismInspectBgTexture:SetTexCoord(0.5, 0.9, 0, 0.27) --topright
-							elseif englishRace == "Draenei" or englishRace == "KulTiran" or englishRace == "Orc" then
-								EltruismInspectBgTexture:SetTexCoord(0.5, 0.9, 0.7, 1) --bottomright
-							elseif englishRace == "Human" or englishRace == "NightElf" or englishRace == "VoidElf" then
-								EltruismInspectBgTexture:SetTexCoord(0.1, 0.5, 0.7, 1) --bottomleft
-							elseif englishRace == "Goblin" or englishRace == "Mechagnome" or englishRace == "Troll" then
-								EltruismInspectBgTexture:SetTexCoord(0.1, 0.5, 0.33, 0.60) --middleleft
-							elseif englishRace == "HighmountainTauren" or englishRace == "Nightborne" or englishRace == "Scourge" then
-								EltruismInspectBgTexture:SetTexCoord(0.5, 1, 0.33, 0.60) --middleright
-							elseif englishRace == "Worgen" then
-								EltruismInspectBgTexture:SetTexCoord(0, 0.5, 0, 0.6) --left
-							elseif englishRace == "ZandalariTroll" then
-								EltruismInspectBgTexture:SetTexCoord(0.5, 1, 0, 0.6) --right
-							end
-						else
-							EltruismInspectBgTexture:SetTexture(classicraceBgs[englishRace])
-							if englishRace == "Tauren" or englishRace == "Gnome" then
-								EltruismInspectBgTexture:SetTexCoord(0, 1, 0.28, 0.80) --loading screen settex
-							elseif englishRace == "NightElf" then
-								EltruismInspectBgTexture:SetTexCoord(0.3, 0.7, 0.3, 0.80) --loading screen settex
-							elseif englishRace == "BloodElf" then
-								EltruismInspectBgTexture:SetTexCoord(0, 1, 0.3, 0.75) --loading screen settex
-							else
-								EltruismInspectBgTexture:SetTexCoord(0, 1, 0.28, 0.85) --loading screen settex
-							end
-						end
-					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
-						local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
-						EltruismInspectBgTexture:SetTexture(texturefile)
-					end
 
-					if alpha ~= nil then
-						EltruismInspectBgTexture:SetAlpha(alpha)
-					else
-						EltruismInspectBgTexture:SetAlpha(0.3)
-					end
-					if E.Wrath or E.TBC or E.Classic then
-						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop)
-						EltruismInspectBgTexture:SetParent(_G.InspectFrame)
-						if _G.InspectModelFrameRotateLeftButton:IsShown() then
-							_G.InspectModelFrameRotateLeftButton:Hide()
+			if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+				local _, englishClass, _, englishRace = GetPlayerInfoByGUID(unit)
+				if englishClass or englishRace then
+					if _G.InspectFrame then
+						--add bg texture
+						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+							EltruismInspectBgTexture:SetTexture(classBgs[englishClass])
+							EltruismInspectBgTexture:SetTexCoord(0, 0.87, 0, 0.60)
+						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
+							if E.Retail then
+								EltruismInspectBgTexture:SetTexture(raceBgs[englishRace]) --(left, right, top, bottom)
+								if englishRace == "BloodElf" or englishRace == "Dwarf" or englishRace == "LightforgedDraenei" or englishRace == "Pandaren" then
+									EltruismInspectBgTexture:SetTexCoord(0.1, 0.5, 0, 0.27) --topleft
+								elseif englishRace == "DarkIronDwarf" or englishRace == "Gnome" or englishRace == "Vulpera" or englishRace == "MagharOrc" or englishRace == "Tauren" then
+									EltruismInspectBgTexture:SetTexCoord(0.5, 0.9, 0, 0.27) --topright
+								elseif englishRace == "Draenei" or englishRace == "KulTiran" or englishRace == "Orc" then
+									EltruismInspectBgTexture:SetTexCoord(0.5, 0.9, 0.7, 1) --bottomright
+								elseif englishRace == "Human" or englishRace == "NightElf" or englishRace == "VoidElf" then
+									EltruismInspectBgTexture:SetTexCoord(0.1, 0.5, 0.7, 1) --bottomleft
+								elseif englishRace == "Goblin" or englishRace == "Mechagnome" or englishRace == "Troll" then
+									EltruismInspectBgTexture:SetTexCoord(0.1, 0.5, 0.33, 0.60) --middleleft
+								elseif englishRace == "HighmountainTauren" or englishRace == "Nightborne" or englishRace == "Scourge" then
+									EltruismInspectBgTexture:SetTexCoord(0.5, 1, 0.33, 0.60) --middleright
+								elseif englishRace == "Worgen" then
+									EltruismInspectBgTexture:SetTexCoord(0, 0.5, 0, 0.6) --left
+								elseif englishRace == "ZandalariTroll" then
+									EltruismInspectBgTexture:SetTexCoord(0.5, 1, 0, 0.6) --right
+								end
+							else
+								EltruismInspectBgTexture:SetTexture(classicraceBgs[englishRace])
+								if englishRace == "Tauren" or englishRace == "Gnome" then
+									EltruismInspectBgTexture:SetTexCoord(0, 1, 0.28, 0.80) --loading screen settex
+								elseif englishRace == "NightElf" then
+									EltruismInspectBgTexture:SetTexCoord(0.3, 0.7, 0.3, 0.80) --loading screen settex
+								elseif englishRace == "BloodElf" then
+									EltruismInspectBgTexture:SetTexCoord(0, 1, 0.3, 0.75) --loading screen settex
+								else
+									EltruismInspectBgTexture:SetTexCoord(0, 1, 0.28, 0.85) --loading screen settex
+								end
+							end
+						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
+							local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
+							EltruismInspectBgTexture:SetTexture(texturefile)
 						end
-						if _G.InspectModelFrameRotateRightButton:IsShown() then
-							_G.InspectModelFrameRotateRightButton:Hide()
+
+						if alpha ~= nil then
+							EltruismInspectBgTexture:SetAlpha(alpha)
+						else
+							EltruismInspectBgTexture:SetAlpha(0.3)
 						end
-					elseif E.Retail then
-						_G.InspectModelFrameBackgroundBotLeft:Hide()
-						_G.InspectModelFrameBackgroundBotRight:Hide()
-						_G.InspectModelFrameBackgroundTopLeft:Hide()
-						_G.InspectModelFrameBackgroundTopRight:Hide()
-						_G.InspectModelFrameBackgroundOverlay:Hide()
-						--InspectModelFrame.backdrop:Hide()
-						_G.InspectModelFrame.backdrop:SetParent(_G.InspectFrame)
-						_G.InspectModelFrame.backdrop:SetAllPoints(_G.InspectFrame)
-						_G.InspectModelFrame.backdrop:SetAlpha(0.2)
-						EltruismInspectBgTexture:SetParent(_G.InspectFrame)
-						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame)
+						if E.Wrath or E.TBC or E.Classic then
+							EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop)
+							EltruismInspectBgTexture:SetParent(_G.InspectFrame)
+							if _G.InspectModelFrameRotateLeftButton:IsShown() then
+								_G.InspectModelFrameRotateLeftButton:Hide()
+							end
+							if _G.InspectModelFrameRotateRightButton:IsShown() then
+								_G.InspectModelFrameRotateRightButton:Hide()
+							end
+						elseif E.Retail then
+							_G.InspectModelFrameBackgroundBotLeft:Hide()
+							_G.InspectModelFrameBackgroundBotRight:Hide()
+							_G.InspectModelFrameBackgroundTopLeft:Hide()
+							_G.InspectModelFrameBackgroundTopRight:Hide()
+							_G.InspectModelFrameBackgroundOverlay:Hide()
+							--InspectModelFrame.backdrop:Hide()
+							_G.InspectModelFrame.backdrop:SetParent(_G.InspectFrame)
+							_G.InspectModelFrame.backdrop:SetAllPoints(_G.InspectFrame)
+							_G.InspectModelFrame.backdrop:SetAlpha(0.2)
+							EltruismInspectBgTexture:SetParent(_G.InspectFrame)
+							EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame)
+						end
+						EltruismInspectBgTexture:SetDrawLayer("ARTWORK")
 					end
-					EltruismInspectBgTexture:SetDrawLayer("ARTWORK")
 				end
 			end
 
 			--add a texture based on quality too, tbc needed a timer
-			E:Delay(0, function()
-				for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
-					qualityAnchorInspect = _G["Inspect"..InvSlotIdTable[InvSlotId]]
-					if qualityAnchorInspect == nil then return end
+			if E.db.ElvUI_EltreumUI.skins.itemquality then
+				E:Delay(0, function()
+					for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
+						qualityAnchorInspect = _G["Inspect"..InvSlotIdTable[InvSlotId]]
+						if qualityAnchorInspect == nil then return end
 
-					if _G["EltruismInspectItemQuality"..InvSlotName] then
-						qualityAnchorInspect.Frame = _G["EltruismInspectItemQuality"..InvSlotName]
-					else
-						qualityAnchorInspect.Frame = CreateFrame('FRAME', "EltruismInspectItemQuality"..InvSlotName, qualityAnchorInspect)
-					end
-					if _G["EltruismInspectItemQualityTexture"..InvSlotName] then
-						qualityAnchorInspect.Frame.Quality = _G["EltruismInspectItemQualityTexture"..InvSlotName]
-					else
-						qualityAnchorInspect.Frame.Quality = qualityAnchorInspect.Frame:CreateTexture("EltruismInspectItemQualityTexture"..InvSlotName, "OVERLAY")
-					end
-
-					local slotlevel = _G["InspectModelFrame"]:GetFrameLevel()
-					qualityAnchorInspect.Frame:SetFrameLevel(slotlevel-1)
-					local slotsize = _G["Inspect"..InvSlotName]:GetHeight()
-					if not E.Retail then
-						qualityAnchorInspect.Frame:SetSize(120, slotsize+2)
-					else
-						qualityAnchorInspect.Frame:SetSize(140, slotsize+2)
-					end
-
-					qualityAnchorInspect.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade') --temp for testing
-					qualityAnchorInspect.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
-
-					--get item (actual) quality
-					local itemLink = GetInventoryItemLink("target", InvSlotId)
-					if itemLink ~= nil then
-						local quality = select(3,GetItemInfo(itemLink))
-						local r,g,b = GetItemQualityColor(quality)
-						qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
-						qualityAnchorInspect.Frame.Quality:SetAlpha(1)
-					else
-						qualityAnchorInspect.Frame.Quality:SetAlpha(0)
-					end
-
-					--align them left or right based on id since its known where they go (unless another addon changes their side...)
-					if InvSlotId == 1 or InvSlotId == 2 or InvSlotId == 3 or InvSlotId == 5 or InvSlotId == 9 or InvSlotId == 15 or InvSlotId == 18 then
-						qualityAnchorInspect.Frame:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
-						qualityAnchorInspect.Frame.Quality:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
-					elseif InvSlotId == 6 or InvSlotId == 7 or InvSlotId == 8 or InvSlotId == 10 or InvSlotId == 11 or InvSlotId == 12 or InvSlotId == 13 or InvSlotId == 14 or InvSlotId == 16 then
-						qualityAnchorInspect.Frame:SetPoint("RIGHT", _G["Inspect"..InvSlotName], "LEFT", _G["Inspect"..InvSlotName]:GetWidth()+4, 0)
-						qualityAnchorInspect.Frame.Quality:SetPoint("RIGHT", _G["Inspect"..InvSlotName], "LEFT", _G["Inspect"..InvSlotName]:GetWidth()+4, 0)
-						--flip the texture since its on the other side
-						qualityAnchorInspect.Frame.Quality:SetTexCoord(1, 0, 0, 1)
-					elseif InvSlotId == 17 then --rotate for the off hand slot that is in the middle in classic/tbc/wrath
-						if not E.Retail then
-							qualityAnchorInspect.Frame.Quality:SetRotation(1.57079633)
-							qualityAnchorInspect.Frame:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
-							qualityAnchorInspect.Frame.Quality:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
+						if _G["EltruismInspectItemQuality"..InvSlotName] then
+							qualityAnchorInspect.Frame = _G["EltruismInspectItemQuality"..InvSlotName]
 						else
+							qualityAnchorInspect.Frame = CreateFrame('FRAME', "EltruismInspectItemQuality"..InvSlotName, qualityAnchorInspect)
+						end
+						if _G["EltruismInspectItemQualityTexture"..InvSlotName] then
+							qualityAnchorInspect.Frame.Quality = _G["EltruismInspectItemQualityTexture"..InvSlotName]
+						else
+							qualityAnchorInspect.Frame.Quality = qualityAnchorInspect.Frame:CreateTexture("EltruismInspectItemQualityTexture"..InvSlotName, "OVERLAY")
+						end
+
+						local slotlevel = _G["InspectModelFrame"]:GetFrameLevel()
+						qualityAnchorInspect.Frame:SetFrameLevel(slotlevel-1)
+						local slotsize = _G["Inspect"..InvSlotName]:GetHeight()
+						if not E.Retail then
+							qualityAnchorInspect.Frame:SetSize(120, slotsize+2)
+						else
+							qualityAnchorInspect.Frame:SetSize(140, slotsize+2)
+						end
+
+						qualityAnchorInspect.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade') --temp for testing
+						qualityAnchorInspect.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
+
+						--get item (actual) quality
+						local itemLink = GetInventoryItemLink("target", InvSlotId)
+						if itemLink ~= nil then
+							local quality = select(3,GetItemInfo(itemLink))
+							local r,g,b = GetItemQualityColor(quality)
+							qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
+							qualityAnchorInspect.Frame.Quality:SetAlpha(1)
+						else
+							qualityAnchorInspect.Frame.Quality:SetAlpha(0)
+						end
+
+						--align them left or right based on id since its known where they go (unless another addon changes their side...)
+						if InvSlotId == 1 or InvSlotId == 2 or InvSlotId == 3 or InvSlotId == 5 or InvSlotId == 9 or InvSlotId == 15 or InvSlotId == 18 then
 							qualityAnchorInspect.Frame:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
 							qualityAnchorInspect.Frame.Quality:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
+						elseif InvSlotId == 6 or InvSlotId == 7 or InvSlotId == 8 or InvSlotId == 10 or InvSlotId == 11 or InvSlotId == 12 or InvSlotId == 13 or InvSlotId == 14 or InvSlotId == 16 then
+							qualityAnchorInspect.Frame:SetPoint("RIGHT", _G["Inspect"..InvSlotName], "LEFT", _G["Inspect"..InvSlotName]:GetWidth()+4, 0)
+							qualityAnchorInspect.Frame.Quality:SetPoint("RIGHT", _G["Inspect"..InvSlotName], "LEFT", _G["Inspect"..InvSlotName]:GetWidth()+4, 0)
+							--flip the texture since its on the other side
+							qualityAnchorInspect.Frame.Quality:SetTexCoord(1, 0, 0, 1)
+						elseif InvSlotId == 17 then --rotate for the off hand slot that is in the middle in classic/tbc/wrath
+							if not E.Retail then
+								qualityAnchorInspect.Frame.Quality:SetRotation(1.57079633)
+								qualityAnchorInspect.Frame:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
+								qualityAnchorInspect.Frame.Quality:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
+							else
+								qualityAnchorInspect.Frame:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
+								qualityAnchorInspect.Frame.Quality:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
+							end
 						end
 					end
-				end
-			end)
+				end)
+			end
+
+
 		end
 	end
 end
