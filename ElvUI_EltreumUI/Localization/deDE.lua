@@ -1002,3 +1002,4 @@ L["Race"] = "Rasse"
 L["Custom"] = "Benutzerdefiniert"
 L["Example: "] = "Beispiel: "
 L["Add Item Quality Texture"] = true
+L["Focus Castbar Border"] = true
