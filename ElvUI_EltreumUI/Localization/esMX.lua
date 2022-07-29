@@ -988,11 +988,6 @@ L["Custom"] = true
 L["Example: "] = true
 L["Add Item Quality Texture"] = true
 L["Focus Castbar Border"] = true
-
-
-
-L["Displays a dead symbol when unit is dead. Number can be between 1 and 6 for different textures from Releaf."] = "Muestra un símbolo de muerto cuando la unidad está muerta. El número puede estar entre 1 y 6 para diferentes texturas de Releaf."
-L["Displays a disconnect symbol when unit is disconnected. Number can be between 1 and 6 for different textures from Releaf."] = "Muestra un símbolo de desconexión cuando la unidad está desconectada. El número puede ser entre 1 y 6 para diferentes texturas de Releaf."
-L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [eltruism:hpstatus{number,number}]"] = true
-L["Displays a disconnect symbol from Releaf when unit is disconnected. Usage: [eltruism:dc{number}]"] = true
-L["Displays a dead symbol from Releaf when unit is dead. Usage: [eltruism:dead{number}]"] = true
+L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [eltruism:hpstatus{number,number}]"] = "Muestra un valor corto de HP y un símbolo de estado de Releaf para los jugadores. Uso: [eltruism:hpstatus{número,número}]"
+L["Displays a disconnect symbol from Releaf when unit is disconnected. Usage: [eltruism:dc{number}]"] = "Muestra un símbolo de desconexión de Releaf cuando la unidad está desconectada. Uso: [eltruism:dc{número}]"
+L["Displays a dead symbol from Releaf when unit is dead. Usage: [eltruism:dead{number}]"] = " Muestra un símbolo de muerto de Releaf cuando la unidad está muerta. Uso: [eltruism:dead{número}]"
