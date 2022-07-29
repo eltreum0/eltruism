@@ -638,16 +638,23 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 	local texture1,texture2 = strsplit(',', args or '')
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead"..tostring(texture1)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc"..tostring(texture2)..".tga:0:0:0:0|t"
-
 	if not UnitIsPlayer(unit) then  --npc
 		if not UnitIsDead(unit) then
-			return E:ShortValue(UnitHealth(unit))
+			if UnitHealth(unit) == UnitHealthMax(unit) then
+				return E:ShortValue(UnitHealth(unit))
+			else
+				return (E:ShortValue(UnitHealth(unit)).." - "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)))
+			end
 		else
 			return L["Dead"]
 		end
 	else
 		if not UnitIsDead(unit) then --player
-			return E:ShortValue(UnitHealth(unit))
+			if UnitHealth(unit) == UnitHealthMax(unit) then
+				return E:ShortValue(UnitHealth(unit))
+			else
+				return (E:ShortValue(UnitHealth(unit)).." - "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)))
+			end
 		elseif UnitIsDead(unit) and UnitIsConnected(unit) then
 			return deadtexture
 		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
@@ -658,3 +665,4 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 	end
 end)
 E:AddTagInfo("eltruism:hpstatus", ElvUI_EltreumUI.Name, L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [eltruism:hpstatus{number,number}]"])
+--[health:current-percent:shortvalue]
