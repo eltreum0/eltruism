@@ -665,4 +665,3 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 	end
 end)
 E:AddTagInfo("eltruism:hpstatus", ElvUI_EltreumUI.Name, L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [eltruism:hpstatus{number,number}]"])
---[health:current-percent:shortvalue]
