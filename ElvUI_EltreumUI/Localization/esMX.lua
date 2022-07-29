@@ -964,8 +964,7 @@ L["NPCs use Target Castbar colors not NPC colors for their castbars"] = "Los NPC
 L["Shows level difference when it exists for NPCs and players, hides for players if same level"] = "Muestra la diferencia de nivel cuando existe para NPCs y jugadores, se oculta para los jugadores si es el mismo nivel"
 L["Shows the current Death Knight presence"] = "Muestra la presencia actual del Caballero de la Muerte"
 L["Displays the number of the group for the first member of that group, raid sorting can break this tag making it show up on other members."] = "Muestra el número del grupo para el primer miembro de ese grupo, la clasificación de la incursión puede romper esta etiqueta haciendo que se muestre en otros miembros."
-L["Displays a dead symbol when unit is dead. Number can be between 1 and 6 for different textures from Releaf."] = "Muestra un símbolo de muerto cuando la unidad está muerta. El número puede estar entre 1 y 6 para diferentes texturas de Releaf."
-L["Displays a disconnect symbol when unit is disconnected. Number can be between 1 and 6 for different textures from Releaf."] = "Muestra un símbolo de desconexión cuando la unidad está desconectada. El número puede ser entre 1 y 6 para diferentes texturas de Releaf."
+
 L["Cooldown Sound"] = "Sonido de reutilizacion de hechizo"
 L["Play a Sound when attempting to use a skill that is on cooldown."] = "Reproduce un sonido cuando se intenta usar una habilidad que está en reutilizacion de hechizo."
 L["Stance Bar Thickness"] = "Espesor de la barra de postura"
@@ -989,3 +988,11 @@ L["Custom"] = true
 L["Example: "] = true
 L["Add Item Quality Texture"] = true
 L["Focus Castbar Border"] = true
+
+
+
+L["Displays a dead symbol when unit is dead. Number can be between 1 and 6 for different textures from Releaf."] = "Muestra un símbolo de muerto cuando la unidad está muerta. El número puede estar entre 1 y 6 para diferentes texturas de Releaf."
+L["Displays a disconnect symbol when unit is disconnected. Number can be between 1 and 6 for different textures from Releaf."] = "Muestra un símbolo de desconexión cuando la unidad está desconectada. El número puede ser entre 1 y 6 para diferentes texturas de Releaf."
+L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [eltruism:hpstatus{number,number}]"] = true
+L["Displays a disconnect symbol from Releaf when unit is disconnected. Usage: [eltruism:dc{number}]"] = true
+L["Displays a dead symbol from Releaf when unit is dead. Usage: [eltruism:dead{number}]"] = true
