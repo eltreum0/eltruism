@@ -1600,7 +1600,11 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							EltruismInspectBgTexture:SetTexCoord(0, 0.87, 0, 0.60)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 							EltruismInspectBgTexture:SetTexture(raceBgs[englishRace]) --(left, right, top, bottom)
-							EltruismInspectBgTexture:SetTexCoord(0, 0.80, 0, 1)
+							if not E.myrace == 'NightElf' then
+								EltruismInspectBgTexture:SetTexCoord(0, 0.80, 0, 1)
+							else
+								EltruismInspectBgTexture:SetTexCoord(0, 0.60, 0, 1)
+							end
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
 							local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
 							EltruismInspectBgTexture:SetTexture(texturefile)
