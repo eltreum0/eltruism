@@ -7,7 +7,7 @@ P.ElvUI_EltreumUI = {
 
 	nameplatepower = {
 		autoadjustposition = false,
-		sizex = 132,
+		sizex = 131.5,
 		sizey = 6,
 		posy = 16,
 		texture = "Eltreum-Elvui-Norm",
