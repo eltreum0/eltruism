@@ -21,7 +21,8 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate = false
 	E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = true
 	E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide = true
-	E.db.ElvUI_EltreumUI.nameplatepower.texture = "Asphyxia-Norm"
+	E.db.ElvUI_EltreumUI.nameplatepower.texture = "ElvUI Norm1"
+	--E.db.ElvUI_EltreumUI.nameplatepower.texture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.widenameplate.enable = true
 	E.db.ElvUI_EltreumUI.widenameplate.npglow = true
 
