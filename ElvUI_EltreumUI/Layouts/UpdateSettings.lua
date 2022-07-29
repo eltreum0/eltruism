@@ -69,7 +69,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 
 	--borders
 	--E.db.ElvUI_EltreumUI.borders.borders = true --not sure yet
-	E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
+	--E.db.ElvUI_EltreumUI.borders.borderautoadjust = true --seems to be confusing people
 	E.db.ElvUI_EltreumUI.borders.minimapborder = true
 	E.db.ElvUI_EltreumUI.borders.playerborder = true
 	E.db.ElvUI_EltreumUI.borders.playercastborder = true
