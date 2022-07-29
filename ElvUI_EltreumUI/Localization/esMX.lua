@@ -991,3 +991,4 @@ L["Focus Castbar Border"] = true
 L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [eltruism:hpstatus{number,number}]"] = "Muestra un valor corto de HP y un símbolo de estado de Releaf para los jugadores. Uso: [eltruism:hpstatus{número,número}]"
 L["Displays a disconnect symbol from Releaf when unit is disconnected. Usage: [eltruism:dc{number}]"] = "Muestra un símbolo de desconexión de Releaf cuando la unidad está desconectada. Uso: [eltruism:dc{número}]"
 L["Displays a dead symbol from Releaf when unit is dead. Usage: [eltruism:dead{number}]"] = " Muestra un símbolo de muerto de Releaf cuando la unidad está muerta. Uso: [eltruism:dead{número}]"
+L["Returns class color only for players"] = true
