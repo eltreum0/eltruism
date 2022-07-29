@@ -581,7 +581,7 @@ E:AddTag("eltruism:groupnumber", "GROUP_ROSTER_UPDATE UNIT_NAME_UPDATE", functio
 		return ""
 	end
 end)
-E:AddTagInfo("eltruism:groupnumber", ElvUI_EltreumUI.Name, L["Displays the number of the group for the first member of that group, raid sorting can break this tag making it show up on other members."])
+E:AddTagInfo("eltruism:groupnumber", ElvUI_EltreumUI.Name, L["Displays the number of the group for the first member of that group, \nraid sorting can break this tag making it show up on other members."])
 
 --Tag for dead based on elvui tag for health with user input
 E:AddTag("eltruism:dead", "UNIT_HEALTH", function(unit,_,args)
@@ -606,7 +606,7 @@ E:AddTag("eltruism:dead", "UNIT_HEALTH", function(unit,_,args)
 		end
 	end
 end)
-E:AddTagInfo("eltruism:dead{1}", ElvUI_EltreumUI.Name, L["Displays a dead symbol when unit is dead. Number can be between 1 and 6 for different textures from Releaf."])
+E:AddTagInfo("eltruism:dead", ElvUI_EltreumUI.Name, L["Displays a dead symbol from Releaf when unit is dead. Usage: [eltruism:dead{number}]"])
 
 --Tag for dc based on elvui tag for health with user input
 E:AddTag("eltruism:dc", "UNIT_CONNECTION", function(unit,_,args)
@@ -631,14 +631,13 @@ E:AddTag("eltruism:dc", "UNIT_CONNECTION", function(unit,_,args)
 		end
 	end
 end)
-E:AddTagInfo("[eltruism:dc{1}]", ElvUI_EltreumUI.Name, L["Displays a disconnect symbol when unit is disconnected. Number can be between 1 and 6 for different textures from Releaf."])
+E:AddTagInfo("eltruism:dc", ElvUI_EltreumUI.Name, L["Displays a disconnect symbol from Releaf when unit is disconnected. Usage: [eltruism:dc{number}]"])
 
 --HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
-E:AddTag("eltruism:hp", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit,_,args)
+E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit,_,args)
 	local texture1,texture2 = strsplit(',', args or '')
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead"..tostring(texture1)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc"..tostring(texture2)..".tga:0:0:0:0|t"
-
 
 	if not UnitIsPlayer(unit) then  --npc
 		if not UnitIsDead(unit) then
@@ -658,4 +657,4 @@ E:AddTag("eltruism:hp", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS
 		end
 	end
 end)
-E:AddTagInfo("[eltruism:hp{1,1}]", ElvUI_EltreumUI.Name, L["Displays Shortvalue HP, if unit is dead or disconnected it will display a symbol based on numbers between 1 and 6"])
+E:AddTagInfo("eltruism:hpstatus", ElvUI_EltreumUI.Name, L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [eltruism:hpstatus{number,number}]"])
