@@ -544,6 +544,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["usePortrait"] = false
 			E.global["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["isTarget"] = true
 			E.global["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["requireTarget"] = true
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = true
 		end
 
 		-- Non targeted enemies
