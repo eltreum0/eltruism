@@ -19,7 +19,7 @@ Updated cooldown sound to disable the error speech when enabled, so that the sou
 Updated Sockets to check for Belt Buckles since Wrath will have Belt Buckles\
 Updated Classic/TBC/Wrath Class Icons on Character Panel to more correctly be placed next to the Character name\
 Updated general Character Panel skin in Classic/TBC/Wrath, which will now only expand on the character panel, and not on other panels\
-Updated namaplate debuffs and buffs in Classic/TBC/Wrath to use Fluid mode from ElvUI\
+Updated nameplate debuffs and buffs in Classic/TBC/Wrath to use Fluid mode from ElvUI\
 Updated ElvUI Nameplate StyleFilters for Classic/TBC/Wrath to enable ElvUI_Boss, which otherwise would not color some Boss type enemies like target dummies\
 Fixed some debuff and buff offsets when using wide nameplate debuffs in Classic/TBC/Wrath\
 Fixed some tags not being listed in Available Tags (they were working, just not listed)\
