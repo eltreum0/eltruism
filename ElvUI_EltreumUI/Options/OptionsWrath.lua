@@ -4549,6 +4549,16 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.instances.Raid end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.instances.Raid = tostring(value) E:StaticPopup_Show('PRIVATE_RL') end,
 					},
+					RaidHeroic = {
+						order = 80,
+						type = 'input',
+						name = L["Raid (Heroic)"],
+						desc = L["The text displayed when in a heroic raid"],
+						--width = 'double',
+						disabled = function() return (not E.db.ElvUI_EltreumUI.instances.enable) end,
+						get = function() return E.db.ElvUI_EltreumUI.instances.RaidHeroic end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.instances.RaidHeroic = tostring(value) E:StaticPopup_Show('PRIVATE_RL') end,
+					},
 				},
 			},
 			maps = {
