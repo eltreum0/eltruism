@@ -838,30 +838,35 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 20
 		E.db["unitframe"]["units"]["party"]["visibility"] = "[@raid6,exists][nogroup] hide;show"
 		E.db["unitframe"]["units"]["party"]["width"] = 200
+
 		E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
 		E.db["unitframe"]["units"]["pet"]["buffs"]["anchorPoint"] = "TOP"
 		E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
 		E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
-		E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 0
+		E.db["unitframe"]["units"]["pet"]["buffs"]["growthX"] = "LEFT"
+		E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 1
+		E.db["unitframe"]["units"]["pet"]["buffs"]["xOffset"] = 0
+		E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = 2
+		E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 25
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOP"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["height"] = 25
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["sizeOverride"] = 25
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["yOffset"] = 1
 		E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["a"] = 0
 		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0.50196078431373
 		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0.50196078431373
 		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0.50196078431373
-		--E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["enable"] = true
-		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["enable"] = false
+		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["enable"] = true
 		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["invertColors"] = false
-		--E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["transparent"] = true
 		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["transparent"] = false
 		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["useClassColor"] = true
 		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["useCustomBackdrop"] = true
 		E.db["unitframe"]["units"]["pet"]["castbar"]["height"] = 15
 		E.db["unitframe"]["units"]["pet"]["castbar"]["overlayOnFrame"] = "Health"
-		E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 161
+		E.db["unitframe"]["units"]["pet"]["castbar"]["timeToHold"] = 0.2
 		E.db["unitframe"]["units"]["pet"]["disableTargetGlow"] = false
 		E.db["unitframe"]["units"]["pet"]["fader"]["casting"] = true
 		E.db["unitframe"]["units"]["pet"]["fader"]["combat"] = true
@@ -881,19 +886,26 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 			E.db["unitframe"]["units"]["pet"]["power"]["enable"] = true
 		end
 		E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = ""
-		--E.db["unitframe"]["units"]["pet"]["power"]["width"] = "spaced"
 		E.db["unitframe"]["units"]["pet"]["power"]["width"] = "inset"
 		if C_CVar.GetCVar('gxFullscreenResolution') == "3840x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3840x2160" then
 			E.db["unitframe"]["units"]["pet"]["width"] = 161
+			E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 161
 		elseif C_CVar.GetCVar('gxFullscreenResolution') == "2560x1440" or C_CVar.GetCVar('gxWindowedResolution') == "2560x1440" then
 			E.db["unitframe"]["units"]["pet"]["width"] = 159
+			E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 159
 		elseif C_CVar.GetCVar('gxFullscreenResolution') == "1920x1080" or C_CVar.GetCVar('gxWindowedResolution') == "1920x1080" then
 			E.db["unitframe"]["units"]["pet"]["width"] = 159
+			E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 159
 		elseif C_CVar.GetCVar('gxFullscreenResolution') == "auto" or C_CVar.GetCVar('gxWindowedResolution') == "auto" then
 			E.db["unitframe"]["units"]["pet"]["width"] = 159
+			E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 159
 		else
+			E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 159
 			E.db["unitframe"]["units"]["pet"]["width"] = 159
 		end
+
+
+
 		E.db["unitframe"]["units"]["pettarget"]["buffs"]["countFontOutline"] = "NONE"
 		E.db["unitframe"]["units"]["pettarget"]["debuffs"]["countFontOutline"] = "NONE"
 		E.db["unitframe"]["units"]["pettarget"]["power"]["enable"] = false
