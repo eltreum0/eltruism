@@ -635,46 +635,13 @@ E:AddTagInfo("[eltruism:dc{1}]", ElvUI_EltreumUI.Name, L["Displays a disconnect 
 
 --HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
 E:AddTag("eltruism:hp", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit,_,args)
-	local texture1,texture2 = strsplit(':', args or '')
-	local deadtexture
-	if texture1 == '' then
-		deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga:0:0:0:0|t"
-	elseif texture1 == '1' then
-		deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead1.tga:0:0:0:0|t"
-	elseif texture1 == '2' then
-		deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead2.tga:0:0:0:0|t"
-	elseif texture1 == '3' then
-		deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead3.tga:0:0:0:0|t"
-	elseif texture1 == '4' then
-		deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead4.tga:0:0:0:0|t"
-	elseif texture1 == '5' then
-		deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga:0:0:0:0|t"
-	elseif texture1 == '6' then
-		deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead6.tga:0:0:0:0|t"
-	else
-		deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga:0:0:0:0|t"
-	end
-	local dctexture
-	if texture2 == '' then
-		dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga:0:0:0:0|t"
-	elseif texture2 == '1' then
-		dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc1.tga:0:0:0:0|t"
-	elseif texture2 == '2' then
-		dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga:0:0:0:0|t"
-	elseif texture2 == '3' then
-		dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc3.tga:0:0:0:0|t"
-	elseif texture2 == '4' then
-		dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc4.tga:0:0:0:0|t"
-	elseif texture2 == '5' then
-		dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc5.tga:0:0:0:0|t"
-	elseif texture2 == '6' then
-		dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc6.tga:0:0:0:0|t"
-	else
-		dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga:0:0:0:0|t"
-	end
+	local texture1,texture2 = strsplit(',', args or '')
+	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead"..tostring(texture1)..".tga:0:0:0:0|t"
+	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc"..tostring(texture2)..".tga:0:0:0:0|t"
+
 
 	if not UnitIsPlayer(unit) then  --npc
-		if not UnitIsDead() then
+		if not UnitIsDead(unit) then
 			return E:ShortValue(UnitHealth(unit))
 		else
 			return L["Dead"]
