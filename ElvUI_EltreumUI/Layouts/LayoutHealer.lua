@@ -837,12 +837,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["pet"]["power"]["width"] = "inset"
 		E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 		E.db["unitframe"]["units"]["pet"]["width"] = 100
-
-
-
-
-
-
 		E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["b"] = 1
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["g"] = 1

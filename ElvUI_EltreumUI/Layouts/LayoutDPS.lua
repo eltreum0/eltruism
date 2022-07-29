@@ -838,7 +838,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 20
 		E.db["unitframe"]["units"]["party"]["visibility"] = "[@raid6,exists][nogroup] hide;show"
 		E.db["unitframe"]["units"]["party"]["width"] = 200
-
 		E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
 		E.db["unitframe"]["units"]["pet"]["buffs"]["anchorPoint"] = "TOP"
 		E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
