@@ -1001,10 +1001,8 @@ L["Custom"] = "Benutzerdefiniert"
 L["Example: "] = "Beispiel: "
 L["Add Item Quality Texture"] = "Gegenstandsqualität Farbverlauf"
 L["Focus Castbar Border"] = "Fokuszauberleisten Rahmen"
-
---these were updated to clarify how to use
-L["Displays a dead symbol when unit is dead. Number can be between 1 and 6 for different textures from Releaf."] = "Zeigt ein ToT Symbol an, wenn die Einheit tot ist. Die Zahl kann für verschiedene Texturen von Releaf zwischen 1 und 6 liegen."
-L["Displays a dead symbol from Releaf when unit is dead. Usage: [eltruism:dead{number}]"] = true
-L["Displays a disconnect symbol when unit is disconnected. Number can be between 1 and 6 for different textures from Releaf."] = "Zeigt ein Symbol an, wenn die Einheit getrennt ist. Die Zahl kann zwischen 1 und 6 für verschiedene Texturen von Releaf liegen."
-L["Displays a disconnect symbol from Releaf when unit is disconnected. Usage: [eltruism:dc{number}]"] = true
-L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [eltruism:hpstatus{number,number}]"] = true
+L["Displays a dead symbol when unit is dead. Number can be between 1 and 6 for different textures from Releaf."] = "Zeigt ein Totsymbol an, wenn der Spieler tot ist. Die Zahl kann für verschiedene Texturen von Releaf zwischen 1 und 6 liegen."
+L["Displays a dead symbol from Releaf when unit is dead. Usage: [eltruism:dead{number}]"] = "Zeigt ein Totsymbol von Releaf an, wenn der Spieler tot ist. Verwendung: [eltruism:dead{number}]"
+L["Displays a disconnect symbol when unit is disconnected. Number can be between 1 and 6 for different textures from Releaf."] = "Zeigt ein Trennungssymbol an, wenn der Spieler vom Spiel getrennt wurde. Die Zahl kann zwischen 1 und 6 für verschiedene Texturen von Releaf liegen."
+L["Displays a disconnect symbol from Releaf when unit is disconnected. Usage: [eltruism:dc{number}]"] = "Zeigt ein Trennungssymbol von Release an, wenn der Spieler vom Spiel getrennt wurde. Verwendung: [eltruism:dc{number}]"
+L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [eltruism:hpstatus{number,number}]"] = "Zeigt kurze Werte für HP und ein Statussymbol von Releaf für Spieler an. Verwendung: [eltruism:hpstatus{number,number}]"
