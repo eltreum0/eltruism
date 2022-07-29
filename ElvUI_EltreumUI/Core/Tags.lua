@@ -586,7 +586,7 @@ E:AddTagInfo("eltruism:groupnumber", ElvUI_EltreumUI.Name, L["Displays the numbe
 --Tag for dead based on elvui tag for health with user input
 E:AddTag("eltruism:dead", "UNIT_HEALTH", function(unit,_,args)
 	local texture = strsplit(':', args or '')
-	if UnitHealth(unit) < 1 then
+	if UnitHealth(unit) < 1 and UnitIsPlayer(unit) then
 		if texture == '' then
 			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga:0:0:0:0|t"
 		elseif texture == '1' then
@@ -611,7 +611,7 @@ E:AddTagInfo("eltruism:dead{1}", ElvUI_EltreumUI.Name, L["Displays a dead symbol
 --Tag for dc based on elvui tag for health with user input
 E:AddTag("eltruism:dc", "GROUP_ROSTER_UPDATE", function(unit,_,args)
 	local texture = strsplit(':', args or '')
-	if UnitIsConnected(unit) == false then
+	if UnitIsConnected(unit) == false and UnitIsPlayer(unit) then
 		if texture == '' then
 			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga:0:0:0:0|t"
 		elseif texture == '1' then
