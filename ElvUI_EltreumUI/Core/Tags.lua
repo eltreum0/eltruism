@@ -665,3 +665,13 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 	end
 end)
 E:AddTagInfo("eltruism:hpstatus", ElvUI_EltreumUI.Name, L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [eltruism:hpstatus{number,number}]"])
+
+--Class color but only for players, from elvui but without the npc stuff
+E:AddTag('eltruism:classcolor', 'UNIT_NAME_UPDATE', function(unit)
+	if UnitIsPlayer(unit) then
+		local _, unitClass = UnitClass(unit)
+		local cs = ElvUF.colors.class[unitClass]
+		return (cs and Hex(cs[1], cs[2], cs[3])) or '|cFFcccccc'
+	end
+end)
+E:AddTagInfo("eltruism:classcolor", ElvUI_EltreumUI.Name, L["Returns class color only for players"])
