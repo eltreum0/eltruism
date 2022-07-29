@@ -550,6 +550,7 @@ function ElvUI_EltreumUI:Shadows()
 				frame:CreateShadow()
 			end
 		end
+
 		--datatexts
 		local DT = E:GetModule('DataTexts')
 		if DT.tooltip and not E.private.skins.blizzard.enable == false then
@@ -980,6 +981,12 @@ function ElvUI_EltreumUI:NameplateShadows(nameplate)
 				if not nameplate.Power.backdrop.shadow then
 					nameplate.Power.backdrop:CreateShadow()
 				end
+			end
+			if _G["ElvNP_TargetClassPowerClassPower"] and not _G["ElvNP_TargetClassPowerClassPower"].shadow then
+				_G["ElvNP_TargetClassPowerClassPower"]:CreateShadow()
+			end
+			if _G["EltruismPowerBar"] and not _G["EltruismPowerBar"].shadow then
+				_G["EltruismPowerBar"]:CreateShadow()
 			end
 		end
 
