@@ -1081,11 +1081,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 
 				--change the size based on if paperdoll is hidden
-				CharacterFrame:SetSize(600, 505)
+				CharacterFrame:SetSize(700, 505)
 				hooksecurefunc("CharacterFrameTab_OnClick", function()
 					if not InCombatLockdown() then
 						if PaperDollFrame:IsShown() then
-							CharacterFrame:SetSize(600, 505)
+							CharacterFrame:SetSize(700, 505)
 						else
 							CharacterFrame:SetSize(400, 505)
 						end
@@ -1095,13 +1095,23 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PaperDollItemsFrame:SetScript("OnShow", function()
 					if not InCombatLockdown() then
 						if PaperDollFrame:IsShown() then
-							CharacterFrame:SetSize(600, 505)
+							CharacterFrame:SetSize(700, 505)
 						else
 							CharacterFrame:SetSize(400, 505)
 						end
 					end
 				end)
 
+
+				--adjust the items
+				_G.CharacterHandsSlot:ClearAllPoints()
+				_G.CharacterHandsSlot:SetPoint('CENTER', _G.CharacterHeadSlot, 'CENTER', 370, 0)
+				_G.CharacterMainHandSlot:ClearAllPoints()
+				_G.CharacterMainHandSlot:SetPoint('CENTER', _G.CharacterModelFrame, 'CENTER', -55, -145)
+
+				_G.PlayerTitleDropDown:SetAlpha(0)
+				_G.PlayerTitleDropDown:SetScript('OnEnter', function() _G.PlayerTitleDropDown:SetAlpha(1) end)
+				_G.PlayerTitleDropDown:SetScript('OnLeave', function() _G.PlayerTitleDropDown:SetAlpha(0) end)
 
 				CharacterNameText:ClearAllPoints()
 				CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
@@ -1118,7 +1128,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				--start of the stats
 				CharacterFrame.Text4:SetSize(418, 72)
-				CharacterFrame.Text4:SetPoint("TOPRIGHT", CharacterFrame, "TOPRIGHT", 70, 0)   ---anchored
+				CharacterFrame.Text4:SetPoint("TOPRIGHT", CharacterFrame, "TOPRIGHT", 50, 0)   ---anchored
 				CharacterFrame.Text4:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.Text4:SetTextColor(1, 1, 1)
 				CharacterFrame.Text4:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
@@ -1537,7 +1547,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 				qualityAnchor.Frame:SetFrameLevel(slotlevel-1) --needs to be changed to not overlap the sockets/enchants
 				local slotsize = _G["Character"..InvSlotName]:GetHeight()
 				if not E.Retail then
-					qualityAnchor.Frame:SetSize(120, slotsize+2)
+					qualityAnchor.Frame:SetSize(150, slotsize+2)
 				else
 					qualityAnchor.Frame:SetSize(250, slotsize+2)
 				end
