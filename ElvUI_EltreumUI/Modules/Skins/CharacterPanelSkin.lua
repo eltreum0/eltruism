@@ -525,7 +525,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				hooksecurefunc("CharacterFrame_Expand", function()
 					if PaperDollFrame:IsShown() then
-						_G.CharacterFrame:SetWidth(600)
+						_G.CharacterFrame:SetWidth(700)
 						_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 						_G.CharacterModelFrameBackgroundOverlay:Hide()
 						if PaperDollFrame.SLE_Armory_BG then
