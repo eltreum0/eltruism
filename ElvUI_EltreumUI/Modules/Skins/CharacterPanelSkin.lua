@@ -1330,9 +1330,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PlayerStatFrameRight6Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight5Stat, "BOTTOM", 0, -13)
 					_G.PlayerStatFrameRight6Stat:SetParent(_G.PlayerStatFrameRight1)
 				elseif E.Classic then
+					_G.PetPaperDollCloseButton:Hide()
+
 					_G.CharacterStatFrame1:ClearAllPoints()
 					_G.CharacterStatFrame1:SetPoint("TOP", CharacterFrame, "TOP", 124, -225)
-					_G.CharacterStatFrame1:SetParent(CharacterFrame)
+					_G.CharacterStatFrame1:SetParent(CharacterModelFrame)
 
 					_G.CharacterStatFrame2:ClearAllPoints()
 					_G.CharacterStatFrame2:SetParent(_G.CharacterStatFrame1)
