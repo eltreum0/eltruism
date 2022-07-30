@@ -1086,7 +1086,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if not InCombatLockdown() then
 						if PaperDollFrame:IsShown() then
 							CharacterFrame:SetSize(700, 505)
+							CharacterNameText:ClearAllPoints()
+							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
 						else
+							CharacterNameText:ClearAllPoints()
+							CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
 							CharacterFrame:SetSize(400, 505)
 						end
 					end
@@ -1096,8 +1100,26 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if not InCombatLockdown() then
 						if PaperDollFrame:IsShown() then
 							CharacterFrame:SetSize(700, 505)
+							CharacterNameText:ClearAllPoints()
+							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
 						else
 							CharacterFrame:SetSize(400, 505)
+							CharacterNameText:ClearAllPoints()
+							CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
+						end
+					end
+				end)
+
+				_G.CharacterFrame:HookScript("OnShow", function()
+					if not InCombatLockdown() then
+						if PaperDollFrame:IsShown() then
+							CharacterFrame:SetSize(700, 505)
+							CharacterNameText:ClearAllPoints()
+							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
+						else
+							CharacterFrame:SetSize(400, 505)
+							CharacterNameText:ClearAllPoints()
+							CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
 						end
 					end
 				end)
@@ -1105,7 +1127,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				--adjust the items
 				_G.CharacterHeadSlot:ClearAllPoints()
-				_G.CharacterHeadSlot:SetPoint('TOPLEFT', _G.CharacterFrame, 'TOPLEFT', 20, -45)
+				_G.CharacterHeadSlot:SetPoint('TOPLEFT', _G.CharacterFrame, 'TOPLEFT', 20, -47)
 
 				_G.CharacterHandsSlot:ClearAllPoints()
 				_G.CharacterHandsSlot:SetPoint('CENTER', _G.CharacterHeadSlot, 'CENTER', 370, 0)
@@ -1119,7 +1141,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				CharacterNameText:ClearAllPoints()
 				CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
-				CharacterNameText:SetParent(CharacterModelFrame)
+				--CharacterNameText:SetParent(CharacterModelFrame)
 				CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 				CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 				CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
