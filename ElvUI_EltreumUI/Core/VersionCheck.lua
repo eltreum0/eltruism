@@ -206,4 +206,8 @@ function ElvUI_EltreumUI:OldVersionCheck()
 	if E.db.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly == true and E.db.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly == true then
 		E.db.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly = false
 	end
+	if E.db.ElvUI_EltreumUI.otherstuff.playerdeath == true and (E.db.ElvUI_EltreumUI.otherstuff.playerdeathgta == true or E.db.ElvUI_EltreumUI.otherstuff.playerdeathcustom == true) then
+		E.db.ElvUI_EltreumUI.otherstuff.playerdeath = false
+		E.db.ElvUI_EltreumUI.otherstuff.playerdeathcustom = false
+	end
 end

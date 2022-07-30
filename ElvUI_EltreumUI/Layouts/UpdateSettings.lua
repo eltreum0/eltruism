@@ -22,9 +22,14 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture = true
 	E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide = true
 	E.db.ElvUI_EltreumUI.nameplatepower.texture = "ElvUI Norm1"
-	--E.db.ElvUI_EltreumUI.nameplatepower.texture = "Asphyxia-Norm"
+	E.db.ElvUI_EltreumUI.darkpowercolor = true
+	E.db.ElvUI_EltreumUI.nameplatelevel.enable = true
+	E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames = false -- turns out blizzard fakes the nameplates and alphas the helthbar, causing huge performance costs
+	E.db.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly = false -- and this one is the same but with health so make this one off as well
+	E.db.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly = true --so hide it instead
 	E.db.ElvUI_EltreumUI.widenameplate.enable = true
 	E.db.ElvUI_EltreumUI.widenameplate.npglow = true
+	E.db.ElvUI_EltreumUI.nptextureversion = "V2"
 
 	-- Gradient/Unitframe stuff
 	E.db.ElvUI_EltreumUI.gradientmode.texture = "Asphyxia-Norm"
@@ -36,12 +41,16 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbarnoninterruptible = true
 	E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar = true
 	E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar = true
-
-	E.db.ElvUI_EltreumUI.gradientmode.gradientXP = true
 	E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha = 0.7
-	--E.db.unitframe.statusbar = "Asphyxia-Norm"
+	E.db.ElvUI_EltreumUI.sparkcustomcolor.enable = true
+	E.db.ElvUI_EltreumUI.uftextureversion = "V2"
+	E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect = true
 	E.db.unitframe.statusbar = "ElvUI Norm1"
+
+	--databar
+	E.db.ElvUI_EltreumUI.gradientmode.gradientXP = true
+	E.db.databars.statusbar = "Asphyxia-Norm"
 
 	-- Skins
 	E.db.ElvUI_EltreumUI.skins.enable = true
@@ -49,6 +58,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.skins.expandedstable = true
 	E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel = true
 	E.db.ElvUI_EltreumUI.skins.classiconsreleaf = true
+	E.db.ElvUI_EltreumUI.skins.classiconsblizz = false
 	E.db.ElvUI_EltreumUI.skins.classicarmory = true
 	E.db.ElvUI_EltreumUI.skins.classicarmoryautostats = true
 	E.db.ElvUI_EltreumUI.skins.ilvls = true
@@ -68,8 +78,6 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.glow.enablepet = true
 
 	--borders
-	--E.db.ElvUI_EltreumUI.borders.borders = true --not sure yet
-	--E.db.ElvUI_EltreumUI.borders.borderautoadjust = true --seems to be confusing people
 	E.db.ElvUI_EltreumUI.borders.minimapborder = true
 	E.db.ElvUI_EltreumUI.borders.playerborder = true
 	E.db.ElvUI_EltreumUI.borders.playercastborder = true
@@ -82,7 +90,9 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.borders.auraborder = true
 	E.db.ElvUI_EltreumUI.borders.stanceborders = true
 	E.db.ElvUI_EltreumUI.borders.petactionborders = true
+	E.db.ElvUI_EltreumUI.borders.totembar = true
 
+	--shadows
 	E.db.ElvUI_EltreumUI.shadows.aura = true
 	E.db.ElvUI_EltreumUI.shadows.ufaura = true
 	E.db.ElvUI_EltreumUI.shadows.actionbars = true
@@ -91,17 +101,16 @@ function ElvUI_EltreumUI:UpdateSettings()
 	-- Misc
 	E.db.ElvUI_EltreumUI.tbctalents.enable = true
 	E.db.ElvUI_EltreumUI.dynamicdatatext.enable = true
-	E.db.ElvUI_EltreumUI.nameplatelevel.enable = true
+
 	E.db.ElvUI_EltreumUI.cursor.enable = true
 	E.db.ElvUI_EltreumUI.cursor.cooldown = true
 	E.db.ElvUI_EltreumUI.cursor.combat = true
 	E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect = true
 	E.db.ElvUI_EltreumUI.partyraiddeath.enable = false
-	E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames = false -- turns out blizzard fakes the nameplates and alphas the helthbar, causing huge performance costs
-	E.db.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly = false -- and this one is the same but with health so make this one off as well
-	E.db.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly = true --so hide it instead
+
 	E.db.ElvUI_EltreumUI.afkmusic.enable = true
 	E.db.ElvUI_EltreumUI.afkmusic.racial = true
+	E.db.ElvUI_EltreumUI.afkmusic.playerclass = false
 	E.db.ElvUI_EltreumUI.waypointetasetting.enable = true
 	E.db.ElvUI_EltreumUI.waypointetasetting.autopin = true
 	E.db.ElvUI_EltreumUI.waytext.enable = true
@@ -113,30 +122,30 @@ function ElvUI_EltreumUI:UpdateSettings()
 		E.db.ElvUI_EltreumUI.questsettings.arena = false
 		E.db.ElvUI_EltreumUI.glow.enabletotem = true
 	end
-
 	E.db.ElvUI_EltreumUI.questsettings.rogueopen = true
 	E.db.ElvUI_EltreumUI.questsettings.questitems = false
 	E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 = true
+	E.db.ElvUI_EltreumUI.questsettings.questitemsfade = false
+
+	--loot
 	E.db.ElvUI_EltreumUI.loottext.enable = true
 	E.db.ElvUI_EltreumUI.loottext.fontsetting = true
 	E.db.ElvUI_EltreumUI.loottext.combatindicator = true
-	E.db.ElvUI_EltreumUI.darkpowercolor = true
-	E.db.ElvUI_EltreumUI.sparkcustomcolor.enable = true
 	E.db.ElvUI_EltreumUI.otherstuff.fastloot = true
+	E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter = false
+	E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter = false
 	E.db.ElvUI_EltreumUI.otherstuff.lootautoclose = true
+
+	-- misc
 	E.db.ElvUI_EltreumUI.otherstuff.screenshot = true
+	E.db.ElvUI_EltreumUI.instances.enable = true
 	E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead = true
 	E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = true
 	E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = true
 	E.db.ElvUI_EltreumUI.otherstuff.playerdeath = true
+	E.db.ElvUI_EltreumUI.otherstuff.playerdeathgta = false
+	E.db.ElvUI_EltreumUI.otherstuff.playerdeathcustom = false
 	E.db.ElvUI_EltreumUI.otherstuff.mpluskeys = true
-	E.db.ElvUI_EltreumUI.instances.enable = true
-
-	E.db.databars.statusbar = "Asphyxia-Norm"
-
-	E.db.ElvUI_EltreumUI.uftextureversion = "V2"
-	E.db.ElvUI_EltreumUI.nptextureversion = "V2"
-	E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect = true
 
 	--private
 	E.private.ElvUI_EltreumUI.nameplatepower.enable = true
