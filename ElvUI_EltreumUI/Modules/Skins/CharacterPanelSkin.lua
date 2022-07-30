@@ -219,6 +219,59 @@ function ElvUI_EltreumUI:GetPlayerItemLevel()
 	return total/16, max(mainhand,offhand), maxlevel
 end
 
+
+--wrath to detect dual spec
+--GetNumTalentGroups() --gets if they actually have dual spec in the first place
+--GetActiveTalentGroup() --gets which of the dual is being used
+
+--turns out classic has the functions to get number of points on talent trees
+local function PlayerSpec()
+	local spec, points
+	local _, _, spent1 = GetTalentTabInfo(1)
+	local _, _, spent2 = GetTalentTabInfo(2)
+	local _, _, spent3 = GetTalentTabInfo(3)
+
+	for i=1, GetNumTalentTabs() do
+		local name, _, spent = GetTalentTabInfo(i)
+		--print(spent..name.." 1")
+		if spent > 0 and (not points or spent > points) then
+			--print(spec..points.." 2")
+			spec, points = name, spent
+		end
+	end
+	if spec ~= nil and not ( (spent1 == spent2) or (spent2 == spent3) or (spent1 == spent3) ) then
+		return spec
+	elseif spent1 == spent2 or spent2 == spent3 or spent1 == spent3 then
+		if spent1 == spent3 and spent1 == spent2 then
+			return L["None"]
+		elseif (spent1 == spent2) and (spent1 > spent3 or spent3 > spent1) then
+			if spent1 > spent3 then
+				return L["Hybrid"]
+			elseif spent3 > spent1 then
+				return spec
+			end
+		elseif (spent2 == spent3) and (spent1 > spent3 or spent3 > spent1) then
+			if spent1 > spent3 then
+				return spec
+			elseif spent3 > spent1 then
+				return L["Hybrid"]
+			end
+		elseif (spent1 == spent3) and (spent1 > spent3 or spent3 > spent1) then
+			if spent1 > spent2 then
+				return L["Hybrid"]
+			elseif spent2 > spent1 then
+				return spec
+			end
+		elseif (spent1 == spent3 and spent1 == spent2) or (spent2 == spent3 and spent2 == spent1) then
+			return L["Hybrid"]
+		else
+			return spec
+		end
+	else
+		return L["None"]
+	end
+end
+
 if not E.Retail then
 	local avgilvl = CreateFrame("FRAME")
 	avgilvl:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -228,6 +281,16 @@ if not E.Retail then
 		_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
 		--_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetPlayerItemLevel()*100))/100)
 	end)
+
+	if E.Wrath then
+		local wrathdualspec = CreateFrame("FRAME")
+		wrathdualspec:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+		wrathdualspec:SetScript("OnEvent", function()
+			if _G.CharacterFrame.Text5 and _G.CharacterFrame.Text5:GetText() ~= nil then
+				CharacterFrame.Text5:SetText(PlayerSpec())
+			end
+		end)
+	end
 end
 
 --expanded armory
@@ -989,54 +1052,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					local ilevel = ElvUI_EltreumUI:GetPlayerItemLevel()
 					_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
 				end)
-
-				--turns out classic has the functions to get number of points on talent trees
-				local function PlayerSpec()
-					local spec, points
-					local _, _, spent1 = GetTalentTabInfo(1)
-					local _, _, spent2 = GetTalentTabInfo(2)
-					local _, _, spent3 = GetTalentTabInfo(3)
-
-					for i=1, GetNumTalentTabs() do
-						local name, _, spent = GetTalentTabInfo(i)
-						--print(spent..name.." 1")
-						if spent > 0 and (not points or spent > points) then
-							--print(spec..points.." 2")
-							spec, points = name, spent
-						end
-					end
-					if spec ~= nil and not ( (spent1 == spent2) or (spent2 == spent3) or (spent1 == spent3) ) then
-						return spec
-					elseif spent1 == spent2 or spent2 == spent3 or spent1 == spent3 then
-						if spent1 == spent3 and spent1 == spent2 then
-							return L["None"]
-						elseif (spent1 == spent2) and (spent1 > spent3 or spent3 > spent1) then
-							if spent1 > spent3 then
-								return L["Hybrid"]
-							elseif spent3 > spent1 then
-								return spec
-							end
-						elseif (spent2 == spent3) and (spent1 > spent3 or spent3 > spent1) then
-							if spent1 > spent3 then
-								return spec
-							elseif spent3 > spent1 then
-								return L["Hybrid"]
-							end
-						elseif (spent1 == spent3) and (spent1 > spent3 or spent3 > spent1) then
-							if spent1 > spent2 then
-								return L["Hybrid"]
-							elseif spent2 > spent1 then
-								return spec
-							end
-						elseif (spent1 == spent3 and spent1 == spent2) or (spent2 == spent3 and spent2 == spent1) then
-							return L["Hybrid"]
-						else
-							return spec
-						end
-					else
-						return L["None"]
-					end
-				end
 
 				--set the tabs
 				if E.db.ElvUI_EltreumUI.skins.classicarmoryautostats then
