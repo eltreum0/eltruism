@@ -98,6 +98,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect = true
 	E.db.ElvUI_EltreumUI.partyraiddeath.enable = false
 	E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames = false -- turns out blizzard fakes the nameplates and alphas the helthbar, causing huge performance costs
+	E.db.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly = false -- and this one is the same but with health so make this one off as well
 	E.db.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly = true --so hide it instead
 	E.db.ElvUI_EltreumUI.afkmusic.enable = true
 	E.db.ElvUI_EltreumUI.afkmusic.racial = true
