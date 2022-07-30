@@ -203,4 +203,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 	if E.db.ElvUI_EltreumUI.skins.classiconsblizz == true and E.db.ElvUI_EltreumUI.skins.classiconsreleaf == true then
 		E.db.ElvUI_EltreumUI.skins.classiconsblizz = false
 	end
+	if E.db.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly == true and E.db.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly == true then
+		E.db.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly = false
+	end
 end
