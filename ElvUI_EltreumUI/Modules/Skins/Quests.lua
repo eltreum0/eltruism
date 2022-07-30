@@ -495,7 +495,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
 			end)
 
-			--if not IsAddOnLoaded('Questie') then --questie doesnt seem to replace the watch frame in wrath (at least not in beta)
+			if not IsAddOnLoaded('Questie') then --questie overwrites the default tracker sadly instead of hooking into it
 				--from blizzard's FrameXML/WatchFrame.lua
 
 				--skin the classic objective frame, based on aftermathh's
@@ -711,7 +711,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 				end]]
 
-			--end
+			end
 		end
 	end
 end
