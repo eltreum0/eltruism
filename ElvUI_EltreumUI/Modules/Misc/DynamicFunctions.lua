@@ -583,7 +583,7 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 					end
 				end
 			end
-			if E.Wrath then --for some reason wrath needs to do this or totems will error when it updates positions due to setpoint
+			if E.Wrath and E.myclass == 'SHAMAN' then --for some reason wrath needs to do this or totems will error when it updates positions due to setpoint
 				local AB = E:GetModule('ActionBars')
 				AB:UpdateTotemBindings()
 			end
