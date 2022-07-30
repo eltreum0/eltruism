@@ -1104,8 +1104,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 
 				--adjust the items
+				_G.CharacterHeadSlot:ClearAllPoints()
+				_G.CharacterHeadSlot:SetPoint('TOPLEFT', _G.CharacterFrame, 'TOPLEFT', 20, -45)
+
 				_G.CharacterHandsSlot:ClearAllPoints()
 				_G.CharacterHandsSlot:SetPoint('CENTER', _G.CharacterHeadSlot, 'CENTER', 370, 0)
+
 				_G.CharacterMainHandSlot:ClearAllPoints()
 				_G.CharacterMainHandSlot:SetPoint('CENTER', _G.CharacterModelFrame, 'CENTER', -55, -145)
 
