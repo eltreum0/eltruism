@@ -525,7 +525,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				hooksecurefunc("CharacterFrame_Expand", function()
 					if PaperDollFrame:IsShown() then
-						_G.CharacterFrame:SetWidth(700)
+						_G.CharacterFrame:SetWidth(600)
 						_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 						_G.CharacterModelFrameBackgroundOverlay:Hide()
 						if PaperDollFrame.SLE_Armory_BG then
@@ -1081,11 +1081,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 
 				--change the size based on if paperdoll is hidden
-				CharacterFrame:SetSize(700, 505)
+				CharacterFrame:SetSize(600, 505)
 				hooksecurefunc("CharacterFrameTab_OnClick", function()
 					if not InCombatLockdown() then
 						if PaperDollFrame:IsShown() then
-							CharacterFrame:SetSize(700, 505)
+							CharacterFrame:SetSize(600, 505)
 						else
 							CharacterFrame:SetSize(400, 505)
 						end
@@ -1095,7 +1095,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PaperDollItemsFrame:SetScript("OnShow", function()
 					if not InCombatLockdown() then
 						if PaperDollFrame:IsShown() then
-							CharacterFrame:SetSize(700, 505)
+							CharacterFrame:SetSize(600, 505)
 						else
 							CharacterFrame:SetSize(400, 505)
 						end
@@ -1118,7 +1118,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				--start of the stats
 				CharacterFrame.Text4:SetSize(418, 72)
-				CharacterFrame.Text4:SetPoint("TOP", CharacterFrame, "TOP", 120, 10)   ---anchored
+				CharacterFrame.Text4:SetPoint("TOPRIGHT", CharacterFrame, "TOPRIGHT", 70, 0)   ---anchored
 				CharacterFrame.Text4:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.Text4:SetTextColor(1, 1, 1)
 				CharacterFrame.Text4:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
@@ -1272,7 +1272,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 					--"right side", on this case its the bottom
 					_G.PlayerStatFrameRightDropDown:ClearAllPoints()
-					_G.PlayerStatFrameRightDropDown:SetPoint("CENTER", _G.PlayerStatFrameLeftDropDown, "CENTER", 0, -100)
+					_G.PlayerStatFrameRightDropDown:SetPoint("CENTER", _G.PlayerStatFrameLeftDropDown, "CENTER", 0, -105)
 					_G.PlayerStatFrameRightDropDown:SetParent(_G["PaperDollItemsFrame"])
 
 					_G.PlayerStatFrameRight1:ClearAllPoints()
