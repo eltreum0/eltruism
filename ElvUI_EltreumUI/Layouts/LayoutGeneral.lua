@@ -907,7 +907,7 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('instantQuestText', 1) -- makes quest text show fast instead of per line
 
 	-- fast loot
-	SetCVar("autoLootRate", 0)
+	SetCVar("autoLootRate", 1)
 
 	--Chat CVars
 	SetCVar('chatStyle', 'classic')
