@@ -1637,6 +1637,40 @@ refreshplayer:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:PlayerItemQuality("player")
 end)
 
+
+
+local classsymbolonframe
+local classIcons = {
+	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Warrior",
+	["PALADIN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Paladin",
+	["HUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Hunter",
+	["ROGUE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Rogue",
+	["PRIEST"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Priest",
+	["DEATHKNIGHT"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DeathKnight",
+	["SHAMAN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Shaman",
+	["MAGE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Mage",
+	["WARLOCK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Warlock",
+	["MONK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Monk",
+	["DRUID"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Druid",
+	["DEMONHUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunter",
+}
+
+-- Alternate Class Icons by Releaf with borders
+local classIconsReleafborder = {
+	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/WarriorIconReleaf",
+	["PALADIN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/PaladinIconReleaf",
+	["HUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/HunterIconReleaf",
+	["ROGUE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/RogueIconReleaf",
+	["PRIEST"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/PriestIconReleaf",
+	["DEATHKNIGHT"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DeathKnightIconReleaf",
+	["SHAMAN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/ShamanIconReleaf",
+	["MAGE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/MageIconReleaf",
+	["WARLOCK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/WarlockIconReleaf",
+	["MONK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/MonkIconReleaf",
+	["DRUID"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DruidIconReleaf",
+	["DEMONHUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunterIconReleaf",
+}
+
 --inspect bg/item quality texture
 local EltruismInspectBg = CreateFrame("Frame", "EltruismInspectBg")
 local EltruismInspectBgTexture = EltruismInspectBg:CreateTexture()
@@ -1657,6 +1691,23 @@ function ElvUI_EltreumUI:InspectBg(unit)
 				local _, englishClass, _, englishRace = GetPlayerInfoByGUID(unit)
 				if englishClass or englishRace then
 					if _G.InspectFrame then
+
+						--add class icon + colored name
+						if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
+							local classcolor = E:ClassColor(englishClass, true)
+							if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
+								classsymbolonframe = ("|T"..(classIcons[englishClass]..".tga:0:0:0:0|t"))
+							elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
+								classsymbolonframe = ("|T"..(classIconsReleafborder[englishClass]..".tga:0:0:0:0|t"))
+							else
+								classsymbolonframe = ("|T"..(classIcons[englishClass]..".tga:0:0:0:0|t"))
+							end
+							_G.InspectNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
+							_G.InspectNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							_G.InspectNameText:SetWidth(200)
+							E:Delay(0, function() _G.InspectNameText:SetText(classsymbolonframe.." ".._G.InspectNameText:GetText()) end)
+						end
+
 						--add bg texture
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 							EltruismInspectBgTexture:SetTexture(classBgs[englishClass])
@@ -1764,6 +1815,8 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					end
 				end)
 			end
+
+
 
 
 		end
