@@ -883,12 +883,6 @@ end
 function ElvUI_EltreumUI:SetupCVars()
 	-- ElvUI CVars
 	SetCVar('removeChatDelay', 1)
-	if not E.Wrath then
-		SetCVar('cameraDistanceMaxZoomFactor', 2.6)
-	else
-		E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor = 3.4
-		SetCVar('cameraDistanceMaxZoomFactor', 3.4)
-	end
 	SetCVar('autoLootDefault', 1)
 	SetCVar('autoQuestWatch', 1)
 	SetCVar('UnitNameEnemyGuardianName', 0)
@@ -912,24 +906,8 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('allowCompareWithToggle', 1) --compare using shift
 	SetCVar('instantQuestText', 1) -- makes quest text show fast instead of per line
 
-	--this makes it so that the non nameplate names are hidden
-	if E.Retail then
-		SetCVar('UnitNameHostleNPC', 0) --Display names for hostile NPCs
-		SetCVar('UnitNameInteractiveNPC', 0) --Display names for interactive NPCs
-		SetCVar('UnitNameNPC', 0)
-		--[[
-		SetCVar('findYourselfAnywhere', 0) --"Always Highlight your character"
-		SetCVar('findYourselfAnywhereOnlyInCombat', 0) --"Highlight your character only when in combat"
-		SetCVar('findYourselfInBG', 0) --"Always Highlight your character in Battlegrounds"
-		SetCVar('findYourselfInBGOnlyInCombat', 9) --"Highlight your character in Battlegrounds only when in combat"
-		SetCVar('findYourselfInRaid', 0) --"Always Highlight your character in Raids"
-		SetCVar('findYourselfInRaidOnlyInCombat', 0) --"Highlight your character in Raids only when in combat"
-		SetCVar('findYourselfMode', 1) --"Highlight you character. 0 = circle, 1 = circle & outline"
-		]]
-	end
-
 	-- fast loot
-	SetCVar("autoLootRate", 1)
+	SetCVar("autoLootRate", 0)
 
 	--Chat CVars
 	SetCVar('chatStyle', 'classic')
@@ -945,10 +923,32 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar('threatWarning', 3)
 		SetCVar('showQuestTrackingTooltips', 1)
 		SetCVar('fstack_preferParentKeys', 0) --Add back the frame names via fstack!
+
+		--this makes it so that the non nameplate names are hidden
+		SetCVar('UnitNameHostleNPC', 0) --Display names for hostile NPCs
+		SetCVar('UnitNameInteractiveNPC', 0) --Display names for interactive NPCs
+		SetCVar('UnitNameNPC', 0)
+		--[[
+		SetCVar('findYourselfAnywhere', 0) --"Always Highlight your character"
+		SetCVar('findYourselfAnywhereOnlyInCombat', 0) --"Highlight your character only when in combat"
+		SetCVar('findYourselfInBG', 0) --"Always Highlight your character in Battlegrounds"
+		SetCVar('findYourselfInBGOnlyInCombat', 9) --"Highlight your character in Battlegrounds only when in combat"
+		SetCVar('findYourselfInRaid', 0) --"Always Highlight your character in Raids"
+		SetCVar('findYourselfInRaidOnlyInCombat', 0) --"Highlight your character in Raids only when in combat"
+		SetCVar('findYourselfMode', 1) --"Highlight you character. 0 = circle, 1 = circle & outline"
+		]]
 	elseif E.Wrath or E.TBC or E.Classic then
 		SetCVar("lootUnderMouse", 1)
 		SetCVar("chatBubbles", 1)
 		SetCVar("chatBubblesParty", 1)
+		if E.Classic or E.TBC then
+			SetCVar('cameraDistanceMaxZoomFactor', 2.6)
+		elseif E.Wrath then
+			E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor = 3.4
+			SetCVar('cameraDistanceMaxZoomFactor', 3.4)
+			SetCVar('equipmentManager', 1)
+			SetCVar('previewTalents', 1)
+		end
 	end
 	ElvUI_EltreumUI:Print(L["General CVars have been set."])
 end
