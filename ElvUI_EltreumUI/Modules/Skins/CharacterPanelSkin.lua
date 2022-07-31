@@ -94,6 +94,7 @@ local classBgs = {
 	["DEMONHUNTER"] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
 }
 
+--resize to 2995x2160 from 4k then down to frame size, vignette 0.4
 local raceBgs = {
 	["BloodElf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\BloodElf",
 	["HighmountainTauren"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Highmountain",
@@ -1135,9 +1136,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterMainHandSlot:ClearAllPoints()
 				_G.CharacterMainHandSlot:SetPoint('CENTER', _G.CharacterModelFrame, 'CENTER', -55, -145)
 
-				_G.PlayerTitleDropDown:SetAlpha(0)
-				_G.PlayerTitleDropDown:SetScript('OnEnter', function() _G.PlayerTitleDropDown:SetAlpha(1) end)
-				_G.PlayerTitleDropDown:SetScript('OnLeave', function() _G.PlayerTitleDropDown:SetAlpha(0) end)
+				if _G.PlayerTitleDropDown then
+					_G.PlayerTitleDropDown:SetAlpha(0)
+					_G.PlayerTitleDropDown:SetScript('OnEnter', function() _G.PlayerTitleDropDown:SetAlpha(1) end)
+					_G.PlayerTitleDropDown:SetScript('OnLeave', function() _G.PlayerTitleDropDown:SetAlpha(0) end)
+				end
 
 				CharacterNameText:ClearAllPoints()
 				CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
@@ -1369,7 +1372,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PetPaperDollCloseButton:Hide()
 
 					_G.CharacterStatFrame1:ClearAllPoints()
-					_G.CharacterStatFrame1:SetPoint("TOP", CharacterFrame, "TOP", 124, -225)
+					_G.CharacterStatFrame1:SetPoint("CENTER", _G.MagicResFrame1, "CENTER", 28, -28) --first stat desc
 					_G.CharacterStatFrame1:SetParent(CharacterModelFrame)
 
 					_G.CharacterStatFrame2:ClearAllPoints()
@@ -1447,7 +1450,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterRangedDamageFrame.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
 
 					_G.CharacterStatFrame1Stat:ClearAllPoints()
-					_G.CharacterStatFrame1Stat:SetPoint("TOP", CharacterFrame, "TOP", 211, -225)
+					_G.CharacterStatFrame1Stat:SetPoint("CENTER", _G.CharacterStatFrame1, "CENTER", 90, 0) --first stat number
 					_G.CharacterStatFrame1Stat:SetParent(_G.CharacterStatFrame1)
 
 					_G.CharacterStatFrame2Stat:ClearAllPoints()
