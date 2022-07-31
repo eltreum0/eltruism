@@ -1841,10 +1841,6 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					end
 				end)
 			end
-
-
-
-
 		end
 	end
 end
