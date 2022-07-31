@@ -309,6 +309,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 			end
 			if E.global.nameplates.filters.EltreumRare then
 				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["border"] = false
+			end
 			if not E.Retail then
 				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["border"] = false
 			end
