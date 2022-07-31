@@ -274,11 +274,14 @@ function ElvUI_EltreumUI:NamePlateOptions()
 			end
 		end
 
+		--glow color
 		if E.db.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow then
 			E.db["nameplates"]["colors"]["glowColor"]["b"] = nameplateclasscolors.b
 			E.db["nameplates"]["colors"]["glowColor"]["r"] = nameplateclasscolors.r
 			E.db["nameplates"]["colors"]["glowColor"]["g"] = nameplateclasscolors.g
 		end
+
+		--border colors
 		if E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate then
 			if E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["border"] = true
@@ -300,7 +303,18 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
 				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
 			end
+		elseif not E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate then
+			if E.global.nameplates.filters.EltreumTarget then
+				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["border"] = false
+			end
+			if E.global.nameplates.filters.EltreumRare then
+				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["border"] = false
+			if not E.Retail then
+				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["border"] = false
+			end
 		end
+
+		--class color texture
 		if E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
 			if E.db.ElvUI_EltreumUI.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = (playerclassv1[E.myclass])
@@ -321,7 +335,19 @@ function ElvUI_EltreumUI:NamePlateOptions()
 			if E.global.nameplates.filters.EltreumRare then
 				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 			end
+		elseif not E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture and not E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture then
+			if E.global.nameplates.filters.EltreumTarget then
+				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = false
+				if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
+					E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = false
+				end
+			end
+			if E.global.nameplates.filters.EltreumRare then
+				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["enable"] = false
+			end
 		end
+
+		--target's class color texture
 		if E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture then
 			local _, targetclass = UnitClass("target")
 			local reactiontarget = UnitReaction("player", "target")
