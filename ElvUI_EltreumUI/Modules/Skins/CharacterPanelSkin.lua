@@ -1150,7 +1150,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 					--fix talent position
 					if IsAddOnLoaded("Blizzard_TalentUI") then
-						if _G.CharacterModelFrame:IsShown() then
+						if _G.CharacterModelFrame:IsVisible() then
 							_G.PlayerTalentFrame:ClearAllPoints()
 							_G.PlayerTalentFrame:SetPoint("TOPLEFT", _G.CharacterFrame, "TOPRIGHT", -30, 0)
 						end
