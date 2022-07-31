@@ -95,6 +95,8 @@ local classBgs = {
 }
 
 --resize to 2995x2160 from 4k then down to frame size, vignette 0.4
+--heigh to 1920, resize to heigh 512, soften(5,0,10) then vignete 0.35
+--heigh to 1920, resize to heigh 512, 20 sharpen, 30 bright 30 contrast, vignette 0.35, 50% quality
 local raceBgs = {
 	["BloodElf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\BloodElf",
 	["HighmountainTauren"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Highmountain",
@@ -1653,11 +1655,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							EltruismInspectBgTexture:SetTexCoord(0, 0.87, 0, 0.60)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 							EltruismInspectBgTexture:SetTexture(raceBgs[englishRace]) --(left, right, top, bottom)
-							if not E.myrace == 'NightElf' then
-								EltruismInspectBgTexture:SetTexCoord(0, 0.80, 0, 1)
-							else
-								EltruismInspectBgTexture:SetTexCoord(0, 0.60, 0, 1)
-							end
+							EltruismInspectBgTexture:SetTexCoord(0, 0.60, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
 							local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
 							EltruismInspectBgTexture:SetTexture(texturefile)
