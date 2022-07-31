@@ -695,7 +695,7 @@ E:AddTag('eltruism:combatindicator', 'UNIT_HEALTH', function(unit)
 		elseif texture == "SKULL" then
 		 	return "|TInterface\\LootFrame\\LootPanel-Icon:0:0:0:0|t"
 		elseif texture == "COMBAT" then
-		 	return "|TInterface\\Addons\\ElvUI\\Core\\Media\\Textures\\Combat:0:0:0:0"
+		 	return "|TInterface\\Addons\\ElvUI\\Core\\Media\\Textures\\Combat.tga:0:0:0:0|t"
 		else
 			return "|TInterface\\CharacterFrame\\UI-StateIcon:0:0:0:0:64:64:34:59:6:29|t"
 		end
