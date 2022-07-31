@@ -675,3 +675,30 @@ E:AddTag('eltruism:classcolor', 'UNIT_NAME_UPDATE', function(unit)
 	end
 end)
 E:AddTagInfo("eltruism:classcolor", ElvUI_EltreumUI.Name, L["Returns class color only for players"])
+
+--combat icon idea for other units
+E:AddTag('eltruism:combatindicator', 'UNIT_HEALTH', function(unit)
+	local texture = E.db["unitframe"]["units"]["player"]["CombatIcon"]["texture"]
+	if UnitAffectingCombat(unit) then
+		if texture == "DEFAULT" then
+			return "|TInterface\\CharacterFrame\\UI-StateIcon:0:0:0:0:64:64:34:59:6:29|t"
+		elseif texture == "PLATINUM" then
+			return  "asdasdasdsd".."|TInterface\\Challenges\\ChallengeMode_Medal_Platinum:0:0:0:0|t"
+		elseif texture == "ATTACK" then
+			return "|TInterface\\CURSOR\\Attack:0:0:0:0|t"
+		elseif texture == "ALERT" then
+			return "|TInterface\\DialogFrame\\UI-Dialog-Icon-AlertNew:0:0:0:0|t"
+		elseif texture == "ALERT2" then
+			return "|TInterface\\OptionsFrame\\UI-OptionsFrame-NewFeatureIcon:0:0:0:0|t"
+		elseif texture == "ARTHAS" then
+			return "|TInterface\\LFGFRAME\\UI-LFR-PORTRAIT:0:0:0:0|t"
+		elseif texture == "SKULL" then
+		 	return "|TInterface\\LootFrame\\LootPanel-Icon:0:0:0:0|t"
+		elseif texture == "COMBAT" then
+		 	return "|TInterface\\Addons\\ElvUI\\Core\\Media\\Textures\\Combat:0:0:0:0"
+		else
+			return "|TInterface\\CharacterFrame\\UI-StateIcon:0:0:0:0:64:64:34:59:6:29|t"
+		end
+	end
+end)
+E:AddTagInfo("eltruism:combatindicator", ElvUI_EltreumUI.Name, L["Displays an icon when the unit is in combat"])
