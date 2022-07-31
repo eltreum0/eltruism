@@ -45,7 +45,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	end
 	ElvUI_EltreumUI:VersionCheckInit() --checks for old versions
 	ElvUI_EltreumUI:LoadCommands() --loads chat commands
-	ElvUI_EltreumUI:ActionbarBorderAdjust() --auto adjust actionbar/border if option is enabled
+	ElvUI_EltreumUI:BorderAdjust() --auto adjust actionbar/border if option is enabled
 	ElvUI_EltreumUI:Borders() --creates borders if option is enabled
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel() --adds class icons to character panel
 	ElvUI_EltreumUI:CursorInit() --starts cursor modules
@@ -268,7 +268,7 @@ function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 			ElvUI_EltreumUI:UpdateNPwithoutBar()
 		end
 		if E.db.ElvUI_EltreumUI.borders.borders then
-			ElvUI_EltreumUI:ActionbarBorderAdjust()
+			ElvUI_EltreumUI:BorderAdjust()
 			ElvUI_EltreumUI:Borders()
 		end
 	end

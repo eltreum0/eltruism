@@ -1035,7 +1035,7 @@ function ElvUI_EltreumUI:ShowHideBorders()
 	if E.db.ElvUI_EltreumUI.borders.borders == false then
 		E.db.ElvUI_EltreumUI.borders.borders = true
 		E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
-		ElvUI_EltreumUI:ActionbarBorderAdjust()
+		ElvUI_EltreumUI:BorderAdjust()
 		ElvUI_EltreumUI:Borders()
 		for _, frame in pairs(borderlist) do
 			if frame ~= nil then
@@ -1074,7 +1074,7 @@ function ElvUI_EltreumUI:ShowHideBorders()
 	elseif E.db.ElvUI_EltreumUI.borders.borders == true then
 		E.db.ElvUI_EltreumUI.borders.borders = false
 		E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
-		ElvUI_EltreumUI:ActionbarBorderAdjust()
+		ElvUI_EltreumUI:BorderAdjust()
 		ElvUI_EltreumUI:Shadows()
 		for _, frame in pairs(borderlist) do
 			if frame ~= nil then

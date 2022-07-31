@@ -368,8 +368,8 @@ function ElvUI_EltreumUI:DarkChat()
 	ElvUI_EltreumUI:Print("Chat set to Dark mode")
 end
 
---automatically space the actionbar if borders is enabled
-function ElvUI_EltreumUI:ActionbarBorderAdjust()
+--automatically adjust things if borders is enabled
+function ElvUI_EltreumUI:BorderAdjust()
 	if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
 		--if not using one of my profiles then disable auto adjust to prevent overwriting settings and return
 		if not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
@@ -582,10 +582,6 @@ function ElvUI_EltreumUI:ActionbarBorderAdjust()
 						E.db["general"]["totems"]["spacing"] = 3
 					end
 				end
-			end
-			if E.Wrath and E.myclass == 'SHAMAN' then --for some reason wrath needs to do this or totems will error when it updates positions due to setpoint
-				local AB = E:GetModule('ActionBars')
-				AB:UpdateTotemBindings()
 			end
 			E:UpdateActionBars()
 			E:UpdateMoverPositions()
