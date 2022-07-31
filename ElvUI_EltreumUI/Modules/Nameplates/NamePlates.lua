@@ -214,6 +214,66 @@ local nameplateclasscolors
 function ElvUI_EltreumUI:NamePlateOptions()
 	nameplateclasscolors = E:ClassColor(E.myclass, true)
 	if E.private.nameplates.enable then
+
+		--general disable/enable
+		if (not E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture and not E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture and not E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate and not E.db.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow) then
+			if E.global.nameplates.filters.EltreumTarget and E.db["nameplates"]["filters"]["EltreumTarget"] then
+				E.db["nameplates"]["filters"]["EltreumTarget"]["triggers"]["enable"] = false
+			end
+			if E.global.nameplates.filters.EltreumRare and E.db["nameplates"]["filters"]["EltreumRare"] then
+				E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = false
+			end
+			if E.global.nameplates.filters.EltreumSpellsteal and E.db["nameplates"]["filters"]["EltreumSpellsteal"] then
+				E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
+			end
+			if E.global.nameplates.filters.EltreumLevel and E.db["nameplates"]["filters"]["EltreumLevel"] then
+				E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
+			end
+			if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
+				E.db["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["enable"] = false
+			end
+			if E.global.nameplates.filters.EltreumInterrupt and E.db["nameplates"]["filters"]["EltreumInterrupt"] then
+				E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = false
+			end
+			if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] then
+				E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] = false
+			end
+			if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
+				E.db["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["enable"] = false
+			end
+			if E.global.nameplates.filters.EltreumTotems and E.db["nameplates"]["filters"]["EltreumTotems"] then
+				E.db["nameplates"]["filters"]["EltreumTotems"]["triggers"]["enable"] = false
+			end
+		else
+			if E.global.nameplates.filters.EltreumTarget and E.db["nameplates"]["filters"]["EltreumTarget"] then
+				E.db["nameplates"]["filters"]["EltreumTarget"]["triggers"]["enable"] = true
+			end
+			if E.global.nameplates.filters.EltreumRare and E.db["nameplates"]["filters"]["EltreumRare"] then
+				E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
+			end
+			if E.global.nameplates.filters.EltreumSpellsteal and E.db["nameplates"]["filters"]["EltreumSpellsteal"] then
+				E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
+			end
+			if E.global.nameplates.filters.EltreumLevel and E.db["nameplates"]["filters"]["EltreumLevel"] then
+				E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
+			end
+			if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
+				E.db["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["enable"] = true
+			end
+			if E.global.nameplates.filters.EltreumInterrupt and E.db["nameplates"]["filters"]["EltreumInterrupt"] then
+				E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = true
+			end
+			if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] then
+				E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] = true
+			end
+			if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
+				E.db["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["enable"] = true
+			end
+			if E.global.nameplates.filters.EltreumTotems and E.db["nameplates"]["filters"]["EltreumTotems"] then
+				E.db["nameplates"]["filters"]["EltreumTotems"]["triggers"]["enable"] = true
+			end
+		end
+
 		if E.db.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow then
 			E.db["nameplates"]["colors"]["glowColor"]["b"] = nameplateclasscolors.b
 			E.db["nameplates"]["colors"]["glowColor"]["r"] = nameplateclasscolors.r
@@ -226,12 +286,6 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
 			end
-			if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
-				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["border"] = true
-				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
-				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
-				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
-			end
 			if E.global.nameplates.filters.EltreumRare then
 				if E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] == true then
 					E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["border"] = true
@@ -239,6 +293,12 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
 					E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
 				end
+			end
+			if not E.Retail then
+				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["border"] = true
+				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
+				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
+				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
 			end
 		end
 		if E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
@@ -316,65 +376,6 @@ function ElvUI_EltreumUI:NamePlateOptions()
 						end
 					end
 				end
-			end
-		end
-
-		--general disable/enable
-		if (not E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture and not E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture and not E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate and not E.db.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow) then
-			if E.global.nameplates.filters.EltreumTarget and E.db["nameplates"]["filters"]["EltreumTarget"] then
-				E.db["nameplates"]["filters"]["EltreumTarget"]["triggers"]["enable"] = false
-			end
-			if E.global.nameplates.filters.EltreumRare and E.db["nameplates"]["filters"]["EltreumRare"] then
-				E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = false
-			end
-			if E.global.nameplates.filters.EltreumSpellsteal and E.db["nameplates"]["filters"]["EltreumSpellsteal"] then
-				E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
-			end
-			if E.global.nameplates.filters.EltreumLevel and E.db["nameplates"]["filters"]["EltreumLevel"] then
-				E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
-			end
-			if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
-				E.db["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["enable"] = false
-			end
-			if E.global.nameplates.filters.EltreumInterrupt and E.db["nameplates"]["filters"]["EltreumInterrupt"] then
-				E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = false
-			end
-			if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] then
-				E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] = false
-			end
-			if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
-				E.db["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["enable"] = false
-			end
-			if E.global.nameplates.filters.EltreumTotems and E.db["nameplates"]["filters"]["EltreumTotems"] then
-				E.db["nameplates"]["filters"]["EltreumTotems"]["triggers"]["enable"] = false
-			end
-		else
-			if E.global.nameplates.filters.EltreumTarget and E.db["nameplates"]["filters"]["EltreumTarget"] then
-				E.db["nameplates"]["filters"]["EltreumTarget"]["triggers"]["enable"] = true
-			end
-			if E.global.nameplates.filters.EltreumRare and E.db["nameplates"]["filters"]["EltreumRare"] then
-				E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
-			end
-			if E.global.nameplates.filters.EltreumSpellsteal and E.db["nameplates"]["filters"]["EltreumSpellsteal"] then
-				E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
-			end
-			if E.global.nameplates.filters.EltreumLevel and E.db["nameplates"]["filters"]["EltreumLevel"] then
-				E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
-			end
-			if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
-				E.db["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["enable"] = true
-			end
-			if E.global.nameplates.filters.EltreumInterrupt and E.db["nameplates"]["filters"]["EltreumInterrupt"] then
-				E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = true
-			end
-			if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] then
-				E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] = true
-			end
-			if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
-				E.db["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["enable"] = true
-			end
-			if E.global.nameplates.filters.EltreumTotems and E.db["nameplates"]["filters"]["EltreumTotems"] then
-				E.db["nameplates"]["filters"]["EltreumTotems"]["triggers"]["enable"] = true
 			end
 		end
 
