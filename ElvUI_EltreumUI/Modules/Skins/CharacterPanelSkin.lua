@@ -516,6 +516,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				hooksecurefunc("CharacterFrame_Collapse", function()
 					if PaperDollFrame:IsShown() then
 						_G.CharacterFrame:SetWidth(505)
+						CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.60, 0, 1)
 						_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 						_G.CharacterModelFrameBackgroundOverlay:Hide()
 						if PaperDollFrame.SLE_Armory_BG then
@@ -529,6 +530,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				hooksecurefunc("CharacterFrame_Expand", function()
 					if PaperDollFrame:IsShown() then
 						_G.CharacterFrame:SetWidth(700)
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 1, 0, 1)
 						_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 						_G.CharacterModelFrameBackgroundOverlay:Hide()
 						if PaperDollFrame.SLE_Armory_BG then
@@ -1089,12 +1091,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if not InCombatLockdown() then
 						if PaperDollFrame:IsShown() then
 							CharacterFrame:SetSize(700, 505)
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 1, 0, 1)
 							CharacterNameText:ClearAllPoints()
 							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
 						else
 							CharacterNameText:ClearAllPoints()
 							CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
 							CharacterFrame:SetSize(400, 505)
+							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.6, 0, 1)
 						end
 					end
 				end)
@@ -1104,10 +1108,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						if PaperDollFrame:IsShown() then
 							CharacterFrame:SetSize(700, 505)
 							CharacterNameText:ClearAllPoints()
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 1, 0, 1)
 							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
 						else
 							CharacterFrame:SetSize(400, 505)
 							CharacterNameText:ClearAllPoints()
+							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.60, 0, 1)
 							CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
 						end
 					end
@@ -1118,10 +1124,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						if PaperDollFrame:IsShown() then
 							CharacterFrame:SetSize(700, 505)
 							CharacterNameText:ClearAllPoints()
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 1, 0, 1)
 							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
 						else
 							CharacterFrame:SetSize(400, 505)
 							CharacterNameText:ClearAllPoints()
+							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.60, 0, 1)
 							CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
 						end
 					end
@@ -1655,7 +1663,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							EltruismInspectBgTexture:SetTexCoord(0, 0.87, 0, 0.60)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 							EltruismInspectBgTexture:SetTexture(raceBgs[englishRace]) --(left, right, top, bottom)
-							EltruismInspectBgTexture:SetTexCoord(0, 0.60, 0, 1)
+							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
 							local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
 							EltruismInspectBgTexture:SetTexture(texturefile)
