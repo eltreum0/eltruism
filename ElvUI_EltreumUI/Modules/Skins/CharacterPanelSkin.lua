@@ -511,10 +511,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end)
 
 				hooksecurefunc("CharacterFrame_Collapse", function()
-					if PaperDollFrame:IsShown() then
+					if PaperDollFrame:IsVisible() then
 						_G.CharacterFrame:SetWidth(505)
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.60, 0, 1)
+							if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
+								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
+							end
 						end
 						_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 						_G.CharacterModelFrameBackgroundOverlay:Hide()
@@ -523,20 +526,37 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 								PaperDollFrame.SLE_Armory_BG:Hide()
 							end
 						end
+					else
+						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
+							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.10, 0, 1)
+							if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
+								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
+							end
+						end
 					end
 				end)
 
 				hooksecurefunc("CharacterFrame_Expand", function()
-					if PaperDollFrame:IsShown() then
+					if PaperDollFrame:IsVisible() then
 						_G.CharacterFrame:SetWidth(700)
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 1, 0, 1)
+							if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
+								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
+							end
 						end
 						_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 						_G.CharacterModelFrameBackgroundOverlay:Hide()
 						if PaperDollFrame.SLE_Armory_BG then
 							if PaperDollFrame.SLE_Armory_BG:IsShown() then
 								PaperDollFrame.SLE_Armory_BG:Hide()
+							end
+						end
+					else
+						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
+							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.10, 0, 1)
+							if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
+								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
 							end
 						end
 					end
@@ -1039,6 +1059,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 					CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
+					if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
+					end
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
 					local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
 					CharacterFrameBackgroundTexture:SetTexture(texturefile)
@@ -1090,10 +1113,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame:SetSize(700, 505)
 				hooksecurefunc("CharacterFrameTab_OnClick", function()
 					if not InCombatLockdown() then
-						if PaperDollFrame:IsShown() then
+						if PaperDollFrame:IsVisible() then
 							CharacterFrame:SetSize(700, 505)
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 								CharacterFrameBackgroundTexture:SetTexCoord(0, 1, 0, 1)
+								if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
+									CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
+								end
 							end
 							CharacterNameText:ClearAllPoints()
 							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
@@ -1103,6 +1129,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							CharacterFrame:SetSize(400, 505)
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 								CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.6, 0, 1)
+								if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
+									CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
+								end
 							end
 						end
 					end
@@ -1110,11 +1139,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				_G.PaperDollItemsFrame:SetScript("OnShow", function()
 					if not InCombatLockdown() then
-						if PaperDollFrame:IsShown() then
+						if PaperDollFrame:IsVisible() then
 							CharacterFrame:SetSize(700, 505)
 							CharacterNameText:ClearAllPoints()
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 								CharacterFrameBackgroundTexture:SetTexCoord(0, 1, 0, 1)
+								if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
+									CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
+								end
 							end
 							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
 						else
@@ -1122,6 +1154,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							CharacterNameText:ClearAllPoints()
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 								CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.60, 0, 1)
+								if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
+									CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
+								end
 							end
 							CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
 						end
@@ -1130,11 +1165,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				_G.CharacterFrame:HookScript("OnShow", function()
 					if not InCombatLockdown() then
-						if PaperDollFrame:IsShown() then
+						if PaperDollFrame:IsVisible() then
 							CharacterFrame:SetSize(700, 505)
 							CharacterNameText:ClearAllPoints()
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 								CharacterFrameBackgroundTexture:SetTexCoord(0, 1, 0, 1)
+								if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
+									CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
+								end
 							end
 							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
 						else
@@ -1142,6 +1180,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							CharacterNameText:ClearAllPoints()
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 								CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.60, 0, 1)
+								if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
+									CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
+								end
 							end
 							CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
 						end
@@ -1186,7 +1227,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				--start of the stats
 				CharacterFrame.Text4:SetSize(418, 72)
-				CharacterFrame.Text4:SetPoint("TOPRIGHT", CharacterFrame, "TOPRIGHT", 50, 0)   ---anchored
+				CharacterFrame.Text4:SetPoint("TOPRIGHT", CharacterFrame, "TOPRIGHT", 50, 0) ---anchored
 				CharacterFrame.Text4:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.Text4:SetTextColor(1, 1, 1)
 				CharacterFrame.Text4:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
@@ -1217,7 +1258,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
 				CharacterFrame.Text2:SetSize(418, 72)
-				CharacterFrame.Text2:SetPoint("BOTTOM", CharacterFrame.Text, "BOTTOM", 0, -35)   ---ilvl number
+				CharacterFrame.Text2:SetPoint("BOTTOM", CharacterFrame.Text, "BOTTOM", 0, -35) --ilvl number
 				CharacterFrame.Text2:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.Text2:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				CharacterFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
@@ -1758,10 +1799,10 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						if E.Wrath or E.TBC or E.Classic then
 							EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop)
 							EltruismInspectBgTexture:SetParent(_G.InspectFrame)
-							if _G.InspectModelFrameRotateLeftButton:IsShown() then
+							if _G.InspectModelFrameRotateLeftButton:IsVisible() then
 								_G.InspectModelFrameRotateLeftButton:Hide()
 							end
-							if _G.InspectModelFrameRotateRightButton:IsShown() then
+							if _G.InspectModelFrameRotateRightButton:IsVisible() then
 								_G.InspectModelFrameRotateRightButton:Hide()
 							end
 						elseif E.Retail then
