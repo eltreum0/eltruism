@@ -528,7 +528,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						end
 					else
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.10, 0, 1)
+							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.60, 0, 1)
 							if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
 								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
 							end
@@ -554,7 +554,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						end
 					else
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.10, 0, 1)
+							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.60, 0, 1)
 							if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
 								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
 							end
