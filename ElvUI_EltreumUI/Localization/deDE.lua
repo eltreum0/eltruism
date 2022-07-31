@@ -1006,5 +1006,5 @@ L["Displays a dead symbol from Releaf when unit is dead. Usage: [eltruism:dead{n
 L["Displays a disconnect symbol when unit is disconnected. Number can be between 1 and 6 for different textures from Releaf."] = "Zeigt ein Trennungssymbol an, wenn der Spieler vom Spiel getrennt wurde. Die Zahl kann zwischen 1 und 6 für verschiedene Texturen von Releaf liegen."
 L["Displays a disconnect symbol from Releaf when unit is disconnected. Usage: [eltruism:dc{number}]"] = "Zeigt ein Trennungssymbol von Release an, wenn der Spieler vom Spiel getrennt wurde. Verwendung: [eltruism:dc{number}]"
 L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [eltruism:hpstatus{number,number}]"] = "Zeigt kurze Werte für HP und ein Statussymbol von Releaf für Spieler an. Verwendung: [eltruism:hpstatus{number,number}]"
-L["Returns class color only for players"] = true
-L["Displays an icon when the unit is in combat, uses player icon"] = true
+L["Returns class color only for players"] = "Kehrt zu Klassenfarbe nur für Spieler zurück"
+L["Displays an icon when the unit is in combat, uses player icon"] = "Zeigt ein Symbol an, wenn sich die Einheit im Kampf befindet, verwendet das Spielersymbol"
