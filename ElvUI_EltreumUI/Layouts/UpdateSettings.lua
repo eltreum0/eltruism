@@ -109,8 +109,14 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.partyraiddeath.enable = false
 
 	E.db.ElvUI_EltreumUI.afkmusic.enable = true
-	E.db.ElvUI_EltreumUI.afkmusic.racial = true
-	E.db.ElvUI_EltreumUI.afkmusic.playerclass = false
+	if E.Retail then
+		E.db.ElvUI_EltreumUI.afkmusic.racial = false
+		E.db.ElvUI_EltreumUI.afkmusic.playerclass = true
+	else
+		E.db.ElvUI_EltreumUI.afkmusic.racial = true
+		E.db.ElvUI_EltreumUI.afkmusic.playerclass = false
+	end
+
 	E.db.ElvUI_EltreumUI.waypointetasetting.enable = true
 	E.db.ElvUI_EltreumUI.waypointetasetting.autopin = true
 	E.db.ElvUI_EltreumUI.waytext.enable = true
