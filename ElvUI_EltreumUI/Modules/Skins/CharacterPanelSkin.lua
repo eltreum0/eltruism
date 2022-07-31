@@ -1702,10 +1702,23 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							else
 								classsymbolonframe = ("|T"..(classIcons[englishClass]..".tga:0:0:0:0|t"))
 							end
-							_G.InspectNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
-							_G.InspectNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-							_G.InspectNameText:SetWidth(200)
-							E:Delay(0, function() _G.InspectNameText:SetText(classsymbolonframe.." ".._G.InspectNameText:GetText()) end)
+							E:Delay(0, function()
+								if not E.Retail then
+									if not _G.InspectNameText:GetText():match("|T") then
+										_G.InspectNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
+										_G.InspectNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+										_G.InspectNameText:SetWidth(200)
+										_G.InspectNameText:SetText(classsymbolonframe.." ".._G.InspectNameText:GetText())
+									end
+								else
+									if not _G.InspectFrameTitleText:GetText():match("|T") then
+										_G.InspectFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
+										_G.InspectFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+										_G.InspectFrameTitleText:SetWidth(200)
+										_G.InspectFrameTitleText:SetText(classsymbolonframe.." ".._G.InspectFrameTitleText:GetText())
+									end
+								end
+							end)
 						end
 
 						--add bg texture
