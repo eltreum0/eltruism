@@ -1637,8 +1637,6 @@ refreshplayer:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:PlayerItemQuality("player")
 end)
 
-
-
 local classsymbolonframe
 local classIcons = {
 	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Warrior",
