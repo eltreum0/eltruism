@@ -974,3 +974,4 @@ L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [e
 L["Displays a disconnect symbol from Releaf when unit is disconnected. Usage: [eltruism:dc{number}]"] = true
 L["Displays a dead symbol from Releaf when unit is dead. Usage: [eltruism:dead{number}]"] = true
 L["Returns class color only for players"] = true
+L["Displays an icon when the unit is in combat, uses player icon"] = true
