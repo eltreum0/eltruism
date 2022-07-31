@@ -180,31 +180,41 @@ function ElvUI_EltreumUI:OldVersionCheck()
 	end
 	if E.db.ElvUI_EltreumUI.lightmode == true and E.db.ElvUI_EltreumUI.darkmode == true then --convert the option
 		E.db.ElvUI_EltreumUI.darkmode = false
+		E.db.ElvUI_EltreumUI.darkmode = true
 	end
 	if E.db.ElvUI_EltreumUI.gradientmode.enable == true and E.db.ElvUI_EltreumUI.ufcustomtexture.enable == true then --convert the option
 		E.db.ElvUI_EltreumUI.ufcustomtexture.enable = false
+		E.db.ElvUI_EltreumUI.ufcustomtexture.enable = true
 	end
 	if E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture == true and E.db.ElvUI_EltreumUI.nameplateOptions.playerclass == true then
 		E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture = false
+		E.db.ElvUI_EltreumUI.nameplateOptions.playerclass = true
 	end
 	if E.db.ElvUI_EltreumUI.afkmusic.racial == true and E.db.ElvUI_EltreumUI.afkmusic.racial == true then
 		E.db.ElvUI_EltreumUI.afkmusic.racial = false
+		E.db.ElvUI_EltreumUI.afkmusic.racial = true
 	end
 	if E.db.ElvUI_EltreumUI.glow.blizzard == true and E.db.ElvUI_EltreumUI.glow.pixel == true then
 		E.db.ElvUI_EltreumUI.glow.blizzard = false
+		E.db.ElvUI_EltreumUI.glow.pixel = true
 	elseif E.db.ElvUI_EltreumUI.glow.blizzard == true and E.db.ElvUI_EltreumUI.glow.autocast == true then
 		E.db.ElvUI_EltreumUI.glow.blizzard = false
+		E.db.ElvUI_EltreumUI.glow.autocast = true
 	elseif E.db.ElvUI_EltreumUI.glow.autocast == true and E.db.ElvUI_EltreumUI.glow.pixel == true then
 		E.db.ElvUI_EltreumUI.glow.autocast = false
+		E.db.ElvUI_EltreumUI.glow.pixel = true
 	elseif E.db.ElvUI_EltreumUI.glow.autocast == true and E.db.ElvUI_EltreumUI.glow.pixel == true and E.db.ElvUI_EltreumUI.glow.blizzard == true then
 		E.db.ElvUI_EltreumUI.glow.autocast = false
 		E.db.ElvUI_EltreumUI.glow.blizzard = false
+		E.db.ElvUI_EltreumUI.glow.pixel = true
 	end
 	if E.db.ElvUI_EltreumUI.skins.classiconsblizz == true and E.db.ElvUI_EltreumUI.skins.classiconsreleaf == true then
 		E.db.ElvUI_EltreumUI.skins.classiconsblizz = false
+		E.db.ElvUI_EltreumUI.skins.classiconsreleaf = true
 	end
 	if E.db.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly == true and E.db.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly == true then
 		E.db.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly = false
+		E.db.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly = true
 	end
 	if E.db.ElvUI_EltreumUI.otherstuff.playerdeath == true and (E.db.ElvUI_EltreumUI.otherstuff.playerdeathgta == true or E.db.ElvUI_EltreumUI.otherstuff.playerdeathcustom == true) then
 		E.db.ElvUI_EltreumUI.otherstuff.playerdeath = false
