@@ -1737,7 +1737,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						--add bg texture
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 							EltruismInspectBgTexture:SetTexture(classBgs[englishClass])
-							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+							EltruismInspectBgTexture:SetTexCoord(0, 0.87, 0, 0.60)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 							EltruismInspectBgTexture:SetTexture(raceBgs[englishRace]) --(left, right, top, bottom)
 							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
