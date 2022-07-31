@@ -701,4 +701,4 @@ E:AddTag('eltruism:combatindicator', 'UNIT_HEALTH', function(unit)
 		end
 	end
 end)
-E:AddTagInfo("eltruism:combatindicator", ElvUI_EltreumUI.Name, L["Displays an icon when the unit is in combat"])
+E:AddTagInfo("eltruism:combatindicator", ElvUI_EltreumUI.Name, L["Displays an icon when the unit is in combat, uses player icon"])
