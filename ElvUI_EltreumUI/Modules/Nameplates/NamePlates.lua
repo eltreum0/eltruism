@@ -290,12 +290,10 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
 			end
 			if E.global.nameplates.filters.EltreumRare then
-				if E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] == true then
-					E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["border"] = true
-					E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
-					E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
-					E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
-				end
+				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["border"] = true
+				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
+				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
+				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
 			end
 			if not E.Retail then
 				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["border"] = true
