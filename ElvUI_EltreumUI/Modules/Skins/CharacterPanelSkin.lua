@@ -514,10 +514,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if PaperDollFrame:IsVisible() then
 						_G.CharacterFrame:SetWidth(505)
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.60, 0, 1)
-							if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
-							end
+							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.68, 0, 1)
 						end
 						_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 						_G.CharacterModelFrameBackgroundOverlay:Hide()
@@ -528,10 +525,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						end
 					else
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.60, 0, 1)
-							if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
-							end
+							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.39, 0, 1)
 						end
 					end
 				end)
@@ -540,10 +534,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if PaperDollFrame:IsVisible() then
 						_G.CharacterFrame:SetWidth(700)
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0, 1, 0, 1)
-							if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
-							end
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
 						end
 						_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 						_G.CharacterModelFrameBackgroundOverlay:Hide()
@@ -554,10 +545,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						end
 					else
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.60, 0, 1)
-							if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
-							end
+							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.39, 0, 1)
 						end
 					end
 				end)
@@ -1059,9 +1047,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 					CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
-					if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
-						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
-					end
+					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
 					local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
 					CharacterFrameBackgroundTexture:SetTexture(texturefile)
@@ -1116,10 +1102,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						if PaperDollFrame:IsVisible() then
 							CharacterFrame:SetSize(700, 505)
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 1, 0, 1)
-								if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
-									CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
-								end
+								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
 							end
 							CharacterNameText:ClearAllPoints()
 							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
@@ -1128,10 +1111,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
 							CharacterFrame:SetSize(400, 505)
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.6, 0, 1)
-								if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
-									CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
-								end
+								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
 							end
 						end
 					end
@@ -1143,20 +1123,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							CharacterFrame:SetSize(700, 505)
 							CharacterNameText:ClearAllPoints()
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 1, 0, 1)
-								if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
-									CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
-								end
+								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
 							end
 							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
 						else
 							CharacterFrame:SetSize(400, 505)
 							CharacterNameText:ClearAllPoints()
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.60, 0, 1)
-								if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
-									CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
-								end
+								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
 							end
 							CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
 						end
@@ -1169,20 +1143,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							CharacterFrame:SetSize(700, 505)
 							CharacterNameText:ClearAllPoints()
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 1, 0, 1)
-								if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
-									CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
-								end
+								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
 							end
 							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
 						else
 							CharacterFrame:SetSize(400, 505)
 							CharacterNameText:ClearAllPoints()
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.60, 0, 1)
-								if E.myrace == 'Vulpera' or E.myrace == 'Scourge' then
-									CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
-								end
+								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
 							end
 							CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
 						end
