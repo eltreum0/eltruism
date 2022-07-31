@@ -94,9 +94,7 @@ local classBgs = {
 	["DEMONHUNTER"] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
 }
 
---resize to 2995x2160 from 4k then down to frame size, vignette 0.4
---heigh to 1920, resize to heigh 512, soften(5,0,10) then vignete 0.35
---heigh to 1920, resize to heigh 512, 20 sharpen, 30 bright 30 contrast, vignette 0.35, 50% quality
+--from 4k: height to 1920, resize to 1024x512, add 20 sharpen, set 30 bright 30 contrast, add vignette 0.35, 50% quality
 local raceBgs = {
 	["BloodElf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\BloodElf",
 	["HighmountainTauren"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Highmountain",
