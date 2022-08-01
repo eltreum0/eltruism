@@ -33,7 +33,7 @@ local CharacterFrameBackgroundTexture = _G.CharacterFrame:CreateTexture("Eltruis
 local ClassCrestFrame = CreateFrame("Frame")
 local ClassCrestFrameTexture = ClassCrestFrame:CreateTexture("EltruismClassCrest")
 local CharacterFrameBackgroundTextureFader = ClassCrestFrame:CreateTexture("EltruismCharacterBGVignette")
-CharacterFrameBackgroundTextureFader:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\StealthOverlay.tga")
+CharacterFrameBackgroundTextureFader:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Vignette.tga")
 --CharacterFrameBackgroundTextureFader:SetAlpha(0.6)
 
 if E.Retail then
@@ -1640,7 +1640,7 @@ local classIconsReleafborder = {
 local EltruismInspectBg = CreateFrame("Frame", "EltruismInspectBg")
 local EltruismInspectBgTexture = EltruismInspectBg:CreateTexture()
 local EltruismInspectBgTextureFader = EltruismInspectBg:CreateTexture()
-EltruismInspectBgTextureFader:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\StealthOverlay.tga")
+EltruismInspectBgTextureFader:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Vignette.tga")
 
 function ElvUI_EltreumUI:InspectBg(unit)
 	if not E.private.skins.blizzard.enable == false then
