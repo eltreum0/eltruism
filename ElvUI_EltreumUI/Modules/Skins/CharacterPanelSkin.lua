@@ -99,29 +99,29 @@ local classBgs = {
 
 --from 4k: height to 1920, resize to 1024x512, add 20 sharpen, set 30 bright 30 contrast, add vignette 0.35, compress depending on size
 local raceBgs = {
-	["BloodElf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\BloodElf",
-	["HighmountainTauren"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Highmountain",
-	["Goblin"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Goblin",
-	["Vulpera"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Vulpera",
-	["Nightborne"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Nightborne",
-	["MagharOrc"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\MagharOrc",
-	["Orc"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Orc",
-	["Scourge"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Undead",
-	["Tauren"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Tauren",
-	["Troll"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Troll",
-	["ZandalariTroll"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Zandalari",
-	["DarkIronDwarf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\DarkIron",
-	["Draenei"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Draenei",
-	["Gnome"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Gnome",
-	["Dwarf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Dwarf",
-	["Human"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Human",
-	["KulTiran"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\KulTiran",
-	["LightforgedDraenei"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Lightforged",
-	["NightElf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\NightElf",
-	["Mechagnome"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Mechagnome",
-	["VoidElf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\VoidElf",
-	["Pandaren"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Pandaren",
-	["Worgen"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Worgen",
+	["BloodElf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\BloodElf",
+	["HighmountainTauren"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Highmountain",
+	["Goblin"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Goblin",
+	["Vulpera"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Vulpera",
+	["Nightborne"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Nightborne",
+	["MagharOrc"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\MagharOrc",
+	["Orc"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Orc",
+	["Scourge"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Undead",
+	["Tauren"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Tauren",
+	["Troll"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Troll",
+	["ZandalariTroll"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Zandalari",
+	["DarkIronDwarf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\DarkIron",
+	["Draenei"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Draenei",
+	["Gnome"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Gnome",
+	["Dwarf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Dwarf",
+	["Human"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Human",
+	["KulTiran"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\KulTiran",
+	["LightforgedDraenei"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Lightforged",
+	["NightElf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\NightElf",
+	["Mechagnome"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Mechagnome",
+	["VoidElf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\VoidElf",
+	["Pandaren"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Pandaren",
+	["Worgen"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Worgen",
 }
 
 local classCrests = {
@@ -352,13 +352,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" then
-					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Ragnaros")
+					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ragnaros")
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" then
-					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\SpaceCloud")
+					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\SpaceCloud")
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
-					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Ravnyr")
+					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ravnyr")
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
 					local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
@@ -1015,13 +1015,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" then
-					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Ragnaros")
+					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ragnaros")
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" then
-					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\SpaceCloud")
+					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\SpaceCloud")
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
-					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Ravnyr")
+					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ravnyr")
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
 					local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
@@ -1717,13 +1717,13 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							EltruismInspectBgTexture:SetTexture(raceBgs[englishRace]) --(left, right, top, bottom)
 							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" then
-							EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Ragnaros")
+							EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ragnaros")
 							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" then
-							EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\SpaceCloud")
+							EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\SpaceCloud")
 							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
-							EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Ravnyr")
+							EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ravnyr")
 							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
 							local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
