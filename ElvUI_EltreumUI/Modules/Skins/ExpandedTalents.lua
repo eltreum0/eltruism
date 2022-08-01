@@ -106,6 +106,8 @@ function ElvUI_EltreumUI:ExpandedTalents()
 
 						--fix role button on glyph frame
 						if _G.PlayerTalentFrameRoleButton then
+							_G.PlayerTalentFrameRoleButton:ClearAllPoints()
+							_G.PlayerTalentFrameRoleButton:SetPoint("TOPLEFT", _G.PlayerTalentFrame, "TOPLEFT", 20,-20)
 							_G.PlayerTalentFrameRoleButton:SetParent(_G.PlayerTalentFrameScrollFrame)
 						end
 					end
