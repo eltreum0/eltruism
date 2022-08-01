@@ -1637,8 +1637,8 @@ local classIconsReleafborder = {
 }
 
 --inspect bg/item quality texture
-local EltruismInspectBg = CreateFrame("Frame", "EltruismInspectBG")
-local EltruismInspectBgTexture = EltruismInspectBg:CreateTexture()
+local EltruismInspectBg = CreateFrame("Frame")
+local EltruismInspectBgTexture = EltruismInspectBg:CreateTexture("EltruismInspectBG")
 local EltruismInspectBgTextureFader = EltruismInspectBg:CreateTexture()
 EltruismInspectBgTextureFader:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Vignette.tga")
 
