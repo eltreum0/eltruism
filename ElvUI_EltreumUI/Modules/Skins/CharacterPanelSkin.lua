@@ -29,7 +29,7 @@ local GetPlayerInfoByGUID = _G.GetPlayerInfoByGUID
 
 --improving character panel
 local CharacterFrame = _G.CharacterFrame
-local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture()
+local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture("EltruismCharacterBG")
 local ClassCrestFrame = CreateFrame("Frame")
 local ClassCrestFrameTexture = ClassCrestFrame:CreateTexture()
 
@@ -514,7 +514,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if PaperDollFrame:IsVisible() then
 						_G.CharacterFrame:SetWidth(505)
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.68, 0, 1)
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 						end
@@ -527,7 +527,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						end
 					else
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.39, 0, 1)
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.346, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 						end
@@ -538,7 +538,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if PaperDollFrame:IsVisible() then
 						_G.CharacterFrame:SetWidth(700)
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 						end
@@ -551,7 +551,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						end
 					else
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0.1, 0.39, 0, 1)
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.346, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 						end
@@ -1055,7 +1055,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 					CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
-					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
+					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
 					local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
 					CharacterFrameBackgroundTexture:SetTexture(texturefile)
@@ -1110,7 +1110,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						if PaperDollFrame:IsVisible() then
 							CharacterFrame:SetSize(700, 505)
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
+								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 							elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 							end
@@ -1135,7 +1135,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							CharacterFrame:SetSize(700, 505)
 							CharacterNameText:ClearAllPoints()
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
+								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 							elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 							end
@@ -1159,7 +1159,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							CharacterFrame:SetSize(700, 505)
 							CharacterNameText:ClearAllPoints()
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.68, 0, 1)
+								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 							elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 							end
