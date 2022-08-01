@@ -560,9 +560,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				hooksecurefunc('PaperDollFrame_SetLabelAndText', function(statFrame, label)
 					if ( statFrame.Label ) then
-						--statFrame.Label:SetText(format(STAT_FORMAT, label))
 						if not statFrame.Label:GetText():match("|r") and E.db.ElvUI_EltreumUI.skins.statcolors and (not IsAddOnLoaded('DejaCharacterStats')) then
+							statFrame.Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
 							statFrame.Label:SetText(E:TextGradient(format(STAT_FORMAT, label), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						end
+						if statFrame.Value then
+							statFrame.Value:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
 						end
 					end
 				end)
@@ -592,7 +595,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						--_G.CharacterFrame.EltruismExtraStatsBlock:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, 0)
 						_G.CharacterFrame.EltruismExtraStatsBlock:SetTexture(E.Media.Textures.Black8x8)
 						_G.CharacterFrame.EltruismExtraStatsBlock:SetParent(CharacterStatsPane)
-						_G.CharacterFrame.EltruismExtraStatsFont:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize)
+						_G.CharacterFrame.EltruismExtraStatsFont:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -80)
 						_G.CharacterFrame.EltruismExtraStatsFont:SetParent(CharacterStatsPane)
 						_G.CharacterFrame.EltruismExtraStatsFont:SetTextColor(1, 1, 1)
@@ -600,7 +603,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 
 					--movement speed
-					_G.CharacterFrame.EltruismSpeed:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+					_G.CharacterFrame.EltruismSpeed:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
 					_G.CharacterFrame.EltruismSpeed:SetTextColor(1, 1, 1)
 					_G.CharacterFrame.EltruismSpeed:SetPoint("CENTER", CharacterStatsPane , 70, -163)
 					_G.CharacterFrame.EltruismSpeed:SetParent(CharacterStatsPane)
@@ -608,7 +611,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterFrame.EltruismSpeed:SetShadowColor(0, 0, 0, 1)
 					_G.CharacterFrame.EltruismSpeed:SetShadowOffset(1, 0)
 
-					_G.CharacterFrame.EltruismSpeedDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+					_G.CharacterFrame.EltruismSpeedDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
 					_G.CharacterFrame.EltruismSpeedDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
 					_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", CharacterStatsPane , -36, -163)
 					_G.CharacterFrame.EltruismSpeedDesc:SetParent(CharacterStatsPane)
@@ -638,14 +641,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end)
 
 					--class resource
-					_G.CharacterFrame.EltruismClassResource:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+					_G.CharacterFrame.EltruismClassResource:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
 					_G.CharacterFrame.EltruismClassResource:SetTextColor(1, 1, 1)
 					_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", CharacterStatsPane , 72, -176)
 					_G.CharacterFrame.EltruismClassResource:SetParent(CharacterStatsPane)
 					_G.CharacterFrame.EltruismClassResource:SetJustifyH("RIGHT")
 					_G.CharacterFrame.EltruismClassResource:SetShadowColor(0, 0, 0, 1)
 					_G.CharacterFrame.EltruismClassResource:SetShadowOffset(1, 0)
-					_G.CharacterFrame.EltruismClassResourceDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+					_G.CharacterFrame.EltruismClassResourceDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
 					_G.CharacterFrame.EltruismClassResourceDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
 					_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", CharacterStatsPane , -46, -176)
 					_G.CharacterFrame.EltruismClassResourceDesc:SetParent(CharacterStatsPane)
@@ -727,7 +730,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end)
 
 					--class resource 2, because druids and monks are not nice
-					_G.CharacterFrame.EltruismClassResource2:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+					_G.CharacterFrame.EltruismClassResource2:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
 					_G.CharacterFrame.EltruismClassResource2:SetTextColor(1, 1, 1)
 					_G.CharacterFrame.EltruismClassResource2:SetPoint("CENTER", CharacterStatsPane , 72, -189)
 					_G.CharacterFrame.EltruismClassResource2:SetParent(CharacterStatsPane)
@@ -735,7 +738,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterFrame.EltruismClassResource2:SetShadowColor(0, 0, 0, 1)
 					_G.CharacterFrame.EltruismClassResource2:SetShadowOffset(1, 0)
 
-					_G.CharacterFrame.EltruismClassResourceDesc2:SetFont(E.LSM:Fetch('font', E.db.general.font), 10)
+					_G.CharacterFrame.EltruismClassResourceDesc2:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
 					_G.CharacterFrame.EltruismClassResourceDesc2:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
 					_G.CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", CharacterStatsPane , -48, -189)
 					_G.CharacterFrame.EltruismClassResourceDesc2:SetParent(CharacterStatsPane)
