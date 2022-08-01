@@ -1160,12 +1160,18 @@ function ElvUI_EltreumUI:Configtable()
 								values = {
 									["CLASS"] = L["Class"],
 									["RACE"] = L["Race"],
+									["RAGNAROS"] = L["Ragnaros"],
+									["SPACECLOUD"] = L["SpaceCloud"],
+									["RAVNYR"] = L["Ravnyr"],
 									["CUSTOM"] = L["Custom"],
 								},
 								sorting = {
-					              "CLASS",
-					              "RACE",
-					              "CUSTOM"
+									"CLASS",
+									"RACE",
+									"RAGNAROS",
+									"SPACECLOUD",
+									"RAVNYR",
+									"CUSTOM"
 					            },
 								style = 'radio',
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
