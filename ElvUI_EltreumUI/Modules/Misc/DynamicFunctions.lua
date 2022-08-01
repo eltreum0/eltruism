@@ -278,11 +278,13 @@ end
 
 -- Inspired by Luckyone's performance option. Thanks Luckyone!
 function ElvUI_EltreumUI:EmptyDetailsTable()
-	_detalhes.encounter_spell_pool = {}
-	_detalhes.npcid_pool = {}
-	_detalhes.spell_pool = {}
-	_detalhes.spell_school_cache = {}
-	_detalhes.boss_mods_timers = {}
+	if IsAddOnLoaded('Details') then
+		_detalhes.encounter_spell_pool = {}
+		_detalhes.npcid_pool = {}
+		_detalhes.spell_pool = {}
+		_detalhes.spell_school_cache = {}
+		_detalhes.boss_mods_timers = {}
+	end
 end
 
 --Dynamic Experience Bar Mouseover
