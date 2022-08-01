@@ -292,7 +292,7 @@ ElvUI_EltreumUI.InstallerData = {
 				PluginInstallFrame.Desc3:SetText(L["Method Raid Tools"]..L[" is not installed or enabled"])
 				PluginInstallFrame.Option4:Disable()
 			end
-			if not IsAddOnLoaded("Gladdy") and E.Wrath or E.TBC and not IsAddOnLoaded("Gladius") then
+			if not IsAddOnLoaded("Gladdy") and (E.Wrath or E.TBC) and not IsAddOnLoaded("Gladius") then
 				PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				PluginInstallFrame.Desc3:SetText(L["Both Gladdy and Gladius are not installed or enabled"])
 				PluginInstallFrame.Option4:Disable()
@@ -303,7 +303,7 @@ ElvUI_EltreumUI.InstallerData = {
 			if E.Classic and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs"))) then
 				PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
-			if E.Wrath or E.TBC and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("Gladdy")) and (not IsAddOnLoaded("Gladius"))) then
+			if (E.Wrath or E.TBC) and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("Gladdy")) and (not IsAddOnLoaded("Gladius"))) then
 				PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
 		end,
