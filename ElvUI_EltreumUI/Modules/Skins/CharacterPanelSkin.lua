@@ -1701,10 +1701,10 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						if E.Wrath or E.TBC or E.Classic then
 							EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop)
 							EltruismInspectBgTexture:SetParent(_G.InspectFrame)
-							if _G.InspectModelFrameRotateLeftButton:IsVisible() then
+							if _G.InspectModelFrameRotateLeftButton:IsShown() then
 								_G.InspectModelFrameRotateLeftButton:Hide()
 							end
-							if _G.InspectModelFrameRotateRightButton:IsVisible() then
+							if _G.InspectModelFrameRotateRightButton:IsShown() then
 								_G.InspectModelFrameRotateRightButton:Hide()
 							end
 						elseif E.Retail then
