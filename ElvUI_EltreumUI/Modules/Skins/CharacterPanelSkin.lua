@@ -499,13 +499,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				--hide the backdrop on reputation/currency tab
 				hooksecurefunc("CharacterFrameTab_OnClick", function()
-					if _G.CharacterFrameInset.backdrop:IsShown() then
+					if _G.CharacterFrameInset.backdrop:IsVisible() then
 						_G.CharacterFrameInset.backdrop:Hide()
 					end
 				end)
 
 				hooksecurefunc("ReputationFrame_Update", function()
-					if _G.CharacterFrameInset.backdrop:IsShown() then
+					if _G.CharacterFrameInset.backdrop:IsVisible() then
 						_G.CharacterFrameInset.backdrop:Hide()
 					end
 				end)
@@ -521,7 +521,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 						_G.CharacterModelFrameBackgroundOverlay:Hide()
 						if PaperDollFrame.SLE_Armory_BG then
-							if PaperDollFrame.SLE_Armory_BG:IsShown() then
+							if PaperDollFrame.SLE_Armory_BG:IsVisible() then
 								PaperDollFrame.SLE_Armory_BG:Hide()
 							end
 						end
@@ -545,7 +545,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 						_G.CharacterModelFrameBackgroundOverlay:Hide()
 						if PaperDollFrame.SLE_Armory_BG then
-							if PaperDollFrame.SLE_Armory_BG:IsShown() then
+							if PaperDollFrame.SLE_Armory_BG:IsVisible() then
 								PaperDollFrame.SLE_Armory_BG:Hide()
 							end
 						end
