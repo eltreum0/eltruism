@@ -9,7 +9,7 @@ Updated Character Skin for all versions to become more similar, Classic/TBC/Wrat
 Updated Character Stats to use general ElvUI font and Font Outline\
 Updated german translations by Dlarge\
 Updated profile update to only enable autoadjust if borders are clicked during install\
-Updated Character Skin Expanded Art Race backgrounds to have higher resolution and better croping, including on Inspect\
+Updated Character Skin Expanded Art Race backgrounds to have higher resolution and better croping, including on Inspect. Also added new backgrounds options\
 Updated profile settings during install to use Race Backgrounds instead of Class Backgrounds\
 Updated some style filter disable logic\
 Updated default AFK music to be Class based in Retail\
