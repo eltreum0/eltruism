@@ -65,6 +65,8 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.skins.sockets = true
 	E.db.ElvUI_EltreumUI.skins.socketsinspect = true
 	E.db.ElvUI_EltreumUI.skins.expandarmorybg = true
+	E.db.ElvUI_EltreumUI.skins.armorybgtype = "RACE"
+	E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha = 0.7
 	E.db.ElvUI_EltreumUI.skins.itemquality = true
 	E.db.ElvUI_EltreumUI.skins.statcolors = true
 	E.db.ElvUI_EltreumUI.skins.bossemote = true
