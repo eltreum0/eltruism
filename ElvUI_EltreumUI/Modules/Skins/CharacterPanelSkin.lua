@@ -29,9 +29,12 @@ local GetPlayerInfoByGUID = _G.GetPlayerInfoByGUID
 
 --improving character panel
 local CharacterFrame = _G.CharacterFrame
-local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture("EltruismCharacterBG")
+local CharacterFrameBackgroundTexture = _G.CharacterFrame:CreateTexture("EltruismCharacterBG")
 local ClassCrestFrame = CreateFrame("Frame")
-local ClassCrestFrameTexture = ClassCrestFrame:CreateTexture()
+local ClassCrestFrameTexture = ClassCrestFrame:CreateTexture("EltruismClassCrest")
+local CharacterFrameBackgroundTextureFader = ClassCrestFrame:CreateTexture("EltruismCharacterBGVignette")
+CharacterFrameBackgroundTextureFader:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\StealthOverlay.tga")
+--CharacterFrameBackgroundTextureFader:SetAlpha(0.6)
 
 if E.Retail then
 	_G.CharacterFrame.EltruismClassResource = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
@@ -339,6 +342,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PaperDollTitlesPane:SetPoint("RIGHT", _G.CharacterFrame, "RIGHT", -30, -20)
 
 				--add bg texture
+				CharacterFrameBackgroundTextureFader:SetAllPoints(_G.CharacterFrame)
+				CharacterFrameBackgroundTextureFader:SetParent(_G.CharacterFrame)
+				CharacterFrameBackgroundTextureFader:SetDrawLayer("ARTWORK",7)
 				if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
@@ -350,7 +356,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrameBackgroundTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
 				CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame)
 				CharacterFrameBackgroundTexture:SetParent(_G.CharacterFrame)
-				CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK")
+				CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK",6)
 
 				_G.CharacterModelFrame.backdrop:Hide()
 				_G.CharacterModelFrameBackgroundTopLeft:Hide()
@@ -988,6 +994,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			--add background from artifact weapon
 			if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 				--add bg texture
+				CharacterFrameBackgroundTextureFader:SetAllPoints(_G.CharacterFrame.backdrop)
+				CharacterFrameBackgroundTextureFader:SetParent(_G.CharacterFrame)
+				CharacterFrameBackgroundTextureFader:SetDrawLayer("ARTWORK",7)
 				if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
@@ -1000,7 +1009,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 				CharacterFrameBackgroundTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
 				CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame.backdrop)
-				CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK")
+				CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK",6)
 			end
 
 			-- expand classic armory
@@ -1630,6 +1639,9 @@ local classIconsReleafborder = {
 --inspect bg/item quality texture
 local EltruismInspectBg = CreateFrame("Frame", "EltruismInspectBg")
 local EltruismInspectBgTexture = EltruismInspectBg:CreateTexture()
+local EltruismInspectBgTextureFader = EltruismInspectBg:CreateTexture()
+EltruismInspectBgTextureFader:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\StealthOverlay.tga")
+
 function ElvUI_EltreumUI:InspectBg(unit)
 	if not E.private.skins.blizzard.enable == false then
 		--inspect frame bg
@@ -1671,6 +1683,9 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						end
 
 						--add bg texture
+						EltruismInspectBgTextureFader:SetAllPoints(_G.InspectFrame.backdrop)
+						EltruismInspectBgTextureFader:SetParent(_G.InspectFrame)
+						EltruismInspectBgTextureFader:SetDrawLayer("ARTWORK",7)
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 							EltruismInspectBgTexture:SetTexture(classBgs[englishClass])
 							EltruismInspectBgTexture:SetTexCoord(0, 0.87, 0, 0.60)
@@ -1705,7 +1720,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							EltruismInspectBgTexture:SetParent(_G.InspectFrame)
 							EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame)
 						end
-						EltruismInspectBgTexture:SetDrawLayer("ARTWORK")
+						EltruismInspectBgTexture:SetDrawLayer("ARTWORK",6)
 					end
 				end
 			end
