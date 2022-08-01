@@ -871,160 +871,115 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--color stats with a class gradient
 			if E.db.ElvUI_EltreumUI.skins.statcolors then
-				if E.Wrath or E.TBC then
-					hooksecurefunc('PlayerStatFrameLeftDropDown_OnClick', function()
-						if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft1Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameLeft2Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft2Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameLeft3Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft3Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameLeft4Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft4Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameLeft5Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft5Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameLeft6Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft6Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameRight1Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight1Label:SetText(E:TextGradient(_G.PlayerStatFrameRight1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameRight2Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight2Label:SetText(E:TextGradient(_G.PlayerStatFrameRight2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameRight3Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight3Label:SetText(E:TextGradient(_G.PlayerStatFrameRight3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameRight4Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight4Label:SetText(E:TextGradient(_G.PlayerStatFrameRight4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameRight5Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight5Label:SetText(E:TextGradient(_G.PlayerStatFrameRight5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if _G.PlayerStatFrameRight6Label:GetText() ~= nil and not _G.PlayerStatFrameRight6Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight6Label:SetText(E:TextGradient(_G.PlayerStatFrameRight6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-					end)
 
-					hooksecurefunc('PlayerStatFrameRightDropDown_OnClick', function()
-						if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft1Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameLeft2Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft2Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameLeft3Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft3Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameLeft4Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft4Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameLeft5Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft5Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameLeft6Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft6Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameRight1Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight1Label:SetText(E:TextGradient(_G.PlayerStatFrameRight1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameRight2Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight2Label:SetText(E:TextGradient(_G.PlayerStatFrameRight2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameRight3Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight3Label:SetText(E:TextGradient(_G.PlayerStatFrameRight3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameRight4Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight4Label:SetText(E:TextGradient(_G.PlayerStatFrameRight4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameRight5Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight5Label:SetText(E:TextGradient(_G.PlayerStatFrameRight5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if _G.PlayerStatFrameRight6Label:GetText() ~= nil and not _G.PlayerStatFrameRight6Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight6Label:SetText(E:TextGradient(_G.PlayerStatFrameRight6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-					end)
+				--sets gradient text
+				local function SetStatGradient()
+					if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameLeft1Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameLeft2Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameLeft2Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameLeft3Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameLeft3Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameLeft4Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameLeft4Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameLeft5Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameLeft5Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameLeft6Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft6Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameLeft6Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameRight1Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameRight1Label:SetText(E:TextGradient(_G.PlayerStatFrameRight1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameRight2Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameRight2Label:SetText(E:TextGradient(_G.PlayerStatFrameRight2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameRight3Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameRight3Label:SetText(E:TextGradient(_G.PlayerStatFrameRight3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameRight4Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameRight4Label:SetText(E:TextGradient(_G.PlayerStatFrameRight4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if not _G.PlayerStatFrameRight5Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameRight5Label:SetText(E:TextGradient(_G.PlayerStatFrameRight5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+					if _G.PlayerStatFrameRight6Label:GetText() ~= nil and not _G.PlayerStatFrameRight6Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight6Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameRight6Label:SetText(E:TextGradient(_G.PlayerStatFrameRight6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+					end
+				end
+
+				if E.Wrath or E.TBC then
+					hooksecurefunc('PlayerStatFrameLeftDropDown_OnClick', SetStatGradient)
+					hooksecurefunc('PlayerStatFrameRightDropDown_OnClick', SetStatGradient)
 				end
 
 				hooksecurefunc("PaperDollFrame_UpdateStats", function()
 					if E.Wrath or E.TBC then
-						if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft1Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameLeft2Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft2Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameLeft3Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft3Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameLeft4Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft4Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameLeft5Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft5Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if _G.PlayerStatFrameLeft6Label and not _G.PlayerStatFrameLeft6Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft6Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameRight1Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight1Label:SetText(E:TextGradient(_G.PlayerStatFrameRight1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameRight2Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight2Label:SetText(E:TextGradient(_G.PlayerStatFrameRight2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameRight3Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight3Label:SetText(E:TextGradient(_G.PlayerStatFrameRight3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameRight4Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight4Label:SetText(E:TextGradient(_G.PlayerStatFrameRight4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if not _G.PlayerStatFrameRight5Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight5Label:SetText(E:TextGradient(_G.PlayerStatFrameRight5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
-						if _G.PlayerStatFrameRight6Label:GetText() ~= nil and not _G.PlayerStatFrameRight6Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight6Label:SetText(E:TextGradient(_G.PlayerStatFrameRight6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
-						end
+						SetStatGradient()
 					elseif E.Classic then
 						if not _G.CharacterStatFrame1Label:GetText():match("|r") then
+							_G.CharacterStatFrame1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 							_G.CharacterStatFrame1Label:SetText(E:TextGradient(_G.CharacterStatFrame1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
 						end
 						if not _G.CharacterStatFrame2Label:GetText():match("|r") then
+							_G.CharacterStatFrame2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 							_G.CharacterStatFrame2Label:SetText(E:TextGradient(_G.CharacterStatFrame2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
 						end
 						if not _G.CharacterStatFrame3Label:GetText():match("|r") then
+							_G.CharacterStatFrame3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 							_G.CharacterStatFrame3Label:SetText(E:TextGradient(_G.CharacterStatFrame3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
 						end
 						if not _G.CharacterStatFrame4Label:GetText():match("|r") then
+							_G.CharacterStatFrame4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 							_G.CharacterStatFrame4Label:SetText(E:TextGradient(_G.CharacterStatFrame4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
 						end
 						if not _G.CharacterStatFrame5Label:GetText():match("|r") then
+							_G.CharacterStatFrame5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 							_G.CharacterStatFrame5Label:SetText(E:TextGradient(_G.CharacterStatFrame5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
 						end
 
 						if not _G.CharacterArmorFrameLabel:GetText():match("|r") then
+							_G.CharacterArmorFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 							_G.CharacterArmorFrameLabel:SetText(E:TextGradient(_G.CharacterArmorFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
 						end
 						if not _G.CharacterAttackFrameLabel:GetText():match("|r") then
+							_G.CharacterAttackFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 							_G.CharacterAttackFrameLabel:SetText(E:TextGradient(_G.CharacterAttackFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
 						end
 						if not _G.CharacterAttackPowerFrameLabel:GetText():match("|r") then
+							_G.CharacterAttackPowerFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 							_G.CharacterAttackPowerFrameLabel:SetText(E:TextGradient(_G.CharacterAttackPowerFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
 						end
 						if not _G.CharacterDamageFrameLabel:GetText():match("|r") then
+							_G.CharacterDamageFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 							_G.CharacterDamageFrameLabel:SetText(E:TextGradient(_G.CharacterDamageFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
 						end
 						if not _G.CharacterRangedAttackFrameLabel:GetText():match("|r") then
+							_G.CharacterRangedAttackFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 							_G.CharacterRangedAttackFrameLabel:SetText(E:TextGradient(_G.CharacterRangedAttackFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
 						end
 						if not _G.CharacterRangedAttackPowerFrameLabel:GetText():match("|r") then
+							_G.CharacterRangedAttackPowerFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 							_G.CharacterRangedAttackPowerFrameLabel:SetText(E:TextGradient(_G.CharacterRangedAttackPowerFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
 						end
 						if not _G.CharacterRangedDamageFrameLabel:GetText():match("|r") then
+							_G.CharacterRangedDamageFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 							_G.CharacterRangedDamageFrameLabel:SetText(E:TextGradient(_G.CharacterRangedDamageFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
 						end
 					end
@@ -1108,84 +1063,35 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				--change the size based on if paperdoll is hidden
 				CharacterFrame:SetSize(700, 505)
-				hooksecurefunc("CharacterFrameTab_OnClick", function()
-					if not InCombatLockdown() then
-						if PaperDollFrame:IsVisible() then
-							CharacterFrame:SetSize(700, 505)
-							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
-							elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-							end
-							CharacterNameText:ClearAllPoints()
-							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
-						else
-							CharacterNameText:ClearAllPoints()
-							CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
-							CharacterFrame:SetSize(400, 505)
-							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
-							elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-							end
-						end
-					end
-				end)
 
-				_G.PaperDollItemsFrame:SetScript("OnShow", function()
+				--fix frame size depending on tab
+				local function ResizeCharacterFrame()
 					if not InCombatLockdown() then
 						if PaperDollFrame:IsVisible() then
 							CharacterFrame:SetSize(700, 505)
 							CharacterNameText:ClearAllPoints()
+							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 							elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 							end
-							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
 						else
-							CharacterFrame:SetSize(400, 505)
 							CharacterNameText:ClearAllPoints()
+							CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
+							CharacterFrame:SetSize(400, 505)
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
 							elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 							end
-							CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
 						end
 					end
-				end)
+				end
+				_G.PaperDollItemsFrame:SetScript("OnShow", ResizeCharacterFrame)
+				_G.CharacterFrame:HookScript("OnShow", ResizeCharacterFrame)
+				hooksecurefunc("CharacterFrameTab_OnClick", ResizeCharacterFrame)
 
-				_G.CharacterFrame:HookScript("OnShow", function()
-					if not InCombatLockdown() then
-						if PaperDollFrame:IsVisible() then
-							CharacterFrame:SetSize(700, 505)
-							CharacterNameText:ClearAllPoints()
-							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
-							elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-							end
-							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
-						else
-							CharacterFrame:SetSize(400, 505)
-							CharacterNameText:ClearAllPoints()
-							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
-							elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-							end
-							CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
-						end
-					end
-					--fix talent position
-					if IsAddOnLoaded("Blizzard_TalentUI") then
-						if _G.CharacterModelFrame:IsVisible() then
-							_G.PlayerTalentFrame:ClearAllPoints()
-							_G.PlayerTalentFrame:SetPoint("TOPLEFT", _G.CharacterFrame, "TOPRIGHT", -30, 0)
-						end
-					end
-				end)
 
 				--adjust the items
 				_G.CharacterHeadSlot:ClearAllPoints()
@@ -1347,28 +1253,34 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PlayerStatFrameLeft6:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameLeft6.StatusLine:SetSize(170, 12)
 					_G.PlayerStatFrameLeft6.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameLeft6, "CENTER", 25, 0)
-					_G.PlayerStatFrameLeft6.StatusLine:SetParent(_G["PaperDollItemsFrame"])
+					_G.PlayerStatFrameLeft6.StatusLine:SetParent(_G["PlayerStatFrameLeft6"])
 					_G.PlayerStatFrameLeft6.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					_G.PlayerStatFrameLeft6.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
 
 					_G.PlayerStatFrameLeft1Stat:ClearAllPoints()
 					_G.PlayerStatFrameLeft1Stat:SetPoint("CENTER", _G.PlayerStatFrameLeft1, "CENTER", 95, 0)
+					_G.PlayerStatFrameLeft1StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.PlayerStatFrameLeft1Stat:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameLeft2Stat:ClearAllPoints()
 					_G.PlayerStatFrameLeft2Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft1Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameLeft2StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.PlayerStatFrameLeft2Stat:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameLeft3Stat:ClearAllPoints()
 					_G.PlayerStatFrameLeft3Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft2Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameLeft3StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.PlayerStatFrameLeft3Stat:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameLeft4Stat:ClearAllPoints()
 					_G.PlayerStatFrameLeft4Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft3Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameLeft4StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.PlayerStatFrameLeft4Stat:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameLeft5Stat:ClearAllPoints()
 					_G.PlayerStatFrameLeft5Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft4Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameLeft5StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.PlayerStatFrameLeft5Stat:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameLeft6Stat:ClearAllPoints()
 					_G.PlayerStatFrameLeft6Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft5Stat, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft6Stat:SetParent(_G["PaperDollItemsFrame"])
+					_G.PlayerStatFrameLeft6StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+					_G.PlayerStatFrameLeft6Stat:SetParent(_G["PlayerStatFrameLeft6"])
 
 					--"right side", on this case its the bottom
 					_G.PlayerStatFrameRightDropDown:ClearAllPoints()
@@ -1405,30 +1317,37 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 					_G.PlayerStatFrameRight6:ClearAllPoints()
 					_G.PlayerStatFrameRight6:SetPoint("BOTTOM", _G.PlayerStatFrameRight5, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameRight6:SetParent(_G.PlayerStatFrameRight1)
+					_G.PlayerStatFrameRight6:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameRight6.StatusLine:SetSize(170, 12)
 					_G.PlayerStatFrameRight6.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameRight6, "CENTER", 25, 0)
 					_G.PlayerStatFrameRight6.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					_G.PlayerStatFrameRight6.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+					_G.PlayerStatFrameRight6.StatusLine:SetParent(_G["PlayerStatFrameRight6"])
 
 					_G.PlayerStatFrameRight1Stat:ClearAllPoints()
 					_G.PlayerStatFrameRight1Stat:SetPoint("CENTER", _G.PlayerStatFrameRight1, "CENTER", 95, 0)
+					_G.PlayerStatFrameRight1StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.PlayerStatFrameRight1Stat:SetParent(_G.PlayerStatFrameRight1)
 					_G.PlayerStatFrameRight2Stat:ClearAllPoints()
 					_G.PlayerStatFrameRight2Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight1Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameRight2StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.PlayerStatFrameRight2Stat:SetParent(_G.PlayerStatFrameRight1)
 					_G.PlayerStatFrameRight3Stat:ClearAllPoints()
 					_G.PlayerStatFrameRight3Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight2Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameRight3StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.PlayerStatFrameRight3Stat:SetParent(_G.PlayerStatFrameRight1)
 					_G.PlayerStatFrameRight4Stat:ClearAllPoints()
 					_G.PlayerStatFrameRight4Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight3Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameRight4StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.PlayerStatFrameRight4Stat:SetParent(_G.PlayerStatFrameRight1)
 					_G.PlayerStatFrameRight5Stat:ClearAllPoints()
 					_G.PlayerStatFrameRight5Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight4Stat, "BOTTOM", 0, -13)
+					_G.PlayerStatFrameRight5StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.PlayerStatFrameRight5Stat:SetParent(_G.PlayerStatFrameRight1)
 					_G.PlayerStatFrameRight6Stat:ClearAllPoints()
 					_G.PlayerStatFrameRight6Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight5Stat, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameRight6Stat:SetParent(_G.PlayerStatFrameRight1)
+					_G.PlayerStatFrameRight6StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+					_G.PlayerStatFrameRight6Stat:SetParent(_G["PlayerStatFrameRight6"])
 				elseif E.Classic then
 					_G.PetPaperDollCloseButton:Hide()
 
@@ -1512,47 +1431,59 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 					_G.CharacterStatFrame1Stat:ClearAllPoints()
 					_G.CharacterStatFrame1Stat:SetPoint("CENTER", _G.CharacterStatFrame1, "CENTER", 90, 0) --first stat number
+					_G.CharacterStatFrame1StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.CharacterStatFrame1Stat:SetParent(_G.CharacterStatFrame1)
 
 					_G.CharacterStatFrame2Stat:ClearAllPoints()
 					_G.CharacterStatFrame2Stat:SetPoint("BOTTOM", _G.CharacterStatFrame1Stat, "BOTTOM", 0, -13)
+					_G.CharacterStatFrame2StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.CharacterStatFrame2Stat:SetParent(_G.CharacterStatFrame1)
 					_G.CharacterStatFrame3Stat:ClearAllPoints()
 					_G.CharacterStatFrame3Stat:SetPoint("BOTTOM", _G.CharacterStatFrame2Stat, "BOTTOM", 0, -13)
+					_G.CharacterStatFrame2StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.CharacterStatFrame3Stat:SetParent(_G.CharacterStatFrame1)
 					_G.CharacterStatFrame4Stat:ClearAllPoints()
 					_G.CharacterStatFrame4Stat:SetPoint("BOTTOM", _G.CharacterStatFrame3Stat, "BOTTOM", 0, -13)
+					_G.CharacterStatFrame4StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.CharacterStatFrame4Stat:SetParent(_G.CharacterStatFrame1)
 					_G.CharacterStatFrame5Stat:ClearAllPoints()
 					_G.CharacterStatFrame5Stat:SetPoint("BOTTOM", _G.CharacterStatFrame4Stat, "BOTTOM", 0, -13)
+					_G.CharacterStatFrame5StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.CharacterStatFrame5Stat:SetParent(_G.CharacterStatFrame1)
 
 					_G.CharacterArmorFrameStat:ClearAllPoints()
 					_G.CharacterArmorFrameStat:SetPoint("BOTTOM", _G.CharacterStatFrame5Stat, "BOTTOM", 0, -13)
+					_G.CharacterArmorFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.CharacterArmorFrameStat:SetParent(_G.CharacterStatFrame1)
 
 					_G.CharacterAttackFrameStat:ClearAllPoints()
 					_G.CharacterAttackFrameStat:SetPoint("BOTTOM", _G.CharacterArmorFrameStat, "BOTTOM", 0, -13)
+					_G.CharacterAttackFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.CharacterAttackFrameStat:SetParent(_G.CharacterStatFrame1)
 
 					_G.CharacterAttackPowerFrameStat:ClearAllPoints()
 					_G.CharacterAttackPowerFrameStat:SetPoint("BOTTOM", _G.CharacterAttackFrameStat, "BOTTOM", 0, -13)
+					_G.CharacterAttackPowerFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.CharacterAttackPowerFrameStat:SetParent(_G.CharacterStatFrame1)
 
 					_G.CharacterDamageFrameStat:ClearAllPoints()
 					_G.CharacterDamageFrameStat:SetPoint("BOTTOM", _G.CharacterAttackPowerFrameStat, "BOTTOM", 0, -13)
+					_G.CharacterDamageFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.CharacterDamageFrameStat:SetParent(_G.CharacterStatFrame1)
 
 					_G.CharacterRangedAttackFrameStat:ClearAllPoints()
 					_G.CharacterRangedAttackFrameStat:SetPoint("BOTTOM", _G.CharacterDamageFrameStat, "BOTTOM", 0, -13)
+					_G.CharacterRangedAttackFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.CharacterRangedAttackFrameStat:SetParent(_G.CharacterStatFrame1)
 
 					_G.CharacterRangedAttackPowerFrameStat:ClearAllPoints()
 					_G.CharacterRangedAttackPowerFrameStat:SetPoint("BOTTOM", _G.CharacterRangedAttackFrameStat, "BOTTOM", 0, -13)
+					_G.CharacterRangedAttackPowerFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.CharacterRangedAttackPowerFrameStat:SetParent(_G.CharacterStatFrame1)
 
 					_G.CharacterRangedDamageFrameStat:ClearAllPoints()
 					_G.CharacterRangedDamageFrameStat:SetPoint("BOTTOM", _G.CharacterRangedAttackPowerFrameStat, "BOTTOM", 0, -13)
+					_G.CharacterRangedDamageFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.CharacterRangedDamageFrameStat:SetParent(_G.CharacterStatFrame1)
 
 					SkillFrame:SetHeight(400)
