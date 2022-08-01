@@ -349,6 +349,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 					CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
+				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" then
+					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Ragnaros")
+				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" then
+					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\SpaceCloud")
+				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Ravnyr")
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
 					local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
 					CharacterFrameBackgroundTexture:SetTexture(texturefile)
@@ -513,7 +519,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				hooksecurefunc("CharacterFrame_Collapse", function()
 					if PaperDollFrame:IsVisible() then
 						_G.CharacterFrame:SetWidth(505)
-						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
+						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
@@ -526,7 +532,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							end
 						end
 					else
-						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
+						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.346, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
@@ -537,7 +543,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				hooksecurefunc("CharacterFrame_Expand", function()
 					if PaperDollFrame:IsVisible() then
 						_G.CharacterFrame:SetWidth(700)
-						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
+						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
@@ -550,7 +556,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							end
 						end
 					else
-						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
+						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.346, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
@@ -1003,6 +1009,15 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 					CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" then
+					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Ragnaros")
+					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" then
+					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\SpaceCloud")
+					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Ravnyr")
+					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
 					local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
 					CharacterFrameBackgroundTexture:SetTexture(texturefile)
@@ -1056,7 +1071,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							CharacterFrame:SetSize(700, 505)
 							CharacterNameText:ClearAllPoints()
 							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
-							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
+							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
 								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 							elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
@@ -1065,7 +1080,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							CharacterNameText:ClearAllPoints()
 							CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
 							CharacterFrame:SetSize(400, 505)
-							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
+							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
 								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
 							elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
@@ -1691,6 +1706,15 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							EltruismInspectBgTexture:SetTexCoord(0, 0.87, 0, 0.60)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 							EltruismInspectBgTexture:SetTexture(raceBgs[englishRace]) --(left, right, top, bottom)
+							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
+						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" then
+							EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Ragnaros")
+							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
+						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" then
+							EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\SpaceCloud")
+							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
+						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+							EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Ravnyr")
 							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
 							local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
