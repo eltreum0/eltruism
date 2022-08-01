@@ -347,14 +347,19 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrameBackgroundTextureFader:SetDrawLayer("ARTWORK",7)
 				if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
+					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 					CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
+					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" then
 					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Ragnaros")
+					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" then
 					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\SpaceCloud")
+					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
 					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Ravnyr")
+					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
 					local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
 					CharacterFrameBackgroundTexture:SetTexture(texturefile)
@@ -1698,7 +1703,11 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						end
 
 						--add bg texture
-						EltruismInspectBgTextureFader:SetAllPoints(_G.InspectFrame.backdrop)
+						if E.Retail then
+							EltruismInspectBgTextureFader:SetAllPoints(_G.InspectFrame)
+						else
+							EltruismInspectBgTextureFader:SetAllPoints(_G.InspectFrame.backdrop)
+						end
 						EltruismInspectBgTextureFader:SetParent(_G.InspectFrame)
 						EltruismInspectBgTextureFader:SetDrawLayer("ARTWORK",7)
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
