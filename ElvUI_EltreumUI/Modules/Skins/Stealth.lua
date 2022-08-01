@@ -7,8 +7,8 @@ local IsStealthed = _G.IsStealthed
 
 -- Create Stealth Overlay Frame
 local StealthOptionsFrame = CreateFrame("Frame", "EltruismStealthOverlay", E.UIParent)
-StealthOptionsFrame:Point("TOPLEFT")
-StealthOptionsFrame:Point("BOTTOMRIGHT")
+StealthOptionsFrame:SetPoint("TOPLEFT")
+StealthOptionsFrame:SetPoint("BOTTOMRIGHT")
 StealthOptionsFrame:SetFrameLevel(0)
 StealthOptionsFrame:SetFrameStrata("BACKGROUND")
 StealthOptionsFrame.tex = StealthOptionsFrame:CreateTexture()
