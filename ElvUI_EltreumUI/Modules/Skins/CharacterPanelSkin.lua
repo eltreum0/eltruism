@@ -150,7 +150,7 @@ local statgradients = {
 	["WARLOCK"] = {r1 = 0.50, g1 = 0.30, b1 = 0.70, r2 = 0.7, g2= 0.53, b2 = 0.83},
 	["MONK"] = {r1 = 0, g1 = 0.97, b1 = 0.45, r2 = 0.22, g2 = 0.91, b2 = 0.7},
 	["DRUID"] = {r1 = 1, g1 = 0.24, b1 = 0, r2 = 1, g2 = 0.48, b2 = 0.04},
-	["DEMONHUNTER"] = {r1 = 0.36, g1 = 0.13, b1 = 0.57, r2 = 0.74, g2 = 0.19, b2 = 1},
+	["DEMONHUNTER"] = {r1 = 0.56, g1 = 0.33, b1 = 0.77, r2 = 0.74, g2 = 0.19, b2 = 1},
 }
 
 --adapted from libiteminfo to be player only
