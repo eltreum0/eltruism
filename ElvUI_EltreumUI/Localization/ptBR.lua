@@ -967,3 +967,6 @@ L["Displays a disconnect symbol from Releaf when unit is disconnected. Usage: [e
 L["Displays a dead symbol from Releaf when unit is dead. Usage: [eltruism:dead{number}]"] = "Mostra um símbolo de morte feito por Releaf quando a unidade está morta. Utilização: [eltruism:dead{número}]"
 L["Returns class color only for players"] = "Coloriza o texto com cores de classe apenas se a unidade for um jogador"
 L["Displays an icon when the unit is in combat, uses player icon"] = "Mostra um ícone igual ao do jogador quando a unidade estiver em combate"
+L["Add a Vignette over the Character Art"] = "Adicione um efeito de vinheta sobre a Arte do Personagem"
+L["Vignette Alpha"] = "Transparência da Vinheta"
+L["Change the transparency of the Vignette"] = "Mude a transparência da vinheta"
