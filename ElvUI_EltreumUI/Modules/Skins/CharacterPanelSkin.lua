@@ -268,9 +268,7 @@ if not E.Retail then
 	avgilvl:RegisterEvent("PLAYER_ENTERING_WORLD")
 	avgilvl:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
 	avgilvl:SetScript("OnEvent", function()
-		local ilevel = ElvUI_EltreumUI:GetPlayerItemLevel()
-		_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
-		--_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetPlayerItemLevel()*100))/100)
+		_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetPlayerItemLevel()*100))/100)
 	end)
 
 	if E.Wrath then
@@ -1038,8 +1036,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				--set ilvl on char panel
 				hooksecurefunc("ToggleCharacter", function()
-					local ilevel = ElvUI_EltreumUI:GetPlayerItemLevel()
-					_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
+					_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetPlayerItemLevel()*100))/100)
 				end)
 
 				--set the tabs
@@ -1165,7 +1162,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.Text2:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.Text2:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				CharacterFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-				--CharacterFrame.StatusLine2:SetFrameStrata("LOW")
+				CharacterFrame.StatusLine2:SetFrameStrata("MEDIUM")
+				CharacterFrame.StatusLine2:SetFrameLevel(1)
 				CharacterFrame.StatusLine2:SetSize(170, 25)
 				CharacterFrame.StatusLine2:SetPoint("CENTER", CharacterFrame.Text2, "CENTER", 0, 0)
 				CharacterFrame.StatusLine2:SetParent(_G["PaperDollItemsFrame"])
