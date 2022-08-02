@@ -3,8 +3,6 @@ local _G = _G
 local select = _G.select
 local classcolor = E:ClassColor(E.myclass, true)
 local CreateFrame = _G.CreateFrame
-local GetInventoryItemLink = _G.GetInventoryItemLink
-local GetItemInfo = _G.GetItemInfo
 local max = _G.max
 local tonumber = _G.tonumber
 local math = _G.math
@@ -20,12 +18,7 @@ local CharacterNameText = _G.CharacterNameText
 local CharacterTitleText = _G.CharacterTitleText
 local CharacterLevelText = _G.CharacterLevelText
 local NORMAL_FONT_COLOR = _G.NORMAL_FONT_COLOR
-local GetSpecialization = _G.GetSpecialization
-local GetSpecializationInfo = _G.GetSpecializationInfo
 local MANA_REGEN = _G.MANA_REGEN
-local GetTalentTabInfo = _G.GetTalentTabInfo
-local GetNumTalentTabs = _G.GetNumTalentTabs
-local GetPlayerInfoByGUID = _G.GetPlayerInfoByGUID
 
 --improving character panel
 local CharacterFrame = _G.CharacterFrame
@@ -160,9 +153,9 @@ function ElvUI_EltreumUI:GetPlayerItemLevel()
 
 	for i = 1, 15 do
 		if (i ~= 4) then
-			local linkloop = GetInventoryItemLink("player", i)
+			local linkloop = _G.GetInventoryItemLink("player", i)
 			if linkloop then
-				level = select(4, GetItemInfo(linkloop))
+				level = select(4, _G.GetItemInfo(linkloop))
 			else
 				level = -1
 			end
@@ -178,19 +171,19 @@ function ElvUI_EltreumUI:GetPlayerItemLevel()
 	end
 
 	local mainlevel = 0
-	local mainlink = GetInventoryItemLink("player", 16)
+	local mainlink = _G.GetInventoryItemLink("player", 16)
 	if mainlink then
-		mainlevel = select(4, GetItemInfo(mainlink))
+		mainlevel = select(4, _G.GetItemInfo(mainlink))
 	end
 	mainhand = (tonumber(mainlevel))
 	if mainhand == nil then
 		mainhand = 0
 	end
 
-	local offhandlink = GetInventoryItemLink("player", 17)
+	local offhandlink = _G.GetInventoryItemLink("player", 17)
 	local offhandlevel = 0
 	if offhandlink then
-		offhandlevel = select(4, GetItemInfo(offhandlink))
+		offhandlevel = select(4, _G.GetItemInfo(offhandlink))
 	end
 	offhand = (tonumber(offhandlevel))
 	if offhand == nil then
@@ -198,9 +191,9 @@ function ElvUI_EltreumUI:GetPlayerItemLevel()
 	end
 
 	local rangedlevel = 0
-	local rangedlink = GetInventoryItemLink("player", 18)
+	local rangedlink = _G.GetInventoryItemLink("player", 18)
 	if rangedlink then
-		rangedlevel = select(4, GetItemInfo(rangedlink))
+		rangedlevel = select(4, _G.GetItemInfo(rangedlink))
 	end
 	ranged = (tonumber(rangedlevel))
 	if ranged == nil then
@@ -225,12 +218,12 @@ end
 --turns out classic has the functions to get number of points on talent trees
 local function PlayerSpec()
 	local spec, points
-	local _, _, spent1 = GetTalentTabInfo(1)
-	local _, _, spent2 = GetTalentTabInfo(2)
-	local _, _, spent3 = GetTalentTabInfo(3)
+	local _, _, spent1 = _G.GetTalentTabInfo(1)
+	local _, _, spent2 = _G.GetTalentTabInfo(2)
+	local _, _, spent3 = _G.GetTalentTabInfo(3)
 
-	for i=1, GetNumTalentTabs() do
-		local name, _, spent = GetTalentTabInfo(i)
+	for i=1, _G.GetNumTalentTabs() do
+		local name, _, spent = _G.GetTalentTabInfo(i)
 		--print(spent..name.." 1")
 		if spent > 0 and (not points or spent > points) then
 			--print(spec..points.." 2")
@@ -646,7 +639,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterFrame.EltruismSpeedDescTooltip:Show()
 					_G.CharacterFrame.EltruismSpeedDescTooltip:SetScript("OnEnter", function()
 						_G["GameTooltip"]:SetOwner(_G.CharacterFrame.EltruismSpeedDescTooltip, 'ANCHOR_RIGHT')
-						_G["GameTooltip"]:AddLine(format(CR_SPEED_TOOLTIP, string.format('%.2f', (GetUnitSpeed("player"))), ((GetUnitSpeed("player")/7) *100)))
+						_G["GameTooltip"]:AddLine(format(CR_SPEED_TOOLTIP, string.format('%.2f', (_G.GetUnitSpeed("player"))), ((_G.GetUnitSpeed("player")/7) *100)))
 						_G["GameTooltip"]:Show()
 					end)
 					_G.CharacterFrame.EltruismSpeedDescTooltip:SetScript("OnLeave", function()
@@ -711,9 +704,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						_G.CharacterFrame.EltruismClassResourceDesc:Show()
 						_G.CharacterFrame.EltruismClassResourceDescTooltip:Show()
 						local id, _
-						local currentSpec = GetSpecialization()
+						local currentSpec = _G.GetSpecialization()
 						if currentSpec then
-							id, _ = GetSpecializationInfo(currentSpec)
+							id, _ = _G.GetSpecializationInfo(currentSpec)
 						end
 						if id == 264 or id == 257 or id == 256 or id == 65 or id == 270 or id == 105 then
 							_G.CharacterFrame.EltruismClassResource:Hide()
@@ -793,18 +786,18 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 					--update stats and stats position
 					hooksecurefunc("PaperDollFrame_UpdateStats", function()
-						local speed = ((GetUnitSpeed("player")/7) *100)
+						local speed = ((_G.GetUnitSpeed("player")/7) *100)
 						_G.CharacterFrame.EltruismSpeed:SetText(math.ceil(speed).."%")
 
-						local _, combat = GetManaRegen()
+						local _, combat = _G.GetManaRegen()
 						combat = math.floor(combat * 5.0)
-						local combatText = BreakUpLargeNumbers(combat)
+						local combatText = _G.BreakUpLargeNumbers(combat)
 						if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							_G.CharacterFrame.EltruismClassResource:SetText(BreakUpLargeNumbers(GetPowerRegen()))
+							_G.CharacterFrame.EltruismClassResource:SetText(_G.BreakUpLargeNumbers(_G.GetPowerRegen()))
 						elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
 							_G.CharacterFrame.EltruismClassResource:SetText(combatText)
 						elseif E.myclass == 'DEATHKNIGHT' then
-							local _, regenRate = GetRuneCooldown(1)
+							local _, regenRate = _G.GetRuneCooldown(1)
 							local regenRateText = (format(STAT_RUNE_REGEN_FORMAT, regenRate))
 							_G.CharacterFrame.EltruismClassResource:SetText(regenRateText)
 						end
@@ -1605,11 +1598,11 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 				qualityAnchor.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade') --temp for testing
 
 				--get item (actual) quality
-				local itemLink = GetInventoryItemLink(unit, InvSlotId)
+				local itemLink = _G.GetInventoryItemLink(unit, InvSlotId)
 				if itemLink ~= nil then
-					local quality = select(3,GetItemInfo(itemLink))
+					local quality = select(3, _G.GetItemInfo(itemLink))
 					if quality ~= nil then
-						local r,g,b = GetItemQualityColor(quality)
+						local r,g,b = _G.GetItemQualityColor(quality)
 						qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
 						qualityAnchor.Frame.Quality:SetAlpha(1)
 					end
@@ -1692,7 +1685,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 			EltruismInspectBg:SetParent(_G.InspectFrame)
 
 			if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-				local _, englishClass, _, englishRace = GetPlayerInfoByGUID(unit)
+				local _, englishClass, _, englishRace = _G.GetPlayerInfoByGUID(unit)
 				if englishClass or englishRace then
 					if _G.InspectFrame then
 
@@ -1822,10 +1815,10 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						qualityAnchorInspect.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
 
 						--get item (actual) quality
-						local itemLink = GetInventoryItemLink("target", InvSlotId)
+						local itemLink = _G.GetInventoryItemLink("target", InvSlotId)
 						if itemLink ~= nil then
-							local quality = select(3,GetItemInfo(itemLink))
-							local r,g,b = GetItemQualityColor(quality)
+							local quality = select(3,_G.GetItemInfo(itemLink))
+							local r,g,b = _G.GetItemQualityColor(quality)
 							qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
 							qualityAnchorInspect.Frame.Quality:SetAlpha(1)
 						else
