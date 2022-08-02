@@ -116,6 +116,8 @@ ElvUI_EltreumUI.InstallerData = {
 					E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
 				elseif E.db.ElvUI_EltreumUI.borders.borderautoadjust == false then
 					E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
+				elseif E.db.ElvUI_EltreumUI.borders.borderautoadjust == nil then
+					E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
 				end
 				ElvUI_EltreumUI:BorderAdjust()
 				ElvUI_EltreumUI:AuraBorders()
