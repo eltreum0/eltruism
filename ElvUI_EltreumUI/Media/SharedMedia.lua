@@ -67,6 +67,11 @@ LSM:Register("statusbar", "Eltreum-Dark", [[Interface\Addons\ElvUI_EltreumUI\Med
 LSM:Register("statusbar", "Eltreum-20%", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-20pc.tga]])
 LSM:Register("statusbar", "Eltreum-30%", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-30pc.tga]])
 
+--from dragonflight/10.0
+LSM:Register("statusbar", "Dragonflight01", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Dragonflight01.tga]])
+LSM:Register("statusbar", "Dragonflight02", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Dragonflight02.tga]])
+LSM:Register("statusbar", "Dragonflight03", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Dragonflight03.tga]])
+
 -- Fonts
 LSM:Register("font", "Exo2 Extra Bold", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Exo2-ExtraBold.ttf]])
 LSM:Register("font", "GothamNarrow Black", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\GothamNarrowBlack.ttf]])
