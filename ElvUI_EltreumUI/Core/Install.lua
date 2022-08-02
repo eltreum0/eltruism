@@ -112,7 +112,11 @@ ElvUI_EltreumUI.InstallerData = {
 			PluginInstallFrame.Option3:Enable()
 			PluginInstallFrame.Option3:Show()
 			PluginInstallFrame.Option3:SetScript('OnClick', function()
-				E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
+				if E.db.ElvUI_EltreumUI.borders.borderautoadjust == true then
+					E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
+				elseif E.db.ElvUI_EltreumUI.borders.borderautoadjust == false then
+					E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
+				end
 				ElvUI_EltreumUI:BorderAdjust()
 				ElvUI_EltreumUI:AuraBorders()
 				ElvUI_EltreumUI:ShowHideBorders()

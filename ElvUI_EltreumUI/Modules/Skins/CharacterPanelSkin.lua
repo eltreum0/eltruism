@@ -3,8 +3,6 @@ local _G = _G
 local select = _G.select
 local classcolor = E:ClassColor(E.myclass, true)
 local CreateFrame = _G.CreateFrame
-local GetInventoryItemLink = _G.GetInventoryItemLink
-local GetItemInfo = _G.GetItemInfo
 local max = _G.max
 local tonumber = _G.tonumber
 local math = _G.math
@@ -20,12 +18,7 @@ local CharacterNameText = _G.CharacterNameText
 local CharacterTitleText = _G.CharacterTitleText
 local CharacterLevelText = _G.CharacterLevelText
 local NORMAL_FONT_COLOR = _G.NORMAL_FONT_COLOR
-local GetSpecialization = _G.GetSpecialization
-local GetSpecializationInfo = _G.GetSpecializationInfo
 local MANA_REGEN = _G.MANA_REGEN
-local GetTalentTabInfo = _G.GetTalentTabInfo
-local GetNumTalentTabs = _G.GetNumTalentTabs
-local GetPlayerInfoByGUID = _G.GetPlayerInfoByGUID
 
 --improving character panel
 local CharacterFrame = _G.CharacterFrame
@@ -139,22 +132,18 @@ local classCrests = {
 }
 
 local statgradients = {
-	["WARRIOR"] = {r1 = 0.60, g1 = 0.40, b1 = 0.20, r2 = 0.66470588235294, g2 = 0.53137254901961, b2 = 0.34705882352941},
-	["PALADIN"] = {r1 = 0.9, g1 = 0.46666666666667, b1 = 0.63725490196078, r2 = 0.95686274509804, g2 = 0.64901960784314, b2 = 0.82941176470588},
-	["HUNTER"] = {r1 = 0.58235294117647, g1 = 0.69607843137255, b1 = 0.29411764705882, r2 = 0.78823529411765, g2 = 1, b2 = 0.38823529411765},
-	["ROGUE"] = {r1 = 1, g1 = 0.68627450980392, b1 = 0, r2 = 1, g2 = 0.83137254901961, b2 = 0.25490196078431},
-	["PRIEST"] = {r1 = 0.6568627450980392, g1 = 0.6568627450980392, b1 = 0.6568627450980392, r2 = 0.98823529411765, g2 = 0.98823529411765, b2 = 0.98823529411765},
-	["DEATHKNIGHT"] = {r1 = 0.79803921568627, g1 = 0.074509803921569, b1 = 0.14901960784314, r2 = 1, g2 = 0.1843137254902, b2 = 0.23921568627451},
-	["SHAMAN"] = {r1 = 0, g1 = 0.25882352941176, b1 = 0.50980392156863, r2 = 0, g2 = 0.43921568627451, b2 = 0.87058823529412},
-	["MAGE"] = {r1 = 0, g1 = 0.73333333333333, b1 = 0.83725490196078, r2 = 0.49019607843137, g2 = 0.87058823529412, b2 = 1},
+	["WARRIOR"] = {r1 = 0.60, g1 = 0.40, b1 = 0.20, r2 = 0.66, g2 = 0.53, b2 = 0.34},
+	["PALADIN"] = {r1 = 0.9, g1 = 0.46, b1 = 0.64, r2 = 0.95, g2 = 0.65, b2 = 0.83},
+	["HUNTER"] = {r1 = 0.58, g1 = 0.69, b1 = 0.29, r2 = 0.79, g2 = 1, b2 = 0.39},
+	["ROGUE"] = {r1 = 1, g1 = 0.68, b1 = 0, r2 = 1, g2 = 0.83, b2 = 0.25},
+	["PRIEST"] = {r1 = 0.65, g1 = 0.65, b1 = 0.65, r2 = 0.99, g2 = 0.99, b2 = 0.99},
+	["DEATHKNIGHT"] = {r1 = 0.79, g1 = 0.074, b1 = 0.15, r2 = 1, g2 = 0.18, b2 = 0.24},
+	["SHAMAN"] = {r1 = 0, g1 = 0.56, b1 = 0.90, r2 = 0.35, g2 = 0.74, b2 = 1},
+	["MAGE"] = {r1 = 0, g1 = 0.73, b1 = 0.83, r2 = 0.49, g2 = 0.87, b2 = 1},
 	["WARLOCK"] = {r1 = 0.50, g1 = 0.30, b1 = 0.70, r2 = 0.7, g2= 0.53, b2 = 0.83},
-	["MONK"] = {r1 = 0, g1 = 0.77254901960784, b1 = 0.45882352941176, r2 = 0.22352941176471, g2 = 0.90980392156863, b2 = 1},
-	["DRUID"] = {r1 = 1, g1 = 0.23921568627451, b1 = 0.007843137254902, r2 = 1, g2 = 0.48627450980392, b2 = 0.03921568627451},
-	["DEMONHUNTER"] = {r1 = 0.36470588235294, g1 = 0.13725490196078, b1 = 0.57254901960784, r2 = 0.74509803921569, g2 = 0.1921568627451, b2 = 1},
-	["NPCFRIENDLY"] = {r1 = 0.30980392156863, g1 = 0.85098039215686, b1 = 0.2, r2 = 0.34117647058824, g2 = 0.62745098039216, b2 = 0.4078431372549},
-	["NPCNEUTRAL"] = {r1 = 0.712358744169101, g1 = 0.63137254901961, b1 = 0.15490196078431, r2 = 1, g2 = 0.85686274509804, b2 = 0.2078431372549},
-	["NPCUNFRIENDLY"] = {r1 = 0.84313725490196, g1 = 0.30196078431373, b1 = 0, r2 = 0.83137254901961, g2 = 0.45882352941176, b2 = 0},
-	["NPCHOSTILE"] = {r1 = 0.31764705882353, g1 = 0.066666666666667, b1 = 0.07843137254902, r2 = 1, g2 = 0.15686274509804, b2 = 0.15686274509804},
+	["MONK"] = {r1 = 0, g1 = 0.97, b1 = 0.45, r2 = 0.22, g2 = 0.91, b2 = 0.7},
+	["DRUID"] = {r1 = 1, g1 = 0.24, b1 = 0, r2 = 1, g2 = 0.48, b2 = 0.04},
+	["DEMONHUNTER"] = {r1 = 0.56, g1 = 0.33, b1 = 0.77, r2 = 0.74, g2 = 0.19, b2 = 1},
 }
 
 --adapted from libiteminfo to be player only
@@ -164,9 +153,9 @@ function ElvUI_EltreumUI:GetPlayerItemLevel()
 
 	for i = 1, 15 do
 		if (i ~= 4) then
-			local linkloop = GetInventoryItemLink("player", i)
+			local linkloop = _G.GetInventoryItemLink("player", i)
 			if linkloop then
-				level = select(4, GetItemInfo(linkloop))
+				level = select(4, _G.GetItemInfo(linkloop))
 			else
 				level = -1
 			end
@@ -182,19 +171,19 @@ function ElvUI_EltreumUI:GetPlayerItemLevel()
 	end
 
 	local mainlevel = 0
-	local mainlink = GetInventoryItemLink("player", 16)
+	local mainlink = _G.GetInventoryItemLink("player", 16)
 	if mainlink then
-		mainlevel = select(4, GetItemInfo(mainlink))
+		mainlevel = select(4, _G.GetItemInfo(mainlink))
 	end
 	mainhand = (tonumber(mainlevel))
 	if mainhand == nil then
 		mainhand = 0
 	end
 
-	local offhandlink = GetInventoryItemLink("player", 17)
+	local offhandlink = _G.GetInventoryItemLink("player", 17)
 	local offhandlevel = 0
 	if offhandlink then
-		offhandlevel = select(4, GetItemInfo(offhandlink))
+		offhandlevel = select(4, _G.GetItemInfo(offhandlink))
 	end
 	offhand = (tonumber(offhandlevel))
 	if offhand == nil then
@@ -202,9 +191,9 @@ function ElvUI_EltreumUI:GetPlayerItemLevel()
 	end
 
 	local rangedlevel = 0
-	local rangedlink = GetInventoryItemLink("player", 18)
+	local rangedlink = _G.GetInventoryItemLink("player", 18)
 	if rangedlink then
-		rangedlevel = select(4, GetItemInfo(rangedlink))
+		rangedlevel = select(4, _G.GetItemInfo(rangedlink))
 	end
 	ranged = (tonumber(rangedlevel))
 	if ranged == nil then
@@ -229,12 +218,12 @@ end
 --turns out classic has the functions to get number of points on talent trees
 local function PlayerSpec()
 	local spec, points
-	local _, _, spent1 = GetTalentTabInfo(1)
-	local _, _, spent2 = GetTalentTabInfo(2)
-	local _, _, spent3 = GetTalentTabInfo(3)
+	local _, _, spent1 = _G.GetTalentTabInfo(1)
+	local _, _, spent2 = _G.GetTalentTabInfo(2)
+	local _, _, spent3 = _G.GetTalentTabInfo(3)
 
-	for i=1, GetNumTalentTabs() do
-		local name, _, spent = GetTalentTabInfo(i)
+	for i=1, _G.GetNumTalentTabs() do
+		local name, _, spent = _G.GetTalentTabInfo(i)
 		--print(spent..name.." 1")
 		if spent > 0 and (not points or spent > points) then
 			--print(spec..points.." 2")
@@ -287,6 +276,8 @@ if not E.Retail then
 	if E.Wrath then
 		local wrathdualspec = CreateFrame("FRAME")
 		wrathdualspec:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+		wrathdualspec:RegisterEvent("PLAYER_TALENT_UPDATE")
+		--wrathdualspec:RegisterEvent("CHARACTER_POINTS_CHANGED")
 		wrathdualspec:SetScript("OnEvent", function()
 			if _G.CharacterFrame.Text5 and _G.CharacterFrame.Text5:GetText() ~= nil then
 				CharacterFrame.Text5:SetText(PlayerSpec())
@@ -648,7 +639,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterFrame.EltruismSpeedDescTooltip:Show()
 					_G.CharacterFrame.EltruismSpeedDescTooltip:SetScript("OnEnter", function()
 						_G["GameTooltip"]:SetOwner(_G.CharacterFrame.EltruismSpeedDescTooltip, 'ANCHOR_RIGHT')
-						_G["GameTooltip"]:AddLine(format(CR_SPEED_TOOLTIP, string.format('%.2f', (GetUnitSpeed("player"))), ((GetUnitSpeed("player")/7) *100)))
+						_G["GameTooltip"]:AddLine(format(CR_SPEED_TOOLTIP, string.format('%.2f', (_G.GetUnitSpeed("player"))), ((_G.GetUnitSpeed("player")/7) *100)))
 						_G["GameTooltip"]:Show()
 					end)
 					_G.CharacterFrame.EltruismSpeedDescTooltip:SetScript("OnLeave", function()
@@ -713,9 +704,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						_G.CharacterFrame.EltruismClassResourceDesc:Show()
 						_G.CharacterFrame.EltruismClassResourceDescTooltip:Show()
 						local id, _
-						local currentSpec = GetSpecialization()
+						local currentSpec = _G.GetSpecialization()
 						if currentSpec then
-							id, _ = GetSpecializationInfo(currentSpec)
+							id, _ = _G.GetSpecializationInfo(currentSpec)
 						end
 						if id == 264 or id == 257 or id == 256 or id == 65 or id == 270 or id == 105 then
 							_G.CharacterFrame.EltruismClassResource:Hide()
@@ -795,18 +786,18 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 					--update stats and stats position
 					hooksecurefunc("PaperDollFrame_UpdateStats", function()
-						local speed = ((GetUnitSpeed("player")/7) *100)
+						local speed = ((_G.GetUnitSpeed("player")/7) *100)
 						_G.CharacterFrame.EltruismSpeed:SetText(math.ceil(speed).."%")
 
-						local _, combat = GetManaRegen()
+						local _, combat = _G.GetManaRegen()
 						combat = math.floor(combat * 5.0)
-						local combatText = BreakUpLargeNumbers(combat)
+						local combatText = _G.BreakUpLargeNumbers(combat)
 						if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							_G.CharacterFrame.EltruismClassResource:SetText(BreakUpLargeNumbers(GetPowerRegen()))
+							_G.CharacterFrame.EltruismClassResource:SetText(_G.BreakUpLargeNumbers(_G.GetPowerRegen()))
 						elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
 							_G.CharacterFrame.EltruismClassResource:SetText(combatText)
 						elseif E.myclass == 'DEATHKNIGHT' then
-							local _, regenRate = GetRuneCooldown(1)
+							local _, regenRate = _G.GetRuneCooldown(1)
 							local regenRateText = (format(STAT_RUNE_REGEN_FORMAT, regenRate))
 							_G.CharacterFrame.EltruismClassResource:SetText(regenRateText)
 						end
@@ -1590,9 +1581,12 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 				else
 					qualityAnchor.Frame.Quality = qualityAnchor.Frame:CreateTexture("EltruismItemQualityTexture"..InvSlotName, "OVERLAY")
 				end
-
-				local slotlevel = _G["CharacterModelFrame"]:GetFrameLevel()
-				qualityAnchor.Frame:SetFrameLevel(slotlevel-1) --needs to be changed to not overlap the sockets/enchants
+				if E.Retail then
+					qualityAnchor.Frame:SetFrameLevel(2) --retail works fine
+				else
+					local slotlevel = _G["CharacterModelFrame"]:GetFrameLevel()
+					qualityAnchor.Frame:SetFrameLevel(slotlevel-1) --needs to be changed to not overlap the sockets/enchants
+				end
 				local slotsize = _G["Character"..InvSlotName]:GetHeight()
 				if not E.Retail then
 					qualityAnchor.Frame:SetSize(150, slotsize+2)
@@ -1604,11 +1598,11 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 				qualityAnchor.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade') --temp for testing
 
 				--get item (actual) quality
-				local itemLink = GetInventoryItemLink(unit, InvSlotId)
+				local itemLink = _G.GetInventoryItemLink(unit, InvSlotId)
 				if itemLink ~= nil then
-					local quality = select(3,GetItemInfo(itemLink))
+					local quality = select(3, _G.GetItemInfo(itemLink))
 					if quality ~= nil then
-						local r,g,b = GetItemQualityColor(quality)
+						local r,g,b = _G.GetItemQualityColor(quality)
 						qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
 						qualityAnchor.Frame.Quality:SetAlpha(1)
 					end
@@ -1691,7 +1685,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 			EltruismInspectBg:SetParent(_G.InspectFrame)
 
 			if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-				local _, englishClass, _, englishRace = GetPlayerInfoByGUID(unit)
+				local _, englishClass, _, englishRace = _G.GetPlayerInfoByGUID(unit)
 				if englishClass or englishRace then
 					if _G.InspectFrame then
 
@@ -1804,8 +1798,12 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							qualityAnchorInspect.Frame.Quality = qualityAnchorInspect.Frame:CreateTexture("EltruismInspectItemQualityTexture"..InvSlotName, "OVERLAY")
 						end
 
-						local slotlevel = _G["InspectModelFrame"]:GetFrameLevel()
-						qualityAnchorInspect.Frame:SetFrameLevel(slotlevel-1)
+						if E.Retail then
+							qualityAnchorInspect.Frame:SetFrameLevel(2)
+						else
+							local slotlevel = _G["InspectModelFrame"]:GetFrameLevel()
+							qualityAnchorInspect.Frame:SetFrameLevel(slotlevel-1)
+						end
 						local slotsize = _G["Inspect"..InvSlotName]:GetHeight()
 						if not E.Retail then
 							qualityAnchorInspect.Frame:SetSize(120, slotsize+2)
@@ -1817,10 +1815,10 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						qualityAnchorInspect.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
 
 						--get item (actual) quality
-						local itemLink = GetInventoryItemLink("target", InvSlotId)
+						local itemLink = _G.GetInventoryItemLink("target", InvSlotId)
 						if itemLink ~= nil then
-							local quality = select(3,GetItemInfo(itemLink))
-							local r,g,b = GetItemQualityColor(quality)
+							local quality = select(3,_G.GetItemInfo(itemLink))
+							local r,g,b = _G.GetItemQualityColor(quality)
 							qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
 							qualityAnchorInspect.Frame.Quality:SetAlpha(1)
 						else

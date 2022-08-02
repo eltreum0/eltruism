@@ -1818,7 +1818,7 @@ function ElvUI_EltreumUI:Configtable()
 								--width = "double",
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha = value _G["EltruismCharacterBG"]:SetAlpha(value) end,
 							},
 							expandvignetteenable = {
 								order = 195,
@@ -1841,7 +1841,7 @@ function ElvUI_EltreumUI:Configtable()
 								--width = "double",
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg or not E.db.ElvUI_EltreumUI.skins.armoryvignette end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.armoryvignettealpha end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryvignettealpha = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryvignettealpha = value _G["EltruismCharacterBGVignette"]:SetAlpha(value) end,
 							},
 							armorybgtextureselect = {
 								order = 197,
