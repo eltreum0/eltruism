@@ -1,6 +1,6 @@
 ## Interface: 30400
 ## Author: Eltreum
-## Version: 3.1.9
+## Version: 3.2.0
 ## Title: |cff1784d1ElvUI|r Eltruism Wrath (Beta)
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
 ## Dependencies: ElvUI, AddOnSkins
