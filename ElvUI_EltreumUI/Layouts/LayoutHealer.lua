@@ -205,7 +205,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["extraActionButton"]["scale"] = 0.7
 	E.db["actionbar"]["font"] = "Kimberley"
-	E.db["actionbar"]["fontOutline"] = "OUTLINE"
 	E.db["actionbar"]["globalFadeAlpha"] = 1
 	E.db["actionbar"]["lockActionBars"] = false
 	E.db["actionbar"]["noPowerColor"]["b"] = 0.43921568627451

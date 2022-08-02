@@ -7,7 +7,7 @@ local SetCVar = _G.SetCVar
 
 function ElvUI_EltreumUI:SetupGeneralLayout()
 	if not E.db.movers then E.db.movers = {} end
-
+		local width = GetPhysicalScreenSize()
 		-- Setup UI Scale
 		ElvUI_EltreumUI:SetupScale()
 
@@ -253,7 +253,13 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 
 		-- DataTexts
 		E.db["datatexts"]["font"] = "Kimberley"
-		E.db["datatexts"]["fontOutline"] = "THICKOUTLINE"
+		if width == 3840 then
+			E.db["datatexts"]["fontOutline"] = "THICKOUTLINE"
+			E.db["actionbar"]["fontOutline"] = "THICKOUTLINE"
+		else
+			E.db["datatexts"]["fontOutline"] = "OUTLINE"
+			E.db["actionbar"]["fontOutline"] = "OUTLINE"
+		end
 		E.db["datatexts"]["noCombatClick"] = true
 		E.db["datatexts"]["noCombatHover"] = true
 		E.db["datatexts"]["panels"]["MinimapPanel"][1] = "Time"
