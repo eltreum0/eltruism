@@ -1008,6 +1008,6 @@ L["Displays a disconnect symbol from Releaf when unit is disconnected. Usage: [e
 L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [eltruism:hpstatus{number,number}]"] = "Zeigt kurze Werte für HP und ein Statussymbol von Releaf für Spieler an. Verwendung: [eltruism:hpstatus{number,number}]"
 L["Returns class color only for players"] = "Kehrt zu Klassenfarbe nur für Spieler zurück"
 L["Displays an icon when the unit is in combat, uses player icon"] = "Zeigt ein Symbol an, wenn sich die Einheit im Kampf befindet, verwendet das Spielersymbol"
-L["Add a Vignette over the Character Art"] = true
-L["Vignette Alpha"] = true
-L["Change the transparency of the Vignette"] = true
+L["Add a Vignette over the Character Art"] = "Füge eine Vignette für das Charakterart hinzu"
+L["Vignette Alpha"] = "Vignette Transparenz"
+L["Change the transparency of the Vignette"] = "Verändere die transparenz der Vignette des Characterarts"
