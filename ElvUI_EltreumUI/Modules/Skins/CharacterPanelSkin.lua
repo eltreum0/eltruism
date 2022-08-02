@@ -96,7 +96,7 @@ local classBgs = {
 	["DEMONHUNTER"] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
 }
 
---from 4k: height to 1920, resize to 1024x512, add 20 sharpen, set 30 bright 30 contrast, add vignette 0.35, compress depending on size
+--from 4k: height to 1920, resize to 1024x512, add 20 sharpen, set 30 bright 30 contrast, add vignette 0.35 (dont anymore), compress depending on size
 local raceBgs = {
 	["BloodElf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\BloodElf",
 	["HighmountainTauren"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Highmountain",
@@ -221,7 +221,6 @@ function ElvUI_EltreumUI:GetPlayerItemLevel()
 	end
 	return total/16, max(mainhand,offhand), maxlevel
 end
-
 
 --wrath to detect dual spec
 --GetNumTalentGroups() --gets if they actually have dual spec in the first place
@@ -1175,7 +1174,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.Text2:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.Text2:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				CharacterFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-				CharacterFrame.StatusLine2:SetFrameStrata("LOW")
+				--CharacterFrame.StatusLine2:SetFrameStrata("LOW")
 				CharacterFrame.StatusLine2:SetSize(170, 25)
 				CharacterFrame.StatusLine2:SetPoint("CENTER", CharacterFrame.Text2, "CENTER", 0, 0)
 				CharacterFrame.StatusLine2:SetParent(_G["PaperDollItemsFrame"])
@@ -1246,6 +1245,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PlayerStatFrameLeft2.StatusLine:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameLeft2.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					_G.PlayerStatFrameLeft2.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+					_G.PlayerStatFrameLeft2.StatusLine:SetFrameLevel(2)
 
 					_G.PlayerStatFrameLeft3:ClearAllPoints()
 					_G.PlayerStatFrameLeft3:SetPoint("BOTTOM", _G.PlayerStatFrameLeft2, "BOTTOM", 0, -13)
@@ -1259,6 +1259,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PlayerStatFrameLeft4.StatusLine:SetParent(_G["PaperDollItemsFrame"])
 					_G.PlayerStatFrameLeft4.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					_G.PlayerStatFrameLeft4.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+					_G.PlayerStatFrameLeft4.StatusLine:SetFrameLevel(2)
 
 					_G.PlayerStatFrameLeft5:ClearAllPoints()
 					_G.PlayerStatFrameLeft5:SetPoint("BOTTOM", _G.PlayerStatFrameLeft4, "BOTTOM", 0, -13)
@@ -1272,6 +1273,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PlayerStatFrameLeft6.StatusLine:SetParent(_G["PlayerStatFrameLeft6"])
 					_G.PlayerStatFrameLeft6.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					_G.PlayerStatFrameLeft6.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+					_G.PlayerStatFrameLeft6.StatusLine:SetFrameLevel(2)
 
 					_G.PlayerStatFrameLeft1Stat:ClearAllPoints()
 					_G.PlayerStatFrameLeft1Stat:SetPoint("CENTER", _G.PlayerStatFrameLeft1, "CENTER", 95, 0)
@@ -1314,6 +1316,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PlayerStatFrameRight2.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameRight2, "CENTER", 25, 0)
 					_G.PlayerStatFrameRight2.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					_G.PlayerStatFrameRight2.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+					_G.PlayerStatFrameRight2.StatusLine:SetFrameLevel(2)
 
 					_G.PlayerStatFrameRight3:ClearAllPoints()
 					_G.PlayerStatFrameRight3:SetPoint("BOTTOM", _G.PlayerStatFrameRight2, "BOTTOM", 0, -13)
@@ -1326,6 +1329,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PlayerStatFrameRight4.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameRight4, "CENTER", 25, 0)
 					_G.PlayerStatFrameRight4.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					_G.PlayerStatFrameRight4.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+					_G.PlayerStatFrameRight4.StatusLine:SetFrameLevel(2)
 
 					_G.PlayerStatFrameRight5:ClearAllPoints()
 					_G.PlayerStatFrameRight5:SetPoint("BOTTOM", _G.PlayerStatFrameRight4, "BOTTOM", 0, -13)
@@ -1339,6 +1343,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PlayerStatFrameRight6.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					_G.PlayerStatFrameRight6.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
 					_G.PlayerStatFrameRight6.StatusLine:SetParent(_G["PlayerStatFrameRight6"])
+					_G.PlayerStatFrameRight6.StatusLine:SetFrameLevel(2)
 
 					_G.PlayerStatFrameRight1Stat:ClearAllPoints()
 					_G.PlayerStatFrameRight1Stat:SetPoint("CENTER", _G.PlayerStatFrameRight1, "CENTER", 95, 0)
@@ -1379,6 +1384,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterStatFrame2.StatusLine:SetPoint("CENTER", _G.CharacterStatFrame2, "CENTER", 25, 0)
 					_G.CharacterStatFrame2.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					_G.CharacterStatFrame2.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+					_G.CharacterStatFrame2.StatusLine:SetFrameLevel(2)
 
 					_G.CharacterStatFrame3:ClearAllPoints()
 					_G.CharacterStatFrame3:SetParent(_G.CharacterStatFrame1)
@@ -1392,6 +1398,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterStatFrame4.StatusLine:SetPoint("CENTER", _G.CharacterStatFrame4, "CENTER", 25, 0)
 					_G.CharacterStatFrame4.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					_G.CharacterStatFrame4.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+					_G.CharacterStatFrame4.StatusLine:SetFrameLevel(2)
 
 					_G.CharacterStatFrame5:ClearAllPoints()
 					_G.CharacterStatFrame5:SetParent(_G.CharacterStatFrame1)
@@ -1405,6 +1412,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterArmorFrame.StatusLine:SetPoint("CENTER", _G.CharacterArmorFrame, "CENTER", 25, 0)
 					_G.CharacterArmorFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					_G.CharacterArmorFrame.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+					_G.CharacterArmorFrame.StatusLine:SetFrameLevel(2)
 
 					_G.CharacterAttackFrame:ClearAllPoints()
 					_G.CharacterAttackFrame:SetParent(_G.CharacterStatFrame1)
@@ -1418,6 +1426,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterAttackPowerFrame.StatusLine:SetPoint("CENTER", _G.CharacterAttackPowerFrame, "CENTER", 25, 0)
 					_G.CharacterAttackPowerFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					_G.CharacterAttackPowerFrame.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+					_G.CharacterAttackPowerFrame.StatusLine:SetFrameLevel(2)
 
 					_G.CharacterDamageFrame:ClearAllPoints()
 					_G.CharacterDamageFrame:SetParent(_G.CharacterStatFrame1)
@@ -1431,6 +1440,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterRangedAttackFrame.StatusLine:SetPoint("CENTER", _G.CharacterRangedAttackFrame, "CENTER", 25, 0)
 					_G.CharacterRangedAttackFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					_G.CharacterRangedAttackFrame.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+					_G.CharacterRangedAttackFrame.StatusLine:SetFrameLevel(2)
 
 					_G.CharacterRangedAttackPowerFrame:ClearAllPoints()
 					_G.CharacterRangedAttackPowerFrame:SetParent(_G.CharacterStatFrame1)
@@ -1444,6 +1454,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterRangedDamageFrame.StatusLine:SetPoint("CENTER", _G.CharacterRangedDamageFrame, "CENTER", 25, 0)
 					_G.CharacterRangedDamageFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
 					_G.CharacterRangedDamageFrame.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+					_G.CharacterRangedDamageFrame.StatusLine:SetFrameLevel(2)
 
 					_G.CharacterStatFrame1Stat:ClearAllPoints()
 					_G.CharacterStatFrame1Stat:SetPoint("CENTER", _G.CharacterStatFrame1, "CENTER", 90, 0) --first stat number
