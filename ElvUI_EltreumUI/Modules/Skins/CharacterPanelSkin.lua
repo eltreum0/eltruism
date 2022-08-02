@@ -34,7 +34,6 @@ local ClassCrestFrame = CreateFrame("Frame")
 local ClassCrestFrameTexture = ClassCrestFrame:CreateTexture("EltruismClassCrest")
 local CharacterFrameBackgroundTextureFader = ClassCrestFrame:CreateTexture("EltruismCharacterBGVignette")
 CharacterFrameBackgroundTextureFader:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Vignette.tga")
---CharacterFrameBackgroundTextureFader:SetAlpha(0.6)
 
 if E.Retail then
 	_G.CharacterFrame.EltruismClassResource = _G.CharacterFrame:CreateFontString(nil,"ARTWORK")
@@ -345,6 +344,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrameBackgroundTextureFader:SetAllPoints(_G.CharacterFrame)
 				CharacterFrameBackgroundTextureFader:SetParent(_G.CharacterFrame)
 				CharacterFrameBackgroundTextureFader:SetDrawLayer("ARTWORK",7)
+				CharacterFrameBackgroundTextureFader:SetAlpha(E.db.ElvUI_EltreumUI.skins.armoryvignettealpha)
+				if not E.db.ElvUI_EltreumUI.skins.armoryvignette then
+					CharacterFrameBackgroundTextureFader:Hide()
+				else
+					CharacterFrameBackgroundTextureFader:Show()
+				end
 				if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
@@ -1008,6 +1013,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrameBackgroundTextureFader:SetAllPoints(_G.CharacterFrame.backdrop)
 				CharacterFrameBackgroundTextureFader:SetParent(_G.CharacterFrame)
 				CharacterFrameBackgroundTextureFader:SetDrawLayer("ARTWORK",7)
+				CharacterFrameBackgroundTextureFader:SetAlpha(E.db.ElvUI_EltreumUI.skins.armoryvignettealpha)
+				if not E.db.ElvUI_EltreumUI.skins.armoryvignette then
+					CharacterFrameBackgroundTextureFader:Hide()
+				else
+					CharacterFrameBackgroundTextureFader:Show()
+				end
 				if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
 					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
@@ -1710,6 +1721,12 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						end
 						EltruismInspectBgTextureFader:SetParent(_G.InspectFrame)
 						EltruismInspectBgTextureFader:SetDrawLayer("ARTWORK",7)
+						EltruismInspectBgTextureFader:SetAlpha(E.db.ElvUI_EltreumUI.skins.armoryvignettealpha)
+						if not E.db.ElvUI_EltreumUI.skins.armoryvignette then
+							EltruismInspectBgTextureFader:Hide()
+						else
+							EltruismInspectBgTextureFader:Show()
+						end
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 							EltruismInspectBgTexture:SetTexture(classBgs[englishClass])
 							EltruismInspectBgTexture:SetTexCoord(0, 0.87, 0, 0.60)
