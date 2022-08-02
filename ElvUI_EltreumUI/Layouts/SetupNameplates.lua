@@ -210,6 +210,12 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = ""
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "Kimberley"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["fontOutline"] = "THICKOUTLINE"
+			local width = GetPhysicalScreenSize()
+			if width == 3840 then
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["fontOutline"] = "THICKOUTLINE"
+			else
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["fontOutline"] = "OUTLINE"
+			end
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[classification:icon][name]"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["position"] = "CENTER"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["yOffset"] = 15
