@@ -1590,9 +1590,12 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 				else
 					qualityAnchor.Frame.Quality = qualityAnchor.Frame:CreateTexture("EltruismItemQualityTexture"..InvSlotName, "OVERLAY")
 				end
-
-				local slotlevel = _G["CharacterModelFrame"]:GetFrameLevel()
-				qualityAnchor.Frame:SetFrameLevel(slotlevel-1) --needs to be changed to not overlap the sockets/enchants
+				if E.Retail then
+					qualityAnchor.Frame:SetFrameLevel(2) --retail works fine
+				else
+					local slotlevel = _G["CharacterModelFrame"]:GetFrameLevel()
+					qualityAnchor.Frame:SetFrameLevel(slotlevel-1) --needs to be changed to not overlap the sockets/enchants
+				end
 				local slotsize = _G["Character"..InvSlotName]:GetHeight()
 				if not E.Retail then
 					qualityAnchor.Frame:SetSize(150, slotsize+2)
@@ -1804,8 +1807,12 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							qualityAnchorInspect.Frame.Quality = qualityAnchorInspect.Frame:CreateTexture("EltruismInspectItemQualityTexture"..InvSlotName, "OVERLAY")
 						end
 
-						local slotlevel = _G["InspectModelFrame"]:GetFrameLevel()
-						qualityAnchorInspect.Frame:SetFrameLevel(slotlevel-1)
+						if E.Retail then
+							qualityAnchorInspect.Frame:SetFrameLevel(2)
+						else
+							local slotlevel = _G["InspectModelFrame"]:GetFrameLevel()
+							qualityAnchorInspect.Frame:SetFrameLevel(slotlevel-1)
+						end
 						local slotsize = _G["Inspect"..InvSlotName]:GetHeight()
 						if not E.Retail then
 							qualityAnchorInspect.Frame:SetSize(120, slotsize+2)
