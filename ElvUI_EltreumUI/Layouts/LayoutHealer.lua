@@ -783,6 +783,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["party"]["petsGroup"]["yOffset"] = -3
 	end
 	E.db["unitframe"]["units"]["party"]["visibility"] = "[@raid6,exists][nogroup] hide;show"
+	if not E.Retail then
+		E.db["unitframe"]["units"]["pet"]["health"]["colorPetByUnitClass"] = true
+	end
 	E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
 	E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
 	E.db["unitframe"]["units"]["pet"]["buffs"]["anchorPoint"] = "TOP"
