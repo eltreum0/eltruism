@@ -843,19 +843,12 @@ function ElvUI_EltreumUI:SetupPrivate()
 	E.private["skins"]["blizzard"]["objectiveTracker"] = true
 	E.private["skins"]["ace3Enable"] = true
 	E.private["skins"]["checkBoxSkin"] = true
-	if E.Retail then
-		E.private["install_complete"] = tostring(E.version)
-		E.private["general"]["totemBar"] = true
-		E.private["general"]["nameplateFont"] = "Kimberley"
-		E.private["general"]["nameplateFontSize"] = 10
-		E.private["general"]["nameplateLargeFont"] = "Kimberley"
-		E.private["general"]["nameplateLargeFontSize"] = 10
-	elseif E.Wrath or E.TBC then
-		E.private["install_complete"] = tostring(E.version)
-		E.private["general"]["totemBar"] = true
-	elseif E.Classic then
-		E.private["install_complete"] = tostring(E.version)
-	end
+	E.private["general"]["totemBar"] = true
+	E.private["install_complete"] = tostring(E.version)
+	E.private["general"]["nameplateFont"] = "Kimberley"
+	E.private["general"]["nameplateFontSize"] = 10
+	E.private["general"]["nameplateLargeFont"] = "Kimberley"
+	E.private["general"]["nameplateLargeFontSize"] = 10
 end
 
 -- Global DB
