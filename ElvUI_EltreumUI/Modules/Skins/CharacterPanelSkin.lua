@@ -1625,8 +1625,8 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 				elseif InvSlotId == 17 then --rotate for the off hand slot that is in the middle in classic/tbc/wrath
 					if not E.Retail then
 						qualityAnchor.Frame.Quality:SetRotation(1.57079633)
-						qualityAnchor.Frame:SetPoint("BOTTOM", _G["Character"..InvSlotName], "BOTTOM", 0, 37)
-						qualityAnchor.Frame.Quality:SetPoint("BOTTOM", _G["Character"..InvSlotName], "BOTTOM", 0, 37)
+						qualityAnchor.Frame:SetPoint("BOTTOM", _G["Character"..InvSlotName], "BOTTOM", 0, 51)
+						qualityAnchor.Frame.Quality:SetPoint("BOTTOM", _G["Character"..InvSlotName], "BOTTOM", 0, 51)
 					else
 						qualityAnchor.Frame:SetPoint("LEFT", _G["Character"..InvSlotName], "RIGHT", -_G["Character"..InvSlotName]:GetWidth()-4, 0)
 						qualityAnchor.Frame.Quality:SetPoint("LEFT", _G["Character"..InvSlotName], "RIGHT", -_G["Character"..InvSlotName]:GetWidth()-4, 0)
