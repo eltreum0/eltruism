@@ -515,6 +515,9 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["colors"]["classResources"]["PALADIN"]["r"] = 1
 	E.db["unitframe"]["colors"]["classResources"]["WARLOCK"]["r"] = 0.58039215686275
 	E.db["unitframe"]["colors"]["classbackdrop"] = true
+	E.db["unitframe"]["colors"]["classpower_backdrop"]["b"] = 0
+	E.db["unitframe"]["colors"]["classpower_backdrop"]["g"] = 0
+	E.db["unitframe"]["colors"]["classpower_backdrop"]["r"] = 0
 	E.db["unitframe"]["colors"]["healthclass"] = false
 	E.db["unitframe"]["colors"]["customhealthbackdrop"] = false
 	E.db["unitframe"]["colors"]["health_backdrop"]["b"] = classcolor.b
