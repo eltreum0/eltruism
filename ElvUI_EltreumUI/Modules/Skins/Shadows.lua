@@ -426,7 +426,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
-			if E.private.actionbar.enable then
+			if E.private.actionbar.enable and E.db.ElvUI_EltreumUI.shadows.actionbars then
 				if not _G.BossButton.shadow then
 					_G.BossButton:CreateShadow()
 				end
@@ -496,7 +496,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--wrath only frames
-			if E.Wrath then
+			if E.Wrath and E.db.ElvUI_EltreumUI.shadows.actionbars then
 				if not E.private.skins.blizzard.enable == false and _G.LFGListingFrame.backdrop and not _G.LFGListingFrame.backdrop.shadow then
 					_G.LFGListingFrame.backdrop:CreateShadow()
 				end
@@ -560,7 +560,7 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		--action bars
-		if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+		if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") and E.db.ElvUI_EltreumUI.shadows.actionbars then
 			--elvui action bars
 			for i = 1, 10 do
 				for k = 1, 12 do
@@ -726,6 +726,29 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end]]
 			end
+
+			--handle non spaced power and classpower
+			if E.db["unitframe"]["units"]["target"]["power"]["width"] ~= "spaced" and not E.db["unitframe"]["units"]["target"]["power"]["detachFromFrame"] == true then
+				if _G["ElvUF_Target_PowerBar"].shadow then
+					_G["ElvUF_Target_PowerBar"].shadow:Hide()
+				end
+			end
+			if E.db["unitframe"]["units"]["targettarget"]["power"]["width"] ~= "spaced" and not E.db["unitframe"]["units"]["targettarget"]["power"]["detachFromFrame"] == true then
+				if _G["ElvUF_Player_PowerBar"].shadow then
+					_G["ElvUF_Player_PowerBar"].shadow:Hide()
+				end
+			end
+			if E.db["unitframe"]["units"]["player"]["power"]["width"] ~= "spaced" and not E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] == true then
+				if _G["ElvUF_Player_PowerBar"].shadow then
+					_G["ElvUF_Player_PowerBar"].shadow:Hide()
+				end
+			end
+			if E.db["unitframe"]["units"]["player"]["classbar"]["width"] ~= "spaced" and not E.db["unitframe"]["units"]["classbar"]["power"]["detachFromFrame"] == true then
+				if _G["ElvUF_Player_PowerBar"].shadow then
+					_G["ElvUF_Player_PowerBar"].shadow:Hide()
+				end
+			end
+
 
 			--player castbar
 			if E.db.unitframe.units.player.castbar.overlayOnFrame == "None" and (not E.db.ElvUI_EltreumUI.borders.borders) then
