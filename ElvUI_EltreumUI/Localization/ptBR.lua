@@ -973,3 +973,4 @@ L["Change the transparency of the Vignette"] = "Mude a transparência da vinheta
 L["Character Panel Scale"] = "Escala do Painel de Personagem"
 L["Change the size of the Character Panel"] = "Mude o tamanho do Painel de Personagem"
 L["Hide Actionbar Button Press"] = "Esconder o brilho do botão da barra de ações quando pressionado"
+L["Spark Texture"] = "Brilho da textura da Barra de Lançamentos"

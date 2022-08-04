@@ -999,3 +999,4 @@ L["Change the transparency of the Vignette"] = true
 L["Character Panel Scale"] = true
 L["Change the size of the Character Panel"] = true
 L["Hide Actionbar Button Press"] = true
+L["Spark Texture"] = true --as in castbar spark, the mark where the cast is (yellow on my profile)
