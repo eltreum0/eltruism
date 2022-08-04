@@ -981,3 +981,4 @@ L["Vignette Alpha"] = true
 L["Change the transparency of the Vignette"] = true
 L["Character Panel Scale"] = true
 L["Change the size of the Character Panel"] = true
+L["Hide Actionbar Button Press"] = true
