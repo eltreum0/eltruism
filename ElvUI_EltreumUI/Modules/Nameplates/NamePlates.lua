@@ -317,22 +317,29 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		if E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
 			if E.db.ElvUI_EltreumUI.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = (playerclassv1[E.myclass])
+				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 				if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
 					E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["texture"] = (playerclassv1[E.myclass])
+					E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = true
 				end
 			elseif E.db.ElvUI_EltreumUI.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = (playerclassv2[E.myclass])
+				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 				if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
 					E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["texture"] = (playerclassv2[E.myclass])
+					E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = true
 				end
 			elseif E.db.ElvUI_EltreumUI.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = (playerclassv3[E.myclass])
+				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 				if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
 					E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["texture"] = (playerclassv3[E.myclass])
+					E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = true
 				end
 			end
 			if E.global.nameplates.filters.EltreumRare then
 				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
+				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["enable"] = true
 			end
 		elseif not E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture and not E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture then
 			if E.global.nameplates.filters.EltreumTarget then
