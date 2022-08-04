@@ -361,50 +361,68 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				if targetclass and UnitIsPlayer("target") then
 					if E.db.ElvUI_EltreumUI.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = (playerclassv1[targetclass])
+						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = (playerclassv2[targetclass])
+						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = (playerclassv3[targetclass])
+						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 					end
 				elseif ( UnitIsPlayer("target") == false and ( reactiontarget >= 5) ) then
 					if E.db.ElvUI_EltreumUI.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-Hunter"
+						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-HunterV2"
+						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-HunterV3"
+						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 					end
 				elseif reactiontarget == 4 then
 					if E.db.ElvUI_EltreumUI.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-Rogue"
+						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-RogueV2"
+						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-RogueV3"
+						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 					end
 				elseif reactiontarget == 3 then
 					if E.db.ElvUI_EltreumUI.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-Druid"
+						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-DruidV2"
+						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-DruidV3"
+						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 					end
 				elseif reactiontarget == 2 or reactiontarget == 1 then
 					if E.db.ElvUI_EltreumUI.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-DeathKnight"
+						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 						if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
 							E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["texture"] = "Eltreum-Class-DeathKnight"
+							E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = true
 						end
 					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-DeathKnightV2"
+						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 						if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
 							E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["texture"] = "Eltreum-Class-DeathKnightV2"
+							E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = true
 						end
 					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-DeathKnightV3"
+						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 						if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
 							E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["texture"] = "Eltreum-Class-DeathKnightV3"
+							E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = true
 						end
 					end
 				end
