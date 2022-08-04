@@ -743,7 +743,7 @@ function ElvUI_EltreumUI:Shadows()
 					_G["ElvUF_Player_PowerBar"].shadow:Hide()
 				end
 			end
-			if E.db["unitframe"]["units"]["player"]["classbar"]["width"] ~= "spaced" and not E.db["unitframe"]["units"]["classbar"]["power"]["detachFromFrame"] == true then
+			if E.db["unitframe"]["units"]["player"]["classbar"]["fill"] ~= "spaced" and not E.db["unitframe"]["units"]["classbar"]["detachFromFrame"] == true then
 				if _G["ElvUF_Player_PowerBar"].shadow then
 					_G["ElvUF_Player_PowerBar"].shadow:Hide()
 				end
