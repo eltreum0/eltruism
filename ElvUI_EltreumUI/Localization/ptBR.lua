@@ -970,3 +970,5 @@ L["Displays an icon when the unit is in combat, uses player icon"] = "Mostra um 
 L["Add a Vignette over the Character Art"] = "Adicione um efeito de vinheta sobre a Arte do Personagem"
 L["Vignette Alpha"] = "Transparência da Vinheta"
 L["Change the transparency of the Vignette"] = "Mude a transparência da vinheta"
+L["Character Panel Scale"] = "Escala do Painel de Personagem"
+L["Change the size of the Character Panel"] = "Mude o tamanho do Painel de Personagem"

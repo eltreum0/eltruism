@@ -996,3 +996,5 @@ L["Displays an icon when the unit is in combat, uses player icon"] = true
 L["Add a Vignette over the Character Art"] = true
 L["Vignette Alpha"] = true
 L["Change the transparency of the Vignette"] = true
+L["Character Panel Scale"] = true
+L["Change the size of the Character Panel"] = true
