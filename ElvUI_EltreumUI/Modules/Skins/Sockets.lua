@@ -23,6 +23,13 @@ local KIBC_EnchantToSpellID = {
 	[2343] = 46531, -- major healing weapon
 	[1888] = 359685, --shield resilience? resistance? 46525
 	[926] = 359895, --shield frost res
+	[983] = 44500, --cloak superior agility
+	[2566] = 2317, -- +13 spellpower ????
+	[1354] = 44556, --cloak superior fire res
+	[1400] = 44494, --cloak superior nature res
+	[1446] = 44590, --cloak superior shadow res
+	[3230] = 44483, --cloak superior frost res
+	[1262] = 44596, --cloak superior arcane res
 
 	---- old list
 	[15] = 2831, -- Reinforced (+$k1 Armor)
