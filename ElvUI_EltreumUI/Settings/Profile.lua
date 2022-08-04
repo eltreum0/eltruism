@@ -50,6 +50,7 @@ P.ElvUI_EltreumUI = {
 		enable = false,
 		widertransmog = false,
 		expandedstable = false,
+		characterpanelscale = 1,
 		classiconsoncharacterpanel = false,
 		classiconsblizz = false,
 		classiconsreleaf = false,

@@ -1113,8 +1113,27 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-							expandartcrest = {
+							characterpanelscale = {
+								type = 'range',
+								name = L["Character Panel Scale"],
+								desc = L["Change the size of the Character Panel"],
 								order = 2,
+								min = 0.2,
+								max = 2,
+								step = 0.01,
+								--width = "double",
+								get = function() return E.db.ElvUI_EltreumUI.skins.characterpanelscale end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterpanelscale = value _G["CharacterFrame"]:SetScale(value) end,
+							},
+							header8448crest = {
+								order = 3,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							expandartcrest = {
+								order = 3,
 								type = 'toggle',
 								name = L["Add Crest to Character Panel"],
 								width = 'full',
@@ -1123,7 +1142,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorycrest = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header8448 = {
-								order = 3,
+								order = 4,
 								type = "description",
 								name = "",
 								width = 'full',

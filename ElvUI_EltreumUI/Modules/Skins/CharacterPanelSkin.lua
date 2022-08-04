@@ -287,6 +287,11 @@ end
 --expanded armory
 function ElvUI_EltreumUI:ExpandedCharacterStats()
 	if not E.private.skins.blizzard.enable == false then
+
+		if not InCombatLockdown() then
+			_G["CharacterFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.characterpanelscale)
+		end
+
 		if E.Retail then
 			--add class crest
 			if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
