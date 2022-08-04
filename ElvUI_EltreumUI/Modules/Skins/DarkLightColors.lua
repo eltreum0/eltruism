@@ -42,6 +42,9 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db["unitframe"]["colors"]["transparentPower"] = true
 		E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.3
 		E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.3
+		if not E.Retail then
+			E.db["unitframe"]["units"]["pet"]["health"]["colorPetByUnitClass"] = false
+		end
 
 		--setup namecolors
 		if E.db["unitframe"]["units"]["party"]["customTexts"] == nil then
@@ -110,6 +113,9 @@ function ElvUI_EltreumUI:LightMode()
 		E.db["unitframe"]["colors"]["transparentPower"] = false
 		E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.6
 		E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.6
+		if not E.Retail then
+			E.db["unitframe"]["units"]["pet"]["health"]["colorPetByUnitClass"] = true
+		end
 
 		--setup namecolors
 		if E.db["unitframe"]["units"]["party"]["customTexts"] == nil then
