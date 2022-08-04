@@ -1071,6 +1071,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				--change the size based on if paperdoll is hidden
 				CharacterFrame:SetSize(700, 505)
+				--CharacterModelFrame:SetPosition(0, 0, 0) --zoom,x,y
 
 				--fix frame size depending on tab
 				local function ResizeCharacterFrame()
