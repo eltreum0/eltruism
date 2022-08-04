@@ -5495,6 +5495,18 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.sparkcustomcolor.width end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.sparkcustomcolor.width = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							sparktexture = {
+								order = 993,
+								type = 'select',
+								--width = "double",
+								dialogControl = 'LSM30_Statusbar',
+								name = L["Spark Texture"],
+								desc = L["Select a Texture"],
+								values = AceGUIWidgetLSMlists.statusbar,
+								disabled = function() return not E.db.ElvUI_EltreumUI.sparkcustomcolor.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.sparkcustomcolor.texture end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.sparkcustomcolor.texture = key end,
+							},
 							headergaphere = {
 								order = 995,
 								type = "description",

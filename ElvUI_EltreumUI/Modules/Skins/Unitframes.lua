@@ -218,9 +218,13 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 	--spark
 	if E.db.ElvUI_EltreumUI.sparkcustomcolor.enable and E.private.unitframe.enable then
 		--castbar.Spark_ = castbar:CreateTexture(nil, 'OVERLAY')
-		--castbar.Spark_:SetTexture(E.media.blankTex)
+		castbar.Spark_:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.sparkcustomcolor.texture))
+		if E.db.ElvUI_EltreumUI.sparkcustomcolor.texture == 'Eltreum-Fade' then --flip otherwise it will look wrong
+			castbar.Spark_:SetTexCoord(1, 0, 0, 1)
+		end
 		castbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.sparkcustomcolor.b, 1)
 		castbar.Spark_:SetWidth(E.db.ElvUI_EltreumUI.sparkcustomcolor.width)
+		--castbar.Spark_:SetAlpha(0.8) dunno since it can look bad with color mixing, infact textures themselves can look bad
 
 		if UnitExists("target") then
 			targetcastbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.sparkcustomcolor.b, 1)

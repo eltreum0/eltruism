@@ -709,7 +709,8 @@ P.ElvUI_EltreumUI = {
 
 	sparkcustomcolor ={
 		enable = false,
-		texture = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga',
+		--texture = 'Eltreum-Blank',
+		texture = 'Eltreum-Fade',
 		r = 0.80,
 		g = 0.80,
 		b = 0.10,
