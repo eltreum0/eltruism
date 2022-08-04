@@ -514,3 +514,27 @@ function ElvUI_EltreumUI:PreviewGlow()
 		end
 	end
 end
+
+
+--hide keypress on actionbars
+function ElvUI_EltreumUI:HideABKeyPress()
+	if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+		if E.db.ElvUI_EltreumUI.skins.hideABkeypress then
+			for i = 1, 10 do
+				for k = 1, 12 do
+					local slots = {_G["ElvUI_Bar"..i..'Button'..k]}
+					for _, button in pairs(slots) do
+						if E.db.ElvUI_EltreumUI.skins.hideABkeypress then
+							if button.checked then
+								button.checked:SetAlpha(0)
+							end
+							if button.pushed then
+								button.pushed:ClearAllPoints()
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+end

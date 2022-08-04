@@ -79,6 +79,7 @@ P.ElvUI_EltreumUI = {
 		zones = false,
 		shadows = false,
 		meetinghorn = false,
+		hideABkeypress = false,
 	},
 
 	shadows = {

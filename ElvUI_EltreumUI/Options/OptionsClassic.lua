@@ -1380,6 +1380,20 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							headerhidekeypressab = {
+								order = 61,
+								type = "description",
+								name = L["Hide Actionbar Button Press"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							hideABkeypress = {
+								order = 62,
+								type = 'toggle',
+								name = L["Enable"],
+								get = function() return E.db.ElvUI_EltreumUI.skins.hideABkeypress end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.hideABkeypress = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
 						},
 					},
 					character = {

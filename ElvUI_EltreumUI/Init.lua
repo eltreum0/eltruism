@@ -75,6 +75,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:DeleteItem() -- automatically type delete
 	ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
 	ElvUI_EltreumUI:BattleRes() --bres count/cd
+	ElvUI_EltreumUI:HideABKeyPress() -- hide keypress if needed
 	if E.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
