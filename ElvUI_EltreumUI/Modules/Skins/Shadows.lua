@@ -727,29 +727,6 @@ function ElvUI_EltreumUI:Shadows()
 				end]]
 			end
 
-			--handle non spaced power and classpower
-			if E.db["unitframe"]["units"]["target"]["power"]["width"] ~= "spaced" and not E.db["unitframe"]["units"]["target"]["power"]["detachFromFrame"] == true then
-				if _G["ElvUF_Target_PowerBar"].shadow then
-					_G["ElvUF_Target_PowerBar"].shadow:Hide()
-				end
-			end
-			if E.db["unitframe"]["units"]["targettarget"]["power"]["width"] ~= "spaced" and not E.db["unitframe"]["units"]["targettarget"]["power"]["detachFromFrame"] == true then
-				if _G["ElvUF_Player_PowerBar"].shadow then
-					_G["ElvUF_Player_PowerBar"].shadow:Hide()
-				end
-			end
-			if E.db["unitframe"]["units"]["player"]["power"]["width"] ~= "spaced" and not E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] == true then
-				if _G["ElvUF_Player_PowerBar"].shadow then
-					_G["ElvUF_Player_PowerBar"].shadow:Hide()
-				end
-			end
-			if E.db["unitframe"]["units"]["player"]["classbar"]["fill"] ~= "spaced" and not E.db["unitframe"]["units"]["player"]["classbar"]["detachFromFrame"] == true then
-				if _G["ElvUF_Player_PowerBar"].shadow then
-					_G["ElvUF_Player_PowerBar"].shadow:Hide()
-				end
-			end
-
-
 			--player castbar
 			if E.db.unitframe.units.player.castbar.overlayOnFrame == "None" and (not E.db.ElvUI_EltreumUI.borders.borders) then
 				if E.db.unitframe.units.player.castbar.iconAttached == false then
@@ -887,7 +864,7 @@ function ElvUI_EltreumUI:Shadows()
 					if not button then
 						break
 					else
-						if not button.shadow then
+						if not button.shadow and (E.db["unitframe"]["units"]["player"]["classbar"]["fill"] == "spaced" or E.db["unitframe"]["units"]["player"]["classbar"]["detachFromFrame"] == true) then
 							button:CreateShadow()
 						end
 					end
@@ -921,6 +898,32 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 		end
+
+		--handle non spaced power and classpower
+		if E.db["unitframe"]["units"]["target"]["power"]["width"] ~= "spaced" and E.db["unitframe"]["units"]["target"]["power"]["detachFromFrame"] == false then
+			if _G["ElvUF_Target_PowerBar"].shadow then
+				_G["ElvUF_Target_PowerBar"].shadow:Hide()
+			end
+		end
+		if E.db["unitframe"]["units"]["targettarget"]["power"]["width"] ~= "spaced" and E.db["unitframe"]["units"]["targettarget"]["power"]["detachFromFrame"] == false then
+			if _G["ElvUF_TargetTarget_PowerBar"].shadow then
+				_G["ElvUF_TargetTarget_PowerBar"].shadow:Hide()
+			end
+		end
+		if E.db["unitframe"]["units"]["player"]["power"]["width"] ~= "spaced" and E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] == false then
+			if _G["ElvUF_Player_PowerBar"].shadow then
+				_G["ElvUF_Player_PowerBar"].shadow:Hide()
+			end
+		end
+		if E.db["unitframe"]["units"]["player"]["classbar"]["fill"] ~= "spaced" and not E.db["unitframe"]["units"]["player"]["classbar"]["detachFromFrame"] == true then
+			if _G["ElvUF_Player_Stagger"].shadow then
+				_G["ElvUF_Player_Stagger"].shadow:Hide()
+			end
+			if _G["ElvUF_Player_AdditionalPowerBar"].shadow then
+				_G["ElvUF_Player_AdditionalPowerBar"].shadow:Hide()
+			end
+		end
+
 
 		--bags
 		if E.private.bags.enable then
