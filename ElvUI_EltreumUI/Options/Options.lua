@@ -3685,7 +3685,7 @@ function ElvUI_EltreumUI:Configtable()
 								max = 200,
 								step = 0.1,
 								width = "full",
-								hidden = function() if E.Retail then return true else return false end end,
+								hidden = function() if E.Wrath then return false else return true end end,
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.totemedgesize end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.totemedgesize = value ElvUI_EltreumUI:Borders() end,
