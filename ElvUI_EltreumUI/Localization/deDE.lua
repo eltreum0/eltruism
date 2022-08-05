@@ -1013,5 +1013,5 @@ L["Vignette Alpha"] = "Vignette Transparenz"
 L["Change the transparency of the Vignette"] = "Verändere die transparenz der Vignette des Charakterarts"
 L["Character Panel Scale"] = "Charakterfenster Skalierung"
 L["Change the size of the Character Panel"] = "Ändere die Größe des Charakterfensters"
-L["Hide Actionbar Button Press"] = true
-L["Spark Texture"] = true --as in castbar spark, the mark where the cast is (yellow on my profile)
+L["Hide Actionbar Button Press"] = "Aktionsleisten Tastendruck ausblenden"
+L["Spark Texture"] = "Funkentextur"
