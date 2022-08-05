@@ -921,6 +921,8 @@ function ElvUI_EltreumUI:SetupCVars()
 	_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:SetValue('SHIFT')
 	_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:RefreshValue()
 
+	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
+
 	if E.Retail then
 		SetCVar('showNPETutorials', 0)
 		SetCVar('threatWarning', 3)
@@ -944,11 +946,7 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar("lootUnderMouse", 1)
 		SetCVar("chatBubbles", 1)
 		SetCVar("chatBubblesParty", 1)
-		if E.Classic or E.TBC then
-			SetCVar('cameraDistanceMaxZoomFactor', 2.6)
-		elseif E.Wrath then
-			E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor = 3.4
-			SetCVar('cameraDistanceMaxZoomFactor', 3.4)
+		if E.Wrath then
 			SetCVar('equipmentManager', 1)
 			SetCVar('previewTalents', 1)
 		end

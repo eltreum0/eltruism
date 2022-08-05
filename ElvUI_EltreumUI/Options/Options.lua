@@ -2046,13 +2046,6 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.characterpanelscale end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterpanelscale = value _G["CharacterFrame"]:SetScale(value) end,
 							},
-							header8448crest = {
-								order = 91,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
 							expandartcrest = {
 								order = 92,
 								type = 'toggle',
@@ -2061,13 +2054,6 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Enable this option"],
 								get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorycrest end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorycrest = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							header8448 = {
-								order = 95,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							expandart = {
 								order = 96,
@@ -4921,13 +4907,7 @@ function ElvUI_EltreumUI:Configtable()
 						desc = L["Maximum Camera Zoom Out"],
 						order = 5,
 						min = 1,
-						max = function()
-							if E.Wrath then
-								return 3.4
-							else
-								return 2.6
-							end
-						end,
+						max = 2.6,
 						step = 0.1,
 						width = "full",
 						get = function() return E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor end,
@@ -8540,3 +8520,20 @@ function ElvUI_EltreumUI:Configtable()
 		func()
 	end
 end
+
+--in case i split options into modules
+--[[
+tinsert(ElvUI_EltreumUI.Config, function()
+	E.Options.args.ElvUI_EltreumUI.args.NAMEOFOPTION = {
+		type = 'group',
+		name = "SOME NAME HERE",
+		icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\aurafilter',
+		childGroups = "tab",
+		order = 15,
+		args = {
+			someoption = {
+			},
+		},
+	}
+end)
+]]
