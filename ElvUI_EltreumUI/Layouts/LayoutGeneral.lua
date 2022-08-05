@@ -70,6 +70,8 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		--dk things
 		E.db["unitframe"]["colors"]["chargingRunes"] = true
 		E.db["unitframe"]["colors"]["runeBySpec"] = true
+		E.db["nameplates"]["colors"]["chargingRunes"] = true
+		E.db["nameplates"]["colors"]["runeBySpec"] = true
 
 		-- General
 		E.db["general"]["altPowerBar"]["font"] = "Kimberley"
