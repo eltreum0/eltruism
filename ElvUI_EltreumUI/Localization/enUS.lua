@@ -983,3 +983,4 @@ L["Character Panel Scale"] = true
 L["Change the size of the Character Panel"] = true
 L["Hide Actionbar Button Press"] = true
 L["Spark Texture"] = true
+L["Addon on Wago:"] = true
