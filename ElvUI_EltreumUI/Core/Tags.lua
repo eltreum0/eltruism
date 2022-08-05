@@ -738,14 +738,14 @@ E:AddTag('eltruism:lowmana', 'UNIT_POWER_FREQUENT', function(unit,_,args)
 	if percentage == nil then
 		percentage = 1
 	end
-	if UnitIsUnit("player", unit) then
+	if (E.Retail or E.Wrath) and UnitIsUnit("player", unit) then
 		local role
 		if E.Retail then
 			local currentSpec = GetSpecialization()
 			if currentSpec ~= nil then
 				role = GetSpecializationRole(currentSpec)
 			end
-		else
+		elseif E.Wrath then
 			role = GetTalentGroupRole(GetActiveTalentGroup())
 		end
 		if role == 'HEALER' then
