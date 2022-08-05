@@ -8232,6 +8232,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "description",
 								name = L["!key Chat Command"],
 								width = 'full',
+								hidden = function() if E.Retail then return false else return true end end,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							mpluskeys = {
@@ -8239,6 +8240,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'toggle',
 								name = L["Enable !key and !keys chat command"],
 								width = 'full',
+								hidden = function() if E.Retail then return false else return true end end,
 								desc = L["Will link your key and covenant in guild or party chat"],
 								get = function() return E.db.ElvUI_EltreumUI.otherstuff.mpluskeys end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mpluskeys = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -8451,7 +8453,13 @@ function ElvUI_EltreumUI:Configtable()
 								order = 1,
 								type = 'description',
 								fontSize = 'medium',
-								name = 'Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3\nCursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain\nExpand Hunter Stables is merged from Improved Stable Frame by Cybeloras which is licensed under GNU GPLv3\nIcons8 (www.icons8.com) for some of the icons. List in license.txt\nLootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3\nRogue Door Opener is a fork of Rogue Door Opener by Burzolog which licensed under GNU GPLv3\nLoot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain\nQuest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3',
+								name = function()
+									if E.Retail then
+										return 'Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3\nCursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain\nExpand Hunter Stables is merged from Improved Stable Frame by Cybeloras which is licensed under GNU GPLv3\nIcons8 (www.icons8.com) for some of the icons. List in license.txt\nLootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3\nRogue Door Opener is a fork of Rogue Door Opener by Burzolog which licensed under GNU GPLv3\nLoot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain\nQuest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3'
+									else
+										return 'Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3\nCursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain\nIcons8 (www.icons8.com) for some of the icons. List in license.txt\nLootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3\nLoot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain\nThe Item Level shown on the Character Panel Skin uses code from Simple Item level by Kemayo, licensed under BSD\nQuest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3\nSockets and Enchants is a fork of Kibs Item Levels by Kibsgaard which is licensed under Public Domain'
+									end
+								end,
 							},
 						},
 					},
@@ -8482,7 +8490,17 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'input',
 						width = 'full',
 						name = L["Addon on Tukui:"],
-						get = function() return 'https://www.tukui.org/addons.php?id=209' end,
+						get = function()
+							if E.Retail then
+								return 'https://www.tukui.org/addons.php?id=209'
+							elseif E.Wrath then
+								return 'https://www.tukui.org/addons.php?id=209'
+							elseif E.TBC then
+								return 'https://www.tukui.org/classic-tbc-addons.php?id=10'
+							elseif E.Classic then
+								return 'https://www.tukui.org/classic-addons.php?id=49'
+							end
+						end,
 					},
 					curse = {
 						order = 4,
@@ -8490,6 +8508,13 @@ function ElvUI_EltreumUI:Configtable()
 						width = 'full',
 						name = L["Addon on CurseForge:"],
 						get = function() return 'https://www.curseforge.com/wow/addons/elvui-eltruism' end,
+					},
+					wago = {
+						order = 5,
+						type = 'input',
+						width = 'full',
+						name = L["Addon on Wago:"],
+						get = function() return 'https://addons.wago.io/addons/elvui-eltruism' end,
 					},
 				},
 			},
