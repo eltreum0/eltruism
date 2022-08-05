@@ -526,10 +526,10 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					EltreumPowerBar:Show()
 					EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.RUNIC_POWER.r, E.db.unitframe.colors.power.RUNIC_POWER.g, E.db.unitframe.colors.power.RUNIC_POWER.b) --its runic power
 					if E.db.ElvUI_EltreumUI.nameplatepower.autoadjustposition then
-						if _G["ElvNP_TargetClassPowerStagger"] and _G["ElvNP_TargetClassPowerStagger"]:IsShown() then
-							EltreumPowerBar:SetPoint("TOP", _G["ElvNP_TargetClassPowerStagger"], "TOP", 0, 23)
-						elseif _G["ElvNP_TargetClassPowerStagger"] and not _G["ElvNP_TargetClassPowerStagger"]:IsShown() then
-							EltreumPowerBar:SetPoint("TOP", _G["ElvNP_TargetClassPowerStagger"], "TOP", 0, 16)
+						if _G["ElvNP_TargetClassPowerRunes"] and _G["ElvNP_TargetClassPowerRunes"]:IsShown() then
+							EltreumPowerBar:SetPoint("TOP", _G["ElvNP_TargetClassPowerRunes"], "TOP", 0, 27)
+						elseif _G["ElvNP_TargetClassPowerRunes"] and not _G["ElvNP_TargetClassPowerRunes"]:IsShown() then
+							EltreumPowerBar:SetPoint("TOP", _G["ElvNP_TargetClassPowerRunes"], "TOP", 0, 16)
 						end
 						--EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
 					else
