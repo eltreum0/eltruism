@@ -147,7 +147,7 @@ local statgradients = {
 }
 
 --adapted from libiteminfo to be player only
-function ElvUI_EltreumUI:GetPlayerItemLevel(unit)
+function ElvUI_EltreumUI:GetUnitItemLevel(unit)
 	local total, maxlevel = 0, 0
 	local level, mainhand, offhand, ranged
 
@@ -268,7 +268,7 @@ if not E.Retail then
 	avgilvl:RegisterEvent("PLAYER_ENTERING_WORLD")
 	avgilvl:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
 	avgilvl:SetScript("OnEvent", function()
-		_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetPlayerItemLevel("player")*100))/100)
+		_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100))/100)
 	end)
 
 	if E.Wrath then
@@ -1041,7 +1041,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				--set ilvl on char panel
 				hooksecurefunc("ToggleCharacter", function()
-					_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetPlayerItemLevel("player")*100))/100)
+					_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100))/100)
 				end)
 
 				--set the tabs
@@ -1737,7 +1737,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 								_G.InspectFrame.Ilvl:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 								_G.InspectLevelText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
 								_G.InspectFrame.Ilvl:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
-								_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetPlayerItemLevel("target")*100))/100)
+								_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100)
 							end)
 						end
 
