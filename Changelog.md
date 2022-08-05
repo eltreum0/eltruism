@@ -1,6 +1,21 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.2.1
+Added statusbar textures from Dragonflight\
+Added option to change the scale/size of the Character Panel\
+Added an option to hide the Button/Key Press on Action Bars\
+Added more enchants to Classic/TBC/Wrath list\
+Added option to change the Player Castbar Spark Texture\
+Updated german locale by Dlarge\
+Updated Eltruism Options to now be the same across versions, a future update is also planned to make it easier to change settings\
+Updated some ElvUI profile settings, including new ElvUI Death Knight options\
+Fixed some style filters not correctly enabling after being disabled\
+Fixed some fonts not correctly setting to outline in resolutions below 4k\
+Fixed Retail version being 9.2.7 when 9.2.7 is not yet released\
+Fixed Shadows for Power Bars and Class Bars when detached or non spaced\
+Fixed Shield/OffHand Quality Texture position in Classic/TBC/Wrath\
+___
 ### 3.2.0
 Added [eltruism:combatindicator] tag, which will display the same icon used for Player Combat indicator as a tag for that unit, such as on other players showing their combat status\
 Added more checks for settings being double enabled when they shouldn't and added more checks to prevent it from happening\
@@ -431,7 +446,7 @@ ___
 ### 2.8.5
 Fixed custom class textures for unitframes
 ___
-### 2.8.4 
+### 2.8.4
 Updated german translation with additional translations by Khornan\
 Added options to change class textures when using light mode in Eltruism > Media > Unitframes\
 Added !keys and !key commands adapted from Luckyone's M+ keys weakaura\
@@ -448,7 +463,7 @@ Improved the Minimap combat hide, which will now also move auras to where the mi
 Improved the Quest Automatic Turn-in when gossips were involved, also added an ignore list for some npcs that shouldn't be automatically interacted with\
 Made the System/Interface window movable
 ___
-### 2.8.2 
+### 2.8.2
 Added option to change the font for the Error Frame and Raid Boss Emote Frame\
 Added an option to hide the Error Frame\
 Added a dark bar to the Dark Souls death animation\
