@@ -2894,9 +2894,6 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.glow.numberdebuff end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.glow.numberdebuff = value end,
 							},
-
-
-
 							headerlinetotemsglow = {
 								order = 6,
 								type = "description",
@@ -2955,38 +2952,6 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.glow.totem4 end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.glow.totem4 = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 							headerline1 = {
 								order = 99,
 								type = "description",
@@ -3133,6 +3098,142 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, r, g, b, a)
 									local glowcustomcolornp = E.db.ElvUI_EltreumUI.glowcustomcolornp
 									glowcustomcolornp.r, glowcustomcolornp.g, glowcustomcolornp.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+								end,
+							},
+							headertotem1 = {
+								order = 11,
+								type = "description",
+								name = L["Shaman Fire Totem"],
+								width = 'full',
+								hidden = function() if E.Retail then return true else return false end end,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							classcolortotem1 = {
+								type = 'toggle',
+								name = L["Use Type Colors"],
+								order = 12,
+								desc = L["Toggle Totem to use it's own Type Colors"],
+								hidden = function() if E.Retail then return true else return false end end,
+								get = function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.glow.totemtypecolor = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							colortotem1 = {
+								order = 13,
+								type = 'color',
+								name = L["Custom Color"],
+								hidden = function() if E.Retail then return true else return false end end,
+								hasAlpha = false,
+								disabled = function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,
+								get = function()
+									local glowtotem1customcolor = E.db.ElvUI_EltreumUI.glowtotem1customcolor
+									local d = P.ElvUI_EltreumUI.glowtotem1customcolor
+									return glowtotem1customcolor.r, glowtotem1customcolor.g, glowtotem1customcolor.b, glowtotem1customcolor.a, d.r, d.g, d.b, d.a
+								end,
+								set = function(_, r, g, b, a)
+									local glowtotem1customcolor = E.db.ElvUI_EltreumUI.glowtotem1customcolor
+									glowtotem1customcolor.r, glowtotem1customcolor.g, glowtotem1customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+								end,
+							},
+							headertotem2 = {
+								order = 14,
+								type = "description",
+								name = L["Shaman Earth Totem"],
+								width = 'full',
+								hidden = function() if E.Retail then return true else return false end end,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							classcolortotem2 = {
+								type = 'toggle',
+								name = L["Use Type Colors"],
+								order = 15,
+								desc = L["Toggle Totem to use it's own Type Colors"],
+								hidden = function() if E.Retail then return true else return false end end,
+								get = function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.glow.totemtypecolor = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							colortotem2 = {
+								order = 16,
+								type = 'color',
+								name = L["Custom Color"],
+								hasAlpha = false,
+								hidden = function() if E.Retail then return true else return false end end,
+								disabled = function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,
+								get = function()
+									local glowtotem2customcolor = E.db.ElvUI_EltreumUI.glowtotem2customcolor
+									local d = P.ElvUI_EltreumUI.glowtotem2customcolor
+									return glowtotem2customcolor.r, glowtotem2customcolor.g, glowtotem2customcolor.b, glowtotem2customcolor.a, d.r, d.g, d.b, d.a
+								end,
+								set = function(_, r, g, b, a)
+									local glowtotem2customcolor = E.db.ElvUI_EltreumUI.glowtotem2customcolor
+									glowtotem2customcolor.r, glowtotem2customcolor.g, glowtotem2customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+								end,
+							},
+							headertotem3 = {
+								order = 17,
+								type = "description",
+								name = L["Shaman Water Totem"],
+								width = 'full',
+								hidden = function() if E.Retail then return true else return false end end,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							classcolortotem3 = {
+								type = 'toggle',
+								name = L["Use Type Colors"],
+								order = 18,
+								desc = L["Toggle Totem to use it's own Type Colors"],
+								hidden = function() if E.Retail then return true else return false end end,
+								get = function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.glow.totemtypecolor = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							colortotem3 = {
+								order = 19,
+								type = 'color',
+								name = L["Custom Color"],
+								hasAlpha = false,
+								hidden = function() if E.Retail then return true else return false end end,
+								disabled = function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,
+								get = function()
+									local glowtotem3customcolor = E.db.ElvUI_EltreumUI.glowtotem3customcolor
+									local d = P.ElvUI_EltreumUI.glowtotem3customcolor
+									return glowtotem3customcolor.r, glowtotem3customcolor.g, glowtotem3customcolor.b, glowtotem3customcolor.a, d.r, d.g, d.b, d.a
+								end,
+								set = function(_, r, g, b, a)
+									local glowtotem3customcolor = E.db.ElvUI_EltreumUI.glowtotem3customcolor
+									glowtotem3customcolor.r, glowtotem3customcolor.g, glowtotem3customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+								end,
+							},
+							headertotem4 = {
+								order = 20,
+								type = "description",
+								name = L["Shaman Air Totem"],
+								width = 'full',
+								hidden = function() if E.Retail then return true else return false end end,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							classcolortotem4 = {
+								type = 'toggle',
+								name = L["Use Type Colors"],
+								order = 21,
+								desc = L["Toggle Totem to use it's own Type Colors"],
+								hidden = function() if E.Retail then return true else return false end end,
+								get = function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.glow.totemtypecolor = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							colortotem4 = {
+								order = 22,
+								type = 'color',
+								name = L["Custom Color"],
+								hasAlpha = false,
+								hidden = function() if E.Retail then return true else return false end end,
+								disabled = function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,
+								get = function()
+									local glowtotem4customcolor = E.db.ElvUI_EltreumUI.glowtotem4customcolor
+									local d = P.ElvUI_EltreumUI.glowtotem4customcolor
+									return glowtotem4customcolor.r, glowtotem4customcolor.g, glowtotem4customcolor.b, glowtotem4customcolor.a, d.r, d.g, d.b, d.a
+								end,
+								set = function(_, r, g, b, a)
+									local glowtotem4customcolor = E.db.ElvUI_EltreumUI.glowtotem4customcolor
+									glowtotem4customcolor.r, glowtotem4customcolor.g, glowtotem4customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
 								end,
 							},
 						},
