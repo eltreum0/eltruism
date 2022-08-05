@@ -217,4 +217,8 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.db.ElvUI_EltreumUI.otherstuff.playerdeath = false
 		E.db.ElvUI_EltreumUI.otherstuff.playerdeathcustom = false
 	end
+	if E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 == true and E.db.ElvUI_EltreumUI.questsettings.questitemsfade == true then
+		E.db.ElvUI_EltreumUI.questsettings.questitemsfade = false
+		E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 = true
+	end
 end
