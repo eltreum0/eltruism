@@ -762,4 +762,4 @@ E:AddTag('eltruism:lowmana', 'UNIT_POWER_FREQUENT', function(unit,_,args)
 		end
 	end
 end)
-E:AddTagInfo("eltruism:lowmana", ElvUI_EltreumUI.Name, L["Plays a sound when you have low mana as a healer. Usage: [eltruism:lowmana{5}] as an example of 5%"])
+E:AddTagInfo("eltruism:lowmana", ElvUI_EltreumUI.Name, L["Plays a voiced emote when you have low mana as a healer. Usage: [eltruism:lowmana{5}] as an example of 5%"])
