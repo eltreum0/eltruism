@@ -634,7 +634,6 @@ end)
 E:AddTagInfo("eltruism:dc", ElvUI_EltreumUI.Name, L["Displays a disconnect symbol from Releaf when unit is disconnected. Usage: [eltruism:dc{number}]"])
 
 --HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
-
 local hpspam = false
 E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit,_,args)
 	local texture1,texture2 = strsplit(',', args or '')
@@ -732,18 +731,23 @@ E:AddTag('eltruism:combatindicator', 'UNIT_HEALTH', function(unit)
 end)
 E:AddTagInfo("eltruism:combatindicator", ElvUI_EltreumUI.Name, L["Displays an icon when the unit is in combat, uses player icon"])
 
+--plays a sound for healers when they have low mana, has anti spam
 local manaspam = false
 E:AddTag('eltruism:lowmana', 'UNIT_POWER_FREQUENT', function(unit,_,args)
 	local percentage = args
 	if percentage == nil then
 		percentage = 1
 	end
-	local currentSpec = GetSpecialization()
-	local role
-	if currentSpec ~= nil then
-		role = GetSpecializationRole(currentSpec)
-	end
 	if UnitIsUnit("player", unit) then
+		local role
+		if E.Retail then
+			local currentSpec = GetSpecialization()
+			if currentSpec ~= nil then
+				role = GetSpecializationRole(currentSpec)
+			end
+		else
+			role = GetTalentGroupRole(GetActiveTalentGroup())
+		end
 		if role == 'HEALER' then
 			if (UnitPower("player")/UnitPowerMax("player")) < (tonumber(percentage) * 0.01) then
 				if manaspam == false then
