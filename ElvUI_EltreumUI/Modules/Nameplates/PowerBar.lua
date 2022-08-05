@@ -146,7 +146,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 			if UnitPower("player") == 0 then
 				EltreumPowerPrediction:SetValue(0)
 			elseif UnitPower("player") ~= 0 then
-				if mainCost >= UnitPowerMax("player") then
+				if mainCost >= UnitPowerMax("player") or mainCost >= UnitPower("player") then
 					if E.db.ElvUI_EltreumUI.dev then
 						ElvUI_EltreumUI:Print("Couldn't Calculate your power properly, please report in Discord")
 					end
@@ -707,6 +707,7 @@ end)
 local EltruismPowerBarPredictionEventsFrame = CreateFrame("FRAME")
 EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
+EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
 EltruismPowerBarPredictionEventsFrame:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:PowerPrediction()
 end)
