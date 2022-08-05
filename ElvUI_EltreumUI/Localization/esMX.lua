@@ -964,7 +964,6 @@ L["NPCs use Target Castbar colors not NPC colors for their castbars"] = "Los NPC
 L["Shows level difference when it exists for NPCs and players, hides for players if same level"] = "Muestra la diferencia de nivel cuando existe para NPCs y jugadores, se oculta para los jugadores si es el mismo nivel"
 L["Shows the current Death Knight presence"] = "Muestra la presencia actual del Caballero de la Muerte"
 L["Displays the number of the group for the first member of that group, raid sorting can break this tag making it show up on other members."] = "Muestra el número del grupo para el primer miembro de ese grupo, la clasificación de la incursión puede romper esta etiqueta haciendo que se muestre en otros miembros."
-
 L["Cooldown Sound"] = "Sonido de reutilizacion de hechizo"
 L["Play a Sound when attempting to use a skill that is on cooldown."] = "Reproduce un sonido cuando se intenta usar una habilidad que está en reutilizacion de hechizo."
 L["Stance Bar Thickness"] = "Espesor de la barra de postura"
@@ -1001,3 +1000,4 @@ L["Change the size of the Character Panel"] = true
 L["Hide Actionbar Button Press"] = true
 L["Spark Texture"] = true --as in castbar spark, the mark where the cast is (yellow on my profile)
 L["Addon on Wago:"] = true
+L["Plays a voiced emote when you have low mana as a healer. Usage: [eltruism:lowmana{5}] as an example of 5%"] = true
