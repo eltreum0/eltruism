@@ -13,5 +13,6 @@ Fixed some fonts not correctly setting to outline in resolutions below 4k\
 Fixed Retail version being 9.2.7 when 9.2.7 is not yet released\
 Fixed Shadows for Power Bars and Class Bars when detached or non spaced\
 Fixed Shield/OffHand Quality Texture position in Classic/TBC/Wrath\
+Fixed an issue with Nameplate Power Bar and Death Knights in Wrath Beta
 
 
