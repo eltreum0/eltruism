@@ -147,13 +147,13 @@ local statgradients = {
 }
 
 --adapted from libiteminfo to be player only
-function ElvUI_EltreumUI:GetPlayerItemLevel()
+function ElvUI_EltreumUI:GetPlayerItemLevel(unit)
 	local total, maxlevel = 0, 0
 	local level, mainhand, offhand, ranged
 
 	for i = 1, 15 do
 		if (i ~= 4) then
-			local linkloop = _G.GetInventoryItemLink("player", i)
+			local linkloop = _G.GetInventoryItemLink(unit, i)
 			if linkloop then
 				level = select(4, _G.GetItemInfo(linkloop))
 			else
@@ -171,7 +171,7 @@ function ElvUI_EltreumUI:GetPlayerItemLevel()
 	end
 
 	local mainlevel = 0
-	local mainlink = _G.GetInventoryItemLink("player", 16)
+	local mainlink = _G.GetInventoryItemLink(unit, 16)
 	if mainlink then
 		mainlevel = select(4, _G.GetItemInfo(mainlink))
 	end
@@ -180,7 +180,7 @@ function ElvUI_EltreumUI:GetPlayerItemLevel()
 		mainhand = 0
 	end
 
-	local offhandlink = _G.GetInventoryItemLink("player", 17)
+	local offhandlink = _G.GetInventoryItemLink(unit, 17)
 	local offhandlevel = 0
 	if offhandlink then
 		offhandlevel = select(4, _G.GetItemInfo(offhandlink))
@@ -191,7 +191,7 @@ function ElvUI_EltreumUI:GetPlayerItemLevel()
 	end
 
 	local rangedlevel = 0
-	local rangedlink = _G.GetInventoryItemLink("player", 18)
+	local rangedlink = _G.GetInventoryItemLink(unit, 18)
 	if rangedlink then
 		rangedlevel = select(4, _G.GetItemInfo(rangedlink))
 	end
@@ -268,7 +268,7 @@ if not E.Retail then
 	avgilvl:RegisterEvent("PLAYER_ENTERING_WORLD")
 	avgilvl:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
 	avgilvl:SetScript("OnEvent", function()
-		_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetPlayerItemLevel()*100))/100)
+		_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetPlayerItemLevel("player")*100))/100)
 	end)
 
 	if E.Wrath then
@@ -1041,7 +1041,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				--set ilvl on char panel
 				hooksecurefunc("ToggleCharacter", function()
-					_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetPlayerItemLevel()*100))/100)
+					_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetPlayerItemLevel("player")*100))/100)
 				end)
 
 				--set the tabs
@@ -1692,7 +1692,6 @@ function ElvUI_EltreumUI:InspectBg(unit)
 				local _, englishClass, _, englishRace = _G.GetPlayerInfoByGUID(unit)
 				if englishClass or englishRace then
 					if _G.InspectFrame then
-
 						--add class icon + colored name
 						if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
 							local classcolor = E:ClassColor(englishClass, true)
@@ -1719,6 +1718,24 @@ function ElvUI_EltreumUI:InspectBg(unit)
 										_G.InspectFrameTitleText:SetText(classsymbolonframe.." ".._G.InspectFrameTitleText:GetText())
 									end
 								end
+							end)
+						end
+
+						--calculate inspect ilvl
+						if not E.Retail and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
+							E:Delay(0, function()
+								if not _G["EltruismInspectIlvl"] then
+									_G.InspectFrame.Ilvl = _G.InspectFrame:CreateFontString("EltruismInspectIlvl", "OVERLAY", "GameFontNormal")
+								else
+									_G.InspectFrame.Ilvl = _G["EltruismInspectIlvl"]
+								end
+								_G.InspectFrame.Ilvl:SetSize(200, 32)
+								_G.InspectFrame.Ilvl:SetPoint("BOTTOM", _G.InspectLevelText, "BOTTOM", 0, -25) --ilvl number
+								_G.InspectFrame.Ilvl:SetParent(_G["InspectModelFrame"])
+								_G.InspectFrame.Ilvl:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
+								_G.InspectLevelText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
+								_G.InspectFrame.Ilvl:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
+								_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetPlayerItemLevel("target")*100))/100)
 							end)
 						end
 
