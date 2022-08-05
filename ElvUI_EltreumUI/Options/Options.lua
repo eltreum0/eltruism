@@ -2631,7 +2631,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = 'Gladddy',
 								desc = L["Reset to Eltruism defaults."],
 								width = 'double',
-								hidden = function() if E.Retail then return true else return false end end,
+								hidden = function() if E.Retail or E.Classic then return true else return false end end,
 								func = function() ElvUI_EltreumUI:SetupGladdy() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							gladius = {
@@ -2640,7 +2640,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = 'Gladius',
 								desc = L["Reset to Eltruism defaults."],
 								width = 'double',
-								hidden = function() if E.Retail then return true else return false end end,
+								hidden = function() if E.Retail or E.Classic then return true else return false end end,
 								func = function() ElvUI_EltreumUI:SetupGladius() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							capping = {
@@ -4921,7 +4921,13 @@ function ElvUI_EltreumUI:Configtable()
 						desc = L["Maximum Camera Zoom Out"],
 						order = 5,
 						min = 1,
-						max = 2.6,
+						max = function()
+							if E.Wrath then
+								return 3.4
+							else
+								return 2.6
+							end
+						end,
 						step = 0.1,
 						width = "full",
 						get = function() return E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor end,
