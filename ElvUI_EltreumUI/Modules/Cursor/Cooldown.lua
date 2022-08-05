@@ -22,7 +22,7 @@ local GetPetActionCooldown = GetPetActionCooldown
 
 --onupdate things
 local NormalUpdateDelay = 1 --1.0/10 -- update while hidden
-local FadingUpdateDelay = 1/10 --1.0/25 -- update while shown
+local FadingUpdateDelay = 0.1 --1.0/25 -- update while shown
 local lastUpdate = 0 -- time since last real update
 local updateDelay = NormalUpdateDelay
 --function variables
@@ -76,9 +76,11 @@ function ElvUI_EltreumUI:CooldownEnable()
 	EltruismCooldownFrame:SetWidth(cooldownsize)
 	EltruismCooldownFrame:SetHeight(cooldownsize)
 	EltruismCooldownFrame:SetJustifyH("CENTER")
-	local textsize = ( (cooldownsize / 3) + 1)
+	local textsize
 	if C_CVar.GetCVar('gxFullscreenResolution') == "3840x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3840x2160" then
-		textsize = ( (cooldownsize / 2) + 1)
+		textsize = ( (cooldownsize * 0.5) + 1)
+	else
+		textsize = ( (cooldownsize / 3) + 1)
 	end
 
 	EltruismCooldownText:SetFont(E.media.normFont, textsize, E.db.general.fontStyle)

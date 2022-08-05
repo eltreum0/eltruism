@@ -345,7 +345,7 @@ function ElvUI_EltreumUI:CastCursor()
 				local name, _, _, start, finish, _, castID = UnitCastingInfo("player")
 				if name then
 					self.castID = castID
-					Start(self, GetTime() - start/1000, (finish - start) / 1000 )
+					Start(self, GetTime() - start*0.001, (finish - start) * 0.001 )
 				else
 					RingSetShown( self, false )
 				end
@@ -377,7 +377,7 @@ function ElvUI_EltreumUI:CastCursor()
 				local name, _, _, start, finish = UnitChannelInfo("player")
 				if name then
 					self.castID = nil
-					Start(self, GetTime() - start/1000, (finish - start) / 1000 )
+					Start(self, GetTime() - start*0.001, (finish - start) * 0.001 )
 				else
 					RingSetShown( self, false )
 				end

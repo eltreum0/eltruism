@@ -144,13 +144,13 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 					-- setup x coordinate
 					if string.match(coords[1], "%d+") then
 						if string.len(coords[1]) == 3 then
-							x = (tonumber(coords[1])/1000)
+							x = (tonumber(coords[1])*0.001)
 						elseif string.len(coords[1]) == 2 then
-							x = (tonumber(coords[1])/100)
+							x = (tonumber(coords[1])*0.01)
 						elseif string.len(coords[1]) == 4 then
-							x = (tonumber(coords[1])/100)
+							x = (tonumber(coords[1])*0.01)
 						elseif string.len(coords[1]) == 5 then
-							x = (tonumber(coords[1])/100)
+							x = (tonumber(coords[1])*0.01)
 						elseif string.len(coords[1]) > 5 then
 							coords[1] = "a"
 						end
@@ -158,13 +158,13 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 					-- setup y coordinate
 					if string.match(coords[2], "%d+") then
 						if string.len(coords[2]) == 3 then
-							y = (tonumber(coords[2])/1000)
+							y = (tonumber(coords[2])*0.001)
 						elseif string.len(coords[2]) == 2 then
-							y = (tonumber(coords[2])/100)
+							y = (tonumber(coords[2])*0.01)
 						elseif string.len(coords[2]) == 4 then
-							y = (tonumber(coords[2])/100)
+							y = (tonumber(coords[2])*0.01)
 						elseif string.len(coords[2]) == 5 then
-							y = (tonumber(coords[2])/100)
+							y = (tonumber(coords[2])*0.01)
 						elseif string.len(coords[2]) > 5 then
 							coords[1] = "a"
 						end

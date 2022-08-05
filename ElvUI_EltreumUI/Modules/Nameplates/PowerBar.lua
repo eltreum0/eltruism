@@ -200,13 +200,13 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			if not UnitPower("player") then
 				return 0
 			elseif UnitPower("player") >= 1000000000000 then
-				ret = placeValue:format(UnitPower("player") / 1000000000000) .. " T" -- trillion
+				ret = placeValue:format(UnitPower("player") * 0.000000000001) .. " T" -- trillion
 			elseif UnitPower("player") >= 1000000000 then
-				ret = placeValue:format(UnitPower("player") / 1000000000) .. " B" -- billion
+				ret = placeValue:format(UnitPower("player") * 0.000000001) .. " B" -- billion
 			elseif UnitPower("player") >= 1000000 then
-				ret = placeValue:format(UnitPower("player") / 1000000) .. " M" -- million
+				ret = placeValue:format(UnitPower("player") * 0.000001) .. " M" -- million
 			elseif UnitPower("player") >= 1000 then
-				ret = placeValue:format(UnitPower("player") / 1000) .. "k" -- thousand
+				ret = placeValue:format(UnitPower("player") * 0.001) .. "k" -- thousand
 			else
 				ret = UnitPower("player") -- hundreds
 			end
@@ -222,18 +222,12 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			EltreumPowerBar.bg:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex + 1 , E.db.ElvUI_EltreumUI.nameplatepower.sizey + 1 )
 			EltreumPowerBar.bg:SetVertexColor(E.db.ElvUI_EltreumUI.nameplatepower.r, E.db.ElvUI_EltreumUI.nameplatepower.g, E.db.ElvUI_EltreumUI.nameplatepower.b) -- option for changing this color
 
-
-			--get location of power bar texture
-			--local predictionpos = EltreumPowerBar:GetStatusBarTexture()
-
 			--update power prediction
-
 			EltreumPowerPrediction:SetMinMaxValues(0, UnitPowerMax("player"))
 			EltreumPowerPrediction:SetPoint("RIGHT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
 			EltreumPowerPrediction:SetFrameStrata("HIGH")
 
 			--update power prediction incoming
-
 			EltreumPowerPredictionIncoming:SetMinMaxValues(0, UnitPowerMax("player"))
 			EltreumPowerPredictionIncoming:SetPoint("LEFT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
 			EltreumPowerPredictionIncoming:SetFrameStrata("HIGH")
@@ -531,7 +525,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						elseif _G["ElvNP_TargetClassPowerRunes"] and not _G["ElvNP_TargetClassPowerRunes"]:IsShown() then
 							EltreumPowerBar:SetPoint("TOP", _G["ElvNP_TargetClassPowerRunes"], "TOP", 0, 16)
 						end
-						--EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
 					else
 						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplatepower.posy)
 					end
@@ -660,7 +653,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				if _G["ElvNP_TargetClassPowerRunes"] and _G["ElvNP_TargetClassPowerRunes"]:IsShown() then
 					EltreumPowerBar:SetPoint("TOP", _G["ElvNP_TargetClassPowerRunes"], "TOP", 0, 7)
 				elseif _G["ElvNP_TargetClassPowerClassPower"] and _G["ElvNP_TargetClassPowerClassPower"]:IsShown() then
-					--print("using classpower anchor instead")
 					EltreumPowerBar:SetPoint("TOP", _G["ElvNP_TargetClassPowerClassPower"], "TOP", 0, 7)
 				elseif _G["ElvNP_TargetClassPowerStagger"] and _G["ElvNP_TargetClassPowerStagger"]:IsShown() then
 					EltreumPowerBar:SetPoint("TOP", _G["ElvNP_TargetClassPowerStagger"], "TOP", 0, 7)
@@ -686,16 +678,17 @@ function ElvUI_EltreumUI:NameplatePowerTextUpdate()
 		if not power then
 			return 0
 		elseif power >= 1000000000000 then
-			ret = placeValue:format(power / 1000000000000) .. " T" -- trillion
+			ret = placeValue:format(power * 0.000000000001) .. " T" -- trillion
 		elseif power >= 1000000000 then
-			ret = placeValue:format(power / 1000000000) .. " B" -- billion
+			ret = placeValue:format(power * 0.000000001) .. " B" -- billion
 		elseif power >= 1000000 then
-			ret = placeValue:format(power / 1000000) .. " M" -- million
+			ret = placeValue:format(power * 0.000001) .. " M" -- million
 		elseif power >= 1000 then
-			ret = placeValue:format(power / 1000) .. "K" -- thousand
+			ret = placeValue:format(power * 0.001) .. "K" -- thousand
 		else
 			ret = power -- hundreds
 		end
+
 		EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.nameplatepower.font), E.db.ElvUI_EltreumUI.nameplatepower.fontsize, E.db.general.fontStyle)
 		EltreumPowerBar.Text:SetText(ret)
 		--EltreumPowerBar.Text:SetText(BreakUpLargeNumbers(power))
@@ -738,7 +731,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 				end
 			elseif E.TBC or E.Classic then
-				if E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'DEATHKNIGHT' then
+				if E.myclass == 'ROGUE' or E.myclass == 'DRUID' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
 				else
@@ -818,13 +811,6 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 					end
 				end
 			end
-		--[[else --eltruism default buff/debuff position
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
-			if E.TBC or E.Classic then
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 31
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 31
-			end]]
 		end
 	end
 end

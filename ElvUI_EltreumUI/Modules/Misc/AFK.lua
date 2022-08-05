@@ -146,7 +146,7 @@ if E.db.general.afk then
 	EltruismAFKTop:SetPoint('TOP', UIParent, 'TOP', 0, 0)
 	--EltruismAFKTop:SetWidth(E.screenWidth + (E.Border*2))
 	EltruismAFKTop:SetWidth(E.screenWidth*2)
-	EltruismAFKTop:SetHeight(E.screenHeight * (1 / 10))
+	EltruismAFKTop:SetHeight(E.screenHeight * 0.1)
 end
 
 function ElvUI_EltreumUI:AFKLogo()
