@@ -269,8 +269,8 @@ function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 			ElvUI_EltreumUI:UpdateNPwithoutBar()
 		end
 		if E.db.ElvUI_EltreumUI.borders.borders then
-			ElvUI_EltreumUI:Borders()
-			ElvUI_EltreumUI:BorderAdjust()
+			E:Delay(2, function() ElvUI_EltreumUI:BorderAdjust() end)
+			E:Delay(2, function() ElvUI_EltreumUI:Borders() end)
 		end
 	end
 end
