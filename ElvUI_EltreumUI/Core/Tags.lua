@@ -634,8 +634,16 @@ end)
 E:AddTagInfo("eltruism:dc", ElvUI_EltreumUI.Name, L["Displays a disconnect symbol from Releaf when unit is disconnected. Usage: [eltruism:dc{number}]"])
 
 --HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
+
+local hpspam = false
 E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit,_,args)
 	local texture1,texture2 = strsplit(',', args or '')
+	if texture1 == nil then
+		texture1 = 5
+	end
+	if texture2 == nil then
+		texture2 = 2
+	end
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead"..tostring(texture1)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc"..tostring(texture2)..".tga:0:0:0:0|t"
 	if not UnitIsPlayer(unit) then  --npc
@@ -648,8 +656,29 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 		else
 			return L["Dead"]
 		end
+	elseif UnitIsUnit("player", unit) then --player
+		if not UnitIsDead("player") then
+			if UnitHealth("player") == UnitHealthMax("player") then
+				hpspam = false
+				return E:ShortValue(UnitHealth("player"))
+			elseif (UnitHealth("player")/UnitHealthMax("player")) < 0.05 then
+				if hpspam == false then
+					DoEmote("HEALME")
+					hpspam = true
+				end
+				return (E:ShortValue(UnitHealth("player")).." - "..E:GetFormattedText('PERCENT', UnitHealth("player"), UnitHealthMax("player")))
+			else
+				return (E:ShortValue(UnitHealth("player")).." - "..E:GetFormattedText('PERCENT', UnitHealth("player"), UnitHealthMax("player")))
+			end
+		elseif UnitIsDead(unit) and UnitIsConnected(unit) then
+			return deadtexture
+		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
+			return dctexture
+		elseif UnitIsDead(unit) and not UnitIsConnected(unit) then
+			return dctexture
+		end
 	else
-		if not UnitIsDead(unit) then --player
+		if not UnitIsDead(unit) then --players
 			if UnitHealth(unit) == UnitHealthMax(unit) then
 				return E:ShortValue(UnitHealth(unit))
 			else
@@ -702,3 +731,31 @@ E:AddTag('eltruism:combatindicator', 'UNIT_HEALTH', function(unit)
 	end
 end)
 E:AddTagInfo("eltruism:combatindicator", ElvUI_EltreumUI.Name, L["Displays an icon when the unit is in combat, uses player icon"])
+
+local manaspam = false
+E:AddTag('eltruism:lowmana', 'UNIT_POWER_FREQUENT', function(unit,_,args)
+	local percentage = args
+	if percentage == nil then
+		percentage = 1
+	end
+	local currentSpec = GetSpecialization()
+	local role
+	if currentSpec ~= nil then
+		role = GetSpecializationRole(currentSpec)
+	end
+	if UnitIsUnit("player", unit) then
+		if role == 'HEALER' then
+			if (UnitPower("player")/UnitPowerMax("player")) < (tonumber(percentage) * 0.01) then
+				if manaspam == false then
+					DoEmote("OOM")
+					manaspam = true
+				end
+				return ""
+			elseif (UnitPower("player")/UnitPowerMax("player")) > (tonumber(percentage) * 0.01) then
+				manaspam = false
+				return ""
+			end
+		end
+	end
+end)
+E:AddTagInfo("eltruism:lowmana", ElvUI_EltreumUI.Name, L["Plays a sound when you have low mana as a healer. Usage: [eltruism:lowmana{5}] as an example of 5%"])
