@@ -9,6 +9,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.chat.colorsysmsg = true
 	E.db.ElvUI_EltreumUI.chat.looticons = true
 	E.db.ElvUI_EltreumUI.chat.itemlevels = true
+	E.db.ElvUI_EltreumUI.chat.rollsound = true
 
 	--CVars
 	if E.Retail then
@@ -132,6 +133,9 @@ function ElvUI_EltreumUI:UpdateSettings()
 	end
 	E.db.ElvUI_EltreumUI.questsettings.rogueopen = true
 	E.db.ElvUI_EltreumUI.questsettings.questitems = false
+	if not E.Retail then
+		E.db.ElvUI_EltreumUI.questsettings.questitems = true
+	end
 	E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 = true
 	E.db.ElvUI_EltreumUI.questsettings.questitemsfade = false
 
@@ -154,6 +158,8 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.otherstuff.playerdeathgta = false
 	E.db.ElvUI_EltreumUI.otherstuff.playerdeathcustom = false
 	E.db.ElvUI_EltreumUI.otherstuff.mpluskeys = true
+	E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons = true
+	E.db.ElvUI_EltreumUI.otherstuff.delete = true
 
 	--private
 	E.private.ElvUI_EltreumUI.nameplatepower.enable = true
