@@ -2034,29 +2034,8 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-							characterpanelscale = {
-								type = 'range',
-								name = L["Character Panel Scale"],
-								desc = L["Change the size of the Character Panel"],
-								order = 90,
-								min = 0.2,
-								max = 2,
-								step = 0.01,
-								--width = "double",
-								get = function() return E.db.ElvUI_EltreumUI.skins.characterpanelscale end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterpanelscale = value _G["CharacterFrame"]:SetScale(value) end,
-							},
-							expandartcrest = {
-								order = 92,
-								type = 'toggle',
-								name = L["Add Crest to Character Panel"],
-								width = 'full',
-								desc = L["Enable this option"],
-								get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorycrest end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorycrest = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
 							expandart = {
-								order = 96,
+								order = 93,
 								type = 'toggle',
 								name = L["Expand Character Art"],
 								width = 'full',
@@ -2066,7 +2045,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybg = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							expandamoryclassic = {
-								order = 96,
+								order = 93,
 								type = 'toggle',
 								name = L["Expand Character Panel"],
 								width = 'full',
@@ -2074,6 +2053,39 @@ function ElvUI_EltreumUI:Configtable()
 								hidden = function() if E.Retail then return true else return false end end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.classicarmory end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classicarmory = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							expandartcrest = {
+								order = 94,
+								type = 'toggle',
+								name = L["Add Crest to Character Panel"],
+								width = 'full',
+								desc = L["Enable this option"],
+								get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorycrest end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorycrest = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header834gap = {
+								order = 95,
+								type = "description",
+								name = "",
+								width = 'full',
+							},
+							characterpanelscale = {
+								type = 'range',
+								name = L["Character Panel Scale"],
+								desc = L["Change the size of the Character Panel"],
+								order = 96,
+								min = 0.2,
+								max = 2,
+								step = 0.01,
+								--width = "double",
+								get = function() return E.db.ElvUI_EltreumUI.skins.characterpanelscale end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterpanelscale = value _G["CharacterFrame"]:SetScale(value) end,
+							},
+							header834gap2 = {
+								order = 97,
+								type = "description",
+								name = "",
+								width = 'full',
 							},
 							expandartalpha = {
 								type = 'range',
@@ -2094,43 +2106,8 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha = value _G["EltruismCharacterBG"]:SetAlpha(value) end,
 							},
-							expandvignetteenable = {
-								order = 98,
-								type = 'toggle',
-								name = L["Add a Vignette over the Character Art"],
-								width = 'full',
-								desc = L["Enable this option"],
-								disabled = function()
-									if (E.Retail and not E.db.ElvUI_EltreumUI.skins.expandarmorybg) then
-										return true
-									elseif (not E.Retail and not E.db.ElvUI_EltreumUI.skins.classicarmory) then
-										return true
-									end
-								end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.armoryvignette end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryvignette = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
-							},
-							expandvignettealpha = {
-								type = 'range',
-								name = L["Vignette Alpha"],
-								desc = L["Change the transparency of the Vignette"],
-								order = 99,
-								min = 0.01,
-								max = 1,
-								step = 0.01,
-								--width = "double",
-								disabled = function()
-									if E.Retail and (not E.db.ElvUI_EltreumUI.skins.expandarmorybg or not E.db.ElvUI_EltreumUI.skins.armoryvignette) then
-										return true
-									elseif not E.Retail and (not E.db.ElvUI_EltreumUI.skins.classicarmory or not E.db.ElvUI_EltreumUI.skins.armoryvignette) then
-										return true
-									end
-								end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.armoryvignettealpha end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryvignettealpha = value _G["EltruismCharacterBGVignette"]:SetAlpha(value) end,
-							},
 							armorybgtextureselect = {
-								order = 100,
+								order = 98,
 								type = 'select',
 								name = L["Background Texture Type"],
 								desc = L["Choose between a Class, Race or Custom Background"],
@@ -2163,7 +2140,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armorybgtype = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
 							},
 							bgcustomtexture = {
-								order = 101,
+								order = 99,
 								type = 'input',
 								name = L["Name of file inside Interface\\Addons"],
 								desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
@@ -2171,6 +2148,41 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return E.db.ElvUI_EltreumUI.skins.armorybgtype ~= "CUSTOM" end,
 								get = function() return E.private.ElvUI_EltreumUI.skins.armorybgtexture end,
 								set = function(_, value) E.private.ElvUI_EltreumUI.skins.armorybgtexture = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
+							},
+							expandvignetteenable = {
+								order = 100,
+								type = 'toggle',
+								name = L["Add a Vignette over the Character Art"],
+								width = 'full',
+								desc = L["Enable this option"],
+								disabled = function()
+									if (E.Retail and not E.db.ElvUI_EltreumUI.skins.expandarmorybg) then
+										return true
+									elseif (not E.Retail and not E.db.ElvUI_EltreumUI.skins.classicarmory) then
+										return true
+									end
+								end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.armoryvignette end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryvignette = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
+							},
+							expandvignettealpha = {
+								type = 'range',
+								name = L["Vignette Alpha"],
+								desc = L["Change the transparency of the Vignette"],
+								order = 101,
+								min = 0.01,
+								max = 1,
+								step = 0.01,
+								--width = "double",
+								disabled = function()
+									if E.Retail and (not E.db.ElvUI_EltreumUI.skins.expandarmorybg or not E.db.ElvUI_EltreumUI.skins.armoryvignette) then
+										return true
+									elseif not E.Retail and (not E.db.ElvUI_EltreumUI.skins.classicarmory or not E.db.ElvUI_EltreumUI.skins.armoryvignette) then
+										return true
+									end
+								end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.armoryvignettealpha end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryvignettealpha = value _G["EltruismCharacterBGVignette"]:SetAlpha(value) end,
 							},
 							header843stats = {
 								order = 102,
