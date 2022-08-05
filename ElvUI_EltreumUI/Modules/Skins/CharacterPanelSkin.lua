@@ -1692,16 +1692,18 @@ function ElvUI_EltreumUI:InspectBg(unit)
 				local _, englishClass, _, englishRace = _G.GetPlayerInfoByGUID(unit)
 				if englishClass or englishRace then
 					if _G.InspectFrame then
+
+						local classcolor = E:ClassColor(englishClass, true)
+						if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
+							classsymbolonframe = ("|T"..(classIcons[englishClass]..".tga:0:0:0:0|t"))
+						elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
+							classsymbolonframe = ("|T"..(classIconsReleafborder[englishClass]..".tga:0:0:0:0|t"))
+						else
+							classsymbolonframe = ("|T"..(classIcons[englishClass]..".tga:0:0:0:0|t"))
+						end
+
 						--add class icon + colored name
 						if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
-							local classcolor = E:ClassColor(englishClass, true)
-							if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
-								classsymbolonframe = ("|T"..(classIcons[englishClass]..".tga:0:0:0:0|t"))
-							elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
-								classsymbolonframe = ("|T"..(classIconsReleafborder[englishClass]..".tga:0:0:0:0|t"))
-							else
-								classsymbolonframe = ("|T"..(classIcons[englishClass]..".tga:0:0:0:0|t"))
-							end
 							E:Delay(0, function()
 								if not E.Retail then
 									if not _G.InspectNameText:GetText():match("|T") then
