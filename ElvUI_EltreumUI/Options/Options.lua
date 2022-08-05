@@ -300,7 +300,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						inline = true,
 						name = L["Play music while you are AFK"],
-						hidden = function() if E.Retail then return true else return false end end,
+						hidden = function() if E.Retail then return false else return true end end,
 						args = {
 							enable = {
 							type = 'toggle',
@@ -351,7 +351,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						inline = true,
 						name = L["Play music while you are AFK"],
-						hidden = function() if E.Retail then return false else return true end end,
+						hidden = function() if E.Retail then return true else return false end end,
 						args = {
 							enable = {
 							type = 'toggle',
@@ -1094,7 +1094,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						}
 					},
-					boss= {
+					boss = {
 						type = 'group',
 						name = L["Boss"],
 						order = 2,
@@ -5212,12 +5212,14 @@ function ElvUI_EltreumUI:Configtable()
 						type = "description",
 						name = "",
 						width = 'full',
+						hidden = function() if E.Retail then return false else return true end end,
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
 					waypointetasetting = {
 						order = 2,
 						type = 'group',
 						inline = true,
+						hidden = function() if E.Retail then return false else return true end end,
 						name = L["Add a time to arrive below the waypoint"],
 						args = {
 							explainer = {
@@ -5268,12 +5270,14 @@ function ElvUI_EltreumUI:Configtable()
 						type = "description",
 						name = "",
 						width = 'full',
+						hidden = function() if E.Retail then return false else return true end end,
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
 					waytext = {
 						order = 4,
 						type = 'group',
 						inline = true,
+						hidden = function() if E.Retail then return false else return true end end,
 						name = L["Enable the /way and /waypoint commands"],
 						args = {
 							explainer = {
@@ -5518,6 +5522,30 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["This will set the background to be a black color"],
 								func = function() ElvUI_EltreumUI:BlackBg() E:StaggeredUpdateAll(nil, true) end,
 								confirm = true,
+							},
+							header5 = {
+								order = 124,
+								type = "description",
+								name = "",
+								width = 'full',
+								hidden = function() if E.Retail then return true else return false end end,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							dynamicdatatext12123 = {
+								order = 125,
+								type = "description",
+								hidden = function() if E.Retail then return true else return false end end,
+								name = L["Dynamic Datatext that changes according to class to show Ammo or Soul Shards when playing Hunter, Warrior, Rogue or Warlock"],
+								width = "full",
+							},
+							dynamicenable = {
+								order = 126,
+								type = 'toggle',
+								name = L["Enable"],
+								desc = L["Enable the Dynamic Datatext"],
+								hidden = function() if E.Retail then return true else return false end end,
+								get = function() return E.db.ElvUI_EltreumUI.dynamicdatatext.enable end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.dynamicdatatext.enable = value end,
 							},
 						},
 					},
