@@ -528,6 +528,18 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
+		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumStatus"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = false,
+			["font"] = "GothamNarrow Black",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "CENTER",
+			["size"] = 20,
+			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
+		}
+
 		-- Custom Text: Target
 		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
 		if E.Retail then
