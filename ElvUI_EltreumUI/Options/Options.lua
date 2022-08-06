@@ -2788,7 +2788,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Use Class Colors for Cast"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.cursorcast.classcolor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursorcast.classcolor = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursorcast.classcolor = value ElvUI_EltreumUI:CastCursor() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							colorcast = {
 								order = 13,
@@ -2803,7 +2803,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									local cursorcast = E.db.ElvUI_EltreumUI.cursorcast
-									cursorcast.r, cursorcast.g, cursorcast.b = r, g, b
+									cursorcast.r, cursorcast.g, cursorcast.b = r, g, b ElvUI_EltreumUI:CastCursor()
 								end,
 							},
 							nicegap1 = {
@@ -2819,7 +2819,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Use Class Colors for GCD"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.cursorgcd.classcolor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursorgcd.classcolor = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursorgcd.classcolor = value ElvUI_EltreumUI:CastCursor()  E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							colorgcd = {
 								order = 15,
@@ -2834,7 +2834,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									local cursorgcd = E.db.ElvUI_EltreumUI.cursorgcd
-									cursorgcd.r, cursorgcd.g, cursorgcd.b = r, g, b
+									cursorgcd.r, cursorgcd.g, cursorgcd.b = r, g, b ElvUI_EltreumUI:CastCursor()
 								end,
 							},
 							nicegap2 = {
@@ -2850,7 +2850,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Use Class Colors for Cursor"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.cursorcursor.classcolor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursorcursor.classcolor = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursorcursor.classcolor = value ElvUI_EltreumUI:CastCursor() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							cursorcursorcolor = {
 								order = 17,
@@ -2865,7 +2865,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									local cursorcursor = E.db.ElvUI_EltreumUI.cursorcursor
-									cursorcursor.r, cursorcursor.g, cursorcursor.b = r, g, b
+									cursorcursor.r, cursorcursor.g, cursorcursor.b = r, g, b ElvUI_EltreumUI:CastCursor()
 								end,
 							},
 						},
@@ -2912,7 +2912,7 @@ function ElvUI_EltreumUI:Configtable()
 								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring1',
 								name = L["Type 1"],
 								desc = L["The Cursor will use this type as its texture"],
-								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring1.tga' E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring1.tga' ElvUI_EltreumUI:CastCursor() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							showring2 = {
 								order = 91,
@@ -2921,7 +2921,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Type 2"],
 								desc = 'The Cursor will use this type as its texture',
 								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring2.tga' E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring2.tga' ElvUI_EltreumUI:CastCursor() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							showring3 = {
 								order = 92,
@@ -2930,7 +2930,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Type 3"],
 								desc = L["The Cursor will use this type as its texture"],
 								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga' E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga' ElvUI_EltreumUI:CastCursor() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							showring4 = {
 								order = 93,
@@ -2939,7 +2939,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Type 4"],
 								desc = L["The Cursor will use this type as its texture"],
 								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring4.tga' E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring4.tga' ElvUI_EltreumUI:CastCursor() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							showring5 = {
 								order = 94,
@@ -2948,7 +2948,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Type 5"],
 								desc = L["The Cursor will use this type as its texture"],
 								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring5.tga' E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring5.tga' ElvUI_EltreumUI:CastCursor() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							showring6 = {
 								order = 95,
@@ -2957,7 +2957,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Type 6"],
 								desc = L["The Cursor will use this type as its texture"],
 								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring6.tga' E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring6.tga' ElvUI_EltreumUI:CastCursor() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							showring7 = {
 								order = 96,
@@ -2966,7 +2966,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Type 7"],
 								desc = L["The Cursor will use this type as its texture"],
 								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring7.tga' E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring7.tga' ElvUI_EltreumUI:CastCursor() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							showring8 = {
 								order = 97,
@@ -2975,7 +2975,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Type 8"],
 								desc = L["The Cursor will use this type as its texture"],
 								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring8.tga' E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring8.tga' ElvUI_EltreumUI:CastCursor() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							showring9 = {
 								order = 98,
@@ -2984,7 +2984,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Type 9"],
 								desc = L["The Cursor will use this type as its texture"],
 								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring9.tga' E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring9.tga' ElvUI_EltreumUI:CastCursor() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							showring10 = {
 								order = 99,
@@ -2993,7 +2993,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Type 10"],
 								desc = L["The Cursor will use this type as its texture"],
 								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring10.tga' E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring10.tga' ElvUI_EltreumUI:CastCursor() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 						},
 					},
@@ -3026,7 +3026,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.cursorcast.radius end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursorcast.radius = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursorcast.radius = value ElvUI_EltreumUI:CastCursor() end,
 							},
 							castthickness = {
 								type = 'range',
@@ -3039,7 +3039,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.cursorcast.thickness end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursorcast.thickness = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursorcast.thickness = value ElvUI_EltreumUI:CastCursor() end,
 							},
 							gcdradius = {
 								type = 'range',
@@ -3052,7 +3052,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.cursorgcd.radius end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursorgcd.radius = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursorgcd.radius = value ElvUI_EltreumUI:CastCursor() end,
 							},
 							gcdthickness = {
 								type = 'range',
@@ -3065,7 +3065,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.cursorgcd.thickness end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursorgcd.thickness = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursorgcd.thickness = value ElvUI_EltreumUI:CastCursor() end,
 							},
 							cursorcursorradius = {
 								type = 'range',
@@ -3078,7 +3078,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.cursorcursor.radius end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursorcursor.radius = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursorcursor.radius = value ElvUI_EltreumUI:CastCursor() end,
 							},
 							cursorcursorthickness = {
 								type = 'range',
@@ -3091,7 +3091,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.cursor.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.cursorcursor.thickness end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursorcursor.thickness = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursorcursor.thickness = value ElvUI_EltreumUI:CastCursor() end,
 							},
 						},
 					},
