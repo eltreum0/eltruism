@@ -10,7 +10,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.global["sle"]["advanced"]["optionsLimits"] = true
 		E.private["sle"]["install_complete"] = "4.25"
 		-- Private DB
-		E.private["sle"]["module"]["blizzmove"]["enable"] = true
+		E.private["sle"]["module"]["blizzmove"]["enable"] = false
 		E.private["sle"]["module"]["screensaver"] = true
 		E.private["sle"]["professions"]["deconButton"]["enable"] = true
 		E.private["sle"]["professions"]["deconButton"]["style"] = "PIXEL"
@@ -19,7 +19,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.private["sle"]["professions"]["fishing"]["FromMount"] = true
 		E.private["sle"]["skins"]["merchant"]["enable"] = true
 		E.private["sle"]["skins"]["merchant"]["style"] = "List"
-		E.private["sle"]["skins"]["objectiveTracker"]["class"] = true
+		E.private["sle"]["skins"]["objectiveTracker"]["class"] = false
 		E.private["sle"]["skins"]["objectiveTracker"]["color"]["b"] = 0
 		E.private["sle"]["skins"]["objectiveTracker"]["color"]["g"] = 0.41960784313725
 		E.private["sle"]["skins"]["objectiveTracker"]["color"]["r"] = 0.25882352941176
@@ -28,6 +28,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.private["sle"]["skins"]["objectiveTracker"]["skinnedTextureLogo"] = "CUSTOM"
 		E.private["sle"]["skins"]["objectiveTracker"]["texture"] = "Minimalist"
 		E.private["sle"]["skins"]["objectiveTracker"]["underlineHeight"] = 2
+		E.private["sle"]["skins"]["objectiveTracker"]["enable"] = false
 		E.private["sle"]["skins"]["petbattles"]["enable"] = false
 		E.private["sle"]["pvp"]["KBbanner"]["enable"] = true
 		E.private["sle"]["uibuttons"]["style"] = "dropdown"
@@ -431,12 +432,12 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["skins"]["merchant"]["list"]["subFont"] = "Kimberley"
 		E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "THICKOUTLINE"
 		E.db["sle"]["skins"]["merchant"]["list"]["subSize"] = 8
-		E.db["sle"]["skins"]["objectiveTracker"]["underline"] = true
-		E.db["sle"]["skins"]["objectiveTracker"]["classHeader"] = true
+		E.db["sle"]["skins"]["objectiveTracker"]["underline"] = false
+		E.db["sle"]["skins"]["objectiveTracker"]["classHeader"] = false
 		E.db["sle"]["skins"]["objectiveTracker"]["colorHeader"]["b"] = 1
 		E.db["sle"]["skins"]["objectiveTracker"]["colorHeader"]["g"] = 0
 		E.db["sle"]["skins"]["objectiveTracker"]["colorHeader"]["r"] = 0.81960784313725
-		E.db["sle"]["skins"]["objectiveTracker"]["underlineClass"] = true
+		E.db["sle"]["skins"]["objectiveTracker"]["underlineClass"] = false
 		E.db["sle"]["skins"]["talkinghead"]["hide"] = true
 
 		--Unitframes this was erroring in 915 due to internal sle change months back that i didnt realize

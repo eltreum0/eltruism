@@ -25,13 +25,13 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 			E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "THICKOUTLINE"
 		end
 		if IsAddOnLoaded("ElvUI_WindTools") then
-			E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = "THICKOUTLINE"
-			E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = "THICKOUTLINE"
-			E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = "THICKOUTLINE"
-			E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = "THICKOUTLINE"
-			E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "THICKOUTLINE"
-			E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "THICKOUTLINE"
-			E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "THICKOUTLINE"
+			E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = "OUTLINE"
+			E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = "OUTLINE"
+			E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = "OUTLINE"
+			E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = "OUTLINE"
+			E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "OUTLINE"
+			E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "OUTLINE"
+			E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "OUTLINE"
 		end
 		E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
 		E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
