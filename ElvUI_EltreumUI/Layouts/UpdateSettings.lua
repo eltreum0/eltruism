@@ -189,6 +189,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["text_format"] = "[eltruism:hpstatus{5,3}]"
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["text_format"] = "[eltruism:hpstatus{5,3}]"
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
+		E.db["unitframe"]["units"]["focus"]["health"]["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]"
 		E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
 		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Health"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
