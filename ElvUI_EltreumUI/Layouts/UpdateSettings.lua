@@ -111,6 +111,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.cursorcast.radius = 30
 	E.db.ElvUI_EltreumUI.cursorgcd.radius = 25
 	E.db.ElvUI_EltreumUI.cursorcursor.radius = 20
+	E.db.ElvUI_EltreumUI.cursor.ring = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring2.tga'
 
 	E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect = true
 	E.db.ElvUI_EltreumUI.partyraiddeath.enable = false
