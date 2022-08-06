@@ -405,7 +405,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		}
 		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"] = {
 			["attachTextTo"] = "Health",
-			["enable"] = true,
+			["enable"] = false,
 			["font"] = "Kimberley",
 			["fontOutline"] = "NONE",
 			["justifyH"] = "CENTER",
@@ -453,7 +453,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			}
 			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"] = {
 				["attachTextTo"] = "Health",
-				["enable"] = true,
+				["enable"] = false,
 				["font"] = "Kimberley",
 				["fontOutline"] = "NONE",
 				["justifyH"] = "CENTER",
@@ -584,7 +584,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		}
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] = {
 			["attachTextTo"] = "Health",
-			["enable"] = true,
+			["enable"] = false,
 			["font"] = "Kimberley",
 			["fontOutline"] = "NONE",
 			["justifyH"] = "CENTER",
@@ -642,7 +642,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		}
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumStatus"] = {
 			["attachTextTo"] = "Health",
-			["enable"] = true,
+			["enable"] = false,
 			["font"] = "Kimberley",
 			["fontOutline"] = "NONE",
 			["justifyH"] = "CENTER",
@@ -689,7 +689,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		}
 		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumStatus"] = {
 			["attachTextTo"] = "Health",
-			["enable"] = true,
+			["enable"] = false,
 			["font"] = "Kimberley",
 			["fontOutline"] = "NONE",
 			["justifyH"] = "CENTER",
@@ -725,7 +725,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		}
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"] = {
 			["attachTextTo"] = "Health",
-			["enable"] = true,
+			["enable"] = false,
 			["font"] = "Kimberley",
 			["fontOutline"] = "NONE",
 			["justifyH"] = "CENTER",
@@ -819,7 +819,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		}
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"] = {
 			["attachTextTo"] = "Health",
-			["enable"] = true,
+			["enable"] = false,
 			["font"] = "Kimberley",
 			["fontOutline"] = "NONE",
 			["justifyH"] = "CENTER",
