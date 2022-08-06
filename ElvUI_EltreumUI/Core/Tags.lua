@@ -712,7 +712,7 @@ E:AddTagInfo("eltruism:combatindicator", ElvUI_EltreumUI.Name, L["Displays an ic
 --plays a sound for healers when they have low mana, has anti spam
 local manaspam = false
 E:AddTag('eltruism:lowmana', 'UNIT_POWER_FREQUENT', function(unit,_,args)
-	local percentage = args
+	local percentage = strsplit(':', args or '')
 	if percentage == nil then
 		percentage = 1
 	end
@@ -745,18 +745,18 @@ E:AddTagInfo("eltruism:lowmana", ElvUI_EltreumUI.Name, L["Plays a voiced emote w
 --emote when low on health
 local hpspam = false
 E:AddTag("eltruism:lowhealth", "UNIT_HEALTH UNIT_MAXHEALTH", function(unit,_,args)
-	local percentage = args
+	local percentage = strsplit(':', args or '')
 	if percentage == nil then
 		percentage = 1
 	end
 	if UnitIsUnit("player", unit) then --player
 		if not UnitIsDead("player") then
-			if (UnitHealth("player")/UnitHealthMax("player")) < percentage then
+			if (UnitHealth("player")/UnitHealthMax("player")) < (tonumber(percentage) * 0.01) then
 				if hpspam == false then
 					DoEmote("HEALME")
 					hpspam = true
 				end
-			else
+			elseif (UnitHealth("player")/UnitHealthMax("player")) < (tonumber(percentage) * 0.01) then
 				hpspam = false
 			end
 		end
