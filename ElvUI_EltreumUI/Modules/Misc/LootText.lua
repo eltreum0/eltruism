@@ -26,6 +26,7 @@ function ElvUI_EltreumUI:LootText()
 		--moving the combat text
 		local xOffset = E.db.ElvUI_EltreumUI.loottext.xOffset
 		local yOffset = E.db.ElvUI_EltreumUI.loottext.yOffset
+		local errorthrottle = false
 
 		--have to hook the function to move it, pretty much a whole copy just adding the offsets
 		CombatText_AddMessage = function (message, scrollFunction, r, g, b, displayType, isStaggered)
@@ -166,7 +167,11 @@ function ElvUI_EltreumUI:LootText()
 				end
 			end
 			if event == "UI_ERROR_MESSAGE" and arg2 == ERR_INV_FULL then
-					CombatText_AddMessage(L["INVENTORY IS FULL"], CombatText_StandardScroll, 1, 0, 0)
+				if errorthrottle == false then
+					CombatText_AddMessage(L["INVENTORY IS FULL"], CombatText_StandardScroll, 1, 0, 0) --apparently it spams for some people
+					errorthrottle = true
+					C_Timer.After(3, function() errorthrottle = false end)
+				end
 			end
 			if (event == "CHAT_MSG_LOOT") then
 				itemLink, amount = getLoot(arg1)
