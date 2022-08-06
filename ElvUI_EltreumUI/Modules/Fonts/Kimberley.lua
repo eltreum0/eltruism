@@ -646,7 +646,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["size"] = 12,
 		["text_format"] = "[namecolor][name:abbrev]",
 		["xOffset"] = 0,
-		["yOffset"] = 3
+		["yOffset"] = 12
 	}
 	E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] = {
 		["attachTextTo"] = "Power",
@@ -665,10 +665,10 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["font"] = "Kimberley",
 		["fontOutline"] = "THICKOUTLINE",
 		["justifyH"] = "CENTER",
-		["size"] = 27,
+		["size"] = 15,
 		["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
 		["xOffset"] = 0,
-		["yOffset"] = -17
+		["yOffset"] = -8
 	}
 
 	--ActionBars
