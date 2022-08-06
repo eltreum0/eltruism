@@ -392,6 +392,12 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'double',
 								func = function() ElvUI_EltreumUI:AddonSetupAS() E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							header2 = {
+								order = 3,
+								type = "description",
+								name = "",
+								width = 'full',
+							},
 							projectazilroka = {
 								order = 3,
 								type = 'execute',
@@ -475,6 +481,12 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'double',
 								func = function() ElvUI_EltreumUI:AddonSetupBW() E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							header2 = {
+								order = 3,
+								type = "description",
+								name = "",
+								width = 'full',
+							},
 							dbm = {
 								order = 3,
 								type = 'execute',
@@ -535,7 +547,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'double',
 								func = function() ElvUI_EltreumUI:AddonSetupImmersion() E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							header21 = {
+							header9521 = {
 								order = 3,
 								type = "description",
 								name = "",
@@ -576,32 +588,19 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-							gladiusex = {
+							battlegroundenemies = {
 								order = 6,
 								type = 'execute',
-								name = 'Gladius Ex',
+								name = 'BattleGroundEnemies',
 								desc = L["Reset to Eltruism defaults."],
 								width = 'double',
-								hidden = function() if E.Retail then return false else return true end end,
-								func = function() ElvUI_EltreumUI:AddonSetupGladiusEx() E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							gladdy = {
-								order = 6,
-								type = 'execute',
-								name = 'Gladddy',
-								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
-								hidden = function() if E.Retail or E.Classic then return true else return false end end,
-								func = function() ElvUI_EltreumUI:SetupGladdy() E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							gladius = {
-								order = 6,
-								type = 'execute',
-								name = 'Gladius',
-								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
-								hidden = function() if E.Retail or E.Classic then return true else return false end end,
-								func = function() ElvUI_EltreumUI:SetupGladius() E:StaticPopup_Show('CONFIG_RL') end,
+							header465 = {
+								order = 7,
+								type = "description",
+								name = "",
+								width = 'full',
 							},
 							capping = {
 								order = 7,
@@ -611,13 +610,45 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'double',
 								func = function() ElvUI_EltreumUI:GetCappingProfile() E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							battlegroundenemies = {
+							header4655 = {
+								order = 8,
+								type = "description",
+								name = "",
+								width = 'full',
+							},
+							gladiusex = {
 								order = 8,
 								type = 'execute',
-								name = 'BattleGroundEnemies',
+								name = 'Gladius Ex',
 								desc = L["Reset to Eltruism defaults."],
 								width = 'double',
-								func = function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() E:StaticPopup_Show('CONFIG_RL') end,
+								hidden = function() if E.Retail then return false else return true end end,
+								func = function() ElvUI_EltreumUI:AddonSetupGladiusEx() E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							gladdy = {
+								order = 9,
+								type = 'execute',
+								name = 'Gladddy',
+								desc = L["Reset to Eltruism defaults."],
+								width = 'double',
+								hidden = function() if E.Retail or E.Classic then return true else return false end end,
+								func = function() ElvUI_EltreumUI:SetupGladdy() E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header4651 = {
+								order = 10,
+								type = "description",
+								name = "",
+								width = 'full',
+								hidden = function() if E.Retail or E.Classic then return true else return false end end,
+							},
+							gladius = {
+								order = 10,
+								type = 'execute',
+								name = 'Gladius',
+								desc = L["Reset to Eltruism defaults."],
+								width = 'double',
+								hidden = function() if E.Retail or E.Classic then return true else return false end end,
+								func = function() ElvUI_EltreumUI:SetupGladius() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header5 = {
 								order = 93,
@@ -633,6 +664,12 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Reset to Eltruism defaults."],
 								width = 'double',
 								func = function() ElvUI_EltreumUI:AddonSetupNameplateSCT() E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header21 = {
+								order = 95,
+								type = "description",
+								name = "",
+								width = 'full',
 							},
 							fct = {
 								order = 95,
@@ -657,6 +694,12 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'double',
 								func = function() ElvUI_EltreumUI:AddonSetupDT() E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							header29 = {
+								order = 98,
+								type = "description",
+								name = "",
+								width = 'full',
+							},
 							details2 = {
 								order = 98,
 								type = 'execute',
@@ -664,6 +707,12 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Reset to Eltruism defaults."],
 								width = 'double',
 								func = function() ElvUI_EltreumUI:AddonSetupDTReleaf() E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header28 = {
+								order = 99,
+								type = "description",
+								name = "",
+								width = 'full',
 							},
 							details3 = {
 								order = 99,
