@@ -715,7 +715,7 @@ P.ElvUI_EltreumUI = {
 		g = 0.80,
 		b = 0.10,
 		a = 1,
-		width = 3,
+		width = 20,
 	},
 
 	--[[
