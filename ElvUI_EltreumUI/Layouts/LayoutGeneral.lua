@@ -366,7 +366,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 16,
-			["text_format"] = "[eltruism:raidmarker] [health:current:shortvalue]",
+			["text_format"] = "[eltruism:raidmarker] [eltruism:hpstatusnopc{5,3}]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -425,7 +425,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["fontOutline"] = "OUTLINE",
 				["justifyH"] = "LEFT",
 				["size"] = 16,
-				["text_format"] = "[health:current:shortvalue]",
+				["text_format"] = "[eltruism:hpstatusnopc{5,3}]",
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
@@ -470,7 +470,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["fontOutline"] = "OUTLINE",
 				["justifyH"] = "LEFT",
 				["size"] = 16,
-				["text_format"] = "[health:current:shortvalue]",
+				["text_format"] = "[eltruism:hpstatusnopc{5,3}]",
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
@@ -545,7 +545,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 14,
-			["text_format"] = "[health:current-percent:shortvalue]",
+			["text_format"] = "[eltruism:hpstatus{5,3}]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -625,7 +625,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 10,
-			["text_format"] = "[health:current:shortvalue]",
+			["text_format"] = "[eltruism:hpstatusnopc{5,3}]",
 			["xOffset"] = 0,
 			["yOffset"] = -1
 		}
@@ -683,7 +683,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 10,
-			["text_format"] = "[health:current:shortvalue]",
+			["text_format"] = "[eltruism:hpstatusnopc{5,3}]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -719,7 +719,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 14,
-			["text_format"] = "[health:current-percent:shortvalue]",
+			["text_format"] = "[eltruism:hpstatus{5,3}]",
 			["xOffset"] = 2,
 			["yOffset"] = 0
 		}
@@ -791,7 +791,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 11,
-			["text_format"] = "[health:current:shortvalue]",
+			["text_format"] = "[eltruism:hpstatusnopc{5,3}]",
 			["xOffset"] = 2,
 			["yOffset"] = 3
 		}
