@@ -701,8 +701,11 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["nameplateType"]["enemyNPC"] = true
 		E.global["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["playerCanNotAttack"] = true
 		E.global["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["priority"] = 15
-		--non target full alpha when resting and not in combat
+		--non target full alpha when resting and not in combat, name only since cannot attack anyway
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["alpha"] = 100
+		E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["nameOnly"] = true
+		E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["name"] = "[namecolor][name]"
+		E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets]"
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["isResting"] = true
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["isTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["notTarget"] = true
