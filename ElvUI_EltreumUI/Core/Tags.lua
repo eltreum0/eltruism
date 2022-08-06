@@ -604,6 +604,8 @@ E:AddTag("eltruism:dead", "UNIT_HEALTH", function(unit,_,args)
 		else
 			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga:0:0:0:0|t"
 		end
+	elseif UnitIsGhost(unit) then
+		return L["Ghost"]
 	end
 end)
 E:AddTagInfo("eltruism:dead", ElvUI_EltreumUI.Name, L["Displays a dead symbol from Releaf when unit is dead. Usage: [eltruism:dead{number}]"])
@@ -655,18 +657,20 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 			return L["Dead"]
 		end
 	else
-		if not UnitIsDead(unit) then --players
+		if not UnitIsDead(unit) and not UnitIsGhost(unit) then --players
 			if UnitHealth(unit) == UnitHealthMax(unit) then
 				return E:ShortValue(UnitHealth(unit))
 			else
 				return (E:ShortValue(UnitHealth(unit)).." - "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)))
 			end
-		elseif UnitIsDead(unit) and UnitIsConnected(unit) then
+		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
 			return deadtexture
 		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
 			return dctexture
-		elseif UnitIsDead(unit) and not UnitIsConnected(unit) then
+		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
 			return dctexture
+		elseif UnitIsGhost(unit) then
+			return L["Ghost"]
 		end
 	end
 end)
@@ -763,3 +767,36 @@ E:AddTag("eltruism:lowhealth", "UNIT_HEALTH UNIT_MAXHEALTH", function(unit,_,arg
 	end
 end)
 E:AddTagInfo("eltruism:lowhealth", ElvUI_EltreumUI.Name, L["Plays a voiced emote when you have low health. Usage: [eltruism:lowhealth{1}] as an example of 1%"])
+
+--no percentage value of other HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
+E:AddTag("eltruism:hpstatusnopc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit,_,args)
+	local texture1,texture2 = strsplit(',', args or '')
+	if texture1 == nil then
+		texture1 = 5
+	end
+	if texture2 == nil then
+		texture2 = 2
+	end
+	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead"..tostring(texture1)..".tga:0:0:0:0|t"
+	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc"..tostring(texture2)..".tga:0:0:0:0|t"
+	if not UnitIsPlayer(unit) then  --npc
+		if not UnitIsDead(unit) then
+			return E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1))
+		else
+			return L["Dead"]
+		end
+	else
+		if not UnitIsDead(unit) and not UnitIsGhost(unit) then --players
+			return  E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1))
+		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
+			return deadtexture
+		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
+			return dctexture
+		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
+			return dctexture
+		elseif UnitIsGhost(unit) then
+			return L["Ghost"]
+		end
+	end
+end)
+E:AddTagInfo("eltruism:hpstatusnopc", ElvUI_EltreumUI.Name, L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [eltruism:hpstatus{number,number}]"])
