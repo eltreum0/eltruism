@@ -9,7 +9,7 @@ Added option to change the Player Castbar Spark Texture\
 Added [eltruism:lowmana{12}] tag (where 12 is 12% and can be changed), this tag will display nothing and will instead use the emote "OOM" for healers when they fall below that percentage of mana. Works in Retail and Wrath Beta\
 Added [eltruism:lowhealth{12}] tag (where 12 is 12% and can be changed), this tag will display nothing and will instead use the emote "HEALME" when the player falls below the health percentage.\
 Added [eltruism:hpstatusnopc{1,2}] tag where 1 is a dead texture and 2 is a disconnected texture that can be swapped up to 6 and are made by Releaf. This tag will not report health percentage like [eltruism:hpstatus] and will instead keep the shortvalue only\
-Updated profile, changing tags to use [eltruism:hpstatus] and [eltruism:hpstatusnopc] and disabling EltreumStatus custom text for most unitframes.
+Updated profile, changing tags to use [eltruism:hpstatus] and [eltruism:hpstatusnopc] and disabling EltreumStatus custom text for most unitframes.\
 Updated EltreumRestedNP Nameplate Style Filter to hide the HP bar of enemies you cannot attack, such as when you are in a sanctuary or when you are unable to attack them\
 Updated Wintools, Shadow and Light and ElvUI Floating Combat Text profiles\
 Updated german locale by Dlarge\
