@@ -634,7 +634,6 @@ end)
 E:AddTagInfo("eltruism:dc", ElvUI_EltreumUI.Name, L["Displays a disconnect symbol from Releaf when unit is disconnected. Usage: [eltruism:dc{number}]"])
 
 --HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
-local hpspam = false
 E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit,_,args)
 	local texture1,texture2 = strsplit(',', args or '')
 	if texture1 == nil then
@@ -654,27 +653,6 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 			end
 		else
 			return L["Dead"]
-		end
-	elseif UnitIsUnit("player", unit) then --player
-		if not UnitIsDead("player") then
-			if UnitHealth("player") == UnitHealthMax("player") then
-				hpspam = false
-				return E:ShortValue(UnitHealth("player"))
-			elseif (UnitHealth("player")/UnitHealthMax("player")) < 0.05 then
-				if hpspam == false then
-					DoEmote("HEALME")
-					hpspam = true
-				end
-				return (E:ShortValue(UnitHealth("player")).." - "..E:GetFormattedText('PERCENT', UnitHealth("player"), UnitHealthMax("player")))
-			else
-				return (E:ShortValue(UnitHealth("player")).." - "..E:GetFormattedText('PERCENT', UnitHealth("player"), UnitHealthMax("player")))
-			end
-		elseif UnitIsDead(unit) and UnitIsConnected(unit) then
-			return deadtexture
-		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
-			return dctexture
-		elseif UnitIsDead(unit) and not UnitIsConnected(unit) then
-			return dctexture
 		end
 	else
 		if not UnitIsDead(unit) then --players
@@ -763,3 +741,25 @@ E:AddTag('eltruism:lowmana', 'UNIT_POWER_FREQUENT', function(unit,_,args)
 	end
 end)
 E:AddTagInfo("eltruism:lowmana", ElvUI_EltreumUI.Name, L["Plays a voiced emote when you have low mana as a healer. Usage: [eltruism:lowmana{5}] as an example of 5%"])
+
+--emote when low on health
+local hpspam = false
+E:AddTag("eltruism:lowhealth", "UNIT_HEALTH UNIT_MAXHEALTH", function(unit,_,args)
+	local percentage = args
+	if percentage == nil then
+		percentage = 1
+	end
+	if UnitIsUnit("player", unit) then --player
+		if not UnitIsDead("player") then
+			if (UnitHealth("player")/UnitHealthMax("player")) < percentage then
+				if hpspam == false then
+					DoEmote("HEALME")
+					hpspam = true
+				end
+			else
+				hpspam = false
+			end
+		end
+	end
+end)
+E:AddTagInfo("eltruism:lowhealth", ElvUI_EltreumUI.Name, L["Plays a voiced emote when you have low health. Usage: [eltruism:lowmana{1}] as an example of 1%"])
