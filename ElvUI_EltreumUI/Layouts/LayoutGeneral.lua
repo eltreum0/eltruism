@@ -804,7 +804,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["size"] = 12,
 			["text_format"] = "[namecolor][name:abbrev]",
 			["xOffset"] = 0,
-			["yOffset"] = 12
+			["yOffset"] = 3
 		}
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] = {
 			["attachTextTo"] = "Power",
@@ -826,7 +826,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["size"] = 15,
 			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
 			["xOffset"] = 0,
-			["yOffset"] = -8
+			["yOffset"] = 22
 		}
 
 	ElvUI_EltreumUI:Print(L["General Layout has been set."])
