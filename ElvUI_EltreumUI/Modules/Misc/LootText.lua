@@ -16,6 +16,7 @@ LootTextframe:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
 LootTextframe:RegisterEvent("LOOT_OPENED")
 LootTextframe:RegisterEvent("PLAYER_REGEN_ENABLED")
 LootTextframe:RegisterEvent("PLAYER_REGEN_DISABLED")
+local errorthrottle = false
 
 function ElvUI_EltreumUI:LootText()
 	if E.db.ElvUI_EltreumUI.loottext.enable then
@@ -26,7 +27,6 @@ function ElvUI_EltreumUI:LootText()
 		--moving the combat text
 		local xOffset = E.db.ElvUI_EltreumUI.loottext.xOffset
 		local yOffset = E.db.ElvUI_EltreumUI.loottext.yOffset
-		local errorthrottle = false
 
 		--have to hook the function to move it, pretty much a whole copy just adding the offsets
 		CombatText_AddMessage = function (message, scrollFunction, r, g, b, displayType, isStaggered)
