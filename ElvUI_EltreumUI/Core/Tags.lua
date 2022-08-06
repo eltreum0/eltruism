@@ -762,4 +762,4 @@ E:AddTag("eltruism:lowhealth", "UNIT_HEALTH UNIT_MAXHEALTH", function(unit,_,arg
 		end
 	end
 end)
-E:AddTagInfo("eltruism:lowhealth", ElvUI_EltreumUI.Name, L["Plays a voiced emote when you have low health. Usage: [eltruism:lowmana{1}] as an example of 1%"])
+E:AddTagInfo("eltruism:lowhealth", ElvUI_EltreumUI.Name, L["Plays a voiced emote when you have low health. Usage: [eltruism:lowhealth{1}] as an example of 1%"])

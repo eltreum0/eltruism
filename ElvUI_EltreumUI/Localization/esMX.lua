@@ -1001,3 +1001,4 @@ L["Hide Actionbar Button Press"] = "Ocultar la presión del botón de la barra d
 L["Spark Texture"] = "Textura de la chispa de la barra de reparto"
 L["Addon on Wago:"] = "Addon de Wago:"
 L["Plays a voiced emote when you have low mana as a healer. Usage: [eltruism:lowmana{5}] as an example of 5%"] = "Reproduce un emote con voz cuando tienes poco maná como sanador. Uso: [eltruism:lowmana{5}] como ejemplo del 5%"
+L["Plays a voiced emote when you have low health. Usage: [eltruism:lowhealth{1}] as an example of 1%"] = "Reproduce un emote con voz cuando tienes poco salud. Uso: [eltruism:lowhealth{1}] como ejemplo del 1%"

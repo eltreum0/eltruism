@@ -1016,4 +1016,5 @@ L["Change the size of the Character Panel"] = "Ändere die Größe des Charakter
 L["Hide Actionbar Button Press"] = "Aktionsleisten Tastendruck ausblenden"
 L["Spark Texture"] = "Funkentextur"
 L["Addon on Wago:"] = "Addon auf Wago:"
-L["Plays a voiced emote when you have low mana as a healer. Usage: [eltruism:lowmana{5}] as an example of 5%"] = "Spielt ein gesprochendes Emote, wenn du als Heiler wenig Mana hast. Verwendung: [eltruism:lowmana{5}] als Beispiel für 5 %."
+L["Plays a voiced emote when you have low mana as a healer. Usage: [eltruism:lowmana{5}] as an example of 5%"] = "Spielt ein gesprochendes Emote, wenn du als Heiler wenig Mana hast. Verwendung: [eltruism:lowmana{5}] als Beispiel für 5%."
+L["Plays a voiced emote when you have low health. Usage: [eltruism:lowhealth{1}] as an example of 1%"] = "Spielt ein gesprochendes Emote, wenn du wenig Lebenspunkte hast. Verwendung: [eltruism:lowhealth{1}] als Beispiel für 1%." --based on the lowmana using deepL (to maybe make it easier/faster for you)
