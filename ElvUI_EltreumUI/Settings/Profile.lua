@@ -709,13 +709,14 @@ P.ElvUI_EltreumUI = {
 
 	sparkcustomcolor ={
 		enable = false,
-		--texture = 'Eltreum-Blank',
-		texture = 'Eltreum-Fade',
+		texture = 'Eltreum-Blank',
+		--texture = 'Eltreum-Fade',
 		r = 0.80,
 		g = 0.80,
 		b = 0.10,
 		a = 1,
-		width = 20,
+		--width = 20,
+		width = 3,
 	},
 
 	--[[
