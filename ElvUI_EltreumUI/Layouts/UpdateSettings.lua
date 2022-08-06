@@ -108,6 +108,10 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.cursor.enable = true
 	E.db.ElvUI_EltreumUI.cursor.cooldown = true
 	E.db.ElvUI_EltreumUI.cursor.combat = true
+	E.db.ElvUI_EltreumUI.cursorcast.radius = 30
+	E.db.ElvUI_EltreumUI.cursorgcd.radius = 25
+	E.db.ElvUI_EltreumUI.cursorcursor.radius = 20
+
 	E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect = true
 	E.db.ElvUI_EltreumUI.partyraiddeath.enable = false
 
