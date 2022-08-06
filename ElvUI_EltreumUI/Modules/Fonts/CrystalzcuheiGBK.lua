@@ -580,7 +580,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 			["xOffset"] = 0,
 			["yOffset"] = 3
 		}
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Powercustom"] = {
+		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] = {
 		["attachTextTo"] = "Power",
 		["enable"] = true,
 		["font"] = "AR CrystalzcuheiGBK Demibold",
