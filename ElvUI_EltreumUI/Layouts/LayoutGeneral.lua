@@ -806,9 +806,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["xOffset"] = 0,
 			["yOffset"] = 3
 		}
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Powercustom"] = {
+		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] = {
 			["attachTextTo"] = "Power",
-			["enable"] = true,
+			["enable"] = false,
 			["font"] = "Kimberley",
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "RIGHT",
@@ -819,7 +819,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		}
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"] = {
 			["attachTextTo"] = "Health",
-			["enable"] = false,
+			["enable"] = true,
 			["font"] = "Kimberley",
 			["fontOutline"] = "NONE",
 			["justifyH"] = "CENTER",

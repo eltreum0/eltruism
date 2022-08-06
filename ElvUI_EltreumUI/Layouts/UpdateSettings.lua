@@ -178,7 +178,8 @@ function ElvUI_EltreumUI:UpdateSettings()
 	if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] then
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"]["enable"] = false
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"]["enable"] = false
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"]["enable"] = false
+		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"]["enable"] = true
+		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["enable"] = false
 		E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"]["enable"] = false
 		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"]["enable"] = false
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumStatus"]["enable"] = false
