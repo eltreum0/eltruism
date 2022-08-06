@@ -434,6 +434,18 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
+		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = false,
+			["font"] = "AR CrystalzcuheiGBK Demibold",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "CENTER",
+			["size"] = 27,
+			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["xOffset"] = 50,
+			["yOffset"] = 0
+		}
+
 		-- Custom Text: Raid
 		E.db["unitframe"]["units"]["raid"]["customTexts"] = E.db["unitframe"]["units"]["raid"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumGroup"] = {
@@ -581,27 +593,39 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 			["yOffset"] = 0
 		}
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] = {
-		["attachTextTo"] = "Power",
-		["enable"] = true,
-		["font"] = "AR CrystalzcuheiGBK Demibold",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "LEFT",
-		["size"] = 10,
-		["text_format"] = "[powercolor][power:current:shortvalue]",
-		["xOffset"] = 2,
-		["yOffset"] = -1
+			["attachTextTo"] = "Power",
+			["enable"] = true,
+			["font"] = "AR CrystalzcuheiGBK Demibold",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "LEFT",
+			["size"] = 10,
+			["text_format"] = "[powercolor][power:current:shortvalue]",
+			["xOffset"] = 2,
+			["yOffset"] = -1
 		}
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetofTarget"] = {
-		["attachTextTo"] = "Frame",
-		["enable"] = false,
-		["font"] = "AR CrystalzcuheiGBK Demibold",
-		["fontOutline"] = "OUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 10,
-		["text_format"] = "Target: [eltruism:targetcast]",
-		["xOffset"] = -5,
-		["yOffset"] = -14
+			["attachTextTo"] = "Frame",
+			["enable"] = false,
+			["font"] = "AR CrystalzcuheiGBK Demibold",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 10,
+			["text_format"] = "Target: [eltruism:targetcast]",
+			["xOffset"] = -5,
+			["yOffset"] = -14
 		}
+		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = false,
+			["font"] = "AR CrystalzcuheiGBK Demibold",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "CENTER",
+			["size"] = 27,
+			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["xOffset"] = -50,
+			["yOffset"] = 0
+		}
+
 		-- Custom Text: TargetTarget
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"] = E.db["unitframe"]["units"]["targettarget"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"] = {
@@ -627,15 +651,26 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 			["yOffset"] = 3
 		}
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] = {
-		["attachTextTo"] = "Power",
-		["enable"] = true,
-		["font"] = "AR CrystalzcuheiGBK Demibold",
-		["fontOutline"] = "THICKOUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 9,
-		["text_format"] = "[powercolor][power:current:shortvalue]",
-		["xOffset"] = 0,
-		["yOffset"] = -1
+			["attachTextTo"] = "Power",
+			["enable"] = true,
+			["font"] = "AR CrystalzcuheiGBK Demibold",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 9,
+			["text_format"] = "[powercolor][power:current:shortvalue]",
+			["xOffset"] = 0,
+			["yOffset"] = -1
+		}
+		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "AR CrystalzcuheiGBK Demibold",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "CENTER",
+			["size"] = 27,
+			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["xOffset"] = 0,
+			["yOffset"] = -17
 		}
 
 		--ActionBars
