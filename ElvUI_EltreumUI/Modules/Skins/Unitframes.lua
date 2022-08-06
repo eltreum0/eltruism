@@ -227,6 +227,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 		--castbar.Spark_:SetAlpha(0.8) dunno since it can look bad with color mixing, infact textures themselves can look bad
 
 		if UnitExists("target") then
+			targetcastbar.Spark_:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.sparkcustomcolor.texture))
 			targetcastbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.sparkcustomcolor.b, 1)
 			targetcastbar.Spark_:SetWidth(E.db.ElvUI_EltreumUI.sparkcustomcolor.width)
 		end
