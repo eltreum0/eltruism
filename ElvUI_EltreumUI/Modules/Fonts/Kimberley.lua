@@ -237,6 +237,17 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
+	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = false,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "CENTER",
+		["size"] = 40,
+		["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+		["xOffset"] = 0,
+		["yOffset"] = 0
+	}
 	if E.Retail then
 		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
 		["attachTextTo"] = "Health",
@@ -322,6 +333,17 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 			["yOffset"] = -1
 		}
 	end
+	E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = false,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "CENTER",
+		["size"] = 40,
+		["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+		["xOffset"] = -50,
+		["yOffset"] = 0
+	}
 
 	-- Custom Text: Pet
 	if E.Retail then
@@ -456,6 +478,17 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["justifyH"] = "LEFT",
 		["size"] = 10,
 		["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+		["xOffset"] = 0,
+		["yOffset"] = 0
+	}
+	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumStatus"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = false,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "CENTER",
+		["size"] = 25,
+		["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}

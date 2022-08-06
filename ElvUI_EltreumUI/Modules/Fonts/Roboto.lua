@@ -237,6 +237,17 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
+		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = false,
+			["font"] = "Roboto",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "CENTER",
+			["size"] = 40,
+			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
+		}
 		if E.Retail then
 			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
 			["attachTextTo"] = "Health",
@@ -322,6 +333,17 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 				["yOffset"] = -1
 			}
 		end
+		E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = false,
+			["font"] = "Roboto",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "CENTER",
+			["size"] = 40,
+			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["xOffset"] = -50,
+			["yOffset"] = 0
+		}
 
 		-- Custom Text: Pet
 		if E.Retail then
@@ -425,38 +447,49 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 		}
 		if E.Retail then
 			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = false,
+				["font"] = "Roboto",
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 10,
+				["text_format"] = "||cffFFFF00[absorbs]||r",
+				["xOffset"] = 45,
+				["yOffset"] = 0
+			}
+		end
+		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]= {
+			["attachTextTo"] = "InfoPanel",
+			["enable"] = true,
+			["font"] = "Roboto",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "RIGHT",
+			["size"] = 10,
+			["text_format"] = "[health:current:shortvalue]",
+			["xOffset"] = 0,
+			["yOffset"] = -1
+		}
+		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidName"] = {
+			["attachTextTo"] = "InfoPanel",
+			["enable"] = true,
+			["font"] = "Roboto",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "LEFT",
+			["size"] = 10,
+			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
+		}
+		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumStatus"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
 			["font"] = "Roboto",
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "CENTER",
-			["size"] = 10,
-			["text_format"] = "||cffFFFF00[absorbs]||r",
-			["xOffset"] = 45,
+			["size"] = 25,
+			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["xOffset"] = 0,
 			["yOffset"] = 0
-			}
-		end
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]= {
-		["attachTextTo"] = "InfoPanel",
-		["enable"] = true,
-		["font"] = "Roboto",
-		["fontOutline"] = "OUTLINE",
-		["justifyH"] = "RIGHT",
-		["size"] = 10,
-		["text_format"] = "[health:current:shortvalue]",
-		["xOffset"] = 0,
-		["yOffset"] = -1
-		}
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidName"] = {
-		["attachTextTo"] = "InfoPanel",
-		["enable"] = true,
-		["font"] = "Roboto",
-		["fontOutline"] = "OUTLINE",
-		["justifyH"] = "LEFT",
-		["size"] = 10,
-		["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
-		["xOffset"] = 0,
-		["yOffset"] = 0
 		}
 		-- Custom Text: Raid 40
 		E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
