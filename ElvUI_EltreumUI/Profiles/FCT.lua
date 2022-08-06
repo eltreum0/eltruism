@@ -13,7 +13,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 				},
 				["EnemyNPC"] = {
 					["advanced"] = {
-						["OffsetY"] = 70,
+						["OffsetY"] = 100,
 					},
 					["textShake"] = true,
 					["isTarget"] = false,
@@ -24,6 +24,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["critFontSize"] = 60,
 					["shakeDuration"] = 0.4,
 					["numberStyle"] = "BLIZZARD",
+					["spellY"] = 100,
 					["critFont"] = "Kimberley",
 				},
 				["FriendlyPlayer"] = {
@@ -34,7 +35,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 				},
 				["EnemyPlayer"] = {
 					["advanced"] = {
-						["OffsetY"] = 70,
+						["OffsetY"] = 100,
 					},
 					["textShake"] = true,
 					["isTarget"] = false,
@@ -45,6 +46,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["critFontSize"] = 60,
 					["shakeDuration"] = 0.4,
 					["numberStyle"] = "BLIZZARD",
+					["spellY"] = 100,
 					["critFont"] = "Kimberley",
 				},
 				["FriendlyNPC"] = {
