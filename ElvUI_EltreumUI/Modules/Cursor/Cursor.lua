@@ -6,7 +6,6 @@ local isRetail = _G.select(4, _G.GetBuildInfo())>=90000
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
 local SetCVar = _G.SetCVar
-local GetCursorPosition = GetCursorPosition
 local next = _G.next
 local min = _G.min
 local floor = _G.floor
@@ -14,10 +13,6 @@ local unpack = _G.unpack
 local max = _G.max
 local sin = _G.sin
 local cos = _G.cos
-local GetTime = GetTime
-local InCombatLockdown = _G.InCombatLockdown
-local GetSpellCooldown = GetSpellCooldown
-
 
 function ElvUI_EltreumUI:CursorInit()
 	if E.db.ElvUI_EltreumUI.cursor.enable then
@@ -91,21 +86,12 @@ function ElvUI_EltreumUI:CastCursor()
 
 		if E.db.ElvUI_EltreumUI.cursor.fixlag == 0 then
 			--SetCVar("gxCursor", 0)
-			SetCVar("HardwareCursor", 0) --fix the cursor lag
+			SetCVar("HardwareCursor", 0)
 		end
 
-		local ring = E.db.ElvUI_EltreumUI.cursor.ring
-		local castradius = E.db.ElvUI_EltreumUI.cursorcast.radius
-		local castthickness = E.db.ElvUI_EltreumUI.cursorcast.thickness
-		local gcdradius = E.db.ElvUI_EltreumUI.cursorgcd.radius
-		local gcdthickness = E.db.ElvUI_EltreumUI.cursorgcd.thickness
-		local cursorradius = E.db.ElvUI_EltreumUI.cursorcursor.radius
-		local cursorthickness = E.db.ElvUI_EltreumUI.cursorcursor.thickness
-		local cursorcombattoggle = E.db.ElvUI_EltreumUI.cursor.combat
 		local colorcast
 		local colorgcd
 		local colorcursor
-
 		if E.db.ElvUI_EltreumUI.cursorcast.classcolor then
 			colorcast = E:ClassColor(E.myclass, true)
 		end
@@ -139,26 +125,26 @@ function ElvUI_EltreumUI:CastCursor()
 
 		local Defaults = {
 			cast = {
-				radius = castradius,
+				radius = E.db.ElvUI_EltreumUI.cursorcast.radius,
 				sublayer = 1,
-				thickness = castthickness,
+				thickness = E.db.ElvUI_EltreumUI.cursorcast.thickness,
 				color = { colorcast.r, colorcast.g, colorcast.b },
-				texture = ring,
+				texture = E.db.ElvUI_EltreumUI.cursor.ring,
 			},
 			gcd = {
-				radius = gcdradius,
+				radius = E.db.ElvUI_EltreumUI.cursorgcd.radius,
 				sublayer = 0,
-				thickness = gcdthickness,
+				thickness = E.db.ElvUI_EltreumUI.cursorgcd.thickness,
 				color = { colorgcd.r, colorgcd.g, colorgcd.b },
-				texture = ring,
+				texture = E.db.ElvUI_EltreumUI.cursor.ring,
 			},
 			cursor = {
-				radius = cursorradius,
+				radius = E.db.ElvUI_EltreumUI.cursorcursor.radius,
 				sublayer = 0,
-				thickness = cursorthickness,
-				combat = cursorcombattoggle,
+				thickness = E.db.ElvUI_EltreumUI.cursorcursor.thickness,
+				combat = E.db.ElvUI_EltreumUI.cursor.combat,
 				color = { colorcursor.r, colorcursor.g, colorcursor.b },
-				texture = ring,
+				texture = E.db.ElvUI_EltreumUI.cursor.ring,
 			},
 		}
 		local QUAD_POINTS = {
@@ -227,7 +213,7 @@ function ElvUI_EltreumUI:CastCursor()
 		end
 		local function Start(self, d, m)
 			local textures = self.textures
-			local quad = min( floor( 4 * (self.reverse and m-d or d)/m ) + 1, 4)
+			local quad = min( floor( 4 * (self.reverse and m - d or d) / m ) + 1, 4)
 			for i=1,4 do
 				local tex = textures[i]
 				if i>quad then
@@ -266,7 +252,7 @@ function ElvUI_EltreumUI:CastCursor()
 			local radius = self.radius
 			local angle = 360 * ( rev and maxdur-dur or dur ) / maxdur
 			local qangle = angle % 90
-			local quad = floor(angle/90) + 1
+			local quad = floor(angle / 90) + 1
 			local tex = self.textures[quad]
 			local pquad = self.quad
 			if quad~=pquad then
@@ -283,8 +269,8 @@ function ElvUI_EltreumUI:CastCursor()
 				self.quad = quad
 			end
 
-			if qangle>0 then
-				local f = qangle<=45 and self.factor or 1
+			if qangle > 0 then
+				local f = qangle <= 45 and self.factor or 1
 				QUAD_COORD_FUNC[quad]( tex, radius, 0, sin(qangle)*f, cos(qangle)*f, 1 )
 			end
 		end
@@ -345,7 +331,7 @@ function ElvUI_EltreumUI:CastCursor()
 				local name, _, _, start, finish, _, castID = UnitCastingInfo("player")
 				if name then
 					self.castID = castID
-					Start(self, GetTime() - start*0.001, (finish - start) * 0.001 )
+					Start(self, GetTime() - start * 0.001, (finish - start) * 0.001 )
 				else
 					RingSetShown( self, false )
 				end
@@ -377,7 +363,7 @@ function ElvUI_EltreumUI:CastCursor()
 				local name, _, _, start, finish = UnitChannelInfo("player")
 				if name then
 					self.castID = nil
-					Start(self, GetTime() - start*0.001, (finish - start) * 0.001 )
+					Start(self, GetTime() - start * 0.001, (finish - start) * 0.001 )
 				else
 					RingSetShown( self, false )
 				end
@@ -393,7 +379,7 @@ function ElvUI_EltreumUI:CastCursor()
 				return
 			elseif unit and unit == 'player' then
 				local start, duration = GetSpellCooldown( isRetail and 61304 or spellID ) --retest for tbc/classic season
-				if duration>0 and (isRetail or duration<=1.51) then
+				if duration > 0 and (isRetail or duration <= 1.51) then
 					Start(self, GetTime() - start, duration )
 				end
 			end
