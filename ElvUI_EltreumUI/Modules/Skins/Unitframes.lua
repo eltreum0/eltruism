@@ -33,7 +33,7 @@ local unitframeclass = {
 --bar colors for party/raid/raid40
 --local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
 --local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
-local paladin, warrior, shaman, druid, deathknight, demonhunter, monk, rogue, priest, mage, hunter, warlock
+local paladin, warrior, shaman, druid, deathknight, demonhunter, monk, rogue, priest, mage, hunter, warlock, npchostile, npcneutral, npcfriendly
 if E.Retail then
 	paladin = {r = "0.95686066150665", g = "0.54901838302612", b = "0.72941017150879"}
 	warrior = {r = "0.77646887302399", g = "0.60784178972244", b = "0.4274500310421"}
@@ -60,6 +60,9 @@ elseif E.Wrath or E.TBC or E.Classic then
 	mage = {r = "0.25097984075546", g = "0.78039044141769", b = "0.92156660556793"}
 	hunter = {r = "0.67058676481247", g = "0.8313707113266", b = "0.45097941160202"}
 	warlock = {r = "0.52941060066223", g = "0.52941060066223", b = "0.92940974235535"}
+	npchostile = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"}
+	npcneutral = {r = "0.99999779462814", g = "0.90195882320404", b = "0.42352849245071"}
+	npcfriendly = {r = "0.4274500310421", g = "0.99999779462814", b = "0.44313627481461"}
 end
 
 local unitframecustomgradients = {
@@ -2623,21 +2626,22 @@ end
 hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
 
 --by asakawa
---[[ YOUR SETTINGS 1 = left, 2 = right --
-local r1,g1,b1,r2,g2,b2 = 1,1,0,0,1,1
----------------------------------------
-if not aura_env.region.bar.gradient then
-  aura_env.region.bar.gradient = aura_env.region.bar:CreateTexture()
-  aura_env.region.bar.mask = aura_env.region.bar:CreateMaskTexture()
-end
+--[[
+	YOUR SETTINGS 1 = left, 2 = right --
+	local r1,g1,b1,r2,g2,b2 = 1,1,0,0,1,1
+	---------------------------------------
+	if not aura_env.region.bar.gradient then
+	  aura_env.region.bar.gradient = aura_env.region.bar:CreateTexture()
+	  aura_env.region.bar.mask = aura_env.region.bar:CreateMaskTexture()
+	end
 
-local bar = aura_env.region.bar
-local gradient = bar.gradient
-local mask = bar.mask
+	local bar = aura_env.region.bar
+	local gradient = bar.gradient
+	local mask = bar.mask
 
-gradient:SetTexture(bar:GetTexture())
-gradient:SetAllPoints(bar.bg)
-gradient:SetGradient("HORIZONTAL", r1,g1,b1,r2,g2,b2)
+	gradient:SetTexture(bar:GetTexture())
+	gradient:SetAllPoints(bar.bg)
+	gradient:SetGradient("HORIZONTAL", r1,g1,b1,r2,g2,b2)
 
 ]]
 
@@ -2646,3 +2650,229 @@ gradient:SetGradient("HORIZONTAL", r1,g1,b1,r2,g2,b2)
 
 --bar.fg:SetAlpha(0)
 --gradient:AddMaskTexture(mask)
+
+
+
+
+
+--gradient nameplates maybe
+local NP = E:GetModule('NamePlates')
+local mod = E:GetModule('NamePlates')
+
+--[[
+	for i,k in pairs(unit) do
+			print(unit.ThreatScale)
+			if tostring(unit.ThreatScale) == "1" then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["NPCHOSTILE"]["r2"], unitframecustomgradients["NPCHOSTILE"]["g2"], unitframecustomgradients["NPCHOSTILE"]["b2"], unitframecustomgradients["NPCHOSTILE"]["r1"], unitframecustomgradients["NPCHOSTILE"]["g1"], unitframecustomgradients["NPCHOSTILE"]["b1"])
+			end
+		end
+	unit.ThreatIndicator.offTank == false
+	unit.ThreatIndicator.isTank == false
+	unit.isEnemy false
+	unit.isFriend false
+	unit.ThreatScale 1
+	unit.TargetIndicator table: 000002A52F07E230
+	unit.TargetIndicator.LeftIndicator table: 000002A4B1F8E760
+	unit.TargetIndicator.RightIndicator table: 000002A4B1F8F070
+	unit.TargetIndicator.TopIndicator table: 000002A4B1F8E710
+	unit.TargetIndicator.__owner table: 000002A4B1F86C10
+]]
+
+--[[
+
+
+local function testfunc(unit)--(nameplate,unit)
+	if unit and unit.Health then--and UnitIsUnit(unit.unit, "target") then
+		local r,g,b = unit.Health:GetStatusBarColor()
+		print(r,g,b)
+
+		--yellow (retail)
+		--0.99999779462814 0.85097849369049 0.19607800245285
+
+		--yellow (wrath beta)
+		--0.99999779462814 0.90195882320404 0.42352849245071
+
+
+		local r1,g1,b1
+		if E.Retail then
+			r1 = 0.99999779462814
+			g1 = 0.85097849369049
+			b1 = 0.19607800245285
+		elseif E.Wrath then
+			r1 = 0.99999779462814
+			g1 = 0.90195882320404
+			b1 = 0.42352849245071
+		end
+
+
+		--red
+		--0.99607622623444 0.1764702051878 0.1764702051878
+
+		local r2,g2,b2
+		r2 = 0.99607622623444
+		g2 = 0.1764702051878
+		b2 = 0.1764702051878
+
+
+		if tostring(r) == tostring(r1) and tostring(g) ==  tostring(g1) and tostring(b) == tostring(b1) then
+			--unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["NPCNEUTRAL"]["r1"], unitframegradients["NPCNEUTRAL"]["g1"], unitframegradients["NPCNEUTRAL"]["b1"], unitframegradients["NPCNEUTRAL"]["r2"], unitframegradients["NPCNEUTRAL"]["g2"], unitframegradients["NPCNEUTRAL"]["b2"])
+			unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["NPCNEUTRAL"]["r2"], unitframecustomgradients["NPCNEUTRAL"]["g2"], unitframecustomgradients["NPCNEUTRAL"]["b2"], unitframecustomgradients["NPCNEUTRAL"]["r1"], unitframecustomgradients["NPCNEUTRAL"]["g1"], unitframecustomgradients["NPCNEUTRAL"]["b1"])
+		--elseif (tostring(r) == tostring(0.99607622623444) and tostring(g) ==  tostring(0.1764702051878) and tostring(b) == tostring(0.1764702051878)) or (tostring(r) == tostring(0.99999779462814) and tostring(g) ==  tostring(0.99999779462814) and tostring(b) == tostring(0.99999779462814)) then
+		elseif (tostring(r) == tostring(r2) and tostring(g) ==  tostring(g2) and tostring(b) == tostring(b2)) then
+
+			--unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["NPCHOSTILE"]["r1"], unitframegradients["NPCHOSTILE"]["g1"], unitframegradients["NPCHOSTILE"]["b1"], unitframegradients["NPCHOSTILE"]["r2"], unitframegradients["NPCHOSTILE"]["g2"], unitframegradients["NPCHOSTILE"]["b2"])
+			unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["NPCHOSTILE"]["r2"], unitframecustomgradients["NPCHOSTILE"]["g2"], unitframecustomgradients["NPCHOSTILE"]["b2"], unitframecustomgradients["NPCHOSTILE"]["r1"], unitframecustomgradients["NPCHOSTILE"]["g1"], unitframecustomgradients["NPCHOSTILE"]["b1"])
+		end
+	end
+end
+hooksecurefunc(NP, "Health_UpdateColor", testfunc)
+hooksecurefunc(NP, "Update_StatusBars", testfunc)
+hooksecurefunc(NP, "SetupTarget", testfunc)
+hooksecurefunc(NP, "UpdateTargetPlate", testfunc)
+hooksecurefunc(NP, "Update_ThreatIndicator", testfunc)
+hooksecurefunc(NP, "ThreatIndicator_PostUpdate", testfunc)
+
+]]
+
+--[[
+local function testfunc(unit)
+	print(unit)
+	for bar in pairs(NP.StatusBars) do
+		if UnitExists("target") then--and UnitIsUnit(unit, "target") then
+			bar:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients[E.myclass]["r1"], unitframegradients[E.myclass]["g1"], unitframegradients[E.myclass]["b1"], unitframegradients[E.myclass]["r2"], unitframegradients[E.myclass]["g2"], unitframegradients[E.myclass]["b2"])
+		else
+			return
+		end
+	end
+end
+hooksecurefunc(NP, "Update_StatusBars", testfunc)
+hooksecurefunc(NP, "Health_UpdateColor", testfunc)
+hooksecurefunc(NP, "SetupTarget", testfunc)
+hooksecurefunc(NP, "UpdateTargetPlate", testfunc)
+]]
+
+--[[
+hooksecurefunc(NP, "Health_UpdateColor", function(unit)
+--if unit.unit == 'vehicle' or unit.unit == 'player' then return end
+	if unit and unit.Health then
+		--print("JOO")
+		--print(unit.Health:GetStatusBarColor())
+		--local r, g, b = unit.Health:GetStatusBarColor()
+		--unit.Health:GetStatusBarTexture():SetGradient("HORIZONTAL", 1, 1, 0, 0, 0, 1)
+		unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients[E.myclass]["r1"], unitframegradients[E.myclass]["g1"], unitframegradients[E.myclass]["b1"], unitframegradients[E.myclass]["r2"], unitframegradients[E.myclass]["g2"], unitframegradients[E.myclass]["b2"])
+	end
+end)]]
+
+
+local function testfunc(unit)
+	if unit and unit.Health then
+		local r, g, b = unit.Health:GetStatusBarColor()
+		r = tostring(r)
+		g = tostring(g)
+		b = tostring(b)
+		--print(r,g,b)
+
+		if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["PALADIN"]["r1"], unitframecustomgradients["PALADIN"]["g1"], unitframecustomgradients["PALADIN"]["b1"], unitframecustomgradients["PALADIN"]["r2"], unitframecustomgradients["PALADIN"]["g2"], unitframecustomgradients["PALADIN"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["PALADIN"]["r1"], unitframegradients["PALADIN"]["g1"], unitframegradients["PALADIN"]["b1"], unitframegradients["PALADIN"]["r2"], unitframegradients["PALADIN"]["g2"], unitframegradients["PALADIN"]["b2"])
+			end
+		elseif ((r == warrior.r) and (g == warrior.g) and (b == warrior.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["WARRIOR"]["r1"], unitframecustomgradients["WARRIOR"]["g1"], unitframecustomgradients["WARRIOR"]["b1"], unitframecustomgradients["WARRIOR"]["r2"], unitframecustomgradients["WARRIOR"]["g2"], unitframecustomgradients["WARRIOR"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["WARRIOR"]["r1"], unitframegradients["WARRIOR"]["g1"], unitframegradients["WARRIOR"]["b1"], unitframegradients["WARRIOR"]["r2"], unitframegradients["WARRIOR"]["g2"], unitframegradients["WARRIOR"]["b2"])
+			end
+		elseif ((r == shaman.r) and (g == shaman.g) and (b == shaman.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["SHAMAN"]["r1"], unitframecustomgradients["SHAMAN"]["g1"], unitframecustomgradients["SHAMAN"]["b1"], unitframecustomgradients["SHAMAN"]["r2"], unitframecustomgradients["SHAMAN"]["g2"], unitframecustomgradients["SHAMAN"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["SHAMAN"]["r1"], unitframegradients["SHAMAN"]["g1"], unitframegradients["SHAMAN"]["b1"], unitframegradients["SHAMAN"]["r2"], unitframegradients["SHAMAN"]["g2"], unitframegradients["SHAMAN"]["b2"])
+			end
+		elseif ((r == druid.r) and (g == druid.g) and (b == druid.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["DRUID"]["r1"], unitframecustomgradients["DRUID"]["g1"], unitframecustomgradients["DRUID"]["b1"], unitframecustomgradients["DRUID"]["r2"], unitframecustomgradients["DRUID"]["g2"], unitframecustomgradients["DRUID"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["DRUID"]["r1"], unitframegradients["DRUID"]["g1"], unitframegradients["DRUID"]["b1"], unitframegradients["DRUID"]["r2"], unitframegradients["DRUID"]["g2"], unitframegradients["DRUID"]["b2"])
+			end
+		elseif ((r == deathknight.r) and (g == deathknight.g) and (b == deathknight.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["DEATHKNIGHT"]["r1"], unitframecustomgradients["DEATHKNIGHT"]["g1"], unitframecustomgradients["DEATHKNIGHT"]["b1"], unitframecustomgradients["DEATHKNIGHT"]["r2"], unitframecustomgradients["DEATHKNIGHT"]["g2"], unitframecustomgradients["DEATHKNIGHT"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["DEATHKNIGHT"]["r1"], unitframegradients["DEATHKNIGHT"]["g1"], unitframegradients["DEATHKNIGHT"]["b1"], unitframegradients["DEATHKNIGHT"]["r2"], unitframegradients["DEATHKNIGHT"]["g2"], unitframegradients["DEATHKNIGHT"]["b2"])
+			end
+		elseif ((r == demonhunter.r) and (g == demonhunter.g) and (b == demonhunter.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["DEMONHUNTER"]["r1"], unitframecustomgradients["DEMONHUNTER"]["g1"], unitframecustomgradients["DEMONHUNTER"]["b1"], unitframecustomgradients["DEMONHUNTER"]["r2"], unitframecustomgradients["DEMONHUNTER"]["g2"], unitframecustomgradients["DEMONHUNTER"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["DEMONHUNTER"]["r1"], unitframegradients["DEMONHUNTER"]["g1"], unitframegradients["DEMONHUNTER"]["b1"], unitframegradients["DEMONHUNTER"]["r2"], unitframegradients["DEMONHUNTER"]["g2"], unitframegradients["DEMONHUNTER"]["b2"])
+			end
+		elseif ((r == monk.r) and (g == monk.g) and (b == monk.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["MONK"]["r1"], unitframecustomgradients["MONK"]["g1"], unitframecustomgradients["MONK"]["b1"], unitframecustomgradients["MONK"]["r2"], unitframecustomgradients["MONK"]["g2"], unitframecustomgradients["MONK"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["MONK"]["r1"], unitframegradients["MONK"]["g1"], unitframegradients["MONK"]["b1"], unitframegradients["MONK"]["r2"], unitframegradients["MONK"]["g2"], unitframegradients["MONK"]["b2"])
+			end
+		elseif ((r == rogue.r) and (g == rogue.g) and (b == rogue.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["ROGUE"]["r1"], unitframecustomgradients["ROGUE"]["g1"], unitframecustomgradients["ROGUE"]["b1"], unitframecustomgradients["ROGUE"]["r2"], unitframecustomgradients["ROGUE"]["g2"], unitframecustomgradients["ROGUE"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["ROGUE"]["r1"], unitframegradients["ROGUE"]["g1"], unitframegradients["ROGUE"]["b1"], unitframegradients["ROGUE"]["r2"], unitframegradients["ROGUE"]["g2"], unitframegradients["ROGUE"]["b2"])
+			end
+		--[[elseif ((r == priest.r) and (g == priest.g) and (b == priest.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["PRIEST"]["r1"], unitframecustomgradients["PRIEST"]["g1"], unitframecustomgradients["PRIEST"]["b1"], unitframecustomgradients["PRIEST"]["r2"], unitframecustomgradients["PRIEST"]["g2"], unitframecustomgradients["PRIEST"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["PRIEST"]["r1"], unitframegradients["PRIEST"]["g1"], unitframegradients["PRIEST"]["b1"], unitframegradients["PRIEST"]["r2"], unitframegradients["PRIEST"]["g2"], unitframegradients["PRIEST"]["b2"])
+			end]]
+		elseif ((r == mage.r) and (g == mage.g) and (b == mage.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["MAGE"]["r1"], unitframecustomgradients["MAGE"]["g1"], unitframecustomgradients["MAGE"]["b1"], unitframecustomgradients["MAGE"]["r2"], unitframecustomgradients["MAGE"]["g2"], unitframecustomgradients["MAGE"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["MAGE"]["r1"], unitframegradients["MAGE"]["g1"], unitframegradients["MAGE"]["b1"], unitframegradients["MAGE"]["r2"], unitframegradients["MAGE"]["g2"], unitframegradients["MAGE"]["b2"])
+			end
+		elseif ((r == hunter.r) and (g == hunter.g) and (b == hunter.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["HUNTER"]["r1"], unitframecustomgradients["HUNTER"]["g1"], unitframecustomgradients["HUNTER"]["b1"], unitframecustomgradients["HUNTER"]["r2"], unitframecustomgradients["HUNTER"]["g2"], unitframecustomgradients["HUNTER"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["HUNTER"]["r1"], unitframegradients["HUNTER"]["g1"], unitframegradients["HUNTER"]["b1"], unitframegradients["HUNTER"]["r2"], unitframegradients["HUNTER"]["g2"], unitframegradients["HUNTER"]["b2"])
+			end
+		elseif ((r == warlock.r) and (g == warlock.g) and (b == warlock.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["WARLOCK"]["r1"], unitframecustomgradients["WARLOCK"]["g1"], unitframecustomgradients["WARLOCK"]["b1"], unitframecustomgradients["WARLOCK"]["r2"], unitframecustomgradients["WARLOCK"]["g2"], unitframecustomgradients["WARLOCK"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["WARLOCK"]["r1"], unitframegradients["WARLOCK"]["g1"], unitframegradients["WARLOCK"]["b1"], unitframegradients["WARLOCK"]["r2"], unitframegradients["WARLOCK"]["g2"], unitframegradients["WARLOCK"]["b2"])
+			end
+		elseif ((r == npchostile.r) and (g == npchostile.g) and (b == npchostile.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["NPCHOSTILE"]["r1"], unitframecustomgradients["NPCHOSTILE"]["g1"], unitframecustomgradients["NPCHOSTILE"]["b1"], unitframecustomgradients["NPCHOSTILE"]["r2"], unitframecustomgradients["NPCHOSTILE"]["g2"], unitframecustomgradients["NPCHOSTILE"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["NPCHOSTILE"]["r1"], unitframegradients["NPCHOSTILE"]["g1"], unitframegradients["NPCHOSTILE"]["b1"], unitframegradients["NPCHOSTILE"]["r2"], unitframegradients["NPCHOSTILE"]["g2"], unitframegradients["NPCHOSTILE"]["b2"])
+			end
+		elseif ((r == npcneutral.r) and (g == npcneutral.g) and (b == npcneutral.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["NPCNEUTRAL"]["r1"], unitframecustomgradients["NPCNEUTRAL"]["g1"], unitframecustomgradients["NPCNEUTRAL"]["b1"], unitframecustomgradients["NPCNEUTRAL"]["r2"], unitframecustomgradients["NPCNEUTRAL"]["g2"], unitframecustomgradients["NPCNEUTRAL"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["NPCNEUTRAL"]["r1"], unitframegradients["NPCNEUTRAL"]["g1"], unitframegradients["NPCNEUTRAL"]["b1"], unitframegradients["NPCNEUTRAL"]["r2"], unitframegradients["NPCNEUTRAL"]["g2"], unitframegradients["NPCNEUTRAL"]["b2"])
+			end
+		elseif ((r == npcfriendly.r) and (g == npcfriendly.g) and (b == npcfriendly.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["NPCFRIENDLY"]["r1"], unitframecustomgradients["NPCFRIENDLY"]["g1"], unitframecustomgradients["NPCFRIENDLY"]["b1"], unitframecustomgradients["NPCFRIENDLY"]["r2"], unitframecustomgradients["NPCFRIENDLY"]["g2"], unitframecustomgradients["NPCFRIENDLY"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["NPCFRIENDLY"]["r1"], unitframegradients["NPCFRIENDLY"]["g1"], unitframegradients["NPCFRIENDLY"]["b1"], unitframegradients["NPCFRIENDLY"]["r2"], unitframegradients["NPCFRIENDLY"]["g2"], unitframegradients["NPCFRIENDLY"]["b2"])
+			end
+		end
+	end
+end
+hooksecurefunc(NP, "Health_UpdateColor", testfunc)
+--hooksecurefunc(NP, "Update_StatusBars", testfunc)
+--hooksecurefunc(NP, "SetupTarget", testfunc)
+--hooksecurefunc(NP, "UpdateTargetPlate", testfunc)
+--hooksecurefunc(NP, "Update_ThreatIndicator", testfunc)
+--hooksecurefunc(NP, "ThreatIndicator_PostUpdate", testfunc)
+--hooksecurefunc(NP, "UpdatePlateSize", testfunc)
+--hooksecurefunc(NP, "Style", testfunc)
+--hooksecurefunc(NP, "StyleTargetPlate", testfunc)
+--hooksecurefunc(NP, "UpdatePlate", testfunc)
+--hooksecurefunc(mod, "StyleFilterUpdate", testfunc)
