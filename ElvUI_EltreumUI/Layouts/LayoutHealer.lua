@@ -503,7 +503,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["colors"]["transparentAurabars"] = true
 	E.db["unitframe"]["colors"]["transparentCastbar"] = true
 	E.db["unitframe"]["colors"]["transparentHealth"] = true
-	E.db["unitframe"]["colors"]["transparentPower"] = true
+	--E.db["unitframe"]["colors"]["transparentPower"] = true
+	E.db["unitframe"]["colors"]["transparentPower"] = false
 	E.db["unitframe"]["debuffHighlighting"] = "GLOW"
 	E.db["unitframe"]["statusbar"] = "ElvUI Norm1"
 	E.db["unitframe"]["font"] = "Kimberley"

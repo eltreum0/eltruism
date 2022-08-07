@@ -585,7 +585,8 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["colors"]["transparentAurabars"] = true
 	E.db["unitframe"]["colors"]["transparentCastbar"] = true
 	E.db["unitframe"]["colors"]["transparentHealth"] = true
-	E.db["unitframe"]["colors"]["transparentPower"] = true
+	--E.db["unitframe"]["colors"]["transparentPower"] = true
+	E.db["unitframe"]["colors"]["transparentPower"] = false
 
 	--dps options
 	E.db["unitframe"]["font"] = "Kimberley"
