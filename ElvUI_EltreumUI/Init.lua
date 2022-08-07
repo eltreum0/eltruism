@@ -144,6 +144,9 @@ function ElvUI_EltreumUI:Initialize()
 	if E.Classic or E.TBC or E.Wrath then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
 	end
+	--because some cvars keep resetting for some reason
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEAVING_WORLD')
+	ElvUI_EltreumUI:RegisterEvent('PLAYER_LOGOUT')
 end
 
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
@@ -297,6 +300,14 @@ end
 
 function ElvUI_EltreumUI:INSPECT_READY(_,unit)
 	ElvUI_EltreumUI:InspectBg(unit)
+end
+
+function ElvUI_EltreumUI:PLAYER_LEAVING_WORLD()
+	ElvUI_EltreumUI:BlizzCombatText()
+end
+
+function ElvUI_EltreumUI:PLAYER_LOGOUT()
+	ElvUI_EltreumUI:BlizzCombatText()
 end
 
 local function CallbackInitialize()

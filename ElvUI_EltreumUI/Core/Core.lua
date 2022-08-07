@@ -149,24 +149,20 @@ end
 
 --turn and off blizzard combat text
 function ElvUI_EltreumUI:BlizzCombatText()
-	if IsAddOnLoaded('ElvUI_FCT') or IsAddOnLoaded('NameplateSCT') then
-		if E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext then
-			if E.Retail then
-				if not E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana then
-					SetCVar("enableFloatingCombatText", 0)
-				end
+	if not InCombatLockdown() then
+		if IsAddOnLoaded('ElvUI_FCT') or IsAddOnLoaded('NameplateSCT') then
+			if E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext then
+				SetCVar("enableFloatingCombatText", 0)
 				SetCVar("floatingCombatTextCombatHealing", 0)
 				SetCVar("floatingCombatTextCombatHealingAbsorbSelf", 0)
 				SetCVar("floatingCombatTextCombatHealingAbsorbTarget", 0)
 				SetCVar("floatingCombatTextCombatDamage", 0)
-			elseif E.Wrath or E.TBC or E.Classic then
-				SetCVar("floatingCombatTextCombatDamage", 0)
 			end
 		end
-	end
-	if E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana then
-		SetCVar("floatingCombatTextEnergyGains", 1)
-		SetCVar("enableFloatingCombatText", 1) ----this is damage taken without this the floating resource will not work
+		if E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana then
+			SetCVar("floatingCombatTextEnergyGains", 1)
+			SetCVar("enableFloatingCombatText", 1) ----this is damage taken without this the floating resource will not work
+		end
 	end
 end
 
