@@ -21,6 +21,7 @@ local C_CVar = _G.C_CVar
 local OKAY = _G.OKAY
 local Item = _G.Item
 local tremove = _G.tremove
+local AceGUIWidgetLSMlists = _G.AceGUIWidgetLSMlists
 
 --Author list
 local AUTHORS = {
