@@ -33,7 +33,11 @@ local unitframeclass = {
 --bar colors for party/raid/raid40
 --local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
 --local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
-local paladin, warrior, shaman, druid, deathknight, demonhunter, monk, rogue, priest, mage, hunter, warlock, npchostile, npcneutral, npcfriendly
+local paladin, warrior, shaman, druid, deathknight, demonhunter, monk, rogue, priest, mage, hunter, warlock
+local npchostile, npcneutral, npcfriendly
+local goodthreat, goodtransition, badtransition, badthreat
+local offtank, offtankgoodtransition, offtankbadtransition
+
 if E.Retail then
 	paladin = {r = "0.95686066150665", g = "0.54901838302612", b = "0.72941017150879"}
 	warrior = {r = "0.77646887302399", g = "0.60784178972244", b = "0.4274500310421"}
@@ -63,6 +67,10 @@ elseif E.Wrath or E.TBC or E.Classic then
 	npchostile = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"}
 	npcneutral = {r = "0.99999779462814", g = "0.90195882320404", b = "0.42352849245071"}
 	npcfriendly = {r = "0.4274500310421", g = "0.99999779462814", b = "0.44313627481461"}
+	goodthreat = {r = "0.27843075990677", g = "0.99999779462814", b = "0"}
+	badthreat = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"}
+	goodtransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
+	badtransition = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"}
 end
 
 local unitframecustomgradients = {
@@ -2597,22 +2605,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 	end
 end
 hooksecurefunc(UF, "Style", ElvUI_EltreumUI.GradientCustomTexture) --if not hooking into this then when the target of target changes it doesnt update
---hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.GradientCustomTexture)
 hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientCustomTexture)
---hooksecurefunc(UF, "PostUpdateHealth", ElvUI_EltreumUI.GradientCustomTexture)
-
---[[local EltruismGradientCustomTextureFrame = CreateFrame("FRAME")
-EltruismGradientCustomTextureFrame:RegisterUnitEvent("UNIT_TARGET", "player")
-EltruismGradientCustomTextureFrame:RegisterUnitEvent("UNIT_TARGET", "target")
-EltruismGradientCustomTextureFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
-EltruismGradientCustomTextureFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
-EltruismGradientCustomTextureFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-EltruismGradientCustomTextureFrame:RegisterEvent("GROUP_ROSTER_UPDATE")
-EltruismGradientCustomTextureFrame:SetScript("OnEvent", function()
-	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then
-		ElvUI_EltreumUI:GradientCustomTexture()
-	end
-end)]]
 
 --Unitframe Backdrop Texture
 function ElvUI_EltreumUI:BackdropTexture(_, _, backdropTex)
@@ -2625,152 +2618,15 @@ function ElvUI_EltreumUI:BackdropTexture(_, _, backdropTex)
 end
 hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
 
---by asakawa
---[[
-	YOUR SETTINGS 1 = left, 2 = right --
-	local r1,g1,b1,r2,g2,b2 = 1,1,0,0,1,1
-	---------------------------------------
-	if not aura_env.region.bar.gradient then
-	  aura_env.region.bar.gradient = aura_env.region.bar:CreateTexture()
-	  aura_env.region.bar.mask = aura_env.region.bar:CreateMaskTexture()
-	end
-
-	local bar = aura_env.region.bar
-	local gradient = bar.gradient
-	local mask = bar.mask
-
-	gradient:SetTexture(bar:GetTexture())
-	gradient:SetAllPoints(bar.bg)
-	gradient:SetGradient("HORIZONTAL", r1,g1,b1,r2,g2,b2)
-
-]]
-
---mask:SetTexture([[Interface\AddOns\WeakAuras\Media\Textures\Square_White]])
---mask:SetAllPoints(bar.fg)
-
---bar.fg:SetAlpha(0)
---gradient:AddMaskTexture(mask)
-
-
-
-
-
---gradient nameplates maybe
+--gradient nameplates
 local NP = E:GetModule('NamePlates')
-local mod = E:GetModule('NamePlates')
-
---[[
-	for i,k in pairs(unit) do
-			print(unit.ThreatScale)
-			if tostring(unit.ThreatScale) == "1" then
-				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["NPCHOSTILE"]["r2"], unitframecustomgradients["NPCHOSTILE"]["g2"], unitframecustomgradients["NPCHOSTILE"]["b2"], unitframecustomgradients["NPCHOSTILE"]["r1"], unitframecustomgradients["NPCHOSTILE"]["g1"], unitframecustomgradients["NPCHOSTILE"]["b1"])
-			end
-		end
-	unit.ThreatIndicator.offTank == false
-	unit.ThreatIndicator.isTank == false
-	unit.isEnemy false
-	unit.isFriend false
-	unit.ThreatScale 1
-	unit.TargetIndicator table: 000002A52F07E230
-	unit.TargetIndicator.LeftIndicator table: 000002A4B1F8E760
-	unit.TargetIndicator.RightIndicator table: 000002A4B1F8F070
-	unit.TargetIndicator.TopIndicator table: 000002A4B1F8E710
-	unit.TargetIndicator.__owner table: 000002A4B1F86C10
-]]
-
---[[
-
-
-local function testfunc(unit)--(nameplate,unit)
-	if unit and unit.Health then--and UnitIsUnit(unit.unit, "target") then
-		local r,g,b = unit.Health:GetStatusBarColor()
-		print(r,g,b)
-
-		--yellow (retail)
-		--0.99999779462814 0.85097849369049 0.19607800245285
-
-		--yellow (wrath beta)
-		--0.99999779462814 0.90195882320404 0.42352849245071
-
-
-		local r1,g1,b1
-		if E.Retail then
-			r1 = 0.99999779462814
-			g1 = 0.85097849369049
-			b1 = 0.19607800245285
-		elseif E.Wrath then
-			r1 = 0.99999779462814
-			g1 = 0.90195882320404
-			b1 = 0.42352849245071
-		end
-
-
-		--red
-		--0.99607622623444 0.1764702051878 0.1764702051878
-
-		local r2,g2,b2
-		r2 = 0.99607622623444
-		g2 = 0.1764702051878
-		b2 = 0.1764702051878
-
-
-		if tostring(r) == tostring(r1) and tostring(g) ==  tostring(g1) and tostring(b) == tostring(b1) then
-			--unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["NPCNEUTRAL"]["r1"], unitframegradients["NPCNEUTRAL"]["g1"], unitframegradients["NPCNEUTRAL"]["b1"], unitframegradients["NPCNEUTRAL"]["r2"], unitframegradients["NPCNEUTRAL"]["g2"], unitframegradients["NPCNEUTRAL"]["b2"])
-			unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["NPCNEUTRAL"]["r2"], unitframecustomgradients["NPCNEUTRAL"]["g2"], unitframecustomgradients["NPCNEUTRAL"]["b2"], unitframecustomgradients["NPCNEUTRAL"]["r1"], unitframecustomgradients["NPCNEUTRAL"]["g1"], unitframecustomgradients["NPCNEUTRAL"]["b1"])
-		--elseif (tostring(r) == tostring(0.99607622623444) and tostring(g) ==  tostring(0.1764702051878) and tostring(b) == tostring(0.1764702051878)) or (tostring(r) == tostring(0.99999779462814) and tostring(g) ==  tostring(0.99999779462814) and tostring(b) == tostring(0.99999779462814)) then
-		elseif (tostring(r) == tostring(r2) and tostring(g) ==  tostring(g2) and tostring(b) == tostring(b2)) then
-
-			--unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["NPCHOSTILE"]["r1"], unitframegradients["NPCHOSTILE"]["g1"], unitframegradients["NPCHOSTILE"]["b1"], unitframegradients["NPCHOSTILE"]["r2"], unitframegradients["NPCHOSTILE"]["g2"], unitframegradients["NPCHOSTILE"]["b2"])
-			unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["NPCHOSTILE"]["r2"], unitframecustomgradients["NPCHOSTILE"]["g2"], unitframecustomgradients["NPCHOSTILE"]["b2"], unitframecustomgradients["NPCHOSTILE"]["r1"], unitframecustomgradients["NPCHOSTILE"]["g1"], unitframecustomgradients["NPCHOSTILE"]["b1"])
-		end
-	end
-end
-hooksecurefunc(NP, "Health_UpdateColor", testfunc)
-hooksecurefunc(NP, "Update_StatusBars", testfunc)
-hooksecurefunc(NP, "SetupTarget", testfunc)
-hooksecurefunc(NP, "UpdateTargetPlate", testfunc)
-hooksecurefunc(NP, "Update_ThreatIndicator", testfunc)
-hooksecurefunc(NP, "ThreatIndicator_PostUpdate", testfunc)
-
-]]
-
---[[
-local function testfunc(unit)
-	print(unit)
-	for bar in pairs(NP.StatusBars) do
-		if UnitExists("target") then--and UnitIsUnit(unit, "target") then
-			bar:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients[E.myclass]["r1"], unitframegradients[E.myclass]["g1"], unitframegradients[E.myclass]["b1"], unitframegradients[E.myclass]["r2"], unitframegradients[E.myclass]["g2"], unitframegradients[E.myclass]["b2"])
-		else
-			return
-		end
-	end
-end
-hooksecurefunc(NP, "Update_StatusBars", testfunc)
-hooksecurefunc(NP, "Health_UpdateColor", testfunc)
-hooksecurefunc(NP, "SetupTarget", testfunc)
-hooksecurefunc(NP, "UpdateTargetPlate", testfunc)
-]]
-
---[[
-hooksecurefunc(NP, "Health_UpdateColor", function(unit)
---if unit.unit == 'vehicle' or unit.unit == 'player' then return end
-	if unit and unit.Health then
-		--print("JOO")
-		--print(unit.Health:GetStatusBarColor())
-		--local r, g, b = unit.Health:GetStatusBarColor()
-		--unit.Health:GetStatusBarTexture():SetGradient("HORIZONTAL", 1, 1, 0, 0, 0, 1)
-		unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, unitframegradients[E.myclass]["r1"], unitframegradients[E.myclass]["g1"], unitframegradients[E.myclass]["b1"], unitframegradients[E.myclass]["r2"], unitframegradients[E.myclass]["g2"], unitframegradients[E.myclass]["b2"])
-	end
-end)]]
-
-
 local function testfunc(unit)
 	if unit and unit.Health then
 		local r, g, b = unit.Health:GetStatusBarColor()
 		r = tostring(r)
 		g = tostring(g)
 		b = tostring(b)
-		--print(r,g,b)
+		print(r,g,b)
 
 		if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) then
 			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -2862,7 +2718,17 @@ local function testfunc(unit)
 			else
 				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["NPCFRIENDLY"]["r1"], unitframegradients["NPCFRIENDLY"]["g1"], unitframegradients["NPCFRIENDLY"]["b1"], unitframegradients["NPCFRIENDLY"]["r2"], unitframegradients["NPCFRIENDLY"]["g2"], unitframegradients["NPCFRIENDLY"]["b2"])
 			end
+		elseif ((r == goodthreat.r) and (g == goodthreat.g) and (b == goodthreat.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["NPCFRIENDLY"]["r1"], unitframecustomgradients["NPCFRIENDLY"]["g1"], unitframecustomgradients["NPCFRIENDLY"]["b1"], unitframecustomgradients["NPCFRIENDLY"]["r2"], unitframecustomgradients["NPCFRIENDLY"]["g2"], unitframecustomgradients["NPCFRIENDLY"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["NPCFRIENDLY"]["r1"], unitframegradients["NPCFRIENDLY"]["g1"], unitframegradients["NPCFRIENDLY"]["b1"], unitframegradients["NPCFRIENDLY"]["r2"], unitframegradients["NPCFRIENDLY"]["g2"], unitframegradients["NPCFRIENDLY"]["b2"])
+			end
 		end
+
+
+		--goodthreat, goodtransition, badtransition, badthreat
+
 	end
 end
 hooksecurefunc(NP, "Health_UpdateColor", testfunc)
