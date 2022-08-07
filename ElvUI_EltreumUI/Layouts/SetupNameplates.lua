@@ -120,9 +120,6 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["enable"] = true
-			if not E.Retail then
-				E.db["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["enable"] = true
-			end
 			E.db["nameplates"]["filters"]["EltreumTarget"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = true
@@ -537,20 +534,10 @@ end
 -- Style Filter Setup
 function ElvUI_EltreumUI:SetupStyleFilters()
 	if E.private["nameplates"]["enable"] == true then
-		for _, filterName in pairs({'ElvUI_NonTarget', 'ElvUI_Target', 'ElvUI_Boss', 'EltreumTarget', 'EltreumInterrupt', 'EltreumExecute', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems'}) do
+		for _, filterName in pairs({'ElvUI_NonTarget', 'ElvUI_Target', 'EltreumTarget', 'EltreumInterrupt', 'EltreumExecute', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
-		end
-
-		if not E.Retail then --in classic for some reason bosses are not affected by ElvUI_Target/EltreumTarget
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["health"] = true
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["healthClass"] = true
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["scale"] = 1.25
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["usePortrait"] = false
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["isTarget"] = true
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["requireTarget"] = true
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = true
 		end
 
 		-- Non targeted enemies
