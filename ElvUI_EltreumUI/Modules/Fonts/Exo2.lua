@@ -237,7 +237,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 			["size"] = 11,
 			["text_format"] = "[powercolor][power:current:shortvalue]",
 			["xOffset"] = 0,
-			["yOffset"] = 0
+			["yOffset"] = -1,
 		}
 		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"] = {
 			["attachTextTo"] = "Health",
