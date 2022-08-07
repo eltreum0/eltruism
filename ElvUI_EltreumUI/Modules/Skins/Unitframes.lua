@@ -2627,7 +2627,7 @@ local function testfunc(unit)
 		r = tostring(r)
 		g = tostring(g)
 		b = tostring(b)
-		print(r,g,b)
+		--print(r,g,b)
 
 		if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) then
 			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -2719,12 +2719,12 @@ local function testfunc(unit)
 			else
 				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["NPCFRIENDLY"]["r1"], unitframegradients["NPCFRIENDLY"]["g1"], unitframegradients["NPCFRIENDLY"]["b1"], unitframegradients["NPCFRIENDLY"]["r2"], unitframegradients["NPCFRIENDLY"]["g2"], unitframegradients["NPCFRIENDLY"]["b2"])
 			end
-		elseif ((r == goodthreat.r) and (g == goodthreat.g) and (b == goodthreat.b)) then
+		--[[elseif ((r == goodthreat.r) and (g == goodthreat.g) and (b == goodthreat.b)) then
 			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframecustomgradients["NPCFRIENDLY"]["r1"], unitframecustomgradients["NPCFRIENDLY"]["g1"], unitframecustomgradients["NPCFRIENDLY"]["b1"], unitframecustomgradients["NPCFRIENDLY"]["r2"], unitframecustomgradients["NPCFRIENDLY"]["g2"], unitframecustomgradients["NPCFRIENDLY"]["b2"])
 			else
 				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", unitframegradients["NPCFRIENDLY"]["r1"], unitframegradients["NPCFRIENDLY"]["g1"], unitframegradients["NPCFRIENDLY"]["b1"], unitframegradients["NPCFRIENDLY"]["r2"], unitframegradients["NPCFRIENDLY"]["g2"], unitframegradients["NPCFRIENDLY"]["b2"])
-			end
+			end]]
 		end
 
 
