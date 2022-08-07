@@ -51,5 +51,7 @@ function ElvUI_EltreumUI:GetWarpDepleteProfile()
 		}
 
 		ElvUI_EltreumUI:Print(L["WarpDeplete profile has been set."])
+	else
+		ElvUI_EltreumUI:Print(L["WarpDeplete is not loaded"])
 	end
 end

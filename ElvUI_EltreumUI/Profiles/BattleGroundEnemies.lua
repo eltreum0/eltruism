@@ -276,5 +276,7 @@ function ElvUI_EltreumUI:GetBattleGroundEnemiesProfile()
 		end
 
 		ElvUI_EltreumUI:Print(L["BattleGroundEnemies profile has been set."])
+	else
+		ElvUI_EltreumUI:Print(L["BattleGroundEnemies is not loaded"])
 	end
 end

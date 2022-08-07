@@ -41,5 +41,7 @@ function ElvUI_EltreumUI:GetCappingProfile()
 
 
 		ElvUI_EltreumUI:Print(L["Capping profile has been set."])
+	else
+		ElvUI_EltreumUI:Print(L["Capping is not loaded"])
 	end
 end
