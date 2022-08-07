@@ -226,7 +226,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 			["size"] = 12,
 			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
 			["xOffset"] = 2,
-			["yOffset"] = 0
+			["yOffset"] = -3,
 		}
 		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"] = {
 			["attachTextTo"] = "Power",
