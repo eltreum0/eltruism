@@ -2619,6 +2619,7 @@ end
 hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
 
 --gradient nameplates
+--will need to check eltreumtarget and elvui_boss style filters due to health colors
 local NP = E:GetModule('NamePlates')
 local function testfunc(unit)
 	if unit and unit.Health then
