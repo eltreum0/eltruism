@@ -716,8 +716,8 @@ end)
 function ElvUI_EltreumUI:UpdateNPwithoutBar()
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
 		if E.private.ElvUI_EltreumUI.nameplatepower.adjust then
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 1
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 1
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["yOffset"] = 5
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["yOffset"] = 5
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 			if E.Retail then
