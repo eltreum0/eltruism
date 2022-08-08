@@ -9,6 +9,7 @@ local UnitIsPlayer = _G.UnitIsPlayer
 local tostring = _G.tostring
 local select = _G.select
 
+--set the variables
 local paladin, warrior, shaman, druid, deathknight, demonhunter, monk, rogue, priest, mage, hunter, warlock
 local npchostile, npcneutral, npcfriendly
 local goodthreat, goodtransition, badtransition, badthreat
@@ -110,9 +111,7 @@ local unitframeclasscustom = {
 	["NPCUNFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npcunfriendly)),
 	["NPCHOSTILE"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npchostile)),
 }
-
 function ElvUI_EltreumUI:GradientColorTableUpdate()
-
 	if E.Wrath or E.TBC or E.Classic then
 		classtable = {
 			["PALADIN"] = {r = "0.96078222990036", g = "0.54901838302612", b = "0.72941017150879"},
@@ -140,7 +139,6 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 			--local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
 		}
 	end
-
 	unitframecustomgradients = {
 		["WARRIOR"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB2},
 		["PALADIN"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorB2},
@@ -159,7 +157,6 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 		["NPCUNFRIENDLY"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyB2},
 		["NPCHOSTILE"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileB2},
 	}
-
 	if E.db.ElvUI_EltreumUI.darkmode then
 		if E.Retail then
 			classtable = {
@@ -215,7 +212,6 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 			}
 		end
 	end
-
 	if E.db.ElvUI_EltreumUI.uftextureversion == "V2" then
 		unitframeclass = {
 			["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WAv2.tga",
@@ -256,7 +252,6 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 		}
 	end
 end
-
 local colorupdateframe = CreateFrame("FRAME")
 colorupdateframe:RegisterEvent("PLAYER_ENTERING_WORLD")
 colorupdateframe:RegisterEvent("PLAYER_STARTED_MOVING")
@@ -265,23 +260,31 @@ colorupdateframe:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:GradientColorTableUpdate()
 end)
 
+--get the texture
 function ElvUI_EltreumUI:UnitframeClassTexture(unitclass)
-	--color unitframes target texture during light mode
 	return unitframeclass[unitclass]
 end
 
+--get the custom texture
 function ElvUI_EltreumUI:UnitframeClassTextureCustom(unitclass)
 	return unitframeclasscustom[unitclass]
 end
 
+--get the colors for class detection
 function ElvUI_EltreumUI:UnitframeClassColor(unitclass)
 	return classtable[unitclass].r, classtable[unitclass].g, classtable[unitclass].b
 end
 
-function ElvUI_EltreumUI:GradientColors(unitclass)
-	return unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2
+--get the gradient colors
+function ElvUI_EltreumUI:GradientColors(unitclass, invert)
+	if invert then
+		return unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1
+	else
+		return unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2
+	end
 end
 
+--get the custom gradient colors
 function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert)
 	if invert then
 		return unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1
@@ -290,6 +293,7 @@ function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert)
 	end
 end
 
+--set the textures or gradients
 function ElvUI_EltreumUI:GradientCustomTexture(unit)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then
 
