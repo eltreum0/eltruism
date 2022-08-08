@@ -1,5 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local UF = E:GetModule('UnitFrames')
+local NP = E:GetModule('NamePlates')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 
@@ -24,12 +24,8 @@ local npchostile = {r = "0.99999779462814", g = "0.18039175868034", b = "0.18039
 --local badthreat = {r = "0.99999779462814", g = "0.18039175868034", b = "0.18039175868034"}
 --local goodthreattransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
 --local badthreattransition = {r = "0.7098023891449", g = "0.43137159943581", b = "0.27058765292168"}
-local offtank = {r = "0.72941017150879", g1 = "0.1999995559454", b = "0.99999779462814"}
-local offtankbadtransition = {r = "0.77646887302399", g1 = "0.60784178972244", b = "0.4274500310421"}
-
-
-
-
+--local offtank = {r = "0.72941017150879", g1 = "0.1999995559454", b = "0.99999779462814"}
+--local offtankbadtransition = {r = "0.77646887302399", g1 = "0.60784178972244", b = "0.4274500310421"}
 --bar colors for party/raid/raid40
 --local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
 --local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
@@ -59,9 +55,7 @@ if E.Wrath or E.TBC or E.Classic then
 end
 
 --gradient nameplates
---will need to check eltreumtarget and elvui_boss style filters due to health colors
-local NP = E:GetModule('NamePlates')
-local function testfunc(unit)
+local function GradientNameplates(unit)
 	if E.db.ElvUI_EltreumUI.gradientmode.npenable then
 		if unit and unit.Health then
 			local r, g, b = unit.Health:GetStatusBarColor()
@@ -159,7 +153,7 @@ local function testfunc(unit)
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, false))
 				end
-			elseif ((r == offtank.r) and (g == offtank.g) and (b == offtank.b)) then
+			--[[elseif ((r == offtank.r) and (g == offtank.g) and (b == offtank.b)) then
 				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
 				else
@@ -170,7 +164,7 @@ local function testfunc(unit)
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
-				end
+				end]]
 			elseif r == "0.99999779462814" and g == "0.99999779462814" and b == "0.99999779462814" then
 				return
 			else
@@ -181,14 +175,14 @@ local function testfunc(unit)
 		end
 	end
 end
-hooksecurefunc(NP, "Health_UpdateColor", testfunc)
---hooksecurefunc(NP, "Update_StatusBars", testfunc)
---hooksecurefunc(NP, "SetupTarget", testfunc)
---hooksecurefunc(NP, "UpdateTargetPlate", testfunc)
---hooksecurefunc(NP, "Update_ThreatIndicator", testfunc)
---hooksecurefunc(NP, "ThreatIndicator_PostUpdate", testfunc)
---hooksecurefunc(NP, "UpdatePlateSize", testfunc)
---hooksecurefunc(NP, "Style", testfunc)
---hooksecurefunc(NP, "StyleTargetPlate", testfunc)
---hooksecurefunc(NP, "UpdatePlate", testfunc)
---hooksecurefunc(NP, "StyleFilterUpdate", testfunc)
+hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
+--hooksecurefunc(NP, "Update_StatusBars", GradientNameplates)
+--hooksecurefunc(NP, "SetupTarget", GradientNameplates)
+--hooksecurefunc(NP, "UpdateTargetPlate", GradientNameplates)
+--hooksecurefunc(NP, "Update_ThreatIndicator", GradientNameplates)
+--hooksecurefunc(NP, "ThreatIndicator_PostUpdate", GradientNameplates)
+--hooksecurefunc(NP, "UpdatePlateSize", GradientNameplates)
+--hooksecurefunc(NP, "Style", GradientNameplates)
+--hooksecurefunc(NP, "StyleTargetPlate", GradientNameplates)
+--hooksecurefunc(NP, "UpdatePlate", GradientNameplates)
+--hooksecurefunc(NP, "StyleFilterUpdate", GradientNameplates)

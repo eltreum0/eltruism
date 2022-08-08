@@ -32,11 +32,11 @@ local classtable = {
 	["NPCNEUTRAL"] = {r = "0.99999779462814", g = "0.90195882320404", b = "0.42352849245071"},
 	["NPCUNFRIENDLY"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
 	["NPCHOSTILE"] = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"},
-	["GOODTHREAT"] = {r = "0.1999995559454", g = "0.7098023891449", b = "0"},
-	["BADTHREAT"] = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"},
-	["GOODTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"},
-	["BADTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
-	["OFFTANK"] = {r = "0.95686066150665", g1 = "0.54901838302612", b = "0.72941017150879"},
+	--["GOODTHREAT"] = {r = "0.1999995559454", g = "0.7098023891449", b = "0"},
+	--["BADTHREAT"] = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"},
+	--["GOODTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"},
+	--["BADTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
+	--["OFFTANK"] = {r = "0.95686066150665", g1 = "0.54901838302612", b = "0.72941017150879"},
 	--bar colors for party/raid/raid40
 	--local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
 	--local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
@@ -58,15 +58,13 @@ local unitframegradients = {
 	["NPCNEUTRAL"] = {r1 = 0.712358744169101, g1 = 0.63137254901961, b1 = 0.15490196078431, r2 = 1, g2 = 0.85686274509804, b2 = 0.2078431372549},
 	["NPCUNFRIENDLY"] = {r1 = 0.84313725490196, g1 = 0.30196078431373, b1 = 0, r2 = 0.83137254901961, g2 = 0.45882352941176, b2 = 0},
 	["NPCHOSTILE"] = {r1 = 0.31764705882353, g1 = 0.066666666666667, b1 = 0.07843137254902, r2 = 1, g2 = 0.15686274509804, b2 = 0.15686274509804},
-
-
 	-- ["GOODTHREAT"] = {r1 = 0.27843075990677, g1 = 0.99999779462814, b1 = 0, r2 = 1, g2 = 0, b2 = 0}, ????
-	["GOODTHREAT"] = {r1 = 0.1999995559454, g1 = 0.7098023891449, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
-	["BADTHREAT"] = {r1 = 0.99999779462814, g1 = 0.1764702051878, b1 = 0.1764702051878, r2 = 1, g2 = 0, b2 = 0},
-	["GOODTHREATTRANSITION"] = {r1 = 0.99999779462814, g1 = 0.85097849369049, b1 = 0.1999995559454, r2 = 1, g2 = 0, b2 = 0},
-	["BADTHREATTRANSITION"] = {r1 = 0.99999779462814, g1 = 0.50980281829834, b1 = 0.1999995559454, r2 = 1, g2 = 0, b2 = 0},
-	["OFFTANK"] = {r1 = 0.95686066150665, g1 = 0.54901838302612, b1 = 0.72941017150879, r2 = 1, g2 = 0, b2 = 0},
-
+	--["GOODTHREAT"] = {r1 = 0.1999995559454, g1 = 0.7098023891449, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	--["BADTHREAT"] = {r1 = 0.99999779462814, g1 = 0.1764702051878, b1 = 0.1764702051878, r2 = 1, g2 = 0, b2 = 0},
+	--["GOODTHREATTRANSITION"] = {r1 = 0.99999779462814, g1 = 0.85097849369049, b1 = 0.1999995559454, r2 = 1, g2 = 0, b2 = 0},
+	--["BADTHREATTRANSITION"] = {r1 = 0.99999779462814, g1 = 0.50980281829834, b1 = 0.1999995559454, r2 = 1, g2 = 0, b2 = 0},
+	--["OFFTANK"] = {r1 = 0.95686066150665, g1 = 0.54901838302612, b1 = 0.72941017150879, r2 = 1, g2 = 0, b2 = 0},
+	--["OFFTANKBADTHREATTRANSITION"] = {r1 = 0.77646887302399, g1 = 0.60784178972244, b1 = 0.4274500310421, r2 = 1, g2 = 0, b2 = 0},
 	--0.1999995559454 0.7098023891449 0
 	--0.95686066150665 0.54901838302612 0.72941017150879
 }
@@ -87,11 +85,11 @@ local unitframecustomgradients = {
 	["NPCNEUTRAL"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
 	["NPCUNFRIENDLY"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
 	["NPCHOSTILE"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
-	["GOODTHREAT"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
-	["BADTHREAT"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
-	["GOODTHREATTRANSITION"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
-	["BADTHREATTRANSITION"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
-	["OFFTANK"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	--["GOODTHREAT"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	--["BADTHREAT"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	--["GOODTHREATTRANSITION"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	--["BADTHREATTRANSITION"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	--["OFFTANK"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
 }
 local unitframeclass = {
 	["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga",
@@ -146,12 +144,12 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 			["WARLOCK"] = {r = "0.52941060066223", g = "0.52941060066223", b = "0.92940974235535"},
 			["NPCFRIENDLY"] = {r = "0.4274500310421", g = "0.99999779462814", b = "0.44313627481461"},
 			["NPCNEUTRAL"] = {r = "0.99999779462814", g = "0.90195882320404", b = "0.42352849245071"},
-			--["NPCUNFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npcunfriendly)),
+			["NPCUNFRIENDLY"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
 			["NPCHOSTILE"] = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"},
-			["GOODTHREAT"] = {r = "0.27843075990677", g = "0.99999779462814", b = "0"},
-			["BADTHREAT"] = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"},
-			["GOODTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"},
-			["BADTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
+			--["GOODTHREAT"] = {r = "0.27843075990677", g = "0.99999779462814", b = "0"},
+			--["BADTHREAT"] = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"},
+			--["GOODTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"},
+			--["BADTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
 			--bar colors for party/raid/raid40
 			--local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
 			--local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
@@ -174,11 +172,11 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 		["NPCNEUTRAL"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.npcneutralR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.npcneutralG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.npcneutralB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.npcneutralR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.npcneutralG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.npcneutralB2},
 		["NPCUNFRIENDLY"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyB2},
 		["NPCHOSTILE"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileB2},
-		["GOODTHREAT"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatB2},
-		["BADTHREAT"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.badthreatR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.badthreatG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.badthreatB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.badthreatR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.badthreatG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.badthreatB2},
-		["GOODTHREATTRANSITION"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionB2},
-		["BADTHREATTRANSITION"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionB2},
-		["OFFTANK"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.offtankR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.offtankG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.offtankB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.offtankR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.offtankG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.offtankB2},
+		--["GOODTHREAT"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatB2},
+		--["BADTHREAT"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.badthreatR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.badthreatG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.badthreatB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.badthreatR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.badthreatG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.badthreatB2},
+		--["GOODTHREATTRANSITION"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionB2},
+		--["BADTHREATTRANSITION"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionB2},
+		--["OFFTANK"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.offtankR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.offtankG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.offtankB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.offtankR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.offtankG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.offtankB2},
 	}
 	if E.db.ElvUI_EltreumUI.darkmode then
 		if E.Retail then
@@ -197,12 +195,12 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 				["WARLOCK"] = {r = "0.39607757329941", g = "0.39999911189079", b = "0.69803768396378"},
 				["NPCFRIENDLY"] = {r = "0.4274500310421", g = "0.99999779462814", b = "0.44313627481461"},
 				["NPCNEUTRAL"] = {r = "0.99999779462814", g = "0.90195882320404", b = "0.42352849245071"},
-				--["NPCUNFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npcunfriendly)),
+				["NPCUNFRIENDLY"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
 				["NPCHOSTILE"] = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"},
-				["GOODTHREAT"] = {r = "0.27843075990677", g = "0.99999779462814", b = "0"},
-				["BADTHREAT"] = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"},
-				["GOODTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"},
-				["BADTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
+				--["GOODTHREAT"] = {r = "0.27843075990677", g = "0.99999779462814", b = "0"},
+				--["BADTHREAT"] = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"},
+				--["GOODTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"},
+				--["BADTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
 				--bar colors for party/raid/raid40
 				--local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
 				--local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
@@ -223,12 +221,12 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 				["WARLOCK"] = {r = "0.39607757329941", g = "0.39607757329941", b = "0.69803768396378"},
 				["NPCFRIENDLY"] = {r = "0.4274500310421", g = "0.99999779462814", b = "0.44313627481461"},
 				["NPCNEUTRAL"] = {r = "0.99999779462814", g = "0.90195882320404", b = "0.42352849245071"},
-				--["NPCUNFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npcunfriendly)),
+				["NPCUNFRIENDLY"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
 				["NPCHOSTILE"] = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"},
-				["GOODTHREAT"] = {r = "0.27843075990677", g = "0.99999779462814", b = "0"},
-				["BADTHREAT"] = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"},
-				["GOODTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"},
-				["BADTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
+				--["GOODTHREAT"] = {r = "0.27843075990677", g = "0.99999779462814", b = "0"},
+				--["BADTHREAT"] = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"},
+				--["GOODTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"},
+				--["BADTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
 				--bar colors for party/raid/raid40
 				--local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
 				--local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
