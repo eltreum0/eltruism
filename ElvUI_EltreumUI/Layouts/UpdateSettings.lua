@@ -183,7 +183,9 @@ function ElvUI_EltreumUI:UpdateSettings()
 		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["text_format"] = "[eltruism:hpstatus{5,3}]"
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
 		E.db["unitframe"]["units"]["focus"]["health"]["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]"
-		E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
+		if not E.Classic then
+			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
+		end
 		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
 		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Health"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
 		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
@@ -209,8 +211,10 @@ function ElvUI_EltreumUI:UpdateSettings()
 		if E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumStatus"] then
 			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumStatus"]["enable"] = false
 		end
-		if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"]["enable"] = false
+		if not E.Classic then
+			if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"] then
+				E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"]["enable"] = false
+			end
 		end
 	end
 

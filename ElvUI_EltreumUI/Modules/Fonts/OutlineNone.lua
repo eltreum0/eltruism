@@ -90,10 +90,12 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone()
 	E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"]["fontOutline"] = "NONE"
-	E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"]["fontOutline"] = "NONE"
-	E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"]["fontOutline"] = "NONE"
-	E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"]["fontOutline"] = "NONE"
-	E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"]["fontOutline"] = "NONE"
+	if not E.Classic then
+		E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"]["fontOutline"] = "NONE"
+		E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"]["fontOutline"] = "NONE"
+		E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"]["fontOutline"] = "NONE"
+		E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"]["fontOutline"] = "NONE"
+	end
 	E.db["actionbar"]["bar1"]["countFontOutline"] = "NONE"
 	E.db["actionbar"]["bar1"]["hotkeyFontOutline"] = "NONE"
 	E.db["actionbar"]["bar1"]["macroFontOutline"] = "NONE"
