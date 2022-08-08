@@ -40,7 +40,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["colors"]["power"]["MANA"]["b"] = 1
 			E.db["nameplates"]["colors"]["power"]["MANA"]["g"] = 0.71372549019608
 			E.db["nameplates"]["colors"]["power"]["MANA"]["r"] = 0.49019607843137
-			E.db["nameplates"]["colors"]["reactions"]["bad"]["b"] = 0.32156862745098
+			--[[E.db["nameplates"]["colors"]["reactions"]["bad"]["b"] = 0.32156862745098
 			E.db["nameplates"]["colors"]["reactions"]["bad"]["g"] = 0.32156862745098
 			E.db["nameplates"]["colors"]["reactions"]["bad"]["r"] = 1
 			E.db["nameplates"]["colors"]["reactions"]["good"]["b"] = 0.44313725490196
@@ -66,6 +66,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["colors"]["selection"][13]["b"] = 0.49019607843137
 			E.db["nameplates"]["colors"]["selection"][13]["g"] = 1
 			E.db["nameplates"]["colors"]["selection"][13]["r"] = 0.16862745098039
+			]]
 			E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Kimberley"
 			E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
 
