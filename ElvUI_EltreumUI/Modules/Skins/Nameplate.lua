@@ -24,9 +24,9 @@ local goodthreat = {r = "0.27843075990677", g = "0.99999779462814", b = "0"}
 local badthreat = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"}
 local goodthreattransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
 local badthreattransition = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"}
---local offtank
---local offtankgoodthreattransition
---local offtankbadthreattransition
+local offtank  = {r = "0.69411611557007", g = "0.16470551490784", b = "0.11764679849148"}
+--local offtankgoodthreattransition --does this even exist?
+--local offtankbadthreattransition --does this even exist?
 --bar colors for party/raid/raid40
 --local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
 --local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
@@ -65,9 +65,7 @@ local function testfunc(unit)
 		r = tostring(r)
 		g = tostring(g)
 		b = tostring(b)
-		print(r,npcneutral.r,g,npcneutral.g,b,npcneutral.b)
-
-		--trying to get the unit's class results in a table with user data, so the unit is not the actual unit
+		--print(r,g,b)
 
 		if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) then
 			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
