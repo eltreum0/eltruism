@@ -5448,6 +5448,31 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						},
 					},
+					gradientnp = {
+						order = 3,
+						type = 'group',
+						name = L["Gradient"],
+						args = {
+							header = {
+								order = 1,
+								type = "description",
+								name = L["Gradient Colors"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							enablegradientnp = {
+								order = 2,
+								type = 'toggle',
+								name = L["Enable Gradient Nameplates"],
+								desc = L["Enable Gradient colors for Nameplates"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.gradientmode.npenable end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.npenable = value end,
+							},
+
+
+						},
+					},
 				},
 			},
 			partyraidsettings = {

@@ -460,6 +460,7 @@ P.ElvUI_EltreumUI = {
 
 	gradientmode = {
 		enable = false,
+
 		orientation = "HORIZONTAL",
 		texture = "Eltreum-Blank",
 		customcolor = false,
@@ -676,6 +677,10 @@ P.ElvUI_EltreumUI = {
 		npchostileB2 = 0.15686274509804,
 
 		--threat stuff for np
+		npenable = false,
+		nporientation = "VERTICAL",
+		npcustomcolor = false,
+
 		goodthreatR1 = 0.27843075990677,
 		goodthreatR2 = 0.27843075990677,
 		goodthreatG1 = 0.99999779462814,
