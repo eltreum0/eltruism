@@ -32,10 +32,11 @@ local classtable = {
 	["NPCNEUTRAL"] = {r = "0.99999779462814", g = "0.90195882320404", b = "0.42352849245071"},
 	--["NPCUNFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npcunfriendly)),
 	["NPCHOSTILE"] = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"},
-	["GOODTHREAT"] = {r = "0.27843075990677", g = "0.99999779462814", b = "0"},
+	["GOODTHREAT"] = {r = "0.1999995559454", g = "0.7098023891449", b = "0"},
 	["BADTHREAT"] = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"},
 	["GOODTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"},
 	["BADTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
+	["OFFTANK"] = {r = "0.95686066150665", g1 = "0.54901838302612", b = "0.72941017150879"},
 	--bar colors for party/raid/raid40
 	--local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
 	--local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
@@ -57,11 +58,17 @@ local unitframegradients = {
 	["NPCNEUTRAL"] = {r1 = 0.712358744169101, g1 = 0.63137254901961, b1 = 0.15490196078431, r2 = 1, g2 = 0.85686274509804, b2 = 0.2078431372549},
 	["NPCUNFRIENDLY"] = {r1 = 0.84313725490196, g1 = 0.30196078431373, b1 = 0, r2 = 0.83137254901961, g2 = 0.45882352941176, b2 = 0},
 	["NPCHOSTILE"] = {r1 = 0.31764705882353, g1 = 0.066666666666667, b1 = 0.07843137254902, r2 = 1, g2 = 0.15686274509804, b2 = 0.15686274509804},
-	["GOODTHREAT"] = {r1 = 0.27843075990677, g1 = 0.99999779462814, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+
+
+	-- ["GOODTHREAT"] = {r1 = 0.27843075990677, g1 = 0.99999779462814, b1 = 0, r2 = 1, g2 = 0, b2 = 0}, ????
+	["GOODTHREAT"] = {r1 = 0.1999995559454, g1 = 0.7098023891449, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
 	["BADTHREAT"] = {r1 = 0.99999779462814, g1 = 0.1764702051878, b1 = 0.1764702051878, r2 = 1, g2 = 0, b2 = 0},
 	["GOODTHREATTRANSITION"] = {r1 = 0.99999779462814, g1 = 0.85097849369049, b1 = 0.1999995559454, r2 = 1, g2 = 0, b2 = 0},
 	["BADTHREATTRANSITION"] = {r1 = 0.99999779462814, g1 = 0.50980281829834, b1 = 0.1999995559454, r2 = 1, g2 = 0, b2 = 0},
-	["OFFTANK"] = {r1 = 0.99999779462814, g1 = 0.50980281829834, b1 = 0.1999995559454, r2 = 1, g2 = 0, b2 = 0},
+	["OFFTANK"] = {r1 = 0.95686066150665, g1 = 0.54901838302612, b1 = 0.72941017150879, r2 = 1, g2 = 0, b2 = 0},
+
+	--0.1999995559454 0.7098023891449 0
+	--0.95686066150665 0.54901838302612 0.72941017150879
 }
 local unitframecustomgradients = {
 	["WARRIOR"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
@@ -2179,11 +2186,11 @@ hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientCustomTextur
 
 --Unitframe Backdrop Texture
 function ElvUI_EltreumUI:BackdropTexture(_, _, backdropTex)
-	if E.private.unitframe.enable and (not E.db.ElvUI_EltreumUI.lightmode) and E.db.ElvUI_EltreumUI.UFmodifications then
-		if not E.db.ElvUI_EltreumUI.gradientmode.enable then
+	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then --and (not E.db.ElvUI_EltreumUI.lightmode) then
+		--if not E.db.ElvUI_EltreumUI.gradientmode.enable then
 			backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
 			backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-		end
+		--end
 	end
 end
 hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)

@@ -20,13 +20,24 @@ local npcfriendly = {r = "0.1999995559454", g = "0.7098023891449", b = "0"}
 local npcneutral = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
 --local npcunfriendly = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npcunfriendly))
 local npchostile = {r = "0.99999779462814", g = "0.18039175868034", b = "0.18039175868034"}
-local goodthreat = {r = "0.27843075990677", g = "0.99999779462814", b = "0"}
-local badthreat = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"}
+--local goodthreat = {r = "0.27843075990677", g = "0.99999779462814", b = "0"}
+local goodthreat = {r = "0.1999995559454", g = "0.7098023891449", b = "0"}
+--local badthreat = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"}
+local badthreat = {r = "0.99999779462814", g = "0.18039175868034", b = "0.18039175868034"}
 local goodthreattransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
 local badthreattransition = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"}
-local offtank  = {r = "0.69411611557007", g = "0.16470551490784", b = "0.11764679849148"}
+--local offtank  = {r = "0.69411611557007", g = "0.16470551490784", b = "0.11764679849148"}
+--local offtank = {r = "0.95686066150665", g1 = "0.54901838302612", b = "0.72941017150879"}
+local offtank = {r = "0.72941017150879", g1 = "0.1999995559454", b = "0.99999779462814"}
+local offtankbadtransition = {r = "0.77646887302399", g1 = "0.60784178972244", b = "0.4274500310421"}
+
+
+--0.77646887302399 0.60784178972244 0.4274500310421 ???
+--0.7098023891449 0.43137159943581 0.27058765292168
+--0.72941017150879 0.1999995559454 0.99999779462814
+
+
 --local offtankgoodthreattransition --does this even exist?
---local offtankbadthreattransition --does this even exist?
 --bar colors for party/raid/raid40
 --local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
 --local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
@@ -66,7 +77,7 @@ local function testfunc(unit)
 			r = tostring(r)
 			g = tostring(g)
 			b = tostring(b)
-			print(r,g,b)
+
 
 			if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) then
 				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -116,12 +127,12 @@ local function testfunc(unit)
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("ROGUE"))
 				end
-			elseif ((r == priest.r) and (g == priest.g) and (b == priest.b)) then
+			--[[elseif ((r == priest.r) and (g == priest.g) and (b == priest.b)) then
 				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("PRIEST"))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("PRIEST"))
-				end
+				end]]
 			elseif ((r == mage.r) and (g == mage.g) and (b == mage.b)) then
 				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("MAGE"))
@@ -193,6 +204,15 @@ local function testfunc(unit)
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
 				end
+			elseif ((r == offtankbadtransition.r) and (g == offtankbadtransition.g) and (b == offtankbadtransition.b)) then
+				print("offtank bad transition")
+				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
+				else
+					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
+				end
+			else
+				print(r,g,b)
 			end
 		end
 	end
@@ -201,7 +221,7 @@ hooksecurefunc(NP, "Health_UpdateColor", testfunc)
 --hooksecurefunc(NP, "Update_StatusBars", testfunc)
 --hooksecurefunc(NP, "SetupTarget", testfunc)
 --hooksecurefunc(NP, "UpdateTargetPlate", testfunc)
---hooksecurefunc(NP, "Update_ThreatIndicator", testfunc)
+hooksecurefunc(NP, "Update_ThreatIndicator", testfunc)
 --hooksecurefunc(NP, "ThreatIndicator_PostUpdate", testfunc)
 --hooksecurefunc(NP, "UpdatePlateSize", testfunc)
 --hooksecurefunc(NP, "Style", testfunc)
