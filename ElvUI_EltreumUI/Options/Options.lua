@@ -7398,7 +7398,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Enable Custom Colors"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.customcolor = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.customcolor = value end,
 							},
 							gradientorientation = {
 								type = 'select',
@@ -7701,7 +7701,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorB1 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradientdeathknight2 = {
@@ -7719,7 +7719,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorB2 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							header3 = {
@@ -7745,7 +7745,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorB1 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradientdemonhunter2 = {
@@ -7763,7 +7763,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorB2 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							header4 = {
@@ -7787,7 +7787,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorB1 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradientdruid2 = {
@@ -7804,7 +7804,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.druidcustomcolorB2 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							header5 = {
@@ -7828,7 +7828,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorB1 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradienthunter2 = {
@@ -7845,7 +7845,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.huntercustomcolorB2 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							header6 = {
@@ -7869,7 +7869,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorB1 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradientmage2 = {
@@ -7886,7 +7886,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.magecustomcolorB2 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							header7 = {
@@ -7912,7 +7912,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorB1 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradientmonk2 = {
@@ -7930,7 +7930,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.monkcustomcolorB2 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							header8 = {
@@ -7954,7 +7954,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorB1 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradientpaladin2 = {
@@ -7971,7 +7971,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.paladincustomcolorB2 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							header9 = {
@@ -7995,7 +7995,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorB1 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradientpriest2 = {
@@ -8012,7 +8012,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.priestcustomcolorB2 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							header10 = {
@@ -8036,7 +8036,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorB1 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradientrogue2 = {
@@ -8053,7 +8053,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.roguecustomcolorB2 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							header11 = {
@@ -8077,7 +8077,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorB1 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradientshaman2 = {
@@ -8094,7 +8094,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.shamancustomcolorB2 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							header12 = {
@@ -8118,7 +8118,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorB1 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradientwarlock2 = {
@@ -8135,7 +8135,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.warlockcustomcolorB2 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							header13 = {
@@ -8159,7 +8159,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR1, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG1, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB1 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradientwarrior2 = {
@@ -8176,7 +8176,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR2, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG2, E.db.ElvUI_EltreumUI.gradientmode.warriorcustomcolorB2 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							header14 = {
@@ -8201,7 +8201,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyR1, E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyG1, E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyB1 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							friendlynpc2 = {
@@ -8219,7 +8219,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyR2, E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyG2, E.db.ElvUI_EltreumUI.gradientmode.npcfriendlyB2 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							header15 = {
@@ -8244,7 +8244,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.npcneutralR1, E.db.ElvUI_EltreumUI.gradientmode.npcneutralG1, E.db.ElvUI_EltreumUI.gradientmode.npcneutralB1 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							neutralnpc2 = {
@@ -8262,7 +8262,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.npcneutralR2, E.db.ElvUI_EltreumUI.gradientmode.npcneutralG2, E.db.ElvUI_EltreumUI.gradientmode.npcneutralB2 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							header16 = {
@@ -8287,7 +8287,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyR1, E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyG1, E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyB1 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							unfriendlynpc2 = {
@@ -8305,7 +8305,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyR2, E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyG2, E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyB2 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							header17 = {
@@ -8330,7 +8330,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.npchostileR1, E.db.ElvUI_EltreumUI.gradientmode.npchostileG1, E.db.ElvUI_EltreumUI.gradientmode.npchostileB1 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							hostilenpc2 = {
@@ -8348,7 +8348,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.gradientmode.npchostileR2, E.db.ElvUI_EltreumUI.gradientmode.npchostileG2, E.db.ElvUI_EltreumUI.gradientmode.npchostileB2 = r, g, b
-									ElvUI_EltreumUI:GradientColorTableUpdate()
+									--ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 						}

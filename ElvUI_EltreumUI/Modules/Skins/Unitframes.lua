@@ -1966,7 +1966,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 
 			local function ApplyGradientTexture(g1,b1,r1,r,g,b,button)
 				if tostring(g1) == tostring(trueg) and tostring(r1) == tostring(truer) and tostring(b1) == tostring(trueb) then
-
+					print("test")
 
 					if (r and g and b == ElvUI_EltreumUI:UnitframeClassColor("PALADIN")) or (r and g and b == ElvUI_EltreumUI:GradientColorsCustom("PALADIN", true)) then
 					--if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) or (r == unitframecustomgradients["PALADIN"]["r2"] and g == unitframecustomgradients["PALADIN"]["g2"] and b == unitframecustomgradients["PALADIN"]["b2"]) then
