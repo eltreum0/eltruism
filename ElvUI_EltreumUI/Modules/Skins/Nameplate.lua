@@ -63,7 +63,7 @@ local function testfunc(unit)
 		r = tostring(r)
 		g = tostring(g)
 		b = tostring(b)
-		print(r,g,b)
+		--print(r,g,b)
 		--trying to get the unit's class results in a table with user data, so the unit is not the actual unit
 
 		if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) then
