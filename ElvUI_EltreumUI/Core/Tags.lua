@@ -231,6 +231,26 @@ E:AddTag("eltruism:raidmarker", 'RAID_TARGET_UPDATE', function(unit)
 end)
 E:AddTagInfo('eltruism:raidmarker', ElvUI_EltreumUI.Name, L["Shows raid target marker"])
 
+
+--level difference table based on blizzard's
+local eltruismdif = {
+	["-9"] = "|cFF808080",
+	["-8"] = "|cFF008000",
+	["-7"] = "|cFF008000",
+	["-6"] = "|cFF008000",
+	["-5"] = "|cFF008000",
+	["-4"] = "|cFF008000",
+	["-3"] = "|cFF008000",
+	["-2"] = "|cFFFFFF00",
+	["-1"] = "|cFFFFFF00",
+	["0"] = "|cFFFFFF00",
+	["1"] = "|cFFFFFF00",
+	["2"] = "|cFFFFFF00",
+	["3"] = "|cFFFFA500",
+	["4"] = "|cFFA50000",
+	["5"] = "|cFFFF0000",
+}
+
 --Difficulty color for npcs in classic/tbc
 E:AddTag('eltruism:difficulty', 'UNIT_NAME_UPDATE', function(unit)
 
@@ -259,25 +279,6 @@ E:AddTag('eltruism:difficulty', 'UNIT_NAME_UPDATE', function(unit)
 	else
 		printdifference = tostring(difference)
 	end
-
-	--level difference table based on blizzard's
-	local eltruismdif = {
-		["-9"] = "|cFF808080",
-		["-8"] = "|cFF008000",
-		["-7"] = "|cFF008000",
-		["-6"] = "|cFF008000",
-		["-5"] = "|cFF008000",
-		["-4"] = "|cFF008000",
-		["-3"] = "|cFF008000",
-		["-2"] = "|cFFFFFF00",
-		["-1"] = "|cFFFFFF00",
-		["0"] = "|cFFFFFF00",
-		["1"] = "|cFFFFFF00",
-		["2"] = "|cFFFFFF00",
-		["3"] = "|cFFFFA500",
-		["4"] = "|cFFA50000",
-		["5"] = "|cFFFF0000",
-	}
 
 	--make sure its not a player as to not overwrite class colors
 	if not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
@@ -329,24 +330,6 @@ E:AddTag('eltruism:difficulty:all', 'UNIT_NAME_UPDATE', function(unit)
 		printdifference = tostring(difference)
 	end
 
-	--level difference table based on blizzard's
-	local eltruismdif = {
-		["-9"] = "|cFF808080",
-		["-8"] = "|cFF008000",
-		["-7"] = "|cFF008000",
-		["-6"] = "|cFF008000",
-		["-5"] = "|cFF008000",
-		["-4"] = "|cFF008000",
-		["-3"] = "|cFF008000",
-		["-2"] = "|cFFFFFF00",
-		["-1"] = "|cFFFFFF00",
-		["0"] = "|cFFFFFF00",
-		["1"] = "|cFFFFFF00",
-		["2"] = "|cFFFFFF00",
-		["3"] = "|cFFFFA500",
-		["4"] = "|cFFA50000",
-		["5"] = "|cFFFF0000",
-	}
 	if classification ~= "worldboss" then
 		return (eltruismdif[printdifference])
 	elseif classification == "worldboss" then
