@@ -3,7 +3,7 @@ local UF = E:GetModule('UnitFrames')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 
-
+--set the variables
 local paladin, warrior, shaman, druid, deathknight, demonhunter, monk, rogue, priest, mage, hunter, warlock
 local npchostile, npcneutral, npcfriendly
 local goodthreat, goodthreattransition, badthreattransition, badthreat
@@ -33,32 +33,26 @@ badthreattransition = {r = "0.99999779462814", g = "0.50980281829834", b = "0.19
 --local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
 
 if E.Wrath or E.TBC or E.Classic then
-paladin = {r = "0.96078222990036", g = "0.54901838302612", b = "0.72941017150879"}
-warrior = {r = "0.78039044141769", g = "0.61176335811615", b = "0.43137159943581"}
-shaman = {r = "0", g = "0.4392147064209", b = "0.87058633565903"}
-druid = {r = "0.99999779462814", g = "0.49019500613213", b = "0.039215601980686"}
-deathknight = {r = "0.76862573623657", g = "0.1215683594346", b = "0.23137204349041"}
-demonhunter = {r = "0.63921427726746", g = "0.1882348805666", b = "0.78823357820511"}
-monk = {r = "0", g = "0.99999779462814", b = "0.59607714414597"}
-rogue = {r = "0.99999779462814", g = "0.96078222990036", b = "0.41176378726959"}
-priest = {r = "0.99999779462814", g = "0.99999779462814", b = "0.99999779462814"}
-mage = {r = "0.25097984075546", g = "0.78039044141769", b = "0.92156660556793"}
-hunter = {r = "0.67058676481247", g = "0.8313707113266", b = "0.45097941160202"}
-warlock = {r = "0.52941060066223", g = "0.52941060066223", b = "0.92940974235535"}
-npcfriendly = {r = "0.4274500310421", g = "0.99999779462814", b = "0.44313627481461"}
-npcneutral = {r = "0.99999779462814", g = "0.90195882320404", b = "0.42352849245071"}
---["NPCUNFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npcunfriendly))
-npchostile = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"}
-goodthreat = {r = "0.27843075990677", g = "0.99999779462814", b = "0"}
-badthreat = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"}
-goodthreattransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
-badthreattransition = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"}
---bar colors for party/raid/raid40
---local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
---local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
+	paladin = {r = "0.96078222990036", g = "0.54901838302612", b = "0.72941017150879"}
+	warrior = {r = "0.78039044141769", g = "0.61176335811615", b = "0.43137159943581"}
+	shaman = {r = "0", g = "0.4392147064209", b = "0.87058633565903"}
+	druid = {r = "0.99999779462814", g = "0.49019500613213", b = "0.039215601980686"}
+	deathknight = {r = "0.76862573623657", g = "0.1215683594346", b = "0.23137204349041"}
+	demonhunter = {r = "0.63921427726746", g = "0.1882348805666", b = "0.78823357820511"}
+	monk = {r = "0", g = "0.99999779462814", b = "0.59607714414597"}
+	rogue = {r = "0.99999779462814", g = "0.96078222990036", b = "0.41176378726959"}
+	priest = {r = "0.99999779462814", g = "0.99999779462814", b = "0.99999779462814"}
+	mage = {r = "0.25097984075546", g = "0.78039044141769", b = "0.92156660556793"}
+	hunter = {r = "0.67058676481247", g = "0.8313707113266", b = "0.45097941160202"}
+	warlock = {r = "0.52941060066223", g = "0.52941060066223", b = "0.92940974235535"}
+	npcfriendly = {r = "0.4274500310421", g = "0.99999779462814", b = "0.44313627481461"}
+	npcneutral = {r = "0.99999779462814", g = "0.90195882320404", b = "0.42352849245071"}
+	npchostile = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"}
+	goodthreat = {r = "0.27843075990677", g = "0.99999779462814", b = "0"}
+	badthreat = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"}
+	goodthreattransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
+	badthreattransition = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"}
 end
-
-
 
 --gradient nameplates
 --will need to check eltreumtarget and elvui_boss style filters due to health colors
@@ -169,10 +163,6 @@ local function testfunc(unit)
 		--		unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", nameplategradients["NPCFRIENDLY"]["r1"], nameplategradients["NPCFRIENDLY"]["g1"], nameplategradients["NPCFRIENDLY"]["b1"], nameplategradients["NPCFRIENDLY"]["r2"], nameplategradients["NPCFRIENDLY"]["g2"], nameplategradients["NPCFRIENDLY"]["b2"])
 		--	end
 		end
-
-
-		--goodthreat, goodtransition, badtransition, badthreat
-
 	end
 end
 hooksecurefunc(NP, "Health_UpdateColor", testfunc)
@@ -186,4 +176,3 @@ hooksecurefunc(NP, "Health_UpdateColor", testfunc)
 --hooksecurefunc(NP, "StyleTargetPlate", testfunc)
 --hooksecurefunc(NP, "UpdatePlate", testfunc)
 --hooksecurefunc(mod, "StyleFilterUpdate", testfunc)
-

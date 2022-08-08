@@ -8,6 +8,7 @@ local UnitReaction = _G.UnitReaction
 local UnitIsPlayer = _G.UnitIsPlayer
 local tostring = _G.tostring
 local select = _G.select
+local CreateFrame = _G.CreateFrame
 
 --set the variables
 local paladin, warrior, shaman, druid, deathknight, demonhunter, monk, rogue, priest, mage, hunter, warlock
