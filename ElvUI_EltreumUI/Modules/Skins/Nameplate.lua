@@ -25,7 +25,8 @@ local npchostile = {r = "0.99999779462814", g = "0.18039175868034", b = "0.18039
 --local goodthreattransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
 --local badthreattransition = {r = "0.7098023891449", g = "0.43137159943581", b = "0.27058765292168"}
 --local offtank = {r = "0.72941017150879", g1 = "0.1999995559454", b = "0.99999779462814"}
---local offtankbadtransition = {r = "0.77646887302399", g1 = "0.60784178972244", b = "0.4274500310421"}
+--local offtankgoodthreattransition
+--local offtankbadthreattransition = {r = "0.77646887302399", g1 = "0.60784178972244", b = "0.4274500310421"}
 --bar colors for party/raid/raid40
 --local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
 --local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
@@ -45,13 +46,6 @@ if E.Wrath or E.TBC or E.Classic then
 	npcfriendly = {r = "0.4274500310421", g = "0.99999779462814", b = "0.44313627481461"}
 	npcneutral = {r = "0.99999779462814", g = "0.90195882320404", b = "0.42352849245071"}
 	npchostile = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"}
-	--goodthreat = {r = "0.27843075990677", g = "0.99999779462814", b = "0"}
-	--badthreat = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"}
-	--goodthreattransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
-	--badthreattransition = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"}
-	--local offtank
-	--local offtankgoodthreattransition
-	--local offtankbadthreattransition
 end
 
 --gradient nameplates
@@ -64,103 +58,103 @@ local function GradientNameplates(unit)
 			b = tostring(b)
 
 			if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("PALADIN"))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("PALADIN"))
 				end
 			elseif ((r == warrior.r) and (g == warrior.g) and (b == warrior.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("WARRIOR"))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("WARRIOR"))
 				end
 			elseif ((r == shaman.r) and (g == shaman.g) and (b == shaman.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("SHAMAN"))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("SHAMAN"))
 				end
 			elseif ((r == druid.r) and (g == druid.g) and (b == druid.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("DRUID"))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("DRUID"))
 				end
 			elseif ((r == deathknight.r) and (g == deathknight.g) and (b == deathknight.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("DEATHKNIGHT"))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("DEATHKNIGHT"))
 				end
 			elseif ((r == demonhunter.r) and (g == demonhunter.g) and (b == demonhunter.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("DEMONHUNTER"))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("DEMONHUNTER"))
 				end
 			elseif ((r == monk.r) and (g == monk.g) and (b == monk.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("MONK"))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("MONK"))
 				end
 			elseif ((r == rogue.r) and (g == rogue.g) and (b == rogue.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("ROGUE"))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("ROGUE"))
 				end
 			--[[elseif ((r == priest.r) and (g == priest.g) and (b == priest.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("PRIEST"))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("PRIEST"))
 				end]]
 			elseif ((r == mage.r) and (g == mage.g) and (b == mage.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("MAGE"))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("MAGE"))
 				end
 			elseif ((r == hunter.r) and (g == hunter.g) and (b == hunter.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("HUNTER"))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("HUNTER"))
 				end
 			elseif ((r == warlock.r) and (g == warlock.g) and (b == warlock.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("WARLOCK"))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("WARLOCK"))
 				end
 			elseif ((r == npchostile.r) and (g == npchostile.g) and (b == npchostile.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", false, false))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, false))
 				end
 			elseif ((r == npcneutral.r) and (g == npcneutral.g) and (b == npcneutral.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", false, false))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", false, false))
 				end
 			elseif ((r == npcfriendly.r) and (g == npcfriendly.g) and (b == npcfriendly.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, false))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, false))
 				end
 			--[[elseif ((r == offtank.r) and (g == offtank.g) and (b == offtank.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
 				end
 			elseif ((r == offtankbadtransition.r) and (g == offtankbadtransition.g) and (b == offtankbadtransition.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
