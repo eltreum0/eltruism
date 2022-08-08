@@ -57,6 +57,11 @@ local unitframegradients = {
 	["NPCNEUTRAL"] = {r1 = 0.712358744169101, g1 = 0.63137254901961, b1 = 0.15490196078431, r2 = 1, g2 = 0.85686274509804, b2 = 0.2078431372549},
 	["NPCUNFRIENDLY"] = {r1 = 0.84313725490196, g1 = 0.30196078431373, b1 = 0, r2 = 0.83137254901961, g2 = 0.45882352941176, b2 = 0},
 	["NPCHOSTILE"] = {r1 = 0.31764705882353, g1 = 0.066666666666667, b1 = 0.07843137254902, r2 = 1, g2 = 0.15686274509804, b2 = 0.15686274509804},
+	["GOODTHREAT"] = {r1 = 0.27843075990677, g1 = 0.99999779462814, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	["BADTHREAT"] = {r1 = 0.99999779462814, g1 = 0.1764702051878, b1 = 0.1764702051878, r2 = 1, g2 = 0, b2 = 0},
+	["GOODTHREATTRANSITION"] = {r1 = 0.99999779462814, g1 = 0.85097849369049, b1 = 0.1999995559454, r2 = 1, g2 = 0, b2 = 0},
+	["BADTHREATTRANSITION"] = {r1 = 0.99999779462814, g1 = 0.50980281829834, b1 = 0.1999995559454, r2 = 1, g2 = 0, b2 = 0},
+	["OFFTANK"] = {r1 = 0.99999779462814, g1 = 0.50980281829834, b1 = 0.1999995559454, r2 = 1, g2 = 0, b2 = 0},
 }
 local unitframecustomgradients = {
 	["WARRIOR"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
@@ -75,6 +80,11 @@ local unitframecustomgradients = {
 	["NPCNEUTRAL"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
 	["NPCUNFRIENDLY"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
 	["NPCHOSTILE"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	["GOODTHREAT"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	["BADTHREAT"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	["GOODTHREATTRANSITION"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	["BADTHREATTRANSITION"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	["OFFTANK"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
 }
 local unitframeclass = {
 	["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga",
@@ -157,6 +167,11 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 		["NPCNEUTRAL"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.npcneutralR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.npcneutralG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.npcneutralB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.npcneutralR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.npcneutralG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.npcneutralB2},
 		["NPCUNFRIENDLY"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyB2},
 		["NPCHOSTILE"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileB2},
+		["GOODTHREAT"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatB2},
+		["BADTHREAT"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.badthreatR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.badthreatG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.badthreatB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.badthreatR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.badthreatG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.badthreatB2},
+		["GOODTHREATTRANSITION"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionB2},
+		["BADTHREATTRANSITION"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionB2},
+		["OFFTANK"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.offtankR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.offtankG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.offtankB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.offtankR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.offtankG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.offtankB2},
 	}
 	if E.db.ElvUI_EltreumUI.darkmode then
 		if E.Retail then

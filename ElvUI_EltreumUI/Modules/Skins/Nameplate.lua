@@ -157,12 +157,36 @@ local function testfunc(unit)
 			else
 				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, false))
 			end
-		--elseif ((r == goodthreat.r) and (g == goodthreat.g) and (b == goodthreat.b)) then
-		--	if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-		--		unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", nameplatecustomgradients["NPCFRIENDLY"]["r1"], nameplatecustomgradients["NPCFRIENDLY"]["g1"], nameplatecustomgradients["NPCFRIENDLY"]["b1"], nameplatecustomgradients["NPCFRIENDLY"]["r2"], nameplatecustomgradients["NPCFRIENDLY"]["g2"], nameplatecustomgradients["NPCFRIENDLY"]["b2"])
-		--	else
-		--		unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", nameplategradients["NPCFRIENDLY"]["r1"], nameplategradients["NPCFRIENDLY"]["g1"], nameplategradients["NPCFRIENDLY"]["b1"], nameplategradients["NPCFRIENDLY"]["r2"], nameplategradients["NPCFRIENDLY"]["g2"], nameplategradients["NPCFRIENDLY"]["b2"])
-		--	end
+		elseif ((r == goodthreat.r) and (g == goodthreat.g) and (b == goodthreat.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", nameplatecustomgradients["NPCFRIENDLY"]["r1"], nameplatecustomgradients["NPCFRIENDLY"]["g1"], nameplatecustomgradients["NPCFRIENDLY"]["b1"], nameplatecustomgradients["NPCFRIENDLY"]["r2"], nameplatecustomgradients["NPCFRIENDLY"]["g2"], nameplatecustomgradients["NPCFRIENDLY"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", nameplategradients["NPCFRIENDLY"]["r1"], nameplategradients["NPCFRIENDLY"]["g1"], nameplategradients["NPCFRIENDLY"]["b1"], nameplategradients["NPCFRIENDLY"]["r2"], nameplategradients["NPCFRIENDLY"]["g2"], nameplategradients["NPCFRIENDLY"]["b2"])
+			end
+		elseif ((r == badthreat.r) and (g == badthreat.g) and (b == badthreat.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", nameplatecustomgradients["NPCFRIENDLY"]["r1"], nameplatecustomgradients["NPCFRIENDLY"]["g1"], nameplatecustomgradients["NPCFRIENDLY"]["b1"], nameplatecustomgradients["NPCFRIENDLY"]["r2"], nameplatecustomgradients["NPCFRIENDLY"]["g2"], nameplatecustomgradients["NPCFRIENDLY"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", nameplategradients["NPCFRIENDLY"]["r1"], nameplategradients["NPCFRIENDLY"]["g1"], nameplategradients["NPCFRIENDLY"]["b1"], nameplategradients["NPCFRIENDLY"]["r2"], nameplategradients["NPCFRIENDLY"]["g2"], nameplategradients["NPCFRIENDLY"]["b2"])
+			end
+		elseif ((r == goodthreattransition.r) and (g == goodthreattransition.g) and (b == goodthreattransition.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", nameplatecustomgradients["NPCFRIENDLY"]["r1"], nameplatecustomgradients["NPCFRIENDLY"]["g1"], nameplatecustomgradients["NPCFRIENDLY"]["b1"], nameplatecustomgradients["NPCFRIENDLY"]["r2"], nameplatecustomgradients["NPCFRIENDLY"]["g2"], nameplatecustomgradients["NPCFRIENDLY"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", nameplategradients["NPCFRIENDLY"]["r1"], nameplategradients["NPCFRIENDLY"]["g1"], nameplategradients["NPCFRIENDLY"]["b1"], nameplategradients["NPCFRIENDLY"]["r2"], nameplategradients["NPCFRIENDLY"]["g2"], nameplategradients["NPCFRIENDLY"]["b2"])
+			end
+		elseif ((r == badthreattransition.r) and (g == badthreattransition.g) and (b == badthreattransition.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", nameplatecustomgradients["NPCFRIENDLY"]["r1"], nameplatecustomgradients["NPCFRIENDLY"]["g1"], nameplatecustomgradients["NPCFRIENDLY"]["b1"], nameplatecustomgradients["NPCFRIENDLY"]["r2"], nameplatecustomgradients["NPCFRIENDLY"]["g2"], nameplatecustomgradients["NPCFRIENDLY"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", nameplategradients["NPCFRIENDLY"]["r1"], nameplategradients["NPCFRIENDLY"]["g1"], nameplategradients["NPCFRIENDLY"]["b1"], nameplategradients["NPCFRIENDLY"]["r2"], nameplategradients["NPCFRIENDLY"]["g2"], nameplategradients["NPCFRIENDLY"]["b2"])
+			end
+		elseif ((r == offtank.r) and (g == offtank.g) and (b == offtank.b)) then
+			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", nameplatecustomgradients["NPCFRIENDLY"]["r1"], nameplatecustomgradients["NPCFRIENDLY"]["g1"], nameplatecustomgradients["NPCFRIENDLY"]["b1"], nameplatecustomgradients["NPCFRIENDLY"]["r2"], nameplatecustomgradients["NPCFRIENDLY"]["g2"], nameplatecustomgradients["NPCFRIENDLY"]["b2"])
+			else
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", nameplategradients["NPCFRIENDLY"]["r1"], nameplategradients["NPCFRIENDLY"]["g1"], nameplategradients["NPCFRIENDLY"]["b1"], nameplategradients["NPCFRIENDLY"]["r2"], nameplategradients["NPCFRIENDLY"]["g2"], nameplategradients["NPCFRIENDLY"]["b2"])
+			end
 		end
 	end
 end
