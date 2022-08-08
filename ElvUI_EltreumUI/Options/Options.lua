@@ -5469,6 +5469,30 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.npenable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.npenable = value end,
 							},
+							enablecustomcolor = {
+								order = 3,
+								type = 'toggle',
+								name = L["Custom Color"],
+								desc = L["Enable Custom Colors"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.npenable end,
+								get = function() return E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
+							},
+							gradientorientation = {
+								type = 'select',
+								name = L["Gradient Orientation"],
+								desc = L["Choose the direction of the gradient"],
+								order = 3,
+								values = {
+									["HORIZONTAL"] = L["Horizontal"],
+									["VERTICAL"] = L["Vertical"],
+								},
+								style = 'radio',
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.npenable end,
+								get = function() return E.db.ElvUI_EltreumUI.gradientmode.nporientation end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.nporientation = value end,
+							},
+
 
 
 						},
