@@ -116,6 +116,8 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 	end
 end
 
+local coords = {}
+
 -- translate text to coordinates that are then put into the Waypoint system, inspired by the Wayfinder weakaura by Khanibrawl
 function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 	-- most of this was done with the help of posts on stack overflow and lua-users.org
@@ -123,7 +125,7 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 		if E.db.ElvUI_EltreumUI.waytext.enable then
 			-- translate the message into numbers
 			local translatemsg = message:gsub("(%d)[%.,] (%d)", "%1 %2"):gsub("(%d)"..(tonumber("1.1") and "," or ".").."(%d)", "%1"..(tonumber("1.1") and "." or ",").."%2")
-			local coords = {}
+
 
 			--put the numbers into the table
 			for pattern in translatemsg:gmatch("%S+") do
