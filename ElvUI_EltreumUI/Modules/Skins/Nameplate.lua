@@ -66,7 +66,7 @@ local function testfunc(unit)
 			r = tostring(r)
 			g = tostring(g)
 			b = tostring(b)
-			--print(r,g,b)
+			print(r,g,b)
 
 			if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) then
 				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -159,30 +159,35 @@ local function testfunc(unit)
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, false))
 				end
 			elseif ((r == goodthreat.r) and (g == goodthreat.g) and (b == goodthreat.b)) then
+				print("good threat")
 				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
 				end
 			elseif ((r == badthreat.r) and (g == badthreat.g) and (b == badthreat.b)) then
+				print("bad threat")
 				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("BADTHREAT", false, false))
 				end
 			elseif ((r == goodthreattransition.r) and (g == goodthreattransition.g) and (b == goodthreattransition.b)) then
+				print("good threat transition")
 				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREATTRANSITION", false, false))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREATTRANSITION", false, false))
 				end
 			elseif ((r == badthreattransition.r) and (g == badthreattransition.g) and (b == badthreattransition.b)) then
+				print("bad threat transition")
 				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREATTRANSITION", false, false))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREATTRANSITION", false, false))
 				end
 			elseif ((r == offtank.r) and (g == offtank.g) and (b == offtank.b)) then
+				print("offtank")
 				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
 				else
