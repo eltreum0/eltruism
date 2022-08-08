@@ -3954,7 +3954,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 1"],
 								hasAlpha = false,
 								hidden = function() if E.Retail or E.Wrath then return false else return true end end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorG1
@@ -3972,7 +3972,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 2"],
 								hasAlpha = false,
 								hidden = function() if E.Retail or E.Wrath then return false else return true end end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.deathknightcustomcolorG2
@@ -3998,7 +3998,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 1"],
 								hasAlpha = false,
 								hidden = function() if E.Retail then return false else return true end end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorG1
@@ -4016,7 +4016,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 2"],
 								hasAlpha = false,
 								hidden = function() if E.Retail then return false else return true end end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.demonhuntercustomcolorG2
@@ -4040,7 +4040,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.druidcustomcolorR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.druidcustomcolorG1
@@ -4057,7 +4057,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.druidcustomcolorR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.druidcustomcolorG2
@@ -4081,7 +4081,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.huntercustomcolorR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.huntercustomcolorG1
@@ -4098,7 +4098,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.huntercustomcolorR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.huntercustomcolorG2
@@ -4122,7 +4122,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.magecustomcolorR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.magecustomcolorG1
@@ -4139,7 +4139,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.magecustomcolorR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.magecustomcolorG2
@@ -4165,7 +4165,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 1"],
 								hasAlpha = false,
 								hidden = function() if E.Retail then return false else return true end end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.monkcustomcolorR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.monkcustomcolorG1
@@ -4183,7 +4183,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 2"],
 								hasAlpha = false,
 								hidden = function() if E.Retail then return false else return true end end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.monkcustomcolorR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.monkcustomcolorG2
@@ -4207,7 +4207,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.paladincustomcolorR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.paladincustomcolorG1
@@ -4224,7 +4224,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.paladincustomcolorR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.paladincustomcolorG2
@@ -4248,7 +4248,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.priestcustomcolorR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.priestcustomcolorG1
@@ -4265,7 +4265,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.priestcustomcolorR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.priestcustomcolorG2
@@ -4289,7 +4289,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.roguecustomcolorR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.roguecustomcolorG1
@@ -4306,7 +4306,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.roguecustomcolorR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.roguecustomcolorG2
@@ -4330,7 +4330,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.shamancustomcolorR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.shamancustomcolorG1
@@ -4347,7 +4347,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.shamancustomcolorR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.shamancustomcolorG2
@@ -4371,7 +4371,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.warlockcustomcolorR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.warlockcustomcolorG1
@@ -4388,7 +4388,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.warlockcustomcolorR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.warlockcustomcolorG2
@@ -4412,7 +4412,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG1
@@ -4429,7 +4429,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.warriorcustomcolorR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.warriorcustomcolorG2
@@ -4454,7 +4454,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 1"],
 								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.npcfriendlyR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.npcfriendlyG1
@@ -4472,7 +4472,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 2"],
 								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.npcfriendlyR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.npcfriendlyG2
@@ -4497,7 +4497,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 1"],
 								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.npcneutralR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.npcneutralG1
@@ -4515,7 +4515,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 2"],
 								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.npcneutralR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.npcneutralG2
@@ -4540,7 +4540,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 1"],
 								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.npcunfriendlyR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.npcunfriendlyG1
@@ -4558,7 +4558,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 2"],
 								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.npcunfriendlyR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.npcunfriendlyG2
@@ -4583,7 +4583,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 1"],
 								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.npchostileR1
 									local dg = P.ElvUI_EltreumUI.gradientmode.npchostileG1
@@ -4601,7 +4601,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 2"],
 								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.gradientmode.customcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.gradientmode.npchostileR2
 									local dg = P.ElvUI_EltreumUI.gradientmode.npchostileG2
@@ -4957,15 +4957,125 @@ function ElvUI_EltreumUI:Configtable()
 									E.db.ElvUI_EltreumUI.gradientmode.badthreatR2, E.db.ElvUI_EltreumUI.gradientmode.badthreatG2, E.db.ElvUI_EltreumUI.gradientmode.badthreatB2 = r, g, b
 								end,
 							},
-
-
-
-
-
+							headergoodthreattransition = {
+								order = 16,
+								type = "description",
+								name = L["Good Threat Transition"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							goodthreattransition1 = {
+								order = 17,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.npenable or not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.goodthreattransitionR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.goodthreattransitionG1
+									local db = P.ElvUI_EltreumUI.gradientmode.goodthreattransitionB1
+									return E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionR1, E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionG1, E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionR1, E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionG1, E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionB1 = r, g, b
+								end,
+							},
+							goodthreattransition2 = {
+								order = 18,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.npenable or not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.goodthreattransitionR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.goodthreattransitionG2
+									local db = P.ElvUI_EltreumUI.gradientmode.goodthreattransitionB2
+									return E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionR2, E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionG2, E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionR2, E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionG2, E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionB2 = r, g, b
+								end,
+							},
+							headerbadthreattransition = {
+								order = 19,
+								type = "description",
+								name = L["Bad Threat Transition"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							badthreattransition1 = {
+								order = 20,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.npenable or not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.badthreattransitionR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.badthreattransitionG1
+									local db = P.ElvUI_EltreumUI.gradientmode.badthreattransitionB1
+									return E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionR1, E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionG1, E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionR1, E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionG1, E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionB1 = r, g, b
+								end,
+							},
+							badthreattransition2 = {
+								order = 21,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.npenable or not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.badthreattransitionR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.badthreattransitionG2
+									local db = P.ElvUI_EltreumUI.gradientmode.badthreattransitionB2
+									return E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionR2, E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionG2, E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionR2, E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionG2, E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionB2 = r, g, b
+								end,
+							},
+							headerofftank = {
+								order = 22,
+								type = "description",
+								name = L["Off Tank"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							offtank1 = {
+								order = 23,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.npenable or not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.offtankR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.offtankG1
+									local db = P.ElvUI_EltreumUI.gradientmode.offtankB1
+									return E.db.ElvUI_EltreumUI.gradientmode.offtankR1, E.db.ElvUI_EltreumUI.gradientmode.offtankG1, E.db.ElvUI_EltreumUI.gradientmode.offtankB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.offtankR1, E.db.ElvUI_EltreumUI.gradientmode.offtankG1, E.db.ElvUI_EltreumUI.gradientmode.offtankB1 = r, g, b
+								end,
+							},
+							offtank2 = {
+								order = 24,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.npenable or not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.offtankR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.offtankG2
+									local db = P.ElvUI_EltreumUI.gradientmode.offtankB2
+									return E.db.ElvUI_EltreumUI.gradientmode.offtankR2, E.db.ElvUI_EltreumUI.gradientmode.offtankG2, E.db.ElvUI_EltreumUI.gradientmode.offtankB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.offtankR2, E.db.ElvUI_EltreumUI.gradientmode.offtankG2, E.db.ElvUI_EltreumUI.gradientmode.offtankB2 = r, g, b
+								end,
+							},
 						},
 					},
-
-
 				},
 			},
 			loottext = {
