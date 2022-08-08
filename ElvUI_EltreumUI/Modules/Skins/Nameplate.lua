@@ -18,30 +18,21 @@ local hunter = {r = "0.66666519641876", g = "0.82744914293289", b = "0.447057843
 local warlock = {r = "0.52941060066223", g = "0.53333216905594", b = "0.93333131074905"}
 local npcfriendly = {r = "0.1999995559454", g = "0.7098023891449", b = "0"}
 local npcneutral = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
---local npcunfriendly = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npcunfriendly))
+local npcunfriendly = {r = "0.7098023891449", g = "0.43137159943581", b = "0.27058765292168"}
 local npchostile = {r = "0.99999779462814", g = "0.18039175868034", b = "0.18039175868034"}
---local goodthreat = {r = "0.27843075990677", g = "0.99999779462814", b = "0"}
-local goodthreat = {r = "0.1999995559454", g = "0.7098023891449", b = "0"}
---local badthreat = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"}
-local badthreat = {r = "0.99999779462814", g = "0.18039175868034", b = "0.18039175868034"}
-local goodthreattransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
-local badthreattransition = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"}
---local offtank  = {r = "0.69411611557007", g = "0.16470551490784", b = "0.11764679849148"}
---local offtank = {r = "0.95686066150665", g1 = "0.54901838302612", b = "0.72941017150879"}
+--local goodthreat = {r = "0.1999995559454", g = "0.7098023891449", b = "0"}
+--local badthreat = {r = "0.99999779462814", g = "0.18039175868034", b = "0.18039175868034"}
+--local goodthreattransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
+--local badthreattransition = {r = "0.7098023891449", g = "0.43137159943581", b = "0.27058765292168"}
 local offtank = {r = "0.72941017150879", g1 = "0.1999995559454", b = "0.99999779462814"}
 local offtankbadtransition = {r = "0.77646887302399", g1 = "0.60784178972244", b = "0.4274500310421"}
 
 
---0.77646887302399 0.60784178972244 0.4274500310421 ???
---0.7098023891449 0.43137159943581 0.27058765292168
---0.72941017150879 0.1999995559454 0.99999779462814
 
 
---local offtankgoodthreattransition --does this even exist?
 --bar colors for party/raid/raid40
 --local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
 --local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
-
 if E.Wrath or E.TBC or E.Classic then
 	paladin = {r = "0.96078222990036", g = "0.54901838302612", b = "0.72941017150879"}
 	warrior = {r = "0.78039044141769", g = "0.61176335811615", b = "0.43137159943581"}
@@ -58,10 +49,10 @@ if E.Wrath or E.TBC or E.Classic then
 	npcfriendly = {r = "0.4274500310421", g = "0.99999779462814", b = "0.44313627481461"}
 	npcneutral = {r = "0.99999779462814", g = "0.90195882320404", b = "0.42352849245071"}
 	npchostile = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"}
-	goodthreat = {r = "0.27843075990677", g = "0.99999779462814", b = "0"}
-	badthreat = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"}
-	goodthreattransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
-	badthreattransition = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"}
+	--goodthreat = {r = "0.27843075990677", g = "0.99999779462814", b = "0"}
+	--badthreat = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"}
+	--goodthreattransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
+	--badthreattransition = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"}
 	--local offtank
 	--local offtankgoodthreattransition
 	--local offtankbadthreattransition
@@ -77,7 +68,6 @@ local function testfunc(unit)
 			r = tostring(r)
 			g = tostring(g)
 			b = tostring(b)
-
 
 			if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) then
 				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -169,50 +159,24 @@ local function testfunc(unit)
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, false))
 				end
-			elseif ((r == goodthreat.r) and (g == goodthreat.g) and (b == goodthreat.b)) then
-				print("good threat")
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
-				else
-					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
-				end
-			elseif ((r == badthreat.r) and (g == badthreat.g) and (b == badthreat.b)) then
-				print("bad threat")
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
-				else
-					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("BADTHREAT", false, false))
-				end
-			elseif ((r == goodthreattransition.r) and (g == goodthreattransition.g) and (b == goodthreattransition.b)) then
-				print("good threat transition")
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREATTRANSITION", false, false))
-				else
-					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREATTRANSITION", false, false))
-				end
-			elseif ((r == badthreattransition.r) and (g == badthreattransition.g) and (b == badthreattransition.b)) then
-				print("bad threat transition")
-				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREATTRANSITION", false, false))
-				else
-					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREATTRANSITION", false, false))
-				end
 			elseif ((r == offtank.r) and (g == offtank.g) and (b == offtank.b)) then
-				print("offtank")
 				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
 				end
 			elseif ((r == offtankbadtransition.r) and (g == offtankbadtransition.g) and (b == offtankbadtransition.b)) then
-				print("offtank bad transition")
 				if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
 				end
+			elseif r == "0.99999779462814" and g == "0.99999779462814" and b == "0.99999779462814" then
+				return
 			else
-				print(r,g,b)
+				if E.db.ElvUI_EltreumUI.dev then
+					print(r,g,b)
+				end
 			end
 		end
 	end
@@ -221,7 +185,7 @@ hooksecurefunc(NP, "Health_UpdateColor", testfunc)
 --hooksecurefunc(NP, "Update_StatusBars", testfunc)
 --hooksecurefunc(NP, "SetupTarget", testfunc)
 --hooksecurefunc(NP, "UpdateTargetPlate", testfunc)
-hooksecurefunc(NP, "Update_ThreatIndicator", testfunc)
+--hooksecurefunc(NP, "Update_ThreatIndicator", testfunc)
 --hooksecurefunc(NP, "ThreatIndicator_PostUpdate", testfunc)
 --hooksecurefunc(NP, "UpdatePlateSize", testfunc)
 --hooksecurefunc(NP, "Style", testfunc)

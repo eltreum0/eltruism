@@ -4908,7 +4908,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						},
 					},
-					nameplate = {
+					--[[nameplate = {
 						order = 1,
 						type = 'group',
 						name = L["Nameplate Colors"],
@@ -5109,7 +5109,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 						},
-					},
+					},]]
 				},
 			},
 			loottext = {
@@ -6662,11 +6662,28 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
+							enablecustomcolor = {
+								order = 3,
+								type = 'toggle',
+								name = L["Custom Color"],
+								desc = L["Enable Custom Colors"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.npenable end,
+								get = function() return E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
+							},
+							opengradientcolors = {
+								order = 4,
+								type = 'execute',
+								name = L["Colors"],
+								width = 'full',
+								desc = L["Customize Colors"],
+								func = function() E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI', "gradient") end,
+							},
 							gradientorientation = {
 								type = 'select',
 								name = L["Gradient Orientation"],
 								desc = L["Choose the direction of the gradient"],
-								order = 3,
+								order = 10,
 								values = {
 									["HORIZONTAL"] = L["Horizontal"],
 									["VERTICAL"] = L["Vertical"],
@@ -8655,6 +8672,14 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.texture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.gradientmode.texture = key ElvUI_EltreumUI:GradientCustomTexture() end,
+							},
+							opengradientcolors = {
+								order = 4,
+								type = 'execute',
+								name = L["Colors"],
+								width = 'full',
+								desc = L["Customize Colors"],
+								func = function() E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI', "gradient") end,
 							},
 						}
 					},
