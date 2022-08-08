@@ -32,6 +32,61 @@ local EltruismQuestItemFrame = CreateFrame("Frame", "EltruismQuestItem", UIParen
 EltruismQuestItemFrame:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, 34)
 E:CreateMover(EltruismQuestItemFrame, "MoverEltruismQuestItem", "EltruismQuestItemBar", nil, nil, nil, "ALL,SOLO")
 --EltruismQuestItemFrame:Hide()
+
+local slots = {
+	"HeadSlot", "NeckSlot", "ShoulderSlot", "BackSlot", "ChestSlot", "ShirtSlot", "TabardSlot", "WristSlot",
+	"HandsSlot", "WaistSlot", "LegsSlot", "FeetSlot", "Finger0Slot", "Finger1Slot", "Trinket0Slot", "Trinket1Slot",
+	"MainHandSlot", "SecondaryHandSlot",
+}
+
+-- These items are not marked as being quest items, but we want to include them anyway
+local qItems = {
+	--by Eltreum
+	28607, -- Sunfury Disguise
+	28132, -- area 52 bomb
+	28038, -- seaforium explosive
+	49132, -- fireliminator x-21
+	49368, -- ambassador disquise
+
+	-- by Az
+	23818,	-- Stillpine Furbolg Language Primer
+	23792,	-- Tree Disguise Kit
+	24084,	-- Draenei Banner
+	24278,	-- Flare Gun
+	5456,	-- Divining Scroll (item has no Use: text, even though you can use it)
+
+	11582,	-- Fel Salve
+	12922,	-- Empty Canteen
+	11914, -- Cursed Ooze Jar
+	11948,	-- Tainted Ooze Jar
+	28038,	-- Seaforium PU-36 Explosive Nether Modulator
+	28132,	-- Area 52 Special
+	23361,	-- Cleansing Vial
+	25465,	-- Stormcrow Amulet
+	24355,	-- Ironvine Seeds
+	25552,	-- Warmaul Ogre Banner
+	25555,	-- Kil'sorrow Banner
+	25658,	-- Damp Woolen Blanket
+	25853,	-- Pack of Incendiary Bombs (Old Hillsbrad)
+	24501,	-- Gordawg's Boulder
+
+	33634,	-- Orehammer's Precision Bombs, quest from Howling Fjord
+	49278,	-- Goblin Rocket Pack (ICC - Lootship)
+
+	33096,	-- Complimentary Brewfest Sampler (Brew Fest)
+	32971,	-- Water Bucket (Hallow's End)
+	46861,	-- Bouquet of Orange Marigolds (Day of the Dead)
+	21713,	-- Elune's Candle (Lunar Festival)
+
+	56909,	-- Earthen Ring Unbinding Totem (Cata event)
+	60501, 	-- Stormstone, Deepholm Quest
+	--45067,	-- Egg Basket -- Az: offhand item, but I wanted it on my bar for a hotkey
+}
+local blocklist = {
+	[176809] = true, -- junk item that for some reason showed up
+	--[140212] = true, --test item
+}
+
 function ElvUI_EltreumUI:QuestItem()
 	local _, instanceType = IsInInstance()
 	if E.db.ElvUI_EltreumUI.questsettings.questitems then
@@ -45,11 +100,7 @@ function ElvUI_EltreumUI:QuestItem()
 			local UPDATE_DELAY = 0.5
 			local ITEMID_PATTERN = "item:(%d+)"
 			local QUEST_TOKEN = (GetItemClassInfo and GetItemClassInfo(LE_ITEM_CLASS_QUESTITEM or 12) or LOOT_JOURNAL_LEGENDARIES_SOURCE_QUEST or "Quest") -- Obtain the localization of the "Quest" type for items -- [7.0.3/Legion] API Removed: GetAuctionItemClasses()
-			local slots = {
-				"HeadSlot", "NeckSlot", "ShoulderSlot", "BackSlot", "ChestSlot", "ShirtSlot", "TabardSlot", "WristSlot",
-				"HandsSlot", "WaistSlot", "LegsSlot", "FeetSlot", "Finger0Slot", "Finger1Slot", "Trinket0Slot", "Trinket1Slot",
-				"MainHandSlot", "SecondaryHandSlot",
-			}
+
 			-- Config
 			local cfg = {
 				btnSize = E.db.ElvUI_EltreumUI.questsettings.questitemsize,
@@ -82,54 +133,6 @@ function ElvUI_EltreumUI:QuestItem()
 			local bindingText10 = GetBindingKey("CLICK EltruismQuestItem10:LeftButton")
 			local bindingText11 = GetBindingKey("CLICK EltruismQuestItem11:LeftButton")
 			local bindingText12 = GetBindingKey("CLICK EltruismQuestItem12:LeftButton")
-
-			-- These items are not marked as being quest items, but we want to include them anyway
-			local qItems = {
-				--by Eltreum
-				28607, -- Sunfury Disguise
-				28132, -- area 52 bomb
-				28038, -- seaforium explosive
-				49132, -- fireliminator x-21
-				49368, -- ambassador disquise
-
-				-- by Az
-				23818,	-- Stillpine Furbolg Language Primer
-				23792,	-- Tree Disguise Kit
-				24084,	-- Draenei Banner
-				24278,	-- Flare Gun
-				5456,	-- Divining Scroll (item has no Use: text, even though you can use it)
-
-				11582,	-- Fel Salve
-				12922,	-- Empty Canteen
-				11914, -- Cursed Ooze Jar
-				11948,	-- Tainted Ooze Jar
-				28038,	-- Seaforium PU-36 Explosive Nether Modulator
-				28132,	-- Area 52 Special
-				23361,	-- Cleansing Vial
-				25465,	-- Stormcrow Amulet
-				24355,	-- Ironvine Seeds
-				25552,	-- Warmaul Ogre Banner
-				25555,	-- Kil'sorrow Banner
-				25658,	-- Damp Woolen Blanket
-				25853,	-- Pack of Incendiary Bombs (Old Hillsbrad)
-				24501,	-- Gordawg's Boulder
-
-				33634,	-- Orehammer's Precision Bombs, quest from Howling Fjord
-				49278,	-- Goblin Rocket Pack (ICC - Lootship)
-
-				33096,	-- Complimentary Brewfest Sampler (Brew Fest)
-				32971,	-- Water Bucket (Hallow's End)
-				46861,	-- Bouquet of Orange Marigolds (Day of the Dead)
-				21713,	-- Elune's Candle (Lunar Festival)
-
-				56909,	-- Earthen Ring Unbinding Totem (Cata event)
-				60501, 	-- Stormstone, Deepholm Quest
-				--45067,	-- Egg Basket -- Az: offhand item, but I wanted it on my bar for a hotkey
-			}
-			local blocklist = {
-				[176809] = true, -- junk item that for some reason showed up
-				--[140212] = true, --test item
-			}
 
 			--------------------------------------------------------------------------------------------------------
 			--                                                Main                                                --
