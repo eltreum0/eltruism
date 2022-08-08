@@ -173,6 +173,63 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.db["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["enable"] = false
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
+
+		--fix some colors for gradient np
+		E.db["nameplates"]["colors"]["reactions"]["bad"]["b"] = 0.25098039215686
+		E.db["nameplates"]["colors"]["reactions"]["bad"]["g"] = 0.25098039215686
+		E.db["nameplates"]["colors"]["reactions"]["bad"]["r"] = 0.78039215686275
+		E.db["nameplates"]["colors"]["reactions"]["good"]["b"] = 0.30196078431373
+		E.db["nameplates"]["colors"]["reactions"]["good"]["g"] = 0.67843137254902
+		E.db["nameplates"]["colors"]["reactions"]["good"]["r"] = 0.29019607843137
+		E.db["nameplates"]["colors"]["reactions"]["neutral"]["b"] = 0.36078431372549
+		E.db["nameplates"]["colors"]["reactions"]["neutral"]["g"] = 0.76862745098039
+		E.db["nameplates"]["colors"]["reactions"]["neutral"]["r"] = 0.85098039215686
+		E.db["nameplates"]["colors"]["selection"][2]["g"] = 0.85098039215686
+		E.db["nameplates"]["colors"]["selection"][8]["b"] = 0.41960784313725
+		E.db["nameplates"]["colors"]["selection"][13]["b"] = 0.27843137254902
+		E.db["nameplates"]["colors"]["selection"][13]["g"] = 0.58039215686275
+		E.db["nameplates"]["colors"]["selection"][13]["r"] = 0.10196078431373
+		E.db["nameplates"]["colors"]["threat"]["badColor"]["b"] = 0.18039215686275
+		E.db["nameplates"]["colors"]["threat"]["badColor"]["g"] = 0.18039215686275
+		E.db["nameplates"]["colors"]["threat"]["badTransition"]["g"] = 0.50980392156863
+		E.db["nameplates"]["colors"]["threat"]["goodTransition"]["g"] = 0.85098039215686
+		E.db["nameplates"]["colors"]["threat"]["offTankColor"]["r"] = 0.72941176470588
+		E.db["nameplates"]["colors"]["threat"]["offTankColorBadTransition"]["b"] = 0.27058823529412
+		E.db["nameplates"]["colors"]["threat"]["offTankColorBadTransition"]["g"] = 0.43137254901961
+		E.db["nameplates"]["colors"]["threat"]["offTankColorBadTransition"]["r"] = 0.70980392156863
+		E.db["nameplates"]["colors"]["threat"]["offTankColorGoodTransition"]["b"] = 0.63137254901961
+		E.db["nameplates"]["colors"]["threat"]["offTankColorGoodTransition"]["g"] = 0.45098039215686
+		E.db["nameplates"]["colors"]["threat"]["offTankColorGoodTransition"]["r"] = 0.30980392156863
+		--[[E.db["nameplates"]["colors"]["reactions"]["bad"]["r"] = 0.78
+		E.db["nameplates"]["colors"]["reactions"]["bad"]["g"] = 0.25
+		E.db["nameplates"]["colors"]["reactions"]["bad"]["b"] = 0.25
+		E.db["nameplates"]["colors"]["reactions"]["good"]["r"] = 0.29
+		E.db["nameplates"]["colors"]["reactions"]["good"]["g"] = 0.69
+		E.db["nameplates"]["colors"]["reactions"]["good"]["b"] = 0.30
+		E.db["nameplates"]["colors"]["reactions"]["neutral"]["r"] = 0.85
+		E.db["nameplates"]["colors"]["reactions"]["neutral"]["g"] = 0.77
+		E.db["nameplates"]["colors"]["reactions"]["neutral"]["b"] = 0.36
+		E.db["nameplates"]["colors"]["threat"]["badColor"]["r"] = 1
+		E.db["nameplates"]["colors"]["threat"]["badColor"]["g"] = 0.18
+		E.db["nameplates"]["colors"]["threat"]["badColor"]["b"] = 0.18
+		E.db["nameplates"]["colors"]["threat"]["goodColor"]["r"] = 0.20
+		E.db["nameplates"]["colors"]["threat"]["goodColor"]["g"] = 0.71
+		E.db["nameplates"]["colors"]["threat"]["goodColor"]["b"] = 0
+		E.db["nameplates"]["colors"]["threat"]["offTankColorBadTransition"]["r"] = 0.71
+		E.db["nameplates"]["colors"]["threat"]["offTankColorBadTransition"]["g"] = 0.43
+		E.db["nameplates"]["colors"]["threat"]["offTankColorBadTransition"]["b"] = 0.27
+		E.db["nameplates"]["colors"]["threat"]["offTankColorGoodTransition"]["r"] = 0.31
+		E.db["nameplates"]["colors"]["threat"]["offTankColorGoodTransition"]["g"] = 0.45
+		E.db["nameplates"]["colors"]["threat"]["offTankColorGoodTransition"]["b"] = 0.63
+		E.db["nameplates"]["colors"]["selection"][0]["r"] = 1
+		E.db["nameplates"]["colors"]["selection"][0]["g"] = 0.18
+		E.db["nameplates"]["colors"]["selection"][0]["b"] = 0.18
+		E.db["nameplates"]["colors"]["selection"][3]["r"] = 0.20
+		E.db["nameplates"]["colors"]["selection"][3]["g"] = 0.71
+		E.db["nameplates"]["colors"]["selection"][3]["b"] = 0
+		E.db["nameplates"]["colors"]["selection"][13]["b"] = 0.10
+		E.db["nameplates"]["colors"]["selection"][13]["g"] = 0.58
+		E.db["nameplates"]["colors"]["selection"][13]["r"] = 0.28]]
 	end
 
 	--more long term checks, in case somehow people enable 2 settings when its not possible to do so. Maybe its a shared profile from another person? No idea how they manage to do this
