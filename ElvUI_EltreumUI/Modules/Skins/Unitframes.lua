@@ -110,11 +110,8 @@ local unitframeclasscustom = {
 	["NPCUNFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npcunfriendly)),
 	["NPCHOSTILE"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npchostile)),
 }
-local colorupdateframe = CreateFrame("FRAME")
-colorupdateframe:RegisterEvent("PLAYER_ENTERING_WORLD")
-colorupdateframe:RegisterEvent("PLAYER_STARTED_MOVING")
-colorupdateframe:SetScript("OnEvent", function()
-	colorupdateframe:UnregisterAllEvents()
+
+function ElvUI_EltreumUI:GradientColorTableUpdate()
 
 	if E.Wrath or E.TBC or E.Classic then
 		classtable = {
@@ -258,6 +255,14 @@ colorupdateframe:SetScript("OnEvent", function()
 			["NPCHOSTILE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DKv3.tga",
 		}
 	end
+end
+
+local colorupdateframe = CreateFrame("FRAME")
+colorupdateframe:RegisterEvent("PLAYER_ENTERING_WORLD")
+colorupdateframe:RegisterEvent("PLAYER_STARTED_MOVING")
+colorupdateframe:SetScript("OnEvent", function()
+	colorupdateframe:UnregisterAllEvents()
+	ElvUI_EltreumUI:GradientColorTableUpdate()
 end)
 
 function ElvUI_EltreumUI:UnitframeClassTexture(unitclass)

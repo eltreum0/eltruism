@@ -7,7 +7,6 @@ local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
 local UnitIsPlayer = _G.UnitIsPlayer
 
-
 --Databar gradient
 function ElvUI_EltreumUI:GradientDatabar()
 	local databarXP = _G["ElvUI_ExperienceBar"]
