@@ -674,6 +674,42 @@ P.ElvUI_EltreumUI = {
 		npchostileR2 = 1,
 		npchostileG2= 0.15686274509804,
 		npchostileB2 = 0.15686274509804,
+
+		--threat stuff for np
+		goodthreatR1 = 0.27843075990677,
+		goodthreatR2 = 0.27843075990677,
+		goodthreatG1 = 0.99999779462814,
+		goodthreatG2 = 0.99999779462814,
+		goodthreatB1 = 0,
+		goodthreatB2 = 0,
+
+		badthreatR1 = 0.99999779462814,
+		badthreatR2 = 0.99999779462814,
+		badthreatG1 = 0.1764702051878,
+		badthreatG2 = 0.1764702051878,
+		badthreatB1 = 0.1764702051878,
+		badthreatB2 = 0.1764702051878,
+
+		goodthreattransitionR1 = 0.99999779462814,
+		goodthreattransitionR2 = 0.99999779462814,
+		goodthreattransitionG1 = 0.85097849369049,
+		goodthreattransitionG2 = 0.85097849369049,
+		goodthreattransitionB1 = 0.1999995559454,
+		goodthreattransitionB2 = 0.1999995559454,
+
+		badthreattransitionR1 = 0.99999779462814,
+		badthreattransitionR2 = 0.99999779462814,
+		badthreattransitionG1 = 0.50980281829834,
+		badthreattransitionG2 = 0.50980281829834,
+		badthreattransitionB1 = 0.1999995559454,
+		badthreattransitionB2 = 0.1999995559454,
+
+		offtankR1 = 0.69411611557007,
+		offtankR2 = 0.69411611557007,
+		offtankG1 = 0.16470551490784,
+		offtankG2 = 0.16470551490784,
+		offtankB1 = 0.11764679849148,
+		offtankB2 = 0.11764679849148,
 	},
 
 	ufcustomtexture = {
