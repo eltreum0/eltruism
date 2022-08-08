@@ -54,6 +54,9 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 			end)
 		end
 
+		SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+		EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+
 		EltruismTimeToArriveParent:RegisterEvent("USER_WAYPOINT_UPDATED")
 		EltruismTimeToArriveParent:RegisterEvent("WAYPOINT_UPDATE")
 		EltruismTimeToArriveParent:RegisterEvent("SUPER_TRACKING_CHANGED")
