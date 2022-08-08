@@ -169,6 +169,10 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"] = text
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"] = text
 		end
+	elseif E.private.ElvUI_EltreumUI.install_version < "3.2.2" then
+		E.db["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["enable"] = false
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
 	end
 
 	--more long term checks, in case somehow people enable 2 settings when its not possible to do so. Maybe its a shared profile from another person? No idea how they manage to do this
