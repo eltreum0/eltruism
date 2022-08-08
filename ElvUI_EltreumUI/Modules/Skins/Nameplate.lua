@@ -4,30 +4,29 @@ local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 
 --set the variables
-local paladin, warrior, shaman, druid, deathknight, demonhunter, monk, rogue, priest, mage, hunter, warlock
-local npchostile, npcneutral, npcfriendly
-local goodthreat, goodthreattransition, badthreattransition, badthreat
-local offtank, offtankgoodthreattransition, offtankbadthreattransition
-paladin = {r = "0.95686066150665", g = "0.54901838302612", b = "0.72941017150879"}
-warrior = {r = "0.77646887302399", g = "0.60784178972244", b = "0.4274500310421"}
-shaman = {r = "0", g = "0.4392147064209", b = "0.86666476726532"}
-druid = {r = "0.99999779462814", g = "0.48627343773842", b = "0.039215601980686"}
-deathknight = {r = "0.76862573623657", g = "0.11764679849148", b = "0.2274504750967"}
-demonhunter = {r = "0.63921427726746", g = "0.1882348805666", b = "0.78823357820511"}
-monk = {r = "0", g = "0.99999779462814", b = "0.59607714414597"}
-rogue = {r = "0.99999779462814", g = "0.95686066150665", b = "0.40784224867821"}
-priest = {r = "0.99999779462814", g = "0.99999779462814", b = "0.99999779462814"}
-mage = {r = "0.24705828726292", g = "0.78039044141769", b = "0.92156660556793"}
-hunter = {r = "0.66666519641876", g = "0.82744914293289", b = "0.44705784320831"}
-warlock = {r = "0.52941060066223", g = "0.53333216905594", b = "0.93333131074905"}
-npcfriendly = {r = "0.1999995559454", g = "0.7098023891449", b = "0"}
-npcneutral = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
---["NPCUNFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npcunfriendly))
-npchostile = {r = "0.99999779462814", g = "0.18039175868034", b = "0.18039175868034"}
-goodthreat = {r = "0.27843075990677", g = "0.99999779462814", b = "0"}
-badthreat = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"}
-goodthreattransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
-badthreattransition = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"}
+local paladin = {r = "0.95686066150665", g = "0.54901838302612", b = "0.72941017150879"}
+local warrior = {r = "0.77646887302399", g = "0.60784178972244", b = "0.4274500310421"}
+local shaman = {r = "0", g = "0.4392147064209", b = "0.86666476726532"}
+local druid = {r = "0.99999779462814", g = "0.48627343773842", b = "0.039215601980686"}
+local deathknight = {r = "0.76862573623657", g = "0.11764679849148", b = "0.2274504750967"}
+local demonhunter = {r = "0.63921427726746", g = "0.1882348805666", b = "0.78823357820511"}
+local monk = {r = "0", g = "0.99999779462814", b = "0.59607714414597"}
+local rogue = {r = "0.99999779462814", g = "0.95686066150665", b = "0.40784224867821"}
+local priest = {r = "0.99999779462814", g = "0.99999779462814", b = "0.99999779462814"}
+local mage = {r = "0.24705828726292", g = "0.78039044141769", b = "0.92156660556793"}
+local hunter = {r = "0.66666519641876", g = "0.82744914293289", b = "0.44705784320831"}
+local warlock = {r = "0.52941060066223", g = "0.53333216905594", b = "0.93333131074905"}
+local npcfriendly = {r = "0.1999995559454", g = "0.7098023891449", b = "0"}
+local npcneutral = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
+--local npcunfriendly = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npcunfriendly))
+local npchostile = {r = "0.99999779462814", g = "0.18039175868034", b = "0.18039175868034"}
+local goodthreat = {r = "0.27843075990677", g = "0.99999779462814", b = "0"}
+local badthreat = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"}
+local goodthreattransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
+local badthreattransition = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"}
+--local offtank
+--local offtankgoodthreattransition
+--local offtankbadthreattransition
 --bar colors for party/raid/raid40
 --local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
 --local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
@@ -52,6 +51,9 @@ if E.Wrath or E.TBC or E.Classic then
 	badthreat = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"}
 	goodthreattransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
 	badthreattransition = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"}
+	--local offtank
+	--local offtankgoodthreattransition
+	--local offtankbadthreattransition
 end
 
 --gradient nameplates
@@ -63,7 +65,8 @@ local function testfunc(unit)
 		r = tostring(r)
 		g = tostring(g)
 		b = tostring(b)
-		--print(r,g,b)
+		print(r,npcneutral.r,g,npcneutral.g,b,npcneutral.b)
+
 		--trying to get the unit's class results in a table with user data, so the unit is not the actual unit
 
 		if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) then
@@ -140,21 +143,21 @@ local function testfunc(unit)
 			end
 		elseif ((r == npchostile.r) and (g == npchostile.g) and (b == npchostile.b)) then
 			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE"))--nameplatecustomgradients["NPCHOSTILE"]["r1"], nameplatecustomgradients["NPCHOSTILE"]["g1"], nameplatecustomgradients["NPCHOSTILE"]["b1"], nameplatecustomgradients["NPCHOSTILE"]["r2"], nameplatecustomgradients["NPCHOSTILE"]["g2"], nameplatecustomgradients["NPCHOSTILE"]["b2"])
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", false, false))
 			else
-				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColors("NPCHOSTILE"))--nameplategradients["NPCHOSTILE"]["r1"], nameplategradients["NPCHOSTILE"]["g1"], nameplategradients["NPCHOSTILE"]["b1"], nameplategradients["NPCHOSTILE"]["r2"], nameplategradients["NPCHOSTILE"]["g2"], nameplategradients["NPCHOSTILE"]["b2"])
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, false))
 			end
 		elseif ((r == npcneutral.r) and (g == npcneutral.g) and (b == npcneutral.b)) then
 			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL"))--nameplatecustomgradients["NPCNEUTRAL"]["r1"], nameplatecustomgradients["NPCNEUTRAL"]["g1"], nameplatecustomgradients["NPCNEUTRAL"]["b1"], nameplatecustomgradients["NPCNEUTRAL"]["r2"], nameplatecustomgradients["NPCNEUTRAL"]["g2"], nameplatecustomgradients["NPCNEUTRAL"]["b2"])
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", false, false))
 			else
-				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColors("NPCNEUTRAL"))--nameplategradients["NPCNEUTRAL"]["r1"], nameplategradients["NPCNEUTRAL"]["g1"], nameplategradients["NPCNEUTRAL"]["b1"], nameplategradients["NPCNEUTRAL"]["r2"], nameplategradients["NPCNEUTRAL"]["g2"], nameplategradients["NPCNEUTRAL"]["b2"])
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", false, false))
 			end
 		elseif ((r == npcfriendly.r) and (g == npcfriendly.g) and (b == npcfriendly.b)) then
 			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
-				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY"))--nameplatecustomgradients["NPCFRIENDLY"]["r1"], nameplatecustomgradients["NPCFRIENDLY"]["g1"], nameplatecustomgradients["NPCFRIENDLY"]["b1"], nameplatecustomgradients["NPCFRIENDLY"]["r2"], nameplatecustomgradients["NPCFRIENDLY"]["g2"], nameplatecustomgradients["NPCFRIENDLY"]["b2"])
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, false))
 			else
-				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColors("NPCFRIENDLY"))--nameplategradients["NPCFRIENDLY"]["r1"], nameplategradients["NPCFRIENDLY"]["g1"], nameplategradients["NPCFRIENDLY"]["b1"], nameplategradients["NPCFRIENDLY"]["r2"], nameplategradients["NPCFRIENDLY"]["g2"], nameplategradients["NPCFRIENDLY"]["b2"])
+				unit.Health:GetStatusBarTexture():SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, false))
 			end
 		--elseif ((r == goodthreat.r) and (g == goodthreat.g) and (b == goodthreat.b)) then
 		--	if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -175,4 +178,4 @@ hooksecurefunc(NP, "Health_UpdateColor", testfunc)
 --hooksecurefunc(NP, "Style", testfunc)
 --hooksecurefunc(NP, "StyleTargetPlate", testfunc)
 --hooksecurefunc(NP, "UpdatePlate", testfunc)
---hooksecurefunc(mod, "StyleFilterUpdate", testfunc)
+--hooksecurefunc(NP, "StyleFilterUpdate", testfunc)
