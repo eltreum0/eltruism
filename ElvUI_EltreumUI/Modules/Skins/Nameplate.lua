@@ -20,10 +20,10 @@ priest = {r = "0.99999779462814", g = "0.99999779462814", b = "0.99999779462814"
 mage = {r = "0.24705828726292", g = "0.78039044141769", b = "0.92156660556793"}
 hunter = {r = "0.66666519641876", g = "0.82744914293289", b = "0.44705784320831"}
 warlock = {r = "0.52941060066223", g = "0.53333216905594", b = "0.93333131074905"}
-npcfriendly = {r = "0.4274500310421", g = "0.99999779462814", b = "0.44313627481461"}
-npcneutral = {r = "0.99999779462814", g = "0.90195882320404", b = "0.42352849245071"}
+npcfriendly = {r = "0.27843075990677", g = "0.99999779462814", b = "0"}
+npcneutral = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
 --["NPCUNFRIENDLY"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.npcunfriendly))
-npchostile = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"}
+npchostile = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"}
 goodthreat = {r = "0.27843075990677", g = "0.99999779462814", b = "0"}
 badthreat = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"}
 goodthreattransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
@@ -63,8 +63,7 @@ local function testfunc(unit)
 		r = tostring(r)
 		g = tostring(g)
 		b = tostring(b)
-		--print(r,g,b)
-		--trying to get the unit's class results in a table with user data, so the unit is not the actual unit
+		print(r,g,b)
 
 		if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) then
 			if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
