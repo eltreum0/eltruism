@@ -32,6 +32,8 @@
 	<Script file='Skins/Shadows.lua'/>
 	<Script file='Skins/Stealth.lua'/>
 	<Script file='Skins/Unitframes.lua'/>
+	<Script file='Skins/Castbar.lua'/>
+	<Script file='Skins/Nameplate.lua'/>
 	<Script file='Skins/WiderTransmog.lua'/>
 	<Script file='Fonts/CustomFont.lua'/>
 	<Script file='Fonts/CrystalzcuheiGBK.lua'/>
