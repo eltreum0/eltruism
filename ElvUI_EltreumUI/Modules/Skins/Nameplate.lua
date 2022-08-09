@@ -18,7 +18,8 @@ local hunter = {r = "0.66666519641876", g = "0.82744914293289", b = "0.447057843
 local warlock = {r = "0.52941060066223", g = "0.53333216905594", b = "0.93333131074905"}
 local npcfriendly = {r = "0.1999995559454", g = "0.7098023891449", b = "0"}
 local npcneutral = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
-local npcunfriendly = {r = "0.7098023891449", g = "0.43137159943581", b = "0.27058765292168"}
+--local npcunfriendly = {r = "0.7098023891449", g = "0.43137159943581", b = "0.27058765292168"}
+local npcunfriendly = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"}
 local npchostile = {r = "0.99999779462814", g = "0.18039175868034", b = "0.18039175868034"}
 --local goodthreat = {r = "0.1999995559454", g = "0.7098023891449", b = "0"}
 --local badthreat = {r = "0.99999779462814", g = "0.18039175868034", b = "0.18039175868034"}
@@ -44,6 +45,7 @@ if E.Wrath or E.TBC or E.Classic then
 	hunter = {r = "0.67058676481247", g = "0.8313707113266", b = "0.45097941160202"}
 	warlock = {r = "0.52941060066223", g = "0.52941060066223", b = "0.92940974235535"}
 	npcfriendly = {r = "0.4274500310421", g = "0.99999779462814", b = "0.44313627481461"}
+	npcunfriendly = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"}
 	npcneutral = {r = "0.99999779462814", g = "0.90195882320404", b = "0.42352849245071"}
 	npchostile = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"}
 end
@@ -146,6 +148,12 @@ local function GradientNameplates(unit)
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, false))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, false))
+				end
+			elseif ((r == npcunfriendly.r) and (g == npcunfriendly.g) and (b == npcunfriendly.b)) then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
+					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", false, false))
+				else
+					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", false, false))
 				end
 			--[[elseif ((r == offtank.r) and (g == offtank.g) and (b == offtank.b)) then
 				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
