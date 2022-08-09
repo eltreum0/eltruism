@@ -42,6 +42,9 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbarnoninterruptible = true
 	E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar = true
 	E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar = true
+	E.db.ElvUI_EltreumUI.gradientmode.npenable = true
+	E.db.ElvUI_EltreumUI.gradientmode.nporientation = "VERTICAL"
+	E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor = false
 	E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha = 0.7
 	E.db.ElvUI_EltreumUI.sparkcustomcolor.enable = true
