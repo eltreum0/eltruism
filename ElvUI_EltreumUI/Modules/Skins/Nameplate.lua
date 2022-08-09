@@ -44,9 +44,10 @@ if E.Wrath or E.TBC or E.Classic then
 	mage = {r = "0.25097984075546", g = "0.78039044141769", b = "0.92156660556793"}
 	hunter = {r = "0.67058676481247", g = "0.8313707113266", b = "0.45097941160202"}
 	warlock = {r = "0.52941060066223", g = "0.52941060066223", b = "0.92940974235535"}
-	npcfriendly = {r = "0.4274500310421", g = "0.99999779462814", b = "0.44313627481461"}
+	npcfriendly = {r = "0.29019543528557", g = "0.67842990159988", b = "0.30196011066437"}
+	npcneutral = {r = "0.85097849369049", g = "0.76862573623657", b = "0.36078351736069"}
+
 	npcunfriendly = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"}
-	npcneutral = {r = "0.99999779462814", g = "0.90195882320404", b = "0.42352849245071"}
 	npchostile = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"}
 end
 
@@ -58,6 +59,8 @@ local function GradientNameplates(unit)
 			r = tostring(r)
 			g = tostring(g)
 			b = tostring(b)
+
+			print(r,g,b)
 
 			if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) then
 				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
@@ -131,11 +134,11 @@ local function GradientNameplates(unit)
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("WARLOCK"))
 				end
-			elseif ((r == npchostile.r) and (g == npchostile.g) and (b == npchostile.b)) then
+			elseif ((r == npcfriendly.r) and (g == npcfriendly.g) and (b == npcfriendly.b)) then
 				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
-					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", false, false))
+					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, false))
 				else
-					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, false))
+					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, false))
 				end
 			elseif ((r == npcneutral.r) and (g == npcneutral.g) and (b == npcneutral.b)) then
 				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
@@ -143,17 +146,17 @@ local function GradientNameplates(unit)
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", false, false))
 				end
-			elseif ((r == npcfriendly.r) and (g == npcfriendly.g) and (b == npcfriendly.b)) then
-				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
-					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, false))
-				else
-					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, false))
-				end
 			elseif ((r == npcunfriendly.r) and (g == npcunfriendly.g) and (b == npcunfriendly.b)) then
 				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", false, false))
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", false, false))
+				end
+			elseif ((r == npchostile.r) and (g == npchostile.g) and (b == npchostile.b)) then
+				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
+					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", false, false))
+				else
+					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, false))
 				end
 			--[[elseif ((r == offtank.r) and (g == offtank.g) and (b == offtank.b)) then
 				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
