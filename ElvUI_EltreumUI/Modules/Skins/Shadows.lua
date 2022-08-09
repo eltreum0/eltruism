@@ -658,7 +658,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G["ElvUF_TargetTarget_PowerBar"],
 				_G["ElvUF_Target_HealthBar"],
 				_G["ElvUF_Target_PowerBar"],
-				_G["ElvUF_Pet"],
+				_G["ElvUF_Pet_HealthBar"],
 				_G["ElvUF_Player_HealthBar"],
 				_G["ElvUF_Player_PowerBar"],
 				_G["ElvUF_Player_Stagger"],
