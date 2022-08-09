@@ -1865,12 +1865,17 @@ hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientCustomTextur
 function ElvUI_EltreumUI:BackdropTexture(_, statusbar, backdropTex)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then --and (not E.db.ElvUI_EltreumUI.lightmode) then
 		--if not E.db.ElvUI_EltreumUI.gradientmode.enable then
-			backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
-			backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-			if statusbar.backdrop then
+			if backdropTex then
+				backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
+				backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+			end
+			if statusbar and statusbar.backdrop then
 				statusbar.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
 			end
 		--end
 	end
 end
 hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
+--[[hooksecurefunc(UF, 'UpdateBackdropTextureColor', function()
+	ElvUI_EltreumUI:BackdropTexture()
+end)]]
