@@ -209,18 +209,29 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db["nameplates"]["colors"]["threat"]["offTankColorGoodTransition"]["r"] = 0.30980392156863
 
 	--update to current hp method
-	if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]then
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["text_format"] = "[eltruism:hpstatus{5,3}]"
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["text_format"] = "[eltruism:hpstatus{5,3}]"
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
+	if E.db["unitframe"]["units"]["player"]["customTexts"]then
 		E.db["unitframe"]["units"]["focus"]["health"]["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]"
+		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["text_format"] = "[eltruism:hpstatus{5,3}]"
+		end
+		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] then
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["text_format"] = "[eltruism:hpstatus{5,3}]"
+		end
+		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"] then
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
+		end
 		if not E.Classic then
 			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
 		end
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
-		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Health"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
-
+		if E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"] then
+			E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
+		end
+		if E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Health"] then
+			E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Health"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
+		end
+		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"] then
+			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
+		end
 		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] then
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"]["enable"] = false
 		end
