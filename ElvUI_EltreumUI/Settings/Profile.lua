@@ -495,7 +495,6 @@ P.ElvUI_EltreumUI = {
 		enableboss7 = true,
 		enableboss8 = true,
 
-
 		enableplayercastbar = false,
 		enableplayercastbarnoninterruptible = false,
 		enableplayercastbarinterrupted = false,
