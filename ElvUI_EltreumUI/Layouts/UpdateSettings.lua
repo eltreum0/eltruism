@@ -180,6 +180,34 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.private.general.glossTex = "Asphyxia-Norm"
 	E.private.general.normTex = "Asphyxia-Norm"
 
+
+	--fix some colors for gradient np
+	E.db["nameplates"]["colors"]["reactions"]["bad"]["b"] = 0.25098039215686
+	E.db["nameplates"]["colors"]["reactions"]["bad"]["g"] = 0.25098039215686
+	E.db["nameplates"]["colors"]["reactions"]["bad"]["r"] = 0.78039215686275
+	E.db["nameplates"]["colors"]["reactions"]["good"]["b"] = 0.30196078431373
+	E.db["nameplates"]["colors"]["reactions"]["good"]["g"] = 0.67843137254902
+	E.db["nameplates"]["colors"]["reactions"]["good"]["r"] = 0.29019607843137
+	E.db["nameplates"]["colors"]["reactions"]["neutral"]["b"] = 0.36078431372549
+	E.db["nameplates"]["colors"]["reactions"]["neutral"]["g"] = 0.76862745098039
+	E.db["nameplates"]["colors"]["reactions"]["neutral"]["r"] = 0.85098039215686
+	E.db["nameplates"]["colors"]["selection"][2]["g"] = 0.85098039215686
+	E.db["nameplates"]["colors"]["selection"][8]["b"] = 0.41960784313725
+	E.db["nameplates"]["colors"]["selection"][13]["b"] = 0.27843137254902
+	E.db["nameplates"]["colors"]["selection"][13]["g"] = 0.58039215686275
+	E.db["nameplates"]["colors"]["selection"][13]["r"] = 0.10196078431373
+	E.db["nameplates"]["colors"]["threat"]["badColor"]["b"] = 0.18039215686275
+	E.db["nameplates"]["colors"]["threat"]["badColor"]["g"] = 0.18039215686275
+	E.db["nameplates"]["colors"]["threat"]["badTransition"]["g"] = 0.50980392156863
+	E.db["nameplates"]["colors"]["threat"]["goodTransition"]["g"] = 0.85098039215686
+	E.db["nameplates"]["colors"]["threat"]["offTankColor"]["r"] = 0.72941176470588
+	E.db["nameplates"]["colors"]["threat"]["offTankColorBadTransition"]["b"] = 0.27058823529412
+	E.db["nameplates"]["colors"]["threat"]["offTankColorBadTransition"]["g"] = 0.43137254901961
+	E.db["nameplates"]["colors"]["threat"]["offTankColorBadTransition"]["r"] = 0.70980392156863
+	E.db["nameplates"]["colors"]["threat"]["offTankColorGoodTransition"]["b"] = 0.63137254901961
+	E.db["nameplates"]["colors"]["threat"]["offTankColorGoodTransition"]["g"] = 0.45098039215686
+	E.db["nameplates"]["colors"]["threat"]["offTankColorGoodTransition"]["r"] = 0.30980392156863
+
 	--update to current hp method
 	if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]then
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["text_format"] = "[eltruism:hpstatus{5,3}]"
