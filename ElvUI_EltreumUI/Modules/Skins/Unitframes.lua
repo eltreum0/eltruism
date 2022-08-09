@@ -1864,87 +1864,32 @@ hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientCustomTextur
 --Unitframe Backdrop Texture/Alpha
 function ElvUI_EltreumUI:BackdropTexture(_, statusbar, backdropTex)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then --and (not E.db.ElvUI_EltreumUI.lightmode) then
-		if E.db.ElvUI_EltreumUI.gradientmode.enable then
-			if E.db.ElvUI_EltreumUI.lightmode then
-				print("1")
-				if backdropTex then
-					backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
-					backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-					if E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha < 1 then
-						if statusbar and statusbar.backdrop then
-							statusbar.backdrop:Hide()
-						end
-					end
-				end
-				if statusbar and statusbar.backdrop then
-					if E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha == 0 then
-						statusbar.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-						backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-					elseif E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
-						statusbar.backdrop:Hide()
-						backdropTex:SetAlpha(0)
-					end
-				end
-			elseif E.db.ElvUI_EltreumUI.darkmode then
-				print("2")
-				if backdropTex then
-					backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
-					backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-					if E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha < 1 then
-						if statusbar and statusbar.backdrop then
-							statusbar.backdrop:Hide()
-						end
-					end
-				end
-				if statusbar and statusbar.backdrop then
-					if E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha == 0 then
-						statusbar.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-						backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-					elseif E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
-						statusbar.backdrop:Hide()
-						backdropTex:SetAlpha(0)
-					end
-				end
-			end
-		else
-			if E.db.ElvUI_EltreumUI.lightmode then
-				print("3")
-				if backdropTex and not E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
-					backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
-					backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-					if E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha < 1 then
-						if statusbar and statusbar.backdrop then
-							statusbar.backdrop:Hide()
-						end
-					end
-				end
-				if E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
-					if backdropTex then
-						backdropTex:SetAlpha(0)
-					end
+		if E.db.ElvUI_EltreumUI.lightmode then
+			if backdropTex and not E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
+				backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
+				backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+				if E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha < 1 then
 					if statusbar and statusbar.backdrop then
 						statusbar.backdrop:Hide()
 					end
 				end
-			elseif E.db.ElvUI_EltreumUI.darkmode then
-				print("4")
+			end
+			if E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
 				if backdropTex then
-					backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
-					backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-					if E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha < 1 then
-						if statusbar and statusbar.backdrop then
-							statusbar.backdrop:Hide()
-						end
-					end
+					backdropTex:SetAlpha(0)
 				end
 				if statusbar and statusbar.backdrop then
-					if E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha == 0 then
-						statusbar.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-						backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-					elseif E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
-						statusbar.backdrop:Hide()
-						backdropTex:SetAlpha(0)
-					end
+					statusbar.backdrop:Hide()
+				end
+			end
+		elseif E.db.ElvUI_EltreumUI.darkmode then
+			if backdropTex and not E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
+				backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
+				backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+			end
+			if E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
+				if statusbar and statusbar.backdrop then
+					statusbar.backdrop:Hide()
 				end
 			end
 		end
