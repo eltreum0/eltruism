@@ -670,31 +670,21 @@ hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientCustomTextur
 --Unitframe Backdrop Texture/Alpha
 function ElvUI_EltreumUI:BackdropTexture(_, statusbar, backdropTex)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then
-		if E.db.ElvUI_EltreumUI.lightmode then
-			if backdropTex and not E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
-				backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
-				backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-				if statusbar and statusbar.backdrop and not statusbar:GetName():match("AuraBars") then
-					statusbar.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-				end
+		if backdropTex and not E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
+			backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
+			backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+			if statusbar and statusbar.backdrop and statusbar:GetName():match("Health") then
+				statusbar.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
 			end
-			if E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
+		end
+		if E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
+			if E.db.ElvUI_EltreumUI.lightmode then
 				if backdropTex then
 					backdropTex:SetAlpha(0)
 				end
-				if statusbar and statusbar.backdrop and not statusbar:GetName():match("AuraBars") then
-					statusbar.backdrop:SetBackdropColor(0,0,0,0)
-				end
 			end
-		elseif E.db.ElvUI_EltreumUI.darkmode then
-			if backdropTex and not E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
-				backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
-				backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-			end
-			if E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
-				if statusbar and statusbar.backdrop and not statusbar:GetName():match("AuraBars") then
-					statusbar.backdrop:SetBackdropColor(0,0,0,0)
-				end
+			if statusbar and statusbar.backdrop and statusbar:GetName():match("Health") then
+				statusbar.backdrop:Hide()
 			end
 		end
 	end
