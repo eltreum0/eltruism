@@ -10,11 +10,15 @@ local tostring = _G.tostring
 local select = _G.select
 
 --set the textures or gradients
+local truer = 0
+local trueg = 0
+local trueb = 0
+local trueclass
+
 function ElvUI_EltreumUI:GradientCustomTexture(unit)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then
 
-
-		local function Apply(unit,name)
+		local function ApplyUnitGradientTexture(unit,name)
 			local _, classunit = UnitClass(unit)
 			local namebar
 			local reaction = UnitReaction(unit, "player")
@@ -265,26 +269,26 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 		--main issue = the toggle for some units like boss and arena wont work bc it checks for boss1,boss2... instead of just boss
 
 		--player
-		Apply("player", "Player")
-		Apply("target", "Target")
-		Apply("targettarget", "TargetTarget")
-		Apply("targettargettarget", "TargetTargetTarget")
-		Apply("focus", "Focus")
-		Apply("pet", "Pet")
-		Apply("arena1", "Arena1")
-		Apply("arena2", "Arena2")
-		Apply("arena3", "Arena3")
-		Apply("arena4", "Arena4")
-		Apply("arena5", "Arena5")
+		ApplyUnitGradientTexture("player", "Player")
+		ApplyUnitGradientTexture("target", "Target")
+		ApplyUnitGradientTexture("targettarget", "TargetTarget")
+		ApplyUnitGradientTexture("targettargettarget", "TargetTargetTarget")
+		ApplyUnitGradientTexture("focus", "Focus")
+		ApplyUnitGradientTexture("pet", "Pet")
+		ApplyUnitGradientTexture("arena1", "Arena1")
+		ApplyUnitGradientTexture("arena2", "Arena2")
+		ApplyUnitGradientTexture("arena3", "Arena3")
+		ApplyUnitGradientTexture("arena4", "Arena4")
+		ApplyUnitGradientTexture("arena5", "Arena5")
 		if E.Retail then
-			Apply("boss1", "Boss1")
-			Apply("boss2", "Boss2")
-			Apply("boss3", "Boss3")
-			Apply("boss4", "Boss4")
-			Apply("boss5", "Boss5")
-			Apply("boss6", "Boss6")
-			Apply("boss7", "Boss7")
-			Apply("boss8", "Boss8")
+			ApplyUnitGradientTexture("boss1", "Boss1")
+			ApplyUnitGradientTexture("boss2", "Boss2")
+			ApplyUnitGradientTexture("boss3", "Boss3")
+			ApplyUnitGradientTexture("boss4", "Boss4")
+			ApplyUnitGradientTexture("boss5", "Boss5")
+			ApplyUnitGradientTexture("boss6", "Boss6")
+			ApplyUnitGradientTexture("boss7", "Boss7")
+			ApplyUnitGradientTexture("boss8", "Boss8")
 		end
 
 		--group/raid unitframes
@@ -313,10 +317,10 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 			if not unit1class then
 				return
 			end
-			local truer = 0
-			local trueg = 0
-			local trueb = 0
-			local trueclass
+			truer = 0
+			trueg = 0
+			trueb = 0
+
 			if E.db.ElvUI_EltreumUI.lightmode then
 				if E. Retail then
 					if unit1class == 'WARRIOR' then
@@ -567,7 +571,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 				end
 			end
 
-			local function ApplyGradientTexture(g1,b1,r1,r,g,b,button)
+			local function ApplyGroupGradientTexture(g1,b1,r1,r,g,b,button)
 				if tostring(g1) == tostring(trueg) and tostring(r1) == tostring(truer) and tostring(b1) == tostring(trueb) then
 					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
 						if E.db.ElvUI_EltreumUI.lightmode then
@@ -617,7 +621,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 							local r = tostring(r1)
 							local g = tostring(g1)
 							local b = tostring(b1)
-							ApplyGradientTexture(g1,b1,r1, r,g,b, groupbutton)
+							ApplyGroupGradientTexture(g1,b1,r1, r,g,b, groupbutton)
 						end
 					end
 				end
@@ -636,7 +640,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 						local r = tostring(r1)
 						local g = tostring(g1)
 						local b = tostring(b1)
-						ApplyGradientTexture(g1,b1,r1, r,g,b, tankbutton)
+						ApplyGroupGradientTexture(g1,b1,r1, r,g,b, tankbutton)
 					end
 				end
 			end
@@ -654,7 +658,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 						local r = tostring(r1)
 						local g = tostring(g1)
 						local b = tostring(b1)
-						ApplyGradientTexture(g1,b1,r1, r,g,b, assistbutton)
+						ApplyGroupGradientTexture(g1,b1,r1, r,g,b, assistbutton)
 					end
 				end
 			end
