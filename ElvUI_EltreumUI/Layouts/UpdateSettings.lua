@@ -172,6 +172,8 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons = true
 	E.db.ElvUI_EltreumUI.otherstuff.delete = true
 
+	E.db.ElvUI_EltreumUI.otherstuff.gamemenu = true
+
 	--private
 	E.private.ElvUI_EltreumUI.nameplatepower.enable = true
 	E.private.ElvUI_EltreumUI.nameplatepower.adjust = true
