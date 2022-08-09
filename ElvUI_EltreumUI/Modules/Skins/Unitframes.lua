@@ -1909,13 +1909,21 @@ function ElvUI_EltreumUI:BackdropTexture(_, statusbar, backdropTex)
 		else
 			if E.db.ElvUI_EltreumUI.lightmode then
 				print("3")
-				if backdropTex then
+				if backdropTex and not E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
 					backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
 					backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-					if E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha < 1 or E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
+					if E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha < 1 then
 						if statusbar and statusbar.backdrop then
 							statusbar.backdrop:Hide()
 						end
+					end
+				end
+				if E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
+					if backdropTex then
+						backdropTex:SetAlpha(0)
+					end
+					if statusbar and statusbar.backdrop then
+						statusbar.backdrop:Hide()
 					end
 				end
 			elseif E.db.ElvUI_EltreumUI.darkmode then
