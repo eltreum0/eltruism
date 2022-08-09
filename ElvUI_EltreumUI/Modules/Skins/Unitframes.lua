@@ -1863,7 +1863,7 @@ hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientCustomTextur
 
 --Unitframe Backdrop Texture/Alpha
 function ElvUI_EltreumUI:BackdropTexture(_, statusbar, backdropTex)
-	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then --and (not E.db.ElvUI_EltreumUI.lightmode) then
+	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then
 		if E.db.ElvUI_EltreumUI.lightmode then
 			if backdropTex and not E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
 				backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
