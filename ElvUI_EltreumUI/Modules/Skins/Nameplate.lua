@@ -18,19 +18,17 @@ local hunter = {r = "0.66666519641876", g = "0.82744914293289", b = "0.447057843
 local warlock = {r = "0.52941060066223", g = "0.53333216905594", b = "0.93333131074905"}
 local npcfriendly = {r = "0.1999995559454", g = "0.7098023891449", b = "0"}
 local npcneutral = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
---local npcunfriendly = {r = "0.7098023891449", g = "0.43137159943581", b = "0.27058765292168"}
 local npcunfriendly = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"}
 local npchostile = {r = "0.99999779462814", g = "0.18039175868034", b = "0.18039175868034"}
---local goodthreat = {r = "0.1999995559454", g = "0.7098023891449", b = "0"}
---local badthreat = {r = "0.99999779462814", g = "0.18039175868034", b = "0.18039175868034"}
---local goodthreattransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"}
+--local goodthreat = {r = "0.1999995559454", g = "0.7098023891449", b = "0"} -- is equal to friendly npc
+--local badthreat = {r = "0.99999779462814", g = "0.18039175868034", b = "0.18039175868034"} -- is equal to hostile npc
+--local goodthreattransition = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"} -- is equal to neutral npc
 --local badthreattransition = {r = "0.7098023891449", g = "0.43137159943581", b = "0.27058765292168"}
 --local offtank = {r = "0.72941017150879", g1 = "0.1999995559454", b = "0.99999779462814"}
 --local offtankgoodthreattransition
 --local offtankbadthreattransition = {r = "0.77646887302399", g1 = "0.60784178972244", b = "0.4274500310421"}
---bar colors for party/raid/raid40
 --local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
---local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
+--local disconnecteddarkmode = {r = "0.63137114048004", g = "0.56078308820724", b = "0.48627343773842"}
 if E.Wrath or E.TBC or E.Classic then
 	paladin = {r = "0.96078222990036", g = "0.54901838302612", b = "0.72941017150879"}
 	warrior = {r = "0.78039044141769", g = "0.61176335811615", b = "0.43137159943581"}
