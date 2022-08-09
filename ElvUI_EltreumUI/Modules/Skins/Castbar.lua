@@ -159,7 +159,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 									if reactiontarget >= 5 then
 										targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY"))--unitgradients["NPCFRIENDLY"]["r1"], unitgradients["NPCFRIENDLY"]["g1"], unitgradients["NPCFRIENDLY"]["b1"], unitgradients["NPCFRIENDLY"]["r2"], unitgradients["NPCFRIENDLY"]["g2"], unitgradients["NPCFRIENDLY"]["b2"])
 									elseif reactiontarget == 4 then
-										targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAl"))--unitgradients["NPCNEUTRAL"]["r1"], unitgradients["NPCNEUTRAL"]["g1"], unitgradients["NPCNEUTRAL"]["b1"], unitgradients["NPCNEUTRAL"]["r2"], unitgradients["NPCNEUTRAL"]["g2"], unitgradients["NPCNEUTRAL"]["b2"])
+										targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL"))--unitgradients["NPCNEUTRAL"]["r1"], unitgradients["NPCNEUTRAL"]["g1"], unitgradients["NPCNEUTRAL"]["b1"], unitgradients["NPCNEUTRAL"]["r2"], unitgradients["NPCNEUTRAL"]["g2"], unitgradients["NPCNEUTRAL"]["b2"])
 									elseif reactiontarget == 3 then
 										targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY"))--unitgradients["NPCUNFRIENDLY"]["r1"], unitgradients["NPCUNFRIENDLY"]["g1"], unitgradients["NPCUNFRIENDLY"]["b1"], unitgradients["NPCUNFRIENDLY"]["r2"], unitgradients["NPCUNFRIENDLY"]["g2"], unitgradients["NPCUNFRIENDLY"]["b2"])
 									elseif reactiontarget == 2 or reactiontarget == 1 then
