@@ -674,10 +674,22 @@ function ElvUI_EltreumUI:BackdropTexture(_, statusbar, backdropTex)
 			if backdropTex and not E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
 				backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
 				backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-				if E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha < 1 then
-					if statusbar and statusbar.backdrop then
-						statusbar.backdrop:Hide()
-					end
+				if statusbar and statusbar.backdrop and not statusbar:GetName():match("AuraBars") then
+					statusbar.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+				elseif statusbar and statusbar.backdrop and statusbar.bg and statusbar:GetName():match("AuraBars") then
+					--statusbar.bg:SetTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\White8x8.tga")
+					--statusbar.bg:SetVertexColor(1, 0, 0)
+					--statusbar.bg:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+					statusbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
+					statusbar:SetStatusBarColor(1,0,0,0)
+					--statusbar:SetVertexColor(0, 1, 0)
+					--statusbar:SetAlpha(1)
+
+					--statusbar.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+					--statusbar.backdrop:SetStatusBarTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\White8x8.tga")
+					--statusbar.backdrop:SetBackdropBorderColor(1, 0, 0, 0)
+
+					--statusbar.bg:GetTexture():SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
 				end
 			end
 			if E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
@@ -685,7 +697,7 @@ function ElvUI_EltreumUI:BackdropTexture(_, statusbar, backdropTex)
 					backdropTex:SetAlpha(0)
 				end
 				if statusbar and statusbar.backdrop then
-					statusbar.backdrop:Hide()
+					statusbar.backdrop:SetBackdropColor(0,0,0,0)
 				end
 			end
 		elseif E.db.ElvUI_EltreumUI.darkmode then
@@ -694,8 +706,8 @@ function ElvUI_EltreumUI:BackdropTexture(_, statusbar, backdropTex)
 				backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
 			end
 			if E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
-				if statusbar and statusbar.backdrop then
-					statusbar.backdrop:Hide()
+				if statusbar and statusbar.backdrop and not statusbar:GetName():match("AuraBars") then
+					statusbar.backdrop:SetBackdropColor(0,0,0,0)
 				end
 			end
 		end
