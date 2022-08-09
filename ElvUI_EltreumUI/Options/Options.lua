@@ -8032,8 +8032,17 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-							ufbackdropTex = {
+							backdrophide = {
 								order = 985,
+								type = 'toggle',
+								width = "full",
+								name = L["Hide Backdrop"],
+								desc = L["Sets the Backdrop as Transparent/Hidden"],
+								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							ufbackdropTex = {
+								order = 986,
 								type = 'select',
 								--width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -8043,12 +8052,6 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture = key end,
-							},
-							backdropgap = {
-								order = 986,
-								type = "description",
-								name = "",
-								width = "full",
 							},
 							ufbackdropTexalpha = {
 								type = 'range',

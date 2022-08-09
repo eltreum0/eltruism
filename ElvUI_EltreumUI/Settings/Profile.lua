@@ -737,6 +737,7 @@ P.ElvUI_EltreumUI = {
 		castbartexture = "Eltreum-Blank",
 		backdroptexture = "Eltreum-Blank",
 		backdropalpha = 1,
+		backdrophidden = false,
 		targettexture = "Eltreum-Blank",
 		playertexture = "Eltreum-Blank",
 		targettargettexture = "Eltreum-Blank",

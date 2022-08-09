@@ -468,13 +468,13 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 						if E.db.ElvUI_EltreumUI.gradientmode.orientation == "HORIZONTAL" then
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 								if reactiontargettargettarget >= 5 then
-									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", true))--unitframecustomgradients["NPCFRIENDLY"]["r2"], unitframecustomgradients["NPCFRIENDLY"]["g2"], unitframecustomgradients["NPCFRIENDLY"]["b2"], unitframecustomgradients["NPCFRIENDLY"]["r1"], unitframecustomgradients["NPCFRIENDLY"]["g1"], unitframecustomgradients["NPCFRIENDLY"]["b1"])
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", true))
 								elseif reactiontargettargettarget == 4 then
-									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", true))--unitframecustomgradients["NPCNEUTRAL"]["r2"], unitframecustomgradients["NPCNEUTRAL"]["g2"], unitframecustomgradients["NPCNEUTRAL"]["b2"], unitframecustomgradients["NPCNEUTRAL"]["r1"], unitframecustomgradients["NPCNEUTRAL"]["g1"], unitframecustomgradients["NPCNEUTRAL"]["b1"])
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", true))
 								elseif reactiontargettargettarget == 3 then
-									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", true))--unitframecustomgradients["NPCUNFRIENDLY"]["r2"], unitframecustomgradients["NPCUNFRIENDLY"]["g2"], unitframecustomgradients["NPCUNFRIENDLY"]["b2"], unitframecustomgradients["NPCUNFRIENDLY"]["r1"], unitframecustomgradients["NPCUNFRIENDLY"]["g1"], unitframecustomgradients["NPCUNFRIENDLY"]["b1"])
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", true))
 								elseif reactiontargettargettarget == 2 or reactiontarget == 1 then
-									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", true))--unitframecustomgradients["NPCHOSTILE"]["r2"], unitframecustomgradients["NPCHOSTILE"]["g2"], unitframecustomgradients["NPCHOSTILE"]["b2"], unitframecustomgradients["NPCHOSTILE"]["r1"], unitframecustomgradients["NPCHOSTILE"]["g1"], unitframecustomgradients["NPCHOSTILE"]["b1"])
+									targettargettargetunitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", true))
 								end
 							else
 								if reactiontargettargettarget >= 5 then
@@ -1861,16 +1861,29 @@ end
 hooksecurefunc(UF, "Style", ElvUI_EltreumUI.GradientCustomTexture) --if not hooking into this then when the target of target changes it doesnt update
 hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientCustomTexture)
 
---Unitframe Backdrop Texture
+--Unitframe Backdrop Texture/Alpha
 function ElvUI_EltreumUI:BackdropTexture(_, statusbar, backdropTex)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then --and (not E.db.ElvUI_EltreumUI.lightmode) then
 		--if not E.db.ElvUI_EltreumUI.gradientmode.enable then
 			if backdropTex then
 				backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
 				backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+				if E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha < 1 and E.db.ElvUI_EltreumUI.lightmode then
+					if statusbar and statusbar.backdrop then
+						statusbar.backdrop:Hide()
+					end
+				end
 			end
-			if statusbar and statusbar.backdrop then
-				statusbar.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+			if E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
+				if statusbar and statusbar.backdrop then
+					if E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha == 0 then
+						statusbar.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+						backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+					else
+						statusbar.backdrop:Hide()
+						backdropTex:SetAlpha(0)
+					end
+				end
 			end
 		--end
 	end
