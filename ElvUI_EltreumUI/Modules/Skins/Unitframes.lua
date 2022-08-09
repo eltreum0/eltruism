@@ -1871,9 +1871,6 @@ function ElvUI_EltreumUI:BackdropTexture(_, statusbar, backdropTex)
 				statusbar.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
 			end
 		--end
-
-
 	end
 end
 hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
---hooksecurefunc(UF, 'UpdateBackdropTextureColor', ElvUI_EltreumUI.BackdropTexture)
