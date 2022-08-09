@@ -8040,7 +8040,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Backdrop Texture"],
 								desc = L["Select a Texture"],
 								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return E.db.ElvUI_EltreumUI.gradientmode.enable or not E.db.ElvUI_EltreumUI.UFmodifications end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture = key end,
 							},
