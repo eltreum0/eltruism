@@ -367,7 +367,7 @@ E:AddTag('eltruism:targetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARG
 	--local spellID = (select(9, UnitCastingInfo(unit))) or (select(8, UnitChannelInfo(unit)))
 	--local startTime = (select(4, UnitCastingInfo(unit))) or (select(4, UnitChannelInfo(unit)))
 	--local endTime = (select(5, UnitCastingInfo(unit))) or (select(5, UnitChannelInfo(unit)))
-	local reaction = UnitReaction("player", unit.."target")
+	local reaction = UnitReaction(unit.."target", "player")
 
 	if spellID and targetname and endTime > startTime then
 		if UnitIsPlayer(unit.."target") then
@@ -399,7 +399,7 @@ E:AddTag('eltruism:targetcast:indicator', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START
 	--local spellID = (select(9, UnitCastingInfo(unit))) or (select(8, UnitChannelInfo(unit)))
 	--local startTime = (select(4, UnitCastingInfo(unit))) or (select(4, UnitChannelInfo(unit)))
 	--local endTime = (select(5, UnitCastingInfo(unit))) or (select(5, UnitChannelInfo(unit)))
-	local reaction = UnitReaction("player", unit.."target")
+	local reaction = UnitReaction(unit.."target", "player")
 
 	if spellID and targetname and endTime > startTime then
 		if UnitIsPlayer(unit.."target") then

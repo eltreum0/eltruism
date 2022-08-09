@@ -407,7 +407,7 @@ function ElvUI_EltreumUI:Borders()
 							edgeSize = E.db.ElvUI_EltreumUI.borders.bosssize,
 						})
 						if UnitExists("boss"..i) and E.db.ElvUI_EltreumUI.borders.classcolor == true then
-							local reactionboss= UnitReaction("player", "boss"..i)
+							local reactionboss= UnitReaction("boss"..i, "player")
 							if reactionboss >= 5 then
 								bossborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
 							elseif reactionboss == 4 then
@@ -870,7 +870,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 						targetcastbarborder:SetBackdropBorderColor(classcolorreaction[targetclass]["r1"], classcolorreaction[targetclass]["g1"], classcolorreaction[targetclass]["b1"], 1)
 					end
 				elseif not UnitIsPlayer("target") then
-					local reactiontarget = UnitReaction("player", "target")
+					local reactiontarget = UnitReaction("target", "player")
 					if reactiontarget >= 5 then
 						if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable and targetborder ~= nil then
 							targetborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
@@ -910,7 +910,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 					local _, targettargetclass = UnitClass("targettarget")
 					targettargetborder:SetBackdropBorderColor(classcolorreaction[targettargetclass]["r1"], classcolorreaction[targettargetclass]["g1"], classcolorreaction[targettargetclass]["b1"], 1)
 				elseif not UnitIsPlayer("targettarget") then
-					local reactiontargettarget = UnitReaction("player", "targettarget")
+					local reactiontargettarget = UnitReaction("targettarget", "player")
 					if reactiontargettarget >= 5 then
 						targettargetborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
 					elseif reactiontargettarget == 4 then
@@ -931,7 +931,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 						local _, focusclass = UnitClass("focus")
 						focusborder:SetBackdropBorderColor(classcolorreaction[focusclass]["r1"], classcolorreaction[focusclass]["g1"], classcolorreaction[focusclass]["b1"], 1)
 					elseif not UnitIsPlayer("focus") then
-						local reactionfocus = UnitReaction("player", "focus")
+						local reactionfocus = UnitReaction("focus", "player")
 						if reactionfocus >= 5 then
 							focusborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
 						elseif reactionfocus == 4 then
@@ -948,7 +948,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 						local _, focusclass = UnitClass("focus")
 						focuscastbarborder:SetBackdropBorderColor(classcolorreaction[focusclass]["r1"], classcolorreaction[focusclass]["g1"], classcolorreaction[focusclass]["b1"], 1)
 					elseif not UnitIsPlayer("focus") then
-						local reactionfocus = UnitReaction("player", "focus")
+						local reactionfocus = UnitReaction("focus", "player")
 						if reactionfocus >= 5 then
 							focuscastbarborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
 						elseif reactionfocus == 4 then
@@ -972,7 +972,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 						bossbordername:SetBackdropBorderColor(classcolorreaction[bossclass]["r1"], classcolorreaction[bossclass]["g1"], classcolorreaction[bossclass]["b1"], 1)
 					elseif not UnitIsPlayer("boss"..i) then
 						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
-							local reactionboss = UnitReaction("player", "boss1")
+							local reactionboss = UnitReaction("boss1", "player")
 							if reactionboss >= 5 then
 								bossbordername:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
 							elseif reactionboss == 4 then

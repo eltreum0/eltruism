@@ -373,7 +373,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 		--target
 		local targetbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga"
 		local _, targetclass = UnitClass("target")
-		local reactiontarget = UnitReaction("player", "target")
+		local reactiontarget = UnitReaction("target", "player")
 		if UnitExists("target") then
 			if UnitIsPlayer("target") then
 				if targetclass then
@@ -555,7 +555,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 
 		--target of target
 		local _, targettargetclass = UnitClass("targettarget")
-		local reactiontargettarget = UnitReaction("player", "targettarget")
+		local reactiontargettarget = UnitReaction("targettarget", "player")
 		local targettargetbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga"
 		if UnitExists("targettarget") then
 			if UnitIsPlayer("targettarget") then
@@ -722,7 +722,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 
 		--target of target of target
 		local _, targettargettargetclass = UnitClass("targettargettarget")
-		local reactiontargettargettarget = UnitReaction("player", "targettargettarget")
+		local reactiontargettargettarget = UnitReaction("targettargettarget", "player")
 		local targettargettargetbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga"
 		if UnitExists("targettargettarget") then
 			if UnitIsPlayer("targettargettarget") then
@@ -889,7 +889,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 
 		--focus
 		local _, focusclass = UnitClass("focus")
-		local reactionfocus = UnitReaction("player", "focus")
+		local reactionfocus = UnitReaction("focus", "player")
 		local focusbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga"
 		if focusclass and UnitIsPlayer("focus") then
 			focusbar = ElvUI_EltreumUI:UnitframeClassTexture(focusclass)
@@ -1317,7 +1317,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 			--local bossbar = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-DK.tga"
 			local bossbar = ElvUI_EltreumUI:UnitframeClassTexture("DEATHKNIGHT")
 			local bossframe1 = _G["ElvUF_Boss1"]
-			local reactionboss1 = UnitReaction("player", "boss1")
+			local reactionboss1 = UnitReaction("boss1", "player")
 			if bossframe1 and reactionboss1 ~= nil then
 				if bossframe1 and bossframe1.Health then
 					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableboss then
@@ -1378,7 +1378,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 
 			--boss2
 			local bossframe2 = _G["ElvUF_Boss2"]
-			local reactionboss2 = UnitReaction("player", "boss2")
+			local reactionboss2 = UnitReaction("boss2", "player")
 			if bossframe2 and reactionboss2 ~= nil then
 				if bossframe2 and bossframe2.Health then
 					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableboss then
@@ -1439,7 +1439,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 
 			--boss3
 			local bossframe3 = _G["ElvUF_Boss3"]
-			local reactionboss3 = UnitReaction("player", "boss3")
+			local reactionboss3 = UnitReaction("boss3", "player")
 			if bossframe3 and reactionboss3 ~= nil then
 				if bossframe3 and bossframe3.Health then
 					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableboss then
@@ -1500,7 +1500,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 
 			--boss4
 			local bossframe4 = _G["ElvUF_Boss4"]
-			local reactionboss4 = UnitReaction("player", "boss4")
+			local reactionboss4 = UnitReaction("boss4", "player")
 			if bossframe4 and reactionboss4 ~= nil then
 				if bossframe4 and bossframe4.Health then
 					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableboss then
@@ -1561,7 +1561,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 
 			--boss5
 			local bossframe5 = _G["ElvUF_Boss5"]
-			local reactionboss5 = UnitReaction("player", "boss5")
+			local reactionboss5 = UnitReaction("boss5", "player")
 			if bossframe5 and reactionboss5 ~= nil then
 				if bossframe5 and bossframe5.Health then
 					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableboss then
@@ -1622,7 +1622,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 
 			--boss6
 			local bossframe6 = _G["ElvUF_Boss6"]
-			local reactionboss6 = UnitReaction("player", "boss6")
+			local reactionboss6 = UnitReaction("boss6", "player")
 			if bossframe6 and reactionboss6 ~= nil then
 				if bossframe6 and bossframe6.Health then
 					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableboss then
@@ -1683,7 +1683,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 
 			--boss7
 			local bossframe7 = _G["ElvUF_Boss7"]
-			local reactionboss7 = UnitReaction("player", "boss7")
+			local reactionboss7 = UnitReaction("boss7", "player")
 			if bossframe7 and reactionboss7 ~= nil then
 				if bossframe7 and bossframe7.Health then
 					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableboss then
@@ -1744,7 +1744,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 
 			--boss8
 			local bossframe8 = _G["ElvUF_Boss8"]
-			local reactionboss8 = UnitReaction("player", "boss8")
+			local reactionboss8 = UnitReaction("boss8", "player")
 			if bossframe8 and reactionboss8 ~= nil then
 				if bossframe8 and bossframe8.Health then
 					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enableboss then

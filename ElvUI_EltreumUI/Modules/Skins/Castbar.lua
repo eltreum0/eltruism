@@ -101,7 +101,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 		--target
 		if UnitExists("target") then
 			local _, targetclass = UnitClass("target")
-			local reactiontarget = UnitReaction("player", "target")
+			local reactiontarget = UnitReaction("target", "player")
 			if E.db.ElvUI_EltreumUI.ufcustomtexture.enable and (not E.db.ElvUI_EltreumUI.gradientmode.enable) then
 				targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.castbartexture))
 			end

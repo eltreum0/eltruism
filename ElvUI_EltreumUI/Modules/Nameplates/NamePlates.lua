@@ -332,7 +332,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		--target's class color texture
 		if E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture then
 			local _, targetclass = UnitClass("target")
-			local reactiontarget = UnitReaction("player", "target")
+			local reactiontarget = UnitReaction("target", "player")
 			if UnitExists("target") then
 				if targetclass and UnitIsPlayer("target") then
 					if E.db.ElvUI_EltreumUI.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
