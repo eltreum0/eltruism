@@ -46,9 +46,11 @@ if E.Wrath or E.TBC or E.Classic then
 	warlock = {r = "0.52941060066223", g = "0.52941060066223", b = "0.92940974235535"}
 	npcfriendly = {r = "0.29019543528557", g = "0.67842990159988", b = "0.30196011066437"}
 	npcneutral = {r = "0.85097849369049", g = "0.76862573623657", b = "0.36078351736069"}
+	npchostile = {r = "0.78039044141769", g = "0.25097984075546", b = "0.25097984075546"}
+
 
 	npcunfriendly = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"}
-	npchostile = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"}
+
 end
 
 --gradient nameplates
@@ -59,8 +61,6 @@ local function GradientNameplates(unit)
 			r = tostring(r)
 			g = tostring(g)
 			b = tostring(b)
-
-			print(r,g,b)
 
 			if ((r == paladin.r) and (g == paladin.g) and (b == paladin.b)) then
 				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
