@@ -8552,7 +8552,17 @@ function ElvUI_EltreumUI:Configtable()
 								hidden = function() if E.Retail then return false else return true end end,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enableboss end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enableboss = value end,
+								set = function(_, value)
+									E.db.ElvUI_EltreumUI.gradientmode.enableboss = value
+									E.db.ElvUI_EltreumUI.gradientmode.enableboss1 = value
+									E.db.ElvUI_EltreumUI.gradientmode.enableboss2 = value
+									E.db.ElvUI_EltreumUI.gradientmode.enableboss3 = value
+									E.db.ElvUI_EltreumUI.gradientmode.enableboss4 = value
+									E.db.ElvUI_EltreumUI.gradientmode.enableboss5 = value
+									E.db.ElvUI_EltreumUI.gradientmode.enableboss6 = value
+									E.db.ElvUI_EltreumUI.gradientmode.enableboss7 = value
+									E.db.ElvUI_EltreumUI.gradientmode.enableboss8 = value
+								end,
 							},
 							enablearena = {
 								order = 2,
@@ -8563,7 +8573,14 @@ function ElvUI_EltreumUI:Configtable()
 								hidden = function() if E.Retail or E.TBC or E.Wrath then return false else return true end end,
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.enablearena end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.enablearena = value end,
+								set = function(_, value)
+									E.db.ElvUI_EltreumUI.gradientmode.enablearena = value
+									E.db.ElvUI_EltreumUI.gradientmode.enablearena1 = value
+									E.db.ElvUI_EltreumUI.gradientmode.enablearena2 = value
+									E.db.ElvUI_EltreumUI.gradientmode.enablearena3 = value
+									E.db.ElvUI_EltreumUI.gradientmode.enablearena4 = value
+									E.db.ElvUI_EltreumUI.gradientmode.enablearena5 = value
+								end,
 							},
 							enablegroupunits = {
 								order = 2,
