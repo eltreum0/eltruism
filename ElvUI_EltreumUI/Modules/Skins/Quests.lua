@@ -131,25 +131,41 @@ function ElvUI_EltreumUI:SkinQuests()
 				local ObjectiveTrackerBlocksFrame = _G.ObjectiveTrackerBlocksFrame
 				if ObjectiveTrackerBlocksFrame and (not IsAddOnLoaded("ElvUI_SLE")) then
 
-					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetSize(250, 2)
-					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetPoint("BOTTOM", ObjectiveTrackerBlocksFrame.ScenarioHeader, 0, -1)
-					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetSize(250, 3)
+					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetPoint("BOTTOM", ObjectiveTrackerBlocksFrame.ScenarioHeader, 0, 0)
+					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetStatusBarTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga')
+					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
+					ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:SetFrameLevel(1)
+					if not ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine.shadow then
+						ObjectiveTrackerBlocksFrame.ScenarioHeader.StatusLine:CreateShadow()
+					end
 
-					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:SetSize(250, 2)
-					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:SetPoint("BOTTOM", ObjectiveTrackerBlocksFrame.CampaignQuestHeader, 0, -1)
-					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:SetSize(250, 3)
+					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:SetPoint("BOTTOM", ObjectiveTrackerBlocksFrame.CampaignQuestHeader, 0, 0)
+					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:SetStatusBarTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga')
+					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
+					ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:SetFrameLevel(1)
+					if not ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine.shadow then
+						ObjectiveTrackerBlocksFrame.CampaignQuestHeader.StatusLine:CreateShadow()
+					end
 
-					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:SetSize(250, 2)
-					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:SetPoint("BOTTOM", ObjectiveTrackerBlocksFrame.QuestHeader, 0, -1)
-					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:SetSize(250, 3)
+					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:SetPoint("BOTTOM", ObjectiveTrackerBlocksFrame.QuestHeader, 0, 0)
+					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:SetStatusBarTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga')
+					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
+					ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:SetFrameLevel(1)
+					if not ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine.shadow then
+						ObjectiveTrackerBlocksFrame.QuestHeader.StatusLine:CreateShadow()
+					end
 
-					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetSize(250, 2)
-					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetPoint("BOTTOM", ObjectiveTrackerBlocksFrame.AchievementHeader, 0, -1)
-					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetSize(250, 3)
+					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetPoint("BOTTOM", ObjectiveTrackerBlocksFrame.AchievementHeader, 0, 0)
+					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetStatusBarTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga')
+					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
+					ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:SetFrameLevel(1)
+					if not ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine.shadow then
+						ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine:CreateShadow()
+					end
 				end
 
 				--Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua
@@ -531,7 +547,8 @@ function ElvUI_EltreumUI:SkinQuests()
 					WatchFrame.HeaderBar:SetSize(200, 3)
 					WatchFrame.HeaderBar:SetPoint("TOP", WatchFrame, "TOP", 0, -23)
 					WatchFrame.HeaderBar:SetStatusBarTexture(E.Media.Textures.White8x8)
-					WatchFrame.HeaderBar:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b)
+					--WatchFrame.HeaderBar:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b)
+					WatchFrame.HeaderBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
 
 					if not _G["EltruismQuestLine"].shadow then
 						_G["EltruismQuestLine"]:CreateShadow()
