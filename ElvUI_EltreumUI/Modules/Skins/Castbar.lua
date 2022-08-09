@@ -81,17 +81,17 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar then
 								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1)
 							elseif E.db.ElvUI_EltreumUI.gradientmode.customcolor and E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar then
-								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass, true))--unitcustomgradients[E.myclass]["r2"], unitcustomgradients[E.myclass]["g2"], unitcustomgradients[E.myclass]["b2"], unitcustomgradients[E.myclass]["r1"], unitcustomgradients[E.myclass]["g1"], unitcustomgradients[E.myclass]["b1"])
+								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass, true))
 							else
-								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass, true))--unitgradients[E.myclass]["r2"], unitgradients[E.myclass]["g2"], unitgradients[E.myclass]["b2"], unitgradients[E.myclass]["r1"], unitgradients[E.myclass]["g1"], unitgradients[E.myclass]["b1"])
+								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass, true))
 							end
 						elseif E.db.unitframe.units.player.castbar.reverse == false then
 							if E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar then
 								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB1, E.db.ElvUI_EltreumUI.gradientmode.playercastbarR2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarG2, E.db.ElvUI_EltreumUI.gradientmode.playercastbarB2)
 							elseif E.db.ElvUI_EltreumUI.gradientmode.customcolor and E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar then
-								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass))--unitcustomgradients[E.myclass]["r1"], unitcustomgradients[E.myclass]["g1"], unitcustomgradients[E.myclass]["b1"], unitcustomgradients[E.myclass]["r2"], unitcustomgradients[E.myclass]["g2"], unitcustomgradients[E.myclass]["b2"])
+								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass))
 							else
-								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))--unitgradients[E.myclass]["r1"], unitgradients[E.myclass]["g1"], unitgradients[E.myclass]["b1"], unitgradients[E.myclass]["r2"], unitgradients[E.myclass]["g2"], unitgradients[E.myclass]["b2"])
+								castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
 							end
 						end
 					end
@@ -132,9 +132,9 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 								if E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar then
 									targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2custom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2custom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2custom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR1custom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG1custom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB1custom)
 								elseif E.db.ElvUI_EltreumUI.gradientmode.customcolor and E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar then
-									targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(targetclass, true))--unitcustomgradients[targetclass]["r2"], unitcustomgradients[targetclass]["g2"], unitcustomgradients[targetclass]["b2"], unitcustomgradients[targetclass]["r1"], unitcustomgradients[targetclass]["g1"], unitcustomgradients[targetclass]["b1"])
+									targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(targetclass, true))
 								else
-									targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(targetclass, true))--unitgradients[targetclass]["r2"], unitgradients[targetclass]["g2"], unitgradients[targetclass]["b2"], unitgradients[targetclass]["r1"], unitgradients[targetclass]["g1"], unitgradients[targetclass]["b1"])
+									targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(targetclass, true))
 								end
 							else
 								if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
@@ -146,9 +146,9 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 								if E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar then
 									targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR1custom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG1custom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB1custom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2custom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2custom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2custom)
 								elseif E.db.ElvUI_EltreumUI.gradientmode.customcolor and E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar then
-									targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(targetclass))--unitcustomgradients[targetclass]["r1"], unitcustomgradients[targetclass]["g1"], unitcustomgradients[targetclass]["b1"], unitcustomgradients[targetclass]["r2"], unitcustomgradients[targetclass]["g2"], unitcustomgradients[targetclass]["b2"])
+									targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(targetclass))
 								else
-									targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(targetclass))--unitgradients[targetclass]["r1"], unitgradients[targetclass]["g1"], unitgradients[targetclass]["b1"], unitgradients[targetclass]["r2"], unitgradients[targetclass]["g2"], unitgradients[targetclass]["b2"])
+									targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(targetclass))
 								end
 							else
 								if E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar then
@@ -157,13 +157,13 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 									targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR1custom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG1custom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB1custom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarR2custom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarG2custom, E.db.ElvUI_EltreumUI.gradientmode.targetcastbarB2custom)
 								else
 									if reactiontarget >= 5 then
-										targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY"))--unitgradients["NPCFRIENDLY"]["r1"], unitgradients["NPCFRIENDLY"]["g1"], unitgradients["NPCFRIENDLY"]["b1"], unitgradients["NPCFRIENDLY"]["r2"], unitgradients["NPCFRIENDLY"]["g2"], unitgradients["NPCFRIENDLY"]["b2"])
+										targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY"))
 									elseif reactiontarget == 4 then
-										targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL"))--unitgradients["NPCNEUTRAL"]["r1"], unitgradients["NPCNEUTRAL"]["g1"], unitgradients["NPCNEUTRAL"]["b1"], unitgradients["NPCNEUTRAL"]["r2"], unitgradients["NPCNEUTRAL"]["g2"], unitgradients["NPCNEUTRAL"]["b2"])
+										targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL"))
 									elseif reactiontarget == 3 then
-										targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY"))--unitgradients["NPCUNFRIENDLY"]["r1"], unitgradients["NPCUNFRIENDLY"]["g1"], unitgradients["NPCUNFRIENDLY"]["b1"], unitgradients["NPCUNFRIENDLY"]["r2"], unitgradients["NPCUNFRIENDLY"]["g2"], unitgradients["NPCUNFRIENDLY"]["b2"])
+										targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY"))
 									elseif reactiontarget == 2 or reactiontarget == 1 then
-										targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE"))--unitgradients["NPCHOSTILE"]["r1"], unitgradients["NPCHOSTILE"]["g1"], unitgradients["NPCHOSTILE"]["b1"], unitgradients["NPCHOSTILE"]["r2"], unitgradients["NPCHOSTILE"]["g2"], unitgradients["NPCHOSTILE"]["b2"])
+										targetcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE"))
 									end
 								end
 							end
