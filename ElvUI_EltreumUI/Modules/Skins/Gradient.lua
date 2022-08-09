@@ -300,49 +300,59 @@ end)
 
 --get the texture
 function ElvUI_EltreumUI:UnitframeClassTexture(unitclass)
-	return unitframeclass[unitclass]
+	if unitclass ~= nil then
+		return unitframeclass[unitclass]
+	end
 end
 
 --get the custom texture
 function ElvUI_EltreumUI:UnitframeClassTextureCustom(unitclass)
-	return unitframeclasscustom[unitclass]
+	if unitclass ~= nil then
+		return unitframeclasscustom[unitclass]
+	end
 end
 
 --get the colors for class detection
 function ElvUI_EltreumUI:UnitframeClassColor(unitclass)
-	return classtable[unitclass].r, classtable[unitclass].g, classtable[unitclass].b
+	if unitclass ~= nil then
+		return classtable[unitclass].r, classtable[unitclass].g, classtable[unitclass].b
+	end
 end
 
 --get the gradient colors
 function ElvUI_EltreumUI:GradientColors(unitclass, invert, alpha)
-	if invert then
-		if alpha then
-			return unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha
+	if unitclass ~= nil then
+		if invert then
+			if alpha then
+				return unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha
+			else
+				return unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1
+			end
 		else
-			return unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1
-		end
-	else
-		if alpha then
-			return unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha
-		else
-			return unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2
+			if alpha then
+				return unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha
+			else
+				return unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2
+			end
 		end
 	end
 end
 
 --get the custom gradient colors
 function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, alpha)
-	if invert then
-		if alpha then
-			return unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha
+	if unitclass ~= nil then
+		if invert then
+			if alpha then
+				return unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha
+			else
+				return unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1
+			end
 		else
-			return unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1
-		end
-	else
-		if alpha then
-			return unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha
-		else
-			return unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2
+			if alpha then
+				return unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2, E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha
+			else
+				return unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2
+			end
 		end
 	end
 end
