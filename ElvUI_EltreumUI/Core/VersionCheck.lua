@@ -237,7 +237,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.db.ElvUI_EltreumUI.darkpowercolor = true
 	end
 	if E.db.ElvUI_EltreumUI.lightmode == true and E.db.ElvUI_EltreumUI.darkmode == true then --convert the option
-		E.db.ElvUI_EltreumUI.darkmode = false
+		E.db.ElvUI_EltreumUI.lightmode = false
 		E.db.ElvUI_EltreumUI.darkmode = true
 	end
 	if E.db.ElvUI_EltreumUI.gradientmode.enable == true and E.db.ElvUI_EltreumUI.ufcustomtexture.enable == true then --convert the option
