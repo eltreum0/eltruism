@@ -41,7 +41,7 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db["unitframe"]["colors"]["transparentAurabars"] = true
 		E.db["unitframe"]["colors"]["transparentCastbar"] = true
 		E.db["unitframe"]["colors"]["transparentHealth"] = true
-		E.db["unitframe"]["colors"]["transparentPower"] = true
+		E.db["unitframe"]["colors"]["transparentPower"] = false
 		E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.3
 		E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.3
 		if not E.Retail then
@@ -202,7 +202,7 @@ function ElvUI_EltreumUI:GradientMode()
 			E.db["unitframe"]["colors"]["transparentAurabars"] = true
 			E.db["unitframe"]["colors"]["transparentCastbar"] = true
 			E.db["unitframe"]["colors"]["transparentHealth"] = true
-			E.db["unitframe"]["colors"]["transparentPower"] = true
+			E.db["unitframe"]["colors"]["transparentPower"] = false
 			E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.3
 			E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.3
 
