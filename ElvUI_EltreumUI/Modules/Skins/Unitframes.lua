@@ -590,14 +590,13 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 					elseif not E.db.ElvUI_EltreumUI.gradientmode.enable then
 						if E.db.ElvUI_EltreumUI.lightmode then
 							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.paladintexture))
+								button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(trueclass))
 							else
-								--button.Health:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-PL.tga")
 								button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTexture(trueclass))
 							end
 						elseif E.db.ElvUI_EltreumUI.darkmode then
 							if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
-								button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.paladintexture))
+								button.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(trueclass))
 							end
 						end
 					end
