@@ -31,6 +31,7 @@
 	<Script file='Skins/Quests.lua'/>
 	<Script file='Skins/Shadows.lua'/>
 	<Script file='Skins/Stealth.lua'/>
+	<Script file='Skins/Gradient.lua'/>
 	<Script file='Skins/Unitframes.lua'/>
 	<Script file='Skins/Castbar.lua'/>
 	<Script file='Skins/Nameplate.lua'/>
