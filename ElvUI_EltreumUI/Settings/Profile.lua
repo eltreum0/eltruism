@@ -746,6 +746,20 @@ P.ElvUI_EltreumUI = {
 		offtankB1 = 0.11764679849148,
 		offtankB2 = 0.11764679849148,
 
+		badthreattransitionofftankR1 = 0.9,
+		badthreattransitionofftankG1 = 0.9,
+		badthreattransitionofftankB1 = 0.9,
+		badthreattransitionofftankR2 = 0.9,
+		badthreattransitionofftankG2 = 0.9,
+		badthreattransitionofftankB2 = 0.9,
+
+		goodthreattransitionofftankR1 = 0.9,
+		goodthreattransitionofftankG1 = 0.9,
+		goodthreattransitionofftankB1 = 0.9,
+		goodthreattransitionofftankR2 = 0.9,
+		goodthreattransitionofftankG2 = 0.9,
+		goodthreattransitionofftankB2 = 0.9,
+
 		tappedR1 = 0.6,
 		tappedG1 = 0.6,
 		tappedB1 = 0.6,

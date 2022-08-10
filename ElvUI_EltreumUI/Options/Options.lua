@@ -4647,6 +4647,48 @@ function ElvUI_EltreumUI:Configtable()
 									ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
+							header17tapped = {
+								order = 111,
+								type = "description",
+								name = L["Tapped NPC"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							tappednpc1 = {
+								order = 112,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.tappedR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.tappedG1
+									local db = P.ElvUI_EltreumUI.gradientmode.tappedB1
+									return E.db.ElvUI_EltreumUI.gradientmode.tappedR1, E.db.ElvUI_EltreumUI.gradientmode.tappedG1, E.db.ElvUI_EltreumUI.gradientmode.tappedB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.tappedR1, E.db.ElvUI_EltreumUI.gradientmode.tappedG1, E.db.ElvUI_EltreumUI.gradientmode.tappedB1 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							tappednpc2 = {
+								order = 113,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.tappedR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.tappedG2
+									local db = P.ElvUI_EltreumUI.gradientmode.tappedB2
+									return E.db.ElvUI_EltreumUI.gradientmode.tappedR2, E.db.ElvUI_EltreumUI.gradientmode.tappedG2, E.db.ElvUI_EltreumUI.gradientmode.tappedB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.tappedR2, E.db.ElvUI_EltreumUI.gradientmode.tappedG2, E.db.ElvUI_EltreumUI.gradientmode.tappedB2 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+
 						},
 					},
 					unitframe = {
@@ -4908,7 +4950,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						},
 					},
-					--[[nameplate = {
+					nameplate = {
 						order = 1,
 						type = 'group',
 						name = L["Nameplate Colors"],
@@ -5108,8 +5150,86 @@ function ElvUI_EltreumUI:Configtable()
 									E.db.ElvUI_EltreumUI.gradientmode.offtankR2, E.db.ElvUI_EltreumUI.gradientmode.offtankG2, E.db.ElvUI_EltreumUI.gradientmode.offtankB2 = r, g, b
 								end,
 							},
+							headerbadthreattransitionofftank = {
+								order = 25,
+								type = "description",
+								name = L["Off Tank Bad Threat Transition"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							badthreattransition1offtank = {
+								order = 26,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.npenable or not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankG1
+									local db = P.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankB1
+									return E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankR1, E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankG1, E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankR1, E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankG1, E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankB1 = r, g, b
+								end,
+							},
+							badthreattransition2offtank = {
+								order = 27,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.npenable or not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankG2
+									local db = P.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankB2
+									return E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankR2, E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankG2, E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankR2, E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankG2, E.db.ElvUI_EltreumUI.gradientmode.badthreattransitionofftankB2 = r, g, b
+								end,
+							},
+							headergoodthreattransitionofftank = {
+								order = 28,
+								type = "description",
+								name = L["Offtank Good Threat Transition"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							goodthreattransition1offtank = {
+								order = 29,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.npenable or not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankR1
+									local dg = P.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankG1
+									local db = P.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankB1
+									return E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankR1, E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankG1, E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankR1, E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankG1, E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankB1 = r, g, b
+								end,
+							},
+							goodthreattransition2offtank = {
+								order = 30,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.npenable or not E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankR2
+									local dg = P.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankG2
+									local db = P.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankB2
+									return E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankR2, E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankG2, E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankR2, E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankG2, E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionofftankB2 = r, g, b
+								end,
+							},
 						},
-					},]]
+					},
 				},
 			},
 			loottext = {
@@ -8476,6 +8596,18 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.npchostile end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.npchostile = key end,
+							},
+							tappedtexture = {
+								order = 111,
+								type = 'select',
+								width = "double",
+								dialogControl = 'LSM30_Statusbar',
+								name = L["Tapped NPC"],
+								desc = L["Select a Texture"],
+								values = AceGUIWidgetLSMlists.statusbar,
+								disabled = function() return not E.db.ElvUI_EltreumUI.ufcustomtexture.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.tappedtexture end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.ufcustomtexture.tappedtexture = key end,
 							},
 						},
 					},
