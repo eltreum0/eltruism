@@ -586,7 +586,18 @@ function ElvUI_EltreumUI:BorderAdjust()
 				end
 			end
 			E:UpdateActionBars()
-			E:UpdateMoverPositions()
+			--wrath shaman compatibility
+			if not E.Wrath then
+				E:UpdateMoverPositions()
+			elseif E.Wrath then
+				if E.myclass ~= 'SHAMAN' then
+					E:UpdateMoverPositions()
+				elseif E.myclass == 'SHAMAN' then
+					E:Delay(1, function()
+						E:UpdateMoverPositions()
+					end)
+				end
+			end
 		end
 	end
 end
