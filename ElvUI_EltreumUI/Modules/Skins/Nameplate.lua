@@ -12,16 +12,14 @@ local function GradientNameplates(unit)
 			local player = UnitIsPlayer(unit.unit)
 			local reaction =  UnitReaction(unit.unit, "player")
 			local targettype
-			if reaction ~= nil then
-				if reaction >= 5 then
-					targettype = "NPCFRIENDLY"
-				elseif reaction == 4 then
-					targettype = "NPCNEUTRAL"
-				elseif reaction == 3 then
-					targettype = "NPCUNFRIENDLY"
-				elseif reaction <= 2 then
-					targettype = "NPCHOSTILE"
-				end
+			if reaction ~= nil and reaction >= 5 then
+				targettype = "NPCFRIENDLY"
+			elseif reaction ~= nil and reaction == 4 then
+				targettype = "NPCNEUTRAL"
+			elseif reaction ~= nil and reaction == 3 then
+				targettype = "NPCUNFRIENDLY"
+			elseif reaction ~= nil and reaction <= 2 then
+				targettype = "NPCHOSTILE"
 			end
 			if className and player then
 				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
