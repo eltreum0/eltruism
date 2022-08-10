@@ -148,6 +148,9 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["enable"] = true
+			if not E.Retail then
+				E.db["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["enable"] = true
+			end
 			E.db["nameplates"]["filters"]["EltreumTarget"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = true
@@ -562,10 +565,20 @@ end
 -- Style Filter Setup
 function ElvUI_EltreumUI:SetupStyleFilters()
 	if E.private["nameplates"]["enable"] == true then
-		for _, filterName in pairs({'ElvUI_NonTarget', 'ElvUI_Target', 'EltreumTarget', 'EltreumInterrupt', 'EltreumExecute', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems'}) do
+		for _, filterName in pairs({'ElvUI_NonTarget', 'ElvUI_Target', 'ElvUI_Boss', 'EltreumTarget', 'EltreumInterrupt', 'EltreumExecute', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
+		end
+
+		if not E.Retail then --in classic for some reason bosses are not affected by ElvUI_Target/EltreumTarget
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["health"] = false
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["healthClass"] = false
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["scale"] = 1.25
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["usePortrait"] = false
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["isTarget"] = true
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["requireTarget"] = true
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = true
 		end
 
 		-- Non targeted enemies
@@ -581,9 +594,9 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["priority"] = 4
 
 		-- Target enemy
-		--E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = true
-		--E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = true
-		--E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["border"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["border"] = true
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["g"] = 0
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["r"] = 0
@@ -619,7 +632,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		-- Enemy at execute range, general range bc different classes have different hp% executes
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["g"] = 0
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["health"] = false
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["b"] = 0.11764705882353
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["g"] = 0.16470588235294
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["r"] = 0.69411764705882
