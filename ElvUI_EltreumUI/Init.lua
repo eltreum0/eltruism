@@ -273,7 +273,7 @@ function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 	if E.Retail then
 		ElvUI_EltreumUI:GetSpec()
 		ElvUI_EltreumUI:NamePlateOptions()
-		--ElvUI_EltreumUI:Shadows()
+		ElvUI_EltreumUI:Shadows()
 		if E.private.nameplates.enable then
 			ElvUI_EltreumUI:UpdateNPwithoutBar()
 		end
@@ -289,7 +289,7 @@ function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	if E.Wrath then
 		ElvUI_EltreumUI:NamePlateOptions()
-		--ElvUI_EltreumUI:Shadows()
+		ElvUI_EltreumUI:Shadows()
 		if E.private.nameplates.enable then
 			ElvUI_EltreumUI:UpdateNPwithoutBar()
 		end
