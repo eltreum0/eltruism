@@ -134,8 +134,8 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["priority"] = 1
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["isTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["requireTarget"] = true
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["g"] = 0
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["r"] = 0
@@ -170,9 +170,11 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"] = text
 		end
 	elseif E.private.ElvUI_EltreumUI.install_version < "3.2.2" then
-		E.db["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["enable"] = false
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
+		E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["health"] = false
+		E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["healthClass"] = false
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["health"] = false
 
 		--fix some colors for gradient np
 		E.db["nameplates"]["colors"]["reactions"]["bad"]["b"] = 0.25
@@ -220,6 +222,25 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.db["nameplates"]["colors"]["selection"][13]["r"] = 0.10
 		E.db["nameplates"]["colors"]["selection"][13]["g"] = 0.58
 		E.db["nameplates"]["colors"]["selection"][13]["b"] = 0.28 -- BATTLEGROUND_FRIENDLY_PVP
+
+		--confirm eltreum power for target of target exists
+		if not E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] then
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] = {
+				["attachTextTo"] = "Power",
+				["enable"] = true,
+				["font"] = E.db.general.font,
+				["fontOutline"] = E.db.general.fontStyle,
+				["justifyH"] = "RIGHT",
+				["size"] = 9,
+				["text_format"] = "[powercolor][power:current:shortvalue]",
+				["xOffset"] = 0,
+				["yOffset"] = -1
+			}
+		end
+
+		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Powercustom"] then
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Powercustom"]["enable"] = false
+		end
 	end
 
 	--more long term checks, in case somehow people enable 2 settings when its not possible to do so. Maybe its a shared profile from another person? No idea how they manage to do this
