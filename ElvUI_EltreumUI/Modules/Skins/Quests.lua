@@ -931,6 +931,11 @@ function ElvUI_EltreumUI:SkinProfessions()
 						CraftCreateButton:ClearAllPoints()
 						CraftCreateButton:SetPoint("LEFT", CraftFrame, "BOTTOMLEFT", 15, 95)
 
+						_G.CraftFramePointsLabel:ClearAllPoints()
+						_G.CraftFramePointsLabel:SetPoint("LEFT", _G["CraftCreateButton"], "RIGHT", 5, 0)
+						_G.CraftFramePointsText:ClearAllPoints()
+						_G.CraftFramePointsText:SetPoint("LEFT", _G.CraftFramePointsLabel, "RIGHT", 5, 0)
+
 						CraftCancelButton:ClearAllPoints()
 						CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
 
