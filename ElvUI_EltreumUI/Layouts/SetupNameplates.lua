@@ -66,8 +66,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["colors"]["threat"]["offTankColorGoodTransition"]["b"] = 0.63137254901961
 			E.db["nameplates"]["colors"]["threat"]["offTankColorGoodTransition"]["g"] = 0.45098039215686
 			E.db["nameplates"]["colors"]["threat"]["offTankColorGoodTransition"]["r"] = 0.30980392156863
-
-			--[[E.db["nameplates"]["colors"]["reactions"]["bad"]["b"] = 0.32156862745098
+			E.db["nameplates"]["colors"]["reactions"]["bad"]["b"] = 0.32156862745098
 			E.db["nameplates"]["colors"]["reactions"]["bad"]["g"] = 0.32156862745098
 			E.db["nameplates"]["colors"]["reactions"]["bad"]["r"] = 1
 			E.db["nameplates"]["colors"]["reactions"]["good"]["b"] = 0.44313725490196
@@ -93,7 +92,6 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["colors"]["selection"][13]["b"] = 0.49019607843137
 			E.db["nameplates"]["colors"]["selection"][13]["g"] = 1
 			E.db["nameplates"]["colors"]["selection"][13]["r"] = 0.16862745098039
-			]]
 			E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Kimberley"
 			E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
 
@@ -572,8 +570,8 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		end
 
 		if not E.Retail then --in classic for some reason bosses are not affected by ElvUI_Target/EltreumTarget
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["health"] = false
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["healthClass"] = false
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["health"] = true
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["healthClass"] = true
 			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["scale"] = 1.25
 			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["usePortrait"] = false
 			E.global["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["isTarget"] = true
@@ -594,8 +592,8 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["priority"] = 4
 
 		-- Target enemy
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = true
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["border"] = true
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["g"] = 0
@@ -632,7 +630,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		-- Enemy at execute range, general range bc different classes have different hp% executes
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["g"] = 0
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["health"] = false
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["health"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["b"] = 0.11764705882353
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["g"] = 0.16470588235294
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["r"] = 0.69411764705882

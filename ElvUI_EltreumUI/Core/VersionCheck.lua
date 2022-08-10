@@ -134,8 +134,8 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["priority"] = 1
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["isTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["requireTarget"] = true
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = true
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["g"] = 0
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["r"] = 0
@@ -170,65 +170,6 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"] = text
 		end
 	elseif E.private.ElvUI_EltreumUI.install_version < "3.2.2" then
-		if E.global["nameplates"]["filters"]["EltreumTarget"] then
-			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
-			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
-		end
-		if E.global["nameplates"]["filters"]["ElvUI_Boss"] then
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["health"] = false
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["healthClass"] = false
-		end
-		if E.global["nameplates"]["filters"]["EltreumExecute"] then
-			E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["health"] = false
-		end
-
-		--fix some colors for gradient np
-		E.db["nameplates"]["colors"]["reactions"]["bad"]["b"] = 0.25
-		E.db["nameplates"]["colors"]["reactions"]["bad"]["g"] = 0.25
-		E.db["nameplates"]["colors"]["reactions"]["bad"]["r"] = 0.78
-		E.db["nameplates"]["colors"]["reactions"]["good"]["b"] = 0.30
-		E.db["nameplates"]["colors"]["reactions"]["good"]["g"] = 0.68
-		E.db["nameplates"]["colors"]["reactions"]["good"]["r"] = 0.29
-		E.db["nameplates"]["colors"]["reactions"]["neutral"]["b"] = 0.36
-		E.db["nameplates"]["colors"]["reactions"]["neutral"]["g"] = 0.77
-		E.db["nameplates"]["colors"]["reactions"]["neutral"]["r"] = 0.85
-		E.db["nameplates"]["colors"]["tapped"]["r"] = 0.6
-		E.db["nameplates"]["colors"]["tapped"]["g"] = 0.6
-		E.db["nameplates"]["colors"]["tapped"]["b"] = 0.6
-		E.db["nameplates"]["colors"]["selection"][0]["r"] = 1.00
-		E.db["nameplates"]["colors"]["selection"][0]["g"] = 0.18
-		E.db["nameplates"]["colors"]["selection"][0]["b"] = 0.18 -- HOSTILE
-		E.db["nameplates"]["colors"]["selection"][1]["r"] = 1.00
-		E.db["nameplates"]["colors"]["selection"][1]["g"] = 0.51
-		E.db["nameplates"]["colors"]["selection"][1]["b"] = 0.20 -- UNFRIENDLY
-		E.db["nameplates"]["colors"]["selection"][2]["r"] = 1.00
-		E.db["nameplates"]["colors"]["selection"][2]["g"] = 0.85
-		E.db["nameplates"]["colors"]["selection"][2]["b"] = 0.20 -- NEUTRAL
-		E.db["nameplates"]["colors"]["selection"][3]["r"] = 0.20
-		E.db["nameplates"]["colors"]["selection"][3]["g"] = 0.71
-		E.db["nameplates"]["colors"]["selection"][3]["b"] = 0.00 -- FRIENDLY
-		E.db["nameplates"]["colors"]["selection"][5]["r"] = 0.40
-		E.db["nameplates"]["colors"]["selection"][5]["g"] = 0.53
-		E.db["nameplates"]["colors"]["selection"][5]["b"] = 1.00 -- PLAYER_EXTENDED
-		E.db["nameplates"]["colors"]["selection"][6]["r"] = 0.40
-		E.db["nameplates"]["colors"]["selection"][6]["g"] = 0.20
-		E.db["nameplates"]["colors"]["selection"][6]["b"] = 1.00 -- PARTY
-		E.db["nameplates"]["colors"]["selection"][7]["r"] = 0.73
-		E.db["nameplates"]["colors"]["selection"][7]["g"] = 0.20
-		E.db["nameplates"]["colors"]["selection"][7]["b"] = 1.00 -- PARTY_PVP
-		E.db["nameplates"]["colors"]["selection"][7]["r"] = 0.73
-		E.db["nameplates"]["colors"]["selection"][7]["g"] = 0.20
-		E.db["nameplates"]["colors"]["selection"][7]["b"] = 1.00 -- PARTY_PVP
-		E.db["nameplates"]["colors"]["selection"][8]["r"] = 0.20
-		E.db["nameplates"]["colors"]["selection"][8]["g"] = 1.00
-		E.db["nameplates"]["colors"]["selection"][8]["b"] = 0.42 -- FRIEND
-		E.db["nameplates"]["colors"]["selection"][9]["r"] = 0.60
-		E.db["nameplates"]["colors"]["selection"][9]["g"] = 0.60
-		E.db["nameplates"]["colors"]["selection"][9]["b"] = 0.60 -- DEAD
-		E.db["nameplates"]["colors"]["selection"][13]["r"] = 0.10
-		E.db["nameplates"]["colors"]["selection"][13]["g"] = 0.58
-		E.db["nameplates"]["colors"]["selection"][13]["b"] = 0.28 -- BATTLEGROUND_FRIENDLY_PVP
-
 		--confirm eltreum power for target of target exists
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"] = E.db["unitframe"]["units"]["targettarget"]["customTexts"] or {}
 		if not E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] then
