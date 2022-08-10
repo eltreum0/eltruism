@@ -147,6 +147,9 @@ function ElvUI_EltreumUI:Initialize()
 	if E.Classic or E.TBC or E.Wrath then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
 	end
+	if E.Wrath then
+		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+	end
 	--because some cvars keep resetting for some reason
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEAVING_WORLD')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LOGOUT')
@@ -270,7 +273,7 @@ function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 	if E.Retail then
 		ElvUI_EltreumUI:GetSpec()
 		ElvUI_EltreumUI:NamePlateOptions()
-		ElvUI_EltreumUI:Shadows()
+		--ElvUI_EltreumUI:Shadows()
 		if E.private.nameplates.enable then
 			ElvUI_EltreumUI:UpdateNPwithoutBar()
 		end
@@ -278,6 +281,23 @@ function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
 			E:Delay(2, function() ElvUI_EltreumUI:BorderAdjust() end)
 			E:Delay(2, function() ElvUI_EltreumUI:Borders() end)
 		end
+		E:Delay(2, function() ElvUI_EltreumUI:ShowHideBorders() end)
+	end
+end
+
+function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
+	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+	if E.Wrath then
+		ElvUI_EltreumUI:NamePlateOptions()
+		--ElvUI_EltreumUI:Shadows()
+		if E.private.nameplates.enable then
+			ElvUI_EltreumUI:UpdateNPwithoutBar()
+		end
+		if E.db.ElvUI_EltreumUI.borders.borders then
+			E:Delay(2, function() ElvUI_EltreumUI:BorderAdjust() end)
+			E:Delay(2, function() ElvUI_EltreumUI:Borders() end)
+		end
+		E:Delay(2, function() ElvUI_EltreumUI:ShowHideBorders() end)
 	end
 end
 
