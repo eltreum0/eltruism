@@ -163,7 +163,9 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.otherstuff.screenshot = true
 	E.db.ElvUI_EltreumUI.instances.enable = true
 	E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead = true
-	E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = true
+	if IsAddOnLoaded('NameplateSCT') or IsAddOnLoaded('ElvUI_FCT') then
+		E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = true
+	end
 	E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = true
 	E.db.ElvUI_EltreumUI.otherstuff.playerdeath = true
 	E.db.ElvUI_EltreumUI.otherstuff.playerdeathgta = false
