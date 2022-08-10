@@ -230,6 +230,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.db["nameplates"]["colors"]["selection"][13]["b"] = 0.28 -- BATTLEGROUND_FRIENDLY_PVP
 
 		--confirm eltreum power for target of target exists
+		E.db["unitframe"]["units"]["targettarget"]["customTexts"] = E.db["unitframe"]["units"]["targettarget"]["customTexts"] or {}
 		if not E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] then
 			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] = {
 				["attachTextTo"] = "Power",
@@ -243,7 +244,6 @@ function ElvUI_EltreumUI:OldVersionCheck()
 				["yOffset"] = -1
 			}
 		end
-
 		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Powercustom"] then
 			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Powercustom"]["enable"] = false
 		end
