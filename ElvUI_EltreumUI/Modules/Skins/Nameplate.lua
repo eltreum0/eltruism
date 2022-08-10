@@ -29,7 +29,7 @@ local function GradientNameplates(unit)
 				else
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(className))
 				end
-			elseif reaction then
+			elseif reaction ~= nil then
 				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(targettype, false, false))
 				else
