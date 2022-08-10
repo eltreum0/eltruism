@@ -988,3 +988,12 @@ L["Nameplate Custom Color"] = true
 L["Enable Custom Colors for Nameplates"] = true
 L["Unitframe Custom Color"] = true
 L["Enable Custom Colors for Unitframes"] = true
+
+L["Tapped NPC"] = true
+L["Nameplate Colors"] = true
+L["Good Threat"] = true
+L["Bad Threat"] = true
+L["Good Threat Transition"] = true
+L["Bad Threat Transition"] = true
+L["Off Tank"] = true
+L["Off Tank Bad Threat Transition"] = true
