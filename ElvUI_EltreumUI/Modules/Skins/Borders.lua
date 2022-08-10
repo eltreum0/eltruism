@@ -1032,11 +1032,8 @@ function ElvUI_EltreumUI:ShowHideBorders()
 	}
 	local barborderbutton
 	local barborderbuttonnumber
-	if E.db.ElvUI_EltreumUI.borders.borders == false then
-		E.db.ElvUI_EltreumUI.borders.borders = true
-		E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
-		ElvUI_EltreumUI:BorderAdjust()
-		ElvUI_EltreumUI:Borders()
+
+	local function Show()
 		for _, frame in pairs(borderlist) do
 			if frame ~= nil then
 				frame:Show()
@@ -1071,11 +1068,9 @@ function ElvUI_EltreumUI:ShowHideBorders()
 				_G["EltruismStanceBorder"..stance]:Show()
 			end
 		end
-	elseif E.db.ElvUI_EltreumUI.borders.borders == true then
-		E.db.ElvUI_EltreumUI.borders.borders = false
-		E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
-		ElvUI_EltreumUI:BorderAdjust()
-		ElvUI_EltreumUI:Shadows()
+	end
+
+	local function Hide()
 		for _, frame in pairs(borderlist) do
 			if frame ~= nil then
 				frame:Hide()
@@ -1111,4 +1106,28 @@ function ElvUI_EltreumUI:ShowHideBorders()
 			end
 		end
 	end
+
+	if not E.private.ElvUI_EltreumUI.install_version then
+		if E.db.ElvUI_EltreumUI.borders.borders == false then
+			E.db.ElvUI_EltreumUI.borders.borders = true
+			E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
+			ElvUI_EltreumUI:BorderAdjust()
+			ElvUI_EltreumUI:Borders()
+			ElvUI_EltreumUI:Shadows()
+			Show()
+		elseif E.db.ElvUI_EltreumUI.borders.borders == true then
+			E.db.ElvUI_EltreumUI.borders.borders = false
+			E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
+			ElvUI_EltreumUI:BorderAdjust()
+			ElvUI_EltreumUI:Shadows()
+			Hide()
+		end
+	else
+		if E.db.ElvUI_EltreumUI.borders.borders == false then
+			Hide()
+		elseif E.db.ElvUI_EltreumUI.borders.borders == true then
+			Show()
+		end
+	end
+
 end
