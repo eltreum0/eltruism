@@ -1000,12 +1000,21 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
 			end
 
+			--fix buttons
+			if _G.PetPaperDollCloseButton then
+				_G.PetPaperDollCloseButton:Hide()
+			end
+			if _G.SkillFrameCancelButton then
+				_G.SkillFrameCancelButton:Hide()
+			end
+
 			--add background from artifact weapon
 			if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+
 				--add bg texture
 				CharacterFrameBackgroundTextureFader:SetAllPoints(_G.CharacterFrame.backdrop)
 				CharacterFrameBackgroundTextureFader:SetParent(_G.CharacterFrame)
-				CharacterFrameBackgroundTextureFader:SetDrawLayer("ARTWORK",7)
+				CharacterFrameBackgroundTextureFader:SetDrawLayer("BACKGROUND",7)
 				CharacterFrameBackgroundTextureFader:SetAlpha(E.db.ElvUI_EltreumUI.skins.armoryvignettealpha)
 				if not E.db.ElvUI_EltreumUI.skins.armoryvignette then
 					CharacterFrameBackgroundTextureFader:Hide()
@@ -1033,7 +1042,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 				CharacterFrameBackgroundTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
 				CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame.backdrop)
-				CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK",6)
+				CharacterFrameBackgroundTexture:SetDrawLayer("BACKGROUND",6)
 			end
 
 			-- expand classic armory
@@ -1365,7 +1374,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PlayerStatFrameRight6StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
 					_G.PlayerStatFrameRight6Stat:SetParent(_G["PlayerStatFrameRight6"])
 				elseif E.Classic then
-					_G.PetPaperDollCloseButton:Hide()
+
 
 					_G.CharacterStatFrame1:ClearAllPoints()
 					_G.CharacterStatFrame1:SetPoint("CENTER", _G.MagicResFrame1, "CENTER", 28, -28) --first stat desc
