@@ -170,11 +170,17 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"] = text
 		end
 	elseif E.private.ElvUI_EltreumUI.install_version < "3.2.2" then
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
-		E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["health"] = false
-		E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["healthClass"] = false
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["health"] = false
+		if E.global["nameplates"]["filters"]["EltreumTarget"] then
+			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
+			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
+		end
+		if E.global["nameplates"]["filters"]["ElvUI_Boss"] then
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["health"] = false
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["healthClass"] = false
+		end
+		if E.global["nameplates"]["filters"]["EltreumExecute"] then
+			E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["health"] = false
+		end
 
 		--fix some colors for gradient np
 		E.db["nameplates"]["colors"]["reactions"]["bad"]["b"] = 0.25
