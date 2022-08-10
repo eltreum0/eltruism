@@ -149,6 +149,11 @@ end
 
 --turn and off blizzard combat text
 function ElvUI_EltreumUI:BlizzCombatText()
+	if not E.private.ElvUI_EltreumUI.install_version then
+		return
+	elseif E.db.ElvUI_EltreumUI == nil then
+		return
+	end
 	if not InCombatLockdown() then
 		if E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext then
 			if IsAddOnLoaded('ElvUI_FCT') or IsAddOnLoaded('NameplateSCT') then
