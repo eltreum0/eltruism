@@ -509,7 +509,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 					E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,311,249"
 					E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,249"
 					E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,-311,249"
-					E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,-308,309"
+					E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,-303,309"
 					E.db["ElvUI_EltreumUI"]["borders"]["xplayercast"] = 294
 					E.db["ElvUI_EltreumUI"]["borders"]["xtargettarget"] = 162
 					E.db["ElvUI_EltreumUI"]["borders"]["bar1xborder"] = 61
