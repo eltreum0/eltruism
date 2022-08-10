@@ -569,6 +569,13 @@ function ElvUI_EltreumUI:Shadows()
 						if not button.shadow and (not E.db.ElvUI_EltreumUI.borders.borders) then
 							button:CreateShadow()
 						end
+						if button.shadow then
+							if E.db.ElvUI_EltreumUI.borders.borders then
+								button.shadow:Hide()
+							else
+								button.shadow:Show()
+							end
+						end
 					end
 				end
 			end
@@ -585,6 +592,13 @@ function ElvUI_EltreumUI:Shadows()
 						button.shadow = button:CreateShadow(nil, true)
 						button.shadow:SetParent(button)
 						button.shadow.size = 2]]
+					end
+					if button.shadow then
+						if E.db.ElvUI_EltreumUI.borders.borders then
+							button.shadow:Hide()
+						else
+							button.shadow:Show()
+						end
 					end
 				end
 			end
@@ -671,9 +685,17 @@ function ElvUI_EltreumUI:Shadows()
 				--_G["ElvUF_Target_CastBar"],
 			}
 			for _, frame in pairs(elvuiframes) do
-				if frame and not frame.shadow then
-					if (not E.db.ElvUI_EltreumUI.borders.borders) then
-						frame:CreateShadow()
+				if frame then
+					if not frame.shadow then
+						if not E.db.ElvUI_EltreumUI.borders.borders then
+							frame:CreateShadow()
+						end
+					elseif frame.shadow then
+						if E.db.ElvUI_EltreumUI.borders.borders then
+							frame.shadow:Hide()
+						else
+							frame.shadow:Show()
+						end
 					end
 				end
 			end
