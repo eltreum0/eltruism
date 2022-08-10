@@ -784,7 +784,7 @@ P.ElvUI_EltreumUI = {
 		npcneutral = "Eltreum-Class-Rogue",
 		npcunfriendly = "Eltreum-Class-Druid",
 		npchostile = "Eltreum-Class-DeathKnight",
-		tapped = "Eltreum-Tapped",
+		tappedtexture = "Eltreum-Tapped",
 	},
 
 	sparkcustomcolor ={
