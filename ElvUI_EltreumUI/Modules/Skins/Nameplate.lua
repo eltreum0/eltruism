@@ -5,8 +5,7 @@ local hooksecurefunc = _G.hooksecurefunc
 
 --gradient nameplates
 local function GradientNameplates(unit, status)
-	print(unit.colorTapping)
-	if type(status) == "number" then
+	if status ~= nil and type(status) == "number" then
 		print(unit.isTank,unit.offTank,status)
 	end
 	if E.db.ElvUI_EltreumUI.gradientmode.npenable then
@@ -32,12 +31,18 @@ local function GradientNameplates(unit, status)
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(className))
 				end
 			elseif reaction ~= nil then
-				if UnitIsTapDenied(unit.unit) then
-					return
-				elseif E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
-					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(targettype, false, false))
+				if UnitIsTapDenied(unit.unit) and not UnitPlayerControlled(unit.unit) then
+					if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
+						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false))
+					else
+						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("TAPPED", false, false))
+					end
 				else
-					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(targettype, false, false))
+					if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
+						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(targettype, false, false))
+					else
+						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(targettype, false, false))
+					end
 				end
 			end
 		end

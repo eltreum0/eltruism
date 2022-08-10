@@ -745,6 +745,13 @@ P.ElvUI_EltreumUI = {
 		offtankG2 = 0.16470551490784,
 		offtankB1 = 0.11764679849148,
 		offtankB2 = 0.11764679849148,
+
+		tappedR1 = 0.6,
+		tappedG1 = 0.6,
+		tappedB1 = 0.6,
+		tappedR2 = 0,
+		tappedG2 = 0,
+		tappedB2 = 0,
 	},
 
 	ufcustomtexture = {
@@ -777,6 +784,7 @@ P.ElvUI_EltreumUI = {
 		npcneutral = "Eltreum-Class-Rogue",
 		npcunfriendly = "Eltreum-Class-Druid",
 		npchostile = "Eltreum-Class-DeathKnight",
+		tapped = "Eltreum-Tapped",
 	},
 
 	sparkcustomcolor ={
