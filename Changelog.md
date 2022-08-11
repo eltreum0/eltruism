@@ -1,6 +1,10 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.2.3
+Added an option to change Fill Direction of Unitframes\
+Fixed an error in Version Check\
+___
 ### 3.2.2
 Added Gradient Nameplates and moved some options to a new Gradient Colors option, Gradient Nameplates uses the same colors as Unitframe Gradients so changing colors there will change for both\
 Added an option to disable the Eltruism logo while AFK\

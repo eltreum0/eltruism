@@ -1,6 +1,7 @@
-### 3.2.2 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.2.3 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
 Added Gradient Nameplates and moved some options to a new Gradient Colors option, Gradient Nameplates uses the same colors as Unitframe Gradients so changing colors there will change for both\
+Added an option to change Fill Direction of Unitframes\
 Added an option to disable the Eltruism logo while AFK\
 Added an option to limit the max distance for the Waypoint Time to Arrive\
 Added an option to change the color of the Waypoint and Time To Arrive texts\
@@ -21,3 +22,4 @@ Fixed an issue with gradient overwriting the tapped unit color by adding an opti
 Fixed the chat not correctly embedding details in Classic/TBC\
 Fixed points position in Craft Skin for Classic/TBC/Wrath\
 Fixed Pet Background overlapping Pet Name/Title/Loyalty in TBC/Wrath\
+Fixed an error in Version Check\
