@@ -223,13 +223,6 @@ function ElvUI_EltreumUI:NamePlateOptions()
 			end
 			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["health"] = false
 			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["healthClass"] = false
-		else
-			if E.global.nameplates.filters.EltreumTarget and E.db["nameplates"]["filters"]["EltreumTarget"] then
-				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = true
-				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = true
-			end
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["health"] = true
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["healthClass"] = true
 		end
 
 		--general disable/enable
