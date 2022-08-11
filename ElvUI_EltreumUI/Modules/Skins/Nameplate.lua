@@ -2,7 +2,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local NP = E:GetModule('NamePlates')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
-local tankingnow
+local tankingnow = false
 
 --gradient threat
 function NP:ThreatIndicator_PostUpdate(unit, status)
@@ -89,7 +89,9 @@ local function GradientNameplates(unit)
 			elseif reaction ~= nil and reaction <= 2 then
 				targettype = "NPCHOSTILE"
 			end
-			print(tankingnow)
+			if not InCombatLockdown() then
+				tankingnow = false
+			end
 			if className and player then
 				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(className))
