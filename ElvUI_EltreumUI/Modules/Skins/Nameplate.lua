@@ -83,16 +83,10 @@ local function GradientNameplates(unit)
 		end
 	end
 end
-
 hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
-
 
 function NP:ThreatIndicator_PostUpdate()
 end
-
-
-
-
 --hooksecurefunc(NP, "ThreatIndicator_PostUpdate", GradientNameplates)
 --hooksecurefunc(NP, "Update_ThreatIndicator", GradientNameplates)
 --hooksecurefunc(NP, "Update_StatusBars", GradientNameplates)
