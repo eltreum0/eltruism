@@ -47,7 +47,6 @@ local function GradientNameplates(unit)
 						unitTarget = UnitName(unit.unit.."target")
 						threatstatus = UnitThreatSituation('player', unit.unit)
 						if threatstatus ~= nil and threatstatus >= 0 then
-
 							if isTank and (unitTarget == E.myname) then
 								--print("maintank", threatstatus)
 								if threatstatus == 0 then
@@ -71,14 +70,6 @@ local function GradientNameplates(unit)
 									unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
 								end
 							end
-						elseif threatstatus == nil then
-							if (unitTarget == E.myname) then
-								print("unknown threat scenario, just guessing bad")
-								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
-							elseif unitTarget ~= E.myname then
-								print("unknown threat scenario, just guessing good")
-								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
-							end
 						end
 					else
 						if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
@@ -92,12 +83,21 @@ local function GradientNameplates(unit)
 		end
 	end
 end
+
 hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
+
+
+function NP:ThreatIndicator_PostUpdate()
+end
+
+
+
+
+--hooksecurefunc(NP, "ThreatIndicator_PostUpdate", GradientNameplates)
+--hooksecurefunc(NP, "Update_ThreatIndicator", GradientNameplates)
 --hooksecurefunc(NP, "Update_StatusBars", GradientNameplates)
 --hooksecurefunc(NP, "SetupTarget", GradientNameplates)
 --hooksecurefunc(NP, "UpdateTargetPlate", GradientNameplates)
---hooksecurefunc(NP, "Update_ThreatIndicator", GradientNameplates)
---hooksecurefunc(NP, "ThreatIndicator_PostUpdate", GradientNameplates)
 --hooksecurefunc(NP, "UpdatePlateSize", GradientNameplates)
 --hooksecurefunc(NP, "Style", GradientNameplates)
 --hooksecurefunc(NP, "StyleTargetPlate", GradientNameplates)
