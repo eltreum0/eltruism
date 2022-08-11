@@ -5,6 +5,8 @@ local hooksecurefunc = _G.hooksecurefunc
 
 --gradient nameplates
 local threatstatus
+local unitTarget
+local isTank = false
 local function GradientNameplates(unit)
 	if E.db.ElvUI_EltreumUI.gradientmode.npenable then
 		if unit and unit.Health then
@@ -36,19 +38,18 @@ local function GradientNameplates(unit)
 						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("TAPPED", false, false))
 					end
 				else
-					local isTank = false
 					if UnitExists('pet') or (E.myrole == 'TANK') then
 						isTank = true
+					else
+						isTank = false
 					end
-
-
 					if isTank == true and InCombatLockdown() then
-						local unitTarget = UnitName(unit.unit.."target")
+						unitTarget = UnitName(unit.unit.."target")
 						threatstatus = UnitThreatSituation('player', unit.unit)
 						if threatstatus ~= nil and threatstatus >= 0 then
 
 							if isTank and (unitTarget == E.myname) then
-								print("maintank", threatstatus)
+								--print("maintank", threatstatus)
 								if threatstatus == 0 then
 									unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
 								elseif threatstatus == 1 then
@@ -59,7 +60,7 @@ local function GradientNameplates(unit)
 									unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
 								end
 							elseif isTank and unitTarget ~= E.myname then
-								print("offtank", threatstatus)
+								--print("offtank", threatstatus)
 								if threatstatus == 0 then
 									unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
 								elseif threatstatus == 1 then
