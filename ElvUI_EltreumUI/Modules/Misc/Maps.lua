@@ -76,7 +76,15 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 							function SuperTrackedFrame:GetTargetAlphaBaseValue()
 								local d = C_Navigation.GetDistance()
 								if (d >= 40 ) then
-									return 1
+									if E.db.ElvUI_EltreumUI.waypointetasetting.limitmaxdistance then
+										if d <= E.db.ElvUI_EltreumUI.waypointetasetting.distance then
+											return 1
+										elseif d > E.db.ElvUI_EltreumUI.waypointetasetting.distance then
+											return 0
+										end
+									else
+										return 1
+									end
 								else
 									return 0
 								end

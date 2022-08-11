@@ -262,6 +262,8 @@ P.ElvUI_EltreumUI = {
 	waypointetasetting = {
 		enable = false,
 		autopin = false,
+		limitmaxdistance = false,
+		distance = 700,
 	},
 
 	waytext = {
