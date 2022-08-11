@@ -283,6 +283,7 @@ function ElvUI_EltreumUI:GradientMode()
 		end
 
 		E.db.ElvUI_EltreumUI.gradientmode.enable = true
+		E.db.ElvUI_EltreumUI.gradientmode.npenable = true
 		E.db.ElvUI_EltreumUI.ufcustomtexture.enable = false
 		E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget = true
 		E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits = true
