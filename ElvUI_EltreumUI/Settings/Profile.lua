@@ -834,6 +834,7 @@ P.ElvUI_EltreumUI = {
 		eltruismroleicons = false,
 		alternativegroups = false,
 		gamemenu = false,
+		afklogo = true,
 		mailsoundenable = false,
 		mailsound = "Interface-10",
 		worldtextscale = 1,

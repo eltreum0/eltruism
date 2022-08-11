@@ -150,12 +150,14 @@ if E.db.general.afk then
 end
 
 function ElvUI_EltreumUI:AFKLogo()
-	if E.db.general.afk then
-		EltruismAFKLogo:SetParent(_G.ElvUIAFKFrame.bottom)
-	end
-	if UnitIsAFK("player") then
-		EltruismAFKLogo:Show()
-	else
-		EltruismAFKLogo:Hide()
+	if E.db.ElvUI_EltreumUI.otherstuff.afklogo then
+		if E.db.general.afk then
+			EltruismAFKLogo:SetParent(_G.ElvUIAFKFrame.bottom)
+		end
+		if UnitIsAFK("player") then
+			EltruismAFKLogo:Show()
+		else
+			EltruismAFKLogo:Hide()
+		end
 	end
 end

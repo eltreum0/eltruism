@@ -363,6 +363,21 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						},
 					},
+					header1 = {
+						order = 3,
+						type = "description",
+						name = "Eltruism Logo",
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					enablelogo = {
+						type = 'toggle',
+						name = L["Enable"],
+						width = "full",
+						order = 4,
+						get = function() return E.db.ElvUI_EltreumUI.otherstuff.afklogo end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.afklogo = value ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end,
+					},
 				},
 			},
 			addonsprofiles = {
