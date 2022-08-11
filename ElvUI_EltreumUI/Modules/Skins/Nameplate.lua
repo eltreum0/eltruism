@@ -57,6 +57,20 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 		NP:Health_SetColors(nameplate, true)
 		nameplate.ThreatStatus = status
 		local Color, Scale
+		if UnitExists('pet') or (E.myrole == 'TANK') then
+			self.isTank = true
+		else
+			self.isTank = false
+		end
+
+		if self.isTank and UnitName(nameplate.unit.."target") == E.myname then
+			self.offTank = false
+		elseif self.isTank and UnitName(nameplate.unit.."target") ~= E.myname then
+			self.offTank = true
+		end
+
+		print('working', self.isTank, self.offTank,nameplate.unit)
+
 		if status == 3 then -- securely tanking
 			if self.isTank then
 				nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
@@ -87,6 +101,10 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 			Scale = self.isTank and db.badScale or db.goodScale
 		end
 
+		if sf.HealthColor then
+		end
+
+
 		if Scale then
 			nameplate.ThreatScale = Scale
 
@@ -106,4 +124,3 @@ end
 --hooksecurefunc(NP, "StyleTargetPlate", GradientNameplates)
 --hooksecurefunc(NP, "UpdatePlate", GradientNameplates)
 --hooksecurefunc(NP, "StyleFilterUpdate", GradientNameplates)
-
