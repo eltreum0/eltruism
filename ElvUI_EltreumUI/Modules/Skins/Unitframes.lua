@@ -43,30 +43,31 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name)
 	if UF["units"][unit] and UnitExists(unit) then
 		local unitframe = _G["ElvUF_"..name]
 		if unitframe and unitframe.Health then
+			unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.UForientation)
 			if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 				if UnitIsPlayer(unit) then
 					if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
-						namebar = ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit)
+						unitframe.Health:SetStatusBarTexture(namebar)
 					else
-						namebar = E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["ufcustomtexture"][unit.."texture"])
+						unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["ufcustomtexture"][unit.."texture"]))
 					end
 				elseif not UnitIsPlayer(unit) then
 					if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
 						if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
-							namebar = ElvUI_EltreumUI:UnitframeClassTextureCustom("TAPPED")
+							unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("TAPPED"))
 						else
 							if reaction >= 5 then
-								namebar = ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCFRIENDLY")
+								unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCFRIENDLY"))
 							elseif reaction == 4 then
-								namebar = ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCNEUTRAL")
+								unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCNEUTRAL"))
 							elseif reaction == 3 then
-								namebar = ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCUNFRIENDLY")
+								unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCUNFRIENDLY"))
 							elseif reaction <= 2 then
-								namebar = ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCHOSTILE")
+								unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCHOSTILE"))
 							end
 						end
 					else
-						namebar = E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["ufcustomtexture"][unit.."texture"])
+						unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["ufcustomtexture"][unit.."texture"]))
 					end
 				end
 			end
@@ -311,7 +312,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name)
 					end
 				end
 			else
-				if E.db.ElvUI_EltreumUI.lightmode then
+				if E.db.ElvUI_EltreumUI.lightmode and not E.db.ElvUI_EltreumUI.ufcustomtexture.enable and not E.db.ElvUI_EltreumUI.gradientmode.enable then
 					unitframe.Health:SetStatusBarTexture(namebar)
 				end
 			end
