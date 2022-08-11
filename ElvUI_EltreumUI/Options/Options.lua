@@ -8181,7 +8181,7 @@ function ElvUI_EltreumUI:Configtable()
 									["V3"] = L["Version 3"],
 								},
 								style = 'radio',
-								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications or not E.db.ElvUI_EltreumUI.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.uftextureversion end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.uftextureversion = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
