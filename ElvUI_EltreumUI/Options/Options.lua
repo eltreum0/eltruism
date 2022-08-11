@@ -8185,6 +8185,28 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.uftextureversion end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.uftextureversion = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+
+							headerorientation = {
+								order = 101,
+								type = "description",
+								name= L["Unitframe Fill Orientation"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							textureselect = {
+								type = 'select',
+								name= "",
+								order = 102,
+								values = {
+									["HORIZONTAL"] = L["Horizontal"],
+									["VERTICAL"] = L["Vertical"],
+								},
+								style = 'radio',
+								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
+								get = function() return E.db.ElvUI_EltreumUI.UForientation end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.UForientation = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+
 							headerufbackdrop = {
 								order = 984,
 								type = "description",
