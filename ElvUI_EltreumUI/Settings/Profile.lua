@@ -676,13 +676,6 @@ P.ElvUI_EltreumUI = {
 		npcfriendlyB1 = 0.2,
 		npcfriendlyB2 = 0.4078431372549,
 
-		--[[npcneutralR1 = 0.712358744169101,
-		npcneutralG1 = 0.63137254901961,
-		npcneutralB1 = 0.15490196078431,
-		npcneutralR2 = 1,
-		npcneutralG2 = 0.85686274509804,
-		npcneutralB2 = 0.2078431372549,]]
-
 		npcneutralR1 = 0.8156862745098,
 		npcneutralG1 = 1,
 		npcneutralB1 = 0,
@@ -697,19 +690,12 @@ P.ElvUI_EltreumUI = {
 		npcunfriendlyG2 = 0.45882352941176,
 		npcunfriendlyB2 = 0,
 
-		--[[npchostileR1 = 0.31764705882353,
-		npchostileG1 = 0.066666666666667,
-		npchostileB1 = 0.07843137254902,
-		npchostileR2 = 1,
-		npchostileG2 = 0.15686274509804,
-		npchostileB2 = 0.15686274509804,]]
-
 		npchostileR1 = 1,
 		npchostileG1 = 0.090196078431373,
 		npchostileB1 = 0,
-		npchostileR2 = 1,
-		npchostileG2 = 0.15686274509804,
-		npchostileB2 = 0.15686274509804,
+		npchostileR2 = 0.52941176470588,
+		npchostileG2 = 0.12156862745098,
+		npchostileB2 = 0.07843137254902,
 
 		--threat stuff for np
 		npenable = false,
@@ -724,16 +710,16 @@ P.ElvUI_EltreumUI = {
 		goodthreatB2 = 0,
 
 		badthreatR1 = 1,
-		badthreatR2 = 1,
+		badthreatR2 = 0.82352941176471,
 		badthreatG1 = 0.17647058823529,
 		badthreatG2 = 0,
 		badthreatB1 = 0.17647058823529,
-		badthreatB2 = 0.66274509803922,
+		badthreatB2 = 0.34901960784314,
 
 		goodthreattransitionR1 = 1,
 		goodthreattransitionR2 = 1,
-		goodthreattransitionG1 = 0.85098039215686,
-		goodthreattransitionG2 = 0.4,
+		goodthreattransitionG1 = 0.99607843137255,
+		goodthreattransitionG2 = 0.73333333333333,
 		goodthreattransitionB1 = 0.2,
 		goodthreattransitionB2 = 0,
 
