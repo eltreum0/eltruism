@@ -725,8 +725,8 @@ P.ElvUI_EltreumUI = {
 
 		badthreattransitionR1 = 1,
 		badthreattransitionR2 = 1,
-		badthreattransitionG1 = 0.50980392156863,
-		badthreattransitionG2 = 0.73333333333333,
+		badthreattransitionG1 = 0.3921568627451,
+		badthreattransitionG2 = 0.9843137254902,
 		badthreattransitionB1 = 0.2,
 		badthreattransitionB2 = 0,
 
