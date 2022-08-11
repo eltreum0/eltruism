@@ -923,25 +923,25 @@ function ElvUI_EltreumUI:Shadows()
 
 		--handle non spaced power and classpower
 		if E.db["unitframe"]["units"]["target"]["power"]["width"] ~= "spaced" and E.db["unitframe"]["units"]["target"]["power"]["detachFromFrame"] == false then
-			if _G["ElvUF_Target_PowerBar"].shadow then
+			if _G["ElvUF_Target_PowerBar"] and  _G["ElvUF_Target_PowerBar"].shadow then
 				_G["ElvUF_Target_PowerBar"].shadow:Hide()
 			end
 		end
 		if E.db["unitframe"]["units"]["targettarget"]["power"]["width"] ~= "spaced" and E.db["unitframe"]["units"]["targettarget"]["power"]["detachFromFrame"] == false then
-			if _G["ElvUF_TargetTarget_PowerBar"].shadow then
+			if _G["ElvUF_TargetTarget_PowerBar"] and _G["ElvUF_TargetTarget_PowerBar"].shadow then
 				_G["ElvUF_TargetTarget_PowerBar"].shadow:Hide()
 			end
 		end
 		if E.db["unitframe"]["units"]["player"]["power"]["width"] ~= "spaced" and E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] == false then
-			if _G["ElvUF_Player_PowerBar"].shadow then
+			if _G["ElvUF_Player_PowerBar"] and _G["ElvUF_Player_PowerBar"].shadow then
 				_G["ElvUF_Player_PowerBar"].shadow:Hide()
 			end
 		end
 		if E.db["unitframe"]["units"]["player"]["classbar"]["fill"] ~= "spaced" and not E.db["unitframe"]["units"]["player"]["classbar"]["detachFromFrame"] == true then
-			if _G["ElvUF_Player_Stagger"].shadow then
+			if _G["ElvUF_Player_Stagger"] and _G["ElvUF_Player_Stagger"].shadow then
 				_G["ElvUF_Player_Stagger"].shadow:Hide()
 			end
-			if _G["ElvUF_Player_AdditionalPowerBar"].shadow then
+			if _G["ElvUF_Player_AdditionalPowerBar"] and _G["ElvUF_Player_AdditionalPowerBar"].shadow then
 				_G["ElvUF_Player_AdditionalPowerBar"].shadow:Hide()
 			end
 		end
