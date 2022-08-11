@@ -994,3 +994,6 @@ L["Bad Threat Transition"] = true
 L["Off Tank"] = true
 L["Off Tank Bad Threat Transition"] = true
 L["Enable Gradient colors for Nameplates. |cffFF0000WARING:|r This will overwrite some default ElvUI NP settings, if you dont want this, please disable this feature."] = "Ative cores em gradiente para Placas de Nome. |cffFF0000AVISO:|r Isto irá substituir algumas configurações das Placas de Nome do ElvUI, se você não quiser isto desative esta opção."
+L["Limit Max Distance"] = true
+L["Text Color"] = true
+L["Max Distance"] = true

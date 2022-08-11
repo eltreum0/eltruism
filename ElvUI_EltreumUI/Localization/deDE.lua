@@ -1033,3 +1033,6 @@ L["Off Tank"] = true
 L["Off Tank Bad Threat Transition"] = true
 L["Enable Gradient colors for Nameplates"] = "Verlaufsfarben für Namensplaketten aktivieren" --replaced with below, delete after translating
 L["Enable Gradient colors for Nameplates. |cffFF0000WARING:|r This will overwrite some default ElvUI NP settings, if you dont want this, please disable this feature."] = true
+L["Limit Max Distance"] = true
+L["Text Color"] = true
+L["Max Distance"] = true
