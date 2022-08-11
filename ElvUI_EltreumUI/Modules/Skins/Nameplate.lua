@@ -11,7 +11,7 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 		if not status and not sf.Scale then
 			nameplate.ThreatScale = 1
 			NP:ScalePlate(nameplate, 1)
-		elseif status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) then
+		elseif status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) and not sf.HealthColor then
 			NP:Health_SetColors(nameplate, true)
 			nameplate.ThreatStatus = status
 			local Color, Scale
@@ -44,8 +44,6 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 			if not InCombatLockdown() then
 				nameplate.CurrentlyBeingTanked = nil
 			end
-
-			--print('working', self.isTank, self.offTank,nameplate.unit)
 			if status == 3 then -- securely tanking
 				if self.isTank then
 					nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
