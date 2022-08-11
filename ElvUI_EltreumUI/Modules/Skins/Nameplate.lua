@@ -24,6 +24,9 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 		elseif self.isTank and UnitName(nameplate.unit.."target") ~= E.myname then
 			self.offTank = true
 		end
+		if not InCombatLockdown() then
+			nameplate.CurrentlyBeingTanked = nil
+		end
 
 		--print('working', self.isTank, self.offTank,nameplate.unit)
 		if status == 3 then -- securely tanking
@@ -94,6 +97,11 @@ local function GradientNameplates(unit)
 			elseif reaction ~= nil and reaction <= 2 then
 				targettype = "NPCHOSTILE"
 			end
+
+			if not InCombatLockdown() then
+				unit.CurrentlyBeingTanked = nil
+			end
+
 			if className and player then
 				if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 					unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(className))
