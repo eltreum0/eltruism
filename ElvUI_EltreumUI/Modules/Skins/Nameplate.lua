@@ -106,6 +106,10 @@ local function GradientNameplates(unit)
 			local player = UnitIsPlayer(unit.unit)
 			local reaction =  UnitReaction(unit.unit, "player")
 			local targettype
+
+			local sf = NP:StyleFilterChanges(unit)
+			if sf.HealthColor then return end
+
 			if reaction ~= nil and reaction >= 5 then
 				targettype = "NPCFRIENDLY"
 			elseif reaction ~= nil and reaction == 4 then
