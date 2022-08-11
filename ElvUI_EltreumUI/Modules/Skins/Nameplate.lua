@@ -5,16 +5,17 @@ local hooksecurefunc = _G.hooksecurefunc
 
 --gradient threat
 function NP:ThreatIndicator_PostUpdate(unit, status)
-	if E.db.ElvUI_EltreumUI.gradientmode.npenable then
-		local nameplate, colors, db = self.__owner, NP.db.colors.threat, NP.db.threat
-		local sf = NP:StyleFilterChanges(nameplate)
-		if not status and not sf.Scale then
-			nameplate.ThreatScale = 1
-			NP:ScalePlate(nameplate, 1)
-		elseif status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) then
-			NP:Health_SetColors(nameplate, true)
-			nameplate.ThreatStatus = status
-			local Color, Scale
+	local nameplate, colors, db = self.__owner, NP.db.colors.threat, NP.db.threat
+	local sf = NP:StyleFilterChanges(nameplate)
+	if not status and not sf.Scale then
+		nameplate.ThreatScale = 1
+		NP:ScalePlate(nameplate, 1)
+	elseif status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) then
+		NP:Health_SetColors(nameplate, true)
+		nameplate.ThreatStatus = status
+		local Color, Scale
+		-- if gradient use gradient mode
+		if E.db.ElvUI_EltreumUI.gradientmode.npenable then
 			if UnitExists('pet') or (E.myrole == 'TANK') then
 				if not (E.myclass == "HUNTER" or E.myclass == 'WARLOCK') then
 					self.isTank = true
@@ -93,9 +94,37 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 			if sf.HealthColor then
 				return
 			end
+		else -- use regular elvui mode
+			if status == 3 then -- securely tanking
+				Color = self.offTank and colors.offTankColor or self.isTank and colors.goodColor or colors.badColor
+				Scale = self.isTank and db.goodScale or db.badScale
+			elseif status == 2 then -- insecurely tanking
+				Color = self.offTank and colors.offTankColorBadTransition or self.isTank and colors.badTransition or colors.goodTransition
+				Scale = 1
+			elseif status == 1 then -- not tanking but threat higher than tank
+				Color = self.offTank and colors.offTankColorGoodTransition or self.isTank and colors.goodTransition or colors.badTransition
+				Scale = 1
+			else -- not tanking at all
+				Color = self.isTank and colors.badColor or colors.goodColor
+				Scale = self.isTank and db.badScale or db.goodScale
+			end
+
+			if sf.HealthColor then
+				self.r, self.g, self.b = Color.r, Color.g, Color.b
+			else
+				nameplate.Health:SetStatusBarColor(Color.r, Color.g, Color.b)
+			end
+			if Scale then
+				nameplate.ThreatScale = Scale
+
+				if not sf.Scale then
+					NP:ScalePlate(nameplate, Scale)
+				end
+			end
 		end
 	end
 end
+
 
 --gradient nameplates
 local function GradientNameplates(unit)
