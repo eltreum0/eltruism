@@ -110,13 +110,13 @@ local function GradientNameplates(unit)
 			local sf = NP:StyleFilterChanges(unit)
 			if sf.HealthColor then return end
 
-			if reaction ~= nil and reaction >= 5 then
+			if reaction and reaction >= 5 then
 				targettype = "NPCFRIENDLY"
-			elseif reaction ~= nil and reaction == 4 then
+			elseif reaction and reaction == 4 then
 				targettype = "NPCNEUTRAL"
-			elseif reaction ~= nil and reaction == 3 then
+			elseif reaction and reaction == 3 then
 				targettype = "NPCUNFRIENDLY"
-			elseif reaction ~= nil and reaction <= 2 then
+			elseif reaction and reaction <= 2 then
 				targettype = "NPCHOSTILE"
 			end
 
