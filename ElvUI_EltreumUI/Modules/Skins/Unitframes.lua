@@ -627,6 +627,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 			end
 
 			local function ApplyGroupGradientTexture(g1,b1,r1,r,g,b,button)
+				button.Health:SetOrientation(E.db.ElvUI_EltreumUI.UForientation)
 				if tostring(g1) == tostring(trueg) and tostring(r1) == tostring(truer) and tostring(b1) == tostring(trueb) then
 					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
 						if E.db.ElvUI_EltreumUI.lightmode then
