@@ -152,9 +152,9 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] and not E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] then
 			local text = {
 				["attachTextTo"] = "Health",
-				["enable"] = true,
-				["font"] = "Kimberley",
-				["fontOutline"] = "NONE",
+				["enable"] = false,
+				["font"] = E.db.general.font,
+				["fontOutline"] = E.db.general.fontStyle,
 				["justifyH"] = "CENTER",
 				["size"] = 40,
 				["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
@@ -187,6 +187,69 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		end
 		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Powercustom"] then
 			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Powercustom"]["enable"] = false
+		end
+		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"]["enable"] = false
+		end
+		if E.db["unitframe"]["units"]["player"]["customTexts"]then
+			if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] then
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["text_format"] = "[eltruism:hpstatus{5,3}]"
+			end
+			if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] then
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["text_format"] = "[eltruism:hpstatus{5,3}]"
+			end
+			if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"] then
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
+			end
+			if not E.Classic then
+				E.db["unitframe"]["units"]["focus"]["health"]["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]"
+				if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] then
+					E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
+				end
+				if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"] then
+					E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"]["enable"] = false
+				end
+			end
+			if E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"] then
+				E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
+			end
+			if E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Health"] then
+				E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Health"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
+			end
+			if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"] then
+				E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["text_format"] = "[eltruism:hpstatusnopc{5,3}]"
+			end
+			if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] then
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"]["enable"] = false
+			end
+			if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"] then
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"]["enable"] = false
+			end
+			if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"] then
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"] = {
+					["attachTextTo"] = "Health",
+					["enable"] = true,
+					["font"] = E.db.general.font,
+					["fontOutline"] = E.db.general.fontStyle,
+					["justifyH"] = "CENTER",
+					["size"] = 15,
+					["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+					["xOffset"] = 0,
+					["yOffset"] = 22
+				}
+			end
+			if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"] then
+				E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"]["enable"] = false
+			end
+			if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"] then
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["enable"] = false
+			end
+			if E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumStatus"] then
+				E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumStatus"]["enable"] = false
+			end
+			if E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumStatus"] then
+				E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumStatus"]["enable"] = false
+			end
 		end
 	end
 
