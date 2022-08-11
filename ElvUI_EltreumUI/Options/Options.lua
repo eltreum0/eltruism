@@ -366,7 +366,7 @@ function ElvUI_EltreumUI:Configtable()
 					header1 = {
 						order = 3,
 						type = "description",
-						name = "Eltruism Logo",
+						name = E.NewSign.."Eltruism Logo",
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
@@ -2808,7 +2808,7 @@ function ElvUI_EltreumUI:Configtable()
 							enablecdsound = {
 								order = 98,
 								type = 'toggle',
-								name = L["Play a Sound when attempting to use a skill that is on cooldown."],
+								name = E.NewSign..L["Play a Sound when attempting to use a skill that is on cooldown."],
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.cursor.cooldown end,
 								get = function() return E.db.ElvUI_EltreumUI.cursor.cooldownsound end,
@@ -4968,7 +4968,7 @@ function ElvUI_EltreumUI:Configtable()
 					nameplate = {
 						order = 1,
 						type = 'group',
-						name = L["Nameplate Colors"],
+						name = E.NewSign..L["Nameplate Colors"],
 						args = {
 							headergoodthreat = {
 								order = 10,
@@ -5642,7 +5642,7 @@ function ElvUI_EltreumUI:Configtable()
 							enablelimit = {
 								order = 9,
 								type = 'toggle',
-								name = L["Limit Max Distance"],
+								name = E.NewSign..L["Limit Max Distance"],
 								hidden = function() if E.Retail then return false else return true end end,
 								get = function() return E.db.ElvUI_EltreumUI.waypointetasetting.limitmaxdistance or not E.db.ElvUI_EltreumUI.waypointetasetting.enable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.waypointetasetting.limitmaxdistance = value end,
@@ -5650,7 +5650,7 @@ function ElvUI_EltreumUI:Configtable()
 							etacolor = {
 								order = 10,
 								type = 'color',
-								name = L["Text Color"],
+								name = E.NewSign..L["Text Color"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.waypointetasetting.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypointetasetting.textcolorB, 1, P.ElvUI_EltreumUI.waypointetasetting.textcolorR, P.ElvUI_EltreumUI.waypointetasetting.textcolorG, P.ElvUI_EltreumUI.waypointetasetting.textcolorB, 1 end,
@@ -5658,7 +5658,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							enablelimitd = {
 								type = 'range',
-								name = L["Max Distance"],
+								name = E.NewSign..L["Max Distance"],
 								order = 11,
 								min = 200,
 								max = 10000,
@@ -6795,7 +6795,7 @@ function ElvUI_EltreumUI:Configtable()
 					gradientnp = {
 						order = 3,
 						type = 'group',
-						name = L["Gradient"],
+						name = E.NewSign..L["Gradient"],
 						args = {
 							header = {
 								order = 1,
@@ -6807,7 +6807,7 @@ function ElvUI_EltreumUI:Configtable()
 							enablegradientnp = {
 								order = 2,
 								type = 'toggle',
-								name = L["Enable Gradient Nameplates"],
+								name = E.NewSign..L["Enable Gradient Nameplates"],
 								desc = L["Enable Gradient colors for Nameplates. |cffFF0000WARING:|r This will overwrite some default ElvUI NP settings, if you dont want this, please disable this feature."],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.npenable end,
@@ -7514,7 +7514,7 @@ function ElvUI_EltreumUI:Configtable()
 							headerhidekeypressab = {
 								order = 63,
 								type = "description",
-								name = L["Hide Actionbar Button Press"],
+								name = E.NewSign..L["Hide Actionbar Button Press"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -8196,7 +8196,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 985,
 								type = 'toggle',
 								width = "full",
-								name = L["Hide Backdrop"],
+								name = E.NewSign..L["Hide Backdrop"],
 								desc = L["Sets the Backdrop as Transparent/Hidden"],
 								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -8280,9 +8280,21 @@ function ElvUI_EltreumUI:Configtable()
 									glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
 								end,
 							},
+							sparktexture = {
+								order = 993,
+								type = 'select',
+								--width = "double",
+								dialogControl = 'LSM30_Statusbar',
+								name = E.NewSign..L["Spark Texture"],
+								desc = L["Select a Texture"],
+								values = AceGUIWidgetLSMlists.statusbar,
+								disabled = function() return not E.db.ElvUI_EltreumUI.sparkcustomcolor.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.sparkcustomcolor.texture end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.sparkcustomcolor.texture = key end,
+							},
 							sparkwidth = {
 								type = 'range',
-								name = L["Width"],
+								name = E.NewSign..L["Width"],
 								desc = L["Set Width of the Spark (Default 3)"],
 								order = 994,
 								min = 1,
@@ -8292,18 +8304,6 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.sparkcustomcolor.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.sparkcustomcolor.width end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.sparkcustomcolor.width = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							sparktexture = {
-								order = 993,
-								type = 'select',
-								--width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Spark Texture"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return not E.db.ElvUI_EltreumUI.sparkcustomcolor.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.sparkcustomcolor.texture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.sparkcustomcolor.texture = key end,
 							},
 							headergaphere = {
 								order = 995,
