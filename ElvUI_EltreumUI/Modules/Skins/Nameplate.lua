@@ -69,7 +69,7 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 			self.offTank = true
 		end
 
-		print('working', self.isTank, self.offTank,nameplate.unit)
+		--print('working', self.isTank, self.offTank,nameplate.unit)
 
 		if status == 3 then -- securely tanking
 			if self.isTank then
