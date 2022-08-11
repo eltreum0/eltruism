@@ -158,13 +158,6 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 			["NPCNEUTRAL"] = {r = "0.99999779462814", g = "0.90195882320404", b = "0.42352849245071"},
 			["NPCUNFRIENDLY"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
 			["NPCHOSTILE"] = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"},
-			--["GOODTHREAT"] = {r = "0.27843075990677", g = "0.99999779462814", b = "0"},
-			--["BADTHREAT"] = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"},
-			--["GOODTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"},
-			--["BADTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
-			--bar colors for party/raid/raid40
-			--local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
-			--local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
 		}
 	end
 	unitframecustomgradients = {
@@ -185,7 +178,6 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 		["NPCUNFRIENDLY"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.npcunfriendlyB2},
 		["NPCHOSTILE"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.npchostileB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.npchostileB2},
 		["TAPPED"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.tappedR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.tappedG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.tappedB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.tappedR2, g2= E.db.ElvUI_EltreumUI.gradientmode.tappedG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.tappedB2},
-
 		["GOODTHREAT"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreatB2},
 		["BADTHREAT"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.badthreatR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.badthreatG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.badthreatB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.badthreatR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.badthreatG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.badthreatB2},
 		["GOODTHREATTRANSITION"] = {r1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionR1, g1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionG1, b1 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionB1, r2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionR2, g2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionG2, b2 = E.db.ElvUI_EltreumUI.gradientmode.goodthreattransitionB2},
@@ -213,13 +205,6 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 				["NPCNEUTRAL"] = {r = "0.99999779462814", g = "0.90195882320404", b = "0.42352849245071"},
 				["NPCUNFRIENDLY"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
 				["NPCHOSTILE"] = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"},
-				--["GOODTHREAT"] = {r = "0.27843075990677", g = "0.99999779462814", b = "0"},
-				--["BADTHREAT"] = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"},
-				--["GOODTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"},
-				--["BADTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
-				--bar colors for party/raid/raid40
-				--local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
-				--local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
 			}
 		elseif E.Wrath or E.TBC or E.Classic then
 			classtable = {
@@ -239,13 +224,6 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 				["NPCNEUTRAL"] = {r = "0.99999779462814", g = "0.90195882320404", b = "0.42352849245071"},
 				["NPCUNFRIENDLY"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
 				["NPCHOSTILE"] = {r = "0.99999779462814", g = "0.32156792283058", b = "0.32156792283058"},
-				--["GOODTHREAT"] = {r = "0.27843075990677", g = "0.99999779462814", b = "0"},
-				--["BADTHREAT"] = {r = "0.99999779462814", g = "0.1764702051878", b = "0.1764702051878"},
-				--["GOODTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.85097849369049", b = "0.1999995559454"},
-				--["BADTHREATTRANSITION"] = {r = "0.99999779462814", g = "0.50980281829834", b = "0.1999995559454"},
-				--bar colors for party/raid/raid40
-				--local disconnected = {r = "0.83921384811401", g = "0.74901795387268", b = "0.65097898244858"}
-				--local disconnected dark mode 0.63137114048004 0.56078308820724 0.48627343773842
 			}
 		end
 	end
