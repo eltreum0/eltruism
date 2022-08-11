@@ -6768,7 +6768,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 2,
 								type = 'toggle',
 								name = L["Enable Gradient Nameplates"],
-								desc = L["Enable Gradient colors for Nameplates"],
+								desc = L["Enable Gradient colors for Nameplates. |cffFF0000WARING:|r This will overwrite some default ElvUI NP settings, if you dont want this, please disable this feature."],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.npenable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.npenable = value end,
