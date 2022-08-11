@@ -264,6 +264,9 @@ P.ElvUI_EltreumUI = {
 		autopin = false,
 		limitmaxdistance = false,
 		distance = 700,
+		textcolorR = 1,
+		textcolorG = 1,
+		textcolorB = 1,
 	},
 
 	waytext = {

@@ -25,7 +25,6 @@ EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACK
 EltruismTimeToArrive.TimeText:SetJustifyV("TOP")
 EltruismTimeToArrive.TimeText:SetSize(0, 26)
 EltruismTimeToArrive.TimeText:SetPoint("TOP", "SuperTrackedFrame", "BOTTOM", 0, -40)
-EltruismTimeToArrive.TimeText:SetTextColor(1, 1, 1)
 EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 EltruismTimeToArrive.TimeText:SetParent("SuperTrackedFrame")
 EltruismTimeToArrive:SetParent("SuperTrackedFrame")
@@ -55,7 +54,9 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 		end
 
 		SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+		SuperTrackedFrame.DistanceText:SetTextColor(E.db.ElvUI_EltreumUI.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypointetasetting.textcolorB)
 		EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+		EltruismTimeToArrive.TimeText:SetTextColor(E.db.ElvUI_EltreumUI.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypointetasetting.textcolorB)
 
 		EltruismTimeToArriveParent:RegisterEvent("USER_WAYPOINT_UPDATED")
 		EltruismTimeToArriveParent:RegisterEvent("WAYPOINT_UPDATE")
