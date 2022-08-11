@@ -4,10 +4,7 @@ local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 
 --gradient nameplates
-local threatstatus = -1
-
-
-
+local threatstatus
 local function GradientNameplates(unit)
 	if E.db.ElvUI_EltreumUI.gradientmode.npenable then
 		if unit and unit.Health then
@@ -44,30 +41,42 @@ local function GradientNameplates(unit)
 						isTank = true
 					end
 
-					local threatstatus = UnitThreatSituation('player', unit.unit)
-					if isTank == true and InCombatLockdown() and threatstatus ~= nil and threatstatus >= 0 then
+
+					if isTank == true and InCombatLockdown() then
 						local unitTarget = UnitName(unit.unit.."target")
-						if isTank and (unitTarget == E.myname) then
-							--print("maintank", threatstatus)
-							if threatstatus == 0 then
-								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
-							elseif threatstatus == 1 then
-								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREATTRANSITION", false, false))
-							elseif threatstatus == 2 then
-								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREATTRANSITION", false, false))
-							elseif threatstatus == 3 then
-								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
+						threatstatus = UnitThreatSituation('player', unit.unit)
+						if threatstatus ~= nil and threatstatus >= 0 then
+
+							if isTank and (unitTarget == E.myname) then
+								print("maintank", threatstatus)
+								if threatstatus == 0 then
+									unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
+								elseif threatstatus == 1 then
+									unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREATTRANSITION", false, false))
+								elseif threatstatus == 2 then
+									unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREATTRANSITION", false, false))
+								elseif threatstatus == 3 then
+									unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
+								end
+							elseif isTank and unitTarget ~= E.myname then
+								print("offtank", threatstatus)
+								if threatstatus == 0 then
+									unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
+								elseif threatstatus == 1 then
+									unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANKGOODTHREATTRANSITION", false, false))
+								elseif threatstatus == 2 then
+									unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANKBADTHREATTRANSITION", false, false))
+								elseif threatstatus == 3 then
+									unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
+								end
 							end
-						elseif isTank and unitTarget ~= E.myname then
-							--print("offtank", threatstatus)
-							if threatstatus == 0 then
+						elseif threatstatus == nil then
+							if (unitTarget == E.myname) then
+								print("unknown threat scenario, just guessing bad")
 								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
-							elseif threatstatus == 1 then
-								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANKGOODTHREATTRANSITION", false, false))
-							elseif threatstatus == 2 then
-								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANKBADTHREATTRANSITION", false, false))
-							elseif threatstatus == 3 then
-								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
+							elseif unitTarget ~= E.myname then
+								print("unknown threat scenario, just guessing good")
+								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
 							end
 						end
 					else
