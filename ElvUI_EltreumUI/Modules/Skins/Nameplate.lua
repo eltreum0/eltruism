@@ -5,6 +5,9 @@ local hooksecurefunc = _G.hooksecurefunc
 
 --gradient nameplates
 local threatstatus = -1
+
+
+
 local function GradientNameplates(unit)
 	if E.db.ElvUI_EltreumUI.gradientmode.npenable then
 		if unit and unit.Health then
@@ -36,24 +39,14 @@ local function GradientNameplates(unit)
 						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("TAPPED", false, false))
 					end
 				else
-					local function Threat(unit, _, status) --(unit,nameplate,status)
-						if status ~= nil and type(status) == "number" then
-							threatstatus = status
-						end
-					end
-					hooksecurefunc(NP, "ThreatIndicator_PostUpdate", Threat)
-
-
-
 					local isTank = false
 					if UnitExists('pet') or (E.myrole == 'TANK') then
 						isTank = true
 					end
-
 					if isTank == true and InCombatLockdown() and threatstatus >= 0 then
-						print(threatstatus)
 						local unitTarget = UnitName(unit.unit.."target")
 						if isTank and (unitTarget == E.myname) then
+							print("maintank", threatstatus)
 							if threatstatus == 0 then
 								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
 							elseif threatstatus == 1 then
@@ -64,6 +57,7 @@ local function GradientNameplates(unit)
 								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
 							end
 						elseif isTank and unitTarget ~= E.myname then
+							print("offtank", threatstatus)
 							if threatstatus == 0 then
 								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
 							elseif threatstatus == 1 then
@@ -97,3 +91,13 @@ hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 --hooksecurefunc(NP, "StyleTargetPlate", GradientNameplates)
 --hooksecurefunc(NP, "UpdatePlate", GradientNameplates)
 --hooksecurefunc(NP, "StyleFilterUpdate", GradientNameplates)
+
+
+local function Threat(unit, _, status) --(unit,nameplate,status)
+	if status ~= nil and type(status) == "number" then
+		threatstatus = status
+		--print(status)
+		--GradientNameplates()
+	end
+end
+hooksecurefunc(NP, "ThreatIndicator_PostUpdate", Threat)
