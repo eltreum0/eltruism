@@ -30,22 +30,14 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 				if not (E.myclass == "HUNTER" or E.myclass == 'WARLOCK') then
 					self.offTank = false
 				else
-					if UnitName(nameplate.unit.."target") == E.myname then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
-					elseif UnitName(nameplate.unit.."target") == UnitName("pet") then
-						self.isTank = false
-						self.offTank = true
-					end
+					nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
 				end
 			elseif (self.isTank or self.PetTank) and UnitName(nameplate.unit.."target") ~= E.myname then
 				if not (E.myclass == "HUNTER" or E.myclass == 'WARLOCK') then
 					self.offTank = true
 				else
-					if UnitName(nameplate.unit.."target") == E.myname then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
-					elseif UnitName(nameplate.unit.."target") == UnitName("pet") then
-						self.isTank = false
-						self.offTank = true
+					if UnitName(nameplate.unit.."target") == UnitName("pet") then
+						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
 					end
 				end
 			end
