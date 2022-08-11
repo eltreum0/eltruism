@@ -8189,13 +8189,13 @@ function ElvUI_EltreumUI:Configtable()
 							headerorientation = {
 								order = 101,
 								type = "description",
-								name= L["Unitframe Fill Orientation"],
+								name = L["Unitframe Fill Orientation"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							setorientation = {
 								type = 'select',
-								name= "",
+								name = "",
 								order = 102,
 								values = {
 									["HORIZONTAL"] = L["Horizontal"],

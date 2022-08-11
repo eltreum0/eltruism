@@ -1019,3 +1019,6 @@ L["Enable Gradient colors for Nameplates. |cffFF0000WARING:|r This will overwrit
 L["Limit Max Distance"] = "Limitar la distancia máxima"
 L["Text Color"] = "Color del texto"
 L["Max Distance"] = "Distancia máxima"
+L["Unitframe Fill Orientation"] = true
+L["Horizontal"] = true
+L["Vertical"] = true
