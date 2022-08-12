@@ -152,9 +152,9 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] and not E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] then
 			local text = {
 				["attachTextTo"] = "Health",
-				["enable"] = true,
-				["font"] = "Kimberley",
-				["fontOutline"] = "NONE",
+				["enable"] = false,
+				["font"] = E.db.general.font,
+				["fontOutline"] = E.db.general.fontStyle,
 				["justifyH"] = "CENTER",
 				["size"] = 40,
 				["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
@@ -184,9 +184,6 @@ function ElvUI_EltreumUI:OldVersionCheck()
 				["xOffset"] = 0,
 				["yOffset"] = -1
 			}
-		end
-		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Powercustom"] then
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["Powercustom"]["enable"] = false
 		end
 	end
 

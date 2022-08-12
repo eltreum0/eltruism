@@ -43,30 +43,31 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name)
 	if UF["units"][unit] and UnitExists(unit) then
 		local unitframe = _G["ElvUF_"..name]
 		if unitframe and unitframe.Health then
+			unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.UForientation)
 			if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
 				if UnitIsPlayer(unit) then
 					if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
-						namebar = ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit)
+						unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit))
 					else
-						namebar = E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["ufcustomtexture"][unit.."texture"])
+						unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["ufcustomtexture"][unit.."texture"]))
 					end
 				elseif not UnitIsPlayer(unit) then
 					if E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
 						if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
-							namebar = ElvUI_EltreumUI:UnitframeClassTextureCustom("TAPPED")
+							unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("TAPPED"))
 						else
 							if reaction >= 5 then
-								namebar = ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCFRIENDLY")
+								unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCFRIENDLY"))
 							elseif reaction == 4 then
-								namebar = ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCNEUTRAL")
+								unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCNEUTRAL"))
 							elseif reaction == 3 then
-								namebar = ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCUNFRIENDLY")
+								unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCUNFRIENDLY"))
 							elseif reaction <= 2 then
-								namebar = ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCHOSTILE")
+								unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCHOSTILE"))
 							end
 						end
 					else
-						namebar = E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["ufcustomtexture"][unit.."texture"])
+						unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["ufcustomtexture"][unit.."texture"]))
 					end
 				end
 			end
@@ -311,7 +312,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name)
 					end
 				end
 			else
-				if E.db.ElvUI_EltreumUI.lightmode then
+				if E.db.ElvUI_EltreumUI.lightmode and not E.db.ElvUI_EltreumUI.ufcustomtexture.enable and not E.db.ElvUI_EltreumUI.gradientmode.enable and not E.db.ElvUI_EltreumUI.ufcustomtexture.classdetect then
 					unitframe.Health:SetStatusBarTexture(namebar)
 				end
 			end
@@ -626,6 +627,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 			end
 
 			local function ApplyGroupGradientTexture(g1,b1,r1,r,g,b,button)
+				button.Health:SetOrientation(E.db.ElvUI_EltreumUI.UForientation)
 				if tostring(g1) == tostring(trueg) and tostring(r1) == tostring(truer) and tostring(b1) == tostring(trueb) then
 					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
 						if E.db.ElvUI_EltreumUI.lightmode then
@@ -723,13 +725,13 @@ hooksecurefunc(UF, "Style", ElvUI_EltreumUI.GradientCustomTexture) --if not hook
 hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientCustomTexture)
 
 --Unitframe Backdrop Texture/Alpha
-function ElvUI_EltreumUI:BackdropTexture(_, statusbar, backdropTex)
+function ElvUI_EltreumUI:BackdropTexture(isTransparent, statusBar, backdropTex, adjustBackdropPoints, invertColors, reverseFill)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then
 		if backdropTex and not E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
 			backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
 			backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-			if statusbar and statusbar.backdrop and statusbar:GetName():match("Health") then
-				statusbar.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+			if statusBar and statusBar.backdrop and statusBar:GetName():match("Health") then
+				statusBar.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
 			end
 		end
 		if E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
@@ -738,13 +740,31 @@ function ElvUI_EltreumUI:BackdropTexture(_, statusbar, backdropTex)
 					backdropTex:SetAlpha(0)
 				end
 			end
-			if statusbar and statusbar.backdrop and statusbar:GetName():match("Health") then
-				statusbar.backdrop:Hide()
+			if statusBar and statusBar.backdrop and statusBar:GetName():match("Health") then
+				statusBar.backdrop:Hide()
+			end
+		end
+
+		--darkmode/backdrop things for vertical
+		if E.db.ElvUI_EltreumUI.UForientation == "VERTICAL" and statusBar:GetName():match("Health") and E.db.ElvUI_EltreumUI.darkmode then
+			local orientation = "VERTICAL"
+			local barTexture = statusBar:GetStatusBarTexture() -- This fixes Center Pixel offset problem (normally this has > 2 points)
+			--statusBar.backdrop:Hide()
+			barTexture:SetInside(nil, 0, 0) -- This also unsnaps the texture
+			UF:HandleStatusBarTemplate(statusBar, statusBar:GetParent(), isTransparent)
+			if isTransparent then
+				--statusBar:SetStatusBarTexture(0, 0, 0, 0)
+				UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.media.blankTex)
+				UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
+			else
+				local texture = E.LSM:Fetch('statusbar', self.db.statusbar)
+				statusBar:SetStatusBarTexture(texture)
+				UF:Update_StatusBar(statusBar.bg or statusBar.BG, texture)
+				if adjustBackdropPoints then
+					UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
+				end
 			end
 		end
 	end
 end
 hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
---[[hooksecurefunc(UF, 'UpdateBackdropTextureColor', function()
-	ElvUI_EltreumUI:BackdropTexture()
-end)]]

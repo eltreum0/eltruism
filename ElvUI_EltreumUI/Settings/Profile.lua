@@ -455,6 +455,7 @@ P.ElvUI_EltreumUI = {
 	},
 
 	UFmodifications = true,
+	UForientation = "HORIZONTAL",
 	lightmode = false,
 	uftextureversion = "V1",
 	nptextureversion = "V1",

@@ -1,14 +1,33 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.2.3
+Added an option to change Fill Direction of Unitframes\
+Fixed an error in Version Check\
+Fixed an issue with Custom Textures not correctly applying Textures\
+___
 ### 3.2.2
 Added Gradient Nameplates and moved some options to a new Gradient Colors option, Gradient Nameplates uses the same colors as Unitframe Gradients so changing colors there will change for both\
-Updated ElvUI profiles to use non transparent power since transparent power does not use the texture\
-Updated ElvUI profiles with small adjustments to some text positions\
-Updated default health colors and reactions for Nameplates, which will now use the same defaults as ElvUI\
+Added an option to disable the Eltruism logo while AFK\
+Added an option to limit the max distance for the Waypoint Time to Arrive\
+Added an option to change the color of the Waypoint and Time To Arrive texts\
+Updated ElvUI profiles to use non transparent power since transparent power does not use the texture, also small adjustments to some text positions\
+Updated Gradient function, making it use less memory and CPU and allowing light mode to use backdrop alpha, same as dark mode\
+Updated backdrop alpha, adding option to hide the backdrop to give unitframes a truly transparent background\
+Updated reaction detection, fixing unfriendly npcs\
 Updated automatic screenshot to also screenshot achievements in Wrath Beta\
+Updated Quest/Objective skin in Retail to be more similar to the Wrath Beta skin\
+Updated talent change detection in Wrath Beta, preparing for dual spec ElvUI\
+Updated custom textures, adding textures and options for Tapped Units\
+Updated EltreumStatus and EltreumHealth custom texts, mostly disabling EltreumStatus and using [eltruism:hpstatusnopc] for EltreumHealth\
 Fixed some combat text CVars not correctly applying during login, they should more reliably work now\
-Disabled ElvUI_Boss nameplate filter health color, changing health color will make Gradient Nameplates not correctly identify nameplates and not work\
+Fixed some missing role icons\
+Fixed issues in Classic/TBC/Wrath Beta due to changes in ElvUI dev that are not yet released\
+Fixed issues in Classic/TBC/Wrath Beta due to some units not existing on those versions\
+Fixed an issue with gradient overwriting the tapped unit color by adding an option for gradient tapped units\
+Fixed the chat not correctly embedding details in Classic/TBC\
+Fixed points position in Craft Skin for Classic/TBC/Wrath\
+Fixed Pet Background overlapping Pet Name/Title/Loyalty in TBC/Wrath\
 ___
 ### 3.2.1
 Added Inspect Average Ilvl to Classic/TBC/Wrath\
