@@ -7,6 +7,16 @@ local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
 local UnitIsPlayer = _G.UnitIsPlayer
 
+function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
+	if IsAddOnLoaded("ElvUI_mMediaTag") then
+		if E.db.mMediaTag.mCastbar.enable then
+			return _G.mMediaTag_interruptinTime or _G.mMediaTag_interruptOnCD
+		end
+	else
+		return false
+	end
+end
+
 --Databar gradient
 function ElvUI_EltreumUI:GradientDatabar()
 	local databarXP = _G["ElvUI_ExperienceBar"]
@@ -124,7 +134,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 							end
 						end
 					end
-				elseif (not targetcastbar.notInterruptible) then --can interrupt
+				elseif (not targetcastbar.notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt()) then --can interrupt
 					if E.db.ElvUI_EltreumUI.gradientmode.enabletargetcastbar then
 						targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 						if E.db.unitframe.units.target.castbar.reverse == true then
