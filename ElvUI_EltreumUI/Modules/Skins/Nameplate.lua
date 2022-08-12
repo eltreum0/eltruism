@@ -211,7 +211,9 @@ function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, Hea
 
 			h:SetStatusBarColor(h.r, h.g, h.b, h.r-0.4, h.g-0.4, h.b-0.4)
 			--h:SetStatusBarColor(gradR1,gradG1,gradB1,gradR2,grabG2,gradB2)
-			h:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation,gradR1,gradG1,gradB1,gradR2,grabG2,gradB2)
+			if E.db.ElvUI_EltreumUI.gradientmode.npenable then
+				h:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation,gradR1,gradG1,gradB1,gradR2,grabG2,gradB2)
+			end
 			frame.Cutaway.Health:SetVertexColor(h.r * 1.5, h.g * 1.5, h.b * 1.5, 1)
 		end
 	end
