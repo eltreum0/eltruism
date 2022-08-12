@@ -721,7 +721,7 @@ function ElvUI_EltreumUI:BackdropTexture(isTransparent, statusBar, backdropTex, 
 		if backdropTex and not E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
 			backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
 			backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-			if statusBar and statusBar.backdrop and statusBar:GetName():match("Health") then
+			if statusBar and statusBar.backdrop and statusBar:GetName():match("HealthBar") then
 				statusBar.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
 			end
 		end
