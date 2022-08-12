@@ -2,13 +2,13 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local S = E:GetModule('Skins')
 local _G = _G
 local CreateFrame = _G.CreateFrame
-
+local WideTradeSkill = CreateFrame("Frame")
 local dontexpandanymoreEnchant = 0
 local dontexpandanymore = 0
+
 function ElvUI_EltreumUI:SkinProfessions()
 	if E.db.ElvUI_EltreumUI.skins.professions and not E.private.skins.blizzard.enable == false then
 		--skin and expand the tradeskills
-		local WideTradeSkill = CreateFrame("Frame")
 
 		WideTradeSkill:RegisterEvent("ADDON_LOADED")
 		WideTradeSkill:SetScript("OnEvent", function(_, _, arg)
@@ -37,9 +37,45 @@ function ElvUI_EltreumUI:SkinProfessions()
 					TradeSkillDetailScrollFrame:SetPoint("RIGHT", TradeSkillFrame, 0, -35)
 					TradeSkillDetailScrollFrame:SetHeight(390)
 
+					--mouse wheel scroll frame
+					_G.TradeSkillListScrollFrame:ClearAllPoints()
+					_G.TradeSkillListScrollFrame:SetPoint("LEFT", TradeSkillFrame, "LEFT", 40, 0)
+					_G.TradeSkillListScrollFrame:SetHeight(350)
+					_G.TradeSkillListScrollFrame:SetWidth(330)
+
+					_G.TradeSkillSkillName:ClearAllPoints()
+					_G.TradeSkillSkillName:SetPoint("CENTER", TradeSkillFrame, 200, 150)
+					_G.TradeSkillSkillName:SetParent(_G.TradeSkillFrame)
+					_G.TradeSkillSkillIcon:ClearAllPoints()
+					_G.TradeSkillSkillIcon:SetPoint("RIGHT", _G.TradeSkillSkillName, "LEFT", -5, -10)
+					_G.TradeSkillSkillIcon:SetParent(_G.TradeSkillFrame)
+
+					_G.TradeSkillRequirementLabel:ClearAllPoints()
+					_G.TradeSkillRequirementLabel:SetPoint("BOTTOMLEFT", _G.TradeSkillSkillName, "TOPLEFT", 0, -25)
+					_G.TradeSkillRequirementLabel:SetParent(_G.TradeSkillFrame)
+					_G.TradeSkillRequirementText:ClearAllPoints()
+					_G.TradeSkillRequirementText:SetPoint("LEFT", _G.TradeSkillRequirementLabel,"RIGHT", 5, 0)
+					_G.TradeSkillRequirementText:SetParent(_G.TradeSkillFrame)
+
+					_G.TradeSkillDescription:ClearAllPoints()
+					_G.TradeSkillDescription:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", 74, -64)
+					_G.TradeSkillDescription:SetParent(_G.TradeSkillFrame)
+
+					_G.TradeSkillReagentLabel:ClearAllPoints()
+					_G.TradeSkillReagentLabel:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", -35, -100)
+					_G.TradeSkillReagentLabel:SetParent(_G.TradeSkillFrame)
+
 					TradeSkillListScrollFrameScrollBar:ClearAllPoints()
 					TradeSkillListScrollFrameScrollBar:SetPoint("LEFT", TradeSkillDetailScrollChildFrame, -30, -70)
 					TradeSkillListScrollFrameScrollBar:SetHeight(320)
+
+					for i =1, 15 do
+						if _G["TradeSkillReagent"..i] then
+							_G["TradeSkillReagent"..i]:SetParent(_G.TradeSkillFrame)
+						else
+							break
+						end
+					end
 
 					if _G.TradeSkillDetailScrollFrameScrollBar then
 						_G.TradeSkillDetailScrollFrameScrollBar:Hide()
