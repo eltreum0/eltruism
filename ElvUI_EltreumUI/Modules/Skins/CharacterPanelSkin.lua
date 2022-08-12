@@ -1183,7 +1183,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.StatusLine2:SetPoint("CENTER", CharacterFrame.Text2, "CENTER", 0, 0)
 				CharacterFrame.StatusLine2:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
-				CharacterFrame.StatusLine2:SetStatusBarColor(1, 1, 1, 0.8)
+				CharacterFrame.StatusLine2:SetStatusBarColor(1, 1, 1, 0.5)
 
 				CharacterFrame.Text3:SetSize(418, 72)
 				CharacterFrame.Text3:SetPoint("TOP", CharacterFrame.Text2, "TOP", 0, -27)
