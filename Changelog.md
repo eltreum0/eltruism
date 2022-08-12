@@ -4,6 +4,7 @@ ___
 ### 3.2.3
 Added an option to change Fill Direction of Unitframes\
 Fixed an error in Version Check\
+Fixed an issue with Custom Textures not correctly applying Textures\
 ___
 ### 3.2.2
 Added Gradient Nameplates and moved some options to a new Gradient Colors option, Gradient Nameplates uses the same colors as Unitframe Gradients so changing colors there will change for both\
