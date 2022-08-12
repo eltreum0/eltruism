@@ -3,6 +3,263 @@ local S = E:GetModule('Skins')
 local _G = _G
 local CreateFrame = _G.CreateFrame
 
+local dontexpandanymoreEnchant = 0
+local dontexpandanymore = 0
+function ElvUI_EltreumUI:SkinProfessions()
+	if E.db.ElvUI_EltreumUI.skins.professions and not E.private.skins.blizzard.enable == false then
+		--skin and expand the tradeskills
+		local WideTradeSkill = CreateFrame("Frame")
+
+		WideTradeSkill:RegisterEvent("ADDON_LOADED")
+		WideTradeSkill:SetScript("OnEvent", function(_, _, arg)
+			if (arg == "Blizzard_TradeSkillUI") or (arg == "Blizzard_RuneforgeUI") then
+				WideTradeSkill:UnregisterAllEvents()
+				local TradeSkillFrame = _G.TradeSkillFrame
+				local TradeSkillDetailScrollFrame = _G.TradeSkillDetailScrollFrame
+				local TradeSkillDetailScrollChildFrame = _G.TradeSkillDetailScrollChildFrame
+				local TradeSkillListScrollFrameScrollBar = _G.TradeSkillListScrollFrameScrollBar
+				local TradeSkillCreateAllButton = _G.TradeSkillCreateAllButton
+				local TradeSkillCreateButton = _G.TradeSkillCreateButton
+				local TradeSkillCancelButton = _G.TradeSkillCancelButton
+
+				TradeSkillFrame:HookScript("OnShow", function()
+
+					if not TradeSkillFrame.backdrop.shadow then
+						TradeSkillFrame.backdrop:CreateShadow()
+					end
+					TradeSkillFrame:SetWidth(765)
+					TradeSkillFrame:SetHeight(550)
+
+					TradeSkillDetailScrollFrame:SetHeight(390)
+					TradeSkillDetailScrollFrame:SetWidth(350)
+
+					TradeSkillDetailScrollFrame:ClearAllPoints()
+					TradeSkillDetailScrollFrame:SetPoint("RIGHT", TradeSkillFrame, 0, -35)
+					TradeSkillDetailScrollFrame:SetHeight(390)
+
+					TradeSkillListScrollFrameScrollBar:ClearAllPoints()
+					TradeSkillListScrollFrameScrollBar:SetPoint("LEFT", TradeSkillDetailScrollChildFrame, -30, -70)
+					TradeSkillListScrollFrameScrollBar:SetHeight(320)
+
+					if _G.TradeSkillDetailScrollFrameScrollBar then
+						_G.TradeSkillDetailScrollFrameScrollBar:Hide()
+					end
+
+					TradeSkillCreateAllButton:ClearAllPoints()
+					TradeSkillCreateAllButton:SetPoint("LEFT", TradeSkillFrame, "BOTTOMLEFT", 15, 95)
+
+					TradeSkillCreateButton:ClearAllPoints()
+					TradeSkillCreateButton:SetPoint("LEFT", TradeSkillFrame, "BOTTOMLEFT", 180, 95)
+
+					TradeSkillCancelButton:ClearAllPoints()
+					TradeSkillCancelButton:SetPoint("RIGHT", TradeSkillFrame, "BOTTOMRIGHT", -50, 95)
+
+					if dontexpandanymore == 0 then
+						-- Create the additional rows
+						local numSkills = 8
+						_G.TRADE_SKILLS_DISPLAYED = 22
+						--local numSkills = TRADE_SKILLS_DISPLAYED
+						--TRADE_SKILLS_DISPLAYED = TRADE_SKILLS_DISPLAYED + 14
+
+						for i = numSkills + 1, 22 do
+							local skillbutton = CreateFrame("Button", "TradeSkillSkill" .. i, TradeSkillFrame, "TradeSkillSkillButtonTemplate")
+							skillbutton:SetID(i)
+							skillbutton:Hide()
+							skillbutton:ClearAllPoints()
+							skillbutton:SetPoint("TOPLEFT", _G["TradeSkillSkill" .. (i - 1)], "BOTTOMLEFT", 0, 1)
+						end
+						--increase the width of the rows so the title fits
+						for i = 1, 8 do
+							local skillTitle = _G["TradeSkillSkill"..i]
+							skillTitle:Width(335)
+						end
+						dontexpandanymore = 1
+					end
+				end)
+			end
+		end)
+
+		--and enchanting which uses a different system apparently
+		--if (GetAddOnEnableState(GetUnitName("player"), "TradeSkillMaster")) > 0 then
+		if IsAddOnLoaded("TradeSkillMaster") then
+			local WideTradeSkillEnchant = CreateFrame("Frame")
+			WideTradeSkillEnchant:RegisterEvent("CRAFT_SHOW")
+			WideTradeSkillEnchant:SetScript("OnEvent", function()
+				local CraftFrame = _G.CraftFrame
+				local CraftFrameAvailableFilterCheckButton = _G.CraftFrameAvailableFilterCheckButton
+				local CraftFrameFilterDropDown = _G.CraftFrameFilterDropDown
+				local CraftCreateButton = _G.CraftCreateButton
+				local CraftCancelButton = _G.CraftCancelButton
+				local CraftListScrollFrameScrollChildFrame = _G.CraftListScrollFrameScrollChildFrame
+				local CraftListScrollFrameScrollBar = _G.CraftListScrollFrameScrollBar
+				local CraftDetailScrollFrame = _G.CraftDetailScrollFrame
+				local CraftDetailScrollChildFrame = _G.CraftDetailScrollChildFrame
+				local CraftDetailScrollFrameScrollBar = _G.CraftDetailScrollFrameScrollBar
+				local CRAFTS_DISPLAYED = _G.CRAFTS_DISPLAYED
+				if not CraftFrame.backdrop.shadow then
+					CraftFrame.backdrop:CreateShadow()
+				end
+				CraftFrame:SetWidth(765)
+				CraftFrame:SetHeight(550)
+
+				--S:HandleButton(CraftCreateButton)
+				CraftCreateButton:ClearAllPoints()
+				CraftCreateButton:SetPoint("LEFT", CraftFrame, "BOTTOMLEFT", 15, 95)
+
+				CraftCancelButton:ClearAllPoints()
+				CraftCancelButton:SetParent(CraftFrame)
+				CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
+
+				CraftListScrollFrameScrollChildFrame:SetHeight(390)
+				CraftListScrollFrameScrollChildFrame:SetWidth(350)
+
+				CraftListScrollFrameScrollBar:ClearAllPoints()
+				CraftListScrollFrameScrollBar:SetPoint("CENTER", CraftFrame, "CENTER", 10, 12)
+				CraftListScrollFrameScrollBar:SetHeight(320)
+
+				CraftDetailScrollChildFrame:SetParent(CraftFrame)
+				CraftDetailScrollChildFrame:ClearAllPoints()
+				CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30, -46)
+				CraftDetailScrollChildFrame:SetHeight(390)
+
+				CraftDetailScrollFrame:Hide()
+				CraftDetailScrollFrameScrollBar:Hide()
+
+				if E.Wrath or E.TBC then
+					CraftFrameFilterDropDown:ClearAllPoints()
+					CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
+					CraftFrameAvailableFilterCheckButton:ClearAllPoints()
+					CraftFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", CraftFrame, 64,-48)
+				end
+
+				if dontexpandanymoreEnchant == 0 then
+					-- Create the additional rows
+					--local numCrafts = CRAFTS_DISPLAYED
+					local numCrafts = 8
+					--CRAFTS_DISPLAYED = CRAFTS_DISPLAYED + 14
+					CRAFTS_DISPLAYED = 22
+					for i = numCrafts + 1, 22 do
+						local craftbutton = CreateFrame("Button", "Craft" .. i, CraftFrame, "CraftButtonTemplate")
+						craftbutton:SetID(i)
+						craftbutton:Hide()
+						craftbutton:ClearAllPoints()
+						craftbutton:SetPoint("TOPLEFT", _G["Craft" .. (i - 1)], "BOTTOMLEFT", 0, 1)
+					end
+					--increase the width of the rows so the title fits
+					for i = 1, 22 do
+						local craftTitle = _G["Craft"..i]
+						craftTitle:Width(335)
+					end
+					dontexpandanymoreEnchant = 1
+				end
+			end)
+		else
+			local WideTradeSkillEnchant = CreateFrame("Frame")
+			WideTradeSkillEnchant:RegisterEvent("ADDON_LOADED")
+			WideTradeSkillEnchant:SetScript("OnEvent", function(_, _, arg)
+				if (arg == "Blizzard_CraftUI") then
+					local CraftFrame = _G.CraftFrame
+					local CraftFrameAvailableFilterCheckButton = _G.CraftFrameAvailableFilterCheckButton
+					local CraftFrameFilterDropDown = _G.CraftFrameFilterDropDown
+					local CraftCreateButton = _G.CraftCreateButton
+					local CraftCancelButton = _G.CraftCancelButton
+					local CraftListScrollFrameScrollChildFrame = _G.CraftListScrollFrameScrollChildFrame
+					local CraftListScrollFrameScrollBar = _G.CraftListScrollFrameScrollBar
+					local CraftDetailScrollFrame = _G.CraftDetailScrollFrame
+					local CraftDetailScrollChildFrame = _G.CraftDetailScrollChildFrame
+					local CraftDetailScrollFrameScrollBar = _G.CraftDetailScrollFrameScrollBar
+
+					WideTradeSkillEnchant:UnregisterAllEvents()
+					CraftFrame:HookScript("OnShow", function()
+						if not CraftFrame.backdrop.shadow then
+							CraftFrame.backdrop:CreateShadow()
+						end
+						CraftFrame:SetWidth(765)
+						CraftFrame:SetHeight(550)
+
+						CraftListScrollFrameScrollChildFrame:SetHeight(390)
+						CraftListScrollFrameScrollChildFrame:SetWidth(350)
+
+						CraftListScrollFrameScrollBar:ClearAllPoints()
+						CraftListScrollFrameScrollBar:SetPoint("CENTER", CraftFrame, "CENTER", 10, 12)
+						CraftListScrollFrameScrollBar:SetHeight(320)
+
+						CraftDetailScrollChildFrame:SetParent(CraftFrame)
+						CraftDetailScrollChildFrame:ClearAllPoints()
+						CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30, -46)
+						CraftDetailScrollChildFrame:SetHeight(390)
+
+						CraftDetailScrollFrame:Hide()
+						CraftDetailScrollFrameScrollBar:Hide()
+						if E.Wrath or E.TBC then
+							CraftFrameFilterDropDown:ClearAllPoints()
+							CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
+							CraftFrameAvailableFilterCheckButton:ClearAllPoints()
+							CraftFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", CraftFrame, 64,-48)
+						end
+
+						CraftCreateButton:ClearAllPoints()
+						CraftCreateButton:SetPoint("LEFT", CraftFrame, "BOTTOMLEFT", 15, 95)
+
+						_G.CraftFramePointsLabel:ClearAllPoints()
+						_G.CraftFramePointsLabel:SetPoint("LEFT", _G["CraftCreateButton"], "RIGHT", 5, 0)
+						_G.CraftFramePointsText:ClearAllPoints()
+						_G.CraftFramePointsText:SetPoint("LEFT", _G.CraftFramePointsLabel, "RIGHT", 5, 0)
+
+						CraftCancelButton:ClearAllPoints()
+						CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
+
+	 					if dontexpandanymoreEnchant == 0 then
+							-- Create the additional rows
+							--local numCrafts = CRAFTS_DISPLAYED
+							local numCrafts = 8
+							--CRAFTS_DISPLAYED = CRAFTS_DISPLAYED + 14
+							_G.CRAFTS_DISPLAYED = 22
+							for i = numCrafts + 1, 22 do
+								local craftbutton = CreateFrame("Button", "Craft" .. i, CraftFrame, "CraftButtonTemplate")
+								craftbutton:SetID(i)
+								craftbutton:Hide()
+								craftbutton:ClearAllPoints()
+								craftbutton:SetPoint("TOPLEFT", _G["Craft" .. (i - 1)], "BOTTOMLEFT", 0, 1)
+							end
+							--increase the width of the rows so the title fits
+							for i = 1, 8 do
+								local craftTitle = _G["Craft"..i]
+								craftTitle:Width(335)
+							end
+							dontexpandanymoreEnchant = 1
+						end
+					end)
+				end
+			end)
+		end
+	end
+end
+
+function ElvUI_EltreumUI:SkinMailZone()
+	if E.db.ElvUI_EltreumUI.skins.zones then
+		if not IsAddOnLoaded("ElvUI_SLE") then
+			--[[hooksecurefunc("SetZoneText", function()
+				ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, E.db.general.fontStyle)
+				SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, E.db.general.fontStyle)
+				PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
+				PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
+			end)]]
+			_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, E.db.general.fontStyle)
+			_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, E.db.general.fontStyle)
+			_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
+			_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
+			_G.OpenMailBodyText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+			if E.Retail then
+				_G.SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+			--elseif E.TBC or E.Classic then
+				--MailEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+			end
+		end
+	end
+end
+
+
 --skin IME input
 local function SkinLocale()
 	if E.locale == "koKR" or E.locale == "ruRU" or E.locale == "zhCN" or E.locale == "zhTW" then
