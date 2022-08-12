@@ -156,9 +156,9 @@ function ElvUI_EltreumUI:QuestItem()
 							end
 						else
 							if xOfs >= 0 then
-								_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((#EltruismQuestItemFrame.items)*cfg.btnSize)/2), yOfs)
+								_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((#EltruismQuestItemFrame.items-((#EltruismQuestItemFrame.items % 2)))*cfg.btnSize)/2), yOfs)
 							elseif xOfs < 0 then
-								_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((#EltruismQuestItemFrame.items)*cfg.btnSize)/2), yOfs)
+								_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((#EltruismQuestItemFrame.items-((#EltruismQuestItemFrame.items % 2)))*cfg.btnSize)/2), yOfs)
 							end
 						end
 					end
