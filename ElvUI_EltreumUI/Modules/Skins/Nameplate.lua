@@ -125,8 +125,7 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 	end
 end
 
-
-local gradR1,gradG1,gradB1,gradR2,grabG2,gradB2
+--local gradR1,gradG1,gradB1,gradR2,grabG2,gradB2
 local targettype
 local reaction
 local _, className
@@ -161,27 +160,27 @@ local function GradientNameplates(unit)
 				if className and player then
 					if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(className))
-						gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColorsCustom(className)
+						--gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColorsCustom(className)
 					else
 						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(className))
-						gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColors(className)
+						--gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColors(className)
 					end
 				elseif reaction ~= nil and (unit.CurrentlyBeingTanked ~= unit.unit.."isbeingtanked") then
 					if UnitIsTapDenied(unit.unit) and not UnitPlayerControlled(unit.unit) then
 						if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false))
-							gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false)
+							--gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false)
 						else
 							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("TAPPED", false, false))
-							gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColors("TAPPED", false, false)
+							--gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColors("TAPPED", false, false)
 						end
 					else
 						if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(targettype, false, false))
-							gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColorsCustom(targettype, false, false)
+							--gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColorsCustom(targettype, false, false)
 						else
 							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(targettype, false, false))
-							gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColors(targettype, false, false)
+							--gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColors(targettype, false, false)
 						end
 					end
 				end
@@ -191,8 +190,8 @@ local function GradientNameplates(unit)
 end
 hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 
-
-
+--currently not working
+--[[
 function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, HealthFlash, HealthTexture, Scale, Alpha, NameTag, PowerTag, HealthTag, TitleTag, LevelTag, Portrait, NameOnly, Visibility)
 	local db = NP:PlateDB(frame)
 
@@ -278,3 +277,4 @@ function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, Hea
 		if LevelTag then frame:Tag(frame.Level, db.level.format) frame.Level:UpdateTag() end
 	end
 end
+]]
