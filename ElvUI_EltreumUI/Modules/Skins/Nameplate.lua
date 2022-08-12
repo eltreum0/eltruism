@@ -125,6 +125,9 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 	end
 end
 
+
+local gradR1,gradG1,gradB1,gradR2,grabG2,gradB2
+
 --gradient nameplates
 local function GradientNameplates(unit)
 	if E.db.ElvUI_EltreumUI.gradientmode.npenable then
@@ -156,21 +159,27 @@ local function GradientNameplates(unit)
 				if className and player then
 					if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(className))
+						gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColorsCustom(className)
 					else
 						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(className))
+						gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColors(className)
 					end
 				elseif reaction ~= nil and (unit.CurrentlyBeingTanked ~= unit.unit.."isbeingtanked") then
 					if UnitIsTapDenied(unit.unit) and not UnitPlayerControlled(unit.unit) then
 						if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false))
+							gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false)
 						else
 							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("TAPPED", false, false))
+							gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColors("TAPPED", false, false)
 						end
 					else
 						if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(targettype, false, false))
+							gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColorsCustom(targettype, false, false)
 						else
 							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(targettype, false, false))
+							gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColors(targettype, false, false)
 						end
 					end
 				end
@@ -179,3 +188,70 @@ local function GradientNameplates(unit)
 	end
 end
 hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
+
+
+
+function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, HealthFlash, HealthTexture, Scale, Alpha, NameTag, PowerTag, HealthTag, TitleTag, LevelTag, Portrait, NameOnly, Visibility)
+	local db = NP:PlateDB(frame)
+
+	if frame.StyleFilterChanges then
+		wipe(frame.StyleFilterChanges)
+	end
+
+	if Visibility then
+		NP:StyleFilterBaseUpdate(frame, true)
+		frame:ClearAllPoints() -- pull the frame back in
+		frame:Point('CENTER')
+	end
+	if HealthColor then
+		local h = frame.Health
+		if h.r and h.g and h.b then
+			--test here
+
+
+			h:SetStatusBarColor(h.r, h.g, h.b, h.r-0.4, h.g-0.4, h.b-0.4)
+			--h:SetStatusBarColor(gradR1,gradG1,gradB1,gradR2,grabG2,gradB2)
+			h:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation,gradR1,gradG1,gradB1,gradR2,grabG2,gradB2)
+			frame.Cutaway.Health:SetVertexColor(h.r * 1.5, h.g * 1.5, h.b * 1.5, 1)
+		end
+	end
+	if PowerColor then
+		local pc = NP.db.colors.power[frame.Power.token] or _G.PowerBarColor[frame.Power.token] or {r=1, b=1, g=1}
+		frame.Power:SetStatusBarColor(pc.r, pc.g, pc.b)
+		frame.Cutaway.Power:SetVertexColor(pc.r * 1.5, pc.g * 1.5, pc.b * 1.5, 1)
+	end
+	if Borders then
+		NP:StyleFilterBorderLock(frame.Health.backdrop)
+
+		if frame.Power.backdrop and db.power.enable then
+			NP:StyleFilterBorderLock(frame.Power.backdrop)
+		end
+	end
+	if HealthFlash then
+		E:StopFlash(frame.HealthFlashTexture)
+		frame.HealthFlashTexture:Hide()
+	end
+	if HealthTexture then
+		local tx = E.LSM:Fetch('statusbar', NP.db.statusbar)
+		frame.Health:SetStatusBarTexture(tx)
+	end
+	if Scale then
+		NP:ScalePlate(frame, frame.ThreatScale or 1)
+	end
+	if Alpha then
+		NP:PlateFade(frame, NP.db.fadeIn and 1 or 0, (frame.FadeObject and frame.FadeObject.endAlpha) or 0.5, 1)
+	end
+	if Portrait then
+		NP:Update_Portrait(frame)
+		frame.Portrait:ForceUpdate()
+	end
+	if NameOnly then
+		NP:StyleFilterBaseUpdate(frame)
+	else -- Only update these if it wasn't NameOnly. Otherwise, it leads to `Update_Tags` which does the job.
+		if NameTag then frame:Tag(frame.Name, db.name.format) frame.Name:UpdateTag() end
+		if PowerTag then frame:Tag(frame.Power.Text, db.power.text.format) frame.Power.Text:UpdateTag() end
+		if HealthTag then frame:Tag(frame.Health.Text, db.health.text.format) frame.Health.Text:UpdateTag() end
+		if TitleTag then frame:Tag(frame.Title, db.title.format) frame.Title:UpdateTag() end
+		if LevelTag then frame:Tag(frame.Level, db.level.format) frame.Level:UpdateTag() end
+	end
+end
