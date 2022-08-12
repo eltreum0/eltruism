@@ -14,6 +14,9 @@ local truer = 0
 local trueg = 0
 local trueb = 0
 local trueclass
+local _, unit1class
+local r,g,b
+local r1,g1,b1
 
 function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name)
 	local _, classunit = UnitClass(unit)
@@ -368,13 +371,10 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 				headerassist = _G["ElvUF_Assist"]
 			end
 
-			local _, unit1class = UnitClass(unit)
+			_, unit1class = UnitClass(unit)
 			if not unit1class then
 				return
 			end
-			truer = 0
-			trueg = 0
-			trueb = 0
 
 			if E.db.ElvUI_EltreumUI.lightmode then
 				if E. Retail then
@@ -626,9 +626,9 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 				end
 			end
 
-			local function ApplyGroupGradientTexture(g1,b1,r1,r,g,b,button)
+			local function ApplyGroupGradientTexture(r, g, b, button)
 				button.Health:SetOrientation(E.db.ElvUI_EltreumUI.UForientation)
-				if tostring(g1) == tostring(trueg) and tostring(r1) == tostring(truer) and tostring(b1) == tostring(trueb) then
+				if tostring(r) == tostring(truer) and tostring(g) == tostring(trueg) and tostring(b) == tostring(trueb) then
 					if E.db.ElvUI_EltreumUI.gradientmode.enable and E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits then
 						if E.db.ElvUI_EltreumUI.lightmode then
 							button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
@@ -667,16 +667,12 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 					for j = 1, group:GetNumChildren() do
 						local groupbutton = select(j, group:GetChildren())
 						if groupbutton and groupbutton.Health then
-							local r1,g1,b1
 							if E.db.ElvUI_EltreumUI.lightmode then
-								r1,g1,b1 = groupbutton.Health:GetStatusBarColor()
+								r,g,b = groupbutton.Health:GetStatusBarColor()
 							elseif E.db.ElvUI_EltreumUI.darkmode and groupbutton.Health.backdropTex then
-								r1,g1,b1 = groupbutton.Health.backdropTex:GetVertexColor()
+								r,g,b = groupbutton.Health.backdropTex:GetVertexColor()
 							end
-							local r = tostring(r1)
-							local g = tostring(g1)
-							local b = tostring(b1)
-							ApplyGroupGradientTexture(g1,b1,r1, r,g,b, groupbutton)
+							ApplyGroupGradientTexture(r, g, b, groupbutton)
 						end
 					end
 				end
@@ -688,14 +684,11 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 					if tankbutton and tankbutton.Health then
 						local r1,g1,b1
 						if E.db.ElvUI_EltreumUI.lightmode then
-							r1,g1,b1 = tankbutton.Health:GetStatusBarColor()
+							r,g,b = tankbutton.Health:GetStatusBarColor()
 						elseif E.db.ElvUI_EltreumUI.darkmode and tankbutton.Health.backdropTex then
-							r1,g1,b1 = tankbutton.Health.backdropTex:GetVertexColor()
+							r,g,b = tankbutton.Health.backdropTex:GetVertexColor()
 						end
-						local r = tostring(r1)
-						local g = tostring(g1)
-						local b = tostring(b1)
-						ApplyGroupGradientTexture(g1,b1,r1, r,g,b, tankbutton)
+						ApplyGroupGradientTexture(r, g, b, tankbutton)
 					end
 				end
 			end
@@ -706,14 +699,11 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 					if assistbutton and assistbutton.Health then
 						local r1,g1,b1
 						if E.db.ElvUI_EltreumUI.lightmode then
-							r1,g1,b1 = assistbutton.Health:GetStatusBarColor()
+							r,g,b = assistbutton.Health:GetStatusBarColor()
 						elseif E.db.ElvUI_EltreumUI.darkmode and assistbutton.Health.backdropTex then
-							r1,g1,b1 = assistbutton.Health.backdropTex:GetVertexColor()
+							r,g,b = assistbutton.Health.backdropTex:GetVertexColor()
 						end
-						local r = tostring(r1)
-						local g = tostring(g1)
-						local b = tostring(b1)
-						ApplyGroupGradientTexture(g1,b1,r1, r,g,b, assistbutton)
+						ApplyGroupGradientTexture(r, g, b, assistbutton)
 					end
 				end
 			end
