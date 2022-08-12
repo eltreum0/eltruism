@@ -80,7 +80,7 @@ local qItems = {
 
 	56909,	-- Earthen Ring Unbinding Totem (Cata event)
 	60501, 	-- Stormstone, Deepholm Quest
-	--45067,	-- Egg Basket -- Az: offhand item, but I wanted it on my bar for a hotkey
+	45067,	-- Egg Basket -- Az: offhand item, but I wanted it on my bar for a hotkey
 }
 local blocklist = {
 	[176809] = true, -- junk item that for some reason showed up
@@ -143,6 +143,15 @@ function ElvUI_EltreumUI:QuestItem()
 				if (self.updateTime > UPDATE_DELAY) then
 					self:SetScript("OnUpdate",nil)
 					self:UpdateButtons()
+
+					-- update mover position
+					local point, relativeTo, relativePoint, xOfs, yOfs = EltruismQuestItemFrame:GetPoint()
+					_G["EltruismQuestItem1"]:ClearAllPoints()
+					if (#EltruismQuestItemFrame.items % 2) == 0 then
+						_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((#EltruismQuestItemFrame.items)*cfg.btnSize)/2), yOfs)
+					else
+						_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((#EltruismQuestItemFrame.items -1)*cfg.btnSize)/2), yOfs)
+					end
 				end
 			end
 
@@ -283,6 +292,7 @@ function ElvUI_EltreumUI:QuestItem()
 			-- Check Item -- Az: Some items which starts a quest, are not marked as "Quest" in itemType or itemSubType. Ex: item:17008
 			local function CheckItemTooltip(link,itemId)
 				local _, _, _, _, _, itemType, itemSubType, _, itemEquipLoc, _, _, _ = GetItemInfo(link)
+
 				-- Include predefinded items
 				for _, id in ipairs(qItems) do
 					if (itemId == id) then
@@ -375,15 +385,6 @@ function ElvUI_EltreumUI:QuestItem()
 				end
 				-- Update Misc
 				self:UpdateCooldowns()
-
-				-- update mover position
-				local point, relativeTo, relativePoint, xOfs, yOfs = EltruismQuestItemFrame:GetPoint()
-				_G["EltruismQuestItem1"]:ClearAllPoints()
-				if (#EltruismQuestItemFrame.items % 2) == 0 then
-					_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((#EltruismQuestItemFrame.items)*cfg.btnSize)/2), yOfs)
-				else
-					_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((#EltruismQuestItemFrame.items -1)*cfg.btnSize)/2), yOfs)
-				end
 			end
 
 			-- Update Cooldowns
