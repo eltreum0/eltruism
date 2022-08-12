@@ -145,12 +145,14 @@ function ElvUI_EltreumUI:QuestItem()
 					self:UpdateButtons()
 
 					-- update mover position
-					local point, relativeTo, relativePoint, xOfs, yOfs = EltruismQuestItemFrame:GetPoint()
-					_G["EltruismQuestItem1"]:ClearAllPoints()
-					if (#EltruismQuestItemFrame.items % 2) == 0 then
-						_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((#EltruismQuestItemFrame.items)*cfg.btnSize)/2), yOfs)
-					else
-						_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((#EltruismQuestItemFrame.items -1)*cfg.btnSize)/2), yOfs)
+					if not InCombatLockdown() then
+						local point, relativeTo, relativePoint, xOfs, yOfs = EltruismQuestItemFrame:GetPoint()
+						_G["EltruismQuestItem1"]:ClearAllPoints()
+						if (#EltruismQuestItemFrame.items % 2) == 0 then
+							_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((#EltruismQuestItemFrame.items)*cfg.btnSize)/2), yOfs)
+						else
+							_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((#EltruismQuestItemFrame.items -1)*cfg.btnSize)/2), yOfs)
+						end
 					end
 				end
 			end
