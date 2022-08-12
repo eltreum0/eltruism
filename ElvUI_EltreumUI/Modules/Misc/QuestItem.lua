@@ -226,15 +226,15 @@ function ElvUI_EltreumUI:QuestItem()
 				b.count = b:CreateFontString(nil,"ARTWORK")
 				b.count:SetFont(GameFontNormal:GetFont(), 14, E.db.general.fontStyle)
 				b.count:SetTextColor(1,1,1)
-				b.count:SetPoint("BOTTOMRIGHT",b.icon,-3,3)
+				b.count:SetPoint("BOTTOMRIGHT",b.icon, 0, 0)
 
 				b.cooldown = CreateFrame("Cooldown",nil,b,"CooldownFrameTemplate")
 				b.cooldown:SetAllPoints()
 
 				b.bind = b:CreateFontString(nil,"ARTWORK","NumberFontNormalSmallGray")
-				b.bind:SetPoint("TOPLEFT",b.icon,3,-3)
-				b.bind:SetPoint("TOPRIGHT",b.icon,-3,-3)
-				b.bind:SetJustifyH("RIGHT")
+				b.bind:SetPoint("TOPLEFT",b.icon,0,0)
+				b.bind:SetPoint("TOPRIGHT",b.icon,0,0)
+				b.bind:SetJustifyH("LEFT")
 
 				if (#EltruismQuestItemFrame.items == 0) then
 					b:SetPoint("TOPLEFT",EltruismQuestItemFrame,0,0)
