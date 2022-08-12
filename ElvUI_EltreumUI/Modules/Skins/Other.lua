@@ -3,6 +3,7 @@ local S = E:GetModule('Skins')
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local WideTradeSkill = CreateFrame("Frame")
+local WideTradeSkillEnchant = CreateFrame("Frame")
 local dontexpandanymoreEnchant = 0
 local dontexpandanymore = 0
 
@@ -44,7 +45,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 					_G.TradeSkillListScrollFrame:SetWidth(330)
 
 					_G.TradeSkillSkillName:ClearAllPoints()
-					_G.TradeSkillSkillName:SetPoint("CENTER", TradeSkillFrame, 200, 150)
+					_G.TradeSkillSkillName:SetPoint("CENTER", TradeSkillFrame, 200, 150) --main
 					_G.TradeSkillSkillName:SetParent(_G.TradeSkillFrame)
 					_G.TradeSkillSkillIcon:ClearAllPoints()
 					_G.TradeSkillSkillIcon:SetPoint("RIGHT", _G.TradeSkillSkillName, "LEFT", -5, -10)
@@ -118,7 +119,6 @@ function ElvUI_EltreumUI:SkinProfessions()
 		--and enchanting which uses a different system apparently
 		--if (GetAddOnEnableState(GetUnitName("player"), "TradeSkillMaster")) > 0 then
 		if IsAddOnLoaded("TradeSkillMaster") then
-			local WideTradeSkillEnchant = CreateFrame("Frame")
 			WideTradeSkillEnchant:RegisterEvent("CRAFT_SHOW")
 			WideTradeSkillEnchant:SetScript("OnEvent", function()
 				local CraftFrame = _G.CraftFrame
@@ -190,7 +190,6 @@ function ElvUI_EltreumUI:SkinProfessions()
 				end
 			end)
 		else
-			local WideTradeSkillEnchant = CreateFrame("Frame")
 			WideTradeSkillEnchant:RegisterEvent("ADDON_LOADED")
 			WideTradeSkillEnchant:SetScript("OnEvent", function(_, _, arg)
 				if (arg == "Blizzard_CraftUI") then
