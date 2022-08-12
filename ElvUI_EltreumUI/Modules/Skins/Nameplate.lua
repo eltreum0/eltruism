@@ -209,7 +209,7 @@ function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, Hea
 			--test here
 
 
-			h:SetStatusBarColor(h.r, h.g, h.b, h.r-0.4, h.g-0.4, h.b-0.4)
+			h:SetStatusBarColor(h.r, h.g, h.b)
 			--h:SetStatusBarColor(gradR1,gradG1,gradB1,gradR2,grabG2,gradB2)
 			if E.db.ElvUI_EltreumUI.gradientmode.npenable then
 				GradientNameplates(frame)
