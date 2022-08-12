@@ -190,6 +190,11 @@ function ElvUI_EltreumUI:QuestItem()
 			local function CreateItemButton()
 				local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"SecureActionButtonTemplate")
 				b:SetSize(cfg.btnSize,cfg.btnSize)
+				if E.db.ElvUI_EltreumUI.skins.shadows then
+					if not b.shadow then
+						b:CreateShadow()
+					end
+				end
 				--b:SetHighlightTexture("Interface\\Buttons\\OldButtonHilight-Square")
 				--b:SetHighlightTexture("Interface\\Buttons\\CheckButtonHilight")
 				b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
