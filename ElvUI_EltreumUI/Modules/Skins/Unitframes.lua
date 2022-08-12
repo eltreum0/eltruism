@@ -749,16 +749,17 @@ function ElvUI_EltreumUI:BackdropTexture(isTransparent, statusBar, backdropTex, 
 		if E.db.ElvUI_EltreumUI.UForientation == "VERTICAL" and statusBar:GetName():match("Health") and E.db.ElvUI_EltreumUI.darkmode then
 			local orientation = "VERTICAL"
 			local barTexture = statusBar:GetStatusBarTexture() -- This fixes Center Pixel offset problem (normally this has > 2 points)
-			--barTexture:SetInside(nil, 0, 0) -- This also unsnaps the texture
-			--UF:HandleStatusBarTemplate(statusBar, statusBar:GetParent(), isTransparent)
+			--statusBar.backdrop:Hide()
+			barTexture:SetInside(nil, 0, 0) -- This also unsnaps the texture
+			UF:HandleStatusBarTemplate(statusBar, statusBar:GetParent(), isTransparent)
 			if isTransparent then
 				--statusBar:SetStatusBarTexture(0, 0, 0, 0)
-				--UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.media.blankTex)
+				UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.media.blankTex)
 				UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
 			else
-				--local texture = E.LSM:Fetch('statusbar', self.db.statusbar)
-				--statusBar:SetStatusBarTexture(texture)
-				--UF:Update_StatusBar(statusBar.bg or statusBar.BG, texture)
+				local texture = E.LSM:Fetch('statusbar', self.db.statusbar)
+				statusBar:SetStatusBarTexture(texture)
+				UF:Update_StatusBar(statusBar.bg or statusBar.BG, texture)
 				if adjustBackdropPoints then
 					UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
 				end
