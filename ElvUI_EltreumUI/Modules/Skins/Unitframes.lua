@@ -8,6 +8,8 @@ local UnitReaction = _G.UnitReaction
 local UnitIsPlayer = _G.UnitIsPlayer
 local tostring = _G.tostring
 local select = _G.select
+local UnitIsTapDenied = _G.UnitIsTapDenied
+local UnitPlayerControlled = _G.UnitPlayerControlled
 
 --set the textures or gradients
 local truer = 0
@@ -16,7 +18,6 @@ local trueb = 0
 local trueclass
 local _, unit1class
 local r,g,b
-local r1,g1,b1
 
 function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name)
 	local _, classunit = UnitClass(unit)
