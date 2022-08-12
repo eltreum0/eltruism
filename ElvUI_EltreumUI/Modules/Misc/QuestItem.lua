@@ -211,6 +211,11 @@ function ElvUI_EltreumUI:QuestItem()
 				b.bind:SetPoint("TOPLEFT",b.icon,3,-3)
 				b.bind:SetPoint("TOPRIGHT",b.icon,-3,-3)
 				b.bind:SetJustifyH("RIGHT")
+
+				local point, relativeTo, relativePoint, xOfs, yOfs = EltruismQuestItemFrame:GetPoint()
+				_G["EltruismQuestItem1"]:ClearAllPoints()
+				_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-((#EltruismQuestItemFrame.items*cfg.btnSize)/2), yOfs)
+
 				if (#EltruismQuestItemFrame.items == 0) then
 					b:SetPoint("TOPLEFT",EltruismQuestItemFrame,0,0)
 				end
