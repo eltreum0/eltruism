@@ -16,19 +16,6 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 		local Color, Scale
 		-- if gradient use gradient mode
 		if E.db.ElvUI_EltreumUI.gradientmode.npenable then
-			if UnitExists('pet') then
-				self.PetTank = true
-			else
-				if (E.myrole ~= 'TANK') and IsInGroup() then
-					self.PetTank = true
-				end
-			end
-			if self.PetTank and UnitName(nameplate.unit.."target") == E.myname and not sf.HealthColor then
-				nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
-				nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
-			elseif self.PetTank and UnitName(nameplate.unit.."target") ~= E.myname and not sf.HealthColor then
-				nameplate.CurrentlyBeingTanked = nil
-			end
 			if not InCombatLockdown() then
 				nameplate.CurrentlyBeingTanked = nil
 			end
