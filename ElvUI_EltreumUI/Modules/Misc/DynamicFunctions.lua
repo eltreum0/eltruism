@@ -438,8 +438,6 @@ function ElvUI_EltreumUI:BorderAdjust()
 				end
 				E.db.ElvUI_EltreumUI.borders.stancexborder = 49
 				E.db.ElvUI_EltreumUI.borders.stanceyborder = 42
-				E.db.ElvUI_EltreumUI.borders.petactionxborder = 49
-				E.db.ElvUI_EltreumUI.borders.petactionyborder = 44
 				E.db.ElvUI_EltreumUI.borders.petactionedgesize = 13
 
 				E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 5
@@ -490,6 +488,8 @@ function ElvUI_EltreumUI:BorderAdjust()
 					E.db.ElvUI_EltreumUI.borders.petsizex = 192
 					E.db.ElvUI_EltreumUI.borders.totemxborder = 51
 					E.db.ElvUI_EltreumUI.borders.totemyborder = 51
+					E.db.ElvUI_EltreumUI.borders.petactionxborder = 49
+					E.db.ElvUI_EltreumUI.borders.petactionyborder = 44
 
 					if E.Wrath then
 						E.db["general"]["totems"]["spacing"] = 5
@@ -535,6 +535,8 @@ function ElvUI_EltreumUI:BorderAdjust()
 					E.db.ElvUI_EltreumUI.borders.petsizex = 130
 					E.db.ElvUI_EltreumUI.borders.totemxborder = 46
 					E.db.ElvUI_EltreumUI.borders.totemyborder = 46
+					E.db.ElvUI_EltreumUI.borders.petactionxborder = 50
+					E.db.ElvUI_EltreumUI.borders.petactionyborder = 37
 
 					if E.Wrath then
 						E.db["general"]["totems"]["spacing"] = 5
