@@ -158,7 +158,7 @@ P.ElvUI_EltreumUI = {
 		nameplatetexture = false,
 		classbarautohide = false,
 		targetclasstexture = false,
-		enableHealthHeight = true,
+		enableHealthHeight = false,
 		outofcombatHeight = 2,
 		incombatHeight = 14,
 	},
