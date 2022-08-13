@@ -192,7 +192,7 @@ updateHealthHeight:SetScript("OnEvent", function()
 	CustomHealthHeight(test1)
 end)
 
---currently not working
+--fix stylefilter for gradient nameplates
 function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, HealthFlash, HealthTexture, Scale, Alpha, NameTag, PowerTag, HealthTag, TitleTag, LevelTag, Portrait, NameOnly, Visibility)
 	local db = NP:PlateDB(frame)
 
