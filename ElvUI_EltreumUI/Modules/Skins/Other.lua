@@ -93,7 +93,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 						_G.TradeSkillReagentLabel:SetParent(_G.TradeSkillFrame)
 					else
 						_G.TradeSkillReagentLabel:ClearAllPoints()
-						_G.TradeSkillReagentLabel:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", -35, -60)
+						_G.TradeSkillReagentLabel:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", -35, -45)
 						_G.TradeSkillReagentLabel:SetParent(_G.TradeSkillFrame)
 					end
 
