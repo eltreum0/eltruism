@@ -6852,7 +6852,7 @@ function ElvUI_EltreumUI:Configtable()
 								style = 'radio',
 								disabled = function() return not E.db.ElvUI_EltreumUI.gradientmode.npenable end,
 								get = function() return E.db.ElvUI_EltreumUI.gradientmode.nporientation end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.nporientation = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.gradientmode.nporientation = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 						},
 					},
