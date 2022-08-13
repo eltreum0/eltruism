@@ -664,11 +664,11 @@ P.ElvUI_EltreumUI = {
 		warriorcustomcolorB2 = 0.24705882352941,
 
 		monkcustomcolorR1 = 0,
-		monkcustomcolorR2 = 0.42352941176471,
+		monkcustomcolorR2 = 0,
 		monkcustomcolorG1 = 0.77254901960784,
-		monkcustomcolorG2 = 0.90980392156863,
+		monkcustomcolorG2 = 0.76078431372549,
 		monkcustomcolorB1 = 0.45882352941176,
-		monkcustomcolorB2 = 1,
+		monkcustomcolorB2 = 0.24313725490196,
 
 		npcfriendlyR1 = 0.30980392156863,
 		npcfriendlyR2 = 0.34117647058824,
