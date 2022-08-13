@@ -192,8 +192,8 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.global["nameplates"]["filters"]['EltreumTarget'] = {}
 		E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"]['EltreumTarget'])
 		E.db["nameplates"]["filters"]['EltreumTarget'] = { triggers = { enable = true } }
-		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["enable"] = true
-		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["priority"] = 1
+		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["enable"] = false
+		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["priority"] = 2
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["isTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["requireTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = true
