@@ -174,12 +174,14 @@ hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 --Custom Health Height Conditions
 local targetunit
 local function CustomHealthHeight(unit)
-	if unit and unit.unit then
-		targetunit = unit
-		if not UnitAffectingCombat(unit.unit) and not UnitIsUnit(unit.unit, "target") then
-			unit.Health:SetHeight(2)
-		elseif UnitAffectingCombat(unit.unit) or UnitIsUnit(unit.unit, "target") then
-			unit.Health:SetHeight(14)
+	if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
+		if unit and unit.unit then
+			targetunit = unit
+			if not UnitAffectingCombat(unit.unit) and not UnitIsUnit(unit.unit, "target") then
+				unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.outofcombatHeight)
+			elseif UnitAffectingCombat(unit.unit) or UnitIsUnit(unit.unit, "target") then
+				unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
+			end
 		end
 	end
 end
@@ -187,7 +189,11 @@ hooksecurefunc(NP, "Health_UpdateColor", CustomHealthHeight)
 local updateHealthHeight = CreateFrame("Frame")
 updateHealthHeight:RegisterEvent("PLAYER_TARGET_CHANGED")
 updateHealthHeight:SetScript("OnEvent", function()
-	CustomHealthHeight(targetunit)
+	if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
+		CustomHealthHeight(targetunit)
+	else
+		updateHealthHeight:UnregisterAllEvents()
+	end
 end)
 
 --fix stylefilter for gradient nameplates
