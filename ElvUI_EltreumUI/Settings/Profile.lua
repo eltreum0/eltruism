@@ -711,7 +711,7 @@ P.ElvUI_EltreumUI = {
 		npchostileG1 = 0.090196078431373,
 		npchostileG2 = 0,
 		npchostileB1 = 0,
-		npchostileB2 = 0.31901960784314,
+		npchostileB2 = 0.54901960784314,
 
 		--threat stuff for np
 		npenable = false,
