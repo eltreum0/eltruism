@@ -85,6 +85,12 @@ local qItems = {
 local blocklist = {
 	[176809] = true, -- junk item that for some reason showed up
 	--[140212] = true, --test item
+
+	[24468] = true, --burstcap mushroom
+	[24449] = true, --fertile spores
+	[24291] = true, --bog lord tendril
+	[24497] = true, --feralfen protection totem
+	[25448] = true, --blacksting's stinger
 }
 
 function ElvUI_EltreumUI:QuestItem()
