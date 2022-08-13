@@ -594,11 +594,11 @@ P.ElvUI_EltreumUI = {
 		druidcustomcolorB2 = 0.03921568627451,
 
 		huntercustomcolorR1 = 0.45490196078431,
-		huntercustomcolorR2 = 0.67058823529412,
+		huntercustomcolorR2 = 0.43921568627451,
 		huntercustomcolorG1 = 0.59607843137255,
-		huntercustomcolorG2 = 0.83137254901961,
+		huntercustomcolorG2 = 0.87843137254902,
 		huntercustomcolorB1 = 0.25490196078431,
-		huntercustomcolorB2 = 0.45098039215686,
+		huntercustomcolorB2 = 0,
 
 		paladincustomcolorR1 = 1,
 		paladincustomcolorR2 = 0.95686274509804,
