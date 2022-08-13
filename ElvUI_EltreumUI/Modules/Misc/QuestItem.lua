@@ -154,7 +154,7 @@ function ElvUI_EltreumUI:QuestItem()
 					self:UpdateButtons()
 
 					-- update mover position
-					if not InCombatLockdown() then
+					if not InCombatLockdown() and _G["EltruismQuestItem1"] then
 						local point, relativeTo, relativePoint, xOfs, yOfs = EltruismQuestItemFrame:GetPoint()
 						_G["EltruismQuestItem1"]:ClearAllPoints()
 						if (#EltruismQuestItemFrame.items % 2) == 0 then
