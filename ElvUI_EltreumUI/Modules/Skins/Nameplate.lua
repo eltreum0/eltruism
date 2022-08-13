@@ -171,11 +171,12 @@ local function GradientNameplates(unit)
 end
 hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 
+
+--Custom Health Height Conditions
 local test1
-local function NPHealthHeight(unit)
-	test1 = unit
+local function CustomHealthHeight(unit)
 	if unit and unit.unit then
-		print(UnitAffectingCombat(unit.unit), UnitIsUnit(unit.unit, "target"))
+		test1 = unit
 		if not UnitAffectingCombat(unit.unit) and not UnitIsUnit(unit.unit, "target") then
 			unit.Health:SetHeight(2)
 		elseif UnitAffectingCombat(unit.unit) or UnitIsUnit(unit.unit, "target") then
@@ -183,21 +184,13 @@ local function NPHealthHeight(unit)
 		end
 	end
 end
-hooksecurefunc(NP, "Health_UpdateColor", NPHealthHeight)
+hooksecurefunc(NP, "Health_UpdateColor", CustomHealthHeight)
 
-local update = CreateFrame("Frame")
-update:RegisterEvent("PLAYER_TARGET_CHANGED")
-update:SetScript("OnEvent", function()
-	NPHealthHeight(test1)
+local updateHealthHeight = CreateFrame("Frame")
+updateHealthHeight:RegisterEvent("PLAYER_TARGET_CHANGED")
+updateHealthHeight:SetScript("OnEvent", function()
+	CustomHealthHeight(test1)
 end)
-
---hooksecurefunc(NP, "Update_StatusBars", NPHealthHeight)
---hooksecurefunc(NP, "ScalePlate", NPHealthHeight)
---hooksecurefunc(NP, "SetupTarget", NPHealthHeight)
---hooksecurefunc(NP, "StyleTargetPlate", NPHealthHeight)
---hooksecurefunc(NP, "UpdateTargetPlate", NPHealthHeight)
---hooksecurefunc(NP, "Health_SetColors", NPHealthHeight)
---hooksecurefunc(NP, "StyleFilterConditionCheck", NPHealthHeight)
 
 --currently not working
 function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, HealthFlash, HealthTexture, Scale, Alpha, NameTag, PowerTag, HealthTag, TitleTag, LevelTag, Portrait, NameOnly, Visibility)
