@@ -100,7 +100,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 							unitframe.Health:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, true))
 						end
 					end
-				elseif E.db.ElvUI_EltreumUI.darkmode then
+				elseif E.db.ElvUI_EltreumUI.darkmode and unitframe.Health.backdropTex then
 					unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 					if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
 						if E.db.ElvUI_EltreumUI.gradientmode.orientation == "HORIZONTAL" then
@@ -220,7 +220,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 							end
 						end
 					end
-				elseif E.db.ElvUI_EltreumUI.darkmode then
+				elseif E.db.ElvUI_EltreumUI.darkmode and unitframe.Health.backdropTex then
 					unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.gradientmode.texture))
 					if E.db.ElvUI_EltreumUI.gradientmode.orientation == "HORIZONTAL" then
 						if unit == "target" then
