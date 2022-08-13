@@ -87,11 +87,15 @@ function ElvUI_EltreumUI:SkinProfessions()
 						_G.TradeSkillDescription:ClearAllPoints()
 						_G.TradeSkillDescription:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", 74, -64)
 						_G.TradeSkillDescription:SetParent(_G.TradeSkillFrame)
-					end
 
-					_G.TradeSkillReagentLabel:ClearAllPoints()
-					_G.TradeSkillReagentLabel:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", -35, -100)
-					_G.TradeSkillReagentLabel:SetParent(_G.TradeSkillFrame)
+						_G.TradeSkillReagentLabel:ClearAllPoints()
+						_G.TradeSkillReagentLabel:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", -35, -100)
+						_G.TradeSkillReagentLabel:SetParent(_G.TradeSkillFrame)
+					else
+						_G.TradeSkillReagentLabel:ClearAllPoints()
+						_G.TradeSkillReagentLabel:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", -35, -60)
+						_G.TradeSkillReagentLabel:SetParent(_G.TradeSkillFrame)
+					end
 
 					TradeSkillListScrollFrameScrollBar:ClearAllPoints()
 					TradeSkillListScrollFrameScrollBar:SetPoint("LEFT", TradeSkillDetailScrollChildFrame, -30, -70)
@@ -197,6 +201,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 			WideTradeSkillEnchant:RegisterEvent("ADDON_LOADED")
 			WideTradeSkillEnchant:SetScript("OnEvent", function(_, _, arg)
 				if (arg == "Blizzard_CraftUI") then
+					WideTradeSkillEnchant:UnregisterAllEvents()
 					local CraftFrame = _G.CraftFrame
 					local CraftFrameAvailableFilterCheckButton = _G.CraftFrameAvailableFilterCheckButton
 					local CraftFrameFilterDropDown = _G.CraftFrameFilterDropDown
@@ -208,7 +213,6 @@ function ElvUI_EltreumUI:SkinProfessions()
 					local CraftDetailScrollChildFrame = _G.CraftDetailScrollChildFrame
 					local CraftDetailScrollFrameScrollBar = _G.CraftDetailScrollFrameScrollBar
 
-					WideTradeSkillEnchant:UnregisterAllEvents()
 					CraftFrame:HookScript("OnShow", function()
 						if not CraftFrame.backdrop.shadow then
 							CraftFrame.backdrop:CreateShadow()
