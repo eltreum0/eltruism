@@ -185,6 +185,8 @@ function ElvUI_EltreumUI:OldVersionCheck()
 				["yOffset"] = -1
 			}
 		end
+	elseif E.private.ElvUI_EltreumUI.install_version < "3.2.4" then
+		E.global["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["classification"]["worldboss"] = true
 	end
 
 	--more long term checks, in case somehow people enable 2 settings when its not possible to do so. Maybe its a shared profile from another person? No idea how they manage to do this
