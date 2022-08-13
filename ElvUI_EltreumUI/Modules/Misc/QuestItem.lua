@@ -86,12 +86,14 @@ local blocklist = {
 	[176809] = true, -- junk item that for some reason showed up
 	--[140212] = true, --test item
 
-	[24468] = true, --burstcap mushroom
-	[24449] = true, --fertile spores
-	[24291] = true, --bog lord tendril
-	[24497] = true, --feralfen protection totem
-	[25448] = true, --blacksting's stinger
-	[25491] = true, --salvaged spore sacs
+	--[24468] = true, --burstcap mushroom
+	--[24449] = true, --fertile spores
+	--[24291] = true, --bog lord tendril
+	--[24497] = true, --feralfen protection totem
+	--[25448] = true, --blacksting's stinger
+	--[25491] = true, --salvaged spore sacs
+	--[24238] = true, --mushroom sample
+	--[24472] = true, --boss grog'ak's head
 }
 
 function ElvUI_EltreumUI:QuestItem()
@@ -376,7 +378,7 @@ function ElvUI_EltreumUI:QuestItem()
 									end
 								elseif E.Wrath or E.TBC or E.Classic then
 									local _, _, _, _, _, itemType, _ = GetItemInfo(itemId)
-									if itemType == "Quest" then
+									if itemType == "Quest" and GetItemSpell(itemId) ~= nil then
 										local _, count = GetContainerItemInfo(bag,slot)
 										AddButton(index,bag,slot,link,itemId,count)
 										index = (index + 1)
@@ -391,7 +393,7 @@ function ElvUI_EltreumUI:QuestItem()
 					local slotId = GetInventorySlotInfo(slotName)
 					local link = GetInventoryItemLink("player",slotId)
 					local itemId = link and tonumber(link:match(ITEMID_PATTERN))
-					if (link) and (itemId) and (CheckItemTooltip(link,itemId)) then
+					if (link) and (itemId) and (CheckItemTooltip(link,itemId)) and GetItemSpell(itemId) ~= nil then
 						AddButton(index,nil,slotId,link,itemId)
 						index = (index + 1)
 					end
