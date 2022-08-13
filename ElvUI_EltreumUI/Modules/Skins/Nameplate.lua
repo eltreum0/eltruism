@@ -130,7 +130,7 @@ local targettype
 local reaction
 local _, className
 local player
-local texturesf = nil
+
 --gradient nameplates
 local function GradientNameplates(unit)
 	if E.db.ElvUI_EltreumUI.gradientmode.npenable then
@@ -143,9 +143,6 @@ local function GradientNameplates(unit)
 			if sf.HealthColor then
 				return
 			else
-				if sf.HealthTexture and sf.HealthTexture == true then
-					texturesf = unit.Health:GetStatusBarTexture()
-				end
 				if reaction and reaction >= 5 then
 					targettype = "NPCFRIENDLY"
 				elseif reaction and reaction == 4 then
@@ -162,47 +159,28 @@ local function GradientNameplates(unit)
 
 				if className and player then
 					if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
-						if texturesf == nil then
-							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(className))
-						else
-							unit.Health:SetStatusBarTexture(texturesf)
-							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(className))
-						end
+						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(className))
+						--gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColorsCustom(className)
 					else
-						if texturesf == nil then
-							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(className))
-						else
-							unit.Health:SetStatusBarTexture(texturesf)
-							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(className))
-						end
+						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(className))
+						--gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColors(className)
 					end
 				elseif reaction ~= nil and (unit.CurrentlyBeingTanked ~= unit.unit.."isbeingtanked") then
 					if UnitIsTapDenied(unit.unit) and not UnitPlayerControlled(unit.unit) then
 						if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
-							if texturesf == nil then
-								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false))
-							else
-								unit.Health:SetStatusBarTexture(texturesf)
-								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false))
-							end
+							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false))
+							--gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false)
 						else
 							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("TAPPED", false, false))
+							--gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColors("TAPPED", false, false)
 						end
 					else
 						if E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
-							if texturesf == nil then
-								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(targettype, false, false))
-							else
-								unit.Health:SetStatusBarTexture(texturesf)
-								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(targettype, false, false))
-							end
+							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(targettype, false, false))
+							--gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColorsCustom(targettype, false, false)
 						else
-							if texturesf == nil then
-								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(targettype, false, false))
-							else
-								unit.Health:SetStatusBarTexture(texturesf)
-								unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(targettype, false, false))
-							end
+							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(targettype, false, false))
+							--gradR1,gradG1,gradB1,gradR2,grabG2,gradB2 = ElvUI_EltreumUI:GradientColors(targettype, false, false)
 						end
 					end
 				end
@@ -275,3 +253,4 @@ function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, Hea
 		if LevelTag then frame:Tag(frame.Level, db.level.format) frame.Level:UpdateTag() end
 	end
 end
+
