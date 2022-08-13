@@ -187,6 +187,28 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		end
 	elseif E.private.ElvUI_EltreumUI.install_version < "3.2.4" then
 		E.global["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["classification"]["worldboss"] = true
+
+		--reset eltreum name with lower priority
+		E.global["nameplates"]["filters"]['EltreumTarget'] = {}
+		E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"]['EltreumTarget'])
+		E.db["nameplates"]["filters"]['EltreumTarget'] = { triggers = { enable = true } }
+		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["priority"] = 1
+		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["isTarget"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["requireTarget"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["b"] = 0
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["g"] = 0
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["r"] = 0
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["scale"] = 1.25
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "ElvUI Blank"
+		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["elite"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["minus"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["normal"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["trivial"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["priority"] = 2
 	end
 
 	--more long term checks, in case somehow people enable 2 settings when its not possible to do so. Maybe its a shared profile from another person? No idea how they manage to do this
