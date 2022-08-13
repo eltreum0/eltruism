@@ -593,12 +593,19 @@ P.ElvUI_EltreumUI = {
 		druidcustomcolorB1 = 0.007843137254902,
 		druidcustomcolorB2 = 0.03921568627451,
 
-		huntercustomcolorR1 = 0.45490196078431,
+		--[[huntercustomcolorR1 = 0.45490196078431,
 		huntercustomcolorR2 = 0.43921568627451,
 		huntercustomcolorG1 = 0.59607843137255,
 		huntercustomcolorG2 = 0.87843137254902,
 		huntercustomcolorB1 = 0.25490196078431,
-		huntercustomcolorB2 = 0,
+		huntercustomcolorB2 = 0,]]
+
+		huntercustomcolorR1 = 0.40392156862745,
+		huntercustomcolorR2 = 0.67058823529412,
+		huntercustomcolorG1 = 0.53725490196078,
+		huntercustomcolorG2 = 0.92941176470588,
+		huntercustomcolorB1 = 0.22352941176471,
+		huntercustomcolorB2 = 0.30980392156863,
 
 		paladincustomcolorR1 = 1,
 		paladincustomcolorR2 = 0.95686274509804,
@@ -663,12 +670,20 @@ P.ElvUI_EltreumUI = {
 		warriorcustomcolorB1 = 0.090196078431373,
 		warriorcustomcolorB2 = 0.24705882352941,
 
+		--[[
 		monkcustomcolorR1 = 0,
 		monkcustomcolorR2 = 0,
 		monkcustomcolorG1 = 0.77254901960784,
 		monkcustomcolorG2 = 0.76078431372549,
 		monkcustomcolorB1 = 0.45882352941176,
-		monkcustomcolorB2 = 0.24313725490196,
+		monkcustomcolorB2 = 0.24313725490196,]]
+
+		monkcustomcolorR1 = 0.015686274509804,
+		monkcustomcolorR2 = 0,
+		monkcustomcolorG1 = 0.6078431372549,
+		monkcustomcolorG2 = 1,
+		monkcustomcolorB1 = 0.36862745098039,
+		monkcustomcolorB2 = 0.58823529411765,
 
 		npcfriendlyR1 = 0.30980392156863,
 		npcfriendlyR2 = 0.34117647058824,
