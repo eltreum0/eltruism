@@ -16,33 +16,16 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 		local Color, Scale
 		-- if gradient use gradient mode
 		if E.db.ElvUI_EltreumUI.gradientmode.npenable then
-			if UnitExists('pet') or (E.myrole == 'TANK') then
-				if not (E.myclass == "HUNTER" or E.myclass == 'WARLOCK') then
-					self.isTank = true
-				else
-					if not IsInGroup() then
-						self.PetTank = true
-					end
-				end
+			if UnitExists('pet') then
+				self.PetTank = true
 			else
-				self.isTank = false
+				if (E.myrole ~= 'TANK') and IsInGroup() then
+					self.PetTank = true
+				end
 			end
-			if (self.isTank or self.PetTank) and UnitName(nameplate.unit.."target") == E.myname and not sf.HealthColor then
-				if not (E.myclass == "HUNTER" or E.myclass == 'WARLOCK') then
-					self.offTank = false
-				else
-					nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
-					nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
-				end
-			elseif (self.isTank or self.PetTank) and UnitName(nameplate.unit.."target") ~= E.myname and not sf.HealthColor then
-				if not (E.myclass == "HUNTER" or E.myclass == 'WARLOCK') then
-					self.offTank = true
-				else
-					if UnitName(nameplate.unit.."target") == UnitName("pet") then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
-						nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
-					end
-				end
+			if self.PetTank and UnitName(nameplate.unit.."target") == E.myname and not sf.HealthColor then
+				nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
+				nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
 			end
 			if not InCombatLockdown() then
 				nameplate.CurrentlyBeingTanked = nil
