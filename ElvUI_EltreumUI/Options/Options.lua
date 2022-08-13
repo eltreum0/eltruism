@@ -6410,15 +6410,15 @@ function ElvUI_EltreumUI:Configtable()
 							enableCustomHealthHeight = {
 								order = 8,
 								type = 'toggle',
-								name = L["Enable Custom Health Heights"],
+								name = E.NewSign..L["Enable Custom Health Heights"],
 								desc = L["Changes Nameplate Health Height depending on conditions"],
 								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight E:StaticPopup_Show('CONFIG_RL') end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight = value end,
+								get = function() return E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							enableCustomHealthHeightnocombat = {
 								type = 'range',
-								name = L["Out of Combat/Not Targeted"],
+								name = E.NewSign..L["Out of Combat/Not Targeted"],
 								desc = L["Choose the Health Height for Nameplates not in combat or not targeted"],
 								order = 9,
 								min = 1,
@@ -6431,7 +6431,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							enableCustomHealthHeightincombat = {
 								type = 'range',
-								name = L["In Combat/Targeted"],
+								name = E.NewSign..L["In Combat/Targeted"],
 								desc = L["Choose the Health Height for Nameplates that are in combat or targeted"],
 								order = 9,
 								min = 1,
