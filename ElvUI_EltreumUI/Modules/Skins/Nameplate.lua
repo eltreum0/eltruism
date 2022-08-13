@@ -171,12 +171,11 @@ local function GradientNameplates(unit)
 end
 hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 
-
 --Custom Health Height Conditions
-local test1
+local targetunit
 local function CustomHealthHeight(unit)
 	if unit and unit.unit then
-		test1 = unit
+		targetunit = unit
 		if not UnitAffectingCombat(unit.unit) and not UnitIsUnit(unit.unit, "target") then
 			unit.Health:SetHeight(2)
 		elseif UnitAffectingCombat(unit.unit) or UnitIsUnit(unit.unit, "target") then
@@ -189,7 +188,7 @@ hooksecurefunc(NP, "Health_UpdateColor", CustomHealthHeight)
 local updateHealthHeight = CreateFrame("Frame")
 updateHealthHeight:RegisterEvent("PLAYER_TARGET_CHANGED")
 updateHealthHeight:SetScript("OnEvent", function()
-	CustomHealthHeight(test1)
+	CustomHealthHeight(targetunit)
 end)
 
 --fix stylefilter for gradient nameplates
