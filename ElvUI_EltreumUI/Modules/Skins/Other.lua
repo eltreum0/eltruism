@@ -6,6 +6,8 @@ local WideTradeSkill = CreateFrame("Frame")
 local WideTradeSkillEnchant = CreateFrame("Frame")
 local dontexpandanymoreEnchant = 0
 local dontexpandanymore = 0
+local skillbutton
+local skillTitle
 
 function ElvUI_EltreumUI:SkinProfessions()
 	if E.db.ElvUI_EltreumUI.skins.professions and not E.private.skins.blizzard.enable == false then
@@ -22,6 +24,29 @@ function ElvUI_EltreumUI:SkinProfessions()
 				local TradeSkillCreateAllButton = _G.TradeSkillCreateAllButton
 				local TradeSkillCreateButton = _G.TradeSkillCreateButton
 				local TradeSkillCancelButton = _G.TradeSkillCancelButton
+
+				if dontexpandanymore == 0 then
+					-- Create the additional rows
+					--local numSkills = _G.TRADE_SKILLS_DISPLAYED
+					--local numSkills = 8
+					_G.TRADE_SKILLS_DISPLAYED = 22
+
+					--_G.TRADE_SKILLS_DISPLAYED = _G.TRADE_SKILLS_DISPLAYED + 14
+					--for i = numSkills + 1, 22 do
+					for i = 9, 22 do
+						skillbutton = CreateFrame("Button", "TradeSkillSkill" .. i, TradeSkillFrame, "TradeSkillSkillButtonTemplate")
+						skillbutton:SetID(i)
+						skillbutton:Hide()
+						skillbutton:ClearAllPoints()
+						skillbutton:SetPoint("TOPLEFT", _G["TradeSkillSkill" .. (i - 1)], "BOTTOMLEFT", 0, 1)
+					end
+					--increase the width of the rows so the title fits
+					for i = 1, 22 do
+						skillTitle = _G["TradeSkillSkill"..i]
+						skillTitle:SetWidth(335)
+					end
+					dontexpandanymore = 1
+				end
 
 				TradeSkillFrame:HookScript("OnShow", function()
 
@@ -92,34 +117,11 @@ function ElvUI_EltreumUI:SkinProfessions()
 
 					TradeSkillCancelButton:ClearAllPoints()
 					TradeSkillCancelButton:SetPoint("RIGHT", TradeSkillFrame, "BOTTOMRIGHT", -50, 95)
-
-					if dontexpandanymore == 0 then
-						-- Create the additional rows
-						local numSkills = 8
-						_G.TRADE_SKILLS_DISPLAYED = 22
-						--local numSkills = TRADE_SKILLS_DISPLAYED
-						--TRADE_SKILLS_DISPLAYED = TRADE_SKILLS_DISPLAYED + 14
-
-						for i = numSkills + 1, 22 do
-							local skillbutton = CreateFrame("Button", "TradeSkillSkill" .. i, TradeSkillFrame, "TradeSkillSkillButtonTemplate")
-							skillbutton:SetID(i)
-							skillbutton:Hide()
-							skillbutton:ClearAllPoints()
-							skillbutton:SetPoint("TOPLEFT", _G["TradeSkillSkill" .. (i - 1)], "BOTTOMLEFT", 0, 1)
-						end
-						--increase the width of the rows so the title fits
-						for i = 1, 8 do
-							local skillTitle = _G["TradeSkillSkill"..i]
-							skillTitle:Width(335)
-						end
-						dontexpandanymore = 1
-					end
 				end)
 			end
 		end)
 
 		--and enchanting which uses a different system apparently
-		--if (GetAddOnEnableState(GetUnitName("player"), "TradeSkillMaster")) > 0 then
 		if IsAddOnLoaded("TradeSkillMaster") then
 			WideTradeSkillEnchant:RegisterEvent("CRAFT_SHOW")
 			WideTradeSkillEnchant:SetScript("OnEvent", function()
