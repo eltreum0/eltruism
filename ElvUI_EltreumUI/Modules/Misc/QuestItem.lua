@@ -91,6 +91,7 @@ local blocklist = {
 	[24291] = true, --bog lord tendril
 	[24497] = true, --feralfen protection totem
 	[25448] = true, --blacksting's stinger
+	[25491] = true, --salvaged spore sacs
 }
 
 function ElvUI_EltreumUI:QuestItem()
