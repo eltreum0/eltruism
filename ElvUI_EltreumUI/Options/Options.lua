@@ -6419,7 +6419,7 @@ function ElvUI_EltreumUI:Configtable()
 							enableCustomHealthHeightelvui = {
 								order = 8,
 								type = 'toggle',
-								name = E.NewSign..L["Use ElvUI Heights"],
+								name = E.NewSign..L["Use ElvUI Health Heights"],
 								desc = L["Use ElvUI Nameplate Health Heights when targeted or in combat"],
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight end,
@@ -6448,7 +6448,7 @@ function ElvUI_EltreumUI:Configtable()
 								max = 40,
 								step = 1,
 								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight or E.db.ElvUI_EltreumUI.nameplateOptions.useelvuinpheight end,
 								get = function() return E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight = value end,
 							},
