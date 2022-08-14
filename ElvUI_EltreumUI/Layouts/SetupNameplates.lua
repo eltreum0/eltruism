@@ -157,10 +157,13 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["filters"]["EltreumTotems"]["triggers"]["enable"] = true
 			E.db["nameplates"]["highlight"] = false
 			E.db["nameplates"]["lowHealthThreshold"] = 0.2
-			E.db["nameplates"]["plateSize"]["friendlyHeight"] = 10
+
 			E.db["nameplates"]["plateSize"]["friendlyWidth"] = 150
+			E.db["nameplates"]["plateSize"]["friendlyHeight"] = 30
 			E.db["nameplates"]["plateSize"]["enemyWidth"] = 150
+			E.db["nameplates"]["plateSize"]["enemyHeight"] = 30
 			E.db["nameplates"]["plateSize"]["personalWidth"] = 150
+			E.db["nameplates"]["plateSize"]["personalHeight"] = 30
 
 			E.db["nameplates"]["statusbar"] = "ElvUI Norm1"
 			E.db["nameplates"]["overlapH"] = 0.8
