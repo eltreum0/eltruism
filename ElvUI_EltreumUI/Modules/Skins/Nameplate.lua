@@ -189,15 +189,19 @@ hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 --np custom health height conditions
 local nptarget, nptargetunit
 local target3d = CreateFrame('PlayerModel')
-target3d:SetCamDistanceScale(0.5)
-target3d:SetViewTranslation(1,-80)
-target3d:SetRotation(rad(296))
-
 
 function ElvUI_EltreumUI:CustomHealthHeight(unit)
-	if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
+	if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight or E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
+
+		if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
+			target3d:SetCamDistanceScale(E.db.ElvUI_EltreumUI.nameplateOptions.CamDistanceScale)
+			target3d:SetViewTranslation(E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationx,E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationy)
+			target3d:SetRotation(rad(E.db.ElvUI_EltreumUI.nameplateOptions.Rotation))
+		end
 		if UnitExists("target") then
-			target3d:Show()
+			if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
+				target3d:Show()
+			end
 			nptarget = C_NamePlate.GetNamePlateForUnit("target")
 			if nptarget then
 				if E.Retail then
@@ -207,14 +211,18 @@ function ElvUI_EltreumUI:CustomHealthHeight(unit)
 				end
 			end
 		else
-			target3d:Hide()
+			if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
+				target3d:Hide()
+			end
 			nptarget = nil
 			nptargetunit = nil
 		end
 		if unit and unit.unit then
 			if not UnitAffectingCombat(unit.unit) then
 				if nptargetunit and UnitIsUnit(unit.unit, nptargetunit) then
-					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
+					if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
+						unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
+					end
 					--target3d:CreateBackdrop(nil, nil, nil, nil, true)
 					target3d:SetParent(unit)
 					target3d:SetUnit(unit.unit)
@@ -222,10 +230,14 @@ function ElvUI_EltreumUI:CustomHealthHeight(unit)
 					target3d:SetPoint("CENTER", unit, "CENTER")
 					target3d:SetFrameLevel(unit.Health:GetFrameLevel())
 				else
-					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.outofcombatHeight)
+					if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
+						unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.outofcombatHeight)
+					end
 				end
 			elseif UnitAffectingCombat(unit.unit) then
-				unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
+				if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
+					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
+				end
 			end
 		end
 	end
