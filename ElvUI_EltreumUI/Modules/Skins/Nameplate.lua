@@ -230,7 +230,7 @@ function ElvUI_EltreumUI:CustomHealthHeight(unit)
 					target3d:SetParent(unit)
 					target3d:ClearModel()
 					target3d:SetUnit(unit.unit)
-					target3d:SetInside(unit.Health, 0, 0)
+					target3d:SetInside(unit.Health, 0, 0) --just like others allows it to not step out of boundaries
 					target3d:SetSize(150,E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
 					target3d:SetPoint("CENTER", unit, "CENTER")
 					target3d:SetFrameLevel(unit.Health:GetFrameLevel())
