@@ -190,13 +190,14 @@ hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 local nptarget, nptargetunit
 local target3d = CreateFrame('PlayerModel')
 
+
 function ElvUI_EltreumUI:CustomHealthHeight(unit)
-	if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight or E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
+	if (E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight or E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel) and unit and unit.unit then
 
 		if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
-			target3d:SetCameraPosition(E.db.ElvUI_EltreumUI.nameplateOptions.cameraposX, E.db.ElvUI_EltreumUI.nameplateOptions.cameraposY, E.db.ElvUI_EltreumUI.nameplateOptions.cameraposZ)
+			target3d:SetPortraitZoom(1) --allows the same cam as elvui UF
 			target3d:SetCamDistanceScale(E.db.ElvUI_EltreumUI.nameplateOptions.CamDistanceScale)
-			target3d:SetViewTranslation(E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationx,E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationy)
+			target3d:SetViewTranslation(E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationx*100,E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationy*100)
 			target3d:SetRotation(rad(E.db.ElvUI_EltreumUI.nameplateOptions.Rotation))
 			target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplateOptions.modelalpha)
 		end
@@ -227,7 +228,9 @@ function ElvUI_EltreumUI:CustomHealthHeight(unit)
 					end
 					--target3d:CreateBackdrop(nil, nil, nil, nil, true)
 					target3d:SetParent(unit)
+					target3d:ClearModel()
 					target3d:SetUnit(unit.unit)
+					target3d:SetInside(unit.Health, 0, 0)
 					target3d:SetSize(150,E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
 					target3d:SetPoint("CENTER", unit, "CENTER")
 					target3d:SetFrameLevel(unit.Health:GetFrameLevel())
