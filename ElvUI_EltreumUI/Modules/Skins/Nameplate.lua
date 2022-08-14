@@ -201,8 +201,6 @@ function ElvUI_EltreumUI:CustomHealthHeight(unit)
 			if not UnitAffectingCombat(unit.unit) then
 				if nptargetunit and UnitIsUnit(unit.unit, nptargetunit) then
 					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
-				elseif nptarget == nil then
-					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.outofcombatHeight)
 				else
 					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.outofcombatHeight)
 				end
