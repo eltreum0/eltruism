@@ -188,9 +188,16 @@ hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 
 --np custom health height conditions
 local nptarget, nptargetunit
+local target3d = CreateFrame('PlayerModel')
+target3d:SetCamDistanceScale(0.5)
+target3d:SetViewTranslation(1,-80)
+target3d:SetRotation(rad(296))
+
+
 function ElvUI_EltreumUI:CustomHealthHeight(unit)
 	if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
 		if UnitExists("target") then
+			target3d:Show()
 			nptarget = C_NamePlate.GetNamePlateForUnit("target")
 			if nptarget then
 				if E.Retail then
@@ -200,6 +207,7 @@ function ElvUI_EltreumUI:CustomHealthHeight(unit)
 				end
 			end
 		else
+			target3d:Hide()
 			nptarget = nil
 			nptargetunit = nil
 		end
@@ -207,6 +215,12 @@ function ElvUI_EltreumUI:CustomHealthHeight(unit)
 			if not UnitAffectingCombat(unit.unit) then
 				if nptargetunit and UnitIsUnit(unit.unit, nptargetunit) then
 					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
+					--target3d:CreateBackdrop(nil, nil, nil, nil, true)
+					target3d:SetParent(unit)
+					target3d:SetUnit(unit.unit)
+					target3d:SetSize(150,E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
+					target3d:SetPoint("CENTER", unit, "CENTER")
+					target3d:SetFrameLevel(unit.Health:GetFrameLevel())
 				else
 					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.outofcombatHeight)
 				end
