@@ -145,6 +145,11 @@ function ElvUI_EltreumUI:SkinProfessions()
 				CraftFrame:SetWidth(765)
 				CraftFrame:SetHeight(550)
 
+				_G.CraftListScrollFrame:ClearAllPoints()
+				_G.CraftListScrollFrame:SetPoint("LEFT", CraftFrame, "LEFT", 20, 10)
+				_G.CraftListScrollFrame:SetHeight(340)
+				_G.CraftListScrollFrame:SetWidth(330)
+
 				CraftListScrollFrameScrollChildFrame:SetHeight(390)
 				CraftListScrollFrameScrollChildFrame:SetWidth(350)
 
@@ -152,8 +157,8 @@ function ElvUI_EltreumUI:SkinProfessions()
 				CraftListScrollFrameScrollBar:SetPoint("CENTER", CraftFrame, "CENTER", 10, 12)
 				CraftListScrollFrameScrollBar:SetHeight(320)
 
-				CraftDetailScrollChildFrame:SetParent(CraftFrame)
 				CraftDetailScrollChildFrame:ClearAllPoints()
+				CraftDetailScrollChildFrame:SetParent(CraftFrame)
 				CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30, -46)
 				CraftDetailScrollChildFrame:SetHeight(390)
 
@@ -166,18 +171,12 @@ function ElvUI_EltreumUI:SkinProfessions()
 					CraftFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", CraftFrame, 64,-48)
 				end
 
-				CraftCreateButton:ClearAllPoints()
-				CraftCreateButton:SetPoint("LEFT", CraftFrame, "BOTTOMLEFT", 15, 95)
-
 				_G.CraftFramePointsLabel:ClearAllPoints()
 				_G.CraftFramePointsLabel:SetPoint("LEFT", _G["CraftCreateButton"], "RIGHT", 5, 0)
 				_G.CraftFramePointsText:ClearAllPoints()
 				_G.CraftFramePointsText:SetPoint("LEFT", _G.CraftFramePointsLabel, "RIGHT", 5, 0)
 
-				CraftCancelButton:ClearAllPoints()
-				CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
-
-					if dontexpandanymoreEnchant == 0 then
+				if dontexpandanymoreEnchant == 0 then
 					-- Create the additional rows
 					--local numCrafts = CRAFTS_DISPLAYED
 					local numCrafts = 8
@@ -197,7 +196,12 @@ function ElvUI_EltreumUI:SkinProfessions()
 					end
 					dontexpandanymoreEnchant = 1
 				end
-
+				E:Delay(0, function()
+					CraftCreateButton:ClearAllPoints()
+					CraftCreateButton:SetPoint("LEFT", CraftFrame, "BOTTOMLEFT", 15, 95)
+				end)
+				CraftCancelButton:ClearAllPoints()
+				CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
 
 			end)
 		else
@@ -223,6 +227,11 @@ function ElvUI_EltreumUI:SkinProfessions()
 						CraftFrame:SetWidth(765)
 						CraftFrame:SetHeight(550)
 
+						_G.CraftListScrollFrame:ClearAllPoints()
+						_G.CraftListScrollFrame:SetPoint("LEFT", CraftFrame, "LEFT", 20, 10)
+						_G.CraftListScrollFrame:SetHeight(340)
+						_G.CraftListScrollFrame:SetWidth(330)
+
 						CraftListScrollFrameScrollChildFrame:SetHeight(390)
 						CraftListScrollFrameScrollChildFrame:SetWidth(350)
 
@@ -230,8 +239,8 @@ function ElvUI_EltreumUI:SkinProfessions()
 						CraftListScrollFrameScrollBar:SetPoint("CENTER", CraftFrame, "CENTER", 10, 12)
 						CraftListScrollFrameScrollBar:SetHeight(320)
 
-						CraftDetailScrollChildFrame:SetParent(CraftFrame)
 						CraftDetailScrollChildFrame:ClearAllPoints()
+						CraftDetailScrollChildFrame:SetParent(CraftFrame)
 						CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30, -46)
 						CraftDetailScrollChildFrame:SetHeight(390)
 
@@ -243,9 +252,6 @@ function ElvUI_EltreumUI:SkinProfessions()
 							CraftFrameAvailableFilterCheckButton:ClearAllPoints()
 							CraftFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", CraftFrame, 64,-48)
 						end
-
-						CraftCreateButton:ClearAllPoints()
-						CraftCreateButton:SetPoint("LEFT", CraftFrame, "BOTTOMLEFT", 15, 95)
 
 						_G.CraftFramePointsLabel:ClearAllPoints()
 						_G.CraftFramePointsLabel:SetPoint("LEFT", _G["CraftCreateButton"], "RIGHT", 5, 0)
@@ -275,6 +281,11 @@ function ElvUI_EltreumUI:SkinProfessions()
 							end
 							dontexpandanymoreEnchant = 1
 						end
+
+						CraftCreateButton:ClearAllPoints()
+						CraftCreateButton:SetPoint("LEFT", CraftFrame, "BOTTOMLEFT", 15, 95)
+						CraftCancelButton:ClearAllPoints()
+						CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
 					end)
 				end
 			end)
