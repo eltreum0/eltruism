@@ -192,7 +192,9 @@ function ElvUI_EltreumUI:CustomHealthHeight(unit)
 	if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
 		if UnitExists("target") then
 			nptarget = C_NamePlate.GetNamePlateForUnit("target")
-			nptargetunit = nptarget.UnitFrame.BuffFrame.unit
+			if nptarget and nptarget.UnitFrame and nptarget.UnitFrame.BuffFrame then
+				nptargetunit = nptarget.UnitFrame.BuffFrame.unit
+			end
 		else
 			nptarget = nil
 			nptargetunit = nil
