@@ -352,7 +352,7 @@ L["Change the Horizontal Position of LootText (Default = 0)"] = "Ändere die Hor
 L["Set X offset"] = "Setze X-Offset"
 L["Change the Vertical Position of LootText (Default = 200)"] = "Ändere die Vertikale Position des Beutetextes (Standard = 200)"
 L["Set Y offset"] = "Setze Y-Offset"
-L["Change the font of LootText to be that the ElvUI Default Font found in General"] = "Ändere die Schriftart des Beutetextes, welches in ElvUI Standart Schriftart in den Allgemeinen Einstellungen gefunden wird"
+L["Change the font of LootText to be the ElvUI Default Font found in General"] = "Ändere die Schriftart des Beutetextes, welches in ElvUI Standart Schriftart in den Allgemeinen Einstellungen gefunden wird"
 L["Use ElvUI General Font"] = "Benutze ElvUI Standart Schriftart"
 L["Change the font of LootText"] = "Ändere die Schriftart des Beuteextes"
 L["Chat"] = true

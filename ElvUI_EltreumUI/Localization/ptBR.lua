@@ -303,7 +303,7 @@ L["Dialog"] = "Diálogo"
 L["Change the Horizontal Position of LootText (Default = 0)"] = "Mudar a Posição Horizontal do LootText (Pedrão = 0)"
 L["Set X offset"] = "Selecione o deslocamento X"
 L["Change the Vertical Position of LootText (Default = 200)"] = "Mudar a Posição Vertical do LootText(Padrão = 200)"
-L["Change the font of LootText to be that the ElvUI Default Font found in General"] = "Mudar a fonte do LootText para ser igual a fonte ElvUI"
+L["Change the font of LootText to be the ElvUI Default Font found in General"] = "Mudar a fonte do LootText para ser igual a fonte ElvUI"
 L["Use ElvUI General Font"] = "Utilizar a Fonte Geral ElvUI"
 L["Change the font of LootText"] = "Mudar a fonte do LootText"
 L["Chat"] = true

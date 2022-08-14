@@ -5427,7 +5427,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							customfontlootdesc = {
 								type = 'description',
-								name = L["Change the font of LootText to be that the ElvUI Default Font found in General"],
+								name = L["Change the font of LootText to be the ElvUI Default Font found in General"],
 								width = 'full',
 								order = 17,
 							},
