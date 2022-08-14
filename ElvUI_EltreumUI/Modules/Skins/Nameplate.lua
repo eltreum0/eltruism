@@ -189,9 +189,7 @@ hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 --np custom health height conditions
 local nptarget, nptargetunit
 local target3d = CreateFrame('PlayerModel')
-
-
-function ElvUI_EltreumUI:CustomHealthHeight(unit)
+function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 	if (E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight or E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel) and unit and unit.unit then
 
 		if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
@@ -248,7 +246,7 @@ function ElvUI_EltreumUI:CustomHealthHeight(unit)
 		end
 	end
 end
-hooksecurefunc(NP, "StyleFilterConditionCheck", ElvUI_EltreumUI.CustomHealthHeight)
+hooksecurefunc(NP, "StyleFilterConditionCheck", ElvUI_EltreumUI.NameplateCustomOptions)
 
 
 --fix stylefilter for gradient nameplates

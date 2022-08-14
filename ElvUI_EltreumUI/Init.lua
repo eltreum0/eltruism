@@ -239,7 +239,7 @@ end
 function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	ElvUI_EltreumUI:NamePlateOptions()
 	ElvUI_EltreumUI:NameplatePower()
-	ElvUI_EltreumUI:CustomHealthHeight()
+	ElvUI_EltreumUI:NameplateCustomOptions()
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
 		ElvUI_EltreumUI:BordersTargetChanged()
 	end
