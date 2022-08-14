@@ -61,7 +61,8 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 		end
 	end
 	--if UF["units"][uf] and UnitExists(unit) then
-	if E.db["unitframe"]["units"][uf] and UnitExists(unit) then
+	--E.db["unitframe"]["units"][uf] fails for target of target of target
+	if UnitExists(unit) then
 		unitframe = _G["ElvUF_"..name]
 		if unitframe and unitframe.Health then
 			unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.UForientation)
