@@ -762,7 +762,11 @@ function ElvUI_EltreumUI:BackdropTexture(isTransparent, statusBar, backdropTex, 
 			UF:HandleStatusBarTemplate(statusBar, statusBar:GetParent(), isTransparent)
 			if isTransparent then
 				--statusBar:SetStatusBarTexture(0, 0, 0, 0)
-				UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.media.blankTex)
+				if E.db.ElvUI_EltreumUI.darkmode then
+					UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
+				else
+					UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.media.blankTex)
+				end
 				UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
 			else
 				texture = E.LSM:Fetch('statusbar', self.db.statusbar)
