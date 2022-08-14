@@ -215,6 +215,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			--EltreumPowerBar.Text:SetText(BreakUpLargeNumbers(UnitPower("player")))	--this is an actual number not string
 
 			EltreumPowerBar:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplatepower.sizey)
+			--EltreumPowerBar:SetSize(E.db.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplatepower.sizey) --testwidth
 			EltreumPowerBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture))
 			EltreumPowerBar:SetFrameStrata("MEDIUM")
 
