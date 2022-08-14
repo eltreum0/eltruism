@@ -167,6 +167,10 @@ P.ElvUI_EltreumUI = {
 		ViewTranslationx = 1,
 		ViewTranslationy = -80,
 		Rotation = 296,
+		modelalpha = 0.7,
+		cameraposX = 0.75412392616272,
+		cameraposY = -0.059279628098011,
+		cameraposZ = 0.69370859861374,
 	},
 
 	stealthOptions = {

@@ -194,9 +194,11 @@ function ElvUI_EltreumUI:CustomHealthHeight(unit)
 	if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight or E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
 
 		if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
+			target3d:SetCameraPosition(E.db.ElvUI_EltreumUI.nameplateOptions.cameraposX, E.db.ElvUI_EltreumUI.nameplateOptions.cameraposY, E.db.ElvUI_EltreumUI.nameplateOptions.cameraposZ)
 			target3d:SetCamDistanceScale(E.db.ElvUI_EltreumUI.nameplateOptions.CamDistanceScale)
 			target3d:SetViewTranslation(E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationx,E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationy)
 			target3d:SetRotation(rad(E.db.ElvUI_EltreumUI.nameplateOptions.Rotation))
+			target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplateOptions.modelalpha)
 		end
 		if UnitExists("target") then
 			if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
