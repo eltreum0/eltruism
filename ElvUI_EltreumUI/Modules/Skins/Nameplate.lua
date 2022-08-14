@@ -22,7 +22,6 @@ local UnitPlayerControlled = _G.UnitPlayerControlled
 local UnitAffectingCombat = _G.UnitAffectingCombat
 local UnitIsUnit = _G.UnitIsUnit
 local CreateFrame = _G.CreateFrame
-local targetunit
 
 --gradient threat
 function NP:ThreatIndicator_PostUpdate(unit, status)
@@ -187,10 +186,73 @@ local function GradientNameplates(unit)
 end
 hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 
+
+
+
+--[[
+local swapped
+local targettableGUID = {}
+local targettableUNIT = {}
+local previoustargettableUNIT = {}
+
 --Custom Health Height Conditions
-local function CustomHealthHeight(unit)
+function ElvUI_EltreumUI:CustomHealthHeight(nameplate)
+	--print(unit,nameplate)
+
+	--nameplate hack attempt
+	if UnitExists("target") then
+		nptarget = C_NamePlate.GetNamePlateForUnit("target")
+		if nptarget then
+			nptargetunit = nptarget.UnitFrame.BuffFrame.unit
+			nptargetunitGUID = UnitGUID(nptarget.UnitFrame.BuffFrame.unit)
+
+			targettableUNIT[1] = nptargetunit
+			tinsert(previoustargettableUNIT, nptargetunit)
+			if previoustargettableUNIT[2] ~= targettableUNIT[1] then
+				print("aa")
+			end
+
+			if targettableGUID[1] ~= nptargetunitGUID then
+				print("c",nptargetunitGUID)
+
+				targettableGUID[1] = nptargetunitGUID
+				swapped = true
+			elseif targettableGUID[1] == nptargetunitGUID then
+				--print("a",nptargetunitGUID)
+				swapped = false
+			end
+		end
+	else
+		--print("b",nptargetunitGUID)
+		targettableGUID[1] = nil
+		swapped = false
+	end
+
+	if nameplate and nameplate.Health then
+			--print(UnitIsUnit(nameplate.unit, "target"), nameplate.unit)
+		if not UnitAffectingCombat(nameplate.unit) then
+			if targettableGUID[1] ~= nil and UnitIsUnit(nptargetunit, "target") then
+				--print("1")
+				nameplate.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
+			elseif targettableGUID[1] == nil then
+				--print("4")
+				nameplate.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.outofcombatHeight)
+			else
+				--print("2")
+				nameplate.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.outofcombatHeight)
+			end
+		elseif UnitAffectingCombat(nameplate.unit) then
+			--print("3")
+			nameplate.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
+		end
+	end
+end]]
+
+--[[
+local targetunit
+function ElvUI_EltreumUI:CustomHealthHeight(unit)
 	if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
-		if unit and unit.unit then
+		if unit and unit.unit and UnitExists(unit.unit) and unit.Health then
 			targetunit = unit
 			if not UnitAffectingCombat(unit.unit) and not UnitIsUnit(unit.unit, "target") then
 				unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.outofcombatHeight)
@@ -200,19 +262,40 @@ local function CustomHealthHeight(unit)
 		end
 	end
 end
-hooksecurefunc(NP, "Health_UpdateColor", CustomHealthHeight)
-hooksecurefunc(NP, "StyleFilterSetVariables", CustomHealthHeight)
-hooksecurefunc(NP, "StyleFilterClearVariables", CustomHealthHeight)
 
-local updateHealthHeight = CreateFrame("Frame")
-updateHealthHeight:RegisterEvent("PLAYER_TARGET_CHANGED")
-updateHealthHeight:SetScript("OnEvent", function()
+hooksecurefunc(NP, "Health_UpdateColor", ElvUI_EltreumUI.CustomHealthHeight)
+hooksecurefunc(NP, "SetupTarget", ElvUI_EltreumUI.CustomHealthHeight)
+hooksecurefunc(NP, "StyleFilterSetVariables", ElvUI_EltreumUI.CustomHealthHeight)
+
+]]
+
+local nptarget, nptargetunit
+function ElvUI_EltreumUI:CustomHealthHeight(unit)
 	if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
-		CustomHealthHeight(targetunit)
-	else
-		updateHealthHeight:UnregisterAllEvents()
+		if unit then
+			if not UnitAffectingCombat(unit.unit) then
+				nptarget = C_NamePlate.GetNamePlateForUnit("target")
+				if nptarget then
+					nptargetunit = nptarget.UnitFrame.BuffFrame.unit
+				end
+				if nptargetunit and UnitIsUnit(unit.unit, nptargetunit) then
+					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
+				else
+					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.outofcombatHeight)
+				end
+			elseif UnitAffectingCombat(unit.unit) then
+				unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
+			end
+		end
 	end
-end)
+end
+
+--hooksecurefunc(NP, "Health_UpdateColor", ElvUI_EltreumUI.CustomHealthHeight)
+--hooksecurefunc(NP, "SetupTarget", ElvUI_EltreumUI.CustomHealthHeight)
+hooksecurefunc(NP, "StyleFilterConditionCheck", ElvUI_EltreumUI.CustomHealthHeight)
+--hooksecurefunc(NP, "StyleFilterSetVariables", ElvUI_EltreumUI.CustomHealthHeight)
+hooksecurefunc(NP, "StyleFilterClearVariables", ElvUI_EltreumUI.CustomHealthHeight)
+--hooksecurefunc(NP, "StylePlate", ElvUI_EltreumUI.CustomHealthHeight)
 
 --fix stylefilter for gradient nameplates
 function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, HealthFlash, HealthTexture, Scale, Alpha, NameTag, PowerTag, HealthTag, TitleTag, LevelTag, Portrait, NameOnly, Visibility)
