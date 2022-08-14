@@ -201,6 +201,9 @@ local function CustomHealthHeight(unit)
 	end
 end
 hooksecurefunc(NP, "Health_UpdateColor", CustomHealthHeight)
+hooksecurefunc(NP, "StyleFilterSetVariables", CustomHealthHeight)
+hooksecurefunc(NP, "StyleFilterClearVariables", CustomHealthHeight)
+
 local updateHealthHeight = CreateFrame("Frame")
 updateHealthHeight:RegisterEvent("PLAYER_TARGET_CHANGED")
 updateHealthHeight:SetScript("OnEvent", function()
