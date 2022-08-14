@@ -190,10 +190,14 @@ hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 local nptarget, nptargetunit
 function ElvUI_EltreumUI:CustomHealthHeight(unit)
 	if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
-		if UnitExists("target") and UnitCanAttack("player", "target") then
+		if UnitExists("target") then
 			nptarget = C_NamePlate.GetNamePlateForUnit("target")
 			if nptarget then
-				nptargetunit = nptarget.UnitFrame.BuffFrame.unit
+				if E.Retail then
+					nptargetunit = nptarget.UnitFrame.BuffFrame.unit
+				else
+					nptargetunit = nptarget.namePlateUnitToken
+				end
 			end
 		else
 			nptarget = nil
