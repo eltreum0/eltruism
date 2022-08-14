@@ -1012,3 +1012,4 @@ L["Choose the Health Height for Nameplates that are in combat or targeted"] = "E
 L["Target Model"] = "Modelo do Alvo"
 L["Enable Target Model"] = "Habilitar Modelo do Alvo"
 L["Shows the target's model on the target nameplate"] = "Mostra o modelo do Alvo na Placa de Nome do Alvo"
+L["Use ElvUI Damage Font"] = "Utilizar a Fonte de Dano ElvUI"

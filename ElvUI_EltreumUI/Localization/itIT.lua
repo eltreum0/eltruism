@@ -1015,3 +1015,4 @@ L["Choose the Health Height for Nameplates that are in combat or targeted"] = tr
 L["Target Model"] = true
 L["Enable Target Model"] = true
 L["Shows the target's model on the target nameplate"] = true
+L["Use ElvUI Damage Font"] = true
