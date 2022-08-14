@@ -15,6 +15,7 @@ local tonumber = _G.tonumber
 local table = _G.table
 local wipe = _G.wipe
 local UiMapPoint = _G.UiMapPoint
+local _, instanceType
 
 --Conversion of Time to Arrive weakaura (new version)
 local EltruismAutopin = CreateFrame("Frame", "EltruismAutoPin")
@@ -42,7 +43,7 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 			EltruismAutopin:RegisterEvent("PLAYER_ENTERING_WORLD")
 			--EltruismAutopin:SetScript("OnEvent", function(self, event, ...)
 			EltruismAutopin:SetScript("OnEvent", function(_, event)
-				local _, instanceType = IsInInstance()
+				_, instanceType = IsInInstance()
 				if instanceType ~= "none" then
 					C_Map.ClearUserWaypoint()
 				elseif instanceType == "none" then

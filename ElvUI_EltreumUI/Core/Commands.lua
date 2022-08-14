@@ -6,14 +6,14 @@ local GetCoinIcon = _G.GetCoinIcon
 local CombatText_AddMessage = _G.CombatText_AddMessage
 local CombatText_StandardScroll = _G.CombatText_StandardScroll
 local print = _G.print
-local strlower = strlower
-local GetContainerNumSlots = GetContainerNumSlots
-local select = select
-local GetContainerItemInfo = GetContainerItemInfo
+local strlower = _G.strlower
+local GetContainerNumSlots = _G.GetContainerNumSlots
+local select = _G.select
+local GetContainerItemInfo = _G.GetContainerItemInfo
 local C_Covenants = _G.C_Covenants
-local next = next
-local SendChatMessage = SendChatMessage
-local UseContainerItem = UseContainerItem
+local next = _G.next
+local SendChatMessage = _G.SendChatMessage
+local UseContainerItem = _G.UseContainerItem
 
 -- Register on init
 function ElvUI_EltreumUI:LoadCommands()

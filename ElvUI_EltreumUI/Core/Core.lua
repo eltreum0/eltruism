@@ -25,6 +25,8 @@ local GameMenuFrame = _G.GameMenuFrame
 local VideoOptionsFrame = _G.VideoOptionsFrame
 local UIErrorsFrame = _G.UIErrorsFrame
 local RaidWarningFrame = _G.RaidWarningFrame
+local W
+
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
@@ -34,7 +36,7 @@ end
 --hide popups during install
 function ElvUI_EltreumUI:HidePopups()
 	if E:IsAddOnEnabled("ElvUI_WindTools") then
-		local W = unpack(WindTools)
+		W = unpack(WindTools)
 		local function WindtoolsCompatHideWhileInstall()
 			WTCompatibilityFrame:Kill()
 		end

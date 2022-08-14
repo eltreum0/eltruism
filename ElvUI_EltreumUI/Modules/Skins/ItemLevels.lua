@@ -1,6 +1,21 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local CreateFrame = _G.CreateFrame
+local overlayFrame
+local _, hex
+local itemLink
+local quality
+local levelGetDetailedItemLevelInfo
+local slotID
+local itemQuality, itemLevel
+local math = _G.math
+local GetItemQualityColor = _G.GetItemQualityColor
+local GetInventoryItemLink = _G.GetInventoryItemLink
+local GetInventoryItemQuality = _G.GetInventoryItemQuality
+local GetDetailedItemLevelInfo = _G.GetDetailedItemLevelInfo
+local level
+local hooksecurefunc = _G.hooksecurefunc
+local C_Timer = _G.C_Timer
 
 --Calculate ilvl and average ilvl of player items/inspect unit
 local EltruismInspectilvls = CreateFrame("Frame")
@@ -12,7 +27,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 			if button.eltruismilvl then
 				return
 			end
-			local overlayFrame = CreateFrame("FRAME", nil, button)
+			overlayFrame = CreateFrame("FRAME", nil, button)
 			--overlayFrame:SetFrameLevel(9999) -- this was bugging out inspect
 			overlayFrame:SetAllPoints()
 			button.eltruismilvl = overlayFrame:CreateFontString('$parentItemLevel', 'OVERLAY')
@@ -29,7 +44,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 				return button.eltruismilvl and button.eltruismilvl:Hide()
 			end
 			PrepareItemButton(button)
-			local _, _, _, hex = GetItemQualityColor(itemQuality)
+			_, _, _, hex = GetItemQualityColor(itemQuality)
 			--if hex == "ffffffff" then
 				--return
 			--end
@@ -40,11 +55,11 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 		local function GetItemQualityAndLevel(unit, slotID)
 			-- link is more reliably fetched than ID, for whatever reason
 			--local itemLink = GetInventoryItemLink(unit, slotID)
-			local itemLink = GetInventoryItemLink(unit, slotID)
+			itemLink = GetInventoryItemLink(unit, slotID)
 			--local itemLink = LibItemInfo:GetUnitItemIndexLink(unit, slotID)
 			if itemLink ~= nil then
-				local quality = GetInventoryItemQuality(unit, slotID)
-				local level = GetDetailedItemLevelInfo(itemLink)
+				quality = GetInventoryItemQuality(unit, slotID)
+				level = GetDetailedItemLevelInfo(itemLink)
 				---local level LibItemInfo:GetItemLevel(itemLink)
 				--print(level) --level is the item level of each item
 				return quality, level
@@ -53,9 +68,9 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 
 		local function UpdateItemSlotButton(button, unit)
 			if button.eltruismilvl then button.eltruismilvl:Hide() end
-			local slotID = button:GetID()
+			slotID = button:GetID()
 			if (slotID >= _G.INVSLOT_FIRST_EQUIPPED and slotID <= _G.INVSLOT_LAST_EQUIPPED) then
-				local itemQuality, itemLevel = GetItemQualityAndLevel(unit, slotID)
+				itemQuality, itemLevel = GetItemQualityAndLevel(unit, slotID)
 				if itemLevel then
 					return AddLevelToButton(button, itemLevel, itemQuality)
 				end
@@ -99,7 +114,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 			if event == "INSPECT_READY" then
 				C_Timer.After(1, function()
 					if _G.InspectFrame and _G.InspectFrame:IsVisible() then
-						InspectPaperDollFrame_UpdateButtons()
+						_G.InspectPaperDollFrame_UpdateButtons()
 					end
 				end)
 			end
@@ -112,7 +127,6 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 			table.insert(ilvltable, i)
 		end]]
 		--local ilevel = E:GetUnitItemLevel() --GetAverageItemLevel() doesnt exist in tbc/classic
-		local ilevel = ElvUI_EltreumUI:GetUnitItemLevel("player")
-		_G.CharacterFrame.Text2:SetText((math.floor(ilevel*100))/100)
+		_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100))/100)
 	end
 end

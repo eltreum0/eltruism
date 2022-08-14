@@ -10,6 +10,13 @@ local PlaySoundFile = _G.PlaySoundFile
 local GetInstanceInfo = _G.GetInstanceInfo
 local GetSpellTexture = _G.GetSpellTexture
 local GetSpellCharges = _G.GetSpellCharges
+local _, instanceType
+local DifficultyID
+local ingroup
+local difficultyok
+local instanceok
+local currentCharges, cooldownStart, cooldownDuration
+local cooldown
 
 --PlaySound(61850)
 --PlaySound(61851)
@@ -20,7 +27,7 @@ local GetSpellCharges = _G.GetSpellCharges
 -- Conversion of the party/raid death weakaura into an addon option
 local deaththrottle
 function ElvUI_EltreumUI:RaidDeathGroupCheck()
-	local _, instanceType = IsInInstance()
+	_, instanceType = IsInInstance()
 	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
 		if IsInGroup() == true then
 			if E.db.ElvUI_EltreumUI.partyraiddeath.bgdisable then --to disable it in arena/bg
@@ -77,15 +84,12 @@ local TimeSinceLastUpdate = 0
 local ONUPDATE_INTERVAL = 1
 function ElvUI_EltreumUI:BattleRes()
 	if E.Retail and E.db.ElvUI_EltreumUI.otherstuff.bres then
-		local _, instanceType = IsInInstance()
-		local DifficultyID = select(3, GetInstanceInfo())
-		local ingroup = IsInGroup()
-
-		local difficultyok
+		_, instanceType = IsInInstance()
+		DifficultyID = select(3, GetInstanceInfo())
+		ingroup = IsInGroup()
 		if (DifficultyID == 8 or DifficultyID == 3 or DifficultyID == 4 or DifficultyID == 9 or DifficultyID == 14 or DifficultyID == 173 or DifficultyID == 5 or DifficultyID == 6 or DifficultyID == 174 or DifficultyID == 15 or DifficultyID == 148 or DifficultyID == 175 or DifficultyID == 176 or DifficultyID == 16) then
 			difficultyok = true
 		end
-		local instanceok
 		if instanceType == 'raid' or instanceType == 'party' then
 			instanceok = true
 		end
@@ -117,10 +121,10 @@ function ElvUI_EltreumUI:BattleRes()
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 					TimeSinceLastUpdate = 0
 					--currentCharges, maxCharges, cooldownStart, cooldownDuration, chargeModRate = GetSpellCharges(spellId or spellName)
-					local currentCharges, _, cooldownStart, cooldownDuration = GetSpellCharges(20484)
+					currentCharges, _, cooldownStart, cooldownDuration = GetSpellCharges(20484)
 					if currentCharges ~= nil and cooldownStart ~= nil and cooldownDuration ~= nil then
 						bresframe:SetAlpha(1)
-						local cooldown = math.floor(cooldownDuration - (GetTime() - cooldownStart))
+						cooldown = math.floor(cooldownDuration - (GetTime() - cooldownStart))
 						if cooldown <= 0 then
 							spellcd:SetText(READY)
 						else

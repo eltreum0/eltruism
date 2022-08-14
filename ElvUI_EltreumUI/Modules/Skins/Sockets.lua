@@ -1,7 +1,36 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
---local select = _G.select
-
+local unpack = _G.unpack
+local select = _G.select
+local LibStub = _G.LibStub
+local CreateFrame = _G.CreateFrame
+local setmetatable = _G.setmetatable
+local table = _G.table
+local IsModifiedClick = _G.IsModifiedClick
+local C_Timer = _G.C_Timer
+local pairs = _G.pairs
+local GetInventoryItemLink = _G.GetInventoryItemLink
+local GetInventorySlotInfo = _G.GetInventorySlotInfo
+local UnitLevel = _G.UnitLevel
+local string = _G.string
+local strsplit = _G.strsplit
+local tonumber = _G.tonumber
+local GetItemInfo = _G.GetItemInfo
+local GetItemQualityColor = _G.GetItemQualityColor
+local ipairs = _G.ipairs
+local WorldFrame = _G.WorldFrame
+local GetItemGem = _G.GetItemGem
+local GameTooltip = _G.GameTooltip
+local GetSpellLink = _G.GetSpellLink
+local GetSpellInfo = _G.GetSpellInfo
+local GetSpellTexture = _G.GetSpellTexture
+local IsAddOnLoaded = _G.IsAddOnLoaded
+local getmetatable = _G.getmetatable
+local type = _G.type
+local max = _G.max
+local strlenutf8 = _G.strlenutf8
+local bit = _G.bit
+local GRAY_FONT_COLOR = _G.GRAY_FONT_COLOR
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ENCHANT TABLES
 local KIBC_EnchantToSpellID = {
 	--missing ones added by eltreum
@@ -1990,7 +2019,8 @@ function ElvUI_EltreumUI:ClassicSockets()
 		return result
 	end
 
-	function ElvUI_EltreumUI:EnhanceControls(rootFrame)
+	--is this even needed?
+	--[[function ElvUI_EltreumUI:EnhanceControls(rootFrame)
 		for name, frame in pairs(self:FindFrames(rootFrame:GetName())) do
 			local type = frame:GetObjectType()
 			if type == "FontString" then
@@ -2013,5 +2043,5 @@ function ElvUI_EltreumUI:ClassicSockets()
 				end
 			end
 		end
-	end
+	end]]
 end

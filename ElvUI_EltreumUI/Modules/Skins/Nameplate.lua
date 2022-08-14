@@ -2,18 +2,39 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local NP = E:GetModule('NamePlates')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
+local nameplate, colors, db
+local sf
+local db
+local Color, Scale
+local targettype
+local reaction
+local _, className
+local player
+local h
+local pc
+local tx
+local UnitIsTapDenied = _G.UnitIsTapDenied
+local InCombatLockdown = _G.InCombatLockdown
+local UnitClass = _G.UnitClass
+local UnitIsPlayer = _G.UnitIsPlayer
+local UnitReaction = _G.UnitReaction
+local UnitPlayerControlled = _G.UnitPlayerControlled
+local UnitAffectingCombat = _G.UnitAffectingCombat
+local UnitIsUnit = _G.UnitIsUnit
+local CreateFrame = _G.CreateFrame
+local targetunit
 
 --gradient threat
 function NP:ThreatIndicator_PostUpdate(unit, status)
-	local nameplate, colors, db = self.__owner, NP.db.colors.threat, NP.db.threat
-	local sf = NP:StyleFilterChanges(nameplate)
+	nameplate, colors, db = self.__owner, NP.db.colors.threat, NP.db.threat
+	sf = NP:StyleFilterChanges(nameplate)
 	if not status and not sf.Scale then
 		nameplate.ThreatScale = 1
 		NP:ScalePlate(nameplate, 1)
 	elseif status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) then
 		NP:Health_SetColors(nameplate, true)
 		nameplate.ThreatStatus = status
-		local Color, Scale
+
 		-- if gradient use gradient mode
 		if E.db.ElvUI_EltreumUI.gradientmode.npenable then
 			if not InCombatLockdown() then
@@ -113,11 +134,6 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 	end
 end
 
-local targettype
-local reaction
-local _, className
-local player
-
 --gradient nameplates
 local function GradientNameplates(unit)
 	if E.db.ElvUI_EltreumUI.gradientmode.npenable then
@@ -126,7 +142,7 @@ local function GradientNameplates(unit)
 			player = UnitIsPlayer(unit.unit)
 			reaction =  UnitReaction(unit.unit, "player")
 
-			local sf = NP:StyleFilterChanges(unit)
+			sf = NP:StyleFilterChanges(unit)
 			if sf.HealthColor then
 				return
 			else
@@ -172,7 +188,6 @@ end
 hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 
 --Custom Health Height Conditions
-local targetunit
 local function CustomHealthHeight(unit)
 	if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
 		if unit and unit.unit then
@@ -198,7 +213,7 @@ end)
 
 --fix stylefilter for gradient nameplates
 function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, HealthFlash, HealthTexture, Scale, Alpha, NameTag, PowerTag, HealthTag, TitleTag, LevelTag, Portrait, NameOnly, Visibility)
-	local db = NP:PlateDB(frame)
+	db = NP:PlateDB(frame)
 
 	if frame.StyleFilterChanges then
 		wipe(frame.StyleFilterChanges)
@@ -210,7 +225,7 @@ function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, Hea
 		frame:Point('CENTER')
 	end
 	if HealthColor then
-		local h = frame.Health
+		h = frame.Health
 		if h.r and h.g and h.b then
 			h:SetStatusBarColor(h.r, h.g, h.b)
 			if E.db.ElvUI_EltreumUI.gradientmode.npenable then
@@ -220,7 +235,7 @@ function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, Hea
 		end
 	end
 	if PowerColor then
-		local pc = NP.db.colors.power[frame.Power.token] or _G.PowerBarColor[frame.Power.token] or {r=1, b=1, g=1}
+		pc = NP.db.colors.power[frame.Power.token] or _G.PowerBarColor[frame.Power.token] or {r=1, b=1, g=1}
 		frame.Power:SetStatusBarColor(pc.r, pc.g, pc.b)
 		frame.Cutaway.Power:SetVertexColor(pc.r * 1.5, pc.g * 1.5, pc.b * 1.5, 1)
 	end
@@ -236,7 +251,7 @@ function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, Hea
 		frame.HealthFlashTexture:Hide()
 	end
 	if HealthTexture then
-		local tx = E.LSM:Fetch('statusbar', NP.db.statusbar)
+		tx = E.LSM:Fetch('statusbar', NP.db.statusbar)
 		frame.Health:SetStatusBarTexture(tx)
 	end
 	if Scale then
@@ -259,4 +274,3 @@ function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, Hea
 		if LevelTag then frame:Tag(frame.Level, db.level.format) frame.Level:UpdateTag() end
 	end
 end
-

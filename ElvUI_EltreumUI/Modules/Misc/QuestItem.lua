@@ -25,6 +25,7 @@ local GetBindingText = _G.GetBindingText
 local CooldownFrame_Set = _G.CooldownFrame_Set
 local GetContainerItemCooldown = _G.GetContainerItemCooldown
 local GetInventoryItemCooldown = _G.GetInventoryItemCooldown
+local _, instanceType
 
 --A merge of QBAr by Aezay with a few edits by Eltreum
 --This module is GNU GPL v3
@@ -97,7 +98,7 @@ local blocklist = {
 }
 
 function ElvUI_EltreumUI:QuestItem()
-	local _, instanceType = IsInInstance()
+	_, instanceType = IsInInstance()
 	if E.db.ElvUI_EltreumUI.questsettings.questitems then
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
 			EltruismQuestItemFrame:Hide()

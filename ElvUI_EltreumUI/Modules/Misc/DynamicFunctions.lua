@@ -9,10 +9,12 @@ local UnitLevel = _G.UnitLevel
 local HasNewMail = _G.HasNewMail
 local PlaySoundFile = _G.PlaySoundFile
 local C_Timer = _G.C_Timer
+local _, instanceType
+local level
 
 function ElvUI_EltreumUI:BattlegroundGroupUnitframes()
 	if E.db.ElvUI_EltreumUI.otherstuff.bgunitframes and E.private.unitframe.enable then
-		local _, instanceType = IsInInstance()
+		_, instanceType = IsInInstance()
 		if instanceType == "pvp" then
 			E.db["unitframe"]["units"]["party"]["visibility"] = "hide"
 			E.db["unitframe"]["units"]["raid"]["visibility"] = "hide"
@@ -32,21 +34,21 @@ end
 
 function ElvUI_EltreumUI:ArenaUnitframes()
 	if E.db.ElvUI_EltreumUI.otherstuff.arenaunitframes and E.private.unitframe.enable then
-		local _, instanceType = IsInInstance()
+		_, instanceType = IsInInstance()
 		if instanceType == "arena" then
-			ElvUF_Arena1:Hide()
-			ElvUF_Arena2:Hide()
-			ElvUF_Arena3:Hide()
-			ElvUF_Arena4:Hide()
+			_G["ElvUF_Arena1"]:Hide()
+			_G["ElvUF_Arena2"]:Hide()
+			_G["ElvUF_Arena3"]:Hide()
+			_G["ElvUF_Arena4"]:Hide()
 			--ConsoleExec("ElvUF_Arena4:Hide()")
-			ElvUF_Arena5:Hide()
+			_G["ElvUF_Arena5"]:Hide()
 		end
 	end
 end
 
 function ElvUI_EltreumUI:DynamicBuffs()
 	if E.db.ElvUI_EltreumUI.otherstuff.arenabuffs and E.private.unitframe.enable and not InCombatLockdown() then
-		local _, instanceType = IsInInstance()
+		_, instanceType = IsInInstance()
 		if instanceType == "arena" or instanceType == "pvp" then
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["enable"] = true
 			E.db["unitframe"]["units"]["target"]["buffs"]["enable"] = true
@@ -86,7 +88,7 @@ function ElvUI_EltreumUI:DynamicLevelStyleFilter()
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["xOffset"] = -6
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -13
 
-			local level = UnitLevel("player")
+			level = UnitLevel("player")
 			if E.Classic or E.Retail then
 				if level < 60 then
 					if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" then
@@ -181,7 +183,7 @@ function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 		if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" and E.db.nameplates.filters.EltreumSpellsteal and not InCombatLockdown() then
 			if E.Wrath or E.TBC or E.Retail then
 				if E.myclass == 'MAGE' then
-					local level = UnitLevel("player")
+					level = UnitLevel("player")
 					if E.Retail then
 						if level >= 39 then
 							E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
@@ -292,7 +294,7 @@ function ElvUI_EltreumUI:DynamicExperienceDatabar()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
 	else
-		local level = UnitLevel("player")
+		level = UnitLevel("player")
 		if E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar then
 			if E.Retail or E.Classic then
 				if level < 60 then

@@ -15,6 +15,7 @@ local UnitExists = _G.UnitExists
 local UnitCanAttack = _G.UnitCanAttack
 local C_NamePlate = _G.C_NamePlate
 local GetShapeshiftForm = _G.GetShapeshiftForm
+local stance
 
 --Setup Power Bar, Prediction and Text
 local EltreumPowerAnchor
@@ -46,13 +47,28 @@ EltreumPowerPrediction:Hide()
 local EltreumPowerPredictionIncoming = CreateFrame('StatusBar', "EltruismPowerBarPredictionIncoming", EltreumPowerBar)
 EltreumPowerPredictionIncoming:Hide()
 
+local mainCost = 0
+local incResource = 0
+local startTime, endTime, spellID = 0, 0, 0
+local spellGenerators
+local druidwrath = 6
+local mindblast = 8
+local mindflay = 18
+local druideclipse
+local costTable
+local ret, ret2
+local predictioncolorr, predictioncolorg, predictioncolorb
+local currentSpec
+local cost
+local placeValue = ("%%.%df"):format(1)
+local power
+
 --Calculate the Power Cost and draw on the Bar
 function ElvUI_EltreumUI:PowerPrediction()
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
-		--print("power prediction spam "..math.random(1,99))
 		EltreumPowerPrediction:Hide() --hide at the start before events
 		EltreumPowerPredictionIncoming:Hide() --hide at the start before events
-		local predictioncolorr, predictioncolorg, predictioncolorb = EltreumPowerBar:GetStatusBarColor()
+		predictioncolorr, predictioncolorg, predictioncolorb = EltreumPowerBar:GetStatusBarColor()
 
 		EltreumPowerPrediction:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture))
 		EltreumPowerPredictionIncoming:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture))
@@ -72,21 +88,20 @@ function ElvUI_EltreumUI:PowerPrediction()
 		EltreumPowerPrediction:SetReverseFill(true)
 		EltreumPowerPredictionIncoming:SetReverseFill(false)
 
-		local mindblast = 8
-		local mindflay = 18
+
 		if IsPlayerSpell(193195) then
 			mindblast = 9
 			mindflay = 22
 		end
-		local druidwrath = 6
 		if E.Retail then
-			local druideclipse = GetPlayerAuraBySpellID(48517) --might be removed in dragonflight
+			druideclipse = GetPlayerAuraBySpellID(48517) --might be removed in dragonflight
 			if IsPlayerSpell(114107) and druideclipse ~= nil then
 				druidwrath = 9
 			end
 		end
+
 		--Some of this is from Asakawa's Universal Power Bar, but mostly has been revamped and updated to current values instead of BFA values
-		local spellGenerators = {
+		spellGenerators = {
 			-- Balance Druid
 			[190984] = druidwrath, --wrath
 			[194153] = 8, -- StarFire
@@ -113,43 +128,24 @@ function ElvUI_EltreumUI:PowerPrediction()
 			[56641] = 10, --steady shot
 		}
 
-		--From ElvUI/oUF by ls-
-		local mainCost = 0
-		local incResource = 0
-		local startTime, endTime, spellID = 0, 0, 0
 
-		--Next TBC version it switches to normal info, so we do this to detect wow version
-		--local wowversion = (select(4, GetBuildInfo()))
-		--if wowversion == 20502 then --tbc pre phase 3
-		--	_, _, _, startTime, endTime, _, _, spellID = UnitCastingInfo("player")
-		--else --everything else
-			_, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
-		--end
-		--print(select(4, GetBuildInfo()))
-		--print(spellID.." spellID!")
+		_, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
 		if startTime ~= endTime then
-			local costTable = GetSpellPowerCost(spellID)
+			costTable = GetSpellPowerCost(spellID)
 			if costTable ~= nil then
 				for _, v in next, costTable do
-					local cost = v.cost
+					cost = v.cost
 					mainCost = cost
 				end
 			end
-			--for k, v in next, spellGenerators do
-			--for _, v in next, spellGenerators do
-				if spellGenerators[spellID] ~= nil then
-					incResource = spellGenerators[spellID]
-					--print(incResource)
-					--readjust if the incoming would go over max
-					if (incResource + EltreumPowerBar:GetValue()) >= UnitPowerMax("player") then
-						incResource = (UnitPowerMax("player") - EltreumPowerBar:GetValue())
-						--print("adjusting resource")
-					end
+			if spellGenerators[spellID] ~= nil then
+				incResource = spellGenerators[spellID]
+				--readjust if the incoming would go over max
+				if (incResource + EltreumPowerBar:GetValue()) >= UnitPowerMax("player") then
+					incResource = (UnitPowerMax("player") - EltreumPowerBar:GetValue())
 				end
-			--end
+			end
 
-			--EltreumPowerPrediction:SetSize(mainCost, sizey)
-			--EltreumPowerPredictionIncoming:SetSize(incResource, sizey)
 			if UnitPower("player") == 0 then
 				EltreumPowerPrediction:SetValue(0)
 			elseif UnitPower("player") ~= 0 then
@@ -178,7 +174,7 @@ end
 function ElvUI_EltreumUI:GetSpec()
 	--print("getspec spam "..math.random(1,99))
 	if E.Retail then
-		local currentSpec = GetSpecialization()
+		currentSpec = GetSpecialization()
 		if currentSpec then
 			id, _ = GetSpecializationInfo(currentSpec)
 		end
@@ -193,7 +189,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 	end
 
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
-		--local canattack = UnitCanAttack("player", "target")
 		if UnitExists("target") and UnitCanAttack("player", "target") then
 			EltreumPowerAnchor = C_NamePlate.GetNamePlateForUnit("target")
 			EltreumPowerBar:SetParent(EltreumPowerAnchor)
@@ -202,8 +197,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 
 			EltreumPowerBar:SetValue(UnitPower("player")) --try to make it not be full always at the start
 
-			local ret
-			local placeValue = ("%%.%df"):format(1)
 			if not UnitPower("player") then
 				return 0
 			elseif UnitPower("player") >= 1000000000000 then
@@ -300,7 +293,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					end
 				end
 			elseif E.myclass == 'DRUID' then
-				local stance = GetShapeshiftForm()
+				stance = GetShapeshiftForm()
 				--print(stance)
 				--[[
 					-- FOR BALANCE
@@ -323,9 +316,9 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					--5 = tree of life (talent)
 				]]--
 				if E.Retail then
-					--local tree = IsSpellKnown(114282)
-					--local moonkin = IsSpellKnown(197625)
-					--local stag = IsSpellKnown(210053)
+					--tree = IsSpellKnown(114282)
+					--moonkin = IsSpellKnown(197625)
+					--stag = IsSpellKnown(210053)
 					if stance == 0 then --humanoid
 						--EltreumPowerBar:SetValue(UnitPower('player', 0)) -- get mana for druid humanoid
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
@@ -683,24 +676,21 @@ end
 --update the values of nameplate power bar
 function ElvUI_EltreumUI:NameplatePowerTextUpdate()
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
-		local power = UnitPower("player")
+		power = UnitPower("player")
 		--ElvUI_EltreumUI:Print('power frequent')
 		EltreumPowerBar:SetValue(power)
-
-		local ret
-		local placeValue = ("%%.%df"):format(1)
 		if not power then
 			return 0
 		elseif power >= 1000000000000 then
-			ret = placeValue:format(power * 0.000000000001) .. " T" -- trillion
+			ret2 = placeValue:format(power * 0.000000000001) .. " T" -- trillion
 		elseif power >= 1000000000 then
-			ret = placeValue:format(power * 0.000000001) .. " B" -- billion
+			ret2 = placeValue:format(power * 0.000000001) .. " B" -- billion
 		elseif power >= 1000000 then
-			ret = placeValue:format(power * 0.000001) .. " M" -- million
+			ret2 = placeValue:format(power * 0.000001) .. " M" -- million
 		elseif power >= 1000 then
-			ret = placeValue:format(power * 0.001) .. "K" -- thousand
+			ret2 = placeValue:format(power * 0.001) .. "K" -- thousand
 		else
-			ret = power -- hundreds
+			ret2 = power -- hundreds
 		end
 
 		EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.nameplatepower.font), E.db.ElvUI_EltreumUI.nameplatepower.fontsize, E.db.general.fontStyle)

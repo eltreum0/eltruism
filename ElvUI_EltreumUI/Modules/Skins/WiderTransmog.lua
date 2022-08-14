@@ -2,6 +2,11 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local UIPanelWindows = _G.UIPanelWindows
+local WardrobeFrame
+local WardrobeTransmogFrame
+local WardrobeOutfitDropDown
+local WardrobeCollectionFrame
+
 
 --Wider Transmog Window
 local EltruismWiderTransmog = CreateFrame("Frame", "EltruismWiderTransmog")
@@ -10,10 +15,10 @@ EltruismWiderTransmog:SetScript("OnEvent", function(_, _, arg)
 	--print("widetransmog spam")
 	if (arg == "Blizzard_Collections") then
 		EltruismWiderTransmog:UnregisterAllEvents()
-		local WardrobeFrame = _G.WardrobeFrame
-		local WardrobeTransmogFrame = _G.WardrobeTransmogFrame
-		local WardrobeOutfitDropDown = _G.WardrobeOutfitDropDown
-		local WardrobeCollectionFrame = _G.WardrobeCollectionFrame
+		WardrobeFrame = _G.WardrobeFrame
+		WardrobeTransmogFrame = _G.WardrobeTransmogFrame
+		WardrobeOutfitDropDown = _G.WardrobeOutfitDropDown
+		WardrobeCollectionFrame = _G.WardrobeCollectionFrame
 		WardrobeTransmogFrame:HookScript("OnShow", function()
 			if E.db.ElvUI_EltreumUI.skins.widertransmog then
 				--whole window

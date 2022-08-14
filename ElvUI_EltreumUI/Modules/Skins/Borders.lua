@@ -12,7 +12,12 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 local tostring = _G.tostring
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitClass = _G.UnitClass
-
+local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder,focuscastbarborder
+local bordertexture,classcolor,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder
+local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction
+local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,raidborder,raidborder40,totemborderfly
+local rectangleminimapdetect = CreateFrame("FRAME")
+local updatelocationpos = CreateFrame("Frame")
 local classcolorreaction = {
 	["WARRIOR"] = {r1 = 0.77646887302399, g1 = 0.60784178972244, b1 = 0.4274500310421},
 	["PALADIN"] = {r1 = 0.95686066150665, g1 = 0.54901838302612, b1 = 0.72941017150879},
@@ -31,13 +36,6 @@ local classcolorreaction = {
 	["NPCUNFRIENDLY"] = {r1 = 0.94, g1 = 0.37, b1 = 0},
 	["NPCHOSTILE"] = {r1 = 0.8, g1 = 0, b1 = 0},
 }
-
-local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder,focuscastbarborder
-local bordertexture,classcolor,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder
-local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction
-local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,raidborder,raidborder40,totemborderfly
-local rectangleminimapdetect = CreateFrame("FRAME")
-local updatelocationpos = CreateFrame("Frame")
 
 --Borders on frames
 function ElvUI_EltreumUI:Borders()

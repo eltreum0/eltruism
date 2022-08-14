@@ -4,6 +4,7 @@ local UIFrameFadeIn = _G.UIFrameFadeIn
 local UIFrameFadeOut = _G.UIFrameFadeOut
 local UIParent = _G.UIParent
 local IsStealthed = _G.IsStealthed
+local CreateFrame = _G.CreateFrame
 
 -- Create Stealth Overlay Frame
 local StealthOptionsFrame = CreateFrame("Frame", "EltruismStealthOverlay", E.UIParent)

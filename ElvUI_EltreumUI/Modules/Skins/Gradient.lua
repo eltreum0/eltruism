@@ -121,6 +121,7 @@ local unitframeclasscustom = {
 	["NPCHOSTILE"] = "",
 	["TAPPED"] = "",
 }
+
 function ElvUI_EltreumUI:GradientColorTableUpdate()
 	unitframeclasscustom = {
 		["WARRIOR"] = tostring(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.warriortexture)),

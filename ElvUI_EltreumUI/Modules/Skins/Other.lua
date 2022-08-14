@@ -302,7 +302,6 @@ function ElvUI_EltreumUI:SkinMailZone()
 	end
 end
 
-
 --skin IME input
 local function SkinLocale()
 	if E.locale == "koKR" or E.locale == "ruRU" or E.locale == "zhCN" or E.locale == "zhTW" then

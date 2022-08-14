@@ -4,23 +4,30 @@ local classcolor = E:ClassColor(E.myclass, true)
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
 local ERR_INV_FULL = _G.ERR_INV_FULL
-local GetNumLootItems = GetNumLootItems
-local GetLootSlotLink = GetLootSlotLink
-local GetItemInfo = GetItemInfo
-local GetItemIcon = GetItemIcon
-local GetItemQualityColor = GetItemQualityColor
-local tonumber = tonumber
-local UIFrameFadeIn = UIFrameFadeIn
-local C_Timer = C_Timer
-local GetCVarBool = GetCVarBool
-local IsModifiedClick = IsModifiedClick
-local LootSlot = LootSlot
-local C_CVar = C_CVar
-local GetLootSlotInfo = GetLootSlotInfo
-local GetLootSlotType = GetLootSlotType
-local CloseLoot = CloseLoot
-local Screenshot = Screenshot
-local UIFrameFadeOut = UIFrameFadeOut
+local GetNumLootItems = _G.GetNumLootItems
+local GetLootSlotLink = _G.GetLootSlotLink
+local GetItemInfo = _G.GetItemInfo
+local GetItemIcon = _G.GetItemIcon
+local GetItemQualityColor = _G.GetItemQualityColor
+local tonumber = _G.tonumber
+local UIFrameFadeIn = _G.UIFrameFadeIn
+local C_Timer = _G.C_Timer
+local GetCVarBool = _G.GetCVarBool
+local IsModifiedClick = _G.IsModifiedClick
+local LootSlot = _G.LootSlot
+local C_CVar = _G.C_CVar
+local GetLootSlotInfo = _G.GetLootSlotInfo
+local GetLootSlotType = _G.GetLootSlotType
+local CloseLoot = _G.CloseLoot
+local Screenshot = _G.Screenshot
+local UIFrameFadeOut = _G.UIFrameFadeOut
+local itemLink
+local itemName, _, quality
+local itemtexture
+local r,g,b
+local id
+local itemID
+local lootQuality, isQuestItem
 
 --wishlist popup
 local WishlistItemFrame = CreateFrame("Frame", "EltruismWishlistItem", UIParent)
@@ -68,18 +75,17 @@ local function InstantLoot(_, event,_, arg2)
 		--ElvUI_EltreumUI:Print("Event: "..event)
 		if E.db.ElvUI_EltreumUI.otherstuff.lootwishlistwarning then
 			for i = GetNumLootItems(), 1, -1 do
-				local itemLink = GetLootSlotLink(i)
+				itemLink = GetLootSlotLink(i)
 				if itemLink == nil then
 					itemLink = "|cffe6cc80|Hitem:158075::::::::53:257::11:4:4932:4933:6316:1554::::::|h[Heart of Azeroth]|h|r"
 				end
-				local itemName, _, quality = GetItemInfo(itemLink)
-				local itemtexture = GetItemIcon(itemLink)
-				local r,g,b
+				itemName, _, quality = GetItemInfo(itemLink)
+				itemtexture = GetItemIcon(itemLink)
 				if quality then
 					r,g,b = GetItemQualityColor(quality)
 				end
-				local id = itemLink:match("item:(%d+)")
-				local itemID = tonumber(id)
+				id = itemLink:match("item:(%d+)")
+				itemID = tonumber(id)
 				for k=1, #E.private.ElvUI_EltreumUI.wishlistID do
 					if itemID == tonumber(E.private.ElvUI_EltreumUI.wishlistID[k]) then
 						WishlistItemFrame.Text2:SetText("")
@@ -118,7 +124,7 @@ local function InstantLoot(_, event,_, arg2)
 					ElvUI_EltreumUI:Print("Autoloot is enabled, please disable it to use Loot Filtering")
 				end
 				for i = GetNumLootItems(), 1, -1 do
-					local _, _, _, _, lootQuality, _, isQuestItem = GetLootSlotInfo(i)
+					_, _, _, _, lootQuality, _, isQuestItem = GetLootSlotInfo(i)
 					if isQuestItem == true then
 						LootSlot(i)
 					elseif lootQuality >= tonumber(E.db.ElvUI_EltreumUI.otherstuff.fastlootquality) then
@@ -141,12 +147,12 @@ local function InstantLoot(_, event,_, arg2)
 				return
 			else
 				for i = GetNumLootItems(), 1, -1 do
-					local itemLink = GetLootSlotLink(i)
+					itemLink = GetLootSlotLink(i)
 					if itemLink == nil then
 						itemLink = "|cffe6cc80|Hitem:158075::::::::53:257::11:4:4932:4933:6316:1554::::::|h[Heart of Azeroth]|h|r"
 					end
-					local id = itemLink:match("item:(%d+)")
-					local itemID = tonumber(id)
+					id = itemLink:match("item:(%d+)")
+					itemID = tonumber(id)
 					if GetLootSlotType(i) == 2 then
 						LootSlot(i)
 					end

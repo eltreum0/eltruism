@@ -8,7 +8,12 @@ local InCombatLockdown = _G.InCombatLockdown
 --chat fading/mouseover/combathide
 local leftfaderbutton = 0 -- when 1 it can fade, when 0 it cannot
 local rightfaderbutton = 0 -- same as above
-
+local LeftChatPanel
+local RightChatPanel
+local hidetime
+local timeractiveleft
+local timeractiveright
+local lalpha, ralpha
 --hides the background on the chat panel toggle arrows
 --/run RightChatToggleButton.Center:Hide()
 
@@ -25,8 +30,8 @@ function ElvUI_EltreumUI:DynamicChatFade()
 		rightfaderbutton = 1
 	end
 	if E.db.ElvUI_EltreumUI.chat.enable == true then
-		local LeftChatPanel = _G.LeftChatPanel
-		local RightChatPanel = _G.RightChatPanel
+		LeftChatPanel = _G.LeftChatPanel
+		RightChatPanel = _G.RightChatPanel
 		--register events left chat panel
 		if E.db.ElvUI_EltreumUI.chat.leftfader then
 			LeftChatPanel:RegisterEvent("CHAT_MSG_ACHIEVEMENT")
@@ -83,9 +88,7 @@ function ElvUI_EltreumUI:DynamicChatFade()
 		end
 
 		--timer things
-		local hidetime = E.db.chat.inactivityTimer+2
-		local timeractiveleft
-		local timeractiveright
+		hidetime = E.db.chat.inactivityTimer+2
 
 		--left chat toggle the fade on and off
 		LeftChatPanel:SetScript('OnMouseDown', function(self, button)
@@ -149,7 +152,7 @@ function ElvUI_EltreumUI:DynamicChatFade()
 			LeftChatPanel:RegisterEvent("PLAYER_REGEN_DISABLED")
 			LeftChatPanel:RegisterEvent("PLAYER_REGEN_ENABLED")
 			LeftChatPanel:SetScript("OnEvent", function(_, event)
-				local lalpha = LeftChatPanel:GetAlpha()
+				lalpha = LeftChatPanel:GetAlpha()
 				if event == "PLAYER_REGEN_DISABLED" then
 					if E.db.ElvUI_EltreumUI.chat.leftcombathide then
 						if lalpha == 1 then
@@ -193,7 +196,7 @@ function ElvUI_EltreumUI:DynamicChatFade()
 			RightChatPanel:RegisterEvent("PLAYER_REGEN_DISABLED")
 			RightChatPanel:RegisterEvent("PLAYER_REGEN_ENABLED")
 			RightChatPanel:SetScript("OnEvent", function(_, event)
-				local ralpha = RightChatPanel:GetAlpha()
+				ralpha = RightChatPanel:GetAlpha()
 				if event == "PLAYER_REGEN_DISABLED" then
 					if E.db.ElvUI_EltreumUI.chat.rightcombathide then
 						if ralpha == 1 then

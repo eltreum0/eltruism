@@ -23,7 +23,17 @@ local tostring = _G.tostring
 local C_CVar = _G.C_CVar
 local InCombatLockdown = _G.InCombatLockdown
 local SetCVar = _G.SetCVar
-
+local TimeSinceLastUpdate
+local debufftime
+local _, targetclass
+local reactiontarget
+local id
+local currentSpec
+local stance
+local instanceType
+local mapID
+local nameplateShowOnlyNames
+local nameplateShowFriends
 
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1
@@ -41,7 +51,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 				button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 			end
 			button.cd:SetFrameStrata('DIALOG')
-			local TimeSinceLastUpdate = 0
+			TimeSinceLastUpdate = 0
 			if not button.cd then
 				if E.db.ElvUI_EltreumUI.widenameplate.npglow then
 					if E.db.ElvUI_EltreumUI.glow.pixel then
@@ -63,7 +73,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 								button.cd.timer.text:ClearAllPoints()
 								button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
 							end
-							local debufftime = tonumber(button.cd.timer.text:GetText())
+							debufftime = tonumber(button.cd.timer.text:GetText())
 							if E.db.ElvUI_EltreumUI.widenameplate.npglow then
 								if debufftime ~= nil and debufftime <= E.db.ElvUI_EltreumUI.glow.numberdebuff and debufftime > 0 then
 									if E.db.ElvUI_EltreumUI.glow.pixel then
@@ -117,7 +127,7 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 			return
 		else
 			button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
-			local TimeSinceLastUpdate = 0
+			TimeSinceLastUpdate = 0
 			button.cd:SetScript('OnUpdate', function(self, elapsed)
 			TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
@@ -365,8 +375,8 @@ function ElvUI_EltreumUI:NamePlateOptions()
 
 		--target's class color texture
 		if E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture then
-			local _, targetclass = UnitClass("target")
-			local reactiontarget = UnitReaction("target", "player")
+			_, targetclass = UnitClass("target")
+			reactiontarget = UnitReaction("target", "player")
 			if UnitExists("target") then
 				if targetclass and UnitIsPlayer("target") then
 					if E.db.ElvUI_EltreumUI.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
@@ -442,9 +452,9 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		--automatically hide classbar when targeting friendly targets
 		if E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide then
 			--add spec info for retail
-			local id, _
+
 			if E.Retail then
-				local currentSpec = GetSpecialization()
+				currentSpec = GetSpecialization()
 				if currentSpec then
 					id, _ = GetSpecializationInfo(currentSpec)
 				end
@@ -457,7 +467,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					elseif E.myclass == 'PALADIN ' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' then
 						_G["ElvNP_TargetClassPowerClassPower"]:Show()
 					elseif E.myclass == 'DRUID' then
-						local stance = GetShapeshiftForm()
+						stance = GetShapeshiftForm()
 						if stance == 2 then --its a cat
 							_G["ElvNP_TargetClassPowerClassPower"]:Show()
 						else
@@ -480,7 +490,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					elseif E.myclass == 'DEATHKNIGHT' then
 						_G["ElvNP_TargetClassPowerRunes"]:Show()
 					elseif E.myclass == 'DRUID' then
-						local stance = GetShapeshiftForm()
+						stance = GetShapeshiftForm()
 						if stance == 2 then --its a cat
 							_G["ElvNP_TargetClassPowerClassPower"]:Show()
 						else
@@ -546,10 +556,10 @@ end
 
 --- Friendly Nameplate Control
 function ElvUI_EltreumUI:FriendlyNameplates()
-	local _, instanceType = IsInInstance()
-	local mapID = WorldMapFrame:GetMapID()
-	local nameplateShowOnlyNames = tostring(C_CVar.GetCVar('nameplateShowOnlyNames'))
-	local nameplateShowFriends = tostring(C_CVar.GetCVar('nameplateShowFriends'))
+	_, instanceType = IsInInstance()
+	mapID = WorldMapFrame:GetMapID()
+	nameplateShowOnlyNames = tostring(C_CVar.GetCVar('nameplateShowOnlyNames'))
+	nameplateShowFriends = tostring(C_CVar.GetCVar('nameplateShowFriends'))
 	--print(mapID, instanceType)
 	if not InCombatLockdown() then
 		if E.Retail then

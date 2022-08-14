@@ -128,5 +128,3 @@ if E.Wrath or E.TBC or E.Classic then
 		end)
 	end
 end
-
-

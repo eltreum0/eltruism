@@ -6,6 +6,12 @@ local UnitExists = _G.UnitExists
 local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
 local UnitIsPlayer = _G.UnitIsPlayer
+local databarXP
+local castbar
+local targetcastbar
+local _, playerclass
+local targetclass
+local reactiontarget
 
 function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
 	if IsAddOnLoaded("ElvUI_mMediaTag") then
@@ -19,7 +25,7 @@ end
 
 --Databar gradient
 function ElvUI_EltreumUI:GradientDatabar()
-	local databarXP = _G["ElvUI_ExperienceBar"]
+	databarXP = _G["ElvUI_ExperienceBar"]
 	if databarXP and E.db.ElvUI_EltreumUI.gradientmode.gradientXP then
 		databarXP:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", E.db.databars.colors.experience.r, E.db.databars.colors.experience.g, E.db.databars.colors.experience.b, E.db.databars.colors.experience.a, 0.8, 0.4, 1, E.db.databars.colors.experience.a)
 	end
@@ -29,8 +35,8 @@ hooksecurefunc(DB, 'ExperienceBar_Update', ElvUI_EltreumUI.GradientDatabar)
 
 --elvui castbar texture/gradient
 function ElvUI_EltreumUI:CastBarTextureGradient()
-	local castbar = _G["ElvUF_Player_CastBar"]
-	local targetcastbar = _G["ElvUF_Target_CastBar"]
+	castbar = _G["ElvUF_Player_CastBar"]
+	targetcastbar = _G["ElvUF_Target_CastBar"]
 
 	--spark
 	if E.db.ElvUI_EltreumUI.sparkcustomcolor.enable and E.private.unitframe.enable then
@@ -62,7 +68,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 
 		--player
 		if UnitExists("player") then
-			local _, playerclass = UnitClass("player")
+			_, playerclass = UnitClass("player")
 			if E.db.ElvUI_EltreumUI.ufcustomtexture.enable and (not E.db.ElvUI_EltreumUI.gradientmode.enable) then
 				castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.castbartexture))
 			end
@@ -111,8 +117,8 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 
 		--target
 		if UnitExists("target") then
-			local _, targetclass = UnitClass("target")
-			local reactiontarget = UnitReaction("target", "player")
+			_, targetclass = UnitClass("target")
+			reactiontarget = UnitReaction("target", "player")
 			if E.db.ElvUI_EltreumUI.ufcustomtexture.enable and (not E.db.ElvUI_EltreumUI.gradientmode.enable) then
 				targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.castbartexture))
 			end
@@ -198,16 +204,14 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 	end
 end
 hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastBarTextureGradient)
----Construct_Castbar(frame, moverName)
 hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastBarTextureGradient)
---PostCastStart(unit)
 
 --color when interrupted
 function ElvUI_EltreumUI:CastBarTextureGradientFail(unit)
 	if not unit then return end
 
-	local castbar = _G["ElvUF_Player_CastBar"]
-	local targetcastbar = _G["ElvUF_Target_CastBar"]
+	castbar = _G["ElvUF_Player_CastBar"]
+	targetcastbar = _G["ElvUF_Target_CastBar"]
 
 	if E.db.ElvUI_EltreumUI.UFmodifications then
 		if E.db.ElvUI_EltreumUI.gradientmode.enable and (not E.db.ElvUI_EltreumUI.ufcustomtexture.enable) then

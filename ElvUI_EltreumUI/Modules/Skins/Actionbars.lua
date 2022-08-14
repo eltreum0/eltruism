@@ -17,12 +17,36 @@ local GetPetActionInfo = _G.GetPetActionInfo
 local AutoCastShine_AutoCastStop = _G.AutoCastShine_AutoCastStop
 local PET_TYPE_DEMON = _G.PET_TYPE_DEMON
 local BATTLE_PET_DAMAGE_NAME_4 = _G.BATTLE_PET_DAMAGE_NAME_4
-
-
 local totem1glowcolor = {0.78, 0.43, 0.30, 1}
 local totem2glowcolor = {0.43,0.65,0.33, 1}
 local totem3glowcolor = {0.39,0.68,0.80, 1}
 local totem4glowcolor = {0.62,0.38,0.94, 1}
+local skillglowcolor
+local totemglowholder = CreateFrame("FRAME")
+local totemglowcombatdetect = CreateFrame("FRAME")
+local totemglow1 = CreateFrame("FRAME")
+local totemglow2 = CreateFrame("FRAME")
+local totemglow3 = CreateFrame("FRAME")
+local totemglow4 = CreateFrame("FRAME")
+local t1x, t1y
+local t2x, t2y
+local t3x, t3y
+local t4x, t4y
+local ONUPDATE_INTERVAL = 1
+local TimeSinceLastUpdate = 0
+local proc
+local button
+local procFrame = CreateFrame('frame')
+local bar
+local buttonname
+local USABLE, NO_MANA
+local cd
+local unittype
+local classicglowframe = CreateFrame("FRAME")
+local skillglowcolorpet
+local _, autoCastEnabled
+local buttonNamepet
+local slots
 
 --classic glows
 local SPELL_ID = {
@@ -107,12 +131,12 @@ local SPELL_ID = {
 	[686] = true,]]
 }
 
--- Skill Glow
+-- Skill Glowl
 function ElvUI_EltreumUI:SkillGlow()
 	if not E.private.ElvUI_EltreumUI then
 		return
 	end
-	local skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glowcustomcolor.b, 1}
+	skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glowcustomcolor.b, 1}
 	if E.db.ElvUI_EltreumUI.glow.colorclass then
 		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 	end
@@ -121,7 +145,7 @@ function ElvUI_EltreumUI:SkillGlow()
 		if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 			function LCG.ShowOverlayGlow(button)
 				if button:GetAttribute("type") == "action" then
-					LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+					LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 9)
 				end
 			end
 			function LCG.HideOverlayGlow(button)
@@ -150,18 +174,11 @@ function ElvUI_EltreumUI:SkillGlow()
 		if (E.Wrath or E.TBC or E.Classic)	then
 			--classic shaman totem bar glow when totems are not active in combat
 			if E.myclass == 'SHAMAN' and E.db.ElvUI_EltreumUI.glow.enabletotem then
-				local totemglowholder = CreateFrame("FRAME")
-				local totemglowcombatdetect = CreateFrame("FRAME")
 				totemglowcombatdetect:RegisterEvent('PLAYER_REGEN_DISABLED')
 				totemglowcombatdetect:RegisterEvent('PLAYER_REGEN_ENABLED')
-
-				local totemglow1 = CreateFrame("FRAME")
 				totemglow1:SetParent(_G["ElvUF_Player"])
-				local totemglow2 = CreateFrame("FRAME")
 				totemglow2:SetParent(_G["ElvUF_Player"])
-				local totemglow3 = CreateFrame("FRAME")
 				totemglow3:SetParent(_G["ElvUF_Player"])
-				local totemglow4 = CreateFrame("FRAME")
 				totemglow4:SetParent(_G["ElvUF_Player"])
 				--set the sizes differently depending on type because blizz glow is not nice
 				if E.db.ElvUI_EltreumUI.glow.pixel or E.db.ElvUI_EltreumUI.glow.autocast then
@@ -170,16 +187,16 @@ function ElvUI_EltreumUI:SkillGlow()
 					totemglow3:SetAllPoints(_G["ElvUF_PlayerTotem3"])
 					totemglow4:SetAllPoints(_G["ElvUF_PlayerTotem4"])
 				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-					local t1x, t1y = _G["ElvUF_PlayerTotem1"]:GetSize()
+					t1x, t1y = _G["ElvUF_PlayerTotem1"]:GetSize()
 					totemglow1:SetSize(t1x+12, t1y+4)
 					totemglow1:SetPoint("Center", _G["ElvUF_PlayerTotem1"])
-					local t2x, t2y = _G["ElvUF_PlayerTotem2"]:GetSize()
+					t2x, t2y = _G["ElvUF_PlayerTotem2"]:GetSize()
 					totemglow2:SetSize(t2x+12, t2y+4)
 					totemglow2:SetPoint("Center", _G["ElvUF_PlayerTotem2"])
-					local t3x, t3y = _G["ElvUF_PlayerTotem3"]:GetSize()
+					t3x, t3y = _G["ElvUF_PlayerTotem3"]:GetSize()
 					totemglow3:SetSize(t3x+12, t3y+4)
 					totemglow3:SetPoint("Center", _G["ElvUF_PlayerTotem3"])
-					local t4x, t4y = _G["ElvUF_PlayerTotem4"]:GetSize()
+					t4x, t4y = _G["ElvUF_PlayerTotem4"]:GetSize()
 					totemglow4:SetSize(t4x+12, t4y+4)
 					totemglow4:SetPoint("Center", _G["ElvUF_PlayerTotem4"])
 				end
@@ -193,8 +210,8 @@ function ElvUI_EltreumUI:SkillGlow()
 
 				totemglowcombatdetect:SetScript("OnEvent", function(self, event)
 					if event == 'PLAYER_REGEN_DISABLED' then
-						local ONUPDATE_INTERVAL = 1
-						local TimeSinceLastUpdate = 0
+						ONUPDATE_INTERVAL = 1
+						TimeSinceLastUpdate = 0
 						totemglowholder:SetScript("OnUpdate", function(self, elapsed)
 							TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 							if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
@@ -202,28 +219,28 @@ function ElvUI_EltreumUI:SkillGlow()
 								if E.db.ElvUI_EltreumUI.glow.pixel then
 									if E.db.ElvUI_EltreumUI.glow.totem1 then
 										if not _G["ElvUF_PlayerTotem1"]:IsShown() then
-											LCG.PixelGlow_Start(totemglow1, totem1glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+											LCG.PixelGlow_Start(totemglow1, totem1glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 9)
 										elseif _G["ElvUF_PlayerTotem1"]:IsShown() then
 											LCG.PixelGlow_Stop(totemglow1)
 										end
 									end
 									if E.db.ElvUI_EltreumUI.glow.totem2 then
 										if not _G["ElvUF_PlayerTotem2"]:IsShown() then
-											LCG.PixelGlow_Start(totemglow2, totem2glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+											LCG.PixelGlow_Start(totemglow2, totem2glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 9)
 										elseif _G["ElvUF_PlayerTotem2"]:IsShown() then
 											LCG.PixelGlow_Stop(totemglow2)
 										end
 									end
 									if E.db.ElvUI_EltreumUI.glow.totem3 then
 										if not _G["ElvUF_PlayerTotem3"]:IsShown() then
-											LCG.PixelGlow_Start(totemglow3, totem3glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+											LCG.PixelGlow_Start(totemglow3, totem3glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 9)
 										elseif _G["ElvUF_PlayerTotem3"]:IsShown() then
 											LCG.PixelGlow_Stop(totemglow3)
 										end
 									end
 									if E.db.ElvUI_EltreumUI.glow.totem4 then
 										if not _G["ElvUF_PlayerTotem4"]:IsShown() then
-											LCG.PixelGlow_Start(totemglow4, totem4glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+											LCG.PixelGlow_Start(totemglow4, totem4glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 9)
 										elseif _G["ElvUF_PlayerTotem4"]:IsShown() then
 											LCG.PixelGlow_Stop(totemglow4)
 										end
@@ -311,34 +328,30 @@ function ElvUI_EltreumUI:SkillGlow()
 				end)
 			end
 
-			local proc
-			--local auraid, _
 			function ElvUI_EltreumUI:ClassicGlow(barName)
-				local bar = AB["handledBars"][barName]
+				bar = AB["handledBars"][barName]
 				if not bar then return end
-				local button
-				local procFrame = CreateFrame('frame')
 				procFrame:RegisterEvent('ACTIONBAR_UPDATE_USABLE')
 				procFrame:RegisterEvent('SPELL_UPDATE_USABLE')
 				procFrame:RegisterEvent('PLAYER_TARGET_CHANGED')
 				procFrame:SetScript('OnEvent', function()
 					for i=1, NUM_ACTIONBAR_BUTTONS do
 						button = bar.buttons[i]
-						local buttonname = button:GetName()
+						buttonname = button:GetName()
 						if _G[buttonname].GetSpellId and _G[buttonname]:GetSpellId() then
 							proc = _G[buttonname]:GetSpellId()
 						end
 						if SPELL_ID[proc] and not (E.Wrath and proc == 34026)then
-							local USABLE, NO_MANA = IsUsableSpell(proc)
-							local cd = GetSpellCooldown(proc)
+							USABLE, NO_MANA = IsUsableSpell(proc)
+							cd = GetSpellCooldown(proc)
 							if (UnitExists("target") and UnitCanAttack("player", "target") and cd == 0 and USABLE and not NO_MANA) and _G[buttonname].GetSpellId and _G[buttonname]:GetSpellId() == proc then
 								if E.myclass == 'PALADIN' then
 									if proc == 27138 or proc == 10314 or proc == 10313 or proc == 10312 or proc == 5615 or proc == 5614 or proc == 879 then
-										local unittype = UnitCreatureType("target")
+										unittype = UnitCreatureType("target")
 										--if unittype == "Demon" or unittype == "Dämon" or unittype == "Demonio" or unittype == "Démon" or unittype == "Demone" or unittype == "Demônio" or unittype == "Демон" or unittype == "악마" or unittype == "恶魔" or unittype == "惡魔" or unittype == "Undead" or unittype == "Untoter" or unittype == "No-muerto" or unittype == "Mort-vivant" or unittype == "Non Morto" or unittype == "Renegado" or unittype == "Нежить" or unittype == "언데드" or unittype == "亡灵" or unittype == "不死族" then
 										if unittype == PET_TYPE_DEMON or unittype == BATTLE_PET_DAMAGE_NAME_4 then
 											if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
-												LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+												LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 9)
 											elseif E.db.ElvUI_EltreumUI.glow.autocast and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 												LCG.AutoCastGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 											elseif E.db.ElvUI_EltreumUI.glow.blizzard and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
@@ -355,7 +368,7 @@ function ElvUI_EltreumUI:SkillGlow()
 										end
 									else
 										if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
-											LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+											LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 9)
 										elseif E.db.ElvUI_EltreumUI.glow.autocast and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 											LCG.AutoCastGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 										elseif E.db.ElvUI_EltreumUI.glow.blizzard and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
@@ -369,7 +382,7 @@ function ElvUI_EltreumUI:SkillGlow()
 										--print(auraid)
 										if auraid == 34936 or auraid == 17941 then --backlash and shadow trance
 											if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
-												LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+												LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 9)
 											elseif E.db.ElvUI_EltreumUI.glow.autocast and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 												LCG.AutoCastGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 											elseif E.db.ElvUI_EltreumUI.glow.blizzard and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
@@ -387,7 +400,7 @@ function ElvUI_EltreumUI:SkillGlow()
 									end]]
 								else
 									if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
-										LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+										LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 9)
 									elseif E.db.ElvUI_EltreumUI.glow.autocast and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 										LCG.AutoCastGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 									elseif E.db.ElvUI_EltreumUI.glow.blizzard and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
@@ -416,7 +429,7 @@ function ElvUI_EltreumUI:SkillGlow()
 				end)
 			end
 
-			local classicglowframe = CreateFrame("FRAME")
+
 			classicglowframe:RegisterEvent("PLAYER_STARTED_MOVING")
 			--classicglowframe:RegisterEvent('ACTIONBAR_UPDATE_USABLE')
 			classicglowframe:SetScript("OnEvent", function(event)
@@ -439,27 +452,27 @@ function ElvUI_EltreumUI:SkillGlowPet()
 		return
 	end
 	if (E.myclass == 'HUNTER' or E.myclass == 'WARLOCK') and (not IsAddOnLoaded("ElvUI_ActionBarMasks")) then
-		local skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolorpet.r, E.db.ElvUI_EltreumUI.glowcustomcolorpet.g, E.db.ElvUI_EltreumUI.glowcustomcolorpet.b, 1}
+		skillglowcolorpet = {E.db.ElvUI_EltreumUI.glowcustomcolorpet.r, E.db.ElvUI_EltreumUI.glowcustomcolorpet.g, E.db.ElvUI_EltreumUI.glowcustomcolorpet.b, 1}
 		if E.db.ElvUI_EltreumUI.glow.colorclass then
-			skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
+			skillglowcolorpet = {classcolor.r, classcolor.g, classcolor.b, 1}
 		end
 
 		if E.db.ElvUI_EltreumUI.glow.enablepet then
 			for i = 1, NUM_PET_ACTION_SLOTS, 1 do
-				local _, _, _, _, _, autoCastEnabled, _ = GetPetActionInfo(i)
-				local buttonName = 'PetActionButton'..i
-				local button = _G[buttonName]
+				_, _, _, _, _, autoCastEnabled, _ = GetPetActionInfo(i)
+				buttonNamepet = 'PetActionButton'..i
+				local button = _G[buttonNamepet]
 				if autoCastEnabled then
 					AutoCastShine_AutoCastStop(button.AutoCastShine)
 					if E.db.ElvUI_EltreumUI.glow.pixel then
 						--PixelGlow_Start(frame[, color[, N[, frequency[, length[, th[, xOffset[, yOffset[, border[ ,key]]]]]]]])
-						LCG.PixelGlow_Start(button, skillglowcolor, 10, 0.25, 5, 2, 0, 0, false, nil, high)
+						LCG.PixelGlow_Start(button, skillglowcolorpet, 10, 0.25, 5, 2, 0, 0, false, nil, 9)
 					elseif E.db.ElvUI_EltreumUI.glow.autocast then
 						--AutoCastGlow_Start(frame[, color[, N[, frequency[, scale[, xOffset[, yOffset[, key]]]]]]])
-						LCG.AutoCastGlow_Start(button, skillglowcolor, 16, 0.25, 0.7, 0, 0)
+						LCG.AutoCastGlow_Start(button, skillglowcolorpet, 16, 0.25, 0.7, 0, 0)
 					elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 						--ButtonGlow_Start(frame[, color[, frequency]]])
-						LCG.ButtonGlow_Start(button, skillglowcolor, 0.125)
+						LCG.ButtonGlow_Start(button, skillglowcolorpet, 0.125)
 					end
 				else
 					AutoCastShine_AutoCastStop(button.AutoCastShine)
@@ -497,7 +510,7 @@ function ElvUI_EltreumUI:PreviewGlow()
 	EltruismGlowPreview:SetScript("OnDragStart", EltruismGlowPreview.StartMoving)
 	EltruismGlowPreview:SetScript("OnDragStop",EltruismGlowPreview.StopMovingOrSizing)
 
-	local skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glowcustomcolor.b, 1}
+	skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glowcustomcolor.b, 1}
 	if E.db.ElvUI_EltreumUI.glow.colorclass then
 		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 	end
@@ -510,7 +523,7 @@ function ElvUI_EltreumUI:PreviewGlow()
 	else
 		EltruismGlowPreview:Show()
 		if E.db.ElvUI_EltreumUI.glow.pixel then
-			LCG.PixelGlow_Start(EltruismGlowPreview, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, high)
+			LCG.PixelGlow_Start(EltruismGlowPreview, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 9)
 		elseif E.db.ElvUI_EltreumUI.glow.autocast then
 			LCG.AutoCastGlow_Start(EltruismGlowPreview, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 		elseif E.db.ElvUI_EltreumUI.glow.blizzard then
@@ -526,7 +539,7 @@ function ElvUI_EltreumUI:HideABKeyPress()
 		if E.db.ElvUI_EltreumUI.skins.hideABkeypress then
 			for i = 1, 10 do
 				for k = 1, 12 do
-					local slots = {_G["ElvUI_Bar"..i..'Button'..k]}
+					slots = {_G["ElvUI_Bar"..i..'Button'..k]}
 					for _, button in pairs(slots) do
 						if E.db.ElvUI_EltreumUI.skins.hideABkeypress then
 							if button.checked then

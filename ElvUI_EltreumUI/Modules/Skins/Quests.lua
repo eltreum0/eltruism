@@ -15,7 +15,8 @@ local UIParent_ManageFramePositions = _G.UIParent_ManageFramePositions
 local select = _G.select
 local ScenarioObjectiveBlockBackground
 local ScenarioObjectiveBlockBackgroundTexture
-
+local wowheadbutton = CreateFrame("Button", nil)
+local dontexpandanymorequests = 0
 if E.Retail then
 	ScenarioObjectiveBlockBackground = CreateFrame("Frame", "EltruismScenarioBlockBg")
 	ScenarioObjectiveBlockBackgroundTexture = ScenarioObjectiveBlockBackground:CreateTexture()
@@ -25,12 +26,10 @@ if E.Retail then
 	_G.ObjectiveTrackerBlocksFrame.AchievementHeader.StatusLine = CreateFrame("StatusBar", "EltruismAchievementLine", _G.ObjectiveTrackerBlocksFrame.AchievementHeader)
 end
 
-local dontexpandanymorequests = 0
 function ElvUI_EltreumUI:SkinQuests()
 	if E.db.ElvUI_EltreumUI.skins.quests and E.private.skins.blizzard.objectiveTracker and not E.private.skins.blizzard.enable == false then
 
 		--create the button for wowhead
-		local wowheadbutton = CreateFrame("Button", nil)
 		if E.Retail then
 			wowheadbutton:SetWidth(80)
 			wowheadbutton:SetHeight(20)

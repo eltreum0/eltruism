@@ -4,21 +4,23 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
 local C_CVar = _G.C_CVar
-local GetTime = GetTime
-local GetCursorPosition = GetCursorPosition
+local GetTime = _G.GetTime
+local GetCursorPosition = _G.GetCursorPosition
 local math = _G.math
 local UIFrameFadeOut = _G.UIFrameFadeOut
-local GetActionInfo = GetActionInfo
-local GetPetActionInfo = GetPetActionInfo
-local GetSpellInfo = GetSpellInfo
-local GetSpellBaseCooldown = GetSpellBaseCooldown
-local GetSpellCooldown = GetSpellCooldown
-local GetInventoryItemLink = GetInventoryItemLink
-local GetContainerItemLink = GetContainerItemLink
+local GetActionInfo = _G.GetActionInfo
+local GetPetActionInfo = _G.GetPetActionInfo
+local GetSpellInfo = _G.GetSpellInfo
+local GetSpellBaseCooldown = _G.GetSpellBaseCooldown
+local GetSpellCooldown = _G.GetSpellCooldown
+local GetInventoryItemLink = _G.GetInventoryItemLink
+local GetContainerItemLink = _G.GetContainerItemLink
 local tonumber = _G.tonumber
-local GetItemInfo = GetItemInfo
-local GetItemCooldown = GetItemCooldown
-local GetPetActionCooldown = GetPetActionCooldown
+local GetItemInfo = _G.GetItemInfo
+local GetItemCooldown = _G.GetItemCooldown
+local GetPetActionCooldown = _G.GetPetActionCooldown
+local PlaySoundFile = _G.PlaySoundFile
+local start, duration, enabled
 
 --onupdate things
 local NormalUpdateDelay = 1 --1.0/10 -- update while hidden
@@ -35,6 +37,20 @@ local isActive = false
 local isAlmostReady = false
 local isReady = false
 local isHidden = false
+local cooldownsize
+local textsize
+local name, _, isToken
+local typeslot, id
+local namepet, texture
+local namespell, texturespell
+local baseCooldown
+local itemLinkinv
+local itemLinkcontainer
+local idlink
+local itemLinkcd, texturecd
+local itemIdcd
+local texturepetcd, spellIdpetcd
+local startcd, durationcd, enabledcd
 
 --gcd things
 local GCD = 1.5
@@ -59,7 +75,6 @@ EltruismCooldownMask:SetAllPoints(EltruismCooldownFrame)
 EltruismCooldownFrame:Hide()
 
 function ElvUI_EltreumUI:CooldownEnable()
-	local cooldownsize
 	if not E.db.ElvUI_EltreumUI then
 		cooldownsize = 28
 	elseif E.db.ElvUI_EltreumUI then
@@ -76,7 +91,6 @@ function ElvUI_EltreumUI:CooldownEnable()
 	EltruismCooldownFrame:SetWidth(cooldownsize)
 	EltruismCooldownFrame:SetHeight(cooldownsize)
 	EltruismCooldownFrame:SetJustifyH("CENTER")
-	local textsize
 	if C_CVar.GetCVar('gxFullscreenResolution') == "3840x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3840x2160" then
 		textsize = ( (cooldownsize * 0.5) + 1)
 	else
@@ -256,7 +270,7 @@ end
 
 function ElvUI_EltreumUI:showCooldown(texture, getCooldownFunc, arg, hasCooldown)
 	--print("showCooldown spam "..math.random(1,99))
-	local start, duration, enabled = getCooldownFunc(arg)
+	start, duration, enabled = getCooldownFunc(arg)
 	if not start or enabled ~= 1 or duration <= GCD then
 		if hasCooldown and (isReady or not isActive) then
 			lastTexture, lastGetCooldown, lastArg = texture, getCooldownFunc, arg
@@ -280,10 +294,10 @@ end
 
 function ElvUI_EltreumUI:checkActionCooldown(slot)
 	--print("checkActionCooldown spam "..math.random(1,99))
-	local type, id, _ = GetActionInfo(slot)
-	if type == 'spell' then
+	typeslot, id, _ = GetActionInfo(slot)
+	if typeslot == 'spell' then
 		ElvUI_EltreumUI:checkSpellCooldown(id)
-	elseif type == 'item' then
+	elseif typeslot == 'item' then
 		ElvUI_EltreumUI:checkItemCooldown(id)
 	end
 end
@@ -292,9 +306,9 @@ local function findPetActionIndexForSpell(spell)
 	--print("findPetActionIndexForSpell spam "..math.random(1,99))
 	if not spell then return end
 	for i = 1, NUM_PET_ACTION_SLOTS do
-		local name, _, _, isToken = GetPetActionInfo(i)
-		if isToken then name = _G[name] end
-		if name == spell and E.db.ElvUI_EltreumUI.cursor.petcooldown then
+		namepet, _, _, isToken = GetPetActionInfo(i)
+		if isToken then namepet = _G[name] end
+		if namepet == spell and E.db.ElvUI_EltreumUI.cursor.petcooldown then
 			return i
 		end
 	end
@@ -303,52 +317,52 @@ end
 function ElvUI_EltreumUI:checkSpellCooldown(spell)
 	--print("checkSpellCooldown spam "..math.random(1,99))
 	if not spell then return end
-	local name, _, texture = GetSpellInfo(spell)
-	if E.db.ElvUI_EltreumUI.cursor.petcooldown and not name then
+	namespell, _, texturespell = GetSpellInfo(spell)
+	if E.db.ElvUI_EltreumUI.cursor.petcooldown and not namespell then
 		 return ElvUI_EltreumUI:checkPetActionCooldown(findPetActionIndexForSpell(spell))
 	end
-	local baseCooldown = GetSpellBaseCooldown(spell)
-	ElvUI_EltreumUI:showCooldown(texture, GetSpellCooldown, spell, (baseCooldown and baseCooldown > 0))
+	baseCooldown = GetSpellBaseCooldown(spell)
+	ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (baseCooldown and baseCooldown > 0))
 end
 
 function ElvUI_EltreumUI:checkInventoryItemCooldown(invSlot)
 	--print("checkInventoryItemCooldown spam "..math.random(1,99))
-	local itemLink = GetInventoryItemLink("player", invSlot)
-	ElvUI_EltreumUI:checkItemCooldown(itemLink)
+	itemLinkinv = GetInventoryItemLink("player", invSlot)
+	ElvUI_EltreumUI:checkItemCooldown(itemLinkinv)
 end
 
 function ElvUI_EltreumUI:checkContainerItemCooldown(bagId, bagSlot)
 	--print("checkContainerItemCooldown spam "..math.random(1,99))
-	local itemLink = GetContainerItemLink(bagId, bagSlot)
-	ElvUI_EltreumUI:checkItemCooldown(itemLink)
+	itemLinkcontainer = GetContainerItemLink(bagId, bagSlot)
+	ElvUI_EltreumUI:checkItemCooldown(itemLinkcontainer)
 end
 
 local function itemIdFromLink(link)
 	if not link then return nil end
-	local id = link:match("item:(%d+)")
-	return tonumber(id)
+	idlink = link:match("item:(%d+)")
+	return tonumber(idlink)
 end
 
 function ElvUI_EltreumUI:checkItemCooldown(item)
 	--print("checkItemCooldown spam "..math.random(1,99))
 	if not item then return end
-	local _, itemLink, _, _, _, _, _, _, _, texture = GetItemInfo(item)
-	local itemId = itemIdFromLink(itemLink)
-	if not itemId then return end
-	ElvUI_EltreumUI:showCooldown(texture, GetItemCooldown, itemId)
+	_, itemLinkcd, _, _, _, _, _, _, _, texturecd = GetItemInfo(item)
+	itemIdcd = itemIdFromLink(itemLinkcd)
+	if not itemIdcd then return end
+	ElvUI_EltreumUI:showCooldown(texturecd, GetItemCooldown, itemIdcd)
 end
 
 function ElvUI_EltreumUI:checkPetActionCooldown(index)
 	--print("checkPetActionCooldown spam "..math.random(1,99))
 	if not index then return end
-	local _, texture, _, _, _, _, spellId, _, _ = GetPetActionInfo(index) --shadowlands
+	_, texturepetcd, _, _, _, _, spellIdpetcd, _, _ = GetPetActionInfo(index) --shadowlands
 	--[[if E.Classic or E.TBC then
 		local _, _, texture, _, _, _, _, spellId = GetPetActionInfo(index) --old
 	elseif E.Retail then
 		local _, texture, _, _, _, _, spellId, _, _ = GetPetActionInfo(index) --shadowlands
 	end]]
-	if spellId then
-		ElvUI_EltreumUI:checkSpellCooldown(spellId)
+	if spellIdpetcd then
+		ElvUI_EltreumUI:checkSpellCooldown(spellIdpetcd)
 	else
 		ElvUI_EltreumUI:showCooldown(texture, GetPetActionCooldown, index)
 	end
@@ -370,8 +384,8 @@ function ElvUI_EltreumUI:updateCooldown() --dont think i need event here
 	--print("updateCooldown spam "..math.random(1,99))
 	if not isActive then
 		if lastGetCooldown then
-			local start, duration, enabled = lastGetCooldown(lastArg)
-			if not start or enabled ~= 1 or duration <= GCD then
+			startcd, durationcd, enabledcd = lastGetCooldown(lastArg)
+			if not startcd or enabledcd ~= 1 or durationcd <= GCD then
 				return
 			end
 			currGetCooldown, currArg = lastGetCooldown, lastArg

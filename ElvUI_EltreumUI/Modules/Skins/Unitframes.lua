@@ -10,19 +10,35 @@ local tostring = _G.tostring
 local select = _G.select
 local UnitIsTapDenied = _G.UnitIsTapDenied
 local UnitPlayerControlled = _G.UnitPlayerControlled
-
---set the textures or gradients
 local truer = 0
 local trueg = 0
 local trueb = 0
 local trueclass
 local _, unit1class
 local r,g,b
+local unitframe
+local _, classunit
+local namebar
+local reaction
+local headergroup = nil
+local headertank = nil
+local headerassist = nil
+local group
+local groupbutton
+local rgroup,ggroup,bgroup
+local tankbutton
+local rtank,gtank,btank
+local assistbutton
+local rassist,gassist,bassist
+local orientation
+local barTexture
+local texture
 
+--set the textures or gradients
 function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
-	local _, classunit = UnitClass(unit)
-	local namebar = E.LSM:Fetch("statusbar", "Eltreum-Blank")
-	local reaction = UnitReaction(unit, "player")
+	_, classunit = UnitClass(unit)
+	namebar = E.LSM:Fetch("statusbar", "Eltreum-Blank")
+	reaction = UnitReaction(unit, "player")
 	if UnitExists(unit) then
 		if UnitIsPlayer(unit) then
 			if classunit then
@@ -46,7 +62,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 	end
 	--if UF["units"][uf] and UnitExists(unit) then
 	if E.db["unitframe"]["units"][uf] and UnitExists(unit) then
-		local unitframe = _G["ElvUF_"..name]
+		unitframe = _G["ElvUF_"..name]
 		if unitframe and unitframe.Health then
 			unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.UForientation)
 			if E.db.ElvUI_EltreumUI.ufcustomtexture.enable then
@@ -356,7 +372,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 		--group/raid unitframes
 		if UnitExists(unit) and (E.db.ElvUI_EltreumUI.lightmode or E.db.ElvUI_EltreumUI.darkmode) then
 
-			local headergroup = nil
+			headergroup = nil
 			if _G["ElvUF_Raid"] and _G["ElvUF_Raid"]:IsShown() then
 				headergroup = _G["ElvUF_Raid"]
 			elseif _G["ElvUF_Raid40"] and _G["ElvUF_Raid40"]:IsShown() then
@@ -365,12 +381,12 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 				headergroup = _G["ElvUF_Party"]
 			end
 
-			local headertank = nil
+			headertank = nil
 			if _G["ElvUF_Tank"] and _G["ElvUF_Tank"]:IsShown() then
 				headertank = _G["ElvUF_Tank"]
 			end
 
-			local headerassist = nil
+			headerassist = nil
 			if _G["ElvUF_Assist"] and _G["ElvUF_Assist"]:IsShown() then
 				headerassist = _G["ElvUF_Assist"]
 			end
@@ -667,16 +683,16 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 
 			if headergroup ~= nil then
 				for i = 1, headergroup:GetNumChildren() do
-					local group = select(i, headergroup:GetChildren())
+					group = select(i, headergroup:GetChildren())
 					for j = 1, group:GetNumChildren() do
-						local groupbutton = select(j, group:GetChildren())
+						groupbutton = select(j, group:GetChildren())
 						if groupbutton and groupbutton.Health then
 							if E.db.ElvUI_EltreumUI.lightmode then
-								r,g,b = groupbutton.Health:GetStatusBarColor()
+								rgroup,ggroup,bgroup = groupbutton.Health:GetStatusBarColor()
 							elseif E.db.ElvUI_EltreumUI.darkmode and groupbutton.Health.backdropTex then
-								r,g,b = groupbutton.Health.backdropTex:GetVertexColor()
+								rgroup,ggroup,bgroup = groupbutton.Health.backdropTex:GetVertexColor()
 							end
-							ApplyGroupGradientTexture(r, g, b, groupbutton)
+							ApplyGroupGradientTexture(rgroup, ggroup, bgroup, groupbutton)
 						end
 					end
 				end
@@ -684,30 +700,28 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 
 			if headertank ~= nil then
 				for i = 1, headertank:GetNumChildren() do
-					local tankbutton = select(i, headertank:GetChildren())
+					tankbutton = select(i, headertank:GetChildren())
 					if tankbutton and tankbutton.Health then
-						local r1,g1,b1
 						if E.db.ElvUI_EltreumUI.lightmode then
-							r,g,b = tankbutton.Health:GetStatusBarColor()
+							rtank,gtank,btank = tankbutton.Health:GetStatusBarColor()
 						elseif E.db.ElvUI_EltreumUI.darkmode and tankbutton.Health.backdropTex then
-							r,g,b = tankbutton.Health.backdropTex:GetVertexColor()
+							rtank,gtank,btank = tankbutton.Health.backdropTex:GetVertexColor()
 						end
-						ApplyGroupGradientTexture(r, g, b, tankbutton)
+						ApplyGroupGradientTexture(rtank, gtank, btank, tankbutton)
 					end
 				end
 			end
 
 			if headerassist ~= nil then
 				for i = 1, headerassist:GetNumChildren() do
-					local assistbutton = select(i, headerassist:GetChildren())
+					assistbutton = select(i, headerassist:GetChildren())
 					if assistbutton and assistbutton.Health then
-						local r1,g1,b1
 						if E.db.ElvUI_EltreumUI.lightmode then
-							r,g,b = assistbutton.Health:GetStatusBarColor()
+							rassist,gassist,bassist = assistbutton.Health:GetStatusBarColor()
 						elseif E.db.ElvUI_EltreumUI.darkmode and assistbutton.Health.backdropTex then
-							r,g,b = assistbutton.Health.backdropTex:GetVertexColor()
+							rassist,gassist,bassist = assistbutton.Health.backdropTex:GetVertexColor()
 						end
-						ApplyGroupGradientTexture(r, g, b, assistbutton)
+						ApplyGroupGradientTexture(rassist, gassist, bassist, assistbutton)
 					end
 				end
 			end
@@ -741,8 +755,8 @@ function ElvUI_EltreumUI:BackdropTexture(isTransparent, statusBar, backdropTex, 
 
 		--darkmode/backdrop things for vertical
 		if E.db.ElvUI_EltreumUI.UForientation == "VERTICAL" and statusBar:GetName():match("Health") and E.db.ElvUI_EltreumUI.darkmode then
-			local orientation = "VERTICAL"
-			local barTexture = statusBar:GetStatusBarTexture() -- This fixes Center Pixel offset problem (normally this has > 2 points)
+			orientation = "VERTICAL"
+			barTexture = statusBar:GetStatusBarTexture() -- This fixes Center Pixel offset problem (normally this has > 2 points)
 			--statusBar.backdrop:Hide()
 			barTexture:SetInside(nil, 0, 0) -- This also unsnaps the texture
 			UF:HandleStatusBarTemplate(statusBar, statusBar:GetParent(), isTransparent)
@@ -751,7 +765,7 @@ function ElvUI_EltreumUI:BackdropTexture(isTransparent, statusBar, backdropTex, 
 				UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.media.blankTex)
 				UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
 			else
-				local texture = E.LSM:Fetch('statusbar', self.db.statusbar)
+				texture = E.LSM:Fetch('statusbar', self.db.statusbar)
 				statusBar:SetStatusBarTexture(texture)
 				UF:Update_StatusBar(statusBar.bg or statusBar.BG, texture)
 				if adjustBackdropPoints then

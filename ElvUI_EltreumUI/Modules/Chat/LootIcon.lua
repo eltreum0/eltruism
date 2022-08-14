@@ -1,14 +1,20 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
-local ChatFrame_AddMessageEventFilter = ChatFrame_AddMessageEventFilter
-local GetItemIcon = GetItemIcon
-local tonumber = tonumber
-local GetItemInfo = GetItemInfo
-local select = select
-local Item = Item
-local GetItemQualityColor = GetItemQualityColor
-local UIParent = UIParent
+local ChatFrame_AddMessageEventFilter = _G.ChatFrame_AddMessageEventFilter
+local GetItemIcon = _G.GetItemIcon
+local tonumber = _G.tonumber
+local GetItemInfo = _G.GetItemInfo
+local select = _G.select
+local Item = _G.Item
+local GetItemQualityColor = _G.GetItemQualityColor
+local UIParent = _G.UIParent
+local ilvlpattern
+local texture
+local itemLevel
+local tt
+local _, itemQuality, itemType
+local hex
 
 --Forked from Chat Loot Icons by Stanzilla which is Public Domain
 local function AddLootIcons(_, _, message, ...)
@@ -17,12 +23,11 @@ local function AddLootIcons(_, _, message, ...)
 	elseif E.db.ElvUI_EltreumUI.chat.enable and E.db.ElvUI_EltreumUI.chat.looticons then
 		local function Icon(link)
 
-			local ilvlpattern = ITEM_LEVEL:gsub('%%d', '(%%d+)')
-			local texture = GetItemIcon(link)
-			local itemLevel
+			ilvlpattern = _G.ITEM_LEVEL:gsub('%%d', '(%%d+)')
+			texture = GetItemIcon(link)
 
 			--from elvui
-			local tt = E.ScanTooltip
+			tt = E.ScanTooltip
 			tt:SetOwner(UIParent, 'ANCHOR_NONE')
 			tt:SetHyperlink(link)
 			for x = 1, tt:NumLines() do
@@ -39,7 +44,7 @@ local function AddLootIcons(_, _, message, ...)
 			end
 			tt:Hide()
 
-			local _, _, itemQuality, _, _, itemType = GetItemInfo(link)
+			_, _, itemQuality, _, _, itemType = GetItemInfo(link)
 			if itemLevel == nil then
 				itemLevel = select(4, GetItemInfo(link))
 			end
@@ -56,7 +61,7 @@ local function AddLootIcons(_, _, message, ...)
 			--local fontsize = select(2, GetChatWindowInfo(1))
 			--itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = GetItemInfo(item)
 			if itemLevel ~= nil and itemLevel > 1 and E.db.ElvUI_EltreumUI.chat.itemlevels and itemQuality ~= nil and (itemType == "Weapon" or itemType == "Armor" or itemType == "Gem") then
-				local _, _, _, hex = GetItemQualityColor(itemQuality)
+				_, _, _, hex = GetItemQualityColor(itemQuality)
 				--return "|T"..texture..":".. 12 .."|t|c"..hex.."["..itemLevel.."]|r"..link
 				--return "|T"..texture..":"..fontsize..":"..fontsize..":0:0:64:64:5:59:5:59|t|c"..hex.."["..itemLevel.."]|r"..link
 				return "|T"..texture..":12:12:0:0:64:64:5:59:5:59|t|c"..hex.."["..itemLevel.."]|r"..link

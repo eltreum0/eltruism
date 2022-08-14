@@ -13,7 +13,7 @@ local CharacterFrame = _G.CharacterFrame
 local PaperDollFrame = _G.PaperDollFrame
 local ReputationFrame = _G.ReputationFrame
 local TokenFrame = _G.TokenFrame
-
+local classsymbolonframe
 local classIcons = {
 	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Warrior",
 	["PALADIN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Paladin",
@@ -51,7 +51,6 @@ elseif E.Classic or E.Wrath or E.TBC then
 	CharacterLevelText:SetWidth(280) --new
 end
 
-local classsymbolonframe
 function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false then
 		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then

@@ -13,6 +13,18 @@ local unpack = _G.unpack
 local max = _G.max
 local sin = _G.sin
 local cos = _G.cos
+local GetCursorPosition = _G.GetCursorPosition
+local InCombatLockdown = _G.InCombatLockdown
+local GetTime = _G.GetTime
+local GetSpellCooldown = _G.GetSpellCooldown
+local colorcast
+local colorgcd
+local colorcursor
+local currentring
+local Defaults
+local QUAD_POINTS
+local QUAD_COORD_FULL
+local QUAD_COORD_FUNC
 
 function ElvUI_EltreumUI:CursorInit()
 	if E.db.ElvUI_EltreumUI.cursor.enable then
@@ -32,7 +44,7 @@ local Cursor = CreateFrame("Frame", "EltruismCursorCursor", rootFrame)
 
 --Detect the current cursor for options
 function ElvUI_EltreumUI:CurrentTypeofCursor()
-	local currentring = E.db.ElvUI_EltreumUI.cursor.ring
+	currentring = E.db.ElvUI_EltreumUI.cursor.ring
 	if currentring:match("ring1") then
 		currentring = '|cff82B4ffType 1|r'
 	elseif currentring:match("ring2") then
@@ -88,10 +100,6 @@ function ElvUI_EltreumUI:CastCursor()
 			--SetCVar("gxCursor", 0)
 			SetCVar("HardwareCursor", 0)
 		end
-
-		local colorcast
-		local colorgcd
-		local colorcursor
 		if E.db.ElvUI_EltreumUI.cursorcast.classcolor then
 			colorcast = E:ClassColor(E.myclass, true)
 		end
@@ -123,7 +131,7 @@ function ElvUI_EltreumUI:CastCursor()
 			}
 		end
 
-		local Defaults = {
+		Defaults = {
 			cast = {
 				radius = E.db.ElvUI_EltreumUI.cursorcast.radius,
 				sublayer = 1,
@@ -147,19 +155,19 @@ function ElvUI_EltreumUI:CastCursor()
 				texture = E.db.ElvUI_EltreumUI.cursor.ring,
 			},
 		}
-		local QUAD_POINTS = {
+		QUAD_POINTS = {
 			{ 'TOPLEFT',	 'TOP'	},
 			{ 'TOPRIGHT',	'RIGHT'  },
 			{ 'BOTTOMRIGHT', 'BOTTOM' },
 			{ 'BOTTOMLEFT',  'LEFT'   },
 		}
-		local QUAD_COORD_FULL = {
+		QUAD_COORD_FULL = {
 			{ 0,0, 0,1, 1,0, 1,1 },
 			{ 0,1, 1,1, 0,0, 1,0 },
 			{ 1,1, 1,0, 0,1, 0,0 },
 			{ 1,0, 0,0, 1,1, 0,1 },
 		}
-		local QUAD_COORD_FUNC = {
+		QUAD_COORD_FUNC = {
 			function(t, r, x1, x2, y1, y2) -- Quadrant1: TOPRIGHT
 				t:SetTexCoord(x1,1-y2, x1,1-y1, x2,1-y2, x2,1-y1)
 				t:SetSize(x2*r, (1-y1)*r)
