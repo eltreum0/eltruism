@@ -6488,7 +6488,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = E.NewSign..L["Camera Distance Scale"],
 								order = 899,
 								min = 0.01,
-								max = 50,
+								max = 10,
 								step = 0.01,
 								--width = "double",
 								disabled = function() return not E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel end,
