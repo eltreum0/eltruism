@@ -6424,7 +6424,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight end,
 								get = function() return E.db.ElvUI_EltreumUI.nameplateOptions.useelvuinpheight end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplateOptions.useelvuinpheight = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.nameplateOptions.useelvuinpheight = value end,
 							},
 							enableCustomHealthHeightnocombat = {
 								type = 'range',
