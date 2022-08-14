@@ -168,6 +168,8 @@ P.ElvUI_EltreumUI = {
 		ViewTranslationy = -0.8,
 		Rotation = 296,
 		modelalpha = 0.7,
+		desaturation = 0,
+		paused = false,
 	},
 
 	stealthOptions = {

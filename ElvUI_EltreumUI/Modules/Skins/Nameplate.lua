@@ -198,6 +198,8 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 			target3d:SetViewTranslation(E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationx*100,E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationy*100)
 			target3d:SetRotation(rad(E.db.ElvUI_EltreumUI.nameplateOptions.Rotation))
 			target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplateOptions.modelalpha)
+			target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplateOptions.desaturation)
+			target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplateOptions.paused)
 		end
 		if UnitExists("target") then
 			if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
