@@ -6442,6 +6442,27 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight = value end,
 							},
+
+							targetmodel = {
+								order = 10,
+								type = "description",
+								name= L["Target Model"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							enabletargetmodel = {
+								order = 11,
+								type = 'toggle',
+								name = E.NewSign..L["Enable Target Model"],
+								desc = L["Shows the target's model on the target nameplate"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+
+
+
+
 							header2 = {
 								order = 905,
 								type = "description",

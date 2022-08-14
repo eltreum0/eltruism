@@ -161,6 +161,12 @@ P.ElvUI_EltreumUI = {
 		enableHealthHeight = false,
 		outofcombatHeight = 2,
 		incombatHeight = 14,
+
+		targetmodel = true,
+		CamDistanceScale = 0.5,
+		ViewTranslationx = 1,
+		ViewTranslationy = -80,
+		Rotation = 296,
 	},
 
 	stealthOptions = {
