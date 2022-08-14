@@ -314,6 +314,7 @@ P.ElvUI_EltreumUI = {
 		xOffset = 0,
 		yOffset = 200,
 		fontsetting = true,
+		fontsettingdmg = false,
 		combatindicator = false,
 	},
 

@@ -38,6 +38,8 @@ function ElvUI_EltreumUI:LootText()
 			--use elvui general font
 			if E.db.ElvUI_EltreumUI.loottext.fontsetting then
 				string:SetFont(E.media.normFont, 24, E.db.general.fontStyle)
+			elseif E.db.ElvUI_EltreumUI.loottext.fontsettingdmg then
+				string:SetFont(E.private.general.dmgfont, 24, E.db.general.fontStyle)
 		 	end
 			string:SetText(message)
 			string:SetTextColor(r, g, b)
