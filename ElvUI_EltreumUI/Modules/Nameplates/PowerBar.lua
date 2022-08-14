@@ -56,6 +56,13 @@ function ElvUI_EltreumUI:PowerPrediction()
 
 		EltreumPowerPrediction:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture))
 		EltreumPowerPredictionIncoming:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture))
+		--[[if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
+			EltreumPowerPrediction:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex*E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["scale"], E.db.ElvUI_EltreumUI.nameplatepower.sizey)
+			EltreumPowerPredictionIncoming:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex*E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["scale"], E.db.ElvUI_EltreumUI.nameplatepower.sizey)
+		else
+			EltreumPowerPrediction:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplatepower.sizey)
+			EltreumPowerPredictionIncoming:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplatepower.sizey)
+		end]]
 		EltreumPowerPrediction:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplatepower.sizey)
 		EltreumPowerPredictionIncoming:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplatepower.sizey)
 		EltreumPowerPrediction:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
@@ -212,14 +219,20 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			end
 			EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.nameplatepower.font), E.db.ElvUI_EltreumUI.nameplatepower.fontsize, E.db.general.fontStyle)
 			EltreumPowerBar.Text:SetText(ret)	--this is an actual number not string
-			--EltreumPowerBar.Text:SetText(BreakUpLargeNumbers(UnitPower("player")))	--this is an actual number not string
-
+			--[[if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
+				EltreumPowerBar:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex*E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["scale"], E.db.ElvUI_EltreumUI.nameplatepower.sizey)
+				--EltreumPowerBar:SetSize(E.db.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplatepower.sizey) --testwidth
+			else
+				EltreumPowerBar:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplatepower.sizey)
+			end]]
 			EltreumPowerBar:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplatepower.sizey)
-			--EltreumPowerBar:SetSize(E.db.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplatepower.sizey) --testwidth
 			EltreumPowerBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplatepower.texture))
 			EltreumPowerBar:SetFrameStrata("MEDIUM")
-
-			--EltreumPowerBar.bg:SetSize(bgx, bgy)
+			--[[if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
+				EltreumPowerBar.bg:SetSize((E.db.ElvUI_EltreumUI.nameplatepower.sizex + 1)*E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["scale"] , E.db.ElvUI_EltreumUI.nameplatepower.sizey + 1 )
+			else
+				EltreumPowerBar.bg:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex + 1 , E.db.ElvUI_EltreumUI.nameplatepower.sizey + 1 )
+			end]]
 			EltreumPowerBar.bg:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex + 1 , E.db.ElvUI_EltreumUI.nameplatepower.sizey + 1 )
 			EltreumPowerBar.bg:SetVertexColor(E.db.ElvUI_EltreumUI.nameplatepower.r, E.db.ElvUI_EltreumUI.nameplatepower.g, E.db.ElvUI_EltreumUI.nameplatepower.b) -- option for changing this color
 
