@@ -186,7 +186,18 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			}
 		end
 	elseif E.private.ElvUI_EltreumUI.install_version < "3.2.4" then
-		E.global["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["classification"]["worldboss"] = true
+		if not E.Retail and E.global["nameplates"]["filters"]["ElvUI_Boss"] then  --in classic for some reason bosses are not affected by ElvUI_Target/EltreumTarget
+			E.global["nameplates"]["filters"]['ElvUI_Boss'] = {}
+			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"]['ElvUI_Boss'])
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["health"] = true
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["healthClass"] = true
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["scale"] = 1.25
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["usePortrait"] = false
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["isTarget"] = true
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["requireTarget"] = true
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = true
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["classification"]["worldboss"] = true
+		end
 
 		--reset eltreum name with lower priority
 		E.global["nameplates"]["filters"]['EltreumTarget'] = {}
