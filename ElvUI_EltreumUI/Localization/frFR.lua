@@ -1017,3 +1017,4 @@ L["Target Model"] = true
 L["Enable Target Model"] = true
 L["Shows the target's model on the target nameplate"] = true
 L["Use ElvUI Damage Font"] = true
+L["Enable Playing a Sound if an item from the wishlist is looted"] = true
