@@ -27,4 +27,5 @@ Fixed missing castbar custom color in gradient mode\
 Fixed a possible error when applying fonts without some of Eltruism's Custom Texts being imported\
 Fixed Healer layout missing auto adjusting borders for the pet bar\
 Fixed Boss and Arena missing gradients after the gradient rework\
-Fixed Target of Target of Target gradient/custom textures
+Fixed Target of Target of Target gradient/custom textures\
+Fixed Chat fade options not working when Chat was transparent
