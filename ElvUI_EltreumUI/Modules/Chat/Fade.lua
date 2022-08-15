@@ -18,18 +18,11 @@ local lalpha, ralpha
 --/run RightChatToggleButton.Center:Hide()
 
 function ElvUI_EltreumUI:DynamicChatFade()
-	if not IsAddOnLoaded("ElvUI_EltreumUI") then
-		return
-	elseif not E.db.ElvUI_EltreumUI then
-		return
-	elseif not E.db.ElvUI_EltreumUI.chat then
-		return
-	end
 	if E.db.ElvUI_EltreumUI.chat.invertclick then
 		leftfaderbutton = 1
 		rightfaderbutton = 1
 	end
-	if E.db.ElvUI_EltreumUI.chat.enable == true then
+	if E.db.ElvUI_EltreumUI.chat.enable then
 		LeftChatPanel = _G.LeftChatPanel
 		RightChatPanel = _G.RightChatPanel
 		--register events left chat panel
@@ -91,7 +84,7 @@ function ElvUI_EltreumUI:DynamicChatFade()
 		hidetime = E.db.chat.inactivityTimer+2
 
 		--left chat toggle the fade on and off
-		LeftChatPanel:SetScript('OnMouseDown', function(self, button)
+		_G.ChatFrame1:SetScript('OnMouseDown', function(self, button)
 			 if button=='LeftButton' then
 				if leftfaderbutton == 1 then
 					leftfaderbutton = 0
@@ -101,7 +94,7 @@ function ElvUI_EltreumUI:DynamicChatFade()
 			end
 		end)
 		--right chat toggle the fade on and off
-		RightChatPanel:SetScript('OnMouseDown', function(self, button)
+		_G.ChatFrame4:SetScript('OnMouseDown', function(self, button)
 			 if button=='LeftButton' then
 			 	if rightfaderbutton == 1 then
 					rightfaderbutton = 0
@@ -113,14 +106,15 @@ function ElvUI_EltreumUI:DynamicChatFade()
 
 		--Left Chat Panel Mouse Over
 		if E.db.ElvUI_EltreumUI.chat.leftmouseover then
-			LeftChatPanel:SetScript('OnEnter', function(self)
+			_G.ChatFrame1:SetScript('OnEnter', function(self)
 				if not InCombatLockdown() then
 					if leftfaderbutton == 1 then
 						UIFrameFadeIn(LeftChatPanel, 0.5, 0, 1)
 					end
 				end
 			end)
-			LeftChatPanel:SetScript('OnLeave', function(self)
+			_G.ChatFrame1:SetScript('OnLeave', function(self)
+				print('3',leftfaderbutton)
 				if not InCombatLockdown() then
 					if leftfaderbutton == 1 then
 						UIFrameFadeOut(LeftChatPanel, 0.5, 1, 0)
@@ -131,14 +125,14 @@ function ElvUI_EltreumUI:DynamicChatFade()
 
 		--Right Chat Panel Mouse Over
 		if E.db.ElvUI_EltreumUI.chat.rightmouseover then
-			RightChatPanel:SetScript('OnEnter', function(self)
+			_G.ChatFrame4:SetScript('OnEnter', function(self)
 				if not InCombatLockdown() then
 					if rightfaderbutton == 1 then
 						UIFrameFadeIn(RightChatPanel, 0.5, 0, 1)
 					end
 				end
 			end)
-			RightChatPanel:SetScript('OnLeave', function(self)
+			_G.ChatFrame4:SetScript('OnLeave', function(self)
 				if not InCombatLockdown() then
 					if rightfaderbutton == 1 then
 						UIFrameFadeOut(RightChatPanel, 0.5, 1, 0)
