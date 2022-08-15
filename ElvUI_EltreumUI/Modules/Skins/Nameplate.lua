@@ -186,7 +186,6 @@ local function GradientNameplates(unit)
 end
 hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 
-
 --set the basic settings for the model since spamming during function is not good
 local target3d = CreateFrame('PlayerModel', "EltruismNameplateModel")
 local nptarget, nptargetunit
@@ -240,11 +239,8 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 end
 hooksecurefunc(NP, "SetupTarget", ElvUI_EltreumUI.NameplateModel)
 
-
-
 --np custom health height conditions
 local heighttable = {}
-
 function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 	if (E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight) and unit and unit.unit and unit.unit:match("nameplate") then
 		if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
@@ -282,22 +278,6 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 	end
 end
 hooksecurefunc(NP, "StyleFilterConditionCheck", ElvUI_EltreumUI.NameplateCustomOptions)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 --fix stylefilter for gradient nameplates
 function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, HealthFlash, HealthTexture, Scale, Alpha, NameTag, PowerTag, HealthTag, TitleTag, LevelTag, Portrait, NameOnly, Visibility)
