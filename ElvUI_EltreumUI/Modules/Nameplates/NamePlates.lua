@@ -71,7 +71,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 						if button.cd.timer then
 							if E.db.ElvUI_EltreumUI.widenameplate.enable then
 								button.cd.timer.text:ClearAllPoints()
-								button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
+								button.cd.timer.text:SetPoint("TOP", button.icon, "TOP", 0, 5)
 							end
 							debufftime = tonumber(button.cd.timer.text:GetText())
 							if E.db.ElvUI_EltreumUI.widenameplate.npglow then
