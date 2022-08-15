@@ -339,7 +339,7 @@ function NP:StyleFilterSetChanges(frame, actions, HealthColor, PowerColor, Borde
 		c.HealthColor = hc -- used by Health_UpdateColor
 
 		if E.db.ElvUI_EltreumUI.gradientmode.npenable then
-			frame.Health:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.nporientation,hc.r, hc.g, hc.b, hc.r-0.4, hc.g-0.4, hc.b-0.4, hc.a)
+			frame.Health:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.nporientation,hc.r, hc.g, hc.b, hc.a or 1, hc.r-0.4, hc.g-0.4, hc.b-0.4, hc.a or 1)
 		else
 			frame.Health:SetStatusBarColor(hc.r, hc.g, hc.b, hc.a or 1)
 		end
