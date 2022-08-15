@@ -186,7 +186,7 @@ local function GradientNameplates(unit)
 end
 hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 
-
+--3d target model on nameplate
 local target3d = CreateFrame('PlayerModel')
 local target3danchor
 local targetunit
@@ -212,23 +212,19 @@ function ElvUI_EltreumUI:NameplateTargetModel()
 				target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplateOptions.modelalpha)
 				target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplateOptions.desaturation)
 				target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplateOptions.paused)
-				target3d:SetInside(_G["ElvNP_NamePlate".. elvnpnumber .."Health"], 0, 0) --just like others allows it to not step out of boundaries
-				target3d:SetSize(150,E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
 				target3d:ClearAllPoints()
 				target3d:SetPoint("CENTER", target3danchor, "CENTER")
+				target3d:SetInside(_G["ElvNP_NamePlate".. elvnpnumber .."Health"], 0, 0) --just like others allows it to not step out of boundaries
+				target3d:SetSize(150,E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
 				target3d:SetFrameLevel(target3danchor:GetFrameLevel())
-				--target3d:SetFrameLevel(50)
 				target3d:Show()
 			end
 		end
 	else
+		target3d:ClearAllPoints()
 		target3d:Hide()
 	end
 end
-
-
-
-
 
 --np custom health height conditions
 local nptarget, nptargetunit
