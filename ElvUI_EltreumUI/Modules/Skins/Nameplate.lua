@@ -217,34 +217,15 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 end
 hooksecurefunc(NP, "StyleFilterUpdate", ElvUI_EltreumUI.NameplateCustomOptions)
 
---set the basic settings for the model since spamming during function is not good
+--Adds a model of the Target to the Target nameplate
 local target3d = CreateFrame('PlayerModel', "EltruismNameplateModel")
 function ElvUI_EltreumUI:NameplateModel(nameplate)
 	if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
 		if UnitExists("target") then
-			--[[
-				nptarget = C_NamePlate.GetNamePlateForUnit("target")
-				if nptarget and nptarget.UnitFrame then
-					nptargetunit = nptarget.UnitFrame.unit
-					elvnpnumber = string.match(nptargetunit , "%d+")
-				else
-					elvnpnumber = nil
-					nptarget = nil
-					nptargetunit = nil
-					target3d:ClearAllPoints()
-					target3d:Hide()
-					--print("hidden1")
-				end
-			]]
 			if nameplate and nameplate.unit then
 				ElvUI_EltreumUI:NameplateCustomOptions(nameplate) --testing sending unit to other function
-				if nameplate.Health then
-					target3d:Show()
-					target3d:ClearAllPoints()
-					target3d:SetPoint("CENTER", nameplate.Health, "CENTER")
-					target3d:SetFrameLevel(nameplate.Health:GetFrameLevel())
-					target3d:SetInside(nameplate.Health, 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
-					target3d:SetParent(nameplate.Health)
+				if nameplate.Health and nameplate.Health:IsVisible() then
+					target3d:SetSize(E.db.nameplates.plateSize.enemyWidth or P.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
 					target3d:ClearModel()
 					target3d:SetUnit(nameplate.unit)
 					target3d:SetPortraitZoom(1) --allows the same cam as elvui UF
@@ -254,8 +235,16 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 					target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplateOptions.modelalpha)
 					target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplateOptions.desaturation)
 					target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplateOptions.paused)
-					target3d:SetSize(E.db.nameplates.plateSize.enemyWidth or P.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
-
+					target3d:ClearAllPoints()
+					target3d:SetPoint("CENTER", nameplate.Health, "CENTER")
+					target3d:SetFrameLevel(nameplate.Health:GetFrameLevel())
+					target3d:SetInside(nameplate.Health, 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
+					target3d:SetParent(nameplate.Health)
+					target3d:Show()
+				else
+					target3d:ClearAllPoints()
+					target3d:ClearModel()
+					target3d:Hide()
 				end
 			end
 		else
@@ -267,7 +256,7 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 end
 hooksecurefunc(NP, "SetupTarget", ElvUI_EltreumUI.NameplateModel)
 
---fix stylefilter for gradient nameplates
+--to fix stylefilter for gradient nameplates
 function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, HealthFlash, HealthTexture, Scale, Alpha, NameTag, PowerTag, HealthTag, TitleTag, LevelTag, Portrait, NameOnly, Visibility)
 	db = NP:PlateDB(frame)
 
@@ -328,5 +317,120 @@ function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, Hea
 		if HealthTag then frame:Tag(frame.Health.Text, db.health.text.format) frame.Health.Text:UpdateTag() end
 		if TitleTag then frame:Tag(frame.Title, db.title.format) frame.Title:UpdateTag() end
 		if LevelTag then frame:Tag(frame.Level, db.level.format) frame.Level:UpdateTag() end
+	end
+end
+
+--to set slight gradient to style filter
+function NP:StyleFilterSetChanges(frame, actions, HealthColor, PowerColor, Borders, HealthFlash, HealthTexture, Scale, Alpha, NameTag, PowerTag, HealthTag, TitleTag, LevelTag, Portrait, NameOnly, Visibility)
+	local c = frame.StyleFilterChanges
+	if not c then return end
+
+	local db = NP:PlateDB(frame)
+
+	if Visibility then
+		c.Visibility = true
+		mod:DisablePlate(frame) -- disable the plate elements
+		frame:ClearAllPoints() -- lets still move the frame out cause its clickable otherwise
+		frame:Point('TOP', E.UIParent, 'BOTTOM', 0, -500)
+		return -- We hide it. Lets not do other things (no point)
+	end
+	if HealthColor then
+		local hc = (actions.color.healthClass and frame.classColor) or actions.color.healthColor
+		c.HealthColor = hc -- used by Health_UpdateColor
+
+		if E.db.ElvUI_EltreumUI.gradientmode.npenable then
+			frame.Health:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.gradientmode.nporientation,hc.r, hc.g, hc.b, hc.r-0.4, hc.g-0.4, hc.b-0.4, hc.a or 1)
+		else
+			frame.Health:SetStatusBarColor(hc.r, hc.g, hc.b, hc.a or 1)
+		end
+
+		frame.Cutaway.Health:SetVertexColor(hc.r * 1.5, hc.g * 1.5, hc.b * 1.5, hc.a or 1)
+	end
+	if PowerColor then
+		local pc = (actions.color.powerClass and frame.classColor) or actions.color.powerColor
+		c.PowerColor = true
+
+		frame.Power:SetStatusBarColor(pc.r, pc.g, pc.b, pc.a or 1)
+		frame.Cutaway.Power:SetVertexColor(pc.r * 1.5, pc.g * 1.5, pc.b * 1.5, pc.a or 1)
+	end
+	if Borders then
+		local bc = (actions.color.borderClass and frame.classColor) or actions.color.borderColor
+		c.Borders = true
+
+		NP:StyleFilterBorderLock(frame.Health.backdrop, bc.r, bc.g, bc.b, bc.a or 1)
+
+		if frame.Power.backdrop and db.power.enable then
+			NP:StyleFilterBorderLock(frame.Power.backdrop, bc.r, bc.g, bc.b, bc.a or 1)
+		end
+	end
+	if HealthFlash then
+		local fc = (actions.flash.class and frame.classColor) or actions.flash.color
+		c.HealthFlash = true
+
+		if not HealthTexture then
+			frame.HealthFlashTexture:SetTexture(E.LSM:Fetch('statusbar', NP.db.statusbar))
+		end
+
+		frame.HealthFlashTexture:SetVertexColor(fc.r, fc.g, fc.b)
+
+		local anim = frame.HealthFlashTexture.anim or NP:StyleFilterSetupFlash(frame.HealthFlashTexture)
+		anim.fadein:SetToAlpha(fc.a or 1)
+		anim.fadeout:SetFromAlpha(fc.a or 1)
+
+		frame.HealthFlashTexture:Show()
+		E:Flash(frame.HealthFlashTexture, actions.flash.speed * 0.1, true)
+	end
+	if HealthTexture then
+		local tx = E.LSM:Fetch('statusbar', actions.texture.texture)
+		c.HealthTexture = true
+
+		frame.Health:SetStatusBarTexture(tx)
+
+		if HealthFlash then
+			frame.HealthFlashTexture:SetTexture(tx)
+		end
+	end
+	if Scale then
+		c.Scale = true
+		NP:ScalePlate(frame, actions.scale)
+	end
+	if Alpha then
+		c.Alpha = true
+		NP:PlateFade(frame, NP.db.fadeIn and 1 or 0, frame:GetAlpha(), actions.alpha * 0.01)
+	end
+	if Portrait then
+		c.Portrait = true
+		NP:Update_Portrait(frame)
+		frame.Portrait:ForceUpdate()
+	end
+	if NameOnly then
+		c.NameOnly = true
+		NP:DisablePlate(frame, true, true)
+	end
+	-- Keeps Tag changes after NameOnly
+	if NameTag then
+		c.NameTag = true
+		frame:Tag(frame.Name, actions.tags.name)
+		frame.Name:UpdateTag()
+	end
+	if PowerTag then
+		c.PowerTag = true
+		frame:Tag(frame.Power.Text, actions.tags.power)
+		frame.Power.Text:UpdateTag()
+	end
+	if HealthTag then
+		c.HealthTag = true
+		frame:Tag(frame.Health.Text, actions.tags.health)
+		frame.Health.Text:UpdateTag()
+	end
+	if TitleTag then
+		c.TitleTag = true
+		frame:Tag(frame.Title, actions.tags.title)
+		frame.Title:UpdateTag()
+	end
+	if LevelTag then
+		c.LevelTag = true
+		frame:Tag(frame.Level, actions.tags.level)
+		frame.Level:UpdateTag()
 	end
 end
