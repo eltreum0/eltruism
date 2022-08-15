@@ -193,7 +193,6 @@ local targetunit
 local elvnpnumber
 function ElvUI_EltreumUI:NameplateTargetModel()
 	if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel and UnitExists('target') then
-		target3d:Show()
 		target3danchor = C_NamePlate.GetNamePlateForUnit("target")
 		if target3danchor then
 			if E.Retail then
@@ -201,11 +200,12 @@ function ElvUI_EltreumUI:NameplateTargetModel()
 			else
 				targetunit = target3danchor.namePlateUnitToken
 			end
-			elvnpnumber = string.match(targetunit , "%d+")
 			if targetunit then
-				target3d:SetParent(target3danchor)
+				print(targetunit)
+				elvnpnumber = string.match(targetunit , "%d+")
 				target3d:ClearModel()
 				target3d:SetUnit(targetunit)
+				target3d:Show()
 				target3d:SetPortraitZoom(1) --allows the same cam as elvui UF
 				target3d:SetCamDistanceScale(E.db.ElvUI_EltreumUI.nameplateOptions.CamDistanceScale)
 				target3d:SetViewTranslation(E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationx*100,E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationy*100)
@@ -213,18 +213,30 @@ function ElvUI_EltreumUI:NameplateTargetModel()
 				target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplateOptions.modelalpha)
 				target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplateOptions.desaturation)
 				target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplateOptions.paused)
+				target3d:SetSize(E.db.nameplates.plateSize.enemyWidth or P.nameplates.plateSize.enemyWidth,E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
 				target3d:ClearAllPoints()
-				target3d:SetPoint("CENTER", target3danchor, "CENTER")
-				target3d:SetInside(_G["ElvNP_NamePlate".. elvnpnumber .."Health"], 0, 0) --just like others allows it to not step out of boundaries
-				target3d:SetSize(150,E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
+				target3d:SetPoint("CENTER", _G["ElvNP_NamePlate".. elvnpnumber .."Health"], "CENTER")
 				target3d:SetFrameLevel(_G["ElvNP_NamePlate".. elvnpnumber .."Health"]:GetFrameLevel())
+				target3d:SetParent(_G["ElvNP_NamePlate".. elvnpnumber .."Health"])
+				target3d:SetInside(_G["ElvNP_NamePlate".. elvnpnumber .."Health"], 0, 0) --just like others allows it to not step out of boundaries
 			end
 		end
 	else
 		target3d:ClearAllPoints()
+		target3d:ClearModel()
 		target3d:Hide()
+		target3danchor = nil
+		targetunit = nil
+		elvnpnumber = nil
 	end
 end
+
+local test = CreateFrame("FRAME")
+test:RegisterEvent("NAME_PLATE_UNIT_ADDED")
+test:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
+test:SetScript("OnEvent", function()
+	ElvUI_EltreumUI:NameplateTargetModel()
+end)
 
 --np custom health height conditions
 local nptarget, nptargetunit
