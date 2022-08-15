@@ -214,7 +214,7 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 			target3d:ClearAllPoints()
 			target3d:SetParent(nameplate.Health)
 			target3d:SetPoint("CENTER", unit.Health, "CENTER")
-			target3d:SetFrameLevel(uni.Health:GetFrameLevel())
+			target3d:SetFrameLevel(unit.Health:GetFrameLevel())
 			target3d:SetInside(unit.Health, 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
 		end
 		if UnitExists("target") then
