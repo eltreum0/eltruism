@@ -28,6 +28,7 @@ local r,g,b
 local id
 local itemID
 local lootQuality, isQuestItem
+local lootsoundthrottle = 0
 
 --wishlist popup
 local WishlistItemFrame = CreateFrame("Frame", "EltruismWishlistItem", UIParent)
@@ -101,8 +102,13 @@ local function InstantLoot(_, event,_, arg2)
 						if E.db.ElvUI_EltreumUI.otherstuff.lootwishlistscreenshot then
 							C_Timer.After(1, function() Screenshot() end)
 						end
-						if E.db.ElvUI_EltreumUI.otherstuff.lootwishlistsoundenable then
+						if E.db.ElvUI_EltreumUI.otherstuff.lootwishlistsoundenable and lootsoundthrottle == 0 then
 							PlaySoundFile(E.LSM:Fetch("sound", E.db.ElvUI_EltreumUI.otherstuff.lootwishlistsound) , "Master")
+							lootsoundthrottle = 1
+							C_Timer.After(0.5, function()
+								lootsoundthrottle = 0
+							end)
+
 						end
 						C_Timer.After(5, function() UIFrameFadeOut(WishlistItemFrame, 1, 1, 0) end)
 					end
