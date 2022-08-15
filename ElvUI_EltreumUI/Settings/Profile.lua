@@ -167,7 +167,7 @@ P.ElvUI_EltreumUI = {
 		ViewTranslationx = 0,
 		ViewTranslationy = 0,
 		Rotation = 0,
-		modelalpha = 0.7,
+		modelalpha = 0.4,
 		desaturation = 0,
 		paused = false,
 	},
