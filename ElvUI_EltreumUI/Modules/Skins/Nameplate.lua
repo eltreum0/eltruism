@@ -195,11 +195,7 @@ function ElvUI_EltreumUI:NameplateTargetModel()
 	if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel and UnitExists('target') then
 		target3danchor = C_NamePlate.GetNamePlateForUnit("target")
 		if target3danchor then
-			if E.Retail then
-				targetunit = target3danchor.UnitFrame.BuffFrame.unit
-			else
-				targetunit = target3danchor.namePlateUnitToken
-			end
+			targetunit = target3danchor.UnitFrame.unit
 			if targetunit then
 				elvnpnumber = string.match(targetunit , "%d+")
 				if elvnpnumber then
@@ -222,13 +218,17 @@ function ElvUI_EltreumUI:NameplateTargetModel()
 						target3d:SetInside(_G["ElvNP_NamePlate".. elvnpnumber .."Health"], 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
 					else
 						target3d:Hide()
+						target3danchor = nil
+						targetunit = nil
+						elvnpnumber = nil
 					end
 				else
 					target3d:Hide()
+					target3danchor = nil
+					targetunit = nil
+					elvnpnumber = nil
 				end
 			else
-				target3d:ClearAllPoints()
-				target3d:ClearModel()
 				target3d:Hide()
 				target3danchor = nil
 				targetunit = nil
@@ -238,8 +238,6 @@ function ElvUI_EltreumUI:NameplateTargetModel()
 			target3d:Hide()
 		end
 	else
-		target3d:ClearAllPoints()
-		target3d:ClearModel()
 		target3d:Hide()
 		target3danchor = nil
 		targetunit = nil
