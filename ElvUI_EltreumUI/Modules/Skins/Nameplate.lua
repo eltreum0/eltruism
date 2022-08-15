@@ -240,6 +240,11 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 				ElvUI_EltreumUI:NameplateCustomOptions(nameplate) --testing sending unit to other function
 				if nameplate.Health then
 					target3d:Show()
+					target3d:ClearAllPoints()
+					target3d:SetPoint("CENTER", nameplate.Health, "CENTER")
+					target3d:SetFrameLevel(nameplate.Health:GetFrameLevel())
+					target3d:SetInside(nameplate.Health, 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
+					target3d:SetParent(nameplate.Health)
 					target3d:ClearModel()
 					target3d:SetUnit(nameplate.unit)
 					target3d:SetPortraitZoom(1) --allows the same cam as elvui UF
@@ -250,11 +255,7 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 					target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplateOptions.desaturation)
 					target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplateOptions.paused)
 					target3d:SetSize(E.db.nameplates.plateSize.enemyWidth or P.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
-					target3d:ClearAllPoints()
-					target3d:SetPoint("CENTER", nameplate.Health, "CENTER")
-					target3d:SetFrameLevel(nameplate.Health:GetFrameLevel())
-					target3d:SetInside(nameplate.Health, 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
-					target3d:SetParent(nameplate.Health)
+
 				end
 			end
 		else
