@@ -247,32 +247,38 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 			]]
 			if nameplate.unit then
 				ElvUI_EltreumUI:NameplateCustomOptions(nameplate) --testing sending unit to other function
-
-				target3d:Show()
-				target3d:ClearModel()
-				target3d:SetUnit(nameplate.unit)
-
-				target3d:SetPortraitZoom(1) --allows the same cam as elvui UF
-				target3d:SetCamDistanceScale(E.db.ElvUI_EltreumUI.nameplateOptions.CamDistanceScale)
-				target3d:SetViewTranslation(E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationx*100,E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationy*100)
-				target3d:SetRotation(rad(E.db.ElvUI_EltreumUI.nameplateOptions.Rotation))
-				target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplateOptions.modelalpha)
-				target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplateOptions.desaturation)
-				target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplateOptions.paused)
-				target3d:SetSize(E.db.nameplates.plateSize.enemyWidth or P.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
-
 				if nameplate.Health then
+					target3d:Show()
+					target3d:ClearModel()
+					target3d:SetUnit(nameplate.unit)
+					target3d:SetPortraitZoom(1) --allows the same cam as elvui UF
+					target3d:SetCamDistanceScale(E.db.ElvUI_EltreumUI.nameplateOptions.CamDistanceScale)
+					target3d:SetViewTranslation(E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationx*100,E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationy*100)
+					target3d:SetRotation(rad(E.db.ElvUI_EltreumUI.nameplateOptions.Rotation))
+					target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplateOptions.modelalpha)
+					target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplateOptions.desaturation)
+					target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplateOptions.paused)
+					target3d:SetSize(E.db.nameplates.plateSize.enemyWidth or P.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
 					target3d:ClearAllPoints()
 					target3d:SetPoint("CENTER", nameplate.Health, "CENTER")
 					target3d:SetFrameLevel(nameplate.Health:GetFrameLevel())
 					target3d:SetInside(nameplate.Health, 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
 					target3d:SetParent(nameplate.Health)
+				else
+					target3d:ClearAllPoints()
+					target3d:Hide()
 				end
+			else
+				target3d:ClearAllPoints()
+				target3d:Hide()
 			end
 		else
 			target3d:ClearAllPoints()
 			target3d:Hide()
 		end
+	else
+		target3d:ClearAllPoints()
+		target3d:Hide()
 	end
 end
 hooksecurefunc(NP, "SetupTarget", ElvUI_EltreumUI.NameplateModel)
