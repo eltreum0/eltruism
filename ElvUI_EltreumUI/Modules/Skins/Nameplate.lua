@@ -188,69 +188,43 @@ hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 
 --3d target model on nameplate
 local target3d = CreateFrame('PlayerModel', "EltruismNameplateModel")
-local target3danchor
-local targetunit
-local elvnpnumber
-function ElvUI_EltreumUI:NameplateTargetModel()
+local nptarget3d, nptargetunit3d
+function ElvUI_EltreumUI:NameplateTargetModel(nameplate)
 	if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel and UnitExists('target') then
-		target3danchor = C_NamePlate.GetNamePlateForUnit("target")
-		if target3danchor then
-			targetunit = target3danchor.UnitFrame.unit
-			if targetunit then
-				elvnpnumber = string.match(targetunit , "%d+")
-				if elvnpnumber then
-					if _G["ElvNP_NamePlate".. elvnpnumber .."Health"] then
-						target3d:Show()
-						target3d:ClearModel()
-						target3d:SetUnit(targetunit)
-						target3d:SetPortraitZoom(1) --allows the same cam as elvui UF
-						target3d:SetCamDistanceScale(E.db.ElvUI_EltreumUI.nameplateOptions.CamDistanceScale)
-						target3d:SetViewTranslation(E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationx*100,E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationy*100)
-						target3d:SetRotation(rad(E.db.ElvUI_EltreumUI.nameplateOptions.Rotation))
-						target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplateOptions.modelalpha)
-						target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplateOptions.desaturation)
-						target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplateOptions.paused)
-						target3d:SetSize(E.db.nameplates.plateSize.enemyWidth or P.nameplates.plateSize.enemyWidth,E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
-						target3d:ClearAllPoints()
-						target3d:SetParent(target3danchor)
-						target3d:SetPoint("CENTER", _G["ElvNP_NamePlate".. elvnpnumber .."Health"], "CENTER")
-						target3d:SetFrameLevel(_G["ElvNP_NamePlate".. elvnpnumber .."Health"]:GetFrameLevel())
-						target3d:SetInside(_G["ElvNP_NamePlate".. elvnpnumber .."Health"], 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
-					else
-						target3d:Hide()
-						target3danchor = nil
-						targetunit = nil
-						elvnpnumber = nil
-					end
-				else
-					target3d:Hide()
-					target3danchor = nil
-					targetunit = nil
-					elvnpnumber = nil
-				end
-			else
-				target3d:Hide()
-				target3danchor = nil
-				targetunit = nil
-				elvnpnumber = nil
-			end
+
+		nptarget3d = C_NamePlate.GetNamePlateForUnit("target")
+		if nptarget3d then
+			nptargetunit3d = nptarget3d.UnitFrame.unit
+		end
+
+		if nameplate and nameplate.unit and nptargetunit3d and UnitIsUnit(nameplate.unit, nptargetunit3d) then
+			target3d:Show()
+			target3d:ClearModel()
+			target3d:SetUnit(nameplate.unit)
+			target3d:SetPortraitZoom(1) --allows the same cam as elvui UF
+			target3d:SetCamDistanceScale(E.db.ElvUI_EltreumUI.nameplateOptions.CamDistanceScale)
+			target3d:SetViewTranslation(E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationx*100,E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationy*100)
+			target3d:SetRotation(rad(E.db.ElvUI_EltreumUI.nameplateOptions.Rotation))
+			target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplateOptions.modelalpha)
+			target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplateOptions.desaturation)
+			target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplateOptions.paused)
+			target3d:SetSize(E.db.nameplates.plateSize.enemyWidth or P.nameplates.plateSize.enemyWidth,E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
+			target3d:ClearAllPoints()
+			target3d:SetParent(nameplate.Health)
+			target3d:SetPoint("CENTER", nameplate.Health, "CENTER")
+			target3d:SetFrameLevel(nameplate.Health:GetFrameLevel())
+			target3d:SetInside(nameplate.Health, 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
 		else
+			nptarget3d = nil
+			nptargetunit3d = nil
 			target3d:Hide()
 		end
 	else
+		nptarget3d = nil
+		nptargetunit3d = nil
 		target3d:Hide()
-		target3danchor = nil
-		targetunit = nil
-		elvnpnumber = nil
 	end
 end
-
-local test = CreateFrame("FRAME")
-test:RegisterEvent("NAME_PLATE_UNIT_ADDED")
-test:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
-test:SetScript("OnEvent", function()
-	ElvUI_EltreumUI:NameplateTargetModel()
-end)
 
 --np custom health height conditions
 local nptarget, nptargetunit
@@ -269,11 +243,7 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 			--this is the magic
 			nptarget = C_NamePlate.GetNamePlateForUnit("target")
 			if nptarget then
-				if E.Retail then
-					nptargetunit = nptarget.UnitFrame.BuffFrame.unit
-				else
-					nptargetunit = nptarget.namePlateUnitToken
-				end
+				nptargetunit = nptarget.UnitFrame.unit
 			end
 		else
 			nptarget = nil
@@ -306,7 +276,11 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 		end
 	end
 end
-hooksecurefunc(NP, "StyleFilterConditionCheck", ElvUI_EltreumUI.NameplateCustomOptions)
+hooksecurefunc(NP, "StyleFilterConditionCheck", function(_,nameplate)
+	ElvUI_EltreumUI:NameplateTargetModel(nameplate)
+	ElvUI_EltreumUI:NameplateCustomOptions(nameplate)
+end)
+
 
 --fix stylefilter for gradient nameplates
 function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, HealthFlash, HealthTexture, Scale, Alpha, NameTag, PowerTag, HealthTag, TitleTag, LevelTag, Portrait, NameOnly, Visibility)
