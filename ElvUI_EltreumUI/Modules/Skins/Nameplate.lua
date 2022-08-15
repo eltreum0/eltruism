@@ -191,17 +191,15 @@ local nptarget, nptargetunit
 local elvnpnumber
 local target3d = CreateFrame('PlayerModel')
 function ElvUI_EltreumUI:NameplateModel()
+	target3d:Hide()
 	if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
 		if UnitExists("target") then
-
-			--this is the magic
 			nptarget = C_NamePlate.GetNamePlateForUnit("target")
 			if nptarget then
 				nptargetunit = nptarget.UnitFrame.unit
 				elvnpnumber = string.match(nptargetunit , "%d+")
 			end
-
-			if elvnpnumber then
+			if elvnpnumber and nptargetunit then
 				target3d:SetPortraitZoom(1) --allows the same cam as elvui UF
 				target3d:ClearModel()
 				target3d:SetUnit(nptargetunit)
@@ -212,9 +210,8 @@ function ElvUI_EltreumUI:NameplateModel()
 				target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplateOptions.desaturation)
 				target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplateOptions.paused)
 				target3d:SetSize(E.db.nameplates.plateSize.enemyWidth or P.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
+				target3d:Show()
 			end
-		else
-			target3d:ClearAllPoints()
 		end
 	end
 end
@@ -232,31 +229,21 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 			}
 		end
 		if UnitExists("target") then
-
-			--this is the magic
 			nptarget = C_NamePlate.GetNamePlateForUnit("target")
 			if nptarget then
 				nptargetunit = nptarget.UnitFrame.unit
 				elvnpnumber = string.match(nptargetunit , "%d+")
 			end
 
-			if elvnpnumber and E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
-				target3d:Show()
+			if elvnpnumber and nptargetunit and E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
 				target3d:ClearAllPoints()
 				target3d:SetParent(_G["ElvNP_NamePlate".. elvnpnumber .."Health"])
 				target3d:SetPoint("CENTER", _G["ElvNP_NamePlate".. elvnpnumber .."Health"], "CENTER")
 				target3d:SetFrameLevel(_G["ElvNP_NamePlate".. elvnpnumber .."Health"]:GetFrameLevel())
 				target3d:SetInside(_G["ElvNP_NamePlate".. elvnpnumber .."Health"], 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
-			else
-				target3d:ClearAllPoints()
-				target3d:Hide()
+				target3d:Show()
 			end
-
 		else
-			if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
-				target3d:ClearAllPoints()
-				target3d:Hide()
-			end
 			nptarget = nil
 			nptargetunit = nil
 		end
