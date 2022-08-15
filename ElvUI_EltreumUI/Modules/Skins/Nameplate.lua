@@ -241,7 +241,7 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 					target3d:SetInside(nameplate.Health, 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
 					target3d:SetAlpha(0)
 
-					E:Delay(0.1, function()
+					E:Delay(0.096, function()
 						target3d:ClearModel()
 						target3d:SetUnit(nameplate.unit)
 						target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplateOptions.desaturation)
