@@ -193,6 +193,7 @@ local targetunit
 local elvnpnumber
 function ElvUI_EltreumUI:NameplateTargetModel()
 	if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel and UnitExists('target') then
+		target3d:Show()
 		target3danchor = C_NamePlate.GetNamePlateForUnit("target")
 		if target3danchor then
 			if E.Retail then
@@ -216,8 +217,7 @@ function ElvUI_EltreumUI:NameplateTargetModel()
 				target3d:SetPoint("CENTER", target3danchor, "CENTER")
 				target3d:SetInside(_G["ElvNP_NamePlate".. elvnpnumber .."Health"], 0, 0) --just like others allows it to not step out of boundaries
 				target3d:SetSize(150,E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
-				target3d:SetFrameLevel(target3danchor:GetFrameLevel())
-				target3d:Show()
+				target3d:SetFrameLevel(_G["ElvNP_NamePlate".. elvnpnumber .."Health"]:GetFrameLevel())
 			end
 		end
 	else
