@@ -57,6 +57,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:Anchors() --creates anchors for error frame and weakaura that can be used to attack weakauras to elvui's unitframe visibility settings
 	ElvUI_EltreumUI:ChatRoleSwapIcons() --adds custom role icons in chat when swapping roles
 	ElvUI_EltreumUI:DynamicChatFade() --adds chat fade/hide functions
+	ElvUI_EltreumUI:LootText() -- gets the combat text going if not enabled
 	ElvUI_EltreumUI:StealthOptions() --adds an overlay when in stealth
 	ElvUI_EltreumUI:DynamicSpellStealStyleFilter() -- toggles spellsteal filter for mages based on their level
 	ElvUI_EltreumUI:DynamicExperienceDatabar() --makes experience bar mouseover or not depending on current player level
