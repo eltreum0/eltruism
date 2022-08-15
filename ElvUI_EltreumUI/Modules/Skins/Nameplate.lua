@@ -211,7 +211,11 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 		end
 		if UnitExists("target") then
 			if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
-				target3d:Show()
+				if unit.Health:IsShown() then
+					target3d:Show()
+				else
+					target3d:Hide()
+				end
 			end
 			nptarget = C_NamePlate.GetNamePlateForUnit("target")
 			if nptarget then
