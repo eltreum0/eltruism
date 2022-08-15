@@ -188,7 +188,7 @@ hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 
 
 local nptarget, nptargetunit
-local elvnpnumber
+--local elvnpnumber
 local target3d = CreateFrame('PlayerModel')
 local setsettings = CreateFrame("FRAME")
 setsettings:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -206,12 +206,10 @@ setsettings:SetScript("OnEvent", function()
 	setsettings:UnregisterAllEvents()
 end)
 
-
-
-function ElvUI_EltreumUI:NameplateModel()
-	if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
+function ElvUI_EltreumUI:NameplateModel(nameplate)
+	if nameplate and E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
 		if UnitExists("target") then
-			nptarget = C_NamePlate.GetNamePlateForUnit("target")
+			--[[nptarget = C_NamePlate.GetNamePlateForUnit("target")
 			if nptarget and nptarget.UnitFrame then
 				nptargetunit = nptarget.UnitFrame.unit
 				elvnpnumber = string.match(nptargetunit , "%d+")
@@ -221,49 +219,30 @@ function ElvUI_EltreumUI:NameplateModel()
 				nptargetunit = nil
 				target3d:ClearAllPoints()
 				target3d:Hide()
-				print("hidden1")
-			end
-
-			if elvnpnumber and nptargetunit then
-				print("1 ",elvnpnumber, nptargetunit)
+				--print("hidden1")
+			end]]
+			nptargetunit = nameplate.unit
+			if nptargetunit then
 				target3d:Show()
 				--target3d:ClearModel()
 				target3d:SetUnit(nptargetunit)
-				if _G["ElvNP_NamePlate".. elvnpnumber .."Health"] then
+				if nameplate.Health then
 					target3d:ClearAllPoints()
-					target3d:SetPoint("CENTER", _G["ElvNP_NamePlate".. elvnpnumber .."Health"], "CENTER")
-					target3d:SetFrameLevel(_G["ElvNP_NamePlate".. elvnpnumber .."Health"]:GetFrameLevel())
-					target3d:SetInside(_G["ElvNP_NamePlate".. elvnpnumber .."Health"], 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
-					target3d:SetParent(_G["ElvNP_NamePlate".. elvnpnumber .."Health"])
+					target3d:SetPoint("CENTER", nameplate.Health, "CENTER")
+					target3d:SetFrameLevel(nameplate.Health:GetFrameLevel())
+					target3d:SetInside(nameplate.Health, 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
+					target3d:SetParent(nameplate.Health)
 				end
 			end
 		else
-			elvnpnumber = nil
 			nptarget = nil
 			nptargetunit = nil
 			target3d:ClearAllPoints()
 			target3d:Hide()
-			print("hidden3")
 		end
 	end
 end
-
-local test = CreateFrame("FRAME")
-test:RegisterEvent("NAME_PLATE_UNIT_ADDED")
-test:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
-test:SetScript("OnEvent", function(_, event)
-	if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
-		if event == "NAME_PLATE_UNIT_REMOVED" then
-			print("plate removed")
-			ElvUI_EltreumUI:NameplateModel()
-		elseif event == "NAME_PLATE_UNIT_ADDED" then
-			print("plate added")
-			ElvUI_EltreumUI:NameplateModel()
-		end
-	else
-		test:UnregisterAllEvents()
-	end
-end)
+hooksecurefunc(NP, "SetupTarget", ElvUI_EltreumUI.NameplateModel)
 
 
 --np custom health height conditions
@@ -282,6 +261,7 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 
 		if not UnitAffectingCombat(unit.unit) then
 			if nptargetunit and UnitIsUnit(unit.unit, nptargetunit) then
+				print(nptargetunit, unit.unit)
 				if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
 					if E.db.ElvUI_EltreumUI.nameplateOptions.useelvuinpheight then
 						unit.Health:SetHeight(heighttable[unit.frameType])
