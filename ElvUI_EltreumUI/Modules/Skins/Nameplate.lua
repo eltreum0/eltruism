@@ -186,12 +186,55 @@ local function GradientNameplates(unit)
 end
 hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 
+
+local target3d = CreateFrame('PlayerModel')
+local target3danchor
+local targetunit
+local elvnpnumber
+function ElvUI_EltreumUI:NameplateTargetModel()
+	if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel and UnitExists('target') then
+		target3danchor = C_NamePlate.GetNamePlateForUnit("target")
+		if target3danchor then
+			if E.Retail then
+				targetunit = target3danchor.UnitFrame.BuffFrame.unit
+			else
+				targetunit = target3danchor.namePlateUnitToken
+			end
+			elvnpnumber = string.match(targetunit , "%d+")
+			if targetunit then
+				target3d:SetParent(target3danchor)
+				target3d:ClearModel()
+				target3d:SetUnit(targetunit)
+				target3d:SetPortraitZoom(1) --allows the same cam as elvui UF
+				target3d:SetCamDistanceScale(E.db.ElvUI_EltreumUI.nameplateOptions.CamDistanceScale)
+				target3d:SetViewTranslation(E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationx*100,E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationy*100)
+				target3d:SetRotation(rad(E.db.ElvUI_EltreumUI.nameplateOptions.Rotation))
+				target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplateOptions.modelalpha)
+				target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplateOptions.desaturation)
+				target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplateOptions.paused)
+				target3d:SetInside(_G["ElvNP_NamePlate".. elvnpnumber .."Health"], 0, 0) --just like others allows it to not step out of boundaries
+				target3d:SetSize(150,E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
+				target3d:ClearAllPoints()
+				target3d:SetPoint("CENTER", target3danchor, "CENTER")
+				target3d:SetFrameLevel(target3danchor:GetFrameLevel())
+				--target3d:SetFrameLevel(50)
+				target3d:Show()
+			end
+		end
+	else
+		target3d:Hide()
+	end
+end
+
+
+
+
+
 --np custom health height conditions
 local nptarget, nptargetunit
-local target3d = CreateFrame('PlayerModel')
 local heighttable = {}
 function ElvUI_EltreumUI:NameplateCustomOptions(unit)
-	if (E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight or E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel) and unit and unit.unit and UnitIsUnit(unit.unit, "player") == false then
+	if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight and unit and unit.unit and UnitIsUnit(unit.unit, "player") == false then
 		if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
 			heighttable = {
 				["FRIENDLY_NPC"] = E.db.nameplates.units.FRIENDLY_NPC.health.height or P.nameplates.units.FRIENDLY_NPC.health.height,
@@ -200,24 +243,7 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 				["FRIENDLY_PLAYER"] = E.db.nameplates.units.FRIENDLY_PLAYER.health.height or P.nameplates.units.FRIENDLY_NPC.health.height,
 			}
 		end
-		if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
-			target3d:SetUnit(unit.unit)
-			target3d:SetPortraitZoom(1) --allows the same cam as elvui UF
-			target3d:SetCamDistanceScale(E.db.ElvUI_EltreumUI.nameplateOptions.CamDistanceScale)
-			target3d:SetViewTranslation(E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationx*100,E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationy*100)
-			target3d:SetRotation(rad(E.db.ElvUI_EltreumUI.nameplateOptions.Rotation))
-			target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplateOptions.modelalpha)
-			target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplateOptions.desaturation)
-			target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplateOptions.paused)
-		end
 		if UnitExists("target") then
-			if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
-				if unit.Health then
-					target3d:Show()
-				else
-					target3d:Hide()
-				end
-			end
 			--this is the magic
 			nptarget = C_NamePlate.GetNamePlateForUnit("target")
 			if nptarget then
@@ -228,10 +254,6 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 				end
 			end
 		else
-			if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
-				target3d:ClearModel()
-				target3d:Hide()
-			end
 			nptarget = nil
 			nptargetunit = nil
 		end
@@ -244,13 +266,6 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 						else
 							unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
 						end
-					end
-					if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
-						target3d:SetParent(unit)
-						target3d:SetInside(unit.Health, 0, 0) --just like others allows it to not step out of boundaries
-						target3d:SetSize(150,E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
-						target3d:SetPoint("CENTER", unit, "CENTER")
-						target3d:SetFrameLevel(unit.Health:GetFrameLevel())
 					end
 				else
 					if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
