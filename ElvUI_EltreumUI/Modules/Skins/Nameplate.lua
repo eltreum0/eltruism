@@ -190,11 +190,29 @@ hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 local nptarget, nptargetunit
 local elvnpnumber
 local target3d = CreateFrame('PlayerModel')
+local setsettings = CreateFrame("FRAME")
+setsettings:RegisterEvent("PLAYER_ENTERING_WORLD")
+setsettings:RegisterEvent("PLAYER_STARTED_MOVING")
+setsettings:SetScript("OnEvent", function()
+	target3d:SetPortraitZoom(1) --allows the same cam as elvui UF
+	target3d:SetCamDistanceScale(E.db.ElvUI_EltreumUI.nameplateOptions.CamDistanceScale)
+	target3d:SetViewTranslation(E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationx*100,E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationy*100)
+	target3d:SetRotation(rad(E.db.ElvUI_EltreumUI.nameplateOptions.Rotation))
+	target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplateOptions.modelalpha)
+	target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplateOptions.desaturation)
+	target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplateOptions.paused)
+	target3d:SetSize(E.db.nameplates.plateSize.enemyWidth or P.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
+
+	setsettings:UnregisterAllEvents()
+end)
+
+
+
 function ElvUI_EltreumUI:NameplateModel()
 	if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
 		if UnitExists("target") then
 			nptarget = C_NamePlate.GetNamePlateForUnit("target")
-			if nptarget then
+			if nptarget and nptarget.UnitFrame then
 				nptargetunit = nptarget.UnitFrame.unit
 				elvnpnumber = string.match(nptargetunit , "%d+")
 			else
@@ -205,31 +223,19 @@ function ElvUI_EltreumUI:NameplateModel()
 				target3d:Hide()
 				print("hidden1")
 			end
+
 			if elvnpnumber and nptargetunit then
 				print("1 ",elvnpnumber, nptargetunit)
 				target3d:Show()
-				target3d:SetPortraitZoom(1) --allows the same cam as elvui UF
-				target3d:ClearModel()
+				--target3d:ClearModel()
 				target3d:SetUnit(nptargetunit)
-				target3d:SetCamDistanceScale(E.db.ElvUI_EltreumUI.nameplateOptions.CamDistanceScale)
-				target3d:SetViewTranslation(E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationx*100,E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationy*100)
-				target3d:SetRotation(rad(E.db.ElvUI_EltreumUI.nameplateOptions.Rotation))
-				target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplateOptions.modelalpha)
-				target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplateOptions.desaturation)
-				target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplateOptions.paused)
-				target3d:SetSize(E.db.nameplates.plateSize.enemyWidth or P.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
-				target3d:ClearAllPoints()
-				target3d:SetParent(_G["ElvNP_NamePlate".. elvnpnumber .."Health"])
-				target3d:SetPoint("CENTER", _G["ElvNP_NamePlate".. elvnpnumber .."Health"], "CENTER")
-				target3d:SetFrameLevel(_G["ElvNP_NamePlate".. elvnpnumber .."Health"]:GetFrameLevel())
-				target3d:SetInside(_G["ElvNP_NamePlate".. elvnpnumber .."Health"], 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
-			else
-				elvnpnumber = nil
-				nptarget = nil
-				nptargetunit = nil
-				target3d:ClearAllPoints()
-				target3d:Hide()
-				print("hidden2")
+				if _G["ElvNP_NamePlate".. elvnpnumber .."Health"] then
+					target3d:ClearAllPoints()
+					target3d:SetPoint("CENTER", _G["ElvNP_NamePlate".. elvnpnumber .."Health"], "CENTER")
+					target3d:SetFrameLevel(_G["ElvNP_NamePlate".. elvnpnumber .."Health"]:GetFrameLevel())
+					target3d:SetInside(_G["ElvNP_NamePlate".. elvnpnumber .."Health"], 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
+					target3d:SetParent(_G["ElvNP_NamePlate".. elvnpnumber .."Health"])
+				end
 			end
 		else
 			elvnpnumber = nil
@@ -241,6 +247,24 @@ function ElvUI_EltreumUI:NameplateModel()
 		end
 	end
 end
+
+local test = CreateFrame("FRAME")
+test:RegisterEvent("NAME_PLATE_UNIT_ADDED")
+test:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
+test:SetScript("OnEvent", function(_, event)
+	if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
+		if event == "NAME_PLATE_UNIT_REMOVED" then
+			print("plate removed")
+			ElvUI_EltreumUI:NameplateModel()
+		elseif event == "NAME_PLATE_UNIT_ADDED" then
+			print("plate added")
+			ElvUI_EltreumUI:NameplateModel()
+		end
+	else
+		test:UnregisterAllEvents()
+	end
+end)
+
 
 --np custom health height conditions
 local heighttable = {}
