@@ -114,7 +114,6 @@ function ElvUI_EltreumUI:DynamicChatFade()
 				end
 			end)
 			_G.ChatFrame1:SetScript('OnLeave', function(self)
-				print('3',leftfaderbutton)
 				if not InCombatLockdown() then
 					if leftfaderbutton == 1 then
 						UIFrameFadeOut(LeftChatPanel, 0.5, 1, 0)
