@@ -222,30 +222,40 @@ local target3d = CreateFrame('PlayerModel', "EltruismNameplateModel")
 function ElvUI_EltreumUI:NameplateModel(nameplate)
 	if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
 		if UnitExists("target") then
+
+
 			if nameplate and nameplate.unit then
 				ElvUI_EltreumUI:NameplateCustomOptions(nameplate) --testing sending unit to other function
-				if nameplate.Health and nameplate.Health:IsVisible() then
-					target3d:SetSize(E.db.nameplates.plateSize.enemyWidth or P.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
-					target3d:ClearModel()
-					target3d:SetUnit(nameplate.unit)
-					target3d:SetPortraitZoom(1) --allows the same cam as elvui UF
-					target3d:SetCamDistanceScale(E.db.ElvUI_EltreumUI.nameplateOptions.CamDistanceScale)
-					target3d:SetViewTranslation(E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationx*100,E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationy*100)
-					target3d:SetRotation(rad(E.db.ElvUI_EltreumUI.nameplateOptions.Rotation))
-					target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplateOptions.modelalpha)
-					target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplateOptions.desaturation)
-					target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplateOptions.paused)
+
+
+				target3d:SetSize(E.db.nameplates.plateSize.enemyWidth or P.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
+				target3d:ClearModel()
+				target3d:SetUnit(nameplate.unit)
+				target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplateOptions.desaturation)
+				target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplateOptions.paused)
+				target3d:SetPortraitZoom(1) --allows the same cam as elvui UF
+				target3d:SetCamDistanceScale(E.db.ElvUI_EltreumUI.nameplateOptions.CamDistanceScale)
+				target3d:SetViewTranslation(E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationx*100,E.db.ElvUI_EltreumUI.nameplateOptions.ViewTranslationy*100)
+				target3d:SetRotation(rad(E.db.ElvUI_EltreumUI.nameplateOptions.Rotation))
+				target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplateOptions.modelalpha)
+
+				--print(nameplate.Health:GetFrameLevel())
+
+
+				if nameplate.Health then
 					target3d:ClearAllPoints()
 					target3d:SetPoint("CENTER", nameplate.Health, "CENTER")
-					target3d:SetFrameLevel(nameplate.Health:GetFrameLevel())
 					target3d:SetInside(nameplate.Health, 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
-					target3d:SetParent(nameplate.Health)
 					target3d:Show()
 				else
 					target3d:ClearAllPoints()
-					target3d:ClearModel()
 					target3d:Hide()
 				end
+			end
+
+			if nameplate and nameplate.Health then
+				target3d:SetFrameLevel(nameplate.Health:GetFrameLevel())
+				target3d:SetParent(nameplate.Health)
 			end
 		else
 			target3d:ClearAllPoints()
@@ -272,9 +282,10 @@ function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, Hea
 	if HealthColor then
 		h = frame.Health
 		if h.r and h.g and h.b then
-			h:SetStatusBarColor(h.r, h.g, h.b)
 			if E.db.ElvUI_EltreumUI.gradientmode.npenable then
 				GradientNameplates(frame)
+			else
+				h:SetStatusBarColor(h.r, h.g, h.b)
 			end
 			frame.Cutaway.Health:SetVertexColor(h.r * 1.5, h.g * 1.5, h.b * 1.5, 1)
 		end
