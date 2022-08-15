@@ -286,6 +286,10 @@ function ElvUI_EltreumUI:EmptyDetailsTable()
 		_detalhes.spell_pool = {}
 		_detalhes.spell_school_cache = {}
 		_detalhes.boss_mods_timers = {}
+
+		ElvUI_EltreumUI:Print("Details tables were cleared")
+	else
+		ElvUI_EltreumUI:Print("Details is not loaded or enabled")
 	end
 end
 
