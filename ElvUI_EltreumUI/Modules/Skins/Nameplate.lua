@@ -190,36 +190,27 @@ hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 local heighttable = {}
 function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 	if (E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight) and unit and unit.unit and unit.unit:match("nameplate") then
-		if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
-			heighttable = {
-				["FRIENDLY_NPC"] = E.db.nameplates.units.FRIENDLY_NPC.health.height or P.nameplates.units.FRIENDLY_NPC.health.height,
-				["ENEMY_NPC"] = E.db.nameplates.units.ENEMY_NPC.health.height or P.nameplates.units.ENEMY_NPC.health.height,
-				["ENEMY_PLAYER"] = E.db.nameplates.units.ENEMY_PLAYER.health.height or P.nameplates.units.ENEMY_PLAYER.health.height,
-				["FRIENDLY_PLAYER"] = E.db.nameplates.units.FRIENDLY_PLAYER.health.height or P.nameplates.units.FRIENDLY_NPC.health.height,
-			}
-		end
-
+		heighttable = {
+			["FRIENDLY_NPC"] = E.db.nameplates.units.FRIENDLY_NPC.health.height or P.nameplates.units.FRIENDLY_NPC.health.height,
+			["ENEMY_NPC"] = E.db.nameplates.units.ENEMY_NPC.health.height or P.nameplates.units.ENEMY_NPC.health.height,
+			["ENEMY_PLAYER"] = E.db.nameplates.units.ENEMY_PLAYER.health.height or P.nameplates.units.ENEMY_PLAYER.health.height,
+			["FRIENDLY_PLAYER"] = E.db.nameplates.units.FRIENDLY_PLAYER.health.height or P.nameplates.units.FRIENDLY_NPC.health.height,
+		}
 		if not UnitAffectingCombat(unit.unit) then
 			if UnitIsUnit(unit.unit, "target") then
-				if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
-					if E.db.ElvUI_EltreumUI.nameplateOptions.useelvuinpheight then
-						unit.Health:SetHeight(heighttable[unit.frameType])
-					else
-						unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
-					end
-				end
-			else
-				if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
-					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.outofcombatHeight)
-				end
-			end
-		elseif UnitAffectingCombat(unit.unit) then
-			if E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight then
 				if E.db.ElvUI_EltreumUI.nameplateOptions.useelvuinpheight then
 					unit.Health:SetHeight(heighttable[unit.frameType])
 				else
 					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
 				end
+			else
+				unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.outofcombatHeight)
+			end
+		elseif UnitAffectingCombat(unit.unit) then
+			if E.db.ElvUI_EltreumUI.nameplateOptions.useelvuinpheight then
+				unit.Health:SetHeight(heighttable[unit.frameType])
+			else
+				unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.incombatHeight)
 			end
 		end
 	end
