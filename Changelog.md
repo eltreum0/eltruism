@@ -29,12 +29,12 @@ Fixed missing castbar custom color in gradient mode\
 Fixed a possible error when applying fonts without some of Eltruism's Custom Texts being imported\
 Fixed Healer layout missing auto adjusting borders for the pet bar\
 Fixed Boss and Arena missing gradients after the gradient rework\
-Fixed Target of Target of Target gradient/custom textures\
+Fixed Target of Target of Target gradient/custom textures
 ___
 ### 3.2.3
 Added an option to change Fill Direction of Unitframes\
 Fixed an error in Version Check\
-Fixed an issue with Custom Textures not correctly applying Textures\
+Fixed an issue with Custom Textures not correctly applying Textures
 ___
 ### 3.2.2
 Added Gradient Nameplates and moved some options to a new Gradient Colors option, Gradient Nameplates uses the same colors as Unitframe Gradients so changing colors there will change for both\
@@ -57,7 +57,7 @@ Fixed issues in Classic/TBC/Wrath Beta due to some units not existing on those v
 Fixed an issue with gradient overwriting the tapped unit color by adding an option for gradient tapped units\
 Fixed the chat not correctly embedding details in Classic/TBC\
 Fixed points position in Craft Skin for Classic/TBC/Wrath\
-Fixed Pet Background overlapping Pet Name/Title/Loyalty in TBC/Wrath\
+Fixed Pet Background overlapping Pet Name/Title/Loyalty in TBC/Wrath
 ___
 ### 3.2.1
 Added Inspect Average Ilvl to Classic/TBC/Wrath\
