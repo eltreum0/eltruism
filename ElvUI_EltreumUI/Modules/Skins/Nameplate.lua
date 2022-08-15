@@ -229,7 +229,7 @@ hooksecurefunc(NP, "StyleFilterConditionCheck", ElvUI_EltreumUI.NameplateCustomO
 --set the basic settings for the model since spamming during function is not good
 local target3d = CreateFrame('PlayerModel', "EltruismNameplateModel")
 function ElvUI_EltreumUI:NameplateModel(nameplate)
-	if nameplate and E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
+	if E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel then
 		if UnitExists("target") then
 			--[[
 				nptarget = C_NamePlate.GetNamePlateForUnit("target")
@@ -245,7 +245,7 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 					--print("hidden1")
 				end
 			]]
-			if nameplate.unit then
+			if nameplate and nameplate.unit then
 				ElvUI_EltreumUI:NameplateCustomOptions(nameplate) --testing sending unit to other function
 				if nameplate.Health then
 					target3d:Show()
@@ -264,21 +264,13 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 					target3d:SetFrameLevel(nameplate.Health:GetFrameLevel())
 					target3d:SetInside(nameplate.Health, 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
 					target3d:SetParent(nameplate.Health)
-				else
-					target3d:ClearAllPoints()
-					target3d:Hide()
 				end
-			else
-				target3d:ClearAllPoints()
-				target3d:Hide()
 			end
 		else
 			target3d:ClearAllPoints()
+			target3d:ClearModel()
 			target3d:Hide()
 		end
-	else
-		target3d:ClearAllPoints()
-		target3d:Hide()
 	end
 end
 hooksecurefunc(NP, "SetupTarget", ElvUI_EltreumUI.NameplateModel)
