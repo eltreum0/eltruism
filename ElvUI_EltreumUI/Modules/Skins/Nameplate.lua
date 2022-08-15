@@ -224,7 +224,7 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 		end
 	end
 end
-hooksecurefunc(NP, "StyleFilterConditionCheck", ElvUI_EltreumUI.NameplateCustomOptions)
+hooksecurefunc(NP, "StyleFilterUpdate", ElvUI_EltreumUI.NameplateCustomOptions)
 
 --set the basic settings for the model since spamming during function is not good
 local target3d = CreateFrame('PlayerModel', "EltruismNameplateModel")
