@@ -23,6 +23,7 @@ Updated Hostile NPC, Hunter and Monk default gradient colors\
 Updated Quest Item Bar, which should now more correctly identify usable quest items\
 Updated Quest Item Bar Mover, which will now more correctly center itself, no longer misaligning\
 Updated MeetingHorn skin to not keep listening for MeetingHorn if the addon is disabled\
+Updated Classic/TBC QuestWatch frame skin to add the Header bar from Wrath\
 Fixed UnitFrame Fill Orientation in darkmode\
 Fixed Enchanting and Profession Skin in TBC/Classic/Wrath not correctly working with the Mouse Wheel\
 Fixed Shaman Totem border/shadow loading on TBC PTR\
