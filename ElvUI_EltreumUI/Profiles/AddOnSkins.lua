@@ -2,6 +2,8 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 -- AddonSkins profile setup
 function ElvUI_EltreumUI:GetASProfile()
+	local width = GetPhysicalScreenSize()
+	local valuecolors = E:ClassColor(E.myclass, true)
 	if IsAddOnLoaded("AddOnSkins") then
 		local AS = unpack(AddOnSkins)
 		AS.data:SetProfile("Eltreum Dual")
@@ -17,9 +19,9 @@ function ElvUI_EltreumUI:GetASProfile()
 		AS.db["EmbedIsHidden"] = false
 		AS.db["EmbedFrameLevel"] = 2
 		AS.db["HighlightColor"] = {
-			0.7725490196078432, -- [1]
-			0.4235294117647059, -- [2]
-			0.9411764705882353, -- [3]
+			valuecolors.r, -- [1]
+			valuecolors.g, -- [2]
+			valuecolors.b, -- [3]
 			1, -- [4]
 		}
 		AS.db["StatusBarColor"] = {
@@ -35,7 +37,11 @@ function ElvUI_EltreumUI:GetASProfile()
 			1, -- [4]
 		}
 		AS.db["DBMSkinHalf"] = true
-		AS.db["DBMFontFlag"] = "THICKOUTLINE"
+		if width == 3840 then
+			AS.db["DBMFontFlag"] = "THICKOUTLINE"
+		else
+			AS.db["DBMFontFlag"] = "OUTLINE"
+		end
 		AS.db["DBMFont"] = "Kimberley"
 		AS.db["DBMRadarTrans"] = true
 		AS.db["HideChatFrame"] = "ChatFrame4"
