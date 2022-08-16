@@ -1016,3 +1016,5 @@ L["Use ElvUI Damage Font"] = "Utilizar a Fonte de Dano ElvUI"
 L["Enable Playing a Sound if an item from the wishlist is looted"] = "Habilitar tocar um som quando um item da lista de desejos for saqueado"
 L["Effect"] = "Efeito"
 L["Add an Effect"] = "Adicione um Efeito"
+L["Rested Nameplates"] = true
+L["Decrease Nameplate Overlap when Resting"] = true

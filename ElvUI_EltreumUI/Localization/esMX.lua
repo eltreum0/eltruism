@@ -1038,3 +1038,5 @@ L["Use ElvUI Damage Font"] = true
 L["Enable Playing a Sound if an item from the wishlist is looted"] = true
 L["Effect"] = true
 L["Add an Effect"] = true
+L["Rested Nameplates"] = true
+L["Decrease Nameplate Overlap when Resting"] = true
