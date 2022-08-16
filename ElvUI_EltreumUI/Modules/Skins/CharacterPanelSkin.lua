@@ -409,7 +409,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
 					CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
 					if not CharacterStatsPane.ItemLevelCategory.Title:GetText():match("|r") then
-						CharacterStatsPane.ItemLevelCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.ItemLevelCategory.Title:GetText(), E.myclass))
+						CharacterStatsPane.ItemLevelCategory.Title:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass))
 					end
 					CharacterStatsPane.ItemLevelCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 
@@ -442,9 +442,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					--attributes
 					--remove backgrounds and make font nice
 					CharacterStatsPane.AttributesCategory.backdrop:Hide()
-					CharacterStatsPane.AttributesCategory.backdrop:Hide()
 					if not CharacterStatsPane.AttributesCategory.Title:GetText():match("|r") then
-						CharacterStatsPane.AttributesCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.AttributesCategory.Title:GetText(), E.myclass))
+						CharacterStatsPane.AttributesCategory.Title:SetText(ElvUI_EltreumUI:GradientName(STAT_CATEGORY_ATTRIBUTES, E.myclass))
 					end
 					CharacterStatsPane.AttributesCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 					--statusbars
@@ -463,9 +462,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					--Enhancements
 					--remove backgrounds and make font nice
 					CharacterStatsPane.EnhancementsCategory.backdrop:Hide()
-					CharacterStatsPane.EnhancementsCategory.backdrop:Hide()
 					if not CharacterStatsPane.EnhancementsCategory.Title:GetText():match("|r") then
-						CharacterStatsPane.EnhancementsCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.EnhancementsCategory.Title:GetText(), E.myclass))
+						CharacterStatsPane.EnhancementsCategory.Title:SetText(ElvUI_EltreumUI:GradientName(STAT_CATEGORY_ENHANCEMENTS, E.myclass))
 					end
 					CharacterStatsPane.EnhancementsCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 					--statusbars
@@ -603,6 +601,27 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							statFrame.Value:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
 						end
 					end
+
+					if E.db.ElvUI_EltreumUI.skins.statcolors then
+						_G.CharacterFrame.EltruismSpeedDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_MOVEMENT_SPEED, E.myclass))
+						if E.myclass == 'HUNTER' then
+							_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_FOCUS_REGEN, E.myclass))
+						elseif E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
+							_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_ENERGY_REGEN, E.myclass))
+						elseif E.myclass == 'DEATHKNIGHT' then
+								_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_RUNE_REGEN, E.myclass))
+						elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
+								_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(MANA_REGEN, E.myclass))
+						end
+						_G.CharacterFrame.EltruismExtraStatsFont:SetText(ElvUI_EltreumUI:GradientName(L["Other"], E.myclass))
+						CharacterStatsPane.ItemLevelCategory.Title:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass))
+						CharacterStatsPane.AttributesCategory.Title:SetText(ElvUI_EltreumUI:GradientName(STAT_CATEGORY_ATTRIBUTES, E.myclass))
+						CharacterStatsPane.EnhancementsCategory.Title:SetText(ElvUI_EltreumUI:GradientName(STAT_CATEGORY_ENHANCEMENTS, E.myclass))
+						if IsAddOnLoaded('ElvUI_SLE') then
+							CharacterStatsPane.OffenseCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.OffenseCategory.Title:GetText(), E.myclass))
+							CharacterStatsPane.DefenceCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.DefenceCategory.Title:GetText(), E.myclass))
+						end
+					end
 				end)
 
 				if (not IsAddOnLoaded('DejaCharacterStats')) and (not IsAddOnLoaded("ElvUI_SLE")) then
@@ -614,7 +633,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						--_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane.EnhancementsCategory, "CENTER", 0, -80)
 						_G.CharacterFrame.EltruismExtraStatsFont:SetParent(CharacterStatsPane)
 						--if not _G.CharacterFrame.EltruismExtraStatsFont:GetText():match("|r") then
-
 							_G.CharacterFrame.EltruismExtraStatsFont:SetText(ElvUI_EltreumUI:GradientName(L["Other"], E.myclass))
 						--end
 						linewidth5 = (( 193 - _G.CharacterFrame.EltruismExtraStatsFont:GetStringWidth())/2)
