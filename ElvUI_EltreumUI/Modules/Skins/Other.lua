@@ -426,6 +426,9 @@ handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
 			end
 		end)
 	end
+	if GetAddOnEnableState(nil, "MeetingHorn") == 0 then
+		handlemeetinghorn:UnregisterAllEvents()
+	end
 end)
 
 
