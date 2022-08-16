@@ -171,6 +171,7 @@ P.ElvUI_EltreumUI = {
 		modelalpha = 0.5,
 		desaturation = 0,
 		paused = false,
+		restedoverlap = false,
 	},
 
 	stealthOptions = {

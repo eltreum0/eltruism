@@ -6585,15 +6585,32 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.cvars.autohidenpcname end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.autohidenpcname = value end,
 							},
-							headerrestore = {
+							headerrested = {
 								order = 917,
+								type = "description",
+								name = L["Rested Nameplates"],
+								width = 'full',
+								hidden = function() if E.Retail then return false else return true end end,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							restednp = {
+								order = 918,
+								type = 'toggle',
+								name = L["Decrease Nameplate Overlap when Resting"],
+								desc = L["Toggle On and Off"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.nameplateOptions.restedoverlap end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.nameplateOptions.restedoverlap = value end,
+							},
+							headerrestore = {
+								order = 1917,
 								type = "description",
 								name = L["Restore Hidden Names"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							restorenames = {
-								order = 918,
+								order = 1918,
 								type = 'execute',
 								name = function()
 									if E.Retail then

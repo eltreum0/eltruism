@@ -78,6 +78,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
 	ElvUI_EltreumUI:BattleRes() --bres count/cd
 	ElvUI_EltreumUI:HideABKeyPress() -- hide keypress if needed
+	ElvUI_EltreumUI:NameplateRestedOverlaps() -- sets overlaps depending if rested/not
 	if E.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
@@ -191,6 +192,7 @@ end
 
 function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
 	ElvUI_EltreumUI:AFKmusic()
+	ElvUI_EltreumUI:NameplateRestedOverlaps()
 	if E.db.general.afk then
 		ElvUI_EltreumUI:AFKLogo()
 	end

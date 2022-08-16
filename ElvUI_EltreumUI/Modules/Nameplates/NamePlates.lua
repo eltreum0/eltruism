@@ -616,3 +616,18 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 		end
 	end
 end
+
+--change vertical and horizontal offsets when resting/not resting
+function ElvUI_EltreumUI:NameplateRestedOverlaps()
+	if E.db.ElvUI_EltreumUI.nameplateOptions.restedoverlap then
+		if not InCombatLockdown() then
+			if IsResting() then
+				SetCVar("nameplateOverlapH", 0)
+				SetCVar("nameplateOverlapV", 0)
+			else
+				SetCVar("nameplateOverlapH", E.db.nameplates.overlapH)
+				SetCVar("nameplateOverlapV", E.db.nameplates.overlapV)
+			end
+		end
+	end
+end
