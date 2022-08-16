@@ -331,7 +331,7 @@ local handlemeetinghorn = CreateFrame("FRAME")
 local meetskinned
 handlemeetinghorn:RegisterEvent("ADDON_LOADED")
 handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
-	if (arg == "MeetingHorn") and E.db.ElvUI_EltreumUI.skins.meetinghorn then
+	if ((arg == "MeetingHorn") and E.db.ElvUI_EltreumUI.skins.meetinghorn) or IsAddOnLoaded("MeetingHorn") then
 		_G['MeetingHornMainPanel']:SetScript("OnShow", function()
 			if not meetskinned == true then
 				meetskinned = true
@@ -421,6 +421,8 @@ handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
 				--help
 				S:HandleFrame(_G.MeetingHornMainPanel.Help)
 				_G.MeetingHornMainPanelPortraitFrame:Hide()
+
+				handlemeetinghorn:UnregisterAllEvents()
 			end
 		end)
 	end
