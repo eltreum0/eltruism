@@ -255,6 +255,7 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 			if nameplate and nameplate.unit then
 				ElvUI_EltreumUI:NameplateCustomOptions(nameplate) --testing sending unit to other function
 				if nameplate.Health and nameplate.Health:IsVisible() then
+
 					--original, but can have wrong camera
 					SetNameplateModelSettings(nameplate)
 
