@@ -1,4 +1,5 @@
--- This whole plugin uses LuckyoneUI as a base, full credits to him for it and allowing its use!
+-- This whole plugin started based in LuckyoneUI, which was the simplest to understand. Full thanks to him for making it and allowing its use!
+-- It wouldn't be possible without the ElvUI community after all
 local E, _, V, P, G = unpack(ElvUI)
 local EP = LibStub('LibElvUIPlugin-1.0')
 local addon, Engine = ...
