@@ -62,7 +62,7 @@ function ElvUI_EltreumUI:DarkMode()
 				E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
 				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
 			if E.Retail or E.Wrath or E.TBC then
-				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
+				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:IconOutline:player] [eltruism:raidmarker]"
 			end
 		end
 		E.db.ElvUI_EltreumUI.lightmode = false
@@ -136,7 +136,7 @@ function ElvUI_EltreumUI:LightMode()
 				E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
 				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
 			if E.Retail or E.Wrath or E.TBC then
-				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
+				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:class:player] [eltruism:raidmarker]"
 			end
 		end
 
@@ -220,7 +220,7 @@ function ElvUI_EltreumUI:GradientMode()
 					E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
 					E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
 				if E.Retail or E.Wrath or E.TBC then
-					E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:medium]"
+					E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:class:player] [eltruism:raidmarker]"
 				end
 			end
 		elseif E.db.ElvUI_EltreumUI.lightmode then
@@ -277,7 +277,7 @@ function ElvUI_EltreumUI:GradientMode()
 					E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
 					E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
 				if E.Retail or E.Wrath or E.TBC then
-					E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:medium]"
+					E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:IconOutline:player] [eltruism:raidmarker]"
 				end
 			end
 		end

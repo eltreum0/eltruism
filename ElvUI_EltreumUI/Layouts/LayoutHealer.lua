@@ -679,7 +679,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["sizeOverride"] = 30
 	E.db["unitframe"]["units"]["focus"]["height"] = 35
 	E.db["unitframe"]["units"]["focus"]["infoPanel"]["enable"] = true
-	E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
+	E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:class:player] [eltruism:raidmarker]"
 	E.db["unitframe"]["units"]["focus"]["power"]["attachTextTo"] = "Power"
 	E.db["unitframe"]["units"]["focus"]["power"]["height"] = 14
 	E.db["unitframe"]["units"]["focus"]["power"]["position"] = "RIGHT"
