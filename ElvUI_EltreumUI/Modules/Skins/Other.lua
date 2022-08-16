@@ -425,3 +425,19 @@ handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
 		end)
 	end
 end)
+
+
+--[[
+-- EXAMPLE:
+--- S:AddCallbackForAddon('Details', 'MyAddon_Details', MyAddon.SkinDetails)
+---- arg1: Addon name (same as the toc): MyAddon.toc (without extension)
+---- arg2: Given name (try to use something that won't be used by someone else)
+---- arg3: load function (preferably not-local)
+-- this is used for loading skins that should be executed when the addon loads (including blizzard addons that load later).
+-- please add a given name, non-given-name is specific for elvui core addon.
+function S:AddCallbackForAddon(addonName, name, func, forceLoad, bypass, position) -- arg2: name is 'given name'; see example above.
+    local load = (type(name) == 'function' and name) or (not func and (S[name] or S[addonName]))
+    S:RegisterSkin(addonName, load or func, forceLoad, bypass, position)
+end
+
+]]
