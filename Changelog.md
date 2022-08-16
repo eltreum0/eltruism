@@ -9,6 +9,7 @@ Added support to Blinkii's mMediaTag Interrupt Castbar feature while in Gradient
 Added an option to use the combat font for Loot Text instead of the ElvUi general font\
 Added options to play a sound when an item from the Wishlist is looted\
 Added a mover to the Loot Wishlist\
+Updated for 9.2.7\
 Updated the function that disables Blizzard's Combat text to more reliably only disable if the option was enabled\
 Updated the Dungeon/Scenario Block to be more centered\
 Updated focus name to use the same format as player and target\
@@ -20,6 +21,7 @@ Updated EltreumTarget filter to have a lower priority in order to allow other fi
 Updated Hostile NPC, Hunter and Monk default gradient colors\
 Updated Quest Item Bar, which should now more correctly identify usable quest items\
 Updated Quest Item Bar Mover, which will now more correctly center itself, no longer misaligning\
+Updated MeetingHorn skin to not keep listening for MeetingHorn if the addon is disabled\
 Fixed UnitFrame Fill Orientation in darkmode\
 Fixed Enchanting and Profession Skin in TBC/Classic/Wrath not correctly working with the Mouse Wheel\
 Fixed Shaman Totem border/shadow loading on TBC PTR\
