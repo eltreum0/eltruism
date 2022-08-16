@@ -62,10 +62,9 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		end
 
 		if not E.Retail then
-			if not (_G.CharacterNameText:GetText():match("|T") and _G.CharacterNameText:GetText():match(E.myname)) then
+			if not (_G.CharacterNameText:GetText():match("|T")) then
 				_G.CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
-				_G.CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
-				--_G.CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
+				_G.CharacterNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.CharacterNameText:GetText(), E.myclass))
 			end
 		elseif E.Retail then
 
@@ -80,16 +79,16 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				CharacterLevelText:ClearAllPoints()
 				CharacterLevelText:SetPoint('TOP', CharacterFrameTitleText, 'BOTTOM', 0, 0)
 				CharacterLevelText:SetDrawLayer("OVERLAY")
-				if not (_G.CharacterFrameTitleText:GetText():match("|T") and _G.CharacterFrameTitleText:GetText():match(E.myname)) then
+				if not (CharacterFrameTitleText:GetText():match("|T")) then
 					CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
-					CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+					CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
 				end
 			end)
 
 			hooksecurefunc("CharacterFrame_Collapse", function()
 				if PaperDollFrame:IsShown() then
-					if not (_G.CharacterFrameTitleText:GetText():match("|T") and _G.CharacterFrameTitleText:GetText():match(E.myname)) then
-						CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+					if not (_G.CharacterFrameTitleText:GetText():match("|T")) then
+						CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
 						CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 					end
 				end
@@ -97,8 +96,8 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc("CharacterFrame_Expand", function()
 				if PaperDollFrame:IsShown() then
-					if not (_G.CharacterFrameTitleText:GetText():match("|T") and _G.CharacterFrameTitleText:GetText():match(E.myname)) then
-						CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+					if not (_G.CharacterFrameTitleText:GetText():match("|T")) then
+						CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
 						CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 					end
 				end
@@ -106,8 +105,8 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc("ReputationFrame_Update", function()
 				if ReputationFrame:IsShown() then
-					if not (_G.CharacterFrameTitleText:GetText():match("|T") and _G.CharacterFrameTitleText:GetText():match(E.myname)) then
-						CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+					if not (_G.CharacterFrameTitleText:GetText():match("|T")) then
+						CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
 						CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 					end
 				end
@@ -115,8 +114,8 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc("TokenFrame_Update", function()
 				if TokenFrame:IsShown() then
-					if not (_G.CharacterFrameTitleText:GetText():match("|T") and _G.CharacterFrameTitleText:GetText():match(E.myname)) then
-						CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+					if not (_G.CharacterFrameTitleText:GetText():match("|T")) then
+						CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
 						CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 					end
 				end
@@ -144,17 +143,16 @@ EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
 		end
 
 		if E.Retail then
-			if _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T") and _G.CharacterFrameTitleText:GetText():match(E.myname)) then
-				CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
-				CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
+			if _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
+				_G.CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.CharacterFrameTitleText:GetText(), E.myclass))
+				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 			end
 		else
 			hooksecurefunc('PaperDollFrame_SetLevel', function()
-
 				--without delay for some reason it does not work since the text returns as just... Name for some reason
 				E:Delay(0, function()
-					if not (_G.CharacterNameText:GetText():match("|T") and _G.CharacterNameText:GetText():match(E.myname)) then
-						_G.CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
+					if not (_G.CharacterNameText:GetText():match("|T")) then
+						_G.CharacterNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.CharacterNameText:GetText(), E.myclass))
 						_G.CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 					end
 				end)

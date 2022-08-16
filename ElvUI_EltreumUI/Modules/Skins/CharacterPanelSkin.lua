@@ -409,7 +409,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
 					CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
 					if not CharacterStatsPane.ItemLevelCategory.Title:GetText():match("|r") then
-						CharacterStatsPane.ItemLevelCategory.Title:SetText(E:TextGradient(CharacterStatsPane.ItemLevelCategory.Title:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						CharacterStatsPane.ItemLevelCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.ItemLevelCategory.Title:GetText(), E.myclass))
 					end
 					CharacterStatsPane.ItemLevelCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 
@@ -444,7 +444,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterStatsPane.AttributesCategory.backdrop:Hide()
 					CharacterStatsPane.AttributesCategory.backdrop:Hide()
 					if not CharacterStatsPane.AttributesCategory.Title:GetText():match("|r") then
-						CharacterStatsPane.AttributesCategory.Title:SetText(E:TextGradient(CharacterStatsPane.AttributesCategory.Title:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						CharacterStatsPane.AttributesCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.AttributesCategory.Title:GetText(), E.myclass))
 					end
 					CharacterStatsPane.AttributesCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 					--statusbars
@@ -465,7 +465,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterStatsPane.EnhancementsCategory.backdrop:Hide()
 					CharacterStatsPane.EnhancementsCategory.backdrop:Hide()
 					if not CharacterStatsPane.EnhancementsCategory.Title:GetText():match("|r") then
-						CharacterStatsPane.EnhancementsCategory.Title:SetText(E:TextGradient(CharacterStatsPane.EnhancementsCategory.Title:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+						CharacterStatsPane.EnhancementsCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.EnhancementsCategory.Title:GetText(), E.myclass))
 					end
 					CharacterStatsPane.EnhancementsCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 					--statusbars
@@ -493,7 +493,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						--offense
 						CharacterStatsPane.OffenseCategory.backdrop:Hide()
 						if not CharacterStatsPane.OffenseCategory.Title:GetText():match("|r") then
-							CharacterStatsPane.OffenseCategory.Title:SetText(E:TextGradient(CharacterStatsPane.OffenseCategory.Title:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+							CharacterStatsPane.OffenseCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.OffenseCategory.Title:GetText(), E.myclass))
 						end
 						--statusbars
 						linewidthsle1 = (( 168 - CharacterStatsPane.OffenseCategory.Title:GetStringWidth())/2)
@@ -511,7 +511,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						--defense
 						CharacterStatsPane.DefenceCategory.backdrop:Hide()
 						if not CharacterStatsPane.DefenceCategory.Title:GetText():match("|r") then
-							CharacterStatsPane.DefenceCategory.Title:SetText(E:TextGradient(CharacterStatsPane.DefenceCategory.Title:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+							CharacterStatsPane.DefenceCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.DefenceCategory.Title:GetText(), E.myclass))
 						end
 						--statusbars
 						linewidthsle2 = (( 168 - CharacterStatsPane.DefenceCategory.Title:GetStringWidth())/2)
@@ -597,7 +597,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if ( statFrame.Label ) then
 						if not statFrame.Label:GetText():match("|r") and E.db.ElvUI_EltreumUI.skins.statcolors and (not IsAddOnLoaded('DejaCharacterStats')) then
 							statFrame.Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
-							statFrame.Label:SetText(E:TextGradient(format(STAT_FORMAT, label), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+							statFrame.Label:SetText(ElvUI_EltreumUI:GradientName(format(STAT_FORMAT, label), E.myclass))
 						end
 						if statFrame.Value then
 							statFrame.Value:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
@@ -614,7 +614,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						--_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane.EnhancementsCategory, "CENTER", 0, -80)
 						_G.CharacterFrame.EltruismExtraStatsFont:SetParent(CharacterStatsPane)
 						--if not _G.CharacterFrame.EltruismExtraStatsFont:GetText():match("|r") then
-							_G.CharacterFrame.EltruismExtraStatsFont:SetText(E:TextGradient(L["Other"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+
+							_G.CharacterFrame.EltruismExtraStatsFont:SetText(ElvUI_EltreumUI:GradientName(L["Other"], E.myclass))
 						--end
 						linewidth5 = (( 193 - _G.CharacterFrame.EltruismExtraStatsFont:GetStringWidth())/2)
 						_G.CharacterFrame.EltruismExtraStats:SetSize(linewidth5, 4)
@@ -656,7 +657,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 					if E.db.ElvUI_EltreumUI.skins.statcolors then
 						--if not _G.CharacterFrame.EltruismSpeedDesc:GetText():match("|r") then
-							_G.CharacterFrame.EltruismSpeedDesc:SetText(E:TextGradient(STAT_MOVEMENT_SPEED, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+							_G.CharacterFrame.EltruismSpeedDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_MOVEMENT_SPEED, E.myclass))
 						--end
 					else
 						_G.CharacterFrame.EltruismSpeedDesc:SetText(STAT_MOVEMENT_SPEED)
@@ -690,7 +691,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if E.myclass == 'HUNTER' then
 						if E.db.ElvUI_EltreumUI.skins.statcolors then
 						--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
-							_G.CharacterFrame.EltruismClassResourceDesc:SetText(E:TextGradient(STAT_FOCUS_REGEN, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+							_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_FOCUS_REGEN, E.myclass))
 						--end
 						else
 							_G.CharacterFrame.EltruismClassResourceDesc:SetText(STAT_FOCUS_REGEN)
@@ -698,7 +699,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					elseif E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
 						if E.db.ElvUI_EltreumUI.skins.statcolors then
 							--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
-								_G.CharacterFrame.EltruismClassResourceDesc:SetText(E:TextGradient(STAT_ENERGY_REGEN, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+								_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_ENERGY_REGEN, E.myclass))
 							--end
 						else
 							_G.CharacterFrame.EltruismClassResourceDesc:SetText(STAT_ENERGY_REGEN)
@@ -706,7 +707,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					elseif E.myclass == 'DEATHKNIGHT' then
 						if E.db.ElvUI_EltreumUI.skins.statcolors then
 							--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
-								_G.CharacterFrame.EltruismClassResourceDesc:SetText(E:TextGradient(STAT_RUNE_REGEN, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+								_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_RUNE_REGEN, E.myclass))
 							--end
 						else
 							_G.CharacterFrame.EltruismClassResourceDesc:SetText(STAT_RUNE_REGEN)
@@ -714,7 +715,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
 						if E.db.ElvUI_EltreumUI.skins.statcolors then
 							--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
-								_G.CharacterFrame.EltruismClassResourceDesc:SetText(E:TextGradient(MANA_REGEN, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+								_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(MANA_REGEN, E.myclass))
 							--end
 						else
 							_G.CharacterFrame.EltruismClassResourceDesc:SetText(MANA_REGEN)
@@ -779,7 +780,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if E.myclass == 'DRUID' or E.myclass == 'MONK' then
 						if E.db.ElvUI_EltreumUI.skins.statcolors then
 							--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
-								_G.CharacterFrame.EltruismClassResourceDesc2:SetText(E:TextGradient(MANA_REGEN, statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+								_G.CharacterFrame.EltruismClassResourceDesc2:SetText(ElvUI_EltreumUI:GradientName(MANA_REGEN, E.myclass))
 							--end
 						else
 							_G.CharacterFrame.EltruismClassResourceDesc2:SetText(MANA_REGEN)
@@ -908,101 +909,100 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if E.Wrath or E.TBC then
 						if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
 							_G.PlayerStatFrameLeft1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameLeft1Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+							_G.PlayerStatFrameLeft1Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft1Label:GetText(), E.myclass))
 						end
 						if not _G.PlayerStatFrameLeft2Label:GetText():match("|r") then
 							_G.PlayerStatFrameLeft2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameLeft2Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+							_G.PlayerStatFrameLeft2Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft2Label:GetText(), E.myclass))
 						end
 						if not _G.PlayerStatFrameLeft3Label:GetText():match("|r") then
 							_G.PlayerStatFrameLeft3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameLeft3Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+							_G.PlayerStatFrameLeft3Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft3Label:GetText(), E.myclass))
 						end
 						if not _G.PlayerStatFrameLeft4Label:GetText():match("|r") then
 							_G.PlayerStatFrameLeft4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameLeft4Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+							_G.PlayerStatFrameLeft4Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft4Label:GetText(), E.myclass))
 						end
 						if not _G.PlayerStatFrameLeft5Label:GetText():match("|r") then
 							_G.PlayerStatFrameLeft5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameLeft5Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+							_G.PlayerStatFrameLeft5Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft5Label:GetText(), E.myclass))
 						end
 						if not _G.PlayerStatFrameLeft6Label:GetText():match("|r") then
 							_G.PlayerStatFrameLeft6Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameLeft6Label:SetText(E:TextGradient(_G.PlayerStatFrameLeft6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+							_G.PlayerStatFrameLeft6Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft6Label:GetText(), E.myclass))
 						end
 						if not _G.PlayerStatFrameRight1Label:GetText():match("|r") then
 							_G.PlayerStatFrameRight1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameRight1Label:SetText(E:TextGradient(_G.PlayerStatFrameRight1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+							_G.PlayerStatFrameRight1Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight1Label:GetText(), E.myclass))
 						end
 						if not _G.PlayerStatFrameRight2Label:GetText():match("|r") then
 							_G.PlayerStatFrameRight2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameRight2Label:SetText(E:TextGradient(_G.PlayerStatFrameRight2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+							_G.PlayerStatFrameRight2Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight2Label:GetText(), E.myclass))
 						end
 						if not _G.PlayerStatFrameRight3Label:GetText():match("|r") then
 							_G.PlayerStatFrameRight3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameRight3Label:SetText(E:TextGradient(_G.PlayerStatFrameRight3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+							_G.PlayerStatFrameRight3Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight3Label:GetText(), E.myclass))
 						end
 						if not _G.PlayerStatFrameRight4Label:GetText():match("|r") then
 							_G.PlayerStatFrameRight4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameRight4Label:SetText(E:TextGradient(_G.PlayerStatFrameRight4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+							_G.PlayerStatFrameRight4Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight4Label:GetText(), E.myclass))
 						end
 						if not _G.PlayerStatFrameRight5Label:GetText():match("|r") then
 							_G.PlayerStatFrameRight5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameRight5Label:SetText(E:TextGradient(_G.PlayerStatFrameRight5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+							_G.PlayerStatFrameRight5Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight5Label:GetText(), E.myclass))
 						end
 						if _G.PlayerStatFrameRight6Label:GetText() ~= nil and not _G.PlayerStatFrameRight6Label:GetText():match("|r") then
 							_G.PlayerStatFrameRight6Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameRight6Label:SetText(E:TextGradient(_G.PlayerStatFrameRight6Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+							_G.PlayerStatFrameRight6Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight6Label:GetText(), E.myclass))
 						end
 					elseif E.Classic then
 						if not _G.CharacterStatFrame1Label:GetText():match("|r") then
 								_G.CharacterStatFrame1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterStatFrame1Label:SetText(E:TextGradient(_G.CharacterStatFrame1Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+								_G.CharacterStatFrame1Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame1Label:GetText(), E.myclass))
 							end
 							if not _G.CharacterStatFrame2Label:GetText():match("|r") then
 								_G.CharacterStatFrame2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterStatFrame2Label:SetText(E:TextGradient(_G.CharacterStatFrame2Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+								_G.CharacterStatFrame2Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame2Label:GetText(), E.myclass))
 							end
 							if not _G.CharacterStatFrame3Label:GetText():match("|r") then
 								_G.CharacterStatFrame3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterStatFrame3Label:SetText(E:TextGradient(_G.CharacterStatFrame3Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+								_G.CharacterStatFrame3Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame3Label:GetText(), E.myclass))
 							end
 							if not _G.CharacterStatFrame4Label:GetText():match("|r") then
 								_G.CharacterStatFrame4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterStatFrame4Label:SetText(E:TextGradient(_G.CharacterStatFrame4Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+								_G.CharacterStatFrame4Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame4Label:GetText(), E.myclass))
 							end
 							if not _G.CharacterStatFrame5Label:GetText():match("|r") then
 								_G.CharacterStatFrame5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterStatFrame5Label:SetText(E:TextGradient(_G.CharacterStatFrame5Label:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+								_G.CharacterStatFrame5Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame5Label:GetText(), E.myclass))
 							end
-
 							if not _G.CharacterArmorFrameLabel:GetText():match("|r") then
 								_G.CharacterArmorFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterArmorFrameLabel:SetText(E:TextGradient(_G.CharacterArmorFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+								_G.CharacterArmorFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterArmorFrameLabel:GetText(), E.myclass))
 							end
 							if not _G.CharacterAttackFrameLabel:GetText():match("|r") then
 								_G.CharacterAttackFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterAttackFrameLabel:SetText(E:TextGradient(_G.CharacterAttackFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+								_G.CharacterAttackFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterAttackFrameLabel:GetText(), E.myclass))
 							end
 							if not _G.CharacterAttackPowerFrameLabel:GetText():match("|r") then
 								_G.CharacterAttackPowerFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterAttackPowerFrameLabel:SetText(E:TextGradient(_G.CharacterAttackPowerFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+								_G.CharacterAttackPowerFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterAttackPowerFrameLabel:GetText(), E.myclass))
 							end
 							if not _G.CharacterDamageFrameLabel:GetText():match("|r") then
 								_G.CharacterDamageFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterDamageFrameLabel:SetText(E:TextGradient(_G.CharacterDamageFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+								_G.CharacterDamageFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterDamageFrameLabel:GetText(), E.myclass))
 							end
 							if not _G.CharacterRangedAttackFrameLabel:GetText():match("|r") then
 								_G.CharacterRangedAttackFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterRangedAttackFrameLabel:SetText(E:TextGradient(_G.CharacterRangedAttackFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+								_G.CharacterRangedAttackFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterRangedAttackFrameLabel:GetText(), E.myclass))
 							end
 							if not _G.CharacterRangedAttackPowerFrameLabel:GetText():match("|r") then
 								_G.CharacterRangedAttackPowerFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterRangedAttackPowerFrameLabel:SetText(E:TextGradient(_G.CharacterRangedAttackPowerFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+								_G.CharacterRangedAttackPowerFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterRangedAttackPowerFrameLabel:GetText(), E.myclass))
 							end
 							if not _G.CharacterRangedDamageFrameLabel:GetText():match("|r") then
 								_G.CharacterRangedDamageFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterRangedDamageFrameLabel:SetText(E:TextGradient(_G.CharacterRangedDamageFrameLabel:GetText(), statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"]))
+								_G.CharacterRangedDamageFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterRangedDamageFrameLabel:GetText(), E.myclass))
 							end
 						end
 				end
@@ -1712,7 +1712,7 @@ local classIconsReleafborder = {
 --inspect bg/item quality texture
 local EltruismInspectBg = CreateFrame("Frame")
 local EltruismInspectBgTexture = EltruismInspectBg:CreateTexture("EltruismInspectBG")
-local EltruismInspectBgTextureFader = EltruismInspectBg:CreateTexture()
+local EltruismInspectBgTextureFader = EltruismInspectBg:CreateTexture("EltruismInspectVignette")
 EltruismInspectBgTextureFader:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Vignette.tga")
 
 function ElvUI_EltreumUI:InspectBg(unit)
@@ -1741,16 +1741,20 @@ function ElvUI_EltreumUI:InspectBg(unit)
 								if not E.Retail then
 									if not _G.InspectNameText:GetText():match("|T") then
 										_G.InspectNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
-										_G.InspectNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+										_G.InspectNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectNameText:GetText(), englishClass))
+										_G.InspectNameText:SetShadowColor(0, 0, 0, 0.8)
+										_G.InspectNameText:SetShadowOffset(2, -1)
 										_G.InspectNameText:SetWidth(200)
-										_G.InspectNameText:SetText(classsymbolonframe.." ".._G.InspectNameText:GetText())
+										_G.InspectNameText:SetDrawLayer("OVERLAY")
 									end
 								else
 									if not _G.InspectFrameTitleText:GetText():match("|T") then
 										_G.InspectFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
-										_G.InspectFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+										_G.InspectFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectFrameTitleText:GetText(), englishClass))
+										_G.InspectFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
+										_G.InspectFrameTitleText:SetShadowOffset(2, -1)
 										_G.InspectFrameTitleText:SetWidth(200)
-										_G.InspectFrameTitleText:SetText(classsymbolonframe.." ".._G.InspectFrameTitleText:GetText())
+										_G.InspectFrameTitleText:SetDrawLayer("OVERLAY")
 									end
 								end
 							end)
