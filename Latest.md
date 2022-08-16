@@ -7,6 +7,7 @@ Added support to Blinkii's mMediaTag Interrupt Castbar feature while in Gradient
 Added an option to use the combat font for Loot Text instead of the ElvUi general font\
 Added options to play a sound when an item from the Wishlist is looted\
 Added a mover to the Loot Wishlist\
+Added an Effect to Nameplate Power Bar, default disabled but enabled on profile install\
 Updated for 9.2.7\
 Updated the function that disables Blizzard's Combat text to more reliably only disable if the option was enabled\
 Updated the Dungeon/Scenario Block to be more centered\
@@ -30,4 +31,5 @@ Fixed a possible error when applying fonts without some of Eltruism's Custom Tex
 Fixed Healer layout missing auto adjusting borders for the pet bar\
 Fixed Boss and Arena missing gradients after the gradient rework\
 Fixed Target of Target of Target gradient/custom textures\
-Fixed Chat fade options not working when Chat was transparent
+Fixed Chat fade options not working when Chat was transparent\
+Fixed Combat Indicator icon overlapping with name or absorbs in some sitatuions by moving it in the profiles
