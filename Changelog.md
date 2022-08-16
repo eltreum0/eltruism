@@ -14,7 +14,7 @@ Updated for 9.2.7\
 Updated the function that disables Blizzard's Combat text to more reliably only disable if the option was enabled\
 Updated the Dungeon/Scenario Block to be more centered\
 Updated focus name to use the same format as player and target\
-Updated nameplate profile to include some missing settings for nameplat width and height\
+Updated nameplate profile to include some missing settings for nameplate width and height\
 Updated german locale by Dlarge\
 Updated the entering/leaving combat indicators to not need LootText enabled\
 Updated Gradient Nameplates to also make Nameplate Style Filters slightly gradient\
@@ -35,7 +35,7 @@ Fixed Healer layout missing auto adjusting borders for the pet bar\
 Fixed Boss and Arena missing gradients after the gradient rework\
 Fixed Target of Target of Target gradient/custom textures\
 Fixed Chat fade options not working when Chat was transparent\
-Fixed Combat Indicator icon overlapping with name or absorbs in some sitatuions by moving it in the profiles
+Fixed Combat Indicator icon overlapping with name or absorbs in some situations by moving it in the profiles
 ___
 ### 3.2.3
 Added an option to change Fill Direction of Unitframes\
