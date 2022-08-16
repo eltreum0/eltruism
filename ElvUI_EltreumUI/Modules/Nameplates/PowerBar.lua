@@ -189,6 +189,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 	--print("nameplate power spam "..math.random(1,99))
 	if not nameplate then
 		EltreumPowerBar:Hide()
+		powerbareffect:Hide()
 	end
 
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
