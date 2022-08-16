@@ -48,6 +48,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:LoadCommands() --loads chat commands
 	ElvUI_EltreumUI:BorderAdjust() --auto adjust actionbar/border if option is enabled
 	ElvUI_EltreumUI:Borders() --creates borders if option is enabled
+	ElvUI_EltreumUI:GradientColorTableUpdate() -- should load table on init
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel() --adds class icons to character panel
 	ElvUI_EltreumUI:CursorInit() --starts cursor modules
 	ElvUI_EltreumUI:SkinMailZone() --skins zone change messages and mail font
@@ -78,6 +79,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:SkillGlow() --makes skill glow using libcustomglow
 	ElvUI_EltreumUI:BattleRes() --bres count/cd
 	ElvUI_EltreumUI:HideABKeyPress() -- hide keypress if needed
+
 	ElvUI_EltreumUI:NameplateRestedOverlaps() -- sets overlaps depending if rested/not
 	if E.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
