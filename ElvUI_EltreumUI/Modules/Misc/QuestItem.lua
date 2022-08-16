@@ -144,6 +144,29 @@ function ElvUI_EltreumUI:QuestItem()
 			local bindingText11 = GetBindingKey("CLICK EltruismQuestItem11:LeftButton")
 			local bindingText12 = GetBindingKey("CLICK EltruismQuestItem12:LeftButton")
 
+			-- update mover position
+			function EltruismQuestItemFrame:FixPosition()
+				E:Delay(0, function()
+					if not InCombatLockdown() and _G["EltruismQuestItem1"] then
+						local point, relativeTo, relativePoint, xOfs, yOfs = EltruismQuestItemFrame:GetPoint()
+						_G["EltruismQuestItem1"]:ClearAllPoints()
+						if (self.shownItems % 2) == 0 then
+							if xOfs >= 0 then
+								_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*cfg.btnSize)/2), yOfs)
+							elseif xOfs < 0 then
+								_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-1)*cfg.btnSize)/2), yOfs)
+							end
+						else
+							if xOfs >= 0 then
+								_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-(self.shownItems % 2))*(cfg.btnSize+1))/2), yOfs)
+							elseif xOfs < 0 then
+								_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-(self.shownItems % 2))*(cfg.btnSize-1))/2), yOfs)
+							end
+						end
+					end
+				end)
+			end
+
 			--------------------------------------------------------------------------------------------------------
 			--                                                Main                                                --
 			--------------------------------------------------------------------------------------------------------
@@ -153,25 +176,6 @@ function ElvUI_EltreumUI:QuestItem()
 				if (self.updateTime > UPDATE_DELAY) then
 					self:SetScript("OnUpdate",nil)
 					self:UpdateButtons()
-
-					-- update mover position
-					if not InCombatLockdown() and _G["EltruismQuestItem1"] then
-						local point, relativeTo, relativePoint, xOfs, yOfs = EltruismQuestItemFrame:GetPoint()
-						_G["EltruismQuestItem1"]:ClearAllPoints()
-						if (#EltruismQuestItemFrame.items % 2) == 0 then
-							if xOfs >= 0 then
-								_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((#EltruismQuestItemFrame.items-1)*cfg.btnSize)/2), yOfs)
-							elseif xOfs < 0 then
-								_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((#EltruismQuestItemFrame.items-1)*cfg.btnSize)/2), yOfs)
-							end
-						else
-							if xOfs >= 0 then
-								_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((#EltruismQuestItemFrame.items-(#EltruismQuestItemFrame.items % 2))*(cfg.btnSize+1))/2), yOfs)
-							elseif xOfs < 0 then
-								_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((#EltruismQuestItemFrame.items-(#EltruismQuestItemFrame.items % 2))*(cfg.btnSize-1))/2), yOfs)
-							end
-						end
-					end
 				end
 			end
 
@@ -312,6 +316,9 @@ function ElvUI_EltreumUI:QuestItem()
 					btn:SetPoint("LEFT",EltruismQuestItemFrame.items[index - 1],"RIGHT",1,0)
 				end
 				btn:Show()
+
+				-- update mover position
+				EltruismQuestItemFrame:FixPosition()
 			end
 
 			-- Check Item -- Az: Some items which starts a quest, are not marked as "Quest" in itemType or itemSubType. Ex: item:17008
@@ -486,6 +493,8 @@ function ElvUI_EltreumUI:QuestItem()
 			function EltruismQuestItemFrame:UNIT_INVENTORY_CHANGED(event,unit)
 				if (unit == "player") then
 					self:RequestUpdate()
+					-- update mover position
+					EltruismQuestItemFrame:FixPosition()
 				end
 			end
 		end
