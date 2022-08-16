@@ -388,10 +388,48 @@ function ElvUI_EltreumUI:SkinQuests()
 			end
 
 			if not IsAddOnLoaded('Questie') then
-				--from blizzard's FrameXML/_G.QuestLogFrame.lua
 
+				--add quest header like retail/wrath
+				if not _G["EltruismQuestLine"] then
+					_G.QuestWatchFrame.HeaderBar = CreateFrame("StatusBar", "EltruismQuestLine", _G.QuestWatchFrame)
+				else
+					_G.QuestWatchFrame.HeaderBar = _G["EltruismQuestLine"]
+				end
+				_G.QuestWatchFrame.HeaderBar:SetSize(200, 3)
+				_G.QuestWatchFrame.HeaderBar:SetPoint("TOP", _G.QuestWatchFrameMover, "TOP", 40, 0)
+				_G.QuestWatchFrame.HeaderBar:SetStatusBarTexture(E.Media.Textures.White8x8)
+				--_G.QuestWatchFrame.HeaderBar:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b)
+				_G.QuestWatchFrame.HeaderBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
+				if not _G["EltruismQuestLine"].shadow then
+					_G["EltruismQuestLine"]:CreateShadow()
+				end
+				local InvisFrameHeaderBar = CreateFrame("Frame", nil, _G.QuestWatchFrame.HeaderBar)
+				InvisFrameHeaderBar:SetFrameLevel(_G.QuestWatchFrame.HeaderBar:GetFrameLevel() + 10)
+				InvisFrameHeaderBar:SetInside()
+				local QuestWatchFrameTitle = _G.QuestWatchFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
+				QuestWatchFrameTitle:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+3, E.db.general.fontStyle)
+				QuestWatchFrameTitle:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				QuestWatchFrameTitle:SetParent(InvisFrameHeaderBar)
+				QuestWatchFrameTitle:ClearAllPoints()
+				QuestWatchFrameTitle:SetPoint("LEFT", InvisFrameHeaderBar, 6, 8)
+
+				--from blizzard's FrameXML/_G.QuestLogFrame.lua
 				--skin the classic objective frame
 				hooksecurefunc("QuestWatch_Update",function()
+
+					local NumQuests = select(2, GetNumQuestLogEntries())
+					if (NumQuests >= (MAX_QUESTS - 5)) then
+						QuestWatchFrameTitle:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, "Quests"))
+					else
+						QuestWatchFrameTitle:SetText(format("%d/%d - %s", NumQuests, MAX_QUESTS, "Quests"))
+					end
+					if (GetNumQuestWatches() == 0) then
+						_G.QuestWatchFrame.HeaderBar:SetAlpha(0)
+					else
+						_G.QuestWatchFrame.HeaderBar:SetAlpha(1)
+					end
+
+
 					local numObjectives
 					local questWatchMaxWidth = 0
 					local tempWidth
