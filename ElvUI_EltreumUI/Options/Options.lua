@@ -6748,20 +6748,8 @@ function ElvUI_EltreumUI:Configtable()
 										get = function() return E.db.ElvUI_EltreumUI.nameplatepower.fontsize end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.nameplatepower.fontsize = tonumber(value) end,
 									},
-									sharedmediatexture = {
-										order = 99,
-										type = 'select',
-										width = "double",
-										dialogControl = 'LSM30_Statusbar',
-										name = L["Choose the Power Bar Texture"],
-										desc = L["Select a Texture"],
-										values = AceGUIWidgetLSMlists.statusbar,
-										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
-										get = function() return E.db.ElvUI_EltreumUI.nameplatepower.texture end,
-										set = function(self,key) E.db.ElvUI_EltreumUI.nameplatepower.texture = key end,
-									},
 									powerbarbackgroundcolor = {
-										order = 100,
+										order = 99,
 										type = 'color',
 										name = L["Background Color"],
 										hasAlpha = false,
@@ -6773,8 +6761,29 @@ function ElvUI_EltreumUI:Configtable()
 										end,
 										set = function(_, r, g, b, a)
 											local customcolorpowerbar = E.db.ElvUI_EltreumUI.nameplatepower
-											customcolorpowerbar.r, customcolorpowerbar.g, customcolorpowerbar.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+											customcolorpowerbar.r, customcolorpowerbar.g, customcolorpowerbar.b = r, g, b
 										end,
+									},
+									sharedmediatexture = {
+										order = 100,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Choose the Power Bar Texture"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplatepower.texture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.nameplatepower.texture = key end,
+									},
+									modeleffect = {
+										type = 'toggle',
+										name = L["Effect"],
+										desc = L["Add an Effect"],
+										order = 100,
+										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplatepower.modeleffect end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplatepower.modeleffect = value end,
 									},
 									header9987 = {
 										order = 101,

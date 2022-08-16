@@ -20,6 +20,9 @@ local stance
 --Setup Power Bar, Prediction and Text
 local EltreumPowerAnchor
 local EltreumPowerBar = CreateFrame("StatusBar","EltruismPowerBar")
+local powerbareffect = CreateFrame("PlayerModel", "EltruismPowerBarEffect")
+powerbareffect:Hide()
+
 EltreumPowerBar:SetValue(0)
 EltreumPowerBar:Hide() --hide at the start before events
 
@@ -667,7 +670,29 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			end
 			--update text position late so that it is in the correct position due to different clases/specs/forms
 			EltreumPowerBarText:SetPoint("Center", EltreumPowerBar, "Center", 0, 0)
+
+			--add effect to bar
+			if E.db.ElvUI_EltreumUI.nameplatepower.modeleffect then
+				powerbareffect:Show()
+				powerbareffect:SetSize(E.db.ElvUI_EltreumUI.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplatepower.sizey)
+				powerbareffect:SetPoint("CENTER",EltreumPowerBar, "CENTER")
+
+
+				if E.Retail then
+					powerbareffect:SetModel(1630153)  --better for retail, inspired by asakawa's bar model
+					powerbareffect:MakeCurrentCameraCustom()
+					powerbareffect:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
+					powerbareffect:SetPortraitZoom(1)
+				else
+					powerbareffect:SetModel("spells/arcanepower_state_chest.m2")
+					powerbareffect:SetPosition(1.2, 0, 0)
+				end
+				powerbareffect:SetAlpha(0.2) --might do this
+				powerbareffect:SetInside(EltreumPowerBar, 0, 0)
+				powerbareffect:SetParent(EltreumPowerBar)
+			end
 		else
+			powerbareffect:Hide()
 			EltreumPowerBar:Hide()
 		end
 	end
