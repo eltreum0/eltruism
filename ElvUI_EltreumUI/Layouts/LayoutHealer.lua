@@ -848,9 +848,14 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 	E.db["unitframe"]["units"]["pet"]["width"] = 100
 	E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
+	E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "CENTER"
+	E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["a"] = 0.80000001192093
 	E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["b"] = 1
 	E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["g"] = 1
 	E.db["unitframe"]["units"]["player"]["CombatIcon"]["defaultColor"] = false
+	E.db["unitframe"]["units"]["player"]["CombatIcon"]["size"] = 18
+	E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = 28
+	E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = 0
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["a"] = 0.57115608453751
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["defaultColor"] = false
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["size"] = 15
