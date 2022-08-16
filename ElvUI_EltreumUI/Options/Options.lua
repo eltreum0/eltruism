@@ -6778,7 +6778,7 @@ function ElvUI_EltreumUI:Configtable()
 									},
 									modeleffect = {
 										type = 'toggle',
-										name = L["Effect"],
+										name = E.NewSign..L["Effect"],
 										desc = L["Add an Effect"],
 										order = 100,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
