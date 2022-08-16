@@ -31,6 +31,9 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.widenameplate.enable = true
 	E.db.ElvUI_EltreumUI.widenameplate.npglow = true
 	E.db.ElvUI_EltreumUI.nptextureversion = "V2"
+	E.db.ElvUI_EltreumUI.nameplateOptions.enableHealthHeight = true
+	E.db.ElvUI_EltreumUI.nameplateOptions.useelvuinpheight = true
+	E.db.ElvUI_EltreumUI.nameplateOptions.targetmodel = true
 
 	-- Gradient/Unitframe stuff
 	E.db.ElvUI_EltreumUI.gradientmode.texture = "Asphyxia-Norm"
@@ -142,12 +145,14 @@ function ElvUI_EltreumUI:UpdateSettings()
 		E.db.ElvUI_EltreumUI.glow.enabletotem = true
 	end
 	E.db.ElvUI_EltreumUI.questsettings.rogueopen = true
-	E.db.ElvUI_EltreumUI.questsettings.questitems = false
-	if not E.Retail then
+	if E.Retail then
+		E.db.ElvUI_EltreumUI.questsettings.questitems = false
+	else
 		E.db.ElvUI_EltreumUI.questsettings.questitems = true
 	end
 	E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 = true
 	E.db.ElvUI_EltreumUI.questsettings.questitemsfade = false
+	--E.db.ElvUI_EltreumUI.questsettings.autoaccept = true  --maybe in the future?
 
 	--loot
 	E.db.ElvUI_EltreumUI.loottext.enable = true
