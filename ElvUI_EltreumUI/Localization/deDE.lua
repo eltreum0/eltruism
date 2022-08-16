@@ -1053,3 +1053,5 @@ L["Enable Target Model"] = "Zielmodell aktivieren"
 L["Shows the target's model on the target nameplate"] = "Zeigt das Modell des Ziels auf der Namensplakette des Ziels an"
 L["Use ElvUI Damage Font"] = "ElvUI Schadensschriftart verwenden"
 L["Enable Playing a Sound if an item from the wishlist is looted"] = "Aktivieren das ein Ton abspielt wird, wenn ein Gegenstand von der Wunschliste geplündert wird"
+L["Effect"] = true
+L["Add an Effect"] = true
