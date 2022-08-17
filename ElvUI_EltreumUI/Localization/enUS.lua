@@ -1020,3 +1020,7 @@ L["Effect"] = true
 L["Add an Effect"] = true
 L["Rested Nameplates"] = true
 L["Decrease Nameplate Overlap when Resting"] = true
+
+L["Target Portrait Fix"] = true
+L["Automatically rotate Target Portrait"] = true
+L["Detects target's species and uses it to fix the rotation of the Target's 3D Portrait"] = true
