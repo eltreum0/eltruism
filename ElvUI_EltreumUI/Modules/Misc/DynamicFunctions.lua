@@ -17,6 +17,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 	if E.db.ElvUI_EltreumUI.otherstuff.portraitfix and E.private.unitframe.enable then
 		if UnitExists("target") then
 			--print(_G["ElvUF_Target"].Portrait3D:GetModelFileID() ) -- actually prints
+			--_G["ElvUF_Target"].Portrait3D:SetCamera(1)
 			if UnitIsPlayer("target") then
 				E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 			else
