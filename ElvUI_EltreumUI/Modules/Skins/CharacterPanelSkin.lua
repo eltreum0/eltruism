@@ -1759,7 +1759,12 @@ function ElvUI_EltreumUI:InspectBg(unit)
 								if not E.Retail then
 									if not _G.InspectNameText:GetText():match("|T") then
 										_G.InspectNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
-										_G.InspectNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectNameText:GetText(), englishClass))
+										if string.len(_G.InspectNameText:GetText()) >= 6 then
+											_G.InspectNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectNameText:GetText(), englishClass))
+										else
+											_G.InspectNameText:SetText(classsymbolonframe.." ".._G.InspectNameText:GetText())
+											_G.InspectNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+										end
 										_G.InspectNameText:SetShadowColor(0, 0, 0, 0.8)
 										_G.InspectNameText:SetShadowOffset(2, -1)
 										_G.InspectNameText:SetWidth(200)
@@ -1768,7 +1773,12 @@ function ElvUI_EltreumUI:InspectBg(unit)
 								else
 									if not _G.InspectFrameTitleText:GetText():match("|T") then
 										_G.InspectFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
-										_G.InspectFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectFrameTitleText:GetText(), englishClass))
+										if string.len(_G.InspectFrameTitleText:GetText()) >= 6 then
+											_G.InspectFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectFrameTitleText:GetText(), englishClass))
+										else
+											_G.InspectFrameTitleText:SetText(classsymbolonframe.." ".._G.InspectFrameTitleText:GetText())
+											_G.InspectFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+										end
 										_G.InspectFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
 										_G.InspectFrameTitleText:SetShadowOffset(2, -1)
 										_G.InspectFrameTitleText:SetWidth(200)
