@@ -42,6 +42,7 @@ function ElvUI_EltreumUI:UFEffects()
 		--playereffect:SetPosition(0, -0.85, 1.65)
 		--playereffect:SetFacing(rad(180))
 		playereffect:SetDesaturation(E.db.ElvUI_EltreumUI.models.ufdesaturation)
+		playereffect:SetParent(playerbar.Health)
 
 		--targeteffect:SetModel("spells/fel_rainoffire_missile.m2")
 		targeteffect:SetModel("environments/stars/hellfireskybox.m2")
@@ -52,6 +53,7 @@ function ElvUI_EltreumUI:UFEffects()
 		--targeteffect:SetPosition(0, -0.85, 1.65)
 		--targeteffect:SetFacing(rad(180)) --for shadowmoon
 		targeteffect:SetDesaturation(E.db.ElvUI_EltreumUI.models.ufdesaturation)
+		targeteffect:SetParent(targetbar.Health)
 
 		if E.db.ElvUI_EltreumUI.lightmode then
 			playereffect:SetAlpha(E.db.ElvUI_EltreumUI.models.ufalpha)
@@ -59,7 +61,6 @@ function ElvUI_EltreumUI:UFEffects()
 			playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel()-1)
 			--playereffect:SetFrameLevel(playerbar.Portrait3D:GetFrameLevel())
 			playereffect:SetInside(playerbar.Health:GetStatusBarTexture(), 0, 0)
-			playereffect:SetParent(playerbar.Health)
 
 			targeteffect:ClearAllPoints()
 			targeteffect:SetAlpha(E.db.ElvUI_EltreumUI.models.ufalpha)
@@ -67,7 +68,6 @@ function ElvUI_EltreumUI:UFEffects()
 			targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel()-1)
 			--targeteffect:AddMaskTexture(targetbar.Health:GetStatusBarTexture())
 			targeteffect:SetInside(targetbar.Health:GetStatusBarTexture(), 0, 0)
-			targeteffect:SetParent(targetbar.Health)
 
 		elseif E.db.ElvUI_EltreumUI.darkmode then
 
@@ -75,14 +75,13 @@ function ElvUI_EltreumUI:UFEffects()
 			playereffect:SetAllPoints(playerbar.Health.backdropTex)
 			playereffect:SetFrameLevel(playerbar.Portrait3D:GetFrameLevel())
 			playereffect:SetInside(playerbar.Health.backdropTex, 0, 0)
-			playereffect:SetParent(playerbar.Health)
 
 			targeteffect:ClearAllPoints()
 			targeteffect:SetAlpha(E.db.ElvUI_EltreumUI.models.ufalphadark)
 			targeteffect:SetAllPoints(targetbar.Health.backdropTex)
 			targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel())
 			targeteffect:SetInside(targetbar.Health.backdropTex, 0, 0)
-			targeteffect:SetParent(targetbar.Health)
+
 
 		end
 	end
