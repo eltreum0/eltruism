@@ -172,6 +172,7 @@ P.ElvUI_EltreumUI = {
 		desaturation = 0,
 		paused = false,
 		restedoverlap = false,
+		hideSwipe = false,
 	},
 
 	stealthOptions = {

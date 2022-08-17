@@ -69,6 +69,10 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 						TimeSinceLastUpdate = 0
 						--print("np button spam "..math.random(1,99))
 						if button.cd.timer then
+							if E.db.ElvUI_EltreumUI.nameplateOptions.hideSwipe then
+								button.cd:SetSwipeColor(0, 0, 0, 0)
+								button.cd:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Testing")
+							end
 							if E.db.ElvUI_EltreumUI.widenameplate.enable then
 								button.cd.timer.text:ClearAllPoints()
 								button.cd.timer.text:SetPoint("TOP", button.icon, "TOP", 0, 5)
@@ -129,10 +133,15 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 			button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 			TimeSinceLastUpdate = 0
 			button.cd:SetScript('OnUpdate', function(self, elapsed)
-			TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 					TimeSinceLastUpdate = 0
 					if button.cd.timer then
+						if E.db.ElvUI_EltreumUI.nameplateOptions.hideSwipe then
+							button.cd:SetSwipeColor(0, 0, 0, 0)
+							button.cd:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Testing")
+						end
+						button.cd:SetEdgeTexture("Interface\\Cooldown\\edge",1,1,1,1)
 						button.cd.timer.text:ClearAllPoints()
 						button.cd.timer.text:SetDrawLayer('OVERLAY',1)
 						button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)

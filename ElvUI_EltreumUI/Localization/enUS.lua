@@ -1024,3 +1024,5 @@ L["Decrease Nameplate Overlap when Resting"] = true
 L["Target Portrait Fix"] = true
 L["Automatically rotate Target Portrait"] = true
 L["Detects target's species and uses it to fix the rotation of the Target's 3D Portrait"] = true
+L["Hide Cooldown Swipe"] = true
+L["Hide Cooldown Swipe on Buffs and Debuffs"] = true

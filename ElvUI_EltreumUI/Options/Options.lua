@@ -6551,15 +6551,31 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.widenameplate.enable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.widenameplate.enable = value end,
 							},
-							header4 = {
+							headerhideswipe = {
 								order = 913,
+								type = 'description',
+								name = L["Hide Cooldown Swipe"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							hidecdswipenp = {
+								order = 914,
+								type = 'toggle',
+								name = L["Hide Cooldown Swipe on Buffs and Debuffs"],
+								desc = L["Toggle On and Off"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.nameplateOptions.hideSwipe end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.nameplateOptions.hideSwipe = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header4 = {
+								order = 1911,
 								type = "description",
 								name = L["Enemy Nameplate Level"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							dynamiclevel = {
-								order = 914,
+								order = 1912,
 								type = 'toggle',
 								name = L["Hide level on enemy nameplates when you are max level"],
 								desc = L["Toggle On and Off"],
@@ -6568,7 +6584,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.nameplatelevel.enable = value end,
 							},
 							header5 = {
-								order = 915,
+								order = 1913,
 								type = "description",
 								name = L["Automatically Hide NPC Names"],
 								width = 'full',
@@ -6576,7 +6592,7 @@ function ElvUI_EltreumUI:Configtable()
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							hidenpcname = {
-								order = 916,
+								order = 1914,
 								type = 'toggle',
 								name = L["Hide NPC Names when they are too far away to have Nameplates"],
 								desc = L["Toggle On and Off"],
@@ -6586,14 +6602,14 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.autohidenpcname = value end,
 							},
 							headerrested = {
-								order = 917,
+								order = 1915,
 								type = "description",
 								name = L["Rested Nameplates"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							restednp = {
-								order = 918,
+								order = 1916,
 								type = 'toggle',
 								name = L["Decrease Nameplate Overlap when Resting"],
 								desc = L["Toggle On and Off"],
