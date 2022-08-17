@@ -14,15 +14,17 @@ local level
 
 --set portrait rotation based on target being npc or not
 function ElvUI_EltreumUI:DynamicUFPortraitRotation()
-	if UnitExists("target") then
-		--print(_G["ElvUF_Target"].Portrait3D:GetModelFileID() ) -- actually prints
-		if UnitIsPlayer("target") then
-			E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
-		else
-			if UnitCreatureType("target") == "Humanoid" then
+	if E.db.ElvUI_EltreumUI.otherstuff.portraitfix and E.private.unitframe.enable then
+		if UnitExists("target") then
+			--print(_G["ElvUF_Target"].Portrait3D:GetModelFileID() ) -- actually prints
+			if UnitIsPlayer("target") then
 				E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 			else
-				E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
+				if UnitCreatureType("target") == "Humanoid" then
+					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
+				else
+					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
+				end
 			end
 		end
 	end

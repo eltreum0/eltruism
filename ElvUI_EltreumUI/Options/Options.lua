@@ -8403,7 +8403,6 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.uftextureversion end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.uftextureversion = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-
 							headerorientation = {
 								order = 101,
 								type = "description",
@@ -8425,14 +8424,14 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.UForientation = value end,
 							},
 							headerufbackdrop = {
-								order = 984,
+								order = 103,
 								type = "description",
 								name = L["Backdrops"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							backdrophide = {
-								order = 985,
+								order = 104,
 								type = 'toggle',
 								width = "full",
 								name = E.NewSign..L["Hide Backdrop"],
@@ -8441,7 +8440,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							ufbackdropTex = {
-								order = 986,
+								order = 105,
 								type = 'select',
 								--width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -8456,7 +8455,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'range',
 								name = L["Backdrop Alpha"],
 								desc = L["Change the transparency of the backdrop"],
-								order = 987,
+								order = 106,
 								min = 0,
 								max = 1,
 								step = 0.01,
@@ -8464,6 +8463,22 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha = value end,
+							},
+							portraitfix = {
+								order = 107,
+								type = "description",
+								name = L["Target Portrait Fix"],
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								width = "full",
+							},
+							portraitfixenable = {
+								order = 108,
+								type = 'toggle',
+								width = "full",
+								name = L["Automatically rotate Target Portrait"],
+								desc = L["Detects target's species and uses it to fix the rotation of the Target's 3D Portrait"],
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.portraitfix end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.portraitfix = value end,
 							},
 							darkpowerdesc = {
 								order = 988,
@@ -8481,17 +8496,11 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.darkpowercolor end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.darkpowercolor = value end,
 							},
-							header8898 = {
-								order = 990,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
 							castbarspark = {
 								order = 991,
 								type = "description",
 								name = L["Customize the player castbar spark"],
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								width = "full",
 							},
 							castbarsparkenable = {

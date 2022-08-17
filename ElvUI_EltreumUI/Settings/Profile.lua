@@ -867,6 +867,7 @@ P.ElvUI_EltreumUI = {
 		arenabuffs = false,
 		bgunitframes = false,
 		arenaunitframes = false,
+		portraitfix = true,
 		fastloot = false,
 		fastlootfilter = false,
 		fastlootquality = '0',
