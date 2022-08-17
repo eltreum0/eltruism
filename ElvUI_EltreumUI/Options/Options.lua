@@ -6590,7 +6590,6 @@ function ElvUI_EltreumUI:Configtable()
 								type = "description",
 								name = L["Rested Nameplates"],
 								width = 'full',
-								hidden = function() if E.Retail then return false else return true end end,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							restednp = {
