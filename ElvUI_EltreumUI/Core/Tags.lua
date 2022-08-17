@@ -676,7 +676,7 @@ E:AddTag('eltruism:combatindicator', 'UNIT_HEALTH', function(unit)
 		if texture == "DEFAULT" then
 			return "|TInterface\\CharacterFrame\\UI-StateIcon:0:0:0:0:64:64:34:59:6:29|t"
 		elseif texture == "PLATINUM" then
-			return  "asdasdasdsd".."|TInterface\\Challenges\\ChallengeMode_Medal_Platinum:0:0:0:0|t"
+			return  "|TInterface\\Challenges\\ChallengeMode_Medal_Platinum:0:0:0:0|t"
 		elseif texture == "ATTACK" then
 			return "|TInterface\\CURSOR\\Attack:0:0:0:0|t"
 		elseif texture == "ALERT" then
