@@ -625,8 +625,8 @@ function ElvUI_EltreumUI:NameplateRestedOverlaps()
 				SetCVar("nameplateOverlapH", 0)
 				SetCVar("nameplateOverlapV", 0)
 			else
-				SetCVar("nameplateOverlapH", E.db.nameplates.overlapH)
-				SetCVar("nameplateOverlapV", E.db.nameplates.overlapV)
+				SetCVar("nameplateOverlapH", E.db["nameplates"]["overlapH"])
+				SetCVar("nameplateOverlapV", E.db["nameplates"]["overlapV"])
 			end
 		end
 	end
