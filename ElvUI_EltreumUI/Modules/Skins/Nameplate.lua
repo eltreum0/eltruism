@@ -196,7 +196,7 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 			["ENEMY_PLAYER"] = E.db.nameplates.units.ENEMY_PLAYER.health.height or P.nameplates.units.ENEMY_PLAYER.health.height,
 			["FRIENDLY_PLAYER"] = E.db.nameplates.units.FRIENDLY_PLAYER.health.height or P.nameplates.units.FRIENDLY_NPC.health.height,
 		}
-		if not UnitAffectingCombat(unit.unit) then
+		if (not UnitAffectingCombat(unit.unit)) and (UnitThreatSituation("player", unit.unit) == nil) then
 			if UnitIsUnit(unit.unit, "target") then
 				if E.db.ElvUI_EltreumUI.nameplateOptions.useelvuinpheight then
 					unit.Health:SetHeight(heighttable[unit.frameType])
@@ -206,7 +206,7 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 			else
 				unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplateOptions.outofcombatHeight)
 			end
-		elseif UnitAffectingCombat(unit.unit) then
+		elseif UnitAffectingCombat(unit.unit) or (UnitThreatSituation("player", unit.unit) ~= nil) then
 			if E.db.ElvUI_EltreumUI.nameplateOptions.useelvuinpheight then
 				unit.Health:SetHeight(heighttable[unit.frameType])
 			else
