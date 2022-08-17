@@ -835,6 +835,10 @@ P.ElvUI_EltreumUI = {
 		width = 3,
 	},
 
+	models = {
+		castbar = false,
+	},
+
 	--[[
 	media = {
 		font = false,

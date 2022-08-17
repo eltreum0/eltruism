@@ -8544,33 +8544,45 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.sparkcustomcolor.width end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.sparkcustomcolor.width = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							headergaphere = {
+
+							castbarmodeleffect = {
+								type = 'toggle',
+								name = E.NewSign..L["Effect"],
+								desc = L["Add an Effect"],
 								order = 995,
+								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
+								get = function() return E.db.ElvUI_EltreumUI.models.castbar end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.models.castbar = value end,
+							},
+
+
+							headergaphere = {
+								order = 1995,
 								type = "description",
 								name = L["Alternative unitframe layouts"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							layoutdescriptiongap = {
-								order = 996,
+								order = 1996,
 								type = 'description',
 								name = "",
 								width = "full",
 							},
 							layoutdescription = {
-								order = 997,
+								order = 1997,
 								type = 'description',
 								fontSize = 'medium',
 								name = L["DPS/Tank layouts were created with pure dps classes in mind, if you play a class with more raid cooldowns like a Shaman, Druid or Paladin you might want to use the alternative layout in order to make it easier for you to use your cooldowns on the members of your group"],
 							},
 							alternativegroups = {
-								order = 998,
+								order = 1998,
 								type = 'execute',
 								name = L["Alternative Layout"],
 								func = function() ElvUI_EltreumUI:AlternativeGroupsDPS() end,
 							},
 							originalgroups = {
-								order = 999,
+								order = 1999,
 								type = 'execute',
 								name = L["Original Layout"],
 								func = function() ElvUI_EltreumUI:OriginalGroupsDPS() end,
