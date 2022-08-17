@@ -55,16 +55,18 @@ function ElvUI_EltreumUI:UFEffects()
 
 		if E.db.ElvUI_EltreumUI.lightmode then
 			playereffect:SetAlpha(E.db.ElvUI_EltreumUI.models.ufalpha)
-			playereffect:SetAllPoints(playerbar.Health)
-			playereffect:SetFrameLevel(playerbar.Health.backdrop:GetFrameLevel())
-			playereffect:SetInside(playerbar.Health, 0, 0)
+			playereffect:SetAllPoints(playerbar.Health:GetStatusBarTexture())
+			playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel()-1)
+			--playereffect:SetFrameLevel(playerbar.Portrait3D:GetFrameLevel())
+			playereffect:SetInside(playerbar.Health:GetStatusBarTexture(), 0, 0)
 			playereffect:SetParent(playerbar.Health)
 
 			targeteffect:ClearAllPoints()
 			targeteffect:SetAlpha(E.db.ElvUI_EltreumUI.models.ufalpha)
-			targeteffect:SetAllPoints(targetbar.Health)
-			targeteffect:SetFrameLevel(targetbar.Health.backdrop:GetFrameLevel())
-			targeteffect:SetInside(targetbar.Health, 0, 0)
+			targeteffect:SetAllPoints(targetbar.Health:GetStatusBarTexture())
+			targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel()-1)
+			--targeteffect:AddMaskTexture(targetbar.Health:GetStatusBarTexture())
+			targeteffect:SetInside(targetbar.Health:GetStatusBarTexture(), 0, 0)
 			targeteffect:SetParent(targetbar.Health)
 
 		elseif E.db.ElvUI_EltreumUI.darkmode then
