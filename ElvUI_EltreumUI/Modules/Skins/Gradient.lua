@@ -342,7 +342,7 @@ end
 --sets name with gradient colors using elvui
 function ElvUI_EltreumUI:GradientName(name, unitclass)
 	local text
-	if E.db.ElvUI_EltreumUI.gradientmode.customcolor then
+	if E.db.ElvUI_EltreumUI.gradientmode.customcolor or E.db.ElvUI_EltreumUI.gradientmode.npcustomcolor then
 		text = E:TextGradient(name, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2)
 	else
 		text = E:TextGradient(name, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2)
