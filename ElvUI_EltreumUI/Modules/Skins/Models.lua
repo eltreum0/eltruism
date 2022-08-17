@@ -15,15 +15,18 @@ local playerbar,targetbar
 local classModelsTBC = {
 	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Warrior",
 	["PALADIN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Paladin",
-	["HUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Hunter",
+
 	["ROGUE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Rogue",
 	["PRIEST"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Priest",
-	["DEATHKNIGHT"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DeathKnight",
-	["SHAMAN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Shaman",
+
+	["HUNTER"] = "environments/stars/hellfireskybox.m2",
+	["SHAMAN"] = "spells/christmassnowrain.m2",
 	["MAGE"] = "environments/stars/netherstormskybox.m2",
 	["WARLOCK"] = "environments/stars/shadowmoonskybox.m2",
+	["DRUID"] = "environments/stars/nagrandskybox.m2",
+
+	["DEATHKNIGHT"] = "environments/stars/dragonblightscarletskybox.m2",
 	["MONK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Monk",
-	["DRUID"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Druid",
 	["DEMONHUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunter",
 }
 
@@ -34,23 +37,12 @@ function ElvUI_EltreumUI:UFEffects()
 		playerbar = _G["ElvUF_Player"]
 		targetbar = _G["ElvUF_Target"]
 
-
-		--playereffect:SetModel("spells/christmassnowrain.m2")
-		playereffect:SetModel("environments/stars/hellfireskybox.m2")
-		--playereffect:SetModel("spells/fel_rainoffire_missile.m2")
-
-		--playereffect:SetPosition(0, -0.85, 1.65)
-		--playereffect:SetFacing(rad(180))
+		playereffect:SetModel("spells/arcanebreath.m2")
 		playereffect:SetDesaturation(E.db.ElvUI_EltreumUI.models.ufdesaturation)
 		playereffect:SetParent(playerbar.Health)
 
-		--targeteffect:SetModel("spells/fel_rainoffire_missile.m2")
-		targeteffect:SetModel("environments/stars/hellfireskybox.m2")
-		--targeteffect:SetModel("environments/stars/shadowmoonskybox.m2")
-		--targeteffect:SetModel("environments/stars/nagrandskybox.m2")
-		--targeteffect:SetModel("environments/stars/shadowmoonskybox.m2")
-		--targeteffect:SetModel("environments/stars/netherstormskybox.m2")
-		--targeteffect:SetPosition(0, -0.85, 1.65)
+
+		targeteffect:SetModel("spells/arcanebreath.m2")
 		--targeteffect:SetFacing(rad(180)) --for shadowmoon
 		targeteffect:SetDesaturation(E.db.ElvUI_EltreumUI.models.ufdesaturation)
 		targeteffect:SetParent(targetbar.Health)
