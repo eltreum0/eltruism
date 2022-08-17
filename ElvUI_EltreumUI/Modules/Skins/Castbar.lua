@@ -36,9 +36,7 @@ hooksecurefunc(DB, 'ExperienceBar_Update', ElvUI_EltreumUI.GradientDatabar)
 
 
 local castbareffectplayer = CreateFrame("PlayerModel", "EltruismPlayerCastBarEffect")
-castbareffectplayer:Hide()
 local castbareffecttarget = CreateFrame("PlayerModel", "EltruismTargetCastBarEffect")
-castbareffecttarget:Hide()
 
 --elvui castbar texture/gradient
 function ElvUI_EltreumUI:CastBarTextureGradient()
@@ -49,7 +47,6 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 
 	--add effect to bar
 	if E.db.ElvUI_EltreumUI.models.castbar and E.private.unitframe.enable then
-		castbareffectplayer:Show()
 		castbareffectplayer:SetAllPoints(castbar:GetStatusBarTexture())
 		castbareffectplayer:SetModel("spells/corruption_impactdot_med_base.m2")
 		castbareffectplayer:SetPosition(0, -0.85, 1.65)
@@ -57,19 +54,18 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 		castbareffectplayer:SetFrameLevel(castbar:GetFrameLevel() )
 		castbareffectplayer:SetInside(castbar:GetStatusBarTexture(), 0, 0)
 		castbareffectplayer:SetParent(castbar)
-		castbareffectplayer:SetAlpha(1)
+		castbareffectplayer:SetAlpha(0.5)
 
 
 		if UnitExists("target") then
-			castbareffecttarget:Show()
 			castbareffecttarget:SetAllPoints(targetcastbar:GetStatusBarTexture())
 			castbareffecttarget:SetModel("spells/corruption_impactdot_med_base.m2")
-			castbareffecttarget:SetPosition(0, -0.85, 1.85)
+			castbareffecttarget:SetPosition(0, -0.85, 1.65)
 			castbareffectplayer:SetFacing(rad(180))
 			castbareffecttarget:SetFrameLevel(targetcastbar:GetFrameLevel() )
 			castbareffecttarget:SetInside(targetcastbar:GetStatusBarTexture(), 0, 0)
 			castbareffecttarget:SetParent(targetcastbar)
-			castbareffecttarget:SetAlpha(1)
+			castbareffecttarget:SetAlpha(0.5)
 		end
 	end
 
