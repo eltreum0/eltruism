@@ -11,6 +11,23 @@ local playereffect = CreateFrame("playermodel", "EltruismPlayerEffect")
 local targeteffect = CreateFrame("playermodel", "EltruismTargetEffect")
 local playerbar,targetbar
 
+
+local classModelsTBC = {
+	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Warrior",
+	["PALADIN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Paladin",
+	["HUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Hunter",
+	["ROGUE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Rogue",
+	["PRIEST"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Priest",
+	["DEATHKNIGHT"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DeathKnight",
+	["SHAMAN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Shaman",
+	["MAGE"] = "environments/stars/netherstormskybox.m2",
+	["WARLOCK"] = "environments/stars/shadowmoonskybox.m2",
+	["MONK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Monk",
+	["DRUID"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Druid",
+	["DEMONHUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunter",
+}
+
+
 ---add effects to player/target UF
 function ElvUI_EltreumUI:UFEffects()
 	playerbar = _G["ElvUF_Player"]
@@ -19,10 +36,11 @@ function ElvUI_EltreumUI:UFEffects()
 	if E.private.unitframe.enable then
 		--playereffect:SetModel("spells/christmassnowrain.m2")
 		playereffect:SetModel("environments/stars/hellfireskybox.m2")
-		--playereffect:SetModel("environments/stars/shadowmoonskybox.m2")
+		--playereffect:SetModel("spells/fel_rainoffire_missile.m2")
+
 		--playereffect:SetPosition(0, -0.85, 1.65)
 		--playereffect:SetFacing(rad(180))
-		playereffect:SetDesaturation(1)
+		playereffect:SetDesaturation(0)
 
 		--targeteffect:SetModel("spells/fel_rainoffire_missile.m2")
 		targeteffect:SetModel("environments/stars/hellfireskybox.m2")
@@ -32,37 +50,39 @@ function ElvUI_EltreumUI:UFEffects()
 		--targeteffect:SetModel("environments/stars/netherstormskybox.m2")
 		--targeteffect:SetPosition(0, -0.85, 1.65)
 		--targeteffect:SetFacing(rad(180)) --for shadowmoon
-		targeteffect:SetDesaturation(1)
-		--targeteffect:ClearAllPoints()
-
+		targeteffect:SetDesaturation(0)
 
 		if E.db.ElvUI_EltreumUI.lightmode then
 			playereffect:SetAllPoints(playerbar.Health:GetStatusBarTexture())
-			playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel())
+			playereffect:SetFrameLevel(playerbar.Portrait3D:GetFrameLevel())
 			playereffect:SetInside(playerbar.Health, 0, 0)
 			playereffect:SetParent(playerbar.Health)
-			playereffect:SetAlpha(0.4)
+			--playereffect:SetAlpha(playerbar.Portrait3D:GetAlpha())
+			playereffect:SetAlpha(E.db.ElvUI_EltreumUI.models.ufalpha)
 
 			targeteffect:ClearAllPoints()
 			targeteffect:SetAllPoints(targetbar.Health:GetStatusBarTexture())
-			targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel())
+			targeteffect:SetFrameLevel(targetbar.Portrait3D:GetFrameLevel())
 			targeteffect:SetInside(targetbar.Health, 0, 0)
 			targeteffect:SetParent(targetbar.Health)
-			targeteffect:SetAlpha(0.4)
+			--targeteffect:SetAlpha(targetbar.Portrait3D:GetAlpha())
+			targeteffect:SetAlpha(E.db.ElvUI_EltreumUI.models.ufalpha)
 
 		elseif E.db.ElvUI_EltreumUI.darkmode then
-			playereffect:SetAlpha(0.5)
+
+			playereffect:SetAlpha(E.db.ElvUI_EltreumUI.models.ufalpha)
 			playereffect:SetAllPoints(playerbar.Health.backdropTex)
-			playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel())
+			playereffect:SetFrameLevel(playerbar.Portrait3D:GetFrameLevel())
 			playereffect:SetInside(playerbar.Health.backdropTex, 0, 0)
 			playereffect:SetParent(playerbar.Health)
 
 			targeteffect:ClearAllPoints()
-			targeteffect:SetAlpha(0.5)
+			targeteffect:SetAlpha(E.db.ElvUI_EltreumUI.models.ufalpha)
 			targeteffect:SetAllPoints(targetbar.Health.backdropTex)
 			targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel())
 			targeteffect:SetInside(targetbar.Health.backdropTex, 0, 0)
 			targeteffect:SetParent(targetbar.Health)
+
 		end
 	end
 end

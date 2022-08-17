@@ -8569,18 +8569,6 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.sparkcustomcolor.width end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.sparkcustomcolor.width = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-
-							castbarmodeleffect = {
-								type = 'toggle',
-								name = E.NewSign..L["Effect"],
-								desc = L["Add an Effect"],
-								order = 995,
-								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.models.castbar end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.models.castbar = value end,
-							},
-
-
 							headergaphere = {
 								order = 1995,
 								type = "description",
@@ -9153,6 +9141,42 @@ function ElvUI_EltreumUI:Configtable()
 							},
 
 						}
+					},
+					models = {
+						type = "group",
+						name = E.NewSign..L["Models"],
+						order = 4,
+						disabled = function() return not E.db.ElvUI_EltreumUI.darkmode and not E.db.ElvUI_EltreumUI.lightmode end,
+						args = {
+							header1 = {
+								order = 1,
+								type = "description",
+								name = L["Models"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							castbarmodeleffect = {
+								type = 'toggle',
+								name = L["Castbar Effect"],
+								desc = L["Add an Effect"],
+								order = 2,
+								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
+								get = function() return E.db.ElvUI_EltreumUI.models.castbar end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.models.castbar = value end,
+							},
+							ufmodelalpha = {
+								type = 'range',
+								name = L["UF Model Alpha"],
+								desc = L["Change the transparency of the Art"],
+								order = 3,
+								min = 0,
+								max = 1,
+								step = 0.01,
+								--width = "double",
+								get = function() return E.db.ElvUI_EltreumUI.models.ufalpha end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.models.ufalpha = value end,
+							},
+						},
 					},
 				},
 			},

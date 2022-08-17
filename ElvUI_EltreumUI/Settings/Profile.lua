@@ -838,6 +838,7 @@ P.ElvUI_EltreumUI = {
 
 	models = {
 		castbar = false,
+		ufalpha = 0.3,
 	},
 
 	--[[
