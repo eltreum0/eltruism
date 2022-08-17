@@ -532,7 +532,6 @@ function ElvUI_EltreumUI:PreviewGlow()
 	end
 end
 
-
 --hide keypress on actionbars
 function ElvUI_EltreumUI:HideABKeyPress()
 	if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
