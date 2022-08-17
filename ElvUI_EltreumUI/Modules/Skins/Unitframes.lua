@@ -737,24 +737,24 @@ hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientCustomTextur
 function ElvUI_EltreumUI:BackdropTexture(isTransparent, statusBar, backdropTex, adjustBackdropPoints, invertColors, reverseFill)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then
 		if backdropTex and not E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
-			if E.db.ElvUI_EltreumUI.darkmode then
+			--if E.db.ElvUI_EltreumUI.darkmode then
 				backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
 				backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
 				if statusBar and statusBar.backdrop and statusBar:GetName():match("HealthBar") then
 					statusBar.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
 				end
-			elseif E.db.ElvUI_EltreumUI.lightmode then
+			--[[elseif E.db.ElvUI_EltreumUI.lightmode then
 				if E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha < 1 then
 					if statusBar and statusBar:GetName():match("HealthBar") then
 						if statusBar.backdrop then
-							statusBar.backdrop:SetBackdropColor(0,0,0,0)
+							statusBar.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
 						end
 						if statusBar.backdropTex then
-							backdropTex:SetAlpha(0)
+							backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
 						end
 					end
 				end
-			end
+			end]]
 		end
 
 		--hide backdrop
