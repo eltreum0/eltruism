@@ -12,6 +12,25 @@ local C_Timer = _G.C_Timer
 local _, instanceType
 local level
 
+
+function ElvUI_EltreumUI:DynamicUFPortraitRotation()
+	if UnitExists("target") then
+		--print(_G["ElvUF_Target"].Portrait3D:GetModelFileID() ) -- actually prints
+		if UnitIsPlayer("target") then
+			print("player")
+			E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
+		else
+			if UnitCreatureType("target") == "Humanoid" then
+				print("humanoid npc")
+				E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
+			else
+				print("non humanoid npc")
+				E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
+			end
+		end
+	end
+end
+
 function ElvUI_EltreumUI:BattlegroundGroupUnitframes()
 	if E.db.ElvUI_EltreumUI.otherstuff.bgunitframes and E.private.unitframe.enable then
 		_, instanceType = IsInInstance()
