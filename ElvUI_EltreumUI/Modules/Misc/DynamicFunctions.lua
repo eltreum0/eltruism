@@ -12,7 +12,7 @@ local C_Timer = _G.C_Timer
 local _, instanceType
 local level
 
-
+--set portrait rotation based on target being npc or not
 function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 	if UnitExists("target") then
 		--print(_G["ElvUF_Target"].Portrait3D:GetModelFileID() ) -- actually prints
