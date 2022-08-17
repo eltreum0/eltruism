@@ -1760,7 +1760,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						end
 
 						--add class icon + colored name
-						if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not (IsAddOnLoaded("ElvUI_MerathilisUI") and E.db.mui.character.classIcon) then
+						if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
 							E:Delay(0, function()
 								if not E.Retail then
 									if not _G.InspectNameText:GetText():match("|T") then

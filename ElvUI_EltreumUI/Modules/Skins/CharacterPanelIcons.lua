@@ -53,9 +53,14 @@ elseif E.Classic or E.Wrath or E.TBC then
 end
 
 function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+	if IsAddOnLoaded("ElvUI_MerathilisUI") then
+	 	if E.db["mui"]["armory"]["character"]["classIcon"] then
+	 		return
+	 	end
+	 end
 
 	--.db.character.classIcon mui?
-	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false and not (IsAddOnLoaded("ElvUI_MerathilisUI") and E.db.mui.character.classIcon) then
+	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false then
 		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
 			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
 		elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
@@ -166,7 +171,13 @@ EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end
 	if not E.private then return end
 	if not E.private.ElvUI_EltreumUI then return end
-	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false and not (IsAddOnLoaded("ElvUI_MerathilisUI") and E.db.mui.character.classIcon) then
+	if IsAddOnLoaded("ElvUI_MerathilisUI") then
+	 	if E.db["mui"]["armory"]["character"]["classIcon"] then
+	 		return
+	 	end
+	 end
+
+	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false then
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
