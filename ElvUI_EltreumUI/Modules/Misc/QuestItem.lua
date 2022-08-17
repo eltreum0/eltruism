@@ -210,8 +210,6 @@ function ElvUI_EltreumUI:QuestItem()
 						b:CreateShadow()
 					end
 				end
-				--b:SetHighlightTexture("Interface\\Buttons\\OldButtonHilight-Square")
-				--b:SetHighlightTexture("Interface\\Buttons\\CheckButtonHilight")
 				b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
 				b:RegisterForClicks("LeftButtonUp","RightButtonUp")
 				b:SetScript("OnEnter", function (self)
@@ -251,7 +249,8 @@ function ElvUI_EltreumUI:QuestItem()
 				b.bind:SetPoint("TOPRIGHT",b.icon,0,0)
 				b.bind:SetJustifyH("LEFT")
 
-				if (#EltruismQuestItemFrame.items == 0) then
+				--if (#EltruismQuestItemFrame.items == 0) then
+				if (self.shownItems == 0) then
 					b:SetPoint("TOPLEFT",EltruismQuestItemFrame,0,0)
 				end
 				EltruismQuestItemFrame.items[#EltruismQuestItemFrame.items + 1] = b
