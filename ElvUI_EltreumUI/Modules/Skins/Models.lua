@@ -12,24 +12,69 @@ local targeteffect = CreateFrame("playermodel", "EltruismTargetEffect")
 local playerbar,targetbar
 
 
-local classModelsTBC = {
-	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Warrior",
-	["PALADIN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Paladin",
+local classModels = {}
 
-	["ROGUE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Rogue",
-	["PRIEST"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Priest",
-
+if E.Retail then
+classModels = {
+	["PRIEST"] = "spells/christmassnowrain.m2",
+	["WARRIOR"] = "spells/flamebreath.m2",
+	["ROGUE"] = "spells/corrosivesandbreath.m2",
+	["PALADIN"] = "spells/arcanebreath.m2",
 	["HUNTER"] = "environments/stars/hellfireskybox.m2",
-	["SHAMAN"] = "spells/christmassnowrain.m2",
+	["SHAMAN"] = "spells/waterliquidbreath.m2",
 	["MAGE"] = "environments/stars/netherstormskybox.m2",
 	["WARLOCK"] = "environments/stars/shadowmoonskybox.m2",
 	["DRUID"] = "environments/stars/nagrandskybox.m2",
-
-	["DEATHKNIGHT"] = "environments/stars/dragonblightscarletskybox.m2",
-	["MONK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Monk",
-	["DEMONHUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunter",
+	["DEATHKNIGHT"] = "spells/frostbreath.m2",
+	["MONK"] = "spells/acidcloudbreath.m2",
+	["DEMONHUNTER"] = "spells/acidliquidbreath.m2",
 }
-
+elseif E.Wrath then
+classModels = {
+	["PRIEST"] = "spells/christmassnowrain.m2",
+	["WARRIOR"] = "spells/flamebreath.m2",
+	["ROGUE"] = "spells/corrosivesandbreath.m2",
+	["PALADIN"] = "spells/arcanebreath.m2",
+	["HUNTER"] = "environments/stars/hellfireskybox.m2",
+	["SHAMAN"] = "spells/waterliquidbreath.m2",
+	["MAGE"] = "environments/stars/netherstormskybox.m2",
+	["WARLOCK"] = "environments/stars/shadowmoonskybox.m2",
+	["DRUID"] = "environments/stars/nagrandskybox.m2",
+	["DEATHKNIGHT"] = "spells/frostbreath.m2",
+	["MONK"] = "spells/acidcloudbreath.m2",
+	["DEMONHUNTER"] = "spells/acidliquidbreath.m2",
+}
+elseif E.TBC then
+classModels = {
+	["PRIEST"] = "spells/christmassnowrain.m2",
+	["WARRIOR"] = "spells/flamebreath.m2",
+	["ROGUE"] = "spells/corrosivesandbreath.m2",
+	["PALADIN"] = "spells/arcanebreath.m2",
+	["HUNTER"] = "environments/stars/hellfireskybox.m2",
+	["SHAMAN"] = "spells/waterliquidbreath.m2",
+	["MAGE"] = "environments/stars/netherstormskybox.m2",
+	["WARLOCK"] = "environments/stars/shadowmoonskybox.m2",
+	["DRUID"] = "environments/stars/nagrandskybox.m2",
+	["DEATHKNIGHT"] = "spells/frostbreath.m2",
+	["MONK"] = "spells/acidcloudbreath.m2",
+	["DEMONHUNTER"] = "spells/acidliquidbreath.m2",
+}
+elseif E.Classic then
+classModels = {
+	["PRIEST"] = "spells/christmassnowrain.m2",
+	["WARRIOR"] = "spells/flamebreath.m2",
+	["ROGUE"] = "spells/corrosivesandbreath.m2",
+	["PALADIN"] = "spells/arcanebreath.m2",
+	["HUNTER"] = "environments/stars/hellfireskybox.m2",
+	["SHAMAN"] = "spells/waterliquidbreath.m2",
+	["MAGE"] = "environments/stars/netherstormskybox.m2",
+	["WARLOCK"] = "environments/stars/shadowmoonskybox.m2",
+	["DRUID"] = "environments/stars/nagrandskybox.m2",
+	["DEATHKNIGHT"] = "spells/frostbreath.m2",
+	["MONK"] = "spells/acidcloudbreath.m2",
+	["DEMONHUNTER"] = "spells/acidliquidbreath.m2",
+}
+end
 
 ---add effects to player/target UF
 function ElvUI_EltreumUI:UFEffects()
@@ -37,12 +82,16 @@ function ElvUI_EltreumUI:UFEffects()
 		playerbar = _G["ElvUF_Player"]
 		targetbar = _G["ElvUF_Target"]
 
-		playereffect:SetModel("spells/arcanebreath.m2")
+		local _, targetclass = UnitClass("target")
+		playereffect:SetModel(classModels[E.myclass])
 		playereffect:SetDesaturation(E.db.ElvUI_EltreumUI.models.ufdesaturation)
 		playereffect:SetParent(playerbar.Health)
 
-
-		targeteffect:SetModel("spells/arcanebreath.m2")
+		if UnitIsPlayer("target") then
+			targeteffect:SetModel(classModels[targetclass])
+		else
+			targeteffect:SetModel("environments/stars/hellfireskybox.m2")
+		end
 		--targeteffect:SetFacing(rad(180)) --for shadowmoon
 		targeteffect:SetDesaturation(E.db.ElvUI_EltreumUI.models.ufdesaturation)
 		targeteffect:SetParent(targetbar.Health)
