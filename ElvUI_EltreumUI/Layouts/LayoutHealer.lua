@@ -1207,7 +1207,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["target"]["portrait"]["fullOverlay"] = true
 	E.db["unitframe"]["units"]["target"]["portrait"]["overlay"] = true
 	E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.3
-	E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 296
+	E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 	E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = 0.1
 	E.db["unitframe"]["units"]["target"]["power"]["attachTextTo"] = "Power"
 	E.db["unitframe"]["units"]["target"]["power"]["height"] = 14
