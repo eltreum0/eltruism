@@ -924,6 +924,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			--color stats with a class gradient
 			if E.db.ElvUI_EltreumUI.skins.statcolors then
 				local function SetStatGradient()
+					CharacterFrame.Text:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass)) ---ilvl
+					CharacterFrame.Text3:SetText(ElvUI_EltreumUI:GradientName(L["Attributes"], E.myclass)) ---attributes
+					CharacterFrame.Text4:SetText(ElvUI_EltreumUI:GradientName(L["Specialization"], E.myclass)) ---specialization
+
 					if E.Wrath or E.TBC then
 						if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
 							_G.PlayerStatFrameLeft1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
@@ -1188,7 +1192,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.Text4:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.Text4:SetTextColor(1, 1, 1)
 				CharacterFrame.Text4:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-				CharacterFrame.Text4:SetText(L["Specialization"])
+				CharacterFrame.Text4:SetText(ElvUI_EltreumUI:GradientName(L["Specialization"], E.myclass)) ---specialization
 				CharacterFrame.StatusLine4:SetSize(170, 3)
 				CharacterFrame.StatusLine4:SetPoint("CENTER", CharacterFrame.Text4, "CENTER", 0, -15)
 				CharacterFrame.StatusLine4:SetParent(_G["PaperDollItemsFrame"])
@@ -1207,7 +1211,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.Text:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.Text:SetTextColor(1, 1, 1)
 				CharacterFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-				CharacterFrame.Text:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass))
+				CharacterFrame.Text:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass)) ---ilvl
 				CharacterFrame.StatusLine:SetSize(170, 3)
 				CharacterFrame.StatusLine:SetPoint("CENTER", CharacterFrame.Text, "CENTER", 0, -15)
 				CharacterFrame.StatusLine:SetParent(_G["PaperDollItemsFrame"])
@@ -1232,7 +1236,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.Text3:SetParent(_G["PaperDollItemsFrame"])
 				CharacterFrame.Text3:SetTextColor(1, 1, 1)
 				CharacterFrame.Text3:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-				CharacterFrame.Text3:SetText(ElvUI_EltreumUI:GradientName(L["Attributes"], E.myclass))
+				CharacterFrame.Text3:SetText(ElvUI_EltreumUI:GradientName(L["Attributes"], E.myclass)) ---attributes
 				CharacterFrame.StatusLine3:SetSize(170, 3)
 				CharacterFrame.StatusLine3:SetPoint("CENTER", CharacterFrame.Text3, "CENTER", 0, -15)
 				CharacterFrame.StatusLine3:SetParent(_G["PaperDollItemsFrame"])
