@@ -1055,5 +1055,5 @@ L["Use ElvUI Damage Font"] = "ElvUI Schadensschriftart verwenden"
 L["Enable Playing a Sound if an item from the wishlist is looted"] = "Aktivieren um einen Ton abzuspielen, wenn ein Gegenstand von der Wunschliste geplündert wird."
 L["Effect"] = "Effekt"
 L["Add an Effect"] = "Füge einen Effekt hinzu"
-L["Rested Nameplates"] = true
-L["Decrease Nameplate Overlap when Resting"] = true
+L["Rested Nameplates"] = "Ausgeruht Namensplaketten"
+L["Decrease Nameplate Overlap when Resting"] = "Überlappung Namensplaketten im Ruhezustand verringern"
