@@ -128,36 +128,33 @@ function ElvUI_EltreumUI:AFKmusic()
 end
 
 --add Eltruism logo to elvui afk screen
-local EltruismAFKLogo
-if E.db.general.afk then
-	EltruismAFKLogo = CreateFrame("Frame", "EltruismAFKLogo", UIParent)
-	local EltruismAFKLogoTexture = EltruismAFKLogo:CreateTexture()
-	EltruismAFKLogoTexture:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohq")
-	EltruismAFKLogo:SetSize(320, 80)
-	EltruismAFKLogo:ClearAllPoints()
-	EltruismAFKLogo:SetPoint("TOP", UIParent, "TOP", 0, -10)
-	EltruismAFKLogoTexture:SetAllPoints(EltruismAFKLogo)
-	EltruismAFKLogo:SetFrameStrata("DIALOG")
-	EltruismAFKLogo:Hide()
-
-	local EltruismAFKTop = CreateFrame('Frame', nil, EltruismAFKLogo)
-	EltruismAFKTop:SetFrameLevel(0)
-	EltruismAFKTop:SetTemplate('Transparent')
-	EltruismAFKTop:SetPoint('TOP', UIParent, 'TOP', 0, 0)
-	--EltruismAFKTop:SetWidth(E.screenWidth + (E.Border*2))
-	EltruismAFKTop:SetWidth(E.screenWidth*2)
-	EltruismAFKTop:SetHeight(E.screenHeight * 0.1)
-end
-
+local EltruismAFKLogo = CreateFrame("Frame", "EltruismAFKLogo", UIParent)
+local EltruismAFKLogoTexture = EltruismAFKLogo:CreateTexture()
+local EltruismAFKTop = CreateFrame('Frame', nil, EltruismAFKLogo)
+EltruismAFKLogo:Hide()
 function ElvUI_EltreumUI:AFKLogo()
-	if E.db.ElvUI_EltreumUI.otherstuff.afklogo then
-		if E.db.general.afk then
+	if E.db.general.afk then
+		EltruismAFKLogoTexture:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohq")
+		EltruismAFKLogo:SetSize(320, 80)
+		EltruismAFKLogo:ClearAllPoints()
+		EltruismAFKLogo:SetPoint("TOP", UIParent, "TOP", 0, -10)
+		EltruismAFKLogoTexture:SetAllPoints(EltruismAFKLogo)
+		EltruismAFKLogo:SetFrameStrata("DIALOG")
+
+		EltruismAFKTop:SetFrameLevel(0)
+		EltruismAFKTop:SetTemplate('Transparent')
+		EltruismAFKTop:SetPoint('TOP', UIParent, 'TOP', 0, 0)
+		--EltruismAFKTop:SetWidth(E.screenWidth + (E.Border*2))
+		EltruismAFKTop:SetWidth(E.screenWidth*2)
+		EltruismAFKTop:SetHeight(E.screenHeight * 0.1)
+
+		if E.db.ElvUI_EltreumUI.otherstuff.afklogo then
 			EltruismAFKLogo:SetParent(_G.ElvUIAFKFrame.bottom)
-		end
-		if UnitIsAFK("player") then
-			EltruismAFKLogo:Show()
-		else
-			EltruismAFKLogo:Hide()
+			if UnitIsAFK("player") then
+				EltruismAFKLogo:Show()
+			else
+				EltruismAFKLogo:Hide()
+			end
 		end
 	end
 end
