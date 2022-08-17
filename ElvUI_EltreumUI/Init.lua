@@ -80,6 +80,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:BattleRes() --bres count/cd
 	ElvUI_EltreumUI:HideABKeyPress() -- hide keypress if user wants
 	ElvUI_EltreumUI:NameplateRestedOverlaps() -- sets overlaps depending if rested/not
+	ElvUI_EltreumUI:UFEffects() -- model effect on player/target
 	if E.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
@@ -247,6 +248,7 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	ElvUI_EltreumUI:NameplateModel()
 	ElvUI_EltreumUI:NameplateCustomOptions()
 	ElvUI_EltreumUI:DynamicUFPortraitRotation()
+	ElvUI_EltreumUI:UFEffects()
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
 		ElvUI_EltreumUI:BordersTargetChanged()
 	end
