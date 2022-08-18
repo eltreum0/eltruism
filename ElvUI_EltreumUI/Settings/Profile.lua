@@ -845,6 +845,9 @@ P.ElvUI_EltreumUI = {
 		modeltype = "CLASS",
 		custommodel = 165575,
 		custommodelclassic = "spells/arcanebreath.m2",
+		modeltypecast = "DEFAULT",
+		custommodelcast = 165821,
+		custommodelclassiccast = "spells/corruption_impactdot_med_base.m2",
 	},
 
 	--[[

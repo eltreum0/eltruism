@@ -9148,22 +9148,6 @@ function ElvUI_EltreumUI:Configtable()
 						order = 4,
 						disabled = function() return not E.db.ElvUI_EltreumUI.darkmode and not E.db.ElvUI_EltreumUI.lightmode end,
 						args = {
-							header1 = {
-								order = 1,
-								type = "description",
-								name = L["Castbars"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							castbarmodeleffect = {
-								type = 'toggle',
-								name = L["Castbar Effect"],
-								desc = L["Add an Effect"],
-								order = 2,
-								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.models.castbar end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.models.castbar = value end,
-							},
 							header2 = {
 								order = 3,
 								type = "description",
@@ -9179,13 +9163,6 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.models.unitframe end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.models.unitframe = value end,
-							},
-							headerclassmodel = {
-								order = 5,
-								type = "description",
-								name = L["Model Types"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							selectmodeltype = {
 								order = 6,
@@ -9246,13 +9223,6 @@ function ElvUI_EltreumUI:Configtable()
 
 								end,
 							},
-							header3 = {
-								order = 8,
-								type = "description",
-								name = L["Health Bars"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
 							ufmodelalpha = {
 								type = 'range',
 								name = L["UF Model Alpha Light Mode"],
@@ -9288,6 +9258,88 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.models.ufdesaturation end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.models.ufdesaturation = value end,
 							},
+							headercast = {
+								order = 120,
+								type = "description",
+								name = L["Castbars"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							castbarmodeleffect = {
+								type = 'toggle',
+								name = L["Castbar Effect"],
+								desc = L["Add an Effect"],
+								order = 121,
+								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
+								get = function() return E.db.ElvUI_EltreumUI.models.castbar end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.models.castbar = value end,
+							},
+							selectmodeltypecast = {
+								order = 122,
+								type = 'select',
+								name = L["Choose between a Default Model or a Custom Model"],
+								values = {
+									["DEFAULT"] = L["Default"],
+									["CUSTOM"] = L["Custom"],
+								},
+								sorting = {
+									"DEFAULT",
+									"CUSTOM",
+					            },
+								style = 'radio',
+								disabled = function() return (not E.db.ElvUI_EltreumUI.UFmodifications and not E.db.ElvUI_EltreumUI.models.castbar) end,
+								get = function() return E.db.ElvUI_EltreumUI.models.modeltypecast end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.models.modeltypecast = value end,
+							},
+							custommodelpathcast = {
+								order = 123,
+								type = 'input',
+								name = function()
+									if E.Retail then
+										return L["Type the Model ID, such as 165821"]
+									else
+										return L["Type the Model Path, such as spells/corruption_impactdot_med_base.m2"]
+									end
+								end,
+								width = 'full',
+								disabled = function() return E.db.ElvUI_EltreumUI.models.modeltypecast == 'DEFAULT' or (not E.db.ElvUI_EltreumUI.UFmodifications and not E.db.ElvUI_EltreumUI.models.castbar) end,
+								validate = function(_, value)
+									E.PopupDialogs["ELTRUISMINVALIDMODEL"] = {
+										text = L["Invalid Model, you need to add a Model ID/Path"],
+										button1 = OKAY,
+										timeout = 0,
+										whileDead = 1,
+										hideOnEscape = true,
+									}
+									if E.Retail then
+										if tonumber(value) ~= nil then
+											return true
+										else
+											return E:StaticPopup_Show('ELTRUISMINVALIDMODEL') and false
+										end
+									else
+										return true
+									end
+								end,
+								get = function()
+									if E.Retail then
+										return E.db.ElvUI_EltreumUI.models.custommodelcast
+									else
+										return E.db.ElvUI_EltreumUI.models.custommodelclassiccast
+									end
+								end,
+								set = function(_, value)
+									if E.Retail then
+										E.db.ElvUI_EltreumUI.models.custommodelcast = tonumber(value)
+									else
+										E.db.ElvUI_EltreumUI.models.custommodelclassiccast = tostring(value)
+									end
+
+								end,
+							},
+
+
+
 						},
 					},
 				},
