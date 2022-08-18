@@ -39,42 +39,28 @@ if E.Retail then
 	}
 elseif E.Wrath or E.TBC then
 	classModels = {
-		["PRIEST"] = "environments/stars/mantiddarksky01.m2",  -- "spells/christmassnowrain.m2",
-		["WARRIOR"] = "environments/stars/argus_nethersky04.m2", -- "spells/flamebreath.m2",
+		["PRIEST"] = "spells/christmassnowrain.m2",
+		["DEATHKNIGHT"] = "environments/stars/bladesedgeskybox.m2", --"spells/frostbreath.m2",
+		["WARRIOR"] = "spells/flamebreath.m2", --spells/disarm_impact_chest.m2
+		["ROGUE"] = "environments/stars/shadowmoonillidan.m2",
 		["PALADIN"] = "environments/stars/netherstormskybox.m2",
-		["HUNTER"] = "environments/stars/valsharah_sky01_stormy_02.m2",
-		["SHAMAN"] = "environments/stars/icecrownsky.m2",
-		["MAGE"] = "environments/stars/nexusraid_runeeffects_starry.m2",
-		--["MAGE"] = "environments/stars/suramar_city_guldanfight_sky01.m2",
-		["WARLOCK"] = "environments/stars/8xp_nzothmentalsky.m2",
-		["DEMONHUNTER"] = "environments/stars/nexusraid_nebulasky.m2",
-		["DRUID"] = "environments/stars/8xp_spiritsky01",
-		["NPCFRIENDLY"] = "environments/stars/dru_sky01.m2",
-		["NPCUNFRIENDLY"] = "environments/stars/8xp_darkshorescenario_sky01.m2",
-		["NPCHOSTILE"] = "environments/stars/chamberaspectsblacksky.m2",
-		["NPCNEUTRAL"] = "environments/stars/valhallas_huntinggrounds_sky01.m2",
-		["ROGUE"] = "environments/stars/9mal_sky01.m2",
-		["DEATHKNIGHT"] = "environments/stars/bladesedgeskybox.m2",
-		["MONK"] = "environments/stars/9mal_skylich.m2",
-		---130623 --shadowmoon tbc w/ meteors
-		--130551, --icecrown very very blue
-		--130525, --hellfire
-		--4234796 smoky stormwind
-		--[["ROGUE"] = "spells/corrosivesandbreath.m2",
-		["PALADIN"] = "spells/arcanebreath.m2",
 		["HUNTER"] = "environments/stars/hellfireskybox.m2",
-		["SHAMAN"] = "spells/waterliquidbreath.m2",
-		["MAGE"] = "environments/stars/netherstormskybox.m2",
-		["WARLOCK"] = "environments/stars/shadowmoonskybox.m2",
-		["DRUID"] = "environments/stars/nagrandskybox.m2",
-		["DEATHKNIGHT"] = "spells/frostbreath.m2",
-		["MONK"] = "spells/acidcloudbreath.m2",
-		["DEMONHUNTER"] = "spells/acidliquidbreath.m2",]]
+		["WARLOCK"] = "environments/stars/netherstormskybox.m2",
+		["SHAMAN"] = "spells/arcanepower_state_chest.m2",
+		["DRUID"] = "spells/cyclonefire_state.m2",
+		["MAGE"] = "spells/frostbreath.m2",
+		["NPCNEUTRAL"] =  "spells/acidliquidbreath.m2",
+		["NPCFRIENDLY"] = "environments/stars/portalworldlegionsky.m2",
+		["NPCUNFRIENDLY"] = "spells/flamebreath.m2", --spells/darkritual_precast_base.m2",
+		["NPCHOSTILE"] = "spells/deathanddecay_area_base.m2",
+		--["DEMONHUNTER"] = "environments/stars/nexusraid_nebulasky.m2",
+		--["PALADIN"] = "spells/arcanebreath.m2",
+		--["NPCFRIENDLY"] = "spells/spells/cycloneearth_state.m2",
 	}
 else
 	classModels = {
 		["PRIEST"] = "spells/christmassnowrain.m2",
-		["WARRIOR"] = "spells/disarm_impact_chest.m2", --spells/disarm_impact_chest.m2
+		["WARRIOR"] = "spells/disarm_impact_chest.m2",
 		["ROGUE"] = "spells/sandvortex_state_base.m2", --"spells/corrosivesandbreath.m2",
 		["PALADIN"] = "spells/holy_precast_uber_base.m2",
 		["HUNTER"] = "spells/acidcloudbreath.m2",
@@ -103,10 +89,15 @@ function ElvUI_EltreumUI:UFEffects()
 			if UnitIsPlayer("target") then
 				targeteffect:SetModel(classModels[targetclass])
 			else
-				if E.Retail then
-					targeteffect:SetModel(130525)
-				else
-					targeteffect:SetModel("environments/stars/hellfireskybox.m2")
+				local reaction = UnitReaction("target", "player")
+				if reaction >= 5 then
+					targeteffect:SetModel(classModels["NPCFRIENDLY"])
+				elseif reaction == 4 then
+					targeteffect:SetModel(classModels["NPCNEUTRAL"])
+				elseif reaction == 3 then
+					targeteffect:SetModel(classModels["NPCUNFRIENDLY"])
+				elseif reaction == 2 or reaction == 1 then
+					targeteffect:SetModel(classModels["NPCHOSTILE"])
 				end
 			end
 		elseif E.db.ElvUI_EltreumUI.models.modeltype == "CUSTOM" then
@@ -128,7 +119,6 @@ function ElvUI_EltreumUI:UFEffects()
 		playereffect:SetParent(playerbar.Health)
 		targeteffect:SetDesaturation(E.db.ElvUI_EltreumUI.models.ufdesaturation)
 		targeteffect:SetParent(targetbar.Health)
-
 		if E.db.ElvUI_EltreumUI.lightmode then
 			playereffect:SetAllPoints(playerbar.Health:GetStatusBarTexture())
 			targeteffect:ClearAllPoints()
@@ -151,6 +141,5 @@ function ElvUI_EltreumUI:UFEffects()
 		--targeteffect:AddMaskTexture(targetbar.Health:GetStatusBarTexture())
 	end
 end
-
 hooksecurefunc(UF, "Construct_TargetFrame", ElvUI_EltreumUI.UFEffects)
 hooksecurefunc(UF, "Update_TargetFrame", ElvUI_EltreumUI.UFEffects)
