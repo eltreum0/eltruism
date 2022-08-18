@@ -592,7 +592,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end)
 
 
-				if (not IsAddOnLoaded('DejaCharacterStats')) and (not IsAddOnLoaded("ElvUI_SLE")) then
+				if (not IsAddOnLoaded('DejaCharacterStats')) then
+
+					if IsAddOnLoaded("ElvUI_SLE") then
+						if E.db["sle"]["armory"]["character"]["enable"] then
+							return
+						end
+					end
 
 					--banner other stats
 					if E.db.ElvUI_EltreumUI.skins.statcolors then

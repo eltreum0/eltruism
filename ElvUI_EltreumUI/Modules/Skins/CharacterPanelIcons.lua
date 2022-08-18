@@ -54,10 +54,10 @@ end
 
 function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	if IsAddOnLoaded("ElvUI_MerathilisUI") then
-	 	if E.db["mui"]["armory"]["character"]["classIcon"] then
-	 		return
-	 	end
-	 end
+		if E.db["mui"]["armory"]["character"]["classIcon"] then
+			return
+		end
+	end
 
 	--.db.character.classIcon mui?
 	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false then
