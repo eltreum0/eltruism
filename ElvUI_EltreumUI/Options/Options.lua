@@ -9302,9 +9302,9 @@ function ElvUI_EltreumUI:Configtable()
 									end
 								end,
 								width = 'full',
-								disabled = function() return E.db.ElvUI_EltreumUI.models.modeltypecast == 'DEFAULT' or (not E.db.ElvUI_EltreumUI.UFmodifications and not E.db.ElvUI_EltreumUI.models.castbar) end,
+								disabled = function() return E.db.ElvUI_EltreumUI.models.modeltypecast == "DEFAULT" or (not E.db.ElvUI_EltreumUI.UFmodifications and not E.db.ElvUI_EltreumUI.models.castbar) end,
 								validate = function(_, value)
-									E.PopupDialogs["ELTRUISMINVALIDMODEL"] = {
+									E.PopupDialogs["ELTRUISMINVALIDMODELCAST"] = {
 										text = L["Invalid Model, you need to add a Model ID/Path"],
 										button1 = OKAY,
 										timeout = 0,
@@ -9315,7 +9315,7 @@ function ElvUI_EltreumUI:Configtable()
 										if tonumber(value) ~= nil then
 											return true
 										else
-											return E:StaticPopup_Show('ELTRUISMINVALIDMODEL') and false
+											return E:StaticPopup_Show('ELTRUISMINVALIDMODELCAST') and false
 										end
 									else
 										return true
@@ -9323,7 +9323,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								get = function()
 									if E.Retail then
-										return E.db.ElvUI_EltreumUI.models.custommodelcast
+										return tostring(E.db.ElvUI_EltreumUI.models.custommodelcast)
 									else
 										return E.db.ElvUI_EltreumUI.models.custommodelclassiccast
 									end
@@ -9334,12 +9334,8 @@ function ElvUI_EltreumUI:Configtable()
 									else
 										E.db.ElvUI_EltreumUI.models.custommodelclassiccast = tostring(value)
 									end
-
 								end,
 							},
-
-
-
 						},
 					},
 				},
