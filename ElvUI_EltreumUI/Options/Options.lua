@@ -9220,7 +9220,6 @@ function ElvUI_EltreumUI:Configtable()
 									else
 										E.db.ElvUI_EltreumUI.models.custommodelclassic = tostring(value)
 									end
-
 								end,
 							},
 							ufmodelalpha = {
