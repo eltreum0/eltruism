@@ -843,7 +843,8 @@ P.ElvUI_EltreumUI = {
 		ufalphadark = 0.3,
 		ufdesaturation = 0,
 		modeltype = "CLASS",
-		custommodel = "Type Model Here",
+		custommodel = 165575,
+		custommodelclassic = "spells/arcanebreath.m2",
 	},
 
 	--[[

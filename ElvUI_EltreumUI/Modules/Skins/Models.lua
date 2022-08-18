@@ -23,14 +23,12 @@ if E.Retail then
 		["WARLOCK"] = 3185115,
 		["DEMONHUNTER"] = 235337,
 		["DRUID"] = 2575322,
-
 		["NPCFRIENDLY"] = 1726751,
 		["NPCUNFRIENDLY"] = 1965208,
 		["NPCHOSTILE"] = 235284,
 		["NPCNEUTRAL"] = 1306105,
-
+--937003 fire
 		["WARRIOR"] = 1684062,
-
 		["ROGUE"] = 3152583,
 		["DEATHKNIGHT"] = 130476,
 		["MONK"] = 3513377,
@@ -38,14 +36,34 @@ if E.Retail then
 		--130551, --icecrown very very blue
 		--130525, --hellfire
 		--4234796 smoky stormwind
-
-
 	}
-elseif E.TBC then
+else
 	classModels = {
-		["PRIEST"] = "spells/christmassnowrain.m2",
-		["WARRIOR"] = "spells/flamebreath.m2",
-		["ROGUE"] = "spells/corrosivesandbreath.m2",
+		["PRIEST"] = "environments/stars/mantiddarksky01.m2",  -- "spells/christmassnowrain.m2",
+		["WARRIOR"] = "environments/stars/argus_nethersky04.m2", -- "spells/flamebreath.m2",
+		["PALADIN"] = "environments/stars/netherstormskybox.m2",
+		["HUNTER"] = "environments/stars/valsharah_sky01_stormy_02.m2",
+		["SHAMAN"] = "environments/stars/icecrownsky.m2",
+		["MAGE"] = "environments/stars/nexusraid_runeeffects_starry.m2",
+		--["MAGE"] = "environments/stars/suramar_city_guldanfight_sky01.m2",
+		["WARLOCK"] = "environments/stars/8xp_nzothmentalsky.m2",
+		["DEMONHUNTER"] = "environments/stars/nexusraid_nebulasky.m2",
+		["DRUID"] = "environments/stars/8xp_spiritsky01",
+		["NPCFRIENDLY"] = "environments/stars/dru_sky01.m2",
+		["NPCUNFRIENDLY"] = "environments/stars/8xp_darkshorescenario_sky01.m2",
+		["NPCHOSTILE"] = "environments/stars/chamberaspectsblacksky.m2",
+		["NPCNEUTRAL"] = "environments/stars/valhallas_huntinggrounds_sky01.m2",
+		["ROGUE"] = "environments/stars/9mal_sky01.m2",
+		["DEATHKNIGHT"] = "environments/stars/bladesedgeskybox.m2",
+		["MONK"] = "environments/stars/9mal_skylich.m2",
+
+
+		---130623 --shadowmoon tbc w/ meteors
+		--130551, --icecrown very very blue
+		--130525, --hellfire
+		--4234796 smoky stormwind
+
+		--[["ROGUE"] = "spells/corrosivesandbreath.m2",
 		["PALADIN"] = "spells/arcanebreath.m2",
 		["HUNTER"] = "environments/stars/hellfireskybox.m2",
 		["SHAMAN"] = "spells/waterliquidbreath.m2",
@@ -54,22 +72,7 @@ elseif E.TBC then
 		["DRUID"] = "environments/stars/nagrandskybox.m2",
 		["DEATHKNIGHT"] = "spells/frostbreath.m2",
 		["MONK"] = "spells/acidcloudbreath.m2",
-		["DEMONHUNTER"] = "spells/acidliquidbreath.m2",
-	}
-elseif E.Classic then
-	classModels = {
-		["PRIEST"] = "spells/christmassnowrain.m2",
-		["WARRIOR"] = "spells/flamebreath.m2",
-		["ROGUE"] = "spells/corrosivesandbreath.m2",
-		["PALADIN"] = "spells/arcanebreath.m2",
-		["HUNTER"] = "environments/stars/hellfireskybox.m2",
-		["SHAMAN"] = "spells/waterliquidbreath.m2",
-		["MAGE"] = "environments/stars/netherstormskybox.m2",
-		["WARLOCK"] = "environments/stars/shadowmoonskybox.m2",
-		["DRUID"] = "environments/stars/nagrandskybox.m2",
-		["DEATHKNIGHT"] = "spells/frostbreath.m2",
-		["MONK"] = "spells/acidcloudbreath.m2",
-		["DEMONHUNTER"] = "spells/acidliquidbreath.m2",
+		["DEMONHUNTER"] = "spells/acidliquidbreath.m2",]]
 	}
 end
 

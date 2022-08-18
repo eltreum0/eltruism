@@ -9230,8 +9230,21 @@ function ElvUI_EltreumUI:Configtable()
 										return true
 									end
 								end,
-								get = function() return E.db.ElvUI_EltreumUI.models.custommodel end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.models.custommodel = value end,
+								get = function()
+									if E.Retail then
+										return E.db.ElvUI_EltreumUI.models.custommodel
+									else
+										return E.db.ElvUI_EltreumUI.models.custommodelclassic
+									end
+								end,
+								set = function(_, value)
+									if E.Retail then
+										E.db.ElvUI_EltreumUI.models.custommodel = tonumber(value)
+									else
+										E.db.ElvUI_EltreumUI.models.custommodelclassic = tostring(value)
+									end
+
+								end,
 							},
 							header3 = {
 								order = 8,
