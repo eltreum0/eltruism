@@ -744,26 +744,27 @@ hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientCustomTextur
 --Unitframe Backdrop Texture/Alpha
 function ElvUI_EltreumUI:BackdropTexture(isTransparent, statusBar, backdropTex, adjustBackdropPoints, invertColors, reverseFill)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.UFmodifications then
-		if backdropTex and not E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
-			backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
-			backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-			if statusBar and statusBar.backdrop and statusBar:GetName():match("HealthBar") then
-				statusBar.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
-			end
-		end
-		if E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
-			if E.db.ElvUI_EltreumUI.lightmode then
-				if backdropTex then
-					backdropTex:SetAlpha(0)
+		if backdropTex then
+			if not E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
+				backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.ufcustomtexture.backdroptexture))
+				backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
+				if statusBar and statusBar.backdrop and statusBar:GetName():match("HealthBar") then
+					statusBar.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.ufcustomtexture.backdropalpha)
 				end
-			end
-			if statusBar and statusBar.backdrop and statusBar:GetName():match("Health") then
-				statusBar.backdrop:Hide()
+			elseif E.db.ElvUI_EltreumUI.ufcustomtexture.backdrophidden then
+				if E.db.ElvUI_EltreumUI.lightmode then
+					if backdropTex then
+						backdropTex:SetAlpha(0)
+					end
+				end
+				if statusBar and statusBar.backdrop and statusBar:GetName():match("HealthBar") then
+					statusBar.backdrop:Hide()
+				end
 			end
 		end
 
 		--darkmode/backdrop things for vertical
-		if E.db.ElvUI_EltreumUI.UForientation == "VERTICAL" and statusBar:GetName():match("Health") and E.db.ElvUI_EltreumUI.darkmode then
+		if E.db.ElvUI_EltreumUI.UForientation == "VERTICAL" and statusBar:GetName():match("HealthBar") and E.db.ElvUI_EltreumUI.darkmode then
 			orientation = "VERTICAL"
 			barTexture = statusBar:GetStatusBarTexture() -- This fixes Center Pixel offset problem (normally this has > 2 points)
 			--statusBar.backdrop:Hide()
