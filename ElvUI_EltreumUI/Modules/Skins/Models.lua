@@ -8,6 +8,8 @@ local UnitIsPlayer = _G.UnitIsPlayer
 local playereffect = CreateFrame("playermodel", "EltruismPlayerEffect")
 local targeteffect = CreateFrame("playermodel", "EltruismTargetEffect")
 local playerbar,targetbar
+local reaction
+local _, targetclass
 
 --models table, because each version has different texture paths
 --its based on the color of the model, not the name/theme
@@ -68,10 +70,10 @@ else
 		["MAGE"] = "spells/frostbreath.m2",  --"spells/demonicsacrifice_felhunter_chest.m2"
 		["WARLOCK"] = "spells/corruption_impactdot_med_base.m2",
 		["DRUID"] = "spells/cyclonefire_state.m2",
-		["NPCFRIENDLY"] = "spells/spells/cycloneearth_state.m2",
+		["NPCNEUTRAL"] = "spells/demonicsacrifice_voidwalker_chest.m2",
+		["NPCFRIENDLY"] = "spells/acidliquidbreath.m2",
 		["NPCUNFRIENDLY"] = "spells/flamebreath.m2", --spells/darkritual_precast_base.m2",
 		["NPCHOSTILE"] = "spells/deathanddecay_area_base.m2",
-		["NPCNEUTRAL"] = "spells/demonicsacrifice_voidwalker_chest.m2",
 	}
 end
 
@@ -81,16 +83,18 @@ function ElvUI_EltreumUI:UFEffects()
 		if E.db.ElvUI_EltreumUI.models.unitframe then
 			playerbar = _G["ElvUF_Player"]
 			targetbar = _G["ElvUF_Target"]
+			reaction = UnitReaction("target", "player")
+			_, targetclass = UnitClass("target")
 
 			if E.db.ElvUI_EltreumUI.models.modeltype == "CLASS" then
 				playereffect:ClearModel()
 				playereffect:SetModel(classModels[E.myclass])
+
 				targeteffect:ClearModel()
-				local _, targetclass = UnitClass("target")
-				if UnitIsPlayer("target") then
+
+				if UnitIsPlayer("target") and targetclass then
 					targeteffect:SetModel(classModels[targetclass])
 				else
-					local reaction = UnitReaction("target", "player")
 					if reaction then
 						if reaction >= 5 then
 							targeteffect:SetModel(classModels["NPCFRIENDLY"])
