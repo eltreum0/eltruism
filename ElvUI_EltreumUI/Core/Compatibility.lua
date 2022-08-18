@@ -3,7 +3,6 @@ local _G = _G
 local compatibilityran = false
 local addonname = "NAME"
 
-
 --check for stuff that would cause problems
 function ElvUI_EltreumUI:CheckCompatibility()
  	if IsAddOnLoaded("ElvUI_MerathilisUI") then
@@ -72,16 +71,50 @@ function ElvUI_EltreumUI:CheckCompatibility()
  			addonname = "MerathilisUI"
  		end
 
+ 		if E.db.ElvUI_EltreumUI.chat.looticons and E.db.mui.chat.chatLink.enable then
+ 			E.db.mui.chat.chatLink.enable = false
+ 			E.db.ElvUI_EltreumUI.chat.looticons = true
+ 			compatibilityran = true
+ 			addonname = "MerathilisUI"
+ 		end
 
+ 		if E.db.ElvUI_EltreumUI.skins.quests and E.db.mui.blizzard.objectiveTracker.enable then
+ 			E.db.mui.blizzard.objectiveTracker.enable = false
+ 			E.db.ElvUI_EltreumUI.skins.quests = true
+ 			compatibilityran = true
+ 			addonname = "MerathilisUI"
+ 		end
+
+ 		if E.db.ElvUI_EltreumUI.skins.zones and E.db.mui.media.zoneText.enable then
+ 			E.db.mui.media.zoneText.enable = false
+ 			E.db.ElvUI_EltreumUI.skins.zones = true
+ 			compatibilityran = true
+ 			addonname = "MerathilisUI"
+ 		end
+
+ 		if E.db.ElvUI_EltreumUI.skins.zones and E.db.mui.media.miscText.mail.enable then
+ 			E.db.mui.media.miscText.mail.enable = false
+ 			E.db.ElvUI_EltreumUI.skins.zones = true
+ 			compatibilityran = true
+ 			addonname = "MerathilisUI"
+ 		end
+
+ 		if E.db.ElvUI_EltreumUI.skins.zones and E.db.mui.media.miscText.gossip.enable then
+ 			E.db.mui.media.miscText.gossip.enable = false
+ 			E.db.ElvUI_EltreumUI.skins.zones = true
+ 			compatibilityran = true
+ 			addonname = "MerathilisUI"
+ 		end
+
+ 		if E.db.ElvUI_EltreumUI.skins.zones and E.db.mui.media.miscText.questFontSuperHuge.enable then
+ 			E.db.mui.media.miscText.questFontSuperHuge.enable = false
+ 			E.db.ElvUI_EltreumUI.skins.zones = true
+ 			compatibilityran = true
+ 			addonname = "MerathilisUI"
+ 		end
  	end
 
-
-
-
-
-
-
- 	E.PopupDialogs["ELTRUISMCOMPATIBILITYFIX1"] = {
+ 	E.PopupDialogs["ELTRUISMCOMPATIBILITYFIX"] = {
 		text = addonname..L[" was detected, due to "..addonname.." and Eltruism doing some things that are similar, settings that are similar were disabled"],
 		button1 = OKAY,
 		timeout = 0,
@@ -89,5 +122,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 		hideOnEscape = false,
 	}
 
-	E:StaticPopup_Show('ELTRUISMCOMPATIBILITYFIX')
+ 	if addonname ~= "NAME" and compatibilityran == true then
+		E:StaticPopup_Show('ELTRUISMCOMPATIBILITYFIX')
+	end
 end
