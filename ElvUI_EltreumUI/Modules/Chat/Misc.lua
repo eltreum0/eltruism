@@ -191,3 +191,15 @@ if IsAddOnLoaded("ElvUI_WindTools") then
 	end
 	hooksecurefunc(CT, "UpdateRoleIcons", RoleIcons)
 end
+
+
+--[[
+Interface/LFGFrame/GroupFinder
+E.media.roleIcons = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\UI-LFG-ICON-ROLES"
+_G.LFG_LIST_GROUP_DATA_ATLASES = {
+	--Roles
+	TANK = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga',
+	HEALER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga',
+	DAMAGER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga',
+}
+]]
