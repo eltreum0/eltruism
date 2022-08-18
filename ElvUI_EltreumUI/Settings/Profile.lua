@@ -842,6 +842,8 @@ P.ElvUI_EltreumUI = {
 		ufalpha = 0.3,
 		ufalphadark = 0.3,
 		ufdesaturation = 0,
+		modeltype = "CLASS",
+		custommodel = "Type Model Here",
 	},
 
 	--[[

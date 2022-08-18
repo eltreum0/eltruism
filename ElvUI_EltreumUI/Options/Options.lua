@@ -9151,22 +9151,6 @@ function ElvUI_EltreumUI:Configtable()
 							header1 = {
 								order = 1,
 								type = "description",
-								name = L["Models"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							modelenable = {
-								type = 'toggle',
-								name = L["Enable Models/Effects"],
-								desc = L["Enable adding models as effects on unitframes"],
-								order = 2,
-								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.models.unitframe end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.models.unitframe = value end,
-							},
-							header2 = {
-								order = 3,
-								type = "description",
 								name = L["Castbars"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
@@ -9175,13 +9159,88 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'toggle',
 								name = L["Castbar Effect"],
 								desc = L["Add an Effect"],
-								order = 4,
+								order = 2,
 								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.models.castbar end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.models.castbar = value end,
 							},
-							header3 = {
+							header2 = {
+								order = 3,
+								type = "description",
+								name = L["Unitframe Models"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							modelenable = {
+								type = 'toggle',
+								name = L["Enable Models/Effects"],
+								desc = L["Enable adding models as effects on unitframes"],
+								order = 4,
+								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications end,
+								get = function() return E.db.ElvUI_EltreumUI.models.unitframe end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.models.unitframe = value end,
+							},
+							headerclassmodel = {
 								order = 5,
+								type = "description",
+								name = L["Model Types"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							selectmodeltype = {
+								order = 6,
+								type = 'select',
+								name = L["Choose between Class Based Models or a Custom Model"],
+								values = {
+									["CLASS"] = L["Class"],
+									["CUSTOM"] = L["Custom"],
+								},
+								style = 'radio',
+								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications and not E.db.ElvUI_EltreumUI.models.unitframe end,
+								get = function() return E.db.ElvUI_EltreumUI.models.modeltype end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.models.modeltype = value end,
+							},
+							custommodelpath = {
+								order = 7,
+								type = 'input',
+								name = function()
+									if E.Retail then
+										return L["Type the Model ID, such as 165575"]
+									else
+										return L["Type the Model Path, such as spells/arcanebreath.m2"]
+									end
+								end,
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications and not E.db.ElvUI_EltreumUI.models.unitframe and E.db.ElvUI_EltreumUI.models.modeltype == 'CLASS' end,
+								validate = function(_, value)
+									E.PopupDialogs["ELTRUISMINVALIDMODEL"] = {
+										text = function()
+											if E.Retail then
+												return L["Invalid Model, you need to add a Model ID"]
+											else
+												return L["Invalid Model, you need to add a Model Path"]
+											end
+										end,
+										button1 = OKAY,
+										timeout = 0,
+										whileDead = 1,
+										hideOnEscape = true,
+									}
+									if E.Retail then
+										if tonumber(value) ~= nil then
+											return true
+										else
+											return E:StaticPopup_Show('ELTRUISMINVALID') and false
+										end
+									else
+										return true
+									end
+								end,
+								get = function() return E.db.ElvUI_EltreumUI.models.custommodel end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.models.custommodel = value end,
+							},
+							header3 = {
+								order = 8,
 								type = "description",
 								name = L["Health Bars"],
 								width = 'full',

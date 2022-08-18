@@ -10,6 +10,7 @@ local targeteffect = CreateFrame("playermodel", "EltruismTargetEffect")
 local playerbar,targetbar
 
 --models table, because each version has different texture paths
+--its based on the color of the model, not the name/theme
 local classModels = {}
 if E.Retail then
 	classModels = {
@@ -18,14 +19,15 @@ if E.Retail then
 		["ROGUE"] = "spells/corrosivesandbreath.m2",
 		["PALADIN"] = "spells/arcanebreath.m2",
 		["HUNTER"] = "environments/stars/hellfireskybox.m2",
-		["SHAMAN"] = "spells/waterliquidbreath.m2",
+		["SHAMAN"] = 130552,
 		--["MAGE"] = 165575, --arcane breath
-		--["MAGE"] = 1333743, --star augur old god/purple
-		--["MAGE"] = 1394287, --legion_invasionskybox01.m2
 		["MAGE"] = 130593, --netherstormskybox
-		["WARLOCK"] = "environments/stars/general_legionskybox01.m2",
-		["DRUID"] = "environments/stars/nagrandskybox.m2",
-		["DEATHKNIGHT"] = "spells/frostbreath.m2",
+		["WARLOCK"] = 130623, --shadowmoon tbc w/ meteors
+		["DRUID"] = 130575, --nagrand tbc
+		["DEATHKNIGHT"] = 1368570,
+		--130551, --icecrown very very blue
+
+		--4234796 smoky stormwind
 		["MONK"] = "spells/acidcloudbreath.m2",
 		["DEMONHUNTER"] = "spells/acidliquidbreath.m2",
 	}
@@ -80,17 +82,36 @@ end
 function ElvUI_EltreumUI:UFEffects()
 	if E.db.ElvUI_EltreumUI.models.unitframe and E.private.unitframe.enable then
 		playerbar = _G["ElvUF_Player"]
+		targetbar = _G["ElvUF_Target"]
+
+		if E.db.ElvUI_EltreumUI.models.modeltype == "CLASS" then
+			playereffect:SetModel(classModels[E.myclass])
+			local _, targetclass = UnitClass("target")
+			if UnitIsPlayer("target") then
+				targeteffect:SetModel(classModels[targetclass])
+			else
+				if E.Retail then
+					targeteffect:SetModel(130525)
+				else
+					targeteffect:SetModel("environments/stars/hellfireskybox.m2")
+				end
+			end
+		elseif E.db.ElvUI_EltreumUI.models.modeltype == "CUSTOM" then
+			playereffect:SetModel(E.db.ElvUI_EltreumUI.models.custommodel)
+			targeteffect:SetModel(E.db.ElvUI_EltreumUI.models.custommodel)
+		end
+
+
+
+
+
+
 		playereffect:SetModel(classModels[E.myclass])
 		playereffect:SetDesaturation(E.db.ElvUI_EltreumUI.models.ufdesaturation)
 		playereffect:SetParent(playerbar.Health)
 
-		targetbar = _G["ElvUF_Target"]
-		local _, targetclass = UnitClass("target")
-		if UnitIsPlayer("target") then
-			targeteffect:SetModel(classModels[targetclass])
-		else
-			targeteffect:SetModel("environments/stars/hellfireskybox.m2")
-		end
+
+
 		--targeteffect:SetFacing(rad(180)) --for shadowmoon
 		targeteffect:SetDesaturation(E.db.ElvUI_EltreumUI.models.ufdesaturation)
 		targeteffect:SetParent(targetbar.Health)
@@ -100,21 +121,22 @@ function ElvUI_EltreumUI:UFEffects()
 			playereffect:SetAllPoints(playerbar.Health:GetStatusBarTexture())
 			targeteffect:ClearAllPoints()
 			targeteffect:SetAllPoints(targetbar.Health:GetStatusBarTexture())
+			playereffect:SetInside(playerbar.Health:GetStatusBarTexture(), 0, 0)
+			targeteffect:SetInside(targetbar.Health:GetStatusBarTexture(), 0, 0)
 		elseif E.db.ElvUI_EltreumUI.darkmode then
 			playereffect:SetAllPoints(playerbar.Health)
 			targeteffect:ClearAllPoints()
 			targeteffect:SetAllPoints(targetbar.Health)
+			playereffect:SetInside(playerbar.Health, 0, 0)
+			targeteffect:SetInside(targetbar.Health, 0, 0)
 		end
 
 		playereffect:SetAlpha(E.db.ElvUI_EltreumUI.models.ufalpha)
 		playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel()-1)
 		--playereffect:SetFrameLevel(playerbar.Portrait3D:GetFrameLevel())
-		playereffect:SetInside(playerbar.Health:GetStatusBarTexture(), 0, 0)
-
 		targeteffect:SetAlpha(E.db.ElvUI_EltreumUI.models.ufalpha)
 		targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel()-1)
 		--targeteffect:AddMaskTexture(targetbar.Health:GetStatusBarTexture())
-		targeteffect:SetInside(targetbar.Health:GetStatusBarTexture(), 0, 0)
 	end
 end
 
