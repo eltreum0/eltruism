@@ -44,7 +44,11 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 
 	--add effect to bar
 	if E.db.ElvUI_EltreumUI.models.castbar and E.private.unitframe.enable then
-		castbareffectplayer:SetModel("spells/corruption_impactdot_med_base.m2")
+		if E.Retail then
+			castbareffectplayer:SetModel(165821)
+		else
+			castbareffectplayer:SetModel("spells/corruption_impactdot_med_base.m2")
+		end
 		castbareffectplayer:SetPosition(0, -0.85, 1.65)
 		castbareffectplayer:SetFacing(rad(180))
 		castbareffectplayer:SetAlpha(0.5)
@@ -54,7 +58,11 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 		castbareffectplayer:SetParent(castbar)
 
 		if UnitExists("target") then
-			castbareffecttarget:SetModel("spells/corruption_impactdot_med_base.m2")
+			if E.Retail then
+				castbareffecttarget:SetModel(165821)
+			else
+				castbareffecttarget:SetModel("spells/corruption_impactdot_med_base.m2")
+			end
 			castbareffecttarget:SetPosition(0, -0.85, 1.65)
 			castbareffectplayer:SetFacing(rad(180))
 			castbareffecttarget:SetAlpha(0.5)

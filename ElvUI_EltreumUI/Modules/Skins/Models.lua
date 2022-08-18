@@ -19,7 +19,10 @@ if E.Retail then
 		["PALADIN"] = "spells/arcanebreath.m2",
 		["HUNTER"] = "environments/stars/hellfireskybox.m2",
 		["SHAMAN"] = "spells/waterliquidbreath.m2",
-		["MAGE"] = "environments/stars/astromancer_baseskybox01.m2",
+		--["MAGE"] = 165575, --arcane breath
+		--["MAGE"] = 1333743, --star augur old god/purple
+		--["MAGE"] = 1394287, --legion_invasionskybox01.m2
+		["MAGE"] = 130593, --netherstormskybox
 		["WARLOCK"] = "environments/stars/general_legionskybox01.m2",
 		["DRUID"] = "environments/stars/nagrandskybox.m2",
 		["DEATHKNIGHT"] = "spells/frostbreath.m2",
@@ -106,15 +109,16 @@ function ElvUI_EltreumUI:UFEffects()
 			--targeteffect:AddMaskTexture(targetbar.Health:GetStatusBarTexture())
 			targeteffect:SetInside(targetbar.Health:GetStatusBarTexture(), 0, 0)
 		elseif E.db.ElvUI_EltreumUI.darkmode then
+
 			playereffect:SetAlpha(E.db.ElvUI_EltreumUI.models.ufalphadark)
-			playereffect:SetAllPoints(playerbar.Health.backdropTex)
-			playereffect:SetFrameLevel(playerbar.Portrait3D:GetFrameLevel())
-			playereffect:SetInside(playerbar.Health.backdropTex, 0, 0)
+			playereffect:SetAllPoints(playerbar.Health)
+			playereffect:SetFrameLevel(playerbar.Portrait3D:GetFrameLevel()-1)
+			playereffect:SetInside(playerbar.Health, 0, 0)
 
 			targeteffect:ClearAllPoints()
 			targeteffect:SetAlpha(E.db.ElvUI_EltreumUI.models.ufalphadark)
 			targeteffect:SetAllPoints(targetbar.Health.backdropTex)
-			targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel())
+			targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel()-1)
 			targeteffect:SetInside(targetbar.Health.backdropTex, 0, 0)
 		end
 	end
