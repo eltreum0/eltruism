@@ -136,7 +136,7 @@ function ElvUI_EltreumUI:LightMode()
 				E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
 				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
 			if E.Retail or E.Wrath or E.TBC then
-				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:class:player] [eltruism:raidmarker]"
+				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:IconOutline:player] [eltruism:raidmarker]"
 			end
 		end
 
