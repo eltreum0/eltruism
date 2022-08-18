@@ -127,7 +127,8 @@ function ElvUI_EltreumUI:UFEffects()
 			targeteffect:SetAllPoints(targetbar.Health:GetStatusBarTexture())
 			playereffect:SetInside(playerbar.Health:GetStatusBarTexture(), 0, 0)
 			targeteffect:SetInside(targetbar.Health:GetStatusBarTexture(), 0, 0)
-		elseif E.db.ElvUI_EltreumUI.darkmode then
+		--elseif E.db.ElvUI_EltreumUI.darkmode then
+		else
 			playereffect:SetAllPoints(playerbar.Health)
 			targeteffect:ClearAllPoints()
 			targeteffect:SetAllPoints(targetbar.Health)
