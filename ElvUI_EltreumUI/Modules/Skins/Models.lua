@@ -23,8 +23,11 @@ if E.Retail then
 		["WARLOCK"] = 3185115,
 		["DEMONHUNTER"] = 235337,
 		["DRUID"] = 2575322,
+
 		["NPCFRIENDLY"] = 1726751,
 		["NPCUNFRIENDLY"] = 1965208,
+		["NPCHOSTILE"] = 235284,
+		["NPCNEUTRAL"] = 1306105,
 
 		["WARRIOR"] = 1684062,
 
@@ -33,7 +36,7 @@ if E.Retail then
 		["MONK"] = 3513377,
 		---130623 --shadowmoon tbc w/ meteors
 		--130551, --icecrown very very blue
-
+		--130525, --hellfire
 		--4234796 smoky stormwind
 
 
