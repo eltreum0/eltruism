@@ -29,7 +29,7 @@ if E.Retail then
 		["WARRIOR"] = 1684062,
 
 		["ROGUE"] = 3152583,
-		["DEATHKNIGHT"] = 1368570,
+		["DEATHKNIGHT"] = 130476,
 		["MONK"] = 3513377,
 		---130623 --shadowmoon tbc w/ meteors
 		--130551, --icecrown very very blue
