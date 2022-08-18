@@ -90,14 +90,16 @@ function ElvUI_EltreumUI:UFEffects()
 				targeteffect:SetModel(classModels[targetclass])
 			else
 				local reaction = UnitReaction("target", "player")
-				if reaction >= 5 then
-					targeteffect:SetModel(classModels["NPCFRIENDLY"])
-				elseif reaction == 4 then
-					targeteffect:SetModel(classModels["NPCNEUTRAL"])
-				elseif reaction == 3 then
-					targeteffect:SetModel(classModels["NPCUNFRIENDLY"])
-				elseif reaction == 2 or reaction == 1 then
-					targeteffect:SetModel(classModels["NPCHOSTILE"])
+				if reaction then
+					if reaction >= 5 then
+						targeteffect:SetModel(classModels["NPCFRIENDLY"])
+					elseif reaction == 4 then
+						targeteffect:SetModel(classModels["NPCNEUTRAL"])
+					elseif reaction == 3 then
+						targeteffect:SetModel(classModels["NPCUNFRIENDLY"])
+					elseif reaction == 2 or reaction == 1 then
+						targeteffect:SetModel(classModels["NPCHOSTILE"])
+					end
 				end
 			end
 		elseif E.db.ElvUI_EltreumUI.models.modeltype == "CUSTOM" then
