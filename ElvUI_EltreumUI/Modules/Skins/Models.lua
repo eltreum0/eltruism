@@ -170,22 +170,29 @@ function ElvUI_EltreumUI:CastbarEffects()
 			castbar = _G["ElvUF_Player_CastBar"]
 			targetcastbar = _G["ElvUF_Target_CastBar"]
 
-			if castbar then
-				if E.db.ElvUI_EltreumUI.models.modeltypecast == "DEFAULT" then
-					if E.Retail then
-						castbareffectplayer:SetModel(165821)
-					else
-						castbareffectplayer:SetModel("spells/corruption_impactdot_med_base.m2")
-					end
-					castbareffectplayer:SetPosition(0, -0.85, 1.65)
-					castbareffectplayer:SetFacing(rad(180))
-				elseif E.db.ElvUI_EltreumUI.models.modeltypecast == "CUSTOM" then
-					if E.Retail then
-						castbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.models.custommodelcast)
-					else
-						castbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.models.custommodelclassiccast)
-					end
+			if E.db.ElvUI_EltreumUI.models.modeltypecast == "DEFAULT" then
+				if E.Retail then
+					castbareffectplayer:SetModel(165821)
+					castbareffecttarget:SetModel(165821)
+				else
+					castbareffectplayer:SetModel("spells/corruption_impactdot_med_base.m2")
+					castbareffecttarget:SetModel("spells/corruption_impactdot_med_base.m2")
 				end
+				castbareffectplayer:SetPosition(0, -0.85, 1.65)
+				castbareffectplayer:SetFacing(rad(180))
+				castbareffecttarget:SetPosition(0, -0.85, 1.65)
+				castbareffecttarget:SetFacing(rad(180))
+			elseif E.db.ElvUI_EltreumUI.models.modeltypecast == "CUSTOM" then
+				if E.Retail then
+					castbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.models.custommodelcast)
+					castbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.models.custommodelcast)
+				else
+					castbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.models.custommodelclassiccast)
+					castbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.models.custommodelclassiccast)
+				end
+			end
+
+			if castbar then
 				castbareffectplayer:SetAlpha(1)
 				castbareffectplayer:SetAllPoints(castbar:GetStatusBarTexture())
 				castbareffectplayer:SetFrameLevel(castbar:GetFrameLevel())
@@ -194,21 +201,6 @@ function ElvUI_EltreumUI:CastbarEffects()
 			end
 
 			if targetcastbar then
-				if E.db.ElvUI_EltreumUI.models.modeltypecast == "DEFAULT" then
-					if E.Retail then
-						castbareffecttarget:SetModel(165821)
-					else
-						castbareffecttarget:SetModel("spells/corruption_impactdot_med_base.m2")
-					end
-					castbareffecttarget:SetPosition(0, -0.85, 1.65)
-					castbareffecttarget:SetFacing(rad(180))
-				elseif E.db.ElvUI_EltreumUI.models.modeltypecast == "CUSTOM" then
-					if E.Retail then
-						castbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.models.custommodelcast)
-					else
-						castbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.models.custommodelclassiccast)
-					end
-				end
 				castbareffecttarget:SetAlpha(1)
 				castbareffecttarget:ClearAllPoints()
 				castbareffecttarget:SetAllPoints(targetcastbar:GetStatusBarTexture())
