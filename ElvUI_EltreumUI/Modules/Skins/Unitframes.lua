@@ -340,7 +340,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 				else
 					if E.db.ElvUI_EltreumUI.lightmode then
 						unitframe.Health:SetStatusBarTexture(namebar)
-					elseif E.db.ElvUI_EltreumUI.darkmode then
+					elseif E.db.ElvUI_EltreumUI.darkmode and unitframe.Health.backdropTex then
 						unitframe.Health.backdropTex:SetTexture(namebar)
 					end
 				end
