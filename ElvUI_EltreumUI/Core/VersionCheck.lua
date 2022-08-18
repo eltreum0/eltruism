@@ -5,7 +5,7 @@ local OKAY = _G.OKAY
 local IsAddOnLoaded = _G.IsAddOnLoaded
 
 function ElvUI_EltreumUI:VersionCheckInit()
-	if E.private.ElvUI_EltreumUI.install_version < "2.7.3" then
+	if E.private.ElvUI_EltreumUI.install_version < "3.2.5" then
 		ElvUI_EltreumUI:DatabaseConversions()
 	end
 	ElvUI_EltreumUI:PluginCheck()
