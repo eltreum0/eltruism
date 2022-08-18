@@ -9196,7 +9196,7 @@ function ElvUI_EltreumUI:Configtable()
 									["CUSTOM"] = L["Custom"],
 								},
 								style = 'radio',
-								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications and not E.db.ElvUI_EltreumUI.models.unitframe end,
+								disabled = function() return (not E.db.ElvUI_EltreumUI.UFmodifications and not E.db.ElvUI_EltreumUI.models.unitframe) end,
 								get = function() return E.db.ElvUI_EltreumUI.models.modeltype end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.models.modeltype = value end,
 							},
@@ -9211,16 +9211,10 @@ function ElvUI_EltreumUI:Configtable()
 									end
 								end,
 								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.UFmodifications and not E.db.ElvUI_EltreumUI.models.unitframe and E.db.ElvUI_EltreumUI.models.modeltype == 'CLASS' end,
+								disabled = function() return E.db.ElvUI_EltreumUI.models.modeltype == 'CLASS' or (not E.db.ElvUI_EltreumUI.UFmodifications and not E.db.ElvUI_EltreumUI.models.unitframe) end,
 								validate = function(_, value)
 									E.PopupDialogs["ELTRUISMINVALIDMODEL"] = {
-										text = function()
-											if E.Retail then
-												return L["Invalid Model, you need to add a Model ID"]
-											else
-												return L["Invalid Model, you need to add a Model Path"]
-											end
-										end,
+										text = L["Invalid Model, you need to add a Model ID/Path"],
 										button1 = OKAY,
 										timeout = 0,
 										whileDead = 1,
@@ -9230,7 +9224,7 @@ function ElvUI_EltreumUI:Configtable()
 										if tonumber(value) ~= nil then
 											return true
 										else
-											return E:StaticPopup_Show('ELTRUISMINVALID') and false
+											return E:StaticPopup_Show('ELTRUISMINVALIDMODEL') and false
 										end
 									else
 										return true

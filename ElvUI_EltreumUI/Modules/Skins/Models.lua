@@ -85,7 +85,9 @@ function ElvUI_EltreumUI:UFEffects()
 		targetbar = _G["ElvUF_Target"]
 
 		if E.db.ElvUI_EltreumUI.models.modeltype == "CLASS" then
+			playereffect:ClearModel()
 			playereffect:SetModel(classModels[E.myclass])
+			targeteffect:ClearModel()
 			local _, targetclass = UnitClass("target")
 			if UnitIsPlayer("target") then
 				targeteffect:SetModel(classModels[targetclass])
@@ -97,25 +99,16 @@ function ElvUI_EltreumUI:UFEffects()
 				end
 			end
 		elseif E.db.ElvUI_EltreumUI.models.modeltype == "CUSTOM" then
+			playereffect:ClearModel()
 			playereffect:SetModel(E.db.ElvUI_EltreumUI.models.custommodel)
+			targeteffect:ClearModel()
 			targeteffect:SetModel(E.db.ElvUI_EltreumUI.models.custommodel)
 		end
 
-
-
-
-
-
-		playereffect:SetModel(classModels[E.myclass])
 		playereffect:SetDesaturation(E.db.ElvUI_EltreumUI.models.ufdesaturation)
 		playereffect:SetParent(playerbar.Health)
-
-
-
-		--targeteffect:SetFacing(rad(180)) --for shadowmoon
 		targeteffect:SetDesaturation(E.db.ElvUI_EltreumUI.models.ufdesaturation)
 		targeteffect:SetParent(targetbar.Health)
-
 
 		if E.db.ElvUI_EltreumUI.lightmode then
 			playereffect:SetAllPoints(playerbar.Health:GetStatusBarTexture())
