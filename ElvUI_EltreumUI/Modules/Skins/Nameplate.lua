@@ -196,6 +196,12 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 			["ENEMY_PLAYER"] = E.db.nameplates.units.ENEMY_PLAYER.health.height or P.nameplates.units.ENEMY_PLAYER.health.height,
 			["FRIENDLY_PLAYER"] = E.db.nameplates.units.FRIENDLY_PLAYER.health.height or P.nameplates.units.FRIENDLY_NPC.health.height,
 		}
+
+
+		if unit.unitGUID and unit.unitGUID:match("-120651-") then
+			return
+		end
+
 		if (not UnitAffectingCombat(unit.unit)) and (UnitThreatSituation("player", unit.unit) == nil) then
 			if UnitIsUnit(unit.unit, "target") then
 				if E.db.ElvUI_EltreumUI.nameplateOptions.useelvuinpheight then
