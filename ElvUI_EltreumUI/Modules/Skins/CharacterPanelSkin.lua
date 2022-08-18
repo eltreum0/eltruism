@@ -1124,7 +1124,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.PlayerTitleDropDown:SetParent(CharacterModelFrame)
 					_G.PlayerTitleDropDown:SetPoint('TOP', CharacterModelFrame, -6, 40)
 					_G.PVPFrameToggleButton:ClearAllPoints()
-					_G.PVPFrameToggleButton:SetPoint('CENTER', _G.PVPHonor, 'CENTER', 70, 47)
+					_G.PVPFrameToggleButton:SetPoint('CENTER', _G.PVPHonor, 'CENTER', 95, 47)
 					_G.PVPFrameToggleButton:SetParent(_G.PVPFrameHonor)
 				elseif E.Classic then
 					CharacterTitleText:ClearAllPoints()
