@@ -115,7 +115,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
  	end
 
  	E.PopupDialogs["ELTRUISMCOMPATIBILITYFIX"] = {
-		text = addonname..L[" was detected, due to "..addonname.." and Eltruism doing some things that are similar, settings that are similar were disabled"],
+		text = "|cffFF0000"..L["WARNING"]..":|r "..addonname..L[" was detected. To prevent issues some settings were changed."],
 		button1 = OKAY,
 		timeout = 0,
 		whileDead = 1,
