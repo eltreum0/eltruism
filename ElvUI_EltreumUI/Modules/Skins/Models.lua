@@ -14,37 +14,29 @@ local playerbar,targetbar
 local classModels = {}
 if E.Retail then
 	classModels = {
-		["PRIEST"] = "spells/christmassnowrain.m2",
-		["WARRIOR"] = "spells/flamebreath.m2",
-		["ROGUE"] = "spells/corrosivesandbreath.m2",
-		["PALADIN"] = "spells/arcanebreath.m2",
-		["HUNTER"] = "environments/stars/hellfireskybox.m2",
+		["PRIEST"] = 590934,
+		["PALADIN"] = 130593,
+		["HUNTER"] = 1251379,
 		["SHAMAN"] = 130552,
-		--["MAGE"] = 165575, --arcane breath
-		["MAGE"] = 130593, --netherstormskybox
-		["WARLOCK"] = 130623, --shadowmoon tbc w/ meteors
-		["DRUID"] = 130575, --nagrand tbc
+		["MAGE"] = 235339,
+		--["MAGE"] = 1538774,
+		["WARLOCK"] = 3185115,
+		["DEMONHUNTER"] = 235337,
+		["DRUID"] = 2575322,
+		["NPCFRIENDLY"] = 1726751,
+		["NPCUNFRIENDLY"] = 1965208,
+
+		["WARRIOR"] = 1684062,
+
+		["ROGUE"] = 3152583,
 		["DEATHKNIGHT"] = 1368570,
+		["MONK"] = 3513377,
+		---130623 --shadowmoon tbc w/ meteors
 		--130551, --icecrown very very blue
 
 		--4234796 smoky stormwind
-		["MONK"] = "spells/acidcloudbreath.m2",
-		["DEMONHUNTER"] = "spells/acidliquidbreath.m2",
-	}
-elseif E.Wrath then
-	classModels = {
-		["PRIEST"] = "spells/christmassnowrain.m2",
-		["WARRIOR"] = "spells/flamebreath.m2",
-		["ROGUE"] = "spells/corrosivesandbreath.m2",
-		["PALADIN"] = "spells/arcanebreath.m2",
-		["HUNTER"] = "environments/stars/hellfireskybox.m2",
-		["SHAMAN"] = "spells/waterliquidbreath.m2",
-		["MAGE"] = "environments/stars/netherstormskybox.m2",
-		["WARLOCK"] = "environments/stars/shadowmoonskybox.m2",
-		["DRUID"] = "environments/stars/nagrandskybox.m2",
-		["DEATHKNIGHT"] = "spells/frostbreath.m2",
-		["MONK"] = "spells/acidcloudbreath.m2",
-		["DEMONHUNTER"] = "spells/acidliquidbreath.m2",
+
+
 	}
 elseif E.TBC then
 	classModels = {
