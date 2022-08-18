@@ -23,21 +23,21 @@ if E.Retail then
 		["WARLOCK"] = 3185115,
 		["DEMONHUNTER"] = 235337,
 		["DRUID"] = 2575322,
-		["NPCFRIENDLY"] = 1726751,
-		["NPCUNFRIENDLY"] = 1965208,
-		["NPCHOSTILE"] = 235284,
-		["NPCNEUTRAL"] = 1306105,
---937003 fire
 		["WARRIOR"] = 1684062,
 		["ROGUE"] = 3152583,
 		["DEATHKNIGHT"] = 130476,
 		["MONK"] = 3513377,
+		["NPCFRIENDLY"] = 1726751,
+		["NPCUNFRIENDLY"] = 1965208,
+		["NPCHOSTILE"] = 235284,
+		["NPCNEUTRAL"] = 1306105,
 		---130623 --shadowmoon tbc w/ meteors
 		--130551, --icecrown very very blue
 		--130525, --hellfire
 		--4234796 smoky stormwind
+		--937003 fire
 	}
-else
+elseif E.Wrath or E.TBC then
 	classModels = {
 		["PRIEST"] = "environments/stars/mantiddarksky01.m2",  -- "spells/christmassnowrain.m2",
 		["WARRIOR"] = "environments/stars/argus_nethersky04.m2", -- "spells/flamebreath.m2",
@@ -56,13 +56,10 @@ else
 		["ROGUE"] = "environments/stars/9mal_sky01.m2",
 		["DEATHKNIGHT"] = "environments/stars/bladesedgeskybox.m2",
 		["MONK"] = "environments/stars/9mal_skylich.m2",
-
-
 		---130623 --shadowmoon tbc w/ meteors
 		--130551, --icecrown very very blue
 		--130525, --hellfire
 		--4234796 smoky stormwind
-
 		--[["ROGUE"] = "spells/corrosivesandbreath.m2",
 		["PALADIN"] = "spells/arcanebreath.m2",
 		["HUNTER"] = "environments/stars/hellfireskybox.m2",
@@ -73,6 +70,22 @@ else
 		["DEATHKNIGHT"] = "spells/frostbreath.m2",
 		["MONK"] = "spells/acidcloudbreath.m2",
 		["DEMONHUNTER"] = "spells/acidliquidbreath.m2",]]
+	}
+else
+	classModels = {
+		["PRIEST"] = "spells/christmassnowrain.m2",
+		["WARRIOR"] = "spells/disarm_impact_chest.m2", --spells/disarm_impact_chest.m2
+		["ROGUE"] = "spells/sandvortex_state_base.m2", --"spells/corrosivesandbreath.m2",
+		["PALADIN"] = "spells/holy_precast_uber_base.m2",
+		["HUNTER"] = "spells/acidcloudbreath.m2",
+		["SHAMAN"] = "spells/arcanepower_state_chest.m2",
+		["MAGE"] = "spells/frostbreath.m2",  --"spells/demonicsacrifice_felhunter_chest.m2"
+		["WARLOCK"] = "spells/corruption_impactdot_med_base.m2",
+		["DRUID"] = "spells/cyclonefire_state.m2",
+		["NPCFRIENDLY"] = "spells/spells/cycloneearth_state.m2",
+		["NPCUNFRIENDLY"] = "spells/flamebreath.m2", --spells/darkritual_precast_base.m2",
+		["NPCHOSTILE"] = "spells/deathanddecay_area_base.m2",
+		["NPCNEUTRAL"] = "spells/demonicsacrifice_voidwalker_chest.m2",
 	}
 end
 
@@ -98,9 +111,17 @@ function ElvUI_EltreumUI:UFEffects()
 			end
 		elseif E.db.ElvUI_EltreumUI.models.modeltype == "CUSTOM" then
 			playereffect:ClearModel()
-			playereffect:SetModel(E.db.ElvUI_EltreumUI.models.custommodel)
+			if E.Retail then
+				playereffect:SetModel(E.db.ElvUI_EltreumUI.models.custommodel)
+			else
+				playereffect:SetModel(E.db.ElvUI_EltreumUI.models.custommodelclassic)
+			end
 			targeteffect:ClearModel()
-			targeteffect:SetModel(E.db.ElvUI_EltreumUI.models.custommodel)
+			if E.Retail then
+				targeteffect:SetModel(E.db.ElvUI_EltreumUI.models.custommodel)
+			else
+				targeteffect:SetModel(E.db.ElvUI_EltreumUI.models.custommodelclassic)
+			end
 		end
 
 		playereffect:SetDesaturation(E.db.ElvUI_EltreumUI.models.ufdesaturation)
