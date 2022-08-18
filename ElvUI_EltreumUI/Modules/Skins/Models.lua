@@ -186,7 +186,6 @@ function ElvUI_EltreumUI:CastbarEffects()
 			end
 
 			if targetcastbar then
-				print("asdasd")
 				if E.Retail then
 					castbareffecttarget:SetModel(165821)
 				else
