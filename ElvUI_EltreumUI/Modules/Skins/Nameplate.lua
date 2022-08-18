@@ -197,7 +197,7 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 			["FRIENDLY_PLAYER"] = E.db.nameplates.units.FRIENDLY_PLAYER.health.height or P.nameplates.units.FRIENDLY_NPC.health.height,
 		}
 
-
+		--check if its not explosive
 		if unit.unitGUID and unit.unitGUID:match("-120651-") then
 			return
 		end
