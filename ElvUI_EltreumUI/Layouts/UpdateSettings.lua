@@ -53,7 +53,8 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable = true
 	E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture = 'Eltreum-Fade'
 	E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width = 20
-
+	E.db.ElvUI_EltreumUI.unitframes.portraitfix = true
+	E.db.ElvUI_EltreumUI.unitframes.darkmode = true
 	E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "V2"
 	E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect = true
 	E.db.unitframe.statusbar = "ElvUI Norm1"
@@ -84,7 +85,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.skins.questswowhead = true
 	E.db.ElvUI_EltreumUI.skins.professions = true
 	E.db.ElvUI_EltreumUI.skins.zones = true
-	E.db.ElvUI_EltreumUI.skins.shadows = true
+	E.db.ElvUI_EltreumUI.skins.shadows.enable = true
 	E.db.ElvUI_EltreumUI.glow.enable = true
 	E.db.ElvUI_EltreumUI.glow.pixel = true
 	E.db.ElvUI_EltreumUI.glow.enablepet = true
@@ -105,10 +106,10 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.borders.totembar = true
 
 	--shadows
-	E.db.ElvUI_EltreumUI.shadows.aura = true
-	E.db.ElvUI_EltreumUI.shadows.ufaura = true
-	E.db.ElvUI_EltreumUI.shadows.actionbars = true
-	E.db.ElvUI_EltreumUI.shadows.raid = true
+	E.db.ElvUI_EltreumUI.skins.shadows.aura = true
+	E.db.ElvUI_EltreumUI.skins.shadows.ufaura = true
+	E.db.ElvUI_EltreumUI.skins.shadows.actionbars = true
+	E.db.ElvUI_EltreumUI.skins.shadows.raid = true
 
 	-- Misc
 	E.db.ElvUI_EltreumUI.skins.tbctalents = true

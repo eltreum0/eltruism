@@ -87,6 +87,24 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 								}
 								E:CopyTable(E.db.ElvUI_EltreumUI.skins.instances, data.ElvUI_EltreumUI.instances)
 							end
+							if data.ElvUI_EltreumUI.shadows then
+								E:CopyTable(E.db.ElvUI_EltreumUI.skins.shadows, data.ElvUI_EltreumUI.shadows)
+							else
+								data.ElvUI_EltreumUI.shadows = {
+									enable = false,
+									raid = true,
+									aura = false,
+									ufaura = false,
+									actionbars = false,
+									nameplates = false, --healthbars
+									npauras = false,
+									npportraits = false,
+									nppower = false,
+									npcastbar = false,
+								}
+								E:CopyTable(E.db.ElvUI_EltreumUI.skins.shadows, data.ElvUI_EltreumUI.shadows)
+							end
+
 							if data.ElvUI_EltreumUI.blizzframes then
 								E:CopyTable(E.db.ElvUI_EltreumUI.skins.blizzframes, data.ElvUI_EltreumUI.blizzframes)
 							else
@@ -572,8 +590,8 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 						if data.ElvUI_EltreumUI.UFmodifications then
 							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.UFmodifications, data.ElvUI_EltreumUI.UFmodifications)
 						elseif data.ElvUI_EltreumUI.UFmodifications == nil then
-							data.ElvUI_EltreumUI.UFmodifications = false
-							E.db.ElvUI_EltreumUI.unitframes.UFmodifications = false
+							data.ElvUI_EltreumUI.UFmodifications = true
+							E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
 							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.UFmodifications, data.ElvUI_EltreumUI.UFmodifications)
 						end
 						if data.ElvUI_EltreumUI.UForientation then

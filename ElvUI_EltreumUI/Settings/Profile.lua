@@ -64,7 +64,18 @@ P.ElvUI_EltreumUI = {
 		questswowhead = false,
 		professions = false,
 		zones = false,
-		shadows = false,
+		shadows = {
+			enable = false,
+			raid = true,
+			aura = false,
+			ufaura = false,
+			actionbars = false,
+			nameplates = false, --healthbars
+			npauras = false,
+			npportraits = false,
+			nppower = false,
+			npcastbar = false,
+		},
 		meetinghorn = false,
 		hideABkeypress = false,
 		tbctalents = false,
@@ -109,18 +120,6 @@ P.ElvUI_EltreumUI = {
 			holdTime = 0,
 			showSpellName = false,
 		},
-	},
-
-	shadows = {
-		raid = true,
-		aura = false,
-		ufaura = false,
-		actionbars = false,
-		nameplates = false, --healthbars
-		npauras = false,
-		npportraits = false,
-		nppower = false,
-		npcastbar = false,
 	},
 
 	cursors = {
@@ -491,7 +490,7 @@ P.ElvUI_EltreumUI = {
 		lightmode = false,
 		uftextureversion = "V1",
 		alternativegroups = false,
-		darkmode = true,
+		darkmode = false,
 		--modetexture = false,
 		darkpowercolor = false,
 		greybackground = false,
@@ -864,7 +863,7 @@ P.ElvUI_EltreumUI = {
 		arenabuffs = false,
 		bgunitframes = false,
 		arenaunitframes = false,
-		portraitfix = true,
+		portraitfix = false,
 	},
 
 	otherstuff ={
