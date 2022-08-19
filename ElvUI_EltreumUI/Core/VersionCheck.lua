@@ -97,8 +97,6 @@ end
 function ElvUI_EltreumUI:OldVersionCheck()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
-	elseif E.private.ElvUI_EltreumUI.install_version < "2.7.5" then
-		ElvUI_EltreumUI:Print('version 2.7.3 changed the database. In version 2.7.5 a button has been added in Eltruism > Installer to reset Eltruism settings if you wish')
 	elseif E.private.ElvUI_EltreumUI.install_version < "2.9.3" then
 		if E.db.ElvUI_EltreumUI.unitframes.lightmode == true or E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable == true then --convert the option
 			E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
@@ -148,7 +146,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["trivial"] = true
 
 		E.private.ElvUI_EltreumUI.install_version = "3.1.7"
-	elseif E.private.ElvUI_EltreumUI.install_version < "3.1.8" then
+	elseif E.private.ElvUI_EltreumUI.install_version >= "3.1.7" and E.private.ElvUI_EltreumUI.install_version < "3.1.8" then
 		if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] and not E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] then
 			local text = {
 				["attachTextTo"] = "Health",
@@ -169,7 +167,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"] = text
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"] = text
 		end
-	elseif E.private.ElvUI_EltreumUI.install_version < "3.2.2" then
+	elseif E.private.ElvUI_EltreumUI.install_version >= "3.1.8" and E.private.ElvUI_EltreumUI.install_version < "3.2.2" then
 		--confirm eltreum power for target of target exists
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"] = E.db["unitframe"]["units"]["targettarget"]["customTexts"] or {}
 		if not E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] then
@@ -185,7 +183,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 				["yOffset"] = -1
 			}
 		end
-	elseif E.private.ElvUI_EltreumUI.install_version < "3.2.4" then
+	elseif E.private.ElvUI_EltreumUI.install_version >= "3.2.2" and E.private.ElvUI_EltreumUI.install_version < "3.2.4" then
 		if not E.Retail and E.global["nameplates"]["filters"]["ElvUI_Boss"] then  --in classic for some reason bosses are not affected by ElvUI_Target/EltreumTarget
 			E.global["nameplates"]["filters"]['ElvUI_Boss'] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"]['ElvUI_Boss'])
