@@ -5949,7 +5949,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = L["Grey Background"],
 								desc = L["This will set the background to be a grey color"],
-								func = function() ElvUI_EltreumUI:GreyBg() E:StaggeredUpdateAll(nil, true) end,
+								func = function() ElvUI_EltreumUI:GreyBg() E:UpdateMediaItems() end,
 								confirm = true,
 							},
 							black = {
@@ -5957,7 +5957,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = L["Black Background"],
 								desc = L["This will set the background to be a black color"],
-								func = function() ElvUI_EltreumUI:BlackBg() E:StaggeredUpdateAll(nil, true) end,
+								func = function() ElvUI_EltreumUI:BlackBg() E:UpdateMediaItems() end,
 								confirm = true,
 							},
 							header5 = {
@@ -8385,13 +8385,16 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Apply"],
 								--width = 'full',
 								desc = L["Apply the mode selected"],
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications) or (not (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode)) end,
+								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications) end,
 								func = function()
 									if E.db.ElvUI_EltreumUI.unitframes.lightmode == true then
 										ElvUI_EltreumUI:LightMode()
 										E:StaggeredUpdateAll(nil, true)
 									elseif E.db.ElvUI_EltreumUI.unitframes.darkmode == true then
 										ElvUI_EltreumUI:DarkMode()
+										E:StaggeredUpdateAll(nil, true)
+									else
+										ElvUI_EltreumUI:LightMode()
 										E:StaggeredUpdateAll(nil, true)
 									end
 								end,
