@@ -114,10 +114,13 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option3:SetScript('OnClick', function()
 				if E.db.ElvUI_EltreumUI.borders.borderautoadjust == true then
 					E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
+					E.db.ElvUI_EltreumUI.borders.borders = false
 				elseif E.db.ElvUI_EltreumUI.borders.borderautoadjust == false then
 					E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
+					E.db.ElvUI_EltreumUI.borders.borders = true
 				elseif E.db.ElvUI_EltreumUI.borders.borderautoadjust == nil then
 					E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
+					E.db.ElvUI_EltreumUI.borders.borders = false
 				end
 				ElvUI_EltreumUI:BorderAdjust()
 				ElvUI_EltreumUI:AuraBorders()
