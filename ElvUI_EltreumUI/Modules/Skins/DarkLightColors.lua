@@ -168,6 +168,9 @@ function ElvUI_EltreumUI:GradientMode()
 		if not E.db.movers then E.db.movers = {} end
 
 		if E.db.ElvUI_EltreumUI.unitframes.darkmode then
+			E.db.ElvUI_EltreumUI.unitframes.lightmode = false
+			E.db.ElvUI_EltreumUI.unitframes.darkmode = true
+
 			--setup colors
 			E.db["unitframe"]["colors"]["healPrediction"]["healAbsorbs"]["a"] = 0.25
 			E.db["unitframe"]["colors"]["healPrediction"]["overabsorbs"]["a"] = 0.25
@@ -224,6 +227,8 @@ function ElvUI_EltreumUI:GradientMode()
 				end
 			end
 		elseif E.db.ElvUI_EltreumUI.unitframes.lightmode then
+			E.db.ElvUI_EltreumUI.unitframes.lightmode = true
+			E.db.ElvUI_EltreumUI.unitframes.darkmode = false
 			--setup colors
 			E.db["unitframe"]["colors"]["healPrediction"]["absorbs"]["a"] = 0.5
 			E.db["unitframe"]["colors"]["healPrediction"]["healAbsorbs"]["a"] = 0.5
