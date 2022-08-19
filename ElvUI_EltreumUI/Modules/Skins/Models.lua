@@ -17,7 +17,8 @@ local classModels = {}
 if E.Retail then
 	classModels = {
 		["PRIEST"] = 590934,
-		["PALADIN"] = 130593,
+		--["PALADIN"] = 130593,
+		["PALADIN"] = 165575,
 		["HUNTER"] = 1251379,
 		["SHAMAN"] = 130552,
 		["MAGE"] = 235339,
@@ -87,10 +88,10 @@ function ElvUI_EltreumUI:UFEffects()
 			_, targetclass = UnitClass("target")
 
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
-				playereffect:ClearModel()
+				--playereffect:ClearModel()
 				playereffect:SetModel(classModels[E.myclass])
 
-				targeteffect:ClearModel()
+				--targeteffect:ClearModel()
 
 				if UnitIsPlayer("target") and targetclass then
 					targeteffect:SetModel(classModels[targetclass])
@@ -108,13 +109,13 @@ function ElvUI_EltreumUI:UFEffects()
 					end
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
-				playereffect:ClearModel()
+				--playereffect:ClearModel()
 				if E.Retail then
 					playereffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
 				else
 					playereffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
 				end
-				targeteffect:ClearModel()
+				--targeteffect:ClearModel()
 				if E.Retail then
 					targeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
 				else
