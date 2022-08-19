@@ -17,8 +17,8 @@ local classModels = {}
 if E.Retail then
 	classModels = {
 		["PRIEST"] = 590934,
-		--["PALADIN"] = 130593,
-		["PALADIN"] = 165575,
+		["PALADIN"] = 130593,
+		--["PALADIN"] = 165575,
 		["HUNTER"] = 1251379,
 		["SHAMAN"] = 130552,
 		["MAGE"] = 235339,
