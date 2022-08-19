@@ -22,7 +22,7 @@ if E.Retail then
 	instancedifficulty:RegisterEvent("GUILD_PARTY_STATE_UPDATED")
 end
 
-E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismInstanceDifficulty", nil, nil, nil, "ALL,SOLO,PARTY,RAID")
+E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismInstanceDifficulty", nil, nil, nil, "ALL,SOLO,ELTREUMUI,PARTY,RAID", nil, 'ElvUI_EltreumUI,partyraidsettings')
 instancedifficulty:SetScript("OnEvent", function(_,event)
 	local _, instanceType = IsInInstance()
 	local mapID = WorldMapFrame:GetMapID()

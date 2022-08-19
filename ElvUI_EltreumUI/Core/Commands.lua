@@ -18,6 +18,9 @@ local UseContainerItem = _G.UseContainerItem
 -- Register on init
 function ElvUI_EltreumUI:LoadCommands()
 	self:RegisterChatCommand('eltruism', 'RunCommands')
+	--add to moveui table
+	tinsert(E.ConfigModeLayouts, #(E.ConfigModeLayouts) + 1, "ELTREUMUI")
+	E.ConfigModeLocalizedStrings["ELTREUMUI"] = format("|cff82B4ff%s |r", "Eltruism")
 	if E.Retail then
 		if E.db.ElvUI_EltreumUI.waypoints.waytext.enable then
 			if not IsAddOnLoaded("TomTom") then

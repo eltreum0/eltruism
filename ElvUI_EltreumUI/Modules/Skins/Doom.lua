@@ -5,7 +5,7 @@ local petOverlay = {1,1,1}
 local GetTime = GetTime
 local DCP = CreateFrame("FRAME","EltruismDoomCDPulse")
 DCP.TextFrame = DCP:CreateFontString(nil, "ARTWORK")
-DCP.TextFrame:SetFont(STANDARD_TEXT_FONT, 14, "OUTLINE")
+
 DCP.TextFrame:SetShadowOffset(2,-2)
 DCP.TextFrame:SetPoint("CENTER",DCP,"CENTER")
 DCP.TextFrame:SetWidth(185)
@@ -14,7 +14,9 @@ DCP.TextFrame:SetTextColor(1,1,1)
 DCP:SetPoint("CENTER",UIParent,"CENTER", 0, 250)
 local DCPT = DCP:CreateTexture(nil,"BACKGROUND")
 DCPT:SetAllPoints(DCP)
-
+DCP:SetSize(80,80)
+DCP:SetAlpha(0)
+E:CreateMover(DCP, "EltruismDoomMover", L["EltruismDoom"], nil, nil, nil, 'ALL,SOLO,ELTREUMUI', nil, 'ElvUI_EltreumUI,cooldown')
 
 function ElvUI_EltreumUI:PreviewDoom()
 	DCPT:SetTexture("Interface\\Icons\\Spell_Nature_Earthbind")
@@ -39,6 +41,8 @@ end
 --Fork of Doom's Cooldown Pulse
 function ElvUI_EltreumUI:Doom() --todo, setup options
 	if E.db.ElvUI_EltreumUI.skins.doom.enable then
+
+		DCP.TextFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), 14, E.db.general.fontStyle)
 
 		if not DCP.shadow then
 			DCP:CreateShadow()
