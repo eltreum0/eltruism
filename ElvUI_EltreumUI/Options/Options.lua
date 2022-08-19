@@ -2710,9 +2710,6 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
-
-
-
 			cooldown = {
 				type = 'group',
 				name = L["Cooldown"],
@@ -2735,130 +2732,96 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.skins.doom.enable end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 					},
-					enableboss = {
+					fadeInTime = {
+						type = 'range',
+						name = L["fadeInTime"],
+						desc = L["fadeInTime"],
+						order = 2,
+						min = 0,
+						max = 5,
+						step = 0.1,
+						--width = "full",
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.fadeInTime end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.fadeInTime = value ElvUI_EltreumUI:Doom() end,
+					},
+					fadeOutTime = {
+						type = 'range',
+						name = L["fadeOutTime"],
+						desc = L["fadeOutTime"],
+						order = 2,
+						min = 0,
+						max = 5,
+						step = 0.1,
+						--width = "full",
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime = value ElvUI_EltreumUI:Doom() end,
+					},
+					maxAlpha = {
+						type = 'range',
+						name = L["maxAlpha"],
+						desc = L["maxAlpha"],
+						order = 2,
+						min = 0,
+						max = 100,
+						step = 0.1,
+						--width = "full",
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.maxAlpha end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.maxAlpha = value ElvUI_EltreumUI:Doom() end,
+					},
+					animScale = {
+						type = 'range',
+						name = L["animScale"],
+						desc = L["animScale"],
+						order = 2,
+						min = 0,
+						max = 5,
+						step = 0.1,
+						--width = "full",
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.animScale end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.animScale = value ElvUI_EltreumUI:Doom() end,
+					},
+					iconSize = {
+						type = 'range',
+						name = L["iconSize"],
+						desc = L["iconSize"],
+						order = 2,
+						min = 6,
+						max = 200,
+						step = 0.1,
+						--width = "full",
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.iconSize end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.iconSize = value ElvUI_EltreumUI:Doom() end,
+					},
+					holdTime = {
+						type = 'range',
+						name = L["holdTime"],
+						desc = L["holdTime"],
+						order = 2,
+						min = 0,
+						max = 5,
+						step = 0.1,
+						--width = "full",
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.holdTime end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.holdTime = value ElvUI_EltreumUI:Doom() end,
+					},
+					showSpellName = {
 						order = 1,
 						type = 'toggle',
-						name = L["Enable Boss Music"],
-						desc = L["Enable music during combat"],
+						name = L["showSpellName"],
+						desc = L["showSpellName"],
 						width = 'full',
-						get = function() return E.private.ElvUI_EltreumUI.combatmusic.bossmusic end,
-						set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossmusic = value E:StaticPopup_Show('PRIVATE_RL') end,
-					},
-					instancemusic = {
-						order = 2,
-						type = 'toggle',
-						name = L["Disable Combat Music in Instances"],
-						desc = L["Disable music during combat in instances"],
-						width = 'full',
-						disabled = function() return not E.private.ElvUI_EltreumUI.combatmusic.enable end,
-						get = function() return E.private.ElvUI_EltreumUI.combatmusic.disableinstance end,
-						set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.disableinstance = value E:StaticPopup_Show('PRIVATE_RL') end,
-					},
-					header2 = {
-						order = 2,
-						type = "description",
-						name = L["Normal Combat Music"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					combatpathtofile = {
-						order = 3,
-						type = 'group',
-						inline = true,
-						name = L["Name of file inside Interface\\Addons"],
-						args = {
-							howtomusic = {
-							order = 2,
-							type = "description",
-							name = L["Example: "].."mymusic.mp3",
-							},
-							somegap = {
-								order = 3,
-								type = "description",
-								name = "",
-							},
-							soundpath = {
-								order = 6,
-								icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
-								type = 'input',
-								name = '',
-								desc = '',
-								width = 'full',
-								get = function() return E.private.ElvUI_EltreumUI.combatmusic.musicfile end,
-								set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.musicfile = value E:StaticPopup_Show('PRIVATE_RL') end,
-							}
-						}
-					},
-					header3 = {
-						order = 6,
-						type = "description",
-						name = L["Boss Combat Music"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					bosspathtofile = {
-						order = 7,
-						type = 'group',
-						inline = true,
-						name = L["Name of file inside Interface\\Addons"],
-						args = {
-							howtomusic = {
-							order = 2,
-							type = "description",
-							name = L["Example: "].."mymusic.mp3",
-							},
-							somegap = {
-								order = 3,
-								type = "description",
-								name = "",
-							},
-							soundpath = {
-								order = 6,
-								icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
-								type = 'input',
-								name = '',
-								desc = '',
-								width = 'full',
-								get = function() return E.private.ElvUI_EltreumUI.combatmusic.bossfile end,
-								set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossfile = value E:StaticPopup_Show('PRIVATE_RL') end,
-							}
-						}
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.showSpellName end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.showSpellName = value E:StaticPopup_Show('PRIVATE_RL') end,
 					},
 				},
 			},
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			cursor = {
 				type = 'group',
 				name = L["Cursor"],
