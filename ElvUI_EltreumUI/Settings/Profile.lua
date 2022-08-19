@@ -99,6 +99,17 @@ P.ElvUI_EltreumUI = {
 		playerdeathgta = false,
 		playerdeathcustom = false,
 		playerdeathcustomtext = "YOU DIED",
+
+		doom = {
+			enable = true,
+			fadeInTime = 0.3,
+			fadeOutTime = 0.7,
+			maxAlpha = 0.7,
+			animScale = 1.5,
+			iconSize = 75,
+			holdTime = 0,
+			showSpellName = false,
+		},
 	},
 
 	shadows = {
