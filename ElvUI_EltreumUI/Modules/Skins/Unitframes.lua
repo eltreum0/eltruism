@@ -67,7 +67,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 		if unitframe and unitframe.Health then
 			unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-				if E.db["ElvUI_EltreumUI"]["gradientmode"]["enable"..unit] then
+				if E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
 					if UnitIsPlayer(unit) then
 						if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 							unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
@@ -316,7 +316,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
 							unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit))
 						else
-							unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["ufcustomtexture"][unit.."texture"]))
+							unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
 						end
 					else
 						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
@@ -334,7 +334,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 								end
 							end
 						else
-							unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["ufcustomtexture"][unit.."texture"]))
+							unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
 						end
 					end
 				else
