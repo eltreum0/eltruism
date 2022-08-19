@@ -99,7 +99,6 @@ P.ElvUI_EltreumUI = {
 		playerdeathgta = false,
 		playerdeathcustom = false,
 		playerdeathcustomtext = "YOU DIED",
-
 		doom = {
 			enable = true,
 			fadeInTime = 0.3,

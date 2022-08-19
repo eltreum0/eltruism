@@ -2726,111 +2726,103 @@ function ElvUI_EltreumUI:Configtable()
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
-					moremusicsettings = {
+					enable = {
 						order = 1,
+						type = 'toggle',
+						name = L["Enable Cooldown Pulse"],
+						desc = L["Show a Skill Pulse when its cooldown is ending"],
+						width = 'full',
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
+					},
+					enableboss = {
+						order = 1,
+						type = 'toggle',
+						name = L["Enable Boss Music"],
+						desc = L["Enable music during combat"],
+						width = 'full',
+						get = function() return E.private.ElvUI_EltreumUI.combatmusic.bossmusic end,
+						set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossmusic = value E:StaticPopup_Show('PRIVATE_RL') end,
+					},
+					instancemusic = {
+						order = 2,
+						type = 'toggle',
+						name = L["Disable Combat Music in Instances"],
+						desc = L["Disable music during combat in instances"],
+						width = 'full',
+						disabled = function() return not E.private.ElvUI_EltreumUI.combatmusic.enable end,
+						get = function() return E.private.ElvUI_EltreumUI.combatmusic.disableinstance end,
+						set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.disableinstance = value E:StaticPopup_Show('PRIVATE_RL') end,
+					},
+					header2 = {
+						order = 2,
+						type = "description",
+						name = L["Normal Combat Music"],
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					combatpathtofile = {
+						order = 3,
 						type = 'group',
 						inline = true,
-						name = L["Show a Cooldown Pulse"],
+						name = L["Name of file inside Interface\\Addons"],
 						args = {
-							enable = {
-								order = 1,
-								type = 'toggle',
-								name = L["Enable Combat Music"],
-								desc = L["Enable music during combat"],
-								width = 'full',
-								get = function() return E.private.ElvUI_EltreumUI.combatmusic.enable end,
-								set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
+							howtomusic = {
+							order = 2,
+							type = "description",
+							name = L["Example: "].."mymusic.mp3",
 							},
-							enableboss = {
-								order = 1,
-								type = 'toggle',
-								name = L["Enable Boss Music"],
-								desc = L["Enable music during combat"],
-								width = 'full',
-								get = function() return E.private.ElvUI_EltreumUI.combatmusic.bossmusic end,
-								set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossmusic = value E:StaticPopup_Show('PRIVATE_RL') end,
-							},
-							instancemusic = {
-								order = 2,
-								type = 'toggle',
-								name = L["Disable Combat Music in Instances"],
-								desc = L["Disable music during combat in instances"],
-								width = 'full',
-								disabled = function() return not E.private.ElvUI_EltreumUI.combatmusic.enable end,
-								get = function() return E.private.ElvUI_EltreumUI.combatmusic.disableinstance end,
-								set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.disableinstance = value E:StaticPopup_Show('PRIVATE_RL') end,
-							},
-							header2 = {
-								order = 2,
-								type = "description",
-								name = L["Normal Combat Music"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							combatpathtofile = {
+							somegap = {
 								order = 3,
-								type = 'group',
-								inline = true,
-								name = L["Name of file inside Interface\\Addons"],
-								args = {
-									howtomusic = {
-									order = 2,
-									type = "description",
-									name = L["Example: "].."mymusic.mp3",
-									},
-									somegap = {
-										order = 3,
-										type = "description",
-										name = "",
-									},
-									soundpath = {
-										order = 6,
-										icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
-										type = 'input',
-										name = '',
-										desc = '',
-										width = 'full',
-										get = function() return E.private.ElvUI_EltreumUI.combatmusic.musicfile end,
-										set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.musicfile = value E:StaticPopup_Show('PRIVATE_RL') end,
-									}
-								}
-							},
-							header3 = {
-								order = 6,
 								type = "description",
-								name = L["Boss Combat Music"],
+								name = "",
+							},
+							soundpath = {
+								order = 6,
+								icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
+								type = 'input',
+								name = '',
+								desc = '',
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								get = function() return E.private.ElvUI_EltreumUI.combatmusic.musicfile end,
+								set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.musicfile = value E:StaticPopup_Show('PRIVATE_RL') end,
+							}
+						}
+					},
+					header3 = {
+						order = 6,
+						type = "description",
+						name = L["Boss Combat Music"],
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					bosspathtofile = {
+						order = 7,
+						type = 'group',
+						inline = true,
+						name = L["Name of file inside Interface\\Addons"],
+						args = {
+							howtomusic = {
+							order = 2,
+							type = "description",
+							name = L["Example: "].."mymusic.mp3",
 							},
-							bosspathtofile = {
-								order = 7,
-								type = 'group',
-								inline = true,
-								name = L["Name of file inside Interface\\Addons"],
-								args = {
-									howtomusic = {
-									order = 2,
-									type = "description",
-									name = L["Example: "].."mymusic.mp3",
-									},
-									somegap = {
-										order = 3,
-										type = "description",
-										name = "",
-									},
-									soundpath = {
-										order = 6,
-										icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
-										type = 'input',
-										name = '',
-										desc = '',
-										width = 'full',
-										get = function() return E.private.ElvUI_EltreumUI.combatmusic.bossfile end,
-										set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossfile = value E:StaticPopup_Show('PRIVATE_RL') end,
-									}
-								}
+							somegap = {
+								order = 3,
+								type = "description",
+								name = "",
 							},
-						},
+							soundpath = {
+								order = 6,
+								icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
+								type = 'input',
+								name = '',
+								desc = '',
+								width = 'full',
+								get = function() return E.private.ElvUI_EltreumUI.combatmusic.bossfile end,
+								set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossfile = value E:StaticPopup_Show('PRIVATE_RL') end,
+							}
+						}
 					},
 				},
 			},
