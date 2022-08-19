@@ -4,6 +4,7 @@ local cooldowns, animating, watching = { }, { }, { }
 local petOverlay = {1,1,1}
 local GetTime = GetTime
 
+--Fork of Doom's Cooldown Pulse
 function ElvUI_EltreumUI:Doom()
 	fadeInTime = 0.3
 	fadeOutTime = 0.7
@@ -12,7 +13,13 @@ function ElvUI_EltreumUI:Doom()
 	iconSize = 75
 	holdTime = 0
 	showSpellName = false
-	ignoredSpells = E.private.ElvUI_EltreumUI.ignoredSpells
+
+	ignoredSpells = { }
+	local list = {strsplit("," ,E.private.ElvUI_EltreumUI.ignoredSpells)}
+	for _,v in ipairs(list) do
+		ignoredSpells[v] = true
+	end
+
 	invertIgnored = false
 	x = UIParent:GetWidth()*UIParent:GetEffectiveScale()/2
 	y = UIParent:GetHeight()*UIParent:GetEffectiveScale()/2
@@ -21,7 +28,6 @@ function ElvUI_EltreumUI:Doom()
 		ignoredSpells = "",
 		invertIgnored = false
 	}
-
 
 	---create frames
 	local DCP = CreateFrame("frame")
@@ -43,7 +49,7 @@ function ElvUI_EltreumUI:Doom()
 	DCP.TextFrame:SetWidth(185)
 	DCP.TextFrame:SetJustifyH("CENTER")
 	DCP.TextFrame:SetTextColor(1,1,1)
-
+	DCP:SetPoint("CENTER",UIParent,"BOTTOMLEFT", x, y)
 	local DCPT = DCP:CreateTexture(nil,"BACKGROUND")
 	DCPT:SetAllPoints(DCP)
 
@@ -89,18 +95,6 @@ function ElvUI_EltreumUI:Doom()
 		return nil
 	end
 
-	local function RefreshLocals()
-		ignoredSpells = { }
-
-		local list = {strsplit("," ,E.private.ElvUI_EltreumUI.ignoredSpells)}
-
-		for _,v in ipairs(list) do
-			--if ignoredSpells[v] then
-				ignoredSpells[v] = true
-		   -- end
-		end
-	end
-
 	--------------------------
 	-- Cooldown / Animation --
 	--------------------------
@@ -109,6 +103,7 @@ function ElvUI_EltreumUI:Doom()
 	local function OnUpdate(_,update)
 		elapsed = elapsed + update
 		if (elapsed > 0.05) then
+			elapsed = 0
 			for i,v in pairs(watching) do
 				if (GetTime() >= v[1] + 0.5) then
 					local getCooldownDetails
@@ -172,8 +167,6 @@ function ElvUI_EltreumUI:Doom()
 					cooldowns[i] = nil
 				end
 			end
-
-			elapsed = 0
 			if (#animating == 0 and tcount(watching) == 0 and tcount(cooldowns) == 0) then
 				DCP:SetScript("OnUpdate", nil)
 				return
@@ -215,20 +208,6 @@ function ElvUI_EltreumUI:Doom()
 	--------------------
 	-- Event Handlers --
 	--------------------
-
-
-
-
-
-
-
-	function DCP:ADDON_LOADED(addon)
-
-		RefreshLocals()
-		self:SetPoint("CENTER",UIParent,"BOTTOMLEFT", x, y)
-		self:UnregisterEvent("ADDON_LOADED")
-	end
-	DCP:RegisterEvent("ADDON_LOADED")
 
 	function DCP:SPELL_UPDATE_COOLDOWN()
 		for i,getCooldownDetails in pairs(cooldowns) do
