@@ -74,22 +74,22 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
 									if unit == "target" then
-										unitframe.Health:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, true, true))
+										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, true, false))
 									else
-										unitframe.Health:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, false, true))
+										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, false, false))
 									end
 								else
-									unitframe.Health:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, true))
+									unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, false))
 								end
 							else
 								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
 									if unit == "target" then
-										unitframe.Health:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, true, true))
+										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, true, false))
 									else
-										unitframe.Health:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, true))
+										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, false))
 									end
 								else
-									unitframe.Health:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, true))
+									unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, false))
 								end
 							end
 						elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and unitframe.Health.backdropTex then
@@ -662,9 +662,9 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 						if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 							button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-								button.Health:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(trueclass, false, true))
+								button.Health:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(trueclass, false, false))
 							else
-								button.Health:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(trueclass, false, true))
+								button.Health:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(trueclass, false, false))
 							end
 						elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and button.Health.backdropTex then
 							button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
@@ -741,52 +741,55 @@ end
 hooksecurefunc(UF, "Style", ElvUI_EltreumUI.GradientCustomTexture) --if not hooking into this then when the target of target changes it doesnt update
 hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientCustomTexture)
 
---Unitframe Backdrop Texture/Alpha
-function ElvUI_EltreumUI:BackdropTexture(isTransparent, statusBar, backdropTex, adjustBackdropPoints, invertColors, reverseFill)
-	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-		if backdropTex then
-			if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden then
-				backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
-				backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-				if statusBar and statusBar.backdrop and statusBar:GetName():match("HealthBar") then
-					statusBar.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-				end
-			elseif E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden then
-				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					if backdropTex then
-						backdropTex:SetAlpha(0)
-					end
-				end
-				if statusBar and statusBar.backdrop and statusBar:GetName():match("HealthBar") then
-					statusBar.backdrop:Hide()
+--for Unitframe Backdrop Texture/Alpha/Fill Direction
+function UF:ToggleTransparentStatusBar(isTransparent, statusBar, backdropTex, adjustBackdropPoints, invertColors, reverseFill)
+	statusBar.isTransparent = isTransparent
+	statusBar.invertColors = invertColors
+	statusBar.backdropTex = backdropTex
+
+	if not statusBar.hookedColor then
+		hooksecurefunc(statusBar, 'SetStatusBarColor', UF.UpdateBackdropTextureColor)
+		statusBar.hookedColor = true
+	end
+
+	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and statusBar:GetName():match("HealthBar") then
+		if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden then
+			backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
+			backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+		elseif E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden then
+			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+				if backdropTex then
+					backdropTex:SetAlpha(0)
 				end
 			end
-		end
-
-		--darkmode/backdrop things for vertical
-		if E.db.ElvUI_EltreumUI.unitframes.UForientation == "VERTICAL" and statusBar:GetName():match("HealthBar") and E.db.ElvUI_EltreumUI.unitframes.darkmode then
-			orientation = "VERTICAL"
-			barTexture = statusBar:GetStatusBarTexture() -- This fixes Center Pixel offset problem (normally this has > 2 points)
-			--statusBar.backdrop:Hide()
-			barTexture:SetInside(nil, 0, 0) -- This also unsnaps the texture
-			UF:HandleStatusBarTemplate(statusBar, statusBar:GetParent(), isTransparent)
-			if isTransparent then
-				--statusBar:SetStatusBarTexture(0, 0, 0, 0)
-				if E.db.ElvUI_EltreumUI.unitframes.darkmode then
-					UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
-				else
-					UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.media.blankTex)
-				end
-				UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
-			else
-				texture = E.LSM:Fetch('statusbar', self.db.statusbar)
-				statusBar:SetStatusBarTexture(texture)
-				UF:Update_StatusBar(statusBar.bg or statusBar.BG, texture)
-				if adjustBackdropPoints then
-					UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
-				end
+			if statusBar and statusBar.backdrop and statusBar:GetName():match("HealthBar") then
+				statusBar.backdrop:Hide()
 			end
 		end
 	end
+
+
+	local orientation = statusBar:GetOrientation()
+	if E.db.ElvUI_EltreumUI.unitframes.UForientation == "VERTICAL" and statusBar:GetName():match("HealthBar") and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+		orientation = "VERTICAL"
+	end
+	local barTexture = statusBar:GetStatusBarTexture() -- This fixes Center Pixel offset problem (normally this has > 2 points)
+	barTexture:SetInside(nil, 0, 0) -- This also unsnaps the texture
+
+	UF:HandleStatusBarTemplate(statusBar, statusBar:GetParent(), isTransparent)
+
+	if isTransparent then
+		statusBar:SetStatusBarTexture(0, 0, 0, 0)
+		UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.media.blankTex)
+
+		UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
+	else
+		local texture = E.LSM:Fetch('statusbar', self.db.statusbar)
+		statusBar:SetStatusBarTexture(texture)
+		UF:Update_StatusBar(statusBar.bg or statusBar.BG, texture)
+
+		if adjustBackdropPoints then
+			UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
+		end
+	end
 end
-hooksecurefunc(UF, 'ToggleTransparentStatusBar', ElvUI_EltreumUI.BackdropTexture)
