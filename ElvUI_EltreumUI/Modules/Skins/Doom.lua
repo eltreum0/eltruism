@@ -3,6 +3,34 @@ local ignoredSpells, invertIgnored
 local cooldowns, animating, watching = { }, { }, { }
 local petOverlay = {1,1,1}
 local GetTime = GetTime
+local DCP = CreateFrame("FRAME","EltruismDoomCDPulse")
+DCP.TextFrame = DCP:CreateFontString(nil, "ARTWORK")
+DCP.TextFrame:SetFont(STANDARD_TEXT_FONT, 14, "OUTLINE")
+DCP.TextFrame:SetShadowOffset(2,-2)
+DCP.TextFrame:SetPoint("CENTER",DCP,"CENTER")
+DCP.TextFrame:SetWidth(185)
+DCP.TextFrame:SetJustifyH("CENTER")
+DCP.TextFrame:SetTextColor(1,1,1)
+DCP:SetPoint("CENTER",UIParent,"CENTER", 0, 250)
+local DCPT = DCP:CreateTexture(nil,"BACKGROUND")
+DCPT:SetAllPoints(DCP)
+
+
+function ElvUI_EltreumUI:PreviewDoom()
+	DCPT:SetTexture("Interface\\Icons\\Spell_Nature_Earthbind")
+	local scale = E.db.ElvUI_EltreumUI.skins.doom.iconSize+(E.db.ElvUI_EltreumUI.skins.doom.iconSize*((E.db.ElvUI_EltreumUI.skins.doom.animScale-1) ))
+	DCP:SetWidth(scale)
+	DCP:SetHeight(scale)
+
+	if not DCP:IsVisible() then
+		DCP:Show()
+		DCP:SetAlpha(1)
+	else
+		DCP:Hide()
+		DCP:SetAlpha(0)
+	end
+end
+
 
 --Fork of Doom's Cooldown Pulse
 function ElvUI_EltreumUI:Doom() --todo, setup options
@@ -18,18 +46,11 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 
 
 		---create frames
-		local DCP = CreateFrame("FRAME","EltruismDoomCDPulse")
+
 		DCP:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
-		DCP.TextFrame = DCP:CreateFontString(nil, "ARTWORK")
-		DCP.TextFrame:SetFont(STANDARD_TEXT_FONT, 14, "OUTLINE")
-		DCP.TextFrame:SetShadowOffset(2,-2)
-		DCP.TextFrame:SetPoint("CENTER",DCP,"CENTER")
-		DCP.TextFrame:SetWidth(185)
-		DCP.TextFrame:SetJustifyH("CENTER")
-		DCP.TextFrame:SetTextColor(1,1,1)
-		DCP:SetPoint("CENTER",UIParent,"CENTER", 0, 250)
-		local DCPT = DCP:CreateTexture(nil,"BACKGROUND")
-		DCPT:SetAllPoints(DCP)
+
+
+
 
 		-----------------------
 		-- Utility Functions --
@@ -80,6 +101,10 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 		local runtimer = 0
 		local function OnUpdate(_,update) --todo: confirm this onupdate is good, afterall onupdate has a history of issues...
 			elapsed = elapsed + update
+			if not DCP:IsShown() then
+				DCP:Show()
+			end
+
 			if (elapsed > 0.05) then
 				elapsed = 0
 				for i,v in pairs(watching) do

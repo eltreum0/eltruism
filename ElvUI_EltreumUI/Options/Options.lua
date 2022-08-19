@@ -2828,7 +2828,20 @@ function ElvUI_EltreumUI:Configtable()
 						width = 'full',
 						get = function() return E.private.ElvUI_EltreumUI.doomignored end,
 						set = function(_, value) E.private.ElvUI_EltreumUI.doomignored = value E:StaticPopup_Show('PRIVATE_RL') end,
-					}
+					},
+					previewgap = {
+						order = 103,
+						type = "description",
+						name = L["Preview"],
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					preview ={
+						order = 104,
+						type = "execute",
+						name = L["Preview"],
+						func = function() ElvUI_EltreumUI:PreviewDoom() end,
+					},
 				},
 			},
 			cursor = {
