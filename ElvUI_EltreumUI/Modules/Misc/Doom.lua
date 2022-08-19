@@ -16,7 +16,7 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 	x = 0
 	y = 250
 
-	ignoredSpells = { }
+	ignoredSpells = { }  --todo: confirm ignore list is working once options are worked in
 	local list = {strsplit("," ,E.private.ElvUI_EltreumUI.ignoredSpells)}
 	for _,v in ipairs(list) do
 		ignoredSpells[v] = true
