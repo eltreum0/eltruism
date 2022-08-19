@@ -1048,3 +1048,11 @@ L["Transparency in Light Mode"] = true
 L["Transparency in Dark Mode"] = true
 L["Desaturation"] = true
 L[" This can be a very demanding feature, it's not recommended to use models for performance."] = true
+
+L["Combat Text Addons"] = true
+L["Details Profiles"] = true
+L["Camera Field of View"] = true
+L["This allows you to zoom out further with the camera to increase the field of view."] = true
+L["Replace role icons with Eltruism role icons"] = true
+L["Model Alpha"] = true
+L["Desaturate"] = true

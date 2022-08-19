@@ -669,7 +669,7 @@ function ElvUI_EltreumUI:Configtable()
 							header5 = {
 								order = 93,
 								type = "description",
-								name = "Combat Text Addons",
+								name = L["Combat Text Addons"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -698,7 +698,7 @@ function ElvUI_EltreumUI:Configtable()
 							header6 = {
 								order = 96,
 								type = "description",
-								name = "Details Profiles",
+								name = L["Details Profiles"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -4015,8 +4015,8 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					cameraFOV = {
 						type = 'range',
-						name = L["Camera Field of Vision"],
-						desc = L["Camera Field of Vision"],
+						name = L["Camera Field of View"],
+						desc = L["This allows you to zoom out further with the camera to increase the field of view."],
 						order = 1,
 						min = 50,
 						max = 90,
