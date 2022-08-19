@@ -2820,6 +2820,15 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.skins.doom.showSpellName end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.showSpellName = value E:StaticPopup_Show('PRIVATE_RL') end,
 					},
+					doomignored = {
+						order = 5,
+						type = 'input',
+						name = L["doomignored"],
+						desc = L["List of spells ignored, use a comma to separate spells"],
+						width = 'full',
+						get = function() return E.private.ElvUI_EltreumUI.doomignored end,
+						set = function(_, value) E.private.ElvUI_EltreumUI.doomignored = value E:StaticPopup_Show('PRIVATE_RL') end,
+					}
 				},
 			},
 			cursor = {

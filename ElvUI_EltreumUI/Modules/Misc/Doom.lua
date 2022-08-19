@@ -9,7 +9,7 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 	if E.db.ElvUI_EltreumUI.skins.doom.enable then
 
 		ignoredSpells = { }  --todo: confirm ignore list is working once options are worked in
-		local list = {strsplit("," ,E.private.ElvUI_EltreumUI.ignoredSpells)}
+		local list = {strsplit("," ,E.private.ElvUI_EltreumUI.doomignored)}
 		for _,v in ipairs(list) do
 			ignoredSpells[v] = true
 		end
