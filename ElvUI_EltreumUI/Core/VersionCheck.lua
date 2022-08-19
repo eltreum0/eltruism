@@ -3,6 +3,7 @@ local _G = _G
 local string = _G.string
 local OKAY = _G.OKAY
 local IsAddOnLoaded = _G.IsAddOnLoaded
+local fixingold = false
 
 function ElvUI_EltreumUI:VersionCheckInit()
 	if E.private.ElvUI_EltreumUI.install_version < "3.2.5" then
@@ -12,16 +13,6 @@ function ElvUI_EltreumUI:VersionCheckInit()
 	ElvUI_EltreumUI:OldVersionCheck()
 	ElvUI_EltreumUI:NewVersionCheck()
 	ElvUI_EltreumUI:ElvUIVersionCheck()
-end
-
-function ElvUI_EltreumUI:NewVersionCheck()
-	if not E.private.ElvUI_EltreumUI.install_version then
-		return
-	elseif E.private.ElvUI_EltreumUI.install_version >= "2.4.0" and E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version then
-		E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
-		local version = (string.format("|cff82B4ff"..ElvUI_EltreumUI.Version.."|r"))
-		ElvUI_EltreumUI:Print("Welcome to version "..version..". If you have any issues please join the |TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinydisc.tga:0:0:0:0|t Discord for help")
-	end
 end
 
 function ElvUI_EltreumUI:ElvUIVersionCheck()
@@ -102,6 +93,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
 		end
 		E.private.ElvUI_EltreumUI.install_version = "2.9.3"
+		fixingold = true
 	elseif E.private.ElvUI_EltreumUI.install_version >= "2.9.3" and E.private.ElvUI_EltreumUI.install_version < "3.1.6" then --fix name change since the setting doesnt make sense otherwise
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar == nil then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolorplayercastbar == nil then
@@ -122,6 +114,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			end
 		end
 		E.private.ElvUI_EltreumUI.install_version = "3.1.6"
+		fixingold = true
 	elseif E.private.ElvUI_EltreumUI.install_version >= "3.1.6" and E.private.ElvUI_EltreumUI.install_version < "3.1.7" then -- add EltreumTarget, to make it so when options are disabled ElvUI_Target is not still changing colors
 		for _, filterName in pairs({'ElvUI_Target', 'EltreumTarget'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
@@ -146,6 +139,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["trivial"] = true
 
 		E.private.ElvUI_EltreumUI.install_version = "3.1.7"
+		fixingold = true
 	elseif E.private.ElvUI_EltreumUI.install_version >= "3.1.7" and E.private.ElvUI_EltreumUI.install_version < "3.1.8" then
 		if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] and not E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] then
 			local text = {
@@ -167,6 +161,8 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"] = text
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"] = text
 		end
+		E.private.ElvUI_EltreumUI.install_version = "3.1.8"
+		fixingold = true
 	elseif E.private.ElvUI_EltreumUI.install_version >= "3.1.8" and E.private.ElvUI_EltreumUI.install_version < "3.2.2" then
 		--confirm eltreum power for target of target exists
 		E.db["unitframe"]["units"]["targettarget"]["customTexts"] = E.db["unitframe"]["units"]["targettarget"]["customTexts"] or {}
@@ -183,6 +179,8 @@ function ElvUI_EltreumUI:OldVersionCheck()
 				["yOffset"] = -1
 			}
 		end
+		fixingold = true
+		E.private.ElvUI_EltreumUI.install_version = "3.2.2"
 	elseif E.private.ElvUI_EltreumUI.install_version >= "3.2.2" and E.private.ElvUI_EltreumUI.install_version < "3.2.4" then
 		if not E.Retail and E.global["nameplates"]["filters"]["ElvUI_Boss"] then  --in classic for some reason bosses are not affected by ElvUI_Target/EltreumTarget
 			E.global["nameplates"]["filters"]['ElvUI_Boss'] = {}
@@ -218,6 +216,9 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["normal"] = true
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["trivial"] = true
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["priority"] = 2
+
+		fixingold = true
+		E.private.ElvUI_EltreumUI.install_version = "3.2.4"
 	end
 
 	--more long term checks, in case somehow people enable 2 settings when its not possible to do so. Maybe its a shared profile from another person? No idea how they manage to do this
@@ -230,7 +231,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 	end
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable == true and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable == true then --convert the option
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
-		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = true
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = true
 	end
 	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture == true and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.playerclass == true then
 		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = false
@@ -269,5 +270,15 @@ function ElvUI_EltreumUI:OldVersionCheck()
 	if E.db.ElvUI_EltreumUI.quests.questitemsbar1 == true and E.db.ElvUI_EltreumUI.quests.questitemsfade == true then
 		E.db.ElvUI_EltreumUI.quests.questitemsfade = false
 		E.db.ElvUI_EltreumUI.quests.questitemsbar1 = true
+	end
+end
+
+function ElvUI_EltreumUI:NewVersionCheck()
+	if not E.private.ElvUI_EltreumUI.install_version then
+		return
+	elseif E.private.ElvUI_EltreumUI.install_version >= "2.4.0" and E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version and fixingold == false then
+		E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
+		local version = (string.format("|cff82B4ff"..ElvUI_EltreumUI.Version.."|r"))
+		ElvUI_EltreumUI:Print("Welcome to version "..version..". If you have any issues please join the |TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinydisc.tga:0:0:0:0|t Discord for help")
 	end
 end
