@@ -9148,6 +9148,12 @@ function ElvUI_EltreumUI:Configtable()
 						order = 4,
 						disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.darkmode and not E.db.ElvUI_EltreumUI.unitframes.lightmode end,
 						args = {
+							header1 = {
+								order = 1,
+								type = "description",
+								name = "|cffFF0000WARNING:|r"..L[" This can be a very demanding feature, it's not recommended to use models for performance."],
+								width = 'full',
+							},
 							header2 = {
 								order = 3,
 								type = "description",
