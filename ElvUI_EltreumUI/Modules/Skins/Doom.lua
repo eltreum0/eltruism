@@ -22,6 +22,9 @@ function ElvUI_EltreumUI:PreviewDoom()
 	local scale = E.db.ElvUI_EltreumUI.skins.doom.iconSize+(E.db.ElvUI_EltreumUI.skins.doom.iconSize*((E.db.ElvUI_EltreumUI.skins.doom.animScale-1) ))
 	DCP:SetWidth(scale)
 	DCP:SetHeight(scale)
+	if not DCP.shadow then
+		DCP:CreateShadow()
+	end
 
 	if not DCP:IsVisible() then
 		DCP:Show()
@@ -36,6 +39,10 @@ end
 --Fork of Doom's Cooldown Pulse
 function ElvUI_EltreumUI:Doom() --todo, setup options
 	if E.db.ElvUI_EltreumUI.skins.doom.enable then
+
+		if not DCP.shadow then
+			DCP:CreateShadow()
+		end
 
 		ignoredSpells = { }  --todo: confirm ignore list is working once options are worked in
 		local list = {strsplit("," ,E.private.ElvUI_EltreumUI.doomignored)}
