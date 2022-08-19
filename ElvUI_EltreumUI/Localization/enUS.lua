@@ -1054,4 +1054,6 @@ L["This allows you to zoom out further with the camera to increase the field of 
 L["Replace role icons with Eltruism role icons"] = true
 L["Model Alpha"] = true
 L["Desaturate"] = true
+L["Custom Class Colors"] = true
+L["Unitframe Colors"] = true
 
