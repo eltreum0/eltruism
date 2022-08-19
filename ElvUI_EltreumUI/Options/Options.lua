@@ -8077,7 +8077,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Expand Character Art"],
 								width = 'full',
 								desc = L["Enable this option"],
-								hidden = function() if E.Retail then return false else return true end end,
+								--hidden = function() if E.Retail then return false else return true end end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybg = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -8133,13 +8133,7 @@ function ElvUI_EltreumUI:Configtable()
 								max = 1,
 								step = 0.01,
 								--width = "double",
-								disabled = function()
-									if (E.Retail and not E.db.ElvUI_EltreumUI.skins.expandarmorybg) then
-										return true
-									elseif (not E.Retail and not E.db.ElvUI_EltreumUI.skins.classicarmory) then
-										return true
-									end
-								end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha = value _G["EltruismCharacterBG"]:SetAlpha(value) end,
 							},
@@ -8166,13 +8160,7 @@ function ElvUI_EltreumUI:Configtable()
 									"CUSTOM"
 					            },
 								style = 'radio',
-								disabled = function()
-									if (E.Retail and not E.db.ElvUI_EltreumUI.skins.expandarmorybg) then
-										return true
-									elseif (not E.Retail and not E.db.ElvUI_EltreumUI.skins.classicarmory) then
-										return true
-									end
-								end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.armorybgtype end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armorybgtype = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
 							},
@@ -8192,13 +8180,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Add a Vignette over the Character Art"],
 								width = 'full',
 								desc = L["Enable this option"],
-								disabled = function()
-									if (E.Retail and not E.db.ElvUI_EltreumUI.skins.expandarmorybg) then
-										return true
-									elseif (not E.Retail and not E.db.ElvUI_EltreumUI.skins.classicarmory) then
-										return true
-									end
-								end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.armoryvignette end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryvignette = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
 							},
@@ -8211,13 +8193,7 @@ function ElvUI_EltreumUI:Configtable()
 								max = 1,
 								step = 0.01,
 								--width = "double",
-								disabled = function()
-									if E.Retail and (not E.db.ElvUI_EltreumUI.skins.expandarmorybg or not E.db.ElvUI_EltreumUI.skins.armoryvignette) then
-										return true
-									elseif not E.Retail and (not E.db.ElvUI_EltreumUI.skins.classicarmory or not E.db.ElvUI_EltreumUI.skins.armoryvignette) then
-										return true
-									end
-								end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg or not E.db.ElvUI_EltreumUI.skins.armoryvignette end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.armoryvignettealpha end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryvignettealpha = value _G["EltruismCharacterBGVignette"]:SetAlpha(value) end,
 							},
