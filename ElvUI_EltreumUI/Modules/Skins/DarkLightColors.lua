@@ -113,7 +113,7 @@ function ElvUI_EltreumUI:LightMode()
 		E.db["unitframe"]["units"]["boss"]["colorOverride"] = "USE_DEFAULT"
 		E.db["unitframe"]["colors"]["transparentAurabars"] = true
 		E.db["unitframe"]["colors"]["transparentCastbar"] = true
-		--E.db["unitframe"]["colors"]["transparentHealth"] = false
+		E.db["unitframe"]["colors"]["transparentHealth"] = true
 		E.db["unitframe"]["colors"]["transparentPower"] = false
 		E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.6
 		E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.6
@@ -241,7 +241,7 @@ function ElvUI_EltreumUI:GradientMode()
 			E.db["unitframe"]["colors"]["colorhealthbyvalue"] = false
 			E.db["unitframe"]["colors"]["classbackdrop"] = false
 			E.db["unitframe"]["colors"]["healthclass"] = false
-			E.db["unitframe"]["colors"]["customhealthbackdrop"] = true
+			E.db["unitframe"]["colors"]["customhealthbackdrop"] = false
 			E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0
 			E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0
 			E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0
