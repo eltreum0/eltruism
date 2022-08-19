@@ -40,7 +40,27 @@ if E.Retail then
 		--4234796 smoky stormwind
 		--937003 fire
 	}
-elseif E.Wrath or E.TBC then
+elseif E.Wrath then
+	classModels = {
+		["MAGE"] = "environments/stars/nexusraid_runeeffects_starry.m2",
+		["PALADIN"] = "environments/stars/netherstormskybox.m2",
+		["HUNTER"] = "environments/stars/hellfireskybox.m2",
+		["SHAMAN"] = "environments/stars/icecrownsky.m2",
+		["PRIEST"] = "spells/christmassnowrain.m2",
+		["DEATHKNIGHT"] = "environments/stars/bladesedgeskybox.m2", --"spells/frostbreath.m2",
+		["WARRIOR"] = "spells/flamebreath.m2", --spells/disarm_impact_chest.m2
+		["ROGUE"] = "environments/stars/shadowmoonillidan.m2",
+		["WARLOCK"] = "environments/stars/netherstormskybox.m2",
+		["DRUID"] = "spells/cyclonefire_state.m2",
+		["NPCNEUTRAL"] =  "spells/acidliquidbreath.m2",
+		["NPCFRIENDLY"] = "environments/stars/portalworldlegionsky.m2",
+		["NPCUNFRIENDLY"] = "spells/flamebreath.m2", --spells/darkritual_precast_base.m2",
+		["NPCHOSTILE"] = "spells/deathanddecay_area_base.m2",
+		--["DEMONHUNTER"] = "environments/stars/nexusraid_nebulasky.m2",
+		--["PALADIN"] = "spells/arcanebreath.m2",
+		--["NPCFRIENDLY"] = "spells/spells/cycloneearth_state.m2",
+	}
+elseif E.TBC then
 	classModels = {
 		["PRIEST"] = "spells/christmassnowrain.m2",
 		["DEATHKNIGHT"] = "environments/stars/bladesedgeskybox.m2", --"spells/frostbreath.m2",
