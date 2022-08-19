@@ -18,6 +18,7 @@ DCPT:SetAllPoints(DCP)
 
 function ElvUI_EltreumUI:PreviewDoom()
 	DCPT:SetTexture("Interface\\Icons\\Spell_Nature_Earthbind")
+	DCPT:SetTexCoord(0.08,0.92,0.08,0.92)
 	local scale = E.db.ElvUI_EltreumUI.skins.doom.iconSize+(E.db.ElvUI_EltreumUI.skins.doom.iconSize*((E.db.ElvUI_EltreumUI.skins.doom.animScale-1) ))
 	DCP:SetWidth(scale)
 	DCP:SetHeight(scale)
@@ -190,6 +191,7 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 							DCP.TextFrame:SetText(animating[1][3])
 						end
 						DCPT:SetTexture(animating[1][1])
+						DCPT:SetTexCoord(0.08,0.92,0.08,0.92)
 						if animating[1][2] then
 							DCPT:SetVertexColor(unpack(petOverlay))
 						end
