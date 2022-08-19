@@ -225,7 +225,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 	if E.db.ElvUI_EltreumUI.modetexture == true then
 		E.db.ElvUI_EltreumUI.unitframes.darkpowercolor = true
 	end
-	if E.db.ElvUI_EltreumUI.unitframes.lightmode == true and E.db.ElvUI_EltreumUI.unitframes.darkmode == true then --convert the option
+	if E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.darkmode then --convert the option
 		E.db.ElvUI_EltreumUI.unitframes.lightmode = false
 		E.db.ElvUI_EltreumUI.unitframes.darkmode = true
 	end

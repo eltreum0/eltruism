@@ -5,7 +5,8 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 	if E.private.ElvUI_EltreumUI.install_version ~= nil then
 		E.PopupDialogs["ELTRUISMDBCONVERT"] = {
 			text = L["Eltruism database was converted.\n|cff82B4ffThe Following profiles were updated:|r\n%s\n\n|cff82B4ffPrivate settings were updated for the following private profiles:|r\n%s\n\n|cff82B4ffIf you have any issues please report in Discord or open a ticket|r\n|cffff0000A Reload is necessary to save this conversion|r"],
-			button1 = OKAY,
+			OnAccept = ReloadUI,
+			button1 = ACCEPT,
 			timeout = 0,
 			whileDead = 1,
 			hideOnEscape = false,
@@ -614,15 +615,6 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 							E.db.ElvUI_EltreumUI.unitframes.UForientation = data.ElvUI_EltreumUI.UForientation
 							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.UForientation, data.ElvUI_EltreumUI.UForientation)
 						end
-						if data.ElvUI_EltreumUI.lightmode == nil or data.ElvUI_EltreumUI.lightmode == true then
-							data.ElvUI_EltreumUI.lightmode = true
-							E.db.ElvUI_EltreumUI.unitframes.lightmode = true
-							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.lightmode, data.ElvUI_EltreumUI.lightmode)
-						elseif data.ElvUI_EltreumUI.lightmode == false then
-							data.ElvUI_EltreumUI.lightmode = false
-							E.db.ElvUI_EltreumUI.unitframes.lightmode = false
-							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.lightmode, data.ElvUI_EltreumUI.lightmode)
-						end
 						if data.ElvUI_EltreumUI.uftextureversion == nil or data.ElvUI_EltreumUI.uftextureversion == "V1" then
 							data.ElvUI_EltreumUI.uftextureversion = "V1"
 							E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "V1"
@@ -631,13 +623,27 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 							E.db.ElvUI_EltreumUI.unitframes.uftextureversion = data.ElvUI_EltreumUI.uftextureversion
 							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.uftextureversion, data.ElvUI_EltreumUI.uftextureversion)
 						end
-						if data.ElvUI_EltreumUI.darkmode == nil or data.ElvUI_EltreumUI.darkmode == true then
+						if data.ElvUI_EltreumUI.darkmode and data.ElvUI_EltreumUI.lightmode then
+							data.ElvUI_EltreumUI.lightmode = false
+							E.db.ElvUI_EltreumUI.unitframes.lightmode = false
+							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.lightmode, data.ElvUI_EltreumUI.lightmode)
+
 							data.ElvUI_EltreumUI.darkmode = true
 							E.db.ElvUI_EltreumUI.unitframes.darkmode = true
 							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.darkmode, data.ElvUI_EltreumUI.darkmode)
-						elseif data.ElvUI_EltreumUI.darkmode == false then
+						elseif data.ElvUI_EltreumUI.lightmode == true and data.ElvUI_EltreumUI.darkmode == false then
+							data.ElvUI_EltreumUI.lightmode = true
+							E.db.ElvUI_EltreumUI.unitframes.lightmode = true
+							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.lightmode, data.ElvUI_EltreumUI.lightmode)
 							data.ElvUI_EltreumUI.darkmode = false
 							E.db.ElvUI_EltreumUI.unitframes.darkmode = false
+							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.darkmode, data.ElvUI_EltreumUI.darkmode)
+						elseif data.ElvUI_EltreumUI.darkmode == true and data.ElvUI_EltreumUI.lightmode == false then
+							data.ElvUI_EltreumUI.lightmode = false
+							E.db.ElvUI_EltreumUI.unitframes.lightmode = false
+							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.lightmode, data.ElvUI_EltreumUI.lightmode)
+							data.ElvUI_EltreumUI.darkmode = true
+							E.db.ElvUI_EltreumUI.unitframes.darkmode = true
 							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.darkmode, data.ElvUI_EltreumUI.darkmode)
 						end
 						if data.ElvUI_EltreumUI.darkpowercolor == nil or data.ElvUI_EltreumUI.darkpowercolor == true then
