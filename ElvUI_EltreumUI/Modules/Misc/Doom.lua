@@ -1,5 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local fadeInTime, fadeOutTime, maxAlpha, animScale, iconSize, holdTime, showSpellName, ignoredSpells, invertIgnored, x, y
+local ignoredSpells, invertIgnored
 local cooldowns, animating, watching = { }, { }, { }
 local petOverlay = {1,1,1}
 local GetTime = GetTime
@@ -7,15 +7,6 @@ local GetTime = GetTime
 --Fork of Doom's Cooldown Pulse
 function ElvUI_EltreumUI:Doom() --todo, setup options
 	if E.db.ElvUI_EltreumUI.skins.doom.enable then
-		fadeInTime = 0.3
-		fadeOutTime = 0.7
-		maxAlpha = 0.7
-		animScale = 1.5
-		iconSize = 75
-		holdTime = 0
-		showSpellName = false
-		x = 0
-		y = 250
 
 		ignoredSpells = { }  --todo: confirm ignore list is working once options are worked in
 		local list = {strsplit("," ,E.private.ElvUI_EltreumUI.ignoredSpells)}
@@ -24,16 +15,10 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 		end
 
 		invertIgnored = false
-		x = UIParent:GetWidth()*UIParent:GetEffectiveScale()/2
-		y = UIParent:GetHeight()*UIParent:GetEffectiveScale()/2
 
-		local defaultSettingsPerCharacter = {
-			ignoredSpells = "",
-			invertIgnored = false
-		}
 
 		---create frames
-		local DCP = CreateFrame("frame")
+		local DCP = CreateFrame("FRAME","EltruismDoomCDPulse")
 		DCP:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 		DCP.TextFrame = DCP:CreateFontString(nil, "ARTWORK")
 		DCP.TextFrame:SetFont(STANDARD_TEXT_FONT, 14, "OUTLINE")
@@ -42,7 +27,7 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 		DCP.TextFrame:SetWidth(185)
 		DCP.TextFrame:SetJustifyH("CENTER")
 		DCP.TextFrame:SetTextColor(1,1,1)
-		DCP:SetPoint("CENTER",UIParent,"BOTTOMLEFT", x, y)
+		DCP:SetPoint("CENTER",UIParent,"CENTER", 0, 250)
 		local DCPT = DCP:CreateTexture(nil,"BACKGROUND")
 		DCPT:SetAllPoints(DCP)
 
@@ -168,7 +153,7 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 
 			if (#animating > 0) then
 				runtimer = runtimer + update
-				if (runtimer > (fadeInTime + holdTime + fadeOutTime)) then
+				if (runtimer > (E.db.ElvUI_EltreumUI.skins.doom.fadeInTime + E.db.ElvUI_EltreumUI.skins.doom.holdTime + E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime)) then
 					tremove(animating,1)
 					runtimer = 0
 					DCP.TextFrame:SetText(nil)
@@ -176,7 +161,7 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 					DCPT:SetVertexColor(1,1,1)
 				else
 					if (not DCPT:GetTexture()) then
-						if (animating[1][3] ~= nil and showSpellName) then
+						if (animating[1][3] ~= nil and E.db.ElvUI_EltreumUI.skins.doom.showSpellName) then
 							DCP.TextFrame:SetText(animating[1][3])
 						end
 						DCPT:SetTexture(animating[1][1])
@@ -184,14 +169,14 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 							DCPT:SetVertexColor(unpack(petOverlay))
 						end
 					end
-					local alpha = maxAlpha
-					if (runtimer < fadeInTime) then
-						alpha = maxAlpha * (runtimer / fadeInTime)
-					elseif (runtimer >= fadeInTime + holdTime) then
-						alpha = maxAlpha - ( maxAlpha * ((runtimer - holdTime - fadeInTime) / fadeOutTime))
+					local alpha = E.db.ElvUI_EltreumUI.skins.doom.maxAlpha
+					if (runtimer < E.db.ElvUI_EltreumUI.skins.doom.fadeInTime) then
+						alpha = E.db.ElvUI_EltreumUI.skins.doom.maxAlpha * (runtimer / E.db.ElvUI_EltreumUI.skins.doom.fadeInTime)
+					elseif (runtimer >= E.db.ElvUI_EltreumUI.skins.doom.fadeInTime + E.db.ElvUI_EltreumUI.skins.doom.holdTime) then
+						alpha = E.db.ElvUI_EltreumUI.skins.doom.maxAlpha - ( E.db.ElvUI_EltreumUI.skins.doom.maxAlpha * ((runtimer - E.db.ElvUI_EltreumUI.skins.doom.holdTime - E.db.ElvUI_EltreumUI.skins.doom.fadeInTime) / E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime))
 					end
 					DCP:SetAlpha(alpha)
-					local scale = iconSize+(iconSize*((animScale-1)*(runtimer/(fadeInTime+holdTime+fadeOutTime))))
+					local scale = E.db.ElvUI_EltreumUI.skins.doom.iconSize+(E.db.ElvUI_EltreumUI.skins.doom.iconSize*((E.db.ElvUI_EltreumUI.skins.doom.animScale-1)*(runtimer/(E.db.ElvUI_EltreumUI.skins.doom.fadeInTime+E.db.ElvUI_EltreumUI.skins.doom.holdTime+E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime))))
 					DCP:SetWidth(scale)
 					DCP:SetHeight(scale)
 				end
