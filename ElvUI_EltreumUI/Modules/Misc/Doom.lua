@@ -13,6 +13,10 @@ function ElvUI_EltreumUI:Doom()
 	iconSize = 75
 	holdTime = 0
 	showSpellName = false
+	x = 0
+	y = 250
+
+
 
 	ignoredSpells = { }
 	local list = {strsplit("," ,E.private.ElvUI_EltreumUI.ignoredSpells)}
@@ -32,16 +36,6 @@ function ElvUI_EltreumUI:Doom()
 	---create frames
 	local DCP = CreateFrame("frame")
 	DCP:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
-	DCP:SetMovable(true)
-	DCP:RegisterForDrag("LeftButton")
-	DCP:SetScript("OnDragStart", function(self) self:StartMoving() end)
-	DCP:SetScript("OnDragStop", function(self)
-		self:StopMovingOrSizing()
-		x = self:GetLeft()+self:GetWidth()/2
-		y = self:GetBottom()+self:GetHeight()/2
-		self:ClearAllPoints()
-		self:SetPoint("CENTER",UIParent,"BOTTOMLEFT",x,y)
-	end)
 	DCP.TextFrame = DCP:CreateFontString(nil, "ARTWORK")
 	DCP.TextFrame:SetFont(STANDARD_TEXT_FONT, 14, "OUTLINE")
 	DCP.TextFrame:SetShadowOffset(2,-2)
