@@ -9339,9 +9339,9 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								get = function()
 									if E.Retail then
-										return E.db.ElvUI_EltreumUI.unitframes.models.custommodel
+										return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
 									else
-										return E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic
+										return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
 									end
 								end,
 								set = function(_, value)
@@ -9452,7 +9452,7 @@ function ElvUI_EltreumUI:Configtable()
 									if E.Retail then
 										return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodelcast)
 									else
-										return E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassiccast
+										return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassiccast)
 									end
 								end,
 								set = function(_, value)
