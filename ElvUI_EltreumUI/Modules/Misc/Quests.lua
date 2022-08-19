@@ -343,6 +343,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						[54334] = true, --darkmoon tp
 						[55382] = true, --darkmoon tp
 						[54346] = true, --darkmoon tp
+						[28160] = true, --free teleport guy for wrath
 					}
 					if ignoredNPCS[NPC_ID] then
 						if E.db.ElvUI_EltreumUI.dev then
