@@ -7,7 +7,6 @@
 	<Script file='Misc/AFK.lua'/>
 	<Script file='Misc/CombatEvents.lua'/>
 	<Script file='Misc/DynamicFunctions.lua'/>
-	<Script file='Misc/Doom.lua'/>
 	<Script file='Misc/EltruismDatatext.lua'/>
 	<Script file='Misc/InstantLoot.lua'/>
 	<Script file='Misc/Instances.lua'/>
@@ -24,6 +23,7 @@
 	<Script file='Skins/CharacterPanelIcons.lua'/>
 	<Script file='Skins/CharacterPanelSkin.lua'/>
 	<Script file='Skins/DarkLightColors.lua'/>
+	<Script file='Skins/Doom.lua'/>
 	<Script file='Skins/ExpandedStable.lua'/>
 	<Script file='Skins/ExpandedTalents.lua'/>
 	<Script file='Skins/ItemLevels.lua'/>
