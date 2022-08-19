@@ -1,23 +1,23 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local ignoredSpells, invertIgnored
+local ignoredSpells
 local cooldowns, animating, watching = { }, { }, { }
 local petOverlay = {1,1,1}
 local GetTime = GetTime
 local DCP = CreateFrame("FRAME","EltruismDoomCDPulse")
-DCP.TextFrame = DCP:CreateFontString(nil, "ARTWORK")
-
-DCP.TextFrame:SetShadowOffset(2,-2)
+DCP.TextFrame = DCP:CreateFontString("EltruismDoomCDPulseText", "ARTWORK")
+DCP.TextFrame:SetShadowOffset(1,-1)
 DCP.TextFrame:SetPoint("CENTER",DCP,"CENTER")
-DCP.TextFrame:SetWidth(185)
+DCP.TextFrame:SetWidth(300)
 DCP.TextFrame:SetJustifyH("CENTER")
 DCP.TextFrame:SetTextColor(1,1,1)
 DCP:SetPoint("CENTER",UIParent,"CENTER", 0, 250)
-local DCPT = DCP:CreateTexture(nil,"BACKGROUND")
+local DCPT = DCP:CreateTexture("EltruismDoomCDPulseTexture","BACKGROUND")
 DCPT:SetAllPoints(DCP)
 DCP:SetSize(80,80)
 DCP:SetAlpha(0)
 E:CreateMover(DCP, "EltruismDoomMover", L["EltruismDoom"], nil, nil, nil, 'ALL,SOLO,ELTREUMUI', nil, 'ElvUI_EltreumUI,cooldown')
 
+-- preview function
 function ElvUI_EltreumUI:PreviewDoom()
 	DCPT:SetTexture("Interface\\Icons\\Spell_Nature_Earthbind")
 	DCPT:SetTexCoord(0.08,0.92,0.08,0.92)
@@ -37,12 +37,11 @@ function ElvUI_EltreumUI:PreviewDoom()
 	end
 end
 
-
 --Fork of Doom's Cooldown Pulse
 function ElvUI_EltreumUI:Doom() --todo, setup options
 	if E.db.ElvUI_EltreumUI.skins.doom.enable then
 
-		DCP.TextFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), 14, E.db.general.fontStyle)
+		DCP.TextFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.doom.iconSize/5, E.db.general.fontStyle)
 
 		if not DCP.shadow then
 			DCP:CreateShadow()
@@ -54,15 +53,8 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 			ignoredSpells[v] = true
 		end
 
-		invertIgnored = false
-
-
 		---create frames
-
 		DCP:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
-
-
-
 
 		-----------------------
 		-- Utility Functions --
@@ -160,7 +152,7 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 						end
 
 						local cooldown = getCooldownDetails()
-						if ((ignoredSpells[cooldown.name] ~= nil) ~= invertIgnored) then
+						if ((ignoredSpells[cooldown.name] ~= nil)) then
 							watching[i] = nil
 						else
 							if (cooldown.enabled ~= 0) then
