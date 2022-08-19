@@ -88,7 +88,10 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 								E:CopyTable(E.db.ElvUI_EltreumUI.skins.instances, data.ElvUI_EltreumUI.instances)
 							end
 							if data.ElvUI_EltreumUI.shadows then
+								local temp = E.db.ElvUI_EltreumUI.skins.shadows
+								E.db.ElvUI_EltreumUI.skins.shadows = {}
 								E:CopyTable(E.db.ElvUI_EltreumUI.skins.shadows, data.ElvUI_EltreumUI.shadows)
+								E.db.ElvUI_EltreumUI.skins.shadows.enable =  temp
 							else
 								data.ElvUI_EltreumUI.shadows = {
 									enable = false,
@@ -102,6 +105,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 									nppower = false,
 									npcastbar = false,
 								}
+								E.db.ElvUI_EltreumUI.skins.shadows = {}
 								E:CopyTable(E.db.ElvUI_EltreumUI.skins.shadows, data.ElvUI_EltreumUI.shadows)
 							end
 
