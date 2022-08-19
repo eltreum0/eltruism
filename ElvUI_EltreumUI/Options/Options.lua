@@ -6580,8 +6580,8 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Hide level on enemy nameplates when you are max level"],
 								desc = L["Toggle On and Off"],
 								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatelevel.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplatelevel.enable = value end,
+								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatelevel end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplatelevel = value end,
 							},
 							header5 = {
 								order = 1913,

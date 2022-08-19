@@ -327,9 +327,9 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 							E:CopyTable(E.db.ElvUI_EltreumUI.nameplates.nameplatelevel, data.ElvUI_EltreumUI.nameplatelevel)
 						end
 						if data.ElvUI_EltreumUI.nptextureversion == nil or data.ElvUI_EltreumUI.nptextureversion == "V1" then
-							data.ElvUI_EltreumUI.nameplates.nptextureversion = "V1"
+							data.ElvUI_EltreumUI.nptextureversion = "V1"
 							E.db.ElvUI_EltreumUI.nameplates.nptextureversion = "V1"
-							E:CopyTable(E.db.ElvUI_EltreumUI.nameplates.nptextureversion, data.ElvUI_EltreumUI.nameplates.nptextureversion)
+							E:CopyTable(E.db.ElvUI_EltreumUI.nameplates.nptextureversion, data.ElvUI_EltreumUI.nptextureversion)
 						elseif data.ElvUI_EltreumUI.nptextureversion ~= "V1" then
 							E.db.ElvUI_EltreumUI.nameplates.nptextureversion = data.ElvUI_EltreumUI.nptextureversion
 							E:CopyTable(E.db.ElvUI_EltreumUI.nameplates.nptextureversion, data.ElvUI_EltreumUI.nptextureversion)
