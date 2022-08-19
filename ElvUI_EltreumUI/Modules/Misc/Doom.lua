@@ -5,7 +5,7 @@ local petOverlay = {1,1,1}
 local GetTime = GetTime
 
 --Fork of Doom's Cooldown Pulse
-function ElvUI_EltreumUI:Doom()
+function ElvUI_EltreumUI:Doom() --todo, setup options
 	fadeInTime = 0.3
 	fadeOutTime = 0.7
 	maxAlpha = 0.7
@@ -15,8 +15,6 @@ function ElvUI_EltreumUI:Doom()
 	showSpellName = false
 	x = 0
 	y = 250
-
-
 
 	ignoredSpells = { }
 	local list = {strsplit("," ,E.private.ElvUI_EltreumUI.ignoredSpells)}
@@ -94,7 +92,7 @@ function ElvUI_EltreumUI:Doom()
 	--------------------------
 	local elapsed = 0
 	local runtimer = 0
-	local function OnUpdate(_,update)
+	local function OnUpdate(_,update) --todo: confirm this onupdate is good, afterall onupdate has a history of issues...
 		elapsed = elapsed + update
 		if (elapsed > 0.05) then
 			elapsed = 0
@@ -241,7 +239,7 @@ function ElvUI_EltreumUI:Doom()
 	end
 	DCP:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 
-	function DCP:PLAYER_ENTERING_WORLD()
+	function DCP:PLAYER_ENTERING_WORLD() --todo: investigate, why disable in arena? maybe make an option for it
 		local inInstance,instanceType = IsInInstance()
 		if (inInstance and instanceType == "arena") then
 			self:SetScript("OnUpdate", nil)
@@ -251,6 +249,8 @@ function ElvUI_EltreumUI:Doom()
 	end
 	DCP:RegisterEvent("PLAYER_ENTERING_WORLD")
 
+
+	--todo: test these hooks and if they are needed
 	hooksecurefunc("UseAction", function(slot)
 		local actionType,itemID = GetActionInfo(slot)
 		if (actionType == "item") then
