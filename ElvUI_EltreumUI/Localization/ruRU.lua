@@ -1046,3 +1046,4 @@ L["Health Bars"] = true
 L["Transparency in Light Mode"] = true
 L["Transparency in Dark Mode"] = true
 L["Desaturation"] = true
+L[" This can be a very demanding feature, it's not recommended to use models for performance."] = true
