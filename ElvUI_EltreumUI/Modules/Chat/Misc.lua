@@ -125,7 +125,7 @@ local EltruismHideTalkingHead = CreateFrame('Frame', "EltruismHideTalkingHeadFra
 EltruismHideTalkingHead:RegisterEvent('PLAYER_ENTERING_WORLD')
 EltruismHideTalkingHead:RegisterEvent('ADDON_LOADED')
 function ElvUI_EltreumUI:EltruismHideTalkingHead()
-	if E.db.ElvUI_EltreumUI.otherstuff.hidetalkinghead then
+	if E.db.ElvUI_EltreumUI.skins.hidetalkinghead then
 		EltruismHideTalkingHead:SetScript('OnEvent', function(_, event)
 			if event == 'PLAYER_ENTERING_WORLD' or event == 'ADDON_LOADED' then
 				if E.Retail then

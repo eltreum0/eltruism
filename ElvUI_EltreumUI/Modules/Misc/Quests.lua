@@ -26,7 +26,7 @@ local math = _G.math
 
 --Collapse Quests during boss fights
 function ElvUI_EltreumUI:QuestEncounter()
-	if E.db.ElvUI_EltreumUI.questsettings.enable then
+	if E.db.ElvUI_EltreumUI.quests.enable then
 		local _, instanceType = IsInInstance()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
 			if E.Retail then
@@ -44,7 +44,7 @@ function ElvUI_EltreumUI:QuestEncounter()
 end
 --expand after encounter is over
 function ElvUI_EltreumUI:QuestEncounterEnd()
-	if E.db.ElvUI_EltreumUI.questsettings.enable then
+	if E.db.ElvUI_EltreumUI.quests.enable then
 		local _, instanceType = IsInInstance()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
 			if E.Retail then
@@ -62,7 +62,7 @@ function ElvUI_EltreumUI:QuestEncounterEnd()
 end
 --hide quests in arena/bg matches
 function ElvUI_EltreumUI:ArenaQuest()
-	if E.db.ElvUI_EltreumUI.questsettings.arena then
+	if E.db.ElvUI_EltreumUI.quests.arena then
 		local _, instanceType = IsInInstance()
 		if instanceType == "arena" or instanceType == "pvp" then
 			if E.Retail then
@@ -91,7 +91,7 @@ function ElvUI_EltreumUI:ArenaQuest()
 end
 --Collapse/Hide Quests during combat with anything
 function ElvUI_EltreumUI:QuestCombat()
-	if E.db.ElvUI_EltreumUI.questsettings.combatenable then
+	if E.db.ElvUI_EltreumUI.quests.combatenable then
 		if E.Retail then
 			ObjectiveTracker_Collapse()
 		elseif E.TBC or E.Classic then
@@ -106,7 +106,7 @@ function ElvUI_EltreumUI:QuestCombat()
 end
 --expand after combat is over
 function ElvUI_EltreumUI:QuestCombatEnd()
-	if E.db.ElvUI_EltreumUI.questsettings.combatenable then
+	if E.db.ElvUI_EltreumUI.quests.combatenable then
 		if E.Retail then
 			ObjectiveTracker_Expand()
 		elseif E.TBC or E.Classic then
@@ -129,13 +129,13 @@ function ElvUI_EltreumUI:RogueAutoOpen()
 		return
 	elseif not E.private.ElvUI_EltreumUI then
 		return
-	elseif E.db.ElvUI_EltreumUI.questsettings == nil then
-		E.db.ElvUI_EltreumUI.questsettings = {
+	elseif E.db.ElvUI_EltreumUI.quests == nil then
+		E.db.ElvUI_EltreumUI.quests = {
 			enable = true,
 			rogueopen = true,
 		}
 	end
-	if E.db.ElvUI_EltreumUI.questsettings.rogueopen then
+	if E.db.ElvUI_EltreumUI.quests.rogueopen then
 		local guid = UnitGUID("npc")
 		--ElvUI_EltreumUI:Print('got guid from npc')
 		if not guid then
@@ -170,7 +170,7 @@ end
 --yet another quest auto accept thing
 local EltruismAutoComplete = CreateFrame("FRAME", "EltruismAutoCompleteFrame")
 function ElvUI_EltreumUI:AutoAcceptQuests()
-	if E.db.ElvUI_EltreumUI.questsettings.autoaccept then
+	if E.db.ElvUI_EltreumUI.quests.autoaccept then
 		EltruismAutoComplete:RegisterEvent("QUEST_GREETING")
 		EltruismAutoComplete:RegisterEvent("GOSSIP_SHOW")
 		EltruismAutoComplete:RegisterEvent("QUEST_DETAIL")
@@ -182,7 +182,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 				ElvUI_EltreumUI:Print(event)
 			end
 			local normal = (IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown())
-			if E.db.ElvUI_EltreumUI.questsettings.autoacceptinvert then
+			if E.db.ElvUI_EltreumUI.quests.autoacceptinvert then
 				if E.db.ElvUI_EltreumUI.dev then
 					ElvUI_EltreumUI:Print("inverted the mod keys")
 				end
@@ -248,7 +248,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								if E.db.ElvUI_EltreumUI.dev then
 									ElvUI_EltreumUI:Print("not an auto accept quest")
 								end
-								if not E.db.ElvUI_EltreumUI.questsettings.acceptdaily then
+								if not E.db.ElvUI_EltreumUI.quests.acceptdaily then
 									if QuestIsDaily() then
 										if E.db.ElvUI_EltreumUI.dev then
 											ElvUI_EltreumUI:Print("its a daily quest")
@@ -475,7 +475,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 									end
 									SelectGossipActiveQuest(i)
 									if E.Retail then
-										if not E.db.ElvUI_EltreumUI.questsettings.acceptdaily then
+										if not E.db.ElvUI_EltreumUI.quests.acceptdaily then
 											if QuestIsDaily() then
 												if E.db.ElvUI_EltreumUI.dev then
 													ElvUI_EltreumUI:Print("its a daily quest")

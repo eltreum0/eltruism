@@ -65,11 +65,11 @@ function ElvUI_EltreumUI:DarkMode()
 				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:IconOutline:player] [eltruism:raidmarker]"
 			end
 		end
-		E.db.ElvUI_EltreumUI.lightmode = false
-		E.db.ElvUI_EltreumUI.darkmode = true
-		E.db.ElvUI_EltreumUI.UFmodifications = true
-		--E.db.ElvUI_EltreumUI.gradientmode.enable = false
-		E.db.ElvUI_EltreumUI.uftextureversion = "V2"
+		E.db.ElvUI_EltreumUI.unitframes.lightmode = false
+		E.db.ElvUI_EltreumUI.unitframes.darkmode = true
+		E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
+		--E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = false
+		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "V2"
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
@@ -140,11 +140,11 @@ function ElvUI_EltreumUI:LightMode()
 			end
 		end
 
-		E.db.ElvUI_EltreumUI.lightmode = true
-		E.db.ElvUI_EltreumUI.darkmode = false
-		--E.db.ElvUI_EltreumUI.gradientmode.enable = false
-		E.db.ElvUI_EltreumUI.UFmodifications = true
-		E.db.ElvUI_EltreumUI.uftextureversion = "V2"
+		E.db.ElvUI_EltreumUI.unitframes.lightmode = true
+		E.db.ElvUI_EltreumUI.unitframes.darkmode = false
+		--E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = false
+		E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
+		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "V2"
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
@@ -153,11 +153,11 @@ function ElvUI_EltreumUI:LightMode()
 end
 
 function ElvUI_EltreumUI:ColorModes()
-	if E.db.ElvUI_EltreumUI.lightmode == false and E.db.ElvUI_EltreumUI.darkmode == false then
+	if E.db.ElvUI_EltreumUI.unitframes.lightmode == false and E.db.ElvUI_EltreumUI.unitframes.darkmode == false then
 		ElvUI_EltreumUI:LightMode()
-	elseif E.db.ElvUI_EltreumUI.lightmode == true and E.db.ElvUI_EltreumUI.darkmode == false then
+	elseif E.db.ElvUI_EltreumUI.unitframes.lightmode == true and E.db.ElvUI_EltreumUI.unitframes.darkmode == false then
 		ElvUI_EltreumUI:DarkMode()
-	elseif E.db.ElvUI_EltreumUI.darkmode == true and E.db.ElvUI_EltreumUI.lightmode == false then
+	elseif E.db.ElvUI_EltreumUI.unitframes.darkmode == true and E.db.ElvUI_EltreumUI.unitframes.lightmode == false then
 		ElvUI_EltreumUI:LightMode()
 	end
 	ElvUI_EltreumUI:GradientColorTableUpdate()
@@ -167,7 +167,7 @@ function ElvUI_EltreumUI:GradientMode()
 	if E.private.unitframe.enable then
 		if not E.db.movers then E.db.movers = {} end
 
-		if E.db.ElvUI_EltreumUI.darkmode then
+		if E.db.ElvUI_EltreumUI.unitframes.darkmode then
 			--setup colors
 			E.db["unitframe"]["colors"]["healPrediction"]["healAbsorbs"]["a"] = 0.25
 			E.db["unitframe"]["colors"]["healPrediction"]["overabsorbs"]["a"] = 0.25
@@ -223,7 +223,7 @@ function ElvUI_EltreumUI:GradientMode()
 					E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:class:player] [eltruism:raidmarker]"
 				end
 			end
-		elseif E.db.ElvUI_EltreumUI.lightmode then
+		elseif E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			--setup colors
 			E.db["unitframe"]["colors"]["healPrediction"]["absorbs"]["a"] = 0.5
 			E.db["unitframe"]["colors"]["healPrediction"]["healAbsorbs"]["a"] = 0.5
@@ -282,12 +282,12 @@ function ElvUI_EltreumUI:GradientMode()
 			end
 		end
 
-		E.db.ElvUI_EltreumUI.gradientmode.enable = true
-		E.db.ElvUI_EltreumUI.gradientmode.npenable = true
-		E.db.ElvUI_EltreumUI.ufcustomtexture.enable = false
-		E.db.ElvUI_EltreumUI.gradientmode.enableplayertarget = true
-		E.db.ElvUI_EltreumUI.gradientmode.enablegroupunits = true
-		E.db.ElvUI_EltreumUI.UFmodifications = true
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = true
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayertarget = true
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits = true
+		E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
@@ -297,13 +297,13 @@ end
 
 local NP = E:GetModule('NamePlates')
 hooksecurefunc(NP, 'Initialize', function()
-	if E.db.ElvUI_EltreumUI.darkpowercolor then
+	if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor then
 		NP.multiplier = 0
 	end
 end)
 if E.Retail or E.Wrath then
 	hooksecurefunc(NP, 'Construct_Runes', function()
-		if E.db.ElvUI_EltreumUI.darkpowercolor then
+		if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor then
 			NP.multiplier = 0
 		end
 	end)
@@ -311,7 +311,7 @@ end
 
 function ElvUI_EltreumUI:ShamanTextureMode()
 	if (E.Wrath or E.TBC or E.Classic) and E.myclass == 'SHAMAN' then
-		if E.db.ElvUI_EltreumUI.darkpowercolor and E.private.unitframe.enable then
+		if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor and E.private.unitframe.enable then
 			local UF = E:GetModule('UnitFrames') --only classpower that is actually in UF instead of NP
 			local function TotemBackground()
 				local header = _G["ElvUF_Player"]
@@ -341,7 +341,7 @@ function ElvUI_EltreumUI:GreyBg()
 	E.db["general"]["backdropfadecolor"]["g"] = 0.13725490196078
 	E.db["general"]["backdropfadecolor"]["r"] = 0.13725490196078
 
-	E.db.ElvUI_EltreumUI.greybackground = true
+	E.db.ElvUI_EltreumUI.unitframes.greybackground = true
 	E:UpdateMediaItems()
 	ElvUI_EltreumUI:Print("ElvUI set to Grey Background")
 end
@@ -356,15 +356,15 @@ function ElvUI_EltreumUI:BlackBg()
 	E.db["general"]["backdropfadecolor"]["g"] = 0
 	E.db["general"]["backdropfadecolor"]["r"] = 0
 
-	E.db.ElvUI_EltreumUI.greybackground = false
+	E.db.ElvUI_EltreumUI.unitframes.greybackground = false
 	E:UpdateMediaItems()
 	ElvUI_EltreumUI:Print("ElvUI set to Black Background")
 end
 
 function ElvUI_EltreumUI:CheckBackground()
-	if E.db.ElvUI_EltreumUI.greybackground == false then
+	if E.db.ElvUI_EltreumUI.unitframes.greybackground == false then
 		ElvUI_EltreumUI:GreyBg()
-	elseif E.db.ElvUI_EltreumUI.greybackground == true then
+	elseif E.db.ElvUI_EltreumUI.unitframes.greybackground == true then
 		ElvUI_EltreumUI:BlackBg()
 	else
 		ElvUI_EltreumUI:GreyBg()

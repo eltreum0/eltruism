@@ -99,7 +99,7 @@ local blocklist = {
 
 function ElvUI_EltreumUI:QuestItem()
 	_, instanceType = IsInInstance()
-	if E.db.ElvUI_EltreumUI.questsettings.questitems then
+	if E.db.ElvUI_EltreumUI.quests.questitems then
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
 			EltruismQuestItemFrame:Hide()
 		else
@@ -113,9 +113,9 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Config
 			local cfg = {
-				btnSize = E.db.ElvUI_EltreumUI.questsettings.questitemsize,
+				btnSize = E.db.ElvUI_EltreumUI.quests.questitemsize,
 			}
-			if E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 and E.private.actionbar.enable then
+			if E.db.ElvUI_EltreumUI.quests.questitemsbar1 and E.private.actionbar.enable then
 				if not InCombatLockdown() then
 					EltruismQuestItemFrame:SetParent(_G["ElvUI_Bar1Button1"])
 				end
@@ -220,12 +220,12 @@ function ElvUI_EltreumUI:QuestItem()
 					else
 						GameTooltip:SetInventoryItem("player",slot)
 					end
-					if E.db.ElvUI_EltreumUI.questsettings.questitemsfade then
+					if E.db.ElvUI_EltreumUI.quests.questitemsfade then
 						b:SetAlpha(1)
 					end
 				end)
 				b:SetScript("OnLeave", function(self)
-					if E.db.ElvUI_EltreumUI.questsettings.questitemsfade then
+					if E.db.ElvUI_EltreumUI.quests.questitemsfade then
 						b:SetAlpha(0)
 					end
 					GameTooltip:Hide()

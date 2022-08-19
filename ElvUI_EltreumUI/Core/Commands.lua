@@ -19,7 +19,7 @@ local UseContainerItem = _G.UseContainerItem
 function ElvUI_EltreumUI:LoadCommands()
 	self:RegisterChatCommand('eltruism', 'RunCommands')
 	if E.Retail then
-		if E.db.ElvUI_EltreumUI.waytext.enable then
+		if E.db.ElvUI_EltreumUI.waypoints.waytext.enable then
 			if not IsAddOnLoaded("TomTom") then
 				self:RegisterChatCommand('way', 'WaypointTexttoCoordinate')
 				self:RegisterChatCommand('waypoint', 'WaypointTexttoCoordinate')
@@ -40,7 +40,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 	if message == '' or message == 'install' or message == 'setup' then
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 	elseif message == 'loot' then
-		if E.db.ElvUI_EltreumUI.loottext.enable then
+		if E.db.ElvUI_EltreumUI.loot.loottext.enable then
 			local aImage = GetCoinIcon(9999999999)
 			local aSilver = GetCoinIcon(100)
 			local aCopper = GetCoinIcon(1)
@@ -75,30 +75,30 @@ function ElvUI_EltreumUI:RunCommands(message)
 			ElvUI_EltreumUI:TransparentChat()
 		end
 	elseif message == 'color' then
-		if E.db.ElvUI_EltreumUI.lightmode == true then
+		if E.db.ElvUI_EltreumUI.unitframes.lightmode == true then
 			ElvUI_EltreumUI:DarkMode() E:StaticPopup_Show('CONFIG_RL')
-		elseif E.db.ElvUI_EltreumUI.lightmode == false then
+		elseif E.db.ElvUI_EltreumUI.unitframes.lightmode == false then
 			ElvUI_EltreumUI:LightMode() E:StaticPopup_Show('CONFIG_RL')
 		else
 			ElvUI_EltreumUI:DarkMode() E:StaticPopup_Show('CONFIG_RL')
 		end
 	elseif message == 'gradient' then
-		if E.db.ElvUI_EltreumUI.gradientmode.enable == false then
-			E.db.ElvUI_EltreumUI.gradientmode.npenable = true
-			E.db.ElvUI_EltreumUI.gradientmode.enable = true
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable == false then
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = true
 			ElvUI_EltreumUI:GradientMode()
 			E:StaticPopup_Show('CONFIG_RL')
 			ElvUI_EltreumUI:Print("Gradient Enabled, please reload")
-		elseif E.db.ElvUI_EltreumUI.gradientmode.enable == true then
-			E.db.ElvUI_EltreumUI.gradientmode.npenable = false
-			E.db.ElvUI_EltreumUI.gradientmode.enable = false
+		elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable == true then
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = false
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = false
 			E:StaticPopup_Show('CONFIG_RL')
 			ElvUI_EltreumUI:Print("Gradient Disabled, please reload")
 		end
 	elseif message == 'background' then
-		if E.db.ElvUI_EltreumUI.greybackground == true then
+		if E.db.ElvUI_EltreumUI.unitframes.greybackground == true then
 			ElvUI_EltreumUI:BlackBg()
-		elseif E.db.ElvUI_EltreumUI.greybackground == false then
+		elseif E.db.ElvUI_EltreumUI.unitframes.greybackground == false then
 			ElvUI_EltreumUI:GreyBg()
 		else
 			ElvUI_EltreumUI:GreyBg()

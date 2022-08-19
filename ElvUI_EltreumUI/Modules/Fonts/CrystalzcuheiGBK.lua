@@ -747,7 +747,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 		E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "AR CrystalzcuheiGBK Demibold"
 
 	--fix for dark/light mode
-	if E.db.ElvUI_EltreumUI.lightmode == false then
+	if E.db.ElvUI_EltreumUI.unitframes.lightmode == false then
 		if E.Classic or E.Wrath or E.TBC then
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
 		elseif E.Retail then
@@ -760,7 +760,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 		if E.Retail or E.Wrath or E.TBC then
 			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:class:player] [eltruism:raidmarker]"
 		end
-	elseif E.db.ElvUI_EltreumUI.lightmode == true then
+	elseif E.db.ElvUI_EltreumUI.unitframes.lightmode == true then
 		if E.Classic or E.Wrath or E.TBC then
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
 		elseif E.Retail then

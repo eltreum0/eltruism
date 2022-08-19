@@ -96,14 +96,14 @@ local musicSetting = C_CVar.GetCVar('Sound_EnableMusic')
 local classicmusicstopper = nil
 local willplay = nil
 function ElvUI_EltreumUI:AFKmusic()
-	if E.db.ElvUI_EltreumUI.afkmusic.enable then
+	if E.db.ElvUI_EltreumUI.otherstuff.afkmusic.enable then
 		if UnitIsAFK("player") then
 			musicSetting = C_CVar.GetCVar('Sound_EnableMusic')
 			SetCVar("Sound_EnableMusic", 1)
 			if E.Retail then
-				if E.db.ElvUI_EltreumUI.afkmusic.racial then
+				if E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial then
 					PlayMusic(racialMusic[E.myrace])
-				elseif E.db.ElvUI_EltreumUI.afkmusic.playerclass then
+				elseif E.db.ElvUI_EltreumUI.otherstuff.afkmusic.playerclass then
 					PlayMusic(classMusic[E.myclass])
 				end
 			elseif E.Classic then

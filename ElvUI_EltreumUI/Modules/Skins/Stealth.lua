@@ -21,7 +21,7 @@ StealthOptionsFrame:Hide()
 
 -- Setup the Stealth Overlay Options
 function ElvUI_EltreumUI:StealthOptions()
-	if E.db.ElvUI_EltreumUI.stealthOptions.stealtheffect then
+	if E.db.ElvUI_EltreumUI.skins.stealtheffect then
 		StealthOptionsFrame:SetScript("OnEvent", function(__, event)
 			if (event == "PLAYER_ENTERING_WORLD") then
 				if IsStealthed() then

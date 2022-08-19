@@ -80,13 +80,13 @@ end
 ---add effects to player/target UF
 function ElvUI_EltreumUI:UFEffects()
 	if E.private.unitframe.enable then
-		if E.db.ElvUI_EltreumUI.models.unitframe then
+		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
 			playerbar = _G["ElvUF_Player"]
 			targetbar = _G["ElvUF_Target"]
 			reaction = UnitReaction("target", "player")
 			_, targetclass = UnitClass("target")
 
-			if E.db.ElvUI_EltreumUI.models.modeltype == "CLASS" then
+			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
 				playereffect:ClearModel()
 				playereffect:SetModel(classModels[E.myclass])
 
@@ -107,51 +107,51 @@ function ElvUI_EltreumUI:UFEffects()
 						end
 					end
 				end
-			elseif E.db.ElvUI_EltreumUI.models.modeltype == "CUSTOM" then
+			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
 				playereffect:ClearModel()
 				if E.Retail then
-					playereffect:SetModel(E.db.ElvUI_EltreumUI.models.custommodel)
+					playereffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
 				else
-					playereffect:SetModel(E.db.ElvUI_EltreumUI.models.custommodelclassic)
+					playereffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
 				end
 				targeteffect:ClearModel()
 				if E.Retail then
-					targeteffect:SetModel(E.db.ElvUI_EltreumUI.models.custommodel)
+					targeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
 				else
-					targeteffect:SetModel(E.db.ElvUI_EltreumUI.models.custommodelclassic)
+					targeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
 				end
 			end
 
 			if playerbar then
-				playereffect:SetDesaturation(E.db.ElvUI_EltreumUI.models.ufdesaturation)
+				playereffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
 				playereffect:SetParent(playerbar.Health)
-				if E.db.ElvUI_EltreumUI.lightmode then
+				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 					playereffect:SetAllPoints(playerbar.Health:GetStatusBarTexture())
 					playereffect:SetInside(playerbar.Health:GetStatusBarTexture(), 0, 0)
-				--elseif E.db.ElvUI_EltreumUI.darkmode then
+				--elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
 				else
 					playereffect:SetAllPoints(playerbar.Health)
 					playereffect:SetInside(playerbar.Health, 0, 0)
 				end
-				playereffect:SetAlpha(E.db.ElvUI_EltreumUI.models.ufalpha)
+				playereffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
 				playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel()-1)
 				--playereffect:SetFrameLevel(playerbar.Portrait3D:GetFrameLevel())
 			end
 
 			if targetbar then
-				targeteffect:SetDesaturation(E.db.ElvUI_EltreumUI.models.ufdesaturation)
+				targeteffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
 				targeteffect:SetParent(targetbar.Health)
-				if E.db.ElvUI_EltreumUI.lightmode then
+				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 					targeteffect:ClearAllPoints()
 					targeteffect:SetAllPoints(targetbar.Health:GetStatusBarTexture())
 					targeteffect:SetInside(targetbar.Health:GetStatusBarTexture(), 0, 0)
-				--elseif E.db.ElvUI_EltreumUI.darkmode then
+				--elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
 				else
 					targeteffect:ClearAllPoints()
 					targeteffect:SetAllPoints(targetbar.Health)
 					targeteffect:SetInside(targetbar.Health, 0, 0)
 				end
-				targeteffect:SetAlpha(E.db.ElvUI_EltreumUI.models.ufalpha)
+				targeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
 				targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel()-1)
 				--targeteffect:AddMaskTexture(targetbar.Health:GetStatusBarTexture())
 			end
@@ -170,11 +170,11 @@ local targetcastbar
 --add effect to castbar
 function ElvUI_EltreumUI:CastbarEffects()
 	if E.private.unitframe.enable then
-		if E.db.ElvUI_EltreumUI.models.castbar then
+		if E.db.ElvUI_EltreumUI.unitframes.models.castbar then
 			castbar = _G["ElvUF_Player_CastBar"]
 			targetcastbar = _G["ElvUF_Target_CastBar"]
 
-			if E.db.ElvUI_EltreumUI.models.modeltypecast == "DEFAULT" then
+			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypecast == "DEFAULT" then
 				if E.Retail then
 					castbareffectplayer:SetModel(165821)
 					castbareffecttarget:SetModel(165821)
@@ -186,13 +186,13 @@ function ElvUI_EltreumUI:CastbarEffects()
 				castbareffectplayer:SetFacing(rad(180))
 				castbareffecttarget:SetPosition(0, -0.85, 1.65)
 				castbareffecttarget:SetFacing(rad(180))
-			elseif E.db.ElvUI_EltreumUI.models.modeltypecast == "CUSTOM" then
+			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypecast == "CUSTOM" then
 				if E.Retail then
-					castbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.models.custommodelcast)
-					castbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.models.custommodelcast)
+					castbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelcast)
+					castbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelcast)
 				else
-					castbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.models.custommodelclassiccast)
-					castbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.models.custommodelclassiccast)
+					castbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassiccast)
+					castbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassiccast)
 				end
 			end
 

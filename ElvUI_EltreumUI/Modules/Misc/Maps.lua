@@ -37,8 +37,8 @@ SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E
 local ONUPDATE_INTERVAL = 1
 local TimeSinceLastUpdate = 0
 function ElvUI_EltreumUI:WaypointTimeToArrive()
-	if E.db.ElvUI_EltreumUI.waypointetasetting.enable then
-		if E.db.ElvUI_EltreumUI.waypointetasetting.autopin then
+	if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable then
+		if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin then
 			EltruismAutopin:RegisterEvent("USER_WAYPOINT_UPDATED")
 			EltruismAutopin:RegisterEvent("PLAYER_ENTERING_WORLD")
 			--EltruismAutopin:SetScript("OnEvent", function(self, event, ...)
@@ -55,9 +55,9 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 		end
 
 		SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
-		SuperTrackedFrame.DistanceText:SetTextColor(E.db.ElvUI_EltreumUI.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypointetasetting.textcolorB)
+		SuperTrackedFrame.DistanceText:SetTextColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB)
 		EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
-		EltruismTimeToArrive.TimeText:SetTextColor(E.db.ElvUI_EltreumUI.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypointetasetting.textcolorB)
+		EltruismTimeToArrive.TimeText:SetTextColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB)
 
 		EltruismTimeToArriveParent:RegisterEvent("USER_WAYPOINT_UPDATED")
 		EltruismTimeToArriveParent:RegisterEvent("WAYPOINT_UPDATE")
@@ -78,10 +78,10 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 							function SuperTrackedFrame:GetTargetAlphaBaseValue()
 								local d = C_Navigation.GetDistance()
 								if (d >= 40 ) then
-									if E.db.ElvUI_EltreumUI.waypointetasetting.limitmaxdistance then
-										if d <= E.db.ElvUI_EltreumUI.waypointetasetting.distance then
+									if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance then
+										if d <= E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance then
 											return 1
-										elseif d > E.db.ElvUI_EltreumUI.waypointetasetting.distance then
+										elseif d > E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance then
 											return 0
 										end
 									else
@@ -135,7 +135,7 @@ local coords = {}
 function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 	-- most of this was done with the help of posts on stack overflow and lua-users.org
 	if E.Retail then
-		if E.db.ElvUI_EltreumUI.waytext.enable then
+		if E.db.ElvUI_EltreumUI.waypoints.waytext.enable then
 			-- translate the message into numbers
 			local translatemsg = message:gsub("(%d)[%.,] (%d)", "%1 %2"):gsub("(%d)"..(tonumber("1.1") and "," or ".").."(%d)", "%1"..(tonumber("1.1") and "." or ",").."%2")
 

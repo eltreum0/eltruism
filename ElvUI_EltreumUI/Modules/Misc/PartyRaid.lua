@@ -28,9 +28,9 @@ local cooldown
 local deaththrottle
 function ElvUI_EltreumUI:RaidDeathGroupCheck()
 	_, instanceType = IsInInstance()
-	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
+	if E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable then
 		if IsInGroup() == true then
-			if E.db.ElvUI_EltreumUI.partyraiddeath.bgdisable then --to disable it in arena/bg
+			if E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.bgdisable then --to disable it in arena/bg
 				if instanceType == "arena" or instanceType == "pvp" then
 					ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
 				else
@@ -50,11 +50,11 @@ end
 
 local deathsound
 function ElvUI_EltreumUI:DeathSound()
-	deathsound = E.LSM:Fetch("sound", E.db.ElvUI_EltreumUI.partyraiddeath.playerdeathsound)
+	deathsound = E.LSM:Fetch("sound", E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.playerdeathsound)
 end
 
 function ElvUI_EltreumUI:RaidDeath(destFlags)
-	if E.db.ElvUI_EltreumUI.partyraiddeath.enable then
+	if E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable then
 		if deaththrottle == 1 then
 			if bit.band(destFlags, COMBATLOG_OBJECT_TYPE_PLAYER) > 0 then
 				if bit.band(destFlags, COMBATLOG_OBJECT_AFFILIATION_RAID) > 0 or bit.band(destFlags, COMBATLOG_OBJECT_AFFILIATION_PARTY) > 0 then

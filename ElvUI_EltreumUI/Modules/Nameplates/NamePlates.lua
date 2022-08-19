@@ -41,19 +41,19 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 	if E.db.ElvUI_EltreumUI.glow.colorclass then
 		glowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 	else
-		glowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolornp.r, E.db.ElvUI_EltreumUI.glowcustomcolornp.g, E.db.ElvUI_EltreumUI.glowcustomcolornp.b, 1}
+		glowcolor = {E.db.ElvUI_EltreumUI.glow.glowcustomcolornp.r, E.db.ElvUI_EltreumUI.glow.glowcustomcolornp.g, E.db.ElvUI_EltreumUI.glow.glowcustomcolornp.b, 1}
 	end
 	if button and button.spellID then
 		if not string.find(unit, "nameplate") then
 			return
 		else
-			if E.db.ElvUI_EltreumUI.widenameplate.enable then
+			if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable then
 				button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 			end
 			button.cd:SetFrameStrata('DIALOG')
 			TimeSinceLastUpdate = 0
 			if not button.cd then
-				if E.db.ElvUI_EltreumUI.widenameplate.npglow then
+				if E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow then
 					if E.db.ElvUI_EltreumUI.glow.pixel then
 						LCG.PixelGlow_Stop(button)
 					elseif E.db.ElvUI_EltreumUI.glow.autocast then
@@ -69,16 +69,16 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 						TimeSinceLastUpdate = 0
 						--print("np button spam "..math.random(1,99))
 						if button.cd.timer then
-							if E.db.ElvUI_EltreumUI.nameplateOptions.hideSwipe then
+							if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
 								button.cd:SetSwipeColor(0, 0, 0, 0)
 								button.cd:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Testing")
 							end
-							if E.db.ElvUI_EltreumUI.widenameplate.enable then
+							if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable then
 								button.cd.timer.text:ClearAllPoints()
 								button.cd.timer.text:SetPoint("TOP", button.icon, "TOP", 0, 5)
 							end
 							debufftime = tonumber(button.cd.timer.text:GetText())
-							if E.db.ElvUI_EltreumUI.widenameplate.npglow then
+							if E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow then
 								if debufftime ~= nil and debufftime <= E.db.ElvUI_EltreumUI.glow.numberdebuff and debufftime > 0 then
 									if E.db.ElvUI_EltreumUI.glow.pixel then
 										LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
@@ -99,7 +99,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 								end
 							end
 						else
-							if E.db.ElvUI_EltreumUI.widenameplate.npglow and (button.cd == nil or button.cd.timer == nil) then
+							if E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow and (button.cd == nil or button.cd.timer == nil) then
 								if E.db.ElvUI_EltreumUI.glow.pixel then
 									LCG.PixelGlow_Stop(button)
 								elseif E.db.ElvUI_EltreumUI.glow.autocast then
@@ -114,7 +114,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			end
 			button.count:SetParent(button.cd)
 			if E.Wrath or E.Wrath or E.TBC or E.Classic then
-				if E.db.ElvUI_EltreumUI.widenameplate.enable then
+				if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable then
 					button.count:Point('BOTTOMRIGHT', 2, -3) --elvui added a setting for it but its missing some things
 				end
 			end
@@ -137,7 +137,7 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 					TimeSinceLastUpdate = 0
 					if button.cd.timer then
-						if E.db.ElvUI_EltreumUI.nameplateOptions.hideSwipe then
+						if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
 							button.cd:SetSwipeColor(0, 0, 0, 0)
 							button.cd:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Testing")
 						end
@@ -158,7 +158,7 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 end
 
 function ElvUI_EltreumUI:Construct_Auras(nameplate)
-	if E.private.nameplates.enable == true and (E.db.ElvUI_EltreumUI.widenameplate.enable or E.db.ElvUI_EltreumUI.widenameplate.npglow) then
+	if E.private.nameplates.enable == true and (E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable or E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow) then
 		nameplate.Buffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIconBuff
 		nameplate.Debuffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIconDebuff
 	end
@@ -235,7 +235,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 	if E.private.nameplates.enable then
 
 		--gradient check for my filters
-		if E.db.ElvUI_EltreumUI.gradientmode.npenable then
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 			if E.global.nameplates.filters.EltreumTarget and E.db["nameplates"]["filters"]["EltreumTarget"] then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
@@ -245,7 +245,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		end
 
 		--general disable/enable
-		if (not E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture and not E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture and not E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate and not E.db.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow) then
+		if (not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow) then
 			if E.global.nameplates.filters.EltreumTarget and E.db["nameplates"]["filters"]["EltreumTarget"] then
 				E.db["nameplates"]["filters"]["EltreumTarget"]["triggers"]["enable"] = false
 			end
@@ -304,14 +304,14 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		end
 
 		--glow color
-		if E.db.ElvUI_EltreumUI.nameplateOptions.ClassColorGlow then
+		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow then
 			E.db["nameplates"]["colors"]["glowColor"]["b"] = nameplateclasscolors.b
 			E.db["nameplates"]["colors"]["glowColor"]["r"] = nameplateclasscolors.r
 			E.db["nameplates"]["colors"]["glowColor"]["g"] = nameplateclasscolors.g
 		end
 
 		--border colors
-		if E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate then
+		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate then
 			if E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["border"] = true
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["b"] = nameplateclasscolors.b
@@ -330,7 +330,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["borderColor"]["g"] = nameplateclasscolors.g
 				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["borderColor"]["r"] = nameplateclasscolors.r
 			end
-		elseif not E.db.ElvUI_EltreumUI.nameplateOptions.ClassBorderNameplate then
+		elseif not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate then
 			if E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["border"] = false
 			end
@@ -343,22 +343,22 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		end
 
 		--class color texture
-		if E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture then
-			if E.db.ElvUI_EltreumUI.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
+		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture then
+			if E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = (playerclassv1[E.myclass])
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 				if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
 					E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["texture"] = (playerclassv1[E.myclass])
 					E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = true
 				end
-			elseif E.db.ElvUI_EltreumUI.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
+			elseif E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = (playerclassv2[E.myclass])
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 				if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
 					E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["texture"] = (playerclassv2[E.myclass])
 					E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = true
 				end
-			elseif E.db.ElvUI_EltreumUI.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
+			elseif E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = (playerclassv3[E.myclass])
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 				if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
@@ -370,7 +370,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["enable"] = true
 			end
-		elseif not E.db.ElvUI_EltreumUI.nameplateOptions.nameplatetexture and not E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture then
+		elseif not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture then
 			if E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = false
 			end
@@ -383,26 +383,26 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		end
 
 		--target's class color texture
-		if E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture then
+		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture then
 			_, targetclass = UnitClass("target")
 			reactiontarget = UnitReaction("target", "player")
 			if UnitExists("target") then
 				if targetclass and UnitIsPlayer("target") then
-					if E.db.ElvUI_EltreumUI.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
+					if E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = (playerclassv1[targetclass])
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 						if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
 							E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["texture"] = "Eltreum-Class-DeathKnight"
 							E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = true
 						end
-					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
+					elseif E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = (playerclassv2[targetclass])
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 						if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
 							E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["texture"] = "Eltreum-Class-DeathKnightV2"
 							E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = true
 						end
-					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
+					elseif E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = (playerclassv3[targetclass])
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 						if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
@@ -411,46 +411,46 @@ function ElvUI_EltreumUI:NamePlateOptions()
 						end
 					end
 				elseif ( UnitIsPlayer("target") == false and ( reactiontarget >= 5) ) then
-					if E.db.ElvUI_EltreumUI.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
+					if E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-Hunter"
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
-					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
+					elseif E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-HunterV2"
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
-					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
+					elseif E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-HunterV3"
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 					end
 				elseif reactiontarget == 4 then
-					if E.db.ElvUI_EltreumUI.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
+					if E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-Rogue"
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
-					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
+					elseif E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-RogueV2"
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
-					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
+					elseif E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-RogueV3"
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 					end
 				elseif reactiontarget == 3 then
-					if E.db.ElvUI_EltreumUI.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
+					if E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-Druid"
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
-					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
+					elseif E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-DruidV2"
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
-					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
+					elseif E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-DruidV3"
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 					end
 				elseif reactiontarget == 2 or reactiontarget == 1 then
-					if E.db.ElvUI_EltreumUI.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
+					if E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-DeathKnight"
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
-					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
+					elseif E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V2" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-DeathKnightV2"
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
-					elseif E.db.ElvUI_EltreumUI.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
+					elseif E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V3" and E.global.nameplates.filters.EltreumTarget then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-DeathKnightV3"
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
 					end
@@ -459,7 +459,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		end
 
 		--automatically hide classbar when targeting friendly targets
-		if E.db.ElvUI_EltreumUI.nameplateOptions.classbarautohide then
+		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide then
 			--add spec info for retail
 
 			if E.Retail then
@@ -599,14 +599,14 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 				end
 			end
 		end
-		if E.db.ElvUI_EltreumUI.friendlynameplatetoggle.friendlynames then
+		if E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames then
 			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" or instanceType == "none" or mapID == 1662 or mapID == 582 or mapID == 590 then
 				if nameplateShowOnlyNames == "0" then
 					SetCVar("nameplateShowOnlyNames", 1)
 				end
 			end
 		end
-		if E.db.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly then
+		if E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly then
 			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" then
 				if nameplateShowFriends == "1" then
 					SetCVar("nameplateShowFriends", 0)
@@ -618,7 +618,7 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 				end
 			end
 		end
-		if E.db.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly then
+		if E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly then
 			if nameplateShowFriends == "1" then
 				SetCVar("nameplateShowFriends", 0)
 			end
@@ -628,7 +628,7 @@ end
 
 --change vertical and horizontal offsets when resting/not resting
 function ElvUI_EltreumUI:NameplateRestedOverlaps()
-	if E.db.ElvUI_EltreumUI.nameplateOptions.restedoverlap then
+	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.restedoverlap then
 		if not InCombatLockdown() then
 			if IsResting() then
 				SetCVar("nameplateOverlapH", 0)

@@ -57,9 +57,9 @@ function ElvUI_EltreumUI:Borders()
 			classcolor = E:ClassColor(E.myclass, true)
 		else
 			classcolor = {
-				r = E.db.ElvUI_EltreumUI.bordercolors.r,
-				g = E.db.ElvUI_EltreumUI.bordercolors.g,
-				b = E.db.ElvUI_EltreumUI.bordercolors.b
+				r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
+				g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
+				b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
 			}
 		end
 
@@ -820,9 +820,9 @@ function ElvUI_EltreumUI:AuraBorders()
 			classcolor = E:ClassColor(E.myclass, true)
 		elseif E.db.ElvUI_EltreumUI.borders.classcolor == false then
 			classcolor = {
-				r = E.db.ElvUI_EltreumUI.bordercolors.r,
-				g = E.db.ElvUI_EltreumUI.bordercolors.g,
-				b = E.db.ElvUI_EltreumUI.bordercolors.b
+				r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
+				g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
+				b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
 			}
 		end
 

@@ -100,27 +100,27 @@ function ElvUI_EltreumUI:OldVersionCheck()
 	elseif E.private.ElvUI_EltreumUI.install_version < "2.7.5" then
 		ElvUI_EltreumUI:Print('version 2.7.3 changed the database. In version 2.7.5 a button has been added in Eltruism > Installer to reset Eltruism settings if you wish')
 	elseif E.private.ElvUI_EltreumUI.install_version < "2.9.3" then
-		if E.db.ElvUI_EltreumUI.lightmode == true or E.db.ElvUI_EltreumUI.gradientmode.enable == true then --convert the option
-			E.db.ElvUI_EltreumUI.UFmodifications = true
+		if E.db.ElvUI_EltreumUI.unitframes.lightmode == true or E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable == true then --convert the option
+			E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
 		end
 		E.private.ElvUI_EltreumUI.install_version = "2.9.3"
 	elseif E.private.ElvUI_EltreumUI.install_version >= "2.9.3" and E.private.ElvUI_EltreumUI.install_version < "3.1.6" then --fix name change since the setting doesnt make sense otherwise
-		if E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar == nil then
-			if E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar == nil then
-				E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar = true
-			elseif E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar == true then
-				E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar = true
-			elseif E.db.ElvUI_EltreumUI.gradientmode.customcolorplayercastbar == false then
-				E.db.ElvUI_EltreumUI.gradientmode.classcolorplayercastbar = false
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar == nil then
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolorplayercastbar == nil then
+				E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar = true
+			elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolorplayercastbar == true then
+				E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar = true
+			elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolorplayercastbar == false then
+				E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar = false
 			end
 		end
-		if E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar == nil then
-			if E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar == nil then
-				E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar = true
-			elseif E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar == true then
-				E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar = true
-			elseif E.db.ElvUI_EltreumUI.gradientmode.customcolortargetcastbar == false then
-				E.db.ElvUI_EltreumUI.gradientmode.classcolortargetcastbar = false
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar == nil then
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolortargetcastbar == nil then
+				E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar = true
+			elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolortargetcastbar == true then
+				E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar = true
+			elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolortargetcastbar == false then
+				E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar = false
 			end
 		end
 		E.private.ElvUI_EltreumUI.install_version = "3.1.6"
@@ -224,23 +224,23 @@ function ElvUI_EltreumUI:OldVersionCheck()
 
 	--more long term checks, in case somehow people enable 2 settings when its not possible to do so. Maybe its a shared profile from another person? No idea how they manage to do this
 	if E.db.ElvUI_EltreumUI.modetexture == true then
-		E.db.ElvUI_EltreumUI.darkpowercolor = true
+		E.db.ElvUI_EltreumUI.unitframes.darkpowercolor = true
 	end
-	if E.db.ElvUI_EltreumUI.lightmode == true and E.db.ElvUI_EltreumUI.darkmode == true then --convert the option
-		E.db.ElvUI_EltreumUI.lightmode = false
-		E.db.ElvUI_EltreumUI.darkmode = true
+	if E.db.ElvUI_EltreumUI.unitframes.lightmode == true and E.db.ElvUI_EltreumUI.unitframes.darkmode == true then --convert the option
+		E.db.ElvUI_EltreumUI.unitframes.lightmode = false
+		E.db.ElvUI_EltreumUI.unitframes.darkmode = true
 	end
-	if E.db.ElvUI_EltreumUI.gradientmode.enable == true and E.db.ElvUI_EltreumUI.ufcustomtexture.enable == true then --convert the option
-		E.db.ElvUI_EltreumUI.ufcustomtexture.enable = false
-		E.db.ElvUI_EltreumUI.ufcustomtexture.enable = true
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable == true and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable == true then --convert the option
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = true
 	end
-	if E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture == true and E.db.ElvUI_EltreumUI.nameplateOptions.playerclass == true then
-		E.db.ElvUI_EltreumUI.nameplateOptions.targetclasstexture = false
-		E.db.ElvUI_EltreumUI.nameplateOptions.playerclass = true
+	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture == true and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.playerclass == true then
+		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = false
+		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.playerclass = true
 	end
-	if E.db.ElvUI_EltreumUI.afkmusic.racial == true and E.db.ElvUI_EltreumUI.afkmusic.racial == true then
-		E.db.ElvUI_EltreumUI.afkmusic.racial = false
-		E.db.ElvUI_EltreumUI.afkmusic.racial = true
+	if E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial == true and E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial == true then
+		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial = false
+		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial = true
 	end
 	if E.db.ElvUI_EltreumUI.glow.blizzard == true and E.db.ElvUI_EltreumUI.glow.pixel == true then
 		E.db.ElvUI_EltreumUI.glow.blizzard = false
@@ -260,16 +260,16 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.db.ElvUI_EltreumUI.skins.classiconsblizz = false
 		E.db.ElvUI_EltreumUI.skins.classiconsreleaf = true
 	end
-	if E.db.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly == true and E.db.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly == true then
-		E.db.ElvUI_EltreumUI.friendlynameplatetoggle.hidefriendly = false
-		E.db.ElvUI_EltreumUI.friendlynameplatetoggle.disablefriendly = true
+	if E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly == true and E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly == true then
+		E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly = false
+		E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly = true
 	end
-	if E.db.ElvUI_EltreumUI.otherstuff.playerdeath == true and (E.db.ElvUI_EltreumUI.otherstuff.playerdeathgta == true or E.db.ElvUI_EltreumUI.otherstuff.playerdeathcustom == true) then
-		E.db.ElvUI_EltreumUI.otherstuff.playerdeath = false
-		E.db.ElvUI_EltreumUI.otherstuff.playerdeathcustom = false
+	if E.db.ElvUI_EltreumUI.skins.playerdeath == true and (E.db.ElvUI_EltreumUI.skins.playerdeathgta == true or E.db.ElvUI_EltreumUI.skins.playerdeathcustom == true) then
+		E.db.ElvUI_EltreumUI.skins.playerdeath = false
+		E.db.ElvUI_EltreumUI.skins.playerdeathcustom = false
 	end
-	if E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 == true and E.db.ElvUI_EltreumUI.questsettings.questitemsfade == true then
-		E.db.ElvUI_EltreumUI.questsettings.questitemsfade = false
-		E.db.ElvUI_EltreumUI.questsettings.questitemsbar1 = true
+	if E.db.ElvUI_EltreumUI.quests.questitemsbar1 == true and E.db.ElvUI_EltreumUI.quests.questitemsfade == true then
+		E.db.ElvUI_EltreumUI.quests.questitemsfade = false
+		E.db.ElvUI_EltreumUI.quests.questitemsbar1 = true
 	end
 end

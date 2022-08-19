@@ -36,16 +36,16 @@ function ElvUI_EltreumUI:CheckCompatibility()
  			addonname = "MerathilisUI"
  		end
 
- 		if E.db.ElvUI_EltreumUI.widenameplate.enable and E.db.mui.nameplates.enhancedAuras.enable then
+ 		if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable and E.db.mui.nameplates.enhancedAuras.enable then
  			E.db.mui.nameplates.enhancedAuras.enable = false
- 			E.db.ElvUI_EltreumUI.widenameplate.enable = true
+ 			E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable = true
  			compatibilityran = true
  			addonname = "MerathilisUI"
  		end
 
- 		if E.db.ElvUI_EltreumUI.gradientmode.npenable and E.db.mui.nameplates.gradient then
+ 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable and E.db.mui.nameplates.gradient then
  			E.db.mui.nameplates.gradient = false
- 			E.db.ElvUI_EltreumUI.gradientmode.npenable = true
+ 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
  			compatibilityran = true
  			addonname = "MerathilisUI"
  		end
@@ -57,16 +57,16 @@ function ElvUI_EltreumUI:CheckCompatibility()
  			addonname = "MerathilisUI"
  		end
 
- 		if E.db.ElvUI_EltreumUI.instances.enable and E.db.mui.maps.minimap.instanceDifficulty.enable then
+ 		if E.db.ElvUI_EltreumUI.skins.instances.enable and E.db.mui.maps.minimap.instanceDifficulty.enable then
  			E.db.mui.maps.minimap.instanceDifficulty.enable = false
- 			E.db.ElvUI_EltreumUI.instances.enable = true
+ 			E.db.ElvUI_EltreumUI.skins.instances.enable = true
  			compatibilityran = true
  			addonname = "MerathilisUI"
  		end
 
- 		if E.db.ElvUI_EltreumUI.loottext.combatindicator and E.db.mui.CombatAlert.enable then
+ 		if E.db.ElvUI_EltreumUI.loot.loottext.combatindicator and E.db.mui.CombatAlert.enable then
  			E.db.mui.CombatAlert.enable = false
- 			E.db.ElvUI_EltreumUI.loottext.combatindicator = true
+ 			E.db.ElvUI_EltreumUI.loot.loottext.combatindicator = true
  			compatibilityran = true
  			addonname = "MerathilisUI"
  		end

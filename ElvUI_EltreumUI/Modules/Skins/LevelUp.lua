@@ -11,7 +11,7 @@ local UIFrameFadeOut = _G.UIFrameFadeOut
 function ElvUI_EltreumUI:SkinLevelUp()
 	-- Color level up display and boss banner originally by Aftermathh, 9.1 partially by Eltreum
 	if E.Retail then
-		if E.db.ElvUI_EltreumUI.skins.enable then
+		if E.db.ElvUI_EltreumUI.skins.levelbossinstance then
 
 			--skin the toast popup for level
 			local EventToastManagerFrame = _G.EventToastManagerFrame
@@ -118,7 +118,7 @@ if E.Wrath or E.TBC or E.Classic then
 		LevelUpFrame:RegisterEvent("PLAYER_LEVEL_UP")
 		--LevelUpFrame:SetScript("OnEvent", function(self, event, ...)
 		LevelUpFrame:SetScript("OnEvent", function()
-			if E.db.ElvUI_EltreumUI.skins.enable then
+			if E.db.ElvUI_EltreumUI.skins.levelbossinstance then
 				playerlevel = playerlevel + 1
 				--print(playerlevel)
 				LevelUpFrame.Text2:SetText("Level "..playerlevel.."!")

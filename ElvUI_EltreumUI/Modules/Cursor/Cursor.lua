@@ -27,10 +27,10 @@ local QUAD_COORD_FULL
 local QUAD_COORD_FUNC
 
 function ElvUI_EltreumUI:CursorInit()
-	if E.db.ElvUI_EltreumUI.cursor.enable then
+	if E.db.ElvUI_EltreumUI.cursors.cursor.enable then
 		ElvUI_EltreumUI:CastCursor()
 		ElvUI_EltreumUI:CurrentTypeofCursor()
-		if E.db.ElvUI_EltreumUI.cursor.cooldown then
+		if E.db.ElvUI_EltreumUI.cursors.cursor.cooldown then
 			ElvUI_EltreumUI:CooldownEnable() --starts cursor module with cooldowns
 		end
 	end
@@ -44,7 +44,7 @@ local Cursor = CreateFrame("Frame", "EltruismCursorCursor", rootFrame)
 
 --Detect the current cursor for options
 function ElvUI_EltreumUI:CurrentTypeofCursor()
-	currentring = E.db.ElvUI_EltreumUI.cursor.ring
+	currentring = E.db.ElvUI_EltreumUI.cursors.cursor.ring
 	if currentring:match("ring1") then
 		currentring = '|cff82B4ffType 1|r'
 	elseif currentring:match("ring2") then
@@ -73,86 +73,86 @@ end
 function ElvUI_EltreumUI:CursorSize(value)
 	if value == '-1' then
 		SetCVar("cursorSizePreferred", -1)
-		E.db.ElvUI_EltreumUI.cursor.size = '-1'
+		E.db.ElvUI_EltreumUI.cursors.cursor.size = '-1'
 	elseif value == '0' then
 		SetCVar("cursorSizePreferred", 0)
-		E.db.ElvUI_EltreumUI.cursor.size = '0'
+		E.db.ElvUI_EltreumUI.cursors.cursor.size = '0'
 	elseif value == '1' then
 		SetCVar("cursorSizePreferred", 1)
-		E.db.ElvUI_EltreumUI.cursor.size = '1'
+		E.db.ElvUI_EltreumUI.cursors.cursor.size = '1'
 	elseif value == '2' then
 		SetCVar("cursorSizePreferred", 2)
-		E.db.ElvUI_EltreumUI.cursor.size = '2'
+		E.db.ElvUI_EltreumUI.cursors.cursor.size = '2'
 	elseif value == '3' then
 		SetCVar("cursorSizePreferred", 3)
-		E.db.ElvUI_EltreumUI.cursor.size = '3'
+		E.db.ElvUI_EltreumUI.cursors.cursor.size = '3'
 	elseif value == '4' then
 		SetCVar("cursorSizePreferred", 4)
-		E.db.ElvUI_EltreumUI.cursor.size = '4'
+		E.db.ElvUI_EltreumUI.cursors.cursor.size = '4'
 	end
 end
 
 --This module is a direct fork of CastCursor by michaelsp and as such is available under GNU GPL v3 like the original
 function ElvUI_EltreumUI:CastCursor()
-	if E.db.ElvUI_EltreumUI.cursor.enable then
+	if E.db.ElvUI_EltreumUI.cursors.cursor.enable then
 
-		if E.db.ElvUI_EltreumUI.cursor.fixlag == 0 then
+		if E.db.ElvUI_EltreumUI.cursors.cursor.fixlag == 0 then
 			--SetCVar("gxCursor", 0)
 			SetCVar("HardwareCursor", 0)
 		end
-		if E.db.ElvUI_EltreumUI.cursorcast.classcolor then
+		if E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor then
 			colorcast = E:ClassColor(E.myclass, true)
 		end
-		if not E.db.ElvUI_EltreumUI.cursorcast.classcolor then
+		if not E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor then
 			colorcast = {
-				r = E.db.ElvUI_EltreumUI.cursorcast.r,
-				g = E.db.ElvUI_EltreumUI.cursorcast.g,
-				b = E.db.ElvUI_EltreumUI.cursorcast.b
+				r = E.db.ElvUI_EltreumUI.cursors.cursorcast.r,
+				g = E.db.ElvUI_EltreumUI.cursors.cursorcast.g,
+				b = E.db.ElvUI_EltreumUI.cursors.cursorcast.b
 			}
 		end
-		if E.db.ElvUI_EltreumUI.cursorgcd.classcolor then
+		if E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor then
 			colorgcd = E:ClassColor(E.myclass, true)
 		end
-		if not E.db.ElvUI_EltreumUI.cursorgcd.classcolor then
+		if not E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor then
 			colorgcd = {
-				r = E.db.ElvUI_EltreumUI.cursorgcd.r,
-				g = E.db.ElvUI_EltreumUI.cursorgcd.g,
-				b = E.db.ElvUI_EltreumUI.cursorgcd.b
+				r = E.db.ElvUI_EltreumUI.cursors.cursorgcd.r,
+				g = E.db.ElvUI_EltreumUI.cursors.cursorgcd.g,
+				b = E.db.ElvUI_EltreumUI.cursors.cursorgcd.b
 			}
 		end
-		if E.db.ElvUI_EltreumUI.cursorcursor.classcolor then
+		if E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor then
 			colorcursor = E:ClassColor(E.myclass, true)
 		end
-		if not E.db.ElvUI_EltreumUI.cursorcursor.classcolor then
+		if not E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor then
 			colorcursor = {
-				r = E.db.ElvUI_EltreumUI.cursorcursor.r,
-				g = E.db.ElvUI_EltreumUI.cursorcursor.g,
-				b = E.db.ElvUI_EltreumUI.cursorcursor.b
+				r = E.db.ElvUI_EltreumUI.cursors.cursorcursor.r,
+				g = E.db.ElvUI_EltreumUI.cursors.cursorcursor.g,
+				b = E.db.ElvUI_EltreumUI.cursors.cursorcursor.b
 			}
 		end
 
 		Defaults = {
 			cast = {
-				radius = E.db.ElvUI_EltreumUI.cursorcast.radius,
+				radius = E.db.ElvUI_EltreumUI.cursors.cursorcast.radius,
 				sublayer = 1,
-				thickness = E.db.ElvUI_EltreumUI.cursorcast.thickness,
+				thickness = E.db.ElvUI_EltreumUI.cursors.cursorcast.thickness,
 				color = { colorcast.r, colorcast.g, colorcast.b },
-				texture = E.db.ElvUI_EltreumUI.cursor.ring,
+				texture = E.db.ElvUI_EltreumUI.cursors.cursor.ring,
 			},
 			gcd = {
-				radius = E.db.ElvUI_EltreumUI.cursorgcd.radius,
+				radius = E.db.ElvUI_EltreumUI.cursors.cursorgcd.radius,
 				sublayer = 0,
-				thickness = E.db.ElvUI_EltreumUI.cursorgcd.thickness,
+				thickness = E.db.ElvUI_EltreumUI.cursors.cursorgcd.thickness,
 				color = { colorgcd.r, colorgcd.g, colorgcd.b },
-				texture = E.db.ElvUI_EltreumUI.cursor.ring,
+				texture = E.db.ElvUI_EltreumUI.cursors.cursor.ring,
 			},
 			cursor = {
-				radius = E.db.ElvUI_EltreumUI.cursorcursor.radius,
+				radius = E.db.ElvUI_EltreumUI.cursors.cursorcursor.radius,
 				sublayer = 0,
-				thickness = E.db.ElvUI_EltreumUI.cursorcursor.thickness,
-				combat = E.db.ElvUI_EltreumUI.cursor.combat,
+				thickness = E.db.ElvUI_EltreumUI.cursors.cursorcursor.thickness,
+				combat = E.db.ElvUI_EltreumUI.cursors.cursor.combat,
 				color = { colorcursor.r, colorcursor.g, colorcursor.b },
-				texture = E.db.ElvUI_EltreumUI.cursor.ring,
+				texture = E.db.ElvUI_EltreumUI.cursors.cursor.ring,
 			},
 		}
 		QUAD_POINTS = {

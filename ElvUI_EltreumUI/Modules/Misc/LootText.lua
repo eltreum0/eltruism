@@ -20,13 +20,13 @@ combatindicatorframe:RegisterEvent("PLAYER_REGEN_DISABLED")
 local errorthrottle = false
 
 function ElvUI_EltreumUI:LootText()
-	local scale = E.db.ElvUI_EltreumUI.loottext.scale
-	local strata = E.db.ElvUI_EltreumUI.loottext.strata
+	local scale = E.db.ElvUI_EltreumUI.loot.loottext.scale
+	local strata = E.db.ElvUI_EltreumUI.loot.loottext.strata
 	_G.CombatText:SetScale(scale)
 	_G.CombatText:SetFrameStrata(strata)
 	--moving the combat text
-	local xOffset = E.db.ElvUI_EltreumUI.loottext.xOffset
-	local yOffset = E.db.ElvUI_EltreumUI.loottext.yOffset
+	local xOffset = E.db.ElvUI_EltreumUI.loot.loottext.xOffset
+	local yOffset = E.db.ElvUI_EltreumUI.loot.loottext.yOffset
 	local itemLink = nil
 	local amount = 0
 	--have to hook the function to move it, pretty much a whole copy just adding the offsets
@@ -37,9 +37,9 @@ function ElvUI_EltreumUI:LootText()
 		end
 
 		--use elvui general font
-		if E.db.ElvUI_EltreumUI.loottext.fontsetting then
+		if E.db.ElvUI_EltreumUI.loot.loottext.fontsetting then
 			string:SetFont(E.media.normFont, 24, E.db.general.fontStyle)
-		elseif E.db.ElvUI_EltreumUI.loottext.fontsettingdmg then
+		elseif E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg then
 			string:SetFont(E.private.general.dmgfont, 24, E.db.general.fontStyle)
 	 	end
 		string:SetText(message)
@@ -136,7 +136,7 @@ function ElvUI_EltreumUI:LootText()
 	--end of CombatText_AddMessage hook
 
 	combatindicatorframe:SetScript("OnEvent", function(_,event)
-		if E.db.ElvUI_EltreumUI.loottext.combatindicator then
+		if E.db.ElvUI_EltreumUI.loot.loottext.combatindicator then
 			if event == "PLAYER_REGEN_DISABLED" then
 				CombatText_AddMessage("|cffFF0000+COMBAT|r", CombatText_StandardScroll, 1, 0, 0)
 			end
@@ -146,7 +146,7 @@ function ElvUI_EltreumUI:LootText()
 		end
 	end)
 
-	if E.db.ElvUI_EltreumUI.loottext.enable then
+	if E.db.ElvUI_EltreumUI.loot.loottext.enable then
 		local function getLoot(chatmsg)
 			-- check for multiple-item-loot
 			local itemLink, amount = Deformat(chatmsg, LOOT_ITEM_SELF_MULTIPLE)
@@ -179,7 +179,7 @@ function ElvUI_EltreumUI:LootText()
 			end
 			if (event == "CHAT_MSG_LOOT") then
 				itemLink, amount = getLoot(arg1)
-				if E.db.ElvUI_EltreumUI.loottext.pet then
+				if E.db.ElvUI_EltreumUI.loot.loottext.pet then
 					if itemLink and itemLink:match("|Hbattlepet:") then
 						CombatText_AddMessage("|T ".. 132599 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..itemLink, CombatText_StandardScroll, 255, 255, 255)
 					end
@@ -195,7 +195,7 @@ function ElvUI_EltreumUI:LootText()
 					end
 				end
 			end
-			if E.db.ElvUI_EltreumUI.loottext.currency then
+			if E.db.ElvUI_EltreumUI.loot.loottext.currency then
 				if (event == "CHAT_MSG_MONEY") then
 					local moneystring = Deformat(arg1, LOOT_MONEY_SPLIT) or Deformat(arg1, YOU_LOOT_MONEY)
 					if moneystring:match(SILVER_AMOUNT) and not moneystring:match(GOLD_AMOUNT) then
@@ -237,7 +237,7 @@ function ElvUI_EltreumUI:LootText()
 					end
 				end
 			end
-			if E.db.ElvUI_EltreumUI.loottext.honor then
+			if E.db.ElvUI_EltreumUI.loot.loottext.honor then
 				if (event == "CHAT_MSG_COMBAT_HONOR_GAIN") then
 					itemLink, amount = Deformat(arg1, CURRENCY_GAINED_MULTIPLE_BONUS)
 					if not amount then

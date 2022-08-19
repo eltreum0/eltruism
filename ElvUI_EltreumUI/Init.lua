@@ -163,7 +163,7 @@ end
 
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
 	local _, eventType, _, _, _, _, _, _, _, destFlags = CombatLogGetCurrentEventInfo()
-	if eventType == "UNIT_DIED" and E.db.ElvUI_EltreumUI.partyraiddeath.enable then
+	if eventType == "UNIT_DIED" and E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable then
 		ElvUI_EltreumUI:RaidDeath(destFlags)
 	end
 end
@@ -188,7 +188,7 @@ function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
 	ElvUI_EltreumUI:RaidDeathGroupCheck()
 	--ElvUI_EltreumUI:Shadows()
 	ElvUI_EltreumUI:RaidShadows()
-	if E.db.ElvUI_EltreumUI.UFmodifications then
+	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		ElvUI_EltreumUI:GradientCustomTexture()
 	end
 end

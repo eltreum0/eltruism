@@ -75,7 +75,7 @@ local function InstantLoot(_, event,_, arg2)
 		return
 	elseif event == "LOOT_READY" or event == "LOOT_OPENED" then
 		--ElvUI_EltreumUI:Print("Event: "..event)
-		if E.db.ElvUI_EltreumUI.otherstuff.lootwishlistwarning then
+		if E.db.ElvUI_EltreumUI.loot.lootwishlistwarning then
 			for i = GetNumLootItems(), 1, -1 do
 				itemLink = GetLootSlotLink(i)
 				if itemLink == nil then
@@ -99,11 +99,11 @@ local function InstantLoot(_, event,_, arg2)
 						--WishlistItemFrame.Text2:SetText("|T"..itemtexture..":".. 12 .."|t"..itemName.."!")
 						WishlistItemFrame.Text2:SetText("|T"..itemtexture..":12:12:0:0:64:64:5:59:5:59|t "..itemName.."!")
 						UIFrameFadeIn(WishlistItemFrame, 1, 0, 1)
-						if E.db.ElvUI_EltreumUI.otherstuff.lootwishlistscreenshot then
+						if E.db.ElvUI_EltreumUI.loot.lootwishlistscreenshot then
 							C_Timer.After(1, function() Screenshot() end)
 						end
-						if E.db.ElvUI_EltreumUI.otherstuff.lootwishlistsoundenable and lootsoundthrottle == 0 then
-							PlaySoundFile(E.LSM:Fetch("sound", E.db.ElvUI_EltreumUI.otherstuff.lootwishlistsound) , "Master")
+						if E.db.ElvUI_EltreumUI.loot.lootwishlistsoundenable and lootsoundthrottle == 0 then
+							PlaySoundFile(E.LSM:Fetch("sound", E.db.ElvUI_EltreumUI.loot.lootwishlistsound) , "Master")
 							lootsoundthrottle = 1
 							C_Timer.After(0.5, function()
 								lootsoundthrottle = 0
@@ -125,7 +125,7 @@ local function InstantLoot(_, event,_, arg2)
 				end
 			end
 		end
-		if E.db.ElvUI_EltreumUI.otherstuff.fastlootfilter then
+		if E.db.ElvUI_EltreumUI.loot.fastlootfilter then
 			if event == 'LOOT_BIND_CONFIRM' then
 				return
 			else
@@ -137,19 +137,19 @@ local function InstantLoot(_, event,_, arg2)
 					_, _, _, _, lootQuality, _, isQuestItem = GetLootSlotInfo(i)
 					if isQuestItem == true then
 						LootSlot(i)
-					elseif lootQuality >= tonumber(E.db.ElvUI_EltreumUI.otherstuff.fastlootquality) then
+					elseif lootQuality >= tonumber(E.db.ElvUI_EltreumUI.loot.fastlootquality) then
 						LootSlot(i)
 					elseif GetLootSlotType(i) == 2 then
 						LootSlot(i)
 					else
-						if E.db.ElvUI_EltreumUI.otherstuff.lootautoclose then
+						if E.db.ElvUI_EltreumUI.loot.lootautoclose then
 							CloseLoot()
 						end
 					end
 				end
 			end
 		end
-		if E.db.ElvUI_EltreumUI.otherstuff.lootwishlistfilter then
+		if E.db.ElvUI_EltreumUI.loot.lootwishlistfilter then
 			if C_CVar.GetCVar('autoLootDefault') == 1 then
 				ElvUI_EltreumUI:Print("Autoloot is enabled, please disable it to use Wishlist Loot Filtering")
 			end
@@ -171,7 +171,7 @@ local function InstantLoot(_, event,_, arg2)
 						if itemID == tonumber(E.private.ElvUI_EltreumUI.wishlistID[k]) then
 							LootSlot(i)
 						else
-							if E.db.ElvUI_EltreumUI.otherstuff.lootautoclose then
+							if E.db.ElvUI_EltreumUI.loot.lootautoclose then
 								CloseLoot()
 							end
 						end

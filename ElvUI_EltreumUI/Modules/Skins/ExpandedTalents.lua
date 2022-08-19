@@ -7,7 +7,7 @@ local EltruismExpandedTalents = CreateFrame("Frame")
 function ElvUI_EltreumUI:ExpandedTalents()
 	--Reskin Blizzard Talent frame for TBC
 	if E.Wrath or E.TBC or E.Classic then
-		if E.db.ElvUI_EltreumUI.tbctalents.enable and not E.private.skins.blizzard.enable == false then
+		if E.db.ElvUI_EltreumUI.skins.tbctalents and not E.private.skins.blizzard.enable == false then
 			EltruismExpandedTalents:RegisterEvent("ADDON_LOADED")
 			EltruismExpandedTalents:RegisterEvent("PLAYER_ENTERING_WORLD")
 			EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)

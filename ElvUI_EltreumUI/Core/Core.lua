@@ -229,13 +229,13 @@ function ElvUI_EltreumUI:Anchors()
 	end
 
 	--mover for UI errors frame
-	if E.db.ElvUI_EltreumUI.blizzframes.hideerrorframe then
+	if E.db.ElvUI_EltreumUI.skins.blizzframes.hideerrorframe then
 		UIErrorsFrame:Clear()
 		UIErrorsFrame:Hide()
 	else
 		E:CreateMover(UIErrorsFrame, "MoverUIERRORS", "UI Error Frame", nil, nil, nil, "ALL,SOLO")
-		if E.db.ElvUI_EltreumUI.blizzframes.errorframe then
-			UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.errorframefontsize, E.db.general.fontStyle)
+		if E.db.ElvUI_EltreumUI.skins.blizzframes.errorframe then
+			UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, E.db.general.fontStyle)
 		end
 	end
 
@@ -245,10 +245,10 @@ function ElvUI_EltreumUI:Anchors()
 		E:CreateMover(RaidBossEmoteFrame, "MoverRaidBossEmoteFrame", "Raid/Boss Emote Frame", nil, nil, nil, "ALL,SOLO")
 		--E:CreateMover(BossBanner, "MoverBossBanner", "Boss Loot Banner", nil, nil, nil, "ALL,SOLO") --doesnt work
 		--this doesnt seem to work well, rather if you set font size to like 200 it becomes less blurry, but if its 12 its very blurry
-		--[[if E.db.ElvUI_EltreumUI.blizzframes.raidbossframe then
-			RaidWarningFrameSlot1:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
-			RaidWarningFrameSlot2:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
-			--RaidBossEmoteFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
+		--[[if E.db.ElvUI_EltreumUI.skins.blizzframes.raidbossframe then
+			RaidWarningFrameSlot1:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
+			RaidWarningFrameSlot2:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
+			--RaidBossEmoteFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
 		end]]
 	end
 end
@@ -282,7 +282,7 @@ function ElvUI_EltreumUI:EnteringWorldCVars()
 	SetCVar('cameraDistanceMaxZoomFactor', E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor)
 	SetCVar('nameplateTargetRadialPosition', E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition)
 	--ElvUI_EltreumUI:Print(L["Custom Nameplate CVars were set."])
-	if E.Retail and E.db.ElvUI_EltreumUI.waypointetasetting.enable then
+	if E.Retail and E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable then
 		SetCVar('showInGameNavigation', E.db.ElvUI_EltreumUI.cvars.showInGameNavigation)
 	elseif E.Classic or E.Wrath or E.TBC then
 		SetCVar('clampTargetNameplateToScreen', E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen)

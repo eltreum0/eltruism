@@ -26,39 +26,39 @@ E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismIn
 instancedifficulty:SetScript("OnEvent", function(_,event)
 	local _, instanceType = IsInInstance()
 	local mapID = WorldMapFrame:GetMapID()
-	if (instanceType == "raid" or instanceType == "party" or instanceType == "scenario") and E.db.ElvUI_EltreumUI.instances.enable and not (mapID == 1662 or mapID == 582 or mapID == 590) then
+	if (instanceType == "raid" or instanceType == "party" or instanceType == "scenario") and E.db.ElvUI_EltreumUI.skins.instances.enable and not (mapID == 1662 or mapID == 582 or mapID == 590) then
 		instancedifficulty:Show()
 		instancedifficulty.Text:Show()
-		instancedifficulty.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.instances.fontsize, E.db.general.fontStyle)
-		instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.instances.r, E.db.ElvUI_EltreumUI.instances.g, E.db.ElvUI_EltreumUI.instances.b)
+		instancedifficulty.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.instances.fontsize, E.db.general.fontStyle)
+		instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.r, E.db.ElvUI_EltreumUI.skins.instances.g, E.db.ElvUI_EltreumUI.skins.instances.b)
 		instancedifficulty.Text:SetPoint("CENTER", _G["MoverEltruismInstanceDifficulty"])
 		instancedifficulty.Text:SetParent(Minimap)
 		local DifficultyID = select(3, GetInstanceInfo()) --https://wowpedia.fandom.com/wiki/DifficultyID
 		if DifficultyID == 1 then
-			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.instances.DungeonNormal)
+			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonNormal)
 		elseif DifficultyID == 2 then
-			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.instances.DungeonHeroic)
+			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroic)
 		elseif DifficultyID == 23 then
-			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.instances.DungeonMythic)
+			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonMythic)
 		elseif DifficultyID == 8 then
 			local keylevel = C_ChallengeMode.GetActiveKeystoneInfo()
 			if keylevel == 0 then
-				instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.instances.DungeonMythicPlus)
+				instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlus)
 			else
-				instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.instances.DungeonMythicPlus.." +"..keylevel)
+				instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlus.." +"..keylevel)
 			end
 		elseif DifficultyID == 24 then
-			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.instances.DungeonTimewalker)
+			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalker)
 		elseif DifficultyID == 3 or DifficultyID == 4 or DifficultyID == 9 or DifficultyID == 14 or DifficultyID == 173 then
-			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.instances.Raid)
+			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.Raid)
 		elseif DifficultyID == 5 or DifficultyID == 6 or DifficultyID == 174 or DifficultyID == 15 or DifficultyID == 148 or DifficultyID == 175 or DifficultyID == 176 then
-			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.instances.RaidHeroic)
+			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.RaidHeroic)
 		elseif DifficultyID == 16 then
-			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.instances.MythicRaid)
+			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.MythicRaid)
 		elseif DifficultyID == 7 or DifficultyID == 17 then
-			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.instances.RaidLFR)
+			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.RaidLFR)
 		elseif DifficultyID == 33 then
-			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.instances.RaidTimewalker)
+			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalker)
 		--else
 			--print("unknown instance type")
 			--instancedifficulty.Text:SetText(DifficultyID)
@@ -75,7 +75,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 				if _G["GuildInstanceDifficulty"]:IsShown() then
 					local normaltext = instancedifficulty.Text:GetText()
 					if normaltext ~= nil then
-						instancedifficulty.Text:SetText(normaltext.." "..E.db.ElvUI_EltreumUI.instances.guild)
+						instancedifficulty.Text:SetText(normaltext.." "..E.db.ElvUI_EltreumUI.skins.instances.guild)
 					end
 				end
 			end

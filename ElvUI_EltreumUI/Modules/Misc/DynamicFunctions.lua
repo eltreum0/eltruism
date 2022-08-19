@@ -14,7 +14,7 @@ local level
 
 --set portrait rotation based on target being npc or not
 function ElvUI_EltreumUI:DynamicUFPortraitRotation()
-	if E.db.ElvUI_EltreumUI.otherstuff.portraitfix and E.private.unitframe.enable then
+	if E.db.ElvUI_EltreumUI.unitframes.portraitfix and E.private.unitframe.enable then
 		if UnitExists("target") then
 			--print(_G["ElvUF_Target"].Portrait3D:GetModelFileID() ) -- actually prints
 			--_G["ElvUF_Target"].Portrait3D:SetCamera(1)
@@ -32,7 +32,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 end
 
 function ElvUI_EltreumUI:BattlegroundGroupUnitframes()
-	if E.db.ElvUI_EltreumUI.otherstuff.bgunitframes and E.private.unitframe.enable then
+	if E.db.ElvUI_EltreumUI.unitframes.bgunitframes and E.private.unitframe.enable then
 		_, instanceType = IsInInstance()
 		if instanceType == "pvp" then
 			E.db["unitframe"]["units"]["party"]["visibility"] = "hide"
@@ -52,7 +52,7 @@ function ElvUI_EltreumUI:BattlegroundGroupUnitframes()
 end
 
 function ElvUI_EltreumUI:ArenaUnitframes()
-	if E.db.ElvUI_EltreumUI.otherstuff.arenaunitframes and E.private.unitframe.enable then
+	if E.db.ElvUI_EltreumUI.unitframes.arenaunitframes and E.private.unitframe.enable then
 		_, instanceType = IsInInstance()
 		if instanceType == "arena" then
 			_G["ElvUF_Arena1"]:Hide()
@@ -66,7 +66,7 @@ function ElvUI_EltreumUI:ArenaUnitframes()
 end
 
 function ElvUI_EltreumUI:DynamicBuffs()
-	if E.db.ElvUI_EltreumUI.otherstuff.arenabuffs and E.private.unitframe.enable and not InCombatLockdown() then
+	if E.db.ElvUI_EltreumUI.unitframes.arenabuffs and E.private.unitframe.enable and not InCombatLockdown() then
 		_, instanceType = IsInInstance()
 		if instanceType == "arena" or instanceType == "pvp" then
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["enable"] = true
@@ -82,7 +82,7 @@ end
 
 --Dynamically datatext swap based on player class
 function ElvUI_EltreumUI:DynamicClassicDatatext()
-	if E.db.ElvUI_EltreumUI.dynamicdatatext.enable then
+	if E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext then
 		if not E.db.movers then E.db.movers = {} end
 		if E.myclass == 'HUNTER' or E.myclass == 'WARLOCK' or E.myclass == 'WARRIOR' or E.myclass == 'ROGUE' then
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Eltruism Ammo"
@@ -94,7 +94,7 @@ end
 
 --Dynamic Level Nameplate Style Filter
 function ElvUI_EltreumUI:DynamicLevelStyleFilter()
-	if E.db.ElvUI_EltreumUI.nameplatelevel.enable and E.db.nameplates.filters.EltreumLevel and not InCombatLockdown() then
+	if E.db.ElvUI_EltreumUI.nameplates.nameplatelevel.enable and E.db.nameplates.filters.EltreumLevel and not InCombatLockdown() then
 		if not E.private.ElvUI_EltreumUI.install_version then
 			return
 		else
