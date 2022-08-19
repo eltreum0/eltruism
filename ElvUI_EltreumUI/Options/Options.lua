@@ -7621,8 +7621,8 @@ function ElvUI_EltreumUI:Configtable()
 								type = "toggle",
 								desc = L["Enable for Error Frame"],
 								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.skins.zones end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.zones = value E:StaticPopup_Show('CONFIG_RL') end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.errorframe end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.errorframe = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							errorsize = {
 								type = 'range',
