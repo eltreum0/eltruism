@@ -1013,6 +1013,47 @@ function ElvUI_EltreumUI:Shadows()
 	end
 end
 
+function ElvUI_EltreumUI:RaidShadows()
+	local inraid = IsInRaid()
+	if inraid == true and E.private.unitframe.enable and E.db.ElvUI_EltreumUI.skins.shadows.enable and E.db.ElvUI_EltreumUI.skins.shadows.raid then
+		--raid
+		for i = 1, 8 do
+			--local raidgroups = {_G["ElvUF_RaidGroup'..i]}
+			--for _, frame in pairs(raidgroups) do
+				for k = 1, 5 do
+					local slots = {_G["ElvUF_RaidGroup"..i..'UnitButton'..k]}
+					for _, button in pairs(slots) do
+						if not button.shadow then
+							if not E.db.ElvUI_EltreumUI.borders.borders then
+								button:CreateShadow()
+								button.shadow:SetParent(button)
+							end
+						end
+					end
+				end
+			--end
+		end
+
+		--raid40
+		for i = 1, 8 do
+			--local raid40groups = {_G["ElvUF_Raid40Group'..i]}
+			--for _, frame in pairs(raid40groups) do
+				for k = 1, 5 do
+					local slots = {_G["ElvUF_Raid40Group"..i..'UnitButton'..k]}
+					for _, button in pairs(slots) do
+						if not button.shadow then
+							if not E.db.ElvUI_EltreumUI.borders.borders then
+								button:CreateShadow()
+								button.shadow:SetParent(button)
+							end
+						end
+					end
+				end
+			--end
+		end
+	end
+end
+
 --benik's version
 function ElvUI_EltreumUI:NameplateShadows(nameplate)
 	if E.private.nameplates.enable and E.db.ElvUI_EltreumUI.skins.shadows.enable then
@@ -1095,43 +1136,3 @@ function ElvUI_EltreumUI:UFAuraShadows(button)
 end
 hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraShadows) --uf aura shadows
 
-function ElvUI_EltreumUI:RaidShadows()
-	local inraid = IsInRaid()
-	if inraid == true and E.private.unitframe.enable and E.db.ElvUI_EltreumUI.skins.shadows.enable and E.db.ElvUI_EltreumUI.skins.shadows.raid then
-		--raid
-		for i = 1, 8 do
-			--local raidgroups = {_G["ElvUF_RaidGroup'..i]}
-			--for _, frame in pairs(raidgroups) do
-				for k = 1, 5 do
-					local slots = {_G["ElvUF_RaidGroup"..i..'UnitButton'..k]}
-					for _, button in pairs(slots) do
-						if not button.shadow then
-							if not E.db.ElvUI_EltreumUI.borders.borders then
-								button:CreateShadow()
-								button.shadow:SetParent(button)
-							end
-						end
-					end
-				end
-			--end
-		end
-
-		--raid40
-		for i = 1, 8 do
-			--local raid40groups = {_G["ElvUF_Raid40Group'..i]}
-			--for _, frame in pairs(raid40groups) do
-				for k = 1, 5 do
-					local slots = {_G["ElvUF_Raid40Group"..i..'UnitButton'..k]}
-					for _, button in pairs(slots) do
-						if not button.shadow then
-							if not E.db.ElvUI_EltreumUI.borders.borders then
-								button:CreateShadow()
-								button.shadow:SetParent(button)
-							end
-						end
-					end
-				end
-			--end
-		end
-	end
-end
