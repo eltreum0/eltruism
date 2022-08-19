@@ -66,7 +66,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 						if data.ElvUI_EltreumUI.instances then
 							E.db.ElvUI_EltreumUI.skins.instances = data.ElvUI_EltreumUI.instances
 							E:CopyTable(E.db.ElvUI_EltreumUI.skins.instances, data.ElvUI_EltreumUI.instances)
-						else
+						elseif data.ElvUI_EltreumUI.instances == nil then
 							data.ElvUI_EltreumUI.instances = {
 								enable = false,
 								fontsize = 12,
@@ -93,7 +93,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 							--E.db.ElvUI_EltreumUI.skins.shadows = {}
 							E:CopyTable(E.db.ElvUI_EltreumUI.skins.shadows, data.ElvUI_EltreumUI.shadows)
 							--E.db.ElvUI_EltreumUI.skins.shadows.enable =  temp
-						else
+						elseif data.ElvUI_EltreumUI.shadows == nil then
 							data.ElvUI_EltreumUI.shadows = {
 								enable = false,
 								raid = true,
@@ -112,7 +112,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 						if data.ElvUI_EltreumUI.blizzframes then
 							E.db.ElvUI_EltreumUI.skins.blizzframes = data.ElvUI_EltreumUI.blizzframes
 							E:CopyTable(E.db.ElvUI_EltreumUI.skins.blizzframes, data.ElvUI_EltreumUI.blizzframes)
-						else
+						elseif data.ElvUI_EltreumUI.blizzframes == nil then
 							data.ElvUI_EltreumUI.skins.blizzframes = {
 								errorframe = true,
 								errorframefontsize = 14,
@@ -292,7 +292,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 								E.db.ElvUI_EltreumUI.skins.tbctalents = false
 								E:CopyTable(E.db.ElvUI_EltreumUI.skins.tbctalents, data.ElvUI_EltreumUI.tbctalents.enable)
 							end
-						else
+						elseif data.ElvUI_EltreumUI.tbctalents == nil then
 							data.ElvUI_EltreumUI.tbctalents = {
 								enable = false,
 							}
@@ -307,7 +307,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 								E.db.ElvUI_EltreumUI.skins.stealtheffect = false
 								E:CopyTable(E.db.ElvUI_EltreumUI.skins.stealtheffect, data.ElvUI_EltreumUI.stealthOptions.stealtheffect)
 							end
-						else
+						elseif data.ElvUI_EltreumUI.stealthOptions == nil then
 							data.ElvUI_EltreumUI.stealthOptions = {
 								stealthOptions = false,
 							}
@@ -437,7 +437,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 						if data.ElvUI_EltreumUI.fonts then
 							E.db.ElvUI_EltreumUI.otherstuff.fonts = data.ElvUI_EltreumUI.fonts
 							E:CopyTable(E.db.ElvUI_EltreumUI.otherstuff.fonts, data.ElvUI_EltreumUI.fonts)
-						elseif data.ElvUI_EltreumUI.afkmusic == nil then
+						elseif data.ElvUI_EltreumUI.fonts == nil then
 							data.ElvUI_EltreumUI.fonts = {
 								playerfont = "Kimberley"
 							}
@@ -607,7 +607,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 								E.db.ElvUI_EltreumUI.unitframes.portraitfix = false
 								E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.portraitfix, data.ElvUI_EltreumUI.otherstuff.portraitfix)
 							end
-						else
+						elseif data.ElvUI_EltreumUI.otherstuff == nil then
 							data.ElvUI_EltreumUI.otherstuff ={
 								eltruismroleicons = false,
 								gamemenu = false,
