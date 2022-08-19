@@ -156,7 +156,6 @@ P.ElvUI_EltreumUI = {
 			b = 0.5,
 			a = 1,
 		},
-
 	},
 
 	nameplates = {
