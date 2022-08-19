@@ -20,10 +20,8 @@ combatindicatorframe:RegisterEvent("PLAYER_REGEN_DISABLED")
 local errorthrottle = false
 
 function ElvUI_EltreumUI:LootText()
-	local scale = E.db.ElvUI_EltreumUI.loot.loottext.scale
-	local strata = E.db.ElvUI_EltreumUI.loot.loottext.strata
-	_G.CombatText:SetScale(scale)
-	_G.CombatText:SetFrameStrata(strata)
+	_G.CombatText:SetScale(E.db.ElvUI_EltreumUI.loot.loottext.scale)
+	_G.CombatText:SetFrameStrata(E.db.ElvUI_EltreumUI.loot.loottext.strata)
 	--moving the combat text
 	local xOffset = E.db.ElvUI_EltreumUI.loot.loottext.xOffset
 	local yOffset = E.db.ElvUI_EltreumUI.loot.loottext.yOffset
