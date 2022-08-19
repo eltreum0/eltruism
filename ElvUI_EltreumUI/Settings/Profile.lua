@@ -181,9 +181,6 @@ P.ElvUI_EltreumUI = {
 			restedoverlap = false,
 			hideSwipe = false,
 		},
-
-
-
 		nptextureversion = "V1",
 		nameplatelevel = false,
 		nameplatepower = {
@@ -198,9 +195,6 @@ P.ElvUI_EltreumUI = {
 			r = 0,
 			g = 0,
 			b = 0,
-
-
-
 		},
 		friendlynameplatetoggle = {
 			disablefriendly = false,
