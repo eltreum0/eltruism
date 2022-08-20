@@ -9272,7 +9272,6 @@ function ElvUI_EltreumUI:Configtable()
 						type = "group",
 						name = E.NewSign..L["Models"],
 						order = 4,
-						disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.darkmode and not E.db.ElvUI_EltreumUI.unitframes.lightmode end,
 						args = {
 							header1 = {
 								order = 1,
