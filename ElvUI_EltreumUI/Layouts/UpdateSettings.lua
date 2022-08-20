@@ -85,7 +85,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.skins.questswowhead = true
 	E.db.ElvUI_EltreumUI.skins.professions = true
 	E.db.ElvUI_EltreumUI.skins.zones = true
-	E.db.ElvUI_EltreumUI.skins.shadows.enable = true
+	E.db.ElvUI_EltreumUI.skins.shadow.enable = true
 	E.db.ElvUI_EltreumUI.glow.enable = true
 	E.db.ElvUI_EltreumUI.glow.pixel = true
 	E.db.ElvUI_EltreumUI.glow.enablepet = true
@@ -106,10 +106,10 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.borders.totembar = true
 
 	--shadows
-	E.db.ElvUI_EltreumUI.skins.shadows.aura = true
-	E.db.ElvUI_EltreumUI.skins.shadows.ufaura = true
-	E.db.ElvUI_EltreumUI.skins.shadows.actionbars = true
-	E.db.ElvUI_EltreumUI.skins.shadows.raid = true
+	E.db.ElvUI_EltreumUI.skins.shadow.aura = true
+	E.db.ElvUI_EltreumUI.skins.shadow.ufaura = true
+	E.db.ElvUI_EltreumUI.skins.shadow.actionbars = true
+	E.db.ElvUI_EltreumUI.skins.shadow.raid = true
 
 	-- Misc
 	E.db.ElvUI_EltreumUI.skins.tbctalents = true

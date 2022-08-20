@@ -13,7 +13,6 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 		}
 
 		if E.private.ElvUI_EltreumUI.install_version < "3.2.0" or forced then
-
 			--Profile options conversion
 			local ProfileNames = "NONE"
 			local CharacterNames = "NONE"
@@ -21,17 +20,16 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 				local profileChanged = false
 				if data then
 					if data.ElvUI_EltreumUI then
+						if data.ElvUI_EltreumUI.shadows then
+							local temp = data.ElvUI_EltreumUI.skins.shadows
+							E:CopyTable(E.db.ElvUI_EltreumUI.skins.shadow, data.ElvUI_EltreumUI.shadows)
+							E.db.ElvUI_EltreumUI.skins.shadow.enable = temp
+							data.ElvUI_EltreumUI.shadows = nil
+							data.ElvUI_EltreumUI.skins.shadows = nil
+						end
 						if data.ElvUI_EltreumUI.instances then
 							E:CopyTable(E.db.ElvUI_EltreumUI.skins.instances, data.ElvUI_EltreumUI.instances)
 							data.ElvUI_EltreumUI.instances = nil
-						end
-						if data.ElvUI_EltreumUI.shadows then
-							local temp = E.db.ElvUI_EltreumUI.skins.shadows
-							E.db.ElvUI_EltreumUI.skins.shadows = {}
-							E:CopyTable(E.db.ElvUI_EltreumUI.skins.shadows, data.ElvUI_EltreumUI.shadows)
-							E.db.ElvUI_EltreumUI.skins.shadows.enable =  temp
-							data.ElvUI_EltreumUI.shadows = nil
-							data.ElvUI_EltreumUI.skins.shadows = nil
 						end
 						if data.ElvUI_EltreumUI.blizzframes then
 							E:CopyTable(E.db.ElvUI_EltreumUI.skins.blizzframes, data.ElvUI_EltreumUI.blizzframes)

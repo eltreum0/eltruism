@@ -205,7 +205,7 @@ function ElvUI_EltreumUI:QuestItem()
 			local function CreateItemButton()
 				local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"SecureActionButtonTemplate")
 				b:SetSize(cfg.btnSize,cfg.btnSize)
-				if E.db.ElvUI_EltreumUI.skins.shadows.enable then
+				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 					if not b.shadow then
 						b:CreateShadow()
 					end

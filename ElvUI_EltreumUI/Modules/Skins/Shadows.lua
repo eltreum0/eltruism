@@ -13,7 +13,7 @@ local TargetCastbar = CreateFrame("Frame", "EltruismTargetCastBarShadowFrame")
 
 --Frame Shadows, turns out ElvUI includes the function
 function ElvUI_EltreumUI:Shadows()
-	if E.db.ElvUI_EltreumUI.skins.shadows.enable then
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 		------------------------------------------------------------------------------------------------------blizzard frames
 
 		local EltruismBlizzShadows = CreateFrame("Frame")
@@ -426,7 +426,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
-			if E.private.actionbar.enable and E.db.ElvUI_EltreumUI.skins.shadows.actionbars then
+			if E.private.actionbar.enable and E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
 				if not _G.BossButton.shadow then
 					_G.BossButton:CreateShadow()
 				end
@@ -496,7 +496,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--wrath only frames
-			if E.Wrath and E.db.ElvUI_EltreumUI.skins.shadows.actionbars then
+			if E.Wrath and E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
 				if not E.private.skins.blizzard.enable == false and _G.LFGListingFrame.backdrop and not _G.LFGListingFrame.backdrop.shadow then
 					_G.LFGListingFrame.backdrop:CreateShadow()
 				end
@@ -560,7 +560,7 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		--action bars
-		if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") and E.db.ElvUI_EltreumUI.skins.shadows.actionbars then
+		if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") and E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
 			--elvui action bars
 			for i = 1, 10 do
 				for k = 1, 12 do
@@ -1015,7 +1015,7 @@ end
 
 function ElvUI_EltreumUI:RaidShadows()
 	local inraid = IsInRaid()
-	if inraid == true and E.private.unitframe.enable and E.db.ElvUI_EltreumUI.skins.shadows.enable and E.db.ElvUI_EltreumUI.skins.shadows.raid then
+	if inraid == true and E.private.unitframe.enable and E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.raid then
 		--raid
 		for i = 1, 8 do
 			--local raidgroups = {_G["ElvUF_RaidGroup'..i]}
@@ -1056,8 +1056,8 @@ end
 
 --benik's version
 function ElvUI_EltreumUI:NameplateShadows(nameplate)
-	if E.private.nameplates.enable and E.db.ElvUI_EltreumUI.skins.shadows.enable then
-		if E.db.ElvUI_EltreumUI.skins.shadows.nameplates then
+	if E.private.nameplates.enable and E.db.ElvUI_EltreumUI.skins.shadow.enable then
+		if E.db.ElvUI_EltreumUI.skins.shadow.nameplates then
 			if nameplate.Health.backdrop then
 				if not nameplate.Health.backdrop.shadow then
 					nameplate.Health.backdrop:CreateShadow()
@@ -1065,7 +1065,7 @@ function ElvUI_EltreumUI:NameplateShadows(nameplate)
 			end
 		end
 
-		if E.db.ElvUI_EltreumUI.skins.shadows.nppower then
+		if E.db.ElvUI_EltreumUI.skins.shadow.nppower then
 			if nameplate.Power.backdrop then
 				if not nameplate.Power.backdrop.shadow then
 					nameplate.Power.backdrop:CreateShadow()
@@ -1079,7 +1079,7 @@ function ElvUI_EltreumUI:NameplateShadows(nameplate)
 			end
 		end
 
-		if E.db.ElvUI_EltreumUI.skins.shadows.npcastbar then
+		if E.db.ElvUI_EltreumUI.skins.shadow.npcastbar then
 			if nameplate.Castbar.backdrop then
 				if not nameplate.Castbar.backdrop.shadow then
 					nameplate.Castbar.backdrop:CreateShadow()
@@ -1093,7 +1093,7 @@ function ElvUI_EltreumUI:NameplateShadows(nameplate)
 			end
 		end
 
-		if E.db.ElvUI_EltreumUI.skins.shadows.npportraits then
+		if E.db.ElvUI_EltreumUI.skins.shadow.npportraits then
 			if nameplate.Portrait.backdrop then
 				if not nameplate.Portrait.backdrop.shadow then
 					nameplate.Portrait.backdrop:CreateShadow()
@@ -1105,7 +1105,7 @@ end
 hooksecurefunc(NP, 'StylePlate', ElvUI_EltreumUI.NameplateShadows) --nameplate shadows
 
 function ElvUI_EltreumUI:Construct_AuraIcon(button)
-	if E.db.ElvUI_EltreumUI.skins.shadows.enable and E.db.ElvUI_EltreumUI.skins.shadows.npauras and E.private.nameplates.enable then
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.npauras and E.private.nameplates.enable then
 		if not button then return end
 		if not button.shadow then
 			button:CreateShadow()
@@ -1115,7 +1115,7 @@ end
 hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) --nameplate buffs/debuffs shadows
 
 function ElvUI_EltreumUI:AuraShadows(button)
-	if E.db.ElvUI_EltreumUI.skins.shadows.aura and E.private.auras.enable and E.db.ElvUI_EltreumUI.skins.shadows.enable then
+	if E.db.ElvUI_EltreumUI.skins.shadow.aura and E.private.auras.enable and E.db.ElvUI_EltreumUI.skins.shadow.enable then
 		if not button then return end
 		if not button.shadow then
 			if not E.db.ElvUI_EltreumUI.borders.borders then
@@ -1127,7 +1127,7 @@ end
 hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
 
 function ElvUI_EltreumUI:UFAuraShadows(button)
-	if E.db.ElvUI_EltreumUI.skins.shadows.ufaura and E.private.auras.enable and E.db.ElvUI_EltreumUI.skins.shadows.enable then
+	if E.db.ElvUI_EltreumUI.skins.shadow.ufaura and E.private.auras.enable and E.db.ElvUI_EltreumUI.skins.shadow.enable then
 		if not button then return end
 		if not button.shadow then
 			button:CreateShadow()
