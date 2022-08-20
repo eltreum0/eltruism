@@ -78,11 +78,11 @@ function ElvUI_EltreumUI:CooldownEnable()
 	if not E.db.ElvUI_EltreumUI then
 		cooldownsize = 28
 	elseif E.db.ElvUI_EltreumUI then
-		if not E.db.ElvUI_EltreumUI.cursorcursor then
+		if not E.db.ElvUI_EltreumUI.cursors.cursorcursor then
 			cooldownsize = 28
-		elseif E.db.ElvUI_EltreumUI.cursorcursor then
-			if E.db.ElvUI_EltreumUI.cursorcursor.radius then
-				cooldownsize = ( (E.db.ElvUI_EltreumUI.cursorcursor.radius * 2 ) - 2 )
+		elseif E.db.ElvUI_EltreumUI.cursors.cursorcursor then
+			if E.db.ElvUI_EltreumUI.cursors.cursorcursor.radius then
+				cooldownsize = ( (E.db.ElvUI_EltreumUI.cursors.cursorcursor.radius * 2 ) - 2 )
 			else
 				cooldownsize = 28
 			end
