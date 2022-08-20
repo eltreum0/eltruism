@@ -1076,25 +1076,6 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 							}
 							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor, data.ElvUI_EltreumUI.sparkcustomcolor)
 						end
-						if data.ElvUI_EltreumUI.models then
-							E.db.ElvUI_EltreumUI.unitframes.models = data.ElvUI_EltreumUI.models
-							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.models, data.ElvUI_EltreumUI.models)
-						elseif data.ElvUI_EltreumUI.models == nil then
-							data.ElvUI_EltreumUI.models = {
-								castbar = false,
-								unitframe = false,
-								ufalpha = 0.3,
-								ufalphadark = 0.3,
-								ufdesaturation = 0,
-								modeltype = "CLASS",
-								custommodel = 165575,
-								custommodelclassic = "spells/arcanebreath.m2",
-								modeltypecast = "DEFAULT",
-								custommodelcast = 165821,
-								custommodelclassiccast = "spells/corruption_impactdot_med_base.m2",
-							}
-							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.models, data.ElvUI_EltreumUI.models)
-						end
 
 						profileChanged = true
 					end
