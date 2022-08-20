@@ -303,6 +303,10 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor, data.ElvUI_EltreumUI.sparkcustomcolor)
 							data.ElvUI_EltreumUI.sparkcustomcolor = nil
 						end
+						if data.ElvUI_EltreumUI.questsettings then
+							E:CopyTable(E.db.ElvUI_EltreumUI.quests, data.ElvUI_EltreumUI.questsettings)
+							data.ElvUI_EltreumUI.questsettings = nil
+						end
 
 						profileChanged = true
 					end
