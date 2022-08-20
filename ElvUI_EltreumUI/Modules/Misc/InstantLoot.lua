@@ -118,7 +118,7 @@ local function InstantLoot(_, event,_, arg2)
 		if _G["TSMDestroyBtn"] and _G["TSMDestroyBtn"]:IsShown() then
 			return
 		end
-		if E.db.ElvUI_EltreumUI.otherstuff.fastloot then
+		if E.db.ElvUI_EltreumUI.loot.fastloot then
 			if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
 				for i = GetNumLootItems(), 1, -1 do
 					LootSlot(i)
@@ -186,7 +186,7 @@ EltruismInstantLoot:SetScript("OnEvent", InstantLoot)
 --attempt at checking for stacks and not looting if not enough slots, but was slower
 --[[
 	local function InstantLoot()
-		if E.db.ElvUI_EltreumUI.otherstuff.fastloot then
+		if E.db.ElvUI_EltreumUI.loot.fastloot then
 			local openslots = 0
 			for i=0, 4 do
 				openslots = openslots + GetContainerNumFreeSlots(i)
