@@ -23,6 +23,8 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 			else
 				if UnitCreatureType("target") == "Humanoid" then
 					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
+				elseif UnitCreatureType("target") == "Mechanical" then
+					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 				else
 					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
 				end
