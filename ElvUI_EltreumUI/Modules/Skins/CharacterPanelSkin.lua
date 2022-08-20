@@ -332,7 +332,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		end
 
 		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-			_G.CharacterFrame:SetHeight(505)
+			--_G.CharacterFrame:SetHeight(505)
+			_G.CharacterFrame:SetHeight(455)
 			-- Move Right Side since left side is already ok
 			_G.CharacterFrameInsetRight:SetPoint('TOPLEFT', _G.CharacterFrameInset, 'TOPRIGHT', 130, 0)
 			_G.CharacterHandsSlot:SetPoint('TOPRIGHT', _G.CharacterFrameInsetRight, 'TOPLEFT', 0, -3)
