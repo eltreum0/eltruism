@@ -36,49 +36,49 @@ function ElvUI_EltreumUI:PluginCheck()
 		E.private.ElvUI_EltreumUI.isInstalled.projectazilroka = true
 	elseif E.private.ElvUI_EltreumUI.install_version >= "2.4.7" then
 		if IsAddOnLoaded("ElvUI_SLE") and not IsAddOnLoaded("ElvUI_WindTools") and not IsAddOnLoaded('ProjectAzilroka') then
-			if E.private.ElvUI_EltreumUI.isInstalled.sle == false then
+			if not E.private.ElvUI_EltreumUI.isInstalled.sle then
 				ElvUI_EltreumUI:Print("You have "..E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).." installed but not setup, it is highly recommended to install Shadow and Light's profile for Eltruism, found in Eltruism > Addons, before continuing")
 			end
 		elseif IsAddOnLoaded("ElvUI_WindTools") and not IsAddOnLoaded("ElvUI_SLE") and not IsAddOnLoaded('ProjectAzilroka') then
-			if E.private.ElvUI_EltreumUI.isInstalled.windtools == false then
+			if not E.private.ElvUI_EltreumUI.isInstalled.windtools then
 				ElvUI_EltreumUI:Print("You have "..E:TextGradient(L["WindTools"], 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." installed but not setup, it is highly recommended to install Windtools profile for Eltruism, found in Eltruism > Addons, before continuing")
 			end
 		elseif IsAddOnLoaded("ElvUI_WindTools") and IsAddOnLoaded("ElvUI_SLE") and not IsAddOnLoaded('ProjectAzilroka') then
-			if E.private.ElvUI_EltreumUI.isInstalled.windtools == false and E.private.ElvUI_EltreumUI.isInstalled.sle == false then
+			if not E.private.ElvUI_EltreumUI.isInstalled.windtools and not E.private.ElvUI_EltreumUI.isInstalled.sle then
 				ElvUI_EltreumUI:Print("You have "..E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).." and "..E:TextGradient(L["WindTools"], 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." installed but not setup, it is highly recommended to install their profiles for Eltruism, found in Eltruism > Addons, before continuing")
-			elseif E.private.ElvUI_EltreumUI.isInstalled.windtools == false and E.private.ElvUI_EltreumUI.isInstalled.sle == true then
+			elseif not E.private.ElvUI_EltreumUI.isInstalled.windtool and E.private.ElvUI_EltreumUI.isInstalled.sle then
 				ElvUI_EltreumUI:Print("You have "..E:TextGradient(L["WindTools"], 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." installed but not setup, it is highly recommended to install Windtools profile for Eltruism, found in Eltruism > Addons, before continuing")
-			elseif E.private.ElvUI_EltreumUI.isInstalled.sle == false and E.private.ElvUI_EltreumUI.isInstalled.windtools == true then
+			elseif not E.private.ElvUI_EltreumUI.isInstalled.sle and E.private.ElvUI_EltreumUI.isInstalled.windtools then
 				ElvUI_EltreumUI:Print("You have "..E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).." installed but not setup, it is highly recommended to install Shadow and Light's profile for Eltruism, found in Eltruism > Addons, before continuing")
 			end
 		elseif IsAddOnLoaded('ProjectAzilroka') and not IsAddOnLoaded("ElvUI_WindTools") and not IsAddOnLoaded("ElvUI_SLE") then
-			if E.private.ElvUI_EltreumUI.isInstalled.projectazilroka == false then
+			if not E.private.ElvUI_EltreumUI.isInstalled.projectazilroka then
 				ElvUI_EltreumUI:Print("You have ProjectAzilroka installed but not setup, it is highly recommended to install its profile for Eltruism, found in Eltruism > Addons, before continuing")
 			end
 		elseif IsAddOnLoaded('ProjectAzilroka') and IsAddOnLoaded("ElvUI_WindTools") and not IsAddOnLoaded("ElvUI_SLE") then
-			if E.private.ElvUI_EltreumUI.isInstalled.projectazilroka == false and E.private.ElvUI_EltreumUI.isInstalled.windtools == false then
+			if not E.private.ElvUI_EltreumUI.isInstalled.projectazilroka and not E.private.ElvUI_EltreumUI.isInstalled.windtools then
 				ElvUI_EltreumUI:Print("You have "..E:TextGradient(L["WindTools"], 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." and ProjectAzilroka installed but not setup, it is highly recommended to install their profiles for Eltruism, found in Eltruism > Addons, before continuing")
-			elseif E.private.ElvUI_EltreumUI.isInstalled.projectazilroka == false and E.private.ElvUI_EltreumUI.isInstalled.windtools == true then
+			elseif not E.private.ElvUI_EltreumUI.isInstalled.projectazilroka and E.private.ElvUI_EltreumUI.isInstalled.windtools then
 				ElvUI_EltreumUI:Print("You have ProjectAzilroka installed but not setup, it is highly recommended to install its profile for Eltruism, found in Eltruism > Addons, before continuing")
 			end
 		elseif IsAddOnLoaded('ProjectAzilroka') and not IsAddOnLoaded("ElvUI_WindTools") and IsAddOnLoaded("ElvUI_SLE") then
-			if E.private.ElvUI_EltreumUI.isInstalled.projectazilroka == false and E.private.ElvUI_EltreumUI.isInstalled.sle == false then
+			if not E.private.ElvUI_EltreumUI.isInstalled.projectazilroka and not E.private.ElvUI_EltreumUI.isInstalled.sle then
 				ElvUI_EltreumUI:Print("You have "..E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).." and ProjectAzilroka installed but not setup, it is highly recommended to install their profiles for Eltruism, found in Eltruism > Addons, before continuing")
-			elseif E.private.ElvUI_EltreumUI.isInstalled.projectazilroka == false and E.private.ElvUI_EltreumUI.isInstalled.sle == true then
+			elseif not E.private.ElvUI_EltreumUI.isInstalled.projectazilroka and E.private.ElvUI_EltreumUI.isInstalled.sle then
 				ElvUI_EltreumUI:Print("You have ProjectAzilroka installed but not setup, it is highly recommended to install its profile for Eltruism, found in Eltruism > Addons, before continuing")
 			end
 		elseif IsAddOnLoaded('ProjectAzilroka') and IsAddOnLoaded("ElvUI_WindTools") and IsAddOnLoaded("ElvUI_SLE") then
-			if E.private.ElvUI_EltreumUI.isInstalled.windtools == false and E.private.ElvUI_EltreumUI.isInstalled.sle == false and E.private.ElvUI_EltreumUI.isInstalled.projectazilroka == false then
+			if not E.private.ElvUI_EltreumUI.isInstalled.windtools and not E.private.ElvUI_EltreumUI.isInstalled.sle and not E.private.ElvUI_EltreumUI.isInstalled.projectazilroka then
 				ElvUI_EltreumUI:Print("You have "..E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0)..", "..E:TextGradient(L["WindTools"], 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." and ProjectAzilroka installed but not setup, it is highly recommended to install their profiles for Eltruism, found in Eltruism > Addons, before continuing")
-			elseif E.private.ElvUI_EltreumUI.isInstalled.windtools == true and E.private.ElvUI_EltreumUI.isInstalled.sle == false and E.private.ElvUI_EltreumUI.isInstalled.projectazilroka == false then
+			elseif E.private.ElvUI_EltreumUI.isInstalled.windtools and not E.private.ElvUI_EltreumUI.isInstalled.sle and not E.private.ElvUI_EltreumUI.isInstalled.projectazilroka then
 				ElvUI_EltreumUI:Print("You have "..E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).." and ProjectAzilroka installed but not setup, it is highly recommended to install their profiles for Eltruism, found in Eltruism > Addons, before continuing")
-			elseif E.private.ElvUI_EltreumUI.isInstalled.windtools == true and E.private.ElvUI_EltreumUI.isInstalled.sle == true and E.private.ElvUI_EltreumUI.isInstalled.projectazilroka == false then
+			elseif E.private.ElvUI_EltreumUI.isInstalled.windtools and E.private.ElvUI_EltreumUI.isInstalled.sle and not E.private.ElvUI_EltreumUI.isInstalled.projectazilroka then
 				ElvUI_EltreumUI:Print("You have ProjectAzilroka installed but not setup, it is highly recommended to install its profile for Eltruism, found in Eltruism > Addons, before continuing")
-			elseif E.private.ElvUI_EltreumUI.isInstalled.windtools == false and E.private.ElvUI_EltreumUI.isInstalled.sle == true and E.private.ElvUI_EltreumUI.isInstalled.projectazilroka == false then
+			elseif not E.private.ElvUI_EltreumUI.isInstalled.windtools and E.private.ElvUI_EltreumUI.isInstalled.sle and not E.private.ElvUI_EltreumUI.isInstalled.projectazilroka then
 				ElvUI_EltreumUI:Print("You have "..E:TextGradient(L["WindTools"], 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." and ProjectAzilroka installed but not setup, it is highly recommended to install their profiles for Eltruism, found in Eltruism > Addons, before continuing")
-			elseif E.private.ElvUI_EltreumUI.isInstalled.windtools == false and E.private.ElvUI_EltreumUI.isInstalled.sle == true and E.private.ElvUI_EltreumUI.isInstalled.projectazilroka == true then
+			elseif not E.private.ElvUI_EltreumUI.isInstalled.windtools and E.private.ElvUI_EltreumUI.isInstalled.sle and E.private.ElvUI_EltreumUI.isInstalled.projectazilroka then
 				ElvUI_EltreumUI:Print("You have "..E:TextGradient(L["WindTools"], 0.000, 0.592, 0.902, 0.000, 0.659, 1.000).." installed but not setup, it is highly recommended to install Windtools profile for Eltruism, found in Eltruism > Addons, before continuing")
-			elseif E.private.ElvUI_EltreumUI.isInstalled.windtools == true and E.private.ElvUI_EltreumUI.isInstalled.sle == false and E.private.ElvUI_EltreumUI.isInstalled.projectazilroka == true then
+			elseif E.private.ElvUI_EltreumUI.isInstalled.windtools and not E.private.ElvUI_EltreumUI.isInstalled.sle and E.private.ElvUI_EltreumUI.isInstalled.projectazilroka then
 				ElvUI_EltreumUI:Print("You have "..E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0).." installed but not setup, it is highly recommended to install Shadow and Light's profile for Eltruism, found in Eltruism > Addons, before continuing")
 			end
 		end
@@ -89,7 +89,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
 	elseif E.private.ElvUI_EltreumUI.install_version < "2.9.3" then
-		if E.db.ElvUI_EltreumUI.unitframes.lightmode == true or E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable == true then --convert the option
+		if E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then --convert the option
 			E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
 		end
 		E.private.ElvUI_EltreumUI.install_version = "2.9.3"
@@ -100,7 +100,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 				E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar = true
 			elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolorplayercastbar == true then
 				E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar = true
-			elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolorplayercastbar == false then
+			elseif not E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolorplayercastbar then
 				E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar = false
 			end
 		end
@@ -109,7 +109,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 				E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar = true
 			elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolortargetcastbar == true then
 				E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar = true
-			elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolortargetcastbar == false then
+			elseif not E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolortargetcastbar then
 				E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar = false
 			end
 		end
@@ -222,61 +222,65 @@ function ElvUI_EltreumUI:OldVersionCheck()
 	end
 
 	--more long term checks, in case somehow people enable 2 settings when its not possible to do so. Maybe its a shared profile from another person? No idea how they manage to do this
-	if E.db.ElvUI_EltreumUI.modetexture == true then
+	if E.db.ElvUI_EltreumUI.modetexture then
 		E.db.ElvUI_EltreumUI.unitframes.darkpowercolor = true
 	end
 	if E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.darkmode then --convert the option
 		E.db.ElvUI_EltreumUI.unitframes.lightmode = false
 		E.db.ElvUI_EltreumUI.unitframes.darkmode = true
 	end
-	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable == true and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable == true then --convert the option
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then --convert the option
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = true
 	end
-	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture == true and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.playerclass == true then
+	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.playerclass then
 		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = false
 		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.playerclass = true
 	end
-	if E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial == true and E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial == true then
+	if E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial and E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial then
 		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial = false
 		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial = true
 	end
-	if E.db.ElvUI_EltreumUI.glow.blizzard == true and E.db.ElvUI_EltreumUI.glow.pixel == true then
+	if E.db.ElvUI_EltreumUI.glow.blizzard and E.db.ElvUI_EltreumUI.glow.pixel then
 		E.db.ElvUI_EltreumUI.glow.blizzard = false
 		E.db.ElvUI_EltreumUI.glow.pixel = true
-	elseif E.db.ElvUI_EltreumUI.glow.blizzard == true and E.db.ElvUI_EltreumUI.glow.autocast == true then
+	elseif E.db.ElvUI_EltreumUI.glow.blizzard and E.db.ElvUI_EltreumUI.glow.autocast then
 		E.db.ElvUI_EltreumUI.glow.blizzard = false
 		E.db.ElvUI_EltreumUI.glow.autocast = true
-	elseif E.db.ElvUI_EltreumUI.glow.autocast == true and E.db.ElvUI_EltreumUI.glow.pixel == true then
+	elseif E.db.ElvUI_EltreumUI.glow.autocast and E.db.ElvUI_EltreumUI.glow.pixel then
 		E.db.ElvUI_EltreumUI.glow.autocast = false
 		E.db.ElvUI_EltreumUI.glow.pixel = true
-	elseif E.db.ElvUI_EltreumUI.glow.autocast == true and E.db.ElvUI_EltreumUI.glow.pixel == true and E.db.ElvUI_EltreumUI.glow.blizzard == true then
+	elseif E.db.ElvUI_EltreumUI.glow.autocast and E.db.ElvUI_EltreumUI.glow.pixel and E.db.ElvUI_EltreumUI.glow.blizzard then
 		E.db.ElvUI_EltreumUI.glow.autocast = false
 		E.db.ElvUI_EltreumUI.glow.blizzard = false
 		E.db.ElvUI_EltreumUI.glow.pixel = true
 	end
-	if E.db.ElvUI_EltreumUI.skins.classiconsblizz == true and E.db.ElvUI_EltreumUI.skins.classiconsreleaf == true then
+	if E.db.ElvUI_EltreumUI.skins.classiconsblizz and E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
 		E.db.ElvUI_EltreumUI.skins.classiconsblizz = false
 		E.db.ElvUI_EltreumUI.skins.classiconsreleaf = true
 	end
-	if E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly == true and E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly == true then
+	if E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly and E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly then
 		E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly = false
 		E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly = true
 	end
-	if E.db.ElvUI_EltreumUI.skins.playerdeath == true and (E.db.ElvUI_EltreumUI.skins.playerdeathgta == true or E.db.ElvUI_EltreumUI.skins.playerdeathcustom == true) then
+	if E.db.ElvUI_EltreumUI.skins.playerdeath and (E.db.ElvUI_EltreumUI.skins.playerdeathgta or E.db.ElvUI_EltreumUI.skins.playerdeathcustom) then
 		E.db.ElvUI_EltreumUI.skins.playerdeath = false
 		E.db.ElvUI_EltreumUI.skins.playerdeathcustom = false
 	end
-	if E.db.ElvUI_EltreumUI.quests.questitemsbar1 == true and E.db.ElvUI_EltreumUI.quests.questitemsfade == true then
+	if E.db.ElvUI_EltreumUI.quests.questitemsbar1 and E.db.ElvUI_EltreumUI.quests.questitemsfade then
 		E.db.ElvUI_EltreumUI.quests.questitemsfade = false
 		E.db.ElvUI_EltreumUI.quests.questitemsbar1 = true
+	end
+	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture then
+		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = false
+		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = true
 	end
 end
 
 function ElvUI_EltreumUI:NewVersionCheck()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
-	elseif E.private.ElvUI_EltreumUI.install_version >= "2.4.0" and E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version and fixingold == false then
+	elseif E.private.ElvUI_EltreumUI.install_version >= "2.4.0" and E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version and not fixingold then
 		E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
 		local version = (string.format("|cff82B4ff"..ElvUI_EltreumUI.Version.."|r"))
 		ElvUI_EltreumUI:Print("Welcome to version "..version..". If you have any issues please join the |TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinydisc.tga:0:0:0:0|t Discord for help")

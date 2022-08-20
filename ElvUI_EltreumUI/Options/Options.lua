@@ -8510,10 +8510,10 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Apply the mode selected"],
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications) end,
 								func = function()
-									if E.db.ElvUI_EltreumUI.unitframes.lightmode == true then
+									if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 										ElvUI_EltreumUI:LightMode()
 										E:StaggeredUpdateAll(nil, true)
-									elseif E.db.ElvUI_EltreumUI.unitframes.darkmode == true then
+									elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
 										ElvUI_EltreumUI:DarkMode()
 										E:StaggeredUpdateAll(nil, true)
 									else
