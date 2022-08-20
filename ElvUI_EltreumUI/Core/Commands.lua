@@ -171,8 +171,8 @@ function ElvUI_EltreumUI:Keys(event,message)
 		covenantName = covenantData.name
 		end
 		if E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
-			for _, link in next, keys do
-				message = ""..link
+			for _, itemlink in next, keys do
+				message = ""..itemlink
 				SendChatMessage(message..(covenantName and (' ('..covenantName..')') or ''), channel)
 			end
 		end
