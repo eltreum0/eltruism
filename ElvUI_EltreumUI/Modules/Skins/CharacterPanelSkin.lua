@@ -344,7 +344,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterModelFrame:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
 			CharacterModelFrame:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
 			CharacterModelFrame:SetPoint('BOTTOM', _G.CharacterMainHandSlot, 0, -5)
-			CharacterModelFrame:SetPosition(-1, 0, -0.10) -- zoom, x, y
+			--CharacterModelFrame:SetPosition(-1, 0, -0.10) -- zoom, x, y
 			--CharacterModelFrame:SetPosition(-0.25, 0, -0.10) -- zoom, x, y
 			--CharacterModelFrame:SetPosition(-0.55, 0, -0.10) -- zoom, x, y
 
