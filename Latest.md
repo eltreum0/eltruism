@@ -7,6 +7,7 @@ Added and updated movers to a new Eltruism category, making it easier to see fra
 Added option to automatically adjust the portrait of the target based on it being a creature or a player\
 Added an option to hide the cooldown swipe on nameplates buffs and debuffs\
 Added a compatibility check to fix a possible issue with MerathilisUI\
+Added a class color to modifier keys (Alt,Shift,Ctrl and so on) on ActionBars\
 Updated German locale by Dlarge\
 Updated Character Panel skin to use more gradients and to use custom gradients it they are enabled\
 Updated Custom Nameplate Height function to more reliably detect units that are in combat\
