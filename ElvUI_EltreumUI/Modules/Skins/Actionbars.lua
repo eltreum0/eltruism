@@ -35,6 +35,7 @@ local t4x, t4y
 local ONUPDATE_INTERVAL = 1
 local TimeSinceLastUpdate = 0
 local proc
+local button
 local procFrame = CreateFrame('frame')
 local bar
 local buttonname
@@ -330,7 +331,6 @@ function ElvUI_EltreumUI:SkillGlow()
 			function ElvUI_EltreumUI:ClassicGlow(barName)
 				bar = AB["handledBars"][barName]
 				if not bar then return end
-				local button
 				procFrame:RegisterEvent('ACTIONBAR_UPDATE_USABLE')
 				procFrame:RegisterEvent('SPELL_UPDATE_USABLE')
 				procFrame:RegisterEvent('PLAYER_TARGET_CHANGED')
