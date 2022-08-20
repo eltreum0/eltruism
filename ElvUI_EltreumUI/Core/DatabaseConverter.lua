@@ -412,7 +412,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 								enable = false,
 								racial = true,
 								playerclass = false,
-							},
+							}
 							E:CopyTable(E.db.ElvUI_EltreumUI.otherstuff.afkmusic, data.ElvUI_EltreumUI.afkmusic)
 						end
 						if data.ElvUI_EltreumUI.fonts then
