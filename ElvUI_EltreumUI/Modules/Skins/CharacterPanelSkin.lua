@@ -314,1269 +314,1268 @@ end
 
 --expanded armory
 function ElvUI_EltreumUI:ExpandedCharacterStats()
-	if E.private.skins.blizzard.enable then
+	if not E.private.skins.blizzard.enable then return end
 
-		if not InCombatLockdown() then
-			_G["CharacterFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.characterpanelscale)
+	if not InCombatLockdown() then
+		_G["CharacterFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.characterpanelscale)
+	end
+
+	if E.Retail then
+		--add class crest
+		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
+			ClassCrestFrame:SetSize(256, 256)
+			ClassCrestFrame:SetPoint("CENTER", CharacterModelFrame, 0, 50)
+			ClassCrestFrame:SetParent(_G.CharacterFrame)
+			ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
+			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
 		end
 
-		if E.Retail then
-			--add class crest
-			if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
-				ClassCrestFrame:SetSize(256, 256)
-				ClassCrestFrame:SetPoint("CENTER", CharacterModelFrame, 0, 50)
-				ClassCrestFrame:SetParent(_G.CharacterFrame)
-				ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
-				ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
-				ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
+		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+			_G.CharacterFrame:SetHeight(505)
+			-- Move Right Side since left side is already ok
+			_G.CharacterFrameInsetRight:SetPoint('TOPLEFT', _G.CharacterFrameInset, 'TOPRIGHT', 130, 0)
+			_G.CharacterHandsSlot:SetPoint('TOPRIGHT', _G.CharacterFrameInsetRight, 'TOPLEFT', 0, -3)
+			-- Move bottom equipment slots
+			_G.CharacterMainHandSlot:SetPoint('BOTTOMLEFT', PaperDollItemsFrame, 'BOTTOMLEFT', 195, 20)
+			--strech it a bit
+			CharacterModelFrame:ClearAllPoints()
+			CharacterModelFrame:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
+			CharacterModelFrame:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
+			CharacterModelFrame:SetPoint('BOTTOM', _G.CharacterMainHandSlot, 0, -5)
+			CharacterModelFrame:SetPosition(-0.25, 0, -0.10) -- zoom, x, y
+			--CharacterModelFrame:SetPosition(-0.55, 0, -0.10) -- zoom, x, y
+
+			--hide other bgs so one can be streched like the talents for tbc/classic
+			CharacterModelFrame.BackgroundTopRight:Hide()
+			CharacterModelFrame.BackgroundBotLeft:Hide()
+			CharacterModelFrame.BackgroundBotRight:Hide()
+			CharacterModelFrame.BackgroundTopLeft:SetAllPoints(CharacterModelFrame)
+			_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(CharacterModelFrame)
+
+
+			--move the equipment manager to a nice position
+			_G.PaperDollEquipmentManagerPane:ClearAllPoints()
+			_G.PaperDollEquipmentManagerPane:SetPoint("RIGHT", _G.CharacterFrame, "RIGHT", -30, -20)
+			--move the titles panel to a nice position
+			_G.PaperDollTitlesPane:ClearAllPoints()
+			_G.PaperDollTitlesPane:SetPoint("RIGHT", _G.CharacterFrame, "RIGHT", -30, -20)
+
+			--add bg texture
+			CharacterFrameBackgroundTextureFader:SetAllPoints(_G.CharacterFrame)
+			CharacterFrameBackgroundTextureFader:SetParent(_G.CharacterFrame)
+			CharacterFrameBackgroundTextureFader:SetDrawLayer("ARTWORK",7)
+			CharacterFrameBackgroundTextureFader:SetAlpha(E.db.ElvUI_EltreumUI.skins.armoryvignettealpha)
+			if not E.db.ElvUI_EltreumUI.skins.armoryvignette then
+				CharacterFrameBackgroundTextureFader:Hide()
+			else
+				CharacterFrameBackgroundTextureFader:Show()
+			end
+			if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+				CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
+				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
+				CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
+				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" then
+				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ragnaros")
+				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" then
+				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\SpaceCloud")
+				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ravnyr")
+				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
+				texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
+				CharacterFrameBackgroundTexture:SetTexture(texturefile)
+			end
+			CharacterFrameBackgroundTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
+			CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame)
+			CharacterFrameBackgroundTexture:SetParent(_G.CharacterFrame)
+			CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK",6)
+
+			_G.CharacterModelFrame.backdrop:Hide()
+			_G.CharacterModelFrameBackgroundTopLeft:Hide()
+			_G.CharacterModelFrameBackgroundOverlay:Hide()
+
+			--color the avg item level
+			CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0.4, classcolor.r, classcolor.g, classcolor.b, 0)
+			CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0, classcolor.r, classcolor.g, classcolor.b, 0.4)
+
+			if E.db.ElvUI_EltreumUI.skins.statcolors and (not IsAddOnLoaded('DejaCharacterStats')) then
+				--ItemLevelCategory
+				--remove backgrounds and make font nice
+				CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
+				CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
+				if not CharacterStatsPane.ItemLevelCategory.Title:GetText():match("|r") then
+					CharacterStatsPane.ItemLevelCategory.Title:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass))
+				end
+				CharacterStatsPane.ItemLevelCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
+
+				--statusbars
+				--CharacterStatsPane.ItemLevelCategory.Title:SetText("Gegenstandsstufe")
+
+				if IsAddOnLoaded("ElvUI_SLE") then
+					if E.locale == "enUS" then
+						linewidth1 = (( 193 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
+					else
+						linewidth1 = (( 204 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
+					end
+				else
+					linewidth1 = (( 193 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
+				end
+				CharacterStatsPane.ItemLevelCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismItemLevelCategoryLine", CharacterStatsPane)
+				CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetSize(linewidth1, 4)
+				--CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetSize(50, 4)
+				CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.ItemLevelCategory.Title, "LEFT", 0, -1)
+				--CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetPoint("CENTER", CharacterStatsPane.ItemLevelCategory.Title)
+				CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+				CharacterStatsPane.ItemLevelCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+				CharacterStatsPane.ItemLevelCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismItemLevelCategoryLine2", CharacterStatsPane)
+				--CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetSize(50, 4)
+				CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetSize(linewidth1, 4)
+				CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.ItemLevelCategory.Title, "RIGHT", -1, -1)
+				CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+				CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+
+				--attributes
+				--remove backgrounds and make font nice
+				CharacterStatsPane.AttributesCategory.backdrop:Hide()
+				if not CharacterStatsPane.AttributesCategory.Title:GetText():match("|r") then
+					CharacterStatsPane.AttributesCategory.Title:SetText(ElvUI_EltreumUI:GradientName(STAT_CATEGORY_ATTRIBUTES, E.myclass))
+				end
+				CharacterStatsPane.AttributesCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
+				--statusbars
+				linewidth2 = (( 194 - CharacterStatsPane.AttributesCategory.Title:GetStringWidth())/2)
+				CharacterStatsPane.AttributesCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismAttributesCategoryLine", CharacterStatsPane)
+				CharacterStatsPane.AttributesCategory.Title.StatusLine:SetSize(linewidth2, 4)
+				CharacterStatsPane.AttributesCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.AttributesCategory.Title, "LEFT", 0, -1)
+				CharacterStatsPane.AttributesCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+				CharacterStatsPane.AttributesCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+				CharacterStatsPane.AttributesCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismAttributesCategoryLine2", CharacterStatsPane)
+				CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetSize(linewidth2, 4)
+				CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.AttributesCategory.Title, "RIGHT", -1, -1)
+				CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+				CharacterStatsPane.AttributesCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+
+				--Enhancements
+				--remove backgrounds and make font nice
+				CharacterStatsPane.EnhancementsCategory.backdrop:Hide()
+				if not CharacterStatsPane.EnhancementsCategory.Title:GetText():match("|r") then
+					CharacterStatsPane.EnhancementsCategory.Title:SetText(ElvUI_EltreumUI:GradientName(STAT_CATEGORY_ENHANCEMENTS, E.myclass))
+				end
+				CharacterStatsPane.EnhancementsCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
+				--statusbars
+				if IsAddOnLoaded("ElvUI_SLE") then
+					if E.locale == "enUS" then
+						linewidth3 = (( 193 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
+					else
+						linewidth3 = (( 204 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
+					end
+				else
+					linewidth3 = (( 193 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
+				end
+				CharacterStatsPane.EnhancementsCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine", CharacterStatsPane)
+				CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetSize(linewidth3, 4)
+				CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.EnhancementsCategory.Title, "LEFT", 0, -1)
+				CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+				CharacterStatsPane.EnhancementsCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+				CharacterStatsPane.EnhancementsCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine2", CharacterStatsPane)
+				CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetSize(linewidth3, 4)
+				CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.EnhancementsCategory.Title, "RIGHT", -1, -1)
+				CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+				CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+
+				if IsAddOnLoaded('ElvUI_SLE') then
+					--offense
+					CharacterStatsPane.OffenseCategory.backdrop:Hide()
+					if not CharacterStatsPane.OffenseCategory.Title:GetText():match("|r") then
+						CharacterStatsPane.OffenseCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.OffenseCategory.Title:GetText(), E.myclass))
+					end
+					--statusbars
+					linewidthsle1 = (( 168 - CharacterStatsPane.OffenseCategory.Title:GetStringWidth())/2)
+					CharacterStatsPane.OffenseCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismOffenseCategory", CharacterStatsPane)
+					CharacterStatsPane.OffenseCategory.Title.StatusLine:SetSize(linewidthsle1, 4)
+					CharacterStatsPane.OffenseCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.OffenseCategory.Title, "LEFT", 0, -1)
+					CharacterStatsPane.OffenseCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+					CharacterStatsPane.OffenseCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+					CharacterStatsPane.OffenseCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismOffenseCategoryLine2", CharacterStatsPane)
+					CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetSize(linewidthsle1, 4)
+					CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.OffenseCategory.Title, "RIGHT", -1, -1)
+					CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+					CharacterStatsPane.OffenseCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+
+					--defense
+					CharacterStatsPane.DefenceCategory.backdrop:Hide()
+					if not CharacterStatsPane.DefenceCategory.Title:GetText():match("|r") then
+						CharacterStatsPane.DefenceCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.DefenceCategory.Title:GetText(), E.myclass))
+					end
+					--statusbars
+					linewidthsle2 = (( 168 - CharacterStatsPane.DefenceCategory.Title:GetStringWidth())/2)
+					CharacterStatsPane.DefenceCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismDefenceCategory", CharacterStatsPane)
+					CharacterStatsPane.DefenceCategory.Title.StatusLine:SetSize(linewidthsle2, 4)
+					CharacterStatsPane.DefenceCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.DefenceCategory.Title, "LEFT", 0, -1)
+					CharacterStatsPane.DefenceCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+					CharacterStatsPane.DefenceCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+					CharacterStatsPane.DefenceCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismDefenceCategoryLine2", CharacterStatsPane)
+					CharacterStatsPane.DefenceCategory.Title.StatusLine2:SetSize(linewidthsle2, 4)
+					CharacterStatsPane.DefenceCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.DefenceCategory.Title, "RIGHT", -1, -1)
+					CharacterStatsPane.DefenceCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+					CharacterStatsPane.DefenceCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+
+					--fix enhancement
+					CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetSize(linewidth3 + 8, 4)
+					CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetSize(linewidth3 + 8, 4)
+				end
 			end
 
-			if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-				_G.CharacterFrame:SetHeight(505)
-				-- Move Right Side since left side is already ok
-				_G.CharacterFrameInsetRight:SetPoint('TOPLEFT', _G.CharacterFrameInset, 'TOPRIGHT', 130, 0)
-				_G.CharacterHandsSlot:SetPoint('TOPRIGHT', _G.CharacterFrameInsetRight, 'TOPLEFT', 0, -3)
-				-- Move bottom equipment slots
-				_G.CharacterMainHandSlot:SetPoint('BOTTOMLEFT', PaperDollItemsFrame, 'BOTTOMLEFT', 195, 20)
-				--strech it a bit
-				CharacterModelFrame:ClearAllPoints()
-				CharacterModelFrame:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
-				CharacterModelFrame:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
-				CharacterModelFrame:SetPoint('BOTTOM', _G.CharacterMainHandSlot, 0, -5)
-				CharacterModelFrame:SetPosition(-0.25, 0, -0.10) -- zoom, x, y
-				--CharacterModelFrame:SetPosition(-0.55, 0, -0.10) -- zoom, x, y
+			--hide the backdrop on reputation/currency tab
+			hooksecurefunc("CharacterFrameTab_OnClick", function()
+				if _G.CharacterFrameInset.backdrop:IsVisible() then
+					_G.CharacterFrameInset.backdrop:Hide()
+				end
+			end)
 
-				--hide other bgs so one can be streched like the talents for tbc/classic
-				CharacterModelFrame.BackgroundTopRight:Hide()
-				CharacterModelFrame.BackgroundBotLeft:Hide()
-				CharacterModelFrame.BackgroundBotRight:Hide()
-				CharacterModelFrame.BackgroundTopLeft:SetAllPoints(CharacterModelFrame)
-				_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(CharacterModelFrame)
+			hooksecurefunc("ReputationFrame_Update", function()
+				if _G.CharacterFrameInset.backdrop:IsVisible() then
+					_G.CharacterFrameInset.backdrop:Hide()
+				end
+			end)
 
-
-				--move the equipment manager to a nice position
-				_G.PaperDollEquipmentManagerPane:ClearAllPoints()
-				_G.PaperDollEquipmentManagerPane:SetPoint("RIGHT", _G.CharacterFrame, "RIGHT", -30, -20)
-				--move the titles panel to a nice position
-				_G.PaperDollTitlesPane:ClearAllPoints()
-				_G.PaperDollTitlesPane:SetPoint("RIGHT", _G.CharacterFrame, "RIGHT", -30, -20)
-
-				--add bg texture
-				CharacterFrameBackgroundTextureFader:SetAllPoints(_G.CharacterFrame)
-				CharacterFrameBackgroundTextureFader:SetParent(_G.CharacterFrame)
-				CharacterFrameBackgroundTextureFader:SetDrawLayer("ARTWORK",7)
-				CharacterFrameBackgroundTextureFader:SetAlpha(E.db.ElvUI_EltreumUI.skins.armoryvignettealpha)
-				if not E.db.ElvUI_EltreumUI.skins.armoryvignette then
-					CharacterFrameBackgroundTextureFader:Hide()
+			hooksecurefunc("CharacterFrame_Collapse", function()
+				if PaperDollFrame:IsVisible() then
+					_G.CharacterFrame:SetWidth(505)
+					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+					end
+					_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+					_G.CharacterModelFrameBackgroundOverlay:Hide()
+					if PaperDollFrame.SLE_Armory_BG then
+						if PaperDollFrame.SLE_Armory_BG:IsVisible() then
+							PaperDollFrame.SLE_Armory_BG:Hide()
+						end
+					end
 				else
-					CharacterFrameBackgroundTextureFader:Show()
+					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.346, 0, 1)
+					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+					end
 				end
-				if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
-					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-					CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
-					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
-				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" then
-					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ragnaros")
-					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
-				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" then
-					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\SpaceCloud")
-					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
-				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
-					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ravnyr")
-					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
-				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
-					texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
-					CharacterFrameBackgroundTexture:SetTexture(texturefile)
+			end)
+
+			hooksecurefunc("CharacterFrame_Expand", function()
+				if PaperDollFrame:IsVisible() then
+					_G.CharacterFrame:SetWidth(700)
+					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+					end
+					_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
+					_G.CharacterModelFrameBackgroundOverlay:Hide()
+					if PaperDollFrame.SLE_Armory_BG then
+						if PaperDollFrame.SLE_Armory_BG:IsVisible() then
+							PaperDollFrame.SLE_Armory_BG:Hide()
+						end
+					end
+				else
+					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.346, 0, 1)
+					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+					end
 				end
-				CharacterFrameBackgroundTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
-				CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame)
-				CharacterFrameBackgroundTexture:SetParent(_G.CharacterFrame)
-				CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK",6)
+			end)
 
-				_G.CharacterModelFrame.backdrop:Hide()
-				_G.CharacterModelFrameBackgroundTopLeft:Hide()
-				_G.CharacterModelFrameBackgroundOverlay:Hide()
 
-				--color the avg item level
-				CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0.4, classcolor.r, classcolor.g, classcolor.b, 0)
-				CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0, classcolor.r, classcolor.g, classcolor.b, 0.4)
+			if (not IsAddOnLoaded('DejaCharacterStats')) then
 
-				if E.db.ElvUI_EltreumUI.skins.statcolors and (not IsAddOnLoaded('DejaCharacterStats')) then
-					--ItemLevelCategory
-					--remove backgrounds and make font nice
-					CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
-					CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
-					if not CharacterStatsPane.ItemLevelCategory.Title:GetText():match("|r") then
-						CharacterStatsPane.ItemLevelCategory.Title:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass))
-					end
-					CharacterStatsPane.ItemLevelCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-
-					--statusbars
-					--CharacterStatsPane.ItemLevelCategory.Title:SetText("Gegenstandsstufe")
-
-					if IsAddOnLoaded("ElvUI_SLE") then
-						if E.locale == "enUS" then
-							linewidth1 = (( 193 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
-						else
-							linewidth1 = (( 204 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
-						end
-					else
-						linewidth1 = (( 193 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
-					end
-					CharacterStatsPane.ItemLevelCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismItemLevelCategoryLine", CharacterStatsPane)
-					CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetSize(linewidth1, 4)
-					--CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetSize(50, 4)
-					CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.ItemLevelCategory.Title, "LEFT", 0, -1)
-					--CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetPoint("CENTER", CharacterStatsPane.ItemLevelCategory.Title)
-					CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-					CharacterStatsPane.ItemLevelCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
-					CharacterStatsPane.ItemLevelCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismItemLevelCategoryLine2", CharacterStatsPane)
-					--CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetSize(50, 4)
-					CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetSize(linewidth1, 4)
-					CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.ItemLevelCategory.Title, "RIGHT", -1, -1)
-					CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-					CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
-
-					--attributes
-					--remove backgrounds and make font nice
-					CharacterStatsPane.AttributesCategory.backdrop:Hide()
-					if not CharacterStatsPane.AttributesCategory.Title:GetText():match("|r") then
-						CharacterStatsPane.AttributesCategory.Title:SetText(ElvUI_EltreumUI:GradientName(STAT_CATEGORY_ATTRIBUTES, E.myclass))
-					end
-					CharacterStatsPane.AttributesCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-					--statusbars
-					linewidth2 = (( 194 - CharacterStatsPane.AttributesCategory.Title:GetStringWidth())/2)
-					CharacterStatsPane.AttributesCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismAttributesCategoryLine", CharacterStatsPane)
-					CharacterStatsPane.AttributesCategory.Title.StatusLine:SetSize(linewidth2, 4)
-					CharacterStatsPane.AttributesCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.AttributesCategory.Title, "LEFT", 0, -1)
-					CharacterStatsPane.AttributesCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-					CharacterStatsPane.AttributesCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
-					CharacterStatsPane.AttributesCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismAttributesCategoryLine2", CharacterStatsPane)
-					CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetSize(linewidth2, 4)
-					CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.AttributesCategory.Title, "RIGHT", -1, -1)
-					CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-					CharacterStatsPane.AttributesCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
-
-					--Enhancements
-					--remove backgrounds and make font nice
-					CharacterStatsPane.EnhancementsCategory.backdrop:Hide()
-					if not CharacterStatsPane.EnhancementsCategory.Title:GetText():match("|r") then
-						CharacterStatsPane.EnhancementsCategory.Title:SetText(ElvUI_EltreumUI:GradientName(STAT_CATEGORY_ENHANCEMENTS, E.myclass))
-					end
-					CharacterStatsPane.EnhancementsCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-					--statusbars
-					if IsAddOnLoaded("ElvUI_SLE") then
-						if E.locale == "enUS" then
-							linewidth3 = (( 193 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
-						else
-							linewidth3 = (( 204 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
-						end
-					else
-						linewidth3 = (( 193 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
-					end
-					CharacterStatsPane.EnhancementsCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine", CharacterStatsPane)
-					CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetSize(linewidth3, 4)
-					CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.EnhancementsCategory.Title, "LEFT", 0, -1)
-					CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-					CharacterStatsPane.EnhancementsCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
-					CharacterStatsPane.EnhancementsCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine2", CharacterStatsPane)
-					CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetSize(linewidth3, 4)
-					CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.EnhancementsCategory.Title, "RIGHT", -1, -1)
-					CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-					CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
-
-					if IsAddOnLoaded('ElvUI_SLE') then
-						--offense
-						CharacterStatsPane.OffenseCategory.backdrop:Hide()
-						if not CharacterStatsPane.OffenseCategory.Title:GetText():match("|r") then
-							CharacterStatsPane.OffenseCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.OffenseCategory.Title:GetText(), E.myclass))
-						end
-						--statusbars
-						linewidthsle1 = (( 168 - CharacterStatsPane.OffenseCategory.Title:GetStringWidth())/2)
-						CharacterStatsPane.OffenseCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismOffenseCategory", CharacterStatsPane)
-						CharacterStatsPane.OffenseCategory.Title.StatusLine:SetSize(linewidthsle1, 4)
-						CharacterStatsPane.OffenseCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.OffenseCategory.Title, "LEFT", 0, -1)
-						CharacterStatsPane.OffenseCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-						CharacterStatsPane.OffenseCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
-						CharacterStatsPane.OffenseCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismOffenseCategoryLine2", CharacterStatsPane)
-						CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetSize(linewidthsle1, 4)
-						CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.OffenseCategory.Title, "RIGHT", -1, -1)
-						CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-						CharacterStatsPane.OffenseCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
-
-						--defense
-						CharacterStatsPane.DefenceCategory.backdrop:Hide()
-						if not CharacterStatsPane.DefenceCategory.Title:GetText():match("|r") then
-							CharacterStatsPane.DefenceCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.DefenceCategory.Title:GetText(), E.myclass))
-						end
-						--statusbars
-						linewidthsle2 = (( 168 - CharacterStatsPane.DefenceCategory.Title:GetStringWidth())/2)
-						CharacterStatsPane.DefenceCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismDefenceCategory", CharacterStatsPane)
-						CharacterStatsPane.DefenceCategory.Title.StatusLine:SetSize(linewidthsle2, 4)
-						CharacterStatsPane.DefenceCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.DefenceCategory.Title, "LEFT", 0, -1)
-						CharacterStatsPane.DefenceCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-						CharacterStatsPane.DefenceCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
-						CharacterStatsPane.DefenceCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismDefenceCategoryLine2", CharacterStatsPane)
-						CharacterStatsPane.DefenceCategory.Title.StatusLine2:SetSize(linewidthsle2, 4)
-						CharacterStatsPane.DefenceCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.DefenceCategory.Title, "RIGHT", -1, -1)
-						CharacterStatsPane.DefenceCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-						CharacterStatsPane.DefenceCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
-
-						--fix enhancement
-						CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetSize(linewidth3 + 8, 4)
-						CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetSize(linewidth3 + 8, 4)
+				if IsAddOnLoaded("ElvUI_SLE") then
+					if E.db["sle"]["armory"]["character"]["enable"] then
+						return
 					end
 				end
 
-				--hide the backdrop on reputation/currency tab
-				hooksecurefunc("CharacterFrameTab_OnClick", function()
-					if _G.CharacterFrameInset.backdrop:IsVisible() then
-						_G.CharacterFrameInset.backdrop:Hide()
-					end
+				--banner other stats
+				if E.db.ElvUI_EltreumUI.skins.statcolors then
+					_G.CharacterFrame.EltruismExtraStatsFont:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
+					_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -80)
+					--_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane.EnhancementsCategory, "CENTER", 0, -80)
+					_G.CharacterFrame.EltruismExtraStatsFont:SetParent(CharacterStatsPane)
+					--if not _G.CharacterFrame.EltruismExtraStatsFont:GetText():match("|r") then
+						_G.CharacterFrame.EltruismExtraStatsFont:SetText(ElvUI_EltreumUI:GradientName(L["Other"], E.myclass))
+					--end
+					linewidth5 = (( 193 - _G.CharacterFrame.EltruismExtraStatsFont:GetStringWidth())/2)
+					_G.CharacterFrame.EltruismExtraStats:SetSize(linewidth5, 4)
+					_G.CharacterFrame.EltruismExtraStats:SetPoint("RIGHT", _G.CharacterFrame.EltruismExtraStatsFont, "LEFT", 0, -1)
+					_G.CharacterFrame.EltruismExtraStats:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+					_G.CharacterFrame.EltruismExtraStats:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+					_G.CharacterFrame.EltruismExtraStats2:SetSize(linewidth5, 4)
+					_G.CharacterFrame.EltruismExtraStats2:SetPoint("LEFT", _G.CharacterFrame.EltruismExtraStatsFont, "RIGHT", 0, -1)
+					_G.CharacterFrame.EltruismExtraStats2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+					_G.CharacterFrame.EltruismExtraStats2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+				else
+					_G.CharacterFrame.EltruismExtraStatsBlock:SetSize(150, 18)
+					--_G.CharacterFrame.EltruismExtraStatsBlock:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, 0)
+					_G.CharacterFrame.EltruismExtraStatsBlock:SetTexture(E.Media.Textures.Black8x8)
+					_G.CharacterFrame.EltruismExtraStatsBlock:SetParent(CharacterStatsPane)
+					_G.CharacterFrame.EltruismExtraStatsFont:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+					_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -80)
+					_G.CharacterFrame.EltruismExtraStatsFont:SetParent(CharacterStatsPane)
+					_G.CharacterFrame.EltruismExtraStatsFont:SetTextColor(1, 1, 1)
+					_G.CharacterFrame.EltruismExtraStatsFont:SetText(L["Other"])
+				end
+
+				--movement speed
+				_G.CharacterFrame.EltruismSpeed:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
+				_G.CharacterFrame.EltruismSpeed:SetTextColor(1, 1, 1)
+				_G.CharacterFrame.EltruismSpeed:SetPoint("CENTER", CharacterStatsPane , 70, -163)
+				_G.CharacterFrame.EltruismSpeed:SetParent(CharacterStatsPane)
+				_G.CharacterFrame.EltruismSpeed:SetJustifyH("RIGHT")
+				_G.CharacterFrame.EltruismSpeed:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismSpeed:SetShadowOffset(1, 0)
+
+				_G.CharacterFrame.EltruismSpeedDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
+				_G.CharacterFrame.EltruismSpeedDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
+				_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", CharacterStatsPane , -36, -163)
+				_G.CharacterFrame.EltruismSpeedDesc:SetParent(CharacterStatsPane)
+				_G.CharacterFrame.EltruismSpeedDesc:SetJustifyH("LEFT")
+				_G.CharacterFrame.EltruismSpeedDesc:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismSpeedDesc:SetShadowOffset(1, 0)
+
+				if E.db.ElvUI_EltreumUI.skins.statcolors then
+					--if not _G.CharacterFrame.EltruismSpeedDesc:GetText():match("|r") then
+						_G.CharacterFrame.EltruismSpeedDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_MOVEMENT_SPEED, E.myclass))
+					--end
+				else
+					_G.CharacterFrame.EltruismSpeedDesc:SetText(STAT_MOVEMENT_SPEED)
+				end
+
+				_G.CharacterFrame.EltruismSpeedDescTooltip:SetSize(190, 15)
+				_G.CharacterFrame.EltruismSpeedDescTooltip:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -163)
+				_G.CharacterFrame.EltruismSpeedDescTooltip:SetParent(CharacterStatsPane)
+				_G.CharacterFrame.EltruismSpeedDescTooltip:Show()
+				_G.CharacterFrame.EltruismSpeedDescTooltip:SetScript("OnEnter", function()
+					_G["GameTooltip"]:SetOwner(_G.CharacterFrame.EltruismSpeedDescTooltip, 'ANCHOR_RIGHT')
+					_G["GameTooltip"]:AddLine(format(CR_SPEED_TOOLTIP, string.format('%.2f', (_G.GetUnitSpeed("player"))), ((_G.GetUnitSpeed("player")/7) *100)))
+					_G["GameTooltip"]:Show()
+				end)
+				_G.CharacterFrame.EltruismSpeedDescTooltip:SetScript("OnLeave", function()
+					_G["GameTooltip"]:Hide()
 				end)
 
-				hooksecurefunc("ReputationFrame_Update", function()
-					if _G.CharacterFrameInset.backdrop:IsVisible() then
-						_G.CharacterFrameInset.backdrop:Hide()
-					end
-				end)
-
-				hooksecurefunc("CharacterFrame_Collapse", function()
-					if PaperDollFrame:IsVisible() then
-						_G.CharacterFrame:SetWidth(505)
-						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
-						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-						end
-						_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
-						_G.CharacterModelFrameBackgroundOverlay:Hide()
-						if PaperDollFrame.SLE_Armory_BG then
-							if PaperDollFrame.SLE_Armory_BG:IsVisible() then
-								PaperDollFrame.SLE_Armory_BG:Hide()
-							end
-						end
-					else
-						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.346, 0, 1)
-						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-						end
-					end
-				end)
-
-				hooksecurefunc("CharacterFrame_Expand", function()
-					if PaperDollFrame:IsVisible() then
-						_G.CharacterFrame:SetWidth(700)
-						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
-						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-						end
-						_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
-						_G.CharacterModelFrameBackgroundOverlay:Hide()
-						if PaperDollFrame.SLE_Armory_BG then
-							if PaperDollFrame.SLE_Armory_BG:IsVisible() then
-								PaperDollFrame.SLE_Armory_BG:Hide()
-							end
-						end
-					else
-						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.346, 0, 1)
-						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-						end
-					end
-				end)
-
-
-				if (not IsAddOnLoaded('DejaCharacterStats')) then
-
-					if IsAddOnLoaded("ElvUI_SLE") then
-						if E.db["sle"]["armory"]["character"]["enable"] then
-							return
-						end
-					end
-
-					--banner other stats
+				--class resource
+				_G.CharacterFrame.EltruismClassResource:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
+				_G.CharacterFrame.EltruismClassResource:SetTextColor(1, 1, 1)
+				_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", CharacterStatsPane , 72, -176)
+				_G.CharacterFrame.EltruismClassResource:SetParent(CharacterStatsPane)
+				_G.CharacterFrame.EltruismClassResource:SetJustifyH("RIGHT")
+				_G.CharacterFrame.EltruismClassResource:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismClassResource:SetShadowOffset(1, 0)
+				_G.CharacterFrame.EltruismClassResourceDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
+				_G.CharacterFrame.EltruismClassResourceDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
+				_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", CharacterStatsPane , -46, -176)
+				_G.CharacterFrame.EltruismClassResourceDesc:SetParent(CharacterStatsPane)
+				if E.myclass == 'HUNTER' then
 					if E.db.ElvUI_EltreumUI.skins.statcolors then
-						_G.CharacterFrame.EltruismExtraStatsFont:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -80)
-						--_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane.EnhancementsCategory, "CENTER", 0, -80)
-						_G.CharacterFrame.EltruismExtraStatsFont:SetParent(CharacterStatsPane)
-						--if not _G.CharacterFrame.EltruismExtraStatsFont:GetText():match("|r") then
-							_G.CharacterFrame.EltruismExtraStatsFont:SetText(ElvUI_EltreumUI:GradientName(L["Other"], E.myclass))
-						--end
-						linewidth5 = (( 193 - _G.CharacterFrame.EltruismExtraStatsFont:GetStringWidth())/2)
-						_G.CharacterFrame.EltruismExtraStats:SetSize(linewidth5, 4)
-						_G.CharacterFrame.EltruismExtraStats:SetPoint("RIGHT", _G.CharacterFrame.EltruismExtraStatsFont, "LEFT", 0, -1)
-						_G.CharacterFrame.EltruismExtraStats:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-						_G.CharacterFrame.EltruismExtraStats:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
-						_G.CharacterFrame.EltruismExtraStats2:SetSize(linewidth5, 4)
-						_G.CharacterFrame.EltruismExtraStats2:SetPoint("LEFT", _G.CharacterFrame.EltruismExtraStatsFont, "RIGHT", 0, -1)
-						_G.CharacterFrame.EltruismExtraStats2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-						_G.CharacterFrame.EltruismExtraStats2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+					--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+						_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_FOCUS_REGEN, E.myclass))
+					--end
 					else
-						_G.CharacterFrame.EltruismExtraStatsBlock:SetSize(150, 18)
-						--_G.CharacterFrame.EltruismExtraStatsBlock:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, 0)
-						_G.CharacterFrame.EltruismExtraStatsBlock:SetTexture(E.Media.Textures.Black8x8)
-						_G.CharacterFrame.EltruismExtraStatsBlock:SetParent(CharacterStatsPane)
-						_G.CharacterFrame.EltruismExtraStatsFont:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
-						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -80)
-						_G.CharacterFrame.EltruismExtraStatsFont:SetParent(CharacterStatsPane)
-						_G.CharacterFrame.EltruismExtraStatsFont:SetTextColor(1, 1, 1)
-						_G.CharacterFrame.EltruismExtraStatsFont:SetText(L["Other"])
+						_G.CharacterFrame.EltruismClassResourceDesc:SetText(STAT_FOCUS_REGEN)
 					end
-
-					--movement speed
-					_G.CharacterFrame.EltruismSpeed:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
-					_G.CharacterFrame.EltruismSpeed:SetTextColor(1, 1, 1)
-					_G.CharacterFrame.EltruismSpeed:SetPoint("CENTER", CharacterStatsPane , 70, -163)
-					_G.CharacterFrame.EltruismSpeed:SetParent(CharacterStatsPane)
-					_G.CharacterFrame.EltruismSpeed:SetJustifyH("RIGHT")
-					_G.CharacterFrame.EltruismSpeed:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismSpeed:SetShadowOffset(1, 0)
-
-					_G.CharacterFrame.EltruismSpeedDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
-					_G.CharacterFrame.EltruismSpeedDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
-					_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", CharacterStatsPane , -36, -163)
-					_G.CharacterFrame.EltruismSpeedDesc:SetParent(CharacterStatsPane)
-					_G.CharacterFrame.EltruismSpeedDesc:SetJustifyH("LEFT")
-					_G.CharacterFrame.EltruismSpeedDesc:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismSpeedDesc:SetShadowOffset(1, 0)
-
+				elseif E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
 					if E.db.ElvUI_EltreumUI.skins.statcolors then
-						--if not _G.CharacterFrame.EltruismSpeedDesc:GetText():match("|r") then
-							_G.CharacterFrame.EltruismSpeedDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_MOVEMENT_SPEED, E.myclass))
-						--end
-					else
-						_G.CharacterFrame.EltruismSpeedDesc:SetText(STAT_MOVEMENT_SPEED)
-					end
-
-					_G.CharacterFrame.EltruismSpeedDescTooltip:SetSize(190, 15)
-					_G.CharacterFrame.EltruismSpeedDescTooltip:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -163)
-					_G.CharacterFrame.EltruismSpeedDescTooltip:SetParent(CharacterStatsPane)
-					_G.CharacterFrame.EltruismSpeedDescTooltip:Show()
-					_G.CharacterFrame.EltruismSpeedDescTooltip:SetScript("OnEnter", function()
-						_G["GameTooltip"]:SetOwner(_G.CharacterFrame.EltruismSpeedDescTooltip, 'ANCHOR_RIGHT')
-						_G["GameTooltip"]:AddLine(format(CR_SPEED_TOOLTIP, string.format('%.2f', (_G.GetUnitSpeed("player"))), ((_G.GetUnitSpeed("player")/7) *100)))
-						_G["GameTooltip"]:Show()
-					end)
-					_G.CharacterFrame.EltruismSpeedDescTooltip:SetScript("OnLeave", function()
-						_G["GameTooltip"]:Hide()
-					end)
-
-					--class resource
-					_G.CharacterFrame.EltruismClassResource:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
-					_G.CharacterFrame.EltruismClassResource:SetTextColor(1, 1, 1)
-					_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", CharacterStatsPane , 72, -176)
-					_G.CharacterFrame.EltruismClassResource:SetParent(CharacterStatsPane)
-					_G.CharacterFrame.EltruismClassResource:SetJustifyH("RIGHT")
-					_G.CharacterFrame.EltruismClassResource:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismClassResource:SetShadowOffset(1, 0)
-					_G.CharacterFrame.EltruismClassResourceDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
-					_G.CharacterFrame.EltruismClassResourceDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
-					_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", CharacterStatsPane , -46, -176)
-					_G.CharacterFrame.EltruismClassResourceDesc:SetParent(CharacterStatsPane)
-					if E.myclass == 'HUNTER' then
-						if E.db.ElvUI_EltreumUI.skins.statcolors then
 						--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
-							_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_FOCUS_REGEN, E.myclass))
+							_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_ENERGY_REGEN, E.myclass))
 						--end
-						else
-							_G.CharacterFrame.EltruismClassResourceDesc:SetText(STAT_FOCUS_REGEN)
-						end
-					elseif E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
-						if E.db.ElvUI_EltreumUI.skins.statcolors then
-							--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
-								_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_ENERGY_REGEN, E.myclass))
-							--end
-						else
-							_G.CharacterFrame.EltruismClassResourceDesc:SetText(STAT_ENERGY_REGEN)
-						end
-					elseif E.myclass == 'DEATHKNIGHT' then
-						if E.db.ElvUI_EltreumUI.skins.statcolors then
-							--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
-								_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_RUNE_REGEN, E.myclass))
-							--end
-						else
-							_G.CharacterFrame.EltruismClassResourceDesc:SetText(STAT_RUNE_REGEN)
-						end
-					elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
-						if E.db.ElvUI_EltreumUI.skins.statcolors then
-							--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
-								_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(MANA_REGEN, E.myclass))
-							--end
-						else
-							_G.CharacterFrame.EltruismClassResourceDesc:SetText(MANA_REGEN)
-						end
-					end
-					_G.CharacterFrame.EltruismClassResourceDesc:SetJustifyH("LEFT")
-					_G.CharacterFrame.EltruismClassResourceDesc:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismClassResourceDesc:SetShadowOffset(1, 0)
-
-					--class resource tooltip
-					_G.CharacterFrame.EltruismClassResourceDescTooltip:SetSize(190, 15)
-					_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -176)
-					_G.CharacterFrame.EltruismClassResourceDescTooltip:SetParent(CharacterStatsPane)
-					if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'DEATHKNIGHT' or E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
-						_G.CharacterFrame.EltruismClassResource:Show()
-						_G.CharacterFrame.EltruismClassResourceDesc:Show()
-						_G.CharacterFrame.EltruismClassResourceDescTooltip:Show()
-						currentSpec = _G.GetSpecialization()
-						if currentSpec then
-							id, _ = _G.GetSpecializationInfo(currentSpec)
-						end
-						if id == 264 or id == 257 or id == 256 or id == 65 or id == 270 or id == 105 then
-							_G.CharacterFrame.EltruismClassResource:Hide()
-							_G.CharacterFrame.EltruismClassResourceDesc:Hide()
-							_G.CharacterFrame.EltruismClassResourceDescTooltip:Hide()
-						end
 					else
+						_G.CharacterFrame.EltruismClassResourceDesc:SetText(STAT_ENERGY_REGEN)
+					end
+				elseif E.myclass == 'DEATHKNIGHT' then
+					if E.db.ElvUI_EltreumUI.skins.statcolors then
+						--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+							_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_RUNE_REGEN, E.myclass))
+						--end
+					else
+						_G.CharacterFrame.EltruismClassResourceDesc:SetText(STAT_RUNE_REGEN)
+					end
+				elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
+					if E.db.ElvUI_EltreumUI.skins.statcolors then
+						--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+							_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(MANA_REGEN, E.myclass))
+						--end
+					else
+						_G.CharacterFrame.EltruismClassResourceDesc:SetText(MANA_REGEN)
+					end
+				end
+				_G.CharacterFrame.EltruismClassResourceDesc:SetJustifyH("LEFT")
+				_G.CharacterFrame.EltruismClassResourceDesc:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismClassResourceDesc:SetShadowOffset(1, 0)
+
+				--class resource tooltip
+				_G.CharacterFrame.EltruismClassResourceDescTooltip:SetSize(190, 15)
+				_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -176)
+				_G.CharacterFrame.EltruismClassResourceDescTooltip:SetParent(CharacterStatsPane)
+				if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'DEATHKNIGHT' or E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
+					_G.CharacterFrame.EltruismClassResource:Show()
+					_G.CharacterFrame.EltruismClassResourceDesc:Show()
+					_G.CharacterFrame.EltruismClassResourceDescTooltip:Show()
+					currentSpec = _G.GetSpecialization()
+					if currentSpec then
+						id, _ = _G.GetSpecializationInfo(currentSpec)
+					end
+					if id == 264 or id == 257 or id == 256 or id == 65 or id == 270 or id == 105 then
 						_G.CharacterFrame.EltruismClassResource:Hide()
 						_G.CharacterFrame.EltruismClassResourceDesc:Hide()
 						_G.CharacterFrame.EltruismClassResourceDescTooltip:Hide()
 					end
-					_G.CharacterFrame.EltruismClassResourceDescTooltip:SetScript("OnEnter", function()
-						_G["GameTooltip"]:SetOwner(_G.CharacterFrame.EltruismClassResourceDescTooltip, 'ANCHOR_RIGHT')
-						if E.myclass == 'HUNTER' then
-							_G["GameTooltip"]:AddLine(STAT_FOCUS_REGEN_TOOLTIP)
-						elseif E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							_G["GameTooltip"]:AddLine(STAT_ENERGY_REGEN_TOOLTIP)
-						elseif E.myclass == 'DEATHKNIGHT' then
-							_G["GameTooltip"]:AddLine(STAT_RUNE_REGEN_TOOLTIP)
-						elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
-							_G["GameTooltip"]:AddLine(MANA_REGEN_TOOLTIP)
-						end
-						_G["GameTooltip"]:Show()
-					end)
-					_G.CharacterFrame.EltruismClassResourceDescTooltip:SetScript("OnLeave", function()
-						_G["GameTooltip"]:Hide()
-					end)
-
-					--class resource 2, because druids and monks are not nice
-					_G.CharacterFrame.EltruismClassResource2:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
-					_G.CharacterFrame.EltruismClassResource2:SetTextColor(1, 1, 1)
-					_G.CharacterFrame.EltruismClassResource2:SetPoint("CENTER", CharacterStatsPane , 72, -189)
-					_G.CharacterFrame.EltruismClassResource2:SetParent(CharacterStatsPane)
-					_G.CharacterFrame.EltruismClassResource2:SetJustifyH("RIGHT")
-					_G.CharacterFrame.EltruismClassResource2:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismClassResource2:SetShadowOffset(1, 0)
-
-					_G.CharacterFrame.EltruismClassResourceDesc2:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
-					_G.CharacterFrame.EltruismClassResourceDesc2:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
-					_G.CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", CharacterStatsPane , -48, -189)
-					_G.CharacterFrame.EltruismClassResourceDesc2:SetParent(CharacterStatsPane)
-					if E.myclass == 'DRUID' or E.myclass == 'MONK' then
-						if E.db.ElvUI_EltreumUI.skins.statcolors then
-							--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
-								_G.CharacterFrame.EltruismClassResourceDesc2:SetText(ElvUI_EltreumUI:GradientName(MANA_REGEN, E.myclass))
-							--end
-						else
-							_G.CharacterFrame.EltruismClassResourceDesc2:SetText(MANA_REGEN)
-						end
-					end
-					_G.CharacterFrame.EltruismClassResourceDesc2:SetJustifyH("LEFT")
-					_G.CharacterFrame.EltruismClassResourceDesc2:SetShadowColor(0, 0, 0, 1)
-					_G.CharacterFrame.EltruismClassResourceDesc2:SetShadowOffset(1, 0)
-
-					_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetSize(190, 15)
-					_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -189)
-					_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetParent(CharacterStatsPane)
-					if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DEATHKNIGHT' or E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
-						_G.CharacterFrame.EltruismClassResource2:Hide()
-						_G.CharacterFrame.EltruismClassResourceDesc2:Hide()
-						_G.CharacterFrame.EltruismClassResourceDescTooltip2:Hide()
-					elseif E.myclass == 'DRUID' or E.myclass == 'MONK' then
-						_G.CharacterFrame.EltruismClassResource2:Show()
-						_G.CharacterFrame.EltruismClassResourceDesc2:Show()
-						_G.CharacterFrame.EltruismClassResourceDescTooltip2:Show()
-					end
-					_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetScript("OnEnter", function()
-						_G["GameTooltip"]:SetOwner(_G.CharacterFrame.EltruismClassResourceDescTooltip2, 'ANCHOR_RIGHT')
-						if E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							_G["GameTooltip"]:AddLine(MANA_REGEN_TOOLTIP)
-						end
-						_G["GameTooltip"]:Show()
-					end)
-					_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetScript("OnLeave", function()
-						_G["GameTooltip"]:Hide()
-					end)
-
-					--update stats and stats position
-					hooksecurefunc("PaperDollFrame_UpdateStats", function()
-						speed = ((_G.GetUnitSpeed("player")/7) *100)
-						_G.CharacterFrame.EltruismSpeed:SetText(math.ceil(speed).."%")
-						_, combat = _G.GetManaRegen()
-						combat = math.floor(combat * 5.0)
-						combatText = _G.BreakUpLargeNumbers(combat)
-						if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							_G.CharacterFrame.EltruismClassResource:SetText(_G.BreakUpLargeNumbers(_G.GetPowerRegen()))
-						elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
-							_G.CharacterFrame.EltruismClassResource:SetText(combatText)
-						elseif E.myclass == 'DEATHKNIGHT' then
-							_, regenRate = _G.GetRuneCooldown(1)
-							regenRateText = (format(STAT_RUNE_REGEN_FORMAT, regenRate))
-							_G.CharacterFrame.EltruismClassResource:SetText(regenRateText)
-						end
-
-						if E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							_G.CharacterFrame.EltruismClassResource2:SetText(combatText)
-						end
-
-						stats = {CharacterStatsPane:GetChildren()}
-						number = (#stats)
-						if E.db.ElvUI_EltreumUI.dev then
-							ElvUI_EltreumUI:Print("Number of stats: "..number)
-						end
-						--15 seems like the minimum now with the added stats
-						if number == 15 then
-							_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -90)
-							_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -90)
-						elseif number == 16 then
-							_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -100)
-							_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -100)
-						elseif number == 17 then
-							_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -110)
-							_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -110)
-						elseif number == 18 then
-							_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -120)
-							_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -120)
-						elseif number == 19 then
-							_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -140)
-							_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -140)
-						elseif number == 20 then
-							_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -150)
-							_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -150)
-						elseif number == 21 then
-							_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -170)
-							_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -170)
-						elseif number > 21 and number < 26 then
-							_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -100)
-							_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -100)
-						elseif number >= 26 then
-							_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -120)
-							_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -120)
-						end
-
-						_G.CharacterFrame.EltruismSpeed:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont , 72, -20)
-						if E.locale == "enUS" then
-							_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont , -36, -20)
-						else
-							_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont , -30, -20)
-						end
-						_G.CharacterFrame.EltruismSpeedDescTooltip:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -20)
-
-						if E.myclass == 'DEATHKNIGHT' then
-							_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, 72, -33)
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, -50, -33)
-							_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -33)
-						elseif E.myclass == 'DRUID' or E.myclass == 'MONK' then
-							_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, 72, -33)
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, -45, -33)
-							_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -33)
-						else
-							_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, 72, -33)
-							_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, -48, -33)
-							_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -33)
-						end
-
-						_G.CharacterFrame.EltruismClassResource2:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, 72, -46)
-						_G.CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, -49, -46)
-						_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -46)
-
-						_G.CharacterFrame.EltruismExtraStatsBlock:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, 0)
-					end)
-
-
-					hooksecurefunc('PaperDollFrame_SetLabelAndText', function(statFrame, label)
-						if ( statFrame.Label ) then
-							if not statFrame.Label:GetText():match("|r") and E.db.ElvUI_EltreumUI.skins.statcolors and (not IsAddOnLoaded('DejaCharacterStats')) then
-								statFrame.Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
-								statFrame.Label:SetText(ElvUI_EltreumUI:GradientName(format(STAT_FORMAT, label), E.myclass))
-							end
-							if statFrame.Value then
-								statFrame.Value:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
-							end
-						end
-
-						if E.db.ElvUI_EltreumUI.skins.statcolors then
-							_G.CharacterFrame.EltruismSpeedDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_MOVEMENT_SPEED, E.myclass))
-							if E.myclass == 'HUNTER' then
-								_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_FOCUS_REGEN, E.myclass))
-							elseif E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
-								_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_ENERGY_REGEN, E.myclass))
-							elseif E.myclass == 'DEATHKNIGHT' then
-									_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_RUNE_REGEN, E.myclass))
-							elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
-									_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(MANA_REGEN, E.myclass))
-							end
-							_G.CharacterFrame.EltruismExtraStatsFont:SetText(ElvUI_EltreumUI:GradientName(L["Other"], E.myclass))
-							CharacterStatsPane.ItemLevelCategory.Title:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass))
-							CharacterStatsPane.AttributesCategory.Title:SetText(ElvUI_EltreumUI:GradientName(STAT_CATEGORY_ATTRIBUTES, E.myclass))
-							CharacterStatsPane.EnhancementsCategory.Title:SetText(ElvUI_EltreumUI:GradientName(STAT_CATEGORY_ENHANCEMENTS, E.myclass))
-							if IsAddOnLoaded('ElvUI_SLE') then
-								CharacterStatsPane.OffenseCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.OffenseCategory.Title:GetText(), E.myclass))
-								CharacterStatsPane.DefenceCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.DefenceCategory.Title:GetText(), E.myclass))
-							end
-						end
-					end)
-
-					_G.CharacterFrame.EltruismExtraStatsBlock:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, 0)
-				end
-			end
-		elseif E.Wrath or E.TBC or E.Classic then
-
-			--color stats with a class gradient
-			if E.db.ElvUI_EltreumUI.skins.statcolors then
-				local function SetStatGradient()
-					CharacterFrame.Text:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass)) ---ilvl
-					CharacterFrame.Text3:SetText(ElvUI_EltreumUI:GradientName(L["Attributes"], E.myclass)) ---attributes
-					CharacterFrame.Text4:SetText(ElvUI_EltreumUI:GradientName(L["Specialization"], E.myclass)) ---specialization
-
-					if E.Wrath or E.TBC then
-						if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameLeft1Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft1Label:GetText(), E.myclass))
-						end
-						if not _G.PlayerStatFrameLeft2Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameLeft2Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft2Label:GetText(), E.myclass))
-						end
-						if not _G.PlayerStatFrameLeft3Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameLeft3Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft3Label:GetText(), E.myclass))
-						end
-						if not _G.PlayerStatFrameLeft4Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameLeft4Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft4Label:GetText(), E.myclass))
-						end
-						if not _G.PlayerStatFrameLeft5Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameLeft5Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft5Label:GetText(), E.myclass))
-						end
-						if not _G.PlayerStatFrameLeft6Label:GetText():match("|r") then
-							_G.PlayerStatFrameLeft6Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameLeft6Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft6Label:GetText(), E.myclass))
-						end
-						if not _G.PlayerStatFrameRight1Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameRight1Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight1Label:GetText(), E.myclass))
-						end
-						if not _G.PlayerStatFrameRight2Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameRight2Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight2Label:GetText(), E.myclass))
-						end
-						if not _G.PlayerStatFrameRight3Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameRight3Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight3Label:GetText(), E.myclass))
-						end
-						if not _G.PlayerStatFrameRight4Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameRight4Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight4Label:GetText(), E.myclass))
-						end
-						if not _G.PlayerStatFrameRight5Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameRight5Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight5Label:GetText(), E.myclass))
-						end
-						if _G.PlayerStatFrameRight6Label:GetText() ~= nil and not _G.PlayerStatFrameRight6Label:GetText():match("|r") then
-							_G.PlayerStatFrameRight6Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-							_G.PlayerStatFrameRight6Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight6Label:GetText(), E.myclass))
-						end
-					elseif E.Classic then
-						if not _G.CharacterStatFrame1Label:GetText():match("|r") then
-								_G.CharacterStatFrame1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterStatFrame1Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame1Label:GetText(), E.myclass))
-							end
-							if not _G.CharacterStatFrame2Label:GetText():match("|r") then
-								_G.CharacterStatFrame2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterStatFrame2Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame2Label:GetText(), E.myclass))
-							end
-							if not _G.CharacterStatFrame3Label:GetText():match("|r") then
-								_G.CharacterStatFrame3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterStatFrame3Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame3Label:GetText(), E.myclass))
-							end
-							if not _G.CharacterStatFrame4Label:GetText():match("|r") then
-								_G.CharacterStatFrame4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterStatFrame4Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame4Label:GetText(), E.myclass))
-							end
-							if not _G.CharacterStatFrame5Label:GetText():match("|r") then
-								_G.CharacterStatFrame5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterStatFrame5Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame5Label:GetText(), E.myclass))
-							end
-							if not _G.CharacterArmorFrameLabel:GetText():match("|r") then
-								_G.CharacterArmorFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterArmorFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterArmorFrameLabel:GetText(), E.myclass))
-							end
-							if not _G.CharacterAttackFrameLabel:GetText():match("|r") then
-								_G.CharacterAttackFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterAttackFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterAttackFrameLabel:GetText(), E.myclass))
-							end
-							if not _G.CharacterAttackPowerFrameLabel:GetText():match("|r") then
-								_G.CharacterAttackPowerFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterAttackPowerFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterAttackPowerFrameLabel:GetText(), E.myclass))
-							end
-							if not _G.CharacterDamageFrameLabel:GetText():match("|r") then
-								_G.CharacterDamageFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterDamageFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterDamageFrameLabel:GetText(), E.myclass))
-							end
-							if not _G.CharacterRangedAttackFrameLabel:GetText():match("|r") then
-								_G.CharacterRangedAttackFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterRangedAttackFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterRangedAttackFrameLabel:GetText(), E.myclass))
-							end
-							if not _G.CharacterRangedAttackPowerFrameLabel:GetText():match("|r") then
-								_G.CharacterRangedAttackPowerFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterRangedAttackPowerFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterRangedAttackPowerFrameLabel:GetText(), E.myclass))
-							end
-							if not _G.CharacterRangedDamageFrameLabel:GetText():match("|r") then
-								_G.CharacterRangedDamageFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-								_G.CharacterRangedDamageFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterRangedDamageFrameLabel:GetText(), E.myclass))
-							end
-						end
-				end
-				--set hooks
-				if E.Wrath or E.TBC then
-					hooksecurefunc('PlayerStatFrameLeftDropDown_OnClick', SetStatGradient)
-					hooksecurefunc('PlayerStatFrameRightDropDown_OnClick', SetStatGradient)
-				end
-				hooksecurefunc("PaperDollFrame_UpdateStats", SetStatGradient)
-			end
-
-			--add class crest
-			if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
-				ClassCrestFrame:SetSize(150, 150)
-				ClassCrestFrame:SetPoint("CENTER", CharacterModelFrame, 0 , 50)
-				ClassCrestFrame:SetParent(_G.CharacterFrame)
-				ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
-				ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
-				ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
-			end
-
-			--fix buttons
-			if _G.PetPaperDollCloseButton then
-				_G.PetPaperDollCloseButton:Hide()
-			end
-			if _G.SkillFrameCancelButton then
-				_G.SkillFrameCancelButton:Hide()
-			end
-
-			--add background from artifact weapon
-			if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-
-				--add bg texture
-				CharacterFrameBackgroundTextureFader:SetAllPoints(_G.CharacterFrame.backdrop)
-				CharacterFrameBackgroundTextureFader:SetParent(_G.CharacterFrame)
-				CharacterFrameBackgroundTextureFader:SetDrawLayer("BACKGROUND",7)
-				CharacterFrameBackgroundTextureFader:SetAlpha(E.db.ElvUI_EltreumUI.skins.armoryvignettealpha)
-				if not E.db.ElvUI_EltreumUI.skins.armoryvignette then
-					CharacterFrameBackgroundTextureFader:Hide()
 				else
-					CharacterFrameBackgroundTextureFader:Show()
+					_G.CharacterFrame.EltruismClassResource:Hide()
+					_G.CharacterFrame.EltruismClassResourceDesc:Hide()
+					_G.CharacterFrame.EltruismClassResourceDescTooltip:Hide()
 				end
-				if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-					CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
-					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-					CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
-					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
-				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" then
-					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ragnaros")
-					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
-				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" then
-					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\SpaceCloud")
-					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
-				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
-					CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ravnyr")
-					CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
-				elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
-					texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
-					CharacterFrameBackgroundTexture:SetTexture(texturefile)
-				end
-				CharacterFrameBackgroundTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
-				CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame.backdrop)
-				CharacterFrameBackgroundTexture:SetDrawLayer("BACKGROUND",6)
-			end
-
-			-- expand classic armory
-			if E.db.ElvUI_EltreumUI.skins.classicarmory then
-
-				--set ilvl on char panel
-				hooksecurefunc("ToggleCharacter", function()
-					_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100))/100)
+				_G.CharacterFrame.EltruismClassResourceDescTooltip:SetScript("OnEnter", function()
+					_G["GameTooltip"]:SetOwner(_G.CharacterFrame.EltruismClassResourceDescTooltip, 'ANCHOR_RIGHT')
+					if E.myclass == 'HUNTER' then
+						_G["GameTooltip"]:AddLine(STAT_FOCUS_REGEN_TOOLTIP)
+					elseif E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
+						_G["GameTooltip"]:AddLine(STAT_ENERGY_REGEN_TOOLTIP)
+					elseif E.myclass == 'DEATHKNIGHT' then
+						_G["GameTooltip"]:AddLine(STAT_RUNE_REGEN_TOOLTIP)
+					elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
+						_G["GameTooltip"]:AddLine(MANA_REGEN_TOOLTIP)
+					end
+					_G["GameTooltip"]:Show()
+				end)
+				_G.CharacterFrame.EltruismClassResourceDescTooltip:SetScript("OnLeave", function()
+					_G["GameTooltip"]:Hide()
 				end)
 
-				--set the tabs
-				if E.db.ElvUI_EltreumUI.skins.classicarmoryautostats then
-						SetCVar("playerStatLeftDropdown", "PLAYERSTAT_BASE_STATS")
-					if E.myclass == "MAGE" or E.myclass == "PRIEST" or E.myclass == "WARLOCK" or E.myclass == "DRUID" or E.myclass == "SHAMAN" then
-						SetCVar("playerStatRightDropdown", "PLAYERSTAT_SPELL_COMBAT")
-					elseif ( E.myclass == "HUNTER" ) then
-						SetCVar("playerStatRightDropdown", "PLAYERSTAT_RANGED_COMBAT")
+				--class resource 2, because druids and monks are not nice
+				_G.CharacterFrame.EltruismClassResource2:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
+				_G.CharacterFrame.EltruismClassResource2:SetTextColor(1, 1, 1)
+				_G.CharacterFrame.EltruismClassResource2:SetPoint("CENTER", CharacterStatsPane , 72, -189)
+				_G.CharacterFrame.EltruismClassResource2:SetParent(CharacterStatsPane)
+				_G.CharacterFrame.EltruismClassResource2:SetJustifyH("RIGHT")
+				_G.CharacterFrame.EltruismClassResource2:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismClassResource2:SetShadowOffset(1, 0)
+
+				_G.CharacterFrame.EltruismClassResourceDesc2:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
+				_G.CharacterFrame.EltruismClassResourceDesc2:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
+				_G.CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", CharacterStatsPane , -48, -189)
+				_G.CharacterFrame.EltruismClassResourceDesc2:SetParent(CharacterStatsPane)
+				if E.myclass == 'DRUID' or E.myclass == 'MONK' then
+					if E.db.ElvUI_EltreumUI.skins.statcolors then
+						--if not _G.CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+							_G.CharacterFrame.EltruismClassResourceDesc2:SetText(ElvUI_EltreumUI:GradientName(MANA_REGEN, E.myclass))
+						--end
 					else
-						SetCVar("playerStatRightDropdown", "PLAYERSTAT_MELEE_COMBAT")
+						_G.CharacterFrame.EltruismClassResourceDesc2:SetText(MANA_REGEN)
 					end
 				end
+				_G.CharacterFrame.EltruismClassResourceDesc2:SetJustifyH("LEFT")
+				_G.CharacterFrame.EltruismClassResourceDesc2:SetShadowColor(0, 0, 0, 1)
+				_G.CharacterFrame.EltruismClassResourceDesc2:SetShadowOffset(1, 0)
+
+				_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetSize(190, 15)
+				_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -189)
+				_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetParent(CharacterStatsPane)
+				if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DEATHKNIGHT' or E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
+					_G.CharacterFrame.EltruismClassResource2:Hide()
+					_G.CharacterFrame.EltruismClassResourceDesc2:Hide()
+					_G.CharacterFrame.EltruismClassResourceDescTooltip2:Hide()
+				elseif E.myclass == 'DRUID' or E.myclass == 'MONK' then
+					_G.CharacterFrame.EltruismClassResource2:Show()
+					_G.CharacterFrame.EltruismClassResourceDesc2:Show()
+					_G.CharacterFrame.EltruismClassResourceDescTooltip2:Show()
+				end
+				_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetScript("OnEnter", function()
+					_G["GameTooltip"]:SetOwner(_G.CharacterFrame.EltruismClassResourceDescTooltip2, 'ANCHOR_RIGHT')
+					if E.myclass == 'DRUID' or E.myclass == 'MONK' then
+						_G["GameTooltip"]:AddLine(MANA_REGEN_TOOLTIP)
+					end
+					_G["GameTooltip"]:Show()
+				end)
+				_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetScript("OnLeave", function()
+					_G["GameTooltip"]:Hide()
+				end)
+
+				--update stats and stats position
+				hooksecurefunc("PaperDollFrame_UpdateStats", function()
+					speed = ((_G.GetUnitSpeed("player")/7) *100)
+					_G.CharacterFrame.EltruismSpeed:SetText(math.ceil(speed).."%")
+					_, combat = _G.GetManaRegen()
+					combat = math.floor(combat * 5.0)
+					combatText = _G.BreakUpLargeNumbers(combat)
+					if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
+						_G.CharacterFrame.EltruismClassResource:SetText(_G.BreakUpLargeNumbers(_G.GetPowerRegen()))
+					elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
+						_G.CharacterFrame.EltruismClassResource:SetText(combatText)
+					elseif E.myclass == 'DEATHKNIGHT' then
+						_, regenRate = _G.GetRuneCooldown(1)
+						regenRateText = (format(STAT_RUNE_REGEN_FORMAT, regenRate))
+						_G.CharacterFrame.EltruismClassResource:SetText(regenRateText)
+					end
+
+					if E.myclass == 'DRUID' or E.myclass == 'MONK' then
+						_G.CharacterFrame.EltruismClassResource2:SetText(combatText)
+					end
+
+					stats = {CharacterStatsPane:GetChildren()}
+					number = (#stats)
+					if E.db.ElvUI_EltreumUI.dev then
+						ElvUI_EltreumUI:Print("Number of stats: "..number)
+					end
+					--15 seems like the minimum now with the added stats
+					if number == 15 then
+						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -90)
+						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -90)
+					elseif number == 16 then
+						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -100)
+						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -100)
+					elseif number == 17 then
+						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -110)
+						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -110)
+					elseif number == 18 then
+						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -120)
+						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -120)
+					elseif number == 19 then
+						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -140)
+						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -140)
+					elseif number == 20 then
+						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -150)
+						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -150)
+					elseif number == 21 then
+						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -170)
+						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -170)
+					elseif number > 21 and number < 26 then
+						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -100)
+						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -100)
+					elseif number >= 26 then
+						_G.CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -120)
+						_G.CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -120)
+					end
+
+					_G.CharacterFrame.EltruismSpeed:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont , 72, -20)
+					if E.locale == "enUS" then
+						_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont , -36, -20)
+					else
+						_G.CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont , -30, -20)
+					end
+					_G.CharacterFrame.EltruismSpeedDescTooltip:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -20)
+
+					if E.myclass == 'DEATHKNIGHT' then
+						_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, 72, -33)
+						_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, -50, -33)
+						_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -33)
+					elseif E.myclass == 'DRUID' or E.myclass == 'MONK' then
+						_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, 72, -33)
+						_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, -45, -33)
+						_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -33)
+					else
+						_G.CharacterFrame.EltruismClassResource:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, 72, -33)
+						_G.CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, -48, -33)
+						_G.CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -33)
+					end
+
+					_G.CharacterFrame.EltruismClassResource2:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, 72, -46)
+					_G.CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, -49, -46)
+					_G.CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -46)
+
+					_G.CharacterFrame.EltruismExtraStatsBlock:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, 0)
+				end)
+
+
+				hooksecurefunc('PaperDollFrame_SetLabelAndText', function(statFrame, label)
+					if ( statFrame.Label ) then
+						if not statFrame.Label:GetText():match("|r") and E.db.ElvUI_EltreumUI.skins.statcolors and (not IsAddOnLoaded('DejaCharacterStats')) then
+							statFrame.Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
+							statFrame.Label:SetText(ElvUI_EltreumUI:GradientName(format(STAT_FORMAT, label), E.myclass))
+						end
+						if statFrame.Value then
+							statFrame.Value:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
+						end
+					end
+
+					if E.db.ElvUI_EltreumUI.skins.statcolors then
+						_G.CharacterFrame.EltruismSpeedDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_MOVEMENT_SPEED, E.myclass))
+						if E.myclass == 'HUNTER' then
+							_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_FOCUS_REGEN, E.myclass))
+						elseif E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
+							_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_ENERGY_REGEN, E.myclass))
+						elseif E.myclass == 'DEATHKNIGHT' then
+								_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_RUNE_REGEN, E.myclass))
+						elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
+								_G.CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(MANA_REGEN, E.myclass))
+						end
+						_G.CharacterFrame.EltruismExtraStatsFont:SetText(ElvUI_EltreumUI:GradientName(L["Other"], E.myclass))
+						CharacterStatsPane.ItemLevelCategory.Title:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass))
+						CharacterStatsPane.AttributesCategory.Title:SetText(ElvUI_EltreumUI:GradientName(STAT_CATEGORY_ATTRIBUTES, E.myclass))
+						CharacterStatsPane.EnhancementsCategory.Title:SetText(ElvUI_EltreumUI:GradientName(STAT_CATEGORY_ENHANCEMENTS, E.myclass))
+						if IsAddOnLoaded('ElvUI_SLE') then
+							CharacterStatsPane.OffenseCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.OffenseCategory.Title:GetText(), E.myclass))
+							CharacterStatsPane.DefenceCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.DefenceCategory.Title:GetText(), E.myclass))
+						end
+					end
+				end)
+
+				_G.CharacterFrame.EltruismExtraStatsBlock:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, 0)
+			end
+		end
+	elseif E.Wrath or E.TBC or E.Classic then
+
+		--color stats with a class gradient
+		if E.db.ElvUI_EltreumUI.skins.statcolors then
+			local function SetStatGradient()
+				CharacterFrame.Text:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass)) ---ilvl
+				CharacterFrame.Text3:SetText(ElvUI_EltreumUI:GradientName(L["Attributes"], E.myclass)) ---attributes
+				CharacterFrame.Text4:SetText(ElvUI_EltreumUI:GradientName(L["Specialization"], E.myclass)) ---specialization
 
 				if E.Wrath or E.TBC then
-					_G.PlayerTitleDropDown:ClearAllPoints()
-					_G.PlayerTitleDropDown:SetParent(CharacterModelFrame)
-					_G.PlayerTitleDropDown:SetPoint('TOP', CharacterModelFrame, -6, 40)
-					_G.PVPFrameToggleButton:ClearAllPoints()
-					_G.PVPFrameToggleButton:SetPoint('CENTER', _G.PVPHonor, 'CENTER', 90, 47)
-					_G.PVPFrameToggleButton:SetParent(_G.PVPFrameHonor)
+					if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameLeft1Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft1Label:GetText(), E.myclass))
+					end
+					if not _G.PlayerStatFrameLeft2Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameLeft2Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft2Label:GetText(), E.myclass))
+					end
+					if not _G.PlayerStatFrameLeft3Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameLeft3Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft3Label:GetText(), E.myclass))
+					end
+					if not _G.PlayerStatFrameLeft4Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameLeft4Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft4Label:GetText(), E.myclass))
+					end
+					if not _G.PlayerStatFrameLeft5Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameLeft5Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft5Label:GetText(), E.myclass))
+					end
+					if not _G.PlayerStatFrameLeft6Label:GetText():match("|r") then
+						_G.PlayerStatFrameLeft6Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameLeft6Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft6Label:GetText(), E.myclass))
+					end
+					if not _G.PlayerStatFrameRight1Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameRight1Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight1Label:GetText(), E.myclass))
+					end
+					if not _G.PlayerStatFrameRight2Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameRight2Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight2Label:GetText(), E.myclass))
+					end
+					if not _G.PlayerStatFrameRight3Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameRight3Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight3Label:GetText(), E.myclass))
+					end
+					if not _G.PlayerStatFrameRight4Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameRight4Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight4Label:GetText(), E.myclass))
+					end
+					if not _G.PlayerStatFrameRight5Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameRight5Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight5Label:GetText(), E.myclass))
+					end
+					if _G.PlayerStatFrameRight6Label:GetText() ~= nil and not _G.PlayerStatFrameRight6Label:GetText():match("|r") then
+						_G.PlayerStatFrameRight6Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+						_G.PlayerStatFrameRight6Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight6Label:GetText(), E.myclass))
+					end
 				elseif E.Classic then
-					CharacterTitleText:ClearAllPoints()
-					CharacterTitleText:SetPoint('TOP', CharacterModelFrame, 0, 40)
-					CharacterTitleText:SetParent(CharacterModelFrame)
+					if not _G.CharacterStatFrame1Label:GetText():match("|r") then
+							_G.CharacterStatFrame1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+							_G.CharacterStatFrame1Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame1Label:GetText(), E.myclass))
+						end
+						if not _G.CharacterStatFrame2Label:GetText():match("|r") then
+							_G.CharacterStatFrame2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+							_G.CharacterStatFrame2Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame2Label:GetText(), E.myclass))
+						end
+						if not _G.CharacterStatFrame3Label:GetText():match("|r") then
+							_G.CharacterStatFrame3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+							_G.CharacterStatFrame3Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame3Label:GetText(), E.myclass))
+						end
+						if not _G.CharacterStatFrame4Label:GetText():match("|r") then
+							_G.CharacterStatFrame4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+							_G.CharacterStatFrame4Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame4Label:GetText(), E.myclass))
+						end
+						if not _G.CharacterStatFrame5Label:GetText():match("|r") then
+							_G.CharacterStatFrame5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+							_G.CharacterStatFrame5Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame5Label:GetText(), E.myclass))
+						end
+						if not _G.CharacterArmorFrameLabel:GetText():match("|r") then
+							_G.CharacterArmorFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+							_G.CharacterArmorFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterArmorFrameLabel:GetText(), E.myclass))
+						end
+						if not _G.CharacterAttackFrameLabel:GetText():match("|r") then
+							_G.CharacterAttackFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+							_G.CharacterAttackFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterAttackFrameLabel:GetText(), E.myclass))
+						end
+						if not _G.CharacterAttackPowerFrameLabel:GetText():match("|r") then
+							_G.CharacterAttackPowerFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+							_G.CharacterAttackPowerFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterAttackPowerFrameLabel:GetText(), E.myclass))
+						end
+						if not _G.CharacterDamageFrameLabel:GetText():match("|r") then
+							_G.CharacterDamageFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+							_G.CharacterDamageFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterDamageFrameLabel:GetText(), E.myclass))
+						end
+						if not _G.CharacterRangedAttackFrameLabel:GetText():match("|r") then
+							_G.CharacterRangedAttackFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+							_G.CharacterRangedAttackFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterRangedAttackFrameLabel:GetText(), E.myclass))
+						end
+						if not _G.CharacterRangedAttackPowerFrameLabel:GetText():match("|r") then
+							_G.CharacterRangedAttackPowerFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+							_G.CharacterRangedAttackPowerFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterRangedAttackPowerFrameLabel:GetText(), E.myclass))
+						end
+						if not _G.CharacterRangedDamageFrameLabel:GetText():match("|r") then
+							_G.CharacterRangedDamageFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+							_G.CharacterRangedDamageFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterRangedDamageFrameLabel:GetText(), E.myclass))
+						end
+					end
+			end
+			--set hooks
+			if E.Wrath or E.TBC then
+				hooksecurefunc('PlayerStatFrameLeftDropDown_OnClick', SetStatGradient)
+				hooksecurefunc('PlayerStatFrameRightDropDown_OnClick', SetStatGradient)
+			end
+			hooksecurefunc("PaperDollFrame_UpdateStats", SetStatGradient)
+		end
+
+		--add class crest
+		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
+			ClassCrestFrame:SetSize(150, 150)
+			ClassCrestFrame:SetPoint("CENTER", CharacterModelFrame, 0 , 50)
+			ClassCrestFrame:SetParent(_G.CharacterFrame)
+			ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
+			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
+		end
+
+		--fix buttons
+		if _G.PetPaperDollCloseButton then
+			_G.PetPaperDollCloseButton:Hide()
+		end
+		if _G.SkillFrameCancelButton then
+			_G.SkillFrameCancelButton:Hide()
+		end
+
+		--add background from artifact weapon
+		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+
+			--add bg texture
+			CharacterFrameBackgroundTextureFader:SetAllPoints(_G.CharacterFrame.backdrop)
+			CharacterFrameBackgroundTextureFader:SetParent(_G.CharacterFrame)
+			CharacterFrameBackgroundTextureFader:SetDrawLayer("BACKGROUND",7)
+			CharacterFrameBackgroundTextureFader:SetAlpha(E.db.ElvUI_EltreumUI.skins.armoryvignettealpha)
+			if not E.db.ElvUI_EltreumUI.skins.armoryvignette then
+				CharacterFrameBackgroundTextureFader:Hide()
+			else
+				CharacterFrameBackgroundTextureFader:Show()
+			end
+			if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+				CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
+				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
+				CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
+				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" then
+				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ragnaros")
+				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" then
+				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\SpaceCloud")
+				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ravnyr")
+				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
+				texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
+				CharacterFrameBackgroundTexture:SetTexture(texturefile)
+			end
+			CharacterFrameBackgroundTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
+			CharacterFrameBackgroundTexture:SetAllPoints(_G.CharacterFrame.backdrop)
+			CharacterFrameBackgroundTexture:SetDrawLayer("BACKGROUND",6)
+		end
+
+		-- expand classic armory
+		if E.db.ElvUI_EltreumUI.skins.classicarmory then
+
+			--set ilvl on char panel
+			hooksecurefunc("ToggleCharacter", function()
+				_G.CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100))/100)
+			end)
+
+			--set the tabs
+			if E.db.ElvUI_EltreumUI.skins.classicarmoryautostats then
+					SetCVar("playerStatLeftDropdown", "PLAYERSTAT_BASE_STATS")
+				if E.myclass == "MAGE" or E.myclass == "PRIEST" or E.myclass == "WARLOCK" or E.myclass == "DRUID" or E.myclass == "SHAMAN" then
+					SetCVar("playerStatRightDropdown", "PLAYERSTAT_SPELL_COMBAT")
+				elseif ( E.myclass == "HUNTER" ) then
+					SetCVar("playerStatRightDropdown", "PLAYERSTAT_RANGED_COMBAT")
+				else
+					SetCVar("playerStatRightDropdown", "PLAYERSTAT_MELEE_COMBAT")
 				end
+			end
 
-				--change the size based on if paperdoll is hidden
-				CharacterFrame:SetSize(700, 505)
-				--CharacterModelFrame:SetPosition(0, 0, 0) --zoom,x,y
+			if E.Wrath or E.TBC then
+				_G.PlayerTitleDropDown:ClearAllPoints()
+				_G.PlayerTitleDropDown:SetParent(CharacterModelFrame)
+				_G.PlayerTitleDropDown:SetPoint('TOP', CharacterModelFrame, -6, 40)
+				_G.PVPFrameToggleButton:ClearAllPoints()
+				_G.PVPFrameToggleButton:SetPoint('CENTER', _G.PVPHonor, 'CENTER', 90, 47)
+				_G.PVPFrameToggleButton:SetParent(_G.PVPFrameHonor)
+			elseif E.Classic then
+				CharacterTitleText:ClearAllPoints()
+				CharacterTitleText:SetPoint('TOP', CharacterModelFrame, 0, 40)
+				CharacterTitleText:SetParent(CharacterModelFrame)
+			end
 
-				--fix frame size depending on tab
-				local function ResizeCharacterFrame()
-					if not InCombatLockdown() then
-						if PaperDollFrame:IsVisible() then
-							CharacterFrame:SetSize(700, 505)
-							CharacterNameText:ClearAllPoints()
-							CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
-							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
-							elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-							end
-						else
-							CharacterNameText:ClearAllPoints()
-							CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
-							CharacterFrame:SetSize(400, 505)
-							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
-							elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-								CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
-							end
+			--change the size based on if paperdoll is hidden
+			CharacterFrame:SetSize(700, 505)
+			--CharacterModelFrame:SetPosition(0, 0, 0) --zoom,x,y
+
+			--fix frame size depending on tab
+			local function ResizeCharacterFrame()
+				if not InCombatLockdown() then
+					if PaperDollFrame:IsVisible() then
+						CharacterFrame:SetSize(700, 505)
+						CharacterNameText:ClearAllPoints()
+						CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
+						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+						end
+					else
+						CharacterNameText:ClearAllPoints()
+						CharacterNameText:SetPoint('TOP', CharacterFrame, 0, -25)
+						CharacterFrame:SetSize(400, 505)
+						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
+						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 						end
 					end
 				end
-				_G.PaperDollItemsFrame:SetScript("OnShow", ResizeCharacterFrame)
-				_G.CharacterFrame:HookScript("OnShow", ResizeCharacterFrame)
-				hooksecurefunc("CharacterFrameTab_OnClick", ResizeCharacterFrame)
+			end
+			_G.PaperDollItemsFrame:SetScript("OnShow", ResizeCharacterFrame)
+			_G.CharacterFrame:HookScript("OnShow", ResizeCharacterFrame)
+			hooksecurefunc("CharacterFrameTab_OnClick", ResizeCharacterFrame)
 
 
-				--adjust the items
-				_G.CharacterHeadSlot:ClearAllPoints()
-				_G.CharacterHeadSlot:SetPoint('TOPLEFT', _G.CharacterFrame, 'TOPLEFT', 20, -47)
+			--adjust the items
+			_G.CharacterHeadSlot:ClearAllPoints()
+			_G.CharacterHeadSlot:SetPoint('TOPLEFT', _G.CharacterFrame, 'TOPLEFT', 20, -47)
 
-				_G.CharacterHandsSlot:ClearAllPoints()
-				_G.CharacterHandsSlot:SetPoint('CENTER', _G.CharacterHeadSlot, 'CENTER', 370, 0)
+			_G.CharacterHandsSlot:ClearAllPoints()
+			_G.CharacterHandsSlot:SetPoint('CENTER', _G.CharacterHeadSlot, 'CENTER', 370, 0)
 
-				_G.CharacterMainHandSlot:ClearAllPoints()
-				_G.CharacterMainHandSlot:SetPoint('CENTER', _G.CharacterModelFrame, 'CENTER', -55, -145)
+			_G.CharacterMainHandSlot:ClearAllPoints()
+			_G.CharacterMainHandSlot:SetPoint('CENTER', _G.CharacterModelFrame, 'CENTER', -55, -145)
 
-				if _G.PlayerTitleDropDown then
-					_G.PlayerTitleDropDown:SetAlpha(0)
-					_G.PlayerTitleDropDown:SetScript('OnEnter', function() _G.PlayerTitleDropDown:SetAlpha(1) end)
-					_G.PlayerTitleDropDown:SetScript('OnLeave', function() _G.PlayerTitleDropDown:SetAlpha(0) end)
-				end
+			if _G.PlayerTitleDropDown then
+				_G.PlayerTitleDropDown:SetAlpha(0)
+				_G.PlayerTitleDropDown:SetScript('OnEnter', function() _G.PlayerTitleDropDown:SetAlpha(1) end)
+				_G.PlayerTitleDropDown:SetScript('OnLeave', function() _G.PlayerTitleDropDown:SetAlpha(0) end)
+			end
 
-				CharacterNameText:ClearAllPoints()
-				CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
-				--CharacterNameText:SetParent(CharacterModelFrame)
-				CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
-				CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-				CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
-				CharacterNameText:SetShadowOffset(2, -1)
+			CharacterNameText:ClearAllPoints()
+			CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
+			--CharacterNameText:SetParent(CharacterModelFrame)
+			CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
+			CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+			CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
+			CharacterNameText:SetShadowOffset(2, -1)
 
-				CharacterLevelText:ClearAllPoints()
-				--CharacterLevelText:SetPoint('TOP', CharacterModelFrame, 0, 60)
-				CharacterLevelText:SetPoint('TOP', CharacterNameText, 'BOTTOM', 0, -15)
-				CharacterLevelText:SetParent(CharacterModelFrame)
+			CharacterLevelText:ClearAllPoints()
+			--CharacterLevelText:SetPoint('TOP', CharacterModelFrame, 0, 60)
+			CharacterLevelText:SetPoint('TOP', CharacterNameText, 'BOTTOM', 0, -15)
+			CharacterLevelText:SetParent(CharacterModelFrame)
 
-				--start of the stats
-				CharacterFrame.Text4:SetSize(418, 72)
-				CharacterFrame.Text4:SetPoint("TOPRIGHT", CharacterFrame, "TOPRIGHT", 50, 0) ---anchored
-				CharacterFrame.Text4:SetParent(_G["PaperDollItemsFrame"])
-				CharacterFrame.Text4:SetTextColor(1, 1, 1)
-				CharacterFrame.Text4:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-				CharacterFrame.Text4:SetText(ElvUI_EltreumUI:GradientName(L["Specialization"], E.myclass)) ---specialization
-				CharacterFrame.StatusLine4:SetSize(170, 3)
-				CharacterFrame.StatusLine4:SetPoint("CENTER", CharacterFrame.Text4, "CENTER", 0, -15)
-				CharacterFrame.StatusLine4:SetParent(_G["PaperDollItemsFrame"])
-				CharacterFrame.StatusLine4:SetStatusBarTexture(E.Media.Textures.Highlight)
-				CharacterFrame.StatusLine4:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			--start of the stats
+			CharacterFrame.Text4:SetSize(418, 72)
+			CharacterFrame.Text4:SetPoint("TOPRIGHT", CharacterFrame, "TOPRIGHT", 50, 0) ---anchored
+			CharacterFrame.Text4:SetParent(_G["PaperDollItemsFrame"])
+			CharacterFrame.Text4:SetTextColor(1, 1, 1)
+			CharacterFrame.Text4:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
+			CharacterFrame.Text4:SetText(ElvUI_EltreumUI:GradientName(L["Specialization"], E.myclass)) ---specialization
+			CharacterFrame.StatusLine4:SetSize(170, 3)
+			CharacterFrame.StatusLine4:SetPoint("CENTER", CharacterFrame.Text4, "CENTER", 0, -15)
+			CharacterFrame.StatusLine4:SetParent(_G["PaperDollItemsFrame"])
+			CharacterFrame.StatusLine4:SetStatusBarTexture(E.Media.Textures.Highlight)
+			CharacterFrame.StatusLine4:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
-				CharacterFrame.Text5:SetSize(418, 72)
-				CharacterFrame.Text5:SetPoint("BOTTOM", CharacterFrame.StatusLine4, "BOTTOM", 0, -50)
-				CharacterFrame.Text5:SetParent(_G["PaperDollItemsFrame"])
-				CharacterFrame.Text5:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				CharacterFrame.Text5:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-				CharacterFrame.Text5:SetText(PlayerSpec())
+			CharacterFrame.Text5:SetSize(418, 72)
+			CharacterFrame.Text5:SetPoint("BOTTOM", CharacterFrame.StatusLine4, "BOTTOM", 0, -50)
+			CharacterFrame.Text5:SetParent(_G["PaperDollItemsFrame"])
+			CharacterFrame.Text5:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			CharacterFrame.Text5:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
+			CharacterFrame.Text5:SetText(PlayerSpec())
 
-				CharacterFrame.Text:SetSize(418, 72)
-				CharacterFrame.Text:SetPoint("BOTTOM", CharacterFrame.Text5, "BOTTOM", 0, -25)
-				CharacterFrame.Text:SetParent(_G["PaperDollItemsFrame"])
-				CharacterFrame.Text:SetTextColor(1, 1, 1)
-				CharacterFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-				CharacterFrame.Text:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass)) ---ilvl
-				CharacterFrame.StatusLine:SetSize(170, 3)
-				CharacterFrame.StatusLine:SetPoint("CENTER", CharacterFrame.Text, "CENTER", 0, -15)
-				CharacterFrame.StatusLine:SetParent(_G["PaperDollItemsFrame"])
-				CharacterFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-				CharacterFrame.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			CharacterFrame.Text:SetSize(418, 72)
+			CharacterFrame.Text:SetPoint("BOTTOM", CharacterFrame.Text5, "BOTTOM", 0, -25)
+			CharacterFrame.Text:SetParent(_G["PaperDollItemsFrame"])
+			CharacterFrame.Text:SetTextColor(1, 1, 1)
+			CharacterFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
+			CharacterFrame.Text:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass)) ---ilvl
+			CharacterFrame.StatusLine:SetSize(170, 3)
+			CharacterFrame.StatusLine:SetPoint("CENTER", CharacterFrame.Text, "CENTER", 0, -15)
+			CharacterFrame.StatusLine:SetParent(_G["PaperDollItemsFrame"])
+			CharacterFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
+			CharacterFrame.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
-				CharacterFrame.Text2:SetSize(418, 72)
-				CharacterFrame.Text2:SetPoint("BOTTOM", CharacterFrame.Text, "BOTTOM", 0, -35) --ilvl number
-				CharacterFrame.Text2:SetParent(_G["PaperDollItemsFrame"])
-				CharacterFrame.Text2:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				CharacterFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-				CharacterFrame.StatusLine2:SetFrameStrata("MEDIUM")
-				CharacterFrame.StatusLine2:SetFrameLevel(1)
-				CharacterFrame.StatusLine2:SetSize(170, 25)
-				CharacterFrame.StatusLine2:SetPoint("CENTER", CharacterFrame.Text2, "CENTER", 0, 0)
-				CharacterFrame.StatusLine2:SetParent(_G["PaperDollItemsFrame"])
-				CharacterFrame.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
-				CharacterFrame.StatusLine2:SetStatusBarColor(1, 1, 1, 0.5)
+			CharacterFrame.Text2:SetSize(418, 72)
+			CharacterFrame.Text2:SetPoint("BOTTOM", CharacterFrame.Text, "BOTTOM", 0, -35) --ilvl number
+			CharacterFrame.Text2:SetParent(_G["PaperDollItemsFrame"])
+			CharacterFrame.Text2:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			CharacterFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
+			CharacterFrame.StatusLine2:SetFrameStrata("MEDIUM")
+			CharacterFrame.StatusLine2:SetFrameLevel(1)
+			CharacterFrame.StatusLine2:SetSize(170, 25)
+			CharacterFrame.StatusLine2:SetPoint("CENTER", CharacterFrame.Text2, "CENTER", 0, 0)
+			CharacterFrame.StatusLine2:SetParent(_G["PaperDollItemsFrame"])
+			CharacterFrame.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
+			CharacterFrame.StatusLine2:SetStatusBarColor(1, 1, 1, 0.5)
 
-				CharacterFrame.Text3:SetSize(418, 72)
-				CharacterFrame.Text3:SetPoint("TOP", CharacterFrame.Text2, "TOP", 0, -27)
-				CharacterFrame.Text3:SetParent(_G["PaperDollItemsFrame"])
-				CharacterFrame.Text3:SetTextColor(1, 1, 1)
-				CharacterFrame.Text3:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-				CharacterFrame.Text3:SetText(ElvUI_EltreumUI:GradientName(L["Attributes"], E.myclass)) ---attributes
-				CharacterFrame.StatusLine3:SetSize(170, 3)
-				CharacterFrame.StatusLine3:SetPoint("CENTER", CharacterFrame.Text3, "CENTER", 0, -15)
-				CharacterFrame.StatusLine3:SetParent(_G["PaperDollItemsFrame"])
-				CharacterFrame.StatusLine3:SetStatusBarTexture(E.Media.Textures.Highlight)
-				CharacterFrame.StatusLine3:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			CharacterFrame.Text3:SetSize(418, 72)
+			CharacterFrame.Text3:SetPoint("TOP", CharacterFrame.Text2, "TOP", 0, -27)
+			CharacterFrame.Text3:SetParent(_G["PaperDollItemsFrame"])
+			CharacterFrame.Text3:SetTextColor(1, 1, 1)
+			CharacterFrame.Text3:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
+			CharacterFrame.Text3:SetText(ElvUI_EltreumUI:GradientName(L["Attributes"], E.myclass)) ---attributes
+			CharacterFrame.StatusLine3:SetSize(170, 3)
+			CharacterFrame.StatusLine3:SetPoint("CENTER", CharacterFrame.Text3, "CENTER", 0, -15)
+			CharacterFrame.StatusLine3:SetParent(_G["PaperDollItemsFrame"])
+			CharacterFrame.StatusLine3:SetStatusBarTexture(E.Media.Textures.Highlight)
+			CharacterFrame.StatusLine3:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
-				--move the model
-				CharacterModelFrame:ClearAllPoints()
-				CharacterModelFrame:SetPoint("RIGHT", CharacterFrame, "CENTER", -20, 0)
-				CharacterModelFrame:SetSize(200, 300)
+			--move the model
+			CharacterModelFrame:ClearAllPoints()
+			CharacterModelFrame:SetPoint("RIGHT", CharacterFrame, "CENTER", -20, 0)
+			CharacterModelFrame:SetSize(200, 300)
 
-				_G.CharacterModelFrameRotateRightButton:Hide()
-				_G.CharacterModelFrameRotateLeftButton:Hide()
+			_G.CharacterModelFrameRotateRightButton:Hide()
+			_G.CharacterModelFrameRotateLeftButton:Hide()
 
-				--magic resistance stuff, maybe make it a loop in the future
-				_G.MagicResFrame1:ClearAllPoints()
-				if E.Wrath or E.TBC then
-					_G.MagicResFrame1:SetParent(_G.PlayerStatFrameLeft1)
-					_G.MagicResFrame1:SetPoint("TOPLEFT", _G.PlayerStatFrameLeftDropDown, "TOPLEFT", 13, 27)
-				elseif E.Classic then
-					_G.MagicResFrame1:SetParent(_G.CharacterStatFrame1)
-					_G.MagicResFrame1:SetPoint("BOTTOM", CharacterFrame.StatusLine3, "BOTTOM", -55, -50)
-				end
-				_G.MagicResFrame2:ClearAllPoints()
-				_G.MagicResFrame2:SetParent(_G.MagicResFrame1)
-				_G.MagicResFrame2:SetPoint("RIGHT", _G.MagicResFrame1, "RIGHT", 27, 0)
-				_G.MagicResFrame2:SetParent(_G["PaperDollItemsFrame"])
-				_G.MagicResFrame3:ClearAllPoints()
-				_G.MagicResFrame3:SetParent(_G.MagicResFrame2)
-				_G.MagicResFrame3:SetPoint("RIGHT", _G.MagicResFrame2, "RIGHT", 27, 0)
-				_G.MagicResFrame3:SetParent(_G["PaperDollItemsFrame"])
-				_G.MagicResFrame4:ClearAllPoints()
-				_G.MagicResFrame4:SetParent(_G.MagicResFrame3)
-				_G.MagicResFrame4:SetPoint("RIGHT", _G.MagicResFrame3, "RIGHT", 27, 0)
-				_G.MagicResFrame4:SetParent(_G["PaperDollItemsFrame"])
-				_G.MagicResFrame5:ClearAllPoints()
-				_G.MagicResFrame5:SetParent(_G.MagicResFrame4)
-				_G.MagicResFrame5:SetPoint("RIGHT", _G.MagicResFrame4, "RIGHT", 27, 0)
-				_G.MagicResFrame5:SetParent(_G["PaperDollItemsFrame"])
+			--magic resistance stuff, maybe make it a loop in the future
+			_G.MagicResFrame1:ClearAllPoints()
+			if E.Wrath or E.TBC then
+				_G.MagicResFrame1:SetParent(_G.PlayerStatFrameLeft1)
+				_G.MagicResFrame1:SetPoint("TOPLEFT", _G.PlayerStatFrameLeftDropDown, "TOPLEFT", 13, 27)
+			elseif E.Classic then
+				_G.MagicResFrame1:SetParent(_G.CharacterStatFrame1)
+				_G.MagicResFrame1:SetPoint("BOTTOM", CharacterFrame.StatusLine3, "BOTTOM", -55, -50)
+			end
+			_G.MagicResFrame2:ClearAllPoints()
+			_G.MagicResFrame2:SetParent(_G.MagicResFrame1)
+			_G.MagicResFrame2:SetPoint("RIGHT", _G.MagicResFrame1, "RIGHT", 27, 0)
+			_G.MagicResFrame2:SetParent(_G["PaperDollItemsFrame"])
+			_G.MagicResFrame3:ClearAllPoints()
+			_G.MagicResFrame3:SetParent(_G.MagicResFrame2)
+			_G.MagicResFrame3:SetPoint("RIGHT", _G.MagicResFrame2, "RIGHT", 27, 0)
+			_G.MagicResFrame3:SetParent(_G["PaperDollItemsFrame"])
+			_G.MagicResFrame4:ClearAllPoints()
+			_G.MagicResFrame4:SetParent(_G.MagicResFrame3)
+			_G.MagicResFrame4:SetPoint("RIGHT", _G.MagicResFrame3, "RIGHT", 27, 0)
+			_G.MagicResFrame4:SetParent(_G["PaperDollItemsFrame"])
+			_G.MagicResFrame5:ClearAllPoints()
+			_G.MagicResFrame5:SetParent(_G.MagicResFrame4)
+			_G.MagicResFrame5:SetPoint("RIGHT", _G.MagicResFrame4, "RIGHT", 27, 0)
+			_G.MagicResFrame5:SetParent(_G["PaperDollItemsFrame"])
 
-				if E.Wrath or E.TBC then
-					--"left side" or in this case the top side
-					_G.PlayerStatFrameLeftDropDown:ClearAllPoints()
-					_G.PlayerStatFrameLeftDropDown:SetPoint("CENTER", CharacterFrame.StatusLine3, "CENTER", 0, -55)
-					_G.PlayerStatFrameLeftDropDown:SetParent(_G["PaperDollItemsFrame"])
+			if E.Wrath or E.TBC then
+				--"left side" or in this case the top side
+				_G.PlayerStatFrameLeftDropDown:ClearAllPoints()
+				_G.PlayerStatFrameLeftDropDown:SetPoint("CENTER", CharacterFrame.StatusLine3, "CENTER", 0, -55)
+				_G.PlayerStatFrameLeftDropDown:SetParent(_G["PaperDollItemsFrame"])
 
-					_G.PlayerStatFrameLeft1:ClearAllPoints()
-					_G.PlayerStatFrameLeft1:SetPoint("BOTTOM", _G.PlayerStatFrameLeftDropDown, "BOTTOM", -22, -5)
-					_G.PlayerStatFrameLeft1:SetParent(_G["PaperDollItemsFrame"])
+				_G.PlayerStatFrameLeft1:ClearAllPoints()
+				_G.PlayerStatFrameLeft1:SetPoint("BOTTOM", _G.PlayerStatFrameLeftDropDown, "BOTTOM", -22, -5)
+				_G.PlayerStatFrameLeft1:SetParent(_G["PaperDollItemsFrame"])
 
-					_G.PlayerStatFrameLeft2:ClearAllPoints()
-					_G.PlayerStatFrameLeft2:SetPoint("BOTTOM", _G.PlayerStatFrameLeft1, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft2:SetParent(_G["PaperDollItemsFrame"])
-					_G.PlayerStatFrameLeft2.StatusLine:SetSize(170, 12)
-					_G.PlayerStatFrameLeft2.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameLeft2, "CENTER", 25, 0)
-					_G.PlayerStatFrameLeft2.StatusLine:SetParent(_G["PaperDollItemsFrame"])
-					_G.PlayerStatFrameLeft2.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					_G.PlayerStatFrameLeft2.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-					_G.PlayerStatFrameLeft2.StatusLine:SetFrameLevel(2)
+				_G.PlayerStatFrameLeft2:ClearAllPoints()
+				_G.PlayerStatFrameLeft2:SetPoint("BOTTOM", _G.PlayerStatFrameLeft1, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameLeft2:SetParent(_G["PaperDollItemsFrame"])
+				_G.PlayerStatFrameLeft2.StatusLine:SetSize(170, 12)
+				_G.PlayerStatFrameLeft2.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameLeft2, "CENTER", 25, 0)
+				_G.PlayerStatFrameLeft2.StatusLine:SetParent(_G["PaperDollItemsFrame"])
+				_G.PlayerStatFrameLeft2.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
+				_G.PlayerStatFrameLeft2.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+				_G.PlayerStatFrameLeft2.StatusLine:SetFrameLevel(2)
 
-					_G.PlayerStatFrameLeft3:ClearAllPoints()
-					_G.PlayerStatFrameLeft3:SetPoint("BOTTOM", _G.PlayerStatFrameLeft2, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft3:SetParent(_G["PaperDollItemsFrame"])
+				_G.PlayerStatFrameLeft3:ClearAllPoints()
+				_G.PlayerStatFrameLeft3:SetPoint("BOTTOM", _G.PlayerStatFrameLeft2, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameLeft3:SetParent(_G["PaperDollItemsFrame"])
 
-					_G.PlayerStatFrameLeft4:ClearAllPoints()
-					_G.PlayerStatFrameLeft4:SetPoint("BOTTOM", _G.PlayerStatFrameLeft3, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft4:SetParent(_G["PaperDollItemsFrame"])
-					_G.PlayerStatFrameLeft4.StatusLine:SetSize(170, 12)
-					_G.PlayerStatFrameLeft4.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameLeft4, "CENTER", 25, 0)
-					_G.PlayerStatFrameLeft4.StatusLine:SetParent(_G["PaperDollItemsFrame"])
-					_G.PlayerStatFrameLeft4.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					_G.PlayerStatFrameLeft4.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-					_G.PlayerStatFrameLeft4.StatusLine:SetFrameLevel(2)
+				_G.PlayerStatFrameLeft4:ClearAllPoints()
+				_G.PlayerStatFrameLeft4:SetPoint("BOTTOM", _G.PlayerStatFrameLeft3, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameLeft4:SetParent(_G["PaperDollItemsFrame"])
+				_G.PlayerStatFrameLeft4.StatusLine:SetSize(170, 12)
+				_G.PlayerStatFrameLeft4.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameLeft4, "CENTER", 25, 0)
+				_G.PlayerStatFrameLeft4.StatusLine:SetParent(_G["PaperDollItemsFrame"])
+				_G.PlayerStatFrameLeft4.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
+				_G.PlayerStatFrameLeft4.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+				_G.PlayerStatFrameLeft4.StatusLine:SetFrameLevel(2)
 
-					_G.PlayerStatFrameLeft5:ClearAllPoints()
-					_G.PlayerStatFrameLeft5:SetPoint("BOTTOM", _G.PlayerStatFrameLeft4, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft5:SetParent(_G["PaperDollItemsFrame"])
+				_G.PlayerStatFrameLeft5:ClearAllPoints()
+				_G.PlayerStatFrameLeft5:SetPoint("BOTTOM", _G.PlayerStatFrameLeft4, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameLeft5:SetParent(_G["PaperDollItemsFrame"])
 
-					_G.PlayerStatFrameLeft6:ClearAllPoints()
-					_G.PlayerStatFrameLeft6:SetPoint("BOTTOM", _G.PlayerStatFrameLeft5, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft6:SetParent(_G["PaperDollItemsFrame"])
-					_G.PlayerStatFrameLeft6.StatusLine:SetSize(170, 12)
-					_G.PlayerStatFrameLeft6.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameLeft6, "CENTER", 25, 0)
-					_G.PlayerStatFrameLeft6.StatusLine:SetParent(_G["PlayerStatFrameLeft6"])
-					_G.PlayerStatFrameLeft6.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					_G.PlayerStatFrameLeft6.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-					_G.PlayerStatFrameLeft6.StatusLine:SetFrameLevel(2)
+				_G.PlayerStatFrameLeft6:ClearAllPoints()
+				_G.PlayerStatFrameLeft6:SetPoint("BOTTOM", _G.PlayerStatFrameLeft5, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameLeft6:SetParent(_G["PaperDollItemsFrame"])
+				_G.PlayerStatFrameLeft6.StatusLine:SetSize(170, 12)
+				_G.PlayerStatFrameLeft6.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameLeft6, "CENTER", 25, 0)
+				_G.PlayerStatFrameLeft6.StatusLine:SetParent(_G["PlayerStatFrameLeft6"])
+				_G.PlayerStatFrameLeft6.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
+				_G.PlayerStatFrameLeft6.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+				_G.PlayerStatFrameLeft6.StatusLine:SetFrameLevel(2)
 
-					_G.PlayerStatFrameLeft1Stat:ClearAllPoints()
-					_G.PlayerStatFrameLeft1Stat:SetPoint("CENTER", _G.PlayerStatFrameLeft1, "CENTER", 95, 0)
-					_G.PlayerStatFrameLeft1StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.PlayerStatFrameLeft1Stat:SetParent(_G["PaperDollItemsFrame"])
-					_G.PlayerStatFrameLeft2Stat:ClearAllPoints()
-					_G.PlayerStatFrameLeft2Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft1Stat, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft2StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.PlayerStatFrameLeft2Stat:SetParent(_G["PaperDollItemsFrame"])
-					_G.PlayerStatFrameLeft3Stat:ClearAllPoints()
-					_G.PlayerStatFrameLeft3Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft2Stat, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft3StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.PlayerStatFrameLeft3Stat:SetParent(_G["PaperDollItemsFrame"])
-					_G.PlayerStatFrameLeft4Stat:ClearAllPoints()
-					_G.PlayerStatFrameLeft4Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft3Stat, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft4StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.PlayerStatFrameLeft4Stat:SetParent(_G["PaperDollItemsFrame"])
-					_G.PlayerStatFrameLeft5Stat:ClearAllPoints()
-					_G.PlayerStatFrameLeft5Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft4Stat, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft5StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.PlayerStatFrameLeft5Stat:SetParent(_G["PaperDollItemsFrame"])
-					_G.PlayerStatFrameLeft6Stat:ClearAllPoints()
-					_G.PlayerStatFrameLeft6Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft5Stat, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameLeft6StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.PlayerStatFrameLeft6Stat:SetParent(_G["PlayerStatFrameLeft6"])
+				_G.PlayerStatFrameLeft1Stat:ClearAllPoints()
+				_G.PlayerStatFrameLeft1Stat:SetPoint("CENTER", _G.PlayerStatFrameLeft1, "CENTER", 95, 0)
+				_G.PlayerStatFrameLeft1StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.PlayerStatFrameLeft1Stat:SetParent(_G["PaperDollItemsFrame"])
+				_G.PlayerStatFrameLeft2Stat:ClearAllPoints()
+				_G.PlayerStatFrameLeft2Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft1Stat, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameLeft2StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.PlayerStatFrameLeft2Stat:SetParent(_G["PaperDollItemsFrame"])
+				_G.PlayerStatFrameLeft3Stat:ClearAllPoints()
+				_G.PlayerStatFrameLeft3Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft2Stat, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameLeft3StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.PlayerStatFrameLeft3Stat:SetParent(_G["PaperDollItemsFrame"])
+				_G.PlayerStatFrameLeft4Stat:ClearAllPoints()
+				_G.PlayerStatFrameLeft4Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft3Stat, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameLeft4StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.PlayerStatFrameLeft4Stat:SetParent(_G["PaperDollItemsFrame"])
+				_G.PlayerStatFrameLeft5Stat:ClearAllPoints()
+				_G.PlayerStatFrameLeft5Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft4Stat, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameLeft5StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.PlayerStatFrameLeft5Stat:SetParent(_G["PaperDollItemsFrame"])
+				_G.PlayerStatFrameLeft6Stat:ClearAllPoints()
+				_G.PlayerStatFrameLeft6Stat:SetPoint("BOTTOM", _G.PlayerStatFrameLeft5Stat, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameLeft6StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.PlayerStatFrameLeft6Stat:SetParent(_G["PlayerStatFrameLeft6"])
 
-					--"right side", on this case its the bottom
-					_G.PlayerStatFrameRightDropDown:ClearAllPoints()
-					_G.PlayerStatFrameRightDropDown:SetPoint("CENTER", _G.PlayerStatFrameLeftDropDown, "CENTER", 0, -105)
-					_G.PlayerStatFrameRightDropDown:SetParent(_G["PaperDollItemsFrame"])
+				--"right side", on this case its the bottom
+				_G.PlayerStatFrameRightDropDown:ClearAllPoints()
+				_G.PlayerStatFrameRightDropDown:SetPoint("CENTER", _G.PlayerStatFrameLeftDropDown, "CENTER", 0, -105)
+				_G.PlayerStatFrameRightDropDown:SetParent(_G["PaperDollItemsFrame"])
 
-					_G.PlayerStatFrameRight1:ClearAllPoints()
-					_G.PlayerStatFrameRight1:SetPoint("BOTTOM", _G.PlayerStatFrameRightDropDown, "BOTTOM", -22, -5)
-					_G.PlayerStatFrameRight1:SetParent(_G["PaperDollItemsFrame"])
+				_G.PlayerStatFrameRight1:ClearAllPoints()
+				_G.PlayerStatFrameRight1:SetPoint("BOTTOM", _G.PlayerStatFrameRightDropDown, "BOTTOM", -22, -5)
+				_G.PlayerStatFrameRight1:SetParent(_G["PaperDollItemsFrame"])
 
-					_G.PlayerStatFrameRight2:ClearAllPoints()
-					_G.PlayerStatFrameRight2:SetPoint("BOTTOM", _G.PlayerStatFrameRight1, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameRight2:SetParent(_G["PaperDollItemsFrame"])
-					_G.PlayerStatFrameRight2.StatusLine:SetSize(170, 12)
-					_G.PlayerStatFrameRight2.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameRight2, "CENTER", 25, 0)
-					_G.PlayerStatFrameRight2.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					_G.PlayerStatFrameRight2.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-					_G.PlayerStatFrameRight2.StatusLine:SetFrameLevel(2)
+				_G.PlayerStatFrameRight2:ClearAllPoints()
+				_G.PlayerStatFrameRight2:SetPoint("BOTTOM", _G.PlayerStatFrameRight1, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameRight2:SetParent(_G["PaperDollItemsFrame"])
+				_G.PlayerStatFrameRight2.StatusLine:SetSize(170, 12)
+				_G.PlayerStatFrameRight2.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameRight2, "CENTER", 25, 0)
+				_G.PlayerStatFrameRight2.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
+				_G.PlayerStatFrameRight2.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+				_G.PlayerStatFrameRight2.StatusLine:SetFrameLevel(2)
 
-					_G.PlayerStatFrameRight3:ClearAllPoints()
-					_G.PlayerStatFrameRight3:SetPoint("BOTTOM", _G.PlayerStatFrameRight2, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameRight3:SetParent(_G.PlayerStatFrameRight1)
+				_G.PlayerStatFrameRight3:ClearAllPoints()
+				_G.PlayerStatFrameRight3:SetPoint("BOTTOM", _G.PlayerStatFrameRight2, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameRight3:SetParent(_G.PlayerStatFrameRight1)
 
-					_G.PlayerStatFrameRight4:ClearAllPoints()
-					_G.PlayerStatFrameRight4:SetPoint("BOTTOM", _G.PlayerStatFrameRight3, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameRight4:SetParent(_G.PlayerStatFrameRight1)
-					_G.PlayerStatFrameRight4.StatusLine:SetSize(170, 12)
-					_G.PlayerStatFrameRight4.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameRight4, "CENTER", 25, 0)
-					_G.PlayerStatFrameRight4.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					_G.PlayerStatFrameRight4.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-					_G.PlayerStatFrameRight4.StatusLine:SetFrameLevel(2)
+				_G.PlayerStatFrameRight4:ClearAllPoints()
+				_G.PlayerStatFrameRight4:SetPoint("BOTTOM", _G.PlayerStatFrameRight3, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameRight4:SetParent(_G.PlayerStatFrameRight1)
+				_G.PlayerStatFrameRight4.StatusLine:SetSize(170, 12)
+				_G.PlayerStatFrameRight4.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameRight4, "CENTER", 25, 0)
+				_G.PlayerStatFrameRight4.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
+				_G.PlayerStatFrameRight4.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+				_G.PlayerStatFrameRight4.StatusLine:SetFrameLevel(2)
 
-					_G.PlayerStatFrameRight5:ClearAllPoints()
-					_G.PlayerStatFrameRight5:SetPoint("BOTTOM", _G.PlayerStatFrameRight4, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameRight5:SetParent(_G.PlayerStatFrameRight1)
+				_G.PlayerStatFrameRight5:ClearAllPoints()
+				_G.PlayerStatFrameRight5:SetPoint("BOTTOM", _G.PlayerStatFrameRight4, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameRight5:SetParent(_G.PlayerStatFrameRight1)
 
-					_G.PlayerStatFrameRight6:ClearAllPoints()
-					_G.PlayerStatFrameRight6:SetPoint("BOTTOM", _G.PlayerStatFrameRight5, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameRight6:SetParent(_G["PaperDollItemsFrame"])
-					_G.PlayerStatFrameRight6.StatusLine:SetSize(170, 12)
-					_G.PlayerStatFrameRight6.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameRight6, "CENTER", 25, 0)
-					_G.PlayerStatFrameRight6.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					_G.PlayerStatFrameRight6.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-					_G.PlayerStatFrameRight6.StatusLine:SetParent(_G["PlayerStatFrameRight6"])
-					_G.PlayerStatFrameRight6.StatusLine:SetFrameLevel(2)
+				_G.PlayerStatFrameRight6:ClearAllPoints()
+				_G.PlayerStatFrameRight6:SetPoint("BOTTOM", _G.PlayerStatFrameRight5, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameRight6:SetParent(_G["PaperDollItemsFrame"])
+				_G.PlayerStatFrameRight6.StatusLine:SetSize(170, 12)
+				_G.PlayerStatFrameRight6.StatusLine:SetPoint("CENTER", _G.PlayerStatFrameRight6, "CENTER", 25, 0)
+				_G.PlayerStatFrameRight6.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
+				_G.PlayerStatFrameRight6.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+				_G.PlayerStatFrameRight6.StatusLine:SetParent(_G["PlayerStatFrameRight6"])
+				_G.PlayerStatFrameRight6.StatusLine:SetFrameLevel(2)
 
-					_G.PlayerStatFrameRight1Stat:ClearAllPoints()
-					_G.PlayerStatFrameRight1Stat:SetPoint("CENTER", _G.PlayerStatFrameRight1, "CENTER", 95, 0)
-					_G.PlayerStatFrameRight1StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.PlayerStatFrameRight1Stat:SetParent(_G.PlayerStatFrameRight1)
-					_G.PlayerStatFrameRight2Stat:ClearAllPoints()
-					_G.PlayerStatFrameRight2Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight1Stat, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameRight2StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.PlayerStatFrameRight2Stat:SetParent(_G.PlayerStatFrameRight1)
-					_G.PlayerStatFrameRight3Stat:ClearAllPoints()
-					_G.PlayerStatFrameRight3Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight2Stat, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameRight3StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.PlayerStatFrameRight3Stat:SetParent(_G.PlayerStatFrameRight1)
-					_G.PlayerStatFrameRight4Stat:ClearAllPoints()
-					_G.PlayerStatFrameRight4Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight3Stat, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameRight4StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.PlayerStatFrameRight4Stat:SetParent(_G.PlayerStatFrameRight1)
-					_G.PlayerStatFrameRight5Stat:ClearAllPoints()
-					_G.PlayerStatFrameRight5Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight4Stat, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameRight5StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.PlayerStatFrameRight5Stat:SetParent(_G.PlayerStatFrameRight1)
-					_G.PlayerStatFrameRight6Stat:ClearAllPoints()
-					_G.PlayerStatFrameRight6Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight5Stat, "BOTTOM", 0, -13)
-					_G.PlayerStatFrameRight6StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.PlayerStatFrameRight6Stat:SetParent(_G["PlayerStatFrameRight6"])
-				elseif E.Classic then
+				_G.PlayerStatFrameRight1Stat:ClearAllPoints()
+				_G.PlayerStatFrameRight1Stat:SetPoint("CENTER", _G.PlayerStatFrameRight1, "CENTER", 95, 0)
+				_G.PlayerStatFrameRight1StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.PlayerStatFrameRight1Stat:SetParent(_G.PlayerStatFrameRight1)
+				_G.PlayerStatFrameRight2Stat:ClearAllPoints()
+				_G.PlayerStatFrameRight2Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight1Stat, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameRight2StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.PlayerStatFrameRight2Stat:SetParent(_G.PlayerStatFrameRight1)
+				_G.PlayerStatFrameRight3Stat:ClearAllPoints()
+				_G.PlayerStatFrameRight3Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight2Stat, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameRight3StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.PlayerStatFrameRight3Stat:SetParent(_G.PlayerStatFrameRight1)
+				_G.PlayerStatFrameRight4Stat:ClearAllPoints()
+				_G.PlayerStatFrameRight4Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight3Stat, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameRight4StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.PlayerStatFrameRight4Stat:SetParent(_G.PlayerStatFrameRight1)
+				_G.PlayerStatFrameRight5Stat:ClearAllPoints()
+				_G.PlayerStatFrameRight5Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight4Stat, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameRight5StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.PlayerStatFrameRight5Stat:SetParent(_G.PlayerStatFrameRight1)
+				_G.PlayerStatFrameRight6Stat:ClearAllPoints()
+				_G.PlayerStatFrameRight6Stat:SetPoint("BOTTOM", _G.PlayerStatFrameRight5Stat, "BOTTOM", 0, -13)
+				_G.PlayerStatFrameRight6StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.PlayerStatFrameRight6Stat:SetParent(_G["PlayerStatFrameRight6"])
+			elseif E.Classic then
 
 
-					_G.CharacterStatFrame1:ClearAllPoints()
-					_G.CharacterStatFrame1:SetPoint("CENTER", _G.MagicResFrame1, "CENTER", 28, -28) --first stat desc
-					_G.CharacterStatFrame1:SetParent(CharacterModelFrame)
+				_G.CharacterStatFrame1:ClearAllPoints()
+				_G.CharacterStatFrame1:SetPoint("CENTER", _G.MagicResFrame1, "CENTER", 28, -28) --first stat desc
+				_G.CharacterStatFrame1:SetParent(CharacterModelFrame)
 
-					_G.CharacterStatFrame2:ClearAllPoints()
-					_G.CharacterStatFrame2:SetParent(_G.CharacterStatFrame1)
-					_G.CharacterStatFrame2:SetPoint("BOTTOM", _G.CharacterStatFrame1, "BOTTOM", 0, -13)
+				_G.CharacterStatFrame2:ClearAllPoints()
+				_G.CharacterStatFrame2:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterStatFrame2:SetPoint("BOTTOM", _G.CharacterStatFrame1, "BOTTOM", 0, -13)
 
-					_G.CharacterStatFrame2.StatusLine:SetSize(170, 12)
-					_G.CharacterStatFrame2.StatusLine:SetPoint("CENTER", _G.CharacterStatFrame2, "CENTER", 25, 0)
-					_G.CharacterStatFrame2.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					_G.CharacterStatFrame2.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-					_G.CharacterStatFrame2.StatusLine:SetFrameLevel(2)
+				_G.CharacterStatFrame2.StatusLine:SetSize(170, 12)
+				_G.CharacterStatFrame2.StatusLine:SetPoint("CENTER", _G.CharacterStatFrame2, "CENTER", 25, 0)
+				_G.CharacterStatFrame2.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
+				_G.CharacterStatFrame2.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+				_G.CharacterStatFrame2.StatusLine:SetFrameLevel(2)
 
-					_G.CharacterStatFrame3:ClearAllPoints()
-					_G.CharacterStatFrame3:SetParent(_G.CharacterStatFrame1)
-					_G.CharacterStatFrame3:SetPoint("BOTTOM", _G.CharacterStatFrame2, "BOTTOM", 0, -13)
+				_G.CharacterStatFrame3:ClearAllPoints()
+				_G.CharacterStatFrame3:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterStatFrame3:SetPoint("BOTTOM", _G.CharacterStatFrame2, "BOTTOM", 0, -13)
 
-					_G.CharacterStatFrame4:ClearAllPoints()
-					_G.CharacterStatFrame4:SetParent(_G.CharacterStatFrame1)
-					_G.CharacterStatFrame4:SetPoint("BOTTOM", _G.CharacterStatFrame3, "BOTTOM", 0, -13)
+				_G.CharacterStatFrame4:ClearAllPoints()
+				_G.CharacterStatFrame4:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterStatFrame4:SetPoint("BOTTOM", _G.CharacterStatFrame3, "BOTTOM", 0, -13)
 
-					_G.CharacterStatFrame4.StatusLine:SetSize(170, 12)
-					_G.CharacterStatFrame4.StatusLine:SetPoint("CENTER", _G.CharacterStatFrame4, "CENTER", 25, 0)
-					_G.CharacterStatFrame4.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					_G.CharacterStatFrame4.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-					_G.CharacterStatFrame4.StatusLine:SetFrameLevel(2)
+				_G.CharacterStatFrame4.StatusLine:SetSize(170, 12)
+				_G.CharacterStatFrame4.StatusLine:SetPoint("CENTER", _G.CharacterStatFrame4, "CENTER", 25, 0)
+				_G.CharacterStatFrame4.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
+				_G.CharacterStatFrame4.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+				_G.CharacterStatFrame4.StatusLine:SetFrameLevel(2)
 
-					_G.CharacterStatFrame5:ClearAllPoints()
-					_G.CharacterStatFrame5:SetParent(_G.CharacterStatFrame1)
-					_G.CharacterStatFrame5:SetPoint("BOTTOM", _G.CharacterStatFrame4, "BOTTOM", 0, -13)
+				_G.CharacterStatFrame5:ClearAllPoints()
+				_G.CharacterStatFrame5:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterStatFrame5:SetPoint("BOTTOM", _G.CharacterStatFrame4, "BOTTOM", 0, -13)
 
-					_G.CharacterArmorFrame:ClearAllPoints()
-					_G.CharacterArmorFrame:SetParent(_G.CharacterStatFrame1)
-					_G.CharacterArmorFrame:SetPoint("BOTTOM", _G.CharacterStatFrame5, "BOTTOM", 0, -13)
+				_G.CharacterArmorFrame:ClearAllPoints()
+				_G.CharacterArmorFrame:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterArmorFrame:SetPoint("BOTTOM", _G.CharacterStatFrame5, "BOTTOM", 0, -13)
 
-					_G.CharacterArmorFrame.StatusLine:SetSize(170, 12)
-					_G.CharacterArmorFrame.StatusLine:SetPoint("CENTER", _G.CharacterArmorFrame, "CENTER", 25, 0)
-					_G.CharacterArmorFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					_G.CharacterArmorFrame.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-					_G.CharacterArmorFrame.StatusLine:SetFrameLevel(2)
+				_G.CharacterArmorFrame.StatusLine:SetSize(170, 12)
+				_G.CharacterArmorFrame.StatusLine:SetPoint("CENTER", _G.CharacterArmorFrame, "CENTER", 25, 0)
+				_G.CharacterArmorFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
+				_G.CharacterArmorFrame.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+				_G.CharacterArmorFrame.StatusLine:SetFrameLevel(2)
 
-					_G.CharacterAttackFrame:ClearAllPoints()
-					_G.CharacterAttackFrame:SetParent(_G.CharacterStatFrame1)
-					_G.CharacterAttackFrame:SetPoint("BOTTOM", _G.CharacterArmorFrame, "BOTTOM", 0, -13)
+				_G.CharacterAttackFrame:ClearAllPoints()
+				_G.CharacterAttackFrame:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterAttackFrame:SetPoint("BOTTOM", _G.CharacterArmorFrame, "BOTTOM", 0, -13)
 
-					_G.CharacterAttackPowerFrame:ClearAllPoints()
-					_G.CharacterAttackPowerFrame:SetParent(_G.CharacterStatFrame1)
-					_G.CharacterAttackPowerFrame:SetPoint("BOTTOM", _G.CharacterAttackFrame, "BOTTOM", 0, -13)
+				_G.CharacterAttackPowerFrame:ClearAllPoints()
+				_G.CharacterAttackPowerFrame:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterAttackPowerFrame:SetPoint("BOTTOM", _G.CharacterAttackFrame, "BOTTOM", 0, -13)
 
-					_G.CharacterAttackPowerFrame.StatusLine:SetSize(170, 12)
-					_G.CharacterAttackPowerFrame.StatusLine:SetPoint("CENTER", _G.CharacterAttackPowerFrame, "CENTER", 25, 0)
-					_G.CharacterAttackPowerFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					_G.CharacterAttackPowerFrame.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-					_G.CharacterAttackPowerFrame.StatusLine:SetFrameLevel(2)
+				_G.CharacterAttackPowerFrame.StatusLine:SetSize(170, 12)
+				_G.CharacterAttackPowerFrame.StatusLine:SetPoint("CENTER", _G.CharacterAttackPowerFrame, "CENTER", 25, 0)
+				_G.CharacterAttackPowerFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
+				_G.CharacterAttackPowerFrame.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+				_G.CharacterAttackPowerFrame.StatusLine:SetFrameLevel(2)
 
-					_G.CharacterDamageFrame:ClearAllPoints()
-					_G.CharacterDamageFrame:SetParent(_G.CharacterStatFrame1)
-					_G.CharacterDamageFrame:SetPoint("BOTTOM", _G.CharacterAttackPowerFrame, "BOTTOM", 0, -13)
+				_G.CharacterDamageFrame:ClearAllPoints()
+				_G.CharacterDamageFrame:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterDamageFrame:SetPoint("BOTTOM", _G.CharacterAttackPowerFrame, "BOTTOM", 0, -13)
 
-					_G.CharacterRangedAttackFrame:ClearAllPoints()
-					_G.CharacterRangedAttackFrame:SetParent(_G.CharacterStatFrame1)
-					_G.CharacterRangedAttackFrame:SetPoint("BOTTOM", _G.CharacterDamageFrame, "BOTTOM", 0, -13)
+				_G.CharacterRangedAttackFrame:ClearAllPoints()
+				_G.CharacterRangedAttackFrame:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterRangedAttackFrame:SetPoint("BOTTOM", _G.CharacterDamageFrame, "BOTTOM", 0, -13)
 
-					_G.CharacterRangedAttackFrame.StatusLine:SetSize(170, 12)
-					_G.CharacterRangedAttackFrame.StatusLine:SetPoint("CENTER", _G.CharacterRangedAttackFrame, "CENTER", 25, 0)
-					_G.CharacterRangedAttackFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					_G.CharacterRangedAttackFrame.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-					_G.CharacterRangedAttackFrame.StatusLine:SetFrameLevel(2)
+				_G.CharacterRangedAttackFrame.StatusLine:SetSize(170, 12)
+				_G.CharacterRangedAttackFrame.StatusLine:SetPoint("CENTER", _G.CharacterRangedAttackFrame, "CENTER", 25, 0)
+				_G.CharacterRangedAttackFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
+				_G.CharacterRangedAttackFrame.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+				_G.CharacterRangedAttackFrame.StatusLine:SetFrameLevel(2)
 
-					_G.CharacterRangedAttackPowerFrame:ClearAllPoints()
-					_G.CharacterRangedAttackPowerFrame:SetParent(_G.CharacterStatFrame1)
-					_G.CharacterRangedAttackPowerFrame:SetPoint("BOTTOM", _G.CharacterRangedAttackFrame, "BOTTOM", 0, -13)
+				_G.CharacterRangedAttackPowerFrame:ClearAllPoints()
+				_G.CharacterRangedAttackPowerFrame:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterRangedAttackPowerFrame:SetPoint("BOTTOM", _G.CharacterRangedAttackFrame, "BOTTOM", 0, -13)
 
-					_G.CharacterRangedDamageFrame:ClearAllPoints()
-					_G.CharacterRangedDamageFrame:SetParent(_G.CharacterStatFrame1)
-					_G.CharacterRangedDamageFrame:SetPoint("BOTTOM", _G.CharacterRangedAttackPowerFrame, "BOTTOM", 0, -13)
+				_G.CharacterRangedDamageFrame:ClearAllPoints()
+				_G.CharacterRangedDamageFrame:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterRangedDamageFrame:SetPoint("BOTTOM", _G.CharacterRangedAttackPowerFrame, "BOTTOM", 0, -13)
 
-					_G.CharacterRangedDamageFrame.StatusLine:SetSize(170, 12)
-					_G.CharacterRangedDamageFrame.StatusLine:SetPoint("CENTER", _G.CharacterRangedDamageFrame, "CENTER", 25, 0)
-					_G.CharacterRangedDamageFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-					_G.CharacterRangedDamageFrame.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
-					_G.CharacterRangedDamageFrame.StatusLine:SetFrameLevel(2)
+				_G.CharacterRangedDamageFrame.StatusLine:SetSize(170, 12)
+				_G.CharacterRangedDamageFrame.StatusLine:SetPoint("CENTER", _G.CharacterRangedDamageFrame, "CENTER", 25, 0)
+				_G.CharacterRangedDamageFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
+				_G.CharacterRangedDamageFrame.StatusLine:SetStatusBarColor(1, 1, 1, 0.3)
+				_G.CharacterRangedDamageFrame.StatusLine:SetFrameLevel(2)
 
-					_G.CharacterStatFrame1Stat:ClearAllPoints()
-					_G.CharacterStatFrame1Stat:SetPoint("CENTER", _G.CharacterStatFrame1, "CENTER", 90, 0) --first stat number
-					_G.CharacterStatFrame1StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.CharacterStatFrame1Stat:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterStatFrame1Stat:ClearAllPoints()
+				_G.CharacterStatFrame1Stat:SetPoint("CENTER", _G.CharacterStatFrame1, "CENTER", 90, 0) --first stat number
+				_G.CharacterStatFrame1StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.CharacterStatFrame1Stat:SetParent(_G.CharacterStatFrame1)
 
-					_G.CharacterStatFrame2Stat:ClearAllPoints()
-					_G.CharacterStatFrame2Stat:SetPoint("BOTTOM", _G.CharacterStatFrame1Stat, "BOTTOM", 0, -13)
-					_G.CharacterStatFrame2StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.CharacterStatFrame2Stat:SetParent(_G.CharacterStatFrame1)
-					_G.CharacterStatFrame3Stat:ClearAllPoints()
-					_G.CharacterStatFrame3Stat:SetPoint("BOTTOM", _G.CharacterStatFrame2Stat, "BOTTOM", 0, -13)
-					_G.CharacterStatFrame2StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.CharacterStatFrame3Stat:SetParent(_G.CharacterStatFrame1)
-					_G.CharacterStatFrame4Stat:ClearAllPoints()
-					_G.CharacterStatFrame4Stat:SetPoint("BOTTOM", _G.CharacterStatFrame3Stat, "BOTTOM", 0, -13)
-					_G.CharacterStatFrame4StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.CharacterStatFrame4Stat:SetParent(_G.CharacterStatFrame1)
-					_G.CharacterStatFrame5Stat:ClearAllPoints()
-					_G.CharacterStatFrame5Stat:SetPoint("BOTTOM", _G.CharacterStatFrame4Stat, "BOTTOM", 0, -13)
-					_G.CharacterStatFrame5StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.CharacterStatFrame5Stat:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterStatFrame2Stat:ClearAllPoints()
+				_G.CharacterStatFrame2Stat:SetPoint("BOTTOM", _G.CharacterStatFrame1Stat, "BOTTOM", 0, -13)
+				_G.CharacterStatFrame2StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.CharacterStatFrame2Stat:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterStatFrame3Stat:ClearAllPoints()
+				_G.CharacterStatFrame3Stat:SetPoint("BOTTOM", _G.CharacterStatFrame2Stat, "BOTTOM", 0, -13)
+				_G.CharacterStatFrame2StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.CharacterStatFrame3Stat:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterStatFrame4Stat:ClearAllPoints()
+				_G.CharacterStatFrame4Stat:SetPoint("BOTTOM", _G.CharacterStatFrame3Stat, "BOTTOM", 0, -13)
+				_G.CharacterStatFrame4StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.CharacterStatFrame4Stat:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterStatFrame5Stat:ClearAllPoints()
+				_G.CharacterStatFrame5Stat:SetPoint("BOTTOM", _G.CharacterStatFrame4Stat, "BOTTOM", 0, -13)
+				_G.CharacterStatFrame5StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.CharacterStatFrame5Stat:SetParent(_G.CharacterStatFrame1)
 
-					_G.CharacterArmorFrameStat:ClearAllPoints()
-					_G.CharacterArmorFrameStat:SetPoint("BOTTOM", _G.CharacterStatFrame5Stat, "BOTTOM", 0, -13)
-					_G.CharacterArmorFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.CharacterArmorFrameStat:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterArmorFrameStat:ClearAllPoints()
+				_G.CharacterArmorFrameStat:SetPoint("BOTTOM", _G.CharacterStatFrame5Stat, "BOTTOM", 0, -13)
+				_G.CharacterArmorFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.CharacterArmorFrameStat:SetParent(_G.CharacterStatFrame1)
 
-					_G.CharacterAttackFrameStat:ClearAllPoints()
-					_G.CharacterAttackFrameStat:SetPoint("BOTTOM", _G.CharacterArmorFrameStat, "BOTTOM", 0, -13)
-					_G.CharacterAttackFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.CharacterAttackFrameStat:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterAttackFrameStat:ClearAllPoints()
+				_G.CharacterAttackFrameStat:SetPoint("BOTTOM", _G.CharacterArmorFrameStat, "BOTTOM", 0, -13)
+				_G.CharacterAttackFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.CharacterAttackFrameStat:SetParent(_G.CharacterStatFrame1)
 
-					_G.CharacterAttackPowerFrameStat:ClearAllPoints()
-					_G.CharacterAttackPowerFrameStat:SetPoint("BOTTOM", _G.CharacterAttackFrameStat, "BOTTOM", 0, -13)
-					_G.CharacterAttackPowerFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.CharacterAttackPowerFrameStat:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterAttackPowerFrameStat:ClearAllPoints()
+				_G.CharacterAttackPowerFrameStat:SetPoint("BOTTOM", _G.CharacterAttackFrameStat, "BOTTOM", 0, -13)
+				_G.CharacterAttackPowerFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.CharacterAttackPowerFrameStat:SetParent(_G.CharacterStatFrame1)
 
-					_G.CharacterDamageFrameStat:ClearAllPoints()
-					_G.CharacterDamageFrameStat:SetPoint("BOTTOM", _G.CharacterAttackPowerFrameStat, "BOTTOM", 0, -13)
-					_G.CharacterDamageFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.CharacterDamageFrameStat:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterDamageFrameStat:ClearAllPoints()
+				_G.CharacterDamageFrameStat:SetPoint("BOTTOM", _G.CharacterAttackPowerFrameStat, "BOTTOM", 0, -13)
+				_G.CharacterDamageFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.CharacterDamageFrameStat:SetParent(_G.CharacterStatFrame1)
 
-					_G.CharacterRangedAttackFrameStat:ClearAllPoints()
-					_G.CharacterRangedAttackFrameStat:SetPoint("BOTTOM", _G.CharacterDamageFrameStat, "BOTTOM", 0, -13)
-					_G.CharacterRangedAttackFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.CharacterRangedAttackFrameStat:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterRangedAttackFrameStat:ClearAllPoints()
+				_G.CharacterRangedAttackFrameStat:SetPoint("BOTTOM", _G.CharacterDamageFrameStat, "BOTTOM", 0, -13)
+				_G.CharacterRangedAttackFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.CharacterRangedAttackFrameStat:SetParent(_G.CharacterStatFrame1)
 
-					_G.CharacterRangedAttackPowerFrameStat:ClearAllPoints()
-					_G.CharacterRangedAttackPowerFrameStat:SetPoint("BOTTOM", _G.CharacterRangedAttackFrameStat, "BOTTOM", 0, -13)
-					_G.CharacterRangedAttackPowerFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.CharacterRangedAttackPowerFrameStat:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterRangedAttackPowerFrameStat:ClearAllPoints()
+				_G.CharacterRangedAttackPowerFrameStat:SetPoint("BOTTOM", _G.CharacterRangedAttackFrameStat, "BOTTOM", 0, -13)
+				_G.CharacterRangedAttackPowerFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.CharacterRangedAttackPowerFrameStat:SetParent(_G.CharacterStatFrame1)
 
-					_G.CharacterRangedDamageFrameStat:ClearAllPoints()
-					_G.CharacterRangedDamageFrameStat:SetPoint("BOTTOM", _G.CharacterRangedAttackPowerFrameStat, "BOTTOM", 0, -13)
-					_G.CharacterRangedDamageFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
-					_G.CharacterRangedDamageFrameStat:SetParent(_G.CharacterStatFrame1)
+				_G.CharacterRangedDamageFrameStat:ClearAllPoints()
+				_G.CharacterRangedDamageFrameStat:SetPoint("BOTTOM", _G.CharacterRangedAttackPowerFrameStat, "BOTTOM", 0, -13)
+				_G.CharacterRangedDamageFrameStatText:SetFont(E.LSM:Fetch('font', E.db.general.font), 11, E.db.general.fontStyle)
+				_G.CharacterRangedDamageFrameStat:SetParent(_G.CharacterStatFrame1)
 
-					SkillFrame:SetHeight(400)
-					_G.SkillDetailScrollChildFrame:ClearAllPoints()
-					_G.SkillDetailScrollChildFrame:SetPoint("BOTTOMLEFT", CharacterFrame, "BOTTOMLEFT", 30, 150)
-					_G.SkillDetailScrollChildFrame:SetParent(SkillFrame)
-					_G.SkillFrameCancelButton:Hide()
-				end
+				SkillFrame:SetHeight(400)
+				_G.SkillDetailScrollChildFrame:ClearAllPoints()
+				_G.SkillDetailScrollChildFrame:SetPoint("BOTTOMLEFT", CharacterFrame, "BOTTOMLEFT", 30, 150)
+				_G.SkillDetailScrollChildFrame:SetParent(SkillFrame)
+				_G.SkillFrameCancelButton:Hide()
 			end
 		end
 	end
