@@ -10,6 +10,7 @@ local databarXP
 local castbar
 local targetcastbar
 local reactiontarget
+local _, targetclass
 
 function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
 	if IsAddOnLoaded("ElvUI_mMediaTag") then
@@ -114,7 +115,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 
 		--target
 		if UnitExists("target") then
-			local _, targetclass = UnitClass("target")
+			_, targetclass = UnitClass("target")
 			reactiontarget = UnitReaction("target", "player")
 			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable and (not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable) then
 				targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
