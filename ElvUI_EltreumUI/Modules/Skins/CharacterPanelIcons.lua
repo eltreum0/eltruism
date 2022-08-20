@@ -171,9 +171,9 @@ EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
 	if not E.private then return end
 	if not E.private.ElvUI_EltreumUI then return end
 	if IsAddOnLoaded("ElvUI_MerathilisUI") then
-	 	if E.db["mui"]["armory"]["character"]["classIcon"] then
-	 		return
-	 	end
+		if E.db["mui"]["armory"]["character"]["classIcon"] then
+			return
+		end
 	 end
 
 	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false then
