@@ -119,6 +119,7 @@ P.ElvUI_EltreumUI = {
 			iconSize = 75,
 			holdTime = 0,
 			showSpellName = false,
+			graceperiod = 7,
 		},
 	},
 

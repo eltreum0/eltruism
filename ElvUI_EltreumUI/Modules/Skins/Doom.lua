@@ -31,7 +31,6 @@ local GetContainerItemID = _G.GetContainerItemID
 local ignoredSpells
 local cooldowns, animating, watching = { }, { }, { }
 local petOverlay = {1,1,1}
-local graceperiod = 7
 
 --createframes
 local DCP = CreateFrame("FRAME","EltruismDoomCDPulse")
@@ -193,7 +192,7 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 							watching[i] = nil
 						else
 							if (cooldown.enabled ~= 0) then
-								if (cooldown.duration and cooldown.duration > graceperiod and cooldown.texture) then --controls grace period
+								if (cooldown.duration and cooldown.duration > E.db.ElvUI_EltreumUI.skins.doom.graceperiod and cooldown.texture) then --controls grace period
 									cooldowns[i] = getCooldownDetails
 								end
 							end
