@@ -46,7 +46,6 @@ local skillglowcolorpet
 local _, autoCastEnabled
 local buttonNamepet
 local slots
-local buttonclassic
 
 --classic glows
 local SPELL_ID = {
@@ -331,13 +330,14 @@ function ElvUI_EltreumUI:SkillGlow()
 			function ElvUI_EltreumUI:ClassicGlow(barName)
 				bar = AB["handledBars"][barName]
 				if not bar then return end
+				local button
 				procFrame:RegisterEvent('ACTIONBAR_UPDATE_USABLE')
 				procFrame:RegisterEvent('SPELL_UPDATE_USABLE')
 				procFrame:RegisterEvent('PLAYER_TARGET_CHANGED')
 				procFrame:SetScript('OnEvent', function()
 					for i=1, NUM_ACTIONBAR_BUTTONS do
-						buttonclassic = bar.buttons[i]
-						buttonname = buttonclassic:GetName()
+						button = bar.buttons[i]
+						buttonname = button:GetName()
 						if _G[buttonname].GetSpellId and _G[buttonname]:GetSpellId() then
 							proc = _G[buttonname]:GetSpellId()
 						end
