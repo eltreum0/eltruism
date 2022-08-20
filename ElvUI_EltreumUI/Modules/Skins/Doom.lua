@@ -58,15 +58,14 @@ function ElvUI_EltreumUI:PreviewDoom()
 	local scale = E.db.ElvUI_EltreumUI.skins.doom.iconSize+(E.db.ElvUI_EltreumUI.skins.doom.iconSize*((E.db.ElvUI_EltreumUI.skins.doom.animScale-1) ))
 	DCP:SetWidth(scale)
 	DCP:SetHeight(scale)
+
 	if not DCP.shadow then
 		DCP:CreateShadow()
 	end
 
-	if not DCP:IsVisible() then
-		DCP:Show()
+	if DCP:GetAlpha() == 0 then
 		DCP:SetAlpha(1)
 	else
-		DCP:Hide()
 		DCP:SetAlpha(0)
 	end
 end
