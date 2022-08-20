@@ -254,7 +254,7 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 		--------------------
 
 		function DCP:SPELL_UPDATE_COOLDOWN()
-			for i,getCooldownDetails in pairs(cooldowns) do
+			for _, getCooldownDetails in pairs(cooldowns) do
 				getCooldownDetails.resetCache()
 			end
 		end
