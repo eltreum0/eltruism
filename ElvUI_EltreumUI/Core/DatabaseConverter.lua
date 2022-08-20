@@ -35,7 +35,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 			E:StaticPopup_Show('ELTRUISMDBCONVERT', ProfileNames, CharacterNames)
 			E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version]]
 
-		if E.private.ElvUI_EltreumUI.install_version < "3.2.5" or forced then
+		if E.private.ElvUI_EltreumUI.install_version < "3.2.0" or forced then
 
 			--Profile options conversion
 			local ProfileNames = "NONE"
@@ -52,6 +52,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 
 						if data.ElvUI_EltreumUI.shadows then
 							local temp = E.db.ElvUI_EltreumUI.skins.shadows
+							E.db.ElvUI_EltreumUI.skins.shadows = {}
 							E:CopyTable(E.db.ElvUI_EltreumUI.skins.shadows, data.ElvUI_EltreumUI.shadows)
 							E.db.ElvUI_EltreumUI.skins.shadows.enable =  temp
 							data.ElvUI_EltreumUI.shadows = nil
