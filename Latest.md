@@ -23,4 +23,4 @@ Fixed Explosives in M+ not using normal nameplate heights\
 Fixed PvP Season History check position for Character Skin in Classic/TBC\
 Fixed an issue with the Error frame option toggling the Zone option for Skins\
 Fixed a missing option for the Character Panel art in Classic/TBC/Wrath\
-Fixed some colors in Gradient Mode being incorrect due to an alpha being supplied\
+Fixed some colors in Gradient Mode being incorrect due to an alpha being supplied
