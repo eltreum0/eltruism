@@ -70,15 +70,15 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		end
 
 		if not E.Retail then
-			if not (_G.CharacterNameText:GetText():match("|T")) then
-				_G.CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
-				_G.CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
-				_G.CharacterNameText:SetShadowOffset(2, -1)
-				if string.len(_G.CharacterNameText:GetText()) >= 6 then
-					_G.CharacterNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.CharacterNameText:GetText(), E.myclass))
+			if not (CharacterNameText:GetText():match("|T")) then
+				CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
+				CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
+				CharacterNameText:SetShadowOffset(2, -1)
+				if string.len(CharacterNameText:GetText()) >= 6 then
+					CharacterNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterNameText:GetText(), E.myclass))
 				else
-					_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
-					_G.CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+					CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
+					CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 				end
 			end
 		elseif E.Retail then
@@ -197,15 +197,15 @@ EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
 			hooksecurefunc('PaperDollFrame_SetLevel', function()
 				--without delay for some reason it does not work since the text returns as just... Name for some reason
 				E:Delay(0, function()
-					if not (_G.CharacterNameText:GetText():match("|T")) then
-						_G.CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
-						_G.CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
-						_G.CharacterNameText:SetShadowOffset(2, -1)
-						if string.len(_G.CharacterNameText:GetText()) >= 6 then
-							_G.CharacterNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.CharacterNameText:GetText(), E.myclass))
+					if not (CharacterNameText:GetText():match("|T")) then
+						CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
+						CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
+						CharacterNameText:SetShadowOffset(2, -1)
+						if string.len(CharacterNameText:GetText()) >= 6 then
+							CharacterNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterNameText:GetText(), E.myclass))
 						else
-							_G.CharacterNameText:SetText(classsymbolonframe.." ".._G.CharacterNameText:GetText())
-							_G.CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
+							CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 						end
 					end
 				end)
