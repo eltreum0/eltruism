@@ -2719,7 +2719,7 @@ function ElvUI_EltreumUI:Configtable()
 					header1 = {
 						order = 1,
 						type = "description",
-						name = "Cooldown",
+						name = L["Cooldown"],
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
