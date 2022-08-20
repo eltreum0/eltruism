@@ -15,10 +15,10 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 		if E.private.ElvUI_EltreumUI.install_version < "3.2.5" or forced then
 
 			--making sure it only runs on the current char's profile
-			local eltruismprofile
+			local currentprofile
 			for character, charprofile in pairs (ElvDB.profileKeys) do
 				if character:match(E.myname) then
-					eltruismprofile = charprofile
+					currentprofile = charprofile
 				end
 			end
 
@@ -27,7 +27,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 			local CharacterNames = "NONE"
 			for profile, data in pairs(ElvDB.profiles) do
 				local profileChanged = false
-				if profile == eltruismprofile then
+				if profile == currentprofile then
 					if data then
 						if data.ElvUI_EltreumUI then
 							if data.ElvUI_EltreumUI.shadows then
