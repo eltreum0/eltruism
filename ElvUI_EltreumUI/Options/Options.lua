@@ -6758,7 +6758,7 @@ function ElvUI_EltreumUI:Configtable()
 							restednp = {
 								order = 1916,
 								type = 'toggle',
-								name = L["Decrease Nameplate Overlap when Resting"],
+								name = E.NewSign..L["Decrease Nameplate Overlap when Resting"],
 								desc = L["Toggle On and Off"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.restedoverlap end,
@@ -8617,7 +8617,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 108,
 								type = 'toggle',
 								width = "full",
-								name = L["Automatically rotate Target Portrait"],
+								name = E.NewSign..L["Automatically rotate Target Portrait"],
 								desc = L["Detects target's species and uses it to fix the rotation of the Target's 3D Portrait"],
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.portraitfix end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraitfix = value end,
