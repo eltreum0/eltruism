@@ -208,11 +208,11 @@ function ElvUI_EltreumUI:SkillGlow()
 					totem4glowcolor = {E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor.r, E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor.g, E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor.b, 1}
 				end
 
-				totemglowcombatdetect:SetScript("OnEvent", function(_, event)
+				totemglowcombatdetect:SetScript("OnEvent", function(self, event)
 					if event == 'PLAYER_REGEN_DISABLED' then
 						ONUPDATE_INTERVAL = 1
 						TimeSinceLastUpdate = 0
-						totemglowholder:SetScript("OnUpdate", function(_, elapsed)
+						totemglowholder:SetScript("OnUpdate", function(self, elapsed)
 							TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 							if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 								TimeSinceLastUpdate = 0
@@ -432,7 +432,7 @@ function ElvUI_EltreumUI:SkillGlow()
 
 			classicglowframe:RegisterEvent("PLAYER_STARTED_MOVING")
 			--classicglowframe:RegisterEvent('ACTIONBAR_UPDATE_USABLE')
-			classicglowframe:SetScript("OnEvent", function()
+			classicglowframe:SetScript("OnEvent", function(event)
 				classicglowframe:UnregisterAllEvents()
 				if not InCombatLockdown() then
 					hooksecurefunc(AB, 'PositionAndSizeBar', ElvUI_EltreumUI.ClassicGlow)
