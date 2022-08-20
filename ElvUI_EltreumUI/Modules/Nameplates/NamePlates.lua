@@ -38,7 +38,7 @@ local nameplateShowFriends
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1
 function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
-	if E.db.ElvUI_EltreumUI.glow.colorclass then
+	if E.db.ElvUI_EltreumUI.glow.colorclassnp then
 		glowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 	else
 		glowcolor = {E.db.ElvUI_EltreumUI.glow.glowcustomcolornp.r, E.db.ElvUI_EltreumUI.glow.glowcustomcolornp.g, E.db.ElvUI_EltreumUI.glow.glowcustomcolornp.b, 1}
