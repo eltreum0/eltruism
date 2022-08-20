@@ -6,6 +6,7 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 local fixingold = false
 
 function ElvUI_EltreumUI:VersionCheckInit()
+	E.db.ElvUI_EltreumUI.DBConvertrunning = false
 	if E.private.ElvUI_EltreumUI.install_version < "3.2.5" then
 		ElvUI_EltreumUI:DatabaseConversions()
 	end

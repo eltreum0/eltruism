@@ -55,6 +55,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 			E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version]]
 
 		if E.private.ElvUI_EltreumUI.install_version < "3.2.5" or forced then
+			E.db.ElvUI_EltreumUI.DBConvertrunning = true
 
 			--Profile options conversion
 			local ProfileNames = "NONE"
