@@ -153,7 +153,7 @@ function ElvUI_EltreumUI:Shadows()
 		local EltruismBlizzShadowsRetail = CreateFrame("Frame")
 		EltruismBlizzShadowsRetail:RegisterEvent("ADDON_LOADED")
 		EltruismBlizzShadowsRetail:SetScript("OnEvent", function(_, _, arg)
-			if not E.private.skins.blizzard.enable == false then
+			if E.private.skins.blizzard.enable then
 				if E.Retail then
 					if (arg == "Blizzard_TalentUI") then
 						_G.PlayerTalentFrame:HookScript("OnShow", function()

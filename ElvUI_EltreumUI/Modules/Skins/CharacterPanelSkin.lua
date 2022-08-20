@@ -314,7 +314,7 @@ end
 
 --expanded armory
 function ElvUI_EltreumUI:ExpandedCharacterStats()
-	if not E.private.skins.blizzard.enable == false then
+	if E.private.skins.blizzard.enable then
 
 		if not InCombatLockdown() then
 			_G["CharacterFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.characterpanelscale)
@@ -1746,7 +1746,7 @@ local EltruismInspectBgTextureFader = EltruismInspectBg:CreateTexture("EltruismI
 EltruismInspectBgTextureFader:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Vignette.tga")
 
 function ElvUI_EltreumUI:InspectBg(unit)
-	if not E.private.skins.blizzard.enable == false then
+	if E.private.skins.blizzard.enable then
 		--inspect frame bg
 		if IsAddOnLoaded("Blizzard_InspectUI") then
 			EltruismInspectBg:SetParent(_G.InspectFrame)
