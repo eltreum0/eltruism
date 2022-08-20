@@ -676,7 +676,8 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect then
 				powerbareffect:Show()
 				powerbareffect:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
-				powerbareffect:SetPoint("CENTER",EltreumPowerBar, "CENTER")
+				--powerbareffect:SetPoint("CENTER",EltreumPowerBar, "CENTER")
+				powerbareffect:SetAllPoints(EltreumPowerBar:GetStatusBarTexture())
 
 
 				if E.Retail then
