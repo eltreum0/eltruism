@@ -82,6 +82,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:HideABKeyPress() -- hide keypress if user wants
 	ElvUI_EltreumUI:NameplateRestedOverlaps() -- sets overlaps depending if rested/not
 	ElvUI_EltreumUI:UFEffects() -- model effect on player/target
+	ElvUI_EltreumUI:SetupModelHooks() --sets hooks only if enabled
 	ElvUI_EltreumUI:Doom() -- fork of Doom's Cooldown Pulse
 	if E.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints

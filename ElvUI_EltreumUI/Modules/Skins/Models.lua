@@ -7,9 +7,13 @@ local UnitClass = _G.UnitClass
 local UnitIsPlayer = _G.UnitIsPlayer
 local playereffect = CreateFrame("playermodel", "EltruismPlayerEffect")
 local targeteffect = CreateFrame("playermodel", "EltruismTargetEffect")
+local targettargeteffect = CreateFrame("playermodel", "EltruismTargetTargetEffect")
 local playerbar,targetbar
 local reaction
 local _, targetclass
+local targettargetbar
+local reactiontargettarget
+local targettargetclass
 
 --models table, because each version has different texture paths
 --its based on the color of the model, not the name/theme
@@ -104,15 +108,16 @@ function ElvUI_EltreumUI:UFEffects()
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
 			playerbar = _G["ElvUF_Player"]
 			targetbar = _G["ElvUF_Target"]
+			targettargetbar = _G["ElvUF_TargetTarget"]
 			reaction = UnitReaction("target", "player")
 			_, targetclass = UnitClass("target")
+			reactiontargettarget = UnitReaction("targettarget", "player")
+			_, targettargetclass = UnitClass("targettarget")
 
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
 				--playereffect:ClearModel()
 				playereffect:SetModel(classModels[E.myclass])
-
 				--targeteffect:ClearModel()
-
 				if UnitIsPlayer("target") and targetclass then
 					targeteffect:SetModel(classModels[targetclass])
 				else
@@ -128,19 +133,34 @@ function ElvUI_EltreumUI:UFEffects()
 						end
 					end
 				end
+				if UnitIsPlayer("targettarget") and targettargetclass then
+					targettargeteffect:SetModel(classModels[targettargetclass])
+				else
+					if reactiontargettarget then
+						if reactiontargettarget >= 5 then
+							targettargeteffect:SetModel(classModels["NPCFRIENDLY"])
+						elseif reactiontargettarget == 4 then
+							targettargeteffect:SetModel(classModels["NPCNEUTRAL"])
+						elseif reactiontargettarget == 3 then
+							targettargeteffect:SetModel(classModels["NPCUNFRIENDLY"])
+						elseif reactiontargettarget == 2 or reactiontargettarget == 1 then
+							targettargeteffect:SetModel(classModels["NPCHOSTILE"])
+						end
+					end
+				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
 				--playereffect:ClearModel()
-				if E.Retail then
-					playereffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
-				else
-					playereffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
-				end
 				--targeteffect:ClearModel()
 				if E.Retail then
+					playereffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
 					targeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
+					targettargeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
 				else
+					playereffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
 					targeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
+					targettargeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
 				end
+
 			end
 
 			if playerbar then
@@ -178,14 +198,40 @@ function ElvUI_EltreumUI:UFEffects()
 					targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel()-1)
 					targeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
 				end
+				--targeteffect:AddMaskTexture(targetbar.Health:GetStatusBarTexture())
+			end
 
+			if targettargetbar then
+				targeteffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
+				targettargeteffect:SetParent(targettargetbar.Health)
+				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+					targettargeteffect:ClearAllPoints()
+					targettargeteffect:SetAllPoints(targettargetbar.Health:GetStatusBarTexture())
+					targettargeteffect:SetInside(targettargetbar.Health:GetStatusBarTexture(), 0, 0)
+					targettargeteffect:SetFrameLevel(targettargetbar.Health:GetFrameLevel())
+					targettargeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+				--elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
+				else
+					targettargeteffect:ClearAllPoints()
+					targettargeteffect:SetAllPoints(targettargetbar.Health)
+					targettargeteffect:SetInside(targettargetbar.Health, 0, 0)
+					targettargeteffect:SetFrameLevel(targettargetbar.Health:GetFrameLevel()-1)
+					targettargeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
+				end
 				--targeteffect:AddMaskTexture(targetbar.Health:GetStatusBarTexture())
 			end
 		end
 	end
 end
-hooksecurefunc(UF, "Construct_TargetFrame", ElvUI_EltreumUI.UFEffects)
-hooksecurefunc(UF, "Update_TargetFrame", ElvUI_EltreumUI.UFEffects)
+
+function ElvUI_EltreumUI:SetupModelHooks()
+	if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
+		hooksecurefunc(UF, "Construct_TargetFrame", ElvUI_EltreumUI.UFEffects)
+		hooksecurefunc(UF, "Update_TargetFrame", ElvUI_EltreumUI.UFEffects)
+		hooksecurefunc(UF, "Construct_TargetTargetFrame", ElvUI_EltreumUI.UFEffects)
+		hooksecurefunc(UF, "Update_TargetTargetFrame", ElvUI_EltreumUI.UFEffects)
+	end
+end
 
 --castbar model effect
 local castbareffectplayer = CreateFrame("PlayerModel", "EltruismPlayerCastBarEffect")
