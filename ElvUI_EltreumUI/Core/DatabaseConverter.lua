@@ -13,25 +13,6 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 		}
 
 		--[[if E.private.ElvUI_EltreumUI.install_version < "2.7.3" then
-			local ProfileNames = "NONE"
-			local CharacterNames = "NONE"
-
-			--Profile options conversion
-			for profile, data in pairs(ElvDB.profiles) do
-				local profileChanged = false
-				if data then
-					if data.ElvUI_EltreumUI then
-						profileChanged = true
-					end
-					if profileChanged then
-						if ProfileNames == "NONE" then
-							ProfileNames = profile
-						else
-							ProfileNames = ProfileNames..', '..profile
-						end
-					end
-				end
-			end
 
 			--Private options convert
 			for private, data in pairs(ElvPrivateDB.profiles) do
@@ -705,12 +686,9 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.greybackground, data.ElvUI_EltreumUI.greybackground)
 						end
 						if data.ElvUI_EltreumUI.gradientmode then
-							E.db.ElvUI_EltreumUI.unitframes.gradientmode = {}
-							E.db.ElvUI_EltreumUI.unitframes.gradientmode = data.ElvUI_EltreumUI.gradientmode
-							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.gradientmode, data.ElvUI_EltreumUI.gradientmode)
 							print(E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture, profile, data.ElvUI_EltreumUI.gradientmode.texture)
+							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.gradientmode, data.ElvUI_EltreumUI.gradientmode)
 						elseif data.ElvUI_EltreumUI.gradientmode == nil then
-							print(profile)
 							data.ElvUI_EltreumUI.gradientmode = {
 								enable = false,
 
@@ -1090,6 +1068,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 					end
 				end
 			end
+			E:StaggeredUpdateAll(nil, true)
 			E:StaticPopup_Show('ELTRUISMDBCONVERT', ProfileNames, CharacterNames)
 			E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
 		end
