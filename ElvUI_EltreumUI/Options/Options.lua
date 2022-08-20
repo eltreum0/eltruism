@@ -5681,7 +5681,7 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.loot.fastlootquality end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.loot.fastlootquality = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
-					lootscreenshot = {
+					soundscreenshot = {
 						order = 44,
 						name = L["Enable Playing a Sound if an item from the wishlist is looted"],
 						type = "toggle",
