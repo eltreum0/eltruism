@@ -11,11 +11,6 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.chat.itemlevels = true
 	E.db.ElvUI_EltreumUI.chat.rollsound = true
 
-	--CVars
-	if E.Retail then
-		E.db.ElvUI_EltreumUI.cvars.autohidenpcname = true
-	end
-
 	-- Nameplates
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow = true
@@ -35,8 +30,9 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel = true
+	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.restedoverlap = true
 
-	-- Gradient/Unitframe stuff
+	-- Unitframes
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbar = true
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbarinterrupted = true
@@ -48,6 +44,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar = true
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation = "VERTICAL"
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor = false
+	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP = true
 	E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.7
 	E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable = true
@@ -57,11 +54,6 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.unitframes.darkmode = true
 	E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "V2"
 	E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect = true
-	E.db.unitframe.statusbar = "ElvUI Norm1"
-
-	--databar
-	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP = true
-	E.db.databars.statusbar = "Asphyxia-Norm"
 
 	-- Skins
 	E.db.ElvUI_EltreumUI.skins.levelbossinstance = true
@@ -86,11 +78,19 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.skins.professions = true
 	E.db.ElvUI_EltreumUI.skins.zones = true
 	E.db.ElvUI_EltreumUI.skins.shadow.enable = true
-	E.db.ElvUI_EltreumUI.glow.enable = true
-	E.db.ElvUI_EltreumUI.glow.pixel = true
-	E.db.ElvUI_EltreumUI.glow.enablepet = true
+	E.db.ElvUI_EltreumUI.skins.tbctalents = true
+	E.db.ElvUI_EltreumUI.skins.shadow.aura = true
+	E.db.ElvUI_EltreumUI.skins.shadow.ufaura = true
+	E.db.ElvUI_EltreumUI.skins.shadow.actionbars = true
+	E.db.ElvUI_EltreumUI.skins.shadow.raid = true
+	E.db.ElvUI_EltreumUI.skins.stealtheffect = true
+	E.db.ElvUI_EltreumUI.skins.instances.enable = true
+	E.db.ElvUI_EltreumUI.skins.hidetalkinghead = true
+	E.db.ElvUI_EltreumUI.skins.playerdeath = true
+	E.db.ElvUI_EltreumUI.skins.playerdeathgta = false
+	E.db.ElvUI_EltreumUI.skins.playerdeathcustom = false
 
-	--borders
+	-- Borders
 	E.db.ElvUI_EltreumUI.borders.minimapborder = true
 	E.db.ElvUI_EltreumUI.borders.playerborder = true
 	E.db.ElvUI_EltreumUI.borders.playercastborder = true
@@ -105,16 +105,15 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.borders.petactionborders = true
 	E.db.ElvUI_EltreumUI.borders.totembar = true
 
-	--shadows
-	E.db.ElvUI_EltreumUI.skins.shadow.aura = true
-	E.db.ElvUI_EltreumUI.skins.shadow.ufaura = true
-	E.db.ElvUI_EltreumUI.skins.shadow.actionbars = true
-	E.db.ElvUI_EltreumUI.skins.shadow.raid = true
+	-- Glow
+	E.db.ElvUI_EltreumUI.glow.enable = true
+	E.db.ElvUI_EltreumUI.glow.pixel = true
+	E.db.ElvUI_EltreumUI.glow.enablepet = true
+	if E.Wrath or E.TBC or E.Classic then
+		E.db.ElvUI_EltreumUI.glow.enabletotem = true
+	end
 
-	-- Misc
-	E.db.ElvUI_EltreumUI.skins.tbctalents = true
-	E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext = true
-
+	-- Cursors
 	E.db.ElvUI_EltreumUI.cursors.cursor.enable = true
 	E.db.ElvUI_EltreumUI.cursors.cursor.cooldown = true
 	E.db.ElvUI_EltreumUI.cursors.cursor.combat = true
@@ -123,30 +122,20 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.cursors.cursorcursor.radius = 20
 	E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring2.tga'
 
-	E.db.ElvUI_EltreumUI.skins.stealtheffect = true
-	E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable = false
-
-	E.db.ElvUI_EltreumUI.otherstuff.afkmusic.enable = true
-	if E.Retail then
-		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial = false
-		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.playerclass = true
-	else
-		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial = true
-		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.playerclass = false
-	end
-
+	-- Waypoints
 	E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable = true
 	E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin = true
 	E.db.ElvUI_EltreumUI.waypoints.waytext.enable = true
+
+	-- Quests
 	if E.Retail then
 		E.db.ElvUI_EltreumUI.quests.enable = true
 		E.db.ElvUI_EltreumUI.quests.arena = true
+		E.db.ElvUI_EltreumUI.quests.rogueopen = true
 	elseif E.Wrath or E.TBC or E.Classic then
 		E.db.ElvUI_EltreumUI.quests.enable = false
 		E.db.ElvUI_EltreumUI.quests.arena = false
-		E.db.ElvUI_EltreumUI.glow.enabletotem = true
 	end
-	E.db.ElvUI_EltreumUI.quests.rogueopen = true
 	if E.Retail then
 		E.db.ElvUI_EltreumUI.quests.questitems = false
 	else
@@ -156,39 +145,54 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.quests.questitemsfade = false
 	--E.db.ElvUI_EltreumUI.quests.autoaccept = true  --maybe in the future?
 
-	--loot
+	-- Loot
 	E.db.ElvUI_EltreumUI.loot.loottext.enable = true
 	E.db.ElvUI_EltreumUI.loot.loottext.fontsetting = true
 	E.db.ElvUI_EltreumUI.loot.loottext.combatindicator = true
-	E.db.ElvUI_EltreumUI.otherstuff.fastloot = true
+	E.db.ElvUI_EltreumUI.loot.fastloot = true
 	E.db.ElvUI_EltreumUI.loot.fastlootfilter = false
 	E.db.ElvUI_EltreumUI.loot.lootwishlistfilter = false
 	E.db.ElvUI_EltreumUI.loot.lootautoclose = true
 
-	-- misc
+	-- Misc
+	E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable = false
+	E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext = true
+	E.db.ElvUI_EltreumUI.otherstuff.afkmusic.enable = true
+	if E.Retail then
+		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial = false
+		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.playerclass = true
+	else
+		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial = true
+		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.playerclass = false
+	end
 	E.db.ElvUI_EltreumUI.otherstuff.screenshot = true
-	E.db.ElvUI_EltreumUI.skins.instances.enable = true
-	E.db.ElvUI_EltreumUI.skins.hidetalkinghead = true
 	if IsAddOnLoaded('NameplateSCT') or IsAddOnLoaded('ElvUI_FCT') then
 		E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = true
 	end
 	E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = true
-	E.db.ElvUI_EltreumUI.skins.playerdeath = true
-	E.db.ElvUI_EltreumUI.skins.playerdeathgta = false
-	E.db.ElvUI_EltreumUI.skins.playerdeathcustom = false
 	E.db.ElvUI_EltreumUI.otherstuff.mpluskeys = true
 	E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons = true
 	E.db.ElvUI_EltreumUI.otherstuff.delete = true
-
 	E.db.ElvUI_EltreumUI.otherstuff.gamemenu = true
 
-	--private
+	-- Private
 	E.private.ElvUI_EltreumUI.nameplatepower.enable = true
 	E.private.ElvUI_EltreumUI.nameplatepower.adjust = true
 
-	-- primary and secondary media texture for elvui
+	-- General Media (primary and secondary media texture for elvui)
 	E.private.general.glossTex = "Asphyxia-Norm"
 	E.private.general.normTex = "Asphyxia-Norm"
+
+	-- Unitframes Media
+	E.db.unitframe.statusbar = "ElvUI Norm1"
+
+	-- Databar Media
+	E.db.databars.statusbar = "Asphyxia-Norm"
+
+	--CVars
+	if E.Retail then
+		E.db.ElvUI_EltreumUI.cvars.autohidenpcname = true
+	end
 
 	ElvUI_EltreumUI:Print(L["Settings for Eltruism were applied."])
 end
