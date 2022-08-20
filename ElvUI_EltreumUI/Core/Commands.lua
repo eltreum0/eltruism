@@ -160,7 +160,7 @@ function ElvUI_EltreumUI:Keys(event,message)
 			end
 		end
 	end
-
+	local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or (event == 'CHAT_MSG_PARTY_LEADER' and 'PARTY') or (event == 'CHAT_MSG_PARTY' and 'PARTY')
 	local function link()
 		update()
 		-- Add covenant data
@@ -180,8 +180,8 @@ function ElvUI_EltreumUI:Keys(event,message)
 
 	if event == 'BAG_UPDATE_DELAYED' then
 		update()
-	elseif message and ( strlower(message) == '!keys' or strlower(message) == '!key') then
-		local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or (event == 'CHAT_MSG_PARTY_LEADER' and 'PARTY') or (event == 'CHAT_MSG_PARTY' and 'PARTY')
+	elseif message and ( strlower(message) == '!keys' or strlower(message) == '!key') then  ---TODO CONFIRM WORKING
+		--local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or (event == 'CHAT_MSG_PARTY_LEADER' and 'PARTY') or (event == 'CHAT_MSG_PARTY' and 'PARTY')
 		link(channel)
 	end
 
