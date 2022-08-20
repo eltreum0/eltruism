@@ -331,6 +331,12 @@ local handlemeetinghorn = CreateFrame("FRAME")
 local meetskinned
 handlemeetinghorn:RegisterEvent("ADDON_LOADED")
 handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
+	if GetAddOnEnableState(nil, "MeetingHorn") == 0 then
+		handlemeetinghorn:UnregisterAllEvents()
+	end
+	if not E.private.ElvUI_EltreumUI then
+		return
+	end
 	if ((arg == "MeetingHorn") and E.db.ElvUI_EltreumUI.skins.meetinghorn) or IsAddOnLoaded("MeetingHorn") then
 		_G['MeetingHornMainPanel']:SetScript("OnShow", function()
 			if not meetskinned == true then
@@ -425,9 +431,6 @@ handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
 				handlemeetinghorn:UnregisterAllEvents()
 			end
 		end)
-	end
-	if GetAddOnEnableState(nil, "MeetingHorn") == 0 then
-		handlemeetinghorn:UnregisterAllEvents()
 	end
 end)
 
