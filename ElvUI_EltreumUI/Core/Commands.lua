@@ -160,7 +160,6 @@ function ElvUI_EltreumUI:Keys(event,message)
 			end
 		end
 	end
-	local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or (event == 'CHAT_MSG_PARTY_LEADER' and 'PARTY') or (event == 'CHAT_MSG_PARTY' and 'PARTY')
 
 	local function link()
 		update()
