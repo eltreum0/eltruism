@@ -29,7 +29,7 @@ local offhandlevel
 local rangedlevel
 local rangedlink
 local spec, points
-local _, _, spent1
+local _, spent1
 local spent2
 local spent3
 local name, spent
