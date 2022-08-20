@@ -12,29 +12,6 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 			hideOnEscape = false,
 		}
 
-		--[[if E.private.ElvUI_EltreumUI.install_version < "2.7.3" then
-
-			--Private options convert
-			for private, data in pairs(ElvPrivateDB.profiles) do
-				local privateChanged = false
-				if data then
-					if data.ElvUI_EltreumUI then
-						privateChanged = true
-					end
-					if privateChanged then
-						if CharacterNames == "NONE" then
-							CharacterNames = private
-						else
-							CharacterNames = CharacterNames..', '..private
-						end
-					end
-				end
-			end
-
-			--E:StaggeredUpdateAll(nil, true)
-			E:StaticPopup_Show('ELTRUISMDBCONVERT', ProfileNames, CharacterNames)
-			E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version]]
-
 		if E.private.ElvUI_EltreumUI.install_version < "3.2.0" or forced then
 
 			--Profile options conversion
