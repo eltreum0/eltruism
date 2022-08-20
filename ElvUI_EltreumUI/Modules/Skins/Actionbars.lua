@@ -136,9 +136,11 @@ function ElvUI_EltreumUI:SkillGlow()
 	if not E.private.ElvUI_EltreumUI then
 		return
 	end
-	skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glowcustomcolor.b, 1}
+
 	if E.db.ElvUI_EltreumUI.glow.colorclass then
 		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
+	else
+		skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glowcustomcolor.b, 1}
 	end
 
 	if E.db.ElvUI_EltreumUI.glow.enable then
@@ -452,9 +454,11 @@ function ElvUI_EltreumUI:SkillGlowPet()
 		return
 	end
 	if (E.myclass == 'HUNTER' or E.myclass == 'WARLOCK') and (not IsAddOnLoaded("ElvUI_ActionBarMasks")) then
-		skillglowcolorpet = {E.db.ElvUI_EltreumUI.glowcustomcolorpet.r, E.db.ElvUI_EltreumUI.glowcustomcolorpet.g, E.db.ElvUI_EltreumUI.glowcustomcolorpet.b, 1}
+
 		if E.db.ElvUI_EltreumUI.glow.colorclass then
 			skillglowcolorpet = {classcolor.r, classcolor.g, classcolor.b, 1}
+		else
+			skillglowcolorpet = {E.db.ElvUI_EltreumUI.glowcustomcolorpet.r, E.db.ElvUI_EltreumUI.glowcustomcolorpet.g, E.db.ElvUI_EltreumUI.glowcustomcolorpet.b, 1}
 		end
 
 		if E.db.ElvUI_EltreumUI.glow.enablepet then
@@ -510,9 +514,11 @@ function ElvUI_EltreumUI:PreviewGlow()
 	EltruismGlowPreview:SetScript("OnDragStart", EltruismGlowPreview.StartMoving)
 	EltruismGlowPreview:SetScript("OnDragStop",EltruismGlowPreview.StopMovingOrSizing)
 
-	skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glowcustomcolor.b, 1}
+
 	if E.db.ElvUI_EltreumUI.glow.colorclass then
 		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
+	else
+		skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glowcustomcolor.b, 1}
 	end
 
 	if EltruismGlowPreview:IsShown() then
@@ -531,7 +537,6 @@ function ElvUI_EltreumUI:PreviewGlow()
 		end
 	end
 end
-
 
 --hide keypress on actionbars
 function ElvUI_EltreumUI:HideABKeyPress()
