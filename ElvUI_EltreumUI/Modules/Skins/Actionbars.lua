@@ -136,10 +136,9 @@ function ElvUI_EltreumUI:SkillGlow()
 	if not E.private.ElvUI_EltreumUI then
 		return
 	end
+	skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glowcustomcolor.b, 1}
 	if E.db.ElvUI_EltreumUI.glow.colorclass then
 		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
-	else
-		skillglowcolor = {E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b, 1}
 	end
 
 	if E.db.ElvUI_EltreumUI.glow.enable then
@@ -203,10 +202,10 @@ function ElvUI_EltreumUI:SkillGlow()
 				end
 
 				if not E.db.ElvUI_EltreumUI.glow.totemtypecolor then
-					totem1glowcolor = {E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor.r, E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor.g, E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor.b, 1}
-					totem2glowcolor = {E.db.ElvUI_EltreumUI.glow.glowtotem2customcolor.r, E.db.ElvUI_EltreumUI.glow.glowtotem2customcolor.g, E.db.ElvUI_EltreumUI.glow.glowtotem2customcolor.b, 1}
-					totem3glowcolor = {E.db.ElvUI_EltreumUI.glow.glowtotem3customcolor.r, E.db.ElvUI_EltreumUI.glow.glowtotem3customcolor.g, E.db.ElvUI_EltreumUI.glow.glowtotem3customcolor.b, 1}
-					totem4glowcolor = {E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor.r, E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor.g, E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor.b, 1}
+					totem1glowcolor = {E.db.ElvUI_EltreumUI.glowtotem1customcolor.r, E.db.ElvUI_EltreumUI.glowtotem1customcolor.g, E.db.ElvUI_EltreumUI.glowtotem1customcolor.b, 1}
+					totem2glowcolor = {E.db.ElvUI_EltreumUI.glowtotem2customcolor.r, E.db.ElvUI_EltreumUI.glowtotem2customcolor.g, E.db.ElvUI_EltreumUI.glowtotem2customcolor.b, 1}
+					totem3glowcolor = {E.db.ElvUI_EltreumUI.glowtotem3customcolor.r, E.db.ElvUI_EltreumUI.glowtotem3customcolor.g, E.db.ElvUI_EltreumUI.glowtotem3customcolor.b, 1}
+					totem4glowcolor = {E.db.ElvUI_EltreumUI.glowtotem4customcolor.r, E.db.ElvUI_EltreumUI.glowtotem4customcolor.g, E.db.ElvUI_EltreumUI.glowtotem4customcolor.b, 1}
 				end
 
 				totemglowcombatdetect:SetScript("OnEvent", function(self, event)
@@ -432,7 +431,7 @@ function ElvUI_EltreumUI:SkillGlow()
 
 
 			classicglowframe:RegisterEvent("PLAYER_STARTED_MOVING")
-			classicglowframe:RegisterEvent('ACTIONBAR_UPDATE_USABLE')
+			--classicglowframe:RegisterEvent('ACTIONBAR_UPDATE_USABLE')
 			classicglowframe:SetScript("OnEvent", function(event)
 				classicglowframe:UnregisterAllEvents()
 				if not InCombatLockdown() then
@@ -453,11 +452,9 @@ function ElvUI_EltreumUI:SkillGlowPet()
 		return
 	end
 	if (E.myclass == 'HUNTER' or E.myclass == 'WARLOCK') and (not IsAddOnLoaded("ElvUI_ActionBarMasks")) then
-
+		skillglowcolorpet = {E.db.ElvUI_EltreumUI.glowcustomcolorpet.r, E.db.ElvUI_EltreumUI.glowcustomcolorpet.g, E.db.ElvUI_EltreumUI.glowcustomcolorpet.b, 1}
 		if E.db.ElvUI_EltreumUI.glow.colorclass then
 			skillglowcolorpet = {classcolor.r, classcolor.g, classcolor.b, 1}
-		else
-			skillglowcolorpet = {E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.r, E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.g, E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.b, 1}
 		end
 
 		if E.db.ElvUI_EltreumUI.glow.enablepet then
@@ -513,7 +510,7 @@ function ElvUI_EltreumUI:PreviewGlow()
 	EltruismGlowPreview:SetScript("OnDragStart", EltruismGlowPreview.StartMoving)
 	EltruismGlowPreview:SetScript("OnDragStop",EltruismGlowPreview.StopMovingOrSizing)
 
-	skillglowcolor = {E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b, 1}
+	skillglowcolor = {E.db.ElvUI_EltreumUI.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glowcustomcolor.b, 1}
 	if E.db.ElvUI_EltreumUI.glow.colorclass then
 		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 	end
@@ -534,6 +531,7 @@ function ElvUI_EltreumUI:PreviewGlow()
 		end
 	end
 end
+
 
 --hide keypress on actionbars
 function ElvUI_EltreumUI:HideABKeyPress()
