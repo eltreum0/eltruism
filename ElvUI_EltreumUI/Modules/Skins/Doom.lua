@@ -1,20 +1,54 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local _G = _G
+local CreateFrame = _G.CreateFrame
+local UIParent = _G.UIParent
+local strsplit = _G.strsplit
+local ipairs = _G.ipairs
+local hooksecurefunc = _G.hooksecurefunc
+local pairs = _G.pairs
+local setmetatable = _G.setmetatable
+local GetPetActionInfo = _G.GetPetActionInfo
+local GetTime = _G.GetTime
+local tinsert = _G.tinsert
+local tremove = _G.tremove
+local unpack = _G.unpack
+local GetSpellCooldown = _G.GetSpellCooldown
+local GetSpellInfo = _G.GetSpellInfo
+local GetSpellTexture = _G.GetSpellTexture
+local GetItemCooldown = _G.GetItemCooldown
+local GetItemInfo = _G.GetItemInfo
+local GetPetActionCooldown = _G.GetPetActionCooldown
+local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
+local select = _G.select
+local IsInInstance = _G.IsInInstance
+local wipe = _G.wipe
+local GetActionInfo = _G.GetActionInfo
+local GetActionTexture = _G.GetActionTexture
+local GetInventoryItemID = _G.GetInventoryItemID
+local GetInventoryItemTexture = _G.GetInventoryItemTexture
+local GetContainerItemID = _G.GetContainerItemID
+
 local ignoredSpells
 local cooldowns, animating, watching = { }, { }, { }
 local petOverlay = {1,1,1}
-local GetTime = GetTime
+
+--createframes
 local DCP = CreateFrame("FRAME","EltruismDoomCDPulse")
+DCP:SetPoint("CENTER",UIParent,"CENTER", 0, 250)
+DCP:SetSize(80,80)
+DCP:SetAlpha(0)
+
 DCP.TextFrame = DCP:CreateFontString("EltruismDoomCDPulseText", "ARTWORK")
 DCP.TextFrame:SetShadowOffset(1,-1)
 DCP.TextFrame:SetPoint("CENTER",DCP,"CENTER")
 DCP.TextFrame:SetWidth(300)
 DCP.TextFrame:SetJustifyH("CENTER")
 DCP.TextFrame:SetTextColor(1,1,1)
-DCP:SetPoint("CENTER",UIParent,"CENTER", 0, 250)
+
 local DCPT = DCP:CreateTexture("EltruismDoomCDPulseTexture","BACKGROUND")
 DCPT:SetAllPoints(DCP)
-DCP:SetSize(80,80)
-DCP:SetAlpha(0)
+
+-- create mover
 E:CreateMover(DCP, "EltruismDoomMover", L["EltruismDoom"], nil, nil, nil, 'ALL,SOLO,ELTREUMUI', nil, 'ElvUI_EltreumUI,cooldown')
 
 -- preview function
@@ -41,19 +75,22 @@ end
 function ElvUI_EltreumUI:Doom() --todo, setup options
 	if E.db.ElvUI_EltreumUI.skins.doom.enable then
 
+		--set the general elvui font
 		DCP.TextFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.doom.iconSize/5, E.db.general.fontStyle)
 
+		--create shadow
 		if not DCP.shadow then
 			DCP:CreateShadow()
 		end
 
-		ignoredSpells = { }  --todo: confirm ignore list is working once options are worked in
+		--load in the ignored spells
+		ignoredSpells = { }
 		local list = {strsplit("," ,E.private.ElvUI_EltreumUI.doomignored)}
 		for _,v in ipairs(list) do
 			ignoredSpells[v] = true
 		end
 
-		---create frames
+		---set the main script
 		DCP:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 
 		-----------------------
@@ -69,7 +106,6 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 
 		local function memorize(f)
 			local cache = nil
-
 			local memorized = {}
 
 			local function get()
