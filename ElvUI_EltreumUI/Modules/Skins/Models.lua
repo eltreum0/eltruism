@@ -224,6 +224,13 @@ function ElvUI_EltreumUI:UFEffects()
 	end
 end
 
+--update whenever the target changes target
+local targetoftargetupdater = CreateFrame("FRAME")
+targetoftargetupdater:RegisterEvent("UNIT_TARGET", "target")
+targetoftargetupdater:SetScript("OnEvent", function()
+	ElvUI_EltreumUI:UFEffects()
+end)
+
 function ElvUI_EltreumUI:SetupModelHooks()
 	if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
 		hooksecurefunc(UF, "Construct_TargetFrame", ElvUI_EltreumUI.UFEffects)
