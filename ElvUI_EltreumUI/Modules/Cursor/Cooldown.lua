@@ -179,7 +179,7 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 	isAlmostReady = false
 	isHidden = false
 	if show then
-		if E.db.ElvUI_EltreumUI.cursor.cooldown then
+		if E.db.ElvUI_EltreumUI.cursors.cursor.cooldown then
 			EltruismCooldownFrame:Show()
 		end
 		if startHidden then
@@ -287,8 +287,8 @@ function ElvUI_EltreumUI:showCooldown(texture, getCooldownFunc, arg, hasCooldown
 	EltruismCooldownIcon:SetTexture(texture)
 	EltruismCooldownIcon:AddMaskTexture(EltruismCooldownMask)
 	ElvUI_EltreumUI:updateStamps(start, duration, true)
-	if duration > 0 and E.db.ElvUI_EltreumUI.cursor.cooldownsound then
-		PlaySoundFile(E.LSM:Fetch("sound", E.db.ElvUI_EltreumUI.cursor.cooldownfile),"Master")
+	if duration > 0 and E.db.ElvUI_EltreumUI.cursors.cursor.cooldownsound then
+		PlaySoundFile(E.LSM:Fetch("sound", E.db.ElvUI_EltreumUI.cursors.cursor.cooldownfile),"Master")
 	end
 end
 
@@ -308,7 +308,7 @@ local function findPetActionIndexForSpell(spell)
 	for i = 1, NUM_PET_ACTION_SLOTS do
 		namepet, _, _, isToken = GetPetActionInfo(i)
 		if isToken then namepet = _G[name] end
-		if namepet == spell and E.db.ElvUI_EltreumUI.cursor.petcooldown then
+		if namepet == spell and E.db.ElvUI_EltreumUI.cursors.cursor.petcooldown then
 			return i
 		end
 	end
@@ -318,7 +318,7 @@ function ElvUI_EltreumUI:checkSpellCooldown(spell)
 	--print("checkSpellCooldown spam "..math.random(1,99))
 	if not spell then return end
 	namespell, _, texturespell = GetSpellInfo(spell)
-	if E.db.ElvUI_EltreumUI.cursor.petcooldown and not namespell then
+	if E.db.ElvUI_EltreumUI.cursors.cursor.petcooldown and not namespell then
 		 return ElvUI_EltreumUI:checkPetActionCooldown(findPetActionIndexForSpell(spell))
 	end
 	baseCooldown = GetSpellBaseCooldown(spell)
