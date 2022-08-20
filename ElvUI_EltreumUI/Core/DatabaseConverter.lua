@@ -4,7 +4,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 function ElvUI_EltreumUI:DatabaseConversions(forced)
 	if E.private.ElvUI_EltreumUI.install_version ~= nil then
 		E.PopupDialogs["ELTRUISMDBCONVERT"] = {
-			text = L["Eltruism database was converted.\n|cff82B4ffThe Following profiles were updated:|r\n%s\n\n|cff82B4ffPrivate settings were updated for the following private profiles:|r\n%s\n\n|cff82B4ffIf you have any issues please report in Discord or open a ticket..|r\n|cffff0000A Reload is necessary to save this conversion and fix variables|r"],
+			text = L["Eltruism database was converted.\n|cff82B4ffThe Following profiles were updated:|r\n%s\n\n|cff82B4ffPrivate settings were updated for the following private profiles:|r\n%s\n\n|cff82B4ffIf you have any issues please report in Discord or open a ticket.|r\n|cffff0000A Reload is necessary to save this conversion and fix variables|r"],
 			OnAccept = ReloadUI,
 			button1 = ACCEPT,
 			timeout = 0,
@@ -706,9 +706,12 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.greybackground, data.ElvUI_EltreumUI.greybackground)
 						end
 						if data.ElvUI_EltreumUI.gradientmode then
+							E.db.ElvUI_EltreumUI.unitframes.gradientmode = {}
 							E.db.ElvUI_EltreumUI.unitframes.gradientmode = data.ElvUI_EltreumUI.gradientmode
 							E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.gradientmode, data.ElvUI_EltreumUI.gradientmode)
+							print(E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture, profile, data.ElvUI_EltreumUI.gradientmode.texture)
 						elseif data.ElvUI_EltreumUI.gradientmode == nil then
+							print(profile)
 							data.ElvUI_EltreumUI.gradientmode = {
 								enable = false,
 
