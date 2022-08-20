@@ -2,7 +2,6 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
 local CreateFrame = _G.CreateFrame
-local UIParent = _G.UIParent
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 local CharacterLevelText = _G.CharacterLevelText
