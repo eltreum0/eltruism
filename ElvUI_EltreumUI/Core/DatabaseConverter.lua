@@ -31,6 +31,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 							E:CopyTable(E.db.ElvUI_EltreumUI.skins.shadows, data.ElvUI_EltreumUI.shadows)
 							E.db.ElvUI_EltreumUI.skins.shadows.enable =  temp
 							data.ElvUI_EltreumUI.shadows = nil
+							data.ElvUI_EltreumUI.skins.shadows = nil
 						end
 						if data.ElvUI_EltreumUI.blizzframes then
 							E:CopyTable(E.db.ElvUI_EltreumUI.skins.blizzframes, data.ElvUI_EltreumUI.blizzframes)
