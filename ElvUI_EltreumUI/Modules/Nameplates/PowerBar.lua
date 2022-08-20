@@ -68,7 +68,7 @@ local power
 
 --Calculate the Power Cost and draw on the Bar
 function ElvUI_EltreumUI:PowerPrediction()
-	if E.private.ElvUI_EltreumUI.nameplatepower.enable and not E.db.ElvUI_EltreumUI.DBConvertrunning then
+	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
 		EltreumPowerPrediction:Hide() --hide at the start before events
 		EltreumPowerPredictionIncoming:Hide() --hide at the start before events
 		predictioncolorr, predictioncolorg, predictioncolorb = EltreumPowerBar:GetStatusBarColor()
@@ -701,7 +701,7 @@ end
 
 --update the values of nameplate power bar
 function ElvUI_EltreumUI:NameplatePowerTextUpdate()
-	if E.private.ElvUI_EltreumUI.nameplatepower.enable and not E.db.ElvUI_EltreumUI.DBConvertrunning then
+	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
 		power = UnitPower("player")
 		--ElvUI_EltreumUI:Print('power frequent')
 		EltreumPowerBar:SetValue(power)

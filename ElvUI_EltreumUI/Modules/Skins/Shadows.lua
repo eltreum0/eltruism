@@ -1056,50 +1056,47 @@ end
 
 --benik's version
 function ElvUI_EltreumUI:NameplateShadows(nameplate)
-	print(E.db.ElvUI_EltreumUI.DBConvertrunning)
-	if not E.db.ElvUI_EltreumUI.DBConvertrunning then
-		if E.private.nameplates.enable and E.db.ElvUI_EltreumUI.skins.shadows.enable then
-			if E.db.ElvUI_EltreumUI.skins.shadows.nameplates then
-				if nameplate.Health.backdrop then
-					if not nameplate.Health.backdrop.shadow then
-						nameplate.Health.backdrop:CreateShadow()
-					end
+	if E.private.nameplates.enable and E.db.ElvUI_EltreumUI.skins.shadows.enable then
+		if E.db.ElvUI_EltreumUI.skins.shadows.nameplates then
+			if nameplate.Health.backdrop then
+				if not nameplate.Health.backdrop.shadow then
+					nameplate.Health.backdrop:CreateShadow()
+				end
+			end
+		end
+
+		if E.db.ElvUI_EltreumUI.skins.shadows.nppower then
+			if nameplate.Power.backdrop then
+				if not nameplate.Power.backdrop.shadow then
+					nameplate.Power.backdrop:CreateShadow()
+				end
+			end
+			if _G["ElvNP_TargetClassPowerClassPower"] and not _G["ElvNP_TargetClassPowerClassPower"].shadow then
+				_G["ElvNP_TargetClassPowerClassPower"]:CreateShadow()
+			end
+			if _G["EltruismPowerBar"] and not _G["EltruismPowerBar"].shadow then
+				_G["EltruismPowerBar"]:CreateShadow()
+			end
+		end
+
+		if E.db.ElvUI_EltreumUI.skins.shadows.npcastbar then
+			if nameplate.Castbar.backdrop then
+				if not nameplate.Castbar.backdrop.shadow then
+					nameplate.Castbar.backdrop:CreateShadow()
 				end
 			end
 
-			if E.db.ElvUI_EltreumUI.skins.shadows.nppower then
-				if nameplate.Power.backdrop then
-					if not nameplate.Power.backdrop.shadow then
-						nameplate.Power.backdrop:CreateShadow()
-					end
-				end
-				if _G["ElvNP_TargetClassPowerClassPower"] and not _G["ElvNP_TargetClassPowerClassPower"].shadow then
-					_G["ElvNP_TargetClassPowerClassPower"]:CreateShadow()
-				end
-				if _G["EltruismPowerBar"] and not _G["EltruismPowerBar"].shadow then
-					_G["EltruismPowerBar"]:CreateShadow()
+			if nameplate.Castbar.Button then
+				if not nameplate.Castbar.Button.shadow then
+					nameplate.Castbar.Button:CreateShadow()
 				end
 			end
+		end
 
-			if E.db.ElvUI_EltreumUI.skins.shadows.npcastbar then
-				if nameplate.Castbar.backdrop then
-					if not nameplate.Castbar.backdrop.shadow then
-						nameplate.Castbar.backdrop:CreateShadow()
-					end
-				end
-
-				if nameplate.Castbar.Button then
-					if not nameplate.Castbar.Button.shadow then
-						nameplate.Castbar.Button:CreateShadow()
-					end
-				end
-			end
-
-			if E.db.ElvUI_EltreumUI.skins.shadows.npportraits then
-				if nameplate.Portrait.backdrop then
-					if not nameplate.Portrait.backdrop.shadow then
-						nameplate.Portrait.backdrop:CreateShadow()
-					end
+		if E.db.ElvUI_EltreumUI.skins.shadows.npportraits then
+			if nameplate.Portrait.backdrop then
+				if not nameplate.Portrait.backdrop.shadow then
+					nameplate.Portrait.backdrop:CreateShadow()
 				end
 			end
 		end

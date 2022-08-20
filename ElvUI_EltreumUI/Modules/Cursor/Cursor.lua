@@ -44,31 +44,29 @@ local Cursor = CreateFrame("Frame", "EltruismCursorCursor", rootFrame)
 
 --Detect the current cursor for options
 function ElvUI_EltreumUI:CurrentTypeofCursor()
-	if not E.db.ElvUI_EltreumUI.DBConvertrunning then
-		currentring = E.db.ElvUI_EltreumUI.cursors.cursor.ring
-		if currentring:match("ring1") then
-			currentring = '|cff82B4ffType 1|r'
-		elseif currentring:match("ring2") then
-			currentring = '|cff82B4ffType 2|r'
-		elseif currentring:match("ring3") then
-			currentring = '|cff82B4ffType 3|r'
-		elseif currentring:match("ring4") then
-			currentring = '|cff82B4ffType 4|r'
-		elseif currentring:match("ring5") then
-			currentring = '|cff82B4ffType 5|r'
-		elseif currentring:match("ring6") then
-			currentring = '|cff82B4ffType 6|r'
-		elseif currentring:match("ring7") then
-			currentring = '|cff82B4ffType 7|r'
-		elseif currentring:match("ring8") then
-			currentring = '|cff82B4ffType 8|r'
-		elseif currentring:match("ring9") then
-			currentring = '|cff82B4ffType 9|r'
-		elseif currentring:match("ring10") then
-			currentring = '|cff82B4ffType 10|r'
-		end
-		return currentring
+	currentring = E.db.ElvUI_EltreumUI.cursors.cursor.ring
+	if currentring:match("ring1") then
+		currentring = '|cff82B4ffType 1|r'
+	elseif currentring:match("ring2") then
+		currentring = '|cff82B4ffType 2|r'
+	elseif currentring:match("ring3") then
+		currentring = '|cff82B4ffType 3|r'
+	elseif currentring:match("ring4") then
+		currentring = '|cff82B4ffType 4|r'
+	elseif currentring:match("ring5") then
+		currentring = '|cff82B4ffType 5|r'
+	elseif currentring:match("ring6") then
+		currentring = '|cff82B4ffType 6|r'
+	elseif currentring:match("ring7") then
+		currentring = '|cff82B4ffType 7|r'
+	elseif currentring:match("ring8") then
+		currentring = '|cff82B4ffType 8|r'
+	elseif currentring:match("ring9") then
+		currentring = '|cff82B4ffType 9|r'
+	elseif currentring:match("ring10") then
+		currentring = '|cff82B4ffType 10|r'
 	end
+	return currentring
 end
 
 -- Change cursor size based on user input
