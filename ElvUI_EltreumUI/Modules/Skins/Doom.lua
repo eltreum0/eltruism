@@ -34,7 +34,7 @@ local petOverlay = {1,1,1}
 
 --createframes
 local DCP = CreateFrame("FRAME","EltruismDoomCDPulse")
-DCP:SetPoint("CENTER",UIParent,"CENTER", 0, 250)
+DCP:SetPoint("CENTER",UIParent,"CENTER", 0, 350)
 DCP:SetSize(80,80)
 DCP:SetAlpha(0)
 
