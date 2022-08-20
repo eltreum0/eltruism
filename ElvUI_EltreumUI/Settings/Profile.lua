@@ -223,15 +223,19 @@ P.ElvUI_EltreumUI = {
 		blizzard = false,
 		pixel = false,
 		autocast = false,
+
 		totemtypecolor = true,
 		totem1 = true,
 		totem2 = true,
 		totem3 = true,
 		totem4 = true,
+
 		colorclass = true,
 		colorclasspet = true,
 		colorclassnp = true,
+
 		numberdebuff = 4,
+
 		numberpixel = 9,
 		frequencypixel = 1,
 		lengthpixel = 3,
@@ -239,12 +243,15 @@ P.ElvUI_EltreumUI = {
 		pixelxOffset = 5,
 		pixelyOffset = 5,
 		borderpixel = false,
+
 		numberauto = 8,
 		frequencyauto = 0.8,
 		autoscale = 2,
 		autoxOffset = 5,
 		autoyOffset = 5,
+
 		frequencyblizz = 0.5,
+
 		glowcustomcolor = {
 			r = 0.27,
 			g = 0.50,
