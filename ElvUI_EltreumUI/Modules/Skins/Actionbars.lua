@@ -136,9 +136,10 @@ function ElvUI_EltreumUI:SkillGlow()
 	if not E.private.ElvUI_EltreumUI then
 		return
 	end
-	skillglowcolor = {E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b, 1}
 	if E.db.ElvUI_EltreumUI.glow.colorclass then
 		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
+	else
+		skillglowcolor = {E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b, 1}
 	end
 
 	if E.db.ElvUI_EltreumUI.glow.enable then
@@ -431,7 +432,7 @@ function ElvUI_EltreumUI:SkillGlow()
 
 
 			classicglowframe:RegisterEvent("PLAYER_STARTED_MOVING")
-			--classicglowframe:RegisterEvent('ACTIONBAR_UPDATE_USABLE')
+			classicglowframe:RegisterEvent('ACTIONBAR_UPDATE_USABLE')
 			classicglowframe:SetScript("OnEvent", function(event)
 				classicglowframe:UnregisterAllEvents()
 				if not InCombatLockdown() then
@@ -452,9 +453,11 @@ function ElvUI_EltreumUI:SkillGlowPet()
 		return
 	end
 	if (E.myclass == 'HUNTER' or E.myclass == 'WARLOCK') and (not IsAddOnLoaded("ElvUI_ActionBarMasks")) then
-		skillglowcolorpet = {E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.r, E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.g, E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.b, 1}
+
 		if E.db.ElvUI_EltreumUI.glow.colorclass then
 			skillglowcolorpet = {classcolor.r, classcolor.g, classcolor.b, 1}
+		else
+			skillglowcolorpet = {E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.r, E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.g, E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.b, 1}
 		end
 
 		if E.db.ElvUI_EltreumUI.glow.enablepet then
