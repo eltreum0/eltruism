@@ -71,7 +71,7 @@ function ElvUI_EltreumUI:PreviewDoom()
 	end
 end
 
---Fork of Doom's Cooldown Pulse
+--Fork of discoteq's Doom Cooldown Pulse
 function ElvUI_EltreumUI:Doom() --todo, setup options
 	if E.db.ElvUI_EltreumUI.skins.doom.enable then
 
