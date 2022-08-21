@@ -120,6 +120,8 @@ P.ElvUI_EltreumUI = {
 			holdTime = 0,
 			showSpellName = false,
 			graceperiod = 7,
+			tts = false,
+			ttsvoice = 1,
 		},
 	},
 

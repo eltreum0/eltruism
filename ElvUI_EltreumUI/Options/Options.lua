@@ -2842,6 +2842,42 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.private.ElvUI_EltreumUI.doomignored end,
 						set = function(_, value) E.private.ElvUI_EltreumUI.doomignored = value ElvUI_EltreumUI:Doom() E:StaticPopup_Show('PRIVATE_RL') end,
 					},
+					ttsvoice = {
+						order = 80,
+						type = "description",
+						name = TEXT_TO_SPEECH,
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					ttsvoicetoggle = {
+						type = 'toggle',
+						name = L["Enable"],
+						order = 81,
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.tts end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.tts = value ElvUI_EltreumUI:Doom() end,
+					},
+					ttsvoiceselect = {
+						type = 'select',
+						name= TEXT_TO_SPEECH_CONFIG,
+						order = 82,
+						values =
+						function()
+							local Voices = {}
+							for i, v in pairs(C_VoiceChat.GetTtsVoices()) do
+								--Voices[i] = v.name
+								Voices[i] = v.voiceID
+							end
+							return Voices
+						end,
+						--[[sorting = function()
+							return sort(Voices, SortList)
+						end,]]
+						style = 'radio',
+						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or not E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.ttsvoice end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.ttsvoice = tonumber(value) C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, 100) end,
+					},
 					previewgap = {
 						order = 103,
 						type = "description",
