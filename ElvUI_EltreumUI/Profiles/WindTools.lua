@@ -44,7 +44,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["misc"]["moveFrames"]["enable"] = false
 		E.private["WT"]["misc"]["pauseToSlash"] = false
 		E.private["WT"]["quest"]["objectiveTracker"]["colorfulPercentage"] = true
-		E.private["WT"]["quest"]["objectiveTracker"]["enable"] = true
+		E.private["WT"]["quest"]["objectiveTracker"]["enable"] = false
 		E.private["WT"]["quest"]["objectiveTracker"]["info"]["size"] = 12
 		E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = "OUTLINE"
 		E.private["WT"]["quest"]["objectiveTracker"]["title"]["size"] = 14
