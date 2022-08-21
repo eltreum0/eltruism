@@ -1024,10 +1024,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							CharacterStatsPane.AttributesCategory.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 							CharacterStatsPane.EnhancementsCategory.Title:SetText(STAT_CATEGORY_ENHANCEMENTS)
 							CharacterStatsPane.EnhancementsCategory.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-							if IsAddOnLoaded('ElvUI_SLE') then
-								CharacterStatsPane.OffenseCategory.Title:SetText(CharacterStatsPane.OffenseCategory.Title:GetText())
-								CharacterStatsPane.DefenceCategory.Title:SetText(CharacterStatsPane.DefenceCategory.Title:GetText())
-							end
 						end
 					end
 				end)
@@ -2185,7 +2181,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 												_G.InspectFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectFrameTitleText:GetText(), englishClass))
 											else
 												_G.InspectFrameTitleText:SetText(classsymbolonframe.." ".._G.InspectFrameTitleText:GetText())
-												_G.InspectNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+												_G.InspectFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 											end
 										else
 											_G.InspectFrameTitleText:SetText(classsymbolonframe.." ".._G.InspectFrameTitleText:GetText())
