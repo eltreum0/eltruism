@@ -388,6 +388,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
 				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ravnyr")
 				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "BLACK" then
+				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\black")
 			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
 				texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
 				CharacterFrameBackgroundTexture:SetTexture(texturefile)
@@ -1325,6 +1327,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
 				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ravnyr")
 				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "BLACK" then
+				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\black")
 			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
 				texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
 				CharacterFrameBackgroundTexture:SetTexture(texturefile)
@@ -2236,6 +2240,8 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
 							EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ravnyr")
 							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
+						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "BLACK" then
+							EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\black")
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
 							texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
 							EltruismInspectBgTexture:SetTexture(texturefile)

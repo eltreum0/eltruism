@@ -8266,6 +8266,7 @@ function ElvUI_EltreumUI:Configtable()
 									["RAGNAROS"] = L["Ragnaros"],
 									["SPACECLOUD"] = L["SpaceCloud"],
 									["RAVNYR"] = L["Ravnyr"],
+									["BLACK"] = L["Black"],
 									["CUSTOM"] = CUSTOM,
 								},
 								sorting = {
@@ -8274,6 +8275,7 @@ function ElvUI_EltreumUI:Configtable()
 									"RAGNAROS",
 									"SPACECLOUD",
 									"RAVNYR",
+									"BLACK",
 									"CUSTOM"
 					            },
 								style = 'radio',
