@@ -954,7 +954,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterFrame.EltruismExtraStatsBlock:SetPoint("CENTER", _G.CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, 0)
 				end)
 
-
 				hooksecurefunc('PaperDollFrame_SetLabelAndText', function(statFrame, label)
 					if ( statFrame.Label ) then
 						if not statFrame.Label:GetText():match("|r") and E.db.ElvUI_EltreumUI.skins.statcolors and (not IsAddOnLoaded('DejaCharacterStats')) then
