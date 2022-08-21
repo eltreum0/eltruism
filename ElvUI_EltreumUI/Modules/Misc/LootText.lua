@@ -170,7 +170,7 @@ function ElvUI_EltreumUI:LootText()
 		function LootTextframe.OnEvent(self, event, arg1, arg2)
 			if event == "UI_ERROR_MESSAGE" and arg2 == ERR_INV_FULL then
 				if errorthrottle == false then
-					CombatText_AddMessage(L["INVENTORY IS FULL"], CombatText_StandardScroll, 1, 0, 0) --apparently it spams for some people
+					CombatText_AddMessage(INVENTORY_FULL, CombatText_StandardScroll, 1, 0, 0) --apparently it spams for some people
 					errorthrottle = true
 					C_Timer.After(3, function() errorthrottle = false end)
 				end
