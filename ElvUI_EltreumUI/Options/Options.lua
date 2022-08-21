@@ -6489,10 +6489,14 @@ function ElvUI_EltreumUI:Configtable()
 						function()
 							local Voices = {}
 							for i, v in pairs(C_VoiceChat.GetTtsVoices()) do
-								Voices[i] = v.name
+								--Voices[i] = v.name
+								Voices[i] = v.voiceID
 							end
 							return Voices
 						end,
+						--[[sorting = function()
+							return sort(Voices, SortList)
+						end,]]
 						style = 'radio',
 						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or not E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" end,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice end,
