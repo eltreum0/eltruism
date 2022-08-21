@@ -6550,7 +6550,9 @@ function ElvUI_EltreumUI:Configtable()
 						style = 'radio',
 						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or not E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" end,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice = tonumber(value) end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice = tonumber(value)
+							C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, 100)
+						end,
 					},
 					header15 = {
 						order = 94,
