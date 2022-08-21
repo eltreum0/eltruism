@@ -19,7 +19,14 @@ local totem1glowcolor = {0.58, 0.23, 0.10, 1}
 local totem2glowcolor = {0.23,0.45,0.13, 1}
 local totem3glowcolor = {0.19,0.48,0.60, 1}
 local totem4glowcolor = {0.42,0.18,0.74, 1}
-
+local classicglowframe = CreateFrame("FRAME")
+local totemglowholder = CreateFrame("FRAME")
+local totemglowcombatdetect = CreateFrame("FRAME")
+local totemglow1 = CreateFrame("FRAME")
+local totemglow2 = CreateFrame("FRAME")
+local totemglow3 = CreateFrame("FRAME")
+local totemglow4 = CreateFrame("FRAME")
+local procFrame = CreateFrame("FRAME")
 
 --classic glows
 local SPELL_ID = {
@@ -151,18 +158,14 @@ function ElvUI_EltreumUI:SkillGlow()
 		else
 			--classic shaman totem bar glow when totems are not active in combat
 			if E.myclass == 'SHAMAN' and E.db.ElvUI_EltreumUI.glow.enabletotem then
-				local totemglowholder = CreateFrame("FRAME")
-				local totemglowcombatdetect = CreateFrame("FRAME")
+
 				totemglowcombatdetect:RegisterEvent('PLAYER_REGEN_DISABLED')
 				totemglowcombatdetect:RegisterEvent('PLAYER_REGEN_ENABLED')
 
-				local totemglow1 = CreateFrame("FRAME")
+
 				totemglow1:SetParent(_G["ElvUF_Player"])
-				local totemglow2 = CreateFrame("FRAME")
 				totemglow2:SetParent(_G["ElvUF_Player"])
-				local totemglow3 = CreateFrame("FRAME")
 				totemglow3:SetParent(_G["ElvUF_Player"])
-				local totemglow4 = CreateFrame("FRAME")
 				totemglow4:SetParent(_G["ElvUF_Player"])
 				--set the sizes differently depending on type because blizz glow is not nice
 				if E.db.ElvUI_EltreumUI.glow.pixel or E.db.ElvUI_EltreumUI.glow.autocast then
@@ -318,7 +321,7 @@ function ElvUI_EltreumUI:SkillGlow()
 				local bar = AB["handledBars"][barName]
 				if not bar then return end
 				local button
-				local procFrame = CreateFrame('frame')
+
 				procFrame:RegisterEvent('ACTIONBAR_UPDATE_USABLE')
 				procFrame:RegisterEvent('SPELL_UPDATE_USABLE')
 				procFrame:RegisterEvent('PLAYER_TARGET_CHANGED')
@@ -417,7 +420,7 @@ function ElvUI_EltreumUI:SkillGlow()
 				end)
 			end
 
-			local classicglowframe = CreateFrame("FRAME")
+
 			classicglowframe:RegisterEvent("PLAYER_STARTED_MOVING")
 			--classicglowframe:RegisterEvent('ACTIONBAR_UPDATE_USABLE')
 			classicglowframe:SetScript("OnEvent", function()
