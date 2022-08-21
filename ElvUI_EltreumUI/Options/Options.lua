@@ -7112,7 +7112,13 @@ function ElvUI_EltreumUI:Configtable()
 									},
 									runic = {
 										type = 'toggle',
-										name = POWER_TYPE_RUNIC_POWER,
+										name = function()
+											if not E.Classic then
+												return POWER_TYPE_RUNIC_POWER
+											else
+												return "Runic Power"
+											end
+										end,
 										order = 104,
 										hidden = function() if E.Retail or E.Wrath then return false else return true end end,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
