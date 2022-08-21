@@ -14,6 +14,9 @@ local _, targetclass
 local targettargetbar
 local reactiontargettarget
 local targettargetclass
+local petbar
+local petpetbar
+local peteffect = CreateFrame("playermodel", "EltruismPetEffect")
 
 --models table, because each version has different texture paths
 --its based on the color of the model, not the name/theme
@@ -140,14 +143,13 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 	end
 end
 hooksecurefunc(UF, "Construct_PlayerFrame", ElvUI_EltreumUI.PlayerUFEffects)
-hooksecurefunc(UF, "Update_PlayerFrame", ElvUI_EltreumUI.PlayerUFEffects)
+--hooksecurefunc(UF, "Update_PlayerFrame", ElvUI_EltreumUI.PlayerUFEffects)
 
 --add effects to target
 function ElvUI_EltreumUI:TargetUFEffects()
 	if E.private.unitframe.enable then
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
 			targetbar = _G["ElvUF_Target"]
-			targettargetbar = _G["ElvUF_TargetTarget"]
 			reaction = UnitReaction("target", "player")
 			_, targetclass = UnitClass("target")
 
@@ -265,6 +267,61 @@ targetoftargetupdater:RegisterEvent("UNIT_TARGET", "target")
 targetoftargetupdater:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:TargetTargetUFEffects()
 end)
+
+--add effects to pet
+function ElvUI_EltreumUI:PetUFEffects()
+	if E.private.unitframe.enable then
+		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
+			petbar = _G["ElvUF_Pet"]
+			petpetbar = _G["ElvUF_PetPet"]
+			reaction = UnitReaction("pet", "player")
+
+			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
+				--peteffect:ClearModel()
+				if reaction then
+					if reaction >= 5 then
+						peteffect:SetModel(classModels["NPCFRIENDLY"])
+					elseif reaction == 4 then
+						peteffect:SetModel(classModels["NPCNEUTRAL"])
+					elseif reaction == 3 then
+						peteffect:SetModel(classModels["NPCUNFRIENDLY"])
+					elseif reaction == 2 or reaction == 1 then
+						peteffect:SetModel(classModels["NPCHOSTILE"])
+					end
+				end
+			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
+				--peteffect:ClearModel()
+				if E.Retail then
+					peteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
+				else
+					peteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
+				end
+			end
+
+			if petbar then
+				peteffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
+				peteffect:SetParent(petbar.Health)
+				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+					peteffect:ClearAllPoints()
+					peteffect:SetAllPoints(petbar.Health:GetStatusBarTexture())
+					peteffect:SetInside(petbar.Health:GetStatusBarTexture(), 0, 0)
+					peteffect:SetFrameLevel(petbar.Health:GetFrameLevel())
+					peteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+				--elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
+				else
+					peteffect:ClearAllPoints()
+					peteffect:SetAllPoints(petbar.Health)
+					peteffect:SetInside(petbar.Health, 0, 0)
+					peteffect:SetFrameLevel(petbar.Health:GetFrameLevel()-1)
+					peteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
+				end
+				--peteffect:AddMaskTexture(petbar.Health:GetStatusBarTexture())
+			end
+		end
+	end
+end
+hooksecurefunc(UF, "Construct_PetFrame", ElvUI_EltreumUI.PetUFEffects)
+hooksecurefunc(UF, "Update_PetFrame", ElvUI_EltreumUI.PetUFEffects)
 
 --castbar model effect
 local castbareffectplayer = CreateFrame("PlayerModel", "EltruismPlayerCastBarEffect")
