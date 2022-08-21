@@ -1756,6 +1756,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 				local _, englishClass, _, englishRace = _G.GetPlayerInfoByGUID(unit)
 				if englishClass or englishRace then
 					if _G.InspectFrame then
+						local classcolor = E:ClassColor(englishClass, true)
 
 						--inspect frame expand skin
 						if not E.Retail then
@@ -1850,6 +1851,21 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							_G.InspectMainHandSlot:ClearAllPoints()
 							_G.InspectMainHandSlot:SetPoint("CENTER", _G.InspectFrame, "CENTER", -30, -187)
 
+							_G.InspectFrame.ItemLevelText:ClearAllPoints()
+							_G.InspectFrame.ItemLevelText:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 165)
+							_G.InspectFrame.ItemLevelText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							_G.InspectFrame.ItemLevelText:SetParent(_G["InspectModelFrame"])
+
+							if _G.InspectPaperDollFrame.ViewButton then
+								_G.InspectPaperDollFrame.ViewButton:ClearAllPoints()
+								_G.InspectPaperDollFrame.ViewButton:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 145)
+								--maybe later
+								--_G.InspectPaperDollFrame.ViewButton:SetAlpha(0)
+								--_G.InspectPaperDollFrame.ViewButton:SetScript('OnEnter', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(1) end)
+								--_G.InspectPaperDollFrame.ViewButton:SetScript('OnLeave', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(0) end)
+							end
+							--_G.InspectFrame.ItemLevelText:SetText(ElvUI_EltreumUI:GradientName(_G.InspectFrame.ItemLevelText:GetText(), englishClass))
+							--_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100)
 							_G.InspectModelFrame:HookScript("OnShow", function()
 								_G.InspectFrame:SetWidth(450)
 							end)
@@ -1858,7 +1874,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							end)
 						end
 
-						local classcolor = E:ClassColor(englishClass, true)
+
 						if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
 							classsymbolonframe = ("|T"..(classIcons[englishClass]..".tga:0:0:0:0|t"))
 						elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
