@@ -6,7 +6,7 @@ Added am option to toggle off gradient texts on character panel skin and use cla
 Added a black background option to expanded art in character panel skin\
 Updated the item quality texture size to not overlap when not using the character panel skin\
 Updated some character skin options to work without expanded art/panel\
-Fixed Cooldown's Text To Speetch option checking for Mail Text to Speech in order to enable/disable
+Fixed Cooldown's Text To Speech option checking for Mail Text to Speech in order to enable/disable
 ### 3.2.5
 Added models options, which will add models to Player, Pet, Target, Target of Target, Player Castbar and Target Castbar, these can be customized and changed to custom ones instead of being class based\
 Added Cooldown, a fork of discoteq's Doom Cooldown Pulse, which will show an icon for skills that are coming of cooldown. This fork includes an option to play Text-To-Speech for the skill coming of cooldown\
