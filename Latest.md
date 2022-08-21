@@ -8,7 +8,7 @@ Added option to automatically adjust the portrait of the target based on it bein
 Added an option to hide the cooldown swipe on nameplates buffs and debuffs\
 Added a compatibility check to fix a possible issue with MerathilisUI\
 Added a class color to modifier keys (Alt,Shift,Ctrl and so on) on ActionBars\
-Updated Inspect Skin making the frame a bit wider as to not overlap as much information, for Retail moved the Item Level text and Dresssing Room, for TBC/Wrath an expanded talents skin was also added\
+Updated Inspect Skin making the frame a bit wider as to not overlap as much information, for Retail moved the Item Level text and Dressing Room, for TBC/Wrath an expanded talents skin was also added\
 Updated German locale by Dlarge\
 Updated Character Panel skin to use more gradients and to use custom gradients it they are enabled\
 Updated Custom Nameplate Height function to more reliably detect units that are in combat\
