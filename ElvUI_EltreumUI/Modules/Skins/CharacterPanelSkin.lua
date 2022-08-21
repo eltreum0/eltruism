@@ -1134,6 +1134,15 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterTitleText:SetParent(CharacterModelFrame)
 			end
 
+			if _G.ReputationListScrollFrameScrollBar then
+				--_G.ReputationListScrollFrameScrollBar:ClearAllPoints()
+				local point, relativeTo, relativePoint, xOfs, yOfs = _G.ReputationListScrollFrameScrollBar:GetPoint()
+				_G.ReputationListScrollFrameScrollBarScrollDownButton:SetPoint(point, relativeTo, relativePoint, xOfs-1, -330)
+				--_G.ReputationListScrollFrameScrollBar:SetPoint("RIGHT", _G.ReputationFrame, "RIGHT", -30, 20)
+				--_G.ReputationListScrollFrameScrollBar:SetPoint("BOTTOMRIGHT", -27, 4)
+				--_G.ReputationListScrollFrameScrollBar:SetParent(_G.ReputationFrame)
+			end
+
 			--change the size based on if paperdoll is hidden
 			CharacterFrame:SetSize(700, 505)
 			--CharacterModelFrame:SetPosition(0, 0, 0) --zoom,x,y
