@@ -797,7 +797,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					target = {
 						type = 'group',
-						name = L["Target"],
+						name = TARGET,
 						order = 2,
 						args = {
 							headerline1 = {

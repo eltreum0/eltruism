@@ -403,16 +403,16 @@ E:AddTag('eltruism:targetcast:indicator', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START
 
 	if spellID and targetname and endTime > startTime then
 		if UnitIsPlayer(unit.."target") then
-			return (L["Target"].." > |c"..color..targetname.."|r")
+			return (TARGET.." > |c"..color..targetname.."|r")
 		elseif not UnitIsPlayer(unit.."target") then
 			if reaction >= 5 then
-				return (L["Target"].." > |c"..classcolorcast["FRIENDLY"]..targetname.."|r")
+				return (TARGET.." > |c"..classcolorcast["FRIENDLY"]..targetname.."|r")
 			elseif reaction == 4 then
-				return (L["Target"].." > |c"..classcolorcast["NEUTRAL"]..targetname.."|r")
+				return (TARGET.." > |c"..classcolorcast["NEUTRAL"]..targetname.."|r")
 			elseif reaction == 3 then
-				return (L["Target"].." > |c"..classcolorcast["UNFRIENDLY"]..targetname.."|r")
+				return (TARGET.." > |c"..classcolorcast["UNFRIENDLY"]..targetname.."|r")
 			elseif reaction == 2 or reaction == 1 then
-				return (L["Target"].." > |c"..classcolorcast["HOSTILE"]..targetname.."|r")
+				return (TARGET.." > |c"..classcolorcast["HOSTILE"]..targetname.."|r")
 			end
 		end
 	end
