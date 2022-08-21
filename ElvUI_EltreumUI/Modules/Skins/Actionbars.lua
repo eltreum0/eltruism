@@ -19,7 +19,7 @@ local totem1glowcolor = {0.58, 0.23, 0.10, 1}
 local totem2glowcolor = {0.23,0.45,0.13, 1}
 local totem3glowcolor = {0.19,0.48,0.60, 1}
 local totem4glowcolor = {0.42,0.18,0.74, 1}
-
+--moving creteframes out of the function for some reason breaks it
 
 --classic glows
 local SPELL_ID = {
