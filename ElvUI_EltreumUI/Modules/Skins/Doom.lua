@@ -82,6 +82,10 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 			DCP:CreateShadow()
 		end
 
+		if DCP.shadow then
+			DCP.shadow:SetParent(DCP)
+		end
+
 		--load in the ignored spells
 		ignoredSpells = { }
 		local list = {strsplit("," ,E.private.ElvUI_EltreumUI.doomignored)}
