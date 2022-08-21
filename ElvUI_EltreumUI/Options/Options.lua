@@ -7103,7 +7103,7 @@ function ElvUI_EltreumUI:Configtable()
 									},
 									astral = {
 										type = 'toggle',
-										name = LOOTPOWER_TYPE_LUNAR_POWER,
+										name = POWER_TYPE_LUNAR_POWER,
 										order = 104,
 										hidden = function() if E.Retail then return false else return true end end,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
@@ -9653,7 +9653,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			credits = {
 				type = 'group',
-				name = CREDITS,
+				name = L["Credits"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\credits',
 				order = 97,
 				args = {
