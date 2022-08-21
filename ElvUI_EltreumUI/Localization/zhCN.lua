@@ -1051,3 +1051,4 @@ L["Sets the Backdrop as Transparent/Hidden"] = true
 L["Light Mode Alpha"] = true
 L["Dark Mode Alpha"] = true
 L["Credits"] = true
+L["Add Class Gradient Colors to Other Texts"] = true

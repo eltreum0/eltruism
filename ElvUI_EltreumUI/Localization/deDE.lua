@@ -1096,3 +1096,4 @@ L["Hide Backdrop"] = "Verstecke Hintergrund"
 L["Sets the Backdrop as Transparent/Hidden"] = "Legt den Hintergrund auf Transparent/Versteckt fest"
 L["Light Mode Alpha"] = "Heller Modus Transparenz"
 L["Dark Mode Alpha"] = "Dunkler Modus Transparanz"
+L["Add Class Gradient Colors to Other Texts"] = true
