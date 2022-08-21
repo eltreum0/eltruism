@@ -28,4 +28,4 @@ Fixed an issue with the Error frame option toggling the Zone option for Skins\
 Fixed a missing option for the Character Panel art in Classic/TBC/Wrath\
 Fixed some colors in Gradient Mode being incorrect due to an alpha being supplied
 Fixed Borders not toggling on and off during install\
-Fixed Classic Skill Glows not working\
+Fixed Classic Skill Glows not working
