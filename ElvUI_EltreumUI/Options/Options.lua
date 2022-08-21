@@ -2910,7 +2910,7 @@ function ElvUI_EltreumUI:Configtable()
 					cursorgeneral = {
 						order = 1,
 						type = 'group',
-						name= "General",
+						name= L["General"],
 						args = {
 							header1 = {
 								order = 20,
@@ -5397,7 +5397,7 @@ function ElvUI_EltreumUI:Configtable()
 							headergoodthreattransitionofftank = {
 								order = 28,
 								type = "description",
-								name = L["Offtank Good Threat Transition"],
+								name = L["Off Tank Good Threat Transition"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -9494,7 +9494,7 @@ function ElvUI_EltreumUI:Configtable()
 							castbarmodeleffect = {
 								type = 'toggle',
 								name = L["Enable Models/Effects"],
-								desc = L["Add an Effect"],
+								desc = L["Enable adding models as effects on Castbars"],
 								order = 121,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.castbar end,
