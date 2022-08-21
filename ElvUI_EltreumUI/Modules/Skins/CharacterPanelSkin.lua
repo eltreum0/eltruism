@@ -1795,7 +1795,11 @@ function ElvUI_EltreumUI:InspectBg(unit)
 										_G.InspectFrame:SetHeight(650)
 									end
 									_G.InspectTalentFrameTab1:ClearAllPoints()
-									_G.InspectTalentFrameTab1:SetPoint("TOP", _G.InspectTalentFrame, "TOP", -90, -50)
+									if not E.Wrath then
+										_G.InspectTalentFrameTab1:SetPoint("TOP", _G.InspectTalentFrame, "TOP", -55, -50)
+									else
+										_G.InspectTalentFrameTab1:SetPoint("TOP", _G.InspectTalentFrame, "TOP", -72, -50)
+									end
 									_G.InspectTalentFrameScrollFrameScrollBar:SetAlpha(0)
 									_G.InspectTalentFrameScrollFrame:ClearAllPoints()
 									_G.InspectTalentFrameScrollFrame:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 12)
