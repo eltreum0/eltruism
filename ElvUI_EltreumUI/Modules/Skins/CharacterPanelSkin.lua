@@ -1796,7 +1796,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									end
 									_G.InspectTalentFrameTab1:ClearAllPoints()
 									if not E.Wrath then
-										_G.InspectTalentFrameTab1:SetPoint("TOP", _G.InspectTalentFrame, "TOP", -55, -50)
+										_G.InspectTalentFrameTab1:SetPoint("TOP", _G.InspectTalentFrame, "TOP", -95, -50)
 									else
 										_G.InspectTalentFrameTab1:SetPoint("TOP", _G.InspectTalentFrame, "TOP", -72, -50)
 									end
