@@ -1918,9 +1918,17 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 				end
 				local slotsize = _G["Character"..InvSlotName]:GetHeight()
 				if not E.Retail then
-					qualityAnchor.Frame:SetSize(150, slotsize+2)
+					if E.db.ElvUI_EltreumUI.skins.classicarmory then
+						qualityAnchor.Frame:SetSize(150, slotsize+2)
+					else
+						qualityAnchor.Frame:SetSize(115, slotsize+2)
+					end
 				else
-					qualityAnchor.Frame:SetSize(250, slotsize+2)
+					if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+						qualityAnchor.Frame:SetSize(250, slotsize+2)
+					else
+						qualityAnchor.Frame:SetSize(135, slotsize+2)
+					end
 				end
 
 				qualityAnchor.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
