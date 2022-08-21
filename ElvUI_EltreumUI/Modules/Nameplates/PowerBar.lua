@@ -681,16 +681,18 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 
 
 				if E.Retail then
-					powerbareffect:SetModel(1630153)  --better for retail, inspired by asakawa's bar model
+					powerbareffect:SetModel(1715069)  --better for retail, inspired by asakawa's bar model
+					--powerbareffect:SetModel(1630153)
 					powerbareffect:MakeCurrentCameraCustom()
 					powerbareffect:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
 					powerbareffect:SetPortraitZoom(1)
 				else
 					powerbareffect:SetModel("spells/arcanepower_state_chest.m2")
+					--powerbareffect:SetModel("spells/cfx_priest_holyprecast_precastarm.m2") --sadly not on classic
 					powerbareffect:SetPosition(1.2, 0, 0)
 				end
 				powerbareffect:SetAlpha(0.2) --might do this
-				powerbareffect:SetInside(EltreumPowerBar, 0, 0)
+				powerbareffect:SetInside(EltreumPowerBar:GetStatusBarTexture(), 0, 0)
 				powerbareffect:SetParent(EltreumPowerBar)
 			end
 		else
