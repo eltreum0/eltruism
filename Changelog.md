@@ -2,6 +2,10 @@
 The future is uncertain
 ___
 ### 3.2.6
+Added am option to toggle off gradient texts on character panel skin and use class color instead\
+Added a black background option to expanded art in character panel skin\
+Updated the item quality texture size to not overlap when not using the character panel skin\
+Updated some character skin options to work without expanded art/panel\
 Fixed Cooldown's Text To Speetch option checking for Mail Text to Speech in order to enable/disable
 ### 3.2.5
 Added models options, which will add models to Player, Pet, Target, Target of Target, Player Castbar and Target Castbar, these can be customized and changed to custom ones instead of being class based\
