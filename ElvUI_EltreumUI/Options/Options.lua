@@ -181,7 +181,7 @@ function ElvUI_EltreumUI:Configtable()
 					header7 = {
 						order = 5,
 						type = "description",
-						name = L["Chat"],
+						name = CHAT_LABEL,
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
@@ -843,7 +843,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					focus= {
 						type = 'group',
-						name = L["Focus"],
+						name = POWER_TYPE_FOCUS,
 						order = 2,
 						hidden = function() if E.Retail or E.Wrath or E.TBC then return false else return true end end,
 						args = {
@@ -2344,7 +2344,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			chat = {
 				type = 'group',
-				name = L["Chat"],
+				name = CHAT_LABEL,
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\chat',
 				order = 85,
 				args = {
@@ -2888,14 +2888,14 @@ function ElvUI_EltreumUI:Configtable()
 					previewgap = {
 						order = 103,
 						type = "description",
-						name = L["Preview"],
+						name = PREVIEW,
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
 					preview ={
 						order = 104,
 						type = "execute",
-						name = L["Preview"],
+						name = PREVIEW,
 						func = function() ElvUI_EltreumUI:PreviewDoom() end,
 					},
 				},
@@ -3510,7 +3510,7 @@ function ElvUI_EltreumUI:Configtable()
 							preview ={
 								order = 104,
 								type = "execute",
-								name = L["Preview"],
+								name = PREVIEW,
 								desc = L["Preview the Glow, you will need to toggle it off and on to update the glow"],
 								func = function() ElvUI_EltreumUI:PreviewGlow() end,
 							},
@@ -5439,7 +5439,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			loottext = {
 				type = 'group',
-				name = L["Loot"],
+				name = LOOT,
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\loot',
 				order = 85,
 				args = {
@@ -5713,11 +5713,11 @@ function ElvUI_EltreumUI:Configtable()
 						name = L["Minimum Loot Quality Filter"],
 						desc = L["Only items of this quality or better will be looted when using Fast Loot Filter"],
 						values = {
-							["0"] = L["Poor"],
-							["1"] = L["Common"],
-							["2"] = L["Uncommon"],
-							["3"] = L["Rare"],
-							["4"] = L["Epic"],
+							["0"] = ITEM_QUALITY0_DESC,
+							["1"] = ITEM_QUALITY1_DESC,
+							["2"] = ITEM_QUALITY2_DESC,
+							["3"] = ITEM_QUALITY3_DESC,
+							["4"] = ITEM_QUALITY4_DESC,
 						},
 						style = 'radio',
 						disabled = function() return E.db.ElvUI_EltreumUI.loot.fastloot or not E.db.ElvUI_EltreumUI.loot.fastlootfilter or E.db.ElvUI_EltreumUI.loot.lootwishlistfilter end,
@@ -5792,7 +5792,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'select',
 						width = "double",
 						name = L["Remove item from Wishlist"],
-						desc = L["Remove"],
+						desc = REMOVE,
 						values = E.private.ElvUI_EltreumUI.wishlistName,
 						get = function() return E.private.ElvUI_EltreumUI.wishlistName end,
 						set = function(_,value)
@@ -6493,7 +6493,7 @@ function ElvUI_EltreumUI:Configtable()
 						order = 59,
 						values = {
 							["tts"] = TEXT_TO_SPEECH,
-							["sharedmedia"] = L["Custom"],
+							["sharedmedia"] = CUSTOM,
 						},
 						style = 'radio',
 						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable end,
@@ -7079,7 +7079,7 @@ function ElvUI_EltreumUI:Configtable()
 									},
 									mana = {
 										type = 'toggle',
-										name = L["Mana"],
+										name = MANA,
 										order = 104,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function() return E.private.ElvUI_EltreumUI.nameplatepower.mana end,
@@ -7087,7 +7087,7 @@ function ElvUI_EltreumUI:Configtable()
 									},
 									rage = {
 										type = 'toggle',
-										name = L["Rage"],
+										name = RAGE,
 										order = 104,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function() return E.private.ElvUI_EltreumUI.nameplatepower.rage end,
@@ -7095,7 +7095,7 @@ function ElvUI_EltreumUI:Configtable()
 									},
 									energy = {
 										type = 'toggle',
-										name = L["Energy"],
+										name = ENERGY,
 										order = 104,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function() return E.private.ElvUI_EltreumUI.nameplatepower.energy end,
@@ -7103,7 +7103,7 @@ function ElvUI_EltreumUI:Configtable()
 									},
 									astral = {
 										type = 'toggle',
-										name = L["Astral power"],
+										name = LOOTPOWER_TYPE_LUNAR_POWER,
 										order = 104,
 										hidden = function() if E.Retail then return false else return true end end,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
@@ -7112,7 +7112,7 @@ function ElvUI_EltreumUI:Configtable()
 									},
 									runic = {
 										type = 'toggle',
-										name = L["Runic power"],
+										name = POWER_TYPE_RUNIC_POWER,
 										order = 104,
 										hidden = function() if E.Retail or E.Wrath then return false else return true end end,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
@@ -7121,7 +7121,7 @@ function ElvUI_EltreumUI:Configtable()
 									},
 									insanity = {
 										type = 'toggle',
-										name = L["Insanity"],
+										name = INSANITY_POWER,
 										order = 104,
 										hidden = function() if E.Retail then return false else return true end end,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
@@ -7130,7 +7130,7 @@ function ElvUI_EltreumUI:Configtable()
 									},
 									maelstrom = {
 										type = 'toggle',
-										name = L["Maelstrom"],
+										name = POWER_TYPE_MAELSTROM,
 										order = 104,
 										hidden = function() if E.Retail then return false else return true end end,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
@@ -7139,7 +7139,7 @@ function ElvUI_EltreumUI:Configtable()
 									},
 									fury = {
 										type = 'toggle',
-										name = L["Fury"],
+										name = POWER_TYPE_FURY,
 										order = 104,
 										hidden = function() if E.Retail then return false else return true end end,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
@@ -7148,7 +7148,7 @@ function ElvUI_EltreumUI:Configtable()
 									},
 									focus = {
 										type = 'toggle',
-										name = L["Focus"],
+										name = POWER_TYPE_FOCUS,
 										order = 104,
 										hidden = function() if E.Retail then return false else return true end end,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
@@ -7569,7 +7569,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			quests = {
 				type = 'group',
-				name = L["Quests"],
+				name = QUESTS_LABEL,
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\quest',
 				order = 85,
 				args = {
@@ -8253,12 +8253,12 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Choose between a Class, Race or Custom Background"],
 								--width = "double",
 								values = {
-									["CLASS"] = L["Class"],
-									["RACE"] = L["Race"],
+									["CLASS"] = CLASS,
+									["RACE"] = RACE,
 									["RAGNAROS"] = L["Ragnaros"],
 									["SPACECLOUD"] = L["SpaceCloud"],
 									["RAVNYR"] = L["Ravnyr"],
-									["CUSTOM"] = L["Custom"],
+									["CUSTOM"] = CUSTOM,
 								},
 								sorting = {
 									"CLASS",
@@ -9396,8 +9396,8 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'select',
 								name = L["Choose between Class Based Models or a Custom Model"],
 								values = {
-									["CLASS"] = L["Class"],
-									["CUSTOM"] = L["Custom"],
+									["CLASS"] = CLASS,
+									["CUSTOM"] = CUSTOM,
 								},
 								style = 'radio',
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications and not E.db.ElvUI_EltreumUI.unitframes.models.unitframe) end,
@@ -9506,7 +9506,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Choose between a Default Model or a Custom Model"],
 								values = {
 									["DEFAULT"] = L["Default"],
-									["CUSTOM"] = L["Custom"],
+									["CUSTOM"] = CUSTOM,
 								},
 								sorting = {
 									"DEFAULT",
@@ -9653,7 +9653,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			credits = {
 				type = 'group',
-				name = L["Credits"],
+				name = CREDITS,
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\credits',
 				order = 97,
 				args = {
@@ -9737,7 +9737,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			support = {
 				type = 'group',
-				name = L["Support"],
+				name = GAMEMENU_SUPPORT,
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support',
 				order = 98,
 				args = {

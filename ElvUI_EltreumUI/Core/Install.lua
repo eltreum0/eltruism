@@ -155,7 +155,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallOption2ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
 			_G.PluginInstallOption3ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
 			_G.PluginInstallOption4ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
-			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["Chat"])
+			_G.PluginInstallFrame.SubTitle:SetFormattedText(CHAT_LABEL)
 			_G.PluginInstallFrame.Desc1:SetText(L["Eltruism uses Transparent chat by default"])
 			_G.PluginInstallFrame.Desc2:SetText(L["You can switch to Dark Chat by clicking the buttons below"])
 			_G.PluginInstallFrame.Desc3:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
@@ -432,7 +432,7 @@ ElvUI_EltreumUI.InstallerData = {
 		[2] = L["Layouts"],
 		[3] = L["Eltruism Modes"],
 		[4] = L["Fonts"],
-		[5] = L["Chat"],
+		[5] = CHAT_LABEL,
 		[6] = L["Details! DPS Meter"],
 		[7] = L["PVP/PVE Addons"],
 		[8] = L["PVP/PVE Addons"].." 2",
