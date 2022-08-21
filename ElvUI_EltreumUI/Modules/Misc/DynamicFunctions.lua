@@ -643,7 +643,13 @@ mailsoundframe:RegisterEvent("UPDATE_PENDING_MAIL")
 local mailthrottle = 0
 mailsoundframe:SetScript("OnEvent", function()
 	if HasNewMail() == true and E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable and not InCombatLockdown() and mailthrottle == 0 then
-		PlaySoundFile(E.LSM:Fetch("sound", E.db.ElvUI_EltreumUI.otherstuff.mailsound) , "Master")
+
+		if E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" then
+			--C_VoiceChat.SpeakText(voiceID, text, destination, rate, volume)
+			C_VoiceChat.SpeakText(1, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext, Enum.VoiceTtsDestination.LocalPlayback, 0, 100)
+		elseif E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "sharedmedia" then
+			PlaySoundFile(E.LSM:Fetch("sound", E.db.ElvUI_EltreumUI.otherstuff.mailsound) , "Master")
+		end
 		mailthrottle = 1
 		C_Timer.After(2, function()
 			mailthrottle = 0
