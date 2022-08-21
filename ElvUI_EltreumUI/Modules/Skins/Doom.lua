@@ -27,7 +27,7 @@ local GetActionTexture = _G.GetActionTexture
 local GetInventoryItemID = _G.GetInventoryItemID
 local GetInventoryItemTexture = _G.GetInventoryItemTexture
 local GetContainerItemID = _G.GetContainerItemID
-
+local wasPreviewing = false
 local ignoredSpells
 local cooldowns, animating, watching = { }, { }, { }
 local petOverlay = {1,1,1}
@@ -55,19 +55,16 @@ E:CreateMover(DCP, "EltruismDoomMover", L["EltruismDoom"], nil, nil, nil, 'ALL,S
 function ElvUI_EltreumUI:PreviewDoom()
 	DCPT:SetTexture("Interface\\Icons\\Spell_Nature_Earthbind")
 	DCPT:SetTexCoord(0.08,0.92,0.08,0.92)
-	local scale = E.db.ElvUI_EltreumUI.skins.doom.iconSize+(E.db.ElvUI_EltreumUI.skins.doom.iconSize*((E.db.ElvUI_EltreumUI.skins.doom.animScale-1) ))
+	local scale = E.db.ElvUI_EltreumUI.skins.doom.iconSize+(E.db.ElvUI_EltreumUI.skins.doom.iconSize*((E.db.ElvUI_EltreumUI.skins.doom.animScale-1)))
 	DCP:SetWidth(scale)
 	DCP:SetHeight(scale)
-
-	if not DCP.shadow then
-		DCP:CreateShadow()
-	end
 
 	if DCP:GetAlpha() == 0 then
 		DCP:SetAlpha(1)
 	else
 		DCP:SetAlpha(0)
 	end
+	wasPreviewing = true
 end
 
 --Fork of discoteq's Doom Cooldown Pulse
@@ -80,10 +77,6 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 		--create shadow
 		if not DCP.shadow then
 			DCP:CreateShadow()
-		end
-
-		if DCP.shadow then
-			DCP.shadow:SetParent(DCP)
 		end
 
 		--load in the ignored spells
@@ -144,8 +137,10 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 		local runtimer = 0
 		local function OnUpdate(_,update) --todo: confirm this onupdate is good, afterall onupdate has a history of issues...
 			elapsed = elapsed + update
-			if not DCP:IsShown() then
-				DCP:Show()
+			if wasPreviewing then
+				wasPreviewing = false
+				DCPT:SetTexture(nil)
+				DCP.shadow:SetAlpha(0)
 			end
 
 			if (elapsed > 0.05) then
@@ -226,7 +221,9 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 					runtimer = 0
 					DCP.TextFrame:SetText(nil)
 					DCPT:SetTexture(nil)
+					DCP.shadow:SetAlpha(0)
 					DCPT:SetVertexColor(1,1,1)
+
 				else
 					if (not DCPT:GetTexture()) then
 						if (animating[1][3] ~= nil and E.db.ElvUI_EltreumUI.skins.doom.showSpellName) then
@@ -245,6 +242,7 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 						alpha = E.db.ElvUI_EltreumUI.skins.doom.maxAlpha - ( E.db.ElvUI_EltreumUI.skins.doom.maxAlpha * ((runtimer - E.db.ElvUI_EltreumUI.skins.doom.holdTime - E.db.ElvUI_EltreumUI.skins.doom.fadeInTime) / E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime))
 					end
 					DCP:SetAlpha(alpha)
+					DCP.shadow:SetAlpha(alpha)
 					local scale = E.db.ElvUI_EltreumUI.skins.doom.iconSize+(E.db.ElvUI_EltreumUI.skins.doom.iconSize*((E.db.ElvUI_EltreumUI.skins.doom.animScale-1)*(runtimer/(E.db.ElvUI_EltreumUI.skins.doom.fadeInTime+E.db.ElvUI_EltreumUI.skins.doom.holdTime+E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime))))
 					DCP:SetWidth(scale)
 					DCP:SetHeight(scale)
