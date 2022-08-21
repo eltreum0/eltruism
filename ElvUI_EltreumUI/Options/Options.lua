@@ -8347,13 +8347,6 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Add Item Quality Texture"],
 								width = 'full',
 								desc = L["Enable this option"],
-								disabled = function()
-									if (E.Retail and not E.db.ElvUI_EltreumUI.skins.expandarmorybg) then
-										return true
-									elseif (not E.Retail and not E.db.ElvUI_EltreumUI.skins.classicarmory) then
-										return true
-									end
-								end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.itemquality end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.itemquality = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -8370,13 +8363,6 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Add Class Gradient Colors to Stats"],
 								width = 'full',
 								desc = L["Enable this option"],
-								disabled = function()
-									if (E.Retail and not E.db.ElvUI_EltreumUI.skins.expandarmorybg) then
-										return true
-									elseif (not E.Retail and not E.db.ElvUI_EltreumUI.skins.classicarmory) then
-										return true
-									end
-								end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.statcolors end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.statcolors = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -8386,13 +8372,6 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Add Class Gradient Colors to Other Texts"],
 								width = 'full',
 								desc = L["Enable this option"],
-								disabled = function()
-									if (E.Retail and not E.db.ElvUI_EltreumUI.skins.expandarmorybg) then
-										return true
-									elseif (not E.Retail and not E.db.ElvUI_EltreumUI.skins.classicarmory) then
-										return true
-									end
-								end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.characterskingradients end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterskingradients = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
