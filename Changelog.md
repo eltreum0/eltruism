@@ -1,6 +1,8 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.2.6
+Fixed Cooldown's Text To Speetch option checking for Mail Text to Speech in order to enable/disable
 ### 3.2.5
 Added models options, which will add models to Player, Pet, Target, Target of Target, Player Castbar and Target Castbar, these can be customized and changed to custom ones instead of being class based\
 Added Cooldown, a fork of discoteq's Doom Cooldown Pulse, which will show an icon for skills that are coming of cooldown. This fork includes an option to play Text-To-Speech for the skill coming of cooldown\
