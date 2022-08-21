@@ -4,4 +4,4 @@ Added am option to toggle off gradient texts on character panel skin and use cla
 Added a black background option to expanded art in character panel skin\
 Updated the item quality texture size to not overlap when not using the character panel skin\
 Updated some character skin options to work without expanded art/panel\
-Fixed Cooldown's Text To Speetch option checking for Mail Text to Speech in order to enable/disable
+Fixed Cooldown's Text To Speech option checking for Mail Text to Speech in order to enable/disable
