@@ -8378,15 +8378,31 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.statcolors end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.statcolors = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							header85 = {
+							othergradientcolors = {
 								order = 108,
+								type = 'toggle',
+								name = L["Add Class Gradient Colors to Other Texts"],
+								width = 'full',
+								desc = L["Enable this option"],
+								disabled = function()
+									if (E.Retail and not E.db.ElvUI_EltreumUI.skins.expandarmorybg) then
+										return true
+									elseif (not E.Retail and not E.db.ElvUI_EltreumUI.skins.classicarmory) then
+										return true
+									end
+								end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.characterskingradients end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterskingradients = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header85 = {
+								order = 118,
 								type = "description",
 								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							iconsoncharacter = {
-								order = 109,
+								order = 119,
 								type = 'toggle',
 								name = L["Add Class Icons to Character Panel"],
 								width = 'full',
@@ -8395,7 +8411,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							blizzicons = {
-								order = 110,
+								order = 120,
 								type = 'toggle',
 								name = L["Use Blizzard Icons"],
 								width = 'full',
@@ -8405,7 +8421,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classiconsblizz = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							releaficons= {
-								order = 111,
+								order = 121,
 								type = 'toggle',
 								name = L["Use Blizzard Icons colored by Releaf"],
 								width = 'full',

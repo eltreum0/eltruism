@@ -52,6 +52,7 @@ P.ElvUI_EltreumUI = {
 		ilvlfontweight = "THICKOUTLINE",
 		expandarmorybg = false,
 		itemquality = false,
+		characterskingradients = false,
 		armorybgtype = "CLASS",
 		armoryvignette = true,
 		armoryvignettealpha = 1,
