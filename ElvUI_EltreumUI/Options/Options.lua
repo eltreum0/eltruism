@@ -7114,7 +7114,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'toggle',
 										name = function()
 											if not E.Classic then
-												return POWER_TYPE_RUNIC_POWER
+												return RUNIC_POWER
 											else
 												return "Runic Power"
 											end
