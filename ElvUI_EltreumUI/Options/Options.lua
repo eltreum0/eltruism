@@ -9375,7 +9375,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 4,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.unitframe end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.unitframe = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() ElvUI_EltreumUI:SetupModelHooks() end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.unitframe = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
 							},
 							selectmodeltype = {
 								order = 6,
@@ -9388,7 +9388,7 @@ function ElvUI_EltreumUI:Configtable()
 								style = 'radio',
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications and not E.db.ElvUI_EltreumUI.unitframes.models.unitframe) end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltype end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.modeltype = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() ElvUI_EltreumUI:SetupModelHooks() end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.modeltype = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
 							},
 							custommodelpath = {
 								order = 7,
@@ -9434,7 +9434,7 @@ function ElvUI_EltreumUI:Configtable()
 										E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic = tostring(value)
 									end
 
-									ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() ElvUI_EltreumUI:SetupModelHooks()
+									ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects()
 								end,
 							},
 							ufmodelalpha = {
@@ -9446,7 +9446,7 @@ function ElvUI_EltreumUI:Configtable()
 								step = 0.01,
 								width = "double",
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.ufalpha end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.ufalpha = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() ElvUI_EltreumUI:SetupModelHooks() end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.ufalpha = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
 							},
 							ufmodelalphadark = {
 								type = 'range',
@@ -9457,7 +9457,7 @@ function ElvUI_EltreumUI:Configtable()
 								step = 0.01,
 								width = "double",
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() ElvUI_EltreumUI:SetupModelHooks() end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
 							},
 							ufmodeldesaturation = {
 								type = 'range',
@@ -9468,7 +9468,7 @@ function ElvUI_EltreumUI:Configtable()
 								step = 0.01,
 								width = "double",
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() ElvUI_EltreumUI:SetupModelHooks() end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
 							},
 							headercast = {
 								order = 120,

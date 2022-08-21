@@ -139,6 +139,8 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 		end
 	end
 end
+hooksecurefunc(UF, "Construct_PlayerFrame", ElvUI_EltreumUI.PlayerUFEffects)
+hooksecurefunc(UF, "Update_PlayerFrame", ElvUI_EltreumUI.PlayerUFEffects)
 
 --add effects to target
 function ElvUI_EltreumUI:TargetUFEffects()
@@ -197,6 +199,8 @@ function ElvUI_EltreumUI:TargetUFEffects()
 		end
 	end
 end
+hooksecurefunc(UF, "Construct_TargetFrame", ElvUI_EltreumUI.TargetUFEffects)
+hooksecurefunc(UF, "Update_TargetFrame", ElvUI_EltreumUI.TargetUFEffects)
 
 --add effects to target
 function ElvUI_EltreumUI:TargetTargetUFEffects()
@@ -252,6 +256,8 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 		end
 	end
 end
+hooksecurefunc(UF, "Construct_TargetTargetFrame", ElvUI_EltreumUI.TargetTargetUFEffects)
+hooksecurefunc(UF, "Update_TargetTargetFrame", ElvUI_EltreumUI.TargetTargetUFEffects)
 
 --update whenever the target changes target
 local targetoftargetupdater = CreateFrame("FRAME")
@@ -259,7 +265,6 @@ targetoftargetupdater:RegisterEvent("UNIT_TARGET", "target")
 targetoftargetupdater:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:TargetTargetUFEffects()
 end)
-
 
 --castbar model effect
 local castbareffectplayer = CreateFrame("PlayerModel", "EltruismPlayerCastBarEffect")
@@ -317,14 +322,3 @@ function ElvUI_EltreumUI:CastbarEffects()
 end
 hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastbarEffects)
 hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastbarEffects)
-
-function ElvUI_EltreumUI:SetupModelHooks()
-	if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
-		hooksecurefunc(UF, "Construct_PlayerFrame", ElvUI_EltreumUI.TargetUFEffects)
-		hooksecurefunc(UF, "Update_PlayerFrame", ElvUI_EltreumUI.TargetUFEffects)
-		hooksecurefunc(UF, "Construct_TargetFrame", ElvUI_EltreumUI.TargetUFEffects)
-		hooksecurefunc(UF, "Update_TargetFrame", ElvUI_EltreumUI.TargetUFEffects)
-		hooksecurefunc(UF, "Construct_TargetTargetFrame", ElvUI_EltreumUI.TargetTargetUFEffects)
-		hooksecurefunc(UF, "Update_TargetTargetFrame", ElvUI_EltreumUI.TargetTargetUFEffects)
-	end
-end
