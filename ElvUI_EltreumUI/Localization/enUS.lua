@@ -387,6 +387,7 @@ L["Collapse Quests when the boss fight starts"] = true
 L["Maps"] = true
 L["Add a time to arrive below the waypoint"] = true
 L["The time will be calculated based on player speed and distance"] = true
+L["Credits"] = true
 L["If the player is not moving then *** will show up since time cannot be calculated"] = true
 L["If you move away from the waypoint the time will just increase"] = true
 L["Add an ETA to waypoints"] = true  --translation note: eta means estimated time to arrive

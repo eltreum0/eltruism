@@ -113,6 +113,7 @@ L["Control how Nameplates behave"] = "Controla el comportamiento de las placas d
 L["Copper"] = "Cobre"
 L["Credits and Thank yous"] = "Créditos y agradecimientos"
 L["Crystalzcuhei Font has been set."] = "La fuente Crystalzcuhei ha sido fijada."
+L["Credits"] = "Créditos"
 L["Currency"] = "Moneda"
 L["Currently selected cursor: "] = "Cursor seleccionado actualmente:"
 L["Cursor"] = true

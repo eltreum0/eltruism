@@ -387,6 +387,7 @@ L["Credits and Thank yous"] = "Großen Dank an:"
 L["License"] = "Lizenz"
 L["New commits, basically a preview of fixes or upcoming features"] = "Neue Commits, eine Vorschau auf Fehlerbehebungen oder kommende Funktionen"
 L["Report issues and problems here:"] = "Bei Fragen und Probleme hier melden:"
+L["Credits"] = true
 L["Addon on Tukui:"] = "Addon auf Tukui:"
 L["Addon on CurseForge:"] = "Addon auf CurseForge:"
 L["Custom Glow"] = "Individuelles Leuchten"

@@ -343,6 +343,7 @@ L["Addon on Tukui:"] = "Addon no Tukui:"
 L["Addon on CurseForge:"] = "Addon no CurseForge:"
 L["Custom Glow"] = "Brilho Customizado"
 L["Replace Blizzards Default Glow with a Custom Glow"] = "Troque o Brilho padrão da Blizzard por um customizado"
+L["Credits"] = "Créditos"
 L["Select a Type"] = "Selecione um Tipo"
 L["Autocast"] = true
 L["Pixel"] = true
