@@ -2881,7 +2881,7 @@ function ElvUI_EltreumUI:Configtable()
 							return sort(Voices, SortList)
 						end,]]
 						style = 'radio',
-						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable and not E.db.ElvUI_EltreumUI.skins.doom.tts end,
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable or not E.db.ElvUI_EltreumUI.skins.doom.tts end,
 						get = function() return E.db.ElvUI_EltreumUI.skins.doom.ttsvoice end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.ttsvoice = tonumber(value) C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, 100) end,
 					},
