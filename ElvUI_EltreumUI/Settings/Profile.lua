@@ -121,7 +121,7 @@ P.ElvUI_EltreumUI = {
 			showSpellName = false,
 			graceperiod = 7,
 			tts = false,
-			ttsvoice = 1,
+			ttsvoice = nil,
 		},
 	},
 
@@ -884,7 +884,7 @@ P.ElvUI_EltreumUI = {
 		mailsoundtype = "sharedmedia",
 		mailsoundttstext = "You've got mail",
 		mailsound = "Interface-10",
-		mailsoundttsvoice = 1,
+		mailsoundttsvoice = nil,
 		worldtextscale = 1,
 		screenshot = false,
 		blizzcombattext = false,

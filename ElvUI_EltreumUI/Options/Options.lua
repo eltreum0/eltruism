@@ -2870,6 +2870,13 @@ function ElvUI_EltreumUI:Configtable()
 							end
 							return Voices
 						end,
+						validate = function(_, value)
+							if tonumber(value) ~= nil then
+								return true
+							else
+								return false
+							end
+						end,
 						--[[sorting = function()
 							return sort(Voices, SortList)
 						end,]]
@@ -6529,6 +6536,13 @@ function ElvUI_EltreumUI:Configtable()
 								Voices[i] = v.voiceID
 							end
 							return Voices
+						end,
+						validate = function(_, value)
+							if tonumber(value) ~= nil then
+								return true
+							else
+								return false
+							end
 						end,
 						--[[sorting = function()
 							return sort(Voices, SortList)

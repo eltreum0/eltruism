@@ -237,7 +237,9 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 						end
 						if E.db.ElvUI_EltreumUI.skins.doom.tts then
 							local tts = GetSpellInfo(animating[1][3])
-							C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts, Enum.VoiceTtsDestination.LocalPlayback, 0, 100)
+							if E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil then
+								C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts, Enum.VoiceTtsDestination.LocalPlayback, 0, 100)
+							end
 						end
 						DCPT:SetTexture(animating[1][1])
 						DCPT:SetTexCoord(0.08,0.92,0.08,0.92)

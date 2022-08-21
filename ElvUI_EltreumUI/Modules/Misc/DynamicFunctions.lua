@@ -644,7 +644,7 @@ local mailthrottle = 0
 mailsoundframe:SetScript("OnEvent", function()
 	if HasNewMail() == true and E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable and not InCombatLockdown() and mailthrottle == 0 then
 
-		if E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" then
+		if E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" and E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice ~= nil then
 			--C_VoiceChat.SpeakText(voiceID, text, destination, rate, volume)
 			C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext, Enum.VoiceTtsDestination.LocalPlayback, 0, 100)
 		elseif E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "sharedmedia" then
