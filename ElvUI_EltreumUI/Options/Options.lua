@@ -6457,18 +6457,6 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype = value end,
 					},
-					soundmailtts = {
-						type = 'input',
-						name = TEXT_TO_SPEECH,
-						width = "full",
-						order = 60,
-						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "sharedmedia" end,
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext end,
-						set = function(_, value)
-							E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext = tostring(value)
-							C_VoiceChat.SpeakText(1, tostring(value) , Enum.VoiceTtsDestination.LocalPlayback, 0, 100)
-						end,
-					},
 					sharedmediasoundmail = {
 						order = 60,
 						type = 'select',
@@ -6480,6 +6468,35 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsound end,
 						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" end,
 						set = function(self,key) E.db.ElvUI_EltreumUI.otherstuff.mailsound = key E:StaticPopup_Show('CONFIG_RL') end,
+					},
+					soundmailtts = {
+						type = 'input',
+						name = TEXT_TO_SPEECH,
+						width = "full",
+						order = 61,
+						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "sharedmedia" end,
+						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext end,
+						set = function(_, value)
+							E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext = tostring(value)
+							C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, tostring(value) , Enum.VoiceTtsDestination.LocalPlayback, 0, 100)
+						end,
+					},
+					ttsvoiceselect = {
+						type = 'select',
+						name= TEXT_TO_SPEECH_CONFIG,
+						order = 62,
+						values =
+						function()
+							local Voices = {}
+							for i, v in pairs(C_VoiceChat.GetTtsVoices()) do
+								Voices[i] = v.name
+							end
+							return Voices
+						end,
+						style = 'radio',
+						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or not E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" end,
+						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice = tonumber(value) end,
 					},
 					header15 = {
 						order = 94,

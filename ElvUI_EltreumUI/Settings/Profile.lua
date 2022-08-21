@@ -882,6 +882,7 @@ P.ElvUI_EltreumUI = {
 		mailsoundtype = "sharedmedia",
 		mailsoundttstext = "You've got mail",
 		mailsound = "Interface-10",
+		mailsoundttsvoice = 1,
 		worldtextscale = 1,
 		screenshot = false,
 		blizzcombattext = false,
