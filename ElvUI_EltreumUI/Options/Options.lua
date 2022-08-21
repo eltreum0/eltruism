@@ -2730,7 +2730,7 @@ function ElvUI_EltreumUI:Configtable()
 						desc = L["Show a Skill Pulse when its cooldown is ending"],
 						width = 'full',
 						get = function() return E.db.ElvUI_EltreumUI.skins.doom.enable end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.enable = value ElvUI_EltreumUI:Doom() E:StaticPopup_Show('PRIVATE_RL') end,
 					},
 					showSpellName = {
 						order = 3,
@@ -2740,7 +2740,7 @@ function ElvUI_EltreumUI:Configtable()
 						width = 'full',
 						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
 						get = function() return E.db.ElvUI_EltreumUI.skins.doom.showSpellName end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.showSpellName = value E:StaticPopup_Show('PRIVATE_RL') end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.showSpellName = value ElvUI_EltreumUI:Doom() E:StaticPopup_Show('PRIVATE_RL') end,
 					},
 					fadeInTime = {
 						type = 'range',
@@ -2840,7 +2840,7 @@ function ElvUI_EltreumUI:Configtable()
 						desc = L["List of spells ignored, use a comma to separate spells"],
 						width = 'full',
 						get = function() return E.private.ElvUI_EltreumUI.doomignored end,
-						set = function(_, value) E.private.ElvUI_EltreumUI.doomignored = value E:StaticPopup_Show('PRIVATE_RL') end,
+						set = function(_, value) E.private.ElvUI_EltreumUI.doomignored = value ElvUI_EltreumUI:Doom() E:StaticPopup_Show('PRIVATE_RL') end,
 					},
 					previewgap = {
 						order = 103,
