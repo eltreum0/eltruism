@@ -280,20 +280,22 @@ function ElvUI_EltreumUI:UI_ERROR_MESSAGE()
 	ElvUI_EltreumUI:LootText()
 end
 
-function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED()
-	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
-	if E.Retail then
-		ElvUI_EltreumUI:GetSpec()
-		ElvUI_EltreumUI:NamePlateOptions()
-		ElvUI_EltreumUI:Shadows()
-		if E.private.nameplates.enable then
-			ElvUI_EltreumUI:UpdateNPwithoutBar()
+function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED(_, unit)
+	if unit == "player" then
+		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+		if E.Retail then
+			ElvUI_EltreumUI:GetSpec()
+			ElvUI_EltreumUI:NamePlateOptions()
+			ElvUI_EltreumUI:Shadows()
+			if E.private.nameplates.enable then
+				ElvUI_EltreumUI:UpdateNPwithoutBar()
+			end
+			if E.db.ElvUI_EltreumUI.borders.borders then
+				E:Delay(2, function() ElvUI_EltreumUI:BorderAdjust() end)
+				E:Delay(2, function() ElvUI_EltreumUI:Borders() end)
+			end
+			E:Delay(2, function() ElvUI_EltreumUI:ShowHideBorders() end)
 		end
-		if E.db.ElvUI_EltreumUI.borders.borders then
-			E:Delay(2, function() ElvUI_EltreumUI:BorderAdjust() end)
-			E:Delay(2, function() ElvUI_EltreumUI:Borders() end)
-		end
-		E:Delay(2, function() ElvUI_EltreumUI:ShowHideBorders() end)
 	end
 end
 
