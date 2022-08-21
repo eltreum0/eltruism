@@ -1104,26 +1104,18 @@ function ElvUI_EltreumUI:ShowHideBorders()
 		end
 	end
 
-	if not E.private.ElvUI_EltreumUI.install_version then
-		if not E.db.ElvUI_EltreumUI.borders.borders then
-			E.db.ElvUI_EltreumUI.borders.borders = true
-			E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
-			ElvUI_EltreumUI:BorderAdjust()
-			ElvUI_EltreumUI:Borders()
-			ElvUI_EltreumUI:Shadows()
-			Show()
-		elseif E.db.ElvUI_EltreumUI.borders.borders then
-			E.db.ElvUI_EltreumUI.borders.borders = false
-			E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
-			ElvUI_EltreumUI:BorderAdjust()
-			ElvUI_EltreumUI:Shadows()
-			Hide()
-		end
-	else
-		if not E.db.ElvUI_EltreumUI.borders.borders then
-			Hide()
-		elseif E.db.ElvUI_EltreumUI.borders.borders then
-			Show()
-		end
+	if not E.db.ElvUI_EltreumUI.borders.borders then
+		E.db.ElvUI_EltreumUI.borders.borders = true
+		E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
+		ElvUI_EltreumUI:BorderAdjust()
+		ElvUI_EltreumUI:Borders()
+		ElvUI_EltreumUI:Shadows()
+		Show()
+	elseif E.db.ElvUI_EltreumUI.borders.borders then
+		E.db.ElvUI_EltreumUI.borders.borders = false
+		E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
+		ElvUI_EltreumUI:BorderAdjust()
+		ElvUI_EltreumUI:Shadows()
+		Hide()
 	end
 end
