@@ -1778,22 +1778,19 @@ function ElvUI_EltreumUI:InspectBg(unit)
 
 							_G.InspectTalentFrame:HookScript("OnShow", function()
 								--_G.InspectTalentFrame:SetScale(0.8)
+								_G.InspectFrame:SetWidth(384)
 								_G.InspectFrame:SetHeight(730)
 
 								_G.InspectTalentFrameTab1:ClearAllPoints()
 								_G.InspectTalentFrameTab1:SetPoint("TOP", _G.InspectTalentFrame, "TOP", -90, -50)
-
 								_G.InspectTalentFrameScrollFrameScrollBar:SetAlpha(0)
-
 								_G.InspectTalentFrameScrollFrame:ClearAllPoints()
 								_G.InspectTalentFrameScrollFrame:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 12)
 								_G.InspectTalentFrameScrollFrame:SetSize(300,720)
-								_G.InspectTalentFrameScrollFrame:SetScale(0.75)
+								E:Delay(0, function() _G.InspectTalentFrameScrollFrame:SetScale(0.75) end) --needs delay, maybe bc server response?
 
 								_G.InspectTalentFramePointsBar:ClearAllPoints()
 								_G.InspectTalentFramePointsBar:SetPoint("BOTTOM", _G.InspectTalentFrame, "BOTTOM", 0, 80)
-
-
 
 								--kill stuff
 								_G.InspectTalentFrameCloseButton:Hide()
@@ -1833,6 +1830,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 
 							_G.InspectTalentFrame:HookScript("OnHide", function()
 								_G.InspectFrame:SetHeight(512)
+								_G.InspectFrame:SetWidth(384)
 							end)
 
 
