@@ -15,94 +15,7 @@ local UnitCanAttack = _G.UnitCanAttack
 local UnitCreatureType = _G.UnitCreatureType
 local InCombatLockdown = _G.InCombatLockdown
 local GetPetActionInfo = _G.GetPetActionInfo
-local totem1glowcolor = {0.58, 0.23, 0.10, 1}
-local totem2glowcolor = {0.23,0.45,0.13, 1}
-local totem3glowcolor = {0.19,0.48,0.60, 1}
-local totem4glowcolor = {0.42,0.18,0.74, 1}
 --moving creteframes out of the function for some reason breaks it
-
---classic glows
-local SPELL_ID = {
-
-	--victory rush
-	[34428] = true,
-	--kill command
-	[34026] = true,
-	--riposte
-	[14251] = true,
-
-	--execute
-	[25236]	= true,
-	[25234]	= true,
-	[20662]	= true,
-	[20661]	= true,
-	[20660]	= true,
-	[20658]	= true,
-	[5308] = true,
-
-	--overpower
-	[11585] = true,
-	[11584] = true,
-	[7887] = true,
-	[7384] = true,
-
-	--regenge
-	[30327] = true,
-	[25288] = true,
-	[25269] = true,
-	[11601] = true,
-	[11600] = true,
-	[7379] = true,
-	[6574] = true,
-	[6572] = true,
-
-	--kill shot
-	[61006] = true,
-
-	--rune strike
-	[56815] = true,
-
-	--mongoose bite
-	[36916] = true,
-	[14271] = true,
-	[14270] = true,
-	[14269] = true,
-	[1495] = true,
-
-	--counterattack
-	[27067] = true,
-	[20910] = true,
-	[20909] = true,
-	[19306] = true,
-
-	--exorcism
-	[27138] = true,
-	[10314] = true,
-	[10313] = true,
-	[10312] = true,
-	[5615] = true,
-	[5614] = true,
-	[879] = true,
-
-	--hammer of wrath
-	[27180] = true,
-	[24275] = true,
-	[24274] = true,
-	[24239] = true,
-
-	--shadow bolt
-	--[[[27209] = true,
-	[25307] = true,
-	[11661] = true,
-	[11660] = true,
-	[11659] = true,
-	[7641] = true,
-	[1106] = true,
-	[1088] = true,
-	[705] = true,
-	[695] = true,
-	[686] = true,]]
-}
 
 -- Skill Glow
 function ElvUI_EltreumUI:SkillGlow()
@@ -155,6 +68,10 @@ function ElvUI_EltreumUI:SkillGlow()
 				local totemglowcombatdetect = CreateFrame("FRAME")
 				totemglowcombatdetect:RegisterEvent('PLAYER_REGEN_DISABLED')
 				totemglowcombatdetect:RegisterEvent('PLAYER_REGEN_ENABLED')
+				local totem1glowcolor = {0.58, 0.23, 0.10, 1}
+				local totem2glowcolor = {0.23,0.45,0.13, 1}
+				local totem3glowcolor = {0.19,0.48,0.60, 1}
+				local totem4glowcolor = {0.42,0.18,0.74, 1}
 
 				local totemglow1 = CreateFrame("FRAME")
 				totemglow1:SetParent(_G["ElvUF_Player"])
@@ -311,6 +228,90 @@ function ElvUI_EltreumUI:SkillGlow()
 					end
 				end)
 			end
+
+
+			--classic glow proc list
+			local SPELL_ID = {
+
+				--victory rush
+				[34428] = true,
+				--kill command
+				[34026] = true,
+				--riposte
+				[14251] = true,
+
+				--execute
+				[25236]	= true,
+				[25234]	= true,
+				[20662]	= true,
+				[20661]	= true,
+				[20660]	= true,
+				[20658]	= true,
+				[5308] = true,
+
+				--overpower
+				[11585] = true,
+				[11584] = true,
+				[7887] = true,
+				[7384] = true,
+
+				--regenge
+				[30327] = true,
+				[25288] = true,
+				[25269] = true,
+				[11601] = true,
+				[11600] = true,
+				[7379] = true,
+				[6574] = true,
+				[6572] = true,
+
+				--kill shot
+				[61006] = true,
+
+				--rune strike
+				[56815] = true,
+
+				--mongoose bite
+				[36916] = true,
+				[14271] = true,
+				[14270] = true,
+				[14269] = true,
+				[1495] = true,
+
+				--counterattack
+				[27067] = true,
+				[20910] = true,
+				[20909] = true,
+				[19306] = true,
+
+				--exorcism
+				[27138] = true,
+				[10314] = true,
+				[10313] = true,
+				[10312] = true,
+				[5615] = true,
+				[5614] = true,
+				[879] = true,
+
+				--hammer of wrath
+				[27180] = true,
+				[24275] = true,
+				[24274] = true,
+				[24239] = true,
+
+				--shadow bolt
+				--[[[27209] = true,
+				[25307] = true,
+				[11661] = true,
+				[11660] = true,
+				[11659] = true,
+				[7641] = true,
+				[1106] = true,
+				[1088] = true,
+				[705] = true,
+				[695] = true,
+				[686] = true,]]
+			}
 
 			local proc
 			--local auraid, _
