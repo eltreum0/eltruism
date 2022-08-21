@@ -61,8 +61,14 @@ function ElvUI_EltreumUI:PreviewDoom()
 
 	if DCP:GetAlpha() == 0 then
 		DCP:SetAlpha(1)
+		if DCP.shadow then
+			DCP.shadow:SetAlpha(1)
+		end
 	else
 		DCP:SetAlpha(0)
+		if DCP.shadow then
+			DCP.shadow:SetAlpha(0)
+		end
 	end
 	wasPreviewing = true
 end
