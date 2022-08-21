@@ -219,6 +219,8 @@ function ElvUI_EltreumUI:OldVersionCheck()
 
 		fixingold = true
 		E.private.ElvUI_EltreumUI.install_version = "3.2.4"
+	elseif E.private.ElvUI_EltreumUI.install_version >= "3.2.4" and E.private.ElvUI_EltreumUI.install_version < "3.2.6" then
+		fixingold = true
 	end
 
 	--more long term checks, in case somehow people enable 2 settings when its not possible to do so. Maybe its a shared profile from another person? No idea how they manage to do this
