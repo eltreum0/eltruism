@@ -74,7 +74,12 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
 				CharacterNameText:SetShadowOffset(2, -1)
 				if string.len(CharacterNameText:GetText()) >= 6 then
-					CharacterNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterNameText:GetText(), E.myclass))
+					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+						CharacterNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterNameText:GetText(), E.myclass))
+					else
+						CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
+						CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+					end
 				else
 					CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
 					CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
@@ -96,7 +101,12 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				if not (CharacterFrameTitleText:GetText():match("|T")) then
 					CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 					if string.len(CharacterFrameTitleText:GetText()) >= 6 then
-						CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
+						if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+							CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
+						else
+							CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+							CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+						end
 					else
 						CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 						CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
@@ -109,7 +119,12 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					if not (_G.CharacterFrameTitleText:GetText():match("|T")) then
 						CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 						if string.len(CharacterFrameTitleText:GetText()) >= 6 then
-							CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
+							if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+								CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
+							else
+								CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+								CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							end
 						else
 							CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 							CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
@@ -123,7 +138,12 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					if not (_G.CharacterFrameTitleText:GetText():match("|T")) then
 						CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 						if string.len(CharacterFrameTitleText:GetText()) >= 6 then
-							CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
+							if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+								CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
+							else
+								CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+								CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							end
 						else
 							CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 							CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
@@ -137,7 +157,12 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					if not (_G.CharacterFrameTitleText:GetText():match("|T")) then
 						CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 						if string.len(CharacterFrameTitleText:GetText()) >= 6 then
-							CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
+							if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+								CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
+							else
+								CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+								CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							end
 						else
 							CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 							CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
@@ -151,7 +176,12 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					if not (_G.CharacterFrameTitleText:GetText():match("|T")) then
 						CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 						if string.len(CharacterFrameTitleText:GetText()) >= 6 then
-							CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
+							if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+								CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
+							else
+								CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+								CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							end
 						else
 							CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 							CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
@@ -189,7 +219,12 @@ EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
 
 		if E.Retail then
 			if _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
-				_G.CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.CharacterFrameTitleText:GetText(), E.myclass))
+				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+					_G.CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.CharacterFrameTitleText:GetText(), E.myclass))
+				else
+					_G.CharacterFrameTitleText:SetText(classsymbolonframe.." ".._G.CharacterFrameTitleText:GetText())
+					_G.CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				end
 				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 			end
 		else
@@ -201,7 +236,12 @@ EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
 						CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
 						CharacterNameText:SetShadowOffset(2, -1)
 						if string.len(CharacterNameText:GetText()) >= 6 then
-							CharacterNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterNameText:GetText(), E.myclass))
+							if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+								CharacterNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterNameText:GetText(), E.myclass))
+							else
+								CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
+								CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							end
 						else
 							CharacterNameText:SetText(classsymbolonframe.." "..CharacterNameText:GetText())
 							CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
