@@ -102,65 +102,21 @@ else
 	}
 end
 
----add effects to player/target UF
-function ElvUI_EltreumUI:UFEffects()
+--add effects to player
+function ElvUI_EltreumUI:PlayerUFEffects()
 	if E.private.unitframe.enable then
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
 			playerbar = _G["ElvUF_Player"]
-			targetbar = _G["ElvUF_Target"]
-			targettargetbar = _G["ElvUF_TargetTarget"]
-			reaction = UnitReaction("target", "player")
-			_, targetclass = UnitClass("target")
-			reactiontargettarget = UnitReaction("targettarget", "player")
-			_, targettargetclass = UnitClass("targettarget")
-
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
 				--playereffect:ClearModel()
 				playereffect:SetModel(classModels[E.myclass])
-				--targeteffect:ClearModel()
-				if UnitIsPlayer("target") and targetclass then
-					targeteffect:SetModel(classModels[targetclass])
-				else
-					if reaction then
-						if reaction >= 5 then
-							targeteffect:SetModel(classModels["NPCFRIENDLY"])
-						elseif reaction == 4 then
-							targeteffect:SetModel(classModels["NPCNEUTRAL"])
-						elseif reaction == 3 then
-							targeteffect:SetModel(classModels["NPCUNFRIENDLY"])
-						elseif reaction == 2 or reaction == 1 then
-							targeteffect:SetModel(classModels["NPCHOSTILE"])
-						end
-					end
-				end
-				if UnitIsPlayer("targettarget") and targettargetclass then
-					targettargeteffect:SetModel(classModels[targettargetclass])
-				else
-					if reactiontargettarget then
-						if reactiontargettarget >= 5 then
-							targettargeteffect:SetModel(classModels["NPCFRIENDLY"])
-						elseif reactiontargettarget == 4 then
-							targettargeteffect:SetModel(classModels["NPCNEUTRAL"])
-						elseif reactiontargettarget == 3 then
-							targettargeteffect:SetModel(classModels["NPCUNFRIENDLY"])
-						elseif reactiontargettarget == 2 or reactiontargettarget == 1 then
-							targettargeteffect:SetModel(classModels["NPCHOSTILE"])
-						end
-					end
-				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
 				--playereffect:ClearModel()
-				--targeteffect:ClearModel()
 				if E.Retail then
 					playereffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
-					targeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
-					targettargeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
 				else
 					playereffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
-					targeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
-					targettargeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
 				end
-
 			end
 
 			if playerbar then
@@ -179,6 +135,44 @@ function ElvUI_EltreumUI:UFEffects()
 					playereffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
 				end
 				--playereffect:SetFrameLevel(playerbar.Portrait3D:GetFrameLevel())
+			end
+		end
+	end
+end
+
+--add effects to target
+function ElvUI_EltreumUI:TargetUFEffects()
+	if E.private.unitframe.enable then
+		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
+			targetbar = _G["ElvUF_Target"]
+			targettargetbar = _G["ElvUF_TargetTarget"]
+			reaction = UnitReaction("target", "player")
+			_, targetclass = UnitClass("target")
+
+			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
+				--targeteffect:ClearModel()
+				if UnitIsPlayer("target") and targetclass then
+					targeteffect:SetModel(classModels[targetclass])
+				else
+					if reaction then
+						if reaction >= 5 then
+							targeteffect:SetModel(classModels["NPCFRIENDLY"])
+						elseif reaction == 4 then
+							targeteffect:SetModel(classModels["NPCNEUTRAL"])
+						elseif reaction == 3 then
+							targeteffect:SetModel(classModels["NPCUNFRIENDLY"])
+						elseif reaction == 2 or reaction == 1 then
+							targeteffect:SetModel(classModels["NPCHOSTILE"])
+						end
+					end
+				end
+			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
+				--targeteffect:ClearModel()
+				if E.Retail then
+					targeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
+				else
+					targeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
+				end
 			end
 
 			if targetbar then
@@ -199,6 +193,41 @@ function ElvUI_EltreumUI:UFEffects()
 					targeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
 				end
 				--targeteffect:AddMaskTexture(targetbar.Health:GetStatusBarTexture())
+			end
+		end
+	end
+end
+
+--add effects to target
+function ElvUI_EltreumUI:TargetTargetUFEffects()
+	if E.private.unitframe.enable then
+		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
+			targettargetbar = _G["ElvUF_TargetTarget"]
+			reactiontargettarget = UnitReaction("targettarget", "player")
+			_, targettargetclass = UnitClass("targettarget")
+
+			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
+				if UnitIsPlayer("targettarget") and targettargetclass then
+					targettargeteffect:SetModel(classModels[targettargetclass])
+				else
+					if reactiontargettarget then
+						if reactiontargettarget >= 5 then
+							targettargeteffect:SetModel(classModels["NPCFRIENDLY"])
+						elseif reactiontargettarget == 4 then
+							targettargeteffect:SetModel(classModels["NPCNEUTRAL"])
+						elseif reactiontargettarget == 3 then
+							targettargeteffect:SetModel(classModels["NPCUNFRIENDLY"])
+						elseif reactiontargettarget == 2 or reactiontargettarget == 1 then
+							targettargeteffect:SetModel(classModels["NPCHOSTILE"])
+						end
+					end
+				end
+			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
+				if E.Retail then
+					targettargeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
+				else
+					targettargeteffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
+				end
 			end
 
 			if targettargetbar then
@@ -228,17 +257,9 @@ end
 local targetoftargetupdater = CreateFrame("FRAME")
 targetoftargetupdater:RegisterEvent("UNIT_TARGET", "target")
 targetoftargetupdater:SetScript("OnEvent", function()
-	ElvUI_EltreumUI:UFEffects()
+	ElvUI_EltreumUI:TargetTargetUFEffects()
 end)
 
-function ElvUI_EltreumUI:SetupModelHooks()
-	if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
-		hooksecurefunc(UF, "Construct_TargetFrame", ElvUI_EltreumUI.UFEffects)
-		hooksecurefunc(UF, "Update_TargetFrame", ElvUI_EltreumUI.UFEffects)
-		hooksecurefunc(UF, "Construct_TargetTargetFrame", ElvUI_EltreumUI.UFEffects)
-		hooksecurefunc(UF, "Update_TargetTargetFrame", ElvUI_EltreumUI.UFEffects)
-	end
-end
 
 --castbar model effect
 local castbareffectplayer = CreateFrame("PlayerModel", "EltruismPlayerCastBarEffect")
@@ -296,3 +317,14 @@ function ElvUI_EltreumUI:CastbarEffects()
 end
 hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastbarEffects)
 hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastbarEffects)
+
+function ElvUI_EltreumUI:SetupModelHooks()
+	if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
+		hooksecurefunc(UF, "Construct_PlayerFrame", ElvUI_EltreumUI.TargetUFEffects)
+		hooksecurefunc(UF, "Update_PlayerFrame", ElvUI_EltreumUI.TargetUFEffects)
+		hooksecurefunc(UF, "Construct_TargetFrame", ElvUI_EltreumUI.TargetUFEffects)
+		hooksecurefunc(UF, "Update_TargetFrame", ElvUI_EltreumUI.TargetUFEffects)
+		hooksecurefunc(UF, "Construct_TargetTargetFrame", ElvUI_EltreumUI.TargetTargetUFEffects)
+		hooksecurefunc(UF, "Update_TargetTargetFrame", ElvUI_EltreumUI.TargetTargetUFEffects)
+	end
+end

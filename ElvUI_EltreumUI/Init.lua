@@ -81,7 +81,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:BattleRes() --bres count/cd
 	ElvUI_EltreumUI:HideABKeyPress() -- hide keypress if user wants
 	ElvUI_EltreumUI:NameplateRestedOverlaps() -- sets overlaps depending if rested/not
-	ElvUI_EltreumUI:UFEffects() -- model effect on player/target
+	ElvUI_EltreumUI:PlayerUFEffects() -- model effect on player/target
 	ElvUI_EltreumUI:SetupModelHooks() --sets hooks only if enabled
 	ElvUI_EltreumUI:Doom() -- fork of Doom's Cooldown Pulse
 	if E.Retail then
@@ -251,7 +251,7 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	ElvUI_EltreumUI:NameplateModel()
 	ElvUI_EltreumUI:NameplateCustomOptions()
 	ElvUI_EltreumUI:DynamicUFPortraitRotation()
-	ElvUI_EltreumUI:UFEffects()
+	ElvUI_EltreumUI:TargetUFEffects()
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
 		ElvUI_EltreumUI:BordersTargetChanged()
 	end
