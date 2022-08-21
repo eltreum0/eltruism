@@ -128,11 +128,11 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 											if reaction and reaction >= 5 then
 												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", true, false))
 											elseif reaction and reaction == 4 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", true, true))
+												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", true, false))
 											elseif reaction and reaction == 3 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", true, true))
+												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", true, false))
 											elseif reaction and reaction <= 2 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", true, true))
+												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", true, false))
 											end
 										end
 									else
@@ -354,28 +354,28 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 
 		--main issue = the toggle for some units like boss and arena wont work bc it checks for boss1,boss2... instead of just boss
-		ElvUI_EltreumUI:ApplyUnitGradientTexture("player", "Player","player")
-		ElvUI_EltreumUI:ApplyUnitGradientTexture("target", "Target","target")
-		ElvUI_EltreumUI:ApplyUnitGradientTexture("targettarget", "TargetTarget","targettarget")
-		ElvUI_EltreumUI:ApplyUnitGradientTexture("targettargettarget", "TargetTargetTarget","targetargettarget")
-		ElvUI_EltreumUI:ApplyUnitGradientTexture("pet", "Pet","pet")
+		ElvUI_EltreumUI:ApplyUnitGradientTexture("player", "Player", "player")
+		ElvUI_EltreumUI:ApplyUnitGradientTexture("target", "Target", "target")
+		ElvUI_EltreumUI:ApplyUnitGradientTexture("targettarget", "TargetTarget", "targettarget")
+		ElvUI_EltreumUI:ApplyUnitGradientTexture("targettargettarget", "TargetTargetTarget"," targetargettarget")
+		ElvUI_EltreumUI:ApplyUnitGradientTexture("pet", "Pet", "pet")
 		if E.Retail then
-			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss1", "Boss1","boss")
-			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss2", "Boss2","boss")
-			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss3", "Boss3","boss")
-			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss4", "Boss4","boss")
-			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss5", "Boss5","boss")
-			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss6", "Boss6","boss")
-			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss7", "Boss7","boss")
-			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss8", "Boss8","boss")
+			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss1", "Boss1", "boss")
+			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss2", "Boss2", "boss")
+			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss3", "Boss3", "boss")
+			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss4", "Boss4", "boss")
+			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss5", "Boss5", "boss")
+			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss6", "Boss6", "boss")
+			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss7", "Boss7", "boss")
+			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss8", "Boss8", "boss")
 		end
 		if E.Retail or E.TBC or E.Wrath then
-			ElvUI_EltreumUI:ApplyUnitGradientTexture("focus", "Focus","focus")
-			ElvUI_EltreumUI:ApplyUnitGradientTexture("arena1", "Arena1","arena")
-			ElvUI_EltreumUI:ApplyUnitGradientTexture("arena2", "Arena2","arena")
-			ElvUI_EltreumUI:ApplyUnitGradientTexture("arena3", "Arena3","arena")
-			ElvUI_EltreumUI:ApplyUnitGradientTexture("arena4", "Arena4","arena")
-			ElvUI_EltreumUI:ApplyUnitGradientTexture("arena5", "Arena5","arena")
+			ElvUI_EltreumUI:ApplyUnitGradientTexture("focus", "Focus", "focus")
+			ElvUI_EltreumUI:ApplyUnitGradientTexture("arena1", "Arena1", "arena")
+			ElvUI_EltreumUI:ApplyUnitGradientTexture("arena2", "Arena2", "arena")
+			ElvUI_EltreumUI:ApplyUnitGradientTexture("arena3", "Arena3", "arena")
+			ElvUI_EltreumUI:ApplyUnitGradientTexture("arena4", "Arena4", "arena")
+			ElvUI_EltreumUI:ApplyUnitGradientTexture("arena5", "Arena5", "arena")
 		end
 
 		--group/raid unitframes
