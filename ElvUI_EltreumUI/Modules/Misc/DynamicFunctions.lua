@@ -406,7 +406,7 @@ end
 function ElvUI_EltreumUI:BorderAdjust()
 	if E.db.ElvUI_EltreumUI.borders.borderautoadjust then
 		--if not using one of my profiles then disable auto adjust to prevent overwriting settings and return
-		if not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
+		if E.private.ElvUI_EltreumUI.install_version and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
 			E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
 		else
 			if E.db.ElvUI_EltreumUI.borders.borders then
