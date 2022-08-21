@@ -1,7 +1,8 @@
 ### 3.2.5 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added models options, which will add models to Player, Target, Target of Target, Player Castbar and Target Castbar, these can be customized and changed to custom ones instead of being class based\
-Added Cooldown, a fork of discoteq's Doom Cooldown Pulse, which will show an icon for skills that are coming of cooldown\
+Added models options, which will add models to Player, Pet, Target, Target of Target, Player Castbar and Target Castbar, these can be customized and changed to custom ones instead of being class based\
+Added Cooldown, a fork of discoteq's Doom Cooldown Pulse, which will show an icon for skills that are coming of cooldown. This fork includes an option to play Text-To-Speech for the skill coming of cooldown\
+Added Text-To-Speech option to Mail sound\
 Added an option to change the nameplate overlap whenever entering rested areas, and setting them to normal values once leaving\
 Added and updated movers to a new Eltruism category, making it easier to see frames from Eltruism\
 Added option to automatically adjust the portrait of the target based on it being a creature or a player\
