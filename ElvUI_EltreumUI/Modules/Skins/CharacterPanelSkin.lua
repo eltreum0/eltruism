@@ -1777,7 +1777,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							end)
 
 							_G.InspectTalentFrame:HookScript("OnShow", function()
-								_G.InspectTalentFrame:SetScale(0.8)
+								--_G.InspectTalentFrame:SetScale(0.8)
 								_G.InspectFrame:SetHeight(730)
 
 								_G.InspectTalentFrameTab1:ClearAllPoints()
@@ -1785,10 +1785,18 @@ function ElvUI_EltreumUI:InspectBg(unit)
 
 								_G.InspectTalentFrameScrollFrameScrollBar:SetAlpha(0)
 
+								_G.InspectTalentFrameScrollFrame:ClearAllPoints()
+								_G.InspectTalentFrameScrollFrame:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 12)
+								_G.InspectTalentFrameScrollFrame:SetSize(300,720)
+								_G.InspectTalentFrameScrollFrame:SetScale(0.75)
+
 								_G.InspectTalentFramePointsBar:ClearAllPoints()
-								_G.InspectTalentFramePointsBar:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", 0, -260)
+								_G.InspectTalentFramePointsBar:SetPoint("BOTTOM", _G.InspectTalentFrame, "BOTTOM", 0, 80)
+
+
 
 								--kill stuff
+								_G.InspectTalentFrameCloseButton:Hide()
 								if _G.InspectTalentFrameBackgroundTopRight then
 									_G.InspectTalentFrameBackgroundTopRight:Kill()
 								end
@@ -1811,8 +1819,9 @@ function ElvUI_EltreumUI:InspectBg(unit)
 
 										_G.InspectTalentFrameBackgroundTopLeft:ClearAllPoints()
 										_G.InspectTalentFrameBackgroundTopLeft:SetParent(_G.InspectTalentFrame)
-										_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 600)
-										_G.InspectTalentFrameBackgroundTopLeft:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 20)
+										--_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 600)
+										_G.InspectTalentFrameBackgroundTopLeft:SetAllPoints(_G.InspectTalentFrameScrollFrame)
+										--_G.InspectTalentFrameBackgroundTopLeft:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 20)
 									elseif E.Classic then
 										_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 490)
 									end
