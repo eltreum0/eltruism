@@ -1756,6 +1756,35 @@ function ElvUI_EltreumUI:InspectBg(unit)
 				local _, englishClass, _, englishRace = _G.GetPlayerInfoByGUID(unit)
 				if englishClass or englishRace then
 					if _G.InspectFrame then
+						E:Delay(0, function()
+							_G.InspectFrame:SetWidth(450)
+							_G.InspectPaperDollItemsFrame:SetWidth(450)
+							_G.InspectHandsSlot:ClearAllPoints()
+							_G.InspectHandsSlot:SetPoint("TOPRIGHT", _G.InspectFrame, "TOPRIGHT", -45, -74)
+							_G.InspectModelFrame:ClearAllPoints()
+							_G.InspectModelFrame:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 0)
+							_G.InspectMainHandSlot:ClearAllPoints()
+							_G.InspectMainHandSlot:SetPoint("CENTER", _G.InspectFrame, "CENTER", -52, -150)
+
+							_G.InspectModelFrame:HookScript("OnShow", function()
+								_G.InspectFrame:SetWidth(450)
+							end)
+
+							_G.InspectModelFrame:HookScript("OnHide", function()
+								_G.InspectFrame:SetWidth(384)
+							end)
+
+							_G.InspectTalentFrame:HookScript("OnShow", function()
+								_G.InspectTalentFrame:SetScale(0.8)
+								_G.InspectFrame:SetHeight(730)
+							end)
+
+							_G.InspectTalentFrame:HookScript("OnHide", function()
+								_G.InspectFrame:SetHeight(512)
+							end)
+
+
+						end)
 
 						local classcolor = E:ClassColor(englishClass, true)
 						if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
