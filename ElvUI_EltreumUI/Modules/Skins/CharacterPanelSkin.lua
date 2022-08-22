@@ -427,7 +427,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismSpeedDesc:SetJustifyH("LEFT")
 			CharacterFrame.EltruismSpeedDesc:SetShadowColor(0, 0, 0, 1)
 			CharacterFrame.EltruismSpeedDesc:SetShadowOffset(1, 0)
-			if not CharacterFrame.EltruismSpeedDesc:GetText():match("|r") then
+			if CharacterFrame.EltruismSpeedDesc:GetText() ~= nil and not CharacterFrame.EltruismSpeedDesc:GetText():match("|r") then
 				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 					CharacterFrame.EltruismSpeedDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_MOVEMENT_SPEED, E.myclass))
 				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
@@ -542,7 +542,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			--conditional stat text
 			if E.myclass == 'HUNTER' then
 				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-					if not CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+					if CharacterFrame.EltruismClassResourceDesc:GetText() ~= nil and not CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
 						CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_FOCUS_REGEN, E.myclass))
 					end
 				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
@@ -551,7 +551,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			elseif E.myclass == 'ROGUE' then
 				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-					if not CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+					if CharacterFrame.EltruismClassResourceDesc:GetText() ~= nil and not CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
 						CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_ENERGY_REGEN, E.myclass))
 					end
 				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
