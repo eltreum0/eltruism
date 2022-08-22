@@ -29,11 +29,14 @@ local classcolorsescape = {
 	["WARRIOR"] = "C69B6D",
 }
 
-local rollstring = "rolls" or "tira" or "掷出" or "würfelt. Ergebnis:" or "obtient un" or "님이 주사위를 굴려" or "tira los dados y obtiene" or "выбрасывает" or "擲出"
-local onlinestring = "online" or "접속 중" or "en ligne" or "在线" or "conectado" or "目前在線" or "В сети"
-local offlinestring = "offline" or "님이 게임을 종료했습니다." or "déconnecter" or "下线了" or "desconectado" or "下線了" or "выходит из игрового" or "desconectou"
-local joinsstring = "joins the" or "파티에 합류했" or "rejoint" or "schließt sich" or "加入了" or "une" or "вступает" or "entra " or "unisce" or "join the" or "joindre à" or "beitreten" or "unirte" or "принять участие" or "entrar" or "unirti" or "invitato" or "joined the" or "공격대에 합" or "rejoint" or "sich dem Schlachtzug" or "入了团" or 'unido' or "入了團" or "присоединяется к рейдовой" or "entrou "
-local leavestring = "has left the" or "떠났습" or "quitté" or "verlassen" or "离开" or "abandonado" or "離開" or "abandonou" or "lascia" or "verlässt" or "leaves the" or "leave the" or "deja" or "покидает" or " sai "
+local rollstring
+local onlinestring
+local offlinestring
+local joinsstring
+local joinsstring2
+local joinsstring3
+local leavestring
+local leavestring2
 
 local function ColorSysMsgs(_, event, message, ...)
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
@@ -44,7 +47,97 @@ local function ColorSysMsgs(_, event, message, ...)
 		return
 	end
 	if E.db.ElvUI_EltreumUI.chat.colorsysmsg then
-
+		if E.locale == "deDE" then
+			rollstring = "würfelt. Ergebnis:"
+			onlinestring = "online"
+			offlinestring = "offline"
+			joinsstring = "schließt sich"
+			joinsstring2 = "sich dem Schlachtzug"
+			joinsstring3 = "beitreten"
+			leavestring = "verlässt"
+			leavestring2 = "verlassen"
+		elseif E.locale == "enUS" or E.locale == "enGB" or E.locale == "enCN" or E.locale == "enTW" then
+			rollstring = "rolls"
+			onlinestring = "online"
+			offlinestring = "offline"
+			joinsstring = "joins the"
+			joinsstring2 = "join the"
+			joinsstring3 = "joined the"
+			leavestring = "has left the"
+			leavestring2 = "leaves the"
+		elseif E.locale == "zhCN" then
+			rollstring = "掷出"
+			onlinestring = "在线"
+			offlinestring = "下线了"
+			joinsstring = "加入了"
+			joinsstring2 = "入了团"
+			joinsstring3 = "joined the"
+			leavestring = "离开"
+			leavestring2 = "leaves the"
+		elseif E.locale == "zhTW" then
+			rollstring = "擲出"
+			onlinestring = "目前在線"
+			offlinestring = "下線了"
+			joinsstring = "入了團"
+			joinsstring2 = "join the"
+			joinsstring3 = "joined the"
+			leavestring = "離開"
+			leavestring2 = "leaves the"
+		elseif E.locale == "esMX" or E.locale == "esES" then
+			rollstring = "tira los dados y obtiene"
+			onlinestring = "conectado"
+			offlinestring = " desconectado"
+			joinsstring = " se une "
+			joinsstring2 = "unisce "
+			joinsstring3 = "joined the"
+			leavestring = "abandonado"
+			leavestring2 = "deja"
+		elseif E.locale == "frFR" then
+			rollstring = "obtient un"
+			onlinestring = "en ligne "
+			offlinestring = "déconnecter"
+			joinsstring = "rejoint"
+			joinsstring2 = "joindre à"
+			joinsstring3 = "joined the"
+			leavestring = "quitté"
+			leavestring2 = "leaves the"
+		elseif E.locale == "itIT" then
+			rollstring = " tira "
+			onlinestring = "online"
+			offlinestring = "offline"
+			joinsstring = "unisce"
+			joinsstring2 = "unirti"
+			joinsstring3 = "unirte"
+			leavestring = "lascia "
+			leavestring2 = "lasci "
+		elseif E.locale == "koKR" then
+			rollstring = "님이 주사위를 굴려"
+			onlinestring = "접속 중"
+			offlinestring = "님이 게임을 종료했습니다."
+			joinsstring = "파티에 합류했"
+			joinsstring2 = "공격대에 합"
+			joinsstring3 = "joined the"
+			leavestring = "떠났습"
+			leavestring2 = "leaves the"
+		elseif E.locale == "ptBR" or E.locale == "ptPT" then
+			rollstring = " tira "
+			onlinestring = "conectado"
+			offlinestring = "desconectou"
+			joinsstring = " entra "
+			joinsstring2 = "entrar"
+			joinsstring3 = "entrou "
+			leavestring = "abandonou"
+			leavestring2 = " sai "
+		elseif E.locale == "ruRU" then
+			rollstring = "выбрасывает"
+			onlinestring = "В сети"
+			offlinestring = "выходит из игрового"
+			joinsstring = "вступает"
+			joinsstring2 = "принять участие"
+			joinsstring3 = "присоединяется к рейдовой"
+			leavestring = "покидает"
+			leavestring2 = "leaves the"
+		end
 		if message:find(rollstring) then
 			local msg = (string.format("|cff"..classcolorsescape[E.myclass]..message.."|r"))
 			if msg:find(rollstring.." 1 ") then
@@ -61,17 +154,29 @@ local function ColorSysMsgs(_, event, message, ...)
 				return false, msg, ...
 			end
 		end
+		if message:find(joinsstring) then
+			return false, gsub(message, joinsstring, "|cff82B4ff"..joinsstring.."|r"), ...
+		end
+		if message:find(joinsstring2) then
+			return false, gsub(message, joinsstring2, "|cff82B4ff"..joinsstring2.."|r"), ...
+		end
+		if message:find(joinsstring3) then
+			return false, gsub(message, joinsstring3, "|cff82B4ff"..joinsstring3.."|r"), ...
+		end
+		if message:find(leavestring) then
+			return false, gsub(message, "left", "|cffB50909"..leavestring.."|r"), ...
+		end
+		if message:find(leavestring2) then
+			return false, gsub(message, leavestring2, "|cffB50909"..leavestring2.."|r"), ...
+		end
+		if message:find("leave the") then
+			return false, gsub(message, "leave", "|cffB50909leave|r"), ...
+		end
 		if message:find(onlinestring) then --german, english, italian all use the same online/offline
 			return false, gsub(message, onlinestring, "|cff00FF00"..onlinestring.."|r"), ...
 		end
 		if message:find(offlinestring) then
 			return false, gsub(message, offlinestring, "|cffFF0000"..offlinestring.."|r"), ...
-		end
-		if message:find(joinsstring) then
-			return false, gsub(message, joinsstring, "|cff82B4ff"..joinsstring.."|r"), ...
-		end
-		if message:find(leavestring) then
-			return false, gsub(message, leavestring, "|cffB50909"..leavestring.."|r"), ...
 		end
 	end
 
