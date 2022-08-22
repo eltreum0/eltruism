@@ -6849,6 +6849,22 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							headerhidenontarget = {
+								order = 915,
+								type = 'description',
+								name = E.NewSign..L["Hide Debuffs on Non Target"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							hidenontargetdebuffs = {
+								order = 916,
+								type = 'toggle',
+								name = L["Hide Debuffs non targeted Nameplates, show when targeted"],
+								desc = L["Toggle On and Off"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hidedebuffsnontarget end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hidedebuffsnontarget = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
 							header4 = {
 								order = 1911,
 								type = "description",
