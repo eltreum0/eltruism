@@ -8204,7 +8204,6 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Expand Character Panel"],
 								width = 'full',
 								desc = L["Enable this option"],
-								hidden = function() if E.Retail then return true else return false end end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.classicarmory end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classicarmory = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
