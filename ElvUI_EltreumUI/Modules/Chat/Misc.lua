@@ -29,14 +29,11 @@ local classcolorsescape = {
 	["WARRIOR"] = "C69B6D",
 }
 
-
-
 local rollstring = "rolls" or "tira" or "掷出" or "würfelt. Ergebnis:" or "obtient un" or "님이 주사위를 굴려" or "tira los dados y obtiene" or "выбрасывает" or "擲出"
 local onlinestring = "online" or "접속 중" or "en ligne" or "在线" or "conectado" or "目前在線" or "В сети"
 local offlinestring = "offline" or "님이 게임을 종료했습니다." or "déconnecter" or "下线了" or "desconectado" or "下線了" or "выходит из игрового" or "desconectou"
 local joinsstring = "joins the" or "파티에 합류했" or "rejoint" or "schließt sich" or "加入了" or "une" or "вступает" or "entra " or "unisce" or "join the" or "joindre à" or "beitreten" or "unirte" or "принять участие" or "entrar" or "unirti" or "invitato" or "joined the" or "공격대에 합" or "rejoint" or "sich dem Schlachtzug" or "入了团" or 'unido' or "入了團" or "присоединяется к рейдовой" or "entrou "
 local leavestring = "has left the" or "떠났습" or "quitté" or "verlassen" or "离开" or "abandonado" or "離開" or "abandonou" or "lascia" or "verlässt" or "leaves the" or "leave the" or "deja" or "покидает" or " sai "
-
 
 local function ColorSysMsgs(_, event, message, ...)
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
