@@ -64,6 +64,7 @@ P.ElvUI_EltreumUI = {
 		queststatusbartexture = "Asphyxia-Norm",
 		questswowhead = false,
 		professions = false,
+		colormodkey = false,
 		zones = false,
 		shadow = {
 			enable = false,
