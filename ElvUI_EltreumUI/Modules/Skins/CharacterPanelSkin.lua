@@ -677,7 +677,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterStatsPane.EnhancementsCategory.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 			end
 
-
 			--statusbars
 			if IsAddOnLoaded("ElvUI_SLE") then
 				if E.locale == "enUS" then
@@ -856,6 +855,24 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					_G.CharacterFrameInset.backdrop:Hide()
 				end
 			end)
+		end
+
+		--fixing the background with expanded panel but no expanded art
+		if E.db.ElvUI_EltreumUI.skins.classicarmory and not E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+			_G.CharacterModelFrameBackgroundTopLeft:ClearAllPoints()
+			_G.CharacterModelFrameBackgroundTopRight:ClearAllPoints()
+			_G.CharacterModelFrameBackgroundBotLeft:ClearAllPoints()
+			_G.CharacterModelFrameBackgroundBotRight:ClearAllPoints()
+			_G.CharacterModelFrameBackgroundTopLeft:SetPoint("TOPLEFT", _G.CharacterModelFrame, "TOPLEFT",0,0)
+			_G.CharacterModelFrameBackgroundTopLeft:SetWidth(404)
+			_G.CharacterModelFrameBackgroundTopLeft:SetHeight(309)
+			_G.CharacterModelFrameBackgroundBotLeft:SetPoint("BOTTOMLEFT", _G.CharacterModelFrame, "BOTTOMLEFT", 0, -54)
+			_G.CharacterModelFrameBackgroundBotLeft:SetWidth(404)
+			_G.CharacterModelFrameBackgroundTopRight:SetPoint("TOPRIGHT", _G.CharacterModelFrame, "TOPRIGHT",0,0)
+			_G.CharacterModelFrameBackgroundTopRight:SetWidth(60)
+			_G.CharacterModelFrameBackgroundTopRight:SetHeight(309)
+			_G.CharacterModelFrameBackgroundBotRight:SetPoint("BOTTOMRIGHT", _G.CharacterModelFrame, "BOTTOMRIGHT",0,-54)
+			_G.CharacterModelFrameBackgroundBotRight:SetWidth(60)
 		end
 
 		--add class crest
