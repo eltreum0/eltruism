@@ -29,6 +29,13 @@ local classcolorsescape = {
 	["WARRIOR"] = "C69B6D",
 }
 
+
+
+local rollstring = "rolls" or "tira" or "掷出" or "würfelt. Ergebnis:" or "obtient un" or "님이 주사위를 굴려" or "tira los dados y obtiene" or "выбрасывает" or "擲出"
+local onlinestring = "online" or "접속 중" or "en ligne" or "在线" or "conectado" or "目前在線" or "В сети"
+local offlinestring = "offline" or "님이 게임을 종료했습니다." or "déconnecter" or "下线了" or "desconectado" or "下線了" or "выходит из игрового" or "desconectou"
+local joinsstring = "joins the" or "파티에 합류했" or "rejoint" or "schließt sich" or "加入了" or "une" or "вступает" or "entra" or "unisce"
+
 local function ColorSysMsgs(_, event, message, ...)
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
@@ -38,7 +45,7 @@ local function ColorSysMsgs(_, event, message, ...)
 		return
 	end
 	if E.db.ElvUI_EltreumUI.chat.colorsysmsg then
-		local rollstring = "rolls" or "tira" or "掷出" or "würfelt. Ergebnis:" or "obtient un" or "님이 주사위를 굴려" or "tira los dados y obtiene" or "выбрасывает" or "擲出"
+
 		if message:find(rollstring) then
 			local msg = (string.format("|cff"..classcolorsescape[E.myclass]..message.."|r"))
 			if msg:find(rollstring.." 1 ") then
@@ -55,14 +62,14 @@ local function ColorSysMsgs(_, event, message, ...)
 				return false, msg, ...
 			end
 		end
-		if message:find("online") then --german, english, italian all use the same online/offline
-			return false, gsub(message, "online", "|cff00FF00online|r"), ...
+		if message:find(onlinestring) then --german, english, italian all use the same online/offline
+			return false, gsub(message, onlinestring, "|cff00FF00"..onlinestring.."|r"), ...
 		end
-		if message:find("offline") then
-			return false, gsub(message, "offline", "|cffFF0000offline|r"), ...
+		if message:find(offlinestring) then
+			return false, gsub(message, offlinestring, "|cffFF0000"..offlinestring.."|r"), ...
 		end
-		if message:find("joins the") then
-			return false, gsub(message, "joins", "|cff82B4ffjoins|r"), ...
+		if message:find(joinsstring) then
+			return false, gsub(message, joinsstring, "|cff82B4ff"..joinsstring.."|r"), ...
 		end
 		if message:find("join the") then
 			return false, gsub(message, "joins", "|cff82B4ffjoin|r"), ...
