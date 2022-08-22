@@ -14,7 +14,24 @@ local INLINE_TANK_ICON = _G.INLINE_TANK_ICON
 local INLINE_HEALER_ICON = _G.INLINE_HEALER_ICON
 local INLINE_DAMAGER_ICON = _G.INLINE_DAMAGER_ICON
 
-local function ColorSysMsgs(_, event, message, ...)
+local classcolorsescape = {
+	["DEATHKNIGHT"]	= "C41E3A",
+	["DEMONHUNTER"]	= "A330C9",
+	["DRUID"] = "FF7C0A",
+	["HUNTER"] = "AAD372",
+	["MAGE"] = "3FC7EB",
+	["MONK"] = "00FF98",
+	["PALADIN"]	= "F48CBA",
+	["PRIEST"] = "FFFFFF",
+	["ROGUE"] = "FFF468",
+	["SHAMAN"] = "0070DD",
+	["WARLOCK"] = "8788EE",
+	["WARRIOR"] = "C69B6D",
+}
+
+--local function ColorSysMsgs(_, event, message, ...)
+local function ColorSysMsgs(_, event, message, test1,test2,test3,test4,test5,test6,test7,test8,test9,test10,test11,test12,test13,test14, ...)
+	print(test1,test2,test3,test4,test5,test6,test7,test8,test9,test10,test11,test12,test13,test14)
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
 	elseif not E.db.ElvUI_EltreumUI then
