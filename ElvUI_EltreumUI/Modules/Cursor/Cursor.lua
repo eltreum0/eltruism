@@ -195,7 +195,7 @@ function ElvUI_EltreumUI:CastCursor()
 				local x, y = GetCursorPosition()
 				local scaleDivisor = UIParent:GetEffectiveScale()
 				self:ClearAllPoints()
-				self:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", x / scaleDivisor , y / scaleDivisor )
+				self:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", (x / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx , (y / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety )
 			end )
 		end
 

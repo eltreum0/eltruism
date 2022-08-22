@@ -194,7 +194,7 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 				x, y = GetCursorPosition()
 				scaleDivisor = UIParent:GetEffectiveScale()
 				EltruismCooldownFrame:ClearAllPoints()
-				EltruismCooldownFrame:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", x / scaleDivisor , y / scaleDivisor )
+				EltruismCooldownFrame:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", (x / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx, (y / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety )
 				lastUpdate = lastUpdate + elapsed
 				if lastUpdate < updateDelay then
 					return

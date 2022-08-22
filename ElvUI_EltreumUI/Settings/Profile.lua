@@ -135,6 +135,8 @@ P.ElvUI_EltreumUI = {
 			cooldownsound = false,
 			cooldownfile = "! - Metal Gear Solid",
 			petcooldown = false,
+			cooldownoffsetx = 0,
+			cooldownoffsety = 0,
 			fixlag = 1,
 			combat = true,
 		},
