@@ -4,5 +4,5 @@
 	<Script file="ptBR.lua"/>
 	<Script file="esMX.lua"/>
 	<Script file="zhCN.lua"/>
-	<Script file="Test.lua"/>
+	<Script file="ColoredLocales.lua"/>
 </Ui>
