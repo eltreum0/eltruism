@@ -337,69 +337,15 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.PaperDollTitlesPane:SetPoint("RIGHT", CharacterFrame, "RIGHT", -30, -20)
 
 
-			if IsAddOnLoaded("ElvUI_SLE") then
-				if E.locale == "enUS" then
-					linewidth1 = (( 193 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
-				else
-					linewidth1 = (( 204 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
-				end
-			else
-				linewidth1 = (( 193 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
-			end
 
 			CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
 			CharacterStatsPane.ItemLevelCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismItemLevelCategoryLine", CharacterStatsPane)
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetSize(linewidth1, 4)
-			--CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetSize(50, 4)
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.ItemLevelCategory.Title, "LEFT", 0, -1)
-			--CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetPoint("CENTER", CharacterStatsPane.ItemLevelCategory.Title)
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismItemLevelCategoryLine2", CharacterStatsPane)
-			--CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetSize(50, 4)
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetSize(linewidth1, 4)
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.ItemLevelCategory.Title, "RIGHT", -1, -1)
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
-
 
 			CharacterStatsPane.AttributesCategory.backdrop:Hide()
 			CharacterStatsPane.AttributesCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-			linewidth2 = (( 194 - CharacterStatsPane.AttributesCategory.Title:GetStringWidth())/2)
-			CharacterStatsPane.AttributesCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismAttributesCategoryLine", CharacterStatsPane)
-			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetSize(linewidth2, 4)
-			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.AttributesCategory.Title, "LEFT", 0, -1)
-			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.AttributesCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
-			CharacterStatsPane.AttributesCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismAttributesCategoryLine2", CharacterStatsPane)
-			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetSize(linewidth2, 4)
-			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.AttributesCategory.Title, "RIGHT", -1, -1)
-			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.AttributesCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
 
-			--statusbars
-			if IsAddOnLoaded("ElvUI_SLE") then
-				if E.locale == "enUS" then
-					linewidth3 = (( 193 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
-				else
-					linewidth3 = (( 204 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
-				end
-			else
-				linewidth3 = (( 193 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
-			end
 			CharacterStatsPane.EnhancementsCategory.backdrop:Hide()
 			CharacterStatsPane.EnhancementsCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine", CharacterStatsPane)
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetSize(linewidth3, 4)
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.EnhancementsCategory.Title, "LEFT", 0, -1)
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine2", CharacterStatsPane)
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetSize(linewidth3, 4)
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.EnhancementsCategory.Title, "RIGHT", -1, -1)
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
 
 			--CharacterFrame.EltruismExtraStatsBlock:SetSize(150, 18)
 			--CharacterFrame.EltruismExtraStatsBlock:SetTexture(E.Media.Textures.Black8x8)
@@ -411,15 +357,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -80)
 			CharacterFrame.EltruismExtraStatsFont:SetParent(CharacterStatsPane)
 
-			linewidth4 = (( 193 - CharacterFrame.EltruismExtraStatsFont:GetStringWidth())/2)
-			CharacterFrame.EltruismExtraStats:SetSize(linewidth4, 4)
-			CharacterFrame.EltruismExtraStats:SetPoint("RIGHT", CharacterFrame.EltruismExtraStatsFont, "LEFT", 0, -1)
-			CharacterFrame.EltruismExtraStats:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterFrame.EltruismExtraStats:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
-			CharacterFrame.EltruismExtraStats2:SetSize(linewidth4, 4)
-			CharacterFrame.EltruismExtraStats2:SetPoint("LEFT", CharacterFrame.EltruismExtraStatsFont, "RIGHT", 0, -1)
-			CharacterFrame.EltruismExtraStats2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterFrame.EltruismExtraStats2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
 
 
 			if IsAddOnLoaded('ElvUI_SLE') then
@@ -482,7 +419,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismSpeed:SetJustifyH("RIGHT")
 			CharacterFrame.EltruismSpeed:SetShadowColor(0, 0, 0, 1)
 			CharacterFrame.EltruismSpeed:SetShadowOffset(1, 0)
-
 			CharacterFrame.EltruismSpeedDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
 			CharacterFrame.EltruismSpeedDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
 			CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", CharacterStatsPane , -36, -163)
@@ -521,40 +457,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismClassResourceDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
 			CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", CharacterStatsPane , -46, -176)
 			CharacterFrame.EltruismClassResourceDesc:SetParent(CharacterStatsPane)
-			if E.myclass == 'HUNTER' then
-				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-					CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_FOCUS_REGEN, E.myclass))
-				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
-					CharacterFrame.EltruismClassResourceDesc:SetText(STAT_FOCUS_REGEN)
-					CharacterFrame.EltruismClassResourceDesc:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-				end
-			elseif E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
-				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-					CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_ENERGY_REGEN, E.myclass))
-				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
-					CharacterFrame.EltruismClassResourceDesc:SetText(STAT_ENERGY_REGEN)
-					CharacterFrame.EltruismClassResourceDesc:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-				end
-			elseif E.myclass == 'DEATHKNIGHT' then
-				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-					CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_RUNE_REGEN, E.myclass))
-				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
-					CharacterFrame.EltruismClassResourceDesc:SetText(STAT_RUNE_REGEN)
-					CharacterFrame.EltruismClassResourceDesc:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-				end
-			elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
-				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-					CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(MANA_REGEN, E.myclass))
-				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
-					CharacterFrame.EltruismClassResourceDesc:SetText(MANA_REGEN)
-					CharacterFrame.EltruismClassResourceDesc:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-				end
-			end
 			CharacterFrame.EltruismClassResourceDesc:SetJustifyH("LEFT")
 			CharacterFrame.EltruismClassResourceDesc:SetShadowColor(0, 0, 0, 1)
 			CharacterFrame.EltruismClassResourceDesc:SetShadowOffset(1, 0)
-
-			--class resource tooltip
 			CharacterFrame.EltruismClassResourceDescTooltip:SetSize(190, 15)
 			CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -176)
 			CharacterFrame.EltruismClassResourceDescTooltip:SetParent(CharacterStatsPane)
@@ -601,16 +506,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismClassResource2:SetJustifyH("RIGHT")
 			CharacterFrame.EltruismClassResource2:SetShadowColor(0, 0, 0, 1)
 			CharacterFrame.EltruismClassResource2:SetShadowOffset(1, 0)
-
 			CharacterFrame.EltruismClassResourceDesc2:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
 			CharacterFrame.EltruismClassResourceDesc2:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
 			CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", CharacterStatsPane , -48, -189)
 			CharacterFrame.EltruismClassResourceDesc2:SetParent(CharacterStatsPane)
-
 			CharacterFrame.EltruismClassResourceDesc2:SetJustifyH("LEFT")
 			CharacterFrame.EltruismClassResourceDesc2:SetShadowColor(0, 0, 0, 1)
 			CharacterFrame.EltruismClassResourceDesc2:SetShadowOffset(1, 0)
-
 			CharacterFrame.EltruismClassResourceDescTooltip2:SetSize(190, 15)
 			CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -189)
 			CharacterFrame.EltruismClassResourceDescTooltip2:SetParent(CharacterStatsPane)
@@ -633,6 +535,47 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismClassResourceDescTooltip2:SetScript("OnLeave", function()
 				_G["GameTooltip"]:Hide()
 			end)
+
+			--conditional stat text
+			if E.myclass == 'HUNTER' then
+				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+					CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_FOCUS_REGEN, E.myclass))
+				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
+					CharacterFrame.EltruismClassResourceDesc:SetText(STAT_FOCUS_REGEN)
+					CharacterFrame.EltruismClassResourceDesc:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				end
+			elseif E.myclass == 'ROGUE' then
+				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+					CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_ENERGY_REGEN, E.myclass))
+				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
+					CharacterFrame.EltruismClassResourceDesc:SetText(STAT_ENERGY_REGEN)
+					CharacterFrame.EltruismClassResourceDesc:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				end
+			elseif E.myclass == 'DRUID' or E.myclass == 'MONK' then
+				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+					CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_ENERGY_REGEN, E.myclass))
+					CharacterFrame.EltruismClassResourceDesc2:SetText(ElvUI_EltreumUI:GradientName(MANA_REGEN, E.myclass))
+				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
+					CharacterFrame.EltruismClassResourceDesc:SetText(STAT_ENERGY_REGEN)
+					CharacterFrame.EltruismClassResourceDesc:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+					CharacterFrame.EltruismClassResourceDesc2:SetText(MANA_REGEN)
+					CharacterFrame.EltruismClassResourceDesc2:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				end
+			elseif E.myclass == 'DEATHKNIGHT' then
+				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+					CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_RUNE_REGEN, E.myclass))
+				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
+					CharacterFrame.EltruismClassResourceDesc:SetText(STAT_RUNE_REGEN)
+					CharacterFrame.EltruismClassResourceDesc:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				end
+			elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
+				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+					CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(MANA_REGEN, E.myclass))
+				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
+					CharacterFrame.EltruismClassResourceDesc:SetText(MANA_REGEN)
+					CharacterFrame.EltruismClassResourceDesc:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				end
+			end
 
 			--update stats and stats position
 			hooksecurefunc("PaperDollFrame_UpdateStats", function()
@@ -719,56 +662,89 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				--CharacterFrame.EltruismExtraStatsBlock:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, 0)
 			end)
 
-			if not E.db.ElvUI_EltreumUI.skins.statcolors then
+			CharacterFrame.EltruismExtraStatsFont:SetText(L["Other"])
+			CharacterStatsPane.ItemLevelCategory.Title:SetText(L["Item Level"])
+			CharacterStatsPane.AttributesCategory.Title:SetText(STAT_CATEGORY_ATTRIBUTES)
+			CharacterStatsPane.EnhancementsCategory.Title:SetText(STAT_CATEGORY_ENHANCEMENTS)
+			CharacterFrame.EltruismSpeedDesc:SetText(STAT_MOVEMENT_SPEED)
+			if not E.db.ElvUI_EltreumUI.skins.statcolors and not E.db.ElvUI_EltreumUI.skins.characterskingradients then
 				CharacterFrame.EltruismExtraStatsFont:SetTextColor(1, 1, 1)
-				CharacterFrame.EltruismExtraStatsFont:SetText(L["Other"])
-
-
-				CharacterFrame.EltruismSpeedDesc:SetText(STAT_MOVEMENT_SPEED)
-				if E.myclass == 'HUNTER' then
-					CharacterFrame.EltruismClassResourceDesc:SetText(STAT_FOCUS_REGEN)
-				elseif E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
-					CharacterFrame.EltruismClassResourceDesc:SetText(STAT_ENERGY_REGEN)
-				elseif E.myclass == 'DEATHKNIGHT' then
-					CharacterFrame.EltruismClassResourceDesc:SetText(STAT_RUNE_REGEN)
-				elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
-					CharacterFrame.EltruismClassResourceDesc:SetText(MANA_REGEN, E.myclass)
-				end
-				CharacterFrame.EltruismExtraStatsFont:SetText(L["Other"])
-				CharacterStatsPane.ItemLevelCategory.Title:SetText(L["Item Level"])
-				CharacterStatsPane.AttributesCategory.Title:SetText(STAT_CATEGORY_ATTRIBUTES)
-				CharacterStatsPane.EnhancementsCategory.Title:SetText(STAT_CATEGORY_ENHANCEMENTS)
-				if E.myclass == 'DRUID' or E.myclass == 'MONK' then
-					CharacterFrame.EltruismClassResourceDesc2:SetText(MANA_REGEN)
-				end
 			end
-
 			if not E.db.ElvUI_EltreumUI.skins.characterskingradients then
-				CharacterStatsPane.ItemLevelCategory.Title:SetText(L["Item Level"])
 				CharacterStatsPane.ItemLevelCategory.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-
-				CharacterFrame.EltruismExtraStatsFont:SetText(L["Other"])
 				CharacterFrame.EltruismExtraStatsFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-
-				CharacterStatsPane.AttributesCategory.Title:SetText(STAT_CATEGORY_ATTRIBUTES)
 				CharacterStatsPane.AttributesCategory.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-
-				CharacterStatsPane.EnhancementsCategory.Title:SetText(STAT_CATEGORY_ENHANCEMENTS)
 				CharacterStatsPane.EnhancementsCategory.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-
-				CharacterFrame.EltruismExtraStatsFont:SetText(L["Other"])
-				CharacterFrame.EltruismExtraStatsFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 			end
+
+
+			--statusbars
+			if IsAddOnLoaded("ElvUI_SLE") then
+				if E.locale == "enUS" then
+					linewidth1 = (( 193 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
+				else
+					linewidth1 = (( 204 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
+				end
+			else
+				linewidth1 = (( 193 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
+			end
+			CharacterStatsPane.ItemLevelCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismItemLevelCategoryLine", CharacterStatsPane)
+			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetSize(linewidth1, 4)
+			--CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetSize(50, 4)
+			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.ItemLevelCategory.Title, "LEFT", 0, -1)
+			--CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetPoint("CENTER", CharacterStatsPane.ItemLevelCategory.Title)
+			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismItemLevelCategoryLine2", CharacterStatsPane)
+			--CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetSize(50, 4)
+			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetSize(linewidth1, 4)
+			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.ItemLevelCategory.Title, "RIGHT", -1, -1)
+			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+
+			linewidth2 = (( 194 - CharacterStatsPane.AttributesCategory.Title:GetStringWidth())/2)
+			CharacterStatsPane.AttributesCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismAttributesCategoryLine", CharacterStatsPane)
+			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetSize(linewidth2, 4)
+			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.AttributesCategory.Title, "LEFT", 0, -1)
+			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+			CharacterStatsPane.AttributesCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+			CharacterStatsPane.AttributesCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismAttributesCategoryLine2", CharacterStatsPane)
+			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetSize(linewidth2, 4)
+			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.AttributesCategory.Title, "RIGHT", -1, -1)
+			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+			CharacterStatsPane.AttributesCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+
+			if IsAddOnLoaded("ElvUI_SLE") then
+				if E.locale == "enUS" then
+					linewidth3 = (( 193 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
+				else
+					linewidth3 = (( 204 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
+				end
+			else
+				linewidth3 = (( 193 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
+			end
+
+			CharacterStatsPane.EnhancementsCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine", CharacterStatsPane)
+			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetSize(linewidth3, 4)
+			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.EnhancementsCategory.Title, "LEFT", 0, -1)
+			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine2", CharacterStatsPane)
+			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetSize(linewidth3, 4)
+			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.EnhancementsCategory.Title, "RIGHT", -1, -1)
+			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+
+			linewidth4 = (( 193 - CharacterFrame.EltruismExtraStatsFont:GetStringWidth())/2)
+			CharacterFrame.EltruismExtraStats:SetSize(linewidth4, 4)
+			CharacterFrame.EltruismExtraStats:SetPoint("RIGHT", CharacterFrame.EltruismExtraStatsFont, "LEFT", 0, -1)
+			CharacterFrame.EltruismExtraStats:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+			CharacterFrame.EltruismExtraStats:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+			CharacterFrame.EltruismExtraStats2:SetSize(linewidth4, 4)
+			CharacterFrame.EltruismExtraStats2:SetPoint("LEFT", CharacterFrame.EltruismExtraStatsFont, "RIGHT", 0, -1)
+			CharacterFrame.EltruismExtraStats2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
+			CharacterFrame.EltruismExtraStats2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
 		end
-
-
-
-
-
---[[
-else
-	--CharacterFrame.EltruismExtraStatsBlock:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, 0)
-]]
 
 		--add gradient text to some texts
 		if E.db.ElvUI_EltreumUI.skins.characterskingradients then
