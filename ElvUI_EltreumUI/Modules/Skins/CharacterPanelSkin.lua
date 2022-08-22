@@ -1961,72 +1961,74 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									_G.InspectFrame:SetWidth(384)
 								end)
 
-								_G.InspectTalentFrame:HookScript("OnShow", function()
-									_G.InspectFrame:SetWidth(384)
-									if E.Wrath then
-										_G.InspectFrame:SetHeight(730)
-									else
-										_G.InspectFrame:SetHeight(650)
-									end
-									_G.InspectTalentFrameTab1:ClearAllPoints()
-									if not E.Wrath then
-										_G.InspectTalentFrameTab1:SetPoint("TOP", _G.InspectTalentFrame, "TOP", -95, -50)
-									else
-										_G.InspectTalentFrameTab1:SetPoint("TOP", _G.InspectTalentFrame, "TOP", -72, -50)
-									end
-									_G.InspectTalentFrameScrollFrameScrollBar:SetAlpha(0)
-									_G.InspectTalentFrameScrollFrame:ClearAllPoints()
-									_G.InspectTalentFrameScrollFrame:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 12)
-									if E.Wrath then
-										_G.InspectTalentFrameScrollFrame:SetSize(300,720)
-									else
-										_G.InspectTalentFrameScrollFrame:SetSize(300,620)
-									end
-									E:Delay(0, function() _G.InspectTalentFrameScrollFrame:SetScale(0.75) end) --needs delay, maybe bc server response?
-
-									if E.Wrath then
-										_G.InspectTalentFramePointsBar:ClearAllPoints()
-										_G.InspectTalentFramePointsBar:SetPoint("BOTTOM", _G.InspectTalentFrame, "BOTTOM", 0, 80)
-									end
-
-									--kill stuff
-									_G.InspectTalentFrameCloseButton:Hide()
-									if _G.InspectTalentFrameBackgroundTopRight then
-										_G.InspectTalentFrameBackgroundTopRight:Kill()
-									end
-									if _G.InspectTalentFrameBackgroundBottomLeft then
-										_G.InspectTalentFrameBackgroundBottomLeft:Kill()
-									end
-									if _G.InspectTalentFrameBackgroundBottomRight then
-										_G.InspectTalentFrameBackgroundBottomRight:Kill()
-									end
-									--increase the size of the background
-									if _G.InspectTalentFrameBackgroundTopLeft then
-										if E.TBC then
-											_G.InspectTalentFrameBackgroundTopLeft:ClearAllPoints()
-											_G.InspectTalentFrameBackgroundTopLeft:SetParent(_G.InspectTalentFrame)
-											--_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 600)
-											_G.InspectTalentFrameBackgroundTopLeft:SetAllPoints(_G.InspectTalentFrameScrollFrame)
-										elseif E.Wrath then
-											if _G.InspectTalentFrameScrollFrame.backdrop then
-												_G.InspectTalentFrameScrollFrame.backdrop:Kill()
-											end
-											_G.InspectTalentFrameScrollFrame:SetScale(0.85)
-											_G.InspectTalentFrameBackgroundTopLeft:ClearAllPoints()
-											_G.InspectTalentFrameBackgroundTopLeft:SetParent(_G.InspectTalentFrame)
-											--_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 600)
-											_G.InspectTalentFrameBackgroundTopLeft:SetAllPoints(_G.InspectTalentFrameScrollFrame)
-											--_G.InspectTalentFrameBackgroundTopLeft:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 20)
-										elseif E.Classic then
-											_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 490)
+								if E.Wrath or E.TBC then
+									_G.InspectTalentFrame:HookScript("OnShow", function()
+										_G.InspectFrame:SetWidth(384)
+										if E.Wrath then
+											_G.InspectFrame:SetHeight(730)
+										else
+											_G.InspectFrame:SetHeight(650)
 										end
-									end
-								end)
+										_G.InspectTalentFrameTab1:ClearAllPoints()
+										if not E.Wrath then
+											_G.InspectTalentFrameTab1:SetPoint("TOP", _G.InspectTalentFrame, "TOP", -95, -50)
+										else
+											_G.InspectTalentFrameTab1:SetPoint("TOP", _G.InspectTalentFrame, "TOP", -72, -50)
+										end
+										_G.InspectTalentFrameScrollFrameScrollBar:SetAlpha(0)
+										_G.InspectTalentFrameScrollFrame:ClearAllPoints()
+										_G.InspectTalentFrameScrollFrame:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 12)
+										if E.Wrath then
+											_G.InspectTalentFrameScrollFrame:SetSize(300,720)
+										else
+											_G.InspectTalentFrameScrollFrame:SetSize(300,620)
+										end
+										E:Delay(0, function() _G.InspectTalentFrameScrollFrame:SetScale(0.75) end) --needs delay, maybe bc server response?
 
-								_G.InspectTalentFrame:HookScript("OnHide", function()
-									_G.InspectFrame:SetHeight(512)
-									_G.InspectFrame:SetWidth(384)
-								end)
+										if E.Wrath then
+											_G.InspectTalentFramePointsBar:ClearAllPoints()
+											_G.InspectTalentFramePointsBar:SetPoint("BOTTOM", _G.InspectTalentFrame, "BOTTOM", 0, 80)
+										end
+
+										--kill stuff
+										_G.InspectTalentFrameCloseButton:Hide()
+										if _G.InspectTalentFrameBackgroundTopRight then
+											_G.InspectTalentFrameBackgroundTopRight:Kill()
+										end
+										if _G.InspectTalentFrameBackgroundBottomLeft then
+											_G.InspectTalentFrameBackgroundBottomLeft:Kill()
+										end
+										if _G.InspectTalentFrameBackgroundBottomRight then
+											_G.InspectTalentFrameBackgroundBottomRight:Kill()
+										end
+										--increase the size of the background
+										if _G.InspectTalentFrameBackgroundTopLeft then
+											if E.TBC then
+												_G.InspectTalentFrameBackgroundTopLeft:ClearAllPoints()
+												_G.InspectTalentFrameBackgroundTopLeft:SetParent(_G.InspectTalentFrame)
+												--_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 600)
+												_G.InspectTalentFrameBackgroundTopLeft:SetAllPoints(_G.InspectTalentFrameScrollFrame)
+											elseif E.Wrath then
+												if _G.InspectTalentFrameScrollFrame.backdrop then
+													_G.InspectTalentFrameScrollFrame.backdrop:Kill()
+												end
+												_G.InspectTalentFrameScrollFrame:SetScale(0.85)
+												_G.InspectTalentFrameBackgroundTopLeft:ClearAllPoints()
+												_G.InspectTalentFrameBackgroundTopLeft:SetParent(_G.InspectTalentFrame)
+												--_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 600)
+												_G.InspectTalentFrameBackgroundTopLeft:SetAllPoints(_G.InspectTalentFrameScrollFrame)
+												--_G.InspectTalentFrameBackgroundTopLeft:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 20)
+											elseif E.Classic then
+												_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 490)
+											end
+										end
+									end)
+
+									_G.InspectTalentFrame:HookScript("OnHide", function()
+										_G.InspectFrame:SetHeight(512)
+										_G.InspectFrame:SetWidth(384)
+									end)
+								end
 							end)
 						else
 							_G.InspectFrame:SetWidth(450)
