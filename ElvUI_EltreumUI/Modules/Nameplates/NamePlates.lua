@@ -47,6 +47,9 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 		if not string.find(unit, "nameplate") then
 			return
 		else
+			--[[if button.caster ~= "player" then
+				button:Hide()
+			end]]
 			if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable then
 				button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 			end
@@ -67,6 +70,16 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 					TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 					if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 						TimeSinceLastUpdate = 0
+
+						--hide debuffs if they are not target
+						if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hidedebuffsnontarget then
+							if not UnitIsUnit(unit,"target") then
+								button:Hide()
+							else
+								button:Show()
+							end
+						end
+
 						--print("np button spam "..math.random(1,99))
 						if button.cd.timer then
 							if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
@@ -158,7 +171,7 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 end
 
 function ElvUI_EltreumUI:Construct_Auras(nameplate)
-	if E.private.nameplates.enable == true and (E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable or E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow) then
+	if E.private.nameplates.enable and (E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable or E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow) then
 		nameplate.Buffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIconBuff
 		nameplate.Debuffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIconDebuff
 	end

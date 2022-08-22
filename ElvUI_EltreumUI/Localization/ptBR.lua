@@ -1053,3 +1053,5 @@ L["Add Class Colors to Text"] = true
 L["Cursor Position"] = true
 L["Color Modifier Keys"] = true
 L["Add Class Color to Modifier Keys like ALT and CTRL on the ActionBars"] = true
+L["Hide Debuffs non targeted Nameplates, show when targeted"] = true
+L["Hide Debuffs on Non Target"] = true
