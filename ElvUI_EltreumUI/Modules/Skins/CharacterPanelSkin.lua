@@ -427,11 +427,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismSpeedDesc:SetJustifyH("LEFT")
 			CharacterFrame.EltruismSpeedDesc:SetShadowColor(0, 0, 0, 1)
 			CharacterFrame.EltruismSpeedDesc:SetShadowOffset(1, 0)
-			if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-				CharacterFrame.EltruismSpeedDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_MOVEMENT_SPEED, E.myclass))
-			else --if E.db.ElvUI_EltreumUI.skins.statcolors then
-				CharacterFrame.EltruismSpeedDesc:SetText(STAT_MOVEMENT_SPEED)
-				CharacterFrame.EltruismSpeedDesc:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+			if not CharacterFrame.EltruismSpeedDesc:GetText():match("|r") then
+				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+					CharacterFrame.EltruismSpeedDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_MOVEMENT_SPEED, E.myclass))
+				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
+					CharacterFrame.EltruismSpeedDesc:SetText(STAT_MOVEMENT_SPEED)
+					CharacterFrame.EltruismSpeedDesc:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				end
 			end
 			CharacterFrame.EltruismSpeedDescTooltip:SetSize(190, 15)
 			CharacterFrame.EltruismSpeedDescTooltip:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -163)
@@ -540,22 +542,30 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			--conditional stat text
 			if E.myclass == 'HUNTER' then
 				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-					CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_FOCUS_REGEN, E.myclass))
+					if not CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+						CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_FOCUS_REGEN, E.myclass))
+					end
 				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
 					CharacterFrame.EltruismClassResourceDesc:SetText(STAT_FOCUS_REGEN)
 					CharacterFrame.EltruismClassResourceDesc:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 				end
 			elseif E.myclass == 'ROGUE' then
 				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-					CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_ENERGY_REGEN, E.myclass))
+					if not CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+						CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_ENERGY_REGEN, E.myclass))
+					end
 				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
 					CharacterFrame.EltruismClassResourceDesc:SetText(STAT_ENERGY_REGEN)
 					CharacterFrame.EltruismClassResourceDesc:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 				end
 			elseif E.myclass == 'DRUID' or E.myclass == 'MONK' then
 				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-					CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_ENERGY_REGEN, E.myclass))
-					CharacterFrame.EltruismClassResourceDesc2:SetText(ElvUI_EltreumUI:GradientName(MANA_REGEN, E.myclass))
+					if not CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+						CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_ENERGY_REGEN, E.myclass))
+					end
+					if not CharacterFrame.EltruismClassResourceDesc2:GetText():match("|r") then
+						CharacterFrame.EltruismClassResourceDesc2:SetText(ElvUI_EltreumUI:GradientName(MANA_REGEN, E.myclass))
+					end
 				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
 					CharacterFrame.EltruismClassResourceDesc:SetText(STAT_ENERGY_REGEN)
 					CharacterFrame.EltruismClassResourceDesc:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
@@ -564,14 +574,18 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			elseif E.myclass == 'DEATHKNIGHT' then
 				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-					CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_RUNE_REGEN, E.myclass))
+					if not CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+						CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_RUNE_REGEN, E.myclass))
+					end
 				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
 					CharacterFrame.EltruismClassResourceDesc:SetText(STAT_RUNE_REGEN)
 					CharacterFrame.EltruismClassResourceDesc:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 				end
 			elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
 				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-					CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(MANA_REGEN, E.myclass))
+					if not CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+						CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(MANA_REGEN, E.myclass))
+					end
 				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
 					CharacterFrame.EltruismClassResourceDesc:SetText(MANA_REGEN)
 					CharacterFrame.EltruismClassResourceDesc:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
@@ -752,7 +766,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		--add gradient text to some texts
 		if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 			if E.db.ElvUI_EltreumUI.skins.classicarmory then
-				CharacterFrame.EltruismExtraStatsFont:SetText(ElvUI_EltreumUI:GradientName(L["Other"], E.myclass))
+				if not CharacterFrame.EltruismExtraStatsFont:GetText():match("|r") then
+					CharacterFrame.EltruismExtraStatsFont:SetText(ElvUI_EltreumUI:GradientName(L["Other"], E.myclass))
+				end
 			end
 
 			--CharacterStatsPane.ItemLevelCategory.Title:SetText("Gegenstandsstufe")
@@ -773,7 +789,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				if ( statFrame.Label ) then
 					if not statFrame.Label:GetText():match("|r") then
 						statFrame.Label:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
-							statFrame.Label:SetText(ElvUI_EltreumUI:GradientName(format(STAT_FORMAT, label), E.myclass))
+						statFrame.Label:SetText(ElvUI_EltreumUI:GradientName(format(STAT_FORMAT, label), E.myclass))
 					end
 					if statFrame.Value then
 						statFrame.Value:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
@@ -791,8 +807,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 				end
 				if IsAddOnLoaded('ElvUI_SLE') then
-					CharacterStatsPane.OffenseCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.OffenseCategory.Title:GetText(), E.myclass))
-					CharacterStatsPane.DefenceCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.DefenceCategory.Title:GetText(), E.myclass))
+					if not CharacterStatsPane.OffenseCategory.Title:GetText():match("|r") then
+						CharacterStatsPane.OffenseCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.OffenseCategory.Title:GetText(), E.myclass))
+					end
+					if not CharacterStatsPane.DefenceCategory.Title:GetText():match("|r") then
+						CharacterStatsPane.DefenceCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.DefenceCategory.Title:GetText(), E.myclass))
+					end
 				end
 			end)
 		end
@@ -952,9 +972,15 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		--gradient colors to categories other
 		if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-			CharacterFrame.Text:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass)) ---ilvl
-			CharacterFrame.Text3:SetText(ElvUI_EltreumUI:GradientName(L["Attributes"], E.myclass)) ---attributes
-			CharacterFrame.Text4:SetText(ElvUI_EltreumUI:GradientName(L["Specialization"], E.myclass)) ---specialization
+			if not CharacterFrame.Text:GetText():match("|r") then
+				CharacterFrame.Text:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass)) ---ilvl
+			end
+			if not CharacterFrame.Text3:GetText():match("|r") then
+				CharacterFrame.Text3:SetText(ElvUI_EltreumUI:GradientName(L["Attributes"], E.myclass)) ---attributes
+			end
+			if not CharacterFrame.Text4:GetText():match("|r") then
+				CharacterFrame.Text4:SetText(ElvUI_EltreumUI:GradientName(L["Specialization"], E.myclass)) ---specialization
+			end
 		end
 
 		--color stats with a class gradient
@@ -1365,7 +1391,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.Text4:SetParent(_G["PaperDollItemsFrame"])
 			CharacterFrame.Text4:SetTextColor(1, 1, 1)
 			CharacterFrame.Text4:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-			if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+			if E.db.ElvUI_EltreumUI.skins.characterskingradients and not CharacterFrame.Text4:GetText():match("|r") then
 				CharacterFrame.Text4:SetText(ElvUI_EltreumUI:GradientName(L["Specialization"], E.myclass)) ---specialization
 			elseif not E.db.ElvUI_EltreumUI.skins.characterskingradients then
 				CharacterFrame.Text4:SetText(L["Specialization"])
@@ -1389,7 +1415,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.Text:SetParent(_G["PaperDollItemsFrame"])
 			CharacterFrame.Text:SetTextColor(1, 1, 1)
 			CharacterFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-			if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+			if E.db.ElvUI_EltreumUI.skins.characterskingradients and not CharacterFrame.Text:GetText():match("|r") then
 				CharacterFrame.Text:SetText(ElvUI_EltreumUI:GradientName(L["Item Level"], E.myclass)) ---ilvl
 			else
 				CharacterFrame.Text:SetText(L["Item Level"])
@@ -1419,7 +1445,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.Text3:SetParent(_G["PaperDollItemsFrame"])
 			CharacterFrame.Text3:SetTextColor(1, 1, 1)
 			CharacterFrame.Text3:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-			if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+			if E.db.ElvUI_EltreumUI.skins.characterskingradients and not CharacterFrame.Text3:GetText():match("|r") then
 				CharacterFrame.Text3:SetText(ElvUI_EltreumUI:GradientName(L["Attributes"], E.myclass)) ---attributes
 			else
 				CharacterFrame.Text3:SetText(L["Attributes"])
@@ -2067,7 +2093,6 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							end)
 						end
 
-
 						if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
 							classsymbolonframe = ("|T"..(classIcons[englishClass]..".tga:0:0:0:0|t"))
 						elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
@@ -2083,7 +2108,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									if not _G.InspectNameText:GetText():match("|T") then
 										_G.InspectNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 										if string.len(_G.InspectNameText:GetText()) >= 6 then
-											if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+											if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectNameText:GetText():match("|r") then
 												_G.InspectNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectNameText:GetText(), englishClass))
 											else
 												_G.InspectNameText:SetText(classsymbolonframe.." ".._G.InspectNameText:GetText())
@@ -2102,7 +2127,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									if not _G.InspectFrameTitleText:GetText():match("|T") then
 										_G.InspectFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
 										if string.len(_G.InspectFrameTitleText:GetText()) >= 6 then
-											if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+											if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectFrameTitleText:GetText():match("|r") then
 												_G.InspectFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectFrameTitleText:GetText(), englishClass))
 											else
 												_G.InspectFrameTitleText:SetText(classsymbolonframe.." ".._G.InspectFrameTitleText:GetText())
