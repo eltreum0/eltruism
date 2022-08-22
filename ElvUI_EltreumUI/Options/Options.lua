@@ -6859,7 +6859,7 @@ function ElvUI_EltreumUI:Configtable()
 							hidenontargetdebuffs = {
 								order = 916,
 								type = 'toggle',
-								name = L["Hide Debuffs non targeted Nameplates, show when targeted"],
+								name = L["Hide Debuffs on Non Targeted Nameplates, show when Targeted"],
 								desc = L["Toggle On and Off"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hidedebuffsnontarget end,
