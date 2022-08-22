@@ -337,15 +337,16 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.PaperDollTitlesPane:SetPoint("RIGHT", CharacterFrame, "RIGHT", -30, -20)
 
 
+			if (not IsAddOnLoaded('DejaCharacterStats')) then
+				CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
+				CharacterStatsPane.ItemLevelCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 
-			CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
-			CharacterStatsPane.ItemLevelCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
+				CharacterStatsPane.AttributesCategory.backdrop:Hide()
+				CharacterStatsPane.AttributesCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
 
-			CharacterStatsPane.AttributesCategory.backdrop:Hide()
-			CharacterStatsPane.AttributesCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-
-			CharacterStatsPane.EnhancementsCategory.backdrop:Hide()
-			CharacterStatsPane.EnhancementsCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
+				CharacterStatsPane.EnhancementsCategory.backdrop:Hide()
+				CharacterStatsPane.EnhancementsCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
+			end
 
 			--CharacterFrame.EltruismExtraStatsBlock:SetSize(150, 18)
 			--CharacterFrame.EltruismExtraStatsBlock:SetTexture(E.Media.Textures.Black8x8)
