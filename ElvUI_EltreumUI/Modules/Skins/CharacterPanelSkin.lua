@@ -1845,6 +1845,11 @@ local qualityAnchorInspect
 
 --Player Item Quality Texture
 function ElvUI_EltreumUI:PlayerItemQuality(unit)
+	if unit == "player" and IsAddOnLoaded("ElvUI_SLE") then
+		if E.db["sle"]["armory"]["character"]["enable"] then
+			return
+		end
+	end
 	if E.db.ElvUI_EltreumUI.skins.itemquality and E.private.skins.blizzard.enable then
 		E:Delay(0, function()
 			for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
@@ -2237,6 +2242,11 @@ function ElvUI_EltreumUI:InspectBg(unit)
 
 			--add a texture based on quality too, tbc needed a timer
 			if E.db.ElvUI_EltreumUI.skins.itemquality then
+				if IsAddOnLoaded("ElvUI_SLE") then
+					if E.db["sle"]["armory"]["inspect"]["enable"] then
+						return
+					end
+				end
 				E:Delay(0, function()
 					for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 						qualityAnchorInspect = _G["Inspect"..InvSlotIdTable[InvSlotId]]
