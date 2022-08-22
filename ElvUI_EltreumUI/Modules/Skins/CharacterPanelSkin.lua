@@ -634,7 +634,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -120)
 				elseif number >= 27 then
 					CharacterFrame.EltruismExtraStats:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -140)
-					CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -120)
+					CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -140)
 				end
 
 				CharacterFrame.EltruismSpeed:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont , 72, -20)
