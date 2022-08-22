@@ -1102,5 +1102,5 @@ L["Add Class Colors to Text"] = "Klassenfarben zu Texten hinzufügen"
 L["Cursor Position"] = "Mauszeiger Position"
 L["Color Modifier Keys"] = "Farbmodifikatortasten"
 L["Add Class Color to Modifier Keys like ALT and CTRL on the ActionBars"] = "Klassenfarbe zu Modifikatortasten wie ALT und STRG auf den Aktionsleisten hinzufügen"
-L["Hide Debuffs non targeted Nameplates, show when targeted"] = true
-L["Hide Debuffs on Non Target"] = true
+L["Hide Debuffs non targeted Nameplates, show when targeted"] = "Verstecke Schwächungszauber auf nicht anvisierte Namensplaketten, zeige wenn anvisiert."
+L["Hide Debuffs on Non Target"] = "Verstecke Schwächungszauber auf nicht Ziele"
