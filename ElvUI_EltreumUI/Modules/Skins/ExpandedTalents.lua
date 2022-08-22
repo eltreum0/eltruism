@@ -49,20 +49,33 @@ function ElvUI_EltreumUI:ExpandedTalents()
 						PlayerTalentFrameScrollFrame:ClearAllPoints()
 						PlayerTalentFrameScrollFrame:SetPoint("CENTER", PlayerTalentFrame, 0, 20)
 					end
-					--kill stuff
-					if PlayerTalentFrameBackgroundTopRight then
-						PlayerTalentFrameBackgroundTopRight:Kill()
-					end
-					if PlayerTalentFrameBackgroundBottomLeft then
-						PlayerTalentFrameBackgroundBottomLeft:Kill()
-					end
-					if PlayerTalentFrameBackgroundBottomRight then
-						PlayerTalentFrameBackgroundBottomRight:Kill()
-					end
+
 					--increase the size of the background
 					if PlayerTalentFrameBackgroundTopLeft then
 						if E.TBC then
-							PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 600)
+							--PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 600)
+							if PlayerTalentFrameScrollFrame.backdrop then
+								PlayerTalentFrameScrollFrame.backdrop:Kill()
+							end
+							PlayerTalentFrameBackgroundTopLeft:ClearAllPoints()
+							PlayerTalentFrameBackgroundTopLeft:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundTopLeft:SetPoint("TOPLEFT", PlayerTalentFrameScrollFrame, "TOPLEFT", -8, 1)
+							PlayerTalentFrameBackgroundTopLeft:SetSize(243, 431)
+
+							PlayerTalentFrameBackgroundBottomLeft:ClearAllPoints()
+							PlayerTalentFrameBackgroundBottomLeft:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundBottomLeft:SetPoint("BOTTOMLEFT", PlayerTalentFrameScrollFrame, "BOTTOMLEFT", -8, -100)
+							PlayerTalentFrameBackgroundBottomLeft:SetSize(243, 250)
+
+							PlayerTalentFrameBackgroundTopRight:ClearAllPoints()
+							PlayerTalentFrameBackgroundTopRight:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundTopRight:SetPoint("TOPRIGHT", PlayerTalentFrameScrollFrame, "TOPRIGHT", 12, 1)
+							PlayerTalentFrameBackgroundTopRight:SetSize(57, 431)
+
+							PlayerTalentFrameBackgroundBottomRight:ClearAllPoints()
+							PlayerTalentFrameBackgroundBottomRight:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundBottomRight:SetPoint("BOTTOMRIGHT", PlayerTalentFrameScrollFrame, "BOTTOMRIGHT", 12, -100)
+							PlayerTalentFrameBackgroundBottomRight:SetSize(57, 250)
 						elseif E.Wrath then
 							if PlayerTalentFrameScrollFrame.backdrop then
 								PlayerTalentFrameScrollFrame.backdrop:Kill()
@@ -72,10 +85,48 @@ function ElvUI_EltreumUI:ExpandedTalents()
 
 							PlayerTalentFrameBackgroundTopLeft:ClearAllPoints()
 							PlayerTalentFrameBackgroundTopLeft:SetParent(PlayerTalentFrame)
-							PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 600)
-							PlayerTalentFrameBackgroundTopLeft:SetPoint("CENTER", PlayerTalentFrame, "CENTER", -10, 20)
+							PlayerTalentFrameBackgroundTopLeft:SetPoint("TOPLEFT", PlayerTalentFrameScrollFrame, "TOPLEFT", -15, -2)
+							PlayerTalentFrameBackgroundTopLeft:SetSize(203, 467)
+
+							PlayerTalentFrameBackgroundBottomLeft:ClearAllPoints()
+							PlayerTalentFrameBackgroundBottomLeft:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundBottomLeft:SetPoint("BOTTOMLEFT", PlayerTalentFrameScrollFrame, "BOTTOMLEFT", -15, 23)
+							PlayerTalentFrameBackgroundBottomLeft:SetSize(203, 120)
+
+							PlayerTalentFrameBackgroundTopRight:ClearAllPoints()
+							PlayerTalentFrameBackgroundTopRight:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundTopRight:SetPoint("TOPRIGHT", PlayerTalentFrameScrollFrame, "TOPRIGHT", 0, -2)
+							PlayerTalentFrameBackgroundTopRight:SetSize(50 , 467)
+
+							PlayerTalentFrameBackgroundBottomRight:ClearAllPoints()
+							PlayerTalentFrameBackgroundBottomRight:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundBottomRight:SetPoint("BOTTOMRIGHT", PlayerTalentFrameScrollFrame, "BOTTOMRIGHT", 0, 23)
+							PlayerTalentFrameBackgroundBottomRight:SetSize(50 , 120)
+
 						elseif E.Classic then
-							PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 490)
+							--PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 490)
+							if PlayerTalentFrameScrollFrame.backdrop then
+								PlayerTalentFrameScrollFrame.backdrop:Kill()
+							end
+							PlayerTalentFrameBackgroundTopLeft:ClearAllPoints()
+							PlayerTalentFrameBackgroundTopLeft:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundTopLeft:SetPoint("TOPLEFT", PlayerTalentFrameScrollFrame, "TOPLEFT", 0, 0)
+							PlayerTalentFrameBackgroundTopLeft:SetSize(204, 374)
+
+							PlayerTalentFrameBackgroundBottomLeft:ClearAllPoints()
+							PlayerTalentFrameBackgroundBottomLeft:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundBottomLeft:SetPoint("BOTTOMLEFT", PlayerTalentFrameScrollFrame, "BOTTOMLEFT", 0, -54)
+							PlayerTalentFrameBackgroundBottomLeft:SetSize(204, 150)
+
+							PlayerTalentFrameBackgroundTopRight:ClearAllPoints()
+							PlayerTalentFrameBackgroundTopRight:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundTopRight:SetPoint("TOPRIGHT", PlayerTalentFrameScrollFrame, "TOPRIGHT", 24, 0)
+							PlayerTalentFrameBackgroundTopRight:SetSize(100, 374)
+
+							PlayerTalentFrameBackgroundBottomRight:ClearAllPoints()
+							PlayerTalentFrameBackgroundBottomRight:SetParent(PlayerTalentFrame)
+							PlayerTalentFrameBackgroundBottomRight:SetPoint("BOTTOMRIGHT", PlayerTalentFrameScrollFrame, "BOTTOMRIGHT", 24, -54)
+							PlayerTalentFrameBackgroundBottomRight:SetSize(100, 150)
 						end
 					end
 					--hide the close button (only shows up for some people?)
