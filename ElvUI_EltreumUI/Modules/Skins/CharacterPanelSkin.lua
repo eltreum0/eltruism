@@ -372,7 +372,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 				end
 				--statusbars
-				linewidthsle1 = (( 168 - CharacterStatsPane.OffenseCategory.Title:GetStringWidth())/2)
+				linewidthsle1 = (( 300 - CharacterStatsPane.OffenseCategory.Title:GetStringWidth())/2)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismOffenseCategory", CharacterStatsPane)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetSize(linewidthsle1, 4)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.OffenseCategory.Title, "LEFT", 0, -1)
@@ -395,7 +395,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 				end
 				--statusbars
-				linewidthsle2 = (( 168 - CharacterStatsPane.DefenceCategory.Title:GetStringWidth())/2)
+				linewidthsle2 = (( 300 - CharacterStatsPane.DefenceCategory.Title:GetStringWidth())/2)
 				CharacterStatsPane.DefenceCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismDefenceCategory", CharacterStatsPane)
 				CharacterStatsPane.DefenceCategory.Title.StatusLine:SetSize(linewidthsle2, 4)
 				CharacterStatsPane.DefenceCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.DefenceCategory.Title, "LEFT", 0, -1)
@@ -704,11 +704,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--statusbars
 			if IsAddOnLoaded("ElvUI_SLE") then
-				if E.locale == "enUS" then
-					linewidth1 = (( 210 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
-				else
-					linewidth1 = (( 204 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
-				end
+				linewidth1 = (( 300 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
 			else
 				linewidth1 = (( 193 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
 			end
@@ -727,11 +723,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
 
 			if IsAddOnLoaded("ElvUI_SLE") then
-				if E.locale == "enUS" then
-					linewidth2 = (( 214 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
-				else
-					linewidth2 = (( 204 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
-				end
+				linewidth2 = (( 300 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
 			else
 				linewidth2 = (( 194 - CharacterStatsPane.AttributesCategory.Title:GetStringWidth())/2)
 			end
@@ -747,11 +739,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterStatsPane.AttributesCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
 
 			if IsAddOnLoaded("ElvUI_SLE") then
-				if E.locale == "enUS" then
-					linewidth3 = (( 236 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
-				else
-					linewidth3 = (( 204 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
-				end
+				linewidth3 = (( 300 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
 			else
 				linewidth3 = (( 193 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
 			end
