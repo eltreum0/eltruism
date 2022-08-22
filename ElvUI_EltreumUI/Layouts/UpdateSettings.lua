@@ -91,6 +91,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.skins.playerdeathcustom = false
 	E.db.ElvUI_EltreumUI.skins.doom.enable = true
 	E.db.ElvUI_EltreumUI.skins.characterskingradients = true
+	E.db.ElvUI_EltreumUI.skins.colormodkey = true
 
 	-- Borders
 	E.db.ElvUI_EltreumUI.borders.minimapborder = true
