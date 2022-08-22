@@ -570,7 +570,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if CharacterFrame.EltruismClassResourceDesc:GetText() ~=nil and not CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
 						CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_ENERGY_REGEN, E.myclass))
 					end
-					if not CharacterFrame.EltruismClassResourceDesc2:GetText():match("|r") then
+					if CharacterFrame.EltruismClassResourceDesc2:GetText() ~=nil and not CharacterFrame.EltruismClassResourceDesc2:GetText():match("|r") then
 						CharacterFrame.EltruismClassResourceDesc2:SetText(ElvUI_EltreumUI:GradientName(MANA_REGEN, E.myclass))
 					end
 				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
