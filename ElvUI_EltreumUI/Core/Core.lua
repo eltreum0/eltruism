@@ -153,7 +153,9 @@ end
 function ElvUI_EltreumUI:BlizzCombatText()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
-	elseif E.db.ElvUI_EltreumUI == nil then
+	elseif not E.db.ElvUI_EltreumUI then
+		return
+	elseif not E.db.ElvUI_EltreumUI.otherstuff then
 		return
 	end
 	if not InCombatLockdown() then
