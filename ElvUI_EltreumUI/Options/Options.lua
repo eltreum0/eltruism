@@ -256,15 +256,39 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						},
 					},
-					header10 = {
+					headerdb = {
 						order = 11,
+						type = "description",
+						name = L["Database Check"],
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					databasecheck = {
+						order = 12,
+						type = 'group',
+						inline = true,
+						name = "",
+						args = {
+							resethealer = {
+								order = 1,
+								type = 'execute',
+								name = L["Run Database Check"],
+								desc = L["Perform a Database Check if you are updating from a very old version as some settings have changed places and the Database Check will convert them"],
+								width = 'full',
+								confirm = true,
+								func = function() ElvUI_EltreumUI:DatabaseConversions(true) end,
+							},
+						},
+					},
+					header10 = {
+						order = 21,
 						type = "description",
 						name = L["Clear Details! Damage Meter tables to free up memory"],
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
 					detailstable = {
-						order = 12,
+						order = 22,
 						type = 'group',
 						name = "",
 						width = "full",

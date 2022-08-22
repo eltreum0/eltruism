@@ -1059,3 +1059,6 @@ L["Color Modifier Keys"] = true
 L["Add Class Color to Modifier Keys like ALT and CTRL on the ActionBars"] = true
 L["Hide Debuffs on Non Targeted Nameplates, show when Targeted"] = true
 L["Hide Debuffs on Non Target"] = true
+L["Database Check"] = true
+L["Run Database Check"] = true
+L["Perform a Database Check if you are updating from a very old version as some settings have changed places and the Database Check will convert them"] = true
