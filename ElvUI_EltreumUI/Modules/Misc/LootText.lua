@@ -136,10 +136,10 @@ function ElvUI_EltreumUI:LootText()
 	combatindicatorframe:SetScript("OnEvent", function(_,event)
 		if E.db.ElvUI_EltreumUI.loot.loottext.combatindicator then
 			if event == "PLAYER_REGEN_DISABLED" then
-				CombatText_AddMessage("|cffFF0000 +"..string.upper(COMBAT).."|r", CombatText_StandardScroll, 1, 0, 0)
+				CombatText_AddMessage("|cffFF0000+"..string.upper(COMBAT).."|r", CombatText_StandardScroll, 1, 0, 0)
 			end
 			if event == "PLAYER_REGEN_ENABLED" then
-				CombatText_AddMessage("|cffFFFFFF -"..string.upper(COMBAT).."|r", CombatText_StandardScroll, 1, 0, 0)
+				CombatText_AddMessage("|cffFFFFFF-"..string.upper(COMBAT).."|r", CombatText_StandardScroll, 1, 0, 0)
 			end
 		end
 	end)
