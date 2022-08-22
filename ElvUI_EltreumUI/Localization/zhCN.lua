@@ -1054,3 +1054,4 @@ L["Credits"] = true
 L["Add Class Gradient Colors to Other Texts"] = true
 L["Add Class Gradient Colors to Text"] = true
 L["Add Class Colors to Text"] = true
+L["Cursor Position"] = true
