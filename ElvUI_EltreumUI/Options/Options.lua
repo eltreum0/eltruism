@@ -8359,7 +8359,13 @@ function ElvUI_EltreumUI:Configtable()
 							statcolors = {
 								order = 107,
 								type = 'toggle',
-								name = L["Add Class Gradient Colors to Stats"],
+								name = function()
+									if E.Retail then
+										return L["Add Class Gradient Colors to Stats"]
+									else
+										return L["Add Class Colors to Text"]
+									end
+								end,
 								width = 'full',
 								desc = L["Enable this option"],
 								get = function() return E.db.ElvUI_EltreumUI.skins.statcolors end,
@@ -8368,7 +8374,13 @@ function ElvUI_EltreumUI:Configtable()
 							othergradientcolors = {
 								order = 108,
 								type = 'toggle',
-								name = L["Add Class Gradient Colors to Other Texts"],
+								name = function()
+									if E.Retail then
+										return L["Add Class Gradient Colors to Other Texts"]
+									else
+										return L["Add Class Gradient Colors to Text"]
+									end
+								end,
 								width = 'full',
 								desc = L["Enable this option"],
 								get = function() return E.db.ElvUI_EltreumUI.skins.characterskingradients end,
