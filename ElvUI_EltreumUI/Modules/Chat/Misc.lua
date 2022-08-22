@@ -29,9 +29,7 @@ local classcolorsescape = {
 	["WARRIOR"] = "C69B6D",
 }
 
---local function ColorSysMsgs(_, event, message, ...)
-local function ColorSysMsgs(_, event, message, test1,test2,test3,test4,test5,test6,test7,test8,test9,test10,test11,test12,test13,test14, ...)
-	print(test1,test2,test3,test4,test5,test6,test7,test8,test9,test10,test11,test12,test13,test14)
+local function ColorSysMsgs(_, event, message, ...)
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
 	elseif not E.db.ElvUI_EltreumUI then
@@ -40,14 +38,15 @@ local function ColorSysMsgs(_, event, message, test1,test2,test3,test4,test5,tes
 		return
 	end
 	if E.db.ElvUI_EltreumUI.chat.colorsysmsg then
-		if message:find("rolls") or message:find("tira") or message:find("掷出") or message:find("würfelt. Ergebnis:") or message:find("obtient un") or message:find("님이 주사위를 굴려") or message:find("tira los dados y obtiene") or message:find("выбрасывает") or message:find("擲出") then
+		local rollstring = "rolls" or "tira" or "掷出" or "würfelt. Ergebnis:" or "obtient un" or "님이 주사위를 굴려" or "tira los dados y obtiene" or "выбрасывает" or "擲出"
+		if message:find(rollstring) then
 			local msg = (string.format("|cff"..classcolorsescape[E.myclass]..message.."|r"))
-			if msg:find("rolls 1 ") then
+			if msg:find(rollstring.." 1 ") then
 				if E.db.ElvUI_EltreumUI.chat.rollsound then
 					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.ogg", "Master")
 				end
 				return false, gsub(msg, "rolls 1", "rolls |cffFF00001|r"), ...
-			elseif msg:find("rolls 100 ") then
+			elseif msg:find(rollstring.." 100 ") then
 				if E.db.ElvUI_EltreumUI.chat.rollsound then
 					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\WillSmith-Ahaha.ogg", "Master")
 				end
