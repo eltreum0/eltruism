@@ -303,11 +303,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		--expand and skin the panel
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then
-			if IsAddOnLoaded("ElvUI_SLE") then
+			--[[if IsAddOnLoaded("ElvUI_SLE") then
 				if E.db["sle"]["armory"]["character"]["enable"] then
 					return
 				end
-			end
+			end]]
 
 			--color the avg item level
 			CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0.4, classcolor.r, classcolor.g, classcolor.b, 0)
@@ -705,7 +705,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			--statusbars
 			if IsAddOnLoaded("ElvUI_SLE") then
 				if E.locale == "enUS" then
-					linewidth1 = (( 193 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
+					linewidth1 = (( 210 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
 				else
 					linewidth1 = (( 204 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
 				end
@@ -726,7 +726,15 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
 
-			linewidth2 = (( 194 - CharacterStatsPane.AttributesCategory.Title:GetStringWidth())/2)
+			if IsAddOnLoaded("ElvUI_SLE") then
+				if E.locale == "enUS" then
+					linewidth2 = (( 214 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
+				else
+					linewidth2 = (( 204 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
+				end
+			else
+				linewidth2 = (( 194 - CharacterStatsPane.AttributesCategory.Title:GetStringWidth())/2)
+			end
 			CharacterStatsPane.AttributesCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismAttributesCategoryLine", CharacterStatsPane)
 			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetSize(linewidth2, 4)
 			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.AttributesCategory.Title, "LEFT", 0, -1)
@@ -740,14 +748,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			if IsAddOnLoaded("ElvUI_SLE") then
 				if E.locale == "enUS" then
-					linewidth3 = (( 193 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
+					linewidth3 = (( 236 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
 				else
 					linewidth3 = (( 204 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
 				end
 			else
 				linewidth3 = (( 193 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
 			end
-
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine", CharacterStatsPane)
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetSize(linewidth3, 4)
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.EnhancementsCategory.Title, "LEFT", 0, -1)
@@ -768,6 +775,28 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismExtraStats2:SetPoint("LEFT", CharacterFrame.EltruismExtraStatsFont, "RIGHT", 0, -1)
 			CharacterFrame.EltruismExtraStats2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
 			CharacterFrame.EltruismExtraStats2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+
+
+			if IsAddOnLoaded("ElvUI_SLE") then
+				if E.db["sle"]["armory"]["character"]["enable"] then
+					CharacterFrame.EltruismExtraStatsFont:Hide()
+					CharacterFrame.EltruismExtraStats:Hide()
+					CharacterFrame.EltruismExtraStats2:Hide()
+
+					CharacterFrame.EltruismSpeed:Hide()
+					CharacterFrame.EltruismSpeedDesc:Hide()
+					CharacterFrame.EltruismSpeedDescTooltip:Hide()
+
+					CharacterFrame.EltruismClassResource:Hide()
+					CharacterFrame.EltruismClassResourceDesc:Hide()
+					CharacterFrame.EltruismClassResourceDescTooltip:Hide()
+
+					CharacterFrame.EltruismClassResource2:Hide()
+					CharacterFrame.EltruismClassResourceDesc2:Hide()
+					CharacterFrame.EltruismClassResourceDescTooltip2:Hide()
+				end
+			end
+
 		end
 
 		--add gradient text to some texts
@@ -826,6 +855,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		-- add and expand art
 		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+			if IsAddOnLoaded('ElvUI_SLE') then
+				if _G.PaperDollFrame.SLE_Armory_BG then
+					if _G.PaperDollFrame.SLE_Armory_BG:IsVisible() then
+						_G.PaperDollFrame.SLE_Armory_BG:Hide()
+					end
+				end
+			end
 
 			--hide other bgs so one can be streched like the talents for tbc/classic
 			CharacterModelFrame.BackgroundTopRight:Hide()
@@ -928,9 +964,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 					end
-					if PaperDollFrame.SLE_Armory_BG then
-						if PaperDollFrame.SLE_Armory_BG:IsVisible() then
-							PaperDollFrame.SLE_Armory_BG:Hide()
+					if IsAddOnLoaded('ElvUI_SLE') then
+						if _G.PaperDollFrame.SLE_Armory_BG then
+							if _G.PaperDollFrame.SLE_Armory_BG:IsVisible() then
+								_G.PaperDollFrame.SLE_Armory_BG:Hide()
+							end
 						end
 					end
 					_G.CharacterModelFrameBackgroundOverlay:Hide()
@@ -959,9 +997,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 					end
 					_G.CharacterModelFrameBackgroundOverlay:Hide()
-					if PaperDollFrame.SLE_Armory_BG then
-						if PaperDollFrame.SLE_Armory_BG:IsVisible() then
-							PaperDollFrame.SLE_Armory_BG:Hide()
+					if IsAddOnLoaded('ElvUI_SLE') then
+						if _G.PaperDollFrame.SLE_Armory_BG then
+							if _G.PaperDollFrame.SLE_Armory_BG:IsVisible() then
+								_G.PaperDollFrame.SLE_Armory_BG:Hide()
+							end
 						end
 					end
 				end
