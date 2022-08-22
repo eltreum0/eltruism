@@ -408,13 +408,18 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterStatsPane.DefenceCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
 
 				--fix enhancement
-				CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetSize(linewidth3 + 8, 4)
-				CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetSize(linewidth3 + 8, 4)
+				if CharacterStatsPane.EnhancementsCategory.Title.StatusLine then
+					CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetSize(linewidth3 + 8, 4)
+				end
+				if CharacterStatsPane.EnhancementsCategory.Title.StatusLine2 then
+					CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetSize(linewidth3 + 8, 4)
+				end
 			end
 
 				--movement speed
 			CharacterFrame.EltruismSpeed:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
 			CharacterFrame.EltruismSpeed:SetTextColor(1, 1, 1)
+			CharacterFrame.EltruismSpeed:SetText("PLACEHOLDER	")
 			CharacterFrame.EltruismSpeed:SetPoint("CENTER", CharacterStatsPane , 70, -163)
 			CharacterFrame.EltruismSpeed:SetParent(CharacterStatsPane)
 			CharacterFrame.EltruismSpeed:SetJustifyH("RIGHT")
@@ -451,12 +456,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			--class resource
 			CharacterFrame.EltruismClassResource:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
 			CharacterFrame.EltruismClassResource:SetTextColor(1, 1, 1)
+			CharacterFrame.EltruismClassResource:SetText("PLACEHOLDER")
 			CharacterFrame.EltruismClassResource:SetPoint("CENTER", CharacterStatsPane , 72, -176)
 			CharacterFrame.EltruismClassResource:SetParent(CharacterStatsPane)
 			CharacterFrame.EltruismClassResource:SetJustifyH("RIGHT")
 			CharacterFrame.EltruismClassResource:SetShadowColor(0, 0, 0, 1)
 			CharacterFrame.EltruismClassResource:SetShadowOffset(1, 0)
 			CharacterFrame.EltruismClassResourceDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), 10, E.db.general.fontStyle)
+			CharacterFrame.EltruismClassResourceDesc:SetText("PLACEHOLDER")
 			CharacterFrame.EltruismClassResourceDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
 			CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", CharacterStatsPane , -46, -176)
 			CharacterFrame.EltruismClassResourceDesc:SetParent(CharacterStatsPane)
@@ -560,7 +567,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			elseif E.myclass == 'DRUID' or E.myclass == 'MONK' then
 				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-					if not CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+					if CharacterFrame.EltruismClassResourceDesc:GetText() ~=nil and not CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
 						CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_ENERGY_REGEN, E.myclass))
 					end
 					if not CharacterFrame.EltruismClassResourceDesc2:GetText():match("|r") then
@@ -574,7 +581,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			elseif E.myclass == 'DEATHKNIGHT' then
 				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-					if not CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
+					if CharacterFrame.EltruismClassResourceDesc:GetText() ~= nil and not CharacterFrame.EltruismClassResourceDesc:GetText():match("|r") then
 						CharacterFrame.EltruismClassResourceDesc:SetText(ElvUI_EltreumUI:GradientName(STAT_RUNE_REGEN, E.myclass))
 					end
 				else --if E.db.ElvUI_EltreumUI.skins.statcolors then
