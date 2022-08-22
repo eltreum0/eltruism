@@ -1,9 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
-
 if not E.private.ElvUI_EltreumUI.install_version then return end
-
---Color System messages
 local classcolorsescape = {
 	["DEATHKNIGHT"]	= "C41E3A",
 	["DEMONHUNTER"]	= "A330C9",
@@ -19,6 +16,7 @@ local classcolorsescape = {
 	["WARRIOR"] = "C69B6D",
 }
 
+--Color Mod keys messages
 if E.db.ElvUI_EltreumUI.skins.colormodkey then
 	L["KEY_ALT"] = "|cff"..classcolorsescape[E.myclass]..L["KEY_ALT"].."|r"
 	L["KEY_CTRL"] = "|cff"..classcolorsescape[E.myclass]..L["KEY_CTRL"].."|r"
