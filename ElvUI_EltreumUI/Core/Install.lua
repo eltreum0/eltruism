@@ -107,7 +107,16 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:SetText(L["Light Mode"].."\n"..L["Dark Mode"])
 			_G.PluginInstallFrame.Option2:Enable()
 			_G.PluginInstallFrame.Option2:Show()
-			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:GradientMode() end)
+			_G.PluginInstallFrame.Option2:SetScript('OnClick', function()
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+					E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = false
+					E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = false
+					E:UpdateMediaItems()
+					E:UpdateUnitFrames()
+				else
+					ElvUI_EltreumUI:GradientMode()
+				end
+			end)
 			_G.PluginInstallFrame.Option2:SetText(L["Gradient Mode"])
 			_G.PluginInstallFrame.Option3:Enable()
 			_G.PluginInstallFrame.Option3:Show()
