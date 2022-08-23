@@ -8,6 +8,14 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars()
 
 	E.db["ElvUI_EltreumUI"]["skins"]["hideABkeypress"] = true
 
+	--general actionbars settings
+	E.db["actionbar"]["chargeCooldown"] = true
+	E.db["actionbar"]["colorSwipeNormal"]["a"] = 1
+	E.db["actionbar"]["cooldown"]["mmssThreshold"] = 60
+	E.db["actionbar"]["cooldown"]["threshold"] = 5
+	E.db["actionbar"]["desaturateOnCooldown"] = true
+
+	--bar specific settings
 	E.db["actionbar"]["bar1"]["backdropSpacing"] = 0
 	E.db["actionbar"]["bar1"]["buttonHeight"] = 30
 	E.db["actionbar"]["bar1"]["buttonSize"] = 43
@@ -29,15 +37,8 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars()
 	E.db["actionbar"]["bar2"]["keepSizeRatio"] = false
 	E.db["actionbar"]["bar2"]["showGrid"] = false
 	E.db["actionbar"]["bar2"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
-
 	E.db["actionbar"]["bar3"]["mouseover"] = true
 	E.db["actionbar"]["bar4"]["mouseover"] = true
-
-	E.db["actionbar"]["chargeCooldown"] = true
-	E.db["actionbar"]["colorSwipeNormal"]["a"] = 1
-	E.db["actionbar"]["cooldown"]["mmssThreshold"] = 60
-	E.db["actionbar"]["cooldown"]["threshold"] = 5
-	E.db["actionbar"]["desaturateOnCooldown"] = true
 
 	--adjust based on class having a classbar or not
 	if _G.ElvUF_Player.Totems and _G.ElvUF_Player.Totems:IsVisible() == true then
@@ -53,19 +54,16 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars()
 		E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,257"
 	end
 
+	--other movers
 	E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-320,307"
 	E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-306,269"
-
-
-
-
 	E.db["movers"]["ElvUF_TargetMover"] = "BOTTOM,ElvUIParent,BOTTOM,320,307"
 	E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-520,269"
 	E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,256,301"
-
 	E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-413,307"
 	E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
 
+	--unitframes, making sure it detaches
 	E.db["unitframe"]["units"]["player"]["classbar"]["detachFromFrame"] = true
 	E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 364
 	E.db["unitframe"]["units"]["player"]["classbar"]["fill"] = "spaced"
@@ -76,6 +74,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars()
 	E.db["unitframe"]["units"]["player"]["power"]["height"] = 7
 	E.db["unitframe"]["units"]["player"]["power"]["position"] = "CENTER"
 
+	--adjust power text
 	if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["justifyH"] = "CENTER"
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["size"] = 12
@@ -85,6 +84,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars()
 		E.db["unitframe"]["units"]["player"]["power"]["text_format"] = "[power:current:shortvalue]"
 	end
 
+	--fix unitframes health/power/class
 	E.db["unitframe"]["units"]["target"]["height"] = 45
 	E.db["unitframe"]["units"]["player"]["power"]["width"] = "spaced"
 	E.db["unitframe"]["units"]["target"]["power"]["attachTextTo"] = "Power"
