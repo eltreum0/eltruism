@@ -58,6 +58,7 @@ local THANKYOU = {
 local SUPPORTER = {
 	'|cffB50909Artan|r',
 	'|cffB50909Brovenn|r',
+	'|cffB50909Daxxarri|r',
 	'|cffB50909Dreandor|r',
 	'|cffB50909Morthart|r',
 	'|cffB50909Nekator|r',
