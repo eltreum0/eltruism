@@ -84,6 +84,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["actionbar"]["bar2"]["buttonHeight"] = 25
 	E.db["actionbar"]["bar2"]["buttonSize"] = 30
 	E.db["actionbar"]["bar2"]["buttonSpacing"] = 3
+	E.db["actionbar"]["bar2"]["buttons"] = 12
 	E.db["actionbar"]["bar2"]["countFont"] = "Kimberley"
 	E.db["actionbar"]["bar2"]["enabled"] = true
 	E.db["actionbar"]["bar2"]["hotkeyFont"] = "Kimberley"
@@ -107,6 +108,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["actionbar"]["bar4"]["buttonSize"] = 30
 	E.db["actionbar"]["bar4"]["buttonSpacing"] = 3
 	E.db["actionbar"]["bar4"]["buttonsPerRow"] = 12
+	E.db["actionbar"]["bar4"]["buttons"] = 12
 	E.db["actionbar"]["bar4"]["countFont"] = "Kimberley"
 	E.db["actionbar"]["bar4"]["hotkeyFont"] = "Kimberley"
 	E.db["actionbar"]["bar4"]["keepSizeRatio"] = false
