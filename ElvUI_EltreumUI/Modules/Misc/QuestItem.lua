@@ -34,7 +34,7 @@ EltruismQuestItemFrame:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, 34)
 E:CreateMover(EltruismQuestItemFrame, "MoverEltruismQuestItem", "EltruismQuestItemBar", nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,quests')
 --EltruismQuestItemFrame:Hide()
 
-EltruismQuestItemFrame.tip = CreateFrame("GameTooltip","EltruismQuestItem".."Tip",nil,"GameTooltipTemplate");
+EltruismQuestItemFrame.tip = CreateFrame("GameTooltip","EltruismQuestItemTip",nil,"GameTooltipTemplate");
 EltruismQuestItemFrame.tip:SetOwner(UIParent,"ANCHOR_NONE");
 
 
@@ -92,6 +92,8 @@ local qItems = {
 }
 local blocklist = {
 	[176809] = true, -- junk item that for some reason showed up
+
+	[180817] = true, -- cypher of relocation
 	--[140212] = true, --test item
 
 	--[24468] = true, --burstcap mushroom
@@ -342,12 +344,14 @@ function ElvUI_EltreumUI:QuestItem()
 				EltruismQuestItemFrame.tip:ClearLines()
 				EltruismQuestItemFrame.tip:SetHyperlink(link)
 				local numLines = EltruismQuestItemFrame.tip:NumLines()
-				local line2 = (_G["EltruismQuestItem".."TipTextLeft2"]:GetText() or "")
+				local line2 = (_G["EltruismQuestItemTipTextLeft2"]:GetText() or "")
 				if (numLines >= 3) and (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or line2 == ITEM_BIND_QUEST or line2 == GetZoneText()) and itemEquipLoc == "" then
 					for i = 3, numLines do
-						local text = _G["EltruismQuestItem".."TipTextLeft"..i]:GetText() or ""
-						if (text:find("^"..ITEM_SPELL_TRIGGER_ONUSE)) then
-							return 1
+						if _G["EltruismQuestItemTipTextLeft"..i] then
+							local text = _G["EltruismQuestItemTipTextLeft"..i]:GetText() or ""
+							if text and (text:find("^"..ITEM_SPELL_TRIGGER_ONUSE)) then
+								return 1
+							end
 						end
 					end
 				end
@@ -381,13 +385,15 @@ function ElvUI_EltreumUI:QuestItem()
 								if E.Retail then
 									--local isQuestItem, questId, isActive = GetContainerItemQuestInfo(bag,slot)
 									local isQuestItem, _, _ = GetContainerItemQuestInfo(bag,slot)
+									local _, _, _, _, _, itemType, itemSubType = GetItemInfo(link)
 									--if (questId and not isActive) or (cfg.userList[itemId]) or (CheckItemTooltip(link,itemId)) then
-									if isQuestItem or (CheckItemTooltip(link,itemId)) then
+									if isQuestItem or (itemType == "Quest" and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
 										local _, count = GetContainerItemInfo(bag,slot)
 										AddButton(index,bag,slot,link,itemId,count)
 										index = (index + 1)
 									end
 								elseif E.Wrath or E.TBC or E.Classic then
+									--local isQuestItem, _, _ = GetContainerItemQuestInfo(bag,slot) --not yet, wrath has it but tbc/classic dont
 									local _, _, _, _, _, itemType, _ = GetItemInfo(itemId)
 									if (itemType == "Quest" and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
 										local _, count = GetContainerItemInfo(bag,slot)
