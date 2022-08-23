@@ -6252,6 +6252,7 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA = value
 									ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
+									E:StaticPopup_Show('CONFIG_RL')
 								end,
 							},
 
