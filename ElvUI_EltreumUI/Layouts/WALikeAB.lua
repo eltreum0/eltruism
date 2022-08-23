@@ -43,7 +43,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["actionbar"]["bar4"]["mouseover"] = true
 		E.db["actionbar"]["bar5"]["mouseover"] = true
 
-
+		--adjust based on class having a classbar or not
 		E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,346"
 		E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,337"
 		E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 361
@@ -51,8 +51,6 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,303"
 		E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,270"
 		E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,248"
-
-		--adjust based on class having a classbar or not
 		if _G.ElvUF_Player_ClassBar and _G.ElvUF_Player_ClassBar:IsVisible() then
 			E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,346"
 			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 363
@@ -102,9 +100,9 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
 		else
 			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 364
-			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,312"
-			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,279"
-			E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,257"
+			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,303"
+			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,271"
+			E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,247"
 			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_PowerBar,BOTTOMLEFT,-6,5"
 			E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_PowerBar,BOTTOMRIGHT,6,5"
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
@@ -147,7 +145,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 15
 		E.db["unitframe"]["units"]["targettarget"]["power"]["width"] = "spaced"
 
-		ElvUI_EltreumUI:Print("Enabled WeakAuras ActionBars Mode")
+		ElvUI_EltreumUI:Print("Enabled WeakAuras ActionBars Mode, please reload")
 	else
 		--dont hide keypress
 		E.db["ElvUI_EltreumUI"]["skins"]["hideABkeypress"] = false
@@ -188,7 +186,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 			E.db["unitframe"]["units"]["player"]["power"]["text_format"] = "[power:current:shortvalue]"
 		end
 
-		ElvUI_EltreumUI:Print("Disabled WeakAuras ActionBars Mode")
+		ElvUI_EltreumUI:Print("Disabled WeakAuras ActionBars Mode, please reload")
 	end
 	E:UpdateActionBars()
 	E:UpdateUnitFrames()
