@@ -12,6 +12,7 @@ Updated Expanded Talents for Classic/TBC/Wrath, which will now better use the ba
 Updated the Chat Color System messages to better detect messages in other languages than English\
 Updated German locale by Dlarge\
 Updated Nameplate Style filter for Explosives, now forcing it to have full Alpha and higher Priority\
+Updated Quest Items Bar in Retail to more reliably detect quest items\
 Fixed Pet Name in Wrath not correctly replacing fonts\
 Fixed a possible error if trying to open the game menu while in combat\
 Fixed Other stats in Character Panel skin sometimes not being correctly positioned\
