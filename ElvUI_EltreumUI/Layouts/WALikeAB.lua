@@ -2,8 +2,8 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 
 --sets action bars/powers to be similar to weakaura's layouts
-function ElvUI_EltreumUI:WeakAurasLikeActionBars()
-	if E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA then
+function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
+	if E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA or value then
 
 		--hide keypresses
 		E.db["ElvUI_EltreumUI"]["skins"]["hideABkeypress"] = true
