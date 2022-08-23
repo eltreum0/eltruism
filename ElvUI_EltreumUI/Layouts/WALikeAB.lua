@@ -1,11 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local valuecolors = E:ClassColor(E.myclass, true)
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local tostring = _G.tostring
-local SetCVar = _G.SetCVar
 
-
+--sets action bars/powers to be similar to weakaura's layouts
 function ElvUI_EltreumUI:WeakAurasLikeActionBars()
 	local point, relativeTo, relativePoint, xOfs, yOfs = strsplit("," ,E.db["movers"]["ElvAB_1"])
 	print(point, relativeTo, relativePoint, xOfs, yOfs)
