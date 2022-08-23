@@ -351,11 +351,11 @@ function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, Hea
 	if NameOnly then
 		NP:StyleFilterBaseUpdate(frame)
 	else -- Only update these if it wasn't NameOnly. Otherwise, it leads to `Update_Tags` which does the job.
-		if NameTag then frame:Tag(frame.Name, db.name.format) frame.Name:UpdateTag() end
-		if PowerTag then frame:Tag(frame.Power.Text, db.power.text.format) frame.Power.Text:UpdateTag() end
-		if HealthTag then frame:Tag(frame.Health.Text, db.health.text.format) frame.Health.Text:UpdateTag() end
-		if TitleTag then frame:Tag(frame.Title, db.title.format) frame.Title:UpdateTag() end
-		if LevelTag then frame:Tag(frame.Level, db.level.format) frame.Level:UpdateTag() end
+		if NameTag and db.name then frame:Tag(frame.Name, db.name.format) frame.Name:UpdateTag() end
+		if PowerTag and db.power then frame:Tag(frame.Power.Text, db.power.text.format) frame.Power.Text:UpdateTag() end
+		if HealthTag and db.health then frame:Tag(frame.Health.Text, db.health.text.format) frame.Health.Text:UpdateTag() end
+		if TitleTag and db.title then frame:Tag(frame.Title, db.title.format) frame.Title:UpdateTag() end
+		if LevelTag and db.level then frame:Tag(frame.Level, db.level.format) frame.Level:UpdateTag() end
 	end
 end
 
