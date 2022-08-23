@@ -50,9 +50,14 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["smoothbars"] = false
 
 		--new tooltip things
-		--E.db["tooltip"]["inspectDataEnable"] = true
-		--E.db["tooltip"]["mythicDataEnable"] = true
-		--E.db["tooltip"]["role"] = true
+		E.db["tooltip"]["inspectDataEnable"] = true
+		E.db["tooltip"]["mythicDataEnable"] = true
+		E.db["tooltip"]["role"] = true
+
+		--to make sure its correct height
+		E.db["unitframe"]["units"]["player"]["height"] = 54
+		E.db["unitframe"]["units"]["target"]["height"] = 54
+		E.db["unitframe"]["units"]["targettarget"]["height"] = 54
 
 		--movers
 		E.db["movers"]["MoverEltruismInstanceDifficulty"] = "TOPRIGHT,UIParent,TOPRIGHT,-146,-21"
