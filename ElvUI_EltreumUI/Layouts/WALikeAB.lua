@@ -91,6 +91,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 				E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
 			end
 		else
+			E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 361
 			E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,346"
 			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,312"
 			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,279"
