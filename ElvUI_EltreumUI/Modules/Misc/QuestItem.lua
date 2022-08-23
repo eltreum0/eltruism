@@ -34,6 +34,10 @@ EltruismQuestItemFrame:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, 34)
 E:CreateMover(EltruismQuestItemFrame, "MoverEltruismQuestItem", "EltruismQuestItemBar", nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,quests')
 --EltruismQuestItemFrame:Hide()
 
+EltruismQuestItemFrame.tip = CreateFrame("GameTooltip","EltruismQuestItem".."Tip",nil,"GameTooltipTemplate");
+EltruismQuestItemFrame.tip:SetOwner(UIParent,"ANCHOR_NONE");
+
+
 local slots = {
 	"HeadSlot", "NeckSlot", "ShoulderSlot", "BackSlot", "ChestSlot", "ShirtSlot", "TabardSlot", "WristSlot",
 	"HandsSlot", "WaistSlot", "LegsSlot", "FeetSlot", "Finger0Slot", "Finger1Slot", "Trinket0Slot", "Trinket1Slot",
@@ -48,6 +52,9 @@ local qItems = {
 	28038, -- seaforium explosive
 	49132, -- fireliminator x-21
 	49368, -- ambassador disquise
+	24501, -- gordawag's boulder
+	24467, -- living fire
+	25458, -- mag'har battle standard
 
 	-- by Az
 	23818,	-- Stillpine Furbolg Language Primer
@@ -335,7 +342,7 @@ function ElvUI_EltreumUI:QuestItem()
 				EltruismQuestItemFrame.tip:ClearLines()
 				EltruismQuestItemFrame.tip:SetHyperlink(link)
 				local numLines = EltruismQuestItemFrame.tip:NumLines()
-				--local line2 = (_G[modName.."TipTextLeft2"]:GetText() or "")
+				local line2 = (_G["EltruismQuestItem".."TipTextLeft2"]:GetText() or "")
 				--if (numLines >= 3) and (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or line2 == ITEM_BIND_QUEST or line2 == GetZoneText()) then
 				if (numLines >= 3) and (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN) and itemEquipLoc == "" then
 					for i = 3, numLines do
@@ -386,7 +393,7 @@ function ElvUI_EltreumUI:QuestItem()
 									end
 								elseif E.Wrath or E.TBC or E.Classic then
 									local _, _, _, _, _, itemType, _ = GetItemInfo(itemId)
-									if itemType == "Quest" and GetItemSpell(itemId) ~= nil then
+									if (itemType == "Quest" and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
 										local _, count = GetContainerItemInfo(bag,slot)
 										AddButton(index,bag,slot,link,itemId,count)
 										index = (index + 1)
