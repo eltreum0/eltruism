@@ -71,7 +71,11 @@ ElvUI_EltreumUI.InstallerData = {
 				E:SetupChat()
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 				ElvUI_EltreumUI:AddonSetupPA()
-				E.data:SetProfile('Eltreum Healer ('..E.mynameRealm..')')
+				--if E.Wrath and E.data:IsDualSpecEnabled() then
+				--	E.data:SetDualSpecProfile('Eltreum DPS/Tank ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
+				--else
+					E.data:SetProfile('Eltreum Healer ('..E.mynameRealm..')')
+				--end
 				ElvUI_EltreumUI:SetupGeneralLayout()
 				ElvUI_EltreumUI:SetupLayoutHealer()
 				ElvUI_EltreumUI:SetupNamePlates('ElvUI')
