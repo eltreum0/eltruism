@@ -98,6 +98,27 @@ function ElvUI_EltreumUI:RunCommands(message)
 			E:StaticPopup_Show('CONFIG_RL')
 			ElvUI_EltreumUI:Print("Gradient Disabled, please reload")
 		end
+	elseif message == 'weakaurasab' then
+		E.PopupDialogs["ELTRUISMWABARWARNING"] = {
+			text = L["Overwrites some profile settings to move ActionBars, Unitframes and Powers to look more similar to a WeakAura. |cffFF0000WARNING:|r This will overwrite some of your profile settings with no way to restore"],
+			OnAccept = function()
+				if E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA then
+					E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA = false
+					ElvUI_EltreumUI:WeakAurasLikeActionBars()
+				elseif E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA == false then
+					E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA = true
+					ElvUI_EltreumUI:WeakAurasLikeActionBars()
+				end
+			end,
+			--OnCancel = function() end,
+			button1 = ACCEPT,
+			button2 = CANCEL,
+			timeout = 0,
+			whileDead = 1,
+			hideOnEscape = false,
+		}
+		E:StaticPopup_Show('ELTRUISMWABARWARNING')
+
 	elseif message == 'background' then
 		if E.db.ElvUI_EltreumUI.unitframes.greybackground == true then
 			ElvUI_EltreumUI:BlackBg()
