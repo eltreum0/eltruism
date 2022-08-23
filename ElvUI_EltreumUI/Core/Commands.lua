@@ -118,7 +118,6 @@ function ElvUI_EltreumUI:RunCommands(message)
 			hideOnEscape = false,
 		}
 		E:StaticPopup_Show('ELTRUISMWABARWARNING')
-
 	elseif message == 'background' then
 		if E.db.ElvUI_EltreumUI.unitframes.greybackground == true then
 			ElvUI_EltreumUI:BlackBg()
