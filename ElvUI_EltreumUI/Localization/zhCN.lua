@@ -1065,5 +1065,4 @@ L["Perform a Database Check if you are updating from a very old version as some 
 L["WeakAuras Action Bar"] = true
 L["Move ActionBars and Power to be similar to WeakAuras"] = true
 L["Overwrites some profile settings to move ActionBars, Unitframes and Powers to look similar to a WeakAura. |cffFF0000WARNING:|r This will overwrite some of your profile settings"] = true
-
 L["Eltruism database was converted.\n|cff82B4ffThe Following profiles were updated:|r\n%s\n\n|cff82B4ffPrivate settings were updated for the following private profiles:|r\n%s\n\n|cff82B4ffIf you have any issues please report in Discord or open a ticket.|r\n|cffff0000A Reload is necessary to save this conversion and fix variables|r"] = true
