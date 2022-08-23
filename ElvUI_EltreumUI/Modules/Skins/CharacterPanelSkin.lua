@@ -1345,8 +1345,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			--CharacterModelFrame:SetPosition(0, 0, 0) --zoom,x,y
 
 
-
-
+			--pre set the zoom
+			CharacterModelFrame:SetPosition(-0.2, 0, -0.1)
 
 			--fix frame size depending on tab
 			local function ResizeCharacterFrame()
@@ -1367,7 +1367,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						CharacterModelFrame:SetSize(320,350)
 						CharacterModelFrame:ClearAllPoints()
 						CharacterModelFrame:SetPoint("CENTER", CharacterFrame,"CENTER", -126, 15)
-						CharacterModelFrame:SetPosition(-0.2, 0, -0.3)
+						--CharacterModelFrame:SetPosition(-0.2, 0, -0.3)
+						CharacterModelFrame:SetPosition(-0.2, 0, -0.1)
 						--CharacterModelFrame:SetPosition(0.9, 0, -0.1)
 
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
