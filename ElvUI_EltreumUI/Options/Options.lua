@@ -6235,6 +6235,26 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext = value end,
 							},
+
+							headerweakaurabar = {
+								order = 130,
+								type = "description",
+								name = L["WeakAuras Action Bar"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							dynamicenable = {
+								order = 126,
+								type = 'toggle',
+								name = L["Move ActionBars and Power to be similar to WeakAuras"],
+								desc = L["Overwrites some profile settings to move ActionBars, Unitframes and Powers to look more similar to a WeakAura. |cffFF0000WARNING:|r This will overwrite some of your profile settings with no way to restore"],
+								confirm = true,
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA = value
+									ElvUI_EltreumUI:WeakAurasLikeActionBars()
+								end,
+							},
+
 						},
 					},
 				},

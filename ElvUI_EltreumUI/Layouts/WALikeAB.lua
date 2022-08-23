@@ -97,6 +97,8 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars()
 		E.db["unitframe"]["units"]["targettarget"]["power"]["detachedWidth"] = 90
 		E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 15
 		E.db["unitframe"]["units"]["targettarget"]["power"]["width"] = "spaced"
+
+		ElvUI_EltreumUI:Print("Enabled WeakAuras ActionBars Mode")
 	else
 		--dont hide keypress
 		E.db["ElvUI_EltreumUI"]["skins"]["hideABkeypress"] = false
@@ -138,6 +140,8 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars()
 			E.db["unitframe"]["units"]["player"]["power"]["position"] = "RIGHT"
 			E.db["unitframe"]["units"]["player"]["power"]["text_format"] = "[power:current:shortvalue]"
 		end
+
+		ElvUI_EltreumUI:Print("Disabled WeakAuras ActionBars Mode")
 	end
 	E:UpdateActionBars()
 	E:UpdateUnitFrames()
