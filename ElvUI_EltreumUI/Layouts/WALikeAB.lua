@@ -51,16 +51,16 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 
 
 			if _G.ElvUF_Player.Totems then
-				E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player.Totems,BOTTOMLEFT,-6,5"
-				E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player.Totems,BOTTOMRIGHT,6,5"
+				E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player.Totems,BOTTOMLEFT,-6,6"
+				E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player.Totems,BOTTOMRIGHT,6,6"
 				E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
 				E.db["movers"]["ElvUF_TargetCastbarMover"] = "TOP,ElvUF_Target,BOTTOM,14,-10"
 				E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,256,301"
 				E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-413,307"
 				E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
 			elseif _G.ElvUF_Player_Runes then
-				E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_Runes,BOTTOMLEFT,-6,5"
-				E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_Runes,BOTTOMRIGHT,6,5"
+				E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_Runes,BOTTOMLEFT,-6,6"
+				E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_Runes,BOTTOMRIGHT,6,6"
 				E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
 				E.db["movers"]["ElvUF_TargetCastbarMover"] = "TOP,ElvUF_Target,BOTTOM,14,-10"
 				E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,256,301"
