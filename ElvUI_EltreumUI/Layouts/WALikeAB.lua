@@ -39,6 +39,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["actionbar"]["bar2"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
 		E.db["actionbar"]["bar3"]["mouseover"] = true
 		E.db["actionbar"]["bar4"]["mouseover"] = true
+		E.db["actionbar"]["bar5"]["mouseover"] = true
 
 		--adjust based on class having a classbar or not
 		if _G.ElvUF_Player.Totems and _G.ElvUF_Player.Totems:IsVisible() == true then
@@ -109,18 +110,16 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["actionbar"]["bar2"]["showGrid"] = true
 		E.db["actionbar"]["bar3"]["mouseover"] = false
 		E.db["actionbar"]["bar4"]["mouseover"] = false
+		E.db["actionbar"]["bar5"]["mouseover"] = false
 
 		--to fix the anchor
 		_G.ElvUF_PlayerMover:ClearAllPoints()
-		E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-320,307"
-		E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-306,269"
+		E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,510,339"
+		E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,510,309"
 		_G.ElvUF_TargetMover:ClearAllPoints()
-		E.db["movers"]["ElvUF_TargetMover"] = "BOTTOM,ElvUIParent,BOTTOM,320,307"
-		E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-520,269"
-		E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,256,301"
-		E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-413,307"
-		E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
-
+		E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-510,308"
+		E.db["movers"]["ElvUF_TargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-510,339"
+		E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-371,339"
 		--local point, relativeTo, relativePoint, xOfs, yOfs = strsplit("," ,E.db["movers"]["ElvAB_1"])
 		--print(point, relativeTo, relativePoint, xOfs, yOfs)
 
