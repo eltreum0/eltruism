@@ -49,10 +49,10 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,303"
 		E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,270"
 		E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,248"
-		E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 361
 
 		--adjust based on class having a classbar or not
 		if _G.ElvUF_Player_ClassBar and _G.ElvUF_Player_ClassBar:IsVisible() then
+			E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 361
 			E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 363
 			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_ClassBar,BOTTOMLEFT,-6,6"
 			E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_ClassBar,BOTTOMRIGHT,6,6"
@@ -62,6 +62,8 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-413,307"
 			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
 		elseif (_G.ElvUF_Player.Totems and _G.ElvUF_Player.Totems:IsVisible()) then
+			E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 361
+			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 364
 			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player.Totems,BOTTOMLEFT,-6,6"
 			E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player.Totems,BOTTOMRIGHT,6,6"
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
@@ -70,6 +72,8 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-413,307"
 			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
 		elseif _G.ElvUF_Player_Runes and _G.ElvUF_Player_Runes:IsVisible() then
+			E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 361
+			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 364
 			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_Runes,BOTTOMLEFT,-6,6"
 			E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_Runes,BOTTOMRIGHT,6,6"
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
@@ -80,6 +84,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		elseif _G.ElvUF_Player_AdditionalPowerBar and _G.ElvUF_Player_AdditionalPowerBar:IsVisible() then
 			E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,337"
 			E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 364
+			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 364
 			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_AdditionalPowerBar,BOTTOMLEFT,-6,6"
 			E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_AdditionalPowerBar,BOTTOMRIGHT,6,6"
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
@@ -88,7 +93,8 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-413,307"
 			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
 		elseif _G.ElvUF_Player_Stagger and _G.ElvUF_Player_Stagger:IsVisible() then
-			E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 363
+			E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 361
+			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 361
 			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_Stagger,BOTTOMLEFT,-6,6"
 			E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_Stagger,BOTTOMRIGHT,6,6"
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
@@ -98,6 +104,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
 		else
 			E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 361
+			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 364
 			E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,346"
 			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,312"
 			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,279"
@@ -113,7 +120,6 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 
 		--unitframes, making sure it detaches
 		E.db["unitframe"]["units"]["player"]["classbar"]["detachFromFrame"] = true
-		E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 364
 		E.db["unitframe"]["units"]["player"]["classbar"]["fill"] = "spaced"
 		E.db["unitframe"]["units"]["player"]["classbar"]["height"] = 7
 		E.db["unitframe"]["units"]["player"]["height"] = 45
