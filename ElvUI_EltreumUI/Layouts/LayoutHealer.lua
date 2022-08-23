@@ -103,6 +103,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["actionbar"]["bar3"]["macroFont"] = "Kimberley"
 	E.db["actionbar"]["bar3"]["point"] = "TOPLEFT"
 	E.db["actionbar"]["bar3"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["bar3"]["mouseover"] = false
+	E.db["actionbar"]["bar4"]["mouseover"] = false
 	E.db["actionbar"]["bar4"]["backdrop"] = false
 	E.db["actionbar"]["bar4"]["buttonHeight"] = 25
 	E.db["actionbar"]["bar4"]["buttonSize"] = 30
