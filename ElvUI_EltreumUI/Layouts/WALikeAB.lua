@@ -3,6 +3,8 @@ local _G = _G
 
 --sets action bars/powers to be similar to weakaura's layouts
 function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
+	if not E.db.movers then E.db.movers = {} end
+
 	if E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA or value then
 
 		--hide keypresses
@@ -41,8 +43,9 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["actionbar"]["bar4"]["mouseover"] = true
 		E.db["actionbar"]["bar5"]["mouseover"] = true
 
+
 		--adjust based on class having a classbar or not
-		if (_G.ElvUF_Player.Totems) or (_G.ElvUF_Player_Runes) or (_G.ElvUF_Player_AdditionalPowerBar) or (_G.ElvUF_Player_ClassBar) then
+		if (_G.ElvUF_Player.Totems and _G.ElvUF_Player.Totems:IsVisible()) or (_G.ElvUF_Player_Runes and _G.ElvUF_Player_Runes:IsVisible()) or (_G.ElvUF_Player_AdditionalPowerBar and _G.ElvUF_Player_AdditionalPowerBar:IsVisible()) or (_G.ElvUF_Player_ClassBar and _G.ElvUF_Player_ClassBar:IsVisible()) then
 			E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,346"
 			E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,337"
 			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,303"
@@ -112,7 +115,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["unitframe"]["units"]["player"]["power"]["position"] = "CENTER"
 
 		--adjust power text
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
+		if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["justifyH"] = "CENTER"
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["size"] = 12
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["text_format"] = "[power:current:shortvalue]"
@@ -169,7 +172,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] = false
 
 		--adjust power text
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
+		if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["justifyH"] = "RIGHT"
 		else
 			E.db["unitframe"]["units"]["player"]["power"]["position"] = "RIGHT"
