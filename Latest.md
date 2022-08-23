@@ -1,36 +1,13 @@
-### 3.2.6 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.2.7 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added models options, which will add models to Player, Pet, Target, Target of Target, Player Castbar and Target Castbar, these can be customized and changed to custom ones instead of being class based\
-Added Cooldown, a fork of discoteq's Doom Cooldown Pulse, which will show an icon for skills that are coming of cooldown. This fork includes an option to play Text-To-Speech for the skill coming of cooldown\
-Added Text-To-Speech option to Mail sound\
-Added an option to change the nameplate overlap whenever entering rested areas, and setting them to normal values once leaving\
-Added and updated movers to a new Eltruism category, making it easier to see frames from Eltruism\
-Added option to automatically adjust the portrait of the target based on it being a creature or a player\
-Added an option to hide the cooldown swipe on nameplates buffs and debuffs\
-Added a compatibility check to fix a possible issue with MerathilisUI\
-Added a class color to modifier keys (Alt,Shift,Ctrl and so on) on ActionBars\
-Added an option to toggle off gradient texts on character panel skin and use class color instead\
-Added a black background option to expanded art in character panel skin\
-Updated Inspect Skin making the frame a bit wider as to not overlap as much information, for Retail moved the Item Level text and Dressing Room, for TBC/Wrath an expanded talents skin was also added\
+Added an option in Eltruism > Media to make the actionbars and power similar to a WeakAura\
+Added an option to move the cursor anchor using offsets\
+Added an option to enable/disable the class colored modifier keys on action bars\
+Added a button in Eltruism > Installer to rerun the Database Check and improved the version check\
+Added new media, "Oh no no no"\
+Updated Character Panel Skin, allow more settings to be independent and also improved compatibility with Shadow and Light armory and Deja Character Stats\
+Updated Expanded Talents for Classic/TBC/Wrath, which will now better use the background art\
+Updated the Chat Color System messages to better detect messages in other languages than English\
 Updated German locale by Dlarge\
-Updated Character Panel skin to use more gradients and to use custom gradients it they are enabled\
-Updated Custom Nameplate Height function to more reliably detect units that are in combat\
-Updated the Database, which will make the Database Converter run and move settings to their new locations, a reload is necessary to save settings. (Thank you Repooc!)\
-Updated the item quality texture size to not overlap when not using the character panel skin\
-Updated some character skin options to work without expanded art/panel\
-Fixed an issue with the Loot Screenshot option missing\
-Fixed NPCs incorrectly using custom gradient castbars when the custom option was disabled\
-Fixed duplicate items in Quest Item Bar and made its position detection better\
-Fixed backdrop alpha in some scenarios\
-Fixed a possible error with the AFK screen\
-Fixed a typo on the combatindicator tag\
-Fixed Light mode not using correct textures\
-Fixed Class Icon for Focus in Light/Dark Modes\
-Fixed Explosives in M+ not using normal nameplate heights\
-Fixed PvP Season History check position for Character Skin in Classic/TBC\
-Fixed an issue with the Error frame option toggling the Zone option for Skins\
-Fixed a missing option for the Character Panel art in Classic/TBC/Wrath\
-Fixed some colors in Gradient Mode being incorrect due to an alpha being supplied
-Fixed Borders not toggling on and off during install\
-Fixed Classic Skill Glows not working\
-Fixed Cooldown's Text To Speech option checking for Mail Text to Speech in order to enable/disable
+Updated Nameplate Style filter for Explosives, now forcing it to have full Alpha and higher Priority\
+Fixed Other stats in Character Panel skin sometimes not being correctly positioned

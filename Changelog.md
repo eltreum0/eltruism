@@ -1,6 +1,18 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.2.7
+Added an option in Eltruism > Media to make the actionbars and power similar to a WeakAura\
+Added an option to move the cursor anchor using offsets\
+Added an option to enable/disable the class colored modifier keys on action bars\
+Added a button in Eltruism > Installer to rerun the Database Check and improved the version check\
+Added new media, "Oh no no no"\
+Updated Character Panel Skin, allow more settings to be independent and also improved compatibility with Shadow and Light armory and Deja Character Stats\
+Updated Expanded Talents for Classic/TBC/Wrath, which will now better use the background art\
+Updated the Chat Color System messages to better detect messages in other languages than English\
+Updated German locale by Dlarge\
+Updated Nameplate Style filter for Explosives, now forcing it to have full Alpha and higher Priority\
+Fixed Other stats in Character Panel skin sometimes not being correctly positioneds
 ### 3.2.6
 Added an option to toggle off gradient texts on character panel skin and use class color instead\
 Added a black background option to expanded art in character panel skin\
