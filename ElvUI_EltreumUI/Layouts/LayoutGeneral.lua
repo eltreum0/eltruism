@@ -67,6 +67,12 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		--E.db["unitframe"]["units"]["player"]["castbar"]["reverse"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["reverse"] = true
 
+		-- dont detach on normal profile
+		E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] = false
+		E.db["unitframe"]["units"]["player"]["classbar"]["detachFromFrame"] = false
+		E.db["unitframe"]["units"]["targettarget"]["power"]["detachFromFrame"] = false
+		E.db["unitframe"]["units"]["target"]["power"]["detachFromFrame"] = false
+
 		--dk things
 		E.db["unitframe"]["colors"]["chargingRunes"] = true
 		E.db["unitframe"]["colors"]["runeBySpec"] = true
