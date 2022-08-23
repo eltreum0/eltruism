@@ -67,16 +67,25 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars()
 	E.db["actionbar"]["cooldown"]["threshold"] = 5
 	E.db["actionbar"]["desaturateOnCooldown"] = true
 
-	E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,347"
-
-	E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,303"
-	E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,271"
+	--adjust based on class having a classbar or not
+	if _G.ElvUF_Player.Totems and _G.ElvUF_Player.Totems:IsVisible() == true then
+		E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,346"
+		E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,337"
+		E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,303"
+		E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,271"
+		E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,248"
+	else
+		E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,346"
+		E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,312"
+		E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,280"
+		E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,257"
+	end
 
 	E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-320,307"
 	E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-306,269"
-	E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,337"
 
-	E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,97"
+
+
 
 	E.db["movers"]["ElvUF_TargetMover"] = "BOTTOM,ElvUIParent,BOTTOM,320,307"
 	E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-520,269"
