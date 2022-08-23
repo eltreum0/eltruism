@@ -140,6 +140,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			if E.Retail then
 				E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
 			elseif E.Classic or E.Wrath or E.TBC then
+				E.db["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["enable"] = false
 				E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
 			end
 			--enable general style filters on all versions
