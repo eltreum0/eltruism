@@ -42,27 +42,44 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["actionbar"]["bar5"]["mouseover"] = true
 
 		--adjust based on class having a classbar or not
-		if _G.ElvUF_Player.Totems and _G.ElvUF_Player.Totems:IsVisible() == true then
+		if (_G.ElvUF_Player.Totems and _G.ElvUF_Player.Totems:IsVisible() == true) or (_G.ElvUF_Player_Runes and _G.ElvUF_Player_Runes:IsVisible() == true) then
 			E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,346"
 			E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,337"
 			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,303"
 			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,271"
 			E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,248"
+
+
+			if _G.ElvUF_Player.Totems then
+				E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player.Totems,BOTTOMLEFT,-6,5"
+				E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player.Totems,BOTTOMRIGHT,6,5"
+				E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
+				E.db["movers"]["ElvUF_TargetCastbarMover"] = "TOP,ElvUF_Target,BOTTOM,14,-10"
+				E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,256,301"
+				E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-413,307"
+				E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
+			elseif _G.ElvUF_Player_Runes then
+				E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_Runes,BOTTOMLEFT,-6,5"
+				E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_Runes,BOTTOMRIGHT,6,5"
+				E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
+				E.db["movers"]["ElvUF_TargetCastbarMover"] = "TOP,ElvUF_Target,BOTTOM,14,-10"
+				E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,256,301"
+				E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-413,307"
+				E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
+			end
 		else
 			E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,346"
 			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,312"
 			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,280"
 			E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,257"
+			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_PowerBar,BOTTOMLEFT,-6,5"
+			E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_PowerBar,BOTTOMRIGHT,6,5"
+			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
+			E.db["movers"]["ElvUF_TargetCastbarMover"] = "TOP,ElvUF_Target,BOTTOM,14,-10"
+			E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,256,301"
+			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-413,307"
+			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
 		end
-
-		--other movers
-		E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_PowerBar,BOTTOMLEFT,-6,5"
-		E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_PowerBar,BOTTOMRIGHT,6,5"
-		E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
-		E.db["movers"]["ElvUF_TargetCastbarMover"] = "TOP,ElvUF_Target,BOTTOM,14,-10"
-		E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,256,301"
-		E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-413,307"
-		E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
 
 		--unitframes, making sure it detaches
 		E.db["unitframe"]["units"]["player"]["classbar"]["detachFromFrame"] = true
