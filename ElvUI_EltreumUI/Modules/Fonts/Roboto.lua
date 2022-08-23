@@ -359,7 +359,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
-		elseif E.TBC or E.Classic then
+		elseif E.Wrath or E.TBC or E.Classic then
 			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
