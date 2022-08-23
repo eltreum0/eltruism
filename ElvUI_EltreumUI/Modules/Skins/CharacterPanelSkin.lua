@@ -1876,27 +1876,22 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 				else
 					qualityAnchor.Frame.Quality = qualityAnchor.Frame:CreateTexture("EltruismItemQualityTexture"..InvSlotName, "OVERLAY")
 				end
+
 				if E.Retail then
 					qualityAnchor.Frame:SetFrameLevel(2) --retail works fine
-				else
-					local slotlevel = _G["CharacterModelFrame"]:GetFrameLevel()
-					qualityAnchor.Frame:SetFrameLevel(slotlevel-1) --needs to be changed to not overlap the sockets/enchants
-				end
-				local slotsize = _G["Character"..InvSlotName]:GetHeight()
-				if not E.Retail then
 					if E.db.ElvUI_EltreumUI.skins.classicarmory then
-						qualityAnchor.Frame:SetSize(150, slotsize+2)
+						qualityAnchor.Frame:SetSize(250, _G["Character"..InvSlotName]:GetHeight() + 2)
 					else
-						qualityAnchor.Frame:SetSize(115, slotsize+2)
+						qualityAnchor.Frame:SetSize(135, _G["Character"..InvSlotName]:GetHeight() + 2)
 					end
 				else
+					qualityAnchor.Frame:SetFrameLevel(_G["CharacterModelFrame"]:GetFrameLevel() - 1) --needs to be changed to not overlap the sockets/enchants
 					if E.db.ElvUI_EltreumUI.skins.classicarmory then
-						qualityAnchor.Frame:SetSize(250, slotsize+2)
+						qualityAnchor.Frame:SetSize(150, _G["Character"..InvSlotName]:GetHeight() + 2)
 					else
-						qualityAnchor.Frame:SetSize(135, slotsize+2)
+						qualityAnchor.Frame:SetSize(115, _G["Character"..InvSlotName]:GetHeight() + 2)
 					end
 				end
-
 				qualityAnchor.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
 				qualityAnchor.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade') --temp for testing
 
@@ -2275,18 +2270,13 @@ function ElvUI_EltreumUI:InspectBg(unit)
 
 						if E.Retail then
 							qualityAnchorInspect.Frame:SetFrameLevel(2)
+							qualityAnchorInspect.Frame:SetSize(140, _G["Inspect"..InvSlotName]:GetHeight() + 2)
 						else
-							local slotlevel = _G["InspectModelFrame"]:GetFrameLevel()
-							qualityAnchorInspect.Frame:SetFrameLevel(slotlevel-1)
-						end
-						local slotsize = _G["Inspect"..InvSlotName]:GetHeight()
-						if not E.Retail then
-							qualityAnchorInspect.Frame:SetSize(120, slotsize+2)
-						else
-							qualityAnchorInspect.Frame:SetSize(140, slotsize+2)
+							qualityAnchorInspect.Frame:SetFrameLevel(_G["InspectModelFrame"]:GetFrameLevel() - 1)
+							qualityAnchorInspect.Frame:SetSize(120, _G["Inspect"..InvSlotName]:GetHeight() + 2)
 						end
 
-						qualityAnchorInspect.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade') --temp for testing
+						qualityAnchorInspect.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade')
 						qualityAnchorInspect.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
 
 						--get item (actual) quality
