@@ -46,7 +46,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 			E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,346"
 			E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,337"
 			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,303"
-			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,271"
+			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,270"
 			E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,248"
 
 
@@ -70,7 +70,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		else
 			E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,346"
 			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,312"
-			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,280"
+			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,279"
 			E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,257"
 			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_PowerBar,BOTTOMLEFT,-6,5"
 			E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_PowerBar,BOTTOMRIGHT,6,5"
