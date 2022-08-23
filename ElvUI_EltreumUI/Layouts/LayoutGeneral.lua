@@ -179,6 +179,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["chat"]["hideVoiceButtons"] = true
 		E.db["chat"]["fadeTabsNoBackdrop"] = true
 		E.db["chat"]["fadeUndockedTabs"] = true
+		E.db["chat"]["noAlertInCombat"] = true
 		E.db["chat"]["panelBackdrop"] = "HIDEBOTH"
 		E.db["chat"]["font"] = "Kimberley"
 		E.db["chat"]["fontOutline"] = "OUTLINE"
