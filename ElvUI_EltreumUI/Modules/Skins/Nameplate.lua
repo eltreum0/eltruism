@@ -368,7 +368,7 @@ function NP:StyleFilterSetChanges(frame, actions, HealthColor, PowerColor, Borde
 
 	if Visibility then
 		c.Visibility = true
-		mod:DisablePlate(frame) -- disable the plate elements
+		NP:DisablePlate(frame) -- disable the plate elements
 		frame:ClearAllPoints() -- lets still move the frame out cause its clickable otherwise
 		frame:Point('TOP', E.UIParent, 'BOTTOM', 0, -500)
 		return -- We hide it. Lets not do other things (no point)
