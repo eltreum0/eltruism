@@ -5,4 +5,5 @@
 	<Script file='LayoutDPS.lua'/>
 	<Script file='SetupNameplates.lua'/>
 	<Script file='Auras.lua'/>
+	<Script file='WALikeAB.lua'/>
 </Ui>

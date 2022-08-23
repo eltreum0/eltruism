@@ -106,6 +106,9 @@ function ElvUI_EltreumUI:RunCommands(message)
 		else
 			ElvUI_EltreumUI:GreyBg()
 		end
+	elseif message == 'test' then
+		ElvUI_EltreumUI:Print("Test Message")
+		ElvUI_EltreumUI:WeakAurasLikeActionBars()
 	else
 		ElvUI_EltreumUI:Print("|cff82B4ffYou have entered an unknown command, here's a list of commands you can use:|r")
 		print("|cff82B4ff/eltruism|r - Opens the Eltruism Installer")
