@@ -105,6 +105,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars()
 		E.db["unitframe"]["units"]["player"]["power"]["text_format"] = "[power:current:shortvalue]"
 	end
 
+	E.db["unitframe"]["units"]["target"]["height"] = 45
 	E.db["unitframe"]["units"]["player"]["power"]["width"] = "spaced"
 	E.db["unitframe"]["units"]["target"]["power"]["attachTextTo"] = "Power"
 	E.db["unitframe"]["units"]["target"]["power"]["detachFromFrame"] = true
@@ -118,4 +119,5 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars()
 	E.db["unitframe"]["units"]["targettarget"]["power"]["width"] = "spaced"
 
 	E:UpdateUnitFrames()
+	E:UpdateMoverPositions()
 end
