@@ -1107,6 +1107,8 @@ L["Hide Debuffs on Non Target"] = "Verstecke Schwächungszauber auf nicht Ziele"
 L["Database Check"] = "Datenbankprüfung"
 L["Run Database Check"] = "Starte Datenbankprüfung"
 L["Perform a Database Check if you are updating from a very old version as some settings have changed places and the Database Check will convert them"] = "Führe eine Datenbankprüfung durch, wenn Du von einer sehr alten Version aktualisierst, da einige Einstellungen ihre Position geändert haben und die Datenbankprüfung sie konvertieren wird."
-L["WeakAuras Action Bar"] = true
-L["Move ActionBars and Power to be similar to WeakAuras"] = true
-L["Overwrites some profile settings to move ActionBars, Unitframes and Powers to look similar to a WeakAura. |cffFF0000WARNING:|r This will overwrite some of your profile settings"] = true
+L["WeakAuras Action Bar"] = "WeakAuras Aktionsleisten"
+L["Move ActionBars and Power to be similar to WeakAuras"] = "Aktionsleisten und Kraft so verschieben, dass sie WeakAuras ähneln"
+L["Overwrites some profile settings to move ActionBars, Unitframes and Powers to look similar to a WeakAura. |cffFF0000WARNING:|r This will overwrite some of your profile settings"] = "Überschreibt einige Profileinstellungen, um Aktionsleisten, Einheitenrahmen und Kräfte so zu verschieben, dass sie einer schwachen Aura ähneln. |cffFF0000WARNUNG:|r Dies wird einige Profileinstellungen von Dir überschreiben."
+
+L["Eltruism database was converted.\n|cff82B4ffThe Following profiles were updated:|r\n%s\n\n|cff82B4ffPrivate settings were updated for the following private profiles:|r\n%s\n\n|cff82B4ffIf you have any issues please report in Discord or open a ticket.|r\n|cffff0000A Reload is necessary to save this conversion and fix variables|r"] = "Eltruism Datenbank wurde konvertiert.\n|cff82B4ffDie folgenden Profile wurden aktualisiert:|r\n%s\n\n|cff82B4ffPrivate Einstellungen wurden für die folgenden privaten Profile aktualisiert:|r\n%s\n\n|cff82B4ffWenn Du irgendwelche Probleme hast, melde Dich bitte in Discord oder eröffne ein Ticket.|r\n|cffff0000Ein Reload ist notwendig, um diese Konvertierung zu speichern und Variablen zu korrigieren|r"
