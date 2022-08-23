@@ -57,7 +57,7 @@ function ElvUI_EltreumUI:DarkMode()
 			elseif E.Retail then
 				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name]"
 
-				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["text_format"] = "[power:current:shortvalue]"
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
 				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
 			end
 				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]"
