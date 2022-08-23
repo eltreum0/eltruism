@@ -898,6 +898,7 @@ P.ElvUI_EltreumUI = {
 		dynamicxpbar = false,
 		delete = false,
 		mpluskeys = false,
+		ABlikeWA = false,
 		bres = false,
 		dynamicdatatext = false,
 		--floatingrep = false,

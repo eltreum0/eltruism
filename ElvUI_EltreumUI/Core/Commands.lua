@@ -107,7 +107,13 @@ function ElvUI_EltreumUI:RunCommands(message)
 			ElvUI_EltreumUI:GreyBg()
 		end
 	elseif message == 'test' then
-		ElvUI_EltreumUI:Print("Test Message")
+		if E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA then
+			E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA = false
+			ElvUI_EltreumUI:Print("Enabled Weakauras Like ab")
+		else
+			E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA = true
+			ElvUI_EltreumUI:Print("disabled Weakauras Like ab")
+		end
 		ElvUI_EltreumUI:WeakAurasLikeActionBars()
 	else
 		ElvUI_EltreumUI:Print("|cff82B4ffYou have entered an unknown command, here's a list of commands you can use:|r")
