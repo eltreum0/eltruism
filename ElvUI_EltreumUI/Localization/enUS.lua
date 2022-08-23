@@ -1065,3 +1065,6 @@ L["Hide Debuffs on Non Target"] = true
 L["Database Check"] = true
 L["Run Database Check"] = true
 L["Perform a Database Check if you are updating from a very old version as some settings have changed places and the Database Check will convert them"] = true
+L["WeakAuras Action Bar"] = true
+L["Move ActionBars and Power to be similar to WeakAuras"] = true
+L["Overwrites some profile settings to move ActionBars, Unitframes and Powers to look similar to a WeakAura. |cffFF0000WARNING:|r This will overwrite some of your profile settings"] = true

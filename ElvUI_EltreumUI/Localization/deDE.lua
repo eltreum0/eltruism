@@ -1107,3 +1107,6 @@ L["Hide Debuffs on Non Target"] = "Verstecke Schwächungszauber auf nicht Ziele"
 L["Database Check"] = "Datenbankprüfung"
 L["Run Database Check"] = "Starte Datenbankprüfung"
 L["Perform a Database Check if you are updating from a very old version as some settings have changed places and the Database Check will convert them"] = "Führe eine Datenbankprüfung durch, wenn Du von einer sehr alten Version aktualisierst, da einige Einstellungen ihre Position geändert haben und die Datenbankprüfung sie konvertieren wird."
+L["WeakAuras Action Bar"] = true
+L["Move ActionBars and Power to be similar to WeakAuras"] = true
+L["Overwrites some profile settings to move ActionBars, Unitframes and Powers to look similar to a WeakAura. |cffFF0000WARNING:|r This will overwrite some of your profile settings"] = true
