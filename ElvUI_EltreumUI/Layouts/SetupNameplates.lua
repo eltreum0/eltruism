@@ -569,11 +569,16 @@ end
 -- Style Filter Setup
 function ElvUI_EltreumUI:SetupStyleFilters()
 	if E.private["nameplates"]["enable"] == true then
-		for _, filterName in pairs({'ElvUI_NonTarget', 'ElvUI_Target', 'ElvUI_Boss', 'EltreumTarget', 'EltreumInterrupt', 'EltreumExecute', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems'}) do
+		for _, filterName in pairs({'ElvUI_NonTarget', 'ElvUI_Explosives', 'ElvUI_Target', 'ElvUI_Boss', 'EltreumTarget', 'EltreumInterrupt', 'EltreumExecute', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
 		end
+
+		--fix explosive alpha/priority
+		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["priority"] = 1
+		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["alpha"] = 100
+		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["scale"] = 1.25
 
 		if not E.Retail then --in classic for some reason bosses are not affected by ElvUI_Target/EltreumTarget
 			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["health"] = true
