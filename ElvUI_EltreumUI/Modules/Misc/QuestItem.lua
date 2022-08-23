@@ -343,8 +343,7 @@ function ElvUI_EltreumUI:QuestItem()
 				EltruismQuestItemFrame.tip:SetHyperlink(link)
 				local numLines = EltruismQuestItemFrame.tip:NumLines()
 				local line2 = (_G["EltruismQuestItem".."TipTextLeft2"]:GetText() or "")
-				--if (numLines >= 3) and (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or line2 == ITEM_BIND_QUEST or line2 == GetZoneText()) then
-				if (numLines >= 3) and (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN) and itemEquipLoc == "" then
+				if (numLines >= 3) and (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or line2 == ITEM_BIND_QUEST or line2 == GetZoneText()) and itemEquipLoc == "" then
 					for i = 3, numLines do
 						local text = _G["EltruismQuestItem".."TipTextLeft"..i]:GetText() or ""
 						if (text:find("^"..ITEM_SPELL_TRIGGER_ONUSE)) then
@@ -379,14 +378,11 @@ function ElvUI_EltreumUI:QuestItem()
 						local itemId = link and tonumber(link:match(ITEMID_PATTERN))
 						if (link) and (itemId) then
 							if not blocklist[itemId] then
-								--itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = GetItemInfo(item)
 								if E.Retail then
 									--local isQuestItem, questId, isActive = GetContainerItemQuestInfo(bag,slot)
 									local isQuestItem, _, _ = GetContainerItemQuestInfo(bag,slot)
-									if isQuestItem then
-										--print(link)
 									--if (questId and not isActive) or (cfg.userList[itemId]) or (CheckItemTooltip(link,itemId)) then
-										--icon, itemCount, locked, quality, readable, lootable, itemLink, isFiltered, noValue, itemID, isBound = GetContainerItemInfo(bagID, slot)
+									if isQuestItem or (CheckItemTooltip(link,itemId)) then
 										local _, count = GetContainerItemInfo(bag,slot)
 										AddButton(index,bag,slot,link,itemId,count)
 										index = (index + 1)
