@@ -95,6 +95,16 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars()
 	E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 361
 	E.db["unitframe"]["units"]["player"]["power"]["height"] = 7
 	E.db["unitframe"]["units"]["player"]["power"]["position"] = "CENTER"
+
+	if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
+		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["justifyH"] = "CENTER"
+		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["size"] = 12
+		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["text_format"] = "[power:current:shortvalue]"
+	else
+		E.db["unitframe"]["units"]["player"]["power"]["position"] = "CENTER"
+		E.db["unitframe"]["units"]["player"]["power"]["text_format"] = "[power:current:shortvalue]"
+	end
+
 	E.db["unitframe"]["units"]["player"]["power"]["width"] = "spaced"
 	E.db["unitframe"]["units"]["target"]["power"]["attachTextTo"] = "Power"
 	E.db["unitframe"]["units"]["target"]["power"]["detachFromFrame"] = true
@@ -107,4 +117,5 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars()
 	E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 15
 	E.db["unitframe"]["units"]["targettarget"]["power"]["width"] = "spaced"
 
+	E:UpdateUnitFrames()
 end
