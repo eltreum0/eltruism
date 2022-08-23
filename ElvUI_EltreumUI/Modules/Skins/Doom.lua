@@ -237,7 +237,7 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 						end
 						if E.db.ElvUI_EltreumUI.skins.doom.tts then
 							local tts = GetSpellInfo(animating[1][3])
-							if E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil then
+							if E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil and tts ~= nil then
 								C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts, Enum.VoiceTtsDestination.LocalPlayback, 0, 100)
 							end
 						end
