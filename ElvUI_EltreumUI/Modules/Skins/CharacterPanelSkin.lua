@@ -325,7 +325,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterModelFrame:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
 			CharacterModelFrame:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
 			CharacterModelFrame:SetPoint('BOTTOM', _G.CharacterMainHandSlot, 0, -5)
-			--CharacterModelFrame:SetPosition(-1, 0, -0.10) -- zoom, x, y
+			CharacterModelFrame:SetPosition(-0.7, 0, -0.20) -- zoom, x, y
 			--CharacterModelFrame:SetPosition(-0.25, 0, -0.10) -- zoom, x, y
 			--CharacterModelFrame:SetPosition(-0.55, 0, -0.10) -- zoom, x, y
 
@@ -1344,13 +1344,32 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame:SetSize(700, 505)
 			--CharacterModelFrame:SetPosition(0, 0, 0) --zoom,x,y
 
+
+
+
+
 			--fix frame size depending on tab
 			local function ResizeCharacterFrame()
 				if not InCombatLockdown() then
 					if PaperDollFrame:IsVisible() then
 						CharacterFrame:SetSize(700, 505)
 						CharacterNameText:ClearAllPoints()
-						CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
+						--CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
+
+						CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 40)
+
+						if _G.PlayerTitleDropDown then
+							_G.PlayerTitleDropDown:SetPoint('TOP', CharacterNameText, 0, -40)
+						end
+
+						--better zoom
+						--CharacterModelFrame:SetPosition(-0.1, 0, -0.1) -- zoom, x, y
+						CharacterModelFrame:SetSize(320,350)
+						CharacterModelFrame:ClearAllPoints()
+						CharacterModelFrame:SetPoint("CENTER", CharacterFrame,"CENTER", -126, 15)
+						CharacterModelFrame:SetPosition(-0.2, 0, -0.3)
+						--CharacterModelFrame:SetPosition(0.9, 0, -0.1)
+
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
@@ -1381,7 +1400,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.CharacterHandsSlot:SetPoint('CENTER', _G.CharacterHeadSlot, 'CENTER', 370, 0)
 
 			_G.CharacterMainHandSlot:ClearAllPoints()
-			_G.CharacterMainHandSlot:SetPoint('CENTER', _G.CharacterModelFrame, 'CENTER', -55, -145)
+			_G.CharacterMainHandSlot:SetPoint('CENTER', _G.CharacterModelFrame, 'CENTER', -42, -155)
 
 			if _G.PlayerTitleDropDown then
 				_G.PlayerTitleDropDown:SetAlpha(0)
