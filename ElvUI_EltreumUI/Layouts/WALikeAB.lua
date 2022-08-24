@@ -173,9 +173,11 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		--to fix the anchor
 		_G.ElvUF_PlayerMover:ClearAllPoints()
 		E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,510,339"
+		_G.ElvUF_PlayerCastbarMover:ClearAllPoints()
 		E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,510,309"
-		_G.ElvUF_TargetMover:ClearAllPoints()
+		_G.ElvUF_TargetCastbarMover:ClearAllPoints()
 		E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-510,308"
+		_G.ElvUF_TargetMover:ClearAllPoints()
 		E.db["movers"]["ElvUF_TargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-510,339"
 		E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-371,339"
 		--local point, relativeTo, relativePoint, xOfs, yOfs = strsplit("," ,E.db["movers"]["ElvAB_1"])
