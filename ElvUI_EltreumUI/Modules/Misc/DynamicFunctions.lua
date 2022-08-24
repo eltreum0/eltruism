@@ -28,8 +28,10 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 				--_G["ElvUF_Target"].Portrait3D:SetPortraitZoom(.85)
 				if UnitCreatureType("target") == "Humanoid" then
 					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
-				elseif UnitCreatureType("target") == "Mechanical" then
+				--[[elseif UnitCreatureType("target") == "Mechanical" then
 					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
+				elseif UnitCreatureType("target") == "Demon" then
+					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291]]
 				else
 					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
 				end
