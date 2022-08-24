@@ -46,7 +46,6 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 			EltruismAutopin:SetScript("OnEvent", function()
 				EltruismAutopin:UnregisterEvent("PLAYER_STARTED_MOVING")
 				local _, instanceType = IsInInstance()
-				print(instanceType)
 				if instanceType ~= "none" then
 					C_Map.ClearUserWaypoint()
 				elseif instanceType == "none" then
