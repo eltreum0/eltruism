@@ -6560,7 +6560,7 @@ function ElvUI_EltreumUI:Configtable()
 					headerdatatexthiding = {
 						order = 57,
 						type = "description",
-						name = L["Datatext Hiding"],
+						name = E.NewSign..L["Datatext Hiding"],
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
