@@ -7162,7 +7162,7 @@ function ElvUI_EltreumUI:Configtable()
 										end,
 										set = function(_, r, g, b, a)
 											local customcolorpowerbar = E.db.ElvUI_EltreumUI.nameplates.nameplatepower
-											customcolorpowerbar.r, customcolorpowerbar.g, customcolorpowerbar.b = r, g, b
+											customcolorpowerbar.r, customcolorpowerbar.g, customcolorpowerbar.b, customcolorpowerbar.a = r, g, b, a
 										end,
 									},
 									sharedmediatexture = {
