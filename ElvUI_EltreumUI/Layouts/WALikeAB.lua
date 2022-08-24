@@ -56,6 +56,11 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["actionbar"]["bar5"]["mouseover"] = true
 
 		--adjust based on class having a classbar or not
+		_G.ElvUF_PlayerMover:ClearAllPoints()
+		_G.ElvUF_PlayerCastbarMover:ClearAllPoints()
+		_G.ElvUF_TargetCastbarMover:ClearAllPoints()
+		_G.ElvUF_TargetMover:ClearAllPoints()
+
 		E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,346"
 		E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,337"
 		E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 361
