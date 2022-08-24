@@ -6600,7 +6600,7 @@ function ElvUI_EltreumUI:Configtable()
 						name= "",
 						order = 90,
 						values = {
-							["tts"] = E.NewSign..TEXT_TO_SPEECH,
+							["tts"] = E.NewSign..L["Text to Speech"],
 							["sharedmedia"] = CUSTOM,
 						},
 						style = 'radio',
@@ -6622,7 +6622,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					soundmailtts = {
 						type = 'input',
-						name = E.NewSign..TEXT_TO_SPEECH,
+						name = E.NewSign..L["Text to Speech announcement"],
 						width = "full",
 						order = 92,
 						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "sharedmedia" end,
@@ -6634,7 +6634,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					ttsvoiceselect = {
 						type = 'select',
-						name= E.NewSign..TEXT_TO_SPEECH_CONFIG,
+						name= E.NewSign..L["Text to Speech Config"],
 						order = 93,
 						values =
 						function()
