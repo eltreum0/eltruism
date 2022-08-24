@@ -178,7 +178,11 @@ function ElvUI_EltreumUI:SkinQuests()
 										return
 									end
 								end
-								module.Header.EltruismStatusLine = CreateFrame("StatusBar", "Eltruism"..module.Header.Text:GetText().."Line", module.Header)
+								if module.Header.Text and module.Header.Text:GetText() ~= nil then
+									module.Header.EltruismStatusLine = CreateFrame("StatusBar", "Eltruism"..module.Header.Text:GetText().."Line", module.Header)
+								else
+									module.Header.EltruismStatusLine = CreateFrame("StatusBar", "EltruismLine", module.Header)
+								end
 						        module.Header.EltruismStatusLine:SetSize(250, 3)
 								module.Header.EltruismStatusLine:SetPoint("BOTTOM", module.Header, 0, 0)
 								module.Header.EltruismStatusLine:SetStatusBarTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga')
