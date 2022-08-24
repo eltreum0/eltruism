@@ -346,6 +346,18 @@ function ElvUI_EltreumUI:PLAYER_LEAVING_WORLD()
 end
 
 function ElvUI_EltreumUI:PLAYER_LOGOUT()
+	if _G.ElvUF_PlayerMover then
+		_G.ElvUF_PlayerMover:ClearAllPoints()
+	end
+	if _G.ElvUF_PlayerCastbarMover then
+		_G.ElvUF_PlayerCastbarMover:ClearAllPoints()
+	end
+	if _G.ElvUF_TargetCastbarMover then
+		_G.ElvUF_TargetCastbarMover:ClearAllPoints()
+	end
+	if _G.ElvUF_TargetMover then
+		_G.ElvUF_TargetMover:ClearAllPoints()
+	end
 	ElvUI_EltreumUI:BlizzCombatText()
 end
 
