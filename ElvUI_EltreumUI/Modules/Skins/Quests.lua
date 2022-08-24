@@ -23,7 +23,7 @@ if E.Retail then
 end
 
 function ElvUI_EltreumUI:SkinQuests()
-	if E.db.ElvUI_EltreumUI.skins.quests and E.private.skins.blizzard.objectiveTracker and not E.private.skins.blizzard.enable == false then
+	if E.db.ElvUI_EltreumUI.skins.quests and E.private.skins.blizzard.objectiveTracker and E.private.skins.blizzard.enable then
 
 		--create the button for wowhead
 		if E.Retail then
@@ -328,8 +328,6 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 					end
 				end)
-
-
 			end
 		elseif E.Classic or E.TBC then
 			local questID
