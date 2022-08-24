@@ -7153,7 +7153,7 @@ function ElvUI_EltreumUI:Configtable()
 										order = 99,
 										type = 'color',
 										name = L["Background Color"],
-										hasAlpha = false,
+										hasAlpha = true,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function()
 											local customcolorpowerbar = E.db.ElvUI_EltreumUI.nameplates.nameplatepower
@@ -7162,7 +7162,7 @@ function ElvUI_EltreumUI:Configtable()
 										end,
 										set = function(_, r, g, b, a)
 											local customcolorpowerbar = E.db.ElvUI_EltreumUI.nameplates.nameplatepower
-											customcolorpowerbar.r, customcolorpowerbar.g, customcolorpowerbar.b = r, g, b
+											customcolorpowerbar.r, customcolorpowerbar.g, customcolorpowerbar.b, customcolorpowerbar.a = r, g, b, a
 										end,
 									},
 									sharedmediatexture = {
