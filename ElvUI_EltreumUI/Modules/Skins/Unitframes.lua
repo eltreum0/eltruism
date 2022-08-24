@@ -66,6 +66,9 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 		unitframe = _G["ElvUF_"..name]
 		if unitframe and unitframe.Health then
 			unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
+			if E.db.ElvUI_EltreumUI.unitframes.lightmode then ---TODO confirm this is fine for dark mode
+				unitframe.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+			end
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 				if E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
 					if UnitIsPlayer(unit) then
@@ -657,6 +660,9 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 
 			local function ApplyGroupGradientTexture(r, g, b, button)
 				button.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
+				if E.db.ElvUI_EltreumUI.unitframes.lightmode then ---TODO confirm this is fine for dark mode
+					button.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+				end
 				if tostring(r) == tostring(truer) and tostring(g) == tostring(trueg) and tostring(b) == tostring(trueb) then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
 						if E.db.ElvUI_EltreumUI.unitframes.lightmode then
@@ -757,8 +763,9 @@ function UF:ToggleTransparentStatusBar(isTransparent, statusBar, backdropTex, ad
 			backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
 			backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 			if statusBar and statusBar.backdrop and E.db.ElvUI_EltreumUI.unitframes.lightmode then
-				--statusBar.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-				statusBar.backdrop:Hide()
+				statusBar.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+				--statusBar.backdrop:Hide()
+				backdropTex:Hide()
 			end
 		elseif E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden then
 			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
