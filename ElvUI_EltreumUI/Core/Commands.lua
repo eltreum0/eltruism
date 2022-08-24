@@ -144,6 +144,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 		print("|cff82B4ff/eltruism color|r - Toggles unitframe between light and dark modes")
 		print("|cff82B4ff/eltruism gradient|r - Activates gradient mode")
 		print("|cff82B4ff/eltruism chat|r - Toggles chat between dark and transparent modes")
+		print("|cff82B4ff/eltruism weakauras|r - Toggles actionbars to be similart o WeakAuras, will overwrite settings")
 	end
 end
 
