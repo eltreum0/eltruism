@@ -2105,7 +2105,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							_G.InspectModelFrame:ClearAllPoints()
 							_G.InspectModelFrame:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, -20)
 							_G.InspectMainHandSlot:ClearAllPoints()
-							_G.InspectMainHandSlot:SetPoint("CENTER", _G.InspectFrame, "CENTER", -30, -187)
+							_G.InspectMainHandSlot:SetPoint("CENTER", _G.InspectFrame, "CENTER", -24, -187)
 
 							_G.InspectFrame.ItemLevelText:ClearAllPoints()
 							_G.InspectFrame.ItemLevelText:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 165)
