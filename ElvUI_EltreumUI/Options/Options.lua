@@ -7153,7 +7153,7 @@ function ElvUI_EltreumUI:Configtable()
 										order = 99,
 										type = 'color',
 										name = L["Background Color"],
-										hasAlpha = false,
+										hasAlpha = true,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function()
 											local customcolorpowerbar = E.db.ElvUI_EltreumUI.nameplates.nameplatepower
