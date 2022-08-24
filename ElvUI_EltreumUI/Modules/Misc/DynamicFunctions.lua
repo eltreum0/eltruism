@@ -38,6 +38,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 	end
 end
 
+--hide raid/party frames in bgs bc of battlegroundenemies or similar
 function ElvUI_EltreumUI:BattlegroundGroupUnitframes()
 	if E.db.ElvUI_EltreumUI.unitframes.bgunitframes and E.private.unitframe.enable then
 		_, instanceType = IsInInstance()
@@ -58,6 +59,7 @@ function ElvUI_EltreumUI:BattlegroundGroupUnitframes()
 	end
 end
 
+--hide elvui arena frames in arena bc of addons like gladius, but show in bgs bc of flag carriers
 function ElvUI_EltreumUI:ArenaUnitframes()
 	if E.db.ElvUI_EltreumUI.unitframes.arenaunitframes and E.private.unitframe.enable then
 		_, instanceType = IsInInstance()
@@ -72,6 +74,7 @@ function ElvUI_EltreumUI:ArenaUnitframes()
 	end
 end
 
+--show/hide buffs if in arena or not
 function ElvUI_EltreumUI:DynamicBuffs()
 	if E.db.ElvUI_EltreumUI.unitframes.arenabuffs and E.private.unitframe.enable and not InCombatLockdown() then
 		_, instanceType = IsInInstance()
@@ -356,6 +359,7 @@ function ElvUI_EltreumUI:DynamicExperienceDatabar()
 	end
 end
 
+--chat without backdrop
 function ElvUI_EltreumUI:TransparentChat()
 	E.db["chat"]["fadeUndockedTabs"] = true
 	E.db["chat"]["panelBackdrop"] = "HIDEBOTH"
@@ -379,6 +383,7 @@ function ElvUI_EltreumUI:TransparentChat()
 	ElvUI_EltreumUI:Print("Chat set to Transparent mode")
 end
 
+--chat with backdrop
 function ElvUI_EltreumUI:DarkChat()
 	E.db["chat"]["fadeUndockedTabs"] = false
 	E.db["chat"]["panelBackdrop"] = "SHOWBOTH"
