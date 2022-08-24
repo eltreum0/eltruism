@@ -94,3 +94,20 @@ function ElvUI_EltreumUI:MinimapHide(event)
 		end
 	end
 end
+
+function ElvUI_EltreumUI:DatatextHide(event)
+	if E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow then
+		if event == 'PLAYER_REGEN_DISABLED' then
+			_G.RightChatDataPanel:Show()
+		elseif event == 'PLAYER_REGEN_ENABLED' then
+			_G.RightChatDataPanel:Hide()
+		end
+	end
+	if E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow then
+		if event == 'PLAYER_REGEN_DISABLED' then
+			_G.LeftChatDataPanel:Show()
+		elseif event == 'PLAYER_REGEN_ENABLED' then
+			_G.LeftChatDataPanel:Hide()
+		end
+	end
+end

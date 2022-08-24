@@ -6556,8 +6556,32 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.delete end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.delete = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
-					header14 = {
+
+					headerdatatexthiding = {
 						order = 57,
+						type = "description",
+						name = L["Datatext Hiding"],
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					rightchatdatatexthide = {
+						order = 58,
+						type = 'toggle',
+						name = L["Hide Right Chat Datatext out of Combat"],
+						width = 'full',
+						get = function() return E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow = value end,
+					},
+					rightchatdatatexthide = {
+						order = 58,
+						type = 'toggle',
+						name = L["Hide Left Chat Datatext out of Combat"],
+						width = 'full',
+						get = function() return E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow = value end,
+					},
+					header14 = {
+						order = 88,
 						type = "description",
 						name = L["Play a Sound when receiving mail"],
 						width = 'full',
@@ -6567,14 +6591,14 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'toggle',
 						name = L["Enable"],
 						width = "full",
-						order = 58,
+						order = 89,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable = value end,
 					},
 					mailsoundselect = {
 						type = 'select',
 						name= "",
-						order = 59,
+						order = 90,
 						values = {
 							["tts"] = E.NewSign..TEXT_TO_SPEECH,
 							["sharedmedia"] = CUSTOM,
@@ -6585,7 +6609,7 @@ function ElvUI_EltreumUI:Configtable()
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype = value end,
 					},
 					sharedmediasoundmail = {
-						order = 60,
+						order = 91,
 						type = 'select',
 						width = "double",
 						dialogControl = 'LSM30_Sound',
@@ -6600,7 +6624,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'input',
 						name = E.NewSign..TEXT_TO_SPEECH,
 						width = "full",
-						order = 61,
+						order = 92,
 						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "sharedmedia" end,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext end,
 						set = function(_, value)
@@ -6611,7 +6635,7 @@ function ElvUI_EltreumUI:Configtable()
 					ttsvoiceselect = {
 						type = 'select',
 						name= E.NewSign..TEXT_TO_SPEECH_CONFIG,
-						order = 62,
+						order = 93,
 						values =
 						function()
 							local Voices = {}

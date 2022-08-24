@@ -215,6 +215,7 @@ function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED(event)
 	ElvUI_EltreumUI:BlizzCombatText()
 	ElvUI_EltreumUI:QuestCombatEnd()
 	ElvUI_EltreumUI:MinimapHide(event)
+	ElvUI_EltreumUI:DatatextHide(event)
 end
 
 function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED(event)
@@ -223,6 +224,7 @@ function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED(event)
 	ElvUI_EltreumUI:ArenaUnitframes()
 	ElvUI_EltreumUI:QuestCombat()
 	ElvUI_EltreumUI:MinimapHide(event)
+	ElvUI_EltreumUI:DatatextHide(event)
 end
 
 function ElvUI_EltreumUI:UPDATE_STEALTH()
