@@ -823,7 +823,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["enable"] = true,
 			["font"] = "Kimberley",
 			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "RIGHT",
+			["justifyH"] = "CENTER",
 			["size"] = 9,
 			["text_format"] = "[powercolor][power:current:shortvalue]",
 			["xOffset"] = 0,
