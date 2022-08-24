@@ -6572,7 +6572,7 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow = value end,
 					},
-					rightchatdatatexthide = {
+					leftchatdatatexthide = {
 						order = 58,
 						type = 'toggle',
 						name = L["Hide Left Chat Datatext out of Combat"],
