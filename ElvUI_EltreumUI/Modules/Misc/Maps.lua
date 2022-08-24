@@ -41,13 +41,15 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 		if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin then
 			EltruismAutopin:RegisterEvent("USER_WAYPOINT_UPDATED")
 			EltruismAutopin:RegisterEvent("PLAYER_ENTERING_WORLD")
-			--EltruismAutopin:SetScript("OnEvent", function(self, event, ...)
-			EltruismAutopin:SetScript("OnEvent", function(_, event)
+			EltruismAutopin:RegisterEvent("ZONE_CHANGED")
+			--EltruismAutopin:SetScript("OnEvent", function(_, event)
+			EltruismAutopin:SetScript("OnEvent", function()
 				_, instanceType = IsInInstance()
 				if instanceType ~= "none" then
 					C_Map.ClearUserWaypoint()
 				elseif instanceType == "none" then
-					if event == "USER_WAYPOINT_UPDATED" and C_Map.HasUserWaypoint() == true then
+					--if event == "USER_WAYPOINT_UPDATED" and C_Map.HasUserWaypoint() == true then
+					if C_Map.HasUserWaypoint() == true then
 						C_Timer.After(0, function() C_SuperTrack.SetSuperTrackedUserWaypoint(true) end)
 					end
 				end
