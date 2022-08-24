@@ -249,7 +249,7 @@ function ElvUI_EltreumUI:GradientMode()
 			E.db["unitframe"]["colors"]["colorhealthbyvalue"] = false
 			E.db["unitframe"]["colors"]["classbackdrop"] = false
 			E.db["unitframe"]["colors"]["healthclass"] = false
-			E.db["unitframe"]["colors"]["customhealthbackdrop"] = false
+			E.db["unitframe"]["colors"]["customhealthbackdrop"] = true
 			E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0
 			E.db["unitframe"]["colors"]["health_backdrop"]["g"] = 0
 			E.db["unitframe"]["colors"]["health_backdrop"]["r"] = 0
