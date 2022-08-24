@@ -8374,10 +8374,16 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.characterpanelscale end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterpanelscale = value _G["CharacterFrame"]:SetScale(value) end,
 							},
+							gapfontsize1 = {
+								order = 97,
+								type = "description",
+								name = "",
+								width = 'full',
+							},
 							characterpanelfontsize = {
 								type = 'range',
 								name = E.NewSign..L["Font Size"],
-								order = 97,
+								order = 98,
 								min = 8,
 								max = 40,
 								step = 1,
@@ -8385,8 +8391,7 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.armoryfontsize end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryfontsize = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
 							},
-
-							header834gap2 = {
+							gapfontsize2 = {
 								order = 125,
 								type = "description",
 								name = "",
