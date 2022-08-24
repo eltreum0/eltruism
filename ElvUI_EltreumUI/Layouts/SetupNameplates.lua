@@ -747,8 +747,8 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["name"] = "[namecolor][name:title][realm:dash]"
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets][guild:brackets]"
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["isResting"] = true
-		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["isTarget"] = true
-		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["notTarget"] = true
+		--E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["isTarget"] = true
+		--E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["notTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["outOfCombat"] = true
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["playerCanNotAttack"] = true
 		--show enemy level
