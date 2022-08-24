@@ -756,6 +756,10 @@ function UF:ToggleTransparentStatusBar(isTransparent, statusBar, backdropTex, ad
 		if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden then
 			backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
 			backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+			if statusBar and statusBar.backdrop and E.db.ElvUI_EltreumUI.unitframes.lightmode then
+				--statusBar.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+				statusBar.backdrop:Hide()
+			end
 		elseif E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden then
 			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 				if backdropTex then
