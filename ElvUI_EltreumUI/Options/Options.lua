@@ -8374,8 +8374,25 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.characterpanelscale end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterpanelscale = value _G["CharacterFrame"]:SetScale(value) end,
 							},
-							header834gap2 = {
+							gapfontsize1 = {
 								order = 97,
+								type = "description",
+								name = "",
+								width = 'full',
+							},
+							characterpanelfontsize = {
+								type = 'range',
+								name = E.NewSign..L["Font Size"],
+								order = 98,
+								min = 8,
+								max = 40,
+								step = 1,
+								--width = "double",
+								get = function() return E.db.ElvUI_EltreumUI.skins.armoryfontsize end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryfontsize = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
+							},
+							gapfontsize2 = {
+								order = 125,
 								type = "description",
 								name = "",
 								width = 'full',
@@ -8384,7 +8401,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'range',
 								name = L["Art Alpha"],
 								desc = L["Change the transparency of the Art"],
-								order = 97,
+								order = 126,
 								min = 0.01,
 								max = 1,
 								step = 0.01,
@@ -8394,7 +8411,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha = value _G["EltruismCharacterBG"]:SetAlpha(value) end,
 							},
 							armorybgtextureselect = {
-								order = 98,
+								order = 127,
 								type = 'select',
 								name = L["Background Texture Type"],
 								desc = L["Choose between a Class, Race or Custom Background"],
@@ -8423,7 +8440,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armorybgtype = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
 							},
 							bgcustomtexture = {
-								order = 99,
+								order = 128,
 								type = 'input',
 								name = L["Name of file inside Interface\\Addons"],
 								desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
@@ -8433,7 +8450,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.private.ElvUI_EltreumUI.skins.armorybgtexture = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
 							},
 							expandvignetteenable = {
-								order = 100,
+								order = 129,
 								type = 'toggle',
 								name = L["Add a Vignette over the Character Art"],
 								width = 'full',
@@ -8446,7 +8463,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'range',
 								name = L["Vignette Alpha"],
 								desc = L["Change the transparency of the Vignette"],
-								order = 101,
+								order = 130,
 								min = 0.01,
 								max = 1,
 								step = 0.01,
@@ -8456,7 +8473,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryvignettealpha = value _G["EltruismCharacterBGVignette"]:SetAlpha(value) end,
 							},
 							header843stats = {
-								order = 102,
+								order = 131,
 								type = "description",
 								name = "",
 								width = 'full',
@@ -8464,7 +8481,7 @@ function ElvUI_EltreumUI:Configtable()
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							autoarmorystats = {
-								order = 103,
+								order = 132,
 								type = 'toggle',
 								name = L["Automatically swap the Character Stats to your main ones"],
 								width = 'full',
@@ -8474,14 +8491,14 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classicarmoryautostats = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							headeritemq1823 = {
-								order = 104,
+								order = 133,
 								type = "description",
 								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							itemqualitycolors = {
-								order = 105,
+								order = 134,
 								type = 'toggle',
 								name = L["Add Item Quality Texture"],
 								width = 'full',
@@ -8490,14 +8507,14 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.itemquality = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							headerstat5 = {
-								order = 106,
+								order = 135,
 								type = "description",
 								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							statcolors = {
-								order = 107,
+								order = 136,
 								type = 'toggle',
 								name = function()
 									if E.Retail then
@@ -8512,7 +8529,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.statcolors = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							othergradientcolors = {
-								order = 108,
+								order = 137,
 								type = 'toggle',
 								name = function()
 									if E.Retail then
@@ -8527,14 +8544,14 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterskingradients = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header85 = {
-								order = 118,
+								order = 138,
 								type = "description",
 								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							iconsoncharacter = {
-								order = 119,
+								order = 139,
 								type = 'toggle',
 								name = L["Add Class Icons to Character Panel"],
 								width = 'full',
@@ -8543,7 +8560,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							blizzicons = {
-								order = 120,
+								order = 140,
 								type = 'toggle',
 								name = L["Use Blizzard Icons"],
 								width = 'full',
@@ -8553,7 +8570,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classiconsblizz = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							releaficons= {
-								order = 121,
+								order = 141,
 								type = 'toggle',
 								name = L["Use Blizzard Icons colored by Releaf"],
 								width = 'full',
