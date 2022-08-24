@@ -46,6 +46,7 @@ function ElvUI_EltreumUI:DarkMode()
 		E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.3
 		if not E.Retail then
 			E.db["unitframe"]["units"]["pet"]["health"]["colorPetByUnitClass"] = false
+			E.db["unitframe"]["units"]["pet"]["health"]["colorHappiness"] = false
 		end
 
 		--setup namecolors
@@ -123,6 +124,7 @@ function ElvUI_EltreumUI:LightMode()
 		E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.6
 		if not E.Retail then
 			E.db["unitframe"]["units"]["pet"]["health"]["colorPetByUnitClass"] = true
+			E.db["unitframe"]["units"]["pet"]["health"]["colorHappiness"] = false
 		end
 
 		--setup namecolors
@@ -294,6 +296,8 @@ function ElvUI_EltreumUI:GradientMode()
 				end
 			end
 		end
+		E.db["unitframe"]["units"]["pet"]["health"]["colorPetByUnitClass"] = true
+		E.db["unitframe"]["units"]["pet"]["health"]["colorPetByUnitClass"] = false
 
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = true
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
