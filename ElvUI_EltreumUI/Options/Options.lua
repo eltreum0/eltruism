@@ -6600,7 +6600,7 @@ function ElvUI_EltreumUI:Configtable()
 						name= "",
 						order = 90,
 						values = {
-							["tts"] = E.NewSign..TEXT_TO_SPEECH,
+							["tts"] = E.NewSign..L["Text to Speech"],
 							["sharedmedia"] = CUSTOM,
 						},
 						style = 'radio',
@@ -6622,7 +6622,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					soundmailtts = {
 						type = 'input',
-						name = E.NewSign..TEXT_TO_SPEECH,
+						name = E.NewSign..L["Text to Speech announcement"],
 						width = "full",
 						order = 92,
 						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "sharedmedia" end,
@@ -6634,7 +6634,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					ttsvoiceselect = {
 						type = 'select',
-						name= E.NewSign..TEXT_TO_SPEECH_CONFIG,
+						name= E.NewSign..L["Text to Speech Config"],
 						order = 93,
 						values =
 						function()
@@ -7153,7 +7153,7 @@ function ElvUI_EltreumUI:Configtable()
 										order = 99,
 										type = 'color',
 										name = L["Background Color"],
-										hasAlpha = true,
+										hasAlpha = false,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function()
 											local customcolorpowerbar = E.db.ElvUI_EltreumUI.nameplates.nameplatepower
@@ -7162,7 +7162,7 @@ function ElvUI_EltreumUI:Configtable()
 										end,
 										set = function(_, r, g, b, a)
 											local customcolorpowerbar = E.db.ElvUI_EltreumUI.nameplates.nameplatepower
-											customcolorpowerbar.r, customcolorpowerbar.g, customcolorpowerbar.b, customcolorpowerbar.a = r, g, b, a
+											customcolorpowerbar.r, customcolorpowerbar.g, customcolorpowerbar.b = r, g, b
 										end,
 									},
 									sharedmediatexture = {
