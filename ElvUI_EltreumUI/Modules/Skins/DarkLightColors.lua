@@ -163,11 +163,11 @@ function ElvUI_EltreumUI:LightMode()
 end
 
 function ElvUI_EltreumUI:ColorModes()
-	if E.db.ElvUI_EltreumUI.unitframes.lightmode == false and E.db.ElvUI_EltreumUI.unitframes.darkmode == false then
+	if not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode then
 		ElvUI_EltreumUI:LightMode()
-	elseif E.db.ElvUI_EltreumUI.unitframes.lightmode == true and E.db.ElvUI_EltreumUI.unitframes.darkmode == false then
+	elseif E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode then
 		ElvUI_EltreumUI:DarkMode()
-	elseif E.db.ElvUI_EltreumUI.unitframes.darkmode == true and E.db.ElvUI_EltreumUI.unitframes.lightmode == false then
+	elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and not E.db.ElvUI_EltreumUI.unitframes.lightmode then
 		ElvUI_EltreumUI:LightMode()
 	end
 	ElvUI_EltreumUI:GradientColorTableUpdate()
