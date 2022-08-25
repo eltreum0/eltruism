@@ -552,6 +552,43 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				end
 			end
 		end
+
+		--automatically set the execute % based on class
+		if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] and E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] then
+			if E.Retail then
+				if E.myclass == "WARRIOR" or E.myclass == "DEATHKNIGHT" then
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35
+				elseif E.myclass == "MAGE" or E.myclass == "ROGUE" then
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.30
+				elseif E.myclass == "HUNTER" or E.myclass == "WARLOCK" or E.myclass == "PALADIN" or E.myclass == "PRIEST" then
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20
+				elseif E.myclass == "MONK" then
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.15
+				else
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.10
+				end
+			elseif E.Wrath then
+				if E.myclass == "MAGE" then
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35
+				elseif E.myclass == "WARRIOR" or E.myclass == "HUNTER" then
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20
+				else
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.10
+				end
+			elseif E.TBC then
+				if E.myclass == "WARRIOR" or E.myclass == "MAGE" then
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20
+				else
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.10
+				end
+			elseif E.Classic then
+				if E.myclass == "WARRIOR" then
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20
+				else
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.10
+				end
+			end
+		end
 	end
 end
 
