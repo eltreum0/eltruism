@@ -231,13 +231,16 @@ function ElvUI_EltreumUI:EltruismHideTalkingHead()
 				if E.Retail then
 					if not IsAddOnLoaded("Blizzard_TalkingHeadUI") then
 						UIParentLoadAddOn("Blizzard_TalkingHeadUI")
-						if IsAddOnLoaded('Blizzard_TalkingHeadUI') then
-							local TalkingHeadFrame = _G.TalkingHeadFrame
-							hooksecurefunc('TalkingHeadFrame_PlayCurrent', function()
-								TalkingHeadFrame:Hide()
-							end)
-							EltruismHideTalkingHead:UnregisterAllEvents()
-						end
+					end
+					if IsAddOnLoaded('Blizzard_TalkingHeadUI') then
+						local TalkingHeadFrame = _G.TalkingHeadFrame
+						hooksecurefunc('TalkingHeadFrame_PlayCurrent', function()
+							TalkingHeadFrame:Hide()
+						end)
+						hooksecurefunc('TalkingHeadFrame_Reset', function()
+							TalkingHeadFrame:Hide()
+						end)
+						EltruismHideTalkingHead:UnregisterAllEvents()
 					end
 				else
 					EltruismHideTalkingHead:UnregisterAllEvents()
