@@ -369,8 +369,8 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["actionbar"]["bar5"]["counttext"] = true
 		E.db["actionbar"]["bar6"]["counttext"] = true
 
-		E.db["actionbar"]["noRangeColor"]["b"] = 0.23529411764706
-		E.db["actionbar"]["noRangeColor"]["g"] = 0.23529411764706
+		E.db["actionbar"]["noRangeColor"]["b"] = 0.11764705882353
+		E.db["actionbar"]["noRangeColor"]["g"] = 0.11764705882353
 		E.db["actionbar"]["noRangeColor"]["r"] = 1
 
 		-- Custom Text: Party
