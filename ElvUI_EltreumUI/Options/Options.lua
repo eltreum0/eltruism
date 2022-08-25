@@ -9564,7 +9564,7 @@ function ElvUI_EltreumUI:Configtable()
 									["CUSTOM"] = CUSTOM,
 								},
 								style = 'radio',
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications and not E.db.ElvUI_EltreumUI.unitframes.models.unitframe) end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.models.unitframe or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltype end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.modeltype = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
 							},
@@ -9579,7 +9579,7 @@ function ElvUI_EltreumUI:Configtable()
 									end
 								end,
 								width = 'full',
-								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltype == 'CLASS' or (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications and not E.db.ElvUI_EltreumUI.unitframes.models.unitframe) end,
+								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltype == 'CLASS' or not E.db.ElvUI_EltreumUI.unitframes.models.unitframe or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								validate = function(_, value)
 									E.PopupDialogs["ELTRUISMINVALIDMODEL"] = {
 										text = L["Invalid Model, you need to add a Model ID/Path"],
@@ -9623,6 +9623,7 @@ function ElvUI_EltreumUI:Configtable()
 								max = 1,
 								step = 0.01,
 								width = "double",
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.models.unitframe or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.ufalpha end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.ufalpha = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
 							},
@@ -9634,6 +9635,7 @@ function ElvUI_EltreumUI:Configtable()
 								max = 1,
 								step = 0.01,
 								width = "double",
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.models.unitframe or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
 							},
@@ -9645,6 +9647,7 @@ function ElvUI_EltreumUI:Configtable()
 								max = 1,
 								step = 0.01,
 								width = "double",
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.models.unitframe or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
 							},
@@ -9677,7 +9680,7 @@ function ElvUI_EltreumUI:Configtable()
 									"CUSTOM",
 								},
 								style = 'radio',
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications and not E.db.ElvUI_EltreumUI.unitframes.models.castbar) end,
+								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.models.castbar) end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltypecast end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.modeltypecast = value ElvUI_EltreumUI:CastbarEffects() end,
 							},
@@ -9692,7 +9695,7 @@ function ElvUI_EltreumUI:Configtable()
 									end
 								end,
 								width = 'full',
-								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltypecast == "DEFAULT" or (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications and not E.db.ElvUI_EltreumUI.unitframes.models.castbar) end,
+								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltypecast == "DEFAULT" or (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.models.castbar) end,
 								validate = function(_, value)
 									E.PopupDialogs["ELTRUISMINVALIDMODELCAST"] = {
 										text = L["Invalid Model, you need to add a Model ID/Path"],
