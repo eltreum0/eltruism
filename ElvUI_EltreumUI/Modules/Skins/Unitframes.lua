@@ -396,7 +396,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then ---TODO confirm this is fine for dark mode
 					button.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				end
-				local _, buttonclass = UnitClass(button.unit)
+				_, buttonclass = UnitClass(button.unit)
 				if buttonclass then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
 						if E.db.ElvUI_EltreumUI.unitframes.lightmode then
