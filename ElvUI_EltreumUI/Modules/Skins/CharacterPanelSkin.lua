@@ -325,7 +325,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterModelFrame:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
 			CharacterModelFrame:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
 			CharacterModelFrame:SetPoint('BOTTOM', _G.CharacterMainHandSlot, 0, -5)
-			CharacterModelFrame:SetPosition(-0.7, 0, -0.20) -- zoom, x, y
+			--CharacterModelFrame:SetPosition(-0.7, 0, -0.20) -- zoom, x, y
+			CharacterModelFrame:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+
 			--CharacterModelFrame:SetPosition(-0.25, 0, -0.10) -- zoom, x, y
 			--CharacterModelFrame:SetPosition(-0.55, 0, -0.10) -- zoom, x, y
 
@@ -933,6 +935,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
 					CharacterFrame:SetWidth(505)
+					CharacterModelFrame:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
 				end
 				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
@@ -965,6 +968,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
 					CharacterFrame:SetWidth(700)
+					CharacterModelFrame:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
 				end
 				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
@@ -1346,7 +1350,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 
 			--pre set the zoom
-			CharacterModelFrame:SetPosition(-0.2, 0, -0.1)
+			CharacterModelFrame:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic)
+			--CharacterModelFrame:SetPosition(-0.2, 0, -0.1)
 
 			--fix frame size depending on tab
 			local function ResizeCharacterFrame()
@@ -1368,8 +1373,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						CharacterModelFrame:ClearAllPoints()
 						CharacterModelFrame:SetPoint("CENTER", CharacterFrame,"CENTER", -126, 15)
 						--CharacterModelFrame:SetPosition(-0.2, 0, -0.3)
-						CharacterModelFrame:SetPosition(-0.2, 0, -0.1)
+						CharacterModelFrame:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic)
 						--CharacterModelFrame:SetPosition(0.9, 0, -0.1)
+						ClassCrestFrame:SetPoint("CENTER", CharacterModelFrame, 0 , 50)
 
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
@@ -1391,6 +1397,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.PaperDollItemsFrame:SetScript("OnShow", ResizeCharacterFrame)
 			CharacterFrame:HookScript("OnShow", ResizeCharacterFrame)
 			hooksecurefunc("CharacterFrameTab_OnClick", ResizeCharacterFrame)
+			_G.PaperDollItemsFrame:SetScript("OnHide", function()
+				ClassCrestFrame:SetPoint("CENTER", CharacterFrame, 0 , 50)
+			end)
+
+
 
 
 			--adjust the items

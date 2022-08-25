@@ -8365,8 +8365,83 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.characterpanelscale end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterpanelscale = value _G["CharacterFrame"]:SetScale(value) end,
 							},
-							gapfontsize1 = {
+							gapmodelcam1 = {
 								order = 97,
+								type = "description",
+								name = "",
+								width = 'full',
+							},
+							modelcamzoom = {
+								type = 'range',
+								name = E.NewSign..L["Character Model Zoom"],
+								order = 98,
+								min = -2,
+								max = 2,
+								step = 0.01,
+								--width = "double",
+								get = function()
+									if E.Retail then
+										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail
+									else
+										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic
+									end
+								end,
+								set = function(_, value)
+									if E.Retail then
+										E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail = value _G["CharacterModelFrame"]:SetPosition(value, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+									else
+										E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic = value _G["CharacterModelFrame"]:SetPosition(value, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic)
+									end
+								end,
+							},
+							modelcamx = {
+								type = 'range',
+								name = E.NewSign..L["Character Model X Offset"],
+								order = 99,
+								min = -2,
+								max = 2,
+								step = 0.01,
+								--width = "double",
+								get = function()
+									if E.Retail then
+										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail
+									else
+										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic
+									end
+								end,
+								set = function(_, value)
+									if E.Retail then
+										E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail = value _G["CharacterModelFrame"]:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, value, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+									else
+										E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic = value _G["CharacterModelFrame"]:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic, value, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic)
+									end
+								end,
+							},
+							modelcamy = {
+								type = 'range',
+								name = E.NewSign..L["Character Model Y Offset"],
+								order = 100,
+								min = -2,
+								max = 2,
+								step = 0.01,
+								--width = "double",
+								get = function()
+									if E.Retail then
+										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail
+									else
+										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic
+									end
+								end,
+								set = function(_, value)
+									if E.Retail then
+										E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail = value _G["CharacterModelFrame"]:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, value)
+									else
+										E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic = value _G["CharacterModelFrame"]:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic, value)
+									end
+								end,
+							},
+							gapfontsize1 = {
+								order = 123,
 								type = "description",
 								name = "",
 								width = 'full',
@@ -8374,7 +8449,7 @@ function ElvUI_EltreumUI:Configtable()
 							characterpanelfontsize = {
 								type = 'range',
 								name = E.NewSign..L["Font Size"],
-								order = 98,
+								order = 124,
 								min = 8,
 								max = 40,
 								step = 1,
