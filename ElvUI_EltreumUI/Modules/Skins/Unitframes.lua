@@ -10,21 +10,12 @@ local tostring = _G.tostring
 local select = _G.select
 local UnitIsTapDenied = _G.UnitIsTapDenied
 local UnitPlayerControlled = _G.UnitPlayerControlled
-local _, unit1class, buttonclass
-local unitframe
-local _, classunit
-local namebar
-local reaction
+local _, unit1class, buttonclass, classunit, unitframe, namebar, reaction
 local headergroup = nil
 local headertank = nil
 local headerassist = nil
-local group
-local groupbutton
-local tankbutton
-local assistbutton
-local orientation
-local barTexture
-local texture
+local group, groupbutton, tankbutton, assistbutton
+local orientation, barTexture, texture
 
 --set the textures or gradients
 function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
