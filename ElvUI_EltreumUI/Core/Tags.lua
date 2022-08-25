@@ -161,7 +161,7 @@ E:AddTag("eltruism:IconOutline:all", "UNIT_NAME_UPDATE", function(unit)
 	icon = classIconsOutline[classes]
 	return icon
 end)
-E:AddTagInfo('eltruism:IconOutline:all', ElvUI_EltreumUI.Name, "Shows Class Icons with Outlines all targets")
+E:AddTagInfo("eltruism:IconOutline:all", ElvUI_EltreumUI.Name, "Shows Class Icons with Outlines all targets")
 
 --class icons with otlines on players
 E:AddTag("eltruism:IconOutline:player", "UNIT_NAME_UPDATE", function(unit)
@@ -171,7 +171,7 @@ E:AddTag("eltruism:IconOutline:player", "UNIT_NAME_UPDATE", function(unit)
 	icon = classIconsOutline[classes]
 	return icon
 end)
-E:AddTagInfo('eltruism:IconOutline:player', ElvUI_EltreumUI.Name, "Shows Class Icons with Outlines on Player targets")
+E:AddTagInfo("eltruism:IconOutline:player", ElvUI_EltreumUI.Name, "Shows Class Icons with Outlines on Player targets")
 
 -- Class Icons by Releaf with borders
 local classIconsOutlineReleaf = {
@@ -196,7 +196,7 @@ E:AddTag("eltruism:ReleafIconOutline:all", "UNIT_NAME_UPDATE", function(unit)
 	icon = classIconsOutlineReleaf[classes]
 	return icon
 end)
-E:AddTagInfo('eltruism:ReleafIconOutline:all', ElvUI_EltreumUI.Name, "Shows Class Icons with Outlines by Releaf all targets")
+E:AddTagInfo("eltruism:ReleafIconOutline:all", ElvUI_EltreumUI.Name, "Shows Class Icons with Outlines by Releaf all targets")
 
 --class icons with otlines on players
 E:AddTag("eltruism:ReleafIconOutline:player", "UNIT_NAME_UPDATE", function(unit)
@@ -206,7 +206,7 @@ E:AddTag("eltruism:ReleafIconOutline:player", "UNIT_NAME_UPDATE", function(unit)
 	icon = classIconsOutlineReleaf[classes]
 	return icon
 end)
-E:AddTagInfo('eltruism:ReleafIconOutline:player', ElvUI_EltreumUI.Name, "Shows Class Icons with Outlines by Releaf on Player targets")
+E:AddTagInfo("eltruism:ReleafIconOutline:player", ElvUI_EltreumUI.Name, "Shows Class Icons with Outlines by Releaf on Player targets")
 
 -- Releaf Logo
 E:AddTag("releaf", "UNIT_NAME_UPDATE", function()
@@ -218,7 +218,7 @@ E:AddTag("releaf", "UNIT_NAME_UPDATE", function()
 	--local releaf = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Releaf-Orange.tga:0:0:0:0|t"
 	return releaf
 end)
-E:AddTagInfo('releaf', ElvUI_EltreumUI.Name, "Shows Releaf's Icon")
+E:AddTagInfo("releaf", ElvUI_EltreumUI.Name, "Shows Releaf's Icon")
 
 -- Target Marker tag
 E:AddTag("eltruism:raidmarker", 'RAID_TARGET_UPDATE', function(unit)
@@ -229,7 +229,7 @@ E:AddTag("eltruism:raidmarker", 'RAID_TARGET_UPDATE', function(unit)
 	end
 	return mark
 end)
-E:AddTagInfo('eltruism:raidmarker', ElvUI_EltreumUI.Name, L["Shows raid target marker"])
+E:AddTagInfo("eltruism:raidmarker", ElvUI_EltreumUI.Name, L["Shows raid target marker"])
 
 
 --level difference table based on blizzard's
@@ -432,7 +432,7 @@ E:AddTag("eltruism:effectivehp", "UNIT_HEALTH UNIT_TARGET", function()
 	local effective = math.floor((ehp*100)/100)
 	return effective
 end)
-E:AddTagInfo('eltruism:effectivehp', ElvUI_EltreumUI.Name, L["Shows Effective Health"])
+E:AddTagInfo("eltruism:effectivehp", ElvUI_EltreumUI.Name, L["Shows Effective Health"])
 
 E:AddTag("eltruism:levelskull", "UNIT_TARGET UNIT_NAME_UPDATE", function(unit)
 	local level
@@ -449,7 +449,7 @@ E:AddTag("eltruism:levelskull", "UNIT_TARGET UNIT_NAME_UPDATE", function(unit)
 		return level
 	end
 end)
-E:AddTagInfo('eltruism:levelskull', ElvUI_EltreumUI.Name, L["Shows the Unit Level, or a skull if the level is too high"])
+E:AddTagInfo("eltruism:levelskull", ElvUI_EltreumUI.Name, L["Shows the Unit Level, or a skull if the level is too high"])
 
 E:AddTag("eltruism:leader", "GROUP_ROSTER_UPDATE", function(unit)
 	local leader = UnitIsGroupLeader(unit)
@@ -496,7 +496,7 @@ E:AddTag("eltruism:shortclassification", "UNIT_NAME_UPDATE", function(unit)
 end)
 E:AddTagInfo("eltruism:shortclassification", ElvUI_EltreumUI.Name, L["Displays the unit's classification in short form (e.g. '+' for ELITE and 'R' for RARE and a Skull for Boss)"])
 
-E:AddTag('eltruism:smartlevel', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
+E:AddTag("eltruism:smartlevel", 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 	local level
 	local playerlevel
 	if E.Retail then
@@ -523,7 +523,7 @@ E:AddTag('eltruism:smartlevel', 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 end)
 E:AddTagInfo("eltruism:smartlevel", ElvUI_EltreumUI.Name, L["Shows level difference when it exists for NPCs and players, hides for players if same level"])
 
-E:AddTag('eltruism:presence', 'RUNE_POWER_UPDATE', function(unit)
+E:AddTag("eltruism:presence", 'RUNE_POWER_UPDATE', function(unit)
 	local presence = GetShapeshiftForm()
 	if E.Wrath and E.myclass == 'DEATHKNIGHT' then
 		if presence == 1 then --blood
@@ -660,7 +660,7 @@ end)
 E:AddTagInfo("eltruism:hpstatus", ElvUI_EltreumUI.Name, L["Displays HP - % and a status symbol from Releaf for players. Usage: [eltruism:hpstatus{number,number}]"])
 
 --Class color but only for players, from elvui but without the npc stuff
-E:AddTag('eltruism:classcolor', 'UNIT_NAME_UPDATE', function(unit)
+E:AddTag("eltruism:classcolor", 'UNIT_NAME_UPDATE', function(unit)
 	if UnitIsPlayer(unit) then
 		local _, unitClass = UnitClass(unit)
 		local cs = ElvUF.colors.class[unitClass]
@@ -670,7 +670,7 @@ end)
 E:AddTagInfo("eltruism:classcolor", ElvUI_EltreumUI.Name, L["Returns class color only for players"])
 
 --combat icon idea for other units
-E:AddTag('eltruism:combatindicator', 'UNIT_HEALTH', function(unit)
+E:AddTag("eltruism:combatindicator", 'UNIT_HEALTH', function(unit)
 	local texture = E.db["unitframe"]["units"]["player"]["CombatIcon"]["texture"]
 	if UnitAffectingCombat(unit) then
 		if texture == "DEFAULT" then
@@ -698,7 +698,7 @@ E:AddTagInfo("eltruism:combatindicator", ElvUI_EltreumUI.Name, L["Displays an ic
 
 --plays a sound for healers when they have low mana, has anti spam
 local manaspam = false
-E:AddTag('eltruism:lowmana', 'UNIT_POWER_FREQUENT', function(unit,_,args)
+E:AddTag("eltruism:lowmana", 'UNIT_POWER_FREQUENT', function(unit,_,args)
 	local percentage = strsplit(':', args or '')
 	if percentage == nil then
 		percentage = 1
