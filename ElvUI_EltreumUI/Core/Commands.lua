@@ -175,14 +175,14 @@ function ElvUI_EltreumUI:Keys(event,message)
 			local bagSlots = GetContainerNumSlots(bag)
 			for slot = 1, bagSlots do
 				local itemLink, _, _, itemID = select(7, GetContainerItemInfo(bag, slot))
-				if ids[itemID] then
+				if itemID and ids[itemID] then
 					keys[itemID] = itemLink
 				end
 			end
 		end
 	end
 	local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or (event == 'CHAT_MSG_PARTY_LEADER' and 'PARTY') or (event == 'CHAT_MSG_PARTY' and 'PARTY')
-	local function link()
+	local function link(channel)
 		update()
 		-- Add covenant data
 		local covenantID = C_Covenants.GetActiveCovenantID()
