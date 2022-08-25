@@ -9,6 +9,7 @@ Updated WeakAuras Action Bar visibility and added a few checks to prevent errors
 Updated pet unitframe health configuration due to an ElvUI update\
 Updated waypoint autopin to more reliably autopin in some scenarios\
 Updated German translations by Dlarge\
+Updated Action bar out of range color\
 Fixed health backdrop alpha in light mode\
 Fixed Talking Head not correctly hiding in some situations\
 Fixed profile not applying when spec specific profiles were selected
