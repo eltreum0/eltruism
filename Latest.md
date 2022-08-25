@@ -1,17 +1,14 @@
-### 3.2.7 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.2.8 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added an option in Eltruism > Media to make the actionbars and power similar to a WeakAura, a command (/eltruism weakauras) was also addded\
-Added an option to move the cursor anchor using offsets\
-Added an option to enable/disable the class colored modifier keys on action bars\
-Added a button in Eltruism > Installer to rerun the Database Check and improved the version check\
-Added new media, "Oh no no no"\
-Updated Character Panel Skin, allow more settings to be independent and also improved compatibility with Shadow and Light armory and Deja Character Stats\
-Updated Expanded Talents for Classic/TBC/Wrath, which will now better use the background art\
-Updated the Chat Color System messages to better detect messages in other languages than English\
-Updated German locale by Dlarge\
-Updated Nameplate Style filter for Explosives, now forcing it to have full Alpha and higher Priority\
-Updated Quest Items Bar in Retail to more reliably detect quest items\
-Fixed Pet Name in Wrath not correctly replacing fonts\
-Fixed a possible error if trying to open the game menu while in combat\
-Fixed Other stats in Character Panel skin sometimes not being correctly positioned\
-Fixed an error with Style Filters
+Added an option to change the font size on the Character Panel Skin\
+Added an option to hide datatexts outside of combat and show them in combat\
+Added alpha option to the Nameplate Power Bar background\
+Updated Gradient Mode, finally solving the Gradient colors for Priest in light mode and making it more compatible with other ElvUI settings\
+Updated Objective Tracker Skin to better skin World Quests and added a Gradient Bar to it like the others\
+Updated WeakAuras Action Bar visibility and added a few checks to prevent errors\
+Updated pet unitframe health configuration due to an ElvUI update\
+Updated waypoint autopin to more reliably autopin in some scenarios\
+Updated German translations by Dlarge\
+Fixed health backdrop alpha in light mode\
+Fixed Talking Head not correctly hiding in some situations\
+Fixed profile not applying when spec specific profiles were selected
