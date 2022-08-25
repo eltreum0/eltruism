@@ -149,6 +149,7 @@ function ElvUI_EltreumUI:GetGladdyProfile()
 						},
 						["racialFont"] = "Kimberley",
 						["totemPulseBarBorderStyle"] = "1 Pixel",
+						["npTotemPlatesSize"] = 22,
 						["buffsYOffset"] = -31,
 						["healthBarBorderSize"] = 1,
 						["npTotemPlatesBorderStyle"] = "Interface\\AddOns\\Gladdy\\Images\\Border_squared_blp",
