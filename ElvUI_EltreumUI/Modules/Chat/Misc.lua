@@ -250,7 +250,6 @@ function ElvUI_EltreumUI:EltruismHideTalkingHead()
 	end
 end
 
-
 -- Replace Chat Icons (by abusing line reading order)
 if not IsAddOnLoaded("ElvUI_EltreumUI") then return end
 if not E.private then return end
