@@ -7961,7 +7961,7 @@ function ElvUI_EltreumUI:Configtable()
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								width = "full",
 							},
-							skinenable = {
+							skinenableboss = {
 								order = 49,
 								type = 'toggle',
 								name = L["Enable"],
