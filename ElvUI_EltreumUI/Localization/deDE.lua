@@ -1118,3 +1118,5 @@ L["Play a Sound when receiving mail"] = "Einen Ton bei einer neuen Nachricht abs
 L["Text to Speech"] = "Text zu Sprache"
 L["Text to Speech announcement"] = "Text zu Sprache Ansagen"
 L["Text to Speech Config"] = "Text zu Sprache Einstellung"
+L["Enable AMD FSR even if not scaling"] = true
+L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"] = true

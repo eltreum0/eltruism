@@ -1076,3 +1076,5 @@ L["Play a Sound when receiving mail"] = true
 L["Text to Speech"] = true
 L["Text to Speech announcement"] = true
 L["Text to Speech Config"] = true
+L["Enable AMD FSR even if not scaling"] = true
+L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"] = true
