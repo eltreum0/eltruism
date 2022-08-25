@@ -23,6 +23,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["actionbar"]["bar1"]["buttonSize"] = 43
 		E.db["actionbar"]["bar1"]["buttonSpacing"] = 3
 		E.db["actionbar"]["bar1"]["buttons"] = 8
+		E.db["actionbar"]["bar1"]["enabled"] = true
 		E.db["actionbar"]["bar1"]["flyoutDirection"] = "UP"
 		E.db["actionbar"]["bar1"]["hotkeytext"] = false
 		E.db["actionbar"]["bar1"]["inheritGlobalFade"] = true
