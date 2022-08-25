@@ -6259,7 +6259,21 @@ function ElvUI_EltreumUI:Configtable()
 									E:StaticPopup_Show('CONFIG_RL')
 								end,
 							},
-
+							headerFSR = {
+								order = 132,
+								type = "description",
+								name = L["AMD FSR"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							forceFSRon = {
+								order = 133,
+								type = 'toggle',
+								name = L["Enable AMD FSR even if not scaling"],
+								desc = L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"],
+								get = function() return C_CVar.GetCVar('ResampleAlwaysSharpen') end,
+								set = function(_, value) SetCVar('ResampleAlwaysSharpen', value) end,
+							},
 						},
 					},
 				},
