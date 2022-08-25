@@ -112,7 +112,9 @@ function ElvUI_EltreumUI:QuestCombatEnd()
 		elseif E.TBC or E.Classic then
 			_G.QuestWatchFrame:Show()
 			if IsAddOnLoaded("Questie") then
-				_G["Questie_BaseFrame"]:Show()
+				if _G["Questie_BaseFrame"] then
+					_G["Questie_BaseFrame"]:Show()
+				end
 			end
 		elseif E.Wrath then
 			_G.WatchFrame:Show()
