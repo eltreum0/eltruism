@@ -39,7 +39,7 @@ function ElvUI_EltreumUI:LootText()
 			string:SetFont(E.media.normFont, 24, E.db.general.fontStyle)
 		elseif E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg then
 			string:SetFont(E.private.general.dmgfont, 24, E.db.general.fontStyle)
-	 	end
+		end
 		string:SetText(message)
 		string:SetTextColor(r, g, b)
 		string.scrollTime = 0

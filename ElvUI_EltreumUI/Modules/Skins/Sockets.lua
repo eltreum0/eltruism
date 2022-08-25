@@ -1626,10 +1626,10 @@ function ElvUI_EltreumUI:ClassicSockets()
 	ElvUI_EltreumUI.ItemStringInfo = ItemStringInfo
 	function ItemStringInfo:new(itemString)
 		--itemString = string.match(itemString, "^|%x%x%x%x%x%x%x%x%x|H([^|]+)|h") or itemString
-		 local _, _, enchantId = strsplit(":",itemString)
+		local _, _, enchantId = strsplit(":",itemString)
 
-		 --[[
-		 _type, itemId, enchantId, jewelId1, jewelId2, jewelId3, jewelId4, suffixId, uniqueId, linkLevel, specializationID, reforgeId = strsplit(
+		--[[
+		_type, itemId, enchantId, jewelId1, jewelId2, jewelId3, jewelId4, suffixId, uniqueId, linkLevel, specializationID, reforgeId = strsplit(
 				":",
 				itemString
 			)

@@ -261,7 +261,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 						CraftCancelButton:ClearAllPoints()
 						CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
 
-	 					if dontexpandanymoreEnchant == 0 then
+						if dontexpandanymoreEnchant == 0 then
 							-- Create the additional rows
 							--local numCrafts = CRAFTS_DISPLAYED
 							local numCrafts = 8

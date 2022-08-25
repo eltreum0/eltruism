@@ -5864,7 +5864,7 @@ function ElvUI_EltreumUI:Configtable()
 							local item = tonumber(value)
 							tremove(E.private.ElvUI_EltreumUI.wishlistID, item)
 							tremove(E.private.ElvUI_EltreumUI.wishlistName, item)
-						 end,
+						end,
 					},
 				},
 			},
@@ -6111,20 +6111,20 @@ function ElvUI_EltreumUI:Configtable()
 								confirm = true,
 							},
 							sharedmediafont = {
-								 order = 8,
-								 type = 'select',
-								 width = "double",
-								 dialogControl = 'LSM30_Font',
-								 name = L["Or choose a custom font"],
-								 desc = L["Choose a different font from the preselected ones"],
-								 values = AceGUIWidgetLSMlists.font,
-								 get = function()
+								order = 8,
+								type = 'select',
+								width = "double",
+								dialogControl = 'LSM30_Font',
+								name = L["Or choose a custom font"],
+								desc = L["Choose a different font from the preselected ones"],
+								values = AceGUIWidgetLSMlists.font,
+								get = function()
 									return E.db.ElvUI_EltreumUI.otherstuff.fonts.playerfont
-								 end,
-								 set = function(self,fontvalue)
+								end,
+								set = function(self,fontvalue)
 									E.db.ElvUI_EltreumUI.otherstuff.fonts.playerfont = fontvalue
 									ElvUI_EltreumUI:SetupCustomFont(fontvalue)
-								 end,
+								end,
 							},
 							addagaphereforoutlines = {
 								order = 9,

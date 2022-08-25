@@ -319,7 +319,7 @@ function ElvUI_EltreumUI:checkSpellCooldown(spell)
 	if not spell then return end
 	namespell, _, texturespell = GetSpellInfo(spell)
 	if E.db.ElvUI_EltreumUI.cursors.cursor.petcooldown and not namespell then
-		 return ElvUI_EltreumUI:checkPetActionCooldown(findPetActionIndexForSpell(spell))
+		return ElvUI_EltreumUI:checkPetActionCooldown(findPetActionIndexForSpell(spell))
 	end
 	baseCooldown = GetSpellBaseCooldown(spell)
 	ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (baseCooldown and baseCooldown > 0))

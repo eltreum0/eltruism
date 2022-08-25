@@ -203,7 +203,7 @@ EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
 		if E.db["mui"]["armory"]["character"]["classIcon"] then
 			return
 		end
-	 end
+	end
 
 	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false then
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()

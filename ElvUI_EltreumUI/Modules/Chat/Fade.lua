@@ -85,7 +85,7 @@ function ElvUI_EltreumUI:DynamicChatFade()
 
 		--left chat toggle the fade on and off
 		_G.ChatFrame1:SetScript('OnMouseDown', function(self, button)
-			 if button=='LeftButton' then
+			if button=='LeftButton' then
 				if leftfaderbutton == 1 then
 					leftfaderbutton = 0
 				elseif leftfaderbutton == 0 then
@@ -95,8 +95,8 @@ function ElvUI_EltreumUI:DynamicChatFade()
 		end)
 		--right chat toggle the fade on and off
 		_G.ChatFrame4:SetScript('OnMouseDown', function(self, button)
-			 if button=='LeftButton' then
-			 	if rightfaderbutton == 1 then
+			if button=='LeftButton' then
+				if rightfaderbutton == 1 then
 					rightfaderbutton = 0
 				elseif rightfaderbutton == 0 then
 					rightfaderbutton = 1
