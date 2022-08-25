@@ -10,8 +10,7 @@ local tostring = _G.tostring
 local select = _G.select
 local UnitIsTapDenied = _G.UnitIsTapDenied
 local UnitPlayerControlled = _G.UnitPlayerControlled
-local _, unit1class
-local r,g,b
+local _, unit1class, buttonclass
 local unitframe
 local _, classunit
 local namebar
@@ -21,11 +20,8 @@ local headertank = nil
 local headerassist = nil
 local group
 local groupbutton
-local rgroup,ggroup,bgroup
 local tankbutton
-local rtank,gtank,btank
 local assistbutton
-local rassist,gassist,bassist
 local orientation
 local barTexture
 local texture
@@ -410,32 +406,34 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 					button.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				end
 				local _, buttonclass = UnitClass(button.unit)
-				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
-					if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-						button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-							button.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, false))
-						else
-							button.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, false, false))
+				if buttonclass then
+					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
+						if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+							button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+								button.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, false))
+							else
+								button.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, false, false))
+							end
+						elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and button.Health.backdropTex then
+							button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+								button.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, true))
+							else
+								button.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, false, true))
+							end
 						end
-					elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and button.Health.backdropTex then
-						button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-							button.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, true))
-						else
-							button.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, false, true))
-						end
-					end
-				elseif not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-					if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-							button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
-						else
-							button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTexture(buttonclass))
-						end
-					elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable and button.Health.backdropTex then
-							button.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
+					elseif not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+						if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+							if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+								button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
+							else
+								button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTexture(buttonclass))
+							end
+						elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
+							if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable and button.Health.backdropTex then
+								button.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
+							end
 						end
 					end
 				end
