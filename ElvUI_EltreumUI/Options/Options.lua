@@ -5688,6 +5688,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'toggle',
 								name = L["Use ElvUI General Font"],
 								desc = L["Change the font of LootText"],
+								width = 'full',
 								order = 18,
 								disabled = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg end,
 								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsetting end,
@@ -5697,6 +5698,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'toggle',
 								name = E.NewSign..L["Use ElvUI Damage Font"],
 								desc = L["Change the font of LootText"],
+								width = 'full',
 								order = 18,
 								disabled = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsetting end,
 								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg end,
@@ -8347,117 +8349,7 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorycrest end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorycrest = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							header834gap = {
-								order = 95,
-								type = "description",
-								name = "",
-								width = 'full',
-							},
-							characterpanelscale = {
-								type = 'range',
-								name = E.NewSign..L["Character Panel Scale"],
-								desc = L["Change the size of the Character Panel"],
-								order = 96,
-								min = 0.2,
-								max = 2,
-								step = 0.01,
-								--width = "double",
-								get = function() return E.db.ElvUI_EltreumUI.skins.characterpanelscale end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterpanelscale = value _G["CharacterFrame"]:SetScale(value) end,
-							},
-							gapmodelcam1 = {
-								order = 97,
-								type = "description",
-								name = "",
-								width = 'full',
-							},
-							modelcamzoom = {
-								type = 'range',
-								name = E.NewSign..L["Character Model Zoom"],
-								order = 98,
-								min = -2,
-								max = 2,
-								step = 0.01,
-								--width = "double",
-								get = function()
-									if E.Retail then
-										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail
-									else
-										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic
-									end
-								end,
-								set = function(_, value)
-									if E.Retail then
-										E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail = value _G["CharacterModelFrame"]:SetPosition(value, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
-									else
-										E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic = value _G["CharacterModelFrame"]:SetPosition(value, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic)
-									end
-								end,
-							},
-							modelcamx = {
-								type = 'range',
-								name = E.NewSign..L["Character Model X Offset"],
-								order = 99,
-								min = -2,
-								max = 2,
-								step = 0.01,
-								--width = "double",
-								get = function()
-									if E.Retail then
-										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail
-									else
-										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic
-									end
-								end,
-								set = function(_, value)
-									if E.Retail then
-										E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail = value _G["CharacterModelFrame"]:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, value, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
-									else
-										E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic = value _G["CharacterModelFrame"]:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic, value, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic)
-									end
-								end,
-							},
-							modelcamy = {
-								type = 'range',
-								name = E.NewSign..L["Character Model Y Offset"],
-								order = 100,
-								min = -2,
-								max = 2,
-								step = 0.01,
-								--width = "double",
-								get = function()
-									if E.Retail then
-										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail
-									else
-										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic
-									end
-								end,
-								set = function(_, value)
-									if E.Retail then
-										E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail = value _G["CharacterModelFrame"]:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, value)
-									else
-										E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic = value _G["CharacterModelFrame"]:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic, value)
-									end
-								end,
-							},
-							gapfontsize1 = {
-								order = 123,
-								type = "description",
-								name = "",
-								width = 'full',
-							},
-							characterpanelfontsize = {
-								type = 'range',
-								name = E.NewSign..L["Font Size"],
-								order = 124,
-								min = 8,
-								max = 40,
-								step = 1,
-								--width = "double",
-								get = function() return E.db.ElvUI_EltreumUI.skins.armoryfontsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryfontsize = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
-							},
-							gapfontsize2 = {
+							gapalphaart = {
 								order = 125,
 								type = "description",
 								name = "",
@@ -8538,8 +8430,103 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.armoryvignettealpha end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryvignettealpha = value _G["EltruismCharacterBGVignette"]:SetAlpha(value) end,
 							},
+							header834gap = {
+								order = 145,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							characterpanelscale = {
+								type = 'range',
+								name = E.NewSign..L["Character Panel Scale"],
+								desc = L["Change the size of the Character Panel"],
+								order = 146,
+								min = 0.2,
+								max = 2,
+								step = 0.01,
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.skins.characterpanelscale end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterpanelscale = value _G["CharacterFrame"]:SetScale(value) end,
+							},
+							gapmodelcam1 = {
+								order = 147,
+								type = "description",
+								name = L["Character Model"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							modelcamzoom = {
+								type = 'range',
+								name = E.NewSign..L["Character Model Zoom"],
+								order = 148,
+								min = -2,
+								max = 2,
+								step = 0.01,
+								width = "full",
+								get = function()
+									if E.Retail then
+										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail
+									else
+										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic
+									end
+								end,
+								set = function(_, value)
+									if E.Retail then
+										E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail = value
+									else
+										E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic = value
+									end
+								end,
+							},
+							modelcamx = {
+								type = 'range',
+								name = E.NewSign..L["Character Model X Offset"],
+								order = 149,
+								min = -2,
+								max = 2,
+								step = 0.01,
+								width = "full",
+								get = function()
+									if E.Retail then
+										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail
+									else
+										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic
+									end
+								end,
+								set = function(_, value)
+									if E.Retail then
+										E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail = value
+									else
+										E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic = value
+									end
+								end,
+							},
+							modelcamy = {
+								type = 'range',
+								name = E.NewSign..L["Character Model Y Offset"],
+								order = 150,
+								min = -2,
+								max = 2,
+								step = 0.01,
+								width = "full",
+								get = function()
+									if E.Retail then
+										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail
+									else
+										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic
+									end
+								end,
+								set = function(_, value)
+									if E.Retail then
+										E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail = value
+									else
+										E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic = value
+									end
+								end,
+							},
 							header843stats = {
-								order = 131,
+								order = 151,
 								type = "description",
 								name = "",
 								width = 'full',
@@ -8547,7 +8534,7 @@ function ElvUI_EltreumUI:Configtable()
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							autoarmorystats = {
-								order = 132,
+								order = 152,
 								type = 'toggle',
 								name = L["Automatically swap the Character Stats to your main ones"],
 								width = 'full',
@@ -8557,14 +8544,14 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classicarmoryautostats = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							headeritemq1823 = {
-								order = 133,
+								order = 153,
 								type = "description",
 								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							itemqualitycolors = {
-								order = 134,
+								order = 154,
 								type = 'toggle',
 								name = L["Add Item Quality Texture"],
 								width = 'full',
@@ -8573,14 +8560,14 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.itemquality = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							headerstat5 = {
-								order = 135,
+								order = 155,
 								type = "description",
 								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							statcolors = {
-								order = 136,
+								order = 156,
 								type = 'toggle',
 								name = function()
 									if E.Retail then
@@ -8595,7 +8582,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.statcolors = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							othergradientcolors = {
-								order = 137,
+								order = 157,
 								type = 'toggle',
 								name = function()
 									if E.Retail then
@@ -8609,15 +8596,32 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.characterskingradients end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterskingradients = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							gapfontsize1 = {
+								order = 158,
+								type = "description",
+								name = "",
+								width = 'full',
+							},
+							characterpanelfontsize = {
+								type = 'range',
+								name = E.NewSign..L["Font Size"],
+								order = 159,
+								min = 8,
+								max = 40,
+								step = 1,
+								--width = "double",
+								get = function() return E.db.ElvUI_EltreumUI.skins.armoryfontsize end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryfontsize = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
+							},
 							header85 = {
-								order = 138,
+								order = 238,
 								type = "description",
 								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							iconsoncharacter = {
-								order = 139,
+								order = 239,
 								type = 'toggle',
 								name = L["Add Class Icons to Character Panel"],
 								width = 'full',
@@ -8626,7 +8630,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							blizzicons = {
-								order = 140,
+								order = 240,
 								type = 'toggle',
 								name = L["Use Blizzard Icons"],
 								width = 'full',
@@ -8636,7 +8640,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classiconsblizz = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							releaficons= {
-								order = 141,
+								order = 241,
 								type = 'toggle',
 								name = L["Use Blizzard Icons colored by Releaf"],
 								width = 'full',
