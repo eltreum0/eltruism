@@ -51,6 +51,9 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["actionbar"]["bar2"]["keepSizeRatio"] = false
 		E.db["actionbar"]["bar2"]["showGrid"] = false
 		E.db["actionbar"]["bar2"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
+
+		E.db["actionbar"]["bar1"]["mouseover"] = false
+		E.db["actionbar"]["bar2"]["mouseover"] = false
 		E.db["actionbar"]["bar3"]["mouseover"] = true
 		E.db["actionbar"]["bar4"]["mouseover"] = true
 		E.db["actionbar"]["bar5"]["mouseover"] = true
