@@ -52,6 +52,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width = 20
 	E.db.ElvUI_EltreumUI.unitframes.portraitfix = true
 	E.db.ElvUI_EltreumUI.unitframes.darkmode = true
+	E.db.ElvUI_EltreumUI.unitframes.lightmode = false
 	E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "V2"
 	E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect = true
 
