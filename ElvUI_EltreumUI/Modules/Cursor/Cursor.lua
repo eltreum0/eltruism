@@ -156,10 +156,10 @@ function ElvUI_EltreumUI:CastCursor()
 			},
 		}
 		QUAD_POINTS = {
-			{ 'TOPLEFT',	 'TOP'	},
-			{ 'TOPRIGHT',	'RIGHT'  },
+			{ 'TOPLEFT', 'TOP' },
+			{ 'TOPRIGHT', 'RIGHT' },
 			{ 'BOTTOMRIGHT', 'BOTTOM' },
-			{ 'BOTTOMLEFT',  'LEFT'   },
+			{ 'BOTTOMLEFT', 'LEFT' },
 		}
 		QUAD_COORD_FULL = {
 			{ 0,0, 0,1, 1,0, 1,1 },
@@ -306,7 +306,7 @@ function ElvUI_EltreumUI:CastCursor()
 				if hide then tex:Hide() end
 				frame.textures[i] = tex
 			end
-			frame.quad  = 0
+			frame.quad = 0
 			frame.radius = radius
 			frame.factor = (radius-cfg.thickness)/radius
 			frame.reverse = cfg.reverse

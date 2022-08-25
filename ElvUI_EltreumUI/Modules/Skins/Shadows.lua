@@ -923,7 +923,7 @@ function ElvUI_EltreumUI:Shadows()
 
 		--handle non spaced power and classpower
 		if E.db["unitframe"]["units"]["target"]["power"]["width"] ~= "spaced" and E.db["unitframe"]["units"]["target"]["power"]["detachFromFrame"] == false then
-			if _G["ElvUF_Target_PowerBar"] and  _G["ElvUF_Target_PowerBar"].shadow then
+			if _G["ElvUF_Target_PowerBar"] and _G["ElvUF_Target_PowerBar"].shadow then
 				_G["ElvUF_Target_PowerBar"].shadow:Hide()
 			end
 		end

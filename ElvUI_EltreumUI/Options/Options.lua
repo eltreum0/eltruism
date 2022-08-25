@@ -3100,7 +3100,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Use Class Colors for GCD"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor = value ElvUI_EltreumUI:CastCursor()  E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor = value ElvUI_EltreumUI:CastCursor() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							colorgcd = {
 								order = 15,
@@ -8433,7 +8433,7 @@ function ElvUI_EltreumUI:Configtable()
 									"RAVNYR",
 									"BLACK",
 									"CUSTOM"
-					            },
+								},
 								style = 'radio',
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.armorybgtype end,
@@ -9684,7 +9684,7 @@ function ElvUI_EltreumUI:Configtable()
 								sorting = {
 									"DEFAULT",
 									"CUSTOM",
-					            },
+								},
 								style = 'radio',
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications and not E.db.ElvUI_EltreumUI.unitframes.models.castbar) end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltypecast end,

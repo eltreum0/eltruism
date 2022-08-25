@@ -629,7 +629,7 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 	end
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead"..tostring(texture1)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc"..tostring(texture2)..".tga:0:0:0:0|t"
-	if not UnitIsPlayer(unit) then  --npc
+	if not UnitIsPlayer(unit) then --npc
 		if not UnitIsDead(unit) then
 			if UnitHealth(unit) == UnitHealthMax(unit) then
 				return E:ShortValue(UnitHealth(unit))
@@ -676,7 +676,7 @@ E:AddTag('eltruism:combatindicator', 'UNIT_HEALTH', function(unit)
 		if texture == "DEFAULT" then
 			return "|TInterface\\CharacterFrame\\UI-StateIcon:0:0:0:0:64:64:34:59:6:29|t"
 		elseif texture == "PLATINUM" then
-			return  "|TInterface\\Challenges\\ChallengeMode_Medal_Platinum:0:0:0:0|t"
+			return "|TInterface\\Challenges\\ChallengeMode_Medal_Platinum:0:0:0:0|t"
 		elseif texture == "ATTACK" then
 			return "|TInterface\\CURSOR\\Attack:0:0:0:0|t"
 		elseif texture == "ALERT" then
@@ -762,7 +762,7 @@ E:AddTag("eltruism:hpstatusnopc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PL
 	end
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead"..tostring(texture1)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc"..tostring(texture2)..".tga:0:0:0:0|t"
-	if not UnitIsPlayer(unit) then  --npc
+	if not UnitIsPlayer(unit) then --npc
 		if not UnitIsDead(unit) then
 			return E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1))
 		else
@@ -770,7 +770,7 @@ E:AddTag("eltruism:hpstatusnopc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PL
 		end
 	else
 		if not UnitIsDead(unit) and not UnitIsGhost(unit) then --players
-			return  E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1))
+			return E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1))
 		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
 			return deadtexture
 		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then

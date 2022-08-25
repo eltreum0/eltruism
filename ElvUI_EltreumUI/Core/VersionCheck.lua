@@ -182,7 +182,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		fixingold = true
 		E.private.ElvUI_EltreumUI.install_version = "3.2.2"
 	elseif E.private.ElvUI_EltreumUI.install_version >= "3.2.2" and E.private.ElvUI_EltreumUI.install_version < "3.2.4" then
-		if not E.Retail and E.global["nameplates"]["filters"]["ElvUI_Boss"] then  --in classic for some reason bosses are not affected by ElvUI_Target/EltreumTarget
+		if not E.Retail and E.global["nameplates"]["filters"]["ElvUI_Boss"] then --in classic for some reason bosses are not affected by ElvUI_Target/EltreumTarget
 			E.global["nameplates"]["filters"]['ElvUI_Boss'] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"]['ElvUI_Boss'])
 			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["health"] = true

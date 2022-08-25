@@ -183,7 +183,7 @@ function ElvUI_EltreumUI:SkinQuests()
 								else
 									module.Header.EltruismStatusLine = CreateFrame("StatusBar", "EltruismLine", module.Header)
 								end
-						        module.Header.EltruismStatusLine:SetSize(250, 3)
+								module.Header.EltruismStatusLine:SetSize(250, 3)
 								module.Header.EltruismStatusLine:SetPoint("BOTTOM", module.Header, 0, 0)
 								module.Header.EltruismStatusLine:SetStatusBarTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga')
 								module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))

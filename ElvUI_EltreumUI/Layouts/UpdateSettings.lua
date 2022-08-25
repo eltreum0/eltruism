@@ -146,7 +146,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	end
 	E.db.ElvUI_EltreumUI.quests.questitemsbar1 = true
 	E.db.ElvUI_EltreumUI.quests.questitemsfade = false
-	--E.db.ElvUI_EltreumUI.quests.autoaccept = true  --maybe in the future?
+	--E.db.ElvUI_EltreumUI.quests.autoaccept = true --maybe in the future?
 
 	-- Loot
 	E.db.ElvUI_EltreumUI.loot.loottext.enable = true

@@ -59,7 +59,7 @@ elseif E.Wrath then
 		["ROGUE"] = "environments/stars/shadowmoonillidan.m2",
 		["WARLOCK"] = "environments/stars/netherstormskybox.m2",
 		["DRUID"] = "spells/cyclonefire_state.m2",
-		["NPCNEUTRAL"] =  "spells/acidliquidbreath.m2",
+		["NPCNEUTRAL"] = "spells/acidliquidbreath.m2",
 		["NPCFRIENDLY"] = "environments/stars/portalworldlegionsky.m2",
 		["NPCUNFRIENDLY"] = "spells/flamebreath.m2", --spells/darkritual_precast_base.m2",
 		["NPCHOSTILE"] = "spells/deathanddecay_area_base.m2",
@@ -79,7 +79,7 @@ elseif E.TBC then
 		["SHAMAN"] = "spells/arcanepower_state_chest.m2",
 		["DRUID"] = "spells/cyclonefire_state.m2",
 		["MAGE"] = "spells/frostbreath.m2",
-		["NPCNEUTRAL"] =  "spells/acidliquidbreath.m2",
+		["NPCNEUTRAL"] = "spells/acidliquidbreath.m2",
 		["NPCFRIENDLY"] = "environments/stars/portalworldlegionsky.m2",
 		["NPCUNFRIENDLY"] = "spells/flamebreath.m2", --spells/darkritual_precast_base.m2",
 		["NPCHOSTILE"] = "spells/deathanddecay_area_base.m2",
@@ -95,7 +95,7 @@ else
 		["PALADIN"] = "spells/holy_precast_uber_base.m2",
 		["HUNTER"] = "spells/acidcloudbreath.m2",
 		["SHAMAN"] = "spells/arcanepower_state_chest.m2",
-		["MAGE"] = "spells/frostbreath.m2",  --"spells/demonicsacrifice_felhunter_chest.m2"
+		["MAGE"] = "spells/frostbreath.m2", --"spells/demonicsacrifice_felhunter_chest.m2"
 		["WARLOCK"] = "spells/corruption_impactdot_med_base.m2",
 		["DRUID"] = "spells/cyclonefire_state.m2",
 		["NPCNEUTRAL"] = "spells/demonicsacrifice_voidwalker_chest.m2",

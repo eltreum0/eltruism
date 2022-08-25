@@ -491,7 +491,7 @@ Removed the confirmation prompt from the apply button for Light/Dark Mode
 ___
 ### 2.9.3
 Added gradient to dark mode, making backdrops have gradient colors\
-Updated Media, which was split into Media and Unitframes, with unitframes  being moved into the new Unitframes menu making it clearer when an option cannot be enabled because another one is enabled\
+Updated Media, which was split into Media and Unitframes, with unitframes being moved into the new Unitframes menu making it clearer when an option cannot be enabled because another one is enabled\
 Updated default Mage gradient colors\
 Updated spanish translation using deepL\
 Updated chat loot icon by trimming the borders\

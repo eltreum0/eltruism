@@ -444,8 +444,8 @@ end)
 -- this is used for loading skins that should be executed when the addon loads (including blizzard addons that load later).
 -- please add a given name, non-given-name is specific for elvui core addon.
 function S:AddCallbackForAddon(addonName, name, func, forceLoad, bypass, position) -- arg2: name is 'given name'; see example above.
-    local load = (type(name) == 'function' and name) or (not func and (S[name] or S[addonName]))
-    S:RegisterSkin(addonName, load or func, forceLoad, bypass, position)
+	local load = (type(name) == 'function' and name) or (not func and (S[name] or S[addonName]))
+	S:RegisterSkin(addonName, load or func, forceLoad, bypass, position)
 end
 
 ]]
