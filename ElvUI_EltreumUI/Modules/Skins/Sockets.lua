@@ -1937,7 +1937,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 	end
 
 	function SpellInfo:getLink()
-		return GetSpellLink(self.spellId) or "|cffffd000|Henchant:"..self.spellId.."|h["..GetSpellInfo(self.spellId).."]|h|r"
+		return GetSpellLink(self.spellId) or ("|cffffd000|Henchant:"..self.spellId.."|h["..GetSpellInfo(self.spellId).."]|h|r")
 	end
 	function SpellInfo:getTextureName()
 		return GetSpellTexture(self.spellId)
