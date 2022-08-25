@@ -224,9 +224,5 @@ function ElvUI_EltreumUI:GetGladdyProfile()
 				},
 			}
 		end
-
-		ElvUI_EltreumUI:Print(L["Gladdy profile has been set."])
-	else
-		ElvUI_EltreumUI:Print(L["Gladdy is not loaded"])
 	end
 end
