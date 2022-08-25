@@ -7312,16 +7312,7 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = value end,
 							},
-							enablecustomcolor = {
-								order = 3,
-								type = 'toggle',
-								name = L["Custom Color"],
-								desc = L["Enable Custom Colors"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							enablecustomcolor = {
+							enablecustomcolornp = {
 								order = 3,
 								type = 'toggle',
 								name = L["Custom Color"],
