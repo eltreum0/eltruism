@@ -1114,15 +1114,19 @@ function ElvUI_EltreumUI:ShowHideBorders()
 			Show()
 		elseif E.db.ElvUI_EltreumUI.borders.borders then
 			E.db.ElvUI_EltreumUI.borders.borders = false
-			E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
 			ElvUI_EltreumUI:BorderAdjust()
+			E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
 			ElvUI_EltreumUI:Shadows()
 			Hide()
 		end
 	else
 		if not E.db.ElvUI_EltreumUI.borders.borders then
 			Hide()
+			E.db.ElvUI_EltreumUI.borders.borders = false
+			E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
 		elseif E.db.ElvUI_EltreumUI.borders.borders then
+			E.db.ElvUI_EltreumUI.borders.borders = true
+			E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
 			Show()
 		end
 	end
