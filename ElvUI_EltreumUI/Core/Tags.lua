@@ -588,7 +588,7 @@ E:AddTag("eltruism:dead", "UNIT_HEALTH", function(unit,_,args)
 			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga:0:0:0:0|t"
 		end
 	elseif UnitIsGhost(unit) then
-		return L["Ghost"]
+		return GetSpellInfo(8326)
 	end
 end)
 E:AddTagInfo("eltruism:dead", ElvUI_EltreumUI.Name, L["Displays a dead symbol from Releaf when unit is dead. Usage: [eltruism:dead{number}]"])
@@ -637,7 +637,7 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 				return (E:ShortValue(UnitHealth(unit)).." - "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)))
 			end
 		else
-			return L["Dead"]
+			return DEAD
 		end
 	else
 		if not UnitIsDead(unit) and not UnitIsGhost(unit) then --players
@@ -653,7 +653,7 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
 			return dctexture
 		elseif UnitIsGhost(unit) then
-			return L["Ghost"]
+			return GetSpellInfo(8326)
 		end
 	end
 end)
@@ -766,7 +766,7 @@ E:AddTag("eltruism:hpstatusnopc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PL
 		if not UnitIsDead(unit) then
 			return E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1))
 		else
-			return L["Dead"]
+			return DEAD
 		end
 	else
 		if not UnitIsDead(unit) and not UnitIsGhost(unit) then --players
@@ -778,7 +778,7 @@ E:AddTag("eltruism:hpstatusnopc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PL
 		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
 			return dctexture
 		elseif UnitIsGhost(unit) then
-			return L["Ghost"]
+			return GetSpellInfo(8326)
 		end
 	end
 end)
