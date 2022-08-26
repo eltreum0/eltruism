@@ -397,10 +397,6 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = true
 				end
 			end
-			if E.global.nameplates.filters.EltreumRare then
-				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
-				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["enable"] = true
-			end
 		elseif not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture then
 			if E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = false
@@ -409,6 +405,18 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = false
 			end
 		end
+
+		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
+			if E.global.nameplates.filters.EltreumRare then
+				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
+				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["enable"] = true
+			end
+		elseif not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
+			if E.global.nameplates.filters.EltreumRare then
+				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["enable"] = false
+			end
+		end
+
 
 		--target's class color texture
 		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture then
