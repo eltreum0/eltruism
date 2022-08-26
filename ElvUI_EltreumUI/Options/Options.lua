@@ -6271,8 +6271,21 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'toggle',
 								name = L["Enable AMD FSR even if not scaling"],
 								desc = L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"],
-								get = function() return C_CVar.GetCVar('ResampleAlwaysSharpen') end,
-								set = function(_, value) SetCVar('ResampleAlwaysSharpen', value) end,
+								width = 'full',
+								get = function()
+									if C_CVar.GetCVar('ResampleAlwaysSharpen') == '0' then
+										return false
+									elseif C_CVar.GetCVar('ResampleAlwaysSharpen') == '1' then
+										return true
+									end
+								end,
+								set = function(_, value)
+									if value == true then
+								 		SetCVar('ResampleAlwaysSharpen', 1)
+								 	else
+								 		SetCVar('ResampleAlwaysSharpen', 0)
+								 	end
+								 end,
 							},
 						},
 					},
