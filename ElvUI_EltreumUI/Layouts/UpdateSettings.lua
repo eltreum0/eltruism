@@ -68,6 +68,10 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.skins.classicarmory = true
 	E.db.ElvUI_EltreumUI.skins.classicarmoryautostats = true
 	E.db.ElvUI_EltreumUI.skins.ilvls = true
+	E.db.ElvUI_EltreumUI.skins.ilvlfontsize = 12
+	E.db.ElvUI_EltreumUI.skins.ilvlfontweight = "OUTLINE"
+	E.db.ElvUI_EltreumUI.skins.ilvlanchorx = -34
+	E.db.ElvUI_EltreumUI.skins.ilvlanchory = 11
 	E.db.ElvUI_EltreumUI.skins.sockets = true
 	E.db.ElvUI_EltreumUI.skins.socketsinspect = true
 	E.db.ElvUI_EltreumUI.skins.expandarmorybg = true
