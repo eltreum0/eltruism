@@ -261,58 +261,76 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		if (not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow) then
 			if E.global.nameplates.filters.EltreumTarget and E.db["nameplates"]["filters"]["EltreumTarget"] then
 				E.db["nameplates"]["filters"]["EltreumTarget"]["triggers"]["enable"] = false
+				E.global.nameplates.filters.EltreumTarget.triggers.enable = false
 			end
 			if E.global.nameplates.filters.EltreumRare and E.db["nameplates"]["filters"]["EltreumRare"] then
 				E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = false
+				E.global.nameplates.filters.EltreumRare.triggers.enable = false
 			end
 			if E.global.nameplates.filters.EltreumSpellsteal and E.db["nameplates"]["filters"]["EltreumSpellsteal"] then
 				E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
+				E.global.nameplates.filters.EltreumSpellsteal.triggers.enable = false
 			end
 			if E.global.nameplates.filters.EltreumLevel and E.db["nameplates"]["filters"]["EltreumLevel"] then
 				E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
+				E.global.nameplates.filters.EltreumLevel.triggers.enable = false
 			end
 			if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
 				E.db["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["enable"] = false
+				E.global.nameplates.filters.EltreumHideNP.triggers.enable = false
 			end
 			if E.global.nameplates.filters.EltreumInterrupt and E.db["nameplates"]["filters"]["EltreumInterrupt"] then
 				E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = false
+				E.global.nameplates.filters.EltreumInterrupt.triggers.enable = false
 			end
 			if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] then
 				E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] = false
+				E.global.nameplates.filters.EltreumExecute.triggers.enable = false
 			end
 			if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
 				E.db["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["enable"] = false
+				E.global.nameplates.filters.EltreumRestedNP.triggers.enable = false
 			end
 			if E.global.nameplates.filters.EltreumTotems and E.db["nameplates"]["filters"]["EltreumTotems"] then
 				E.db["nameplates"]["filters"]["EltreumTotems"]["triggers"]["enable"] = false
+				E.global.nameplates.filters.EltreumTotems.triggers.enable = false
 			end
 		else
 			if E.global.nameplates.filters.EltreumTarget and E.db["nameplates"]["filters"]["EltreumTarget"] then
 				E.db["nameplates"]["filters"]["EltreumTarget"]["triggers"]["enable"] = true
+				E.global.nameplates.filters.EltreumTarget.triggers.enable = true
 			end
 			if E.global.nameplates.filters.EltreumRare and E.db["nameplates"]["filters"]["EltreumRare"] then
 				E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
+				E.global.nameplates.filters.EltreumRare.triggers.enable = true
 			end
 			if E.global.nameplates.filters.EltreumSpellsteal and E.db["nameplates"]["filters"]["EltreumSpellsteal"] then
 				E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
+				E.global.nameplates.filters.EltreumSpellsteal.triggers.enable = true
 			end
 			if E.global.nameplates.filters.EltreumLevel and E.db["nameplates"]["filters"]["EltreumLevel"] then
 				E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
+				E.global.nameplates.filters.EltreumLevel.triggers.enable = true
 			end
 			if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
 				E.db["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["enable"] = true
+				E.global.nameplates.filters.EltreumHideNP.triggers.enable = true
 			end
 			if E.global.nameplates.filters.EltreumInterrupt and E.db["nameplates"]["filters"]["EltreumInterrupt"] then
 				E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = true
+				E.global.nameplates.filters.EltreumInterrupt.triggers.enable = true
 			end
 			if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] then
 				E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] = true
+				E.global.nameplates.filters.EltreumExecute.triggers.enable = true
 			end
 			if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
 				E.db["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["enable"] = true
+				E.global.nameplates.filters.EltreumRestedNP.triggers.enable = true
 			end
 			if E.global.nameplates.filters.EltreumTotems and E.db["nameplates"]["filters"]["EltreumTotems"] then
 				E.db["nameplates"]["filters"]["EltreumTotems"]["triggers"]["enable"] = true
+				E.global.nameplates.filters.EltreumTotems.triggers.enable = true
 			end
 		end
 
