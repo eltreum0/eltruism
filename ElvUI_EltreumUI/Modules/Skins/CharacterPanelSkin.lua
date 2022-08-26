@@ -1907,7 +1907,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 				if E.Retail then
 					qualityAnchor.Frame:SetFrameLevel(2) --retail works fine
 					if E.db.ElvUI_EltreumUI.skins.classicarmory then
-						qualityAnchor.Frame:SetSize(250, _G["Character"..InvSlotName]:GetHeight() + 2)
+						qualityAnchor.Frame:SetSize(200, _G["Character"..InvSlotName]:GetHeight() + 2)
 					else
 						qualityAnchor.Frame:SetSize(135, _G["Character"..InvSlotName]:GetHeight() + 2)
 					end
