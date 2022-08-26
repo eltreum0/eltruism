@@ -9,6 +9,7 @@ local math = _G.math
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 local CharacterStatsPane = _G.CharacterStatsPane
+local GetItemQualityColor = _G.GetItemQualityColor
 local PaperDollFrame = _G.PaperDollFrame
 local SkillFrame = _G.SkillFrame
 local CharacterModelFrame = _G.CharacterModelFrame
@@ -1913,7 +1914,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 				else
 					qualityAnchor.Frame:SetFrameLevel(_G["CharacterModelFrame"]:GetFrameLevel() - 1) --needs to be changed to not overlap the sockets/enchants
 					if E.db.ElvUI_EltreumUI.skins.classicarmory then
-						qualityAnchor.Frame:SetSize(150, _G["Character"..InvSlotName]:GetHeight() + 2)
+						qualityAnchor.Frame:SetSize(250, _G["Character"..InvSlotName]:GetHeight() + 2)
 					else
 						qualityAnchor.Frame:SetSize(115, _G["Character"..InvSlotName]:GetHeight() + 2)
 					end
@@ -2374,12 +2375,14 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									        maxquality, numberquality = k, v
 									    end
 									end
-									_G.InspectFrame.Ilvl:SetText("PLACEHOLDER")
-									if _G.InspectFrame.Ilvl and _G.InspectFrame.Ilvl:GetText() ~= nil and not _G.InspectFrame.Ilvl:GetText():match("|r") then
-										local _, _, _, hex = GetItemQualityColor(maxquality)
-										--local number = string.match(_G.InspectFrame.Ilvl:GetText(),("%d[%d.,]*"))
-										--local text = string.gsub(_G.InspectFrame.Ilvl:GetText(), '[%d]+', "|c"..hexz..number.."|r")
-										_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r ".."|c"..hex..((math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100).."|r")
+									if _G.InspectFrame.Ilvl then
+										if _G.InspectFrame.Ilvl:GetText() == nil then
+											_G.InspectFrame.Ilvl:SetText("PLACEHOLDER")
+										end
+										if _G.InspectFrame.Ilvl:GetText() ~= nil and not _G.InspectFrame.Ilvl:GetText():match("|r") then
+											local _, _, _, hex = GetItemQualityColor(maxquality)
+											_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r ".."|c"..hex..((math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100).."|r")
+										end
 									end
 								end
 							end
