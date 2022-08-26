@@ -119,6 +119,7 @@ ElvUI_EltreumUI.InstallerData = {
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 					E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = false
 					E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = false
+					E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = true
 					E:UpdateMediaItems()
 					E:UpdateUnitFrames()
 				else
