@@ -15,7 +15,9 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate = false
-	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = true
+	if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
+		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = true
+	end
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture = "ElvUI Norm1"
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect = true
