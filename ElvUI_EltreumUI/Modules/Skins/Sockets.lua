@@ -1277,7 +1277,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 				ChestSlot = true,
 				WristSlot = true,
 				HandsSlot = true,
-				WaistSlot = true,
+				WaistSlot = E.Wrath and true or false,
 				LegsSlot = true,
 				FeetSlot = true,
 				Finger0Slot = true,
@@ -1331,23 +1331,27 @@ function ElvUI_EltreumUI:ClassicSockets()
 		self:_Refresh()
 		-- Both UNIT_INVENTORY_CHANGED and INSPECT_READY is called way before it is actually ready (~5-6 seconds early on inspect)
 		-- Setup timers to update over the next period of time. This can probably be done smarter, but I don't know lua :D
-		--[[self.refreshTimer0 = C_Timer.NewTimer(1.5, function()
-			self:_Refresh()
-		end)
-		self.refreshTimer1 = C_Timer.NewTimer(3, function()
-			self:_Refresh()
-		end)
-		self.refreshTimer2 = C_Timer.NewTimer(6, function() --possible source of hara's error
-			self:_Refresh()
-		end)]]
-
-		self.refreshTimer0 = C_Timer.NewTimer(2, function()
+		--[[self.refreshTimer0 = C_Timer.NewTimer(2, function()
 			self:_Refresh()
 		end)
 		self.refreshTimer1 = C_Timer.NewTimer(3, function()
 			self:_Refresh()
 		end)
 		self.refreshTimer2 = C_Timer.NewTimer(4, function() --possible source of hara's error
+			self:_Refresh()
+		end)]]
+
+		--Eltreum: use C_Timer.After to decrease memory/cpu usage and also possibly make it faster
+		self.refreshTimer0 = C_Timer.After(0.1, function()
+			self:_Refresh()
+		end)
+		self.refreshTimer0 = C_Timer.After(2, function()
+			self:_Refresh()
+		end)
+		self.refreshTimer1 = C_Timer.After(3, function()
+			self:_Refresh()
+		end)
+		self.refreshTimer2 = C_Timer.After(4, function()
 			self:_Refresh()
 		end)
 	end
