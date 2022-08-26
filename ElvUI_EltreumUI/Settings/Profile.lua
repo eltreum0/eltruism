@@ -895,6 +895,10 @@ P.ElvUI_EltreumUI = {
 
 	otherstuff ={
 		eltruismroleicons = false,
+		eltruismroleiconscustom = false,
+		eltruismroleiconscustomtank = "",
+		eltruismroleiconscustomhealer = "",
+		eltruismroleiconscustomdps = "",
 		gamemenu = false,
 		afklogo = true,
 		mailsoundenable = false,
