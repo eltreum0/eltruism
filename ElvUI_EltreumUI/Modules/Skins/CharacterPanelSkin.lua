@@ -1410,6 +1410,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.CharacterMainHandSlot:ClearAllPoints()
 			_G.CharacterMainHandSlot:SetPoint('CENTER', _G.CharacterModelFrame, 'CENTER', -42, -155)
 
+			if _G.CharacterAmmoSlot then
+				_G.CharacterAmmoSlot:ClearAllPoints()
+				_G.CharacterAmmoSlot:SetPoint('CENTER', _G.CharacterModelFrame, 'CENTER', 130, -155)
+			end
+
 			if _G.PlayerTitleDropDown then
 				_G.PlayerTitleDropDown:SetAlpha(0)
 				_G.PlayerTitleDropDown:SetScript('OnEnter', function() _G.PlayerTitleDropDown:SetAlpha(1) end)
