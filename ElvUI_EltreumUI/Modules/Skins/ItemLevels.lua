@@ -21,6 +21,29 @@ local C_Timer = _G.C_Timer
 local EltruismInspectilvls = CreateFrame("Frame")
 function ElvUI_EltreumUI:UpdateAvgIlvl()
 	if E.db.ElvUI_EltreumUI.skins.ilvls then
+		local leftside = {
+			["CharacterHeadSlot"] = true,
+			["CharacterNeckSlot"] = true,
+			["CharacterShoulderSlot"] = true,
+			["CharacterBackSlot"] = true,
+			["CharacterChestSlot"] = true,
+			["CharacterWristSlot"] = true,
+			["CharacterRangedSlot"] = true,
+		}
+		local rightside = {
+			["CharacterHandsSlot"] = true,
+			["CharacterWaistSlot"] = true,
+			["CharacterLegsSlot"] = true,
+			["CharacterFeetSlot"] = true,
+			["CharacterFinger0Slot"] = true,
+			["CharacterFinger1Slot"] = true,
+			["CharacterTrinket0Slot"] = true,
+			["CharacterTrinket1Slot"] = true,
+			["CharacterMainHandSlot"] = true,
+		}
+		local centereditem = {
+			["CharacterSecondaryHandSlot"] = true,
+		}
 
 		--from Simple Item Levels by Kemayo (BSD License) with some edits by Eltreum
 		local function PrepareItemButton(button)
@@ -31,7 +54,14 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 			--overlayFrame:SetFrameLevel(9999) -- this was bugging out inspect
 			overlayFrame:SetAllPoints()
 			button.eltruismilvl = overlayFrame:CreateFontString('$parentItemLevel', 'OVERLAY')
-			button.eltruismilvl:SetPoint(E.db.ElvUI_EltreumUI.skins.ilvlanchor, 0, 0)
+			local buttonname = button:GetName()
+			if leftside[buttonname] then
+				button.eltruismilvl:SetPoint(E.db.ElvUI_EltreumUI.skins.ilvlanchor, -E.db.ElvUI_EltreumUI.skins.ilvlanchorx, E.db.ElvUI_EltreumUI.skins.ilvlanchory)
+			elseif rightside[buttonname] then
+				button.eltruismilvl:SetPoint(E.db.ElvUI_EltreumUI.skins.ilvlanchor, E.db.ElvUI_EltreumUI.skins.ilvlanchorx, E.db.ElvUI_EltreumUI.skins.ilvlanchory)
+			elseif centereditem[buttonname] then
+				button.eltruismilvl:SetPoint(E.db.ElvUI_EltreumUI.skins.ilvlanchor, 0, E.db.ElvUI_EltreumUI.skins.ilvlanchory)
+			end
 			button.eltruismilvl:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.ilvlfontsize, E.db.ElvUI_EltreumUI.skins.ilvlfontweight)
 			button.eltruismilvl:SetJustifyH('LEFT')
 			button.eltruismilvl:Hide()

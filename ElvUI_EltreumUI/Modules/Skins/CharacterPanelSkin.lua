@@ -1397,9 +1397,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				ClassCrestFrame:SetPoint("CENTER", CharacterFrame, 0 , 50)
 			end)
 
-
-
-
 			--adjust the items
 			_G.CharacterHeadSlot:ClearAllPoints()
 			_G.CharacterHeadSlot:SetPoint('TOPLEFT', CharacterFrame, 'TOPLEFT', 20, -47)
@@ -1984,6 +1981,11 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 					qualityAnchor.Frame.Quality:SetTexCoord(1, 0, 0, 1)
 				elseif InvSlotId == 17 then --rotate for the off hand slot that is in the middle in classic/tbc/wrath
 					if not E.Retail then
+						if E.db.ElvUI_EltreumUI.skins.classicarmory then
+							qualityAnchor.Frame:SetSize(150, _G["CharacterSecondaryHandSlot"]:GetHeight() + 2)
+						else
+							qualityAnchor.Frame:SetSize(115, _G["CharacterSecondaryHandSlot"]:GetHeight() + 2)
+						end
 						qualityAnchor.Frame.Quality:SetRotation(1.57079633)
 						qualityAnchor.Frame:SetPoint("BOTTOM", _G["Character"..InvSlotName], "BOTTOM", 0, 51)
 						qualityAnchor.Frame.Quality:SetPoint("BOTTOM", _G["Character"..InvSlotName], "BOTTOM", 0, 51)
