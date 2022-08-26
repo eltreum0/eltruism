@@ -405,9 +405,6 @@ function ElvUI_EltreumUI:NamePlateOptions()
 			if E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = false
 			end
-			if E.global.nameplates.filters.EltreumRare then
-				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["enable"] = false
-			end
 			if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
 				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = false
 			end
