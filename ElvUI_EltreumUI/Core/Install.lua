@@ -75,7 +75,7 @@ ElvUI_EltreumUI.InstallerData = {
 				E:SetupChat()
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 				ElvUI_EltreumUI:AddonSetupPA()
-				if E.data:IsDualSpecEnabled() then
+				if (E.Wrath or E.Retail) and E.data:IsDualSpecEnabled() then
 					E.data:SetDualSpecProfile('Eltreum Healer ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
 				else
 					E.data:SetProfile('Eltreum Healer ('..E.mynameRealm..')')
