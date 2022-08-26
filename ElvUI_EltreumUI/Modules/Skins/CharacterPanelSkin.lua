@@ -1929,6 +1929,37 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 						local r,g,b = _G.GetItemQualityColor(quality)
 						qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
 						qualityAnchor.Frame.Quality:SetAlpha(1)
+
+						--coloring ilvl based on the items they have
+						local qualitytable = {
+							[0] = 0,
+							[1] = 0,
+							[2] = 0,
+							[3] = 0,
+							[4] = 0,
+						}
+						local maxquality = 0
+						local numberquality = 0
+						if quality == 0 then
+							qualitytable[0] = qualitytable[0] +1
+						elseif quality == 1 then
+							qualitytable[1] = qualitytable[1] +1
+						elseif quality == 2 then
+							qualitytable[2] = qualitytable[2] + 1
+						elseif quality == 3 then
+							qualitytable[3] = qualitytable[3] + 1
+						elseif quality == 4 then
+							qualitytable[4] = qualitytable[4] + 1
+						end
+						for k, v in pairs(qualitytable) do
+						    if qualitytable[k] > numberquality then
+						        maxquality, numberquality = k, v
+						    end
+						end
+						if _G.CharacterFrame.Text2:GetText() ~= nil then
+							local rc,gc,bc = _G.GetItemQualityColor(maxquality)
+							_G.CharacterFrame.Text2:SetTextColor(rc,gc,bc)
+						end
 					end
 				elseif itemLink == nil then
 					qualityAnchor.Frame.Quality:SetAlpha(0)
@@ -2203,7 +2234,9 @@ function ElvUI_EltreumUI:InspectBg(unit)
 								_G.InspectFrame.Ilvl:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 								_G.InspectLevelText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 								_G.InspectFrame.Ilvl:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
-								_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100)
+								if not E.db.ElvUI_EltreumUI.skins.itemquality then
+									_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100)
+								end
 							end)
 						end
 
@@ -2309,9 +2342,47 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						local itemLink = _G.GetInventoryItemLink("target", InvSlotId)
 						if itemLink ~= nil then
 							local quality = select(3,_G.GetItemInfo(itemLink))
-							local r,g,b = _G.GetItemQualityColor(quality)
-							qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
-							qualityAnchorInspect.Frame.Quality:SetAlpha(1)
+							if quality then
+								local r,g,b = _G.GetItemQualityColor(quality)
+								qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
+								qualityAnchorInspect.Frame.Quality:SetAlpha(1)
+
+								if not E.Retail and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
+									--coloring ilvl based on the items they have
+									local qualitytable = {
+										[0] = 0,
+										[1] = 0,
+										[2] = 0,
+										[3] = 0,
+										[4] = 0,
+									}
+									local maxquality = 0
+									local numberquality = 0
+									if quality == 0 then
+										qualitytable[0] = qualitytable[0] +1
+									elseif quality == 1 then
+										qualitytable[1] = qualitytable[1] +1
+									elseif quality == 2 then
+										qualitytable[2] = qualitytable[2] + 1
+									elseif quality == 3 then
+										qualitytable[3] = qualitytable[3] + 1
+									elseif quality == 4 then
+										qualitytable[4] = qualitytable[4] + 1
+									end
+									for k, v in pairs(qualitytable) do
+									    if qualitytable[k] > numberquality then
+									        maxquality, numberquality = k, v
+									    end
+									end
+									_G.InspectFrame.Ilvl:SetText("PLACEHOLDER")
+									if _G.InspectFrame.Ilvl and _G.InspectFrame.Ilvl:GetText() ~= nil and not _G.InspectFrame.Ilvl:GetText():match("|r") then
+										local _, _, _, hex = GetItemQualityColor(maxquality)
+										--local number = string.match(_G.InspectFrame.Ilvl:GetText(),("%d[%d.,]*"))
+										--local text = string.gsub(_G.InspectFrame.Ilvl:GetText(), '[%d]+', "|c"..hexz..number.."|r")
+										_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r ".."|c"..hex..((math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100).."|r")
+									end
+								end
+							end
 						else
 							qualityAnchorInspect.Frame.Quality:SetAlpha(0)
 						end
