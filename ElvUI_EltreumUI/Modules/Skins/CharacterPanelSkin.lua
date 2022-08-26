@@ -1931,35 +1931,37 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 						qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
 						qualityAnchor.Frame.Quality:SetAlpha(1)
 
-						--coloring ilvl based on the items they have
-						local qualitytable = {
-							[0] = 0,
-							[1] = 0,
-							[2] = 0,
-							[3] = 0,
-							[4] = 0,
-						}
-						local maxquality = 0
-						local numberquality = 0
-						if quality == 0 then
-							qualitytable[0] = qualitytable[0] +1
-						elseif quality == 1 then
-							qualitytable[1] = qualitytable[1] +1
-						elseif quality == 2 then
-							qualitytable[2] = qualitytable[2] + 1
-						elseif quality == 3 then
-							qualitytable[3] = qualitytable[3] + 1
-						elseif quality == 4 then
-							qualitytable[4] = qualitytable[4] + 1
-						end
-						for k, v in pairs(qualitytable) do
-						    if qualitytable[k] > numberquality then
-						        maxquality, numberquality = k, v
-						    end
-						end
-						if _G.CharacterFrame.Text2:GetText() ~= nil then
-							local rc,gc,bc = _G.GetItemQualityColor(maxquality)
-							_G.CharacterFrame.Text2:SetTextColor(rc,gc,bc)
+						if not E.Retail then
+							--coloring ilvl based on the items they have
+							local qualitytable = {
+								[0] = 0,
+								[1] = 0,
+								[2] = 0,
+								[3] = 0,
+								[4] = 0,
+							}
+							local maxquality = 0
+							local numberquality = 0
+							if quality == 0 then
+								qualitytable[0] = qualitytable[0] +1
+							elseif quality == 1 then
+								qualitytable[1] = qualitytable[1] +1
+							elseif quality == 2 then
+								qualitytable[2] = qualitytable[2] + 1
+							elseif quality == 3 then
+								qualitytable[3] = qualitytable[3] + 1
+							elseif quality == 4 then
+								qualitytable[4] = qualitytable[4] + 1
+							end
+							for k, v in pairs(qualitytable) do
+							    if qualitytable[k] > numberquality then
+							        maxquality, numberquality = k, v
+							    end
+							end
+							if _G.CharacterFrame.Text2 and _G.CharacterFrame.Text2:GetText() ~= nil then
+								local rc,gc,bc = _G.GetItemQualityColor(maxquality)
+								_G.CharacterFrame.Text2:SetTextColor(rc,gc,bc)
+							end
 						end
 					end
 				elseif itemLink == nil then
