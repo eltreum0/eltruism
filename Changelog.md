@@ -3,6 +3,7 @@ The future is uncertain
 ___
 ### 3.3.0
 Added FSR scale to the FSR always on option so that FSR factor can be set in Classic/TBC/Wrath\
+Updated a few shadows for Wrath\
 Updated Quest Item Bar to center when it has only one item\
 Fixed Class Cres overlapping some bars in Classic/TBC/Wrath\
 Fixed a possible error with custom role icons
