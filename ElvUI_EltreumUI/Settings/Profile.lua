@@ -532,8 +532,8 @@ P.ElvUI_EltreumUI = {
 			classcolortargetcastbar = false,
 
 			gradientXP = false,
-			gradientReputation = true,
-			gradientHonor = true,
+			gradientReputation = false,
+			gradientHonor = false,
 
 			enableplayer = true,
 			enabletarget = true,
