@@ -328,16 +328,17 @@ if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons or E.db.ElvUI_EltreumUI.oth
 			HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
 			DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga', sizeString),
 		}
-		local roleIconsCustom = {
-			TANK = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank, sizeString),
-			HEALER = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer, sizeString),
-			DAMAGER = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps, sizeString),
-		}
+		local roleIconsCustom
 		if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 			CT.cache.blizzardRoleIcons.Tank = roleIcons.TANK
 			CT.cache.blizzardRoleIcons.Healer = roleIcons.HEALER
 			CT.cache.blizzardRoleIcons.DPS = roleIcons.DAMAGER
 		elseif E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustom then
+			roleIconsCustom = {
+				TANK = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank, sizeString),
+				HEALER = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer, sizeString),
+				DAMAGER = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps, sizeString),
+			}
 			CT.cache.blizzardRoleIcons.Tank = roleIconsCustom.TANK
 			CT.cache.blizzardRoleIcons.Healer = roleIconsCustom.HEALER
 			CT.cache.blizzardRoleIcons.DPS = roleIconsCustom.DAMAGER
@@ -348,6 +349,11 @@ if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons or E.db.ElvUI_EltreumUI.oth
 				CT.cache.blizzardRoleIcons.Healer = roleIcons.HEALER
 				CT.cache.blizzardRoleIcons.DPS = roleIcons.DAMAGER
 			elseif E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustom then
+				roleIconsCustom = {
+					TANK = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank, sizeString),
+					HEALER = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer, sizeString),
+					DAMAGER = E:TextureString([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps, sizeString),
+				}
 				CT.cache.blizzardRoleIcons.Tank = roleIconsCustom.TANK
 				CT.cache.blizzardRoleIcons.Healer = roleIconsCustom.HEALER
 				CT.cache.blizzardRoleIcons.DPS = roleIconsCustom.DAMAGER
