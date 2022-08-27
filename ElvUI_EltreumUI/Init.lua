@@ -318,10 +318,8 @@ function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 end
 
 function ElvUI_EltreumUI:GOSSIP_SHOW()
-	if E.Retail then
-		if E.myclass == 'ROGUE' then
-			ElvUI_EltreumUI:RogueAutoOpen()
-		end
+	if E.Retail and E.myclass == 'ROGUE' then
+		ElvUI_EltreumUI:RogueAutoOpen()
 	end
 end
 
