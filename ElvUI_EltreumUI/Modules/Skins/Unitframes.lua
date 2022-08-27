@@ -396,7 +396,9 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 			local function ApplyGroupGradientTexture(button)
 				button.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then ---TODO confirm this is fine for dark mode
-					button.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+					--button.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+					unitframe.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+					unitframe.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				end
 				_, buttonclass = UnitClass(button.unit)
 				if buttonclass then
