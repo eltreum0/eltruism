@@ -2159,16 +2159,21 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							_G.InspectFrame.ItemLevelText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 							_G.InspectFrame.ItemLevelText:SetParent(_G["InspectModelFrame"])
 
+
 							if _G.InspectPaperDollFrame.ViewButton then
 								_G.InspectPaperDollFrame.ViewButton:ClearAllPoints()
 								_G.InspectPaperDollFrame.ViewButton:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 145)
-								--maybe later
-								--_G.InspectPaperDollFrame.ViewButton:SetAlpha(0)
-								--_G.InspectPaperDollFrame.ViewButton:SetScript('OnEnter', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(1) end)
-								--_G.InspectPaperDollFrame.ViewButton:SetScript('OnLeave', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(0) end)
+								--make it mouseover
+								_G.InspectPaperDollFrame.ViewButton:SetAlpha(0)
+								_G.InspectPaperDollFrame.ViewButton:SetScript('OnEnter', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(1) end)
+								_G.InspectPaperDollFrame.ViewButton:SetScript('OnLeave', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(0) end)
+								_G.InspectModelFrame:SetScript('OnEnter', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(1) end)
+								_G.InspectModelFrame:SetScript('OnLeave', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(0) end)
 							end
+
 							--_G.InspectFrame.ItemLevelText:SetText(ElvUI_EltreumUI:GradientName(_G.InspectFrame.ItemLevelText:GetText(), englishClass))
 							--_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100)
+
 							_G.InspectModelFrame:HookScript("OnShow", function()
 								_G.InspectFrame:SetWidth(450)
 							end)
