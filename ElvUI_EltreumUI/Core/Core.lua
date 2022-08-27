@@ -425,18 +425,19 @@ function ElvUI_EltreumUI:DeleteItem()
 				local lootTexture = select(10, GetItemInfo(itemLink))
 				if lootName == nil or lootTexture == nil then
 					return
+				else
+					throttle = 1
+					local text = _G.StaticPopup1Text:GetText()
+					if not text:match("|T") then
+						local deletetext = string.gsub(text, lootName, "|T"..lootTexture..":".. 14 .."|t"..itemLink.."")
+						_G.StaticPopup1Text:SetText(deletetext)
+					end
+					self.editBox:SetText(DELETE_ITEM_CONFIRM_STRING) --from line 2028
+					ElvUI_EltreumUI:Print("DELETE automatically typed")
+					C_Timer.After(1, function()
+						throttle = 0
+					end)
 				end
-				local text = _G.StaticPopup1Text:GetText()
-				if not text:match("|T") then
-					local deletetext = string.gsub(text, lootName, "|T"..lootTexture..":".. 14 .."|t"..itemLink.."")
-					_G.StaticPopup1Text:SetText(deletetext)
-				end
-				self.editBox:SetText(DELETE_ITEM_CONFIRM_STRING) --from line 2028
-				ElvUI_EltreumUI:Print("DELETE automatically typed")
-				throttle = 1
-				C_Timer.After(1, function()
-					throttle = 0
-				end)
 			end
 		end)
 
@@ -447,18 +448,19 @@ function ElvUI_EltreumUI:DeleteItem()
 				local lootTexture = select(10, GetItemInfo(itemLink))
 				if lootName == nil or lootTexture == nil then
 					return
+				else
+					throttle = 1
+					local text = _G.StaticPopup1Text:GetText()
+					if not text:match("|T") then
+						local deletetext = string.gsub(text, lootName, "|T"..lootTexture..":".. 14 .."|t"..itemLink.."")
+						_G.StaticPopup1Text:SetText(deletetext)
+					end
+					self.editBox:SetText(DELETE_ITEM_CONFIRM_STRING) --from line 2028
+					ElvUI_EltreumUI:Print("DELETE automatically typed")
+					C_Timer.After(1, function()
+						throttle = 0
+					end)
 				end
-				local text = StaticPopup1Text:GetText()
-				if not text:match("|T") then
-					local deletetext = string.gsub(text, lootName, "|T"..lootTexture..":".. 14 .."|t"..itemLink.."")
-					StaticPopup1Text:SetText(deletetext)
-				end
-				self.editBox:SetText(DELETE_ITEM_CONFIRM_STRING) --from line 2028
-				ElvUI_EltreumUI:Print("DELETE automatically typed")
-				throttle = 1
-				C_Timer.After(1, function()
-					throttle = 0
-				end)
 			end
 		end)
 	end
