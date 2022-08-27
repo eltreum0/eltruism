@@ -137,6 +137,9 @@ function ElvUI_EltreumUI:QuestItem()
 			--EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE")
 			EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_DELAYED")
 			EltruismQuestItemFrame:RegisterUnitEvent("UNIT_INVENTORY_CHANGED", "player")
+			if E.Retail then
+				EltruismQuestItemFrame:RegisterEvent("QUEST_WATCH_UPDATE")
+			end
 			EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED") -- Needed for items that starts a quest, when we accept it, update to remove the icon
 			EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
 
