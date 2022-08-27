@@ -6305,7 +6305,7 @@ function ElvUI_EltreumUI:Configtable()
 									end
 								end,
 								hidden = function() if E.Retail then return true else return false end end,
-								get = function() return C_CVar.GetCVar('ResampleSharpness') end,
+								get = function() return tonumber(C_CVar.GetCVar('ResampleSharpness')) end,
 								set = function(_, value) SetCVar('ResampleSharpness', value) end,
 							},
 						},
