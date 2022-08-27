@@ -6287,6 +6287,27 @@ function ElvUI_EltreumUI:Configtable()
 								 	end
 								 end,
 							},
+							forceFSRsharpness = {
+								order = 134,
+								type = 'range',
+								name = RESAMPLE_QUALITY_FSR,
+								--desc = L["FSR Sharpness"],
+								width = 'full',
+								min = 0,
+								max = 2,
+								step = 0.1,
+								width = "full",
+								disabled = function()
+									if C_CVar.GetCVar('ResampleAlwaysSharpen') == '1' then
+										return false
+									elseif C_CVar.GetCVar('ResampleAlwaysSharpen') == '0' then
+										return true
+									end
+								end,
+								hidden = function() if E.Retail then return true else return false end end,
+								get = function() return C_CVar.GetCVar('ResampleSharpness') end,
+								set = function(_, value) SetCVar('ResampleSharpness', value) end,
+							},
 						},
 					},
 				},
