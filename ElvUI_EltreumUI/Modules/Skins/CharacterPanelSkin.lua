@@ -1241,9 +1241,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			ClassCrestFrame:SetSize(150, 150)
 			ClassCrestFrame:SetPoint("CENTER", CharacterModelFrame, 0 , 50)
 			ClassCrestFrame:SetParent(CharacterFrame)
+			ClassCrestFrame:SetFrameLevel(1)
 			ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
 			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
-			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
+			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND", -4)
 		end
 
 		--fix buttons
@@ -1260,7 +1261,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			--add bg texture
 			CharacterFrameBackgroundTextureFader:SetAllPoints(CharacterFrame.backdrop)
 			CharacterFrameBackgroundTextureFader:SetParent(CharacterFrame)
-			CharacterFrameBackgroundTextureFader:SetDrawLayer("BACKGROUND",7)
 			CharacterFrameBackgroundTextureFader:SetAlpha(E.db.ElvUI_EltreumUI.skins.armoryvignettealpha)
 			if not E.db.ElvUI_EltreumUI.skins.armoryvignette then
 				CharacterFrameBackgroundTextureFader:Hide()
@@ -1290,7 +1290,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 			CharacterFrameBackgroundTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
 			CharacterFrameBackgroundTexture:SetAllPoints(CharacterFrame.backdrop)
-			CharacterFrameBackgroundTexture:SetDrawLayer("BACKGROUND",6)
+			--CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK",1)
+			CharacterFrameBackgroundTexture:SetDrawLayer("BACKGROUND",-5)
 		end
 
 		--expand classic armory
