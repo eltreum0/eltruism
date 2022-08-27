@@ -190,6 +190,12 @@ function ElvUI_EltreumUI:Shadows()
 							if _G.PlayerTalentFrameTab4 and _G.PlayerTalentFrameTab4.backdrop and not _G.PlayerTalentFrameTab4.backdrop.shadow then
 								_G.PlayerTalentFrameTab4.backdrop:CreateShadow()
 							end
+							if _G.PlayerSpecTab1 and not _G.PlayerSpecTab1.shadow then
+								_G.PlayerSpecTab1:CreateShadow()
+							end
+							if _G.PlayerSpecTab2 and not _G.PlayerSpecTab2.shadow then
+								_G.PlayerSpecTab2:CreateShadow()
+							end
 						end)
 					end
 				end
@@ -204,6 +210,21 @@ function ElvUI_EltreumUI:Shadows()
 					_G.CommunitiesFrame:HookScript("OnShow", function()
 						if not _G.CommunitiesFrame.shadow then
 							_G.CommunitiesFrame:CreateShadow()
+						end
+						if _G.CommunitiesFrameTab1.backdrop and not _G.CommunitiesFrameTab1.backdrop.shadow then
+							_G.CommunitiesFrameTab1.backdrop:CreateShadow()
+						end
+						if _G.CommunitiesFrameTab2.backdrop and not _G.CommunitiesFrameTab2.backdrop.shadow then
+							_G.CommunitiesFrameTab2.backdrop:CreateShadow()
+						end
+						if _G.CommunitiesFrameTab3.backdrop and not _G.CommunitiesFrameTab3.backdrop.shadow then
+							_G.CommunitiesFrameTab3.backdrop:CreateShadow()
+						end
+						if _G.CommunitiesFrameTab4.backdrop and not _G.CommunitiesFrameTab4.backdrop.shadow then
+							_G.CommunitiesFrameTab4.backdrop:CreateShadow()
+						end
+						if _G.CommunitiesFrameTab5.backdrop and not _G.CommunitiesFrameTab5.backdrop.shadow then
+							_G.CommunitiesFrameTab5.backdrop:CreateShadow()
 						end
 					end)
 				end
@@ -499,6 +520,9 @@ function ElvUI_EltreumUI:Shadows()
 			if E.Wrath and E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
 				if _G.LFGListingFrame.backdrop and not _G.LFGListingFrame.backdrop.shadow then
 					_G.LFGListingFrame.backdrop:CreateShadow()
+				end
+				if _G.LFGBrowseFrame.backdrop and not _G.LFGBrowseFrame.backdrop.shadow then
+					_G.LFGBrowseFrame.backdrop:CreateShadow()
 				end
 
 				--Shaman Totem things
