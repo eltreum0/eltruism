@@ -6,7 +6,6 @@ local UnitExists = _G.UnitExists
 local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
 local UnitIsPlayer = _G.UnitIsPlayer
-local databarXP
 local castbar
 local targetcastbar
 local reactiontarget
@@ -21,16 +20,6 @@ function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
 		return false
 	end
 end
-
---Databar gradient
-function ElvUI_EltreumUI:GradientDatabar()
-	databarXP = _G["ElvUI_ExperienceBar"]
-	if databarXP and E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP then
-		databarXP:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", E.db.databars.colors.experience.r, E.db.databars.colors.experience.g, E.db.databars.colors.experience.b, E.db.databars.colors.experience.a, 0.8, 0.4, 1, E.db.databars.colors.experience.a)
-	end
-end
-local DB = E:GetModule('DataBars')
-hooksecurefunc(DB, 'ExperienceBar_Update', ElvUI_EltreumUI.GradientDatabar)
 
 --elvui castbar texture/gradient
 function ElvUI_EltreumUI:CastBarTextureGradient()

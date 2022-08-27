@@ -24,6 +24,7 @@
 	<Script file='Skins/CharacterPanelIcons.lua'/>
 	<Script file='Skins/CharacterPanelSkin.lua'/>
 	<Script file='Skins/DarkLightColors.lua'/>
+	<Script file='Skins/Databars.lua'/>
 	<Script file='Skins/Doom.lua'/>
 	<Script file='Skins/ExpandedStable.lua'/>
 	<Script file='Skins/ExpandedTalents.lua'/>
