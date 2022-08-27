@@ -434,7 +434,7 @@ function ElvUI_EltreumUI:DeleteItem()
 					end
 					self.editBox:SetText(DELETE_ITEM_CONFIRM_STRING) --from line 2028
 					ElvUI_EltreumUI:Print("DELETE automatically typed")
-					C_Timer.After(1, function()
+					C_Timer.After(2, function()
 						throttle = 0
 					end)
 				end
@@ -457,7 +457,7 @@ function ElvUI_EltreumUI:DeleteItem()
 					end
 					self.editBox:SetText(DELETE_ITEM_CONFIRM_STRING) --from line 2028
 					ElvUI_EltreumUI:Print("DELETE automatically typed")
-					C_Timer.After(1, function()
+					C_Timer.After(2, function()
 						throttle = 0
 					end)
 				end
