@@ -29,6 +29,13 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 			["CharacterChestSlot"] = true,
 			["CharacterWristSlot"] = true,
 			["CharacterRangedSlot"] = true,
+			["InspectHeadSlot"] = true,
+			["InspectNeckSlot"] = true,
+			["InspectShoulderSlot"] = true,
+			["InspectBackSlot"] = true,
+			["InspectChestSlot"] = true,
+			["InspectWristSlot"] = true,
+			["InspectRangedSlot"] = true,
 		}
 		local rightside = {
 			["CharacterHandsSlot"] = true,
@@ -40,9 +47,19 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 			["CharacterTrinket0Slot"] = true,
 			["CharacterTrinket1Slot"] = true,
 			["CharacterMainHandSlot"] = true,
+			["InspectHandsSlot"] = true,
+			["InspectWaistSlot"] = true,
+			["InspectLegsSlot"] = true,
+			["InspectFeetSlot"] = true,
+			["InspectFinger0Slot"] = true,
+			["InspectFinger1Slot"] = true,
+			["InspectTrinket0Slot"] = true,
+			["InspectTrinket1Slot"] = true,
+			["InspectMainHandSlot"] = true,
 		}
 		local centereditem = {
 			["CharacterSecondaryHandSlot"] = true,
+			["InspectSecondaryHandSlot"] = true,
 		}
 
 		--from Simple Item Levels by Kemayo (BSD License) with some edits by Eltreum
