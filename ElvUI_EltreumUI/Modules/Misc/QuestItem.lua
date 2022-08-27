@@ -163,18 +163,22 @@ function ElvUI_EltreumUI:QuestItem()
 					if not InCombatLockdown() and _G["EltruismQuestItem1"] then
 						local point, relativeTo, relativePoint, xOfs, yOfs = EltruismQuestItemFrame:GetPoint()
 						_G["EltruismQuestItem1"]:ClearAllPoints()
-						if (self.shownItems % 2) == 0 then
-							if xOfs >= 0 then
-								_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*cfg.btnSize)/2), yOfs)
-							elseif xOfs < 0 then
-								_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-1)*cfg.btnSize)/2), yOfs)
+						if self.shownItems ~= 1 then
+							if (self.shownItems % 2) == 0 then
+								if xOfs >= 0 then
+									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*cfg.btnSize)/2), yOfs)
+								elseif xOfs < 0 then
+									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-1)*cfg.btnSize)/2), yOfs)
+								end
+							else
+								if xOfs >= 0 then
+									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-(self.shownItems % 2))*(cfg.btnSize+1))/2), yOfs)
+								elseif xOfs < 0 then
+									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-(self.shownItems % 2))*(cfg.btnSize-1))/2), yOfs)
+								end
 							end
 						else
-							if xOfs >= 0 then
-								_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-(self.shownItems % 2))*(cfg.btnSize+1))/2), yOfs)
-							elseif xOfs < 0 then
-								_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-(self.shownItems % 2))*(cfg.btnSize-1))/2), yOfs)
-							end
+							_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs, yOfs)
 						end
 					end
 				end)
