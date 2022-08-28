@@ -5599,7 +5599,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.manaR1
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.manaG1
@@ -5615,7 +5615,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.manaR2
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.manaG2
@@ -5638,7 +5638,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.rageR1
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.rageG1
@@ -5654,7 +5654,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.rageR2
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.rageG2
@@ -5677,7 +5677,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.focusR1
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.focusG1
@@ -5693,7 +5693,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.focusR2
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.focusG2
@@ -5702,6 +5702,318 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.unitframes.gradientmode.focusR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.focusG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.focusB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							headerenergy = {
+								order = 19,
+								type = "description",
+								name = L["Energy"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							energy1 = {
+								order = 20,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.energyR1
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.energyG1
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.energyB1
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							energy2 = {
+								order = 21,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.energyR2
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.energyG2
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.energyB2
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							headerrunicpower = {
+								order = 22,
+								type = "description",
+								name = L["Runic Power"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							runicpower1 = {
+								order = 23,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR1
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerG1
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerB1
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							runicpower2 = {
+								order = 24,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR2
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerG2
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerB2
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							headerlunarpower = {
+								order = 25,
+								type = "description",
+								name = L["Lunar Power"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							lunarpower1 = {
+								order = 26,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerR1
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerG1
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerB1
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							lunarpower2 = {
+								order = 27,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerR2
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerG2
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerB2
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							headeraltpower = {
+								order = 28,
+								type = "description",
+								name = L["Alternate Power"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							altpower1 = {
+								order = 29,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.altpowerR1
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.altpowerG1
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.altpowerB1
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							altpower2 = {
+								order = 30,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.altpowerR2
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.altpowerG2
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.altpowerB2
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.altpowerB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							headermaelstrom = {
+								order = 31,
+								type = "description",
+								name = L["Maelstrom"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							maelstrom1 = {
+								order = 32,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.maelstromR1
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.maelstromG1
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.maelstromB1
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							maelstrom2 = {
+								order = 33,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.maelstromR2
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.maelstromG2
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.maelstromB2
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.maelstromB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							headerinsanity = {
+								order = 34,
+								type = "description",
+								name = L["Insanity"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							insanity1 = {
+								order = 35,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.insanityR1
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.insanityG1
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.insanityB1
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							insanity2 = {
+								order = 36,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.insanityR2
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.insanityG2
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.insanityB2
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							headerfury = {
+								order = 37,
+								type = "description",
+								name = L["Fury"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							fury1 = {
+								order = 38,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.furyR1
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.furyG1
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.furyB1
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							fury2 = {
+								order = 39,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.furyR2
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.furyG2
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.furyB2
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							headerpain = {
+								order = 40,
+								type = "description",
+								name = L["Pain"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							pain1 = {
+								order = 41,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.painR1
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.painG1
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.painB1
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.painR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.painG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.painB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.painR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.painG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.painB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							pain2 = {
+								order = 42,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.painR2
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.painG2
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.painB2
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.painR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.painG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.painB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.painR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.painG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.painB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 						},
