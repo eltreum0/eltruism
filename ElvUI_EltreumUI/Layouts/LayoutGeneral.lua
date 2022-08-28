@@ -929,15 +929,31 @@ function ElvUI_EltreumUI:SetupDataText()
 	E.global["datatexts"]["customPanels"]["Eltruism"]["visibility"] = "[petbattle] hide;show"
 	E.global["datatexts"]["customPanels"]["Eltruism"]["width"] = 1900
 
-	E.db["datatexts"]["panels"]["Eltruism"][1] = "Talent/Loot Specialization"
-	E.db["datatexts"]["panels"]["Eltruism"][2] = "Durability"
-	E.db["datatexts"]["panels"]["Eltruism"][3] = "Missions"
-	E.db["datatexts"]["panels"]["Eltruism"][4] = "EltruismTeleports"
-	E.db["datatexts"]["panels"]["Eltruism"][5] = "Time"
-	E.db["datatexts"]["panels"]["Eltruism"][6] = "Friends"
-	E.db["datatexts"]["panels"]["Eltruism"][7] = "System"
-	E.db["datatexts"]["panels"]["Eltruism"][8] = "Combat"
-	E.db["datatexts"]["panels"]["Eltruism"][9] = "Gold"
+	if E.Retail then
+		E.db["datatexts"]["panels"]["Eltruism"][1] = "Talent/Loot Specialization"
+		E.db["datatexts"]["panels"]["Eltruism"][2] = "Durability"
+		E.db["datatexts"]["panels"]["Eltruism"][3] = "Missions"
+		E.db["datatexts"]["panels"]["Eltruism"][4] = "EltruismTeleports"
+		E.db["datatexts"]["panels"]["Eltruism"][5] = "Time"
+		E.db["datatexts"]["panels"]["Eltruism"][6] = "Friends"
+		E.db["datatexts"]["panels"]["Eltruism"][7] = "System"
+		E.db["datatexts"]["panels"]["Eltruism"][8] = "Combat"
+		E.db["datatexts"]["panels"]["Eltruism"][9] = "Gold"
+	else
+		E.db["datatexts"]["panels"]["Eltruism"][1] = "Eltruism"
+		E.db["datatexts"]["panels"]["Eltruism"][2] = "Durability"
+		if E.myclass == 'HUNTER' or E.myclass == 'WARLOCK' then
+			E.db["datatexts"]["panels"]["Eltruism"][3] = "Ammo"
+		else
+			E.db["datatexts"]["panels"]["Eltruism"][3] = "Friends"
+		end
+		E.db["datatexts"]["panels"]["Eltruism"][4] = "EltruismTeleports"
+		E.db["datatexts"]["panels"]["Eltruism"][5] = "Time"
+		E.db["datatexts"]["panels"]["Eltruism"][6] = "Friends"
+		E.db["datatexts"]["panels"]["Eltruism"][7] = "System"
+		E.db["datatexts"]["panels"]["Eltruism"][8] = "Combat"
+		E.db["datatexts"]["panels"]["Eltruism"][9] = "Gold"
+	end
 	E.db["datatexts"]["panels"]["Eltruism"]["enable"] = true
 
 	--hide other panels since now its in one panel

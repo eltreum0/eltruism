@@ -98,8 +98,14 @@ function ElvUI_EltreumUI:DynamicClassicDatatext()
 		if not E.db.movers then E.db.movers = {} end
 		if E.myclass == 'HUNTER' or E.myclass == 'WARLOCK' or E.myclass == 'WARRIOR' or E.myclass == 'ROGUE' then
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Eltruism Ammo"
-		elseif E.myclass == 'PALADIN' or E.myclass == 'MAGE' or E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'SHAMAN' then
+			if E.db["datatexts"]["panels"]["Eltruism"] then
+				E.db["datatexts"]["panels"]["Eltruism"][3] = "Eltruism Ammo"
+			end
+		else
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Friends"
+			if E.db["datatexts"]["panels"]["Eltruism"] then
+				E.db["datatexts"]["panels"]["Eltruism"][3] = "Coords"
+			end
 		end
 	end
 end
