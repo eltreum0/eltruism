@@ -1133,10 +1133,9 @@ L["Enable Eltruism Icons"] = "Aktiviere Eltrusim Symbole"
 L["Enable Custom Icons"] = "Aktiviere Benutzerdefinierte Symbole"
 L["Tank"] = true
 L["DPS"] = true
-
-L["Gradient Power Orientation"] = true
-L["Enable Gradient Power"] = true
-L["Enable Gradient Power Colors"] = true
-L["Enable Custom Gradient Power"] = true
-L["Enable Custom Gradient Power Colors"] = true
+L["Gradient Power Orientation"] = "Kraftfarbverlauf Orientierung"
+L["Enable Gradient Power"] = "Aktiviere Kraftfarbverlauf"
+L["Enable Gradient Power Colors"] = "Aktiviere Kraft Farbverlauffarben"
+L["Enable Custom Gradient Power"] = "Aktiviere Benutzerdefinierten Kraftverlauf"
+L["Enable Custom Gradient Power Colors"] = "Aktiviere Benutzerdefinierten Kraftverlauffarben"
 L["Reset/Add Eltruism Datatext Panel"] = true
