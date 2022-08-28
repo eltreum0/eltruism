@@ -239,13 +239,13 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["actionbar"]["zoneActionButton"]["clean"] = true
 	E.db["actionbar"]["zoneActionButton"]["scale"] = 0.7
 	E.db["actionbar"]["microbar"]["backdrop"] = true
-	E.db["actionbar"]["microbar"]["buttonHeight"] = 29
-	E.db["actionbar"]["microbar"]["buttonSize"] = 25
-	E.db["actionbar"]["microbar"]["buttonSpacing"] = 4
-	E.db["actionbar"]["microbar"]["buttonsPerRow"] = 9
+	E.db["actionbar"]["microbar"]["buttonHeight"] = 25
+	E.db["actionbar"]["microbar"]["buttonSize"] = 22
+	E.db["actionbar"]["microbar"]["buttonSpacing"] = 0
+	E.db["actionbar"]["microbar"]["buttonsPerRow"] = 11
 	E.db["actionbar"]["microbar"]["enabled"] = true
-	E.db["actionbar"]["microbar"]["mouseover"] = true
 	E.db["actionbar"]["microbar"]["visibility"] = "[combat] hide; show"
+	E.db["actionbar"]["microbar"]["mouseover"] = true
 
 	-- Healer Auras
 	E.db["auras"]["buffs"]["barColor"]["b"] = 0.86666476726532
@@ -367,6 +367,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
 	--E.db["movers"]["RaidUtility_Mover"] = "TOP,ElvUIParent,TOP,-220,1" --has been removed from SLE
 	E.db["movers"]["MicrobarMover"] = "TOPLEFT,UIParent,TOPLEFT,4,-4"
+	--E.db["movers"]["MicrobarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,341,-2"
 	--E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
 	if IsAddOnLoaded("ElvUI_SLE") then
 		E.db["movers"]["SLE_DataPanel_1_Mover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,202"
@@ -482,22 +483,24 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["colors"]["power"]["FOCUS"]["b"] = 0.38039215686275
 	E.db["unitframe"]["colors"]["power"]["FOCUS"]["g"] = 0.6078431372549
 	E.db["unitframe"]["colors"]["power"]["FOCUS"]["r"] = 1
-	E.db["unitframe"]["colors"]["power"]["FURY"]["b"] = 0.17254901960784
-	E.db["unitframe"]["colors"]["power"]["FURY"]["g"] = 0.55686274509804
-	E.db["unitframe"]["colors"]["power"]["FURY"]["r"] = 1
+	E.db["unitframe"]["colors"]["power"]["FURY"]["b"] = 1
+	E.db["unitframe"]["colors"]["power"]["FURY"]["g"] = 0.26274509803922
+	E.db["unitframe"]["colors"]["power"]["FURY"]["r"] = 0.79607843137255
 	E.db["unitframe"]["colors"]["power"]["INSANITY"]["b"] = 1
-	E.db["unitframe"]["colors"]["power"]["INSANITY"]["g"] = 0.20392156862745
-	E.db["unitframe"]["colors"]["power"]["INSANITY"]["r"] = 0.79607843137255
-	E.db["unitframe"]["colors"]["power"]["LUNAR_POWER"]["b"] = 0.13333333333333
-	E.db["unitframe"]["colors"]["power"]["LUNAR_POWER"]["g"] = 0.95294117647059
-	E.db["unitframe"]["colors"]["power"]["LUNAR_POWER"]["r"] = 1
-	E.db["unitframe"]["colors"]["power"]["MAELSTROM"]["g"] = 0.50196078431373
+	E.db["unitframe"]["colors"]["power"]["INSANITY"]["g"] = 0
+	E.db["unitframe"]["colors"]["power"]["INSANITY"]["r"] = 0.50196078431373
+	E.db["unitframe"]["colors"]["power"]["LUNAR_POWER"]["b"] = 0.90196078431373
+	E.db["unitframe"]["colors"]["power"]["LUNAR_POWER"]["g"] = 0.52156862745098
+	E.db["unitframe"]["colors"]["power"]["LUNAR_POWER"]["r"] = 0.30196078431373
+	E.db["unitframe"]["colors"]["power"]["MAELSTROM"]["r"] = 0
+	E.db["unitframe"]["colors"]["power"]["MAELSTROM"]["g"] = 0.5
+	E.db["unitframe"]["colors"]["power"]["MAELSTROM"]["b"] = 1
 	E.db["unitframe"]["colors"]["power"]["MANA"]["b"] = 1
 	E.db["unitframe"]["colors"]["power"]["MANA"]["g"] = 0.71372549019608
 	E.db["unitframe"]["colors"]["power"]["MANA"]["r"] = 0.49019607843137
-	E.db["unitframe"]["colors"]["power"]["PAIN"]["b"] = 1
-	E.db["unitframe"]["colors"]["power"]["PAIN"]["g"] = 1
 	E.db["unitframe"]["colors"]["power"]["PAIN"]["r"] = 1
+	E.db["unitframe"]["colors"]["power"]["PAIN"]["g"] = 0.61176470588235
+	E.db["unitframe"]["colors"]["power"]["PAIN"]["b"] = 0
 	E.db["unitframe"]["colors"]["power"]["RAGE"]["b"] = 0.32156862745098
 	E.db["unitframe"]["colors"]["power"]["RAGE"]["g"] = 0.32156862745098
 	E.db["unitframe"]["colors"]["power"]["RAGE"]["r"] = 1
