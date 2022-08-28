@@ -5582,7 +5582,7 @@ function ElvUI_EltreumUI:Configtable()
 							headermana = {
 								order = 10,
 								type = "description",
-								name = L["Mana"],
+								name = MANA,
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -5621,7 +5621,7 @@ function ElvUI_EltreumUI:Configtable()
 							headerrage = {
 								order = 13,
 								type = "description",
-								name = L["Rage"],
+								name = RAGE,
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -5660,7 +5660,7 @@ function ElvUI_EltreumUI:Configtable()
 							headerfocus = {
 								order = 16,
 								type = "description",
-								name = L["Focus"],
+								name = POWER_TYPE_FOCUS,
 								width = 'full',
 								hidden = not E.Retail,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
@@ -5702,7 +5702,7 @@ function ElvUI_EltreumUI:Configtable()
 							headerenergy = {
 								order = 19,
 								type = "description",
-								name = L["Energy"],
+								name = ENERGY,
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -5741,7 +5741,13 @@ function ElvUI_EltreumUI:Configtable()
 							headerrunicpower = {
 								order = 22,
 								type = "description",
-								name = L["Runic Power"],
+								name = function()
+									if not E.Classic then
+										return RUNIC_POWER
+									else
+										return "Runic Power"
+									end
+								end,
 								width = 'full',
 								hidden = not E.Retail and not E.Wrath,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
@@ -5783,7 +5789,7 @@ function ElvUI_EltreumUI:Configtable()
 							headerlunarpower = {
 								order = 25,
 								type = "description",
-								name = L["Lunar Power"],
+								name = POWER_TYPE_LUNAR_POWER,
 								width = 'full',
 								hidden = not E.Retail,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
@@ -5825,7 +5831,7 @@ function ElvUI_EltreumUI:Configtable()
 							headeraltpower = {
 								order = 28,
 								type = "description",
-								name = L["Alternate Power"],
+								name = ALTERNATE_RESOURCE_TEXT,
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -5864,7 +5870,7 @@ function ElvUI_EltreumUI:Configtable()
 							headermaelstrom = {
 								order = 31,
 								type = "description",
-								name = L["Maelstrom"],
+								name = POWER_TYPE_MAELSTROM,
 								width = 'full',
 								hidden = not E.Retail,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
@@ -5906,7 +5912,7 @@ function ElvUI_EltreumUI:Configtable()
 							headerinsanity = {
 								order = 34,
 								type = "description",
-								name = L["Insanity"],
+								name = INSANITY_POWER,
 								width = 'full',
 								hidden = not E.Retail,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
@@ -5948,7 +5954,7 @@ function ElvUI_EltreumUI:Configtable()
 							headerfury = {
 								order = 37,
 								type = "description",
-								name = L["Fury"],
+								name = POWER_TYPE_FURY,
 								width = 'full',
 								hidden = not E.Retail,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
@@ -5990,7 +5996,7 @@ function ElvUI_EltreumUI:Configtable()
 							headerpain = {
 								order = 40,
 								type = "description",
-								name = L["Pain"],
+								name = POWER_TYPE_PAIN,
 								width = 'full',
 								hidden = not E.Retail,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
