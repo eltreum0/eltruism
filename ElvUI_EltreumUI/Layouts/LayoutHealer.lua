@@ -239,13 +239,13 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["actionbar"]["zoneActionButton"]["clean"] = true
 	E.db["actionbar"]["zoneActionButton"]["scale"] = 0.7
 	E.db["actionbar"]["microbar"]["backdrop"] = true
-	E.db["actionbar"]["microbar"]["buttonHeight"] = 29
-	E.db["actionbar"]["microbar"]["buttonSize"] = 25
-	E.db["actionbar"]["microbar"]["buttonSpacing"] = 4
-	E.db["actionbar"]["microbar"]["buttonsPerRow"] = 9
+	E.db["actionbar"]["microbar"]["buttonHeight"] = 25
+	E.db["actionbar"]["microbar"]["buttonSize"] = 22
+	E.db["actionbar"]["microbar"]["buttonSpacing"] = 0
+	E.db["actionbar"]["microbar"]["buttonsPerRow"] = 11
 	E.db["actionbar"]["microbar"]["enabled"] = true
-	E.db["actionbar"]["microbar"]["mouseover"] = true
 	E.db["actionbar"]["microbar"]["visibility"] = "[combat] hide; show"
+	E.db["actionbar"]["microbar"]["mouseover"] = true
 
 	-- Healer Auras
 	E.db["auras"]["buffs"]["barColor"]["b"] = 0.86666476726532
@@ -367,6 +367,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
 	--E.db["movers"]["RaidUtility_Mover"] = "TOP,ElvUIParent,TOP,-220,1" --has been removed from SLE
 	E.db["movers"]["MicrobarMover"] = "TOPLEFT,UIParent,TOPLEFT,4,-4"
+	--E.db["movers"]["MicrobarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,341,-2"
 	--E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
 	if IsAddOnLoaded("ElvUI_SLE") then
 		E.db["movers"]["SLE_DataPanel_1_Mover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,202"
