@@ -1139,3 +1139,4 @@ L["Enable Gradient Power"] = true
 L["Enable Gradient Power Colors"] = true
 L["Enable Custom Gradient Power"] = true
 L["Enable Custom Gradient Power Colors"] = true
+L["Reset/Add Eltruism Datatext Panel"] = true
