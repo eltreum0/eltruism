@@ -932,7 +932,7 @@ function ElvUI_EltreumUI:SetupDataText()
 	E.db["datatexts"]["panels"]["Eltruism"][1] = "Talent/Loot Specialization"
 	E.db["datatexts"]["panels"]["Eltruism"][2] = "Durability"
 	E.db["datatexts"]["panels"]["Eltruism"][3] = "Missions"
-	E.db["datatexts"]["panels"]["Eltruism"][4] = "Haste" --TODO: REPLACE THIS
+	E.db["datatexts"]["panels"]["Eltruism"][4] = "EltruismTeleports"
 	E.db["datatexts"]["panels"]["Eltruism"][5] = "Time"
 	E.db["datatexts"]["panels"]["Eltruism"][6] = "Friends"
 	E.db["datatexts"]["panels"]["Eltruism"][7] = "System"
