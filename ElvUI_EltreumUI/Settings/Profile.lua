@@ -524,8 +524,6 @@ P.ElvUI_EltreumUI = {
 		greybackground = false,
 		gradientmode = {
 			enable = false,
-
-
 			orientation = "HORIZONTAL",
 			orientationpower = "HORIZONTAL",
 			texture = "Eltreum-Blank",
