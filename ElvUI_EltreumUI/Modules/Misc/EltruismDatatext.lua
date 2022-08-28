@@ -20,7 +20,119 @@ local C_CurrencyInfo = _G.C_CurrencyInfo
 local Constants = _G.Constants --maybe should not be
 local UIErrorsFrame = _G.UIErrorsFrame
 local ERR_NOT_IN_COMBAT = _G.ERR_NOT_IN_COMBAT
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------hearthstone/tp item datatext
+--based yet again on elvui config
+--most from https://www.wowhead.com/item=6948/hearthstone#comments
+local Teleports = {
+	32757, --blessed-medallion-of-karabor
+	40585, --signet-of-the-kirin-tor
+	51557, --runed-signet-of-the-kirin-tor
+	48957, --etched-signet-of-the-kirin-tor
+	45691, --inscribed-signet-of-the-kirin-tor
+	63379, --baradins-wardens-tabard
+	63378, --hellscreams-reach-tabard
+	63352, --shroud-of-cooperation
+	63206, --wrap-of-unity
+	65360, --cloak-of-coordination
+	63353, --shroud-of-cooperation
+	63207, --wrap-of-unity
+	65274, --cloak-of-coordination
+	37863, --direbrews-remote
+	46874, --argent-crusaders-tabard
+	64457, --the-last-relic-of-argus
+	50287, --boots-of-the-bay
+	52251, --jainas-locket
+	6948, --hearthstone
+	64488, --the-innkeepers-daughter
+	28585, --ruby-slippers
+	54452, --ethereal-portal
+	93672, --dark-portal
+	37118, --scroll-of-recall
+	44314, --scroll-of-recall-ii
+	44315, --scroll-of-recall-iii
+	48933, --wormhole-generator-northrend
+	87215, --wormhole-generator-pandaria
+	30542, --dimensional-ripper-area-52
+	18984, --dimensional-ripper-everlook
+	30544, --ultrasafe-transporter-toshleys-station
+	18986, --ultrasafe-transporter-gadgetzan
+	58487, --potion-of-deepholm
+	17690, --frostwolf-insignia-rank-1
+	17905, --frostwolf-insignia-rank-2
+	17906, --frostwolf-insignia-rank-3
+	17907, --frostwolf-insignia-rank-4
+	17908, --frostwolf-insignia-rank-5
+	17909, --frostwolf-insignia-rank-6
+	17691, --stormpike-insignia-rank-1
+	17900, --stormpike-insignia-rank-2
+	17901, --stormpike-insignia-rank-3
+	17902, --stormpike-insignia-rank-4
+	17903, --stormpike-insignia-rank-5
+	17904, --stormpike-insignia-rank-6
+	22631, --atiesh-greatstaff-of-the-guardian
+	95051, --the-brassiest-knuckle
+	95050, --the-brassiest-knuckle
+	103678, --time-lost-artifact
+	168907, --holographic-digitalization-hearthstone
+	163045, --headless-horsemans-hearthstone
+	162973, --greatfather-winters-hearthstone
+	166746, --fire-eaters-hearthstone
+	166747, --brewfest-revelers-hearthstone
+	142298, --astonishingly-scarlet-slippers
+	142542, --tome-of-town-portal
+	172179, --eternal-travelers-hearthstone
+	184353, --kyrian-hearthstone
+	183716, --venthyr-sinstone
+	182773, --necrolord-hearthstone
+	180290, --night-fae-hearthstone
+	190237, --broker-translocation-matrix
+	188952, --dominated-hearthstone
+	110560, --garrison-hearthstone
+	140192, --dalaran-hearthstone
+	193588, --timewalkers-hearthstone
+	172924, --wormhole-generator-shadowlands
+}
+local displayStringEltruismTeleports = "|T"..GetItemIcon(6948)..":18:18:0:0:64:64:5:59:5:59|t "..GetBindLocation()
+local function EltruismTeleportsOnEvent(self)
+	local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
+	local start, duration = GetItemCooldown(6948)
+	local cooldown = start + duration - GetTime()
+	if cooldown > 0 then
+		displayStringEltruismTeleports = "|T"..GetItemIcon(6948)..":14:14:0:0:64:64:5:59:5:59|t |cffFF0000"..GetBindLocation().."|r"
+	elseif cooldown <= 0 then
+		displayStringEltruismTeleports = "|T"..GetItemIcon(6948)..":18:18:0:0:64:64:5:59:5:59|t "..GetBindLocation()
+	end
+	self.text:SetText(displayStringEltruismTeleports)
+end
 
+local function EltruismTeleportsOnEnter()
+	DT.tooltip:ClearLines()
+	local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
+	for i,v in pairs(Teleports) do
+		local texture = GetItemIcon(v)
+		local name = GetItemInfo(v)
+		local hasItem = GetItemCount(v)
+		if texture and name and (hasItem > 0 or PlayerHasToy(v)) then
+			local start, duration = GetItemCooldown(v)
+			local cooldown = start + duration - GetTime()
+			if cooldown > 0 then
+				local minutes = math.floor(cooldown / 60)
+				local seconds = string.format("%02.f", math.floor(cooldown - minutes * 60))
+				DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFF0000"..name.."|r", ("|cffFF0000"..minutes.."m"..":"..seconds.."s|r"))
+			elseif cooldown <= 0 then
+				DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..name.."|r", "|cff00FF00"..L["Ready"].."|r")
+			end
+		end
+	end
+	local hscd = GetItemCooldown(6948)
+	if hscd ~= 0 then
+		displayStringEltruismTeleports = "|T"..GetItemIcon(6948)..":14:14:0:0:64:64:5:59:5:59|t |cffFF0000"..GetBindLocation().."|r"
+	else
+		displayStringEltruismTeleports = "|T"..GetItemIcon(6948)..":18:18:0:0:64:64:5:59:5:59|t "..GetBindLocation()
+	end
+	DT.tooltip:Show()
+end
+DT:RegisterDatatext('EltruismTeleports', nil, { 'SPELL_UPDATE_COOLDOWN', 'BAG_UPDATE_COOLDOWN'}, EltruismTeleportsOnEvent, nil, nil, EltruismTeleportsOnEnter, nil, L["Eltruism Hearthstones/Teleports"], nil, nil)
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------spell haste datatext
 local function EltruismSpellHasteDatatext(dt)
 	local spellhaste = GetCombatRatingBonus(CR_HASTE_SPELL)
