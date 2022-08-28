@@ -1118,7 +1118,6 @@ L["Play a Sound when receiving mail"] = "Einen Ton bei einer neuen Nachricht abs
 L["Text to Speech"] = "Text zu Sprache"
 L["Text to Speech announcement"] = "Text zu Sprache Ansagen"
 L["Text to Speech Config"] = "Text zu Sprache Einstellung"
-
 L["Enable AMD FSR even if not scaling"] = "Aktiviere AMD FSR auch ohne Skalierung"
 L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"] = "Zwingt AMDs FSR, das Bild zu schärfen, auch wenn Du keine niedrigere Auflösung verwendest"
 L["Add a gradient color to the Honor Bar"] = "Hinzufügen eines Farbverlaufes zur Ehrenleiste"
@@ -1138,4 +1137,4 @@ L["Enable Gradient Power"] = "Aktiviere Kraftfarbverlauf"
 L["Enable Gradient Power Colors"] = "Aktiviere Kraft Farbverlauffarben"
 L["Enable Custom Gradient Power"] = "Aktiviere Benutzerdefinierten Kraftverlauf"
 L["Enable Custom Gradient Power Colors"] = "Aktiviere Benutzerdefinierten Kraftverlauffarben"
-L["Reset/Add Eltruism Datatext Panel"] = true
+L["Reset/Add Eltruism Datatext Panel"] = "Eltruism Datentextleiste zurücksetzen/hinzufügen"
