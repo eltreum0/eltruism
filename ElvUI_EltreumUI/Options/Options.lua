@@ -5751,7 +5751,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "description",
 								name = L["Runic Power"],
 								width = 'full',
-								hidden = not E.Retail or not E.Wrath,
+								hidden = not E.Retail and not E.Wrath,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							runicpower1 = {
@@ -5759,7 +5759,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								hidden = not E.Retail or not E.Wrath,
+								hidden = not E.Retail and not E.Wrath,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR1
@@ -5776,7 +5776,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								hidden = not E.Retail or not E.Wrath,
+								hidden = not E.Retail and not E.Wrath,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR2
