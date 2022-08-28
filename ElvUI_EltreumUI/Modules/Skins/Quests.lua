@@ -563,11 +563,11 @@ function ElvUI_EltreumUI:SkinQuests()
 						elseif isComplete then
 							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 							line.text:SetTextColor(0, 1, 0)
-							line.text:SetWidth(200)
+							line.text:SetWidth(250)
 						else
 							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 							line.text:SetTextColor(0.8, 0.8, 0.8)
-							line.text:SetWidth(200)
+							line.text:SetWidth(250)
 						end
 						if line.dash then
 							line.dash:Hide()
@@ -706,35 +706,41 @@ function ElvUI_EltreumUI:SkinQuests()
 				--highlight
 				hooksecurefunc("WatchFrameLinkButtonTemplate_Highlight", function(self, onEnter)
 					local line
+					_G.WatchFrame_Update()
 					for index = self.startLine, self.lastLine do
 						line = self.lines[index]
 						if ( line ) then
-							if ( index == self.startLine ) then
-								-- header
-								if ( onEnter ) then
-									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
-									line.text:SetTextColor(classcolor.r+0.2, classcolor.g+0.2, classcolor.b+0.2)
-									line.text:SetWidth(250)
-								else
-									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
-									line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-									line.text:SetWidth(250)
-								end
+							if line.text:GetTextColor() == 0 and 0.99999779462814 and 0 and 0.99999779462814 then
+								line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+								line.text:SetWidth(250)
 							else
-								if ( onEnter ) then
-									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
-									line.text:SetTextColor(1, 1, 1)
-									--line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
-									--line.dash:SetTextColor(1, 1, 1)
-									line.text:SetWidth(200)
+								if ( index == self.startLine ) then
+									-- header
+									if ( onEnter ) then
+										line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
+										line.text:SetTextColor(classcolor.r+0.2, classcolor.g+0.2, classcolor.b+0.2)
+										line.text:SetWidth(250)
+									else
+										line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+2, E.db.general.fontStyle)
+										line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+										line.text:SetWidth(250)
+									end
 								else
-									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
-									line.text:SetTextColor(0.8, 0.8, 0.8)
-									--line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
-									--line.dash:SetTextColor(0.8, 0.8, 0.8)
-									line.text:SetWidth(200)
-									--line.text:ClearAllPoints()
-									--line.text:SetPoint("LEFT", line.dash, "RIGHT")
+									if ( onEnter ) then
+										line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+										line.text:SetTextColor(1, 1, 1)
+										--line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+										--line.dash:SetTextColor(1, 1, 1)
+										line.text:SetWidth(250)
+									else
+										line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+										line.text:SetTextColor(0.8, 0.8, 0.8)
+										--line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+										--line.dash:SetTextColor(0.8, 0.8, 0.8)
+										line.text:SetWidth(250)
+										--line.text:ClearAllPoints()
+										--line.text:SetPoint("LEFT", line.dash, "RIGHT")
+									end
 								end
 							end
 						end
