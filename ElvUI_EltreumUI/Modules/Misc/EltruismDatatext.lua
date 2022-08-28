@@ -28,6 +28,7 @@ local Teleports = {
 	22631, --atiesh-greatstaff-of-the-guardian
 	54452, --ethereal-portal
 	93672, --dark-portal
+	184871, --dark-portal 2?
 	110560, --garrison-hearthstone
 	140192, --dalaran-hearthstone
 	193588, --timewalkers-hearthstone
@@ -117,7 +118,7 @@ local function EltruismTeleportsOnEnter()
 	end
 	DT.tooltip:Show()
 end
-DT:RegisterDatatext('EltruismTeleports', nil, { 'SPELL_UPDATE_COOLDOWN', 'BAG_UPDATE_COOLDOWN', "HEARTHSTONE_BOUND"}, EltruismTeleportsOnEvent, nil, nil, EltruismTeleportsOnEnter, nil, L["Eltruism Hearthstones/Teleports"], nil, nil)
+DT:RegisterDatatext('EltruismTeleports', nil, { 'SPELL_UPDATE_COOLDOWN', 'BAG_UPDATE_COOLDOWN', "HEARTHSTONE_BOUND", "COMBAT_LOG_EVENT_UNFILTERED"}, EltruismTeleportsOnEvent, nil, nil, EltruismTeleportsOnEnter, nil, L["Eltruism Hearthstones/Teleports"], nil, nil)
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------spell haste datatext
 local function EltruismSpellHasteDatatext(dt)
 	local spellhaste = GetCombatRatingBonus(CR_HASTE_SPELL)
