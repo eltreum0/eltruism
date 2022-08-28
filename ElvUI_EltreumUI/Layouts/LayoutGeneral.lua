@@ -950,6 +950,9 @@ function ElvUI_EltreumUI:SetupDataText()
 	E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,23"
 	E.db["movers"]["DTPanelEltruismMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,0"
 
+	E:UpdateDataTexts()
+	E:UpdateMoverPositions()
+
 	--show the chat buttons because they are attached to the chat datatext not panel
 	_G.LeftChatToggleButton:SetAlpha(1)
 	_G.LeftChatToggleButton:Show()
