@@ -98,8 +98,14 @@ function ElvUI_EltreumUI:DynamicClassicDatatext()
 		if not E.db.movers then E.db.movers = {} end
 		if E.myclass == 'HUNTER' or E.myclass == 'WARLOCK' or E.myclass == 'WARRIOR' or E.myclass == 'ROGUE' then
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Eltruism Ammo"
-		elseif E.myclass == 'PALADIN' or E.myclass == 'MAGE' or E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'SHAMAN' then
+			if E.db["datatexts"]["panels"]["Eltruism"] then
+				E.db["datatexts"]["panels"]["Eltruism"][3] = "Eltruism Ammo"
+			end
+		else
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Friends"
+			if E.db["datatexts"]["panels"]["Eltruism"] then
+				E.db["datatexts"]["panels"]["Eltruism"][3] = "Coords"
+			end
 		end
 	end
 end
@@ -425,9 +431,11 @@ function ElvUI_EltreumUI:BorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.aurasizey = 54
 				E.db.ElvUI_EltreumUI.borders.chatborder = true
 				E.db.ElvUI_EltreumUI.borders.leftchatborderx = 432
-				E.db.ElvUI_EltreumUI.borders.leftchatbordery = 224
+				--E.db.ElvUI_EltreumUI.borders.leftchatbordery = 224
+				E.db.ElvUI_EltreumUI.borders.leftchatbordery = 201
 				E.db.ElvUI_EltreumUI.borders.rightchatborderx = 432
-				E.db.ElvUI_EltreumUI.borders.rightchatbordery = 224
+				--E.db.ElvUI_EltreumUI.borders.rightchatbordery = 224
+				E.db.ElvUI_EltreumUI.borders.rightchatbordery = 201
 				E.db.ElvUI_EltreumUI.borders.partyborders = true
 				E.db.ElvUI_EltreumUI.borders.raidborders = true
 				E.db.ElvUI_EltreumUI.borders.raid40borders = true
@@ -480,8 +488,10 @@ function ElvUI_EltreumUI:BorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.petactionedgesize = 13
 
 				E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 5
-				E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,-1"
-				E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,-1"
+				--E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,-1"
+				--E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,-1"
+				E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,23"
+				E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,23"
 				E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-4"
 
 				if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
@@ -582,8 +592,10 @@ function ElvUI_EltreumUI:BorderAdjust()
 					end
 				end
 			elseif not E.db.ElvUI_EltreumUI.borders.borders then
-				E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,0"
-				E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,0"
+				E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,23"
+				E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,23"
+				--E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,0"
+				--E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,0"
 				E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
 				E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 3
 

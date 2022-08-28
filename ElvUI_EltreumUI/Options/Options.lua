@@ -7815,8 +7815,13 @@ function ElvUI_EltreumUI:Configtable()
 										name = L["Colors"],
 										width = 'full',
 										desc = L["Customize Colors"],
-										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable end,
-										func = function() E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI', "gradient", "power") end,
+										func = function()
+											if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
+												E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'unitframe','allColorsGroup','classResourceGroup')
+											else
+												E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI', "gradient", "power")
+											end
+										end,
 									},
 									header9987 = {
 										order = 101,
