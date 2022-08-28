@@ -5613,7 +5613,7 @@ function ElvUI_EltreumUI:Configtable()
 							mana2 = {
 								order = 12,
 								type = 'color',
-								name = L["Color 1"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
@@ -5652,7 +5652,7 @@ function ElvUI_EltreumUI:Configtable()
 							rage2 = {
 								order = 15,
 								type = 'color',
-								name = L["Color 1"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
@@ -5693,7 +5693,7 @@ function ElvUI_EltreumUI:Configtable()
 							focus2 = {
 								order = 18,
 								type = 'color',
-								name = L["Color 1"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
@@ -5733,7 +5733,7 @@ function ElvUI_EltreumUI:Configtable()
 							energy2 = {
 								order = 21,
 								type = 'color',
-								name = L["Color 1"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
@@ -5774,7 +5774,7 @@ function ElvUI_EltreumUI:Configtable()
 							runicpower2 = {
 								order = 24,
 								type = 'color',
-								name = L["Color 1"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								hidden = not E.Retail and not E.Wrath,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
@@ -5816,7 +5816,7 @@ function ElvUI_EltreumUI:Configtable()
 							lunarpower2 = {
 								order = 27,
 								type = 'color',
-								name = L["Color 1"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
@@ -5856,7 +5856,7 @@ function ElvUI_EltreumUI:Configtable()
 							altpower2 = {
 								order = 30,
 								type = 'color',
-								name = L["Color 1"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
@@ -5897,7 +5897,7 @@ function ElvUI_EltreumUI:Configtable()
 							maelstrom2 = {
 								order = 33,
 								type = 'color',
-								name = L["Color 1"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
@@ -5939,7 +5939,7 @@ function ElvUI_EltreumUI:Configtable()
 							insanity2 = {
 								order = 36,
 								type = 'color',
-								name = L["Color 1"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
@@ -5981,7 +5981,7 @@ function ElvUI_EltreumUI:Configtable()
 							fury2 = {
 								order = 39,
 								type = 'color',
-								name = L["Color 1"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
@@ -6023,7 +6023,7 @@ function ElvUI_EltreumUI:Configtable()
 							pain2 = {
 								order = 42,
 								type = 'color',
-								name = L["Color 1"],
+								name = L["Color 2"],
 								hasAlpha = false,
 								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
