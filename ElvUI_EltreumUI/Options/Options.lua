@@ -5569,21 +5569,13 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						name = E.NewSign..L["Power Colors"],
 						args = {
-							enablepower = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable Gradient Power"],
-								desc = L["Enable Gradient Power Colors"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
 							enablepowercustom = {
 								order = 3,
 								type = 'toggle',
 								name = L["Enable Custom Gradient Power"],
 								desc = L["Enable Custom Gradient Power Colors"],
 								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
@@ -5599,7 +5591,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.manaR1
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.manaG1
@@ -5615,7 +5607,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.manaR2
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.manaG2
@@ -5638,7 +5630,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.rageR1
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.rageG1
@@ -5654,7 +5646,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.rageR2
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.rageG2
@@ -5679,7 +5671,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 1"],
 								hasAlpha = false,
 								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.focusR1
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.focusG1
@@ -5696,7 +5688,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 2"],
 								hasAlpha = false,
 								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.focusR2
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.focusG2
@@ -5719,7 +5711,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.energyR1
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.energyG1
@@ -5735,7 +5727,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.energyR2
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.energyG2
@@ -5760,7 +5752,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 1"],
 								hasAlpha = false,
 								hidden = not E.Retail and not E.Wrath,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR1
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerG1
@@ -5777,7 +5769,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 2"],
 								hasAlpha = false,
 								hidden = not E.Retail and not E.Wrath,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR2
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerG2
@@ -5802,7 +5794,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 1"],
 								hasAlpha = false,
 								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerR1
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerG1
@@ -5819,7 +5811,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 2"],
 								hasAlpha = false,
 								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerR2
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerG2
@@ -5842,7 +5834,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.altpowerR1
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.altpowerG1
@@ -5858,7 +5850,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.altpowerR2
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.altpowerG2
@@ -5883,7 +5875,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 1"],
 								hasAlpha = false,
 								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.maelstromR1
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.maelstromG1
@@ -5900,7 +5892,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 2"],
 								hasAlpha = false,
 								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.maelstromR2
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.maelstromG2
@@ -5925,7 +5917,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 1"],
 								hasAlpha = false,
 								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.insanityR1
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.insanityG1
@@ -5942,7 +5934,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 2"],
 								hasAlpha = false,
 								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.insanityR2
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.insanityG2
@@ -5967,7 +5959,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 1"],
 								hasAlpha = false,
 								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.furyR1
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.furyG1
@@ -5984,7 +5976,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 2"],
 								hasAlpha = false,
 								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.furyR2
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.furyG2
@@ -6009,7 +6001,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 1"],
 								hasAlpha = false,
 								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.painR1
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.painG1
@@ -6026,7 +6018,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Color 2"],
 								hasAlpha = false,
 								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.painR2
 									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.painG2
@@ -7794,6 +7786,15 @@ function ElvUI_EltreumUI:Configtable()
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect = value end,
+									},
+									powerbargradient = {
+										type = 'toggle',
+										name = E.NewSign..L["Gradient"],
+										desc = L["Gradient Colors"],
+										order = 100,
+										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = value end,
 									},
 									header9987 = {
 										order = 101,
@@ -9594,6 +9595,15 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							enablepower = {
+								order = 4,
+								type = 'toggle',
+								name = L["Enable Gradient Power"],
+								desc = L["Enable Gradient Power Colors"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							darklightmode = {
 								order = 96,
