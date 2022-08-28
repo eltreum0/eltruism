@@ -213,7 +213,7 @@ P.ElvUI_EltreumUI = {
 		nameplatepower = {
 			autoadjustposition = false,
 			modeleffect = false,
-			gradient = true,
+			gradient = false,
 			sizex = 131.8,
 			sizey = 6,
 			posy = 16,
@@ -834,8 +834,8 @@ P.ElvUI_EltreumUI = {
 			tappedG2 = 0,
 			tappedB2 = 0,
 
-			enablepower = true,
-			enablepowercustom = true,
+			enablepower = false,
+			enablepowercustom = false,
 
 			manaR1 = 0.49,
 			manaG1 = 0.71,
