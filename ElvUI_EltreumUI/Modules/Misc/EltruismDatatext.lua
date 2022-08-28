@@ -77,8 +77,6 @@ local Teleports = {
 	17902, --stormpike-insignia-rank-4
 	17903, --stormpike-insignia-rank-5
 	17904, --stormpike-insignia-rank-6
-
-
 }
 local displayStringEltruismTeleports = "|T"..GetItemIcon(6948)..":18:18:0:0:64:64:5:59:5:59|t "..GetBindLocation()
 local function EltruismTeleportsOnEvent(self)
@@ -92,7 +90,6 @@ local function EltruismTeleportsOnEvent(self)
 	end
 	self.text:SetText(displayStringEltruismTeleports)
 end
-
 local function EltruismTeleportsOnEnter()
 	DT.tooltip:ClearLines()
 	local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
