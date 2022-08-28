@@ -1033,6 +1033,10 @@ function ElvUI_EltreumUI:Shadows()
 			if not _G.stAMProfileMenu.shadow then
 				_G.stAMProfileMenu:CreateShadow()
 			end
+
+			if not _G.SquareMinimapButtonBar.shadow then
+				_G.SquareMinimapButtonBar:CreateShadow()
+			end
 		end
 	end
 end
