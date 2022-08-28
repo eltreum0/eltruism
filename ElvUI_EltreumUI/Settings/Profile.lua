@@ -868,9 +868,9 @@ P.ElvUI_EltreumUI = {
 			runicpowerR1 = 0,
 			runicpowerG1 = 0.82,
 			runicpowerB1 = 1,
-			runicpowerR2 = 0,
-			runicpowerG2 = 1,
-			runicpowerB2 = 0.45,
+			runicpowerR2 = 0.49,
+			runicpowerG2 = 0.87,
+			runicpowerB2 = 1,
 
 			lunarpowerR1 = 0.30,
 			lunarpowerG1 = 0.52,
