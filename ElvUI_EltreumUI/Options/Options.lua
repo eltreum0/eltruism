@@ -5578,7 +5578,7 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
-							enablepower = {
+							enablepowercustom = {
 								order = 3,
 								type = 'toggle',
 								name = L["Enable Custom Gradient Power"],
@@ -5670,6 +5670,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "description",
 								name = L["Focus"],
 								width = 'full',
+								hidden = not E.Retail,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							focus1 = {
@@ -5677,6 +5678,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
+								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.focusR1
@@ -5693,6 +5695,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
+								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.focusR2
@@ -5748,6 +5751,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "description",
 								name = L["Runic Power"],
 								width = 'full',
+								hidden = not E.Retail or not E.Wrath,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							runicpower1 = {
@@ -5755,6 +5759,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
+								hidden = not E.Retail or not E.Wrath,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR1
@@ -5771,6 +5776,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
+								hidden = not E.Retail or not E.Wrath,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR2
@@ -5787,6 +5793,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "description",
 								name = L["Lunar Power"],
 								width = 'full',
+								hidden = not E.Retail,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							lunarpower1 = {
@@ -5794,6 +5801,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
+								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerR1
@@ -5810,6 +5818,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
+								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.lunarpowerR2
@@ -5865,6 +5874,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "description",
 								name = L["Maelstrom"],
 								width = 'full',
+								hidden = not E.Retail,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							maelstrom1 = {
@@ -5872,6 +5882,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
+								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.maelstromR1
@@ -5888,6 +5899,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
+								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.maelstromR2
@@ -5904,6 +5916,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "description",
 								name = L["Insanity"],
 								width = 'full',
+								hidden = not E.Retail,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							insanity1 = {
@@ -5911,6 +5924,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
+								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.insanityR1
@@ -5927,6 +5941,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
+								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.insanityR2
@@ -5943,6 +5958,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "description",
 								name = L["Fury"],
 								width = 'full',
+								hidden = not E.Retail,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							fury1 = {
@@ -5950,6 +5966,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
+								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.furyR1
@@ -5966,6 +5983,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
+								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.furyR2
@@ -5982,6 +6000,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "description",
 								name = L["Pain"],
 								width = 'full',
+								hidden = not E.Retail,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							pain1 = {
@@ -5989,6 +6008,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
+								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.painR1
@@ -6005,6 +6025,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
+								hidden = not E.Retail,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.painR2
