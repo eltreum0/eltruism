@@ -1133,3 +1133,9 @@ L["Enable Eltruism Icons"] = "Aktiviere Eltrusim Symbole"
 L["Enable Custom Icons"] = "Aktiviere Benutzerdefinierte Symbole"
 L["Tank"] = true
 L["DPS"] = true
+
+L["Gradient Power Orientation"] = true
+L["Enable Gradient Power"] = true
+L["Enable Gradient Power Colors"] = true
+L["Enable Custom Gradient Power"] = true
+L["Enable Custom Gradient Power Colors"] = true
