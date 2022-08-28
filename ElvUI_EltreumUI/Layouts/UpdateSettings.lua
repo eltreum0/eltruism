@@ -18,6 +18,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = true
 	end
+	E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenablethreat = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture = "ElvUI Norm1"
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect = true

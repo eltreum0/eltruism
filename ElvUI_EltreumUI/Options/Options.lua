@@ -7955,8 +7955,17 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = value end,
 							},
-							enablecustomcolornp = {
+							enablegradientnpthreat = {
 								order = 3,
+								type = 'toggle',
+								name = E.NewSign..L["Enable Gradient Threat on Nameplates"],
+								desc = L["Enable Gradient colors for Nameplates. |cffFF0000WARNING:|r This will overwrite some default ElvUI NP settings, if you dont want this, please disable this feature."],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenablethreat end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenablethreat = value end,
+							},
+							enablecustomcolornp = {
+								order = 8,
 								type = 'toggle',
 								name = L["Custom Color"],
 								desc = L["Enable Custom Colors"],
@@ -7965,7 +7974,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							opengradientcolors = {
-								order = 4,
+								order = 9,
 								type = 'execute',
 								name = L["Colors"],
 								width = 'full',

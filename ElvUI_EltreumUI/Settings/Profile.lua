@@ -775,6 +775,7 @@ P.ElvUI_EltreumUI = {
 
 			--threat stuff for np
 			npenable = false,
+			npenablethreat = false,
 			nporientation = "VERTICAL",
 			npcustomcolor = false,
 

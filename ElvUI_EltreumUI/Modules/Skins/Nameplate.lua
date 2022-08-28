@@ -35,7 +35,7 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 		nameplate.ThreatStatus = status
 
 		-- if gradient use gradient mode
-		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenablethreat then
 			if not InCombatLockdown() then
 				nameplate.CurrentlyBeingTanked = nil
 			end
@@ -150,7 +150,7 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 					NP:ScalePlate(nameplate, Scale)
 				end
 			end
-		elseif not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then -- use regular elvui mode
+		elseif not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenablethreat then -- use regular elvui mode
 			if status == 3 then -- securely tanking
 				Color = self.offTank and colors.offTankColor or self.isTank and colors.goodColor or colors.badColor
 				Scale = self.isTank and db.goodScale or db.badScale
