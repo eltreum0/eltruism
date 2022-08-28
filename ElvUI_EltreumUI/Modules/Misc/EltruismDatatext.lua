@@ -132,7 +132,7 @@ local function EltruismTeleportsOnEnter()
 	end
 	DT.tooltip:Show()
 end
-DT:RegisterDatatext('EltruismTeleports', nil, { 'SPELL_UPDATE_COOLDOWN', 'BAG_UPDATE_COOLDOWN'}, EltruismTeleportsOnEvent, nil, nil, EltruismTeleportsOnEnter, nil, L["Eltruism Hearthstones/Teleports"], nil, nil)
+DT:RegisterDatatext('EltruismTeleports', nil, { 'SPELL_UPDATE_COOLDOWN', 'BAG_UPDATE_COOLDOWN', "SPELL_UPDATE_USABLE"}, EltruismTeleportsOnEvent, nil, nil, EltruismTeleportsOnEnter, nil, L["Eltruism Hearthstones/Teleports"], nil, nil)
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------spell haste datatext
 local function EltruismSpellHasteDatatext(dt)
 	local spellhaste = GetCombatRatingBonus(CR_HASTE_SPELL)
