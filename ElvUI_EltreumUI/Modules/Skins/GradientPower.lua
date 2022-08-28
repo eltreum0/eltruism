@@ -9,7 +9,7 @@ local unitframe
 function ElvUI_EltreumUI:ApplyGradientPower(unit,name)
 	_, powertype = UnitPowerType(unit)
 	if UnitExists(unit) and powertype then
-		print(powertype)
+		--print(powertype)
 		unitframe = _G["ElvUF_"..name]
 		if unitframe and unitframe.Power then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
