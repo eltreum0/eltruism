@@ -97,7 +97,7 @@ local function EltruismTeleportsOnEnter()
 		local texture = GetItemIcon(v)
 		local name = GetItemInfo(v)
 		local hasItem = GetItemCount(v)
-		if texture and name and (hasItem > 0 or PlayerHasToy(v)) then
+		if texture and name and (hasItem > 0 or (E.Retail and PlayerHasToy(v)) ) then
 			local start, duration = GetItemCooldown(v)
 			local cooldown = start + duration - GetTime()
 			if cooldown > 0 then
