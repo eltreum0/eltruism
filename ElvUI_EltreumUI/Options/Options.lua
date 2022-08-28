@@ -5050,7 +5050,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1 = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradientcast2 = {
@@ -5066,7 +5066,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2 = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							checkelvuiclasscolorcastbar = {
@@ -5098,7 +5098,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptiblecustom, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptiblecustom = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptiblecustom = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradientcast2cantinterruptplayer = {
@@ -5114,7 +5114,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptiblecustom, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptiblecustom = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptiblecustom = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							headercastbarinterruptedplayer = {
@@ -5137,7 +5137,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1interruptedcustom, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1interruptedcustom = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1interruptedcustom = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradientcast2interruptedplayer = {
@@ -5153,7 +5153,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2interruptedcustom, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2interruptedcustom = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2interruptedcustom = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							headercastbartarget = {
@@ -5176,7 +5176,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradientcast2target = {
@@ -5192,7 +5192,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							checkelvuiclasscolorcastbartarget = {
@@ -5224,7 +5224,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptiblecustom, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptiblecustom = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptiblecustom = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradientcast2noninterruptibletargetcustom = {
@@ -5240,7 +5240,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptiblecustom, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptiblecustom = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptiblecustom = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							headercastbarinterruptedtarget = {
@@ -5263,7 +5263,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptedcustom, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptedcustom = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptedcustom = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							gradientcast2interruptedtarget = {
@@ -5279,7 +5279,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptedcustom, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptedcustom = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptedcustom = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 						},
@@ -5309,7 +5309,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatB1 = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							goodthreat2 = {
@@ -5325,7 +5325,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatB2, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatB2 = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreatB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							headerbadthreat = {
@@ -5348,7 +5348,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatB1 = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							badthreat2 = {
@@ -5364,7 +5364,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatB2, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatB2 = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreatB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							headergoodthreattransition = {
@@ -5387,7 +5387,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionB1 = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							goodthreattransition2 = {
@@ -5403,7 +5403,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionB2, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionB2 = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							headerbadthreattransition = {
@@ -5426,7 +5426,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionB1 = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							badthreattransition2 = {
@@ -5442,7 +5442,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionB2, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionB2 = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							headerofftank = {
@@ -5465,7 +5465,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankB1 = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							offtank2 = {
@@ -5481,7 +5481,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankB2, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankB2 = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.offtankB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							headerbadthreattransitionofftank = {
@@ -5504,7 +5504,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankB1 = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							badthreattransition2offtank = {
@@ -5520,7 +5520,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankB2, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankB2 = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.badthreattransitionofftankB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							headergoodthreattransitionofftank = {
@@ -5543,7 +5543,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankB1, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankB1 = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 							goodthreattransition2offtank = {
@@ -5559,7 +5559,7 @@ function ElvUI_EltreumUI:Configtable()
 									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankB2, 1, dr, dg, db, 1
 								end,
 								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankB2 = r, g, b
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
 						},
