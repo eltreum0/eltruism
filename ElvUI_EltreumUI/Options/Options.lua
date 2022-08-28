@@ -230,6 +230,13 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								func = function() E.data:SetProfile('Eltreum Healer ('..E.mynameRealm..')') ElvUI_EltreumUI:SetupGeneralLayout() ElvUI_EltreumUI:SetupLayoutHealer() end,
 							},
+							resetoradddatatext = {
+								order = 2,
+								type = 'execute',
+								name = L["Reset/Add Eltruism Datatext Panel"],
+								width = 'full',
+								func = function() ElvUI_EltreumUI:SetupDataText() E:UpdateMoverPositions() end,
+							},
 						},
 					},
 					header9 = {

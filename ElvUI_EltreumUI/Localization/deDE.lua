@@ -1138,3 +1138,4 @@ L["Enable Gradient Power"] = "Aktiviere Kraftfarbverlauf"
 L["Enable Gradient Power Colors"] = "Aktiviere Kraft Farbverlauffarben"
 L["Enable Custom Gradient Power"] = "Aktiviere Benutzerdefinierten Kraftverlauf"
 L["Enable Custom Gradient Power Colors"] = "Aktiviere Benutzerdefinierten Kraftverlauffarben"
+L["Reset/Add Eltruism Datatext Panel"] = true
