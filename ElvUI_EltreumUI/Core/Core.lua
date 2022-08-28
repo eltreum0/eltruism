@@ -415,6 +415,27 @@ function ElvUI_EltreumUI:DevTools()
 	end
 end
 
+--fix the toggles hiding when chat panels hide
+function ElvUI_EltreumUI:FixChatToggles()
+	if E.db["datatexts"]["panels"]["Eltruism"] and E.db["datatexts"]["panels"]["Eltruism"]["enable"] then
+		--[[
+			_G.RightChatToggleButton:SetPoint('TOPLEFT', _G.DTPanelEltruismMover, 'TOPRIGHT', 0, 0)
+			_G.RightChatToggleButton:SetPoint('BOTTOMRIGHT', _G.DTPanelEltruismMover, 'BOTTOMRIGHT', 0, 0)
+			_G.LeftChatToggleButton:SetPoint("RIGHT", _G.DTPanelEltruismMover,"LEFT",0,0)
+		]]
+		_G.LeftChatToggleButton:SetAlpha(1)
+		_G.LeftChatToggleButton:Show()
+
+		--[[
+			_G.LeftChatToggleButton:SetPoint('TOPRIGHT', _G.DTPanelEltruismMover, 'TOPLEFT', 0, 0)
+			_G.LeftChatToggleButton:SetPoint('BOTTOMLEFT', _G.DTPanelEltruismMover, 'BOTTOMLEFT', 0, 0)
+			_G.RightChatToggleButton:SetPoint("LEFT", _G.DTPanelEltruismMover,"RIGHT",0,0)
+		]]
+		_G.RightChatToggleButton:SetAlpha(1)
+		_G.RightChatToggleButton:Show()
+	end
+end
+
 function ElvUI_EltreumUI:DeleteItem()
 	if E.db.ElvUI_EltreumUI.otherstuff.delete and not self.isDeleteHooked then
 		local throttle = 0

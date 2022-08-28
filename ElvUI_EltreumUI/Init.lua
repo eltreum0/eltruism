@@ -83,6 +83,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:NameplateRestedOverlaps() -- sets overlaps depending if rested/not
 	ElvUI_EltreumUI:PlayerUFEffects() -- model effect on player/target
 	ElvUI_EltreumUI:Doom() -- fork of Doom's Cooldown Pulse
+	ElvUI_EltreumUI:FixChatToggles() --attach left/right chat toggle to the new datatext
 	if E.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests

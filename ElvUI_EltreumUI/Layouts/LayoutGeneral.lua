@@ -20,6 +20,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		--Setup CVars
 		ElvUI_EltreumUI:SetupCVars()
 
+		--Setup Eltruism DataText
+		ElvUI_EltreumUI:SetupDataText()
+
 		--SetupShadowAndLight
 		if IsAddOnLoaded("ElvUI_SLE") then
 			ElvUI_EltreumUI:GetSLEProfile()
@@ -31,7 +34,8 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		end
 
 		if IsAddOnLoaded("ProjectAzilroka") then
-			E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-5,-226"
+			--E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-5,-226"
+			E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-205"
 		end
 
 		if IsAddOnLoaded("ElvUI_WindTools") then
@@ -898,6 +902,59 @@ function ElvUI_EltreumUI:SetupGlobal()
 	--E.global["datatexts"]["settings"]["Time"]["time24"] = true
 	E.global["datatexts"]["settings"]["Combat"]["TimeFull"] = false
 	E.global["datatexts"]["settings"]["Durability"]["percThreshold"] = 40
+end
+
+--create Eltruism datatext
+function ElvUI_EltreumUI:SetupDataText()
+	if not E.db.movers then E.db.movers = {} end
+
+	--create panel
+	E.DataTexts:BuildPanelFrame('Eltruism')
+
+	--config the panel
+	E.global["datatexts"]["customPanels"]["Eltruism"]["backdrop"] = false
+	E.global["datatexts"]["customPanels"]["Eltruism"]["border"] = false
+	E.global["datatexts"]["customPanels"]["Eltruism"]["frameLevel"] = 1
+	E.global["datatexts"]["customPanels"]["Eltruism"]["frameStrata"] = "LOW"
+	E.global["datatexts"]["customPanels"]["Eltruism"]["growth"] = "HORIZONTAL"
+	E.global["datatexts"]["customPanels"]["Eltruism"]["height"] = 22
+	E.global["datatexts"]["customPanels"]["Eltruism"]["mouseover"] = false
+	E.global["datatexts"]["customPanels"]["Eltruism"]["name"] = "Eltruism"
+	E.global["datatexts"]["customPanels"]["Eltruism"]["numPoints"] = 9
+	E.global["datatexts"]["customPanels"]["Eltruism"]["panelTransparency"] = false
+	E.global["datatexts"]["customPanels"]["Eltruism"]["textJustify"] = "CENTER"
+	E.global["datatexts"]["customPanels"]["Eltruism"]["tooltipAnchor"] = "ANCHOR_TOPLEFT"
+	E.global["datatexts"]["customPanels"]["Eltruism"]["tooltipXOffset"] = -17
+	E.global["datatexts"]["customPanels"]["Eltruism"]["tooltipYOffset"] = 4
+	E.global["datatexts"]["customPanels"]["Eltruism"]["visibility"] = "[petbattle] hide;show"
+	E.global["datatexts"]["customPanels"]["Eltruism"]["width"] = 1900
+
+	E.db["datatexts"]["panels"]["Eltruism"][1] = "Talent/Loot Specialization"
+	E.db["datatexts"]["panels"]["Eltruism"][2] = "Durability"
+	E.db["datatexts"]["panels"]["Eltruism"][3] = "Missions"
+	E.db["datatexts"]["panels"]["Eltruism"][4] = "Haste" --TODO: REPLACE THIS
+	E.db["datatexts"]["panels"]["Eltruism"][5] = "Time"
+	E.db["datatexts"]["panels"]["Eltruism"][6] = "Friends"
+	E.db["datatexts"]["panels"]["Eltruism"][7] = "System"
+	E.db["datatexts"]["panels"]["Eltruism"][8] = "Combat"
+	E.db["datatexts"]["panels"]["Eltruism"][9] = "Gold"
+	E.db["datatexts"]["panels"]["Eltruism"]["enable"] = true
+
+	--hide other panels since now its in one panel
+	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["enable"] = false
+	E.db["datatexts"]["panels"]["MinimapPanel"]["enable"] = false
+	E.db["datatexts"]["panels"]["RightChatDataPanel"]["enable"] = false
+
+	--adjust chat due to new datatext
+	E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,23"
+	E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,23"
+	E.db["movers"]["DTPanelEltruismMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,0"
+
+	--show the chat buttons because they are attached to the chat datatext not panel
+	_G.LeftChatToggleButton:SetAlpha(1)
+	_G.LeftChatToggleButton:Show()
+	_G.RightChatToggleButton:SetAlpha(1)
+	_G.RightChatToggleButton:Show()
 end
 
 -- CVars General

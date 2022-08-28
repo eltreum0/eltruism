@@ -344,7 +344,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["movers"]["ExperienceBarMover"] = "TOP,ElvUIParent,TOP,0,-13"
 	E.db["movers"]["GMMover"] = "TOP,ElvUIParent,TOP,239,-3"
 	E.db["movers"]["HonorBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-412,0"
-	E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,0"
+	--E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,0"
 	E.db["movers"]["LootFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-132"
 	E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-317"
 	E.db["movers"]["MasterExperienceMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-349"
@@ -367,7 +367,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
 	--E.db["movers"]["RaidUtility_Mover"] = "TOP,ElvUIParent,TOP,-220,1" --has been removed from SLE
 	E.db["movers"]["MicrobarMover"] = "TOPLEFT,UIParent,TOPLEFT,4,-4"
-	E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
+	--E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
 	if IsAddOnLoaded("ElvUI_SLE") then
 		E.db["movers"]["SLE_DataPanel_1_Mover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,202"
 		E.db["movers"]["SLE_FarmSeedMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,278"
@@ -375,7 +375,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,-308,308"
 	E.db["movers"]["SocialMenuMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-456"
 	E.db["movers"]["SquareMinimapBar"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-197"
-	E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-5,-226"
 	E.db["movers"]["TalkingHeadFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-77"
 	E.db["movers"]["ThreatBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,-1"
 	E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-134"
