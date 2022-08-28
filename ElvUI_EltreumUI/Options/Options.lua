@@ -7769,7 +7769,7 @@ function ElvUI_EltreumUI:Configtable()
 									sharedmediatexture = {
 										order = 100,
 										type = 'select',
-										width = "double",
+										--width = "double",
 										dialogControl = 'LSM30_Statusbar',
 										name = L["Choose the Power Bar Texture"],
 										desc = L["Select a Texture"],
@@ -7792,7 +7792,7 @@ function ElvUI_EltreumUI:Configtable()
 										name = E.NewSign..L["Gradient"],
 										desc = L["Gradient Colors"],
 										order = 100,
-										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
+										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = value end,
 									},
@@ -10390,8 +10390,22 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation = value end,
 							},
-							gradienttexture = {
+							gradientorientationPower = {
+								type = 'select',
+								name = L["Power Gradient Orientation"],
+								desc = L["Choose the direction of the gradient"],
 								order = 6,
+								values = {
+									["HORIZONTAL"] = L["Horizontal"],
+									["VERTICAL"] = L["Vertical"],
+								},
+								style = 'radio',
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower = value end,
+							},
+							gradienttexture = {
+								order = 7,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -10402,7 +10416,6 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture = key ElvUI_EltreumUI:GradientCustomTexture() end,
 							},
-
 						}
 					},
 					models = {
