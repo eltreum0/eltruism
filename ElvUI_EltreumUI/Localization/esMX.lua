@@ -1115,4 +1115,3 @@ L["Enable Gradient Power Colors"] = "Habilitar colores de potencia de degradado"
 L["Enable Custom Gradient Power"] = "Habilitar potencia de degradado personalizada"
 L["Enable Custom Gradient Power Colors"] = "Habilitar colores de potencia de degradado personalizados"
 L["Reset/Add Eltruism Datatext Panel"] = true
-L["Enable Gradient Threat on Nameplates"] = true
