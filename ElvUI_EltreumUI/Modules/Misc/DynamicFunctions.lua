@@ -421,8 +421,8 @@ function ElvUI_EltreumUI:BorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.texture = "Eltreum-Border-1"
 				--E.db.ElvUI_EltreumUI.borders.classcolor = true
 				E.db.ElvUI_EltreumUI.borders.auraborder = true
-				E.db.ElvUI_EltreumUI.borders.aurasizex = 53
-				E.db.ElvUI_EltreumUI.borders.aurasizey = 53
+				E.db.ElvUI_EltreumUI.borders.aurasizex = 54
+				E.db.ElvUI_EltreumUI.borders.aurasizey = 54
 				E.db.ElvUI_EltreumUI.borders.chatborder = true
 				E.db.ElvUI_EltreumUI.borders.leftchatborderx = 432
 				E.db.ElvUI_EltreumUI.borders.leftchatbordery = 224

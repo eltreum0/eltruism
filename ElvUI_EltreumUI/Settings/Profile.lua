@@ -371,8 +371,8 @@ P.ElvUI_EltreumUI = {
 		classcolor = true,
 
 		auraborder = true,
-		aurasizex = 53,
-		aurasizey = 53,
+		aurasizex = 54,
+		aurasizey = 54,
 
 		chatborder = true,
 		leftchatborderx = 432,
