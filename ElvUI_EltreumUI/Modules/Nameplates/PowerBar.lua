@@ -910,12 +910,13 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					powerbareffect:MakeCurrentCameraCustom()
 					powerbareffect:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
 					powerbareffect:SetPortraitZoom(1)
+					powerbareffect:SetAlpha(0.4) --might do this
 				else
 					powerbareffect:SetModel("spells/arcanepower_state_chest.m2")
 					--powerbareffect:SetModel("spells/cfx_priest_holyprecast_precastarm.m2") --sadly not on classic
 					powerbareffect:SetPosition(1.2, 0, 0)
+					powerbareffect:SetAlpha(0.4) --might do this
 				end
-				powerbareffect:SetAlpha(0.2) --might do this
 				powerbareffect:SetInside(EltreumPowerBar:GetStatusBarTexture(), 0, 0)
 				powerbareffect:SetParent(EltreumPowerBar)
 			end
