@@ -5569,6 +5569,24 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						name = E.NewSign..L["Power Colors"],
 						args = {
+							enablepower = {
+								order = 2,
+								type = 'toggle',
+								name = L["Enable Gradient Power"],
+								desc = L["Enable Gradient Power Colors"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
+							},
+							enablepower = {
+								order = 3,
+								type = 'toggle',
+								name = L["Enable Custom Gradient Power"],
+								desc = L["Enable Custom Gradient Power Colors"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
+							},
 							headermana = {
 								order = 10,
 								type = "description",

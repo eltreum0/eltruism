@@ -833,6 +833,8 @@ P.ElvUI_EltreumUI = {
 			tappedG2 = 0,
 			tappedB2 = 0,
 
+			enablepower = true,
+			enablepowercustom = true,
 
 			manaR1 = 0.31,
 			manaG1 = 0.45,
