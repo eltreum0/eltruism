@@ -4,12 +4,12 @@ local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 
 
-local powertype
+local powertype, _
 local unitframe
 
 --set the textures or gradients
 function ElvUI_EltreumUI:ApplyUnitGradientTexturePower(unit,name,uf)
-	powertype = UnitPowerType(unit)
+	_, powertype = UnitPowerType(unit)
 	if UnitExists(unit) and powertype then
 		print(powertype)
 		unitframe = _G["ElvUF_"..name]
