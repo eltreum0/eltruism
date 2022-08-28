@@ -33,17 +33,17 @@ local unitframegradients = {
 	["OFFTANK"] = {r1 = 0.72941176470588, g1 = 0.2, b1 = 1, r2 = 0.34117647058824, g2 = 0, b2 = 1},
 	["OFFTANKBADTHREATTRANSITION"] = {r1 = 0.70980392156863, g1 = 0.43137254901961, b1 = 0.27058823529412, r2 = 0.90196078431373, g2 = 0.15294117647059, b2 = 0},
 	["OFFTANKGOODTHREATTRANSITION"] = {r1 = 0.30980392156863, g1 = 0.45098039215686, b1 = 0.63137254901961, r2 = 0, g2 = 1, b2 = 0.70980392156863},
-	["MANA"] = {r1 = 0.31, g1 = 0.45, b1 = 0.63, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --MANA
-	["RAGE"] = {r1 = 0.78, g1 = 0.25, b1 = 0.25, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --RAGE
-	["FOCUS"] = {r1 = 0.71, g1 = 0.43, b1 = 0.27, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --FOCUS
-	["ENERGY"] = {r1 = 0.65, g1 = 0.63, b1 = 0.35, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --ENERGY
-	["RUNIC POWER"] = {r1 = 0, g1 = 0.82, b1 = 1, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --RUNIC POWER
-	["LUNAR POWER"] = {r1 = 0.90, g1 = 0.90, b1 = 0.30, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --LUNAR POWER
-	["ALT_POWER"] = {r1 = 0.2, g1 = 0.4, b1 = 0.8, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --ALTERNATE POWER
-	["MAELSTROM"] = {r1 = 0, g1 = 0.5, b1 = 1, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --MAELSTROM
-	["INSANITY"] = {r1 = 0.55, g1 = 0.14, b1 = 0.69, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --INSANITY
-	["FURY"] = {r1 = 0.89, g1 = 0.49, b1 = 0.15, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --FURY
-	["PAIN"] = {r1 = 0.88, g1 = 0.88, b1 = 0.88, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --PAIN
+	["MANA"] = {r1 = 0.49, g1 = 0.71, b1 = 1, r2 = 0.29, g2 = 0.26, b2 = 1}, --MANA
+	["RAGE"] = {r1 = 1, g1 = 0.32, b1 = 0.32, r2 = 1, g2 = 0, b2 = 0.1}, --RAGE
+	["FOCUS"] = {r1 = 1, g1 = 0.60, b1 = 0.38, r2 = 0.71, g2 = 0.22, b2 = 0.07}, --FOCUS
+	["ENERGY"] = {r1 = 1, g1 = 0.97, b1 = 0.54, r2 = 1, g2 = 0.70, b2 = 0.07}, --ENERGY
+	["RUNIC POWER"] = {r1 = 0, g1 = 0.82, b1 = 1, r2 = 0, g2 = 1, b2 = 0.84}, --RUNIC POWER
+	["LUNAR POWER"] = {r1 = 0.30, g1 = 0.52, b1 = 0.90, r2 = 0.12, g2 = 0.36, b2 = 0.90}, --LUNAR POWER
+	["ALT_POWER"] = {r1 = 0.2, g1 = 0.4, b1 = 0.8, r2 = 0.25, g2 = 0.51, b2 = 1}, --ALTERNATE POWER
+	["MAELSTROM"] = {r1 = 0, g1 = 0.50, b1 = 1, r2 = 0, g2 = 0.11, b2 = 1}, --MAELSTROM
+	["INSANITY"] = {r1 = 0.80, g1 = 0.20, b1 = 1, r2 = 0.37, g2 = 0, b2 = 1}, --INSANITY
+	["FURY"] = {r1 = 1, g1 = 0.55, b1 = 0.17, r2 = 0.89, g2 = 0.24, b2 = 0}, --FURY
+	["PAIN"] = {r1 = 0.88, g1 = 0.88, b1 = 0.88, r2 = 1, g2 = 1, b2 = 1}, --PAIN
 }
 
 local unitframecustomgradients = {
@@ -71,17 +71,17 @@ local unitframecustomgradients = {
 	["OFFTANK"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
 	["OFFTANKBADTHREATTRANSITION"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
 	["OFFTANKGOODTHREATTRANSITION"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
-	["MANA"] = {r1 = 0.31, g1 = 0.45, b1 = 0.63, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --MANA
-	["RAGE"] = {r1 = 0.78, g1 = 0.25, b1 = 0.25, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --RAGE
-	["FOCUS"] = {r1 = 0.71, g1 = 0.43, b1 = 0.27, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --FOCUS
-	["ENERGY"] = {r1 = 0.65, g1 = 0.63, b1 = 0.35, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --ENERGY
-	["RUNIC_POWER"] = {r1 = 0, g1 = 0.82, b1 = 1, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --RUNIC POWER
-	["LUNAR_POWER"] = {r1 = 0.90, g1 = 0.90, b1 = 0.30, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --LUNAR POWER
-	["ALT_POWER"] = {r1 = 0.2, g1 = 0.4, b1 = 0.8, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --ALTERNATE POWER
-	["MAELSTROM"] = {r1 = 0, g1 = 0.5, b1 = 1, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --MAELSTROM
-	["INSANITY"] = {r1 = 0.55, g1 = 0.14, b1 = 0.69, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --INSANITY
-	["FURY"] = {r1 = 0.89, g1 = 0.49, b1 = 0.15, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --FURY
-	["PAIN"] = {r1 = 0.88, g1 = 0.88, b1 = 0.88, r2 = 0.34117647058824, g2 = 0, b2 = 1}, --PAIN
+	["MANA"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	["RAGE"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	["FOCUS"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	["ENERGY"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	["RUNIC_POWER"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	["LUNAR_POWER"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	["ALT_POWER"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	["MAELSTROM"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	["INSANITY"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	["FURY"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
+	["PAIN"] = {r1 = 0, g1 = 0, b1 = 0, r2 = 1, g2 = 0, b2 = 0},
 }
 local unitframeclass = {
 	["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga",

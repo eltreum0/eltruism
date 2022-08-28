@@ -42,6 +42,8 @@ function ElvUI_EltreumUI:GradientPower()
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower then
 		ElvUI_EltreumUI:ApplyGradientPower("player", "Player")
 		ElvUI_EltreumUI:ApplyGradientPower("target", "Target")
+		ElvUI_EltreumUI:ApplyGradientPower("targettarget", "TargetTarget")
+		ElvUI_EltreumUI:ApplyGradientPower("pet", "Pet")
 	end
 end
 hooksecurefunc(UF, "Construct_PowerBar", ElvUI_EltreumUI.GradientPower)
