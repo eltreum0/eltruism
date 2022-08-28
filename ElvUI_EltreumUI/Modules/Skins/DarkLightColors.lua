@@ -301,6 +301,8 @@ function ElvUI_EltreumUI:GradientMode()
 
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = true
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = true
+		E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = true
 		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = false
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayertarget = true
