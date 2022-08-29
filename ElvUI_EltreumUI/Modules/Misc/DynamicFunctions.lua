@@ -437,6 +437,10 @@ function ElvUI_EltreumUI:BorderAdjust()
 			E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
 		else
 			if E.db.ElvUI_EltreumUI.borders.borders then
+
+				--transparency doesnt work well with borders due to the .backdrop/twopixels thing on UF
+				E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 1
+
 				--general border settings for both profiles
 				E.db.ElvUI_EltreumUI.borders.texture = "Eltreum-Border-1"
 				--E.db.ElvUI_EltreumUI.borders.classcolor = true
