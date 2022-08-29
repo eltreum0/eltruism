@@ -93,7 +93,8 @@ local TeleportsItems = {
 	142298, --astonishingly-scarlet-slippers
 	142469, --violet-seal-of-the-grand-magus
 	144391, --pugilists-powerful-punching-ring
-	151016,--fractured-necrolyte-skull
+	151016, --fractured-necrolyte-skull
+	180817, --cypher-of-relocation
 	29796, --socrethars-teleportation-stone
 	61379, --gidwins-hearthstone
 	68808, --heros-hearthstone
