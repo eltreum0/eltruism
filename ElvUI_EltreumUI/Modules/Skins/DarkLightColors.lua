@@ -78,6 +78,13 @@ function ElvUI_EltreumUI:DarkMode()
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
+
+		--show the chat buttons because they are attached to the chat datatext not panel
+		_G.LeftChatToggleButton:SetAlpha(1)
+		_G.LeftChatToggleButton:Show()
+		_G.RightChatToggleButton:SetAlpha(1)
+		_G.RightChatToggleButton:Show()
+
 		ElvUI_EltreumUI:Print("Unitframes set to Dark Mode")
 	end
 end
@@ -158,6 +165,13 @@ function ElvUI_EltreumUI:LightMode()
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
+
+		--show the chat buttons because they are attached to the chat datatext not panel
+		_G.LeftChatToggleButton:SetAlpha(1)
+		_G.LeftChatToggleButton:Show()
+		_G.RightChatToggleButton:SetAlpha(1)
+		_G.RightChatToggleButton:Show()
+
 		ElvUI_EltreumUI:Print("Unitframes set to Light Mode")
 	end
 end
@@ -311,6 +325,13 @@ function ElvUI_EltreumUI:GradientMode()
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
+
+		--show the chat buttons because they are attached to the chat datatext not panel
+		_G.LeftChatToggleButton:SetAlpha(1)
+		_G.LeftChatToggleButton:Show()
+		_G.RightChatToggleButton:SetAlpha(1)
+		_G.RightChatToggleButton:Show()
+
 		ElvUI_EltreumUI:Print("Unitframes set to Gradient Mode")
 	end
 end

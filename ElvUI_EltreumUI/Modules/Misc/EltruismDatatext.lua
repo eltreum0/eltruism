@@ -79,15 +79,15 @@ local Teleports = {
 	17903, --stormpike-insignia-rank-5
 	17904, --stormpike-insignia-rank-6
 }
-local displayStringEltruismTeleports = "|T"..GetItemIcon(6948)..":18:18:0:0:64:64:5:59:5:59|t "..GetBindLocation()
+local displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
 local function EltruismTeleportsOnEvent(self)
 	local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
 	local start, duration = GetItemCooldown(6948)
 	local cooldown = start + duration - GetTime()
-	if cooldown > 0 then
-		displayStringEltruismTeleports = "|T"..GetItemIcon(6948)..":14:14:0:0:64:64:5:59:5:59|t |cffFF0000"..GetBindLocation().."|r"
+	if cooldown >= 2 then
+		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t |cffFF0000"..GetBindLocation().."|r"
 	elseif cooldown <= 0 then
-		displayStringEltruismTeleports = "|T"..GetItemIcon(6948)..":18:18:0:0:64:64:5:59:5:59|t "..GetBindLocation()
+		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
 	end
 	self.text:SetText(displayStringEltruismTeleports)
 end
@@ -110,11 +110,12 @@ local function EltruismTeleportsOnEnter()
 			end
 		end
 	end
-	local hscd = GetItemCooldown(6948)
-	if hscd ~= 0 then
-		displayStringEltruismTeleports = "|T"..GetItemIcon(6948)..":14:14:0:0:64:64:5:59:5:59|t |cffFF0000"..GetBindLocation().."|r"
+	local start, duration = GetItemCooldown(6948)
+	local cooldown = start + duration - GetTime()
+	if cooldown >= 2 then
+		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t |cffFF0000"..GetBindLocation().."|r"
 	else
-		displayStringEltruismTeleports = "|T"..GetItemIcon(6948)..":18:18:0:0:64:64:5:59:5:59|t "..GetBindLocation()
+		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
 	end
 	DT.tooltip:Show()
 end
