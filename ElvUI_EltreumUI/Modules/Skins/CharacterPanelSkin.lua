@@ -2275,6 +2275,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
 							texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
 							EltruismInspectBgTexture:SetTexture(texturefile)
+							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
 						end
 
 						EltruismInspectBgTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
