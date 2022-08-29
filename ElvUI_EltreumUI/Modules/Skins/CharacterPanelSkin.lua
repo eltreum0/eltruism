@@ -336,7 +336,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.PaperDollTitlesPane:ClearAllPoints()
 			_G.PaperDollTitlesPane:SetPoint("RIGHT", CharacterFrame, "RIGHT", -30, -20)
 
-
 			if (not IsAddOnLoaded('DejaCharacterStats')) then
 				CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
 				CharacterStatsPane.ItemLevelCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
@@ -348,17 +347,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterStatsPane.EnhancementsCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 			end
 
-			--CharacterFrame.EltruismExtraStatsBlock:SetSize(150, 18)
-			--CharacterFrame.EltruismExtraStatsBlock:SetTexture(E.Media.Textures.Black8x8)
-			--CharacterFrame.EltruismExtraStatsBlock:SetParent(CharacterStatsPane)
 			CharacterFrame.EltruismExtraStatsFont:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 			CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -80)
 			CharacterFrame.EltruismExtraStatsFont:SetParent(CharacterStatsPane)
 			CharacterFrame.EltruismExtraStatsFont:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 			CharacterFrame.EltruismExtraStatsFont:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -80)
 			CharacterFrame.EltruismExtraStatsFont:SetParent(CharacterStatsPane)
-
-
 
 			if IsAddOnLoaded('ElvUI_SLE') then
 				--offense
@@ -427,7 +421,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismSpeed:SetShadowOffset(1, 0)
 			CharacterFrame.EltruismSpeedDesc:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 			CharacterFrame.EltruismSpeedDesc:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
-			CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", CharacterStatsPane , -36, -163)
+			CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", CharacterStatsPane , "CENTER", -29, -163)
 			CharacterFrame.EltruismSpeedDesc:SetParent(CharacterStatsPane)
 			CharacterFrame.EltruismSpeedDesc:SetJustifyH("LEFT")
 			CharacterFrame.EltruismSpeedDesc:SetShadowColor(0, 0, 0, 1)
@@ -518,11 +512,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismClassResource2:SetShadowOffset(1, 0)
 			CharacterFrame.EltruismClassResourceDesc2:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 			CharacterFrame.EltruismClassResourceDesc2:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
-			CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", CharacterStatsPane , -48, -189)
+			CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", CharacterStatsPane , -44, -189)
 			CharacterFrame.EltruismClassResourceDesc2:SetParent(CharacterStatsPane)
 			CharacterFrame.EltruismClassResourceDesc2:SetJustifyH("LEFT")
 			CharacterFrame.EltruismClassResourceDesc2:SetShadowColor(0, 0, 0, 1)
 			CharacterFrame.EltruismClassResourceDesc2:SetShadowOffset(1, 0)
+			CharacterFrame.EltruismClassResourceDesc2:SetText(MANA_REGEN)
 			CharacterFrame.EltruismClassResourceDescTooltip2:SetSize(190, 15)
 			CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("CENTER", CharacterStatsPane, "CENTER", 0, -189)
 			CharacterFrame.EltruismClassResourceDescTooltip2:SetParent(CharacterStatsPane)
@@ -597,17 +592,19 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrame.EltruismClassResourceDesc:SetText(MANA_REGEN)
 					CharacterFrame.EltruismClassResourceDesc:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 				end
+			else
+				CharacterFrame.EltruismClassResourceDesc2:SetText('')
 			end
 
 			--update stats and stats position
 			hooksecurefunc("PaperDollFrame_UpdateStats", function()
 				speed = ((_G.GetUnitSpeed("player")/7) *100)
 				CharacterFrame.EltruismSpeed:SetText(math.ceil(speed).."%")
-				_, combat = _G.GetManaRegen()
+				_, combat = GetManaRegen()
 				combat = math.floor(combat * 5.0)
-				combatText = _G.BreakUpLargeNumbers(combat)
+				combatText = BreakUpLargeNumbers(combat)
 				if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
-					CharacterFrame.EltruismClassResource:SetText(_G.BreakUpLargeNumbers(_G.GetPowerRegen()))
+					CharacterFrame.EltruismClassResource:SetText(BreakUpLargeNumbers(GetPowerRegen()))
 				elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
 					CharacterFrame.EltruismClassResource:SetText(combatText)
 				elseif E.myclass == 'DEATHKNIGHT' then
@@ -660,31 +657,36 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				CharacterFrame.EltruismSpeed:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont , 72, -20)
 				if E.locale == "enUS" then
-					CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont , -36, -20)
+					CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont , -29, -20)
 				else
-					CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont , -30, -20)
+					CharacterFrame.EltruismSpeedDesc:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont , -29, -20)
 				end
 				CharacterFrame.EltruismSpeedDescTooltip:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -20)
 
 				if E.myclass == 'DEATHKNIGHT' then
 					CharacterFrame.EltruismClassResource:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, 72, -33)
-					CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, -50, -33)
+					CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, -45, -33)
 					CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -33)
 				elseif E.myclass == 'DRUID' or E.myclass == 'MONK' then
 					CharacterFrame.EltruismClassResource:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, 72, -33)
-					CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, -45, -33)
+					CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, -40, -33)
+					CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -33)
+				elseif E.myclass == 'HUNTER' then
+					CharacterFrame.EltruismClassResource:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, 72, -33)
+					CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, -43, -33)
+					CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -33)
+				elseif E.myclass == 'ROGUE' then
+					CharacterFrame.EltruismClassResource:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, 72, -33)
+					CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, -39, -33)
 					CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -33)
 				else
 					CharacterFrame.EltruismClassResource:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, 72, -33)
-					CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, -48, -33)
+					CharacterFrame.EltruismClassResourceDesc:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, -44, -33)
 					CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -33)
 				end
-
 				CharacterFrame.EltruismClassResource2:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, 72, -46)
-				CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, -49, -46)
+				CharacterFrame.EltruismClassResourceDesc2:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, -44, -46)
 				CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, -46)
-
-				--CharacterFrame.EltruismExtraStatsBlock:SetPoint("CENTER", CharacterFrame.EltruismExtraStatsFont, "CENTER", 0, 0)
 			end)
 
 			CharacterFrame.EltruismExtraStatsFont:SetText(L["Other"])
