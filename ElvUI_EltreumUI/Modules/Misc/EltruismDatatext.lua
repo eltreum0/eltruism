@@ -31,53 +31,56 @@ local Teleports = {
 	184871, --dark-portal 2?
 	110560, --garrison-hearthstone
 	140192, --dalaran-hearthstone
-	193588, --timewalkers-hearthstone
-	172924, --wormhole-generator-shadowlands
+	18984, --dimensional-ripper-everlook
+	18986, --ultrasafe-transporter-gadgetzan
+	30542, --dimensional-ripper-area-52
+	30544, --ultrasafe-transporter-toshleys-station
 	48933, --wormhole-generator-northrend
 	87215, --wormhole-generator-pandaria
-	30542, --dimensional-ripper-area-52
-	18984, --dimensional-ripper-everlook
-	30544, --ultrasafe-transporter-toshleys-station
-	18986, --ultrasafe-transporter-gadgetzan
+	112059, --wormhole-centrifuge
+	151652, --wormhole-generator-argus
+	168807,--wormhole-generator-kultiras
+	168808,--wormhole-generator-zandalar
+	172924, --wormhole-generator-shadowlands
 	40585, --signet-of-the-kirin-tor
-	51557, --runed-signet-of-the-kirin-tor
-	48957, --etched-signet-of-the-kirin-tor
 	45691, --inscribed-signet-of-the-kirin-tor
-	63379, --baradins-wardens-tabard
-	63378, --hellscreams-reach-tabard
 	46874, --argent-crusaders-tabard
-	63352, --shroud-of-cooperation
+	48957, --etched-signet-of-the-kirin-tor
+	51557, --runed-signet-of-the-kirin-tor
 	63206, --wrap-of-unity
-	65360, --cloak-of-coordination
-	63353, --shroud-of-cooperation
 	63207, --wrap-of-unity
+	63352, --shroud-of-cooperation
+	63353, --shroud-of-cooperation
 	65274, --cloak-of-coordination
-	95051, --the-brassiest-knuckle
-	95050, --the-brassiest-knuckle
-	103678, --time-lost-artifact
-	142298, --astonishingly-scarlet-slippers
+	65360, --cloak-of-coordination
+	63378, --hellscreams-reach-tabard
+	63379, --baradins-wardens-tabard
+	28585, --ruby-slippers
 	32757, --blessed-medallion-of-karabor
 	37863, --direbrews-remote
-	64457, --the-last-relic-of-argus
 	50287, --boots-of-the-bay
 	52251, --jainas-locket
-	28585, --ruby-slippers
-	58487, --potion-of-deepholm
+	64457, --the-last-relic-of-argus
+	95050, --the-brassiest-knuckle
+	95051, --the-brassiest-knuckle
+	103678, --time-lost-artifact
+	142298, --astonishingly-scarlet-slippers
 	37118, --scroll-of-recall
 	44314, --scroll-of-recall-ii
 	44315, --scroll-of-recall-iii
+	58487, --potion-of-deepholm
 	17690, --frostwolf-insignia-rank-1
-	17905, --frostwolf-insignia-rank-2
-	17906, --frostwolf-insignia-rank-3
-	17907, --frostwolf-insignia-rank-4
-	17908, --frostwolf-insignia-rank-5
-	17909, --frostwolf-insignia-rank-6
 	17691, --stormpike-insignia-rank-1
 	17900, --stormpike-insignia-rank-2
 	17901, --stormpike-insignia-rank-3
 	17902, --stormpike-insignia-rank-4
 	17903, --stormpike-insignia-rank-5
 	17904, --stormpike-insignia-rank-6
+	17905, --frostwolf-insignia-rank-2
+	17906, --frostwolf-insignia-rank-3
+	17907, --frostwolf-insignia-rank-4
+	17908, --frostwolf-insignia-rank-5
+	17909, --frostwolf-insignia-rank-6
 }
 local displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
 local function EltruismTeleportsOnEvent(self)
