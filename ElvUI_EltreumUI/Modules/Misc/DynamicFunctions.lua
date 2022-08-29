@@ -388,6 +388,13 @@ function ElvUI_EltreumUI:TransparentChat()
 	if _G["EltruismLeftChatShadowFrame"] then
 		_G["EltruismLeftChatShadowFrame"]:Hide()
 	end
+
+	--show the chat buttons because they are attached to the chat datatext not panel
+	_G.LeftChatToggleButton:SetAlpha(1)
+	_G.LeftChatToggleButton:Show()
+	_G.RightChatToggleButton:SetAlpha(1)
+	_G.RightChatToggleButton:Show()
+
 	ElvUI_EltreumUI:Print("Chat set to Transparent mode")
 end
 
@@ -412,6 +419,13 @@ function ElvUI_EltreumUI:DarkChat()
 	if _G["EltruismLeftChatShadowFrame"] then
 		_G["EltruismLeftChatShadowFrame"]:Show()
 	end
+
+	--show the chat buttons because they are attached to the chat datatext not panel
+	_G.LeftChatToggleButton:SetAlpha(1)
+	_G.LeftChatToggleButton:Show()
+	_G.RightChatToggleButton:SetAlpha(1)
+	_G.RightChatToggleButton:Show()
+
 	ElvUI_EltreumUI:Print("Chat set to Dark mode")
 end
 
