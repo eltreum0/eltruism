@@ -536,6 +536,9 @@ function ElvUI_EltreumUI:HideABKeyPress()
 							if button.pushed then
 								button.pushed:ClearAllPoints()
 							end
+							if button.SpellHighlightTexture then
+								button.SpellHighlightTexture:ClearAllPoints()
+							end
 						end
 					end
 				end
