@@ -2917,7 +2917,7 @@ function ElvUI_EltreumUI:Configtable()
 					ttsvoice = {
 						order = 80,
 						type = "description",
-						name = E.NewSign..TEXT_TO_SPEECH,
+						name = E.NewSign..L["Text to Speech"],
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
@@ -2931,7 +2931,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					ttsvoiceselect = {
 						type = 'select',
-						name= E.NewSign..TEXT_TO_SPEECH_CONFIG,
+						name= E.NewSign..L["Text to Speech Config"],
 						order = 82,
 						values =
 						function()
@@ -10774,7 +10774,7 @@ function ElvUI_EltreumUI:Configtable()
 						order = 3,
 						type = 'group',
 						inline = true,
-						name = "Supporters",
+						name = L["Supporters"],
 						args = {
 							desc = {
 								order = 1,
@@ -10788,7 +10788,7 @@ function ElvUI_EltreumUI:Configtable()
 						order = 4,
 						type = 'group',
 						inline = true,
-						name = "Translators",
+						name = L["Translators"],
 						args = {
 							desc = {
 								order = 1,

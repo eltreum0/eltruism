@@ -1115,3 +1115,6 @@ L["Enable Gradient Power Colors"] = "Habilitar colores de potencia de degradado"
 L["Enable Custom Gradient Power"] = "Habilitar potencia de degradado personalizada"
 L["Enable Custom Gradient Power Colors"] = "Habilitar colores de potencia de degradado personalizados"
 L["Reset/Add Eltruism Datatext Panel"] = true
+L["Change the ElvUI background"] = true
+L["Supporters"] = true
+L["Translators"] = true

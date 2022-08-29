@@ -1093,3 +1093,6 @@ L["Enable Gradient Power Colors"] = true
 L["Enable Custom Gradient Power"] = true
 L["Enable Custom Gradient Power Colors"] = true
 L["Reset/Add Eltruism Datatext Panel"] = true
+L["Change the ElvUI background"] = true
+L["Supporters"] = true
+L["Translators"] = true
