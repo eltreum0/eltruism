@@ -7806,7 +7806,7 @@ function ElvUI_EltreumUI:Configtable()
 										name = E.NewSign..L["Gradient"],
 										desc = L["Gradient Colors"],
 										order = 15,
-										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = value end,
 									},
