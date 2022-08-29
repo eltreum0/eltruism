@@ -7733,7 +7733,7 @@ function ElvUI_EltreumUI:Configtable()
 									header998 = {
 										order = 9,
 										type = "description",
-										name = L["Nameplate Powerbar appearance"],
+										name = L["Nameplate Powerbar Appearance"],
 										width = 'full',
 										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
