@@ -84,7 +84,7 @@ local function EltruismTeleportsOnEvent(self)
 	local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
 	local start, duration = GetItemCooldown(6948)
 	local cooldown = start + duration - GetTime()
-	if cooldown > 0 then
+	if cooldown >= 2 then
 		displayStringEltruismTeleports = "|T"..GetItemIcon(6948)..":14:14:0:0:64:64:5:59:5:59|t |cffFF0000"..GetBindLocation().."|r"
 	elseif cooldown <= 0 then
 		displayStringEltruismTeleports = "|T"..GetItemIcon(6948)..":18:18:0:0:64:64:5:59:5:59|t "..GetBindLocation()
@@ -110,8 +110,9 @@ local function EltruismTeleportsOnEnter()
 			end
 		end
 	end
-	local hscd = GetItemCooldown(6948)
-	if hscd ~= 0 then
+	local start, duration = GetItemCooldown(6948)
+	local cooldown = start + duration - GetTime()
+	if cooldown >= 2 then
 		displayStringEltruismTeleports = "|T"..GetItemIcon(6948)..":14:14:0:0:64:64:5:59:5:59|t |cffFF0000"..GetBindLocation().."|r"
 	else
 		displayStringEltruismTeleports = "|T"..GetItemIcon(6948)..":18:18:0:0:64:64:5:59:5:59|t "..GetBindLocation()
