@@ -5583,7 +5583,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Enable Custom Gradient Power"],
 								desc = L["Enable Custom Gradient Power Colors"],
 								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
@@ -7733,7 +7733,7 @@ function ElvUI_EltreumUI:Configtable()
 									header998 = {
 										order = 9,
 										type = "description",
-										name = L["Nameplate Powerbar appearance"],
+										name = L["Nameplate Powerbar Appearance"],
 										width = 'full',
 										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},

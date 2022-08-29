@@ -93,7 +93,8 @@ local TeleportsItems = {
 	142298, --astonishingly-scarlet-slippers
 	142469, --violet-seal-of-the-grand-magus
 	144391, --pugilists-powerful-punching-ring
-	151016,--fractured-necrolyte-skull
+	151016, --fractured-necrolyte-skull
+	180817, --cypher-of-relocation
 	29796, --socrethars-teleportation-stone
 	61379, --gidwins-hearthstone
 	68808, --heros-hearthstone
@@ -128,7 +129,11 @@ local TeleportsItems = {
 	17909, --frostwolf-insignia-rank-6
 }
 local TeleportsSpells = {
-	556,--astral-recall
+	556, --astral-recall
+	50977, --death-gate
+	126892, --zen-pilgrimage
+	193753, --dreamwalk
+	193759, --teleport-hall-of-the-guardian
 	131204, --path-of-the-jade-serpent
 	131205, --path-of-the-stout-brew
 	131206, --path-of-the-shado-pan
@@ -176,6 +181,61 @@ local function EltruismTeleportsOnEvent(self)
 	self.text:SetText(displayStringEltruismTeleports)
 end
 local function EltruismTeleportsOnEnter(self)
+	DT.tooltip:ClearLines()
+	local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
+	for i,v in pairs(TeleportsItems) do
+		local texture = GetItemIcon(v)
+		local name = GetItemInfo(v)
+		local hasItem = GetItemCount(v)
+		if texture and name and (hasItem > 0 or (E.Retail and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v)) ) then
+			local start, duration = GetItemCooldown(v)
+			local cooldown = start + duration - GetTime()
+			if cooldown >= 2 then
+				local hours = math.floor(cooldown /3600)
+				local minutes = math.floor(cooldown / 60)
+				local seconds = string.format("%02.f", math.floor(cooldown - minutes * 60))
+				if hours >= 1 then
+					minutes = math.floor(mod(cooldown,3600)/60)
+					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
+				else
+					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
+				end
+			elseif cooldown <= 0 then
+				DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..name.."|r", "|cff00FF00"..L["Ready"].."|r")
+			end
+		end
+	end
+	for i,v in pairs(TeleportsSpells) do
+		local texture = GetSpellTexture(v)
+		local name = GetSpellInfo(v)
+		local hasSpell = IsSpellKnown(v)
+		if texture and name and hasSpell then
+			local start, duration = GetSpellCooldown(v)
+			local cooldown = start + duration - GetTime()
+			if cooldown >= 2 then
+				local hours = math.floor(cooldown /3600)
+				local minutes = math.floor(cooldown / 60)
+				local seconds = string.format("%02.f", math.floor(cooldown - minutes * 60))
+				if hours >= 1 then
+					minutes = math.floor(mod(cooldown,3600)/60)
+					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
+				else
+					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
+				end
+			elseif cooldown <= 0 then
+				DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..name.."|r", "|cff00FF00"..L["Ready"].."|r")
+			end
+		end
+	end
+	local start, duration = GetItemCooldown(6948)
+	local cooldown = start + duration - GetTime()
+	if cooldown >= 2 then
+		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t |cffdb3030"..GetBindLocation().."|r"
+	else
+		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
+	end
+	DT.tooltip:Show()
+
 	teleportupdate:SetScript("OnUpdate", function(self, elapsed)
 		--print("onupdate spam"..math.random(1,99))
 		TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
@@ -196,9 +256,9 @@ local function EltruismTeleportsOnEnter(self)
 						local seconds = string.format("%02.f", math.floor(cooldown - minutes * 60))
 						if hours >= 1 then
 							minutes = math.floor(mod(cooldown,3600)/60)
-							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..hours.."h"..minutes.."m"..":"..seconds.."s|r"))
+							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
 						else
-							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..minutes.."m"..":"..seconds.."s|r"))
+							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
 						end
 					elseif cooldown <= 0 then
 						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..name.."|r", "|cff00FF00"..L["Ready"].."|r")
@@ -218,9 +278,9 @@ local function EltruismTeleportsOnEnter(self)
 						local seconds = string.format("%02.f", math.floor(cooldown - minutes * 60))
 						if hours >= 1 then
 							minutes = math.floor(mod(cooldown,3600)/60)
-							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..hours.."h"..minutes.."m"..":"..seconds.."s|r"))
+							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
 						else
-							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..minutes.."m"..":"..seconds.."s|r"))
+							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
 						end
 					elseif cooldown <= 0 then
 						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..name.."|r", "|cff00FF00"..L["Ready"].."|r")
@@ -241,7 +301,7 @@ end
 local function EltruismTeleportsOnLeave()
 	teleportupdate:SetScript("OnUpdate", nil)
 end
-DT:RegisterDatatext('EltruismTeleports', nil, { 'SPELL_UPDATE_COOLDOWN', 'BAG_UPDATE_COOLDOWN', "HEARTHSTONE_BOUND", "COMBAT_LOG_EVENT_UNFILTERED"}, EltruismTeleportsOnEvent, nil, nil, EltruismTeleportsOnEnter, EltruismTeleportsOnLeave, L["Eltruism Hearthstones/Teleports"], nil, nil)
+DT:RegisterDatatext('EltruismTeleports', nil, { 'SPELL_UPDATE_COOLDOWN', 'BAG_UPDATE_COOLDOWN', "HEARTHSTONE_BOUND"}, EltruismTeleportsOnEvent, nil, nil, EltruismTeleportsOnEnter, EltruismTeleportsOnLeave, L["Eltruism Hearthstones/Teleports"], nil, nil)
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------spell haste datatext
 local function EltruismSpellHasteDatatext(dt)
 	local spellhaste = GetCombatRatingBonus(CR_HASTE_SPELL)
