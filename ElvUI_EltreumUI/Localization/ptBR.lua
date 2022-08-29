@@ -757,6 +757,7 @@ L["Font Size"] = "Tamanho de Fonte"
 L["Nameplate Powerbar Font"] = "Fonte da Barra de Poder de Placa de Nome"
 L["Choose a font for the Nameplate Powerbar Text"] = "Escolha uma fonte para a Barra de Poder de Placa de Nome"
 L["Nameplate Powerbar Font Size"] = "Tamanho de Fonte da Barra de Poder de Placa de Nome"
+L["Nameplate Powerbar appearance"] = true
 L["Shows the Leader Icon or Assist icon if the unit is Leader or Assist"] = "Mostra o Ícone de Líder ou Assitente se a únidade for o Líder ou Assistente"
 L["Abbreviates the unit name once it goes over 20 characters, made by Azilroka"] = "Abrevia o nome da unidade se ela tiver mais que 20 caractereres, feito por Azilroka"
 L["Adds a line break"] = "Adiciona uma quebra de linha"
