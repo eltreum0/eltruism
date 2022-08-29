@@ -36,130 +36,134 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 
 		-- if gradient use gradient mode
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
-			if not InCombatLockdown() then
+			if not InCombatLockdown() or UnitIsDead("player") then
 				nameplate.CurrentlyBeingTanked = nil
 			end
 			if sf.HealthColor then
 				return
-			end
-			if status == 3 then -- securely tanking
-				--Color = self.offTank and colors.offTankColor or self.isTank and colors.goodColor or colors.badColor
-				if self.isTank and not sf.HealthColor then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
+			else
+				if status == 3 then -- securely tanking
+					--Color = self.offTank and colors.offTankColor or self.isTank and colors.goodColor or colors.badColor
+					if self.isTank and not sf.HealthColor then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
+						end
+						nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
+					elseif self.offTank and not sf.HealthColor then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("OFFTANK", false, false))
+						end
+						nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
+					elseif (not self.isTank or not self.offTank) and not sf.HealthColor then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("BADTHREAT", false, false))
+						end
+						nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
 					end
-					nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
-				elseif self.offTank and not sf.HealthColor then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANK", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("OFFTANK", false, false))
+					Scale = self.isTank and db.goodScale or db.badScale
+				elseif status == 2 then -- insecurely tanking
+					--Color = self.offTank and colors.offTankColorBadTransition or self.isTank and colors.badTransition or colors.goodTransition
+					if self.isTank and not sf.HealthColor then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREATTRANSITION", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("BADTHREATTRANSITION", false, false))
+						end
+						nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
+					elseif self.offTank and not sf.HealthColor then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANKBADTHREATTRANSITION", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("OFFTANKBADTHREATTRANSITION", false, false))
+						end
+						nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
+					elseif (not self.isTank or not self.offTank) and not sf.HealthColor then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREATTRANSITION", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREATTRANSITION", false, false))
+						end
+						nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
 					end
-					nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
-				elseif (not self.isTank or not self.offTank) and not sf.HealthColor then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("BADTHREAT", false, false))
+					Scale = 1
+				elseif status == 1 then -- not tanking but threat higher than tank
+					--Color = self.offTank and colors.offTankColorGoodTransition or self.isTank and colors.goodTransition or colors.badTransition
+					if self.isTank and not sf.HealthColor then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREATTRANSITION", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREATTRANSITION", false, false))
+						end
+						nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
+					elseif self.offTank and not sf.HealthColor then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANKGOODTHREATTRANSITION", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("OFFTANKGOODTHREATTRANSITION", false, false))
+						end
+						nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
+					elseif (not self.isTank or not self.offTank) and not sf.HealthColor then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREATTRANSITION", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("BADTHREATTRANSITION", false, false))
+						end
+						nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
 					end
-					nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
+					Scale = 1
+				else -- not tanking at all
+					--Color = self.isTank and colors.badColor or colors.goodColor
+					if self.isTank and not sf.HealthColor then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("BADTHREAT", false, false))
+						end
+						nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
+					elseif self.offTank and not sf.HealthColor then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
+						end
+						nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
+					elseif (not self.isTank or not self.offTank) and not sf.HealthColor then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
+						else
+							nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
+						end
+						nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
+					end
+					Scale = self.isTank and db.badScale or db.goodScale
 				end
-				Scale = self.isTank and db.goodScale or db.badScale
-			elseif status == 2 then -- insecurely tanking
-				--Color = self.offTank and colors.offTankColorBadTransition or self.isTank and colors.badTransition or colors.goodTransition
-				if self.isTank and not sf.HealthColor then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREATTRANSITION", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("BADTHREATTRANSITION", false, false))
-					end
-					nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
-				elseif self.offTank and not sf.HealthColor then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANKBADTHREATTRANSITION", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("OFFTANKBADTHREATTRANSITION", false, false))
-					end
-					nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
-				elseif (not self.isTank or not self.offTank) and not sf.HealthColor then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREATTRANSITION", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREATTRANSITION", false, false))
-					end
-					nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
-				end
-				Scale = 1
-			elseif status == 1 then -- not tanking but threat higher than tank
-				--Color = self.offTank and colors.offTankColorGoodTransition or self.isTank and colors.goodTransition or colors.badTransition
-				if self.isTank and not sf.HealthColor then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREATTRANSITION", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREATTRANSITION", false, false))
-					end
-					nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
-				elseif self.offTank and not sf.HealthColor then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("OFFTANKGOODTHREATTRANSITION", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("OFFTANKGOODTHREATTRANSITION", false, false))
-					end
-					nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
-				elseif (not self.isTank or not self.offTank) and not sf.HealthColor then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREATTRANSITION", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("BADTHREATTRANSITION", false, false))
-					end
-					nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
-				end
-				Scale = 1
-			else -- not tanking at all
-				--Color = self.isTank and colors.badColor or colors.goodColor
-				if self.isTank and not sf.HealthColor then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("BADTHREAT", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("BADTHREAT", false, false))
-					end
-					nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
-				elseif self.offTank and not sf.HealthColor then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
-					end
-					nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
-				elseif (not self.isTank or not self.offTank) and not sf.HealthColor then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
-					else
-						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
-					end
-					nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
-				end
-				Scale = self.isTank and db.badScale or db.goodScale
-			end
-			if Scale then
-				nameplate.ThreatScale = Scale
+				if Scale then
+					nameplate.ThreatScale = Scale
 
-				if not sf.Scale then
-					NP:ScalePlate(nameplate, Scale)
+					if not sf.Scale then
+						NP:ScalePlate(nameplate, Scale)
+					end
 				end
 			end
 		elseif not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then -- use regular elvui mode
 			if status == 3 then -- securely tanking
 				Color = self.offTank and colors.offTankColor or self.isTank and colors.goodColor or colors.badColor
 				Scale = self.isTank and db.goodScale or db.badScale
+				nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
 			elseif status == 2 then -- insecurely tanking
 				Color = self.offTank and colors.offTankColorBadTransition or self.isTank and colors.badTransition or colors.goodTransition
 				Scale = 1
+				nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
 			elseif status == 1 then -- not tanking but threat higher than tank
 				Color = self.offTank and colors.offTankColorGoodTransition or self.isTank and colors.goodTransition or colors.badTransition
 				Scale = 1
+				nameplate.CurrentlyBeingTanked = nameplate.unit.."isbeingtanked"
 			else -- not tanking at all
 				Color = self.isTank and colors.badColor or colors.goodColor
 				Scale = self.isTank and db.badScale or db.goodScale
@@ -213,7 +217,7 @@ local function GradientNameplates(unit)
 					else
 						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors(className))
 					end
-				elseif reaction ~= nil and (unit.CurrentlyBeingTanked ~= unit.unit.."isbeingtanked") then
+				elseif reaction and (unit.CurrentlyBeingTanked ~= unit.unit.."isbeingtanked") then
 					if UnitIsTapDenied(unit.unit) and not UnitPlayerControlled(unit.unit) then
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 							unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false))

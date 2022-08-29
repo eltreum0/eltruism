@@ -127,6 +127,8 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 						end
 					end
 				end)
+			else
+				EltruismTimeToArrive:SetScript("OnUpdate", nil)
 			end
 		end)
 	end
