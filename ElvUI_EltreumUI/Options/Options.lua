@@ -8726,8 +8726,8 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Enable a toast showing up when you level up"],
 								hidden = E.Retail,
 								--hidden = function() if E.Retail then return true else return false end end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.levelbossinstance end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.levelbossinstance = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							tbctalentinfo = {
 								order = 50,
