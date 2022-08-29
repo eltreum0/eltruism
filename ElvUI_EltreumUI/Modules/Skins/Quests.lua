@@ -386,7 +386,11 @@ function ElvUI_EltreumUI:SkinQuests()
 				dontexpandanymorequests = 1
 			end
 
-			if not IsAddOnLoaded('Questie') then
+			if IsAddOnLoaded('Questie') then
+				if _G.Questie.db.global.trackerEnabled then
+					return
+				end
+			end
 
 				--add quest header like retail/wrath
 				if not _G["EltruismQuestLine"] then
@@ -537,7 +541,7 @@ function ElvUI_EltreumUI:SkinQuests()
 
 					UIParent_ManageFramePositions()
 				end)
-			end
+
 		elseif E.Wrath then
 			local questID
 			--hook the function that sets the quest detail to get the questID from the quest title
@@ -549,8 +553,16 @@ function ElvUI_EltreumUI:SkinQuests()
 				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
 			end)
 
-			if not IsAddOnLoaded('Questie') then --questie overwrites the default tracker sadly instead of hooking into it
+			if IsAddOnLoaded('Questie') then --questie overwrites the default tracker sadly instead of hooking into it
+				if _G.Questie.db.global.trackerEnabled then
+					return
+				end
+			end
 				--from blizzard's FrameXML/WatchFrame.lua
+
+				--title, level, suggestedGroup, isHeader, isCollapsed, isComplete, frequency, questID, startEvent, displayQuestID, isOnMap, hasLocalPOI, isTask, isBounty, isStory, isHidden, isScaling = GetQuestLogTitle(questLogIndex)
+				--
+
 
 				--skin the classic objective frame, based on aftermathh's
 				local function colorquests(line, _, _, isHeader, text, _, _, isComplete) --(line, anchor, verticalOffset, isHeader, text, dash, hasItem, isComplete)
@@ -775,7 +787,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 				end]]
 
-			end
+
 		end
 	end
 end

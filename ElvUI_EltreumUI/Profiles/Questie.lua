@@ -14,7 +14,7 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 				["questObjectiveColors"] = true,
 				["dbmHUDRadius"] = 4,
 				["trackerFontObjective"] = "Kimberley",
-				["trackerEnabled"] = true,
+				["trackerEnabled"] = true,    ---enables/disables the actual objective tracker
 				["mapCoordinatesEnabled"] = false,
 				["professionTrainers"] = {},
 				["trackerFontZone"] = "Kimberley",
