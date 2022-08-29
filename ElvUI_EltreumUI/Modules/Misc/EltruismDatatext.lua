@@ -128,7 +128,8 @@ local TeleportsItems = {
 	17909, --frostwolf-insignia-rank-6
 }
 local TeleportsSpells = {
-	556,--astral-recall
+	556, --astral-recall
+	126892, --zen-pilgrimage
 	131204, --path-of-the-jade-serpent
 	131205, --path-of-the-stout-brew
 	131206, --path-of-the-shado-pan
