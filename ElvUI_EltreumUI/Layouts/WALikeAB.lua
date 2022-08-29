@@ -19,7 +19,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 
 		--bar specific settings
 		E.db["actionbar"]["bar1"]["backdropSpacing"] = 0
-		E.db["actionbar"]["bar1"]["buttonHeight"] = 30
+		E.db["actionbar"]["bar1"]["buttonHeight"] = 26
 		E.db["actionbar"]["bar1"]["buttonSize"] = 43
 		E.db["actionbar"]["bar1"]["buttonSpacing"] = 3
 		E.db["actionbar"]["bar1"]["buttons"] = 8
@@ -42,7 +42,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["actionbar"]["bar1"]["paging"]["SHAMAN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;"
 		E.db["actionbar"]["bar1"]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
 		E.db["actionbar"]["bar1"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
-		E.db["actionbar"]["bar2"]["buttonHeight"] = 30
+		E.db["actionbar"]["bar2"]["buttonHeight"] = 26
 		E.db["actionbar"]["bar2"]["buttonSize"] = 43
 		E.db["actionbar"]["bar2"]["buttonSpacing"] = 3
 		E.db["actionbar"]["bar2"]["buttons"] = 8
@@ -66,12 +66,12 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		_G.ElvUF_TargetMover:ClearAllPoints()
 
 		E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,346"
-		E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,337"
+		E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,338"
 		E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 361
 		E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 361
-		E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,303"
-		E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,270"
-		E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,248"
+		E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,308"
+		E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,280"
+		E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,258"
 		if _G.ElvUF_Player_ClassBar and _G.ElvUF_Player_ClassBar:IsVisible() then
 			E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,346"
 			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 363
@@ -120,10 +120,12 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-413,308"
 			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
 		else
+			E.db["actionbar"]["bar1"]["buttonHeight"] = 36
+			E.db["actionbar"]["bar2"]["buttonHeight"] = 36
 			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 364
-			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,303"
-			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,271"
-			E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,247"
+			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,299"
+			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,262"
+			E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,240"
 			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_PowerBar,BOTTOMLEFT,-6,5"
 			E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_PowerBar,BOTTOMRIGHT,6,5"
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
@@ -145,7 +147,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		--adjust power text
 		if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["justifyH"] = "CENTER"
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["size"] = 12
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["size"] = 16
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["text_format"] = "[power:current:shortvalue]"
 		else
 			E.db["unitframe"]["units"]["player"]["power"]["position"] = "CENTER"
@@ -204,6 +206,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		--adjust power text
 		if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["justifyH"] = "RIGHT"
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["size"] = 10
 		else
 			E.db["unitframe"]["units"]["player"]["power"]["position"] = "RIGHT"
 			E.db["unitframe"]["units"]["player"]["power"]["text_format"] = "[power:current:shortvalue]"
