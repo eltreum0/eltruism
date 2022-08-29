@@ -184,9 +184,15 @@ local function EltruismTeleportsOnEnter()
 			local start, duration = GetItemCooldown(v)
 			local cooldown = start + duration - GetTime()
 			if cooldown >= 2 then
+				local hours = math.floor(cooldown /3600)
 				local minutes = math.floor(cooldown / 60)
 				local seconds = string.format("%02.f", math.floor(cooldown - minutes * 60))
-				DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..minutes.."m"..":"..seconds.."s|r"))
+				if hours >= 1 then
+					minutes = math.floor(mod(cooldown,3600)/60)
+					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..hours.."h"..minutes.."m"..":"..seconds.."s|r"))
+				else
+					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..minutes.."m"..":"..seconds.."s|r"))
+				end
 			elseif cooldown <= 0 then
 				DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..name.."|r", "|cff00FF00"..L["Ready"].."|r")
 			end
@@ -200,9 +206,15 @@ local function EltruismTeleportsOnEnter()
 			local start, duration = GetSpellCooldown(v)
 			local cooldown = start + duration - GetTime()
 			if cooldown >= 2 then
+				local hours = math.floor(cooldown /3600)
 				local minutes = math.floor(cooldown / 60)
 				local seconds = string.format("%02.f", math.floor(cooldown - minutes * 60))
-				DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..minutes.."m"..":"..seconds.."s|r"))
+				if hours >= 1 then
+					minutes = math.floor(mod(cooldown,3600)/60)
+					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..hours.."h"..minutes.."m"..":"..seconds.."s|r"))
+				else
+					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..minutes.."m"..":"..seconds.."s|r"))
+				end
 			elseif cooldown <= 0 then
 				DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..name.."|r", "|cff00FF00"..L["Ready"].."|r")
 			end
