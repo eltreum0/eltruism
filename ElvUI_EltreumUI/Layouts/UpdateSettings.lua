@@ -47,6 +47,8 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation = "VERTICAL"
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor = false
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP = true
+	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation = true
+	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor = true
 	E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.7
 	E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable = true

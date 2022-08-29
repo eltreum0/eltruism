@@ -286,6 +286,7 @@ end
 function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED(_, unit)
 	if unit == "player" then
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+		ElvUI_EltreumUI:FixChatToggles()
 		if E.Retail then
 			ElvUI_EltreumUI:GetSpec()
 			ElvUI_EltreumUI:NamePlateOptions()
