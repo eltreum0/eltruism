@@ -431,11 +431,14 @@ function ElvUI_EltreumUI:BorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.aurasizey = 54
 				E.db.ElvUI_EltreumUI.borders.chatborder = true
 				E.db.ElvUI_EltreumUI.borders.leftchatborderx = 432
-				--E.db.ElvUI_EltreumUI.borders.leftchatbordery = 224
-				E.db.ElvUI_EltreumUI.borders.leftchatbordery = 201
+				if E.db["datatexts"]["panels"]["Eltruism"] and E.db["datatexts"]["panels"]["Eltruism"]["enable"] then
+					E.db.ElvUI_EltreumUI.borders.leftchatbordery = 201
+					E.db.ElvUI_EltreumUI.borders.rightchatbordery = 201
+				else
+					E.db.ElvUI_EltreumUI.borders.leftchatbordery = 224
+					E.db.ElvUI_EltreumUI.borders.rightchatbordery = 224
+				end
 				E.db.ElvUI_EltreumUI.borders.rightchatborderx = 432
-				--E.db.ElvUI_EltreumUI.borders.rightchatbordery = 224
-				E.db.ElvUI_EltreumUI.borders.rightchatbordery = 201
 				E.db.ElvUI_EltreumUI.borders.partyborders = true
 				E.db.ElvUI_EltreumUI.borders.raidborders = true
 				E.db.ElvUI_EltreumUI.borders.raid40borders = true
@@ -486,12 +489,14 @@ function ElvUI_EltreumUI:BorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.stancexborder = 49
 				E.db.ElvUI_EltreumUI.borders.stanceyborder = 42
 				E.db.ElvUI_EltreumUI.borders.petactionedgesize = 13
-
 				E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 5
-				--E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,-1"
-				--E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,-1"
-				E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,23"
-				E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,23"
+				if E.db["datatexts"]["panels"]["Eltruism"] and E.db["datatexts"]["panels"]["Eltruism"]["enable"] then
+					E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,23"
+					E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,23"
+				else
+					E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,-1"
+					E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,-1"
+				end
 				E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-4"
 
 				if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
@@ -592,10 +597,14 @@ function ElvUI_EltreumUI:BorderAdjust()
 					end
 				end
 			elseif not E.db.ElvUI_EltreumUI.borders.borders then
-				E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,23"
-				E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,23"
-				--E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,0"
-				--E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,0"
+
+				if E.db["datatexts"]["panels"]["Eltruism"] and E.db["datatexts"]["panels"]["Eltruism"]["enable"] then
+					E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,23"
+					E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,23"
+				else
+					E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,0"
+					E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,0"
+				end
 				E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
 				E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 3
 
