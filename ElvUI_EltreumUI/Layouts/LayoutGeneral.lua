@@ -233,6 +233,29 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["databars"]["colors"]["experience"]["a"] = 1 --better with gradient xp
 		E.db["databars"]["colors"]["honor"]["a"] = 0.5
 		E.db["databars"]["colors"]["rested"]["a"] = 0.20000004768372
+		--custom faction colors for reputation
+		E.db["databars"]["colors"]["factionColors"][1]["b"] = 0.07843137254902
+		E.db["databars"]["colors"]["factionColors"][1]["g"] = 0.07843137254902
+		E.db["databars"]["colors"]["factionColors"][1]["r"] = 1
+		E.db["databars"]["colors"]["factionColors"][2]["b"] = 0.21960784313725
+		E.db["databars"]["colors"]["factionColors"][2]["g"] = 0.30196078431373
+		E.db["databars"]["colors"]["factionColors"][3]["g"] = 0.27058823529412
+		E.db["databars"]["colors"]["factionColors"][3]["r"] = 0.74901960784314
+		E.db["databars"]["colors"]["factionColors"][4]["g"] = 0.70196078431373
+		E.db["databars"]["colors"]["factionColors"][4]["r"] = 0.90196078431373
+		E.db["databars"]["colors"]["factionColors"][5]["b"] = 0.10196078431373
+		E.db["databars"]["colors"]["factionColors"][6]["b"] = 0.55686274509804
+		E.db["databars"]["colors"]["factionColors"][6]["g"] = 1
+		E.db["databars"]["colors"]["factionColors"][7]["b"] = 1
+		E.db["databars"]["colors"]["factionColors"][7]["g"] = 0.66666666666667
+		E.db["databars"]["colors"]["factionColors"][8]["b"] = 1
+		E.db["databars"]["colors"]["factionColors"][8]["g"] = 0.32156862745098
+		E.db["databars"]["colors"]["factionColors"][9]["b"] = 1
+		E.db["databars"]["colors"]["factionColors"][9]["g"] = 0
+		E.db["databars"]["colors"]["factionColors"][9]["r"] = 0.44313725490196
+		E.db["databars"]["colors"]["useCustomFactionColors"] = true
+
+
 		E.db["databars"]["customTexture"] = true
 
 		--new experience
