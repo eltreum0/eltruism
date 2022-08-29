@@ -1100,3 +1100,4 @@ L["Reset/Add Eltruism Datatext Panel"] = true
 L["Change the ElvUI background"] = true
 L["Supporters"] = true
 L["Translators"] = true
+L["Power Colors"] = true
