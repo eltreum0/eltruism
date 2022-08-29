@@ -366,7 +366,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-72"
 	E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
 	--E.db["movers"]["RaidUtility_Mover"] = "TOP,ElvUIParent,TOP,-220,1" --has been removed from SLE
-	E.db["movers"]["MicrobarMover"] = "TOPLEFT,UIParent,TOPLEFT,4,-4"
+	--E.db["movers"]["MicrobarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-412,23" --moved since it was overlapping with datatext
+	E.db["movers"]["MicrobarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,140,1"
+	--E.db["movers"]["MicrobarMover"] = "TOPLEFT,UIParent,TOPLEFT,4,-4"
 	--E.db["movers"]["MicrobarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,341,-2"
 	--E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,0"
 	if IsAddOnLoaded("ElvUI_SLE") then
@@ -380,6 +382,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["movers"]["ThreatBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,-1"
 	E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-134"
 	E.db["movers"]["TorghastBuffsMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,206"
+	E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-310,307"
 	if E.Wrath then
 		--Shaman things
 		E.db["general"]["totems"]["buttonSize"] = 25
@@ -389,8 +392,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["general"]["totems"]["font"] = "Kimberley"
 		--E.db["general"]["totems"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 		E.db["general"]["totems"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-
-		E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-310,307"
 	end
 
 	E.db["movers"]["TorghastChoiceToggle"] = "BOTTOM,UIParent,BOTTOM,0,445"

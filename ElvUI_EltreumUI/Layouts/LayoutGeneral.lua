@@ -909,52 +909,52 @@ function ElvUI_EltreumUI:SetupDataText()
 	if not E.db.movers then E.db.movers = {} end
 
 	--create panel
-	E.DataTexts:BuildPanelFrame('Eltruism')
+	E.DataTexts:BuildPanelFrame('EltruismDataText')
 
 	--config the panel
-	E.global["datatexts"]["customPanels"]["Eltruism"]["backdrop"] = false
-	E.global["datatexts"]["customPanels"]["Eltruism"]["border"] = false
-	E.global["datatexts"]["customPanels"]["Eltruism"]["frameLevel"] = 1
-	E.global["datatexts"]["customPanels"]["Eltruism"]["frameStrata"] = "LOW"
-	E.global["datatexts"]["customPanels"]["Eltruism"]["growth"] = "HORIZONTAL"
-	E.global["datatexts"]["customPanels"]["Eltruism"]["height"] = 22
-	E.global["datatexts"]["customPanels"]["Eltruism"]["mouseover"] = false
-	E.global["datatexts"]["customPanels"]["Eltruism"]["name"] = "Eltruism"
-	E.global["datatexts"]["customPanels"]["Eltruism"]["numPoints"] = 9
-	E.global["datatexts"]["customPanels"]["Eltruism"]["panelTransparency"] = false
-	E.global["datatexts"]["customPanels"]["Eltruism"]["textJustify"] = "CENTER"
-	E.global["datatexts"]["customPanels"]["Eltruism"]["tooltipAnchor"] = "ANCHOR_TOPLEFT"
-	E.global["datatexts"]["customPanels"]["Eltruism"]["tooltipXOffset"] = -17
-	E.global["datatexts"]["customPanels"]["Eltruism"]["tooltipYOffset"] = 4
-	E.global["datatexts"]["customPanels"]["Eltruism"]["visibility"] = "[petbattle] hide;show"
-	E.global["datatexts"]["customPanels"]["Eltruism"]["width"] = 1900
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["backdrop"] = false
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["border"] = false
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["frameLevel"] = 1
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["frameStrata"] = "LOW"
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["growth"] = "HORIZONTAL"
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["height"] = 22
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["mouseover"] = false
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["name"] = "Eltruism"
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["numPoints"] = 9
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["panelTransparency"] = false
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["textJustify"] = "CENTER"
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["tooltipAnchor"] = "ANCHOR_TOPLEFT"
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["tooltipXOffset"] = -17
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["tooltipYOffset"] = 4
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["visibility"] = "[petbattle] hide;show"
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 1900
 
 	if E.Retail then
-		E.db["datatexts"]["panels"]["Eltruism"][1] = "Talent/Loot Specialization"
-		E.db["datatexts"]["panels"]["Eltruism"][2] = "Durability"
-		E.db["datatexts"]["panels"]["Eltruism"][3] = "Missions"
-		E.db["datatexts"]["panels"]["Eltruism"][4] = "EltruismTeleports"
-		E.db["datatexts"]["panels"]["Eltruism"][5] = "Time"
-		E.db["datatexts"]["panels"]["Eltruism"][6] = "Friends"
-		E.db["datatexts"]["panels"]["Eltruism"][7] = "System"
-		E.db["datatexts"]["panels"]["Eltruism"][8] = "Combat"
-		E.db["datatexts"]["panels"]["Eltruism"][9] = "Gold"
+		E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Talent/Loot Specialization"
+		E.db["datatexts"]["panels"]["EltruismDataText"][2] = "Durability"
+		E.db["datatexts"]["panels"]["EltruismDataText"][3] = "Missions"
+		E.db["datatexts"]["panels"]["EltruismDataText"][4] = "EltruismTeleports"
+		E.db["datatexts"]["panels"]["EltruismDataText"][5] = "Time"
+		E.db["datatexts"]["panels"]["EltruismDataText"][6] = "Friends"
+		E.db["datatexts"]["panels"]["EltruismDataText"][7] = "System"
+		E.db["datatexts"]["panels"]["EltruismDataText"][8] = "Combat"
+		E.db["datatexts"]["panels"]["EltruismDataText"][9] = "Gold"
 	else
-		E.db["datatexts"]["panels"]["Eltruism"][1] = "Eltruism"
-		E.db["datatexts"]["panels"]["Eltruism"][2] = "Durability"
+		E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Eltruism"
+		E.db["datatexts"]["panels"]["EltruismDataText"][2] = "Durability"
 		if E.myclass == 'HUNTER' or E.myclass == 'WARLOCK' then
-			E.db["datatexts"]["panels"]["Eltruism"][3] = "Ammo"
+			E.db["datatexts"]["panels"]["EltruismDataText"][3] = "Ammo"
 		else
-			E.db["datatexts"]["panels"]["Eltruism"][3] = "Friends"
+			E.db["datatexts"]["panels"]["EltruismDataText"][3] = "Friends"
 		end
-		E.db["datatexts"]["panels"]["Eltruism"][4] = "EltruismTeleports"
-		E.db["datatexts"]["panels"]["Eltruism"][5] = "Time"
-		E.db["datatexts"]["panels"]["Eltruism"][6] = "Friends"
-		E.db["datatexts"]["panels"]["Eltruism"][7] = "System"
-		E.db["datatexts"]["panels"]["Eltruism"][8] = "Combat"
-		E.db["datatexts"]["panels"]["Eltruism"][9] = "Gold"
+		E.db["datatexts"]["panels"]["EltruismDataText"][4] = "EltruismTeleports"
+		E.db["datatexts"]["panels"]["EltruismDataText"][5] = "Time"
+		E.db["datatexts"]["panels"]["EltruismDataText"][6] = "Friends"
+		E.db["datatexts"]["panels"]["EltruismDataText"][7] = "System"
+		E.db["datatexts"]["panels"]["EltruismDataText"][8] = "Combat"
+		E.db["datatexts"]["panels"]["EltruismDataText"][9] = "Gold"
 	end
-	E.db["datatexts"]["panels"]["Eltruism"]["enable"] = true
+	E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] = true
 
 	--hide other panels since now its in one panel
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["enable"] = false
@@ -964,7 +964,7 @@ function ElvUI_EltreumUI:SetupDataText()
 	--adjust chat due to new datatext
 	E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,23"
 	E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,23"
-	E.db["movers"]["DTPanelEltruismMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,0"
+	E.db["movers"]["DTPanelEltruismDataTextMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,0"
 
 	E:UpdateDataTexts()
 	E:UpdateMoverPositions()
