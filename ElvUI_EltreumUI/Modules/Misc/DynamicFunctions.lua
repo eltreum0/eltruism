@@ -98,13 +98,13 @@ function ElvUI_EltreumUI:DynamicClassicDatatext()
 		if not E.db.movers then E.db.movers = {} end
 		if E.myclass == 'HUNTER' or E.myclass == 'WARLOCK' or E.myclass == 'WARRIOR' or E.myclass == 'ROGUE' then
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Eltruism Ammo"
-			if E.db["datatexts"]["panels"]["Eltruism"] then
-				E.db["datatexts"]["panels"]["Eltruism"][3] = "Eltruism Ammo"
+			if E.db["datatexts"]["panels"]["EltruismDataText"] then
+				E.db["datatexts"]["panels"]["EltruismDataText"][3] = "Eltruism Ammo"
 			end
 		else
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Friends"
-			if E.db["datatexts"]["panels"]["Eltruism"] then
-				E.db["datatexts"]["panels"]["Eltruism"][3] = "Coords"
+			if E.db["datatexts"]["panels"]["EltruismDataText"] then
+				E.db["datatexts"]["panels"]["EltruismDataText"][3] = "Coords"
 			end
 		end
 	end
@@ -431,7 +431,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.aurasizey = 54
 				E.db.ElvUI_EltreumUI.borders.chatborder = true
 				E.db.ElvUI_EltreumUI.borders.leftchatborderx = 432
-				if E.db["datatexts"]["panels"]["Eltruism"] and E.db["datatexts"]["panels"]["Eltruism"]["enable"] then
+				if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
 					E.db.ElvUI_EltreumUI.borders.leftchatbordery = 201
 					E.db.ElvUI_EltreumUI.borders.rightchatbordery = 201
 				else
@@ -490,7 +490,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.stanceyborder = 42
 				E.db.ElvUI_EltreumUI.borders.petactionedgesize = 13
 				E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 5
-				if E.db["datatexts"]["panels"]["Eltruism"] and E.db["datatexts"]["panels"]["Eltruism"]["enable"] then
+				if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
 					E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,23"
 					E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,23"
 				else
@@ -598,7 +598,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 				end
 			elseif not E.db.ElvUI_EltreumUI.borders.borders then
 
-				if E.db["datatexts"]["panels"]["Eltruism"] and E.db["datatexts"]["panels"]["Eltruism"]["enable"] then
+				if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
 					E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,23"
 					E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,23"
 				else
