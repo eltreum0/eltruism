@@ -62,6 +62,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["player"]["height"] = 54
 		E.db["unitframe"]["units"]["target"]["height"] = 54
 		E.db["unitframe"]["units"]["targettarget"]["height"] = 54
+		E.db["unitframe"]["units"]["player"]["classbar"]["height"] = 15
+		E.db["unitframe"]["units"]["player"]["power"]["height"] = 15
+		E.db["unitframe"]["units"]["target"]["power"]["height"] = 15
 
 		--movers
 		E.db["movers"]["MoverEltruismInstanceDifficulty"] = "TOPRIGHT,UIParent,TOPRIGHT,-146,-21"
