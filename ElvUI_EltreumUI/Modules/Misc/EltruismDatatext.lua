@@ -376,6 +376,7 @@ if E.Classic or E.Wrath or E.TBC then
 	local itemName = {}
 	local displayString = ''
 	local waitingItemID
+	local lastPanel
 	local function OnEvent(self, event, ...)
 		local name, count, itemID, itemEquipLoc
 		if event == 'GET_ITEM_INFO_RECEIVED' then
