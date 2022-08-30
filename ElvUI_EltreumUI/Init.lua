@@ -195,11 +195,13 @@ function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
 	end
 end
 
-function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED()
-	ElvUI_EltreumUI:AFKmusic()
-	ElvUI_EltreumUI:NameplateRestedOverlaps()
-	if E.db.general.afk then
-		ElvUI_EltreumUI:AFKLogo()
+function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED(_,unit)
+	if unit == "player" then
+		ElvUI_EltreumUI:AFKmusic()
+		ElvUI_EltreumUI:NameplateRestedOverlaps()
+		if E.db.general.afk then
+			ElvUI_EltreumUI:AFKLogo()
+		end
 	end
 end
 
