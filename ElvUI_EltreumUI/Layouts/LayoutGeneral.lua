@@ -939,21 +939,28 @@ function ElvUI_EltreumUI:SetupDataText()
 
 	--config the panel
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["backdrop"] = false
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["panelTransparency"] = false
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["border"] = false
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["frameLevel"] = 1
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["frameStrata"] = "LOW"
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["growth"] = "HORIZONTAL"
-	E.global["datatexts"]["customPanels"]["EltruismDataText"]["height"] = 22
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["mouseover"] = false
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["name"] = "Eltruism"
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["numPoints"] = 9
-	E.global["datatexts"]["customPanels"]["EltruismDataText"]["panelTransparency"] = false
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["textJustify"] = "CENTER"
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["tooltipAnchor"] = "ANCHOR_TOPLEFT"
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["tooltipXOffset"] = -17
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["tooltipYOffset"] = 4
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["visibility"] = "[petbattle] hide;show"
-	E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 1900
+
+	local width = GetPhysicalScreenSize()
+	if width == 3840 then
+		E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2094
+		E.global["datatexts"]["customPanels"]["EltruismDataText"]["height"] = 22
+	else
+		E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 1912
+		E.global["datatexts"]["customPanels"]["EltruismDataText"]["height"] = 23
+	end
 
 	if E.Retail then
 		E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Talent/Loot Specialization"
