@@ -1,4 +1,4 @@
-﻿local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "enUS", true, true)
+﻿local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "frFR")
 if not L then return end
 -- Core
 L["4K resolution detected, setting fonts to default mode."] = "Résolution 4K détectée, réglage des polices sur le mode par défaut."
