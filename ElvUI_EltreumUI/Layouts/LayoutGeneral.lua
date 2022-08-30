@@ -954,13 +954,21 @@ function ElvUI_EltreumUI:SetupDataText()
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["visibility"] = "[petbattle] hide;show"
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["height"] = 23
 
-	local width = GetPhysicalScreenSize()
-	if width == 3840 or width == 2560 then
+	local buttonwidth = _G.RightChatToggleButton:GetWidth()
+	local width = GetScreenWidth()
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2 + math.ceil(width - (buttonwidth * 2))
+
+	--scale stuff for 4k
+	--print(buttonwidth,width,E:PixelBestSize())
+	--0.632098738
+
+	--local width = GetPhysicalScreenSize()
+	--[[if width == 3840 or width == 2560 then
 		--E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2094
 		E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 1914
 	else
 		E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 1912
-	end
+	end]]
 
 	if E.Retail then
 		E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Talent/Loot Specialization"
