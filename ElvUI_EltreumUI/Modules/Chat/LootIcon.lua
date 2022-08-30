@@ -94,3 +94,26 @@ ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_WHISPER_INFORM", AddLootIcons)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_OFFICER", AddLootIcons)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID", AddLootIcons)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_TRADESKILLS", AddLootIcons)
+
+
+--gradient text experiment
+--[[local function test(_,event,message,...)
+	local string = message
+	--return false, gsub(message, string, E:TextGradient(string, 1,0,0,0,1,0)), ...
+	return false, gsub(message, string, ElvUI_EltreumUI:GradientName(string, E.myclass)), ...
+end
+ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", test)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", test)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID", test)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_PARTY", test)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID_LEADER", test)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID_WARNING", test)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", test)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_OFFICER", test)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_INSTANCE_CHAT", test)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_INSTANCE_CHAT_LEADER", test)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_GUILD", test)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_BG_SYSTEM_ALLIANCE", test)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_BG_SYSTEM_HORDE", test)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_BG_SYSTEM_NEUTRAL", test)
+]]
