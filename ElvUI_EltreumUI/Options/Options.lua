@@ -71,8 +71,7 @@ local TRANSLATORS = {
 	'|cffCC3333Khornan|r - German Translation',
 	'|cffCC3333Dlarge|r - German Translation',
 	'|cffCC3333Neo|r - Chinese Translation',
-	'Spanish translation by DeepL',
-	'French translation by DeepL',
+	'DeepL artificial intelligence for French and Spanish translations',
 }
 
 -- SortList
