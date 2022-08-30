@@ -956,7 +956,8 @@ function ElvUI_EltreumUI:SetupDataText()
 
 	local width = GetPhysicalScreenSize()
 	if width == 3840 then
-		E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2094
+		--E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2094
+		E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 1914
 	else
 		E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 1912
 	end
