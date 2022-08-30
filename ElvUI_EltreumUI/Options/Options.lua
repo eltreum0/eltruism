@@ -9626,7 +9626,7 @@ function ElvUI_EltreumUI:Configtable()
 							enablepower = {
 								order = 4,
 								type = 'toggle',
-								name = L["Enable Gradient Power"],
+								name = E.NewSign..L["Enable Gradient Power"],
 								desc = L["Enable Gradient Power Colors"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
