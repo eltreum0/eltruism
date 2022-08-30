@@ -62,7 +62,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["player"]["height"] = 54
 		E.db["unitframe"]["units"]["target"]["height"] = 54
 		E.db["unitframe"]["units"]["targettarget"]["height"] = 54
-		E.db["unitframe"]["units"]["player"]["classbar"]["height"] = 15
+		E.db["unitframe"]["units"]["player"]["classbar"]["height"] = 10
 		E.db["unitframe"]["units"]["player"]["power"]["height"] = 15
 		E.db["unitframe"]["units"]["target"]["power"]["height"] = 15
 
