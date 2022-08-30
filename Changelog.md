@@ -3,7 +3,7 @@ The future is uncertain
 ___
 ### 3.3.2
 Added full support for Wrath of the Light King Classic\
-Added gradient power to player, targe, target of target, focus and target of target of target frames, and also the nameplate power bar\
+Added gradient power to player, target, target of target, focus and target of target of target frames, and also the nameplate power bar\
 Added French translation by DeepL, much like the Spanish translation this locale is in testing\
 Added a new datatext, Eltruism Teleports, which will show the current hearthstone location and if its on cooldown, alongside a list of all teleports you may have that have a cooldown\
 Added a new datatext panel, disabling the minimap and chat panels to use this new datatext instead. An option to add it can be found in Eltruism > Installer\
