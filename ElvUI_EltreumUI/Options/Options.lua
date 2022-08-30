@@ -10848,7 +10848,7 @@ function ElvUI_EltreumUI:Configtable()
 							if E.Retail then
 								return 'https://www.tukui.org/addons.php?id=209'
 							elseif E.Wrath then
-								return 'https://www.tukui.org/addons.php?id=209'
+								return 'https://www.tukui.org/classic-wotlk-addons.php?id=10'
 							elseif E.TBC then
 								return 'https://www.tukui.org/classic-tbc-addons.php?id=10'
 							elseif E.Classic then
