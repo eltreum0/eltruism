@@ -242,8 +242,6 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["outOfCombat"] = true
 			E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["playerCanNotAttack"] = true
 		end
-		fixingold = true
-		E.private.ElvUI_EltreumUI.install_version = "3.3.2"
 	end
 
 	--more long term checks, in case somehow people enable 2 settings when its not possible to do so. Maybe its a shared profile from another person? No idea how they manage to do this
