@@ -952,14 +952,13 @@ function ElvUI_EltreumUI:SetupDataText()
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["tooltipXOffset"] = -17
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["tooltipYOffset"] = 4
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["visibility"] = "[petbattle] hide;show"
+	E.global["datatexts"]["customPanels"]["EltruismDataText"]["height"] = 23
 
 	local width = GetPhysicalScreenSize()
 	if width == 3840 then
 		E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2094
-		E.global["datatexts"]["customPanels"]["EltruismDataText"]["height"] = 22
 	else
 		E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 1912
-		E.global["datatexts"]["customPanels"]["EltruismDataText"]["height"] = 23
 	end
 
 	if E.Retail then
