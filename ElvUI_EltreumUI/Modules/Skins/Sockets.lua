@@ -1591,7 +1591,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 		return totalCurrent, totalMax
 	end
 
-
 	function SlotIconManager:GetSlotAlignment(slotName)
 		if self.rightAlignedSlots[slotName] ~= nil then
 			return 'RIGHT'

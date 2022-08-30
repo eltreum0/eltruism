@@ -6846,7 +6846,6 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'range',
 								name = RESAMPLE_QUALITY_FSR,
 								--desc = L["FSR Sharpness"],
-								width = 'full',
 								min = 0,
 								max = 2,
 								step = 0.1,
