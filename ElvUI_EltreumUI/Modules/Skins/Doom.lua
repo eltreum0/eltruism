@@ -325,7 +325,7 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 		end)
 
 		hooksecurefunc("UseInventoryItem", function(slot)
-			local itemID = GetInventoryItemID("player", slot);
+			local itemID = GetInventoryItemID("player", slot)
 			if (itemID) then
 				local texture = GetInventoryItemTexture("player", slot)
 				watching[itemID] = {GetTime(),"item",texture}

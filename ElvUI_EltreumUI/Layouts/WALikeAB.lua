@@ -220,4 +220,6 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 	E:UpdateActionBars()
 	E:UpdateUnitFrames()
 	E:UpdateMoverPositions()
+
+	E:StaticPopup_Show('CONFIG_RL')
 end
