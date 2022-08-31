@@ -999,7 +999,7 @@ function ElvUI_EltreumUI:SetupDataText()
 		end
 		E.db["datatexts"]["panels"]["EltruismDataText"][4] = "EltruismTeleports"
 		E.db["datatexts"]["panels"]["EltruismDataText"][5] = "Time"
-		E.db["datatexts"]["panels"]["EltruismDataText"][6] = "Friends"
+		E.db["datatexts"]["panels"]["EltruismDataText"][6] = "Friends" -- might replace with mail or something
 		E.db["datatexts"]["panels"]["EltruismDataText"][7] = "System"
 		E.db["datatexts"]["panels"]["EltruismDataText"][8] = "Combat"
 		E.db["datatexts"]["panels"]["EltruismDataText"][9] = "Gold"
