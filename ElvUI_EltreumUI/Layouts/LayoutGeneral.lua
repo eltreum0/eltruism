@@ -129,7 +129,16 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["general"]["minimap"]["icons"]["mail"]["scale"] = 1.2
 		E.db["general"]["minimap"]["icons"]["mail"]["texture"] = "Mail1"
 		E.db["general"]["minimap"]["icons"]["mail"]["xOffset"] = 0
-		E.db["general"]["minimap"]["icons"]["mail"]["yOffset"] = -27
+
+		if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
+			E.db["general"]["minimap"]["icons"]["mail"]["yOffset"] = -10
+			E.db["general"]["minimap"]["icons"]["queueStatus"]["yOffset"] = 13
+			E.db["movers"]["DTPanelEltruismDataTextMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,0"
+		else
+			E.db["general"]["minimap"]["icons"]["queueStatus"]["yOffset"] = 3
+			E.db["general"]["minimap"]["icons"]["mail"]["yOffset"] = -27
+		end
+
 		E.db["general"]["minimap"]["locationFont"] = "Kimberley"
 		E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE"
 		E.db["general"]["minimap"]["locationFontSize"] = 14
@@ -141,7 +150,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["general"]["minimap"]["icons"]["queueStatus"]["fontOutline"] = "OUTLINE"
 		E.db["general"]["minimap"]["icons"]["queueStatus"]["fontSize"] = 20
 		E.db["general"]["minimap"]["icons"]["queueStatus"]["xOffset"] = -24
-		E.db["general"]["minimap"]["icons"]["queueStatus"]["yOffset"] = 3
+
 		E.db["general"]["objectiveFrameAutoHideInKeystone"] = false
 		E.db["general"]["objectiveFrameHeight"] = 550
 		E.db["general"]["resurrectSound"] = true
