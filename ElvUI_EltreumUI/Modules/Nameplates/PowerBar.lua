@@ -959,6 +959,8 @@ end
 local EltruismPowerBarEventsFrame = CreateFrame("FRAME")
 EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
 EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+EltruismPowerBarEventsFrame:RegisterUnitEvent("NAME_PLATE_UNIT_ADDED")
+EltruismPowerBarEventsFrame:RegisterUnitEvent("NAME_PLATE_UNIT_REMOVED")
 EltruismPowerBarEventsFrame:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:NameplatePowerTextUpdate()
 	ElvUI_EltreumUI:NameplatePower()
