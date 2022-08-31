@@ -41,7 +41,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 	local KIBC_EnchantToSpellID = {
 		--missing ones added by eltreum
 		[1594] = 33996, -- +26 Attack Power
-		[368] = 34004, --cloak 12 agility
+		[368] = 34004, -- cloak 12 agility
 		[684] = 33995, --gloves 15 strength
 		[2931] = 46519, -- ring stats +4
 		[65] = 7454,
@@ -56,17 +56,19 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[2519] = 359950, -- 15 fire res
 		[2664] = 46508, -- 7 res all
 		[2343] = 46531, -- major healing weapon
-		[1888] = 359685, --shield resilience? resistance? 46525
-		[926] = 359895, --shield frost res
-		[983] = 44500, --cloak superior agility
+		[1888] = 359685, -- shield resilience? resistance? 46525
+		[926] = 359895, -- shield frost res
+		[983] = 44500, -- cloak superior agility
 		[2566] = 2317, -- +13 spellpower ????
-		[1354] = 44556, --cloak superior fire res
-		[1400] = 44494, --cloak superior nature res
-		[1446] = 44590, --cloak superior shadow res
-		[3230] = 44483, --cloak superior frost res
-		[1262] = 44596, --cloak superior arcane res
+		[1354] = 44556, -- cloak superior fire res
+		[1400] = 44494, -- cloak superior nature res
+		[1446] = 44590, -- cloak superior shadow res
+		[3230] = 44483, -- cloak superior frost res
+		[1262] = 44596, -- cloak superior arcane res
 		[3369] = 53341, -- rune of cinderglacier
-		[3370] = 53343, --rune of razorice
+		[3594] = 54446, -- rune of swordbreaking
+		[3365] = 53323, -- rune of swordshattering
+		[3883] = 70164, -- rune of the nerubian carapace
 
 		---- old list
 		[15] = 2831, -- Reinforced (+$k1 Armor)
