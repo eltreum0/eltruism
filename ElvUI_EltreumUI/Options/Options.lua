@@ -9679,7 +9679,7 @@ function ElvUI_EltreumUI:Configtable()
 							customcolorsline1 = {
 								order = 12,
 								type = 'color',
-								name = L["Custom Color 1"],
+								name = L["Custom Color"].."1",
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor or not E.db.ElvUI_EltreumUI.skins.quests end,
 								get = function()
@@ -9692,7 +9692,7 @@ function ElvUI_EltreumUI:Configtable()
 							customcolorsline2 = {
 								order = 12,
 								type = 'color',
-								name = L["Custom Color 2"],
+								name = L["Custom Color"].."2",
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor or not E.db.ElvUI_EltreumUI.skins.quests end,
 								get = function()
