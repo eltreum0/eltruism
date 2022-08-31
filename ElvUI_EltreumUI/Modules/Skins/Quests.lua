@@ -655,27 +655,30 @@ function ElvUI_EltreumUI:SkinQuests()
 							Button:SetPoint("LEFT", Anchor, "LEFT", -40, -10)
 						--elseif Anchor == nil then
 							--Button:SetPoint("LEFT", _G["WatchFrameLine"..i.."Text"], "LEFT", -40, -10)
-						end
-						Button:SetSize(28, 28)
-
-						if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not Button.shadow then
-							Button:CreateShadow()
-						end
-
-						if not (Button.QuestTexture) then
-							if _G["EltruismQuestTexture"] then
-								Button.QuestTexture = _G["EltruismQuestTexture"]
-							else
-								Button.QuestTexture = Button:CreateTexture("EltruismQuestTexture")
+							if not (Button.QuestTexture) then
+								if _G["EltruismQuestTexture"] then
+									Button.QuestTexture = _G["EltruismQuestTexture"]
+								else
+									Button.QuestTexture = Button:CreateTexture("EltruismQuestTexture")
+								end
+								Button.QuestTexture:SetSize(24, 24)
+								Button.QuestTexture:SetPoint("LEFT", Button, "LEFT", -12, 0)
+								Button.QuestTexture:SetTexture(E.Media.Textures.BagQuestIcon)
+								Button.QuestTexture:SetParent(Button)
 							end
-							Button.QuestTexture:SetSize(24, 24)
-							Button.QuestTexture:SetPoint("LEFT", Button, "LEFT", -12, 0)
-							Button.QuestTexture:SetTexture(E.Media.Textures.BagQuestIcon)
+							Button:SetSize(E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize, E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize)
+							if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not Button.shadow then
+								Button:CreateShadow()
+							end
+							S:HandleButton(Button)
+							local texture = _G["WatchFrameItem"..i.."IconTexture"]
+							texture:SetTexCoord(0.08,0.92,0.08,0.92)
+						else
+							Button:ClearAllPoints()
+							if _G["EltruismQuestTexture"] then
+								_G["EltruismQuestTexture"]:ClearAllPoints()
+							end
 						end
-
-						S:HandleButton(Button)
-						local texture = _G["WatchFrameItem"..i.."IconTexture"]
-						texture:SetTexCoord(0.08,0.92,0.08,0.92)
 					end
 				end
 			end
