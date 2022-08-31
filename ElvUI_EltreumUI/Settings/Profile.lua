@@ -132,7 +132,7 @@ P.ElvUI_EltreumUI = {
 			iconSize = 75,
 			holdTime = 0,
 			showSpellName = false,
-			graceperiod = 7,
+			graceperiod = 10,
 			tts = false,
 			ttsvoice = nil,
 		},
