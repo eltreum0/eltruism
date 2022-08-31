@@ -545,7 +545,24 @@ function ElvUI_EltreumUI:BorderAdjust()
 						E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,187"
 						E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,154"
 						E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,121"
+						E.db["ElvUI_EltreumUI"]["borders"]["bar1xborder"] = 65
+						E.db["ElvUI_EltreumUI"]["borders"]["bar1yborder"] = 56
+						E.db["ElvUI_EltreumUI"]["borders"]["bar2xborder"] = 56
+						E.db["ElvUI_EltreumUI"]["borders"]["bar2yborder"] = 50
+						E.db["ElvUI_EltreumUI"]["borders"]["bar3xborder"] = 56
+						E.db["ElvUI_EltreumUI"]["borders"]["bar3yborder"] = 50
+						E.db["ElvUI_EltreumUI"]["borders"]["bar4xborder"] = 56
+						E.db["ElvUI_EltreumUI"]["borders"]["bar4yborder"] = 50
+						E.db["ElvUI_EltreumUI"]["borders"]["bar5xborder"] = 56
+						E.db["ElvUI_EltreumUI"]["borders"]["bar5yborder"] = 50
+					else
+						E.db["ElvUI_EltreumUI"]["borders"]["bar1xborder"] = 62
+						E.db["ElvUI_EltreumUI"]["borders"]["bar1yborder"] = 56
+						E.db["ElvUI_EltreumUI"]["borders"]["bar2xborder"] = 62
+						E.db["ElvUI_EltreumUI"]["borders"]["bar2yborder"] = 56
+						E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,260"
 					end
+
 					if E.db.ElvUI_EltreumUI.otherstuff.alternativegroups == false then
 						E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-4"
 						E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-4"
@@ -556,16 +573,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 					end
 					E.db["ElvUI_EltreumUI"]["borders"]["xplayercast"] = 272
 					E.db["ElvUI_EltreumUI"]["borders"]["xtargettarget"] = 132.8
-					E.db["ElvUI_EltreumUI"]["borders"]["bar1xborder"] = 65
-					E.db["ElvUI_EltreumUI"]["borders"]["bar1yborder"] = 56
-					E.db["ElvUI_EltreumUI"]["borders"]["bar2xborder"] = 56
-					E.db["ElvUI_EltreumUI"]["borders"]["bar2yborder"] = 50
-					E.db["ElvUI_EltreumUI"]["borders"]["bar3xborder"] = 56
-					E.db["ElvUI_EltreumUI"]["borders"]["bar3yborder"] = 50
-					E.db["ElvUI_EltreumUI"]["borders"]["bar4xborder"] = 56
-					E.db["ElvUI_EltreumUI"]["borders"]["bar4yborder"] = 50
-					E.db["ElvUI_EltreumUI"]["borders"]["bar5xborder"] = 56
-					E.db["ElvUI_EltreumUI"]["borders"]["bar5yborder"] = 50
+
 					E.db.ElvUI_EltreumUI.borders.partysizex = 222
 					E.db.ElvUI_EltreumUI.borders.partysizey = 98
 					E.db.ElvUI_EltreumUI.borders.raidsizex = 140
@@ -602,6 +610,12 @@ function ElvUI_EltreumUI:BorderAdjust()
 						E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,249"
 						E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,-311,249"
 						E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,-303,309"
+					else
+						E.db["ElvUI_EltreumUI"]["borders"]["bar1xborder"] = 62
+						E.db["ElvUI_EltreumUI"]["borders"]["bar1yborder"] = 56
+						E.db["ElvUI_EltreumUI"]["borders"]["bar2xborder"] = 62
+						E.db["ElvUI_EltreumUI"]["borders"]["bar2yborder"] = 56
+						E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,260"
 					end
 					E.db["ElvUI_EltreumUI"]["borders"]["xplayercast"] = 294
 					E.db["ElvUI_EltreumUI"]["borders"]["xtargettarget"] = 162
