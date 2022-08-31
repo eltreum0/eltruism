@@ -510,7 +510,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.xfocus = 224
 				E.db.ElvUI_EltreumUI.borders.yfocus = 72
 				E.db.ElvUI_EltreumUI.borders.bossborder = true
-				E.db.ElvUI_EltreumUI.borders.minimapsizex = 226
+				E.db.ElvUI_EltreumUI.borders.minimapsizex = 225
 				E.db.ElvUI_EltreumUI.borders.focuscastborder = true
 				E.db.ElvUI_EltreumUI.borders.xcastfocus = 365
 				E.db.ElvUI_EltreumUI.borders.ycastfocus = 62
