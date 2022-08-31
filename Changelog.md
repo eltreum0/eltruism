@@ -1,6 +1,14 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.3.3
+Added new options for the Objective Frame skin, including fonts colors and textures\
+Updated the position of some minimap icons\
+Updated Cooldown's minimum lenght to fix Death Knight's cooldowns\
+Updated Sockets and Enchants adding a few missing Death Knight runes\
+Fixed text overlap for Runeforging skin\
+Fixed Pet/Companion overlapping the button in Wrath\
+Fixed missing action paging for Shadow Dance in Wrath
 ### 3.3.2
 Added full support for Wrath of the Light King Classic\
 Added gradient power to player, target, target of target, focus and target of target of target frames, and also the nameplate power bar\
