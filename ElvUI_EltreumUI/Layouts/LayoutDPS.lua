@@ -87,6 +87,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["actionbar"]["bar1"]["paging"]["PALADIN"] = ""
 	E.db["actionbar"]["bar1"]["paging"]["PRIEST"] = ""
 	E.db["actionbar"]["bar1"]["paging"]["ROGUE"] = ""
+	E.db["actionbar"]["bar1"]["paging"]["WARLOCK"] = ""
 	E.db["actionbar"]["bar1"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["bar10"]["alpha"] = 1
 	E.db["actionbar"]["bar10"]["countFont"] = "Kimberley"
