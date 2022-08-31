@@ -959,10 +959,16 @@ end
 local EltruismPowerBarEventsFrame = CreateFrame("FRAME")
 EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
 EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
-EltruismPowerBarEventsFrame:RegisterUnitEvent("NAME_PLATE_UNIT_ADDED")
-EltruismPowerBarEventsFrame:RegisterUnitEvent("NAME_PLATE_UNIT_REMOVED")
 EltruismPowerBarEventsFrame:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:NameplatePowerTextUpdate()
+	ElvUI_EltreumUI:NameplatePower()
+end)
+
+--split because text would error on removed/added
+local nameplateeventframe = CreateFrame("FRAME")
+nameplateeventframe:RegisterUnitEvent("NAME_PLATE_UNIT_ADDED")
+nameplateeventframe:RegisterUnitEvent("NAME_PLATE_UNIT_REMOVED")
+nameplateeventframe:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:NameplatePower()
 end)
 
