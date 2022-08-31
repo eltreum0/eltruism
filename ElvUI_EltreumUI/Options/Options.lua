@@ -71,7 +71,7 @@ local TRANSLATORS = {
 	'|cffCC3333Khornan|r - German Translation',
 	'|cffCC3333Dlarge|r - German Translation',
 	'|cffCC3333Neo|r - Chinese Translation',
-	'Spanish translation by DeepL',
+	'DeepL artificial intelligence for French and Spanish translations',
 }
 
 -- SortList
@@ -8561,43 +8561,6 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hideerrorframe end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hideerrorframe = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							questskins = {
-								order = 36,
-								type = "description",
-								name = L["Skin Objective Frame"],
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = 'full',
-							},
-							showwowhead = {
-								order = 37,
-								name = L["Enable Wowhead Button on Quest Log"],
-								type = "toggle",
-								desc = L["Show a button for Wowhead quest links"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.skins.questswowhead end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questswowhead = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							questenable = {
-								order = 37,
-								name = L["Enable Skin"],
-								type = "toggle",
-								desc = L["Skin the Objective/Quest Frame"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.skins.quests end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.quests = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							queststexture = {
-								order = 38,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Choose the Progress Bar Texture"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.queststatusbartexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.skins.queststatusbartexture = key E:StaticPopup_Show('CONFIG_RL') end,
-							},
 							levelBosskins = {
 								order = 48,
 								type = "description",
@@ -8695,6 +8658,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "description",
 								name = L["Skin Profession Frame"],
 								hidden = E.Retail,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								--hidden = function() if E.Retail then return true else return false end end,
 								width = 'full',
 							},
@@ -9574,6 +9538,214 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						},
 					},
+					quests = {
+						type = 'group',
+						name = E.NewSign..L["Quests"],
+						order = 2,
+						args = {
+							questskinsheader = {
+								order = 1,
+								type = "description",
+								name = L["Skin Objective Frame"],
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								width = 'full',
+							},
+							questenableskin = {
+								order = 2,
+								name = L["Enable Skin"],
+								type = "toggle",
+								desc = L["Skin the Objective/Quest Frame"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.skins.quests end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.quests = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							questskinsheader2 = {
+								order = 3,
+								type = "description",
+								name = "",
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								width = 'full',
+							},
+							showwowhead = {
+								order = 3,
+								name = L["Enable Wowhead Button on Quest Log"],
+								type = "toggle",
+								desc = L["Show a button for Wowhead quest links"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.skins.questswowhead end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questswowhead = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							questskinsheader3 = {
+								order = 4,
+								type = "description",
+								name = "",
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								width = 'full',
+							},
+							questenableshadow = {
+								order = 4,
+								name = L["Enable Shadows"],
+								type = "toggle",
+								--width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							retailprogressheader = {
+								order = 5,
+								type = "description",
+								name = "",
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								hidden = not E.Retail,
+								width = 'full',
+							},
+							retailprogressbartexture = {
+								order = 5,
+								type = 'select',
+								width = "double",
+								dialogControl = 'LSM30_Statusbar',
+								name = L["Choose the Progress Bar Texture"],
+								desc = L["Select a Texture"],
+								hidden = not E.Retail,
+								values = AceGUIWidgetLSMlists.statusbar,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.queststatusbartexture end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.skins.queststatusbartexture = key E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							lineheader1 = {
+								order = 6,
+								type = "description",
+								name = L["Line"],
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								width = 'full',
+							},
+							linetexture = {
+								order = 7,
+								type = 'select',
+								width = "double",
+								dialogControl = 'LSM30_Statusbar',
+								name = L["Line Texture"],
+								desc = L["Select a Texture"],
+								values = AceGUIWidgetLSMlists.statusbar,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.texture end,
+								set = function(_,key) E.db.ElvUI_EltreumUI.skins.questsettings.texture = key E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							linesizex = {
+								type = 'range',
+								name = L["Line Width"],
+								order = 8,
+								min = 1,
+								max = 400,
+								step = 1,
+								width = "double",
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.sizex end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.sizex = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							linesizey = {
+								type = 'range',
+								name = L["Line Height"],
+								order = 9,
+								min = 1,
+								max = 80,
+								step = 1,
+								width = "double",
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.sizey end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.sizey = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							linebuttonsize = {
+								type = 'range',
+								name = L["Button Size"],
+								order = 10,
+								min = 4,
+								max = 40,
+								step = 1,
+								width = "double",
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							linecustomcolorenable = {
+								order = 11,
+								name = L["Enable Custom Colors"],
+								type = "toggle",
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							customcolorsline1 = {
+								order = 12,
+								type = 'color',
+								name = L["Custom Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor or not E.db.ElvUI_EltreumUI.skins.quests end,
+								get = function()
+									return E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b, 1, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+								end,
+							},
+							customcolorsline2 = {
+								order = 12,
+								type = 'color',
+								name = L["Custom Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor or not E.db.ElvUI_EltreumUI.skins.quests end,
+								get = function()
+									return E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b, 1, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+								end,
+							},
+							questskinslinetextureheader1 = {
+								order = 91,
+								type = "description",
+								name = L["Text"],
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								width = 'full',
+							},
+							customcolorenable = {
+								order = 92,
+								name = L["Enable Custom Colors"],
+								type = "toggle",
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.customcolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.customcolor = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							customcolorstext = {
+								order = 93,
+								type = 'color',
+								name = L["Custom Color"],
+								hasAlpha = false,
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.questsettings.customcolor or not E.db.ElvUI_EltreumUI.skins.quests end,
+								get = function()
+									return E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb, 1, P.ElvUI_EltreumUI.skins.questsettings.customr, P.ElvUI_EltreumUI.skins.questsettings.customg, P.ElvUI_EltreumUI.skins.questsettings.customb, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb = r, g, b E:StaticPopup_Show('CONFIG_RL')
+								end,
+							},
+							fontsize = {
+								type = 'range',
+								name = L["Font Size"],
+								order = 94,
+								min = 6,
+								max = 80,
+								step = 1,
+								--width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.fontSize end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.fontSize = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+						},
+					},
 				},
 			},
 			unitframes = {
@@ -9626,7 +9798,7 @@ function ElvUI_EltreumUI:Configtable()
 							enablepower = {
 								order = 4,
 								type = 'toggle',
-								name = L["Enable Gradient Power"],
+								name = E.NewSign..L["Enable Gradient Power"],
 								desc = L["Enable Gradient Power Colors"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
@@ -10848,7 +11020,7 @@ function ElvUI_EltreumUI:Configtable()
 							if E.Retail then
 								return 'https://www.tukui.org/addons.php?id=209'
 							elseif E.Wrath then
-								return 'https://www.tukui.org/addons.php?id=209'
+								return 'https://www.tukui.org/classic-wotlk-addons.php?id=10'
 							elseif E.TBC then
 								return 'https://www.tukui.org/classic-tbc-addons.php?id=10'
 							elseif E.Classic then

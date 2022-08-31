@@ -23,7 +23,7 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 		whileDead = 1,
 		hideOnEscape = false,
 	}
-	if E.version < (E.Retail and 12.83 or E.Wrath and 0.22 or E.TBC and 2.48 or E.Classic and 1.73) then
+	if E.version < (E.Retail and 12.83 or E.Wrath and 3.00 or E.TBC and 2.48 or E.Classic and 1.73) then
 		E:StaticPopup_Show('ELVUIVERSIONCHECK')
 		ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
 	end
@@ -219,6 +219,29 @@ function ElvUI_EltreumUI:OldVersionCheck()
 
 		fixingold = true
 		E.private.ElvUI_EltreumUI.install_version = "3.2.4"
+	elseif E.private.ElvUI_EltreumUI.install_version >= "3.2.5" and E.private.ElvUI_EltreumUI.install_version < "3.3.2" then
+		--force disable the name only since it causes issues still
+		if E.global["nameplates"]["filters"]["EltreumHideNP"] then
+			for _, filterName in pairs({'EltreumHideNP', 'EltreumRestedNP'}) do
+				E.global["nameplates"]["filters"][filterName] = {}
+				E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
+				E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
+			end
+			E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["nameOnly"] = false
+			E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["name"] = "[namecolor][name]"
+			E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets]"
+			E.global["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["nameplateType"]["enable"] = true
+			E.global["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["nameplateType"]["enemyNPC"] = true
+			E.global["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["playerCanNotAttack"] = true
+			E.global["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["priority"] = 15
+			E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["alpha"] = 100
+			E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["nameOnly"] = false
+			E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["name"] = "[namecolor][name:title][realm:dash]"
+			E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets][guild:brackets]"
+			E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["isResting"] = true
+			E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["outOfCombat"] = true
+			E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["playerCanNotAttack"] = true
+		end
 	end
 
 	--more long term checks, in case somehow people enable 2 settings when its not possible to do so. Maybe its a shared profile from another person? No idea how they manage to do this

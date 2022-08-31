@@ -377,11 +377,19 @@ function ElvUI_EltreumUI:TransparentChat()
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["backdrop"] = false
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["backdrop"] = false
+	if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
+		E.db["datatexts"]["panels"]["EltruismDataText"]["backdrop"] = false
+		E.db["datatexts"]["panels"]["EltruismDataText"]["panelTransparency"] = false
+		E.global["datatexts"]["customPanels"]["EltruismDataText"]["backdrop"] = false
+		E.global["datatexts"]["customPanels"]["EltruismDataText"]["panelTransparency"] = false
+	end
+
 	E:UpdateChat()
 	E:UpdateLayout()
 	E:UpdateDataBars()
 	E:UpdateDataTexts()
 	--E:StaggeredUpdateAll()
+
 	if _G["EltruismRightChatShadowFrame"] then
 		_G["EltruismRightChatShadowFrame"]:Hide()
 	end
@@ -408,11 +416,19 @@ function ElvUI_EltreumUI:DarkChat()
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["backdrop"] = true
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["backdrop"] = true
+	if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
+		E.db["datatexts"]["panels"]["EltruismDataText"]["backdrop"] = true
+		E.db["datatexts"]["panels"]["EltruismDataText"]["panelTransparency"] = true
+		E.global["datatexts"]["customPanels"]["EltruismDataText"]["backdrop"] = true
+		E.global["datatexts"]["customPanels"]["EltruismDataText"]["panelTransparency"] = true
+	end
+
 	E:UpdateChat()
 	E:UpdateLayout()
 	E:UpdateDataBars()
 	E:UpdateDataTexts()
 	--E:StaggeredUpdateAll()
+
 	if _G["EltruismRightChatShadowFrame"] then
 		_G["EltruismRightChatShadowFrame"]:Show()
 	end
@@ -494,7 +510,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.xfocus = 224
 				E.db.ElvUI_EltreumUI.borders.yfocus = 72
 				E.db.ElvUI_EltreumUI.borders.bossborder = true
-				E.db.ElvUI_EltreumUI.borders.minimapsizex = 226
+				E.db.ElvUI_EltreumUI.borders.minimapsizex = 225
 				E.db.ElvUI_EltreumUI.borders.focuscastborder = true
 				E.db.ElvUI_EltreumUI.borders.xcastfocus = 365
 				E.db.ElvUI_EltreumUI.borders.ycastfocus = 62

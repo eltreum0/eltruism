@@ -1252,6 +1252,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.SkillFrameCancelButton:Hide()
 		end
 
+		if _G.CompanionModelFrame then
+			--print(_G.CompanionModelFrame:GetPosition())
+			--_G.CompanionModelFrame:SetPosition(0, 0, 0)
+			_G.CompanionModelFrame:ClearAllPoints()
+			_G.CompanionModelFrame:SetPoint("CENTER", _G.PetPaperDollFrame, "CENTER", 0, 90)
+		end
+
 		--add background from artifact weapon
 		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 			--add bg texture
