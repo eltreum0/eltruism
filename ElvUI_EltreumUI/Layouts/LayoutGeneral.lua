@@ -1093,6 +1093,7 @@ function ElvUI_EltreumUI:SetupCVars()
 		if E.Wrath then
 			SetCVar('equipmentManager', 1)
 			SetCVar('previewTalents', 1)
+			SetCVar('ShowAllSpellSpellRanks', 0)
 		end
 	end
 	ElvUI_EltreumUI:Print(L["General CVars have been set."])
