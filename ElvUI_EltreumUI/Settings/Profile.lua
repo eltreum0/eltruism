@@ -84,6 +84,7 @@ P.ElvUI_EltreumUI = {
 			customg = 0.50,
 			customb = 0.70,
 			fontSize = 12,
+			linebuttonsize = 28,
 			linecustomcolor = false,
 			linecustomcolor1r = 0.27,
 			linecustomcolor1g = 0.50,

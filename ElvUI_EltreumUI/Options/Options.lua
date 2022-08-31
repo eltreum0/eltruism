@@ -9655,6 +9655,18 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.sizey end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.sizey = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							linebuttonsize = {
+								type = 'range',
+								name = L["Button Size"],
+								order = 10,
+								min = 4,
+								max = 40,
+								step = 1,
+								--width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
 							linecustomcolorenable = {
 								order = 11,
 								name = L["Enable Custom Colors"],
