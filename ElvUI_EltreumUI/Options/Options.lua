@@ -9662,6 +9662,7 @@ function ElvUI_EltreumUI:Configtable()
 								min = 4,
 								max = 40,
 								step = 1,
+								hidden = E.Retail,
 								width = "double",
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize end,
