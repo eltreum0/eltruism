@@ -65,6 +65,8 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[1446] = 44590, --cloak superior shadow res
 		[3230] = 44483, --cloak superior frost res
 		[1262] = 44596, --cloak superior arcane res
+		[3369] = 53341, -- rune of cinderglacier
+		[3370] = 53343, --rune of razorice
 
 		---- old list
 		[15] = 2831, -- Reinforced (+$k1 Armor)
