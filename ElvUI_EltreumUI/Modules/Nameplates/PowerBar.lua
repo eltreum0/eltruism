@@ -190,10 +190,11 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 	if not nameplate then
 		EltreumPowerBar:Hide()
 		powerbareffect:Hide()
+		EltreumPowerAnchor = nil
 	end
 
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
-		if UnitExists("target") and UnitCanAttack("player", "target") then
+		if UnitExists("target") and UnitCanAttack("player", "target") and C_NamePlate.GetNamePlateForUnit("target") ~= nil then
 			EltreumPowerAnchor = C_NamePlate.GetNamePlateForUnit("target")
 			EltreumPowerBar:SetParent(EltreumPowerAnchor)
 
@@ -923,6 +924,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 		else
 			powerbareffect:Hide()
 			EltreumPowerBar:Hide()
+			EltreumPowerAnchor = nil
 		end
 	end
 end
