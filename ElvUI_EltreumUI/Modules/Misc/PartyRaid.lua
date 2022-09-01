@@ -102,7 +102,7 @@ function ElvUI_EltreumUI:BattleRes()
 			spellicon:SetTexture(GetSpellTexture(20484))
 			if E.myclass == "DEATHKNIGHT" then
 				spellicon:SetTexture(GetSpellTexture(61999))
-			elseif E.myclas == "WARLOCK" then
+			elseif E.myclass == "WARLOCK" then
 				spellicon:SetTexture(GetSpellTexture(20707))
 			end
 			spellicon:SetTexCoord(0.08,0.92,0.08,0.92)
