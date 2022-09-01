@@ -552,8 +552,23 @@ P.ElvUI_EltreumUI = {
 			classcolortargetcastbar = false,
 
 			gradientXP = false,
+			gradientXPcolors ={
+				r = 0.8,
+				g = 0.4,
+				b = 1,
+			},
 			gradientReputation = false,
+			gradientReputationcolors = {
+				r = 0,
+				g = 0,
+				b = 0.4,
+			},
 			gradientHonor = false,
+			gradientHonorcolors = {
+				r = -0.2,
+				g = -0.4,
+				b = -0.4,
+			},
 
 			enableplayer = true,
 			enabletarget = true,
@@ -797,6 +812,10 @@ P.ElvUI_EltreumUI = {
 			nporientation = "VERTICAL",
 			npcustomcolor = false,
 
+			stylefilterr = -0.4,
+			stylefilterg = -0.4,
+			stylefilterb = -0.4,
+
 			goodthreatR1 = 0.27843075990677,
 			goodthreatR2 = 0.95294117647059,
 			goodthreatG1 = 1,
@@ -988,6 +1007,10 @@ P.ElvUI_EltreumUI = {
 			modeltypecast = "DEFAULT",
 			custommodelcast = 165821,
 			custommodelclassiccast = "spells/corruption_impactdot_med_base.m2",
+			powerbar = false,
+			modeltypepower = "DEFAULT",
+			custommodelpower = 1715069,
+			custommodelclassicpower = "spells/arcanepower_state_chest.m2",
 		},
 		arenabuffs = false,
 		bgunitframes = false,

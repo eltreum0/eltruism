@@ -5576,6 +5576,49 @@ function ElvUI_EltreumUI:Configtable()
 									E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.goodthreattransitionofftankB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
+							stylefilter = {
+								order = 31,
+								type = "description",
+								name = E.NewSign..L["Style Filter"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							stylefilterred = {
+								type = 'range',
+								name = L["Red"],
+								order = 65,
+								min = -1,
+								max = 1,
+								step = 0.01,
+								desc = L["This is how much the color will gain or lose this value"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							stylefiltergreen = {
+								type = 'range',
+								name = L["Green"],
+								order = 66,
+								min = -1,
+								max = 1,
+								step = 0.01,
+								desc = L["This is how much the color will gain or lose this value"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							stylefilterblue = {
+								type = 'range',
+								name = L["Blue"],
+								order = 67,
+								min = -1,
+								max = 1,
+								step = 0.01,
+								desc = L["This is how much the color will gain or lose this value"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
 						},
 					},
 					power = {
@@ -8528,27 +8571,6 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize = tonumber(value) E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							--[[bossenable = {
-								order = 5,
-								name = L["Enable for Boss Emote Frame"],
-								type = "toggle",
-								desc = L["Enable for Boss Emote Frame"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.raidbossframe end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.raidbossframe = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							bosssize = {
-								type = 'range',
-								name = L["Boss Emote Frame Font Size"],
-								desc = L["Boss Emote Frame Font Size"],
-								order = 6,
-								min = 8,
-								max = 36,
-								step = 1,
-								width = "double",
-								get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.raidbossframefontsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.raidbossframefontsize = tonumber(value) E:StaticPopup_Show('CONFIG_RL') end,
-							},]]
 							zoneenable = {
 								order = 34,
 								name = L["Enable for Zones, Mail and others"],
@@ -8716,72 +8738,6 @@ function ElvUI_EltreumUI:Configtable()
 								--hidden = function() if E.Retail then return true else return false end end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.tbctalents end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.tbctalents = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							header8898 = {
-								order = 58,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							gradientxp = {
-								order = 59,
-								type = "description",
-								name = L["Add a gradient color to the Experience Bar"],
-								width = "full",
-							},
-							gradientxpenable = {
-								order = 60,
-								type = 'toggle',
-								name = L["Enable"],
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							header8898rep = {
-								order = 61,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							gradientrep = {
-								order = 62,
-								type = "description",
-								name = E.NewSign..L["Add a gradient color to the Reputation Bar"],
-								width = "full",
-							},
-							gradientrepenable = {
-								order = 63,
-								type = 'toggle',
-								name = L["Enable"],
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							header8898honor = {
-								order = 64,
-								type = "description",
-								name = "",
-								width = 'full',
-								hidden = not E.Retail,
-								--hidden = function() if E.Retail then return false else return true end end,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							gradienthonor = {
-								order = 65,
-								type = "description",
-								name = E.NewSign..L["Add a gradient color to the Honor Bar"],
-								width = "full",
-								hidden = not E.Retail,
-								--hidden = function() if E.Retail then return false else return true end end,
-							},
-							gradienthonorenable = {
-								order = 66,
-								type = 'toggle',
-								name = L["Enable"],
-								hidden = not E.Retail,
-								--hidden = function() if E.Retail then return false else return true end end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							headerhidekeypressab = {
 								order = 94,
@@ -9750,6 +9706,168 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.fontSize end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.fontSize = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+						},
+					},
+					databars = {
+						type = 'group',
+						name = E.NewSign..L["DataBars"],
+						order = 5,
+						args = {
+							header8898 = {
+								order = 58,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gradientxp = {
+								order = 59,
+								type = "description",
+								name = L["Add a gradient color to the Experience Bar"],
+								width = "full",
+							},
+							gradientxpenable = {
+								order = 60,
+								type = 'toggle',
+								name = L["Enable"],
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							gradientxpcolor = {
+								order = 61,
+								type = 'color',
+								name = L["Color"],
+								hasAlpha = false,
+								width = 'full',
+								desc = L["This is the second color on the Experience Bar, the first can be found in ElvUI Databars section"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP end,
+								get = function()
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, 1, P.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, P.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, P.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+								end,
+							},
+							header8898rep = {
+								order = 62,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gradientrep = {
+								order = 63,
+								type = "description",
+								name = E.NewSign..L["Add a gradient color to the Reputation Bar"],
+								width = "full",
+							},
+							gradientrepenable = {
+								order = 64,
+								type = 'toggle',
+								name = L["Enable"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							repred = {
+								type = 'range',
+								name = L["Red"],
+								order = 65,
+								min = -1,
+								max = 1,
+								step = 0.01,
+								desc = L["This is how much the color will gain or lose this value"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							repgreen = {
+								type = 'range',
+								name = L["Green"],
+								order = 66,
+								min = -1,
+								max = 1,
+								step = 0.01,
+								desc = L["This is how much the color will gain or lose this value"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							repblue = {
+								type = 'range',
+								name = L["Blue"],
+								order = 67,
+								min = -1,
+								max = 1,
+								step = 0.01,
+								desc = L["This is how much the color will gain or lose this value"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header8898honor = {
+								order = 68,
+								type = "description",
+								name = "",
+								width = 'full',
+								hidden = not E.Retail,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gradienthonor = {
+								order = 69,
+								type = "description",
+								name = E.NewSign..L["Add a gradient color to the Honor Bar"],
+								width = "full",
+								hidden = not E.Retail,
+							},
+							gradienthonorenable = {
+								order = 70,
+								type = 'toggle',
+								name = L["Enable"],
+								width = 'full',
+								hidden = not E.Retail,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							honorred = {
+								type = 'range',
+								name = L["Red"],
+								order = 71,
+								min = -1,
+								max = 1,
+								step = 0.01,
+								hidden = not E.Retail,
+								desc = L["This is how much the color will gain or lose this value"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.r end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.r = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							honorgreen = {
+								type = 'range',
+								name = L["Green"],
+								order = 72,
+								min = -1,
+								max = 1,
+								step = 0.01,
+								hidden = not E.Retail,
+								desc = L["This is how much the color will gain or lose this value"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.g end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.g = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							honorblue = {
+								type = 'range',
+								name = L["Blue"],
+								order = 73,
+								min = -1,
+								max = 1,
+								step = 0.01,
+								hidden = not E.Retail,
+								desc = L["This is how much the color will gain or lose this value"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 						},
 					},
@@ -10824,6 +10942,85 @@ function ElvUI_EltreumUI:Configtable()
 										E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassiccast = tostring(value)
 									end
 									ElvUI_EltreumUI:CastbarEffects()
+								end,
+							},
+							headerpower = {
+								order = 124,
+								type = "description",
+								name = L["Power Bar Models"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							powerbarmodeleffect = {
+								type = 'toggle',
+								name = L["Enable Models/Effects"],
+								desc = L["Enable adding models as effects on Castbars"],
+								order = 125,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.powerbar end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.powerbar = value ElvUI_EltreumUI:PowerEffect() end,
+							},
+							selectmodeltypepower = {
+								order = 126,
+								type = 'select',
+								name = L["Choose between a Default Model or a Custom Model"],
+								values = {
+									["DEFAULT"] = L["Default"],
+									["CUSTOM"] = CUSTOM,
+								},
+								sorting = {
+									"DEFAULT",
+									"CUSTOM",
+								},
+								style = 'radio',
+								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.models.powerbar) end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower = value ElvUI_EltreumUI:PowerEffect() end,
+							},
+							custommodelpathpower = {
+								order = 127,
+								type = 'input',
+								name = function()
+									if E.Retail then
+										return L["Type the Model ID, such as 165821"]
+									else
+										return L["Type the Model Path, such as spells/corruption_impactdot_med_base.m2"]
+									end
+								end,
+								width = 'full',
+								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" or (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.models.powerbar) end,
+								validate = function(_, value)
+									E.PopupDialogs["ELTRUISMINVALIDMODELPOWER"] = {
+										text = L["Invalid Model, you need to add a Model ID/Path"],
+										button1 = OKAY,
+										timeout = 0,
+										whileDead = 1,
+										hideOnEscape = true,
+									}
+									if E.Retail then
+										if tonumber(value) ~= nil then
+											return true
+										else
+											return E:StaticPopup_Show('ELTRUISMINVALIDMODELPOWER') and false
+										end
+									else
+										return true
+									end
+								end,
+								get = function()
+									if E.Retail then
+										return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
+									else
+										return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
+									end
+								end,
+								set = function(_, value)
+									if E.Retail then
+										E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower = tonumber(value)
+									else
+										E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower = tostring(value)
+									end
+									ElvUI_EltreumUI:PowerEffect()
 								end,
 							},
 						},
