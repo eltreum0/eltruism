@@ -812,6 +812,10 @@ P.ElvUI_EltreumUI = {
 			nporientation = "VERTICAL",
 			npcustomcolor = false,
 
+			stylefilterr = -0.4,
+			stylefilterg = -0.4,
+			stylefilterb = -0.4,
+
 			goodthreatR1 = 0.27843075990677,
 			goodthreatR2 = 0.95294117647059,
 			goodthreatG1 = 1,
