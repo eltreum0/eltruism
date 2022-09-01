@@ -255,6 +255,10 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 			return
 		end
 
+		if UnitIsUnit(unit.unit, "player") then
+			return
+		end
+
 		if (not UnitAffectingCombat(unit.unit)) and (UnitThreatSituation("player", unit.unit) == nil) then
 			if UnitIsUnit(unit.unit, "target") then
 				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight then
