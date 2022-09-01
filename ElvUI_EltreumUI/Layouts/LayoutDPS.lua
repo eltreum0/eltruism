@@ -5,6 +5,7 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 local C_CVar = _G.C_CVar
 
 function ElvUI_EltreumUI:SetupLayoutDPS()
+	if not E.db.movers then E.db.movers = {} end
 	if E.Retail then
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
 		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
