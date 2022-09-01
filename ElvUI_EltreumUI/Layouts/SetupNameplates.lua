@@ -644,7 +644,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		-- Enemy at execute range, general range bc different classes have different hp% executes
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["g"] = 0
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["health"] = false --if true then gradient doesnt look as good
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["b"] = 0.11764705882353
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["g"] = 0.16470588235294
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["r"] = 0.69411764705882
