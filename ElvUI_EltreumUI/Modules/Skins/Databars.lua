@@ -39,15 +39,7 @@ if E.Retail then
 end
 
 
-
-
-
-
-
-
-
-
-
+--gradient tooltip health
 local function SetTooltipGradient(unit)
 	if not unit then return end
 	local _, classunit = UnitClass(unit)
@@ -97,7 +89,6 @@ local function SetTooltipGradient(unit)
 	end
 end
 
---gradient tooltip health
 local TT = E:GetModule('Tooltip')
 function ElvUI_EltreumUI:GradientTooltip(tt, unit)
 	if tt and tt:IsForbidden() then return end
