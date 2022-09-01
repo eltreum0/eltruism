@@ -1101,3 +1101,5 @@ L["Line Width"] = "Largura da Liha"
 L["Line Height"] = "Altura da Linha"
 L["Button Size"] = "Tamanho do Botão"
 L["Text"] = "Texto"
+L["This is the second color on the Experience Bar, the first can be found in ElvUI Databars section"] = true
+L["This is how much the color will gain or lose this value"] = true
