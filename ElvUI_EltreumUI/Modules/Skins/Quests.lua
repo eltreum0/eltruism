@@ -75,12 +75,6 @@ function ElvUI_EltreumUI:SkinQuests()
 			wowheadbutton:Hide()
 		end
 
-		if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-			classcolor.r = E.db.ElvUI_EltreumUI.skins.questsettings.customr
-			classcolor.g = E.db.ElvUI_EltreumUI.skins.questsettings.customg
-			classcolor.b = E.db.ElvUI_EltreumUI.skins.questsettings.customb
-		end
-
 		if E.Retail then
 			--get questid
 			local questID
@@ -145,13 +139,21 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 						if block.HeaderText then --quest title
 							block.HeaderText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+1, E.db.general.fontStyle)
-							block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+							if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+								block.HeaderText:SetTextColor(mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+							else
+								block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+							end
 							block.HeaderText:SetWordWrap(true)
 						end
 						if block.currentLine then --quest text
 							if block.currentLine.objectiveKey == 0 then --also quest title
 								block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, E.db.general.fontStyle)
-								block.currentLine.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+									block.currentLine.Text:SetTextColor(mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								else
+									block.currentLine.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+								end
 								block.currentLine.Text:SetWordWrap(true)
 							else --step/description of the quest
 								block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, E.db.general.fontStyle)
@@ -173,7 +175,11 @@ function ElvUI_EltreumUI:SkinQuests()
 							if not IsAddOnLoaded("ElvUI_SLE") then
 								module.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize*1.5, E.db.general.fontStyle)
 							end
-							module.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+								module.Header.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+							else
+								module.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							end
 							module.Header.Text:SetShadowColor(0, 0, 0, 0.8)
 							module.Header.Text:SetShadowOffset(2, -1)
 
@@ -252,7 +258,11 @@ function ElvUI_EltreumUI:SkinQuests()
 					for _, frame in pairs(frames) do
 						if frame.Text then
 							frame.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+2, E.db.general.fontStyle)
-							frame.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+							if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+								frame.Text:SetTextColor(mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+							else
+								frame.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+							end
 							frame.Text:SetWordWrap(true)
 						end
 					end
@@ -279,7 +289,11 @@ function ElvUI_EltreumUI:SkinQuests()
 					_G.ScenarioStageBlock.FinalBG:Hide()
 					--dungeon/raid/scenario name text
 					if _G.ScenarioStageBlock.Stage then
-						_G.ScenarioStageBlock.Stage:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+							_G.ScenarioStageBlock.Stage:SetTextColor(mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+						else
+							_G.ScenarioStageBlock.Stage:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+						end
 						_G.ScenarioStageBlock.Stage:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+6, E.db.general.fontStyle)
 						_G.ScenarioStageBlock.Stage:SetShadowColor(0, 0, 0, 0.8)
 						_G.ScenarioStageBlock.Stage:SetShadowOffset(2, -1)
@@ -289,15 +303,24 @@ function ElvUI_EltreumUI:SkinQuests()
 				--on mouse enter and leave
 				hooksecurefunc(DEFAULT_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
 					if ( block.HeaderText ) then
-						block.HeaderText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-						block.HeaderText.colorStyle = {r = classcolor.r, g = classcolor.g, b = classcolor.b}
+						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+							block.HeaderText:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+							block.HeaderText.colorStyle = {r = E.db.ElvUI_EltreumUI.skins.questsettings.customr, g = E.db.ElvUI_EltreumUI.skins.questsettings.customg, b = E.db.ElvUI_EltreumUI.skins.questsettings.customb}
+						else
+							block.HeaderText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							block.HeaderText.colorStyle = {r = classcolor.r, g = classcolor.g, b = classcolor.b}
+						end
 					end
 					if block.currentLine then --this is the text
 						for _, line in pairs(block.lines) do
 							line.Text:SetTextColor(1, 1, 1)
 							line.Text.colorStyle = {r = mult * 1, g = mult * 1, b = mult * 1}
 							if ( line.Dash ) then
-								line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								else
+									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
 							end
 						end
 					end
@@ -305,15 +328,24 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				hooksecurefunc(DEFAULT_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
 					if ( block.HeaderText ) then
-						block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
-						block.HeaderText.colorStyle = { r = mult * classcolor.r, g = mult * classcolor.g, b = mult * classcolor.b }
+						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+							block.HeaderText:SetTextColor(mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+							block.HeaderText.colorStyle = {r = mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, g = mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, b = mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb}
+						else
+							block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+							block.HeaderText.colorStyle = { r = mult * classcolor.r, g = mult * classcolor.g, b = mult * classcolor.b }
+						end
 					end
 					if block.currentLine then
 						for _, line in pairs(block.lines) do
 							line.Text:SetTextColor(mult, mult, mult)
 							line.Text.colorStyle = {r = mult, g = mult, b = mult}
 							if ( line.Dash ) then
-								line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								else
+									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
 							end
 						end
 					end
@@ -323,12 +355,20 @@ function ElvUI_EltreumUI:SkinQuests()
 					if block.currentLine then --this is the text
 						for objectiveKey, line in pairs(block.lines) do --Blizzard_ObjectiveTracker.lua#L458
 							if objectiveKey == 0 then --its the title
-								line.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+									line.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								else
+									line.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
 							else -- its the subtext
 								line.Text:SetTextColor(1, 1, 1)
 							end
 							if ( line.Dash ) then
-								line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								else
+									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
 							end
 						end
 					end
@@ -338,12 +378,20 @@ function ElvUI_EltreumUI:SkinQuests()
 					if block.currentLine then
 						for objectiveKey, line in pairs(block.lines) do --Blizzard_ObjectiveTracker.lua#L458
 							if objectiveKey == 0 then --its the title
-								line.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+									line.Text:SetTextColor(mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								else
+									line.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+								end
 							else -- its the subtext
 								line.Text:SetTextColor(mult, mult, mult)
 							end
 							if ( line.Dash ) then
-								line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								else
+									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
 							end
 						end
 					end
@@ -427,7 +475,11 @@ function ElvUI_EltreumUI:SkinQuests()
 			InvisFrameHeaderBar:SetInside()
 			local QuestWatchFrameTitle = _G.QuestWatchFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 			QuestWatchFrameTitle:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+3, E.db.general.fontStyle)
-			QuestWatchFrameTitle:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+			if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+				QuestWatchFrameTitle:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+			else
+				QuestWatchFrameTitle:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+			end
 			QuestWatchFrameTitle:SetParent(InvisFrameHeaderBar)
 			QuestWatchFrameTitle:ClearAllPoints()
 			QuestWatchFrameTitle:SetPoint("LEFT", InvisFrameHeaderBar, 6, 8)
@@ -523,7 +575,11 @@ function ElvUI_EltreumUI:SkinQuests()
 								--watchText:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
 								watchText:SetTextColor(0, 1, 0)
 							else
-								watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+									watchText:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								else
+									watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
 							end
 						end
 					end
@@ -577,7 +633,11 @@ function ElvUI_EltreumUI:SkinQuests()
 					if ( isHeader ) then
 						--line.text:SetTextColor(0.75, 0.61, 0)
 						line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+2, E.db.general.fontStyle)
-						line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+							line.text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+						else
+							line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+						end
 						line.text:SetWidth(250)
 					elseif isComplete then
 						line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, E.db.general.fontStyle)
@@ -625,7 +685,11 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				local WatchFrameTitle = _G.WatchFrameTitle
 				WatchFrameTitle:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+3, E.db.general.fontStyle)
-				WatchFrameTitle:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+					WatchFrameTitle:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+				else
+					WatchFrameTitle:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+				end
 
 				WatchFrameTitle:SetParent(InvisFrameHeaderBar)
 				WatchFrameTitle:ClearAllPoints()
@@ -721,11 +785,19 @@ function ElvUI_EltreumUI:SkinQuests()
 								-- header
 								if ( onEnter ) then
 									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+2, E.db.general.fontStyle)
-									line.text:SetTextColor(classcolor.r+0.2, classcolor.g+0.2, classcolor.b+0.2)
+									if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+										line.text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr+0.2, E.db.ElvUI_EltreumUI.skins.questsettings.customg+0.2, E.db.ElvUI_EltreumUI.skins.questsettings.customb+0.2)
+									else
+										line.text:SetTextColor(classcolor.r+0.2, classcolor.g+0.2, classcolor.b+0.2)
+									end
 									line.text:SetWidth(250)
 								else
 									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+2, E.db.general.fontStyle)
-									line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+									if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+										line.text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+									else
+										line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+									end
 									line.text:SetWidth(250)
 								end
 							else
