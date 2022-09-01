@@ -10944,6 +10944,85 @@ function ElvUI_EltreumUI:Configtable()
 									ElvUI_EltreumUI:CastbarEffects()
 								end,
 							},
+							headerpower = {
+								order = 124,
+								type = "description",
+								name = L["Power Bar Models"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							powerbarmodeleffect = {
+								type = 'toggle',
+								name = L["Enable Models/Effects"],
+								desc = L["Enable adding models as effects on Castbars"],
+								order = 125,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.powerbar end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.powerbar = value ElvUI_EltreumUI:PowerEffect() end,
+							},
+							selectmodeltypepower = {
+								order = 126,
+								type = 'select',
+								name = L["Choose between a Default Model or a Custom Model"],
+								values = {
+									["DEFAULT"] = L["Default"],
+									["CUSTOM"] = CUSTOM,
+								},
+								sorting = {
+									"DEFAULT",
+									"CUSTOM",
+								},
+								style = 'radio',
+								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.models.powerbar) end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower = value ElvUI_EltreumUI:PowerEffect() end,
+							},
+							custommodelpathpower = {
+								order = 127,
+								type = 'input',
+								name = function()
+									if E.Retail then
+										return L["Type the Model ID, such as 165821"]
+									else
+										return L["Type the Model Path, such as spells/corruption_impactdot_med_base.m2"]
+									end
+								end,
+								width = 'full',
+								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" or (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.models.powerbar) end,
+								validate = function(_, value)
+									E.PopupDialogs["ELTRUISMINVALIDMODELPOWER"] = {
+										text = L["Invalid Model, you need to add a Model ID/Path"],
+										button1 = OKAY,
+										timeout = 0,
+										whileDead = 1,
+										hideOnEscape = true,
+									}
+									if E.Retail then
+										if tonumber(value) ~= nil then
+											return true
+										else
+											return E:StaticPopup_Show('ELTRUISMINVALIDMODELPOWER') and false
+										end
+									else
+										return true
+									end
+								end,
+								get = function()
+									if E.Retail then
+										return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
+									else
+										return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
+									end
+								end,
+								set = function(_, value)
+									if E.Retail then
+										E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower = tonumber(value)
+									else
+										E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower = tostring(value)
+									end
+									ElvUI_EltreumUI:PowerEffect()
+								end,
+							},
 						},
 					},
 				},
