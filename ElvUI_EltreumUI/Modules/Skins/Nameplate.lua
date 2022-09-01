@@ -251,11 +251,7 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 		}
 
 		--check if its not explosive
-		if unit.unitGUID and unit.unitGUID:match("-120651-") then
-			return
-		end
-
-		if UnitIsUnit(unit.unit, "player") then
+		if (unit.unitGUID and unit.unitGUID:match("-120651-")) or UnitIsUnit(unit.unit,"player") then
 			return
 		end
 
