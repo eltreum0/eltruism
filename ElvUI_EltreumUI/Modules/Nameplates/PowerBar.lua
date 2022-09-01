@@ -903,20 +903,26 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				powerbareffect:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
 				--powerbareffect:SetPoint("CENTER",EltreumPowerBar, "CENTER")
 				powerbareffect:SetAllPoints(EltreumPowerBar:GetStatusBarTexture())
-
-
-				if E.Retail then
-					powerbareffect:SetModel(1715069) --better for retail, inspired by asakawa's bar model
-					--powerbareffect:SetModel(1630153)
-					powerbareffect:MakeCurrentCameraCustom()
-					powerbareffect:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
-					powerbareffect:SetPortraitZoom(1)
-					powerbareffect:SetAlpha(0.4) --might do this
-				else
-					powerbareffect:SetModel("spells/arcanepower_state_chest.m2")
-					--powerbareffect:SetModel("spells/cfx_priest_holyprecast_precastarm.m2") --sadly not on classic
-					powerbareffect:SetPosition(1.2, 0, 0)
-					powerbareffect:SetAlpha(0.4) --might do this
+				if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
+					if E.Retail then
+						powerbareffect:SetModel(1715069) --better for retail, inspired by asakawa's bar model
+						--powerbareffect:SetModel(1630153)
+						powerbareffect:MakeCurrentCameraCustom()
+						powerbareffect:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
+						powerbareffect:SetPortraitZoom(1)
+						powerbareffect:SetAlpha(0.4) --might do this
+					else
+						powerbareffect:SetModel("spells/arcanepower_state_chest.m2")
+						--powerbareffect:SetModel("spells/cfx_priest_holyprecast_precastarm.m2") --sadly not on classic
+						powerbareffect:SetPosition(1.2, 0, 0)
+						powerbareffect:SetAlpha(0.4) --might do this
+					end
+				elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
+					if E.Retail then
+						powerbareffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
+					else
+						powerbareffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
+					end
 				end
 				powerbareffect:SetInside(EltreumPowerBar:GetStatusBarTexture(), 0, 0)
 				powerbareffect:SetParent(EltreumPowerBar)
