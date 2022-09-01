@@ -1065,7 +1065,11 @@ function ElvUI_EltreumUI:SetupCVars()
 	_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:SetValue('SHIFT')
 	_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:RefreshValue()
 
-	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
+	if not E.Wrath then
+		SetCVar('cameraDistanceMaxZoomFactor', 2.6)
+	else
+		SetCVar('cameraDistanceMaxZoomFactor', 3.4)
+	end
 
 	if E.Retail then
 		SetCVar('showNPETutorials', 0)
