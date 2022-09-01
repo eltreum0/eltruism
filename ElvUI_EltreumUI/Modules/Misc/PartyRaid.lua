@@ -167,39 +167,39 @@ function ElvUI_EltreumUI:SetGroupRoleWrath()
 			SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
 		else
 			if E.myclass == 'SHAMAN' then
-				if spent3 < (spent1 and spent2) then
+				if spent3 < spent1 and spent3 < spent2 then
 					SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
-				elseif spent3 > (spent1 and spent2) then
+				elseif spent3 > spent1 and spent3 > spent2 then
 					SetTalentGroupRole(GetActiveTalentGroup(),"HEALER")
 				end
 			elseif E.myclass == 'PRIEST' then
-				if spent3 < (spent1 and spent2) then
+				if spent3 < spent1 and spent3 < spent2 then
 					SetTalentGroupRole(GetActiveTalentGroup(),"HEALER")
-				elseif spent3 > (spent1 and spent2) then
+				elseif spent3 > spent1 and spent3 > spent2 then
 					SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
 				end
 			elseif E.myclass == 'DRUID' then
-				if spent3 > (spent1 and spent2) then
+				if spent3 > spent1 and spent3 > spent2 then
 					SetTalentGroupRole(GetActiveTalentGroup(),"HEALER")
-				elseif spent1 > (spent3 and spent2) then
+				elseif spent1 > spent3 and spent1 > spent2 then
 					SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
 				end
 			elseif E.myclass == 'WARRIOR' then
-				if spent3 > (spent1 and spent2) then
+				if spent3 > spent1 and spent3 > spent2 then
 					SetTalentGroupRole(GetActiveTalentGroup(),"TANK")
-				elseif spent3 < (spent1 and spent2) then
+				elseif spent3 < spent1 and spent3 < spent2 then
 					SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
 				end
 			elseif E.myclass == 'PALADIN' then
-				if spent1 > (spent2 and spent3) then
+				if spent1 > spent3 and spent1 > spent2 then
 					SetTalentGroupRole(GetActiveTalentGroup(),"HEALER")
-				elseif spent2 > (spent1 and spent3) then
+				elseif spent2 > spent1 and spent2 > spent3 then
 					SetTalentGroupRole(GetActiveTalentGroup(),"TANK")
-				elseif spent3 > (spent1 and spent2) then
+				elseif spent3 > spent1 and spent3 > spent2 then
 					SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
 				end
-			elseif E.myclass == 'WARRIOR' then
-				if spent3 > (spent1 and spent2) then
+			elseif E.myclass == 'DEATHKNIGHT' then
+				if spent3 > spent1 and spent3 > spent2 then
 					SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
 				end
 			end
