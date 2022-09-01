@@ -235,7 +235,8 @@ function ElvUI_EltreumUI:SkillGlow()
 
 				--victory rush
 				[34428] = true,
-
+				--kill command
+				[34026] = true,
 				--riposte
 				[14251] = true,
 
@@ -299,9 +300,7 @@ function ElvUI_EltreumUI:SkillGlow()
 				[24239] = true,
 
 				--shadow bolt
-				[47809] = true,
-				[47808] = true,
-				[27209] = true,
+				--[[[27209] = true,
 				[25307] = true,
 				[11661] = true,
 				[11660] = true,
@@ -311,57 +310,35 @@ function ElvUI_EltreumUI:SkillGlow()
 				[1088] = true,
 				[705] = true,
 				[695] = true,
-				[686] = true,
-			}
-
-			local aura_id = {
-				[34936] = true,
-				[17941] = true,
-				--[696] = true, --test demon skin
-
-				[59052] = true, --rime
-				[51124] = true,--killing machine
-
+				[686] = true,]]
 			}
 
 			local proc
-			local auraid, _,hasBuff
+			--local auraid, _
 			function ElvUI_EltreumUI:ClassicGlow(barName)
 				local bar = AB["handledBars"][barName]
 				if not bar then return end
 				local button
-
 				local procFrame = CreateFrame('frame')
 				procFrame:RegisterEvent('ACTIONBAR_UPDATE_USABLE')
 				procFrame:RegisterEvent('ACTIONBAR_UPDATE_STATE')
 				procFrame:RegisterEvent('SPELL_UPDATE_USABLE')
 				procFrame:RegisterEvent('PLAYER_TARGET_CHANGED')
-				--procFrame:RegisterUnitEvent('UNIT_AURA', "player")
 				procFrame:SetScript('OnEvent', function()
-
-					for buff = 1, 40 do
-						auraid = select(10, UnitAura("player", buff))
-						if aura_id[tonumber(auraid)] then --backlash and shadow trance
-							hasBuff = true
-							break
-						else
-							hasBuff = false
-						end
-					end
-
 					for i=1, NUM_ACTIONBAR_BUTTONS do
 						button = bar.buttons[i]
 						local buttonname = button:GetName()
 						if _G[buttonname].GetSpellId and _G[buttonname]:GetSpellId() then
 							proc = _G[buttonname]:GetSpellId()
 						end
-						if SPELL_ID[proc] then
+						if SPELL_ID[proc] and not (E.Wrath and proc == 34026)then
 							local USABLE, NO_MANA = IsUsableSpell(proc)
 							local cd = GetSpellCooldown(proc)
 							if (UnitExists("target") and UnitCanAttack("player", "target") and cd == 0 and USABLE and not NO_MANA) and _G[buttonname].GetSpellId and _G[buttonname]:GetSpellId() == proc then
 								if E.myclass == 'PALADIN' then
 									if proc == 27138 or proc == 10314 or proc == 10313 or proc == 10312 or proc == 5615 or proc == 5614 or proc == 879 then
 										local unittype = UnitCreatureType("target")
+										--if unittype == "Demon" or unittype == "Dämon" or unittype == "Demonio" or unittype == "Démon" or unittype == "Demone" or unittype == "Demônio" or unittype == "Демон" or unittype == "악마" or unittype == "恶魔" or unittype == "惡魔" or unittype == "Undead" or unittype == "Untoter" or unittype == "No-muerto" or unittype == "Mort-vivant" or unittype == "Non Morto" or unittype == "Renegado" or unittype == "Нежить" or unittype == "언데드" or unittype == "亡灵" or unittype == "不死族" then
 										if unittype == _G.PET_TYPE_DEMON or unittype == _G.BATTLE_PET_DAMAGE_NAME_4 then
 											if E.db.ElvUI_EltreumUI.glow.pixel then
 												LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
@@ -389,21 +366,26 @@ function ElvUI_EltreumUI:SkillGlow()
 										end
 									end
 								--[[elseif E.myclass == 'WARLOCK' then
-									if hasBuff then --backlash and shadow trance
-										if E.db.ElvUI_EltreumUI.glow.pixel then
-											LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
-										elseif E.db.ElvUI_EltreumUI.glow.autocast then
-											LCG.AutoCastGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-											LCG.ButtonGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
-										end
-									else
-										if E.db.ElvUI_EltreumUI.glow.pixel then
-											LCG.PixelGlow_Stop(_G[buttonname])
-										elseif E.db.ElvUI_EltreumUI.glow.autocast then
-											LCG.AutoCastGlow_Stop(_G[buttonname])
-										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-											LCG.ButtonGlow_Stop(_G[buttonname])
+									procFrame:RegisterUnitEvent('UNIT_AURA', "player")
+									for i = 1, 30 do
+										--auraid = select(10, UnitAura("player", i))
+										--print(auraid)
+										if auraid == 34936 or auraid == 17941 then --backlash and shadow trance
+											if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
+											elseif E.db.ElvUI_EltreumUI.glow.autocast and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												LCG.AutoCastGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+											elseif E.db.ElvUI_EltreumUI.glow.blizzard and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												LCG.ButtonGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
+											end
+										elseif not auraid or auraid ~= 34936 or auraid ~= 17941 then
+											if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												LCG.PixelGlow_Stop(_G[buttonname])
+											elseif E.db.ElvUI_EltreumUI.glow.autocast and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												LCG.AutoCastGlow_Stop(_G[buttonname])
+											elseif E.db.ElvUI_EltreumUI.glow.blizzard and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												LCG.ButtonGlow_Stop(_G[buttonname])
+											end
 										end
 									end]]
 								else
