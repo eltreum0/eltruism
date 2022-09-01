@@ -166,8 +166,6 @@ function ElvUI_EltreumUI:SetGroupRoleWrath()
 		if E.myclass == 'WARLOCK' or E.myclass == 'MAGE' or E.myclass == 'HUNTER' or E.myclass == 'ROGUE' then
 			SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
 		else
-			local spec = GetActiveTalentGroup()
-
 			if E.myclass == 'SHAMAN' then
 				if spent3 < (spent1 and spent2) then
 					SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
