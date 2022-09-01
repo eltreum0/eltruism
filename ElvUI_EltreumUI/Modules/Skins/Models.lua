@@ -20,7 +20,8 @@ local peteffect = CreateFrame("playermodel", "EltruismPetEffect")
 local powerbareffectplayer = CreateFrame("PlayerModel", "EltruismPlayerPowerBarEffect")
 local powerbareffecttarget = CreateFrame("PlayerModel", "EltruismTargetPowerBarEffect")
 local powerbareffecttargettarget = CreateFrame("PlayerModel", "EltruismTargetTargetPowerBarEffect")
-local powerbar, targetpowerbar,targettargetpowerbar
+local powerbareffectpet = CreateFrame("PlayerModel", "EltruismPetPowerBarEffect")
+local powerbar, targetpowerbar,targettargetpowerbar,petpowerbar
 
 --models table, because each version has different texture paths
 --its based on the color of the model, not the name/theme
@@ -383,6 +384,35 @@ function ElvUI_EltreumUI:PetUFEffects()
 					peteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
 				end
 				--peteffect:AddMaskTexture(petbar.Health:GetStatusBarTexture())
+			end
+		end
+		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
+			petpowerbar = _G["ElvUF_Pet_PowerBar"]
+			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
+				if E.Retail then
+					powerbareffectpet:SetModel(1715069)
+					powerbareffectpet:MakeCurrentCameraCustom()
+					powerbareffectpet:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
+					powerbareffectpet:SetPortraitZoom(1)
+					powerbareffectpet:SetAlpha(0.4) --might do this
+				else
+					powerbareffectpet:SetModel("spells/arcanepower_state_chest.m2")
+					powerbareffectpet:SetPosition(1.2, 0, 0)
+					powerbareffectpet:SetAlpha(0.4) --might do this
+				end
+			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
+				if E.Retail then
+					powerbareffectpet:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
+				else
+					powerbareffectpet:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
+				end
+			end
+			if petpowerbar then
+				powerbareffectpet:SetAlpha(1)
+				powerbareffectpet:SetAllPoints(petpowerbar:GetStatusBarTexture())
+				powerbareffectpet:SetFrameLevel(petpowerbar:GetFrameLevel())
+				powerbareffectpet:SetInside(petpowerbar:GetStatusBarTexture(), 0, 0)
+				powerbareffectpet:SetParent(petpowerbar)
 			end
 		end
 	end
