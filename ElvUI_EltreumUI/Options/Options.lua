@@ -4203,7 +4203,13 @@ function ElvUI_EltreumUI:Configtable()
 						desc = L["Maximum Camera Zoom Out"],
 						order = 5,
 						min = 1,
-						max = 2.6,
+						max = function()
+							if not E.Wrath then
+								return 2.6
+							else
+								return 3.4
+							end
+						end,
 						step = 0.1,
 						width = "full",
 						get = function() return E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor end,

@@ -226,7 +226,7 @@ end
 --GetActiveTalentGroup() --gets which of the dual is being used
 
 --turns out classic has the functions to get number of points on talent trees
-local function PlayerSpec()
+function ElvUI_EltreumUI:GetPlayerSpec()
 	_, _, spent1 = _G.GetTalentTabInfo(1)
 	_, _, spent2 = _G.GetTalentTabInfo(2)
 	_, _, spent3 = _G.GetTalentTabInfo(3)
@@ -287,7 +287,7 @@ if not E.Retail then
 		--wrathdualspec:RegisterEvent("CHARACTER_POINTS_CHANGED")
 		wrathdualspec:SetScript("OnEvent", function()
 			if CharacterFrame.Text5 and CharacterFrame.Text5:GetText() ~= nil then
-				CharacterFrame.Text5:SetText(PlayerSpec())
+				CharacterFrame.Text5:SetText(ElvUI_EltreumUI:GetPlayerSpec())
 			end
 		end)
 	end
@@ -1451,7 +1451,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.Text5:SetParent(_G["PaperDollItemsFrame"])
 			CharacterFrame.Text5:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			CharacterFrame.Text5:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
-			CharacterFrame.Text5:SetText(PlayerSpec())
+			CharacterFrame.Text5:SetText(ElvUI_EltreumUI:GetPlayerSpec())
 
 			CharacterFrame.Text:SetSize(418, 72)
 			CharacterFrame.Text:SetPoint("BOTTOM", CharacterFrame.Text5, "BOTTOM", 0, -25)
