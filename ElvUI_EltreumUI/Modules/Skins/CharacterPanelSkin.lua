@@ -1349,8 +1349,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			end
 
-
-
 			if E.Wrath or E.TBC then
 				_G.PlayerTitleDropDown:ClearAllPoints()
 				_G.PlayerTitleDropDown:SetParent(CharacterModelFrame)
