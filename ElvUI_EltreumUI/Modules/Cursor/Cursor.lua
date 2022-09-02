@@ -299,8 +299,20 @@ function ElvUI_EltreumUI:CastCursor()
 				tex:ClearAllPoints()
 				tex:SetDrawLayer("OVERLAY", cfg.sublayer or 0)
 				tex:SetTexture(cfg.texture)
-				tex:SetVertexColor(r, g, b)
-				--tex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass, false, false))
+				--tex:SetVertexColor(r, g, b)
+
+				if frame:GetName() == 'EltruismCursorCast' then
+					tex:SetVertexColor(1, 1, 1)
+					if i == 1 or i == 4 then
+						tex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass, false, false))
+					else
+						tex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass, true, false))
+					end
+				else
+					tex:SetVertexColor(r, g, b)
+				end
+
+
 				tex:SetTexCoord(unpack(QUAD_COORD_FULL[i]))
 				tex:SetSize(radius, radius)
 				tex:SetPoint(QUAD_POINTS[i][1], frame, QUAD_POINTS[i][2])
