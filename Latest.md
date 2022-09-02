@@ -1,14 +1,10 @@
-### 3.3.4 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.3.5 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added models to power bars and options for it, with nameplate power bar using the same settings as unitframe powers\
-Added options for gradient databars such as reputation, experience and honor\
-Added options for the nameplate style filter gradient\
-Added gradient to tooltips, this option is attached to unitframes\
-Added a function that will automatically set the correct role while in a group for Wrath\
-Updated German translations by DLarge\
-Updated Execute nameplate style filter to apply only a texture in order to not conflict with the gradient colors\
-Updated the custom nameplate height function to ignore player personal nameplate\
-Fixed a wrong icon for battle res while playing as a warlock in Retail\
-Fixed a possible error with shamans and totem bars during install\
-Fixed a possible class color overwrite when using custom colors for quests\
-Fixed Death Knight missing for Gradient Colors
+Added an option to turn off gradient npc castbars being colored by reaction and added color options for it\
+Added LootText to some created items\
+Added options to change the size and font of LootText, which will also affect some Combat Texts\
+Updated German translations by Dlarge\
+Fixed the compatibility check with MerathilisUI after its database was changed\
+Fixed player model effects not always appearing\
+Fixed possible errors in gradient power due to enemy NPCs having more powers than expected (over 100 power types), this will cause them to fallback to a mana gradient\
+Disabled MeetingHorn skin as I lack access to it in order to test and fix it
