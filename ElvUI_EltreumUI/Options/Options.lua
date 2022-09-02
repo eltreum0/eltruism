@@ -8834,7 +8834,7 @@ function ElvUI_EltreumUI:Configtable()
 									},
 								},
 							},
-							otherskins = {
+							--[[otherskins = {
 								order = 198,
 								type = "description",
 								name = L["Other Skins"],
@@ -8852,7 +8852,7 @@ function ElvUI_EltreumUI:Configtable()
 								--hidden = function() if E.Retail then return true else return false end end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.meetinghorn end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.meetinghorn = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
+							},]]
 						},
 					},
 					character = {
