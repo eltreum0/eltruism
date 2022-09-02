@@ -1133,3 +1133,6 @@ L["Power Bar Models"] = "Modelos de barras de potencia"
 L["NPC Castbars (Interruptible)"] = "Barras de fundición NPC (interrumpibles)"
 L["Color by Reaction"] = "Colorear por reacción"
 L["Use Custom Font"] = "Usar Fuente Personalizada"
+L["Red"] = true
+L["Green"] = true
+L["Blue"] = true

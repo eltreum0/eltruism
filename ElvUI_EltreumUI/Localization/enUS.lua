@@ -1114,3 +1114,6 @@ L["Power Bar Models"] = true
 L["NPC Castbars (Interruptible)"] = true
 L["Color by Reaction"] = true
 L["Use Custom Font"] = true
+L["Red"] = true
+L["Green"] = true
+L["Blue"] = true

@@ -1115,3 +1115,6 @@ L["Power Bar Models"] = "Modèles de barres d'alimentation"
 L["NPC Castbars (Interruptible)"] = "Barres coulées NPC (Interruptibles)"
 L["Color by Reaction"] = "Couleur par réaction"
 L["Use Custom Font"] = "Utiliser une police personnalisée"
+L["Red"] = true
+L["Green"] = true
+L["Blue"] = true
