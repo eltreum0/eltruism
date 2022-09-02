@@ -1316,15 +1316,40 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--set the tabs
 			if E.db.ElvUI_EltreumUI.skins.classicarmoryautostats then
-					SetCVar("playerStatLeftDropdown", "PLAYERSTAT_BASE_STATS")
-				if E.myclass == "MAGE" or E.myclass == "PRIEST" or E.myclass == "WARLOCK" or E.myclass == "DRUID" or E.myclass == "SHAMAN" then
+				local _, _, spent1 = _G.GetTalentTabInfo(1)
+				local _, _, spent2 = _G.GetTalentTabInfo(2)
+				local _, _, spent3 = _G.GetTalentTabInfo(3)
+				SetCVar("playerStatLeftDropdown", "PLAYERSTAT_BASE_STATS")
+				if E.myclass == 'WARLOCK' or E.myclass == 'MAGE' or E.myclass == 'PRIEST' then
 					SetCVar("playerStatRightDropdown", "PLAYERSTAT_SPELL_COMBAT")
-				elseif ( E.myclass == "HUNTER" ) then
+				elseif E.myclass == 'SHAMAN' then
+					if spent2 > spent1 and spent2 > spent3 then
+						SetCVar("playerStatRightDropdown", "PLAYERSTAT_MELEE_COMBAT")
+					else
+						SetCVar("playerStatRightDropdown", "PLAYERSTAT_SPELL_COMBAT")
+					end
+				elseif E.myclass == 'HUNTER' then
 					SetCVar("playerStatRightDropdown", "PLAYERSTAT_RANGED_COMBAT")
-				else
+				elseif E.myclass == 'DRUID' then
+					if spent2 > spent3 and spent2 > spent1 then
+						SetCVar("playerStatRightDropdown", "PLAYERSTAT_MELEE_COMBAT")
+					else
+						SetCVar("playerStatRightDropdown", "PLAYERSTAT_SPELL_COMBAT")
+					end
+				elseif E.myclass == 'WARRIOR' or E.myclass == 'ROGUE' then
+					SetCVar("playerStatRightDropdown", "PLAYERSTAT_MELEE_COMBAT")
+				elseif E.myclass == 'PALADIN' then
+					if spent1 > spent3 and spent1 > spent2 then
+						SetCVar("playerStatRightDropdown", "PLAYERSTAT_SPELL_COMBAT")
+					else
+						SetCVar("playerStatRightDropdown", "PLAYERSTAT_MELEE_COMBAT")
+					end
+				elseif E.myclass == 'DEATHKNIGHT' then
 					SetCVar("playerStatRightDropdown", "PLAYERSTAT_MELEE_COMBAT")
 				end
 			end
+
+
 
 			if E.Wrath or E.TBC then
 				_G.PlayerTitleDropDown:ClearAllPoints()
