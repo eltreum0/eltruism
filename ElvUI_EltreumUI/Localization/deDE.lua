@@ -1155,3 +1155,4 @@ L["This is how much the color will gain or lose this value"] = "Um wie viel wird
 L["Power Bar Models"] = "Kraftleisten Modelle"
 L["NPC Castbars (Interruptible)"] = true
 L["Color by Reaction"] = true
+L["Use Custom Font"] = true
