@@ -148,7 +148,7 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 	end
 end
 hooksecurefunc(UF, "Construct_PlayerFrame", ElvUI_EltreumUI.PlayerUFEffects)
---hooksecurefunc(UF, "Update_PlayerFrame", ElvUI_EltreumUI.PlayerUFEffects)
+hooksecurefunc(UF, "Update_PlayerFrame", ElvUI_EltreumUI.PlayerUFEffects)
 
 --add effects to target
 function ElvUI_EltreumUI:TargetUFEffects()

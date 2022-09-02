@@ -49,8 +49,8 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			addonname = "MerathilisUI"
 		end
 
-		if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons and E.db.mui.unitframes.roleIcons then
-			E.db.mui.unitframes.roleIcons = false
+		if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons and E.db.mui.unitframes.roleIcons.enable then
+			E.db.mui.unitframes.roleIcons.enable = false
 			E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons = true
 			compatibilityran = true
 			addonname = "MerathilisUI"
