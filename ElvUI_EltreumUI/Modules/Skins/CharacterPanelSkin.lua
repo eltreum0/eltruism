@@ -1449,7 +1449,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.Text5:SetSize(418, 72)
 			CharacterFrame.Text5:SetPoint("BOTTOM", CharacterFrame.StatusLine4, "BOTTOM", 0, -50)
 			CharacterFrame.Text5:SetParent(_G["PaperDollItemsFrame"])
-			CharacterFrame.Text5:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			--CharacterFrame.Text5:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			CharacterFrame.Text5:SetTextColor(1, 1, 1, 1)
 			CharacterFrame.Text5:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 			CharacterFrame.Text5:SetText(ElvUI_EltreumUI:GetPlayerSpec())
 
@@ -1511,7 +1512,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.MagicResFrame1:ClearAllPoints()
 			if E.Wrath or E.TBC then
 				_G.MagicResFrame1:SetParent(_G.PlayerStatFrameLeft1)
-				_G.MagicResFrame1:SetPoint("TOPLEFT", _G.PlayerStatFrameLeftDropDown, "TOPLEFT", 13, 27)
+				_G.MagicResFrame1:SetPoint("TOPLEFT", _G.PlayerStatFrameLeftDropDown, "TOPLEFT", 13, 25)
 			elseif E.Classic then
 				_G.MagicResFrame1:SetParent(_G.CharacterStatFrame1)
 				_G.MagicResFrame1:SetPoint("BOTTOM", CharacterFrame.StatusLine3, "BOTTOM", -55, -50)
@@ -1536,11 +1537,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			if E.Wrath or E.TBC then
 				--"left side" or in this case the top side
 				_G.PlayerStatFrameLeftDropDown:ClearAllPoints()
-				_G.PlayerStatFrameLeftDropDown:SetPoint("CENTER", CharacterFrame.StatusLine3, "CENTER", 0, -55)
+				_G.PlayerStatFrameLeftDropDown:SetPoint("CENTER", CharacterFrame.StatusLine3, "CENTER", 0, -45)
 				_G.PlayerStatFrameLeftDropDown:SetParent(_G["PaperDollItemsFrame"])
 
 				_G.PlayerStatFrameLeft1:ClearAllPoints()
-				_G.PlayerStatFrameLeft1:SetPoint("BOTTOM", _G.PlayerStatFrameLeftDropDown, "BOTTOM", -22, -5)
+				_G.PlayerStatFrameLeft1:SetPoint("BOTTOM", _G.PlayerStatFrameLeftDropDown, "BOTTOM", -22, -15)
 				_G.PlayerStatFrameLeft1:SetParent(_G["PaperDollItemsFrame"])
 
 				_G.PlayerStatFrameLeft2:ClearAllPoints()
@@ -1608,11 +1609,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 				--"right side", on this case its the bottom
 				_G.PlayerStatFrameRightDropDown:ClearAllPoints()
-				_G.PlayerStatFrameRightDropDown:SetPoint("CENTER", _G.PlayerStatFrameLeftDropDown, "CENTER", 0, -105)
+				_G.PlayerStatFrameRightDropDown:SetPoint("CENTER", _G.PlayerStatFrameLeftDropDown, "CENTER", 0, -115)
 				_G.PlayerStatFrameRightDropDown:SetParent(_G["PaperDollItemsFrame"])
 
 				_G.PlayerStatFrameRight1:ClearAllPoints()
-				_G.PlayerStatFrameRight1:SetPoint("BOTTOM", _G.PlayerStatFrameRightDropDown, "BOTTOM", -22, -5)
+				_G.PlayerStatFrameRight1:SetPoint("BOTTOM", _G.PlayerStatFrameRightDropDown, "BOTTOM", -22, -15)
 				_G.PlayerStatFrameRight1:SetParent(_G["PaperDollItemsFrame"])
 
 				_G.PlayerStatFrameRight2:ClearAllPoints()
