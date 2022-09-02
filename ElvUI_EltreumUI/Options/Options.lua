@@ -8825,6 +8825,18 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.tbctalents end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.tbctalents = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							talentscale = {
+								type = 'range',
+								name = L["Scale"],
+								hidden = E.Retail,
+								order = 52,
+								min = 0.1,
+								max = 2,
+								step = 0.1,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.tbctalents end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.expandedtalentscale end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandedtalentscale = value _G.PlayerTalentFrame:SetScale(value) end,
+							},
 							headerhidekeypressab = {
 								order = 94,
 								type = "description",

@@ -175,6 +175,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 							if _G.CharacterModelFrame:IsVisible() then
 								_G.PlayerTalentFrame:ClearAllPoints()
 								_G.PlayerTalentFrame:SetPoint("TOPLEFT", _G.CharacterFrame, "TOPRIGHT", -30, 0)
+								_G.PlayerTalentFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
 							end
 						end
 					end)
