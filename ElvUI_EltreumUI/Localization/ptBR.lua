@@ -1107,3 +1107,6 @@ L["Power Bar Models"] = "Modelos de Barra de Poder"
 L["NPC Castbars (Interruptible)"] = "Barras de Lançamentos de NPCs (Não Interrompível)"
 L["Color by Reaction"] = "Colorir de acordo com a Reação"
 L["Use Custom Font"] = "Usar Fonte Customizada"
+L["Red"] = true
+L["Green"] = true
+L["Blue"] = true
