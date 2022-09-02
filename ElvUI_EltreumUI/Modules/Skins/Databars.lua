@@ -95,10 +95,15 @@ function ElvUI_EltreumUI:GradientTooltip(tt, unit)
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 		local _, fixunit = _G.GameTooltip:GetUnit()
 		SetTooltipGradient(fixunit)
-		_G.GameTooltipStatusBar:HookScript("OnShow", function()
-			local _,unittp = _G.GameTooltip:GetUnit()
-			SetTooltipGradient(unittp)
-		end)
+		if not self.isHooked then
+			_G.GameTooltipStatusBar:HookScript("OnShow", function()
+				local _,unittp = _G.GameTooltip:GetUnit()
+				if unittp then
+					SetTooltipGradient(unittp)
+				end
+			end)
+			self.isHooked = true
+		end
 	end
 end
 hooksecurefunc(TT, 'AddTargetInfo', ElvUI_EltreumUI.GradientTooltip)

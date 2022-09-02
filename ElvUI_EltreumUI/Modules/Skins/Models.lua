@@ -17,6 +17,11 @@ local targettargetclass
 local petbar
 local petpetbar
 local peteffect = CreateFrame("playermodel", "EltruismPetEffect")
+local powerbareffectplayer = CreateFrame("PlayerModel", "EltruismPlayerPowerBarEffect")
+local powerbareffecttarget = CreateFrame("PlayerModel", "EltruismTargetPowerBarEffect")
+local powerbareffecttargettarget = CreateFrame("PlayerModel", "EltruismTargetTargetPowerBarEffect")
+local powerbareffectpet = CreateFrame("PlayerModel", "EltruismPetPowerBarEffect")
+local powerbar, targetpowerbar,targettargetpowerbar,petpowerbar
 
 --models table, because each version has different texture paths
 --its based on the color of the model, not the name/theme
@@ -199,6 +204,37 @@ function ElvUI_EltreumUI:TargetUFEffects()
 				--targeteffect:AddMaskTexture(targetbar.Health:GetStatusBarTexture())
 			end
 		end
+
+		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
+			targetpowerbar = _G["ElvUF_Target_PowerBar"]
+			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
+				if E.Retail then
+					powerbareffecttarget:SetModel(1715069)
+					powerbareffecttarget:MakeCurrentCameraCustom()
+					powerbareffecttarget:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
+					powerbareffecttarget:SetPortraitZoom(1)
+					powerbareffecttarget:SetAlpha(0.4) --might do this
+				else
+					powerbareffecttarget:SetModel("spells/arcanepower_state_chest.m2")
+					powerbareffecttarget:SetPosition(1.2, 0, 0)
+					powerbareffecttarget:SetAlpha(0.4) --might do this
+				end
+			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
+				if E.Retail then
+					powerbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
+				else
+					powerbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
+				end
+			end
+			if targetpowerbar then
+				powerbareffecttarget:SetAlpha(1)
+				powerbareffecttarget:ClearAllPoints()
+				powerbareffecttarget:SetAllPoints(targetpowerbar:GetStatusBarTexture())
+				powerbareffecttarget:SetFrameLevel(targetpowerbar:GetFrameLevel())
+				powerbareffecttarget:SetInside(targetpowerbar:GetStatusBarTexture(), 0, 0)
+				powerbareffecttarget:SetParent(targetpowerbar)
+			end
+		end
 	end
 end
 hooksecurefunc(UF, "Construct_TargetFrame", ElvUI_EltreumUI.TargetUFEffects)
@@ -254,6 +290,38 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 					targettargeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
 				end
 				--targeteffect:AddMaskTexture(targetbar.Health:GetStatusBarTexture())
+			end
+		end
+
+		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
+			targettargetpowerbar = _G["ElvUF_TargetTarget_PowerBar"]
+			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
+				if E.Retail then
+					powerbareffecttargettarget:SetModel(1715069)
+					powerbareffecttargettarget:MakeCurrentCameraCustom()
+					powerbareffecttargettarget:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
+					powerbareffecttargettarget:SetPortraitZoom(1)
+					powerbareffecttargettarget:SetAlpha(0.4) --might do this
+				else
+					powerbareffecttargettarget:SetModel("spells/arcanepower_state_chest.m2")
+					powerbareffecttargettarget:SetPosition(1.2, 0, 0)
+					powerbareffecttargettarget:SetAlpha(0.4) --might do this
+				end
+			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
+				if E.Retail then
+					powerbareffecttargettarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
+				else
+					powerbareffecttargettarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
+				end
+			end
+
+			if targettargetpowerbar then
+				powerbareffecttargettarget:SetAlpha(1)
+				powerbareffecttargettarget:ClearAllPoints()
+				powerbareffecttargettarget:SetAllPoints(targettargetpowerbar:GetStatusBarTexture())
+				powerbareffecttargettarget:SetFrameLevel(targettargetpowerbar:GetFrameLevel())
+				powerbareffecttargettarget:SetInside(targettargetpowerbar:GetStatusBarTexture(), 0, 0)
+				powerbareffecttargettarget:SetParent(targettargetpowerbar)
 			end
 		end
 	end
@@ -318,6 +386,35 @@ function ElvUI_EltreumUI:PetUFEffects()
 				--peteffect:AddMaskTexture(petbar.Health:GetStatusBarTexture())
 			end
 		end
+		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
+			petpowerbar = _G["ElvUF_Pet_PowerBar"]
+			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
+				if E.Retail then
+					powerbareffectpet:SetModel(1715069)
+					powerbareffectpet:MakeCurrentCameraCustom()
+					powerbareffectpet:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
+					powerbareffectpet:SetPortraitZoom(1)
+					powerbareffectpet:SetAlpha(0.4) --might do this
+				else
+					powerbareffectpet:SetModel("spells/arcanepower_state_chest.m2")
+					powerbareffectpet:SetPosition(1.2, 0, 0)
+					powerbareffectpet:SetAlpha(0.4) --might do this
+				end
+			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
+				if E.Retail then
+					powerbareffectpet:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
+				else
+					powerbareffectpet:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
+				end
+			end
+			if petpowerbar then
+				powerbareffectpet:SetAlpha(1)
+				powerbareffectpet:SetAllPoints(petpowerbar:GetStatusBarTexture())
+				powerbareffectpet:SetFrameLevel(petpowerbar:GetFrameLevel())
+				powerbareffectpet:SetInside(petpowerbar:GetStatusBarTexture(), 0, 0)
+				powerbareffectpet:SetParent(petpowerbar)
+			end
+		end
 	end
 end
 hooksecurefunc(UF, "Construct_PetFrame", ElvUI_EltreumUI.PetUFEffects)
@@ -380,18 +477,11 @@ end
 hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastbarEffects)
 hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastbarEffects)
 
-
-
---add effect to power
-local powerbareffectplayer = CreateFrame("PlayerModel", "EltruismPlayerCastBarEffect")
-local powerbareffecttarget = CreateFrame("PlayerModel", "EltruismTargetCastBarEffect")
-local powerbar, targetpowerbar
+--add effect to player power
 function ElvUI_EltreumUI:PowerEffect()
 	if E.private.unitframe.enable then
 		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
 			powerbar = _G["ElvUF_Player_PowerBar"]
-			targetpowerbar = _G["ElvUF_Target_PowerBar"]
-
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
 				if E.Retail then
 					powerbareffectplayer:SetModel(1715069)
@@ -399,26 +489,16 @@ function ElvUI_EltreumUI:PowerEffect()
 					powerbareffectplayer:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
 					powerbareffectplayer:SetPortraitZoom(1)
 					powerbareffectplayer:SetAlpha(0.4) --might do this
-					powerbareffecttarget:SetModel(1715069)
-					powerbareffecttarget:MakeCurrentCameraCustom()
-					powerbareffecttarget:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
-					powerbareffecttarget:SetPortraitZoom(1)
-					powerbareffecttarget:SetAlpha(0.4) --might do this
 				else
 					powerbareffectplayer:SetModel("spells/arcanepower_state_chest.m2")
 					powerbareffectplayer:SetPosition(1.2, 0, 0)
 					powerbareffectplayer:SetAlpha(0.4) --might do this
-					powerbareffecttarget:SetModel("spells/arcanepower_state_chest.m2")
-					powerbareffecttarget:SetPosition(1.2, 0, 0)
-					powerbareffecttarget:SetAlpha(0.4) --might do this
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
 				if E.Retail then
 					powerbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
-					powerbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
 				else
 					powerbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
-					powerbareffecttarget:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
 				end
 			end
 
@@ -429,16 +509,8 @@ function ElvUI_EltreumUI:PowerEffect()
 				powerbareffectplayer:SetInside(powerbar:GetStatusBarTexture(), 0, 0)
 				powerbareffectplayer:SetParent(powerbar)
 			end
-
-			if targetpowerbar then
-				powerbareffecttarget:SetAlpha(1)
-				powerbareffecttarget:ClearAllPoints()
-				powerbareffecttarget:SetAllPoints(targetpowerbar:GetStatusBarTexture())
-				powerbareffecttarget:SetFrameLevel(targetpowerbar:GetFrameLevel())
-				powerbareffecttarget:SetInside(targetpowerbar:GetStatusBarTexture(), 0, 0)
-				powerbareffecttarget:SetParent(targetpowerbar)
-			end
 		end
 	end
 end
 hooksecurefunc(UF, 'Construct_PowerBar', ElvUI_EltreumUI.PowerEffect)
+hooksecurefunc(UF, 'GetDisplayPower', ElvUI_EltreumUI.PowerEffect)
