@@ -105,7 +105,6 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) then
 				targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 				if (targetcastbar.notInterruptible) then --cant interrupt
-					print("CANNOT INTERRUPT!")
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible then
 						if E.db.unitframe.units.target.castbar.reverse == true then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
@@ -122,7 +121,6 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 						end
 					end
 				elseif (not targetcastbar.notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt()) then --can interrupt
-					print("INTERRUPT!")
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbar then
 						if E.db.unitframe.units.target.castbar.reverse == true then
 							if UnitIsPlayer("target") then
