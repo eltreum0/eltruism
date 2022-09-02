@@ -395,9 +395,11 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["yOffset"] = 7
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["nameOnly"] = false
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["power"]["text"]["font"] = "Kimberley"
-			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["xOffset"] = 0
-			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["yOffset"] = 7
-			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["size"] = 22
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Kimberley"
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontSize"] = 15
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["size"] = 25
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["textPosition"] = "TOPRIGHT"
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["xOffset"] = 4
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["position"] = "CENTER"
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["size"] = 64
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["raidTargetIndicator"]["xOffset"] = 0

@@ -326,6 +326,8 @@ local function SkinLocale()
 end
 SkinLocale()
 
+--was erroring in wotlk and since i can't test its better to disable
+--[[
 --skin meeting horn addon
 local handlemeetinghorn = CreateFrame("FRAME")
 local meetskinned
@@ -433,7 +435,7 @@ handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
 		end)
 	end
 end)
-
+]]
 
 --[[
 -- EXAMPLE:

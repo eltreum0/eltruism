@@ -1153,3 +1153,6 @@ L["Text"] = true
 L["This is the second color on the Experience Bar, the first can be found in ElvUI Databars section"] = "Dies ist die zweite Farbe in der Erfahrungsleiste, die erste befindet sich im ElvUI Datenleisten Bereich"
 L["This is how much the color will gain or lose this value"] = "Um wie viel wird die Farbe diesen Wert gewinnen oder verlieren"
 L["Power Bar Models"] = "Kraftleisten Modelle"
+L["NPC Castbars (Interruptible)"] = true
+L["Color by Reaction"] = true
+L["Use Custom Font"] = true

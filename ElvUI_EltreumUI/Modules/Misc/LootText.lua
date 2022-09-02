@@ -36,9 +36,11 @@ function ElvUI_EltreumUI:LootText()
 
 		--use elvui general font
 		if E.db.ElvUI_EltreumUI.loot.loottext.fontsetting then
-			string:SetFont(E.media.normFont, 24, E.db.general.fontStyle)
+			string:SetFont(E.media.normFont, E.db.ElvUI_EltreumUI.loot.loottext.fontsize, E.db.general.fontStyle)
 		elseif E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg then
-			string:SetFont(E.private.general.dmgfont, 24, E.db.general.fontStyle)
+			string:SetFont(E.private.general.dmgfont, E.db.ElvUI_EltreumUI.loot.loottext.fontsize, E.db.general.fontStyle)
+		elseif E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable then
+			string:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.loot.loottext.fontLSM), E.db.ElvUI_EltreumUI.loot.loottext.fontsize, E.db.general.fontStyle)
 		end
 		string:SetText(message)
 		string:SetTextColor(r, g, b)
@@ -97,13 +99,16 @@ function ElvUI_EltreumUI:LootText()
 		if ( displayType == "crit" ) then
 			string.endY = COMBAT_TEXT_LOCATIONS.startY
 			string.isCrit = 1
-			string:SetTextHeight(COMBAT_TEXT_CRIT_MINHEIGHT)
+			--string:SetTextHeight(COMBAT_TEXT_CRIT_MINHEIGHT)
+			string:SetTextHeight(E.db.ElvUI_EltreumUI.loot.loottext.fontsize * 1.3)
 		elseif ( displayType == "sticky" ) then
 			string.endY = COMBAT_TEXT_LOCATIONS.startY
-			string:SetTextHeight(COMBAT_TEXT_HEIGHT)
+			--string:SetTextHeight(COMBAT_TEXT_HEIGHT)
+			string:SetTextHeight(E.db.ElvUI_EltreumUI.loot.loottext.fontsize)
 		else
 			string.endY = COMBAT_TEXT_LOCATIONS.endY
-			string:SetTextHeight(COMBAT_TEXT_HEIGHT)
+			--string:SetTextHeight(COMBAT_TEXT_HEIGHT)
+			string:SetTextHeight(E.db.ElvUI_EltreumUI.loot.loottext.fontsize)
 		end
 
 		-- Stagger the text if flagged
@@ -157,6 +162,16 @@ function ElvUI_EltreumUI:LootText()
 			end
 			if not itemLink then
 				itemLink, amount = Deformat(chatmsg, LOOT_ITEM_PUSHED_SELF)
+			end
+			--check for created item
+			if not itemLink then
+				itemLink,amount = Deformat(chatmsg, LOOT_ITEM_CREATED_SELF)
+			end
+			if not itemLink then
+				itemLink,amount = Deformat(chatmsg, TRADESKILL_LOG_FIRSTPERSON)
+			end
+			if not itemLink then
+				itemLink,amount = Deformat(chatmsg, LOOT_ITEM_CREATED_SELF_MULTIPLE)
 			end
 			-- if something has been looted
 			if itemLink then

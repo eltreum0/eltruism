@@ -246,17 +246,33 @@ end
 --get the gradient colors
 function ElvUI_EltreumUI:GradientColors(unitclass, invert, alpha)
 	if unitclass ~= nil then
-		if invert then
-			if alpha then
-				return unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+		if not unitframegradients[unitclass] then
+			if invert then
+				if alpha then
+					return unitframegradients["MANA"].r2, unitframegradients["MANA"].g2, unitframegradients["MANA"].b2, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframegradients["MANA"].r1, unitframegradients["MANA"].g1, unitframegradients["MANA"].b1, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+				else
+					return unitframegradients["MANA"].r2, unitframegradients["MANA"].g2, unitframegradients["MANA"].b2, unitframegradients["MANA"].r1, unitframegradients["MANA"].g1, unitframegradients["MANA"].b1
+				end
 			else
-				return unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1
+				if alpha then
+					return unitframegradients["MANA"].r1, unitframegradients["MANA"].g1, unitframegradients["MANA"].b1, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframegradients["MANA"].r2, unitframegradients["MANA"].g2, unitframegradients["MANA"].b2, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+				else
+					return unitframegradients["MANA"].r1, unitframegradients["MANA"].g1, unitframegradients["MANA"].b1, unitframegradients["MANA"].r2, unitframegradients["MANA"].g2, unitframegradients["MANA"].b2
+				end
 			end
 		else
-			if alpha then
-				return unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+			if invert then
+				if alpha then
+					return unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+				else
+					return unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1
+				end
 			else
-				return unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2
+				if alpha then
+					return unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+				else
+					return unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2
+				end
 			end
 		end
 	end
@@ -265,17 +281,33 @@ end
 --get the custom gradient colors
 function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, alpha)
 	if unitclass ~= nil then
-		if invert then
-			if alpha then
-				return unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+		if not unitframecustomgradients[unitclass] then
+			if invert then
+				if alpha then
+					return unitframecustomgradients["MANA"].r2, unitframecustomgradients["MANA"].g2, unitframecustomgradients["MANA"].b2, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframecustomgradients["MANA"].r1, unitframecustomgradients["MANA"].g1, unitframecustomgradients["MANA"].b1, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+				else
+					return unitframecustomgradients["MANA"].r2, unitframecustomgradients["MANA"].g2, unitframecustomgradients["MANA"].b2, unitframecustomgradients["MANA"].r1, unitframecustomgradients["MANA"].g1, unitframecustomgradients["MANA"].b1
+				end
 			else
-				return unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1
+				if alpha then
+					return unitframecustomgradients["MANA"].r1, unitframecustomgradients["MANA"].g1, unitframecustomgradients["MANA"].b1, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframecustomgradients["MANA"].r2, unitframecustomgradients["MANA"].g2, unitframecustomgradients["MANA"].b2, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+				else
+					return unitframecustomgradients["MANA"].r1, unitframecustomgradients["MANA"].g1, unitframecustomgradients["MANA"].b1, unitframecustomgradients["MANA"].r2, unitframecustomgradients["MANA"].g2, unitframecustomgradients["MANA"].b2
+				end
 			end
 		else
-			if alpha then
-				return unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+			if invert then
+				if alpha then
+					return unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+				else
+					return unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1
+				end
 			else
-				return unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2
+				if alpha then
+					return unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+				else
+					return unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2
+				end
 			end
 		end
 	end
@@ -285,9 +317,17 @@ end
 function ElvUI_EltreumUI:GradientName(name, unitclass)
 	local text
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-		text = E:TextGradient(name, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2)
+		if not unitframecustomgradients[unitclass] then
+			text = E:TextGradient(name, unitframecustomgradients["MANA"].r1, unitframecustomgradients["MANA"].g1, unitframecustomgradients["MANA"].b1, unitframecustomgradients["MANA"].r2, unitframecustomgradients["MANA"].g2, unitframecustomgradients["MANA"].b2)
+		else
+			text = E:TextGradient(name, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2)
+		end
 	else
-		text = E:TextGradient(name, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2)
+		if not unitframegradients[unitclass] then
+			text = E:TextGradient(name, unitframegradients["MANA"].r1, unitframegradients["MANA"].g1, unitframegradients["MANA"].b1, unitframegradients["MANA"].r2, unitframegradients["MANA"].g2, unitframegradients["MANA"].b2)
+		else
+			text = E:TextGradient(name, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2)
+		end
 	end
 	return text
 end

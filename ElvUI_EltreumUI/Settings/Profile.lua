@@ -369,6 +369,9 @@ P.ElvUI_EltreumUI = {
 			yOffset = 200,
 			fontsetting = true,
 			fontsettingdmg = false,
+			fontLSMenable = false,
+			fontLSM = "Kimberley",
+			fontsize = 24,
 			combatindicator = false,
 		},
 		fastloot = false,
@@ -679,6 +682,22 @@ P.ElvUI_EltreumUI = {
 			targetcastbarB2interruptedcustom = 0.2,
 			targetcastbarG1interruptedcustom = 0.6,
 			targetcastbarG2interruptedcustom = 0.2,
+
+			targetcastbarreactioninterruptable = true,
+
+			targetcastbarR1interruptable = 1,
+			targetcastbarR2interruptable = 1,
+			targetcastbarB1interruptable = 0,
+			targetcastbarB2interruptable = 0,
+			targetcastbarG1interruptable = 0.81,
+			targetcastbarG2interruptable = 0.59,
+
+			targetcastbarR1interruptablecustom = 1,
+			targetcastbarR2interruptablecustom = 1,
+			targetcastbarB1interruptablecustom = 0,
+			targetcastbarB2interruptablecustom = 0,
+			targetcastbarG1interruptablecustom = 0.81,
+			targetcastbarG2interruptablecustom = 0.59,
 
 			druidcustomcolorR1 = 1,
 			druidcustomcolorR2 = 1,
