@@ -1104,3 +1104,5 @@ L["Text"] = "Texto"
 L["This is the second color on the Experience Bar, the first can be found in ElvUI Databars section"] = "Esta é a segunda cor da Barra de Experiência, a primeira pode ser encontrada nas opções de Barra de Dados do ElvUI"
 L["This is how much the color will gain or lose this value"] = "Isto é quanto a cor vai perder ou ganhar em valor"
 L["Power Bar Models"] = "Modelos de Barra de Poder"
+L["NPC Castbars (Interruptible)"] = true
+L["Color by Reaction"] = true
