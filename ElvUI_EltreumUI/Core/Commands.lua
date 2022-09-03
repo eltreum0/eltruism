@@ -40,7 +40,7 @@ function ElvUI_EltreumUI:LoadCommands()
 end
 
 function ElvUI_EltreumUI:RunCommands(message)
-	if message == '' or message == 'install' or message == 'setup' then
+	if message == 'installer' or message == 'install' or message == 'setup' then
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 	elseif message == 'loot' then
 		if E.db.ElvUI_EltreumUI.loot.loottext.enable then
@@ -56,7 +56,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 		else
 			CombatText_AddMessage("|T ".. 136176 ..":22:22:-11:-11:64:64:5:59:5:59|t|t  ".."Eltruism Loot is currently disabled!", CombatText_StandardScroll, 255, 255, 255)
 		end
-	elseif message == 'config' or message == 'options' then
+	elseif message == 'config' or message == 'options' or message == '' then
 		E:ToggleOptionsUI()
 		E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
 	elseif message == 'dev' then
@@ -128,9 +128,9 @@ function ElvUI_EltreumUI:RunCommands(message)
 		end
 	else
 		ElvUI_EltreumUI:Print("|cff82B4ffYou have entered an unknown command, here's a list of commands you can use:|r")
-		print("|cff82B4ff/eltruism|r - Opens the Eltruism Installer")
-		print("|cff82B4ff/eltruism install|r - Opens the Eltruism Installer")
-		print("|cff82B4ff/eltruism setup/options/config|r - Opens the Eltruism Installer")
+		print("|cff82B4ff/eltruism|r - Opens Eltruism Config")
+		print("|cff82B4ff/eltruism options/config|r - Opens Eltruism Config")
+		print("|cff82B4ff/eltruism setup/install|r - Opens Eltruism Installer")
 		print("|cff82B4ff/eltruism loot|r - Demonstrates the LootText")
 		if E.Retail then
 			if not IsAddOnLoaded("TomTom") then
