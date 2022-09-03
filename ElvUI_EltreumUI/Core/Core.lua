@@ -448,7 +448,6 @@ function ElvUI_EltreumUI:DeleteItem()
 				return
 			else
 				local text = _G.StaticPopup1Text:GetText()
-				print(text)
 				if not text:match("|T") then
 					local deletetext = string.gsub(text, lootName, "|T"..lootTexture..":".. 14 .."|t"..itemLink.."")
 					_G.StaticPopup1Text:SetText(deletetext)
