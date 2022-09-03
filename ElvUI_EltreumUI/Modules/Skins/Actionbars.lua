@@ -271,12 +271,12 @@ function ElvUI_EltreumUI:SkillGlow()
 				--rune strike
 				[56815] = true,
 
-				--mongoose bite
-				[36916] = true,
+				--mongoose bite (always works on wotlk)
+				--[[[36916] = true,
 				[14271] = true,
 				[14270] = true,
 				[14269] = true,
-				[1495] = true,
+				[1495] = true,]]
 
 				--counterattack
 				[27067] = true,
