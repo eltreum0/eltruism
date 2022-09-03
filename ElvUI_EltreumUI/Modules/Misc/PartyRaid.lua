@@ -158,7 +158,7 @@ end
 
 --set correct role for wrath
 function ElvUI_EltreumUI:SetGroupRoleWrath()
-	if E.Wrath and IsInGroup() then
+	if E.Wrath and IsInGroup() and not InCombatLockdown() then
 		local _, _, spent1 = _G.GetTalentTabInfo(1)
 		local _, _, spent2 = _G.GetTalentTabInfo(2)
 		local _, _, spent3 = _G.GetTalentTabInfo(3)
