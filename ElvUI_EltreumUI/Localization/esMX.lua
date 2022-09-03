@@ -1136,3 +1136,5 @@ L["Use Custom Font"] = "Usar Fuente Personalizada"
 L["Red"] = "Rojo"
 L["Green"] = "Verde"
 L["Blue"] = "Azul"
+L["Enable Information Panel on Top"] = true
+L["Sets Information panel to be on Top instead of Bottom of the unitframe"] = true
