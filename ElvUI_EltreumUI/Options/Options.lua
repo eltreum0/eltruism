@@ -8825,6 +8825,18 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.tbctalents end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.tbctalents = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							talentscale = {
+								type = 'range',
+								name = L["Scale"],
+								hidden = E.Retail,
+								order = 52,
+								min = 0.1,
+								max = 2,
+								step = 0.1,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.tbctalents end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.expandedtalentscale end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandedtalentscale = value _G.PlayerTalentFrame:SetScale(value) end,
+							},
 							headerhidekeypressab = {
 								order = 94,
 								type = "description",
@@ -11040,11 +11052,10 @@ function ElvUI_EltreumUI:Configtable()
 							powerbarmodeleffect = {
 								type = 'toggle',
 								name = L["Enable Models/Effects"],
-								desc = L["Enable adding models as effects on Castbars"],
 								order = 125,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.powerbar end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.powerbar = value ElvUI_EltreumUI:PowerEffect() end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.powerbar = value ElvUI_EltreumUI:PlayerUFEffects() end,
 							},
 							selectmodeltypepower = {
 								order = 126,
@@ -11061,7 +11072,7 @@ function ElvUI_EltreumUI:Configtable()
 								style = 'radio',
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.models.powerbar) end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower = value ElvUI_EltreumUI:PowerEffect() end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower = value ElvUI_EltreumUI:PlayerUFEffects() end,
 							},
 							custommodelpathpower = {
 								order = 127,
@@ -11106,7 +11117,7 @@ function ElvUI_EltreumUI:Configtable()
 									else
 										E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower = tostring(value)
 									end
-									ElvUI_EltreumUI:PowerEffect()
+									ElvUI_EltreumUI:PlayerUFEffects()
 								end,
 							},
 						},

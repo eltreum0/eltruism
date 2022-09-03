@@ -145,6 +145,36 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 				--playereffect:SetFrameLevel(playerbar.Portrait3D:GetFrameLevel())
 			end
 		end
+		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
+			powerbar = _G["ElvUF_Player_PowerBar"]
+			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
+				if E.Retail then
+					powerbareffectplayer:SetModel(1715069)
+					powerbareffectplayer:MakeCurrentCameraCustom()
+					powerbareffectplayer:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
+					powerbareffectplayer:SetPortraitZoom(1)
+					powerbareffectplayer:SetAlpha(0.4) --might do this
+				else
+					powerbareffectplayer:SetModel("spells/arcanepower_state_chest.m2")
+					powerbareffectplayer:SetPosition(1.2, 0, 0)
+					powerbareffectplayer:SetAlpha(0.4) --might do this
+				end
+			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
+				if E.Retail then
+					powerbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
+				else
+					powerbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
+				end
+			end
+
+			if powerbar then
+				powerbareffectplayer:SetAlpha(1)
+				powerbareffectplayer:SetAllPoints(powerbar:GetStatusBarTexture())
+				powerbareffectplayer:SetFrameLevel(powerbar:GetFrameLevel())
+				powerbareffectplayer:SetInside(powerbar:GetStatusBarTexture(), 0, 0)
+				powerbareffectplayer:SetParent(powerbar)
+			end
+		end
 	end
 end
 hooksecurefunc(UF, "Construct_PlayerFrame", ElvUI_EltreumUI.PlayerUFEffects)
@@ -476,41 +506,3 @@ function ElvUI_EltreumUI:CastbarEffects()
 end
 hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastbarEffects)
 hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastbarEffects)
-
---add effect to player power
-function ElvUI_EltreumUI:PowerEffect()
-	if E.private.unitframe.enable then
-		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
-			powerbar = _G["ElvUF_Player_PowerBar"]
-			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
-				if E.Retail then
-					powerbareffectplayer:SetModel(1715069)
-					powerbareffectplayer:MakeCurrentCameraCustom()
-					powerbareffectplayer:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
-					powerbareffectplayer:SetPortraitZoom(1)
-					powerbareffectplayer:SetAlpha(0.4) --might do this
-				else
-					powerbareffectplayer:SetModel("spells/arcanepower_state_chest.m2")
-					powerbareffectplayer:SetPosition(1.2, 0, 0)
-					powerbareffectplayer:SetAlpha(0.4) --might do this
-				end
-			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
-				if E.Retail then
-					powerbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
-				else
-					powerbareffectplayer:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
-				end
-			end
-
-			if powerbar then
-				powerbareffectplayer:SetAlpha(1)
-				powerbareffectplayer:SetAllPoints(powerbar:GetStatusBarTexture())
-				powerbareffectplayer:SetFrameLevel(powerbar:GetFrameLevel())
-				powerbareffectplayer:SetInside(powerbar:GetStatusBarTexture(), 0, 0)
-				powerbareffectplayer:SetParent(powerbar)
-			end
-		end
-	end
-end
-hooksecurefunc(UF, 'Construct_PowerBar', ElvUI_EltreumUI.PowerEffect)
-hooksecurefunc(UF, 'GetDisplayPower', ElvUI_EltreumUI.PowerEffect)

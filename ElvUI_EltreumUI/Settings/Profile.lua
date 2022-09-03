@@ -111,6 +111,7 @@ P.ElvUI_EltreumUI = {
 		meetinghorn = false,
 		hideABkeypress = false,
 		tbctalents = false,
+		expandedtalentscale = 1,
 		stealtheffect = false,
 		blizzframes = {
 			errorframe = true,
