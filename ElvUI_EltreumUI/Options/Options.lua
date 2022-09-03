@@ -10174,6 +10174,23 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.portraitfix end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraitfix = value end,
 							},
+							infoPanelOnTopheader = {
+								order = 986,
+								type = "description",
+								name = L["Information Panel"],
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								width = "full",
+							},
+							infoPanelOnTop = {
+								order = 987,
+								type = 'toggle',
+								width = "full",
+								name = L["Enable Information Panel on Top"],
+								desc = L["Sets Information panel to be on Top instead of Bottom of the unitframe"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.infopanelontop end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.infopanelontop = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
 							darkpowerdesc = {
 								order = 988,
 								type = "description",

@@ -527,3 +527,45 @@ function UF:ToggleTransparentStatusBar(isTransparent, statusBar, backdropTex, ad
 		end
 	end
 end
+
+--modify the position of the information panel
+function UF:Configure_InfoPanel(frame)
+	local db = frame.db
+
+	if frame.USE_INFO_PANEL then
+		frame.InfoPanel:Show()
+		frame.InfoPanel:ClearAllPoints()
+
+		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
+			frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
+			frame.InfoPanel:Point('BOTTOMLEFT', frame.Health.backdrop, 'TOPLEFT', UF.BORDER, -(UF.SPACING*3))
+			frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height)
+			frame.InfoPanel:Point('TOPLEFT', frame.Health.backdrop, 'TOPLEFT', UF.BORDER, db.infoPanel.height)
+			frame.InfoPanel:SetSize(db.width,db.infoPanel.height)
+		else
+			if frame.ORIENTATION == 'RIGHT' and not (frame.unitframeType == 'arena') then
+				frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
+				if frame.USE_POWERBAR and not frame.USE_INSET_POWERBAR and not frame.POWERBAR_DETACHED then
+					frame.InfoPanel:Point('TOPLEFT', frame.Power.backdrop, 'BOTTOMLEFT', UF.BORDER, -(UF.SPACING*3))
+				else
+					frame.InfoPanel:Point('TOPLEFT', frame.Health.backdrop, 'BOTTOMLEFT', UF.BORDER, -(UF.SPACING*3))
+				end
+			else
+				frame.InfoPanel:Point('BOTTOMLEFT', frame, 'BOTTOMLEFT', UF.BORDER + UF.SPACING, UF.BORDER + UF.SPACING)
+				if frame.USE_POWERBAR and not frame.USE_INSET_POWERBAR and not frame.POWERBAR_DETACHED then
+					frame.InfoPanel:Point('TOPRIGHT', frame.Power.backdrop, 'BOTTOMRIGHT', -UF.BORDER, -(UF.SPACING*3))
+				else
+					frame.InfoPanel:Point('TOPRIGHT', frame.Health.backdrop, 'BOTTOMRIGHT', -UF.BORDER, -(UF.SPACING*3))
+				end
+			end
+		end
+
+		if db.infoPanel.transparent then
+			frame.InfoPanel.backdrop:SetTemplate('Transparent', nil, nil, nil, true)
+		else
+			frame.InfoPanel.backdrop:SetTemplate(nil, true, nil, nil, true)
+		end
+	else
+		frame.InfoPanel:Hide()
+	end
+end
