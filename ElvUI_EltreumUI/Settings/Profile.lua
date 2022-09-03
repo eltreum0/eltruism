@@ -685,7 +685,7 @@ P.ElvUI_EltreumUI = {
 			targetcastbarG1interruptedcustom = 0.6,
 			targetcastbarG2interruptedcustom = 0.2,
 
-			targetcastbarreactioninterruptable = true,
+			targetcastbarreactioninterruptable = false,
 
 			targetcastbarR1interruptable = 1,
 			targetcastbarR2interruptable = 1,
