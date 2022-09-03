@@ -123,6 +123,8 @@ ElvUI_EltreumUI.InstallerData = {
 					E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = true
 					E:UpdateMediaItems()
 					E:UpdateUnitFrames()
+
+					ElvUI_EltreumUI:Print("Gradient Mode Disabled")
 				else
 					ElvUI_EltreumUI:GradientMode()
 				end
