@@ -594,8 +594,27 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.EltruismClassResourceDesc2:SetText('')
 			end
 
+			CharacterFrame:HookScript("OnShow", function()
+				if not IsAddOnLoaded("ElvUI_SLE") then
+					local bagilvl, equippedilvl = GetAverageItemLevel()
+					if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
+						local r, g, b = E:ColorGradient((equippedilvl / bagilvl), 1, 0, 0, 1, 1, 0, 0, 1, 1)
+						CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
+						CharacterFrame.ItemLevelText:SetTextColor(0.63921427726746,0.20784267783165,0.93333131074905)
+					end
+				end
+			end)
+
 			--update stats and stats position
 			hooksecurefunc("PaperDollFrame_UpdateStats", function()
+				if not IsAddOnLoaded("ElvUI_SLE") then
+					local bagilvl, equippedilvl = GetAverageItemLevel()
+					if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
+						local r, g, b = E:ColorGradient((equippedilvl / bagilvl), 1, 0, 0, 1, 1, 0, 0, 1, 1)
+						CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
+						CharacterFrame.ItemLevelText:SetTextColor(0.63921427726746,0.20784267783165,0.93333131074905)
+					end
+				end
 				speed = ((_G.GetUnitSpeed("player")/7) *100)
 				CharacterFrame.EltruismSpeed:SetText(math.ceil(speed).."%")
 				_, combat = GetManaRegen()
@@ -918,6 +937,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrame:SetWidth(505)
 					CharacterModelFrame:SetPosition(0, 0, 0) -- zoom, x, y
 					CharacterModelFrame:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+					if not IsAddOnLoaded("ElvUI_SLE") then
+						local bagilvl, equippedilvl = GetAverageItemLevel()
+						if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
+							local r, g, b = E:ColorGradient((equippedilvl / bagilvl), 1, 0, 0, 1, 1, 0, 0, 1, 1)
+							CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
+							CharacterFrame.ItemLevelText:SetTextColor(0.63921427726746,0.20784267783165,0.93333131074905)
+						end
+					end
 				end
 				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
@@ -949,6 +976,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			if PaperDollFrame:IsVisible() then
 				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
+					if not IsAddOnLoaded("ElvUI_SLE") then
+						local bagilvl, equippedilvl = GetAverageItemLevel()
+						if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
+							local r, g, b = E:ColorGradient((equippedilvl / bagilvl), 1, 0, 0, 1, 1, 0, 0, 1, 1)
+							CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
+							CharacterFrame.ItemLevelText:SetTextColor(0.63921427726746,0.20784267783165,0.93333131074905)
+						end
+					end
 					CharacterFrame:SetWidth(700)
 					CharacterModelFrame:SetPosition(0, 0, 0) -- zoom, x, y
 					CharacterModelFrame:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
@@ -1931,8 +1966,14 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 				local itemLink = _G.GetInventoryItemLink(unit, InvSlotId)
 				if itemLink ~= nil then
 					local quality = select(3, _G.GetItemInfo(itemLink))
+					local isSetItem = select(16, _G.GetItemInfo(itemLink))
 					if quality ~= nil then
-						local r,g,b = _G.GetItemQualityColor(quality)
+						local r,g,b
+						if not isSetItem then
+							r,g,b = _G.GetItemQualityColor(quality)
+						else
+							r,g,b = 0.90,0.80,0.50
+						end
 						qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
 						qualityAnchor.Frame.Quality:SetAlpha(1)
 
@@ -2359,8 +2400,14 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						local itemLink = _G.GetInventoryItemLink("target", InvSlotId)
 						if itemLink ~= nil then
 							local quality = select(3,_G.GetItemInfo(itemLink))
+							local isSetItem = select(16, _G.GetItemInfo(itemLink))
 							if quality then
-								local r,g,b = _G.GetItemQualityColor(quality)
+								local r,g,b
+								if not isSetItem then
+									r,g,b = _G.GetItemQualityColor(quality)
+								else
+									r,g,b = 0.90,0.80,0.50
+								end
 								qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
 								qualityAnchorInspect.Frame.Quality:SetAlpha(1)
 
