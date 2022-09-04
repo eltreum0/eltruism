@@ -1,13 +1,18 @@
-### 3.3.5 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.3.6 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added an option to turn off gradient npc castbars being colored by reaction and added color options for it\
-Added LootText to some created items\
-Added options to change the size and font of LootText, which will also affect some Combat Texts\
-Added an option to change the scale of the Expanded Talents in Wrath/Classic\
-Updated German translations by Dlarge\
-Updated the automatic stats setting to detect player spec and more reliably set the correct stats\
-Fixed the compatibility check with MerathilisUI after its database was changed\
-Fixed player model effects not always appearing\
-Fixed possible errors in gradient power due to enemy NPCs having more powers than expected (over 100 power types), this will cause them to fallback to a mana gradient\
-Fixed the Stat Dropdown overlapping the stats on the Character Panel Skin for Wrath\
-Disabled MeetingHorn skin as I lack access to it in order to test and fix it
+Added gradient nameplate castbars, which follow the castbar settings from unitframes\
+Added an option to set the Information Panel in Unitframes to be on top instead of bottom\
+Added Item Set Color to Item Quality Texture, coloring Item Sets differently and also adding color settings for it\
+Added bag ilvl to the Item Level Text on the Character Panel Skin, alongside color settings for it\
+Updated Power Gradient with the backdrop being also gradient colored if not using a custom backdrop\
+Updated the Character Panel Skin Stats to attempt better aligment of the text for other locales\
+Updated the default Gradient Castbars to not use reaction since colors for hostile npcs could be confusing with non interruptable spells\
+Updated German locales by Dlarge\
+Updated procs to remove moongoose bite since it is not a proc in Wrath\
+Updated shadows function to better detect Player and Target Power\
+Updated Dynamic Datatext to make it only work for Hunters and Warlocks\
+Fixed Meeting Horn Skin, thanks to slm20200822\
+Fixed an issue with LootText that caused some World Texts and Combat Texts to be larger than expected\
+Fixed an issue that caused Item Level text on Inspect frames to not update in Classic/Wrath\
+Fixed a debug print when deleting items\
+Fixed an issue with the Role Check happening in combat
