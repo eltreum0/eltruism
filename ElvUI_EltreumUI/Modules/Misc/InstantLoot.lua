@@ -196,7 +196,7 @@ EltruismInstantLoot:SetScript("OnEvent", InstantLoot)
 					local itemLink = GetLootSlotLink(i)
 					local _, _, _, _, _, _, _, itemStackCount = GetItemInfo(itemLink)
 					local itemCount = GetItemCount(itemLink)
-					print(itemStackCount,itemCount,openslots)
+					--print(itemStackCount,itemCount,openslots)
 					if openslots > 0 and itemCount > 0 and itemStackCount > 0 then
 						if (itemStackCount - itemCount) > 0 then
 							LootSlot(i)
