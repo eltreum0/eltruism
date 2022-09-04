@@ -944,7 +944,6 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 		end
-		print(E.db["unitframe"]["units"]["player"]["power"]["width"])
 
 		--handle non spaced power and classpower
 		if E.db["unitframe"]["units"]["target"]["power"]["width"] ~= "spaced" and E.db["unitframe"]["units"]["target"]["power"]["detachFromFrame"] == false then
