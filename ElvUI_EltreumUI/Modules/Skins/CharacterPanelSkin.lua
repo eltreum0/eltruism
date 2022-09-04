@@ -1972,7 +1972,8 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 						if not isSetItem then
 							r,g,b = _G.GetItemQualityColor(quality)
 						else
-							r,g,b = 0.90,0.80,0.50
+							--r,g,b = 0.90,0.80,0.50
+							r,g,b = 0.784,0.635,0.784
 						end
 						qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
 						qualityAnchor.Frame.Quality:SetAlpha(1)
@@ -2406,7 +2407,8 @@ function ElvUI_EltreumUI:InspectBg(unit)
 								if not isSetItem then
 									r,g,b = _G.GetItemQualityColor(quality)
 								else
-									r,g,b = 0.90,0.80,0.50
+									--r,g,b = 0.90,0.80,0.50
+									r,g,b = 0.784,0.635,0.784
 								end
 								qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
 								qualityAnchorInspect.Frame.Quality:SetAlpha(1)
