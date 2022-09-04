@@ -118,7 +118,6 @@ function ElvUI_EltreumUI:LootText()
 
 		-- Alternate x direction
 		CombatText.xDir = CombatText.xDir * -1
-		print(CombatText.xDir)
 		if ( useXadjustment == 1 ) then
 			if ( COMBAT_TEXT_X_ADJUSTMENT > 0 ) then
 				CombatText.xDir = -1
