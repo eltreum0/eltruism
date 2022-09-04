@@ -248,7 +248,7 @@ local bgfade
 function ElvUI_EltreumUI:GradientColors(unitclass, invert, alpha, isBG)
 	if unitclass ~= nil then
 		if isBG then
-			bgfade = 0.4
+			bgfade = 0.6
 		else
 			bgfade = 0
 		end
