@@ -326,8 +326,7 @@ local function SkinLocale()
 end
 SkinLocale()
 
---was erroring in wotlk and since i can't test its better to disable
---[[
+
 --skin meeting horn addon
 local handlemeetinghorn = CreateFrame("FRAME")
 local meetskinned
@@ -340,9 +339,9 @@ handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
 		return
 	end
 	if ((arg == "MeetingHorn") and E.db.ElvUI_EltreumUI.skins.meetinghorn) or IsAddOnLoaded("MeetingHorn") then
-		_G['MeetingHornMainPanel']:SetScript("OnShow", function()
-			if not meetskinned == true then
-				meetskinned = true
+		_G['MeetingHornMainPanel']:SetScript("OnShow", function(self)
+			if not self.meetskinned then
+				self.meetskinned = true
 				S:HandleFrame(_G['MeetingHornMainPanel'])
 				S:HandleScrollBar(_G.MeetingHornMainPanelScrollBar)
 
@@ -357,14 +356,19 @@ handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
 				S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header4)
 				S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header5)
 				S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header6)
-				S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header7)
-				S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header8)
+				--S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header7)
+				--S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header8)
 				S:HandleEditBox(_G.MeetingHornMainPanel.Browser.Input)
 				S:HandleButton(_G.MeetingHornMainPanel.Browser.Refresh)
 				S:HandleButton(_G.MeetingHornMainPanel.Browser.Reset)
-				S:HandleButton(_G.MeetingHornMainPanel.Browser.RechargeBtn)
-				S:HandleButton(_G.MeetingHornMainPanel.Browser.ApplyLeaderBtn)
+				--S:HandleButton(_G.MeetingHornMainPanel.Browser.RechargeBtn)
+				--S:HandleButton(_G.MeetingHornMainPanel.Browser.ApplyLeaderBtn)
 				S:HandleScrollBar(_G.MeetingHornMainPanel.Browser.ActivityList.scrollBar)
+
+				--challenge
+				S:HandleFrame(_G.MeetingHornMainPanel.Challenge)
+				S:HandleButton(_G.MeetingHornMainPanel.Challenge.Body.Reward.Exchange)
+				S:HandleButton(_G.MeetingHornMainPanel.Browser.Refresh)
 
 				--create
 				S:HandleFrame(_G.MeetingHornMainPanel.Manage)
@@ -374,13 +378,14 @@ handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
 				S:HandleScrollBar(_G.MeetingHornMainPanel.Manage.Chat.ChatFrame.scrollBar)
 				S:HandleFrame(_G.MeetingHornMainPanel.Manage.Creator.Comment)
 				S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.CreateButton)
-				S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.RecruitButton)
+				--S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.RecruitButton)
 				S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.CloseButton)
+				--_G.MeetingHornMainPanel.Manage.Creator.CloseButton.Texture:SetPoint("RIGHT", _G.MeetingHornMainPanel.Manage.Creator.CloseButton, "RIGHT")
 				S:HandleFrame(_G.MeetingHornMainPanel.Manage.Chat)
 				S:HandleFrame(_G.MeetingHornMainPanel.Manage.Chat.ChatFrame)
 				_G.MeetingHornMainPanel.Manage.Chat.ChatBg:Hide()
-				_G.MeetingHornMainPanel.Manage.Creator.RecruitButton.RightSeparator:Hide()
-				_G.MeetingHornMainPanel.Manage.Creator.CreateButton.RightSeparator:Hide()
+				--_G.MeetingHornMainPanel.Manage.Creator.RecruitButton.RightSeparator:Hide()
+				--_G.MeetingHornMainPanel.Manage.Creator.CreateButton.RightSeparator:Hide()
 				_G.MeetingHornMainPanel.Manage.Creator.CloseButton.Texture:Hide()
 
 				--leader
@@ -388,14 +393,14 @@ handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
 				S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First)
 				S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First.Footer)
 				S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First.Header)
-				S:HandleButton(_G.MeetingHornMainPanel.GoodLeader.First.Header.ApplyLeaderBtn)
+				--S:HandleButton(_G.MeetingHornMainPanel.GoodLeader.First.Header.ApplyLeaderBtn)
 
 				--announcement
-				S:HandleFrame(_G.MeetingHornMainPanel.Announcement)
-				S:HandleFrame(_G.MeetingHornMainPanel.Announcement.loading)
+				--S:HandleFrame(_G.MeetingHornMainPanel.Announcement)
+				--S:HandleFrame(_G.MeetingHornMainPanel.Announcement.loading)
 
 				--mission guidance
-				S:HandleFrame(_G.MeetingHornMainPanel.MissionGuidance)
+				--S:HandleFrame(_G.MeetingHornMainPanel.MissionGuidance)
 
 				--recent
 				S:HandleFrame(_G.MeetingHornMainPanel.Recent)
@@ -408,12 +413,12 @@ handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
 
 				--quest
 				S:HandleFrame(_G.MeetingHornMainPanel.Loading)
-				S:HandleFrame(_G.MeetingHornMainPanel.Quest)
-				S:HandleFrame(_G.MeetingHornMainPanel.Quest.Body)
-				S:HandleFrame(_G.MeetingHornMainPanel.Quest.Body.Quests)
-				S:HandleButton(_G.MeetingHornMainPanel.Quest.Body.Refresh)
-				S:HandleScrollBar(_G.MeetingHornMainPanel.Quest.Body.Quests.scrollBar)
-				S:HandleFrame(_G.MeetingHornMainPanel.Quest.Summary)
+				--S:HandleFrame(_G.MeetingHornMainPanel.Quest)
+				--S:HandleFrame(_G.MeetingHornMainPanel.Quest.Body)
+				--S:HandleFrame(_G.MeetingHornMainPanel.Quest.Body.Quests)
+				--S:HandleButton(_G.MeetingHornMainPanel.Quest.Body.Refresh)
+				--S:HandleScrollBar(_G.MeetingHornMainPanel.Quest.Body.Quests.scrollBar)
+				--S:HandleFrame(_G.MeetingHornMainPanel.Quest.Summary)
 
 				--options
 				S:HandleFrame(_G.MeetingHornMainPanel.Options)
@@ -435,7 +440,6 @@ handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
 		end)
 	end
 end)
-]]
 
 --[[
 -- EXAMPLE:
