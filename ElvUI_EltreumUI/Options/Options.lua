@@ -6338,7 +6338,7 @@ function ElvUI_EltreumUI:Configtable()
 								step = 1,
 								--width = "single",
 								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontsize = value ElvUI_EltreumUI:WorldTextScale(value) end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontsize = value end,
 							},
 							customfontloot = {
 								type = 'toggle',
@@ -7215,7 +7215,7 @@ function ElvUI_EltreumUI:Configtable()
 						name = L["Select the size of the World Text"],
 						order = 37,
 						min = 0.2,
-						max = 5,
+						max = 2,
 						step = 0.1,
 						width = "full",
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.worldtextscale end,

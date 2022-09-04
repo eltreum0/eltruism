@@ -23,8 +23,6 @@ function ElvUI_EltreumUI:LootText()
 	_G.CombatText:SetScale(E.db.ElvUI_EltreumUI.loot.loottext.scale)
 	_G.CombatText:SetFrameStrata(E.db.ElvUI_EltreumUI.loot.loottext.strata)
 	--moving the combat text
-	local xOffset = E.db.ElvUI_EltreumUI.loot.loottext.xOffset
-	local yOffset = E.db.ElvUI_EltreumUI.loot.loottext.yOffset
 	local itemLink = nil
 	local amount = 0
 	--have to hook the function to move it, pretty much a whole copy just adding the offsets
@@ -42,6 +40,7 @@ function ElvUI_EltreumUI:LootText()
 		elseif E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable then
 			string:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.loot.loottext.fontLSM), E.db.ElvUI_EltreumUI.loot.loottext.fontsize, E.db.general.fontStyle)
 		end
+
 		string:SetText(message)
 		string:SetTextColor(r, g, b)
 		string.scrollTime = 0
@@ -52,7 +51,7 @@ function ElvUI_EltreumUI:LootText()
 		end
 
 		-- See which direction the message should flow
-		--local yDir
+		local yDir
 		local lowestMessage
 		local useXadjustment = 0
 		if ( COMBAT_TEXT_LOCATIONS.startY < COMBAT_TEXT_LOCATIONS.endY ) then
@@ -118,17 +117,18 @@ function ElvUI_EltreumUI:LootText()
 		end
 
 		-- Alternate x direction
-		_G.CombatText.xDir = _G.CombatText.xDir * -1
+		CombatText.xDir = CombatText.xDir * -1
+		print(CombatText.xDir)
 		if ( useXadjustment == 1 ) then
 			if ( COMBAT_TEXT_X_ADJUSTMENT > 0 ) then
-				_G.CombatText.xDir = -1
+				CombatText.xDir = -1
 			else
-				_G.CombatText.xDir = 1
+				CombatText.xDir = 1
 			end
 		end
 		string.xDir = CombatText.xDir
-		string.startX = COMBAT_TEXT_LOCATIONS.startX + staggerAmount + (useXadjustment * COMBAT_TEXT_X_ADJUSTMENT) + xOffset
-		string.startY = lowestMessage + yOffset
+		string.startX = COMBAT_TEXT_LOCATIONS.startX + staggerAmount + (useXadjustment * COMBAT_TEXT_X_ADJUSTMENT) + E.db.ElvUI_EltreumUI.loot.loottext.xOffset
+		string.startY = lowestMessage + E.db.ElvUI_EltreumUI.loot.loottext.yOffset
 		string.yPos = lowestMessage
 		string:ClearAllPoints()
 		string:SetPoint("TOP", WorldFrame, "BOTTOM", string.startX, lowestMessage)
