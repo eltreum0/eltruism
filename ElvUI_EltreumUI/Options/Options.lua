@@ -2793,14 +2793,14 @@ function ElvUI_EltreumUI:Configtable()
 					header1 = {
 						order = 1,
 						type = "description",
-						name = E.NewSign..L["Cooldown"],
+						name = L["Cooldown"],
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
 					enable = {
 						order = 2,
 						type = 'toggle',
-						name = E.NewSign..L["Enable Cooldown Pulse"],
+						name = L["Enable Cooldown Pulse"],
 						desc = L["Show a Skill Pulse when its cooldown is ending"],
 						width = 'full',
 						get = function() return E.db.ElvUI_EltreumUI.skins.doom.enable end,
@@ -2809,7 +2809,7 @@ function ElvUI_EltreumUI:Configtable()
 					showSpellName = {
 						order = 3,
 						type = 'toggle',
-						name = E.NewSign..L["Show Spell Name"],
+						name = L["Show Spell Name"],
 						desc = L["Displays a Text with the name of the spell"],
 						width = 'full',
 						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
@@ -2818,7 +2818,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					fadeInTime = {
 						type = 'range',
-						name = E.NewSign..L["Fade In Time"],
+						name = L["Fade In Time"],
 						desc = L["Time it takes for the icon to fade in"],
 						order = 4,
 						min = 0,
@@ -2831,7 +2831,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					fadeOutTime = {
 						type = 'range',
-						name = E.NewSign..L["Fade Out Time"],
+						name = L["Fade Out Time"],
 						desc = L["Time it takes for the icon to fade out"],
 						order = 4,
 						min = 0,
@@ -2844,7 +2844,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					maxAlpha = {
 						type = 'range',
-						name = E.NewSign..L["Alpha"],
+						name = L["Alpha"],
 						desc = L["Transparency of the Icon"],
 						order = 4,
 						min = 0,
@@ -2857,7 +2857,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					animScale = {
 						type = 'range',
-						name = E.NewSign..L["Animation Scale"],
+						name = L["Animation Scale"],
 						desc = L["Animation will scale to this size"],
 						order = 4,
 						min = 0,
@@ -2870,7 +2870,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					iconSize = {
 						type = 'range',
-						name = E.NewSign..L["Icon Size"],
+						name = L["Icon Size"],
 						desc = L["Size of the Icon"],
 						order = 4,
 						min = 6,
@@ -2883,7 +2883,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					holdTime = {
 						type = 'range',
-						name = E.NewSign..L["Hold Time"],
+						name = L["Hold Time"],
 						desc = L["How long the Icon will appear"],
 						order = 4,
 						min = 0,
@@ -2896,7 +2896,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					graceperiod = {
 						type = 'range',
-						name = E.NewSign..L["Minimum Cooldown Length"],
+						name = L["Minimum Cooldown Length"],
 						desc = L["Cooldowns must be longer than this to show up"],
 						order = 4,
 						min = 0,
@@ -2910,7 +2910,7 @@ function ElvUI_EltreumUI:Configtable()
 					doomignored = {
 						order = 5,
 						type = 'input',
-						name = E.NewSign..L["Ignored Spells, use a comma to separate spells"],
+						name = L["Ignored Spells, use a comma to separate spells"],
 						desc = L["List of spells ignored, use a comma to separate spells"],
 						width = 'full',
 						get = function() return E.private.ElvUI_EltreumUI.doomignored end,
@@ -2933,7 +2933,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					ttsvoiceselect = {
 						type = 'select',
-						name= E.NewSign..L["Text to Speech Config"],
+						name= L["Text to Speech Config"],
 						order = 82,
 						values =
 						function()
@@ -8827,7 +8827,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							talentscale = {
 								type = 'range',
-								name = L["Scale"],
+								name = E.NewSign..L["Scale"],
 								hidden = E.Retail,
 								order = 52,
 								min = 0.1,
@@ -9155,7 +9155,7 @@ function ElvUI_EltreumUI:Configtable()
 							expandart = {
 								order = 122,
 								type = 'toggle',
-								name = E.NewSign..L["Expand Character Art"],
+								name = L["Expand Character Art"],
 								width = 'full',
 								desc = L["Enable this option"],
 								--hidden = function() if E.Retail then return false else return true end end,
@@ -9165,7 +9165,7 @@ function ElvUI_EltreumUI:Configtable()
 							expandamoryclassic = {
 								order = 123,
 								type = 'toggle',
-								name = E.NewSign..L["Expand Character Panel"],
+								name = L["Expand Character Panel"],
 								width = 'full',
 								desc = L["Enable this option"],
 								get = function() return E.db.ElvUI_EltreumUI.skins.classicarmory end,
@@ -9211,7 +9211,7 @@ function ElvUI_EltreumUI:Configtable()
 									["RAGNAROS"] = L["Ragnaros"],
 									["SPACECLOUD"] = L["SpaceCloud"],
 									["RAVNYR"] = L["Ravnyr"],
-									["BLACK"] = E.NewSign..L["Black"],
+									["BLACK"] = L["Black"],
 									["CUSTOM"] = CUSTOM,
 								},
 								sorting = {
@@ -9270,7 +9270,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							characterpanelscale = {
 								type = 'range',
-								name = E.NewSign..L["Character Panel Scale"],
+								name = L["Character Panel Scale"],
 								desc = L["Change the size of the Character Panel"],
 								order = 146,
 								min = 0.2,
@@ -9289,7 +9289,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							modelcamzoom = {
 								type = 'range',
-								name = E.NewSign..L["Character Model Zoom"],
+								name = L["Character Model Zoom"],
 								order = 148,
 								min = -2,
 								max = 2,
@@ -9312,7 +9312,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							modelcamx = {
 								type = 'range',
-								name = E.NewSign..L["Character Model X Offset"],
+								name = L["Character Model X Offset"],
 								order = 149,
 								min = -2,
 								max = 2,
@@ -9335,7 +9335,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							modelcamy = {
 								type = 'range',
-								name = E.NewSign..L["Character Model Y Offset"],
+								name = L["Character Model Y Offset"],
 								order = 150,
 								min = -2,
 								max = 2,
@@ -9517,9 +9517,9 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'toggle',
 								name = function()
 									if E.Retail then
-										return E.NewSign..L["Add Class Gradient Colors to Stats"]
+										return L["Add Class Gradient Colors to Stats"]
 									else
-										return E.NewSign..L["Add Class Colors to Text"]
+										return L["Add Class Colors to Text"]
 									end
 								end,
 								width = 'full',
@@ -9532,9 +9532,9 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'toggle',
 								name = function()
 									if E.Retail then
-										return E.NewSign..L["Add Class Gradient Colors to Other Texts"]
+										return L["Add Class Gradient Colors to Other Texts"]
 									else
-										return E.NewSign..L["Add Class Gradient Colors to Text"]
+										return L["Add Class Gradient Colors to Text"]
 									end
 								end,
 								width = 'full',
@@ -10282,7 +10282,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 108,
 								type = 'toggle',
 								width = "full",
-								name = E.NewSign..L["Automatically rotate Target Portrait"],
+								name = L["Automatically rotate Target Portrait"],
 								desc = L["Detects target's species and uses it to fix the rotation of the Target's 3D Portrait"],
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.portraitfix end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraitfix = value end,
@@ -10290,7 +10290,7 @@ function ElvUI_EltreumUI:Configtable()
 							infoPanelOnTopheader = {
 								order = 986,
 								type = "description",
-								name = L["Information Panel"],
+								name = E.NewSign..L["Information Panel"],
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								width = "full",
 							},
