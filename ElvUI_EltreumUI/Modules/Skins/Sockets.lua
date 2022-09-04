@@ -1007,7 +1007,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 	SlotIcon.__index = SlotIcon
 	ElvUI_EltreumUI.SlotIcon = SlotIcon
 	function SlotIcon:new(parent)
-		local frame = CreateFrame("FRAME", nil, parent)
+		local frame = CreateFrame("FRAME", "EltruismSocketsEnchants", parent)
 		frame.icon = frame:CreateTexture(nil, "OVERLAY", nil, 0)
 		frame.icon:SetAllPoints()
 		frame.overlay = frame:CreateTexture(nil, "OVERLAY", nil, 1)

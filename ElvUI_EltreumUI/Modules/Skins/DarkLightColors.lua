@@ -332,7 +332,7 @@ function ElvUI_EltreumUI:GradientMode()
 		_G.RightChatToggleButton:SetAlpha(1)
 		_G.RightChatToggleButton:Show()
 
-		ElvUI_EltreumUI:Print("Unitframes set to Gradient Mode")
+		ElvUI_EltreumUI:Print("Gradient Mode Enabled")
 	end
 end
 
