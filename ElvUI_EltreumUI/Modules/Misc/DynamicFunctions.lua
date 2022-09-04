@@ -101,11 +101,6 @@ function ElvUI_EltreumUI:DynamicClassicDatatext()
 			if E.db["datatexts"]["panels"]["EltruismDataText"] then
 				E.db["datatexts"]["panels"]["EltruismDataText"][3] = "Eltruism Ammo"
 			end
-		else
-			E.db["datatexts"]["panels"]["LeftChatDataPanel"][3] = "Friends"
-			if E.db["datatexts"]["panels"]["EltruismDataText"] then
-				E.db["datatexts"]["panels"]["EltruismDataText"][3] = "Coords"
-			end
 		end
 	end
 end
