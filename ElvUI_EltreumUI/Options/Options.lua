@@ -9376,7 +9376,7 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.classicarmoryautostats end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classicarmoryautostats = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							headeritemq1823 = {
+							headeritemq1823col = {
 								order = 153,
 								type = "description",
 								name = "",
@@ -9392,15 +9392,128 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.itemquality end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.itemquality = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							colorsetsdifferently = {
+								order = 156,
+								type = 'toggle',
+								name = E.NewSign..L["Add Item Set Colors"],
+								width = 'double',
+								desc = L["Enable this option"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.itemquality end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.itemsetenable end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.itemsetenable = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							itemsetcustomcolor = {
+								order = 157,
+								name = E.NewSign..L["Enable Custom Set Colors"],
+								type = "toggle",
+								width = 'double',
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.itemsetenable or not E.db.ElvUI_EltreumUI.skins.itemquality end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.itemsetcustomcolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.itemsetcustomcolor = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							itemsetcustomcolor1 = {
+								order = 158,
+								type = 'color',
+								name = L["Color"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.itemsetenable or not E.db.ElvUI_EltreumUI.skins.itemquality or not E.db.ElvUI_EltreumUI.skins.itemsetcustomcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.skins.itemsetcolor.r
+									local dg = P.ElvUI_EltreumUI.skins.itemsetcolor.g
+									local db = P.ElvUI_EltreumUI.skins.itemsetcolor.b
+									return E.db.ElvUI_EltreumUI.skins.itemsetcolor.r, E.db.ElvUI_EltreumUI.skins.itemsetcolor.g, E.db.ElvUI_EltreumUI.skins.itemsetcolor.b, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.skins.itemsetcolor.r, E.db.ElvUI_EltreumUI.skins.itemsetcolor.g, E.db.ElvUI_EltreumUI.skins.itemsetcolor.b = r, g, b
+								end,
+							},
+							headerequipandbagilvl = {
+								order = 159,
+								type = "description",
+								name = "",
+								width = 'full',
+								hidden = not E.Retail,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							equipandbagilvlenable = {
+								order = 160,
+								name = E.NewSign..L["Enable Comparing Equipped and Bag Ilvl"],
+								type = "toggle",
+								width = 'full',
+								hidden = not E.Retail,
+								get = function() return E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							equipandbagilvlenablecustomcolor = {
+								order = 161,
+								name = E.NewSign..L["Enable Custom Colors"],
+								type = "toggle",
+								width = 'full',
+								hidden = not E.Retail,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							equipandbagilvlenablecustomcolor1 = {
+								order = 162,
+								type = 'color',
+								name = L["Bad Color"],
+								hasAlpha = false,
+								hidden = not E.Retail,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom or not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR
+									local dg = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG
+									local db = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB
+									return E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB = r, g, b
+								end,
+							},
+							equipandbagilvlenablecustomcolor2 = {
+								order = 163,
+								type = 'color',
+								name = L["Medium Color"],
+								hasAlpha = false,
+								hidden = not E.Retail,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom or not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR
+									local dg = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG
+									local db = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB
+									return E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB = r, g, b
+								end,
+							},
+							equipandbagilvlenablecustomcolor3 = {
+								order = 164,
+								type = 'color',
+								name = L["Good Color"],
+								hasAlpha = false,
+								hidden = not E.Retail,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom or not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR
+									local dg = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG
+									local db = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB
+									return E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB = r, g, b
+								end,
+							},
 							headerstat5 = {
-								order = 155,
+								order = 233,
 								type = "description",
 								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							statcolors = {
-								order = 156,
+								order = 234,
 								type = 'toggle',
 								name = function()
 									if E.Retail then
@@ -9415,7 +9528,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.statcolors = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							othergradientcolors = {
-								order = 157,
+								order = 235,
 								type = 'toggle',
 								name = function()
 									if E.Retail then
@@ -9430,7 +9543,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterskingradients = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							gapfontsize1 = {
-								order = 158,
+								order = 236,
 								type = "description",
 								name = "",
 								width = 'full',
@@ -9438,7 +9551,7 @@ function ElvUI_EltreumUI:Configtable()
 							characterpanelfontsize = {
 								type = 'range',
 								name = E.NewSign..L["Font Size"],
-								order = 159,
+								order = 237,
 								min = 8,
 								max = 40,
 								step = 1,

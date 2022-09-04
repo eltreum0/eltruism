@@ -595,24 +595,36 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 
 			CharacterFrame:HookScript("OnShow", function()
-				if not IsAddOnLoaded("ElvUI_SLE") then
-					local bagilvl, equippedilvl = GetAverageItemLevel()
-					if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
-						local r, g, b = E:ColorGradient((equippedilvl / bagilvl), 1, 0, 0, 1, 1, 0, 0, 1, 1)
-						CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
-						CharacterFrame.ItemLevelText:SetTextColor(0.63921427726746,0.20784267783165,0.93333131074905)
+				if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
+					if not IsAddOnLoaded("ElvUI_SLE") then
+						local bagilvl, equippedilvl = GetAverageItemLevel()
+						if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
+							local r, g, b
+							if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
+								r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+							else
+								r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+							end
+							CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
+						end
 					end
 				end
 			end)
 
 			--update stats and stats position
 			hooksecurefunc("PaperDollFrame_UpdateStats", function()
-				if not IsAddOnLoaded("ElvUI_SLE") then
-					local bagilvl, equippedilvl = GetAverageItemLevel()
-					if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
-						local r, g, b = E:ColorGradient((equippedilvl / bagilvl), 1, 0, 0, 1, 1, 0, 0, 1, 1)
-						CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
-						CharacterFrame.ItemLevelText:SetTextColor(0.63921427726746,0.20784267783165,0.93333131074905)
+				if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
+					if not IsAddOnLoaded("ElvUI_SLE") then
+						local bagilvl, equippedilvl = GetAverageItemLevel()
+						if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
+							local r, g, b
+							if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
+								r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+							else
+								r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+							end
+							CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
+						end
 					end
 				end
 				speed = ((_G.GetUnitSpeed("player")/7) *100)
@@ -937,13 +949,19 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrame:SetWidth(505)
 					CharacterModelFrame:SetPosition(0, 0, 0) -- zoom, x, y
 					CharacterModelFrame:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
-					if not IsAddOnLoaded("ElvUI_SLE") then
+					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
+						if not IsAddOnLoaded("ElvUI_SLE") then
 						local bagilvl, equippedilvl = GetAverageItemLevel()
 						if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
-							local r, g, b = E:ColorGradient((equippedilvl / bagilvl), 1, 0, 0, 1, 1, 0, 0, 1, 1)
+							local r, g, b
+							if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
+								r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+							else
+								r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+							end
 							CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
-							CharacterFrame.ItemLevelText:SetTextColor(0.63921427726746,0.20784267783165,0.93333131074905)
 						end
+					end
 					end
 				end
 				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
@@ -976,13 +994,19 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			if PaperDollFrame:IsVisible() then
 				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
-					if not IsAddOnLoaded("ElvUI_SLE") then
+					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
+						if not IsAddOnLoaded("ElvUI_SLE") then
 						local bagilvl, equippedilvl = GetAverageItemLevel()
 						if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
-							local r, g, b = E:ColorGradient((equippedilvl / bagilvl), 1, 0, 0, 1, 1, 0, 0, 1, 1)
+							local r, g, b
+							if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
+								r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+							else
+								r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+							end
 							CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
-							CharacterFrame.ItemLevelText:SetTextColor(0.63921427726746,0.20784267783165,0.93333131074905)
 						end
+					end
 					end
 					CharacterFrame:SetWidth(700)
 					CharacterModelFrame:SetPosition(0, 0, 0) -- zoom, x, y
@@ -1954,7 +1978,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 				else
 					qualityAnchor.Frame:SetFrameLevel(_G["CharacterModelFrame"]:GetFrameLevel() - 1) --needs to be changed to not overlap the sockets/enchants
 					if E.db.ElvUI_EltreumUI.skins.classicarmory then
-						qualityAnchor.Frame:SetSize(250, _G["Character"..InvSlotName]:GetHeight() + 2)
+						qualityAnchor.Frame:SetSize(200, _G["Character"..InvSlotName]:GetHeight() + 2)
 					else
 						qualityAnchor.Frame:SetSize(115, _G["Character"..InvSlotName]:GetHeight() + 2)
 					end
@@ -1968,12 +1992,19 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 					local quality = select(3, _G.GetItemInfo(itemLink))
 					local isSetItem = select(16, _G.GetItemInfo(itemLink))
 					if quality ~= nil then
-						local r,g,b
-						if not isSetItem then
-							r,g,b = _G.GetItemQualityColor(quality)
+						local r,g,b = 1,1,1
+						if E.db.ElvUI_EltreumUI.skins.itemsetenable then
+							if isSetItem then
+								if E.db.ElvUI_EltreumUI.skins.itemsetcustomcolor then
+									r,g,b = E.db.ElvUI_EltreumUI.skins.itemsetcolor.r, E.db.ElvUI_EltreumUI.skins.itemsetcolor.g, E.db.ElvUI_EltreumUI.skins.itemsetcolor.b
+								else
+									r,g,b = P.ElvUI_EltreumUI.skins.itemsetcolor.r, P.ElvUI_EltreumUI.skins.itemsetcolor.g, P.ElvUI_EltreumUI.skins.itemsetcolor.b
+								end
+							else
+								r,g,b = _G.GetItemQualityColor(quality)
+							end
 						else
-							--r,g,b = 0.90,0.80,0.50
-							r,g,b = 0.784,0.635,0.784
+							r,g,b = _G.GetItemQualityColor(quality)
 						end
 						qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
 						qualityAnchor.Frame.Quality:SetAlpha(1)
@@ -2391,7 +2422,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							qualityAnchorInspect.Frame:SetSize(140, _G["Inspect"..InvSlotName]:GetHeight() + 2)
 						else
 							qualityAnchorInspect.Frame:SetFrameLevel(_G["InspectModelFrame"]:GetFrameLevel() - 1)
-							qualityAnchorInspect.Frame:SetSize(120, _G["Inspect"..InvSlotName]:GetHeight() + 2)
+							qualityAnchorInspect.Frame:SetSize(140, _G["Inspect"..InvSlotName]:GetHeight() + 2)
 						end
 
 						qualityAnchorInspect.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade')
@@ -2403,12 +2434,19 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							local quality = select(3,_G.GetItemInfo(itemLink))
 							local isSetItem = select(16, _G.GetItemInfo(itemLink))
 							if quality then
-								local r,g,b
-								if not isSetItem then
-									r,g,b = _G.GetItemQualityColor(quality)
+								local r,g,b = 1,1,1
+								if E.db.ElvUI_EltreumUI.skins.itemsetenable then
+									if isSetItem then
+										if E.db.ElvUI_EltreumUI.skins.itemsetcustomcolor then
+											r,g,b = E.db.ElvUI_EltreumUI.skins.itemsetcolor.r, E.db.ElvUI_EltreumUI.skins.itemsetcolor.g, E.db.ElvUI_EltreumUI.skins.itemsetcolor.b
+										else
+											r,g,b = P.ElvUI_EltreumUI.skins.itemsetcolor.r, P.ElvUI_EltreumUI.skins.itemsetcolor.g, P.ElvUI_EltreumUI.skins.itemsetcolor.b
+										end
+									else
+										r,g,b = _G.GetItemQualityColor(quality)
+									end
 								else
-									--r,g,b = 0.90,0.80,0.50
-									r,g,b = 0.784,0.635,0.784
+									r,g,b = _G.GetItemQualityColor(quality)
 								end
 								qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
 								qualityAnchorInspect.Frame.Quality:SetAlpha(1)
