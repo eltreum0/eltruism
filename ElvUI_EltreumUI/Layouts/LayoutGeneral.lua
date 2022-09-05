@@ -779,7 +779,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["xOffset"] = 37,
 			["yOffset"] = 12
 		}
-		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Group"] = {
+		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumGroup"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
 			["font"] = "Kimberley",
@@ -798,6 +798,17 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["justifyH"] = "RIGHT",
 			["size"] = 10,
 			["text_format"] = "[eltruism:hpstatusnopc{5,3}]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
+		}
+		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Name"] = {
+			["attachTextTo"] = "InfoPanel",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "LEFT",
+			["size"] = 10,
+			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}

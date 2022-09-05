@@ -521,7 +521,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 			["yOffset"] = 12
 			}
 		end
-		E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Group"] = {
+		E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumGroup"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
 			["font"] = "AR CrystalzcuheiGBK Demibold",
@@ -570,7 +570,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 			["yOffset"] = 12
 			}
 		end
-		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Group"] = {
+		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumGroup"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
 			["font"] = "AR CrystalzcuheiGBK Demibold",
@@ -589,6 +589,17 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 			["justifyH"] = "RIGHT",
 			["size"] = 10,
 			["text_format"] = "[health:current:shortvalue]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
+		}
+		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Name"] = {
+			["attachTextTo"] = "InfoPanel",
+			["enable"] = true,
+			["font"] = "AR CrystalzcuheiGBK Demibold",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "LEFT",
+			["size"] = 10,
+			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
