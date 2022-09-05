@@ -46,9 +46,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["convertPages"] = true
 
 		--smoothbars
-		--E.db["general"]["altPowerBar"]["smoothbars"] = true
-		--E.db["nameplates"]["smoothbars"] = true
-		--E.db["unitframe"]["smoothbars"] = true
 		E.db["general"]["altPowerBar"]["smoothbars"] = false
 		E.db["nameplates"]["smoothbars"] = false
 		E.db["unitframe"]["smoothbars"] = false
@@ -77,7 +74,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["raid2"]["classbar"]["enable"] = false
 		E.db["unitframe"]["units"]["raid3"]["classbar"]["enable"] = false
 
-		--E.db["unitframe"]["units"]["player"]["castbar"]["reverse"] = true
+		--reverse target castbar
 		E.db["unitframe"]["units"]["target"]["castbar"]["reverse"] = true
 
 		-- dont detach on normal profile
