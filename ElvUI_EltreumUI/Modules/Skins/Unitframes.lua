@@ -374,6 +374,8 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 				headergroup = _G["ElvUF_Raid1"]
 			elseif _G["ElvUF_Raid2"] and _G["ElvUF_Raid2"]:IsShown() then
 				headergroup = _G["ElvUF_Raid2"]
+			elseif _G["ElvUF_Raid3"] and _G["ElvUF_Raid3"]:IsShown() then
+				headergroup = _G["ElvUF_Raid3"]
 			elseif _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsShown() then
 				headergroup = _G["ElvUF_Party"]
 			end

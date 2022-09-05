@@ -326,118 +326,127 @@ local function SkinLocale()
 end
 SkinLocale()
 
-
 --skin meeting horn addon
+local function SkinMeetingHorn()
+	if E.db.ElvUI_EltreumUI.skins.meetinghorn then
+		S:HandleFrame(_G['MeetingHornMainPanel'])
+		S:HandleScrollBar(_G.MeetingHornMainPanelScrollBar)
+
+		--search
+		S:HandleFrame(_G.MeetingHornMainPanel.Browser)
+		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Activity)
+		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Mode)
+		S:HandleFrame(_G.MeetingHornMainPanelScrollChild)
+		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header1)
+		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header2)
+		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header3)
+		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header4)
+		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header5)
+		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header6)
+		--S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header7)
+		--S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header8)
+		S:HandleEditBox(_G.MeetingHornMainPanel.Browser.Input)
+		S:HandleButton(_G.MeetingHornMainPanel.Browser.Refresh)
+		S:HandleButton(_G.MeetingHornMainPanel.Browser.Reset)
+		--S:HandleButton(_G.MeetingHornMainPanel.Browser.RechargeBtn)
+		--S:HandleButton(_G.MeetingHornMainPanel.Browser.ApplyLeaderBtn)
+		S:HandleScrollBar(_G.MeetingHornMainPanel.Browser.ActivityList.scrollBar)
+
+		--challenge
+		S:HandleFrame(_G.MeetingHornMainPanel.Challenge)
+		S:HandleButton(_G.MeetingHornMainPanel.Challenge.Body.Reward.Exchange)
+		S:HandleButton(_G.MeetingHornMainPanel.Browser.Refresh)
+
+		--create
+		S:HandleFrame(_G.MeetingHornMainPanel.Manage)
+		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Creator)
+		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Creator.Activity)
+		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Creator.Mode)
+		S:HandleScrollBar(_G.MeetingHornMainPanel.Manage.Chat.ChatFrame.scrollBar)
+		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Creator.Comment)
+		S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.CreateButton)
+		--S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.RecruitButton)
+		S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.CloseButton)
+		--_G.MeetingHornMainPanel.Manage.Creator.CloseButton.Texture:SetPoint("RIGHT", _G.MeetingHornMainPanel.Manage.Creator.CloseButton, "RIGHT")
+		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Chat)
+		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Chat.ChatFrame)
+		_G.MeetingHornMainPanel.Manage.Chat.ChatBg:Hide()
+		--_G.MeetingHornMainPanel.Manage.Creator.RecruitButton.RightSeparator:Hide()
+		--_G.MeetingHornMainPanel.Manage.Creator.CreateButton.RightSeparator:Hide()
+		_G.MeetingHornMainPanel.Manage.Creator.CloseButton.Texture:Hide()
+
+		--leader
+		S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader)
+		S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First)
+		S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First.Footer)
+		S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First.Header)
+		--S:HandleButton(_G.MeetingHornMainPanel.GoodLeader.First.Header.ApplyLeaderBtn)
+
+		--announcement
+		--S:HandleFrame(_G.MeetingHornMainPanel.Announcement)
+		--S:HandleFrame(_G.MeetingHornMainPanel.Announcement.loading)
+
+		--mission guidance
+		--S:HandleFrame(_G.MeetingHornMainPanel.MissionGuidance)
+
+		--recent
+		S:HandleFrame(_G.MeetingHornMainPanel.Recent)
+		S:HandleFrame(_G.MeetingHornMainPanel.Recent.Left)
+		S:HandleFrame(_G.MeetingHornMainPanel.Recent.Members)
+		S:HandleFrame(_G.MeetingHornMainPanel.Recent.Instance)
+		S:HandleButton(_G.MeetingHornMainPanel.Recent.Invite)
+		_G.MeetingHornMainPanel.Recent.Invite.RightSeparator:Hide()
+		_G.MeetingHornMainPanel.Recent.Invite.LeftSeparator:Hide()
+
+		--quest
+		S:HandleFrame(_G.MeetingHornMainPanel.Loading)
+		--S:HandleFrame(_G.MeetingHornMainPanel.Quest)
+		--S:HandleFrame(_G.MeetingHornMainPanel.Quest.Body)
+		--S:HandleFrame(_G.MeetingHornMainPanel.Quest.Body.Quests)
+		--S:HandleButton(_G.MeetingHornMainPanel.Quest.Body.Refresh)
+		--S:HandleScrollBar(_G.MeetingHornMainPanel.Quest.Body.Quests.scrollBar)
+		--S:HandleFrame(_G.MeetingHornMainPanel.Quest.Summary)
+
+		--options
+		S:HandleFrame(_G.MeetingHornMainPanel.Options)
+		S:HandleFrame(_G.MeetingHornMainPanel.Options.Options)
+		S:HandleFrame(_G.MeetingHornMainPanel.Options.Filters)
+		S:HandleFrame(_G.MeetingHornMainPanel.Options.Filters.FilterList)
+		S:HandleScrollBar(_G.MeetingHornMainPanel.Options.Filters.FilterList.scrollBar)
+
+		S:HandleButton(_G.MeetingHornMainPanel.Options.Filters.Add)
+		S:HandleButton(_G.MeetingHornMainPanel.Options.Filters.Import)
+		S:HandleButton(_G.MeetingHornMainPanel.Options.Filters.Export)
+
+		--help
+		S:HandleFrame(_G.MeetingHornMainPanel.Help)
+		_G.MeetingHornMainPanelPortraitFrame:Hide()
+	end
+end
+
 local handlemeetinghorn = CreateFrame("FRAME")
-local meetskinned
 handlemeetinghorn:RegisterEvent("ADDON_LOADED")
 handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
 	if GetAddOnEnableState(nil, "MeetingHorn") == 0 then
 		handlemeetinghorn:UnregisterAllEvents()
 	end
-	if not E.private.ElvUI_EltreumUI then
-		return
-	end
-	if ((arg == "MeetingHorn") and E.db.ElvUI_EltreumUI.skins.meetinghorn) or IsAddOnLoaded("MeetingHorn") then
-		_G['MeetingHornMainPanel']:SetScript("OnShow", function(self)
-			if not self.meetskinned then
-				self.meetskinned = true
-				S:HandleFrame(_G['MeetingHornMainPanel'])
-				S:HandleScrollBar(_G.MeetingHornMainPanelScrollBar)
-
-				--search
-				S:HandleFrame(_G.MeetingHornMainPanel.Browser)
-				S:HandleFrame(_G.MeetingHornMainPanel.Browser.Activity)
-				S:HandleFrame(_G.MeetingHornMainPanel.Browser.Mode)
-				S:HandleFrame(_G.MeetingHornMainPanelScrollChild)
-				S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header1)
-				S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header2)
-				S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header3)
-				S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header4)
-				S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header5)
-				S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header6)
-				--S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header7)
-				--S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header8)
-				S:HandleEditBox(_G.MeetingHornMainPanel.Browser.Input)
-				S:HandleButton(_G.MeetingHornMainPanel.Browser.Refresh)
-				S:HandleButton(_G.MeetingHornMainPanel.Browser.Reset)
-				--S:HandleButton(_G.MeetingHornMainPanel.Browser.RechargeBtn)
-				--S:HandleButton(_G.MeetingHornMainPanel.Browser.ApplyLeaderBtn)
-				S:HandleScrollBar(_G.MeetingHornMainPanel.Browser.ActivityList.scrollBar)
-
-				--challenge
-				S:HandleFrame(_G.MeetingHornMainPanel.Challenge)
-				S:HandleButton(_G.MeetingHornMainPanel.Challenge.Body.Reward.Exchange)
-				S:HandleButton(_G.MeetingHornMainPanel.Browser.Refresh)
-
-				--create
-				S:HandleFrame(_G.MeetingHornMainPanel.Manage)
-				S:HandleFrame(_G.MeetingHornMainPanel.Manage.Creator)
-				S:HandleFrame(_G.MeetingHornMainPanel.Manage.Creator.Activity)
-				S:HandleFrame(_G.MeetingHornMainPanel.Manage.Creator.Mode)
-				S:HandleScrollBar(_G.MeetingHornMainPanel.Manage.Chat.ChatFrame.scrollBar)
-				S:HandleFrame(_G.MeetingHornMainPanel.Manage.Creator.Comment)
-				S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.CreateButton)
-				--S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.RecruitButton)
-				S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.CloseButton)
-				--_G.MeetingHornMainPanel.Manage.Creator.CloseButton.Texture:SetPoint("RIGHT", _G.MeetingHornMainPanel.Manage.Creator.CloseButton, "RIGHT")
-				S:HandleFrame(_G.MeetingHornMainPanel.Manage.Chat)
-				S:HandleFrame(_G.MeetingHornMainPanel.Manage.Chat.ChatFrame)
-				_G.MeetingHornMainPanel.Manage.Chat.ChatBg:Hide()
-				--_G.MeetingHornMainPanel.Manage.Creator.RecruitButton.RightSeparator:Hide()
-				--_G.MeetingHornMainPanel.Manage.Creator.CreateButton.RightSeparator:Hide()
-				_G.MeetingHornMainPanel.Manage.Creator.CloseButton.Texture:Hide()
-
-				--leader
-				S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader)
-				S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First)
-				S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First.Footer)
-				S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First.Header)
-				--S:HandleButton(_G.MeetingHornMainPanel.GoodLeader.First.Header.ApplyLeaderBtn)
-
-				--announcement
-				--S:HandleFrame(_G.MeetingHornMainPanel.Announcement)
-				--S:HandleFrame(_G.MeetingHornMainPanel.Announcement.loading)
-
-				--mission guidance
-				--S:HandleFrame(_G.MeetingHornMainPanel.MissionGuidance)
-
-				--recent
-				S:HandleFrame(_G.MeetingHornMainPanel.Recent)
-				S:HandleFrame(_G.MeetingHornMainPanel.Recent.Left)
-				S:HandleFrame(_G.MeetingHornMainPanel.Recent.Members)
-				S:HandleFrame(_G.MeetingHornMainPanel.Recent.Instance)
-				S:HandleButton(_G.MeetingHornMainPanel.Recent.Invite)
-				_G.MeetingHornMainPanel.Recent.Invite.RightSeparator:Hide()
-				_G.MeetingHornMainPanel.Recent.Invite.LeftSeparator:Hide()
-
-				--quest
-				S:HandleFrame(_G.MeetingHornMainPanel.Loading)
-				--S:HandleFrame(_G.MeetingHornMainPanel.Quest)
-				--S:HandleFrame(_G.MeetingHornMainPanel.Quest.Body)
-				--S:HandleFrame(_G.MeetingHornMainPanel.Quest.Body.Quests)
-				--S:HandleButton(_G.MeetingHornMainPanel.Quest.Body.Refresh)
-				--S:HandleScrollBar(_G.MeetingHornMainPanel.Quest.Body.Quests.scrollBar)
-				--S:HandleFrame(_G.MeetingHornMainPanel.Quest.Summary)
-
-				--options
-				S:HandleFrame(_G.MeetingHornMainPanel.Options)
-				S:HandleFrame(_G.MeetingHornMainPanel.Options.Options)
-				S:HandleFrame(_G.MeetingHornMainPanel.Options.Filters)
-				S:HandleFrame(_G.MeetingHornMainPanel.Options.Filters.FilterList)
-				S:HandleScrollBar(_G.MeetingHornMainPanel.Options.Filters.FilterList.scrollBar)
-
-				S:HandleButton(_G.MeetingHornMainPanel.Options.Filters.Add)
-				S:HandleButton(_G.MeetingHornMainPanel.Options.Filters.Import)
-				S:HandleButton(_G.MeetingHornMainPanel.Options.Filters.Export)
-
-				--help
-				S:HandleFrame(_G.MeetingHornMainPanel.Help)
-				_G.MeetingHornMainPanelPortraitFrame:Hide()
-
+	if (arg == "MeetingHorn") or IsAddOnLoaded("MeetingHorn") then
+		_G['MeetingHornMainPanel']:HookScript("OnShow", function(self)
+			if not self.meetskinnedonshow then
+				self.meetskinnedonshow = true
+				SkinMeetingHorn()
 				handlemeetinghorn:UnregisterAllEvents()
 			end
 		end)
+	end
+end)
+
+local meetinghornmightalreadybeloaded = CreateFrame("FRAME")
+meetinghornmightalreadybeloaded:RegisterEvent("PLAYER_STARTED_MOVING")
+meetinghornmightalreadybeloaded:SetScript("OnEvent", function()
+	meetinghornmightalreadybeloaded:UnregisterAllEvents()
+	if IsAddOnLoaded('MeetingHorn') then
+		SkinMeetingHorn()
 	end
 end)
 
