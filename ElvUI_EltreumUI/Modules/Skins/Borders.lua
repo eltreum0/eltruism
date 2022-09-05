@@ -1083,11 +1083,11 @@ function ElvUI_EltreumUI:ShowHideBorders()
 		if not E.db.ElvUI_EltreumUI.borders.borders then
 			Hide()
 			E.db.ElvUI_EltreumUI.borders.borders = false
-			E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
+			--E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
 			ElvUI_EltreumUI:Print("Borders Disabled")
 		elseif E.db.ElvUI_EltreumUI.borders.borders then
 			E.db.ElvUI_EltreumUI.borders.borders = true
-			E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
+			--E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
 			Show()
 			ElvUI_EltreumUI:Print("Borders Enabled")
 		end
