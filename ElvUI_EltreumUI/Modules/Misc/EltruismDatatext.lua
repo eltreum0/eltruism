@@ -302,6 +302,50 @@ local function EltruismTeleportsOnLeave()
 	teleportupdate:SetScript("OnUpdate", nil)
 end
 DT:RegisterDatatext('EltruismTeleports', nil, { 'SPELL_UPDATE_COOLDOWN', 'BAG_UPDATE_COOLDOWN', "HEARTHSTONE_BOUND"}, EltruismTeleportsOnEvent, nil, nil, EltruismTeleportsOnEnter, EltruismTeleportsOnLeave, L["Eltruism Hearthstones/Teleports"], nil, nil)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------stats datatext
+--haste and crit datatext
+local function EltruismStatsDatatext1(dt)
+	--haste
+	local meleehaste =  GetHaste()
+	local spellhaste = GetCombatRatingBonus(CR_HASTE_SPELL)
+	local haste = "Haste: "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", math.max(meleehaste,spellhaste)).."|r"
+
+	--crit
+	local rangedcrit = GetRangedCritChance()
+	local meleecrit = GetCritChance()
+	local spellcrit = GetSpellCritChance(2)
+	local crit = "Crit: "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%",  math.max(rangedcrit,meleecrit,spellcrit)).."|r"
+
+	dt.text:SetFormattedText('%s %s|r',haste,crit)
+end
+DT:RegisterDatatext('Eltruism Stats 1', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_STATS","UNIT_SPELL_HASTE","UNIT_DAMAGE","UNIT_ATTACK_SPEED","SPELL_POWER_CHANGED"}, EltruismStatsDatatext1, nil, nil, nil, nil, L["Eltruism Stats 1"])
+
+--mastery/vers or power/hit
+local function EltruismStatsDatatext2(dt)
+	if E.Retail then
+		--mastery
+	    local mastery = "Mastery: "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMasteryEffect()).."|r"
+	    --versatility
+	    local versdmg = GetCombatRatingBonus(29) + GetVersatilityBonus(29)
+		local versdef = GetCombatRatingBonus(31) + GetVersatilityBonus(31)
+    	local versatility = "Vers: "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", math.max(versdef,versdmg)).."|r"
+    	dt.text:SetFormattedText('%s %s|r',mastery,versatility)
+    else
+    	--power
+    	local rangedbasepower, rangedbuff, rangednerf = UnitRangedAttackPower('player')
+    	local totalranged = rangedbasepower+rangedbuff+rangednerf
+    	local meleebasepower, meleebuff, meleenerf = UnitAttackPower('player')
+    	local totalmelee = meleebasepower+meleebuff+meleenerf
+    	local power = "Power: "..ElvUI[1].media.hexvaluecolor..math.max(totalranged,totalmelee).."|r"
+    	--hit rating
+    	local rangedhit = GetCombatRatingBonus(CR_HIT_RANGED)
+    	local meleehit = GetCombatRatingBonus(CR_HIT_MELEE)
+    	local spellhit = GetCombatRatingBonus(CR_HIT_SPELL)
+    	local hit = "Hit: "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", math.max(rangedhit,meleehit,spellhit)).."|r"
+    	dt.text:SetFormattedText('%s %s|r',power,hit)
+    end
+end
+DT:RegisterDatatext('Eltruism Stats 2', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_STATS","UNIT_RANGEDDAMAGE","UNIT_ATTACK_POWER","UNIT_RANGED_ATTACK_POWER","UNIT_ATTACK","MASTERY_UPDATE","UNIT_DAMAGE","SPELL_POWER_CHANGED"}, EltruismStatsDatatext2, nil, nil, nil, nil, L["Eltruism Stats 2"])
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------spell haste datatext
 local function EltruismSpellHasteDatatext(dt)
 	local spellhaste = GetCombatRatingBonus(CR_HASTE_SPELL)
@@ -309,9 +353,8 @@ local function EltruismSpellHasteDatatext(dt)
 	dt.text:SetFormattedText('%s: %s%s|r', L["Spell Haste"], ElvUI[1].media.hexvaluecolor, spellhastepc)
 end
 if E.Wrath or E.TBC or E.Classic then
-	DT:RegisterDatatext('Eltruism Spellhaste', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE'}, EltruismSpellHasteDatatext, nil, nil, nil, nil, L["Eltruism Spell Haste"])
+	DT:RegisterDatatext('Eltruism Spellhaste', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_SPELL_HASTE"}, EltruismSpellHasteDatatext, nil, nil, nil, nil, L["Eltruism Spell Haste"])
 end
-
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------honor datatext
 local function EltruismHonorDatatext(dt)
 	local honorCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo(Constants.CurrencyConsts.CLASSIC_HONOR_CURRENCY_ID)
@@ -332,7 +375,6 @@ if E.Wrath or E.TBC or E.Classic then
 elseif E.Retail then
 	DT:RegisterDatatext('Eltruism Honor/Conquest Points', CURRENCY, {'CHAT_MSG_CURRENCY', 'CURRENCY_DISPLAY_UPDATE'}, EltruismHonorDatatext, nil, nil, nil, nil, L["Eltruism Honor/Conquest Points"])
 end
-
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------modified elvui config panel open
 local lastPanelEltruismConfig
 local displayStringEltruismconfig = ''
@@ -368,7 +410,6 @@ local function EltruismConfigValueColorUpdate(hex)
 end
 E.valueColorUpdateFuncs[EltruismConfigValueColorUpdate] = true
 DT:RegisterDatatext('Eltruism', nil, nil, EltruismConfigOnEvent, nil, EltruismConfigOnClick, EltruismConfigOnEnter, nil, L["Eltruism Config"], nil, EltruismConfigValueColorUpdate)
-
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
 if E.Classic or E.Wrath or E.TBC then
 	if E.myclass ~= 'HUNTER' and E.myclass ~= 'ROGUE' and E.myclass ~= 'WARLOCK' and E.myclass ~= 'WARRIOR' then return end
