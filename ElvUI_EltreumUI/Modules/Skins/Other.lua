@@ -327,10 +327,8 @@ end
 SkinLocale()
 
 --skin meeting horn addon
-local meetinghornskinned = false
 local function SkinMeetingHorn(self)
-	if E.db.ElvUI_EltreumUI.skins.meetinghorn and not meetinghornskinned then
-		meetinghornskinned = true
+	if E.db.ElvUI_EltreumUI.skins.meetinghorn then
 		S:HandleFrame(_G['MeetingHornMainPanel'])
 		S:HandleScrollBar(_G.MeetingHornMainPanelScrollBar)
 
