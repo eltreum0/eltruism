@@ -1071,6 +1071,7 @@ P.ElvUI_EltreumUI = {
 		eltruismroleiconscustomtank = "",
 		eltruismroleiconscustomhealer = "",
 		eltruismroleiconscustomdps = "",
+		roleiconstype = 'ELTRUISM',
 		gamemenu = false,
 		afklogo = true,
 		mailsoundenable = false,
