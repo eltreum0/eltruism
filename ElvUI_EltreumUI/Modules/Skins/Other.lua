@@ -327,7 +327,7 @@ end
 SkinLocale()
 
 --skin meeting horn addon
-local function SkinMeetingHorn(self)
+local function SkinMeetingHorn()
 	if E.db.ElvUI_EltreumUI.skins.meetinghorn then
 		S:HandleFrame(_G['MeetingHornMainPanel'])
 		S:HandleScrollBar(_G.MeetingHornMainPanelScrollBar)
