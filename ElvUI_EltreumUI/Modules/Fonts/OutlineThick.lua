@@ -3,48 +3,46 @@ local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 
 function ElvUI_EltreumUI:SetupFontsOutlineThick()
-	if E.Retail then
-		if IsAddOnLoaded('ProjectAzilroka') then
-			_G.ProjectAzilroka.db["stAddonManager"]["FontFlag"] = "THICKOUTLINE"
-		end
-		if IsAddOnLoaded("ElvUI_SLE") then
-			E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "THICKOUTLINE"
-			E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "THICKOUTLINE"
-			E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = "THICKOUTLINE"
-			E.db["sle"]["media"]["fonts"]["mail"]["outline"] = "THICKOUTLINE"
-			E.db["sle"]["media"]["fonts"]["objective"]["outline"] = "THICKOUTLINE"
-			E.db["sle"]["media"]["fonts"]["objectiveHeader"]["outline"] = "THICKOUTLINE"
-			E.db["sle"]["media"]["fonts"]["pvp"]["outline"] = "THICKOUTLINE"
-			E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["outline"] = "THICKOUTLINE"
-			E.db["sle"]["media"]["fonts"]["subzone"]["outline"] = "THICKOUTLINE"
-			E.db["sle"]["media"]["fonts"]["zone"]["outline"] = "THICKOUTLINE"
-			E.db["sle"]["minimap"]["coords"]["fontOutline"] = "THICKOUTLINE"
-			E.db["sle"]["minimap"]["instance"]["fontOutline"] = "THICKOUTLINE"
-			E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = "THICKOUTLINE"
-			E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = "THICKOUTLINE"
-			E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "THICKOUTLINE"
-		end
-		if IsAddOnLoaded("ElvUI_WindTools") then
-			E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = "THICKOUTLINE"
-			E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = "THICKOUTLINE"
-			E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = "THICKOUTLINE"
-			E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = "THICKOUTLINE"
-			E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "THICKOUTLINE"
-			E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "THICKOUTLINE"
-			E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "THICKOUTLINE"
-		end
-		E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
-		E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "THICKOUTLINE"
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "THICKOUTLINE"
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "THICKOUTLINE"
-		E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Absorb"]["fontOutline"] = "THICKOUTLINE"
-		E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Absorb"]["fontOutline"] = "THICKOUTLINE"
-		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Absorb"]["fontOutline"] = "THICKOUTLINE"
-		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
-		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "THICKOUTLINE"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "THICKOUTLINE"
+	if IsAddOnLoaded('ProjectAzilroka') then
+		_G.ProjectAzilroka.db["stAddonManager"]["FontFlag"] = "THICKOUTLINE"
 	end
+	if IsAddOnLoaded("ElvUI_SLE") then
+		E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["mail"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["objective"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["pvp"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["subzone"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["media"]["fonts"]["zone"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["minimap"]["coords"]["fontOutline"] = "THICKOUTLINE"
+		E.db["sle"]["minimap"]["instance"]["fontOutline"] = "THICKOUTLINE"
+		E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = "THICKOUTLINE"
+		E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = "THICKOUTLINE"
+		E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "THICKOUTLINE"
+	end
+	if IsAddOnLoaded("ElvUI_WindTools") then
+		E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = "THICKOUTLINE"
+		E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = "THICKOUTLINE"
+		E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = "THICKOUTLINE"
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = "THICKOUTLINE"
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "THICKOUTLINE"
+		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "THICKOUTLINE"
+		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "THICKOUTLINE"
+	end
+	E.db["general"]["altPowerBar"]["fontOutline"] = "THICKOUTLINE"
+	E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
+	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "THICKOUTLINE"
+	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "THICKOUTLINE"
+	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "THICKOUTLINE"
+	E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Absorb"]["fontOutline"] = "THICKOUTLINE"
+	E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Absorb"]["fontOutline"] = "THICKOUTLINE"
+	E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Absorb"]["fontOutline"] = "THICKOUTLINE"
+	E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
+	E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "THICKOUTLINE"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "THICKOUTLINE"
 	E.db["general"]["fontStyle"] = "THICKOUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE"
 	if E.Retail then
