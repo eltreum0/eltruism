@@ -1124,3 +1124,5 @@ L["Good Color"] = true
 L["Use this button to restore names should you have disabled the Hide NPC Names option"] = true
 L["Gradient Power Backdrop"] = true
 L["Change how much the Gradient Power Backdrop will Fade"] = true
+L["Use ElvUI Unitframe Texture"] = true
+L["Uses ElvUI UNitframe Statusbar texture instead"] = true
