@@ -68,6 +68,7 @@ local SUPPORTER = {
 	'|cffB50909Jiberish|r',
 	'|cffB50909Morthart|r',
 	'|cffB50909Nekator|r',
+	'|cffB50909Vxt|r',
 }
 
 local TRANSLATORS = {
