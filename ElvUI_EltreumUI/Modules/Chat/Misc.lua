@@ -211,13 +211,13 @@ ChatFrame_AddMessageEventFilter("PLAYER_ROLES_ASSIGNED", ColorSysMsgs)
 --icons in chat/UF when party member swaps roles
 function ElvUI_EltreumUI:ChatRoleSwapIcons()
 	if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
-		if E.Retail then
+		if E.Retail or E.Wrath then
 			local UF = E:GetModule('UnitFrames')
-				UF.RoleIconTextures = {
-					TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga",
-					HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga",
-					DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga"
-				}
+			UF.RoleIconTextures = {
+				TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga",
+				HEALER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga",
+				DAMAGER = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga"
+			}
 		end
 		if IsAddOnLoaded("ElvUI_SLE") then
 			local SLE = unpack(ElvUI_SLE)
@@ -228,7 +228,7 @@ function ElvUI_EltreumUI:ChatRoleSwapIcons()
 			}
 		end
 	elseif E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustom then
-		if E.Retail then
+		if E.Retail or E.Wrath then
 			local UF = E:GetModule('UnitFrames')
 				UF.RoleIconTextures = {
 					TANK = [[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank,
