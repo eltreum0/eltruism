@@ -1126,3 +1126,5 @@ L["Bad Color"] = true
 L["Medium Color"] = true
 L["Good Color"] = true
 L["Use this button to restore names should you have disabled the Hide NPC Names option"] = true
+L["Gradient Power Backdrop"] = true
+L["Change how much the Gradient Power Backdrop will Fade"] = true

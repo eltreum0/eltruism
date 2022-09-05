@@ -10273,7 +10273,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							powerbgfade = {
 								type = 'range',
-								name = L["Gradient Power Backdrop Fade"],
+								name = L["Gradient Power Backdrop"],
 								desc = L["Change how much the Gradient Power Backdrop will Fade"],
 								order = 106,
 								min = 0,

@@ -1119,3 +1119,5 @@ L["Bad Color"] = "Cor Ruim"
 L["Medium Color"] = "Cor Média"
 L["Good Color"] = "Cor Boa"
 L["Use this button to restore names should you have disabled the Hide NPC Names option"] = "Use este botão para restaurar nomes caso você tenha desativado a opção Ocultar Nomes NPC"
+L["Gradient Power Backdrop"] = true
+L["Change how much the Gradient Power Backdrop will Fade"] = true
