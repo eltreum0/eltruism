@@ -370,10 +370,10 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 		if UnitExists(unit) and (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
 
 			headergroup = nil
-			if _G["ElvUF_Raid"] and _G["ElvUF_Raid"]:IsShown() then
-				headergroup = _G["ElvUF_Raid"]
-			elseif _G["ElvUF_Raid40"] and _G["ElvUF_Raid40"]:IsShown() then
-				headergroup = _G["ElvUF_Raid40"]
+			if _G["ElvUF_Raid1"] and _G["ElvUF_Raid1"]:IsShown() then
+				headergroup = _G["ElvUF_Raid1"]
+			elseif _G["ElvUF_Raid2"] and _G["ElvUF_Raid2"]:IsShown() then
+				headergroup = _G["ElvUF_Raid2"]
 			elseif _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsShown() then
 				headergroup = _G["ElvUF_Party"]
 			end

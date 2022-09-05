@@ -445,9 +445,9 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["yOffset"] = 0
 	}
 
-	-- Custom Text: Raid
-	E.db["unitframe"]["units"]["raid"]["customTexts"] = E.db["unitframe"]["units"]["raid"]["customTexts"] or {}
-	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumGroup"] = {
+	-- Custom Text: Raid1
+	E.db["unitframe"]["units"]["raid1"]["customTexts"] = E.db["unitframe"]["units"]["raid1"]["customTexts"] or {}
+	E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumGroup"] = {
 		["attachTextTo"] = "Health",
 		["enable"] = false,
 		["font"] = "Kimberley",
@@ -459,7 +459,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["yOffset"] = 10
 	}
 	if E.Retail then
-		E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidAbsorb"] = {
+		E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Absorb"] = {
 		["attachTextTo"] = "Health",
 		["enable"] = false,
 		["font"] = "Kimberley",
@@ -471,7 +471,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["yOffset"] = 0
 		}
 	end
-	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidHealth"]= {
+	E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Health"]= {
 		["attachTextTo"] = "InfoPanel",
 		["enable"] = true,
 		["font"] = "Kimberley",
@@ -482,7 +482,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["xOffset"] = 0,
 		["yOffset"] = -1
 	}
-	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumRaidName"] = {
+	E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Name"] = {
 		["attachTextTo"] = "InfoPanel",
 		["enable"] = true,
 		["font"] = "Kimberley",
@@ -493,7 +493,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
-	E.db["unitframe"]["units"]["raid"]["customTexts"]["EltreumStatus"] = {
+	E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumStatus"] = {
 		["attachTextTo"] = "Health",
 		["enable"] = false,
 		["font"] = "Kimberley",
@@ -504,10 +504,71 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
-	-- Custom Text: Raid 40
-	E.db["unitframe"]["units"]["raid40"]["customTexts"] = E.db["unitframe"]["units"]["raid40"]["customTexts"] or {}
+
+	-- Custom Text: Raid2
+	E.db["unitframe"]["units"]["raid2"]["customTexts"] = E.db["unitframe"]["units"]["raid2"]["customTexts"] or {}
+	E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumGroup"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = false,
+		["font"] = "Kimberley",
+		["fontOutline"] = "NONE",
+		["justifyH"] = "LEFT",
+		["size"] = 8,
+		["text_format"] = " Group [group]",
+		["xOffset"] = 37,
+		["yOffset"] = 10
+	}
 	if E.Retail then
-		E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Absorb"] = {
+		E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Absorb"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = false,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "CENTER",
+		["size"] = 10,
+		["text_format"] = "||cffFFFF00[absorbs]||r",
+		["xOffset"] = 45,
+		["yOffset"] = 0
+		}
+	end
+	E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Health"]= {
+		["attachTextTo"] = "InfoPanel",
+		["enable"] = true,
+		["font"] = "Kimberley",
+		["fontOutline"] = "OUTLINE",
+		["justifyH"] = "RIGHT",
+		["size"] = 10,
+		["text_format"] = "[health:current:shortvalue]",
+		["xOffset"] = 0,
+		["yOffset"] = -1
+	}
+	E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Name"] = {
+		["attachTextTo"] = "InfoPanel",
+		["enable"] = true,
+		["font"] = "Kimberley",
+		["fontOutline"] = "OUTLINE",
+		["justifyH"] = "LEFT",
+		["size"] = 10,
+		["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+		["xOffset"] = 0,
+		["yOffset"] = 0
+	}
+	E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumStatus"] = {
+		["attachTextTo"] = "Health",
+		["enable"] = false,
+		["font"] = "Kimberley",
+		["fontOutline"] = "THICKOUTLINE",
+		["justifyH"] = "CENTER",
+		["size"] = 25,
+		["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+		["xOffset"] = 0,
+		["yOffset"] = 0
+	}
+
+	-- Custom Text: Raid3
+	E.db["unitframe"]["units"]["raid3"]["customTexts"] = E.db["unitframe"]["units"]["raid3"]["customTexts"] or {}
+	if E.Retail then
+		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Absorb"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
 			["font"] = "Kimberley",
@@ -519,7 +580,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 			["yOffset"] = 12
 		}
 	end
-	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Group"] = {
+	E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Group"] = {
 		["attachTextTo"] = "Health",
 		["enable"] = false,
 		["font"] = "Kimberley",
@@ -530,7 +591,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["xOffset"] = 40,
 		["yOffset"] = 12
 	}
-	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumRaid40Health"] = {
+	E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Health"] = {
 		["attachTextTo"] = "InfoPanel",
 		["enable"] = true,
 		["font"] = "Kimberley",
@@ -541,7 +602,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}
-	E.db["unitframe"]["units"]["raid40"]["customTexts"]["EltreumStatus"] = {
+	E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumStatus"] = {
 		["attachTextTo"] = "Health",
 		["enable"] = false,
 		["font"] = "Kimberley",
@@ -732,10 +793,15 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 	E.db["unitframe"]["units"]["party"]["rdebuffs"]["font"] = "Kimberley"
 	E.db["unitframe"]["units"]["player"]["buffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["player"]["debuffs"]["countFont"] = "Kimberley"
-	E.db["unitframe"]["units"]["raid"]["buffs"]["countFont"] = "Kimberley"
-	E.db["unitframe"]["units"]["raid"]["debuffs"]["countFont"] = "Kimberley"
-	E.db["unitframe"]["units"]["raid"]["rdebuffs"]["font"] = "Kimberley"
-	E.db["unitframe"]["units"]["raid40"]["rdebuffs"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid1"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid1"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid3"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid3"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["font"] = "Kimberley"
 	E.db["unitframe"]["units"]["tank"]["buffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["tank"]["debuffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["font"] = "Kimberley"

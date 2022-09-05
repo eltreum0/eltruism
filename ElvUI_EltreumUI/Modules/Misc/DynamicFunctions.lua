@@ -46,14 +46,16 @@ function ElvUI_EltreumUI:BattlegroundGroupUnitframes()
 		_, instanceType = IsInInstance()
 		if instanceType == "pvp" then
 			E.db["unitframe"]["units"]["party"]["visibility"] = "hide"
-			E.db["unitframe"]["units"]["raid"]["visibility"] = "hide"
-			E.db["unitframe"]["units"]["raid40"]["visibility"] = "hide"
+			E.db["unitframe"]["units"]["raid1"]["visibility"] = "hide"
+			E.db["unitframe"]["units"]["raid2"]["visibility"] = "hide"
+			E.db["unitframe"]["units"]["raid3"]["visibility"] = "hide"
 		elseif E.Retail and IsAddOnLoaded('GladiusEx') and instanceType == "arena" then
 			E.db["unitframe"]["units"]["party"]["visibility"] = "hide"
 		else
 			E.db["unitframe"]["units"]["party"]["visibility"] = "[@raid6,exists][nogroup] hide;show"
-			E.db["unitframe"]["units"]["raid"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
-			E.db["unitframe"]["units"]["raid40"]["visibility"] = "[@raid21,noexists] hide;show"
+			E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
+			E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid25,noexists][@raid31,exists] hide;show"
+			E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid31,noexists] hide;show"
 		end
 
 		--E:StaggeredUpdateAll(nil, true)
@@ -470,7 +472,6 @@ function ElvUI_EltreumUI:BorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.rightchatborderx = 432
 				E.db.ElvUI_EltreumUI.borders.partyborders = true
 				E.db.ElvUI_EltreumUI.borders.raidborders = true
-				E.db.ElvUI_EltreumUI.borders.raid40borders = true
 				E.db.ElvUI_EltreumUI.borders.playertargetsize = 20
 				E.db.ElvUI_EltreumUI.borders.baredgesize = 13
 				E.db.ElvUI_EltreumUI.borders.playertargetcastsize = 20
@@ -559,12 +560,15 @@ function ElvUI_EltreumUI:BorderAdjust()
 					end
 
 					if E.db.ElvUI_EltreumUI.otherstuff.alternativegroups == false then
-						E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-4"
-						E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-4"
-						E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 7
-						E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 3
-						E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 6
-						E.db["unitframe"]["units"]["raid40"]["groupsPerRowCol"] = 3
+						E.db["movers"]["ElvUF_Raid1Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-4"
+						E.db["movers"]["ElvUF_Raid2Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-4"
+						E.db["movers"]["ElvUF_Raid3Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-4"
+						E.db["unitframe"]["units"]["raid1"]["verticalSpacing"] = 7
+						E.db["unitframe"]["units"]["raid1"]["groupsPerRowCol"] = 3
+						E.db["unitframe"]["units"]["raid2"]["verticalSpacing"] = 6
+						E.db["unitframe"]["units"]["raid2"]["groupsPerRowCol"] = 3
+						E.db["unitframe"]["units"]["raid3"]["verticalSpacing"] = 6
+						E.db["unitframe"]["units"]["raid3"]["groupsPerRowCol"] = 3
 					end
 					E.db["ElvUI_EltreumUI"]["borders"]["xplayercast"] = 272
 					E.db["ElvUI_EltreumUI"]["borders"]["xtargettarget"] = 132.8
@@ -575,8 +579,6 @@ function ElvUI_EltreumUI:BorderAdjust()
 					E.db.ElvUI_EltreumUI.borders.raidsizey = 63
 					E.db.ElvUI_EltreumUI.borders.xboss = 250
 					E.db.ElvUI_EltreumUI.borders.yboss = 87
-					E.db.ElvUI_EltreumUI.borders.raid40sizex = 140
-					E.db.ElvUI_EltreumUI.borders.raid40sizey = 63
 					E.db.ElvUI_EltreumUI.borders.xcasttarget = 272
 					E.db.ElvUI_EltreumUI.borders.ycasttarget = 58
 					E.db.ElvUI_EltreumUI.borders.petsizex = 192
@@ -630,8 +632,6 @@ function ElvUI_EltreumUI:BorderAdjust()
 					E.db.ElvUI_EltreumUI.borders.raidsizey = 68
 					E.db.ElvUI_EltreumUI.borders.xboss = 248
 					E.db.ElvUI_EltreumUI.borders.yboss = 78
-					E.db.ElvUI_EltreumUI.borders.raid40sizex = 122
-					E.db.ElvUI_EltreumUI.borders.raid40sizey = 68
 					E.db.ElvUI_EltreumUI.borders.xcasttarget = 296
 					E.db.ElvUI_EltreumUI.borders.ycasttarget = 58
 					E.db.ElvUI_EltreumUI.borders.petsizex = 130
@@ -670,12 +670,15 @@ function ElvUI_EltreumUI:BorderAdjust()
 						E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,106"
 					end
 					if E.db.ElvUI_EltreumUI.otherstuff.alternativegroups == false then
-						E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
-						E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
-						E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 4
-						E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 3
-						E.db["unitframe"]["units"]["raid40"]["groupsPerRowCol"] = 4
-						E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 3
+						E.db["movers"]["ElvUF_Raid1Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
+						E.db["movers"]["ElvUF_Raid2Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
+						E.db["movers"]["ElvUF_Raid3Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
+						E.db["unitframe"]["units"]["raid1"]["groupsPerRowCol"] = 4
+						E.db["unitframe"]["units"]["raid1"]["verticalSpacing"] = 3
+						E.db["unitframe"]["units"]["raid2"]["groupsPerRowCol"] = 4
+						E.db["unitframe"]["units"]["raid2"]["verticalSpacing"] = 3
+						E.db["unitframe"]["units"]["raid3"]["groupsPerRowCol"] = 4
+						E.db["unitframe"]["units"]["raid3"]["verticalSpacing"] = 3
 					end
 					if E.Wrath then
 						E.db["general"]["totems"]["spacing"] = 3
