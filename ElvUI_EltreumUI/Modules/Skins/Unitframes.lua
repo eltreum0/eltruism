@@ -347,7 +347,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 		ElvUI_EltreumUI:ApplyUnitGradientTexture("targettarget", "TargetTarget", "targettarget")
 		ElvUI_EltreumUI:ApplyUnitGradientTexture("targettargettarget", "TargetTargetTarget"," targetargettarget")
 		ElvUI_EltreumUI:ApplyUnitGradientTexture("pet", "Pet", "pet")
-		if E.Retail then
+		if E.Retail or E.Wrath then
 			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss1", "Boss1", "boss")
 			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss2", "Boss2", "boss")
 			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss3", "Boss3", "boss")
@@ -357,7 +357,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss7", "Boss7", "boss")
 			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss8", "Boss8", "boss")
 		end
-		if E.Retail or E.TBC or E.Wrath then
+		if not E.Classic then
 			ElvUI_EltreumUI:ApplyUnitGradientTexture("focus", "Focus", "focus")
 			ElvUI_EltreumUI:ApplyUnitGradientTexture("arena1", "Arena1", "arena")
 			ElvUI_EltreumUI:ApplyUnitGradientTexture("arena2", "Arena2", "arena")
