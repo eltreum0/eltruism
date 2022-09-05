@@ -1049,223 +1049,230 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		--color stats with a class gradient
 		local function SetStatGradient()
 			if E.Wrath or E.TBC then
+				_G.PlayerStatFrameLeft1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.PlayerStatFrameLeft1Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft1Label:GetText(), E.myclass))
 					else
-						_G.PlayerStatFrameLeft1Label:SetText(_G.PlayerStatFrameLeft1Label:GetText())
 						_G.PlayerStatFrameLeft1Label:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.PlayerStatFrameLeft2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.PlayerStatFrameLeft2Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.PlayerStatFrameLeft2Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft2Label:GetText(), E.myclass))
 					else
-						_G.PlayerStatFrameLeft2Label:SetText(_G.PlayerStatFrameLeft2Label:GetText())
 						_G.PlayerStatFrameLeft2Label:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.PlayerStatFrameLeft3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.PlayerStatFrameLeft3Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.PlayerStatFrameLeft3Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft3Label:GetText(), E.myclass))
 					else
-						_G.PlayerStatFrameLeft3Label:SetText(_G.PlayerStatFrameLeft3Label:GetText())
 						_G.PlayerStatFrameLeft3Label:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.PlayerStatFrameLeft4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.PlayerStatFrameLeft4Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.PlayerStatFrameLeft4Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft4Label:GetText(), E.myclass))
 					else
-						_G.PlayerStatFrameLeft4Label:SetText(_G.PlayerStatFrameLeft4Label:GetText())
 						_G.PlayerStatFrameLeft4Label:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.PlayerStatFrameLeft5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.PlayerStatFrameLeft5Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.PlayerStatFrameLeft5Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft5Label:GetText(), E.myclass))
 					else
-						_G.PlayerStatFrameLeft5Label:SetText(_G.PlayerStatFrameLeft5Label:GetText())
 						_G.PlayerStatFrameLeft5Label:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.PlayerStatFrameLeft6Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.PlayerStatFrameLeft6Label:GetText():match("|r") then
-					_G.PlayerStatFrameLeft6Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.PlayerStatFrameLeft6Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameLeft6Label:GetText(), E.myclass))
 					else
-						_G.PlayerStatFrameLeft6Label:SetText(_G.PlayerStatFrameLeft6Label:GetText())
 						_G.PlayerStatFrameLeft6Label:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.PlayerStatFrameRight1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.PlayerStatFrameRight1Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.PlayerStatFrameRight1Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight1Label:GetText(), E.myclass))
 					else
-						_G.PlayerStatFrameRight1Label:SetText(_G.PlayerStatFrameRight1Label:GetText())
 						_G.PlayerStatFrameRight1Label:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.PlayerStatFrameRight2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.PlayerStatFrameRight2Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.PlayerStatFrameRight2Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight2Label:GetText(), E.myclass))
 					else
-						_G.PlayerStatFrameRight2Label:SetText(_G.PlayerStatFrameRight2Label:GetText())
 						_G.PlayerStatFrameRight2Label:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.PlayerStatFrameRight3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.PlayerStatFrameRight3Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.PlayerStatFrameRight3Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight3Label:GetText(), E.myclass))
 					else
-						_G.PlayerStatFrameRight3Label:SetText(_G.PlayerStatFrameRight3Label:GetText())
 						_G.PlayerStatFrameRight3Label:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.PlayerStatFrameRight4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.PlayerStatFrameRight4Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.PlayerStatFrameRight4Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight4Label:GetText(), E.myclass))
 					else
-						_G.PlayerStatFrameRight4Label:SetText(_G.PlayerStatFrameRight4Label:GetText())
 						_G.PlayerStatFrameRight4Label:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.PlayerStatFrameRight5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.PlayerStatFrameRight5Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.PlayerStatFrameRight5Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight5Label:GetText(), E.myclass))
 					else
-						_G.PlayerStatFrameRight5Label:SetText(_G.PlayerStatFrameRight5Label:GetText())
 						_G.PlayerStatFrameRight5Label:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.PlayerStatFrameRight6Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if _G.PlayerStatFrameRight6Label:GetText() ~= nil and not _G.PlayerStatFrameRight6Label:GetText():match("|r") then
-					_G.PlayerStatFrameRight6Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.PlayerStatFrameRight6Label:SetText(ElvUI_EltreumUI:GradientName(_G.PlayerStatFrameRight6Label:GetText(), E.myclass))
 					else
-						_G.PlayerStatFrameRight6Label:SetText(_G.PlayerStatFrameRight6Label:GetText())
 						_G.PlayerStatFrameRight6Label:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
 			elseif E.Classic then
+				_G.CharacterStatFrame1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.CharacterStatFrame1Label:GetText():match("|r") then
-					_G.CharacterStatFrame1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.CharacterStatFrame1Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame1Label:GetText(), E.myclass))
 					else
-						_G.CharacterStatFrame1Label:SetText(_G.CharacterStatFrame1Label:GetText())
 						_G.CharacterStatFrame1Label:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.CharacterStatFrame2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.CharacterStatFrame2Label:GetText():match("|r") then
-					_G.CharacterStatFrame2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.CharacterStatFrame2Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame2Label:GetText(), E.myclass))
 					else
-						_G.CharacterStatFrame2Label:SetText(_G.CharacterStatFrame2Label:GetText())
 						_G.CharacterStatFrame2Label:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.CharacterStatFrame3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.CharacterStatFrame3Label:GetText():match("|r") then
-					_G.CharacterStatFrame3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.CharacterStatFrame3Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame3Label:GetText(), E.myclass))
 					else
-						_G.CharacterStatFrame3Label:SetText(_G.CharacterStatFrame3Label:GetText())
 						_G.CharacterStatFrame3Label:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.CharacterStatFrame4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.CharacterStatFrame4Label:GetText():match("|r") then
-					_G.CharacterStatFrame4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.CharacterStatFrame4Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame4Label:GetText(), E.myclass))
 					else
-						_G.CharacterStatFrame4Label:SetText(_G.CharacterStatFrame4Label:GetText())
 						_G.CharacterStatFrame4Label:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.CharacterStatFrame5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.CharacterStatFrame5Label:GetText():match("|r") then
-					_G.CharacterStatFrame5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.CharacterStatFrame5Label:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterStatFrame5Label:GetText(), E.myclass))
 					else
-						_G.CharacterStatFrame5Label:SetText(_G.CharacterStatFrame5Label:GetText())
 						_G.CharacterStatFrame5Label:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.CharacterArmorFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.CharacterArmorFrameLabel:GetText():match("|r") then
-					_G.CharacterArmorFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.CharacterArmorFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterArmorFrameLabel:GetText(), E.myclass))
 					else
-						_G.CharacterArmorFrameLabel:SetText(_G.CharacterArmorFrameLabel:GetText())
 						_G.CharacterArmorFrameLabel:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.CharacterAttackFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.CharacterAttackFrameLabel:GetText():match("|r") then
-					_G.CharacterAttackFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.CharacterAttackFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterAttackFrameLabel:GetText(), E.myclass))
 					else
-						_G.CharacterAttackFrameLabel:SetText(_G.CharacterAttackFrameLabel:GetText())
 						_G.CharacterAttackFrameLabel:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.CharacterAttackPowerFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.CharacterAttackPowerFrameLabel:GetText():match("|r") then
-					_G.CharacterAttackPowerFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.CharacterAttackPowerFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterAttackPowerFrameLabel:GetText(), E.myclass))
 					else
-						_G.CharacterAttackPowerFrameLabel:SetText(_G.CharacterAttackPowerFrameLabel:GetText())
 						_G.CharacterAttackPowerFrameLabel:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.CharacterDamageFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.CharacterDamageFrameLabel:GetText():match("|r") then
-					_G.CharacterDamageFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.CharacterDamageFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterDamageFrameLabel:GetText(), E.myclass))
 					else
-						_G.CharacterDamageFrameLabel:SetText(_G.CharacterDamageFrameLabel:GetText())
 						_G.CharacterDamageFrameLabel:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.CharacterRangedAttackFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.CharacterRangedAttackFrameLabel:GetText():match("|r") then
-					_G.CharacterRangedAttackFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.CharacterRangedAttackFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterRangedAttackFrameLabel:GetText(), E.myclass))
 					else
-						_G.CharacterRangedAttackFrameLabel:SetText(_G.CharacterRangedAttackFrameLabel:GetText())
 						_G.CharacterRangedAttackFrameLabel:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.CharacterRangedAttackPowerFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.CharacterRangedAttackPowerFrameLabel:GetText():match("|r") then
-					_G.CharacterRangedAttackPowerFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.CharacterRangedAttackPowerFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterRangedAttackPowerFrameLabel:GetText(), E.myclass))
 					else
-						_G.CharacterRangedAttackPowerFrameLabel:SetText(_G.CharacterRangedAttackPowerFrameLabel:GetText())
 						_G.CharacterRangedAttackPowerFrameLabel:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+				_G.CharacterRangedDamageFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.CharacterRangedDamageFrameLabel:GetText():match("|r") then
-						_G.CharacterRangedDamageFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						_G.CharacterRangedDamageFrameLabel:SetText(ElvUI_EltreumUI:GradientName(_G.CharacterRangedDamageFrameLabel:GetText(), E.myclass))
 					else
-						_G.CharacterRangedDamageFrameLabel:SetText(_G.CharacterRangedDamageFrameLabel:GetText())
 						_G.CharacterRangedDamageFrameLabel:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
+			end
+		end
+
+		--or just set font size
+		local function SetFontSize()
+			if E.Wrath or E.TBC then
+				_G.PlayerStatFrameLeft1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.PlayerStatFrameLeft2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.PlayerStatFrameLeft3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.PlayerStatFrameLeft4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.PlayerStatFrameLeft5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.PlayerStatFrameLeft6Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.PlayerStatFrameRight1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.PlayerStatFrameRight2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.PlayerStatFrameRight3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.PlayerStatFrameRight4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.PlayerStatFrameRight5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.PlayerStatFrameRight6Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+			elseif E.Classic then
+				_G.CharacterStatFrame1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.CharacterStatFrame2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.CharacterStatFrame3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.CharacterStatFrame4Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.CharacterStatFrame5Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.CharacterArmorFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.CharacterAttackFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.CharacterAttackPowerFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.CharacterDamageFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.CharacterRangedAttackFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.CharacterRangedAttackPowerFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.CharacterRangedDamageFrameLabel:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 			end
 		end
 
@@ -1276,6 +1283,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				hooksecurefunc('PlayerStatFrameRightDropDown_OnClick', SetStatGradient)
 			end
 			hooksecurefunc("PaperDollFrame_UpdateStats", SetStatGradient)
+		else
+			if E.Wrath or E.TBC then
+				hooksecurefunc('PlayerStatFrameLeftDropDown_OnClick', SetFontSize)
+				hooksecurefunc('PlayerStatFrameRightDropDown_OnClick', SetFontSize)
+			end
+			hooksecurefunc("PaperDollFrame_UpdateStats", SetFontSize)
 		end
 
 		--add class crest

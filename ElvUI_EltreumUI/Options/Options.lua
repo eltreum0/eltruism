@@ -9557,7 +9557,7 @@ function ElvUI_EltreumUI:Configtable()
 								step = 1,
 								--width = "double",
 								get = function() return E.db.ElvUI_EltreumUI.skins.armoryfontsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryfontsize = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryfontsize = value ElvUI_EltreumUI:ExpandedCharacterStats() PaperDollFrame_UpdateStats() end,
 							},
 							header85 = {
 								order = 238,
