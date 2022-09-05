@@ -1118,7 +1118,6 @@ L["Sets Information panel to be on Top instead of Bottom of the unitframe"] = tr
 L["Add Item Set Colors"] = true
 L["Enable Custom Set Colors"] = true
 L["Enable Comparing Equipped and Bag Ilvl"] = true
-L["Enable Custom Colors"] = true
 L["Bad Color"] = true
 L["Medium Color"] = true
 L["Good Color"] = true

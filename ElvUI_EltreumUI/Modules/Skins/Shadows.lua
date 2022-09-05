@@ -950,15 +950,63 @@ function ElvUI_EltreumUI:Shadows()
 			if _G["ElvUF_Target_PowerBar"] and _G["ElvUF_Target_PowerBar"].shadow then
 				_G["ElvUF_Target_PowerBar"].shadow:Hide()
 			end
+			if _G["ElvUF_Target_HealthBar"] and _G["ElvUF_Target_HealthBar"].shadow then
+				_G["ElvUF_Target_HealthBar"].shadow:Hide()
+			end
+			if E.db["unitframe"]["units"]["target"]["power"]["width"] == "filled" or E.db["unitframe"]["units"]["target"]["power"]["width"] == "offset" then
+				if _G["ElvUF_Target"] and not _G["ElvUF_Target"].shadow then
+					_G["ElvUF_Target"]:CreateShadow()
+					_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target_HealthBar"], "TOPLEFT",-3,3)
+					_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_PowerBar"], "BOTTOMRIGHT",3,-3)
+				end
+			elseif E.db["unitframe"]["units"]["target"]["power"]["width"] == "inset" then
+				if _G["ElvUF_Target"] and not _G["ElvUF_Target"].shadow then
+					_G["ElvUF_Target"]:CreateShadow()
+					_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target_HealthBar"], "TOPLEFT",-3,3)
+					_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_HealthBar"], "BOTTOMRIGHT",3,-3)
+				end
+			end
 		end
 		if E.db["unitframe"]["units"]["targettarget"]["power"]["width"] ~= "spaced" and E.db["unitframe"]["units"]["targettarget"]["power"]["detachFromFrame"] == false then
 			if _G["ElvUF_TargetTarget_PowerBar"] and _G["ElvUF_TargetTarget_PowerBar"].shadow then
 				_G["ElvUF_TargetTarget_PowerBar"].shadow:Hide()
 			end
+			if _G["ElvUF_TargetTarget_HealthBar"] and _G["ElvUF_TargetTarget_HealthBar"].shadow then
+				_G["ElvUF_TargetTarget_HealthBar"].shadow:Hide()
+			end
+			if E.db["unitframe"]["units"]["targettarget"]["power"]["width"] == "filled" or E.db["unitframe"]["units"]["targettarget"]["power"]["width"] == "offset" then
+				if _G["ElvUF_TargetTarget"] and not _G["ElvUF_TargetTarget"].shadow then
+					_G["ElvUF_TargetTarget"]:CreateShadow()
+					_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget_HealthBar"], "TOPLEFT",-3,3)
+					_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget_PowerBar"], "BOTTOMRIGHT",3,-3)
+				end
+			elseif E.db["unitframe"]["units"]["targettarget"]["power"]["width"] == "inset" then
+				if _G["ElvUF_TargetTarget"] and not _G["ElvUF_TargetTarget"].shadow then
+					_G["ElvUF_TargetTarget"]:CreateShadow()
+					_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget_HealthBar"], "TOPLEFT",-3,3)
+					_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget_HealthBar"], "BOTTOMRIGHT",3,-3)
+				end
+			end
 		end
 		if E.db["unitframe"]["units"]["player"]["power"]["width"] ~= "spaced" and E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] == false then
 			if _G["ElvUF_Player_PowerBar"] and _G["ElvUF_Player_PowerBar"].shadow then
 				_G["ElvUF_Player_PowerBar"].shadow:Hide()
+			end
+			if _G["ElvUF_Player_HealthBar"] and _G["ElvUF_Player_HealthBar"].shadow then
+				_G["ElvUF_Player_HealthBar"].shadow:Hide()
+			end
+			if E.db["unitframe"]["units"]["player"]["power"]["width"] == "filled" or E.db["unitframe"]["units"]["player"]["power"]["width"] == "offset" then
+				if _G["ElvUF_Player"] and not _G["ElvUF_Player"].shadow then
+					_G["ElvUF_Player"]:CreateShadow()
+					_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player_HealthBar"], "TOPLEFT",-3,3)
+					_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_PowerBar"], "BOTTOMRIGHT",3,-3)
+				end
+			elseif E.db["unitframe"]["units"]["player"]["power"]["width"] == "inset" then
+				if _G["ElvUF_Player"] and not _G["ElvUF_Player"].shadow then
+					_G["ElvUF_Player"]:CreateShadow()
+					_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player_HealthBar"], "TOPLEFT",-3,3)
+					_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_HealthBar"], "BOTTOMRIGHT",3,-3)
+				end
 			end
 		end
 		if E.db["unitframe"]["units"]["player"]["classbar"]["fill"] ~= "spaced" and not E.db["unitframe"]["units"]["player"]["classbar"]["detachFromFrame"] == true then

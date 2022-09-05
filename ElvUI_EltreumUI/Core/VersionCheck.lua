@@ -23,9 +23,19 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 		whileDead = 1,
 		hideOnEscape = false,
 	}
+	E.PopupDialogs["ELVUIVERSIONCHECK2"] = {
+		text = L["Your ElvUI version is higher than expected for Eltruism, please update Eltruism or you might run into issues.\n|cffFF0000(You are likely having errors right now!)|r"],
+		button1 = OKAY,
+		timeout = 0,
+		whileDead = 1,
+		hideOnEscape = false,
+	}
 	if E.version < (E.Retail and 12.84 or E.Wrath and 3.00 or E.TBC and 2.48 or E.Classic and 1.73) then
 		E:StaticPopup_Show('ELVUIVERSIONCHECK')
 		ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
+	elseif E.version > (E.Retail and 12.84 or E.Wrath and 3.00 or E.TBC and 2.48 or E.Classic and 1.73) then
+		E:StaticPopup_Show('ELVUIVERSIONCHECK2')
+		ElvUI_EltreumUI:Print("Your ElvUI version is newer than Eltruism, you might run into issues unless you update Eltruism!")
 	end
 end
 
