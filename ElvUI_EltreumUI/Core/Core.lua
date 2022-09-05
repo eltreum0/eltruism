@@ -295,33 +295,33 @@ function ElvUI_EltreumUI:AlternativeGroupsDPS()
 	if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 		if not E.db.movers then E.db.movers = {} end
 		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-258"
-		E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,UIParent,TOPLEFT,53,-302"
-		--E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,UIParent,TOPLEFT,236,-324"
-		E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,UIParent,TOPLEFT,58,-439"
+		E.db["movers"]["ElvUF_Raid1Mover"] = "TOPLEFT,UIParent,TOPLEFT,58,-439"
+		E.db["movers"]["ElvUF_Raid2Mover"] = "TOPLEFT,UIParent,TOPLEFT,58,-439"
+		E.db["movers"]["ElvUF_Raid3Mover"] = "TOPLEFT,UIParent,TOPLEFT,53,-302"
 		if E.Wrath or E.TBC then
-			E.db["unitframe"]["units"]["raid"]["numGroups"] = 5
+			E.db["unitframe"]["units"]["raid1"]["numGroups"] = 5
 		else
-			E.db["unitframe"]["units"]["raid"]["numGroups"] = 4
+			E.db["unitframe"]["units"]["raid1"]["numGroups"] = 4
 		end
 
-		E.db["unitframe"]["units"]["raid"]["height"] = 30
-		E.db["unitframe"]["units"]["raid"]["growthDirection"] = "DOWN_RIGHT"
-		--E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 10
-		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 2
-		--E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 2
-		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 1
-		--E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 25
-		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 3
-		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 3
-		E.db["unitframe"]["units"]["raid"]["width"] = 120
+		E.db["unitframe"]["units"]["raid1"]["height"] = 30
+		E.db["unitframe"]["units"]["raid1"]["growthDirection"] = "DOWN_RIGHT"
+		--E.db["unitframe"]["units"]["raid1"]["groupSpacing"] = 10
+		E.db["unitframe"]["units"]["raid1"]["groupSpacing"] = 2
+		--E.db["unitframe"]["units"]["raid1"]["groupsPerRowCol"] = 2
+		E.db["unitframe"]["units"]["raid1"]["groupsPerRowCol"] = 1
+		--E.db["unitframe"]["units"]["raid1"]["horizontalSpacing"] = 25
+		E.db["unitframe"]["units"]["raid1"]["horizontalSpacing"] = 3
+		E.db["unitframe"]["units"]["raid1"]["verticalSpacing"] = 3
+		E.db["unitframe"]["units"]["raid1"]["width"] = 120
 
-		E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 5
-		E.db["unitframe"]["units"]["raid40"]["groupsPerRowCol"] = 2
-		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "DOWN_RIGHT"
-		E.db["unitframe"]["units"]["raid40"]["height"] = 30
-		E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 2
-		E.db["unitframe"]["units"]["raid40"]["width"] = 120
-		E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 3
+		E.db["unitframe"]["units"]["raid3"]["groupSpacing"] = 5
+		E.db["unitframe"]["units"]["raid3"]["groupsPerRowCol"] = 2
+		E.db["unitframe"]["units"]["raid3"]["growthDirection"] = "DOWN_RIGHT"
+		E.db["unitframe"]["units"]["raid3"]["height"] = 30
+		E.db["unitframe"]["units"]["raid3"]["horizontalSpacing"] = 2
+		E.db["unitframe"]["units"]["raid3"]["width"] = 120
+		E.db["unitframe"]["units"]["raid3"]["verticalSpacing"] = 3
 
 		ElvUI_EltreumUI:Print(L["Alternative Group, Raid and Raid40 layout has been set"])
 
@@ -339,27 +339,28 @@ function ElvUI_EltreumUI:OriginalGroupsDPS()
 	if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 		if not E.db.movers then E.db.movers = {} end
 		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-247"
-		E.db["movers"]["ElvUF_Raid40Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
-		E.db["movers"]["ElvUF_RaidMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
+		E.db["movers"]["ElvUF_Raid1Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
+		E.db["movers"]["ElvUF_Raid2Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
+		E.db["movers"]["ElvUF_Raid3Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
 		if E.Wrath or E.TBC then
-			E.db["unitframe"]["units"]["raid"]["numGroups"] = 5
+			E.db["unitframe"]["units"]["raid1"]["numGroups"] = 5
 		else
-			E.db["unitframe"]["units"]["raid"]["numGroups"] = 4
+			E.db["unitframe"]["units"]["raid1"]["numGroups"] = 4
 		end
-		E.db["unitframe"]["units"]["raid"]["height"] = 28
-		E.db["unitframe"]["units"]["raid"]["groupSpacing"] = 6
-		E.db["unitframe"]["units"]["raid"]["groupsPerRowCol"] = 4
-		E.db["unitframe"]["units"]["raid"]["horizontalSpacing"] = 0
-		E.db["unitframe"]["units"]["raid"]["verticalSpacing"] = 3
-		E.db["unitframe"]["units"]["raid"]["width"] = 120
-		E.db["unitframe"]["units"]["raid40"]["height"] = 28
-		E.db["unitframe"]["units"]["raid40"]["groupSpacing"] = 6
-		E.db["unitframe"]["units"]["raid40"]["groupsPerRowCol"] = 4
-		E.db["unitframe"]["units"]["raid40"]["growthDirection"] = "DOWN_RIGHT"
-		E.db["unitframe"]["units"]["raid40"]["height"] = 29
-		E.db["unitframe"]["units"]["raid40"]["horizontalSpacing"] = 2
-		E.db["unitframe"]["units"]["raid40"]["width"] = 120
-		E.db["unitframe"]["units"]["raid40"]["verticalSpacing"] = 3
+		E.db["unitframe"]["units"]["raid1"]["height"] = 28
+		E.db["unitframe"]["units"]["raid1"]["groupSpacing"] = 6
+		E.db["unitframe"]["units"]["raid1"]["groupsPerRowCol"] = 4
+		E.db["unitframe"]["units"]["raid1"]["horizontalSpacing"] = 0
+		E.db["unitframe"]["units"]["raid1"]["verticalSpacing"] = 3
+		E.db["unitframe"]["units"]["raid1"]["width"] = 120
+		E.db["unitframe"]["units"]["raid3"]["height"] = 28
+		E.db["unitframe"]["units"]["raid3"]["groupSpacing"] = 6
+		E.db["unitframe"]["units"]["raid3"]["groupsPerRowCol"] = 4
+		E.db["unitframe"]["units"]["raid3"]["growthDirection"] = "DOWN_RIGHT"
+		E.db["unitframe"]["units"]["raid3"]["height"] = 29
+		E.db["unitframe"]["units"]["raid3"]["horizontalSpacing"] = 2
+		E.db["unitframe"]["units"]["raid3"]["width"] = 120
+		E.db["unitframe"]["units"]["raid3"]["verticalSpacing"] = 3
 
 		ElvUI_EltreumUI:Print(L["Original Group, Raid and Raid40 layout has been set"])
 

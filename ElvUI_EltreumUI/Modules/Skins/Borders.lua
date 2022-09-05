@@ -15,7 +15,7 @@ local UnitClass = _G.UnitClass
 local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder,focuscastbarborder
 local bordertexture,classcolor,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder
 local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction
-local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,raidborder,raidborder40,totemborderfly
+local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,raidborder,totemborderfly
 local rectangleminimapdetect = CreateFrame("FRAME")
 local updatelocationpos = CreateFrame("Frame")
 local classcolorreaction = {
@@ -257,82 +257,41 @@ function ElvUI_EltreumUI:Borders()
 			end
 
 			--raid
-			if E.db.ElvUI_EltreumUI.borders.raidborders and E.db.unitframe.units.raid.enable and not self.raidborderscreated then
+			if E.db.ElvUI_EltreumUI.borders.raidborders and not self.raidborderscreated then
 				local bordersraid = {}
-				for i = 1,5 do
-					table.insert(bordersraid, _G["ElvUF_RaidGroup1UnitButton"..i])
-					table.insert(bordersraid, _G["ElvUF_RaidGroup2UnitButton"..i])
-					table.insert(bordersraid, _G["ElvUF_RaidGroup3UnitButton"..i])
-					table.insert(bordersraid, _G["ElvUF_RaidGroup4UnitButton"..i])
-					table.insert(bordersraid, _G["ElvUF_RaidGroup5UnitButton"..i])
-					table.insert(bordersraid, _G["ElvUF_RaidGroup6UnitButton"..i])
-					table.insert(bordersraid, _G["ElvUF_RaidGroup7UnitButton"..i])
-					table.insert(bordersraid, _G["ElvUF_RaidGroup8UnitButton"..i])
+				for i = 1,3 do
+					for k = 1,8 do
+						for l = 1,5 do
+							table.insert(bordersraid, _G["ElvUF_Raid"..i..'Group'..k..'UnitButton'..l])
+						end
+					end
 				end
 				local function createraidborders()
 					for i,v in pairs(bordersraid) do
-						if not _G["EltruismRaid"..i.."Border"..i] then
-							raidborder = CreateFrame("Frame", "EltruismRaid"..i.."Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
-							--raidborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
-						else
-							raidborder = _G["EltruismRaid"..i.."Border"..i]
+						if v then
+							if not _G["EltruismRaid"..i.."Border"..i] then
+								raidborder = CreateFrame("Frame", "EltruismRaid"..i.."Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
+								--raidborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
+							else
+								raidborder = _G["EltruismRaid"..i.."Border"..i]
+							end
+							raidborder:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
+							raidborder:SetPoint("CENTER", v, "CENTER")
+							raidborder:SetBackdrop({
+								edgeFile = bordertexture,
+								edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
+							})
+							if E.db.ElvUI_EltreumUI.borders.classcolor == true then
+								raidborder:SetBackdropBorderColor(1, 1, 1, 1)
+							else
+								raidborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+							end
+							raidborder:SetFrameStrata("MEDIUM")
 						end
-						raidborder:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
-						raidborder:SetPoint("CENTER", v, "CENTER")
-						raidborder:SetBackdrop({
-							edgeFile = bordertexture,
-							edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
-						})
-						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
-							raidborder:SetBackdropBorderColor(1, 1, 1, 1)
-						else
-							raidborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-						end
-						raidborder:SetFrameStrata("MEDIUM")
 					end
 					self.raidborderscreated = true
 				end
 				createraidborders()
-			end
-
-			--raid40
-			if E.db.ElvUI_EltreumUI.borders.raid40borders and E.db.unitframe.units.raid40.enable and not self.raid40borderscreated then
-				local bordersraid40 = {}
-				for i = 1,5 do
-					table.insert(bordersraid40, _G["ElvUF_Raid40Group1UnitButton"..i])
-					table.insert(bordersraid40, _G["ElvUF_Raid40Group2UnitButton"..i])
-					table.insert(bordersraid40, _G["ElvUF_Raid40Group3UnitButton"..i])
-					table.insert(bordersraid40, _G["ElvUF_Raid40Group4UnitButton"..i])
-					table.insert(bordersraid40, _G["ElvUF_Raid40Group5UnitButton"..i])
-					table.insert(bordersraid40, _G["ElvUF_Raid40Group6UnitButton"..i])
-					table.insert(bordersraid40, _G["ElvUF_Raid40Group7UnitButton"..i])
-					table.insert(bordersraid40, _G["ElvUF_Raid40Group8UnitButton"..i])
-				end
-				local function createraid40borders()
-					for i,v in pairs(bordersraid40) do
-						--local raidborder40 = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
-						if not _G["Eltruism40Raid"..i.."Border"..i] then
-							raidborder40 = CreateFrame("Frame", "Eltruism40Raid"..i.."Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
-							--raidborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
-						else
-							raidborder40 = _G["Eltruism40Raid"..i.."Border"..i]
-						end
-						raidborder40:SetSize(E.db.ElvUI_EltreumUI.borders.raid40sizex, E.db.ElvUI_EltreumUI.borders.raid40sizey)
-						raidborder40:SetPoint("CENTER", v, "CENTER")
-						raidborder40:SetBackdrop({
-							edgeFile = bordertexture,
-							edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
-						})
-						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
-							raidborder40:SetBackdropBorderColor(1, 1, 1, 1)
-						else
-							raidborder40:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-						end
-						raidborder40:SetFrameStrata("MEDIUM")
-					end
-					self.raid40borderscreated = true
-				end
-				createraid40borders()
 			end
 
 			--focus
@@ -384,7 +343,6 @@ function ElvUI_EltreumUI:Borders()
 				focuscastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				focuscastbarborder:SetFrameStrata("MEDIUM")
 			end
-
 
 			--boss
 			if E.db.ElvUI_EltreumUI.borders.bossborder and E.db.unitframe.units.boss.enable and (not E.Classic and not E.TBC and not E.Wrath) then
@@ -1025,7 +983,6 @@ function ElvUI_EltreumUI:ShowHideBorders()
 		playercastbarborder,
 		partyborder,
 		raidborder,
-		raidborder40,
 		focuscastbarborder,
 	}
 	local barborderbutton
