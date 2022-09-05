@@ -581,7 +581,7 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 			["yOffset"] = 12
 			}
 		end
-		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Group"] = {
+		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumGroup"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
 			["font"] = "Exo2 Extra Bold",
@@ -600,6 +600,17 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 			["justifyH"] = "RIGHT",
 			["size"] = 10,
 			["text_format"] = "[health:current:shortvalue]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
+		}
+		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Name"] = {
+			["attachTextTo"] = "InfoPanel",
+			["enable"] = true,
+			["font"] = "Exo2 Extra Bold",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "LEFT",
+			["size"] = 10,
+			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}

@@ -580,7 +580,7 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 			["yOffset"] = 12
 		}
 	end
-	E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Group"] = {
+	E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumGroup"] = {
 		["attachTextTo"] = "Health",
 		["enable"] = false,
 		["font"] = "Kimberley",
@@ -599,6 +599,17 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		["justifyH"] = "RIGHT",
 		["size"] = 10,
 		["text_format"] = "[health:current:shortvalue]",
+		["xOffset"] = 0,
+		["yOffset"] = 0
+	}
+	E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Name"] = {
+		["attachTextTo"] = "InfoPanel",
+		["enable"] = true,
+		["font"] = "Kimberley",
+		["fontOutline"] = "OUTLINE",
+		["justifyH"] = "LEFT",
+		["size"] = 10,
+		["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
 		["xOffset"] = 0,
 		["yOffset"] = 0
 	}

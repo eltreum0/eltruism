@@ -579,7 +579,7 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 			["yOffset"] = 12
 			}
 		end
-		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Group"] = {
+		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumGroup"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = false,
 			["font"] = "Roboto",
