@@ -574,6 +574,7 @@ P.ElvUI_EltreumUI = {
 			orientation = "HORIZONTAL",
 			orientationpower = "HORIZONTAL",
 			texture = "Eltreum-Blank",
+			useUFtexture = false,
 			customcolor = false,
 
 			bgfade = 0.6,
