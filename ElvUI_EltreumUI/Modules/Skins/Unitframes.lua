@@ -564,9 +564,17 @@ function UF:Configure_InfoPanel(frame)
 
 		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
 			frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
-			frame.InfoPanel:Point('BOTTOMLEFT', frame.Health.backdrop, 'TOPLEFT', UF.BORDER, -(UF.SPACING*3))
+			--frame.InfoPanel:Point('BOTTOMLEFT', frame.Health.backdrop, 'TOPLEFT', UF.BORDER, -(UF.SPACING*3))
+			frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER, -(UF.SPACING*3))
 			frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height)
-			frame.InfoPanel:Point('TOPLEFT', frame.Health.backdrop, 'TOPLEFT', UF.BORDER, db.infoPanel.height)
+			frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER, db.infoPanel.height)
+			--[[if db.orientation == 'LEFT' then
+				frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height)
+				frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER, db.infoPanel.height)
+			else
+				frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height)
+				frame.InfoPanel:Point('TOPLEFT', frame.Health.backdrop, 'TOPLEFT', UF.BORDER, db.infoPanel.height)
+			end]]
 			frame.InfoPanel:SetSize(db.width,db.infoPanel.height)
 		else
 			if frame.ORIENTATION == 'RIGHT' and not (frame.unitframeType == 'arena') then
