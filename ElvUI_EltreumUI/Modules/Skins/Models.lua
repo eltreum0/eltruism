@@ -440,6 +440,7 @@ function ElvUI_EltreumUI:PetUFEffects()
 			end
 			if petpowerbar then
 				--powerbareffectpet:SetAlpha(1)
+				powerbareffectpet:ClearAllPoints()
 				powerbareffectpet:SetAllPoints(petpowerbar:GetStatusBarTexture())
 				powerbareffectpet:SetFrameLevel(petpowerbar:GetFrameLevel())
 				powerbareffectpet:SetInside(petpowerbar:GetStatusBarTexture(), 0, 0)
