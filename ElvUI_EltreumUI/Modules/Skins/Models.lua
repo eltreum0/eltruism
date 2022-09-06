@@ -360,12 +360,7 @@ end
 hooksecurefunc(UF, "Construct_TargetTargetFrame", ElvUI_EltreumUI.TargetTargetUFEffects)
 hooksecurefunc(UF, "Update_TargetTargetFrame", ElvUI_EltreumUI.TargetTargetUFEffects)
 
---update whenever the target changes target
-local targetoftargetupdater = CreateFrame("FRAME")
-targetoftargetupdater:RegisterEvent("UNIT_TARGET", "target")
-targetoftargetupdater:SetScript("OnEvent", function()
-	ElvUI_EltreumUI:TargetTargetUFEffects()
-end)
+
 
 --add effects to pet
 function ElvUI_EltreumUI:PetUFEffects()
@@ -440,6 +435,7 @@ function ElvUI_EltreumUI:PetUFEffects()
 			end
 			if petpowerbar then
 				--powerbareffectpet:SetAlpha(1)
+				powerbareffectpet:ClearAllPoints()
 				powerbareffectpet:SetAllPoints(petpowerbar:GetStatusBarTexture())
 				powerbareffectpet:SetFrameLevel(petpowerbar:GetFrameLevel())
 				powerbareffectpet:SetInside(petpowerbar:GetStatusBarTexture(), 0, 0)
@@ -507,3 +503,22 @@ function ElvUI_EltreumUI:CastbarEffects()
 end
 hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastbarEffects)
 hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastbarEffects)
+
+
+local modelupdater = CreateFrame("FRAME")
+modelupdater:RegisterUnitEvent("UNIT_TARGET", "target") --update whenever the target changes target
+modelupdater:RegisterEvent("PLAYER_ENTERING_WORLD") --refresh everything
+modelupdater:RegisterUnitEvent("UNIT_PET", "player") --refresh everything
+modelupdater:SetScript("OnEvent", function(_, event)
+	ElvUI_EltreumUI:TargetTargetUFEffects()
+	if event == 'PLAYER_ENTERING_WORLD' then
+		ElvUI_EltreumUI:PlayerUFEffects()
+		ElvUI_EltreumUI:TargetUFEffects()
+		ElvUI_EltreumUI:TargetTargetUFEffects()
+		ElvUI_EltreumUI:PetUFEffects()
+		ElvUI_EltreumUI:CastbarEffects()
+	end
+	if event == "UNIT_PET" then
+		ElvUI_EltreumUI:PetUFEffects()
+	end
+end)

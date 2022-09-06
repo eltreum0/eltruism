@@ -52,6 +52,8 @@ local qItems = {
 	24501, -- gordawag's boulder
 	24467, -- living fire
 	25458, -- mag'har battle standard
+	34475, -- arcane charges
+	34483, --orb of murloc control
 
 	-- by Az
 	23818,	-- Stillpine Furbolg Language Primer
