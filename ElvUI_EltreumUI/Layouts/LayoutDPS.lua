@@ -293,8 +293,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["actionbar"]["barPet"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; [@pet,exists] show; hide"
 	E.db["actionbar"]["chargeCooldown"] = true
 	E.db["actionbar"]["colorSwipeNormal"]["a"] = 1
-	E.db["actionbar"]["cooldown"]["mmssThreshold"] = 60
-	E.db["actionbar"]["cooldown"]["threshold"] = 5
 	E.db["actionbar"]["desaturateOnCooldown"] = true
 	E.db["actionbar"]["extraActionButton"]["alpha"] = 0.7
 	E.db["actionbar"]["extraActionButton"]["clean"] = true
