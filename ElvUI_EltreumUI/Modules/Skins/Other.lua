@@ -85,7 +85,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 
 					if _G.TradeSkillDescription then
 						_G.TradeSkillDescription:ClearAllPoints()
-						_G.TradeSkillDescription:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", 74, -94)
+						_G.TradeSkillDescription:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", 74, -74)
 						_G.TradeSkillDescription:SetParent(_G.TradeSkillFrame)
 
 						_G.TradeSkillReagentLabel:ClearAllPoints()

@@ -42,7 +42,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			addonname = "MerathilisUI"
 		end
 
-		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable and E.db.mui.nameplates.gradient then
+		if E.db.mui.nameplates.gradient then
 			E.db.mui.nameplates.gradient = false
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
 			compatibilityran = true
@@ -108,6 +108,13 @@ function ElvUI_EltreumUI:CheckCompatibility()
 		if E.db.ElvUI_EltreumUI.skins.zones and E.db.mui.media.miscText.questFontSuperHuge.enable then
 			E.db.mui.media.miscText.questFontSuperHuge.enable = false
 			E.db.ElvUI_EltreumUI.skins.zones = true
+			compatibilityran = true
+			addonname = "MerathilisUI"
+		end
+
+		if E.db.mui.unitframes.power.enable then
+			E.db.mui.unitframes.power.enable = false
+			E.db.ElvUI_EltreumUI.unitframes.models.powerbar = true
 			compatibilityran = true
 			addonname = "MerathilisUI"
 		end
