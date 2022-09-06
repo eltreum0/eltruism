@@ -40,7 +40,8 @@ function ElvUI_EltreumUI:ExpandedTalents()
 					--fix rank size
 					for i =1, MAX_NUM_TALENTS do
 						if _G["PlayerTalentFrameTalent"..i.."Rank"] then
-							_G["PlayerTalentFrameTalent"..i.."Rank"]:SetFont(E.LSM:Fetch('font', E.db.general.font), 18, E.db.general.fontStyle)
+							print(_G["PlayerTalentFrameTalent"..i.."Rank"]:GetFont())
+							_G["PlayerTalentFrameTalent"..i.."Rank"]:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+4, E.db.general.fontStyle)
 						end
 					end
 
