@@ -336,8 +336,11 @@ local function EltruismStatsDatatext2(dt)
     	local totalranged = rangedbasepower+rangedbuff+rangednerf
     	local meleebasepower, meleebuff, meleenerf = UnitAttackPower('player')
     	local totalmelee = meleebasepower+meleebuff+meleenerf
-    	local power = "Power: "..ElvUI[1].media.hexvaluecolor..math.max(totalranged,totalmelee).."|r"
-    	--GetSpellBonusDamage(2)? spellpower?
+    	local spellpower = math.max(GetSpellBonusDamage(2),GetSpellBonusDamage(3),GetSpellBonusDamage(4),GetSpellBonusDamage(5),GetSpellBonusDamage(6),GetSpellBonusDamage(7))
+    	local power = "Power: "..ElvUI[1].media.hexvaluecolor..math.max(totalranged,totalmelee,spellpower).."|r"
+
+    	--GetArmorPenetration() armor pen?   	CR_ARMOR_PENETRATION(25)?
+    	--GetCombatRatingBonus(24) expertise?
 
     	--hit rating
     	local rangedhit = GetCombatRatingBonus(CR_HIT_RANGED)
