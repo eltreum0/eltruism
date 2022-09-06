@@ -168,7 +168,8 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 			end
 
 			if powerbar then
-				powerbareffectplayer:SetAlpha(1)
+				--powerbareffectplayer:SetAlpha(1)
+				powerbareffectplayer:ClearAllPoints()
 				powerbareffectplayer:SetAllPoints(powerbar:GetStatusBarTexture())
 				powerbareffectplayer:SetFrameLevel(powerbar:GetFrameLevel())
 				powerbareffectplayer:SetInside(powerbar:GetStatusBarTexture(), 0, 0)
@@ -257,7 +258,7 @@ function ElvUI_EltreumUI:TargetUFEffects()
 				end
 			end
 			if targetpowerbar then
-				powerbareffecttarget:SetAlpha(1)
+				--powerbareffecttarget:SetAlpha(1)
 				powerbareffecttarget:ClearAllPoints()
 				powerbareffecttarget:SetAllPoints(targetpowerbar:GetStatusBarTexture())
 				powerbareffecttarget:SetFrameLevel(targetpowerbar:GetFrameLevel())
@@ -346,7 +347,7 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 			end
 
 			if targettargetpowerbar then
-				powerbareffecttargettarget:SetAlpha(1)
+				--powerbareffecttargettarget:SetAlpha(1)
 				powerbareffecttargettarget:ClearAllPoints()
 				powerbareffecttargettarget:SetAllPoints(targettargetpowerbar:GetStatusBarTexture())
 				powerbareffecttargettarget:SetFrameLevel(targettargetpowerbar:GetFrameLevel())
@@ -438,7 +439,7 @@ function ElvUI_EltreumUI:PetUFEffects()
 				end
 			end
 			if petpowerbar then
-				powerbareffectpet:SetAlpha(1)
+				--powerbareffectpet:SetAlpha(1)
 				powerbareffectpet:SetAllPoints(petpowerbar:GetStatusBarTexture())
 				powerbareffectpet:SetFrameLevel(petpowerbar:GetFrameLevel())
 				powerbareffectpet:SetInside(petpowerbar:GetStatusBarTexture(), 0, 0)
