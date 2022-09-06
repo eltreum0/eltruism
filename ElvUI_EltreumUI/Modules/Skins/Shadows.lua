@@ -1081,6 +1081,18 @@ function ElvUI_EltreumUI:Shadows()
 			LeftChatShadow:Hide()
 			RightChatShadow:Hide()
 		end
+
+		--info panel on top
+		if E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
+			if _G["ElvUF_Player"].shadow then
+				_G["ElvUF_Player"].shadow:ClearAllPoints()
+				_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_PowerBar"] ,"BOTTOMLEFT", -3, -2)
+				_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_PowerBar"] ,"BOTTOMRIGHT", 3, -2)
+				_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player_InfoPanel"],"TOPLEFT", -3, 3)
+				_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player_InfoPanel"],"TOPRIGHT", 3, 3)
+			end
+		end
+
 		------------------------------------------------------------------------------------------------------end of elvui frames
 		if IsAddOnLoaded('ProjectAzilroka') then
 			if not _G.stAMFrame.shadow then
