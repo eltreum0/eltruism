@@ -1050,6 +1050,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["player"]["raidicon"]["xOffset"] = 30
 	E.db["unitframe"]["units"]["player"]["raidicon"]["yOffset"] = 2
 	E.db["unitframe"]["units"]["player"]["raidicon"]["enable"] = false
+
 	E.db["unitframe"]["units"]["raid1"]["buffIndicator"]["size"] = 20
 	E.db["unitframe"]["units"]["raid1"]["buffs"]["anchorPoint"] = "BOTTOMRIGHT"
 	E.db["unitframe"]["units"]["raid1"]["buffs"]["attachTo"] = "DEBUFFS"
@@ -1084,6 +1085,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["raid1"]["health"]["xOffset"] = 0
 	E.db["unitframe"]["units"]["raid1"]["health"]["yOffset"] = 0
 	E.db["unitframe"]["units"]["raid1"]["height"] = 28
+	E.db["unitframe"]["units"]["raid1"]["width"] = 120
 	E.db["unitframe"]["units"]["raid1"]["groupSpacing"] = 6
 	E.db["unitframe"]["units"]["raid1"]["horizontalSpacing"] = 0
 	E.db["unitframe"]["units"]["raid1"]["infoPanel"]["enable"] = true
@@ -1092,11 +1094,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["raid1"]["name"]["position"] = "LEFT"
 	E.db["unitframe"]["units"]["raid1"]["name"]["text_format"] = ""
 	E.db["unitframe"]["units"]["raid1"]["name"]["xOffset"] = 2
-	if E.Retail then
-		E.db["unitframe"]["units"]["raid1"]["numGroups"] = 4
-	elseif E.Wrath or E.TBC or E.Classic then
-		E.db["unitframe"]["units"]["raid1"]["numGroups"] = 5
-	end
+	E.db["unitframe"]["units"]["raid1"]["numGroups"] = 4
 	E.db["unitframe"]["units"]["raid1"]["power"]["enable"] = false
 	E.db["unitframe"]["units"]["raid1"]["power"]["text_format"] = ""
 	E.db["unitframe"]["units"]["raid1"]["raidRoleIcons"]["yOffset"] = -3
@@ -1126,11 +1124,10 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["raid1"]["portrait"]["fullOverlay"] = true
 	E.db["unitframe"]["units"]["raid1"]["portrait"]["paused"] = true
 	E.db["unitframe"]["units"]["raid1"]["portrait"]["overlayAlpha"] = 0.6
-	if E.Retail then
-		E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
-	elseif E.Wrath or E.TBC or E.Classic then
-		E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid26,exists] hide;show"
-		E.db["unitframe"]["units"]["raidpet"]["enable"] = true
+	E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
+	if E.Wrath or E.TBC or E.Classic then
+		E.db["unitframe"]["units"]["raid1"]["power"]["enable"] = true
+		E.db["unitframe"]["units"]["raidpet"]["enable"] = false
 		E.db["unitframe"]["units"]["raidpet"]["horizontalSpacing"] = 0
 		E.db["unitframe"]["units"]["raidpet"]["numGroups"] = 3
 		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["duration"]["position"] = "TOP"
@@ -1141,10 +1138,86 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["yOffset"] = 3
 		E.db["unitframe"]["units"]["raidpet"]["verticalSpacing"] = 0
 		E.db["unitframe"]["units"]["raidpet"]["visibility"] = "[@raid6,exists] show; hide"
-		E.db["unitframe"]["units"]["raid3"]["power"]["enable"] = true --dps raid 40 tbc/classic
 	end
-	E.db["unitframe"]["units"]["raid1"]["width"] = 120
+
+	E.db["unitframe"]["units"]["raid2"]["buffIndicator"]["size"] = 20
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["anchorPoint"] = "BOTTOMRIGHT"
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["attachTo"] = "DEBUFFS"
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["countFontSize"] = 8
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["countXOffset"] = 2
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["countYOffset"] = -3
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["durationPosition"] = "TOP"
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["height"] = 15
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["sizeOverride"] = 20
+	E.db["unitframe"]["units"]["raid2"]["buffs"]["yOffset"] = -5
+	E.db["unitframe"]["units"]["raid2"]["classbar"]["enable"] = false
+	E.db["unitframe"]["units"]["raid2"]["colorOverride"] = "FORCE_OFF"
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["anchorPoint"] = "TOPRIGHT"
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["countFontSize"] = 8
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["countXOffset"] = 2
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["countYOffset"] = -3
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["growthY"] = "DOWN"
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["height"] = 15
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["sizeOverride"] = 20
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["xOffset"] = 25
+	E.db["unitframe"]["units"]["raid2"]["debuffs"]["yOffset"] = -16
+	E.db["unitframe"]["units"]["raid2"]["disableMouseoverGlow"] = true
+	E.db["unitframe"]["units"]["raid2"]["groupBy"] = "ROLE"
+	E.db["unitframe"]["units"]["raid2"]["groupSpacing"] = 6
+	E.db["unitframe"]["units"]["raid2"]["groupsPerRowCol"] = 4
+	E.db["unitframe"]["units"]["raid2"]["growthDirection"] = "DOWN_RIGHT"
+	E.db["unitframe"]["units"]["raid2"]["health"]["attachTextTo"] = "InfoPanel"
+	E.db["unitframe"]["units"]["raid2"]["health"]["position"] = "TOPRIGHT"
+	E.db["unitframe"]["units"]["raid2"]["health"]["text_format"] = ""
+	E.db["unitframe"]["units"]["raid2"]["health"]["xOffset"] = 0
+	E.db["unitframe"]["units"]["raid2"]["health"]["yOffset"] = 0
+	E.db["unitframe"]["units"]["raid2"]["height"] = 28
+	E.db["unitframe"]["units"]["raid2"]["horizontalSpacing"] = 0
+	E.db["unitframe"]["units"]["raid2"]["infoPanel"]["enable"] = true
+	E.db["unitframe"]["units"]["raid2"]["infoPanel"]["transparent"] = true
+	E.db["unitframe"]["units"]["raid2"]["name"]["attachTextTo"] = "InfoPanel"
+	E.db["unitframe"]["units"]["raid2"]["name"]["position"] = "LEFT"
+	E.db["unitframe"]["units"]["raid2"]["name"]["text_format"] = ""
+	E.db["unitframe"]["units"]["raid2"]["name"]["xOffset"] = 2
+	E.db["unitframe"]["units"]["raid2"]["portrait"]["desaturation"] = 0.7
+	E.db["unitframe"]["units"]["raid2"]["portrait"]["fullOverlay"] = true
+	E.db["unitframe"]["units"]["raid2"]["portrait"]["overlayAlpha"] = 0.6
+	E.db["unitframe"]["units"]["raid2"]["portrait"]["paused"] = true
+	E.db["unitframe"]["units"]["raid2"]["raidRoleIcons"]["yOffset"] = -3
+	E.db["unitframe"]["units"]["raid2"]["raidicon"]["attachTo"] = "CENTER"
+	E.db["unitframe"]["units"]["raid2"]["raidicon"]["attachToObject"] = "Health"
+	E.db["unitframe"]["units"]["raid2"]["raidicon"]["size"] = 12
+	E.db["unitframe"]["units"]["raid2"]["raidicon"]["yOffset"] = -5
+	E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["duration"]["yOffset"] = 3
+	E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["enable"] = true
+	E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
+	E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["size"] = 25
+	E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["stack"]["xOffset"] = 2
+	E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["stack"]["yOffset"] = -3
+	E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["yOffset"] = 14
+	E.db["unitframe"]["units"]["raid2"]["readycheckIcon"]["position"] = "CENTER"
+	E.db["unitframe"]["units"]["raid2"]["readycheckIcon"]["yOffset"] = 0
+	E.db["unitframe"]["units"]["raid2"]["resurrectIcon"]["yOffset"] = 2
+	E.db["unitframe"]["units"]["raid2"]["roleIcon"]["enable"] = true
+	E.db["unitframe"]["units"]["raid2"]["roleIcon"]["position"] = "TOPRIGHT"
+	E.db["unitframe"]["units"]["raid2"]["roleIcon"]["size"] = 12
+	E.db["unitframe"]["units"]["raid2"]["roleIcon"]["yOffset"] = -1
+	E.db["unitframe"]["units"]["raid2"]["summonIcon"]["attachToObject"] = "Health"
+	E.db["unitframe"]["units"]["raid2"]["summonIcon"]["yOffset"] = -5
+	E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid21,noexists][@raid31,exists] hide;show"
+	E.db["unitframe"]["units"]["raid2"]["width"] = 120
+	E.db["unitframe"]["units"]["raid2"]["power"]["enable"] = false
+	if E.Wrath or E.TBC or E.Classic then
+		E.db["unitframe"]["units"]["raid2"]["power"]["enable"] = true --dps raid 40 tbc/classic
+	end
+
 	E.db["unitframe"]["units"]["raid3"]["height"] = 28
+	E.db["unitframe"]["units"]["raid3"]["width"] = 120
 	E.db["unitframe"]["units"]["raid3"]["groupSpacing"] = 6
 	E.db["unitframe"]["units"]["raid3"]["buffIndicator"]["size"] = 10
 	E.db["unitframe"]["units"]["raid3"]["colorOverride"] = "FORCE_OFF"
@@ -1176,7 +1249,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["stack"]["xOffset"] = 3
 	E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["stack"]["yOffset"] = -3
 	E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["yOffset"] = 16
-	--E.db["unitframe"]["units"]["raid3"]["orientation"] = "MIDDLE"
 	E.db["unitframe"]["units"]["raid3"]["portrait"]["desaturation"] = 0.7
 	E.db["unitframe"]["units"]["raid3"]["portrait"]["fullOverlay"] = true
 	E.db["unitframe"]["units"]["raid3"]["portrait"]["overlayAlpha"] = 0.6
@@ -1188,12 +1260,12 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["raid3"]["roleIcon"]["xOffset"] = -1
 	E.db["unitframe"]["units"]["raid3"]["roleIcon"]["yOffset"] = -1
 	E.db["unitframe"]["units"]["raid3"]["verticalSpacing"] = 3
-	if E.Retail then
-		E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid21,noexists] hide;show"
-	elseif E.Wrath or E.TBC or E.Classic then
-		E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid26,noexists] hide;show"
+	E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid31,noexists] hide;show"
+	E.db["unitframe"]["units"]["raid3"]["power"]["enable"] = false
+	if E.Wrath or E.TBC or E.Classic then
+		E.db["unitframe"]["units"]["raid3"]["power"]["enable"] = true --dps raid 40 tbc/classic
 	end
-	E.db["unitframe"]["units"]["raid3"]["width"] = 120
+
 	E.db["unitframe"]["units"]["tank"]["colorOverride"] = "FORCE_OFF"
 	E.db["unitframe"]["units"]["tank"]["buffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["tank"]["debuffs"]["countFont"] = "Kimberley"

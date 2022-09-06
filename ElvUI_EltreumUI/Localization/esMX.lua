@@ -1147,3 +1147,5 @@ L["Good Color"] = "Color bueno"
 L["Use this button to restore names should you have disabled the Hide NPC Names option"] = "Utiliza este botón para restaurar los nombres en caso de que hayas desactivado la opción de Ocultar Nombres de PNJ"
 L["Gradient Power Backdrop"] = true
 L["Change how much the Gradient Power Backdrop will Fade"] = true
+L["Use ElvUI Unitframe Texture"] = true
+L["Uses ElvUI UNitframe Statusbar texture instead"] = true

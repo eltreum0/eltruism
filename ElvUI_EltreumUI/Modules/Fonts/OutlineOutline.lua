@@ -3,48 +3,46 @@ local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 
 function ElvUI_EltreumUI:SetupFontsOutlineOutline()
-	if E.Retail then
-		if IsAddOnLoaded('ProjectAzilroka') then
-			_G.ProjectAzilroka.db["stAddonManager"]["FontFlag"] = "OUTLINE"
-		end
-		if IsAddOnLoaded("ElvUI_SLE") then
-			E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "OUTLINE"
-			E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "OUTLINE"
-			E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = "OUTLINE"
-			E.db["sle"]["media"]["fonts"]["mail"]["outline"] = "OUTLINE"
-			E.db["sle"]["media"]["fonts"]["objective"]["outline"] = "OUTLINE"
-			E.db["sle"]["media"]["fonts"]["objectiveHeader"]["outline"] = "OUTLINE"
-			E.db["sle"]["media"]["fonts"]["pvp"]["outline"] = "OUTLINE"
-			E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["outline"] = "OUTLINE"
-			E.db["sle"]["media"]["fonts"]["subzone"]["outline"] = "OUTLINE"
-			E.db["sle"]["media"]["fonts"]["zone"]["outline"] = "OUTLINE"
-			E.db["sle"]["minimap"]["coords"]["fontOutline"] = "OUTLINE"
-			E.db["sle"]["minimap"]["instance"]["fontOutline"] = "OUTLINE"
-			E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = "OUTLINE"
-			E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = "OUTLINE"
-			E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "OUTLINE"
-		end
-		if IsAddOnLoaded("ElvUI_WindTools") then
-			E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = "OUTLINE"
-			E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = "OUTLINE"
-			E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = "OUTLINE"
-			E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = "OUTLINE"
-			E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "OUTLINE"
-			E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "OUTLINE"
-			E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "OUTLINE"
-		end
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "OUTLINE"
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "OUTLINE"
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "OUTLINE"
-		E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Absorb"]["fontOutline"] = "OUTLINE"
-		E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Absorb"]["fontOutline"] = "OUTLINE"
-		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Absorb"]["fontOutline"] = "OUTLINE"
-		E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "OUTLINE"
-		E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "OUTLINE"
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "OUTLINE"
-		E.db["databars"]["azerite"]["fontOutline"] = "OUTLINE"
-		E.db["general"]["altPowerBar"]["fontOutline"] = "OUTLINE"
+	if IsAddOnLoaded('ProjectAzilroka') then
+		_G.ProjectAzilroka.db["stAddonManager"]["FontFlag"] = "OUTLINE"
 	end
+	if IsAddOnLoaded("ElvUI_SLE") then
+		E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "OUTLINE"
+		E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "OUTLINE"
+		E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = "OUTLINE"
+		E.db["sle"]["media"]["fonts"]["mail"]["outline"] = "OUTLINE"
+		E.db["sle"]["media"]["fonts"]["objective"]["outline"] = "OUTLINE"
+		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["outline"] = "OUTLINE"
+		E.db["sle"]["media"]["fonts"]["pvp"]["outline"] = "OUTLINE"
+		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["outline"] = "OUTLINE"
+		E.db["sle"]["media"]["fonts"]["subzone"]["outline"] = "OUTLINE"
+		E.db["sle"]["media"]["fonts"]["zone"]["outline"] = "OUTLINE"
+		E.db["sle"]["minimap"]["coords"]["fontOutline"] = "OUTLINE"
+		E.db["sle"]["minimap"]["instance"]["fontOutline"] = "OUTLINE"
+		E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = "OUTLINE"
+		E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = "OUTLINE"
+		E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "OUTLINE"
+	end
+	if IsAddOnLoaded("ElvUI_WindTools") then
+		E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = "OUTLINE"
+		E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = "OUTLINE"
+		E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = "OUTLINE"
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = "OUTLINE"
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "OUTLINE"
+		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "OUTLINE"
+		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "OUTLINE"
+	end
+	E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Absorb"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Absorb"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Absorb"]["fontOutline"] = "OUTLINE"
+	E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "OUTLINE"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = "OUTLINE"
+	E.db["databars"]["azerite"]["fontOutline"] = "OUTLINE"
+	E.db["general"]["altPowerBar"]["fontOutline"] = "OUTLINE"
 	E.db["general"]["fontStyle"] = "OUTLINE"
 	E.db["general"]["minimap"]["locationFontOutline"] = "OUTLINE"
 	if E.Retail then

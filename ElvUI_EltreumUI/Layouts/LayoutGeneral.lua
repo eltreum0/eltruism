@@ -46,9 +46,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["convertPages"] = true
 
 		--smoothbars
-		--E.db["general"]["altPowerBar"]["smoothbars"] = true
-		--E.db["nameplates"]["smoothbars"] = true
-		--E.db["unitframe"]["smoothbars"] = true
 		E.db["general"]["altPowerBar"]["smoothbars"] = false
 		E.db["nameplates"]["smoothbars"] = false
 		E.db["unitframe"]["smoothbars"] = false
@@ -77,7 +74,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["raid2"]["classbar"]["enable"] = false
 		E.db["unitframe"]["units"]["raid3"]["classbar"]["enable"] = false
 
-		--E.db["unitframe"]["units"]["player"]["castbar"]["reverse"] = true
+		--reverse target castbar
 		E.db["unitframe"]["units"]["target"]["castbar"]["reverse"] = true
 
 		-- dont detach on normal profile
@@ -1052,24 +1049,24 @@ function ElvUI_EltreumUI:SetupDataText()
 	if E.Retail then
 		E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Talent/Loot Specialization"
 		E.db["datatexts"]["panels"]["EltruismDataText"][2] = "Durability"
-		E.db["datatexts"]["panels"]["EltruismDataText"][3] = "Missions"
-		E.db["datatexts"]["panels"]["EltruismDataText"][4] = "EltruismTeleports"
+		E.db["datatexts"]["panels"]["EltruismDataText"][3] = "EltruismTeleports"
+		E.db["datatexts"]["panels"]["EltruismDataText"][4] = "Eltruism Stats 1"
 		E.db["datatexts"]["panels"]["EltruismDataText"][5] = "Time"
-		E.db["datatexts"]["panels"]["EltruismDataText"][6] = "Friends"
+		E.db["datatexts"]["panels"]["EltruismDataText"][6] = "Eltruism Stats 2"
 		E.db["datatexts"]["panels"]["EltruismDataText"][7] = "System"
 		E.db["datatexts"]["panels"]["EltruismDataText"][8] = "Combat"
 		E.db["datatexts"]["panels"]["EltruismDataText"][9] = "Gold"
 	else
-		E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Eltruism"
-		E.db["datatexts"]["panels"]["EltruismDataText"][2] = "Durability"
 		if E.myclass == 'HUNTER' or E.myclass == 'WARLOCK' then
-			E.db["datatexts"]["panels"]["EltruismDataText"][3] = "Ammo"
+			E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Ammo"
 		else
-			E.db["datatexts"]["panels"]["EltruismDataText"][3] = "Friends"
+			E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Eltruism"
 		end
-		E.db["datatexts"]["panels"]["EltruismDataText"][4] = "EltruismTeleports"
+		E.db["datatexts"]["panels"]["EltruismDataText"][2] = "Durability"
+		E.db["datatexts"]["panels"]["EltruismDataText"][3] = "EltruismTeleports"
+		E.db["datatexts"]["panels"]["EltruismDataText"][4] = "Eltruism Stats 1"
 		E.db["datatexts"]["panels"]["EltruismDataText"][5] = "Time"
-		E.db["datatexts"]["panels"]["EltruismDataText"][6] = "Friends" -- might replace with mail or something
+		E.db["datatexts"]["panels"]["EltruismDataText"][6] = "Eltruism Stats 2"
 		E.db["datatexts"]["panels"]["EltruismDataText"][7] = "System"
 		E.db["datatexts"]["panels"]["EltruismDataText"][8] = "Combat"
 		E.db["datatexts"]["panels"]["EltruismDataText"][9] = "Gold"

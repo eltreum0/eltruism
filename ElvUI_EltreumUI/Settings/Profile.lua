@@ -574,6 +574,7 @@ P.ElvUI_EltreumUI = {
 			orientation = "HORIZONTAL",
 			orientationpower = "HORIZONTAL",
 			texture = "Eltreum-Blank",
+			useUFtexture = false,
 			customcolor = false,
 
 			bgfade = 0.6,
@@ -1070,6 +1071,7 @@ P.ElvUI_EltreumUI = {
 		eltruismroleiconscustomtank = "",
 		eltruismroleiconscustomhealer = "",
 		eltruismroleiconscustomdps = "",
+		roleiconstype = 'ELTRUISM',
 		gamemenu = false,
 		afklogo = true,
 		mailsoundenable = false,
