@@ -337,6 +337,8 @@ local function EltruismStatsDatatext2(dt)
     	local meleebasepower, meleebuff, meleenerf = UnitAttackPower('player')
     	local totalmelee = meleebasepower+meleebuff+meleenerf
     	local power = "Power: "..ElvUI[1].media.hexvaluecolor..math.max(totalranged,totalmelee).."|r"
+    	--GetSpellBonusDamage(2)? spellpower?
+
     	--hit rating
     	local rangedhit = GetCombatRatingBonus(CR_HIT_RANGED)
     	local meleehit = GetCombatRatingBonus(CR_HIT_MELEE)
@@ -345,7 +347,7 @@ local function EltruismStatsDatatext2(dt)
     	dt.text:SetFormattedText('%s %s|r',power,hit)
     end
 end
-DT:RegisterDatatext('Eltruism Stats 2', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_STATS","UNIT_RANGEDDAMAGE","UNIT_ATTACK_POWER","UNIT_RANGED_ATTACK_POWER","UNIT_ATTACK","MASTERY_UPDATE","UNIT_DAMAGE","SPELL_POWER_CHANGED"}, EltruismStatsDatatext2, nil, nil, nil, nil, L["Eltruism Stats 2"])
+DT:RegisterDatatext('Eltruism Stats 2', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_STATS","UNIT_RANGEDDAMAGE","UNIT_ATTACK_POWER","UNIT_RANGED_ATTACK_POWER","UNIT_ATTACK","MASTERY_UPDATE","UNIT_DAMAGE","SPELL_POWER_CHANGED","PLAYER_DAMAGE_DONE_MODS"}, EltruismStatsDatatext2, nil, nil, nil, nil, L["Eltruism Stats 2"])
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------spell haste datatext
 local function EltruismSpellHasteDatatext(dt)
 	local spellhaste = GetCombatRatingBonus(CR_HASTE_SPELL)
