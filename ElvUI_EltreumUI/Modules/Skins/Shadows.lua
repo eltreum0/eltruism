@@ -738,7 +738,7 @@ function ElvUI_EltreumUI:Shadows()
 							_G["ElvUF_Player_PowerBar"].shadow:Hide()
 						end
 						if E.Retail then
-							if _G["ElvUF_Player_Stagger"].shadow then
+							if _G["ElvUF_Player_Stagger"] and _G["ElvUF_Player_Stagger"].shadow then
 								_G["ElvUF_Player_Stagger"].shadow:Hide()
 							end
 						end
