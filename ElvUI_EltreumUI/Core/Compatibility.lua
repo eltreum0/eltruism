@@ -42,7 +42,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			addonname = "MerathilisUI"
 		end
 
-		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable and E.db.mui.nameplates.gradient then
+		if E.db.mui.nameplates.gradient then
 			E.db.mui.nameplates.gradient = false
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
 			compatibilityran = true
