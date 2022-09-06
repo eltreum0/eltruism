@@ -111,6 +111,13 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			compatibilityran = true
 			addonname = "MerathilisUI"
 		end
+
+		if E.db.mui.unitframes.power.enable then
+			E.db.mui.unitframes.power.enable = false
+			E.db.ElvUI_EltreumUI.unitframes.models.powerbar = true
+			compatibilityran = true
+			addonname = "MerathilisUI"
+		end
 	end
 
 	E.PopupDialogs["ELTRUISMCOMPATIBILITYFIX"] = {
