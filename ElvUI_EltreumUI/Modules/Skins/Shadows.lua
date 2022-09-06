@@ -1091,6 +1091,14 @@ function ElvUI_EltreumUI:Shadows()
 				_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player_InfoPanel"],"TOPLEFT", -3, 3)
 				_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player_InfoPanel"],"TOPRIGHT", 3, 3)
 			end
+
+			if _G["ElvUF_Target"].shadow then
+				_G["ElvUF_Target"].shadow:ClearAllPoints()
+				_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target_PowerBar"] ,"BOTTOMLEFT", -3, -2)
+				_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_PowerBar"] ,"BOTTOMRIGHT", 3, -2)
+				_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target_InfoPanel"],"TOPLEFT", -3, 3)
+				_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target_InfoPanel"],"TOPRIGHT", 3, 3)
+			end
 		end
 
 		------------------------------------------------------------------------------------------------------end of elvui frames
