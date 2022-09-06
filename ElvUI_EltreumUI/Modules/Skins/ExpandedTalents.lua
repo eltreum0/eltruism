@@ -36,6 +36,14 @@ function ElvUI_EltreumUI:ExpandedTalents()
 							PlayerTalentFrame:SetSize(376, 670)
 						end
 					end
+
+					--fix rank size
+					for i =1, MAX_NUM_TALENTS do
+						if _G["PlayerTalentFrameTalent"..i.."Rank"] then
+							_G["PlayerTalentFrameTalent"..i.."Rank"]:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+4, E.db.general.fontStyle)
+						end
+					end
+
 					if PlayerTalentFrameScrollFrame then
 						--increase the size of the actual frame that has the talent buttons
 						if E.TBC then
