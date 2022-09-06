@@ -51,26 +51,36 @@ function ElvUI_EltreumUI:DarkMode()
 		end
 
 		--setup namecolors
-		if E.db["unitframe"]["units"]["party"]["customTexts"] == nil then
-			return
-		else
+		if E.db["unitframe"]["units"]["pet"]["customTexts"] and E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
 			if E.Classic or E.Wrath or E.TBC then
 				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
 			elseif E.Retail then
 				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name]"
 			end
-				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]"
-				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
-				E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
-				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
-
-				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
-				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
-				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
-			if E.Retail or E.Wrath or E.TBC then
-				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:IconOutline:player] [eltruism:raidmarker]"
-			end
 		end
+		if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]"
+		end
+		if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
+		end
+		if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] then
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
+		end
+		if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] then
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
+		end
+		if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] then
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
+		end
+		if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] then
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
+		end
+		E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
+		if not E.Classic then
+			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+		end
+
 		E.db.ElvUI_EltreumUI.unitframes.lightmode = false
 		E.db.ElvUI_EltreumUI.unitframes.darkmode = true
 		E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
@@ -137,26 +147,34 @@ function ElvUI_EltreumUI:LightMode()
 		end
 
 		--setup namecolors
-		if E.db["unitframe"]["units"]["party"]["customTexts"] == nil then
-			return
-		else
+		if E.db["unitframe"]["units"]["pet"]["customTexts"] and E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
 			if E.Classic or E.Wrath or E.TBC then
 				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
 			elseif E.Retail then
 				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
 			end
-				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
-				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
-				E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
-				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-
-				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["text_format"] = "[power:current:shortvalue]"
-				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["text_format"] = "[power:current:shortvalue]"
-				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["text_format"] = "[power:current:shortvalue]"
-			if E.Retail or E.Wrath or E.TBC then
-				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:IconOutline:player] [eltruism:raidmarker]"
-			end
+		end
+		if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+		end
+		if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["text_format"] = "[power:current:shortvalue]"
+		end
+		if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] then
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
+		end
+		if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] then
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["text_format"] = "[power:current:shortvalue]"
+		end
+		if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] then
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
+		end
+		if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] then
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["text_format"] = "[power:current:shortvalue]"
+		end
+		E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
+		if not E.Classic then
+			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:eltruism:abbreviate] [eltruism:IconOutline:player] [eltruism:raidmarker]"
 		end
 
 		E.db.ElvUI_EltreumUI.unitframes.lightmode = true
@@ -237,21 +255,34 @@ function ElvUI_EltreumUI:GradientMode()
 			E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.3
 
 			--setup namecolors
-			if E.db["unitframe"]["units"]["party"]["customTexts"] == nil then
-				return
-			else
+			if E.db["unitframe"]["units"]["pet"]["customTexts"] and E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
 				if E.Classic or E.Wrath or E.TBC then
 					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
 				elseif E.Retail then
 					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name]"
 				end
-					E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]"
-					E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
-					E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
-					E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
-				if E.Retail or E.Wrath or E.TBC then
-					E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:class:player] [eltruism:raidmarker]"
-				end
+			end
+			if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] then
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]"
+			end
+			if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
+			end
+			if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] then
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]"
+			end
+			if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] then
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
+			end
+			if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] then
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:abbrev]"
+			end
+			if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] then
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
+			end
+			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
+			if not E.Classic then
+				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:IconOutline:player] [eltruism:raidmarker]"
 			end
 		elseif E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			E.db.ElvUI_EltreumUI.unitframes.lightmode = true
@@ -296,22 +327,34 @@ function ElvUI_EltreumUI:GradientMode()
 			E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.6
 
 			--setup namecolors
-			if E.db["unitframe"]["units"]["party"]["customTexts"] == nil then
-				return
-			else
+			if E.db["unitframe"]["units"]["pet"]["customTexts"] and E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
 				if E.Classic or E.Wrath or E.TBC then
 					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
 				elseif E.Retail then
 					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
 				end
-					E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-					E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
-					E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
-					E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
-					E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-				if E.Retail or E.Wrath or E.TBC then
-					E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:IconOutline:player] [eltruism:raidmarker]"
-				end
+			end
+			if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] then
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+			end
+			if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["text_format"] = "[power:current:shortvalue]"
+			end
+			if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] then
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
+			end
+			if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] then
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["text_format"] = "[power:current:shortvalue]"
+			end
+			if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] then
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
+			end
+			if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] then
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["text_format"] = "[power:current:shortvalue]"
+			end
+			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
+			if not E.Classic then
+				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:eltruism:abbreviate] [eltruism:IconOutline:player] [eltruism:raidmarker]"
 			end
 		end
 		E.db["unitframe"]["units"]["pet"]["health"]["colorPetByUnitClass"] = true
