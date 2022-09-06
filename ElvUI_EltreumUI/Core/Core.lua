@@ -296,7 +296,7 @@ function ElvUI_EltreumUI:AlternativeGroupsDPS()
 		if not E.db.movers then E.db.movers = {} end
 		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-258"
 		E.db["movers"]["ElvUF_Raid1Mover"] = "TOPLEFT,UIParent,TOPLEFT,58,-439"
-		E.db["movers"]["ElvUF_Raid2Mover"] = "TOPLEFT,UIParent,TOPLEFT,58,-439"
+		E.db["movers"]["ElvUF_Raid2Mover"] = "TOPLEFT,UIParent,TOPLEFT,113,-336"
 		E.db["movers"]["ElvUF_Raid3Mover"] = "TOPLEFT,UIParent,TOPLEFT,53,-302"
 		if E.Wrath or E.TBC then
 			E.db["unitframe"]["units"]["raid1"]["numGroups"] = 5
@@ -314,7 +314,7 @@ function ElvUI_EltreumUI:AlternativeGroupsDPS()
 		E.db["unitframe"]["units"]["raid1"]["horizontalSpacing"] = 3
 		E.db["unitframe"]["units"]["raid1"]["verticalSpacing"] = 3
 		E.db["unitframe"]["units"]["raid1"]["width"] = 120
-
+		E.db["unitframe"]["units"]["raid2"]["groupsPerRowCol"] = 2
 		E.db["unitframe"]["units"]["raid3"]["groupSpacing"] = 5
 		E.db["unitframe"]["units"]["raid3"]["groupsPerRowCol"] = 2
 		E.db["unitframe"]["units"]["raid3"]["growthDirection"] = "DOWN_RIGHT"
