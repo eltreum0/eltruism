@@ -1171,4 +1171,4 @@ L["Use this button to restore names should you have disabled the Hide NPC Names 
 L["Gradient Power Backdrop"] = "Kraftfarbverlauf Hintergrund"
 L["Change how much the Gradient Power Backdrop will Fade"] = "Ändere, wie stark der Kraftfarbverlauf Hintergrund verblassen wird"
 L["Use ElvUI Unitframe Texture"] = "Verwende ElvUI EInheitsfenster Textur"
-L["Uses ElvUI UNitframe Statusbar texture instead"] = "Verwendet stattdessen die Statusleistentextur von ElvUI Einheitsfenster"
+L["Uses ElvUI Unitframe Statusbar texture instead"] = "Verwendet stattdessen die Statusleistentextur von ElvUI Einheitsfenster"

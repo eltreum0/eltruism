@@ -11005,7 +11005,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'toggle',
 								width = "double",
 								name = L["Use ElvUI Unitframe Texture"],
-								desc = L["Uses ElvUI UNitframe Statusbar texture instead"],
+								desc = L["Uses ElvUI Unitframe Statusbar texture instead"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
