@@ -953,15 +953,18 @@ function ElvUI_EltreumUI:Shadows()
 			if _G["ElvUF_Target_HealthBar"] and _G["ElvUF_Target_HealthBar"].shadow then
 				_G["ElvUF_Target_HealthBar"].shadow:Hide()
 			end
+			if _G["ElvUF_Target"] and not _G["ElvUF_Target"].shadow then
+				_G["ElvUF_Target"]:CreateShadow()
+			end
 			if E.db["unitframe"]["units"]["target"]["power"]["width"] == "inset" then
-				if _G["ElvUF_Target"] and not _G["ElvUF_Target"].shadow then
-					_G["ElvUF_Target"]:CreateShadow()
-					_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target_HealthBar"], "TOPLEFT",-3,3)
-					_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_HealthBar"], "BOTTOMRIGHT",3,-3)
+				if _G["ElvUF_Target"] and _G["ElvUF_Target"].shadow then
+					_G["ElvUF_Target"]:ClearAllPoints()
+					_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target"], "TOPLEFT",-3,3)
+					_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target"], "BOTTOMRIGHT",3,-3)
 				end
 			else
-				if _G["ElvUF_Target"] and not _G["ElvUF_Target"].shadow then
-					_G["ElvUF_Target"]:CreateShadow()
+				if _G["ElvUF_Target"] and _G["ElvUF_Target"].shadow then
+					_G["ElvUF_Target"]:ClearAllPoints()
 					_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target_HealthBar"], "TOPLEFT",-3,3)
 					_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_PowerBar"], "BOTTOMRIGHT",3,-3)
 				end
@@ -974,36 +977,43 @@ function ElvUI_EltreumUI:Shadows()
 			if _G["ElvUF_TargetTarget_HealthBar"] and _G["ElvUF_TargetTarget_HealthBar"].shadow then
 				_G["ElvUF_TargetTarget_HealthBar"].shadow:Hide()
 			end
+			if _G["ElvUF_TargetTarget"] and not _G["ElvUF_TargetTarget"].shadow then
+				_G["ElvUF_TargetTarget"]:CreateShadow()
+			end
 			if E.db["unitframe"]["units"]["targettarget"]["power"]["width"] == "inset" then
-				if _G["ElvUF_TargetTarget"] and not _G["ElvUF_TargetTarget"].shadow then
-					_G["ElvUF_TargetTarget"]:CreateShadow()
-					_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget_HealthBar"], "TOPLEFT",-3,3)
-					_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget_HealthBar"], "BOTTOMRIGHT",3,-3)
+				if _G["ElvUF_TargetTarget"] and _G["ElvUF_TargetTarget"].shadow then
+					_G["ElvUF_TargetTarget"]:ClearAllPoints()
+					_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget"], "TOPLEFT",-3,3)
+					_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget"], "BOTTOMRIGHT",3,-3)
 				end
 			else
-				if _G["ElvUF_TargetTarget"] and not _G["ElvUF_TargetTarget"].shadow then
-					_G["ElvUF_TargetTarget"]:CreateShadow()
+				if _G["ElvUF_TargetTarget"] and _G["ElvUF_TargetTarget"].shadow then
+					_G["ElvUF_TargetTarget"]:ClearAllPoints()
 					_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget_HealthBar"], "TOPLEFT",-3,3)
 					_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget_PowerBar"], "BOTTOMRIGHT",3,-3)
 				end
 			end
 		end
 		if E.db["unitframe"]["units"]["player"]["power"]["width"] ~= "spaced" and E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] == false then
+
 			if _G["ElvUF_Player_PowerBar"] and _G["ElvUF_Player_PowerBar"].shadow then
 				_G["ElvUF_Player_PowerBar"].shadow:Hide()
 			end
 			if _G["ElvUF_Player_HealthBar"] and _G["ElvUF_Player_HealthBar"].shadow then
 				_G["ElvUF_Player_HealthBar"].shadow:Hide()
 			end
+			if _G["ElvUF_Player"] and not _G["ElvUF_Player"].shadow then
+				_G["ElvUF_Player"]:CreateShadow()
+			end
 			if E.db["unitframe"]["units"]["player"]["power"]["width"] == "inset" then
-				if _G["ElvUF_Player"] and not _G["ElvUF_Player"].shadow then
-					_G["ElvUF_Player"]:CreateShadow()
-					_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player_HealthBar"], "TOPLEFT",-3,3)
-					_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_HealthBar"], "BOTTOMRIGHT",3,-3)
+				if _G["ElvUF_Player"] and _G["ElvUF_Player"].shadow then
+					_G["ElvUF_Player"].shadow:ClearAllPoints()
+					_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player"], "TOPLEFT",-3,3)
+					_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player"], "BOTTOMRIGHT",3,-3)
 				end
 			else
-				if _G["ElvUF_Player"] and not _G["ElvUF_Player"].shadow then
-					_G["ElvUF_Player"]:CreateShadow()
+				if _G["ElvUF_Player"] and _G["ElvUF_Player"].shadow then
+					_G["ElvUF_Player"].shadow:ClearAllPoints()
 					_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player_HealthBar"], "TOPLEFT",-3,3)
 					_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_PowerBar"], "BOTTOMRIGHT",3,-3)
 				end
@@ -1084,32 +1094,36 @@ function ElvUI_EltreumUI:Shadows()
 
 		--info panel on top
 		if E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
-			if _G["ElvUF_Player"].shadow then
-				_G["ElvUF_Player"].shadow:ClearAllPoints()
-				_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_PowerBar"] ,"BOTTOMLEFT", -3, -2)
-				_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_PowerBar"] ,"BOTTOMRIGHT", 3, -2)
-				_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player_InfoPanel"],"TOPLEFT", -3, 3)
-				_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player_InfoPanel"],"TOPRIGHT", 3, 3)
-				if E.db["unitframe"]["units"]["player"]["power"]["width"] == "inset" then
-					_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_HealthBar"] ,"BOTTOMLEFT", -3, -2)
-					_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_HealthBar"] ,"BOTTOMRIGHT", 3, -2)
-				else
+			if E.db["unitframe"]["units"]["player"]["infoPanel"]["enable"] then
+				if _G["ElvUF_Player"].shadow then
+					_G["ElvUF_Player"].shadow:ClearAllPoints()
 					_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_PowerBar"] ,"BOTTOMLEFT", -3, -2)
 					_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_PowerBar"] ,"BOTTOMRIGHT", 3, -2)
+					_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player_InfoPanel"],"TOPLEFT", -3, 3)
+					_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player_InfoPanel"],"TOPRIGHT", 3, 3)
+					if E.db["unitframe"]["units"]["player"]["power"]["width"] == "inset" then
+						_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_HealthBar"] ,"BOTTOMLEFT", -3, -2)
+						_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_HealthBar"] ,"BOTTOMRIGHT", 3, -2)
+					else
+						_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_PowerBar"] ,"BOTTOMLEFT", -3, -2)
+						_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_PowerBar"] ,"BOTTOMRIGHT", 3, -2)
+					end
 				end
 			end
-			if _G["ElvUF_Target"].shadow then
-				_G["ElvUF_Target"].shadow:ClearAllPoints()
-				_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target_PowerBar"] ,"BOTTOMLEFT", -3, -2)
-				_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_PowerBar"] ,"BOTTOMRIGHT", 3, -2)
-				_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target_InfoPanel"],"TOPLEFT", -3, 3)
-				_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target_InfoPanel"],"TOPRIGHT", 3, 3)
-				if E.db["unitframe"]["units"]["target"]["power"]["width"] == "inset" then
-					_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target_HealthBar"] ,"BOTTOMLEFT", -3, -2)
-					_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_HealthBar"] ,"BOTTOMRIGHT", 3, -2)
-				else
+			if E.db["unitframe"]["units"]["target"]["infoPanel"]["enable"] then
+				if _G["ElvUF_Target"].shadow then
+					_G["ElvUF_Target"].shadow:ClearAllPoints()
 					_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target_PowerBar"] ,"BOTTOMLEFT", -3, -2)
 					_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_PowerBar"] ,"BOTTOMRIGHT", 3, -2)
+					_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target_InfoPanel"],"TOPLEFT", -3, 3)
+					_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target_InfoPanel"],"TOPRIGHT", 3, 3)
+					if E.db["unitframe"]["units"]["target"]["power"]["width"] == "inset" then
+						_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target_HealthBar"] ,"BOTTOMLEFT", -3, -2)
+						_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_HealthBar"] ,"BOTTOMRIGHT", 3, -2)
+					else
+						_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target_PowerBar"] ,"BOTTOMLEFT", -3, -2)
+						_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_PowerBar"] ,"BOTTOMRIGHT", 3, -2)
+					end
 				end
 			end
 		end
