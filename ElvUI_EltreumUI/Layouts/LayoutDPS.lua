@@ -1024,6 +1024,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["player"]["portrait"]["camDistanceScale"] = 4.2
 	E.db["unitframe"]["units"]["player"]["portrait"]["enable"] = true
 	E.db["unitframe"]["units"]["player"]["portrait"]["fullOverlay"] = true
+	E.db["unitframe"]["units"]["player"]["portrait"]["style"] = "3D"
 	E.db["unitframe"]["units"]["player"]["portrait"]["overlay"] = true
 	E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.3
 	E.db["unitframe"]["units"]["player"]["power"]["attachTextTo"] = "Power"
