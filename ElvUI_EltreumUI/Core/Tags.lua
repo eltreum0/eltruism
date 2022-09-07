@@ -482,7 +482,7 @@ E:AddTag("name:eltruism:abbreviateshort", "UNIT_NAME_UPDATE", function(unit)
 	end
 	return name
 end)
-E:AddTagInfo("name:eltruism:abbreviateshort", ElvUI_EltreumUI.Name, L["Abbreviates the unit name once it goes over 10 characters, made by Azilroka"])
+E:AddTagInfo("name:eltruism:abbreviateshort", ElvUI_EltreumUI.Name, L["Abbreviates the unit name once it goes over 10 characters"])
 
 -- Line Break
 E:AddTag("eltruism:newline", "UNIT_NAME_UPDATE", function()
