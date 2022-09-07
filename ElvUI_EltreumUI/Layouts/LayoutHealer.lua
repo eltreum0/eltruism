@@ -867,11 +867,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["pet"]["fader"]["vehicle"] = true
 	E.db["unitframe"]["units"]["pet"]["name"]["text_format"] = ""
 	E.db["unitframe"]["units"]["pet"]["colorOverride"] = "FORCE_OFF"
-	if E.Retail then
-		E.db["unitframe"]["units"]["pet"]["power"]["enable"] = false
-	elseif E.Wrath or E.TBC or E.Classic then
-		E.db["unitframe"]["units"]["pet"]["power"]["enable"] = true
-	end
+	E.db["unitframe"]["units"]["pet"]["power"]["enable"] = true
 	E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = ""
 	E.db["unitframe"]["units"]["pet"]["power"]["width"] = "inset"
 	E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
@@ -1056,10 +1052,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid1"]["power"]["height"] = 8
 	E.db["unitframe"]["units"]["raid1"]["power"]["powerPrediction"] = true
 	E.db["unitframe"]["units"]["raid1"]["power"]["yOffset"] = 4
-	if not E.Retail then
-		E.db["unitframe"]["units"]["raid1"]["power"]["enable"] = true
-	end
-
 	E.db["unitframe"]["units"]["raid2"]["buffIndicator"]["size"] = 12
 	E.db["unitframe"]["units"]["raid2"]["buffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["raid2"]["buffs"]["countFontSize"] = 8
@@ -1105,9 +1097,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid2"]["portrait"]["overlayAlpha"] = 0.6
 	E.db["unitframe"]["units"]["raid2"]["portrait"]["paused"] = true
 	E.db["unitframe"]["units"]["raid2"]["power"]["enable"] = false
-	if not E.Retail then
-		E.db["unitframe"]["units"]["raid2"]["power"]["enable"] = true
-	end
 	E.db["unitframe"]["units"]["raid2"]["power"]["height"] = 8
 	E.db["unitframe"]["units"]["raid2"]["power"]["powerPrediction"] = true
 	E.db["unitframe"]["units"]["raid2"]["power"]["yOffset"] = 4
@@ -1173,9 +1162,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid3"]["portrait"]["paused"] = true
 	E.db["unitframe"]["units"]["raid3"]["power"]["attachTextTo"] = "Power"
 	E.db["unitframe"]["units"]["raid3"]["power"]["enable"] = false
-	if not E.Retail then
-		E.db["unitframe"]["units"]["raid3"]["power"]["enable"] = true
-	end
 	E.db["unitframe"]["units"]["raid3"]["power"]["height"] = 8
 	E.db["unitframe"]["units"]["raid3"]["power"]["width"] = "inset"
 	E.db["unitframe"]["units"]["raid3"]["power"]["xOffset"] = 0
