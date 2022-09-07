@@ -156,7 +156,7 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 					powerbareffectplayer:SetAlpha(0.4) --might do this
 				else
 					powerbareffectplayer:SetModel("spells/arcanepower_state_chest.m2")
-					powerbareffectplayer:SetPosition(1.2, 0, 0)
+					powerbareffectplayer:SetPosition(1.2, 0, -0.5)
 					powerbareffectplayer:SetAlpha(0.4) --might do this
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
@@ -247,7 +247,7 @@ function ElvUI_EltreumUI:TargetUFEffects()
 					powerbareffecttarget:SetAlpha(0.4) --might do this
 				else
 					powerbareffecttarget:SetModel("spells/arcanepower_state_chest.m2")
-					powerbareffecttarget:SetPosition(1.2, 0, 0)
+					powerbareffecttarget:SetPosition(1.2, 0, -0.5)
 					powerbareffecttarget:SetAlpha(0.4) --might do this
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
@@ -335,7 +335,7 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 					powerbareffecttargettarget:SetAlpha(0.4) --might do this
 				else
 					powerbareffecttargettarget:SetModel("spells/arcanepower_state_chest.m2")
-					powerbareffecttargettarget:SetPosition(1.2, 0, 0)
+					powerbareffecttargettarget:SetPosition(1.2, 0, -0.5)
 					powerbareffecttargettarget:SetAlpha(0.4) --might do this
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
@@ -421,8 +421,8 @@ function ElvUI_EltreumUI:PetUFEffects()
 					powerbareffectpet:SetAlpha(0.4) --might do this
 				else
 					powerbareffectpet:SetModel("spells/arcanepower_state_chest.m2")
-					powerbareffectpet:SetPosition(1.2, 0, 0)
-					powerbareffectpet:SetAlpha(0.4) --might do this
+					powerbareffectpet:SetPosition(1.2, 0, -0.5)
+					powerbareffectpet:SetAlpha(0.6) --might do this
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
 				if E.Retail then

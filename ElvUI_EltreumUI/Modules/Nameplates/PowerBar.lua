@@ -914,8 +914,8 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					else
 						powerbareffect:SetModel("spells/arcanepower_state_chest.m2")
 						--powerbareffect:SetModel("spells/cfx_priest_holyprecast_precastarm.m2") --sadly not on classic
-						powerbareffect:SetPosition(1.2, 0, 0)
-						powerbareffect:SetAlpha(0.4) --might do this
+						powerbareffect:SetPosition(1.2, 0, -0.5)
+						powerbareffect:SetAlpha(0.6) --might do this
 					end
 				elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
 					if E.Retail then
