@@ -2161,8 +2161,8 @@ function ElvUI_EltreumUI:Configtable()
 								hidden = E.Classic,
 								--hidden = function() if E.Classic then return true else return false end end,
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focustarget.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.focusbordertarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.focusbordertarget = value ElvUI_EltreumUI:Borders() end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.focustargetborder end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.focustargetborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderxfocustarget = {
 								type = 'range',
