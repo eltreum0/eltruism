@@ -1931,7 +1931,7 @@ function ElvUI_EltreumUI:Configtable()
 							gapraid = {
 								order = 43,
 								type = "description",
-								name = L["Raid Border"],
+								name = L["Raid1 Border"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -1968,23 +1968,23 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.borders.raidsizey end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidsizey = value ElvUI_EltreumUI:Borders() end,
 							},
-							gapraid40 = {
+							gapraid2 = {
 								order = 47,
 								type = "description",
-								name = L["Raid40 Border"],
+								name = L["Raid2 Border"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-							barraid40 = {
+							barraid2 = {
 								type = 'toggle',
 								name = L["Enable"],
 								order = 48,
 								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid40.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.raid40borders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40borders = value ElvUI_EltreumUI:Borders() end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid2.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.raid2borders end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid2borders = value ElvUI_EltreumUI:Borders() end,
 							},
-							borderxraid40 = {
+							borderxraid2 = {
 								type = 'range',
 								name = L["Border X offset"],
 								order = 49,
@@ -1992,11 +1992,11 @@ function ElvUI_EltreumUI:Configtable()
 								max = 800,
 								step = 0.1,
 								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid40.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.raid40sizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40sizex = value ElvUI_EltreumUI:Borders() end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid2.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.raid2sizex end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid2sizex = value ElvUI_EltreumUI:Borders() end,
 							},
-							borderyraid40 = {
+							borderyraid2 = {
 								type = 'range',
 								name = L["Border Y offset"],
 								order = 50,
@@ -2004,12 +2004,52 @@ function ElvUI_EltreumUI:Configtable()
 								max = 800,
 								step = 0.1,
 								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid40.enable end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid2.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.raid2sizey end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid2sizey = value ElvUI_EltreumUI:Borders() end,
+							},
+							gapraid40 = {
+								order = 51,
+								type = "description",
+								name = L["Raid3 Border"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							barraid40 = {
+								type = 'toggle',
+								name = L["Enable"],
+								order = 52,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid3.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.raid40borders end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40borders = value ElvUI_EltreumUI:Borders() end,
+							},
+							borderxraid40 = {
+								type = 'range',
+								name = L["Border X offset"],
+								order = 53,
+								min = 1,
+								max = 800,
+								step = 0.1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid3.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.raid40sizex end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40sizex = value ElvUI_EltreumUI:Borders() end,
+							},
+							borderyraid40 = {
+								type = 'range',
+								name = L["Border Y offset"],
+								order = 54,
+								min = 1,
+								max = 800,
+								step = 0.1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid3.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.raid40sizey end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40sizey = value ElvUI_EltreumUI:Borders() end,
 							},
 							gapfocus = {
-								order = 51,
+								order = 55,
 								type = "description",
 								name = L["Focus Border"],
 								width = 'full',
@@ -2020,7 +2060,7 @@ function ElvUI_EltreumUI:Configtable()
 							barfocus= {
 								type = 'toggle',
 								name = L["Enable"],
-								order = 52,
+								order = 56,
 								width = "full",
 								hidden = E.Classic,
 								--hidden = function() if E.Classic then return true else return false end end,
@@ -2031,7 +2071,7 @@ function ElvUI_EltreumUI:Configtable()
 							borderxfocus = {
 								type = 'range',
 								name = L["Border X offset"],
-								order = 53,
+								order = 57,
 								min = 1,
 								max = 800,
 								step = 0.1,
@@ -2045,7 +2085,7 @@ function ElvUI_EltreumUI:Configtable()
 							borderyfocus = {
 								type = 'range',
 								name = L["Border Y offset"],
-								order = 54,
+								order = 58,
 								min = 1,
 								max = 800,
 								step = 0.1,
@@ -2057,7 +2097,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.yfocus = value ElvUI_EltreumUI:Borders() end,
 							},
 							gapfocuscast = {
-								order = 55,
+								order = 59,
 								type = "description",
 								name = L["Focus Castbar Border"],
 								width = 'full',
@@ -2068,7 +2108,7 @@ function ElvUI_EltreumUI:Configtable()
 							barfocuscast = {
 								type = 'toggle',
 								name = L["Enable"],
-								order = 56,
+								order = 60,
 								width = "full",
 								hidden = E.Classic,
 								--hidden = function() if E.Classic then return true else return false end end,
@@ -2079,7 +2119,7 @@ function ElvUI_EltreumUI:Configtable()
 							borderxcastfocus = {
 								type = 'range',
 								name = L["Border X offset"],
-								order = 57,
+								order = 61,
 								min = 1,
 								max = 800,
 								step = 0.1,
@@ -2093,7 +2133,7 @@ function ElvUI_EltreumUI:Configtable()
 							borderycastfocus = {
 								type = 'range',
 								name = L["Border Y offset"],
-								order = 58,
+								order = 62,
 								min = 1,
 								max = 800,
 								step = 0.1,
@@ -2104,14 +2144,8 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.borders.ycastfocus end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ycastfocus = value ElvUI_EltreumUI:Borders() end,
 							},
-
-
-
-
-
-
 							gapfocustarget = {
-								order = 59,
+								order = 63,
 								type = "description",
 								name = L["Focus Target Border"],
 								width = 'full',
@@ -2122,7 +2156,7 @@ function ElvUI_EltreumUI:Configtable()
 							barfocustarget = {
 								type = 'toggle',
 								name = L["Enable"],
-								order = 60,
+								order = 64,
 								width = "full",
 								hidden = E.Classic,
 								--hidden = function() if E.Classic then return true else return false end end,
@@ -2133,7 +2167,7 @@ function ElvUI_EltreumUI:Configtable()
 							borderxfocustarget = {
 								type = 'range',
 								name = L["Border X offset"],
-								order = 61,
+								order = 65,
 								min = 1,
 								max = 800,
 								step = 0.1,
@@ -2147,7 +2181,7 @@ function ElvUI_EltreumUI:Configtable()
 							borderyfocustarget = {
 								type = 'range',
 								name = L["Border Y offset"],
-								order = 62,
+								order = 66,
 								min = 1,
 								max = 800,
 								step = 0.1,
@@ -2158,63 +2192,6 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.borders.yfocustarget end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.yfocustarget = value ElvUI_EltreumUI:Borders() end,
 							},
-							gapfocustargetcast = {
-								order = 63,
-								type = "description",
-								name = L["Focus Target Castbar Border"],
-								width = 'full',
-								hidden = E.Classic,
-								--hidden = function() if E.Classic then return true else return false end end,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							barfocustargetcast = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 64,
-								width = "full",
-								hidden = E.Classic,
-								--hidden = function() if E.Classic then return true else return false end end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focustarget.enable or not E.db.unitframe.units.focustarget.castbar.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.focustargetcastborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.focustargetcastborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderxcastfocustarget = {
-								type = 'range',
-								name = L["Border X offset"],
-								order = 65,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								hidden = E.Classic,
-								--hidden = function() if E.Classic then return true else return false end end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focustarget.enable or not E.db.unitframe.units.focustarget.castbar.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.xcastfocustarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xcastfocustarget = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderycastfocustarget = {
-								type = 'range',
-								name = L["Border Y offset"],
-								order = 66,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								hidden = E.Classic,
-								--hidden = function() if E.Classic then return true else return false end end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focustarget.enable or not E.db.unitframe.units.focustarget.castbar.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.ycastfocustarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ycastfocustarget = value ElvUI_EltreumUI:Borders() end,
-							},
-
-
-
-
-
-
-
-
-
 							gapboss = {
 								order = 95,
 								type = "description",

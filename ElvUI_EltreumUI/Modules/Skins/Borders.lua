@@ -15,7 +15,7 @@ local UnitClass = _G.UnitClass
 local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder,focuscastbarborder
 local bordertexture,classcolor,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder
 local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction,focustargetcastbarborder
-local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,raidborder,totemborderfly,focustargetborder
+local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,raid1border,raid2border,raid3border,totemborderfly,focustargetborder
 local rectangleminimapdetect = CreateFrame("FRAME")
 local updatelocationpos = CreateFrame("Frame")
 local classcolorreaction = {
@@ -256,42 +256,145 @@ function ElvUI_EltreumUI:Borders()
 				createpartyborders()
 			end
 
-			--raid
-			if E.db.ElvUI_EltreumUI.borders.raidborders and not self.raidborderscreated then
-				local bordersraid = {}
-				for i = 1,3 do
-					for k = 1,8 do
-						for l = 1,5 do
-							table.insert(bordersraid, _G["ElvUF_Raid"..i..'Group'..k..'UnitButton'..l])
-						end
+			--raid1
+			if E.db.ElvUI_EltreumUI.borders.raidborders and not (self.raid1borderscreated) then
+				local bordersraid1 = {}
+				for i = 1,8 do
+					for k = 1,5 do
+						table.insert(bordersraid1, _G['ElvUF_Raid1Group'..i..'UnitButton'..k])
 					end
 				end
-				local function createraidborders()
-					for i,v in pairs(bordersraid) do
+				local function createraid1borders()
+					for i,v in pairs(bordersraid1) do
 						if v then
-							if not _G["EltruismRaid"..i.."Border"..i] then
-								raidborder = CreateFrame("Frame", "EltruismRaid"..i.."Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
+							if not _G["EltruismRaid1"..i.."Border"..i] then
+								raid1border = CreateFrame("Frame", "EltruismRaid1"..i.."Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
 								--raidborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
 							else
-								raidborder = _G["EltruismRaid"..i.."Border"..i]
+								raid1border = _G["EltruismRaid1"..i.."Border"..i]
 							end
-							raidborder:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
-							raidborder:SetPoint("CENTER", v, "CENTER")
-							raidborder:SetBackdrop({
+							raid1border:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
+							raid1border:SetPoint("CENTER", v, "CENTER")
+							raid1border:SetBackdrop({
 								edgeFile = bordertexture,
 								edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
 							})
-							if E.db.ElvUI_EltreumUI.borders.classcolor == true then
-								raidborder:SetBackdropBorderColor(1, 1, 1, 1)
+							if E.db.ElvUI_EltreumUI.borders.classcolor then
+								raid1border:SetBackdropBorderColor(1, 1, 1, 1)
 							else
-								raidborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+								raid1border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 							end
-							raidborder:SetFrameStrata("MEDIUM")
+							raid1border:SetFrameStrata("MEDIUM")
 						end
 					end
-					self.raidborderscreated = true
+					self.raid1borderscreated = true
 				end
-				createraidborders()
+				createraid1borders()
+			end
+
+			--raid2
+			if E.db.ElvUI_EltreumUI.borders.raid2borders and not (self.raid2borderscreated) then
+				local bordersraid2 = {}
+				for i = 1,8 do
+					for k = 1,5 do
+						table.insert(bordersraid2, _G['ElvUF_Raid2Group'..i..'UnitButton'..k])
+					end
+				end
+				local function createraid2borders()
+					for i,v in pairs(bordersraid2) do
+						if v then
+							if not _G["EltruismRaid2"..i.."Border"..i] then
+								raid2border = CreateFrame("Frame", "EltruismRaid2"..i.."Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
+								--raidborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
+							else
+								raid2border = _G["EltruismRaid2"..i.."Border"..i]
+							end
+							raid2border:SetSize(E.db.ElvUI_EltreumUI.borders.raid2sizex, E.db.ElvUI_EltreumUI.borders.raid2sizey)
+							raid2border:SetPoint("CENTER", v, "CENTER")
+							raid2border:SetBackdrop({
+								edgeFile = bordertexture,
+								edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
+							})
+							if E.db.ElvUI_EltreumUI.borders.classcolor then
+								raid2border:SetBackdropBorderColor(1, 1, 1, 1)
+							else
+								raid2border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+							end
+							raid2border:SetFrameStrata("MEDIUM")
+						end
+					end
+					self.raid2borderscreated = true
+				end
+				createraid2borders()
+
+				local bordersraid3 = {}
+				for i = 1,8 do
+					for k = 1,5 do
+						table.insert(bordersraid3, _G['ElvUF_Raid3Group'..i..'UnitButton'..k])
+					end
+				end
+				local function createraid3borders()
+					for i,v in pairs(bordersraid3) do
+						if v then
+							if not _G["EltruismRaid3"..i.."Border"..i] then
+								raid3border = CreateFrame("Frame", "EltruismRaid3"..i.."Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
+								--raidborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
+							else
+								raid3border = _G["EltruismRaid3"..i.."Border"..i]
+							end
+							raid3border:SetSize(E.db.ElvUI_EltreumUI.borders.raid40sizex, E.db.ElvUI_EltreumUI.borders.raid40sizey)
+							raid3border:SetPoint("CENTER", v, "CENTER")
+							raid3border:SetBackdrop({
+								edgeFile = bordertexture,
+								edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
+							})
+							if E.db.ElvUI_EltreumUI.borders.classcolor then
+								raid3border:SetBackdropBorderColor(1, 1, 1, 1)
+							else
+								raid3border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+							end
+							raid3border:SetFrameStrata("MEDIUM")
+						end
+					end
+					self.raid3borderscreated = true
+				end
+				createraid3borders()
+			end
+
+			--raid3
+			if E.db.ElvUI_EltreumUI.borders.raid40borders and not (self.raid3borderscreated) then
+				local bordersraid3 = {}
+				for i = 1,8 do
+					for k = 1,5 do
+						table.insert(bordersraid3, _G['ElvUF_Raid3Group'..i..'UnitButton'..k])
+					end
+				end
+				local function createraid3borders()
+					for i,v in pairs(bordersraid3) do
+						if v then
+							if not _G["EltruismRaid3"..i.."Border"..i] then
+								raid3border = CreateFrame("Frame", "EltruismRaid3"..i.."Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
+								--raidborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
+							else
+								raid3border = _G["EltruismRaid3"..i.."Border"..i]
+							end
+							raid3border:SetSize(E.db.ElvUI_EltreumUI.borders.raid40sizex, E.db.ElvUI_EltreumUI.borders.raid40sizey)
+							raid3border:SetPoint("CENTER", v, "CENTER")
+							raid3border:SetBackdrop({
+								edgeFile = bordertexture,
+								edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
+							})
+							if E.db.ElvUI_EltreumUI.borders.classcolor then
+								raid3border:SetBackdropBorderColor(1, 1, 1, 1)
+							else
+								raid3border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+							end
+							raid3border:SetFrameStrata("MEDIUM")
+						end
+					end
+					self.raid3borderscreated = true
+				end
+				createraid3borders()
 			end
 
 			--focus
@@ -364,36 +467,6 @@ function ElvUI_EltreumUI:Borders()
 				focustargetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				focustargetborder:SetFrameStrata("LOW")
 			end
-
-			--focustarget castbar
-			if E.db.ElvUI_EltreumUI.borders.focustargetcastborder and E.db.unitframe.units.focus.castbar.enable and not E.Classic then
-				if not _G["EltruismFocusTargetCastBarBorder"] then
-					focustargetcastbarborder = CreateFrame("Frame", "EltruismFocusTargetCastBarBorder", _G.ElvUF_FocusTarget_CastBar, BackdropTemplateMixin and "BackdropTemplate")
-				else
-					focustargetcastbarborder = _G["EltruismFocusTargetCastBarBorder"]
-				end
-				if E.db.unitframe.units.focustarget.castbar.iconAttached == false then
-					focustargetcastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcastfocustarget + E.db.unitframe.units.focustarget.castbar.iconSize, E.db.ElvUI_EltreumUI.borders.ycastfocustarget)
-					if E.db["unitframe"]["units"]["focustarget"]["castbar"]["iconPosition"] == "RIGHT" then
-						focustargetcastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", E.db.unitframe.units.focustarget.castbar.iconSize/2, 0)
-					elseif E.db["unitframe"]["units"]["focustarget"]["castbar"]["iconPosition"] == "LEFT" then
-						focustargetcastbarborder:SetPoint("CENTER", _G["ElvUF_FocusTarget_CastBar"], "CENTER", -E.db.unitframe.units.focustarget.castbar.iconSize/2, 0)
-					else
-						focustargetcastbarborder:SetPoint("CENTER", _G["ElvUF_FocusTarget_CastBar"], "CENTER", 0, 0)
-					end
-				elseif E.db.unitframe.units.focustarget.castbar.iconAttached ~= false then
-					focustargetcastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcastfocustarget, E.db.ElvUI_EltreumUI.borders.ycastfocustarget)
-					--focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", -E.db.unitframe.units.focus.castbar.iconSize/2, 0)
-					focustargetcastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"].Holder, "CENTER", 0, 0)
-				end
-				focustargetcastbarborder:SetBackdrop({
-					edgeFile = bordertexture,
-					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetcastsize,
-				})
-				focustargetcastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				focustargetcastbarborder:SetFrameStrata("MEDIUM")
-			end
-
 
 			--boss
 			if E.db.ElvUI_EltreumUI.borders.bossborder and E.db.unitframe.units.boss.enable and (not E.Classic and not E.TBC and not E.Wrath) then

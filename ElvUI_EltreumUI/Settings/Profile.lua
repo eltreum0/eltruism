@@ -433,10 +433,16 @@ P.ElvUI_EltreumUI = {
 		partysizex = 222,
 		partysizey = 98,
 
+		--raid1
 		raidborders = true,
 		raidsizey = 65,
 		raidsizex = 140,
 
+		raid2borders = true,
+		raid2sizey = 65,
+		raid2sizex = 140,
+
+		--raid3
 		raid40borders = true,
 		raid40sizey = 63,
 		raid40sizex = 140,
@@ -493,12 +499,8 @@ P.ElvUI_EltreumUI = {
 		ycastfocus = 62,
 
 		focustargetborder = true,
-		xfocustarget = 224,
-		yfocustarget = 72,
-
-		focustargetcastborder = true,
-		xcastfocustarget = 365,
-		ycastfocustarget = 62,
+		xfocustarget = 223,
+		yfocustarget = 58,
 
 		bossborder = true,
 		xboss = 250,
