@@ -151,7 +151,9 @@ end
 
 --turn and off blizzard combat text
 function ElvUI_EltreumUI:BlizzCombatText()
-	if not E.private.ElvUI_EltreumUI.install_version then
+	if not E.private.ElvUI_EltreumUI then
+		return
+	elseif not E.private.ElvUI_EltreumUI.install_version then
 		return
 	elseif not E.db.ElvUI_EltreumUI then
 		return
