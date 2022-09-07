@@ -490,7 +490,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 10,
-			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+			["text_format"] = "[namecolor][name:eltruism:abbreviate]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -550,7 +550,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 10,
-			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+			["text_format"] = "[namecolor][name:eltruism:abbreviate]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -610,7 +610,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 10,
-			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+			["text_format"] = "[namecolor][name:eltruism:abbreviateshort]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
