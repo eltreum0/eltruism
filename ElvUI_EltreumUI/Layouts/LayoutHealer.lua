@@ -639,6 +639,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["tank"]["targetsGroup"]["xOffset"] = -3
 	E.db["unitframe"]["units"]["boss"]["castbar"]["overlayOnFrame"] = "InfoPanel"
 	E.db["unitframe"]["units"]["boss"]["castbar"]["customColor"]["enable"] = true
+	E.db["unitframe"]["units"]["boss"]["infoPanel"]["transparent"] = true
 	E.db["unitframe"]["units"]["boss"]["height"] = 45
 	E.db["unitframe"]["units"]["boss"]["spacing"] = 10
 	E.db["unitframe"]["units"]["boss"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
@@ -706,6 +707,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["sizeOverride"] = 30
 	E.db["unitframe"]["units"]["focus"]["height"] = 35
 	E.db["unitframe"]["units"]["focus"]["infoPanel"]["enable"] = true
+	E.db["unitframe"]["units"]["focus"]["infoPanel"]["transparent"] = true
 	E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:class:player] [eltruism:raidmarker]"
 	E.db["unitframe"]["units"]["focus"]["power"]["attachTextTo"] = "Power"
 	E.db["unitframe"]["units"]["focus"]["power"]["height"] = 14
@@ -754,6 +756,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["party"]["horizontalSpacing"] = 9
 	E.db["unitframe"]["units"]["party"]["infoPanel"]["enable"] = true
 	E.db["unitframe"]["units"]["party"]["infoPanel"]["height"] = 16
+	E.db["unitframe"]["units"]["party"]["infoPanel"]["transparent"] = true
 	E.db["unitframe"]["units"]["party"]["name"]["attachTextTo"] = "InfoPanel"
 	E.db["unitframe"]["units"]["party"]["name"]["position"] = "LEFT"
 	E.db["unitframe"]["units"]["party"]["name"]["text_format"] = ""
@@ -1014,6 +1017,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid1"]["height"] = 30
 	E.db["unitframe"]["units"]["raid1"]["horizontalSpacing"] = 0
 	E.db["unitframe"]["units"]["raid1"]["infoPanel"]["enable"] = true
+	E.db["unitframe"]["units"]["raid1"]["infoPanel"]["transparent"] = true
 	E.db["unitframe"]["units"]["raid1"]["name"]["attachTextTo"] = "InfoPanel"
 	E.db["unitframe"]["units"]["raid1"]["name"]["position"] = "LEFT"
 	E.db["unitframe"]["units"]["raid1"]["name"]["text_format"] = ""
@@ -1091,6 +1095,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid2"]["height"] = 30
 	E.db["unitframe"]["units"]["raid2"]["horizontalSpacing"] = 0
 	E.db["unitframe"]["units"]["raid2"]["infoPanel"]["enable"] = true
+	E.db["unitframe"]["units"]["raid2"]["infoPanel"]["transparent"] = true
 	E.db["unitframe"]["units"]["raid2"]["name"]["attachTextTo"] = "InfoPanel"
 	E.db["unitframe"]["units"]["raid2"]["name"]["position"] = "LEFT"
 	E.db["unitframe"]["units"]["raid2"]["name"]["text_format"] = ""
@@ -1159,6 +1164,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid3"]["height"] = 30
 	E.db["unitframe"]["units"]["raid3"]["horizontalSpacing"] = 0
 	E.db["unitframe"]["units"]["raid3"]["infoPanel"]["enable"] = true
+	E.db["unitframe"]["units"]["raid3"]["infoPanel"]["transparent"] = true
 	E.db["unitframe"]["units"]["raid3"]["name"]["attachTextTo"] = "InfoPanel"
 	E.db["unitframe"]["units"]["raid3"]["name"]["position"] = "BOTTOMLEFT"
 	E.db["unitframe"]["units"]["raid3"]["portrait"]["desaturation"] = 0.7
