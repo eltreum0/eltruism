@@ -576,8 +576,14 @@ function ElvUI_EltreumUI:BorderAdjust()
 
 					E.db.ElvUI_EltreumUI.borders.partysizex = 222
 					E.db.ElvUI_EltreumUI.borders.partysizey = 98
+
 					E.db.ElvUI_EltreumUI.borders.raidsizex = 140
-					E.db.ElvUI_EltreumUI.borders.raidsizey = 63
+					E.db.ElvUI_EltreumUI.borders.raidsizey = 61
+					E.db.ElvUI_EltreumUI.borders.raid2sizex = 141
+					E.db.ElvUI_EltreumUI.borders.raid2sizey = 62
+					E.db.ElvUI_EltreumUI.borders.raid40sizex = 143
+					E.db.ElvUI_EltreumUI.borders.raid40sizey = 61
+
 					E.db.ElvUI_EltreumUI.borders.xboss = 250
 					E.db.ElvUI_EltreumUI.borders.yboss = 87
 					E.db.ElvUI_EltreumUI.borders.xcasttarget = 272
@@ -629,8 +635,12 @@ function ElvUI_EltreumUI:BorderAdjust()
 					E.db["ElvUI_EltreumUI"]["borders"]["bar5yborder"] = 46
 					E.db.ElvUI_EltreumUI.borders.partysizex = 173
 					E.db.ElvUI_EltreumUI.borders.partysizey = 98
-					E.db.ElvUI_EltreumUI.borders.raidsizex = 172
-					E.db.ElvUI_EltreumUI.borders.raidsizey = 68
+					E.db.ElvUI_EltreumUI.borders.raidsizex = 182
+					E.db.ElvUI_EltreumUI.borders.raidsizey = 63
+					E.db.ElvUI_EltreumUI.borders.raid2sizex = 152
+					E.db.ElvUI_EltreumUI.borders.raid2sizey = 62
+					E.db.ElvUI_EltreumUI.borders.raid40sizex = 122
+					E.db.ElvUI_EltreumUI.borders.raid40sizey = 63
 					E.db.ElvUI_EltreumUI.borders.xboss = 248
 					E.db.ElvUI_EltreumUI.borders.yboss = 78
 					E.db.ElvUI_EltreumUI.borders.xcasttarget = 296

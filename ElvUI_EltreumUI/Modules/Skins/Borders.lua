@@ -267,11 +267,11 @@ function ElvUI_EltreumUI:Borders()
 				local function createraid1borders()
 					for i,v in pairs(bordersraid1) do
 						if v then
-							if not _G["EltruismRaid1"..i.."Border"..i] then
-								raid1border = CreateFrame("Frame", "EltruismRaid1"..i.."Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
+							if not _G["EltruismRaid1Group"..i.."Border"..i] then
+								raid1border = CreateFrame("Frame", "EltruismRaid1Group"..i.."Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
 								--raidborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
 							else
-								raid1border = _G["EltruismRaid1"..i.."Border"..i]
+								raid1border = _G["EltruismRaid1Group"..i.."Border"..i]
 							end
 							raid1border:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
 							raid1border:SetPoint("CENTER", v, "CENTER")
@@ -326,39 +326,6 @@ function ElvUI_EltreumUI:Borders()
 					self.raid2borderscreated = true
 				end
 				createraid2borders()
-
-				local bordersraid3 = {}
-				for i = 1,8 do
-					for k = 1,5 do
-						table.insert(bordersraid3, _G['ElvUF_Raid3Group'..i..'UnitButton'..k])
-					end
-				end
-				local function createraid3borders()
-					for i,v in pairs(bordersraid3) do
-						if v then
-							if not _G["EltruismRaid3"..i.."Border"..i] then
-								raid3border = CreateFrame("Frame", "EltruismRaid3"..i.."Border"..i, v, BackdropTemplateMixin and "BackdropTemplate")
-								--raidborder = CreateFrame("Frame", nil, v, BackdropTemplateMixin and "BackdropTemplate")
-							else
-								raid3border = _G["EltruismRaid3"..i.."Border"..i]
-							end
-							raid3border:SetSize(E.db.ElvUI_EltreumUI.borders.raid40sizex, E.db.ElvUI_EltreumUI.borders.raid40sizey)
-							raid3border:SetPoint("CENTER", v, "CENTER")
-							raid3border:SetBackdrop({
-								edgeFile = bordertexture,
-								edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
-							})
-							if E.db.ElvUI_EltreumUI.borders.classcolor then
-								raid3border:SetBackdropBorderColor(1, 1, 1, 1)
-							else
-								raid3border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-							end
-							raid3border:SetFrameStrata("MEDIUM")
-						end
-					end
-					self.raid3borderscreated = true
-				end
-				createraid3borders()
 			end
 
 			--raid3
