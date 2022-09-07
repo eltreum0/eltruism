@@ -100,7 +100,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		if E.private["general"]["minimap"]["enable"] ~= false and not E.db.ElvUI_EltreumUI.borders.borders then
+		if E.private["general"]["minimap"]["enable"] and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.minimapborder) then
 			local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
 			local Minimapsizex, Minimapsizey = _G["Minimap"]:GetSize()
 			MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
@@ -526,7 +526,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--Shaman Totem things
-				if E.myclass == "SHAMAN" and (not E.db.ElvUI_EltreumUI.borders.borders) and E.private.general.totemBar then
+				if E.myclass == "SHAMAN" and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.totembar) and E.private.general.totemBar then
 					local totemframes = {
 						_G.MultiCastSummonSpellButton,
 						_G.MultiCastRecallSpellButton,
@@ -590,15 +590,8 @@ function ElvUI_EltreumUI:Shadows()
 				for k = 1, 12 do
 					local slots = {_G["ElvUI_Bar"..i..'Button'..k]}
 					for _, button in pairs(slots) do
-						if not button.shadow and (not E.db.ElvUI_EltreumUI.borders.borders) then
+						if not button.shadow and not (E.db.ElvUI_EltreumUI.borders.borders and E.db["ElvUI_EltreumUI"]["borders"]["bar"..i.."borders"]) then
 							button:CreateShadow()
-						end
-						if button.shadow then
-							if E.db.ElvUI_EltreumUI.borders.borders then
-								button.shadow:Hide()
-							else
-								button.shadow:Show()
-							end
 						end
 					end
 				end
@@ -610,30 +603,19 @@ function ElvUI_EltreumUI:Shadows()
 				if not button then
 					break
 				else
-					if not button.shadow and (not E.db.ElvUI_EltreumUI.borders.borders) then
+					if not button.shadow and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.petactionborders) then
 						button:CreateShadow()
-						--[[
-						button.shadow = button:CreateShadow(nil, true)
-						button.shadow:SetParent(button)
-						button.shadow.size = 2]]
-					end
-					if button.shadow then
-						if E.db.ElvUI_EltreumUI.borders.borders then
-							button.shadow:Hide()
-						else
-							button.shadow:Show()
-						end
 					end
 				end
 			end
-			if _G["ElvUI_BarPet"].backdrop then
+			if _G["ElvUI_BarPet"].backdrop and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.petactionborders) then
 				if not _G["ElvUI_BarPet"].backdrop.shadow then
 					_G["ElvUI_BarPet"].backdrop:CreateShadow()
 				end
 			end
 
 			--stances
-			if not _G["EltruismStanceBorder1"] then
+			if not _G["EltruismStanceBorder1"] and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.stanceborders) then
 				for i = 1, 12 do
 					local button = _G["ElvUI_StanceBarButton"..i]
 					if not button then
@@ -683,7 +665,7 @@ function ElvUI_EltreumUI:Shadows()
 		--unitframes
 		if E.private.unitframe.enable then
 			if E.Retail or E.Wrath or E.TBC then
-				if not _G["ElvUF_Focus_HealthBar"].shadow then
+				if not _G["ElvUF_Focus_HealthBar"].shadow and not (E.db.ElvUI_EltreumUI.borders.focusborder and E.db.ElvUI_EltreumUI.borders.borders)then
 					_G["ElvUF_Focus_HealthBar"]:CreateShadow()
 				end
 				if not _G["ElvUF_Focus_HealthBar"].shadow then
@@ -726,7 +708,7 @@ function ElvUI_EltreumUI:Shadows()
 
 			if E.db["unitframe"]["units"]["player"]["portrait"]["enable"] == true and E.db["unitframe"]["units"]["player"]["portrait"]["overlay"] == false then
 				if _G["ElvUF_Player"] and not _G["ElvUF_Player"].shadow then
-					if not E.db.ElvUI_EltreumUI.borders.borders then
+					if not (E.db.ElvUI_EltreumUI.borders.playerborder and E.db.ElvUI_EltreumUI.borders.borders) then
 						_G["ElvUF_Player"]:CreateShadow()
 						_G["ElvUF_Player"].shadow:ClearAllPoints()
 						_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player"] ,"TOPRIGHT", 3, 3)
@@ -753,7 +735,7 @@ function ElvUI_EltreumUI:Shadows()
 
 			if E.db["unitframe"]["units"]["target"]["portrait"]["enable"] == true and E.db["unitframe"]["units"]["target"]["portrait"]["overlay"] == false then
 				if _G["ElvUF_Target"] and not _G["ElvUF_Target"].shadow then
-					if not E.db.ElvUI_EltreumUI.borders.borders then
+					if not (E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.ElvUI_EltreumUI.borders.borders) then
 						_G["ElvUF_Target"]:CreateShadow()
 						_G["ElvUF_Target"].shadow:ClearAllPoints()
 						_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target"] ,"TOPRIGHT", 3, 3)
@@ -774,7 +756,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--player castbar
-			if E.db.unitframe.units.player.castbar.overlayOnFrame == "None" and (not E.db.ElvUI_EltreumUI.borders.borders) then
+			if E.db.unitframe.units.player.castbar.overlayOnFrame == "None" and not (E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.ElvUI_EltreumUI.borders.borders) then
 				if E.db.unitframe.units.player.castbar.iconAttached == false then
 					PlayerCastbar:SetSize(E.db.unitframe.units.player.castbar.width + E.db.unitframe.units.player.castbar.iconSize -4, E.db.unitframe.units.player.castbar.height - 3)
 				elseif E.db.unitframe.units.player.castbar.iconAttached == true then
@@ -803,7 +785,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--target castbar
-			if E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and (not E.db.ElvUI_EltreumUI.borders.borders) then
+			if E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and not (E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.ElvUI_EltreumUI.borders.borders) then
 				if E.db.unitframe.units.target.castbar.iconAttached == false then
 					TargetCastbar:SetSize(E.db.unitframe.units.target.castbar.width + E.db.unitframe.units.target.castbar.iconSize - 4, E.db.unitframe.units.target.castbar.height - 3)
 					if E.db["unitframe"]["units"]["target"]["castbar"]["iconPosition"] == "LEFT" then
@@ -841,7 +823,7 @@ function ElvUI_EltreumUI:Shadows()
 				local partymembers = {_G["ElvUF_PartyGroup1UnitButton"..i]}
 				for _, frame in pairs(partymembers) do
 					if not frame.shadow then
-						if not E.db.ElvUI_EltreumUI.borders.borders then
+						if not (E.db.ElvUI_EltreumUI.borders.partyborders and E.db.ElvUI_EltreumUI.borders.borders) then
 							frame:CreateShadow()
 						end
 					end
@@ -858,7 +840,7 @@ function ElvUI_EltreumUI:Shadows()
 				local bossmembers = {_G["ElvUF_Boss"..i]}
 				for _, frame in pairs(bossmembers) do
 					if not frame.shadow then
-						if not E.db.ElvUI_EltreumUI.borders.borders then
+						if not (E.db.ElvUI_EltreumUI.borders.bossborder and E.db.ElvUI_EltreumUI.borders.borders) then
 							frame:CreateShadow()
 						end
 					end
@@ -1050,46 +1032,47 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		--chat
-		local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
-		local rightsizex, rightsizey = _G["RightChatMover"]:GetSize()
-		RightChatShadow:SetSize(rightsizex, rightsizey)
-		RightChatShadow:SetParent(_G["RightChatPanel"].backdrop)
-		local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
-		local leftsizex, leftsizey = _G["LeftChatMover"]:GetSize()
-		LeftChatShadow:SetSize(leftsizex, leftsizey)
-		LeftChatShadow:SetParent(_G["LeftChatPanel"].backdrop)
+		if not (E.db.ElvUI_EltreumUI.borders.chatborder and E.db.ElvUI_EltreumUI.borders.borders) then
+			local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
+			local rightsizex, rightsizey = _G["RightChatMover"]:GetSize()
+			RightChatShadow:SetSize(rightsizex, rightsizey)
+			RightChatShadow:SetParent(_G["RightChatPanel"].backdrop)
+			local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
+			local leftsizex, leftsizey = _G["LeftChatMover"]:GetSize()
+			LeftChatShadow:SetSize(leftsizex, leftsizey)
+			LeftChatShadow:SetParent(_G["LeftChatPanel"].backdrop)
 
-		if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
-			if _G["RightChatPanel"] and _G["RightChatPanel"].backdrop and not _G["RightChatPanel"].backdrop.shadow and not E.db.ElvUI_EltreumUI.borders.borders then
-				_G["RightChatPanel"].backdrop:CreateShadow()
+			if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
+				if _G["RightChatPanel"] and _G["RightChatPanel"].backdrop and not _G["RightChatPanel"].backdrop.shadow then
+					_G["RightChatPanel"].backdrop:CreateShadow()
+				end
+				if _G["LeftChatPanel"] and _G["LeftChatPanel"].backdrop and not _G["LeftChatPanel"].backdrop.shadow then
+					_G["LeftChatPanel"].backdrop:CreateShadow()
+				end
+			else
+				if not (self.RightChatIsSkinned) then
+					RightChatShadow.shadow = RightChatShadow:CreateShadow(nil, true)
+					RightChatShadow:SetPoint("TOPRIGHT", _G["RightChatPanel"] ,"TOPRIGHT", 0, 0)
+					RightChatShadow:SetPoint("BOTTOMLEFT", _G["RightChatDataPanel"] ,"BOTTOMLEFT", 0, 0)
+					RightChatShadow:Show()
+					self.RightChatIsSkinned = true
+				end
+				if not (self.LeftChatIsSkinned) then
+					LeftChatShadow.shadow = LeftChatShadow:CreateShadow(nil, true)
+					LeftChatShadow:SetPoint("TOPLEFT", _G["LeftChatPanel"] ,"TOPLEFT", 0, 0)
+					LeftChatShadow:SetPoint("BOTTOMRIGHT", _G["LeftChatDataPanel"] ,"BOTTOMRIGHT", 0, 0)
+					LeftChatShadow:Show()
+					self.LeftChatIsSkinned = true
+				end
 			end
-			if _G["LeftChatPanel"] and _G["LeftChatPanel"].backdrop and not _G["LeftChatPanel"].backdrop.shadow and not E.db.ElvUI_EltreumUI.borders.borders then
-				_G["LeftChatPanel"].backdrop:CreateShadow()
+			if E.db["chat"]["panelBackdrop"] == "LEFT" then
+				RightChatShadow:Hide()
+			elseif E.db["chat"]["panelBackdrop"] == "RIGHT" then
+				LeftChatShadow:Hide()
+			elseif E.db["chat"]["panelBackdrop"] == "HIDEBOTH" then
+				LeftChatShadow:Hide()
+				RightChatShadow:Hide()
 			end
-		else
-			if not (self.RightChatIsSkinned) and not E.db.ElvUI_EltreumUI.borders.borders then
-				RightChatShadow.shadow = RightChatShadow:CreateShadow(nil, true)
-				RightChatShadow:SetPoint("TOPRIGHT", _G["RightChatPanel"] ,"TOPRIGHT", 0, 0)
-				RightChatShadow:SetPoint("BOTTOMLEFT", _G["RightChatDataPanel"] ,"BOTTOMLEFT", 0, 0)
-				RightChatShadow:Show()
-				self.RightChatIsSkinned = true
-			end
-			if not (self.LeftChatIsSkinned) and not E.db.ElvUI_EltreumUI.borders.borders then
-				LeftChatShadow.shadow = LeftChatShadow:CreateShadow(nil, true)
-				LeftChatShadow:SetPoint("TOPLEFT", _G["LeftChatPanel"] ,"TOPLEFT", 0, 0)
-				LeftChatShadow:SetPoint("BOTTOMRIGHT", _G["LeftChatDataPanel"] ,"BOTTOMRIGHT", 0, 0)
-				LeftChatShadow:Show()
-				self.LeftChatIsSkinned = true
-			end
-		end
-
-		if E.db["chat"]["panelBackdrop"] == "LEFT" then
-			RightChatShadow:Hide()
-		elseif E.db["chat"]["panelBackdrop"] == "RIGHT" then
-			LeftChatShadow:Hide()
-		elseif E.db["chat"]["panelBackdrop"] == "HIDEBOTH" then
-			LeftChatShadow:Hide()
-			RightChatShadow:Hide()
 		end
 
 		--info panel on top
@@ -1146,14 +1129,14 @@ function ElvUI_EltreumUI:Shadows()
 end
 
 function ElvUI_EltreumUI:RaidShadows()
-	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.raid then
+	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.raid and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.raidborders) then
 		--raid
 		for i = 1, 3 do
 			for k = 1, 8 do
 				for l = 1, 5 do
 					local slots = {_G["ElvUF_Raid"..i..'Group'..k..'UnitButton'..l]}
 					for _, button in pairs(slots) do
-						if button and not button.shadow and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.raidborders) then
+						if button and not button.shadow then
 							button:CreateShadow()
 							button.shadow:SetParent(button)
 						end
@@ -1214,8 +1197,8 @@ end
 hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) --nameplate buffs/debuffs shadows
 
 function ElvUI_EltreumUI:AuraShadows(button)
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura then
-		if button and not button.shadow and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) then
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) then
+		if button and not button.shadow then
 			button:CreateShadow()
 		end
 	end
