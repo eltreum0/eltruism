@@ -237,7 +237,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 				E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 				E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
 			end
-			E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["nameOnly"] = false
+			E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["nameOnly"] = true
 			E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["name"] = "[namecolor][name]"
 			E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets]"
 			E.global["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["nameplateType"]["enable"] = true
@@ -245,7 +245,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.global["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["playerCanNotAttack"] = true
 			E.global["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["priority"] = 15
 			E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["alpha"] = 100
-			E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["nameOnly"] = false
+			E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["nameOnly"] = true
 			E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["name"] = "[namecolor][name:title][realm:dash]"
 			E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets][guild:brackets]"
 			E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["isResting"] = true
