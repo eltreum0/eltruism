@@ -1139,11 +1139,9 @@ function ElvUI_EltreumUI:RaidShadows()
 				for l = 1, 5 do
 					local slots = {_G["ElvUF_Raid"..i..'Group'..k..'UnitButton'..l]}
 					for _, button in pairs(slots) do
-						if not button.shadow then
-							if not E.db.ElvUI_EltreumUI.borders.borders then
-								button:CreateShadow()
-								button.shadow:SetParent(button)
-							end
+						if not button.shadow and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.raidborders) then
+							button:CreateShadow()
+							button.shadow:SetParent(button)
 						end
 					end
 				end
@@ -1156,18 +1154,14 @@ end
 function ElvUI_EltreumUI:NameplateShadows(nameplate)
 	if E.private.nameplates.enable and E.db.ElvUI_EltreumUI.skins.shadow.enable then
 		if E.db.ElvUI_EltreumUI.skins.shadow.nameplates then
-			if nameplate.Health.backdrop then
-				if not nameplate.Health.backdrop.shadow then
-					nameplate.Health.backdrop:CreateShadow()
-				end
+			if nameplate.Health.backdrop and not nameplate.Health.backdrop.shadow then
+				nameplate.Health.backdrop:CreateShadow()
 			end
 		end
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.nppower then
-			if nameplate.Power.backdrop then
-				if not nameplate.Power.backdrop.shadow then
-					nameplate.Power.backdrop:CreateShadow()
-				end
+			if nameplate.Power.backdrop and not nameplate.Power.backdrop.shadow then
+				nameplate.Power.backdrop:CreateShadow()
 			end
 			if _G["ElvNP_TargetClassPowerClassPower"] and not _G["ElvNP_TargetClassPowerClassPower"].shadow then
 				_G["ElvNP_TargetClassPowerClassPower"]:CreateShadow()
@@ -1178,24 +1172,18 @@ function ElvUI_EltreumUI:NameplateShadows(nameplate)
 		end
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.npcastbar then
-			if nameplate.Castbar.backdrop then
-				if not nameplate.Castbar.backdrop.shadow then
-					nameplate.Castbar.backdrop:CreateShadow()
-				end
+			if nameplate.Castbar.backdrop and not nameplate.Castbar.backdrop.shadow then
+				nameplate.Castbar.backdrop:CreateShadow()
 			end
 
-			if nameplate.Castbar.Button then
-				if not nameplate.Castbar.Button.shadow then
-					nameplate.Castbar.Button:CreateShadow()
-				end
+			if nameplate.Castbar.Button and not nameplate.Castbar.Button.shadow then
+				nameplate.Castbar.Button:CreateShadow()
 			end
 		end
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.npportraits then
-			if nameplate.Portrait.backdrop then
-				if not nameplate.Portrait.backdrop.shadow then
-					nameplate.Portrait.backdrop:CreateShadow()
-				end
+			if nameplate.Portrait.backdrop and not nameplate.Portrait.backdrop.shadow then
+				nameplate.Portrait.backdrop:CreateShadow()
 			end
 		end
 	end
@@ -1203,9 +1191,8 @@ end
 hooksecurefunc(NP, 'StylePlate', ElvUI_EltreumUI.NameplateShadows) --nameplate shadows
 
 function ElvUI_EltreumUI:Construct_AuraIcon(button)
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.npauras and E.private.nameplates.enable then
-		if not button then return end
-		if not button.shadow then
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.npauras then
+		if button and not button.shadow then
 			button:CreateShadow()
 		end
 	end
@@ -1213,21 +1200,17 @@ end
 hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) --nameplate buffs/debuffs shadows
 
 function ElvUI_EltreumUI:AuraShadows(button)
-	if E.db.ElvUI_EltreumUI.skins.shadow.aura and E.private.auras.enable and E.db.ElvUI_EltreumUI.skins.shadow.enable then
-		if not button then return end
-		if not button.shadow then
-			if not E.db.ElvUI_EltreumUI.borders.borders then
-				button:CreateShadow()
-			end
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura then
+		if button and not button.shadow and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) then
+			button:CreateShadow()
 		end
 	end
 end
 hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
 
 function ElvUI_EltreumUI:UFAuraShadows(button)
-	if E.db.ElvUI_EltreumUI.skins.shadow.ufaura and E.private.auras.enable and E.db.ElvUI_EltreumUI.skins.shadow.enable then
-		if not button then return end
-		if not button.shadow then
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.ufaura then
+		if button and not button.shadow then
 			button:CreateShadow()
 		end
 	end
