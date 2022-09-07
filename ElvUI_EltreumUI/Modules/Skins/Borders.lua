@@ -568,7 +568,6 @@ function ElvUI_EltreumUI:Borders()
 
 			--pet action bars
 			if E.db.ElvUI_EltreumUI.borders.petactionborders and E.db.actionbar.barPet.enabled then
-
 				local petactionborders = {}
 				for i = 1,10 do
 					table.insert(petactionborders, _G["PetActionButton"..i])
@@ -592,8 +591,6 @@ function ElvUI_EltreumUI:Borders()
 				end
 				createstancepetactionborders()
 			end
-
-
 		end
 
 		--wotlk shaman totem bar
