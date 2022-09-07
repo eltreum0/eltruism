@@ -157,7 +157,7 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 				else
 					powerbareffectplayer:SetModel("spells/arcanepower_state_chest.m2")
 					powerbareffectplayer:SetPosition(1.2, 0, -0.5)
-					powerbareffectplayer:SetAlpha(0.4) --might do this
+					powerbareffectplayer:SetAlpha(0.8) --might do this
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
 				if E.Retail then
@@ -248,7 +248,7 @@ function ElvUI_EltreumUI:TargetUFEffects()
 				else
 					powerbareffecttarget:SetModel("spells/arcanepower_state_chest.m2")
 					powerbareffecttarget:SetPosition(1.2, 0, -0.5)
-					powerbareffecttarget:SetAlpha(0.4) --might do this
+					powerbareffecttarget:SetAlpha(0.8) --might do this
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
 				if E.Retail then
@@ -336,7 +336,7 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 				else
 					powerbareffecttargettarget:SetModel("spells/arcanepower_state_chest.m2")
 					powerbareffecttargettarget:SetPosition(1.2, 0, -0.5)
-					powerbareffecttargettarget:SetAlpha(0.4) --might do this
+					powerbareffecttargettarget:SetAlpha(0.8) --might do this
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
 				if E.Retail then
@@ -418,7 +418,7 @@ function ElvUI_EltreumUI:PetUFEffects()
 					powerbareffectpet:MakeCurrentCameraCustom()
 					powerbareffectpet:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
 					powerbareffectpet:SetPortraitZoom(1)
-					powerbareffectpet:SetAlpha(0.4) --might do this
+					powerbareffectpet:SetAlpha(0.8) --might do this
 				else
 					powerbareffectpet:SetModel("spells/arcanepower_state_chest.m2")
 					powerbareffectpet:SetPosition(1.2, 0, -0.5)
@@ -506,6 +506,7 @@ local modelupdater = CreateFrame("FRAME")
 modelupdater:RegisterUnitEvent("UNIT_TARGET", "target") --update whenever the target changes target
 modelupdater:RegisterEvent("PLAYER_ENTERING_WORLD") --refresh everything
 modelupdater:RegisterUnitEvent("UNIT_PET", "player") --refresh everything
+--modelupdater:RegisterEvent("PLAYER_TARGET_CHANGED") --test
 modelupdater:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player") --refresh everything
 modelupdater:SetScript("OnEvent", function(_, event)
 	ElvUI_EltreumUI:TargetTargetUFEffects()
