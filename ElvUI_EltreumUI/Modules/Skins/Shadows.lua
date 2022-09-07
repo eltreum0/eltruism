@@ -1139,7 +1139,7 @@ function ElvUI_EltreumUI:RaidShadows()
 				for l = 1, 5 do
 					local slots = {_G["ElvUF_Raid"..i..'Group'..k..'UnitButton'..l]}
 					for _, button in pairs(slots) do
-						if not button.shadow and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.raidborders) then
+						if button and not button.shadow and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.raidborders) then
 							button:CreateShadow()
 							button.shadow:SetParent(button)
 						end
