@@ -668,8 +668,15 @@ function ElvUI_EltreumUI:Shadows()
 				if not _G["ElvUF_Focus_HealthBar"].shadow and not (E.db.ElvUI_EltreumUI.borders.focusborder and E.db.ElvUI_EltreumUI.borders.borders)then
 					_G["ElvUF_Focus_HealthBar"]:CreateShadow()
 				end
-				if not _G["ElvUF_Focus_HealthBar"].shadow then
+				if not _G["ElvUF_Focus_PowerBar"].shadow then
 					_G["ElvUF_Focus_PowerBar"]:CreateShadow()
+				end
+
+				if not _G["ElvUF_FocusTarget_HealthBar"].shadow then
+					_G["ElvUF_FocusTarget_HealthBar"]:CreateShadow()
+				end
+				if not _G["ElvUF_FocusTarget_PowerBar"].shadow then
+					_G["ElvUF_FocusTarget_PowerBar"]:CreateShadow()
 				end
 			end
 
