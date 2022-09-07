@@ -7524,15 +7524,22 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
-					header16 = {
+					restorecombatext = {
 						order = 98,
+						name = L["Restore All Blizzard Combat Text"],
+						type = 'execute',
+						width = 'full',
+						func = function() ElvUI_EltreumUI:RestoreBlizzCombatText() E:StaticPopup_Show('CONFIG_RL') end,
+					},
+					header16 = {
+						order = 198,
 						type = "description",
 						name = "",
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
 					apswap = {
-						order = 99,
+						order = 199,
 						type = 'execute',
 						name = L["Swap Action Paging and visibility for Bar1 and Bar4"],
 						--desc = "",
