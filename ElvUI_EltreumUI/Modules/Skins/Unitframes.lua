@@ -565,7 +565,7 @@ function UF:Configure_InfoPanel(frame)
 		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
 			local portrait = (db.portrait.style == '3D' and frame.Portrait3D) or frame.Portrait2D
 			portrait.db = db.portrait
-			if frame.USE_PORTRAIT and portrait.db.style == '2D' then
+			if frame.USE_PORTRAIT and portrait.db.style ~= '3D' then
 				frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
 				frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER+portrait.db.width, -(UF.SPACING*3))
 				frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height)
@@ -621,13 +621,23 @@ function ElvUI_EltreumUI:SkinPortrait(frame)
 	portrait.db = db.portrait
 	frame.Portrait = portrait
 
-	if frame.USE_PORTRAIT and portrait.db.style == '2D' then
+	if frame.USE_PORTRAIT and portrait.db.style ~= '3D' then
 		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
-			portrait:ClearAllPoints()
-			portrait:SetPoint("BOTTOMLEFT", portrait.backdrop, "BOTTOMLEFT", 0, 1)
-			portrait:SetPoint("BOTTOMRIGHT", portrait.backdrop, "BOTTOMRIGHT", 0, 1)
-			portrait:SetPoint("TOPRIGHT", portrait.backdrop, "TOPRIGHT", 0, db.infoPanel.height)
-			portrait:SetPoint("TOPLEFT", portrait.backdrop, "TOPLEFT", 0, db.infoPanel.height)
+			if portrait.db.style == '2D' then
+				portrait:ClearAllPoints()
+				portrait:SetPoint("BOTTOMLEFT", portrait.backdrop, "BOTTOMLEFT", 0, 1)
+				portrait:SetPoint("BOTTOMRIGHT", portrait.backdrop, "BOTTOMRIGHT", 0, 1)
+				portrait:SetPoint("TOPRIGHT", portrait.backdrop, "TOPRIGHT", 0, db.infoPanel.height)
+				portrait:SetPoint("TOPLEFT", portrait.backdrop, "TOPLEFT", 0, db.infoPanel.height)
+			elseif portrait.db.style == 'Class' then
+				portrait:ClearAllPoints()
+				portrait:SetPoint("BOTTOMRIGHT", frame, "BOTTOMLEFT", 0, db.infoPanel.height)
+				portrait:SetPoint("BOTTOMLEFT", frame, "BOTTOMRIGHT", 0+portrait.db.width, db.infoPanel.height)
+				portrait:SetPoint("TOPRIGHT", frame, "TOPLEFT", 0, db.infoPanel.height)
+				portrait:SetPoint("TOPLEFT", frame, "TOPLEFT", 0+portrait.db.width, db.infoPanel.height)
+				portrait.backdrop:ClearAllPoints()
+				portrait.backdrop:SetAllPoints(portrait)
+			end
 		end
 		--from actionbar trim
 		--[[local left, right, top, bottom = unpack(E.TexCoords)
