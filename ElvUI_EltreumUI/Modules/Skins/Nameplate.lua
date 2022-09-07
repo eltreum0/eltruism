@@ -346,19 +346,16 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 end
 hooksecurefunc(NP, "SetupTarget", ElvUI_EltreumUI.NameplateModel)
 
+local FallbackColor = {r=1, b=1, g=1}
+
 --to fix stylefilter for gradient nameplates
-function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, HealthFlash, HealthTexture, Scale, Alpha, NameTag, PowerTag, HealthTag, TitleTag, LevelTag, Portrait, NameOnly, Visibility)
+function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, HealthFlash, HealthTexture, Scale, Alpha, NameTag, PowerTag, HealthTag, TitleTag, LevelTag, Portrait, NameOnly)
 	db = NP:PlateDB(frame)
 
 	if frame.StyleFilterChanges then
 		wipe(frame.StyleFilterChanges)
 	end
 
-	if Visibility then
-		NP:StyleFilterBaseUpdate(frame, true)
-		frame:ClearAllPoints() -- pull the frame back in
-		frame:Point('CENTER')
-	end
 	if HealthColor then
 		h = frame.Health
 		if h.r and h.g and h.b then
@@ -371,7 +368,7 @@ function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, Hea
 		end
 	end
 	if PowerColor then
-		pc = NP.db.colors.power[frame.Power.token] or _G.PowerBarColor[frame.Power.token] or {r=1, b=1, g=1}
+		pc = NP.db.colors.power[frame.Power.token] or _G.PowerBarColor[frame.Power.token] or FallbackColor
 		frame.Power:SetStatusBarColor(pc.r, pc.g, pc.b)
 		frame.Cutaway.Power:SetVertexColor(pc.r * 1.5, pc.g * 1.5, pc.b * 1.5, 1)
 	end
@@ -400,14 +397,12 @@ function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, Hea
 		NP:Update_Portrait(frame)
 		frame.Portrait:ForceUpdate()
 	end
-	if NameOnly then
-		NP:StyleFilterBaseUpdate(frame)
-	else -- Only update these if it wasn't NameOnly. Otherwise, it leads to `Update_Tags` which does the job.
-		if NameTag and db.name then frame:Tag(frame.Name, db.name.format) frame.Name:UpdateTag() end
-		if PowerTag and db.power then frame:Tag(frame.Power.Text, db.power.text.format) frame.Power.Text:UpdateTag() end
-		if HealthTag and db.health then frame:Tag(frame.Health.Text, db.health.text.format) frame.Health.Text:UpdateTag() end
-		if TitleTag and db.title then frame:Tag(frame.Title, db.title.format) frame.Title:UpdateTag() end
-		if LevelTag and db.level then frame:Tag(frame.Level, db.level.format) frame.Level:UpdateTag() end
+	if not NameOnly then -- Only update these if it wasn't NameOnly. Otherwise, it leads to `Update_Tags` which does the job.
+		if NameTag then frame:Tag(frame.Name, db.name.format) frame.Name:UpdateTag() end
+		if PowerTag then frame:Tag(frame.Power.Text, db.power.text.format) frame.Power.Text:UpdateTag() end
+		if HealthTag then frame:Tag(frame.Health.Text, db.health.text.format) frame.Health.Text:UpdateTag() end
+		if TitleTag then frame:Tag(frame.Title, db.title.format) frame.Title:UpdateTag() end
+		if LevelTag then frame:Tag(frame.Level, db.level.format) frame.Level:UpdateTag() end
 	end
 end
 
