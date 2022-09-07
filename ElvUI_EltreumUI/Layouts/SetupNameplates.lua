@@ -147,9 +147,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["filters"]["EltreumRare"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["enable"] = true
-			if not E.Retail then
-				E.db["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["enable"] = true
-			end
+			E.db["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["enable"] = false --causes issues with some stuff in bgs
 			E.db["nameplates"]["filters"]["EltreumTarget"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["enable"] = true
 			E.db["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["enable"] = true
@@ -715,7 +713,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 		E.global["nameplates"]["filters"]["EltreumRare"]["triggers"]["classification"]["rare"] = true
 		E.global["nameplates"]["filters"]["EltreumRare"]["triggers"]["classification"]["rareelite"] = true
-		E.global["nameplates"]["filters"]["EltreumRare"]["triggers"]["classification"]["worldboss"] = true
+		E.global["nameplates"]["filters"]["EltreumRare"]["triggers"]["classification"]["worldboss"] = false --issues in AV bg
 		E.global["nameplates"]["filters"]["EltreumRare"]["triggers"]["isNotTapDenied"] = true
 		E.global["nameplates"]["filters"]["EltreumRare"]["triggers"]["priority"] = 10
 		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["scale"] = 1.25
