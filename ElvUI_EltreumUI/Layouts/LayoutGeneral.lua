@@ -1067,6 +1067,7 @@ function ElvUI_EltreumUI:SetupDataText()
 
 	--create panel
 	E.DataTexts:BuildPanelFrame('EltruismDataText')
+	E.DataTexts:BuildPanelFrame('EltruismTime')
 
 	--config the panel
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["backdrop"] = false
@@ -1084,6 +1085,27 @@ function ElvUI_EltreumUI:SetupDataText()
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["tooltipYOffset"] = 4
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["visibility"] = "[petbattle] hide;show"
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["height"] = 23
+
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["backdrop"] = false
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["panelTransparency"] = false
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["border"] = false
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["frameLevel"] = 1
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["frameStrata"] = "LOW"
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["enable"] = true
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["font"] = "Kimberley"
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["fontOutline"] = "THICKOUTLINE"
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["fontSize"] = 18
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["growth"] = "HORIZONTAL"
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["mouseover"] = false
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["name"] = "Eltruism"
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["numPoints"] = 1
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["textJustify"] = "CENTER"
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["tooltipAnchor"] = "ANCHOR_TOPLEFT"
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["tooltipXOffset"] = -17
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["tooltipYOffset"] = 4
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["visibility"] = "[petbattle] hide;show"
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["height"] = 22
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["width"] = 120
 
 	local buttonwidth = _G.RightChatToggleButton:GetWidth()
 	local width = GetScreenWidth()
@@ -1106,7 +1128,7 @@ function ElvUI_EltreumUI:SetupDataText()
 		E.db["datatexts"]["panels"]["EltruismDataText"][2] = "Durability"
 		E.db["datatexts"]["panels"]["EltruismDataText"][3] = "EltruismTeleports"
 		E.db["datatexts"]["panels"]["EltruismDataText"][4] = "Eltruism Stats 1"
-		E.db["datatexts"]["panels"]["EltruismDataText"][5] = "Time"
+		E.db["datatexts"]["panels"]["EltruismDataText"][5] = ""
 		E.db["datatexts"]["panels"]["EltruismDataText"][6] = "Eltruism Stats 2"
 		E.db["datatexts"]["panels"]["EltruismDataText"][7] = "System"
 		E.db["datatexts"]["panels"]["EltruismDataText"][8] = "Combat"
@@ -1120,13 +1142,17 @@ function ElvUI_EltreumUI:SetupDataText()
 		E.db["datatexts"]["panels"]["EltruismDataText"][2] = "Durability"
 		E.db["datatexts"]["panels"]["EltruismDataText"][3] = "EltruismTeleports"
 		E.db["datatexts"]["panels"]["EltruismDataText"][4] = "Eltruism Stats 1"
-		E.db["datatexts"]["panels"]["EltruismDataText"][5] = "Time"
+		E.db["datatexts"]["panels"]["EltruismDataText"][5] = ""
 		E.db["datatexts"]["panels"]["EltruismDataText"][6] = "Eltruism Stats 2"
 		E.db["datatexts"]["panels"]["EltruismDataText"][7] = "System"
 		E.db["datatexts"]["panels"]["EltruismDataText"][8] = "Combat"
 		E.db["datatexts"]["panels"]["EltruismDataText"][9] = "Gold"
 	end
 	E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] = true
+
+	E.db["datatexts"]["panels"]["EltruismTime"][1] = "Time"
+	E.db["datatexts"]["panels"]["EltruismTime"]["enable"] = true
+
 
 	--hide other panels since now its in one panel
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["enable"] = false
@@ -1137,6 +1163,7 @@ function ElvUI_EltreumUI:SetupDataText()
 	E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,23"
 	E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,23"
 	E.db["movers"]["DTPanelEltruismDataTextMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,0"
+	E.db["movers"]["DTPanelEltruismTimeMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,0"
 
 	E:UpdateDataTexts()
 	E:UpdateMoverPositions()
