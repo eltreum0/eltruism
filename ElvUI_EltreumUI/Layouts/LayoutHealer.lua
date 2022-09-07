@@ -1158,6 +1158,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid3"]["infoPanel"]["transparent"] = true
 	E.db["unitframe"]["units"]["raid3"]["name"]["attachTextTo"] = "InfoPanel"
 	E.db["unitframe"]["units"]["raid3"]["name"]["position"] = "BOTTOMLEFT"
+	E.db["unitframe"]["units"]["raid3"]["name"]["text_format"] = ""
 	E.db["unitframe"]["units"]["raid3"]["portrait"]["desaturation"] = 0.7
 	E.db["unitframe"]["units"]["raid3"]["portrait"]["fullOverlay"] = true
 	E.db["unitframe"]["units"]["raid3"]["portrait"]["overlayAlpha"] = 0.6

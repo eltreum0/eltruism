@@ -1228,7 +1228,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["raid3"]["infoPanel"]["transparent"] = true
 	E.db["unitframe"]["units"]["raid3"]["name"]["attachTextTo"] = "InfoPanel"
 	E.db["unitframe"]["units"]["raid3"]["name"]["position"] = "LEFT"
-	E.db["unitframe"]["units"]["raid3"]["name"]["text_format"] = "[namecolor][name]"
+	E.db["unitframe"]["units"]["raid3"]["name"]["text_format"] = ""
 	E.db["unitframe"]["units"]["raid3"]["name"]["xOffset"] = 2
 	E.db["unitframe"]["units"]["raid3"]["power"]["text_format"] = "[power:current:shortvalue]"
 	E.db["unitframe"]["units"]["raid3"]["raidRoleIcons"]["yOffset"] = -3
