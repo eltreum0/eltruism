@@ -14,8 +14,8 @@ local UnitIsPlayer = _G.UnitIsPlayer
 local UnitClass = _G.UnitClass
 local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder,focuscastbarborder
 local bordertexture,classcolor,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder
-local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction
-local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,raidborder,totemborderfly
+local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction,focustargetcastbarborder
+local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,raidborder,totemborderfly,focustargetborder
 local rectangleminimapdetect = CreateFrame("FRAME")
 local updatelocationpos = CreateFrame("Frame")
 local classcolorreaction = {
@@ -343,6 +343,57 @@ function ElvUI_EltreumUI:Borders()
 				focuscastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				focuscastbarborder:SetFrameStrata("MEDIUM")
 			end
+
+			--focustarget
+			if E.db.ElvUI_EltreumUI.borders.focustargetborder and E.db.unitframe.units.focustarget.enable and not E.Classic then
+				if not _G["EltruismFocusTargetBorder"] then
+					focustargetborder = CreateFrame("Frame", "EltruismFocusTargetBorder", _G.ElvUF_FocusTarget_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
+				else
+					focustargetborder = _G["EltruismFocusTargetBorder"]
+				end
+				focustargetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xfocustarget, E.db.ElvUI_EltreumUI.borders.yfocustarget)
+				if E.db["unitframe"]["units"]["focustarget"]["power"]["width"] == "spaced" then
+					focustargetborder:SetPoint("CENTER", _G.ElvUF_FocusTarget_HealthBar, "CENTER", 0, 0)
+				else
+					focustargetborder:SetPoint("CENTER", _G.ElvUF_FocusTarget, "CENTER", 0, 0)
+				end
+				focustargetborder:SetBackdrop({
+					edgeFile = bordertexture,
+					edgeSize = E.db.ElvUI_EltreumUI.borders.focustargetsize,
+				})
+				focustargetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+				focustargetborder:SetFrameStrata("LOW")
+			end
+
+			--focustarget castbar
+			if E.db.ElvUI_EltreumUI.borders.focustargetcastborder and E.db.unitframe.units.focus.castbar.enable and not E.Classic then
+				if not _G["EltruismFocusTargetCastBarBorder"] then
+					focustargetcastbarborder = CreateFrame("Frame", "EltruismFocusTargetCastBarBorder", _G.ElvUF_FocusTarget_CastBar, BackdropTemplateMixin and "BackdropTemplate")
+				else
+					focustargetcastbarborder = _G["EltruismFocusTargetCastBarBorder"]
+				end
+				if E.db.unitframe.units.focustarget.castbar.iconAttached == false then
+					focustargetcastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcastfocustarget + E.db.unitframe.units.focustarget.castbar.iconSize, E.db.ElvUI_EltreumUI.borders.ycastfocustarget)
+					if E.db["unitframe"]["units"]["focustarget"]["castbar"]["iconPosition"] == "RIGHT" then
+						focustargetcastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", E.db.unitframe.units.focustarget.castbar.iconSize/2, 0)
+					elseif E.db["unitframe"]["units"]["focustarget"]["castbar"]["iconPosition"] == "LEFT" then
+						focustargetcastbarborder:SetPoint("CENTER", _G["ElvUF_FocusTarget_CastBar"], "CENTER", -E.db.unitframe.units.focustarget.castbar.iconSize/2, 0)
+					else
+						focustargetcastbarborder:SetPoint("CENTER", _G["ElvUF_FocusTarget_CastBar"], "CENTER", 0, 0)
+					end
+				elseif E.db.unitframe.units.focustarget.castbar.iconAttached ~= false then
+					focustargetcastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcastfocustarget, E.db.ElvUI_EltreumUI.borders.ycastfocustarget)
+					--focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", -E.db.unitframe.units.focus.castbar.iconSize/2, 0)
+					focustargetcastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"].Holder, "CENTER", 0, 0)
+				end
+				focustargetcastbarborder:SetBackdrop({
+					edgeFile = bordertexture,
+					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetcastsize,
+				})
+				focustargetcastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+				focustargetcastbarborder:SetFrameStrata("MEDIUM")
+			end
+
 
 			--boss
 			if E.db.ElvUI_EltreumUI.borders.bossborder and E.db.unitframe.units.boss.enable and (not E.Classic and not E.TBC and not E.Wrath) then
@@ -900,6 +951,43 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 							focuscastbarborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
 						elseif reactionfocus == 2 or reactionfocus == 1 then
 							focuscastbarborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
+						end
+					end
+				end
+			end
+		end
+
+		if E.db.ElvUI_EltreumUI.borders.focustargetborder and E.db.unitframe.units.focustarget.enable and not E.Classic then
+			if UnitExists("focustarget") then
+				local _, focustargetclass = UnitClass("focustarget")
+				local reactionfocustarget = UnitReaction("focustarget", "player")
+				if focustargetborder ~= nil then
+					if UnitIsPlayer("focustarget") then
+						focustargetborder:SetBackdropBorderColor(classcolorreaction[focustargetclass]["r1"], classcolorreaction[focustargetclass]["g1"], classcolorreaction[focustargetclass]["b1"], 1)
+					elseif not UnitIsPlayer("focustarget") then
+						if reactionfocustarget >= 5 then
+							focustargetborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
+						elseif reactionfocustarget == 4 then
+							focustargetborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
+						elseif reactionfocustarget == 3 then
+							focustargetborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
+						elseif reactionfocustarget == 2 or reactionfocustarget == 1 then
+							focustargetborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
+						end
+					end
+				end
+				if focustargetcastbarborder ~= nil then
+					if UnitIsPlayer("focus") then
+						focustargetcastbarborder:SetBackdropBorderColor(classcolorreaction[focustargetclass]["r1"], classcolorreaction[focustargetclass]["g1"], classcolorreaction[focustargetclass]["b1"], 1)
+					elseif not UnitIsPlayer("focus") then
+						if reactionfocustarget >= 5 then
+							focustargetcastbarborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
+						elseif reactionfocustarget == 4 then
+							focustargetcastbarborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
+						elseif reactionfocustarget == 3 then
+							focustargetcastbarborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
+						elseif reactionfocustarget == 2 or reactionfocustarget == 1 then
+							focustargetcastbarborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
 						end
 					end
 				end

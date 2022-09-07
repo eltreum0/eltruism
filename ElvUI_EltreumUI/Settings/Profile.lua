@@ -446,6 +446,7 @@ P.ElvUI_EltreumUI = {
 		petsize = 20,
 		groupsize = 14,
 		focussize = 20,
+		focustargetsize = 20,
 		bosssize = 20,
 		minimapsize = 15,
 		chatsize = 13,
@@ -490,6 +491,14 @@ P.ElvUI_EltreumUI = {
 		focuscastborder = true,
 		xcastfocus = 365,
 		ycastfocus = 62,
+
+		focustargetborder = true,
+		xfocustarget = 224,
+		yfocustarget = 72,
+
+		focustargetcastborder = true,
+		xcastfocustarget = 365,
+		ycastfocustarget = 62,
 
 		bossborder = true,
 		xboss = 250,
