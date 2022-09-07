@@ -284,14 +284,14 @@ function ElvUI_EltreumUI:SkillGlow()
 				[20909] = true,
 				[19306] = true,
 
-				--exorcism
+				--[[--exorcism  --different in wrath
 				[27138] = true,
 				[10314] = true,
 				[10313] = true,
 				[10312] = true,
 				[5615] = true,
 				[5614] = true,
-				[879] = true,
+				[879] = true,]]
 
 				--hammer of wrath
 				[27180] = true,
