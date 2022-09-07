@@ -54,6 +54,10 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:Show()
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function()
 				E:SetupChat()
+				if not E.Retail then --remove lfg spam
+					local _ , lfg = GetChannelName(4)
+					ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
+				end
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 				ElvUI_EltreumUI:AddonSetupPA()
 				if (E.Wrath or E.Retail) and E.data:IsDualSpecEnabled() then
