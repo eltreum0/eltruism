@@ -86,12 +86,12 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:PlayerUFEffects() -- model effect on player/target
 	ElvUI_EltreumUI:Doom() -- fork of Doom's Cooldown Pulse
 	ElvUI_EltreumUI:FixChatToggles() --attach left/right chat toggle to the new datatext
+	ElvUI_EltreumUI:ArenaQuest() --hides quests when in arena/bgs
 	if E.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
 		ElvUI_EltreumUI:GetSpec() --checks player spec
 		ElvUI_EltreumUI:SkinLevelUp() --skins level up toast
-		ElvUI_EltreumUI:ArenaQuest() --hides quests when in arena/bgs
 		if E.myclass == 'HUNTER' then
 			ElvUI_EltreumUI:ExpandedStable() --expands pet stable for hunters
 		end
