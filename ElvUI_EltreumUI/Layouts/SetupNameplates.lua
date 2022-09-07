@@ -728,24 +728,25 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["actions"]["alpha"] = 100
 		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["actions"]["flash"]["enable"] = true
 		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["actions"]["scale"] = 1.25
+
 		--hide nameplates for unattackable npcs
-		E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["nameOnly"] = false
+		E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["nameOnly"] = true
 		E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["name"] = "[namecolor][name]"
 		E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets]"
 		E.global["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["nameplateType"]["enable"] = true
 		E.global["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["nameplateType"]["enemyNPC"] = true
 		E.global["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["playerCanNotAttack"] = true
 		E.global["nameplates"]["filters"]["EltreumHideNP"]["triggers"]["priority"] = 15
+
 		--non target full alpha when resting and not in combat, name only since cannot attack anyway
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["alpha"] = 100
-		E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["nameOnly"] = false
+		E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["nameOnly"] = true
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["name"] = "[namecolor][name:title][realm:dash]"
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets][guild:brackets]"
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["isResting"] = true
-		--E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["isTarget"] = true
-		--E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["notTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["outOfCombat"] = true
 		E.global["nameplates"]["filters"]["EltreumRestedNP"]["triggers"]["playerCanNotAttack"] = true
+
 		--show enemy level
 		E.global["nameplates"]["filters"]["EltreumLevel"]["actions"]["tags"]["level"] = "[difficultycolor][smartlevel]"
 		E.global["nameplates"]["filters"]["EltreumLevel"]["triggers"]["isTarget"] = true

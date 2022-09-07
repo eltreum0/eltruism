@@ -473,6 +473,17 @@ E:AddTag("name:eltruism:abbreviate20", "UNIT_NAME_UPDATE", function(unit)
 end)
 E:AddTagInfo("name:eltruism:abbreviate20", ElvUI_EltreumUI.Name, L["Abbreviates the unit name once it goes over 20 characters, made by Azilroka"])
 
+-- Abbreviate very short due to small raid frames
+E:AddTag("name:eltruism:abbreviateshort", "UNIT_NAME_UPDATE", function(unit)
+	local name = UnitName(unit)
+	--local name = 'Ецхо оф а Пандарен' --cyrillic name test
+	if name and string.len(name) > 10 then
+		name = E:ShortenString(name, 10).."..."
+	end
+	return name
+end)
+E:AddTagInfo("name:eltruism:abbreviateshort", ElvUI_EltreumUI.Name, L["Abbreviates the unit name once it goes over 10 characters, made by Azilroka"])
+
 -- Line Break
 E:AddTag("eltruism:newline", "UNIT_NAME_UPDATE", function()
 	return "\n"

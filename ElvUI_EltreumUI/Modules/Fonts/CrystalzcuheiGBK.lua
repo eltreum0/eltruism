@@ -490,7 +490,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 10,
-			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+			["text_format"] = "[namecolor][name:eltruism:abbreviate]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -540,6 +540,17 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 			["justifyH"] = "RIGHT",
 			["size"] = 10,
 			["text_format"] = "[health:current:shortvalue]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
+		}
+		E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Name"] = {
+			["attachTextTo"] = "InfoPanel",
+			["enable"] = true,
+			["font"] = "AR CrystalzcuheiGBK Demibold",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "LEFT",
+			["size"] = 10,
+			["text_format"] = "[namecolor][name:eltruism:abbreviate]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -599,7 +610,7 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 10,
-			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+			["text_format"] = "[namecolor][name:eltruism:abbreviateshort]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
