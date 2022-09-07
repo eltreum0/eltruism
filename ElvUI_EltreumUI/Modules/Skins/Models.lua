@@ -360,8 +360,6 @@ end
 hooksecurefunc(UF, "Construct_TargetTargetFrame", ElvUI_EltreumUI.TargetTargetUFEffects)
 hooksecurefunc(UF, "Update_TargetTargetFrame", ElvUI_EltreumUI.TargetTargetUFEffects)
 
-
-
 --add effects to pet
 function ElvUI_EltreumUI:PetUFEffects()
 	if E.private.unitframe.enable then
@@ -504,14 +502,14 @@ end
 hooksecurefunc(UF, 'Construct_Castbar', ElvUI_EltreumUI.CastbarEffects)
 hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastbarEffects)
 
-
 local modelupdater = CreateFrame("FRAME")
 modelupdater:RegisterUnitEvent("UNIT_TARGET", "target") --update whenever the target changes target
 modelupdater:RegisterEvent("PLAYER_ENTERING_WORLD") --refresh everything
 modelupdater:RegisterUnitEvent("UNIT_PET", "player") --refresh everything
+modelupdater:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player") --refresh everything
 modelupdater:SetScript("OnEvent", function(_, event)
 	ElvUI_EltreumUI:TargetTargetUFEffects()
-	if event == 'PLAYER_ENTERING_WORLD' then
+	if event == 'PLAYER_ENTERING_WORLD' or "PLAYER_FLAGS_CHANGED" then
 		ElvUI_EltreumUI:PlayerUFEffects()
 		ElvUI_EltreumUI:TargetUFEffects()
 		ElvUI_EltreumUI:TargetTargetUFEffects()
