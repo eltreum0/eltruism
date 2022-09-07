@@ -274,6 +274,13 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["r"] = valuecolors.r
 		E.db["actionbar"]["cooldown"]["threshold"] = 5
 
+		E.db["actionbar"]["bar1"]["buttonsPerRow"] = 7
+		E.db["actionbar"]["bar2"]["buttonsPerRow"] = 12
+		E.db["actionbar"]["bar3"]["buttonsPerRow"] = 12
+		E.db["actionbar"]["bar4"]["buttonsPerRow"] = 12
+		E.db["actionbar"]["bar5"]["buttonsPerRow"] = 12
+		E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
+
 		-- DataBars
 		E.db["databars"]["threat"]["font"] = "Kimberley"
 		E.db["databars"]["threat"]["fontOutline"] = "OUTLINE"
@@ -464,6 +471,17 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["actionbar"]["noRangeColor"]["b"] = 0.11764705882353
 		E.db["actionbar"]["noRangeColor"]["g"] = 0.11764705882353
 		E.db["actionbar"]["noRangeColor"]["r"] = 1
+
+		--unitframes general
+		E.db["unitframe"]["units"]["focus"]["width"] = 190
+		E.db["unitframe"]["units"]["player"]["width"] = 270
+		E.db["unitframe"]["units"]["target"]["width"] = 270
+		E.db["unitframe"]["units"]["targettarget"]["width"] = 130
+		E.db["unitframe"]["units"]["arena"]["width"] = 250
+		E.db["unitframe"]["units"]["assist"]["width"] = 120
+		E.db["unitframe"]["units"]["boss"]["width"] = 216
+		E.db["unitframe"]["units"]["party"]["width"] = 200
+		E.db["unitframe"]["units"]["tank"]["width"] = 120
 
 		-- Custom Text: Party
 		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
