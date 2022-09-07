@@ -140,20 +140,20 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["actionbar"]["bar4"]["hotkeyFont"] = "Kimberley"
 	E.db["actionbar"]["bar4"]["keepSizeRatio"] = false
 	E.db["actionbar"]["bar4"]["macroFont"] = "Kimberley"
-	E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
-	E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
-	E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 8; [bonusbar:3] 9; [bonusbar:4] 10;"
+	E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
+	E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
+	E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
 	--E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 8; [bonusbar:3] 9; [bonusbar:4] 10; [vehicleui] 12; [overridebar] 14; [possessbar] 12;" --had issues with some WQs
-	E.db["actionbar"]["bar4"]["paging"]["HUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
-	E.db["actionbar"]["bar4"]["paging"]["MAGE"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
-	E.db["actionbar"]["bar4"]["paging"]["MONK"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;"
-	E.db["actionbar"]["bar4"]["paging"]["PALADIN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;"
-	E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;"
-	E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:2] 8;" --other other besides this was causing problems with shadow dance
+	E.db["actionbar"]["bar4"]["paging"]["HUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
+	E.db["actionbar"]["bar4"]["paging"]["MAGE"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
+	E.db["actionbar"]["bar4"]["paging"]["MONK"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
+	E.db["actionbar"]["bar4"]["paging"]["PALADIN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
+	E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
+	E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:2] 8;[bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
 	--E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 1; [bonusbar:1,stealth] 7; [vehicleui] 12; [overridebar] 14; [possessbar] 12;" --other other besides this was causing problems with shadow dance
-	E.db["actionbar"]["bar4"]["paging"]["SHAMAN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;"
-	E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[form:1] 7;"
-	E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
+	E.db["actionbar"]["bar4"]["paging"]["SHAMAN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
+	E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[form:1] 7;[bonusbar:5] 11;"
+	E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
 	E.db["actionbar"]["bar4"]["point"] = "TOPLEFT"
 	E.db["actionbar"]["bar4"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
 	E.db["actionbar"]["bar5"]["buttonsPerRow"] = 6
@@ -639,6 +639,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["tank"]["targetsGroup"]["xOffset"] = -3
 	E.db["unitframe"]["units"]["boss"]["castbar"]["overlayOnFrame"] = "InfoPanel"
 	E.db["unitframe"]["units"]["boss"]["castbar"]["customColor"]["enable"] = true
+	E.db["unitframe"]["units"]["boss"]["infoPanel"]["transparent"] = true
 	E.db["unitframe"]["units"]["boss"]["height"] = 45
 	E.db["unitframe"]["units"]["boss"]["spacing"] = 10
 	E.db["unitframe"]["units"]["boss"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
@@ -706,6 +707,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["sizeOverride"] = 30
 	E.db["unitframe"]["units"]["focus"]["height"] = 35
 	E.db["unitframe"]["units"]["focus"]["infoPanel"]["enable"] = true
+	E.db["unitframe"]["units"]["focus"]["infoPanel"]["transparent"] = true
 	E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:class:player] [eltruism:raidmarker]"
 	E.db["unitframe"]["units"]["focus"]["power"]["attachTextTo"] = "Power"
 	E.db["unitframe"]["units"]["focus"]["power"]["height"] = 14
@@ -754,6 +756,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["party"]["horizontalSpacing"] = 9
 	E.db["unitframe"]["units"]["party"]["infoPanel"]["enable"] = true
 	E.db["unitframe"]["units"]["party"]["infoPanel"]["height"] = 16
+	E.db["unitframe"]["units"]["party"]["infoPanel"]["transparent"] = true
 	E.db["unitframe"]["units"]["party"]["name"]["attachTextTo"] = "InfoPanel"
 	E.db["unitframe"]["units"]["party"]["name"]["position"] = "LEFT"
 	E.db["unitframe"]["units"]["party"]["name"]["text_format"] = ""
@@ -864,11 +867,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["pet"]["fader"]["vehicle"] = true
 	E.db["unitframe"]["units"]["pet"]["name"]["text_format"] = ""
 	E.db["unitframe"]["units"]["pet"]["colorOverride"] = "FORCE_OFF"
-	if E.Retail then
-		E.db["unitframe"]["units"]["pet"]["power"]["enable"] = false
-	elseif E.Wrath or E.TBC or E.Classic then
-		E.db["unitframe"]["units"]["pet"]["power"]["enable"] = true
-	end
+	E.db["unitframe"]["units"]["pet"]["power"]["enable"] = true
 	E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = ""
 	E.db["unitframe"]["units"]["pet"]["power"]["width"] = "inset"
 	E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
@@ -954,6 +953,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["player"]["portrait"]["camDistanceScale"] = 4.2
 	E.db["unitframe"]["units"]["player"]["portrait"]["enable"] = true
 	E.db["unitframe"]["units"]["player"]["portrait"]["fullOverlay"] = true
+	E.db["unitframe"]["units"]["player"]["portrait"]["style"] = "3D"
 	E.db["unitframe"]["units"]["player"]["portrait"]["overlay"] = true
 	E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.3
 	E.db["unitframe"]["units"]["player"]["power"]["EnergyManaRegen"] = true --tbc/classic only
@@ -1013,6 +1013,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid1"]["height"] = 30
 	E.db["unitframe"]["units"]["raid1"]["horizontalSpacing"] = 0
 	E.db["unitframe"]["units"]["raid1"]["infoPanel"]["enable"] = true
+	E.db["unitframe"]["units"]["raid1"]["infoPanel"]["transparent"] = true
 	E.db["unitframe"]["units"]["raid1"]["name"]["attachTextTo"] = "InfoPanel"
 	E.db["unitframe"]["units"]["raid1"]["name"]["position"] = "LEFT"
 	E.db["unitframe"]["units"]["raid1"]["name"]["text_format"] = ""
@@ -1051,10 +1052,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid1"]["power"]["height"] = 8
 	E.db["unitframe"]["units"]["raid1"]["power"]["powerPrediction"] = true
 	E.db["unitframe"]["units"]["raid1"]["power"]["yOffset"] = 4
-	if not E.Retail then
-		E.db["unitframe"]["units"]["raid1"]["power"]["enable"] = true
-	end
-
 	E.db["unitframe"]["units"]["raid2"]["buffIndicator"]["size"] = 12
 	E.db["unitframe"]["units"]["raid2"]["buffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["raid2"]["buffs"]["countFontSize"] = 8
@@ -1090,6 +1087,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid2"]["height"] = 30
 	E.db["unitframe"]["units"]["raid2"]["horizontalSpacing"] = 0
 	E.db["unitframe"]["units"]["raid2"]["infoPanel"]["enable"] = true
+	E.db["unitframe"]["units"]["raid2"]["infoPanel"]["transparent"] = true
 	E.db["unitframe"]["units"]["raid2"]["name"]["attachTextTo"] = "InfoPanel"
 	E.db["unitframe"]["units"]["raid2"]["name"]["position"] = "LEFT"
 	E.db["unitframe"]["units"]["raid2"]["name"]["text_format"] = ""
@@ -1099,9 +1097,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid2"]["portrait"]["overlayAlpha"] = 0.6
 	E.db["unitframe"]["units"]["raid2"]["portrait"]["paused"] = true
 	E.db["unitframe"]["units"]["raid2"]["power"]["enable"] = false
-	if not E.Retail then
-		E.db["unitframe"]["units"]["raid2"]["power"]["enable"] = true
-	end
 	E.db["unitframe"]["units"]["raid2"]["power"]["height"] = 8
 	E.db["unitframe"]["units"]["raid2"]["power"]["powerPrediction"] = true
 	E.db["unitframe"]["units"]["raid2"]["power"]["yOffset"] = 4
@@ -1158,6 +1153,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid3"]["height"] = 30
 	E.db["unitframe"]["units"]["raid3"]["horizontalSpacing"] = 0
 	E.db["unitframe"]["units"]["raid3"]["infoPanel"]["enable"] = true
+	E.db["unitframe"]["units"]["raid3"]["infoPanel"]["transparent"] = true
 	E.db["unitframe"]["units"]["raid3"]["name"]["attachTextTo"] = "InfoPanel"
 	E.db["unitframe"]["units"]["raid3"]["name"]["position"] = "BOTTOMLEFT"
 	E.db["unitframe"]["units"]["raid3"]["portrait"]["desaturation"] = 0.7
@@ -1166,9 +1162,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid3"]["portrait"]["paused"] = true
 	E.db["unitframe"]["units"]["raid3"]["power"]["attachTextTo"] = "Power"
 	E.db["unitframe"]["units"]["raid3"]["power"]["enable"] = false
-	if not E.Retail then
-		E.db["unitframe"]["units"]["raid3"]["power"]["enable"] = true
-	end
 	E.db["unitframe"]["units"]["raid3"]["power"]["height"] = 8
 	E.db["unitframe"]["units"]["raid3"]["power"]["width"] = "inset"
 	E.db["unitframe"]["units"]["raid3"]["power"]["xOffset"] = 0
@@ -1295,6 +1288,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["target"]["portrait"]["enable"] = true
 	E.db["unitframe"]["units"]["target"]["portrait"]["fullOverlay"] = true
 	E.db["unitframe"]["units"]["target"]["portrait"]["overlay"] = true
+	E.db["unitframe"]["units"]["target"]["portrait"]["style"] = "3D"
 	E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.3
 	E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 	E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = 0.1

@@ -171,20 +171,20 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["actionbar"]["bar4"]["macroTextPosition"] = "BOTTOM"
 	E.db["actionbar"]["bar4"]["macroTextYOffset"] = 2
 	E.db["actionbar"]["bar4"]["macrotext"] = true
-	E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
-	E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
-	E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 8; [bonusbar:3] 9; [bonusbar:4] 10;"
+	E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
+	E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12[bonusbar:5] 11;;"
+	E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
 	--E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 8; [bonusbar:3] 9; [bonusbar:4] 10; [vehicleui] 12; [overridebar] 14; [possessbar] 12;" --had issues with some WQs
-	E.db["actionbar"]["bar4"]["paging"]["HUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
-	E.db["actionbar"]["bar4"]["paging"]["MAGE"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
-	E.db["actionbar"]["bar4"]["paging"]["MONK"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;"
-	E.db["actionbar"]["bar4"]["paging"]["PALADIN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;"
-	E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;"
-	E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:2] 8;" --other other besides this was causing problems with shadow dance
+	E.db["actionbar"]["bar4"]["paging"]["HUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
+	E.db["actionbar"]["bar4"]["paging"]["MAGE"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
+	E.db["actionbar"]["bar4"]["paging"]["MONK"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
+	E.db["actionbar"]["bar4"]["paging"]["PALADIN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
+	E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
+	E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:2] 8;[bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
 	--E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 1; [bonusbar:1,stealth] 7; [vehicleui] 12; [overridebar] 14; [possessbar] 12;" --other other besides this was causing problems with shadow dance
-	E.db["actionbar"]["bar4"]["paging"]["SHAMAN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;"
-	E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[form:1] 7;"
-	E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;"
+	E.db["actionbar"]["bar4"]["paging"]["SHAMAN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
+	E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[form:1] 7;[bonusbar:5] 11;"
+	E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
 	E.db["actionbar"]["bar4"]["point"] = "BOTTOMLEFT"
 	E.db["actionbar"]["bar4"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
 	E.db["actionbar"]["bar5"]["alpha"] = 1
@@ -1024,6 +1024,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["player"]["portrait"]["camDistanceScale"] = 4.2
 	E.db["unitframe"]["units"]["player"]["portrait"]["enable"] = true
 	E.db["unitframe"]["units"]["player"]["portrait"]["fullOverlay"] = true
+	E.db["unitframe"]["units"]["player"]["portrait"]["style"] = "3D"
 	E.db["unitframe"]["units"]["player"]["portrait"]["overlay"] = true
 	E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.3
 	E.db["unitframe"]["units"]["player"]["power"]["attachTextTo"] = "Power"
@@ -1123,8 +1124,8 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["raid1"]["portrait"]["paused"] = true
 	E.db["unitframe"]["units"]["raid1"]["portrait"]["overlayAlpha"] = 0.6
 	E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
+	E.db["unitframe"]["units"]["raid1"]["power"]["enable"] = false
 	if E.Wrath or E.TBC or E.Classic then
-		E.db["unitframe"]["units"]["raid1"]["power"]["enable"] = true
 		E.db["unitframe"]["units"]["raidpet"]["enable"] = false
 		E.db["unitframe"]["units"]["raidpet"]["horizontalSpacing"] = 0
 		E.db["unitframe"]["units"]["raidpet"]["numGroups"] = 3
@@ -1210,9 +1211,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid21,noexists][@raid31,exists] hide;show"
 	E.db["unitframe"]["units"]["raid2"]["width"] = 120
 	E.db["unitframe"]["units"]["raid2"]["power"]["enable"] = false
-	if E.Wrath or E.TBC or E.Classic then
-		E.db["unitframe"]["units"]["raid2"]["power"]["enable"] = true --dps raid 40 tbc/classic
-	end
 
 	E.db["unitframe"]["units"]["raid3"]["height"] = 28
 	E.db["unitframe"]["units"]["raid3"]["width"] = 120
@@ -1260,9 +1258,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["raid3"]["verticalSpacing"] = 3
 	E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid31,noexists] hide;show"
 	E.db["unitframe"]["units"]["raid3"]["power"]["enable"] = false
-	if E.Wrath or E.TBC or E.Classic then
-		E.db["unitframe"]["units"]["raid3"]["power"]["enable"] = true --dps raid 40 tbc/classic
-	end
 
 	E.db["unitframe"]["units"]["tank"]["colorOverride"] = "FORCE_OFF"
 	E.db["unitframe"]["units"]["tank"]["buffs"]["countFont"] = "Kimberley"
@@ -1365,6 +1360,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["target"]["portrait"]["enable"] = true
 	E.db["unitframe"]["units"]["target"]["portrait"]["fullOverlay"] = true
 	E.db["unitframe"]["units"]["target"]["portrait"]["overlay"] = true
+	E.db["unitframe"]["units"]["target"]["portrait"]["style"] = "3D"
 	E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.3
 	E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 	E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = 0.1

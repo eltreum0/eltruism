@@ -5,13 +5,28 @@ local hooksecurefunc = _G.hooksecurefunc
 local powertype, _
 local unitframe
 
+--powers there are gradients for since retail has like 100+ power types
+local powertypes ={
+	["MANA"] = true,
+	["RAGE"] = true,
+	["FOCUS"] = true,
+	["ENERGY"] = true,
+	["RUNIC_POWER"] = true,
+	["LUNAR_POWER"] = true,
+	["ALT_POWER"] = true,
+	["MAELSTROM"] = true,
+	["INSANITY"] = true,
+	["FURY"] = true,
+	["PAIN"] = true,
+}
+
 --Apply Gradient Power Colors
 function ElvUI_EltreumUI:ApplyGradientPower(unit,name)
 	_, powertype = UnitPowerType(unit)
 	if UnitExists(unit) and powertype then
 		--print(powertype,unit)
 		unitframe = _G["ElvUF_"..name]
-		if unitframe and unitframe.Power then
+		if unitframe and unitframe.Power and powertypes[powertype] then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower == "HORIZONTAL" then
 					if unit == "target" then

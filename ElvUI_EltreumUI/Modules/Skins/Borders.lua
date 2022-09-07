@@ -771,12 +771,11 @@ function ElvUI_EltreumUI:Borders()
 	end
 end
 
-function ElvUI_EltreumUI:AuraBorders()
+function ElvUI_EltreumUI:AuraBorders(button)
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable then
-		--if not button then return end
-		if E.db.ElvUI_EltreumUI.borders.classcolor == true or E.db.ElvUI_EltreumUI.borders.classcolor == nil then
+		if E.db.ElvUI_EltreumUI.borders.classcolor then
 			classcolor = E:ClassColor(E.myclass, true)
-		elseif E.db.ElvUI_EltreumUI.borders.classcolor == false then
+		elseif not E.db.ElvUI_EltreumUI.borders.classcolor then
 			classcolor = {
 				r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
 				g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
@@ -784,30 +783,21 @@ function ElvUI_EltreumUI:AuraBorders()
 			}
 		end
 
-		local auraborders = {}
-		for i = 1,40 do
-			table.insert(auraborders, _G["ElvUIPlayerBuffsAuraButton"..i])
-			table.insert(auraborders, _G["ElvUIPlayerBuffsTempEnchant"..i])
+		local auraborder
+		if not _G["EltruismAuraBorder"..button:GetName()] then
+			auraborder =  CreateFrame("Frame", "EltruismAuraBorder"..button:GetName(), button, BackdropTemplateMixin and "BackdropTemplate")
+		else
+			auraborder = _G["EltruismAuraBorder"..button:GetName()]
 		end
-		local function createauraborders()
-			for i,v in pairs(auraborders) do
-				if not _G["EltruismAuraBorder"..tostring(i)] then
-					auraborder = CreateFrame("Frame", "EltruismAuraBorder"..tostring(i), v, BackdropTemplateMixin and "BackdropTemplate")
-				else
-					auraborder = _G["EltruismAuraBorder"..tostring(i)]
-				end
-				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.aurasizex, E.db.ElvUI_EltreumUI.borders.aurasizey)
-				auraborder:SetPoint("CENTER", v, "CENTER", 0, 0)
-				auraborder:SetBackdrop({
-				edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
-				edgeSize = E.db.ElvUI_EltreumUI.borders.aurasize,
-				})
-				auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				auraborder:SetFrameStrata("MEDIUM")
-				auraborder:SetFrameLevel(4)
-			end
-		end
-		createauraborders()
+		auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.aurasizex, E.db.ElvUI_EltreumUI.borders.aurasizey)
+		auraborder:SetPoint("CENTER", button, "CENTER", 0, 0)
+		auraborder:SetBackdrop({
+		edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
+		edgeSize = E.db.ElvUI_EltreumUI.borders.aurasize,
+		})
+		auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+		auraborder:SetFrameStrata("MEDIUM")
+		auraborder:SetFrameLevel(4)
 	end
 end
 hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraBorders) --aura (minimap) shadows

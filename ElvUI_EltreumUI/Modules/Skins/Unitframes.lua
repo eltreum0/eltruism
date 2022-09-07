@@ -563,19 +563,29 @@ function UF:Configure_InfoPanel(frame)
 		frame.InfoPanel:ClearAllPoints()
 
 		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
-			frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
-			--frame.InfoPanel:Point('BOTTOMLEFT', frame.Health.backdrop, 'TOPLEFT', UF.BORDER, -(UF.SPACING*3))
-			frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER, -(UF.SPACING*3))
-			frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height)
-			frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER, db.infoPanel.height)
-			--[[if db.orientation == 'LEFT' then
+			local portrait = (db.portrait.style == '3D' and frame.Portrait3D) or frame.Portrait2D
+			portrait.db = db.portrait
+			if frame.USE_PORTRAIT and portrait.db.style == '2D' then
+				frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
+				frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER+portrait.db.width, -(UF.SPACING*3))
+				frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height)
+				frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER+portrait.db.width, db.infoPanel.height)
+				frame.InfoPanel:SetSize(db.width-portrait.db.width,db.infoPanel.height)
+			else
+				frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
+				--frame.InfoPanel:Point('BOTTOMLEFT', frame.Health.backdrop, 'TOPLEFT', UF.BORDER, -(UF.SPACING*3))
+				frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER, -(UF.SPACING*3))
 				frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height)
 				frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER, db.infoPanel.height)
-			else
-				frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height)
-				frame.InfoPanel:Point('TOPLEFT', frame.Health.backdrop, 'TOPLEFT', UF.BORDER, db.infoPanel.height)
-			end]]
-			frame.InfoPanel:SetSize(db.width,db.infoPanel.height)
+				--[[if db.orientation == 'LEFT' then
+					frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height)
+					frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER, db.infoPanel.height)
+				else
+					frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height)
+					frame.InfoPanel:Point('TOPLEFT', frame.Health.backdrop, 'TOPLEFT', UF.BORDER, db.infoPanel.height)
+				end]]
+				frame.InfoPanel:SetSize(db.width,db.infoPanel.height)
+			end
 		else
 			if frame.ORIENTATION == 'RIGHT' and not (frame.unitframeType == 'arena') then
 				frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
@@ -603,3 +613,39 @@ function UF:Configure_InfoPanel(frame)
 		frame.InfoPanel:Hide()
 	end
 end
+
+
+function ElvUI_EltreumUI:SkinPortrait(frame)
+	local db = frame.db
+	local portrait = (db.portrait.style == '3D' and frame.Portrait3D) or frame.Portrait2D
+	portrait.db = db.portrait
+	frame.Portrait = portrait
+
+	if frame.USE_PORTRAIT and portrait.db.style == '2D' then
+		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
+			portrait:ClearAllPoints()
+			portrait:SetPoint("BOTTOMLEFT", portrait.backdrop, "BOTTOMLEFT", 0, 1)
+			portrait:SetPoint("BOTTOMRIGHT", portrait.backdrop, "BOTTOMRIGHT", 0, 1)
+			portrait:SetPoint("TOPRIGHT", portrait.backdrop, "TOPRIGHT", 0, db.infoPanel.height)
+			portrait:SetPoint("TOPLEFT", portrait.backdrop, "TOPLEFT", 0, db.infoPanel.height)
+		end
+		--from actionbar trim
+		--[[local left, right, top, bottom = unpack(E.TexCoords)
+
+		local width, height = portrait.db.width, 15+12+55--?
+		local ratio = width / height
+
+		print(portrait.db.width,portrait.db.height,ratio)
+		if ratio > 1 then
+			local trimAmount = (1 - (1 / ratio)) * 0.5
+			top = top + trimAmount
+			bottom = bottom - trimAmount
+		else
+			local trimAmount = (1 - ratio) * 0.5
+			left = left + trimAmount
+			right = right - trimAmount
+		end
+		portrait:SetTexCoord(left, right, top, bottom)]]
+	end
+end
+hooksecurefunc(UF, "Configure_Portrait", ElvUI_EltreumUI.SkinPortrait)
