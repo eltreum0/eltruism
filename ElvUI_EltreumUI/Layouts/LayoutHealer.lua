@@ -1043,6 +1043,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid1"]["resurrectIcon"]["size"] = 20
 	E.db["unitframe"]["units"]["raid1"]["roleIcon"]["size"] = 12
 	E.db["unitframe"]["units"]["raid1"]["roleIcon"]["yOffset"] = -1
+	E.db["unitframe"]["units"]["raid1"]["roleIcon"]["position"] = "TOPRIGHT"
 	E.db["unitframe"]["units"]["raid1"]["summonIcon"]["attachToObject"] = "Health"
 	E.db["unitframe"]["units"]["raid1"]["summonIcon"]["size"] = 20
 	E.db["unitframe"]["units"]["raid1"]["threatStyle"] = "HEALTHBORDER"
@@ -1118,6 +1119,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid2"]["resurrectIcon"]["attachToObject"] = "Health"
 	E.db["unitframe"]["units"]["raid2"]["resurrectIcon"]["size"] = 20
 	E.db["unitframe"]["units"]["raid2"]["roleIcon"]["enable"] = true
+	E.db["unitframe"]["units"]["raid2"]["roleIcon"]["position"] = "TOPRIGHT"
 	E.db["unitframe"]["units"]["raid2"]["roleIcon"]["size"] = 12
 	E.db["unitframe"]["units"]["raid2"]["roleIcon"]["yOffset"] = -1
 	E.db["unitframe"]["units"]["raid2"]["summonIcon"]["attachToObject"] = "Health"
@@ -1184,7 +1186,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid3"]["resurrectIcon"]["attachToObject"] = "Health"
 	E.db["unitframe"]["units"]["raid3"]["resurrectIcon"]["size"] = 15
 	E.db["unitframe"]["units"]["raid3"]["roleIcon"]["enable"] = true
-	E.db["unitframe"]["units"]["raid3"]["roleIcon"]["position"] = "TOPLEFT"
+	E.db["unitframe"]["units"]["raid3"]["roleIcon"]["position"] = "TOPRIGHT"
 	E.db["unitframe"]["units"]["raid3"]["roleIcon"]["size"] = 12
 	E.db["unitframe"]["units"]["raid3"]["roleIcon"]["xOffset"] = 0
 	E.db["unitframe"]["units"]["raid3"]["roleIcon"]["yOffset"] = 0
