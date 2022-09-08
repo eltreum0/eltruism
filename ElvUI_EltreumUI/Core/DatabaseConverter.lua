@@ -12,8 +12,8 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 			hideOnEscape = false,
 		}
 
-		if E.private.ElvUI_EltreumUI.install_version < "3.2.6" or forced then
-
+		if E.private.ElvUI_EltreumUI.install_version < "3.2.6" then
+			print("NOOOOOOOOOOOOOO")
 			--making sure it only runs on the current char's profile
 			local currentprofile
 			for character, charprofile in pairs (ElvDB.profileKeys) do
@@ -321,6 +321,119 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 			end)
 			E:StaticPopup_Show('ELTRUISMDBCONVERT', ProfileNames, CharacterNames)
 			E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
+		elseif E.private.ElvUI_EltreumUI.install_version < "3.3.6" or forced then
+
+			--making sure it only runs on the current char's profile
+			local currentprofile
+			for character, charprofile in pairs (ElvDB.profileKeys) do
+				if character:match(E.myname) then
+					currentprofile = charprofile
+				end
+			end
+
+			--Profile options conversion
+			local ProfileNames = "NONE"
+			local CharacterNames = "NONE"
+			local dbdidrun = false
+			for profile, data in pairs(ElvDB.profiles) do
+				local profileChanged = false
+				if profile == currentprofile then
+					if data then
+						if data.unitframe then
+							if data.unitframe.units then
+								if data.unitframe.units.raid1 then
+									if data.unitframe.units.raid1.customTexts then
+										dbdidrun = true
+										if data.unitframe.units.raid1.customTexts.EltreumRaidHealth then
+											data.unitframe.units.raid1.customTexts.EltreumRaid1Health = data.unitframe.units.raid1.customTexts.EltreumRaidHealth
+											E:CopyTable(data.unitframe.units.raid1.customTexts.EltreumRaid1Health, data.unitframe.units.raid1.customTexts.EltreumRaidHealth)
+											data.unitframe.units.raid1.customTexts.EltreumRaidHealth = nil
+										end
+										if data.unitframe.units.raid1.customTexts.EltreumRaidAbsorb then
+											data.unitframe.units.raid1.customTexts.EltreumRaid1Absorb = data.unitframe.units.raid1.customTexts.EltreumRaidAbsorb
+											E:CopyTable(data.unitframe.units.raid1.customTexts.EltreumRaid1Absorb, data.unitframe.units.raid1.customTexts.EltreumRaidAbsorb)
+											data.unitframe.units.raid1.customTexts.EltreumRaidAbsorb = nil
+										end
+										if data.unitframe.units.raid1.customTexts.EltreumRaidName then
+											data.unitframe.units.raid1.customTexts.EltreumRaid1Name = data.unitframe.units.raid1.customTexts.EltreumRaidName
+											E:CopyTable(data.unitframe.units.raid1.customTexts.EltreumRaid1Name, data.unitframe.units.raid1.customTexts.EltreumRaidName)
+											data.unitframe.units.raid1.customTexts.EltreumRaidName = nil
+										end
+									end
+								end
+								if data.unitframe.units.raid3 then
+									if data.unitframe.units.raid3.customTexts then
+										dbdidrun = true
+										if data.unitframe.units.raid3.customTexts.EltreumRaid40Health then
+											data.unitframe.units.raid3.customTexts.EltreumRaid3Health = data.unitframe.units.raid3.customTexts.EltreumRaid40Health
+											E:CopyTable(data.unitframe.units.raid3.customTexts.EltreumRaid3Health, data.unitframe.units.raid3.customTexts.EltreumRaid40Health)
+											data.unitframe.units.raid3.customTexts.EltreumRaid40Health = nil
+										end
+										if data.unitframe.units.raid3.customTexts.EltreumRaid40Absorb then
+											data.unitframe.units.raid3.customTexts.EltreumRaid3Absorb = data.unitframe.units.raid3.customTexts.EltreumRaid40Absorb
+											E:CopyTable(data.unitframe.units.raid3.customTexts.EltreumRaid3Absorb, data.unitframe.units.raid3.customTexts.EltreumRaid40Absorb)
+											data.unitframe.units.raid3.customTexts.EltreumRaid40Absorb = nil
+										end
+										if data.unitframe.units.raid3.customTexts.EltreumRaid40Name then
+											data.unitframe.units.raid3.customTexts.EltreumRaid3Name = data.unitframe.units.raid3.customTexts.EltreumRaid40Name
+											E:CopyTable(data.unitframe.units.raid3.customTexts.EltreumRaid3Name, data.unitframe.units.raid3.customTexts.EltreumRaid40Name)
+											data.unitframe.units.raid3.customTexts.EltreumRaid40Name = nil
+										end
+										if data.unitframe.units.raid3.customTexts.EltreumRaid40Group then
+											data.unitframe.units.raid3.customTexts.EltreumGroup = data.unitframe.units.raid3.customTexts.EltreumRaid40Group
+											E:CopyTable(data.unitframe.units.raid3.customTexts.EltreumGroup, data.unitframe.units.raid3.customTexts.EltreumRaid40Group)
+											data.unitframe.units.raid3.customTexts.EltreumRaid40Group = nil
+										end
+										if not data.unitframe.units.raid3.customTexts.EltreumRaid3Name then
+											data.unitframe.units.raid3.customTexts.EltreumRaid3Name = {}
+											E:CopyTable(data.unitframe.units.raid3.customTexts.EltreumRaid3Name, data.unitframe.units.raid2.customTexts.EltreumRaid2Name)
+										end
+									end
+								end
+								if data.unitframe.units.raid2 then
+									if not data.unitframe.units.raid2.customTexts then
+										dbdidrun = true
+										data.unitframe.units.raid2.customTexts = {}
+										E:CopyTable(data.unitframe.units.raid2.customTexts, data.unitframe.units.raid1.customTexts)
+
+										if data.unitframe.units.raid2.customTexts.EltreumRaid1Health then
+											data.unitframe.units.raid2.customTexts.EltreumRaid2Health = data.unitframe.units.raid2.customTexts.EltreumRaid1Health
+											E:CopyTable(data.unitframe.units.raid2.customTexts.EltreumRaid2Health, data.unitframe.units.raid2.customTexts.EltreumRaid1Health)
+											data.unitframe.units.raid2.customTexts.EltreumRaid1Health = nil
+										end
+										if data.unitframe.units.raid2.customTexts.EltreumRaid1Absorb then
+											data.unitframe.units.raid2.customTexts.EltreumRaid2Absorb = data.unitframe.units.raid2.customTexts.EltreumRaid1Absorb
+											E:CopyTable(data.unitframe.units.raid2.customTexts.EltreumRaid2Absorb, data.unitframe.units.raid2.customTexts.EltreumRaid1Absorb)
+											data.unitframe.units.raid2.customTexts.EltreumRaid1Absorb = nil
+										end
+										if data.unitframe.units.raid2.customTexts.EltreumRaid1Name then
+											data.unitframe.units.raid2.customTexts.EltreumRaid2Name = data.unitframe.units.raid2.customTexts.EltreumRaid1Name
+											E:CopyTable(data.unitframe.units.raid2.customTexts.EltreumRaid2Name, data.unitframe.units.raid2.customTexts.EltreumRaid1Name)
+											data.unitframe.units.raid2.customTexts.EltreumRaid1Name = nil
+										end
+									end
+								end
+							end
+						end
+						if profileChanged then
+							dbdidrun = true
+							if ProfileNames == "NONE" then
+								ProfileNames = profile
+							else
+								ProfileNames = ProfileNames..', '..profile
+							end
+						end
+					end
+				end
+			end
+
+			if dbdidrun then
+				E:Delay(1, function()
+					E:StaggeredUpdateAll(nil, true)
+				end)
+				E:StaticPopup_Show('ELTRUISMDBCONVERT', ProfileNames, CharacterNames)
+				E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
+			end
 		end
 	end
 end

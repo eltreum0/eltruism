@@ -6,7 +6,7 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 local fixingold = false
 
 function ElvUI_EltreumUI:VersionCheckInit()
-	if E.private.ElvUI_EltreumUI.install_version < "3.2.6" then
+	if E.private.ElvUI_EltreumUI.install_version < "3.3.6" then
 		ElvUI_EltreumUI:DatabaseConversions()
 	end
 	ElvUI_EltreumUI:PluginCheck()
