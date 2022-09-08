@@ -13,7 +13,6 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 		}
 
 		if E.private.ElvUI_EltreumUI.install_version < "3.2.6" then
-			print("NOOOOOOOOOOOOOO")
 			--making sure it only runs on the current char's profile
 			local currentprofile
 			for character, charprofile in pairs (ElvDB.profileKeys) do
