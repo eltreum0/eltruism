@@ -1149,7 +1149,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid3"]["healPrediction"]["enable"] = true
 	E.db["unitframe"]["units"]["raid3"]["health"]["attachTextTo"] = "InfoPanel"
 	E.db["unitframe"]["units"]["raid3"]["health"]["position"] = "RIGHT"
-	E.db["unitframe"]["units"]["raid3"]["health"]["text_format"] = "[health:current:shortvalue]"
+	E.db["unitframe"]["units"]["raid3"]["health"]["text_format"] = ""
 	E.db["unitframe"]["units"]["raid3"]["health"]["xOffset"] = 0
 	E.db["unitframe"]["units"]["raid3"]["health"]["yOffset"] = 0
 	E.db["unitframe"]["units"]["raid3"]["height"] = 30
