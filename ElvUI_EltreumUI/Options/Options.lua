@@ -7575,7 +7575,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'double',
 								desc = L["Change the color of the hover to be class colored"],
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow = value ElvUI_EltreumUI:SetStyleFilters() end,
 							},
 							classborder = {
 								order = 3,
@@ -7584,7 +7584,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'double',
 								desc = L["Change the color of the border glow to be class bordered in nameplates"],
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate = value ElvUI_EltreumUI:SetStyleFilters() end,
 							},
 							classtexture = {
 								order = 4,
@@ -7594,7 +7594,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Change the texture of the nameplate to be a class gradient of the player's class"],
 								disabled = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = value ElvUI_EltreumUI:SetStyleFilters() end,
 							},
 							targetclasstexture = {
 								order = 4,
@@ -7604,7 +7604,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Change the texture of the nameplate to be a class gradient of the target's class"],
 								disabled = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture end,
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = value ElvUI_EltreumUI:SetStyleFilters() end,
 							},
 							headernptextv = {
 								order = 5,
