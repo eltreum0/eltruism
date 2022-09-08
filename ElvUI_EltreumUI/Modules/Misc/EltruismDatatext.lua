@@ -305,8 +305,6 @@ DT:RegisterDatatext('EltruismTeleports', nil, { 'SPELL_UPDATE_COOLDOWN', 'BAG_UP
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------stats datatext
 
 local function EltruismStatsDatatextOnEnter()
-
-
 	local basestat1, currentstat1, statbuff1, statnerf1 = UnitStat('player', LE_UNIT_STAT_STRENGTH)
 	local basestat2, currentstat2, statbuff2, statnerf2 = UnitStat('player', LE_UNIT_STAT_AGILITY)
 	local basestat3, currentstat3, statbuff3, statnerf3 = UnitStat('player', LE_UNIT_STAT_INTELLECT)
