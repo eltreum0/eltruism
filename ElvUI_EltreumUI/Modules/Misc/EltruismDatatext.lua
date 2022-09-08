@@ -330,6 +330,12 @@ local function EltruismStatsDatatextOnEnter()
 		currentstat = currentstat3
 		statbuff = statbuff3
 		statnerf = statnerf3
+	else
+		basestatlabel = SPEC_FRAME_PRIMARY_STAT_STRENGTH
+		basestat = basestat1
+		currentstat = currentstat1
+		statbuff = statbuff1
+		statnerf = statnerf1
 	end
 
 	if E.Retail then
