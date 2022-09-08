@@ -1113,14 +1113,22 @@ function ElvUI_EltreumUI:Shadows()
 				if not (self.RightChatIsSkinned) then
 					RightChatShadow.shadow = RightChatShadow:CreateShadow(nil, true)
 					RightChatShadow:SetPoint("TOPRIGHT", _G["RightChatPanel"] ,"TOPRIGHT", 0, 0)
-					RightChatShadow:SetPoint("BOTTOMLEFT", _G["RightChatDataPanel"] ,"BOTTOMLEFT", 0, 0)
+					if E.db["datatexts"]["panels"]["RightChatDataPanel"]["enable"] then
+						RightChatShadow:SetPoint("BOTTOMLEFT", _G["RightChatDataPanel"] ,"BOTTOMLEFT", 0, 0)
+					else
+						RightChatShadow:SetPoint("BOTTOMLEFT", _G["RightChatPanel"] ,"BOTTOMLEFT", 0, 0)
+					end
 					RightChatShadow:Show()
 					self.RightChatIsSkinned = true
 				end
 				if not (self.LeftChatIsSkinned) then
 					LeftChatShadow.shadow = LeftChatShadow:CreateShadow(nil, true)
 					LeftChatShadow:SetPoint("TOPLEFT", _G["LeftChatPanel"] ,"TOPLEFT", 0, 0)
-					LeftChatShadow:SetPoint("BOTTOMRIGHT", _G["LeftChatDataPanel"] ,"BOTTOMRIGHT", 0, 0)
+					if E.db["datatexts"]["panels"]["LeftChatDataPanel"]["enable"] then
+						LeftChatShadow:SetPoint("BOTTOMRIGHT", _G["LeftChatDataPanel"] ,"BOTTOMRIGHT", 0, 0)
+					else
+						LeftChatShadow:SetPoint("BOTTOMRIGHT", _G["LeftChatPanel"] ,"BOTTOMRIGHT", 0, 0)
+					end
 					LeftChatShadow:Show()
 					self.LeftChatIsSkinned = true
 				end
