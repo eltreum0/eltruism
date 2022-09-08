@@ -315,11 +315,17 @@ local function EltruismStatsDatatextOnEnter()
 		local versdef = GetCombatRatingBonus(31) + GetVersatilityBonus(31)
 		local versatility = STAT_VERSATILITY..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", math.max(versdef,versdmg)).."|r"
 
+		local avoidance = GetAvoidance()
+		local leech = GetLifesteal()
+		local speed = GetSpeed()
 		DT.tooltip:ClearLines()
-		DT.tooltip:AddDoubleLine(STAT_CRITICAL_STRIKE..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%",  retailcrit).."|r",1,1,1)
-		DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%",  retailhaste).."|r",1,1,1)
-		DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%",  GetMasteryEffect()).."|r",1,1,1)
-		DT.tooltip:AddDoubleLine(STAT_VERSATILITY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%",  math.max(versdef,versdmg)).."|r",1,1,1)
+		DT.tooltip:AddDoubleLine(STAT_CRITICAL_STRIKE..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", retailcrit).."|r",1,1,1)
+		DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", retailhaste).."|r",1,1,1)
+		DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMasteryEffect()).."|r",1,1,1)
+		DT.tooltip:AddDoubleLine(STAT_VERSATILITY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", math.max(versdef,versdmg)).."|r",1,1,1)
+		DT.tooltip:AddDoubleLine(STAT_AVOIDANCE..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", avoidance).."|r",1,1,1)
+		DT.tooltip:AddDoubleLine(STAT_LIFESTEAL..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", leech).."|r",1,1,1)
+		DT.tooltip:AddDoubleLine(STAT_SPEED..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", speed).."|r",1,1,1)
 
 		DT.tooltip:Show()
 	else
@@ -418,7 +424,8 @@ local function EltruismStatsDatatext2(dt)
 		--versatility
 		local versdmg = GetCombatRatingBonus(29) + GetVersatilityBonus(29)
 		local versdef = GetCombatRatingBonus(31) + GetVersatilityBonus(31)
-		local versatility = STAT_VERSATILITY..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", math.max(versdef,versdmg)).."|r"
+		local versatilitylabel = E:ShortenString(STAT_VERSATILITY, 4)
+		local versatility = versatilitylabel..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", math.max(versdef,versdmg)).."|r"
 		dt.text:SetFormattedText('%s %s|r',mastery,versatility)
 	else
 		--power
