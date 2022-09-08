@@ -449,7 +449,7 @@ function ElvUI_EltreumUI:Borders()
 				end
 				focustargetborder:SetBackdrop({
 					edgeFile = bordertexture,
-					edgeSize = E.db.ElvUI_EltreumUI.borders.focustargetsize,
+					edgeSize = E.db.ElvUI_EltreumUI.borders.focussize,
 				})
 				focustargetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				focustargetborder:SetFrameStrata("LOW")
