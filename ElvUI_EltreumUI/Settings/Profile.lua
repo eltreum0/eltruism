@@ -452,7 +452,6 @@ P.ElvUI_EltreumUI = {
 		petsize = 20,
 		groupsize = 14,
 		focussize = 20,
-		focustargetsize = 20,
 		bosssize = 20,
 		minimapsize = 15,
 		chatsize = 13,

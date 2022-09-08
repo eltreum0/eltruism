@@ -449,7 +449,7 @@ function ElvUI_EltreumUI:Borders()
 				end
 				focustargetborder:SetBackdrop({
 					edgeFile = bordertexture,
-					edgeSize = E.db.ElvUI_EltreumUI.borders.focustargetsize,
+					edgeSize = E.db.ElvUI_EltreumUI.borders.focussize,
 				})
 				focustargetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				focustargetborder:SetFrameStrata("LOW")
@@ -884,7 +884,7 @@ function ElvUI_EltreumUI:Borders()
 end
 
 function ElvUI_EltreumUI:AuraBorders(button)
-	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable then
+	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable then
 		if E.db.ElvUI_EltreumUI.borders.classcolor then
 			classcolor = E:ClassColor(E.myclass, true)
 		elseif not E.db.ElvUI_EltreumUI.borders.classcolor then
