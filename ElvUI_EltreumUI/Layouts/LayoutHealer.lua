@@ -245,7 +245,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["actionbar"]["rightClickSelfCast"] = true
 	E.db["actionbar"]["stanceBar"]["style"] = "classic"
 	E.db["actionbar"]["stanceBar"]["keepSizeRatio"] = false
-	E.db["actionbar"]["stanceBar"]["buttonSize"] = 27
+	E.db["actionbar"]["stanceBar"]["buttonSize"] = 25 --27 can go over if too many stances
 	E.db["actionbar"]["stanceBar"]["buttonHeight"] = 20
 	E.db["actionbar"]["stanceBar"]["buttonSpacing"] = 3
 	E.db["actionbar"]["stanceBar"]["hotkeyFont"] = "Kimberley"
