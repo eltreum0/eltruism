@@ -358,6 +358,8 @@ local function EltruismStatsDatatextOnEnter()
 			powerlabel = MELEE_ATTACK_POWER
 		elseif spellpower > totalranged and spellpower > totalmelee then
 			powerlabel = ITEM_MOD_SPELL_POWER_SHORT
+		else
+			powerlabel = ATTACK_POWER
 		end
 
 		local hitlabel
@@ -367,6 +369,8 @@ local function EltruismStatsDatatextOnEnter()
 			hitlabel = ITEM_MOD_HIT_MELEE_RATING_SHORT
 		elseif spellhit > rangedhit and spellhit > meleehit then
 			hitlabel = ITEM_MOD_HIT_SPELL_RATING_SHORT
+		else
+			hitlabel = HIT
 		end
 
 		DT.tooltip:ClearLines()
