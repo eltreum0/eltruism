@@ -1000,13 +1000,13 @@ function ElvUI_EltreumUI:Shadows()
 			end
 			if E.db["unitframe"]["units"]["target"]["power"]["width"] == "inset" then
 				if _G["ElvUF_Target"] and _G["ElvUF_Target"].shadow then
-					_G["ElvUF_Target"]:ClearAllPoints()
+					_G["ElvUF_Target"].shadow:ClearAllPoints()
 					_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target"], "TOPLEFT",-3,3)
 					_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target"], "BOTTOMRIGHT",3,-3)
 				end
 			else
 				if _G["ElvUF_Target"] and _G["ElvUF_Target"].shadow then
-					_G["ElvUF_Target"]:ClearAllPoints()
+					_G["ElvUF_Target"].shadow:ClearAllPoints()
 					_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target_HealthBar"], "TOPLEFT",-3,3)
 					_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_PowerBar"], "BOTTOMRIGHT",3,-3)
 				end
@@ -1024,13 +1024,13 @@ function ElvUI_EltreumUI:Shadows()
 			end
 			if E.db["unitframe"]["units"]["targettarget"]["power"]["width"] == "inset" then
 				if _G["ElvUF_TargetTarget"] and _G["ElvUF_TargetTarget"].shadow then
-					_G["ElvUF_TargetTarget"]:ClearAllPoints()
+					_G["ElvUF_TargetTarget"].shadow:ClearAllPoints()
 					_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget"], "TOPLEFT",-3,3)
 					_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget"], "BOTTOMRIGHT",3,-3)
 				end
 			else
 				if _G["ElvUF_TargetTarget"] and _G["ElvUF_TargetTarget"].shadow then
-					_G["ElvUF_TargetTarget"]:ClearAllPoints()
+					_G["ElvUF_TargetTarget"].shadow:ClearAllPoints()
 					_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget_HealthBar"], "TOPLEFT",-3,3)
 					_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget_PowerBar"], "BOTTOMRIGHT",3,-3)
 				end
