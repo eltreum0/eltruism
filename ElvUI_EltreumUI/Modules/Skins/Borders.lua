@@ -103,7 +103,7 @@ function ElvUI_EltreumUI:Borders()
 				playerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				playerborder:SetFrameStrata("LOW")
 
-				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
+				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.player.infoPanel.enable then
 					playerborder:SetPoint("CENTER", _G.ElvUF_Player, "CENTER", 0, E.db.unitframe.units.player.infoPanel.height)
 				end
 			end
@@ -158,7 +158,7 @@ function ElvUI_EltreumUI:Borders()
 				targetborder:SetFrameStrata("LOW")
 				--targetborder:SetFrameLevel(12)
 
-				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
+				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.target.infoPanel.enable then
 					targetborder:SetPoint("CENTER", _G.ElvUF_Target, "CENTER", 0, E.db.unitframe.units.target.infoPanel.height)
 				end
 			end
@@ -212,7 +212,7 @@ function ElvUI_EltreumUI:Borders()
 				targettargetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				targettargetborder:SetFrameStrata("LOW")
 
-				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
+				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.targettarget.infoPanel.enable then
 					targettargetborder:SetPoint("CENTER", _G.ElvUF_TargetTarget, "CENTER", 0, E.db.unitframe.units.targettarget.infoPanel.height)
 				end
 			end
@@ -237,7 +237,7 @@ function ElvUI_EltreumUI:Borders()
 				petborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				petborder:SetFrameStrata("LOW")
 
-				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
+				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.pet.infoPanel.enable then
 					petborder:SetPoint("CENTER", _G.ElvUF_Pet, "CENTER", 0, E.db.unitframe.units.pet.infoPanel.height)
 				end
 			end
@@ -400,7 +400,7 @@ function ElvUI_EltreumUI:Borders()
 				focusborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				focusborder:SetFrameStrata("LOW")
 
-				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
+				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.focus.infoPanel.enable then
 					focusborder:SetPoint("CENTER", _G.ElvUF_Focus, "CENTER", 0, E.db.unitframe.units.focus.infoPanel.height)
 				end
 			end
@@ -454,7 +454,7 @@ function ElvUI_EltreumUI:Borders()
 				focustargetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				focustargetborder:SetFrameStrata("LOW")
 
-				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
+				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.focustarget.infoPanel.enable then
 					focustargetborder:SetPoint("CENTER", _G.ElvUF_FocusTarget, "CENTER", 0, E.db.unitframe.units.focustarget.infoPanel.height)
 				end
 			end
