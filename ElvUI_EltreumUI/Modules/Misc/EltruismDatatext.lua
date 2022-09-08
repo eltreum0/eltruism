@@ -305,6 +305,39 @@ DT:RegisterDatatext('EltruismTeleports', nil, { 'SPELL_UPDATE_COOLDOWN', 'BAG_UP
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------stats datatext
 
 local function EltruismStatsDatatextOnEnter()
+
+
+	local basestat1, currentstat1, statbuff1, statnerf1 = UnitStat('player', LE_UNIT_STAT_STRENGTH)
+	local basestat2, currentstat2, statbuff2, statnerf2 = UnitStat('player', LE_UNIT_STAT_AGILITY)
+	local basestat3, currentstat3, statbuff3, statnerf3 = UnitStat('player', LE_UNIT_STAT_INTELLECT)
+	local basestatlabel, basestat, currentstat,statbuff,statnerf
+
+	if currentstat1 > currentstat2  and currentstat1 > currentstat3 then
+		basestatlabel = SPEC_FRAME_PRIMARY_STAT_STRENGTH
+		basestat = basestat1
+		currentstat = currentstat1
+		statbuff = statbuff1
+		statnerf = statnerf1
+	elseif currentstat2 > currentstat1  and currentstat2 > currentstat3 then
+		basestatlabel = SPEC_FRAME_PRIMARY_STAT_AGILITY
+		basestat = basestat2
+		currentstat = currentstat2
+		statbuff = statbuff2
+		statnerf = statnerf2
+	elseif currentstat3 > currentstat2  and currentstat3 > currentstat1 then
+		basestatlabel = SPEC_FRAME_PRIMARY_STAT_INTELLECT
+		basestat = basestat3
+		currentstat = currentstat3
+		statbuff = statbuff3
+		statnerf = statnerf3
+	else
+		basestatlabel = SPEC_FRAME_PRIMARY_STAT_STRENGTH
+		basestat = basestat1
+		currentstat = currentstat1
+		statbuff = statbuff1
+		statnerf = statnerf1
+	end
+
 	if E.Retail then
 		--mastery
 		local retailhaste = GetHaste()
@@ -319,6 +352,7 @@ local function EltruismStatsDatatextOnEnter()
 		local leech = GetLifesteal()
 		local speed = GetSpeed()
 		DT.tooltip:ClearLines()
+		DT.tooltip:AddDoubleLine(basestatlabel..":", ElvUI[1].media.hexvaluecolor..currentstat.."|r",1,1,1)
 		DT.tooltip:AddDoubleLine(STAT_CRITICAL_STRIKE..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", retailcrit).."|r",1,1,1)
 		DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", retailhaste).."|r",1,1,1)
 		DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMasteryEffect()).."|r",1,1,1)
@@ -329,6 +363,7 @@ local function EltruismStatsDatatextOnEnter()
 
 		DT.tooltip:Show()
 	else
+
 		--haste
 		local meleehaste =  GetHaste()
 		local spellhaste = GetCombatRatingBonus(CR_HASTE_SPELL)
@@ -380,6 +415,7 @@ local function EltruismStatsDatatextOnEnter()
 		end
 
 		DT.tooltip:ClearLines()
+		DT.tooltip:AddDoubleLine(basestatlabel..":", ElvUI[1].media.hexvaluecolor..currentstat.."|r ".."(|cffFFFFFF"..(basestat-statbuff+statnerf).."|r + |cff09ff00"..statbuff.."|r - |cfff44336"..statnerf.."|r)",1,1,1)
 		DT.tooltip:AddDoubleLine(powerlabel..":", ElvUI[1].media.hexvaluecolor..math.max(totalranged,totalmelee,spellpower).."|r", 1, 1, 1)
 		DT.tooltip:AddDoubleLine(hitlabel..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", math.max(rangedhit,meleehit,spellhit)).."|r",1,1,1)
 		DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", math.max(meleehaste,spellhaste)).."|r",1,1,1)
