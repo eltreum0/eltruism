@@ -794,3 +794,14 @@ E:AddTag("eltruism:hpstatusnopc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PL
 	end
 end)
 E:AddTagInfo("eltruism:hpstatusnopc", ElvUI_EltreumUI.Name, L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [eltruism:hpstatusnopc{number,number}]"])
+
+--health deficit + perhp
+E:AddTag("eltruism:hpdeficitpc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE", function(unit)
+	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
+	local deficit = maxhp - cur
+
+	if deficit > 0 and cur > 0 then
+		return ("-"..E:ShortValue(deficit).." | "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)))
+	end
+end)
+E:AddTagInfo("eltruism:hpdeficitpc", ElvUI_EltreumUI.Name, L["Displays health lost in shortvalue and current health percentage"])
