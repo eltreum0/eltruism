@@ -2161,8 +2161,8 @@ function ElvUI_EltreumUI:Configtable()
 								hidden = E.Classic,
 								--hidden = function() if E.Classic then return true else return false end end,
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focustarget.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.focusbordertarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.focusbordertarget = value ElvUI_EltreumUI:Borders() end,
+								get = function() return E.db.ElvUI_EltreumUI.borders.focustargetborder end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.borders.focustargetborder = value ElvUI_EltreumUI:Borders() end,
 							},
 							borderxfocustarget = {
 								type = 'range',
@@ -8990,6 +8990,7 @@ function ElvUI_EltreumUI:Configtable()
 									["ATWOODGRAVED"] = 'Atwood '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\Tank',':20:20'),
 									["ATWOODGREY"] = 'Atwood Grey '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Tank',':20:20'),
 									["ATWOODWHITE"] = 'Atwood White '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Tank',':20:20'),
+									["RELEAF"] = 'Releaf '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Tank',':20:20'),
 									["CUSTOM"] = 'Custom',
 								},
 								sorting = {
@@ -8999,6 +9000,7 @@ function ElvUI_EltreumUI:Configtable()
 									"ATWOODGRAVED",
 									"ATWOODGREY",
 									"ATWOODWHITE",
+									"RELEAF",
 									"CUSTOM"
 								},
 								style = 'radio',

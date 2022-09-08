@@ -1235,6 +1235,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["target"]["buffs"]["maxDuration"] = 1200
 	E.db["unitframe"]["units"]["target"]["buffs"]["xOffset"] = 0
 	E.db["unitframe"]["units"]["target"]["buffs"]["yOffset"] = -2
+	E.db["unitframe"]["units"]["target"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useCustomBackdrop"] = true
 	E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0
 	E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0
