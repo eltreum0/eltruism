@@ -229,6 +229,12 @@ local function ColorSysMsgs(_, event, message, ...)
 				HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Healer', sizeString),
 				DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Tank', sizeString),
 			}
+		elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "RELEAF" then
+			roleIcons = {
+				TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS', sizeString),
+				HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer', sizeString),
+				DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Tank', sizeString),
+			}
 		end
 		_G.INLINE_TANK_ICON = roleIcons.TANK
 		_G.INLINE_HEALER_ICON = roleIcons.HEALER
@@ -287,6 +293,12 @@ function ElvUI_EltreumUI:ChatRoleSwapIcons()
 				HEALER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Healer.tga',
 				DAMAGER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Tank.tga',
 			}
+		elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "RELEAF" then
+			UF.RoleIconTextures = {
+				TANK = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS.tga',
+				HEALER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer.tga',
+				DAMAGER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Tank.tga',
+			}
 		end
 		if IsAddOnLoaded("ElvUI_SLE") then
 			local SLE = unpack(ElvUI_SLE)
@@ -319,6 +331,11 @@ function ElvUI_EltreumUI:ChatRoleSwapIcons()
 				TANK = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\DPS.tga',
 				HEALER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Healer.tga',
 				DAMAGER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Tank.tga',
+			}
+			SLE.rolePaths["RELEAF"] = {
+				TANK = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS.tga',
+				HEALER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer.tga',
+				DAMAGER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Tank.tga',
 			}
 			SLE.rolePaths["Eltruism Custom"] = {
 				TANK = [[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank,
@@ -452,6 +469,17 @@ if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 			TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\DPS', sizeString),
 			HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Healer', sizeString),
 			DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Tank', sizeString),
+		}
+	elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "RELEAF" then
+		roleIcons = {
+			TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS', sizeString),
+			HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer', sizeString),
+			DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Tank', sizeString),
+		}
+		CH.RoleIcons = {
+			TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS', sizeString),
+			HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer', sizeString),
+			DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Tank', sizeString),
 		}
 	end
 	_G.INLINE_TANK_ICON = roleIcons.TANK
