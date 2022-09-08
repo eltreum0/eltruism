@@ -1107,7 +1107,7 @@ function ElvUI_EltreumUI:SetupDataText()
 	E.global["datatexts"]["customPanels"]["EltruismTime"]["backdrop"] = false
 	E.global["datatexts"]["customPanels"]["EltruismTime"]["panelTransparency"] = false
 	E.global["datatexts"]["customPanels"]["EltruismTime"]["border"] = false
-	E.global["datatexts"]["customPanels"]["EltruismTime"]["frameLevel"] = 1
+	E.global["datatexts"]["customPanels"]["EltruismTime"]["frameLevel"] = 2
 	E.global["datatexts"]["customPanels"]["EltruismTime"]["frameStrata"] = "LOW"
 	E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["enable"] = true
 	E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["font"] = "Kimberley"
