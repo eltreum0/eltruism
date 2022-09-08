@@ -577,10 +577,16 @@ function UF:Configure_InfoPanel(frame)
 			portrait.db = db.portrait
 			if frame.USE_PORTRAIT and portrait.db.style ~= '3D' then
 				if frame.ORIENTATION == 'LEFT' then
-					frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
+					--[[frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
 					frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER+portrait.db.width, -(UF.SPACING*3))
 					frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height)
 					frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER+portrait.db.width, db.infoPanel.height)
+					frame.InfoPanel:SetSize(db.width-portrait.db.width,db.infoPanel.height)]]
+
+					frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
+					frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER+portrait.db.width, -(UF.SPACING*3))
+					frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT',  -UF.BORDER - UF.SPACING, db.infoPanel.height - (UF.BORDER/2))
+					frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER+portrait.db.width, db.infoPanel.height - (UF.BORDER/2))
 					frame.InfoPanel:SetSize(db.width-portrait.db.width,db.infoPanel.height)
 				elseif frame.ORIENTATION == 'RIGHT' then
 					frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING - portrait.db.width, UF.BORDER + UF.SPACING)
@@ -654,14 +660,14 @@ function ElvUI_EltreumUI:SkinPortrait(frame)
 			if frame.ORIENTATION == 'LEFT' then
 				if portrait.db.style == '2D' then
 					portrait:ClearAllPoints()
-					portrait:SetPoint("BOTTOMLEFT", portrait.backdrop, "BOTTOMLEFT", 0, 1)
-					portrait:SetPoint("BOTTOMRIGHT", portrait.backdrop, "BOTTOMRIGHT", 0, 1)
+					portrait:SetPoint("BOTTOMLEFT", portrait.backdrop, "BOTTOMLEFT", 0, 1-(UF.BORDER/2))
+					portrait:SetPoint("BOTTOMRIGHT", portrait.backdrop, "BOTTOMRIGHT", 0, 1-(UF.BORDER/2))
 					portrait:SetPoint("TOPRIGHT", portrait.backdrop, "TOPRIGHT", 0, db.infoPanel.height)
 					portrait:SetPoint("TOPLEFT", portrait.backdrop, "TOPLEFT", 0, db.infoPanel.height)
 				elseif portrait.db.style == 'Class' then
 					portrait:ClearAllPoints()
-					portrait:SetPoint("BOTTOMRIGHT", frame, "BOTTOMLEFT", 0, db.infoPanel.height)
-					portrait:SetPoint("BOTTOMLEFT", frame, "BOTTOMRIGHT", 0+portrait.db.width, db.infoPanel.height)
+					portrait:SetPoint("BOTTOMRIGHT", frame, "BOTTOMLEFT", 0, db.infoPanel.height-(UF.BORDER/2))
+					portrait:SetPoint("BOTTOMLEFT", frame, "BOTTOMRIGHT", 0+portrait.db.width, db.infoPanel.height-(UF.BORDER/2))
 					portrait:SetPoint("TOPRIGHT", frame, "TOPLEFT", 0, db.infoPanel.height)
 					portrait:SetPoint("TOPLEFT", frame, "TOPLEFT", 0+portrait.db.width, db.infoPanel.height)
 					portrait.backdrop:ClearAllPoints()
@@ -670,16 +676,16 @@ function ElvUI_EltreumUI:SkinPortrait(frame)
 			elseif frame.ORIENTATION == 'RIGHT' then
 				if portrait.db.style == '2D' then
 					portrait:ClearAllPoints()
-					portrait:SetPoint("BOTTOMLEFT", portrait.backdrop, "BOTTOMLEFT", 0, 1)
-					portrait:SetPoint("BOTTOMRIGHT", portrait.backdrop, "BOTTOMRIGHT", 0, 1)
-					portrait:SetPoint("TOPRIGHT", portrait.backdrop, "TOPRIGHT", 0, db.infoPanel.height)
-					portrait:SetPoint("TOPLEFT", portrait.backdrop, "TOPLEFT", 0, db.infoPanel.height)
+					portrait:SetPoint("BOTTOMLEFT", portrait.backdrop, "BOTTOMLEFT", 0, 1-(UF.BORDER/2))
+					portrait:SetPoint("BOTTOMRIGHT", portrait.backdrop, "BOTTOMRIGHT", 0, 1-(UF.BORDER/2))
+					portrait:SetPoint("TOPRIGHT", portrait.backdrop, "TOPRIGHT", 0, db.infoPanel.height+(UF.BORDER/2))
+					portrait:SetPoint("TOPLEFT", portrait.backdrop, "TOPLEFT", 0, db.infoPanel.height+(UF.BORDER/2))
 				elseif portrait.db.style == 'Class' then
 					portrait:ClearAllPoints()
-					portrait:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 0, db.infoPanel.height)
-					portrait:SetPoint("BOTTOMLEFT", frame, "BOTTOMRIGHT", 0-portrait.db.width, db.infoPanel.height)
-					portrait:SetPoint("TOPLEFT", frame, "TOPRIGHT", 0-portrait.db.width, db.infoPanel.height)
-					portrait:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 0, db.infoPanel.height)
+					portrait:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 0, db.infoPanel.height)--+(UF.BORDER/2))
+					portrait:SetPoint("BOTTOMLEFT", frame, "BOTTOMRIGHT", 0-portrait.db.width, db.infoPanel.height)--+(UF.BORDER/2))
+					portrait:SetPoint("TOPLEFT", frame, "TOPRIGHT", 0-portrait.db.width, db.infoPanel.height+(UF.BORDER/2))
+					portrait:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 0, db.infoPanel.height+(UF.BORDER/2))
 					portrait.backdrop:ClearAllPoints()
 					portrait.backdrop:SetAllPoints(portrait)
 				end
