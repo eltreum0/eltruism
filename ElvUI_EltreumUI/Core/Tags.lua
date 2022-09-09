@@ -805,3 +805,14 @@ E:AddTag("eltruism:hpdeficitpc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE", 
 	end
 end)
 E:AddTagInfo("eltruism:hpdeficitpc", ElvUI_EltreumUI.Name, L["Displays health lost in shortvalue and current health percentage"])
+
+--health deficit + perhp
+E:AddTag("eltruism:pchpdeficit", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE", function(unit)
+	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
+	local deficit = maxhp - cur
+
+	if deficit > 0 and cur > 0 then
+		return (E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." | ".."-"..E:ShortValue(deficit))
+	end
+end)
+E:AddTagInfo("eltruism:pchpdeficit", ElvUI_EltreumUI.Name, L["Displays current health percentage and health lost in shortvalue"])

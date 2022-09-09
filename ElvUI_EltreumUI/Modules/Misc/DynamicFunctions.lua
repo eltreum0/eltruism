@@ -451,6 +451,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 			E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
 		else
 			if E.db.ElvUI_EltreumUI.borders.borders then
+				if not E.db.movers then E.db.movers = {} end
 
 				--transparency doesnt work well with borders due to the .backdrop/twopixels thing on UF
 				E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 1
