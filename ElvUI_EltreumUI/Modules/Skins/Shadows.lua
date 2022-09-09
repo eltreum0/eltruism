@@ -816,7 +816,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--player castbar
-			if E.db.unitframe.units.player.castbar.overlayOnFrame == "None" and not (E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.ElvUI_EltreumUI.borders.borders) then
+			if E.db.unitframe.units.player.castbar.overlayOnFrame == "None" and not (E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.ElvUI_EltreumUI.borders.borders) and E.db.unitframe.units.player.castbar.icon then
 				if E.db.unitframe.units.player.castbar.iconAttached == false then
 					PlayerCastbar:SetSize(E.db.unitframe.units.player.castbar.width + E.db.unitframe.units.player.castbar.iconSize -4, E.db.unitframe.units.player.castbar.height - 3)
 				elseif E.db.unitframe.units.player.castbar.iconAttached == true then
@@ -845,7 +845,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--target castbar
-			if E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and not (E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.ElvUI_EltreumUI.borders.borders) then
+			if E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and not (E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.ElvUI_EltreumUI.borders.borders) and E.db.unitframe.units.target.castbar.icon then
 				if E.db.unitframe.units.target.castbar.iconAttached == false then
 					TargetCastbar:SetSize(E.db.unitframe.units.target.castbar.width + E.db.unitframe.units.target.castbar.iconSize - 4, E.db.unitframe.units.target.castbar.height - 3)
 					if E.db["unitframe"]["units"]["target"]["castbar"]["iconPosition"] == "LEFT" then
