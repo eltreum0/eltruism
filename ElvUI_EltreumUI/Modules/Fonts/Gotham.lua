@@ -850,6 +850,10 @@ function ElvUI_EltreumUI:SetupFontsGotham()
 		end
 	end
 
+	if E.db["datatexts"]["panels"]["EltruismTime"] and E.db["datatexts"]["panels"]["EltruismTime"]["enable"] then
+		E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["font"] = "GothamNarrow Black"
+	end
+
 	E:StaggeredUpdateAll(nil, true)
 	ElvUI_EltreumUI:Print(L["GothamNarrow Black Font has been set."])
 

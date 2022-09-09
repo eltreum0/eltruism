@@ -277,4 +277,8 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline()
 			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumStatus"]["fontOutline"] = "OUTLINE"
 		end
 	end
+
+	if E.db["datatexts"]["panels"]["EltruismTime"] and E.db["datatexts"]["panels"]["EltruismTime"]["enable"] then
+		E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["fontOutline"] = "OUTLINE"
+	end
 end

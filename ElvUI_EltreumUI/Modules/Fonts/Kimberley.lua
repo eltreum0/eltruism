@@ -851,6 +851,10 @@ function ElvUI_EltreumUI:SetupFontsKimberley()
 		end
 	end
 
+	if E.db["datatexts"]["panels"]["EltruismTime"] and E.db["datatexts"]["panels"]["EltruismTime"]["enable"] then
+		E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["font"] = "Kimberley"
+	end
+
 	E:StaggeredUpdateAll(nil, true)
 	ElvUI_EltreumUI:Print(L["Kimberley Font has been set."])
 

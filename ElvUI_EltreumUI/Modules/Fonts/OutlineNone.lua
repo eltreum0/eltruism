@@ -276,4 +276,8 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone()
 			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumStatus"]["fontOutline"] = "NONE"
 		end
 	end
+
+	if E.db["datatexts"]["panels"]["EltruismTime"] and E.db["datatexts"]["panels"]["EltruismTime"]["enable"] then
+		E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["fontOutline"] = "NONE"
+	end
 end
