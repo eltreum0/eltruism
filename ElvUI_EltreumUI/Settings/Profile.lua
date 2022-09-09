@@ -578,6 +578,7 @@ P.ElvUI_EltreumUI = {
 		--modetexture = false,
 		darkpowercolor = false,
 		infopanelontop = false,
+		infopanelontopallframes = false,
 		greybackground = false,
 		gradientmode = {
 			enable = false,

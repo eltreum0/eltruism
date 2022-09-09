@@ -10433,15 +10433,24 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.infopanelontop end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.infopanelontop = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							darkpowerdesc = {
+							infoPanelOnTopall = {
 								order = 988,
+								type = 'toggle',
+								width = "full",
+								name = L["Enable on All Unitframes"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.infopanelontop end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							darkpowerdesc = {
+								order = 989,
 								type = "description",
 								name = L["Change the Class Power background"],
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								width = "full",
 							},
 							darkpowerenable = {
-								order = 989,
+								order = 990,
 								type = 'toggle',
 								width = "full",
 								name = L["Dark Power Background"],
