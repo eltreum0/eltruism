@@ -1178,3 +1178,4 @@ L["Focus Target Border"] = "Fokusziel Rahmen"
 L["Raid1 Border"] = "Schlachtzug1 Rahmen"
 L["Raid2 Border"] = "Schlachtzug2 Rahmen"
 L["Raid3 Border"] = "Schlachtzug3 Rahmen"
+L["Enable on All Unitframes"] = true

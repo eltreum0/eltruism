@@ -1129,3 +1129,4 @@ L["Focus Target Border"] = true
 L["Raid1 Border"] = true
 L["Raid2 Border"] = true
 L["Raid3 Border"] = true
+L["Enable on All Unitframes"] = true
