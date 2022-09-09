@@ -885,6 +885,13 @@ function ElvUI_EltreumUI:Shadows()
 					if not frame.shadow then
 						if not (E.db.ElvUI_EltreumUI.borders.partyborders and E.db.ElvUI_EltreumUI.borders.borders) then
 							frame:CreateShadow()
+							if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
+								frame.shadow:ClearAllPoints()
+								frame.shadow:SetPoint("BOTTOMLEFT", frame.Power,"BOTTOMLEFT", -3, -2)
+								frame.shadow:SetPoint("BOTTOMRIGHT", frame.Power,"BOTTOMRIGHT", 3, -2)
+								frame.shadow:SetPoint("TOPLEFT", frame.InfoPanel,"TOPLEFT", -3, 3)
+								frame.shadow:SetPoint("TOPRIGHT", frame.InfoPanel,"TOPRIGHT", 3, 3)
+							end
 						end
 					end
 					--[[for _, button in pairs(partymembers) do
@@ -902,6 +909,13 @@ function ElvUI_EltreumUI:Shadows()
 					if not frame.shadow then
 						if not (E.db.ElvUI_EltreumUI.borders.bossborder and E.db.ElvUI_EltreumUI.borders.borders) then
 							frame:CreateShadow()
+							if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
+								frame.shadow:ClearAllPoints()
+								frame.shadow:SetPoint("BOTTOMLEFT", frame.Power,"BOTTOMLEFT", -3, -2)
+								frame.shadow:SetPoint("BOTTOMRIGHT", frame.Power,"BOTTOMRIGHT", 3, -2)
+								frame.shadow:SetPoint("TOPLEFT", frame.InfoPanel,"TOPLEFT", -3, 3)
+								frame.shadow:SetPoint("TOPRIGHT", frame.InfoPanel,"TOPRIGHT", 3, 3)
+							end
 						end
 					end
 					--[[for _, button in pairs(bossmembers) do
@@ -918,6 +932,13 @@ function ElvUI_EltreumUI:Shadows()
 				for _, frame in pairs(tankmembers) do
 					if not frame.shadow then
 						frame:CreateShadow()
+						if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
+							frame.shadow:ClearAllPoints()
+							frame.shadow:SetPoint("BOTTOMLEFT", frame.Power,"BOTTOMLEFT", -3, -2)
+							frame.shadow:SetPoint("BOTTOMRIGHT", frame.Power,"BOTTOMRIGHT", 3, -2)
+							frame.shadow:SetPoint("TOPLEFT", frame.InfoPanel,"TOPLEFT", -3, 3)
+							frame.shadow:SetPoint("TOPRIGHT", frame.InfoPanel,"TOPRIGHT", 3, 3)
+						end
 					end
 					--[[for _, button in pairs(tankmembers) do
 						if not button.shadow then
@@ -933,6 +954,13 @@ function ElvUI_EltreumUI:Shadows()
 				for _, frame in pairs(assistmembers) do
 					if not frame.shadow then
 						frame:CreateShadow()
+						if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
+							frame.shadow:ClearAllPoints()
+							frame.shadow:SetPoint("BOTTOMLEFT", frame.Power,"BOTTOMLEFT", -3, -2)
+							frame.shadow:SetPoint("BOTTOMRIGHT", frame.Power,"BOTTOMRIGHT", 3, -2)
+							frame.shadow:SetPoint("TOPLEFT", frame.InfoPanel,"TOPLEFT", -3, 3)
+							frame.shadow:SetPoint("TOPRIGHT", frame.InfoPanel,"TOPRIGHT", 3, 3)
+						end
 					end
 					--[[for _, button in pairs(assistmembers) do
 						if not button.shadow then
@@ -1223,6 +1251,20 @@ function ElvUI_EltreumUI:RaidShadows()
 					for _, button in pairs(slots) do
 						if button and not button.shadow then
 							button:CreateShadow()
+							if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
+								button.shadow:ClearAllPoints()
+								--[[if button.Power then
+									button.shadow:SetPoint("BOTTOMLEFT", button.Power,"BOTTOMLEFT", -3, -2)
+									button.shadow:SetPoint("BOTTOMRIGHT", button.Power,"BOTTOMRIGHT", 3, -2)
+								else
+									button.shadow:SetPoint("BOTTOMLEFT", button.Health,"BOTTOMLEFT", -3, -2)
+									button.shadow:SetPoint("BOTTOMRIGHT", button.Health,"BOTTOMRIGHT", 3, -2)
+								end]]
+								button.shadow:SetPoint("BOTTOMLEFT", button.Health,"BOTTOMLEFT", -3, -3)
+								button.shadow:SetPoint("BOTTOMRIGHT", button.Health,"BOTTOMRIGHT", 3, -3)
+								button.shadow:SetPoint("TOPLEFT", button.InfoPanel,"TOPLEFT", -3, 3)
+								button.shadow:SetPoint("TOPRIGHT", button.InfoPanel,"TOPRIGHT", 3, 3)
+							end
 							button.shadow:SetParent(button)
 						end
 					end
