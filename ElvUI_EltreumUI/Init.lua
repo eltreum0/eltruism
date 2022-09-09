@@ -146,19 +146,15 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE') --LootText things
 	ElvUI_EltreumUI:RegisterEvent('INSPECT_READY')
 	if E.Retail then
-		ElvUI_EltreumUI:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED') --for class icons, power bar and shadows
 		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW') --for rogue order hall
-
 		ElvUI_EltreumUI:RegisterEvent('CHALLENGE_MODE_COMPLETED') --for auto screenshot
 	end
 	if E.Retail or E.Wrath then
 		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
+		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 	end
 	if E.Classic or E.TBC or E.Wrath then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
-	end
-	if E.Wrath then
-		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 	end
 	--because some cvars keep resetting for some reason
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEAVING_WORLD')
@@ -287,29 +283,13 @@ function ElvUI_EltreumUI:UI_ERROR_MESSAGE()
 	ElvUI_EltreumUI:LootText()
 end
 
-function ElvUI_EltreumUI:PLAYER_SPECIALIZATION_CHANGED(_, unit)
-	if unit == "player" then
-		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
-		ElvUI_EltreumUI:FixChatToggles()
-		if E.Retail then
-			ElvUI_EltreumUI:GetSpec()
-			ElvUI_EltreumUI:NamePlateOptions()
-			ElvUI_EltreumUI:Shadows()
-			if E.private.nameplates.enable then
-				ElvUI_EltreumUI:UpdateNPwithoutBar()
-			end
-			if E.db.ElvUI_EltreumUI.borders.borders then
-				E:Delay(2, function() ElvUI_EltreumUI:BorderAdjust() end)
-				E:Delay(2, function() ElvUI_EltreumUI:Borders() end)
-			end
-			E:Delay(2, function() ElvUI_EltreumUI:ShowHideBorders() end)
-		end
-	end
-end
-
 function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
-	if E.Wrath then
+	ElvUI_EltreumUI:FixChatToggles()
+	if E.Retail then
+		ElvUI_EltreumUI:GetSpec()
+	end
+	if E.Retail or E.Wrath then
 		ElvUI_EltreumUI:NamePlateOptions()
 		ElvUI_EltreumUI:Shadows()
 		if E.private.nameplates.enable then
