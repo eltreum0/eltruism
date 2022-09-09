@@ -527,12 +527,9 @@ local function EltruismStatsDatatext2(dt)
 		local tspellpower = ATTACK_POWER..": "..ElvUI[1].media.hexvaluecolor..spellpower.."|r"
 
 		--hit rating
-		local rangedhit = GetCombatRatingBonus(CR_HIT_RANGED)
-		local meleehit = GetCombatRatingBonus(CR_HIT_MELEE)
-		local spellhit = GetCombatRatingBonus(CR_HIT_SPELL)
-		local tspellhit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", spellhit).."|r"
-		local tmeleehit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", meleehit,spellhit).."|r"
-		local trangedhit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", rangedhit).."|r"
+		local tspellhit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetCombatRatingBonus(CR_HIT_SPELL)).."|r"
+		local tmeleehit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetCombatRatingBonus(CR_HIT_MELEE)).."|r"
+		local trangedhit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%",  GetCombatRatingBonus(CR_HIT_RANGED)).."|r"
 
 		if E.myclass == "HUNTER" then
 			dt.text:SetFormattedText('%s %s|r',trangedpower,trangedhit)
