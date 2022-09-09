@@ -1048,6 +1048,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid1"]["summonIcon"]["size"] = 20
 	E.db["unitframe"]["units"]["raid1"]["threatStyle"] = "HEALTHBORDER"
 	E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
+	if not E.Retail then
+		E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid11,exists] hide;show"
+	end
 	E.db["unitframe"]["units"]["raid1"]["width"] = 160
 	E.db["unitframe"]["units"]["raid1"]["power"]["enable"] = false
 	E.db["unitframe"]["units"]["raid1"]["power"]["height"] = 8
@@ -1126,6 +1129,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid2"]["summonIcon"]["size"] = 20
 	E.db["unitframe"]["units"]["raid2"]["threatStyle"] = "HEALTHBORDER"
 	E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid21,noexists][@raid31,exists] hide;show"
+	if not E.Retail then
+		E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid11,noexists][@raid26,exists] hide;show"
+	end
 	E.db["unitframe"]["units"]["raid2"]["width"] = 130
 	E.db["unitframe"]["units"]["raid3"]["buffIndicator"]["size"] = 12
 	E.db["unitframe"]["units"]["raid3"]["buffs"]["sizeOverride"] = 17
@@ -1194,6 +1200,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid3"]["summonIcon"]["attachToObject"] = "Health"
 	E.db["unitframe"]["units"]["raid3"]["summonIcon"]["size"] = 15
 	E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid31,noexists] hide;show"
+	if not E.Retail then
+		E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid26,noexists] hide;show"
+	end
 	E.db["unitframe"]["units"]["raid3"]["width"] = 100
 	E.db["unitframe"]["units"]["raidpet"]["enable"] = false
 	E.db["unitframe"]["units"]["raidpet"]["healPrediction"]["absorbStyle"] = "REVERSED"
