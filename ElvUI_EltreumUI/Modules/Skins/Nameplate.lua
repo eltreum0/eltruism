@@ -349,15 +349,35 @@ hooksecurefunc(NP, "SetupTarget", ElvUI_EltreumUI.NameplateModel)
 local FallbackColor = {r=1, b=1, g=1}
 
 --to fix stylefilter for gradient nameplates
-function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, HealthFlash, HealthTexture, Scale, Alpha, NameTag, PowerTag, HealthTag, TitleTag, LevelTag, Portrait, NameOnly)
+function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, HealthFlash, HealthTexture, Scale, Alpha, NameTag, PowerTag, HealthTag, TitleTag, LevelTag, Portrait, NameOnly, Visibility)
 	db = NP:PlateDB(frame)
 
-	if frame.StyleFilterChanges then
-		wipe(frame.StyleFilterChanges)
+	local c = frame.StyleFilterChanges
+	if c then wipe(c) end
+
+	if not NameOnly then -- Only update these if it wasn't NameOnly. Otherwise, it leads to `Update_Tags` which does the job.
+		if NameTag then frame:Tag(frame.Name, db.name.format) frame.Name:UpdateTag() end
+		if PowerTag then frame:Tag(frame.Power.Text, db.power.text.format) frame.Power.Text:UpdateTag() end
+		if HealthTag then frame:Tag(frame.Health.Text, db.health.text.format) frame.Health.Text:UpdateTag() end
+		if TitleTag then frame:Tag(frame.Title, db.title.format) frame.Title:UpdateTag() end
+		if LevelTag then frame:Tag(frame.Level, db.level.format) frame.Level:UpdateTag() end
 	end
 
+	-- generic stuff
+	if Scale then
+		NP:ScalePlate(frame, frame.ThreatScale or 1)
+	end
+	if Alpha then
+		NP:PlateFade(frame, NP.db.fadeIn and 1 or 0, (frame.FadeObject and frame.FadeObject.endAlpha) or 0.5, 1)
+	end
+	if Portrait then
+		NP:Update_Portrait(frame)
+		frame.Portrait:ForceUpdate()
+	end
+
+	-- bar stuff
 	if HealthColor then
-		h = frame.Health
+		local h = frame.Health
 		if h.r and h.g and h.b then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 				GradientNameplates(frame)
@@ -368,7 +388,7 @@ function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, Hea
 		end
 	end
 	if PowerColor then
-		pc = NP.db.colors.power[frame.Power.token] or _G.PowerBarColor[frame.Power.token] or FallbackColor
+		local pc = NP.db.colors.power[frame.Power.token] or _G.PowerBarColor[frame.Power.token] or FallbackColor
 		frame.Power:SetStatusBarColor(pc.r, pc.g, pc.b)
 		frame.Cutaway.Power:SetVertexColor(pc.r * 1.5, pc.g * 1.5, pc.b * 1.5, 1)
 	end
@@ -384,25 +404,8 @@ function NP:StyleFilterClearChanges(frame, HealthColor, PowerColor, Borders, Hea
 		frame.HealthFlashTexture:Hide()
 	end
 	if HealthTexture then
-		tx = E.LSM:Fetch('statusbar', NP.db.statusbar)
+		local tx = E.LSM:Fetch('statusbar', NP.db.statusbar)
 		frame.Health:SetStatusBarTexture(tx)
-	end
-	if Scale then
-		NP:ScalePlate(frame, frame.ThreatScale or 1)
-	end
-	if Alpha then
-		NP:PlateFade(frame, NP.db.fadeIn and 1 or 0, (frame.FadeObject and frame.FadeObject.endAlpha) or 0.5, 1)
-	end
-	if Portrait then
-		NP:Update_Portrait(frame)
-		frame.Portrait:ForceUpdate()
-	end
-	if not NameOnly then -- Only update these if it wasn't NameOnly. Otherwise, it leads to `Update_Tags` which does the job.
-		if NameTag then frame:Tag(frame.Name, db.name.format) frame.Name:UpdateTag() end
-		if PowerTag then frame:Tag(frame.Power.Text, db.power.text.format) frame.Power.Text:UpdateTag() end
-		if HealthTag then frame:Tag(frame.Health.Text, db.health.text.format) frame.Health.Text:UpdateTag() end
-		if TitleTag then frame:Tag(frame.Title, db.title.format) frame.Title:UpdateTag() end
-		if LevelTag then frame:Tag(frame.Level, db.level.format) frame.Level:UpdateTag() end
 	end
 end
 
@@ -413,13 +416,65 @@ function NP:StyleFilterSetChanges(frame, actions, HealthColor, PowerColor, Borde
 
 	local db = NP:PlateDB(frame)
 
-	if Visibility then
-		c.Visibility = true
-		NP:DisablePlate(frame) -- disable the plate elements
-		frame:ClearAllPoints() -- lets still move the frame out cause its clickable otherwise
-		frame:Point('TOP', E.UIParent, 'BOTTOM', 0, -500)
-		return -- We hide it. Lets not do other things (no point)
+	if Visibility or NameOnly then
+		c.NameOnly, c.Visibility = NameOnly, Visibility
+
+		NP:DisablePlate(frame, NameOnly, NameOnly)
+
+		if Visibility then
+			frame:ClearAllPoints() -- lets still move the frame out cause its clickable otherwise
+			frame:Point('TOP', E.UIParent, 'BOTTOM', 0, -500)
+			return -- We hide it. Lets not do other things (no point)
+		end
 	end
+
+	-- Keeps Tag changes after NameOnly
+	if NameTag then
+		c.NameTag = true
+		frame:Tag(frame.Name, actions.tags.name)
+		frame.Name:UpdateTag()
+	end
+	if PowerTag then
+		c.PowerTag = true
+		frame:Tag(frame.Power.Text, actions.tags.power)
+		frame.Power.Text:UpdateTag()
+	end
+	if HealthTag then
+		c.HealthTag = true
+		frame:Tag(frame.Health.Text, actions.tags.health)
+		frame.Health.Text:UpdateTag()
+	end
+	if TitleTag then
+		c.TitleTag = true
+		frame:Tag(frame.Title, actions.tags.title)
+		frame.Title:UpdateTag()
+	end
+	if LevelTag then
+		c.LevelTag = true
+		frame:Tag(frame.Level, actions.tags.level)
+		frame.Level:UpdateTag()
+	end
+
+	-- generic stuff
+	if Scale then
+		c.Scale = true
+		NP:ScalePlate(frame, actions.scale)
+	end
+	if Alpha then
+		c.Alpha = true
+		NP:PlateFade(frame, NP.db.fadeIn and 1 or 0, frame:GetAlpha(), actions.alpha * 0.01)
+	end
+	if Portrait then
+		c.Portrait = true
+		NP:Update_Portrait(frame)
+		frame.Portrait:ForceUpdate()
+	end
+
+	if NameOnly then
+		return -- skip the other stuff now
+	end
+
+	-- bar stuff
 	if HealthColor then
 		local hc = (actions.color.healthClass and frame.classColor) or actions.color.healthColor
 		c.HealthColor = hc -- used by Health_UpdateColor
@@ -479,49 +534,6 @@ function NP:StyleFilterSetChanges(frame, actions, HealthColor, PowerColor, Borde
 		if HealthFlash then
 			frame.HealthFlashTexture:SetTexture(tx)
 		end
-	end
-	if Scale then
-		c.Scale = true
-		NP:ScalePlate(frame, actions.scale)
-	end
-	if Alpha then
-		c.Alpha = true
-		NP:PlateFade(frame, NP.db.fadeIn and 1 or 0, frame:GetAlpha(), actions.alpha * 0.01)
-	end
-	if Portrait then
-		c.Portrait = true
-		NP:Update_Portrait(frame)
-		frame.Portrait:ForceUpdate()
-	end
-	if NameOnly then
-		c.NameOnly = true
-		NP:DisablePlate(frame, true, true)
-	end
-	-- Keeps Tag changes after NameOnly
-	if NameTag then
-		c.NameTag = true
-		frame:Tag(frame.Name, actions.tags.name)
-		frame.Name:UpdateTag()
-	end
-	if PowerTag then
-		c.PowerTag = true
-		frame:Tag(frame.Power.Text, actions.tags.power)
-		frame.Power.Text:UpdateTag()
-	end
-	if HealthTag then
-		c.HealthTag = true
-		frame:Tag(frame.Health.Text, actions.tags.health)
-		frame.Health.Text:UpdateTag()
-	end
-	if TitleTag then
-		c.TitleTag = true
-		frame:Tag(frame.Title, actions.tags.title)
-		frame.Title:UpdateTag()
-	end
-	if LevelTag then
-		c.LevelTag = true
-		frame:Tag(frame.Level, actions.tags.level)
-		frame.Level:UpdateTag()
 	end
 end
 
