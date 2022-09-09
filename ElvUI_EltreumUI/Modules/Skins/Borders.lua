@@ -1121,7 +1121,9 @@ function ElvUI_EltreumUI:ShowHideBorders()
 		RightChatBorder,
 		playercastbarborder,
 		partyborder,
-		raidborder,
+		raid1border,
+		raid2border,
+		raid3border,
 		focuscastbarborder,
 	}
 	local barborderbutton
