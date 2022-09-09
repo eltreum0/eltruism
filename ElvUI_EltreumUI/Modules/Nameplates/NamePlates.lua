@@ -365,6 +365,16 @@ function ElvUI_EltreumUI:NamePlateOptions()
 	nameplateclasscolors = E:ClassColor(E.myclass, true)
 	if E.private.nameplates.enable then
 
+		--gradient check for my filters
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
+			if E.global.nameplates.filters.EltreumTarget and E.db["nameplates"]["filters"]["EltreumTarget"] then
+				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
+				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
+			end
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["health"] = false
+			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["healthClass"] = false
+		end
+
 		--glow color
 		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow then
 			E.db["nameplates"]["colors"]["glowColor"]["b"] = nameplateclasscolors.b
