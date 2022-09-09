@@ -1000,13 +1000,13 @@ function ElvUI_EltreumUI:Shadows()
 			end
 			if E.db["unitframe"]["units"]["target"]["power"]["width"] == "inset" then
 				if _G["ElvUF_Target"] and _G["ElvUF_Target"].shadow then
-					_G["ElvUF_Target"]:ClearAllPoints()
+					_G["ElvUF_Target"].shadow:ClearAllPoints()
 					_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target"], "TOPLEFT",-3,3)
 					_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target"], "BOTTOMRIGHT",3,-3)
 				end
 			else
 				if _G["ElvUF_Target"] and _G["ElvUF_Target"].shadow then
-					_G["ElvUF_Target"]:ClearAllPoints()
+					_G["ElvUF_Target"].shadow:ClearAllPoints()
 					_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target_HealthBar"], "TOPLEFT",-3,3)
 					_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_PowerBar"], "BOTTOMRIGHT",3,-3)
 				end
@@ -1024,13 +1024,13 @@ function ElvUI_EltreumUI:Shadows()
 			end
 			if E.db["unitframe"]["units"]["targettarget"]["power"]["width"] == "inset" then
 				if _G["ElvUF_TargetTarget"] and _G["ElvUF_TargetTarget"].shadow then
-					_G["ElvUF_TargetTarget"]:ClearAllPoints()
+					_G["ElvUF_TargetTarget"].shadow:ClearAllPoints()
 					_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget"], "TOPLEFT",-3,3)
 					_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget"], "BOTTOMRIGHT",3,-3)
 				end
 			else
 				if _G["ElvUF_TargetTarget"] and _G["ElvUF_TargetTarget"].shadow then
-					_G["ElvUF_TargetTarget"]:ClearAllPoints()
+					_G["ElvUF_TargetTarget"].shadow:ClearAllPoints()
 					_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget_HealthBar"], "TOPLEFT",-3,3)
 					_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget_PowerBar"], "BOTTOMRIGHT",3,-3)
 				end
@@ -1113,14 +1113,22 @@ function ElvUI_EltreumUI:Shadows()
 				if not (self.RightChatIsSkinned) then
 					RightChatShadow.shadow = RightChatShadow:CreateShadow(nil, true)
 					RightChatShadow:SetPoint("TOPRIGHT", _G["RightChatPanel"] ,"TOPRIGHT", 0, 0)
-					RightChatShadow:SetPoint("BOTTOMLEFT", _G["RightChatDataPanel"] ,"BOTTOMLEFT", 0, 0)
+					if E.db["datatexts"]["panels"]["RightChatDataPanel"]["enable"] then
+						RightChatShadow:SetPoint("BOTTOMLEFT", _G["RightChatDataPanel"] ,"BOTTOMLEFT", 0, 0)
+					else
+						RightChatShadow:SetPoint("BOTTOMLEFT", _G["RightChatPanel"] ,"BOTTOMLEFT", 0, 0)
+					end
 					RightChatShadow:Show()
 					self.RightChatIsSkinned = true
 				end
 				if not (self.LeftChatIsSkinned) then
 					LeftChatShadow.shadow = LeftChatShadow:CreateShadow(nil, true)
 					LeftChatShadow:SetPoint("TOPLEFT", _G["LeftChatPanel"] ,"TOPLEFT", 0, 0)
-					LeftChatShadow:SetPoint("BOTTOMRIGHT", _G["LeftChatDataPanel"] ,"BOTTOMRIGHT", 0, 0)
+					if E.db["datatexts"]["panels"]["LeftChatDataPanel"]["enable"] then
+						LeftChatShadow:SetPoint("BOTTOMRIGHT", _G["LeftChatDataPanel"] ,"BOTTOMRIGHT", 0, 0)
+					else
+						LeftChatShadow:SetPoint("BOTTOMRIGHT", _G["LeftChatPanel"] ,"BOTTOMRIGHT", 0, 0)
+					end
 					LeftChatShadow:Show()
 					self.LeftChatIsSkinned = true
 				end

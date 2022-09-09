@@ -1100,7 +1100,7 @@ updatetargettarget:SetScript("OnEvent", function()
 	elseif not E.private.ElvUI_EltreumUI then
 		return
 	end
-	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor == true then
+	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
 		ElvUI_EltreumUI:BordersTargetChanged()
 	end
 end)

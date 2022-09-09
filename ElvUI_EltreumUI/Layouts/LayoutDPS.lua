@@ -1125,7 +1125,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["raid1"]["portrait"]["overlayAlpha"] = 0.6
 	E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
 	E.db["unitframe"]["units"]["raid1"]["power"]["enable"] = false
-	if E.Wrath or E.TBC or E.Classic then
+	if not E.Retail then
 		E.db["unitframe"]["units"]["raidpet"]["enable"] = false
 		E.db["unitframe"]["units"]["raidpet"]["horizontalSpacing"] = 0
 		E.db["unitframe"]["units"]["raidpet"]["numGroups"] = 3
@@ -1137,6 +1137,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["yOffset"] = 3
 		E.db["unitframe"]["units"]["raidpet"]["verticalSpacing"] = 0
 		E.db["unitframe"]["units"]["raidpet"]["visibility"] = "[@raid6,exists] show; hide"
+		E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid11,exists] hide;show"
 	end
 
 	E.db["unitframe"]["units"]["raid2"]["buffIndicator"]["size"] = 20
@@ -1209,6 +1210,9 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["raid2"]["summonIcon"]["attachToObject"] = "Health"
 	E.db["unitframe"]["units"]["raid2"]["summonIcon"]["yOffset"] = -5
 	E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid21,noexists][@raid31,exists] hide;show"
+	if not E.Retail then
+		E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid11,noexists][@raid26,exists] hide;show"
+	end
 	E.db["unitframe"]["units"]["raid2"]["width"] = 120
 	E.db["unitframe"]["units"]["raid2"]["power"]["enable"] = false
 
@@ -1257,6 +1261,9 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["raid3"]["roleIcon"]["yOffset"] = -1
 	E.db["unitframe"]["units"]["raid3"]["verticalSpacing"] = 3
 	E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid31,noexists] hide;show"
+	if not E.Retail then
+		E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid26,noexists] hide;show"
+	end
 	E.db["unitframe"]["units"]["raid3"]["power"]["enable"] = false
 
 	E.db["unitframe"]["units"]["tank"]["colorOverride"] = "FORCE_OFF"

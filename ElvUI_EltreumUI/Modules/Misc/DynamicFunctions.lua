@@ -650,6 +650,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 					E.db.ElvUI_EltreumUI.borders.totemyborder = 46
 					E.db.ElvUI_EltreumUI.borders.petactionxborder = 50
 					E.db.ElvUI_EltreumUI.borders.petactionyborder = 37
+					E.db.ElvUI_EltreumUI.borders.stancexborder = 45
 
 					if E.Wrath then
 						E.db["general"]["totems"]["spacing"] = 5
