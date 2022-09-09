@@ -98,10 +98,18 @@ local function EltruismStatsDatatextOnEnter()
 
 		DT.tooltip:ClearLines()
 		DT.tooltip:AddDoubleLine(basestatlabel..":", ElvUI[1].media.hexvaluecolor..currentstat.."|r",1,1,1)
+
+		--add line here
+		DT.tooltip:AddLine(' ')
+
 		DT.tooltip:AddDoubleLine(STAT_CRITICAL_STRIKE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", retailcrit).."|r",1,1,1)
 		DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", retailhaste).."|r",1,1,1)
 		DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetMasteryEffect()).."|r",1,1,1)
 		DT.tooltip:AddDoubleLine(STAT_VERSATILITY..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", math.max(versdef,versdmg)).."|r",1,1,1)
+
+		--add line here
+		DT.tooltip:AddLine(' ')
+
 		DT.tooltip:AddDoubleLine(STAT_AVOIDANCE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", avoidance).."|r",1,1,1)
 		DT.tooltip:AddDoubleLine(STAT_LIFESTEAL..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", leech).."|r",1,1,1)
 		DT.tooltip:AddDoubleLine(STAT_SPEED..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", speed).."|r",1,1,1)
@@ -119,6 +127,10 @@ local function EltruismStatsDatatextOnEnter()
 
 		DT.tooltip:ClearLines()
 		DT.tooltip:AddDoubleLine(basestatlabel..":", ElvUI[1].media.hexvaluecolor..currentstat.."|r ".."(|cffFFFFFF"..(basestat-statbuff+statnerf).."|r + |cff09ff00"..statbuff.."|r - |cfff44336"..statnerf.."|r)",1,1,1)
+
+		--add line here
+		DT.tooltip:AddLine(' ')
+
 		if E.myclass == "HUNTER" then
 			DT.tooltip:AddDoubleLine(RANGED_ATTACK_POWER..":", ElvUI[1].media.hexvaluecolor..totalranged.."|r", 1, 1, 1)
 			DT.tooltip:AddDoubleLine(ITEM_MOD_HIT_RANGED_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetCombatRatingBonus(CR_HIT_RANGED)).."|r",1,1,1)
@@ -164,6 +176,10 @@ local function EltruismStatsDatatextOnEnter()
 			DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetMeleeHaste()).."|r",1,1,1)
 			DT.tooltip:AddDoubleLine(STAT_CRITICAL_STRIKE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%",  GetCritChance()).."|r",1,1,1)
 		end
+
+		--add line here
+		DT.tooltip:AddLine(' ')
+
 		DT.tooltip:AddDoubleLine(ITEM_MOD_ARMOR_PENETRATION_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetArmorPenetration()).."|r",1,1,1)
 		DT.tooltip:AddDoubleLine(STAT_EXPERTISE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetExpertise()*0.25).."|r", 1, 1, 1)
 		DT.tooltip:Show()
