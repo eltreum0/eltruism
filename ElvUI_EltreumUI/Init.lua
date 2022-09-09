@@ -283,23 +283,31 @@ function ElvUI_EltreumUI:UI_ERROR_MESSAGE()
 	ElvUI_EltreumUI:LootText()
 end
 
+local currenttalentretail = E.Retail and GetSpecialization() or nil
+local currenttalentwrath = E.Wrath and GetActiveTalentGroup() or nil
 function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
-	ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
-	ElvUI_EltreumUI:FixChatToggles()
-	if E.Retail then
-		ElvUI_EltreumUI:GetSpec()
-	end
-	if E.Retail or E.Wrath then
-		ElvUI_EltreumUI:NamePlateOptions()
-		ElvUI_EltreumUI:Shadows()
-		if E.private.nameplates.enable then
-			ElvUI_EltreumUI:UpdateNPwithoutBar()
+	local newtalentretail = E.Retail and GetSpecialization() or nil
+	local newtalentwrath = E.Wrath and GetActiveTalentGroup() or nil
+	if (E.Retail and currenttalentretail ~= newtalentretail) or (E.Wrath and currenttalentwrath ~= newtalentwrath) then
+		currenttalentretail = newtalentretail
+		currenttalentwrath = newtalentwrath
+		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
+		ElvUI_EltreumUI:FixChatToggles()
+		if E.Retail then
+			ElvUI_EltreumUI:GetSpec()
 		end
-		if E.db.ElvUI_EltreumUI.borders.borders then
-			E:Delay(2, function() ElvUI_EltreumUI:BorderAdjust() end)
-			E:Delay(2, function() ElvUI_EltreumUI:Borders() end)
+		if E.Retail or E.Wrath then
+			ElvUI_EltreumUI:NamePlateOptions()
+			ElvUI_EltreumUI:Shadows()
+			if E.private.nameplates.enable then
+				ElvUI_EltreumUI:UpdateNPwithoutBar()
+			end
+			if E.db.ElvUI_EltreumUI.borders.borders then
+				E:Delay(2, function() ElvUI_EltreumUI:BorderAdjust() end)
+				E:Delay(2, function() ElvUI_EltreumUI:Borders() end)
+			end
+			E:Delay(2, function() ElvUI_EltreumUI:ShowHideBorders() end)
 		end
-		E:Delay(2, function() ElvUI_EltreumUI:ShowHideBorders() end)
 	end
 end
 
