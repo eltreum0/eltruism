@@ -469,7 +469,6 @@ function ElvUI_EltreumUI:Borders()
 						else
 							bossborder = _G["EltruismBossBorder"..i]
 						end
-						bossborder = CreateFrame("Frame", "EltruismBossBorder"..i, v, BackdropTemplateMixin and "BackdropTemplate")
 						bossborder:SetSize(E.db.ElvUI_EltreumUI.borders.xboss, E.db.ElvUI_EltreumUI.borders.yboss)
 						bossborder:SetPoint("CENTER", v, "CENTER")
 						bossborder:SetBackdrop({
