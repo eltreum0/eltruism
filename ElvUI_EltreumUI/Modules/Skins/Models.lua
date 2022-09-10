@@ -113,6 +113,17 @@ end
 --add effects to player
 function ElvUI_EltreumUI:PlayerUFEffects()
 	if E.private.unitframe.enable then
+		if not E.private.ElvUI_EltreumUI then
+			return
+		elseif not E.private.ElvUI_EltreumUI.install_version then
+			return
+		elseif not E.db.ElvUI_EltreumUI then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
+			return
+		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
 			playerbar = _G["ElvUF_Player"]
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
@@ -184,6 +195,17 @@ hooksecurefunc(UF, "Update_PlayerFrame", ElvUI_EltreumUI.PlayerUFEffects)
 --add effects to target
 function ElvUI_EltreumUI:TargetUFEffects()
 	if E.private.unitframe.enable then
+		if not E.private.ElvUI_EltreumUI then
+			return
+		elseif not E.private.ElvUI_EltreumUI.install_version then
+			return
+		elseif not E.db.ElvUI_EltreumUI then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
+			return
+		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
 			targetbar = _G["ElvUF_Target"]
 			reaction = UnitReaction("target", "player")
@@ -274,6 +296,17 @@ hooksecurefunc(UF, "Update_TargetFrame", ElvUI_EltreumUI.TargetUFEffects)
 --add effects to target
 function ElvUI_EltreumUI:TargetTargetUFEffects()
 	if E.private.unitframe.enable then
+		if not E.private.ElvUI_EltreumUI then
+			return
+		elseif not E.private.ElvUI_EltreumUI.install_version then
+			return
+		elseif not E.db.ElvUI_EltreumUI then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
+			return
+		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
 			targettargetbar = _G["ElvUF_TargetTarget"]
 			reactiontargettarget = UnitReaction("targettarget", "player")
@@ -363,6 +396,17 @@ hooksecurefunc(UF, "Update_TargetTargetFrame", ElvUI_EltreumUI.TargetTargetUFEff
 --add effects to pet
 function ElvUI_EltreumUI:PetUFEffects()
 	if E.private.unitframe.enable then
+		if not E.private.ElvUI_EltreumUI then
+			return
+		elseif not E.private.ElvUI_EltreumUI.install_version then
+			return
+		elseif not E.db.ElvUI_EltreumUI then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
+			return
+		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
 			petbar = _G["ElvUF_Pet"]
 			petpetbar = _G["ElvUF_PetPet"]
@@ -454,6 +498,17 @@ local targetcastbar
 --add effect to castbar
 function ElvUI_EltreumUI:CastbarEffects()
 	if E.private.unitframe.enable then
+		if not E.private.ElvUI_EltreumUI then
+			return
+		elseif not E.private.ElvUI_EltreumUI.install_version then
+			return
+		elseif not E.db.ElvUI_EltreumUI then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
+			return
+		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.castbar then
 			castbar = _G["ElvUF_Player_CastBar"]
 			targetcastbar = _G["ElvUF_Target_CastBar"]
