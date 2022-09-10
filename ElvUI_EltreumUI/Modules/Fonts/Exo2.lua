@@ -852,6 +852,10 @@ function ElvUI_EltreumUI:SetupFontsExo2()
 		end
 	end
 
+	if E.db["datatexts"]["panels"]["EltruismTime"] and E.db["datatexts"]["panels"]["EltruismTime"]["enable"] then
+		E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["font"] = "Exo2 Extra Bold"
+	end
+
 	E:StaggeredUpdateAll(nil, true)
 	ElvUI_EltreumUI:Print(L["Exo2 Font has been set."])
 

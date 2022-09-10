@@ -852,6 +852,10 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 		end
 	end
 
+	if E.db["datatexts"]["panels"]["EltruismTime"] and E.db["datatexts"]["panels"]["EltruismTime"]["enable"] then
+		E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["font"] = fontvalue
+	end
+
 	E:StaggeredUpdateAll(nil, true)
 	ElvUI_EltreumUI:Print(L["Your custom font has been set."])
 

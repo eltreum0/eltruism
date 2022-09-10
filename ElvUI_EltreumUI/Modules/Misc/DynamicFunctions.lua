@@ -40,6 +40,34 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 	end
 end
 
+--fixed cooldown text to be class color
+function ElvUI_EltreumUI:CooldownColors()
+	if E.db.ElvUI_EltreumUI.skins.classcolorcooldowns then
+		local valuecolors = E:ClassColor(E.myclass, true)
+		E.db["cooldown"]["daysIndicator"]["b"] = valuecolors.b
+		E.db["cooldown"]["daysIndicator"]["g"] = valuecolors.g
+		E.db["cooldown"]["daysIndicator"]["r"] = valuecolors.r
+		E.db["cooldown"]["hhmmColorIndicator"]["b"] = valuecolors.b
+		E.db["cooldown"]["hhmmColorIndicator"]["g"] = valuecolors.g
+		E.db["cooldown"]["hhmmColorIndicator"]["r"] = valuecolors.r
+		E.db["cooldown"]["hoursIndicator"]["b"] = valuecolors.b
+		E.db["cooldown"]["hoursIndicator"]["g"] = valuecolors.g
+		E.db["cooldown"]["hoursIndicator"]["r"] = valuecolors.r
+		E.db["cooldown"]["minutesIndicator"]["b"] = valuecolors.b
+		E.db["cooldown"]["minutesIndicator"]["g"] = valuecolors.g
+		E.db["cooldown"]["minutesIndicator"]["r"] = valuecolors.r
+		E.db["cooldown"]["mmssColorIndicator"]["b"] = valuecolors.b
+		E.db["cooldown"]["mmssColorIndicator"]["g"] = valuecolors.g
+		E.db["cooldown"]["mmssColorIndicator"]["r"] = valuecolors.r
+		E.db["cooldown"]["secondsIndicator"]["b"] = valuecolors.b
+		E.db["cooldown"]["secondsIndicator"]["g"] = valuecolors.g
+		E.db["cooldown"]["secondsIndicator"]["r"] = valuecolors.r
+		E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["b"] = valuecolors.b
+		E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["g"] = valuecolors.g
+		E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["r"] = valuecolors.r
+	end
+end
+
 --hide raid/party frames in bgs bc of battlegroundenemies or similar
 function ElvUI_EltreumUI:BattlegroundGroupUnitframes()
 	if E.db.ElvUI_EltreumUI.unitframes.bgunitframes and E.private.unitframe.enable then

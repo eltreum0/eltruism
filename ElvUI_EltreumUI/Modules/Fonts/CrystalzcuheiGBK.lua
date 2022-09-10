@@ -852,6 +852,10 @@ function ElvUI_EltreumUI:SetupFontsCrystalzcuhei()
 		end
 	end
 
+	if E.db["datatexts"]["panels"]["EltruismTime"] and E.db["datatexts"]["panels"]["EltruismTime"]["enable"] then
+		E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["font"] = "AR CrystalzcuheiGBK Demibold"
+	end
+
 	E:StaggeredUpdateAll(nil, true)
 	ElvUI_EltreumUI:Print(L["Crystalzcuhei Font has been set."])
 

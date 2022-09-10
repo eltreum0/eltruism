@@ -562,6 +562,7 @@ function UF:Configure_InfoPanel(frame)
 		frame.InfoPanel:Show()
 		frame.InfoPanel:ClearAllPoints()
 
+		local allowed = false
 		local allowedunits = {
 			['ElvUF_Player'] = true,
 			['ElvUF_Target'] = true,
@@ -571,8 +572,17 @@ function UF:Configure_InfoPanel(frame)
 			['ElvUF_Pet'] = true,
 			['ElvUF_TargetTargetTarget'] = true,
 		}
+
+		if E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
+			allowed = true
+		else
+			if allowedunits[tostring(frame:GetName())] then
+				allowed = true
+			end
+		end
+
 		--print(E.private["general"]["pixelPerfect"],E.db["unitframe"]["thinBorders"])
-		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.infopanelontop and allowedunits[tostring(frame:GetName())] then
+		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.infopanelontop and allowed then
 			local portrait = (db.portrait.style == '3D' and frame.Portrait3D) or frame.Portrait2D
 			portrait.db = db.portrait
 			if E.db.unitframe.thinBorders then

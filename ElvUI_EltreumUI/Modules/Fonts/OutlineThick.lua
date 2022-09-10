@@ -276,4 +276,8 @@ function ElvUI_EltreumUI:SetupFontsOutlineThick()
 			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumStatus"]["fontOutline"] = "THICKOUTLINE"
 		end
 	end
+
+	if E.db["datatexts"]["panels"]["EltruismTime"] and E.db["datatexts"]["panels"]["EltruismTime"]["enable"] then
+		E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["fontOutline"] = "THICKOUTLINE"
+	end
 end
