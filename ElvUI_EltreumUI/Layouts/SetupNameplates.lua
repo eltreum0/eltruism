@@ -565,7 +565,7 @@ end
 -- Style Filter Setup
 function ElvUI_EltreumUI:SetupStyleFilters()
 	if E.private["nameplates"]["enable"] == true then
-		for _, filterName in pairs({'ElvUI_NonTarget', 'ElvUI_Explosives', 'ElvUI_Target', 'ElvUI_Boss', 'EltreumTarget', 'EltreumInterrupt', 'EltreumExecute', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems'}) do
+		for _, filterName in pairs({'EltreumTarget', 'EltreumInterrupt', 'EltreumExecute', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
@@ -573,31 +573,20 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 
 		--fix explosive alpha/priority
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["priority"] = 1
+		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["names"]["120651"] = true
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["alpha"] = 100
 		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["scale"] = 1.25
-
-		if not E.Retail then --in classic for some reason bosses are not affected by ElvUI_Target/EltreumTarget
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["health"] = true
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["healthClass"] = true
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["scale"] = 1.25
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["usePortrait"] = false
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["isTarget"] = true
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["requireTarget"] = true
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = true
-			E.global["nameplates"]["filters"]["ElvUI_Boss"]["triggers"]["classification"]["worldboss"] = true
-		end
+		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["r"] = 0
+		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["g"] = 1
+		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
+		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["usePortrait"] = true
 
 		-- Non targeted enemies
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["actions"]["alpha"] = 20
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["actions"]["scale"] = 0.75
-		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["nameplateType"]["enable"] = false
-		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["nameplateType"]["enemyNPC"] = false
-		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["nameplateType"]["enemyPlayer"] = false
-		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["nameplateType"]["friendlyNPC"] = false
-		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["nameplateType"]["friendlyPlayer"] = false
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["requireTarget"] = true
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["notTarget"] = true
-		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["priority"] = 4
+		--E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["priority"] = 4
 
 		-- Target enemy
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = true
