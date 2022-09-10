@@ -92,7 +92,7 @@ if E.Wrath or E.TBC or E.Classic then
 	LevelUpFrame.Text:SetPoint("CENTER", "EltruismLevelUp", "CENTER", 0, 16)
 	LevelUpFrame.Text:SetTextColor(1, 1, 1)
 	LevelUpFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
-	LevelUpFrame.Text:SetText("You've Reached")
+	LevelUpFrame.Text:SetText(LEVEL_UP_YOU_REACHED)
 
 	LevelUpFrame.Text2 = LevelUpFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 	LevelUpFrame.Text2:SetSize(418, 72)
@@ -121,7 +121,7 @@ if E.Wrath or E.TBC or E.Classic then
 			if E.db.ElvUI_EltreumUI.skins.levelbossinstance then
 				playerlevel = playerlevel + 1
 				--print(playerlevel)
-				LevelUpFrame.Text2:SetText("Level "..playerlevel.."!")
+				LevelUpFrame.Text2:SetText(LEVEL.." "..playerlevel.."!")
 				UIFrameFadeIn(LevelUpFrame, 1, 0, 1)
 				C_Timer.After(5, function() UIFrameFadeOut(LevelUpFrame, 1, 1, 0) end)
 			end
