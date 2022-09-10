@@ -266,7 +266,7 @@ function ElvUI_EltreumUI:Borders()
 						else
 							partyborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 						end
-						partyborder:SetFrameStrata("MEDIUM")
+						partyborder:SetFrameStrata("LOW")
 					end
 				end
 				createpartyborders()
@@ -300,7 +300,7 @@ function ElvUI_EltreumUI:Borders()
 							else
 								raid1border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 							end
-							raid1border:SetFrameStrata("MEDIUM")
+							raid1border:SetFrameStrata("LOW")
 						end
 					end
 					self.raid1borderscreated = true
@@ -336,7 +336,7 @@ function ElvUI_EltreumUI:Borders()
 							else
 								raid2border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 							end
-							raid2border:SetFrameStrata("MEDIUM")
+							raid2border:SetFrameStrata("LOW")
 						end
 					end
 					self.raid2borderscreated = true
@@ -372,7 +372,7 @@ function ElvUI_EltreumUI:Borders()
 							else
 								raid3border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 							end
-							raid3border:SetFrameStrata("MEDIUM")
+							raid3border:SetFrameStrata("LOW")
 						end
 					end
 					self.raid3borderscreated = true
@@ -489,7 +489,7 @@ function ElvUI_EltreumUI:Borders()
 						else
 							bossborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 						end
-						bossborder:SetFrameStrata("MEDIUM")
+						bossborder:SetFrameStrata("LOW")
 					end
 				end
 			end
