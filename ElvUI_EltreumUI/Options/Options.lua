@@ -8964,6 +8964,23 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.colormodkey end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.colormodkey = value end,
 							},
+
+							cdcolorheader = {
+								order = 98,
+								type = "description",
+								name = E.NewSign..L["Class Colored Cooldowns"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							cdclasscolor = {
+								order = 99,
+								type = 'toggle',
+								name = L["Enable"],
+								width = 'full',
+								desc = L["Sets Cooldowns to be Class Colored"],
+								get = function() return E.db.ElvUI_EltreumUI.skins.classcolorcooldowns end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classcolorcooldowns = value end,
+							},
 							headerroleicon = {
 								order = 161,
 								type = "description",

@@ -118,6 +118,7 @@ P.ElvUI_EltreumUI = {
 		},
 		professions = false,
 		colormodkey = false,
+		classcolorcooldowns = false,
 		zones = false,
 		shadow = {
 			enable = false,
