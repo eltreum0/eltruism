@@ -13,8 +13,12 @@ function ElvUI_EltreumUI:AutoScreenshot()
 			EltruismScreenShot:RegisterEvent("ACHIEVEMENT_EARNED")
 		end
 		EltruismScreenShot:RegisterEvent("PLAYER_LEVEL_UP")
-		EltruismScreenShot:SetScript("OnEvent", function()
-			Screenshot()
+		EltruismScreenShot:SetScript("OnEvent", function(_,event)
+			if event == "PLAYER_LEVEL_UP" then
+				C_Timer.After(1, function() Screenshot() end)
+			else
+				Screenshot()
+			end
 		end)
 	end
 end
