@@ -99,6 +99,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineOutline()
 	E.db["auras"]["debuffs"]["timeFontOutline"] = "OUTLINE"
 	E.db["unitframe"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["assist"]["rdebuffs"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["party"]["buffs"]["countFontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["party"]["debuffs"]["countFontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["party"]["rdebuffs"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["fontOutline"] = "OUTLINE"
