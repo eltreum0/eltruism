@@ -1179,3 +1179,5 @@ L["Raid1 Border"] = "Schlachtzug1 Rahmen"
 L["Raid2 Border"] = "Schlachtzug2 Rahmen"
 L["Raid3 Border"] = "Schlachtzug3 Rahmen"
 L["Enable on All Unitframes"] = true
+L["Class Colored Cooldowns"] = true
+L["Sets Cooldowns to be Class Colored"] = true
