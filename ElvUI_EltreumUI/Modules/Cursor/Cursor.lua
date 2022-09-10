@@ -329,6 +329,10 @@ function ElvUI_EltreumUI:CastCursor()
 								tex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass, true, false))
 							end
 						end
+						--local mask = frame:CreateMaskTexture()
+						--mask:SetTexture([[Interface\AddOns\ElvUI_EltreumUI\Media\Textures\square_mask]])
+						--mask:SetAllPoints(tex)
+						--tex:AddMaskTexture(mask)
 					else
 						tex:SetVertexColor(r, g, b)
 					end
