@@ -201,6 +201,7 @@ P.ElvUI_EltreumUI = {
 			sublayer = 1,
 			thickness = 5,
 			classcolor = true,
+			gradient = true,
 			r = 0.27,
 			g = 0.50,
 			b = 0.70,
