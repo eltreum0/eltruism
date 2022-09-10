@@ -151,7 +151,7 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 				if E.Retail then
 					powerbareffectplayer:SetModel(1715069)
 					powerbareffectplayer:MakeCurrentCameraCustom()
-					powerbareffectplayer:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
+					powerbareffectplayer:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.785)
 					powerbareffectplayer:SetPortraitZoom(1)
 					powerbareffectplayer:SetAlpha(0.4) --might do this
 				else

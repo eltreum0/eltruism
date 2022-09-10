@@ -250,9 +250,8 @@ function ElvUI_EltreumUI:SetStyleFilters()
 		if E.global.nameplates.filters.EltreumTarget and E.db["nameplates"]["filters"]["EltreumTarget"] then
 			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
 			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
+			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = false
 		end
-		E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["health"] = false
-		E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["healthClass"] = false
 	end
 
 	--general disable/enable
