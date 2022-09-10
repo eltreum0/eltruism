@@ -792,8 +792,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0
 	E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0
 	E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0
-	--E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["enable"] = true
 	E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["enable"] = false
+	E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["transparent"] = false
 	E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["useClassColor"] = true
 	E.db["unitframe"]["units"]["party"]["castbar"]["customColor"]["useCustomBackdrop"] = true
 	E.db["unitframe"]["units"]["party"]["castbar"]["customTextFont"]["enable"] = true
