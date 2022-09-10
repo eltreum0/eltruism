@@ -1252,6 +1252,11 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar('UnitNameHostleNPC', 0) --Display names for hostile NPCs
 		SetCVar('UnitNameInteractiveNPC', 0) --Display names for interactive NPCs
 		SetCVar('UnitNameNPC', 0)
+
+		--spell overlay
+		SetCVar('spellActivationOverlayOpacity', 0.5)
+		SetCVar('displaySpellActivationOverlays', 1)
+
 		--[[
 		SetCVar('findYourselfAnywhere', 0) --"Always Highlight your character"
 		SetCVar('findYourselfAnywhereOnlyInCombat', 0) --"Highlight your character only when in combat"
