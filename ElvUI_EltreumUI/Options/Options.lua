@@ -8979,7 +8979,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								desc = L["Sets Cooldowns to be Class Colored"],
 								get = function() return E.db.ElvUI_EltreumUI.skins.classcolorcooldowns end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classcolorcooldowns = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classcolorcooldowns = value ElvUI_EltreumUI:CooldownColors() end,
 							},
 							headerroleicon = {
 								order = 161,
