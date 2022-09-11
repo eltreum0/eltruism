@@ -748,7 +748,7 @@ L["Automatically hide the Classbar if the Target is Friendly, show if it is an e
 L["Cursor Colors"] = true
 L["Cursor Colors  "] = true
 L["Cursor Sizes"] = true
-L["Cursor Sizes  "] = true
+L["Cursor Sizes "] = true
 L["Make the warnings to install profiles for other plugins stop"] = true
 L["Error Frame Font Size"] = true
 L["Boss Emote Frame Font Size"] = true
