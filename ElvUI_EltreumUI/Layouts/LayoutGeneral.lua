@@ -63,6 +63,12 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["player"]["power"]["height"] = 15
 		E.db["unitframe"]["units"]["target"]["power"]["height"] = 15
 
+		--and combat indicator
+		E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["r"] = 1
+		E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["b"] = 1
+		E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["g"] = 1
+		E.db["unitframe"]["units"]["party"]["CombatIcon"]["defaultColor"] = false
+
 		E.private["general"]["pixelPerfect"] = true
 		E.db["unitframe"]["thinBorders"] = true
 
