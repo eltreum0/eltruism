@@ -142,6 +142,7 @@ function ElvUI_EltreumUI:QuestItem()
 				EltruismQuestItemFrame:RegisterEvent("BAG_NEW_ITEMS_UPDATED")
 			end
 			EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED") -- Needed for items that starts a quest, when we accept it, update to remove the icon
+			EltruismQuestItemFrame:RegisterEvent("QUEST_LOG_UPDATE") -- For when items get added/removed during quest
 			EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
 
 			--get the keybind
