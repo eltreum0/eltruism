@@ -44,6 +44,7 @@ Fixed an issue where the Border is Disabled message could be spammed when leveli
 Fixed some texts not changing outline when using the outline functions\
 Fixed Borders Auto Adjust turning on when changing specs/profiles\
 Fixed missing Role Icons in Wrath\
+Fixed Tooltip Shadow when Health bars exist\
 Fixed an issue where the Character Panel Skin Font Size wouldn't change it stat colors was not enabled\
 Fixed some missing shadows on Player and Target unitframes depending on settings like power position
 ### 3.3.6
