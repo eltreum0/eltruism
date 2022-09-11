@@ -766,7 +766,7 @@ L["Automatically hide the Classbar if the Target is Friendly, show if it is an e
 L["Cursor Colors"] = "Colores del Cursor"
 L["Cursor Colors  "] = "Colores del Cursor  "
 L["Cursor Sizes"] = "Tamaños de los cursores"
-L["Cursor Sizes  "] = "Tamaños de los Cursores  "
+L["Cursor Sizes "] = "Tamaños de los Cursores "
 L["Make the warnings to install profiles for other plugins stop"] = "Hacer que cesen los avisos para instalar perfiles de otros plugins"
 L["Error Frame Font Size"] = "Tamaño de la fuente del marco de error"
 L["Boss Emote Frame Font Size"] = "Tamaño de la fuente del marco de la emoción del jefe"
