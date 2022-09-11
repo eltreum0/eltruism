@@ -133,20 +133,26 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		--tooltip hp bar, one of the worst actually
-		if _G.GameTooltipStatusBar and _G.GameTooltipStatusBar.backdrop and not _G.GameTooltipStatusBar.backdrop.shadow then
-			local EltruismGameTooltipStatusBar = CreateFrame("Frame", "EltruismGameTooltipStatusBarShadowFrame")
-			local GameTooltipStatusBarx, GameTooltipStatusBary = _G.GameTooltipStatusBar.backdrop:GetSize()
-			EltruismGameTooltipStatusBar:SetSize(GameTooltipStatusBarx, GameTooltipStatusBary-3)
-			EltruismGameTooltipStatusBar:SetParent(_G["GameTooltipStatusBar.backdrop"])
-			if not (self.EltruismGameTooltipStatusBarIsSkinned) then
-				EltruismGameTooltipStatusBar.shadow = EltruismGameTooltipStatusBar:CreateShadow()
-				EltruismGameTooltipStatusBar:SetPoint("BOTTOMLEFT", _G.GameTooltipStatusBar.backdrop ,"BOTTOMLEFT", 0, 1)
-				EltruismGameTooltipStatusBar:SetPoint("TOPRIGHT", _G.GameTooltipStatusBar.backdrop ,"TOPRIGHT", 0, 0)
-				EltruismGameTooltipStatusBar:SetParent(_G.GameTooltipStatusBar.backdrop)
-				EltruismGameTooltipStatusBar:Show()
-				self.EltruismGameTooltipStatusBarIsSkinned = true
-			end
+		--finally fix gametooltip shadow
+		if _G.GameTooltipStatusBar then
+			_G.GameTooltipStatusBar:HookScript("OnShow", function()
+				if _G.GameTooltip.shadow then
+					_G.GameTooltip.shadow:ClearAllPoints()
+					_G.GameTooltip.shadow:SetPoint("BOTTOMLEFT", _G.GameTooltip,"BOTTOMLEFT", -3, -3)
+					_G.GameTooltip.shadow:SetPoint("BOTTOMRIGHT", _G.GameTooltip,"BOTTOMRIGHT", 3, -3)
+					_G.GameTooltip.shadow:SetPoint("TOPLEFT", _G.GameTooltip,"TOPLEFT", -3, E.db.tooltip.healthBar.height+3)
+					_G.GameTooltip.shadow:SetPoint("TOPRIGHT", _G.GameTooltip,"TOPRIGHT", 3, E.db.tooltip.healthBar.height+3)
+				end
+			end)
+			_G.GameTooltipStatusBar:HookScript("OnHide", function()
+				if _G.GameTooltip.shadow then
+					_G.GameTooltip.shadow:ClearAllPoints()
+					_G.GameTooltip.shadow:SetPoint("BOTTOMLEFT", _G.GameTooltip,"BOTTOMLEFT", -3, -3)
+					_G.GameTooltip.shadow:SetPoint("BOTTOMRIGHT", _G.GameTooltip,"BOTTOMRIGHT", 3, -3)
+					_G.GameTooltip.shadow:SetPoint("TOPLEFT", _G.GameTooltip,"TOPLEFT", -3, 3)
+					_G.GameTooltip.shadow:SetPoint("TOPRIGHT", _G.GameTooltip,"TOPRIGHT", 3, 3)
+				end
+			end)
 		end
 
 		--blizzard stuff that loads addon later
