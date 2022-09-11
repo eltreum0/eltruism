@@ -98,6 +98,8 @@ end
 function ElvUI_EltreumUI:OldVersionCheck()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
+	elseif E.private.ElvUI_EltreumUI.install_version and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
+		return
 	elseif E.private.ElvUI_EltreumUI.install_version < "2.9.3" then
 		if E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then --convert the option
 			E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
