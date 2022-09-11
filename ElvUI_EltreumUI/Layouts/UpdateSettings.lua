@@ -128,7 +128,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 
 	-- Cursors
 	E.db.ElvUI_EltreumUI.cursors.cursor.enable = true
-	E.db.ElvUI_EltreumUI.cursors.cursorcast.gradient = true
+	E.db.ElvUI_EltreumUI.cursors.cursorcast.gradient = false
 	E.db.ElvUI_EltreumUI.cursors.cursor.cooldown = true
 	E.db.ElvUI_EltreumUI.cursors.cursor.combat = true
 	E.db.ElvUI_EltreumUI.cursors.cursorcast.radius = 30

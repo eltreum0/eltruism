@@ -19,6 +19,7 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 				["mapCoordinatesEnabled"] = false,
 				["professionTrainers"] = {},
 				["trackerFontZone"] = "Kimberley",
+				["trackerFontOutline"] = "Outline",
 				["disableYellComms"] = true,
 				["globalTrackerLocation"] = false,
 				["questieTLoc"] = "global",

@@ -509,7 +509,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["size"] = 12,
 			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
 			["xOffset"] = 2,
-			["yOffset"] = -3,
+			["yOffset"] = -2,
 		}
 		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"] = {
 			["attachTextTo"] = "Power",

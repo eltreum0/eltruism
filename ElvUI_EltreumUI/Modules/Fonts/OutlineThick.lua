@@ -98,6 +98,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineThick()
 	E.db["auras"]["debuffs"]["timeFontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["assist"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
+	E.db["unitframe"]["units"]["party"]["buffs"]["countFontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["party"]["debuffs"]["countFontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["party"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["fontOutline"] = "THICKOUTLINE"

@@ -10,6 +10,9 @@ Added Atwood's Role Icons\
 Added shadows and borders to Focus Target\
 Added a button to restore Blizzard's Combat Text in case it was hidden\
 Added a [name:eltruism:abbreviateshort] tag which will abbreviate names for Raid frames\
+Added the tags [eltruism:hpdeficitpc] and [eltruism:pchpdeficit] which will show health lost and hp % when health is not full\
+Added a function to set the cooldown colors to be class colored\
+Added Gradient to Cursor's Cast\
 Added Releaf's Role Icons\
 Updated Raid Frames to new ElvUI Layout\
 Updated Custom Texts to new ElvUI layout, some custom texts might need to be refreshed if changing fonts/outlines\
@@ -26,9 +29,19 @@ Updated Chat Install Logic in Classic, moving LFG to a separate Tab as to preven
 Updated Power Models to not be wiped away when going AFK\
 Updated Nameplate Style Filters (EltreumTarget, EltreumRare and ElvUI_Boss) in Wrath due to an issue with world bosses (mainly AV bosses) where the scale would not apply, EltreumTarget will now scale Worldbosses instead of ElvUI_Boss\
 Updated EltreumRestedNP and EltreumHideNP Style Filters to once again use Name Only since the issue with stuttering was fixed in ElvUI\
+Updated how Eltruism's Nameplate Style Filters are applied, they will now enable or disable when they are toggled on in the options\
+Updated a few more checks when installing profiles and skipping some options\
+Updated how nameplate IDs are checked and fixed an issue where sometimes gradient would not apply\
+Updated Gladdy profile with more Totem options\
+Updated the Frame Strata for some borders so text would not overlap\
+Updated Party Castbars on Profiles\
+Fixed an issue with Boss Borders multiplying when changing settings\
 Fixed an issue where the color of Gradient Castbar interrupts was not using the custom colors\
+Fixed an issue where some Role Icons could be missing textures\
+Fixed an issue where the Border is Disabled message could be spammed when leveling up and in other scenarios due to how events were firing\
 Fixed some texts not changing outline when using the outline functions\
 Fixed Borders Auto Adjust turning on when changing specs/profiles\
 Fixed missing Role Icons in Wrath\
+Fixed Tooltip Shadow when Health bars exist\
 Fixed an issue where the Character Panel Skin Font Size wouldn't change it stat colors was not enabled\
 Fixed some missing shadows on Player and Target unitframes depending on settings like power position

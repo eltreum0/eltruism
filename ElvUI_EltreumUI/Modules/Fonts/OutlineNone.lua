@@ -98,6 +98,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineNone()
 	E.db["auras"]["debuffs"]["timeFontOutline"] = "NONE"
 	E.db["unitframe"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["assist"]["rdebuffs"]["fontOutline"] = "NONE"
+	E.db["unitframe"]["units"]["party"]["buffs"]["countFontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["party"]["debuffs"]["countFontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["party"]["rdebuffs"]["fontOutline"] = "NONE"
 	E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["fontOutline"] = "NONE"
