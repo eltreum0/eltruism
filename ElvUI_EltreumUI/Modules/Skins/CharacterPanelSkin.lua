@@ -1989,7 +1989,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 						qualityAnchor.Frame:SetSize(135, _G["Character"..InvSlotName]:GetHeight() + 2)
 					end
 				else
-					qualityAnchor.Frame:SetFrameLevel(_G["CharacterModelFrame"]:GetFrameLevel() - 1) --needs to be changed to not overlap the sockets/enchants
+					qualityAnchor.Frame:SetFrameLevel(_G["CharacterModelFrame"]:GetFrameLevel()) --needs to be changed to not overlap the sockets/enchants
 					if E.db.ElvUI_EltreumUI.skins.classicarmory then
 						qualityAnchor.Frame:SetSize(200, _G["Character"..InvSlotName]:GetHeight() + 2)
 					else
