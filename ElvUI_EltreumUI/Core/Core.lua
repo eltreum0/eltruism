@@ -223,6 +223,8 @@ function ElvUI_EltreumUI:Anchors()
 		E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", L["EltruismConsumablesWA"], nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
 	end
 
+	E:CreateMover(RaidWarningFrame, "MoverRaidWarningFrame", "Raid Warning Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
+
 	--mover for UI errors frame
 	if E.db.ElvUI_EltreumUI.skins.blizzframes.hideerrorframe then
 		UIErrorsFrame:Clear()
@@ -234,7 +236,14 @@ function ElvUI_EltreumUI:Anchors()
 		end
 	end
 
-	E:CreateMover(RaidWarningFrame, "MoverRaidWarningFrame", "Raid Warning Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
+	if E.db.ElvUI_EltreumUI.skins.blizzframes.hidealert then
+		_G.AlertFrame:UnregisterAllEvents()
+		E:DisableMover('AlertFrameMover')
+	end
+
+	if E.db.ElvUI_EltreumUI.skins.blizzframes.hidezone then
+		_G.ZoneTextFrame:UnregisterAllEvents()
+	end
 
 	if E.Retail then
 		E:CreateMover(RaidBossEmoteFrame, "MoverRaidBossEmoteFrame", "Raid/Boss Emote Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
@@ -245,6 +254,12 @@ function ElvUI_EltreumUI:Anchors()
 			RaidWarningFrameSlot2:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
 			--RaidBossEmoteFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
 		end]]
+
+		if E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss then
+			_G.BossBanner:UnregisterAllEvents()
+			E:DisableMover('BossBannerMover')
+		end
+
 	end
 end
 

@@ -143,6 +143,9 @@ P.ElvUI_EltreumUI = {
 			hideerrorframe = false,
 			raidbossframe = true,
 			raidbossframefontsize = 14,
+			hidealert = false,
+			hidezone = false,
+			hideboss = false,
 		},
 		instances = {
 			enable = false,
