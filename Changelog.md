@@ -40,6 +40,8 @@ Updated Party Castbars on Profiles\
 Updated other plugins install message to only display when using an Eltruism profile\
 Updated objective frame skin to skin the collapse/expand button in Classic\
 Updated Quest Item Bar with a few extra items\
+Updated Questie profile, disabling DBM hud\
+Updated options enabling Boss frame options in Wrath\
 Fixed an issue where the character model would overlap the texture quality icons on the Character Panel Skin\
 Fixed an issue with one line of localization\
 Fixed an issue with Boss Borders multiplying when changing settings\
@@ -51,7 +53,11 @@ Fixed Borders Auto Adjust turning on when changing specs/profiles\
 Fixed missing Role Icons in Wrath\
 Fixed Tooltip Shadow when Health bars exist\
 Fixed an issue where the Character Panel Skin Font Size wouldn't change it stat colors was not enabled\
-Fixed some missing shadows on Player and Target unitframes depending on settings like power position
+Fixed some missing shadows on Player and Target unitframes depending on settings like power position\
+Fixed an issue where player model would reset on certain events\
+Fixed an error due to ElvUI_Explosives Nameplate Style Filter on Wrath/Classic\
+Fixed missing outline function during Roboto font install\
+Fixed an action bar overlap in 1080p
 ### 3.3.6
 Added gradient nameplate castbars, which follow the castbar settings from unitframes\
 Added an option to set the Information Panel in Unitframes to be on top instead of bottom\
