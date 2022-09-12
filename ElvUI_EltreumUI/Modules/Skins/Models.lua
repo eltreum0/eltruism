@@ -565,7 +565,7 @@ modelupdater:RegisterUnitEvent("UNIT_PET", "player") --refresh everything
 modelupdater:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player") --refresh everything
 modelupdater:SetScript("OnEvent", function(_, event)
 	ElvUI_EltreumUI:TargetTargetUFEffects()
-	if event == 'PLAYER_ENTERING_WORLD' or "PLAYER_FLAGS_CHANGED" then
+	if event == 'PLAYER_ENTERING_WORLD' or event == "PLAYER_FLAGS_CHANGED" then
 		ElvUI_EltreumUI:PlayerUFEffects()
 		ElvUI_EltreumUI:TargetUFEffects()
 		ElvUI_EltreumUI:TargetTargetUFEffects()
