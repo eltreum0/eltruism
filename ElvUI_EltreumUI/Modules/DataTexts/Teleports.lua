@@ -1,7 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local DT = E:GetModule("DataTexts")
-local InCombatLockdown = _G.InCombatLockdown
 local GetCombatRatingBonus = _G.GetCombatRatingBonus
 local math = _G.math
 local GetItemInfo = _G.GetItemInfo
