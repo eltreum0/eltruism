@@ -462,10 +462,10 @@ function ElvUI_EltreumUI:Shadows()
 
 			--classic only elvui
 			local ClassicElvUIFrames = {
-			_G["ElvUF_PlayerTotem1"],
-			_G["ElvUF_PlayerTotem2"],
-			_G["ElvUF_PlayerTotem3"],
-			_G["ElvUF_PlayerTotem4"],
+			_G["ElvUF_PlayerTotem1"].backdrop,
+			_G["ElvUF_PlayerTotem2"].backdrop,
+			_G["ElvUF_PlayerTotem3"].backdrop,
+			_G["ElvUF_PlayerTotem4"].backdrop,
 			_G["ElvUF_PartyGroup1UnitButton1Pet"],
 			_G["ElvUF_PartyGroup1UnitButton2Pet"],
 			_G["ElvUF_PartyGroup1UnitButton3Pet"],
