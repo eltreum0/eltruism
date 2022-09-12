@@ -45,6 +45,15 @@ function ElvUI_EltreumUI:Shadows()
 						if _G.InspectFrame and _G.InspectFrame.backdrop and not _G.InspectFrame.backdrop.shadow then
 							_G.InspectFrame.backdrop:CreateShadow()
 						end
+						if _G.InspectFrameTab1 and _G.InspectFrameTab1.backdrop and not _G.InspectFrameTab1.backdrop.shadow then
+							_G.InspectFrameTab1.backdrop:CreateShadow()
+						end
+						if _G.InspectFrameTab2 and _G.InspectFrameTab2.backdrop and not _G.InspectFrameTab2.backdrop.shadow then
+							_G.InspectFrameTab2.backdrop:CreateShadow()
+						end
+						if _G.InspectFrameTab3 and _G.InspectFrameTab3.backdrop and not _G.InspectFrameTab3.backdrop.shadow then
+							_G.InspectFrameTab3.backdrop:CreateShadow()
+						end
 					elseif E.Retail then
 						if _G.InspectFrame and not _G.InspectFrame.shadow then
 							_G.InspectFrame:CreateShadow()
