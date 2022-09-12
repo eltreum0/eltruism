@@ -16,8 +16,24 @@ local tt
 local _, itemQuality, itemType
 local hex
 
---Forked from Chat Loot Icons by Stanzilla which is Public Domain
+local classcolorsescape = {
+	["DEATHKNIGHT"]	= "C41E3A",
+	["DEMONHUNTER"]	= "A330C9",
+	["DRUID"] = "FF7C0A",
+	["HUNTER"] = "AAD372",
+	["MAGE"] = "3FC7EB",
+	["MONK"] = "00FF98",
+	["PALADIN"]	= "F48CBA",
+	["PRIEST"] = "FFFFFF",
+	["ROGUE"] = "FFF468",
+	["SHAMAN"] = "0070DD",
+	["WARLOCK"] = "8788EE",
+	["WARRIOR"] = "C69B6D",
+}
+
+--Forked from Chat Loot Icons by Stanzilla which is Public Domain, modified to do more things
 local function AddLootIcons(_, _, message, ...)
+	local _, _, _, _, _, _, _, _, _, _, guid = ...
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
 	elseif E.db.ElvUI_EltreumUI.chat.enable and E.db.ElvUI_EltreumUI.chat.looticons then
@@ -71,8 +87,16 @@ local function AddLootIcons(_, _, message, ...)
 				return "|T"..texture..":12:12:0:0:64:64:5:59:5:59|t"..link
 			end
 		end
-		message = message:gsub("(|c%x+|Hitem:.-|h|r)", Icon)
-		return false, message, ...
+		if guid and E.db.ElvUI_EltreumUI.chat.classcolorchat then
+			local _, unitclass =GetPlayerInfoByGUID(guid)
+			local msg = "|cff"..classcolorsescape[unitclass]..message:gsub("(|c%x+|Hitem:.-|h|r)", Icon).."|r"
+			--local msg = message:gsub("(|c%x+|Hitem:.-|h|r)", Icon)
+			--return false, ElvUI_EltreumUI:GradientName(msg, unitclass), ...
+			return false, msg, ...
+		else
+			message = message:gsub("(|c%x+|Hitem:.-|h|r)", Icon)
+			return false, message, ...
+		end
 	end
 end
 
