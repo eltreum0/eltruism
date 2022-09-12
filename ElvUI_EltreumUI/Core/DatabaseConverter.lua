@@ -709,7 +709,6 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 							if data.unitframe.units then
 								if data.unitframe.units.raid1 then
 									if data.unitframe.units.raid1.customTexts then
-										dbdidrun = true
 										if data.unitframe.units.raid1.customTexts.EltreumRaidHealth then
 											data.unitframe.units.raid1.customTexts.EltreumRaid1Health = data.unitframe.units.raid1.customTexts.EltreumRaidHealth
 											E:CopyTable(data.unitframe.units.raid1.customTexts.EltreumRaid1Health, data.unitframe.units.raid1.customTexts.EltreumRaidHealth)
@@ -729,7 +728,6 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 								end
 								if data.unitframe.units.raid2 then
 									if not data.unitframe.units.raid2.customTexts then
-										dbdidrun = true
 										data.unitframe.units.raid2.customTexts = {}
 										E:CopyTable(data.unitframe.units.raid2.customTexts, data.unitframe.units.raid1.customTexts)
 
@@ -752,7 +750,6 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 								end
 								if data.unitframe.units.raid3 then
 									if data.unitframe.units.raid3.customTexts then
-										dbdidrun = true
 										if data.unitframe.units.raid3.customTexts.EltreumRaid40Health then
 											data.unitframe.units.raid3.customTexts.EltreumRaid3Health = data.unitframe.units.raid3.customTexts.EltreumRaid40Health
 											E:CopyTable(data.unitframe.units.raid3.customTexts.EltreumRaid3Health, data.unitframe.units.raid3.customTexts.EltreumRaid40Health)
@@ -777,6 +774,9 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 											data.unitframe.units.raid3.customTexts.EltreumRaid3Name = {}
 											E:CopyTable(data.unitframe.units.raid3.customTexts.EltreumRaid3Name, data.unitframe.units.raid2.customTexts.EltreumRaid2Name)
 											data.unitframe.units.raid3.customTexts.EltreumRaid3Name.text_format = "[namecolor][name:eltruism:abbreviateshort]"
+										end
+										if data.unitframe.units.raid3.name.text_format == '[namecolor][name]' then
+											data.unitframe.units.raid3.name.text_format = ''
 										end
 									end
 								end
