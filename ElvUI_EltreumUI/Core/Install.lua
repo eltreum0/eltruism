@@ -27,11 +27,21 @@ ElvUI_EltreumUI.InstallerData = {
 	tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 	Pages = {
 		[1] = function()
-			if not _G.PluginInstallTitleFrame.shadow then
-				_G.PluginInstallTitleFrame:CreateShadow()
+			if not _G.PluginInstallFrame.gaptexture then
+				_G.PluginInstallFrame.gaptexture = _G.PluginInstallFrame:CreateTexture()
+				_G.PluginInstallFrame.gaptexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\SquareMask")
+				_G.PluginInstallFrame.gaptexture:SetVertexColor(0, 0, 0, 1)
+				_G.PluginInstallFrame.gaptexture:SetPoint("TOPLEFT", _G.PluginInstallFrame, "TOPRIGHT", 0, 0)
+				_G.PluginInstallFrame.gaptexture:SetPoint("BOTTOMLEFT", _G.PluginInstallFrame, "BOTTOMRIGHT",0,0)
+				_G.PluginInstallFrame.gaptexture:SetPoint("TOPRIGHT", _G.PluginInstallTitleFrame, "TOPLEFT",0,0)
+				_G.PluginInstallFrame.gaptexture:SetPoint("BOTTOMRIGHT", _G.PluginInstallTitleFrame, "BOTTOMLEFT",0,0)
 			end
 			if not _G.PluginInstallFrame.shadow then
 				_G.PluginInstallFrame:CreateShadow()
+				_G.PluginInstallFrame.shadow:SetPoint("TOPLEFT", _G.PluginInstallFrame, "TOPLEFT",-3,3)
+				_G.PluginInstallFrame.shadow:SetPoint("BOTTOMLEFT", _G.PluginInstallFrame, "BOTTOMLEFT",-3,-3)
+				_G.PluginInstallFrame.shadow:SetPoint("TOPRIGHT", _G.PluginInstallTitleFrame, "TOPRIGHT",3,3)
+				_G.PluginInstallFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PluginInstallTitleFrame, "BOTTOMRIGHT",3,-3)
 			end
 			ElvUI_EltreumUI:ElvUIVersionCheck()
 			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["Welcome"])
