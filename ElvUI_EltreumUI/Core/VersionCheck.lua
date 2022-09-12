@@ -6,7 +6,7 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 local fixingold = false
 
 function ElvUI_EltreumUI:VersionCheckInit()
-	if E.private.ElvUI_EltreumUI.install_version < "3.3.6" then
+	if E.private.ElvUI_EltreumUI.install_version < "3.3.7" then
 		ElvUI_EltreumUI:DatabaseConversions()
 	end
 	ElvUI_EltreumUI:PluginCheck()
@@ -30,10 +30,10 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 		whileDead = 1,
 		hideOnEscape = false,
 	}
-	if E.version < (E.Retail and 12.84 or E.Wrath and 3.00 or E.TBC and 2.48 or E.Classic and 1.73) then
+	if E.version < 12.85 then
 		E:StaticPopup_Show('ELVUIVERSIONCHECK')
 		ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
-	elseif E.version > (E.Retail and 12.84 or E.Wrath and 3.00 or E.TBC and 2.48 or E.Classic and 1.73) then
+	elseif E.version > 12.85 then
 		E:StaticPopup_Show('ELVUIVERSIONCHECK2')
 		ElvUI_EltreumUI:Print("Your ElvUI version is newer than Eltruism, you might run into issues unless you update Eltruism!")
 	end

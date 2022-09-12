@@ -484,7 +484,7 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 									["zoomSetting"] = "set",
 									["transitionTime"] = 1.5,
 									["timeIsMax"] = false,
-									["zoomValue"] = 15,
+									["zoomValue"] = 25,
 								},
 								["cameraCVars"] = {
 									["test_cameraOverShoulder"] = 0,

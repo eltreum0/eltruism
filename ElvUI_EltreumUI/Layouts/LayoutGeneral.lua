@@ -1167,7 +1167,7 @@ function ElvUI_EltreumUI:SetupDataText()
 		else
 			E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Eltruism"
 			if E.Wrath then
-				E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Dual Specialization"
+				E.db["datatexts"]["panels"]["EltruismDataText"][1] = "DualSpecialization"
 			end
 		end
 		E.db["datatexts"]["panels"]["EltruismDataText"][2] = "Durability"

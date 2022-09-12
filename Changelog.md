@@ -37,6 +37,11 @@ Updated how nameplate IDs are checked and fixed an issue where sometimes gradien
 Updated Gladdy profile with more Totem options\
 Updated the Frame Strata for some borders so text would not overlap\
 Updated Party Castbars on Profiles\
+Updated other plugins install message to only display when using an Eltruism profile\
+Updated objective frame skin to skin the collapse/expand button in Classic\
+Updated Quest Item Bar with a few extra items\
+Fixed an issue where the character model would overlap the texture quality icons on the Character Panel Skin\
+Fixed an issue with one line of localization\
 Fixed an issue with Boss Borders multiplying when changing settings\
 Fixed an issue where the color of Gradient Castbar interrupts was not using the custom colors\
 Fixed an issue where some Role Icons could be missing textures\
