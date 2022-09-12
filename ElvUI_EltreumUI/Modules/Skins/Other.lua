@@ -9,6 +9,44 @@ local dontexpandanymore = 0
 local skillbutton
 local skillTitle
 
+--test elvui backdrop transparency
+function E:UpdateBackdropColors()
+	local r, g, b = unpack(E.media.backdropcolor)
+	local r2, g2, b2, a2 = unpack(E.media.backdropfadecolor)
+
+	for frame in pairs(E.frames) do
+		if frame and frame.template and not frame:IsForbidden() then
+			if not frame.ignoreUpdates then
+				if frame.callbackBackdropColor then
+					frame:callbackBackdropColor()
+				elseif frame.template == 'Default' then
+					frame:SetBackdropColor(r, g, b, a2)
+				elseif frame.template == 'Transparent' then
+					frame:SetBackdropColor(r2, g2, b2, frame.customBackdropAlpha or a2)
+				end
+			end
+		else
+			E.frames[frame] = nil
+		end
+	end
+
+	for frame in pairs(E.unitFrameElements) do
+		if frame and frame.template and not frame:IsForbidden() then
+			if not frame.ignoreUpdates then
+				if frame.callbackBackdropColor then
+					frame:callbackBackdropColor()
+				elseif frame.template == 'Default' then
+					frame:SetBackdropColor(r, g, b)
+				elseif frame.template == 'Transparent' then
+					frame:SetBackdropColor(r2, g2, b2, frame.customBackdropAlpha or a2)
+				end
+			end
+		else
+			E.unitFrameElements[frame] = nil
+		end
+	end
+end
+
 function ElvUI_EltreumUI:SkinProfessions()
 	if E.db.ElvUI_EltreumUI.skins.professions and not E.private.skins.blizzard.enable == false then
 		--skin and expand the tradeskills
@@ -427,6 +465,7 @@ end
 local handlemeetinghorn = CreateFrame("FRAME")
 handlemeetinghorn:RegisterEvent("ADDON_LOADED")
 handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
+	E:UpdateBackdropColors() --TEST
 	if GetAddOnEnableState(nil, "MeetingHorn") == 0 then
 		handlemeetinghorn:UnregisterAllEvents()
 	end
@@ -444,6 +483,7 @@ end)
 local meetinghornmightalreadybeloaded = CreateFrame("FRAME")
 meetinghornmightalreadybeloaded:RegisterEvent("PLAYER_STARTED_MOVING")
 meetinghornmightalreadybeloaded:SetScript("OnEvent", function()
+	E:UpdateBackdropColors() --TEST
 	meetinghornmightalreadybeloaded:UnregisterAllEvents()
 	if IsAddOnLoaded('MeetingHorn') then
 		SkinMeetingHorn()
