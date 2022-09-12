@@ -572,14 +572,16 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		end
 
 		--fix explosive alpha/priority
-		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["priority"] = 1
-		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["names"]["120651"] = true
-		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["alpha"] = 100
-		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["scale"] = 1.25
-		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["r"] = 0
-		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["g"] = 1
-		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
-		E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["usePortrait"] = true
+		if E.Retail then
+			E.global["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["priority"] = 1
+			E.global["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["names"]["120651"] = true
+			E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["alpha"] = 100
+			E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["scale"] = 1.25
+			E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["r"] = 0
+			E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["g"] = 1
+			E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
+			E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["usePortrait"] = true
+		end
 
 		-- Non targeted enemies
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["actions"]["alpha"] = 20

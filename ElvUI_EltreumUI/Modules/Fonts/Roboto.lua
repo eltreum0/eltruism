@@ -845,4 +845,6 @@ function ElvUI_EltreumUI:SetupFontsRoboto()
 
 	E:StaggeredUpdateAll(nil, true)
 	ElvUI_EltreumUI:Print(L["Roboto Font has been set."])
+
+	ElvUI_EltreumUI:ResolutionOutline()
 end

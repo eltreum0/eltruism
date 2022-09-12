@@ -88,7 +88,7 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 				["trackerFontSizeQuest"] = 12,
 				["nameplateY"] = 0,
 				["onlyPartyShared"] = true,
-				["dbmHUDEnable"] = true,
+				["dbmHUDEnable"] = false,
 				["trackerSortObjectives"] = "byProximity",
 				["migrationVersion"] = {
 				},
