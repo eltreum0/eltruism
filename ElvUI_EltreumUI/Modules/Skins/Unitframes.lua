@@ -585,6 +585,8 @@ function UF:Configure_InfoPanel(frame)
 		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.infopanelontop and allowed then
 			local portrait = (db.portrait.style == '3D' and frame.Portrait3D) or frame.Portrait2D
 			portrait.db = db.portrait
+			frame.InfoPanel:ClearAllPoints()
+			frame.InfoPanelOnTop = true
 			if E.db.unitframe.thinBorders then
 				if frame.USE_PORTRAIT and portrait.db.style ~= '3D' then
 					if frame.ORIENTATION == 'LEFT' then
