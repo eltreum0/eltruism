@@ -148,6 +148,12 @@ function ElvUI_EltreumUI:ExpandedTalents()
 						_G.GlyphFrame:SetParent(_G.PlayerTalentFrame)
 
 						_G.GlyphFrame:HookScript("OnShow", function()
+
+							--fix the button being behind the frame
+							if _G.PlayerTalentFrameCloseButton then
+								_G.PlayerTalentFrameCloseButton:SetFrameStrata("HIGH")
+							end
+
 							PlayerTalentFrame:SetSize(384, 512)
 							_G.GlyphFrame:Show()
 							PlayerTalentFrameBackgroundTopLeft:Hide()

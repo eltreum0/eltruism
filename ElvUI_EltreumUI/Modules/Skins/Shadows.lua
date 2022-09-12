@@ -462,10 +462,6 @@ function ElvUI_EltreumUI:Shadows()
 
 			--classic only elvui
 			local ClassicElvUIFrames = {
-			_G["ElvUF_PlayerTotem1"],
-			_G["ElvUF_PlayerTotem2"],
-			_G["ElvUF_PlayerTotem3"],
-			_G["ElvUF_PlayerTotem4"],
 			_G["ElvUF_PartyGroup1UnitButton1Pet"],
 			_G["ElvUF_PartyGroup1UnitButton2Pet"],
 			_G["ElvUF_PartyGroup1UnitButton3Pet"],
@@ -475,6 +471,19 @@ function ElvUI_EltreumUI:Shadows()
 			for _, frame in pairs(ClassicElvUIFrames) do
 				if frame and not frame.shadow then
 					frame:CreateShadow()
+				end
+			end
+
+			--totems
+			local ElvUITotemFrames = {
+			_G["ElvUF_PlayerTotem1"],
+			_G["ElvUF_PlayerTotem2"],
+			_G["ElvUF_PlayerTotem3"],
+			_G["ElvUF_PlayerTotem4"],
+			}
+			for _, frame in pairs(ElvUITotemFrames) do
+				if frame and frame.backdrop and not frame.backdrop.shadow then
+					frame.backdrop:CreateShadow()
 				end
 			end
 
