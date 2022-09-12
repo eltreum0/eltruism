@@ -247,7 +247,7 @@ function ElvUI_EltreumUI:SetStyleFilters()
 
 	--gradient check for my filters
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
-		if E.global.nameplates.filters.EltreumTarget and E.db["nameplates"]["filters"]["EltreumTarget"] then
+		if E.global.nameplates.filters.EltreumTarget then
 			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
 			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
 			E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = false
@@ -366,9 +366,10 @@ function ElvUI_EltreumUI:NamePlateOptions()
 
 		--gradient check for my filters
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
-			if E.global.nameplates.filters.EltreumTarget and E.db["nameplates"]["filters"]["EltreumTarget"] then
+			if E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
+				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = false
 			end
 			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["health"] = false
 			E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["color"]["healthClass"] = false
