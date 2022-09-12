@@ -2362,7 +2362,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							EltruismInspectBgTexture:SetTexCoord(0, 0.87, 0, 0.60)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
 							EltruismInspectBgTexture:SetTexture(raceBgs[englishRace]) --(left, right, top, bottom)
-							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
+							EltruismInspectBgTexture:SetTexCoord(0.1, 0.55, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" then
 							EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ragnaros")
 							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
