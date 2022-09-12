@@ -2167,9 +2167,9 @@ function ElvUI_EltreumUI:InspectBg(unit)
 
 								if E.Wrath or E.TBC then
 									_G.InspectTalentFrame:HookScript("OnShow", function()
-										_G.InspectFrame:SetWidth(384)
+										_G.InspectFrame:SetWidth(376)
 										if E.Wrath then
-											_G.InspectFrame:SetHeight(730)
+											_G.InspectFrame:SetHeight(780)
 										else
 											_G.InspectFrame:SetHeight(650)
 										end
