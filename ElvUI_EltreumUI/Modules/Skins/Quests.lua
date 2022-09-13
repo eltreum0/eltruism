@@ -423,7 +423,6 @@ function ElvUI_EltreumUI:SkinQuests()
 				end)
 
 				hooksecurefunc(ACHIEVEMENT_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
-					print(block)
 					if ( block.HeaderText ) then
 						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
 							block.HeaderText:SetTextColor(mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb)
