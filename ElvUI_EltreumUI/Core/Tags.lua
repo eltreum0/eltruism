@@ -555,21 +555,21 @@ E:AddTag("eltruism:groupnumber", "GROUP_ROSTER_UPDATE UNIT_NAME_UPDATE", functio
 	local c = UnitClassification(unit)
 	if IsInRaid() == true then
 		if unit == "raid1" then
-			return "1"
+			return GROUP.." 1"
 		elseif unit == "raid6" then
-			return "2"
+			return GROUP.." 2"
 		elseif unit == "raid11" then
-			return "3"
+			return GROUP.." 3"
 		elseif unit == "raid16" then
-			return "4"
+			return GROUP.." 4"
 		elseif unit == "raid21" then
-			return "5"
+			return GROUP.." 5"
 		elseif unit == "raid26" then
-			return "6"
+			return GROUP.." 6"
 		elseif unit == "raid31" then
-			return "7"
+			return GROUP.." 7"
 		elseif unit == "raid36" then
-			return "8"
+			return GROUP.." 8"
 		end
 	else
 		return ""
