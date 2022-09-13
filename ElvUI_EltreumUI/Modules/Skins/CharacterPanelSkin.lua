@@ -1435,6 +1435,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--fix frame size depending on tab
 			local function ResizeCharacterFrame()
+				if InCombatLockdown() then UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r") return end
 				if not InCombatLockdown() then
 					if PaperDollFrame:IsVisible() then
 						CharacterFrame:SetSize(700, 505)
@@ -2148,6 +2149,8 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						--inspect frame expand skin
 						if not E.Retail then
 							E:Delay(0, function()
+								if InCombatLockdown() then UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r") return end
+
 								_G.InspectNameText:ClearAllPoints()
 								_G.InspectNameText:SetPoint("TOP", _G.InspectFrame, "TOP", 0, -15)
 								_G.InspectFrame:SetWidth(450)
@@ -2167,6 +2170,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 
 								if E.Wrath or E.TBC then
 									_G.InspectTalentFrame:HookScript("OnShow", function()
+										if InCombatLockdown() then UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r") return end
 										_G.InspectFrame:SetWidth(376)
 										if E.Wrath then
 											_G.InspectFrame:SetHeight(780)
@@ -2229,6 +2233,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									end)
 
 									_G.InspectTalentFrame:HookScript("OnHide", function()
+										if InCombatLockdown() then UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r") return end
 										_G.InspectFrame:SetHeight(512)
 										_G.InspectFrame:SetWidth(384)
 									end)

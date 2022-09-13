@@ -20,7 +20,7 @@ local function EltruismConfigOnEnter()
 end
 
 local function EltruismConfigOnClick(_, button)
-	if InCombatLockdown() then UIErrorsFrame:AddMessage(E.InfoColor..ERR_NOT_IN_COMBAT) return end
+	if InCombatLockdown() then UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r") return end
 
 	if button == 'LeftButton' then
 		E:ToggleOptionsUI()

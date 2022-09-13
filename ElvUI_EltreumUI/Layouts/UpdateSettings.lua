@@ -22,7 +22,6 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture = "ElvUI Norm1"
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = true
-	E.db.ElvUI_EltreumUI.unitframes.darkpowercolor = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplatelevel = true
 	E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames = false -- turns out blizzard fakes the nameplates and alphas the helthbar, causing huge performance costs
 	E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly = false -- and this one is the same but with health so make this one off as well
@@ -50,11 +49,13 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP = true
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation = true
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor = true
+	E.db.ElvUI_EltreumUI.unitframes.models.powerbar = true
 	E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.7
 	E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable = true
 	E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture = 'Eltreum-Fade'
 	E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width = 20
+	E.db.ElvUI_EltreumUI.unitframes.darkpowercolor = true
 	E.db.ElvUI_EltreumUI.unitframes.portraitfix = true
 	E.db.ElvUI_EltreumUI.unitframes.darkmode = true
 	E.db.ElvUI_EltreumUI.unitframes.lightmode = false
