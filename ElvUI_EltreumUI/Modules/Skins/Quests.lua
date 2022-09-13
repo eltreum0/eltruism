@@ -710,7 +710,6 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 
 				if InCombatLockdown() then
-					UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
 					return
 				else
 					for i = 1, _G.WATCHFRAME_NUM_ITEMS do
