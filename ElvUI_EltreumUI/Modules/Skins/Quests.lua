@@ -133,7 +133,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				}
 				local mult = 0.85
 				for _, k in pairs(questmodules) do
-					hooksecurefunc(k, "AddObjective", function(_, block)
+					hooksecurefunc(k, "AddObjective", function(_, block,objectiveKey,_,lineType)
 						if not block then
 							return
 						end
@@ -159,6 +159,14 @@ function ElvUI_EltreumUI:SkinQuests()
 								block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, E.db.general.fontStyle)
 								block.currentLine.Text:SetTextColor(mult, mult, mult)
 								block.currentLine.Text:SetWordWrap(true)
+							end
+						end
+						local line = DEFAULT_OBJECTIVE_TRACKER_MODULE:GetLine(block, objectiveKey, lineType);
+						if ( line.Dash ) then
+							if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+								line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+							else
+								line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 							end
 						end
 					end)
