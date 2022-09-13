@@ -1193,5 +1193,5 @@ L["Hide Alert Frame"] = "Alarmfenster ausblenden"
 L["Hide the Alert Frame that appears when looting a rare item or earning an achievement"] = "Verberge das Alarmfenster, der erscheint, wenn Du einen seltenen Gegenstand plünderst oder einen Erfolg verdienen"
 L["Hide Boss Banner Frame"] = "Bossbanner Fenster ausblenden"
 L["Hide the boss banner that appears when killing a raid boss or completing a Mythic+ dungeon"] = "Verstecke das Bossbanner, das erscheint, wenn du einen Raidboss für den Abschluss eines Mythic+ Dungeons tötest."
-L["Enable on System Messages"] = true
-L["Enable on Chat Messages"] = true
+L["Enable on System Messages"] = "Bei Systemmeldungen aktivieren"
+L["Enable on Chat Messages"] = "Bei Chatnachrichten aktivieren"
