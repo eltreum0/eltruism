@@ -1,6 +1,18 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.3.8
+Added option to color chat messages by player class\
+Added options to hide some blizzard frames\
+Added shadows to Inspect tabs\
+Updated for ElvUI 12.86\
+Updated Inspect Frame Talent Skin to be the same Size as the Player\
+Updated a few functions with combat checks that will show messages when they cannot be run in combat\
+Updated German locale by Dlarge\
+Updated Stats Datatext with more relevant Stats per Spec in Wrath/Classic\
+Updated profile by enabling power model during install\
+Fixed Close Button on Glyphs not being Interactable\
+Fixed Shaman Totem Shadow in Wrath
 ### 3.3.7
 Added new Datatexts for Stats, showing Crit, Mastery, Haste and Versatility in Retail and Power, Hit, Crit and Haste in Classic, alongside main stats\
 Added the new Datatexts to the EltruismDataText Panel and updated the Time datatext with a new panel\
