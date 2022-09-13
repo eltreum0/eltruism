@@ -10,7 +10,7 @@ local skillbutton
 local skillTitle
 
 --test elvui backdrop transparency
-function E:UpdateBackdropColors()
+--[[function E:UpdateBackdropColors()
 	local r, g, b = unpack(E.media.backdropcolor)
 	local r2, g2, b2, a2 = unpack(E.media.backdropfadecolor)
 
@@ -45,7 +45,7 @@ function E:UpdateBackdropColors()
 			E.unitFrameElements[frame] = nil
 		end
 	end
-end
+end]]
 
 function ElvUI_EltreumUI:SkinProfessions()
 	if E.db.ElvUI_EltreumUI.skins.professions and not E.private.skins.blizzard.enable == false then
