@@ -1149,6 +1149,6 @@ L["Hide the text that appears when changing zones"] = true
 L["Hide Alert Frame"] = true
 L["Hide the Alert Frame that appears when looting a rare item or earning an achievement"] = true
 L["Hide Boss Banner Frame"] = true
-L["Hide the boss banner that appears when killing a raid boss or completeting a Mythic+ dungeon"] = true
+L["Hide the boss banner that appears when killing a raid boss or completing a Mythic+ dungeon"] = true
 L["Enable on System Messages"] = true
 L["Enable on Chat Messages"] = true

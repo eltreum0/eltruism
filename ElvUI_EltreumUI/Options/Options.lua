@@ -8819,7 +8819,7 @@ function ElvUI_EltreumUI:Configtable()
 							hidebossbannerframe = {
 								order = 36,
 								name = E.NewSign..L["Hide Boss Banner Frame"],
-								desc = L["Hide the boss banner that appears when killing a raid boss or completeting a Mythic+ dungeon"],
+								desc = L["Hide the boss banner that appears when killing a raid boss or completing a Mythic+ dungeon"],
 								type = "toggle",
 								width = 'full',
 								hidden = not E.Retail,
