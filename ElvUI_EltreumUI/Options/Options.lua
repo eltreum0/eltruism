@@ -408,7 +408,7 @@ function ElvUI_EltreumUI:Configtable()
 					header1 = {
 						order = 3,
 						type = "description",
-						name = E.NewSign.."Eltruism Logo",
+						name = "Eltruism Logo",
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
@@ -2685,7 +2685,7 @@ function ElvUI_EltreumUI:Configtable()
 							classcolormsgs = {
 								order = 89,
 								type = 'toggle',
-								name = L["Enable on Chat Messages"],
+								name = E.NewSign..L["Enable on Chat Messages"],
 								width = 'full',
 								desc = L["Toggle the option on"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
@@ -3020,7 +3020,7 @@ function ElvUI_EltreumUI:Configtable()
 					ttsvoice = {
 						order = 80,
 						type = "description",
-						name = E.NewSign..L["Text to Speech"],
+						name = L["Text to Speech"],
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
@@ -3541,7 +3541,7 @@ function ElvUI_EltreumUI:Configtable()
 							nicegap4 = {
 								order = 21,
 								type = "description",
-								name = E.NewSign..L["Cursor Position"],
+								name = L["Cursor Position"],
 								width = 'full',
 							},
 							coooldownx = {
@@ -5449,7 +5449,7 @@ function ElvUI_EltreumUI:Configtable()
 							npcreactioncastbarenable = {
 								order = 25,
 								type = 'toggle',
-								name = E.NewSign..L["Color by Reaction"],
+								name = L["Color by Reaction"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbar end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarreactioninterruptable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarreactioninterruptable = value end,
@@ -5459,7 +5459,7 @@ function ElvUI_EltreumUI:Configtable()
 					nameplate = {
 						order = 3,
 						type = 'group',
-						name = E.NewSign..L["Nameplate Colors"],
+						name = L["Nameplate Colors"],
 						args = {
 							headergoodthreat = {
 								order = 10,
@@ -5737,7 +5737,7 @@ function ElvUI_EltreumUI:Configtable()
 							stylefilter = {
 								order = 31,
 								type = "description",
-								name = E.NewSign..L["Style Filter"],
+								name = L["Style Filter"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -5782,7 +5782,7 @@ function ElvUI_EltreumUI:Configtable()
 					power = {
 						order = 4,
 						type = 'group',
-						name = E.NewSign..L["Power Colors"],
+						name = L["Power Colors"],
 						args = {
 							enablepowercustom = {
 								order = 3,
@@ -6440,7 +6440,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							fontsize = {
 								type = 'range',
-								name = E.NewSign..L["Font Size"],
+								name = L["Font Size"],
 								order = 18,
 								min = 4,
 								max = 160,
@@ -6471,7 +6471,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							customLSMfont = {
 								type = 'toggle',
-								name = E.NewSign..L["Use Custom Font"],
+								name = L["Use Custom Font"],
 								desc = L["Change the font of LootText"],
 								--width = 'full',
 								order = 21,
@@ -6721,7 +6721,7 @@ function ElvUI_EltreumUI:Configtable()
 							enablelimit = {
 								order = 9,
 								type = 'toggle',
-								name = E.NewSign..L["Limit Max Distance"],
+								name = L["Limit Max Distance"],
 								hidden = function() if E.Retail then return false else return true end end,
 								get = function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance or not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance = value end,
@@ -6729,7 +6729,7 @@ function ElvUI_EltreumUI:Configtable()
 							etacolor = {
 								order = 10,
 								type = 'color',
-								name = E.NewSign..L["Text Color"],
+								name = L["Text Color"],
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB, 1, P.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, P.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, P.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB, 1 end,
@@ -6737,7 +6737,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							enablelimitd = {
 								type = 'range',
-								name = E.NewSign..L["Max Distance"],
+								name = L["Max Distance"],
 								order = 11,
 								min = 200,
 								max = 10000,
@@ -7416,7 +7416,7 @@ function ElvUI_EltreumUI:Configtable()
 					headerdatatexthiding = {
 						order = 57,
 						type = "description",
-						name = E.NewSign..L["Datatext Hiding"],
+						name = L["Datatext Hiding"],
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
@@ -7456,7 +7456,7 @@ function ElvUI_EltreumUI:Configtable()
 						name= "",
 						order = 90,
 						values = {
-							["tts"] = E.NewSign..L["Text to Speech"],
+							["tts"] = L["Text to Speech"],
 							["sharedmedia"] = CUSTOM,
 						},
 						style = 'radio',
@@ -7478,7 +7478,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					soundmailtts = {
 						type = 'input',
-						name = E.NewSign..L["Text to Speech announcement"],
+						name = L["Text to Speech announcement"],
 						width = "full",
 						order = 92,
 						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "sharedmedia" end,
@@ -7490,7 +7490,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					ttsvoiceselect = {
 						type = 'select',
-						name= E.NewSign..L["Text to Speech Config"],
+						name= L["Text to Speech Config"],
 						order = 93,
 						values =
 						function()
@@ -7770,7 +7770,7 @@ function ElvUI_EltreumUI:Configtable()
 							headerhideswipe = {
 								order = 913,
 								type = 'description',
-								name = E.NewSign..L["Hide Cooldown Swipe"],
+								name = L["Hide Cooldown Swipe"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -7786,7 +7786,7 @@ function ElvUI_EltreumUI:Configtable()
 							headerhidenontarget = {
 								order = 915,
 								type = 'description',
-								name = E.NewSign..L["Hide Debuffs on Non Target"],
+								name = L["Hide Debuffs on Non Target"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -7845,7 +7845,7 @@ function ElvUI_EltreumUI:Configtable()
 							restednp = {
 								order = 1916,
 								type = 'toggle',
-								name = E.NewSign..L["Decrease Nameplate Overlap when Resting"],
+								name = L["Decrease Nameplate Overlap when Resting"],
 								desc = L["Toggle On and Off"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.restedoverlap end,
@@ -8044,7 +8044,7 @@ function ElvUI_EltreumUI:Configtable()
 									},
 									modeleffect = {
 										type = 'toggle',
-										name = E.NewSign..L["Effect"],
+										name = L["Effect"],
 										desc = L["Add an Effect"],
 										order = 14,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
@@ -8053,7 +8053,7 @@ function ElvUI_EltreumUI:Configtable()
 									},
 									powerbargradient = {
 										type = 'toggle',
-										name = E.NewSign..L["Gradient"],
+										name = L["Gradient"],
 										desc = L["Gradient Colors"],
 										order = 15,
 										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
@@ -8188,7 +8188,7 @@ function ElvUI_EltreumUI:Configtable()
 					gradientnp = {
 						order = 3,
 						type = 'group',
-						name = E.NewSign..L["Gradient"],
+						name = L["Gradient"],
 						args = {
 							header = {
 								order = 1,
@@ -8200,7 +8200,7 @@ function ElvUI_EltreumUI:Configtable()
 							enablegradientnp = {
 								order = 2,
 								type = 'toggle',
-								name = E.NewSign..L["Enable Gradient Nameplates"],
+								name = L["Enable Gradient Nameplates"],
 								desc = L["Enable Gradient colors for Nameplates. |cffFF0000WARNING:|r This will overwrite some default ElvUI NP settings, if you dont want this, please disable this feature."],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable end,
@@ -8243,7 +8243,7 @@ function ElvUI_EltreumUI:Configtable()
 					model = {
 						order = 3,
 						type = 'group',
-						name = E.NewSign..L["Target Model"],
+						name = L["Target Model"],
 						args = {
 							targetmodel = {
 								order = 895,
@@ -8255,7 +8255,7 @@ function ElvUI_EltreumUI:Configtable()
 							enabletargetmodel = {
 								order = 896,
 								type = 'toggle',
-								name = E.NewSign..L["Enable Target Model"],
+								name = L["Enable Target Model"],
 								desc = L["Shows the target's model on the target nameplate"],
 								--width = 'double',
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel end,
@@ -8264,7 +8264,7 @@ function ElvUI_EltreumUI:Configtable()
 							enabletargetmodelpause = {
 								order = 897,
 								type = 'toggle',
-								name = E.NewSign..L["Pause"],
+								name = L["Pause"],
 								--width = 'double',
 								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel end,
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.paused end,
@@ -8278,7 +8278,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							enabletargetmodelCamDistance = {
 								type = 'range',
-								name = E.NewSign..L["Camera Distance Scale"],
+								name = L["Camera Distance Scale"],
 								order = 899,
 								min = 0.01,
 								max = 10,
@@ -8290,7 +8290,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							enabletargetmodelViewTranslationx = {
 								type = 'range',
-								name = E.NewSign..L["X-Offset"],
+								name = L["X-Offset"],
 								order = 900,
 								min = -1,
 								max = 1,
@@ -8302,7 +8302,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							enabletargetmodelViewTranslationy = {
 								type = 'range',
-								name = E.NewSign..L["Y-Offset"],
+								name = L["Y-Offset"],
 								order = 901,
 								min = -1,
 								max = 1,
@@ -8314,7 +8314,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							enabletargetmodelRotation = {
 								type = 'range',
-								name = E.NewSign..L["Model Rotation"],
+								name = L["Model Rotation"],
 								order = 902,
 								min = 0,
 								max = 360,
@@ -8326,7 +8326,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							enabletargetmodelalpha = {
 								type = 'range',
-								name = E.NewSign..L["Model Alpha"],
+								name = L["Model Alpha"],
 								order = 903,
 								min = 0,
 								max = 1,
@@ -8338,7 +8338,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							enabletargetmodelDesaturate = {
 								type = 'range',
-								name = E.NewSign..L["Desaturate"],
+								name = L["Desaturate"],
 								order = 904,
 								min = 0,
 								max = 1,
@@ -8809,7 +8809,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							hidealertframe = {
 								order = 36,
-								name = L["Hide Alert Frame"],
+								name = E.NewSign..L["Hide Alert Frame"],
 								desc = L["Hide the Alert Frame that appears when looting a rare item or earning an achievement"],
 								type = "toggle",
 								width = 'full',
@@ -8818,7 +8818,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							hidebossbannerframe = {
 								order = 36,
-								name = L["Hide Boss Banner Frame"],
+								name = E.NewSign..L["Hide Boss Banner Frame"],
 								desc = L["Hide the boss banner that appears when killing a raid boss or completeting a Mythic+ dungeon"],
 								type = "toggle",
 								width = 'full',
@@ -8978,7 +8978,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							talentscale = {
 								type = 'range',
-								name = E.NewSign..L["Scale"],
+								name = L["Scale"],
 								hidden = E.Retail,
 								order = 52,
 								min = 0.1,
@@ -9005,7 +9005,7 @@ function ElvUI_EltreumUI:Configtable()
 							gapabcolor = {
 								order = 96,
 								type = "description",
-								name = E.NewSign..L["Color Modifier Keys"],
+								name = L["Color Modifier Keys"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -9088,7 +9088,7 @@ function ElvUI_EltreumUI:Configtable()
 									headerroleiconcustomtankinput = {
 										order = 165,
 										type = 'input',
-										name = E.NewSign..L["Tank"]..tostring(E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank),
+										name = L["Tank"]..tostring(E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank),
 										desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
 										width = 'full',
 										disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype ~= 'CUSTOM' end,
@@ -9098,7 +9098,7 @@ function ElvUI_EltreumUI:Configtable()
 									headerroleiconcustomhealerinput = {
 										order = 167,
 										type = 'input',
-										name = E.NewSign..L["Healer"],
+										name = L["Healer"],
 										desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
 										width = 'full',
 										disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype ~= 'CUSTOM' end,
@@ -9108,7 +9108,7 @@ function ElvUI_EltreumUI:Configtable()
 									headerroleiconcustomdpsinput = {
 										order = 169,
 										type = 'input',
-										name = E.NewSign..L["DPS"],
+										name = L["DPS"],
 										desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
 										width = 'full',
 										disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype ~= 'CUSTOM' end,
@@ -9582,7 +9582,7 @@ function ElvUI_EltreumUI:Configtable()
 							colorsetsdifferently = {
 								order = 156,
 								type = 'toggle',
-								name = E.NewSign..L["Add Item Set Colors"],
+								name = L["Add Item Set Colors"],
 								width = 'double',
 								desc = L["Enable this option"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.itemquality end,
@@ -9591,7 +9591,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							itemsetcustomcolor = {
 								order = 157,
-								name = E.NewSign..L["Enable Custom Set Colors"],
+								name = L["Enable Custom Set Colors"],
 								type = "toggle",
 								width = 'double',
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.itemsetenable or not E.db.ElvUI_EltreumUI.skins.itemquality end,
@@ -9624,7 +9624,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							equipandbagilvlenable = {
 								order = 160,
-								name = E.NewSign..L["Enable Comparing Equipped and Bag Ilvl"],
+								name = L["Enable Comparing Equipped and Bag Ilvl"],
 								type = "toggle",
 								width = 'full',
 								hidden = not E.Retail,
@@ -9633,7 +9633,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							equipandbagilvlenablecustomcolor = {
 								order = 161,
-								name = E.NewSign..L["Enable Custom Colors"],
+								name = L["Enable Custom Colors"],
 								type = "toggle",
 								width = 'full',
 								hidden = not E.Retail,
@@ -9737,7 +9737,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							characterpanelfontsize = {
 								type = 'range',
-								name = E.NewSign..L["Font Size"],
+								name = L["Font Size"],
 								order = 237,
 								min = 8,
 								max = 40,
@@ -9900,7 +9900,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					quests = {
 						type = 'group',
-						name = E.NewSign..L["Quests"],
+						name = L["Quests"],
 						order = 2,
 						args = {
 							questskinsheader = {
@@ -10109,7 +10109,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					databars = {
 						type = 'group',
-						name = E.NewSign..L["DataBars"],
+						name = L["DataBars"],
 						order = 5,
 						args = {
 							header8898 = {
@@ -10157,7 +10157,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradientrep = {
 								order = 63,
 								type = "description",
-								name = E.NewSign..L["Add a gradient color to the Reputation Bar"],
+								name = L["Add a gradient color to the Reputation Bar"],
 								width = "full",
 							},
 							gradientrepenable = {
@@ -10215,7 +10215,7 @@ function ElvUI_EltreumUI:Configtable()
 							gradienthonor = {
 								order = 69,
 								type = "description",
-								name = E.NewSign..L["Add a gradient color to the Honor Bar"],
+								name = L["Add a gradient color to the Honor Bar"],
 								width = "full",
 								hidden = not E.Retail,
 							},
@@ -10321,7 +10321,7 @@ function ElvUI_EltreumUI:Configtable()
 							enablepower = {
 								order = 4,
 								type = 'toggle',
-								name = E.NewSign..L["Enable Gradient Power"],
+								name = L["Enable Gradient Power"],
 								desc = L["Enable Gradient Power Colors"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
@@ -10428,7 +10428,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 104,
 								type = 'toggle',
 								width = "full",
-								name = E.NewSign..L["Hide Backdrop"],
+								name = L["Hide Backdrop"],
 								desc = L["Sets the Backdrop as Transparent/Hidden"],
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -10566,7 +10566,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'select',
 								--width = "double",
 								dialogControl = 'LSM30_Statusbar',
-								name = E.NewSign..L["Spark Texture"],
+								name = L["Spark Texture"],
 								desc = L["Select a Texture"],
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable end,
@@ -10575,7 +10575,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							sparkwidth = {
 								type = 'range',
-								name = E.NewSign..L["Width"],
+								name = L["Width"],
 								desc = L["Set Width of the Spark (Default 3)"],
 								order = 994,
 								min = 1,
@@ -11191,7 +11191,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					models = {
 						type = "group",
-						name = E.NewSign..L["Models"],
+						name = L["Models"],
 						order = 4,
 						args = {
 							header1 = {
