@@ -465,7 +465,6 @@ end
 local handlemeetinghorn = CreateFrame("FRAME")
 handlemeetinghorn:RegisterEvent("ADDON_LOADED")
 handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
-	E:UpdateBackdropColors() --TEST
 	if GetAddOnEnableState(nil, "MeetingHorn") == 0 then
 		handlemeetinghorn:UnregisterAllEvents()
 	end
@@ -483,7 +482,6 @@ end)
 local meetinghornmightalreadybeloaded = CreateFrame("FRAME")
 meetinghornmightalreadybeloaded:RegisterEvent("PLAYER_STARTED_MOVING")
 meetinghornmightalreadybeloaded:SetScript("OnEvent", function()
-	E:UpdateBackdropColors() --TEST
 	meetinghornmightalreadybeloaded:UnregisterAllEvents()
 	if IsAddOnLoaded('MeetingHorn') then
 		SkinMeetingHorn()
