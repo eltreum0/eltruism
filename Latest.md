@@ -7,5 +7,5 @@ Updated [eltruism:groupnumber] tag to say, for example, "Group 1" instead of jus
 Updated some references in how they obtain item info to use a more generic method compatible with non enUS locales\
 Updated Inspect Talent frame skin by adjusting some the text/buttons to be more centered\
 Fixed an issue with the Quest Skin that could cause an ElvUI message to appear\
-Fixed Achievement Skin in Retail when the cursor entered/left the text\
+Fixed Achievement Skin in the Objective Frame in Retail when the cursor entered/left the text\
 Fixed an issue where shadows would still get created for tooltips when not using ElvUI tooltips
