@@ -1145,3 +1145,5 @@ L["Hide Boss Banner Frame"] = "Esconder o Quadro de Saque do Chefe"
 L["Hide the boss banner that appears when killing a raid boss or completing a Mythic+ dungeon"] = "Esconder o Quadro do Chefe que aparece ao matar um chefe ou ao completar uma Masmorra Míticas+"
 L["Enable on System Messages"] = "Habilitar nas mensagens do sistema"
 L["Enable on Chat Messages"] = "Habilitar em Mensagens de Chat"
+L["Adjust Auras Position"] = true
+L["Automatically move auras to the Top Right when minimap is hidden"] = true

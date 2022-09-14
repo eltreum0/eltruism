@@ -1195,3 +1195,5 @@ L["Hide Boss Banner Frame"] = "Bossbanner Fenster ausblenden"
 L["Hide the boss banner that appears when killing a raid boss or completing a Mythic+ dungeon"] = "Verstecke das Bossbanner, das erscheint, wenn du einen Raidboss für den Abschluss eines Mythic+ Dungeons tötest."
 L["Enable on System Messages"] = "Bei Systemmeldungen aktivieren"
 L["Enable on Chat Messages"] = "Bei Chatnachrichten aktivieren"
+L["Adjust Auras Position"] = true
+L["Automatically move auras to the Top Right when minimap is hidden"] = true
