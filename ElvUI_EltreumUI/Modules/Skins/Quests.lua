@@ -691,7 +691,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				if line and line.text then
 					if ( isHeader ) then
 						--line.text:SetTextColor(0.75, 0.61, 0)
-						line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+2, E.db.general.fontStyle)
+						line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, E.db.general.fontStyle)
 						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
 							line.text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
 						else
@@ -871,7 +871,8 @@ function ElvUI_EltreumUI:SkinQuests()
 							if ( index == self.startLine ) then
 								-- header
 								if ( onEnter ) then
-									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+2, E.db.general.fontStyle)
+
+									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, E.db.general.fontStyle)
 									if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
 										line.text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr+0.2, E.db.ElvUI_EltreumUI.skins.questsettings.customg+0.2, E.db.ElvUI_EltreumUI.skins.questsettings.customb+0.2)
 									else
@@ -879,7 +880,7 @@ function ElvUI_EltreumUI:SkinQuests()
 									end
 									line.text:SetWidth(250)
 								else
-									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+2, E.db.general.fontStyle)
+									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, E.db.general.fontStyle)
 									if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
 										line.text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
 									else

@@ -89,7 +89,20 @@ local function AddLootIcons(_, _, message, ...)
 		end
 		if guid and E.db.ElvUI_EltreumUI.chat.classcolorchat then
 			local _, unitclass =GetPlayerInfoByGUID(guid)
-			local msg = "|cff"..classcolorsescape[unitclass]..message:gsub("(|c%x+|Hitem:.-|h|r)", Icon).."|r"
+			local msg
+			if E.db.ElvUI_EltreumUI.chat.classcolorchatcustom then
+				--msg = "|c"..E:RGBToHex(unitframecustomgradients[unitclass].r,unitframecustomgradients[unitclass].g,unitframecustomgradients[unitclass].b, 'ff')..message:gsub("(|c%x+|Hitem:.-|h|r)", Icon).."|r"
+				msg = "|c"..E:RGBToHex(E:ClassColor(unitclass, false).r,E:ClassColor(unitclass, false).g,E:ClassColor(unitclass, false).b, 'ff')..message:gsub("(|c%x+|Hitem:.-|h|r)", Icon).."|r"
+			else
+				msg = "|cff"..classcolorsescape[unitclass]..message:gsub("(|c%x+|Hitem:.-|h|r)", Icon).."|r"
+			end
+			--print(E:RGBToHex(unitframecustomgradients[unitclass].r,unitframecustomgradients[unitclass].g,unitframecustomgradients[unitclass].b, "ff"))
+			--colorStr =
+
+			--E:ClassColor(E.myclass, true).r = unitframecustomgradients[unitclass].r
+			--E:ClassColor(E.myclass, true).g = unitframecustomgradients[unitclass].g
+			--E:ClassColor(E.myclass, true).b = unitframecustomgradients[unitclass].b
+
 			--local msg = message:gsub("(|c%x+|Hitem:.-|h|r)", Icon)
 			--return false, ElvUI_EltreumUI:GradientName(msg, unitclass), ...
 			return false, msg, ...
