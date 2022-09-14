@@ -214,6 +214,10 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetY"] = -1
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconPosition"] = "LEFT"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 28
+			local width = GetPhysicalScreenSize()
+			if width ~= 3840 then
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 29
+			end
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["showIcon"] = true
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["textPosition"] = "ONBAR"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["timeToHold"] = 0.4
