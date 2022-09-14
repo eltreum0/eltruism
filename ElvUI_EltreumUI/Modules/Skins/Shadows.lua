@@ -778,8 +778,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G["ElvUF_Arena3"],
 				_G["ElvUF_Arena4"],
 				_G["ElvUF_Arena5"],
-				--_G["ElvUF_Player_CastBar"],
-				--_G["ElvUF_Target_CastBar"],
+				_G["ElvUF_Player_CastBar"],
+				_G["ElvUF_Target_CastBar"],
 			}
 			for _, frame in pairs(elvuiframes) do
 				if frame then
@@ -848,64 +848,37 @@ function ElvUI_EltreumUI:Shadows()
 
 			--player castbar
 			if E.db.unitframe.units.player.castbar.overlayOnFrame == "None" and not (E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.ElvUI_EltreumUI.borders.borders) and E.db.unitframe.units.player.castbar.icon then
-				if E.db.unitframe.units.player.castbar.iconAttached == false then
-					PlayerCastbar:SetSize(E.db.unitframe.units.player.castbar.width + E.db.unitframe.units.player.castbar.iconSize -4, E.db.unitframe.units.player.castbar.height - 3)
-				elseif E.db.unitframe.units.player.castbar.iconAttached == true then
-					PlayerCastbar:SetSize(E.db.unitframe.units.player.castbar.width - 4, E.db.unitframe.units.player.castbar.height - 3)
-				end
-				PlayerCastbar:SetParent(_G["ElvUF_Player_CastBar"])
-				if not (self.PlayerCastBarIsSkinned) then
-					PlayerCastbar.shadow = PlayerCastbar:CreateShadow()
-					self.PlayerCastBarIsSkinned = true
-				end
-				PlayerCastbar:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", -((E.db.unitframe.units.player.castbar.height - 3)/2), 0)
-				PlayerCastbar:Show()
 				if _G["ElvUF_Player_CastBar"].shadow then
-					_G["ElvUF_Player_CastBar"].shadow:Hide()
-				end
-			else
-				if _G["EltruismPlayerCastBarShadowFrame"] then
-					_G["EltruismPlayerCastBarShadowFrame"]:Hide()
-				end
-				if not _G["ElvUF_Player_CastBar"].shadow and (not E.db.ElvUI_EltreumUI.borders.borders) then
-					_G["ElvUF_Player_CastBar"]:CreateShadow()
-				end
-				if _G["ElvUF_Player_CastBar"].shadow then
-					_G["ElvUF_Player_CastBar"].shadow:Show()
+					_G["ElvUF_Player_CastBar"].shadow:ClearAllPoints()
+					if not E.db.unitframe.units.player.castbar.iconAttached then
+						_G["ElvUF_Player_CastBar"].shadow:SetPoint("TOPLEFT",_G["ElvUF_Player_CastBar"].Icon.bg, "TOPLEFT",-3,3)
+						_G["ElvUF_Player_CastBar"].shadow:SetPoint("BOTTOMLEFT",_G["ElvUF_Player_CastBar"].Icon.bg, "BOTTOMLEFT",-3,-3)
+						_G["ElvUF_Player_CastBar"].shadow:SetPoint("TOPRIGHT",_G["ElvUF_Player_CastBar"].backdrop, "TOPRIGHT",3,-3)
+						_G["ElvUF_Player_CastBar"].shadow:SetPoint("BOTTOMRIGHT",_G["ElvUF_Player_CastBar"].backdrop, "BOTTOMRIGHT",3,-3)
+					elseif E.db.unitframe.units.player.castbar.iconAttached then
+						_G["ElvUF_Player_CastBar"].shadow:SetPoint("TOPLEFT",_G["ElvUF_Player_CastBar"].Icon, "TOPLEFT",-3,3)
+						_G["ElvUF_Player_CastBar"].shadow:SetPoint("BOTTOMLEFT",_G["ElvUF_Player_CastBar"].Icon, "BOTTOMLEFT",-3,-3)
+						_G["ElvUF_Player_CastBar"].shadow:SetPoint("TOPRIGHT",_G["ElvUF_Player_CastBar"].backdrop, "TOPRIGHT",3,-3)
+						_G["ElvUF_Player_CastBar"].shadow:SetPoint("BOTTOMRIGHT",_G["ElvUF_Player_CastBar"].backdrop, "BOTTOMRIGHT",3,-3)
+					end
 				end
 			end
 
 			--target castbar
 			if E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and not (E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.ElvUI_EltreumUI.borders.borders) and E.db.unitframe.units.target.castbar.icon then
-				if E.db.unitframe.units.target.castbar.iconAttached == false then
-					TargetCastbar:SetSize(E.db.unitframe.units.target.castbar.width + E.db.unitframe.units.target.castbar.iconSize - 4, E.db.unitframe.units.target.castbar.height - 3)
-					if E.db["unitframe"]["units"]["target"]["castbar"]["iconPosition"] == "LEFT" then
-						TargetCastbar:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", -((E.db.unitframe.units.target.castbar.height - 3)/2), 0)
-					elseif E.db["unitframe"]["units"]["target"]["castbar"]["iconPosition"] == "RIGHT" then
-						TargetCastbar:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", ((E.db.unitframe.units.target.castbar.height - 3)/2), 0)
-					end
-				elseif E.db.unitframe.units.target.castbar.iconAttached == true then
-					TargetCastbar:SetSize(E.db.unitframe.units.target.castbar.width - 4, E.db.unitframe.units.target.castbar.height - 3)
-					TargetCastbar:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", ((E.db.unitframe.units.target.castbar.height - 3)/2), 0)
-				end
-				TargetCastbar:SetParent(_G["ElvUF_Target_CastBar"])
-				if not (self.TargetCastBarIsSkinned) then
-					TargetCastbar.shadow = TargetCastbar:CreateShadow()
-					self.TargetCastBarIsSkinned = true
-				end
-				TargetCastbar:Show()
 				if _G["ElvUF_Target_CastBar"].shadow then
-					_G["ElvUF_Target_CastBar"].shadow:Hide()
-				end
-			else
-				if _G["EltruismTargetCastBarShadowFrame"] then
-					_G["EltruismTargetCastBarShadowFrame"]:Hide()
-				end
-				if not _G["ElvUF_Target_CastBar"].shadow and (not E.db.ElvUI_EltreumUI.borders.borders) then
-					_G["ElvUF_Target_CastBar"]:CreateShadow()
-				end
-				if _G["ElvUF_Player_CastBar"].shadow then
-					_G["ElvUF_Player_CastBar"].shadow:Show()
+					_G["ElvUF_Target_CastBar"].shadow:ClearAllPoints()
+					if not E.db.unitframe.units.target.castbar.iconAttached then
+						_G["ElvUF_Target_CastBar"].shadow:SetPoint("TOPLEFT",_G["ElvUF_Target_CastBar"].Icon.bg, "TOPLEFT",-3,3)
+						_G["ElvUF_Target_CastBar"].shadow:SetPoint("BOTTOMLEFT",_G["ElvUF_Target_CastBar"].Icon.bg, "BOTTOMLEFT",-3,-3)
+						_G["ElvUF_Target_CastBar"].shadow:SetPoint("TOPRIGHT",_G["ElvUF_Target_CastBar"].backdrop, "TOPRIGHT",3,-3)
+						_G["ElvUF_Target_CastBar"].shadow:SetPoint("BOTTOMRIGHT",_G["ElvUF_Target_CastBar"].backdrop, "BOTTOMRIGHT",3,-3)
+					elseif E.db.unitframe.units.target.castbar.iconAttached then
+						_G["ElvUF_Target_CastBar"].shadow:SetPoint("TOPLEFT",_G["ElvUF_Target_CastBar"].Icon, "TOPLEFT",-3,3)
+						_G["ElvUF_Target_CastBar"].shadow:SetPoint("BOTTOMLEFT",_G["ElvUF_Target_CastBar"].Icon, "BOTTOMLEFT",-3,-3)
+						_G["ElvUF_Target_CastBar"].shadow:SetPoint("TOPRIGHT",_G["ElvUF_Target_CastBar"].backdrop, "TOPRIGHT",3,-3)
+						_G["ElvUF_Target_CastBar"].shadow:SetPoint("BOTTOMRIGHT",_G["ElvUF_Target_CastBar"].backdrop, "BOTTOMRIGHT",3,-3)
+					end
 				end
 			end
 
