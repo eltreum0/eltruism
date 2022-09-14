@@ -3,6 +3,7 @@ The future is uncertain
 ___
 ### 3.3.9
 Added Item Level to tooltips in Wrath/Classic\
+Added a skin to the Gear Manager Toggle Button\
 Updated German locale by Dlarge\
 Updated [eltruism:groupnumber] tag to say, for example, "Group 1" instead of just "1"\
 Updated some references in how they obtain item info to use a more generic method compatible with non enUS locales\
