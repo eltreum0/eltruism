@@ -1361,8 +1361,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			if E.Wrath then --skin the gear manager button
 				if _G["GearManagerToggleButton"] then
-					_G["GearManagerToggleButton"]:GetNormalTexture():SetTexCoord(0.20, 0.80, 0.15, 0.85)
-					_G["GearManagerToggleButton"]:GetPushedTexture():SetTexCoord(0.20, 0.80, 0.15, 0.85)
+					_G["GearManagerToggleButton"]:GetNormalTexture():SetTexCoord(0.20, 0.80, 0.16, 0.85)
+					_G["GearManagerToggleButton"]:GetPushedTexture():SetTexCoord(0.20, 0.80, 0.16, 0.85)
 					_G["GearManagerToggleButton"]:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
 				end
 			end
