@@ -1359,6 +1359,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		--expand classic armory
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then
 
+			if E.Wrath then --skin the gear manager button
+				if _G["GearManagerToggleButton"] then
+					_G["GearManagerToggleButton"]:GetNormalTexture():SetTexCoord(0.20, 0.80, 0.15, 0.85)
+					_G["GearManagerToggleButton"]:GetPushedTexture():SetTexCoord(0.20, 0.80, 0.15, 0.85)
+					_G["GearManagerToggleButton"]:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
+				end
+			end
+
 			if not E.db.ElvUI_EltreumUI.skins.characterskingradients then
 				CharacterFrame.Text:SetText(L["Item Level"]) ---ilvl
 				CharacterFrame.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
