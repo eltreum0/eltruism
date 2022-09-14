@@ -223,7 +223,7 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 
 
 	--just testing here bc of how it loads
-	if E.db.ElvUI_EltreumUI.chat.classcolorchatcustom then
+	--[[if E.db.ElvUI_EltreumUI.chat.classcolorchatcustom then
 		RAID_CLASS_COLORS["PRIEST"].r = E.db.ElvUI_EltreumUI.unitframes.gradientmode.priestcustomcolorR1
 		RAID_CLASS_COLORS["PRIEST"].g = E.db.ElvUI_EltreumUI.unitframes.gradientmode.priestcustomcolorG1
 		RAID_CLASS_COLORS["PRIEST"].b = E.db.ElvUI_EltreumUI.unitframes.gradientmode.priestcustomcolorB1
@@ -283,7 +283,7 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 		RAID_CLASS_COLORS["DEMONHUNTER"].g = unitframecustomgradients["DEMONHUNTER"].g1
 		RAID_CLASS_COLORS["DEMONHUNTER"].b = unitframecustomgradients["DEMONHUNTER"].b1
 		RAID_CLASS_COLORS["DEMONHUNTER"].colorSrt = E:RGBToHex(unitframecustomgradients["DEMONHUNTER"].r1,unitframecustomgradients["DEMONHUNTER"].g1,unitframecustomgradients["DEMONHUNTER"].b1, "ff")
-	end
+	end]]
 end
 local colorupdateframe = CreateFrame("FRAME")
 colorupdateframe:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -405,4 +405,9 @@ function ElvUI_EltreumUI:GradientName(name, unitclass)
 		end
 	end
 	return text
+end
+
+--sends the colors for chat
+function ElvUI_EltreumUI:ChatCustomColor(unitclass)
+	return unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1
 end

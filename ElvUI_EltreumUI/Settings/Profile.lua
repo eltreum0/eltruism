@@ -1102,6 +1102,7 @@ P.ElvUI_EltreumUI = {
 		blizzcombattext = false,
 		blizzcombatmana = false,
 		mapcombathide = false,
+		mapcombathideadjustaura = true,
 		rightdatatextcombatshow = false,
 		leftdatatextcombatshow = false,
 		dynamicxpbar = false,

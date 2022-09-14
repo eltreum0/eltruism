@@ -87,24 +87,16 @@ local function AddLootIcons(_, _, message, ...)
 				return "|T"..texture..":12:12:0:0:64:64:5:59:5:59|t"..link
 			end
 		end
-		if guid and E.db.ElvUI_EltreumUI.chat.classcolorchat then
+		if guid ~= nil and E.db.ElvUI_EltreumUI.chat.classcolorchat then
 			local _, unitclass =GetPlayerInfoByGUID(guid)
 			local msg
+			local tname
 			if E.db.ElvUI_EltreumUI.chat.classcolorchatcustom then
-				--msg = "|c"..E:RGBToHex(unitframecustomgradients[unitclass].r,unitframecustomgradients[unitclass].g,unitframecustomgradients[unitclass].b, 'ff')..message:gsub("(|c%x+|Hitem:.-|h|r)", Icon).."|r"
-				msg = "|c"..E:RGBToHex(E:ClassColor(unitclass, false).r,E:ClassColor(unitclass, false).g,E:ClassColor(unitclass, false).b, 'ff')..message:gsub("(|c%x+|Hitem:.-|h|r)", Icon).."|r"
+				local r,g,b = ElvUI_EltreumUI:ChatCustomColor(unitclass)
+				msg = "|c"..E:RGBToHex(r,g,b, 'ff')..message:gsub("(|c%x+|Hitem:.-|h|r)", Icon).."|r"
 			else
 				msg = "|cff"..classcolorsescape[unitclass]..message:gsub("(|c%x+|Hitem:.-|h|r)", Icon).."|r"
 			end
-			--print(E:RGBToHex(unitframecustomgradients[unitclass].r,unitframecustomgradients[unitclass].g,unitframecustomgradients[unitclass].b, "ff"))
-			--colorStr =
-
-			--E:ClassColor(E.myclass, true).r = unitframecustomgradients[unitclass].r
-			--E:ClassColor(E.myclass, true).g = unitframecustomgradients[unitclass].g
-			--E:ClassColor(E.myclass, true).b = unitframecustomgradients[unitclass].b
-
-			--local msg = message:gsub("(|c%x+|Hitem:.-|h|r)", Icon)
-			--return false, ElvUI_EltreumUI:GradientName(msg, unitclass), ...
 			return false, msg, ...
 		else
 			message = message:gsub("(|c%x+|Hitem:.-|h|r)", Icon)
@@ -131,7 +123,6 @@ ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_WHISPER_INFORM", AddLootIcons)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_OFFICER", AddLootIcons)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID", AddLootIcons)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_TRADESKILLS", AddLootIcons)
-
 
 --gradient text experiment
 --[[local function test(_,event,message,...)
