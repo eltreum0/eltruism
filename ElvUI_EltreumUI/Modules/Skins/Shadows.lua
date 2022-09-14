@@ -1210,19 +1210,22 @@ function ElvUI_EltreumUI:Shadows()
 				if _G["ElvUF_Player"].shadow then
 					_G["ElvUF_Player"].shadow:Show()
 					_G["ElvUF_Player"].shadow:ClearAllPoints()
-					_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_HealthBar"],"BOTTOMLEFT", -3, -2)
-					_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_HealthBar"] ,"BOTTOMRIGHT", 3, -2)
+					_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_HealthBar"],"BOTTOMLEFT", -3, -3)
+					_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_HealthBar"] ,"BOTTOMRIGHT", 3, -3)
 					_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player_InfoPanel"],"TOPLEFT", -3, 3)
 					_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player_InfoPanel"],"TOPRIGHT", 3, 3)
-					if E.db["unitframe"]["units"]["player"]["portrait"]["enable"] then
-						_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player"].Portrait,"BOTTOMLEFT", -3, -2)
+					local benikdettached = false
+					if IsAddOnLoaded("ElvUI_BenikUI") then
+						benikdettached = E.db.benikui.unitframes.player.detachPortrait
+					end
+					if E.db["unitframe"]["units"]["player"]["portrait"]["enable"] and E.db["unitframe"]["units"]["player"]["portrait"]["style"] ~= "3D" and not benikdettached then
+						_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player"].Portrait,"BOTTOMLEFT", -3, -3)
 						_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player"].Portrait,"TOPLEFT", -3, 3)
 					end
 					if E.db["unitframe"]["units"]["player"]["power"]["enable"] then
-						if E.db["unitframe"]["units"]["player"]["power"]["width"] == "inset" then
-							_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_HealthBar"],"BOTTOMRIGHT", 3, -2)
-						else
-							_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_PowerBar"] ,"BOTTOMRIGHT", 3, -2)
+						if E.db["unitframe"]["units"]["player"]["power"]["width"] == "fill" then
+							_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_PowerBar"],"BOTTOMLEFT", -3, -3)
+							_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_PowerBar"] ,"BOTTOMRIGHT", 3, -3)
 						end
 					end
 				end
@@ -1233,19 +1236,22 @@ function ElvUI_EltreumUI:Shadows()
 				end
 				if _G["ElvUF_Target"].shadow then
 					_G["ElvUF_Target"].shadow:ClearAllPoints()
-					_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target_HealthBar"],"BOTTOMLEFT", -3, -2)
-					_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_HealthBar"],"BOTTOMRIGHT", 3, -2)
+					_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target_HealthBar"],"BOTTOMLEFT", -3, -3)
+					_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_HealthBar"],"BOTTOMRIGHT", 3, -3)
 					_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target_InfoPanel"],"TOPLEFT", -3, 3)
 					_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target_InfoPanel"],"TOPRIGHT", 3, 3)
-					if E.db["unitframe"]["units"]["target"]["portrait"]["enable"] then
-						_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target"].Portrait,"BOTTOMRIGHT", 3, -2)
+					local benikdettachedtarget = false
+					if IsAddOnLoaded("ElvUI_BenikUI") then
+						benikdettachedtarget = E.db.benikui.unitframes.target.detachPortrait
+					end
+					if E.db["unitframe"]["units"]["target"]["portrait"]["enable"] and E.db["unitframe"]["units"]["target"]["portrait"]["style"] ~= "3D" and not benikdettachedtarget then
+						_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target"].Portrait,"BOTTOMRIGHT", 3, -3)
 						_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target"].Portrait,"TOPRIGHT", 3, 3)
 					end
 					if E.db["unitframe"]["units"]["target"]["power"]["enable"] then
-						if E.db["unitframe"]["units"]["target"]["power"]["width"] == "inset" then
-							_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target_HealthBar"],"BOTTOMLEFT", -3, -2)
-						else
-							_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target_PowerBar"],"BOTTOMLEFT", -3, -2)
+						if E.db["unitframe"]["units"]["target"]["power"]["width"] == "fill" then
+							_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_PowerBar"],"BOTTOMRIGHT", 3, -3)
+							_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target_PowerBar"],"BOTTOMLEFT", -3, -3)
 						end
 					end
 				end
