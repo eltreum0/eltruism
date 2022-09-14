@@ -1153,5 +1153,5 @@ L["Hide Boss Banner Frame"] = "Masquer le cadre de la bannière du boss"
 L["Hide the boss banner that appears when killing a raid boss or completing a Mythic+ dungeon"] = "Masquer la bannière du boss qui apparaît lorsqu'on tue un boss de raid ou qu'on termine un donjon Mythic+"
 L["Enable on System Messages"] = "Activer sur les messages du système"
 L["Enable on Chat Messages"] = "Activer sur les messages du chat"
-L["Adjust Auras Position"] = true
-L["Automatically move auras to the Top Right when minimap is hidden"] = true
+L["Adjust Auras Position"] = "Ajuster la position des auras"
+L["Automatically move auras to the Top Right when minimap is hidden"] = "Déplacer automatiquement les auras en haut à droite lorsque la minimap est cachée"
