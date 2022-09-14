@@ -13,7 +13,7 @@ local ilvlpattern
 local texture
 local itemLevel
 local tt
-local _, itemQuality, itemType
+local _, itemQuality, classID
 local hex
 
 local classcolorsescape = {
@@ -60,7 +60,7 @@ local function AddLootIcons(_, _, message, ...)
 			end
 			tt:Hide()
 
-			_, _, itemQuality, _, _, itemType = GetItemInfo(link)
+			_, _, itemQuality, _, _, _, _, _, _, _, _, classID = GetItemInfo(link)
 			if itemLevel == nil then
 				itemLevel = select(4, GetItemInfo(link))
 			end
@@ -68,7 +68,7 @@ local function AddLootIcons(_, _, message, ...)
 			local item = Item:CreateFromItemLink(link)
 			if not item:IsItemEmpty() then
 				item:ContinueOnItemLoad(function()
-					itemType = select(6, GetItemInfo(link))
+					classID = select(12, GetItemInfo(link))
 					itemQuality = item:GetItemQuality()
 					--print(itemType, itemQuality, itemLevel)
 				end)
@@ -76,7 +76,7 @@ local function AddLootIcons(_, _, message, ...)
 
 			--local fontsize = select(2, GetChatWindowInfo(1))
 			--itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = GetItemInfo(item)
-			if itemLevel ~= nil and itemLevel > 1 and E.db.ElvUI_EltreumUI.chat.itemlevels and itemQuality ~= nil and (itemType == "Weapon" or itemType == "Armor" or itemType == "Gem") then
+			if itemLevel ~= nil and itemLevel > 1 and E.db.ElvUI_EltreumUI.chat.itemlevels and itemQuality ~= nil and (classID == 2 or classID == 4 or classID == 3) then
 				_, _, _, hex = GetItemQualityColor(itemQuality)
 				--return "|T"..texture..":".. 12 .."|t|c"..hex.."["..itemLevel.."]|r"..link
 				--return "|T"..texture..":"..fontsize..":"..fontsize..":0:0:64:64:5:59:5:59|t|c"..hex.."["..itemLevel.."]|r"..link

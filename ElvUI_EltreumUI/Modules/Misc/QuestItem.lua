@@ -343,7 +343,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Check Item -- Az: Some items which starts a quest, are not marked as "Quest" in itemType or itemSubType. Ex: item:17008
 			local function CheckItemTooltip(link,itemId)
-				local _, _, _, _, _, itemType, itemSubType, _, itemEquipLoc, _, _, _ = GetItemInfo(link)
+				local _, _, _, _, _, itemType, itemSubType, _, itemEquipLoc, _, _, classID = GetItemInfo(link)
 
 				-- Include predefinded items
 				for _, id in ipairs(qItems) do
@@ -356,7 +356,7 @@ function ElvUI_EltreumUI:QuestItem()
 				EltruismQuestItemFrame.tip:SetHyperlink(link)
 				local numLines = EltruismQuestItemFrame.tip:NumLines()
 				local line2 = (_G["EltruismQuestItemTipTextLeft2"]:GetText() or "")
-				if (numLines >= 3) and (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or line2 == ITEM_BIND_QUEST or line2 == GetZoneText()) and itemEquipLoc == "" then
+				if (numLines >= 3) and (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12 or line2 == ITEM_BIND_QUEST or line2 == GetZoneText()) and itemEquipLoc == "" then
 					for i = 3, numLines do
 						if _G["EltruismQuestItemTipTextLeft"..i] then
 							local text = _G["EltruismQuestItemTipTextLeft"..i]:GetText() or ""
@@ -393,20 +393,16 @@ function ElvUI_EltreumUI:QuestItem()
 						local itemId = link and tonumber(link:match(ITEMID_PATTERN))
 						if (link) and (itemId) then
 							if not blocklist[itemId] then
+								local _, _, _, _, _, itemType, _, _, _, _, _, classID = GetItemInfo(link)
 								if E.Retail then
-									--local isQuestItem, questId, isActive = GetContainerItemQuestInfo(bag,slot)
 									local isQuestItem, _, _ = GetContainerItemQuestInfo(bag,slot)
-									local _, _, _, _, _, itemType, itemSubType = GetItemInfo(link)
-									--if (questId and not isActive) or (cfg.userList[itemId]) or (CheckItemTooltip(link,itemId)) then
-									if isQuestItem or (itemType == "Quest" and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
+									if isQuestItem or ((itemType == "Quest" or classID == 12) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
 										local _, count = GetContainerItemInfo(bag,slot)
 										AddButton(index,bag,slot,link,itemId,count)
 										index = (index + 1)
 									end
 								elseif E.Wrath or E.TBC or E.Classic then
-									--local isQuestItem, _, _ = GetContainerItemQuestInfo(bag,slot) --not yet, wrath has it but tbc/classic dont
-									local _, _, _, _, _, itemType, _ = GetItemInfo(itemId)
-									if (itemType == "Quest" and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
+									if ((itemType == "Quest" or classID == 12) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
 										local _, count = GetContainerItemInfo(bag,slot)
 										AddButton(index,bag,slot,link,itemId,count)
 										index = (index + 1)
