@@ -413,6 +413,45 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 					end
 				end
 			end
+		elseif E.private.ElvUI_EltreumUI.install_version < "3.3.9" then
+			--making sure it only runs on the current char's profile
+			local currentprofile
+			for character, charprofile in pairs (ElvDB.profileKeys) do
+				if character:match(E.myname) then
+					currentprofile = charprofile
+				end
+			end
+
+			--Raid custom text update for Raid1/2/3
+			local ProfileNames = "NONE"
+			local CharacterNames = "NONE"
+			for profile, data in pairs(ElvDB.profiles) do
+				if profile == currentprofile then
+					if data then
+						if data.unitframe then
+							if data.unitframe.units then
+								if data.unitframe.units.raid3 then
+									if data.unitframe.units.raid1.customTexts then
+										if data.unitframe.units.raid1.customTexts.EltreumGroup then
+											data.unitframe.units.raid1.customTexts.EltreumGroup.text_format = "[eltruism:groupnumber]"
+										end
+									end
+									if data.unitframe.units.raid2.customTexts then
+										if data.unitframe.units.raid2.customTexts.EltreumGroup then
+											data.unitframe.units.raid2.customTexts.EltreumGroup.text_format = "[eltruism:groupnumber]"
+										end
+									end
+									if data.unitframe.units.raid3.customTexts then
+										if data.unitframe.units.raid3.customTexts.EltreumGroup then
+											data.unitframe.units.raid3.customTexts.EltreumGroup.text_format = "[eltruism:groupnumber]"
+										end
+									end
+								end
+							end
+						end
+					end
+				end
+			end
 		elseif forced then
 			--making sure it only runs on the current char's profile
 			local currentprofile
@@ -724,6 +763,9 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 											E:CopyTable(data.unitframe.units.raid1.customTexts.EltreumRaid1Name, data.unitframe.units.raid1.customTexts.EltreumRaidName)
 											data.unitframe.units.raid1.customTexts.EltreumRaidName = nil
 										end
+										if data.unitframe.units.raid1.customTexts.EltreumGroup then
+											data.unitframe.units.raid1.customTexts.EltreumGroup.text_format = "[eltruism:groupnumber]"
+										end
 									end
 								end
 								if data.unitframe.units.raid2 then
@@ -745,6 +787,9 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 											data.unitframe.units.raid2.customTexts.EltreumRaid2Name = data.unitframe.units.raid2.customTexts.EltreumRaid1Name
 											E:CopyTable(data.unitframe.units.raid2.customTexts.EltreumRaid2Name, data.unitframe.units.raid2.customTexts.EltreumRaid1Name)
 											data.unitframe.units.raid2.customTexts.EltreumRaid1Name = nil
+										end
+										if data.unitframe.units.raid2.customTexts.EltreumGroup then
+											data.unitframe.units.raid2.customTexts.EltreumGroup.text_format = "[eltruism:groupnumber]"
 										end
 									end
 								end
@@ -777,6 +822,9 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 										end
 										if data.unitframe.units.raid3.name.text_format == '[namecolor][name]' then
 											data.unitframe.units.raid3.name.text_format = ''
+										end
+										if data.unitframe.units.raid3.customTexts.EltreumGroup then
+											data.unitframe.units.raid3.customTexts.EltreumGroup.text_format = "[eltruism:groupnumber]"
 										end
 									end
 								end
