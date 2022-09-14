@@ -1359,6 +1359,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		--expand classic armory
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then
 
+			if E.Wrath then --skin the gear manager button
+				if _G["GearManagerToggleButton"] then
+					_G["GearManagerToggleButton"]:GetNormalTexture():SetTexCoord(0.20, 0.80, 0.16, 0.85)
+					_G["GearManagerToggleButton"]:GetPushedTexture():SetTexCoord(0.20, 0.80, 0.16, 0.85)
+					_G["GearManagerToggleButton"]:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
+				end
+			end
+
 			if not E.db.ElvUI_EltreumUI.skins.characterskingradients then
 				CharacterFrame.Text:SetText(L["Item Level"]) ---ilvl
 				CharacterFrame.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
@@ -2152,7 +2160,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 								if InCombatLockdown() then UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r") return end
 
 								_G.InspectNameText:ClearAllPoints()
-								_G.InspectNameText:SetPoint("TOP", _G.InspectFrame, "TOP", 0, -15)
+								_G.InspectNameText:SetPoint("TOP", _G.InspectFrame, "TOP", 0, -20)
 								_G.InspectFrame:SetWidth(450)
 								_G.InspectPaperDollItemsFrame:SetWidth(450)
 								_G.InspectHandsSlot:ClearAllPoints()
@@ -2177,12 +2185,11 @@ function ElvUI_EltreumUI:InspectBg(unit)
 										else
 											_G.InspectFrame:SetHeight(650)
 										end
+										_G.InspectTalentFrameTab2:ClearAllPoints()
+										_G.InspectTalentFrameTab2:SetPoint("TOP", _G.InspectTalentFrame, "TOP", 0, -50)
 										_G.InspectTalentFrameTab1:ClearAllPoints()
-										if not E.Wrath then
-											_G.InspectTalentFrameTab1:SetPoint("TOP", _G.InspectTalentFrame, "TOP", -95, -50)
-										else
-											_G.InspectTalentFrameTab1:SetPoint("TOP", _G.InspectTalentFrame, "TOP", -72, -50)
-										end
+										_G.InspectTalentFrameTab1:SetPoint("RIGHT", _G.InspectTalentFrameTab2, "LEFT", 0, 0)
+
 										_G.InspectTalentFrameScrollFrameScrollBar:SetAlpha(0)
 										_G.InspectTalentFrameScrollFrame:ClearAllPoints()
 										_G.InspectTalentFrameScrollFrame:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 12)
@@ -2195,7 +2202,9 @@ function ElvUI_EltreumUI:InspectBg(unit)
 
 										if E.Wrath then
 											_G.InspectTalentFramePointsBar:ClearAllPoints()
-											_G.InspectTalentFramePointsBar:SetPoint("BOTTOM", _G.InspectTalentFrame, "BOTTOM", 0, 80)
+											_G.InspectTalentFramePointsBar:SetPoint("BOTTOM", _G.InspectTalentFrame.backdrop, "BOTTOM", 0, 0)
+											_G.InspectTalentFrameSpentPointsText:SetJustifyH("LEFT")
+											_G.InspectTalentFrameTalentPointsText:SetJustifyH("RIGHT")
 										end
 
 										--kill stuff

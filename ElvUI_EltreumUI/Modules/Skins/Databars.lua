@@ -42,6 +42,7 @@ end
 --gradient tooltip health
 local function SetTooltipGradient(unit)
 	if not unit then return end
+	if not E.private.tooltip.enable then return end
 	local _, classunit = UnitClass(unit)
 	local reaction = UnitReaction(unit, "player")
 	local _, classunit = UnitClass(unit)
@@ -92,7 +93,7 @@ end
 local TT = E:GetModule('Tooltip')
 function ElvUI_EltreumUI:GradientTooltip(tt, unit)
 	if tt and tt:IsForbidden() then return end
-	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.private.tooltip.enable then
 		local _, fixunit = _G.GameTooltip:GetUnit()
 		SetTooltipGradient(fixunit)
 		if not self.isHooked then

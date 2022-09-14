@@ -133,7 +133,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				}
 				local mult = 0.85
 				for _, k in pairs(questmodules) do
-					hooksecurefunc(k, "AddObjective", function(_, block)
+					hooksecurefunc(k, "AddObjective", function(_, block,objectiveKey,_,lineType)
 						if not block then
 							return
 						end
@@ -159,6 +159,14 @@ function ElvUI_EltreumUI:SkinQuests()
 								block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, E.db.general.fontStyle)
 								block.currentLine.Text:SetTextColor(mult, mult, mult)
 								block.currentLine.Text:SetWordWrap(true)
+							end
+						end
+						local line = DEFAULT_OBJECTIVE_TRACKER_MODULE:GetLine(block, objectiveKey, lineType);
+						if ( line.Dash ) then
+							if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+								line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+							else
+								line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 							end
 						end
 					end)
@@ -396,6 +404,57 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 					end
 				end)
+
+				hooksecurefunc(ACHIEVEMENT_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
+					if ( block.HeaderText ) then
+						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+							block.HeaderText:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+							block.HeaderText.colorStyle = {r = E.db.ElvUI_EltreumUI.skins.questsettings.customr, g = E.db.ElvUI_EltreumUI.skins.questsettings.customg, b = E.db.ElvUI_EltreumUI.skins.questsettings.customb}
+						else
+							block.HeaderText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							block.HeaderText.colorStyle = {r = classcolor.r, g = classcolor.g, b = classcolor.b}
+						end
+					end
+					if block.currentLine then --this is the text
+						for _, line in pairs(block.lines) do
+							line.Text:SetTextColor(1, 1, 1)
+							line.Text.colorStyle = {r = mult * 1, g = mult * 1, b = mult * 1}
+							if ( line.Dash ) then
+								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								else
+									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
+							end
+						end
+					end
+				end)
+
+				hooksecurefunc(ACHIEVEMENT_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
+					if ( block.HeaderText ) then
+						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+							block.HeaderText:SetTextColor(mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+							block.HeaderText.colorStyle = {r = mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, g = mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, b = mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb}
+						else
+							block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+							block.HeaderText.colorStyle = { r = mult * classcolor.r, g = mult * classcolor.g, b = mult * classcolor.b }
+						end
+					end
+					if block.currentLine then
+						for _, line in pairs(block.lines) do
+							line.Text:SetTextColor(mult, mult, mult)
+							line.Text.colorStyle = {r = mult, g = mult, b = mult}
+							if ( line.Dash ) then
+								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								else
+									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
+							end
+						end
+					end
+				end)
+
 			end
 		elseif E.Classic or E.TBC then
 			local questID

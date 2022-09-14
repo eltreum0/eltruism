@@ -84,7 +84,6 @@ function ElvUI_EltreumUI:Shadows()
 			_G.GameMenuFrame,
 			_G.DropDownList1,
 			_G.DropDownList2,
-			_G.GameTooltip,
 			_G.ReadyCheckFrame,
 			_G.StackSplitFrame,
 			_G.ChatConfigFrame,
@@ -142,8 +141,14 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
+		if _G.GameTooltip and not _G.GameTooltip.shadow then
+			if E.private.tooltip.enable then
+				_G.GameTooltip:CreateShadow()
+			end
+		end
+
 		--finally fix gametooltip shadow
-		if _G.GameTooltipStatusBar then
+		if _G.GameTooltipStatusBar and E.private.tooltip.enable then
 			_G.GameTooltipStatusBar:HookScript("OnShow", function()
 				if _G.GameTooltip.shadow then
 					_G.GameTooltip.shadow:ClearAllPoints()
