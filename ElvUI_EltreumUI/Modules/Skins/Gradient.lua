@@ -220,6 +220,70 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 			["TAPPED"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Tappedv3.tga",
 		}
 	end
+
+
+	--just testing here bc of how it loads
+	if E.db.ElvUI_EltreumUI.chat.classcolorchatcustom then
+		RAID_CLASS_COLORS["PRIEST"].r = E.db.ElvUI_EltreumUI.unitframes.gradientmode.priestcustomcolorR1
+		RAID_CLASS_COLORS["PRIEST"].g = E.db.ElvUI_EltreumUI.unitframes.gradientmode.priestcustomcolorG1
+		RAID_CLASS_COLORS["PRIEST"].b = E.db.ElvUI_EltreumUI.unitframes.gradientmode.priestcustomcolorB1
+		RAID_CLASS_COLORS["PRIEST"].colorSrt = E:RGBToHex(E.db.ElvUI_EltreumUI.unitframes.gradientmode.priestcustomcolorR1,E.db.ElvUI_EltreumUI.unitframes.gradientmode.priestcustomcolorG1,E.db.ElvUI_EltreumUI.unitframes.gradientmode.priestcustomcolorB1, "ff")
+
+		RAID_CLASS_COLORS["MAGE"].r = unitframecustomgradients["MAGE"].r1
+		RAID_CLASS_COLORS["MAGE"].g = unitframecustomgradients["MAGE"].g1
+		RAID_CLASS_COLORS["MAGE"].b = unitframecustomgradients["MAGE"].b1
+		RAID_CLASS_COLORS["MAGE"].colorSrt = E:RGBToHex(unitframecustomgradients["MAGE"].r1,unitframecustomgradients["MAGE"].g1,unitframecustomgradients["MAGE"].b1, "ff")
+
+		RAID_CLASS_COLORS["WARLOCK"].r = unitframecustomgradients["WARLOCK"].r1
+		RAID_CLASS_COLORS["WARLOCK"].g = unitframecustomgradients["WARLOCK"].g1
+		RAID_CLASS_COLORS["WARLOCK"].b = unitframecustomgradients["WARLOCK"].b1
+		RAID_CLASS_COLORS["WARLOCK"].colorSrt = E:RGBToHex(unitframecustomgradients["WARLOCK"].r1,unitframecustomgradients["WARLOCK"].g1,unitframecustomgradients["WARLOCK"].b1, "ff")
+
+		RAID_CLASS_COLORS["HUNTER"].r = unitframecustomgradients["HUNTER"].r1
+		RAID_CLASS_COLORS["HUNTER"].g = unitframecustomgradients["HUNTER"].g1
+		RAID_CLASS_COLORS["HUNTER"].b = unitframecustomgradients["HUNTER"].b1
+		RAID_CLASS_COLORS["HUNTER"].colorSrt = E:RGBToHex(unitframecustomgradients["HUNTER"].r1,unitframecustomgradients["HUNTER"].g1,unitframecustomgradients["HUNTER"].b1, "ff")
+
+		RAID_CLASS_COLORS["DEATHKNIGHT"].r = unitframecustomgradients["DEATHKNIGHT"].r1
+		RAID_CLASS_COLORS["DEATHKNIGHT"].g = unitframecustomgradients["DEATHKNIGHT"].g1
+		RAID_CLASS_COLORS["DEATHKNIGHT"].b = unitframecustomgradients["DEATHKNIGHT"].b1
+		RAID_CLASS_COLORS["DEATHKNIGHT"].colorSrt = E:RGBToHex(unitframecustomgradients["DEATHKNIGHT"].r1,unitframecustomgradients["DEATHKNIGHT"].g1,unitframecustomgradients["DEATHKNIGHT"].b1, "ff")
+
+		RAID_CLASS_COLORS["PALADIN"].r = unitframecustomgradients["PALADIN"].r1
+		RAID_CLASS_COLORS["PALADIN"].g = unitframecustomgradients["PALADIN"].g1
+		RAID_CLASS_COLORS["PALADIN"].b = unitframecustomgradients["PALADIN"].b1
+		RAID_CLASS_COLORS["PALADIN"].colorSrt = E:RGBToHex(unitframecustomgradients["PALADIN"].r1,unitframecustomgradients["PALADIN"].g1,unitframecustomgradients["PALADIN"].b1, "ff")
+
+		RAID_CLASS_COLORS["ROGUE"].r = unitframecustomgradients["ROGUE"].r1
+		RAID_CLASS_COLORS["ROGUE"].g = unitframecustomgradients["ROGUE"].g1
+		RAID_CLASS_COLORS["ROGUE"].b = unitframecustomgradients["ROGUE"].b1
+		RAID_CLASS_COLORS["ROGUE"].colorSrt = E:RGBToHex(unitframecustomgradients["ROGUE"].r1,unitframecustomgradients["ROGUE"].g1,unitframecustomgradients["ROGUE"].b1, "ff")
+
+		RAID_CLASS_COLORS["SHAMAN"].r = unitframecustomgradients["SHAMAN"].r1
+		RAID_CLASS_COLORS["SHAMAN"].g = unitframecustomgradients["SHAMAN"].g1
+		RAID_CLASS_COLORS["SHAMAN"].b = unitframecustomgradients["SHAMAN"].b1
+		RAID_CLASS_COLORS["SHAMAN"].colorSrt = E:RGBToHex(unitframecustomgradients["SHAMAN"].r1,unitframecustomgradients["SHAMAN"].g1,unitframecustomgradients["SHAMAN"].b1, "ff")
+
+		RAID_CLASS_COLORS["WARRIOR"].r = unitframecustomgradients["WARRIOR"].r1
+		RAID_CLASS_COLORS["WARRIOR"].g = unitframecustomgradients["WARRIOR"].g1
+		RAID_CLASS_COLORS["WARRIOR"].b = unitframecustomgradients["WARRIOR"].b1
+		RAID_CLASS_COLORS["WARRIOR"].colorSrt = E:RGBToHex(unitframecustomgradients["WARRIOR"].r1,unitframecustomgradients["WARRIOR"].g1,unitframecustomgradients["WARRIOR"].b1, "ff")
+
+		RAID_CLASS_COLORS["DRUID"].r = unitframecustomgradients["DRUID"].r1
+		RAID_CLASS_COLORS["DRUID"].g = unitframecustomgradients["DRUID"].g1
+		RAID_CLASS_COLORS["DRUID"].b = unitframecustomgradients["DRUID"].b1
+		RAID_CLASS_COLORS["DRUID"].colorSrt = E:RGBToHex(unitframecustomgradients["DRUID"].r1,unitframecustomgradients["DRUID"].g1,unitframecustomgradients["DRUID"].b1, "ff")
+
+		RAID_CLASS_COLORS["MONK"].r = unitframecustomgradients["MONK"].r1
+		RAID_CLASS_COLORS["MONK"].g = unitframecustomgradients["MONK"].g1
+		RAID_CLASS_COLORS["MONK"].b = unitframecustomgradients["MONK"].b1
+		RAID_CLASS_COLORS["MONK"].colorSrt = E:RGBToHex(unitframecustomgradients["MONK"].r1,unitframecustomgradients["MONK"].g1,unitframecustomgradients["MONK"].b1, "ff")
+
+		RAID_CLASS_COLORS["DEMONHUNTER"].r = unitframecustomgradients["DEMONHUNTER"].r1
+		RAID_CLASS_COLORS["DEMONHUNTER"].g = unitframecustomgradients["DEMONHUNTER"].g1
+		RAID_CLASS_COLORS["DEMONHUNTER"].b = unitframecustomgradients["DEMONHUNTER"].b1
+		RAID_CLASS_COLORS["DEMONHUNTER"].colorSrt = E:RGBToHex(unitframecustomgradients["DEMONHUNTER"].r1,unitframecustomgradients["DEMONHUNTER"].g1,unitframecustomgradients["DEMONHUNTER"].b1, "ff")
+	end
 end
 local colorupdateframe = CreateFrame("FRAME")
 colorupdateframe:RegisterEvent("PLAYER_ENTERING_WORLD")
