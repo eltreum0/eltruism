@@ -502,3 +502,17 @@ function S:AddCallbackForAddon(addonName, name, func, forceLoad, bypass, positio
 end
 
 ]]
+
+--add item level to tooltip
+if not E.Retail then
+	local _,itemLink,itemLevel, classID
+	GameTooltip:HookScript("OnTooltipSetItem", function(tooltip)
+		_, itemLink = tooltip:GetItem()
+		if (itemLink ~= nil) then
+			_, _, _, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(itemLink)
+			if itemLevel and (classID == 2 or classID == 4)then
+				tooltip:AddLine(string.format(ITEM_LEVEL, itemLevel))
+			end
+		end
+	end)
+end
