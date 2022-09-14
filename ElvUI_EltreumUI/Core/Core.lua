@@ -265,9 +265,9 @@ end
 
 -- UI Scale
 function ElvUI_EltreumUI:SetupScale()
-	E.global["general"]["UIScale"] = 0.7
+	E.global["general"]["UIScale"] = 0.71111111111111
 	if (not IsAddOnLoaded("ElvUI_SLE")) then
-		SetCVar('uiScale', 0.7)
+		SetCVar('uiScale', 0.71111111111111)
 	end
 end
 

@@ -32,6 +32,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		["enable"] = true
 		}
 	end
+	local width = GetPhysicalScreenSize()
 
 	--healprediction
 	E.db["unitframe"]["units"]["target"]["healPrediction"]["enable"] = true
@@ -331,7 +332,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-4,-334"
 	E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-4"
 	E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-101"
-	E.db["movers"]["DurabilityFrameMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,498,366"
+	E.db["movers"]["DurabilityFrameMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,481,366"
 	E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,307"
 	E.db["movers"]["ElvAB_10"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,344"
 	E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,280"
@@ -342,12 +343,23 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["movers"]["ElvAB_7"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,240"
 	E.db["movers"]["ElvAB_8"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,275"
 	E.db["movers"]["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,310"
-	E.db["movers"]["ElvUF_AssistMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,438,-522"
+	E.db["movers"]["ElvUF_AssistMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,420,499"
 	E.db["movers"]["ElvUF_FocusMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,424,-204"
 	E.db["movers"]["ElvUF_FocusCastbarMover"] = "TOP,ElvUIParent,TOP,0,-168"
 	E.db["movers"]["ElvUF_PartyMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,87"
+
 	E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,311,352"
 	E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,336"
+	E.db["movers"]["PetAB"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,255"
+	E.db["movers"]["PetBattleABMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
+	E.db["movers"]["PetBattleStatusMover"] = "TOP,ElvUIParent,TOP,0,1"
+	if width == 1920 then
+		E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,338"
+		E.db["movers"]["PetAB"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,253"
+	elseif width == 2560 then
+		E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,332"
+		E.db["movers"]["PetAB"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,252"
+	end
 	E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,14,355"
 	E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,340"
 	E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,387"
@@ -355,11 +367,11 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["movers"]["ElvUF_Raid2Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,24"
 	E.db["movers"]["ElvUF_Raid3Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,25"
 	E.db["movers"]["ElvUF_RaidpetMover"] = "BOTTOMLEFT,UIParent,BOTTOMLEFT,4,217" --new
-	E.db["movers"]["ElvUF_TankMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-428,-515" --new
+	E.db["movers"]["ElvUF_TankMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-420,500"
 	E.db["movers"]["ElvUF_TargetAuraMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-400,288"
 	E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,311,359"
 	E.db["movers"]["ElvUF_TargetMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,387"
-	E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-423,387"
+	E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-410,387"
 	E.db["movers"]["ElvUIBagMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,24"
 	E.db["movers"]["ElvUIBankMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,24"
 	E.db["movers"]["EnhancedVehicleBar_Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
@@ -382,9 +394,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-115,-306"
 		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-110,-319"
 	end
-	E.db["movers"]["PetAB"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,426,255"
-	E.db["movers"]["PetBattleABMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1"
-	E.db["movers"]["PetBattleStatusMover"] = "TOP,ElvUIParent,TOP,0,1"
+
 	E.db["movers"]["PowerWidgetMover"] = "TOP,ElvUIParent,TOP,0,-102"
 	E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-72"
 	E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
@@ -431,7 +441,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	end
 	E.db["movers"]["ZoneAbility"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-458,73"
 	E.db["movers"]["MoverEltruismWA"] = "BOTTOM,UIParent,BOTTOM,0,264"
-	E.db["movers"]["MoverEltruismWA2"] = "TOPLEFT,UIParent,TOPLEFT,18,-514"
+	E.db["movers"]["MoverEltruismWA2"] = "BOTTOM,ElvUIParent,BOTTOM,0,387"
 	E.db["movers"]["MoverEltruismWAConsumables"] = "BOTTOM,ElvUIParent,BOTTOM,-280,357"
 
 	-- UnitFrames Healing
@@ -854,7 +864,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["pet"]["castbar"]["height"] = 15
 	E.db["unitframe"]["units"]["pet"]["castbar"]["overlayOnFrame"] = "Health"
 	E.db["unitframe"]["units"]["pet"]["castbar"]["timeToHold"] = 0.2
-	E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 130
 	E.db["unitframe"]["units"]["pet"]["disableTargetGlow"] = false
 	E.db["unitframe"]["units"]["pet"]["fader"]["casting"] = true
 	E.db["unitframe"]["units"]["pet"]["fader"]["combat"] = true
@@ -872,7 +881,15 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = ""
 	E.db["unitframe"]["units"]["pet"]["power"]["width"] = "inset"
 	E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
-	E.db["unitframe"]["units"]["pet"]["width"] = 100
+	E.db["unitframe"]["units"]["pet"]["width"] = 98
+	E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 98
+	if width == 1920 then
+		E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 102
+		E.db["unitframe"]["units"]["pet"]["width"] = 102
+	elseif width == 2560 then
+		E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 100
+		E.db["unitframe"]["units"]["pet"]["width"] = 100
+	end
 	E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
 	E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "TOPRIGHT"
 	E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["a"] = 0.80000001192093
