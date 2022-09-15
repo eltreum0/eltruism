@@ -375,6 +375,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 		end
 		if not E.Classic then
 			ElvUI_EltreumUI:ApplyUnitGradientTexture("focus", "Focus", "focus")
+			ElvUI_EltreumUI:ApplyUnitGradientTexture("focustarget", "FocusTarget", "focustarget")
 			ElvUI_EltreumUI:ApplyUnitGradientTexture("arena1", "Arena1", "arena")
 			ElvUI_EltreumUI:ApplyUnitGradientTexture("arena2", "Arena2", "arena")
 			ElvUI_EltreumUI:ApplyUnitGradientTexture("arena3", "Arena3", "arena")
