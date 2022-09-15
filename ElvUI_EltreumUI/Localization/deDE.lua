@@ -1197,3 +1197,4 @@ L["Enable on System Messages"] = "Bei Systemmeldungen aktivieren"
 L["Enable on Chat Messages"] = "Bei Chatnachrichten aktivieren"
 L["Adjust Auras Position"] = true
 L["Automatically move auras to the Top Right when minimap is hidden"] = true
+L["Enable for Focus Target"] = true
