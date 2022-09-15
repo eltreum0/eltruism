@@ -6,10 +6,7 @@ local A = E:GetModule('Auras')
 local pairs = _G.pairs
 local CreateFrame = _G.CreateFrame
 local IsAddOnLoaded = _G.IsAddOnLoaded
-local IsInRaid = _G.IsInRaid
 local hooksecurefunc = _G.hooksecurefunc
-local PlayerCastbar = CreateFrame("Frame", "EltruismPlayerCastBarShadowFrame")
-local TargetCastbar = CreateFrame("Frame", "EltruismTargetCastBarShadowFrame")
 
 --Frame Shadows, turns out ElvUI includes the function
 function ElvUI_EltreumUI:Shadows()
