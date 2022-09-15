@@ -9,6 +9,7 @@ local dontexpandanymore = 0
 local skillbutton
 local skillTitle
 
+
 --test elvui backdrop transparency
 --[[function E:UpdateBackdropColors()
 	local r, g, b = unpack(E.media.backdropcolor)
@@ -46,6 +47,20 @@ local skillTitle
 		end
 	end
 end]]
+
+--add item level to tooltip
+if not E.Retail then
+	local _,itemLink,itemLevel, classID
+	GameTooltip:HookScript("OnTooltipSetItem", function(tooltip)
+		_, itemLink = tooltip:GetItem()
+		if (itemLink ~= nil) then
+			_, _, _, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(itemLink)
+			if itemLevel and (classID == 2 or classID == 4)then
+				tooltip:AddLine(string.format(ITEM_LEVEL, itemLevel))
+			end
+		end
+	end)
+end
 
 function ElvUI_EltreumUI:SkinProfessions()
 	if E.db.ElvUI_EltreumUI.skins.professions and not E.private.skins.blizzard.enable == false then
@@ -503,16 +518,121 @@ end
 
 ]]
 
---add item level to tooltip
-if not E.Retail then
-	local _,itemLink,itemLevel, classID
-	GameTooltip:HookScript("OnTooltipSetItem", function(tooltip)
-		_, itemLink = tooltip:GetItem()
-		if (itemLink ~= nil) then
-			_, _, _, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(itemLink)
-			if itemLevel and (classID == 2 or classID == 4)then
-				tooltip:AddLine(string.format(ITEM_LEVEL, itemLevel))
+--based on old addonskins skin
+function S:PallyPower()
+	--if not (E.private.skins.blizzard.enable and E.private.skins.blizzard.taxi) then return end
+
+	local PallyPowerBlessingsFrame = _G.PallyPowerBlessingsFrame
+	PallyPowerBlessingsFrame:StripTextures()
+	PallyPowerBlessingsFrame:SetTemplate('Transparent', nil, true)
+	S:HandleCloseButton(_G.PallyPowerBlessingsFrameCloseButton)
+	S:HandleButton(_G.PallyPowerBlessingsFrameAutoAssign)
+	S:HandleButton(_G.PallyPowerBlessingsFrameClear)
+	S:HandleButton(_G.PallyPowerBlessingsFrameRefresh)
+	S:HandleCheckBox(_G.PallyPowerBlessingsFrameFreeAssign)
+
+	local PallyPowerFrame = _G.PallyPowerFrame
+	PallyPowerFrame:StripTextures()
+	PallyPowerFrame:SetTemplate('Transparent', nil, true)
+
+	_G.PallyPowerAura:SetTemplate("Transparent", nil, true)
+	_G.PallyPowerAuto:SetTemplate("Transparent", nil, true)
+	_G.PallyPowerRF:SetTemplate("Transparent", nil, true)
+	if _G.PallyPowerRF.TopEdge then
+		_G.PallyPowerRF.TopEdge:Hide()
+	end
+
+
+	for i = 1, PALLYPOWER_MAXCLASSES do
+		local button = PallyPower.classButtons[i]
+		button:SetTemplate("Transparent", nil, true)
+
+		_G[button:GetName().."ClassIcon"]:SetTexCoord(unpack(E.TexCoords))
+		_G[button:GetName().."BuffIcon"]:SetTexCoord(unpack(E.TexCoords))
+
+		for j = 1, PALLYPOWER_MAXPERCLASS do
+			PallyPower.playerButtons[i][j]:SetTemplate("Transparent", nil, true)
+		end
+	end
+
+	for i = 1, PALLYPOWER_MAXCLASSES do
+		for j = 1, 8 do
+			if _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"] then
+				_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"]:SetTexCoord(unpack(E.TexCoords))
+			end
+
+			if _G["PallyPowerBlessingsFramePlayer"..j.."Icon"..i] then
+				_G["PallyPowerBlessingsFramePlayer"..j.."Icon"..i]:SetTexCoord(unpack(E.TexCoords))
+			end
+			if _G["PallyPowerBlessingsFramePlayer"..j.."AIcon"..i] then
+				_G["PallyPowerBlessingsFramePlayer"..j.."AIcon"..i]:SetTexCoord(unpack(E.TexCoords))
+			end
+			if _G["PallyPowerBlessingsFramePlayer"..j.."CIcon"..i] then
+				_G["PallyPowerBlessingsFramePlayer"..j.."CIcon"..i]:SetTexCoord(unpack(E.TexCoords))
 			end
 		end
-	end)
+	end
+
+	for i = 1, PALLYPOWER_MAXCLASSES do
+		if _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"] then
+			_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"]:SetTexCoord(unpack(E.TexCoords))
+		end
+
+		for j = 1, 8 do
+			if _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"] then
+				_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"]:SetTexCoord(unpack(E.TexCoords))
+			end
+		end
+	end
+
+	if not PallyPowerBlessingsFrame.shadow then
+		PallyPowerBlessingsFrame:CreateShadow()
+	end
+
+	if _G["PallyPowerAutoIcon"] then
+		_G["PallyPowerAutoIcon"]:SetTexCoord(unpack(E.TexCoords))
+	end
+
+	_G.PallyPowerAnchor:ClearAllPoints()
+	_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-10,10)
+
+	_G.PallyPowerAnchor:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
+	_G.PallyPowerAnchor:GetNormalTexture():SetVertexColor(0,1,0)
+	_G.PallyPowerAnchor:GetCheckedTexture():SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
+	_G.PallyPowerAnchor:GetCheckedTexture():SetVertexColor(1,0,0)
+
+	PallyPower.ClassIcons = PallyPower.isWrath and {
+		[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warrior.tga",
+		[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Rogue.tga",
+		[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Priest.tga",
+		[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Druid.tga",
+		[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Paladin.tga",
+		[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Hunter.tga",
+		[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Mage.tga",
+		[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warlock.tga",
+		[9] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Shaman.tga",
+		[10] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnight.tga",
+	} or PallyPower.isBCC and {
+		[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warrior.tga",
+		[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Rogue.tga",
+		[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Priest.tga",
+		[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Druid.tga",
+		[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Paladin.tga",
+		[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Hunter.tga",
+		[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Mage.tga",
+		[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warlock.tga",
+		[9] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Shaman.tga",
+	} or {
+		[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warrior.tga",
+		[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Rogue.tga",
+		[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Priest.tga",
+		[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Druid.tga",
+		[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Paladin.tga",
+		[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Hunter.tga",
+		[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Mage.tga",
+		[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warlock.tga",
+		[9] = "Interface\\Icons\\Ability_Mount_JungleTiger"
+	}
+
 end
+S:AddCallbackForAddon('PallyPower')

@@ -6,10 +6,7 @@ local A = E:GetModule('Auras')
 local pairs = _G.pairs
 local CreateFrame = _G.CreateFrame
 local IsAddOnLoaded = _G.IsAddOnLoaded
-local IsInRaid = _G.IsInRaid
 local hooksecurefunc = _G.hooksecurefunc
-local PlayerCastbar = CreateFrame("Frame", "EltruismPlayerCastBarShadowFrame")
-local TargetCastbar = CreateFrame("Frame", "EltruismTargetCastBarShadowFrame")
 
 --Frame Shadows, turns out ElvUI includes the function
 function ElvUI_EltreumUI:Shadows()
@@ -526,6 +523,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.CharacterFrameTab4.backdrop, --only in classic though
 				_G.CharacterFrameTab5.backdrop, --only in classic though
 				_G.FriendsFrameTab5.backdrop, --only in classic though
+				_G.QuestLogDetailFrame.backdrop,
 			}
 			for _, frame in pairs(classicframes) do
 				if frame and not frame.shadow then

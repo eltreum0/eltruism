@@ -198,10 +198,10 @@ function ElvUI_EltreumUI:SetGroupRoleWrath()
 				elseif spent3 > spent1 and spent3 > spent2 then
 					SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
 				end
-			elseif E.myclass == 'DEATHKNIGHT' then
+			--[[elseif E.myclass == 'DEATHKNIGHT' then --too many variables since dk doesnt even need specific talents and just needs gear
 				if spent3 > spent1 and spent3 > spent2 then
 					SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
-				end
+				end]]
 			end
 		end
 	end

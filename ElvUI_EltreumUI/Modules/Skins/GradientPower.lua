@@ -78,7 +78,7 @@ function ElvUI_EltreumUI:GradientPower()
 		ElvUI_EltreumUI:ApplyGradientPower("targettarget", "TargetTarget")
 		ElvUI_EltreumUI:ApplyGradientPower("pet", "Pet")
 		ElvUI_EltreumUI:ApplyGradientPower("targettargettarget", "TargetTargetTarget"," targetargettarget")
-		if E.Retail then
+		if E.Retail or E.Wrath then
 			ElvUI_EltreumUI:ApplyGradientPower("boss1", "Boss1")
 			ElvUI_EltreumUI:ApplyGradientPower("boss2", "Boss2")
 			ElvUI_EltreumUI:ApplyGradientPower("boss3", "Boss3")
@@ -88,8 +88,9 @@ function ElvUI_EltreumUI:GradientPower()
 			ElvUI_EltreumUI:ApplyGradientPower("boss7", "Boss7")
 			ElvUI_EltreumUI:ApplyGradientPower("boss8", "Boss8")
 		end
-		if E.Retail or E.TBC or E.Wrath then
+		if not E.Classic then
 			ElvUI_EltreumUI:ApplyGradientPower("focus", "Focus")
+			ElvUI_EltreumUI:ApplyGradientPower("focustarget", "FocusTarget")
 			ElvUI_EltreumUI:ApplyGradientPower("arena1", "Arena1")
 			ElvUI_EltreumUI:ApplyGradientPower("arena2", "Arena2")
 			ElvUI_EltreumUI:ApplyGradientPower("arena3", "Arena3")
