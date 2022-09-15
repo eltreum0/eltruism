@@ -103,7 +103,6 @@ function ElvUI_EltreumUI:Shadows()
 			_G.SpellBookFrameTabButton2.backdrop,
 			_G.ItemTextFrame.backdrop,
 			_G.GossipFrame.backdrop,
-			_G.QuestLogDetailFrame.backdrop,
 		}
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then
@@ -527,6 +526,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.CharacterFrameTab4.backdrop, --only in classic though
 				_G.CharacterFrameTab5.backdrop, --only in classic though
 				_G.FriendsFrameTab5.backdrop, --only in classic though
+				_G.QuestLogDetailFrame.backdrop,
 			}
 			for _, frame in pairs(classicframes) do
 				if frame and not frame.shadow then
