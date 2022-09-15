@@ -379,11 +379,11 @@ local function SkinLocale()
 end
 SkinLocale()
 
---skin meeting horn addon
-local function SkinMeetingHorn()
+--SkinMeeting horn as asked by Neo
+function S:MeetingHorn()
 	if E.db.ElvUI_EltreumUI.skins.meetinghorn then
-		S:HandleFrame(_G['MeetingHornMainPanel'])
-		S:HandleScrollBar(_G.MeetingHornMainPanelScrollBar)
+		S:HandleFrame(_G.MeetingHornMainPanel)
+		_G.MeetingHornMainPanel:SetTemplate('Transparent', nil, true)
 
 		--search
 		S:HandleFrame(_G.MeetingHornMainPanel.Browser)
@@ -396,13 +396,12 @@ local function SkinMeetingHorn()
 		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header4)
 		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header5)
 		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header6)
-		--S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header7)
-		--S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header8)
+		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header7)
+		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header8)
 		S:HandleEditBox(_G.MeetingHornMainPanel.Browser.Input)
 		S:HandleButton(_G.MeetingHornMainPanel.Browser.Refresh)
 		S:HandleButton(_G.MeetingHornMainPanel.Browser.Reset)
-		--S:HandleButton(_G.MeetingHornMainPanel.Browser.RechargeBtn)
-		--S:HandleButton(_G.MeetingHornMainPanel.Browser.ApplyLeaderBtn)
+
 		S:HandleScrollBar(_G.MeetingHornMainPanel.Browser.ActivityList.scrollBar)
 
 		--challenge
@@ -418,14 +417,14 @@ local function SkinMeetingHorn()
 		S:HandleScrollBar(_G.MeetingHornMainPanel.Manage.Chat.ChatFrame.scrollBar)
 		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Creator.Comment)
 		S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.CreateButton)
-		--S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.RecruitButton)
+		S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.RecruitButton)
 		S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.CloseButton)
 		--_G.MeetingHornMainPanel.Manage.Creator.CloseButton.Texture:SetPoint("RIGHT", _G.MeetingHornMainPanel.Manage.Creator.CloseButton, "RIGHT")
 		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Chat)
 		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Chat.ChatFrame)
 		_G.MeetingHornMainPanel.Manage.Chat.ChatBg:Hide()
-		--_G.MeetingHornMainPanel.Manage.Creator.RecruitButton.RightSeparator:Hide()
-		--_G.MeetingHornMainPanel.Manage.Creator.CreateButton.RightSeparator:Hide()
+		_G.MeetingHornMainPanel.Manage.Creator.RecruitButton.RightSeparator:Hide()
+		_G.MeetingHornMainPanel.Manage.Creator.CreateButton.RightSeparator:Hide()
 		_G.MeetingHornMainPanel.Manage.Creator.CloseButton.Texture:Hide()
 
 		--leader
@@ -433,18 +432,19 @@ local function SkinMeetingHorn()
 		S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First)
 		S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First.Footer)
 		S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First.Header)
-		--S:HandleButton(_G.MeetingHornMainPanel.GoodLeader.First.Header.ApplyLeaderBtn)
+		S:HandleButton(_G.MeetingHornMainPanel.GoodLeader.First.Header.ApplyLeaderBtn)
 
 		--announcement
 		--S:HandleFrame(_G.MeetingHornMainPanel.Announcement)
 		--S:HandleFrame(_G.MeetingHornMainPanel.Announcement.loading)
 
 		--mission guidance
-		--S:HandleFrame(_G.MeetingHornMainPanel.MissionGuidance)
+		S:HandleFrame(_G.MeetingHornMainPanel.MissionGuidance)
 
 		--recent
 		S:HandleFrame(_G.MeetingHornMainPanel.Recent)
 		S:HandleFrame(_G.MeetingHornMainPanel.Recent.Left)
+		S:HandleFrame(_G.MeetingHornMainPanel.Recent.Right)
 		S:HandleFrame(_G.MeetingHornMainPanel.Recent.Members)
 		S:HandleFrame(_G.MeetingHornMainPanel.Recent.Instance)
 		S:HandleButton(_G.MeetingHornMainPanel.Recent.Invite)
@@ -453,12 +453,12 @@ local function SkinMeetingHorn()
 
 		--quest
 		S:HandleFrame(_G.MeetingHornMainPanel.Loading)
-		--S:HandleFrame(_G.MeetingHornMainPanel.Quest)
-		--S:HandleFrame(_G.MeetingHornMainPanel.Quest.Body)
+		S:HandleFrame(_G.MeetingHornMainPanel.Quest)
+		S:HandleFrame(_G.MeetingHornMainPanel.Quest.Body)
 		--S:HandleFrame(_G.MeetingHornMainPanel.Quest.Body.Quests)
-		--S:HandleButton(_G.MeetingHornMainPanel.Quest.Body.Refresh)
-		--S:HandleScrollBar(_G.MeetingHornMainPanel.Quest.Body.Quests.scrollBar)
-		--S:HandleFrame(_G.MeetingHornMainPanel.Quest.Summary)
+		S:HandleButton(_G.MeetingHornMainPanel.Quest.Body.Refresh)
+		S:HandleScrollBar(_G.MeetingHornMainPanel.Quest.Body.Quests.scrollBar)
+		S:HandleFrame(_G.MeetingHornMainPanel.Quest.Summary)
 
 		--options
 		S:HandleFrame(_G.MeetingHornMainPanel.Options)
@@ -471,52 +471,39 @@ local function SkinMeetingHorn()
 		S:HandleButton(_G.MeetingHornMainPanel.Options.Filters.Import)
 		S:HandleButton(_G.MeetingHornMainPanel.Options.Filters.Export)
 
+		--main buttons
+		S:HandleButton(_G.MeetingHornMainPanel.Browser.RechargeBtn)
+		S:HandleButton(_G.MeetingHornMainPanel.Browser.ApplyLeaderBtn)
+		--S:HandleDropDownBox(_G.MeetingHornMainPanel.Browser.Activity)
+		--S:HandleDropDownBox(_G.MeetingHornMainPanel.Browser.Mode)
+
+		--feedback
+		S:HandleFrame(_G.MeetingHornMainPanel.FeedBack.EditBox)
+		S:HandleButton(_G.MeetingHornMainPanel.FeedBack.AcceptButton)
+		S:HandleButton(_G.MeetingHornMainPanel.FeedBack.CancelButton)
+
+		--portrait
+		_G.MeetingHornMainPanelPortraitFrame:Hide()
+
 		--help
 		S:HandleFrame(_G.MeetingHornMainPanel.Help)
-		_G.MeetingHornMainPanelPortraitFrame:Hide()
-	end
-end
 
-local handlemeetinghorn = CreateFrame("FRAME")
-handlemeetinghorn:RegisterEvent("ADDON_LOADED")
-handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
-	if GetAddOnEnableState(nil, "MeetingHorn") == 0 then
-		handlemeetinghorn:UnregisterAllEvents()
-	end
-	if (arg == "MeetingHorn") or IsAddOnLoaded("MeetingHorn") then
-		_G['MeetingHornMainPanel']:HookScript("OnShow", function(self)
-			if not self.meetskinnedonshow then
-				self.meetskinnedonshow = true
-				SkinMeetingHorn()
-				handlemeetinghorn:UnregisterAllEvents()
+		--bc the tab names are nil, gotta try to detect it
+		local header = _G["MeetingHornMainPanel"]
+		for i = 1, header:GetNumChildren() do
+			local group = select(i, header:GetChildren())
+			if group and group:GetName() == nil then
+				if group.HighlightTexture then
+					S:HandleTab(group)
+				end
 			end
-		end)
-	end
-end)
+		end
 
-local meetinghornmightalreadybeloaded = CreateFrame("FRAME")
-meetinghornmightalreadybeloaded:RegisterEvent("PLAYER_STARTED_MOVING")
-meetinghornmightalreadybeloaded:SetScript("OnEvent", function()
-	meetinghornmightalreadybeloaded:UnregisterAllEvents()
-	if IsAddOnLoaded('MeetingHorn') then
-		SkinMeetingHorn()
+		--idk why but it doesnt seem to skin
+		S:HandleScrollBar(_G.MeetingHornMainPanelScrollBar)
 	end
-end)
-
---[[
--- EXAMPLE:
---- S:AddCallbackForAddon('Details', 'MyAddon_Details', MyAddon.SkinDetails)
----- arg1: Addon name (same as the toc): MyAddon.toc (without extension)
----- arg2: Given name (try to use something that won't be used by someone else)
----- arg3: load function (preferably not-local)
--- this is used for loading skins that should be executed when the addon loads (including blizzard addons that load later).
--- please add a given name, non-given-name is specific for elvui core addon.
-function S:AddCallbackForAddon(addonName, name, func, forceLoad, bypass, position) -- arg2: name is 'given name' see example above.
-	local load = (type(name) == 'function' and name) or (not func and (S[name] or S[addonName]))
-	S:RegisterSkin(addonName, load or func, forceLoad, bypass, position)
 end
-
-]]
+S:AddCallbackForAddon('MeetingHorn')
 
 --based on old addonskins skin
 function S:PallyPower()
