@@ -478,7 +478,7 @@ E:AddTag("name:eltruism:abbreviateshort", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
 	--local name = 'Ецхо оф а Пандарен' --cyrillic name test
 	if name and string.len(name) > 10 then
-		name = E:ShortenString(name, 10).."..."
+		name = E:ShortenString(name, 11)
 	end
 	return name
 end)
