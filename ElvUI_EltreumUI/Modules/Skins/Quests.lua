@@ -217,6 +217,7 @@ function ElvUI_EltreumUI:SkinQuests()
 								end
 								module.Header.EltruismStatusLine:SetFrameLevel(1)
 								if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not module.Header.EltruismStatusLine.shadow then
+									module.Header.EltruismStatusLine:CreateBackdrop('Transparent')
 									module.Header.EltruismStatusLine:CreateShadow()
 								end
 							end
@@ -291,6 +292,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					ScenarioObjectiveBlockBackground:Show()
 					ScenarioObjectiveBlockBackgroundTexture:Show()
 					if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow then
+						ScenarioObjectiveBlockBackground:CreateBackdrop('Transparent')
 						ScenarioObjectiveBlockBackground:CreateShadow()
 					end
 					_G.ScenarioStageBlock.NormalBG:Hide()
@@ -527,7 +529,8 @@ function ElvUI_EltreumUI:SkinQuests()
 				_G.QuestWatchFrame.HeaderBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
 			end
 			if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not _G["EltruismQuestLine"].shadow then
-				_G["EltruismQuestLine"]:CreateShadow()
+				_G.QuestWatchFrame.HeaderBar:CreateBackdrop('Transparent')
+				_G.QuestWatchFrame.HeaderBar:CreateShadow()
 			end
 			local InvisFrameHeaderBar = CreateFrame("Frame", nil, _G.QuestWatchFrame.HeaderBar)
 			InvisFrameHeaderBar:SetFrameLevel(_G.QuestWatchFrame.HeaderBar:GetFrameLevel() + 10)
@@ -735,6 +738,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 
 				if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not _G["EltruismQuestLine"].shadow then
+					_G["EltruismQuestLine"]:CreateBackdrop('Transparent')
 					_G["EltruismQuestLine"]:CreateShadow()
 				end
 

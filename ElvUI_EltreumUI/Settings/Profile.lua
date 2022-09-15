@@ -624,6 +624,7 @@ P.ElvUI_EltreumUI = {
 			enabletargettarget = true,
 			enabletargettargettarget = true,
 			enablefocus = true,
+			enablefocustarget = true,
 			enableboss = true,
 			enablearena = true,
 			enablegroupunits = true,

@@ -6,6 +6,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 	if not E.db.movers then E.db.movers = {} end
 
 	if E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA or value then
+		local width = GetPhysicalScreenSize()
 
 		--hide keypresses
 		E.db["ElvUI_EltreumUI"]["skins"]["hideABkeypress"] = true
@@ -16,6 +17,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["actionbar"]["cooldown"]["mmssThreshold"] = 60
 		E.db["actionbar"]["cooldown"]["threshold"] = 5
 		E.db["actionbar"]["desaturateOnCooldown"] = true
+		E.db["unitframe"]["units"]["player"]["classbar"]["spacing"] = 5
 
 		--fix debuffs
 		E.db["unitframe"]["units"]["player"]["debuffs"]["yOffset"] = -44
@@ -33,6 +35,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["actionbar"]["bar1"]["inheritGlobalFade"] = true
 		E.db["actionbar"]["bar1"]["keepSizeRatio"] = false
 		E.db["actionbar"]["bar1"]["showGrid"] = false
+		E.db["actionbar"]["bar1"]["buttonsPerRow"] = 8
 		E.db["actionbar"]["bar1"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
 		E.db["actionbar"]["bar1"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
@@ -55,6 +58,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["actionbar"]["bar2"]["inheritGlobalFade"] = true
 		E.db["actionbar"]["bar2"]["keepSizeRatio"] = false
 		E.db["actionbar"]["bar2"]["showGrid"] = false
+		E.db["actionbar"]["bar2"]["buttonsPerRow"] = 8
 		E.db["actionbar"]["bar2"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
 
 		E.db["actionbar"]["bar1"]["mouseover"] = false
@@ -71,62 +75,116 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 
 		E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,346"
 		E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,338"
-		E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 361
-		E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 361
+		E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 359
+		E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 359
 		E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,308"
 		E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,280"
 		E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,258"
 		if _G.ElvUF_Player_ClassBar and _G.ElvUF_Player_ClassBar:IsVisible() then
-			E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,346"
-			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 363
-			E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 361
-			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_ClassBar,BOTTOMLEFT,-6,6"
-			E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_ClassBar,BOTTOMRIGHT,6,6"
+			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 365
+			E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 366
+			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_ClassBar,TOPLEFT,-6,3"
+			E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_ClassBar,TOPRIGHT,6,3"
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
 			E.db["movers"]["ElvUF_TargetCastbarMover"] = "TOP,ElvUF_Target,BOTTOM,14,-10"
 			E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,256,301"
-			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-413,308"
-			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
+			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-399,309"
+			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-403,301"
+			if width == 2560 then
+				E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 361
+				E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 360
+				E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,346"
+				E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,338"
+				E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-399,311"
+			elseif width == 3840 then
+				E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 361
+				E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 359
+				E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,2,346"
+				E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,338"
+				E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-399,310"
+			end
 		elseif (_G.ElvUF_Player.Totems and _G.ElvUF_Player.Totems:IsVisible()) then
-			E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,346"
-			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 363
+			E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,2,346"
+			E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,337"
+			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 361
+			E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 360
+			E.db["unitframe"]["units"]["player"]["classbar"]["spacing"] = 5
 			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_PlayerTotem1,BOTTOMLEFT,-6,6"
 			E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_PlayerTotem4,BOTTOMRIGHT,6,6"
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
 			E.db["movers"]["ElvUF_TargetCastbarMover"] = "TOP,ElvUF_Target,BOTTOM,14,-10"
 			E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,256,301"
-			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-413,308"
-			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
+			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,308"
+			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-402,301"
+			if width == 2560 then
+				E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 365
+				E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 362
+				E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,346"
+				E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,337"
+				E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,309"
+			elseif width == 1920 then
+				E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 366
+				E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 366
+				E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,337"
+				E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,307"
+				E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,346"
+				E.db["unitframe"]["units"]["player"]["classbar"]["spacing"] = 6
+			end
 		elseif _G.ElvUF_Player_Runes and _G.ElvUF_Player_Runes:IsVisible() then
 			E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,346"
-			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 364
+			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 362
+
 			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_Runes,BOTTOMLEFT,-6,6"
 			E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_Runes,BOTTOMRIGHT,4,6"
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
 			E.db["movers"]["ElvUF_TargetCastbarMover"] = "TOP,ElvUF_Target,BOTTOM,14,-10"
 			E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,256,301"
-			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-413,308"
-			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
+			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,307"
+			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-402,301"
+			if width == 2560 then
+				E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 360
+			elseif width == 1920 then
+				E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 361
+				E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 361
+				E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,338"
+			end
 		elseif _G.ElvUF_Player_AdditionalPowerBar and _G.ElvUF_Player_AdditionalPowerBar:IsVisible() then
 			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_AdditionalPowerBar,BOTTOMLEFT,-6,6"
 			E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_AdditionalPowerBar,BOTTOMRIGHT,6,6"
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
 			E.db["movers"]["ElvUF_TargetCastbarMover"] = "TOP,ElvUF_Target,BOTTOM,14,-10"
 			E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,256,301"
-			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-413,308"
-			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
+			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,308"
+			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-401,301"
+			if width == 1920 then
+				E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 365
+				E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 365
+				E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,338"
+				E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,307"
+			end
 		elseif _G.ElvUF_Player_Stagger and _G.ElvUF_Player_Stagger:IsVisible() then
 			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_Stagger,BOTTOMLEFT,-6,6"
 			E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_Stagger,BOTTOMRIGHT,6,6"
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
 			E.db["movers"]["ElvUF_TargetCastbarMover"] = "TOP,ElvUF_Target,BOTTOM,14,-10"
 			E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,256,301"
-			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-413,308"
-			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,301"
+			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,308"
+			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-401,301"
+			if width == 1920 then
+				E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 365
+				E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 365
+				E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,338"
+				E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,307"
+			elseif width == 2560 then
+				E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 360
+				E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 360
+				E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,309"
+			end
 		else
 			E.db["actionbar"]["bar1"]["buttonHeight"] = 36
 			E.db["actionbar"]["bar2"]["buttonHeight"] = 36
-			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 364
+			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 362
+			E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 360
 			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,299"
 			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,262"
 			E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,240"
@@ -135,8 +193,15 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
 			E.db["movers"]["ElvUF_TargetCastbarMover"] = "TOP,ElvUF_Target,BOTTOM,14,-10"
 			E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,256,292"
-			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-413,298"
-			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-417,293"
+			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,299"
+			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-401,292"
+			if width == 2560 then
+				E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 360
+				E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,300"
+			elseif width == 1920 then
+				E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 366
+				E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,298"
+			end
 		end
 
 		--unitframes, making sure it detaches

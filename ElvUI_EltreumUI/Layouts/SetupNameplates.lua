@@ -23,6 +23,8 @@ local rareclass = {
 function ElvUI_EltreumUI:SetupNamePlates(addon)
 	if E.private["nameplates"]["enable"] == true then
 		if addon == 'ElvUI' then
+			local width = GetPhysicalScreenSize()
+
 			-- Toggle on
 			E.private["nameplates"]["enable"] = true
 
@@ -214,6 +216,9 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetY"] = -1
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconPosition"] = "LEFT"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 28
+			if width == 1920 then
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 29
+			end
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["showIcon"] = true
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["textPosition"] = "ONBAR"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["timeToHold"] = 0.4
@@ -241,7 +246,6 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = ""
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "Kimberley"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["fontOutline"] = "THICKOUTLINE"
-			local width = GetPhysicalScreenSize()
 			if width == 3840 then
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["fontOutline"] = "THICKOUTLINE"
 			else
@@ -315,9 +319,12 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["height"] = 12
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconPosition"] = "LEFT"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 28
+			if width == 1920 then
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 29
+			end
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconOffsetX"] = -1
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconOffsetY"] = -1
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["showIcon"] = false
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["showIcon"] = true
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["textPosition"] = "ONBAR"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["timeToHold"] = 0.4
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["yOffset"] = -14

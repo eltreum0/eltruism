@@ -11020,6 +11020,18 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablefocus end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablefocus = value end,
 							},
+							enablefocustarget = {
+								order = 2,
+								type = 'toggle',
+								name = L["Enable for Focus Target"],
+								desc = L["Enable Gradient colors for Health"],
+								width = 'full',
+								hidden = E.Classic,
+								--hidden = function() if E.Retail or E.TBC or E.Wrath then return false else return true end end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablefocustarget end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablefocustarget = value end,
+							},
 							enableboss = {
 								order = 2,
 								type = 'toggle',

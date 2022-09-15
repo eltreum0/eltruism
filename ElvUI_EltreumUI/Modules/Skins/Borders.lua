@@ -266,14 +266,14 @@ function ElvUI_EltreumUI:Borders()
 						else
 							partyborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 						end
-						partyborder:SetFrameStrata("LOW")
+						partyborder:SetFrameStrata("MEDIUM")
 					end
 				end
 				createpartyborders()
 			end
 
 			--raid1
-			if E.db.ElvUI_EltreumUI.borders.raidborders and not (self.raid1borderscreated) then
+			if E.db.ElvUI_EltreumUI.borders.raidborders then --and not (self.raid1borderscreated) then
 				local bordersraid1 = {}
 				for i = 1,8 do
 					for k = 1,5 do
@@ -300,16 +300,16 @@ function ElvUI_EltreumUI:Borders()
 							else
 								raid1border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 							end
-							raid1border:SetFrameStrata("LOW")
+							raid1border:SetFrameStrata("MEDIUM")
 						end
 					end
-					self.raid1borderscreated = true
+					--self.raid1borderscreated = true
 				end
 				createraid1borders()
 			end
 
 			--raid2
-			if E.db.ElvUI_EltreumUI.borders.raid2borders and not (self.raid2borderscreated) then
+			if E.db.ElvUI_EltreumUI.borders.raid2borders then--and not (self.raid2borderscreated) then
 				local bordersraid2 = {}
 				for i = 1,8 do
 					for k = 1,5 do
@@ -336,16 +336,16 @@ function ElvUI_EltreumUI:Borders()
 							else
 								raid2border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 							end
-							raid2border:SetFrameStrata("LOW")
+							raid2border:SetFrameStrata("MEDIUM")
 						end
 					end
-					self.raid2borderscreated = true
+					--self.raid2borderscreated = true
 				end
 				createraid2borders()
 			end
 
 			--raid3
-			if E.db.ElvUI_EltreumUI.borders.raid40borders and not (self.raid3borderscreated) then
+			if E.db.ElvUI_EltreumUI.borders.raid40borders then--and not (self.raid3borderscreated) then
 				local bordersraid3 = {}
 				for i = 1,8 do
 					for k = 1,5 do
@@ -372,10 +372,10 @@ function ElvUI_EltreumUI:Borders()
 							else
 								raid3border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 							end
-							raid3border:SetFrameStrata("LOW")
+							raid3border:SetFrameStrata("MEDIUM")
 						end
 					end
-					self.raid3borderscreated = true
+					--self.raid3borderscreated = true
 				end
 				createraid3borders()
 			end

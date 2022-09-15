@@ -1171,3 +1171,6 @@ L["Hide Boss Banner Frame"] = "Ocultar el marco del estandarte del jefe"
 L["Hide the boss banner that appears when killing a raid boss or completing a Mythic+ dungeon"] = "Ocultar el estandarte del jefe que aparece al matar a un jefe de raid o al completar una mazmorra Mythic+"
 L["Enable on System Messages"] = "Habilitar en los mensajes del sistema"
 L["Enable on Chat Messages"] = "Activar en los mensajes del chat"
+L["Adjust Auras Position"] = "Ajustar la posición de las auras"
+L["Automatically move auras to the Top Right when minimap is hidden"] = "Mover automáticamente las auras a la parte superior derecha cuando el minimapa está oculto"
+L["Enable for Focus Target"] = true

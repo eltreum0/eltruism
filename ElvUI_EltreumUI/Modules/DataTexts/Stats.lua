@@ -12,6 +12,7 @@ local SPEC_FRAME_PRIMARY_STAT_INTELLECT = _G.SPEC_FRAME_PRIMARY_STAT_INTELLECT
 local MELEE_ATTACK_POWER = _G.MELEE_ATTACK_POWER
 local CR_HIT_MELEE = _G.CR_HIT_MELEE
 local ITEM_MOD_ARMOR_PENETRATION_RATING_SHORT = _G.ITEM_MOD_ARMOR_PENETRATION_RATING_SHORT
+local ITEM_MOD_SPIRIT_SHORT = _G.ITEM_MOD_SPIRIT_SHORT
 local STAT_EXPERTISE = _G.STAT_EXPERTISE
 local CRIT_ABBR = _G.CRIT_ABBR
 local CR_HASTE_SPELL = _G.CR_HASTE_SPELL
@@ -147,6 +148,7 @@ local function EltruismStatsDatatextOnEnter()
 			DT.tooltip:AddDoubleLine(STAT_CRITICAL_STRIKE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%",  GetSpellCritChance(2)).."|r",1,1,1)
 			DT.tooltip:AddLine(' ')
 			DT.tooltip:AddDoubleLine(ITEM_MOD_SPELL_PENETRATION_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetSpellPenetration()).."|r",1,1,1)
+			DT.tooltip:AddDoubleLine(ITEM_MOD_SPIRIT_SHORT..":", ElvUI[1].media.hexvaluecolor..UnitStat("player", 5).."|r",1,1,1)
 		elseif E.myclass == "SHAMAN" or E.myclass == "DRUID" or E.myclass == "PALADIN" then
 			local _, _, spent1 = _G.GetTalentTabInfo(1)
 			local _, _, spent2 = _G.GetTalentTabInfo(2)
@@ -167,6 +169,7 @@ local function EltruismStatsDatatextOnEnter()
 					DT.tooltip:AddDoubleLine(STAT_CRITICAL_STRIKE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%",  GetSpellCritChance(2)).."|r",1,1,1)
 					DT.tooltip:AddLine(' ')
 					DT.tooltip:AddDoubleLine(ITEM_MOD_SPELL_PENETRATION_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetSpellPenetration()).."|r",1,1,1)
+					DT.tooltip:AddDoubleLine(ITEM_MOD_SPIRIT_SHORT..":", ElvUI[1].media.hexvaluecolor..UnitStat("player", 5).."|r",1,1,1)
 				end
 			elseif E.myclass == "PALADIN" then
 				if spent1 > spent3 and spent1 > spent2 then
@@ -176,6 +179,7 @@ local function EltruismStatsDatatextOnEnter()
 					DT.tooltip:AddDoubleLine(STAT_CRITICAL_STRIKE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%",  GetSpellCritChance(2)).."|r",1,1,1)
 					DT.tooltip:AddLine(' ')
 					DT.tooltip:AddDoubleLine(ITEM_MOD_SPELL_PENETRATION_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetSpellPenetration()).."|r",1,1,1)
+					DT.tooltip:AddDoubleLine(ITEM_MOD_SPIRIT_SHORT..":", ElvUI[1].media.hexvaluecolor..UnitStat("player", 5).."|r",1,1,1)
 				else
 					DT.tooltip:AddDoubleLine(MELEE_ATTACK_POWER..":", ElvUI[1].media.hexvaluecolor..totalmelee.."|r", 1, 1, 1)
 					DT.tooltip:AddDoubleLine(ITEM_MOD_HIT_MELEE_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetCombatRatingBonus(CR_HIT_MELEE)).."|r",1,1,1)

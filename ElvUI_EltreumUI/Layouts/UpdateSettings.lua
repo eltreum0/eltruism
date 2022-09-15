@@ -22,6 +22,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture = "ElvUI Norm1"
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = true
+	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex = 133.6
 	E.db.ElvUI_EltreumUI.nameplates.nameplatelevel = true
 	E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames = false -- turns out blizzard fakes the nameplates and alphas the helthbar, causing huge performance costs
 	E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly = false -- and this one is the same but with health so make this one off as well

@@ -1152,3 +1152,6 @@ L["Hide Boss Banner Frame"] = true
 L["Hide the boss banner that appears when killing a raid boss or completing a Mythic+ dungeon"] = true
 L["Enable on System Messages"] = true
 L["Enable on Chat Messages"] = true
+L["Adjust Auras Position"] = true
+L["Automatically move auras to the Top Right when minimap is hidden"] = true
+L["Enable for Focus Target"] = true
