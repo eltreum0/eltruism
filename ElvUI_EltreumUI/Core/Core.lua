@@ -303,17 +303,12 @@ function ElvUI_EltreumUI:AlternativeGroupsDPS()
 	if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 		if not E.db.movers then E.db.movers = {} end
 		E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-258"
-		E.db["movers"]["ElvUF_Raid1Mover"] = "TOPLEFT,UIParent,TOPLEFT,58,-439"
-		E.db["movers"]["ElvUF_Raid2Mover"] = "TOPLEFT,UIParent,TOPLEFT,113,-336"
-		E.db["movers"]["ElvUF_Raid3Mover"] = "TOPLEFT,UIParent,TOPLEFT,53,-302"
-		if E.Wrath or E.TBC then
-			E.db["unitframe"]["units"]["raid1"]["numGroups"] = 5
-		else
-			E.db["unitframe"]["units"]["raid1"]["numGroups"] = 4
-		end
-
+		E.db["movers"]["ElvUF_Raid1Mover"] = "TOPLEFT,UIParent,TOPLEFT,4,-432"
+		E.db["movers"]["ElvUF_Raid2Mover"] = "TOPLEFT,UIParent,TOPLEFT,104,-328"
+		E.db["movers"]["ElvUF_Raid3Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,7,-321"
+		E.db["unitframe"]["units"]["raid1"]["numGroups"] = 4
 		E.db["unitframe"]["units"]["raid1"]["height"] = 30
-		E.db["unitframe"]["units"]["raid1"]["growthDirection"] = "DOWN_RIGHT"
+		E.db["unitframe"]["units"]["raid1"]["growthDirection"] = "DOWN_LEFT"
 		--E.db["unitframe"]["units"]["raid1"]["groupSpacing"] = 10
 		E.db["unitframe"]["units"]["raid1"]["groupSpacing"] = 2
 		--E.db["unitframe"]["units"]["raid1"]["groupsPerRowCol"] = 2
@@ -350,16 +345,13 @@ function ElvUI_EltreumUI:OriginalGroupsDPS()
 		E.db["movers"]["ElvUF_Raid1Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
 		E.db["movers"]["ElvUF_Raid2Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
 		E.db["movers"]["ElvUF_Raid3Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,1"
-		if E.Wrath or E.TBC then
-			E.db["unitframe"]["units"]["raid1"]["numGroups"] = 5
-		else
-			E.db["unitframe"]["units"]["raid1"]["numGroups"] = 4
-		end
+		E.db["unitframe"]["units"]["raid1"]["numGroups"] = 4
 		E.db["unitframe"]["units"]["raid1"]["height"] = 28
 		E.db["unitframe"]["units"]["raid1"]["groupSpacing"] = 6
 		E.db["unitframe"]["units"]["raid1"]["groupsPerRowCol"] = 4
 		E.db["unitframe"]["units"]["raid1"]["horizontalSpacing"] = 0
 		E.db["unitframe"]["units"]["raid1"]["verticalSpacing"] = 3
+		E.db["unitframe"]["units"]["raid1"]["growthDirection"] = "DOWN_RIGHT"
 		E.db["unitframe"]["units"]["raid1"]["width"] = 120
 		E.db["unitframe"]["units"]["raid3"]["height"] = 28
 		E.db["unitframe"]["units"]["raid3"]["groupSpacing"] = 6

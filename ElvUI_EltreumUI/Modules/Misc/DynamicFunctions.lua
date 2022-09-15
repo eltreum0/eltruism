@@ -720,7 +720,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 						E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,191"
 						E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,159"
 						E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,127"
-
+						E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,106"
 						if width == 1920 then
 							E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,158"
 							E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,125"
@@ -728,9 +728,8 @@ function ElvUI_EltreumUI:BorderAdjust()
 							E.db["actionbar"]["bar3"]["buttonSpacing"] = 2
 							E.db["actionbar"]["bar4"]["buttonSpacing"] = 2
 							E.db["actionbar"]["bar5"]["buttonSpacing"] = 2
+							E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,103"
 						end
-
-						E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,106"
 					end
 					if E.db.ElvUI_EltreumUI.otherstuff.alternativegroups == false then
 						E.db["movers"]["ElvUF_Raid1Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-1"
