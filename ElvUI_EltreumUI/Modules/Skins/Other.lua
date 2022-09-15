@@ -522,6 +522,7 @@ end
 function S:PallyPower()
 	--if not (E.private.skins.blizzard.enable and E.private.skins.blizzard.taxi) then return end
 
+	--from old addonskins
 	local PallyPowerBlessingsFrame = _G.PallyPowerBlessingsFrame
 	PallyPowerBlessingsFrame:StripTextures()
 	PallyPowerBlessingsFrame:SetTemplate('Transparent', nil, true)
@@ -531,18 +532,11 @@ function S:PallyPower()
 	S:HandleButton(_G.PallyPowerBlessingsFrameRefresh)
 	S:HandleCheckBox(_G.PallyPowerBlessingsFrameFreeAssign)
 
-	local PallyPowerFrame = _G.PallyPowerFrame
-	PallyPowerFrame:StripTextures()
-	PallyPowerFrame:SetTemplate('Transparent', nil, true)
-
 	_G.PallyPowerAura:SetTemplate("Transparent", nil, true)
 	_G.PallyPowerAuto:SetTemplate("Transparent", nil, true)
 	_G.PallyPowerRF:SetTemplate("Transparent", nil, true)
-	if _G.PallyPowerRF.TopEdge then
-		_G.PallyPowerRF.TopEdge:Hide()
-	end
 
-
+	--update for new pallypower
 	for i = 1, PALLYPOWER_MAXCLASSES do
 		local button = PallyPower.classButtons[i]
 		button:SetTemplate("Transparent", nil, true)
@@ -585,22 +579,27 @@ function S:PallyPower()
 		end
 	end
 
+	--add shadow
 	if not PallyPowerBlessingsFrame.shadow then
 		PallyPowerBlessingsFrame:CreateShadow()
 	end
 
+	--crop icon
 	if _G["PallyPowerAutoIcon"] then
 		_G["PallyPowerAutoIcon"]:SetTexCoord(unpack(E.TexCoords))
 	end
 
+	--better point
 	_G.PallyPowerAnchor:ClearAllPoints()
 	_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-10,10)
 
+	--change toggle texture
 	_G.PallyPowerAnchor:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
 	_G.PallyPowerAnchor:GetNormalTexture():SetVertexColor(0,1,0)
 	_G.PallyPowerAnchor:GetCheckedTexture():SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
 	_G.PallyPowerAnchor:GetCheckedTexture():SetVertexColor(1,0,0)
 
+	--use new icons
 	PallyPower.ClassIcons = PallyPower.isWrath and {
 		[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warrior.tga",
 		[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Rogue.tga",
