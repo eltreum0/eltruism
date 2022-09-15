@@ -103,6 +103,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G.SpellBookFrameTabButton2.backdrop,
 			_G.ItemTextFrame.backdrop,
 			_G.GossipFrame.backdrop,
+			_G.QuestLogDetailFrame.backdrop,
 		}
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then
