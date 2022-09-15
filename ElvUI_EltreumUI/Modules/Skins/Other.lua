@@ -575,6 +575,59 @@ function S:PallyPower()
 			PallyPowerBlessingsFrame:CreateShadow()
 		end
 
+		--main shadow
+		local shadowupdate = CreateFrame("FRAME")
+		shadowupdate:RegisterEvent("GROUP_ROSTER_UPDATE")
+		shadowupdate:RegisterEvent("PLAYER_ENTERING_WORLD")
+		shadowupdate:SetScript("OnEvent",function()
+			if InCombatLockdown() then return end
+			if not _G.PallyPowerAura.shadow then
+				_G.PallyPowerAura:CreateShadow()
+			end
+			if _G.PallyPowerAura.shadow then
+				if _G.PallyPowerC1 and _G.PallyPowerC1:IsShown() then
+					_G.PallyPowerAura.shadow:ClearAllPoints()
+					_G.PallyPowerAura.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerAura.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC1, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC2 and _G.PallyPowerC2:IsShown() then
+					_G.PallyPowerAura.shadow:ClearAllPoints()
+					_G.PallyPowerAura.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerAura.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC2, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC3 and _G.PallyPowerC3:IsShown() then
+					_G.PallyPowerAura.shadow:ClearAllPoints()
+					_G.PallyPowerAura.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerAura.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC3, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC4 and _G.PallyPowerC4:IsShown() then
+					_G.PallyPowerAura.shadow:ClearAllPoints()
+					_G.PallyPowerAura.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerAura.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC4, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC5 and _G.PallyPowerC5:IsShown() then
+					_G.PallyPowerAura.shadow:ClearAllPoints()
+					_G.PallyPowerAura.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerAura.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC5, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC6 and _G.PallyPowerC6:IsShown() then
+					_G.PallyPowerAura.shadow:ClearAllPoints()
+					_G.PallyPowerAura.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerAura.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC6, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC7 and _G.PallyPowerC7:IsShown() then
+					_G.PallyPowerAura.shadow:ClearAllPoints()
+					_G.PallyPowerAura.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerAura.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC7, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC8 and _G.PallyPowerC8:IsShown() then
+					_G.PallyPowerAura.shadow:ClearAllPoints()
+					_G.PallyPowerAura.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerAura.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC8, "BOTTOMRIGHT",3,-3)
+				end
+			end
+		end)
+
 		--crop icon
 		if _G["PallyPowerAutoIcon"] then
 			_G["PallyPowerAutoIcon"]:SetTexCoord(unpack(E.TexCoords))
@@ -592,35 +645,35 @@ function S:PallyPower()
 
 		--use new icons
 		PallyPower.ClassIcons = PallyPower.isWrath and {
-			[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warrior.tga",
-			[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Rogue.tga",
-			[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Priest.tga",
-			[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Druid.tga",
-			[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Paladin.tga",
-			[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Hunter.tga",
-			[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Mage.tga",
-			[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warlock.tga",
-			[9] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Shaman.tga",
-			[10] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnight.tga",
+			[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorShadow.tga",
+			[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\RogueShadow.tga",
+			[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PriestShadow.tga",
+			[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DruidShadow.tga",
+			[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinShadow.tga",
+			[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterShadow.tga",
+			[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MageShadow.tga",
+			[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarlockShadow.tga",
+			[9] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanShadow.tga",
+			[10] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnightShadow.tga",
 		} or PallyPower.isBCC and {
-			[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warrior.tga",
-			[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Rogue.tga",
-			[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Priest.tga",
-			[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Druid.tga",
-			[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Paladin.tga",
-			[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Hunter.tga",
-			[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Mage.tga",
-			[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warlock.tga",
-			[9] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Shaman.tga",
+			[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorShadow.tga",
+			[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\RogueShadow.tga",
+			[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PriestShadow.tga",
+			[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DruidShadow.tga",
+			[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinShadow.tga",
+			[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterShadow.tga",
+			[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MageShadow.tga",
+			[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarlockShadow.tga",
+			[9] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanShadow.tga",
 		} or {
-			[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warrior.tga",
-			[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Rogue.tga",
-			[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Priest.tga",
-			[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Druid.tga",
-			[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Paladin.tga",
-			[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Hunter.tga",
-			[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Mage.tga",
-			[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warlock.tga",
+			[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorShadow.tga",
+			[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\RogueShadow.tga",
+			[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PriestShadow.tga",
+			[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DruidShadow.tga",
+			[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinShadow.tga",
+			[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterShadow.tga",
+			[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MageShadow.tga",
+			[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarlockShadow.tga",
 			[9] = "Interface\\Icons\\Ability_Mount_JungleTiger"
 		}
 	end
