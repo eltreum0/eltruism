@@ -236,7 +236,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["actionbar"]["extraActionButton"]["scale"] = 0.7
 	E.db["actionbar"]["font"] = "Kimberley"
 	E.db["actionbar"]["globalFadeAlpha"] = 1
-	E.db["actionbar"]["lockActionBars"] = false
+	E.db["actionbar"]["lockActionBars"] = true
 	E.db["actionbar"]["noPowerColor"]["b"] = 0.43921568627451
 	E.db["actionbar"]["noPowerColor"]["g"] = 0.21960784313725
 	E.db["actionbar"]["noPowerColor"]["r"] = 0.21960784313725
