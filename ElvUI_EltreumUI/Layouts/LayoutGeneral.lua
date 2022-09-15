@@ -1196,8 +1196,8 @@ function ElvUI_EltreumUI:SetupDataText()
 	E.db["datatexts"]["panels"]["RightChatDataPanel"]["enable"] = false
 
 	--adjust chat due to new datatext
-	E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,23"
-	E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,23"
+	E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,22"
+	E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,22"
 	E.db["movers"]["DTPanelEltruismDataTextMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,0"
 	E.db["movers"]["DTPanelEltruismTimeMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,0"
 
