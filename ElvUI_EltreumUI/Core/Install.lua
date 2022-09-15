@@ -66,13 +66,15 @@ ElvUI_EltreumUI.InstallerData = {
 				E:SetupChat()
 				if not E.Retail then --remove lfg spam from general and creat tab for it
 					local _ , lfg = GetChannelName(4)
-					ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
-					FCF_OpenNewWindow()
-					ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
-					FCF_SetWindowName(_G.ChatFrame5, 'LFG')
-					ChatFrame_AddChannel(_G.ChatFrame5, lfg)
-					FCFTab_UpdateColors(_G.ChatFrame5Tab)
-					FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
+					if lfg then
+						ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
+						FCF_OpenNewWindow()
+						ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
+						FCF_SetWindowName(_G.ChatFrame5, 'LFG')
+						ChatFrame_AddChannel(_G.ChatFrame5, lfg)
+						FCFTab_UpdateColors(_G.ChatFrame5Tab)
+						FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
+					end
 				end
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 				ElvUI_EltreumUI:AddonSetupPA()
@@ -95,13 +97,15 @@ ElvUI_EltreumUI.InstallerData = {
 				E:SetupChat()
 				if not E.Retail then --remove lfg spam from general and creat tab for it
 					local _ , lfg = GetChannelName(4)
-					ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
-					FCF_OpenNewWindow()
-					ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
-					FCF_SetWindowName(_G.ChatFrame5, 'LFG')
-					ChatFrame_AddChannel(_G.ChatFrame5, lfg)
-					FCFTab_UpdateColors(_G.ChatFrame5Tab)
-					FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
+					if lfg then
+						ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
+						FCF_OpenNewWindow()
+						ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
+						FCF_SetWindowName(_G.ChatFrame5, 'LFG')
+						ChatFrame_AddChannel(_G.ChatFrame5, lfg)
+						FCFTab_UpdateColors(_G.ChatFrame5Tab)
+						FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
+					end
 				end
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 				ElvUI_EltreumUI:AddonSetupPA()
