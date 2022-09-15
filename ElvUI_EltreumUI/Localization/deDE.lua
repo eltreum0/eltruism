@@ -1064,7 +1064,6 @@ L["Transparency in Light Mode"] = "Transparenz im Hellen Modus"
 L["Transparency in Dark Mode"] = "Transparenz im Dunklen Modus"
 L["Desaturation"] = "Entsättigung"
 L[" This can be a very demanding feature, it's not recommended to use models for performance."] = " Dies kann eine sehr anspruchsvolle Funktion sein, es wird nicht empfohlen, Modelle für hohe Leistung zu verwenden."
-
 L["Combat Text Addons"] = "Kampftext Addons"
 L["Details Profiles"] = "Details Profile"
 L["Camera Field of View"] = "Kamera Sichtfeld"
@@ -1195,6 +1194,6 @@ L["Hide Boss Banner Frame"] = "Bossbanner Fenster ausblenden"
 L["Hide the boss banner that appears when killing a raid boss or completing a Mythic+ dungeon"] = "Verstecke das Bossbanner, das erscheint, wenn du einen Raidboss für den Abschluss eines Mythic+ Dungeons tötest."
 L["Enable on System Messages"] = "Bei Systemmeldungen aktivieren"
 L["Enable on Chat Messages"] = "Bei Chatnachrichten aktivieren"
-L["Adjust Auras Position"] = true
-L["Automatically move auras to the Top Right when minimap is hidden"] = true
-L["Enable for Focus Target"] = true
+L["Adjust Auras Position"] = "Position der Auren anpassen"
+L["Automatically move auras to the Top Right when minimap is hidden"] = "Auren automatisch nach oben rechts verschieben, wenn die Minikarte ausgeblendet ist"
+L["Enable for Focus Target"] = "Aktivieren für Fokusziel"
