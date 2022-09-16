@@ -894,7 +894,7 @@ function S:PallyPower()
 			end
 		end)
 
-		_G.PallyPowerBlessingsFrame:HookScript("OnShow", function()
+		local function toggle()
 			for i = 1, PALLYPOWER_MAXCLASSES do
 				for j = 1, 8 do
 					if _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow then
@@ -917,6 +917,18 @@ function S:PallyPower()
 					end
 				end
 			end
+		end
+
+		_G.PallyPowerBlessingsFrame:HookScript("OnShow", function()
+			toggle()
+		end)
+
+		_G.PallyPowerBlessingsFrameClear:HookScript("OnClick", function()
+			toggle()
+		end)
+
+		_G.PallyPowerBlessingsFrameAutoAssign:HookScript("OnClick", function()
+			toggle()
 		end)
 
 		--crop icon
