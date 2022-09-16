@@ -385,6 +385,10 @@ function S:MeetingHorn()
 		S:HandleFrame(_G.MeetingHornMainPanel)
 		_G.MeetingHornMainPanel:SetTemplate('Transparent', nil, true)
 
+		if not _G.MeetingHornMainPanel.shadow then
+			_G.MeetingHornMainPanel:CreateShadow()
+		end
+
 		--search
 		S:HandleFrame(_G.MeetingHornMainPanel.Browser)
 		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Activity)
@@ -495,6 +499,9 @@ function S:MeetingHorn()
 			if group and group:GetName() == nil then
 				if group.HighlightTexture then
 					S:HandleTab(group)
+					if not group.backdrop.shadow then
+						group.backdrop:CreateShadow()
+					end
 				end
 			end
 		end
