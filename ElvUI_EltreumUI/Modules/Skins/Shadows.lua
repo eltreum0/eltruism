@@ -150,11 +150,19 @@ function ElvUI_EltreumUI:Shadows()
 		if _G.GameTooltipStatusBar and E.private.tooltip.enable then
 			_G.GameTooltipStatusBar:HookScript("OnShow", function()
 				if _G.GameTooltip.shadow then
-					_G.GameTooltip.shadow:ClearAllPoints()
-					_G.GameTooltip.shadow:SetPoint("BOTTOMLEFT", _G.GameTooltip,"BOTTOMLEFT", -3, -3)
-					_G.GameTooltip.shadow:SetPoint("BOTTOMRIGHT", _G.GameTooltip,"BOTTOMRIGHT", 3, -3)
-					_G.GameTooltip.shadow:SetPoint("TOPLEFT", _G.GameTooltip,"TOPLEFT", -3, E.db.tooltip.healthBar.height+3)
-					_G.GameTooltip.shadow:SetPoint("TOPRIGHT", _G.GameTooltip,"TOPRIGHT", 3, E.db.tooltip.healthBar.height+3)
+					if E.db.tooltip.healthBar.statusPosition == "TOP" then
+						_G.GameTooltip.shadow:ClearAllPoints()
+						_G.GameTooltip.shadow:SetPoint("BOTTOMLEFT", _G.GameTooltip,"BOTTOMLEFT", -3, -3)
+						_G.GameTooltip.shadow:SetPoint("BOTTOMRIGHT", _G.GameTooltip,"BOTTOMRIGHT", 3, -3)
+						_G.GameTooltip.shadow:SetPoint("TOPLEFT", _G.GameTooltip,"TOPLEFT", -3, E.db.tooltip.healthBar.height+3)
+						_G.GameTooltip.shadow:SetPoint("TOPRIGHT", _G.GameTooltip,"TOPRIGHT", 3, E.db.tooltip.healthBar.height+3)
+					elseif E.db.tooltip.healthBar.statusPosition == "BOTTOM" then
+						_G.GameTooltip.shadow:ClearAllPoints()
+						_G.GameTooltip.shadow:SetPoint("BOTTOMLEFT", _G.GameTooltip,"BOTTOMLEFT", -3, -(E.db.tooltip.healthBar.height+3))
+						_G.GameTooltip.shadow:SetPoint("BOTTOMRIGHT", _G.GameTooltip,"BOTTOMRIGHT", 3, -(E.db.tooltip.healthBar.height+3))
+						_G.GameTooltip.shadow:SetPoint("TOPLEFT", _G.GameTooltip,"TOPLEFT", -3, 3)
+						_G.GameTooltip.shadow:SetPoint("TOPRIGHT", _G.GameTooltip,"TOPRIGHT", 3, 3)
+					end
 				end
 			end)
 			_G.GameTooltipStatusBar:HookScript("OnHide", function()
