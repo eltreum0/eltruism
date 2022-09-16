@@ -1151,3 +1151,4 @@ L["Enable on Chat Messages"] = true
 L["Adjust Auras Position"] = true
 L["Automatically move auras to the Top Right when minimap is hidden"] = true
 L["Enable for Focus Target"] = true
+L["Skin PallyPower"] = true
