@@ -413,7 +413,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		end
 
 		--class color texture
-		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture then
+		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 			if E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V1" and E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = (playerclassv1[E.myclass])
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
@@ -439,7 +439,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		end
 
 		--color rares according to class
-		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
+		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture then
 			if E.global.nameplates.filters.EltreumRare then
 				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["enable"] = true
@@ -447,7 +447,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		end
 
 		--target's class color texture
-		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture then
+		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 			_, targetclass = UnitClass("target")
 			reactiontarget = UnitReaction("target", "player")
 			if UnitExists("target") then
