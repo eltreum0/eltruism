@@ -530,10 +530,10 @@ function S:PallyPower()
 		S:HandleButton(_G.PallyPowerBlessingsFramePreset)
 		S:HandleCheckBox(_G.PallyPowerBlessingsFrameFreeAssign)
 
-		_G.L_DropDownList1:StripTextures()
+		--[[_G.L_DropDownList1:StripTextures()
 		_G.L_DropDownList1:SetTemplate('Default')
 		_G.L_DropDownList2:StripTextures()
-		_G.L_DropDownList2:SetTemplate('Default')
+		_G.L_DropDownList2:SetTemplate('Default')]]
 
 		_G.PallyPowerAura:SetTemplate("Transparent", nil, true)
 		_G.PallyPowerAuraIcon:SetTexCoord(unpack(E.TexCoords))
