@@ -17,6 +17,10 @@ local headerassist = nil
 local group, groupbutton, tankbutton, assistbutton
 local orientation, barTexture, texture
 
+local LCG = E.Libs.CustomGlow
+local classcolor = E:ClassColor(E.myclass, true)
+local skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
+
 --set the textures or gradients
 function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 	_, classunit = UnitClass(unit)
@@ -385,7 +389,6 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 
 		--group/raid unitframes
 		if UnitExists(unit) and (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
-
 			headergroup = nil
 			if _G["ElvUF_Raid1"] and _G["ElvUF_Raid1"]:IsShown() then
 				headergroup = _G["ElvUF_Raid1"]
@@ -416,11 +419,34 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 				button.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then ---TODO confirm this is fine for dark mode
 					--button.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-					unitframe.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-					unitframe.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+					button.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+					button.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				end
 				_, buttonclass = UnitClass(button.unit)
 				if buttonclass then
+
+					if button.Debuffs then --test dispel glow on UFs
+						if button.Debuffs.visibleDebuffs ~= nil then
+							for d = 1, button.Debuffs.visibleDebuffs do
+								local test = select(d, button.Debuffs:GetChildren())
+								if test then
+									if test.canDispel then
+										LCG.PixelGlow_Start(button, skillglowcolor, 10, 5, 15, 2, 0, 0, false, nil, 6)
+									else
+										LCG.PixelGlow_Stop(button)
+									end
+								else
+									LCG.PixelGlow_Stop(button)
+								end
+							end
+							if button.Debuffs.visibleDebuffs == 0 then
+								LCG.PixelGlow_Stop(button)
+							end
+						else
+							LCG.PixelGlow_Stop(button)
+						end
+					end
+
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
 						if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
@@ -495,7 +521,20 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 	end
 end
 hooksecurefunc(UF, "Style", ElvUI_EltreumUI.GradientCustomTexture) --if not hooking into this then when the target of target changes it doesnt update
+--hooksecurefunc(UF, "PostUpdateHealth", ElvUI_EltreumUI.GradientCustomTexture) --for testing glow
 hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientCustomTexture)
+
+--test glow, but this one goes on every frame...
+--[[function ElvUI_EltreumUI:UFGlow(_, button)
+	if button then
+		if button.canDispel then
+			LCG.PixelGlow_Start(button:GetParent():GetParent(), skillglowcolor, 10, 5, 15, 2, 0, 0, false, nil, 6)
+		else
+			LCG.PixelGlow_Stop(button:GetParent():GetParent())
+		end
+	end
+end
+hooksecurefunc(UF, "PostUpdateAura", ElvUI_EltreumUI.UFGlow)]]
 
 --for Unitframe Backdrop Texture/Alpha/Fill Direction
 function UF:ToggleTransparentStatusBar(isTransparent, statusBar, backdropTex, adjustBackdropPoints, invertColors, reverseFill)
@@ -791,9 +830,7 @@ end
 hooksecurefunc(UF, "Configure_Portrait", ElvUI_EltreumUI.SkinPortrait)
 
 --Gradient Aurabars
-local LCG = E.Libs.CustomGlow
-local classcolor = E:ClassColor(E.myclass, true)
-local skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
+
 function ElvUI_EltreumUI:AuraBarTexture(unit, bar, _, _, _, _, debuffType, isStealable) --could use isStealable to add a glow or something
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
