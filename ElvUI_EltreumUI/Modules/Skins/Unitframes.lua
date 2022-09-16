@@ -529,7 +529,6 @@ function UF:ToggleTransparentStatusBar(isTransparent, statusBar, backdropTex, ad
 		end
 	end
 
-
 	local orientation = statusBar:GetOrientation()
 	if E.db.ElvUI_EltreumUI.unitframes.UForientation == "VERTICAL" and statusBar:GetName():match("HealthBar") and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		orientation = "VERTICAL"
@@ -689,7 +688,6 @@ function UF:Configure_InfoPanel(frame)
 	end
 end
 
-
 function ElvUI_EltreumUI:SkinPortrait(frame)
 	local db = frame.db
 	local portrait = (db.portrait.style == '3D' and frame.Portrait3D) or frame.Portrait2D
@@ -791,3 +789,29 @@ function ElvUI_EltreumUI:SkinPortrait(frame)
 	end
 end
 hooksecurefunc(UF, "Configure_Portrait", ElvUI_EltreumUI.SkinPortrait)
+
+--Gradient Aurabars
+local LCG = E.Libs.CustomGlow
+local classcolor = E:ClassColor(E.myclass, true)
+local skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
+function ElvUI_EltreumUI:AuraBarTexture(unit, bar, _, _, _, _, debuffType, isStealable) --could use isStealable to add a glow or something
+	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+		bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+		local r,g,b = bar:GetStatusBarColor()
+		if unit == "player" then
+			bar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.3, g-0.3, b-0.3, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha,r, g, b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+		elseif unit == "target" then
+			bar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r, g, b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, r-0.3, g-0.3, b-0.3, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+		end
+		if bar.bg then
+			bar.bg:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+			bar.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+		end
+
+		if isStealable then
+			--LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
+			LCG.PixelGlow_Start(bar, skillglowcolor, 10, 5, 15, 2, 0, 0, false, nil, 6)
+		end
+	end
+end
+hooksecurefunc(UF, "PostUpdateBar_AuraBars", ElvUI_EltreumUI.AuraBarTexture)
