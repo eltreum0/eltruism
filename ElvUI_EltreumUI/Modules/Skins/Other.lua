@@ -705,6 +705,7 @@ function S:PallyPower()
 			if InCombatLockdown() then return end
 			if not _G.PallyPowerFrame.shadow then
 				_G.PallyPowerFrame:CreateShadow()
+				_G.PallyPowerFrame.shadow:SetParent(_G.PallyPowerC1)
 			end
 			if _G.PallyPowerFrame.shadow then
 				if _G.PallyPowerC1 and _G.PallyPowerC1:IsShown() then
