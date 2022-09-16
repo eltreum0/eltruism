@@ -759,6 +759,7 @@ function S:PallyPower()
 		--better point
 		_G.PallyPowerAnchor:ClearAllPoints()
 		_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-10,10)
+		_G.PallyPowerAnchor:SetFrameLevel(10)
 
 		--change toggle texture
 		_G.PallyPowerAnchor:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
