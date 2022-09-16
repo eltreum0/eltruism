@@ -660,6 +660,9 @@ function S:PallyPower()
 					end
 				end
 			end
+
+
+
 		end)
 
 		for i = 1, PALLYPOWER_MAXCLASSES do
@@ -747,6 +750,16 @@ function S:PallyPower()
 					_G.PallyPowerFrame.shadow:ClearAllPoints()
 					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
 					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC8, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC9 and _G.PallyPowerC9:IsShown() then
+					_G.PallyPowerFrame.shadow:ClearAllPoints()
+					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC9, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC10 and _G.PallyPowerC10:IsShown() then
+					_G.PallyPowerFrame.shadow:ClearAllPoints()
+					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC10, "BOTTOMRIGHT",3,-3)
 				end
 			end
 		end)
