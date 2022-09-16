@@ -34,7 +34,7 @@ function ElvUI_EltreumUI:Print(msg)
 end
 
 --hide popups during install
-function ElvUI_EltreumUI:HidePopups()
+function ElvUI_EltreumUI:HidePopups(delay)
 	if E:IsAddOnEnabled("ElvUI_WindTools") then
 		W = unpack(WindTools)
 		local function WindtoolsCompatHideWhileInstall()
@@ -45,12 +45,16 @@ function ElvUI_EltreumUI:HidePopups()
 	if IsAddOnLoaded("Details_Streamer") then
 		DisableAddOn("Details_Streamer")
 	end
-	C_Timer.After(5, function()
+	C_Timer.After(delay, function()
 		if _G["StreamOverlayWelcomeWindow"] then
 			_G["StreamOverlayWelcomeWindow"]:Hide()
 		end
 		if _G["DetailsBaseFrame1"] then
 			_G["DetailsBaseFrame1"]:Hide()
+		end
+		if _G["DetailsProfilerProfileConfirmButton"] then
+			local a = _G["DetailsProfilerProfileConfirmButton"]:GetParent()
+			a:Hide()
 		end
 		if _G["StaticPopup1"] then
 			_G["StaticPopup1"]:Hide()
