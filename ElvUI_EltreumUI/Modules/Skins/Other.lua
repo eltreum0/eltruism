@@ -709,6 +709,7 @@ function S:PallyPower()
 		--main shadow
 		local shadowupdate = CreateFrame("FRAME")
 		shadowupdate:RegisterEvent("GROUP_ROSTER_UPDATE")
+		shadowupdate:RegisterEvent("GROUP_JOINED")
 		shadowupdate:RegisterEvent("PLAYER_ENTERING_WORLD")
 		shadowupdate:SetScript("OnEvent",function()
 			if InCombatLockdown() then return end
