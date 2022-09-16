@@ -243,7 +243,7 @@ function ElvUI_EltreumUI:GetPlayerSpec()
 		return spec
 	elseif spent1 == spent2 or spent2 == spent3 or spent1 == spent3 then
 		if spent1 == spent3 and spent1 == spent2 then
-			return L["None"]
+			return NONE
 		elseif (spent1 == spent2) and (spent1 > spent3 or spent3 > spent1) then
 			if spent1 > spent3 then
 				return L["Hybrid"]
@@ -268,7 +268,7 @@ function ElvUI_EltreumUI:GetPlayerSpec()
 			return spec
 		end
 	else
-		return L["None"]
+		return NONE
 	end
 end
 

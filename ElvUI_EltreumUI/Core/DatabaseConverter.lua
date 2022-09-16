@@ -11,6 +11,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 			whileDead = 1,
 			hideOnEscape = false,
 		}
+		local NONE = _G.NONE
 
 		if E.private.ElvUI_EltreumUI.install_version < "3.2.6" then
 			--making sure it only runs on the current char's profile
@@ -22,8 +23,8 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 			end
 
 			--Profile options conversion
-			local ProfileNames = "NONE"
-			local CharacterNames = "NONE"
+			local ProfileNames = NONE
+			local CharacterNames = NONE
 			for profile, data in pairs(ElvDB.profiles) do
 				local profileChanged = false
 				if profile == currentprofile then
@@ -305,7 +306,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 							profileChanged = true
 						end
 						if profileChanged then
-							if ProfileNames == "NONE" then
+							if ProfileNames == NONE then
 								ProfileNames = profile
 							else
 								ProfileNames = ProfileNames..', '..profile
@@ -331,8 +332,8 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 			end
 
 			--Raid custom text update for Raid1/2/3
-			local ProfileNames = "NONE"
-			local CharacterNames = "NONE"
+			local ProfileNames = NONE
+			local CharacterNames = NONE
 			for profile, data in pairs(ElvDB.profiles) do
 				if profile == currentprofile then
 					if data then
@@ -423,8 +424,8 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 			end
 
 			--Raid custom text update for Raid1/2/3
-			local ProfileNames = "NONE"
-			local CharacterNames = "NONE"
+			local ProfileNames = NONE
+			local CharacterNames = NONE
 			for profile, data in pairs(ElvDB.profiles) do
 				if profile == currentprofile then
 					if data then
@@ -462,8 +463,8 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 			end
 
 			--Profile options conversion
-			local ProfileNames = "NONE"
-			local CharacterNames = "NONE"
+			local ProfileNames = NONE
+			local CharacterNames = NONE
 			for profile, data in pairs(ElvDB.profiles) do
 				local profileChanged = false
 				if profile == currentprofile then
@@ -831,7 +832,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 							end
 						end
 						if profileChanged then
-							if ProfileNames == "NONE" then
+							if ProfileNames == NONE then
 								ProfileNames = profile
 							else
 								ProfileNames = ProfileNames..', '..profile
