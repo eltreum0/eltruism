@@ -9,4 +9,5 @@ Updated the automatic role setup to ignore Death Knights in Wrath\
 Updated some class icons\
 Updated Chat Positions one pixel down due to the toggles\
 Updated Gladdy profile to add Totem Pulse\
-Fixed a possible error during Layout install if the LFG channel was not found
+Fixed a possible error during Layout install if the LFG channel was not found\
+Fixed some PallyPower Shadows
