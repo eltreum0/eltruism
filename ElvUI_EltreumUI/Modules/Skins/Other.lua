@@ -515,6 +515,7 @@ S:AddCallbackForAddon('MeetingHorn')
 --based on old addonskins skin
 function S:PallyPower()
 	if E.db.ElvUI_EltreumUI.skins.pallypower then
+		if InCombatLockdown() then return end
 
 		--from old addonskins
 		local PallyPowerBlessingsFrame = _G.PallyPowerBlessingsFrame
@@ -538,6 +539,13 @@ function S:PallyPower()
 				_G.PallyPowerAura.shadow:SetPoint("TOPRIGHT", _G.PallyPowerAuraIcon,"TOPRIGHT", 3, 3)
 				_G.PallyPowerAura.shadow:SetParent(_G.PallyPowerAura)
 			end
+			E:Delay(0, function()
+				if _G.PallyPowerAuraIcon:GetTexture() ~= nil then
+					_G.PallyPowerAura.shadow:Show()
+				else
+					_G.PallyPowerAura.shadow:Hide()
+				end
+			end)
 		end
 
 		_G.PallyPowerAuto:SetTemplate("Transparent", nil, true)
@@ -646,22 +654,6 @@ function S:PallyPower()
 			end
 		end
 
-		_G.PallyPowerBlessingsFrame:HookScript("OnShow", function()
-			for i = 1, PALLYPOWER_MAXCLASSES do
-				for j = 1, 8 do
-					if _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow then
-						E:Delay(0, function()
-							if _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"]:GetTexture() ~= nil then
-								_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:Show()
-							else
-								_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:Hide()
-							end
-						end)
-					end
-				end
-			end
-		end)
-
 		for i = 1, PALLYPOWER_MAXCLASSES do
 			if _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"] then
 				_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"]:SetTexCoord(unpack(E.TexCoords))
@@ -679,15 +671,32 @@ function S:PallyPower()
 			for j = 1, 8 do
 				if _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"] then
 					_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"]:SetTexCoord(unpack(E.TexCoords))
-					if not _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow then
-						_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i]:CreateShadow()
-						_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:ClearAllPoints()
-						_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("BOTTOMLEFT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"BOTTOMLEFT", -3, -3)
-						_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("TOPLEFT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"TOPLEFT", -3, 3)
-						_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("BOTTOMRIGHT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"BOTTOMRIGHT", 3, -3)
-						_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("TOPRIGHT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"TOPRIGHT", 3, 3)
-						_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetParent(_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i])
+					if not _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow then ---????????????????????????????
+						if _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"]:GetTexture() ~= nil then
+							_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i]:CreateShadow()
+							_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:ClearAllPoints()
+							_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("BOTTOMLEFT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"BOTTOMLEFT", -3, -3)
+							_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("TOPLEFT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"TOPLEFT", -3, 3)
+							_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("BOTTOMRIGHT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"BOTTOMRIGHT", 3, -3)
+							_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("TOPRIGHT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"TOPRIGHT", 3, 3)
+							_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetParent(_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i])
+						end
 					end
+					_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i]:HookScript("OnClick", function()
+						E:Delay(0, function()
+							if _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"]:GetTexture() ~= nil then
+								_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:Show()
+								if _G.PallyPowerAura.shadow then
+									_G.PallyPowerAura.shadow:Show()
+								end
+							else
+								_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:Hide()
+								if _G.PallyPowerAura.shadow then
+									_G.PallyPowerAura.shadow:Hide()
+								end
+							end
+						end)
+					end)
 				end
 			end
 		end
@@ -700,6 +709,7 @@ function S:PallyPower()
 		--main shadow
 		local shadowupdate = CreateFrame("FRAME")
 		shadowupdate:RegisterEvent("GROUP_ROSTER_UPDATE")
+		shadowupdate:RegisterEvent("GROUP_JOINED")
 		shadowupdate:RegisterEvent("PLAYER_ENTERING_WORLD")
 		shadowupdate:SetScript("OnEvent",function()
 			if InCombatLockdown() then return end
@@ -747,6 +757,41 @@ function S:PallyPower()
 					_G.PallyPowerFrame.shadow:ClearAllPoints()
 					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
 					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC8, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC9 and _G.PallyPowerC9:IsShown() then
+					_G.PallyPowerFrame.shadow:ClearAllPoints()
+					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC9, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC10 and _G.PallyPowerC10:IsShown() then
+					_G.PallyPowerFrame.shadow:ClearAllPoints()
+					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC10, "BOTTOMRIGHT",3,-3)
+				end
+			end
+		end)
+
+		_G.PallyPowerBlessingsFrame:HookScript("OnShow", function()
+			for i = 1, PALLYPOWER_MAXCLASSES do
+				for j = 1, 8 do
+					if _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow then
+						E:Delay(0, function()
+							if _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"]:GetTexture() ~= nil then
+								_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:Show()
+							else
+								_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:Hide()
+							end
+						end)
+					end
+					if _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i] and _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow then
+						E:Delay(0, function()
+							if _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"]:GetTexture() ~= nil then
+								_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:Show()
+							else
+								_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:Hide()
+							end
+						end)
+					end
 				end
 			end
 		end)

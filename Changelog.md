@@ -11,7 +11,9 @@ Updated the automatic role setup to ignore Death Knights in Wrath\
 Updated some class icons\
 Updated Chat Positions one pixel down due to the toggles\
 Updated Gladdy profile to add Totem Pulse\
-Fixed a possible error during Layout install if the LFG channel was not found
+Fixed a possible error during Layout install if the LFG channel was not found\
+Fixed Tooltip Shadow when Healthbar was set at the bottom\
+Fixed some PallyPower Shadows
 ### 3.3.9
 Added Item Level to tooltips in Wrath/Classic\
 Added a skin to the Gear Manager Toggle Button\
