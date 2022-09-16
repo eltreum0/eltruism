@@ -379,11 +379,15 @@ local function SkinLocale()
 end
 SkinLocale()
 
---skin meeting horn addon
-local function SkinMeetingHorn()
+--SkinMeeting horn as asked by Neo
+function S:MeetingHorn()
 	if E.db.ElvUI_EltreumUI.skins.meetinghorn then
-		S:HandleFrame(_G['MeetingHornMainPanel'])
-		S:HandleScrollBar(_G.MeetingHornMainPanelScrollBar)
+		S:HandleFrame(_G.MeetingHornMainPanel)
+		_G.MeetingHornMainPanel:SetTemplate('Transparent', nil, true)
+
+		if not _G.MeetingHornMainPanel.shadow then
+			_G.MeetingHornMainPanel:CreateShadow()
+		end
 
 		--search
 		S:HandleFrame(_G.MeetingHornMainPanel.Browser)
@@ -396,13 +400,12 @@ local function SkinMeetingHorn()
 		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header4)
 		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header5)
 		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header6)
-		--S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header7)
-		--S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header8)
+		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header7)
+		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header8)
 		S:HandleEditBox(_G.MeetingHornMainPanel.Browser.Input)
 		S:HandleButton(_G.MeetingHornMainPanel.Browser.Refresh)
 		S:HandleButton(_G.MeetingHornMainPanel.Browser.Reset)
-		--S:HandleButton(_G.MeetingHornMainPanel.Browser.RechargeBtn)
-		--S:HandleButton(_G.MeetingHornMainPanel.Browser.ApplyLeaderBtn)
+
 		S:HandleScrollBar(_G.MeetingHornMainPanel.Browser.ActivityList.scrollBar)
 
 		--challenge
@@ -418,14 +421,14 @@ local function SkinMeetingHorn()
 		S:HandleScrollBar(_G.MeetingHornMainPanel.Manage.Chat.ChatFrame.scrollBar)
 		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Creator.Comment)
 		S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.CreateButton)
-		--S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.RecruitButton)
+		S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.RecruitButton)
 		S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.CloseButton)
 		--_G.MeetingHornMainPanel.Manage.Creator.CloseButton.Texture:SetPoint("RIGHT", _G.MeetingHornMainPanel.Manage.Creator.CloseButton, "RIGHT")
 		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Chat)
 		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Chat.ChatFrame)
 		_G.MeetingHornMainPanel.Manage.Chat.ChatBg:Hide()
-		--_G.MeetingHornMainPanel.Manage.Creator.RecruitButton.RightSeparator:Hide()
-		--_G.MeetingHornMainPanel.Manage.Creator.CreateButton.RightSeparator:Hide()
+		_G.MeetingHornMainPanel.Manage.Creator.RecruitButton.RightSeparator:Hide()
+		_G.MeetingHornMainPanel.Manage.Creator.CreateButton.RightSeparator:Hide()
 		_G.MeetingHornMainPanel.Manage.Creator.CloseButton.Texture:Hide()
 
 		--leader
@@ -433,18 +436,19 @@ local function SkinMeetingHorn()
 		S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First)
 		S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First.Footer)
 		S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First.Header)
-		--S:HandleButton(_G.MeetingHornMainPanel.GoodLeader.First.Header.ApplyLeaderBtn)
+		S:HandleButton(_G.MeetingHornMainPanel.GoodLeader.First.Header.ApplyLeaderBtn)
 
 		--announcement
 		--S:HandleFrame(_G.MeetingHornMainPanel.Announcement)
 		--S:HandleFrame(_G.MeetingHornMainPanel.Announcement.loading)
 
 		--mission guidance
-		--S:HandleFrame(_G.MeetingHornMainPanel.MissionGuidance)
+		S:HandleFrame(_G.MeetingHornMainPanel.MissionGuidance)
 
 		--recent
 		S:HandleFrame(_G.MeetingHornMainPanel.Recent)
 		S:HandleFrame(_G.MeetingHornMainPanel.Recent.Left)
+		S:HandleFrame(_G.MeetingHornMainPanel.Recent.Right)
 		S:HandleFrame(_G.MeetingHornMainPanel.Recent.Members)
 		S:HandleFrame(_G.MeetingHornMainPanel.Recent.Instance)
 		S:HandleButton(_G.MeetingHornMainPanel.Recent.Invite)
@@ -453,12 +457,12 @@ local function SkinMeetingHorn()
 
 		--quest
 		S:HandleFrame(_G.MeetingHornMainPanel.Loading)
-		--S:HandleFrame(_G.MeetingHornMainPanel.Quest)
-		--S:HandleFrame(_G.MeetingHornMainPanel.Quest.Body)
+		S:HandleFrame(_G.MeetingHornMainPanel.Quest)
+		S:HandleFrame(_G.MeetingHornMainPanel.Quest.Body)
 		--S:HandleFrame(_G.MeetingHornMainPanel.Quest.Body.Quests)
-		--S:HandleButton(_G.MeetingHornMainPanel.Quest.Body.Refresh)
-		--S:HandleScrollBar(_G.MeetingHornMainPanel.Quest.Body.Quests.scrollBar)
-		--S:HandleFrame(_G.MeetingHornMainPanel.Quest.Summary)
+		S:HandleButton(_G.MeetingHornMainPanel.Quest.Body.Refresh)
+		S:HandleScrollBar(_G.MeetingHornMainPanel.Quest.Body.Quests.scrollBar)
+		S:HandleFrame(_G.MeetingHornMainPanel.Quest.Summary)
 
 		--options
 		S:HandleFrame(_G.MeetingHornMainPanel.Options)
@@ -471,168 +475,330 @@ local function SkinMeetingHorn()
 		S:HandleButton(_G.MeetingHornMainPanel.Options.Filters.Import)
 		S:HandleButton(_G.MeetingHornMainPanel.Options.Filters.Export)
 
+		--main buttons
+		S:HandleButton(_G.MeetingHornMainPanel.Browser.RechargeBtn)
+		S:HandleButton(_G.MeetingHornMainPanel.Browser.ApplyLeaderBtn)
+		--S:HandleDropDownBox(_G.MeetingHornMainPanel.Browser.Activity)
+		--S:HandleDropDownBox(_G.MeetingHornMainPanel.Browser.Mode)
+
+		--feedback
+		S:HandleFrame(_G.MeetingHornMainPanel.FeedBack.EditBox)
+		S:HandleButton(_G.MeetingHornMainPanel.FeedBack.AcceptButton)
+		S:HandleButton(_G.MeetingHornMainPanel.FeedBack.CancelButton)
+
+		--portrait
+		_G.MeetingHornMainPanelPortraitFrame:Hide()
+
 		--help
 		S:HandleFrame(_G.MeetingHornMainPanel.Help)
-		_G.MeetingHornMainPanelPortraitFrame:Hide()
-	end
-end
 
-local handlemeetinghorn = CreateFrame("FRAME")
-handlemeetinghorn:RegisterEvent("ADDON_LOADED")
-handlemeetinghorn:SetScript("OnEvent", function(_, _, arg)
-	if GetAddOnEnableState(nil, "MeetingHorn") == 0 then
-		handlemeetinghorn:UnregisterAllEvents()
-	end
-	if (arg == "MeetingHorn") or IsAddOnLoaded("MeetingHorn") then
-		_G['MeetingHornMainPanel']:HookScript("OnShow", function(self)
-			if not self.meetskinnedonshow then
-				self.meetskinnedonshow = true
-				SkinMeetingHorn()
-				handlemeetinghorn:UnregisterAllEvents()
+		--bc the tab names are nil, gotta try to detect it
+		local header = _G["MeetingHornMainPanel"]
+		for i = 1, header:GetNumChildren() do
+			local group = select(i, header:GetChildren())
+			if group and group:GetName() == nil then
+				if group.HighlightTexture then
+					S:HandleTab(group)
+					if not group.backdrop.shadow then
+						group.backdrop:CreateShadow()
+					end
+				end
 			end
-		end)
-	end
-end)
+		end
 
-local meetinghornmightalreadybeloaded = CreateFrame("FRAME")
-meetinghornmightalreadybeloaded:RegisterEvent("PLAYER_STARTED_MOVING")
-meetinghornmightalreadybeloaded:SetScript("OnEvent", function()
-	meetinghornmightalreadybeloaded:UnregisterAllEvents()
-	if IsAddOnLoaded('MeetingHorn') then
-		SkinMeetingHorn()
+		--idk why but it doesnt seem to skin
+		S:HandleScrollBar(_G.MeetingHornMainPanelScrollBar)
 	end
-end)
-
---[[
--- EXAMPLE:
---- S:AddCallbackForAddon('Details', 'MyAddon_Details', MyAddon.SkinDetails)
----- arg1: Addon name (same as the toc): MyAddon.toc (without extension)
----- arg2: Given name (try to use something that won't be used by someone else)
----- arg3: load function (preferably not-local)
--- this is used for loading skins that should be executed when the addon loads (including blizzard addons that load later).
--- please add a given name, non-given-name is specific for elvui core addon.
-function S:AddCallbackForAddon(addonName, name, func, forceLoad, bypass, position) -- arg2: name is 'given name' see example above.
-	local load = (type(name) == 'function' and name) or (not func and (S[name] or S[addonName]))
-	S:RegisterSkin(addonName, load or func, forceLoad, bypass, position)
 end
-
-]]
+S:AddCallbackForAddon('MeetingHorn')
 
 --based on old addonskins skin
 function S:PallyPower()
-	--if not (E.private.skins.blizzard.enable and E.private.skins.blizzard.taxi) then return end
+	if E.db.ElvUI_EltreumUI.skins.pallypower then
 
-	local PallyPowerBlessingsFrame = _G.PallyPowerBlessingsFrame
-	PallyPowerBlessingsFrame:StripTextures()
-	PallyPowerBlessingsFrame:SetTemplate('Transparent', nil, true)
-	S:HandleCloseButton(_G.PallyPowerBlessingsFrameCloseButton)
-	S:HandleButton(_G.PallyPowerBlessingsFrameAutoAssign)
-	S:HandleButton(_G.PallyPowerBlessingsFrameClear)
-	S:HandleButton(_G.PallyPowerBlessingsFrameRefresh)
-	S:HandleCheckBox(_G.PallyPowerBlessingsFrameFreeAssign)
+		--from old addonskins
+		local PallyPowerBlessingsFrame = _G.PallyPowerBlessingsFrame
+		PallyPowerBlessingsFrame:StripTextures()
+		PallyPowerBlessingsFrame:SetTemplate('Transparent', nil, true)
+		S:HandleCloseButton(_G.PallyPowerBlessingsFrameCloseButton)
+		S:HandleButton(_G.PallyPowerBlessingsFrameAutoAssign)
+		S:HandleButton(_G.PallyPowerBlessingsFrameClear)
+		S:HandleButton(_G.PallyPowerBlessingsFrameRefresh)
+		S:HandleCheckBox(_G.PallyPowerBlessingsFrameFreeAssign)
 
-	local PallyPowerFrame = _G.PallyPowerFrame
-	PallyPowerFrame:StripTextures()
-	PallyPowerFrame:SetTemplate('Transparent', nil, true)
-
-	_G.PallyPowerAura:SetTemplate("Transparent", nil, true)
-	_G.PallyPowerAuto:SetTemplate("Transparent", nil, true)
-	_G.PallyPowerRF:SetTemplate("Transparent", nil, true)
-	if _G.PallyPowerRF.TopEdge then
-		_G.PallyPowerRF.TopEdge:Hide()
-	end
-
-
-	for i = 1, PALLYPOWER_MAXCLASSES do
-		local button = PallyPower.classButtons[i]
-		button:SetTemplate("Transparent", nil, true)
-
-		_G[button:GetName().."ClassIcon"]:SetTexCoord(unpack(E.TexCoords))
-		_G[button:GetName().."BuffIcon"]:SetTexCoord(unpack(E.TexCoords))
-
-		for j = 1, PALLYPOWER_MAXPERCLASS do
-			PallyPower.playerButtons[i][j]:SetTemplate("Transparent", nil, true)
-		end
-	end
-
-	for i = 1, PALLYPOWER_MAXCLASSES do
-		for j = 1, 8 do
-			if _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"] then
-				_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"]:SetTexCoord(unpack(E.TexCoords))
-			end
-
-			if _G["PallyPowerBlessingsFramePlayer"..j.."Icon"..i] then
-				_G["PallyPowerBlessingsFramePlayer"..j.."Icon"..i]:SetTexCoord(unpack(E.TexCoords))
-			end
-			if _G["PallyPowerBlessingsFramePlayer"..j.."AIcon"..i] then
-				_G["PallyPowerBlessingsFramePlayer"..j.."AIcon"..i]:SetTexCoord(unpack(E.TexCoords))
-			end
-			if _G["PallyPowerBlessingsFramePlayer"..j.."CIcon"..i] then
-				_G["PallyPowerBlessingsFramePlayer"..j.."CIcon"..i]:SetTexCoord(unpack(E.TexCoords))
+		_G.PallyPowerAura:SetTemplate("Transparent", nil, true)
+		_G.PallyPowerAuraIcon:SetTexCoord(unpack(E.TexCoords))
+		if not _G.PallyPowerAura.shadow then
+			_G.PallyPowerAura:CreateShadow()
+			if _G.PallyPowerAura.shadow then
+				_G.PallyPowerAura.shadow:ClearAllPoints()
+				_G.PallyPowerAura.shadow:SetPoint("BOTTOMLEFT", _G.PallyPowerAuraIcon,"BOTTOMLEFT", -3, -3)
+				_G.PallyPowerAura.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuraIcon,"TOPLEFT", -3, 3)
+				_G.PallyPowerAura.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerAuraIcon,"BOTTOMRIGHT", 3, -3)
+				_G.PallyPowerAura.shadow:SetPoint("TOPRIGHT", _G.PallyPowerAuraIcon,"TOPRIGHT", 3, 3)
+				_G.PallyPowerAura.shadow:SetParent(_G.PallyPowerAura)
 			end
 		end
-	end
 
-	for i = 1, PALLYPOWER_MAXCLASSES do
-		if _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"] then
-			_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"]:SetTexCoord(unpack(E.TexCoords))
-		end
-
-		for j = 1, 8 do
-			if _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"] then
-				_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"]:SetTexCoord(unpack(E.TexCoords))
+		_G.PallyPowerAuto:SetTemplate("Transparent", nil, true)
+		if not _G.PallyPowerAuto.shadow then
+			_G.PallyPowerAuto:CreateShadow()
+			if _G.PallyPowerAuto.shadow then
+				_G.PallyPowerAuto.shadow:ClearAllPoints()
+				_G.PallyPowerAuto.shadow:SetPoint("BOTTOMLEFT", _G.PallyPowerAutoIcon,"BOTTOMLEFT", -3, -3)
+				_G.PallyPowerAuto.shadow:SetPoint("TOPLEFT", _G.PallyPowerAutoIcon,"TOPLEFT", -3, 3)
+				_G.PallyPowerAuto.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerAutoIcon,"BOTTOMRIGHT", 3, -3)
+				_G.PallyPowerAuto.shadow:SetPoint("TOPRIGHT", _G.PallyPowerAutoIcon,"TOPRIGHT", 3, 3)
+				_G.PallyPowerAuto.shadow:SetParent(_G.PallyPowerAuto)
 			end
 		end
+
+		_G.PallyPowerRF:SetTemplate("Transparent", nil, true)
+		_G.PallyPowerRFIcon:SetTexCoord(unpack(E.TexCoords))
+		_G.PallyPowerRFIconSeal:SetTexCoord(unpack(E.TexCoords))
+
+		if not _G.PallyPowerRF.shadow then
+			_G.PallyPowerRF:CreateShadow()
+			if _G.PallyPowerRF.shadow then
+				_G.PallyPowerRF.shadow:ClearAllPoints()
+				_G.PallyPowerRF.shadow:SetPoint("BOTTOMLEFT", _G.PallyPowerRFIconSeal,"BOTTOMLEFT", -3, -3)
+				_G.PallyPowerRF.shadow:SetPoint("TOPLEFT", _G.PallyPowerRFIconSeal,"TOPLEFT", -3, 3)
+				_G.PallyPowerRF.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerRFIconSeal,"BOTTOMRIGHT", 3, -3)
+				_G.PallyPowerRF.shadow:SetPoint("TOPRIGHT", _G.PallyPowerRFIconSeal,"TOPRIGHT", 3, 3)
+				_G.PallyPowerRF.shadow:SetParent(_G.PallyPowerRF)
+			end
+		end
+		--because we need 2 shadows
+		if not _G.PallyPowerAnchor.shadow and _G.PallyPowerRFIcon:GetTexture() ~= nil then
+			_G.PallyPowerAnchor:CreateShadow()
+			if _G.PallyPowerAnchor.shadow then
+				_G.PallyPowerAnchor.shadow:ClearAllPoints()
+				_G.PallyPowerAnchor.shadow:SetPoint("BOTTOMLEFT", _G.PallyPowerRFIcon,"BOTTOMLEFT", -3, -3)
+				_G.PallyPowerAnchor.shadow:SetPoint("TOPLEFT", _G.PallyPowerRFIcon,"TOPLEFT", -3, 3)
+				_G.PallyPowerAnchor.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerRFIcon,"BOTTOMRIGHT", 3, -3)
+				_G.PallyPowerAnchor.shadow:SetPoint("TOPRIGHT", _G.PallyPowerRFIcon,"TOPRIGHT", 3, 3)
+				_G.PallyPowerAnchor.shadow:SetParent(_G.PallyPowerRF)
+			end
+		end
+
+		--hide the double lines
+		_G.PallyPowerRF.TopEdge:Kill()
+		_G.PallyPowerRF.BottomEdge:Kill()
+
+		--update for new pallypower
+		for i = 1, PALLYPOWER_MAXCLASSES do
+			local button = PallyPower.classButtons[i]
+			button:SetTemplate("Transparent", nil, true)
+
+			--_G[button:GetName().."ClassIcon"]:SetTexCoord(unpack(E.TexCoords))
+			_G[button:GetName().."BuffIcon"]:SetTexCoord(unpack(E.TexCoords))
+			if not button.shadow then
+				button:CreateShadow()
+				button.shadow:ClearAllPoints()
+				button.shadow:SetPoint("BOTTOMLEFT", _G[button:GetName().."BuffIcon"],"BOTTOMLEFT", -3, -3)
+				button.shadow:SetPoint("TOPLEFT", _G[button:GetName().."BuffIcon"],"TOPLEFT", -3, 3)
+				button.shadow:SetPoint("BOTTOMRIGHT", _G[button:GetName().."BuffIcon"],"BOTTOMRIGHT", 3, -3)
+				button.shadow:SetPoint("TOPRIGHT", _G[button:GetName().."BuffIcon"],"TOPRIGHT", 3, 3)
+				button.shadow:SetParent(button)
+			end
+
+			for j = 1, PALLYPOWER_MAXPERCLASS do
+				PallyPower.playerButtons[i][j]:SetTemplate("Transparent", nil, true)
+			end
+		end
+
+		for i = 1, PALLYPOWER_MAXCLASSES do
+			for j = 1, 8 do
+				if _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"] then
+					_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"]:SetTexCoord(unpack(E.TexCoords))
+					if not _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow then
+						_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i]:CreateShadow()
+						_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:ClearAllPoints()
+						_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:SetPoint("BOTTOMLEFT", _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"],"BOTTOMLEFT", -3, -3)
+						_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:SetPoint("BOTTOMRIGHT", _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"],"BOTTOMRIGHT", 3, -3)
+						_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:SetPoint("TOPLEFT", _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"],"TOPLEFT", -3, 3)
+						_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:SetPoint("TOPRIGHT", _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"],"TOPRIGHT", 3, 3)
+						if _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"]:GetTexture() ~= nil then
+							_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:Show()
+						else
+							_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:Hide()
+						end
+					end
+					_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i]:HookScript("OnClick", function()
+						E:Delay(0, function()
+							if _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"]:GetTexture() ~= nil then
+								_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:Show()
+							else
+								_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:Hide()
+							end
+						end)
+					end)
+				end
+				if _G["PallyPowerBlessingsFramePlayer"..j.."Icon"..i] then
+					_G["PallyPowerBlessingsFramePlayer"..j.."Icon"..i]:SetTexCoord(unpack(E.TexCoords))
+				end
+				if _G["PallyPowerBlessingsFramePlayer"..j.."AIcon"..i] then
+					_G["PallyPowerBlessingsFramePlayer"..j.."AIcon"..i]:SetTexCoord(unpack(E.TexCoords))
+				end
+				if _G["PallyPowerBlessingsFramePlayer"..j.."CIcon"..i] then
+					_G["PallyPowerBlessingsFramePlayer"..j.."CIcon"..i]:SetTexCoord(unpack(E.TexCoords))
+				end
+			end
+		end
+
+		_G.PallyPowerBlessingsFrame:HookScript("OnShow", function()
+			for i = 1, PALLYPOWER_MAXCLASSES do
+				for j = 1, 8 do
+					if _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow then
+						E:Delay(0, function()
+							if _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"]:GetTexture() ~= nil then
+								_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:Show()
+							else
+								_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:Hide()
+							end
+						end)
+					end
+				end
+			end
+		end)
+
+		for i = 1, PALLYPOWER_MAXCLASSES do
+			if _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"] then
+				_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"]:SetTexCoord(unpack(E.TexCoords))
+				if not _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow then
+					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"]:CreateShadow()
+					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow:ClearAllPoints()
+					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow:SetPoint("BOTTOMLEFT", _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"],"BOTTOMLEFT", -3, -3)
+					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow:SetPoint("TOPLEFT", _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"],"TOPLEFT", -3, 3)
+					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow:SetPoint("BOTTOMRIGHT", _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"],"BOTTOMRIGHT", 3, -3)
+					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow:SetPoint("TOPRIGHT", _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"],"TOPRIGHT", 3, 3)
+					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow:SetParent(_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"])
+				end
+			end
+
+			for j = 1, 8 do
+				if _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"] then
+					_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"]:SetTexCoord(unpack(E.TexCoords))
+					if not _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow then
+						_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i]:CreateShadow()
+						_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:ClearAllPoints()
+						_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("BOTTOMLEFT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"BOTTOMLEFT", -3, -3)
+						_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("TOPLEFT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"TOPLEFT", -3, 3)
+						_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("BOTTOMRIGHT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"BOTTOMRIGHT", 3, -3)
+						_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("TOPRIGHT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"TOPRIGHT", 3, 3)
+						_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetParent(_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i])
+					end
+				end
+			end
+		end
+
+		--add shadow
+		if not PallyPowerBlessingsFrame.shadow then
+			PallyPowerBlessingsFrame:CreateShadow()
+		end
+
+		--main shadow
+		local shadowupdate = CreateFrame("FRAME")
+		shadowupdate:RegisterEvent("GROUP_ROSTER_UPDATE")
+		shadowupdate:RegisterEvent("PLAYER_ENTERING_WORLD")
+		shadowupdate:SetScript("OnEvent",function()
+			if InCombatLockdown() then return end
+			if not _G.PallyPowerFrame.shadow then
+				_G.PallyPowerFrame:CreateShadow()
+				_G.PallyPowerFrame.shadow:SetParent(_G.PallyPowerC1)
+			end
+			if _G.PallyPowerFrame.shadow then
+				if _G.PallyPowerC1 and _G.PallyPowerC1:IsShown() then
+					_G.PallyPowerFrame.shadow:ClearAllPoints()
+					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC1, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC2 and _G.PallyPowerC2:IsShown() then
+					_G.PallyPowerFrame.shadow:ClearAllPoints()
+					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC2, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC3 and _G.PallyPowerC3:IsShown() then
+					_G.PallyPowerFrame.shadow:ClearAllPoints()
+					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC3, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC4 and _G.PallyPowerC4:IsShown() then
+					_G.PallyPowerFrame.shadow:ClearAllPoints()
+					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC4, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC5 and _G.PallyPowerC5:IsShown() then
+					_G.PallyPowerFrame.shadow:ClearAllPoints()
+					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC5, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC6 and _G.PallyPowerC6:IsShown() then
+					_G.PallyPowerFrame.shadow:ClearAllPoints()
+					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC6, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC7 and _G.PallyPowerC7:IsShown() then
+					_G.PallyPowerFrame.shadow:ClearAllPoints()
+					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC7, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC8 and _G.PallyPowerC8:IsShown() then
+					_G.PallyPowerFrame.shadow:ClearAllPoints()
+					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC8, "BOTTOMRIGHT",3,-3)
+				end
+			end
+		end)
+
+		--crop icon
+		if _G["PallyPowerAutoIcon"] then
+			_G["PallyPowerAutoIcon"]:SetTexCoord(unpack(E.TexCoords))
+		end
+
+		--better point
+		_G.PallyPowerAnchor:ClearAllPoints()
+		_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-10,10)
+
+		--change toggle texture
+		_G.PallyPowerAnchor:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
+		_G.PallyPowerAnchor:GetNormalTexture():SetVertexColor(0,1,0)
+		_G.PallyPowerAnchor:GetCheckedTexture():SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
+		_G.PallyPowerAnchor:GetCheckedTexture():SetVertexColor(1,0,0)
+
+		--use new icons
+		PallyPower.ClassIcons = PallyPower.isWrath and {
+			[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorShadow.tga",
+			[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\RogueShadow.tga",
+			[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PriestShadow.tga",
+			[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DruidShadow.tga",
+			[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinShadow.tga",
+			[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterShadow.tga",
+			[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MageShadow.tga",
+			[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarlockShadow.tga",
+			[9] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanShadow.tga",
+			[10] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnightShadow.tga",
+		} or PallyPower.isBCC and {
+			[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorShadow.tga",
+			[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\RogueShadow.tga",
+			[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PriestShadow.tga",
+			[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DruidShadow.tga",
+			[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinShadow.tga",
+			[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterShadow.tga",
+			[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MageShadow.tga",
+			[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarlockShadow.tga",
+			[9] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanShadow.tga",
+		} or {
+			[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorShadow.tga",
+			[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\RogueShadow.tga",
+			[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PriestShadow.tga",
+			[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DruidShadow.tga",
+			[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinShadow.tga",
+			[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterShadow.tga",
+			[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MageShadow.tga",
+			[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarlockShadow.tga",
+			[9] = "Interface\\Icons\\Ability_Mount_JungleTiger"
+		}
 	end
-
-	if not PallyPowerBlessingsFrame.shadow then
-		PallyPowerBlessingsFrame:CreateShadow()
-	end
-
-	if _G["PallyPowerAutoIcon"] then
-		_G["PallyPowerAutoIcon"]:SetTexCoord(unpack(E.TexCoords))
-	end
-
-	_G.PallyPowerAnchor:ClearAllPoints()
-	_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-10,10)
-
-	_G.PallyPowerAnchor:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
-	_G.PallyPowerAnchor:GetNormalTexture():SetVertexColor(0,1,0)
-	_G.PallyPowerAnchor:GetCheckedTexture():SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
-	_G.PallyPowerAnchor:GetCheckedTexture():SetVertexColor(1,0,0)
-
-	PallyPower.ClassIcons = PallyPower.isWrath and {
-		[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warrior.tga",
-		[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Rogue.tga",
-		[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Priest.tga",
-		[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Druid.tga",
-		[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Paladin.tga",
-		[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Hunter.tga",
-		[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Mage.tga",
-		[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warlock.tga",
-		[9] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Shaman.tga",
-		[10] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnight.tga",
-	} or PallyPower.isBCC and {
-		[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warrior.tga",
-		[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Rogue.tga",
-		[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Priest.tga",
-		[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Druid.tga",
-		[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Paladin.tga",
-		[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Hunter.tga",
-		[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Mage.tga",
-		[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warlock.tga",
-		[9] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Shaman.tga",
-	} or {
-		[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warrior.tga",
-		[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Rogue.tga",
-		[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Priest.tga",
-		[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Druid.tga",
-		[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Paladin.tga",
-		[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Hunter.tga",
-		[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Mage.tga",
-		[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warlock.tga",
-		[9] = "Interface\\Icons\\Ability_Mount_JungleTiger"
-	}
-
 end
 S:AddCallbackForAddon('PallyPower')

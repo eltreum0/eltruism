@@ -120,7 +120,7 @@ function ElvUI_EltreumUI:Initialize()
 	--since now Eltruism has both ElvUI Cvars and ElvUI Chat setup builtin we can skip elvui setup
 	if not E.private.ElvUI_EltreumUI.install_version then
 		E.private.install_complete = E.version
-		ElvUI_EltreumUI:HidePopups()
+		ElvUI_EltreumUI:HidePopups(5)
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)
 		return
 	end

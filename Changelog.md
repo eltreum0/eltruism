@@ -1,6 +1,17 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.4.0
+Added a skin to PallyPower\
+Added gradient to focus target\
+Updated MeetingHorn skin\
+Updated a few shadows\
+Updated actionbar glows in Wrath/Classic to only load on classes that actually have procs\
+Updated the automatic role setup to ignore Death Knights in Wrath\
+Updated some class icons\
+Updated Chat Positions one pixel down due to the toggles\
+Updated Gladdy profile to add Totem Pulse\
+Fixed a possible error during Layout install if the LFG channel was not found
 ### 3.3.9
 Added Item Level to tooltips in Wrath/Classic\
 Added a skin to the Gear Manager Toggle Button\

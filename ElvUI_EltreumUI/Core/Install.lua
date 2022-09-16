@@ -27,6 +27,7 @@ ElvUI_EltreumUI.InstallerData = {
 	tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 	Pages = {
 		[1] = function()
+			ElvUI_EltreumUI:HidePopups(0)
 			if not _G.PluginInstallFrame.gaptexture then
 				_G.PluginInstallFrame.gaptexture = _G.PluginInstallFrame:CreateTexture()
 				_G.PluginInstallFrame.gaptexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\SquareMask")
@@ -53,6 +54,25 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:SetText(L["Skip Install"])
 		end,
 		[2] = function()
+
+			--for classic chat lfg
+			local lfg
+			if E.global.general.locale == "enUS" then
+				lfg = "LookingForGroup"
+			elseif E.global.general.locale == "deDE" then
+				lfg = "SucheNachGruppe"
+			elseif E.global.general.locale == "esMX" or E.global.general.locale == "esES" then
+				lfg = "BuscarGrupo"
+			elseif E.global.general.locale == "frFR" then
+				lfg = "RechercheDeGroupe"
+			elseif E.global.general.locale == "ruRU" then
+				lfg = "ПоискСпутников"
+			elseif E.global.general.locale == "zhTW" then
+				lfg = "尋求組隊"
+			else
+				lfg = "LookingForGroup"
+			end
+
 			_G.PluginInstallFrame.SubTitle:SetText(L["Layouts"])
 			_G.PluginInstallFrame.Desc1:SetText(L["Please select the role for your character, which will create a new profile.\nThis process can take a few seconds"])
 			_G.PluginInstallFrame.Desc2:SetText(L["Eltruism uses a 0.7 scale, but ElvUI can calculate the best scale for you using the Automatic Scale option"].." ("..((math.floor(E:PixelBestSize()*100))/100)..")")
@@ -65,7 +85,6 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function()
 				E:SetupChat()
 				if not E.Retail then --remove lfg spam from general and creat tab for it
-					local _ , lfg = GetChannelName(4)
 					if lfg then
 						ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
 						FCF_OpenNewWindow()
@@ -96,7 +115,6 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option2:SetScript('OnClick', function()
 				E:SetupChat()
 				if not E.Retail then --remove lfg spam from general and creat tab for it
-					local _ , lfg = GetChannelName(4)
 					if lfg then
 						ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
 						FCF_OpenNewWindow()
