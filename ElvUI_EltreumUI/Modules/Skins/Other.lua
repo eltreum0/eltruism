@@ -706,6 +706,11 @@ function S:PallyPower()
 			PallyPowerBlessingsFrame:CreateShadow()
 		end
 
+		--better point
+		_G.PallyPowerAnchor:ClearAllPoints()
+		_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-10,10)
+		_G.PallyPowerAnchor:SetFrameLevel(10)
+
 		--main shadow
 		local shadowupdate = CreateFrame("FRAME")
 		shadowupdate:RegisterEvent("GROUP_ROSTER_UPDATE")
@@ -720,52 +725,162 @@ function S:PallyPower()
 			if _G.PallyPowerFrame.shadow then
 				if _G.PallyPowerC1 and _G.PallyPowerC1:IsShown() then
 					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+					else
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+					end
 					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC1, "BOTTOMRIGHT",3,-3)
 				end
 				if _G.PallyPowerC2 and _G.PallyPowerC2:IsShown() then
 					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+					else
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+					end
 					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC2, "BOTTOMRIGHT",3,-3)
 				end
 				if _G.PallyPowerC3 and _G.PallyPowerC3:IsShown() then
 					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+					else
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+					end
 					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC3, "BOTTOMRIGHT",3,-3)
 				end
 				if _G.PallyPowerC4 and _G.PallyPowerC4:IsShown() then
 					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+					else
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+					end
 					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC4, "BOTTOMRIGHT",3,-3)
 				end
 				if _G.PallyPowerC5 and _G.PallyPowerC5:IsShown() then
 					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+					else
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+					end
 					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC5, "BOTTOMRIGHT",3,-3)
 				end
 				if _G.PallyPowerC6 and _G.PallyPowerC6:IsShown() then
 					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+					else
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+					end
 					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC6, "BOTTOMRIGHT",3,-3)
 				end
 				if _G.PallyPowerC7 and _G.PallyPowerC7:IsShown() then
 					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+					else
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+					end
 					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC7, "BOTTOMRIGHT",3,-3)
 				end
 				if _G.PallyPowerC8 and _G.PallyPowerC8:IsShown() then
 					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+					else
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+					end
 					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC8, "BOTTOMRIGHT",3,-3)
 				end
 				if _G.PallyPowerC9 and _G.PallyPowerC9:IsShown() then
 					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+					else
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+					end
 					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC9, "BOTTOMRIGHT",3,-3)
 				end
 				if _G.PallyPowerC10 and _G.PallyPowerC10:IsShown() then
 					_G.PallyPowerFrame.shadow:ClearAllPoints()
-					_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G._G.PallyPowerAura, "TOPLEFT",-3,3)
+					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+					else
+						_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-10,10)
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
+					end
 					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC10, "BOTTOMRIGHT",3,-3)
 				end
 			end
@@ -801,10 +916,7 @@ function S:PallyPower()
 			_G["PallyPowerAutoIcon"]:SetTexCoord(unpack(E.TexCoords))
 		end
 
-		--better point
-		_G.PallyPowerAnchor:ClearAllPoints()
-		_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-10,10)
-		_G.PallyPowerAnchor:SetFrameLevel(10)
+
 
 		--change toggle texture
 		_G.PallyPowerAnchor:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
