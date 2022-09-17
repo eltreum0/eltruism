@@ -167,6 +167,7 @@ local teleportupdate = CreateFrame("FRAME")
 local TimeSinceLastUpdate = 0
 local ONUPDATE_INTERVAL = 1
 local displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
+
 local function EltruismTeleportsOnEvent(self)
 	local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
 	local start, duration = GetItemCooldown(6948)
@@ -178,7 +179,18 @@ local function EltruismTeleportsOnEvent(self)
 	end
 	self.text:SetText(displayStringEltruismTeleports)
 end
+
 local function EltruismTeleportsOnEnter(self)
+	--[[_G["EltruismHearthStoneTest"] = _G["EltruismHearthStoneTest"] or CreateFrame('Button', "EltruismHearthStoneTest", self, 'SecureActionButtonTemplate')
+	_G["EltruismHearthStoneTest"]:SetAttribute('type', 'item')
+	local name = GetItemInfo(6948)
+	_G["EltruismHearthStoneTest"]:SetAttribute('item', name)
+	_G["EltruismHearthStoneTest"]:RegisterForClicks("AnyUp")
+	--_G["EltruismHearthStoneTest"]:SetAllPoints()
+
+	_G["EltruismHearthStoneTest"]:SetPoint("TOPLEFT", self ,"TOPLEFT", 0, 0)
+	_G["EltruismHearthStoneTest"]:SetPoint("BOTTOMRIGHT", self,"BOTTOMRIGHT", -(self:GetWidth()/4)*3, 0)]]
+
 	DT.tooltip:ClearLines()
 	local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
 	for i,v in pairs(TeleportsItems) do
@@ -296,7 +308,9 @@ local function EltruismTeleportsOnEnter(self)
 		end
 	end)
 end
+
 local function EltruismTeleportsOnLeave()
 	teleportupdate:SetScript("OnUpdate", nil)
 end
+
 DT:RegisterDatatext('EltruismTeleports', nil, { 'SPELL_UPDATE_COOLDOWN', 'BAG_UPDATE_COOLDOWN', "HEARTHSTONE_BOUND"}, EltruismTeleportsOnEvent, nil, nil, EltruismTeleportsOnEnter, EltruismTeleportsOnLeave, L["Eltruism Hearthstones/Teleports"], nil, nil)
