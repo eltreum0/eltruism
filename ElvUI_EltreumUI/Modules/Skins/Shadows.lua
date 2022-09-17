@@ -1288,15 +1288,15 @@ function ElvUI_EltreumUI:Shadows()
 
 		------------------------------------------------------------------------------------------------------end of elvui frames
 		if IsAddOnLoaded('ProjectAzilroka') then
-			if not _G.stAMFrame.shadow then
+			if _G.stAMFrame and not _G.stAMFrame.shadow then
 				_G.stAMFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 
-			if not _G.stAMProfileMenu.shadow then
+			if _G.stAMProfileMenu and not _G.stAMProfileMenu.shadow then
 				_G.stAMProfileMenu:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 
-			if not _G.SquareMinimapButtonBar.shadow then
+			if _G.SquareMinimapButtonBar and not _G.SquareMinimapButtonBar.shadow then
 				_G.SquareMinimapButtonBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
