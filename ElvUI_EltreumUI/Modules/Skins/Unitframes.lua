@@ -426,18 +426,22 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 				if buttonclass then
 
 					if button.Debuffs then --test dispel glow on UFs
+						local canglow = false
 						if button.Debuffs.visibleDebuffs ~= nil then
 							for d = 1, button.Debuffs.visibleDebuffs do
-								local test = select(d, button.Debuffs:GetChildren())
-								if test then
-									if test.canDispel then
-										LCG.PixelGlow_Start(button, skillglowcolor, 10, 5, 15, 2, 0, 0, false, nil, 6)
-									else
-										LCG.PixelGlow_Stop(button)
+								local debuff = select(d, button.Debuffs:GetChildren())
+								if debuff then
+									if debuff.canDispel then
+										if not canglow then
+											canglow = true
+										end
 									end
-								else
-									LCG.PixelGlow_Stop(button)
 								end
+							end
+							if canglow then
+								LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
+							else
+								LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
 							end
 							if button.Debuffs.visibleDebuffs == 0 then
 								LCG.PixelGlow_Stop(button)
