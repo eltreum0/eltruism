@@ -10367,6 +10367,15 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
+							enableaurabars = {
+								order = 5,
+								type = 'toggle',
+								name = L["Enable Gradient Aurabars"],
+								desc = L["Enable Gradient Aurabars"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = value end,
+							},
 							darklightmode = {
 								order = 96,
 								type = "description",

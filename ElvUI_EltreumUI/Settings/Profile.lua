@@ -602,6 +602,8 @@ P.ElvUI_EltreumUI = {
 			classcolorplayercastbar = false,
 			classcolortargetcastbar = false,
 
+			enableaurabars = false,
+
 			gradientXP = false,
 			gradientXPcolors ={
 				r = 0.8,
