@@ -1151,3 +1151,4 @@ L["Enable for Focus Target"] = "Habilitar para Alvo do Foco"
 L["Skin PallyPower"] = "Modificar PallyPower"
 L["Enable on Unitframes"] = true
 L["Add a glow when Unitframes have a debuff"] = true
+L["Enable Gradient Aurabars"] = true
