@@ -915,7 +915,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 8
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = -7
 	E.db["unitframe"]["units"]["player"]["aurabar"]["attachTo"] = "FRAME"
-	E.db["unitframe"]["units"]["player"]["aurabar"]["spacing"] = 1
+	E.db["unitframe"]["units"]["player"]["aurabar"]["spacing"] = 2
 	E.db["unitframe"]["units"]["player"]["aurabar"]["yOffset"] = 1
 	E.db["unitframe"]["units"]["player"]["buffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["player"]["buffs"]["attachTo"] = "FRAME"
