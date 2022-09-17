@@ -34,6 +34,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	end
 	local width = GetPhysicalScreenSize()
 
+	--only healers should really have these
+	E.db.ElvUI_EltreumUI.glow.enableUFs = true
+
 	--healprediction
 	E.db["unitframe"]["units"]["target"]["healPrediction"]["enable"] = true
 	E.db["unitframe"]["units"]["player"]["healPrediction"]["enable"] = true
