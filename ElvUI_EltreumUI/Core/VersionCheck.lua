@@ -137,8 +137,8 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["priority"] = 1
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["isTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["requireTarget"] = true
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["g"] = 0
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["r"] = 0
@@ -215,8 +215,8 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["priority"] = 2
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["isTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["requireTarget"] = true
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["g"] = 0
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["r"] = 0
