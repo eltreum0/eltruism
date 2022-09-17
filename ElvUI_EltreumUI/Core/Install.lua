@@ -27,7 +27,7 @@ ElvUI_EltreumUI.InstallerData = {
 	tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 	Pages = {
 		[1] = function()
-			ElvUI_EltreumUI:HidePopups(0)
+			ElvUI_EltreumUI:HidePopups(0.1)
 			if not _G.PluginInstallFrame.gaptexture then
 				_G.PluginInstallFrame.gaptexture = _G.PluginInstallFrame:CreateTexture()
 				_G.PluginInstallFrame.gaptexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\SquareMask")
