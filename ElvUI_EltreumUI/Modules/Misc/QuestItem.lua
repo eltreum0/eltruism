@@ -223,6 +223,7 @@ function ElvUI_EltreumUI:QuestItem()
 			-- Make Loot Button
 			local function CreateItemButton()
 				local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"SecureActionButtonTemplate")
+				b:CreateBackdrop('Transparent')
 				b:SetSize(cfg.btnSize,cfg.btnSize)
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 					if not b.shadow then
@@ -333,7 +334,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 				if (index > 1) then
 					btn:ClearAllPoints()
-					btn:SetPoint("LEFT",EltruismQuestItemFrame.items[index - 1],"RIGHT",1,0)
+					btn:SetPoint("LEFT",EltruismQuestItemFrame.items[index - 1],"RIGHT",2,0)
 				end
 				btn:Show()
 
