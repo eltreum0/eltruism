@@ -291,6 +291,7 @@ P.ElvUI_EltreumUI = {
 		enable = false,
 		enablepet = false,
 		enabletotem = false,
+		enableUFs = true,
 		blizzard = false,
 		pixel = false,
 		autocast = false,
@@ -600,6 +601,8 @@ P.ElvUI_EltreumUI = {
 
 			classcolorplayercastbar = false,
 			classcolortargetcastbar = false,
+
+			enableaurabars = false,
 
 			gradientXP = false,
 			gradientXPcolors ={

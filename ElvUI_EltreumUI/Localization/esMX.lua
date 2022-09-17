@@ -1175,3 +1175,6 @@ L["Adjust Auras Position"] = "Ajustar la posición de las auras"
 L["Automatically move auras to the Top Right when minimap is hidden"] = "Mover automáticamente las auras a la parte superior derecha cuando el minimapa está oculto"
 L["Enable for Focus Target"] = "Habilitar para el objetivo de enfoque"
 L["Skin PallyPower"] = true
+L["Enable on Unitframes"] = true
+L["Add a glow when Unitframes have a debuff"] = true
+L["Enable Gradient Aurabars"] = true

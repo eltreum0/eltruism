@@ -240,6 +240,12 @@ function ElvUI_EltreumUI:Anchors()
 		end
 	end
 
+	if not E.private.auras.enable and not InCombatLockdown() then --in case elvui's buffs are disabled
+		if _G.BuffFrame then
+			E:CreateMover(BuffFrame, 'BlizzardBuffsMover', L["Blizzard Buff Frame"], nil, nil, nil, "ALL,SOLO,ELTREUMUI")
+		end
+	end
+
 	if E.db.ElvUI_EltreumUI.skins.blizzframes.hidealert then
 		_G.AlertFrame:UnregisterAllEvents()
 		E:DisableMover('AlertFrameMover')

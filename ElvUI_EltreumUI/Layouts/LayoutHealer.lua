@@ -366,6 +366,11 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["movers"]["ElvUF_Raid1Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,26"
 	E.db["movers"]["ElvUF_Raid2Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,24"
 	E.db["movers"]["ElvUF_Raid3Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,25"
+	if not E.Retail then
+		E.db["movers"]["ElvUF_Raid1Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,108"
+		E.db["movers"]["ElvUF_Raid2Mover"] = "BOTTOM,ElvUIParent,BOTTOM,0,25"
+		E.db["movers"]["ElvUF_Raid3Mover"] = "BOTTOM,UIParent,BOTTOM,0,26"
+	end
 	E.db["movers"]["ElvUF_RaidpetMover"] = "BOTTOMLEFT,UIParent,BOTTOMLEFT,4,217" --new
 	E.db["movers"]["ElvUF_TankMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-420,500"
 	E.db["movers"]["ElvUF_TargetAuraMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-400,288"
@@ -982,12 +987,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["player"]["power"]["width"] = "spaced"
 	E.db["unitframe"]["units"]["player"]["power"]["xOffset"] = 0
 	E.db["unitframe"]["units"]["player"]["power"]["autoHide"] = true
-	--E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] = true
 	E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] = false
 	E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 295
-	--E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["frameLevel"] = 128
-	--E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["frameStrata"] = "HIGH"
-	--E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomLevel"] = true
 	E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomLevel"] = false
 	E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomStrata"] = false
 	E.db["unitframe"]["units"]["player"]["pvp"]["position"] = "CENTER"
@@ -996,6 +997,10 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["player"]["raidicon"]["attachToObject"] = "Health"
 	E.db["unitframe"]["units"]["player"]["raidicon"]["yOffset"] = 0
 	E.db["unitframe"]["units"]["player"]["raidicon"]["enable"] = false
+
+
+
+
 
 	E.db["unitframe"]["units"]["raid1"]["buffIndicator"]["size"] = 12
 	E.db["unitframe"]["units"]["raid1"]["buffs"]["countFont"] = "Kimberley"
@@ -1069,6 +1074,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
 	if not E.Retail then
 		E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid11,exists] hide;show"
+		E.db["unitframe"]["units"]["raid1"]["numGroups"] = 2
+		E.db["unitframe"]["units"]["raid1"]["growthDirection"] = "RIGHT_DOWN"
+		E.db["unitframe"]["units"]["raid1"]["verticalSpacing"] = 3
 	end
 	E.db["unitframe"]["units"]["raid1"]["width"] = 160
 	E.db["unitframe"]["units"]["raid1"]["power"]["enable"] = false
@@ -1150,6 +1158,10 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid21,noexists][@raid31,exists] hide;show"
 	if not E.Retail then
 		E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid11,noexists][@raid26,exists] hide;show"
+		E.db["unitframe"]["units"]["raid2"]["growthDirection"] = "RIGHT_DOWN"
+		E.db["unitframe"]["units"]["raid2"]["groupSpacing"] = 2
+		E.db["unitframe"]["units"]["raid2"]["verticalSpacing"] = 2
+		E.db["unitframe"]["units"]["raid2"]["numGroups"] = 5
 	end
 	E.db["unitframe"]["units"]["raid2"]["width"] = 130
 	E.db["unitframe"]["units"]["raid3"]["buffIndicator"]["size"] = 12
@@ -1218,9 +1230,12 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid3"]["roleIcon"]["yOffset"] = 0
 	E.db["unitframe"]["units"]["raid3"]["summonIcon"]["attachToObject"] = "Health"
 	E.db["unitframe"]["units"]["raid3"]["summonIcon"]["size"] = 15
+	E.db["unitframe"]["units"]["raid3"]["numGroups"] = 8
 	E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid31,noexists] hide;show"
 	if not E.Retail then
 		E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid26,noexists] hide;show"
+		E.db["unitframe"]["units"]["raid3"]["verticalSpacing"] = 2
+		E.db["unitframe"]["units"]["raid3"]["groupSpacing"] = 6
 	end
 	E.db["unitframe"]["units"]["raid3"]["width"] = 100
 	E.db["unitframe"]["units"]["raidpet"]["enable"] = false

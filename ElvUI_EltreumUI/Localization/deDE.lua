@@ -1198,3 +1198,6 @@ L["Adjust Auras Position"] = "Position der Auren anpassen"
 L["Automatically move auras to the Top Right when minimap is hidden"] = "Auren automatisch nach oben rechts verschieben, wenn die Minikarte ausgeblendet ist"
 L["Enable for Focus Target"] = "Aktivieren für Fokusziel"
 L["Skin PallyPower"] = "Skinne PallyPower" --based on meeting horn since addon names are not translated
+L["Enable on Unitframes"] = true
+L["Add a glow when Unitframes have a debuff"] = true
+L["Enable Gradient Aurabars"] = true
