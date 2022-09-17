@@ -291,6 +291,7 @@ P.ElvUI_EltreumUI = {
 		enable = false,
 		enablepet = false,
 		enabletotem = false,
+		enableUFs = true,
 		blizzard = false,
 		pixel = false,
 		autocast = false,

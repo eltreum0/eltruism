@@ -16,10 +16,7 @@ local headertank = nil
 local headerassist = nil
 local group, groupbutton, tankbutton, assistbutton
 local orientation, barTexture, texture
-
 local LCG = E.Libs.CustomGlow
-local classcolor = E:ClassColor(E.myclass, true)
-local skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 
 --set the textures or gradients
 function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
@@ -425,31 +422,52 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 				_, buttonclass = UnitClass(button.unit)
 				if buttonclass then
 
-					if button.Debuffs then --test dispel glow on UFs
-						local canglow = false
-						if button.Debuffs.visibleDebuffs ~= nil then
-							for d = 1, button.Debuffs.visibleDebuffs do
-								local debuff = select(d, button.Debuffs:GetChildren())
-								if debuff then
-									if debuff.canDispel then
-										if not canglow then
-											canglow = true
+					--glow dispellable debuffs
+					--[[if E.db.ElvUI_EltreumUI.glow.enableUFs then
+						if button.Debuffs then
+							local canglow = false
+							if button.Debuffs.visibleDebuffs ~= nil then
+								for d = 1, button.Debuffs.visibleDebuffs do
+									local debuff = select(d, button.Debuffs:GetChildren())
+									if debuff then
+										if debuff.canDispel then
+											if not canglow then
+												canglow = true
+											end
 										end
 									end
 								end
-							end
-							if canglow then
-								LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
+								if canglow then
+									if E.db.ElvUI_EltreumUI.glow.pixel then
+										LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
+									elseif E.db.ElvUI_EltreumUI.glow.autocast then
+										LCG.AutoCastGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+									elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+										LCG.ButtonGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
+									end
+								else
+									if E.db.ElvUI_EltreumUI.glow.pixel then
+										LCG.PixelGlow_Stop(button)
+									elseif E.db.ElvUI_EltreumUI.glow.autocast then
+										LCG.AutoCastGlow_Stop(button)
+									elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+										LCG.ButtonGlow_Stop(button)
+									end
+								end
+								if button.Debuffs.visibleDebuffs == 0 then
+									if E.db.ElvUI_EltreumUI.glow.pixel then
+										LCG.PixelGlow_Stop(button)
+									elseif E.db.ElvUI_EltreumUI.glow.autocast then
+										LCG.AutoCastGlow_Stop(button)
+									elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+										LCG.ButtonGlow_Stop(button)
+									end
+								end
 							else
-								LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
-							end
-							if button.Debuffs.visibleDebuffs == 0 then
 								LCG.PixelGlow_Stop(button)
 							end
-						else
-							LCG.PixelGlow_Stop(button)
 						end
-					end
+					end]]
 
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
 						if E.db.ElvUI_EltreumUI.unitframes.lightmode then
@@ -525,8 +543,35 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 	end
 end
 hooksecurefunc(UF, "Style", ElvUI_EltreumUI.GradientCustomTexture) --if not hooking into this then when the target of target changes it doesnt update
---hooksecurefunc(UF, "PostUpdateHealth", ElvUI_EltreumUI.GradientCustomTexture) --for testing glow
 hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientCustomTexture)
+
+--glow dispellable debuffs
+function ElvUI_EltreumUI:UFGlow(object, debuffType, _, wasFiltered)
+	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+		if E.db.ElvUI_EltreumUI.glow.enableUFs then
+			local name = object:GetName()
+			if debuffType and not wasFiltered and not (name == "ElvUF_Player" or name == "ElvUF_Target")then
+				local color = UF.db.colors.debuffHighlight[debuffType]
+				if E.db.ElvUI_EltreumUI.glow.pixel then
+					LCG.PixelGlow_Start(object, {color.r, color.g, color.b, 1}, 7, 0.25, 14, 4, 3, 3, false, nil, 6)
+				elseif E.db.ElvUI_EltreumUI.glow.autocast then
+					LCG.AutoCastGlow_Start(object, {color.r, color.g, color.b, 1}, 8, 0.4, 2, 3, 3)
+				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+					LCG.ButtonGlow_Start(object, {color.r, color.g, color.b, 1}, 0.5)
+				end
+			else
+				if E.db.ElvUI_EltreumUI.glow.pixel then
+					LCG.PixelGlow_Stop(object)
+				elseif E.db.ElvUI_EltreumUI.glow.autocast then
+					LCG.AutoCastGlow_Stop(object)
+				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+					LCG.ButtonGlow_Stop(object)
+				end
+			end
+		end
+	end
+end
+hooksecurefunc(UF, "PostUpdate_AuraHighlight", ElvUI_EltreumUI.UFGlow)
 
 --test glow, but this one goes on every frame...
 --[[function ElvUI_EltreumUI:UFGlow(_, button)
