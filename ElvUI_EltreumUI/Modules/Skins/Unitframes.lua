@@ -874,7 +874,7 @@ function ElvUI_EltreumUI:AuraBarTexture(unit, bar, _, _, _, _, debuffType, isSte
 		bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 		if bar.bg then
 			bar.bg:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-			bar.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+			bar.backdrop:SetBackdropColor(0,0,0,0)
 		end
 		--[[if isStealable then --maybe later
 			LCG.PixelGlow_Start(bar, skillglowcolor, 7, 0.25, 14, 4, 3, 3, false, nil, 6)
