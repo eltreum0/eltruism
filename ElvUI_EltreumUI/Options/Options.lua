@@ -3620,7 +3620,7 @@ function ElvUI_EltreumUI:Configtable()
 							enableuf = {
 								order = 53,
 								type = 'toggle',
-								name = L["Enable on Unitframes"],
+								name = E.NewSign..L["Enable on Unitframes"],
 								desc = L["Add a glow when Unitframes have a debuff"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.glow.enableUFs end,
@@ -10370,7 +10370,7 @@ function ElvUI_EltreumUI:Configtable()
 							enableaurabars = {
 								order = 5,
 								type = 'toggle',
-								name = L["Enable Gradient Aurabars"],
+								name = E.NewSign..L["Enable Gradient Aurabars"],
 								desc = L["Enable Gradient Aurabars"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars end,
