@@ -944,7 +944,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["player"]["aurabar"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["player"]["aurabar"]["detachedWidth"] = 266
 	E.db["unitframe"]["units"]["player"]["aurabar"]["maxDuration"] = 60
-	E.db["unitframe"]["units"]["player"]["aurabar"]["spacing"] = 1
+	E.db["unitframe"]["units"]["player"]["aurabar"]["spacing"] = 2
 	E.db["unitframe"]["units"]["player"]["aurabar"]["yOffset"] = 1
 	E.db["unitframe"]["units"]["player"]["buffs"]["yOffset"] = -227
 	E.db["unitframe"]["units"]["player"]["buffs"]["attachTo"] = "FRAME"

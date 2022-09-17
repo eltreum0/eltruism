@@ -1,6 +1,15 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.4.1
+Added Gradient Aurabars and added shadows to Aurabars\
+Added Glows for Dispels on Unitframes, enabled in the Healer profile\
+Updated Healer Layout\
+Updated Shadow and Light profile\
+Updated PallyPower Skin by adding a few missing buttons\
+Fixed some PallyPower shadows\
+Fixed an issue where Health Color and Texture for Nameplates when Gradient was enabled were not being disabled\
+Fixed Shaman Totem Glow order in Wrath/Classic
 ### 3.4.0
 Added a skin to PallyPower\
 Added gradient to focus target\
