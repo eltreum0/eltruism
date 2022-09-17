@@ -872,6 +872,12 @@ hooksecurefunc(UF, "Configure_Portrait", ElvUI_EltreumUI.SkinPortrait)
 function ElvUI_EltreumUI:AuraBarTexture(unit, bar, _, _, _, _, debuffType, isStealable) --could use isStealable to add a glow or something
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not bar.shadow then
+			bar:CreateShadow()
+			bar.shadow:ClearAllPoints()
+			bar.shadow:SetPoint("TOPLEFT", bar.icon, "TOPLEFT", -3,3)
+			bar.shadow:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT",3,-3)
+		end
 		if bar.bg then
 			bar.bg:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 			bar.backdrop:SetBackdropColor(0,0,0,0)
