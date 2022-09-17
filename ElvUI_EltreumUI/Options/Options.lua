@@ -9939,7 +9939,7 @@ function ElvUI_EltreumUI:Configtable()
 							headershadowsize = {
 								order = 100,
 								type = "description",
-								name = L["Shadow Size"],
+								name = E.NewSign..L["Shadow Size"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
