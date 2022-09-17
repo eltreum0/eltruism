@@ -559,7 +559,7 @@ if E.Retail then
 		if not IsAddOnLoaded("Blizzard_ClickBindingUI") then
 			LoadAddOn("Blizzard_ClickBindingUI")
 			if not _G["ClickBindingFrame"].shadow then
-				_G["ClickBindingFrame"]:CreateShadow()
+				_G["ClickBindingFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
 		if not _G["ClickBindingFrame"]:IsShown() then

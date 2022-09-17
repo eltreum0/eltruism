@@ -227,7 +227,7 @@ function ElvUI_EltreumUI:QuestItem()
 				b:SetSize(cfg.btnSize,cfg.btnSize)
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 					if not b.shadow then
-						b:CreateShadow()
+						b:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 				b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")

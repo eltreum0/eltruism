@@ -124,6 +124,7 @@ P.ElvUI_EltreumUI = {
 		zones = false,
 		shadow = {
 			enable = false,
+			length = 3,
 			raid = true,
 			aura = false,
 			ufaura = false,
