@@ -139,14 +139,16 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
 			E.db["movers"]["ElvUF_TargetCastbarMover"] = "TOP,ElvUF_Target,BOTTOM,14,-10"
 			E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,256,301"
-			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,307"
+			E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,308"
 			E.db["movers"]["TargetTargetPowerBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-402,301"
 			if width == 2560 then
 				E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 360
+				E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,309"
 			elseif width == 1920 then
 				E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 361
 				E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 361
 				E.db["movers"]["PlayerPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,338"
+				E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,307"
 			end
 		elseif _G.ElvUF_Player_AdditionalPowerBar and _G.ElvUF_Player_AdditionalPowerBar:IsVisible() then
 			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_AdditionalPowerBar,BOTTOMLEFT,-6,6"
