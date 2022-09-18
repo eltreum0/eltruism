@@ -418,18 +418,20 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["movers"]["ThreatBarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,0,-1"
 	E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-134"
 	E.db["movers"]["TorghastBuffsMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,206"
-	E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-310,307" --shaman totem
-	E.db["movers"]["TotemTrackerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,260" --retail totem
+	E.db["movers"]["TotemBarMover"] = "BOTTOM,UIParent,BOTTOM,308,306" --shaman totem
+	E.db["movers"]["TotemTrackerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-306,305" --class totems thing like consecration
+	E.db["general"]["totems"]["growthDirection"] = "HORIZONTAL"
+	E.db["general"]["totems"]["size"] = 30
+	E.db["general"]["totems"]["spacing"] = 5
 	if E.Wrath then
 		--Shaman things
-		E.db["general"]["totems"]["buttonSize"] = 25
-		E.db["general"]["totems"]["flyoutSize"] = 25
-		E.db["general"]["totems"]["flyoutSpacing"] = 3
-		E.db["general"]["totems"]["spacing"] = 5
-		E.db["general"]["totems"]["font"] = "Kimberley"
-		E.db["general"]["totems"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+		E.db["actionbar"]["totemBar"]["buttonSize"] = 24
+		E.db["actionbar"]["totemBar"]["flyoutSize"] = 24
+		E.db["actionbar"]["totemBar"]["flyoutSpacing"] = 3
+		E.db["actionbar"]["totemBar"]["font"] = "Kimberley"
+		E.db["actionbar"]["totemBar"]["spacing"] = 5
+		E.db["actionbar"]["totemBar"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	end
-
 	E.db["movers"]["TorghastChoiceToggle"] = "BOTTOM,UIParent,BOTTOM,0,445"
 	E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,-1"
 	if E.Retail then
