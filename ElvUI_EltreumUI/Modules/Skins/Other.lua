@@ -724,6 +724,9 @@ function S:PallyPower()
 		shadowupdate:RegisterEvent("GROUP_ROSTER_UPDATE")
 		shadowupdate:RegisterEvent("GROUP_JOINED")
 		shadowupdate:RegisterEvent("PLAYER_ENTERING_WORLD")
+		shadowupdate:RegisterEvent("ZONE_CHANGED")
+		shadowupdate:RegisterEvent("ZONE_CHANGED_INDOORS")
+		shadowupdate:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 		shadowupdate:SetScript("OnEvent",function()
 			if InCombatLockdown() then return end
 			if not _G.PallyPowerFrame.shadow then
