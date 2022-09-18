@@ -708,7 +708,7 @@ function ElvUI_EltreumUI:Borders()
 		end
 
 		--wotlk shaman totem bar
-		if E.Wrath and E.myclass == 'SHAMAN' and E.db.ElvUI_EltreumUI.borders.totembar and not E.private["general"]["totemBar"] == false then
+		if E.Wrath and E.myclass == 'SHAMAN' and E.db.ElvUI_EltreumUI.borders.totembar and E.db.actionbar.totemBar.enable then
 			local borderstotemaction = {}
 			local borderstotemfly = {}
 			for i = 1,4 do
