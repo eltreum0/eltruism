@@ -640,6 +640,15 @@ function UF:ToggleTransparentStatusBar(isTransparent, statusBar, backdropTex, ad
 end
 
 --modify the position of the information panel
+local allowedunits = {
+	['ElvUF_Player'] = true,
+	['ElvUF_Target'] = true,
+	['ElvUF_TargetTarget'] = true,
+	['ElvUF_Focus'] = true,
+	['ElvUF_FocusTarget'] = true,
+	['ElvUF_Pet'] = true,
+	['ElvUF_TargetTargetTarget'] = true,
+}
 function UF:Configure_InfoPanel(frame)
 	local db = frame.db
 
@@ -648,15 +657,6 @@ function UF:Configure_InfoPanel(frame)
 		frame.InfoPanel:ClearAllPoints()
 
 		local allowed = false
-		local allowedunits = {
-			['ElvUF_Player'] = true,
-			['ElvUF_Target'] = true,
-			['ElvUF_TargetTarget'] = true,
-			['ElvUF_Focus'] = true,
-			['ElvUF_FocusTarget'] = true,
-			['ElvUF_Pet'] = true,
-			['ElvUF_TargetTargetTarget'] = true,
-		}
 
 		if E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
 			allowed = true
@@ -778,16 +778,6 @@ function ElvUI_EltreumUI:SkinPortrait(frame)
 	local portrait = (db.portrait.style == '3D' and frame.Portrait3D) or frame.Portrait2D
 	portrait.db = db.portrait
 	frame.Portrait = portrait
-
-	local allowedunits = {
-		['ElvUF_Player'] = true,
-		['ElvUF_Target'] = true,
-		['ElvUF_TargetTarget'] = true,
-		['ElvUF_Focus'] = true,
-		['ElvUF_FocusTarget'] = true,
-		['ElvUF_Pet'] = true,
-		['ElvUF_TargetTargetTarget'] = true,
-	}
 
 	if frame.USE_PORTRAIT and portrait.db.style ~= '3D' then
 		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.infopanelontop and allowedunits[tostring(frame:GetName())] then
