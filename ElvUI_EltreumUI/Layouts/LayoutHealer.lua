@@ -1162,7 +1162,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid11,noexists][@raid26,exists] hide;show"
 		E.db["unitframe"]["units"]["raid2"]["growthDirection"] = "RIGHT_DOWN"
 		E.db["unitframe"]["units"]["raid2"]["verticalSpacing"] = 2
-		E.db["unitframe"]["units"]["raid2"]["groupSpacing"] = 10
+		E.db["unitframe"]["units"]["raid2"]["groupSpacing"] = 2
 		E.db["unitframe"]["units"]["raid2"]["numGroups"] = 5
 		E.db["unitframe"]["units"]["raid2"]["height"] = 30
 		E.db["unitframe"]["units"]["raid2"]["horizontalSpacing"] = 0
