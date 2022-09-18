@@ -419,7 +419,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-134"
 	E.db["movers"]["TorghastBuffsMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,206"
 	E.db["movers"]["TotemBarMover"] = "BOTTOM,UIParent,BOTTOM,308,306" --shaman totem
-	E.db["movers"]["TotemTrackerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-306,305" --class totems thing like consecration
+	E.db["movers"]["TotemTrackerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-306,327" --class totems thing like consecration
 	E.db["general"]["totems"]["growthDirection"] = "HORIZONTAL"
 	E.db["general"]["totems"]["size"] = 30
 	E.db["general"]["totems"]["spacing"] = 5
