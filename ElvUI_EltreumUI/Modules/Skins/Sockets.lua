@@ -69,6 +69,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[3594] = 54446, -- rune of swordbreaking
 		[3365] = 53323, -- rune of swordshattering
 		[3883] = 70164, -- rune of the nerubian carapace
+		[1950] = 46594, -- Enchant Chest - Defense
 
 		---- old list
 		[15] = 2831, -- Reinforced (+$k1 Armor)
