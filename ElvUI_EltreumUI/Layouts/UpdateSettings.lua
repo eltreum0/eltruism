@@ -4,6 +4,9 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 --now a function that can be used to set them while importing the profiles
 function ElvUI_EltreumUI:UpdateSettings()
 
+	--to make sure everything resets during import
+	E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA = false
+
 	-- Chat
 	E.db.ElvUI_EltreumUI.chat.enable = true
 	E.db.ElvUI_EltreumUI.chat.colorsysmsg = true
