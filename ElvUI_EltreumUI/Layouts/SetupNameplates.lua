@@ -598,8 +598,8 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		--E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["priority"] = 4
 
 		-- Target enemy
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["border"] = true
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["g"] = 0

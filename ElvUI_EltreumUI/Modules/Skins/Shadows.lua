@@ -20,11 +20,11 @@ function ElvUI_EltreumUI:Shadows()
 				_G.MacroFrame:HookScript("OnShow", function()
 					if E.Retail or E.Wrath or E.TBC then
 						if not _G.MacroFrame.shadow then
-							_G.MacroFrame:CreateShadow()
+							_G.MacroFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					elseif E.Classic then
 						if _G.MacroFrame and _G.MacroFrame.backdrop and not _G.MacroFrame.backdrop.shadow then
-							_G.MacroFrame.backdrop:CreateShadow()
+							_G.MacroFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 				end)
@@ -32,7 +32,7 @@ function ElvUI_EltreumUI:Shadows()
 			if (arg == "Blizzard_BindingUI") then
 				_G.KeyBindingFrame:HookScript("OnShow", function()
 					if not _G.KeyBindingFrame.shadow then
-						_G.KeyBindingFrame:CreateShadow()
+						_G.KeyBindingFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end)
 			end
@@ -40,20 +40,20 @@ function ElvUI_EltreumUI:Shadows()
 				_G.InspectFrame:HookScript("OnShow", function()
 					if E.Wrath or E.TBC or E.Classic then
 						if _G.InspectFrame and _G.InspectFrame.backdrop and not _G.InspectFrame.backdrop.shadow then
-							_G.InspectFrame.backdrop:CreateShadow()
+							_G.InspectFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 						if _G.InspectFrameTab1 and _G.InspectFrameTab1.backdrop and not _G.InspectFrameTab1.backdrop.shadow then
-							_G.InspectFrameTab1.backdrop:CreateShadow()
+							_G.InspectFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 						if _G.InspectFrameTab2 and _G.InspectFrameTab2.backdrop and not _G.InspectFrameTab2.backdrop.shadow then
-							_G.InspectFrameTab2.backdrop:CreateShadow()
+							_G.InspectFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 						if _G.InspectFrameTab3 and _G.InspectFrameTab3.backdrop and not _G.InspectFrameTab3.backdrop.shadow then
-							_G.InspectFrameTab3.backdrop:CreateShadow()
+							_G.InspectFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					elseif E.Retail then
 						if _G.InspectFrame and not _G.InspectFrame.shadow then
-							_G.InspectFrame:CreateShadow()
+							_G.InspectFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 				end)
@@ -62,7 +62,7 @@ function ElvUI_EltreumUI:Shadows()
 				if (arg == "Blizzard_AuctionHouseUI") then
 					_G.AuctionHouseFrame:HookScript("OnShow", function()
 						if _G.AuctionHouseFrame and not _G.AuctionHouseFrame.shadow then
-							_G.AuctionHouseFrame:CreateShadow()
+							_G.AuctionHouseFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 				end
@@ -70,7 +70,7 @@ function ElvUI_EltreumUI:Shadows()
 				if (arg == "Blizzard_AuctionUI") then
 					_G.AuctionFrame:HookScript("OnShow", function()
 						if _G.AuctionFrame and _G.AuctionFrame.backdrop and not _G.AuctionFrame.backdrop.shadow then
-							_G.AuctionFrame.backdrop:CreateShadow()
+							_G.AuctionFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 				end
@@ -103,7 +103,7 @@ function ElvUI_EltreumUI:Shadows()
 		}
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then
-				frame:CreateShadow()
+				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
 
@@ -131,7 +131,7 @@ function ElvUI_EltreumUI:Shadows()
 					MinimapShadow:SetAllPoints(_G["Minimap"].backdrop)
 					if E.db.datatexts.panels.MinimapPanel.backdrop == true and E.db.datatexts.panels.MinimapPanel.enable == true then
 						if _G["MinimapPanel"] and not _G["MinimapPanel"].shadow then
-							_G["MinimapPanel"]:CreateShadow()
+							_G["MinimapPanel"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 				end
@@ -142,7 +142,7 @@ function ElvUI_EltreumUI:Shadows()
 
 		if _G.GameTooltip and not _G.GameTooltip.shadow then
 			if E.private.tooltip.enable then
-				_G.GameTooltip:CreateShadow()
+				_G.GameTooltip:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
 
@@ -185,17 +185,17 @@ function ElvUI_EltreumUI:Shadows()
 					if (arg == "Blizzard_TalentUI") then
 						_G.PlayerTalentFrame:HookScript("OnShow", function()
 							if not _G.PlayerTalentFrame.shadow then
-								_G.PlayerTalentFrame:CreateShadow()
+								_G.PlayerTalentFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
 						end)
 						_G.PlayerTalentFrameTab1:HookScript("OnShow", function()
 							if _G.PlayerTalentFrameTab1 and _G.PlayerTalentFrameTab1.backdrop and not _G.PlayerTalentFrameTab1.backdrop.shadow then
-								_G.PlayerTalentFrameTab1.backdrop:CreateShadow()
+								_G.PlayerTalentFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
 						end)
 						_G.PlayerTalentFrameTab2:HookScript("OnShow", function()
 							if _G.PlayerTalentFrameTab2 and _G.PlayerTalentFrameTab2.backdrop and not _G.PlayerTalentFrameTab2.backdrop.shadow then
-								_G.PlayerTalentFrameTab2.backdrop:CreateShadow()
+								_G.PlayerTalentFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
 						end)
 					end
@@ -203,25 +203,25 @@ function ElvUI_EltreumUI:Shadows()
 					if (arg == "Blizzard_TalentUI") then
 						_G.PlayerTalentFrame:HookScript("OnShow", function()
 							if _G.PlayerTalentFrame and _G.PlayerTalentFrame.backdrop and not _G.PlayerTalentFrame.backdrop.shadow then
-								_G.PlayerTalentFrame.backdrop:CreateShadow()
+								_G.PlayerTalentFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
 							if _G.PlayerTalentFrameTab1 and _G.PlayerTalentFrameTab1.backdrop and not _G.PlayerTalentFrameTab1.backdrop.shadow then
-								_G.PlayerTalentFrameTab1.backdrop:CreateShadow()
+								_G.PlayerTalentFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
 							if _G.PlayerTalentFrameTab2 and _G.PlayerTalentFrameTab2.backdrop and not _G.PlayerTalentFrameTab2.backdrop.shadow then
-								_G.PlayerTalentFrameTab2.backdrop:CreateShadow()
+								_G.PlayerTalentFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
 							if _G.PlayerTalentFrameTab3 and _G.PlayerTalentFrameTab3.backdrop and not _G.PlayerTalentFrameTab3.backdrop.shadow then
-								_G.PlayerTalentFrameTab3.backdrop:CreateShadow()
+								_G.PlayerTalentFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
 							if _G.PlayerTalentFrameTab4 and _G.PlayerTalentFrameTab4.backdrop and not _G.PlayerTalentFrameTab4.backdrop.shadow then
-								_G.PlayerTalentFrameTab4.backdrop:CreateShadow()
+								_G.PlayerTalentFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
 							if _G.PlayerSpecTab1 and not _G.PlayerSpecTab1.shadow then
-								_G.PlayerSpecTab1:CreateShadow()
+								_G.PlayerSpecTab1:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
 							if _G.PlayerSpecTab2 and not _G.PlayerSpecTab2.shadow then
-								_G.PlayerSpecTab2:CreateShadow()
+								_G.PlayerSpecTab2:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
 						end)
 					end
@@ -229,52 +229,52 @@ function ElvUI_EltreumUI:Shadows()
 				if (arg == "Blizzard_Calendar") then
 					_G.CalendarFrame:HookScript("OnShow", function()
 						if not _G.CalendarFrame.shadow then
-							_G.CalendarFrame:CreateShadow()
+							_G.CalendarFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 				end
 				if (arg == "Blizzard_Communities") then
 					_G.CommunitiesFrame:HookScript("OnShow", function()
 						if not _G.CommunitiesFrame.shadow then
-							_G.CommunitiesFrame:CreateShadow()
+							_G.CommunitiesFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 						if _G.CommunitiesFrameTab1 and _G.CommunitiesFrameTab1.backdrop and not _G.CommunitiesFrameTab1.backdrop.shadow then
-							_G.CommunitiesFrameTab1.backdrop:CreateShadow()
+							_G.CommunitiesFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 						if _G.CommunitiesFrameTab2 and _G.CommunitiesFrameTab2.backdrop and not _G.CommunitiesFrameTab2.backdrop.shadow then
-							_G.CommunitiesFrameTab2.backdrop:CreateShadow()
+							_G.CommunitiesFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 						if _G.CommunitiesFrameTab3 and _G.CommunitiesFrameTab3.backdrop and not _G.CommunitiesFrameTab3.backdrop.shadow then
-							_G.CommunitiesFrameTab3.backdrop:CreateShadow()
+							_G.CommunitiesFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 						if _G.CommunitiesFrameTab4 and _G.CommunitiesFrameTab4.backdrop and not _G.CommunitiesFrameTab4.backdrop.shadow then
-							_G.CommunitiesFrameTab4.backdrop:CreateShadow()
+							_G.CommunitiesFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 						if _G.CommunitiesFrameTab5 and _G.CommunitiesFrameTab5.backdrop and not _G.CommunitiesFrameTab5.backdrop.shadow then
-							_G.CommunitiesFrameTab5.backdrop:CreateShadow()
+							_G.CommunitiesFrameTab5.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 				end
 				if (arg == "Blizzard_AchievementUI") then
 					_G.AchievementFrame:HookScript("OnShow", function()
 						if _G.AchievementFrame and _G.AchievementFrame.backdrop and not _G.AchievementFrame.backdrop.shadow then
-							_G.AchievementFrame.backdrop:CreateShadow()
+							_G.AchievementFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 					_G.AchievementFrameTab1:HookScript("OnShow", function()
 						if _G.AchievementFrameTab1 and _G.AchievementFrameTab1.backdrop and not _G.AchievementFrameTab1.backdrop.shadow then
-							_G.AchievementFrameTab1.backdrop:CreateShadow()
+							_G.AchievementFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 					_G.AchievementFrameTab2:HookScript("OnShow", function()
 						if _G.AchievementFrameTab2 and _G.AchievementFrameTab2.backdrop and not _G.AchievementFrameTab2.backdrop.shadow then
-							_G.AchievementFrameTab2.backdrop:CreateShadow()
+							_G.AchievementFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 					if E.Retail then
 						_G.AchievementFrameTab3:HookScript("OnShow", function()
 							if _G.AchievementFrameTab3 and _G.AchievementFrameTab3.backdrop and not _G.AchievementFrameTab3.backdrop.shadow then
-								_G.AchievementFrameTab3.backdrop:CreateShadow()
+								_G.AchievementFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
 						end)
 					end
@@ -282,138 +282,138 @@ function ElvUI_EltreumUI:Shadows()
 				if (arg == "Blizzard_GarrisonUI") then
 					_G.GarrisonLandingPage:HookScript("OnShow", function()
 						if not _G.GarrisonLandingPage.shadow then
-							_G.GarrisonLandingPage:CreateShadow()
+							_G.GarrisonLandingPage:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 					_G.CovenantMissionFrame:HookScript("OnShow", function()
 						if not _G.CovenantMissionFrame.shadow then
-							_G.CovenantMissionFrame:CreateShadow()
+							_G.CovenantMissionFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 				end
 				if (arg == "Blizzard_CovenantSanctum") then
 					_G.CovenantSanctumFrame:HookScript("OnShow", function()
 						if not _G.CovenantSanctumFrame.shadow then
-							_G.CovenantSanctumFrame:CreateShadow()
+							_G.CovenantSanctumFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 				end
 				if (arg == "Blizzard_Soulbinds") then
 					_G.SoulbindViewer:HookScript("OnShow", function()
 						if not _G.SoulbindViewer.shadow then
-							_G.SoulbindViewer:CreateShadow()
+							_G.SoulbindViewer:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 				end
 				if (arg == "Blizzard_Collections") then
 					_G.CollectionsJournal:HookScript("OnShow", function()
 						if not _G.CollectionsJournal.shadow then
-							_G.CollectionsJournal:CreateShadow()
+							_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 					_G.CollectionsJournalTab1:HookScript("OnShow", function()
 						if _G.CollectionsJournalTab1 and _G.CollectionsJournalTab1.backdrop and not _G.CollectionsJournalTab1.backdrop.shadow then
-							_G.CollectionsJournalTab1.backdrop:CreateShadow()
+							_G.CollectionsJournalTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 					_G.CollectionsJournalTab2:HookScript("OnShow", function()
 						if _G.CollectionsJournalTab2 and _G.CollectionsJournalTab2.backdrop and not _G.CollectionsJournalTab2.backdrop.shadow then
-							_G.CollectionsJournalTab2.backdrop:CreateShadow()
+							_G.CollectionsJournalTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 					_G.CollectionsJournalTab3:HookScript("OnShow", function()
 						if _G.CollectionsJournalTab3 and _G.CollectionsJournalTab3.backdrop and not _G.CollectionsJournalTab3.backdrop.shadow then
-							_G.CollectionsJournalTab3.backdrop:CreateShadow()
+							_G.CollectionsJournalTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 					_G.CollectionsJournalTab4:HookScript("OnShow", function()
 						if _G.CollectionsJournalTab4 and _G.CollectionsJournalTab4.backdrop and not _G.CollectionsJournalTab4.backdrop.shadow then
-							_G.CollectionsJournalTab4.backdrop:CreateShadow()
+							_G.CollectionsJournalTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 					_G.CollectionsJournalTab5:HookScript("OnShow", function()
 						if _G.CollectionsJournalTab5 and _G.CollectionsJournalTab5.backdrop and not _G.CollectionsJournalTab5.backdrop.shadow then
-							_G.CollectionsJournalTab5.backdrop:CreateShadow()
+							_G.CollectionsJournalTab5.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 					_G.ToyBox:HookScript("OnShow", function()
 						if not _G.ToyBox.shadow then
-							_G.ToyBox:CreateShadow()
+							_G.ToyBox:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 						if not _G.CollectionsJournal.shadow then
-							_G.CollectionsJournal:CreateShadow()
+							_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 					_G.HeirloomsJournal:HookScript("OnShow", function()
 						if not _G.HeirloomsJournal.shadow then
-							_G.HeirloomsJournal:CreateShadow()
+							_G.HeirloomsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 						if not _G.CollectionsJournal.shadow then
-							_G.CollectionsJournal:CreateShadow()
+							_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 					_G.PetJournal:HookScript("OnShow", function()
 						if not _G.PetJournal.shadow then
-							_G.PetJournal:CreateShadow()
+							_G.PetJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 						if not _G.CollectionsJournal.shadow then
-							_G.CollectionsJournal:CreateShadow()
+							_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 					--[[_G.WardrobeCollectionFrame:HookScript("OnShow", function()
 						if not _G.WardrobeCollectionFrame.shadow then
-							_G.WardrobeCollectionFrame:CreateShadow()
+							_G.WardrobeCollectionFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 						if not _G.CollectionsJournal.shadow then
-							_G.CollectionsJournal:CreateShadow()
+							_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)]]
 					_G.WardrobeFrame:HookScript("OnShow", function()
 						if not _G.WardrobeFrame.shadow then
-							_G.WardrobeFrame:CreateShadow()
+							_G.WardrobeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 						if not _G.CollectionsJournal.shadow then
-							_G.CollectionsJournal:CreateShadow()
+							_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 					_G.MountJournal:HookScript("OnShow", function()
 						if not _G.CollectionsJournal.shadow then
-							_G.CollectionsJournal:CreateShadow()
+							_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 				end
 				if (arg == "Blizzard_PVPUI") then
 					_G.PVPUIFrame:HookScript("OnShow", function()
 						if not _G.PVPUIFrame.shadow then
-							_G.PVPUIFrame:CreateShadow()
+							_G.PVPUIFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 				end
 				if (arg == "Blizzard_VoidStorageUI") then
 					_G.VoidStorageFrame:HookScript("OnShow", function()
 						if not _G.VoidStorageFrame.shadow then
-							_G.VoidStorageFrame:CreateShadow()
+							_G.VoidStorageFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 				end
 				if (arg == "Blizzard_ChallengesUI") then
 					_G.PVEFrame:HookScript("OnShow", function()
 						if not _G.PVEFrame.shadow then
-							_G.PVEFrame:CreateShadow()
+							_G.PVEFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 				end
 				if (arg == "Blizzard_EncounterJournal") then
 					_G.EncounterJournal:HookScript("OnShow", function()
 						if not _G.EncounterJournal.shadow then
-							_G.EncounterJournal:CreateShadow()
+							_G.EncounterJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 				end
 				if (arg == "Blizzard_WeeklyRewards") then
 					_G.WeeklyRewardsFrame:HookScript("OnShow", function()
 						if not _G.WeeklyRewardsFrame.shadow then
-							_G.WeeklyRewardsFrame:CreateShadow()
+							_G.WeeklyRewardsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end)
 				end
@@ -432,7 +432,7 @@ function ElvUI_EltreumUI:Shadows()
 				}
 				for _, frame in pairs(rarityalreadyloads) do
 					if frame and not frame.shadow then
-						frame:CreateShadow()
+						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 			end
@@ -470,13 +470,13 @@ function ElvUI_EltreumUI:Shadows()
 			}
 			for _, frame in pairs(retailframes) do
 				if frame and not frame.shadow then
-					frame:CreateShadow()
+					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 			end
 
 			if E.private.actionbar.enable and E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
 				if not _G.BossButton.shadow then
-					_G.BossButton:CreateShadow()
+					_G.BossButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 			end
 		elseif E.Wrath or E.TBC or E.Classic then
@@ -491,7 +491,7 @@ function ElvUI_EltreumUI:Shadows()
 			}
 			for _, frame in pairs(ClassicElvUIFrames) do
 				if frame and not frame.shadow then
-					frame:CreateShadow()
+					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 			end
 
@@ -504,7 +504,7 @@ function ElvUI_EltreumUI:Shadows()
 			}
 			for _, frame in pairs(ElvUITotemFrames) do
 				if frame and frame.backdrop and not frame.backdrop.shadow then
-					frame.backdrop:CreateShadow()
+					frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 			end
 
@@ -513,7 +513,7 @@ function ElvUI_EltreumUI:Shadows()
 				local petunits = {_G["ElvUF_RaidpetGroup1UnitButton"..k]}
 				for _, button in pairs(petunits) do
 					if not button.shadow then
-						button:CreateShadow()
+						button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 			end
@@ -535,7 +535,7 @@ function ElvUI_EltreumUI:Shadows()
 			}
 			for _, frame in pairs(classicframes) do
 				if frame and not frame.shadow then
-					frame:CreateShadow()
+					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 			end
 			--wrath/tbc only frames
@@ -548,7 +548,7 @@ function ElvUI_EltreumUI:Shadows()
 				}
 				for _, frame in pairs(tbcframes) do
 					if frame and not frame.shadow then
-						frame:CreateShadow()
+						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 			end
@@ -556,14 +556,14 @@ function ElvUI_EltreumUI:Shadows()
 			--wrath only frames
 			if E.Wrath and E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
 				if _G.LFGListingFrame.backdrop and not _G.LFGListingFrame.backdrop.shadow then
-					_G.LFGListingFrame.backdrop:CreateShadow()
+					_G.LFGListingFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if _G.LFGBrowseFrame.backdrop and not _G.LFGBrowseFrame.backdrop.shadow then
-					_G.LFGBrowseFrame.backdrop:CreateShadow()
+					_G.LFGBrowseFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 
 				--Shaman Totem things
-				if E.myclass == "SHAMAN" and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.totembar) and E.private.general.totemBar then
+				if E.myclass == "SHAMAN" and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.totembar) and E.db.actionbar.totemBar.enable then
 					local totemframes = {
 						_G.MultiCastSummonSpellButton,
 						_G.MultiCastRecallSpellButton,
@@ -576,7 +576,7 @@ function ElvUI_EltreumUI:Shadows()
 					}
 					for _, frame in pairs(totemframes) do
 						if frame and not frame.shadow then
-							frame:CreateShadow()
+							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 
@@ -592,7 +592,7 @@ function ElvUI_EltreumUI:Shadows()
 						}
 						for _, frame in pairs(Flyframes) do
 							if frame and not frame.shadow then
-								frame:CreateShadow()
+								frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
 						end
 					end)
@@ -608,7 +608,7 @@ function ElvUI_EltreumUI:Shadows()
 		}
 		for _, frame in pairs(GeneralElvUIFrames) do
 			if frame and not frame.shadow then
-				frame:CreateShadow()
+				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
 
@@ -616,7 +616,15 @@ function ElvUI_EltreumUI:Shadows()
 		local DT = E:GetModule('DataTexts')
 		if DT.tooltip then
 			if not DT.tooltip.shadow then
-				DT.tooltip:CreateShadow()
+				DT.tooltip:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			end
+		end
+
+		--class totems
+		for i = 1, MAX_TOTEMS do
+			local classtotem = _G['ElvUI_TotemTrackerTotem'..i]
+			if classtotem and not classtotem.shadow then
+				classtotem:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
 
@@ -628,7 +636,7 @@ function ElvUI_EltreumUI:Shadows()
 					local slots = {_G["ElvUI_Bar"..i..'Button'..k]}
 					for _, button in pairs(slots) do
 						if not button.shadow and not (E.db.ElvUI_EltreumUI.borders.borders and E.db["ElvUI_EltreumUI"]["borders"]["bar"..i.."borders"]) then
-							button:CreateShadow()
+							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 				end
@@ -641,13 +649,13 @@ function ElvUI_EltreumUI:Shadows()
 					break
 				else
 					if not button.shadow and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.petactionborders) then
-						button:CreateShadow()
+						button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 			end
 			if _G["ElvUI_BarPet"].backdrop and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.petactionborders) then
 				if not _G["ElvUI_BarPet"].backdrop.shadow then
-					_G["ElvUI_BarPet"].backdrop:CreateShadow()
+					_G["ElvUI_BarPet"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 			end
 
@@ -659,7 +667,7 @@ function ElvUI_EltreumUI:Shadows()
 						break
 					else
 						if not button.shadow then
-							button:CreateShadow()
+							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 				end
@@ -671,7 +679,7 @@ function ElvUI_EltreumUI:Shadows()
 		if E.db.actionbar.microbar.enabled == true then
 			if E.db.actionbar.microbar.backdrop == true then
 				if _G.ElvUI_MicroBar and _G.ElvUI_MicroBar.backdrop and not _G.ElvUI_MicroBar.backdrop.shadow then
-					_G.ElvUI_MicroBar.backdrop:CreateShadow()
+					_G.ElvUI_MicroBar.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 			else
 				local microbar = {
@@ -693,7 +701,7 @@ function ElvUI_EltreumUI:Shadows()
 				}
 				for _, frame in pairs(microbar) do
 					if frame and not frame.shadow then
-						frame:CreateShadow()
+						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 			end
@@ -703,17 +711,17 @@ function ElvUI_EltreumUI:Shadows()
 		if E.private.unitframe.enable then
 			if E.Retail or E.Wrath or E.TBC then
 				if not _G["ElvUF_Focus_HealthBar"].shadow and not (E.db.ElvUI_EltreumUI.borders.focusborder and E.db.ElvUI_EltreumUI.borders.borders)then
-					_G["ElvUF_Focus_HealthBar"]:CreateShadow()
+					_G["ElvUF_Focus_HealthBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if not _G["ElvUF_Focus_PowerBar"].shadow and not (E.db.ElvUI_EltreumUI.borders.focusborder and E.db.ElvUI_EltreumUI.borders.borders)then
-					_G["ElvUF_Focus_PowerBar"]:CreateShadow()
+					_G["ElvUF_Focus_PowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 
 				if not _G["ElvUF_FocusTarget_HealthBar"].shadow then
-					_G["ElvUF_FocusTarget_HealthBar"]:CreateShadow()
+					_G["ElvUF_FocusTarget_HealthBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if not _G["ElvUF_FocusTarget_PowerBar"].shadow then
-					_G["ElvUF_FocusTarget_PowerBar"]:CreateShadow()
+					_G["ElvUF_FocusTarget_PowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 
 				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
@@ -725,7 +733,7 @@ function ElvUI_EltreumUI:Shadows()
 							_G["ElvUF_Focus_PowerBar"].shadow:Hide()
 						end
 						if not _G["ElvUF_Focus"].shadow then
-							_G["ElvUF_Focus"]:CreateShadow()
+							_G["ElvUF_Focus"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 						if _G["ElvUF_Focus"].shadow then
 							_G["ElvUF_Focus"].shadow:ClearAllPoints()
@@ -752,7 +760,7 @@ function ElvUI_EltreumUI:Shadows()
 							_G["ElvUF_FocusTarget_PowerBar"].shadow:Hide()
 						end
 						if not _G["ElvUF_FocusTarget"].shadow then
-							_G["ElvUF_FocusTarget"]:CreateShadow()
+							_G["ElvUF_FocusTarget"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 						if _G["ElvUF_FocusTarget"].shadow then
 							_G["ElvUF_FocusTarget"].shadow:ClearAllPoints()
@@ -793,7 +801,7 @@ function ElvUI_EltreumUI:Shadows()
 				if frame then
 					if not frame.shadow then
 						if not E.db.ElvUI_EltreumUI.borders.borders then
-							frame:CreateShadow()
+							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					elseif frame.shadow then
 						if E.db.ElvUI_EltreumUI.borders.borders then
@@ -808,7 +816,7 @@ function ElvUI_EltreumUI:Shadows()
 			if E.db["unitframe"]["units"]["player"]["portrait"]["enable"] == true and E.db["unitframe"]["units"]["player"]["portrait"]["overlay"] == false then
 				if _G["ElvUF_Player"] and not _G["ElvUF_Player"].shadow then
 					if not (E.db.ElvUI_EltreumUI.borders.playerborder and E.db.ElvUI_EltreumUI.borders.borders) then
-						_G["ElvUF_Player"]:CreateShadow()
+						_G["ElvUF_Player"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						_G["ElvUF_Player"].shadow:ClearAllPoints()
 						_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player"] ,"TOPRIGHT", 3, 3)
 						_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player"] ,"BOTTOMLEFT", -3, -3)
@@ -827,7 +835,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 				--[[if _G["ElvUF_Player"].Portrait.backdrop and not _G["ElvUF_Player"].Portrait.backdrop.shadow then
 					if (not E.db.ElvUI_EltreumUI.borders.playerborder) then
-						_G["ElvUF_Player"].Portrait.backdrop:CreateShadow()
+						_G["ElvUF_Player"].Portrait.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end]]
 			end
@@ -835,7 +843,7 @@ function ElvUI_EltreumUI:Shadows()
 			if E.db["unitframe"]["units"]["target"]["portrait"]["enable"] == true and E.db["unitframe"]["units"]["target"]["portrait"]["overlay"] == false then
 				if _G["ElvUF_Target"] and not _G["ElvUF_Target"].shadow then
 					if not (E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.ElvUI_EltreumUI.borders.borders) then
-						_G["ElvUF_Target"]:CreateShadow()
+						_G["ElvUF_Target"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						_G["ElvUF_Target"].shadow:ClearAllPoints()
 						_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target"] ,"TOPRIGHT", 3, 3)
 						_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target"] ,"BOTTOMLEFT", -3, -3)
@@ -849,7 +857,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 				--[[if _G["ElvUF_Target"].Portrait.backdrop and not _G["ElvUF_Target"].Portrait.backdrop.shadow then
 					if (not E.db.ElvUI_EltreumUI.borders.targetborder) then
-						_G["ElvUF_Target"].Portrait.backdrop:CreateShadow()
+						_G["ElvUF_Target"].Portrait.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end]]
 			end
@@ -896,7 +904,7 @@ function ElvUI_EltreumUI:Shadows()
 				for _, frame in pairs(partymembers) do
 					if not frame.shadow then
 						if not (E.db.ElvUI_EltreumUI.borders.partyborders and E.db.ElvUI_EltreumUI.borders.borders) then
-							frame:CreateShadow()
+							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
 								frame.shadow:ClearAllPoints()
 								frame.shadow:SetPoint("BOTTOMLEFT", frame.Power,"BOTTOMLEFT", -3, -3)
@@ -908,7 +916,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 					--[[for _, button in pairs(partymembers) do
 						if not button.shadow then
-							button:CreateShadow()
+							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end]]
 				end
@@ -920,7 +928,7 @@ function ElvUI_EltreumUI:Shadows()
 				for _, frame in pairs(bossmembers) do
 					if not frame.shadow then
 						if not (E.db.ElvUI_EltreumUI.borders.bossborder and E.db.ElvUI_EltreumUI.borders.borders) then
-							frame:CreateShadow()
+							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
 								frame.shadow:ClearAllPoints()
 								frame.shadow:SetPoint("BOTTOMLEFT", frame.Power,"BOTTOMLEFT", -3, -3)
@@ -932,7 +940,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 					--[[for _, button in pairs(bossmembers) do
 						if not button.shadow then
-							button:CreateShadow()
+							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end]]
 				end
@@ -943,7 +951,7 @@ function ElvUI_EltreumUI:Shadows()
 				local tankmembers = {_G["ElvUF_TankUnitButton"..i]}
 				for _, frame in pairs(tankmembers) do
 					if not frame.shadow then
-						frame:CreateShadow()
+						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
 							frame.shadow:ClearAllPoints()
 							frame.shadow:SetPoint("BOTTOMLEFT", frame.Power,"BOTTOMLEFT", -3, -3)
@@ -954,7 +962,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 					--[[for _, button in pairs(tankmembers) do
 						if not button.shadow then
-							button:CreateShadow()
+							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end]]
 				end
@@ -965,7 +973,7 @@ function ElvUI_EltreumUI:Shadows()
 				local assistmembers = {_G["ElvUF_AssistUnitButton"..i]}
 				for _, frame in pairs(assistmembers) do
 					if not frame.shadow then
-						frame:CreateShadow()
+						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
 							frame.shadow:ClearAllPoints()
 							frame.shadow:SetPoint("BOTTOMLEFT", frame.Power,"BOTTOMLEFT", -3, -3)
@@ -976,7 +984,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 					--[[for _, button in pairs(assistmembers) do
 						if not button.shadow then
-							button:CreateShadow()
+							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end]]
 				end
@@ -993,7 +1001,7 @@ function ElvUI_EltreumUI:Shadows()
 						break
 					else
 						if not button.shadow and (E.db["unitframe"]["units"]["player"]["classbar"]["fill"] == "spaced" or E.db["unitframe"]["units"]["player"]["classbar"]["detachFromFrame"] == true) then
-							button:CreateShadow()
+							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 				end
@@ -1004,7 +1012,7 @@ function ElvUI_EltreumUI:Shadows()
 				local additionalpowerbar = _G["ElvUF_Player_AdditionalPowerBar"]
 				if additionalpowerbar ~= nil then
 					if not _G["ElvUF_Player_AdditionalPowerBar"].shadow then
-						_G["ElvUF_Player_AdditionalPowerBar"]:CreateShadow()
+						_G["ElvUF_Player_AdditionalPowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 			end
@@ -1020,7 +1028,7 @@ function ElvUI_EltreumUI:Shadows()
 						break
 					else
 						if not button.shadow then
-							button:CreateShadow()
+							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end
 				end
@@ -1036,7 +1044,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G["ElvUF_Target_HealthBar"].shadow:Hide()
 			end
 			if _G["ElvUF_Target"] and not _G["ElvUF_Target"].shadow then
-				_G["ElvUF_Target"]:CreateShadow()
+				_G["ElvUF_Target"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 			if E.db["unitframe"]["units"]["target"]["power"]["width"] == "inset" then
 				if _G["ElvUF_Target"] and _G["ElvUF_Target"].shadow then
@@ -1060,7 +1068,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G["ElvUF_TargetTarget_HealthBar"].shadow:Hide()
 			end
 			if _G["ElvUF_TargetTarget"] and not _G["ElvUF_TargetTarget"].shadow then
-				_G["ElvUF_TargetTarget"]:CreateShadow()
+				_G["ElvUF_TargetTarget"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 			if E.db["unitframe"]["units"]["targettarget"]["power"]["width"] == "inset" then
 				if _G["ElvUF_TargetTarget"] and _G["ElvUF_TargetTarget"].shadow then
@@ -1085,7 +1093,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G["ElvUF_Player_HealthBar"].shadow:Hide()
 			end
 			if _G["ElvUF_Player"] and not _G["ElvUF_Player"].shadow then
-				_G["ElvUF_Player"]:CreateShadow()
+				_G["ElvUF_Player"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 			if E.db["unitframe"]["units"]["player"]["power"]["width"] == "inset" then
 				if _G["ElvUF_Player"] and _G["ElvUF_Player"].shadow then
@@ -1113,10 +1121,10 @@ function ElvUI_EltreumUI:Shadows()
 		--bags
 		if E.private.bags.enable then
 			if not _G.ElvUI_ContainerFrame.shadow then
-				_G["ElvUI_ContainerFrame"]:CreateShadow()
+				_G["ElvUI_ContainerFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 			if not _G.ElvUI_BankContainerFrame.shadow then
-				_G["ElvUI_BankContainerFrame"]:CreateShadow()
+				_G["ElvUI_BankContainerFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
 
@@ -1125,7 +1133,7 @@ function ElvUI_EltreumUI:Shadows()
 			local ElvUI_StaticPopups = {_G["ElvUI_StaticPopup"..i]}
 			for _, button in pairs(ElvUI_StaticPopups) do
 				if not button.shadow then
-					button:CreateShadow()
+					button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 			end
 		end
@@ -1143,10 +1151,10 @@ function ElvUI_EltreumUI:Shadows()
 
 			if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
 				if _G["RightChatPanel"] and _G["RightChatPanel"].backdrop and not _G["RightChatPanel"].backdrop.shadow then
-					_G["RightChatPanel"].backdrop:CreateShadow()
+					_G["RightChatPanel"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if _G["LeftChatPanel"] and _G["LeftChatPanel"].backdrop and not _G["LeftChatPanel"].backdrop.shadow then
-					_G["LeftChatPanel"].backdrop:CreateShadow()
+					_G["LeftChatPanel"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 			else
 				if not (self.RightChatIsSkinned) then
@@ -1186,7 +1194,7 @@ function ElvUI_EltreumUI:Shadows()
 		if E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
 			if E.db["unitframe"]["units"]["player"]["infoPanel"]["enable"] then
 				if not _G["ElvUF_Player"].shadow then
-					_G["ElvUF_Player"]:CreateShadow()
+					_G["ElvUF_Player"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if _G["ElvUF_Player"].shadow then
 					_G["ElvUF_Player"].shadow:Show()
@@ -1213,7 +1221,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 			if E.db["unitframe"]["units"]["target"]["infoPanel"]["enable"] then
 				if not _G["ElvUF_Target"].shadow then
-					_G["ElvUF_Target"]:CreateShadow()
+					_G["ElvUF_Target"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if _G["ElvUF_Target"].shadow then
 					_G["ElvUF_Target"].shadow:ClearAllPoints()
@@ -1262,7 +1270,7 @@ function ElvUI_EltreumUI:Shadows()
 					_G["ElvUF_Pet_HealthBar"].shadow:Hide()
 				end
 				if not _G["ElvUF_Pet"].shadow then
-					_G["ElvUF_Pet"]:CreateShadow()
+					_G["ElvUF_Pet"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
 				if _G["ElvUF_Pet"].shadow then
 					_G["ElvUF_Pet"].shadow:Show()
@@ -1288,16 +1296,16 @@ function ElvUI_EltreumUI:Shadows()
 
 		------------------------------------------------------------------------------------------------------end of elvui frames
 		if IsAddOnLoaded('ProjectAzilroka') then
-			if not _G.stAMFrame.shadow then
-				_G.stAMFrame:CreateShadow()
+			if _G.stAMFrame and not _G.stAMFrame.shadow then
+				_G.stAMFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 
-			if not _G.stAMProfileMenu.shadow then
-				_G.stAMProfileMenu:CreateShadow()
+			if _G.stAMProfileMenu and not _G.stAMProfileMenu.shadow then
+				_G.stAMProfileMenu:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 
-			if not _G.SquareMinimapButtonBar.shadow then
-				_G.SquareMinimapButtonBar:CreateShadow()
+			if _G.SquareMinimapButtonBar and not _G.SquareMinimapButtonBar.shadow then
+				_G.SquareMinimapButtonBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
 	end
@@ -1312,7 +1320,7 @@ function ElvUI_EltreumUI:RaidShadows()
 					local slots = {_G["ElvUF_Raid"..i..'Group'..k..'UnitButton'..l]}
 					for _, button in pairs(slots) do
 						if button and not button.shadow then
-							button:CreateShadow()
+							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
 								button.shadow:ClearAllPoints()
 								--[[if button.Power then
@@ -1341,35 +1349,35 @@ function ElvUI_EltreumUI:NameplateShadows(nameplate)
 	if E.private.nameplates.enable and E.db.ElvUI_EltreumUI.skins.shadow.enable then
 		if E.db.ElvUI_EltreumUI.skins.shadow.nameplates then
 			if nameplate.Health.backdrop and not nameplate.Health.backdrop.shadow then
-				nameplate.Health.backdrop:CreateShadow()
+				nameplate.Health.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.nppower then
 			if nameplate.Power.backdrop and not nameplate.Power.backdrop.shadow then
-				nameplate.Power.backdrop:CreateShadow()
+				nameplate.Power.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 			if _G["ElvNP_TargetClassPowerClassPower"] and not _G["ElvNP_TargetClassPowerClassPower"].shadow then
-				_G["ElvNP_TargetClassPowerClassPower"]:CreateShadow()
+				_G["ElvNP_TargetClassPowerClassPower"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 			if _G["EltruismPowerBar"] and not _G["EltruismPowerBar"].shadow then
-				_G["EltruismPowerBar"]:CreateShadow()
+				_G["EltruismPowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.npcastbar then
 			if nameplate.Castbar.backdrop and not nameplate.Castbar.backdrop.shadow then
-				nameplate.Castbar.backdrop:CreateShadow()
+				nameplate.Castbar.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 
 			if nameplate.Castbar.Button and not nameplate.Castbar.Button.shadow then
-				nameplate.Castbar.Button:CreateShadow()
+				nameplate.Castbar.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.npportraits then
 			if nameplate.Portrait.backdrop and not nameplate.Portrait.backdrop.shadow then
-				nameplate.Portrait.backdrop:CreateShadow()
+				nameplate.Portrait.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
 	end
@@ -1379,7 +1387,7 @@ hooksecurefunc(NP, 'StylePlate', ElvUI_EltreumUI.NameplateShadows) --nameplate s
 function ElvUI_EltreumUI:Construct_AuraIcon(button)
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.npauras then
 		if button and not button.shadow then
-			button:CreateShadow()
+			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 		end
 	end
 end
@@ -1388,7 +1396,7 @@ hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) --n
 function ElvUI_EltreumUI:AuraShadows(button)
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) then
 		if button and not button.shadow then
-			button:CreateShadow()
+			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 		end
 	end
 end
@@ -1397,7 +1405,7 @@ hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows) --aura (minimap) sh
 function ElvUI_EltreumUI:UFAuraShadows(button)
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.ufaura then
 		if button and not button.shadow then
-			button:CreateShadow()
+			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 		end
 	end
 end

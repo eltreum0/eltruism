@@ -80,23 +80,21 @@ function ElvUI_EltreumUI:HidePopups(delay)
 		if _G["ElvUI_StaticPopup4"] then
 			_G["ElvUI_StaticPopup4"]:Hide()
 		end
-		if IsAddOnLoaded("Details") then
-			if _G["StreamOverlayWelcomeWindow"] then
-				_G["StreamOverlayWelcomeWindow"]:Hide()
-			end
-			if _G["DetailsWelcomeWindow"] then
-				_G["DetailsWelcomeWindow"]:Hide()
-			end
-			if _G["DetailsNewsWindow"] then
-				_G["DetailsNewsWindow"]:Hide()
-			end
+		if _G["StreamOverlayWelcomeWindow"] then
+			_G["StreamOverlayWelcomeWindow"]:Hide()
+		end
+		if _G["DetailsWelcomeWindow"] then
+			_G["DetailsWelcomeWindow"]:Hide()
+		end
+		if _G["DetailsNewsWindow"] then
+			_G["DetailsNewsWindow"]:Hide()
+		end
+		--if IsAddOnLoaded("Details") then
 			--_detalhes:DisablePlugin ("DETAILS_PLUGIN_STREAM_OVERLAY")
 			--_detalhes:DisablePlugin ("Details_Streamer")
-		end
-		if IsAddOnLoaded("Capping") then
-			if _G["CappingFrame"] then
-				_G["CappingFrame"]:Hide()
-			end
+		--end
+		if _G["CappingFrame"] then
+			_G["CappingFrame"]:Hide()
 		end
 		if IsAddOnLoaded("GladiusEx") then
 			GladiusEx:HideFrames()
@@ -559,7 +557,7 @@ if E.Retail then
 		if not IsAddOnLoaded("Blizzard_ClickBindingUI") then
 			LoadAddOn("Blizzard_ClickBindingUI")
 			if not _G["ClickBindingFrame"].shadow then
-				_G["ClickBindingFrame"]:CreateShadow()
+				_G["ClickBindingFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			end
 		end
 		if not _G["ClickBindingFrame"]:IsShown() then

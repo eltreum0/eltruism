@@ -622,14 +622,14 @@ function ElvUI_EltreumUI:BorderAdjust()
 					E.db.ElvUI_EltreumUI.borders.xcasttarget = 272
 					E.db.ElvUI_EltreumUI.borders.ycasttarget = 58
 					E.db.ElvUI_EltreumUI.borders.petsizex = 192
-					E.db.ElvUI_EltreumUI.borders.totemxborder = 51
-					E.db.ElvUI_EltreumUI.borders.totemyborder = 51
+					E.db.ElvUI_EltreumUI.borders.totemxborder = 44
+					E.db.ElvUI_EltreumUI.borders.totemyborder = 44
 					E.db.ElvUI_EltreumUI.borders.petactionxborder = 49
 					E.db.ElvUI_EltreumUI.borders.petactionyborder = 44
 
 					if E.Wrath then
-						E.db["general"]["totems"]["spacing"] = 5
-						E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,260"
+						E.db["actionbar"]["totemBar"]["spacing"] = 5
+						E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,94"
 					end
 					if not E.Retail then
 						E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,97"
@@ -687,14 +687,14 @@ function ElvUI_EltreumUI:BorderAdjust()
 					E.db.ElvUI_EltreumUI.borders.xcasttarget = 296
 					E.db.ElvUI_EltreumUI.borders.ycasttarget = 58
 					E.db.ElvUI_EltreumUI.borders.petsizex = 130
-					E.db.ElvUI_EltreumUI.borders.totemxborder = 46
-					E.db.ElvUI_EltreumUI.borders.totemyborder = 46
+					E.db.ElvUI_EltreumUI.borders.totemxborder = 44
+					E.db.ElvUI_EltreumUI.borders.totemyborder = 44
 					E.db.ElvUI_EltreumUI.borders.petactionxborder = 50
 					E.db.ElvUI_EltreumUI.borders.petactionyborder = 37
 					E.db.ElvUI_EltreumUI.borders.stancexborder = 45
 
 					if E.Wrath then
-						E.db["general"]["totems"]["spacing"] = 5
+						E.db["actionbar"]["totemBar"]["spacing"] = 5
 					end
 				end
 			elseif not E.db.ElvUI_EltreumUI.borders.borders then
@@ -743,7 +743,8 @@ function ElvUI_EltreumUI:BorderAdjust()
 						E.db["unitframe"]["units"]["raid3"]["verticalSpacing"] = 3
 					end
 					if E.Wrath then
-						E.db["general"]["totems"]["spacing"] = 3
+						E.db["actionbar"]["totemBar"]["spacing"] = 3
+						E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,100"
 					end
 				elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
 					if not E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA then
@@ -760,7 +761,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 						E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,-308,308"
 					end
 					if E.Wrath then
-						E.db["general"]["totems"]["spacing"] = 3
+						E.db["actionbar"]["totemBar"]["spacing"] = 3
 					end
 				end
 			end

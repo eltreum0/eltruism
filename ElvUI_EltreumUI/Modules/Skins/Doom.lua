@@ -82,7 +82,7 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 
 		--create shadow
 		if not DCP.shadow then
-			DCP:CreateShadow()
+			DCP:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 		end
 
 		--load in the ignored spells

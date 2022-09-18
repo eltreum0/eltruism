@@ -227,7 +227,7 @@ function ElvUI_EltreumUI:QuestItem()
 				b:SetSize(cfg.btnSize,cfg.btnSize)
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 					if not b.shadow then
-						b:CreateShadow()
+						b:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
 				b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
@@ -257,7 +257,7 @@ function ElvUI_EltreumUI:QuestItem()
 				b.icon:SetAllPoints()
 
 				b.count = b:CreateFontString(nil,"ARTWORK")
-				b.count:SetFont(GameFontNormal:GetFont(), 14, E.db.general.fontStyle)
+				b.count:SetFont(E.LSM:Fetch("font", E.db.general.font), 14, E.db.general.fontStyle)
 				b.count:SetTextColor(1,1,1)
 				b.count:SetPoint("BOTTOMRIGHT",b.icon, 0, 0)
 
@@ -322,6 +322,7 @@ function ElvUI_EltreumUI:QuestItem()
 			local function AddButton(index,bag,slot,link,itemId,count)
 				local btn = EltruismQuestItemFrame.items[index] or CreateItemButton()
 				local _, _, _, _, _, _, _, _, _, itemTexture, _, _ = GetItemInfo(link)
+				--print(link,index)
 				btn.icon:SetTexture(itemTexture)
 				btn.icon:SetTexCoord(0.08,0.92,0.08,0.92)
 				btn.count:SetText(count and count > 1 and count or "")
