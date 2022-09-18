@@ -679,7 +679,7 @@ function S:PallyPower()
 			for j = 1, 8 do
 				if _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"] then
 					_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"]:SetTexCoord(unpack(E.TexCoords))
-					if not _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow then ---????????????????????????????
+					if not _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow then
 						if _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"]:GetTexture() ~= nil then
 							_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:ClearAllPoints()
