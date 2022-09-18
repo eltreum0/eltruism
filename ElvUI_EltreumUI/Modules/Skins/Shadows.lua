@@ -620,6 +620,14 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
+		--class totems
+		for i = 1, MAX_TOTEMS do
+			local classtotem = _G['ElvUI_TotemTrackerTotem'..i]
+			if classtotem and not classtotem.shadow then
+				classtotem:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			end
+		end
+
 		--action bars
 		if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") and E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
 			--elvui action bars
