@@ -453,6 +453,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["tooltip"]["headerFont"] = "Kimberley"
 		E.db["tooltip"]["headerFontOutline"] = "OUTLINE"
 		E.db["tooltip"]["headerFontSize"] = 12
+		E.db["tooltip"]["itemQuality"] = true
 
 		-- ActionBars general
 		E.db["actionbar"]["bar1"]["inheritGlobalFade"] = true
