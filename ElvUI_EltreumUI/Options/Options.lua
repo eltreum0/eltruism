@@ -10383,6 +10383,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Enable Gradient Power"],
 								desc = L["Enable Gradient Power Colors"],
 								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
@@ -10392,6 +10393,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = E.NewSign..L["Enable Gradient Aurabars"],
 								desc = L["Enable Gradient Aurabars"],
 								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = value end,
 							},
@@ -11273,6 +11275,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = "group",
 						name = L["Models"],
 						order = 4,
+						disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 						args = {
 							header1 = {
 								order = 1,

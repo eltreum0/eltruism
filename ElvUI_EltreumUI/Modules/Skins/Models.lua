@@ -123,6 +123,8 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 			return
 		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
 			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+			return
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
 			playerbar = _G["ElvUF_Player"]
@@ -204,6 +206,8 @@ function ElvUI_EltreumUI:TargetUFEffects()
 		elseif not E.db.ElvUI_EltreumUI.unitframes then
 			return
 		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 			return
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
@@ -306,6 +310,8 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 			return
 		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
 			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+			return
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
 			targettargetbar = _G["ElvUF_TargetTarget"]
@@ -405,6 +411,8 @@ function ElvUI_EltreumUI:PetUFEffects()
 		elseif not E.db.ElvUI_EltreumUI.unitframes then
 			return
 		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 			return
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
@@ -507,6 +515,8 @@ function ElvUI_EltreumUI:CastbarEffects()
 		elseif not E.db.ElvUI_EltreumUI.unitframes then
 			return
 		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 			return
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.castbar then
