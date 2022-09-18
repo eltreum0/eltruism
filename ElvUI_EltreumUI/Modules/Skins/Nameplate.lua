@@ -239,15 +239,21 @@ hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 
 --np custom health height conditions
 local heighttable = {}
+local tableupdate = CreateFrame("FRAME")
+tableupdate:RegisterEvent("PLAYER_ENTERING_WORLD")
+tableupdate:RegisterEvent("PLAYER_STARTED_MOVING")
+tableupdate:SetScript("OnEvent",function()
+	tableupdate:UnregisterAllEvents()
+	heighttable = {
+		["FRIENDLY_NPC"] = E.db.nameplates.units.FRIENDLY_NPC.health.height or P.nameplates.units.FRIENDLY_NPC.health.height,
+		["ENEMY_NPC"] = E.db.nameplates.units.ENEMY_NPC.health.height or P.nameplates.units.ENEMY_NPC.health.height,
+		["ENEMY_PLAYER"] = E.db.nameplates.units.ENEMY_PLAYER.health.height or P.nameplates.units.ENEMY_PLAYER.health.height,
+		["FRIENDLY_PLAYER"] = E.db.nameplates.units.FRIENDLY_PLAYER.health.height or P.nameplates.units.FRIENDLY_NPC.health.height,
+		["PLAYER"] = E.db.nameplates.units.PLAYER.health.height or P.nameplates.units.PLAYER.health.height,
+	}
+end)
 function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 	if (E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight) and unit and unit.unit and unit.unit:match("nameplate") then
-		heighttable = {
-			["FRIENDLY_NPC"] = E.db.nameplates.units.FRIENDLY_NPC.health.height or P.nameplates.units.FRIENDLY_NPC.health.height,
-			["ENEMY_NPC"] = E.db.nameplates.units.ENEMY_NPC.health.height or P.nameplates.units.ENEMY_NPC.health.height,
-			["ENEMY_PLAYER"] = E.db.nameplates.units.ENEMY_PLAYER.health.height or P.nameplates.units.ENEMY_PLAYER.health.height,
-			["FRIENDLY_PLAYER"] = E.db.nameplates.units.FRIENDLY_PLAYER.health.height or P.nameplates.units.FRIENDLY_NPC.health.height,
-			["PLAYER"] = E.db.nameplates.units.PLAYER.health.height or P.nameplates.units.PLAYER.health.height,
-		}
 
 		--check if its not explosive
 		if (unit.unitGUID and unit.unitGUID:match("-120651-")) or UnitIsUnit(unit.unit,"player") then
