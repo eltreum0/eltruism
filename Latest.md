@@ -12,5 +12,3 @@ Updated Offhand Weapon Quality Texture in Character Panel Skin in Wrath/Classic\
 Fixed Minimap and Chat shadows not changing size when changing the size option for shadows\
 Fixed incorrect Group Spacing in Raid2 Healer Layout for Wrath/Classic\
 Fixed Inspect Item Level Text sometimes not updating
-
-
