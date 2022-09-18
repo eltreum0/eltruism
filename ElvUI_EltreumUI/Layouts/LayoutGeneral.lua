@@ -470,6 +470,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["actionbar"]["extraActionButton"]["inheritGlobalFade"] = false
 		E.db["actionbar"]["zoneActionButton"]["inheritGlobalFade"] = false
 		E.db["actionbar"]["stanceBar"]["inheritGlobalFade"] = true
+		E.db["actionbar"]["equippedItem"] = false
 
 		E.db["actionbar"]["bar1"]["hotkeytext"] = true
 		E.db["actionbar"]["bar2"]["hotkeytext"] = true

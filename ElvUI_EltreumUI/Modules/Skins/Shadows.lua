@@ -113,7 +113,7 @@ function ElvUI_EltreumUI:Shadows()
 			MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
 			MinimapShadow:SetParent(_G["Minimap"])
 			if not (self.minimapIsSkinned) then
-				MinimapShadow.shadow = MinimapShadow:CreateShadow(nil, true)
+				MinimapShadow.shadow = MinimapShadow:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				MinimapShadow:SetPoint("TOPRIGHT", _G["Minimap"] ,"TOPRIGHT", 0, 0)
 				MinimapShadow:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", 0, 0)
 				if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
@@ -1158,7 +1158,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			else
 				if not (self.RightChatIsSkinned) then
-					RightChatShadow.shadow = RightChatShadow:CreateShadow(nil, true)
+					RightChatShadow.shadow = RightChatShadow:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					RightChatShadow:SetPoint("TOPRIGHT", _G["RightChatPanel"] ,"TOPRIGHT", 0, 0)
 					if E.db["datatexts"]["panels"]["RightChatDataPanel"]["enable"] then
 						RightChatShadow:SetPoint("BOTTOMLEFT", _G["RightChatDataPanel"] ,"BOTTOMLEFT", 0, 0)
@@ -1169,7 +1169,7 @@ function ElvUI_EltreumUI:Shadows()
 					self.RightChatIsSkinned = true
 				end
 				if not (self.LeftChatIsSkinned) then
-					LeftChatShadow.shadow = LeftChatShadow:CreateShadow(nil, true)
+					LeftChatShadow.shadow = LeftChatShadow:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					LeftChatShadow:SetPoint("TOPLEFT", _G["LeftChatPanel"] ,"TOPLEFT", 0, 0)
 					if E.db["datatexts"]["panels"]["LeftChatDataPanel"]["enable"] then
 						LeftChatShadow:SetPoint("BOTTOMRIGHT", _G["LeftChatDataPanel"] ,"BOTTOMRIGHT", 0, 0)
