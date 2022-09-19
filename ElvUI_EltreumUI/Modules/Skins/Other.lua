@@ -1041,7 +1041,9 @@ function ElvUI_EltreumUI:EltruismDetails()
 				for _, row in ipairs(instancia.barras) do
 					if row and row.textura then
 						hooksecurefunc(row.textura, "SetVertexColor", function(_, r, g, b) --managed to hook the global to set vertex color on this only, might be useful later
-							row.textura:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixelB")
+							if E.db.ElvUI_EltreumUI.skins.detailstextureoverwrite then
+								row.textura:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixelB")
+							end
 							row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.5, g-0.5, b-0.5, 0.9, r+0.2, g+0.2, b+0.2, 0.9)
 						end)
 					end
