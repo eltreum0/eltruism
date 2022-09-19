@@ -31,7 +31,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["advanced"] = {
 						["OffsetY"] = 100,
 					},
-					["textShake"] = true,
+					["textShake"] = false,
 					["isTarget"] = false,
 					["fontSize"] = 16,
 					["cycleColors"] = false,
@@ -66,7 +66,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["advanced"] = {
 						["OffsetY"] = 100,
 					},
-					["textShake"] = true,
+					["textShake"] = false,
 					["isTarget"] = false,
 					["fontSize"] = 16,
 					["cycleColors"] = false,
