@@ -25,12 +25,15 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["numberStyle"] = "BLIZZARD",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["EnemyNPC"] = {
 					["enable"] = true,
 					["advanced"] = {
 						["OffsetY"] = 100,
 					},
+					["followSize"] = true,
 					["textShake"] = false,
 					["isTarget"] = false,
 					["fontSize"] = 16,
@@ -60,12 +63,15 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["numberStyle"] = "BLIZZARD",
 					["spellY"] = 20,
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["EnemyPlayer"] = {
 					["enable"] = true,
 					["advanced"] = {
 						["OffsetY"] = 100,
 					},
+					["followSize"] = true,
 					["textShake"] = false,
 					["isTarget"] = false,
 					["fontSize"] = 16,
@@ -95,6 +101,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["numberStyle"] = "BLIZZARD",
 					["spellY"] = 20,
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 			},
 		},
@@ -121,6 +129,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["font"] = "Kimberley",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["Boss"] = {
 					["enable"] = false,
@@ -142,6 +152,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["font"] = "Kimberley",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["Focus"] = {
 					["enable"] = false,
@@ -163,6 +175,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["font"] = "Kimberley",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["Target"] = {
 					["enable"] = true,
@@ -184,6 +198,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["font"] = "Kimberley",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["FocusTarget"] = {
 					["enable"] = false,
@@ -205,6 +221,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["font"] = "Kimberley",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["PetTarget"] = {
 					["enable"] = false,
@@ -226,6 +244,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["font"] = "Kimberley",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["TargetTargetTarget"] = {
 					["enable"] = true,
@@ -247,6 +267,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["font"] = "Kimberley",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["Pet"] = {
 					["enable"] = true,
@@ -268,6 +290,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["font"] = "Kimberley",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["Raid2"] = {
 					["enable"] = true,
@@ -289,6 +313,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["font"] = "Kimberley",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["Raid3"] = {
 					["enable"] = true,
@@ -310,6 +336,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["font"] = "Kimberley",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["Player"] = {
 					["enable"] = true,
@@ -331,6 +359,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["font"] = "Kimberley",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["Raid1"] = {
 					["enable"] = true,
@@ -352,6 +382,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["font"] = "Kimberley",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["Party"] = {
 					["enable"] = true,
@@ -373,6 +405,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["font"] = "Kimberley",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["TargetTarget"] = {
 					["enable"] = true,
@@ -394,6 +428,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["font"] = "Kimberley",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["Arena"] = {
 					["enable"] = false,
@@ -415,6 +451,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["font"] = "Kimberley",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["Assist"] = {
 					["enable"] = false,
@@ -436,6 +474,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["font"] = "Kimberley",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 				["RaidPet"] = {
 					["enable"] = false,
@@ -457,6 +497,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["shakeDuration"] = 0.4,
 					["font"] = "Kimberley",
 					["critFont"] = "Kimberley",
+					["followSize"] = true,
+					["textShake"] = false,
 				},
 			},
 		},
