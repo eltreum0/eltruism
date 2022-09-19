@@ -863,6 +863,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["height"] = 25
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["sizeOverride"] = 25
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["yOffset"] = 1
+	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["color"]["b"] = 0
+	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["color"]["g"] = 0.50588235294118
+	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["color"]["r"] = 0.86274509803922
 	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["a"] = 0
 	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0.50196078431373
 	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0.50196078431373
