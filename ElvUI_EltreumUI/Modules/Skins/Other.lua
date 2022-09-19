@@ -1018,3 +1018,17 @@ function S:PallyPower()
 	end
 end
 S:AddCallbackForAddon('PallyPower')
+
+--gradient bigwigs bars
+function S:BigWigs_Plugins()
+	if E.db.ElvUI_EltreumUI.skins.bigwigs then
+		local candy = _G.LibStub("LibCandyBar-3.0")
+		function candy.barPrototype:SetColor(...)
+			self.candyBarBar:SetStatusBarColor(...)
+			local r,g,b,a = self.candyBarBar:GetStatusBarColor()
+			self.candyBarBar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.3, g-0.3, b-0.3, a,r, g, b, a)
+		end
+	end
+end
+S:AddCallbackForAddon('BigWigs_Plugins')
+
