@@ -72,7 +72,7 @@ end
 
 --Gradient Power Colors
 function ElvUI_EltreumUI:GradientPower()
-	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower then
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		ElvUI_EltreumUI:ApplyGradientPower("player", "Player")
 		ElvUI_EltreumUI:ApplyGradientPower("target", "Target")
 		ElvUI_EltreumUI:ApplyGradientPower("targettarget", "TargetTarget")

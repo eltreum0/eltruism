@@ -380,7 +380,7 @@ end
 SkinLocale()
 
 --SkinMeeting horn as asked by Neo
-function S:MeetingHorn()
+function ElvUI_EltreumUI:EltruismMeetingHorn()
 	if E.db.ElvUI_EltreumUI.skins.meetinghorn then
 		S:HandleFrame(_G.MeetingHornMainPanel)
 		_G.MeetingHornMainPanel:SetTemplate('Transparent', nil, true)
@@ -510,10 +510,10 @@ function S:MeetingHorn()
 		S:HandleScrollBar(_G.MeetingHornMainPanelScrollBar)
 	end
 end
-S:AddCallbackForAddon('MeetingHorn')
+S:AddCallbackForAddon('MeetingHorn', 'EltruismMeetingHorn', ElvUI_EltreumUI.EltruismMeetingHorn)
 
 --based on old addonskins skin
-function S:PallyPower()
+function ElvUI_EltreumUI:EltruismPallyPower()
 	if E.db.ElvUI_EltreumUI.skins.pallypower then
 		if InCombatLockdown() then return end
 
@@ -724,6 +724,9 @@ function S:PallyPower()
 		shadowupdate:RegisterEvent("GROUP_ROSTER_UPDATE")
 		shadowupdate:RegisterEvent("GROUP_JOINED")
 		shadowupdate:RegisterEvent("PLAYER_ENTERING_WORLD")
+		shadowupdate:RegisterEvent("ZONE_CHANGED")
+		shadowupdate:RegisterEvent("ZONE_CHANGED_INDOORS")
+		shadowupdate:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 		shadowupdate:SetScript("OnEvent",function()
 			if InCombatLockdown() then return end
 			if not _G.PallyPowerFrame.shadow then
@@ -1014,4 +1017,17 @@ function S:PallyPower()
 		end
 	end
 end
-S:AddCallbackForAddon('PallyPower')
+S:AddCallbackForAddon('PallyPower', 'EltruismPallyPower', ElvUI_EltreumUI.EltruismPallyPower)
+
+--gradient bigwigs bars
+function ElvUI_EltreumUI:EltruismBigWigs()
+	if E.db.ElvUI_EltreumUI.skins.bigwigs then
+		local candy = _G.LibStub("LibCandyBar-3.0")
+		function candy.barPrototype:SetColor(...)
+			self.candyBarBar:SetStatusBarColor(...)
+			local r,g,b = self.candyBarBar:GetStatusBarColor()
+			self.candyBarBar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.4, g-0.4, b-0.4, 0.7, r, g, b, 0.7)
+		end
+	end
+end
+S:AddCallbackForAddon('BigWigs_Plugins', "EltruismBigWigs", ElvUI_EltreumUI.EltruismBigWigs)

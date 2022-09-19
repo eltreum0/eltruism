@@ -465,7 +465,7 @@ function ElvUI_EltreumUI:GetDBMProfile()
 
 				["ColorByType"] = true,
 				["IconLeft"] = true,
-				["Texture"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga",
+				["Texture"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\NormTex3",
 				["EndColorUIB"] = 0.0117647058823529,
 				["StartColorDR"] = 0.901960784313726,
 				["StartColorAB"] = 1,
@@ -553,7 +553,7 @@ function ElvUI_EltreumUI:GetDBMProfile()
 				["Skin"] = "AddOnSkins Half-Bar",
 				["ColorByType"] = true,
 				["IconLeft"] = true,
-				["Texture"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga",
+				["Texture"] = "Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\NormTex3",
 				["EndColorUIB"] = 0.0117647058823529,
 				["StartColorDR"] = 0.901960784313726,
 				["StartColorAB"] = 1,

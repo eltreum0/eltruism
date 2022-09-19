@@ -55,14 +55,14 @@ if E.Retail then
 elseif E.Wrath then
 	classModels = {
 		["MAGE"] = "environments/stars/nexusraid_runeeffects_starry.m2",
-		["PALADIN"] = "environments/stars/netherstormskybox.m2",
+		["PALADIN"] = "environments/stars/netherstormskybox.m2", --spells/dragonbreath_arcane.m2
 		["HUNTER"] = "environments/stars/hellfireskybox.m2",
 		["SHAMAN"] = "environments/stars/icecrownsky.m2",
 		["PRIEST"] = "spells/christmassnowrain.m2",
 		["DEATHKNIGHT"] = "spells/nefarianflamebreath.m2", --"spells/redradiationfog.m2", --"spells/frostbreath.m2",  --world/generic/passivedoodads/particleemitters/aurared.m2 , "environments/stars/bladesedgeskybox.m2"
 		["WARRIOR"] = "spells/flamebreath.m2", --spells/disarm_impact_chest.m2
 		["ROGUE"] = "environments/stars/shadowmoonillidan.m2",
-		["WARLOCK"] = "environments/stars/netherstormskybox.m2",
+		["WARLOCK"] = "environments/stars/nagrandskybox.m2",
 		["DRUID"] = "spells/cyclonefire_state.m2",
 		["NPCNEUTRAL"] = "spells/acidliquidbreath.m2",
 		["NPCFRIENDLY"] = "environments/stars/portalworldlegionsky.m2",
@@ -122,6 +122,8 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 		elseif not E.db.ElvUI_EltreumUI.unitframes then
 			return
 		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 			return
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
@@ -204,6 +206,8 @@ function ElvUI_EltreumUI:TargetUFEffects()
 		elseif not E.db.ElvUI_EltreumUI.unitframes then
 			return
 		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 			return
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
@@ -306,6 +310,8 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 			return
 		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
 			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+			return
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
 			targettargetbar = _G["ElvUF_TargetTarget"]
@@ -405,6 +411,8 @@ function ElvUI_EltreumUI:PetUFEffects()
 		elseif not E.db.ElvUI_EltreumUI.unitframes then
 			return
 		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 			return
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
@@ -507,6 +515,8 @@ function ElvUI_EltreumUI:CastbarEffects()
 		elseif not E.db.ElvUI_EltreumUI.unitframes then
 			return
 		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 			return
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.castbar then

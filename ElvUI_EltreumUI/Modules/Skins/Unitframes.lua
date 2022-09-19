@@ -20,7 +20,7 @@ local LCG = E.Libs.CustomGlow
 local classcolor = E:ClassColor(E.myclass, true)
 local skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 
---set the textures or gradients
+--set the textures or gradients for single units
 function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 	_, classunit = UnitClass(unit)
 	namebar = E.LSM:Fetch("statusbar", "Eltreum-Blank")
@@ -357,6 +357,104 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 	end
 end
 
+--set the textures or gradients for group units
+function ElvUI_EltreumUI:ApplyGroupGradientTexture(button)
+	button.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
+	if E.db.ElvUI_EltreumUI.unitframes.lightmode then ---TODO confirm this is fine for dark mode
+		--button.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+		button.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+		button.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+	end
+	_, buttonclass = UnitClass(button.unit)
+	if buttonclass then
+
+		--glow dispellable debuffs
+		--[[if E.db.ElvUI_EltreumUI.glow.enableUFs then
+			if button.Debuffs then
+				local canglow = false
+				if button.Debuffs.visibleDebuffs ~= nil then
+					for d = 1, button.Debuffs.visibleDebuffs do
+						local debuff = select(d, button.Debuffs:GetChildren())
+						if debuff then
+							if debuff.canDispel then
+								if not canglow then
+									canglow = true
+								end
+							end
+						end
+					end
+					if canglow then
+						if E.db.ElvUI_EltreumUI.glow.pixel then
+							LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
+						elseif E.db.ElvUI_EltreumUI.glow.autocast then
+							LCG.AutoCastGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+						elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+							LCG.ButtonGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
+						end
+					else
+						if E.db.ElvUI_EltreumUI.glow.pixel then
+							LCG.PixelGlow_Stop(button)
+						elseif E.db.ElvUI_EltreumUI.glow.autocast then
+							LCG.AutoCastGlow_Stop(button)
+						elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+							LCG.ButtonGlow_Stop(button)
+						end
+					end
+					if button.Debuffs.visibleDebuffs == 0 then
+						if E.db.ElvUI_EltreumUI.glow.pixel then
+							LCG.PixelGlow_Stop(button)
+						elseif E.db.ElvUI_EltreumUI.glow.autocast then
+							LCG.AutoCastGlow_Stop(button)
+						elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+							LCG.ButtonGlow_Stop(button)
+						end
+					end
+				else
+					LCG.PixelGlow_Stop(button)
+				end
+			end
+		end]]
+
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
+			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
+					button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+				else
+					button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+				end
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+					button.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, false))
+				else
+					button.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, false, false))
+				end
+			elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and button.Health.backdropTex then
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
+					button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+				else
+					button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+				end
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+					button.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, true))
+				else
+					button.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, false, true))
+				end
+			end
+		elseif not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+				if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+					button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
+				else
+					button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTexture(buttonclass))
+				end
+			elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
+				if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable and button.Health.backdropTex then
+					button.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
+				end
+			end
+		end
+	end
+end
+
 function ElvUI_EltreumUI:GradientCustomTexture(unit)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 
@@ -414,110 +512,13 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 				return
 			end
 
-			local function ApplyGroupGradientTexture(button)
-				button.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
-				if E.db.ElvUI_EltreumUI.unitframes.lightmode then ---TODO confirm this is fine for dark mode
-					--button.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-					button.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-					button.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-				end
-				_, buttonclass = UnitClass(button.unit)
-				if buttonclass then
-
-					--glow dispellable debuffs
-					--[[if E.db.ElvUI_EltreumUI.glow.enableUFs then
-						if button.Debuffs then
-							local canglow = false
-							if button.Debuffs.visibleDebuffs ~= nil then
-								for d = 1, button.Debuffs.visibleDebuffs do
-									local debuff = select(d, button.Debuffs:GetChildren())
-									if debuff then
-										if debuff.canDispel then
-											if not canglow then
-												canglow = true
-											end
-										end
-									end
-								end
-								if canglow then
-									if E.db.ElvUI_EltreumUI.glow.pixel then
-										LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
-									elseif E.db.ElvUI_EltreumUI.glow.autocast then
-										LCG.AutoCastGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-									elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-										LCG.ButtonGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
-									end
-								else
-									if E.db.ElvUI_EltreumUI.glow.pixel then
-										LCG.PixelGlow_Stop(button)
-									elseif E.db.ElvUI_EltreumUI.glow.autocast then
-										LCG.AutoCastGlow_Stop(button)
-									elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-										LCG.ButtonGlow_Stop(button)
-									end
-								end
-								if button.Debuffs.visibleDebuffs == 0 then
-									if E.db.ElvUI_EltreumUI.glow.pixel then
-										LCG.PixelGlow_Stop(button)
-									elseif E.db.ElvUI_EltreumUI.glow.autocast then
-										LCG.AutoCastGlow_Stop(button)
-									elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-										LCG.ButtonGlow_Stop(button)
-									end
-								end
-							else
-								LCG.PixelGlow_Stop(button)
-							end
-						end
-					end]]
-
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
-						if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
-								button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-							else
-								button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
-							end
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-								button.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, false))
-							else
-								button.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, false, false))
-							end
-						elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and button.Health.backdropTex then
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
-								button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-							else
-								button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
-							end
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-								button.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, true))
-							else
-								button.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, false, true))
-							end
-						end
-					elseif not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-						if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-							if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-								button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
-							else
-								button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTexture(buttonclass))
-							end
-						elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-							if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable and button.Health.backdropTex then
-								button.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
-							end
-						end
-					end
-				end
-			end
-
 			if headergroup ~= nil then
 				for i = 1, headergroup:GetNumChildren() do
 					group = select(i, headergroup:GetChildren())
 					for j = 1, group:GetNumChildren() do
 						groupbutton = select(j, group:GetChildren())
 						if groupbutton and groupbutton.Health then
-							ApplyGroupGradientTexture(groupbutton)
+							ElvUI_EltreumUI:ApplyGroupGradientTexture(groupbutton)
 						end
 					end
 				end
@@ -527,7 +528,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 				for i = 1, headertank:GetNumChildren() do
 					tankbutton = select(i, headertank:GetChildren())
 					if tankbutton and tankbutton.Health then
-						ApplyGroupGradientTexture(tankbutton)
+						ElvUI_EltreumUI:ApplyGroupGradientTexture(tankbutton)
 					end
 				end
 			end
@@ -536,7 +537,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 				for i = 1, headerassist:GetNumChildren() do
 					assistbutton = select(i, headerassist:GetChildren())
 					if assistbutton and assistbutton.Health then
-						ApplyGroupGradientTexture(assistbutton)
+						ElvUI_EltreumUI:ApplyGroupGradientTexture(assistbutton)
 					end
 				end
 			end
@@ -639,6 +640,15 @@ function UF:ToggleTransparentStatusBar(isTransparent, statusBar, backdropTex, ad
 end
 
 --modify the position of the information panel
+local allowedunits = {
+	['ElvUF_Player'] = true,
+	['ElvUF_Target'] = true,
+	['ElvUF_TargetTarget'] = true,
+	['ElvUF_Focus'] = true,
+	['ElvUF_FocusTarget'] = true,
+	['ElvUF_Pet'] = true,
+	['ElvUF_TargetTargetTarget'] = true,
+}
 function UF:Configure_InfoPanel(frame)
 	local db = frame.db
 
@@ -647,15 +657,6 @@ function UF:Configure_InfoPanel(frame)
 		frame.InfoPanel:ClearAllPoints()
 
 		local allowed = false
-		local allowedunits = {
-			['ElvUF_Player'] = true,
-			['ElvUF_Target'] = true,
-			['ElvUF_TargetTarget'] = true,
-			['ElvUF_Focus'] = true,
-			['ElvUF_FocusTarget'] = true,
-			['ElvUF_Pet'] = true,
-			['ElvUF_TargetTargetTarget'] = true,
-		}
 
 		if E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
 			allowed = true
@@ -777,16 +778,6 @@ function ElvUI_EltreumUI:SkinPortrait(frame)
 	local portrait = (db.portrait.style == '3D' and frame.Portrait3D) or frame.Portrait2D
 	portrait.db = db.portrait
 	frame.Portrait = portrait
-
-	local allowedunits = {
-		['ElvUF_Player'] = true,
-		['ElvUF_Target'] = true,
-		['ElvUF_TargetTarget'] = true,
-		['ElvUF_Focus'] = true,
-		['ElvUF_FocusTarget'] = true,
-		['ElvUF_Pet'] = true,
-		['ElvUF_TargetTargetTarget'] = true,
-	}
 
 	if frame.USE_PORTRAIT and portrait.db.style ~= '3D' then
 		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.infopanelontop and allowedunits[tostring(frame:GetName())] then
