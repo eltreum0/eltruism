@@ -87,19 +87,11 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 			end
 
 			local _, instanceType = IsInInstance()
-			local tbccheck = false
-			if E.Retail then
-				tbccheck = true
-			elseif E.Wrath or E.TBC or E.Classic then
-				if instanceType ~= "raid" and instanceType ~= "party" then
-					tbccheck = true
-				end
-			end
 			local spellId
 			for i= 1, 10 do
 				spellId = select(10, UnitAura("player", i))
 			end
-			if IsEncounterSuppressingRelease() == false and instanceType ~= "arena" and instanceType ~= "pvp" and tbccheck == true and (spellId ~= 20711 and spellId ~= 5384) then
+			if IsEncounterSuppressingRelease() == false and instanceType == "none" and (spellId ~= 20711 and spellId ~= 5384) then
 				UIParent:SetAlpha(0)
 				if E.Retail then
 					ObjectiveTrackerFrame:SetAlpha(0)
@@ -156,19 +148,11 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 			gtabanner:SetPoint("CENTER", gta.Text)
 
 			local _, instanceType = IsInInstance()
-			local tbccheck = false
-			if E.Retail then
-				tbccheck = true
-			elseif E.Wrath or E.TBC or E.Classic then
-				if instanceType ~= "raid" and instanceType ~= "party" then
-					tbccheck = true
-				end
-			end
 			local spellId
 			for i= 1, 10 do
 				spellId = select(10, UnitAura("player", i))
 			end
-			if IsEncounterSuppressingRelease() == false and instanceType ~= "arena" and instanceType ~= "pvp" and tbccheck == true and (spellId ~= 20711 and spellId ~= 5384) then
+			if IsEncounterSuppressingRelease() == false and instanceType == "none" and (spellId ~= 20711 and spellId ~= 5384) then
 				UIParent:SetAlpha(0)
 				if E.Retail then
 					ObjectiveTrackerFrame:SetAlpha(0)
