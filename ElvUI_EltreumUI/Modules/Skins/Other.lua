@@ -1036,7 +1036,7 @@ S:AddCallbackForAddon('BigWigs_Plugins', "EltruismBigWigs", ElvUI_EltreumUI.Eltr
 function ElvUI_EltreumUI:EltruismDetails()
 	if E.db.ElvUI_EltreumUI.skins.details then
 		local Details = _G.Details
-		local function InstanceRefreshRows(instancia)
+		hooksecurefunc(Details, "InstanceRefreshRows", function(instancia)
 			if instancia.barras then
 				for _, row in ipairs(instancia.barras) do
 					if row and row.textura then
@@ -1047,8 +1047,7 @@ function ElvUI_EltreumUI:EltruismDetails()
 					end
 				end
 			end
-		end
-		hooksecurefunc(Details, "InstanceRefreshRows", InstanceRefreshRows)
+		end)
 	end
 end
 S:AddCallbackForAddon('Details', "EltruismDetails", ElvUI_EltreumUI.EltruismDetails)
