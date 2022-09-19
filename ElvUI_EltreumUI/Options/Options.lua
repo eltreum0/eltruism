@@ -9181,6 +9181,15 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.bigwigs end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.bigwigs = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							detailsskin = {
+								order = 200,
+								type = 'toggle',
+								name = L["Skin Details"],
+								desc = L["Skin Details"],
+								width = "full",
+								get = function() return E.db.ElvUI_EltreumUI.skins.details end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.details = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
 						},
 					},
 					character = {

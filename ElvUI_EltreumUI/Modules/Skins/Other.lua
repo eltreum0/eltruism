@@ -1031,3 +1031,24 @@ function ElvUI_EltreumUI:EltruismBigWigs()
 	end
 end
 S:AddCallbackForAddon('BigWigs_Plugins', "EltruismBigWigs", ElvUI_EltreumUI.EltruismBigWigs)
+
+--Details gradient, inspired by aftermathh's edit but had to delve deeper into it, too many things going on there
+function ElvUI_EltreumUI:EltruismDetails()
+	if E.db.ElvUI_EltreumUI.skins.details then
+		local Details = _G.Details
+		local function InstanceRefreshRows(instancia)
+			if instancia.barras then
+				for _, row in ipairs(instancia.barras) do
+					if row and row.textura then
+						hooksecurefunc(row.textura, "SetVertexColor", function(_, r, g, b) --managed to hook the global to set vertex color on this only, might be useful later
+							row.textura:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixelB")
+							row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.5, g-0.5, b-0.5, 0.9, r+0.2, g+0.2, b+0.2, 0.9)
+						end)
+					end
+				end
+			end
+		end
+		hooksecurefunc(Details, "InstanceRefreshRows", InstanceRefreshRows)
+	end
+end
+S:AddCallbackForAddon('Details', "EltruismDetails", ElvUI_EltreumUI.EltruismDetails)

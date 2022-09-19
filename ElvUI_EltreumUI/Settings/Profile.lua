@@ -138,6 +138,7 @@ P.ElvUI_EltreumUI = {
 		meetinghorn = false,
 		pallypower = false,
 		bigwigs = false,
+		details = false,
 		hideABkeypress = false,
 		tbctalents = false,
 		expandedtalentscale = 1,
