@@ -69,6 +69,14 @@ function ElvUI_EltreumUI:RunCommands(message)
 			ElvUI_EltreumUI:Print("Development Tools Disabled, please reload")
 			E:StaticPopup_Show('CONFIG_RL')
 		end
+	elseif message == 'translate' then
+		if E.db.ElvUI_EltreumUI.deepLwarning then
+			E.db.ElvUI_EltreumUI.deepLwarning = false
+			ElvUI_EltreumUI:Print("DeepL translation warning Disabled")
+		else
+			E.db.ElvUI_EltreumUI.deepLwarning = true
+			ElvUI_EltreumUI:Print("DeepL translation warning Enabled")
+		end
 	elseif message == 'chat' then
 		if E.db.chat.panelBackdrop == "HIDEBOTH" then
 			ElvUI_EltreumUI:DarkChat()
