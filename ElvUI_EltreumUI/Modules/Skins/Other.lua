@@ -1031,4 +1031,3 @@ function S:BigWigs_Plugins()
 	end
 end
 S:AddCallbackForAddon('BigWigs_Plugins')
-
