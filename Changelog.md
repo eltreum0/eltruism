@@ -10,7 +10,7 @@ Updated Bigwigs, DBM, Capping and ElvUI FCT profiles\
 Updated Warlock Model to be different from Paladin\
 Updated Pet Castbar color to have a different color between Interruptable and Non Interruptable\
 Fixed the Death Animations (such as "You Died") activating inside instances
-*Note: Details alpha/beta versions might have issues with the skin since those versions are meant for Dragonflight and not release, make sure to use the release version from August 31st
+[Note: Details alpha/beta versions might have issues with the skin since those versions are meant for Dragonflight and not release, make sure to use the release version from August 31st]
 ### 3.4.2
 Added settings for new Totems from ElvUI 12.89\
 Added Shadows to Totem Tracker\
