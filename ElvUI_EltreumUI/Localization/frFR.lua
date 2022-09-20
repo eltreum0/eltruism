@@ -1161,3 +1161,7 @@ L["Enable on Unitframes"] = "Activer sur les Unitframes"
 L["Add a glow when Unitframes have a debuff"] = "Ajouter une lueur quand les Unitframes ont un debuff"
 L["Enable Gradient Aurabars"] = "Activer les aurabars dégradés"
 L["Shadow Size"] = "Taille de l'ombre"
+L["Skin BigWigs"] = true
+L["Skin Details"] = true
+L["Replace Texture"] = true
+L["Replace Details Bar Texture"] = true
