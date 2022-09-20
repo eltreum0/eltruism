@@ -12,6 +12,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["iconX"] = -5,
 					["advanced"] = {
 						["OffsetY"] = 20,
+						["ScrollTime"] = 1,
 					},
 					["prefix"] = "",
 					["mode"] = "LS",
@@ -35,6 +36,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["enable"] = true,
 					["advanced"] = {
 						["OffsetY"] = 100,
+						["ScrollTime"] = 1,
 					},
 					["fontSize"] = 16,
 					["isTarget"] = false,
@@ -56,6 +58,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["enable"] = true,
 					["advanced"] = {
 						["OffsetY"] = 20,
+						["ScrollTime"] = 1,
 					},
 					["fontSize"] = 16,
 					["isTarget"] = false,
@@ -77,6 +80,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["enable"] = true,
 					["advanced"] = {
 						["OffsetY"] = 100,
+						["ScrollTime"] = 1,
 					},
 					["fontSize"] = 16,
 					["isTarget"] = false,
@@ -98,6 +102,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["enable"] = true,
 					["advanced"] = {
 						["OffsetY"] = 20,
+						["ScrollTime"] = 1,
 					},
 					["fontSize"] = 16,
 					["isTarget"] = false,
