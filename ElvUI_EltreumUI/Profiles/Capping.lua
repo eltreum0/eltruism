@@ -15,30 +15,32 @@ function ElvUI_EltreumUI:GetCappingProfile()
 				},
 				["profiles"] = {
 					["Eltreum"] = {
-						["spacing"] = 1,
-						["lock"] = true,
-						["barTexture"] = "Eltreum-Elvui-Norm",
-						["width"] = 408,
-						["font"] = "Kimberley",
-						["outline"] = "OUTLINE",
-						["position"] = {
-							"BOTTOMRIGHT", -- [1]
-							"BOTTOMRIGHT", -- [2]
-							-117.237907409668, -- [3]
-							213.9608612060547, -- [4]
-						},
-						["growUp"] = true,
 						["colorBarBackground"] = {
 							nil, -- [1]
 							nil, -- [2]
 							nil, -- [3]
 							0.4000000357627869, -- [4]
 						},
+						["lock"] = true,
+						["spacing"] = 1,
+						["barOnShift"] = "INSTANCE_CHAT",
+						["barTexture"] = "Eltreum-Elvui-Norm",
+						["width"] = 400,
+						["font"] = "Kimberley",
+						["outline"] = "OUTLINE",
+						["barOnControl"] = "SAY",
+						["height"] = 16,
+						["position"] = {
+							"BOTTOMRIGHT", -- [1]
+							"BOTTOMRIGHT", -- [2]
+							-109.2361068725586, -- [3]
+							218.9607849121094, -- [4]
+						},
+						["growUp"] = true,
 					},
 				},
 			}
 		end
-
 
 		ElvUI_EltreumUI:Print(L["Capping profile has been set."])
 	else
