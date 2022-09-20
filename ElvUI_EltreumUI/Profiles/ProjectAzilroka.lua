@@ -43,7 +43,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["stAddonManager"]["FontFlag"] = "THICKOUTLINE"
 	PA.db["stAddonManager"]["ButtonWidth"] = 20
 	PA.db["stAddonManager"]["ClassColor"] = true
-	PA.db["stAddonManager"]["Font"] = "Kimberley"
+	PA.db["stAddonManager"]["Font"] = E.db.general.font
 	PA.db["stAddonManager"]["FrameWidth"] = 470
 	PA.db["stAddonManager"]["CheckTexture"] = "Eltreum-Elvui-Norm"
 	PA.db["SquareMinimapButtons"]["Enable"] = true

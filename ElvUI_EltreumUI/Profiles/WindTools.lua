@@ -134,7 +134,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["skins"]["blizzard"]["worldMap"] = false
 		E.private["WT"]["skins"]["elvui"]["enable"] = false
 		E.private["WT"]["skins"]["errorMessage"]["size"] = 18
-		E.private["WT"]["skins"]["ime"]["label"]["name"] = "Kimberley"
+		E.private["WT"]["skins"]["ime"]["label"]["name"] = E.db.general.font
 		E.private["WT"]["skins"]["shadow"] = false
 		E.private["WT"]["tooltips"]["icon"] = false
 		E.private["WT"]["tooltips"]["objectiveProgress"] = false
@@ -182,12 +182,12 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["item"]["contacts"]["defaultPage"] = "FAVORITE"
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["anchor"] = "BOTTOMLEFT"
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["backdropSpacing"] = 1
-		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["name"] = "Kimberley"
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["name"] = E.db.general.font
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["size"] = 10
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = "THICKOUTLINE"
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["buttonWidth"] = 40
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["buttonsPerRow"] = 4
-		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["name"] = "Kimberley"
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["name"] = E.db.general.font
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "THICKOUTLINE"
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["include"] = "QUEST,TORGHAST"
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["numButtons"] = 4
@@ -224,7 +224,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["item"]["fastLoot"]["enable"] = false
 		E.db["WT"]["item"]["fastLoot"]["limit"] = 0.05
 		E.db["WT"]["item"]["inspect"]["equipText"]["size"] = 12
-		E.db["WT"]["item"]["inspect"]["levelText"]["name"] = "Kimberley"
+		E.db["WT"]["item"]["inspect"]["levelText"]["name"] = E.db.general.font
 		E.db["WT"]["item"]["inspect"]["levelText"]["size"] = 12
 		E.db["WT"]["item"]["inspect"]["player"] = false
 		E.db["WT"]["item"]["inspect"]["statsText"]["size"] = 12
@@ -233,7 +233,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["maps"]["whoClicked"]["addRealm"] = true
 		E.db["WT"]["maps"]["whoClicked"]["onlyOnCombat"] = false
 
-		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["name"] = "Kimberley"
+		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["name"] = E.db.general.font
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "THICKOUTLINE"
 		E.db["WT"]["misc"]["gameBar"]["backdropSpacing"] = 1
 		E.db["WT"]["misc"]["gameBar"]["buttonSize"] = 20
@@ -244,7 +244,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["misc"]["gameBar"]["left"][7] = "GAMEMENU"
 		E.db["WT"]["misc"]["gameBar"]["normalColor"] = "CLASS"
 		E.db["WT"]["misc"]["gameBar"]["spacing"] = 3
-		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["name"] = "Kimberley"
+		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["name"] = E.db.general.font
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["size"] = 30
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "THICKOUTLINE"
 		E.db["WT"]["misc"]["gameBar"]["timeAreaHeight"] = 39

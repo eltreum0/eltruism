@@ -29,6 +29,13 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
+			if (arg == "Blizzard_TrainerUI") then
+				_G.ClassTrainerFrame:HookScript("OnShow", function()
+					if not _G.ClassTrainerFrame.shadow then
+						_G.ClassTrainerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					end
+				end)
+			end
 			if (arg == "Blizzard_BindingUI") then
 				_G.KeyBindingFrame:HookScript("OnShow", function()
 					if not _G.KeyBindingFrame.shadow then
@@ -100,6 +107,16 @@ function ElvUI_EltreumUI:Shadows()
 			_G.SpellBookFrameTabButton2.backdrop,
 			_G.ItemTextFrame.backdrop,
 			_G.GossipFrame.backdrop,
+			_G.BNToastFrame,
+			_G.TimeAlertFrame,
+			_G.ReportFrame,
+			_G.SpellBookSkillLineTab1,
+			_G.SpellBookSkillLineTab2,
+			_G.SpellBookSkillLineTab3,
+			_G.SpellBookSkillLineTab4,
+			_G.SpellBookSkillLineTab5,
+			_G.CliqueSpellTab,
+			_G.EltruismClickCastingToggle,
 		}
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then

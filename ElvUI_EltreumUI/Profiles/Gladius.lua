@@ -129,7 +129,7 @@ function ElvUI_EltreumUI:GetGladiusProfile()
 					["aurasBuffsWidth"] = 20,
 					["aurasDebuffsRelativePoint"] = "TOPRIGHT",
 					["RacialGloss"] = false,
-					["globalFont"] = "Kimberley",
+					["globalFont"] = E.db.general.font,
 					["backgroundColor"] = {
 						["a"] = 0,
 					},

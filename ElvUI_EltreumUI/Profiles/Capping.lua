@@ -26,7 +26,7 @@ function ElvUI_EltreumUI:GetCappingProfile()
 						["barOnShift"] = "INSTANCE_CHAT",
 						["barTexture"] = "Eltreum-Elvui-Norm",
 						["width"] = 400,
-						["font"] = "Kimberley",
+						["font"] = E.db.general.font,
 						["outline"] = "OUTLINE",
 						["barOnControl"] = "SAY",
 						["height"] = 16,

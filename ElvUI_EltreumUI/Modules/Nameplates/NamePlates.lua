@@ -651,7 +651,7 @@ EltruismNamePlateOptionsFrame:SetScript("OnEvent", ElvUI_EltreumUI.NamePlateOpti
 function ElvUI_EltreumUI:ClassicThreatNP()
 	if E.private.nameplates.enable == true then
 		if E.Classic or E.TBC or E.Wrath then
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = "Kimberley"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = E.db.general.font
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["fontOutline"] = E.db.general.fontStyle
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = true
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["parent"] = "Health"

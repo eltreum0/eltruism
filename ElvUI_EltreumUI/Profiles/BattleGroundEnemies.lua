@@ -142,7 +142,7 @@ function ElvUI_EltreumUI:GetBattleGroundEnemiesProfile()
 							["RangeIndicator_Alpha"] = 0.5,
 							["LevelText_Outline"] = "OUTLINE",
 						},
-						["Font"] = "Kimberley",
+						["Font"] = E.db.general.font,
 						["RBG"] = {
 							["TargetCalling_SetMark"] = true,
 							["EnemiesTargetingMe_Amount"] = 2,
