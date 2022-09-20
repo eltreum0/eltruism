@@ -117,6 +117,18 @@ function ElvUI_EltreumUI:Shadows()
 			_G.SpellBookSkillLineTab5,
 			_G.CliqueSpellTab,
 			_G.EltruismClickCastingToggle,
+			_G.TradeFrame,
+			_G.TaxiFrame,
+			_G.TabardFrame,
+			_G.AddonList,
+			_G.BlackMarketFrame,
+			_G.ChromieTimeFrame,
+			_G.GuildBankFrame,
+			_G.RuneforgeFrame,
+			_G.ItemSocketingFrame,
+			_G.DeathRecapFrame,
+			_G.PetStableFrame,
+			_G.VoidStorageFrame,
 		}
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then
@@ -484,6 +496,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.DressUpFrame,
 				_G.DressUpFrame.OutfitDetailsPanel,
 				_G.WeeklyRewardsFrame,
+				_G.CovenantPreviewFrame,
 			}
 			for _, frame in pairs(retailframes) do
 				if frame and not frame.shadow then
@@ -622,6 +635,8 @@ function ElvUI_EltreumUI:Shadows()
 			_G["ElvUI_ReputationBar"],
 			_G["ElvUI_ExperienceBar"],
 			_G["ElvUI_ThreatBar"],
+			_G["ElvUIStatusReport"],
+			_G["ElvUIStatusPlugins"],
 		}
 		for _, frame in pairs(GeneralElvUIFrames) do
 			if frame and not frame.shadow then
