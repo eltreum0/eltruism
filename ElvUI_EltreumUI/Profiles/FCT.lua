@@ -543,4 +543,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 			},
 		},
 	}
+
+	if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
+		ElvFCT["unitframes"]["enable"] = false
+	end
 end
