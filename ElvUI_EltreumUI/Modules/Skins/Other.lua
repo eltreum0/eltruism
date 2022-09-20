@@ -102,10 +102,6 @@ function ElvUI_EltreumUI:SkinProfessions()
 				end
 
 				TradeSkillFrame:HookScript("OnShow", function()
-
-					if not TradeSkillFrame.backdrop.shadow then
-						TradeSkillFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					end
 					TradeSkillFrame:SetWidth(765)
 					TradeSkillFrame:SetHeight(550)
 
