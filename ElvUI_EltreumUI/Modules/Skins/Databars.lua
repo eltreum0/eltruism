@@ -38,7 +38,6 @@ if E.Retail then
 	hooksecurefunc(DB, 'HonorBar_Update', ElvUI_EltreumUI.GradientDatabar)
 end
 
-
 --gradient tooltip health
 local function SetTooltipGradient(unit)
 	if not unit then return end
