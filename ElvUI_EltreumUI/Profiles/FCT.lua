@@ -28,7 +28,6 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["critFont"] = "Kimberley",
 					["textShake"] = false,
 					["enable"] = true,
-					["themaintest"] = true,
 				},
 				["EnemyNPC"] = {
 					["isPlayer"] = true,
