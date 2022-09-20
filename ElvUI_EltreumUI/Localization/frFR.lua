@@ -1163,5 +1163,5 @@ L["Enable Gradient Aurabars"] = "Activer les aurabars dégradés"
 L["Shadow Size"] = "Taille de l'ombre"
 L["Skin BigWigs"] = true
 L["Skin Details"] = true
-L["Replace Texture"] = true
-L["Replace Details Bar Texture"] = true
+L["Replace Texture"] = "Remplacer la texture"
+L["Replace Details Bar Texture"] = "Remplacer la texture de la barre de détails"
