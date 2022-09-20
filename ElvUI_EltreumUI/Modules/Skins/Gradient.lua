@@ -412,7 +412,7 @@ function ElvUI_EltreumUI:ChatCustomColor(unitclass)
 	return unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1
 end
 
---differnt for details because bars smaller and different
+--different for details because bars smaller and different
 function ElvUI_EltreumUI:GradientColorsDetails(unitclass)
 	if unitclass ~= nil then
 		return unitframegradients[unitclass].r1 - 0.2, unitframegradients[unitclass].g1 - 0.2, unitframegradients[unitclass].b1 - 0.2, 0.9, unitframegradients[unitclass].r2 + 0.2, unitframegradients[unitclass].g2 + 0.2, unitframegradients[unitclass].b2 + 0.2, 0.9
