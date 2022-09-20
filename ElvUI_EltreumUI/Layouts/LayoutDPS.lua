@@ -865,10 +865,8 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 20
 	E.db["unitframe"]["units"]["party"]["visibility"] = "[@raid6,exists][nogroup] hide;show"
 	E.db["unitframe"]["units"]["party"]["width"] = 200
-	if not E.Retail then
-		E.db["unitframe"]["units"]["pet"]["health"]["colorPetByUnitClass"] = false
-		E.db["unitframe"]["units"]["pet"]["health"]["colorHappiness"] = false
-	end
+	E.db["unitframe"]["units"]["pet"]["health"]["colorPetByUnitClass"] = false
+	E.db["unitframe"]["units"]["pet"]["health"]["colorHappiness"] = false
 	E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
 	E.db["unitframe"]["units"]["pet"]["buffs"]["anchorPoint"] = "TOP"
 	E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
@@ -913,10 +911,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["pet"]["fader"]["vehicle"] = true
 	E.db["unitframe"]["units"]["pet"]["name"]["text_format"] = ""
 	E.db["unitframe"]["units"]["pet"]["colorOverride"] = "FORCE_OFF"
-	E.db["unitframe"]["units"]["pet"]["power"]["enable"] = false
-	if not E.Retail then
-		E.db["unitframe"]["units"]["pet"]["power"]["enable"] = true
-	end
+	E.db["unitframe"]["units"]["pet"]["power"]["enable"] = not E.Retail
 	E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = ""
 	E.db["unitframe"]["units"]["pet"]["power"]["width"] = "inset"
 	E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 159
@@ -1020,9 +1015,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["player"]["power"]["attachTextTo"] = "Power"
 	E.db["unitframe"]["units"]["player"]["power"]["height"] = 15
 	E.db["unitframe"]["units"]["player"]["power"]["powerPrediction"] = true
-	--E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["frameLevel"] = 128
-	--E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["frameStrata"] = "HIGH"
-	--E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomLevel"] = true
 	E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomLevel"] = false
 	E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomStrata"] = false
 	E.db["unitframe"]["units"]["player"]["power"]["text_format"] = ""
@@ -1039,7 +1031,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["player"]["raidicon"]["xOffset"] = 30
 	E.db["unitframe"]["units"]["player"]["raidicon"]["yOffset"] = 2
 	E.db["unitframe"]["units"]["player"]["raidicon"]["enable"] = false
-
 	E.db["unitframe"]["units"]["raid1"]["buffIndicator"]["size"] = 20
 	E.db["unitframe"]["units"]["raid1"]["buffs"]["anchorPoint"] = "BOTTOMRIGHT"
 	E.db["unitframe"]["units"]["raid1"]["buffs"]["attachTo"] = "DEBUFFS"
@@ -1116,19 +1107,19 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
 	E.db["unitframe"]["units"]["raid1"]["power"]["enable"] = false
 	if not E.Retail then
-		E.db["unitframe"]["units"]["raidpet"]["enable"] = false
-		E.db["unitframe"]["units"]["raidpet"]["horizontalSpacing"] = 0
-		E.db["unitframe"]["units"]["raidpet"]["numGroups"] = 3
-		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["duration"]["position"] = "TOP"
-		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["font"] = "Kimberley"
-		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["fontOutline"] = "OUTLINE"
-		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["stack"]["xOffset"] = 2
-		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["stack"]["yOffset"] = -3
-		E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["yOffset"] = 3
-		E.db["unitframe"]["units"]["raidpet"]["verticalSpacing"] = 0
-		E.db["unitframe"]["units"]["raidpet"]["visibility"] = "[@raid6,exists] show; hide"
 		E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid11,exists] hide;show"
 	end
+	E.db["unitframe"]["units"]["raidpet"]["enable"] = false
+	E.db["unitframe"]["units"]["raidpet"]["horizontalSpacing"] = 0
+	E.db["unitframe"]["units"]["raidpet"]["numGroups"] = 3
+	E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["duration"]["position"] = "TOP"
+	E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["font"] = "Kimberley"
+	E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["fontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["stack"]["xOffset"] = 2
+	E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["stack"]["yOffset"] = -3
+	E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["yOffset"] = 3
+	E.db["unitframe"]["units"]["raidpet"]["verticalSpacing"] = 0
+	E.db["unitframe"]["units"]["raidpet"]["visibility"] = "[@raid6,exists] show; hide"
 
 	E.db["unitframe"]["units"]["raid2"]["buffIndicator"]["size"] = 20
 	E.db["unitframe"]["units"]["raid2"]["buffs"]["anchorPoint"] = "BOTTOMRIGHT"
@@ -1319,7 +1310,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["transparent"] = true
 	E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useClassColor"] = true
 	E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useCustomBackdrop"] = true
-	--E.db["unitframe"]["units"]["target"]["castbar"]["customColor"]["useReactionColor"] = true
 	E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["fontSize"] = 11
 	E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["fontStyle"] = "NONE"
 	E.db["unitframe"]["units"]["target"]["castbar"]["height"] = 30
@@ -1331,8 +1321,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["target"]["castbar"]["iconSize"] = 29
 	E.db["unitframe"]["units"]["target"]["castbar"]["iconXOffset"] = 0
 	E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 243
-
-
 	E.db["unitframe"]["units"]["target"]["debuffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["target"]["debuffs"]["countFontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["target"]["debuffs"]["height"] = 25

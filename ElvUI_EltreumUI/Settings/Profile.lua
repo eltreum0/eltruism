@@ -4,6 +4,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 P.ElvUI_EltreumUI = {
 
 	dev = false,
+	deepLwarning = true,
 
 	chat = {
 		enable = false,

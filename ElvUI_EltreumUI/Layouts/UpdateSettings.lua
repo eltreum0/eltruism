@@ -111,7 +111,8 @@ function ElvUI_EltreumUI:UpdateSettings()
 
 	E.db.ElvUI_EltreumUI.skins.bigwigs = true
 	E.db.ElvUI_EltreumUI.skins.meetinghorn = true
-	 E.db.ElvUI_EltreumUI.skins.pallypower = true
+	E.db.ElvUI_EltreumUI.skins.pallypower = true
+	E.db.ElvUI_EltreumUI.skins.details = true
 
 	-- Borders
 	E.db.ElvUI_EltreumUI.borders.minimapborder = true

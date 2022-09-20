@@ -118,6 +118,13 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			compatibilityran = true
 			addonname = "MerathilisUI"
 		end
+
+		if E.private.mui.skins.addonSkins.dt then
+			E.private.mui.skins.addonSkins.dt = false
+			E.db.ElvUI_EltreumUI.skins.details = true
+			compatibilityran = true
+			addonname = "MerathilisUI"
+		end
 	end
 
 	E.PopupDialogs["ELTRUISMCOMPATIBILITYFIX"] = {

@@ -856,6 +856,54 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 		E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["font"] = fontvalue
 	end
 
+	--FCT font
+	if IsAddOnLoaded("ElvUI_FCT") then
+		ElvFCT["nameplates"]["frames"]["Player"]["font"] = fontvalue
+		ElvFCT["nameplates"]["frames"]["Player"]["critFont"] = fontvalue
+		ElvFCT["nameplates"]["frames"]["FriendlyPlayer"]["font"] = fontvalue
+		ElvFCT["nameplates"]["frames"]["FriendlyPlayer"]["critFont"] = fontvalue
+		ElvFCT["nameplates"]["frames"]["FriendlyNPC"]["font"] = fontvalue
+		ElvFCT["nameplates"]["frames"]["FriendlyNPC"]["critFont"] = fontvalue
+		ElvFCT["nameplates"]["frames"]["EnemyNPC"]["font"] = fontvalue
+		ElvFCT["nameplates"]["frames"]["EnemyNPC"]["critFont"] = fontvalue
+		ElvFCT["nameplates"]["frames"]["EnemyPlayer"]["font"] = fontvalue
+		ElvFCT["nameplates"]["frames"]["EnemyPlayer"]["critFont"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Player"]["font"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Player"]["critFont"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Target"]["font"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Target"]["critFont"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["TargetTarget"]["font"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["TargetTarget"]["critFont"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["TargetTargetTarget"]["font"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["TargetTargetTarget"]["critFont"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Focus"]["font"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Focus"]["critFont"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["FocusTarget"]["font"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["FocusTarget"]["critFont"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Pet"]["font"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Pet"]["critFont"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["PetTarget"]["font"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["PetTarget"]["critFont"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Tank"]["font"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Tank"]["critFont"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Assist"]["font"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Assist"]["critFont"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Boss"]["font"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Boss"]["critFont"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Raid1"]["font"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Raid1"]["critFont"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Raid2"]["font"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Raid2"]["critFont"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Raid3"]["font"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Raid3"]["critFont"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["RaidPet"]["font"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["RaidPet"]["critFont"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Party"]["font"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Party"]["critFont"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Arena"]["font"] = fontvalue
+		ElvFCT["unitframes"]["frames"]["Arena"]["critFont"] = fontvalue
+	end
+
 	E:StaggeredUpdateAll(nil, true)
 	ElvUI_EltreumUI:Print(L["Your custom font has been set."])
 
