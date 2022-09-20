@@ -1043,10 +1043,12 @@ function ElvUI_EltreumUI:EltruismDetails()
 							end
 							if row.minha_tabela then
 								unitclass = row.minha_tabela:class() --from details api returns class of that row
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-									row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
-								else
-									row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
+								if unitclass then
+									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+										row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
+									else
+										row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
+									end
 								end
 							else
 								row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.5, g-0.5, b-0.5, 0.9, r+0.2, g+0.2, b+0.2, 0.9)
