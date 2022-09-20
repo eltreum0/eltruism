@@ -28,6 +28,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["critFont"] = "Kimberley",
 					["textShake"] = false,
 					["enable"] = true,
+					["themaintest"] = true,
 				},
 				["EnemyNPC"] = {
 					["isPlayer"] = true,
@@ -133,8 +134,8 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					},
 					["prefix"] = "",
 					["cycleColors"] = false,
-					["showHots"] = false,
-					["showDots"] = true,
+					["showHots"] = true,
+					["showDots"] = false,
 					["font"] = "Kimberley",
 					["showPet"] = false,
 					["critFontSize"] = 24,
@@ -505,7 +506,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 				["RaidPet"] = {
 					["isPlayer"] = true,
 					["textShake"] = false,
-					["enable"] = true,
+					["enable"] = false,
 					["isTarget"] = false,
 					["fontSize"] = 16,
 					["showIcon"] = true,
@@ -576,9 +577,5 @@ function ElvUI_EltreumUI:GetFCTProfile()
 			},
 		},
 	}
-
-	if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
-		ElvFCT["unitframes"]["enable"] = false
-	end
 
 end
