@@ -421,6 +421,6 @@ end
 
 function ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass)
 	if unitclass ~= nil then
-		return unitframecustomgradients[unitclass].r1 - 0.2, unitframecustomgradients[unitclass].g1 - 0.2, unitframecustomgradients[unitclass].b1 - 0.2, 0.9, unitframecustomgradients[unitclass].r2 + 0.2, unitframecustomgradients[unitclass].g2 + 0.2, unitframecustomgradients[unitclass].b2 + 0.2, 0.9
+		return unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, 0.9, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2, 0.9
 	end
 end
