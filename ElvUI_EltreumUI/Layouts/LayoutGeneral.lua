@@ -125,7 +125,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["general"]["loginmessage"] = false
 		E.db["general"]["lootRoll"]["leftButtons"] = true
 		E.db["general"]["lootRoll"]["nameFont"] = "Kimberley"
-		E.db["general"]["lootRoll"]["statusBarTexture"] = "Asphyxia"
+		E.db["general"]["lootRoll"]["statusBarTexture"] = "Asphyxia-Norm"
 		E.db["general"]["minimap"]["icons"]["calendar"]["position"] = "TOPLEFT"
 		E.db["general"]["minimap"]["icons"]["calendar"]["xOffset"] = 3
 		E.db["general"]["minimap"]["icons"]["calendar"]["yOffset"] = -38
