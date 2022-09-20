@@ -32,6 +32,7 @@ function ElvUI_EltreumUI:GetWarpDepleteProfile()
 			["bar3TextureColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
 			["objectivesFont"] = E.db.general.font,
 			["keyDetailsFont"] = E.db.general.font,
+			["keyFont"] = E.db.general.font,
 			["prideGlowColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
 			["deathsFont"] = E.db.general.font,
 			["completedForcesColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
