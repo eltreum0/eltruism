@@ -9155,7 +9155,7 @@ function ElvUI_EltreumUI:Configtable()
 							meetinghorn = {
 								order = 200,
 								type = 'toggle',
-								name = L["Skin MeetingHorn"],
+								name = E.NewSign..L["Skin MeetingHorn"],
 								desc = L["Skin MeetingHorn"],
 								hidden = E.Retail,
 								width = "full",
@@ -9165,7 +9165,7 @@ function ElvUI_EltreumUI:Configtable()
 							pallypower = {
 								order = 200,
 								type = 'toggle',
-								name = L["Skin PallyPower"],
+								name = E.NewSign..L["Skin PallyPower"],
 								desc = L["Skin PallyPower"],
 								hidden = E.Retail,
 								width = "full",
@@ -9175,7 +9175,7 @@ function ElvUI_EltreumUI:Configtable()
 							bigwigs = {
 								order = 200,
 								type = 'toggle',
-								name = L["Skin BigWigs"],
+								name = E.NewSign..L["Skin BigWigs"],
 								desc = L["Skin BigWigs"],
 								width = "full",
 								get = function() return E.db.ElvUI_EltreumUI.skins.bigwigs end,
@@ -9184,7 +9184,7 @@ function ElvUI_EltreumUI:Configtable()
 							detailsskin = {
 								order = 901,
 								type = 'toggle',
-								name = L["Skin Details"],
+								name = E.NewSign..L["Skin Details"],
 								desc = L["Skin Details"],
 								--width = "full",
 								get = function() return E.db.ElvUI_EltreumUI.skins.details end,
@@ -9196,6 +9196,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Replace Texture"],
 								desc = L["Replace Details Bar Texture"],
 								--width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.details end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.detailstextureoverwrite end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.detailstextureoverwrite = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
