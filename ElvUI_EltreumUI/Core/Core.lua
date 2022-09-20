@@ -528,7 +528,7 @@ VideoOptionsFrame:SetClampedToScreen(true)
 
 --click casting button toggle
 if E.Retail then
-	local clickbindopenbutton = CreateFrame("Button", nil)
+	local clickbindopenbutton = CreateFrame("Button", "EltruismClickCastingToggle")
 	clickbindopenbutton:SetWidth(32)
 	clickbindopenbutton:SetHeight(32)
 	clickbindopenbutton:SetParent(_G["SpellBookSpellIconsFrame"])
