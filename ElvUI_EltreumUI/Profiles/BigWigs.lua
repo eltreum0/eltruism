@@ -42,12 +42,12 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"]["Eltreum"] = {
 			["fontSize"] = 100,
-			["fontName"] = "Kimberley",
+			["fontName"] = E.db.general.font,
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_AltPower"]["profiles"]["Eltreum"] = {
 			["outline"] = "OUTLINE",
-			["fontName"] = "Kimberley",
+			["fontName"] = E.db.general.font,
 			["barTextColor"] = {
 				nil, -- [1]
 				1, -- [2]
@@ -89,7 +89,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["BigWigsEmphasizeAnchor_height"] = 11,
 			["growup"] = true,
 			["BigWigsEmphasizeAnchor_width"] = 180,
-			["fontName"] = "Kimberley",
+			["fontName"] = E.db.general.font,
 			["BigWigsAnchor_height"] = 10,
 			["visibleBarLimitEmph"] = 6,
 			["outline"] = "OUTLINE",
@@ -99,7 +99,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"]["Eltreum"] = {
 			["fontSize"] = 16,
-			["fontName"] = "Kimberley",
+			["fontName"] = E.db.general.font,
 			["width"] = 135,
 			["objects"] = {
 				["background"] = false,
@@ -114,14 +114,14 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"]["Eltreum"] = {
-			["emphFontName"] = "Kimberley",
+			["emphFontName"] = E.db.general.font,
 			["emphPosition"] = {
 				"TOP", -- [1]
 				"TOP", -- [2]
 				nil, -- [3]
 				-160, -- [4]
 			},
-			["fontName"] = "Kimberley",
+			["fontName"] = E.db.general.font,
 			["normalPosition"] = {
 				nil, -- [1]
 				nil, -- [2]
@@ -169,7 +169,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["BigWigsEmphasizeAnchor_width"] = 162,
 			["BigWigsAnchor_width"] = 385,
 			["BigWigsAnchor_y"] = 168,
-			["fontName"] = "Kimberley",
+			["fontName"] = E.db.general.font,
 			["BigWigsAnchor_height"] = 8,
 			["BigWigsEmphasizeAnchor_x"] = 819,
 			["fontSizeEmph"] = 12,
@@ -191,14 +191,14 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"]["Eltreum"] = {
-			["emphFontName"] = "Kimberley",
+			["emphFontName"] = E.db.general.font,
 			["emphPosition"] = {
 				"TOP", -- [1]
 				"TOP", -- [2]
 				nil, -- [3]
 				-160, -- [4]
 			},
-			["fontName"] = "Kimberley",
+			["fontName"] = E.db.general.font,
 			["growUpwards"] = false,
 			["normalPosition"] = {
 				nil, -- [1]
@@ -211,7 +211,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"]["Eltreum"] = {
 			["posx"] = 1080,
 			["posy"] = 650,
-			["fontName"] = "Kimberley",
+			["fontName"] = E.db.general.font,
 			["width"] = 140,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] or {}
@@ -245,7 +245,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"]["Eltreum"] = {
 			["fontSize"] = 100,
-			["fontName"] = "Kimberley",
+			["fontName"] = E.db.general.font,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"]["Eltreum"] = {
@@ -259,7 +259,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["BigWigsAnchor_width"] = 378,
 			["BigWigsEmphasizeAnchor_height"] = 9,
 			["growup"] = true,
-			["fontName"] = "Kimberley",
+			["fontName"] = E.db.general.font,
 			["BigWigsAnchor_height"] = 12,
 			["BigWigsAnchor_y"] = 152,
 			["spacing"] = 13,
@@ -278,7 +278,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"]["Eltreum"] = {
 			["fontSize"] = 16,
-			["fontName"] = "Kimberley",
+			["fontName"] = E.db.general.font,
 			["width"] = 140,
 			["posy"] = 740,
 			["posx"] = 296,
@@ -291,14 +291,14 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"]["Eltreum"] = {
 			["outline"] = "OUTLINE",
-			["emphFontName"] = "Kimberley",
+			["emphFontName"] = E.db.general.font,
 			["emphPosition"] = {
 				"TOP", -- [1]
 				"TOP", -- [2]
 				nil, -- [3]
 				-6, -- [4]
 			},
-			["fontName"] = "Kimberley",
+			["fontName"] = E.db.general.font,
 			["growUpwards"] = false,
 			["emphOutline"] = "OUTLINE",
 			["normalPosition"] = {
