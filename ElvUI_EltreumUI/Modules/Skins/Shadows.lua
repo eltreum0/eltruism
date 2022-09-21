@@ -156,7 +156,6 @@ function ElvUI_EltreumUI:Shadows()
 			_G.CliqueSpellTab,
 			_G.EltruismClickCastingToggle,
 			_G.TradeFrame,
-			_G.TabardFrame,
 			_G.AddonList,
 			_G.BlackMarketFrame,
 			_G.ChromieTimeFrame,
@@ -532,6 +531,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.CovenantPreviewFrame,
 				_G.PetStableFrame,
 				_G.TaxiFrame,
+				_G.TabardFrame,
 			}
 			for _, frame in pairs(retailframes) do
 				if frame and not frame.shadow then
@@ -599,6 +599,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.QuestLogDetailFrame.backdrop,
 				_G.PetStableFrame.backdrop,
 				_G.TaxiFrame.backdrop,
+				_G.TabardFrame.backdrop,
 			}
 			for _, frame in pairs(classicframes) do
 				if frame and not frame.shadow then
