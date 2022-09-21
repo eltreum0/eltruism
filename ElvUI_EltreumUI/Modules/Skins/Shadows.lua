@@ -981,20 +981,32 @@ function ElvUI_EltreumUI:Shadows()
 					if not frame.shadow then
 						if not (E.db.ElvUI_EltreumUI.borders.partyborders and E.db.ElvUI_EltreumUI.borders.borders) then
 							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if E.db["unitframe"]["units"]["party"]["power"]["enable"] and E.db["unitframe"]["units"]["party"]["power"]["width"] == "spaced" then
+								frame.shadow:ClearAllPoints()
+								frame.shadow:SetPoint("BOTTOMLEFT", frame.Health,"BOTTOMLEFT", -3, -3)
+								frame.shadow:SetPoint("BOTTOMRIGHT", frame.Health,"BOTTOMRIGHT", 3, -3)
+								frame.shadow:SetPoint("TOPLEFT", frame.Health,"TOPLEFT", -3, 3)
+								frame.shadow:SetPoint("TOPRIGHT", frame.Health,"TOPRIGHT", 3, 3)
+								if not frame.Power.shadow then
+									frame.Power:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								end
+							end
 							if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
 								frame.shadow:ClearAllPoints()
 								frame.shadow:SetPoint("BOTTOMLEFT", frame.Power,"BOTTOMLEFT", -3, -3)
 								frame.shadow:SetPoint("BOTTOMRIGHT", frame.Power,"BOTTOMRIGHT", 3, -3)
 								frame.shadow:SetPoint("TOPLEFT", frame.InfoPanel,"TOPLEFT", -3, 3)
 								frame.shadow:SetPoint("TOPRIGHT", frame.InfoPanel,"TOPRIGHT", 3, 3)
+								if E.db["unitframe"]["units"]["party"]["power"]["enable"] and E.db["unitframe"]["units"]["party"]["power"]["width"] == "spaced" then
+									frame.shadow:ClearAllPoints()
+									frame.shadow:SetPoint("BOTTOMLEFT", frame.Health,"BOTTOMLEFT", -3, -3)
+									frame.shadow:SetPoint("BOTTOMRIGHT", frame.Health,"BOTTOMRIGHT", 3, -3)
+									frame.shadow:SetPoint("TOPLEFT", frame.InfoPanel,"TOPLEFT", -3, 3)
+									frame.shadow:SetPoint("TOPRIGHT", frame.InfoPanel,"TOPRIGHT", 3, 3)
+								end
 							end
 						end
 					end
-					--[[for _, button in pairs(partymembers) do
-						if not button.shadow then
-							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						end
-					end]]
 				end
 			end
 
