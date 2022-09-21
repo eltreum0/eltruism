@@ -1023,6 +1023,9 @@ function ElvUI_EltreumUI:EltruismBigWigs()
 			self.candyBarBar:SetStatusBarColor(...)
 			local r,g,b = self.candyBarBar:GetStatusBarColor()
 			self.candyBarBar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.4, g-0.4, b-0.4, 0.7, r, g, b, 0.7)
+			if not self.candyBarBar.shadow then
+				self.candyBarBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			end
 		end
 	end
 end
