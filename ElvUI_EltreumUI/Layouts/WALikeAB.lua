@@ -25,6 +25,7 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 
 		--unitframe stuff
 		E.db["unitframe"]["units"]["targettarget"]["width"] = 100
+		E.db["unitframe"]["units"]["player"]["power"]["autoHide"] = false
 
 		--bar specific settings
 		E.db["actionbar"]["bar1"]["backdropSpacing"] = 0
