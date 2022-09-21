@@ -29,6 +29,13 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
+			if (arg == "Blizzard_DeathRecap") then
+				_G.DeathRecapFrame:HookScript("OnShow", function()
+					if not _G.DeathRecapFrame.shadow then
+						_G.DeathRecapFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					end
+				end)
+			end
 			if (arg == "Blizzard_FlightMap") then
 				_G.FlightMapFrame:HookScript("OnShow", function()
 					if not _G.FlightMapFrame.shadow then
@@ -159,7 +166,6 @@ function ElvUI_EltreumUI:Shadows()
 			_G.AddonList,
 			_G.BlackMarketFrame,
 			_G.ChromieTimeFrame,
-			_G.DeathRecapFrame,
 			_G.VoidStorageFrame,
 		}
 		for _, frame in pairs(blizzardframes) do
