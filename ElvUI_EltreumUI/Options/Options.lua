@@ -7513,7 +7513,9 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext end,
 						set = function(_, value)
 							E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext = tostring(value)
-							C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, tostring(value) , Enum.VoiceTtsDestination.LocalPlayback, 0, 100)
+							if E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice ~= nil then
+								C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, tostring(value) , Enum.VoiceTtsDestination.LocalPlayback, 0, 100)
+							end
 						end,
 					},
 					ttsvoiceselect = {
