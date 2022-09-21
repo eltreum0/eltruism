@@ -59,8 +59,14 @@ function ElvUI_EltreumUI:Shadows()
 			end
 			if (arg == "Blizzard_TradeSkillUI") then
 				_G.TradeSkillFrame:HookScript("OnShow", function()
-					if not _G.TradeSkillFrame.shadow then
-						_G.TradeSkillFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if E.Retailt then
+						if not _G.TradeSkillFrame.shadow then
+							_G.TradeSkillFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						end
+					else
+						if not _G.TradeSkillFrame.backdrop.shadow then
+							_G.TradeSkillFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						end
 					end
 				end)
 			end
@@ -150,13 +156,11 @@ function ElvUI_EltreumUI:Shadows()
 			_G.CliqueSpellTab,
 			_G.EltruismClickCastingToggle,
 			_G.TradeFrame,
-			_G.TaxiFrame,
 			_G.TabardFrame,
 			_G.AddonList,
 			_G.BlackMarketFrame,
 			_G.ChromieTimeFrame,
 			_G.DeathRecapFrame,
-			_G.PetStableFrame,
 			_G.VoidStorageFrame,
 		}
 		for _, frame in pairs(blizzardframes) do
@@ -526,6 +530,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G.DressUpFrame.OutfitDetailsPanel,
 				_G.WeeklyRewardsFrame,
 				_G.CovenantPreviewFrame,
+				_G.PetStableFrame,
+				_G.TaxiFrame,
 			}
 			for _, frame in pairs(retailframes) do
 				if frame and not frame.shadow then
@@ -591,6 +597,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G.CharacterFrameTab5.backdrop, --only in classic though
 				_G.FriendsFrameTab5.backdrop, --only in classic though
 				_G.QuestLogDetailFrame.backdrop,
+				_G.PetStableFrame.backdrop,
+				_G.TaxiFrame.backdrop,
 			}
 			for _, frame in pairs(classicframes) do
 				if frame and not frame.shadow then
