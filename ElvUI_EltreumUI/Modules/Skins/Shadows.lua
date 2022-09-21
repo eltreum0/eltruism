@@ -29,10 +29,44 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
+			if (arg == "Blizzard_FlightMap") then
+				_G.FlightMapFrame:HookScript("OnShow", function()
+					if not _G.FlightMapFrame.shadow then
+						_G.FlightMapFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					end
+				end)
+			end
+			if (arg == "Blizzard_GuildBankUI") then
+				_G.GuildBankFrame:HookScript("OnShow", function()
+					if not _G.GuildBankFrame.shadow then
+						_G.GuildBankFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					end
+				end)
+			end
 			if (arg == "Blizzard_TrainerUI") then
 				_G.ClassTrainerFrame:HookScript("OnShow", function()
 					if not _G.ClassTrainerFrame.shadow then
 						_G.ClassTrainerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					end
+				end)
+			end
+			if (arg == "Blizzard_ItemSocketingUI") then
+				_G.ItemSocketingFrame:HookScript("OnShow", function()
+					if not _G.ItemSocketingFrame.shadow then
+						_G.ItemSocketingFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					end
+				end)
+			end
+			if (arg == "Blizzard_TradeSkillUI") then
+				_G.TradeSkillFrame:HookScript("OnShow", function()
+					if E.Retailt then
+						if not _G.TradeSkillFrame.shadow then
+							_G.TradeSkillFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						end
+					else
+						if not _G.TradeSkillFrame.backdrop.shadow then
+							_G.TradeSkillFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						end
 					end
 				end)
 			end
@@ -96,6 +130,10 @@ function ElvUI_EltreumUI:Shadows()
 			_G.VideoOptionsFrame,
 			_G.InterfaceOptionsFrame,
 			_G.StaticPopup1, --seems like blizzard
+			_G.StaticPopup2, --seems like blizzard
+			_G.StaticPopup3, --seems like blizzard
+			_G.StaticPopup4, --seems like blizzard
+			_G.StaticPopup5, --seems like blizzard
 			_G.CharacterFrameTab1.backdrop,
 			_G.CharacterFrameTab2.backdrop,
 			_G.CharacterFrameTab3.backdrop,
@@ -117,6 +155,12 @@ function ElvUI_EltreumUI:Shadows()
 			_G.SpellBookSkillLineTab5,
 			_G.CliqueSpellTab,
 			_G.EltruismClickCastingToggle,
+			_G.TradeFrame,
+			_G.AddonList,
+			_G.BlackMarketFrame,
+			_G.ChromieTimeFrame,
+			_G.DeathRecapFrame,
+			_G.VoidStorageFrame,
 		}
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then
@@ -484,6 +528,10 @@ function ElvUI_EltreumUI:Shadows()
 				_G.DressUpFrame,
 				_G.DressUpFrame.OutfitDetailsPanel,
 				_G.WeeklyRewardsFrame,
+				_G.CovenantPreviewFrame,
+				_G.PetStableFrame,
+				_G.TaxiFrame,
+				_G.TabardFrame,
 			}
 			for _, frame in pairs(retailframes) do
 				if frame and not frame.shadow then
@@ -549,6 +597,9 @@ function ElvUI_EltreumUI:Shadows()
 				_G.CharacterFrameTab5.backdrop, --only in classic though
 				_G.FriendsFrameTab5.backdrop, --only in classic though
 				_G.QuestLogDetailFrame.backdrop,
+				_G.PetStableFrame.backdrop,
+				_G.TaxiFrame.backdrop,
+				_G.TabardFrame.backdrop,
 			}
 			for _, frame in pairs(classicframes) do
 				if frame and not frame.shadow then
@@ -622,6 +673,8 @@ function ElvUI_EltreumUI:Shadows()
 			_G["ElvUI_ReputationBar"],
 			_G["ElvUI_ExperienceBar"],
 			_G["ElvUI_ThreatBar"],
+			_G["ElvUIStatusReport"],
+			_G["ElvUIStatusPlugins"],
 		}
 		for _, frame in pairs(GeneralElvUIFrames) do
 			if frame and not frame.shadow then

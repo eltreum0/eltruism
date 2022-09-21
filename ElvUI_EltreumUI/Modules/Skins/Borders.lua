@@ -1105,7 +1105,7 @@ updatetargettarget:SetScript("OnEvent", function()
 end)
 
 --Function to toggle borders during install
-function ElvUI_EltreumUI:ShowHideBorders()
+function ElvUI_EltreumUI:ShowHideBorders(install)
 	local borderlist = {
 		playerborder,
 		targetborder,
@@ -1202,7 +1202,7 @@ function ElvUI_EltreumUI:ShowHideBorders()
 		end
 	end
 
-	if not E.private.ElvUI_EltreumUI.install_version then
+	if install or not E.private.ElvUI_EltreumUI.install_version then
 		if not E.db.ElvUI_EltreumUI.borders.borders then
 			E.db.ElvUI_EltreumUI.borders.borders = true
 			E.db.ElvUI_EltreumUI.borders.borderautoadjust = true

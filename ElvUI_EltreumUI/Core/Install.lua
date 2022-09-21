@@ -75,11 +75,11 @@ ElvUI_EltreumUI.InstallerData = {
 
 			_G.PluginInstallFrame.SubTitle:SetText(L["Layouts"])
 			_G.PluginInstallFrame.Desc1:SetText(L["Please select the role for your character, which will create a new profile.\nThis process can take a few seconds"])
-			_G.PluginInstallFrame.Desc2:SetText(L["Eltruism uses a 0.7 scale, but ElvUI can calculate the best scale for you using the Automatic Scale option"].." ("..((math.floor(E:PixelBestSize()*100))/100)..")")
+			--_G.PluginInstallFrame.Desc2:SetText(L["Eltruism uses a 0.7 scale, but ElvUI can calculate the best scale for you using the Automatic Scale option"].." ("..((math.floor(E:PixelBestSize()*100))/100)..")")
 			if E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' then
-				_G.PluginInstallFrame.Desc3:SetText('|cff82B4ff'..L["You can support the group with your class, if you select DPS/Tank then its recommended to click Alternative Frames after clicking DPS/Tank"]..'|r')
+				_G.PluginInstallFrame.Desc2:SetText('|cff82B4ff'..L["You can support the group with your class, if you select DPS/Tank then its recommended to click Alternative Frames after clicking DPS/Tank"]..'|r')
 			end
-			_G.PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cFFFF0000'..L["Very High (but Optional)"]..'|r')
+			_G.PluginInstallFrame.Desc3:SetText(L["Importance: "]..'|cFFFF0000'..L["Very High (but Optional)"]..'|r')
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function()
@@ -140,15 +140,15 @@ ElvUI_EltreumUI.InstallerData = {
 				PlaySound(888)
 			end)
 			_G.PluginInstallFrame.Option2:SetText(L["Healer"])
-			_G.PluginInstallFrame.Option3:SetText(L["Automatic\nScale"])
-			_G.PluginInstallFrame.Option3:Enable()
-			_G.PluginInstallFrame.Option3:Show()
-			_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AutoScale() end)
+			--_G.PluginInstallFrame.Option3:SetText(L["Automatic\nScale"])
+			--_G.PluginInstallFrame.Option3:Enable()
+			--_G.PluginInstallFrame.Option3:Show()
+			--_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AutoScale() end)
 			if E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
-				_G.PluginInstallFrame.Option4:SetText(L["Alternative\nFrames"])
-				_G.PluginInstallFrame.Option4:Enable()
-				_G.PluginInstallFrame.Option4:Show()
-				_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:AlternativeGroupsDPS() end)
+				_G.PluginInstallFrame.Option3:SetText(L["Alternative\nFrames"])
+				_G.PluginInstallFrame.Option3:Enable()
+				_G.PluginInstallFrame.Option3:Show()
+				_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AlternativeGroupsDPS() end)
 			end
 		end,
 		[3] = function()
@@ -187,7 +187,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option3:SetScript('OnClick', function()
 				ElvUI_EltreumUI:BorderAdjust()
 				ElvUI_EltreumUI:AuraBorders()
-				ElvUI_EltreumUI:ShowHideBorders()
+				ElvUI_EltreumUI:ShowHideBorders(true)
 			end)
 			_G.PluginInstallFrame.Option3:SetText(L["Borders"])
 			_G.PluginInstallFrame.Option4:Enable()

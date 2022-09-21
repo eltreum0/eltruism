@@ -23,6 +23,10 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 		E.db["unitframe"]["units"]["player"]["debuffs"]["yOffset"] = -44
 		E.db["unitframe"]["units"]["target"]["buffs"]["yOffset"] = -44
 
+		--unitframe stuff
+		E.db["unitframe"]["units"]["targettarget"]["width"] = 100
+		E.db["unitframe"]["units"]["player"]["power"]["autoHide"] = false
+
 		--bar specific settings
 		E.db["actionbar"]["bar1"]["backdropSpacing"] = 0
 		E.db["actionbar"]["bar1"]["buttonHeight"] = 26
