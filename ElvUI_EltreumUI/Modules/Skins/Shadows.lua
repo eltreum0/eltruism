@@ -173,10 +173,27 @@ function ElvUI_EltreumUI:Shadows()
 			_G.BlackMarketFrame,
 			_G.ChromieTimeFrame,
 			_G.VoidStorageFrame,
+			_G.BonusRollFrame,
 		}
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then
 				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			end
+		end
+
+		hooksecurefunc(_G.AlertFrame, "AddAlertFrame", function(_,frame)
+			if frame and frame.backdrop and not frame.backdrop.shadow then
+				frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			end
+		end)
+
+		--mirror timer shadow
+		for i = 1, _G.MIRRORTIMER_NUMTIMERS do
+			local statusBar = _G['MirrorTimer'..i..'StatusBar']
+			if statusBar then
+				if not statusBar.shadow then
+					statusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				end
 			end
 		end
 

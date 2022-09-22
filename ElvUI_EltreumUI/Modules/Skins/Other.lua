@@ -10,7 +10,9 @@ local skillbutton
 local skillTitle
 
 --test elvui backdrop transparency, can also replace the backdrop texture
---[[function E:UpdateBackdropColors()
+--[[
+--E.media.blankTex = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Stripes.tga"
+function E:UpdateBackdropColors()
 	local r, g, b = unpack(E.media.backdropcolor)
 	local r2, g2, b2, a2 = unpack(E.media.backdropfadecolor)
 
@@ -81,6 +83,32 @@ if not E.Retail then
 			end
 		end
 	end)
+end
+
+--gradient misc
+function ElvUI_EltreumUI:GradientMirrorLoot()
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+
+		--breath/mirror
+		for i = 1, _G.MIRRORTIMER_NUMTIMERS do
+			local statusBar = _G['MirrorTimer'..i..'StatusBar']
+			if statusBar then
+				statusBar:HookScript("OnShow", function()
+					local r,g,b,a = statusBar:GetStatusBarColor()
+					statusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r - 0.3, g - 0.3, b - 0.3, a, r + 0.2, g + 0.2, b + 0.2, a)
+				end)
+			end
+		end
+
+		--[[--loot roll
+		local M = E:GetModule('Misc')
+		for i = 1, NUM_GROUP_LOOT_FRAMES do
+			local frame = M:LootFrame_GetFrame(i)
+			local r,g,b,a = frame.status:GetStatusBarColor()
+			frame.status:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r - 0.3, g - 0.3, b - 0.3, a, r + 0.2, g + 0.2, b + 0.2, a)
+		end]] --check misc/lootroll line 255
+
+	end
 end
 
 function ElvUI_EltreumUI:SkinProfessions()
@@ -1065,14 +1093,16 @@ function ElvUI_EltreumUI:EltruismDetails()
 							if E.db.ElvUI_EltreumUI.skins.detailstextureoverwrite then
 								row.textura:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixelB")
 							end
-							if row.minha_tabela then
+							if row.minha_tabela and row.minha_tabela.name then
 								unitclass = row.minha_tabela:class() --from details api returns class of that row
-								if unitclass then
+								if unitclass ~='UNKNOW' then
 									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 										row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
 									else
 										row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
 									end
+								else
+									row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.5, g-0.5, b-0.5, 0.9, r+0.2, g+0.2, b+0.2, 0.9)
 								end
 							else
 								row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.5, g-0.5, b-0.5, 0.9, r+0.2, g+0.2, b+0.2, 0.9)

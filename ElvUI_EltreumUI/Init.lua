@@ -115,7 +115,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:Shadows() --adds shadows to frames
 	ElvUI_EltreumUI:PlayerItemQuality("player") --add item quality texture to character panel skin
 	ElvUI_EltreumUI:CooldownColors() --changes cooldown colors to be class colored
-	--E:UpdateBackdropColors() --TEST
+	ElvUI_EltreumUI:GradientMirrorLoot() --gradient misc frames like breath/lootroll
 end
 
 function ElvUI_EltreumUI:Initialize()
