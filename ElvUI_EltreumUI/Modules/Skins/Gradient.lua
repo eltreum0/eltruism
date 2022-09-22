@@ -412,7 +412,6 @@ end
 --sends the colors for chat
 function ElvUI_EltreumUI:ChatCustomColor(unitclass)
 	if unitclass then
-		print(unitclass)
 		return unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1
 	else
 		return unitframecustomgradients["NPCNEUTRAL"].r1, unitframecustomgradients["NPCNEUTRAL"].g1, unitframecustomgradients["NPCNEUTRAL"].b1
