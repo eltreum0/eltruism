@@ -52,8 +52,14 @@ function ElvUI_EltreumUI:Shadows()
 			end
 			if (arg == "Blizzard_TrainerUI") then
 				_G.ClassTrainerFrame:HookScript("OnShow", function()
-					if not _G.ClassTrainerFrame.shadow then
-						_G.ClassTrainerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if E.Retail then
+						if not _G.ClassTrainerFrame.shadow then
+							_G.ClassTrainerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						end
+					else
+						if not _G.ClassTrainerFrame.backdrop.shadow then
+							_G.ClassTrainerFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						end
 					end
 				end)
 			end
