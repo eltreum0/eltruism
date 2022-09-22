@@ -45,8 +45,14 @@ function ElvUI_EltreumUI:Shadows()
 			end
 			if (arg == "Blizzard_GuildBankUI") then
 				_G.GuildBankFrame:HookScript("OnShow", function()
-					if not _G.GuildBankFrame.shadow then
-						_G.GuildBankFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if E.Retail then
+						if not _G.GuildBankFrame.shadow then
+							_G.GuildBankFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						end
+					else
+						if not _G.GuildBankFrame.backdrop.shadow then
+							_G.GuildBankFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						end
 					end
 				end)
 			end
