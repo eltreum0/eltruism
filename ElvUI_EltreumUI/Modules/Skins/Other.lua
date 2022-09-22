@@ -100,13 +100,13 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 			end
 		end
 
-		--loot roll
+		--[[--loot roll
 		local M = E:GetModule('Misc')
 		for i = 1, NUM_GROUP_LOOT_FRAMES do
 			local frame = M:LootFrame_GetFrame(i)
 			local r,g,b,a = frame.status:GetStatusBarColor()
 			frame.status:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r - 0.3, g - 0.3, b - 0.3, a, r + 0.2, g + 0.2, b + 0.2, a)
-		end
+		end]] --check misc/lootroll line 255
 
 	end
 end
