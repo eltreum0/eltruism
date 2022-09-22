@@ -10,7 +10,9 @@ local skillbutton
 local skillTitle
 
 --test elvui backdrop transparency, can also replace the backdrop texture
---[[function E:UpdateBackdropColors()
+--[[
+--E.media.blankTex = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Stripes.tga"
+function E:UpdateBackdropColors()
 	local r, g, b = unpack(E.media.backdropcolor)
 	local r2, g2, b2, a2 = unpack(E.media.backdropfadecolor)
 
