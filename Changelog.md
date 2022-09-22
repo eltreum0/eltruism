@@ -13,7 +13,7 @@ Fixed an issue with Borders toggling during install if the profile was already i
 Fixed Target of Target size in WeakAuras mode if the Healer profile was used\
 Fixed Player Power not appearing if using WeakAuras mode with Healer Profile\
 Fixed Quests overlapping with the Boss Frame by hiding quests during boss fights when the option was enabled instead of collapsing quests\
-Fixed an error when attempting to type a voice for Mail Sound when Text To Speeh did not have a voice selected\
+Fixed an error when attempting to type a voice for Mail Sound when Text To Speech did not have a voice selected\
 Fixed Details having a white bar texture during login\
 Fixed some shadow issues\
 Fixed an issue with action paging with Demon Hunters\
