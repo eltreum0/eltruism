@@ -1,11 +1,18 @@
-### 3.4.3 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.4.4[] [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added Gradient to BigWigs Bars with a BigWigs Skin in Eltruism > Skins\
-Added Gradient to Details Bars with a Details Skin in Eltruism > Skins\
-Added a few checks for Unitframe Modifications being enabled before applying settings like gradient power and models\
-Added the chat command /eltruism translate which will turn off DeepL translation warnings\
-Updated Bigwigs, DBM, Capping and ElvUI FCT profiles\
-Updated Warlock Model to be different from Paladin\
-Updated Pet Castbar color to have a different color between Interruptable and Non Interruptable\
-Fixed the Death Animations (such as "You Died") activating inside instances\
-*Note: Details alpha/beta versions might have issues with the skin since those versions are meant for Dragonflight and not release, make sure to use the release version from August 31st
+Added some more missing shadows\
+Added customizable gradient colors to Details Skins, if the option is enabled in Gradient Colors then Details will use the custom colors\
+Added Shadows to BigWigs Skin\
+Updated ElvUI FCT profile\
+Updated how fonts for other addons are applied during install, now they should use the font you have chosen\
+Updated Install process removing Automatic Scale since Eltruism is only really adjusted for the default Scale and not multiple ones (you can use any other scale but profiles won't be adjusted for it)\
+Updated Evoker Icons\
+Fixed an issue with Borders toggling during install if the profile was already installed\
+Fixed Target of Target size in WeakAuras mode if the Healer profile was used\
+Fixed Player Power not appearing if using WeakAuras mode with Healer Profile\
+Fixed Quests overlapping with the Boss Frame by hiding quests during boss fights when the option was enabled instead of collapsing quests\
+Fixed an error when attempting to type a voice for Mail Sound when Text To Speech did not have a voice selected\
+Fixed Details having a white bar texture during login\
+Fixed some shadow issues\
+Fixed an issue with action paging with Demon Hunters\
+Fixed spaced power shadows in Party

@@ -9,8 +9,7 @@ local dontexpandanymore = 0
 local skillbutton
 local skillTitle
 
-
---test elvui backdrop transparency
+--test elvui backdrop transparency, can also replace the backdrop texture
 --[[function E:UpdateBackdropColors()
 	local r, g, b = unpack(E.media.backdropcolor)
 	local r2, g2, b2, a2 = unpack(E.media.backdropfadecolor)
@@ -19,11 +18,33 @@ local skillTitle
 		if frame and frame.template and not frame:IsForbidden() then
 			if not frame.ignoreUpdates then
 				if frame.callbackBackdropColor then
+					local edgeSize = E.twoPixelsPlease and 2 or 1
+					frame:SetBackdrop({
+						edgeFile = E.media.blankTex,
+						bgFile = E.media.glossTex,
+						edgeSize = edgeSize
+					})
 					frame:callbackBackdropColor()
+
 				elseif frame.template == 'Default' then
+					local edgeSize = E.twoPixelsPlease and 2 or 1
+					frame:SetBackdrop({
+						edgeFile = E.media.blankTex,
+						bgFile = E.media.glossTex,
+						edgeSize = edgeSize
+					})
 					frame:SetBackdropColor(r, g, b, a2)
+
+
 				elseif frame.template == 'Transparent' then
+					local edgeSize = E.twoPixelsPlease and 2 or 1
+					frame:SetBackdrop({
+						edgeFile = E.media.blankTex,
+						bgFile = E.media.glossTex,
+						edgeSize = edgeSize
+					})
 					frame:SetBackdropColor(r2, g2, b2, frame.customBackdropAlpha or a2)
+
 				end
 			end
 		else

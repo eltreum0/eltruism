@@ -40,7 +40,8 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 end
 
 function ElvUI_EltreumUI:PluginCheck()
-	if E.private.ElvUI_EltreumUI.install_version < "2.4.7" then
+	if E.private.ElvUI_EltreumUI.install_version and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
+	elseif E.private.ElvUI_EltreumUI.install_version < "2.4.7" then
 		E.private.ElvUI_EltreumUI.isInstalled.sle = true
 		E.private.ElvUI_EltreumUI.isInstalled.windtools = true
 		E.private.ElvUI_EltreumUI.isInstalled.projectazilroka = true
@@ -258,6 +259,9 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		--fix the demonhunter paging
 		if E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] == "[vehicleui] 12; [overridebar] 14;[possessbar] 12[bonusbar:5] 11;;" then
 			E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12[bonusbar:5] 11;"
+		end
+		if E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] == "[vehicleui] 12; [overridebar] 14;[possessbar] 12[bonusbar:5] 11;;" then
+			E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12[bonusbar:5] 11;"
 		end
 	end
 
