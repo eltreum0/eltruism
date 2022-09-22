@@ -260,6 +260,9 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		if E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] == "[vehicleui] 12; [overridebar] 14;[possessbar] 12[bonusbar:5] 11;;" then
 			E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12[bonusbar:5] 11;"
 		end
+		if E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] == "[vehicleui] 12; [overridebar] 14;[possessbar] 12[bonusbar:5] 11;;" then
+			E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12[bonusbar:5] 11;"
+		end
 	end
 
 	--more long term checks, in case somehow people enable 2 settings when its not possible to do so. Maybe its a shared profile from another person? No idea how they manage to do this
