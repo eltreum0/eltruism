@@ -46,9 +46,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["convertPages"] = true
 
 		--smoothbars
-		E.db["general"]["altPowerBar"]["smoothbars"] = false
-		E.db["nameplates"]["smoothbars"] = false
-		E.db["unitframe"]["smoothbars"] = false
+		E.db["general"]["altPowerBar"]["smoothbars"] = true
+		E.db["nameplates"]["smoothbars"] = true
+		E.db["unitframe"]["smoothbars"] = true
 
 		--new tooltip things
 		E.db["tooltip"]["inspectDataEnable"] = true
