@@ -87,6 +87,7 @@ local function AddLootIcons(_, _, message, ...)
 				return "|T"..texture..":12:12:0:0:64:64:5:59:5:59|t"..link
 			end
 		end
+		--if guid ~= nil and guid:match("Player") and E.db.ElvUI_EltreumUI.chat.classcolorchat then
 		if guid ~= nil and E.db.ElvUI_EltreumUI.chat.classcolorchat then
 			local _, unitclass =GetPlayerInfoByGUID(guid)
 			local msg
