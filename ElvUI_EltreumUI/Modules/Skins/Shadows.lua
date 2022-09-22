@@ -187,6 +187,17 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end)
 
+
+		--mirror timer shadow
+		for i = 1, _G.MIRRORTIMER_NUMTIMERS do
+			local statusBar = _G['MirrorTimer'..i..'StatusBar']
+			if statusBar then
+				if not statusBar.shadow then
+					statusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				end
+			end
+		end
+
 		if E.private["general"]["minimap"]["enable"] and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.minimapborder) then
 			local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
 			local Minimapsizex, Minimapsizey = _G["Minimap"]:GetSize()
