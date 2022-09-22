@@ -218,7 +218,7 @@ function ElvUI_EltreumUI:GetUnitItemLevel(unit)
 	else
 		total = total + max(mainhand,offhand,ranged) * 2
 	end
-	return total/16, max(mainhand,offhand), maxlevel
+	return total/16
 end
 
 --wrath to detect dual spec
