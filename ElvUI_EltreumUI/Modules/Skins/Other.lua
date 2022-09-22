@@ -85,9 +85,11 @@ if not E.Retail then
 	end)
 end
 
---gradient breath
-function ElvUI_EltreumUI:GradientMirrorTimers()
+--gradient misc
+function ElvUI_EltreumUI:GradientMirrorLoot()
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+
+		--breath/mirror
 		for i = 1, _G.MIRRORTIMER_NUMTIMERS do
 			local statusBar = _G['MirrorTimer'..i..'StatusBar']
 			if statusBar then
@@ -97,6 +99,15 @@ function ElvUI_EltreumUI:GradientMirrorTimers()
 				end)
 			end
 		end
+
+		--loot roll
+		local M = E:GetModule('Misc')
+		for i = 1, NUM_GROUP_LOOT_FRAMES do
+			local frame = M:LootFrame_GetFrame(i)
+			local r,g,b,a = frame.status:GetStatusBarColor()
+			frame.status:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r - 0.3, g - 0.3, b - 0.3, a, r + 0.2, g + 0.2, b + 0.2, a)
+		end
+
 	end
 end
 
