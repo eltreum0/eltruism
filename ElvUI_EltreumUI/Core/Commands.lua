@@ -134,6 +134,18 @@ function ElvUI_EltreumUI:RunCommands(message)
 		else
 			ElvUI_EltreumUI:GreyBg()
 		end
+	elseif message == 'secretbgtest' then
+		local valuecolors = E:ClassColor(E.myclass, true)
+		ElvUI_EltreumUI:Print("Secret test background color, backdrop updated")
+		--E.db.general.backdropcolor.b = 0.10
+		--E.db.general.backdropcolor.g = 0.10
+		--E.db.general.backdropcolor.r = 0.10
+
+		E.db.general.backdropcolor.b = valuecolors.b*0.14
+		E.db.general.backdropcolor.g = valuecolors.g*0.14
+		E.db.general.backdropcolor.r = valuecolors.r*0.14
+		--E:UpdateBackdropColors()
+		E:UpdateMediaItems()
 	else
 		ElvUI_EltreumUI:Print("|cff82B4ffYou have entered an unknown command, here's a list of commands you can use:|r")
 		print("|cff82B4ff/eltruism|r - Opens Eltruism Config")
