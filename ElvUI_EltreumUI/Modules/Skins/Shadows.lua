@@ -187,7 +187,6 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end)
 
-
 		--mirror timer shadow
 		for i = 1, _G.MIRRORTIMER_NUMTIMERS do
 			local statusBar = _G['MirrorTimer'..i..'StatusBar']

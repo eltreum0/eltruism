@@ -85,6 +85,21 @@ if not E.Retail then
 	end)
 end
 
+--gradient breath
+function ElvUI_EltreumUI:GradientMirrorTimers()
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+		for i = 1, _G.MIRRORTIMER_NUMTIMERS do
+			local statusBar = _G['MirrorTimer'..i..'StatusBar']
+			if statusBar then
+				statusBar:HookScript("OnShow", function()
+					local r,g,b,a = statusBar:GetStatusBarColor()
+					statusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r - 0.3, g - 0.3, b - 0.3, a, r + 0.2, g + 0.2, b + 0.2, a)
+				end)
+			end
+		end
+	end
+end
+
 function ElvUI_EltreumUI:SkinProfessions()
 	if E.db.ElvUI_EltreumUI.skins.professions and not E.private.skins.blizzard.enable == false then
 		--skin and expand the tradeskills
