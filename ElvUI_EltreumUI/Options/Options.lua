@@ -6465,6 +6465,7 @@ function ElvUI_EltreumUI:Configtable()
 								max = 160,
 								step = 1,
 								--width = "single",
+								disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsize end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontsize = value end,
 							},
@@ -6474,7 +6475,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Change the font of LootText"],
 								width = 'full',
 								order = 19,
-								disabled = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg or E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable end,
+								disabled = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg or E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable or not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsetting end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontsetting = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -6484,7 +6485,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Change the font of LootText"],
 								width = 'full',
 								order = 20,
-								disabled = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsetting or E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable end,
+								disabled = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsetting or E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable or not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -9568,6 +9569,7 @@ function ElvUI_EltreumUI:Configtable()
 								max = 2,
 								step = 0.01,
 								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
 								get = function()
 									if E.Retail then
 										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail
@@ -9591,6 +9593,7 @@ function ElvUI_EltreumUI:Configtable()
 								max = 2,
 								step = 0.01,
 								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
 								get = function()
 									if E.Retail then
 										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail
@@ -9614,6 +9617,7 @@ function ElvUI_EltreumUI:Configtable()
 								max = 2,
 								step = 0.01,
 								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
 								get = function()
 									if E.Retail then
 										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail
@@ -10409,7 +10413,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "toggle",
 								desc = L["Requires Light Mode Enabled"],
 								width = 'full',
-								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.lightmode or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -10419,7 +10423,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Enable Gradient (Requires Dark or Light Modes)"],
 								desc = L["Enable Gradient colors for Health"],
 								width = 'full',
-								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.lightmode or not E.db.ElvUI_EltreumUI.unitframes.darkmode or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
