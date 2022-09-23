@@ -1165,3 +1165,5 @@ L["Skin BigWigs"] = true
 L["Skin Details"] = true
 L["Replace Texture"] = "Remplacer la texture"
 L["Replace Details Bar Texture"] = "Remplacer la texture de la barre de détails"
+L["Enable Automatically Confirming Bind on Pickup"] = "Activer la confirmation automatique du pillage des objets Bind on Pickup"
+L["Loot Window will automatically confirm looting Bind on Pickup items"] = "La fenêtre de pillage confirmera automatiquement le pillage des objets Bind on Pickup"
