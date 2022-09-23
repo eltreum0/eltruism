@@ -7908,6 +7908,15 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								func = function() ElvUI_EltreumUI:RestoreNameplateNames() end,
 							},
+							nameplaterefreshdebufffilter = {
+								order = 1919,
+								type = 'execute',
+								name = L["Manage Debuff Style Filter"],
+								width = 'full',
+								desc = L["Add debuffs to the Style Filter to make Nameplates with expiring Debuffs show full alpha and scale"],
+								disabled = function() return not E.global["nameplates"]["filters"]["EltreumRefreshDebuff"] end,
+								func = function() local C, L = unpack(E.OptionsUI) C:StyleFilterSetConfig("EltreumRefreshDebuff") E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'nameplates', "stylefilters", "triggers", "debuffs") end,
+							},
 						},
 					},
 					powerbar = {

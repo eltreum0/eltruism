@@ -42,6 +42,7 @@ EltreumPowerBar.Text:SetJustifyV("CENTER")
 EltreumPowerBar.bg = EltreumPowerBar:CreateTexture(nil, "BACKGROUND")
 EltreumPowerBar.bg:SetTexture(E.media.normTex)
 EltreumPowerBar.bg:SetPoint("CENTER", EltreumPowerBar, "CENTER", 0, 0)
+--EltreumPowerBar:SetTemplate("Transparent")
 
 --setup the prediction and incoming prediction
 local EltreumPowerPrediction = CreateFrame('StatusBar', "EltruismPowerBarPrediction", EltreumPowerBar)

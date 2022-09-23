@@ -571,3 +571,31 @@ if E.Retail then
 		_G["ClickBindingFrame"]:SetPoint("LEFT", _G["SpellBookFrame"], "RIGHT", 50, -37)
 	end)
 end
+
+--for fps testing
+--[[
+local framerate = CreateFrame("Frame", nil, UIParent)
+framerate.TimeText = framerate:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
+framerate.TimeText:SetJustifyV("TOP")
+framerate.TimeText:SetSize(0, 26)
+framerate.TimeText:SetPoint("CENTER", UIParent, "CENTER",0, 400)
+framerate.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), 36, E.db.general.fontStyle)
+framerate.TimeText:SetTextColor(1,1,1)
+UIParent.ClearAllPoints(FramerateText)
+_G.FramerateText:SetPoint("RIGHT",UIParent,"CENTER",0, 2035)
+_G.FramerateLabel:SetText("")
+ToggleFramerate()
+
+framerate:SetScript("OnUpdate", function()
+	_G.FRAMERATE_FREQUENCY = 0.1
+	if _G.FramerateText:GetText() ~= nil then
+		if tonumber(_G.FramerateText:GetText()) < 60 then
+			framerate.TimeText:SetTextColor(1,0,0)
+			framerate.TimeText:SetText(_G.FramerateText:GetText())
+		elseif tonumber(_G.FramerateText:GetText()) > 60 then
+			framerate.TimeText:SetTextColor(1,1,1)
+			framerate.TimeText:SetText(_G.FramerateText:GetText())
+		end
+	end
+end)
+]]

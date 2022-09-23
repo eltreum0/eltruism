@@ -138,8 +138,8 @@ function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 			E.db["movers"]["ClassBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,1,346"
 			E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 362
 
-			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_Runes,BOTTOMLEFT,-6,6"
-			E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_Runes,BOTTOMRIGHT,4,6"
+			E.db["movers"]["ElvUF_PlayerMover"] = "TOPRIGHT,ElvUF_Player_PowerBar,BOTTOMLEFT,-6,13"
+			E.db["movers"]["ElvUF_TargetMover"] = "TOPLEFT,ElvUF_Player_PowerBar,BOTTOMRIGHT,4,13"
 			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "TOP,ElvUF_Player,BOTTOM,15,-10"
 			E.db["movers"]["ElvUF_TargetCastbarMover"] = "TOP,ElvUF_Target,BOTTOM,14,-10"
 			E.db["movers"]["TargetPowerBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,256,301"
