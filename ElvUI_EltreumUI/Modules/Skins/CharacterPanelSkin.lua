@@ -673,10 +673,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -170)
 				elseif number > 21 and number < 26 then
 					CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -100)
-				elseif number == 26 then
+				elseif number >= 26 then
 					CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -120)
-				elseif number >= 27 then
-					CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -140)
 				end
 
 				--numbers

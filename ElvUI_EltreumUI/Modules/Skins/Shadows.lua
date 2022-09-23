@@ -180,6 +180,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G.ChromieTimeFrame,
 			_G.VoidStorageFrame,
 			_G.BonusRollFrame,
+			_G.ItemRefTooltip,
 		}
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then

@@ -9245,6 +9245,7 @@ function ElvUI_EltreumUI:Configtable()
 								hidden = E.Retail,
 								--hidden = function() if E.Retail then return true else return false end end,
 								desc = L["Enable this option"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.sockets end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.socketsinspect end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.socketsinspect = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
