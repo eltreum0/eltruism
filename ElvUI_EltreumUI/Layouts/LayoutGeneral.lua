@@ -105,9 +105,12 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["general"]["altPowerBar"]["statusBarColorGradient"] = true
 		E.db["general"]["autoRepair"] = "GUILD"
 		E.db["general"]["autoTrackReputation"] = true
-		E.db["general"]["backdropcolor"]["b"] = 0
-		E.db["general"]["backdropcolor"]["g"] = 0
-		E.db["general"]["backdropcolor"]["r"] = 0
+		--E.db["general"]["backdropcolor"]["b"] = 0
+		--E.db["general"]["backdropcolor"]["g"] = 0
+		--E.db["general"]["backdropcolor"]["r"] = 0
+		E.db["general"]["backdropcolor"]["b"] = 0.098039215686275
+		E.db["general"]["backdropcolor"]["g"] = 0.098039215686275
+		E.db["general"]["backdropcolor"]["r"] = 0.098039215686275
 		E.db["general"]["bordercolor"]["b"] = 0
 		E.db["general"]["bordercolor"]["g"] = 0
 		E.db["general"]["bordercolor"]["r"] = 0
