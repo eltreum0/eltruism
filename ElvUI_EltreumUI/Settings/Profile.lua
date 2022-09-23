@@ -421,6 +421,7 @@ P.ElvUI_EltreumUI = {
 		lootwishlistsoundenable = false,
 		lootwishlistsound = "Warcraft 3 - Rokhan Be Happy",
 		lootautoclose = false,
+		confirmbop = false,
 	},
 
 	borders = {

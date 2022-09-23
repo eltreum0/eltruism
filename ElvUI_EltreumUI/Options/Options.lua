@@ -6572,6 +6572,16 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.loot.lootautoclose end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.loot.lootautoclose = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
+					lootconfirmbop = {
+						order = 43,
+						name = L["Enable Automatically Confirming Bind on Pickup"],
+						type = "toggle",
+						desc = L["Loot Window will automatically confirm looting Bind on Pickup items"],
+						width = 'full',
+						hidden = E.Retail,
+						get = function() return E.db.ElvUI_EltreumUI.loot.confirmbop end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.loot.confirmbop = value end,
+					},
 					lootscreenshot = {
 						order = 43,
 						name = L["Enable Screenshotting if an item from the wishlist is looted"],
