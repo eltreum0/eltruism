@@ -467,6 +467,8 @@ function NP:StyleFilterSetChanges(frame, actions, HealthColor, PowerColor, Borde
 		NP:ScalePlate(frame, actions.scale)
 	end
 	if Alpha then
+		if frame:GetParent().needsRefreshDebuff then return end
+
 		c.Alpha = true
 		NP:PlateFade(frame, NP.db.fadeIn and 1 or 0, frame:GetAlpha(), actions.alpha * 0.01)
 	end

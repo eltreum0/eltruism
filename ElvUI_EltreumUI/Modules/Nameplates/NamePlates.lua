@@ -37,6 +37,7 @@ local nameplateShowFriends
 
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1
+local storealpha = 0.2
 function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 	if E.db.ElvUI_EltreumUI.glow.colorclassnp then
 		glowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
@@ -50,6 +51,8 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			--[[if button.caster ~= "player" then
 				button:Hide()
 			end]]
+			button:GetParent():GetParent():GetParent().needsRefreshDebuff = false
+
 			if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable then
 				button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 			end
@@ -93,6 +96,10 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 							debufftime = tonumber(button.cd.timer.text:GetText())
 							if E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow then
 								if debufftime ~= nil and debufftime <= E.db.ElvUI_EltreumUI.glow.numberdebuff and debufftime > 0 then
+									button:GetParent():GetParent():GetParent().needsRefreshDebuff = true
+									storealpha = button:GetParent():GetParent():GetParent():GetAlpha()
+									NP:PlateFade(button:GetParent():GetParent(), NP.db.fadeIn and 1 or 0, button:GetParent():GetParent():GetAlpha(), 1)
+									NP:ScalePlate(button:GetParent():GetParent(), 1)
 									if E.db.ElvUI_EltreumUI.glow.pixel then
 										LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
 									elseif E.db.ElvUI_EltreumUI.glow.autocast then
@@ -102,6 +109,10 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 										LCG.ButtonGlow_Start(button, glowcolor, 0.5)
 									end
 								else
+									button:GetParent():GetParent():GetParent().needsRefreshDebuff = false
+									if not UnitIsUnit(unit,"target") then
+										button:GetParent():GetParent():SetAlpha(storealpha)
+									end
 									if E.db.ElvUI_EltreumUI.glow.pixel then
 										LCG.PixelGlow_Stop(button)
 									elseif E.db.ElvUI_EltreumUI.glow.autocast then
