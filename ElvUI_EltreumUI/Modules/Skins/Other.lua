@@ -109,7 +109,6 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 						frame.status:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
 				end
-
 				if not frame.GradientHook then
 					frame:HookScript("OnShow", function()
 						local r,g,b = frame.status:GetStatusBarColor()
@@ -122,7 +121,6 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 
 	end
 end
-
 
 function ElvUI_EltreumUI:SkinProfessions()
 	if E.db.ElvUI_EltreumUI.skins.professions and not E.private.skins.blizzard.enable == false then
