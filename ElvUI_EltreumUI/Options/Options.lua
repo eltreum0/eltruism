@@ -7919,8 +7919,15 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								func = function() ElvUI_EltreumUI:RestoreNameplateNames() end,
 							},
-							nameplaterefreshdebufffilter = {
+							headerdebufffilter = {
 								order = 1919,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							nameplaterefreshdebufffilter = {
+								order = 1920,
 								type = 'execute',
 								name = L["Manage Debuff Style Filter"],
 								width = 'full',
