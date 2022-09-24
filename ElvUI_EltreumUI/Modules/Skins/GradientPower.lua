@@ -1,9 +1,10 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local UF = E:GetModule('UnitFrames')
+local NP = E:GetModule('NamePlates')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local powertype, _
-local unitframe
+local unitframe, Additionalframe, isHooked
 
 --powers there are gradients for since retail has like 100+ power types
 local powertypes ={
@@ -70,6 +71,21 @@ function ElvUI_EltreumUI:ApplyGradientPower(unit,name)
 	end
 end
 
+--additional power gradient/combo/runes as well
+function ElvUI_EltreumUI:ClassPower_SetBarColor(bar, r, g, b)
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+		bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, r - 0.3, g - 0.3, b - 0.3, r + 0.2, g + 0.2, b + 0.2)
+	end
+end
+hooksecurefunc(UF, "ClassPower_SetBarColor", ElvUI_EltreumUI.ClassPower_SetBarColor)
+hooksecurefunc(NP, "ClassPower_SetBarColor", ElvUI_EltreumUI.ClassPower_SetBarColor)
+
+--[[function ElvUI_EltreumUI:UpdateClassBar(current, maxBars, hasMaxChanged, powerType, chargedPoints)
+	local frame = self.origParent or self:GetParent()
+	frame.AdditionalPower:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, 1,0,0,0,1,0)
+end
+hooksecurefunc(UF, "UpdateClassBar", ElvUI_EltreumUI.UpdateClassBar)]]
+
 --Gradient Power Colors
 function ElvUI_EltreumUI:GradientPower()
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
@@ -97,6 +113,18 @@ function ElvUI_EltreumUI:GradientPower()
 			ElvUI_EltreumUI:ApplyGradientPower("arena4", "Arena4")
 			ElvUI_EltreumUI:ApplyGradientPower("arena5", "Arena5")
 		end
+
+		--gradient additional power
+		if not isHooked then
+			Additionalframe =  _G["ElvUF_Player_AdditionalPowerBar"]
+			if Additionalframe then
+				hooksecurefunc(Additionalframe, "SetStatusBarColor", function(_,r,g,b) --i knew the vertex thing from details could be useful
+					Additionalframe:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, r - 0.3, g - 0.3, b - 0.3, r + 0.2, g + 0.2, b + 0.2)
+				end)
+				isHooked = true
+			end
+		end
+
 	end
 end
 hooksecurefunc(UF, "Construct_PowerBar", ElvUI_EltreumUI.GradientPower)
