@@ -138,11 +138,8 @@ function ElvUI_EltreumUI:QuestItem()
 			EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_DELAYED")
 			EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_COOLDOWN")
 			EltruismQuestItemFrame:RegisterUnitEvent("UNIT_INVENTORY_CHANGED", "player")
-			if E.Retail then
-				EltruismQuestItemFrame:RegisterEvent("QUEST_WATCH_UPDATE")
-			else
-				EltruismQuestItemFrame:RegisterEvent("BAG_NEW_ITEMS_UPDATED")
-			end
+			EltruismQuestItemFrame:RegisterEvent("QUEST_WATCH_UPDATE")
+			EltruismQuestItemFrame:RegisterEvent("BAG_NEW_ITEMS_UPDATED")
 			EltruismQuestItemFrame:RegisterEvent("MAIL_SUCCESS") -- when mailing quest items UNIT_INVENTORY_CHANGED does not fire
 			EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED") -- Needed for items that starts a quest, when we accept it, update to remove the icon
 			EltruismQuestItemFrame:RegisterEvent("QUEST_LOG_UPDATE") -- For when items get added/removed during quest
