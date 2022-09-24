@@ -1206,3 +1206,5 @@ L["Skin BigWigs"] = "Skinne BigWigs"
 L["Skin Details"] = "Skinne Details"
 L["Replace Texture"] = "Texture ersetzen"
 L["Replace Details Bar Texture"] = "Ersetzt die Leistentexture in Details"
+L["Enable Automatically Confirming Bind on Pickup"] = true
+L["Loot Window will automatically confirm looting Bind on Pickup items"] = true

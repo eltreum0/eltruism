@@ -70,7 +70,13 @@ EltruismInstantLoot:RegisterEvent("UI_ERROR_MESSAGE")
 
 local function InstantLoot(_, event,_, arg2)
 	if event == "LOOT_BIND_CONFIRM" and (E.Wrath or E.TBC or E.Classic) then
-		return
+		if E.db.ElvUI_EltreumUI.loot.confirmbop then
+			for i = GetNumLootItems(), 1, -1 do
+				ConfirmLootSlot(i)
+			end
+		else
+			return
+		end
 	elseif event == "UI_ERROR_MESSAGE" and arg2 == ERR_INV_FULL then
 		return
 	elseif event == "LOOT_READY" or event == "LOOT_OPENED" then

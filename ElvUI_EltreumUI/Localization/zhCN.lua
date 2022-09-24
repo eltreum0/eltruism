@@ -1160,3 +1160,5 @@ L["Skin BigWigs"] = true
 L["Skin Details"] = true
 L["Replace Texture"] = true
 L["Replace Details Bar Texture"] = true
+L["Enable Automatically Confirming Bind on Pickup"] = true
+L["Loot Window will automatically confirm looting Bind on Pickup items"] = true

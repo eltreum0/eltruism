@@ -1251,6 +1251,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["target"]["aurabar"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["target"]["aurabar"]["spacing"] = 1
 	E.db["unitframe"]["units"]["target"]["aurabar"]["yOffset"] = 1
+	E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,CastByUnit,BlizzardNameplate"
 	if E.Retail then
 		E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal,Dispellable"
 	elseif E.Wrath or E.TBC or E.Classic then

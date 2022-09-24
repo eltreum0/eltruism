@@ -142,6 +142,7 @@ function ElvUI_EltreumUI:QuestItem()
 			else
 				EltruismQuestItemFrame:RegisterEvent("BAG_NEW_ITEMS_UPDATED")
 			end
+			EltruismQuestItemFrame:RegisterEvent("MAIL_SUCCESS") -- when mailing quest items UNIT_INVENTORY_CHANGED does not fire
 			EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED") -- Needed for items that starts a quest, when we accept it, update to remove the icon
 			EltruismQuestItemFrame:RegisterEvent("QUEST_LOG_UPDATE") -- For when items get added/removed during quest
 			EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
@@ -515,6 +516,14 @@ function ElvUI_EltreumUI:QuestItem()
 					EltruismQuestItemFrame:FixPosition()
 				end
 			end
+
+			-- Inventory might've changed because of mail
+			function EltruismQuestItemFrame:MAIL_SUCCESS(event)
+				self:RequestUpdate()
+				-- update mover position
+				EltruismQuestItemFrame:FixPosition()
+			end
+
 		end
 	end
 end

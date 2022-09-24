@@ -281,7 +281,7 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 				end
 			end
 		end
-		DCP:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+		DCP:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
 
 		function DCP:COMBAT_LOG_EVENT_UNFILTERED()
 			local _,event,_,_,_,sourceFlags,_,_,_,_,_,spellID = CombatLogGetCurrentEventInfo()

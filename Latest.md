@@ -5,6 +5,7 @@ Added a shortcut to the EltreumRefreshDebuff nameplate style filter in Eltruism 
 Added shadows to multiple Alert Frames like Achievements\
 Added Shadows to some missing frames\
 Added Gradient to Mirror Timers such as the Breath Timer\
+Added an option to Automatically Confirm Bind on Pickup Items in Classic/Wrath\
 Updated profiles, enabling smoothbars again and changing the backdrop color\
 Updated Details Icon to the new version of Details, also adding Evoker Icons\
 Fixed a possible error with Details\
