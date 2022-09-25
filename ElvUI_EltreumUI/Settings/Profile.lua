@@ -1144,7 +1144,7 @@ P.ElvUI_EltreumUI = {
 				g = 1,
 				b = 1,
 			},
-			offset = 25,
+			offset = 23,
 		},
 	},
 }
