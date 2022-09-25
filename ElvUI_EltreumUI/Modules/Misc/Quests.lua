@@ -347,7 +347,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						[54334] = true, --darkmoon tp
 						[55382] = true, --darkmoon tp
 						[54346] = true, --darkmoon tp
-						[28160] = true, --free teleport guy for wrath
+						[28160] = true, --free teleport guy for wrath to scholazar
 						[26673] = true, --magical kingdom of dalaran alliance free tp to dalaran
 						[29155] = true, --magical kingdom of dalaran horde free tp to dalaran
 					}
