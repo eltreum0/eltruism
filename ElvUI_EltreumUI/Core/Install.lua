@@ -79,7 +79,12 @@ ElvUI_EltreumUI.InstallerData = {
 			if E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' then
 				_G.PluginInstallFrame.Desc2:SetText('|cff82B4ff'..L["You can support the group with your class, if you select DPS/Tank then its recommended to click Alternative Frames after clicking DPS/Tank"]..'|r')
 			end
-			_G.PluginInstallFrame.Desc3:SetText(L["Importance: "]..'|cFFFF0000'..L["Very High (but Optional)"]..'|r')
+			if IsAddOnLoaded("Plater") or IsAddOnLoaded("TidyPlates") or IsAddOnLoaded("Kui_Nameplates") or IsAddOnLoaded("TidyPlates_ThreatPlates") then
+				_G.PluginInstallFrame.Desc3:SetText('|cFFFF0000'..L["You have another Nameplate Addon installed and loaded, and many nameplate features will not work with it"]..'|r')
+				_G.PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cFFFF0000'..L["Very High (but Optional)"]..'|r')
+			else
+				_G.PluginInstallFrame.Desc3:SetText(L["Importance: "]..'|cFFFF0000'..L["Very High (but Optional)"]..'|r')
+			end
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function()
