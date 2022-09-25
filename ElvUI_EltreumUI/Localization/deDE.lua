@@ -1212,4 +1212,4 @@ L["Minimap Cardinal Directions"] = "Minikarte Himmelsrichtungen"
 L["Enable Cardinal Directions"] = "Aktiviere Himmelsrichtungen"
 L["Add North, East, South, West to Minimap"] = "Norden, Osten, Süden, Westen zur Minikarte hinzufügen"
 L["Cardinal Text Offset"] = "Himmelsrichtungstext Versatz"
-L["You have another Nameplate Addon installed and loaded, and many nameplate features will not work with it"] = true
+L["You have another Nameplate Addon installed and loaded, and many nameplate features will not work with it"] = "Du hast ein anderes Namensschild Addon installiert und geladen, und viele Namensschild Funktionen funktionieren damit nicht."
