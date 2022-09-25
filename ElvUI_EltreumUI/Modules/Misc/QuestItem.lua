@@ -423,6 +423,39 @@ function ElvUI_EltreumUI:QuestItem()
 						index = (index + 1)
 					end
 				end
+
+				--for some reason sometimes it doesnt remove, sometimes it does, might need to implement a check somewhat like this to remove items
+				--[[--check if removed
+				local check = {}
+				for i = 1 , #EltruismQuestItemFrame.items + 1 do
+					if _G["EltruismQuestItem"..i] and _G["EltruismQuestItem"..i].itemId then
+						tinsert(check, _G["EltruismQuestItem"..i].itemId)
+					end
+				end
+				local verify = {}
+				for bag = 0, NUM_BAG_SLOTS do
+					for slot = 1, GetContainerNumSlots(bag) do
+						local link = GetContainerItemLink(bag,slot)
+						local itemId = link and tonumber(link:match(ITEMID_PATTERN))
+						tinsert(verify,itemId)
+					end
+				end
+
+				local function TableComp(a,b) --algorithm is O(n log n), due to table growth. --https://old.reddit.com/r/lua/comments/417v44/efficient_table_comparison/cz0oydn/
+					local t1,t2 = {}, {} -- temp tables
+					for k,v in pairs(a) do -- copy all values into keys for constant time lookups
+					    t1[k] = (t1[k] or 0) + 1 -- make sure we track how many times we see each value.
+					end
+					for k,v in pairs(b) do
+					    t2[k] = (t2[k] or 0) + 1
+					end
+					for k,v in pairs(t1) do -- go over every element
+					    if v ~= t2[k] then return false end -- if the number of times that element was seen don't match...
+					end
+					return true
+				end
+				print(TableComp(check,verify))]]
+
 				-- Set Shown Items
 				self.shownItems = (index - 1)
 				for i = index, #self.items do
