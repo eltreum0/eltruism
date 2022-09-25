@@ -238,7 +238,13 @@ end
 hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 
 --np custom health height conditions
-local heighttable = {}
+local heighttable = {
+	["FRIENDLY_NPC"] = 30,
+	["ENEMY_NPC"] = 30,
+	["ENEMY_PLAYER"] = 30,
+	["FRIENDLY_PLAYER"] = 30,
+	["PLAYER"] = 30,
+}
 local tableupdate = CreateFrame("FRAME")
 tableupdate:RegisterEvent("PLAYER_ENTERING_WORLD")
 tableupdate:RegisterEvent("PLAYER_STARTED_MOVING")
