@@ -1099,6 +1099,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Use Class Colors"],
 								--width = "full",
 								order = 95,
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.classcolor end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.classcolor = value ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end,
 							},
