@@ -570,12 +570,9 @@ hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastbarEffects)
 local modelupdater = CreateFrame("FRAME")
 modelupdater:RegisterUnitEvent("UNIT_TARGET", "target") --update whenever the target changes target
 modelupdater:RegisterUnitEvent("UNIT_PET", "player") --refresh everything
-
---modelupdater:RegisterEvent("PLAYER_TARGET_CHANGED") --test
 modelupdater:RegisterEvent("PLAYER_ENTERING_WORLD") --refresh everything
 modelupdater:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player") --refresh everything
 modelupdater:RegisterEvent("CINEMATIC_STOP") --cinematic might've caused it, so refresh everything
-
 modelupdater:SetScript("OnEvent", function(_, event)
 	ElvUI_EltreumUI:TargetTargetUFEffects()
 	if event == 'PLAYER_ENTERING_WORLD' or event == "PLAYER_FLAGS_CHANGED" or event == "CINEMATIC_STOP" then
