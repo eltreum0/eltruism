@@ -1137,7 +1137,7 @@ P.ElvUI_EltreumUI = {
 			playerfont = "Kimberley"
 		},
 		minimapcardinaldirections = {
-			enable = true,
+			enable = false,
 			colors = {
 				classcolor = true,
 				r = 1,
