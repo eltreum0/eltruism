@@ -116,7 +116,7 @@ function ElvUI_EltreumUI:QuestItem()
 				EltruismQuestItemFrame:Show()
 			end
 			-- Constants
-			local UPDATE_DELAY = 0.5
+			local UPDATE_DELAY = 1.0 --was 0.5 but i think that might be too low
 			local ITEMID_PATTERN = "item:(%d+)"
 			local QUEST_TOKEN = (GetItemClassInfo and GetItemClassInfo(LE_ITEM_CLASS_QUESTITEM or 12) or LOOT_JOURNAL_LEGENDARIES_SOURCE_QUEST or "Quest") -- Obtain the localization of the "Quest" type for items -- [7.0.3/Legion] API Removed: GetAuctionItemClasses()
 
