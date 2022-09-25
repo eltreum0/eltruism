@@ -136,12 +136,10 @@ function ElvUI_EltreumUI:QuestItem()
 			end
 			--EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE")
 			EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_DELAYED")
+			EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_COOLDOWN")
 			EltruismQuestItemFrame:RegisterUnitEvent("UNIT_INVENTORY_CHANGED", "player")
-			if E.Retail then
-				EltruismQuestItemFrame:RegisterEvent("QUEST_WATCH_UPDATE")
-			else
-				EltruismQuestItemFrame:RegisterEvent("BAG_NEW_ITEMS_UPDATED")
-			end
+			EltruismQuestItemFrame:RegisterEvent("QUEST_WATCH_UPDATE")
+			EltruismQuestItemFrame:RegisterEvent("BAG_NEW_ITEMS_UPDATED")
 			EltruismQuestItemFrame:RegisterEvent("MAIL_SUCCESS") -- when mailing quest items UNIT_INVENTORY_CHANGED does not fire
 			EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED") -- Needed for items that starts a quest, when we accept it, update to remove the icon
 			EltruismQuestItemFrame:RegisterEvent("QUEST_LOG_UPDATE") -- For when items get added/removed during quest
@@ -195,8 +193,8 @@ function ElvUI_EltreumUI:QuestItem()
 				--print("quest item spam "..math.random(1,99))
 				self.updateTime = (self.updateTime + elapsed)
 				if (self.updateTime > UPDATE_DELAY) then
-					self:SetScript("OnUpdate",nil)
-					self:UpdateButtons()
+					EltruismQuestItemFrame:SetScript("OnUpdate",nil)
+					EltruismQuestItemFrame:UpdateButtons()
 				end
 			end
 
@@ -376,7 +374,7 @@ function ElvUI_EltreumUI:QuestItem()
 			-- Request a Button Update
 			function EltruismQuestItemFrame:RequestUpdate()
 				self.updateTime = 0
-				self:SetScript("OnUpdate",OnUpdate)
+				EltruismQuestItemFrame:SetScript("OnUpdate",OnUpdate)
 				--print("re quest item spam "..math.random(1,99))
 			end
 			EltruismQuestItemFrame:RequestUpdate()
@@ -435,7 +433,7 @@ function ElvUI_EltreumUI:QuestItem()
 					self.items[i].bind:SetText(GetBindingText(GetBindingKey("CLICK ".."EltruismQuestItem"..i..":LeftButton"),"",1))
 				end
 				-- Update Misc
-				self:UpdateCooldowns()
+				EltruismQuestItemFrame:UpdateCooldowns()
 			end
 
 			-- Update Cooldowns
@@ -494,7 +492,7 @@ function ElvUI_EltreumUI:QuestItem()
 				if (self[event]) then
 					self[event](self,event,...)
 				else
-					self:RequestUpdate()
+					EltruismQuestItemFrame:RequestUpdate()
 				end
 			end)
 
@@ -504,14 +502,14 @@ function ElvUI_EltreumUI:QuestItem()
 					self.shownItems = 0
 				end
 				if (self.shownItems > 0) then
-					self:UpdateCooldowns()
+					EltruismQuestItemFrame:UpdateCooldowns()
 				end
 			end
 
 			-- Inventory Changed
 			function EltruismQuestItemFrame:UNIT_INVENTORY_CHANGED(event,unit)
 				if (unit == "player") then
-					self:RequestUpdate()
+					EltruismQuestItemFrame:RequestUpdate()
 					-- update mover position
 					EltruismQuestItemFrame:FixPosition()
 				end
@@ -519,7 +517,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Inventory might've changed because of mail
 			function EltruismQuestItemFrame:MAIL_SUCCESS(event)
-				self:RequestUpdate()
+				EltruismQuestItemFrame:RequestUpdate()
 				-- update mover position
 				EltruismQuestItemFrame:FixPosition()
 			end

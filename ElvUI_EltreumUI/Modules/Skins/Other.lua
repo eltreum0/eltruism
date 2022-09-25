@@ -100,13 +100,24 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 			end
 		end
 
-		--[[--loot roll
-		local M = E:GetModule('Misc')
+		--loot roll
 		for i = 1, NUM_GROUP_LOOT_FRAMES do
-			local frame = M:LootFrame_GetFrame(i)
-			local r,g,b,a = frame.status:GetStatusBarColor()
-			frame.status:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r - 0.3, g - 0.3, b - 0.3, a, r + 0.2, g + 0.2, b + 0.2, a)
-		end]] --check misc/lootroll line 255
+			local frame = _G["ElvUI_LootRollFrame"..i]
+			if frame then
+				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+					if not frame.status.shadow then
+						frame.status:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					end
+				end
+				if not frame.GradientHook then
+					frame:HookScript("OnShow", function()
+						local r,g,b = frame.status:GetStatusBarColor()
+						frame.status:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r - 0.5, g - 0.5, b - 0.5, 1, r + 0.3, g + 0.3, b + 0.3, 1)
+					end)
+					frame.GradientHook = true
+				end
+			end
+		end
 
 	end
 end

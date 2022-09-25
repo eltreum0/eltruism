@@ -137,6 +137,14 @@ function ElvUI_EltreumUI:SkinQuests()
 						if not block then
 							return
 						end
+						if E.db.ElvUI_EltreumUI.skins.shadow.enable then --minimize shadows
+							if k.Header.MinimizeButton and not k.Header.MinimizeButton.shadow then
+								k.Header.MinimizeButton:CreateShadow()
+								k.Header.MinimizeButton.shadow:ClearAllPoints()
+								k.Header.MinimizeButton.shadow:SetPoint("TOPLEFT", k.Header.MinimizeButton.tex, "TOPLEFT", -1,1)
+								k.Header.MinimizeButton.shadow:SetPoint("BOTTOMRIGHT", k.Header.MinimizeButton.tex, "BOTTOMRIGHT", 1,-1)
+							end
+						end
 						if block.HeaderText then --quest title
 							block.HeaderText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+1, E.db.general.fontStyle)
 							if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
@@ -170,6 +178,11 @@ function ElvUI_EltreumUI:SkinQuests()
 							end
 						end
 					end)
+				end
+
+				if _G.ObjectiveTrackerFrame.HeaderMenu.Title then --fix when collapsed
+					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize*1.5, E.db.general.fontStyle)
+					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 				end
 
 				hooksecurefunc('ObjectiveTracker_Update', function ()
