@@ -697,15 +697,8 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-10,10)
 		_G.PallyPowerAnchor:SetFrameLevel(10)
 
-		--main shadow
-		local shadowupdate = CreateFrame("FRAME")
-		shadowupdate:RegisterEvent("GROUP_ROSTER_UPDATE")
-		shadowupdate:RegisterEvent("GROUP_JOINED")
-		shadowupdate:RegisterEvent("PLAYER_ENTERING_WORLD")
-		shadowupdate:RegisterEvent("ZONE_CHANGED")
-		shadowupdate:RegisterEvent("ZONE_CHANGED_INDOORS")
-		shadowupdate:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-		shadowupdate:SetScript("OnEvent",function()
+		--shadow update function
+		local function UpdateShadows()
 			if InCombatLockdown() then return end
 			if not _G.PallyPowerFrame.shadow then
 				_G.PallyPowerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -873,7 +866,25 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC10, "BOTTOMRIGHT",3,-3)
 				end
 			end
+		end
+
+		--main shadow
+		local shadowupdate = CreateFrame("FRAME")
+		shadowupdate:RegisterEvent("GROUP_ROSTER_UPDATE")
+		shadowupdate:RegisterEvent("GROUP_JOINED")
+		shadowupdate:RegisterEvent("PLAYER_ENTERING_WORLD")
+		shadowupdate:RegisterEvent("ZONE_CHANGED")
+		shadowupdate:RegisterEvent("ZONE_CHANGED_INDOORS")
+		shadowupdate:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+		shadowupdate:SetScript("OnEvent",function()
+			UpdateShadows()
 		end)
+
+		if _G.PallyPowerC10 then
+			_G.PallyPowerC10:HookScript("OnShow", function()
+				UpdateShadows()
+			end)
+		end
 
 		local function toggle()
 			for i = 1, PALLYPOWER_MAXCLASSES do
