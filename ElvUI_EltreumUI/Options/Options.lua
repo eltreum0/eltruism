@@ -6882,7 +6882,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							cardinaloffset = {
 								type = 'range',
-								name = L["Cardinal Offset"],
+								name = L["Cardinal Text Offset"],
 								order = 9,
 								min = -50,
 								max = 50,

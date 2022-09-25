@@ -1162,3 +1162,7 @@ L["Replace Texture"] = true
 L["Replace Details Bar Texture"] = true
 L["Enable Automatically Confirming Bind on Pickup"] = true
 L["Loot Window will automatically confirm looting Bind on Pickup items"] = true
+L["Minimap Cardinal Directions"] = true
+L["Enable Cardinal Directions"] = true
+L["Add North, East, South, West to Minimap"] = true
+L["Cardinal Text Offset"] = true
