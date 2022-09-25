@@ -573,6 +573,7 @@ modelupdater:RegisterEvent("PLAYER_ENTERING_WORLD") --refresh everything
 modelupdater:RegisterUnitEvent("UNIT_PET", "player") --refresh everything
 --modelupdater:RegisterEvent("PLAYER_TARGET_CHANGED") --test
 modelupdater:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player") --refresh everything
+modelupdater:RegisterEvent("CINEMATIC_STOP") --cinematic might've caused it
 modelupdater:SetScript("OnEvent", function(_, event)
 	ElvUI_EltreumUI:TargetTargetUFEffects()
 	if event == 'PLAYER_ENTERING_WORLD' or event == "PLAYER_FLAGS_CHANGED" then
