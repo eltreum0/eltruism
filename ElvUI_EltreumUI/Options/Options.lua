@@ -6914,6 +6914,18 @@ function ElvUI_EltreumUI:Configtable()
 									E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b = r, g, b ElvUI_EltreumUI:MinimapCardinalDirections()
 								end,
 							},
+							fontsize = {
+								type = 'range',
+								name = L["Font Size"],
+								order = 12,
+								min = 4,
+								max = 30,
+								step = 1,
+								--width = "single",
+								disabled = function() return C_CVar.GetCVar("rotateMinimap") == "1" or not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize = value ElvUI_EltreumUI:MinimapCardinalDirections() end,
+							},
 						},
 					},
 				},
