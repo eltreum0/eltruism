@@ -1166,3 +1166,4 @@ L["Minimap Cardinal Directions"] = true
 L["Enable Cardinal Directions"] = true
 L["Add North, East, South, West to Minimap"] = true
 L["Cardinal Text Offset"] = true
+L["You have another Nameplate Addon installed and loaded, and many nameplate features will not work with it"] = true
