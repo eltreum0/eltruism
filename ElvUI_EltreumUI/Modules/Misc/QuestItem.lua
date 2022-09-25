@@ -194,8 +194,8 @@ function ElvUI_EltreumUI:QuestItem()
 				self.updateTime = (self.updateTime + elapsed)
 				if (self.updateTime > UPDATE_DELAY) then
 					--print("updated in: ", self.updateTime)
-					EltruismQuestItemFrame:SetScript("OnUpdate",nil)
-					EltruismQuestItemFrame:UpdateButtons()
+					self:SetScript("OnUpdate",nil)
+					self:UpdateButtons()
 				end
 			end
 
@@ -213,7 +213,7 @@ function ElvUI_EltreumUI:QuestItem()
 					return
 				-- Ignore
 				elseif (IsShiftKeyDown()) then
-					EltruismQuestItemFrame:RequestUpdate()
+					self:RequestUpdate()
 				-- Set Hotkey
 				elseif (self.itemId ~= cfg.lastItem) then
 					cfg.lastItem = self.itemId
@@ -467,7 +467,7 @@ function ElvUI_EltreumUI:QuestItem()
 					self.items[i].bind:SetText(GetBindingText(GetBindingKey("CLICK ".."EltruismQuestItem"..i..":LeftButton"),"",1))
 				end
 				-- Update Misc
-				EltruismQuestItemFrame:UpdateCooldowns()
+				self:UpdateCooldowns()
 			end
 
 			-- Update Cooldowns
@@ -526,7 +526,7 @@ function ElvUI_EltreumUI:QuestItem()
 				if (self[event]) then
 					self[event](self,event,...)
 				else
-					EltruismQuestItemFrame:RequestUpdate()
+					self:RequestUpdate()
 				end
 			end)
 
@@ -536,14 +536,14 @@ function ElvUI_EltreumUI:QuestItem()
 					self.shownItems = 0
 				end
 				if (self.shownItems > 0) then
-					EltruismQuestItemFrame:UpdateCooldowns()
+					self:UpdateCooldowns()
 				end
 			end
 
 			-- Inventory Changed
 			function EltruismQuestItemFrame:UNIT_INVENTORY_CHANGED(event,unit)
 				if (unit == "player") then
-					EltruismQuestItemFrame:RequestUpdate()
+					self:RequestUpdate()
 					-- update mover position
 					EltruismQuestItemFrame:FixPosition()
 				end
@@ -551,7 +551,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Inventory might've changed because of mail
 			function EltruismQuestItemFrame:MAIL_SUCCESS(event)
-				EltruismQuestItemFrame:RequestUpdate()
+				self:RequestUpdate()
 				-- update mover position
 				EltruismQuestItemFrame:FixPosition()
 			end
