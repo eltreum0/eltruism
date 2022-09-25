@@ -1127,7 +1127,6 @@ function ElvUI_EltreumUI:EltruismDetails()
 end
 S:AddCallbackForAddon('Details', "EltruismDetails", ElvUI_EltreumUI.EltruismDetails)
 
-
 --add cardinal directions to minimap
 local Cardinals = CreateFrame("FRAME", "Eltruism Cardinal Directions")
 Cardinals:SetParent(Minimap)
