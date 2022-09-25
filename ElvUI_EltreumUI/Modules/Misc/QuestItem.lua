@@ -193,6 +193,7 @@ function ElvUI_EltreumUI:QuestItem()
 				--print("quest item spam "..math.random(1,99))
 				self.updateTime = (self.updateTime + elapsed)
 				if (self.updateTime > UPDATE_DELAY) then
+					--print("updated in: ", self.updateTime)
 					EltruismQuestItemFrame:SetScript("OnUpdate",nil)
 					EltruismQuestItemFrame:UpdateButtons()
 				end
