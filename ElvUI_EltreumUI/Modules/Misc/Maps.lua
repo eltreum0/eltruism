@@ -231,6 +231,7 @@ end
 
 --add cardinal directions to minimap
 local Cardinals = CreateFrame("FRAME", "Eltruism Cardinal Directions")
+Cardinals:SetParent(Minimap)
 function ElvUI_EltreumUI:MinimapCardinalDirections()
 	if C_CVar.GetCVar("rotateMinimap") == "1" then return end
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable then
@@ -256,10 +257,10 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 		Cardinals.S:SetPoint("TOP", Minimap, "BOTTOM", 0, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset)
 		Cardinals.W:SetPoint("RIGHT", Minimap, "LEFT", E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset, 0)
 
-		Cardinals.N:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
-		Cardinals.E:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
-		Cardinals.S:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
-		Cardinals.W:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+		Cardinals.N:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize, E.db.general.fontStyle)
+		Cardinals.E:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize, E.db.general.fontStyle)
+		Cardinals.S:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize, E.db.general.fontStyle)
+		Cardinals.W:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize, E.db.general.fontStyle)
 
 		if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor then
 			Cardinals.N:SetTextColor(classcolor.r,classcolor.g,classcolor.b)
