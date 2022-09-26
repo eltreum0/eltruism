@@ -15,7 +15,6 @@ local tonumber = _G.tonumber
 local table = _G.table
 local wipe = _G.wipe
 local UiMapPoint = _G.UiMapPoint
-local classcolor = E:ClassColor(E.myclass, true)
 
 --Conversion of Time to Arrive weakaura (new version)
 local EltruismAutopin = CreateFrame("Frame", "EltruismAutoPin")

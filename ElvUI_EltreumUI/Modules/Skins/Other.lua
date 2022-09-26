@@ -10,6 +10,7 @@ local dontexpandanymoreEnchant = 0
 local dontexpandanymore = 0
 local skillbutton
 local skillTitle
+local classcolor = E:ClassColor(E.myclass, true)
 
 --test elvui backdrop transparency, can also replace the backdrop texture
 --[[
