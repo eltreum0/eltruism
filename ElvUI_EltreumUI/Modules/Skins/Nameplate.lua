@@ -237,6 +237,14 @@ local function GradientNameplates(unit)
 end
 hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 
+--power gradient/combo/runes
+function ElvUI_EltreumUI:NPClassPower_SetBarColor(bar, r, g, b)
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+		bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, r - 0.3, g - 0.3, b - 0.3, r, g, b)
+	end
+end
+hooksecurefunc(NP, "ClassPower_SetBarColor", ElvUI_EltreumUI.NPClassPower_SetBarColor)
+
 --np custom health height conditions
 local heighttable = {
 	["FRIENDLY_NPC"] = 30,

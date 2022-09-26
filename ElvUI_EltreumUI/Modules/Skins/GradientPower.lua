@@ -1,6 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local UF = E:GetModule('UnitFrames')
-local NP = E:GetModule('NamePlates')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local powertype, _
@@ -72,13 +71,12 @@ function ElvUI_EltreumUI:ApplyGradientPower(unit,name)
 end
 
 --additional power gradient/combo/runes as well
-function ElvUI_EltreumUI:ClassPower_SetBarColor(bar, r, g, b)
+function ElvUI_EltreumUI:UFClassPower_SetBarColor(bar, r, g, b)
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, r - 0.3, g - 0.3, b - 0.3, r, g, b)
 	end
 end
 hooksecurefunc(UF, "ClassPower_SetBarColor", ElvUI_EltreumUI.ClassPower_SetBarColor)
-hooksecurefunc(NP, "ClassPower_SetBarColor", ElvUI_EltreumUI.ClassPower_SetBarColor)
 
 --[[function ElvUI_EltreumUI:UpdateClassBar(current, maxBars, hasMaxChanged, powerType, chargedPoints)
 	local frame = self.origParent or self:GetParent()
