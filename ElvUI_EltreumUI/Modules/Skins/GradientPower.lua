@@ -135,7 +135,8 @@ function ElvUI_EltreumUI:GradientStagger()
 			npstaggerframe = _G["ElvNP_TargetClassPowerStagger"]
 			if npstaggerframe then
 				hooksecurefunc(npstaggerframe, "SetStatusBarColor", function(self,r,g,b)
-					self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, r - 0.5, g - 0.5, b - 0.5, r + 0.2, g + 0.2, b + 0.2)
+					self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, r - 0.5, g - 0.5, b - 0.5, r + 0.2, g + 0.2, b + 0.2)
+					--self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, 0, 0, 0, 1, 0, 0)
 				end)
 			end
 			isHookedstagger = true
