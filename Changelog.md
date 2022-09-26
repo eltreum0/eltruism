@@ -23,7 +23,9 @@ Fixed a possible error with Glows when ElvUI action bars were not enabled\
 Fixed Guild Bank Shadows\
 Fixed a possible issue with chat custom colors due to the color table loading after the chat history had loaded\
 Fixed a possible issue with the Stats on Character Panel being outside the Panel in Retail when the number of stats was too many\
-Fixed the Inspect Sockets option button not disabling when the Character Sockets option was disabled
+Fixed the Inspect Sockets option button not disabling when the Character Sockets option was disabled\
+Fixed action paging for Priests and Death Knights in Classic/Wrath\
+Fixed a possible error with Cardinal Directions when using class colors
 ### 3.4.4
 Added some more missing shadows\
 Added customizable gradient colors to Details Skins, if the option is enabled in Gradient Colors then Details will use the custom colors\
