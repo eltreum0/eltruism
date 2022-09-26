@@ -7125,14 +7125,14 @@ function ElvUI_EltreumUI:Configtable()
 								type = "description",
 								name = "",
 								width = 'full',
-								--hidden = E.Retail,
+								hidden = E.Retail,
 								--hidden = function() if E.Retail then return true else return false end end,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							dynamicdatatext12123 = {
 								order = 125,
 								type = "description",
-								--hidden = E.Retail,
+								hidden = E.Retail,
 								--hidden = function() if E.Retail then return true else return false end end,
 								name = L["Dynamic Datatext that changes according to class to show Ammo or Soul Shards when playing Hunter, Warrior, Rogue or Warlock"],
 								width = "full",
@@ -7142,7 +7142,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'toggle',
 								name = L["Enable"],
 								desc = L["Enable the Dynamic Datatext"],
-								--hidden = E.Retail,
+								hidden = E.Retail,
 								get = function() return E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext = value end,
 							},
@@ -7521,7 +7521,6 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.delete end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.delete = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
-
 					headerdatatexthiding = {
 						order = 57,
 						type = "description",
