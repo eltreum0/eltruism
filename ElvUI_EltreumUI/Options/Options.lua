@@ -6576,7 +6576,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					lootconfirmbop = {
 						order = 43,
-						name = L["Enable Automatically Confirming Bind on Pickup"],
+						name = E.NewSign..L["Enable Automatically Confirming Bind on Pickup"],
 						type = "toggle",
 						desc = L["Loot Window will automatically confirm looting Bind on Pickup items"],
 						width = 'full',
