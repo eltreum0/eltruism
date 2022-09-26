@@ -68,7 +68,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		end
 
 		if not E.Retail then
-			if not (CharacterNameText:GetText():match("|T")) then
+			if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
 				CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 				CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
 				CharacterNameText:SetShadowOffset(2, -1)
@@ -97,7 +97,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				CharacterLevelText:ClearAllPoints()
 				CharacterLevelText:SetPoint('TOP', CharacterFrameTitleText, 'BOTTOM', 0, 0)
 				CharacterLevelText:SetDrawLayer("OVERLAY")
-				if not (CharacterFrameTitleText:GetText():match("|T")) then
+				if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
 					CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 					if string.len(CharacterFrameTitleText:GetText()) >= 6 then
 						if E.db.ElvUI_EltreumUI.skins.characterskingradients then
@@ -115,7 +115,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc("CharacterFrame_Collapse", function()
 				if PaperDollFrame:IsShown() then
-					if not (_G.CharacterFrameTitleText:GetText():match("|T")) then
+					if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
 						CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 						if string.len(CharacterFrameTitleText:GetText()) >= 6 then
 							if E.db.ElvUI_EltreumUI.skins.characterskingradients then
@@ -134,7 +134,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc("CharacterFrame_Expand", function()
 				if PaperDollFrame:IsShown() then
-					if not (_G.CharacterFrameTitleText:GetText():match("|T")) then
+					if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
 						CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 						if string.len(CharacterFrameTitleText:GetText()) >= 6 then
 							if E.db.ElvUI_EltreumUI.skins.characterskingradients then
@@ -153,7 +153,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc("ReputationFrame_Update", function()
 				if ReputationFrame:IsShown() then
-					if not (_G.CharacterFrameTitleText:GetText():match("|T")) then
+					if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
 						CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 						if string.len(CharacterFrameTitleText:GetText()) >= 6 then
 							if E.db.ElvUI_EltreumUI.skins.characterskingradients then
@@ -172,7 +172,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc("TokenFrame_Update", function()
 				if TokenFrame:IsShown() then
-					if not (_G.CharacterFrameTitleText:GetText():match("|T")) then
+					if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
 						CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 						if string.len(CharacterFrameTitleText:GetText()) >= 6 then
 							if E.db.ElvUI_EltreumUI.skins.characterskingradients then
