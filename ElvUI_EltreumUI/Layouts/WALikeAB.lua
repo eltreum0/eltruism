@@ -5,7 +5,7 @@ local _G = _G
 function ElvUI_EltreumUI:WeakAurasLikeActionBars(value)
 	if not E.db.movers then E.db.movers = {} end
 
-	if E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA or value then
+	if (E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA or value) and E.private.actionbar.enable and E.private.unitframe.enable then
 		local width = GetPhysicalScreenSize()
 
 		--hide keypresses

@@ -6576,7 +6576,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					lootconfirmbop = {
 						order = 43,
-						name = L["Enable Automatically Confirming Bind on Pickup"],
+						name = E.NewSign..L["Enable Automatically Confirming Bind on Pickup"],
 						type = "toggle",
 						desc = L["Loot Window will automatically confirm looting Bind on Pickup items"],
 						width = 'full',
@@ -10501,7 +10501,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Enable Gradient (Requires Dark or Light Modes)"],
 								desc = L["Enable Gradient colors for Health"],
 								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.lightmode or not E.db.ElvUI_EltreumUI.unitframes.darkmode or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
+								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = value E:StaticPopup_Show('CONFIG_RL') end,
 							},

@@ -29,7 +29,7 @@ function ElvUI_EltreumUI:SkillGlow()
 		skillglowcolor = {E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b, 1}
 	end
 
-	if E.db.ElvUI_EltreumUI.glow.enable then
+	if E.db.ElvUI_EltreumUI.glow.enable and E.private.actionbar.enable then
 		if E.Retail then
 			if not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 				if E.db.ElvUI_EltreumUI.glow.pixel then

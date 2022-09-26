@@ -297,14 +297,14 @@ end)
 
 --get the texture
 function ElvUI_EltreumUI:UnitframeClassTexture(unitclass)
-	if unitclass ~= nil then
+	if unitclass then
 		return unitframeclass[unitclass]
 	end
 end
 
 --get the custom texture
 function ElvUI_EltreumUI:UnitframeClassTextureCustom(unitclass)
-	if unitclass ~= nil then
+	if unitclass then
 		return unitframeclasscustom[unitclass]
 	end
 end
@@ -312,7 +312,7 @@ end
 --get the gradient colors
 local bgfade
 function ElvUI_EltreumUI:GradientColors(unitclass, invert, alpha, isBG)
-	if unitclass ~= nil then
+	if unitclass then
 		if isBG then
 			bgfade = E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade
 		else
@@ -352,7 +352,7 @@ end
 
 --get the custom gradient colors
 function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, alpha, isBG)
-	if unitclass ~= nil then
+	if unitclass then
 		if isBG then
 			bgfade = E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade
 		else
@@ -412,7 +412,11 @@ end
 --sends the colors for chat
 function ElvUI_EltreumUI:ChatCustomColor(unitclass)
 	if unitclass then
-		return unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1
+		if not unitframecustomgradients[unitclass] then
+			return unitframecustomgradients["NPCNEUTRAL"].r1, unitframecustomgradients["NPCNEUTRAL"].g1, unitframecustomgradients["NPCNEUTRAL"].b1
+		else
+			return unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1
+		end
 	else
 		return unitframecustomgradients["NPCNEUTRAL"].r1, unitframecustomgradients["NPCNEUTRAL"].g1, unitframecustomgradients["NPCNEUTRAL"].b1
 	end
@@ -420,7 +424,7 @@ end
 
 --different for details because bars smaller and different
 function ElvUI_EltreumUI:GradientColorsDetails(unitclass)
-	if unitclass ~= nil then
+	if unitclass then
 		if not unitframegradients[unitclass] then
 			return unitframegradients["NPCNEUTRAL"].r1 - 0.2, unitframegradients["NPCNEUTRAL"].g1 - 0.2, unitframegradients["NPCNEUTRAL"].b1 - 0.2, 0.9, unitframegradients["NPCNEUTRAL"].r2 + 0.2, unitframegradients["NPCNEUTRAL"].g2 + 0.2, unitframegradients["NPCNEUTRAL"].b2 + 0.2, 0.9
 		else
@@ -430,7 +434,7 @@ function ElvUI_EltreumUI:GradientColorsDetails(unitclass)
 end
 
 function ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass)
-	if unitclass ~= nil then
+	if unitclass then
 		if not unitframegradients[unitclass] then
 			return unitframecustomgradients["NPCNEUTRAL"].r1, unitframecustomgradients["NPCNEUTRAL"].g1, unitframecustomgradients["NPCNEUTRAL"].b1, 0.9, unitframecustomgradients["NPCNEUTRAL"].r2, unitframecustomgradients["NPCNEUTRAL"].g2, unitframecustomgradients["NPCNEUTRAL"].b2, 0.9
 		else
