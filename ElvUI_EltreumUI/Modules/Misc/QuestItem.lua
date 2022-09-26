@@ -120,17 +120,14 @@ function ElvUI_EltreumUI:QuestItem()
 			local ITEMID_PATTERN = "item:(%d+)"
 			local QUEST_TOKEN = (GetItemClassInfo and GetItemClassInfo(LE_ITEM_CLASS_QUESTITEM or 12) or LOOT_JOURNAL_LEGENDARIES_SOURCE_QUEST or "Quest") -- Obtain the localization of the "Quest" type for items -- [7.0.3/Legion] API Removed: GetAuctionItemClasses()
 
-			-- Config
-			local cfg = {
-				btnSize = E.db.ElvUI_EltreumUI.quests.questitemsize,
-			}
+
 			if E.db.ElvUI_EltreumUI.quests.questitemsbar1 and E.private.actionbar.enable then
 				if not InCombatLockdown() then
 					EltruismQuestItemFrame:SetParent(_G["ElvUI_Bar1Button1"])
 				end
 			end
 			if not InCombatLockdown() then
-				EltruismQuestItemFrame:SetSize(cfg.btnSize,cfg.btnSize)
+				EltruismQuestItemFrame:SetSize(E.db.ElvUI_EltreumUI.quests.questitemsize,E.db.ElvUI_EltreumUI.quests.questitemsize)
 				EltruismQuestItemFrame:SetClampedToScreen(true)
 				EltruismQuestItemFrame:SetFrameStrata("MEDIUM")
 			end
@@ -168,15 +165,15 @@ function ElvUI_EltreumUI:QuestItem()
 						if self.shownItems ~= 1 then
 							if (self.shownItems % 2) == 0 then
 								if xOfs >= 0 then
-									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*cfg.btnSize)/2), yOfs)
+									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
 								elseif xOfs < 0 then
-									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-1)*cfg.btnSize)/2), yOfs)
+									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
 								end
 							else
 								if xOfs >= 0 then
-									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-(self.shownItems % 2))*(cfg.btnSize+1))/2), yOfs)
+									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize+1))/2), yOfs)
 								elseif xOfs < 0 then
-									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-(self.shownItems % 2))*(cfg.btnSize-1))/2), yOfs)
+									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize-1))/2), yOfs)
 								end
 							end
 						else
@@ -214,9 +211,6 @@ function ElvUI_EltreumUI:QuestItem()
 				-- Ignore
 				elseif (IsShiftKeyDown()) then
 					self:RequestUpdate()
-				-- Set Hotkey
-				elseif (self.itemId ~= cfg.lastItem) then
-					cfg.lastItem = self.itemId
 				end
 			end
 
@@ -224,7 +218,7 @@ function ElvUI_EltreumUI:QuestItem()
 			local function CreateItemButton()
 				local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"SecureActionButtonTemplate")
 				b:CreateBackdrop('Transparent')
-				b:SetSize(cfg.btnSize,cfg.btnSize)
+				b:SetSize(E.db.ElvUI_EltreumUI.quests.questitemsize,E.db.ElvUI_EltreumUI.quests.questitemsize)
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 					if not b.shadow then
 						b:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
