@@ -3,7 +3,7 @@ local UF = E:GetModule('UnitFrames')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local powertype, _
-local unitframe, Additionalframe, isHooked
+local unitframe, Additionalframe, isHooked,isHookedstagger,staggerframe
 
 --powers there are gradients for since retail has like 100+ power types
 local powertypes ={
@@ -76,7 +76,7 @@ function ElvUI_EltreumUI:UFClassPower_SetBarColor(bar, r, g, b)
 		bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, r - 0.3, g - 0.3, b - 0.3, r, g, b)
 	end
 end
-hooksecurefunc(UF, "ClassPower_SetBarColor", ElvUI_EltreumUI.ClassPower_SetBarColor)
+hooksecurefunc(UF, "ClassPower_SetBarColor", ElvUI_EltreumUI.UFClassPower_SetBarColor)
 
 --[[function ElvUI_EltreumUI:UpdateClassBar(current, maxBars, hasMaxChanged, powerType, chargedPoints)
 	local frame = self.origParent or self:GetParent()
@@ -120,6 +120,20 @@ function ElvUI_EltreumUI:GradientPower()
 					Additionalframe:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, r - 0.4, g - 0.4, b - 0.4, r, g, b)
 				end)
 				isHooked = true
+			end
+		end
+
+		--gradient stagger
+		if not isHookedstagger then
+			staggerframe = _G["ElvUF_Player_Stagger"]
+			if staggerframe then
+				hooksecurefunc(staggerframe, "PostUpdate", function(self) --i knew the vertex thing from details could be useful
+					print(self:GetName())
+					local r,g,b = staggerframe:GetStatusBarColor()
+					--self.Stagger:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, r - 0.4, g - 0.4, b - 0.4, r, g, b)
+					self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, 0, 0, 0, 1, 1, 1)
+				end)
+				isHookedstagger = true
 			end
 		end
 
