@@ -184,11 +184,11 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["backdropSpacing"] = 1
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["name"] = E.db.general.font
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["size"] = 10
-		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = "THICKOUTLINE"
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = E.db.general.fontStyle
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["buttonWidth"] = 40
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["buttonsPerRow"] = 4
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["name"] = E.db.general.font
-		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = "THICKOUTLINE"
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = E.db.general.fontStyle
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["include"] = "QUEST,TORGHAST"
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["numButtons"] = 4
 		E.db["WT"]["item"]["extraItemsBar"]["bar2"]["backdrop"] = false
@@ -234,7 +234,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["maps"]["whoClicked"]["onlyOnCombat"] = false
 
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["name"] = E.db.general.font
-		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = "THICKOUTLINE"
+		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = E.db.general.fontStyle
 		E.db["WT"]["misc"]["gameBar"]["backdropSpacing"] = 1
 		E.db["WT"]["misc"]["gameBar"]["buttonSize"] = 20
 		E.db["WT"]["misc"]["gameBar"]["enable"] = false
@@ -246,7 +246,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["misc"]["gameBar"]["spacing"] = 3
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["name"] = E.db.general.font
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["size"] = 30
-		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = "THICKOUTLINE"
+		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = E.db.general.fontStyle
 		E.db["WT"]["misc"]["gameBar"]["timeAreaHeight"] = 39
 		E.db["WT"]["misc"]["gameBar"]["timeAreaWidth"] = 85
 		E.db["WT"]["misc"]["gameBar"]["visibility"] = "[petbattle][combat] hide; show"
@@ -269,8 +269,8 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["social"]["emote"]["enable"] = false
 		E.db["WT"]["social"]["emote"]["panel"] = false
 		E.db["WT"]["social"]["emote"]["size"] = 5
-		E.db["WT"]["social"]["friendList"]["infoFont"]["style"] = "THICKOUTLINE"
-		E.db["WT"]["social"]["friendList"]["nameFont"]["style"] = "THICKOUTLINE"
+		E.db["WT"]["social"]["friendList"]["infoFont"]["style"] = E.db.general.fontStyle
+		E.db["WT"]["social"]["friendList"]["nameFont"]["style"] = E.db.general.fontStyle
 		E.db["WT"]["social"]["friendList"]["textures"]["factionIcon"] = true
 		E.db["WT"]["social"]["smartTab"]["enable"] = false
 

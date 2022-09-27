@@ -37,11 +37,7 @@ function ElvUI_EltreumUI:GetASProfile()
 			1, -- [4]
 		}
 		AS.db["DBMSkinHalf"] = true
-		if width == 3840 then
-			AS.db["DBMFontFlag"] = "THICKOUTLINE"
-		else
-			AS.db["DBMFontFlag"] = "OUTLINE"
-		end
+		AS.db["DBMFontFlag"] = E.db.general.fontStyle
 		AS.db["DBMFont"] = E.db.general.font
 		AS.db["DBMRadarTrans"] = true
 		AS.db["HideChatFrame"] = "ChatFrame4"
