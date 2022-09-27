@@ -7143,7 +7143,6 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Enable"],
 								desc = L["Enable the Dynamic Datatext"],
 								hidden = E.Retail,
-								--hidden = function() if E.Retail then return true else return false end end,
 								get = function() return E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext = value end,
 							},
@@ -7522,7 +7521,6 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.delete end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.delete = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
-
 					headerdatatexthiding = {
 						order = 57,
 						type = "description",

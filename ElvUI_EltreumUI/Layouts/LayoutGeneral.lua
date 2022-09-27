@@ -306,6 +306,8 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["databars"]["threat"]["height"] = 22
 		E.db["databars"]["threat"]["orientation"] = "HORIZONTAL"
 		E.db["databars"]["threat"]["width"] = 412
+		E.db["databars"]["threat"]["frameLevel"] = 3
+		E.db["databars"]["threat"]["frameStrata"] = "MEDIUM"
 		if E.Wrath or E.TBC or E.Classic then
 			E.db["databars"]["threat"]["enable"] = true
 		elseif E.Retail then

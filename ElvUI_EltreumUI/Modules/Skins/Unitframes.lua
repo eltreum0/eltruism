@@ -629,7 +629,7 @@ function UF:ToggleTransparentStatusBar(isTransparent, statusBar, backdropTex, ad
 
 		UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
 	else
-		local texture = E.LSM:Fetch('statusbar', self.db.statusbar)
+		local texture = E.LSM:Fetch('statusbar', UF.db.statusbar)
 		statusBar:SetStatusBarTexture(texture)
 		UF:Update_StatusBar(statusBar.bg or statusBar.BG, texture)
 

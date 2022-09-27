@@ -50,24 +50,86 @@ function ElvUI_EltreumUI:SkinQuests()
 		S:HandleButton(wowheadbutton)
 		--get the wowhead region based on game language region
 		local wowheadregion
-		if E.locale == "deDE" then
-			wowheadregion = "de.wowhead.com"
-		elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW" then
-			wowheadregion = "wowhead.com"
-		elseif E.locale == "esMX" or E.locale == "esES" then
-			wowheadregion = "es.wowhead.com"
-		elseif E.locale == "frFR" then
-			wowheadregion = "fr.wowhead.com"
-		elseif E.locale == "itIT" then
-			wowheadregion = "it.wowhead.com"
-		elseif E.locale == "koKR" then
-			wowheadregion = "ko.wowhead.com"
-		elseif E.locale == "ptBR" or E.locale == "ptPT" then
-			wowheadregion = "pt.wowhead.com"
-		elseif E.locale == "ruRU" then
-			wowheadregion = "ru.wowhead.com"
-		elseif E.locale == "zhCN" or E.locale == "zhTW" then
-			wowheadregion = "cn.wowhead.com"
+		if E.Retail then
+			if E.locale == "deDE" then
+				wowheadregion = "de.wowhead.com"
+			elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW" then
+				wowheadregion = "wowhead.com"
+			elseif E.locale == "esMX" or E.locale == "esES" then
+				wowheadregion = "es.wowhead.com"
+			elseif E.locale == "frFR" then
+				wowheadregion = "fr.wowhead.com"
+			elseif E.locale == "itIT" then
+				wowheadregion = "it.wowhead.com"
+			elseif E.locale == "koKR" then
+				wowheadregion = "ko.wowhead.com"
+			elseif E.locale == "ptBR" or E.locale == "ptPT" then
+				wowheadregion = "pt.wowhead.com"
+			elseif E.locale == "ruRU" then
+				wowheadregion = "ru.wowhead.com"
+			elseif E.locale == "zhCN" or E.locale == "zhTW" then
+				wowheadregion = "cn.wowhead.com"
+			end
+		elseif E.TBC then
+			if E.locale == "deDE" then
+				wowheadregion = "de.tbc.wowhead.com"
+			elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW" then
+				wowheadregion = "tbc.wowhead.com"
+			elseif E.locale == "esMX" or E.locale == "esES" then
+				wowheadregion = "es.tbc.wowhead.com"
+			elseif E.locale == "frFR" then
+				wowheadregion = "fr.tbc.wowhead.com"
+			elseif E.locale == "itIT" then
+				wowheadregion = "it.tbc.wowhead.com"
+			elseif E.locale == "koKR" then
+				wowheadregion = "ko.tbc.wowhead.com"
+			elseif E.locale == "ptBR" or E.locale == "ptPT" then
+				wowheadregion = "pt.tbc.wowhead.com"
+			elseif E.locale == "ruRU" then
+				wowheadregion = "ru.tbc.wowhead.com"
+			elseif E.locale == "zhCN" or E.locale == "zhTW" then
+				wowheadregion = "cn.tbc.wowhead.com"
+			end
+		elseif E.Wrath then
+			if E.locale == "deDE" then
+				wowheadregion = "wowhead.com/wotlk/de"
+			elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW" then
+				wowheadregion = "wowhead.com/wotlk/"
+			elseif E.locale == "esMX" or E.locale == "esES" then
+				wowheadregion = "wowhead.com/wotlk/es"
+			elseif E.locale == "frFR" then
+				wowheadregion = "wowhead.com/wotlk/fr"
+			elseif E.locale == "itIT" then
+				wowheadregion = "wowhead.com/wotlk/it"
+			elseif E.locale == "koKR" then
+				wowheadregion = "wowhead.com/wotlk/ko"
+			elseif E.locale == "ptBR" or E.locale == "ptPT" then
+				wowheadregion = "wowhead.com/wotlk/pt"
+			elseif E.locale == "ruRU" then
+				wowheadregion = "wowhead.com/wotlk/ru"
+			elseif E.locale == "zhCN" or E.locale == "zhTW" then
+				wowheadregion = "wowhead.com/wotlk/cn"
+			end
+		elseif E.Classic then
+			if E.locale == "deDE" then
+				wowheadregion = "de.classic.wowhead.com"
+			elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW" then
+				wowheadregion = "classic.wowhead.com"
+			elseif E.locale == "esMX" or E.locale == "esES" then
+				wowheadregion = "es.classic.wowhead.com"
+			elseif E.locale == "frFR" then
+				wowheadregion = "fr.classic.wowhead.com"
+			elseif E.locale == "itIT" then
+				wowheadregion = "it.classic.wowhead.com"
+			elseif E.locale == "koKR" then
+				wowheadregion = "ko.classic.wowhead.com"
+			elseif E.locale == "ptBR" or E.locale == "ptPT" then
+				wowheadregion = "pt.classic.wowhead.com"
+			elseif E.locale == "ruRU" then
+				wowheadregion = "ru.classic.wowhead.com"
+			elseif E.locale == "zhCN" or E.locale == "zhTW" then
+				wowheadregion = "cn.classic.wowhead.com"
+			end
 		end
 		--register the button for clicks
 		wowheadbutton:RegisterForClicks("AnyUp")
