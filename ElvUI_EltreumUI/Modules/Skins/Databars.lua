@@ -46,6 +46,7 @@ local function SetTooltipGradient(unit)
 	local reaction = UnitReaction(unit, "player")
 	local _, classunit = UnitClass(unit)
 	local reaction = UnitReaction(unit, "player")
+	if _G.GameTooltip:IsForbidden() then return end
 	if UnitIsPlayer(unit) then
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 			_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, false, false))
