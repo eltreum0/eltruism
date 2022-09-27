@@ -2,6 +2,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 -- NameplateSCT profile setup
 function ElvUI_EltreumUI:GetNameplateSCTProfile()
+	local width = GetPhysicalScreenSize()
 	NameplateSCTDB = {
 		["global"] = {
 			["iconScale"] = 0.8,
@@ -16,7 +17,7 @@ function ElvUI_EltreumUI:GetNameplateSCTProfile()
 			["enableMSQ"] = false,
 			["truncate"] = false,
 			["modOffTargetStrata"] = true,
-			["fontFlag"] = "THICKOUTLINE",
+			["fontFlag"] = (width == 1920 and "OUTLINE") or "THICKOUTLINE",
 			["font"] = E.db.general.font,
 			["strata"] = {
 				["target"] = "BACKGROUND",
