@@ -855,6 +855,13 @@ P.ElvUI_EltreumUI = {
 			monkcustomcolorB1 = 0.36862745098039,
 			monkcustomcolorB2 = 0.58823529411765,
 
+			evokercustomcolorR1 = 0.19607843137255,
+			evokercustomcolorR2 = 0.2,
+			evokercustomcolorG1 = 0.46666666666667,
+			evokercustomcolorG2 = 0.57647058823529,
+			evokercustomcolorB1 = 0.53725490196078,
+			evokercustomcolorB2 = 0.49803921568627,
+
 			npcfriendlyR1 = 0.30980392156863,
 			npcfriendlyR2 = 0.34117647058824,
 			npcfriendlyG1 = 0.85098039215686,
@@ -1044,6 +1051,7 @@ P.ElvUI_EltreumUI = {
 			focustexture = "Eltreum-Blank",
 			deathknighttexture = "Eltreum-Class-DeathKnight",
 			demonhuntertexture = "Eltreum-Class-DemonHunter",
+			evokertexture = "Eltreum-Class-Evoker",
 			druidtexture = "Eltreum-Class-Druid",
 			huntertexture = "Eltreum-Class-Hunter",
 			magetexture = "Eltreum-Class-Mage",
