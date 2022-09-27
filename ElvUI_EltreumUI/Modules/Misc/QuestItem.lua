@@ -55,6 +55,7 @@ local qItems = {
 	34475, -- arcane charges
 	34483, --orb of murloc control
 	35233, --multiphase spectographic goggles
+	33349, --plague vials
 
 	-- by Az
 	23818,	-- Stillpine Furbolg Language Primer
