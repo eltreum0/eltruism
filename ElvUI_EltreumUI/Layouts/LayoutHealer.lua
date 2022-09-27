@@ -178,19 +178,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["bar6"]["alpha"] = 1
 	E.db["actionbar"]["bar6"]["buttonHeight"] = 24
-	if C_CVar.GetCVar('gxFullscreenResolution') == "3840x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3840x2160" then
-		E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
-		E.db["actionbar"]["bar6"]["buttonSize"] = 35
-	elseif C_CVar.GetCVar('gxFullscreenResolution') == "2560x1440" or C_CVar.GetCVar('gxWindowedResolution') == "2560x1440" then
-		E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
-		E.db["actionbar"]["bar6"]["buttonSize"] = 33
-	elseif C_CVar.GetCVar('gxFullscreenResolution') == "1920x1080" or C_CVar.GetCVar('gxWindowedResolution') == "1920x1080" then
-		E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
-		E.db["actionbar"]["bar6"]["buttonSize"] = 33
-	elseif C_CVar.GetCVar('gxFullscreenResolution') == "auto" or C_CVar.GetCVar('gxWindowedResolution') == "auto" then
-		E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
-		E.db["actionbar"]["bar6"]["buttonSize"] = 33
-	else
+	E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
+	E.db["actionbar"]["bar6"]["buttonSize"] = 35
+	if width ~= 3840 then
 		E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
 		E.db["actionbar"]["bar6"]["buttonSize"] = 33
 	end

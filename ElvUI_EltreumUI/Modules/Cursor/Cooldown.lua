@@ -91,7 +91,8 @@ function ElvUI_EltreumUI:CooldownEnable()
 	EltruismCooldownFrame:SetWidth(cooldownsize)
 	EltruismCooldownFrame:SetHeight(cooldownsize)
 	EltruismCooldownFrame:SetJustifyH("CENTER")
-	if C_CVar.GetCVar('gxFullscreenResolution') == "3840x2160" or C_CVar.GetCVar('gxWindowedResolution') == "3840x2160" then
+	local width = GetPhysicalScreenSize()
+	if width == 3840 then
 		textsize = ( (cooldownsize * 0.5) + 1)
 	else
 		textsize = ( (cooldownsize / 3) + 1)
