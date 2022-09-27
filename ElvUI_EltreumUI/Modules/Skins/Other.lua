@@ -1025,6 +1025,21 @@ function ElvUI_EltreumUI:EltruismBigWigs()
 end
 S:AddCallbackForAddon('BigWigs_Plugins', "EltruismBigWigs", ElvUI_EltreumUI.EltruismBigWigs)
 
+local classes = {
+	["WARRIOR"] = true,
+	["PALADIN"] = true,
+	["HUNTER"] = true,
+	["MONK"] = true,
+	["ROGUE"] = true,
+	["PRIEST"] = true,
+	["DEATHKNIGHT"] = true,
+	["SHAMAN"] = true,
+	["MAGE"] = true,
+	["WARLOCK"] = true,
+	["DRUID"] = true,
+	["DEMONHUNTER"] = true,
+}
+
 --Details gradient, inspired by aftermathh's edit but had to delve deeper into it, too many things going on there
 function ElvUI_EltreumUI:EltruismDetails()
 	if E.db.ElvUI_EltreumUI.skins.details then
@@ -1040,7 +1055,7 @@ function ElvUI_EltreumUI:EltruismDetails()
 							end
 							if row.minha_tabela and row.minha_tabela.name then
 								unitclass = row.minha_tabela:class() --from details api returns class of that row
-								if unitclass ~='UNKNOW' then
+								if unitclass ~='UNKNOW' and classes[unitclass] then
 									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 										row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
 									else
